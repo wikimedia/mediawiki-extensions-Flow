@@ -1,0 +1,135 @@
+<?php
+
+namespace Flow\Data;
+
+class MultiDimArray implements \ArrayAccess {
+	protected $data = array();
+
+	public function all() {
+		return $this->data;
+	}
+
+	// Probably not what you want.  primary key value is lost, you only
+	// receive the final key in a composite key set.
+	public function getIterator() {
+		$it = new RecursiveArrayIterator( $this->data );
+		return new RecursiveIteratorIterator( $it );
+	}
+
+	public function offsetSet( $offset, $value ) {
+		$data =& $this->data;
+		foreach ( (array) $offset as $key ) {
+			if ( !isset( $data[$key] ) ) {
+				$data[$key] = array();
+			}
+			$data =& $data[$key];
+		}
+		$data = $value;
+	}
+
+	public function offsetGet( $offset ) {
+		$data =& $this->data;
+		foreach ( (array) $offset as $key ) {
+			if ( !isset( $data[$key] ) ) {
+				throw new \OutOfBoundException( 'Does not exist' );
+			}
+			$data =& $data[$key];
+		}
+		return $data;
+	}
+
+	public function offsetUnset( $offset ) {
+		$offset = (array) $offset;
+		// while loop is required to not leave behind empty arrays
+		$first = true;
+		while( $offset ) {
+			$end = array_pop( $offset );
+			$data =& $this->data;
+			foreach ( $offset as $key ) {
+				if ( !isset( $data[$key] ) ) {
+					return;
+				}
+				$data =& $data[$key];
+			}
+			if ( $first === true || ( is_array( $data[$end] ) && !count( $data[$end] ) ) ) {
+				unset( $data[$end] );
+				$first = false;
+			}
+		}
+	}
+
+	public function offsetExists( $offset ) {
+		$data =& $this->data;
+		foreach ( (array) $offset as $key ) {
+			if ( !isset( $data[$key] ) ) {
+				return false;
+			}
+			$data =& $data[$key];
+		}
+		return true;
+	}
+}
+
+// Better name?
+//
+// Add query arrays with a multi-dimensional position
+// Merge results with their query value
+// Get back result array with same positions as the origional query
+//
+// Maintains merge ordering
+class ResultDuplicator {
+	// Maps from the query array to its position in the query array
+	protected $queryKeys;
+	protected $queryMap;
+	protected $queries;
+	protected $result;
+
+	public function __construct( array $queryKeys, $dimensions ) {
+		$this->queryKeys = $queryKeys;
+		$this->dimensions = $dimensions;
+		$this->desiredOrder = new MultiDimArray;
+		$this->queryMap = new MultiDimArray;
+		$this->result = new MultiDimArray;
+	}
+
+	// Add a query and its position.  Positions must be unique.
+	public function add( $query, $position ) {
+		$query = ObjectManager::splitFromRow( $query, $this->queryKeys );
+		$this->desiredOrder[$position] = $query;
+		if ( !isset( $this->queryMap[$query] ) ) {
+			$this->queries[] = $query;
+			$this->queryMap[$query] = true;
+		}
+	}
+
+	// merge a query into the result set
+	public function merge( array $query, array $result ) {
+		$query = ObjectManager::splitFromRow( $query, $this->queryKeys );
+		$this->result[$query] = $result;
+	}
+
+	public function getUniqueQueries() {
+		return $this->queries;
+	}
+
+	public function getResult() {
+		return self::sortResult( $this->desiredOrder->all(), $this->result, $this->dimensions );
+	}
+
+	// merge() wasn't necessarily called in the same order as add(),  this walks back through
+	// the results to put them in the desired order with the correct keys.
+	static public function sortResult( array $order, MultiDimArray $result, $dimensions ) {
+		$final = array();
+		foreach ( $order as $position => $query ) {
+			if ( $dimensions > 1 ) {
+				$final[$position] = self::sortResult( $query, $result, $dimensions - 1 );
+			} elseif ( !isset( $result[$query] ) ) {
+				throw new \Exception( 'Missing result' );
+			} else {
+				$final[$position] = $result[$query];
+			}
+		}
+		return $final;
+	}
+}
+
