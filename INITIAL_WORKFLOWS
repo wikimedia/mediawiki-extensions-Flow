@@ -1,0 +1,59 @@
+There will be a few default workflows distributed with flow:
+
+
+discussion:
+	summary - custom table
+	topic list - custom table
+
+topic:
+	title - custom table
+	posts - custom table
+
+
+A discussion can be viewed as the full discussion, or just a topic can be fetched:
+
+
+View the full discussion:
+	/Flow:Special/User:Zomg&flow=discussion
+
+View a single topic:
+	/Flow:Special/User:Zomg&flow=topic&name=an7imao1jrl8bjq6netpq3oi
+
+
+
+BLOCKS( think widget )
+------
+
+The prototype for Flow is very simple, all we need to implement is a discussion system.  This will be
+slightly complicated by both the top level Discussion and the individual Topic's being "Flow Objects".
+To accomplish this we will define 3 types of blocks:
+	
+	Summary
+	TopicList
+	Topic
+
+The blocks will be refered to by 2 individual workflows.
+The discussion workflow will be defined as:
+
+	name: discussion
+	blocks: [ Summary, TopicList ]
+	topic_workflow: discussion-topic
+	singleton: true  // Only a single discussion may exist per wiki page
+	closeable: false // Discussions are not closeable, they are forever
+
+	view discussion: /Special:Flow/User:Zomg?flow=discussion&action=view
+	create discussion: /Special:Flow/User:Zomg?flow=discussion&action=view
+
+The discussion-topic workflow will be defined as
+	name: discussion-topic
+	blocks: [ Topic ]
+	singleton: false // Multiple discussion-topics may exist per wiki page
+	closeable: true  // Topics can be closed to additions
+	
+	view topic: /Special:Flow/User:Zomg?flow=discussion-topic&action=view&topic=an7imao1jrl8bjq6netpq3oi
+	reply to topic: /Special:Flow/User:Zomg?flow=discussion-topic&action=view&topic=an7imao1jrl8bjq6netpq3oi
+	reply to post: /Special:Flow/User:Zomg?flow=discussion-topic&action=reply&post=an7imao1jrl8bjq6netpq3oi
+
+
+
+

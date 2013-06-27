@@ -1,0 +1,65 @@
+Attempt to document the basic flow of execution through flow:
+
+
+== Controller ==
+
+All requests start at Special:Flow.  The code for this special page will:
+
+* Figure out which article title the request is asking for.
+* Figure out which workflow definition is being used against this article title
+* Figure out what type of action is being requested by the user(view/reply/suppress/etc?)
+* Use the article title and workflow definition to locate the appropriate flow object
+* Provide the article id and the user id to the sharded database implementation
+* Create a controller class capable of performing actions for the current workflow 
+* Pass execution off to the controller
+
+
+Most work within flow will be done by Blocks(think widget).  The Controller will:
+
+* Create all the blocks referenced by the definition 
+* Apply the users action(ex. edit) to all the blocks, along with appropriate POST data
+* If all the blocks accepted the users action then commit the blocks. 
+** Issue a redirect to 'view' action after commit
+* Render all the blocks 
+
+=== Why? ===
+
+Special:Flow is intended to bootstrap flow.
+
+The controller is intended to orchestrate the block implementation.
+
+The rendering portion should be seperate from the form handling in 
+
+=== What about API calls? ===
+
+Good Question.  Most of what Special:Flow does needs to be accessible from the API calls.
+
+== Blocks ==
+
+Think of blocks as individual controllers?  They receive an action(request) from a user
+and 
+=== Summary ===
+
+Accepted Actions:
+* edit
+
+=== Topic List ===
+
+Accepted Actions:
+* new message - title, content
+* mark all read - api call
+* add/remove tags
+* (un)subscribe to topic
+* close
+* delete
+* oversight
+
+=== Topic ===
+
+Accepted Actions:
+* Reply
+* Mark abusive
+
+== URL Generation ==
+
+To be figured out soon
