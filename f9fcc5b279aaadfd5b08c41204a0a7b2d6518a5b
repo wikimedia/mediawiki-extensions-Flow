@@ -1,0 +1,293 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "898eddaf_eab90cca",
+        "filename": "includes/Block/Block.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "Should this be in the interface as well?",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_cadd3013",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "I\u0027m not sure that this is the easiest way to do this. I\u0027m pretty sure you can just use Parser::parse()",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_0ae8f8b4",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "This is the whole \"flat versus tree\" argument.\n\nThe original LiquidThreads enforced a tree structure. There was one root post and every other post was a reply to that or to another post. The trees quickly get unwieldly, like on reddit.\n\nIn the newer version that I worked on, I deliberately made a Topic a first class data item, meaning that you could have multiple top level comments. I liked this better, but it\u0027s something that is worth discussing rather than just taking mine or anybody else\u0027s opinion.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_8adc0811",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "This will give PHP errors below for new workflows – you\u0027re only making the setup conditional.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_ca8b7017",
+        "filename": "includes/Data/MultiDimArray.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "I\u0027m very confused by what you\u0027re trying to do here. I think this line of code just makes it more confusing, especially since you\u0027re then reusing the variable name on line 26.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_2adf7438",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "\"Post\" might be a bit application specific.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_4ae4c010",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "Don\u0027t use empty() unless you want to suppress error checking. Just use !",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_6ae17cff",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "What\u0027s this for?",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_8aeec8ec",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "The hardcoding \u0027flow\u0027 here gives me the heeby jeebies a bit. Why not use the name of the flow DB?",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_cab8d0e8",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "What\u0027s wrong with ksort()",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_4a96804c",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "For suppression purposes, the preferred pattern is to add a deletion flag instead (so that it can be recovered and reviewed).",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_ca8a901c",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "no changeable data?",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_74b0858a",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "If it\u0027s internal, better to make it protected.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_b454cd20",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "This boilerplate indicates that the factoring might not be the best.\n\nYou might want to add an abstract method to the AbstractRevision called getRevisionType() and move this check to the parent method.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_54b38997",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "This is bad for internationalisation (special pages have different titles in different languages).\n\nYou should use:\n\nSpecialPage::getTitleFor( \u0027Flow\u0027, $article-\u003egetPrefixedDBkey() );",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_34befd5f",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "You don\u0027t need to use http_build_query, I believe getFullURL will also accept an array.\n\nIn either case, the correct function to use in MediaWiki is wfArrayToCGI",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_0a01d86e",
+        "filename": "special/SpecialFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T21:07:08Z",
+      "side": 1,
+      "message": "I don\u0027t think include returns a value.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
