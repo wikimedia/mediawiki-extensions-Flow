@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_2aa5b455",
+        "filename": "includes/Block/Block.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "Yes it should, updating :-)",
+      "parentUuid": "898eddaf_eab90cca",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_cadd3013",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2013-08-05T21:07:08Z",
       "side": 1,
       "message": "I\u0027m not sure that this is the easiest way to do this. I\u0027m pretty sure you can just use Parser::parse()",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_8a308802",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure Parser::parse() will get the HTML representation, and not the HTML+RDFa?  tbh i never even checked with the VE team.  I\u0027ll send an email to gwicke and will see how they would prefer us to integrate with parsoid  and ve.",
+      "parentUuid": "898eddaf_cadd3013",
       "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_6c3999d5",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "Makes sense, i\u0027ve slightly refactored this for the next revision so we (hopefully) clearly have no php errors for undefined/etc.",
+      "parentUuid": "898eddaf_8adc0811",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_ca8b7017",
         "filename": "includes/Data/MultiDimArray.php",
         "patchSetId": 2
@@ -81,6 +135,24 @@
       "writtenOn": "2013-08-05T21:07:08Z",
       "side": 1,
       "message": "I\u0027m very confused by what you\u0027re trying to do here. I think this line of code just makes it more confusing, especially since you\u0027re then reusing the variable name on line 26.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_2a62143f",
+        "filename": "includes/Data/MultiDimArray.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "The goal of this class is to make\n\n$foo[array(\u0027bar\u0027, \u0027baz\u0027, \u0027quz\u0027)] \u003d \u0027dvorak\u0027;\n\nbe effectively the same as\n\n$foo[\u0027bar\u0027][\u0027baz\u0027][\u0027qux\u0027] \u003d \u0027dvorak\u0027;\n\nThis is done to simplify working with things that have composite keys.  We could use the $foo[\u0027bar\u0027][\u0027baz\u0027][\u0027qux\u0027] syntax if we knew exactly how many keys we are working with, but when working with an arbitrary number of keys thats ends up being a fairly complex and repetitive conditional  \n\nFor use cases, its quite common to select the rows out of a table and return the result indexed by the key, like\n\n$res \u003d $dbr-\u003eselect(...);\nforeach ( $res as $row ) {\n  $retval[$row-\u003erev_id] \u003d $row;\n}\n\n\nThe multi-dimensional array allows code to do the above generically for a row with a composite primary key.",
+      "parentUuid": "898eddaf_ca8b7017",
       "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_cabe1062",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "Post here means the opposite of Pre :-)  I suppose could do onAfterLoad, onAfterInsert, etc. to show clear separation from the Post\u0027s",
+      "parentUuid": "898eddaf_2adf7438",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_4ae4c010",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
@@ -115,6 +205,24 @@
       "writtenOn": "2013-08-05T21:07:08Z",
       "side": 1,
       "message": "Don\u0027t use empty() unless you want to suppress error checking. Just use !",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_eac3ccee",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "898eddaf_4ae4c010",
       "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -138,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_6ab09c8a",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "The initial idea was that it fulfills the LifecycleHandler interface,  so classes can extend from it and only implement the events they want.  When i initially wrote this class though there were 7 methods ( post load and pre and post events for each of insert/update/delete).  Since then i simplified it down to there 4 since the others wern\u0027t being used,  at this point the classes extending from it are implementing all the methods anyways, so i\u0027ll do away with this class.",
+      "parentUuid": "898eddaf_6ae17cff",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_8aeec8ec",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
@@ -155,6 +281,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_2c58712f",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "Yea \u0027flow\u0027 is hardcoded into all the wfForeignMemcKey calls (there are a few in TreeRepository and MultiGetList as well).  \n\nNot sure about using the $wgFlowDefaultWikiDb,  the main concern i have there is that the development hosts will be running with that value set to boolean false, i suppose it will just cast boolean false to the blank string which should work in dev, but seems a bit off.  I can\u0027t think of any strong problems with that, only conceptual ones,  so i\u0027m going to make that change and have everything that makes a cache key utilize $wgFlowDefaultWikiDb as the first val.",
+      "parentUuid": "898eddaf_8aeec8ec",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_cab8d0e8",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
@@ -166,6 +310,24 @@
       "writtenOn": "2013-08-05T21:07:08Z",
       "side": 1,
       "message": "What\u0027s wrong with ksort()",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_ea64ac25",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "this is a different kind of sort, imagine you have\n\n$x \u003d array(\n    array( \u0027foo\u0027 \u003d\u003e 5, \u0027bar\u0027 \u003d\u003e 9, \u0027baz\u0027 \u003d\u003e 14 ),\n    array( \u0027foo\u0027 \u003d\u003e 5, \u0027bar\u0027 \u003d\u003e 8, \u0027baz\u0027 \u003d\u003e 1 ),\n    array( \u0027foo\u0027 \u003d\u003e 1, \u0027bar\u0027 \u003d\u003e 9, \u0027baz\u0027 \u003d\u003e 7 ),\n);\n\nusort( $x, new SortArrayByKeys( array( \u0027foo\u0027, \u0027bar\u0027 ) ) );\n\nResult will be\n\n$x \u003d array(\n    array( \u0027foo\u0027 \u003d\u003e 1, \u0027bar\u0027 \u003d\u003e 9, \u0027baz\u0027 \u003d\u003e 7),\n    array( \u0027foo\u0027 \u003d\u003e 5, \u0027bar\u0027 \u003d\u003e 8, \u0027baz\u0027 \u003d\u003e 1),\n    array( \u0027foo\u0027 \u003d\u003e 5, \u0027bar\u0027 \u003d\u003e 9, \u0027baz\u0027 \u003d\u003e 7 ),\n);\n\nYou could think of this as an equivalent to sql `ORDER BY foo ASC, bar ASC`.   \n\nIt exists because we cache results sorted in the order they were returned from mysql.   When adding a new item to an existing index we load the array, append the new item, sort the index the same way SQL does, truncate to a specific length, and store in memcached.",
+      "parentUuid": "898eddaf_cab8d0e8",
       "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -206,6 +368,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_ca9530e4",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "By that i mean there are two halfs to the revision,  the flow_revision table and the flow_summary_revision table which are 1 to 1 with each other.   Within the updateRelated method we are only concerned with flow_summary_revision, and nothing in that table is updatable (only the oversighting/suppression flags are updatable, and those are in flow_revision which this function isnt dealing with)\n\nIf it does receive a request to update something in the summary table that would be an exceptional circumstance and should bail out rather than allowing the update to be commited.",
+      "parentUuid": "898eddaf_ca8a901c",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_74b0858a",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 2
@@ -217,6 +397,24 @@
       "writtenOn": "2013-08-05T21:07:08Z",
       "side": 1,
       "message": "If it\u0027s internal, better to make it protected.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_ea366c01",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "agreed,  actually for now removing this method untill a better decision is made about how/when we would go about lazy-loading content (currently the content is always serialized with the rest of the data and stored to a single memcached key)",
+      "parentUuid": "898eddaf_74b0858a",
       "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -240,6 +438,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_2a41345e",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "good call, updated.",
+      "parentUuid": "898eddaf_b454cd20",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_54b38997",
         "filename": "includes/Model/Workflow.php",
         "patchSetId": 2
@@ -251,6 +467,24 @@
       "writtenOn": "2013-08-05T21:07:08Z",
       "side": 1,
       "message": "This is bad for internationalisation (special pages have different titles in different languages).\n\nYou should use:\n\nSpecialPage::getTitleFor( \u0027Flow\u0027, $article-\u003egetPrefixedDBkey() );",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_6ad5fcb4",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "898eddaf_54b38997",
       "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -274,6 +508,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_caec5096",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "898eddaf_34befd5f",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_0a01d86e",
         "filename": "special/SpecialFlow.php",
         "patchSetId": 2
@@ -285,6 +537,24 @@
       "writtenOn": "2013-08-05T21:07:08Z",
       "side": 1,
       "message": "I don\u0027t think include returns a value.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_cac37008",
+        "filename": "special/SpecialFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-05T23:35:43Z",
+      "side": 1,
+      "message": "include returns a value if (and only if) you return from the included file.",
+      "parentUuid": "898eddaf_0a01d86e",
       "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
