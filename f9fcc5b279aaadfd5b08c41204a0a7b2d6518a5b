@@ -159,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_6cac39f0",
+        "filename": "includes/Data/MultiDimArray.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T23:42:33Z",
+      "side": 1,
+      "message": "Gotcha, you\u0027re using it to recursively dig deeper in the array.",
+      "parentUuid": "898eddaf_2a62143f",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_2adf7438",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
@@ -299,6 +317,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_8c68a5bc",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T23:42:33Z",
+      "side": 1,
+      "message": "Well, you can use $wgFlowDefaultWikiDb if it\u0027s set, or wfWikiID() if it\u0027s not.\n\nMy concern is basically with different Flow installations sharing the same memcached instance.",
+      "parentUuid": "898eddaf_2c58712f",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_cab8d0e8",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
@@ -380,6 +416,24 @@
       "side": 1,
       "message": "By that i mean there are two halfs to the revision,  the flow_revision table and the flow_summary_revision table which are 1 to 1 with each other.   Within the updateRelated method we are only concerned with flow_summary_revision, and nothing in that table is updatable (only the oversighting/suppression flags are updatable, and those are in flow_revision which this function isnt dealing with)\n\nIf it does receive a request to update something in the summary table that would be an exceptional circumstance and should bail out rather than allowing the update to be commited.",
       "parentUuid": "898eddaf_ca8a901c",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_ec976999",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-05T23:42:33Z",
+      "side": 1,
+      "message": "Gotcha, you change summaries by adding a new revision, not by updating the existing one.",
+      "parentUuid": "898eddaf_ca9530e4",
       "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
