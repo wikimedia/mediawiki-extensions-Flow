@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "898eddaf_efb83be8",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T15:47:56Z",
+      "side": 1,
+      "message": "Missing a couple of ObjectManager.php classes: PersistenceException, NullLifecycleHandler, AbstractIndex, WritableObjectStorage",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_eab90cca",
         "filename": "includes/Block/Block.php",
         "patchSetId": 2
@@ -212,6 +229,125 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_6f7fcb12",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T15:47:56Z",
+      "side": 1,
+      "message": "AbstractIndex::findMulti() will call BufferedCache::getMulti(), which calls BagOStuff::getMulti(), which can return array() if nothing is found.\n\nIf index::findMulti() would return an empty array here, this would return null (failure according to phpdoc) instead of array() (no result). According to phpdoc, I would expect that \"nothing can be found for $queries\" would return array().\n\nI\u0027m just a bit confused about these return values.\nPerhaps $res is never meant to be an empty array(), and if it is, it\u0027s a sure sign something somewhere is wrong? Not sure.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_2faf837f",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T15:47:56Z",
+      "side": 1,
+      "message": "Confusing that this \u0026 findMulti() both return differently for failure (false \u0026 null)",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_6ffb4b77",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T15:47:56Z",
+      "side": 1,
+      "message": "$this-\u003estorage is an instance of ObjectStorage, which does not appear to be Traversable?",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_efdd9b12",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T15:47:56Z",
+      "side": 1,
+      "message": "function clear() does not exist in ObjectLocator; only in ObjectManager.\n\nEither move this function (which calls clear) to ObjectManager, or add a stub function clear() into ObjectLocator.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_aff55382",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T15:47:56Z",
+      "side": 1,
+      "message": "Isn\u0027t this equivalent to array_diff_assoc()?",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_cff29f98",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T15:47:56Z",
+      "side": 1,
+      "message": "Judging from constructor, this should probably be SplObjectStorage",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_0f2d67fe",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T15:47:56Z",
+      "side": 1,
+      "message": "The unset seems unneccessary: only $row is affected by this, and we\u0027re neither returning this, nor are we accessing this variable by ref.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_4ae4c010",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
@@ -241,6 +377,40 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "898eddaf_4ae4c010",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_2f0b0380",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T15:47:56Z",
+      "side": 1,
+      "message": "affectedRows will also be zero if there were no values to update - even though the WHERE condition (PK) matched a row.\n\nPerhaps you should run calcUpdates() first? If empty, just return true (if there are no differences, update can be considered successful - without even executing it); if not empty, we\u0027ll know for certain that affectedRows \u003d\u003d\u003d 0 actually means WHERE condition did not match any rows.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_4f620f40",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T15:47:56Z",
+      "side": 1,
+      "message": "Untested, by I guess this should work:\n\n    public function find( array $attributes, array $options \u003d array() ) {\n        $options[\u0027limit\u0027] \u003d 1;\n        return parent::find( $attributes, $options );\n    }\n\n    public function findMulti( array $queries, array $options \u003d array() ) {\n        $dbw \u003d $this-\u003edbFactory-\u003egetDB( DB_MASTER );\n    \n        // build WHERE clause for all queries\n        $conds \u003d array();\n        foreach ( $queries as $i \u003d\u003e $attributes ) {\n            $conds[] \u003d $dbw-\u003emakeList( $attributes, LIST_AND );\n        }\n        $conds \u003d $dbw-\u003emakeList( $conds, LIST_OR );\n    \n        $res \u003d $dbw-\u003eselect(\n            $this-\u003etable,\n            \u0027*\u0027,\n            $conds,\n            __METHOD__,\n            $options\n        );\n    \n        ...\n    }",
       "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
