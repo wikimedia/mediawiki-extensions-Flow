@@ -31,8 +31,6 @@ CREATE TABLE /*_*/flow_workflow (
 	PRIMARY KEY (workflow_id)
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/flow_workflow_unique ON /*_*/flow_workflow ( workflow_title_text, workflow_namespace, workflow_definition_id, workflow_name );
-
 CREATE TABLE /*_*/flow_subscription (
   subscription_workflow_id int unsigned not null,
   subscription_user_id int unsigned not null,
@@ -42,13 +40,6 @@ CREATE TABLE /*_*/flow_subscription (
 
 CREATE UNIQUE INDEX /*i*/flow_subscription_unique_user_workflow ON /*_*/flow_subscription (subscription_workflow_id, subscription_user_id);
 CREATE INDEX /*i*/flow_subscription_lookup ON /*_*/flow_subscription (subscription_user_id, subscription_last_updated, subscription_workflow_id);
-
-CREATE TABLE /*_*/flow_metadata (
-	metadata_id decimal(39) unsigned not null,
-	metadata_key varchar(32) binary not null,
-	metadata_value varchar(255) binary null
-) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX /*i*/flow_metadata_idx ON /*_*/flow_metadata ( metadata_id, metadata_key );
 
 -- TopicList Tables
 CREATE TABLE /*_*/flow_topic_list (
@@ -128,7 +119,7 @@ CREATE TABLE /*_*/flow_revision (
 CREATE UNIQUE INDEX /*i*/flow_revision_unique_parent ON
 	/*_*/flow_revision (rev_parent_id);
 
-CREATE TABLE /*_*/ flow_text (
+CREATE TABLE /*_*/flow_text (
 	-- undecided on uuid, or if table is even neccessary
 	-- large wiki should just use external store to distribute
 	-- content
@@ -146,20 +137,12 @@ CREATE TABLE /*_*/flow_tree_node (
 	tree_depth smallint not null
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/flow_tree_node_pk ON /*_*/flow_tree_node (ancestor, descendant);
+CREATE UNIQUE INDEX /*i*/flow_tree_node_pk ON /*_*/flow_tree_node (tree_ancestor, tree_descendant);
+CREATE UNIQUE INDEX /*i*/flow_tree_constraint ON /*_*/flow_tree_node (tree_descendant, tree_depth);
 
-CREATE UNIQUE INDEX /*i*/flow_tree_constraint ON /*_*/flow_tree_node (descendant, depth);
-
-CREATE TABLE /*_*/flow_subscription (
-  subscrip_user_id binary(16) not null,
-  subscrip_workflow_id binary(16) not null,
-  subscrip_create_timestamp varchar(14) binary not null,
-  subscrip_last_updated varchar(14) binary not null
-) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/flow_subscription_unique_user_workflow 
-    ON /*_*/flow_subscription subscription_user_id, subscription_workflow_id);
-
-CREATE INDEX /*i*/flow_subscription_lookup 
-    ON /*_*/flow_subscription (subscription_user_id, subscription_last_updated, subscription_workflow_id);
-
+-- These dont belong here
+INSERT INTO flow_definition
+	( definition_id, definition_wiki, definition_name, definition_type, definition_options )
+	VALUES
+	( 6645733872243863389540699858102420002, 'wiki', 'topic', 'topic', NULL ),
+	( 6645733872272877609211450958295368226, 'wiki', 'discussion', 'discussion', 'a:2:{s:19:"topic_definition_id";s:37:"6645733872243863389540699858102420002";s:6:"unique";b:1;}' );
