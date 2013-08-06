@@ -281,6 +281,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_72c7b299",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-06T18:24:15Z",
+      "side": 1,
+      "message": "Well, MediaWiki too is rather inconsistent.\n\nFailure in Title::newFromID(), User, Page, Revision, ... return null.\n\nFailures in Database, BagOStuff, ... return false.",
+      "parentUuid": "898eddaf_520b9625",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_6ffb4b77",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
