@@ -263,6 +263,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_520b9625",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-06T18:01:57Z",
+      "side": 1,
+      "message": "very true, i suppose i was being indecisive here.  Typically i return null,  but mediawiki code(and inconsistently in the php stdlib) return false for failure.",
+      "parentUuid": "898eddaf_2faf837f",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_6ffb4b77",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
@@ -314,6 +332,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_522476b1",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-06T18:01:57Z",
+      "side": 1,
+      "message": "hmm, i suppose its equal to running array_diff_assoc twice,  i\u0027ll switch it over\n\n    $x \u003d array( \u0027foo\u0027 \u003d\u003e \u0027bar\u0027 );\n    $y \u003d array( \u0027foo\u0027 \u003d\u003e \u0027bar\u0027, \u0027baz\u0027 \u003d\u003e \u0027qux\u0027 );\n    array_diff_assoc( $x, $y ); // array()\n    array_diff_assoc( $y, $x ) // array( \u0027baz\u0027 \u003d\u003e \u0027qux\u0027 )",
+      "parentUuid": "898eddaf_aff55382",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_cff29f98",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
@@ -331,6 +367,24 @@
     },
     {
       "key": {
+        "uuid": "898eddaf_b21a1a6b",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-06T18:01:57Z",
+      "side": 1,
+      "message": "yes it should, good catch :)  updating",
+      "parentUuid": "898eddaf_cff29f98",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "898eddaf_0f2d67fe",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
@@ -342,6 +396,24 @@
       "writtenOn": "2013-08-06T15:47:56Z",
       "side": 1,
       "message": "The unset seems unneccessary: only $row is affected by this, and we\u0027re neither returning this, nor are we accessing this variable by ref.",
+      "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_723972d5",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-06T18:01:57Z",
+      "side": 1,
+      "message": "your right it is, that was a leftover from when this function returned both halves of the split.  But i found i hardly ever needed the other half and removed it.  Removing this now too.",
+      "parentUuid": "898eddaf_0f2d67fe",
       "revId": "f9fcc5b279aaadfd5b08c41204a0a7b2d6518a5b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
