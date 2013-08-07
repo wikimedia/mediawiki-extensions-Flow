@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Model\PostRevision;
 use Flow\Data\ManagerGroup;
@@ -72,6 +73,7 @@ class TopicBlock extends AbstractBlock {
 		if ( !isset( $this->submitted['replyTo'] ) ) {
 			$this->errors['replyTo'] = wfMessage( 'flow-missing-reply-to-id' );
 		} else {
+			$this->submitted['replyTo'] = UUID::create( $this->submitted['replyTo']  );
 			$post = $this->storage->get( 'PostRevision', $this->submitted['replyTo'] );
 			if ( !$post ) {
 				$this->errors['replyTo'] = wfMessage( 'flow-invalid-reply-to-id' );
@@ -210,7 +212,12 @@ class TopicBlock extends AbstractBlock {
 
 	// Somehow the template has to know which post the errors go with
 	public function getRepliedTo() {
-		return isset( $this->submitted['replyTo'] ) ? $this->submittled['replyTo'] : null;
+		return isset( $this->submitted['replyTo'] ) ? $this->submitted['replyTo'] : null;
+	}
+
+	public function getHexRepliedTo() {
+		$repliedTo = $this->getRepliedTo();
+		return $repliedTo instanceof UUID ? $repliedTo->getHex() : $repliedTo;
 	}
 
 	// The prefix used for form data
