@@ -4,6 +4,7 @@ use Flow\Block\SummaryBlock;
 use Flow\Block\TopicBlock;
 use Flow\Block\TopicListBlock;
 use Flow\Model\Definition;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 
 /**
@@ -77,6 +78,7 @@ class SpecialFlow extends SpecialPage {
 		$repo = $this->container['storage.definition'];
 		$id = $this->getRequest()->getVal( 'definition' );
 		if ( $id !== null ) {
+			$id = new Flow\Model\UUID( $id );
 			$definition = $repo->get( $id );
 			if ( $definition === null ) {
 				throw new MWException( "Unknown flow id '$id' requested" );
@@ -132,7 +134,7 @@ class SpecialFlow extends SpecialPage {
 	}
 
 	protected function loadWorkflowById( \Title $title, $workflowId ) {
-		$workflow = $this->container['storage.workflow']->get( $workflowId );
+		$workflow = $this->container['storage.workflow']->get( UUID::create( $workflowId ) );
 		if ( !$workflow ) {
 			throw new \MWException( 'Invalid workflow requested by id' );
 		}

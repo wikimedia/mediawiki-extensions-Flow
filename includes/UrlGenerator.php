@@ -21,9 +21,9 @@ class UrlGenerator {
 		}
 		$query['action'] = $action;
 		if ( $workflow->isNew() ) {
-			$query['definition'] = $workflow->getDefinitionId();
+			$query['definition'] = $workflow->getDefinitionId()->getHex();
 		} else {
-			$query['workflow'] = $workflow->getId();
+			$query['workflow'] = $workflow->getId()->getHex();
 		}
 
 		return Title::newFromText( 'Flow/' . $workflow->getTitleFullText(), NS_SPECIAL )

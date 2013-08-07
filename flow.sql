@@ -2,7 +2,7 @@
 -- This file contains only the unsharded global data
 
 CREATE TABLE /*_*/flow_definition (
-	definition_id decimal(39) unsigned NOT NULL,
+	definition_id binary(16) NOT NULL,
 	definition_wiki varchar(32) binary NOT NULL,
 	definition_name varchar(32) binary NOT NULL,
 	definition_type varchar(32) binary NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE /*_*/flow_definition (
 CREATE UNIQUE INDEX /*i*/flow_definition_unique_name ON flow_definition (definition_wiki, definition_name);
 
 CREATE TABLE /*_*/flow_workflow (
-	workflow_id decimal(39) unsigned not null,
+	workflow_id binary(16) not null,
 	workflow_wiki varchar(16) binary not null,
 	workflow_namespace int not null,
 	workflow_page_id int unsigned not null,
@@ -27,7 +27,7 @@ CREATE TABLE /*_*/flow_workflow (
 	-- TODO: is this usefull as a bitfield?  may be premature optimization, a string
 	-- or list of strings may be simpler and use only a little more space.
 	workflow_lock_state int unsigned not null,
-	workflow_definition_id decimal(39) unsigned not null,
+	workflow_definition_id binary(16) not null,
 	PRIMARY KEY (workflow_id)
 ) /*$wgDBTableOptions*/;
 
@@ -43,8 +43,8 @@ CREATE INDEX /*i*/flow_subscription_lookup ON /*_*/flow_subscription (subscripti
 
 -- TopicList Tables
 CREATE TABLE /*_*/flow_topic_list (
-	topic_list_id decimal(39) unsigned not null,
-	topic_id decimal(39) unsigned
+	topic_list_id binary(16) not null,
+	topic_id binary(16)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/flow_topic_list_pk ON /*_*/flow_topic_list( topic_list_id, topic_id);
@@ -53,16 +53,16 @@ CREATE UNIQUE INDEX /*i*/flow_topic_list_pk ON /*_*/flow_topic_list( topic_list_
 -- also denormalizes information commonly needed with a revision
 CREATE TABLE /*_*/flow_tree_revision (
 	-- the id of the post in the post tree
-	tree_rev_descendant decimal(39) unsigned not null,
+	tree_rev_descendant binary(16) not null,
 	-- fk to flow_revision
-	tree_rev_id decimal(39) unsigned not null,
+	tree_rev_id binary(16) not null,
 	-- denormalized so we dont need to keep finding the first revision of a post
 	tree_orig_create_time varchar(12) binary not null,
 	tree_orig_user_id bigint unsigned not null,
 	tree_orig_user_text varchar(255) binary not null,
 	-- denormalize post parent as well? Prevents an extra query when building
 	-- tree from closure table.  unnecessary?
-	tree_parent_id decimal(39) unsigned,
+	tree_parent_id binary(16),
 	PRIMARY KEY( tree_rev_id )
 ) /*$wgDBTableOptions*/;
 
@@ -74,8 +74,8 @@ CREATE UNIQUE INDEX /*i*/flow_tree_descendant_revisions
 -- or something?  Main limit in current setup can only associate one summary per
 -- workflow 
 CREATE TABLE /*_*/flow_summary_revision (
-	summary_workflow_id decimal(39) unsigned not null,
-	summary_rev_id decimal(39) unsigned not null,
+	summary_workflow_id binary(16) not null,
+	summary_rev_id binary(16) not null,
 	PRIMARY KEY ( summary_workflow_id, summary_rev_id )
 ) /*$wgDBTableOptions*/;
 
@@ -95,7 +95,7 @@ CREATE TABLE /*_*/flow_summary_revision (
 --
 CREATE TABLE /*_*/flow_revision (
 	-- UID::newTimestampedUID128()
-	rev_id decimal(39) unsigned not null,
+	rev_id binary(16) not null,
 	-- What kind of revision is this: tree/summary/etc.
 	rev_type varchar(16) binary not null,
 	-- user id creating the revision
@@ -107,10 +107,13 @@ CREATE TABLE /*_*/flow_revision (
 	-- revision suppression
 	rev_deleted tinyint unsigned not null default 0,
 	-- rev_id of parent or null if no previous revision
-	rev_parent_id decimal(39) unsigned,
+	rev_parent_id binary(16),
 
 	-- content of the revision
 	rev_text_id int unsigned not null,
+
+	rev_flags varchar(255) binary null,
+	rev_comment varchar(255) binary null,
 
 	PRIMARY KEY (rev_id)
 ) /*$wgDBTableOptions*/;
@@ -132,8 +135,8 @@ CREATE TABLE /*_*/flow_text (
 -- Closure table implementation of tree storage in sql
 -- We may be able to go simpler than this
 CREATE TABLE /*_*/flow_tree_node (
-	tree_ancestor decimal(39) unsigned not null,
-	tree_descendant decimal(39) unsigned not null,
+	tree_ancestor binary(16) not null,
+	tree_descendant binary(16) not null,
 	tree_depth smallint not null
 ) /*$wgDBTableOptions*/;
 
@@ -144,5 +147,5 @@ CREATE UNIQUE INDEX /*i*/flow_tree_constraint ON /*_*/flow_tree_node (tree_desce
 INSERT INTO flow_definition
 	( definition_id, definition_wiki, definition_name, definition_type, definition_options )
 	VALUES
-	( 6645733872243863389540699858102420002, 'wiki', 'topic', 'topic', NULL ),
-	( 6645733872272877609211450958295368226, 'wiki', 'discussion', 'discussion', 'a:2:{s:19:"topic_definition_id";s:37:"6645733872243863389540699858102420002";s:6:"unique";b:1;}' );
+	( unhex('4ffebfa36a3155f2416080027a082220'), 'wiki', 'topic', 'topic', NULL ), -- UUID 6645733872243863389540699858102420002
+	( unhex('4ffebfa368b155f2416080027a082220'), 'wiki', 'discussion', 'discussion', unhex("613a323a7b733a31393a22746f7069635f646566696e6974696f6e5f6964223b4f3a31353a22466c6f775c4d6f64656c5c55554944223a313a7b733a31343a22002a0062696e61727956616c7565223b733a31363a224ffebfa36a3155f2416080027a082220223b7d733a363a22756e69717565223b623a313b7d") ); -- 6645733872272877609211450958295368226

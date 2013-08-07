@@ -2,6 +2,7 @@
 
 namespace Flow\Data;
 
+use Flow\Model\UUID;
 use Flow\DbFactory;
 use Flow\Repository\TreeRepository;
 use DatabaseBase;
@@ -47,7 +48,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		$res = $dbr->select(
 			array( $this->joinTable(), 'rev' => 'flow_revision', 'text' => 'flow_text' ),
 			'*',
-			$attributes,
+			UUID::convertUUIDs( $attributes ),
 			__METHOD__,
 			$options,
 			array(
@@ -358,7 +359,10 @@ class PostRevisionStorage extends RevisionStorage {
 			return false;
 		}
 
-		return (bool) $this->treeRepo->insert( $tree['tree_rev_descendant'], $tree['tree_parent_id'] );
+		return (bool) $this->treeRepo->insert(
+			UUID::create( $tree['tree_rev_descendant'] ),
+			UUID::create( $tree['tree_parent_id'] )
+		);
 	}
 
 	// Topic split will primarily be done through the TreeRepository directly,  but
