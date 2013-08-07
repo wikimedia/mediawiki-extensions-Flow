@@ -177,11 +177,7 @@ class TopicBlock extends AbstractBlock {
 				throw new \Exception( 'Could not locate post' );
 				$history = array();
 			} else {
-				$history = $this->storage->find(
-					'PostRevision',
-					array( 'tree_rev_descendant_id' => UUID::create( $options['postId'] ) ),
-					array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
-				);
+				$history = $this->getHistory( $options['postId'] );
 			}
 			return $templating->render( "flow:post-history.html.php", array(
 				'block' => $this,
@@ -197,6 +193,72 @@ class TopicBlock extends AbstractBlock {
 			'topic' => $this->workflow,
 			'root' => $this->loadRootPost(),
 		), $return );
+	}
+
+	public function renderAPI ( array $options ) {
+		$output = array();
+		if ( $this->action == 'post-history' ) {
+			$history = $this->getHistory( $options['postId'] );
+			$output['_element'] = 'revision';
+
+			foreach( $history as $revision ) {
+				$output[] = array(
+					'revision-id' => $revision->getId()->getHex(),
+					'revision-author' => $revision->getUserText(),
+					'revision-comment' => $revision->getComment(),
+				);
+			}
+
+			return $output;
+		} else {
+			$topic = $this->workflow;
+
+			$rootPost = $this->loadRootPost();
+
+			$output = array(
+				'_element' => 'post',
+				'title' => $rootPost->getContent(),
+			);
+
+			foreach( $rootPost->getChildren() as $child ) {
+				$output[] = $this->renderPostAPI( $child );
+			}
+
+			return $output;
+		}
+	}
+
+	protected function renderPostAPI( PostRevision $post ) {
+		$output = array();
+
+		$output['post-id'] = $post->getPostId()->getHex();
+
+		if ( $post->isFlagged( 'deleted' ) ) {
+			$output['post-deleted'] = 'post-deleted';
+		} else {
+			$output['*'] = $post->getContent();
+			$output['user'] = $post->getUserText();
+		}
+
+		$children = array( '_element' => 'post' );
+
+		foreach( $post->getChildren() as $post ) {
+			$children[] = $this->renderPostAPI( $post );
+		}
+
+		if ( count($children) > 1 ) {
+			$output['replies'] = $children;
+		}
+
+		return $output;
+	}
+
+	protected function getHistory( $postId ) {
+		return $this->storage->find(
+			'PostRevision',
+			array( 'tree_rev_descendant_id' => UUID::create( $postId ) ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
+		);
 	}
 
 	protected function loadRootPost() {
