@@ -6,7 +6,7 @@ $c = new Flow\Container;
 $c['user'] = $GLOBALS['wgUser'];
 $c['output'] = $GLOBALS['wgOut'];
 $c['request'] = $GLOBALS['wgRequest'];
-$c['memcache'] = $GLOBALS['wgMemc'];
+$c['memcache'] = new \HashBagOStuff; //$GLOBALS['wgMemc'];
 
 // Always returns the correct database for flow storage
 $c['db.factory'] = $c->share( function( $c ) {

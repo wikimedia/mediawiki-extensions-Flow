@@ -71,7 +71,7 @@ class TopicListBlock extends AbstractBlock {
 				$roots = $this->rootLoader->getMulti( $topicIds );
 				foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
 					$id = $workflow->getId();
-					$topics[$id] = new TopicBlock( $workflow, $this->storage, $roots[$id] );
+					$topics[$id->getHex()] = new TopicBlock( $workflow, $this->storage, $roots[$id->getHex()] );
 				}
 			}
 		}

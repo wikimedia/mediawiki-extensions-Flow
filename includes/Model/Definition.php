@@ -12,7 +12,10 @@ class Definition {
 
 	static public function fromStorageRow( array $row ) {
 		$obj = new self;
-		$obj->id = $row['definition_id'];
+		if ( ! $row['definition_wiki'] ) {
+			throw new \MWException( "No definition_wiki" );
+		}
+		$obj->id = UUID::create( $row['definition_id'] );
 		$obj->type = $row['definition_type'];
 		$obj->wiki = $row['definition_wiki'];
 		$obj->name = $row['definition_name'];
@@ -22,7 +25,7 @@ class Definition {
 
 	static public function toStorageRow( Definition $obj ) {
 		return array(
-			'definition_id' => $obj->id,
+			'definition_id' => $obj->id->getBinary(),
 			'definition_type' => $obj->type,
 			'definition_wiki' => $obj->wiki,
 			'definition_name' => $obj->name,
@@ -32,7 +35,7 @@ class Definition {
 
 	static public function create( $name, $type, array $options = array() ) {
 		$obj = new self;
-		$obj->id = \UIDGenerator::newTimestampedUID128();
+		$obj->id = UUID::create();
 		$obj->wiki = wfWikiId();
 		$obj->name = $name;
 		$obj->type = $type;

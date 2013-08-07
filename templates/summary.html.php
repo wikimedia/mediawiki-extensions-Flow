@@ -12,7 +12,7 @@ if ( $summary ) {
 	echo Html::element( 'input', array(
 		'type' => 'hidden',
 		'name' => $block->getName()."[prev_revision]",
-		'value' => $summary->getRevisionId(),
+		'value' => $summary->getRevisionId()->getHex(),
 	) );
 }
 echo '<h3>' . wfMessage( 'flow-summary' )->escaped() . '</h3>';
