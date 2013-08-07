@@ -29,11 +29,11 @@ interface LifecycleHandler {
 interface ObjectStorage extends \IteratorAggregate {
 	function find( array $attributes, array $options = array() );
 	/**
-	 * The BagOStuff interface returns with keys matching the key, unfortunatly
-	 * we deal with composite keys which makes that awkward. Instead all
-	 * findMulti implementations return their data with the same array indexes
-	 * as the query in $queries. The order the requested queries are returned in
-	 * is arbitrary.
+	 * The BagOStuff interface returns with keys matching the key, unfortunately
+	 * we deal with composite keys which makes that awkward. Instead all findMulti
+	 * implementations must return their result as if it was array_map( array( $obj, 'find' ), $queries ).
+	 * This is necessary so result sets stay ordered
+	 *
 	 *
 	 * @param array $queries list of queries to perform
 	 * @param array $options Options to use for all queries

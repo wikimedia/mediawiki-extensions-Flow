@@ -28,19 +28,13 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	}
 
 	// Find one by specific attributes
+	// @todo: this method can probably be generalized in parent class?
 	public function find( array $attributes, array $options = array() ) {
-		$res = $this->findInternal( $attributes, $options );
-		if ( $res === false ) {
-			return false;
+		$multi = $this->findMulti( array( $attributes ), $options );
+		if ( $multi ) {
+			return reset( $multi );
 		}
-		if ( $this->externalStore ) {
-			$res = Merger::merge(
-				$res,
-				'text_content',
-				array( 'ExternalStore', 'batchFetchByURLs' )
-			);
-		}
-		return $res;
+		return null;
 	}
 
 	protected function findInternal( array $attributes, array $options = array() ) {
@@ -73,15 +67,23 @@ abstract class RevisionStorage implements WritableObjectStorage {
 			$res = $this->findMultiInternal( $queries, $options );
 		}
 		if ( $this->externalStore ) {
-			return Merger::mergeMulti(
+			$res = Merger::mergeMulti(
 				$res,
 				'text_content',
 				array( 'ExternalStore', 'batchFetchFromURLs' )
 			);
 		}
+
+		// decompress content
+		foreach ( $res as &$record ) {
+			foreach ( $record as $id => &$row ) {
+				$flags = explode( ',', $row['text_flags'] );
+				$row['text_content'] = \Revision::decompressRevisionText( $row['text_content'], $flags );
+			}
+		}
+
 		return $res;
 	}
-
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
 		$result = array();
