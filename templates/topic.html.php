@@ -32,23 +32,23 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 	if ( $post->isFlagged( 'deleted' ) ) {
 		echo wfMessage( 'flow-post-deleted' )
 			. '<ul>';
-		$postAction( 'restore-post', array( 'postId' => $post->getPostId() ) );
+		$postAction( 'restore-post', array( 'postId' => $post->getPostId()->getHex() ) );
 		echo '<li>' . Html::element( 'a', array(
 			'href' => $self->generateUrl( $root->getPostId(), 'post-history', array(
-				$block->getName() . '[postId]' => $post->getPostId()
+				$block->getName() . '[postId]' => $post->getPostId()->getHex(),
 			) ),
 		), wfMessage( 'flow-post-action-history' )->plain() ) . '</li>';
 
 		echo '</ul>';
 	} else {
 		echo wfMessage( 'flow-user' ) . Html::element( 'span', null, $post->getUserText() )
-			. wfMessage( 'flow-post-id' ) . $post->getPostId()
+			. wfMessage( 'flow-post-id' ) . $post->getPostId()->getHex()
 			. wfMessage( 'flow-content' ) . $post->getContent()
 			. '<ul>';
-		$postAction( 'delete-post', array( 'postId' => $post->getPostId() ) );
+		$postAction( 'delete-post', array( 'postId' => $post->getPostId()->getHex() ) );
 		echo '<li>' . Html::element( 'a', array(
 			'href' => $self->generateUrl( $root->getPostId(), 'post-history', array(
-				$block->getName() . '[postId]' => $post->getPostId()
+				$block->getName() . '[postId]' => $post->getPostId()->getHex(),
 			) ),
 		), wfMessage( 'flow-post-action-history' )->plain() ) . '<li>';
 		echo '</ul>'
@@ -57,15 +57,15 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 				// root post id is same as topic workflow id
 				'action' => $self->generateUrl( $root->getPostId(), 'reply' ),
 			) );
-		if ( $block->getRepliedTo() === $post->getPostId() ) {
-			foreach ( $block->getErrors as $error ) {
+		if ( $block->getHexRepliedTo() === $post->getPostId()->getHex() ) {
+			foreach ( $block->getErrors() as $error ) {
 				echo $error->text() . '<br>'; // the pain ...
 			}
 		}
 		echo Html::element( 'input', array(
 				'type' => 'hidden',
 				'name' => $block->getName() . '[replyTo]',
-				'value' => $post->getPostId(),
+				'value' => $post->getPostId()->getHex(),
 			) )
 			. Html::textarea( $block->getName() . '[content]' )
 			. Html::element( 'input', array(

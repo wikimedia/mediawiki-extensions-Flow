@@ -62,6 +62,7 @@ $wgAutoloadClasses['Flow\Model\PostRevision'] = $dir . 'includes/Model/PostRevis
 $wgAutoloadClasses['Flow\Model\Summary'] = $dir . 'includes/Model/Summary.php';
 $wgAutoloadClasses['Flow\Model\TopicListEntry'] = $dir . 'includes/Model/TopicListEntry.php';
 $wgAutoloadClasses['Flow\Model\Workflow'] = $dir . 'includes/Model/Workflow.php';
+$wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
 
 // Classes that deal with database interaction between database and the models
 $wgAutoloadClasses['Flow\Repository\TreeRepository'] = $dir . 'includes/Repository/TreeRepository.php';
