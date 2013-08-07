@@ -57,6 +57,26 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
+		$topics = $this->getTopics();
+
+		$templating->render( "flow:topiclist.html.php", array(
+			'topicList' => $this,
+			'topics' => $topics,
+		) );
+	}
+
+	public function renderAPI( array $options ) {
+		$output = array( '_element' => 'topic' );
+		$topics = $this->getTopics();
+
+		foreach( $topics as $topic ) {
+			$output[] = $topic->renderAPI( $options );
+		}
+
+		return $output;
+	}
+
+	protected function getTopics() {
 		$topics = array();
 
 		// New workflows cant have content yet
@@ -76,10 +96,7 @@ class TopicListBlock extends AbstractBlock {
 			}
 		}
 
-		$templating->render( "flow:topiclist.html.php", array(
-			'topicList' => $this,
-			'topics' => $topics,
-		) );
+		return $topics;
 	}
 
 	public function getName() {

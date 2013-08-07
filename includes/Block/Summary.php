@@ -82,6 +82,20 @@ class SummaryBlock extends AbstractBlock {
 		) );
 	}
 
+	public function renderAPI( array $options ) {
+		$output = array();
+		$output['type'] = 'summary';
+		$output['*'] = $this->summary->getContent();
+		$output['summary-id'] = $this->workflow->getId()->getHex();
+
+		$output = array(
+			'_element' => 'summary',
+			0 => $output,
+		);
+
+		return $output;
+	}
+
 	public function getName() {
 		return 'summary';
 	}
