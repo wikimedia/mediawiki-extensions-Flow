@@ -267,4 +267,11 @@ $c['loader.root_post'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['factory.loader.workflow'] = $c->share( function( $c ) {
+	return new Flow\WorkflowLoaderFactory(
+		$c['storage'],
+		$c['loader.root_post']
+	);
+} );
+
 return $c;
