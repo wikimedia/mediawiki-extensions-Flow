@@ -14,6 +14,7 @@ class UrlGenerator {
 	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
 		if ( ! $workflow instanceof Workflow ) {
 			$workflowId = $workflow;
+			// Only way to know what title the workflow points at
 			$workflow = $this->storage->get( $workflowId );
 			if ( !$workflow ) {
 				throw new \MWException( "Unknown flow object: $workflowId" );

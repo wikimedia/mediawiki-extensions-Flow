@@ -16,10 +16,6 @@ class SelectQueryBuilder {
 		return new self;
 	}
 
-	public function setCacheKey( $cacheKey ) {
-		$this->cacheKey = $cacheKey;
-	}
-
 	public function from( $table ) {
 		$this->table = $table;
 		return $this;
@@ -69,10 +65,10 @@ class SelectQueryBuilder {
 			list( $field, $op, $value ) = $row;
 			$conditions[] = "$field $op	" . $dbr->addQuotes( $value );
 		}
-		$row = $db->select( $this->table, $this->fields, $conditions, $fname, $this->options );
+		$res = $db->select( $this->table, $this->fields, $conditions, $fname, $this->options );
 		if ( $this->resultHandler ) {
-			$row = call_user_func( $this->resultHandler, $row );
+			return call_user_func( $this->resultHandler, $res );
 		}
-		return $row;
+		return $res;
 	}
 }

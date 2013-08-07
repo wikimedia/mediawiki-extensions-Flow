@@ -19,6 +19,10 @@ class Templating {
 		$this->globals = $globals;
 	}
 
+	public function getOutput() {
+		return $this->output;
+	}
+
 	public function addNamespace( $ns, $path ) {
 		$this->namespaces[$ns] = rtrim( $path, '/' );
 	}

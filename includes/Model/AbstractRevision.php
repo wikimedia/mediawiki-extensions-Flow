@@ -10,6 +10,8 @@ abstract class AbstractRevision {
 	protected $userId;
 	protected $userText;
 	protected $flags = array();
+	// An i18n message key indicating what kind of change this revision is
+	// primary use case is the a revision history list.
 	protected $comment;
 	protected $prevRevision;
 
@@ -20,6 +22,13 @@ abstract class AbstractRevision {
 
 	static public function fromStorageRow( array $row ) {
 		$obj = new static;
+		if ( $row['rev_type'] !== $obj->getRevisionType() ) {
+			throw new \MWException( sprintf(
+				"Wrong revision type, expected '%s' but received '%s'",
+				$obj->getRevisionType(),
+				$row['rev_type']
+			) );
+		}
 		$obj->revId = UUID::create( $row['rev_id'] );
 		$obj->userId = $row['rev_user_id'];
 		$obj->userText = $row['rev_user_text'];
@@ -48,8 +57,8 @@ abstract class AbstractRevision {
 			'rev_flags' => implode( ',', $obj->flags ),
 			'rev_parent_id' => $prevRevision,
 			'rev_comment' => $obj->comment,
-
 			'rev_text_id' => $obj->textId,
+			'rev_type' => $obj->getRevisionType(),
 
 			'text_content' => $obj->content,
 		);
@@ -87,11 +96,6 @@ abstract class AbstractRevision {
 		return $this->content;
 	}
 
-	// internal: for lazy loading from external source
-	public function setContent( $content ) {
-		$this->content = $content;
-	}
-
 	public function getTextId() {
 		return $this->textId; // not available on creation
 	}
@@ -108,6 +112,9 @@ abstract class AbstractRevision {
 		if ( $this->isFlagged( $flag ) ) {
 			// already flagged
 			return $this;
+		}
+		if ( false !== strpos( ',', $flag ) ) {
+			throw new \MWException( 'Invalid flag name: contains comma' );
 		}
 		$updated = $this->newNullRevision( $user );
 		$updated->flags[] = $flag;

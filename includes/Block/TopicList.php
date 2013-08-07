@@ -45,7 +45,8 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		$topicWorkflow = Workflow::create( $topicDef, $this->user, $this->workflow->getArticleTitle() );
-		// Should we really have a top level post for the topic title?
+		// Should we really have a top level post for the topic title?  Simplifies allowing
+		// a revisioned title.
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 		$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
@@ -57,23 +58,11 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		$topics = array();
-
 		// New workflows cant have content yet
-		if ( !$this->workflow->isNew() ) {
-			$topicList = $this->storage->find( 'TopicListEntry', array(
-				'topic_list_id' => $this->workflow->getId(),
-			) );
-			if ( $topicList ) {
-				foreach( $topicList as $entry ) {
-					$topicIds[] = $entry->getId();
-				}
-				$roots = $this->rootLoader->getMulti( $topicIds );
-				foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
-					$id = $workflow->getId();
-					$topics[$id->getHex()] = new TopicBlock( $workflow, $this->storage, $roots[$id->getHex()] );
-				}
-			}
+		if ( $this->workflow->isNew() ) {
+			$topics = array();
+		} else {
+			$topics = $this->loadAllRelatedTopics();
 		}
 
 		$templating->render( "flow:topiclist.html.php", array(
@@ -84,6 +73,27 @@ class TopicListBlock extends AbstractBlock {
 
 	public function getName() {
 		return 'topic_list';
+	}
+
+	protected function loadAllRelatedTopics() {
+		$found = $this->storage->find( 'TopicListEntry', array(
+			'topic_list_id' => $this->workflow->getId(),
+		) );
+		if ( !$found ) {
+			return array();
+		}
+
+		$topics = array();
+		foreach( $found as $entry ) {
+			$topicIds[] = $entry->getId();
+		}
+		$roots = $this->rootLoader->getMulti( $topicIds );
+		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
+			$hexId = $workflow->getId()->getHex();
+			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $roots[$hexId] );
+		}
+
+		return $topics;
 	}
 }
 

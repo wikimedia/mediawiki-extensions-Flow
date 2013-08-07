@@ -12,6 +12,7 @@ use User;
 abstract class RevisionStorage implements WritableObjectStorage {
 	static protected $allowedUpdateColumns = array( 'rev_flags' );
 	protected $dbFactory;
+	protected $externalStores;
 
 	abstract protected function joinTable();
 	abstract protected function relatedPk();
@@ -21,19 +22,18 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	abstract protected function updateRelated( array $rev, array $related );
 	abstract protected function removeRelated( array $row );
 
-	public function __construct( DbFactory $dbFactory ) {
+	public function __construct( DbFactory $dbFactory, $externalStore ) {
 		$this->dbFactory = $dbFactory;
+		$this->externalStore = $externalStore;
 	}
 
 	// Find one by specific attributes
 	public function find( array $attributes, array $options = array() ) {
-		global $wgFlowExternalStore;
-
 		$res = $this->findInternal( $attributes, $options );
 		if ( $res === false ) {
 			return false;
 		}
-		if ( $wgFlowExternalStore ) {
+		if ( $this->externalStore ) {
 			$res = Merger::merge(
 				$res,
 				'text_content',
@@ -67,14 +67,12 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	}
 
 	public function findMulti( array $queries, array $options = array() ) {
-		global $wgFlowExternalStore;
-
 		if ( count( $queries ) < 3 ) {
 			$res = $this->fallbackFindMulti( $queries, $options );
 		} else {
 			$res = $this->findMultiInternal( $queries, $options );
 		}
-		if ( $wgFlowExternalStore ) {
+		if ( $this->externalStore ) {
 			return Merger::mergeMulti(
 				$res,
 				'text_content',
@@ -234,12 +232,11 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	}
 
 	protected function insertContent( $data ) {
-		global $wgFlowExternalStore;
 		$flags = \Revision::compressRevisionText( $data );
 
-		if ( $wgFlowExternalStore ) {
+		if ( $this-externalStore ) {
 			// Store and get the URL
-			$data = ExternalStore::insertWithFallback( $data, array(), $wgFlowExternalStore );
+			$data = ExternalStore::insertWithFallback( $this->externalStore, $data );
 			if ( !$data ) {
 				throw new \MWException( "Unable to store text to external storage" );
 			}
@@ -312,6 +309,10 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		return array( 'rev_id' );
 	}
 
+	public function getIterator() {
+		throw new \MWException( 'Not Implemented' );
+	}
+
 	// Separtes $row into two arrays, one with the rev_ prefix
 	// and the other with everything else.  May need to split more
 	// specifically if we want > 2 prefixes.
@@ -331,8 +332,8 @@ abstract class RevisionStorage implements WritableObjectStorage {
 
 class PostRevisionStorage extends RevisionStorage {
 
-	public function __construct( DbFactory $dbFactory, TreeRepository $treeRepo ) {
-		parent::__construct( $dbFactory );
+	public function __construct( DbFactory $dbFactory, $externalStore, TreeRepository $treeRepo ) {
+		parent::__construct( $dbFactory, $externalStore );
 		$this->treeRepo = $treeRepo;
 	}
 
@@ -428,7 +429,7 @@ class SummaryRevisionStorage extends RevisionStorage {
 }
 
 /**
- * This assists in performing client-side joins.  It collects the foreign key
+ * This assists in performing client-side 1-to-1 joins.  It collects the foreign key
  * from a multi-dimensional array, queries a callable for the foreign key values and
  * then returns the source data with related data merged in.
  */

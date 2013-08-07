@@ -91,8 +91,7 @@ class SpecialFlow extends SpecialPage {
 			) );
 			if ( $found ) {
 				$definition = reset( $found );
-			}
-			if ( empty( $definition ) ) {
+			} else {
 				throw new MWException( "Unknown flow type '$workflowName' requested" );
 			}
 		}

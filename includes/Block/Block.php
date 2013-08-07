@@ -22,6 +22,12 @@ interface Block {
 	function commit();
 
 	/**
+	 * Load whatever is necessary for rendering an use $templating to
+	 * render it.
+	 */
+	function render( Templating $templating, array $options );
+
+	/**
 	 * @return string Unique name among all blocks on an object
 	 */
 	function getName();
@@ -52,7 +58,6 @@ abstract class AbstractBlock implements Block {
 	}
 
 	public function onSubmit( $action, User $user, array $data  ) {
-		// Only one action currently
 		if ( false === array_search( $action, $this->supportedActions ) ) {
 			return null;
 		}

@@ -81,7 +81,7 @@ class ResultDuplicator {
 	// Maps from the query array to its position in the query array
 	protected $queryKeys;
 	protected $queryMap;
-	protected $queries;
+	protected $queries = array();
 	protected $result;
 
 	public function __construct( array $queryKeys, $dimensions ) {
@@ -94,7 +94,16 @@ class ResultDuplicator {
 
 	// Add a query and its position.  Positions must be unique.
 	public function add( $query, $position ) {
+		$dim = count( (array) $position );
+		if ( $dim !== $this->dimensions ) {
+			throw new \InvalidArgumentException( "Expection position with {$this->dimensions} dimensions, received $dim" );
+		}
 		$query = ObjectManager::splitFromRow( $query, $this->queryKeys );
+		if ( $query === null ) {
+			// the queryKeys are either unset or null, and not indexable
+			// TODO: what should happen here?
+			return;
+		}
 		$this->desiredOrder[$position] = $query;
 		if ( !isset( $this->queryMap[$query] ) ) {
 			$this->queries[] = $query;
@@ -105,6 +114,11 @@ class ResultDuplicator {
 	// merge a query into the result set
 	public function merge( array $query, array $result ) {
 		$query = ObjectManager::splitFromRow( $query, $this->queryKeys );
+		if ( $query === null ) {
+			// the queryKeys are either unset or null, and not indexable
+			// TODO: what should happen here?
+			return;
+		}
 		$this->result[$query] = $result;
 	}
 
@@ -124,8 +138,6 @@ class ResultDuplicator {
 			if ( $dimensions > 1 ) {
 				$final[$position] = self::sortResult( $query, $result, $dimensions - 1 );
 			} elseif ( !isset( $result[$query] ) ) {
-				throw new \Exception( 'Missing result' );
-			} else {
 				$final[$position] = $result[$query];
 			}
 		}

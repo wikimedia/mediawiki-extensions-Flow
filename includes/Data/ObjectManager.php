@@ -15,28 +15,25 @@ use SplObjectStorage;
 // - But we want to be able to replace that cache with a buffered cache that flushes
 //   on db commit.
 // - Perhaps one buffered cache could wrap both redis and memcache? seems odd though
-// Different indexes on the same ObjectManager will always use the same storage
 
-// TODO: This interface is too tied to the ObjectManager,  it should
-// be possible to use things implementing LifecycleHandler without
-// an ObjectManager instances(to keep things simpler).
 interface LifecycleHandler {
-	function onPostLoad( $object, array $old );
-	function onPostInsert( $object, array $new );
-	function onPostUpdate( $object, array $old, array $new );
-	function onPostRemove( $object, array $old );
+	function onAfterLoad( $object, array $old );
+	function onAfterInsert( $object, array $new );
+	function onAfterUpdate( $object, array $old, array $new );
+	function onAfterRemove( $object, array $old );
 }
 
 // Some denormalized data doesnt accept writes, it merely triggers cache updates
 // when something else does the write. Indexes are the primary use case.
-interface ObjectStorage {
+// IteratorAggregate rather than traversable to simplify nested implementations
+interface ObjectStorage extends \IteratorAggregate {
 	function find( array $attributes, array $options = array() );
 	/**
 	 * The BagOStuff interface returns with keys matching the key, unfortunatly
-	 * we deal with composite keys which makes that awkward. Instead all findMulti
-	 * implementations must return their result as if it was arrap_map( array( $obj, 'find' ), $queries ).
-	 * This is necessary so result sets stay ordered
-	 *
+	 * we deal with composite keys which makes that awkward. Instead all
+	 * findMulti implementations return their data with the same array indexes
+	 * as the query in $queries. The order the requested queries are returned in
+	 * is arbitrary.
 	 *
 	 * @param array $queries list of queries to perform
 	 * @param array $options Options to use for all queries
@@ -44,6 +41,9 @@ interface ObjectStorage {
 	 */
 	function findMulti( array $queries, array $options = array() );
 	function getPrimaryKeyColumns();
+	// Clear any information stored about loaded objects
+	// This interface is used by the frontend (ObjectLocator) and the backend (BasicDbStorage, etc)
+	//function clear();
 }
 
 // Backing stores, typically in SQL
@@ -53,7 +53,6 @@ interface WritableObjectStorage extends ObjectStorage {
 	function remove( array $row );
 }
 
-// Perhaps better names, because this isnt php serialization, its domain model <-> db row
 interface ObjectMapper {
 	/**
 	 * Convert $object from the domain model to its db row
@@ -132,7 +131,6 @@ class ManagerGroup {
  * Denormalized indexes that are query-only.  The indexes used here must
  * be provided to some ObjectManager as a lifecycleHandler to receive
  * update events.
- *
  * Error handling is all wrong, but simplifies prototyping.
  */
 class ObjectLocator implements ObjectStorage {
@@ -153,6 +151,9 @@ class ObjectLocator implements ObjectStorage {
 		return $result ? reset( $result ) : null;
 	}
 
+	public function getIterator() {
+		throw new \Exception( 'Not Implemented' );
+	}
 	/**
 	 * All queries must be against the same index. Results are equivilent to
 	 * array_map, maintaining order and key relationship between input $queries
@@ -175,8 +176,8 @@ class ObjectLocator implements ObjectStorage {
 			$limit = false;
 		}
 
-		$res = $this->getIndexFor( $keys, $options )->findMulti( $queries, $options );
-		if ( !$res ) {
+		$res = $this->getIndexFor( $keys, $options )->findMulti( $queries );
+		if ( $res === null ) {
 			return null;
 		}
 		$retval = array();
@@ -217,7 +218,7 @@ class ObjectLocator implements ObjectStorage {
 		// to be consistent. undo that for a flat result array
 		$res = $this->findMulti( $queries );
 		if ( !$res ) {
-			return false;
+			return null;
 		}
 		$retval = array();
 		foreach ( $res as $row ) {
@@ -226,12 +227,16 @@ class ObjectLocator implements ObjectStorage {
 		return $retval;
 	}
 
+	public function clear() {
+		// nop, we dont store anything
+	}
+
 	/**
 	 * Only use from maintenance.  Updates not implemented(yet), needs
 	 * handling for transactions.
 	 */
 	public function visitAll( $callback ) {
-		// storage is IteratorAggregate returning EchoBatchRowIterator of
+		// storage is commonly IteratorAggregate returning EchoBatchRowIterator of
 		// 500 rows at a time by default.
 		foreach ( $this->storage as $rows ) {
 			foreach ( $rows as $row ) {
@@ -268,7 +273,7 @@ class ObjectLocator implements ObjectStorage {
 	protected function load( $row ) {
 		$object = $this->mapper->fromStorageRow( $row );
 		foreach ( $this->lifecycleHandlers as $handler ) {
-			$handler->onPostLoad( $object, $row );
+			$handler->onAfterLoad( $object, $row );
 		}
 		return $object;
 	}
@@ -279,7 +284,7 @@ class ObjectLocator implements ObjectStorage {
  * Cant implement WritableObjectStorage because 'update' method signature differs
  */
 class ObjectManager extends ObjectLocator {
-	// @var SplObjectHash $loaded If the object exists then an 'update' is issued, otherwise 'insert'
+	// @var SplObjectStorage $loaded If the object exists then an 'update' is issued, otherwise 'insert'
 	protected $loaded;
 
 	public function __construct( ObjectMapper $mapper, WritableObjectStorage $storage, array $indexes = array(), array $lifecycleHandlers = array() ) {
@@ -314,7 +319,7 @@ class ObjectManager extends ObjectLocator {
 			$new = $this->mapper->toStorageRow( $object );
 			$this->storage->insert( $new );
 			foreach ( $this->lifecycleHandlers as $handler ) {
-				$handler->onPostInsert( $object, $new );
+				$handler->onAfterInsert( $object, $new );
 			}
 			$this->loaded[$object] = $new;
 		} catch ( \Exception $e ) {
@@ -331,7 +336,7 @@ class ObjectManager extends ObjectLocator {
 			}
 			$this->storage->update( $old, $new );
 			foreach ( $this->lifecycleHandlers as $handler ) {
-				$handler->onPostUpdate( $object, $old, $new );
+				$handler->onAfterUpdate( $object, $old, $new );
 			}
 			$this->loaded[$object] = $new;
 		} catch ( \Exception $e ) {
@@ -340,17 +345,8 @@ class ObjectManager extends ObjectLocator {
 	}
 
 	static public function arrayEquals( array $old, array $new ) {
-		foreach ( $old as $key => $value ) {
-			if ( !isset( $new[$key] ) || $new[$key] !== $value ) {
-				return false;
-			}
-			unset( $new[$key] );
-		}
-		if ( !empty( $new ) ) {
-			return false;
-		}
-		// All keys in old match new and there are no left-over keys
-		return true;
+		return array_diff_assoc( $old, $new ) === array()
+			&& array_diff_assoc( $new, $old ) === array();
 	}
 
 	static public function makeArray( $input ) {
@@ -366,7 +362,7 @@ class ObjectManager extends ObjectLocator {
 			$old = $this->loaded[$object];
 			$this->storage->remove( $old );
 			foreach ( $this->lifecycleHandlers as $handler ) {
-				$handler->onPostRemove( $object, $old );
+				$handler->onAfterRemove( $object, $old );
 			}
 			unset( $this->loaded[$object] );
 		} catch ( \Exception $e ) {
@@ -375,7 +371,7 @@ class ObjectManager extends ObjectLocator {
 	}
 
 	public function clear() {
-		$this->loaded = new SplObjectHash;
+		$this->loaded = new SplObjectStorage;
 	}
 
 	protected function load( $row ) {
@@ -399,7 +395,6 @@ class ObjectManager extends ObjectLocator {
 				return null;
 			}
 			$split[$key] = $row[$key];
-			unset( $row[$key] );
 		}
 
 		return $split;
@@ -419,7 +414,7 @@ class PersistenceException extends \Exception {
 /**
  * $userMapper = new BasicObjectMapper(
  *     array( 'User', 'toStorageRow' ),
- *     array( 'User', 'newFromRow' ),
+ *     array( 'User', 'fromStorageRow' ),
  * );
  */
 class BasicObjectMapper implements ObjectMapper {
@@ -441,9 +436,9 @@ class BasicObjectMapper implements ObjectMapper {
 }
 
 // Doesn't support updating primary key value yet
-class BasicDbStorage implements WritableObjectStorage, \IteratorAggregate {
+class BasicDbStorage implements WritableObjectStorage {
 	public function __construct( DbFactory $dbFactory, $table, array $primaryKey ) {
-		if ( empty( $primaryKey ) ) {
+		if ( !$primaryKey ) {
 			throw new \Exception( 'PK required' );
 		}
 		$this->dbFactory = $dbFactory;
@@ -466,14 +461,14 @@ class BasicDbStorage implements WritableObjectStorage, \IteratorAggregate {
 			$missing = array_diff( $this->primaryKey, array_keys( $old ) );
 			throw new PersistenceException( 'Row has null primary key: ' . implode( $missing ) );
 		}
+		$updates = $this->calcUpdates( $old, $new );
+		if ( !$updates ) {
+			return true; // nothing to change, success
+		}
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
-		$res = $dbw->update(
-			$this->table,
-			$this->calcUpdates( $old, $new ),
-			UUID::convertUUIDs( $pk ),
-			__METHOD__
-		);
 		// update returns boolean true/false as $res
+		$res = $dbw->update( $this->table, $updates, UUID::convertUUIDs( $pk ), __METHOD__ );
+		// $dbw->update returns boolean true/false as $res
 		// we also want to check that $pk actually selected a row to update
 		return $res && $dbw->affectedRows();
 	}
@@ -484,12 +479,11 @@ class BasicDbStorage implements WritableObjectStorage, \IteratorAggregate {
 			if ( !array_key_exists( $key, $old ) || $old[$key] !== $new[$key] ) {
 				$updates[$key] = $new[$key];
 			}
+			unset( $old[$key] );
 		}
-		if ( !$updates ) {
-			echo '<pre>';
-			var_dump( $old );
-			var_dump( $new );
-			die();
+		// These keys dont exist in $new
+		foreach ( array_keys( $old ) as $key ) {
+			$updates[$key] = null;
 		}
 		return $updates;
 	}
@@ -571,18 +565,10 @@ class BasicDbStorage implements WritableObjectStorage, \IteratorAggregate {
 	}
 }
 
-class NullLifecycleHandler implements LifecycleHandler {
-	function onPostInsert( $object, array $new ) {
-	}
-	function onPostUpdate( $object, array $old, array $new ) {
-	}
-	function onPostLoad( $object, array $old ) {
-	}
-	function onPostRemove( $object, array $old ) {
-	}
-}
-
-abstract class AbstractIndex extends NullLifecycleHandler implements Index {
+/**
+ * Index objects with similar features into the same buckets.
+ */
+abstract class FeatureIndex implements Index {
 
 	abstract public function getLimit();
 	abstract public function queryOptions();
@@ -590,12 +576,18 @@ abstract class AbstractIndex extends NullLifecycleHandler implements Index {
 	abstract protected function addToIndex( array $indexed, array $row );
 	abstract protected function removeFromIndex( array $indexed, array $row );
 
+	/**
+	 * @param BufferedCache $cache
+	 * @param ObjectStorage $storage
+	 * @param string        $prefix
+	 * @param array         $indexedColumns List of columns to index,
+	 */
 	public function __construct( BufferedCache $cache, ObjectStorage $storage, $prefix, array $indexedColumns ) {
 		$this->cache = $cache;
 		$this->storage = $storage;
 		$this->prefix = $prefix;
 		$this->indexed = $indexedColumns;
-		// sort this and ksort is self::cacheKey to always have cache key
+		// sort this and ksort in self::cacheKey to always have cache key
 		// fields in same order
 		sort( $indexedColumns );
 		$this->indexedOrdered = $indexedColumns;
@@ -626,22 +618,37 @@ abstract class AbstractIndex extends NullLifecycleHandler implements Index {
 		return true;
 	}
 
-	public function onPostInsert( $object, array $new) {
+	public function onAfterInsert( $object, array $new) {
 		$indexed = ObjectManager::splitFromRow( $new , $this->indexed );
-		$this->addToIndex( $indexed, $this->compactRow( $new ) );
+		// is un-indexable a bail-worthy occasion? Probably not
+		if ( $indexed ) {
+			$this->addToIndex( $indexed, $this->compactRow( $new ) );
+		}
 	}
 
-	public function onPostUpdate( $object, array $old, array $new ) {
+	public function onAfterUpdate( $object, array $old, array $new ) {
 		$oldIndexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		$newIndexed = ObjectManager::splitFromRow( $new, $this->indexed );
 		// TODO: optimize $oldIndexed === $newIndexed, which should be common
-		$this->removeFromIndex( $oldIndexed, $this->compactRow( $old ) );
-		$this->addToIndex( $newIndexed, $this->compactRow( $new ) );
+		// TODO: optimize out occurances where data changed but not the values
+		//       indexed or stored in the index(for shallow indexes)
+		if ( $oldIndexed ) {
+			$this->removeFromIndex( $oldIndexed, $this->compactRow( $old ) );
+		}
+		if ( $newIndexed ) {
+			$this->addToIndex( $newIndexed, $this->compactRow( $new ) );
+		}
 	}
 
-	public function onPostRemove( $object, array $old ) {
+	public function onAfterRemove( $object, array $old ) {
 		$indexed = ObjectManager::splitFromRow( $old, $this->indexed );
-		$this->removeFromIndex( $indexed, $this->compactRow( $old ) );
+		if ( $indexed ) {
+			$this->removeFromIndex( $indexed, $this->compactRow( $old ) );
+		}
+	}
+
+	public function onAfterLoad( $object, array $old ) {
+		// nothing to do
 	}
 
 	public function find( array $attributes ) {
@@ -664,11 +671,9 @@ abstract class AbstractIndex extends NullLifecycleHandler implements Index {
 				);
 			}
 			$key = $this->cacheKey( $query );
+			// allow for duplicate queries
 			$keyToIdx[$key][] = $idx;
-			if ( isset( $keyToQuery[$key] ) ) {
-				// duplicate query
-				unset( $queries[$idx] );
-			} else {
+			if ( !isset( $keyToQuery[$key] ) ) {
 				$idxToKey[$idx] = $key;
 				$keyToQuery[$key] = $query;
 			}
@@ -709,6 +714,13 @@ abstract class AbstractIndex extends NullLifecycleHandler implements Index {
 
 
 	protected function cacheKey( array $attributes ) {
+		global $wgFlowDefaultWikiDb; // meh
+		if ( $wgFlowDefaultWikiDb === false ) {
+			$db = wfWikiId();
+		} else {
+			$db = $wgFlowDefaultWikiDb;
+		}
+
 		foreach( $attributes as $key => $attr ) {
 			if ( $attr instanceof \Flow\Model\UUID ) {
 				$attributes[$key] = $attr->getHex();
@@ -718,7 +730,7 @@ abstract class AbstractIndex extends NullLifecycleHandler implements Index {
 			}
 		}
 
-		return wfForeignMemcKey( 'flow', '', $this->prefix, implode( ':', $attributes ) );
+		return wfForeignMemcKey( $db, '', $this->prefix, implode( ':', $attributes ) );
 	}
 
 	/**
@@ -755,7 +767,11 @@ abstract class AbstractIndex extends NullLifecycleHandler implements Index {
 	}
 }
 
-class UniqueIndex extends AbstractIndex {
+/**
+ * Offers direct lookup of an object via a unique feature(set of properties)
+ * on the object.
+ */
+class UniqueFeatureIndex extends FeatureIndex {
 
 	public function getLimit() {
 		return 1;
@@ -781,13 +797,16 @@ class UniqueIndex extends AbstractIndex {
 	}
 }
 
-class SecondaryIndex extends AbstractIndex {
+/**
+ * Holds the top k items matching
+ */
+class TopKIndex extends FeatureIndex {
 	public function __construct( BufferedCache $cache, ObjectStorage $storage, $prefix, array $indexed, array $options = array() ) {
 		if ( empty( $options['sort'] ) ) {
-			throw new \InvalidArgumentException( 'SecondaryIndex must be sorted' );
+			throw new \InvalidArgumentException( 'TopKIndex must be sorted' );
 		}
-		if ( isset( $options['shallow'] ) && !$options['shallow'] instanceof UniqueIndex ) {
-			throw new \InvalidArgumentException( "The 'shallow' option must be either null or UniqueIndex." );
+		if ( isset( $options['shallow'] ) && !$options['shallow'] instanceof UniqueFeatureIndex ) {
+			throw new \InvalidArgumentException( "The 'shallow' option must be either null or UniqueFeatureIndex." );
 		}
 
 		parent::__construct( $cache, $storage, $prefix, $indexed );
@@ -896,16 +915,13 @@ class SecondaryIndex extends AbstractIndex {
 
 	protected function expandCacheResult( array $cached, array $keyToQuery ) {
 		$cached = parent::expandCacheResult( $cached, $keyToQuery );
-		if ( $this->options['shallow'] ) {
+		if ( $cached && $this->options['shallow'] ) {
 			return $this->expandShallowResult( $cached );
 		}
 		return $cached;
 	}
 
 	protected function expandShallowResult( array $results ) {
-		if ( !$results ) {
-			return array();
-		}
 		// Allows us to flatten $results into a single $query array, then
 		// rebuild final return value in same structure and order as $results.
 		$duplicator = new ResultDuplicator( $this->options['shallow']->getPrimaryKeyColumns(), 2 );
@@ -1050,6 +1066,7 @@ class BufferedCache {
 	public function getMulti( array $keys ) {
 		return $this->cache->getMulti( $keys );
 	}
+
 	public function add( $key, $value, $exptime = 0 ) {
 		if ( $this->buffer === null ) {
 			$this->cache->add( $key, $value, $exptime );

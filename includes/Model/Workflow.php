@@ -2,6 +2,7 @@
 
 namespace Flow\Model;
 
+use SpecialPage;
 use Title;
 use User;
 
@@ -83,7 +84,7 @@ class Workflow {
 
 	public function getTitle() {
 		$article = $this->getArticleTitle();
-		return Title::newFromText( "Flow/" . $article->getPrefixedDBkey(), NS_SPECIAL );
+		return SpecialPage::getTitleFor( 'Flow', $article->getPrefixedDBkey() );
 	}
 
 	public function getArticleTitle() {
@@ -115,12 +116,14 @@ class Workflow {
 		}
 	}
 
+	// these are exceptions currently to make debugging easier
+	// it should return false later on to allow wider use.
 	public function matchesTitle( Title $title ) {
 		if ( $title->getArticleID() === 0 ) {
 			return false; // non-existant page
 		}
 		if ( $title->getNamespace() !== $this->namespace ) {
-			var_dump( $title->getNamespace());
+			var_dump( $title->getNamespace() );
 			var_dump( $this->namespace );
 			die();
 			throw new \Exception( 'namespace' );

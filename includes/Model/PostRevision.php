@@ -30,24 +30,17 @@ class PostRevision extends AbstractRevision {
 		$obj->origCreateTime = wfTimestampNow();
 		$obj->replyToId = null; // not a reply to anything
 		$obj->prevRevId = null; // no parent revision
+		$obj->comment = 'flow-rev-message-new-post';
 		return $obj;
 	}
 
 	static public function fromStorageRow( array $row ) {
-		if ( $row['rev_type'] !== 'post' ) {
-			throw new \MWException( "Wrong revision type, expected 'post' but got : " . $row['rev_type'] );
-		}
 		if ( $row['rev_id'] !== $row['tree_rev_id'] ) {
 			throw new \MWException( 'tree revision doesn\'t match provided revision' );
 		}
 		$obj = parent::fromStorageRow( $row );
 
-		if ( $row['tree_parent_id'] ) {
-			$obj->replyToId = UUID::create( $row['tree_parent_id'] );
-		} else {
-			$obj->replyToId = null;
-		}
-
+		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
 		$obj->postId = UUID::create( $row['tree_rev_descendant'] );
 		$obj->origCreateTime = $row['tree_orig_create_time'];
 		$obj->origUserId = $row['tree_orig_user_id'];
@@ -57,14 +50,8 @@ class PostRevision extends AbstractRevision {
 	}
 
 	static public function toStorageRow( $rev ) {
-		$replyToId = null;
-
-		if ( $rev->replyToId ) {
-			$replyToId = $rev->replyToId->getBinary();
-		}
 		return parent::toStorageRow( $rev ) + array(
-			'rev_type' => 'post',
-			'tree_parent_id' => $replyToId,
+			'tree_parent_id' => $rev->replyToId ? $rev->replyToId->getBinary() : null,
 			'tree_rev_descendant' => $rev->postId->getBinary(),
 			'tree_rev_id' => $rev->revId->getBinary(),
 			// rest of tree_ is denormalized data about first post revision
@@ -83,6 +70,7 @@ class PostRevision extends AbstractRevision {
 		$reply->origCreateTime = wfTimestampNow();
 		$reply->content = $content;
 		$reply->replyToId = $this->postId;
+		$reply->comment = 'flow-rev-message-reply';
 		return $reply;
 	}
 
@@ -124,6 +112,10 @@ class PostRevision extends AbstractRevision {
 	 */
 	public function compareCreateTime( PostRevision $rev ) {
 		return strcmp( $rev->postId->getNumber(), $this->postId->getNumber() );
+	}
+
+	public function getRevisionType() {
+		return 'post';
 	}
 }
 

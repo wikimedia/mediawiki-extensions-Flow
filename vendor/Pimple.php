@@ -25,7 +25,7 @@
  */
 
 /**
- * Pimple main class.
+ * Pimple main class.  http://pimple.sensiolabs.org/
  *
  * @package pimple
  * @author  Fabien Potencier

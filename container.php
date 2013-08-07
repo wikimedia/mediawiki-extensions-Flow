@@ -49,8 +49,8 @@ use Flow\Data\BasicObjectMapper;
 use Flow\Data\BasicDbStorage;
 use Flow\Data\PostRevisionStorage;
 use Flow\Data\SummaryRevisionStorage;
-use Flow\Data\UniqueIndex;
-use Flow\Data\SecondaryIndex;
+use Flow\Data\UniqueFeatureIndex;
+use Flow\Data\TopKIndex;
 use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectManager;
 
@@ -71,8 +71,8 @@ $c['storage.definition'] = $c->share( function( $c ) {
 		array( 'definition_id' )
 	);
 	$indexes = array(
-		new UniqueIndex( $cache, $storage, 'flow_definition:pk', array( 'definition_id' ) ),
-		new UniqueIndex( $cache, $storage, 'flow_definition:name', array( 'definition_wiki', 'definition_name' ) ),
+		new UniqueFeatureIndex( $cache, $storage, 'flow_definition:pk', array( 'definition_id' ) ),
+		new UniqueFeatureIndex( $cache, $storage, 'flow_definition:name', array( 'definition_wiki', 'definition_name' ) ),
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes );
@@ -87,56 +87,51 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 		// pk
 		array( 'workflow_id' )
 	);
-	$pk = new UniqueIndex( $cache, $storage, 'flow_workflow:pk', array( 'workflow_id' ) );
+	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_workflow:pk', array( 'workflow_id' ) );
 	$indexes = array(
 		$pk,
 		// This is actually a unique index, but it wants the shallow functionality.
-		new SecondaryIndex(
+		new TopKIndex(
 			$cache, $storage, 'flow_workflow:title',
 			array( 'workflow_wiki', 'workflow_page_id', 'workflow_definition_id' ),
 			array( 'shallow' => $pk, 'limit' => 1, 'sort' => 'workflow_id' )
 		),
 	);
-	// not ready yet
+	//ch /valulds t not ready yet
 	$lifecycle = array(); // $c['storage.user_subs.user_index'] );
 
 	return new ObjectManager( $mapper, $storage, $indexes, $lifecycle );
 } );
 // Arbitrary bit of revisioned wiki-text attached to a workflow
 $c['storage.summary'] = $c->share( function( $c ) {
+	global $wgFlowExternalStore;
+
 	$cache = $c['memcache.buffered'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Summary' );
-	$storage = new SummaryRevisionStorage( $c['db.factory'] );
+	$storage = new SummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
+
+	$workflowIndexOptions = array(
+		'sort' => 'rev_id',
+		'order' => 'DESC',
+		//'shallow' => array( 'rev_id' ),
+		'create' => function( array $row ) {
+			return $row['rev_parent_id'] === null;
+		},
+	);
 	$indexes = array(
-		new UniqueIndex(
+		new UniqueFeatureIndex(
 			$cache, $storage,
 			'flow_summary:pk', array( 'rev_id' )
 		),
-		new SecondaryIndex(
+		new TopKIndex(
 			$cache, $storage,
 			'flow_summary:workflow', array( 'summary_workflow_id' ),
-			array(
-				'limit'  => 100,
-				'sort' => 'rev_id',
-				'order' => 'DESC',
-				//'shallow' => array( 'rev_id' ),
-				'create' => function( array $row ) {
-					return $row['rev_parent_id'] === null;
-				},
-			)
+			array( 'limit' => 100 ) + $workflowIndexOptions
 		),
-		new SecondaryIndex(
+		new TopKIndex(
 			$cache, $storage,
 			'flow_summary:latest', array( 'summary_workflow_id' ),
-			array(
-				'limit'  => 1,
-				'sort' => 'rev_id',
-				'order' => 'DESC',
-				//'shallow' => array( 'rev_id' ),
-				'create' => function( array $row ) {
-					return $row['rev_parent_id'] === null;
-				},
-			)
+			array( 'limit'  => 1 ) + $workflowIndexOptions
 		),
 	);
 
@@ -154,12 +149,12 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 		array( 'topic_list_id', 'topic_id' )
 	);
 	$indexes = array(
-		new SecondaryIndex(
+		new TopKIndex(
 			$cache, $storage,
 			'flow_topic_list:list', array( 'topic_list_id' ),
 			array( 'sort' => 'topic_id' )
 		),
-		new UniqueIndex(
+		new UniqueFeatureIndex(
 			$cache, $storage,
 			'flow_topic_list:topic', array( 'topic_id' )
 		),
@@ -169,13 +164,14 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 } );
 // Individual post within a topic workflow
 $c['storage.post'] = $c->share( function( $c ) {
+	global $wgFlowExternalStore;
 	$cache = $c['memcache.buffered'];
 	$treeRepo = $c['repository.tree'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\PostRevision' );
-	$storage = new PostRevisionStorage( $c['db.factory'], $treeRepo );
+	$storage = new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $treeRepo );
 	$indexes = array(
-		new UniqueIndex( $cache, $storage, 'flow_revision:pk', array( 'rev_id' ) ),
-		new SecondaryIndex( $cache, $storage, 'flow_revision:descendant',
+		new UniqueFeatureIndex( $cache, $storage, 'flow_revision:pk', array( 'rev_id' ) ),
+		new TopKIndex( $cache, $storage, 'flow_revision:descendant',
 			array( 'tree_rev_descendant' ),
 			array(
 				'limit' => 100,
@@ -187,7 +183,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 					return $row['rev_parent_id'] === null;
 				},
 		) ),
-		new SecondaryIndex( $cache, $storage, 'flow_revision:latest_post',
+		new TopKIndex( $cache, $storage, 'flow_revision:latest_post',
 			array( 'tree_rev_descendant' ),
 			array(
 				'limit' => 1,
@@ -205,7 +201,6 @@ $c['storage.post'] = $c->share( function( $c ) {
 // Storage implementation for user subscriptions, separate from storage.user_subs so it
 // can be used in storage.user_subs.user_index as well.
 $c['storage.user_subs.backing'] = $c->share( function( $c ) {
-
 	return new BasicDbStorage(
 		// factory and table
 		$c['db.factory'], 'flow_user_sub',
@@ -215,12 +210,12 @@ $c['storage.user_subs.backing'] = $c->share( function( $c ) {
 } );
 // Needs to be separate from storage.user_subs so it can be attached to Workflow updates
 // Limits users to 2000 subscriptions
-// TODO: Can't use SecondaryIndex, needs to be custom. so it stores the right data
+// TODO: Can't use TopKIndex, needs to be custom. so it stores the right data
 // TODO: Storage wont work either, it
 $c['storage.user_subs.user_index'] = $c->share( function( $c ) {
 	$cache = $c['memcache.buffered'];
 	$storage = $c['storage.user_subs.backing'];
-	return new SecondaryIndex(
+	return new TopKIndex(
 		$cache, $storage, 'flow_user_sub:user', array( 'subscrip_user_id' ),
 		array( 'limit' => 2000, 'sort' => 'subscrip_last_updated' )
 	);
@@ -243,12 +238,16 @@ $c['storage'] = $c->share( function( $c ) {
 		array(
 			'Flow\\Model\\Definition' => 'storage.definition',
 			'Definition' => 'storage.definition',
+
 			'Flow\\Model\\Workflow' => 'storage.workflow',
 			'Workflow' => 'storage.workflow',
+
 			'Flow\\Model\\PostRevision' => 'storage.post',
 			'PostRevision' => 'storage.post',
+
 			'Flow\\Model\\TopicListEntry' => 'storage.topic_list',
 			'TopicListEntry' => 'storage.topic_list',
+
 			'Flow\\Model\\Summary' => 'storage.summary',
 			'Summary' => 'storage.summary',
 		)

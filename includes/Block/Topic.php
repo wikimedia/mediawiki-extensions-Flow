@@ -196,6 +196,9 @@ class TopicBlock extends AbstractBlock {
 				'history' => $history,
 			), $return );
 		}
+
+		$templating->getOutput()->addModules( 'ext.flow.base' );
+
 		return $templating->render( "flow:topic.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
@@ -208,9 +211,6 @@ class TopicBlock extends AbstractBlock {
 			return $this->root;
 		}
 		return $this->root = $this->rootLoader->get( $this->workflow->getId() );
-	}
-
-	protected function loadPostHistory() {
 	}
 
 	// Somehow the template has to know which post the errors go with

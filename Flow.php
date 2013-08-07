@@ -89,13 +89,6 @@ $wgAutoloadClasses['Flow\Data\ResultDuplicator'] = $dir . 'includes/Data/MultiDi
 $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 $wgAutoloadClasses['Flow\Data\SummaryRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 
-// Classes that control user workflows
-$wgAutoloadClasses['Flow\Controller\Controller'] = $dir . 'includes/Controller/Controller.php';
-$wgAutoloadClasses['Flow\Controller\DefaultController'] = $dir . 'includes/Controller/DefaultController.php';
-$wgAutoloadClasses['Flow\Controller\SubscriptionController'] = $dir . 'includes/Controller/SubscriptionController.php';
-$wgAutoloadClasses['Flow\Controller\DiscussionController'] = $dir . 'includes/Controller/DiscussionController.php';
-$wgAutoloadClasses['Flow\Controller\TopicController'] = $dir . 'includes/Controller/TopicController.php';
-
 // The individual workflow pieces
 $wgAutoloadClasses['Flow\Block\Block'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\AbstractBlock'] = $dir . 'includes/Block/Block.php';
@@ -131,6 +124,7 @@ $wgResourceModules += array(
 		'styles' => 'base/ext.flow.base.css',
 		'scripts' => 'base/ext.flow.base.js',
 		'dependencies' => array(
+			'ext.visualEditor.standalone',
 		),
 		'messages' => array(
 		),

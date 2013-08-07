@@ -19,9 +19,6 @@ class Summary extends AbstractRevision {
 	}
 
 	static public function fromStorageRow( array $row ) {
-		if ( $row['rev_type'] !== 'summary' ) {
-			throw new \MWException( 'Wrong revision type: ' . $row['rev_type'] );
-		}
 		$obj = parent::fromStorageRow( $row );
 		$obj->workflowId = UUID::create( $row['summary_workflow_id'] );
 		return $obj;
@@ -33,6 +30,10 @@ class Summary extends AbstractRevision {
 			'summary_rev_id' => $obj->revId->getBinary(),
 			'summary_workflow_id' => $obj->workflowId->getBinary(),
 		);
+	}
+
+	public function getRevisionType() {
+		return 'summary';
 	}
 }
 
