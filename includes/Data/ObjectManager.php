@@ -31,9 +31,9 @@ interface LifecycleHandler {
 interface ObjectStorage {
 	function find( array $attributes, array $options = array() );
 	/**
-	 * The BagOStuff interface returns with keys matching the key, unfortunatly
+	 * The BagOStuff interface returns with keys matching the key, unfortunately
 	 * we deal with composite keys which makes that awkward. Instead all findMulti
-	 * implementations must return their result as if it was arrap_map( array( $obj, 'find' ), $queries ).
+	 * implementations must return their result as if it was array_map( array( $obj, 'find' ), $queries ).
 	 * This is necessary so result sets stay ordered
 	 *
 	 *
