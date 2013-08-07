@@ -45,6 +45,7 @@ abstract class AbstractBlock implements Block {
 
 	abstract protected function validate();
 	abstract public function render( Templating $templating, array $options );
+	abstract public function renderAPI( array $options );
 	abstract public function commit();
 
 	public function init( $action ) {
