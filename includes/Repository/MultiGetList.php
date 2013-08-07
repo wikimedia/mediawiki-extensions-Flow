@@ -14,7 +14,9 @@ class MultiGetList {
 		$key = implode( ':', (array) $key );
 		$cacheKeys = array();
 		foreach ( $ids as $id ) {
-			if ( !is_scalar( $id ) ) {
+			if ( $id instanceof \Flow\Model\UUID ) {
+				$id = $id->getHex();
+			} elseif ( !is_scalar( $id ) ) {
 				throw new \InvalidArgumentException( 'Not scalar:' . gettype( $id ) );
 			}
 			$cacheKeys[wfForeignMemcKey( 'flow', '', $key, $id )] = $id;
