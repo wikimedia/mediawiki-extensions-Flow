@@ -11,7 +11,7 @@ abstract class AbstractRevision {
 	protected $userId;
 	protected $userText;
 	protected $flags = array();
-	protected $comment;
+	protected $comment = '';
 	protected $prevRevision;
 
 	// content
@@ -24,12 +24,12 @@ abstract class AbstractRevision {
 		$obj->revId = $row['rev_id'];
 		$obj->userId = $row['rev_user_id'];
 		$obj->userText = $row['rev_user_text'];
-		$obj->flags = explode( ',', $row['rev_flags'] );
 		$obj->prevRevision = $row['rev_parent_id'];
 		$obj->comment = $row['rev_comment'];
 
 		$obj->textId = $row['rev_text_id'];
 		$obj->content = $row['text_content'];
+		$obj->flags = explode( ',', $row['text_flags'] );
 		return $obj;
 	}
 
@@ -38,13 +38,13 @@ abstract class AbstractRevision {
 			'rev_id' => $obj->revId,
 			'rev_user_id' => $obj->userId,
 			'rev_user_text' => $obj->userText,
-			'rev_flags' => implode( ',', $obj->flags ),
 			'rev_parent_id' => $obj->prevRevision,
 			'rev_comment' => $obj->comment,
 
 			'rev_text_id' => $obj->textId,
 
 			'text_content' => $obj->content,
+			'text_flags' => implode( ',', $obj->flags ),
 		);
 	}
 
