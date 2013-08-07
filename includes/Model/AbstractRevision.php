@@ -12,6 +12,7 @@ abstract class AbstractRevision {
 	protected $flags = array();
 	// An i18n message key indicating what kind of change this revision is
 	// primary use case is the a revision history list.
+	// TODO: i18n key may be too limiting, consider allowing custom revision comments
 	protected $comment;
 	protected $prevRevision;
 
@@ -32,35 +33,27 @@ abstract class AbstractRevision {
 		$obj->revId = UUID::create( $row['rev_id'] );
 		$obj->userId = $row['rev_user_id'];
 		$obj->userText = $row['rev_user_text'];
-		$obj->flags = explode( ',', $row['rev_flags'] );
-		if ( $row['rev_parent_id'] ) {
-			$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
-		} else {
-			$obj->prevRevision = null;
-		}
+		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
 		$obj->comment = $row['rev_comment'];
 
 		$obj->textId = $row['rev_text_id'];
 		$obj->content = $row['text_content'];
+		$obj->flags = explode( ',', $row['text_flags'] );
 		return $obj;
 	}
 
 	static public function toStorageRow( $obj ) {
-		$prevRevision = null;
-		if ( $obj->prevRevision ) {
-			$prevRevision = $obj->prevRevision->getBinary();
-		}
 		return array(
 			'rev_id' => $obj->revId->getBinary(),
 			'rev_user_id' => $obj->userId,
 			'rev_user_text' => $obj->userText,
-			'rev_flags' => implode( ',', $obj->flags ),
-			'rev_parent_id' => $prevRevision,
+			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getBinary() : null,
 			'rev_comment' => $obj->comment,
 			'rev_text_id' => $obj->textId,
 			'rev_type' => $obj->getRevisionType(),
 
 			'text_content' => $obj->content,
+			'text_flags' => implode( ',', $obj->flags ),
 		);
 	}
 

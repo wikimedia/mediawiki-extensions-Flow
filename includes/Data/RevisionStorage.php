@@ -10,7 +10,7 @@ use ExternalStore;
 use User;
 
 abstract class RevisionStorage implements WritableObjectStorage {
-	static protected $allowedUpdateColumns = array( 'rev_flags' );
+	static protected $allowedUpdateColumns = array( 'text_flags' );
 	protected $dbFactory;
 	protected $externalStores;
 
@@ -215,9 +215,9 @@ abstract class RevisionStorage implements WritableObjectStorage {
 
 	public function insert( array $row ) {
 		if ( !isset( $row['rev_text_id'] ) ) {
-			$row['rev_text_id'] = $this->insertContent( $row['text_content'] );
+			$row['rev_text_id'] = $this->insertContent( $row['text_content'], $row['text_flags'] );
 		}
-		unset( $row['text_content'] );
+		unset( $row['text_content'], $row['text_flags'] );
 		list( $rev, $related ) = $this->splitUpdate( $row );
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
@@ -233,8 +233,10 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		return $this->insertRelated( $rev, $related );
 	}
 
-	protected function insertContent( $data ) {
-		$flags = \Revision::compressRevisionText( $data );
+	protected function insertContent( $data, $flags = '' ) {
+		$compressionFlags = \Revision::compressRevisionText( $data );
+		$flags = array_merge( explode( ',', $flags ), explode( ',', $compressionFlags ) );
+		$flags = array_filter( $flags );
 
 		if ( $this->externalStore ) {
 			// Store and get the URL
@@ -242,10 +244,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 			if ( !$data ) {
 				throw new \MWException( "Unable to store text to external storage" );
 			}
-			if ( $flags ) {
-				$flags .= ',';
-			}
-			$flags .= 'external';
+			$flags[] = 'external';
 		}
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
@@ -253,7 +252,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 			'flow_text',
 			array(
 				'text_content' => $data,
-				'text_flags' => $flags,
+				'text_flags' => implode( ',', array_unique( $flags ) ),
 			),
 			__METHOD__
 		);
@@ -315,7 +314,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		throw new \MWException( 'Not Implemented' );
 	}
 
-	// Separtes $row into two arrays, one with the rev_ prefix
+	// Separates $row into two arrays, one with the rev_ prefix
 	// and the other with everything else.  May need to split more
 	// specifically if we want > 2 prefixes.
 	protected function splitUpdate( array $row ) {

@@ -104,13 +104,13 @@ CREATE TABLE /*_*/flow_revision (
 	-- TODO: global user logins will obviate the need for this, but a round trip
 	--       will be needed to map from rev_user_id -> user name
 	rev_user_text varchar(255) binary not null default '',
-	-- revision suppression
-	rev_deleted tinyint unsigned not null default 0,
 	-- rev_id of parent or null if no previous revision
 	rev_parent_id binary(16),
 
 	-- content of the revision
 	rev_text_id int unsigned not null,
+	-- comment attached to revision's flag change
+	rev_comment tinyblob not null,
 
 	rev_flags varchar(255) binary null,
 	rev_comment varchar(255) binary null,
