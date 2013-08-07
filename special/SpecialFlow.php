@@ -77,6 +77,7 @@ class SpecialFlow extends SpecialPage {
 		$repo = $this->container['storage.definition'];
 		$id = $this->getRequest()->getVal( 'definition' );
 		if ( $id !== null ) {
+			$id = new Flow\Model\UUID( $id );
 			$definition = $repo->get( $id );
 			if ( $definition === null ) {
 				throw new MWException( "Unknown flow id '$id' requested" );
