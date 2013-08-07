@@ -2,7 +2,6 @@
 
 namespace Flow\Model;
 
-use UIDGenerator;
 use User;
 
 class PostRevision extends AbstractRevision {
@@ -23,7 +22,7 @@ class PostRevision extends AbstractRevision {
 	// @param string $content The title of the topic(they are revisionable as well)
 	static public function create( Workflow $topic, $content ) {
 		$obj = new self;
-		$obj->revId = UIDGenerator::newTimestampedUID128();
+		$obj->revId = new UUID();
 		$obj->postId = $topic->getId();
 		$obj->content = $content;
 		$obj->origUserId = $obj->userId = $topic->getUserId();
@@ -43,8 +42,13 @@ class PostRevision extends AbstractRevision {
 		}
 		$obj = parent::fromStorageRow( $row );
 
-		$obj->replyToId = $row['tree_parent_id'];
-		$obj->postId = $row['tree_rev_descendant'];
+		if ( $row['tree_parent_id'] ) {
+			$obj->replyToId = new UUID( $row['tree_parent_id'] );
+		} else {
+			$obj->replyToId = null;
+		}
+		
+		$obj->postId = new UUID( $row['tree_rev_descendant'] );
 		$obj->origCreateTime = $row['tree_orig_create_time'];
 		$obj->origUserId = $row['tree_orig_user_id'];
 		$obj->origUserText = $row['tree_orig_user_text'];
@@ -53,11 +57,16 @@ class PostRevision extends AbstractRevision {
 	}
 
 	static public function toStorageRow( $rev ) {
+		$replyToId = null;
+
+		if ( $rev->replyToId ) {
+			$replyToId = $rev->replyToId->getBinary();
+		}
 		return parent::toStorageRow( $rev ) + array(
 			'rev_type' => 'post',
-			'tree_parent_id' => $rev->replyToId,
-			'tree_rev_descendant' => $rev->postId,
-			'tree_rev_id' => $rev->revId,
+			'tree_parent_id' => $replyToId,
+			'tree_rev_descendant' => $rev->postId->getBinary(),
+			'tree_rev_id' => $rev->revId->getBinary(),
 			// rest of tree_ is denormalized data about first post revision
 			'tree_orig_create_time' => $rev->origCreateTime,
 			'tree_orig_user_id' => $rev->origUserId,
@@ -68,7 +77,7 @@ class PostRevision extends AbstractRevision {
 	public function reply( User $user, $content ) {
 		$reply = new self;
 		// No great reason to create two uuid's,  a post and its first revision can share a uuid
-		$reply->revId = $reply->postId = UIDGenerator::newTimestampedUID128();
+		$reply->revId = $reply->postId = new UUID();
 		$reply->userId = $reply->origUserId = $user->getId();
 		$reply->userText = $reply->origUserText = $user->getName();
 		$reply->origCreateTime = wfTimestampNow();
@@ -114,7 +123,7 @@ class PostRevision extends AbstractRevision {
 	 * TODO: better name.  This is if the POST is newer, not the revision.
 	 */
 	public function compareCreateTime( PostRevision $rev ) {
-		return strcmp( $rev->postId, $this->postId );
+		return strcmp( $rev->postId->getNumber(), $this->postId->getNumber() );
 	}
 }
 

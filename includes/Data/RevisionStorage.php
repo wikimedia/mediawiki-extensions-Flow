@@ -47,7 +47,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		$res = $dbr->select(
 			array( $this->joinTable(), 'rev' => 'flow_revision', 'text' => 'flow_text' ),
 			'*',
-			$attributes,
+			BasicDbStorage::convertUUIDs( $attributes ),
 			__METHOD__,
 			$options,
 			array(

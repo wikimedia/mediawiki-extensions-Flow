@@ -165,7 +165,7 @@ class ObjectLocator implements ObjectStorage {
 		}
 		$keys = array_keys( reset( $queries ) );
 		if ( isset( $options['sort'] ) && !is_array( $options['sort'] ) ) {
-			$options['sort'] = (array) $options['sort'];
+			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
 		}
 		if ( isset( $options['limit'] ) ) {
 			$limit = $options['limit'];
@@ -210,7 +210,7 @@ class ObjectLocator implements ObjectStorage {
 		$pk = $this->storage->getPrimaryKeyColumns();
 		$queries = array();
 		foreach ( $objectIds as $id ) {
-			$queries[] = array_combine( $pk, (array) $id );
+			$queries[] = array_combine( $pk, ObjectManager::makeArray( $id ) );
 		}
 		// primary key is unique, but indexes still return their results as array
 		// to be consistent. undo that for a flat result array
@@ -352,6 +352,14 @@ class ObjectManager extends ObjectLocator {
 		return true;
 	}
 
+	static public function makeArray( $input ) {
+		if ( is_array( $input ) ) {
+			return $input;
+		} else {
+			return array( $input );
+		}
+	}
+
 	public function remove( $object ) {
 		try {
 			$old = $this->loaded[$object];
@@ -461,7 +469,7 @@ class BasicDbStorage implements WritableObjectStorage, \IteratorAggregate {
 		$res = $dbw->update(
 			$this->table,
 			$this->calcUpdates( $old, $new ),
-			$pk,
+			self::convertUUIDs( $pk ),
 			__METHOD__
 		);
 		// update returns boolean true/false as $res
@@ -496,7 +504,7 @@ class BasicDbStorage implements WritableObjectStorage, \IteratorAggregate {
 			throw new PersistenceException( 'Row has null primary key: ' . implode( $missing ) );
 		}
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
-		$res = $dbw->delete( $this->table, $pk, __METHOD__ );
+		$res = $dbw->delete( $this->table, self::convertUUIDs( $pk ), __METHOD__ );
 		return $res && $dbw->affectedRows();
 	}
 
@@ -505,10 +513,19 @@ class BasicDbStorage implements WritableObjectStorage, \IteratorAggregate {
 	 *                     success.
 	 */
 	public function find( array $attributes, array $options = array() ) {
+		wfDebug( "Running search on table {$this->table}\n" );
+
+		foreach( $attributes as $key => $value ) {
+			if ( $value instanceof \Flow\Model\UUID ) {
+				$value = $value->getHex();
+			}
+			wfDebug( " -- $key = $value\n" );
+		}
+
 		$res = $this->dbFactory->getDB( DB_MASTER )->select(
 			$this->table,
 			'*',
-			$attributes,
+			self::convertUUIDs( $attributes ),
 			__METHOD__,
 			$options
 		);
@@ -549,6 +566,16 @@ class BasicDbStorage implements WritableObjectStorage, \IteratorAggregate {
 
 	public function getPrimaryKeyColumns() {
 		return $this->primaryKey;
+	}
+
+	public static function convertUUIDs( $array ) {
+		foreach( ObjectManager::makeArray( $array ) as $key => $value ) {
+			if ( is_a( $value, 'Flow\Model\UUID' ) ) {
+				$array[$key] = $value->getBinary();
+			}
+		}
+
+		return $array;
 	}
 }
 
@@ -654,6 +681,7 @@ abstract class AbstractIndex extends NullLifecycleHandler implements Index {
 				$keyToQuery[$key] = $query;
 			}
 		}
+
 		// Retreive from cache
 		$cached = $this->cache->getMulti( array_keys( $keyToIdx ) );
 		// expand partial results
@@ -689,6 +717,15 @@ abstract class AbstractIndex extends NullLifecycleHandler implements Index {
 
 
 	protected function cacheKey( array $attributes ) {
+		foreach( $attributes as $key => $attr ) {
+			if ( $attr instanceof \Flow\Model\UUID ) {
+				$attributes[$key] = $attr->getHex();
+			} elseif ( strlen($attr) == 16 && preg_match( '/_id$/', $key ) ) {
+				$uuid = new \Flow\Model\UUID( $attr );
+				$attributes[$key] = $uuid->getHex();
+			}
+		}
+
 		return wfForeignMemcKey( 'flow', '', $this->prefix, implode( ':', $attributes ) );
 	}
 
@@ -721,6 +758,7 @@ abstract class AbstractIndex extends NullLifecycleHandler implements Index {
 				$cached[$key][$k] = $row + $query;
 			}
 		}
+
 		return $cached;
 	}
 }
