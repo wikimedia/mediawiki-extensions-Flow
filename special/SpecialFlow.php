@@ -6,6 +6,7 @@ use Flow\Block\TopicListBlock;
 use Flow\Model\Definition;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\WorkflowLoader;
 
 /**
  * SpecialFlow is intended to bootstrap flow.  It sets up the generic parts of flow that apply
@@ -35,24 +36,30 @@ class SpecialFlow extends SpecialPage {
 		$action = $request->getVal( 'action', 'view' );
 		$workflowId = $request->getVal( 'workflow' );
 
-		if ( $title->getArticleID() === 0 ) {
-			throw new \MWException( 'Can only load workflows for existing page' );
-		}
-		if ( $workflowId ) {
-			list( $workflow, $definition ) = $this->loadWorkflowById( $title, $workflowId );
+		$definitionRequest = $request->getVal( 'definition', null );
+		if ( $definitionRequest !== null ) {
+			$definitionRequest = UUID::create( $definitionRequest );
 		} else {
-			list( $workflow, $definition ) = $this->loadWorkflow( $title );
+			$definitionRequest = $request->getVal( 'flow', null );
 		}
 
-		$blocks = $this->createBlocks( $workflow, $definition );
+		$this->loader = $this->container['factory.loader.workflow']
+			->createWorkflowLoader( $title, UUID::create( $workflowId ) );
+
+		$workflow = $this->loader->getWorkflow();
+		$definition = $this->loader->getDefinition();
+
+		$blocks = $this->loader->createBlocks();
 		foreach ( $blocks as $block ) {
 			$block->init( $action );
 		}
 
 		if ( $request->getMethod() === 'POST' ) {
-			$blocksToCommit = $this->handleSubmit( $workflow, $definition, $action, $blocks );
+			$user = $this->container['user'];
+			$request = $this->getRequest();
+			$blocksToCommit = $this->loader->handleSubmit( $action, $blocks, $user, $request );
 			if ( $blocksToCommit ) {
-				$this->commit( $workflow, $blocksToCommit );
+				$this->loader->commit( $workflow, $blocksToCommit );
 				$this->redirect( $workflow, 'view' );
 				return;
 			}
@@ -71,33 +78,7 @@ class SpecialFlow extends SpecialPage {
 
 		return $container;
 	}
-
-	protected function loadDefinition() {
-		global $wgFlowDefaultWorkflow;
-
-		$repo = $this->container['storage.definition'];
-		$id = $this->getRequest()->getVal( 'definition' );
-		if ( $id !== null ) {
-			$id = UUID::create( $id );
-			$definition = $repo->get( $id );
-			if ( $definition === null ) {
-				throw new MWException( "Unknown flow id '$id' requested" );
-			}
-		} else {
-			$workflowName = $this->getRequest()->getVal( 'flow', $wgFlowDefaultWorkflow );
-			$found = $repo->find( array(
-				'definition_name' => strtolower( $workflowName ),
-				'definition_wiki' => wfWikiId(),
-			) );
-			if ( $found ) {
-				$definition = reset( $found );
-			} else {
-				throw new MWException( "Unknown flow type '$workflowName' requested" );
-			}
-		}
-		return $definition;
-	}
-
+	
 	protected function loadTitle( $text ) {
 		$title = Title::newFromText( $text );
 		if ( $title === null ) {
@@ -108,100 +89,6 @@ class SpecialFlow extends SpecialPage {
 		}
 
 		return $title;
-	}
-
-
-	protected function loadWorkflow( Title $title ) {
-		global $wgContLang, $wgUser;
-		$storage = $this->container['storage.workflow'];
-
-		$definition = $this->loadDefinition();
-		if ( !$definition->getOption( 'unique' ) ) {
-			throw new \MWException( 'Workflow is non-unique, can only fetch object by title + id' );
-		}
-		$found = $storage->find( array(
-			'workflow_definition_id' => $definition->getId(),
-			'workflow_wiki' => $title->isLocal() ? wfWikiId() : $title->getTransWikiID(),
-			'workflow_page_id' => $title->getArticleID(),
-		) );
-		if ( $found ) {
-			$workflow = reset( $found );
-		} else {
-			$workflow = Workflow::create( $definition, $wgUser, $title );
-		}
-
-		return array( $workflow, $definition );
-	}
-
-	protected function loadWorkflowById( \Title $title, $workflowId ) {
-		$workflow = $this->container['storage.workflow']->get( UUID::create( $workflowId ) );
-		if ( !$workflow ) {
-			throw new \MWException( 'Invalid workflow requested by id' );
-		}
-		if ( !$workflow->matchesTitle( $title ) ) {
-			// todo: redirect?
-			throw new \MWException( 'Flow workflow is for different page' );
-		}
-		$definition = $this->container['storage.definition']->get( $workflow->getDefinitionId() );
-		if ( !$definition ) {
-			throw new \MWException( 'Flow workflow references unknown definition id: ' . $workflow->getDefinitionId() );
-		}
-
-		return array( $workflow, $definition );
-	}
-
-	protected function createBlocks( Workflow $workflow, Definition $definition ) {
-		switch( $definition->getType() ) {
-		case 'discussion':
-			return array(
-				'summary' => new SummaryBlock( $workflow, $this->container['storage'] ),
-				'topics' => new TopicListBlock( $workflow, $this->container['storage'], $this->container['loader.root_post'] ),
-			);
-
-		case 'topic':
-			return array(
-				'topic' => new TopicBlock( $workflow, $this->container['storage'], $this->container['loader.root_post'] ),
-			);
-
-		default:
-			throw new \MWException( 'Not Implemented' );
-		}
-	}
-
-	protected function handleSubmit( Workflow $workflow, Definition $definition, $action, array $blocks ) {
-
-		$request = $this->getRequest();
-		$user = $this->container['user'];
-		$success = true;
-		$interestedBlocks = array();
-
-		foreach ( $blocks as $block ) {
-			$data = $request->getArray( $block->getName(), array() );
-			$result = $block->onSubmit( $action, $user, $data );
-			if ( $result !== null ) {
-				$interestedBlocks[] = $block;
-				$success &= $result;
-			}
-		}
-		if ( !$interestedBlocks ) {
-			if ( !$blocks ) {
-				throw new \MWException( 'No Blocks?!?' );
-			}
-			$type = array();
-			foreach ( $blocks as $block ) {
-				$type[] = get_class( $block );
-			}
-			// All blocks returned null, nothing knows how to handle this action
-			throw new \MWException( "No block accepted the '$action' action: " .  implode( ',', array_unique( $type ) ) );
-		}
-		return $success ? $interestedBlocks : array();
-	}
-
-	public function commit( Workflow $workflow, array $blocks ) {
-		$this->container['storage.workflow']->put( $workflow );
-		foreach ( $blocks as $block ) {
-			$block->commit();
-		}
 	}
 
 	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {

@@ -53,6 +53,8 @@ $wgAutoloadClasses['Flow\Container'] = $dir . 'includes/Container.php';
 $wgAutoloadClasses['Flow\DbFactory'] = $dir . 'includes/DbFactory.php';
 $wgAutoloadClasses['Flow\Templating'] = $dir . 'includes/Templating.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
+$wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
+$wgAutoloadClasses['Flow\WorkflowLoaderFactory'] = $dir . 'includes/WorkflowLoader.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
@@ -104,6 +106,12 @@ $wgAutoloadClasses['Flow\Block\TopicView'] = $dir . 'includes/Block/Topic.php';
 $wgAutoloadClasses['SpecialFlow'] = $dir . 'special/SpecialFlow.php';
 $wgSpecialPages['Flow'] = 'SpecialFlow';
 $wgSpecialPageGroups['Flow'] = 'unknown';
+
+// API modules
+$wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
+$wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
+$wgAPIListModules['flow'] = 'ApiQueryFlow';
+$wgAPIModules['flow'] = 'ApiFlow';
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';

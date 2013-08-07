@@ -177,11 +177,7 @@ class TopicBlock extends AbstractBlock {
 				throw new \Exception( 'Could not locate post' );
 				$history = array();
 			} else {
-				$history = $this->storage->find(
-					'PostRevision',
-					array( 'tree_rev_descendant_id' => UUID::create( $options['postId'] ) ),
-					array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
-				);
+				$history = $this->getHistory( $options['postId'] );
 			}
 			return $templating->render( "flow:post-history.html.php", array(
 				'block' => $this,
@@ -197,6 +193,92 @@ class TopicBlock extends AbstractBlock {
 			'topic' => $this->workflow,
 			'root' => $this->loadRootPost(),
 		), $return );
+	}
+
+	public function renderAPI ( array $options ) {
+		$output = array();
+		$rootPost = $this->loadRootPost();
+		$topic = $this->workflow;
+
+		$output = array(
+			'_element' => 'post',
+			'title' => $rootPost->getContent(),
+			'topic-id' => $topic->getId()->getHex(),
+		);
+
+		foreach( $rootPost->getChildren() as $child ) {
+			$output[] = $this->renderPostAPI( $child, $options );
+		}
+
+		return $output;
+	}
+
+	protected function renderPostAPI( PostRevision $post, array $options ) {
+		$output = array();
+
+		$output['post-id'] = $post->getPostId()->getHex();
+
+		if ( $post->isFlagged( 'deleted' ) ) {
+			$output['post-deleted'] = 'post-deleted';
+		} else {
+			$output['content'] = array( '*' => $post->getContent() );
+			$output['user'] = $post->getUserText();
+		}
+
+		$children = array( '_element' => 'post' );
+
+		foreach( $post->getChildren() as $child ) {
+			$children[] = $this->renderPostAPI( $child, $options );
+		}
+
+		if ( count($children) > 1 ) {
+			$output['replies'] = $children;
+		}
+
+		$wantHistory = false;
+		$postId = $post->getPostId()->getHex();
+		if ( isset( $options['showhistoryfor'] ) ) {
+			$requestedHistory = $options['showhistoryfor'];
+			if ( $requestedHistory === $postId ) {
+				$wantHistory = true;
+			} elseif ( is_array( $requestedHistory ) &&
+				in_array( $postId, $requestedHistory )
+			) {
+				$wantHistory = true;
+			}
+		}
+
+		if ( $wantHistory ) {
+			$output['revisions'] = $this->getAPIHistory( $post->getPostId() );
+		}
+
+		return $output;
+	}
+
+	protected function getAPIHistory( UUID $postId ) {
+		$output = array();
+
+		$history = $this->getHistory( $postId );
+		$output['_element'] = 'revision';
+		$output['post-id'] = $postId->getHex();
+
+		foreach( $history as $revision ) {
+			$output[] = array(
+				'revision-id' => $revision->getRevisionId()->getHex(),
+				'revision-author' => $revision->getUserText(),
+				'revision-comment' => $revision->getComment(),
+			);
+		}
+
+		return $output;
+	}
+
+	protected function getHistory( $postId ) {
+		return $this->storage->find(
+			'PostRevision',
+			array( 'tree_rev_descendant_id' => UUID::create( $postId ) ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
+		);
 	}
 
 	protected function loadRootPost() {
