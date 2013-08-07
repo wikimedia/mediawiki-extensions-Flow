@@ -188,14 +188,10 @@ class TopicBlock extends AbstractBlock {
 			if ( empty( $options['postId'] ) ) {
 				var_dump( $this->getName() );
 				var_dump( $options );
-				throw new \Exception( 'Could not locate post' );
+				throw new \Exception( 'No postId specified' );
 				$history = array();
 			} else {
-				$history = $this->storage->find(
-					'PostRevision',
-					array( 'tree_rev_descendant_id' => UUID::create( $options['postId'] ) ),
-					array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
-				);
+				$history = $this->getHistory( $options['postId'] );
 			}
 			return $templating->render( "flow:post-history.html.php", array(
 				'block' => $this,
@@ -211,6 +207,114 @@ class TopicBlock extends AbstractBlock {
 			'topic' => $this->workflow,
 			'root' => $this->loadRootPost(),
 		), $return );
+	}
+
+	public function renderAPI ( array $options ) {
+		$output = array();
+		$rootPost = $this->loadRootPost();
+		$topic = $this->workflow;
+
+		$output = array(
+			'_element' => 'post',
+			'title' => $rootPost->getContent(),
+			'topic-id' => $topic->getId()->getHex(),
+		);
+
+		if ( isset( $options['showhistoryfor'] ) ) {
+			$options['history'] = array();
+
+			$historyBatch = $this->getHistoryBatch( (array)$options['showhistoryfor'] );
+
+			foreach( $historyBatch as $historyGroup ) {
+				foreach( $historyGroup as $historyEntry ) {
+					$postId = $historyEntry->getPostId()->getHex();
+					if ( ! isset( $options['history'][$postId] ) ) {
+						$options['history'][$postId] = array();
+					}
+
+					$options['history'][$postId][] = $historyEntry;
+				}
+			}
+		}
+
+		foreach( $rootPost->getChildren() as $child ) {
+			$output[] = $this->renderPostAPI( $child, $options );
+		}
+
+		return $output;
+	}
+
+	protected function renderPostAPI( PostRevision $post, array $options ) {
+		$output = array();
+
+		$output['post-id'] = $post->getPostId()->getHex();
+
+		if ( $post->isFlagged( 'deleted' ) ) {
+			$output['post-deleted'] = 'post-deleted';
+		} else {
+			$output['content'] = array( '*' => $post->getContent() );
+			$output['user'] = $post->getUserText();
+		}
+
+		$children = array( '_element' => 'post' );
+
+		foreach( $post->getChildren() as $child ) {
+			$children[] = $this->renderPostAPI( $child, $options );
+		}
+
+		if ( count($children) > 1 ) {
+			$output['replies'] = $children;
+		}
+
+		$postId = $post->getPostId()->getHex();
+		if ( isset( $options['history'][$postId] ) ) {
+			$output['revisions'] = $this->getAPIHistory( $postId, $options['history'][$postId] );
+		}
+
+		return $output;
+	}
+
+	protected function getAPIHistory( /*string*/ $postId, array $history ) {
+		$output = array();
+
+		$output['_element'] = 'revision';
+		$output['post-id'] = $postId;
+
+		foreach( $history as $revision ) {
+			$output[] = array(
+				'revision-id' => $revision->getRevisionId()->getHex(),
+				'revision-author' => $revision->getUserText(),
+				'revision-comment' => $revision->getComment(),
+			);
+		}
+
+		return $output;
+	}
+
+	protected function getHistory( $postId ) {
+		return $this->storage->find(
+			'PostRevision',
+			array( 'tree_rev_descendant_id' => UUID::create( $postId ) ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
+		);
+	}
+
+	protected function getHistoryBatch( $postIds ) {
+		$searchItems = array();
+
+		foreach( $postIds as $postId ) {
+			// TODO add a condition that everything's actually *in* this topic.
+			// tree_parent_id => $this->root->getPostId() ???
+			$searchItems[] = array(
+				'tree_rev_descendant_id' => UUID::create( $postId ),
+			);
+		}
+
+		return $this->storage->findMulti(
+			'PostRevision',
+			$searchItems,
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
+		);
 	}
 
 	protected function loadRootPost() {

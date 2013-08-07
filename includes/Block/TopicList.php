@@ -58,17 +58,30 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		// New workflows cant have content yet
-		if ( $this->workflow->isNew() ) {
-			$topics = array();
-		} else {
-			$topics = $this->loadAllRelatedTopics();
-		}
-
 		$templating->render( "flow:topiclist.html.php", array(
 			'topicList' => $this,
-			'topics' => $topics,
+			'topics' => $this->getTopics(),
 		) );
+	}
+
+	public function renderAPI( array $options ) {
+		$output = array( '_element' => 'topic' );
+		$topics = $this->getTopics();
+
+		foreach( $topics as $topic ) {
+			$output[] = $topic->renderAPI( $options );
+		}
+
+		return $output;
+	}
+
+	protected function getTopics() {
+		// New workflows cant have content yet
+		if ( $this->workflow->isNew() ) {
+			return array();
+		} else {
+			return $this->loadAllRelatedTopics();
+		}
 	}
 
 	public function getName() {
@@ -91,6 +104,7 @@ class TopicListBlock extends AbstractBlock {
 		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
 			$hexId = $workflow->getId()->getHex();
 			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $roots[$hexId] );
+			$topics[$hexId]->init( $this->action );
 		}
 
 		return $topics;
