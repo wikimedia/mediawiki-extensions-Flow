@@ -3,7 +3,6 @@
 namespace Flow\Model;
 
 use User;
-use UIDGenerator;
 
 abstract class AbstractRevision {
 	protected $revId;
@@ -21,11 +20,15 @@ abstract class AbstractRevision {
 
 	static public function fromStorageRow( array $row ) {
 		$obj = new static;
-		$obj->revId = $row['rev_id'];
+		$obj->revId = UUID::create( $row['rev_id'] );
 		$obj->userId = $row['rev_user_id'];
 		$obj->userText = $row['rev_user_text'];
 		$obj->flags = explode( ',', $row['rev_flags'] );
-		$obj->prevRevision = $row['rev_parent_id'];
+		if ( $row['rev_parent_id'] ) {
+			$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
+		} else {
+			$obj->prevRevision = null;
+		}
 		$obj->comment = $row['rev_comment'];
 
 		$obj->textId = $row['rev_text_id'];
@@ -34,12 +37,16 @@ abstract class AbstractRevision {
 	}
 
 	static public function toStorageRow( $obj ) {
+		$prevRevision = null;
+		if ( $obj->prevRevision ) {
+			$prevRevision = $obj->prevRevision->getBinary();
+		}
 		return array(
-			'rev_id' => $obj->revId,
+			'rev_id' => $obj->revId->getBinary(),
 			'rev_user_id' => $obj->userId,
 			'rev_user_text' => $obj->userText,
 			'rev_flags' => implode( ',', $obj->flags ),
-			'rev_parent_id' => $obj->prevRevision,
+			'rev_parent_id' => $prevRevision,
 			'rev_comment' => $obj->comment,
 
 			'rev_text_id' => $obj->textId,
@@ -52,7 +59,7 @@ abstract class AbstractRevision {
 		// TODO: how do we know this is the latest revision? we dont ...
 		// basically, this is very very wrong :-(
 		$obj = clone $this;
-		$obj->revId = UIDGenerator::newTimestampedUID128();
+		$obj->revId = UUID::create();
 		$obj->userId = $user->getId();
 		$obj->userText = $user->getName();
 		$obj->prevRevision = $this->revId;

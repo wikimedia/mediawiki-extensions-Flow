@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Model\PostRevision;
 use Flow\Data\ManagerGroup;
@@ -72,6 +73,7 @@ class TopicBlock extends AbstractBlock {
 		if ( !isset( $this->submitted['replyTo'] ) ) {
 			$this->errors['replyTo'] = wfMessage( 'flow-missing-reply-to-id' );
 		} else {
+			$this->submitted['replyTo'] = UUID::create( $this->submitted['replyTo']  );
 			$post = $this->storage->get( 'PostRevision', $this->submitted['replyTo'] );
 			if ( !$post ) {
 				$this->errors['replyTo'] = wfMessage( 'flow-invalid-reply-to-id' );
@@ -94,11 +96,12 @@ class TopicBlock extends AbstractBlock {
 		global $wgUser; // ugh
 		if ( empty( $this->submitted['postId'] ) ) {
 			$this->errors['delete-post'] = wfMessage( 'flow-no-post-provided' );
+		die( var_dump( $this->errors ) );
 			return;
 		}
 		$found = $this->storage->find(
 			'PostRevision',
-			array( 'tree_rev_descendant' => $this->submitted['postId'] ),
+			array( 'tree_rev_descendant' => UUID::create( $this->submitted['postId'] ) ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);
 		if ( !$found ) {
@@ -123,7 +126,7 @@ class TopicBlock extends AbstractBlock {
 		}
 		$found = $this->storage->find(
 			'PostRevision',
-			array( 'tree_rev_descendant' => $this->submitted['postId'] ),
+			array( 'tree_rev_descendant' => UUID::create( $this->submitted['postId'] ) ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);
 		if ( !$found ) {
@@ -177,11 +180,14 @@ class TopicBlock extends AbstractBlock {
 	public function render( Templating $templating, array $options, $return = false ) {
 		if ( $this->action === 'post-history' ) {
 			if ( empty( $options['postId'] ) ) {
+				var_dump( $this->getName() );
+				var_dump( $options );
+				throw new \Exception( 'Could not locate post' );
 				$history = array();
 			} else {
 				$history = $this->storage->find(
 					'PostRevision',
-					array( 'tree_rev_descendant' => $options['postId'] ),
+					array( 'tree_rev_descendant' => UUID::create( $options['postId'] ) ),
 					array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 				);
 			}
@@ -210,7 +216,12 @@ class TopicBlock extends AbstractBlock {
 
 	// Somehow the template has to know which post the errors go with
 	public function getRepliedTo() {
-		return isset( $this->submitted['replyTo'] ) ? $this->submittled['replyTo'] : null;
+		return isset( $this->submitted['replyTo'] ) ? $this->submitted['replyTo'] : null;
+	}
+
+	public function getHexRepliedTo() {
+		$repliedTo = $this->getRepliedTo();
+		return $repliedTo instanceof UUID ? $repliedTo->getHex() : $repliedTo;
 	}
 
 	// The prefix used for form data

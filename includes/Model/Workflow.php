@@ -3,7 +3,6 @@
 namespace Flow\Model;
 
 use Title;
-use UIDGenerator;
 use User;
 
 class Workflow {
@@ -22,7 +21,7 @@ class Workflow {
 
 	static public function fromStorageRow( array $row ) {
 		$obj = new self;
-		$obj->id = $row['workflow_id'];
+		$obj->id = UUID::create( $row['workflow_id'] );
 		$obj->wiki = $row['workflow_wiki'];
 		$obj->pageId = $row['workflow_page_id'];
 		$obj->namespace = (int) $row['workflow_namespace'];
@@ -30,13 +29,16 @@ class Workflow {
 		$obj->userId = $row['workflow_user_id'];
 		$obj->userText = $row['workflow_user_text'];
 		$obj->lockState = $row['workflow_lock_state'];
-		$obj->definitionId = $row['workflow_definition_id'];
+		$obj->definitionId = UUID::create( $row['workflow_definition_id'] );
 		return $obj;
 	}
 
 	static public function toStorageRow( Workflow $obj ) {
+		if ( ! $obj->definitionId instanceof UUID ) {
+			die( var_dump( $obj->definitionId, $obj ) );
+		}
 		return array(
-			'workflow_id' => $obj->id,
+			'workflow_id' => $obj->id->getBinary(),
 			'workflow_wiki' => $obj->wiki,
 			'workflow_page_id' => $obj->pageId,
 			'workflow_namespace' => $obj->namespace,
@@ -44,7 +46,7 @@ class Workflow {
 			'workflow_user_id' => $obj->userId,
 			'workflow_user_text' => $obj->userText,
 			'workflow_lock_state' => $obj->lockState,
-			'workflow_definition_id' => $obj->definitionId,
+			'workflow_definition_id' => $obj->definitionId->getBinary(),
 		);
 	}
 
@@ -62,7 +64,7 @@ class Workflow {
 		$obj = new self;
 		// Probably unnecessary to create id up front?
 		// simpler in prototype to give everything an id up front?
-		$obj->id = UIDGenerator::newTimestampedUID128();
+		$obj->id = UUID::create();
 		$obj->isNew = true; // new as of this request
 		$obj->wiki = $definition->getWiki();
 		$obj->pageId = $title->getArticleID();
@@ -72,6 +74,10 @@ class Workflow {
 		$obj->userText = $user->getName();
 		$obj->lockState = 0;
 		$obj->definitionId = $definition->getId();
+
+		if ( ! $obj->definitionId instanceof UUID ) {
+			die( var_dump( $obj, $definition ) );
+		}
 		return $obj;
 	}
 
@@ -130,9 +136,6 @@ class Workflow {
 	}
 
 	public function lock( User $user ) {
-		if ( !$user->isAllowed( 'flow-delete-workflow' ) ) {
-			return false;
-		}
 		$this->lockState[] = array(
 			'user' => $user->getId(),
 			'state' => self::STATE_LOCKED,

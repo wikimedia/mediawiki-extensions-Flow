@@ -27,7 +27,7 @@ class RootPostLoader {
 		// load posts for all located post ids
 		$allPostIds =  $this->fetchRelatedPostIds( $topicIds );
 		$queries = array();
-		foreach ( array_unique( $allPostIds ) as $postId ) {
+		foreach ( $allPostIds as $postId ) {
 			$queries[] = array( 'tree_rev_descendant' => $postId );
 		}
 		$found = $this->storage->findMulti( 'PostRevision', $queries, array(
@@ -38,26 +38,30 @@ class RootPostLoader {
 		$posts = $children = array();
 		foreach ( $found as $indexResult ) {
 			$post = reset( $indexResult ); // limit => 1 means only 1 result per query
-			if ( isset( $posts[$post->getPostId()] ) ) {
-				throw new \Exception( 'Multiple results for id: ' . $post->getPostId() );
+			if ( isset( $posts[$post->getPostId()->getHex()] ) ) {
+				throw new \Exception( 'Multiple results for id: ' . $post->getPostId()->getHex() );
 			}
-			$posts[$post->getPostId()] = $post;
+			$posts[$post->getPostId()->getHex()] = $post;
 			if ( $post->getReplyToId() ) {
-				$children[$post->getReplyToId()][] = $post;
+				$children[$post->getReplyToId()->getHex()][] = $post;
 			}
 		}
-		$missing = array_diff( $allPostIds, array_keys( $posts ) );
+		$prettyPostIds = array();
+		foreach ( $allPostIds as $id ) {
+			$prettyPostIds[] = $id->getHex();
+		}
+		$missing = array_diff( $prettyPostIds, array_keys( $posts ) );
 		if ( $missing ) {
 			// TODO: fake up a pseudo-post to hold the children? At this point in
 			// dev its probably a bug we want to see.
 			throw new \Exception( 'Missing Posts: ' . json_encode( $missing ) );
 		}
 		// another helper to catch bugs in dev
-		$extra = array_diff( array_keys( $posts ), $allPostIds );
+		$extra = array_diff( array_keys( $posts ), $prettyPostIds );
 		if ( $extra ) {
 			throw new \Exception( 'Found unrequested posts: ' . json_encode( $extra ) );
 		}
-		$extraParents = array_diff( array_keys( $children ), $allPostIds );
+		$extraParents = array_diff( array_keys( $children ), $prettyPostIds );
 		if ( $extraParents ) {
 			throw new \Exception( 'Found posts with unrequested parents: ' . json_encode( $extraParents ) );
 		}
@@ -78,7 +82,7 @@ class RootPostLoader {
 		// Return in same order as requested
 		$roots = array();
 		foreach ( $topicIds as $id ) {
-			$roots[$id] = $posts[$id];
+			$roots[$id->getHex()] = $posts[$id->getHex()];
 		}
 		return $roots;
 	}
@@ -90,11 +94,17 @@ class RootPostLoader {
 		if ( !$nodeList ) {
 			// It should have returned at least $postIds
 			// TODO: log errors?
-			return $postIds;
+			$res = $postIds;
 		} elseif( count( $nodeList ) === 1 ) {
-			return reset( $nodeList );
+			$res = reset( $nodeList );
 		} else {
-			return call_user_func_array( 'array_merge', $nodeList );
+			$res = call_user_func_array( 'array_merge', $nodeList );
 		}
+
+		$retval = array();
+		foreach ( $res as $id ) {
+			$retval[$id->getHex()] = $id;
+		}
+		return $retval;
 	}
 }

@@ -2,7 +2,9 @@
 
 namespace Flow\Repository;
 
+use Flow\Data\ObjectManager;
 use Flow\DbFactory;
+use Flow\Model\UUID;
 use BagOStuff;
 use MWException;
 
@@ -46,10 +48,10 @@ class TreeRepository {
 	 * The way to do it without that is to CAS update memcache, assuming it currently
 	 * has what we need
 	 */
-	public function insert( $descendant, $ancestor = null ) {
-		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant );
-		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant );
-		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant );
+	public function insert( UUID $descendant, UUID $ancestor = null ) {
+		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant->getHex() );
+		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant->getHex() );
+		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
 		$this->cache->set( $subtreeKey, array( $descendant ) );
 		if ( $ancestor === null ) {
 			$this->cache->set( $parentKey, null );
@@ -66,8 +68,8 @@ class TreeRepository {
 		$res = $dbw->insert(
 			$this->tableName,
 			array(
-				'tree_descendant' => $descendant,
-				'tree_ancestor' => $descendant,
+				'tree_descendant' => $descendant->getBinary(),
+				'tree_ancestor' => $descendant->getBinary(),
 				'tree_depth' => 0,
 			),
 			__METHOD__
@@ -77,12 +79,12 @@ class TreeRepository {
 				$this->tableName,
 				$this->tableName,
 				array(
-					'tree_descendant' => $dbw->addQuotes( $descendant ),
+					'tree_descendant' => $dbw->addQuotes( $descendant->getBinary() ),
 					'tree_ancestor' => 'tree_ancestor',
 					'tree_depth' => 'tree_depth + 1',
 				),
 				array(
-					'tree_descendant' => $ancestor
+					'tree_descendant' => $ancestor->getBinary(),
 				),
 				__METHOD__
 			);
@@ -96,33 +98,33 @@ class TreeRepository {
 		$this->appendToSubtreeCache( $descendant, $path );
 	}
 
-	protected function appendToSubtreeCache( $descendant, array $rootPath ) {
+	protected function appendToSubtreeCache( UUID $descendant, array $rootPath ) {
 		$callback = function( BagOStuff $cache, $key, $value ) use( $descendant ) {
 			if ( $value === false ) {
 				return false;
 			}
-			$value[] = $descendant;
-			return array_unique( $value );
+			$value[$descendant->getHex()] = $descendant;
+			return $value;
 		};
 		// This could be pretty slow if there is contention
 		foreach ( $rootPath as $subtreeRoot ) {
 			$this->cache->merge(
-				wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot ),
+				wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex() ),
 				$callback
 			);
 		}
 	}
-	public function findParent( $descendant ) {
+	public function findParent( UUID $descendant ) {
 		$map = $this->fetchParentMap( array( $descendant ) );
-		return isset( $map[$descendant] ) ? $map[$descendant] : null;
+		return isset( $map[$descendant->getHex()] ) ? $map[$descendant->getHex()] : null;
 	}
 
 	/**
 	 * Given a specific child node find the path from that node to the root of its tree.
 	 * the root must be the first element of the array, $node must be the last element.
 	 */
-	public function findRootPath( $descendant ) {
-		$cacheKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant );
+	public function findRootPath( UUID $descendant ) {
+		$cacheKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
 		$path = $this->cache->get( $cacheKey );
 		if ( $path !== false ) {
 			return $path;
@@ -133,7 +135,7 @@ class TreeRepository {
 			$this->tableName,
 			array( 'tree_ancestor', 'tree_depth' ),
 			array(
-				'tree_descendant' => $descendant,
+				'tree_descendant' => $descendant->getBinary(),
 			),
 			__METHOD__
 		);
@@ -141,7 +143,7 @@ class TreeRepository {
 			return null;
 		}
 		foreach ( $res as $row ) {
-			$path[$row->tree_depth] = $row->tree_ancestor;
+			$path[$row->tree_depth] = UUID::create( $row->tree_ancestor );
 		}
 		ksort( $path );
 		$path = array_reverse( $path );
@@ -152,7 +154,7 @@ class TreeRepository {
 	/**
 	 * Given a specific child node find the associated root node
 	 */
-	public function findRoot( $descendant ) {
+	public function findRoot( UUID $descendant ) {
 		// To simplify caching we will work through the root path instead
 		// of caching our own value
 		$path = $this->findRootPath( $descendant );
@@ -164,7 +166,7 @@ class TreeRepository {
 	 * @return array Multi-dimensional tree
 	 */
 	public function fetchSubtreeIdentityMap( $root, $maxDepth = null ) {
-		$nodes = $this->fetchSubtreeNodeList( (array) $root );
+		$nodes = $this->fetchSubtreeNodeList( ObjectManager::makeArray( $root ) );
 		if ( !$nodes ) {
 			throw new \MWException( 'subtree node list should have at least returned root: ' . $root );
 		} elseif ( count( $nodes ) === 1 ) {
@@ -185,19 +187,16 @@ class TreeRepository {
 		return $identityMap;
 	}
 
-	public function fetchSubtree( $root, $maxDepth = null ) {
-		if ( is_array( $root ) ) {
-			throw new \MWException( 'Fetching multiple roots only allowed through fetchSubtreeIdentityMap' );
-		}
+	public function fetchSubtree( UUID $root, $maxDepth = null ) {
 		$identityMap = $this->fetchSubtreeIdentityMap( $root, $maxDepth );
-		if ( !isset( $identityMap[$root] ) ) {
+		if ( !isset( $identityMap[$root->getHex()] ) ) {
 			throw new MWException( 'No root exists in the identityMap' );
 		}
 
 		return $identityMap[$root];
 	}
 
-	public function fetchFullTree( $nodeId ) {
+	public function fetchFullTree( UUID $nodeId ) {
 		return $this->fetchSubtree( $this->findRoot( $nodeId ) );
 	}
 
@@ -220,17 +219,18 @@ class TreeRepository {
 			$this->tableName,
 			array( 'tree_ancestor', 'tree_descendant' ),
 			array(
-				'tree_ancestor' => $roots,
+				'tree_ancestor' => UUID::convertUUIDs( $roots ),
 			),
 			__METHOD__
 		);
 		if ( !$res ) {
 			return array();
 		}
-
 		$nodes = array();
 		foreach ( $res as $node ) {
-			$nodes[$node->tree_ancestor][] = $node->tree_descendant;
+			$ancestor = UUID::create( $node->tree_ancestor );
+			$descendant = UUID::create( $node->tree_descendant );
+			$nodes[$ancestor->getHex()][$descendant->getHex()] = $descendant;
 		}
 
 		return $nodes;
@@ -269,7 +269,8 @@ class TreeRepository {
 			if ( isset( $result[$node->tree_descendant] ) ) {
 				throw new MWException( 'Already have a parent for ' . $node->tree_descendant );
 			}
-			$result[$node->tree_descendant] = $node->tree_ancestor;
+			$descendant = UUID::create( $node->tree_descendant );
+			$result[$descendant->getHex()] = UUID::create( $node->tree_ancestor );
 		}
 		foreach ( $nodes as $node ) {
 			if ( !isset( $result[$node] ) ) {
