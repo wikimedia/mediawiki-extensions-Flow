@@ -58,7 +58,7 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 				'action' => $self->generateUrl( $root->getPostId(), 'reply' ),
 			) );
 		if ( $block->getRepliedTo() === $post->getPostId() ) {
-			foreach ( $block->getErrors as $error ) {
+			foreach ( $block->getErrors() as $error ) {
 				echo $error->text() . '<br>'; // the pain ...
 			}
 		}

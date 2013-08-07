@@ -210,7 +210,7 @@ class TopicBlock extends AbstractBlock {
 
 	// Somehow the template has to know which post the errors go with
 	public function getRepliedTo() {
-		return isset( $this->submitted['replyTo'] ) ? $this->submittled['replyTo'] : null;
+		return isset( $this->submitted['replyTo'] ) ? $this->submitted['replyTo'] : null;
 	}
 
 	// The prefix used for form data
