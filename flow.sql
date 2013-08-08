@@ -110,9 +110,6 @@ CREATE TABLE /*_*/flow_revision (
 	-- content of the revision
 	rev_text_id int unsigned not null,
 	-- comment attached to revision's flag change
-	rev_comment tinyblob not null,
-
-	rev_flags varchar(255) binary null,
 	rev_comment varchar(255) binary null,
 
 	PRIMARY KEY (rev_id)
