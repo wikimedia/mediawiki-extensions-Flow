@@ -8,6 +8,7 @@ use User;
 
 class Workflow {
 	protected $id;
+	// @var boolean false before writing to storage
 	protected $isNew;
 	protected $wiki;
 	protected $pageId;
@@ -20,9 +21,14 @@ class Workflow {
 	protected $lockState;
 	protected $definitionId;
 
-	static public function fromStorageRow( array $row ) {
-		$obj = new self;
+	static public function fromStorageRow( array $row, $obj = null ) {
+		if ( $obj === null ) {
+			$obj = new self;
+		} elseif ( !$obj instanceof self ) {
+			throw new \Exception( 'Wrong obj type: ' . get_class( $obj ) );
+		}
 		$obj->id = UUID::create( $row['workflow_id'] );
+		$obj->isNew = false;
 		$obj->wiki = $row['workflow_wiki'];
 		$obj->pageId = $row['workflow_page_id'];
 		$obj->namespace = (int) $row['workflow_namespace'];
@@ -50,20 +56,19 @@ class Workflow {
 
 	static public function create( Definition $definition, User $user, Title $title ) {
 		if ( $title->isLocal() ) {
-			if ( $definition->getWiki() !== wfWikiId() ) {
-					throw new \Exception( 'Title and Definition are from separate wikis' );
-			}
+			$wiki = wfWikiId();
 		} else {
-			if ( $definition->getWiki() !== $title->getTransWikiID() ) {
+			$wiki = $title->getTransWikiID();
+		}
+		if ( $definition->getWiki() !== $wiki ) {
 				throw new \Exception( 'Title and Definition are from separate wikis' );
-			}
 		}
 
 		$obj = new self;
 		// Probably unnecessary to create id up front?
 		// simpler in prototype to give everything an id up front?
 		$obj->id = UUID::create();
-		$obj->isNew = true; // new as of this request
+		$obj->isNew = true; // has not been persisted
 		$obj->wiki = $definition->getWiki();
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
