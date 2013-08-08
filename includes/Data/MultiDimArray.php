@@ -137,8 +137,10 @@ class ResultDuplicator {
 		foreach ( $order as $position => $query ) {
 			if ( $dimensions > 1 ) {
 				$final[$position] = self::sortResult( $query, $result, $dimensions - 1 );
-			} elseif ( !isset( $result[$query] ) ) {
+			} elseif ( isset( $result[$query] ) ) {
 				$final[$position] = $result[$query];
+			} else {
+				$final[$position] = null;
 			}
 		}
 		return $final;

@@ -111,19 +111,20 @@ $c['storage.summary'] = $c->share( function( $c ) {
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Summary' );
 	$storage = new SummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
 
+	$pk = new UniqueFeatureIndex(
+		$cache, $storage,
+		'flow_summary:pk', array( 'rev_id' )
+	);
 	$workflowIndexOptions = array(
 		'sort' => 'rev_id',
 		'order' => 'DESC',
-		//'shallow' => array( 'rev_id' ),
+		'shallow' => $pk,
 		'create' => function( array $row ) {
 			return $row['rev_parent_id'] === null;
 		},
 	);
 	$indexes = array(
-		new UniqueFeatureIndex(
-			$cache, $storage,
-			'flow_summary:pk', array( 'rev_id' )
-		),
+		$pk,
 		new TopKIndex(
 			$cache, $storage,
 			'flow_summary:workflow', array( 'summary_workflow_id' ),
@@ -140,6 +141,10 @@ $c['storage.summary'] = $c->share( function( $c ) {
 } );
 
 // List of topic workflows and their owning discussion workflow
+// TODO: This could use similar to ShallowCompactor to
+// get the objects directly instead of just returning ids.
+// Would also need object mapper adjustments to return array
+// of two objects.
 $c['storage.topic_list'] = $c->share( function( $c ) {
 	$cache = $c['memcache.buffered'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\TopicListEntry' );
@@ -170,15 +175,16 @@ $c['storage.post'] = $c->share( function( $c ) {
 	$treeRepo = $c['repository.tree'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\PostRevision' );
 	$storage = new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $treeRepo );
+	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_revision:pk', array( 'rev_id' ) );
 	$indexes = array(
-		new UniqueFeatureIndex( $cache, $storage, 'flow_revision:pk', array( 'rev_id' ) ),
+		$pk,
 		new TopKIndex( $cache, $storage, 'flow_revision:descendant',
 			array( 'tree_rev_descendant_id' ),
 			array(
 				'limit' => 100,
 				'sort' => 'rev_id',
 				'order' => 'DESC',
-				//'shallow' => array( 'rev_id' ),
+				'shallow' => $pk,
 				'create' => function( array $row ) {
 					// return true to create instead of merge index
 					return $row['rev_parent_id'] === null;
@@ -190,7 +196,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 				'limit' => 1,
 				'sort' => 'rev_id',
 				'order' => 'DESC',
-				//'shallow' => array( 'rev_id' ),
+				'shallow' => $pk,
 				'create' => function( array $row ) {
 					return $row['rev_parent_id'] === null;
 				},

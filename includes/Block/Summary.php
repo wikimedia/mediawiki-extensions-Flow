@@ -70,9 +70,6 @@ class SummaryBlock extends AbstractBlock {
 	public function commit() {
 		switch( $this->action ) {
 		case 'edit-summary':
-			if ( $this->summary ) {
-				$summary = $this-
-			}
 			$this->storage->put( $this->summary );
 			break;
 

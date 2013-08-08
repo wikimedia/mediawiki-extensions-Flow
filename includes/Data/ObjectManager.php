@@ -81,6 +81,18 @@ interface Index extends LifecycleHandler {
 	function canAnswer( array $keys, array $options );
 }
 
+// Compact rows before writing to memcache, expand when receiving back
+// Still returns arrays, just removes unneccessary values
+interface Compactor {
+	// Return only the values in $row that will be written to the cache
+	public function compactRow( array $row );
+	// perform self::compactRow against an array of rows
+	public function compactRows( array $rows );
+	// Repopulate BagOStuff::multiGet results with any values removed in self::compactRow
+	public function expandCacheResult( array $cached, array $keyToQuery );
+}
+
+
 // A little glue code so you dont need to use the individual manager for each class
 // Can be made more specific once the interfaces settle down
 class ManagerGroup {
@@ -575,6 +587,13 @@ class BasicDbStorage implements WritableObjectStorage {
  */
 abstract class FeatureIndex implements Index {
 
+	protected $cache;
+	protected $storage;
+	protected $prefix;
+	protected $rowCompactor;
+	protected $indexed;
+	protected $indexedOrdered;
+
 	abstract public function getLimit();
 	abstract public function queryOptions();
 	abstract public function limitIndexSize( array $values );
@@ -591,6 +610,7 @@ abstract class FeatureIndex implements Index {
 		$this->cache = $cache;
 		$this->storage = $storage;
 		$this->prefix = $prefix;
+		$this->rowCompactor = new FeatureCompactor( $indexedColumns );
 		$this->indexed = $indexedColumns;
 		// sort this and ksort in self::cacheKey to always have cache key
 		// fields in same order
@@ -629,7 +649,7 @@ abstract class FeatureIndex implements Index {
 		if ( !$indexed ) {
 			throw new \MWException( 'Unindexable row: ' .json_encode( $new ) );
 		}
-		$this->addToIndex( $indexed, $this->compactRow( $new ) );
+		$this->addToIndex( $indexed, $this->rowCompactor->compactRow( $new ) );
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new ) {
@@ -644,8 +664,8 @@ abstract class FeatureIndex implements Index {
 		if ( !$newIndexed ) {
 			throw new \MWException( 'Unindexable row: ' .json_encode( $newIndexed ) );
 		}
-		$this->removeFromIndex( $oldIndexed, $this->compactRow( $old ) );
-		$this->addToIndex( $newIndexed, $this->compactRow( $new ) );
+		$this->removeFromIndex( $oldIndexed, $this->rowCompactor->compactRow( $old ) );
+		$this->addToIndex( $newIndexed, $this->rowCompactor->compactRow( $new ) );
 	}
 
 	public function onAfterRemove( $object, array $old ) {
@@ -653,7 +673,7 @@ abstract class FeatureIndex implements Index {
 		if ( !$indexed ) {
 			throw new \MWException( 'Unindexable row: ' .json_encode( $old ) );
 		}
-		$this->removeFromIndex( $indexed, $this->compactRow( $old ) );
+		$this->removeFromIndex( $indexed, $this->rowCompactor->compactRow( $old ) );
 	}
 
 	public function onAfterLoad( $object, array $old ) {
@@ -690,8 +710,8 @@ abstract class FeatureIndex implements Index {
 
 		// Retreive from cache
 		$cached = $this->cache->getMulti( array_keys( $keyToIdx ) );
-		// expand partial results
-		foreach( $this->expandCacheResult( $cached, $keyToQuery ) as $key => $rows ) {
+		// expand partial results and merge into result set
+		foreach( $this->rowCompactor->expandCacheResult( $cached, $keyToQuery ) as $key => $rows ) {
 			foreach ( $keyToIdx[$key] as $idx ) {
 				$results[$idx] = $rows;
 				unset( $queries[$idx] );
@@ -716,7 +736,7 @@ abstract class FeatureIndex implements Index {
 					}
 				}
 			}
-			$this->cache->add( $idxToKey[$idx], $this->compactRows( $rows ) );
+			$this->cache->add( $idxToKey[$idx], $this->rowCompactor->compactRows( $rows ) );
 			$results[$idx] = $rows;
 			unset( $queries[$idx] );
 		}
@@ -747,54 +767,6 @@ abstract class FeatureIndex implements Index {
 		}
 
 		return wfForeignMemcKey( $db, '', $this->prefix, implode( ':', $attributes ) );
-	}
-
-	/**
-	 * The indexed values are always available when querying, this strips
-	 * the duplicated data.
-	 */
-	protected function compactRow( array $row ) {
-		foreach ( $this->indexed as $key ) {
-			unset( $row[$key] );
-		}
-		foreach ( $row as $foo ) {
-			if ( $foo !== null && !is_scalar( $foo ) ) {
-				throw new \MWException( 'Attempted to compact row containing objects, must be scalar values: ' . print_r( $foo, true ) );
-			}
-		}
-		return $row;
-	}
-
-	protected function compactRows( array $rows ) {
-		$compacted = array();
-		foreach ( $rows as $key => $row ) {
-			$compacted[$key] = $this->compactRow( $row );
-		}
-		return $compacted;
-	}
-
-	// Each item in $cached is a result from self::compactRows
-	// All at once to allow bulking any IO implementing classes may want to do
-	protected function expandCacheResult( array $cached, array $keyToQuery ) {
-		foreach ( $cached as $key => $rows ) {
-			$expanded = array();
-			$query = $keyToQuery[$key];
-			foreach ( $query as $foo ) {
-				if ( $foo !== null && !is_scalar( $foo ) ) {
-					throw new \MWException( 'Query values to merge with cache contains objects, should be scalar values: ' . print_r( $foo, true ) );
-				}
-			}
-			foreach ( $rows as $k => $row ) {
-				foreach ( $row as $foo ) {
-					if ( $foo !== null && !is_scalar( $foo ) ) {
-						throw new \MWException( 'Result from cache contains objects, should be scalar values: ' . print_r( $foo, true ) );
-					}
-				}
-				$cached[$key][$k] = $row + $query;
-			}
-		}
-
-		return $cached;
 	}
 }
 
@@ -836,9 +808,6 @@ class TopKIndex extends FeatureIndex {
 		if ( empty( $options['sort'] ) ) {
 			throw new \InvalidArgumentException( 'TopKIndex must be sorted' );
 		}
-		if ( isset( $options['shallow'] ) && !$options['shallow'] instanceof UniqueFeatureIndex ) {
-			throw new \InvalidArgumentException( "The 'shallow' option must be either null or UniqueFeatureIndex." );
-		}
 
 		parent::__construct( $cache, $storage, $prefix, $indexed );
 
@@ -850,6 +819,10 @@ class TopKIndex extends FeatureIndex {
 		);
 		if ( !is_array( $this->options['sort'] ) ) {
 			$this->options['sort'] = array( $this->options['sort'] );
+		}
+		if ( $this->options['shallow'] ) {
+			// TODO: perhaps we shouldn't even get a shallow option, just receive a proper compactor in FeatureIndex::__construct
+			$this->rowCompactor = new ShallowCompactor( $this->rowCompactor, $this->options['shallow'], $this->options['sort'] );
 		}
 	}
 
@@ -929,52 +902,6 @@ class TopKIndex extends FeatureIndex {
 		return $options;
 	}
 
-	protected function compactRow( array $row ) {
-		// An OO solution wouldn't check this, it would have a compact/expand
-		// implementation
-		if ( isset( $this->options['shallow'] ) ) {
-			$keys = array_merge(
-				$this->options['shallow']->getPrimaryKeyColumns(),
-				$this->options['sort']
-			);
-			$extra = array_diff( array_keys( $row ), $keys );
-			foreach ( $extra as $key ) {
-				unset( $row[$key] );
-			}
-		}
-		return parent::compactRow( $row );
-	}
-
-
-	protected function expandCacheResult( array $cached, array $keyToQuery ) {
-		$cached = parent::expandCacheResult( $cached, $keyToQuery );
-		if ( $cached && $this->options['shallow'] ) {
-			return $this->expandShallowResult( $cached );
-		}
-		return $cached;
-	}
-
-	protected function expandShallowResult( array $results ) {
-		// Allows us to flatten $results into a single $query array, then
-		// rebuild final return value in same structure and order as $results.
-		$duplicator = new ResultDuplicator( $this->options['shallow']->getPrimaryKeyColumns(), 2 );
-		foreach ( $results as $i => $rows ) {
-			foreach ( $rows as $j => $row ) {
-				$duplicator->add( $row, array( $i, $j ) );
-			}
-		}
-
-		$innerResult = $this->options['shallow']->findMulti( $duplicator->getUniqueQueries() );
-		foreach ( $innerResult as $rows ) {
-			// __construct guaranteed the shallow backing index is a unique, so $first is only result
-			$first = reset( $rows );
-			$duplicator->merge( $first, $first );
-		}
-
-		// TODO: fix whatever bug doesnt allow this to be strict
-		return $duplicator->getResult();
-	}
-
 	public function canAnswer( array $keys, array $options ) {
 		if ( !parent::canAnswer( $keys, $options ) ) {
 			return false;
@@ -986,6 +913,113 @@ class TopKIndex extends FeatureIndex {
 		return true;
 	}
 
+}
+
+class FeatureCompactor implements Compactor {
+	public function __construct( array $indexedColumns ) {
+		$this->indexed = $indexedColumns;
+	}
+
+	/**
+	 * The indexed values are always available when querying, this strips
+	 * the duplicated data.
+	 */
+	public function compactRow( array $row ) {
+		foreach ( $this->indexed as $key ) {
+			unset( $row[$key] );
+		}
+		foreach ( $row as $foo ) {
+			if ( $foo !== null && !is_scalar( $foo ) ) {
+				throw new \MWException( 'Attempted to compact row containing objects, must be scalar values: ' . print_r( $foo, true ) );
+			}
+		}
+		return $row;
+	}
+
+	public function compactRows( array $rows ) {
+		return array_map( array( $this, 'compactRow' ), $rows );
+	}
+
+	/**
+	 * The $cached array is three dimensional.  Each top level key is a cache key
+	 * and contains an array of rows.  Each row is an array representing a single data model.
+	 *
+	 * $cached = array( $cacheKey => array( array( 'rev_id' => 123, ... ), ... ), ... )
+	 *
+	 * The $keyToQuery array maps from cache key to the values that were used to build the cache key.
+	 * These values are re-added to the results found in memcache.
+	 *
+	 * @param array $cached Array of results from BagOStuff::multiGet each containg a list of rows
+	 * @param array $keyToQuery Map from key in $cached to the values used to generate that key
+	 * @return array The $cached array with the queried values merged in
+	 */
+	public function expandCacheResult( array $cached, array $keyToQuery ) {
+		foreach ( $cached as $key => $rows ) {
+			$query = $keyToQuery[$key];
+			foreach ( $query as $foo ) {
+				if ( $foo !== null && !is_scalar( $foo ) ) {
+					throw new \MWException( 'Query values to merge with cache contains objects, should be scalar values: ' . print_r( $foo, true ) );
+				}
+			}
+			foreach ( $rows as $k => $row ) {
+				foreach ( $row as $foo ) {
+					if ( $foo !== null && !is_scalar( $foo ) ) {
+						throw new \MWException( 'Result from cache contains objects, should be scalar values: ' . print_r( $foo, true ) );
+					}
+				}
+				$cached[$key][$k] += $query;
+			}
+		}
+
+		return $cached;
+	}
+}
+
+class ShallowCompactor implements Compactor {
+	public function __construct( Compactor $inner, UniqueFeatureIndex $shallow, array $sortedColumns ) {
+		$this->inner = $inner;
+		$this->shallow = $shallow;
+		$this->sort = $sortedColumns;
+	}
+
+	public function compactRow( array $row ) {
+		$keys = array_merge( $this->shallow->getPrimaryKeyColumns(), $this->sort );
+		$extra = array_diff( array_keys( $row ), $keys );
+		foreach ( $extra as $key ) {
+			unset( $row[$key] );
+		}
+		return $this->inner->compactRow( $row );
+	}
+
+	public function compactRows( array $rows ) {
+		return array_map( array( $this, 'compactRow' ), $rows );
+	}
+
+	public function expandCacheResult( array $cached, array $keyToQuery ) {
+		return $this->expandShallowResult(
+			$this->inner->expandCacheResult( $cached, $keyToQuery )
+		);
+	}
+
+	protected function expandShallowResult( array $results ) {
+		// Allows us to flatten $results into a single $query array, then
+		// rebuild final return value in same structure and order as $results.
+		$duplicator = new ResultDuplicator( $this->shallow->getPrimaryKeyColumns(), 2 );
+		foreach ( $results as $i => $rows ) {
+			foreach ( $rows as $j => $row ) {
+				$duplicator->add( $row, array( $i, $j ) );
+			}
+		}
+
+		$innerResult = $this->shallow->findMulti( $duplicator->getUniqueQueries() );
+		foreach ( $innerResult as $rows ) {
+			// __construct guaranteed the shallow backing index is a unique, so $first is only result
+			$first = reset( $rows );
+			$duplicator->merge( $first, $first );
+		}
+
+		return $duplicator->getResult( /* strict = */ true );
+	}
 }
 
 /**
