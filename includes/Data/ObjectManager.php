@@ -50,7 +50,9 @@ interface ObjectStorage extends \IteratorAggregate {
 // Note that while ObjectLocator implements the above ObjectStorage interface, ObjectManger
 // cant use this interface because backing stores deal in rows, and OM deals in objects.
 interface WritableObjectStorage extends ObjectStorage {
-	function insert( array $row );
+	// this is a reference to allow external store inside RevisionStorage to utilize
+	// external store and effect updates to the cached values
+	function insert( array &$row );
 	function update( array $old, array $new );
 	function remove( array $row );
 }
@@ -465,7 +467,7 @@ class BasicDbStorage implements WritableObjectStorage {
 		$this->primaryKey = $primaryKey;
 	}
 
-	public function insert( array $row ) {
+	public function insert( array &$row ) {
 		// insert returns boolean true/false
 		return $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->table,

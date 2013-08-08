@@ -6,7 +6,6 @@ use User;
 
 abstract class AbstractRevision {
 	protected $revId;
-	protected $textId;
 	protected $userId;
 	protected $userText;
 	protected $flags = array();
@@ -20,6 +19,8 @@ abstract class AbstractRevision {
 	protected $contentModel;
 	protected $contentFormat;
 	protected $content;
+	// Only populated when external store is in use
+	protected $contentUrl;
 
 	static public function fromStorageRow( array $row ) {
 		$obj = new static;
@@ -35,10 +36,12 @@ abstract class AbstractRevision {
 		$obj->userText = $row['rev_user_text'];
 		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
 		$obj->comment = $row['rev_comment'];
-
-		$obj->textId = $row['rev_text_id'];
-		$obj->content = $row['text_content'];
-		$obj->flags = explode( ',', $row['text_flags'] );
+		$obj->content = $row['rev_content'];
+		if ( isset( $row['rev_content_url'] ) ) {
+			// only exists when external store is being used
+			$obj->contentUrl = $row['rev_content_url'];
+		}
+		$obj->flags = explode( ',', $row['rev_flags'] );
 		return $obj;
 	}
 
@@ -49,11 +52,11 @@ abstract class AbstractRevision {
 			'rev_user_text' => $obj->userText,
 			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getBinary() : null,
 			'rev_comment' => $obj->comment,
-			'rev_text_id' => $obj->textId,
 			'rev_type' => $obj->getRevisionType(),
 
-			'text_content' => $obj->content,
-			'text_flags' => implode( ',', $obj->flags ),
+			'rev_content' => $obj->content,
+			'rev_content_url' => $obj->contentUrl,
+			'rev_flags' => implode( ',', $obj->flags ),
 		);
 	}
 
@@ -73,7 +76,7 @@ abstract class AbstractRevision {
 		$obj->flags = array();
 		if ( $content !== $obj->content ) {
 			$obj->content = $content;
-			$obj->textId = null;
+			$obj->contentUrl = null;
 		}
 		return $obj;
 	}
@@ -87,10 +90,6 @@ abstract class AbstractRevision {
 			throw new \MWException( 'Content not loaded' );
 		}
 		return $this->content;
-	}
-
-	public function getTextId() {
-		return $this->textId; // not available on creation
 	}
 
 	public function getPrevRevisionId() {
