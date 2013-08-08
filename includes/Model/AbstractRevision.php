@@ -6,7 +6,6 @@ use User;
 
 abstract class AbstractRevision {
 	protected $revId;
-	protected $textId;
 	protected $userId;
 	protected $userText;
 	protected $flags = array();
@@ -17,28 +16,28 @@ abstract class AbstractRevision {
 	protected $prevRevision;
 
 	// content
-	protected $contentModel;
-	protected $contentFormat;
 	protected $content;
+	// Only populated when external store is in use
+	protected $contentUrl;
+	// This is decompressed on-demand from $this->content in self::getContent()
+	protected $decompressedContent;
 
-	static public function fromStorageRow( array $row ) {
-		$obj = new static;
-		if ( $row['rev_type'] !== $obj->getRevisionType() ) {
-			throw new \MWException( sprintf(
-				"Wrong revision type, expected '%s' but received '%s'",
-				$obj->getRevisionType(),
-				$row['rev_type']
-			) );
+	static public function fromStorageRow( array $row, $obj = null ) {
+		if ( $obj === null ) {
+			$obj = new static;
+		} elseif ( !$obj instanceof static ) {
+			throw new \Exception( 'wrong object type' );
 		}
 		$obj->revId = UUID::create( $row['rev_id'] );
 		$obj->userId = $row['rev_user_id'];
 		$obj->userText = $row['rev_user_text'];
 		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
 		$obj->comment = $row['rev_comment'];
-
-		$obj->textId = $row['rev_text_id'];
-		$obj->content = $row['text_content'];
-		$obj->flags = explode( ',', $row['text_flags'] );
+		$obj->flags = explode( ',', $row['rev_flags'] );
+		$obj->content = $row['rev_content'];
+		// null if external store is not being used
+		$obj->contentUrl = $row['rev_content_url'];
+		$obj->decompressedContent = null;
 		return $obj;
 	}
 
@@ -49,11 +48,11 @@ abstract class AbstractRevision {
 			'rev_user_text' => $obj->userText,
 			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getBinary() : null,
 			'rev_comment' => $obj->comment,
-			'rev_text_id' => $obj->textId,
 			'rev_type' => $obj->getRevisionType(),
 
-			'text_content' => $obj->content,
-			'text_flags' => implode( ',', $obj->flags ),
+			'rev_content' => $obj->content,
+			'rev_content_url' => $obj->contentUrl,
+			'rev_flags' => implode( ',', $obj->flags ),
 		);
 	}
 
@@ -70,11 +69,7 @@ abstract class AbstractRevision {
 
 	public function newNextRevision( User $user, $content ) {
 		$obj = $this->newNullRevision( $user );
-		$obj->flags = array();
-		if ( $content !== $obj->content ) {
-			$obj->content = $content;
-			$obj->textId = null;
-		}
+		$this->setContent( $content );
 		return $obj;
 	}
 
@@ -83,14 +78,19 @@ abstract class AbstractRevision {
 	}
 
 	public function getContent() {
-		if ( $this->content === null ) {
-			throw new \MWException( 'Content not loaded' );
+		if ( $this->decompressedContent === null ) {
+			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
 		}
-		return $this->content;
+		return $this->decompressedContent;
 	}
 
-	public function getTextId() {
-		return $this->textId; // not available on creation
+	protected function setContent( $content ) {
+		if ( $content !== $this->getContent() ) {
+			$this->content = $this->decompressedContent = $content;
+			$this->contentUrl = null;
+			// should this only remove a subset of flags?
+			$this->flags = array();
+		}
 	}
 
 	public function getPrevRevisionId() {

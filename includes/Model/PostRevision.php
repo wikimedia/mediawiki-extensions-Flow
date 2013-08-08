@@ -24,21 +24,22 @@ class PostRevision extends AbstractRevision {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->postId = $topic->getId();
-		$obj->content = $content;
 		$obj->origUserId = $obj->userId = $topic->getUserId();
 		$obj->origUserText = $obj->userText = $topic->getUserText();
 		$obj->origCreateTime = wfTimestampNow();
 		$obj->replyToId = null; // not a reply to anything
 		$obj->prevRevId = null; // no parent revision
 		$obj->comment = 'flow-rev-message-new-post';
+		$obj->setContent( $content );
+
 		return $obj;
 	}
 
-	static public function fromStorageRow( array $row ) {
+	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $row['rev_id'] !== $row['tree_rev_id'] ) {
 			throw new \MWException( 'tree revision doesn\'t match provided revision' );
 		}
-		$obj = parent::fromStorageRow( $row );
+		$obj = parent::fromStorageRow( $row, $obj );
 
 		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
 		$obj->postId = UUID::create( $row['tree_rev_descendant_id'] );
@@ -68,7 +69,7 @@ class PostRevision extends AbstractRevision {
 		$reply->userId = $reply->origUserId = $user->getId();
 		$reply->userText = $reply->origUserText = $user->getName();
 		$reply->origCreateTime = wfTimestampNow();
-		$reply->content = $content;
+		$reply->setContent( $content );
 		$reply->replyToId = $this->postId;
 		$reply->comment = 'flow-rev-message-reply';
 		return $reply;
