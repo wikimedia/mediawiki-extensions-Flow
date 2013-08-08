@@ -47,6 +47,8 @@ interface ObjectStorage extends \IteratorAggregate {
 }
 
 // Backing stores, typically in SQL
+// Note that while ObjectLocator implements the above ObjectStorage interface, ObjectManger
+// cant use this interface because backing stores deal in rows, and OM deals in objects.
 interface WritableObjectStorage extends ObjectStorage {
 	function insert( array $row );
 	function update( array $old, array $new );
@@ -164,8 +166,9 @@ class ObjectLocator implements ObjectStorage {
 	}
 
 	public function getIterator() {
-		throw new \Exception( 'Not Implemented' );
+		return $this->storage->getIterator();
 	}
+
 	/**
 	 * All queries must be against the same index. Results are equivilent to
 	 * array_map, maintaining order and key relationship between input $queries
@@ -293,7 +296,6 @@ class ObjectLocator implements ObjectStorage {
 
 /**
  * Writable indexes. Error handling is all wrong currently.
- * Cant implement WritableObjectStorage because 'update' method signature differs
  */
 class ObjectManager extends ObjectLocator {
 	// @var SplObjectStorage $loaded If the object exists then an 'update' is issued, otherwise 'insert'
@@ -343,13 +345,13 @@ class ObjectManager extends ObjectLocator {
 		try {
 			$old = $this->loaded[$object];
 			$new = $this->mapper->toStorageRow( $object );
+			if ( self::arrayEquals( $old, $new ) ) {
+				return;
+			}
 			foreach ( $new as $k => $x ) {
 				if ( $x !== null && !is_scalar( $x ) ) {
 					throw new \RuntimeException( "Expected mapper to return all scalars, but '$k' is " . gettype( $x ) );
 				}
-			}
-			if ( self::arrayEquals( $old, $new ) ) {
-				return;
 			}
 			$this->storage->update( $old, $new );
 			foreach ( $this->lifecycleHandlers as $handler ) {
@@ -358,19 +360,6 @@ class ObjectManager extends ObjectLocator {
 			$this->loaded[$object] = $new;
 		} catch ( \Exception $e ) {
 			throw new PersistenceException( 'failed update', null, $e );
-		}
-	}
-
-	static public function arrayEquals( array $old, array $new ) {
-		return array_diff_assoc( $old, $new ) === array()
-			&& array_diff_assoc( $new, $old ) === array();
-	}
-
-	static public function makeArray( $input ) {
-		if ( is_array( $input ) ) {
-			return $input;
-		} else {
-			return array( $input );
 		}
 	}
 
@@ -395,6 +384,19 @@ class ObjectManager extends ObjectLocator {
 		$object = parent::load( $row );
 		$this->loaded[$object] = $row;
 		return $object;
+	}
+
+	static public function arrayEquals( array $old, array $new ) {
+		return array_diff_assoc( $old, $new ) === array()
+			&& array_diff_assoc( $new, $old ) === array();
+	}
+
+	static public function makeArray( $input ) {
+		if ( is_array( $input ) ) {
+			return $input;
+		} else {
+			return array( $input );
+		}
 	}
 
 	/**
@@ -626,9 +628,9 @@ abstract class FeatureIndex implements Index {
 		return $this->indexed;
 	}
 
-	public function canAnswer( array $keys, array $options ) {
-		sort( $keys );
-		if ( $keys !== $this->indexedOrdered ) {
+	public function canAnswer( array $featureColumns, array $options ) {
+		sort( $featureColumns );
+		if ( $featureColumns !== $this->indexedOrdered ) {
 			return false;
 		}
 		if ( isset( $options['limit'] ) ) {
@@ -643,9 +645,9 @@ abstract class FeatureIndex implements Index {
 		return true;
 	}
 
-	public function onAfterInsert( $object, array $new) {
+	public function onAfterInsert( $object, array $new ) {
 		$indexed = ObjectManager::splitFromRow( $new , $this->indexed );
-		// is un-indexable a bail-worthy occasion? Probably not
+		// is un-indexable a bail-worthy occasion? Probably not but makes debugging easier
 		if ( !$indexed ) {
 			throw new \MWException( 'Unindexable row: ' .json_encode( $new ) );
 		}
@@ -664,8 +666,20 @@ abstract class FeatureIndex implements Index {
 		if ( !$newIndexed ) {
 			throw new \MWException( 'Unindexable row: ' .json_encode( $newIndexed ) );
 		}
-		$this->removeFromIndex( $oldIndexed, $this->rowCompactor->compactRow( $old ) );
-		$this->addToIndex( $newIndexed, $this->rowCompactor->compactRow( $new ) );
+		$oldCompacted = $this->rowCompactor->compactRow( $old );
+		$newCompacted = $this->rowCompactor->compactRow( $new );
+		if ( ObjectManager::arrayEquals( $oldIndexed, $newIndexed ) ) {
+			if ( ObjectManager::arrayEquals( $oldCompacted, $newCompacted ) ) {
+				// Nothing changed in the index
+				return;
+			}
+			// object representation in feature bucket has changed
+			$this->replaceInIndex( $oldIndexed, $oldCompacted, $newCompacted );
+		} else {
+			// object has moved from one feature bucket to another
+			$this->removeFromIndex( $oldIndexed, $oldCompacted );
+			$this->addToIndex( $newIndexed, $newCompacted );
+		}
 	}
 
 	public function onAfterRemove( $object, array $old ) {
@@ -704,6 +718,8 @@ abstract class FeatureIndex implements Index {
 			$keyToIdx[$key][] = $idx;
 			if ( !isset( $keyToQuery[$key] ) ) {
 				$idxToKey[$idx] = $key;
+				// These results will be merged into the query results, and as such need binary
+				// uuid's as would be received from storage
 				$keyToQuery[$key] = UUID::convertUUIDs( $query );
 			}
 		}
@@ -748,6 +764,11 @@ abstract class FeatureIndex implements Index {
 		return $results;
 	}
 
+	// implementing classes can likely do better
+	protected function replaceInIndex( array $indexed, array $old, array $new ) {
+		$this->removeFromIndex( $indexed, $old );
+		$this->addToIndex( $indexed, $new );
+	}
 
 	protected function cacheKey( array $attributes ) {
 		global $wgFlowDefaultWikiDb; // meh
@@ -798,6 +819,10 @@ class UniqueFeatureIndex extends FeatureIndex {
 	protected function removeFromIndex( array $indexed, array $row ) {
 		$this->cache->delete( $this->cacheKey( $indexed ) );
 	}
+
+	protected function replaceInIndex( array $indexed, array $oldRow, array $newRow ) {
+		$this->cache->set( $this->cacheKey( $indexed ), array( $newRow ) );
+	}
 }
 
 /**
@@ -826,6 +851,17 @@ class TopKIndex extends FeatureIndex {
 		}
 	}
 
+	public function canAnswer( array $keys, array $options ) {
+		if ( !parent::canAnswer( $keys, $options ) ) {
+			return false;
+		}
+		if ( isset( $options['sort'], $options['order'] ) ) {
+			return $options['sort'] === $this->options['sort']
+				&& $options['order'] === $this->options['order'];
+		}
+		return true;
+	}
+
 	public function getLimit() {
 		return $this->options['limit'];
 	}
@@ -849,9 +885,16 @@ class TopKIndex extends FeatureIndex {
 				if ( $idx !== false ) {
 					return false; // This row already exists somehow
 				}
-				$value[] = $row;
-				$value = $self->sortIndex( $value );
-				return $self->limitIndexSize( $value );
+				$retval = $value;
+				$retval[] = $row;
+				$retval = $self->sortIndex( $retval );
+				$retval = $self->limitIndexSize( $retval );
+				if ( $retval === $value ) {
+					// object didnt fit in index
+					return false;
+				} else {
+					return $retval;
+				}
 			}
 		);
 	}
@@ -869,6 +912,31 @@ class TopKIndex extends FeatureIndex {
 				}
 				unset( $value[$idx] );
 				return $value;
+			}
+		);
+	}
+
+	protected function replaceInIndex( array $indexed, array $oldRow, array $newRow ) {
+		$this->cache->merge(
+			$this->cacheKey( $indexed ),
+			function( BagOStuff $cache, $key, $value ) use( $oldRow, $newRow ) {
+				if ( $value === false ) {
+					return false;
+				}
+				$retval = $value;
+				$idx = array_search( $oldRow, $retval );
+				if ( $idx !== false ) {
+					unset( $retval[$idx] );
+				}
+				$retval[] = $newRow;
+				$retval = $self->sortIndex( $retval );
+				$retval = $self->limitIndexSize( $retval );
+				if ( $value === $retval ) {
+					// new item didnt fit in index and old item wasnt found in index
+					return false;
+				} else {
+					return $value;
+				}
 			}
 		);
 	}
@@ -901,20 +969,12 @@ class TopKIndex extends FeatureIndex {
 
 		return $options;
 	}
-
-	public function canAnswer( array $keys, array $options ) {
-		if ( !parent::canAnswer( $keys, $options ) ) {
-			return false;
-		}
-		if ( isset( $options['sort'], $options['order'] ) ) {
-			return $options['sort'] === $this->options['sort']
-				&& $options['order'] === $this->options['order'];
-		}
-		return true;
-	}
-
 }
 
+/**
+ * Removes the feature fields from stored array since its duplicating the cache key values
+ * Re-adds them when retreiving from cache.
+ */
 class FeatureCompactor implements Compactor {
 	public function __construct( array $indexedColumns ) {
 		$this->indexed = $indexedColumns;
@@ -975,6 +1035,11 @@ class FeatureCompactor implements Compactor {
 	}
 }
 
+/**
+ * Backs an index with a UniqueFeatureIndex.  This index will store only the primary key
+ * values from the unique index, and on retrieval from cache will materialize the primary key
+ * values into full rows from the unique index.
+ */
 class ShallowCompactor implements Compactor {
 	public function __construct( Compactor $inner, UniqueFeatureIndex $shallow, array $sortedColumns ) {
 		$this->inner = $inner;
