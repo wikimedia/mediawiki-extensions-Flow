@@ -17,7 +17,7 @@ class ApiQueryFlow extends ApiQueryBase {
 		$passedParams = json_decode( $params['params'], true );
 
 		$pageTitle = Title::newFromText( $params['page'] );
-		$id = $params['workflow'] ? new UUID( $params['workflow'] ) : null;
+		$id = $params['workflow'] ? UUID::create( $params['workflow'] ) : null;
 
 		$this->loader = $this->container['factory.loader.workflow']
 			->createWorkflowLoader( $pageTitle, $id );

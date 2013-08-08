@@ -1,16 +1,4 @@
 <?php
-// yes, this is a horrible quick hack
-// probably be better off if the templates were classes that were called as
-//     $template->render( $options );
-// or some such
-
-$self = $this;
-
-$editToken = $user->getEditToken( 'flow' );
-
-$renderPost = function( $post ) use( $self, $block, $root, $user ) {
-	echo $self->renderPost( $post, $block, $root );
-};
 
 $title = $root->getContent();
 
@@ -26,7 +14,7 @@ echo Html::openElement( 'div', array(
 <div class="flow-titlebar">
 	<div class="flow-topic-title">
 		<div class="flow-realtitle">
-<?php echo htmlspecialchars( $title ); ?>
+			<?php echo htmlspecialchars( $title ); ?>
 		</div>
 	</div>
 	<div class="flow-topiccontrols">
@@ -38,11 +26,26 @@ echo Html::openElement( 'div', array(
 		<div class="flow-actionbox-pokey">&nbsp;</div>
 		<div class="flow-topic-actionbox">
 			<ul>
-<?php
-echo Html::rawElement( 'li', array( 'class' => 'flow-action-edit-title' ), Html::rawElement( 'a', array(
-		'href' => $this->generateUrl( $root->getPostId(), 'edit-title' )
-	), wfMessage( 'flow-topic-action-edit-title' ) ) );
-?>
+				<li class="flow-action-edit-title">
+					<?php
+					echo Html::rawElement( 'a',
+						array(
+							'href' => $this->generateUrl( $root->getPostId(), 'edit-title' )
+						),
+						wfMessage( 'flow-topic-action-edit-title' )
+					);
+					?>
+				</li>
+				<li class="flow-action-topic-history">
+					<?php
+					echo Html::rawElement( 'a',
+						array(
+							'href' => $this->generateUrl( $root->getPostId(), 'topic-history' )
+						),
+						wfMessage( 'flow-topic-action-history' )
+					);
+					?>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -54,7 +57,7 @@ echo Html::rawElement( 'li', array( 'class' => 'flow-action-edit-title' ), Html:
 
 <?php
 foreach( $root->getChildren() as $child ) {
-	$renderPost( $child );
+	echo $this->renderPost( $child, $block, $root );
 }
 ?>
 </div>

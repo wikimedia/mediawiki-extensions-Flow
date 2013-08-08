@@ -50,6 +50,20 @@ mw.flow.discussion = {
 		}
 	},
 
+	'getTopicWorkflowId' : function( $element ) {
+		var $topicContainer = $element.closest( '.flow-topic-container' );
+		var $container = $element.closest( '.flow-container' );
+
+		if ( $topicContainer.length ) {
+			return $topicContainer.data( 'topic-id' );
+		} else if ( $container.length ) {
+			return $container.data( 'workflow-id' );
+		} else {
+			console.dirxml( $element[0] );
+			throw new Error( "Unable to get a workflow ID" );
+		}
+	},
+
 	'setupFormHandler' : function(
 		$container,
 		submitSelector,
@@ -259,9 +273,7 @@ mw.flow.discussion = {
 			function() {
 				$form = $(this).closest( '.flow-reply-form' );
 
-				var workflowId = $(this)
-					.closest( '.flow-topic-container' )
-					.data( 'topic-id' );
+				var workflowId = mw.flow.discussion.getTopicWorkflowId( $(this) );
 
 				var replyToId = $(this)
 					.closest( '.flow-post-container' )
@@ -291,6 +303,128 @@ mw.flow.discussion = {
 					} );
 			}
 		);
+
+		// Overload 'edit post' link.
+		$container.find( '.flow-action-edit-post a' )
+			.click( function(e) {
+				e.preventDefault();
+				var $postContainer = $(this).closest( '.flow-post' );
+				var $contentContainer = $postContainer.find( '.flow-post-content' );
+				var workflowId = mw.flow.discussion.getTopicWorkflowId( $(this) );
+				var pageName = $(this).closest( '.flow-container' ).data( 'page-title' );
+				var postId = $postContainer.data( 'post-id' );
+
+				if ( $postContainer.find( '.flow-edit-post-form' ).length ) {
+					return;
+				}
+
+				mw.flow.api.readTopic(
+					pageName,
+					workflowId,
+					{
+						'no-children' : true,
+						'postId' : postId
+					}
+				)
+					.done( function( data ) {
+						if ( ! data[0] || data[0]['post-id'] != postId ) {
+							console.dir( data );
+							var $errorDiv = $( '<div/>' )
+								.addClass( 'flow-error' )
+								.text( mw.msg( 'flow-error-other') )
+								.hide()
+								.insertAfter( $contentContainer )
+								.slideDown();
+							return;
+						}
+
+						var originalContent = data[0]['content-src']['*'];
+
+						var $postForm = $( '<form />' )
+							.addClass( 'flow-edit-post-form' );
+
+						$postForm
+							.append(
+								$( '<textarea />' )
+									.val( originalContent )
+									.addClass( 'flow-edit-post-content' )
+							)
+							.append(
+								$( '<div/>' )
+									.addClass( 'flow-post-controls' )
+									.append(
+										$( '<a/>' )
+											.text( mw.msg( 'flow-cancel' ) )
+											.addClass( 'flow-cancel-link' )
+											.addClass( 'mw-ui-destructive' )
+											.attr( 'href', '#' )
+											.click( function(e) {
+												e.preventDefault();
+												$postForm.slideUp( 'fast',
+													function() {
+														$contentContainer.show();
+														$postForm.remove();
+													}
+												);
+											} )
+									)
+									.append(
+										$( '<input />' )
+											.attr( 'type', 'submit' )
+											.addClass( 'mw-ui-button' )
+											.addClass( 'mw-ui-primary' )
+											.addClass( 'flow-edit-post-submit' )
+											.val( mw.msg( 'flow-edit-post-submit' ) )
+									)
+							)
+							.insertAfter( $contentContainer );
+
+						$contentContainer.hide();
+
+						mw.flow.discussion.setupFormHandler(
+							$postContainer,
+							'.flow-edit-post-submit',
+							mw.flow.api.editPost,
+							function() {
+								var content = $postForm.find( '.flow-edit-post-content' ).val();
+
+								return [ workflowId, postId, content ];
+							},
+							function( workflowId, postId, content ) {
+								return content;
+							},
+							function( promise ) {
+								promise.done( function(output) {
+									$contentContainer
+										.empty()
+										.append(
+											$(output.rendered)
+												.find('.flow-post-content')
+												.children()
+										);
+									} );
+							}
+						);
+
+						mw.flow.discussion.setupEmptyDisabler(
+							'form.flow-edit-post-form',
+							[
+								'.flow-edit-post-content'
+							],
+							'.flow-edit-post-submit'
+						);
+					} )
+					.fail( function() {
+						var $errorDiv = $( '<div/>' )
+							.addClass( 'flow-error' )
+							.hide();
+
+						mw.flow.discussion.handleError( $errorDiv, arguments );
+
+						$errorDiv.insertAfter( $contentContainer )
+							.slideDown();
+					} );
+			} );
 
 		// Overload 'edit title' link.
 		$container.find( '.flow-action-edit-title a' )
