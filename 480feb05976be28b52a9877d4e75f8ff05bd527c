@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "898eddaf_a23f1db0",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-08T22:14:22Z",
+      "side": 1,
+      "message": "I\u0027m not really sure what this rev_content_url is for (and why the need for the pass-by-ref $row).\n\nIt looks like it\u0027s somehow used to discern between \"content already saved in ExternalStore\" and \"new content\", for a new next revision.\nCouldn\u0027t this just be achieved by taking away the \"external\" flag upon building the new next revision?\nIf it\u0027s new content without ExternalStore, it\u0027ll just save the content in DB, like it should.\nIf it\u0027s new content with ExternalStore \u0026 \u0027external\u0027 flag does not yet exist, it\u0027ll go the path of saving a new entry there. If the flag already exists, no need to touch it? Something like that.\n\nAgain: my idea of what exactly it\u0027s used for my be way off. It might make more sense to me tomorrow morning ;)",
+      "revId": "480feb05976be28b52a9877d4e75f8ff05bd527c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_c23349f4",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-08T22:14:22Z",
+      "side": 1,
+      "message": "Method name is slightly ambiguous; implies it \"inserts content [into ?]\", but it only inserts content into ExternalStorage.",
+      "revId": "480feb05976be28b52a9877d4e75f8ff05bd527c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_e23045ea",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-08T22:14:22Z",
+      "side": 1,
+      "message": "This compression should no longer be done inside this method, but in insert(); otherwise, content won\u0027t be compressed if there\u0027s no ExternalStore",
+      "revId": "480feb05976be28b52a9877d4e75f8ff05bd527c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
