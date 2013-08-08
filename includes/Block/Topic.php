@@ -17,8 +17,12 @@ class TopicBlock extends AbstractBlock {
 	protected $topicTitle;
 	protected $rootLoader;
 	protected $newRevision;
+	protected $requestedPost;
 
-	protected $supportedActions = array( 'edit-title', 'reply', 'delete-topic', 'delete-post', 'restore-post' );
+	protected $supportedActions = array(
+		'edit-post', 'delete-post', 'restore-post',
+		'reply', 'delete-topic',
+	);
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, $root ) {
 		parent::__construct( $workflow, $storage );
@@ -54,6 +58,10 @@ class TopicBlock extends AbstractBlock {
 
 		case 'restore-post':
 			$this->validateRestorePost();
+			break;
+
+		case 'edit-post':
+			$this->validateEditPost();
 			break;
 
 		default:
@@ -153,6 +161,28 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
+	protected function validateEditPost() {
+		if ( empty( $this->submitted['postId'] ) ) {
+			$this->errors['edit-post'] = wfMessage( 'flow-no-post-provided' );
+			return;
+		}
+		if ( empty( $this->submitted['content'] ) ) {
+			$this->errors['content'] = wfMessage( 'flow-missing-post-content' );
+		} else {
+			$this->parsedContent = $this->convertWikitextToHtml5( $this->submitted['content'] );
+			if ( empty( $this->parsedContent ) ) {
+				$this->errors['content'] = wfMessage( 'flow-empty-parsoid-result' );
+				return;
+			}
+		}
+		$post = $this->loadRequestedPost( $this->submitted['postId'] );
+		if ( $post ) {
+			$this->newRevision = $post->newNextRevision( $this->user, $this->parsedContent );
+		} else {
+			$this->errors['edit-post'] = wfMessage( 'flow-post-not-found' );
+		}
+	}
+
 	// @todo: I assume not only topic reply, but also TopicListBlock & SummaryBlock's content need to be converted?
 	protected function convertWikitextToHtml5( $wikitext ) {
 		global $wgFlowUseParsoid;
@@ -200,6 +230,7 @@ class TopicBlock extends AbstractBlock {
 		case 'reply':
 		case 'delete-post':
 		case 'restore-post':
+		case 'edit-post':
 			if ( $this->newRevision === null ) {
 				throw new \MWException( 'Attempt to save null revision' );
 			}
@@ -220,36 +251,49 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options, $return = false ) {
-		if ( $this->action === 'post-history' ) {
-			if ( empty( $options['postId'] ) ) {
-				var_dump( $this->getName() );
-				var_dump( $options );
-				throw new \Exception( 'No postId specified' );
-				$history = array();
-			} else {
-				$history = $this->getHistory( $options['postId'] );
-			}
-			return $templating->render( "flow:post-history.html.php", array(
-				'block' => $this,
-				'topic' => $this->workflow,
-				'history' => $history,
-			), $return );
-		} elseif ( $this->action === 'edit-title' ) {
+		$templating->getOutput()->addModules( 'ext.flow.base' );
+		switch( $this->action ) {
+		case 'post-history':
+			return $this->renderPostHistory( $templating, $options, $return );
+
+		case 'edit-post':
+			return $this->renderEditPost( $templating, $options, $return );
+
+		case 'edit-title':
 			return $templating->render( "flow:edit-title.html.php", array(
 				'block' => $this,
-				'user' => $this->user,
 				'topic' => $this->workflow,
 				'topicTitle' => $this->loadTopicTitle(),
 			) );
+
+		default:
+			return $templating->render( "flow:topic.html.php", array(
+				'block' => $this,
+				'topic' => $this->workflow,
+				'root' => $this->loadRootPost(),
+			), $return );
 		}
+	}
 
-		$templating->getOutput()->addModules( 'ext.flow.base' );
-
-		return $templating->render( "flow:topic.html.php", array(
+	protected function renderPostHistory( Templating $templating, array $options, $return = false ) {
+		if ( !isset( $options['postId'] ) ) {
+			throw new \Exception( 'No postId provided' );
+		}
+		return $templating->render( "flow:post-history.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
-			'root' => $this->loadRootPost(),
-			'user' => $this->user,
+			'history' => $$this->getHistory( $options['postId'] ),
+		), $return );
+	}
+
+	protected function renderEditPost( Templating $templating, array $options, $return = false ) {
+		if ( !isset( $options['postId'] ) ) {
+			throw new \Exception( 'No postId provided' );
+		}
+		return $templating->render( "flow:edit-post.html.php", array(
+			'block' => $this,
+			'topic' => $this->workflow,
+			'post' => $this->loadRequestedPost( $options['postId'] ),
 		), $return );
 	}
 
@@ -405,6 +449,24 @@ class TopicBlock extends AbstractBlock {
 		return $this->topicTitle;
 	}
 
+	protected function loadRequestedPost( $postId ) {
+		if ( !isset( $this->requestedPost[$postId] ) ) {
+			$found = $this->storage->find(
+				'PostRevision',
+				array( 'tree_rev_descendant_id' => $postId ),
+				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			);
+			if ( $found ) {
+				$this->requestedPost[$postId] = reset( $found );
+			} else {
+				// meh, signals that its not found, dont look again
+				$this->requestedPost[$postId] = false;
+			}
+		}
+		// catches the === false and returns null as expected
+		return $this->requestedPost[$postId] ?: null;
+	}
+
 	// Somehow the template has to know which post the errors go with
 	public function getRepliedTo() {
 		return isset( $this->submitted['replyTo'] ) ? $this->submitted['replyTo'] : null;
@@ -417,7 +479,7 @@ class TopicBlock extends AbstractBlock {
 
 	// The prefix used for form data
 	public function getName() {
-		return 'topic_list';
+		return 'topic';
 	}
 
 }
