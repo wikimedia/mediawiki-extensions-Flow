@@ -17,6 +17,7 @@ class SummaryBlock extends AbstractBlock {
 	protected $supportedActions = array( 'edit-summary' );
 
 	public function init( $action ) {
+		parent::init( $action );
 		if ( $this->workflow->isNew() ) {
 			$this->needCreate = true;
 			return;
@@ -37,7 +38,12 @@ class SummaryBlock extends AbstractBlock {
 		if ( $this->summary ) {
 			if ( empty( $this->submitted['prev_revision'] ) ) {
 				$this->errors['prev_revision'] = wfMessage( 'flow-missing-prev-revision-identifier' );
-			} elseif ( $this->summary->getRevisionId() !== $this->submitted['prev_revision'] ) {
+			} elseif ( $this->summary->getRevisionId()->getHex() !== $this->submitted['prev_revision'] ) {
+				echo '<pre>';
+				var_dump( $this->submitted['prev_revision'] );
+				var_dump( $this->summary->getRevisionId()->getHex() );
+				var_dump( $this->summary );
+				die();
 				// This is *NOT* an effective way to ensure prev revision matches, that needs
 				// to be done at the database level when commiting.  This is just a short circuit.
 				$this->errors['prev_revision'] = wfMessage( 'flow-prev-revision-mismatch' );

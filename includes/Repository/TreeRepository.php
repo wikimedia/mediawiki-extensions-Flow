@@ -68,8 +68,8 @@ class TreeRepository {
 		$res = $dbw->insert(
 			$this->tableName,
 			array(
-				'tree_descendant' => $descendant->getBinary(),
-				'tree_ancestor' => $descendant->getBinary(),
+				'tree_descendant_id' => $descendant->getBinary(),
+				'tree_ancestor_id' => $descendant->getBinary(),
 				'tree_depth' => 0,
 			),
 			__METHOD__
@@ -79,12 +79,12 @@ class TreeRepository {
 				$this->tableName,
 				$this->tableName,
 				array(
-					'tree_descendant' => $dbw->addQuotes( $descendant->getBinary() ),
-					'tree_ancestor' => 'tree_ancestor',
+					'tree_descendant_id' => $dbw->addQuotes( $descendant->getBinary() ),
+					'tree_ancestor_id' => 'tree_ancestor_id',
 					'tree_depth' => 'tree_depth + 1',
 				),
 				array(
-					'tree_descendant' => $ancestor->getBinary(),
+					'tree_descendant_id' => $ancestor->getBinary(),
 				),
 				__METHOD__
 			);
@@ -133,9 +133,9 @@ class TreeRepository {
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 		$res = $dbr->select(
 			$this->tableName,
-			array( 'tree_ancestor', 'tree_depth' ),
+			array( 'tree_ancestor_id', 'tree_depth' ),
 			array(
-				'tree_descendant' => $descendant->getBinary(),
+				'tree_descendant_id' => $descendant->getBinary(),
 			),
 			__METHOD__
 		);
@@ -143,7 +143,7 @@ class TreeRepository {
 			return null;
 		}
 		foreach ( $res as $row ) {
-			$path[$row->tree_depth] = UUID::create( $row->tree_ancestor );
+			$path[$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
 		}
 		ksort( $path );
 		$path = array_reverse( $path );
@@ -217,9 +217,9 @@ class TreeRepository {
 	public function fetchSubtreeNodeListFromDb( array $roots ) {
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
 			$this->tableName,
-			array( 'tree_ancestor', 'tree_descendant' ),
+			array( 'tree_ancestor_id', 'tree_descendant_id' ),
 			array(
-				'tree_ancestor' => UUID::convertUUIDs( $roots ),
+				'tree_ancestor_id' => UUID::convertUUIDs( $roots ),
 			),
 			__METHOD__
 		);
@@ -228,8 +228,8 @@ class TreeRepository {
 		}
 		$nodes = array();
 		foreach ( $res as $node ) {
-			$ancestor = UUID::create( $node->tree_ancestor );
-			$descendant = UUID::create( $node->tree_descendant );
+			$ancestor = UUID::create( $node->tree_ancestor_id );
+			$descendant = UUID::create( $node->tree_descendant_id );
 			$nodes[$ancestor->getHex()][$descendant->getHex()] = $descendant;
 		}
 
@@ -254,9 +254,9 @@ class TreeRepository {
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 		$res = $dbr->select(
 			$this->tableName,
-			array( 'tree_ancestor', 'tree_descendant' ),
+			array( 'tree_ancestor_id', 'tree_descendant_id' ),
 			array(
-				'tree_descendant' => $nodes,
+				'tree_descendant_id' => $nodes,
 				'tree_depth' => 1,
 			),
 			__METHOD__
@@ -266,11 +266,11 @@ class TreeRepository {
 		}
 		$result = array();
 		foreach ( $res as $node ) {
-			if ( isset( $result[$node->tree_descendant] ) ) {
-				throw new MWException( 'Already have a parent for ' . $node->tree_descendant );
+			if ( isset( $result[$node->tree_descendant_id] ) ) {
+				throw new MWException( 'Already have a parent for ' . $node->tree_descendant_id );
 			}
-			$descendant = UUID::create( $node->tree_descendant );
-			$result[$descendant->getHex()] = UUID::create( $node->tree_ancestor );
+			$descendant = UUID::create( $node->tree_descendant_id );
+			$result[$descendant->getHex()] = UUID::create( $node->tree_ancestor_id );
 		}
 		foreach ( $nodes as $node ) {
 			if ( !isset( $result[$node] ) ) {

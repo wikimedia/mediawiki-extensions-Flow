@@ -54,7 +54,7 @@ abstract class AbstractBlock implements Block {
 	abstract public function commit();
 
 	public function init( $action ) {
-
+		$this->action = $action;
 	}
 
 	public function onSubmit( $action, User $user, array $data  ) {
@@ -62,7 +62,6 @@ abstract class AbstractBlock implements Block {
 			return null;
 		}
 
-		$this->action = $action;
 		$this->user = $user;
 		$this->submitted = $data;
 
