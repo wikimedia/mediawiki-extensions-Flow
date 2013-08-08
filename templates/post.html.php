@@ -3,12 +3,12 @@
 $editToken = $user->getEditToken( 'flow' );
 $self = $this;
 
-$postAction = function( $action, array $data = array(), $class = '' ) use( $self, $block, $root, $editToken ) {
+$postAction = function( $action, array $data = array(), $class = '' ) use( $self, $block, $editToken ) {
 	// actions that change things must be post requests
 	$output = '';
 	$output .= Html::openElement( 'form', array(
 		'method' => 'POST',
-		'action' => $self->generateUrl( $root->getPostId(), $action )
+		'action' => $self->generateUrl( $block->getWorkflowId(), $action )
 	) );
 	$output .= Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 	foreach ( $data as $name => $value ) {
@@ -27,8 +27,25 @@ $postAction = function( $action, array $data = array(), $class = '' ) use( $self
 	return $output;
 };
 
-$renderPost = function( $post ) use( $self, $block, $root ) {
-	echo $self->renderPost( $post, $block, $root );
+$getAction = function( $action, $data = array(), $class = '' ) use ( $post, $self, $block ) {
+	$url = $self->generateUrl(
+		$block->getWorkflowId(),
+		$action,
+		array(
+			$block->getName() . '[postId]' => $post->getPostId()->getHex(),
+		)
+	);
+	return Html::element( 'a',
+		array(
+			'href' => $url,
+			'class' => $class,
+		),
+		wfMessage( "flow-post-action-$action" )->plain()
+	);
+};
+
+$renderPost = function( $post ) use( $self, $block ) {
+	echo $self->renderPost( $post, $block );
 };
 
 echo Html::openElement( 'div', array(
@@ -57,7 +74,7 @@ if ( $post->isFlagged( 'deleted' ) ) {
 	$actions['restore'] = $postAction( 'restore-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-constructive' );
 
 	$actions['history'] = Html::element( 'a', array(
-		'href' => $self->generateUrl( $root->getPostId(), 'post-history', array(
+		'href' => $self->generateUrl( $block->getWorkflowId(), 'post-history', array(
 			$block->getName() . '[postId]' => $post->getPostId()->getHex(),
 		) ),
 	), wfMessage( 'flow-post-action-history' )->plain() );
@@ -65,15 +82,13 @@ if ( $post->isFlagged( 'deleted' ) ) {
 	$user = Html::element( 'span', null, $post->getUserText() );
 	$content = $post->getContent();
 	$actions['delete'] = $postAction( 'delete-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-destructive' );
-	$actions['history'] = Html::element( 'a', array(
-		'href' => $self->generateUrl( $root->getPostId(), 'post-history', array(
-			$block->getName() . '[postId]' => $post->getPostId()->getHex(),
-		) ),
-	), wfMessage( 'flow-post-action-history' )->plain() );
+	$actions['history'] = $getAction( 'post-history' );
+	$actions['permalink'] = $getAction( 'view' );
+	$actions['edit-post'] = $getAction( 'edit-post' );
 	$replyForm = Html::openElement( 'form', array(
 			'method' => 'POST',
 			// root post id is same as topic workflow id
-			'action' => $self->generateUrl( $root->getPostId(), 'reply' ),
+			'action' => $self->generateUrl( $block->getWorkflowId(), 'reply' ),
 			'class' => 'flow-reply-form',
 		) );
 	$replyForm .= Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );

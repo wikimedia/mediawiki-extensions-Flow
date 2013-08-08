@@ -59,6 +59,38 @@ mw.flow = {
 			);
 		},
 
+		'readTopic' : function( pageName, topicId, options ) {
+			var deferredObject = $.Deferred();
+
+			mw.flow.api.read( pageName, topicId, options )
+				.done( function(output) {
+					// Immediate failure modes
+					if (
+						! output.query ||
+						! output.query.flow ||
+						output.query.flow._element !== 'block'
+					) {
+						deferredObject.fail( 'invalid-result', 'Unable to understand the API result' );
+						return;
+					}
+
+					$.each( output.query.flow, function( index, block ) {
+						// Looping through each block
+						if ( block['block-name'] === 'topic' ) {
+							// Return this block
+							deferredObject.resolve( block );
+						}
+					} );
+
+					deferredObject.fail( 'invalid-result', 'Unable to find the topic block in the API result' );
+				} )
+				.fail( function() {
+					deferredObject.fail( arguments );
+				} );
+
+			return deferredObject.promise();
+		},
+
 		'generateTopicAction' : function( actionName, parameterList, promiseFilterCallback ) {
 			return function( workflowId ) {
 				var deferredObject = $.Deferred();
@@ -77,7 +109,7 @@ mw.flow = {
 						'workflow' : workflowId
 					},
 					actionName,
-					{ 'topic_list' :
+					{ 'topic' :
 						requestParams
 					}, true
 				).done( function(data) {
@@ -90,12 +122,12 @@ mw.flow = {
 						! data.flow ||
 						! data.flow[actionName] ||
 						! data.flow[actionName].result ||
-						! data.flow[actionName].result['topic_list']
+						! data.flow[actionName].result['topic']
 					) {
 						deferredObject.reject( 'invalid-result', 'Unable to find appropriate section in result' );
 						return;
 					}
-					var output = data.flow[actionName].result['topic_list'];
+					var output = data.flow[actionName].result['topic'];
 
 					deferredObject.resolve( output, data );
 				} )
@@ -166,6 +198,14 @@ mw.flow.api.reply = mw.flow.api.generateTopicAction(
 mw.flow.api.changeTitle = mw.flow.api.generateTopicAction(
 	'edit-title',
 	[
+		'content'
+	]
+);
+
+mw.flow.api.editPost = mw.flow.api.generateTopicAction(
+	'edit-post',
+	[
+		'postId',
 		'content'
 	]
 );
