@@ -24,13 +24,16 @@ class PostRevision extends AbstractRevision {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->postId = $topic->getId();
-		$obj->content = $content;
 		$obj->origUserId = $obj->userId = $topic->getUserId();
 		$obj->origUserText = $obj->userText = $topic->getUserText();
 		$obj->origCreateTime = wfTimestampNow();
 		$obj->replyToId = null; // not a reply to anything
 		$obj->prevRevId = null; // no parent revision
 		$obj->comment = 'flow-rev-message-new-post';
+		$obj->decompressedContent = $obj->content = $content;
+		$flags = \Revision::compressRevisionText( $obj->content );
+		$obj->flags = explode( ',', $flags );
+
 		return $obj;
 	}
 
@@ -68,7 +71,8 @@ class PostRevision extends AbstractRevision {
 		$reply->userId = $reply->origUserId = $user->getId();
 		$reply->userText = $reply->origUserText = $user->getName();
 		$reply->origCreateTime = wfTimestampNow();
-		$reply->content = $content;
+		$reply->decompressedContent = $reply->content = $content;
+		$reply->flags = \Revision::compressRevisionText( $reply->content );
 		$reply->replyToId = $this->postId;
 		$reply->comment = 'flow-rev-message-reply';
 		return $reply;

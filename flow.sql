@@ -106,9 +106,10 @@ CREATE TABLE /*_*/flow_revision (
 	rev_user_text varchar(255) binary not null default '',
 	-- rev_id of parent or null if no previous revision
 	rev_parent_id binary(16),
-
+	-- comma separated set of ascii flags.
+	rev_flags tinyblob not null,
 	-- content of the revision
-	rev_text_id int unsigned not null,
+	rev_content mediumblob not null,
 	-- comment attached to revision's flag change
 	rev_comment varchar(255) binary null,
 
@@ -118,16 +119,6 @@ CREATE TABLE /*_*/flow_revision (
 -- Prevents inconsistency, but perhaps will hurt inserts?
 CREATE UNIQUE INDEX /*i*/flow_revision_unique_parent ON
 	/*_*/flow_revision (rev_parent_id);
-
-CREATE TABLE /*_*/flow_text (
-	-- undecided on uuid, or if table is even neccessary
-	-- large wiki should just use external store to distribute
-	-- content
-	text_id int(10) unsigned not null auto_increment, 
-	text_content mediumblob not null,
-	text_flags tinyblob not null,
-	PRIMARY KEY (text_id)
-) /*$wgDBTableOptions*/;
 
 -- Closure table implementation of tree storage in sql
 -- We may be able to go simpler than this

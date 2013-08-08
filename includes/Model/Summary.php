@@ -11,10 +11,12 @@ class Summary extends AbstractRevision {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
-		$obj->content = $content;
 		$obj->userId = $user->getId();
 		$obj->userText = $user->getName();
 		$obj->prevRevision = null; // no prior revision
+		$obj->decompressedContent = $obj->content = $content;
+		$flags = \Revision::compressRevisionText( $obj->content );
+		$obj->flags = explode( ',', $flags );
 		return $obj;
 	}
 
