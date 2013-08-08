@@ -66,7 +66,7 @@ class TopicListBlock extends AbstractBlock {
 			'created-post-id' => $firstPost->getRevisionId(),
 			'render-function' => function($templating) use ($topicWorkflow, $firstPost, $topicPost, $storage, $user) {
 				$block = new TopicBlock( $topicWorkflow, $storage, $topicPost );
-				return $templating->renderTopic( $block, $topicWorkflow, $topicPost, $user );
+				return $templating->renderTopic( $topicPost, $block, $user );
 			},
 		);
 

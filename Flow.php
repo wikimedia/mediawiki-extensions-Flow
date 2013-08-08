@@ -40,7 +40,7 @@ $wgExtensionCredits['specialpage'][] = array(
 	'descriptionmsg' => 'flow-desc',
 );
 
-$dir = dirname( __FILE__ ) . '/';
+$dir = __DIR__ . '/';
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
 
 // Classes fulfilling the mediawiki extension architecture
@@ -51,6 +51,7 @@ $wgAutoloadClasses['FlowHooks'] = $dir . 'Hooks.php';
 $wgAutoloadClasses['Pimple'] = $dir . 'vendor/Pimple.php';
 $wgAutoloadClasses['Flow\Container'] = $dir . 'includes/Container.php';
 $wgAutoloadClasses['Flow\DbFactory'] = $dir . 'includes/DbFactory.php';
+$wgAutoloadClasses['Flow\ParsoidUtils'] = $dir . 'includes/ParsoidUtils.php';
 $wgAutoloadClasses['Flow\Templating'] = $dir . 'includes/Templating.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
@@ -158,6 +159,7 @@ $wgResourceModules += array(
 			'flow-error-external',
 			'flow-error-external-multi',
 			'flow-edit-title-submit',
+			'flow-edit-post-submit',
 		),
 	),
 );
@@ -190,6 +192,6 @@ $wgFlowDefaultWorkflow = 'discussion';
 
 $wgFlowUseParsoid = false;
 $wgFlowParsoidURL = 'http://localhost:8000';
-$wgFlowParsoidPrefix = '_wikitext';
+$wgFlowParsoidPrefix = 'localhost';
 $wgFlowParsoidTimeout = 100;
 
