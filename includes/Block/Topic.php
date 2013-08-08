@@ -133,20 +133,34 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
+	// @todo: I assume not only topic reply, but also TopicListBlock & SummaryBlock's content need to be converted?
 	protected function convertWikitextToHtml5( $wikitext ) {
-		global $wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout;
+		global $wgFlowUseParsoid;
 
-		return \Http::post(
-			$wgFlowParsoidURL . '/' . $wgFlowParsoidPrefix . '/',
-			array(
-				'postData' => array(
-					'content' => $wikitext,
-					'format' => 'html',
-				),
-				'timeout' => $wgFlowParsoidTimeout
-			)
-		);
+		if ( $wgFlowUseParsoid ) {
+			global $wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout;
 
+			return \Http::post(
+				$wgFlowParsoidURL . '/' . $wgFlowParsoidPrefix . '/',
+				array(
+					'postData' => array(
+						'content' => $wikitext,
+						'format' => 'html',
+					),
+					'timeout' => $wgFlowParsoidTimeout
+				)
+			);
+		} else {
+			global $wgParser;
+
+			$title = \Title::newFromText( 'Flow', NS_SPECIAL );
+
+			$options = new \ParserOptions;
+			$options->setTidy( true );
+
+			$output = $wgParser->parse( $wikitext, $title, $options );
+			return $output->getText();
+		}
 	}
 
 	public function commit() {

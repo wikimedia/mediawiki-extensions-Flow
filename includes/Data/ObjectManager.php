@@ -649,7 +649,7 @@ abstract class FeatureIndex implements Index {
 		if ( !$indexed ) {
 			throw new \MWException( 'Unindexable row: ' .json_encode( $new ) );
 		}
-		$this->addToIndex( $indexed, $this->rowCompactor->compactRow( $new ) );
+		$this->addToIndex( $indexed, $new );
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new ) {
@@ -664,8 +664,8 @@ abstract class FeatureIndex implements Index {
 		if ( !$newIndexed ) {
 			throw new \MWException( 'Unindexable row: ' .json_encode( $newIndexed ) );
 		}
-		$this->removeFromIndex( $oldIndexed, $this->rowCompactor->compactRow( $old ) );
-		$this->addToIndex( $newIndexed, $this->rowCompactor->compactRow( $new ) );
+		$this->removeFromIndex( $oldIndexed, $old );
+		$this->addToIndex( $newIndexed, $new );
 	}
 
 	public function onAfterRemove( $object, array $old ) {
@@ -673,7 +673,7 @@ abstract class FeatureIndex implements Index {
 		if ( !$indexed ) {
 			throw new \MWException( 'Unindexable row: ' .json_encode( $old ) );
 		}
-		$this->removeFromIndex( $indexed, $this->rowCompactor->compactRow( $old ) );
+		$this->removeFromIndex( $indexed, $old );
 	}
 
 	public function onAfterLoad( $object, array $old ) {
@@ -792,6 +792,7 @@ class UniqueFeatureIndex extends FeatureIndex {
 	}
 
 	protected function addToIndex( array $indexed, array $row ) {
+		$row = $this->rowCompactor->compactRow( $row );
 		$this->cache->set( $this->cacheKey( $indexed ), array( $row ) );
 	}
 
@@ -831,8 +832,11 @@ class TopKIndex extends FeatureIndex {
 	}
 
 	protected function addToIndex( array $indexed, array $row ) {
+		$create = call_user_func( $this->options['create'], $indexed + $row );
+
+		$row = $this->rowCompactor->compactRow( $row );
 		$cacheKey = $this->cacheKey( $indexed );
-		if ( call_user_func( $this->options['create'], $indexed + $row ) ) {
+		if ( $create ) {
 			$this->cache->set( $cacheKey, array( $row ) );
 			return;
 		}
@@ -857,6 +861,8 @@ class TopKIndex extends FeatureIndex {
 	}
 
 	protected function removeFromIndex( array $indexed, array $row ) {
+		$row = $this->rowCompactor->compactRow( $row );
+
 		$this->cache->merge(
 			$this->cacheKey( $indexed ),
 			function( BagOStuff $cache, $key, $value ) use( $row ) {
