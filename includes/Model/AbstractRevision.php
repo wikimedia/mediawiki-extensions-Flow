@@ -64,9 +64,12 @@ abstract class AbstractRevision {
 		);
 	}
 
+	/**
+	 * NOTE: No guarantee is made here regarding if $this is the newest revision.  Validation
+	 * must happen externally.  DB *will* throw an exception if this attempts to write to db
+	 * and it is not the most recent revision.
+	 */
 	public function newNullRevision( User $user ) {
-		// TODO: how do we know this is the latest revision? we dont ...
-		// basically, this is very very wrong :-(
 		$obj = clone $this;
 		$obj->revId = UUID::create();
 		$obj->userId = $user->getId();
