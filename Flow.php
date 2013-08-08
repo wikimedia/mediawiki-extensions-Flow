@@ -157,6 +157,7 @@ $wgFlowConfig = array(
 // use this workflow
 $wgFlowDefaultWorkflow = 'discussion';
 
+$wgFlowUseParsoid = false;
 $wgFlowParsoidURL = 'http://localhost:8000';
 $wgFlowParsoidPrefix = '_wikitext';
 $wgFlowParsoidTimeout = 100;

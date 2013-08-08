@@ -120,7 +120,7 @@ $c['storage.summary'] = $c->share( function( $c ) {
 		'order' => 'DESC',
 		'shallow' => $pk,
 		'create' => function( array $row ) {
-			return $row['rev_parent_id'] === null;
+			return !isset( $row['rev_parent_id'] ) || $row['rev_parent_id'] === null;
 		},
 	);
 	$indexes = array(
@@ -187,7 +187,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 				'shallow' => $pk,
 				'create' => function( array $row ) {
 					// return true to create instead of merge index
-					return $row['rev_parent_id'] === null;
+					return !isset( $row['rev_parent_id'] ) || $row['rev_parent_id'] === null;
 				},
 		) ),
 		new TopKIndex( $cache, $storage, 'flow_revision:latest_post',
@@ -198,7 +198,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 				'order' => 'DESC',
 				'shallow' => $pk,
 				'create' => function( array $row ) {
-					return $row['rev_parent_id'] === null;
+					return !isset( $row['rev_parent_id'] ) || $row['rev_parent_id'] === null;
 				},
 		) ),
 	);
