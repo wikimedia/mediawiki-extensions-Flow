@@ -111,7 +111,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 			!isset( $options['OFFSET'] ) &&
 			count( $queriedKeys ) === 1 &&
 			in_array( reset( $queriedKeys ), array( 'rev_id', $this->joinField() ) ) &&
-			count( $options['ORDER BY'] ) === 1 &&
+			isset( $options['ORDER BY'] ) && count( $options['ORDER BY'] ) === 1 &&
 			in_array( reset( $options['ORDER BY'] ), array( 'rev_id DESC', "{$this->joinField()} DESC" ) )
 		) {
 			return $this->findMostRecent( $queries );
