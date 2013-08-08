@@ -40,7 +40,7 @@ $wgExtensionCredits['specialpage'][] = array(
 	'descriptionmsg' => 'flow-desc',
 );
 
-$dir = dirname( __FILE__ ) . '/';
+$dir = __DIR__ . '/';
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
 
 // Classes fulfilling the mediawiki extension architecture

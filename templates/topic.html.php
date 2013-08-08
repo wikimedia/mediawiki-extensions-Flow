@@ -48,13 +48,20 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 			. wfMessage( 'flow-content' ) . $post->getContent()
 			. '<ul>';
 		$postAction( 'delete-post', array( 'postId' => $post->getPostId()->getHex() ) );
-		echo '<li>' . Html::element( 'a', array(
-			'href' => $self->generateUrl( $root->getPostId(), 'post-history', array(
-				$block->getName() . '[postId]' => $post->getPostId()->getHex(),
-			) ),
-		), wfMessage( 'flow-post-action-history' )->plain() ) . '<li>';
-		echo '</ul>'
-			. Html::openElement( 'form', array(
+		echo '<li>',
+			 	Html::element( 'a', array(
+					'href' => $self->generateUrl( $root->getPostId(), 'edit-post', array(
+						$block->getName() . '[postId]' => $post->getPostId()->getHex(),
+				) ) ), wfMessage( 'flow-post-action-edit-post' )->plain() ) .
+			'</li>',
+			'<li>',
+			 	Html::element( 'a', array(
+					'href' => $self->generateUrl( $root->getPostId(), 'post-history', array(
+						$block->getName() . '[postId]' => $post->getPostId()->getHex(),
+				) ) ), wfMessage( 'flow-post-action-history' )->plain() ) .
+			'</li>',
+			'</ul>',
+			Html::openElement( 'form', array(
 				'method' => 'POST',
 				// root post id is same as topic workflow id
 				'action' => $self->generateUrl( $root->getPostId(), 'reply' ),
