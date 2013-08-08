@@ -10,7 +10,7 @@ use ExternalStore;
 use User;
 
 abstract class RevisionStorage implements WritableObjectStorage {
-	static protected $allowedUpdateColumns = array( 'text_flags' );
+	static protected $allowedUpdateColumns = array( 'rev_flags' );
 	protected $dbFactory;
 	protected $externalStores;
 
@@ -18,7 +18,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	abstract protected function relatedPk();
 	abstract protected function joinField();
 
-	abstract protected function insertRelated( array $rev, array $related );
+	abstract protected function insertRelated( array $row, array $related );
 	abstract protected function updateRelated( array $rev, array $related );
 	abstract protected function removeRelated( array $row );
 
@@ -40,15 +40,12 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	protected function findInternal( array $attributes, array $options = array() ) {
 		$dbr = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbr->select(
-			array( $this->joinTable(), 'rev' => 'flow_revision', 'text' => 'flow_text' ),
+			array( $this->joinTable(), 'rev' => 'flow_revision' ),
 			'*',
 			UUID::convertUUIDs( $attributes ),
 			__METHOD__,
 			$options,
-			array(
-				'rev' => array( 'JOIN', $this->joinField() . ' = rev_id' ),
-				'text' => array( 'JOIN', "text_id = rev_text_id" ),
-			)
+			array( 'rev' => array( 'JOIN', $this->joinField() . ' = rev_id' ) )
 		);
 		if ( !$res ) {
 			return null;
@@ -66,23 +63,8 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		} else {
 			$res = $this->findMultiInternal( $queries, $options );
 		}
-		if ( $this->externalStore ) {
-			$res = Merger::mergeMulti(
-				$res,
-				'text_content',
-				array( 'ExternalStore', 'batchFetchFromURLs' )
-			);
-		}
-
-		// decompress content
-		foreach ( $res as &$record ) {
-			foreach ( $record as $id => &$row ) {
-				$flags = explode( ',', $row['text_flags'] );
-				$row['text_content'] = \Revision::decompressRevisionText( $row['text_content'], $flags );
-			}
-		}
-
-		return $res;
+		// Fetches content for all revisions flagged 'external'
+		return $this->mergeExternalContent( $res );
 	}
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
@@ -167,16 +149,12 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		//	  JOIN flow_revision ON tree_rev_id = rev_id
 		//   WHERE tree_rev_id IN (...)
 		$res = $dbr->select(
-			array( 'flow_revision', 'text' => 'flow_text', 'rev' => $this->joinTable() ),
+			array( 'flow_revision', 'rev' => $this->joinTable() ),
 			'*',
 			array( 'rev_id' => $revisionIds ),
 			__METHOD__,
 			array(),
-			array(
-				'rev' => array( 'JOIN', "rev_id = $joinField" ),
-				// not efficient, likely to pull same content multiple times.
-				'text' => array( 'JOIN', "text_id = rev_text_id" ),
-			)
+			array( 'rev' => array( 'JOIN', "rev_id = $joinField" ) )
 		);
 		if ( !$res ) {
 			// TODO: dont fail, but dont end up caching bad result either
@@ -190,6 +168,37 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		}
 
 		return $duplicator->getResult();
+	}
+
+	/**
+	 * Handle the injection of externalstore data into a revision
+	 * row.  All rows exiting this method will have rev_content_url
+	 * set to either null or the external url.  The rev_content
+	 * field will be the final content (possibly compressed still)
+	 *
+	 * @param array $cacheResult 2d array of rows
+	 * @return array 2d array of rows with content merged and rev_content_url populated
+	 */
+	protected function mergeExternalContent( array $cacheResult ) {
+		foreach ( $cacheResult as &$source ) {
+			foreach ( $source as &$row ) {
+				$flags = explode( ',', $row['rev_flags'] );
+				if ( in_array( 'external', $flags ) ) {
+					$row['rev_content_url'] = $row['rev_content'];
+					$row['rev_content'] = '';
+				} else {
+					$row['rev_content_url'] = null;
+				}
+			}
+		}
+
+		return Merger::mergeMulti(
+			$cacheResult,
+			/* fromKey = */ 'rev_content_url',
+			/* callable = */ array( 'ExternalStore', 'batchFetchFromURLs' ),
+			/* name = */ 'rev_content',
+			/* default = */ ''
+		);
 	}
 
 	protected function buildCompositeInCondition( DatabaseBase $dbr, array $queries ) {
@@ -213,12 +222,23 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		}
 	}
 
+	/**
+	 * We take $row as a reference because we *must* be able to effect the cached content
+	 * of $row.  This is specifically required so that external store can change the content
+	 * into a url pointing to the content and adjust its flags.  The other alternative would
+	 * be to invent an onBeforeInsert lifecycle event.
+	 */
 	public function insert( array $row ) {
-		if ( !isset( $row['rev_text_id'] ) ) {
-			$row['rev_text_id'] = $this->insertContent( $row['text_content'], $row['text_flags'] );
-		}
-		unset( $row['text_content'], $row['text_flags'] );
+		// Check if we need to insert new content
+		$row = $this->handleContentInsertion( $row );
 		list( $rev, $related ) = $this->splitUpdate( $row );
+		// If a content url is available store that in the db
+		// instead of real content.
+		if ( isset( $rev['rev_content_url'] ) ) {
+			$rev['rev_content'] = $rev['rev_content_url'];
+		}
+		unset( $rev['rev_content_url'] );
+
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
 			'flow_revision',
@@ -230,33 +250,31 @@ abstract class RevisionStorage implements WritableObjectStorage {
 			return false;
 		}
 
-		return $this->insertRelated( $rev, $related );
+		return $this->insertRelated( $row, $related );
 	}
 
-	protected function insertContent( $data, $flags = '' ) {
-		$compressionFlags = \Revision::compressRevisionText( $data );
-		$flags = array_merge( explode( ',', $flags ), explode( ',', $compressionFlags ) );
-		$flags = array_filter( $flags );
+	protected function handleContentInsertion( array $row ) {
+		if ( isset( $row['rev_content_url'] ) ) {
+			// Content already exists
+			return $row;
+		}
+
+		$flags = array_unique( array_merge(
+			explode( ',', $row['rev_flags'] ),
+			explode( ',', \Revision::compressRevisionText( $row['rev_content'] ) )
+		) );
 
 		if ( $this->externalStore ) {
-			// Store and get the URL
-			$data = ExternalStore::insertWithFallback( $this->externalStore, $data );
-			if ( !$data ) {
+			$url = ExternalStore::insertWithFallback( $this->externalStore, $row['rev_content'] );
+			if ( !$url ) {
 				throw new \MWException( "Unable to store text to external storage" );
 			}
 			$flags[] = 'external';
+			$row['rev_content_url'] = $url;
 		}
 
-		$dbw = $this->dbFactory->getDB( DB_MASTER );
-		$dbw->insert(
-			'flow_text',
-			array(
-				'text_content' => $data,
-				'text_flags' => implode( ',', array_unique( $flags ) ),
-			),
-			__METHOD__
-		);
-		return $dbw->insertId();
+		$row['rev_flags'] = implode( ',', $flags );
+		return $row;
 	}
 
 	// This is to *UPDATE* a revision.  It should hardly ever be used.
@@ -357,20 +375,21 @@ class PostRevisionStorage extends RevisionStorage {
 			UUID::convertUUIDs( $tree ),
 			__METHOD__
 		);
-		if ( !$res ) {
-			return false;
-		}
 
 		// If this is a brand new root revision it needs to be added to the tree
 		// If it has a rev_parent_id then its already a part of the tree
-		if ( $row['rev_parent_id'] === null ) {
-			return (bool) $this->treeRepo->insert(
+		if ( $res && $row['rev_parent_id'] === null ) {
+			$res = (bool) $this->treeRepo->insert(
 				UUID::create( $tree['tree_rev_descendant_id'] ),
 				UUID::create( $tree['tree_parent_id'] )
 			);
 		}
 
-		return true;
+		if ( !$res ) {
+			return false;
+		}
+
+		return $row;
 	}
 
 	// Topic split will primarily be done through the TreeRepository directly,  but
@@ -407,12 +426,16 @@ class SummaryRevisionStorage extends RevisionStorage {
 		return 'summary_rev_id';
 	}
 
-	protected function insertRelated( array $rev, array $summary ) {
-		return (bool) $this->dbFactory->getDB( DB_MASTER )->insert(
+	protected function insertRelated( array $row, array $summary ) {
+		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->joinTable(),
 			$summary,
 			__METHOD__
 		);
+		if ( !$res ) {
+			return false;
+		}
+		return $row;
 	}
 
 	// There is changable data in the summary half, it just points to the correct workflow
@@ -443,14 +466,21 @@ class Merger {
 	 * @param callable $callable Callable receiving array of foreign keys returning map
 	 *                           from foreign key to its value
 	 * @param string   $name     Name to merge loaded foreign data as.  If null uses $fromKey.
+	 * @param string   $default  Value to use when no matching foreign value can be located
 	 * @return array $source array with all found foreign key values merged
 	 */
-	static public function merge( array $source, $fromKey, $callable, $name = null ) {
+	static public function merge( array $source, $fromKey, $callable, $name = null, $default = '' ) {
 		if ( $name === null ) {
 			$name = $fromKey;
 		}
 		foreach ( $source as $row ) {
-			$ids[] = $row[$fromKey];
+			$id = $row[$fromKey];
+			if ( $id !== null ) {
+				$ids[] = $id;
+			}
+		}
+		if ( !$ids ) {
+			return $source;
 		}
 		$res = call_user_func( $callable, $ids );
 		if ( $res === false ) {
@@ -458,9 +488,13 @@ class Merger {
 		}
 		foreach ( $source as $idx => $row ) {
 			$id = $row[$fromKey];
-			if ( isset( $res[$id] ) ) {
-				$source[$idx][$name] = $res[$id];
+			if ( $id === null ) {
+				continue;
 			}
+			if ( $name === $fromKey ) {
+				$source[$idx]["{$name}_url"] = $source[$idx][$name];
+			}
+			$source[$idx][$name] = isset( $res[$id] ) ? $res[$id] : $default;
 		}
 		return $source;
 	}
@@ -468,14 +502,20 @@ class Merger {
 	/**
 	 * Same as self::merge, but for 3-dimensional source arrays
 	 */
-	static public function mergeMulti( array $multiSource, $fromKey, $callable, $name = null ) {
+	static public function mergeMulti( array $multiSource, $fromKey, $callable, $name = null, $default = '' ) {
 		if ( $name === null ) {
 			$name = $fromKey;
 		}
 		foreach ( $multiSource as $source ) {
 			foreach ( $source as $row ) {
-				$ids[] = $row[$fromKey];
+				$id = $row[$fromKey];
+				if ( $id !== null ) {
+					$ids[] = $id;
+				}
 			}
+		}
+		if ( !$ids ) {
+			return $multiSource;
 		}
 		$res = call_user_func( $callable, array_unique( $ids ) );
 		if ( $res === false ) {
@@ -484,9 +524,13 @@ class Merger {
 		foreach ( $multiSource as $i => $source ) {
 			foreach ( $source as $j => $row ) {
 				$id = $row[$fromKey];
-				if ( isset( $res[$id] ) ) {
-					$multiSource[$i][$j][$name] = $res[$id];
+				if ( $id === null ) {
+					continue;
 				}
+				if ( $name === $fromKey ) {
+					$multiSource[$i][$j]["{$name}_url"] = $id;
+				}
+				$multiSource[$i][$j][$name] = isset( $res[$id] ) ? $res[$id] : $default;
 			}
 		}
 		return $multiSource;

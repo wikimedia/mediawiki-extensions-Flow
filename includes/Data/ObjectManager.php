@@ -50,6 +50,9 @@ interface ObjectStorage extends \IteratorAggregate {
 // Note that while ObjectLocator implements the above ObjectStorage interface, ObjectManger
 // cant use this interface because backing stores deal in rows, and OM deals in objects.
 interface WritableObjectStorage extends ObjectStorage {
+	/**
+	 * @return array The resulting $row including any auto-assigned ids or false on failure
+	 */
 	function insert( array $row );
 	function update( array $old, array $new );
 	function remove( array $row );
@@ -62,9 +65,15 @@ interface ObjectMapper {
 	function toStorageRow( $object );
 
 	/**
-	 * Convert a db row to its domain model.
+	 * Convert a db row to its domain model. Object passing is intended for
+	 * updating the object to match a changed storage representation.
+	 *
+	 * @param array $row assoc array representing the domain model
+	 * @param object|null $object The domain model to populate, creates when null
+	 * @return object The domain model populated with $row
+	 * @throws Exception When object is the wrong class for the mapper
 	 */
-	function fromStorageRow( array $row );
+	function fromStorageRow( array $row, $object = null );
 }
 
 // An Index is just a store that receives updates via handler.
@@ -330,12 +339,17 @@ class ObjectManager extends ObjectLocator {
 
 	protected function insert( $object ) {
 		try {
-			$new = $this->mapper->toStorageRow( $object );
-			$this->storage->insert( $new );
-			foreach ( $this->lifecycleHandlers as $handler ) {
-				$handler->onAfterInsert( $object, $new );
+			$row = $this->mapper->toStorageRow( $object );
+			$stored = $this->storage->insert( $row );
+			if ( !$stored ) {
+				throw new \Exception( 'failed insert' );
 			}
-			$this->loaded[$object] = $new;
+			// propogate auto-id's and such back into $object
+			$this->mapper->fromStorageRow( $stored, $object );
+			foreach ( $this->lifecycleHandlers as $handler ) {
+				$handler->onAfterInsert( $object, $stored );
+			}
+			$this->loaded[$object] = $stored;
 		} catch ( \Exception $e ) {
 			throw new PersistenceException( 'failed insert', null, $e );
 		}
@@ -449,12 +463,18 @@ class BasicObjectMapper implements ObjectMapper {
 	public function toStorageRow( $object ) {
 		return call_user_func( $this->toStorageRow, $object );
 	}
-	public function fromStorageRow( array $row ) {
-		return call_user_func( $this->fromStorageRow, $row );
+	public function fromStorageRow( array $row, $object = null ) {
+		return call_user_func( $this->fromStorageRow, $row, $object );
 	}
 }
 
-// Doesn't support updating primary key value yet
+/**
+ * Standard backing store for data model with no special cases which is stored
+ * in a single table in mysql.
+ *
+ * Doesn't support updating primary key value yet
+ * Doesn't support auto-increment pk yet
+ */
 class BasicDbStorage implements WritableObjectStorage {
 	public function __construct( DbFactory $dbFactory, $table, array $primaryKey ) {
 		if ( !$primaryKey ) {
@@ -465,13 +485,19 @@ class BasicDbStorage implements WritableObjectStorage {
 		$this->primaryKey = $primaryKey;
 	}
 
+	// Does not support auto-increment id yet
 	public function insert( array $row ) {
 		// insert returns boolean true/false
-		return $this->dbFactory->getDB( DB_MASTER )->insert(
+		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->table,
 			$row,
 			__METHOD__
 		);
+		if ( $res ) {
+			return $row;
+		} else {
+			return false;
+		}
 	}
 
 	public function update( array $old, array $new ) {

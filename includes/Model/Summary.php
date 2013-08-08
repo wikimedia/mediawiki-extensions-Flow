@@ -11,15 +11,15 @@ class Summary extends AbstractRevision {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
-		$obj->content = $content;
 		$obj->userId = $user->getId();
 		$obj->userText = $user->getName();
 		$obj->prevRevision = null; // no prior revision
+		$obj->setContent( $content );
 		return $obj;
 	}
 
-	static public function fromStorageRow( array $row ) {
-		$obj = parent::fromStorageRow( $row );
+	static public function fromStorageRow( array $row, $obj = null ) {
+		$obj = parent::fromStorageRow( $row, $obj );
 		$obj->workflowId = UUID::create( $row['summary_workflow_id'] );
 		return $obj;
 	}

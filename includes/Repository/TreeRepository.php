@@ -95,7 +95,9 @@ class TreeRepository {
 			throw new MWEception( 'Failed inserting new tree node' );
 		}
 
+
 		$this->appendToSubtreeCache( $descendant, $path );
+		return true;
 	}
 
 	protected function appendToSubtreeCache( UUID $descendant, array $rootPath ) {
