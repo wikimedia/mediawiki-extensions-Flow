@@ -29,7 +29,13 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-reply-placeholder' => 'Click to reply to $1. Be nice!',
 	'flow-reply-submit' => 'Post Reply',
 
+	'flow-edit-post-submit' => 'Submit changes',
+
+	'flow-post-action-view' => 'Permalink',
+	'flow-post-action-post-history' => 'Post history',
 	'flow-post-action-delete-post' => 'Delete post',
+	'flow-post-action-edit-post' => 'Edit post',
+	'flow-post-action-edit' => 'Edit',
 	'flow-post-action-restore-post' => 'Restore post',
 	'flow-topic-action-edit-title' => 'Edit Title',
 

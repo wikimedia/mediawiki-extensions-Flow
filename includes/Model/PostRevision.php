@@ -106,6 +106,25 @@ class PostRevision extends AbstractRevision {
 		return $this->children;
 	}
 
+	public function findDescendant( $postId ) {
+		if ( ! $postId instanceof UUID ) {
+			$postId = UUID::create( $postId );
+		}
+
+		$stack = array( $this );
+		while( $stack ) {
+			$post = array_pop( $stack );
+			if ( $post->getPostId()->equals( $postId ) ) {
+				return $post;
+			}
+			foreach ( $post->getChildren() as $child ) {
+				$stack[] = $child;
+			}
+		}
+
+		throw new \Exception( 'Requested postId is not available within post tree' );
+	}
+
 	/**
 	 * Returns 1 if $this is newer than $rev, -1 is $rev is newer than
 	 * $this, and 0 if created at same moment.
