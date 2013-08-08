@@ -28,6 +28,6 @@ class UrlGenerator {
 		}
 
 		return Title::newFromText( 'Flow/' . $workflow->getTitleFullText(), NS_SPECIAL )
-			->getFullURL( $query );
+			->getLinkURL( $query );
 	}
 }

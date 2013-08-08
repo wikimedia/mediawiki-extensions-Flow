@@ -90,7 +90,7 @@ class Workflow {
 		if ( $this->wiki !== wfWikiId() ) {
 			throw new \MWException( 'Interwiki not implemented' );
 		}
-		return Title::newFromText( $this->titleText, $this->namespace );
+		return Title::makeTitleSafe( $this->namespace, $this->titleText );
 	}
 
 	public function getId() { return $this->id; }

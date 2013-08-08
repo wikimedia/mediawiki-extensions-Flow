@@ -914,3 +914,7 @@ tr.historyheader {
 .flow-edit-title-textbox {
 	width: 70%;
 }
+
+.flow-edit-post-form {
+	padding: 4px;
+}
