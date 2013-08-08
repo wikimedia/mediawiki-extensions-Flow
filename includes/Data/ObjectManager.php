@@ -1115,11 +1115,6 @@ class SortArrayByKeys {
 		return self::compare( $a, $b, $this->keys, $this->strict );
 	}
 
-	public function setStrict() {
-		$this->strict = true;
-		return $this;
-	}
-
 	static public function compare( $a, $b, $keys, $strict = false ) {
 		$key = array_shift( $keys );
 		if ( !isset( $a[$key] ) ) {
@@ -1135,6 +1130,7 @@ class SortArrayByKeys {
 }
 
 // Untested method of handling duplicate requests for the same data
+// Preserves any BagOStuff semantics like BufferedCache does
 class LocalBufferedCache extends BufferedCache {
 	protected $internal = array();
 
@@ -1149,7 +1145,10 @@ class LocalBufferedCache extends BufferedCache {
 		$found = array();
 		foreach ( $keys as $idx => $key ) {
 			if ( array_key_exists( $key, $this->internal ) ) {
-				$found[$key] = $this->internal[$key];
+				// BagOStuff::multiGet doesn't return the unfound keys
+				if ( $this->internal[$key] !== false ) {
+					$found[$key] = $this->internal[$key];
+				}
 				unset( $keys[$idx] );
 			}
 		}
@@ -1157,6 +1156,11 @@ class LocalBufferedCache extends BufferedCache {
 			$flipped = array_flip( $keys );
 			foreach ( parent::getMulti( $keys ) as $key => $value ) {
 				$this->internal[$key] = $found[$key] = $value;
+				unset( $keys[$flipped[$key]] );
+			}
+			// BagOStuff::multiGet doesn't return the unfound keys, but we cache the result
+			foreach ( $keys as $key ) {
+				$this->internal[$key] = false;
 			}
 		}
 		return $found;
@@ -1174,7 +1178,7 @@ class LocalBufferedCache extends BufferedCache {
 			);
 			// speculative ... could cause a ton of bugs due to normal assumptions
 			// how to do this reasonably?
-			if ( !isset( $this->internal[$key] ) ) {
+			if ( !array_key_exists( $key, $this->internal ) || $this->internal[$key] === false ) {
 				$this->internal[$key] = $value;
 			}
 		}
