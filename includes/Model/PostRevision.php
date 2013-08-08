@@ -41,7 +41,7 @@ class PostRevision extends AbstractRevision {
 		$obj = parent::fromStorageRow( $row );
 
 		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
-		$obj->postId = UUID::create( $row['tree_rev_descendant'] );
+		$obj->postId = UUID::create( $row['tree_rev_descendant_id'] );
 		$obj->origCreateTime = $row['tree_orig_create_time'];
 		$obj->origUserId = $row['tree_orig_user_id'];
 		$obj->origUserText = $row['tree_orig_user_text'];
@@ -52,7 +52,7 @@ class PostRevision extends AbstractRevision {
 	static public function toStorageRow( $rev ) {
 		return parent::toStorageRow( $rev ) + array(
 			'tree_parent_id' => $rev->replyToId ? $rev->replyToId->getBinary() : null,
-			'tree_rev_descendant' => $rev->postId->getBinary(),
+			'tree_rev_descendant_id' => $rev->postId->getBinary(),
 			'tree_rev_id' => $rev->revId->getBinary(),
 			// rest of tree_ is denormalized data about first post revision
 			'tree_orig_create_time' => $rev->origCreateTime,

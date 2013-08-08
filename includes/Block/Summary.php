@@ -17,6 +17,7 @@ class SummaryBlock extends AbstractBlock {
 	protected $supportedActions = array( 'edit-summary' );
 
 	public function init( $action ) {
+		parent::init( $action );
 		if ( $this->workflow->isNew() ) {
 			$this->needCreate = true;
 			return;
@@ -37,16 +38,19 @@ class SummaryBlock extends AbstractBlock {
 		if ( $this->summary ) {
 			if ( empty( $this->submitted['prev_revision'] ) ) {
 				$this->errors['prev_revision'] = wfMessage( 'flow-missing-prev-revision-identifier' );
-			} elseif ( $this->summary->getRevisionId() !== $this->submitted['prev_revision'] ) {
-				// This is *NOT* an effective way to ensure prev revision matches, that needs
-				// to be done at the database level when commiting.  This is just a short circuit.
-				$this->errors['prev_revision'] = wfMessage( 'flow-prev-revision-mismatch' );
+			} elseif ( $this->summary->getRevisionId()->getHex() !== $this->submitted['prev_revision'] ) {
+				// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
+				// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
+				// parent we and the submitter think is the latest, our insert will fail.
+				// TODO: Catch whatever exception happens there, make sure the most recent revision is the one in the cache before
+				// handing user back to specific dialog indicating race condition
+				$this->errors['prev_revision'] = wfMessage( 'flow-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->summary->getRevisionId()->getHex() );
 			}
-			// this isnt really part of validate,
+			// this isnt really part of validate, but we want the error-rendering template to see the users edited summary
 			$this->summary = $this->summary->newNextRevision( $this->user, $this->submitted['content'] );
 		} else {
 			if ( empty( $this->submitted['prev_revision'] ) ) {
-				// this isnt really part of validate either ... :-(
+				// this isnt really part of validate either, should validate be renamed or should this logic be redone?
 				$this->summary = Summary::create( $this->workflow, $this->user, $this->submitted['content'] );
 			} else {
 				// User submitted a previous revision, but we couldn't find one.  This is likely
@@ -66,6 +70,9 @@ class SummaryBlock extends AbstractBlock {
 	public function commit() {
 		switch( $this->action ) {
 		case 'edit-summary':
+			if ( $this->summary ) {
+				$summary = $this-
+			}
 			$this->storage->put( $this->summary );
 			break;
 

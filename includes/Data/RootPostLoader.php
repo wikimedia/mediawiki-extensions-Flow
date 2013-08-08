@@ -28,7 +28,7 @@ class RootPostLoader {
 		$allPostIds =  $this->fetchRelatedPostIds( $topicIds );
 		$queries = array();
 		foreach ( $allPostIds as $postId ) {
-			$queries[] = array( 'tree_rev_descendant' => $postId );
+			$queries[] = array( 'tree_rev_descendant_id' => $postId );
 		}
 		$found = $this->storage->findMulti( 'PostRevision', $queries, array(
 			'sort' => 'rev_id',

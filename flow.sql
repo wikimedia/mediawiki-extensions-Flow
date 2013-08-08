@@ -53,7 +53,7 @@ CREATE UNIQUE INDEX /*i*/flow_topic_list_pk ON /*_*/flow_topic_list( topic_list_
 -- also denormalizes information commonly needed with a revision
 CREATE TABLE /*_*/flow_tree_revision (
 	-- the id of the post in the post tree
-	tree_rev_descendant binary(16) not null,
+	tree_rev_descendant_id binary(16) not null,
 	-- fk to flow_revision
 	tree_rev_id binary(16) not null,
 	-- denormalized so we dont need to keep finding the first revision of a post
@@ -66,8 +66,8 @@ CREATE TABLE /*_*/flow_tree_revision (
 	PRIMARY KEY( tree_rev_id )
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/flow_tree_descendant_revisions 
-	ON /*_*/flow_tree_revision ( tree_rev_descendant, tree_rev_id );
+CREATE UNIQUE INDEX /*i*/flow_tree_descendant_id_revisions 
+	ON /*_*/flow_tree_revision ( tree_rev_descendant_id, tree_rev_id );
 
 -- Summary Content
 -- Instead of summary, should this be more generic 'revisioned scratchpad' 
@@ -135,13 +135,13 @@ CREATE TABLE /*_*/flow_text (
 -- Closure table implementation of tree storage in sql
 -- We may be able to go simpler than this
 CREATE TABLE /*_*/flow_tree_node (
-	tree_ancestor binary(16) not null,
-	tree_descendant binary(16) not null,
+	tree_ancestor_id binary(16) not null,
+	tree_descendant_id binary(16) not null,
 	tree_depth smallint not null
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/flow_tree_node_pk ON /*_*/flow_tree_node (tree_ancestor, tree_descendant);
-CREATE UNIQUE INDEX /*i*/flow_tree_constraint ON /*_*/flow_tree_node (tree_descendant, tree_depth);
+CREATE UNIQUE INDEX /*i*/flow_tree_node_pk ON /*_*/flow_tree_node (tree_ancestor_id, tree_descendant_id);
+CREATE UNIQUE INDEX /*i*/flow_tree_constraint ON /*_*/flow_tree_node (tree_descendant_id, tree_depth);
 
 -- These dont belong here
 INSERT INTO flow_definition

@@ -35,9 +35,6 @@ class Workflow {
 	}
 
 	static public function toStorageRow( Workflow $obj ) {
-		if ( ! $obj->definitionId instanceof UUID ) {
-			die( var_dump( $obj->definitionId, $obj ) );
-		}
 		return array(
 			'workflow_id' => $obj->id->getBinary(),
 			'workflow_wiki' => $obj->wiki,
@@ -76,9 +73,6 @@ class Workflow {
 		$obj->lockState = 0;
 		$obj->definitionId = $definition->getId();
 
-		if ( ! $obj->definitionId instanceof UUID ) {
-			die( var_dump( $obj, $definition ) );
-		}
 		return $obj;
 	}
 
@@ -123,9 +117,6 @@ class Workflow {
 			return false; // non-existant page
 		}
 		if ( $title->getNamespace() !== $this->namespace ) {
-			var_dump( $title->getNamespace() );
-			var_dump( $this->namespace );
-			die();
 			throw new \Exception( 'namespace' );
 		}
 		if ( $title->getDBkey() !== $this->titleText ) {

@@ -331,6 +331,11 @@ class ObjectManager extends ObjectLocator {
 		try {
 			$old = $this->loaded[$object];
 			$new = $this->mapper->toStorageRow( $object );
+			foreach ( $new as $k => $x ) {
+				if ( $x !== null && !is_scalar( $x ) ) {
+					throw new \RuntimeException( "Expected mapper to return all scalars, but '$k' is " . gettype( $x ) );
+				}
+			}
 			if ( self::arrayEquals( $old, $new ) ) {
 				return;
 			}
@@ -566,7 +571,7 @@ class BasicDbStorage implements WritableObjectStorage {
 }
 
 /**
- * Index objects with similar features into the same buckets.
+ * Index objects with equal features($indexedColumns) into the same buckets.
  */
 abstract class FeatureIndex implements Index {
 
@@ -621,9 +626,10 @@ abstract class FeatureIndex implements Index {
 	public function onAfterInsert( $object, array $new) {
 		$indexed = ObjectManager::splitFromRow( $new , $this->indexed );
 		// is un-indexable a bail-worthy occasion? Probably not
-		if ( $indexed ) {
-			$this->addToIndex( $indexed, $this->compactRow( $new ) );
+		if ( !$indexed ) {
+			throw new \MWException( 'Unindexable row: ' .json_encode( $new ) );
 		}
+		$this->addToIndex( $indexed, $this->compactRow( $new ) );
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new ) {
@@ -632,19 +638,22 @@ abstract class FeatureIndex implements Index {
 		// TODO: optimize $oldIndexed === $newIndexed, which should be common
 		// TODO: optimize out occurances where data changed but not the values
 		//       indexed or stored in the index(for shallow indexes)
-		if ( $oldIndexed ) {
-			$this->removeFromIndex( $oldIndexed, $this->compactRow( $old ) );
+		if ( !$oldIndexed ) {
+			throw new \MWException( 'Unindexable row: ' .json_encode( $oldIndexed ) );
 		}
-		if ( $newIndexed ) {
-			$this->addToIndex( $newIndexed, $this->compactRow( $new ) );
+		if ( !$newIndexed ) {
+			throw new \MWException( 'Unindexable row: ' .json_encode( $newIndexed ) );
 		}
+		$this->removeFromIndex( $oldIndexed, $this->compactRow( $old ) );
+		$this->addToIndex( $newIndexed, $this->compactRow( $new ) );
 	}
 
 	public function onAfterRemove( $object, array $old ) {
 		$indexed = ObjectManager::splitFromRow( $old, $this->indexed );
-		if ( $indexed ) {
-			$this->removeFromIndex( $indexed, $this->compactRow( $old ) );
+		if ( !$indexed ) {
+			throw new \MWException( 'Unindexable row: ' .json_encode( $old ) );
 		}
+		$this->removeFromIndex( $indexed, $this->compactRow( $old ) );
 	}
 
 	public function onAfterLoad( $object, array $old ) {
@@ -675,7 +684,7 @@ abstract class FeatureIndex implements Index {
 			$keyToIdx[$key][] = $idx;
 			if ( !isset( $keyToQuery[$key] ) ) {
 				$idxToKey[$idx] = $key;
-				$keyToQuery[$key] = $query;
+				$keyToQuery[$key] = UUID::convertUUIDs( $query );
 			}
 		}
 
@@ -699,6 +708,13 @@ abstract class FeatureIndex implements Index {
 			if ( !$rows ) {
 				// Nothing found,  should we cache failures as well as success?
 				continue;
+			}
+			foreach( $rows as $row ) {
+				foreach ( $row as $k => $foo ) {
+					if ( $foo !== null && !is_scalar( $foo ) ) {
+						throw new \Exception( "Received non-scalar row value for '$k' from: " . get_class( $this->storage ) );
+					}
+				}
 			}
 			$this->cache->add( $idxToKey[$idx], $this->compactRows( $rows ) );
 			$results[$idx] = $rows;
@@ -741,6 +757,11 @@ abstract class FeatureIndex implements Index {
 		foreach ( $this->indexed as $key ) {
 			unset( $row[$key] );
 		}
+		foreach ( $row as $foo ) {
+			if ( $foo !== null && !is_scalar( $foo ) ) {
+				throw new \MWException( 'Attempted to compact row containing objects, must be scalar values: ' . print_r( $foo, true ) );
+			}
+		}
 		return $row;
 	}
 
@@ -758,7 +779,17 @@ abstract class FeatureIndex implements Index {
 		foreach ( $cached as $key => $rows ) {
 			$expanded = array();
 			$query = $keyToQuery[$key];
+			foreach ( $query as $foo ) {
+				if ( $foo !== null && !is_scalar( $foo ) ) {
+					throw new \MWException( 'Query values to merge with cache contains objects, should be scalar values: ' . print_r( $foo, true ) );
+				}
+			}
 			foreach ( $rows as $k => $row ) {
+				foreach ( $row as $foo ) {
+					if ( $foo !== null && !is_scalar( $foo ) ) {
+						throw new \MWException( 'Result from cache contains objects, should be scalar values: ' . print_r( $foo, true ) );
+					}
+				}
 				$cached[$key][$k] = $row + $query;
 			}
 		}
@@ -798,7 +829,7 @@ class UniqueFeatureIndex extends FeatureIndex {
 }
 
 /**
- * Holds the top k items matching
+ * Holds the top k items with matching $indexed columns.  List is sorted and truncated to specified size.
  */
 class TopKIndex extends FeatureIndex {
 	public function __construct( BufferedCache $cache, ObjectStorage $storage, $prefix, array $indexed, array $options = array() ) {
@@ -899,6 +930,8 @@ class TopKIndex extends FeatureIndex {
 	}
 
 	protected function compactRow( array $row ) {
+		// An OO solution wouldn't check this, it would have a compact/expand
+		// implementation
 		if ( isset( $this->options['shallow'] ) ) {
 			$keys = array_merge(
 				$this->options['shallow']->getPrimaryKeyColumns(),
@@ -955,6 +988,13 @@ class TopKIndex extends FeatureIndex {
 
 }
 
+/**
+ * Performs the equivilent of an SQL ORDER BY c1 ASC, c2 ASC...
+ * Always sorts in ascending order.  array_reverse to get all descending.
+ * For varied asc/desc needs implementation changes.
+ *
+ * usage: usort( $array, new SortArrayByKeys( array( 'c1', 'c2' ) ) );
+ */
 class SortArrayByKeys {
 	protected $keys;
 	protected $strict;

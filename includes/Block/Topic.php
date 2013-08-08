@@ -32,10 +32,6 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	public function init( $action ) {
-		$this->action = $action;
-	}
-
 	protected function validate() {
 		switch( $this->action ) {
 		case 'reply':
@@ -86,21 +82,19 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function validateDeleteTopic() {
-		global $wgUser; // ugh
-		if ( !$this->workflow->lock( $wgUser ) ) {
+		if ( !$this->workflow->lock( $this->user ) ) {
 			$this->errors['delete-topic'] = wfMessage( 'flow-delete-topic-failed' );
 		}
 	}
 
 	protected function validateDeletePost() {
-		global $wgUser; // ugh
 		if ( empty( $this->submitted['postId'] ) ) {
 			$this->errors['delete-post'] = wfMessage( 'flow-no-post-provided' );
 			return;
 		}
 		$found = $this->storage->find(
 			'PostRevision',
-			array( 'tree_rev_descendant' => UUID::create( $this->submitted['postId'] ) ),
+			array( 'tree_rev_descendant_id' => UUID::create( $this->submitted['postId'] ) ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);
 		if ( !$found ) {
@@ -111,21 +105,20 @@ class TopicBlock extends AbstractBlock {
 		$post = reset( $found );
 
 		// returns new revision to save
-		$this->newRevision = $post->addFlag( $wgUser, 'deleted', 'flow-comment-deleted' );
+		$this->newRevision = $post->addFlag( $this->user, 'deleted', 'flow-comment-deleted' );
 		if ( !$this->newRevision ) {
 			$this->errors['delete-post'] = wfMessage( 'flow-delete-post-failed' );
 		}
 	}
 
 	protected function validateRestorePost() {
-		global $wgUser;
 		if ( empty( $this->submitted['postId'] ) ) {
 			$this->errors['restore-post'] = wfMessage( 'flow-no-post-provided' );
 			return;
 		}
 		$found = $this->storage->find(
 			'PostRevision',
-			array( 'tree_rev_descendant' => UUID::create( $this->submitted['postId'] ) ),
+			array( 'tree_rev_descendant_id' => UUID::create( $this->submitted['postId'] ) ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);
 		if ( !$found ) {
@@ -134,7 +127,7 @@ class TopicBlock extends AbstractBlock {
 		}
 		$post = reset( $found );
 
-		$this->newRevision = $post->removeFlag( $wgUser, 'deleted', 'flow-comment-restored' );
+		$this->newRevision = $post->removeFlag( $this->user, 'deleted', 'flow-comment-restored' );
 		if ( !$this->newRevision ) {
 			$this->errors['restore-post'] = wfMessage( 'flow-post-restore-failed' );
 		}
@@ -186,7 +179,7 @@ class TopicBlock extends AbstractBlock {
 			} else {
 				$history = $this->storage->find(
 					'PostRevision',
-					array( 'tree_rev_descendant' => UUID::create( $options['postId'] ) ),
+					array( 'tree_rev_descendant_id' => UUID::create( $options['postId'] ) ),
 					array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 				);
 			}

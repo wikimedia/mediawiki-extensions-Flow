@@ -6,7 +6,8 @@ $c = new Flow\Container;
 $c['user'] = $GLOBALS['wgUser'];
 $c['output'] = $GLOBALS['wgOut'];
 $c['request'] = $GLOBALS['wgRequest'];
-$c['memcache'] = new \HashBagOStuff; //$GLOBALS['wgMemc'];
+//$c['memcache'] = new \HashBagOStuff;
+$c['memcache'] = $GLOBALS['wgMemc'];
 
 // Always returns the correct database for flow storage
 $c['db.factory'] = $c->share( function( $c ) {
@@ -172,7 +173,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 	$indexes = array(
 		new UniqueFeatureIndex( $cache, $storage, 'flow_revision:pk', array( 'rev_id' ) ),
 		new TopKIndex( $cache, $storage, 'flow_revision:descendant',
-			array( 'tree_rev_descendant' ),
+			array( 'tree_rev_descendant_id' ),
 			array(
 				'limit' => 100,
 				'sort' => 'rev_id',
@@ -184,7 +185,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 				},
 		) ),
 		new TopKIndex( $cache, $storage, 'flow_revision:latest_post',
-			array( 'tree_rev_descendant' ),
+			array( 'tree_rev_descendant_id' ),
 			array(
 				'limit' => 1,
 				'sort' => 'rev_id',

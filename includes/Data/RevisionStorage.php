@@ -121,8 +121,8 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	protected function findMostRecent( array $queries ) {
 		// SELECT MAX(tree_rev_id) AS tree_rev_id
 		//   FROM flow_tree_revision
-		//  WHERE tree_rev_descendant IN (...)
-		//  GROUP BY tree_rev_descendant
+		//  WHERE tree_rev_descendant_id IN (...)
+		//  GROUP BY tree_rev_descendant_id
 		//
 		//  Could we instead use this?
 		//
@@ -130,8 +130,8 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		//	FROM flow_tree_revision rev
 		//	JOIN ( SELECT MAX(tree_rev_id) as tree_rev_id
 		//			 FROM flow_tree_revision
-		//			WHERE tree_rev_descendant IN (...)
-		//			GROUP BY tree_rev_descendant
+		//			WHERE tree_rev_descendant_id IN (...)
+		//			GROUP BY tree_rev_descendant_id
 		//		 ) max ON max.tree_rev_id = rev.tree_rev_id
 		//
 		$duplicator = new ResultDuplicator( array_keys( reset( $queries ) ), 1 );
@@ -194,7 +194,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		$keys = array_keys( reset( $queries ) );
 		$conditions = array();
 		if ( count( $keys ) === 1 ) {
-			// standard in condition: tree_rev_descendant IN (1,2...)
+			// standard in condition: tree_rev_descendant_id IN (1,2...)
 			$key = reset( $keys );
 			foreach ( $queries as $query ) {
 				$conditions[$key][] = reset( $query );
@@ -234,7 +234,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	protected function insertContent( $data ) {
 		$flags = \Revision::compressRevisionText( $data );
 
-		if ( $this-externalStore ) {
+		if ( $this->externalStore ) {
 			// Store and get the URL
 			$data = ExternalStore::insertWithFallback( $this->externalStore, $data );
 			if ( !$data ) {
@@ -342,7 +342,7 @@ class PostRevisionStorage extends RevisionStorage {
 	}
 
 	protected function relatedPk() {
-		return 'tree_rev_descendant';
+		return 'tree_rev_descendant_id';
 	}
 
 	protected function joinField() {
@@ -353,17 +353,18 @@ class PostRevisionStorage extends RevisionStorage {
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
 			$this->joinTable(),
-			$tree,
+			UUID::convertUUIDs( $tree ),
 			__METHOD__
 		);
 		if ( !$res ) {
 			return false;
 		}
 
-		// If this is a brand new root revision
+		// If this is a brand new root revision it needs to be added to the tree
+		// If it has a rev_parent_id then its already a part of the tree
 		if ( $row['rev_parent_id'] === null ) {
 			return (bool) $this->treeRepo->insert(
-				UUID::create( $tree['tree_rev_descendant'] ),
+				UUID::create( $tree['tree_rev_descendant_id'] ),
 				UUID::create( $tree['tree_parent_id'] )
 			);
 		}
