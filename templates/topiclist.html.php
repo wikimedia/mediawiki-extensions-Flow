@@ -1,9 +1,11 @@
 <?php
 
+$editToken = $user->getEditToken( 'flow' );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
 	'action' => $this->generateUrl( $topicList->getWorkflow(), 'new-topic' )
 ) );
+echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 
 echo '<h3>' . wfMessage( 'flow-topic-title' )->escaped() . '</h3>';
 if ( $topicList->hasErrors( 'topic' ) ) {

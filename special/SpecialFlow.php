@@ -37,6 +37,7 @@ class SpecialFlow extends SpecialPage {
 		$title = $this->loadTitle( $subPage );
 		$action = $request->getVal( 'action', 'view' );
 		$workflowId = $request->getVal( 'workflow' );
+		$user = $this->getUser();
 
 		$definitionRequest = $request->getVal( 'definition', null );
 		if ( $definitionRequest !== null ) {
@@ -53,17 +54,23 @@ class SpecialFlow extends SpecialPage {
 
 		$blocks = $this->loader->createBlocks();
 		foreach ( $blocks as $block ) {
-			$block->init( $action );
+			$block->init( $action, $user );
 		}
 
 		if ( $request->getMethod() === 'POST' ) {
 			$user = $this->container['user'];
-			$request = $this->getRequest();
-			$blocksToCommit = $this->loader->handleSubmit( $action, $blocks, $user, $request );
-			if ( $blocksToCommit ) {
-				$this->loader->commit( $workflow, $blocksToCommit );
-				$this->redirect( $workflow, 'view' );
-				return;
+			if ( $request->getVal('wpEditToken') != $user->getEditToken('flow') ) {
+				$error = '<div class="error">' . wfMessage('sessionfailure') . '</div>';
+				$this->getOutput()->addHTML( $error );
+			} else {
+				$user = $this->container['user'];
+				$request = $this->getRequest();
+				$blocksToCommit = $this->loader->handleSubmit( $action, $blocks, $user, $request );
+				if ( $blocksToCommit ) {
+					$this->loader->commit( $workflow, $blocksToCommit );
+					$this->redirect( $workflow, 'view' );
+					return;
+				}
 			}
 		}
 

@@ -5,13 +5,15 @@
 // or some such
 
 $self = $this;
-$postAction = function( $action, array $data = array() ) use( $self, $block, $root ) {
+$editToken = $user->getEditToken( 'flow' );
+$postAction = function( $action, array $data = array() ) use( $self, $block, $root, $editToken ) {
 	// actions that change things must be post requests
 	// also, CSRF?
 	echo '<li>' . Html::openElement( 'form', array(
 		'method' => 'POST',
 		'action' => $self->generateUrl( $root->getPostId(), $action )
 	) );
+	echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 	foreach ( $data as $name => $value ) {
 		echo Html::element( 'input', array(
 			'type' => 'hidden',
@@ -27,7 +29,7 @@ $postAction = function( $action, array $data = array() ) use( $self, $block, $ro
 	) ) . '</form></li>';
 };
 
-$renderPost = function( $post ) use( $self, $block, $root, $postAction, &$renderPost ) {
+$renderPost = function( $post ) use( $self, $block, $root, $postAction, &$renderPost, $editToken ) {
 	echo '<div style="padding-left: 20px">';
 	if ( $post->isFlagged( 'deleted' ) ) {
 		echo wfMessage( 'flow-post-deleted' )
@@ -57,6 +59,7 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 				// root post id is same as topic workflow id
 				'action' => $self->generateUrl( $root->getPostId(), 'reply' ),
 			) );
+			echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 		if ( $block->getHexRepliedTo() === $post->getPostId()->getHex() ) {
 			foreach ( $block->getErrors() as $error ) {
 				echo $error->text() . '<br>'; // the pain ...

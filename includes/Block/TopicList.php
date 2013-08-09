@@ -61,6 +61,7 @@ class TopicListBlock extends AbstractBlock {
 		$templating->render( "flow:topiclist.html.php", array(
 			'topicList' => $this,
 			'topics' => $this->getTopics(),
+			'user' => $this->user,
 		) );
 	}
 
@@ -104,7 +105,7 @@ class TopicListBlock extends AbstractBlock {
 		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
 			$hexId = $workflow->getId()->getHex();
 			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $roots[$hexId] );
-			$topics[$hexId]->init( $this->action );
+			$topics[$hexId]->init( $this->action, $this->user );
 		}
 
 		return $topics;

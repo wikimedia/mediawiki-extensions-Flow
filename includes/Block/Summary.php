@@ -16,8 +16,8 @@ class SummaryBlock extends AbstractBlock {
 	protected $needCreate = false;
 	protected $supportedActions = array( 'edit-summary' );
 
-	public function init( $action ) {
-		parent::init( $action );
+	public function init( $action, $user ) {
+		parent::init( $action, $user );
 		if ( $this->workflow->isNew() ) {
 			$this->needCreate = true;
 			return;
@@ -83,12 +83,14 @@ class SummaryBlock extends AbstractBlock {
 			'block' => $this,
 			'workflow' => $this->workflow,
 			'summary' => $this->summary,
+			'user' => $this->user,
 		) );
 	}
 
 	public function renderAPI( array $options ) {
 		$output = array();
 		$output['type'] = 'summary';
+
 		if ( $this->summary !== null ) {
 			$output['*'] = $this->summary->getContent();
 			$output['summary-id'] = $this->summary->getRevisionId()->getHex();

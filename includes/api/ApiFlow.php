@@ -28,7 +28,7 @@ class ApiFlow extends ApiBase {
 		$user = $this->getContext()->getUser();
 
 		foreach( $blocks as $block ) {
-			$block->init( $action );
+			$block->init( $action, $user );
 		}
 
 		$blocksToCommit = $this->loader->handleSubmit( $action, $blocks, $user, $request );

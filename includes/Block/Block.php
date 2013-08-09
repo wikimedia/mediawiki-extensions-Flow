@@ -54,8 +54,9 @@ abstract class AbstractBlock implements Block {
 	abstract public function renderAPI( array $options );
 	abstract public function commit();
 
-	public function init( $action ) {
+	public function init( $action, $user ) {
 		$this->action = $action;
+		$this->user = $user;
 	}
 
 	public function onSubmit( $action, User $user, array $data  ) {

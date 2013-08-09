@@ -218,6 +218,7 @@ class TopicBlock extends AbstractBlock {
 			'block' => $this,
 			'topic' => $this->workflow,
 			'root' => $this->loadRootPost(),
+			'user' => $this->user,
 		), $return );
 	}
 
