@@ -140,7 +140,7 @@ class TopicBlock extends AbstractBlock {
 		if ( $wgFlowUseParsoid ) {
 			global $wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout;
 
-			return \Http::post(
+			$parsoidOutput = \Http::post(
 				$wgFlowParsoidURL . '/' . $wgFlowParsoidPrefix . '/',
 				array(
 					'postData' => array(
@@ -150,6 +150,18 @@ class TopicBlock extends AbstractBlock {
 					'timeout' => $wgFlowParsoidTimeout
 				)
 			);
+
+			// Strip out the Parsoid boilerplate
+			$dom = new \DOMDocument();
+			$dom->loadHTML( $parsoidOutput );
+			$body = $dom->getElementsByTagName( 'body' )->item(0);
+			$html = '';
+
+			foreach( $body->childNodes as $child ) {
+				$html .= $child->ownerDocument->saveXML( $child );
+			}
+
+			return $html;
 		} else {
 			global $wgParser;
 
