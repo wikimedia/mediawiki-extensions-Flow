@@ -36,7 +36,7 @@ $wgExtensionCredits['specialpage'][] = array(
 	'path' => __FILE__,
 	'name' => 'Flow',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Flow',
-	'author' => array( 'Erik Bernhardson', 'Mathias Mullie', 'Benny Situ', 'Andrew Garrett' ),
+	'author' => array( 'Erik Bernhardson', 'Matthias Mullie', 'Benny Situ', 'Andrew Garrett' ),
 	'descriptionmsg' => 'flow-desc',
 );
 
