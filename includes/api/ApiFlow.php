@@ -33,7 +33,7 @@ class ApiFlow extends ApiBase {
 
 		$blocksToCommit = $this->loader->handleSubmit( $action, $blocks, $user, $request );
 		if ( $blocksToCommit ) {
-			$this->loader->commit( $this->loader->getWorkflow(), $blocksToCommit );
+			$commitResults = $this->loader->commit( $this->loader->getWorkflow(), $blocksToCommit );
 
 			$savedBlocks = array( '_element' => 'block' );
 
@@ -42,17 +42,69 @@ class ApiFlow extends ApiBase {
 			}
 
 			$output[$action] = array(
-				'result' => 'success',
-				'saved-blocks' => $savedBlocks,
+				'result' => array(),
 			);
+
+			$doRender = ( $params['render'] != false );
+
+			foreach( $commitResults as $key => $value ) {
+				$output[$action]['result'][$key] = $this->processCommitResult( $value, $doRender );
+			}
 		} else {
 			$output[$action] = array(
-				'result' => 'nop',
+				'result' => 'error',
+				'errors' => array(),
 			);
+
+			foreach( $blocks as $block ) {
+				if ( $block->hasErrors() ) {
+					$errors = $block->getErrors();
+					$nativeErrors = array();
+
+					foreach( $errors as $key => $error ) {
+						$nativeErrors[$key] = $error->plain();
+					}
+
+					$output[$action]['errors'][$block->getName()] = $nativeErrors;
+				}
+			}
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $output );
 		return true;
+	}
+
+	protected function processCommitResult( $result, $render = true ) {
+		$templating = $this->container['templating'];
+		$output = array();
+		foreach( $result as $key => $value ) {
+			if ( $value instanceof UUID ) {
+				$output[$key] = $value->getHex();
+			} elseif ( $key === 'render-function' ) {
+				if ( $render ) {
+					$function = $value;
+					$output['rendered'] = $function( $templating );
+				}
+			} else {
+				$output[$key] = $value;
+			}
+		}
+
+		return $output;
+	}
+
+	protected function doRerender( $blocks ) {
+		$templating = $this->container['templating'];
+
+		$output = array();
+
+		$output['count'] = count( $blocks );
+
+		foreach( $blocks as $block ) {
+			$output[$block->getName()] = $block->render( $templating, array() );
+		}
+
+		return $output;
 	}
 
 	public function getDescription() {
@@ -74,6 +126,9 @@ class ApiFlow extends ApiBase {
 			'gettoken' => array(
 				ApiBase::PARAM_DFLT => false,
 			),
+			'render' => array(
+				ApiBase::PARAM_DFLT => false,
+			),
 		);
 	}
 
@@ -84,6 +139,7 @@ class ApiFlow extends ApiBase {
 			'params' => 'The parameters to pass',
 			'token' => 'A token retrieved by calling this module with the gettoken parameter set.',
 			'gettoken' => 'Set this to something to retrieve a token',
+			'render' => 'Set this to something to include a block-specific rendering in the output',
 		);
 	}
 

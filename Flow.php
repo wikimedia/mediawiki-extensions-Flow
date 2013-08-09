@@ -139,6 +139,22 @@ $wgResourceModules += array(
 		'messages' => array(
 		),
 	),
+	'ext.flow.discussion' => $flowResourceTemplate + array(
+		'styles' => array(
+			'discussion/base.css',
+			'discussion/agora2-override.css',
+		),
+		'scripts' => 'discussion/discussion.js',
+		'dependencies' => array(
+			'mediawiki.ui',
+			'ext.flow.base',
+		),
+		'messages' => array(
+			'flow-newtopic-start-placeholder',
+			'flow-newtopic-title-placeholder',
+			'flow-cancel',
+		),
+	),
 );
 
 // Configuration
