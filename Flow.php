@@ -139,6 +139,9 @@ $wgResourceModules += array(
 		'messages' => array(
 		),
 	),
+	'ext.flow.discussion' => $flowResourceTemplate + array(
+		'styles' => 'discussion/base.css',
+	),
 );
 
 // Configuration

@@ -58,6 +58,7 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
+		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		$templating->render( "flow:topiclist.html.php", array(
 			'topicList' => $this,
 			'topics' => $this->getTopics(),
