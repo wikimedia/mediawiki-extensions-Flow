@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "898eddaf_e2df65d1",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-09T04:35:58Z",
+      "side": 1,
+      "message": "I think this makes a round trip per item requested in the history? could pre-fill the option with the histories from renderAPI to make it in one trip to the cache, that would also simplify this whole condition to\n\n    if ( isset( $options[\u0027showhistoryfor\u0027][$postId] ) )\n        $output[\u0027revision\u0027] \u003d $options[\u0027showhistoryfor\u0027][$postId];",
+      "revId": "d74e8be6c2c5266ede94c523af31e0830e3c6805",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_e2f84549",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-09T04:35:58Z",
+      "side": 1,
+      "message": "put short ones like this right into the array below",
+      "revId": "d74e8be6c2c5266ede94c523af31e0830e3c6805",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_42a01947",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-09T04:35:58Z",
+      "side": 1,
+      "message": "could shorten this down to just 2 returns and the if / else while retaining clarity",
+      "revId": "d74e8be6c2c5266ede94c523af31e0830e3c6805",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "898eddaf_82b30197",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-09T04:35:58Z",
+      "side": 1,
+      "message": "MW is 5.3, can use __DIR__ now :-)",
+      "revId": "d74e8be6c2c5266ede94c523af31e0830e3c6805",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
