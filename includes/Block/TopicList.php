@@ -37,6 +37,7 @@ class TopicListBlock extends AbstractBlock {
 			throw new \MWException( 'Unknown commit action' );
 		}
 
+		$storage = $this->storage;
 		$defStorage = $this->storage->getStorage( 'Definition' );
 		$sourceDef = $defStorage->get( $this->workflow->getDefinitionId() );
 		$topicDef = $defStorage->get( $sourceDef->getOption( 'topic_definition_id' ) );
@@ -50,14 +51,30 @@ class TopicListBlock extends AbstractBlock {
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 		$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
+		$topicPost->setChildren( array( $firstPost ) );
+		$firstPost->setChildren( array() );
 
-		$this->storage->put( $topicWorkflow );
-		$this->storage->put( $topicPost );
-		$this->storage->put( $firstPost );
-		$this->storage->put( $topicListEntry );
+		$storage->put( $topicWorkflow );
+		$storage->put( $topicPost );
+		$storage->put( $firstPost );
+		$storage->put( $topicListEntry );
+
+		$user = $this->user;
+
+		$output = array(
+			'created-topic-id' => $topicWorkflow->getId(),
+			'created-post-id' => $firstPost->getRevisionId(),
+			'render-function' => function($templating) use ($topicWorkflow, $firstPost, $topicPost, $storage, $user) {
+				$block = new TopicBlock( $topicWorkflow, $storage, $topicPost );
+				return $templating->renderTopic( $block, $topicWorkflow, $topicPost, $user );
+			},
+		);
+
+		return $output;
 	}
 
 	public function render( Templating $templating, array $options ) {
+		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		$templating->render( "flow:topiclist.html.php", array(
 			'topicList' => $this,
 			'topics' => $this->getTopics(),
