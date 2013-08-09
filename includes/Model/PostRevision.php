@@ -101,7 +101,7 @@ class PostRevision extends AbstractRevision {
 
 	public function getChildren() {
 		if ( $this->children === null ) {
-			throw new \Exception( 'Children not loaded for post: ' . $this->postId );
+			throw new \Exception( 'Children not loaded for post: ' . $this->postId->getHex() );
 		}
 		return $this->children;
 	}

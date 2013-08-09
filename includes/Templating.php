@@ -2,6 +2,8 @@
 
 namespace Flow;
 
+use Flow\Block\Block;
+use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use OutputPage;
 
@@ -67,6 +69,27 @@ class Templating {
 	// Helper methods for the view
 	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
 		return $this->urlGenerator->generateUrl( $workflow, $action, $query );
+	}
+
+	public function renderPost( PostRevision $post, Block $block, PostRevision $root ) {
+		return $this->render(
+			'flow:post.html.php',
+			array(
+				'block' => $block,
+				'post' => $post,
+				'root' => $root,
+			),
+			true
+		);
+	}
+
+	public function renderTopic( $block, $topic, $root, $user ) {
+		return $this->render( "flow:topic.html.php", array(
+			'block' => $block,
+			'topic' => $topic,
+			'root' => $root,
+			'user' => $user,
+		), true );
 	}
 }
 
