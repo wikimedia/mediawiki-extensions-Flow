@@ -16,6 +16,12 @@ echo Html::openElement( 'form', array(
 	) ),
 	Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $user->getEditToken( 'flow' ) ) ),
 		Html::textarea( $block->getName() . '[content]', $topicTitle->getContent() ),
-		Html::element( 'input', array( 'type' => 'submit', 'value' => wfMessage( 'flow-action-edit-title' )->plain() ) ),
+		Html::element( 'input',
+			array(
+				'type' => 'submit',
+				'value' => wfMessage( 'flow-action-edit-title' )->plain(),
+				'class' => 'mw-ui-button mw-ui-primary',
+			)
+		),
 	 '</form>';
 
