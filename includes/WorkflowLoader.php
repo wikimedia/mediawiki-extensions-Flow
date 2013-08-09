@@ -172,9 +172,12 @@ class WorkflowLoader {
 
 	public function commit( Workflow $workflow, array $blocks ) {
 		$this->storage->getStorage('Workflow')->put( $workflow );
+		$results = array();
 		foreach ( $blocks as $block ) {
-			$block->commit();
+			$results[$block->getName()] = $block->commit();
 		}
+
+		return $results;
 	}
 
 }

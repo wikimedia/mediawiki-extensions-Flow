@@ -184,6 +184,20 @@ class TopicBlock extends AbstractBlock {
 				throw new \MWException( 'Attempt to save null revision' );
 			}
 			$this->storage->put( $this->newRevision );
+			$self = $this;
+			$newRevision = $this->newRevision;
+			$rootPost = $this->loadRootPost();
+
+			$newRevision->setChildren( array() );
+
+			$output = array(
+				'new-revision-id' => $this->newRevision->getRevisionId(),
+				'render-function' => function( $templating ) use ( $self, $newRevision, $rootPost ) {
+					return $templating->renderPost( $newRevision, $self, $rootPost );
+				},
+			);
+
+			return $output;
 			break;
 
 		case 'delete-topic':
@@ -214,12 +228,7 @@ class TopicBlock extends AbstractBlock {
 
 		$templating->getOutput()->addModules( 'ext.flow.base' );
 
-		return $templating->render( "flow:topic.html.php", array(
-			'block' => $this,
-			'topic' => $this->workflow,
-			'root' => $this->loadRootPost(),
-			'user' => $this->user,
-		), $return );
+		return $templating->renderTopic( $this, $this->workflow, $this->loadRootPost(), $this->user );
 	}
 
 	public function renderAPI ( array $options ) {
