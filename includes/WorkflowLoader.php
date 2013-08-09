@@ -29,7 +29,7 @@ class WorkflowLoader {
 			throw new \MWException( 'Interwiki not implemented yet' );
 		}
 		if ( $pageTitle && $pageTitle->getArticleID() === 0 ) {
-			throw new \MWException( 'Can only load workflows for existing page' );
+			throw new \MWException( 'Can only load workflows for existing page. Page '.($pageTitle->getPrefixedText()). ' does not exist.' );
 		}
 
 		$this->storage = $storage;
@@ -172,9 +172,12 @@ class WorkflowLoader {
 
 	public function commit( Workflow $workflow, array $blocks ) {
 		$this->storage->getStorage('Workflow')->put( $workflow );
+		$results = array();
 		foreach ( $blocks as $block ) {
-			$block->commit();
+			$results[$block->getName()] = $block->commit();
 		}
+
+		return $results;
 	}
 
 }

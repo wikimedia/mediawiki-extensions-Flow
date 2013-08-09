@@ -3,25 +3,38 @@
 $editToken = $user->getEditToken( 'flow' );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
-	'action' => $this->generateUrl( $topicList->getWorkflow(), 'new-topic' )
+	'action' => $this->generateUrl( $topicList->getWorkflow(), 'new-topic' ),
+	'class' => 'flow-newtopic-form',
 ) );
 echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 
-echo '<h3>' . wfMessage( 'flow-topic-title' )->escaped() . '</h3>';
 if ( $topicList->hasErrors( 'topic' ) ) {
 	echo '<p>' . $topicList->getError( 'topic' )->escaped() . '</p>';
 }
-echo Html::textarea( $topicList->getName() . '[topic]' );
+echo Html::textarea( $topicList->getName() . '[topic]', '', array(
+	'placeholder' => wfMessage( 'flow-newtopic-title-placeholder' )->text(),
+	'class' => 'flow-newtopic-title flow-input',
+	'rows' => 1,
+) );
 
-echo '<h3>' . wfMessage( 'flow-topic-content' )->escaped() . '</h3>';
 if ( $topicList->hasErrors( 'content' ) ) {
 	echo '<p>' . $topicList->getError( 'content' )->escaped() . '</p>';
 }
-echo Html::textarea( $topicList->getName() . '[content]' );
+echo Html::textarea( $topicList->getName() . '[content]', '', array(
+	'placeholder' => wfMessage( 'flow-newtopic-content-placeholder' )->text(),
+	'class' => 'flow-newtopic-step2 flow-newtopic-content flow-input',
+	'rows' => '10',
+) );
+echo Html::openElement( 'div', array( 'class' => 'flow-post-form-controls flow-newtopic-step2' ) );
 echo Html::element( 'input', array(
 	'type' => 'submit',
-	'value' => wfMessage( 'flow-new-message' )->plain()
+	'class' => 'mw-ui-button mw-ui-primary flow-newtopic-submit',
+	'value' => wfMessage( 'flow-newtopic-save' )->text(),
 ) );
+echo Html::closeElement( 'div' );
+echo Html::element( 'div', array(
+	'class' => 'flow-disclaimer flow-newtopic-step2',
+), wfMessage( 'flow-disclaimer' )->parse() );
 echo '</form>';
 
 foreach ( $topics as $topic ) {
