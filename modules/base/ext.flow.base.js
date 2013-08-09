@@ -2,39 +2,49 @@
 $( function() {
 mw.flow = {
 	'api' : {
-		'executeAction' : function( workflowId, action, options ) {
+		'executeAction' : function( workflowParam, action, options, render ) {
 			var api = new mw.Api();
 			var deferredObject = $.Deferred();
 
 			api.post(
-				{
-					'action' : 'flow',
-					'workflow' : workflowId,
-					'flowaction' : action,
-					'gettoken' : 'gettoken'
-				}
+				$.extend(
+					{
+						'action' : 'flow',
+						'flowaction' : action,
+						'gettoken' : 'gettoken'
+					},
+					workflowParam
+				)
 			)
 				.done( function(data) {
-					api.post( {
+					request = {
 						'action' : 'flow',
-						'workflow' : workflowId,
 						'flowaction' : action,
 						'params' : $.toJSON( options ),
 						'token' : data.flow.token
-					} )
-						.done( function( data, textStatus, xhr ) {
-							deferredObject.resolve( data, textStatus, xhr );
+					};
+
+					request = $.extend( request, workflowParam );
+
+					if ( render ) {
+						request.render = true;
+					}
+
+					api.post( request )
+						.done( function( ) {
+							deferredObject.resolve.apply( this, arguments );
 						} )
-						.fail( function( xhr, textStatus, errorThrown ) {
-							deferredObject.reject( xhr, textStatus, errorThrown );
+						.fail( function( ) {
+							deferredObject.reject.apply( this, arguments );
 						} );
 				} )
-				.fail(function( xhr, textStatus, errorThrown ) {
-					deferredObject.reject( xhr, textStatus, errorThrown );
+				.fail(function( ) {
+					deferredObject.reject.apply( this, arguments);
 				} );
 
 			return deferredObject.promise();
 		},
+
 		'read' : function( pageName, workflowId, options ) {
 			var api = new mw.Api();
 
@@ -47,6 +57,84 @@ mw.flow = {
 					'flowparams' : $.toJSON( options )
 				}
 			);
+		},
+
+		'newTopic' : function( workflowParam, title, content ) {
+			var deferredObject = $.Deferred();
+
+			mw.flow.api.executeAction(
+				workflowParam,
+				'new-topic',
+				{ 'topic_list' :
+					{
+						'topic' : title,
+						'content' : content
+					}
+				}, true
+			).done( function(data) {
+				if ( data.flow['new-topic'].errors ) {
+					deferredObject.reject( 'block-errors', data.flow['new-topic'].errors );
+					return;
+				}
+
+				if (
+					! data.flow ||
+					! data.flow['new-topic'] ||
+					! data.flow['new-topic'].result ||
+					! data.flow['new-topic'].result['topic_list']
+				) {
+					deferredObject.reject( 'invalid-result', 'Unable to find appropriate section in result' );
+					return;
+				}
+				var output = data.flow['new-topic'].result['topic_list'];
+
+				deferredObject.resolve( output, data );
+			} )
+			.fail( function( ) {
+				deferredObject.reject.apply( this, arguments );
+			} );
+
+			return deferredObject.promise();
+		},
+
+		'reply' : function( workflowId, replyTo, content ) {
+			var deferredObject = $.Deferred();
+
+			mw.flow.api.executeAction(
+				{
+					'workflow' : workflowId
+				},
+				'reply',
+				{ 'topic_list' :
+					{
+						'replyTo' : replyTo,
+						'content' : content
+					}
+				}, true
+			).done( function(data) {
+				if ( data.flow['reply'].errors ) {
+					deferredObject.reject( 'block-errors', data.flow['reply'].errors );
+					return;
+				}
+
+				if (
+					! data.flow ||
+					! data.flow.reply ||
+					! data.flow.reply.result ||
+					! data.flow.reply.result['topic_list']
+				) {
+					deferredObject.reject( 'invalid-result', 'Unable to find appropriate section in result' );
+					return;
+				}
+				var output = data.flow.reply.result['topic_list'];
+
+				deferredObject.resolve( output, data );
+			} )
+			.fail( function( ) {
+				deferredObject.reject.apply( this, arguments );
+			} );
+
+			return deferredObject.promise();
 		}
 	}
 };

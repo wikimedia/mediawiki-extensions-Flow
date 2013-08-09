@@ -78,21 +78,21 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validateReply() {
 		if ( empty( $this->submitted['content'] ) ) {
-			$this->errors['content'] = wfMessage( 'flow-missing-post-content' );
+			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
 		} else {
 			$this->parsedContent = $this->convertWikitextToHtml5( $this->submitted['content'] );
 			if ( empty( $this->parsedContent ) ) {
-				$this->errors['content'] = wfMessage( 'flow-empty-parsoid-result' );
+				$this->errors['content'] = wfMessage( 'flow-error-parsoid-failure' );
 			}
 		}
 
 		if ( !isset( $this->submitted['replyTo'] ) ) {
-			$this->errors['replyTo'] = wfMessage( 'flow-missing-reply-to-id' );
+			$this->errors['replyTo'] = wfMessage( 'flow-error-missing-replyto' );
 		} else {
 			$this->submitted['replyTo'] = UUID::create( $this->submitted['replyTo']  );
 			$post = $this->storage->get( 'PostRevision', $this->submitted['replyTo'] );
 			if ( !$post ) {
-				$this->errors['replyTo'] = wfMessage( 'flow-invalid-reply-to-id' );
+				$this->errors['replyTo'] = wfMessage( 'flow-error-invalid-replyto' );
 			} else {
 				// TODO: assert post belongs to this tree?  Does it realy matter?
 				// answer: might not belong, and probably does matter due to inter-wiki interaction
@@ -103,13 +103,13 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validateDeleteTopic() {
 		if ( !$this->workflow->lock( $this->user ) ) {
-			$this->errors['delete-topic'] = wfMessage( 'flow-delete-topic-failed' );
+			$this->errors['delete-topic'] = wfMessage( 'flow-error-delete-failure' );
 		}
 	}
 
 	protected function validateDeletePost() {
 		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['delete-post'] = wfMessage( 'flow-no-post-provided' );
+			$this->errors['delete-post'] = wfMessage( 'flow-error-missing-postId' );
 			return;
 		}
 		$found = $this->storage->find(
@@ -118,7 +118,7 @@ class TopicBlock extends AbstractBlock {
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);
 		if ( !$found ) {
-			$this->errors['delete-post'] = wfMessage( 'flow-post-not-found' );
+			$this->errors['delete-post'] = wfMessage( 'flow-error-invalid-postId' );
 			return;
 		}
 		// TODO: validate it has $this->workflow as its topic
@@ -127,13 +127,13 @@ class TopicBlock extends AbstractBlock {
 		// returns new revision to save
 		$this->newRevision = $post->addFlag( $this->user, 'deleted', 'flow-comment-deleted' );
 		if ( !$this->newRevision ) {
-			$this->errors['delete-post'] = wfMessage( 'flow-delete-post-failed' );
+			$this->errors['delete-post'] = wfMessage( 'flow-error-delete-failure' );
 		}
 	}
 
 	protected function validateRestorePost() {
 		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-no-post-provided' );
+			$this->errors['restore-post'] = wfMessage( 'flow-error-missing-postId' );
 			return;
 		}
 		$found = $this->storage->find(
@@ -142,14 +142,14 @@ class TopicBlock extends AbstractBlock {
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);
 		if ( !$found ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-post-not-found' );
+			$this->errors['restore-post'] = wfMessage( 'flow-error-invalid-postId' );
 			return;
 		}
 		$post = reset( $found );
 
 		$this->newRevision = $post->removeFlag( $this->user, 'deleted', 'flow-comment-restored' );
 		if ( !$this->newRevision ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-post-restore-failed' );
+			$this->errors['restore-post'] = wfMessage( 'flow-error-restore-failure' );
 		}
 	}
 
@@ -204,6 +204,20 @@ class TopicBlock extends AbstractBlock {
 				throw new \MWException( 'Attempt to save null revision' );
 			}
 			$this->storage->put( $this->newRevision );
+			$self = $this;
+			$newRevision = $this->newRevision;
+			$rootPost = $this->loadRootPost();
+
+			$newRevision->setChildren( array() );
+
+			$output = array(
+				'new-revision-id' => $this->newRevision->getRevisionId(),
+				'render-function' => function( $templating ) use ( $self, $newRevision, $rootPost ) {
+					return $templating->renderPost( $newRevision, $self, $rootPost );
+				},
+			);
+
+			return $output;
 			break;
 
 		case 'edit-title':
@@ -245,12 +259,7 @@ class TopicBlock extends AbstractBlock {
 
 		$templating->getOutput()->addModules( 'ext.flow.base' );
 
-		return $templating->render( "flow:topic.html.php", array(
-			'block' => $this,
-			'topic' => $this->workflow,
-			'root' => $this->loadRootPost(),
-			'user' => $this->user,
-		), $return );
+		return $templating->renderTopic( $this, $this->workflow, $this->loadRootPost(), $this->user );
 	}
 
 	public function renderAPI ( array $options ) {

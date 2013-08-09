@@ -9,6 +9,46 @@ $messages = array();
  */
 $messages['en'] = array(
 	'flow-desc' => 'Workflow Management system',
+	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-edit-summary-link' => 'Edit Summary',
+
+	'flow-disclaimer' => "By clicking the \"Add Message\" button, you agree to the Terms of Use,
+and you irrevocably agree to release your contribution under the CC-BY-SA 3.0 License and the GFDL.
+You agree that a hyperlink or URL is sufficient attribution under the Creative Commons license.",
+	'flow-post-deleted' => '[post deleted]',
+	'flow-post-actions' => 'actions',
+	'flow-topic-actions' => 'actions',
+	'flow-cancel' => 'Cancel',
+
+	'flow-newtopic-title-placeholder' => 'Message Subject',
+	'flow-newtopic-content-placeholder' => 'Message Text. Be nice!',
+	'flow-newtopic-header' => 'Add a new topic',
+	'flow-newtopic-save' => 'Add Topic',
+	'flow-newtopic-start-placeholder' => 'Click here to start a new discussion. Be nice!',
+
+	'flow-reply-placeholder' => 'Click to reply to $1. Be nice!',
+	'flow-reply-submit' => 'Post Reply',
+
+	'flow-post-action-delete-post' => 'Delete post',
+	'flow-post-action-restore-post' => 'Restore post',
+
+	'flow-error-http' => 'An error occurred while contacting the server. Your post was not saved.', // Needs real copy
+	'flow-error-other' => 'An unexpected error occurred. Your post was not saved.',
+	'flow-error-external' => 'An error occurred while saving your post. Your post was not saved.<br/><small>The error message received was: $1</small>',
+	'flow-error-external-multi' => 'Errors were encountered while saving your post. Your post was not saved. <br/> $1',
+
+	'flow-error-missing-content' => 'Post has no content. Content is required to save a new post.',
+	'flow-error-missing-title' => 'Topic has no title. Title is required to save a new topic.',
+	'flow-error-parsoid-failure' => 'Unable to parse content due to a Parsoid failure.',
+	'flow-error-missing-replyto' => 'No replyTo parameter was supplied. This parameter is required for the "reply" action.',
+	'flow-error-invalid-replyto' => 'replyTo parameter was invalid. The specified post could not be found.',
+	'flow-error-delete-failure' => 'Deletion of this item failed.',
+	'flow-error-missing-postId' => 'No postId parameter was supplied. This parameter is required to manipulate a post.',
+	'flow-error-invalid-postId' => 'postId parameter was invalid. The specified post could not be found.',
+	'flow-error-restore-failure' => 'Restoration of this item failed.',
+
+	'flow-summaryedit-submit' => 'Save summary',
+
 );
 
 /** Message documentation (Message documentation)
