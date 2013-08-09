@@ -24,7 +24,6 @@ class SpecialFlow extends SpecialPage {
 
 	public function execute( $subPage ) {
 		$this->setHeaders();
-		$this->getOutput()->setPageTitle( $this->msg( 'flow-specialpage' )->text() );
 		$this->getOutput()->addModules( array('ext.flow.base') );
 		
 		if ( empty( $subPage ) ) {
@@ -38,6 +37,8 @@ class SpecialFlow extends SpecialPage {
 		$action = $request->getVal( 'action', 'view' );
 		$workflowId = $request->getVal( 'workflow' );
 		$user = $this->getUser();
+
+		$this->getOutput()->setPageTitle( $this->msg( 'flow-specialpage', $title->getPrefixedText() )->text() );
 
 		$definitionRequest = $request->getVal( 'definition', null );
 		if ( $definitionRequest !== null ) {
@@ -75,9 +76,11 @@ class SpecialFlow extends SpecialPage {
 		}
 
 		$templating = $this->container['templating'];
+		$this->getOutput()->addHTML( "<div class='flow-container'>" );
 		foreach ( $blocks as $block ) {
 			$block->render( $templating, $request->getArray( $block->getName(), array() ) );
 		}
+		$this->getOutput()->addHTML( "</div>" );
 	}
 
 	protected function loadContainer() {

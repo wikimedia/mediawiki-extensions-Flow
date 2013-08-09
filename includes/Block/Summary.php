@@ -79,7 +79,8 @@ class SummaryBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		$templating->render( "flow:summary.html.php", array(
+		$templateName = ($this->action == 'edit-summary') ? 'edit-summary' : 'summary';
+		$templating->render( "flow:$templateName.html.php", array(
 			'block' => $this,
 			'workflow' => $this->workflow,
 			'summary' => $this->summary,
