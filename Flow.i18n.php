@@ -51,3 +51,17 @@ $messages['lb'] = array(
 $messages['mk'] = array(
 	'flow-desc' => 'Систем за раководење со работниот тек',
 );
+
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'flow-desc' => 'Sisteme de Gestione de le Flusse de fatìe',
+);
+
+/** Ukrainian (українська)
+ * @author Andriykopanytsia
+ */
+$messages['uk'] = array(
+	'flow-desc' => 'Система управління робочими процесами',
+);
