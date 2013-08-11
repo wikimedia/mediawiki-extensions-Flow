@@ -52,6 +52,20 @@ $messages['mk'] = array(
 	'flow-desc' => 'Систем за раководење со работниот тек',
 );
 
+/** Portuguese (português)
+ * @author Helder.wiki
+ */
+$messages['pt'] = array(
+	'flow-desc' => 'Sistema de Gerenciamento do Fluxo de Trabalho',
+);
+
+/** Brazilian Portuguese (português do Brasil)
+ * @author Helder.wiki
+ */
+$messages['pt-br'] = array(
+	'flow-desc' => 'Sistema de Gerenciamento do Fluxo de Trabalho',
+);
+
 /** tarandíne (tarandíne)
  * @author Joetaras
  */
