@@ -87,9 +87,8 @@ abstract class AbstractRevision {
 	protected function setContent( $content ) {
 		if ( $content !== $this->getContent() ) {
 			$this->content = $this->decompressedContent = $content;
+			$this->flags = explode( ',', \Revision::compressRevisionText( $this->content ) );
 			$this->contentUrl = null;
-			// should this only remove a subset of flags?
-			$this->flags = array();
 		}
 	}
 

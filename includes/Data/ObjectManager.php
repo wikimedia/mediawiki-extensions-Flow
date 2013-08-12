@@ -8,6 +8,7 @@ use Flow\DbFactory;
 use BagOStuff;
 use RuntimeException;
 use SplObjectStorage;
+use ExternalStore;
 
 // Perhaps rethink lifecycle interface.  Simpler.
 // Indexes need access to the cache and the backend storage.
@@ -56,6 +57,148 @@ interface WritableObjectStorage extends ObjectStorage {
 	function insert( array $row );
 	function update( array $old, array $new );
 	function remove( array $row );
+}
+
+/**
+ * Backing store for which part of the data is written to an external store.
+ *
+ * Typically, data (potentially) written to ES has 2 relevant columns:
+ * * content: content column or url reference to location on ES
+ * * flags: flags associated with the content (e.g. 'external', 'gzip', ...)
+ *
+ * To simplify implementation, we'll be doing some manipulation of the data to
+ * and from the real object storage.
+ * We'll want to always expose all data to out object mapper: both the full
+ * content & the url referencing the content's location on ES.
+ * We'll create a new column (which does not exist in object storage) that'll
+ * hold the url, while the content column exposed to object mapper will always
+ * hold the full content.
+ *
+ * Although we only have 2 relevant columns in object storage, we'll expose 3
+ * to object mapper:
+ * * content: the full content
+ * * flags: content's associated flags
+ * * url: the url referencing the content's external location (or null if none)
+ */
+abstract class WritableObjectStorageWithExternalStorage implements WritableObjectStorage {
+	/**
+	 * External store to write data to (e.g. $wgDefaultExternalStore)
+	 *
+	 * @var array|bool false for no object storage
+	 */
+	protected $externalStore = false;
+
+	/**
+	 * Columns relevant for External Storage.
+	 *
+	 * @var array A map of columns relevant to external storage; all having
+	 * 'content', 'flags' & 'url' keys identifying the columns
+	 */
+	protected $externalStorageColumns = array( /*
+		array(
+			'content' => <content_column>,
+			'flags' => <flags_column>,
+			'url' -> <bogus_url_column>
+		),
+	*/ );
+
+	/**
+	 * Processes a $row: all columns eligible for ExternalStore will have their
+	 * data saved to the external store (except when 'external' flag is set, in
+	 * which case the content is a reference to the external store already)
+	 *
+	 * $row is the data tossed in by object mapper's toStorageRow.
+	 * Return value will be inserted into DB.
+	 *
+	 * @param array $row
+	 * @return array
+	 * @throws \MWException
+	 */
+	protected function insertExternalStorage( array $row ) {
+		foreach ( $this->externalStorageColumns as $column ) {
+			if ( !isset( $row[$column['content']] ) || !isset( $row[$column['flags']] ) ) {
+				continue;
+			}
+
+			$flags = explode( ',', $row[$column['flags']] );
+
+			if ( $row[$column['url']] ) {
+				// if url is set already, no need to save anew
+				$row[$column['content']] = $row[$column['url']];
+			} else {
+				if ( $this->externalStore ) {
+					// save to external store & keep reference to it's new location
+					$row[$column['content']] = ExternalStore::insertWithFallback( $this->externalStore, $row[$column['content']] );
+					if ( !$row[$column['content']] ) {
+						throw new \MWException( "Unable to store text to external storage" );
+					}
+
+					// add 'external' flag
+					$flags[] = 'external';
+				}
+			}
+
+			$row[$column['flags']] = implode( ',', array_unique( array_filter( $flags ) ) );
+			unset( $row[$column['url']] );
+		}
+
+		return $row;
+	}
+
+	/**
+	 * Processed multiple $rows: ExternalStore can best be queried in batch.
+	 *
+	 * $rows = raw DB results.
+	 * Return value will be exposed to object mapper's fromStorageRow.
+	 *
+	 * @param array $rows
+	 * @return array|bool
+	 */
+	protected function fetchExternalStorage( array $rows ) {
+		foreach ( $rows as &$source ) {
+			foreach ( $source as &$row ) {
+				foreach ( $this->externalStorageColumns as $column ) {
+					$flags = explode( ',', $row[$column['flags']] );
+
+					if ( in_array( 'external', $flags ) ) {
+						// 'url' will be the url if data is stored in ES
+						$row[$column['url']] = $row[$column['content']];
+						// 'content' is not yet known, will be batch-loaded
+						$row[$column['content']] = '';
+					} else {
+						// 'url' column will be null is no data is stored in ES
+						$row[$column['url']] = null;
+					}
+				}
+			}
+		}
+
+		return Merger::mergeMulti(
+			$rows,
+			/* fromKey = */ $column['url'],
+			/* callable = */ array( 'ExternalStore', 'batchFetchFromURLs' ),
+			/* name = */ $column['content']
+		);
+	}
+
+	/**
+	 * findMulti must call fetchExternalStorage() on the returned DB rows in
+	 * order to have ExternalStore references resolved.
+	 */
+
+	/**
+	 * {@inheritDoc}
+	 */
+	function insert( array $row ) {
+		return $this->insertExternalStorage( $row );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	function update( array $old, array $new ) {
+		return $this->insertExternalStorage( $new );
+	}
 }
 
 interface ObjectMapper {

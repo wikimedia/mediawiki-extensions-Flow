@@ -6,13 +6,16 @@ use Flow\Model\UUID;
 use Flow\DbFactory;
 use Flow\Repository\TreeRepository;
 use DatabaseBase;
-use ExternalStore;
 use User;
 
-abstract class RevisionStorage implements WritableObjectStorage {
+abstract class RevisionStorage extends WritableObjectStorageWithExternalStorage {
 	static protected $allowedUpdateColumns = array( 'rev_flags' );
 	protected $dbFactory;
-	protected $externalStores;
+	protected $externalStorageColumns = array( array(
+		'content' => 'rev_content',
+		'flags' => 'rev_flags',
+		'url' => 'rev_content_url'
+	) );
 
 	abstract protected function joinTable();
 	abstract protected function relatedPk();
@@ -64,7 +67,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 			$res = $this->findMultiInternal( $queries, $options );
 		}
 		// Fetches content for all revisions flagged 'external'
-		return $this->mergeExternalContent( $res );
+		return $this->fetchExternalStorage( $res );
 	}
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
@@ -170,37 +173,6 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		return $duplicator->getResult();
 	}
 
-	/**
-	 * Handle the injection of externalstore data into a revision
-	 * row.  All rows exiting this method will have rev_content_url
-	 * set to either null or the external url.  The rev_content
-	 * field will be the final content (possibly compressed still)
-	 *
-	 * @param array $cacheResult 2d array of rows
-	 * @return array 2d array of rows with content merged and rev_content_url populated
-	 */
-	protected function mergeExternalContent( array $cacheResult ) {
-		foreach ( $cacheResult as &$source ) {
-			foreach ( $source as &$row ) {
-				$flags = explode( ',', $row['rev_flags'] );
-				if ( in_array( 'external', $flags ) ) {
-					$row['rev_content_url'] = $row['rev_content'];
-					$row['rev_content'] = '';
-				} else {
-					$row['rev_content_url'] = null;
-				}
-			}
-		}
-
-		return Merger::mergeMulti(
-			$cacheResult,
-			/* fromKey = */ 'rev_content_url',
-			/* callable = */ array( 'ExternalStore', 'batchFetchFromURLs' ),
-			/* name = */ 'rev_content',
-			/* default = */ ''
-		);
-	}
-
 	protected function buildCompositeInCondition( DatabaseBase $dbr, array $queries ) {
 		$keys = array_keys( reset( $queries ) );
 		$conditions = array();
@@ -223,8 +195,9 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	}
 
 	public function insert( array $row ) {
-		// Check if we need to insert new content
-		$row = $this->handleContentInsertion( $row );
+		// take care of external storage columns
+		$row = parent::insert( $row );
+
 		list( $rev, $related ) = $this->splitUpdate( $row );
 		// If a content url is available store that in the db
 		// instead of real content.
@@ -247,34 +220,13 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		return $this->insertRelated( $row, $related );
 	}
 
-	protected function handleContentInsertion( array $row ) {
-		if ( isset( $row['rev_content_url'] ) ) {
-			// Content already exists
-			return $row;
-		}
-
-		$flags = array_unique( array_merge(
-			explode( ',', $row['rev_flags'] ),
-			explode( ',', \Revision::compressRevisionText( $row['rev_content'] ) )
-		) );
-
-		if ( $this->externalStore ) {
-			$url = ExternalStore::insertWithFallback( $this->externalStore, $row['rev_content'] );
-			if ( !$url ) {
-				throw new \MWException( "Unable to store text to external storage" );
-			}
-			$flags[] = 'external';
-			$row['rev_content_url'] = $url;
-		}
-
-		$row['rev_flags'] = implode( ',', $flags );
-		return $row;
-	}
-
 	// This is to *UPDATE* a revision.  It should hardly ever be used.
 	// For the most part should insert a new revision.  This will only be called
 	// for oversighting?
 	public function update( array $row, array $changeSet ) {
+		// take care of external storage columns
+		$changeSet = parent::update( $row, $changeSet );
+
 		$extra = array_diff( array_keys( $changeSet ), self::$allowedUpdateColumns );
 		if ( $extra ) {
 			throw new \MWException( 'Update not allowed on: ' . implode( ', ', $extra ) );
