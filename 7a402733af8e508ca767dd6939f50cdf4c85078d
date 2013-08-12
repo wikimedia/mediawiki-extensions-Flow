@@ -85,6 +85,24 @@
       "revId": "7a402733af8e508ca767dd6939f50cdf4c85078d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "698b69a3_5dc1fb81",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-12T18:41:04Z",
+      "side": 1,
+      "message": "That makes sense, but compression can also happen in here - right? Either in setContent() or toStorageRow()",
+      "parentUuid": "698b69a3_bdee7f21",
+      "revId": "7a402733af8e508ca767dd6939f50cdf4c85078d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
