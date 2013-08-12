@@ -14,10 +14,11 @@ use User;
 class TopicBlock extends AbstractBlock {
 
 	protected $root;
+	protected $topicTitle;
 	protected $rootLoader;
 	protected $newRevision;
 
-	protected $supportedActions = array( 'reply', 'delete-topic', 'delete-post', 'restore-post' );
+	protected $supportedActions = array( 'edit-title', 'reply', 'delete-topic', 'delete-post', 'restore-post' );
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, $root ) {
 		parent::__construct( $workflow, $storage );
@@ -34,6 +35,10 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validate() {
 		switch( $this->action ) {
+		case 'edit-title':
+			$this->validateEditTitle();
+			break;
+
 		case 'reply':
 			$this->validateReply();
 			break;
@@ -53,6 +58,21 @@ class TopicBlock extends AbstractBlock {
 
 		default:
 			throw new \MWException( "Unexpected action: {$this->action}" );
+		}
+	}
+
+	protected function validateEditTitle() {
+		if ( $this->workflow->isNew() ) {
+			$this->errors['content'] = wfMessage( 'flow-no-existing-workflow' );
+		} elseif ( empty( $this->submitted['content'] ) ) {
+			$this->errors['content'] = wfMessage( 'flow-missing-title-content' );
+		} else {
+			$topicTitle = $this->loadTopicTitle();
+			if ( !$topicTitle ) {
+				throw new \Exception( 'No revision associated with workflow?' );
+			}
+
+			$this->topicTitle = $topicTitle->newNextRevision( $this->user, $this->submitted['content'] );
 		}
 	}
 
@@ -186,6 +206,10 @@ class TopicBlock extends AbstractBlock {
 			$this->storage->put( $this->newRevision );
 			break;
 
+		case 'edit-title':
+			$this->storage->put( $this->topicTitle );
+			break;
+
 		case 'delete-topic':
 			$this->storage->put( $this->workflow );
 			break;
@@ -210,6 +234,13 @@ class TopicBlock extends AbstractBlock {
 				'topic' => $this->workflow,
 				'history' => $history,
 			), $return );
+		} elseif ( $this->action === 'edit-title' ) {
+			return $templating->render( "flow:edit-title.html.php", array(
+				'block' => $this,
+				'user' => $this->user,
+				'topic' => $this->workflow,
+				'topicTitle' => $this->loadTopicTitle(),
+			) );
 		}
 
 		$templating->getOutput()->addModules( 'ext.flow.base' );
@@ -355,7 +386,23 @@ class TopicBlock extends AbstractBlock {
 		if ( $this->root !== null ) {
 			return $this->root;
 		}
-		return $this->root = $this->rootLoader->get( $this->workflow->getId() );
+		// topicTitle is same as root, difference is root has children populated to full depth
+		return $this->topicTitle = $this->root = $this->rootLoader->get( $this->workflow->getId() );
+	}
+
+	// Loads only the title, as opposed to loadRootPost which gets the entire tree of posts.
+	protected function loadTopicTitle() {
+		if ( $this->topicTitle === null ) {
+			$found = $this->storage->find(
+				'PostRevision',
+				array( 'tree_rev_descendant_id' => $this->workflow->getId() ),
+				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			);
+			if ( $found ) {
+				$this->topicTitle = reset( $found );
+			}
+		}
+		return $this->topicTitle;
 	}
 
 	// Somehow the template has to know which post the errors go with

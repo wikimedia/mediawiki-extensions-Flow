@@ -449,8 +449,12 @@ class Merger {
 		if ( $name === null ) {
 			$name = $fromKey;
 		}
+		$ids = array();
 		foreach ( $source as $row ) {
 			$ids[] = $row[$fromKey];
+		}
+		if ( !$ids ) {
+			return $source;
 		}
 		$res = call_user_func( $callable, $ids );
 		if ( $res === false ) {
@@ -472,10 +476,14 @@ class Merger {
 		if ( $name === null ) {
 			$name = $fromKey;
 		}
+		$ids = array();
 		foreach ( $multiSource as $source ) {
 			foreach ( $source as $row ) {
 				$ids[] = $row[$fromKey];
 			}
+		}
+		if ( !$ids ) {
+			return $multiSource;
 		}
 		$res = call_user_func( $callable, array_unique( $ids ) );
 		if ( $res === false ) {

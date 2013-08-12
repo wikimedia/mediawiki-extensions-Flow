@@ -83,7 +83,11 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 	echo '</div>';
 };
 
-echo Html::element( 'h4', array(), $root->getContent() );
+echo Html::element( 'h4', array(), $root->getContent() ),
+	Html::rawElement( 'a', array(
+		'href' => $this->generateUrl( $root->getPostId(), 'edit-title' )
+	), wfMessage( 'flow-action-edit-title' ) );
+
 foreach( $root->getChildren() as $child ) {
 	$renderPost( $child );
 }
