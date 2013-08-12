@@ -67,6 +67,24 @@
       "revId": "7a402733af8e508ca767dd6939f50cdf4c85078d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "698b69a3_bdee7f21",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-12T18:35:21Z",
+      "side": 1,
+      "message": "We discussed this on IRC – problem is that we load in batches, and so it\u0027s better to decompress on an as-needed basis, otherwise we end up decompressing lots of text that we don\u0027t actually need.",
+      "parentUuid": "698b69a3_fda64711",
+      "revId": "7a402733af8e508ca767dd6939f50cdf4c85078d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
