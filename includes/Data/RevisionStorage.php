@@ -52,7 +52,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		}
 		$retval = array();
 		foreach ( $res as $row ) {
-			$retval[$row->rev_id] = (array) $row;
+			$retval[UUID::create( $row->rev_id )->getHex()] = (array) $row;
 		}
 		return $retval;
 	}
@@ -440,6 +440,75 @@ class SummaryRevisionStorage extends RevisionStorage {
 	}
 }
 
+/**
+ * Slight tweak to the TopKIndex uses additional info from TreeRepository to build the cache
+ */
+class TopicHistoryIndex extends TopKIndex {
+
+	protected $treeRepository;
+
+	public function __construct( BufferedCache $cache, PostRevisionStorage $storage, TreeRepository $treeRepo, $prefix, array $indexed, array $options = array() ) {
+		if ( $indexed !== array( 'topic_root' ) ) {
+			throw new \Exception( __CLASS__ . ' is hardcoded to only index topic_root: ' . print_r( $indexed, true ) );
+		}
+		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
+		$this->treeRepository = $treeRepo;
+	}
+
+	public function onAfterInsert( $object, array $new ) {
+		$new['topic_root'] = $this->treeRepository->findRoot( UUID::create( $new['tree_rev_descendant_id'] ) );
+		parent::onAfterInsert( $object, $new );
+	}
+
+	public function onAfterUpdate( $object, array $old, array $new ) {
+		$old['topic_root'] = $new['topic_root'] = $this->treeRepository->findRoot( UUID::create( $old['tree_rev_descendant_id'] ) );
+		parent::onAfterUpdate( $object, $old, $new );
+	}
+
+	public function onAfterRemove( $object, array $old ) {
+		$old['topic_root'] = $this->treeRepository->findRoot( UUID::create( $old['tree_rev_descendant_id'] ) );
+		parent::onAfterRemove( $object, $old );
+	}
+
+	public function backingStoreFindMulti( array $queries, array $idxToKey, array $retval = array() ) {
+		// all queries are for roots( guaranteed by constructor), so anything that falls
+		// through and has to be queried from storage will actually need to be doing a
+		// special condition either joining against flow_tree_node or first collecting the
+		// subtree node lists and then doing a big IN condition
+
+		// This isn't a hot path(should be pre-populated into index) but we still dont want
+		// horrible performance
+
+		$roots = array();
+		foreach ( $queries as $idx => $features ) {
+			$roots[] = UUID::create( $features['topic_root'] );
+		}
+		$nodeList = $this->treeRepository->fetchSubtreeNodeList( $roots );
+
+		$descendantQueries = array();
+		foreach ( $queries as $idx => $features ) {
+			$list = array();
+			$nodes = $nodeList[$features['topic_root']->getHex()];
+			$descendantQueries[$idx] = array(
+				'tree_rev_descendant_id' => UUID::convertUUIDs( $nodes ),
+			);
+		}
+
+		$res = $this->storage->findMulti( $descendantQueries, $this->queryOptions() );
+		if  ( !$res ) {
+			return false;
+		}
+		foreach ( $res as $idx => $rows ) {
+			$retval[$idx] = $rows;
+			$this->cache->add( $idxToKey[$idx], $this->rowCompactor->compactRows( $rows ) );
+			unset( $queries[$idx] );
+		}
+		if ( $queries ) {
+			// Log something about not finding everything?
+		}
+		return $retval;
+	}
+}
 /**
  * This assists in performing client-side 1-to-1 joins.  It collects the foreign key
  * from a multi-dimensional array, queries a callable for the foreign key values and

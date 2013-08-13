@@ -47,7 +47,7 @@ class SummaryBlock extends AbstractBlock {
 				$this->errors['prev_revision'] = wfMessage( 'flow-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->summary->getRevisionId()->getHex() );
 			}
 			// this isnt really part of validate, but we want the error-rendering template to see the users edited summary
-			$this->summary = $this->summary->newNextRevision( $this->user, $this->submitted['content'] );
+			$this->summary = $this->summary->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-summary' );
 		} else {
 			if ( empty( $this->submitted['prev_revision'] ) ) {
 				// this isnt really part of validate either, should validate be renamed or should this logic be redone?
