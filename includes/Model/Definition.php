@@ -10,10 +10,14 @@ class Definition {
 	protected $name;
 	protected $options = array();
 
-	static public function fromStorageRow( array $row ) {
-		$obj = new self;
+	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( ! $row['definition_wiki'] ) {
 			throw new \MWException( "No definition_wiki" );
+		}
+		if ( $obj === null ) {
+			$obj = new self;
+		} elseif ( !$obj instanceof self ) {
+			throw new \Exception( 'Wrong obj type: ' . get_class( $obj ) );
 		}
 		$obj->id = UUID::create( $row['definition_id'] );
 		$obj->type = $row['definition_type'];
