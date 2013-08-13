@@ -56,6 +56,7 @@ use Flow\Data\PostRevisionStorage;
 use Flow\Data\SummaryRevisionStorage;
 use Flow\Data\UniqueFeatureIndex;
 use Flow\Data\TopKIndex;
+use Flow\Data\TopicHistoryIndex;
 use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectManager;
 
@@ -182,6 +183,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_revision:pk', array( 'rev_id' ) );
 	$indexes = array(
 		$pk,
+		// revision history
 		new TopKIndex( $cache, $storage, 'flow_revision:descendant',
 			array( 'tree_rev_descendant_id' ),
 			array(
@@ -194,6 +196,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 					return $row['rev_parent_id'] === null;
 				},
 		) ),
+		// most recent revision
 		new TopKIndex( $cache, $storage, 'flow_revision:latest_post',
 			array( 'tree_rev_descendant_id' ),
 			array(
@@ -205,6 +208,21 @@ $c['storage.post'] = $c->share( function( $c ) {
 					return $row['rev_parent_id'] === null;
 				},
 		) ),
+		// thread history -- to keep a history by thread we have to know what thread every post
+		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
+		// using TreeRepository for extra information and stuffing it into thread_root while indexing
+		new TopicHistoryIndex( $cache, $storage, $c['repository.tree'], 'flow_revision:thread',
+			array( 'thread_root' ),
+			array(
+				'limit' => 500,
+				'sort' => 'rev_id',
+				'order' => 'DESC',
+				'shallow' => $pk,
+				'create' => function( array $row ) {
+					// if the post has no parent it is a root of a new thread
+					return $row['tree_parent_id'] === null;
+				},
+		) )
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes );
