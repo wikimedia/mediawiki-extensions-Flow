@@ -37,7 +37,9 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-post-action-edit-post' => 'Edit post',
 	'flow-post-action-edit' => 'Edit',
 	'flow-post-action-restore-post' => 'Restore post',
-	'flow-topic-action-edit-title' => 'Edit Title',
+
+	'flow-topic-action-edit-title' => 'Edit title',
+	'flow-topic-action-history' => 'Topic history',
 
 	'flow-error-http' => 'An error occurred while contacting the server. Your post was not saved.', // Needs real copy
 	'flow-error-other' => 'An unexpected error occurred. Your post was not saved.',
@@ -58,6 +60,13 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	'flow-edit-title-submit' => 'Change title',
 
+	'flow-rev-message-reply' => 'New reply posted',
+	'flow-rev-message-new-post' => 'Topic created',
+
+	'flow-topic-history' => 'Topic history',
+
+	'flow-comment-restored' => 'Restored comment',
+	'flow-comment-deleted' => 'Deleted comment',
 );
 
 /** Message documentation (Message documentation)
