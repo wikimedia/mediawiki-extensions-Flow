@@ -142,8 +142,12 @@ class TreeRepository {
 		if ( !$res ) {
 			return null;
 		}
+		$path = array();
 		foreach ( $res as $row ) {
 			$path[$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
+		}
+		if ( !$path ) {
+			throw new \Exception( 'No root path found? Is this a root already? ' . $descendant->getHex() );
 		}
 		ksort( $path );
 		$path = array_reverse( $path );
@@ -211,7 +215,13 @@ class TreeRepository {
 			$roots,
 			array( $this, 'fetchSubtreeNodeListFromDb' )
 		);
-		return $res;
+
+		// $idx is a binary UUID
+		$retval = array();
+		foreach ( $res as $idx => $val ) {
+			$retval[UUID::create( $idx )->getHex()] = $val;
+		}
+		return $retval;
 	}
 
 	public function fetchSubtreeNodeListFromDb( array $roots ) {
