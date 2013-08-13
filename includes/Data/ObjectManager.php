@@ -765,6 +765,11 @@ abstract class FeatureIndex implements Index {
 		if ( count( $queries ) === 0 ) {
 			return $results;
 		}
+
+		return $this->backingStoreFindMulti( $queries, $idxToKey, $results );
+	}
+
+	protected function backingStoreFindMulti( array $queries, array $idxToKey, array $results = array() ) {
 		// query backing store
 		$stored = $this->storage->findMulti( $queries, $this->queryOptions() );
 		// map store results to cache key

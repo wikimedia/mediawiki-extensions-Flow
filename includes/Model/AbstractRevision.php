@@ -70,9 +70,10 @@ abstract class AbstractRevision {
 		return $obj;
 	}
 
-	public function newNextRevision( User $user, $content ) {
+	public function newNextRevision( User $user, $content, $comment ) {
 		$obj = $this->newNullRevision( $user );
 		$obj->setContent( $content );
+		$obj->comment = $comment;
 		return $obj;
 	}
 

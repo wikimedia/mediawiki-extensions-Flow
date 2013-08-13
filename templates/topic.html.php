@@ -91,9 +91,17 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 };
 
 echo Html::element( 'h4', array(), $root->getContent() ),
-	Html::rawElement( 'a', array(
-		'href' => $this->generateUrl( $root->getPostId(), 'edit-title' )
-	), wfMessage( 'flow-action-edit-title' ) );
+	'<ul>',
+		'<li>',
+			Html::rawElement( 'a', array(
+				'href' => $this->generateUrl( $root->getPostId(), 'topic-history' )
+			), wfMessage( 'flow-action-topic-history' ) ),
+		'</li><li>',
+			Html::rawElement( 'a', array(
+				'href' => $this->generateUrl( $root->getPostId(), 'edit-title' )
+			), wfMessage( 'flow-action-edit-title' ) ),
+		'</li>',
+	'<ul>';
 
 foreach( $root->getChildren() as $child ) {
 	$renderPost( $child );

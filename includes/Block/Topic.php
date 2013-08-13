@@ -19,9 +19,11 @@ class TopicBlock extends AbstractBlock {
 	protected $newRevision;
 	protected $requestedPost;
 
+	// POST actions, GET do not need to be listed
+	// unrecognized GET actions fallback to 'view'
 	protected $supportedActions = array(
 		'edit-post', 'delete-post', 'restore-post',
-		'reply', 'delete-topic',
+		'reply', 'delete-topic', 'edit-title',
 	);
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, $root ) {
@@ -80,7 +82,7 @@ class TopicBlock extends AbstractBlock {
 				throw new \Exception( 'No revision associated with workflow?' );
 			}
 
-			$this->topicTitle = $topicTitle->newNextRevision( $this->user, $this->submitted['content'] );
+			$this->topicTitle = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-title' );
 		}
 	}
 
@@ -177,7 +179,7 @@ class TopicBlock extends AbstractBlock {
 		}
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( $post ) {
-			$this->newRevision = $post->newNextRevision( $this->user, $this->parsedContent );
+			$this->newRevision = $post->newNextRevision( $this->user, $this->parsedContent, 'flow-edit-post' );
 		} else {
 			$this->errors['edit-post'] = wfMessage( 'flow-post-not-found' );
 		}
@@ -256,6 +258,13 @@ class TopicBlock extends AbstractBlock {
 		case 'post-history':
 			return $this->renderPostHistory( $templating, $options, $return );
 
+		case 'topic-history':
+			return $templating->render( "flow:topic-history.html.php", array(
+				'block' => $this,
+				'topic' => $this->workflow,
+				'history' => $this->loadTopicHistory(),
+			) );
+
 		case 'edit-post':
 			return $this->renderEditPost( $templating, $options, $return );
 
@@ -282,7 +291,7 @@ class TopicBlock extends AbstractBlock {
 		return $templating->render( "flow:post-history.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
-			'history' => $$this->getHistory( $options['postId'] ),
+			'history' => $this->getHistory( $options['postId'] ),
 		), $return );
 	}
 
@@ -447,6 +456,19 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 		return $this->topicTitle;
+	}
+
+	protected function loadTopicHistory() {
+		$found = $this->storage->find(
+			'PostRevision',
+			array( 'topic_root' => $this->workflow->getId() ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
+		);
+		if ( $found ) {
+			return $found;
+		} else {
+			throw new \MWException( "Unable to load topic history for topic " . $this->workflow->getId()->getHex() );
+		}
 	}
 
 	protected function loadRequestedPost( $postId ) {
