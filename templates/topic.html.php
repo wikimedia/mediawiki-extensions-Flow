@@ -38,23 +38,23 @@ echo Html::openElement( 'div', array(
 		<div class="flow-actionbox-pokey">&nbsp;</div>
 		<div class="flow-topic-actionbox">
 			<ul>
-				<li class="flow-action-edit-title">
+				<li class="flow-topic-action-edit-title">
 <?php
 echo Html::rawElement( 'a',
 	array(
 		'href' => $this->generateUrl( $root->getPostId(), 'edit-title' )
 	),
-	wfMessage( 'flow-topic-action-edit-title' )
+	wfMessage( 'flow-topic-action-edit-title' )->escaped()
 );
 ?>
 				</li>
-				<li class="flow-action-topic-history">
+				<li class="flow-topic-action-history">
 <?php
 echo Html::rawElement( 'a',
 	array(
 		'href' => $this->generateUrl( $root->getPostId(), 'topic-history' )
 	),
-	wfMessage( 'flow-topic-action-history' )
+	wfMessage( 'flow-topic-action-history' )->escaped()
 );
 ?>
 				</li>
