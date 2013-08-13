@@ -245,10 +245,29 @@ class TopicBlock extends AbstractBlock {
 
 		$templating->getOutput()->addModules( 'ext.flow.base' );
 
+		$root = $this->loadRootPost();
+		if ( isset( $options['postId'] ) ) {
+			$stack = array( $root );
+			$found = false;
+			while( $stack ) {
+				$post = array_pop( $stack );
+				if ( $post->getPostId()->getHex() === $options['postId'] ) {
+					$found = true;
+					break;
+				}
+				foreach ( $post->getChildren() as $child ) {
+					$stack[] = $child;
+				}
+			}
+			if ( $found === false ) {
+				throw new \Exception( 'Requested postId is not available within post tree' );
+			}
+			$root = $post;
+		}
 		return $templating->render( "flow:topic.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
-			'root' => $this->loadRootPost(),
+			'root' => $root,
 			'user' => $this->user,
 		), $return );
 	}
@@ -417,7 +436,7 @@ class TopicBlock extends AbstractBlock {
 
 	// The prefix used for form data
 	public function getName() {
-		return 'topic_list';
+		return 'topic';
 	}
 
 }

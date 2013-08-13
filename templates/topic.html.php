@@ -11,7 +11,7 @@ $postAction = function( $action, array $data = array() ) use( $self, $block, $ro
 	// also, CSRF?
 	echo '<li>' . Html::openElement( 'form', array(
 		'method' => 'POST',
-		'action' => $self->generateUrl( $root->getPostId(), $action )
+		'action' => $self->generateUrl( $block->getWorkflowId(), $action )
 	) );
 	echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 	foreach ( $data as $name => $value ) {
@@ -36,7 +36,7 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 			. '<ul>';
 		$postAction( 'restore-post', array( 'postId' => $post->getPostId()->getHex() ) );
 		echo '<li>' . Html::element( 'a', array(
-			'href' => $self->generateUrl( $root->getPostId(), 'post-history', array(
+			'href' => $self->generateUrl( $block->getWorkflowId(), 'post-history', array(
 				$block->getName() . '[postId]' => $post->getPostId()->getHex(),
 			) ),
 		), wfMessage( 'flow-post-action-history' )->plain() ) . '</li>';
@@ -49,7 +49,7 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 			. '<ul>';
 		$postAction( 'delete-post', array( 'postId' => $post->getPostId()->getHex() ) );
 		echo '<li>' . Html::element( 'a', array(
-			'href' => $self->generateUrl( $root->getPostId(), 'post-history', array(
+			'href' => $self->generateUrl( $block->getWorkflowId(), 'post-history', array(
 				$block->getName() . '[postId]' => $post->getPostId()->getHex(),
 			) ),
 		), wfMessage( 'flow-post-action-history' )->plain() ) . '<li>';
@@ -57,7 +57,7 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 			. Html::openElement( 'form', array(
 				'method' => 'POST',
 				// root post id is same as topic workflow id
-				'action' => $self->generateUrl( $root->getPostId(), 'reply' ),
+				'action' => $self->generateUrl( $block->getWorkflowId(), 'reply' ),
 			) );
 			echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 		if ( $block->getHexRepliedTo() === $post->getPostId()->getHex() ) {
@@ -83,11 +83,15 @@ $renderPost = function( $post ) use( $self, $block, $root, $postAction, &$render
 	echo '</div>';
 };
 
-echo Html::element( 'h4', array(), $root->getContent() ),
-	Html::rawElement( 'a', array(
-		'href' => $this->generateUrl( $root->getPostId(), 'edit-title' )
-	), wfMessage( 'flow-action-edit-title' ) );
+if ( $root->isTopicTitle() ) {
+	echo Html::element( 'h4', array(), $root->getContent() ),
+		Html::rawElement( 'a', array(
+			'href' => $this->generateUrl( $block->getWorkflowId(), 'edit-title' )
+		), wfMessage( 'flow-action-edit-title' ) );
 
-foreach( $root->getChildren() as $child ) {
-	$renderPost( $child );
+	foreach( $root->getChildren() as $child ) {
+		$renderPost( $child );
+	}
+} else {
+	$renderPost( $root );
 }
