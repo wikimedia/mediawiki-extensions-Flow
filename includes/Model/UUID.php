@@ -26,9 +26,9 @@ class UUID {
 		} elseif ( strlen( $input ) == 32 && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
 			return new self( pack( 'H*', $input ) );
 		} elseif ( is_numeric( $input ) ) {
-			return new self( pack( 'H*', wfBaseConvert( $input, 10, 16 ) ) );
+			return new self( pack( 'H*', wfBaseConvert( $input, 10, 16, 32 ) ) );
 		} elseif ( $input === false ) {
-			return new self( pack( 'H*', \UIDGenerator::newTimestampedUID128( 16 ) ) );
+			return new self( pack( 'H*', str_pad( \UIDGenerator::newTimestampedUID128( 16 ), 32, '0', STR_PAD_LEFT ) ) );
 		} elseif ( $input === null ) {
 			return null;
 		} else {
@@ -46,7 +46,7 @@ class UUID {
 	}
 
 	public function getHex() {
-		return bin2hex( $this->binaryValue );
+		return str_pad( bin2hex( $this->binaryValue ), 32, '0', STR_PAD_LEFT );
 	}
 
 	public function getBinary() {
@@ -55,6 +55,15 @@ class UUID {
 
 	public function getNumber() {
 		return wfBaseConvert( $this->getHex(), 16, 10 );
+	}
+
+	public function getTimestamp() {
+		// First 6 bytes === 48 bits
+		$timePortion = substr( $this->getHex(), 0, 12 );
+		$bits_48 = wfBaseConvert( $timePortion, 16, 2, 48 );
+		$bits_46 = substr( $bits_48, 0, 46 );
+		$msTimestamp = wfBaseConvert( $bits_46, 2, 10 );
+		return wfTimestamp( TS_MW, intval( $msTimestamp / 1000 ) );
 	}
 
 	public static function convertUUIDs( $array ) {
