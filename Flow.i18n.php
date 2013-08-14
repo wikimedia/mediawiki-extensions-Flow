@@ -17,6 +17,13 @@ $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'flow-desc' => 'Sistema de xestión del fluxu de trabayu',
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */
