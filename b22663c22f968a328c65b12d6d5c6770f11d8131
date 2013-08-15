@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "698b69a3_dcd7c448",
+        "filename": "templates/topic-history.html.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-15T09:23:31Z",
+      "side": 1,
+      "message": "Is it intended to allow HTML, or should this be -\u003eescaped()?",
+      "revId": "b22663c22f968a328c65b12d6d5c6770f11d8131",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
