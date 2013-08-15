@@ -34,6 +34,24 @@
       "revId": "459a8dea17e21511083f0ad7c6e3fa3db5bcaf6c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "499865f5_9c97059b",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 121
+      },
+      "writtenOn": "2013-08-15T18:32:20Z",
+      "side": 0,
+      "message": "Flow is already enabled on translatewiki.net\n\nPlease add message documentation as soon as possible. Some changes to the messages are not as problematic as missing localization once you start public testing of Flow.",
+      "parentUuid": "698b69a3_df3336a9",
+      "revId": "459a8dea17e21511083f0ad7c6e3fa3db5bcaf6c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
