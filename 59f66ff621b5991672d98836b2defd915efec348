@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "698b69a3_9ceb7cdd",
+        "filename": "templates/edit-post.html.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-15T10:02:43Z",
+      "side": 1,
+      "message": "-\u003eescaped() instead of -\u003etext()?",
+      "revId": "59f66ff621b5991672d98836b2defd915efec348",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "698b69a3_5c6e5498",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-15T10:02:43Z",
+      "side": 1,
+      "message": "Unrelated to this patch, but UrlGenerator::generateUrl returns a full protocol \u0026 domain-prefixed url (Title::getFullUrl) - shouldn\u0027t it return a relative, Title::getLinkURL?",
+      "revId": "59f66ff621b5991672d98836b2defd915efec348",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
