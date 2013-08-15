@@ -33,7 +33,11 @@ $c['url_generator'] = $c->share( function( $c ) {
 $c['templating.namespaces'] = array(
 	'flow' => __DIR__ . '/templates',
 );
-$c['templating.global_variables'] = array();
+$c['templating.global_variables'] = $c->share( function( $c ) {
+	return array(
+		'user' => $c['user'],
+	);
+} );
 $c['templating'] = $c->share( function( $c ) {
 	return new Flow\Templating(
 		$c['url_generator'],
