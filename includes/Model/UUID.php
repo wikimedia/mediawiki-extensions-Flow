@@ -75,4 +75,8 @@ class UUID {
 
 		return $array;
 	}
+
+	public function equals( UUID $other ) {
+		return $other->getBinary() === $this->getBinary();
+	}
 }
