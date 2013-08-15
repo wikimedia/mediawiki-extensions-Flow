@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "698b69a3_7c04f0c2",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-15T10:04:55Z",
+      "side": 1,
+      "message": "TopicBlock::commit expects a $this-\u003enewRevision; changing it here will break that.",
+      "revId": "b22663c22f968a328c65b12d6d5c6770f11d8131",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "698b69a3_dcd7c448",
         "filename": "templates/topic-history.html.php",
         "patchSetId": 4
@@ -13,6 +30,23 @@
       "writtenOn": "2013-08-15T09:23:31Z",
       "side": 1,
       "message": "Is it intended to allow HTML, or should this be -\u003eescaped()?",
+      "revId": "b22663c22f968a328c65b12d6d5c6770f11d8131",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "698b69a3_7c1dd00a",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-08-15T10:04:55Z",
+      "side": 1,
+      "message": "This breaks the JS hook to this element, in modules/discussion/discussion.js, around L430.",
       "revId": "b22663c22f968a328c65b12d6d5c6770f11d8131",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
