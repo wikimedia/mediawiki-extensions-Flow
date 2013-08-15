@@ -70,9 +70,78 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 );
 
 /** Message documentation (Message documentation)
+ * @author Shirayuki
  */
 $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
+	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
+* $1 - page title',
+	'flow-edit-summary-link' => 'Used as text for the link which points to the "Edit summary" page.',
+	'flow-disclaimer' => 'Used as disclaimer text at the bottom of the form.
+
+Preceded by the Submit button which has the label either {{msg-mw|Flow-reply-submit}} or {{msg-mw|Flow-newtopic-save}}.
+
+"Add Message" seems to refer these Submit buttons.
+
+See also:
+* {{msg-mw|Wikimedia-copyrightwarning}}',
+	'flow-post-deleted' => 'Used as username/content if the post was deleted.',
+	'flow-post-actions' => 'Used as link text.
+{{Identical|Action}}',
+	'flow-topic-actions' => 'Used as link text.
+{{Identical|Action}}',
+	'flow-cancel' => 'Used as action link text.
+{{Identical|Cancel}}',
+	'flow-newtopic-title-placeholder' => 'Used as placeholder for the "Subject/Title for topic" textarea.',
+	'flow-newtopic-content-placeholder' => 'Used as placeholder for the "Content" textarea.',
+	'flow-newtopic-header' => 'Unused at this time.',
+	'flow-newtopic-save' => 'Used as label for the Submit button.',
+	'flow-newtopic-start-placeholder' => 'Used as placeholder for the "Topic" textarea.',
+	'flow-reply-placeholder' => 'Used as placeholder for the Content textarea. Parameters:
+* $1 - username',
+	'flow-reply-submit' => 'Used as label for the Submit button.',
+	'flow-post-action-delete-post' => 'Used as label for the Submit button.
+
+See also:
+* {{msg-mw|Flow-post-action-restore-post}}',
+	'flow-post-action-restore-post' => 'Used as label for the Submit button.
+
+See also:
+* {{msg-mw|Flow-post-action-delete-post}}',
+	'flow-topic-action-edit-title' => 'Used as link text.',
+	'flow-error-http' => 'Used as error message on HTTP error.',
+	'flow-error-other' => 'Used as generic error message.',
+	'flow-error-external' => 'Uses as error message. Parameters:
+* $1 - error message
+See also:
+* {{msg-mw|Flow-error-external-multi}}',
+	'flow-error-external-multi' => 'Used as error message. Parameters:
+* $1 - list of error messages
+See also:
+* {{msg-mw|Flow-error-external}}',
+	'flow-error-missing-content' => 'Used as error message.',
+	'flow-error-missing-title' => 'Used as error message.',
+	'flow-error-parsoid-failure' => 'Used as error message.
+
+Parsoid is a bidirectional wikitext parser and runtime. Converts back and forth between wikitext and HTML/XML DOM with RDFa. See [[mw:Parsoid]].',
+	'flow-error-missing-replyto' => 'Used as error message.
+
+The variable name "replyTo" is invisible to users, so "replyTo" can be translated.',
+	'flow-error-invalid-replyto' => 'Used as error message.
+
+The variable name "replyTo" is invisible to users, so "replyTo" can be translated.',
+	'flow-error-delete-failure' => 'Used as error message.
+
+"this item" refers either "this topic" or "this post".',
+	'flow-error-missing-postId' => 'Used as error message when deleting/restoring a post.
+
+"manipulate" refers either "delete" or "restore".',
+	'flow-error-invalid-postId' => 'Used as error message when deleting/restoring a post.',
+	'flow-error-restore-failure' => 'Used as error message when restoring a post.
+
+"this item" seems to refer "this post".',
+	'flow-summaryedit-submit' => 'Used as label for the Submit button.',
+	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 );
 
 /** Asturian (asturianu)
@@ -87,13 +156,80 @@ $messages['ast'] = array(
  */
 $messages['de'] = array(
 	'flow-desc' => 'Workflow-Management-System',
+	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-edit-summary-link' => 'Bearbeitungszusammenfassung',
+	'flow-disclaimer' => 'Durch Klicken auf „Nachricht hinzufügen“ stimmst du den Nutzungsbedingungen
+und der unwiderruflichen Veröffentlichung deines Beitrags unter der CC-BY-SA-3.0-Lizenz sowie der GFDL zu.
+Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennung der Creative-Commons-Lizenz steht.',
+	'flow-post-deleted' => '[Beitrag gelöscht]',
+	'flow-post-actions' => 'Aktionen',
+	'flow-topic-actions' => 'Aktionen',
+	'flow-cancel' => 'Abbrechen',
+	'flow-newtopic-title-placeholder' => 'Betreff der Nachricht',
+	'flow-newtopic-content-placeholder' => 'Nachrichtentext. Sei freundlich!',
+	'flow-newtopic-header' => 'Ein neues Thema hinzufügen',
+	'flow-newtopic-save' => 'Thema hinzufügen',
+	'flow-newtopic-start-placeholder' => 'Hier klicken, um eine neue Diskussion zu starten. Sei freundlich!',
+	'flow-reply-placeholder' => 'Klicke, um $1 zu antworten. Sei freundlich!',
+	'flow-reply-submit' => 'Antworten',
+	'flow-post-action-delete-post' => 'Beitrag löschen',
+	'flow-post-action-restore-post' => 'Beitrag wiederherstellen',
+	'flow-topic-action-edit-title' => 'Titel bearbeiten',
+	'flow-error-http' => 'Beim Kontaktieren des Servers ist ein Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert.',
+	'flow-error-other' => 'Ein unerwarteter Fehler ist aufgetreten. Dein Beitrag wurde nicht gespeichert.',
+	'flow-error-external' => 'Beim Speichern deines Beitrags ist ein Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert.<br /><small>Die empfangene Fehlermeldung lautete: $1</small>',
+	'flow-error-external-multi' => 'Beim Speichern deines Beitrags sind Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert. <br /> $1',
+	'flow-error-missing-content' => 'Der Beitrag hat keinen Inhalt. Dieser ist erforderlich, um einen neuen Beitrag zu speichern.',
+	'flow-error-missing-title' => 'Das Thema hat keinen Titel. Dieser ist erforderlich, um ein neues Thema zu speichern.',
+	'flow-error-parsoid-failure' => 'Aufgrund eines Parsoid-Fehlers konnte der Inhalt nicht geparst werden.',
+	'flow-error-missing-replyto' => 'Es wurde kein Parameter „replyTo“ angegeben. Dieser Parameter ist für die „Antworten“-Aktion erforderlich.',
+	'flow-error-invalid-replyto' => 'Der Parameter „replyTo“ war ungültig. Der angegebene Beitrag konnte nicht gefunden werden.',
+	'flow-error-delete-failure' => 'Das Löschen dieses Objektes ist fehlgeschlagen.',
+	'flow-error-missing-postId' => 'Es wurde kein Parameter „postId“ angegeben. Dieser Parameter ist zum Ändern eines Beitrags erforderlich.',
+	'flow-error-invalid-postId' => 'Der Parameter „postId“ war ungültig. Der angegebene Beitrag konnte nicht gefunden werden.',
+	'flow-error-restore-failure' => 'Das Wiederherstellen dieses Objektes ist fehlgeschlagen.',
+	'flow-summaryedit-submit' => 'Zusammenfassung speichern',
+	'flow-edit-title-submit' => 'Titel ändern',
 );
 
 /** French (français)
  * @author Gomoko
+ * @author Sherbrooke
  */
 $messages['fr'] = array(
 	'flow-desc' => 'Système de gestion du flux de travail',
+	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-edit-summary-link' => 'Résumé',
+	'flow-disclaimer' => "En cliquant sur le bouton « Ajouter un message », vous acceptez nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr conditions d'utilisation] et acceptez de placer irrévocablement votre contribution sous [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licence Creative Commons paternité-partage des conditions initiales à l'identique 3.0] et [http://www.gnu.org/copyleft/fdl.html GFDL]. Vous acceptez d’être crédité par les ré-utilisateurs au minimum via un hyperlien ou une URL sous la licence Creative Commons.",
+	'flow-post-deleted' => '[message supprimé]',
+	'flow-post-actions' => 'actions',
+	'flow-topic-actions' => 'actions',
+	'flow-cancel' => 'Annuler',
+	'flow-newtopic-title-placeholder' => 'Objet du message',
+	'flow-newtopic-content-placeholder' => 'Texte du message. Soyez gentil !',
+	'flow-newtopic-header' => 'Ajouter un nouveau sujet',
+	'flow-newtopic-save' => 'Ajouter sujet',
+	'flow-newtopic-start-placeholder' => 'Cliquez ici pour commencer une nouvelle discussion. Soyez gentil !',
+	'flow-reply-placeholder' => 'Cliquez ici pour répondre à $1. Soyez gentil !',
+	'flow-reply-submit' => 'Poster une réponse',
+	'flow-post-action-delete-post' => 'Supprimer le message',
+	'flow-post-action-restore-post' => 'Restaurer le message',
+	'flow-topic-action-edit-title' => 'Modifier le titre',
+	'flow-error-http' => "Une erreur s'est produite en communiquant avec le serveur. Votre message n'a pas été enregistré.",
+	'flow-error-other' => "Une erreur inattendue s'est produite. Votre message n'a pas été enregistré.",
+	'flow-error-external' => "Une erreur s'est produite lors de l'enregistrement de votre message. Il n'a pas été enregistré.<br /><small>Le message d'erreur reçu était :$1</small>",
+	'flow-error-external-multi' => "Des erreurs se sont produites lors de l'enregistrement de votre message. Votre message n'a pas été enregistré.<br /> $1",
+	'flow-error-missing-content' => "Le message n'a aucun contenu. C'est requis pour enregistrer un nouveau message.",
+	'flow-error-missing-title' => "Le sujet n'a aucun titre. C'est requis pour enregistrer un nouveau sujet.",
+	'flow-error-parsoid-failure' => "Impossible d'analyser le contenu en raison d'une panne de Parsoid.",
+	'flow-error-missing-replyto' => "Aucun paramètre replyTo n'a été fourni. Ce paramètre est requis pour l'action « répondre ».",
+	'flow-error-invalid-replyto' => "paramètre replyTo n'était pas valide. Le message spécifié est introuvable.",
+	'flow-error-delete-failure' => 'Échec de la suppression de cette entrée.',
+	'flow-error-missing-postId' => 'Aucun paramètre postId a été fourni. Ce paramètre est requis pour manipuler un message.',
+	'flow-error-invalid-postId' => "Le paramètre postId n'était pas valide. Le message spécifié est introuvable.",
+	'flow-error-restore-failure' => 'Échec de la restauration de cette entrée.',
+	'flow-summaryedit-submit' => 'Enregistrer le résumé',
+	'flow-edit-title-submit' => 'Changer le titre',
 );
 
 /** Japanese (日本語)
@@ -101,6 +237,40 @@ $messages['fr'] = array(
  */
 $messages['ja'] = array(
 	'flow-desc' => 'ワークフロー管理システム',
+	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-edit-summary-link' => '要約を編集',
+	'flow-disclaimer' => '「メッセージを追加」ボタンをクリックすると、利用規約に同意するとともに、
+自分の投稿内容を CC-BY-SA 3.0 ライセンスおよび GFDL のもとで公開することに同意したことになります。この同意は取り消せません。
+また、あなたはハイパーリンクまたは URL がクリエイティブ・コモンズライセンスにおける帰属表示として十分であると認めたことになります。',
+	'flow-post-deleted' => '[削除された投稿]',
+	'flow-post-actions' => '操作',
+	'flow-topic-actions' => '操作',
+	'flow-cancel' => 'キャンセル',
+	'flow-newtopic-title-placeholder' => 'メッセージの件名',
+	'flow-newtopic-content-placeholder' => 'メッセージの本文',
+	'flow-newtopic-header' => '新しい話題の追加',
+	'flow-newtopic-save' => '話題を追加',
+	'flow-newtopic-start-placeholder' => '新しい議論を開始するにはここをクリックしてください。',
+	'flow-reply-placeholder' => '$1 に返信するにはクリックしてください。',
+	'flow-reply-submit' => '返信を投稿',
+	'flow-post-action-delete-post' => '投稿を削除',
+	'flow-post-action-restore-post' => '投稿を復元',
+	'flow-topic-action-edit-title' => 'タイトルを編集',
+	'flow-error-http' => 'サーバーと通信する際にエラーが発生しました。投稿内容は保存されませんでした。',
+	'flow-error-other' => '予期しないエラーが発生しました。投稿内容は保存されませんでした。',
+	'flow-error-external' => '投稿内容を保存する際にエラーが発生しました。投稿内容は保存されませんでした。<br /><small>エラー メッセージ: $1</small>',
+	'flow-error-external-multi' => '投稿内容を保存する際にエラーが発生しました。投稿内容は保存されませんでした。<br /> $1',
+	'flow-error-missing-content' => '投稿の本文がありません。新しい投稿を保存するには本文が必要です。',
+	'flow-error-missing-title' => '話題のタイトルがありません。新しい話題を保存するにはタイトルが必要です。',
+	'flow-error-parsoid-failure' => 'Parsoid でエラーが発生したため、本文を構文解析できませんでした。',
+	'flow-error-missing-replyto' => '返信先を指定していません。「返信」するには、このパラメーターが必要です。',
+	'flow-error-invalid-replyto' => '返信先のパラメーターが無効です。指定した投稿が見つかりませんでした。',
+	'flow-error-delete-failure' => 'この項目を削除できませんでした。',
+	'flow-error-missing-postId' => '投稿 ID のパラメーターを指定していません。投稿を操作するには、このパラメーターが必要です。',
+	'flow-error-invalid-postId' => '投稿 ID が無効です。指定した投稿が見つかりませんでした。',
+	'flow-error-restore-failure' => 'この項目を復元できませんでした。',
+	'flow-summaryedit-submit' => '要約を保存',
+	'flow-edit-title-submit' => 'タイトルを変更',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -136,6 +306,26 @@ $messages['pt-br'] = array(
  */
 $messages['roa-tara'] = array(
 	'flow-desc' => 'Sisteme de Gestione de le Flusse de fatìe',
+	'flow-specialpage' => '$1 &ndash; Flusse',
+	'flow-edit-summary-link' => "Cange 'u Riepiloghe",
+	'flow-post-deleted' => '[messàgge scangellate]',
+	'flow-post-actions' => 'aziune',
+	'flow-topic-actions' => 'aziune',
+	'flow-cancel' => 'Annulle',
+	'flow-newtopic-title-placeholder' => "Oggette d'u messàgge",
+	'flow-newtopic-content-placeholder' => 'Messàgge de teste. Si belle!',
+	'flow-newtopic-header' => "Aggiunge 'n'argomende nuève",
+	'flow-newtopic-save' => "Aggiunge 'n'argomende",
+	'flow-newtopic-start-placeholder' => "Cazze aqquà pe accumenzà 'nu 'ngazzamende nuève. Sì belle!",
+	'flow-reply-placeholder' => 'Cazze pe responnere a $1. Sì belle!',
+	'flow-reply-submit' => "Manne 'na resposte",
+	'flow-post-action-delete-post' => "Scangìlle 'u messàgge",
+	'flow-post-action-restore-post' => "Repristine 'u messàgge",
+	'flow-topic-action-edit-title' => "Cange 'u titole",
+	'flow-error-http' => "Ha assute 'n'errore condattanne 'u server. 'U messàgge tune non g'ha state reggistrate.",
+	'flow-error-other' => "Ha assute 'n'errore. 'U messàgge tune non g'ha state reggistrate.",
+	'flow-summaryedit-submit' => "Reggistre 'u riepiloghe",
+	'flow-edit-title-submit' => "Cange 'u titole",
 );
 
 /** Ukrainian (українська)
@@ -143,4 +333,49 @@ $messages['roa-tara'] = array(
  */
 $messages['uk'] = array(
 	'flow-desc' => 'Система управління робочими процесами',
+	'flow-specialpage' => '$1 &ndash; Потік',
+	'flow-edit-summary-link' => 'Редагувати підсумок',
+	'flow-disclaimer' => 'Натиснувши кнопку "Додати Повідомлення", ви погоджуєтеся з Умовами Використання
+і ви безповоротно погоджуєтесь здійснювати свій внесок відповідно до ліцензій CC-BY-SA 3.0 та GFDL.
+Ви згідні, що гіперпосилання або URL-адреса є достатнім внеском під ліцензією Creative Commons license.',
+	'flow-post-deleted' => '[пост видалено]',
+	'flow-post-actions' => 'дії',
+	'flow-topic-actions' => 'дії',
+	'flow-cancel' => 'Скасувати',
+	'flow-newtopic-title-placeholder' => 'Тема повідомлення',
+	'flow-newtopic-content-placeholder' => 'Текст повідомлення. Будьте приємним!',
+	'flow-newtopic-header' => 'Додати нову тему',
+	'flow-newtopic-save' => 'Додати тему',
+	'flow-newtopic-start-placeholder' => 'Натисніть тут, щоб почати нове обговорення. Будьте приємним!',
+	'flow-reply-placeholder' => 'Натисніть, щоб відповісти на  $1. Будьте приємним!',
+	'flow-reply-submit' => 'Опублікувати відповідь',
+	'flow-edit-post-submit' => 'Подати зміни',
+	'flow-post-action-view' => 'Постійне посилання',
+	'flow-post-action-post-history' => 'Опублікувати історію',
+	'flow-post-action-delete-post' => 'Видалити публікацію',
+	'flow-post-action-edit-post' => 'Редагувати публікацію',
+	'flow-post-action-edit' => 'Редагувати',
+	'flow-post-action-restore-post' => 'Відновити публікацію',
+	'flow-topic-action-edit-title' => 'Змінити заголовок',
+	'flow-topic-action-history' => 'Історія теми',
+	'flow-error-http' => 'Сталася помилка при зверненні до сервера. Ваша публікація не збережена.',
+	'flow-error-other' => 'Неочікувана помилка. Ваш публікація не врятована.',
+	'flow-error-external' => 'Сталася помилка під час збереження Вашого вкладу. Ваше повідомлення не було збережено.<br /><small>Отримане повідомлення було:$1</small>',
+	'flow-error-external-multi' => 'Сталася помилка під час збереження Вашого внеску. Ваше повідомлення не було збережено.<br /> $1',
+	'flow-error-missing-content' => 'Публікація не має ніякого вмісту. Необхідний вміст, щоб зберегти нову публікацію.',
+	'flow-error-missing-title' => 'Тема не має назви. Потрібна назва, щоб зберегти нову тему.',
+	'flow-error-parsoid-failure' => 'Не вдалося проаналізувати вміст через помилку Parsoid.',
+	'flow-error-missing-replyto' => 'Параметр reply-to не був наданий. Цей параметр є обов\'язковим для дії "відповідь".',
+	'flow-error-invalid-replyto' => 'Параметр replyTo неприпустимий. Не вдалося знайти вказану публікацію.',
+	'flow-error-delete-failure' => 'Не вдалося видалити цей елемент.',
+	'flow-error-missing-postId' => 'Параметр postId не був наданий. Цей параметр вимагає, щоб маніпулювати публікацією.',
+	'flow-error-invalid-postId' => 'Параметр postId неприпустимий. Не вдалося знайти вказану публікацію.',
+	'flow-error-restore-failure' => 'Не вдалося виконати відновлення цього елемента.',
+	'flow-summaryedit-submit' => 'Зберегти підсумок',
+	'flow-edit-title-submit' => 'Змінити заголовок',
+	'flow-rev-message-reply' => 'Нова відповідь опублікована',
+	'flow-rev-message-new-post' => 'Тема створена',
+	'flow-topic-history' => 'Історія теми',
+	'flow-comment-restored' => 'Відновлений коментар',
+	'flow-comment-deleted' => 'Видалений коментар',
 );
