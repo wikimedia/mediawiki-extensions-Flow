@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "698b69a3_1c0bec26",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 121
+      },
+      "writtenOn": "2013-08-15T06:30:03Z",
+      "side": 0,
+      "message": "Please add message documentation per https://www.mediawiki.org/wiki/I18n#Message_documentation",
+      "revId": "459a8dea17e21511083f0ad7c6e3fa3db5bcaf6c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
