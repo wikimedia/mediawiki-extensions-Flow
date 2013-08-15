@@ -18,6 +18,8 @@ $postAction = function( $action, array $data = array(), $class = '' ) use( $self
 			'value' => $value,
 		) );
 	}
+	// Give grep a chance to find the usages:
+	// flow-post-action-delete-post, flow-post-action-restore-post
 	$output .= Html::element( 'input', array(
 		'type' => 'submit',
 		'class' => 'mw-ui-button '.$class,
