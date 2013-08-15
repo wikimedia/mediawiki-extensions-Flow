@@ -70,6 +70,24 @@
       "revId": "459a8dea17e21511083f0ad7c6e3fa3db5bcaf6c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "499865f5_3c451118",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 121
+      },
+      "writtenOn": "2013-08-15T18:48:25Z",
+      "side": 0,
+      "message": "I have the fear that there will be not enough time for translators between an \"OK for translatewiki.net\" and a first release...",
+      "parentUuid": "499865f5_fcd1e954",
+      "revId": "459a8dea17e21511083f0ad7c6e3fa3db5bcaf6c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
