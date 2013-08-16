@@ -15,7 +15,7 @@ echo Html::openElement( 'form', array(
 		'action' => $this->generateUrl( $topicTitle->getPostId(), 'edit-title' ),
 	) ),
 	Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $user->getEditToken( 'flow' ) ) ),
-		Html::textarea( $block->getName() . '[content]', $topicTitle->getContent() ),
+		Html::textarea( $block->getName() . '[content]', $topicTitle->getContent( $user, 'wikitext' ) ),
 		Html::element( 'input',
 			array(
 				'type' => 'submit',
@@ -23,5 +23,5 @@ echo Html::openElement( 'form', array(
 				'class' => 'mw-ui-button mw-ui-primary',
 			)
 		),
-	 '</form>';
+	Html::closeElement( 'form' );
 
