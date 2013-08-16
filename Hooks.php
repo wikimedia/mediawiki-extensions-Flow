@@ -74,6 +74,20 @@ class FlowHooks {
 	}
 
 	/**
+	 * After completing setup, adds Special namespace to VE's supported
+	 * namespaces.
+	 *
+	 * @return bool
+	 */
+	public static function onSetupAfterCache() {
+		global $wgVisualEditorNamespaces;
+		if ( $wgVisualEditorNamespaces && !in_array( -1, $wgVisualEditorNamespaces ) ) {
+			$wgVisualEditorNamespaces[] = -1;
+		}
+		return true;
+	}
+
+	/**
 	 * Handler for UnitTestsList hook.
 	 * @see http://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList
 	 * @param &$files Array of unit test files

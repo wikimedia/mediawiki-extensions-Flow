@@ -7,7 +7,6 @@ use Flow\Data\ObjectManager;
 use Flow\Model\Workflow;
 use Flow\Model\Summary;
 use Flow\Repository\SummaryRepository;
-use Flow\ParsoidUtils;
 use Flow\Templating;
 use User;
 
@@ -38,9 +37,6 @@ class SummaryBlock extends AbstractBlock {
 	protected function validate() {
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->errors['content'] = wfMessage( 'flow-missing-summary-content' );
-			$content = '';
-		} else {
-			$content = ParsoidUtils::convertWikitextToHtml5( $this->submitted['content'], $this->workflow->getArticleTitle() );
 		}
 
 		if ( $this->summary ) {
@@ -55,11 +51,11 @@ class SummaryBlock extends AbstractBlock {
 				$this->errors['prev_revision'] = wfMessage( 'flow-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->summary->getRevisionId()->getHex() );
 			}
 			// this isnt really part of validate, but we want the error-rendering template to see the users edited summary
-			$this->summary = $this->summary->newNextRevision( $this->user, $content, 'flow-edit-summary' );
+			$this->summary = $this->summary->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-summary' );
 		} else {
 			if ( empty( $this->submitted['prev_revision'] ) ) {
 				// this isnt really part of validate either, should validate be renamed or should this logic be redone?
-				$this->summary = Summary::create( $this->workflow, $this->user, $content );
+				$this->summary = Summary::create( $this->workflow, $this->user, $this->submitted['content'] );
 			} else {
 				// User submitted a previous revision, but we couldn't find one.  This is likely
 				// an internal error and not a user error, consider better handling
@@ -88,6 +84,9 @@ class SummaryBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
+		if ( $this->action == 'edit-summary' ) {
+			$templating->getOutput()->addModules( 'ext.flow.summary' );
+		}
 		$templateName = ( $this->action == 'edit-summary' ) ? 'edit-summary' : 'summary';
 		$templating->render( "flow:$templateName.html.php", array(
 			'block' => $this,
