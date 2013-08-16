@@ -118,9 +118,9 @@ hr.flow-topic-separator2 {
     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
 }
 
-.opener {
-	position: relative;
-	left: 0;
+.flow-topic-opener {
+	position: absolute;
+	left: -24px;
 	top: 0;
 	width: 20px;
 	height: 20px;
@@ -129,7 +129,7 @@ hr.flow-topic-separator2 {
 	background-image: url(images/topic_control_read_down.png);
 }
 
-.mentiondicator {
+.flow-topic-mention-indicator {
 	position: relative;
 	float: left;
 	top: 9;
@@ -143,11 +143,11 @@ hr.flow-topic-separator2 {
 	background-repeat: no-repeat;
 	background-position: center bottom;
 }
-.closedtopic.hasmention .flow-topic-datestamp {
+.flow-topic-closed.hasmention .flow-topic-datestamp {
 	margin-left: -13px;
 }
 
-.postmention {
+.flow-post-mention-indicator {
 	position: relative;
 	float: left;
 	top: 10;
@@ -166,20 +166,20 @@ hr.flow-topic-separator2 {
 	margin-left: -10px;
 }
 
-.opentopic .mentiondicator {
+.flow-topic-container .flow-topic-mention-indicator {
 	display: none;
 }
 
-div.closedtopic div.opener {
+div.flow-topic-closed div.flow-topic-opener {
 	/* @embed */
 	background-image: url(images/topic_control_read_right.png);	
 }
 
-.containsunread .opener {
+.containsunread .flow-topic-opener {
 	/* @embed */
 	background-image: url(images/topic_control_unread_down.png);	
 }
-.containsunread.closedtopic .opener {
+.containsunread.flow-topic-closed .flow-topic-opener {
 	/* @embed */
 	background-image: url(images/topic_control_unread_right.png);	
 }
