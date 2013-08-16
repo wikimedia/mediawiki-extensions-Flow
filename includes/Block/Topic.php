@@ -9,7 +9,6 @@ use Flow\Model\PostRevision;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
 use Flow\DbFactory;
-use Flow\ParsoidUtils;
 use Flow\Templating;
 use EchoEvent;
 use User;
@@ -103,8 +102,8 @@ class TopicBlock extends AbstractBlock {
 			$this->setNotification(
 				'flow-topic-renamed',
 				array(
-					'old-subject' => $topicTitle->getContent(),
-					'new-subject' => $this->newRevision->getContent(),
+					'old-subject' => $topicTitle->getContent( null, 'wikitext' ),
+					'new-subject' => $this->newRevision->getContent( null, 'wikitext' ),
 				)
 			);
 		}
@@ -113,11 +112,6 @@ class TopicBlock extends AbstractBlock {
 	protected function validateReply() {
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
-		} else {
-			$this->parsedContent = ParsoidUtils::convertWikitextToHtml5( $this->submitted['content'], $this->workflow->getArticleTitle() );
-			if ( empty( $this->parsedContent ) ) {
-				$this->errors['content'] = wfMessage( 'flow-error-parsoid-failure' );
-			}
 		}
 
 		if ( !isset( $this->submitted['replyTo'] ) ) {
@@ -128,9 +122,9 @@ class TopicBlock extends AbstractBlock {
 			if ( !$post ) {
 				$this->errors['replyTo'] = wfMessage( 'flow-error-invalid-replyto' );
 			} else {
-				// TODO: assert post belongs to this tree?  Does it realy matter?
+				// TODO: assert post belongs to this tree?  Does it really matter?
 				// answer: might not belong, and probably does matter due to inter-wiki interaction
-				$this->newRevision = $post->reply( $this->user, $this->parsedContent, 'flow-comment-added' );
+				$this->newRevision = $post->reply( $this->user, $this->submitted['content'], 'flow-comment-added' );
 
 				$this->setNotification(
 					'flow-post-reply',
@@ -192,16 +186,10 @@ class TopicBlock extends AbstractBlock {
 		}
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->errors['content'] = wfMessage( 'flow-missing-post-content' );
-		} else {
-			$this->parsedContent = ParsoidUtils::convertWikitextToHtml5( $this->submitted['content'], $this->workflow->getArticleTitle() );
-			if ( empty( $this->parsedContent ) ) {
-				$this->errors['content'] = wfMessage( 'flow-empty-parsoid-result' );
-				return;
-			}
 		}
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( $post ) {
-			$this->newRevision = $post->newNextRevision( $this->user, $this->parsedContent, 'flow-edit-post' );
+			$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
 			$this->setNotification(
 					'flow-post-edited',
 					array(
@@ -239,7 +227,7 @@ class TopicBlock extends AbstractBlock {
 			// FIXME special case
 			if ( $this->action == 'edit-title' ) {
 				$renderFunction = function( $templating ) use ( $newRevision ) {
-					return $newRevision->getContent();
+					return $newRevision->getContent( null, 'wikitext' );
 				};
 			} else {
 				$renderFunction = function( $templating ) use ( $self, $newRevision, $rootPost ) {
@@ -361,7 +349,7 @@ class TopicBlock extends AbstractBlock {
 
 		$output = array(
 			'_element' => 'post',
-			'title' => $rootPost->getContent(),
+			'title' => $rootPost->getContent( null, 'wikitext' ),
 			'topic-id' => $topic->getId()->getHex(),
 		);
 
@@ -401,9 +389,7 @@ class TopicBlock extends AbstractBlock {
 		if ( $post->isModerated() ) {
 			$output['post-moderated'] = 'post-moderated';
 		} else {
-			$output['content'] = array( '*' => $post->getContent() );
-			$contentSource = ParsoidUtils::convertHtml5ToWikitext( $post->getContent() );
-			$output['content-src'] = array( '*' => $contentSource );
+			$output['content'] = array( '*' => $post->getContent( null, 'wikitext' ) );
 			$output['user'] = $post->getUserText();
 		}
 
@@ -515,7 +501,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function getTitleText() {
-		return $this->loadTopicTitle()->getContent();
+		return $this->loadTopicTitle()->getContent( null, 'wikitext' );
 	}
 
 	protected function loadTopicHistory() {
