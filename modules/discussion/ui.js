@@ -22,6 +22,8 @@
 				$(this).closest( 'form' )
 					.children( '.flow-post-form-extras' )
 					.show();
+
+				mw.flow.editor.load( $( this ) );
 			} );
 
 		$container.find( '.flow-post-form-extras' )
@@ -43,6 +45,12 @@
 								.end()
 							.find( '.flow-error' )
 								.remove();
+
+						mw.flow.editor.destroy(
+							$( this )
+								.closest( '.flow-reply-form' )
+								.find( ':data(flow-editor)' )
+						);
 					});
 			} )
 			.insertBefore( $container.find('.flow-reply-form input[type=submit]') );
@@ -63,6 +71,8 @@
 					.attr( 'placeholder', mw.msg( 'flow-newtopic-title-placeholder' ) );
 				$( '.flow-newtopic-submit' )
 					.attr( 'disabled', 'disabled' );
+
+				mw.flow.editor.load( $( '.flow-newtopic-content' ) );
 			} );
 
 		$( '<a />' )
@@ -83,6 +93,7 @@
 							.val( '' );
 						$form.find( '.flow-error' )
 							.remove();
+						mw.flow.editor.destroy( $form.find( '.flow-newtopic-content' ) );
 					} );
 			} )
 			.insertBefore( $container.find('.flow-newtopic-form input[type=submit]') );
