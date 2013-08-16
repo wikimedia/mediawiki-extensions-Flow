@@ -59,7 +59,7 @@ mw.flow = {
 			);
 		},
 
-		'readTopic' : function( pageName, topicId, options ) {
+		'readBlock' : function( pageName, topicId, blockName, options ) {
 			var deferredObject = $.Deferred();
 
 			mw.flow.api.read( pageName, topicId, options )
@@ -76,19 +76,28 @@ mw.flow = {
 
 					$.each( output.query.flow, function( index, block ) {
 						// Looping through each block
-						if ( block['block-name'] === 'topic' ) {
+						if ( block['block-name'] === blockName ) {
 							// Return this block
 							deferredObject.resolve( block );
 						}
 					} );
 
-					deferredObject.fail( 'invalid-result', 'Unable to find the topic block in the API result' );
+					deferredObject.fail( 'invalid-result', 'Unable to find the '+
+						blockName+' block in the API result' );
 				} )
 				.fail( function() {
 					deferredObject.fail( arguments );
 				} );
 
 			return deferredObject.promise();
+		},
+
+		'readTopicList' : function( pageName, workflowId, options ) {
+			return mw.flow.api.readBlock( pageName, workflowId, 'topic_list', options );
+		},
+
+		'readTopic' : function( pageName, topicId, options ) {
+			return mw.flow.api.readBlock( pageName, topicId, 'topic', options );
 		},
 
 		'generateTopicAction' : function( actionName, parameterList, promiseFilterCallback ) {

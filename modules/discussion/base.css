@@ -918,3 +918,17 @@ tr.historyheader {
 .flow-edit-post-form {
 	padding: 4px;
 }
+
+.flow-paging {
+	padding: 4px;
+	font-size: large;
+	border: 1px solid #ddddff;
+	text-align: center;
+}
+
+.flow-paging-loading a {
+	padding-left: 20px;
+	background-image: url(images/ajax-loader.gif);
+	background-position: center left;
+	background-repeat: no-repeat;
+}
