@@ -1,5 +1,8 @@
 <?php
 
+// @todo: I think we can remove this file, a replacement lives in modules/editor/ext.flow.parsoid.js - conversion should no longer happen; anything coming in and going out should be HTML; editors have to convert in JS (if necessary - VE doesn't even have to)
+
+
 namespace Flow;
 
 abstract class ParsoidUtils {

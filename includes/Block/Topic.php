@@ -8,7 +8,6 @@ use Flow\Model\PostRevision;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
 use Flow\DbFactory;
-use Flow\ParsoidUtils;
 use Flow\Templating;
 use User;
 
@@ -90,11 +89,6 @@ class TopicBlock extends AbstractBlock {
 	protected function validateReply() {
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
-		} else {
-			$this->parsedContent = ParsoidUtils::convertWikitextToHtml5( $this->submitted['content'], $this->workflow->getArticleTitle() );
-			if ( empty( $this->parsedContent ) ) {
-				$this->errors['content'] = wfMessage( 'flow-error-parsoid-failure' );
-			}
 		}
 
 		if ( !isset( $this->submitted['replyTo'] ) ) {
@@ -105,9 +99,9 @@ class TopicBlock extends AbstractBlock {
 			if ( !$post ) {
 				$this->errors['replyTo'] = wfMessage( 'flow-error-invalid-replyto' );
 			} else {
-				// TODO: assert post belongs to this tree?  Does it realy matter?
+				// TODO: assert post belongs to this tree?  Does it really matter?
 				// answer: might not belong, and probably does matter due to inter-wiki interaction
-				$this->newRevision = $post->reply( $this->user, $this->parsedContent, 'flow-comment-added' );
+				$this->newRevision = $post->reply( $this->user, $this->submitted['content'], 'flow-comment-added' );
 			}
 		}
 	}
@@ -171,16 +165,10 @@ class TopicBlock extends AbstractBlock {
 		}
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->errors['content'] = wfMessage( 'flow-missing-post-content' );
-		} else {
-			$this->parsedContent = ParsoidUtils::convertWikitextToHtml5( $this->submitted['content'], $this->workflow->getArticleTitle() );
-			if ( empty( $this->parsedContent ) ) {
-				$this->errors['content'] = wfMessage( 'flow-empty-parsoid-result' );
-				return;
-			}
 		}
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( $post ) {
-			$this->newRevision = $post->newNextRevision( $this->user, $this->parsedContent, 'flow-edit-post' );
+			$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
 		} else {
 			$this->errors['edit-post'] = wfMessage( 'flow-post-not-found' );
 		}
@@ -357,8 +345,6 @@ class TopicBlock extends AbstractBlock {
 			$output['post-deleted'] = 'post-deleted';
 		} else {
 			$output['content'] = array( '*' => $post->getContent() );
-			$contentSource = ParsoidUtils::convertHtml5ToWikitext( $post->getContent() );
-			$output['content-src'] = array( '*' => $contentSource );
 			$output['user'] = $post->getUserText();
 		}
 

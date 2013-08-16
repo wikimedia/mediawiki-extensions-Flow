@@ -1,5 +1,8 @@
 <?php
 
+// @todo: I'm pretty sure this file is redundant & this code now lives in discussion/forms.js, starting at L87 - if not, we should get rid of ParsoidUtils here
+
+
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
 	'action' => $this->generateUrl( $topic->getId(), 'edit-post' ),
@@ -31,5 +34,5 @@ echo Html::element( 'input', array(
 		'class' => 'mw-ui-button mw-ui-primary',
 		'value' => wfMessage( 'flow-edit-post-submit' )->plain()
 	) ),
-	'</form>';
+	Html::closeElement( 'form' );
 
