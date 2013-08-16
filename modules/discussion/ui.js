@@ -86,6 +86,22 @@
 					} );
 			} )
 			.insertBefore( $container.find('.flow-newtopic-form input[type=submit]') );
+
+		// Set up folding
+		$container.find( '.flow-topic-opener' )
+			.click( function(e) {
+				var $topicContainer = $(this).closest('.flow-topic-container')
+					.toggleClass( 'flow-topic-closed' );
+
+				var $hideElement = $(this).closest('.flow-topic-container')
+					.children( '.flow-post-container' );
+
+					if ( $topicContainer.hasClass( 'flow-topic-closed' ) ) {
+						$hideElement.slideUp();
+					} else {
+						$hideElement.slideDown();
+					}
+			} );
 	} );
 
 	$('body')

@@ -11,6 +11,7 @@ echo Html::openElement( 'div', array(
 	'data-title' => $title,
 ) );
 ?>
+<div class="flow-topic-opener"></div>
 <div class="flow-titlebar">
 	<div class="flow-topic-title">
 		<div class="flow-realtitle">
