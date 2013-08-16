@@ -6,8 +6,16 @@ mw.flow.discussion = {
 
 			$.each( fieldSelectors, function() {
 				// I have no idea why "toString()" is necessary
-				if ( ! $container.find( this.toString() ).val() ) {
+				var $node = $container.find( this.toString() ),
+					hasEditor = $node.data( 'flow-editor' );
+
+				// check if any of the selectors has no content
+				if (
+					!( hasEditor && mw.flow.editor.getContent( $node ) ) &&
+					!( !hasEditor && $node.val() )
+				) {
 					isOk = false;
+					return false; // break
 				}
 			} );
 
@@ -152,6 +160,8 @@ mw.flow.discussion = {
 				$(this).closest( 'form' )
 					.children( '.flow-post-form-extras' )
 					.show();
+
+				mw.flow.editor.load( $( this ) );
 			} );
 
 		$container.find( '.flow-post-form-extras' )
@@ -164,6 +174,9 @@ mw.flow.discussion = {
 			.text( mw.msg( 'flow-cancel' ) )
 			.click( function(e) {
 				e.preventDefault();
+
+				mw.flow.editor.destroy( $( this ).closest( '.flow-reply-form' ).find( ':data(flow-editor)' ) );
+
 				$(this).closest( '.flow-post-form-extras' )
 					.slideUp( 'fast', function() {
 						$(this).closest( '.flow-reply-form' )
@@ -199,6 +212,8 @@ mw.flow.discussion = {
 					.attr( 'placeholder', mw.msg( 'flow-newtopic-title-placeholder' ) );
 				$( '.flow-newtopic-submit' )
 					.attr( 'disabled', 'disabled' );
+
+				mw.flow.editor.load( $( '.flow-newtopic-content' ) );
 			} );
 
 		mw.flow.discussion.setupEmptyDisabler(
@@ -218,6 +233,9 @@ mw.flow.discussion = {
 			.click( function(e) {
 				e.preventDefault();
 				var $form = $(this).closest( 'form.flow-newtopic-form' );
+
+				mw.flow.editor.destroy( $form.find( '.flow-newtopic-content' ) );
+
 				$( '.flow-newtopic-step2' )
 					.slideUp( 'fast', function() {
 						$form.find( '.flow-newtopic-title' )
@@ -242,7 +260,7 @@ mw.flow.discussion = {
 
 				var workflowParam = mw.flow.discussion.getWorkflowParameters( $container );
 				var title = $form.find( '.flow-newtopic-title' ).val();
-				var content = $form.find( '.flow-newtopic-content' ).val();
+				var content = mw.flow.editor.getContent( $form.find( '.flow-newtopic-content' ) );
 
 				return [ workflowParam, title, content ];
 			},
@@ -279,7 +297,7 @@ mw.flow.discussion = {
 					.closest( '.flow-post-container' )
 					.data( 'post-id' );
 
-				var content = $form.find( '.flow-reply-content' ).val();
+				var content = mw.flow.editor.getContent( $form.find( '.flow-reply-content' ) );
 
 				return [ workflowId, replyToId, content ];
 			},
