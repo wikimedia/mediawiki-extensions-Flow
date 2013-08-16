@@ -53,7 +53,6 @@ $wgAutoloadClasses['FlowHooks'] = $dir . 'Hooks.php';
 $wgAutoloadClasses['Pimple'] = $dir . 'vendor/Pimple.php';
 $wgAutoloadClasses['Flow\Container'] = $dir . 'includes/Container.php';
 $wgAutoloadClasses['Flow\DbFactory'] = $dir . 'includes/DbFactory.php';
-$wgAutoloadClasses['Flow\ParsoidUtils'] = $dir . 'includes/ParsoidUtils.php';
 $wgAutoloadClasses['Flow\Templating'] = $dir . 'includes/Templating.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
@@ -116,12 +115,15 @@ $wgSpecialPageGroups['Flow'] = 'unknown';
 
 // API modules
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
+$wgAutoloadClasses['ApiQueryRevisionContentFlow'] = "$dir/includes/api/ApiQueryRevisionContentFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
+$wgAPIListModules['flow-revision-content'] = 'ApiQueryRevisionContentFlow';
 $wgAPIListModules['flow'] = 'ApiQueryFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
+$wgHooks['SetupAfterCache'][] = 'FlowHooks::onSetupAfterCache';
 //$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 
@@ -139,11 +141,16 @@ $wgResourceModules += array(
 		// 'styles' => 'base/ext.flow.base.css',
 		'scripts' => 'base/ext.flow.base.js',
 		'dependencies' => array(
-			'ext.visualEditor.standalone',
 			'mediawiki.api',
 			'jquery.json',
 		),
 		'messages' => array(
+		),
+	),
+	'ext.flow.summary' => $flowResourceTemplate + array(
+		'scripts' => 'summary/summary.js',
+		'dependencies' => array(
+			'ext.flow.editor',
 		),
 	),
 	'ext.flow.discussion' => $flowResourceTemplate + array(
@@ -160,7 +167,9 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'mediawiki.ui',
+			'jquery.ui.core',
 			'ext.flow.base',
+			'ext.flow.editor',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
@@ -175,6 +184,31 @@ $wgResourceModules += array(
 			'flow-paging-fwd',
 			'flow-paging-rev',
 		),
+	),
+	'ext.flow.editor' => $flowResourceTemplate + array(
+		'scripts' => 'editor/ext.flow.editor.js',
+		'dependencies' => array(
+			'ext.flow.parsoid',
+			// specific editor (ext.flow.editors.*) dependency will be loaded via JS
+		),
+	),
+	'ext.flow.editors.visualeditor' => $flowResourceTemplate + array(
+		'scripts' => 'editor/editors/ext.flow.editors.visualeditor.js',
+		'dependencies' => array(
+			// ve dependencies will be loaded via JS
+		),
+	),
+	'ext.flow.editors.none' => $flowResourceTemplate + array(
+		'scripts' => 'editor/editors/ext.flow.editors.none.js',
+	),
+	'ext.flow.editors.wikieditor' => $flowResourceTemplate + array(
+		'scripts' => 'editor/editors/ext.flow.editors.wikieditor.js',
+		'dependencies' => array(
+			// wikieditor dependencies will be loaded via JS
+		),
+	),
+	'ext.flow.parsoid' => $flowResourceTemplate + array(
+		'scripts' => 'editor/ext.flow.parsoid.js',
 	),
 );
 
@@ -211,9 +245,3 @@ $wgFlowConfig = array(
 $wgFlowDefaultWorkflow = 'discussion';
 $wgFlowDefaultLimit = 5;
 $wgFlowMaxLimit = 50;
-
-$wgFlowUseParsoid = false;
-$wgFlowParsoidURL = 'http://localhost:8000';
-$wgFlowParsoidPrefix = 'localhost';
-$wgFlowParsoidTimeout = 100;
-

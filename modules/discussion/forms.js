@@ -23,7 +23,7 @@ $(document).on( 'flow_init', function( e ) {
 
 			var workflowParam = $container.flow( 'getWorkflowParameters' );
 			var title = $form.find( '.flow-newtopic-title' ).val();
-			var content = $form.find( '.flow-newtopic-content' ).val();
+			var content = mw.flow.editor.getContent( $form.find( '.flow-newtopic-content' ) );
 
 			return [ workflowParam, title, content ];
 		},
@@ -59,7 +59,7 @@ $(document).on( 'flow_init', function( e ) {
 				.closest( '.flow-post-container' )
 				.data( 'post-id' );
 
-			var content = $form.find( '.flow-reply-content' ).val();
+			var content = mw.flow.editor.getContent( $form.find( '.flow-reply-content' ) );
 
 			return [ workflowId, replyToId, content ];
 		},
@@ -120,15 +120,12 @@ $(document).on( 'flow_init', function( e ) {
 						return;
 					}
 
-					var originalContent = data[0]['content-src']['*'];
-
 					var $postForm = $( '<form />' )
 						.addClass( 'flow-edit-post-form' );
 
 					$postForm
 						.append(
 							$( '<textarea />' )
-								.val( originalContent )
 								.addClass( 'flow-edit-post-content' )
 						)
 						.append(
@@ -160,6 +157,8 @@ $(document).on( 'flow_init', function( e ) {
 								)
 						)
 						.insertAfter( $contentContainer );
+
+					mw.flow.editor.load( $postForm.find( 'textarea' ), postId, 'storage.post' );
 
 					$contentContainer.hide();
 
