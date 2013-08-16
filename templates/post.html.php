@@ -37,6 +37,8 @@ $getAction = function( $action, $data = array(), $class = '' ) use ( $post, $sel
 			$block->getName() . '[postId]' => $post->getPostId()->getHex(),
 		)
 	);
+	// Give grep a chance to find the usages:
+	// flow-post-action-view, flow-post-action-post-history, flow-post-action-edit-post
 	return Html::element( 'a',
 		array(
 			'href' => $url,
