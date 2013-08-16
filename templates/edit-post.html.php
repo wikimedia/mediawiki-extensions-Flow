@@ -13,8 +13,6 @@ if ( $block->hasErrors() ) {
 	echo '</ul>';
 }
 
-$postWikitext = \Flow\ParsoidUtils::convertHtml5ToWikitext( $post->getContent() );
-
 echo Html::element( 'input', array(
 		'type' => 'hidden',
 		'name' => 'wpEditToken',
@@ -25,11 +23,10 @@ echo Html::element( 'input', array(
 		'name' => $block->getName() . '[postId]',
 		'value' => $post->getPostId()->getHex(),
 	) ),
-	Html::textarea( $block->getName() . '[content]', $postWikitext ),
+	Html::textarea( $block->getName() . '[content]', $post->getContent( $user, 'wikitext' ) ),
 	Html::element( 'input', array(
 		'type' => 'submit',
 		'class' => 'mw-ui-button mw-ui-primary',
 		'value' => wfMessage( 'flow-edit-post-submit' )->plain()
 	) ),
-	'</form>';
-
+	Html::closeElement( 'form' );

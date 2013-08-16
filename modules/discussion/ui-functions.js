@@ -28,7 +28,14 @@
 
 						$.each( fieldSelectors, function () {
 							// I have no idea why "toString()" is necessary
-							if ( !$container.find( this.toString() ).val() ) {
+							var $node = $container.find( this.toString() ),
+								hasEditor = $node.data( 'flow-editor' );
+
+							// check if any of the selectors has no content
+							if (
+								!( hasEditor && mw.flow.editor.getRawContent( $node ) ) &&
+								!( !hasEditor && $node.val() )
+							) {
 								isOk = false;
 								return false; // break
 							}

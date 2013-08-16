@@ -5,7 +5,7 @@ if ( $block->hasErrors( 'content' ) ) {
 }
 if ( $summary ) {
 	// contains HTML5+RDFa content
-	echo $summary->getContent();
+	echo $summary->getContent( $user, 'html' );
 }
 
 $editLink = $this->generateUrl( $workflow, 'edit-summary' );
