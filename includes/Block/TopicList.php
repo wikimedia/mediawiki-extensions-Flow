@@ -2,8 +2,10 @@
 
 namespace Flow\Block;
 
+use Flow\Data\Pager;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectManager;
@@ -64,9 +66,9 @@ class TopicListBlock extends AbstractBlock {
 		$output = array(
 			'created-topic-id' => $topicWorkflow->getId(),
 			'created-post-id' => $firstPost->getRevisionId(),
-			'render-function' => function($templating) use ($topicWorkflow, $firstPost, $topicPost, $storage, $user) {
+			'render-function' => function( $templating ) use ( $topicWorkflow, $firstPost, $topicPost, $storage, $user ) {
 				$block = new TopicBlock( $topicWorkflow, $storage, $topicPost );
-				return $templating->renderTopic( $topicPost, $block, $user );
+				return $templating->renderTopic( $topicPost, $block, true );
 			},
 		);
 
@@ -75,42 +77,116 @@ class TopicListBlock extends AbstractBlock {
 
 	public function render( Templating $templating, array $options ) {
 		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
-		$templating->render( "flow:topiclist.html.php", array(
-			'topicList' => $this,
-			'topics' => $this->getTopics(),
-			'user' => $this->user,
-		) );
+
+		if ( $this->workflow->isNew() ) {
+			$templating->render( "flow:topiclist.html.php", array(
+				'block' => $this,
+				'topics' => array(),
+				'user' => $this->user,
+				'page' => false,
+			) );
+		} else {
+			$findOptions = $this->getFindOptions( $options );
+			$page = $this->getPage( $findOptions );
+			$topics = $this->getTopics( $page );
+
+			$templating->render( "flow:topiclist.html.php", array(
+				'block' => $this,
+				'topics' => $topics,
+				'user' => $this->user,
+				'page' => $page,
+			) );
+		}
 	}
 
-	public function renderAPI( array $options ) {
+	public function renderAPI( Templating $templating, array $options ) {
 		$output = array( '_element' => 'topic' );
-		$topics = $this->getTopics();
+		if ( ! $this->workflow->isNew() ) {
+			$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
+			$page = $this->getPage( $findOptions );
+			$topics = $this->getTopics( $page );
 
-		foreach( $topics as $topic ) {
-			$output[] = $topic->renderAPI( $options );
+			foreach( $topics as $topic ) {
+				$output[] = $topic->renderAPI( $templating, $options );
+			}
+
+			$output['paging'] = $page->getPagingLinks();
 		}
 
 		return $output;
-	}
-
-	protected function getTopics() {
-		// New workflows cant have content yet
-		if ( $this->workflow->isNew() ) {
-			return array();
-		} else {
-			return $this->loadAllRelatedTopics();
-		}
 	}
 
 	public function getName() {
 		return 'topic_list';
 	}
 
-	protected function loadAllRelatedTopics() {
-		$found = $this->storage->find( 'TopicListEntry', array(
+	protected function getLimit( $options ) {
+		global $wgFlowDefaultLimit;
+		$limit = $wgFlowDefaultLimit;
+		if ( isset( $options['limit'] ) ) {
+			$requestedLimit = intval( $options['limit'] );
+			if ( $requestedLimit > 0 && $requestedLimit < $wgFlowMaxLimit ) {
+				$limit = $requestedLimit;
+			}
+		}
+
+		return $limit;
+	}
+
+		// 	$requestedDirection = isset( $options['offset-dir'] )
+		// 	? $options['offset-dir']
+		// 	: 'fwd';
+
+		// $requestedOffset = isset( $options['offset-id'] )
+		// 	? $options['offset-id']
+		// 	: false;
+
+		// $requestedLimit = $this->getLimit( $options );
+
+	protected function getFindOptions( $requestOptions ) {
+		global $wgFlowDefaultLimit, $wgFlowMaxLimit;
+		$findOptions = array();
+
+		// Compute offset/limit
+		$limit = $this->getLimit( $requestOptions );
+
+		if ( isset( $requestOptions['offset-id'] ) ) {
+			$findOptions['pager-offset'] = UUID::create( $requestOptions['offset-id'] );
+		} elseif ( isset( $requestOptions['offset'] ) ) {
+			$findOptions['pager-offset'] = intval( $requestOptions['offset'] );
+		}
+
+		if ( isset( $requestOptions['offset-dir'] ) ) {
+			$findOptions['pager-dir'] = $requestOptions['offset-dir'];
+		}
+
+		if ( isset( $requestOptions['api'] ) ) {
+			$findOptions['offset-elastic'] = false;
+		}
+
+		$findOptions['pager-limit'] = $limit;
+
+		return $findOptions;
+	}
+
+	protected function getPage( $findOptions ) {
+		$realStorage = $this->storage->getStorage( 'TopicListEntry' );
+		$index = $realStorage->getIndexFor( array( 'topic_list_id' ),
+			array(
+				'limit' => $findOptions['pager-limit']
+			) );
+		$pager = new Pager( $realStorage, $index );
+		$query = array(
 			'topic_list_id' => $this->workflow->getId(),
-		) );
-		if ( !$found ) {
+		);
+
+		return $pager->getPage( $query, $findOptions );
+	}
+
+	protected function getTopics( $page ) {
+		$found = $page->getResults();
+
+		if ( ! count( $found ) ) {
 			return array();
 		}
 

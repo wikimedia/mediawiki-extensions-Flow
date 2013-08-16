@@ -32,8 +32,15 @@ class ApiQueryFlow extends ApiQueryBase {
 				$blockParams = $passedParams[$block->getName()];
 			}
 
-			$blockOutput[] = $block->renderAPI( $blockParams ) +
-				array( 'block-name' => $block->getName() );
+			$templating = $this->container['templating'];
+			$thisBlock = $block->renderAPI( $templating, $blockParams ) +
+				array(
+					'block-name' => $block->getName()
+				);
+
+			$templating = $this->container['templating'];
+
+			$blockOutput[] = $thisBlock;
 		}
 
 		$result = array(
@@ -63,7 +70,9 @@ class ApiQueryFlow extends ApiQueryBase {
 	public function getParamDescription() {
 		return array(
 			'workflow' => 'Hex-encoded ID of the workflow to query',
-			'page' => 'Title of the page to query'
+			'page' => 'Title of the page to query',
+			'action' => 'The view-type action to take',
+			'params' => 'View parameters to pass to each block, indexed by block name',
 		);
 	}
 

@@ -28,6 +28,12 @@ interface Block {
 	function render( Templating $templating, array $options );
 
 	/**
+	 * Render the API output of this Block.
+	 * Templating is provided for convenience
+	 */
+	function renderAPI( Templating $templating, array $options );
+
+	/**
 	 * @return string Unique name among all blocks on an object
 	 */
 	function getName();
@@ -51,7 +57,7 @@ abstract class AbstractBlock implements Block {
 
 	abstract protected function validate();
 	abstract public function render( Templating $templating, array $options );
-	abstract public function renderAPI( array $options );
+	abstract public function renderAPI( Templating $templating, array $options );
 	abstract public function commit();
 
 	public function init( $action, $user ) {
