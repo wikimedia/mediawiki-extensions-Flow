@@ -90,5 +90,40 @@ class Templating {
 			'root' => $root,
 		), $return );
 	}
+
+	public function getPagingLink( $block, $direction, $offset, $limit ) {
+		$output = '';
+
+		// Use the message/class flow-paging-fwd or flow-paging-rev
+		//  depending on direction
+		$output .= \Html::element(
+			'a',
+			array(
+				'href' => $this->generateUrl(
+					$block->getWorkflowId(),
+					'view',
+					array(
+						$block->getName().'[offset-id]' => $offset,
+						$block->getName().'[offset-dir]' => $direction,
+						$block->getName().'[limit]' => $limit,
+					)
+				),
+			),
+			wfMessage( 'flow-paging-'.$direction )->parse()
+		);
+
+		$output = \Html::rawElement(
+			'div',
+			array(
+				'class' => 'flow-paging flow-paging-'.$direction,
+				'data-offset' => $offset,
+				'data-direction' => $direction,
+				'data-limit' => $limit,
+			),
+			$output
+		);
+
+		return $output;
+	}
 }
 
