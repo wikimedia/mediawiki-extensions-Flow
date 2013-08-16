@@ -81,7 +81,7 @@ $messages['qqq'] = array(
 
 Preceded by the Submit button which has the label either {{msg-mw|Flow-reply-submit}} or {{msg-mw|Flow-newtopic-save}}.
 
-"Add Message" seems to refer these Submit buttons.
+"Add message" seems to refer these Submit buttons.
 
 See also:
 * {{msg-mw|Wikimedia-copyrightwarning}}',
@@ -100,15 +100,26 @@ See also:
 	'flow-reply-placeholder' => 'Used as placeholder for the Content textarea. Parameters:
 * $1 - username',
 	'flow-reply-submit' => 'Used as label for the Submit button.',
+	'flow-edit-post-submit' => 'Used as label for the Submit button.',
+	'flow-post-action-view' => 'Used as text for the link which is used to view.
+{{Identical|Permalink}}',
+	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.',
 	'flow-post-action-delete-post' => 'Used as label for the Submit button.
 
 See also:
 * {{msg-mw|Flow-post-action-restore-post}}',
+	'flow-post-action-edit-post' => 'Used as text for the link which is used to edit the post.',
+	'flow-post-action-edit' => 'Unused at this time.
+
+Translate as label for the link or the Submit button.
+{{Identical|Edit}}',
 	'flow-post-action-restore-post' => 'Used as label for the Submit button.
 
 See also:
 * {{msg-mw|Flow-post-action-delete-post}}',
-	'flow-topic-action-edit-title' => 'Used as link text.',
+	'flow-topic-action-edit-title' => 'Used as title for the link which is used to edit the title.',
+	'flow-topic-action-history' => 'Used as text for the link which is used to view topic-history.
+{{Identical|Topic history}}',
 	'flow-error-http' => 'Used as error message on HTTP error.',
 	'flow-error-other' => 'Used as generic error message.',
 	'flow-error-external' => 'Uses as error message. Parameters:
@@ -142,6 +153,18 @@ The variable name "replyTo" is invisible to users, so "replyTo" can be translate
 "this item" seems to refer "this post".',
 	'flow-summaryedit-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
+	'flow-rev-message-reply' => 'Used as comment when the new reply has been posted.',
+	'flow-rev-message-new-post' => 'Used as comment when the topic has been created.',
+	'flow-topic-history' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page.
+{{Identical|Topic history}}',
+	'flow-comment-restored' => 'Used as comment when the comment has been restored.
+
+See also:
+* {{msg-mw|Flow-comment-deleted}}',
+	'flow-comment-deleted' => 'Used as comment when the comment has been deleted.
+
+See also:
+* {{msg-mw|Flow-comment-restored}}',
 );
 
 /** Asturian (asturianu)
@@ -172,9 +195,15 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-newtopic-start-placeholder' => 'Hier klicken, um eine neue Diskussion zu starten. Sei freundlich!',
 	'flow-reply-placeholder' => 'Klicke, um $1 zu antworten. Sei freundlich!',
 	'flow-reply-submit' => 'Antworten',
+	'flow-edit-post-submit' => 'Änderungen übertragen',
+	'flow-post-action-view' => 'Permanentlink',
+	'flow-post-action-post-history' => 'Beitragsgeschichte',
 	'flow-post-action-delete-post' => 'Beitrag löschen',
+	'flow-post-action-edit-post' => 'Beitrag bearbeiten',
+	'flow-post-action-edit' => 'Bearbeiten',
 	'flow-post-action-restore-post' => 'Beitrag wiederherstellen',
 	'flow-topic-action-edit-title' => 'Titel bearbeiten',
+	'flow-topic-action-history' => 'Themengeschichte',
 	'flow-error-http' => 'Beim Kontaktieren des Servers ist ein Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert.',
 	'flow-error-other' => 'Ein unerwarteter Fehler ist aufgetreten. Dein Beitrag wurde nicht gespeichert.',
 	'flow-error-external' => 'Beim Speichern deines Beitrags ist ein Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert.<br /><small>Die empfangene Fehlermeldung lautete: $1</small>',
@@ -190,6 +219,11 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-error-restore-failure' => 'Das Wiederherstellen dieses Objektes ist fehlgeschlagen.',
 	'flow-summaryedit-submit' => 'Zusammenfassung speichern',
 	'flow-edit-title-submit' => 'Titel ändern',
+	'flow-rev-message-reply' => 'Neue Antwort hinterlassen',
+	'flow-rev-message-new-post' => 'Thema erstellt',
+	'flow-topic-history' => 'Themengeschichte',
+	'flow-comment-restored' => 'Kommentar wiederhergestellt',
+	'flow-comment-deleted' => 'Kommentar gelöscht',
 );
 
 /** French (français)
@@ -212,9 +246,15 @@ $messages['fr'] = array(
 	'flow-newtopic-start-placeholder' => 'Cliquez ici pour commencer une nouvelle discussion. Soyez gentil !',
 	'flow-reply-placeholder' => 'Cliquez ici pour répondre à $1. Soyez gentil !',
 	'flow-reply-submit' => 'Poster une réponse',
+	'flow-edit-post-submit' => 'Soumettre les modifications',
+	'flow-post-action-view' => 'Lien permanent',
+	'flow-post-action-post-history' => 'Historique des publications',
 	'flow-post-action-delete-post' => 'Supprimer le message',
+	'flow-post-action-edit-post' => 'Modifier la publication',
+	'flow-post-action-edit' => 'Modifier',
 	'flow-post-action-restore-post' => 'Restaurer le message',
 	'flow-topic-action-edit-title' => 'Modifier le titre',
+	'flow-topic-action-history' => 'Historique des sujets',
 	'flow-error-http' => "Une erreur s'est produite en communiquant avec le serveur. Votre message n'a pas été enregistré.",
 	'flow-error-other' => "Une erreur inattendue s'est produite. Votre message n'a pas été enregistré.",
 	'flow-error-external' => "Une erreur s'est produite lors de l'enregistrement de votre message. Il n'a pas été enregistré.<br /><small>Le message d'erreur reçu était :$1</small>",
@@ -230,6 +270,64 @@ $messages['fr'] = array(
 	'flow-error-restore-failure' => 'Échec de la restauration de cette entrée.',
 	'flow-summaryedit-submit' => 'Enregistrer le résumé',
 	'flow-edit-title-submit' => 'Changer le titre',
+	'flow-rev-message-reply' => 'Nouvelle réponse publiée',
+	'flow-rev-message-new-post' => 'Sujet créé',
+	'flow-topic-history' => 'Historique des sujets',
+	'flow-comment-restored' => 'Commentaire rétabli',
+	'flow-comment-deleted' => 'Commentaire supprimé',
+);
+
+/** Hebrew (עברית)
+ * @author Amire80
+ */
+$messages['he'] = array(
+	'flow-desc' => 'מערכת לניהול זרימת עבודה',
+	'flow-specialpage' => '$1 – זרימה',
+	'flow-edit-summary-link' => 'תקציר העריכה',
+	'flow-disclaimer' => 'לחיצה על כפתור "הוספת הודעה" היא הסכמה לתנאי שימוש,
+לפרסום של כל התרומות שלך לפי תנאי רישיונות CC-BY-SA 3.0 ו־GFDL
+ולכן שהיפר־קישור או כתובת URL הם ייחוס מספק לפי תנאי רישיון קריאייטיב קומונז.',
+	'flow-post-deleted' => '[הרשומה נמחקה]',
+	'flow-post-actions' => 'פעולות',
+	'flow-topic-actions' => 'פעולות',
+	'flow-cancel' => 'ביטול',
+	'flow-newtopic-title-placeholder' => 'כותרת הודעה',
+	'flow-newtopic-content-placeholder' => 'תוכן ההודעה. זה צריך להיות משהו נחמד!',
+	'flow-newtopic-header' => 'הוספת נושא חדש',
+	'flow-newtopic-save' => 'נוספת נושא',
+	'flow-newtopic-start-placeholder' => 'יש ללחוץ כאן כדי להתחיל דיון חדש. זה צריך להיות משהו נחמד!',
+	'flow-reply-placeholder' => 'יש ללחוץ כדי לענות ל{{GRAMMAR:תחילית|$1}}. נא לכתוב דברים נחמדים!',
+	'flow-reply-submit' => 'שליחת תשובה',
+	'flow-edit-post-submit' => 'שליחת שינויים',
+	'flow-post-action-view' => 'קישור קבוע',
+	'flow-post-action-post-history' => 'היסטוריית הרשומה',
+	'flow-post-action-delete-post' => 'מחיקת הרשומה',
+	'flow-post-action-edit-post' => 'עריכת הרשומה',
+	'flow-post-action-edit' => 'עריכה',
+	'flow-post-action-restore-post' => 'שחזור הרשומה',
+	'flow-topic-action-edit-title' => 'עריכת כותרת',
+	'flow-topic-action-history' => 'היסטוריית הנושא',
+	'flow-error-http' => 'אירעה שגיאה בעת התחברות לשרת. הרשומה שלך לא נשמרה.',
+	'flow-error-other' => 'אירעה שגיאה בלתי־צפויה. הרשומה שלך לא נשמרה.',
+	'flow-error-external' => 'אירעה שגיאה בעת ניסיון לשמור את הרשומה שלך. הרשומה שלך לא נשמרה.<br /><small>התקבלה ההודעה הבאה: $1</small>',
+	'flow-error-external-multi' => 'אירעו שגיאות בעת שמירת הרשומה שלך. הרשומה שלך לא נשמרה.<br />
+$1',
+	'flow-error-missing-content' => 'ברשומה אין תוכן. דרוש תוכן כדי לשמור רשומה חדשה.',
+	'flow-error-missing-title' => 'לנושא אין כותרת. דרושה כותרת כדי לשמור נושא חדש.',
+	'flow-error-parsoid-failure' => 'לא ניתן לפענח את התוכן עקב כשל בפרסואיד.',
+	'flow-error-missing-replyto' => 'לא נשלח פרמטר replyTo. הפרמטר הזה דרוש לפעולת "reply".',
+	'flow-error-invalid-replyto' => 'פרמטר replyTo שנשלח היה בלתי־תקין. לא נמצאה הרשומה שצוינה.',
+	'flow-error-delete-failure' => 'מחירת הפריט הזה נכשלה.',
+	'flow-error-missing-postId' => 'לא ניתן פרמטר postId. הפרמטר הזה דרוש כדי לשנות רשומה.',
+	'flow-error-invalid-postId' => 'פרמטר postId שנשלח היה בלתי־תקין. הרשומה לא נמצאה.',
+	'flow-error-restore-failure' => 'שחזור הפריט נכשל.',
+	'flow-summaryedit-submit' => 'שמירת סיכום',
+	'flow-edit-title-submit' => 'שינוי כותרת',
+	'flow-rev-message-reply' => 'נשלחה תשובה חדשה',
+	'flow-rev-message-new-post' => 'נוצר נושא',
+	'flow-topic-history' => 'היסטוריית הנושא',
+	'flow-comment-restored' => 'הערה משוחזרת',
+	'flow-comment-deleted' => 'הערה מחוקה',
 );
 
 /** Japanese (日本語)
@@ -253,9 +351,15 @@ $messages['ja'] = array(
 	'flow-newtopic-start-placeholder' => '新しい議論を開始するにはここをクリックしてください。',
 	'flow-reply-placeholder' => '$1 に返信するにはクリックしてください。',
 	'flow-reply-submit' => '返信を投稿',
+	'flow-edit-post-submit' => '変更を保存',
+	'flow-post-action-view' => '固定リンク',
+	'flow-post-action-post-history' => '投稿履歴',
 	'flow-post-action-delete-post' => '投稿を削除',
+	'flow-post-action-edit-post' => '投稿を編集',
+	'flow-post-action-edit' => '編集',
 	'flow-post-action-restore-post' => '投稿を復元',
 	'flow-topic-action-edit-title' => 'タイトルを編集',
+	'flow-topic-action-history' => '話題の履歴',
 	'flow-error-http' => 'サーバーと通信する際にエラーが発生しました。投稿内容は保存されませんでした。',
 	'flow-error-other' => '予期しないエラーが発生しました。投稿内容は保存されませんでした。',
 	'flow-error-external' => '投稿内容を保存する際にエラーが発生しました。投稿内容は保存されませんでした。<br /><small>エラー メッセージ: $1</small>',
@@ -271,6 +375,11 @@ $messages['ja'] = array(
 	'flow-error-restore-failure' => 'この項目を復元できませんでした。',
 	'flow-summaryedit-submit' => '要約を保存',
 	'flow-edit-title-submit' => 'タイトルを変更',
+	'flow-rev-message-reply' => '新しい返信を投稿',
+	'flow-rev-message-new-post' => '話題を作成',
+	'flow-topic-history' => '話題の履歴',
+	'flow-comment-restored' => 'コメントを復元',
+	'flow-comment-deleted' => 'コメントを削除',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -278,6 +387,21 @@ $messages['ja'] = array(
  */
 $messages['lb'] = array(
 	'flow-desc' => 'Workflow-Management-System',
+	'flow-edit-summary-link' => 'Resumé vun der Ännerung',
+	'flow-post-actions' => 'Aktiounen',
+	'flow-topic-actions' => 'Aktiounen',
+	'flow-cancel' => 'Ofbriechen',
+	'flow-newtopic-content-placeholder' => 'Text vum Message. Sidd frëndlech!',
+	'flow-newtopic-save' => 'Thema derbäisetzen',
+	'flow-reply-placeholder' => "Klickt op $1 fir z'äntwerten. Sidd frëndlech!",
+	'flow-edit-post-submit' => 'Ännerunge späicheren',
+	'flow-post-action-edit' => 'Änneren',
+	'flow-topic-action-edit-title' => 'Titel änneren',
+	'flow-summaryedit-submit' => 'Resumé späicheren',
+	'flow-edit-title-submit' => 'Titel änneren',
+	'flow-rev-message-new-post' => 'Thema ugeluecht',
+	'flow-comment-restored' => 'Restauréiert Bemierkung',
+	'flow-comment-deleted' => 'Geläscht Bemierkung',
 );
 
 /** Macedonian (македонски)
@@ -378,4 +502,17 @@ $messages['uk'] = array(
 	'flow-topic-history' => 'Історія теми',
 	'flow-comment-restored' => 'Відновлений коментар',
 	'flow-comment-deleted' => 'Видалений коментар',
+);
+
+/** Yiddish (ייִדיש)
+ * @author פוילישער
+ */
+$messages['yi'] = array(
+	'flow-edit-summary-link' => 'רעדאקטירונג רעזומע',
+	'flow-disclaimer' => 'ביים קליקן אויפן "צושטעלן מעלדונג" קנעפל, טוט איר מסכים זיין צו די ניצבאדינגונגען, אומאפשפריילעך צו פארעפנטלעכן אייער ביישטייער אונטערן CC-BY-SA 3.0 ליצענץ און דעם GFDL.
+איר זענט מסכים אז א היפערלינק אדער URL איז גענוג צושרייבן אונטערן קריעטיוו־קאמאנס ליצענס.',
+	'flow-newtopic-title-placeholder' => 'מעלדונג סוביעקט',
+	'flow-newtopic-content-placeholder' => 'מעלדונג טעקסט. זייט פריינדלעך!',
+	'flow-newtopic-save' => 'צושטעלן טעמע',
+	'flow-reply-submit' => 'שיקן ענטפער',
 );
