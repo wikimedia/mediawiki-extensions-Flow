@@ -1,6 +1,8 @@
 <?php
 
-$title = $root->getContent();
+global $wgUser;
+// treat title like unparsed (wiki)text
+$title = $root->getContent( $wgUser, 'wikitext' );
 
 echo Html::element( 'hr', array( 'class' => 'flow-topic-separator' ) );
 

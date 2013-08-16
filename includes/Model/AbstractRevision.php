@@ -4,6 +4,7 @@ namespace Flow\Model;
 
 use MWTimestamp;
 use User;
+use Flow\ParsoidUtils;
 
 abstract class AbstractRevision {
 	const MODERATED_NONE = '';
@@ -51,6 +52,8 @@ abstract class AbstractRevision {
 	protected $contentUrl;
 	// This is decompressed on-demand from $this->content in self::getContent()
 	protected $decompressedContent;
+	// Converted (wikitext|html) content, based off of $this->decompressedContent
+	protected $convertedContent = array();
 
 	// moderation states for the revision.  This is technically denormalized data
 	// since it can be overwritten and does not provide a full history.
@@ -175,9 +178,9 @@ abstract class AbstractRevision {
 		return $perm === null || ( $user && $user->isAllowed( $perm ) );
 	}
 
-	public function getContent( $user = null ) {
+	public function getContent( $user = null, $format = 'html' ) {
 		if ( $this->isAllowed( $user ) ) {
-			return $this->getContentRaw();
+			return $this->getConvertedContent( $format );
 		} else {
 			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
 
@@ -193,7 +196,19 @@ abstract class AbstractRevision {
 		if ( $this->decompressedContent === null ) {
 			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
 		}
+
 		return $this->decompressedContent;
+	}
+
+	public function getConvertedContent( $format = 'html' ) {
+		if ( !isset( $this->convertedContent[$format] ) ) {
+			// check how content is stored & convert to requested format
+			$sourceFormat = in_array( 'html', $this->flags ) ? 'html' : 'wikitext';
+
+			$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $this->getContentRaw() );
+		}
+
+		return $this->convertedContent[$format];
 	}
 
 	public function getUserText( $user = null ) {
@@ -208,15 +223,34 @@ abstract class AbstractRevision {
 		return $this->userText;
 	}
 
+	/**
+	 * @param string $content Content in wikitext format
+	 * @throws \Exception
+	 */
 	protected function setContent( $content ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
 			throw new \Exception( 'Cannot change content of restricted revision' );
 		}
-		if ( $content !== $this->getContent() ) {
-			$this->content = $this->decompressedContent = $content;
+		if ( $content !== $this->getContent( null, 'wikitext') ) {
+			$this->convertedContent['wikitext'] = $content;
+
+			// convert content to desired storage format
+			global $wgFlowContentFormat;
+			if ( !isset( $this->convertedContent[$wgFlowContentFormat] ) ) {
+				$this->convertedContent[$wgFlowContentFormat] =
+					ParsoidUtils::convert(
+						'wikitext',
+						$wgFlowContentFormat,
+						$this->convertedContent['wikitext']
+					);
+			}
+
+			$this->content = $this->decompressedContent = $this->convertedContent[$wgFlowContentFormat];
 			$this->contentUrl = null;
+
 			// should this only remove a subset of flags?
 			$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
+			$this->flags[] = $wgFlowContentFormat;
 		}
 	}
 
@@ -262,4 +296,3 @@ abstract class AbstractRevision {
 		return true;
 	}
 }
-
