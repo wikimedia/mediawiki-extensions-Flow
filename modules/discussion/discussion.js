@@ -144,6 +144,23 @@ mw.flow.discussion = {
 					.fadeOut();
 			} );
 
+		// Set up folding
+		$container.find( '.flow-topic-opener' )
+			.click( function(e) {
+				var $topicContainer = $(this).closest('.flow-topic-container')
+					.toggleClass( 'flow-topic-closed' );
+
+				var $repliesElement = $(this).closest('.flow-topic-container')
+					.children( '.flow-post-container' )
+					.children( '.flow-post-replies' );
+
+					if ( $topicContainer.hasClass( 'flow-topic-closed' ) ) {
+						$repliesElement.slideUp();
+					} else {
+						$repliesElement.slideDown();
+					}
+			} );
+
 		// Set up reply form
 		$container.find( '.flow-reply-form textarea' )
 			.addClass( 'flow-reply-box-closed' )
