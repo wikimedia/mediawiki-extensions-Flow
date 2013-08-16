@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "499865f5_704c1872",
+        "filename": "includes/api/ApiQueryRevisionContentFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-08-16T16:59:31Z",
+      "side": 1,
+      "message": "What\u0027s wrong with using the existing ApiQueryFlow module?",
+      "revId": "01c6203aed6db39022d318d981848a65e842af38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
