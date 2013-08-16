@@ -79,11 +79,9 @@ interface ObjectMapper {
 // An Index is just a store that receives updates via handler.
 // backing store's can be passed via constructor
 interface Index extends LifecycleHandler {
-	// Indexes accept no query options
-	function find( array $keys );
+	function find( array $keys, array $options = array() );
 
-	// Indexes accept no query options
-	function findMulti( array $queries );
+	function findMulti( array $queries, array $options = array() );
 
 	// Maximum number of items in a single index value
 	function getLimit();
@@ -193,22 +191,16 @@ class ObjectLocator implements ObjectStorage {
 		if ( isset( $options['sort'] ) && !is_array( $options['sort'] ) ) {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
 		}
-		if ( isset( $options['limit'] ) ) {
-			$limit = $options['limit'];
-			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
-		} else {
-			$limit = false;
-		}
 
-		$res = $this->getIndexFor( $keys, $options )->findMulti( $queries );
+		$index = $this->getIndexFor( $keys, $options );
+		$res = $index->findMulti( $queries, $options );
+
 		if ( $res === null ) {
 			return null;
 		}
+
 		$retval = array();
 		foreach ( $res as $i => $rows ) {
-			if ( $limit ) {
-				$rows = array_slice( $rows, $offset, $limit, true );
-			}
 			foreach ( $rows as $j => $row ) {
 				$retval[$i][$j] = $this->load( $row );
 			}
@@ -722,12 +714,12 @@ abstract class FeatureIndex implements Index {
 		// nothing to do
 	}
 
-	public function find( array $attributes ) {
-		$results = $this->findMulti( array( $attributes ) );
+	public function find( array $attributes, array $options = array() ) {
+		$results = $this->findMulti( array( $attributes ), $options );
 		return reset( $results );
 	}
 
-	public function findMulti( array $queries ) {
+	public function findMulti( array $queries, array $options = array() ) {
 		if ( !$queries ) {
 			return array();
 		}
@@ -907,6 +899,73 @@ class TopKIndex extends FeatureIndex {
 		return $this->options['limit'];
 	}
 
+	public function getSort() {
+		return $this->options['sort'];
+	}
+
+	public function findMulti( array $queries, array $options = array() ) {
+		$result = parent::findMulti( $queries, $options );
+
+		// Paging related stuff
+		// Bail out if no offset is given
+		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
+		if ( ! isset( $options['offset-key'] ) ) {
+			$output = array();
+
+			foreach( $result as $i => $rows ) {
+				$output[$i] = array_slice( $rows, 0, $limit );
+			}
+
+			return $output;
+		}
+		$offsetKey = $options['offset-key'];
+		if ( $offsetKey instanceof UUID ) {
+			$offsetKey = $offsetKey->getBinary();
+		}
+
+		$dir = 'fwd';
+		if (
+			isset( $options['offset-dir'] ) &&
+			$options['offset-dir'] === 'rev'
+		) {
+			$dir = 'rev';
+		}
+
+		// Find offset in results
+		$output = array();
+		foreach( $result as $i => $rows ) {
+			$offset = false;
+			for( $rowIndex = 0; $rowIndex < count( $rows ); ++$rowIndex ) {
+				$row = $rows[$rowIndex];
+				$comparisonValue = $this->compareRowToOffset( $row, $offsetKey );
+				if ( $comparisonValue <= 0 ) {
+					$offset = $rowIndex;
+					break;
+				}
+			}
+
+			if ( $offset === false ) {
+				throw new \MWException( "Unable to find specified offset in query results" );
+			}
+
+			if ( $dir === 'fwd' ) {
+				$startPos = $offset;
+			} else {
+				$startPos = $offset - $limit + 1;
+
+				if ( $startPos < 0 ) {
+					$startPos = 0;
+				}
+			}
+
+			$rows = array_slice( $rows, $startPos, $limit );
+
+			$output[$i] = $rows;
+		}
+
+		return $output;
+	}
+
 	protected function maybeCreateIndex( array $indexed, array $sourceRow, array $compacted ) {
 		if ( call_user_func( $this->options['create'], $sourceRow ) ) {
 			$this->cache->set( $this->cacheKey( $indexed ), array( $compacted ) );
@@ -983,6 +1042,37 @@ class TopKIndex extends FeatureIndex {
 				}
 			}
 		);
+	}
+
+	protected function compareRowToOffset( $row, $offset ) {
+		$sortFields = $this->getSort();
+		$splitOffset = explode( '|', $offset );
+		$fieldIndex = 0;
+
+		foreach( $sortFields as $field ) {
+			$valueInRow = $row[$field];
+			$valueInOffset = $splitOffset[$fieldIndex];
+
+			if ( $valueInRow > $valueInOffset ) {
+				return 1;
+			} elseif ( $valueInRow < $valueInOffset ) {
+				return -1;
+			}
+			++$fieldIndex;
+		}
+
+		return 0;
+	}
+
+	public function serializeOffset( $row ) {
+		$sortFields = $this->getSort();
+		$offsetFields = array();
+
+		foreach( $sortFields as $field ) {
+			$offsetFields[] = $row->$field;
+		}
+
+		return implode( '|', $offsetFields );
 	}
 
 	// INTERNAL: in 5.4 it can be protected

@@ -190,6 +190,8 @@ $wgFlowConfig = array(
 // When visiting the flow for an article but not specifying what type of workflow should be viewed,
 // use this workflow
 $wgFlowDefaultWorkflow = 'discussion';
+$wgFlowDefaultLimit = 5;
+$wgFlowMaxLimit = 50;
 
 $wgFlowUseParsoid = false;
 $wgFlowParsoidURL = 'http://localhost:8000';

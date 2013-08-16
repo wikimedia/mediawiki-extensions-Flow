@@ -37,6 +37,14 @@ echo Html::element( 'div', array(
 ), wfMessage( 'flow-disclaimer' )->parse() );
 echo '</form>';
 
+if ( $prevPage ) {
+	echo $this->getPagingLink( $topicList, 'rev', $prevPage );
+}
+
 foreach ( $topics as $topic ) {
 	echo $topic->render( $this, array(), true );
+}
+
+if ( $nextPage ) {
+	echo $this->getPagingLink( $topicList, 'fwd', $nextPage );
 }

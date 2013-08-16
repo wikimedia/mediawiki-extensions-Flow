@@ -4,6 +4,7 @@ namespace Flow\Block;
 
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectManager;
@@ -75,10 +76,50 @@ class TopicListBlock extends AbstractBlock {
 
 	public function render( Templating $templating, array $options ) {
 		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
+		$topics = $this->getTopics( $options );
+
+		$requestedDirection = isset( $options['offset-dir'] )
+			? $options['offset-dir']
+			: 'fwd';
+
+		$requestedOffset = isset( $options['offset-id'] )
+			? $options['offset-id']
+			: false;
+
+		$requestedLimit = $this->getLimit( $options );
+
+		$nextPage = end( $topics )->getWorkflowId()->getHex();
+
+		if (
+			$requestedDirection == 'rev' &&
+			count( $topics ) > $requestedLimit &&
+			$nextPage === $requestedOffset
+		) {
+			// array_shift() shifts the first value of the array off and returns it
+			$prevTopic = array_shift( $topics );
+			$prevPage = reset($topics)->getWorkflowId()->getHex();
+		} elseif (
+			$requestedDirection == 'fwd' &&
+			$requestedOffset
+		) {
+			$prevPage = reset($topics)->getWorkflowId()->getHex();
+		} else {
+			$prevPage = false;
+		}
+
+		if ( count( $topics ) > $requestedLimit ) {
+			$topics = array_slice( $topics, 0, $requestedLimit + 1 );
+			$nextPage = array_pop( $topics )->getWorkflowId()->getHex();
+		} else {
+			$nextPage = false;
+		}
+
 		$templating->render( "flow:topiclist.html.php", array(
 			'topicList' => $this,
-			'topics' => $this->getTopics(),
+			'topics' => $topics,
 			'user' => $this->user,
+			'prevPage' => $prevPage,
+			'nextPage' => $nextPage,
 		) );
 	}
 
@@ -93,12 +134,13 @@ class TopicListBlock extends AbstractBlock {
 		return $output;
 	}
 
-	protected function getTopics() {
+	protected function getTopics( $options = array() ) {
 		// New workflows cant have content yet
 		if ( $this->workflow->isNew() ) {
 			return array();
 		} else {
-			return $this->loadAllRelatedTopics();
+			$findOptions = $this->getFindOptions( $options );
+			return $this->loadAllRelatedTopics( $findOptions );
 		}
 	}
 
@@ -106,10 +148,53 @@ class TopicListBlock extends AbstractBlock {
 		return 'topic_list';
 	}
 
-	protected function loadAllRelatedTopics() {
-		$found = $this->storage->find( 'TopicListEntry', array(
-			'topic_list_id' => $this->workflow->getId(),
-		) );
+	protected function getLimit( $options ) {
+		global $wgFlowDefaultLimit;
+		$limit = $wgFlowDefaultLimit;
+		if ( isset( $requestOptions['limit'] ) ) {
+			$requestedLimit = intval( $requestOptions['limit'] );
+			if ( $requestedLimit > 0 && $requestedLimit < $wgFlowMaxLimit ) {
+				$limit = $requestedLimit;
+			}
+		}
+
+		return $limit;
+	}
+
+	protected function getFindOptions( $requestOptions ) {
+		global $wgFlowDefaultLimit, $wgFlowMaxLimit;
+		$findOptions = array();
+
+		// Compute offset/limit
+		$limit = $this->getLimit( $requestOptions );
+
+		$findOptions['limit'] = $limit + 1;
+
+		if ( isset( $requestOptions['offset-id'] ) ) {
+			$findOptions['offset-key'] = UUID::create( $requestOptions['offset-id'] );
+		} elseif ( isset( $requestOptions['offset'] ) ) {
+			$findOptions['offset'] = intval( $requestOptions['offset'] );
+		}
+
+		if ( isset( $requestOptions['offset-dir'] ) ) {
+			$findOptions['offset-dir'] = $requestOptions['offset-dir'];
+
+			if ( $findOptions['offset-dir'] == 'rev' ) {
+				$findOptions['limit']++;
+			}
+		}
+
+		return $findOptions;
+	}
+
+	protected function loadAllRelatedTopics( $findOptions = array() ) {
+		$found = $this->storage->find(
+			'TopicListEntry',
+			array(
+				'topic_list_id' => $this->workflow->getId(),
+			),
+			$findOptions
+		);
 		if ( !$found ) {
 			return array();
 		}
