@@ -4,6 +4,7 @@
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
 	'action' => $this->generateUrl( $workflow, 'edit-summary' ),
+	'class' => 'flow-summary-form',
 ) );
 $editToken = $user->getEditToken( 'flow' );
 echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
@@ -20,12 +21,18 @@ if ( $summary ) {
 if ( $block->hasErrors( 'content' ) ) {
 	echo '<p>' . $block->getError( 'content' )->escaped() . '</p>';
 }
-$content = $summary ? \Flow\ParsoidUtils::convertHTML5ToWikitext( $summary->getContent() ) : '';
-echo Html::textarea( $block->getName() . '[content]', $content );
+
+global $wgUser;
+echo Html::textarea(
+	$block->getName() . '[content]',
+	$summary->getContent( $wgUser, 'wikitext' ),
+	array(
+		'data-summary-id' => $summary ? $summary->getRevisionId()->getHex() : ''
+	)
+);
 echo Html::element( 'input', array(
 	'type' => 'submit',
 	'class' => 'mw-ui-button mw-ui-constructive',
 	'value' => wfMessage( 'flow-summaryedit-submit' )->plain(),
 ) );
-echo '</form>';
-
+echo Html::closeElement( 'form' );

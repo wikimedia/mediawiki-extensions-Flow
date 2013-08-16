@@ -74,6 +74,21 @@ class FlowHooks {
 	}
 
 	/**
+	 * After completing setup, adds Special namespace to VE's supported
+	 * namespaces, so we can (ab)use it's API to convert wikitext<->html.
+	 *
+	 * @return bool
+	 */
+	public static function onSetupAfterCache() {
+		global $wgVisualEditorNamespaces;
+		if ( $wgVisualEditorNamespaces && !in_array( -1, $wgVisualEditorNamespaces ) ) {
+			$wgVisualEditorNamespaces[] = -1;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Handler for UnitTestsList hook.
 	 * @see http://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList
 	 * @param &$files Array of unit test files
@@ -111,7 +126,7 @@ class FlowHooks {
 		case 'flow-post-moderated':
 			if ( isset( $extra['reply-to'] ) ) {
 				$postId = $extra['reply-to'];
-			} elseif ( ! $postId ) {
+			} elseif ( !isset( $postId ) || !$postId ) {
 				$postId = $extra['post-id'];
 			}
 

@@ -89,8 +89,9 @@ $createReplyForm = function() use( $self, $block, $post, $editToken ) {
 		'</form>';
 };
 
+global $wgUser;
 $class = $post->isModerated() ? 'flow-post-moderated' : 'flow-post';
-$content = $post->getContent();
+$content = $post->getContent( $wgUser, 'html' );
 $userText = $post->getUserText();
 if ( !$userText instanceof \Message ) {
 	$userText = Html::element( 'span', null, $userText );

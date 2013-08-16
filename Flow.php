@@ -116,12 +116,17 @@ $wgSpecialPageGroups['Flow'] = 'unknown';
 
 // API modules
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
+$wgAutoloadClasses['ApiQueryRevisionContentFlow'] = "$dir/includes/api/ApiQueryRevisionContentFlow.php";
+$wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
+$wgAPIListModules['flow-revision-content'] = 'ApiQueryRevisionContentFlow';
 $wgAPIListModules['flow'] = 'ApiQueryFlow';
+$wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
+$wgHooks['SetupAfterCache'][] = 'FlowHooks::onSetupAfterCache';
 //$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 
@@ -145,6 +150,12 @@ $wgResourceModules += array(
 		'messages' => array(
 		),
 	),
+	'ext.flow.summary' => $flowResourceTemplate + array(
+		'scripts' => 'summary/summary.js',
+		'dependencies' => array(
+			'ext.flow.editor',
+		),
+	),
 	'ext.flow.discussion' => $flowResourceTemplate + array(
 		'styles' => array(
 			'discussion/base.css',
@@ -159,7 +170,9 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'mediawiki.ui',
+			'jquery.ui.core',
 			'ext.flow.base',
+			'ext.flow.editor',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
@@ -174,6 +187,31 @@ $wgResourceModules += array(
 			'flow-paging-fwd',
 			'flow-paging-rev',
 		),
+	),
+	'ext.flow.editor' => $flowResourceTemplate + array(
+		'scripts' => 'editor/ext.flow.editor.js',
+		'dependencies' => array(
+			'ext.flow.parsoid',
+			// specific editor (ext.flow.editors.*) dependency will be loaded via JS
+		),
+	),
+	'ext.flow.editors.visualeditor' => $flowResourceTemplate + array(
+		'scripts' => 'editor/editors/ext.flow.editors.visualeditor.js',
+		'dependencies' => array(
+			// ve dependencies will be loaded via JS
+		),
+	),
+	'ext.flow.editors.none' => $flowResourceTemplate + array(
+		'scripts' => 'editor/editors/ext.flow.editors.none.js',
+	),
+	'ext.flow.editors.wikieditor' => $flowResourceTemplate + array(
+		'scripts' => 'editor/editors/ext.flow.editors.wikieditor.js',
+		'dependencies' => array(
+			// wikieditor dependencies will be loaded via JS
+		),
+	),
+	'ext.flow.parsoid' => $flowResourceTemplate + array(
+		'scripts' => 'editor/ext.flow.parsoid.js',
 	),
 );
 
@@ -200,6 +238,17 @@ $wgFlowDefaultWikiDb = false;
 //     $wgFlowExternalStore = array( 'DB://cluster24', 'DB://cluster25' );
 $wgFlowExternalStore = false;
 
+// By default, Flow will store data in wikitext format. It's also the format supported
+// by the most basic "editor": none; in which case no conversion (Parsoid) will be needed.
+// the only conversion needed it wikitext -> HTML for outputting the content, which will
+// then be handled by the parser.
+// On high-volume wikis, it's beneficial to save HTML to the database (to avoid having to
+// parse it every time for output), but then you'll have to make sure Parsoid is up and
+// running, as it'll be necessary to convert HTML to wikitext for the basic editor.
+// (n.b. to use VisualEditor, you'll definitely need Parsoid, so if you do support VE,
+// might as well set this to HTML right away)
+$wgFlowContentFormat = 'wikitext'; // possible values: wikitext|html
+
 // Flow Configuration for EventLogging
 $wgFlowConfig = array(
 	'version' => '0.1.0',
@@ -210,9 +259,3 @@ $wgFlowConfig = array(
 $wgFlowDefaultWorkflow = 'discussion';
 $wgFlowDefaultLimit = 5;
 $wgFlowMaxLimit = 50;
-
-$wgFlowUseParsoid = false;
-$wgFlowParsoidURL = 'http://localhost:8000';
-$wgFlowParsoidPrefix = 'localhost';
-$wgFlowParsoidTimeout = 100;
-
