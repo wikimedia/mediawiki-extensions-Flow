@@ -67,6 +67,9 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	'flow-comment-restored' => 'Restored comment',
 	'flow-comment-deleted' => 'Deleted comment',
+
+	'flow-paging-rev' => 'More recent topics',
+	'flow-paging-fwd' => 'Older topics',
 );
 
 /** Message documentation (Message documentation)
@@ -165,6 +168,8 @@ See also:
 
 See also:
 * {{msg-mw|Flow-comment-restored}}',
+	'flow-paging-rev' => 'Label for paging link that shows more recently modified topics',
+	'flow-paging-fwd' => 'Label for paging link that shows less recently modified topics',
 );
 
 /** Asturian (asturianu)

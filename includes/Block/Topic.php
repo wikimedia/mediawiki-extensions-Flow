@@ -298,7 +298,7 @@ class TopicBlock extends AbstractBlock {
 		), $return );
 	}
 
-	public function renderAPI( array $options ) {
+	public function renderAPI( Templating $templating, array $options ) {
 		if ( isset( $options['postId'] ) ) {
 			$rootPost = $this->loadRootPost();
 			$post = $rootPost->findDescendant( $options['postId'] );
@@ -307,13 +307,13 @@ class TopicBlock extends AbstractBlock {
 				throw new MWException( "Requested post could not be found" );
 			}
 
-			return $this->renderPostAPI( $post, $options );
+			return $this->renderPostAPI( $templating, $post, $options );
 		} else {
-			return $this->renderTopicAPI( $options );
+			return $this->renderTopicAPI( $templating, $options );
 		}
 	}
 
-	public function renderTopicAPI ( array $options ) {
+	public function renderTopicAPI ( Templating $templating, array $options ) {
 		$output = array();
 		$rootPost = $this->loadRootPost();
 		$topic = $this->workflow;
@@ -341,14 +341,18 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
+		if ( isset( $options['render'] ) ) {
+			$output['rendered'] = $templating->renderTopic( $rootPost, $this, true );
+		}
+
 		foreach( $rootPost->getChildren() as $child ) {
-			$output[] = $this->renderPostAPI( $child, $options );
+			$output[] = $this->renderPostAPI( $templating, $child, $options );
 		}
 
 		return $output;
 	}
 
-	protected function renderPostAPI( PostRevision $post, array $options ) {
+	protected function renderPostAPI( Templating $templating, PostRevision $post, array $options ) {
 		$output = array();
 
 		$output['post-id'] = $post->getPostId()->getHex();
@@ -366,7 +370,7 @@ class TopicBlock extends AbstractBlock {
 			$children = array( '_element' => 'post' );
 
 			foreach( $post->getChildren() as $child ) {
-				$children[] = $this->renderPostAPI( $child, $options );
+				$children[] = $this->renderPostAPI( $templating, $child, $options );
 			}
 
 			if ( count($children) > 1 ) {

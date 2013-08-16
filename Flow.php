@@ -88,6 +88,8 @@ $wgAutoloadClasses['Flow\Data\SortArrayByKeys'] = $dir . 'includes/Data/ObjectMa
 $wgAutoloadClasses['Flow\Data\RootPostLoader'] = $dir . 'includes/Data/RootPostLoader.php';
 $wgAutoloadClasses['Flow\Data\MultiDimArray'] = $dir . 'includes/Data/MultiDimArray.php';
 $wgAutoloadClasses['Flow\Data\ResultDuplicator'] = $dir . 'includes/Data/MultiDimArray.php';
+$wgAutoloadClasses['Flow\Data\Pager'] = $dir . 'includes/Data/Pager.php';
+$wgAutoloadClasses['Flow\Data\PagerPage'] = $dir . 'includes/Data/PagerPage.php';
 
 // database interaction for singular models
 $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
@@ -161,6 +163,8 @@ $wgResourceModules += array(
 			'flow-error-external-multi',
 			'flow-edit-title-submit',
 			'flow-edit-post-submit',
+			'flow-paging-fwd',
+			'flow-paging-rev',
 		),
 	),
 );
@@ -190,6 +194,8 @@ $wgFlowConfig = array(
 // When visiting the flow for an article but not specifying what type of workflow should be viewed,
 // use this workflow
 $wgFlowDefaultWorkflow = 'discussion';
+$wgFlowDefaultLimit = 5;
+$wgFlowMaxLimit = 50;
 
 $wgFlowUseParsoid = false;
 $wgFlowParsoidURL = 'http://localhost:8000';

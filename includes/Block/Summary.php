@@ -92,7 +92,7 @@ class SummaryBlock extends AbstractBlock {
 		) );
 	}
 
-	public function renderAPI( array $options ) {
+	public function renderAPI( Templating $templating, array $options ) {
 		$output = array();
 		$output['type'] = 'summary';
 
