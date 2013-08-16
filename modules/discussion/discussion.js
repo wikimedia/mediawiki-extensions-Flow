@@ -152,6 +152,8 @@ mw.flow.discussion = {
 				$(this).closest( 'form' )
 					.children( '.flow-post-form-extras' )
 					.show();
+
+				mw.flow.editor.load( $( this ) );
 			} );
 
 		$container.find( '.flow-post-form-extras' )
@@ -174,6 +176,8 @@ mw.flow.discussion = {
 							.find( '.flow-error' )
 								.remove();
 					});
+
+				mw.flow.editor.unload( $( this ) );
 			} )
 			.insertBefore( $container.find('.flow-reply-form input[type=submit]') );
 
@@ -279,7 +283,7 @@ mw.flow.discussion = {
 					.closest( '.flow-post-container' )
 					.data( 'post-id' );
 
-				var content = $form.find( '.flow-reply-content' ).val();
+				var content = mw.flow.editor.getContent( $form.find( '.flow-reply-content' ) );
 
 				return [ workflowId, replyToId, content ];
 			},
