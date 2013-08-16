@@ -24,7 +24,7 @@ class SpecialFlow extends SpecialPage {
 
 	public function execute( $subPage ) {
 		$this->setHeaders();
-		$this->getOutput()->addModules( array( 'ext.flow.base' ) );
+		$this->getOutput()->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
 
 		if ( empty( $subPage ) ) {
 			// If no specific article was requested, render the users flow

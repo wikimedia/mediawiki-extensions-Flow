@@ -41,6 +41,8 @@ $wgExtensionCredits['specialpage'][] = array(
 );
 
 $dir = __DIR__ . '/';
+require $dir . 'Resources.php';
+
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
 
 $wgAutoloadClasses['FlowInsertDefaultDefinitions'] = $dir . 'maintenance/FlowInsertDefaultDefinitions.php';
@@ -116,12 +118,17 @@ $wgSpecialPageGroups['Flow'] = 'unknown';
 
 // API modules
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
+$wgAutoloadClasses['ApiQueryRevisionContentFlow'] = "$dir/includes/api/ApiQueryRevisionContentFlow.php";
+$wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
+$wgAPIListModules['flow-revision-content'] = 'ApiQueryRevisionContentFlow';
 $wgAPIListModules['flow'] = 'ApiQueryFlow';
+$wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
+$wgHooks['SetupAfterCache'][] = 'FlowHooks::onSetupAfterCache';
 //$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 $wgHooks['ApiTokensGetTokenTypes'][] = 'FlowHooks::onApiTokensGetTokenTypes';
@@ -129,57 +136,7 @@ $wgHooks['ApiTokensGetTokenTypes'][] = 'FlowHooks::onApiTokensGetTokenTypes';
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 
-$flowResourceTemplate = array(
-	'localBasePath' => $dir . 'modules',
-	'remoteExtPath' => 'Flow/modules',
-	'group' => 'ext.flow',
-);
-
-$wgResourceModules += array(
-	'ext.flow.base' => $flowResourceTemplate + array(
-		// 'styles' => 'base/ext.flow.base.css',
-		'scripts' => 'base/ext.flow.base.js',
-		'dependencies' => array(
-			'mediawiki.api',
-			'jquery.json',
-		),
-		'messages' => array(
-		),
-	),
-	'ext.flow.discussion' => $flowResourceTemplate + array(
-		'styles' => array(
-			'discussion/base.css',
-			'discussion/agora2-override.css',
-		),
-		'scripts' => array(
-			'discussion/ui-functions.js',
-			'discussion/ui.js',
-			'discussion/forms.js',
-			'discussion/paging.js',
-			'discussion/init.js',
-		),
-		'dependencies' => array(
-			'mediawiki.ui',
-			'ext.flow.base',
-		),
-		'messages' => array(
-			'flow-newtopic-start-placeholder',
-			'flow-newtopic-title-placeholder',
-			'flow-cancel',
-			'flow-error-http',
-			'flow-error-other',
-			'flow-error-external',
-			'flow-error-external-multi',
-			'flow-edit-title-submit',
-			'flow-edit-post-submit',
-			'flow-paging-fwd',
-			'flow-paging-rev',
-		),
-	),
-);
-
 // User permissions
-
 $wgGroupPermissions['autoconfirmed']['flow-hide'] = true;
 $wgGroupPermissions['sysop']['flow-delete'] = true;
 $wgGroupPermissions['oversight']['flow-censor'] = true;
@@ -201,6 +158,17 @@ $wgFlowDefaultWikiDb = false;
 //     $wgFlowExternalStore = array( 'DB://cluster24', 'DB://cluster25' );
 $wgFlowExternalStore = false;
 
+// By default, Flow will store data in wikitext format. It's also the format supported
+// by the most basic "editor": none; in which case no conversion (Parsoid) will be needed.
+// the only conversion needed it wikitext -> HTML for outputting the content, which will
+// then be handled by the parser.
+// On high-volume wikis, it's beneficial to save HTML to the database (to avoid having to
+// parse it every time for output), but then you'll have to make sure Parsoid is up and
+// running, as it'll be necessary to convert HTML to wikitext for the basic editor.
+// (n.b. to use VisualEditor, you'll definitely need Parsoid, so if you do support VE,
+// might as well set this to HTML right away)
+$wgFlowContentFormat = 'wikitext'; // possible values: wikitext|html
+
 // Flow Configuration for EventLogging
 $wgFlowConfig = array(
 	'version' => '0.1.0',
@@ -214,9 +182,3 @@ $wgFlowTokenSalt = 'flow';
 $wgFlowDefaultWorkflow = 'discussion';
 $wgFlowDefaultLimit = 5;
 $wgFlowMaxLimit = 50;
-
-$wgFlowUseParsoid = false;
-$wgFlowParsoidURL = 'http://localhost:8000';
-$wgFlowParsoidPrefix = 'localhost';
-$wgFlowParsoidTimeout = 100;
-
