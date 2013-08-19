@@ -174,6 +174,15 @@ $messages['ast'] = array(
 	'flow-desc' => 'Sistema de xestión del fluxu de trabayu',
 );
 
+/** Czech (česky)
+ * @author Michaelbrabec
+ */
+$messages['cs'] = array(
+	'flow-cancel' => 'Storno',
+	'flow-newtopic-title-placeholder' => 'Předmět zprávy',
+	'flow-topic-action-edit-title' => 'Upravit název',
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */
