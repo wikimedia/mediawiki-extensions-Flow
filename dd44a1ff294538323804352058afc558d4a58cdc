@@ -16,6 +16,23 @@
       "revId": "dd44a1ff294538323804352058afc558d4a58cdc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "499865f5_ed4daa9b",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-19T17:04:51Z",
+      "side": 1,
+      "message": "This logic should at least get its own method,  i have a pet peeve about methods that dont fit on a single screen :-)",
+      "revId": "dd44a1ff294538323804352058afc558d4a58cdc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
