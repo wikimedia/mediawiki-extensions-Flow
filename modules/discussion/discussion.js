@@ -105,7 +105,7 @@ mw.flow.discussion = {
 						$button.show();
 						$form.find( '.flow-cancel-link' )
 							.click();
-						
+
 						deferredObject.resolve.apply( $button, arguments );
 					} )
 					.fail( function( ) {
@@ -322,8 +322,10 @@ mw.flow.discussion = {
 					pageName,
 					workflowId,
 					{
-						'no-children' : true,
-						'postId' : postId
+						'topic' : {
+							'no-children' : true,
+							'postId' : postId
+						}
 					}
 				)
 					.done( function( data ) {
