@@ -339,6 +339,16 @@ $1',
 	'flow-comment-deleted' => 'הערה מחוקה',
 );
 
+/** Italian (italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'flow-post-actions' => 'azioni',
+	'flow-topic-actions' => 'azioni',
+	'flow-cancel' => 'Annulla',
+	'flow-post-action-edit' => 'Modifica',
+);
+
 /** Japanese (日本語)
  * @author Shirayuki
  */
@@ -465,6 +475,16 @@ $messages['mk'] = array(
 	'flow-topic-history' => 'Историја на темата',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
+);
+
+/** Marathi (मराठी)
+ * @author V.narsikar
+ */
+$messages['mr'] = array(
+	'flow-edit-summary-link' => 'संपादन सारांश',
+	'flow-newtopic-title-placeholder' => 'संदेशाचा विषय',
+	'flow-error-external' => 'आपले उत्तर जतन करण्यात त्रूटी घडली.आपले उत्तर जतन झाले नाही.<br /><small>मिळालेला त्रूटी संदेश असा होता: $1</small>',
+	'flow-error-external-multi' => 'आपले उत्तर जतन करण्यात त्रूटी आढळल्या.आपले उत्तर जतन झाले नाही.<br />$1',
 );
 
 /** Portuguese (português)
