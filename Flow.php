@@ -175,6 +175,12 @@ $wgResourceModules += array(
 	),
 );
 
+// User permissions
+
+$wgGroupPermissions['autoconfirmed']['flow-hide'] = true;
+$wgGroupPermissions['sysop']['flow-delete'] = true;
+$wgGroupPermissions['oversight']['flow-censor'] = true;
+
 // Configuration
 
 // URL for more information about the Flow notification system
