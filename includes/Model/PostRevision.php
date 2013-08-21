@@ -75,16 +75,8 @@ class PostRevision extends AbstractRevision {
 		return $reply;
 	}
 
-	public function oversight( User $user, $something ) {
-			// perform oversighting of existing revision
-	}
-
 	public function getPostId() {
 		return $this->postId;
-	}
-
-	public function getUserText() {
-		return $this->userText;
 	}
 
 	public function isTopicTitle() {
