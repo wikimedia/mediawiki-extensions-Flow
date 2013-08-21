@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "499865f5_0e49e28f",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-21T17:30:13Z",
+      "side": 1,
+      "message": "$sortFields could be boolean false",
+      "revId": "48a0038efd84ca27e5ae7a51fcd408eec400204c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "499865f5_6e48a689",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-21T17:30:13Z",
+      "side": 1,
+      "message": "I think this foreach loop is same as\n\n    $splitOffset \u003d array_combine( $sortFields, explode( \u0027|\u0027, $offset ) );\n    return SortArrayByKeys::compare( $row, $splitOffset, $sortFields );",
+      "revId": "48a0038efd84ca27e5ae7a51fcd408eec400204c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
