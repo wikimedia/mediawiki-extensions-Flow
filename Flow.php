@@ -146,7 +146,12 @@ $wgResourceModules += array(
 			'discussion/base.css',
 			'discussion/agora2-override.css',
 		),
-		'scripts' => 'discussion/discussion.js',
+		'scripts' => array(
+			'discussion/ui-functions.js',
+			'discussion/ui.js',
+			'discussion/forms.js',
+			'discussion/init.js',
+		),
 		'dependencies' => array(
 			'mediawiki.ui',
 			'ext.flow.base',
