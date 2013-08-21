@@ -413,6 +413,22 @@ class ObjectManager extends ObjectLocator {
 		}
 	}
 
+	static public function calcUpdates( array $old, array $new ) {
+		$updates = array();
+		foreach ( array_keys( $new ) as $key ) {
+			if ( !array_key_exists( $key, $old ) || $old[$key] !== $new[$key] ) {
+				$updates[$key] = $new[$key];
+			}
+			unset( $old[$key] );
+		}
+		// These keys dont exist in $new
+		foreach ( array_keys( $old ) as $key ) {
+			$updates[$key] = null;
+		}
+		return $updates;
+	}
+
+
 	/**
 	 * Separate a set of keys from an array. Returns null if not
 	 * all keys are set.
@@ -506,7 +522,7 @@ class BasicDbStorage implements WritableObjectStorage {
 			$missing = array_diff( $this->primaryKey, array_keys( $old ) );
 			throw new PersistenceException( 'Row has null primary key: ' . implode( $missing ) );
 		}
-		$updates = $this->calcUpdates( $old, $new );
+		$updates = ObjectManager::calcUpdates( $old, $new );
 		if ( !$updates ) {
 			return true; // nothing to change, success
 		}
@@ -517,22 +533,6 @@ class BasicDbStorage implements WritableObjectStorage {
 		// we also want to check that $pk actually selected a row to update
 		return $res && $dbw->affectedRows();
 	}
-
-	protected function calcUpdates( array $old, array $new ) {
-		$updates = array();
-		foreach ( array_keys( $new ) as $key ) {
-			if ( !array_key_exists( $key, $old ) || $old[$key] !== $new[$key] ) {
-				$updates[$key] = $new[$key];
-			}
-			unset( $old[$key] );
-		}
-		// These keys dont exist in $new
-		foreach ( array_keys( $old ) as $key ) {
-			$updates[$key] = null;
-		}
-		return $updates;
-	}
-
 
 	/**
 	 * @return boolean success

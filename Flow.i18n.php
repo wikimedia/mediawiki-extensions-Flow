@@ -15,7 +15,12 @@ $messages['en'] = array(
 	'flow-disclaimer' => "By clicking the \"Add message\" button, you agree to the Terms of Use,
 and you irrevocably agree to release your contribution under the CC-BY-SA 3.0 License and the GFDL.
 You agree that a hyperlink or URL is sufficient attribution under the Creative Commons license.",
+	'flow-post-hidden' => '[post hidden]',
+	'flow-post-hidden-by' => 'Hidden by $1 $2',
 	'flow-post-deleted' => '[post deleted]',
+	'flow-post-deleted-by' => 'Deleted by $1 $2',
+	'flow-post-oversighted' => '[post oversighted]',
+	'flow-post-oversighted-by' => 'Oversighted by $1 $2',
 	'flow-post-actions' => 'actions',
 	'flow-topic-actions' => 'actions',
 	'flow-cancel' => 'Cancel',
@@ -33,7 +38,9 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	'flow-post-action-view' => 'Permalink',
 	'flow-post-action-post-history' => 'Post history',
+	'flow-post-action-oversight-post' => 'Oversight post',
 	'flow-post-action-delete-post' => 'Delete post',
+	'flow-post-action-hide-post' => 'Hide post',
 	'flow-post-action-edit-post' => 'Edit post',
 	'flow-post-action-edit' => 'Edit',
 	'flow-post-action-restore-post' => 'Restore post',
@@ -52,6 +59,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-error-missing-replyto' => 'No replyTo parameter was supplied. This parameter is required for the "reply" action.',
 	'flow-error-invalid-replyto' => 'replyTo parameter was invalid. The specified post could not be found.',
 	'flow-error-delete-failure' => 'Deletion of this item failed.',
+	'flow-error-hide-failure' => 'Hiding this item failed.',
 	'flow-error-missing-postId' => 'No postId parameter was supplied. This parameter is required to manipulate a post.',
 	'flow-error-invalid-postId' => 'postId parameter was invalid. The specified post could not be found.',
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
@@ -67,6 +75,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	'flow-comment-restored' => 'Restored comment',
 	'flow-comment-deleted' => 'Deleted comment',
+	'flow-comment-hidden' => 'Hidden comment',
 );
 
 /** Message documentation (Message documentation)
@@ -86,6 +95,7 @@ Preceded by the Submit button which has the label either {{msg-mw|Flow-reply-sub
 See also:
 * {{msg-mw|Wikimedia-copyrightwarning}}',
 	'flow-post-deleted' => 'Used as username/content if the post was deleted.',
+	'flow-post-hidden' => 'Used as username/content if the post was hidden.',
 	'flow-post-actions' => 'Used as link text.
 {{Identical|Action}}',
 	'flow-topic-actions' => 'Used as link text.
@@ -104,6 +114,7 @@ See also:
 	'flow-post-action-view' => 'Used as text for the link which is used to view.
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.',
+	'flow-post-action-hide-post' => 'Used as label for the Submit button.',
 	'flow-post-action-delete-post' => 'Used as label for the Submit button.
 
 See also:
@@ -144,6 +155,9 @@ The variable name "replyTo" is invisible to users, so "replyTo" can be translate
 	'flow-error-delete-failure' => 'Used as error message.
 
 "this item" refers either "this topic" or "this post".',
+	'flow-error-hide-failure' => 'Used as error message.
+
+"this item" refers either "this topic" or "this post".',
 	'flow-error-missing-postId' => 'Used as error message when deleting/restoring a post.
 
 "manipulate" refers either "delete" or "restore".',
@@ -161,6 +175,7 @@ The variable name "replyTo" is invisible to users, so "replyTo" can be translate
 
 See also:
 * {{msg-mw|Flow-comment-deleted}}',
+	'flow-comment-hidden' => 'Used as comment when the comment has been hidden.',
 	'flow-comment-deleted' => 'Used as comment when the comment has been deleted.
 
 See also:

@@ -10,7 +10,9 @@ use ExternalStore;
 use User;
 
 abstract class RevisionStorage implements WritableObjectStorage {
-	static protected $allowedUpdateColumns = array( 'rev_flags' );
+	static protected $allowedUpdateColumns = array(
+		'rev_mod_state', 'rev_mod_user_id', 'rev_mod_user_text', 'rev_mod_timestamp',
+	);
 	protected $dbFactory;
 	protected $externalStores;
 
@@ -267,7 +269,8 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	// This is to *UPDATE* a revision.  It should hardly ever be used.
 	// For the most part should insert a new revision.  This will only be called
 	// for oversighting?
-	public function update( array $row, array $changeSet ) {
+	public function update( array $old, array $new ) {
+		$changeSet = ObjectManager::calcUpdates( $old, $new );
 		$extra = array_diff( array_keys( $changeSet ), self::$allowedUpdateColumns );
 		if ( $extra ) {
 			throw new \MWException( 'Update not allowed on: ' . implode( ', ', $extra ) );
@@ -279,14 +282,15 @@ abstract class RevisionStorage implements WritableObjectStorage {
 			$dbw = $this->dbFactory->getDB( DB_MASTER );
 			$res = $dbw->update(
 				'flow_revision',
-				$updates,
-				array( 'rev_id' => $row['rev_id'] ),
+				$rev,
+				array( 'rev_id' => $old['rev_id'] ),
 				__METHOD__
 			);
-			if ( !( $res && $res->numRows() ) ) {
+			if ( !( $res && $dbw->affectedRows() ) ) {
 				return false;
 			}
 		}
+		// TODO: this probably wont work, it needs $row
 		return $this->updateRelated( $rev, $related );
 	}
 
@@ -456,12 +460,12 @@ class TopicHistoryIndex extends TopKIndex {
 	}
 
 	public function onAfterInsert( $object, array $new ) {
-		$new['topic_root'] = $this->treeRepository->findRoot( UUID::create( $new['tree_rev_descendant_id'] ) );
+		$new['topic_root'] = $this->treeRepository->findRoot( UUID::create( $new['tree_rev_descendant_id'] ) )->getBinary();
 		parent::onAfterInsert( $object, $new );
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new ) {
-		$old['topic_root'] = $new['topic_root'] = $this->treeRepository->findRoot( UUID::create( $old['tree_rev_descendant_id'] ) );
+		$old['topic_root'] = $new['topic_root'] = $this->treeRepository->findRoot( UUID::create( $old['tree_rev_descendant_id'] ) )->getBinary();
 		parent::onAfterUpdate( $object, $old, $new );
 	}
 

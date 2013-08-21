@@ -4,6 +4,7 @@ namespace Flow\Block;
 
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
@@ -23,8 +24,12 @@ class TopicBlock extends AbstractBlock {
 	// POST actions, GET do not need to be listed
 	// unrecognized GET actions fallback to 'view'
 	protected $supportedActions = array(
-		'edit-post', 'delete-post', 'restore-post',
-		'reply', 'delete-topic', 'edit-title',
+		// Standard editing
+		'edit-post', 'reply',
+		// Moderation
+		'hide-post', 'delete-post', 'oversight-post', 'restore-post',
+		// Other stuff
+		'hide-topic', 'edit-title',
 	);
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, $root ) {
@@ -50,13 +55,21 @@ class TopicBlock extends AbstractBlock {
 			$this->validateReply();
 			break;
 
-		case 'delete-topic':
+		case 'hide-topic':
 			// this should be a workflow level action, not implemented per-block
-			$this->validateDeleteTopic();
+			$this->validateHideTopic();
+			break;
+
+		case 'hide-post':
+			$this->validateModeratePost( AbstractRevision::MODERATED_HIDDEN );
 			break;
 
 		case 'delete-post':
-			$this->validateDeletePost();
+			$this->validateModeratePost( AbstractRevision::MODERATED_DELETED );
+			break;
+
+		case 'oversight-post':
+			$this->validateModeratePost( AbstractRevision::MODERATED_OVERSIGHTED );
 			break;
 
 		case 'restore-post':
@@ -112,33 +125,27 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	protected function validateDeleteTopic() {
+	protected function validateHideTopic() {
 		if ( !$this->workflow->lock( $this->user ) ) {
-			$this->errors['delete-topic'] = wfMessage( 'flow-error-delete-failure' );
+			$this->errors['hide-topic'] = wfMessage( 'flow-error-hide-failure' );
 		}
 	}
 
-	protected function validateDeletePost() {
+	protected function validateModeratePost( $moderationState ) {
 		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['delete-post'] = wfMessage( 'flow-error-missing-postId' );
+			$this->errors['moderate-post'] = wfMessage( 'flow-error-missing-postId' );
 			return;
 		}
-		$found = $this->storage->find(
-			'PostRevision',
-			array( 'tree_rev_descendant_id' => UUID::create( $this->submitted['postId'] ) ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-		);
-		if ( !$found ) {
-			$this->errors['delete-post'] = wfMessage( 'flow-error-invalid-postId' );
+		$post = $this->loadRequestedPost( $this->submitted['postId'] );
+		if ( !$post ) {
+			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-postId' );
 			return;
 		}
-		// TODO: validate it has $this->workflow as its topic
-		$post = reset( $found );
 
-		// returns new revision to save
-		$this->newRevision = $post->addFlag( $this->user, 'deleted', 'flow-comment-deleted' );
+		$this->newRevision = $post->moderate( $this->user, $moderationState );
 		if ( !$this->newRevision ) {
-			$this->errors['delete-post'] = wfMessage( 'flow-error-delete-failure' );
+			die( 'no allowed' );
+			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
 		}
 	}
 
@@ -147,20 +154,15 @@ class TopicBlock extends AbstractBlock {
 			$this->errors['restore-post'] = wfMessage( 'flow-error-missing-postId' );
 			return;
 		}
-		$found = $this->storage->find(
-			'PostRevision',
-			array( 'tree_rev_descendant_id' => UUID::create( $this->submitted['postId'] ) ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-		);
-		if ( !$found ) {
+		$post = $this->loadRequestedPost( $this->submitted['postId'] );
+		if ( !$post ) {
 			$this->errors['restore-post'] = wfMessage( 'flow-error-invalid-postId' );
 			return;
 		}
-		$post = reset( $found );
 
-		$this->newRevision = $post->removeFlag( $this->user, 'deleted', 'flow-comment-restored' );
+		$this->newRevision = $post->restore( $this->user );
 		if ( !$this->newRevision ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-error-restore-failure' );
+			$this->errors['restore-post'] = wfMessage( 'flow-error-not-allowed' );
 		}
 	}
 
@@ -189,7 +191,9 @@ class TopicBlock extends AbstractBlock {
 	public function commit() {
 		switch( $this->action ) {
 		case 'reply':
+		case 'hide-post':
 		case 'delete-post':
+		case 'oversight-post':
 		case 'restore-post':
 		case 'edit-title':
 		case 'edit-post':
@@ -221,6 +225,7 @@ class TopicBlock extends AbstractBlock {
 
 			return $output;
 			break;
+
 		case 'delete-topic':
 			$this->storage->put( $this->workflow );
 
@@ -291,6 +296,10 @@ class TopicBlock extends AbstractBlock {
 		if ( !isset( $options['postId'] ) ) {
 			throw new \Exception( 'No postId provided' );
 		}
+		$post = $this->loadRequestedPost( $options['postId'] );
+		if ( $post->isFlaggedAll( 'oversighted', 'deleted', 'hidden' ) ) {
+			throw new \Exception( 'Cannot edit restricted post.  Restore first.' );
+		}
 		return $templating->render( "flow:edit-post.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
@@ -353,7 +362,7 @@ class TopicBlock extends AbstractBlock {
 
 		$output['post-id'] = $post->getPostId()->getHex();
 
-		if ( $post->isFlagged( 'deleted' ) ) {
+		if ( $post->isFlaggedAll( 'deleted' ) ) {
 			$output['post-deleted'] = 'post-deleted';
 		} else {
 			$output['content'] = array( '*' => $post->getContent() );
