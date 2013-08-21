@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "499865f5_7ffa0ebc",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-21T22:32:22Z",
+      "side": 1,
+      "message": "????",
+      "revId": "68cb5eee57fc976848f929593eeef23effcdbde5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "499865f5_bf0496c3",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-21T22:32:22Z",
+      "side": 1,
+      "message": "i would prefer to push the globals outside of the TopicList, best would be if the globals are used from container.php and passed to objects as variables, and the objects just work off the variables they are instantiated with.\n\nWould also like to look into moving this code to the Pager class, rather than having it here and needing to duplicate it later to paginate other things ( histories, etc ).  Looking through it seems getFindOptions is only used for pagination, but it might still require some restructuring to achieve.  If its a ton of work then probably not usefull, but i think it would help with clarity to get as much of this consolidated as possible",
+      "revId": "68cb5eee57fc976848f929593eeef23effcdbde5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "499865f5_9fe19a02",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-08-21T22:32:22Z",
+      "side": 1,
+      "message": "As long as there is a serialize method, should probably be an unserialize that does the inverse\n\n    public function unserializeOffset( $offset, $index ) {\n        return array_combine( $index-\u003egetSort(), explode( \u0027|\u0027, $offset ) );\n    }",
+      "revId": "68cb5eee57fc976848f929593eeef23effcdbde5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
