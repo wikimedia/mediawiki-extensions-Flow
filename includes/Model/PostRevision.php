@@ -83,10 +83,6 @@ class PostRevision extends AbstractRevision {
 		return $this->postId;
 	}
 
-	public function getUserText() {
-		return $this->userText;
-	}
-
 	public function isTopicTitle() {
 		return $this->replyToId === null;
 	}

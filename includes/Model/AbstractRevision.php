@@ -2,9 +2,39 @@
 
 namespace Flow\Model;
 
+use MWTimestamp;
 use User;
 
 abstract class AbstractRevision {
+	const MODERATED_NONE = '';
+	const MODERATED_HIDDEN = 'hide';
+	const MODERATED_DELETED = 'delete';
+
+	const MODERATED_OVERSIGHTED = 'oversight';
+
+	static private $perms = array(
+		self::MODERATED_NONE => array(
+			'perm' => null,
+			'usertext' => null,
+			'content' => null
+		),
+		self::MODERATED_HIDDEN => array(
+			'perm' => 'flow-hide',
+			'usertext' => 'flow-post-hidden',
+			'content' => 'flow-post-hidden-by',
+		),
+		self::MODERATED_DELETED => array(
+			'perm' => 'flow-delete',
+			'usertext' => 'flow-post-deleted',
+			'content' => 'flow-post-deleted-by',
+		),
+		self::MODERATED_OVERSIGHTED => array(
+			'perm' => 'flow-oversight',
+			'usertext' => 'flow-post-oversighted',
+			'content' => 'flow-post-oversighted-by',
+		),
+	);
+
 	protected $revId;
 	protected $userId;
 	protected $userText;
@@ -22,6 +52,15 @@ abstract class AbstractRevision {
 	// This is decompressed on-demand from $this->content in self::getContent()
 	protected $decompressedContent;
 
+	// moderation states for the revision.  This is technically denormalized data
+	// since it can be overwritten and does not provide a full history.
+	// The tricky part is updating moderation is a new revision for hide and
+	// delete, but adjusts an existing revision for full oversight.
+	protected $moderationState = self::MODERATED_NONE;
+	protected $moderationTimestamp;
+	protected $moderatedByUserId;
+	protected $moderatedByUserText;
+
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			$obj = new static;
@@ -33,11 +72,17 @@ abstract class AbstractRevision {
 		$obj->userText = $row['rev_user_text'];
 		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
 		$obj->comment = $row['rev_comment'];
-		$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
+	 	$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
 		$obj->content = $row['rev_content'];
 		// null if external store is not being used
 		$obj->contentUrl = $row['rev_content_url'];
 		$obj->decompressedContent = null;
+
+		$obj->moderationState = $row['rev_mod_state'];
+		$obj->moderatedByUserId = $row['rev_mod_user_id'];
+		$obj->moderatedByUserText = $row['rev_mod_user_text'];
+		$obj->moderationTimestamp = $row['rev_mod_timestamp'];
+
 		return $obj;
 	}
 
@@ -53,6 +98,11 @@ abstract class AbstractRevision {
 			'rev_content' => $obj->content,
 			'rev_content_url' => $obj->contentUrl,
 			'rev_flags' => implode( ',', $obj->flags ),
+
+			'rev_mod_state' => $obj->moderationState,
+			'rev_mod_user_id' => $obj->moderatedByUserId,
+			'rev_mod_user_text' => $obj->moderatedByUserText,
+			'rev_mod_timestamp' => $obj->moderationTimestamp,
 		);
 	}
 
@@ -77,18 +127,91 @@ abstract class AbstractRevision {
 		return $obj;
 	}
 
+	public function moderate( User $user, $state ) {
+		$mostRestricted = max( $state, $this->moderationState );
+		if ( !$this->isAllowed( $user, $mostRestricted ) ) {
+			return null;
+		}
+		// Oversight is special,  other moderation types just create
+		// a new revision but oversighting adjusts the existing revision.
+		// Yes this mucks with the history just being a revision list.
+		if ( $state === self::MODERATED_OVERSIGHTED ) {
+			$obj = $this;
+		} else {
+			$obj = $this->newNullRevision( $user );
+		}
+
+		$obj->moderationState = $state;
+		if ( $state === self::MODERATED_NONE ) {
+			$obj->moderatedByUserId = null;
+			$obj->moderatedByUserText = null;
+			$obj->moderationTimestamp = null;
+		} else {
+			$obj->moderatedByUserId = $user->getId();
+			$obj->moderatedByUserText = $user->getName();
+			$obj->moderationTimestamp = wfTimestampNow();
+		}
+		return $obj;
+	}
+
+	public function restore( User $user ) {
+		return $this->moderate( $user, self::MODERATED_NONE );
+	}
+
 	public function getRevisionId() {
 		return $this->revId;
 	}
 
-	public function getContent() {
+	// Is the user allowed to see this revision ?
+	protected function isAllowed( $user = null, $state = null ) {
+		if ( $state === null ) {
+			$state = $this->moderationState;
+		}
+		if ( !isset( self::$perms[$state] ) ) {
+			throw new \Exception( 'Unknown stored moderation state' );
+		}
+
+		$perm = self::$perms[$state]['perm'];
+		return $perm === null || ( $user && $user->isAllowed( $perm ) );
+	}
+
+	public function getContent( $user = null ) {
+		if ( $this->isAllowed( $user ) ) {
+			return $this->getContentRaw();
+		} else {
+			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
+
+			return wfMessage(
+				self::$perms[$this->moderationState]['content'],
+				$this->moderatedByUserText,
+				$moderatedAt->getHumanTimestamp( new MWTimestamp )
+			);
+		}
+	}
+
+	public function getContentRaw() {
 		if ( $this->decompressedContent === null ) {
 			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
 		}
 		return $this->decompressedContent;
 	}
 
+	public function getUserText( $user = null ) {
+		if ( $this->isAllowed( $user ) ) {
+			return $this->getUserTextRaw();
+		} else {
+			return wfMessage( self::$perms[$this->moderationState]['usertext'] );
+		}
+	}
+
+	public function getUserTextRaw() {
+		return $this->userText;
+	}
+
 	protected function setContent( $content ) {
+		if ( $this->moderationState !== self::MODERATED_NONE ) {
+			throw new \Exception( 'Cannot change content of restricted revision' );
+		}
 		if ( $content !== $this->getContent() ) {
 			$this->content = $this->decompressedContent = $content;
 			$this->contentUrl = null;
@@ -105,32 +228,34 @@ abstract class AbstractRevision {
 		return $this->comment;
 	}
 
-	public function addFlag( User $user, $flag, $comment ) {
-		if ( $this->isFlagged( $flag ) ) {
-			// already flagged
-			return $this;
-		}
-		if ( false !== strpos( ',', $flag ) ) {
-			throw new \MWException( 'Invalid flag name: contains comma' );
-		}
-		$updated = $this->newNullRevision( $user );
-		$updated->flags[] = $flag;
-		$updated->comment = $comment;
-		return $updated;
+	public function getModerationState() {
+		return $this->moderationState;
 	}
 
-	public function removeFlag( User $user, $flag, $comment ) {
-		if ( !$this->isFlagged( $flag ) ) {
-			return $this;
-		}
-		$updated = $this->newNullRevision( $user );
-		unset( $updated->flags[array_search( $flag, $updated->flags )] );
-		$updated->comment = $comment;
-		return $updated;
+	public function getModerationTimestamp() {
+		return $this->moderationTimestamp;
 	}
 
-	public function isFlagged( $flag ) {
-		return false !== array_search( $flag, $this->flags );
+	/**
+	 * @param string|array $flags
+	 * @return boolean True when at least one flag in $flags is set
+	 */
+	public function isFlaggedAny( $flags ) {
+		foreach ( (array) $flags as $flag ) {
+			if ( false !== array_search( $flag, $this->flags ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public function isFlaggedAll( $flags ) {
+		foreach ( (array) $flags as $flag ) {
+			if ( false === array_search( $flag, $this->flags ) ) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
 

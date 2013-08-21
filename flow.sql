@@ -112,6 +112,13 @@ CREATE TABLE /*_*/flow_revision (
 	rev_content mediumblob not null,
 	-- comment attached to revision's flag change
 	rev_comment varchar(255) binary null,
+	-- current moderation state
+	rev_mod_state varchar(32) binary not null,
+	-- moderated by who?
+	rev_mod_user_id bigint unsigned,
+	rev_mod_user_text varchar(255) binary,
+	rev_mod_timestamp varchar(14) binary,
+
 	PRIMARY KEY (rev_id)
 ) /*$wgDBTableOptions*/;
 
