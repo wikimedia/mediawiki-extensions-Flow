@@ -83,7 +83,7 @@ class TopicBlock extends AbstractBlock {
 				throw new \Exception( 'No revision associated with workflow?' );
 			}
 
-			$this->topicTitle = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-title' );
+			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-title' );
 		}
 	}
 
