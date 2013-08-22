@@ -58,6 +58,7 @@ $wgAutoloadClasses['Flow\Templating'] = $dir . 'includes/Templating.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
 $wgAutoloadClasses['Flow\WorkflowLoaderFactory'] = $dir . 'includes/WorkflowLoader.php';
+$wgAutoloadClasses['FlowCommentFormatter'] = $dir . 'includes/NotificationFormatter.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';

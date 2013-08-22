@@ -92,7 +92,7 @@ class SpecialFlow extends SpecialPage {
 	}
 
 	protected function loadContainer() {
-		$container = include __DIR__ . '/../container.php';
+		$container = Flow\Container::getContainer();
 		$container['request'] = $this->getRequest();
 		$container['output'] = $this->getOutput();
 

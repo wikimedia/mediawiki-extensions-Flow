@@ -12,6 +12,7 @@ use Flow\Data\ObjectManager;
 use Flow\Data\RootPostLoader;
 use Flow\DbFactory;
 use Flow\Templating;
+use EchoEvent;
 use User;
 
 class TopicListBlock extends AbstractBlock {
@@ -62,6 +63,21 @@ class TopicListBlock extends AbstractBlock {
 		$storage->put( $topicListEntry );
 
 		$user = $this->user;
+
+		if ( class_exists( 'EchoEvent' ) ) {
+			EchoEvent::create( array(
+				'type' => 'flow-new-topic',
+				'agent' => $user,
+				'title' => $this->workflow->getArticleTitle(),
+				'extra' => array(
+					'board-workflow' => $this->workflow->getId(),
+					'topic-workflow' => $topicWorkflow->getId(),
+					'post-id' => $firstPost->getRevisionId(),
+					'topic-title' => $this->submitted['topic'],
+					'content' => $this->submitted['content'],
+				),
+			) );
+		}
 
 		$output = array(
 			'created-topic-id' => $topicWorkflow->getId(),
