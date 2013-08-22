@@ -343,10 +343,35 @@ $1',
  * @author Beta16
  */
 $messages['it'] = array(
+	'flow-desc' => 'Sistema di gestione del flusso di lavoro',
+	'flow-disclaimer' => 'Facendo click sul pulsante "Aggiungi messaggio", accetti le condizioni d\'uso, e accetti irrevocabilmente di rilasciare il tuo contributo sotto le licenze Creative Commons Attribuzione-Condividi allo stesso modo 3.0 e GFDL.
+Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'attribuzione in base alla licenza Creative Commons.',
+	'flow-post-deleted' => '[messaggio cancellato]',
 	'flow-post-actions' => 'azioni',
 	'flow-topic-actions' => 'azioni',
 	'flow-cancel' => 'Annulla',
+	'flow-newtopic-title-placeholder' => 'Oggetto del messaggio',
+	'flow-newtopic-content-placeholder' => 'Testo del messaggio. Sii gentile!',
+	'flow-newtopic-header' => 'Aggiungi una nuova discussione',
+	'flow-newtopic-save' => 'Aggiungi discussione',
+	'flow-newtopic-start-placeholder' => 'Clicca qui per iniziare una nuova discussione. Sii gentile!',
+	'flow-reply-placeholder' => 'Clicca per rispondere a $1. Sii gentile!',
+	'flow-reply-submit' => 'Invia risposta',
+	'flow-edit-post-submit' => 'Invia modifiche',
+	'flow-post-action-view' => 'Link permanente',
+	'flow-post-action-post-history' => 'Cronologia del messaggio',
+	'flow-post-action-delete-post' => 'Cancella messaggio',
+	'flow-post-action-edit-post' => 'Modifica messaggio',
 	'flow-post-action-edit' => 'Modifica',
+	'flow-post-action-restore-post' => 'Ripristina messaggio',
+	'flow-topic-action-edit-title' => 'Modifica titolo',
+	'flow-topic-action-history' => 'Cronologia della discussione',
+	'flow-edit-title-submit' => 'Cambia titolo',
+	'flow-rev-message-reply' => 'Nuova risposta inviata',
+	'flow-rev-message-new-post' => 'Discussione creata',
+	'flow-topic-history' => 'Cronologia della discussione',
+	'flow-comment-restored' => 'Commento ripristinato',
+	'flow-comment-deleted' => 'Commento cancellato',
 );
 
 /** Japanese (日本語)
@@ -418,6 +443,8 @@ $messages['lb'] = array(
 	'flow-edit-post-submit' => 'Ännerunge späicheren',
 	'flow-post-action-edit' => 'Änneren',
 	'flow-topic-action-edit-title' => 'Titel änneren',
+	'flow-error-delete-failure' => "D'Läsche vun dësem Element huet net fonctionnéiert.",
+	'flow-error-restore-failure' => "D'Restauréiere vun dësem Element huet net fonctionnéiert.",
 	'flow-summaryedit-submit' => 'Resumé späicheren',
 	'flow-edit-title-submit' => 'Titel änneren',
 	'flow-rev-message-new-post' => 'Thema ugeluecht',
@@ -526,6 +553,36 @@ $messages['roa-tara'] = array(
 	'flow-error-other' => "Ha assute 'n'errore. 'U messàgge tune non g'ha state reggistrate.",
 	'flow-summaryedit-submit' => "Reggistre 'u riepiloghe",
 	'flow-edit-title-submit' => "Cange 'u titole",
+);
+
+/** Swedish (svenska)
+ * @author Ainali
+ */
+$messages['sv'] = array(
+	'flow-cancel' => 'Avbryt',
+	'flow-newtopic-title-placeholder' => 'Meddelandeämne',
+	'flow-newtopic-content-placeholder' => 'Meddelandetext. Var trevlig!',
+	'flow-newtopic-header' => 'Lägg till ett nytt ämne',
+	'flow-newtopic-save' => 'Lägg till ämne',
+	'flow-newtopic-start-placeholder' => 'Klicka här för att starta en ny diskussion. Var trevlig!',
+	'flow-reply-placeholder' => 'Klicka för att svara på $1. Var trevlig!',
+	'flow-reply-submit' => 'Skicka svar',
+	'flow-edit-post-submit' => 'Skicka ändringar',
+	'flow-post-action-view' => 'Permanent länk',
+	'flow-post-action-delete-post' => 'Ta bort inlägg',
+	'flow-post-action-edit-post' => 'Redigera inlägg',
+	'flow-post-action-edit' => 'Redigera',
+	'flow-post-action-restore-post' => 'Återställ inlägg',
+	'flow-topic-action-edit-title' => 'Redigera titel',
+	'flow-topic-action-history' => 'Ämneshistorik',
+	'flow-error-http' => 'Ett fel uppstod när servern kontaktades. Ditt inlägg har inte sparats.',
+	'flow-summaryedit-submit' => 'Spara sammanfattning',
+	'flow-edit-title-submit' => 'Ändra titel',
+	'flow-rev-message-reply' => 'Nytt svar postat',
+	'flow-rev-message-new-post' => 'Ämnet skapat',
+	'flow-topic-history' => 'Ämneshistorik',
+	'flow-comment-restored' => 'Återställd kommentar',
+	'flow-comment-deleted' => 'Raderad kommentar',
 );
 
 /** Ukrainian (українська)
