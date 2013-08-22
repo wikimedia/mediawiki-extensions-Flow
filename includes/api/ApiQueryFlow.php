@@ -11,7 +11,7 @@ class ApiQueryFlow extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$this->container = include __DIR__ . "/../../container.php";
+		$this->container = Flow\Container::getContainer();
 		// Get the parameters
 		$params = $this->extractRequestParams();
 		$passedParams = json_decode( $params['params'], true );
