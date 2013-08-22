@@ -11,6 +11,7 @@ use Flow\Data\RootPostLoader;
 use Flow\DbFactory;
 use Flow\ParsoidUtils;
 use Flow\Templating;
+use EchoEvent;
 use User;
 
 class TopicBlock extends AbstractBlock {
@@ -19,6 +20,7 @@ class TopicBlock extends AbstractBlock {
 	protected $topicTitle;
 	protected $rootLoader;
 	protected $newRevision;
+	protected $notification;
 	protected $requestedPost;
 
 	// POST actions, GET do not need to be listed
@@ -97,6 +99,14 @@ class TopicBlock extends AbstractBlock {
 			}
 
 			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-title' );
+
+			$this->setNotification(
+				'flow-topic-renamed',
+				array(
+					'old-subject' => $topicTitle->getContent(),
+					'new-subject' => $this->newRevision->getContent(),
+				)
+			);
 		}
 	}
 
@@ -121,6 +131,15 @@ class TopicBlock extends AbstractBlock {
 				// TODO: assert post belongs to this tree?  Does it realy matter?
 				// answer: might not belong, and probably does matter due to inter-wiki interaction
 				$this->newRevision = $post->reply( $this->user, $this->parsedContent, 'flow-comment-added' );
+
+				$this->setNotification(
+					'flow-post-reply',
+					array(
+						'reply-to' => $post->getPostId(),
+						'content' => $this->submitted['content'],
+						'topic-title' => $this->getTitleText(),
+					)
+				);
 			}
 		}
 	}
@@ -183,6 +202,13 @@ class TopicBlock extends AbstractBlock {
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( $post ) {
 			$this->newRevision = $post->newNextRevision( $this->user, $this->parsedContent, 'flow-edit-post' );
+			$this->setNotification(
+					'flow-post-edited',
+					array(
+						'content' => $this->submitted['content'],
+						'topic-title' => $this->getTitleText(),
+					)
+				);
 		} else {
 			$this->errors['edit-post'] = wfMessage( 'flow-post-not-found' );
 		}
@@ -219,6 +245,13 @@ class TopicBlock extends AbstractBlock {
 				$renderFunction = function( $templating ) use ( $self, $newRevision, $rootPost ) {
 					return $templating->renderPost( $newRevision, $self, $rootPost );
 				};
+			}
+
+			if ( class_exists( 'EchoEvent' ) && is_array( $this->notification ) ) {
+				$this->notification['extra']['revision-id'] = $this->newRevision->getRevisionId();
+				$this->notification['extra']['post-id'] = $this->newRevision->getPostId();
+
+				EchoEvent::create( $this->notification );
 			}
 
 			return array(
@@ -481,6 +514,10 @@ class TopicBlock extends AbstractBlock {
 		return $this->topicTitle;
 	}
 
+	public function getTitleText() {
+		return $this->loadTopicTitle()->getContent();
+	}
+
 	protected function loadTopicHistory() {
 		$found = $this->storage->find(
 			'PostRevision',
@@ -525,6 +562,17 @@ class TopicBlock extends AbstractBlock {
 	// The prefix used for form data
 	public function getName() {
 		return 'topic';
+	}
+
+	protected function setNotification( $notificationType, $extraVars ) {
+		$this->notification = array(
+				'type' => $notificationType,
+				'agent' => $this->user,
+				'title' => $this->workflow->getArticleTitle(),
+				'extra' => $extraVars + array(
+					'topic-workflow' => $this->workflow->getId(),
+				)
+			);
 	}
 
 }
