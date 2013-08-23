@@ -344,6 +344,7 @@ $1',
  */
 $messages['it'] = array(
 	'flow-desc' => 'Sistema di gestione del flusso di lavoro',
+	'flow-edit-summary-link' => 'Modifica oggetto',
 	'flow-disclaimer' => 'Facendo click sul pulsante "Aggiungi messaggio", accetti le condizioni d\'uso, e accetti irrevocabilmente di rilasciare il tuo contributo sotto le licenze Creative Commons Attribuzione-Condividi allo stesso modo 3.0 e GFDL.
 Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'attribuzione in base alla licenza Creative Commons.',
 	'flow-post-deleted' => '[messaggio cancellato]',
@@ -366,6 +367,7 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-post-action-restore-post' => 'Ripristina messaggio',
 	'flow-topic-action-edit-title' => 'Modifica titolo',
 	'flow-topic-action-history' => 'Cronologia della discussione',
+	'flow-summaryedit-submit' => 'Salva oggetto',
 	'flow-edit-title-submit' => 'Cambia titolo',
 	'flow-rev-message-reply' => 'Nuova risposta inviata',
 	'flow-rev-message-new-post' => 'Discussione creata',
