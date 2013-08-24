@@ -68,6 +68,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	'flow-edit-title-submit' => 'Change title',
 
+	'flow-rev-message-edit-post' => 'Edited post content',
 	'flow-rev-message-reply' => 'New reply posted',
 	'flow-rev-message-new-post' => 'Topic created',
 
@@ -76,6 +77,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-comment-restored' => 'Restored comment',
 	'flow-comment-deleted' => 'Deleted comment',
 	'flow-comment-hidden' => 'Hidden comment',
+	'flow-comment-moderated' => 'Moderated comment',
 
 	'flow-paging-rev' => 'More recent topics',
 	'flow-paging-fwd' => 'Older topics',
@@ -84,7 +86,11 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your [$5 post] in $2 on [[$3|$4]].',
 	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} your [$5 post] in $2 on [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
-	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].'
+	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].',
+
+	'flow-link-post' => 'post',
+	'flow-link-topic' => 'topic',
+	'flow-link-history' => 'history',
 );
 
 /** Message documentation (Message documentation)
@@ -211,19 +217,21 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 "this item" seems to refer "this post".',
 	'flow-summaryedit-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
-	'flow-rev-message-reply' => 'Used as comment when the new reply has been posted.',
+	'flow-rev-message-reply' => 'Used as a revision comment when a new reply has been posted.',
+	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited',
 	'flow-rev-message-new-post' => 'Used as comment when the topic has been created.',
 	'flow-topic-history' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page.
 {{Identical|Topic history}}',
-	'flow-comment-restored' => 'Used as comment when the comment has been restored.
+	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
 * {{msg-mw|Flow-comment-deleted}}',
-	'flow-comment-deleted' => 'Used as comment when the comment has been deleted.
+	'flow-comment-deleted' => 'Used as revision comment when the post has been deleted.
 
 See also:
 * {{msg-mw|Flow-comment-restored}}',
-	'flow-comment-hidden' => 'Used as comment when the comment has been hidden.',
+	'flow-comment-hidden' => 'Used as revision comment when the post has been hidden.',
+	'flow-comment-moderated' => 'Used as a revision comment when the post has been oversighted.',
 	'flow-paging-rev' => 'Label for paging link that shows more recently modified topics.
 
 See also:
@@ -265,6 +273,10 @@ Parameters:
 * $5 - title for the Flow board
 * $6 - title for the page that the Flow board is attached to
 {{Related|Flow-notification}}',
+
+	'flow-link-post' => 'Text used when linking to a post from recentchanges',
+	'flow-link-topic' => 'Text used when linking to a topic from recentchanges',
+	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges',
 );
 
 /** Asturian (asturianu)

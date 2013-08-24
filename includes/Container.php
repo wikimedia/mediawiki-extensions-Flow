@@ -11,16 +11,14 @@ class Container extends \Pimple {
 	 * If you use this function outside a Flow entry point (such as a hook,
 	 *  special page or API module), there is a good chance that your code
 	 *  requires refactoring
-	 * 
+	 *
 	 * @return FLow\Container
 	 */
-	static function getContainer() {
-		static $container = false;
-
-		if ( $container == false ) {
+	public static function getContainer() {
+		static $container;
+		if ( $container === null ) {
 			$container = include __DIR__ . '/../container.php';
 		}
-
 		return $container;
 	}
 }

@@ -10,40 +10,63 @@ abstract class AbstractRevision {
 	const MODERATED_NONE = '';
 	const MODERATED_HIDDEN = 'hide';
 	const MODERATED_DELETED = 'delete';
-
 	const MODERATED_CENSORED = 'censor';
 
+	/**
+	 * Metadata relatied to moderation states from least restrictive
+	 * to most restrictive.
+	 **/
 	static protected $perms = array(
 		self::MODERATED_NONE => array(
+			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => null,
-			'usertext' => null,
-			'content' => null
+			// i18n key to replace content with when state is active(unused with perm === null )
+			'content' => null,
+			// i18n key for history and recentchanges comment
+			'comment' => 'flow-comment-restored',
 		),
 		self::MODERATED_HIDDEN => array(
+			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => 'flow-hide',
-			'usertext' => 'flow-post-hidden',
+			// i18n key to replace content with when state is active
+			// NOTE: special case self::getHiddenContent still retrieves content in this case only
 			'content' => 'flow-post-hidden-by',
+			// i18n key for history and recentchanges comment
+			'comment' => 'flow-comment-hidden',
 		),
 		self::MODERATED_DELETED => array(
+			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => 'flow-delete',
-			'usertext' => 'flow-post-deleted',
+			// i18n key to replace content with when state is active
 			'content' => 'flow-post-deleted-by',
+			// i18n key for history and recentchanges comment
+			'comment' => 'flow-comment-deleted',
 		),
 		self::MODERATED_CENSORED => array(
+			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => 'flow-censor',
-			'usertext' => 'flow-post-censored',
+			// i18n key to replace content with when state is active
 			'content' => 'flow-post-censored-by',
+			// i18n key for history and recentchanges comment
+			'comment' => 'flow-comment-censored',
 		),
 	);
 
 	protected $revId;
 	protected $userId;
 	protected $userText;
+
+	/**
+	 * Array of flags strictly related to the content. Flags are reset when
+	 * content changes.
+	 */
 	protected $flags = array();
+
 	// An i18n message key indicating what kind of change this revision is
 	// primary use case is the a revision history list.
 	// TODO: i18n key may be too limiting, consider allowing custom revision comments
 	protected $comment;
+	// UUID of the revision prior to this one, or null if this is first revision
 	protected $prevRevision;
 
 	// content
@@ -120,6 +143,7 @@ abstract class AbstractRevision {
 		$obj->userId = $user->getId();
 		$obj->userText = $user->getName();
 		$obj->prevRevision = $this->revId;
+		$obj->comment = '';
 		return $obj;
 	}
 
@@ -130,15 +154,33 @@ abstract class AbstractRevision {
 		return $obj;
 	}
 
-	public function moderate( User $user, $state ) {
-		$mostRestricted = max( $state, $this->moderationState );
+	protected function mostRestrictivePermission( $a, $b ) {
+		$keys = array_keys( self::$perms );
+		$aPos = array_search( $a, $keys );
+		$bPos = array_search( $b, $keys );
+		if ( $aPos === false || $bPos === false ) {
+			wfWarn( __CLASS__, __FUNCTION__ . ": Invalid permissions provided: '$a' '$b'" );
+			// err on the side of safety, most restrictive
+			return end( self::$perms );
+		}
+		return self::$perms[max( $aPos, $bPos )];
+	}
+
+	public function moderate( User $user, $state, $comment = null ) {
+		if ( !isset( self::$perms[$state] ) ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ': Provided moderation state does not exist : ' . $state );
+			return null;
+		}
+
+		$permission = self::mostRestrictivePermission( $state, $this->moderationState );
+		$mostRestricted = $keys[max( $oldPos, $newPos )];
 		if ( !$this->isAllowed( $user, $mostRestricted ) ) {
 			return null;
 		}
 		// Censoring is special,  other moderation types just create
 		// a new revision but censoring adjusts the existing revision.
 		// Yes this mucks with the history just being a revision list.
-		if ( $state === self::MODERATED_CENSORED ) {
+		if ( in_array( $state, array( self::MODERATED_CENSORED, self::MODERATED_DELETED ) ) ) {
 			$obj = $this;
 		} else {
 			$obj = $this->newNullRevision( $user );
@@ -153,6 +195,11 @@ abstract class AbstractRevision {
 			$obj->moderatedByUserId = $user->getId();
 			$obj->moderatedByUserText = $user->getName();
 			$obj->moderationTimestamp = wfTimestampNow();
+		}
+		if ( $comment === null && isset( self::$perms[$state]['comment'] ) ) {
+			$obj->comment = self::$perms[$state]['comment'];
+		} else {
+			$obj->comment = $comment;
 		}
 		return $obj;
 	}
@@ -176,6 +223,17 @@ abstract class AbstractRevision {
 
 		$perm = self::$perms[$state]['perm'];
 		return $perm === null || ( $user && $user->isAllowed( $perm ) );
+	}
+
+	public function hasHiddenContent() {
+		return $this->moderationState === self::MODERATED_HIDDEN;
+	}
+
+	public function getHiddenContent( $format ) {
+		if ( $this->hasHiddenContent() ) {
+			return $this->getConvertedContent( $format );
+		}
+		return '';
 	}
 
 	public function getContent( $user = null, $format = 'html' ) {
@@ -227,11 +285,11 @@ abstract class AbstractRevision {
 	}
 
 	public function getUserText( $user = null ) {
-		if ( $this->isAllowed( $user ) ) {
-			return $this->getUserTextRaw();
-		} else {
+		if ( $this->isCensored() ) {
 			// Messages: flow-post-hidden, flow-post-deleted, flow-post-censored
 			return wfMessage( self::$perms[$this->moderationState]['usertext'] );
+		} else {
+			return $this->getUserTextRaw();
 		}
 	}
 
@@ -245,7 +303,7 @@ abstract class AbstractRevision {
 	 */
 	protected function setContent( $content ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
-			throw new \Exception( 'Cannot change content of restricted revision' );
+			throw new \Exception( 'TODO: Cannot change content of restricted revision' );
 		}
 
 		if ( $content !== $this->getContent( null, 'wikitext') ) {
@@ -265,6 +323,7 @@ abstract class AbstractRevision {
 			$this->content = $this->decompressedContent = $this->convertedContent[$wgFlowContentFormat];
 			$this->contentUrl = null;
 
+			// flags are strictly related to the content
 			// should this only remove a subset of flags?
 			$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
 			$this->flags[] = $wgFlowContentFormat;
@@ -285,6 +344,14 @@ abstract class AbstractRevision {
 
 	public function isModerated() {
 		return $this->moderationState !== self::MODERATED_NONE;
+	}
+
+	public function isHidden() {
+		return $this->moderationState === self::MODERATED_HIDDEN;
+	}
+
+	public function isCensored() {
+		return $this->moderationState === self::MODERATED_CENSORED;
 	}
 
 	public function getModerationTimestamp() {
@@ -311,5 +378,9 @@ abstract class AbstractRevision {
 			}
 		}
 		return true;
+	}
+
+	public function isFirstRevision() {
+		return $this->prevRevision === null;
 	}
 }

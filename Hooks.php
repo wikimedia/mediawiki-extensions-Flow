@@ -160,6 +160,28 @@ class FlowHooks {
 		default:
 			// Do nothing
 		}
+	}
+
+	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+
+		$rcType = (int) $rc->getAttribute( 'rc_type' );
+		if ( $rcType !== RC_FLOW ) {
+			return true;
+		}
+		// Replace above with below after core change introducing rc_soure is in
+		// $source = $rc->getAttribute( 'rc_source' );
+		// if ( $source !== RC_SRC_FLOW ) {
+		// 		return true;
+		// }
+
+		$line = Flow\RecentChanges\Formatter::format( $changesList, $rc );
+		if ( $line === false ) {
+			return false;
+		}
+
+		$classes[] = 'flow-something';
+		$s = $line;
+
 		return true;
 	}
 
