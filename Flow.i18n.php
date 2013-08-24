@@ -76,6 +76,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-comment-restored' => 'Restored comment',
 	'flow-comment-deleted' => 'Deleted comment',
 	'flow-comment-hidden' => 'Hidden comment',
+	'flow-comment-moderated' => 'Moderated comment',
 
 	'flow-paging-rev' => 'More recent topics',
 	'flow-paging-fwd' => 'Older topics',
@@ -84,7 +85,19 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your [$5 post] in $2 on [[$3|$4]].',
 	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} your [$5 post] in $2 on [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
-	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].'
+	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].',
+	'flow-days-ago' => '$1 {{PLURAL:$1|day|days}} ago',
+	'flow-months-ago' => '$1 {{PLURAL:$1|month|months}} ago',
+	'flow-years-ago' => '$1 {{PLURAL:$1|year|years}} ago',
+
+	'flow-notification-reply' => '$1 replied to your [$5 post] in $2 on [[$3|$4]].',
+	'flow-notification-edit' => '$1 edited your [$5 post] in $2 on [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 created a [$5 new topic] on [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 changed the title of [$2 $3] to "$4" on [[$5|$6]]',
+
+	'flow-link-post' => 'post',
+	'flow-link-topic' => 'topic',
+	'flow-link-history' => 'history',
 );
 
 /** Message documentation (Message documentation)
