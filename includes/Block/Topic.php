@@ -157,7 +157,6 @@ class TopicBlock extends AbstractBlock {
 
 		$this->newRevision = $post->moderate( $this->user, $moderationState );
 		if ( !$this->newRevision ) {
-			die( 'no allowed' );
 			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
 		}
 	}
@@ -189,7 +188,7 @@ class TopicBlock extends AbstractBlock {
 		}
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( $post ) {
-			$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
+			$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-rev-message-edit-post' );
 			$this->setNotification(
 					'flow-post-edited',
 					array(
