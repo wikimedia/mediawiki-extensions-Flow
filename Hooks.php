@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Container;
 use Flow\Model\UUID;
 
 class FlowHooks {
@@ -11,8 +12,7 @@ class FlowHooks {
 		global $wgEchoNotifications;
 
 		if ( isset( $wgEchoNotifications ) ) {
-			$container = Flow\Container::getContainer();
-			$container['controller.notification']->setup();
+			Container::get( 'controller.notification' )->setup();
 		}
 	}
 
@@ -72,6 +72,112 @@ class FlowHooks {
 	}
 
 	/**
+	 * Handler for EchoGetDefaultNotifiedUsers hook
+	 *  Returns a list of User objects in the second param
+	 *
+	 * @param $event EchoEvent being triggered
+	 * @param &$users Array of User objects.
+	 * @return true
+	 */
+	public static function getDefaultNotifiedUsers( EchoEvent $event, &$users ) {
+		$storage = Container::get( 'storage' );
+		$extra = $event->getExtra();
+		switch ( $event->getType() ) {
+		case 'flow-new-topic':
+			$title = $event->getTitle();
+			if ( $title->getNamespace() == NS_USER_TALK ) {
+				$users[] = User::newFromName( $title->getText() );
+			}
+			break;
+		case 'flow-topic-renamed':
+			$postId = $extra['topic-workflow'];
+		case 'flow-post-reply':
+		case 'flow-post-edited':
+		case 'flow-post-moderated':
+			if ( isset( $extra['reply-to'] ) ) {
+				$postId = $extra['reply-to'];
+			} elseif ( !isset( $postId ) || !$postId ) {
+				$postId = $extra['post-id'];
+			}
+
+			$post = $storage->find(
+				'PostRevision',
+				array(
+					'tree_rev_descendant_id' => UUID::create( $postId )
+				),
+				array(
+					'sort' => 'rev_id',
+					'order' => 'DESC',
+					'limit' => 1
+				)
+			);
+
+			$post = reset( $post );
+
+			if ( $post ) {
+				$user = User::newFromName( $post->getCreatorName() );
+
+				if ( $user && !$user->isAnon() ) {
+					$users[$user->getId()] = $user;
+				}
+			}
+			break;
+		default:
+			// Do nothing
+		}
+	}
+
+	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+
+		$rcType = (int) $rc->getAttribute( 'rc_type' );
+		if ( $rcType !== RC_FLOW ) {
+			return true;
+		}
+		// Replace above with below after core change introducing rc_soure is in
+		// $source = $rc->getAttribute( 'rc_source' );
+		// if ( $source !== RC_SRC_FLOW ) {
+		// 		return true;
+		// }
+
+		$line = Container::get( 'recentchanges.formatter' )->format( $changesList, $rc );
+		//$line = Flow\RecentChanges\Formatter::format( $changesList, $rc );
+		if ( $line === false ) {
+			return false;
+		}
+
+		$classes[] = 'flow-recentchanges-line';
+		$s = $line;
+
+		return true;
+	}
+
+	/**
+	 * Handler for EchoGetBundleRule hook, which defines the bundle rule for each notification
+	 * @param $event EchoEvent
+	 * @param $bundleString string Determines how the notification should be bundled
+	 */
+	public static function onEchoGetBundleRules( $event, &$bundleString ) {
+		switch ( $event->getType() ) {
+			case 'flow-post-reply':
+				$extra = $event->getExtra();
+
+				if ( isset( $extra['reply-to'] ) ) {
+					$postId = $extra['reply-to'];
+				} elseif ( isset( $extra['post-id'] ) ) {
+					$postId = $extra['post-id'];
+				} else {
+					$postId = null;
+				}
+
+				if ( $postId ) {
+					$bundleString = 'flow-post-reply-' . $postId->getHex();
+				}
+			break;
+		}
+		return true;
+	}
+
+	/**
 	 * Add token type "flow", to generate edit tokens for Flow via
 	 * api.php?action=tokens&type=flow
 	 *
@@ -100,7 +206,7 @@ class FlowHooks {
 	 * @return boolean True to continue processing as normal, False to abort.
 	 */
 	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
-		$container = Flow\Container::getContainer();
+		$container = Container::getContainer();
 		$occupationController = $container['occupation_controller'];
 
 		if ( $occupationController->isTalkpageOccupied( $title ) ) {

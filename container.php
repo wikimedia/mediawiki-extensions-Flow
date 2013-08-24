@@ -114,7 +114,7 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 } );
 // Arbitrary bit of revisioned wiki-text attached to a workflow
 $c['storage.summary'] = $c->share( function( $c ) {
-	global $wgFlowExternalStore;
+	global $wgFlowExternalStore, $wgContLang;
 
 	$cache = $c['memcache.buffered'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Summary' );
@@ -146,7 +146,11 @@ $c['storage.summary'] = $c->share( function( $c ) {
 		),
 	);
 
-	return new ObjectManager( $mapper, $storage, $indexes );
+	$handlers = array(
+		new Flow\Data\SummaryRecentChanges( $c['storage'], $wgContLang ),
+	);
+
+	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
 } );
 
 // List of topic workflows and their owning discussion workflow
@@ -179,7 +183,7 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 } );
 // Individual post within a topic workflow
 $c['storage.post'] = $c->share( function( $c ) {
-	global $wgFlowExternalStore;
+	global $wgFlowExternalStore, $wgContLang;
 	$cache = $c['memcache.buffered'];
 	$treeRepo = $c['repository.tree'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\PostRevision' );
@@ -231,7 +235,11 @@ $c['storage.post'] = $c->share( function( $c ) {
 		) )
 	);
 
-	return new ObjectManager( $mapper, $storage, $indexes );
+	$handlers = array(
+		new Flow\Data\PostRevisionRecentChanges( $c['storage'], $c['repository.tree'], $wgContLang ),
+	);
+
+	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
 } );
 // Storage implementation for user subscriptions, separate from storage.user_subs so it
 // can be used in storage.user_subs.user_index as well.
@@ -310,6 +318,14 @@ $c['occupation_controller'] = $c->share( function( $c ) {
 
 $c['controller.notification'] = $c->share( function( $c ) {
 	return new Flow\NotificationController;
+} );
+
+$c['recentchanges.formatter'] = $c->share( function( $c ) {
+	global $wgLang;
+	return new Flow\RecentChanges\Formatter(
+		$c['url_generator'],
+		$wgLang
+	);
 } );
 
 return $c;
