@@ -6,6 +6,10 @@ abstract class ParsoidUtils {
 	public static function convertWikitextToHtml5( $wikitext, $title ) {
 		global $wgFlowUseParsoid;
 
+		if ( !$wikitext ) {
+			return '';
+		}
+
 		if ( $wgFlowUseParsoid ) {
 			global $wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout;
 
@@ -19,6 +23,11 @@ abstract class ParsoidUtils {
 					'timeout' => $wgFlowParsoidTimeout
 				)
 			);
+
+			if ( !$parsoidOutput ) {
+				wfDebugLog( __CLASS__, __FUNCTION__ . ': Parsoid returned no output' );
+				return false;
+			}
 
 			// Strip out the Parsoid boilerplate
 			$dom = new \DOMDocument();

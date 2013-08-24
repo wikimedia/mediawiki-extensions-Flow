@@ -31,4 +31,21 @@ class FlowHooks {
 		//$files[] = "$dir/DiscussionParserTest.php";
 		return true;
 	}
+
+	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+
+		$rcType = $rc->getAttribute( 'rc_type' );
+		if ( $rcType == RC_EXTERNAL ) {
+
+			$line = Flow\RecentChanges\ExternalChangesLines::changesLine( $changesList, $rc );
+			if ( $line === false ) {
+				return false;
+			}
+
+			$classes[] = 'flow-something';
+			$s = $line;
+		}
+
+		return true;
+	}
 }

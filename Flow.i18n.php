@@ -67,6 +67,9 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	'flow-comment-restored' => 'Restored comment',
 	'flow-comment-deleted' => 'Deleted comment',
+	'flow-link-post' => 'post',
+	'flow-link-topic' => 'topic',
+	'flow-link-history' => 'history',
 );
 
 /** Message documentation (Message documentation)
