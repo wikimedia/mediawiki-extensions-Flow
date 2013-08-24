@@ -348,8 +348,9 @@ class ObjectLocator implements ObjectStorage {
 			}
 		}
 		if ( $current === null ) {
+			$count = count( $this->indexes );
 			throw new \Exception(
-				'No index available to answer query for ' . implode( ', ', $keys ) .
+				"No index (out of $count) available to answer query for " . implode( ", ", $keys ) .
 				' with options ' . json_encode( $options )
 			);
 		}

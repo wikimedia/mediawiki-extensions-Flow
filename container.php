@@ -145,7 +145,11 @@ $c['storage.summary'] = $c->share( function( $c ) {
 		),
 	);
 
-	return new ObjectManager( $mapper, $storage, $indexes );
+	$handlers = array(
+		new Flow\Data\SummaryRecentChanges( $c['storage'] ),
+	);
+
+	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
 } );
 
 // List of topic workflows and their owning discussion workflow
@@ -230,7 +234,11 @@ $c['storage.post'] = $c->share( function( $c ) {
 		) )
 	);
 
-	return new ObjectManager( $mapper, $storage, $indexes );
+	$handlers = array(
+		new Flow\Data\PostRevisionRecentChanges( $c['storage'], $c['repository.tree'] ),
+	);
+
+	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
 } );
 // Storage implementation for user subscriptions, separate from storage.user_subs so it
 // can be used in storage.user_subs.user_index as well.
