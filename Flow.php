@@ -93,6 +93,8 @@ $wgAutoloadClasses['Flow\Data\MultiDimArray'] = $dir . 'includes/Data/MultiDimAr
 $wgAutoloadClasses['Flow\Data\ResultDuplicator'] = $dir . 'includes/Data/MultiDimArray.php';
 $wgAutoloadClasses['Flow\Data\Pager'] = $dir . 'includes/Data/Pager.php';
 $wgAutoloadClasses['Flow\Data\PagerPage'] = $dir . 'includes/Data/PagerPage.php';
+$wgAutoloadClasses['Flow\Data\PostRevisionRecentChanges'] = $dir . 'includes/Data/RecentChanges.php';
+$wgAutoloadClasses['Flow\RecentChanges\ExternalChangesLines'] = $dir . 'includes/RecentChanges/ExternalChangesLines.php';
 
 // database interaction for singular models
 $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
@@ -124,6 +126,8 @@ $wgAPIModules['flow'] = 'ApiFlow';
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
 //$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
+$wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
+
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
