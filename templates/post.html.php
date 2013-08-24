@@ -38,7 +38,6 @@ if ( !$post->isModerated() ) {
 		Html::closeElement( 'form' );
 }
 
-$class = $post->isModerated() ? 'flow-post flow-post-moderated' : 'flow-post';
 $actions = array();
 
 
@@ -48,7 +47,7 @@ echo Html::openElement( 'div', array(
 	'data-post-id' => $post->getRevisionId()->getHex(),
 ) );
 	echo Html::openElement( 'div', array(
-		'class' => $class,
+		'class' => $post->isModerated() ? 'flow-post flow-post-moderated' : 'flow-post',
 		'data-post-id' => $post->getPostId()->getHex(),
 		'id' => 'flow-post-' . $post->getPostId()->getHex(),
 	) ); ?>

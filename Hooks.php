@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Container;
 use Flow\Model\UUID;
 
 class FlowHooks {
@@ -11,8 +12,7 @@ class FlowHooks {
 		global $wgEchoNotifications;
 
 		if ( isset( $wgEchoNotifications ) ) {
-			$container = Flow\Container::getContainer();
-			$container['controller.notification']->setup();
+			Container::get( 'controller.notification' )->setup();
 		}
 	}
 
@@ -71,6 +71,29 @@ class FlowHooks {
 		return true;
 	}
 
+	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+		$source = $rc->getAttribute( 'rc_source' );
+		if ( $source === null ) {
+			$rcType = (int) $rc->getAttribute( 'rc_type' );
+			if ( $rcType !== RC_FLOW ) {
+				return true;
+			}
+		} elseif ( $source !== RC_SRC_FLOW ) {
+			return true;
+		}
+
+		$line = Container::get( 'recentchanges.formatter' )->format( $changesList, $rc );
+
+		if ( $line === false ) {
+			return false;
+		}
+
+		$classes[] = 'flow-recentchanges-line';
+		$s = $line;
+
+		return true;
+	}
+
 	/**
 	 * Add token type "flow", to generate edit tokens for Flow via
 	 * api.php?action=tokens&type=flow
@@ -100,7 +123,7 @@ class FlowHooks {
 	 * @return boolean True to continue processing as normal, False to abort.
 	 */
 	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
-		$container = Flow\Container::getContainer();
+		$container = Container::getContainer();
 		$occupationController = $container['occupation_controller'];
 
 		if ( $occupationController->isTalkpageOccupied( $title ) ) {
