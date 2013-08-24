@@ -86,10 +86,13 @@ class UrlGenerator {
 				throw new \MWException( "Unknown flow object: $workflowId" );
 			}
 		}
-		
+
 		if ( $workflow->isNew() ) {
 			$query['definition'] = $workflow->getDefinitionId()->getHex();
 		} else {
+			// TODO: workflow parameter is only necessary if the definition is non-unique.  Likely need to pass
+			// ManagerGroup into this class rather than the workflow ObjectManager so we can fetch definition as
+			// needed.
 			$query['workflow'] = $workflow->getId()->getHex();
 		}
 

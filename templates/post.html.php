@@ -42,7 +42,6 @@ $createReplyForm = function() use( $self, $block, $post, $editToken, $user ) {
 		'</form>';
 };
 
-$class = $post->isModerated() ? 'flow-post-moderated' : 'flow-post';
 $actions = array();
 $replyForm = '';
 
@@ -56,7 +55,7 @@ echo Html::openElement( 'div', array(
 	'data-post-id' => $post->getRevisionId()->getHex(),
 ) );
 	echo Html::openElement( 'div', array(
-		'class' => $class,
+		'class' => $post->isModerated() ? 'flow-post-moderated' : 'flow-post',
 		'data-post-id' => $post->getPostId()->getHex(),
 		'id' => 'flow-post-' . $post->getPostId()->getHex(),
 	) ); ?>
@@ -92,6 +91,11 @@ echo Html::openElement( 'div', array(
 		<div class="flow-post-content">
 			<?php echo $post->getContent( $user, 'html' ); ?>
 		</div>
+		<?php if ( $post->hasHiddenContent() ): /* getHiddenContent returns blank if not hidden, could always render it? */ ?>
+			<div class="flow-post-content-hidden" style="display: none">
+				<?php echo $post->getHiddenContent( 'html' ); ?>
+			</div>
+		<?php endif ?>
 		<div class="flow-post-controls">
 			<div class="flow-post-actions">
 				<a><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>

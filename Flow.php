@@ -40,6 +40,11 @@ $wgExtensionCredits['specialpage'][] = array(
 	'descriptionmsg' => 'flow-desc',
 );
 
+// Constants
+define( 'RC_FLOW', 142 ); // soon to be obsolete, random number chosen
+define( 'RC_SRC_FLOW', 'flow' ); // replaces RC_FLOW
+
+// Autoload
 $dir = __DIR__ . '/';
 require $dir . 'Resources.php';
 
@@ -104,6 +109,9 @@ $wgAutoloadClasses['Flow\Data\MultiDimArray'] = $dir . 'includes/Data/MultiDimAr
 $wgAutoloadClasses['Flow\Data\ResultDuplicator'] = $dir . 'includes/Data/MultiDimArray.php';
 $wgAutoloadClasses['Flow\Data\Pager'] = $dir . 'includes/Data/Pager.php';
 $wgAutoloadClasses['Flow\Data\PagerPage'] = $dir . 'includes/Data/PagerPage.php';
+$wgAutoloadClasses['Flow\Data\PostRevisionRecentChanges'] = $dir . 'includes/Data/RecentChanges.php';
+$wgAutoloadClasses['Flow\Data\SummaryRecentChanges'] = $dir . 'includes/Data/RecentChanges.php';
+$wgAutoloadClasses['Flow\RecentChanges\Formatter'] = $dir . 'includes/RecentChanges/Formatter.php';
 
 // database interaction for singular models
 $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
@@ -140,6 +148,7 @@ $wgHooks['SetupAfterCache'][] = 'FlowHooks::onSetupAfterCache';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 $wgHooks['ApiTokensGetTokenTypes'][] = 'FlowHooks::onApiTokensGetTokenTypes';
 $wgHooks['MediaWikiPerformAction'][] = 'FlowHooks::onPerformAction';
+$wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
@@ -205,4 +214,4 @@ $wgFlowMaxMentionCount = 100;
 $wgFlowOccupyPages = array();
 
 // Namespaces to occupy is an array of NS_* constants, e.g. array( NS_USER_TALK ).
-$wgFlowOccupyNamespaces = array();
+$wgFlowOccupyNamespaces = array( NS_USER_TALK );
