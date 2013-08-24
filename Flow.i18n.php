@@ -83,6 +83,10 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-days-ago' => '$1 {{PLURAL:$1|day|days}} ago',
 	'flow-monthss-ago' => '$1 {{PLURAL:$1|months|monthss}} ago',
 	'flow-years-ago' => '$1 {{PLURAL:$1|year|years}} ago',
+
+	'flow-link-post' => 'post',
+	'flow-link-topic' => 'topic',
+	'flow-link-history' => 'history',
 );
 
 /** Message documentation (Message documentation)
