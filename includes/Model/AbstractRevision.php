@@ -9,29 +9,28 @@ abstract class AbstractRevision {
 	const MODERATED_NONE = '';
 	const MODERATED_HIDDEN = 'hide';
 	const MODERATED_DELETED = 'delete';
-
 	const MODERATED_CENSORED = 'censor';
 
 	static private $perms = array(
 		self::MODERATED_NONE => array(
 			'perm' => null,
-			'usertext' => null,
-			'content' => null
+			'content' => null,
+			'comment' => 'flow-comment-restored',
 		),
 		self::MODERATED_HIDDEN => array(
 			'perm' => 'flow-hide',
-			'usertext' => 'flow-post-hidden',
 			'content' => 'flow-post-hidden-by',
+			'comment' => 'flow-comment-hidden',
 		),
 		self::MODERATED_DELETED => array(
 			'perm' => 'flow-delete',
-			'usertext' => 'flow-post-deleted',
 			'content' => 'flow-post-deleted-by',
+			'comment' => 'flow-comment-deleted',
 		),
 		self::MODERATED_CENSORED => array(
 			'perm' => 'flow-censor',
-			'usertext' => 'flow-post-censored',
 			'content' => 'flow-post-censored-by',
+			'comment' => 'flow-comment-censored',
 		),
 	);
 
@@ -117,6 +116,7 @@ abstract class AbstractRevision {
 		$obj->userId = $user->getId();
 		$obj->userText = $user->getName();
 		$obj->prevRevision = $this->revId;
+		$obj->comment = '';
 		return $obj;
 	}
 
@@ -127,8 +127,15 @@ abstract class AbstractRevision {
 		return $obj;
 	}
 
-	public function moderate( User $user, $state ) {
-		$mostRestricted = max( $state, $this->moderationState );
+	public function moderate( User $user, $state, $comment = null ) {
+		if ( !isset( self::$perms[$state] ) ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ': Provided moderation state does not exist : ' . $state );
+			return null;
+		}
+		$keys = array_keys( self::$perms );
+		$oldPos = array_search( $state, $keys );
+		$newPos = array_search( $this->moderationState, $keys );
+		$mostRestricted = $keys[max( $oldPos, $newPos )];
 		if ( !$this->isAllowed( $user, $mostRestricted ) ) {
 			return null;
 		}
@@ -150,6 +157,11 @@ abstract class AbstractRevision {
 			$obj->moderatedByUserId = $user->getId();
 			$obj->moderatedByUserText = $user->getName();
 			$obj->moderationTimestamp = wfTimestampNow();
+		}
+		if ( $comment === null && isset( self::$perms[$state]['comment'] ) ) {
+			$obj->comment = self::$perms[$state]['comment'];
+		} else {
+			$obj->comment = $comment;
 		}
 		return $obj;
 	}
@@ -197,10 +209,10 @@ abstract class AbstractRevision {
 	}
 
 	public function getUserText( $user = null ) {
-		if ( $this->isAllowed( $user ) ) {
-			return $this->getUserTextRaw();
+		if ( $this->isCensored() ) {
+			return wfMessage( 'flow-comment-censored' );
 		} else {
-			return wfMessage( self::$perms[$this->moderationState]['usertext'] );
+			return $this->getUserTextRaw();
 		}
 	}
 
@@ -234,6 +246,10 @@ abstract class AbstractRevision {
 
 	public function isModerated() {
 		return $this->moderationState !== self::MODERATED_NONE;
+	}
+
+	public function isCensored() {
+		return $this->moderationState === self::MODERATED_CENSORED;
 	}
 
 	public function getModerationTimestamp() {

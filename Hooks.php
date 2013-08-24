@@ -140,6 +140,24 @@ class FlowHooks {
 		default:
 			// Do nothing
 		}
+	}
+
+	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+
+		$rcType = $rc->getAttribute( 'rc_type' );
+		$extType = $rc->getAttribute( 'rc_external_type' );
+		if ( $rcType !== RC_EXTERNAL || $extType !== 'flow' ) {
+			return true;
+		}
+
+		$line = Flow\RecentChanges\ExternalChangesLines::changesLine( $changesList, $rc );
+		if ( $line === false ) {
+			return false;
+		}
+
+		$classes[] = 'flow-something';
+		$s = $line;
+
 		return true;
 	}
 }
