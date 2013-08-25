@@ -518,6 +518,13 @@ $messages['mr'] = array(
 	'flow-error-external-multi' => 'आपले उत्तर जतन करण्यात त्रूटी आढळल्या.आपले उत्तर जतन झाले नाही.<br />$1',
 );
 
+/** Polish (polski)
+ * @author Chrumps
+ */
+$messages['pl'] = array(
+	'flow-cancel' => 'Anuluj',
+);
+
 /** Portuguese (português)
  * @author Helder.wiki
  */
@@ -652,4 +659,5 @@ $messages['yi'] = array(
 	'flow-newtopic-content-placeholder' => 'מעלדונג טעקסט. זייט פריינדלעך!',
 	'flow-newtopic-save' => 'צושטעלן טעמע',
 	'flow-reply-submit' => 'שיקן ענטפער',
+	'flow-post-action-edit' => 'רעדאַקטירן',
 );
