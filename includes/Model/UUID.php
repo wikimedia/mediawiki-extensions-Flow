@@ -57,13 +57,25 @@ class UUID {
 		return wfBaseConvert( $this->getHex(), 16, 10 );
 	}
 
-	public function getTimestamp() {
+	public function getTimestampObj() {
 		// First 6 bytes === 48 bits
-		$timePortion = substr( $this->getHex(), 0, 12 );
+		$hex = $this->getHex();
+		$timePortion = substr( $hex, 0, 12 );
 		$bits_48 = wfBaseConvert( $timePortion, 16, 2, 48 );
 		$bits_46 = substr( $bits_48, 0, 46 );
 		$msTimestamp = wfBaseConvert( $bits_46, 2, 10 );
-		return wfTimestamp( TS_MW, intval( $msTimestamp / 1000 ) );
+
+		try {
+			return new \MWTimestamp( intval( $msTimestamp / 1000 ) );
+		} catch ( \TimestampException $e ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ": bogus time value: UUID=$hex; VALUE=$msTimestamp" );
+			return false;
+		}
+	}
+
+	public function getTimestamp() {
+		$ts = $this->getTimestampObj();
+		return $ts ? $ts->getTimestamp( TS_MW ) : false;
 	}
 
 	public static function convertUUIDs( $array ) {

@@ -144,6 +144,13 @@ mw.flow.discussion = {
 					.fadeOut();
 			} );
 
+		// Set up timestamp on-hover
+		$container.find( '.flow-topic-datestamp, .flow-datestamp' )
+			.hover(function() {
+				$(this).children( '.flow-agotime' ).toggle()
+				$(this).children( '.flow-utctime' ).toggle()
+			} );
+
 		// Set up reply form
 		$container.find( '.flow-reply-form textarea' )
 			.addClass( 'flow-reply-box-closed' )

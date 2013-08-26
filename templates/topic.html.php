@@ -50,8 +50,17 @@ echo Html::openElement( 'div', array(
 		</div>
 	</div>
 	<span class="flow-topic-datestamp">
-		<span class="flow-agotime" style="display: inline">&lt;timestamp&gt;</span>
-		<span class="flow-utctime" style="display: none">&lt;timestamp&gt;</span>
+		<span class="flow-agotime" style="display: inline">
+			<?php echo wfMessage( 'flow-last-modified' )->rawParams(
+				$this->timeAgo( $topic->getLastModified() )
+			); ?>
+		</span>
+		<span class="flow-utctime" style="display: none">
+			<?php
+			$ts = new MWTimestamp( $topic->getLastModified() );
+			echo $ts->getTimestamp( TS_RFC2822 );
+			?>
+		</span>
 	</span>
 </div>
 

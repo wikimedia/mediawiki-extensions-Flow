@@ -130,20 +130,20 @@ if ( $post->isFlagged( 'deleted' ) ) {
 ?>
 <div class="flow-post-title">
 	<div class="flow-post-authorline">
-<?php
-echo $user;
-?>
+		<?php echo $user; ?>
 		<span class="flow-datestamp">
-			<span class="flow-agotime" style="display: inline">&lt;timestamp&gt;</span>
-			<span class="flow-utctime" style="display: none">&lt;timestamp&gt;</span>
+			<span class="flow-agotime" style="display: inline">
+				<?php echo $self->timeAgo( $post->getPostId() ); ?>
+			</span>
+			<span class="flow-utctime" style="display: none">
+				<?php echo $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ); ?>
+			</span>
 		</span>
 	</div>
 </div>
 
 <div class="flow-post-content">
-<?php
-echo $content
-?>
+<?php echo $content ?>
 </div>
 <div class="flow-post-controls">
 	<div class="flow-post-actions">

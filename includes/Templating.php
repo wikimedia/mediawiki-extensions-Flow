@@ -5,8 +5,12 @@ namespace Flow;
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
 use Flow\Model\PostRevision;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use OutputPage;
+// These dont really belong here
+use RequestContext;
+use MWTimestamp;
 
 class Templating {
 	protected $namespaces;
@@ -90,5 +94,33 @@ class Templating {
 			'root' => $root,
 		), $return );
 	}
+
+	public function timeAgo( $timestamp ) {
+		if ( $timestamp instanceof UUID ) {
+			$timestamp = $timestamp->getTimestamp();
+		}
+		return self::getApproxHumanTimestamp( new MWTimestamp( $timestamp ), new MWTimestamp );
+	}
+
+	static public function getApproxHumanTimestamp( MWTimestamp $ts, MWTimestamp $relativeTo ) {
+		$diff = $ts->diff( $relativeTo );
+		$lang = RequestContext::getMain()->getLanguage();
+		if ( $diff->y ) {
+			return wfMessage( 'flow-years-ago' )->inLanguage( $lang )->numParams( $diff->y )->text();
+		} elseif ( $diff->m ) {
+			return wfMessage( 'flow-months-ago' )->inLanguage( $lang )->numParams( $diff->m )->text();
+		} elseif ( $diff->d ) {
+			return wfMessage( 'flow-days-ago' )->inLanguage( $lang )->numParams( $diff->d )->text();
+		} elseif ( $diff-h ) {
+			return wfMessage( 'hours-ago' )->inLanguage( $lang )->numParams( $diff->h )->text();
+		} elseif ( $diff->i ) {
+			return wfMessage( 'minutes-ago' )->inLanguage( $lang )->numParams( $diff->i )->text();
+		} elseif ( $diff->s >= 30 ) {
+			return wfMessage( 'seconds-ago' )->inLanguage( $lang )->numParams( $diff->s )->text();
+		} else {
+			return wfMessage( 'just-now' )->text();
+		}
+	}
+
 }
 
