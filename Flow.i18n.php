@@ -101,8 +101,8 @@ Preceded by the Submit button which has the label either {{msg-mw|Flow-reply-sub
 
 See also:
 * {{msg-mw|Wikimedia-copyrightwarning}}',
-	'flow-post-deleted' => 'Used as username/content if the post was deleted.',
 	'flow-post-hidden' => 'Used as username/content if the post was hidden.',
+	'flow-post-deleted' => 'Used as username/content if the post was deleted.',
 	'flow-post-actions' => 'Used as link text.
 {{Identical|Action}}',
 	'flow-topic-actions' => 'Used as link text.
@@ -121,11 +121,11 @@ See also:
 	'flow-post-action-view' => 'Used as text for the link which is used to view.
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.',
-	'flow-post-action-hide-post' => 'Used as label for the Submit button.',
 	'flow-post-action-delete-post' => 'Used as label for the Submit button.
 
 See also:
 * {{msg-mw|Flow-post-action-restore-post}}',
+	'flow-post-action-hide-post' => 'Used as label for the Submit button.',
 	'flow-post-action-edit-post' => 'Used as text for the link which is used to edit the post.',
 	'flow-post-action-edit' => 'Unused at this time.
 
@@ -182,11 +182,11 @@ The variable name "replyTo" is invisible to users, so "replyTo" can be translate
 
 See also:
 * {{msg-mw|Flow-comment-deleted}}',
-	'flow-comment-hidden' => 'Used as comment when the comment has been hidden.',
 	'flow-comment-deleted' => 'Used as comment when the comment has been deleted.
 
 See also:
 * {{msg-mw|Flow-comment-restored}}',
+	'flow-comment-hidden' => 'Used as comment when the comment has been hidden.',
 	'flow-paging-rev' => 'Label for paging link that shows more recently modified topics',
 	'flow-paging-fwd' => 'Label for paging link that shows less recently modified topics',
 );
@@ -542,6 +542,22 @@ $messages['mr'] = array(
 	'flow-error-external-multi' => 'आपले उत्तर जतन करण्यात त्रूटी आढळल्या.आपले उत्तर जतन झाले नाही.<br />$1',
 );
 
+/** Occitan (occitan)
+ * @author Cedric31
+ */
+$messages['oc'] = array(
+	'flow-post-deleted' => '[messatge suprimit]',
+	'flow-post-actions' => 'accions',
+	'flow-topic-actions' => 'accions',
+	'flow-cancel' => 'Anullar',
+	'flow-edit-post-submit' => 'Sometre las modificacions',
+	'flow-post-action-view' => 'Ligam permanent',
+	'flow-post-action-edit-post' => 'Modificar la publicacion',
+	'flow-post-action-edit' => 'Modificar',
+	'flow-topic-action-edit-title' => 'Modificar lo títol',
+	'flow-rev-message-new-post' => 'Subjècte creat',
+);
+
 /** Polish (polski)
  * @author Chrumps
  */
@@ -630,7 +646,11 @@ $messages['uk'] = array(
 	'flow-disclaimer' => 'Натиснувши кнопку "Додати Повідомлення", ви погоджуєтеся з Умовами Використання
 і ви безповоротно погоджуєтесь здійснювати свій внесок відповідно до ліцензій CC-BY-SA 3.0 та GFDL.
 Ви згідні, що гіперпосилання або URL-адреса є достатнім внеском під ліцензією Creative Commons license.',
+	'flow-post-hidden' => '[прихована публікація]',
+	'flow-post-hidden-by' => 'Приховано $1 $2',
 	'flow-post-deleted' => '[пост видалено]',
+	'flow-post-deleted-by' => 'Вилучено $1 $2',
+	'flow-post-censored' => '[цензурна публікація]',
 	'flow-post-actions' => 'дії',
 	'flow-topic-actions' => 'дії',
 	'flow-cancel' => 'Скасувати',
@@ -645,6 +665,7 @@ $messages['uk'] = array(
 	'flow-post-action-view' => 'Постійне посилання',
 	'flow-post-action-post-history' => 'Опублікувати історію',
 	'flow-post-action-delete-post' => 'Видалити публікацію',
+	'flow-post-action-hide-post' => 'Приховати публікацію',
 	'flow-post-action-edit-post' => 'Редагувати публікацію',
 	'flow-post-action-edit' => 'Редагувати',
 	'flow-post-action-restore-post' => 'Відновити публікацію',
@@ -660,6 +681,7 @@ $messages['uk'] = array(
 	'flow-error-missing-replyto' => 'Параметр reply-to не був наданий. Цей параметр є обов\'язковим для дії "відповідь".',
 	'flow-error-invalid-replyto' => 'Параметр replyTo неприпустимий. Не вдалося знайти вказану публікацію.',
 	'flow-error-delete-failure' => 'Не вдалося видалити цей елемент.',
+	'flow-error-hide-failure' => 'Приховання цього елементу не вдалося.',
 	'flow-error-missing-postId' => 'Параметр postId не був наданий. Цей параметр вимагає, щоб маніпулювати публікацією.',
 	'flow-error-invalid-postId' => 'Параметр postId неприпустимий. Не вдалося знайти вказану публікацію.',
 	'flow-error-restore-failure' => 'Не вдалося виконати відновлення цього елемента.',
@@ -670,6 +692,13 @@ $messages['uk'] = array(
 	'flow-topic-history' => 'Історія теми',
 	'flow-comment-restored' => 'Відновлений коментар',
 	'flow-comment-deleted' => 'Видалений коментар',
+	'flow-comment-hidden' => 'Прихований коментар',
+	'flow-paging-rev' => 'Новіші теми',
+	'flow-paging-fwd' => 'Старіші теми',
+	'flow-last-modified' => 'Остання зміна про $1',
+	'flow-days-ago' => '$1 {{PLURAL:$1|день|дні|днів}} тому',
+	'flow-monthss-ago' => '$1 {{PLURAL:$1|місяць|місяці|місяців}} тому',
+	'flow-years-ago' => '$1 {{PLURAL:$1|рік|роки|років}} тому',
 );
 
 /** Yiddish (ייִדיש)
