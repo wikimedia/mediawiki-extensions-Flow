@@ -4,7 +4,8 @@ if ( $block->hasErrors( 'content' ) ) {
 	echo '<p>' . $block->getError( 'content' )->escaped() . '</p>';
 }
 if ( $summary ) {
-	echo htmlspecialchars( $summary->getContent() );
+	// contains HTML5+RDFa content
+	echo $summary->getContent();
 }
 
 $editLink = $this->generateUrl( $workflow, 'edit-summary' );

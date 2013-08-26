@@ -20,7 +20,8 @@ if ( $summary ) {
 if ( $block->hasErrors( 'content' ) ) {
 	echo '<p>' . $block->getError( 'content' )->escaped() . '</p>';
 }
-echo Html::textarea( $block->getName() . '[content]', $summary ? $summary->getContent() : '' );
+$content = $summary ? \Flow\ParsoidUtils::convertHTML5ToWikitext( $summary->getContent() ) : '';
+echo Html::textarea( $block->getName() . '[content]', $content );
 echo Html::element( 'input', array(
 	'type' => 'submit',
 	'class' => 'mw-ui-button mw-ui-constructive',
