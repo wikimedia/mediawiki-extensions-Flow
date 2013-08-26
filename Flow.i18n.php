@@ -81,7 +81,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-paging-fwd' => 'Older topics',
 	'flow-last-modified' => 'Last modified about $1',
 	'flow-days-ago' => '$1 {{PLURAL:$1|day|days}} ago',
-	'flow-monthss-ago' => '$1 {{PLURAL:$1|months|monthss}} ago',
+	'flow-months-ago' => '$1 {{PLURAL:$1|month|months}} ago',
 	'flow-years-ago' => '$1 {{PLURAL:$1|year|years}} ago',
 );
 
@@ -697,7 +697,7 @@ $messages['uk'] = array(
 	'flow-paging-fwd' => 'Старіші теми',
 	'flow-last-modified' => 'Остання зміна про $1',
 	'flow-days-ago' => '$1 {{PLURAL:$1|день|дні|днів}} тому',
-	'flow-monthss-ago' => '$1 {{PLURAL:$1|місяць|місяці|місяців}} тому',
+	'flow-months-ago' => '$1 {{PLURAL:$1|місяць|місяці|місяців}} тому',
 	'flow-years-ago' => '$1 {{PLURAL:$1|рік|роки|років}} тому',
 );
 
