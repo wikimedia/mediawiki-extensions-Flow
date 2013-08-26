@@ -79,10 +79,10 @@ interface ObjectMapper {
 // An Index is just a store that receives updates via handler.
 // backing store's can be passed via constructor
 interface Index extends LifecycleHandler {
-	// Indexes accept no query options
+	/// Indexes accept no query options
 	function find( array $keys );
 
-	// Indexes accept no query options
+	/// Indexes accept no query options
 	function findMulti( array $queries );
 
 	// Maximum number of items in a single index value
@@ -193,24 +193,25 @@ class ObjectLocator implements ObjectStorage {
 		if ( isset( $options['sort'] ) && !is_array( $options['sort'] ) ) {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
 		}
-		if ( isset( $options['limit'] ) ) {
-			$limit = $options['limit'];
-			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
-		} else {
-			$limit = false;
-		}
 
-		$res = $this->getIndexFor( $keys, $options )->findMulti( $queries );
+		$index = $this->getIndexFor( $keys, $options );
+		$res = $index->findMulti( $queries );
+
 		if ( $res === null ) {
 			return null;
 		}
+
 		$retval = array();
 		foreach ( $res as $i => $rows ) {
-			if ( $limit ) {
-				$rows = array_slice( $rows, $offset, $limit, true );
-			}
-			foreach ( $rows as $j => $row ) {
-				$retval[$i][$j] = $this->load( $row );
+			list( $startPos, $limit ) = $this->getOffsetLimit( $rows, $index, $options );
+			$keys = array_keys( $rows );
+			for(
+				$k = $startPos;
+				$k < $startPos + $limit && $k < count( $keys );
+				++$k
+			) {
+				$j = $keys[$k];
+				$retval[$i][$j] = $this->load( $rows[$j] );
 			}
 		}
 		return $retval;
@@ -251,6 +252,67 @@ class ObjectLocator implements ObjectStorage {
 		return $retval;
 	}
 
+	protected function getOffsetLimit( $rows, $index, $options ) {
+		$limit = isset( $options['limit'] ) ? $options['limit'] : $index->getLimit();
+
+		if ( ! isset( $options['offset-key'] ) ) {
+			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
+			return array( $offset, $limit );
+		}
+
+		$offsetKey = $options['offset-key'];
+		if ( $offsetKey instanceof UUID ) {
+			$offsetKey = $offsetKey->getBinary();
+		}
+
+		$dir = 'fwd';
+		if (
+			isset( $options['offset-dir'] ) &&
+			$options['offset-dir'] === 'rev'
+		) {
+			$dir = 'rev';
+		}
+
+		$offset = $this->getOffsetFromKey( $rows, $offsetKey, $index );
+
+		if ( $dir === 'fwd' ) {
+			$startPos = $offset + 1;
+		} elseif ( $dir === 'rev' ) {
+			$startPos = $offset - $limit;
+
+			if ( $startPos < 0 ) {
+				if (
+					isset( $options['offset-elastic'] ) &&
+					$options['offset-elastic'] === false
+				) {
+					// If non-elastic, then reduce the number of items shown commeasurately
+					$limit += $startPos;
+				}
+				$startPos = 0;
+			}
+		}
+
+		return array( $startPos, $limit );
+	}
+
+	protected function getOffsetFromKey( $rows, $offsetKey, $index ) {
+		$offset = false;
+		for( $rowIndex = 0; $rowIndex < count( $rows ); ++$rowIndex ) {
+			$row = $rows[$rowIndex];
+			$comparisonValue = $index->compareRowToOffset( $row, $offsetKey );
+			if ( $comparisonValue <= 0 ) {
+				$offset = $rowIndex;
+				break;
+			}
+		}
+
+		if ( $offset === false ) {
+			throw new \MWException( "Unable to find specified offset in query results" );
+		}
+
+		return $offset;
+	}
+
 	public function clear() {
 		// nop, we dont store anything
 	}
@@ -270,7 +332,7 @@ class ObjectLocator implements ObjectStorage {
 		}
 	}
 
-	protected function getIndexFor( array $keys, array $options = array() ) {
+	public function getIndexFor( array $keys, array $options = array() ) {
 		sort( $keys );
 		$current = null;
 		foreach ( $this->indexes as $index ) {
@@ -431,6 +493,21 @@ class ObjectManager extends ObjectLocator {
 		}
 
 		return $split;
+	}
+
+	public function serializeOffset( $object, $sortFields ) {
+		$offsetFields = array();
+		$row = $this->mapper->toStorageRow( $object );
+		foreach( $sortFields as $field ) {
+			$value = $row[$field];
+
+			if ( strlen($value) == 16 && preg_match( '/_id$/', $field ) ) {
+				$value = UUID::create( $value )->getHex();
+			}
+			$offsetFields[] = $value;
+		}
+
+		return implode( '|', $offsetFields );
 	}
 
 	public function multiPut( array $objects ) {
@@ -669,6 +746,34 @@ abstract class FeatureIndex implements Index {
 			}
 		}
 		return true;
+	}
+
+	public function getSort() {
+		return isset( $this->options['sort'] ) ? $this->options['sort'] : false;
+	}
+
+	public function compareRowToOffset( $row, $offset ) {
+		$sortFields = $this->getSort();
+		$splitOffset = explode( '|', $offset );
+		$fieldIndex = 0;
+
+		if ( $sortFields === false ) {
+			throw new MWException( "This Index implementation does not support key offsets" );
+		}
+
+		foreach( $sortFields as $field ) {
+			$valueInRow = $row[$field];
+			$valueInOffset = $splitOffset[$fieldIndex];
+
+			if ( $valueInRow > $valueInOffset ) {
+				return 1;
+			} elseif ( $valueInRow < $valueInOffset ) {
+				return -1;
+			}
+			++$fieldIndex;
+		}
+
+		return 0;
 	}
 
 	public function onAfterInsert( $object, array $new ) {
