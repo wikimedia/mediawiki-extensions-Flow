@@ -20,6 +20,7 @@ class Workflow {
 	// is the active state.
 	protected $lockState;
 	protected $definitionId;
+	protected $lastModified;
 
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
@@ -37,6 +38,7 @@ class Workflow {
 		$obj->userText = $row['workflow_user_text'];
 		$obj->lockState = $row['workflow_lock_state'];
 		$obj->definitionId = UUID::create( $row['workflow_definition_id'] );
+		$obj->lastModified = $row['workflow_last_update_timestamp'];
 		return $obj;
 	}
 
@@ -51,6 +53,7 @@ class Workflow {
 			'workflow_user_text' => $obj->userText,
 			'workflow_lock_state' => $obj->lockState,
 			'workflow_definition_id' => $obj->definitionId->getBinary(),
+			'workflow_last_update_timestamp' => $obj->lastModified,
 		);
 	}
 
@@ -77,6 +80,7 @@ class Workflow {
 		$obj->userText = $user->getName();
 		$obj->lockState = 0;
 		$obj->definitionId = $definition->getId();
+		$obj->updateLastModified();
 
 		return $obj;
 	}
@@ -99,6 +103,11 @@ class Workflow {
 	public function getDefinitionId() { return $this->definitionId; }
 	public function getUserId() { return $this->userId; }
 	public function getUserText() { return $this->userText; }
+	public function getLastModified() { return $this->lastModified; }
+
+	public function updateLastModified() {
+		$this->lastModified = wfTimestampNow();
+	}
 
 	public function getNamespaceName() {
 		global $wgContLang;

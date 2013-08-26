@@ -187,6 +187,8 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function commit() {
+		$this->workflow->updateLastModified();
+
 		switch( $this->action ) {
 		case 'reply':
 		case 'delete-post':
@@ -197,6 +199,7 @@ class TopicBlock extends AbstractBlock {
 				throw new \MWException( 'Attempt to save null revision' );
 			}
 			$this->storage->put( $this->newRevision );
+			$this->storage->put( $this->workflow );
 			$self = $this;
 			$newRevision = $this->newRevision;
 			$rootPost = $this->loadRootPost();
@@ -220,12 +223,11 @@ class TopicBlock extends AbstractBlock {
 			);
 
 			return $output;
-			break;
+
 		case 'delete-topic':
 			$this->storage->put( $this->workflow );
 
 			return 'success';
-			break;
 
 		default:
 			throw new \MWException( "Unknown commit action: {$this->action}" );

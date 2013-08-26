@@ -70,6 +70,10 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	'flow-paging-rev' => 'More recent topics',
 	'flow-paging-fwd' => 'Older topics',
+	'flow-last-modified' => 'Last modified about $1',
+	'flow-days-ago' => '$1 {{PLURAL:$1|day|days}} ago',
+	'flow-monthss-ago' => '$1 {{PLURAL:$1|months|monthss}} ago',
+	'flow-years-ago' => '$1 {{PLURAL:$1|year|years}} ago',
 );
 
 /** Message documentation (Message documentation)
