@@ -43,6 +43,8 @@ $wgExtensionCredits['specialpage'][] = array(
 $dir = __DIR__ . '/';
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
 
+$wgAutoloadClasses['FlowInsertDefaultDefinitions'] = $dir . 'maintenance/FlowInsertDefaultDefinitions.php';
+
 // Classes fulfilling the mediawiki extension architecture
 // note: SRP would say a 'FlowHooks' class should not exist
 $wgAutoloadClasses['FlowHooks'] = $dir . 'Hooks.php';

@@ -136,10 +136,3 @@ CREATE TABLE /*_*/flow_tree_node (
 
 CREATE UNIQUE INDEX /*i*/flow_tree_node_pk ON /*_*/flow_tree_node (tree_ancestor_id, tree_descendant_id);
 CREATE UNIQUE INDEX /*i*/flow_tree_constraint ON /*_*/flow_tree_node (tree_descendant_id, tree_depth);
-
--- These dont belong here
-INSERT INTO flow_definition
-	( definition_id, definition_wiki, definition_name, definition_type, definition_options )
-	VALUES
-	( unhex('4ffebfa36a3155f2416080027a082220'), 'wiki', 'topic', 'topic', NULL ), -- UUID 6645733872243863389540699858102420002
-	( unhex('4ffebfa368b155f2416080027a082220'), 'wiki', 'discussion', 'discussion', unhex("613a323a7b733a31393a22746f7069635f646566696e6974696f6e5f6964223b4f3a31353a22466c6f775c4d6f64656c5c55554944223a313a7b733a31343a22002a0062696e61727956616c7565223b733a31363a224ffebfa36a3155f2416080027a082220223b7d733a363a22756e69717565223b623a313b7d") ); -- 6645733872272877609211450958295368226
