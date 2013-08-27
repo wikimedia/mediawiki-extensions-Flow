@@ -17,6 +17,9 @@ class FlowHooks {
 		$baseSQLFile = "$dir/flow.sql";
 		$updater->addExtensionTable( 'flow_revision', $baseSQLFile );
 
+		require_once __DIR__.'/maintenance/FlowInsertDefaultDefinitions.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowInsertDefaultDefinitions' );
+
 		return true;
 	}
 

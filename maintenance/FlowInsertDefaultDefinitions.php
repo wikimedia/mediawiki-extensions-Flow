@@ -16,9 +16,9 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
  *
  * @ingroup Maintenance
  */
-class FlowInsertDefaultDefinitions extends Maintenance {
+class FlowInsertDefaultDefinitions extends LoggedUpdateMaintenance {
 
-	public function execute() {
+	protected function doDBUpdates() {
 		$dbw = MWEchoDbFactory::getDB( DB_MASTER );
 
 		$res = $dbw->select(
@@ -31,9 +31,10 @@ class FlowInsertDefaultDefinitions extends Maintenance {
 			$res = $res->fetchRow();
 		}
 		if ( !isset( $res['definition_id'] ) ) {
-			$this->insertDefinitions();
+			$this->insertDefinitions( $dbw );
 		}
 
+		return true;
 	}
 
 	protected function insertDefinitions( DatabaseBase $dbw ) {
@@ -66,6 +67,15 @@ class FlowInsertDefaultDefinitions extends Maintenance {
 			),
 			__METHOD__
 		);
+	}
+
+	/**
+	 * Get the update key name to go in the update log table
+	 *
+	 * @return string
+	 */
+	protected function getUpdateKey() {
+		return 'FlowInsertDefaultDefinitions';
 	}
 }
 
