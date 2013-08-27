@@ -34,6 +34,6 @@ class UrlGenerator {
 			$query['workflow'] = $workflow->getId()->getHex();
 		}
 
-		return self::buildUrl( $workflow->getTitle(), $action, $query );
+		return self::buildUrl( $workflow->getArticleTitle(), $action, $query );
 	}
 }
