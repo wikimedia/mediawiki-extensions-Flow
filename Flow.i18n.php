@@ -91,6 +91,8 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 );
 
 /** Message documentation (Message documentation)
+ * @author Beta16
+ * @author Raymond
  * @author Shirayuki
  */
 $messages['qqq'] = array(
@@ -106,8 +108,24 @@ Preceded by the Submit button which has the label either {{msg-mw|Flow-reply-sub
 
 See also:
 * {{msg-mw|Wikimedia-copyrightwarning}}',
-	'flow-post-hidden' => 'Used as username/content if the post was hidden.',
-	'flow-post-deleted' => 'Used as username/content if the post was deleted.',
+	'flow-post-hidden' => 'Used as username/content if the post was hidden.
+
+Translate this as "post which was hidden".',
+	'flow-post-hidden-by' => 'Parameters:
+* $1 - ...
+* $2 - ...',
+	'flow-post-deleted' => 'Used as username/content if the post was deleted.
+
+Translate this as "post which was deleted".',
+	'flow-post-deleted-by' => 'Parameters:
+* $1 - ...
+* $2 - ...',
+	'flow-post-censored' => 'Used as username/content if the post was censored.
+
+Translate this as "post which was censored".',
+	'flow-post-censored-by' => 'Parameters:
+* $1 - ...
+* $2 - ...',
 	'flow-post-actions' => 'Used as link text.
 {{Identical|Action}}',
 	'flow-topic-actions' => 'Used as link text.
@@ -192,21 +210,58 @@ See also:
 See also:
 * {{msg-mw|Flow-comment-restored}}',
 	'flow-comment-hidden' => 'Used as comment when the comment has been hidden.',
-	'flow-paging-rev' => 'Label for paging link that shows more recently modified topics',
-	'flow-paging-fwd' => 'Label for paging link that shows less recently modified topics',
+	'flow-paging-rev' => 'Label for paging link that shows more recently modified topics.
 
+See also:
+* {{msg-mw|Flow-paging-fwd}}',
+	'flow-paging-fwd' => 'Label for paging link that shows less recently modified topics.
+
+See also:
+* {{msg-mw|Flow-paging-rev}}',
+	'flow-last-modified' => 'Followed by the timestamp.
+
+Parameters:
+* $1 - any one of the following messages:
+** {{msg-mw|Flow-years-ago}}
+** {{msg-mw|Flow-months-ago}}
+** {{msg-mw|Flow-days-ago}}
+** {{msg-mw|Hours-ago}}
+** {{msg-mw|Minutes-ago}}
+** {{msg-mw|Seconds-ago}}
+** {{msg-mw|Just-now}}',
+	'flow-days-ago' => 'Can be used as <code>$1</code> in {{msg-mw|Flow-last-modified}}.
+
+Followed by the timestamp.
+
+Parameters:
+* $1 - number of days
+{{Related|Flow-ago}}',
+	'flow-months-ago' => 'Can be used as <code>$1</code> in {{msg-mw|Flow-last-modified}}.
+
+Followed by the timestamp.
+
+Parameters:
+* $1 - number of months
+{{Related|Flow-ago}}',
+	'flow-years-ago' => 'Can be used as <code>$1</code> in {{msg-mw|Flow-last-modified}}.
+
+Followed by the timestamp.
+
+Parameters:
+* $1 - number of years
+{{Related|Flow-ago}}',
 	'flow-notification-reply' => 'Notification text for when a user receives a reply. Parameters:
 * $1: Username of the person who replied.
 * $2: Title of the topic.
 * $3: Title for the Flow board.
 * $4: Title for the page that the Flow board is attached to.
 * $5: Permanent URL for the post.',
-	'flow-notification-edit' => 'Notification text for when a user\'s post is edited. Parameters:
+	'flow-notification-edit' => "Notification text for when a user's post is edited. Parameters:
 * $1: Username of the person who edited the post.
 * $2: Title of the topic.
 * $3: Title for the Flow board.
 * $4: Title for the page that the Flow board is attached to.
-* $5: Permanent URL for the post.',
+* $5: Permanent URL for the post.",
 	'flow-notification-newtopic' => 'Notification text for when a new topic is created. Parameters:
 * $1: Username of the person who created the topic.
 * $2: Title for the Flow board.
@@ -219,8 +274,7 @@ See also:
 * $3: Old topic subject.
 * $4: New topic subject.
 * $5: Title for the Flow board.
-* $6: Title for the page that the Flow board is attached to.
-',
+* $6: Title for the page that the Flow board is attached to.',
 );
 
 /** Asturian (asturianu)
@@ -249,7 +303,12 @@ $messages['de'] = array(
 	'flow-disclaimer' => 'Durch Klicken auf „Nachricht hinzufügen“ stimmst du den Nutzungsbedingungen
 und der unwiderruflichen Veröffentlichung deines Beitrags unter der CC-BY-SA-3.0-Lizenz sowie der GFDL zu.
 Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennung der Creative-Commons-Lizenz steht.',
+	'flow-post-hidden' => '[Beitrag versteckt]',
+	'flow-post-hidden-by' => 'Versteckt von $1 $2',
 	'flow-post-deleted' => '[Beitrag gelöscht]',
+	'flow-post-deleted-by' => 'Gelöscht von $1 $2',
+	'flow-post-censored' => '[Beitrag zensiert]',
+	'flow-post-censored-by' => 'Zensiert von $1 $2',
 	'flow-post-actions' => 'Aktionen',
 	'flow-topic-actions' => 'Aktionen',
 	'flow-cancel' => 'Abbrechen',
@@ -263,7 +322,9 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-edit-post-submit' => 'Änderungen übertragen',
 	'flow-post-action-view' => 'Permanentlink',
 	'flow-post-action-post-history' => 'Beitragsgeschichte',
+	'flow-post-action-censor-post' => 'Beitrag zensieren',
 	'flow-post-action-delete-post' => 'Beitrag löschen',
+	'flow-post-action-hide-post' => 'Beitrag verstecken',
 	'flow-post-action-edit-post' => 'Beitrag bearbeiten',
 	'flow-post-action-edit' => 'Bearbeiten',
 	'flow-post-action-restore-post' => 'Beitrag wiederherstellen',
@@ -279,6 +340,7 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-error-missing-replyto' => 'Es wurde kein Parameter „replyTo“ angegeben. Dieser Parameter ist für die „Antworten“-Aktion erforderlich.',
 	'flow-error-invalid-replyto' => 'Der Parameter „replyTo“ war ungültig. Der angegebene Beitrag konnte nicht gefunden werden.',
 	'flow-error-delete-failure' => 'Das Löschen dieses Objektes ist fehlgeschlagen.',
+	'flow-error-hide-failure' => 'Das Verstecken dieses Objektes ist fehlgeschlagen.',
 	'flow-error-missing-postId' => 'Es wurde kein Parameter „postId“ angegeben. Dieser Parameter ist zum Ändern eines Beitrags erforderlich.',
 	'flow-error-invalid-postId' => 'Der Parameter „postId“ war ungültig. Der angegebene Beitrag konnte nicht gefunden werden.',
 	'flow-error-restore-failure' => 'Das Wiederherstellen dieses Objektes ist fehlgeschlagen.',
@@ -289,6 +351,13 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-topic-history' => 'Themengeschichte',
 	'flow-comment-restored' => 'Kommentar wiederhergestellt',
 	'flow-comment-deleted' => 'Kommentar gelöscht',
+	'flow-comment-hidden' => 'Versteckter Kommentar',
+	'flow-paging-rev' => 'Mehr aktuelle Themen',
+	'flow-paging-fwd' => 'Ältere Themen',
+	'flow-last-modified' => 'Zuletzt geändert $1',
+	'flow-days-ago' => 'vor {{PLURAL:$1|einem Tag|$1 Tagen}}',
+	'flow-months-ago' => 'vor {{PLURAL:$1|einem Monat|$1 Monaten}}',
+	'flow-years-ago' => 'vor {{PLURAL:$1|einem Jahr|$1 Jahren}}',
 );
 
 /** French (français)
@@ -300,7 +369,12 @@ $messages['fr'] = array(
 	'flow-specialpage' => '$1 &ndash; Flow',
 	'flow-edit-summary-link' => 'Résumé',
 	'flow-disclaimer' => "En cliquant sur le bouton « Ajouter un message », vous acceptez nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr conditions d'utilisation] et acceptez de placer irrévocablement votre contribution sous [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licence Creative Commons paternité-partage des conditions initiales à l'identique 3.0] et [http://www.gnu.org/copyleft/fdl.html GFDL]. Vous acceptez d’être crédité par les ré-utilisateurs au minimum via un hyperlien ou une URL sous la licence Creative Commons.",
+	'flow-post-hidden' => '[note masquée]',
+	'flow-post-hidden-by' => 'Masqué par $1 $2',
 	'flow-post-deleted' => '[message supprimé]',
+	'flow-post-deleted-by' => 'Supprimé par $1 $2',
+	'flow-post-censored' => '[note censurée]',
+	'flow-post-censored-by' => 'Censuré par $1 $2',
 	'flow-post-actions' => 'actions',
 	'flow-topic-actions' => 'actions',
 	'flow-cancel' => 'Annuler',
@@ -314,7 +388,9 @@ $messages['fr'] = array(
 	'flow-edit-post-submit' => 'Soumettre les modifications',
 	'flow-post-action-view' => 'Lien permanent',
 	'flow-post-action-post-history' => 'Historique des publications',
+	'flow-post-action-censor-post' => 'Censurer la note',
 	'flow-post-action-delete-post' => 'Supprimer le message',
+	'flow-post-action-hide-post' => 'Masquer la note',
 	'flow-post-action-edit-post' => 'Modifier la publication',
 	'flow-post-action-edit' => 'Modifier',
 	'flow-post-action-restore-post' => 'Restaurer le message',
@@ -330,6 +406,7 @@ $messages['fr'] = array(
 	'flow-error-missing-replyto' => "Aucun paramètre replyTo n'a été fourni. Ce paramètre est requis pour l'action « répondre ».",
 	'flow-error-invalid-replyto' => "paramètre replyTo n'était pas valide. Le message spécifié est introuvable.",
 	'flow-error-delete-failure' => 'Échec de la suppression de cette entrée.',
+	'flow-error-hide-failure' => 'Le masquage de cet élément a échoué.',
 	'flow-error-missing-postId' => 'Aucun paramètre postId a été fourni. Ce paramètre est requis pour manipuler un message.',
 	'flow-error-invalid-postId' => "Le paramètre postId n'était pas valide. Le message spécifié est introuvable.",
 	'flow-error-restore-failure' => 'Échec de la restauration de cette entrée.',
@@ -340,6 +417,28 @@ $messages['fr'] = array(
 	'flow-topic-history' => 'Historique des sujets',
 	'flow-comment-restored' => 'Commentaire rétabli',
 	'flow-comment-deleted' => 'Commentaire supprimé',
+	'flow-comment-hidden' => 'Commentaire masqué',
+	'flow-paging-rev' => 'Sujets les plus récents',
+	'flow-paging-fwd' => 'Sujets plus anciens',
+	'flow-last-modified' => 'Dernière modification $1',
+	'flow-days-ago' => 'il y a $1 {{PLURAL:$1|jour|jours}}',
+	'flow-months-ago' => 'il y a $1 {{PLURAL:$1|mois}}',
+	'flow-years-ago' => 'il y a $1 {{PLURAL:$1|an|ans}}',
+);
+
+/** Galician (galego)
+ * @author Toliño
+ */
+$messages['gl'] = array(
+	'flow-post-actions' => 'accións',
+	'flow-topic-actions' => 'accións',
+	'flow-cancel' => 'Cancelar',
+	'flow-post-action-view' => 'Ligazón permanente',
+	'flow-post-action-edit' => 'Editar',
+	'flow-last-modified' => 'Última modificación $1',
+	'flow-days-ago' => 'hai {{PLURAL:$1|un día|$1 días}}',
+	'flow-months-ago' => 'hai {{PLURAL:$1|un mes|$1 meses}}',
+	'flow-years-ago' => 'hai {{PLURAL:$1|un ano|$1 anos}}',
 );
 
 /** Hebrew (עברית)
@@ -403,7 +502,12 @@ $messages['it'] = array(
 	'flow-edit-summary-link' => 'Modifica oggetto',
 	'flow-disclaimer' => 'Facendo click sul pulsante "Aggiungi messaggio", accetti le condizioni d\'uso, e accetti irrevocabilmente di rilasciare il tuo contributo sotto le licenze Creative Commons Attribuzione-Condividi allo stesso modo 3.0 e GFDL.
 Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'attribuzione in base alla licenza Creative Commons.',
+	'flow-post-hidden' => '[messaggio nascosto]',
+	'flow-post-hidden-by' => 'Nascosto da $1 $2',
 	'flow-post-deleted' => '[messaggio cancellato]',
+	'flow-post-deleted-by' => 'Cancellato da $1 $2',
+	'flow-post-censored' => '[messaggio censurato]',
+	'flow-post-censored-by' => 'Censurato da $1 $2',
 	'flow-post-actions' => 'azioni',
 	'flow-topic-actions' => 'azioni',
 	'flow-cancel' => 'Annulla',
@@ -417,7 +521,9 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-edit-post-submit' => 'Invia modifiche',
 	'flow-post-action-view' => 'Link permanente',
 	'flow-post-action-post-history' => 'Cronologia del messaggio',
+	'flow-post-action-censor-post' => 'Censura messaggio',
 	'flow-post-action-delete-post' => 'Cancella messaggio',
+	'flow-post-action-hide-post' => 'Nascondi messaggio',
 	'flow-post-action-edit-post' => 'Modifica messaggio',
 	'flow-post-action-edit' => 'Modifica',
 	'flow-post-action-restore-post' => 'Ripristina messaggio',
@@ -430,6 +536,13 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-topic-history' => 'Cronologia della discussione',
 	'flow-comment-restored' => 'Commento ripristinato',
 	'flow-comment-deleted' => 'Commento cancellato',
+	'flow-comment-hidden' => 'Commento nascosto',
+	'flow-paging-rev' => 'Discussioni più recenti',
+	'flow-paging-fwd' => 'Vecchie discussioni',
+	'flow-last-modified' => 'Ultima modifica $1',
+	'flow-days-ago' => '$1 {{PLURAL:$1|giorno|giorni}} fa',
+	'flow-months-ago' => '$1 {{PLURAL:$1|mese|mesi}} fa',
+	'flow-years-ago' => '$1 {{PLURAL:$1|anno|anni}} fa',
 );
 
 /** Japanese (日本語)
@@ -442,6 +555,7 @@ $messages['ja'] = array(
 	'flow-disclaimer' => '「メッセージを追加」ボタンをクリックすると、利用規約に同意するとともに、
 自分の投稿内容を CC-BY-SA 3.0 ライセンスおよび GFDL のもとで公開することに同意したことになります。この同意は取り消せません。
 また、あなたはハイパーリンクまたは URL がクリエイティブ・コモンズライセンスにおける帰属表示として十分であると認めたことになります。',
+	'flow-post-hidden' => '[非表示の投稿]',
 	'flow-post-deleted' => '[削除された投稿]',
 	'flow-post-actions' => '操作',
 	'flow-topic-actions' => '操作',
@@ -457,6 +571,7 @@ $messages['ja'] = array(
 	'flow-post-action-view' => '固定リンク',
 	'flow-post-action-post-history' => '投稿履歴',
 	'flow-post-action-delete-post' => '投稿を削除',
+	'flow-post-action-hide-post' => '投稿を非表示にする',
 	'flow-post-action-edit-post' => '投稿を編集',
 	'flow-post-action-edit' => '編集',
 	'flow-post-action-restore-post' => '投稿を復元',
@@ -472,6 +587,7 @@ $messages['ja'] = array(
 	'flow-error-missing-replyto' => '返信先を指定していません。「返信」するには、このパラメーターが必要です。',
 	'flow-error-invalid-replyto' => '返信先のパラメーターが無効です。指定した投稿が見つかりませんでした。',
 	'flow-error-delete-failure' => 'この項目を削除できませんでした。',
+	'flow-error-hide-failure' => 'この項目を非表示にできませんでした。',
 	'flow-error-missing-postId' => '投稿 ID のパラメーターを指定していません。投稿を操作するには、このパラメーターが必要です。',
 	'flow-error-invalid-postId' => '投稿 ID が無効です。指定した投稿が見つかりませんでした。',
 	'flow-error-restore-failure' => 'この項目を復元できませんでした。',
@@ -482,6 +598,13 @@ $messages['ja'] = array(
 	'flow-topic-history' => '話題の履歴',
 	'flow-comment-restored' => 'コメントを復元',
 	'flow-comment-deleted' => 'コメントを削除',
+	'flow-comment-hidden' => 'コメントを非表示',
+	'flow-paging-rev' => '最近の話題',
+	'flow-paging-fwd' => '古い話題',
+	'flow-last-modified' => '最終更新 $1',
+	'flow-days-ago' => '$1{{PLURAL:$1|日}}前',
+	'flow-months-ago' => '$1{{PLURAL:$1|か月}}前',
+	'flow-years-ago' => '$1{{PLURAL:$1|年}}前',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -683,6 +806,7 @@ $messages['uk'] = array(
 	'flow-post-deleted' => '[пост видалено]',
 	'flow-post-deleted-by' => 'Вилучено $1 $2',
 	'flow-post-censored' => '[цензурна публікація]',
+	'flow-post-censored-by' => 'Процензуровано $1 $2',
 	'flow-post-actions' => 'дії',
 	'flow-topic-actions' => 'дії',
 	'flow-cancel' => 'Скасувати',
@@ -696,6 +820,7 @@ $messages['uk'] = array(
 	'flow-edit-post-submit' => 'Подати зміни',
 	'flow-post-action-view' => 'Постійне посилання',
 	'flow-post-action-post-history' => 'Опублікувати історію',
+	'flow-post-action-censor-post' => 'Цензурувати публікацію',
 	'flow-post-action-delete-post' => 'Видалити публікацію',
 	'flow-post-action-hide-post' => 'Приховати публікацію',
 	'flow-post-action-edit-post' => 'Редагувати публікацію',
