@@ -103,20 +103,6 @@ class ApiFlow extends ApiBase {
 		return $output;
 	}
 
-	protected function doRerender( $blocks ) {
-		$templating = $this->container['templating'];
-
-		$output = array();
-
-		$output['count'] = count( $blocks );
-
-		foreach( $blocks as $block ) {
-			$output[$block->getName()] = $block->render( $templating, array() );
-		}
-
-		return $output;
-	}
-
 	public function getDescription() {
 		 return 'Allows actions to be taken on Flow Workflows';
 	}

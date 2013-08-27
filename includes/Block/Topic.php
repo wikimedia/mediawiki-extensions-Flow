@@ -282,9 +282,6 @@ class TopicBlock extends AbstractBlock {
 				'history' => $this->loadTopicHistory(),
 			) );
 
-		case 'edit-post':
-			return $this->renderEditPost( $templating, $options, $return );
-
 		case 'edit-title':
 			return $templating->render( "flow:edit-title.html.php", array(
 				'block' => $this,
