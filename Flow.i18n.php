@@ -83,6 +83,11 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-days-ago' => '$1 {{PLURAL:$1|day|days}} ago',
 	'flow-months-ago' => '$1 {{PLURAL:$1|month|months}} ago',
 	'flow-years-ago' => '$1 {{PLURAL:$1|year|years}} ago',
+
+	'flow-notification-reply' => '$1 replied to your [$5 post] in $2 on [[$3|$4]].',
+	'flow-notification-edit' => '$1 edited your [$5 post] in $2 on [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 created a [$5 new topic] on [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 changed the title of [$2 $3] to "$4" on [[$5|$6]]'
 );
 
 /** Message documentation (Message documentation)
@@ -189,6 +194,33 @@ See also:
 	'flow-comment-hidden' => 'Used as comment when the comment has been hidden.',
 	'flow-paging-rev' => 'Label for paging link that shows more recently modified topics',
 	'flow-paging-fwd' => 'Label for paging link that shows less recently modified topics',
+
+	'flow-notification-reply' => 'Notification text for when a user receives a reply. Parameters:
+* $1: Username of the person who replied.
+* $2: Title of the topic.
+* $3: Title for the Flow board.
+* $4: Title for the page that the Flow board is attached to.
+* $5: Permanent URL for the post.',
+	'flow-notification-edit' => 'Notification text for when a user\'s post is edited. Parameters:
+* $1: Username of the person who edited the post.
+* $2: Title of the topic.
+* $3: Title for the Flow board.
+* $4: Title for the page that the Flow board is attached to.
+* $5: Permanent URL for the post.',
+	'flow-notification-newtopic' => 'Notification text for when a new topic is created. Parameters:
+* $1: Username of the person who created the topic.
+* $2: Title for the Flow board.
+* $3: Title for the page that the Flow board is attached to.
+* $4: Title of the topic.
+* $5: Permanent URL for the topic.',
+	'flow-notification-rename' => 'Notification text for when the subject of a topic is changed. Parameters:
+* $1: Username of the person who edited the title.
+* $2: Permalink to the topic.
+* $3: Old topic subject.
+* $4: New topic subject.
+* $5: Title for the Flow board.
+* $6: Title for the page that the Flow board is attached to.
+',
 );
 
 /** Asturian (asturianu)

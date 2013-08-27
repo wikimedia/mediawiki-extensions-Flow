@@ -4,7 +4,7 @@ use Flow\Model\UUID;
 
 class ApiFlow extends ApiBase {
 	public function execute() {
-		$this->container = include __DIR__ . "/../../container.php";
+		$this->container = Flow\Container::getContainer();
 		$params = $this->extractRequestParams();
 		$output = array();
 
