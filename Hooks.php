@@ -132,7 +132,7 @@ class FlowHooks {
 			if ( $post ) {
 				$user = User::newFromName( $post->getCreatorName() );
 
-				if ( ! $user->isAnon() ) {
+				if ( $user && !$user->isAnon() ) {
 					$users[$user->getId()] = $user;
 				}
 			}
