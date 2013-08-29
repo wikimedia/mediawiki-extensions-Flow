@@ -19,7 +19,9 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 class FlowInsertDefaultDefinitions extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
-		$dbw = MWEchoDbFactory::getDB( DB_MASTER );
+		global $wgFlowDefaultWikiDb;
+		$dbf = new Flow\DbFactory( $wgFlowDefaultWikiDb );
+		$dbw = $dbf->getDB( DB_MASTER );
 
 		$res = $dbw->select(
 			/* table */'flow_definition',
