@@ -139,7 +139,6 @@ $wgResourceModules += array(
 		// 'styles' => 'base/ext.flow.base.css',
 		'scripts' => 'base/ext.flow.base.js',
 		'dependencies' => array(
-			'ext.visualEditor.standalone',
 			'mediawiki.api',
 			'jquery.json',
 		),
