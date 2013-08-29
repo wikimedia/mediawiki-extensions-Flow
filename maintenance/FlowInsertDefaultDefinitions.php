@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Container;
 use Flow\Model\UUID;
 
 /**
@@ -19,7 +20,8 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 class FlowInsertDefaultDefinitions extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
-		$dbw = MWEchoDbFactory::getDB( DB_MASTER );
+		$container = Container::getContainer();
+		$dbw = $container[ 'db.factory']->getDB( DB_MASTER );
 
 		$res = $dbw->select(
 			/* table */'flow_definition',
