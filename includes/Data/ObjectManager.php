@@ -699,7 +699,9 @@ abstract class FeatureIndex implements Index {
 	protected $indexed;
 	protected $indexedOrdered;
 
-	abstract public function getLimit();
+	// This exists in the Index interface and as such cant be abstract
+	// untill php 5.3.9, but some of our test machines are on 5.3.3
+	//abstract public function getLimit();
 	abstract public function queryOptions();
 	abstract public function limitIndexSize( array $values );
 	abstract protected function addToIndex( array $indexed, array $row );
