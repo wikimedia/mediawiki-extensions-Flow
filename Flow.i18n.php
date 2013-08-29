@@ -251,30 +251,34 @@ Parameters:
 * $1 - number of years
 {{Related|Flow-ago}}',
 	'flow-notification-reply' => 'Notification text for when a user receives a reply. Parameters:
-* $1: Username of the person who replied.
-* $2: Title of the topic.
-* $3: Title for the Flow board.
-* $4: Title for the page that the Flow board is attached to.
-* $5: Permanent URL for the post.',
+* $1 - Username of the person who replied
+* $2 - Title of the topic
+* $3 - Title for the Flow board
+* $4 - Title for the page that the Flow board is attached to
+* $5 - Permanent URL for the post
+{{Related|Flow-notification}}',
 	'flow-notification-edit' => "Notification text for when a user's post is edited. Parameters:
-* $1: Username of the person who edited the post.
-* $2: Title of the topic.
-* $3: Title for the Flow board.
-* $4: Title for the page that the Flow board is attached to.
-* $5: Permanent URL for the post.",
+* $1 - Username of the person who edited the post
+* $2 - Title of the topic
+* $3 - Title for the Flow board
+* $4 - Title for the page that the Flow board is attached to
+* $5 - Permanent URL for the post
+{{Related|Flow-notification}}",
 	'flow-notification-newtopic' => 'Notification text for when a new topic is created. Parameters:
-* $1: Username of the person who created the topic.
-* $2: Title for the Flow board.
-* $3: Title for the page that the Flow board is attached to.
-* $4: Title of the topic.
-* $5: Permanent URL for the topic.',
+* $1 - Username of the person who created the topic
+* $2 - Title for the Flow board
+* $3 - Title for the page that the Flow board is attached to
+* $4 - Title of the topic
+* $5 - Permanent URL for the topic
+{{Related|Flow-notification}}',
 	'flow-notification-rename' => 'Notification text for when the subject of a topic is changed. Parameters:
-* $1: Username of the person who edited the title.
-* $2: Permalink to the topic.
-* $3: Old topic subject.
-* $4: New topic subject.
-* $5: Title for the Flow board.
-* $6: Title for the page that the Flow board is attached to.',
+* $1 - Username of the person who edited the title
+* $2 - Permalink to the topic
+* $3 - Old topic subject
+* $4 - New topic subject
+* $5 - Title for the Flow board
+* $6 - Title for the page that the Flow board is attached to
+{{Related|Flow-notification}}',
 );
 
 /** Asturian (asturianu)
@@ -358,6 +362,10 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-days-ago' => 'vor {{PLURAL:$1|einem Tag|$1 Tagen}}',
 	'flow-months-ago' => 'vor {{PLURAL:$1|einem Monat|$1 Monaten}}',
 	'flow-years-ago' => 'vor {{PLURAL:$1|einem Jahr|$1 Jahren}}',
+	'flow-notification-reply' => '$1 antwortete auf deinen [$5 Beitrag] in „$2“ auf [[$3|$4]].',
+	'flow-notification-edit' => '$1 bearbeitete deinen [$5 Beitrag] in „$2“ auf [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 erstellte ein [$5 neues Thema] auf [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 änderte den Titel von [$2 $3] nach „$4“ auf [[$5|$6]]',
 );
 
 /** French (français)
@@ -424,25 +432,86 @@ $messages['fr'] = array(
 	'flow-days-ago' => 'il y a $1 {{PLURAL:$1|jour|jours}}',
 	'flow-months-ago' => 'il y a $1 {{PLURAL:$1|mois}}',
 	'flow-years-ago' => 'il y a $1 {{PLURAL:$1|an|ans}}',
+	'flow-notification-reply' => '$1 a répondu à votre [$5 note] sur $2 en [[$3|$4]].',
+	'flow-notification-edit' => '$1 a modifié votre [$5 note] sur $2 en [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 a créé un [$5 nouveau sujet] en [[$2|$3]] : $4.',
+	'flow-notification-rename' => '$1 a modifié le titre de [$2 $3] en « $4 » sur [[$5|$6]]',
 );
 
 /** Galician (galego)
  * @author Toliño
  */
 $messages['gl'] = array(
+	'flow-desc' => 'Sistema de xestión do fluxo de traballo',
+	'flow-specialpage' => '$1 &ndash; Fluxo',
+	'flow-edit-summary-link' => 'Resumo de edición',
+	'flow-disclaimer' => 'Ao premer no botón "Engadir a mensaxe" acepta os termos de uso
+e acepta liberar irrevogablemente a súa contribución baixo a licenza CC-BY-SA 3.0 e a GFDL.
+Acepta que unha hiperligazón ou un enderezo URL é recoñecemento abondo baixo a licenza Creative Commons.',
+	'flow-post-hidden' => '[mensaxe agochada]',
+	'flow-post-hidden-by' => 'Agochada por $1 $2',
+	'flow-post-deleted' => '[mensaxe borrada]',
+	'flow-post-deleted-by' => 'Borrada por $1 $2',
+	'flow-post-censored' => '[mensaxe censurada]',
+	'flow-post-censored-by' => 'Censurada por $1 $2',
 	'flow-post-actions' => 'accións',
 	'flow-topic-actions' => 'accións',
 	'flow-cancel' => 'Cancelar',
+	'flow-newtopic-title-placeholder' => 'Asunto da mensaxe',
+	'flow-newtopic-content-placeholder' => 'Texto da mensaxe. Sexa amable!',
+	'flow-newtopic-header' => 'Engadir un novo tema',
+	'flow-newtopic-save' => 'Nova sección',
+	'flow-newtopic-start-placeholder' => 'Prema aquí para iniciar un novo debate. Sexa amable!',
+	'flow-reply-placeholder' => 'Prema para responder a $1. Sexa amable!',
+	'flow-reply-submit' => 'Publicar a resposta',
+	'flow-edit-post-submit' => 'Enviar os cambios',
 	'flow-post-action-view' => 'Ligazón permanente',
+	'flow-post-action-post-history' => 'Historial da mensaxe',
+	'flow-post-action-censor-post' => 'Censurar a mensaxe',
+	'flow-post-action-delete-post' => 'Borrar a mensaxe',
+	'flow-post-action-hide-post' => 'Agochar a mensaxe',
+	'flow-post-action-edit-post' => 'Editar a mensaxe',
 	'flow-post-action-edit' => 'Editar',
+	'flow-post-action-restore-post' => 'Restaurar a mensaxe',
+	'flow-topic-action-edit-title' => 'Editar o título',
+	'flow-topic-action-history' => 'Historial do tema',
+	'flow-error-http' => 'Produciuse un erro ao contactar co servidor. Non se gardou a súa mensaxe.',
+	'flow-error-other' => 'Produciuse un erro inesperado. Non se gardou a súa mensaxe.',
+	'flow-error-external' => 'Produciuse un erro ao gardar a súa mensaxe. Non se gardou a súa mensaxe.<br /><small>A mensaxe de erro recibida foi: $1</small>',
+	'flow-error-external-multi' => 'Producíronse erros ao gardar a súa mensaxe. Non se gardou a súa mensaxe.<br />$1',
+	'flow-error-missing-content' => 'A mensaxe non ten contido. O contido é obrigatorio para gardar unha nova mensaxe.',
+	'flow-error-missing-title' => 'O tema non ten título. O título é obrigatorio para gardar un novo tema.',
+	'flow-error-parsoid-failure' => 'Non é posible analizar o contido debido a un fallo do Parsoid.',
+	'flow-error-missing-replyto' => 'Non se achegou ningún parámetro de resposta. Este parámetro é obrigatorio para a acción "responder".',
+	'flow-error-invalid-replyto' => 'O parámetro de resposta non é válido. Non se puido atopar a mensaxe especificada.',
+	'flow-error-delete-failure' => 'Houbo un erro ao borrar este elemento.',
+	'flow-error-hide-failure' => 'Houbo un erro ao agochar este elemento.',
+	'flow-error-missing-postId' => 'Non se achegou ningún parámetro de identificación. Este parámetro é obrigatorio para a manipular unha mensaxe.',
+	'flow-error-invalid-postId' => 'O parámetro de identificación non é válido. Non se puido atopar a mensaxe especificada.',
+	'flow-error-restore-failure' => 'Houbo un erro ao restaurar este elemento.',
+	'flow-summaryedit-submit' => 'Gardar o resumo',
+	'flow-edit-title-submit' => 'Cambiar o título',
+	'flow-rev-message-reply' => 'Publicouse unha nova resposta',
+	'flow-rev-message-new-post' => 'Creouse un tema',
+	'flow-topic-history' => 'Historial do tema',
+	'flow-comment-restored' => 'Comentario restaurado',
+	'flow-comment-deleted' => 'Comentario borrado',
+	'flow-comment-hidden' => 'Comentario agochado',
+	'flow-paging-rev' => 'Temas máis recentes',
+	'flow-paging-fwd' => 'Temas máis vellos',
 	'flow-last-modified' => 'Última modificación $1',
 	'flow-days-ago' => 'hai {{PLURAL:$1|un día|$1 días}}',
 	'flow-months-ago' => 'hai {{PLURAL:$1|un mes|$1 meses}}',
 	'flow-years-ago' => 'hai {{PLURAL:$1|un ano|$1 anos}}',
+	'flow-notification-reply' => '$1 respondeu á súa [$5 mensaxe] en $2 en [[$3|$4]].',
+	'flow-notification-edit' => '$1 editou a súa [$5 mensaxe] en $2 en [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 creou un [$5 novo tema] en [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 cambiou o título de [$2 $3] a "$4" en [[$5|$6]]',
 );
 
 /** Hebrew (עברית)
  * @author Amire80
+ * @author Orsa
  */
 $messages['he'] = array(
 	'flow-desc' => 'מערכת לניהול זרימת עבודה',
@@ -492,6 +561,7 @@ $1',
 	'flow-topic-history' => 'היסטוריית הנושא',
 	'flow-comment-restored' => 'הערה משוחזרת',
 	'flow-comment-deleted' => 'הערה מחוקה',
+	'flow-months-ago' => 'לפני {{PLURAL:$1|חודש|חודשיים|$1 חודשים}}',
 );
 
 /** Italian (italiano)
@@ -543,6 +613,10 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-days-ago' => '$1 {{PLURAL:$1|giorno|giorni}} fa',
 	'flow-months-ago' => '$1 {{PLURAL:$1|mese|mesi}} fa',
 	'flow-years-ago' => '$1 {{PLURAL:$1|anno|anni}} fa',
+	'flow-notification-reply' => '$1 ha risposto al tuo [$5 messaggio] in $2 su [[$3|$4]].',
+	'flow-notification-edit' => '$1 ha modificato il tuo [$5 messaggio] in $2 su [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 ha creato una [$5 nuova discussione] su [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 ha cambiato il titolo di [$2 $3] in "$4" su [[$5|$6]]',
 );
 
 /** Japanese (日本語)
@@ -605,6 +679,10 @@ $messages['ja'] = array(
 	'flow-days-ago' => '$1{{PLURAL:$1|日}}前',
 	'flow-months-ago' => '$1{{PLURAL:$1|か月}}前',
 	'flow-years-ago' => '$1{{PLURAL:$1|年}}前',
+	'flow-notification-reply' => '$1 が [[$3|$4]] の $2 でのあなたの[$5 投稿]に返信しました。',
+	'flow-notification-edit' => '$1 が [[$3|$4]] の $2 でのあなたの[$5 投稿]を編集しました。',
+	'flow-notification-newtopic' => '$1 が [[$2|$3]] で[$5 新しい話題]を作成しました: $4',
+	'flow-notification-rename' => '$1 が [[$5|$6]] で [$2 $3] のページ名を「$4」に変更しました',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -613,6 +691,9 @@ $messages['ja'] = array(
 $messages['lb'] = array(
 	'flow-desc' => 'Workflow-Management-System',
 	'flow-edit-summary-link' => 'Resumé vun der Ännerung',
+	'flow-post-hidden-by' => 'Verstoppt vum $1 $2',
+	'flow-post-deleted-by' => 'Geläscht vum $1 $2',
+	'flow-post-censored-by' => 'Zensuréiert vum $1 $2',
 	'flow-post-actions' => 'Aktiounen',
 	'flow-topic-actions' => 'Aktiounen',
 	'flow-cancel' => 'Ofbriechen',
@@ -627,12 +708,19 @@ $messages['lb'] = array(
 	'flow-topic-action-edit-title' => 'Titel änneren',
 	'flow-error-missing-title' => "D'Thema huet keen Titel. Den Titel ass obligatoresch fir een neit Thema ze späicheren.",
 	'flow-error-delete-failure' => "D'Läsche vun dësem Element huet net fonctionnéiert.",
+	'flow-error-hide-failure' => 'Verstoppe vun dësem Element huet net fonctionnéiert.',
 	'flow-error-restore-failure' => "D'Restauréiere vun dësem Element huet net fonctionnéiert.",
 	'flow-summaryedit-submit' => 'Resumé späicheren',
 	'flow-edit-title-submit' => 'Titel änneren',
 	'flow-rev-message-new-post' => 'Thema ugeluecht',
 	'flow-comment-restored' => 'Restauréiert Bemierkung',
 	'flow-comment-deleted' => 'Geläscht Bemierkung',
+	'flow-comment-hidden' => 'Verstoppte Bemierkung',
+	'flow-paging-rev' => 'Méi rezent Themen',
+	'flow-paging-fwd' => 'Méi al Themen',
+	'flow-last-modified' => "Fir d'lescht geännert ongeféier $1",
+	'flow-days-ago' => '{{PLURAL:$1|virun 1 Dag| viru(n) $1 Deeg}}',
+	'flow-years-ago' => '{{PLURAL:$1|virun|viru(n)}} $1 Joer',
 );
 
 /** Macedonian (македонски)
@@ -645,7 +733,12 @@ $messages['mk'] = array(
 	'flow-disclaimer' => 'Стискајќи на копчето „Додај порака“, се согласувате со Условите на употреба,
 и неотповикливо се согласувате дека ги објавувате вашите придонеси под лиценцата CC-BY-SA 3.0 и ГЛСД.
 Се согласувате дека хиперврска или URL претставува достатно оддавање на заслуга согласно лиценцата на Криејтив комонс.',
+	'flow-post-hidden' => '[пораката е скриена]',
+	'flow-post-hidden-by' => 'Скриена од $1 $2',
 	'flow-post-deleted' => '[пораката е избришана]',
+	'flow-post-deleted-by' => 'Избришана од $1 $2',
+	'flow-post-censored' => '[пораката е цензурирана]',
+	'flow-post-censored-by' => 'Цензурирана од $1 $2',
 	'flow-post-actions' => 'дејства',
 	'flow-topic-actions' => 'дејства',
 	'flow-cancel' => 'Откажи',
@@ -659,7 +752,9 @@ $messages['mk'] = array(
 	'flow-edit-post-submit' => 'Спроведи измени',
 	'flow-post-action-view' => 'Постојана врска',
 	'flow-post-action-post-history' => 'Историја на пораки',
+	'flow-post-action-censor-post' => 'Цензурирај ја пораката',
 	'flow-post-action-delete-post' => 'Избриши ја пораката',
+	'flow-post-action-hide-post' => 'Скриј ја пораката',
 	'flow-post-action-edit-post' => 'Уреди ја пораката',
 	'flow-post-action-edit' => 'Измени',
 	'flow-post-action-restore-post' => 'Поврати ја пораката',
@@ -675,6 +770,7 @@ $messages['mk'] = array(
 	'flow-error-missing-replyto' => 'Нема зададено параметар „replyTo“. Овој параметар е потребен за да може да се даде одговор.',
 	'flow-error-invalid-replyto' => 'Параметарот на „replyTo“ е неважечки. Не можев да ја најдам укажаната порака.',
 	'flow-error-delete-failure' => 'Бришењето на ставката не успеа.',
+	'flow-error-hide-failure' => 'Не успеав да ја скријам ставката.',
 	'flow-error-missing-postId' => 'Нема зададено параметар „postId“. Овој параметар е потребен за работа со пораката.',
 	'flow-error-invalid-postId' => 'Параметарот на „postId“ е неважечки. Не можев да ја најдам укажаната порака.',
 	'flow-error-restore-failure' => 'Повраќањето на ставката не успеа.',
@@ -685,6 +781,17 @@ $messages['mk'] = array(
 	'flow-topic-history' => 'Историја на темата',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
+	'flow-comment-hidden' => 'Скриен коментар',
+	'flow-paging-rev' => 'Најнови теми',
+	'flow-paging-fwd' => 'Постари теми',
+	'flow-last-modified' => 'Последна измена: $1',
+	'flow-days-ago' => 'пред $1 {{PLURAL:$1|ден|дена}}',
+	'flow-months-ago' => 'пред $1 {{PLURAL:$1|месец|месеци}}',
+	'flow-years-ago' => 'пред $1 {{PLURAL:$1|година|години}}',
+	'flow-notification-reply' => '$1 одговори на вашата [$5 порака] во $2 на [[$3|$4]].',
+	'flow-notification-edit' => '$1 ја измени вашата [$5 порака] во $2 на [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 создаде [$5 нова тема] во [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 го смени насловот на [$2 $3] во „$4“ на [[$5|$6]]',
 );
 
 /** Marathi (मराठी)
@@ -701,15 +808,37 @@ $messages['mr'] = array(
  * @author Cedric31
  */
 $messages['oc'] = array(
+	'flow-desc' => 'Sistèma de gestion del flux de trabalh',
+	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-edit-summary-link' => 'Resumit',
+	'flow-disclaimer' => "En clicant sul boton « Apondre un messatge », acceptatz nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr condicions d'utilizacion] e acceptatz de plaçar irrevocablament vòstra contribucion jos [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licéncia Creative Commons paternitat-partiment de las condicions inicialas a l'identica 3.0] e [http://www.gnu.org/copyleft/fdl.html GFDL]. Acceptatz d’èsser creditat pels reütilizaires al minimum via un iperligam o una URL jos la licéncia Creative Commons.",
+	'flow-post-hidden' => '[nòta amagada]',
+	'flow-post-hidden-by' => 'Amagat per $1 $2',
 	'flow-post-deleted' => '[messatge suprimit]',
+	'flow-post-deleted-by' => 'Suprimit per $1 $2',
+	'flow-post-censored' => '[nòta censurada]',
+	'flow-post-censored-by' => 'Censurat per $1 $2',
 	'flow-post-actions' => 'accions',
 	'flow-topic-actions' => 'accions',
 	'flow-cancel' => 'Anullar',
+	'flow-newtopic-title-placeholder' => 'Objècte del messatge',
+	'flow-newtopic-content-placeholder' => 'Tèxte del messatge. Siatz gent !',
+	'flow-newtopic-header' => 'Apondre un subjècte novèl',
+	'flow-newtopic-save' => 'Apondre un subjècte',
+	'flow-newtopic-start-placeholder' => 'Clicatz aicí per començar una novèla discussion. Siatz gent !',
+	'flow-reply-placeholder' => 'Clicatz aicí per respondre a $1. Siatz gent !',
+	'flow-reply-submit' => 'Postar una responsa',
 	'flow-edit-post-submit' => 'Sometre las modificacions',
 	'flow-post-action-view' => 'Ligam permanent',
+	'flow-post-action-post-history' => 'Istoric de las publicacions',
+	'flow-post-action-censor-post' => 'Censurar la nòta',
+	'flow-post-action-delete-post' => 'Suprimir lo messatge',
+	'flow-post-action-hide-post' => 'Amagar la nòta',
 	'flow-post-action-edit-post' => 'Modificar la publicacion',
 	'flow-post-action-edit' => 'Modificar',
+	'flow-post-action-restore-post' => 'Restablir lo messatge',
 	'flow-topic-action-edit-title' => 'Modificar lo títol',
+	'flow-topic-action-history' => 'Istoric dels subjèctes',
 	'flow-rev-message-new-post' => 'Subjècte creat',
 );
 
@@ -856,6 +985,10 @@ $messages['uk'] = array(
 	'flow-days-ago' => '$1 {{PLURAL:$1|день|дні|днів}} тому',
 	'flow-months-ago' => '$1 {{PLURAL:$1|місяць|місяці|місяців}} тому',
 	'flow-years-ago' => '$1 {{PLURAL:$1|рік|роки|років}} тому',
+	'flow-notification-reply' => '$1 відповів на ваш [повідомлення $5] у $2 на [[$3|$4]].',
+	'flow-notification-edit' => '$1 відредагував [повідомлення $5] у $2 на [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 створив [нову тему $5] на [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 змінив назву [$2 $3] на "$4" у [[$5|$6]]',
 );
 
 /** Yiddish (ייִדיש)
