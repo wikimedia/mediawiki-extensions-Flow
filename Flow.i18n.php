@@ -13,7 +13,7 @@ $messages['en'] = array(
 	'flow-edit-summary-link' => 'Edit summary',
 
 	'flow-disclaimer' => "By clicking the \"Add message\" button, you agree to the Terms of Use,
-and you irrevocably agree to release your contribution under the CC-BY-SA 3.0 License and the GFDL.
+and you irrevocably agree to release your contribution under the CC BY-SA 3.0 License and the GFDL.
 You agree that a hyperlink or URL is sufficient attribution under the Creative Commons license.",
 	'flow-post-hidden' => '[post hidden]',
 	'flow-post-hidden-by' => 'Hidden by $1 $2',
