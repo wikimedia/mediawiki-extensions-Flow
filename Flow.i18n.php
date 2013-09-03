@@ -288,6 +288,15 @@ $messages['ast'] = array(
 	'flow-desc' => 'Sistema de xestión del fluxu de trabayu',
 );
 
+/** Breton (brezhoneg)
+ * @author Y-M D
+ */
+$messages['br'] = array(
+	'flow-cancel' => 'Nullañ',
+	'flow-post-action-edit' => 'Kemmañ',
+	'flow-topic-action-edit-title' => 'Kemmañ an titl',
+);
+
 /** Czech (česky)
  * @author Michaelbrabec
  */
