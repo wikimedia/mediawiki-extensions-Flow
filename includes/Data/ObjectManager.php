@@ -517,7 +517,7 @@ class ObjectManager extends ObjectLocator {
 		foreach( $sortFields as $field ) {
 			$value = $row[$field];
 
-			if ( strlen($value) == 16 && preg_match( '/_id$/', $field ) ) {
+			if ( strlen( $value ) == 16 && preg_match( '/_id$/', $field ) ) {
 				$value = UUID::create( $value )->getHex();
 			}
 			$offsetFields[] = $value;
@@ -929,7 +929,7 @@ abstract class FeatureIndex implements Index {
 		foreach( $attributes as $key => $attr ) {
 			if ( $attr instanceof \Flow\Model\UUID ) {
 				$attributes[$key] = $attr->getHex();
-			} elseif ( strlen($attr) == 16 && preg_match( '/_id$/', $key ) ) {
+			} elseif ( strlen( $attr ) == 16 && preg_match( '/_id$/', $key ) ) {
 				$uuid = new \Flow\Model\UUID( $attr );
 				$attributes[$key] = $uuid->getHex();
 			}
