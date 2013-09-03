@@ -134,27 +134,9 @@ class Templating {
 		if ( $timestamp instanceof UUID ) {
 			$timestamp = $timestamp->getTimestamp();
 		}
-		return self::getApproxHumanTimestamp( new MWTimestamp( $timestamp ), new MWTimestamp );
-	}
-
-	static public function getApproxHumanTimestamp( MWTimestamp $ts, MWTimestamp $relativeTo ) {
-		$diff = $ts->diff( $relativeTo );
-		$lang = RequestContext::getMain()->getLanguage();
-		if ( $diff->y ) {
-			return wfMessage( 'flow-years-ago' )->inLanguage( $lang )->numParams( $diff->y )->text();
-		} elseif ( $diff->m ) {
-			return wfMessage( 'flow-months-ago' )->inLanguage( $lang )->numParams( $diff->m )->text();
-		} elseif ( $diff->d ) {
-			return wfMessage( 'flow-days-ago' )->inLanguage( $lang )->numParams( $diff->d )->text();
-		} elseif ( $diff->h ) {
-			return wfMessage( 'hours-ago' )->inLanguage( $lang )->numParams( $diff->h )->text();
-		} elseif ( $diff->i ) {
-			return wfMessage( 'minutes-ago' )->inLanguage( $lang )->numParams( $diff->i )->text();
-		} elseif ( $diff->s >= 30 ) {
-			return wfMessage( 'seconds-ago' )->inLanguage( $lang )->numParams( $diff->s )->text();
-		} else {
-			return wfMessage( 'just-now' )->text();
-		}
+		$now = new MWTimestamp;
+		$then = new MWTimestamp( $timestamp );
+		return $now->getHumanTimestamp( $then );
 	}
 }
 
