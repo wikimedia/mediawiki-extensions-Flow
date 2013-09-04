@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8977bd7d_b376afa1",
+        "filename": "includes/api/ApiQueryRevisionContentFlow.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-04T17:20:50Z",
+      "side": 1,
+      "message": "$container \u003d Flow\\Container::getContainer()",
+      "revId": "2139eec513767ba6fdd121d62de1b21bdb07ae18",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8977bd7d_336b7fba",
+        "filename": "includes/api/ApiQueryRevisionContentFlow.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-04T17:20:50Z",
+      "side": 1,
+      "message": "this is half way to arbitrary code execution,  i would prefer this at least use $container[\u0027storage\u0027]-\u003egetStorage( $params[\u0027something\u0027] ) so it only has the ability to request a specific list of objects rather than anything in the container.  You could alternatively accept only the second half of the string so it has a guaranteed prefix, like $container[\u0027storage.\u0027 . $params[\u0027container\u0027]];",
+      "revId": "2139eec513767ba6fdd121d62de1b21bdb07ae18",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
