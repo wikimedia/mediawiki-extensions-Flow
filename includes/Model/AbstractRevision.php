@@ -181,10 +181,21 @@ abstract class AbstractRevision {
 		} else {
 			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
 
+			if ( $this->moderationState === self::MODERATED_CENSORED ) {
+				// Censored is based on timestamp of this revision
+				$createdAt = $this->revId->getTimestampObj();
+			} elseif ( $this->prevRevision ) {
+				// Everything else is based on timestamp of previous revision
+				$createdAt = $this->prevRevision->getTimestampObj();
+			} else {
+				// not censored, but this is the first revision.  We should never get here.
+				wfDebugLog( __CLASS__, __FUNCTION__ . ': Unreachable condition, un censored but moderated first post : ' . $this->revId->getHex() );
+				$createdAt = $this->revId->getTimestampObj();
+			}
 			return wfMessage(
 				self::$perms[$this->moderationState]['content'],
 				$this->moderatedByUserText,
-				$moderatedAt->getHumanTimestamp( new MWTimestamp )
+				$moderatedAt->getHumanTimestamp( $createdAt )
 			);
 		}
 	}

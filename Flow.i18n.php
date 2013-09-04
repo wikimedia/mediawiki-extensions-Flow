@@ -80,9 +80,6 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-paging-rev' => 'More recent topics',
 	'flow-paging-fwd' => 'Older topics',
 	'flow-last-modified' => 'Last modified about $1',
-	'flow-days-ago' => '$1 {{PLURAL:$1|day|days}} ago',
-	'flow-months-ago' => '$1 {{PLURAL:$1|month|months}} ago',
-	'flow-years-ago' => '$1 {{PLURAL:$1|year|years}} ago',
 
 	'flow-notification-reply' => '$1 replied to your [$5 post] in $2 on [[$3|$4]].',
 	'flow-notification-edit' => '$1 edited your [$5 post] in $2 on [[$3|$4]].',
@@ -221,35 +218,7 @@ See also:
 	'flow-last-modified' => 'Followed by the timestamp.
 
 Parameters:
-* $1 - any one of the following messages:
-** {{msg-mw|Flow-years-ago}}
-** {{msg-mw|Flow-months-ago}}
-** {{msg-mw|Flow-days-ago}}
-** {{msg-mw|Hours-ago}}
-** {{msg-mw|Minutes-ago}}
-** {{msg-mw|Seconds-ago}}
-** {{msg-mw|Just-now}}',
-	'flow-days-ago' => 'Can be used as <code>$1</code> in {{msg-mw|Flow-last-modified}}.
-
-Followed by the timestamp.
-
-Parameters:
-* $1 - number of days
-{{Related|Flow-ago}}',
-	'flow-months-ago' => 'Can be used as <code>$1</code> in {{msg-mw|Flow-last-modified}}.
-
-Followed by the timestamp.
-
-Parameters:
-* $1 - number of months
-{{Related|Flow-ago}}',
-	'flow-years-ago' => 'Can be used as <code>$1</code> in {{msg-mw|Flow-last-modified}}.
-
-Followed by the timestamp.
-
-Parameters:
-* $1 - number of years
-{{Related|Flow-ago}}',
+* $1 - most significant unit of time since modification rendered by MWTimestamp::getHumanTimestamp',
 	'flow-notification-reply' => 'Notification text for when a user receives a reply. Parameters:
 * $1 - Username of the person who replied
 * $2 - Title of the topic
