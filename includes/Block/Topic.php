@@ -414,7 +414,7 @@ class TopicBlock extends AbstractBlock {
 				$children[] = $this->renderPostAPI( $templating, $child, $options );
 			}
 
-			if ( count($children) > 1 ) {
+			if ( count( $children ) > 1 ) {
 				$output['replies'] = $children;
 			}
 		}
@@ -480,7 +480,7 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		if ( count($searchConditions) === 0 ) {
+		if ( count( $searchConditions ) === 0 ) {
 			return array();
 		}
 

@@ -29,7 +29,7 @@ class WorkflowLoader {
 			throw new \MWException( 'Interwiki not implemented yet' );
 		}
 		if ( $pageTitle && $pageTitle->getArticleID() === 0 ) {
-			throw new \MWException( 'Can only load workflows for existing page. Page '.($pageTitle->getPrefixedText()). ' does not exist.' );
+			throw new \MWException( 'Can only load workflows for existing page. Page '.( $pageTitle->getPrefixedText() ). ' does not exist.' );
 		}
 
 		$this->storage = $storage;
@@ -63,7 +63,7 @@ class WorkflowLoader {
 
 	protected function loadWorkflow( \Title $title ) {
 		global $wgContLang, $wgUser;
-		$storage = $this->storage->getStorage('Workflow');
+		$storage = $this->storage->getStorage( 'Workflow');
 
 		$definition = $this->loadDefinition();
 		if ( !$definition->getOption( 'unique' ) ) {
@@ -84,7 +84,7 @@ class WorkflowLoader {
 	}
 
 	protected function loadWorkflowById( /* Title or false */ $title, $workflowId ) {
-		$workflow = $this->storage->getStorage('Workflow')->get( $workflowId );
+		$workflow = $this->storage->getStorage( 'Workflow' )->get( $workflowId );
 		if ( !$workflow ) {
 			throw new \MWException( 'Invalid workflow requested by id' );
 		}
@@ -92,7 +92,7 @@ class WorkflowLoader {
 			// todo: redirect?
 			throw new \MWException( 'Flow workflow is for different page' );
 		}
-		$definition = $this->storage->getStorage('Definition')->get( $workflow->getDefinitionId() );
+		$definition = $this->storage->getStorage( 'Definition' )->get( $workflow->getDefinitionId() );
 		if ( !$definition ) {
 			throw new \MWException( 'Flow workflow references unknown definition id: ' . $workflow->getDefinitionId()->getHex() );
 		}
@@ -103,7 +103,7 @@ class WorkflowLoader {
 	protected function loadDefinition() {
 		global $wgFlowDefaultWorkflow;
 
-		$repo = $this->storage->getStorage('Definition');
+		$repo = $this->storage->getStorage( 'Definition' );
 		$id = $this->definitionRequest;
 		if ( $id instanceof UUID ) {
 			$definition = $repo->get( $id );
@@ -171,7 +171,7 @@ class WorkflowLoader {
 	}
 
 	public function commit( Workflow $workflow, array $blocks ) {
-		$this->storage->getStorage('Workflow')->put( $workflow );
+		$this->storage->getStorage( 'Workflow' )->put( $workflow );
 		$results = array();
 		foreach ( $blocks as $block ) {
 			$results[$block->getName()] = $block->commit();

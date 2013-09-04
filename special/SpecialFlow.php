@@ -24,8 +24,8 @@ class SpecialFlow extends SpecialPage {
 
 	public function execute( $subPage ) {
 		$this->setHeaders();
-		$this->getOutput()->addModules( array('ext.flow.base') );
-		
+		$this->getOutput()->addModules( array( 'ext.flow.base' ) );
+
 		if ( empty( $subPage ) ) {
 			// If no specific article was requested, render the users flow
 			throw new \MWException( 'TODO: Redirect to users board?' );
@@ -60,8 +60,8 @@ class SpecialFlow extends SpecialPage {
 
 		if ( $request->getMethod() === 'POST' ) {
 			$user = $this->container['user'];
-			if ( $request->getVal('wpEditToken') != $user->getEditToken('flow') ) {
-				$error = '<div class="error">' . wfMessage('sessionfailure') . '</div>';
+			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( 'flow' ) ) {
+				$error = '<div class="error">' . wfMessage( 'sessionfailure' ) . '</div>';
 				$this->getOutput()->addHTML( $error );
 			} else {
 				$user = $this->container['user'];
@@ -98,7 +98,7 @@ class SpecialFlow extends SpecialPage {
 
 		return $container;
 	}
-	
+
 	protected function loadTitle( $text ) {
 		$title = Title::newFromText( $text );
 		if ( $title === null ) {
