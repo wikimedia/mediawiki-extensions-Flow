@@ -215,7 +215,10 @@ class TreeRepository {
 			$roots,
 			array( $this, 'fetchSubtreeNodeListFromDb' )
 		);
-
+		if ( $res === false ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure fetching node list from cache' );
+			return false;
+		}
 		// $idx is a binary UUID
 		$retval = array();
 		foreach ( $res as $idx => $val ) {
@@ -233,6 +236,10 @@ class TreeRepository {
 			),
 			__METHOD__
 		);
+		if ( $res === false ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure fetching node list from database' );
+			return false;
+		}
 		if ( !$res ) {
 			return array();
 		}
