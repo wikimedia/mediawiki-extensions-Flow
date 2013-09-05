@@ -653,7 +653,7 @@ class BasicDbStorage implements WritableObjectStorage {
 		foreach ( $res as $row ) {
 			$result[] = (array) $row;
 		}
-		wfDebugLog( __CLASS__, __METHOD__ . ': ' . print_r( $result, true ) );
+		// wfDebugLog( __CLASS__, __METHOD__ . ': ' . print_r( $result, true ) );
 		return $result;
 	}
 
@@ -1292,6 +1292,11 @@ class LocalBufferedCache extends BufferedCache {
 		}
 		if ( $keys ) {
 			$flipped = array_flip( $keys );
+			$res = parent::getMulti( $keys );
+			if ( $res === false ) {
+				wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure requesting data from memcache : ' . implode( ',', $keys ) );
+				return $found;
+			}
 			foreach ( parent::getMulti( $keys ) as $key => $value ) {
 				$this->internal[$key] = $found[$key] = $value;
 				unset( $keys[$flipped[$key]] );

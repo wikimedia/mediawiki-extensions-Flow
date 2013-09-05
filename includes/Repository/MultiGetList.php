@@ -32,7 +32,13 @@ class MultiGetList {
 			return array();
 		}
 		$result = array();
-		foreach ( $this->cache->getMulti( array_keys( $cacheKeys ) ) as $key => $value ) {
+		$multiRes = $this->cache->getMulti( array_keys( $cacheKeys ) );
+		if ( $multiRes === false ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure querying memcache' );
+			return false;
+		}
+
+		foreach ( $multiRes as $key => $value ) {
 			if ( $cacheKeys[$key] instanceof UUID ) {
 				$idx = $cacheKeys[$key]->getBinary();
 			} else {
