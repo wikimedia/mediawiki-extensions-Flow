@@ -16,11 +16,11 @@ $messages['en'] = array(
 and you irrevocably agree to release your contribution under the CC BY-SA 3.0 License and the GFDL.
 You agree that a hyperlink or URL is sufficient attribution under the Creative Commons license.",
 	'flow-post-hidden' => '[post hidden]',
-	'flow-post-hidden-by' => 'Hidden by $1 $2',
+	'flow-post-hidden-by' => '{{GENDER:$1|Hidden}} by $1 $2',
 	'flow-post-deleted' => '[post deleted]',
-	'flow-post-deleted-by' => 'Deleted by $1 $2',
+	'flow-post-deleted-by' => '{{GENDER:$1|Deleted}} by $1 $2',
 	'flow-post-censored' => '[post censored]',
-	'flow-post-censored-by' => 'Censored by $1 $2',
+	'flow-post-censored-by' => '{{GENDER:$1|Censored}} by $1 $2',
 	'flow-post-actions' => 'actions',
 	'flow-topic-actions' => 'actions',
 	'flow-cancel' => 'Cancel',
@@ -56,12 +56,12 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-error-missing-content' => 'Post has no content. Content is required to save a new post.',
 	'flow-error-missing-title' => 'Topic has no title. Title is required to save a new topic.',
 	'flow-error-parsoid-failure' => 'Unable to parse content due to a Parsoid failure.',
-	'flow-error-missing-replyto' => 'No replyTo parameter was supplied. This parameter is required for the "reply" action.',
-	'flow-error-invalid-replyto' => 'replyTo parameter was invalid. The specified post could not be found.',
+	'flow-error-missing-replyto' => 'No "replyTo" parameter was supplied. This parameter is required for the "reply" action.',
+	'flow-error-invalid-replyto' => '"replyTo" parameter was invalid. The specified post could not be found.',
 	'flow-error-delete-failure' => 'Deletion of this item failed.',
 	'flow-error-hide-failure' => 'Hiding this item failed.',
-	'flow-error-missing-postId' => 'No postId parameter was supplied. This parameter is required to manipulate a post.',
-	'flow-error-invalid-postId' => 'postId parameter was invalid. The specified post could not be found.',
+	'flow-error-missing-postId' => 'No "postId" parameter was supplied. This parameter is required to manipulate a post.',
+	'flow-error-invalid-postId' => '"postId" parameter was invalid. The specified post could not be found.',
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
 
 	'flow-summaryedit-submit' => 'Save summary',
@@ -81,10 +81,10 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-paging-fwd' => 'Older topics',
 	'flow-last-modified' => 'Last modified about $1',
 
-	'flow-notification-reply' => '$1 replied to your [$5 post] in $2 on [[$3|$4]].',
-	'flow-notification-edit' => '$1 edited your [$5 post] in $2 on [[$3|$4]].',
-	'flow-notification-newtopic' => '$1 created a [$5 new topic] on [[$2|$3]]: $4.',
-	'flow-notification-rename' => '$1 changed the title of [$2 $3] to "$4" on [[$5|$6]]'
+	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your [$5 post] in $2 on [[$3|$4]].',
+	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} your [$5 post] in $2 on [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]]'
 );
 
 /** Message documentation (Message documentation)
@@ -109,20 +109,20 @@ See also:
 
 Translate this as "post which was hidden".',
 	'flow-post-hidden-by' => 'Parameters:
-* $1 - ...
-* $2 - ...',
+* $1 - Username that hid the post
+* $2 - Timestamp, relative to post creation date, of when the post was hidden',
 	'flow-post-deleted' => 'Used as username/content if the post was deleted.
 
 Translate this as "post which was deleted".',
 	'flow-post-deleted-by' => 'Parameters:
-* $1 - ...
-* $2 - ...',
+* $1 - Username that deleted the post
+* $2 - Timestamp, relative to post creation date, of when the post was deleted',
 	'flow-post-censored' => 'Used as username/content if the post was censored.
 
 Translate this as "post which was censored".',
 	'flow-post-censored-by' => 'Parameters:
-* $1 - ...
-* $2 - ...',
+* $1 - Username that censored the post
+* $2 -Timestamp, relative to post creation date, of when the post was censored',
 	'flow-post-actions' => 'Used as link text.
 {{Identical|Action}}',
 	'flow-topic-actions' => 'Used as link text.
