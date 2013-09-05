@@ -184,7 +184,7 @@ abstract class AbstractRevision {
 			return wfMessage(
 				self::$perms[$this->moderationState]['content'],
 				$this->moderatedByUserText,
-				$moderatedAt->getHumanTimestamp( new MWTimestamp )
+				$moderatedAt->getHumanTimestamp()
 			);
 		}
 	}

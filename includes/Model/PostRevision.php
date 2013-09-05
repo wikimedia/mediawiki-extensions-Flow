@@ -3,6 +3,7 @@
 namespace Flow\Model;
 
 use User;
+use MWTimestamp;
 
 class PostRevision extends AbstractRevision {
 	protected $postId;
@@ -33,6 +34,20 @@ class PostRevision extends AbstractRevision {
 		$obj->setContent( $content );
 
 		return $obj;
+	}
+
+	public function getOrigUserText( $user = null ) {
+		if ( $this->isAllowed( $user ) ) {
+			return $this->origUserText;
+		} else {
+			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
+
+			return wfMessage(
+				self::$perms[$this->moderationState]['content'],
+				$this->moderatedByUserText,
+				$moderatedAt->getHumanTimestamp()
+			);
+		}
 	}
 
 	static public function fromStorageRow( array $row, $obj = null ) {

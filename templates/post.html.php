@@ -71,7 +71,7 @@ $createReplyForm = function() use( $self, $block, $post, $editToken ) {
 		) ) .
 		Html::textarea( $block->getName() . '[content]', '', array(
 			'placeholder' => wfMessage( 'flow-reply-placeholder',
-				$post->getUserText() )->text(),
+				$post->getOrigUserText() )->text(),
 			'class' => 'flow-reply-content flow-input',
 		) ) .
 		Html::openElement( 'div', array( 'class' => 'flow-post-form-extras' ) ) .
