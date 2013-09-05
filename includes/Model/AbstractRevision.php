@@ -13,11 +13,18 @@ abstract class AbstractRevision {
 
 	const MODERATED_CENSORED = 'censor';
 
+	/**
+	 * Possible moderation states of a revision.  These must be ordered from
+	 * least restrictive to most restrictive permission.
+	 */
 	static protected $perms = array(
 		self::MODERATED_NONE => array(
+			// The name of the permission checked with User::isAllowed
 			'perm' => null,
+			// This is the bit of text rendered instead of the post creator
 			'usertext' => null,
-			'content' => null
+			// This is the bit of text rendered instead of the content
+			'content' => null,
 		),
 		self::MODERATED_HIDDEN => array(
 			'perm' => 'flow-hide',
@@ -227,11 +234,12 @@ abstract class AbstractRevision {
 	}
 
 	public function getUserText( $user = null ) {
-		if ( $this->isAllowed( $user ) ) {
-			return $this->getUserTextRaw();
-		} else {
+		// The text of *this* revision is only stripped when fully moderated
+		if ( $this->isCensored() ) {
 			// Messages: flow-post-hidden, flow-post-deleted, flow-post-censored
 			return wfMessage( self::$perms[$this->moderationState]['usertext'] );
+		} else {
+			return $this->getUserTextRaw();
 		}
 	}
 
@@ -285,6 +293,10 @@ abstract class AbstractRevision {
 
 	public function isModerated() {
 		return $this->moderationState !== self::MODERATED_NONE;
+	}
+
+	public function isCensored() {
+		return $this->moderationState === self::MODERATED_CENSORED;
 	}
 
 	public function getModerationTimestamp() {
