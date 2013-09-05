@@ -13,7 +13,7 @@ abstract class AbstractRevision {
 
 	const MODERATED_CENSORED = 'censor';
 
-	static private $perms = array(
+	static protected $perms = array(
 		self::MODERATED_NONE => array(
 			'perm' => null,
 			'usertext' => null,

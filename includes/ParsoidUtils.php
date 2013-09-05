@@ -57,6 +57,7 @@ abstract class ParsoidUtils {
 				// 'basetimestamp' => ?,
 				// 'starttimestamp' => ?,
 				'paction' => $action,
+				'oldid' => '',
 				$from => $content,
 			),
 			true // POST

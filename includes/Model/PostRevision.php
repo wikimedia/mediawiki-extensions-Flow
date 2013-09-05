@@ -3,6 +3,7 @@
 namespace Flow\Model;
 
 use User;
+use MWTimestamp;
 
 class PostRevision extends AbstractRevision {
 	protected $postId;
@@ -83,7 +84,21 @@ class PostRevision extends AbstractRevision {
 		return $this->origUserId;
 	}
 
-	public function getCreatorName() {
+	public function getCreatorName( $user = null ) {
+		if ( $this->isAllowed( $user ) ) {
+			return $this->getCreatorNameRaw();
+		} else {
+			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
+
+			return wfMessage(
+				self::$perms[$this->moderationState]['content'],
+				$this->moderatedByUserText,
+				$moderatedAt->getHumanTimestamp()
+			);
+		}
+	}
+
+	public function getCreatorNameRaw() {
 		return $this->origUserText;
 	}
 

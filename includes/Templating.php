@@ -9,8 +9,13 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use OutputPage;
 // These dont really belong here
-use RequestContext;
+use Html;
+use Linker;
 use MWTimestamp;
+use RequestContext;
+use SpecialPage;
+use Title;
+use User;
 
 class Templating {
 	protected $namespaces;
@@ -72,6 +77,11 @@ class Templating {
 	}
 
 	// Helper methods for the view
+	//
+	// Everything below here *DOES* *NOT*  belong in this class.  Its also pointless for us to invent a properly
+	// abstracted templating implementation so these can be elsewhere.  Figure out if we can transition to an
+	// industry standard templating solution and stop the NIH.
+
 	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
 		return $this->urlGenerator->generateUrl( $workflow, $action, $query );
 	}
@@ -130,13 +140,14 @@ class Templating {
 		return $output;
 	}
 
-	public function timeAgo( $timestamp ) {
-		if ( $timestamp instanceof UUID ) {
-			$timestamp = $timestamp->getTimestamp();
+	public function userToolLinks( $userId, $userText ) {
+		global $wgLang;
+
+		if ( $userText instanceof MWMessage ) {
+			// username was moderated away, we dont know who this is
+			return '';
 		}
-		$now = new MWTimestamp;
-		$then = new MWTimestamp( $timestamp );
-		return $then->getHumanTimestamp( $now );
+
+		return Linker::userLink( $userId, $userText ) . Linker::userToolLinks( $userId, $userText );
 	}
 }
-

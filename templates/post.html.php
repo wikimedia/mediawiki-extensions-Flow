@@ -48,7 +48,7 @@ $getAction = function( $action, $data = array(), $class = '' ) use ( $post, $sel
 	);
 };
 
-$createReplyForm = function() use( $self, $block, $post, $editToken ) {
+$createReplyForm = function() use( $self, $block, $post, $editToken, $user ) {
 	$replyForm = Html::openElement( 'form', array(
 			'method' => 'POST',
 			// root post id is same as topic workflow id
@@ -70,7 +70,7 @@ $createReplyForm = function() use( $self, $block, $post, $editToken ) {
 		) ) .
 		Html::textarea( $block->getName() . '[content]', '', array(
 			'placeholder' => wfMessage( 'flow-reply-placeholder',
-				$post->getUserText() )->text(),
+				$post->getCreatorName( $user ) )->text(),
 			'class' => 'flow-reply-content flow-input',
 		) ) .
 		Html::openElement( 'div', array( 'class' => 'flow-post-form-extras' ) ) .
@@ -89,11 +89,6 @@ $createReplyForm = function() use( $self, $block, $post, $editToken ) {
 };
 
 $class = $post->isModerated() ? 'flow-post-moderated' : 'flow-post';
-$content = $post->getContent( $user, 'html' );
-$userText = $post->getUserText();
-if ( !$userText instanceof \Message ) {
-	$userText = Html::element( 'span', null, $userText );
-}
 $actions = array();
 $replyForm = '';
 
@@ -159,10 +154,17 @@ echo Html::openElement( 'div', array(
 	) ); ?>
 		<div class="flow-post-title">
 			<div class="flow-post-authorline">
-				<?php echo $userText; ?>
+				<span class="flow-creator">
+					<span class="flow-creator-simple" style="display: inline">
+						<?php echo $post->getCreatorName( $user ); ?>
+					</span>
+					<span class="flow-creator-full" style="display: none">
+						<?php echo $this->userToolLinks( $post->getCreatorId(), $post->getCreatorName() ); ?>
+					</span>
+				</span>
 				<span class="flow-datestamp">
 					<span class="flow-agotime" style="display: inline">
-						<?php echo $self->timeAgo( $post->getPostId() ); ?>
+						<?php echo $post->getPostId()->getHumanTimestamp(); ?>
 					</span>
 					<span class="flow-utctime" style="display: none">
 						<?php echo $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ); ?>
@@ -171,7 +173,7 @@ echo Html::openElement( 'div', array(
 			</div>
 		</div>
 		<div class="flow-post-content">
-			<?php echo $content ?>
+			<?php echo $post->getContent( $user, 'html' ); ?>
 		</div>
 		<div class="flow-post-controls">
 			<div class="flow-post-actions">
