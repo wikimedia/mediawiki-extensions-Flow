@@ -488,6 +488,10 @@ class TopicHistoryIndex extends TopKIndex {
 			$roots[] = UUID::create( $features['topic_root'] );
 		}
 		$nodeList = $this->treeRepository->fetchSubtreeNodeList( $roots );
+		if ( $nodeList === false ) {
+			// We can't return the existing $retval, that false data would be cached.
+			return false;
+		}
 
 		$descendantQueries = array();
 		foreach ( $queries as $idx => $features ) {
