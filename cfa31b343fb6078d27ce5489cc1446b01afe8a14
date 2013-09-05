@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_d2b88476",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-09-05T21:26:32Z",
+      "side": 1,
+      "message": "Please add complete documentation for strings in qqq, especially when parameters are used. More details are at https://www.mediawiki.org/wiki/I18n#Message_documentation. In this case, for this string, and two of the below three strings that were added, the parameters have not been documented, making it hard to translate.",
+      "revId": "cfa31b343fb6078d27ce5489cc1446b01afe8a14",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
