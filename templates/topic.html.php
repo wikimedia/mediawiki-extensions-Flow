@@ -53,7 +53,7 @@ echo Html::openElement( 'div', array(
 	<span class="flow-topic-datestamp">
 		<span class="flow-agotime" style="display: inline">
 			<?php echo wfMessage( 'flow-last-modified' )->rawParams(
-				$this->timeAgo( $topic->getLastModified() )
+				$topic->getLastModifiedObj()->getHumanTimestamp()
 			); ?>
 		</span>
 		<span class="flow-utctime" style="display: none">

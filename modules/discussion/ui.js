@@ -17,8 +17,15 @@
 		// Set up timestamp on-hover
 		$container.find( '.flow-topic-datestamp, .flow-datestamp' )
 			.hover(function() {
-				$(this).children( '.flow-agotime' ).toggle()
-				$(this).children( '.flow-utctime' ).toggle()
+				$(this).children( '.flow-agotime' ).toggle();
+				$(this).children( '.flow-utctime' ).toggle();
+			} );
+
+		// Set up post creator on-hover
+		$container.find( '.flow-creator' )
+			.hover( function() {
+				$(this).children( '.flow-creator-simple' ).toggle();
+				$(this).children( '.flow-creator-full' ).toggle();
 			} );
 
 		// Set up reply form

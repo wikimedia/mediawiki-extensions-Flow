@@ -78,6 +78,14 @@ class UUID {
 		return $ts ? $ts->getTimestamp( TS_MW ) : false;
 	}
 
+	public function getHumanTimestamp( $relativeTo = null, User $user = null, Language $lang = null ) {
+		if ( $relativeTo instanceof UUID ) {
+			$relativeTo = $relativeTo->getTimestampObj() ?: null;
+		}
+		$ts = $this->getTimestampObj();
+		return $ts ? $ts->getHumanTimestamp( $relativeTo, $user, $lang ) : false;
+	}
+
 	public static function convertUUIDs( $array ) {
 		foreach( ObjectManager::makeArray( $array ) as $key => $value ) {
 			if ( is_a( $value, 'Flow\Model\UUID' ) ) {
