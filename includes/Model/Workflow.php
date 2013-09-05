@@ -2,6 +2,7 @@
 
 namespace Flow\Model;
 
+use MWTimestamp;
 use SpecialPage;
 use Title;
 use User;
@@ -104,6 +105,7 @@ class Workflow {
 	public function getUserId() { return $this->userId; }
 	public function getUserText() { return $this->userText; }
 	public function getLastModified() { return $this->lastModified; }
+	public function getLastModifiedObj() { return new MWTimestamp( $this->lastModified ); }
 
 	public function updateLastModified() {
 		$this->lastModified = wfTimestampNow();

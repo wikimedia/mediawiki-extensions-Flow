@@ -9,8 +9,13 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use OutputPage;
 // These dont really belong here
-use RequestContext;
+use Html;
+use Linker;
 use MWTimestamp;
+use RequestContext;
+use SpecialPage;
+use Title;
+use User;
 
 class Templating {
 	protected $namespaces;
@@ -72,6 +77,11 @@ class Templating {
 	}
 
 	// Helper methods for the view
+	//
+	// Everything below here *DOES* *NOT*  belong in this class.  Its also pointless for us to invent a properly
+	// abstracted templating implementation so these can be elsewhere.  Figure out if we can transition to an
+	// industry standard templating solution and stop the NIH.
+
 	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
 		return $this->urlGenerator->generateUrl( $workflow, $action, $query );
 	}
@@ -130,13 +140,49 @@ class Templating {
 		return $output;
 	}
 
-	public function timeAgo( $timestamp ) {
-		if ( $timestamp instanceof UUID ) {
-			$timestamp = $timestamp->getTimestamp();
+	public function userLinks( $userName ) {
+		global $wgLang;
+
+		if ( $userName instanceof MWMessage ) {
+			// username was moderated away, we dont know who this is
+			return $userName;
 		}
-		$now = new MWTimestamp;
-		$then = new MWTimestamp( $timestamp );
-		return $now->getHumanTimestamp( $then );
+
+		$tools = array(
+			self::userContribsLink( $userName ),
+			self::userTalkLink( $userName ),
+		);
+
+		return self::userLink( $userName )
+			. wfMessage( 'word-separator' )->plain()
+			. wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $tools ) )->text();
+	}
+
+	protected static function userContribsLink( $userName, $text = null ) {
+		if ( $text === null ) {
+			$text = wfMessage( 'contribslink' );
+		}
+		return Linker::link( SpecialPage::getTitleFor( 'Contributions', $userName ), $text );
+	}
+
+	protected static function userTalkLink( $userName ) {
+		return Linker::link(
+			Title::newFromText( $userName, NS_USER_TALK ),
+			wfMessage( 'talkpagelinktext' )->text()
+		);
+	}
+
+	protected static function userLink( $userName ) {
+		if ( User::isIP( $userName ) ) {
+			// ip's dont have user pages
+			return $userName;
+		} else {
+			return Linker::link(
+				Title::newFromText( $userName, NS_USER ),
+				$userName,
+				array( 'class' => 'mw-userlink' )
+			);
+		}
 	}
 }
 
