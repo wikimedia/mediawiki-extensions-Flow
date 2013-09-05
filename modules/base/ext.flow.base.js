@@ -1,23 +1,33 @@
-( function($, mw) {
-$( function() {
+( function ( $, mw ) {
+$( function () {
 mw.flow = {
 	'api' : {
-		'executeAction' : function( workflowParam, action, options, render ) {
-			var api = new mw.Api();
-			var deferredObject = $.Deferred();
+		/**
+		 * Execute a Flow action, fires API call.
+		 *
+		 * @param {object} workflowParam API parameters
+		 * @param {string} action Action performed
+		 * @param {object} options Additional API parameters (API key 'params')
+		 * @param {bool} render
+		 * @return {Deferred}
+		 */
+		'executeAction' : function ( workflowParam, action, options, render ) {
+			var api = new mw.Api(),
+				deferredObject = $.Deferred();
 
-			api.post(
-				$.extend(
-					{
-						'action' : 'flow',
-						'flowaction' : action,
-						'gettoken' : 'gettoken'
-					},
-					workflowParam
+			api
+				.post(
+					$.extend(
+						{
+							'action' : 'flow',
+							'flowaction' : action,
+							'gettoken' : 'gettoken'
+						},
+						workflowParam
+					)
 				)
-			)
-				.done( function(data) {
-					request = {
+				.done( function ( data ) {
+					var request = {
 						'action' : 'flow',
 						'flowaction' : action,
 						'params' : $.toJSON( options ),
@@ -31,21 +41,27 @@ mw.flow = {
 					}
 
 					api.post( request )
-						.done( function( ) {
+						.done( function () {
 							deferredObject.resolve.apply( this, arguments );
 						} )
-						.fail( function( ) {
+						.fail( function () {
 							deferredObject.reject.apply( this, arguments );
 						} );
 				} )
-				.fail(function( ) {
-					deferredObject.reject.apply( this, arguments);
+				.fail( function () {
+					deferredObject.reject.apply( this, arguments );
 				} );
 
 			return deferredObject.promise();
 		},
 
-		'read' : function( pageName, workflowId, options ) {
+		/**
+		 * @param {string} pageName
+		 * @param {string} workflowId
+		 * @param {object} options API parameters
+		 * @return {Deferred}
+		 */
+		'read' : function ( pageName, workflowId, options ) {
 			var api = new mw.Api();
 
 			return api.get(
@@ -59,22 +75,29 @@ mw.flow = {
 			);
 		},
 
-		'readBlock' : function( pageName, topicId, blockName, options ) {
+		/**
+		 * @param {string} pageName
+		 * @param {string} topicId
+		 * @param {string} blockName
+		 * @param {object} options API parameters
+		 * @return {Deferred}
+		 */
+		'readBlock' : function ( pageName, topicId, blockName, options ) {
 			var deferredObject = $.Deferred();
 
 			mw.flow.api.read( pageName, topicId, options )
-				.done( function(output) {
+				.done( function ( output ) {
 					// Immediate failure modes
 					if (
-						! output.query ||
-						! output.query.flow ||
+						!output.query ||
+						!output.query.flow ||
 						output.query.flow._element !== 'block'
 					) {
 						deferredObject.fail( 'invalid-result', 'Unable to understand the API result' );
 						return;
 					}
 
-					$.each( output.query.flow, function( index, block ) {
+					$.each( output.query.flow, function ( index, block ) {
 						// Looping through each block
 						if ( block['block-name'] === blockName ) {
 							// Return this block
@@ -85,30 +108,48 @@ mw.flow = {
 					deferredObject.fail( 'invalid-result', 'Unable to find the '+
 						blockName+' block in the API result' );
 				} )
-				.fail( function() {
+				.fail( function () {
 					deferredObject.fail( arguments );
 				} );
 
 			return deferredObject.promise();
 		},
 
-		'readTopicList' : function( pageName, workflowId, options ) {
+		/**
+		 * @param {string} pageName
+		 * @param {string} workflowId
+		 * @param {object} options API parameters
+		 * @return {Deferred}
+		 */
+		'readTopicList' : function ( pageName, workflowId, options ) {
 			return mw.flow.api.readBlock( pageName, workflowId, 'topic_list', options );
 		},
 
-		'readTopic' : function( pageName, topicId, options ) {
+		/**
+		 * @param {string} pageName
+		 * @param {string} topicId
+		 * @param {object} options API parameters
+		 * @return {Deferred}
+		 */
+		'readTopic' : function ( pageName, topicId, options ) {
 			return mw.flow.api.readBlock( pageName, topicId, 'topic', options );
 		},
 
-		'generateTopicAction' : function( actionName, parameterList, promiseFilterCallback ) {
-			return function( workflowId ) {
-				var deferredObject = $.Deferred();
+		/**
+		 * @param {string} actionName
+		 * @param {object} parameterList
+		 * @param {function} promiseFilterCallback
+		 * @return {function}
+		 */
+		'generateTopicAction' : function ( actionName, parameterList, promiseFilterCallback ) {
+			return function ( workflowId ) {
+				var deferredObject = $.Deferred(),
+					requestParams = {},
+					paramIndex = 1,
+					requestArguments = arguments,
+					newDeferredObject;
 
-				var requestParams = {};
-				var paramIndex = 1;
-				var requestArguments = arguments;
-
-				$.each( parameterList, function( key, value ) {
+				$.each( parameterList, function ( key, value ) {
 					requestParams[value] = requestArguments[paramIndex];
 					paramIndex++;
 				} );
@@ -121,31 +162,33 @@ mw.flow = {
 					{ 'topic' :
 						requestParams
 					}, true
-				).done( function(data) {
+				).done( function ( data ) {
+					var output;
+
 					if ( data.flow[actionName].errors ) {
-						deferredObject.reject( 'block-errors', data.flow['reply'].errors );
+						deferredObject.reject( 'block-errors', data.flow.reply.errors );
 						return;
 					}
 
 					if (
-						! data.flow ||
-						! data.flow[actionName] ||
-						! data.flow[actionName].result ||
-						! data.flow[actionName].result['topic']
+						!data.flow ||
+						!data.flow[actionName] ||
+						!data.flow[actionName].result ||
+						!data.flow[actionName].result.topic
 					) {
 						deferredObject.reject( 'invalid-result', 'Unable to find appropriate section in result' );
 						return;
 					}
-					var output = data.flow[actionName].result['topic'];
+					output = data.flow[actionName].result.topic;
 
 					deferredObject.resolve( output, data );
 				} )
-				.fail( function( ) {
+				.fail( function () {
 					deferredObject.reject.apply( this, arguments );
 				} );
 
 				if ( promiseFilterCallback ) {
-					var newDeferredObject = promiseFilterCallback( deferredObject.promise() );
+					newDeferredObject = promiseFilterCallback( deferredObject.promise() );
 					if ( newDeferredObject ) {
 						deferredObject = newDeferredObject;
 					}
@@ -155,7 +198,13 @@ mw.flow = {
 			};
 		},
 
-		'newTopic' : function( workflowParam, title, content ) {
+		/**
+		 * @param {object} workflowParam
+		 * @param {string} title
+		 * @param {string} content
+		 * @return {Deferred}
+		 */
+		'newTopic' : function ( workflowParam, title, content ) {
 			var deferredObject = $.Deferred();
 
 			mw.flow.api.executeAction(
@@ -167,26 +216,28 @@ mw.flow = {
 						'content' : content
 					}
 				}, true
-			).done( function(data) {
+			).done( function ( data ) {
+				var output;
+
 				if ( data.flow['new-topic'].errors ) {
 					deferredObject.reject( 'block-errors', data.flow['new-topic'].errors );
 					return;
 				}
 
 				if (
-					! data.flow ||
-					! data.flow['new-topic'] ||
-					! data.flow['new-topic'].result ||
-					! data.flow['new-topic'].result['topic_list']
+					!data.flow ||
+					!data.flow['new-topic'] ||
+					!data.flow['new-topic'].result ||
+					!data.flow['new-topic'].result.topic_list
 				) {
 					deferredObject.reject( 'invalid-result', 'Unable to find appropriate section in result' );
 					return;
 				}
-				var output = data.flow['new-topic'].result['topic_list'];
+				output = data.flow['new-topic'].result.topic_list;
 
 				deferredObject.resolve( output, data );
 			} )
-			.fail( function( ) {
+			.fail( function () {
 				deferredObject.reject.apply( this, arguments );
 			} );
 
@@ -195,7 +246,10 @@ mw.flow = {
 	}
 };
 
-// Now add all the individual actions
+/**
+ * @param {string} workflowId
+ * @return {Deferred}
+ */
 mw.flow.api.reply = mw.flow.api.generateTopicAction(
 	'reply',
 	[
@@ -204,6 +258,10 @@ mw.flow.api.reply = mw.flow.api.generateTopicAction(
 	]
 );
 
+/**
+ * @param {string} workflowId
+ * @return {Deferred}
+ */
 mw.flow.api.changeTitle = mw.flow.api.generateTopicAction(
 	'edit-title',
 	[
@@ -211,6 +269,10 @@ mw.flow.api.changeTitle = mw.flow.api.generateTopicAction(
 	]
 );
 
+/**
+ * @param {string} workflowId
+ * @return {Deferred}
+ */
 mw.flow.api.editPost = mw.flow.api.generateTopicAction(
 	'edit-post',
 	[
@@ -218,5 +280,5 @@ mw.flow.api.editPost = mw.flow.api.generateTopicAction(
 		'content'
 	]
 );
-});
-})( jQuery, mediaWiki );
+} );
+} )( jQuery, mediaWiki );

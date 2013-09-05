@@ -1,12 +1,12 @@
-( function( $, mw ) {
-$(document).on( 'flow_init', function( e ) {
-	$container = $( e.target );
-	$container.find('form.flow-reply-form').flow( 'setupEmptyDisabler',
+( function ( $, mw ) {
+$( document ).on( 'flow_init', function ( e ) {
+	var $container = $( e.target );
+	$container.find( 'form.flow-reply-form' ).flow( 'setupEmptyDisabler',
 		['.flow-reply-content'],
 		'.flow-reply-submit'
 	);
 
-	$('form.flow-newtopic-form').flow( 'setupEmptyDisabler',
+	$( 'form.flow-newtopic-form' ).flow( 'setupEmptyDisabler',
 		[
 			'.flow-newtopic-title',
 			'.flow-newtopic-content'
@@ -18,7 +18,7 @@ $(document).on( 'flow_init', function( e ) {
 	$container.flow( 'setupFormHandler',
 		'.flow-newtopic-submit',
 		mw.flow.api.newTopic,
-		function() {
+		function () {
 			$form = $(this).closest( '.flow-newtopic-form' );
 
 			var workflowParam = $container.flow( 'getWorkflowParameters' );
@@ -27,17 +27,16 @@ $(document).on( 'flow_init', function( e ) {
 
 			return [ workflowParam, title, content ];
 		},
-		function( workflowParam, title, content ) {
+		function ( workflowParam, title, content ) {
 			return title && content;
 		},
-		function( promise ) {
+		function ( promise ) {
 			promise
-				.done( function( output ) {
-					$form = $(this).closest( '.flow-newtopic-form' );
-
-					var $newRegion = $( output.rendered )
-						.hide()
-						.insertAfter( $form );
+				.done( function ( output ) {
+					var $form = $( this ).closest( '.flow-newtopic-form' ),
+						$newRegion = $( output.rendered )
+							.hide()
+							.insertAfter( $form );
 
 					$newRegion.trigger( 'flow_init' );
 
@@ -50,7 +49,7 @@ $(document).on( 'flow_init', function( e ) {
 	$container.flow( 'setupFormHandler',
 		'.flow-reply-submit',
 		mw.flow.api.reply,
-		function() {
+		function () {
 			$form = $(this).closest( '.flow-reply-form' );
 
 			var workflowId = $( this ).flow( 'getTopicWorkflowId' );
@@ -63,19 +62,18 @@ $(document).on( 'flow_init', function( e ) {
 
 			return [ workflowId, replyToId, content ];
 		},
-		function( workflowId, replyTo, content ) {
+		function ( workflowId, replyTo, content ) {
 			return content;
 		},
-		function( promise ) {
+		function ( promise ) {
 			promise
-				.done( function( output ) {
-					var $replyContainer = $(this)
-						.closest( '.flow-post-container' )
-						.children( '.flow-post-replies' );
-
-					var $newRegion = $( output.rendered )
-						.hide()
-						.prependTo( $replyContainer );
+				.done( function ( output ) {
+					var $replyContainer = $( this )
+							.closest( '.flow-post-container' )
+							.children( '.flow-post-replies' ),
+						$newRegion = $( output.rendered )
+							.hide()
+							.prependTo( $replyContainer );
 
 					$newRegion.trigger( 'flow_init' );
 
@@ -86,13 +84,13 @@ $(document).on( 'flow_init', function( e ) {
 
 	// Overload 'edit post' link.
 	$container.find( '.flow-action-edit-post a' )
-		.click( function(e) {
+		.click( function ( e ) {
 			e.preventDefault();
-			var $postContainer = $(this).closest( '.flow-post' );
-			var $contentContainer = $postContainer.find( '.flow-post-content' );
-			var workflowId = $( this ).flow( 'getTopicWorkflowId' );
-			var pageName = $(this).closest( '.flow-container' ).data( 'page-title' );
-			var postId = $postContainer.data( 'post-id' );
+			var $postContainer = $( this ).closest( '.flow-post' ),
+				$contentContainer = $postContainer.find( '.flow-post-content' ),
+				workflowId = $( this ).flow( 'getTopicWorkflowId' ),
+				pageName = $( this ).closest( '.flow-container' ).data( 'page-title' ),
+				postId = $postContainer.data( 'post-id' );
 
 			if ( $postContainer.find( '.flow-edit-post-form' ).length ) {
 				return;
@@ -108,12 +106,12 @@ $(document).on( 'flow_init', function( e ) {
 					}
 				}
 			)
-				.done( function( data ) {
-					if ( ! data[0] || data[0]['post-id'] != postId ) {
+				.done( function ( data ) {
+					if ( !data[0] || data[0]['post-id'] !== postId ) {
 						console.dir( data );
-						var $errorDiv = $( '<div/>' )
+						$( '<div/>' )
 							.addClass( 'flow-error' )
-							.text( mw.msg( 'flow-error-other') )
+							.text( mw.msg( 'flow-error-other' ) )
 							.hide()
 							.insertAfter( $contentContainer )
 							.slideDown();
@@ -140,10 +138,10 @@ $(document).on( 'flow_init', function( e ) {
 										.addClass( 'flow-cancel-link' )
 										.addClass( 'mw-ui-destructive' )
 										.attr( 'href', '#' )
-										.click( function(e) {
+										.click( function ( e ) {
 											e.preventDefault();
 											$postForm.slideUp( 'fast',
-												function() {
+												function () {
 													$contentContainer.show();
 													$postForm.remove();
 												}
@@ -166,35 +164,35 @@ $(document).on( 'flow_init', function( e ) {
 					$postContainer.flow( 'setupFormHandler',
 						'.flow-edit-post-submit',
 						mw.flow.api.editPost,
-						function() {
+						function () {
 							var content = $postForm.find( '.flow-edit-post-content' ).val();
 
 							return [ workflowId, postId, content ];
 						},
-						function( workflowId, postId, content ) {
+						function ( workflowId, postId, content ) {
 							return content;
 						},
-						function( promise ) {
-							promise.done( function(output) {
+						function ( promise ) {
+							promise.done( function ( output ) {
 								$contentContainer
 									.empty()
 									.append(
-										$(output.rendered)
-											.find('.flow-post-content')
+										$( output.rendered )
+											.find( '.flow-post-content' )
 											.children()
 									);
 								} );
 						}
 					);
 
-					$('form.flow-edit-post-form').flow( 'setupEmptyDisabler',
+					$( 'form.flow-edit-post-form' ).flow( 'setupEmptyDisabler',
 						[
 							'.flow-edit-post-content'
 						],
 						'.flow-edit-post-submit'
 					);
 				} )
-				.fail( function() {
+				.fail( function () {
 					var $errorDiv = $( '<div/>' )
 						.addClass( 'flow-error' )
 						.hide();
@@ -208,32 +206,32 @@ $(document).on( 'flow_init', function( e ) {
 
 	// Overload 'edit title' link.
 	$container.find( '.flow-action-edit-title a' )
-		.click( function(e) {
+		.click( function ( e ) {
 			e.preventDefault();
 
-			var $topicContainer = $(this).closest( '.flow-topic-container' );
-			var $titleBar = $topicContainer.find( '.flow-topic-title' );
-			var oldTitle = $topicContainer.data( 'title' );
+			var $topicContainer = $( this ).closest( '.flow-topic-container' ),
+				$titleBar = $topicContainer.find( '.flow-topic-title' ),
+				oldTitle = $topicContainer.data( 'title' ),
+				$titleEditForm = $( '<form />' );
 
 			$titleBar.find( '.flow-realtitle' )
 				.hide();
 
-			var $titleEditForm = $( '<form />' );
 			$titleEditForm
 				.addClass( 'flow-edit-title-form' )
 				.append(
-					$('<input />')
+					$( '<input />' )
 						.addClass( 'flow-edit-title-textbox' )
 						.attr( 'type', 'text' )
 						.val( oldTitle )
 				)
 				.append(
-					$('<a/>')
+					$( '<a/>' )
 						.addClass( 'flow-cancel-link' )
 						.addClass( 'mw-ui-destructive' )
 						.attr( 'href', '#' )
 						.text( mw.msg( 'flow-cancel' ) )
-						.click( function(e) {
+						.click( function ( e ) {
 							e.preventDefault();
 							$titleBar.children( 'form' )
 								.remove();
@@ -248,7 +246,7 @@ $(document).on( 'flow_init', function( e ) {
 						.addClass( 'mw-ui-button' )
 						.addClass( 'mw-ui-primary' )
 						.attr( 'type', 'submit' )
-						.val( mw.msg('flow-edit-title-submit' ) )
+						.val( mw.msg( 'flow-edit-title-submit' ) )
 				)
 				.appendTo( $titleBar )
 				.find( '.flow-edit-title-textbox' )
@@ -258,17 +256,17 @@ $(document).on( 'flow_init', function( e ) {
 				$titleEditForm.flow( 'setupFormHandler',
 					'.flow-edit-title-submit',
 					mw.flow.api.changeTitle,
-					function() {
-						workflowId = $topicContainer.data( 'topic-id' );
-						content = $titleEditForm.find( '.flow-edit-title-textbox' ).val();
+					function () {
+						var workflowId = $topicContainer.data( 'topic-id' ),
+							content = $titleEditForm.find( '.flow-edit-title-textbox' ).val();
 
 						return [ workflowId, content ];
 					},
-					function( workflowId, content ) {
+					function ( workflowId, content ) {
 						return content && true;
 					},
-					function( promise ) {
-						promise.done(function( output ) {
+					function ( promise ) {
+						promise.done( function ( output ) {
 							$titleBar.find( '.flow-realtitle' )
 								.empty()
 								.text( output.rendered )
