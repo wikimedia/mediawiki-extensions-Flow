@@ -2,6 +2,29 @@
 
 namespace Flow\Data;
 
+/**
+ * This object can be used to easily set keys in a multi-dimensional array.
+ *
+ * Usage:
+ *
+ *   $arr = new Flow\Data\MultiDimArray;
+ *   $arr[array(1,2,3)] = 4;
+ *   $arr[array(2,3,4)] = 5;
+ *   var_export( $arr->all() );
+ *
+ *   array (
+ *     1 => array (
+ *       2 => array (
+ *         3 => 4,
+ *       ),
+ *     ),
+ *     2 => array (
+ *       3 => array (
+ *         4 => 5,
+ *       ),
+ *     ),
+ *   )
+ */
 class MultiDimArray implements \ArrayAccess {
 	protected $data = array();
 

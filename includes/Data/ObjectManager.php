@@ -76,36 +76,75 @@ interface ObjectMapper {
 	function fromStorageRow( array $row, $object = null );
 }
 
-// An Index is just a store that receives updates via handler.
-// backing store's can be passed via constructor
+/**
+ * Indexes store one or more values bucketed by exact key/value combinations.
+ */
 interface Index extends LifecycleHandler {
-	/// Indexes accept no query options
+	/**
+	 * Find data models matching the provided equality condition.
+	 *
+	 * @param array $keys A map of k,v pairs to find via equality condition
+	 * @return array|false Cached subset of data model rows matching the
+	 *     equality conditions provided in $keys.
+	 */
 	function find( array $keys );
 
-	/// Indexes accept no query options
+	/**
+	 * Batch together multiple calls to self::find with minimal network round trips.
+	 *
+	 * @param array $queries An array of arrays in the form of $keys parameter of self::find
+	 * @return array|false Array of arrays in same order as $queries representing batched result set.
+	 */
 	function findMulti( array $queries );
 
-	// Maximum number of items in a single index value
+	/**
+	 * @return integer Maximum number of items in a single index value
+	 */
 	function getLimit();
 
-	// Can the index locate a result for this keys and options pair
+	/**
+	 * Query options are not supported at the query level, the index always
+	 * returns the same value for the same key/value combination.  Depending on what
+	 * the query stores it may contain the answers to various options, which will require
+	 * post-processing by the caller.
+	 *
+	 * @return boolean Can the index locate a result for this keys and options pair
+	 */
 	function canAnswer( array $keys, array $options );
 }
 
-// Compact rows before writing to memcache, expand when receiving back
-// Still returns arrays, just removes unneccessary values
+/**
+ * Compact rows before writing to memcache, expand when receiving back
+ * Still returns arrays, just removes unneccessary values
+ */
 interface Compactor {
-	// Return only the values in $row that will be written to the cache
+	/**
+	 * @param array $row A data model row to strip unnecessary data from
+	 * @return array Only the values in $row that will be written to the cache
+	 */
 	public function compactRow( array $row );
-	// perform self::compactRow against an array of rows
+
+	/**
+	 * @param array $rows Multiple data model rows to strip unnecesssary data from
+	 * @return array The provided rows now containing only the values the will be written to cache
+	 */
 	public function compactRows( array $rows );
-	// Repopulate BagOStuff::multiGet results with any values removed in self::compactRow
+
+	/**
+	 * Repopulate BagOStuff::multiGet results with any values removed in self::compactRow
+	 *
+	 * @param array $cached The multi-dimensional array results of BagOStuff::multiGet
+	 * @param array $keyToQuery An array mapping memcache-key to the values used to generate that cache key
+	 * @return array The cached content from memcache along with any data stripped in self::compactRow
+	 */
 	public function expandCacheResult( array $cached, array $keyToQuery );
 }
 
 
-// A little glue code so you dont need to use the individual manager for each class
-// Can be made more specific once the interfaces settle down
+/**
+ * A little glue code to allow passing arround and manipulating multiple
+ * ObjectManagers more convenient.
+ */
 class ManagerGroup {
 	public function __construct( Container $container, array $classMap ) {
 		$this->container = $container;
@@ -653,7 +692,7 @@ class BasicDbStorage implements WritableObjectStorage {
 		foreach ( $res as $row ) {
 			$result[] = (array) $row;
 		}
-		wfDebugLog( __CLASS__, __METHOD__ . ': ' . print_r( $result, true ) );
+		// wfDebugLog( __CLASS__, __METHOD__ . ': ' . print_r( $result, true ) );
 		return $result;
 	}
 
@@ -1292,7 +1331,12 @@ class LocalBufferedCache extends BufferedCache {
 		}
 		if ( $keys ) {
 			$flipped = array_flip( $keys );
-			foreach ( parent::getMulti( $keys ) as $key => $value ) {
+			$res = parent::getMulti( $keys );
+			if ( $res === false ) {
+				wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure requesting data from memcache : ' . implode( ',', $keys ) );
+				return $found;
+			}
+			foreach ( $res as $key => $value ) {
 				$this->internal[$key] = $found[$key] = $value;
 				unset( $keys[$flipped[$key]] );
 			}
