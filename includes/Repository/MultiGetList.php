@@ -32,14 +32,20 @@ class MultiGetList {
 			return array();
 		}
 		$result = array();
-		foreach ( $this->cache->getMulti( array_keys( $cacheKeys ) ) as $key => $value ) {
-			if ( $cacheKeys[$key] instanceof UUID ) {
-				$idx = $cacheKeys[$key]->getBinary();
-			} else {
-				$idx = $cacheKeys[$key];
+		$multiRes = $this->cache->getMulti( array_keys( $cacheKeys ) );
+		if ( $multiRes === false ) {
+			// Falls through to query only backend
+			wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure querying memcache' );
+		} else {
+			foreach ( $multiRes as $key => $value ) {
+				if ( $cacheKeys[$key] instanceof UUID ) {
+					$idx = $cacheKeys[$key]->getBinary();
+				} else {
+					$idx = $cacheKeys[$key];
+				}
+				$result[$idx] = $value;
+				unset( $cacheKeys[$key] );
 			}
-			$result[$idx] = $value;
-			unset( $cacheKeys[$key] );
 		}
 		if ( count( $cacheKeys ) === 0 ) {
 			return $result;
@@ -56,9 +62,13 @@ class MultiGetList {
 			}
 			$invCacheKeys[$id] = $cacheKey;
 		}
-		foreach ( $res as $id => $row ) {
-			$this->cache->set( $invCacheKeys[$id], $row );
-			$result[$id] = $row;
+		// If we failed contacting memcache a moment ago dont bother trying to
+		// push values either.
+		if ( $multiRes !== false ) {
+			foreach ( $res as $id => $row ) {
+				$this->cache->set( $invCacheKeys[$id], $row );
+				$result[$id] = $row;
+			}
 		}
 
 		return $result;
