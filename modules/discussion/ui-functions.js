@@ -1,45 +1,47 @@
-( function($, mw) {
+( function( $, mw ) {
 	$.fn.extend( true, {
 		'flow' : function() {
-			var args = Array.prototype.slice.call( arguments );
-			var funcName = args.shift();
+			var args = Array.prototype.slice.call( arguments ),
+				funcName = args.shift();
+
 			return this._flow[funcName].apply( this, args );
 		},
 
 		'_flow' : {
 		'setupEmptyDisabler' : function( fieldSelectors, submitSelector ) {
-			var $form = this;
-			var validateFunction = function( $container ) {
-				var isOk = true;
+			var $form = this,
+				validateFunction = function( $container ) {
+					var isOk = true;
 
-				$.each( fieldSelectors, function() {
-					// I have no idea why "toString()" is necessary
-					if ( ! $container.find( this.toString() ).val() ) {
-						isOk = false;
+					$.each( fieldSelectors, function() {
+						// I have no idea why "toString()" is necessary
+						if ( !$container.find( this.toString() ).val() ) {
+							isOk = false;
+							return false; // break
+						}
+					} );
+
+					if ( isOk ) {
+						$container.find( submitSelector )
+							.removeAttr( 'disabled' );
+					} else {
+						$container.find( submitSelector )
+							.attr( 'disabled', 'disabled' );
 					}
-				} );
-
-				if ( isOk ) {
-					$container.find( submitSelector )
-						.removeAttr( 'disabled' );
-				} else {
-					$container.find( submitSelector )
-						.attr( 'disabled', 'disabled' );
-				}
-			};
+				};
 
 			$.each( fieldSelectors, function() {
-					$form.find(this.toString())
-						.not('.flow-disabler')
-						.keyup( function(e) {
-							$container = $(e.target).closest( $form );
-							validateFunction( $container );
-						} )
-						.addClass('flow-disabler');
-				} );
+				$form.find( this.toString() )
+					.not( '.flow-disabler' )
+					.keyup( function( e ) {
+						var $container = $( e.target ).closest( $form );
+						validateFunction( $container );
+					} )
+					.addClass( 'flow-disabler' );
+			} );
 
 			$form.each( function() {
-				validateFunction( $container );
+				validateFunction( $( this ) );
 			} );
 
 			return $form;
@@ -55,34 +57,35 @@
 			var $container = this;
 
 			$container.find( submitSelector )
-				.click( function(e) {
+				.click( function( e ) {
 					e.preventDefault();
-					var $button = $( this );
-					var $form = $button.closest( 'form' );
+
+					var $button = $( this ),
+						$form = $button.closest( 'form' ),
+						params = loadParametersCallback.apply( this ),
+						$spinner = $( '<div/>' ),
+						deferredObject = $.Deferred();
 
 					$form.find( '.flow-error' )
 						.remove();
 
-					var params = loadParametersCallback.apply( this );
-
-					if ( validateCallback && ! validateCallback.apply( this, params ) ) {
+					if ( validateCallback && !validateCallback.apply( this, params ) ) {
 						$button.attr( 'disabled', 'disabled' );
-						console.log( "Validate callback failed" );
+						console.log( 'Validate callback failed' );
 						return;
 					}
 
 					$button.hide();
-					var $spinner = $( '<div/>' )
+					$spinner
 						.addClass( 'flow-loading-indicator' )
 						.insertAfter( $button );
-					var deferredObject = $.Deferred();
 
 					if ( promiseCallback ) {
 						promiseCallback( deferredObject.promise() );
 					}
 
 					submitFunction.apply( this, params )
-						.done( function(output) {
+						.done( function( output ) {
 							$spinner.remove();
 							$button.show();
 							$form.find( '.flow-cancel-link' )
@@ -90,12 +93,13 @@
 
 							deferredObject.resolve.apply( $button, arguments );
 						} )
-						.fail( function( ) {
+						.fail( function() {
+							var $errorDiv = $( '<div/>' ).flow( 'showError', arguments ),
+								$disclaimer = $form.find( '.flow-disclaimer' );
+
 							$spinner.remove();
 							$button.show();
 
-							var $errorDiv = $('<div/>').flow( 'showError', arguments );
-							var $disclaimer = $form.find( '.flow-disclaimer' );
 							if ( $disclaimer.length ) {
 								$errorDiv.insertBefore( $disclaimer );
 							} else {
@@ -109,10 +113,10 @@
 			return $container;
 		},
 
-		'getTopicWorkflowId' : function( ) {
-			var $element = this;
-			var $topicContainer = $element.closest( '.flow-topic-container' );
-			var $container = $element.closest( '.flow-container' );
+		'getTopicWorkflowId' : function() {
+			var $element = this,
+				$topicContainer = $element.closest( '.flow-topic-container' ),
+				$container = $element.closest( '.flow-container' );
 
 			if ( $topicContainer.length ) {
 				return $topicContainer.data( 'topic-id' );
@@ -120,54 +124,54 @@
 				return $container.data( 'workflow-id' );
 			} else {
 				console.dirxml( $element[0] );
-				throw new Error( "Unable to get a workflow ID" );
+				throw new Error( 'Unable to get a workflow ID' );
 			}
 		},
 
-		'getWorkflowParameters' : function( ) {
-			var $container = this.closest( '.flow-container' );
-			var workflowStatus = $container.data( 'workflow-existence' );
+		'getWorkflowParameters' : function() {
+			var $container = this.closest( '.flow-container' ),
+				workflowStatus = $container.data( 'workflow-existence' );
 
-			if ( workflowStatus == 'new' ) {
+			if ( workflowStatus === 'new' ) {
 				return {
 					'page' : $container.data( 'page-title' )
 				};
-			} else if ( workflowStatus == 'existing' ) {
+			} else if ( workflowStatus === 'existing' ) {
 				return {
 					'workflow' : $container.data( 'workflow-id' )
 				};
 			} else {
-				throw new Error( "Unknown workflow status " + workflowStatus );
+				throw new Error( 'Unknown workflow status ' + workflowStatus );
 			}
 		},
 
 		'showError' : function( errorArgs ) {
-			var $errorDiv = this;
+			var $errorDiv = this,
+				apiExceptionPrefix = 'internal_api_error',
+				errors = [],
+				$errorList = $( '<ul/>' );
 
 			$errorDiv
 				.addClass( 'flow-error' )
 				.hide()
 				.slideDown( 'fast' );
 
-			var apiExceptionPrefix = 'internal_api_error';
-			if ( errorArgs[0] == 'http' ) {
+			if ( errorArgs[0] === 'http' ) {
 				// HTTP error occurred
 				$errorDiv.html( mw.message( 'flow-error-http' ).text() );
-			} else if ( errorArgs[0].substr( 0, apiExceptionPrefix.length ) == apiExceptionPrefix ) {
+			} else if ( errorArgs[0].substr( 0, apiExceptionPrefix.length ) === apiExceptionPrefix ) {
 				$errorDiv.html( mw.message( 'flow-error-external', errorArgs[1].error.info ).text() );
 				console.dir( errorArgs[1] );
-			} else if ( errorArgs[0] == 'block-errors' ) {
-				var errors = [];
+			} else if ( errorArgs[0] === 'block-errors' ) {
 				$.each( errorArgs[1], function( block, blockErrors ) {
 					$.each( blockErrors, function( field, errorMsg ) {
 						errors.push( errorMsg );
 					} );
 				} );
 
-				if ( errors.length == 1 ) {
+				if ( errors.length === 1 ) {
 					$errorDiv.html( mw.message( 'flow-error-external', errors.pop() ).text() );
 				} else if ( errors.length > 1 ) {
-					var $errorList = $( '<ul/>' );
 					$.each( errors, function( k, error ) {
 						$( '<li />' ).text( error )
 							.appendTo( $errorList );
