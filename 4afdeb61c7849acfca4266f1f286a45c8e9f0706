@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_00ed56c4",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "The resource declarations are getting long. You might want to consider moving them to separate file called Resources.php as we have done in ULS and Translate.\n\nThe same applies to autoload declarations as well. It is much nicer for the wiki admins if they have a look at this file and find configuration options easily.\n\nIt is also nicer for developers as they don\u0027t have to scroll up and down in the file so much to find the correct place to make changes.",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_20d25200",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "I\u0027ve started sorting the modules alphabetically by module name. Solves the problem \"where do I add this new module\" and also helps finding the correct module, although searching is more likely to be used.",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_40cf5e57",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "I usually add a comment like Hook: SetupAfterCache to the docs for easier cross reference. Also helps if you are grepping where the hook is used, as you don\u0027t need to first find the hook declaration and then the actual hook function separately.",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_60dc5a10",
+        "filename": "includes/Block/Summary.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "I prefer \u003d\u003d\u003d",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_80d94621",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "Why not SpecialPage::getTitleFor( \u0027Flow\u0027 ) as above?",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_c00b4e8e",
+        "filename": "includes/api/ApiQueryRevisionContentFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "Don\u0027t use $wgUser in API modules, $this-\u003egetUser().",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_a0064287",
+        "filename": "includes/api/ApiQueryRevisionContentFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "This line is quite long",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_00063686",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "You should consider starting to use \u0027use strict\u0027. I\u0027m also not a fan of skipping an indentation level.",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_e0004a6d",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "In JSDuck this would be \"@param {string} [content]\", I believe.",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_20fb3278",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "} ( jQuery, mediaWiki ) ); is the preferred way nowdays. Some even swap order of jQuery and mediaWiki",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_40f83e79",
+        "filename": "modules/summary/summary.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "I prefer the explicit $( document ).ready(), though opinions differ on this. But there should be a space after function keyword before ().",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_60f53a80",
+        "filename": "templates/edit-post.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-06T06:06:49Z",
+      "side": 1,
+      "message": "Mmm we should not be introducing new usages of globals.",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
