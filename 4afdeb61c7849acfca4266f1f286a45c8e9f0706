@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4946a543_dbcdff32",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4946a543_00ed56c4",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_20d25200",
         "filename": "Flow.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2013-09-06T06:06:49Z",
       "side": 1,
       "message": "I\u0027ve started sorting the modules alphabetically by module name. Solves the problem \"where do I add this new module\" and also helps finding the correct module, although searching is more likely to be used.",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_dbb89f76",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Kinda disagree here; I prefer to have \"similar\" code grouped together, rather than just based on names.\n\nI think a quick CTRL+F will reveal it just as easily :)\n\nOften, using prefixes, that\u0027ll be the case too when sorting alphabetically - though this would have ext.flow.summary after ext.flow.editor (and co), whereas logically, it\u0027s more equivalent to ext.flow.discussion.",
+      "parentUuid": "4946a543_20d25200",
       "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4946a543_bbc83324",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4946a543_40cf5e57",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_60dc5a10",
         "filename": "includes/Block/Summary.php",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2013-09-06T06:06:49Z",
       "side": 1,
       "message": "I prefer \u003d\u003d\u003d",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_9bc37709",
+        "filename": "includes/Block/Summary.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4946a543_60dc5a10",
       "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "4946a543_fbd2bbcf",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4946a543_80d94621",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_c00b4e8e",
         "filename": "includes/api/ApiQueryRevisionContentFlow.php",
         "patchSetId": 2
@@ -98,6 +188,24 @@
       "writtenOn": "2013-09-06T06:06:49Z",
       "side": 1,
       "message": "Don\u0027t use $wgUser in API modules, $this-\u003egetUser().",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_1bd867ed",
+        "filename": "includes/api/ApiQueryRevisionContentFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4946a543_c00b4e8e",
       "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "4946a543_5be2efa4",
+        "filename": "includes/api/ApiQueryRevisionContentFlow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4946a543_a0064287",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_00063686",
         "filename": "modules/editor/editors/ext.flow.editors.none.js",
         "patchSetId": 2
@@ -132,6 +258,24 @@
       "writtenOn": "2013-09-06T06:06:49Z",
       "side": 1,
       "message": "You should consider starting to use \u0027use strict\u0027. I\u0027m also not a fan of skipping an indentation level.",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_9bec5795",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4946a543_00063686",
       "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -172,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "4946a543_bbf1136c",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4946a543_20fb3278",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_40f83e79",
         "filename": "modules/summary/summary.js",
         "patchSetId": 2
@@ -189,6 +351,24 @@
     },
     {
       "key": {
+        "uuid": "4946a543_1bb30799",
+        "filename": "modules/summary/summary.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4946a543_40f83e79",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_60f53a80",
         "filename": "templates/edit-post.html.php",
         "patchSetId": 2
@@ -200,6 +380,24 @@
       "writtenOn": "2013-09-06T06:06:49Z",
       "side": 1,
       "message": "Mmm we should not be introducing new usages of globals.",
+      "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_bb64b324",
+        "filename": "templates/edit-post.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-06T17:06:45Z",
+      "side": 1,
+      "message": "Apparently, user object is already being exposed in this context as $user - fixing that",
+      "parentUuid": "4946a543_60f53a80",
       "revId": "4afdeb61c7849acfca4266f1f286a45c8e9f0706",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
