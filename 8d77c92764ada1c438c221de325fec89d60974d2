@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_802dc6aa",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-09-06T10:40:41Z",
+      "side": 1,
+      "message": "If there are usernames here somewhere, and the two messages with $1 and $2 below, these need explicit GENDER support, too.",
+      "revId": "8d77c92764ada1c438c221de325fec89d60974d2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_a01ac278",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-09-06T10:40:41Z",
+      "side": 1,
+      "message": "If $1 is a username, this needs GENDER support.",
+      "revId": "8d77c92764ada1c438c221de325fec89d60974d2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_c01fce67",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-09-06T10:40:41Z",
+      "side": 1,
+      "message": "Maybe add \"replyTo\" in quotes? Same below, and for the \"postId\" messages a few lines down.",
+      "revId": "8d77c92764ada1c438c221de325fec89d60974d2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_e014ca4e",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-09-06T10:40:41Z",
+      "side": 1,
+      "message": "Sorry, I was unclear in my comment, I guess. The same goes for the 3 below messages.",
+      "revId": "8d77c92764ada1c438c221de325fec89d60974d2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
