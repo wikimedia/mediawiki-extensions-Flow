@@ -533,6 +533,15 @@ $1',
 	'flow-months-ago' => 'לפני {{PLURAL:$1|חודש|חודשיים|$1 חודשים}}',
 );
 
+/** Interlingua (interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'flow-desc' => 'Systema de gestion de fluxo de travalio',
+	'flow-specialpage' => '$1 &ndash; Fluxo',
+	'flow-edit-summary-link' => 'Summario del modification',
+);
+
 /** Italian (italiano)
  * @author Beta16
  * @author Gianfranco
