@@ -19,11 +19,9 @@ mw.flow = {
 				.post(
 					$.extend(
 						{
-							'action' : 'flow',
-							'flowaction' : action,
-							'gettoken' : 'gettoken'
-						},
-						workflowParam
+							'action' : 'tokens',
+							'type' : 'flow'
+						}
 					)
 				)
 				.done( function ( data ) {
@@ -31,7 +29,7 @@ mw.flow = {
 						'action' : 'flow',
 						'flowaction' : action,
 						'params' : $.toJSON( options ),
-						'token' : data.flow.token
+						'token' : data.tokens.flowtoken
 					};
 
 					request = $.extend( request, workflowParam );

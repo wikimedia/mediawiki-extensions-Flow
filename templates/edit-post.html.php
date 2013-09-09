@@ -4,7 +4,6 @@ echo Html::openElement( 'form', array(
 	'method' => 'POST',
 	'action' => $this->generateUrl( $topic->getId(), 'edit-post' ),
 ) );
-$editToken = $user->getEditToken( 'flow' );
 if ( $block->hasErrors() ) {
 	echo '<ul>';
 	foreach ( $block->getErrors() as $error ) {
@@ -18,7 +17,7 @@ $postWikitext = \Flow\ParsoidUtils::convertHtml5ToWikitext( $post->getContent() 
 echo Html::element( 'input', array(
 		'type' => 'hidden',
 		'name' => 'wpEditToken',
-		'value' => $user->getEditToken( 'flow' ),
+		'value' => $editToken,
 	) ),
 	Html::element( 'input', array(
 		'type' => 'hidden',

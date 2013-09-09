@@ -5,7 +5,6 @@ echo Html::openElement( 'form', array(
 	'method' => 'POST',
 	'action' => $this->generateUrl( $workflow, 'edit-summary' ),
 ) );
-$editToken = $user->getEditToken( 'flow' );
 echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 if ( $block->hasErrors( 'prev_revision' ) ) {
 	echo '<p>' . $block->getError( 'prev_revision' )->escaped() . '</p>';

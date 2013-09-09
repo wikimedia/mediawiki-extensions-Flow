@@ -8,13 +8,6 @@ class ApiFlow extends ApiBase {
 		$params = $this->extractRequestParams();
 		$output = array();
 
-		if ( $params['gettoken'] ) {
-			$this->getResult()->addValue( null, $this->getModuleName(), array(
-				'token' => $this->getContext()->getUser()->getEditToken( 'flow' ),
-			) );
-			return true;
-		}
-
 		if ( ! $params['workflow'] && ! $params['page'] ) {
 			$this->dieUsage( 'missing-param', 'One of workflow or page parameters must be provided' );
 			return;
@@ -133,9 +126,8 @@ class ApiFlow extends ApiBase {
 			'params' => array(
 				ApiBase::PARAM_DFLT => '{}',
 			),
-			'token' => null,
-			'gettoken' => array(
-				ApiBase::PARAM_DFLT => false,
+			'token' => array(
+				ApiBase::PARAM_REQUIRED => true,
 			),
 			'render' => array(
 				ApiBase::PARAM_DFLT => false,
@@ -148,8 +140,7 @@ class ApiFlow extends ApiBase {
 			'action' => 'The action to take',
 			'workflow' => 'The Workflow to take an action on',
 			'params' => 'The parameters to pass',
-			'token' => 'A token retrieved by calling this module with the gettoken parameter set.',
-			'gettoken' => 'Set this to something to retrieve a token',
+			'token' => 'A token retrieved from api.php?action=tokens&type=flow.',
 			'render' => 'Set this to something to include a block-specific rendering in the output',
 		);
 	}
@@ -171,6 +162,7 @@ class ApiFlow extends ApiBase {
 	}
 
 	public function getTokenSalt() {
-		return 'flow';
+		global $wgFlowTokenSalt;
+		return $wgFlowTokenSalt;
 	}
 }

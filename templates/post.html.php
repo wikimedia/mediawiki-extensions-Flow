@@ -1,6 +1,5 @@
 <?php
 
-$editToken = $user->getEditToken( 'flow' );
 $self = $this;
 
 $postAction = function( $action, array $data = array(), $class = '' ) use( $self, $block, $editToken ) {

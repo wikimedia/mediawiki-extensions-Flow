@@ -142,4 +142,22 @@ class FlowHooks {
 		}
 		return true;
 	}
+
+	/**
+	 * Add token type "flow", to generate edit tokens for Flow via
+	 * api.php?action=tokens&type=flow
+	 *
+	 * @param array $tokenFunctions Array of callables for token types
+	 * @return bool
+	 */
+	public static function onApiTokensGetTokenTypes( &$tokenFunctions ) {
+		$flowToken = function() {
+			global $wgUser, $wgFlowTokenSalt;
+			return $wgUser->getEditToken( $wgFlowTokenSalt );
+		};
+
+		$tokenFunctions['flow'] = $flowToken;
+
+		return true;
+	}
 }
