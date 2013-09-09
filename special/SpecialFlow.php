@@ -60,7 +60,8 @@ class SpecialFlow extends SpecialPage {
 
 		if ( $request->getMethod() === 'POST' ) {
 			$user = $this->container['user'];
-			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( 'flow' ) ) {
+			global $wgFlowTokenSalt;
+			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
 				$error = '<div class="error">' . wfMessage( 'sessionfailure' ) . '</div>';
 				$this->getOutput()->addHTML( $error );
 			} else {

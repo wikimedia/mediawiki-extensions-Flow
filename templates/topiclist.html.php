@@ -1,6 +1,5 @@
 <?php
 
-$editToken = $user->getEditToken( 'flow' );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
 	'action' => $this->generateUrl( $block->getWorkflow(), 'new-topic' ),

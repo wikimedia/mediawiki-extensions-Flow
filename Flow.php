@@ -124,6 +124,7 @@ $wgAPIModules['flow'] = 'ApiFlow';
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
 //$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
+$wgHooks['ApiTokensGetTokenTypes'][] = 'FlowHooks::onApiTokensGetTokenTypes';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
@@ -204,6 +205,9 @@ $wgFlowExternalStore = false;
 $wgFlowConfig = array(
 	'version' => '0.1.0',
 );
+
+// Salt used to generate edit tokens for authenticating Flow actions
+$wgFlowTokenSalt = 'flow';
 
 // When visiting the flow for an article but not specifying what type of workflow should be viewed,
 // use this workflow

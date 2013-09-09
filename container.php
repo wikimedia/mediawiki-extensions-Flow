@@ -34,8 +34,11 @@ $c['templating.namespaces'] = array(
 	'flow' => __DIR__ . '/templates',
 );
 $c['templating.global_variables'] = $c->share( function( $c ) {
+	global $wgFlowTokenSalt;
+
 	return array(
 		'user' => $c['user'],
+		'editToken' => $c['user']->getEditToken( $wgFlowTokenSalt ),
 	);
 } );
 $c['templating'] = $c->share( function( $c ) {

@@ -14,7 +14,7 @@ echo Html::openElement( 'form', array(
 		// root post shares its uuid with the workflow
 		'action' => $this->generateUrl( $topicTitle->getPostId(), 'edit-title' ),
 	) ),
-	Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $user->getEditToken( 'flow' ) ) ),
+	Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken ) ),
 		Html::textarea( $block->getName() . '[content]', $topicTitle->getContent() ),
 		Html::element( 'input',
 			array(
