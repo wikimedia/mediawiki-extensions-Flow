@@ -195,6 +195,9 @@ abstract class AbstractRevision {
 			return wfMessage(
 				self::$perms[$this->moderationState]['content'],
 				$this->moderatedByUserText,
+				// FIXME (spage, 2013-09-13) results in, e.g. "Deleted by Admin In 8 days".
+				// Removing createdAt gives right timeframe, but all the $createdAt code
+				// above suggests we intend something like "3 days later"?
 				$moderatedAt->getHumanTimestamp( $createdAt )
 			);
 		}

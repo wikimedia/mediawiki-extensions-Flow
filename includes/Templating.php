@@ -136,7 +136,7 @@ class Templating {
 		}
 		$now = new MWTimestamp;
 		$then = new MWTimestamp( $timestamp );
-		return $now->getHumanTimestamp( $then );
+		return $then->getHumanTimestamp( $now );
 	}
 }
 
