@@ -343,6 +343,35 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-notification-rename' => '$1 änderte den Titel von [$2 $3] nach „$4“ auf [[$5|$6]]',
 );
 
+/** Finnish (suomi)
+ * @author Stryn
+ */
+$messages['fi'] = array(
+	'flow-edit-summary-link' => 'Muokkauksen yhteenveto',
+	'flow-disclaimer' => 'Tallentamalla muutokset osoitat hyväksyväsi, että muokkauksesi julkaistaan pysyvästi Creative Commons Nimeä-Tarttuva 3.0- ja GFDL-lisenssien ehdoin. Hyväksyt, että hyperlinkki tai URL on riittävä Creative Commons -lisenssillä.',
+	'flow-post-hidden' => '[viesti piilotettu]',
+	'flow-post-deleted' => '[viesti poistettu]',
+	'flow-post-censored' => '[viesti sensuroitu]',
+	'flow-post-actions' => 'toiminnot',
+	'flow-topic-actions' => 'toiminnot',
+	'flow-cancel' => 'Peruuta',
+	'flow-newtopic-title-placeholder' => 'Viestin aihe',
+	'flow-newtopic-content-placeholder' => 'Viestin teksti. Ole mukava!',
+	'flow-newtopic-header' => 'Lisää uusi aihe',
+	'flow-newtopic-save' => 'Lisää aihe',
+	'flow-newtopic-start-placeholder' => 'Paina tästä aloittaaksesi uuden aiheen. Ole mukava!',
+	'flow-reply-placeholder' => 'Paina tästä vastataksesi käyttäjälle $1. Ole mukava!',
+	'flow-reply-submit' => 'Lähetä vastaus',
+	'flow-edit-post-submit' => 'Lähetä muutokset',
+	'flow-post-action-view' => 'Ikilinkki',
+	'flow-post-action-edit' => 'Muokkaa',
+	'flow-post-action-restore-post' => 'Palauta viesti',
+	'flow-topic-action-edit-title' => 'Muokkaa otsikkoa',
+	'flow-topic-action-history' => 'Aiheen historia',
+	'flow-summaryedit-submit' => 'Tallenna yhteenveto',
+	'flow-edit-title-submit' => 'Muuta otsikkoa',
+);
+
 /** French (français)
  * @author Gomoko
  * @author Sherbrooke
@@ -787,6 +816,71 @@ $messages['mr'] = array(
 	'flow-error-external-multi' => 'आपले उत्तर जतन करण्यात त्रूटी आढळल्या.आपले उत्तर जतन झाले नाही.<br />$1',
 );
 
+/** Norwegian Bokmål (norsk bokmål)
+ * @author Danmichaelo
+ */
+$messages['nb'] = array(
+	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-edit-summary-link' => 'Redigeringsforklaring',
+	'flow-disclaimer' => 'Ved å trykke på knappen «Legg til melding» godtar du bruksvilkårene og samtykker ugjenkallelig til å utgi ditt bidrag under CC BY-SA 3.0 og GFDL.
+Du godtar at en hyperlenke eller URL utgjør tilstrekkelig navngivelse under Creative Commons-lisensen.',
+	'flow-post-hidden' => '[skjult melding]',
+	'flow-post-hidden-by' => 'Skjult av $1 $2',
+	'flow-post-deleted' => '[melding slettet]',
+	'flow-post-deleted-by' => 'Slettet av $1 $2',
+	'flow-post-censored' => '[melding sensurert]',
+	'flow-post-censored-by' => 'Sensurert av $1 $2',
+	'flow-post-actions' => 'handlinger',
+	'flow-topic-actions' => 'handlinger',
+	'flow-cancel' => 'Avbryt',
+	'flow-newtopic-title-placeholder' => 'Meldingsemne',
+	'flow-newtopic-content-placeholder' => 'Meldingstekst. Vær hyggelig!',
+	'flow-newtopic-header' => 'Legg til et nytt emne',
+	'flow-newtopic-save' => 'Legg til emne',
+	'flow-newtopic-start-placeholder' => 'Trykk her for å starte en ny diskusjon. Vær hyggelig!',
+	'flow-reply-placeholder' => 'Trykk for å svare $1. Vær hyggelig!',
+	'flow-reply-submit' => 'Legg inn svar',
+	'flow-edit-post-submit' => 'Send inn endringer',
+	'flow-post-action-view' => 'Permanent lenke',
+	'flow-post-action-post-history' => 'Meldingshistorikk',
+	'flow-post-action-censor-post' => 'Sensurér melding',
+	'flow-post-action-delete-post' => 'Slett melding',
+	'flow-post-action-hide-post' => 'Skjul melding',
+	'flow-post-action-edit-post' => 'Rediger melding',
+	'flow-post-action-edit' => 'Rediger',
+	'flow-post-action-restore-post' => 'Gjenopprett melding',
+	'flow-topic-action-edit-title' => 'Rediger tittel',
+	'flow-topic-action-history' => 'Emnehistorikk',
+	'flow-error-http' => 'Det oppsto en nettverksfeil. Meldingen din ble ikke lagret.',
+	'flow-error-other' => 'Det oppsto en ukjent feil. Meldingen din ble ikke lagret.',
+	'flow-error-external' => 'Det oppsto en feil under lagring av meldingen. Meldingen din ble ikke lagret.<br /><small>Feilmeldingen var: $1</small>',
+	'flow-error-external-multi' => 'Feil oppsto under lagring av meldingen. Meldingen din ble ikke lagret.<br />$1',
+	'flow-error-missing-content' => 'Meldingen har ikke noe innhold. Innhold er påkrevd for at meldingen skal bli lagret.',
+	'flow-error-missing-title' => 'Meldingen har ingen tittel. En tittel er påkrevd for at meldingen skal bli lagret.',
+	'flow-error-parsoid-failure' => 'Innholdet kunne ikke parseres pga. et Parsord-problem.',
+	'flow-edit-title-submit' => 'Endre tittel',
+	'flow-rev-message-reply' => 'Nytt svar lagt inn',
+	'flow-rev-message-new-post' => 'Samtale opprettet',
+	'flow-topic-history' => 'Samtalehistorikk',
+	'flow-comment-restored' => 'Gjenopprettet kommentar',
+	'flow-comment-deleted' => 'Slettet kommentar',
+	'flow-comment-hidden' => 'Skjult kommentar',
+	'flow-paging-rev' => 'Mer aktuelle samtaler',
+	'flow-paging-fwd' => 'Eldre samtaler',
+	'flow-last-modified' => 'Sist endret for rundt $1',
+	'flow-notification-reply' => '$1 svarte på [$5 meldingen] din i «$2» på [[$3|$4]].',
+	'flow-notification-edit' => '$1 redigerte [$5 meldingen] din i «$2» på [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 startet en [$5 ny samtale] på [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 endret overskriften for [$2 $3] til «$4» på [[$5|$6]]',
+);
+
+/** Dutch (Nederlands)
+ * @author Southparkfan
+ */
+$messages['nl'] = array(
+	'flow-post-deleted-by' => 'Verwijderd door $1 $2',
+);
+
 /** Occitan (occitan)
  * @author Cedric31
  */
@@ -997,6 +1091,74 @@ $messages['uk'] = array(
 	'flow-notification-edit' => '$1 відредагував [повідомлення $5] у $2 на [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 створив [нову тему $5] на [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 змінив назву [$2 $3] на "$4" у [[$5|$6]]',
+);
+
+/** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
+ */
+$messages['vi'] = array(
+	'flow-desc' => 'Hệ thống quản lý luồng công việc',
+	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-edit-summary-link' => 'Tóm lược sửa đổi',
+	'flow-disclaimer' => 'Với việc bấm nút “Nhắn tin”, bạn chấp nhận các Điều khoản Sử dụng,
+và bạn đồng ý phát hành, một cách không thể hủy bỏ, đóng góp của mình theo Giấy phép Creative Commons Ghi công–Chia sẻ tương tự 3.0 và GFDL.
+Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều kiện ghi công trong giấy phép Creative Commons.',
+	'flow-post-hidden' => '[bài đăng bị ẩn]',
+	'flow-post-hidden-by' => 'Ẩn bởi $1 $2',
+	'flow-post-deleted' => '[bài đăng bị xóa]',
+	'flow-post-deleted-by' => 'Xóa bởi $1 $2',
+	'flow-post-censored' => '[bài đăng bị kiểm duyệt]',
+	'flow-post-censored-by' => 'Kiểm duyệt bởi $1 $2',
+	'flow-post-actions' => 'tác vụ',
+	'flow-topic-actions' => 'tác vụ',
+	'flow-cancel' => 'Hủy bỏ',
+	'flow-newtopic-title-placeholder' => 'Tiêu đề tin nhắn',
+	'flow-newtopic-content-placeholder' => 'Văn bản tin nhắn. Hãy có thái độ thân thiện!',
+	'flow-newtopic-header' => 'Thêm chủ đề mới',
+	'flow-newtopic-save' => 'Thêm chủ đề',
+	'flow-newtopic-start-placeholder' => 'Nhấn chuột vào đây để bắt đầu cuộc thảo luận mới. Hãy có thái độ thân thiện!',
+	'flow-reply-placeholder' => 'Nhấn chuột vào đây để trả lời $1. Hãy có thái độ thân thiện!',
+	'flow-reply-submit' => 'Trả lời',
+	'flow-edit-post-submit' => 'Gửi thay đổi',
+	'flow-post-action-view' => 'Liên kết thường trực',
+	'flow-post-action-post-history' => 'Lịch sử bài đăng',
+	'flow-post-action-censor-post' => 'Kiểu duyệt bài đăng',
+	'flow-post-action-delete-post' => 'Xóa bài đăng',
+	'flow-post-action-hide-post' => 'Ẩn bài đăng',
+	'flow-post-action-edit-post' => 'Sửa bài đăng',
+	'flow-post-action-edit' => 'Sửa đổi',
+	'flow-post-action-restore-post' => 'Phục hồi bài đăng',
+	'flow-topic-action-edit-title' => 'Sửa tiêu đề',
+	'flow-topic-action-history' => 'Lịch sử chủ đề',
+	'flow-error-http' => 'Đã xuất hiện lỗi khi liên lạc với máy chủ. Bài đăng của bạn không được lưu.',
+	'flow-error-other' => 'Đã xuất hiện lỗi bất ngờ. Bài đăng của bạn không được lưu.',
+	'flow-error-external' => 'Đã xuất hiện lỗi khi lưu bài đăng của bạn. Bài đăng của bạn không được lưu.<br /><small>Lỗi nhận được là: $1</small>',
+	'flow-error-external-multi' => 'Đã xuất hiện lỗi khi lưu bài đăng của bạn. Bài đăng của bạn không được lưu.<br />$1',
+	'flow-error-missing-content' => 'Bài đăng không có nội dung. Bài đăng mới phải có nội dung để lưu.',
+	'flow-error-missing-title' => 'Chủ đề không có tiêu đề. Chủ đề phải có tiêu đề để lưu.',
+	'flow-error-parsoid-failure' => 'Không thể phân tích nội dung vì Parsoid bị thất bại.',
+	'flow-error-missing-replyto' => 'Tham số replyTo không được cung cấp. Tham số này cần để thực hiện tác vụ “trả lời”.',
+	'flow-error-invalid-replyto' => 'Tham số replyTo có giá trị không hợp lệ. Không tìm thấy bài đăng.',
+	'flow-error-delete-failure' => 'Thất bại khi xóa mục này.',
+	'flow-error-hide-failure' => 'Thất bại khi ẩn mục này.',
+	'flow-error-missing-postId' => 'Tham số postId không được cung cấp. Tham số này cần để xóa hoặc phục hồi bài đăng.',
+	'flow-error-invalid-postId' => 'Tham số postId có giá trị không hợp lệ. Không tìm thấy bài đăng.',
+	'flow-error-restore-failure' => 'Thất bại khi phục hồi mục này.',
+	'flow-summaryedit-submit' => 'Lưu lời tóm lược',
+	'flow-edit-title-submit' => 'Thay đổi tiêu đề',
+	'flow-rev-message-reply' => 'Đã đăng bài trả lời',
+	'flow-rev-message-new-post' => 'Đã tạo chủ đề',
+	'flow-topic-history' => 'Lịch sử chủ đề',
+	'flow-comment-restored' => 'Bình luận đã được phục hồi',
+	'flow-comment-deleted' => 'Bình luận đã bị xóa',
+	'flow-comment-hidden' => 'Bình luận đã bị ẩn',
+	'flow-paging-rev' => 'Thêm chủ đề gần đây',
+	'flow-paging-fwd' => 'Chủ đề cũ hơn',
+	'flow-last-modified' => 'Thay đổi lần cuối cùng vào khoảng $1',
+	'flow-notification-reply' => '$1 đã trả lời [$5 bài đăng của bạn] về $2 tại [[$3|$4]].',
+	'flow-notification-edit' => '$1 đã sửa đổi [$5 bài đăng của bạn] về $2 tại [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 đã tạo ra [$5 chủ đề mới] tại [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 đã thay đổi tiêu đề của [$2 $3] thành “$4” tại [[$5|$6]]',
 );
 
 /** Yiddish (ייִדיש)
