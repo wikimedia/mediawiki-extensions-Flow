@@ -6,10 +6,10 @@ CREATE TABLE /*_*/flow_definition (
 	definition_wiki varchar(32) binary NOT NULL,
 	definition_name varchar(32) binary NOT NULL,
 	definition_type varchar(32) binary NOT NULL,
-	definition_options BLOB NULL, -- should instead be revisioned blob		
+	definition_options BLOB NULL, -- should instead be revisioned blob
 	PRIMARY KEY (definition_id)
 ) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX /*i*/flow_definition_unique_name ON flow_definition (definition_wiki, definition_name);
+CREATE UNIQUE INDEX /*i*/flow_definition_unique_name ON /*_*/flow_definition (definition_wiki, definition_name);
 
 CREATE TABLE /*_*/flow_workflow (
 	workflow_id binary(16) not null,
@@ -66,13 +66,13 @@ CREATE TABLE /*_*/flow_tree_revision (
 	PRIMARY KEY( tree_rev_id )
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/flow_tree_descendant_id_revisions 
+CREATE UNIQUE INDEX /*i*/flow_tree_descendant_id_revisions
 	ON /*_*/flow_tree_revision ( tree_rev_descendant_id, tree_rev_id );
 
 -- Summary Content
--- Instead of summary, should this be more generic 'revisioned scratchpad' 
+-- Instead of summary, should this be more generic 'revisioned scratchpad'
 -- or something?  Main limit in current setup can only associate one summary per
--- workflow 
+-- workflow
 CREATE TABLE /*_*/flow_summary_revision (
 	summary_workflow_id binary(16) not null,
 	summary_rev_id binary(16) not null,
