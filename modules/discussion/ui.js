@@ -30,6 +30,8 @@
 				$( this ).closest( 'form' )
 					.children( '.flow-post-form-extras' )
 					.show();
+
+				mw.flow.editor.load( $( this ) );
 			} );
 
 		$container.find( '.flow-post-form-extras' )
@@ -42,6 +44,13 @@
 			.text( mw.msg( 'flow-cancel' ) )
 			.click( function ( e ) {
 				e.preventDefault();
+
+				mw.flow.editor.destroy(
+					$( this )
+						.closest( '.flow-reply-form' )
+						.find( ':data(flow-editor)' )
+				);
+
 				$( this ).closest( '.flow-post-form-extras' )
 					.slideUp( 'fast', function () {
 						$( this ).closest( '.flow-reply-form' )
@@ -71,6 +80,8 @@
 					.attr( 'placeholder', mw.msg( 'flow-newtopic-title-placeholder' ) );
 				$( '.flow-newtopic-submit' )
 					.attr( 'disabled', 'disabled' );
+
+				mw.flow.editor.load( $( '.flow-newtopic-content' ) );
 			} );
 
 		$( '<a />' )
@@ -81,6 +92,8 @@
 			.click( function ( e ) {
 				e.preventDefault();
 				var $form = $( this ).closest( 'form.flow-newtopic-form' );
+
+				mw.flow.editor.destroy( $form.find( '.flow-newtopic-content' ) );
 
 				$( '.flow-newtopic-step2' )
 					.slideUp( 'fast', function () {
