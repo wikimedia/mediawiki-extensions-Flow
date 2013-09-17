@@ -36,6 +36,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	'flow-edit-post-submit' => 'Submit changes',
 
+	'flow-post-edited' => 'Post {{GENDER:$1|edited}} by $1 $2',
 	'flow-post-action-view' => 'Permalink',
 	'flow-post-action-post-history' => 'Post history',
 	'flow-post-action-censor-post' => 'Censor post',
@@ -51,6 +52,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-error-http' => 'An error occurred while contacting the server. Your post was not saved.', // Needs real copy
 	'flow-error-other' => 'An unexpected error occurred. Your post was not saved.',
 	'flow-error-external' => 'An error occurred while saving your post. Your post was not saved.<br /><small>The error message received was: $1</small>',
+	'flow-error-edit-restricted' => 'You are not allowed to edit this post.',
 	'flow-error-external-multi' => 'Errors were encountered while saving your post. Your post was not saved.<br />$1',
 
 	'flow-error-missing-content' => 'Post has no content. Content is required to save a new post.',
@@ -153,6 +155,9 @@ Translate this as "post which was censored".',
 * $1 - username',
 	'flow-reply-submit' => 'Used as label for the Submit button.',
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
+	'flow-post-edited' => 'Text displayed to notify the user a post has been modified
+* $1 - Username that created the most recent revision of the post
+* $2 - Humanized timestamp, relative to now, of when the edit occured',
 	'flow-post-action-view' => 'Used as text for the link which is used to view.
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.',
@@ -209,6 +214,7 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 	'flow-error-restore-failure' => 'Used as error message when restoring a post.
 
 "this item" seems to refer "this post".',
+	'flow-error-edit-restricted' => "Used as error message when a user attempts to edit a post they do not have the permissions for.",
 	'flow-summaryedit-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-reply' => 'Used as comment when the new reply has been posted.',
