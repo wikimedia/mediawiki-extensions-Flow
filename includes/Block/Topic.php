@@ -186,20 +186,26 @@ class TopicBlock extends AbstractBlock {
 		}
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->errors['content'] = wfMessage( 'flow-missing-post-content' );
+			return;
 		}
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
-		if ( $post ) {
-			$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
-			$this->setNotification(
-					'flow-post-edited',
-					array(
-						'content' => $this->submitted['content'],
-						'topic-title' => $this->getTitleText(),
-					)
-				);
-		} else {
+		if ( !$post ) {
 			$this->errors['edit-post'] = wfMessage( 'flow-post-not-found' );
+			return;
 		}
+		if ( $this->user->getId() != $post->getCreatorId() && !$this->user->isAllowed( 'sysop' ) ) {
+			$this->errors['edit-post'] = wfMessage( 'flow-error-edit-restricted' );
+			return;
+		}
+
+		$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
+		$this->setNotification(
+			'flow-post-edited',
+			array(
+				'content' => $this->submitted['content'],
+				'topic-title' => $this->getTitleText(),
+			)
+		);
 	}
 
 	public function commit() {

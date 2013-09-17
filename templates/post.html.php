@@ -93,6 +93,7 @@ $actions = array();
 $replyForm = '';
 
 // Build the actions for the post
+// TODO: this whole action menu building should be some sort of class and not a few closures in a template
 switch( $post->getModerationState() ) {
 case $post::MODERATED_NONE:
 	if ( $user->isAllowed( 'flow-hide' ) ) {
@@ -105,7 +106,9 @@ case $post::MODERATED_NONE:
 		$actions['censor'] = $postAction( 'censor-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-destructive' );
 	}
 	$actions['history'] = $getAction( 'post-history' );
-	$actions['edit-post'] = $getAction( 'edit-post' );
+	if ( $user->getId() == $post->getCreatorId() || $user->isAllowed( 'sysop' ) ) {
+		$actions['edit-post'] = $getAction( 'edit-post' );
+	}
 	$replyForm = $createReplyForm();
 	break;
 
@@ -144,6 +147,7 @@ $actions['permalink'] = $getAction( 'view' );
 
 // The actual output
 echo Html::openElement( 'div', array(
+
 	'class' => 'flow-post-container',
 	'data-post-id' => $post->getRevisionId()->getHex(),
 ) );
@@ -171,6 +175,15 @@ echo Html::openElement( 'div', array(
 					</span>
 				</span>
 			</div>
+			<?php if ( !$post->isOriginalContent() ): ?>
+				<div class="flow-post-edited">
+					<?php echo wfMessage(
+						'flow-post-edited',
+						$post->getLastContentEditorName( $user ),
+						$post->getLastContentEditId()->getHumanTimestamp()
+					); ?>
+				</div>
+			<?php endif ?>
 		</div>
 		<div class="flow-post-content">
 			<?php echo $post->getContent( $user, 'html' ); ?>
@@ -183,7 +196,7 @@ echo Html::openElement( 'div', array(
 					<ul>
 						<?php
 						foreach( $actions as $key => $action ) {
-							echo '<li class="flow-action-'.$key.'">' . $action . "</li>\n";
+							echo Html::rawElement( 'li', array( 'class' => "flow-action-$key" ), $action );
 						}
 						?>
 					</ul>
