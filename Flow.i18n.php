@@ -36,6 +36,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	'flow-edit-post-submit' => 'Submit changes',
 
+	'flow-post-edited' => 'Post {{GENDER:$1|edited}} by $1 $2',
 	'flow-post-action-view' => 'Permalink',
 	'flow-post-action-post-history' => 'Post history',
 	'flow-post-action-censor-post' => 'Censor post',
@@ -138,6 +139,9 @@ Translate this as "post which was censored".',
 * $1 - username',
 	'flow-reply-submit' => 'Used as label for the Submit button.',
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
+	'flow-post-edited' => 'Text displayed to notify the user a post has been modified
+* $1 - Username that created the most recent revision of the post
+* $2 - Timestamp, relative to post creation date, of when the edit occured',
 	'flow-post-action-view' => 'Used as text for the link which is used to view.
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.',

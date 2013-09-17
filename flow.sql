@@ -119,6 +119,10 @@ CREATE TABLE /*_*/flow_revision (
 	rev_mod_user_text varchar(255) binary,
 	rev_mod_timestamp varchar(14) binary,
 
+	-- track who made the most recent content edit
+	rev_edit_user_id bigint unsigned,
+	rev_edit_user_text varchar(255) binary,
+
 	PRIMARY KEY (rev_id)
 ) /*$wgDBTableOptions*/;
 
