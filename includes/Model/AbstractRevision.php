@@ -64,6 +64,10 @@ abstract class AbstractRevision {
 	protected $moderatedByUserId;
 	protected $moderatedByUserText;
 
+	protected $lastEditId;
+	protected $lastEditUserId;
+	protected $lastEditUserText;
+
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			$obj = new static;
@@ -86,6 +90,11 @@ abstract class AbstractRevision {
 		$obj->moderatedByUserText = $row['rev_mod_user_text'];
 		$obj->moderationTimestamp = $row['rev_mod_timestamp'];
 
+		// isset required because there is a possible db migration, cached data will not have it
+		$obj->lastEditId = isset( $row['rev_last_edit_id'] ) ? UUID::create( $row['rev_last_edit_id'] ) : null;
+		$obj->lastEditUserId = isset( $row['rev_edit_user_id'] ) ? $row['rev_edit_user_id'] : null;
+		$obj->lastEditUserText = isset( $row['rev_edit_user_text'] ) ? $row['rev_edit_user_text'] : null;
+
 		return $obj;
 	}
 
@@ -106,6 +115,10 @@ abstract class AbstractRevision {
 			'rev_mod_user_id' => $obj->moderatedByUserId,
 			'rev_mod_user_text' => $obj->moderatedByUserText,
 			'rev_mod_timestamp' => $obj->moderationTimestamp,
+
+			'rev_last_edit_id' => $obj->lastEditId ? $obj->lastEditId->getBinary() : null,
+			'rev_edit_user_id' => $obj->lastEditUserId,
+			'rev_edit_user_text' => $obj->lastEditUserText,
 		);
 	}
 
@@ -123,9 +136,12 @@ abstract class AbstractRevision {
 		return $obj;
 	}
 
+	/**
+	 * Create the next revision with new content
+	 */
 	public function newNextRevision( User $user, $content, $comment ) {
 		$obj = $this->newNullRevision( $user );
-		$obj->setContent( $content );
+		$obj->setNextContent( $user, $content );
 		$obj->comment = $comment;
 		return $obj;
 	}
@@ -165,8 +181,14 @@ abstract class AbstractRevision {
 		return $this->revId;
 	}
 
+	/**
+	 * @param User $user The user requesting access.  When null assumes a user with no permissions.
+	 * @param int $state One of the self::MODERATED_* constants. When null the internal moderation state is used.
+	 * @return boolean True when the user is allowed to see the current revision
+	 */
 	// Is the user allowed to see this revision ?
 	protected function isAllowed( $user = null, $state = null ) {
+		// allowing a $state to be passed is a bit hackish
 		if ( $state === null ) {
 			$state = $this->moderationState;
 		}
@@ -240,36 +262,51 @@ abstract class AbstractRevision {
 	}
 
 	/**
+	 * Should only be used for setting the initial content.  To set subsequent content
+	 * use self::setNextContent
+	 *
 	 * @param string $content Content in wikitext format
 	 * @throws \Exception
 	 */
 	protected function setContent( $content ) {
+		// TODO: How is this guarantee of only receiving wikitext made?
+		$inputFormat = 'wikitext';
+		if ( $this->content !== null ) {
+			throw new \Exception( 'Updating content must use setNextContent method' );
+		}
+		$this->convertedContent = array( $inputFormat  => $content );
+
+		// convert content to desired storage format
+		$storageFormat = $this->getStorageFormat();
+		if ( $this->isFormatted() && $storageFormat !== $inputFormat ) {
+			$this->convertedContent[$storageFormat] = ParsoidUtils::convert(
+				$inputFormat,
+				$storageFormat,
+				$content
+			);
+		}
+
+		$this->content = $this->decompressedContent = $this->convertedContent[$storageFormat];
+		$this->contentUrl = null;
+
+		// should this only remove a subset of flags?
+		$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
+		$this->flags[] = $storageFormat;
+	}
+
+	/**
+	 * Apply new content to a revision.
+	 */
+	protected function setNextContent( User $user, $content ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
 			throw new \Exception( 'Cannot change content of restricted revision' );
 		}
-
-		if ( $content !== $this->getContent( null, 'wikitext') ) {
-			$this->convertedContent['wikitext'] = $content;
-
-			// convert content to desired storage format
-			$storageFormat = $this->getStorageFormat();
-			if ( $this->isFormatted() ) {
-				if ( !isset( $this->convertedContent[$storageFormat] ) ) {
-					$this->convertedContent[$storageFormat] =
-						ParsoidUtils::convert(
-							'wikitext',
-							$storageFormat,
-							$this->convertedContent['wikitext']
-						);
-				}
-			}
-
-			$this->content = $this->decompressedContent = $this->convertedContent[$storageFormat];
-			$this->contentUrl = null;
-
-			// should this only remove a subset of flags?
-			$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
-			$this->flags[] = $storageFormat;
+		if ( $content !== $this->getContent() ) {
+			$this->content = null;
+			$this->setContent( $content );
+			$this->lastEditId = $this->getRevisionId();
+			$this->lastEditUserId = $user->getId();
+			$this->lastEditUserText = $user->getName();
 		}
 	}
 
@@ -337,4 +374,33 @@ abstract class AbstractRevision {
 		}
 		return true;
 	}
+
+	public function isFirstRevision() {
+		return $this->prevRevision === null;
+	}
+
+	public function isOriginalContent() {
+		return $this->lastEditId === null;
+	}
+
+	/**
+	 * @param $user User requesting access to last content editor
+	 * @return string
+	 */
+	public function getLastContentEditorName( $user = null ) {
+		// TODO: to write this function properly will need to flesh out how
+		// oversighting works.  Prefer to create an external security class that is
+		// configurable per-wiki, pass revisions into it(or wrap them in it for
+		// view objects?) to get possibly protected content.
+		if ( $this->isAllowed( $user ) ) {
+			return $this->lastEditUserText;
+		} else {
+			return '';
+		}
+	}
+
+	public function getLastContentEditId() {
+		return $this->lastEditId;
+	}
+
 }

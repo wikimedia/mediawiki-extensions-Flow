@@ -186,20 +186,26 @@ class TopicBlock extends AbstractBlock {
 		}
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->errors['content'] = wfMessage( 'flow-missing-post-content' );
+			return;
 		}
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
-		if ( $post ) {
-			$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
-			$this->setNotification(
-					'flow-post-edited',
-					array(
-						'content' => $this->submitted['content'],
-						'topic-title' => $this->getTitleText(),
-					)
-				);
-		} else {
+		if ( !$post ) {
 			$this->errors['edit-post'] = wfMessage( 'flow-post-not-found' );
+			return;
 		}
+		if ( !$post->isAllowedToEdit( $this->user ) ) {
+			$this->errors['edit-post'] = wfMessage( 'flow-error-edit-restricted' );
+			return;
+		}
+
+		$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
+		$this->setNotification(
+			'flow-post-edited',
+			array(
+				'content' => $this->submitted['content'],
+				'topic-title' => $this->getTitleText(),
+			)
+		);
 	}
 
 	public function commit() {
@@ -521,7 +527,7 @@ class TopicBlock extends AbstractBlock {
 		if ( !isset( $this->requestedPost[$postId] ) ) {
 			$found = $this->storage->find(
 				'PostRevision',
-				array( 'tree_rev_descendant_id' => $postId ),
+				array( 'tree_rev_descendant_id' => UUID::create( $postId ) ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 			);
 			if ( $found ) {

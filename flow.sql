@@ -33,7 +33,7 @@ CREATE TABLE /*_*/flow_workflow (
 
 CREATE TABLE /*_*/flow_subscription (
   subscription_workflow_id int unsigned not null,
-  subscription_user_id int unsigned not null,
+  subscription_user_id bigint unsigned not null,
   subscription_create_timestamp varchar(14) binary not null,
   subscription_last_updated varchar(14) binary not null
 ) /*$wgDBTableOptions*/;
@@ -99,7 +99,7 @@ CREATE TABLE /*_*/flow_revision (
 	-- What kind of revision is this: tree/summary/etc.
 	rev_type varchar(16) binary not null,
 	-- user id creating the revision
-	rev_user_id int unsigned not null,
+	rev_user_id bigint unsigned not null,
 	-- name of user creating the revision, or ip address if anon
 	-- TODO: global user logins will obviate the need for this, but a round trip
 	--       will be needed to map from rev_user_id -> user name
@@ -118,6 +118,11 @@ CREATE TABLE /*_*/flow_revision (
 	rev_mod_user_id bigint unsigned,
 	rev_mod_user_text varchar(255) binary,
 	rev_mod_timestamp varchar(14) binary,
+
+	-- track who made the most recent content edit
+	rev_last_edit_id binary(16) null,
+	rev_edit_user_id bigint unsigned,
+	rev_edit_user_text varchar(255) binary,
 
 	PRIMARY KEY (rev_id)
 ) /*$wgDBTableOptions*/;
