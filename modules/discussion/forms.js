@@ -168,14 +168,15 @@ $( document ).on( 'flow_init', function ( e ) {
 						},
 						function ( promise ) {
 							promise.done( function ( output ) {
-								$contentContainer
+								$postContainer
 									.empty()
 									.append(
 										$( output.rendered )
-											.find( '.flow-post-content' )
+											.find( '.flow-post' )
 											.children()
 									);
 								} );
+								$contentContainer = $postContainer.find( '.flow-post-content' );
 						}
 					);
 
