@@ -42,7 +42,9 @@ class PostActionMenu {
 				$actions['censor'] = $this->postAction( 'censor-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-destructive' );
 			}
 			$actions['history'] = $this->getAction( 'post-history' );
-			$actions['edit-post'] = $this->getAction( 'edit-post' );
+			if ( $post->isAllowedToEdit( $user ) ) {
+				$actions['edit-post'] = $this->getAction( 'edit-post' );
+			}
 			break;
 
 		case $post::MODERATED_HIDDEN:
