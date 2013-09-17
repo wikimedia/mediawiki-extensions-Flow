@@ -32,7 +32,6 @@ class PostRevision extends AbstractRevision {
 		$obj->prevRevId = null; // no parent revision
 		$obj->comment = 'flow-rev-message-new-post';
 		$obj->setContent( $content );
-
 		return $obj;
 	}
 
@@ -47,7 +46,6 @@ class PostRevision extends AbstractRevision {
 		$obj->origCreateTime = $row['tree_orig_create_time'];
 		$obj->origUserId = $row['tree_orig_user_id'];
 		$obj->origUserText = $row['tree_orig_user_text'];
-
 		return $obj;
 	}
 
@@ -160,6 +158,12 @@ class PostRevision extends AbstractRevision {
 		} else {
 			return false;
 		}
+	}
+	public function isAllowedToEdit( $user ) {
+		if ( $user->isAnon() ) {
+			return false;
+		}
+		return $user->getId() == $this->getCreatorId() || $user->isAllowed( 'flow-edit-post' );
 	}
 }
 
