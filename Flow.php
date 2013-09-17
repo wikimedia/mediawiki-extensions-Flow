@@ -44,6 +44,8 @@ $dir = __DIR__ . '/';
 require $dir . 'Resources.php';
 
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
+$wgExtensionMessagesFiles['FlowAlias'] = $dir . 'Flow.alias.php';
+
 
 $wgAutoloadClasses['FlowInsertDefaultDefinitions'] = $dir . 'maintenance/FlowInsertDefaultDefinitions.php';
 
