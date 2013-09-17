@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_fc7b6ab9",
+        "filename": "Flow.alias.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-17T20:22:12Z",
+      "side": 1,
+      "message": "Translate extensions expects this forward:\n$specialPageAliases \u003d array();\n\n$specialPageAliases[\u0027en\u0027] \u003d array(\n        \u0027Translate\u0027 \u003d\u003e array( \u0027Translate\u0027 ),\n);",
+      "revId": "b8fab1154f31d34e2ad5618457aeecfb54502a2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
