@@ -23,7 +23,7 @@ if ( $block->hasErrors( 'content' ) ) {
 
 echo Html::textarea(
 	$block->getName() . '[content]',
-	$summary->getContent( $user, 'wikitext' ),
+	$summary ? $summary->getContent( $user, 'wikitext' ) : '',
 	array(
 		'data-summary-id' => $summary ? $summary->getRevisionId()->getHex() : ''
 	)
