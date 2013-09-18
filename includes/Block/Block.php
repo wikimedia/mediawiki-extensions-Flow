@@ -56,9 +56,12 @@ abstract class AbstractBlock implements Block {
 	}
 
 	abstract protected function validate();
-	abstract public function render( Templating $templating, array $options );
-	abstract public function renderAPI( Templating $templating, array $options );
-	abstract public function commit();
+	// These methods exist in the Block interface and as such cannot be abstract
+	// until php 5.3.9, but MediaWiki requires PHP version 5.3.2 or later (and
+	// some of our test machines are on 5.3.3).
+	//abstract public function render( Templating $templating, array $options );
+	//abstract public function renderAPI( Templating $templating, array $options );
+	//abstract public function commit();
 
 	public function init( $action, $user ) {
 		$this->action = $action;
