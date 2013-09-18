@@ -22,30 +22,30 @@ class FlowHooks {
 
 			$wgEchoNotifications['flow-new-topic'] = array(
 				'title-message' => 'flow-notification-newtopic',
-				'title-params' => array( 'user', 'flow-title', 'title', 'subject', 'topic-permalink' ),
+				'title-params' => array( 'agent', 'flow-title', 'title', 'subject', 'topic-permalink' ),
 				'payload' => array( 'comment-text' ),
 			) + $notificationTemplate;
 
 			$wgEchoNotifications['flow-post-reply'] = array(
 				'title-message' => 'flow-notification-reply',
-				'title-params' => array( 'user', 'subject', 'flow-title', 'title', 'post-permalink' ),
+				'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
 				'payload' => array( 'comment-text' ),
 			) + $notificationTemplate;
 
 			$wgEchoNotifications['flow-post-edited'] = array(
 				'title-message' => 'flow-notification-edit',
-				'title-params' => array( 'user', 'subject', 'flow-title', 'title', 'post-permalink' ),
+				'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
 			) + $notificationTemplate;
 
 			// Saving for a rainy day
 			// $wgEchoNotifications['flow-post-moderated'] = array(
 			// 	'title-message' => 'flow-notification-moderated',
-			// 	'title-params' => array( 'user', 'subject', 'flow-title', 'title', 'post-permalink' ),
+			// 	'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
 			// ) + $notificationTemplate;
 
 			$wgEchoNotifications['flow-topic-renamed'] = array(
 				'title-message' => 'flow-notification-rename',
-				'title-params' => array( 'user', 'topic-permalink', 'old-subject', 'new-subject', 'flow-title', 'title' ),
+				'title-params' => array( 'agent', 'topic-permalink', 'old-subject', 'new-subject', 'flow-title', 'title' ),
 			) + $notificationTemplate;
 
 			$wgEchoNotificationIcons['flow-discussion'] = array(
