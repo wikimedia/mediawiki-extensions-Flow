@@ -5,12 +5,15 @@
  * @file
  * @ingroup Extensions
  */
+
 $specialPageAliases = array();
 
-/** English
- * @author Erik Bernhardson <ebernhardson@wikimedia.org>
- */
+/** English (English) */
 $specialPageAliases['en'] = array(
-	'Flow' => array( 'Flow' )
+	'Flow' => array( 'Flow' ),
 );
 
+/** Macedonian (македонски) */
+$specialPageAliases['mk'] = array(
+	'Flow' => array( 'Тек' ),
+);

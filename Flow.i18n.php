@@ -110,19 +110,34 @@ See also:
 Translate this as "post which was hidden".',
 	'flow-post-hidden-by' => 'Parameters:
 * $1 - username that hid the post, can be used for GENDER
-* $2 - timestamp, relative to post creation date, of when the post was hidden',
+* $2 - timestamp, relative to post creation date, of when the post was hidden. Any one of the following:
+** timestamp (time and date); localized
+** day and month; localized
+** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
+** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
+{{Related|Flow-post-by}}',
 	'flow-post-deleted' => 'Used as username/content if the post was deleted.
 
 Translate this as "post which was deleted".',
 	'flow-post-deleted-by' => 'Parameters:
 * $1 - username that deleted the post, can be used for GENDER
-* $2 - timestamp, relative to post creation date, of when the post was deleted',
+* $2 - timestamp, relative to post creation date, of when the post was deleted. Any one of the following:
+** timestamp (time and date); localized
+** day and month; localized
+** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
+** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
+{{Related|Flow-post-by}}',
 	'flow-post-censored' => 'Used as username/content if the post was censored.
 
 Translate this as "post which was censored".',
 	'flow-post-censored-by' => 'Parameters:
 * $1 - username that censored the post, can be used for GENDER
-* $2 - timestamp, relative to post creation date, of when the post was censored',
+* $2 - timestamp, relative to post creation date, of when the post was censored. Any one of the following:
+** timestamp (time and date); localized
+** day and month; localized
+** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
+** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
+{{Related|Flow-post-by}}',
 	'flow-post-actions' => 'Used as link text.
 {{Identical|Action}}',
 	'flow-topic-actions' => 'Used as link text.
@@ -384,11 +399,11 @@ $messages['fr'] = array(
 	'flow-edit-summary-link' => 'Résumé',
 	'flow-disclaimer' => "En cliquant sur le bouton « Ajouter un message », vous acceptez nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr conditions d'utilisation] et acceptez de placer irrévocablement votre contribution sous [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licence Creative Commons paternité-partage des conditions initiales à l'identique 3.0] et [http://www.gnu.org/copyleft/fdl.html GFDL]. Vous acceptez d’être crédité par les ré-utilisateurs au minimum via un hyperlien ou une URL sous la licence Creative Commons.",
 	'flow-post-hidden' => '[note masquée]',
-	'flow-post-hidden-by' => 'Masqué par $1 $2',
+	'flow-post-hidden-by' => '{{GENDER:$1|Masqué}} par $1 $2',
 	'flow-post-deleted' => '[message supprimé]',
-	'flow-post-deleted-by' => 'Supprimé par $1 $2',
+	'flow-post-deleted-by' => '{{GENDER:$1|Supprimé}} par $1 $2',
 	'flow-post-censored' => '[note censurée]',
-	'flow-post-censored-by' => 'Censuré par $1 $2',
+	'flow-post-censored-by' => '{{GENDER:$1|Censuré}} par $1 $2',
 	'flow-post-actions' => 'actions',
 	'flow-topic-actions' => 'actions',
 	'flow-cancel' => 'Annuler',
@@ -397,7 +412,7 @@ $messages['fr'] = array(
 	'flow-newtopic-header' => 'Ajouter un nouveau sujet',
 	'flow-newtopic-save' => 'Ajouter sujet',
 	'flow-newtopic-start-placeholder' => 'Cliquez ici pour commencer une nouvelle discussion. Soyez gentil !',
-	'flow-reply-placeholder' => 'Cliquez ici pour répondre à $1. Soyez gentil !',
+	'flow-reply-placeholder' => 'Cliquez ici pour {{GENDER:$1|répondre}} à $1. Soyez gentil !',
 	'flow-reply-submit' => 'Poster une réponse',
 	'flow-edit-post-submit' => 'Soumettre les modifications',
 	'flow-post-action-view' => 'Lien permanent',
@@ -417,12 +432,12 @@ $messages['fr'] = array(
 	'flow-error-missing-content' => "Le message n'a aucun contenu. C'est requis pour enregistrer un nouveau message.",
 	'flow-error-missing-title' => "Le sujet n'a aucun titre. C'est requis pour enregistrer un nouveau sujet.",
 	'flow-error-parsoid-failure' => "Impossible d'analyser le contenu en raison d'une panne de Parsoid.",
-	'flow-error-missing-replyto' => "Aucun paramètre replyTo n'a été fourni. Ce paramètre est requis pour l'action « répondre ».",
-	'flow-error-invalid-replyto' => "paramètre replyTo n'était pas valide. Le message spécifié est introuvable.",
+	'flow-error-missing-replyto' => 'Aucun paramètre « replyTo » n’a été fourni. Ce paramètre est requis pour l’action « répondre ».',
+	'flow-error-invalid-replyto' => 'Le paramètre « replyTo » n’était pas valide. Le message spécifié n’a pas pu être trouvé.',
 	'flow-error-delete-failure' => 'Échec de la suppression de cette entrée.',
 	'flow-error-hide-failure' => 'Le masquage de cet élément a échoué.',
-	'flow-error-missing-postId' => 'Aucun paramètre postId a été fourni. Ce paramètre est requis pour manipuler un message.',
-	'flow-error-invalid-postId' => "Le paramètre postId n'était pas valide. Le message spécifié est introuvable.",
+	'flow-error-missing-postId' => 'Aucun paramètre « postId » n’a été fourni. Ce paramètre est obligatoire pour manipuler un message.',
+	'flow-error-invalid-postId' => 'Le paramètre « postId » n’était pas valide. Le message spécifié n’a pas pu être trouvé.',
 	'flow-error-restore-failure' => 'Échec de la restauration de cette entrée.',
 	'flow-summaryedit-submit' => 'Enregistrer le résumé',
 	'flow-edit-title-submit' => 'Changer le titre',
@@ -435,10 +450,10 @@ $messages['fr'] = array(
 	'flow-paging-rev' => 'Sujets les plus récents',
 	'flow-paging-fwd' => 'Sujets plus anciens',
 	'flow-last-modified' => 'Dernière modification $1',
-	'flow-notification-reply' => '$1 a répondu à votre [$5 note] sur $2 en [[$3|$4]].',
-	'flow-notification-edit' => '$1 a modifié votre [$5 note] sur $2 en [[$3|$4]].',
-	'flow-notification-newtopic' => '$1 a créé un [$5 nouveau sujet] en [[$2|$3]] : $4.',
-	'flow-notification-rename' => '$1 a modifié le titre de [$2 $3] en « $4 » sur [[$5|$6]]',
+	'flow-notification-reply' => '$1 {{GENDER:$1|a répondu}} à votre [$5 note] sur $2 en [[$3|$4]].',
+	'flow-notification-edit' => '$1 {{GENDER:$1|a modifié}} votre [$5 note] sur $2 en [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|a créé}} un [$5 nouveau sujet] en [[$2|$3]] : $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|a modifié}} le titre de [$2 $3] en « $4 » sur [[$5|$6]].',
 );
 
 /** Galician (galego)
@@ -562,6 +577,16 @@ $1',
 	'flow-comment-restored' => 'הערה משוחזרת',
 	'flow-comment-deleted' => 'הערה מחוקה',
 	'flow-months-ago' => 'לפני {{PLURAL:$1|חודש|חודשיים|$1 חודשים}}',
+);
+
+/** Armenian (Հայերեն)
+ * @author Vadgt
+ */
+$messages['hy'] = array(
+	'flow-post-deleted-by' => '$1-ը {{GENDER:$1|ջնջեց}} $2',
+	'flow-reply-placeholder' => 'Սեղմեք {{GENDER:$1|պատասխանել}} $1-ում: Կլինի լա՜վ',
+	'flow-notification-edit' => '$1՝ {{GENDER:$1|խմբագրեց}} ձեր [$5 գրառում(ներ)ը] $2-ում [[$3|$4]]ի վրա:',
+	'flow-notification-rename' => '$1՝ {{GENDER:$1|փոխեց}} վերնագրիրը [$2 $3]-ի "$4"-ում [[$5|$6]]-ի վրա:',
 );
 
 /** Interlingua (interlingua)
@@ -712,6 +737,7 @@ $messages['ja'] = array(
 また、あなたはハイパーリンクまたは URL がクリエイティブ・コモンズライセンスにおける帰属表示として十分であると認めたことになります。',
 	'flow-post-hidden' => '[非表示の投稿]',
 	'flow-post-deleted' => '[削除された投稿]',
+	'flow-post-deleted-by' => '$1 が$2に{{GENDER:$1|削除}}',
 	'flow-post-actions' => '操作',
 	'flow-topic-actions' => '操作',
 	'flow-cancel' => 'キャンセル',
@@ -760,7 +786,7 @@ $messages['ja'] = array(
 	'flow-notification-reply' => '$1 が [[$3|$4]] の $2 でのあなたの[$5 投稿]に{{GENDER:$1|返信しました}}。',
 	'flow-notification-edit' => '$1 が [[$3|$4]] の $2 でのあなたの[$5 投稿]を{{GENDER:$1|編集しました}}。',
 	'flow-notification-newtopic' => '$1 が [[$2|$3]] で[$5 新しい話題]を{{GENDER:$1|作成しました}}: $4',
-	'flow-notification-rename' => '$1 が [[$5|$6]] で [$2 $3] のページ名を「$4」に{{GENDER:$1|変更しました}}',
+	'flow-notification-rename' => '$1 が [[$5|$6]] で [$2 $3] のページ名を「$4」に{{GENDER:$1|変更しました}}。',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -1058,6 +1084,7 @@ $messages['roa-tara'] = array(
 
 /** Swedish (svenska)
  * @author Ainali
+ * @author WikiPhoenix
  */
 $messages['sv'] = array(
 	'flow-cancel' => 'Avbryt',
@@ -1066,7 +1093,7 @@ $messages['sv'] = array(
 	'flow-newtopic-header' => 'Lägg till ett nytt ämne',
 	'flow-newtopic-save' => 'Lägg till ämne',
 	'flow-newtopic-start-placeholder' => 'Klicka här för att starta en ny diskussion. Var trevlig!',
-	'flow-reply-placeholder' => 'Klicka för att svara på $1. Var trevlig!',
+	'flow-reply-placeholder' => 'Klicka för att {{GENDER:$1|svara}} på $1. Var trevlig!',
 	'flow-reply-submit' => 'Skicka svar',
 	'flow-edit-post-submit' => 'Skicka ändringar',
 	'flow-post-action-view' => 'Permanent länk',
@@ -1110,7 +1137,7 @@ $messages['uk'] = array(
 	'flow-newtopic-header' => 'Додати нову тему',
 	'flow-newtopic-save' => 'Додати тему',
 	'flow-newtopic-start-placeholder' => 'Натисніть тут, щоб почати нове обговорення. Будьте приємним!',
-	'flow-reply-placeholder' => 'Натисніть, щоб відповісти на  $1. Будьте приємним!', # Fuzzy
+	'flow-reply-placeholder' => 'Натисніть, щоб {{GENDER:$1|відповісти|відповісти}} $1. Будьте приємним!',
 	'flow-reply-submit' => 'Опублікувати відповідь',
 	'flow-edit-post-submit' => 'Подати зміни',
 	'flow-post-action-view' => 'Постійне посилання',
@@ -1130,12 +1157,12 @@ $messages['uk'] = array(
 	'flow-error-missing-content' => 'Публікація не має ніякого вмісту. Необхідний вміст, щоб зберегти нову публікацію.',
 	'flow-error-missing-title' => 'Тема не має назви. Потрібна назва, щоб зберегти нову тему.',
 	'flow-error-parsoid-failure' => 'Не вдалося проаналізувати вміст через помилку Parsoid.',
-	'flow-error-missing-replyto' => 'Параметр reply-to не був наданий. Цей параметр є обов\'язковим для дії "відповідь".', # Fuzzy
-	'flow-error-invalid-replyto' => 'Параметр replyTo неприпустимий. Не вдалося знайти вказану публікацію.', # Fuzzy
+	'flow-error-missing-replyto' => 'Параметр „reply-to“ не був наданий. Цей параметр є обов\'язковим для дії "відповідь".',
+	'flow-error-invalid-replyto' => 'Параметр „replyTo“ неприпустимий. Не вдалося знайти вказану публікацію.',
 	'flow-error-delete-failure' => 'Не вдалося видалити цей елемент.',
 	'flow-error-hide-failure' => 'Приховання цього елементу не вдалося.',
-	'flow-error-missing-postId' => 'Параметр postId не був наданий. Цей параметр вимагає, щоб маніпулювати публікацією.', # Fuzzy
-	'flow-error-invalid-postId' => 'Параметр postId неприпустимий. Не вдалося знайти вказану публікацію.', # Fuzzy
+	'flow-error-missing-postId' => 'Параметр „postId“ не був наданий. Цей параметр вимагає, щоб маніпулювати публікацією.',
+	'flow-error-invalid-postId' => 'Параметр „postId“ неприпустимий. Не вдалося знайти вказану публікацію.',
 	'flow-error-restore-failure' => 'Не вдалося виконати відновлення цього елемента.',
 	'flow-summaryedit-submit' => 'Зберегти підсумок',
 	'flow-edit-title-submit' => 'Змінити заголовок',
@@ -1148,10 +1175,10 @@ $messages['uk'] = array(
 	'flow-paging-rev' => 'Новіші теми',
 	'flow-paging-fwd' => 'Старіші теми',
 	'flow-last-modified' => 'Остання зміна про $1',
-	'flow-notification-reply' => '$1 відповів на ваш [повідомлення $5] у $2 на [[$3|$4]].', # Fuzzy
-	'flow-notification-edit' => '$1 відредагував [повідомлення $5] у $2 на [[$3|$4]].', # Fuzzy
-	'flow-notification-newtopic' => '$1 створив [нову тему $5] на [[$2|$3]]: $4.', # Fuzzy
-	'flow-notification-rename' => '$1 змінив назву [$2 $3] на "$4" у [[$5|$6]]', # Fuzzy
+	'flow-notification-reply' => '$1  {{GENDER:$1|відповів|відповіла}} на ваше [повідомлення $5] у $2 на [[$3|$4]].',
+	'flow-notification-edit' => '$1  {{GENDER:$1|відредагував|відредагувала}} ваше [повідомлення $5] у $2 на [[$3|$4]].',
+	'flow-notification-newtopic' => '$1  {{GENDER:$1|створив|створила}} [нову тему $5] на [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1  {{GENDER:$1|змінив|змінила}} назву [$2 $3] на "$4" у [[$5|$6]]',
 );
 
 /** Vietnamese (Tiếng Việt)
