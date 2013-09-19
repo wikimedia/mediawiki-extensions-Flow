@@ -14,10 +14,15 @@ class ApiQueryRevisionContentFlow extends ApiQueryBase {
 		$container = Container::getContainer();
 		$storage = $container['storage']->getStorage( $params['container'] );
 
-		$post = $storage->find(
-			array( 'tree_rev_descendant_id' => $params['id'] ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-		);
+		$id = UUID::create( $params['id'] );
+		$post = null;
+
+		if ( $id ) {
+			$post = $storage->find(
+				array( 'tree_rev_descendant_id' => $id->getBinary() ),
+				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			);
+		}
 
 		if ( !$post ) {
 			throw new \MWException( 'Unknown post: '. $params['id'] );
