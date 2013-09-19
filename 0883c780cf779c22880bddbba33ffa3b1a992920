@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_8cf22e6d",
+        "filename": "includes/Templating.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-19T00:45:37Z",
+      "side": 1,
+      "message": "I don\u0027t think you need to build all the tool links, there are already some functions in core:\n\nreturn Link::userLink( $userId, $userName ) . wfMessage( \u0027word-separator\u0027 )-\u003eplain() . Link::userToolLinks( $userId, $userName );\n\n$userId would be 0 for IP",
+      "revId": "0883c780cf779c22880bddbba33ffa3b1a992920",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_0c0e3e33",
+        "filename": "templates/post.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-19T00:45:37Z",
+      "side": 1,
+      "message": "Is this doing anything?",
+      "revId": "0883c780cf779c22880bddbba33ffa3b1a992920",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
