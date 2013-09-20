@@ -33,6 +33,24 @@
       "revId": "b31e41cec7948fcf14c84b8a3e2a0d80f4018c42",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_5e437d45",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-20T20:44:18Z",
+      "side": 1,
+      "message": "Hmm, i looked through the code, and it seems it can return both?  \n\nhttps://git.wikimedia.org/blob/mediawiki%2Fcore/102ea093f12a7484003083b9a5cac35d61834f42/includes%2Fdb%2FDatabase.php#L3353\n\nMaybe should be the following?\n    \n    if ( !$res || !$res-\u003evalid() )",
+      "parentUuid": "4946a543_045e0e74",
+      "revId": "b31e41cec7948fcf14c84b8a3e2a0d80f4018c42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
