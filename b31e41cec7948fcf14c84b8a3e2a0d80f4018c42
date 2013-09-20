@@ -69,6 +69,24 @@
       "revId": "b31e41cec7948fcf14c84b8a3e2a0d80f4018c42",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_5eca9d51",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-20T21:56:29Z",
+      "side": 1,
+      "message": "probably throw an exception in here if there is a ignored db error, then the method caller doesn\u0027t have to check against different types",
+      "parentUuid": "4946a543_5ece1d85",
+      "revId": "b31e41cec7948fcf14c84b8a3e2a0d80f4018c42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
