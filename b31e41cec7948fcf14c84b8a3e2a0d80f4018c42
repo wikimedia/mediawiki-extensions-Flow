@@ -51,6 +51,24 @@
       "revId": "b31e41cec7948fcf14c84b8a3e2a0d80f4018c42",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_5ece1d85",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-20T21:41:20Z",
+      "side": 1,
+      "message": "I did not notice the result could be false if error is ignored, :(\n\nI think if ( $res \u003d\u003d\u003d false ) is fine unless you want to consider empty result as error.  I guess that shouldn\u0027t be the case? it just means a tree doesn’t have any subtree?",
+      "parentUuid": "4946a543_5e437d45",
+      "revId": "b31e41cec7948fcf14c84b8a3e2a0d80f4018c42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
