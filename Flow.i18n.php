@@ -258,12 +258,12 @@ Parameters:
 * $5 - Permanent URL for the topic
 {{Related|Flow-notification}}',
 	'flow-notification-rename' => 'Notification text for when the subject of a topic is changed. Parameters:
-* $1 - Username of the person who edited the title
-* $2 - Permalink to the topic
-* $3 - Old topic subject
-* $4 - New topic subject
-* $5 - Title for the Flow board
-* $6 - Title for the page that the Flow board is attached to
+* $1 - username of the person who edited the title, can be used for GENDER
+* $2 - permalink to the topic
+* $3 - old topic subject
+* $4 - new topic subject
+* $5 - title for the Flow board
+* $6 - title for the page that the Flow board is attached to
 {{Related|Flow-notification}}',
 );
 
@@ -361,6 +361,7 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 );
 
 /** Finnish (suomi)
+ * @author Nike
  * @author Stryn
  */
 $messages['fi'] = array(
@@ -376,7 +377,7 @@ $messages['fi'] = array(
 	'flow-newtopic-content-placeholder' => 'Viestin teksti. Ole mukava!',
 	'flow-newtopic-header' => 'Lisää uusi aihe',
 	'flow-newtopic-save' => 'Lisää aihe',
-	'flow-newtopic-start-placeholder' => 'Paina tästä aloittaaksesi uuden aiheen. Ole mukava!',
+	'flow-newtopic-start-placeholder' => 'Aloita uusi aihe napsauttamalla tästä. Muistathan kohteliaat käytöstavat!',
 	'flow-reply-placeholder' => 'Paina tästä vastataksesi käyttäjälle $1. Ole mukava!', # Fuzzy
 	'flow-reply-submit' => 'Lähetä vastaus',
 	'flow-edit-post-submit' => 'Lähetä muutokset',
