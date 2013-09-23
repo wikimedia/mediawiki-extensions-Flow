@@ -17,9 +17,8 @@ $postAction = function( $action, array $data = array(), $class = '' ) use( $self
 			'value' => $value,
 		) );
 	}
-	// Give grep a chance to find the usages:
-	// flow-post-action-censor-post, flow-post-action-delete-post, flow-post-action-hide-post,
-	// flow-post-action-restore-post
+	// Messages: flow-post-action-censor-post, flow-post-action-delete-post,
+	// flow-post-action-hide-post, flow-post-action-restore-post
 	$output .= Html::element( 'input', array(
 		'type' => 'submit',
 		'class' => 'mw-ui-button '.$class,
@@ -37,8 +36,7 @@ $getAction = function( $action, $data = array(), $class = '' ) use ( $post, $sel
 			$block->getName() . '[postId]' => $post->getPostId()->getHex(),
 		)
 	);
-	// Give grep a chance to find the usages:
-	// flow-post-action-view, flow-post-action-post-history, flow-post-action-edit-post
+	// Messages: flow-post-action-view, flow-post-action-post-history, flow-post-action-edit-post
 	return Html::element( 'a',
 		array(
 			'href' => $url,

@@ -195,6 +195,8 @@ abstract class AbstractRevision {
 				wfDebugLog( __CLASS__, __FUNCTION__ . ': Unreachable condition, un censored but moderated first post : ' . $this->revId->getHex() );
 				$createdAt = $this->revId->getTimestampObj();
 			}
+
+			// Messages: flow-post-hidden-by, flow-post-deleted-by, flow-post-censored-by
 			return wfMessage(
 				self::$perms[$this->moderationState]['content'],
 				$this->moderatedByUserText,
@@ -228,6 +230,7 @@ abstract class AbstractRevision {
 		if ( $this->isAllowed( $user ) ) {
 			return $this->getUserTextRaw();
 		} else {
+			// Messages: flow-post-hidden, flow-post-deleted, flow-post-censored
 			return wfMessage( self::$perms[$this->moderationState]['usertext'] );
 		}
 	}
