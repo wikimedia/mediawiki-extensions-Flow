@@ -105,6 +105,24 @@
       "revId": "b31e41cec7948fcf14c84b8a3e2a0d80f4018c42",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_90af892a",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-23T18:01:27Z",
+      "side": 1,
+      "message": "The class i was thinking of in mediawiki that does similar is the Status class,  this is too closely tied to the parser to be reused though.",
+      "parentUuid": "4946a543_30025574",
+      "revId": "b31e41cec7948fcf14c84b8a3e2a0d80f4018c42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
