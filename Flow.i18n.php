@@ -1271,3 +1271,16 @@ $messages['yi'] = array(
 	'flow-reply-submit' => 'שיקן ענטפער',
 	'flow-post-action-edit' => 'רעדאַקטירן',
 );
+
+/** Simplified Chinese (中文（简体）‎)
+ * @author Liuxinyu970226
+ */
+$messages['zh-hans'] = array(
+	'flow-post-hidden' => '[发布隐藏]',
+	'flow-cancel' => '取消',
+	'flow-newtopic-title-placeholder' => '信息工程',
+	'flow-newtopic-header' => '添加新主题',
+	'flow-newtopic-save' => '添加主题',
+	'flow-post-action-post-history' => '发布历史',
+	'flow-post-action-edit' => '编辑',
+);
