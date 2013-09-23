@@ -87,6 +87,24 @@
       "revId": "b31e41cec7948fcf14c84b8a3e2a0d80f4018c42",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_30025574",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-23T17:29:16Z",
+      "side": 1,
+      "message": "I suppose i\u0027ve been indecisive in regards to error handling within Flow,  we are split between some functions that return false and others that return only proper values and thrown exeptions.\n\nMy experience with exceptions is that its very difficult to understand all the possible execution paths, just about any function you call can short-circuit the expected execution path.\n\nOn the other hand returning false from various places makes it very easy to forget checking the return value and receive a fatal error due to trying to use boolean false as an object/array/etc.\n\nThere is one more method of handling errors that I like, but only have minimal experience with.  In functional programming many languages have a \"Maybe\" return type, which is essentially an object that represents a return value.  We don\u0027t get the type-safe guarantee of all error conditions being handled, but we would get the benefit that all call sites which receive the object \n\nFor a php implementation that would could pull into /vendor, look at https://github.com/schmittjoh/php-option .  I think mediawiki might already have something similar, but I can\u0027t remember the name.  Opinions?",
+      "parentUuid": "4946a543_5eca9d51",
+      "revId": "b31e41cec7948fcf14c84b8a3e2a0d80f4018c42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
