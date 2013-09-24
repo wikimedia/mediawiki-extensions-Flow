@@ -2,13 +2,14 @@
 
 namespace Flow\Block;
 
+use Flow\Data\ManagerGroup;
+use Flow\Data\RootPostLoader;
+use Flow\DbFactory;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
-use Flow\Data\ManagerGroup;
-use Flow\Data\RootPostLoader;
-use Flow\DbFactory;
+use Flow\NotificationController;
 use Flow\Templating;
 use EchoEvent;
 use User;
@@ -33,8 +34,8 @@ class TopicBlock extends AbstractBlock {
 		'hide-topic', 'edit-title',
 	);
 
-	public function __construct( Workflow $workflow, ManagerGroup $storage, $root ) {
-		parent::__construct( $workflow, $storage );
+	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController, $root ) {
+		parent::__construct( $workflow, $storage, $notificationController );
 		if ( $root instanceof PostRevision ) {
 			$this->root = $root;
 		} elseif ( $root instanceof RootPostLoader ) {
@@ -129,7 +130,7 @@ class TopicBlock extends AbstractBlock {
 				$this->setNotification(
 					'flow-post-reply',
 					array(
-						'reply-to' => $post->getPostId(),
+						'reply-to' => $post,
 						'content' => $this->submitted['content'],
 						'topic-title' => $this->getTitleText(),
 					)
@@ -235,11 +236,10 @@ class TopicBlock extends AbstractBlock {
 				};
 			}
 
-			if ( class_exists( 'EchoEvent' ) && is_array( $this->notification ) ) {
-				$this->notification['extra']['revision-id'] = $this->newRevision->getRevisionId();
-				$this->notification['extra']['post-id'] = $this->newRevision->getPostId();
+			if ( is_array( $this->notification ) ) {
+				$this->notification['params']['revision'] = $this->newRevision;
 
-				EchoEvent::create( $this->notification );
+				$this->notificationController->notifyPostChange( $this->notification['type'], $this->notification['params'] );
 			}
 
 			return array(
@@ -553,10 +553,10 @@ class TopicBlock extends AbstractBlock {
 	protected function setNotification( $notificationType, array $extraVars ) {
 		$this->notification = array(
 				'type' => $notificationType,
-				'agent' => $this->user,
-				'title' => $this->workflow->getArticleTitle(),
-				'extra' => $extraVars + array(
-					'topic-workflow' => $this->workflow->getId(),
+				'params' => $extraVars + array(
+					'topic-workflow' => $this->workflow,
+					'title' => $this->workflow->getArticleTitle(),
+					'user' => $this->user,
 				)
 			);
 	}
