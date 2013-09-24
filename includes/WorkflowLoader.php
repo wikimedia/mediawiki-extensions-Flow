@@ -11,16 +11,18 @@ use Flow\Model\Workflow;
 use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectStorage;
 use Flow\Data\RootPostLoader;
+use Flow\NotificationController;
 
 class WorkflowLoader {
-	protected $workflow, $definition;
+	protected $workflow, $definition, $storage, $rootPostLoader, $notificationController, $definitionRequest;
 
 	public function __construct(
 			$pageTitle,
 			/*UUID or NULL*/ $workflowId,
 			$definitionRequest,
 			ManagerGroup $storage,
-			RootPostLoader $rootPostLoader
+			RootPostLoader $rootPostLoader,
+			NotificationController $notificationController
 	) {
 		if ( $pageTitle === null ) {
 			throw new \MWException( 'Invalid article requested' );
@@ -34,6 +36,7 @@ class WorkflowLoader {
 
 		$this->storage = $storage;
 		$this->rootPostLoader = $rootPostLoader;
+		$this->notificationController = $notificationController;
 
 		$this->definitionRequest = $definitionRequest;
 
@@ -129,13 +132,13 @@ class WorkflowLoader {
 		switch( $this->definition->getType() ) {
 		case 'discussion':
 			return array(
-				'summary' => new SummaryBlock( $this->workflow, $this->storage ),
-				'topics' => new TopicListBlock( $this->workflow, $this->storage, $this->rootPostLoader ),
+				'summary' => new SummaryBlock( $this->workflow, $this->storage, $this->notificationController ),
+				'topics' => new TopicListBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
 			);
 
 		case 'topic':
 			return array(
-				'topic' => new TopicBlock( $this->workflow, $this->storage, $this->rootPostLoader ),
+				'topic' => new TopicBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
 			);
 
 		default:
@@ -183,11 +186,12 @@ class WorkflowLoader {
 }
 
 class WorkflowLoaderFactory {
-	protected $storage, $rootPostLoader;
+	protected $storage, $rootPostLoader, $notificationController;
 
-	function __construct( ManagerGroup $storage, RootPostLoader $rootPostLoader ) {
+	function __construct( ManagerGroup $storage, RootPostLoader $rootPostLoader, NotificationController $notificationController ) {
 		$this->storage = $storage;
 		$this->rootPostLoader = $rootPostLoader;
+		$this->notificationController = $notificationController;
 	}
 
 	public function createWorkflowLoader( $pageTitle, $workflowId = null, $definitionRequest = false ) {
@@ -196,7 +200,8 @@ class WorkflowLoaderFactory {
 			$workflowId,
 			$definitionRequest,
 			$this->storage,
-			$this->rootPostLoader
+			$this->rootPostLoader,
+			$this->notificationController
 		);
 	}
 }

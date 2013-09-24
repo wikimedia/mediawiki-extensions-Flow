@@ -226,6 +226,10 @@ abstract class AbstractRevision {
 		return $this->convertedContent[$format];
 	}
 
+	public function getUserId() {
+		return $this->userId;
+	}
+
 	public function getUserText( $user = null ) {
 		if ( $this->isAllowed( $user ) ) {
 			return $this->getUserTextRaw();

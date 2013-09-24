@@ -63,9 +63,10 @@ $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\View'] = $dir . 'includes/View.php';
 $wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
 $wgAutoloadClasses['Flow\WorkflowLoaderFactory'] = $dir . 'includes/WorkflowLoader.php';
-$wgAutoloadClasses['FlowCommentFormatter'] = $dir . 'includes/NotificationFormatter.php';
 $wgAutoloadClasses['Flow\OccupationController'] = $dir . 'includes/TalkpageManager.php';
 $wgAutoloadClasses['Flow\TalkpageManager'] = $dir . 'includes/TalkpageManager.php';
+$wgAutoloadClasses['FlowCommentFormatter'] = $dir . 'includes/Notifications/Formatter.php';
+$wgAutoloadClasses['Flow\NotificationController'] = $dir . 'includes/Notifications/Controller.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
@@ -201,3 +202,6 @@ $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = true;
 // * false (occupy no talk pages);
 // * an array of normalised page names.
 $wgFlowOccupyPages = false;
+
+// Maximum number of users that can be mentioned in one comment
+$wgFlowMaxMentionCount = 100;
