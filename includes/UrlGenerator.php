@@ -2,22 +2,42 @@
 
 namespace Flow;
 
+use FlowHooks;
 use Flow\Data\ObjectManager;
 use Flow\Model\Workflow;
 use SpecialPage;
 use Title;
 
 class UrlGenerator {
-	public function __construct( ObjectManager $workflowStorage ) {
+	public function __construct( ObjectManager $workflowStorage, OccupationController $occupationController ) {
+		$this->occupationController = $occupationController;
 		$this->storage = $workflowStorage;
 	}
 
-	public static function buildUrl( $title, $action, $query ) {
+	/**
+	 * Builds a URL for a given title and action, with a query string.
+	 * @param  Title $title Title of the Flow Board to link to.
+	 * @param  string $action Action to execute
+	 * @param  array $query Associative array of query parameters
+	 * @return String URL
+	 */
+	public function buildUrl( $title, $action, $query ) {
 		$query['action'] = $action;
-		return SpecialPage::getTitleFor( 'Flow', $title->getPrefixedText() )
-			->getFullUrl( $query );
+
+		$linkTitle = $this->occupationController->isTalkpageOccupied( $title )
+			? $title
+			: SpecialPage::getTitleFor( 'Flow', $title->getPrefixedText() );
+
+		return $linkTitle->getFullUrl( $query );
 	}
 
+	/**
+	 * Builds a URL to link to a given Workflow
+	 * @param  Workflow|UUID $workflow The Workflow to link to
+	 * @param  string $action The action to execute
+	 * @param  array  $query Associative array of query parameters
+	 * @return URL
+	 */
 	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
 		if ( ! $workflow instanceof Workflow ) {
 			$workflowId = $workflow;
@@ -34,6 +54,6 @@ class UrlGenerator {
 			$query['workflow'] = $workflow->getId()->getHex();
 		}
 
-		return self::buildUrl( $workflow->getArticleTitle(), $action, $query );
+		return $this->buildUrl( $workflow->getArticleTitle(), $action, $query );
 	}
 }
