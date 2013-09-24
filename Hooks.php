@@ -11,7 +11,7 @@ class FlowHooks {
 		global $wgEchoNotifications, $wgHooks, $wgEchoNotificationIcons;
 
 		if ( isset( $wgEchoNotifications ) ) {
-			$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'FlowHooks::getDefaultNotifiedUsers';
+			$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
 
 			$notificationTemplate = array(
 				'category' => 'flow-discussion',
@@ -46,6 +46,11 @@ class FlowHooks {
 			$wgEchoNotifications['flow-topic-renamed'] = array(
 				'title-message' => 'flow-notification-rename',
 				'title-params' => array( 'agent', 'topic-permalink', 'old-subject', 'new-subject', 'flow-title', 'title' ),
+			) + $notificationTemplate;
+
+			$wgEchoNotifications['flow-mention'] = array(
+				'title-message' => 'flow-notification-mention',
+				'title-params' => array( 'agent', 'post-permalink', 'subject', 'flow-title', 'title' ),
 			) + $notificationTemplate;
 
 			$wgEchoNotificationIcons['flow-discussion'] = array(
@@ -102,64 +107,6 @@ class FlowHooks {
 	static function getUnitTests( &$files ) {
 		$dir = dirname( __FILE__ ) . '/tests';
 		//$files[] = "$dir/DiscussionParserTest.php";
-		return true;
-	}
-
-	/**
-	 * Handler for EchoGetDefaultNotifiedUsers hook
-	 *  Returns a list of User objects in the second param
-	 *
-	 * @param $event EchoEvent being triggered
-	 * @param &$users Array of User objects.
-	 * @return true
-	 */
-	public static function getDefaultNotifiedUsers( EchoEvent $event, &$users ) {
-		$container = Flow\Container::getContainer();
-		$storage = $container['storage'];
-		$extra = $event->getExtra();
-		switch ( $event->getType() ) {
-		case 'flow-new-topic':
-			$title = $event->getTitle();
-			if ( $title->getNamespace() == NS_USER_TALK ) {
-				$users[] = User::newFromName( $title->getText() );
-			}
-			break;
-		case 'flow-topic-renamed':
-			$postId = $extra['topic-workflow'];
-		case 'flow-post-reply':
-		case 'flow-post-edited':
-		case 'flow-post-moderated':
-			if ( isset( $extra['reply-to'] ) ) {
-				$postId = $extra['reply-to'];
-			} elseif ( !isset( $postId ) || !$postId ) {
-				$postId = $extra['post-id'];
-			}
-
-			$post = $storage->find(
-				'PostRevision',
-				array(
-					'tree_rev_descendant_id' => UUID::create( $postId )
-				),
-				array(
-					'sort' => 'rev_id',
-					'order' => 'DESC',
-					'limit' => 1
-				)
-			);
-
-			$post = reset( $post );
-
-			if ( $post ) {
-				$user = User::newFromName( $post->getCreatorName() );
-
-				if ( $user && !$user->isAnon() ) {
-					$users[$user->getId()] = $user;
-				}
-			}
-			break;
-		default:
-			// Do nothing
-		}
 		return true;
 	}
 

@@ -297,8 +297,13 @@ $c['loader.root_post'] = $c->share( function( $c ) {
 $c['factory.loader.workflow'] = $c->share( function( $c ) {
 	return new Flow\WorkflowLoaderFactory(
 		$c['storage'],
-		$c['loader.root_post']
+		$c['loader.root_post'],
+		$c['controller.notification']
 	);
+} );
+
+$c['controller.notification'] = $c->share( function( $c ) {
+	return new Flow\NotificationController;
 } );
 
 return $c;
