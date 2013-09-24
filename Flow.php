@@ -60,9 +60,12 @@ $wgAutoloadClasses['Flow\DbFactory'] = $dir . 'includes/DbFactory.php';
 $wgAutoloadClasses['Flow\ParsoidUtils'] = $dir . 'includes/ParsoidUtils.php';
 $wgAutoloadClasses['Flow\Templating'] = $dir . 'includes/Templating.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
+$wgAutoloadClasses['Flow\View'] = $dir . 'includes/View.php';
 $wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
 $wgAutoloadClasses['Flow\WorkflowLoaderFactory'] = $dir . 'includes/WorkflowLoader.php';
 $wgAutoloadClasses['FlowCommentFormatter'] = $dir . 'includes/NotificationFormatter.php';
+$wgAutoloadClasses['Flow\OccupationController'] = $dir . 'includes/TalkpageManager.php';
+$wgAutoloadClasses['Flow\TalkpageManager'] = $dir . 'includes/TalkpageManager.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
@@ -134,6 +137,7 @@ $wgHooks['SetupAfterCache'][] = 'FlowHooks::onSetupAfterCache';
 //$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 $wgHooks['ApiTokensGetTokenTypes'][] = 'FlowHooks::onApiTokensGetTokenTypes';
+$wgHooks['MediaWikiPerformAction'][] = 'FlowHooks::onPerformAction';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
@@ -182,5 +186,14 @@ $wgFlowTokenSalt = 'flow';
 // When visiting the flow for an article but not specifying what type of workflow should be viewed,
 // use this workflow
 $wgFlowDefaultWorkflow = 'discussion';
+
+// Limits for paging
 $wgFlowDefaultLimit = 5;
 $wgFlowMaxLimit = 50;
+
+// Pages to occupy
+// Possible values:
+// * true (occupy all talk pages);
+// * false (occupy no talk pages);
+// * an array of normalised page names.
+$wgFlowOccupyPages = false;
