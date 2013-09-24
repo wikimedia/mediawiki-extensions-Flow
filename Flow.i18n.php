@@ -87,15 +87,25 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} your [$5 post] in $2 on [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].',
+	'flow-notification-mention' => '$1 {{GENDER:$1|mentioned}} you in their [$2 post] in "$3" on "$4"',
 
 	// Notification primary links and secondary links
 	'flow-notification-link-text-view-post' => 'View post',
 	'flow-notification-link-text-view-board' => 'View board',
+	'flow-notification-link-text-view-topic' => 'View topic',
 
 	// Notification Email messages
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|replied}} to your post',
 	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|replied}} to your post in $2 on "$3"',
 	'flow-notification-reply-email-batch-bundle-body' => '$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|replied}} to your post in $2 on "$3"',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|mentioned}} you on $2',
+	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|mentioned}} you in their post in "$2" on "$3"',
+	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|edited}} your post',
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|edited}} your post in $2 on "$3"',
+	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|renamed}} your topic',
+	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|renamed}} your topic $2 to $3 on "$4"',
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|created}} a new topic on $2',
+	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|created}} a new topic with the title "$2" on $3',
 
 	// Notification preference
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussion|Discussions}}',
@@ -251,6 +261,28 @@ See also:
 
 Parameters:
 * $1 - most significant unit of time since modification rendered by MWTimestamp::getHumanTimestamp',
+
+	'flow-notification-link-text-view-topic' => 'Link text in for the view topic button in a notification',
+	'flow-notification-edit-email-subject' => 'Subject line of notification E-mail for post being edited
+* $1 - Name of the user that edited the post',
+	'flow-notification-edit-email-batch-body' => 'E-mail notification for post being edited
+* $1 Name of the user that edited the post
+* $2 Name of the topic the edited post belongs to
+* $3 Title of the page the topic belongs to',
+	'flow-notification-rename-email-subject' => 'Subject line of notification E-mail for topic being renamed
+* $1 - Name of the user that renamed the topic',
+	'flow-notification-rename-email-batch-body' => 'E-mail notification for topic being renamed
+* $1 - Name of the user that renamed the topic
+* $2 - The original topic title
+* $3 - The new topic title
+* $4 - Title of the page the topic belongs to',
+	'flow-notification-newtopic-email-subject' => 'Subject line of notification E-mail for new topic creation
+* $1 - Name of the user that created a new topic',
+	'flow-notification-newtopic-email-batch-body' => 'E-Mail notification for new topic creation
+* $1 - Name of the user that created a new topic
+* $2 - The title of the new topic
+* $3 - Title of the page the topic belongs to',
+
 	'flow-notification-reply' => 'Notification text for when a user receives a reply. Parameters:
 * $1 - Username of the person who replied
 * $2 - Title of the topic
@@ -291,6 +323,12 @@ See also:
 * $5 - title for the Flow board
 * $6 - title for the page that the Flow board is attached to
 {{Related|Flow-notification}}',
+	'flow-notification-mention' => 'Notification text for when a user is mentioned in another conversation. Parameters:
+* $1 - username of the person who made the post, can be used for GENDER
+* $2 - permalink to the post
+* $3 - title of the topic
+* $4 - title for the page that the Flow board is attached to
+{{Related|Flow-notification}}',
 	'flow-notification-link-text-view-post' => 'Label for button that links to a flow post.',
 	'flow-notification-link-text-view-board' => 'Label for button that links to a flow discussion board.',
 	'flow-notification-reply-email-subject' => 'Email notification subject when a user receives a reply. Parameters:
@@ -315,6 +353,13 @@ Parameters:
 * $5 - a number used for plural support
 See also:
 * {{msg-mw|Flow-notification-reply-bundle}}',
+	'flow-notification-mention-email-subject' => 'Email notification subject when a user is mentioned in a post.  Parameters:
+* $1 - Username of the person who mentions other users
+* $2 - Flow title text',
+	'flow-notification-mention-email-batch-body' => 'Email notification body when a user is mentioned in a post, this message is used in both single email and email digest.  Parameters:
+* $1 - Username of the person who mentions other users
+* $2 - Title of the topic
+* $3 - Title for the page that the Flow board is attached to',
 	'echo-category-title-flow-discussion' => 'This is a short title for notification category.  Parameters:
 * $1 - number of mentions, for PLURAL support
 {{Related|Echo-category-title}}
