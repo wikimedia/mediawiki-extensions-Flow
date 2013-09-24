@@ -2,17 +2,17 @@
 
 namespace Flow\Block;
 
+use Flow\DbFactory;
+use Flow\Data\ManagerGroup;
+use Flow\Data\ObjectManager;
 use Flow\Data\Pager;
+use Flow\Data\RootPostLoader;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\Data\ManagerGroup;
-use Flow\Data\ObjectManager;
-use Flow\Data\RootPostLoader;
-use Flow\DbFactory;
+use Flow\NotificationController;
 use Flow\Templating;
-use EchoEvent;
 use User;
 
 class TopicListBlock extends AbstractBlock {
@@ -20,9 +20,13 @@ class TopicListBlock extends AbstractBlock {
 	protected $treeRepo;
 	protected $supportedActions = array( 'new-topic' );
 
-	public function __construct( Workflow $workflow, ManagerGroup $storage, RootPostLoader $rootLoader ) {
-		$this->workflow = $workflow;
-		$this->storage = $storage;
+	public function __construct(
+		Workflow $workflow,
+		ManagerGroup $storage,
+		NotificationController $notificationController,
+		RootPostLoader $rootLoader
+	) {
+		parent::__construct( $workflow, $storage, $notificationController );
 		$this->rootLoader = $rootLoader;
 	}
 
@@ -62,28 +66,23 @@ class TopicListBlock extends AbstractBlock {
 		$storage->put( $firstPost );
 		$storage->put( $topicListEntry );
 
+		$this->notificationController->notifyNewTopic( array(
+			'board-workflow' => $this->workflow,
+			'topic-workflow' => $topicWorkflow,
+			'title-post' => $topicPost,
+			'first-post' => $firstPost,
+			'user' => $this->user,
+		) );
+
 		$user = $this->user;
-
-		if ( class_exists( 'EchoEvent' ) ) {
-			EchoEvent::create( array(
-				'type' => 'flow-new-topic',
-				'agent' => $user,
-				'title' => $this->workflow->getArticleTitle(),
-				'extra' => array(
-					'board-workflow' => $this->workflow->getId(),
-					'topic-workflow' => $topicWorkflow->getId(),
-					'post-id' => $firstPost->getRevisionId(),
-					'topic-title' => $this->submitted['topic'],
-					'content' => $this->submitted['content'],
-				),
-			) );
-		}
-
+		$notificationController = $this->notificationController;
 		$output = array(
 			'created-topic-id' => $topicWorkflow->getId(),
 			'created-post-id' => $firstPost->getRevisionId(),
-			'render-function' => function( $templating ) use ( $topicWorkflow, $firstPost, $topicPost, $storage, $user ) {
-				$block = new TopicBlock( $topicWorkflow, $storage, $topicPost );
+			'render-function' => function( $templating )
+					use ( $topicWorkflow, $firstPost, $topicPost, $storage, $user, $notificationController )
+			{
+				$block = new TopicBlock( $topicWorkflow, $storage, $notificationController, $topicPost );
 				return $templating->renderTopic( $topicPost, $block, true );
 			},
 		);
@@ -199,7 +198,7 @@ class TopicListBlock extends AbstractBlock {
 		$roots = $this->rootLoader->getMulti( $topicIds );
 		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
 			$hexId = $workflow->getId()->getHex();
-			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $roots[$hexId] );
+			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
 			$topics[$hexId]->init( $this->action, $this->user );
 		}
 
