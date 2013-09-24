@@ -180,4 +180,50 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * Overrides MediaWiki::performAction
+	 * @param  OutputPage $output
+	 * @param  Article $article
+	 * @param  Title $title
+	 * @param  User $user
+	 * @param  Request $request
+	 * @param  MediaWiki $wiki
+	 * @return boolean True to continue processing as normal, False to abort.
+	 */
+	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
+		global $wgFlowOccupyPages;
+
+		$titleText = $title->getPrefixedText();
+
+		if ( $title->exists() && (
+			(
+				$wgFlowOccupyPages === true &&
+				$title->isTalkPage()
+			) ||
+			(
+				is_array( $wgFlowOccupyPages ) &&
+				in_array( $titleText, $wgFlowOccupyPages )
+			)
+		) ) {
+			$container = Flow\Container::getContainer();
+
+			$view = new Flow\View(
+				$container['templating'],
+				$container['url_generator'],
+				RequestContext::getMain()
+			);
+
+			$workflowId = $request->getVal( 'workflow' );
+			$action = $request->getVal( 'action', 'view' );
+
+			$loader = $container['factory.loader.workflow']
+				->createWorkflowLoader( $title, UUID::create( $workflowId ) );
+
+			$view->show( $loader, $action );
+			return false;
+		}
+
+		return true;
+	}
 }
