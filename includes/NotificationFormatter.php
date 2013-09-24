@@ -12,7 +12,7 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 			$message->params( $output );
 		} elseif ( $param === 'subject' ) {
 			if ( isset( $extra['topic-title'] ) && $extra['topic-title'] ) {
-				$message->params( $extra['topic-title'] );
+				$message->params( trim($extra['topic-title']) );
 			} else {
 				$message->params( '' );
 			}
@@ -57,9 +57,9 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 			$title = $this->formatTitle( SpecialPage::getTitleFor( 'Flow', $event->getTitle() ) );
 			$message->params( $title );
 		} elseif ( $param == 'old-subject' ) {
-			$message->params( $extra['old-subject'] );
+			$message->params( trim($extra['old-subject']) );
 		} elseif ( $param == 'new-subject' ) {
-			$message->params( $extra['new-subject'] );
+			$message->params( trim($extra['new-subject']) );
 		} else {
 			parent::processParam( $event, $param, $message, $user );
 		}
