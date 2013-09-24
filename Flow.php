@@ -63,6 +63,7 @@ $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
 $wgAutoloadClasses['Flow\WorkflowLoaderFactory'] = $dir . 'includes/WorkflowLoader.php';
 $wgAutoloadClasses['FlowCommentFormatter'] = $dir . 'includes/NotificationFormatter.php';
+$wgAutoloadClasses['Flow\NotificationController'] = $dir . 'includes/NotificationController.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
@@ -188,3 +189,5 @@ $wgFlowMaxLimit = 50;
 // Echo notification subscription preference
 $wgDefaultUserOptions['echo-subscriptions-web-flow-discussion'] = true;
 $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = true;
+// Maximum number of users that can be mentioned in one comment
+$wgFlowMaxMentionCount = 100;

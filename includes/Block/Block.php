@@ -4,6 +4,7 @@ namespace Flow\Block;
 
 use Flow\Model\Workflow;
 use Flow\Model\Post;
+use Flow\NotificationController;
 use Flow\Data\ManagerGroup;
 use Flow\Templating;
 use User;
@@ -49,10 +50,12 @@ abstract class AbstractBlock implements Block {
 	protected $errors;
 	protected $action;
 	protected $supportedActions = array();
+	protected $notificationController;
 
-	public function __construct( Workflow $workflow, ManagerGroup $storage ) {
+	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController ) {
 		$this->workflow = $workflow;
 		$this->storage = $storage;
+		$this->notificationController = $notificationController;
 	}
 
 	abstract protected function validate();
