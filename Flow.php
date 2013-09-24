@@ -63,6 +63,7 @@ $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
 $wgAutoloadClasses['Flow\WorkflowLoaderFactory'] = $dir . 'includes/WorkflowLoader.php';
 $wgAutoloadClasses['FlowCommentFormatter'] = $dir . 'includes/NotificationFormatter.php';
+$wgAutoloadClasses['Flow\NotificationController'] = $dir . 'includes/NotificationController.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
@@ -184,3 +185,6 @@ $wgFlowTokenSalt = 'flow';
 $wgFlowDefaultWorkflow = 'discussion';
 $wgFlowDefaultLimit = 5;
 $wgFlowMaxLimit = 50;
+
+// Maximum number of users that can be mentioned in one comment
+$wgFlowMaxMentionCount = 100;

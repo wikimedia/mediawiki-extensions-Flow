@@ -3,6 +3,7 @@
 namespace Flow\Model;
 
 use Flow\Data\ObjectManager;
+use MWException;
 
 class UUID {
 	protected $binaryValue;
