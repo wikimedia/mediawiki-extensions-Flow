@@ -3,6 +3,8 @@
 use Flow\UrlGenerator;
 
 class FlowCommentFormatter extends EchoBasicFormatter {
+	protected $urlGenerator;
+
 	protected function processParam( $event, $param, $message, $user ) {
 		$extra = $event->getExtra();
 		if ( $param === 'flow-board' ) {
@@ -33,7 +35,7 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 			}
 		} elseif ( $param === 'post-permalink' ) {
 			$postId = $extra['post-id'];
-			$url = UrlGenerator::buildUrl(
+			$url = $this->getUrlGenerator()->buildUrl(
 				$event->getTitle(),
 				'view',
 				array(
@@ -44,7 +46,7 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 
 			$message->params( $url );
 		} elseif ( $param === 'topic-permalink' ) {
-			$url = UrlGenerator::buildUrl(
+			$url = $this->getUrlGenerator()->buildUrl(
 				$event->getTitle(),
 				'view',
 				array(
@@ -100,5 +102,15 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 				return parent::getLinkParams( $event, $user, $destination );
 		}
 		return array( $target, $query );
+	}
+
+	protected function getUrlGenerator() {
+		if ( ! $this->urlGenerator ) {
+			$container = FlowContainer::getContainer();
+
+			$this->urlGenerator = $container['url_generator'];
+		}
+
+		return $this->urlGenerator;
 	}
 }
