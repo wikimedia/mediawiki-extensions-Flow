@@ -180,4 +180,65 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * Overrides MediaWiki::performAction
+	 * @param  OutputPage $output
+	 * @param  Article $article
+	 * @param  Title $title
+	 * @param  User $user
+	 * @param  Request $request
+	 * @param  MediaWiki $wiki
+	 * @return boolean True to continue processing as normal, False to abort.
+	 */
+	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
+		global $wgFlowOccupyPages;
+
+		if ( self::isTalkpageOccupied( $title ) ) {
+			$container = Flow\Container::getContainer();
+
+			$view = new Flow\View(
+				$container['templating'],
+				$container['url_generator'],
+				RequestContext::getMain()
+			);
+
+			$workflowId = $request->getVal( 'workflow' );
+			$action = $request->getVal( 'action', 'view' );
+
+			$loader = $container['factory.loader.workflow']
+				->createWorkflowLoader( $title, UUID::create( $workflowId ) );
+
+			$view->show( $loader, $action );
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Determines whether or not a talk page is "occupied" by Flow.
+	 *
+	 * Internally, determines whether or not 1% of the talk page contains
+	 * 99% of the discussions.
+	 * @param  Title  $title Title object to check for occupation status
+	 * @return boolean True if the talk page is occupied, False otherwise.
+	 */
+	public static function isTalkpageOccupied( $title ) {
+		global $wgFlowOccupyPages;
+		if ( ! $title || $title->exists() ) {
+			// Page does not exist
+			return false;
+		}
+
+		$titleText = $title->getPrefixedText();
+
+		if ( $wgFlowOccupyPages == true ) {
+			return true;
+		} elseif ( is_array( $wgFlowOccupyPages ) ) {
+			return in_array( $titleText, $wgFlowOccupyPages );
+		} else {
+			return false;
+		}
+	}
 }

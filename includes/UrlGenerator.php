@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use FlowHooks;
 use Flow\Data\ObjectManager;
 use Flow\Model\Workflow;
 use SpecialPage;
@@ -14,8 +15,12 @@ class UrlGenerator {
 
 	public static function buildUrl( $title, $action, $query ) {
 		$query['action'] = $action;
-		return SpecialPage::getTitleFor( 'Flow', $title->getPrefixedText() )
-			->getFullUrl( $query );
+
+		$linkTitle = FlowHooks::isTalkpageOccupied( $title )
+			? $title
+			: SpecialPage::getTitleFor( 'Flow', $title->getPrefixedText() );
+
+		return $linkTitle->getFullUrl( $query );
 	}
 
 	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {

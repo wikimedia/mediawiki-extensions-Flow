@@ -24,80 +24,28 @@ class SpecialFlow extends SpecialPage {
 
 	public function execute( $subPage ) {
 		$this->setHeaders();
-		$this->getOutput()->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
 
 		if ( empty( $subPage ) ) {
 			// If no specific article was requested, render the users flow
 			throw new \MWException( 'TODO: Redirect to users board?' );
 		}
 
-		$this->container = $this->loadContainer();
+		$container = Flow\Container::getContainer();
 		$request = $this->getRequest();
 		$title = $this->loadTitle( $subPage );
-		$action = $request->getVal( 'action', 'view' );
 		$workflowId = $request->getVal( 'workflow' );
-		$user = $this->getUser();
+		$action = $request->getVal( 'action', 'view' );
 
-		$this->getOutput()->setPageTitle( $this->msg( 'flow-specialpage', $title->getPrefixedText() )->text() );
-
-		$definitionRequest = $request->getVal( 'definition', null );
-		if ( $definitionRequest !== null ) {
-			$definitionRequest = UUID::create( $definitionRequest );
-		} else {
-			$definitionRequest = $request->getVal( 'flow', null );
-		}
-
-		$this->loader = $this->container['factory.loader.workflow']
+		$loader = $container['factory.loader.workflow']
 			->createWorkflowLoader( $title, UUID::create( $workflowId ) );
 
-		$workflow = $this->loader->getWorkflow();
-		$definition = $this->loader->getDefinition();
+		$view = new Flow\View(
+			$container['templating'],
+			$container['url_generator'],
+			$this->getContext()
+		);
 
-		$blocks = $this->loader->createBlocks();
-		foreach ( $blocks as $block ) {
-			$block->init( $action, $user );
-		}
-
-		if ( $request->getMethod() === 'POST' ) {
-			$user = $this->container['user'];
-			global $wgFlowTokenSalt;
-			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
-				$error = '<div class="error">' . wfMessage( 'sessionfailure' ) . '</div>';
-				$this->getOutput()->addHTML( $error );
-			} else {
-				$user = $this->container['user'];
-				$request = $this->getRequest();
-				$blocksToCommit = $this->loader->handleSubmit( $action, $blocks, $user, $request );
-				if ( $blocksToCommit ) {
-					$this->loader->commit( $workflow, $blocksToCommit );
-					$this->redirect( $workflow, 'view' );
-					return;
-				}
-			}
-		}
-
-		$templating = $this->container['templating'];
-		$workflowId = $workflow->getId()->getHex();
-		$this->getOutput()->addHTML( Html::openElement( 'div',
-			array(
-				'class' => 'flow-container',
-				'data-workflow-id' => $workflowId,
-				'data-page-title' => $title->getPrefixedText(),
-				'data-workflow-existence' => $workflow->isNew() ? 'new' : 'existing',
-			)
-		) );
-		foreach ( $blocks as $block ) {
-			$block->render( $templating, $request->getArray( $block->getName(), array() ) );
-		}
-		$this->getOutput()->addHTML( "</div>" );
-	}
-
-	protected function loadContainer() {
-		$container = Flow\Container::getContainer();
-		$container['request'] = $this->getRequest();
-		$container['output'] = $this->getOutput();
-
-		return $container;
+		$view->show( $loader, $action );
 	}
 
 	protected function loadTitle( $text ) {
@@ -110,10 +58,5 @@ class SpecialFlow extends SpecialPage {
 		}
 
 		return $title;
-	}
-
-	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {
-		$url = $this->container['url_generator']->generateUrl( $workflow, $action, $query );
-		$this->getOutput()->redirect( $url );
 	}
 }
