@@ -84,7 +84,8 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your [$5 post] in $2 on [[$3|$4]].',
 	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} your [$5 post] in $2 on [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
-	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].'
+	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].',
+	'flow-notification-mention' => '$1 {{GENDER:$1|mentioned}} you in their [$2 post] in $3 on [[$4|$5]]',
 );
 
 /** Message documentation (Message documentation)
@@ -264,6 +265,13 @@ Parameters:
 * $4 - new topic subject
 * $5 - title for the Flow board
 * $6 - title for the page that the Flow board is attached to
+{{Related|Flow-notification}}',
+	'flow-notification-mention' => 'Notification text for when a user is mentioned in another conversation. Parameters:
+* $1 - username of the person who made the post, can be used for GENDER
+* $2 - permalink to the post
+* $3 - title of the topic
+* $4 - title of the Flow board
+* $5 - title for the page that the Flow board is attached to
 {{Related|Flow-notification}}',
 );
 
