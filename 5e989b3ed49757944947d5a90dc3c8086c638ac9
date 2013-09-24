@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_5f052dbd",
+        "filename": "db_patches/patch-revision_last_editor.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-24T01:09:47Z",
+      "side": 1,
+      "message": "Trailing space nitpick, :), it\u0027s the mw coding convention",
+      "revId": "5e989b3ed49757944947d5a90dc3c8086c638ac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_7fb2e949",
+        "filename": "db_patches/patch-revision_last_editor.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-24T01:09:47Z",
+      "side": 1,
+      "message": "Is this a global user_id (bigint), how different is this from rev_user_id (int)?",
+      "revId": "5e989b3ed49757944947d5a90dc3c8086c638ac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_2a0ca139",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-24T01:09:47Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to work, postId is a 32-chars string and this method is using this to compare against a 16-chars database field",
+      "revId": "5e989b3ed49757944947d5a90dc3c8086c638ac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_3fc5c13f",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-24T01:09:47Z",
+      "side": 1,
+      "message": "We should disallow anon users to edit anon posts.\n\n\u0027sysop\u0027 is a user role but a user right, it would not work for User::isAllowed()",
+      "revId": "5e989b3ed49757944947d5a90dc3c8086c638ac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_ffea5974",
+        "filename": "templates/post.html.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-24T01:09:47Z",
+      "side": 1,
+      "message": "Could we abstract this into a method like isAllowdToEdit( $user )?",
+      "revId": "5e989b3ed49757944947d5a90dc3c8086c638ac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
