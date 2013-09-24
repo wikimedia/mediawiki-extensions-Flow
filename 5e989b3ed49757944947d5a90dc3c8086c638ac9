@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "4946a543_8b0677cf",
+        "filename": "flow.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-24T18:10:28Z",
+      "side": 1,
+      "message": "Revision is an immutable object which holds historical data, it seems odd to have \u0027last edit\u0027 data inside a revision table, should it be in a post content table?",
+      "revId": "5e989b3ed49757944947d5a90dc3c8086c638ac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_2a0ca139",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 4
