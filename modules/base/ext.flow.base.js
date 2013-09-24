@@ -162,7 +162,7 @@ mw.flow = {
 					var output;
 
 					if ( data.flow[actionName].errors ) {
-						deferredObject.reject( 'block-errors', data.flow.reply.errors );
+						deferredObject.reject( 'block-errors', data.flow[actionName].errors );
 						return;
 					}
 
