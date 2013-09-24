@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_2ac5813f",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2013-09-24T03:38:44Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be hardcoded inside Flow.\n\nEven if it\u0027d be abstracted in VE (which it does have abstractions for) this would be done differently (you\u0027d load the mediawiki target, not the standalone target. Standalone is for plain html5, not for MW Parsoid html).\n\nI can\u0027t say what you should use instead as I don\u0027t know in what context this is used or what it is for, but I\u0027d recommend contacting the VE team with what you need and we can come up with a solution that we will support (as the below will eventually break in unexpected ways).",
+      "revId": "c72c0ce45ab0b4312a8b839be47da4d424ada659",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
