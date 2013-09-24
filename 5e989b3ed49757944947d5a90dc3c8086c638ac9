@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "4946a543_5047dabe",
+        "filename": "db_patches/patch-revision_last_editor.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-24T18:31:35Z",
+      "side": 1,
+      "message": "rev_user_id should have been bigint as well, changing it :)",
+      "parentUuid": "4946a543_7fb2e949",
+      "revId": "5e989b3ed49757944947d5a90dc3c8086c638ac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_8b0677cf",
         "filename": "flow.sql",
         "patchSetId": 4
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "4946a543_8b8cb730",
+        "filename": "flow.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-24T18:31:35Z",
+      "side": 1,
+      "message": "The trick is that this isn\u0027t necessarily the last edit, but the last revision that changed the content.\n\nImagine we have 4 revisions\n\n1) User A creates content\n2) User B edits content\n3) User C hides the revision\n4) User D un-hides the revision\n\nWhen displaying revision 4 we still need to be able to say \u0027Last edited by User B 4 hours ago\u0027 or some such.  The choices are either to query back into the history and find the last time the content changed, or denormalize the information about the last edit that changed it.\n\nTo keep things simple, i figured denormalizing the data into the revision would be the simplest way. This is particularly simple because the revisions are immutable, we only have to denormalize once and we know it wont change.",
+      "parentUuid": "4946a543_8b0677cf",
+      "revId": "5e989b3ed49757944947d5a90dc3c8086c638ac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_2a0ca139",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 4
@@ -64,6 +100,24 @@
       "writtenOn": "2013-09-24T01:09:47Z",
       "side": 1,
       "message": "This doesn\u0027t seem to work, postId is a 32-chars string and this method is using this to compare against a 16-chars database field",
+      "revId": "5e989b3ed49757944947d5a90dc3c8086c638ac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_30216e00",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-24T18:31:35Z",
+      "side": 1,
+      "message": "Good catch, this has been working only through sheer luck so far.  Basically when querying memcache it uses the 32 char string, when querying mysql it uses the binary string.  We should be passing a UUID object which gets converted to whichever is needed.  Next patch includes that fix.",
+      "parentUuid": "4946a543_2a0ca139",
       "revId": "5e989b3ed49757944947d5a90dc3c8086c638ac9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
