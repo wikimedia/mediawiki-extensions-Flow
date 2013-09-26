@@ -82,7 +82,7 @@ class ApiQueryFlow extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&list=flow&flowpage=Talk:Main_Page',
+			'api.php?action=query&list=flow&flowpage=Main_Page',
 		);
 	}
 
