@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_6ea30fb6",
+        "filename": "includes/Block/Block.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-26T22:40:23Z",
+      "side": 1,
+      "message": "needs property definition",
+      "revId": "5807afdd00676d4d4ccfe09f77f8ffaba3fa9e3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_aeadf79e",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-26T22:40:23Z",
+      "side": 1,
+      "message": "duplicates action of parent::__construct",
+      "revId": "5807afdd00676d4d4ccfe09f77f8ffaba3fa9e3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
