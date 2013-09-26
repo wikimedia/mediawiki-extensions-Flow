@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_8c612ad8",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1339,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-09-26T00:09:54Z",
+      "side": 1,
+      "message": "Should this be foreach( $res ) ?",
+      "revId": "33c7c6bc5288256ebec200136b286b82333c7c33",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_cc841262",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-09-26T00:09:54Z",
+      "side": 1,
+      "message": "Why do we need to hard-code this particular moderation state?",
+      "revId": "33c7c6bc5288256ebec200136b286b82333c7c33",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
