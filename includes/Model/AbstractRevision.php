@@ -252,23 +252,48 @@ abstract class AbstractRevision {
 			$this->convertedContent['wikitext'] = $content;
 
 			// convert content to desired storage format
-			global $wgFlowContentFormat;
-			if ( !isset( $this->convertedContent[$wgFlowContentFormat] ) ) {
-				$this->convertedContent[$wgFlowContentFormat] =
-					ParsoidUtils::convert(
-						'wikitext',
-						$wgFlowContentFormat,
-						$this->convertedContent['wikitext']
-					);
+			$storageFormat = $this->getStorageFormat();
+			if ( $this->isFormatted() ) {
+				if ( !isset( $this->convertedContent[$storageFormat] ) ) {
+					$this->convertedContent[$storageFormat] =
+						ParsoidUtils::convert(
+							'wikitext',
+							$storageFormat,
+							$this->convertedContent['wikitext']
+						);
+				}
 			}
 
-			$this->content = $this->decompressedContent = $this->convertedContent[$wgFlowContentFormat];
+			$this->content = $this->decompressedContent = $this->convertedContent[$storageFormat];
 			$this->contentUrl = null;
 
 			// should this only remove a subset of flags?
 			$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
-			$this->flags[] = $wgFlowContentFormat;
+			$this->flags[] = $storageFormat;
 		}
+	}
+
+	/**
+	 * Determines whether this revision contains formatted content
+	 * (i.e. content with separate HTML and WikiText representations)
+	 * or unformatted content (i.e. one plaintext representation)
+	 * Note that this function may return different values for different
+	 * instances of the same class.
+	 * @return boolean True for formatted, False for plaintext
+	 */
+	protected function isFormatted() {
+		return true;
+	}
+
+	/**
+	 * Determines the appropriate format to store content in.
+	 * Usually, the default storage format, but if isFormatted() returns
+	 * false, then it will return 'wikitext'.
+	 * @return string The name of the storage format.
+	 */
+	protected function getStorageFormat() {
+		global $wgFlowContentFormat;
+		return $this->isFormatted() ? $wgFlowContentFormat : 'wikitext';
 	}
 
 	public function getPrevRevisionId() {
