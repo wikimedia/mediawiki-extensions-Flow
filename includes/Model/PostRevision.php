@@ -152,6 +152,15 @@ class PostRevision extends AbstractRevision {
 	public function getRevisionType() {
 		return 'post';
 	}
+
+	// Posts are unformatted if they are title posts, formatted otherwise.
+	public function isFormatted() {
+		if ( !is_null( $this->replyToId ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 
