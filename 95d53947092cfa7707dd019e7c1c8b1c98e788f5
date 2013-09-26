@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_88e2f3d6",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-26T18:26:51Z",
+      "side": 1,
+      "message": "I would prefer state to be received through the constructor, rather than just reaching out into global state.  The reason for this is basically whats called the \"open/closed principle\". We should prefer code to be open to changes in functionality while being closed to changes in code.\n\nThe simplest way to accomplish then open/closed principle is to define a 1 method interface of isTalkpageOccupied, and accepting any object matching that interface in the constructor.  That would mean any time in the future the implementation could be extended without changing FlowHooks or UrlGenerator(and potentially breaking other uses of those classes) by a new or extended class that implements the interface.\n\nI know this may seem a bit pedantic when applied to individual use cases, but when applied at a global level I have found it makes on-going maintenance of an application much easier as you can change out little pieces without as much risk in breaking related code.",
+      "revId": "95d53947092cfa7707dd019e7c1c8b1c98e788f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_08cfe357",
+        "filename": "includes/View.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-26T18:26:51Z",
+      "side": 1,
+      "message": "needs type hint for first parameter, primarily as documentation for future editors working on this code.",
+      "revId": "95d53947092cfa7707dd019e7c1c8b1c98e788f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
