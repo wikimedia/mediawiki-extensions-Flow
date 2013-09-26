@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4946a543_287adfe8",
+        "filename": "includes/Templating.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-26T18:46:43Z",
+      "side": 1,
+      "message": "This should be unnecessary,  tempating will always be available as $this when included in Templating::_render()",
+      "revId": "587f69e9da38d113e5d67db2dbb81074bd4dc2a6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_c8887beb",
+        "filename": "templates/post.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-26T18:46:43Z",
+      "side": 1,
+      "message": "to keep things consistent, intent this to the same as \u003cdiv\u003e on prev line, and put the \u003c?php ?\u003e tags at the same indentation level as the code.",
+      "revId": "587f69e9da38d113e5d67db2dbb81074bd4dc2a6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
