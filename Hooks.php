@@ -8,10 +8,11 @@ class FlowHooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
-		global $wgEchoNotifications, $wgHooks, $wgEchoNotificationIcons;
+		global $wgEchoNotifications, $wgHooks, $wgEchoNotificationIcons, $wgEchoNotificationCategories;
 
 		if ( isset( $wgEchoNotifications ) ) {
 			$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'FlowHooks::getDefaultNotifiedUsers';
+			$wgHooks['EchoGetBundleRules'][] = 'FlowHooks::onEchoGetBundleRules';
 
 			$notificationTemplate = array(
 				'category' => 'flow-discussion',
@@ -19,7 +20,7 @@ class FlowHooks {
 				'formatter-class' => 'FlowCommentFormatter',
 				'icon' => 'flow-discussion',
 			);
-
+			
 			$wgEchoNotifications['flow-new-topic'] = array(
 				'title-message' => 'flow-notification-newtopic',
 				'title-params' => array( 'agent', 'flow-title', 'title', 'subject', 'topic-permalink' ),
@@ -27,8 +28,19 @@ class FlowHooks {
 			) + $notificationTemplate;
 
 			$wgEchoNotifications['flow-post-reply'] = array(
+				'primary-link' => array( 'message' => 'flow-notification-link-text-view-post', 'destination' => 'flow-post' ),
+				'secondary-link' => array( 'message' => 'flow-notification-link-text-view-board', 'destination' => 'flow-board' ),
 				'title-message' => 'flow-notification-reply',
 				'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
+				'bundle' => array( 'web' => true, 'email' => false ),
+				'bundle-message' => 'flow-notification-reply-bundle',
+				'bundle-params' => array( 'agent', 'subject', 'title', 'post-permalink', 'agent-other-display', 'agent-other-count' ),
+				'email-subject-message' => 'flow-notification-reply-email-subject',
+				'email-subject-params' => array( 'agent' ),
+				'email-body-batch-message' => 'flow-notification-reply-email-batch-body',
+				'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
+				'email-body-batch-bundle-message' => 'flow-notification-reply-email-batch-bundle-body',
+				'email-body-batch-bundle-params' => array( 'agent', 'subject', 'title', 'agent-other-display', 'agent-other-count' ),
 				'payload' => array( 'comment-text' ),
 			) + $notificationTemplate;
 
@@ -53,7 +65,8 @@ class FlowHooks {
 			);
 
 			$wgEchoNotificationCategories['flow-discussion'] = array(
-				// 'echo-pref'
+				'priority' => 3,
+				'tooltip' => 'echo-pref-tooltip-flow-discussion',
 			);
 		}
 	}
@@ -159,6 +172,32 @@ class FlowHooks {
 			break;
 		default:
 			// Do nothing
+		}
+		return true;
+	}
+
+	/**
+	 * Handler for EchoGetBundleRule hook, which defines the bundle rule for each notification
+	 * @param $event EchoEvent
+	 * @param $bundleString string Determines how the notification should be bundled
+	 */
+	public static function onEchoGetBundleRules( $event, &$bundleString ) {
+		switch ( $event->getType() ) {
+			case 'flow-post-reply':
+				$extra = $event->getExtra();
+
+				if ( isset( $extra['reply-to'] ) ) {
+					$postId = $extra['reply-to'];
+				} elseif ( isset( $extra['post-id'] ) ) {
+					$postId = $extra['post-id'];
+				} else {
+					$postId = null;	
+				}
+
+				if ( $postId ) {
+					$bundleString = 'flow-post-reply-' . $postId->getHex(); 
+				}
+			break;
 		}
 		return true;
 	}
