@@ -81,10 +81,25 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-paging-fwd' => 'Older topics',
 	'flow-last-modified' => 'Last modified about $1',
 
-	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your [$5 post] in $2 on [[$3|$4]].',
+	// Notification message
+	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your [$5 post] in $2 on "$4".',
+	'flow-notification-reply-bundle' => '$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|replied}} to your [$4 post] in $2 on "$3".',
 	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} your [$5 post] in $2 on [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
-	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].'
+	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].',
+
+	// Notification primary links and secondary links
+	'flow-notification-link-text-view-post' => 'View post',
+	'flow-notification-link-text-view-board' => 'View board',
+
+	// Notification Email messages
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|replied}} to your post',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|replied}} to your post in $2 on "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|replied}} to your post in $2 on "$3"',
+
+	// Notification preference
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussion|Discussions}}',
+	'echo-pref-tooltip-flow-discussion' => 'Notify me when actions related to me occur in the disucssion board.',
 );
 
 /** Message documentation (Message documentation)
@@ -239,10 +254,17 @@ Parameters:
 	'flow-notification-reply' => 'Notification text for when a user receives a reply. Parameters:
 * $1 - Username of the person who replied
 * $2 - Title of the topic
-* $3 - Title for the Flow board
+* $3 - Title for the Flow board, this parameter is not used for the message at this moment
 * $4 - Title for the page that the Flow board is attached to
 * $5 - Permanent URL for the post
 {{Related|Flow-notification}}',
+	'flow-notification-reply-bundle' => 'Notification text for when a user receives replies from multiple users on the same post/topic.  Params:
+* $1 - Username of the person who replied
+* $2 - Title of the topic
+* $3 - Title for the page that the Flow board is attached to
+* $4 - Permantent URL for the post
+* $5 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
+* $6 - a number used for plural support',
 	'flow-notification-edit' => "Notification text for when a user's post is edited. Parameters:
 * $1 - Username of the person who edited the post
 * $2 - Title of the topic
@@ -265,6 +287,24 @@ Parameters:
 * $5 - title for the Flow board
 * $6 - title for the page that the Flow board is attached to
 {{Related|Flow-notification}}',
+	'flow-notification-link-text-view-post' => 'Label for button that links to a flow post.',
+	'flow-notification-link-text-view-board' => 'Label for button that links to a flow discussion board.',
+	'flow-notification-reply-email-subject' => 'Email notification subject when a user receives a reply.  Parameters:
+* $1 - Username of the person who replied',
+	'flow-notification-reply-email-batch-body' => 'Email notification body when a user receives a reply, this message is used in both single email and email digest.  Parameters:
+* $1 - Username of the person who replied
+* $2 - Title of the topic
+* $3 - Title for the page that the Flow board is attached to',
+	'flow-notification-reply-email-batch-bundle-body' => 'Email notification body when a user receives reply from multiple users, this message is used in both single email and email digest.  Parameters:
+* $1 - Username of the person who replied
+* $2 - Title of the topic
+* $3 - Title for the page that the Flow board is attached to
+* $4 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
+* $5 - a number used for plural support',
+	'echo-category-title-flow-discussion' => 'This is a short title for notification category.  Parameters:
+* $1 - number of mentions, for PLURAL support
+{{Related|Echo-category-title}}',
+	'echo-pref-tooltip-flow-discussion' => 'This is a short description of the flow-discussion notification category.',
 );
 
 /** Asturian (asturianu)
