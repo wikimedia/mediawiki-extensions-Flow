@@ -74,6 +74,9 @@ $wgAutoloadClasses['Flow\Model\TopicListEntry'] = $dir . 'includes/Model/TopicLi
 $wgAutoloadClasses['Flow\Model\Workflow'] = $dir . 'includes/Model/Workflow.php';
 $wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
 
+// Helpers for templating
+$wgAutoloadClasses['Flow\View\PostActionMenu'] = "$dir/includes/View/PostActionMenu.php";
+
 // Classes that deal with database interaction between database and the models
 $wgAutoloadClasses['Flow\Repository\TreeRepository'] = $dir . 'includes/Repository/TreeRepository.php';
 $wgAutoloadClasses['Flow\Repository\MultiGetList'] = $dir . 'includes/Repository/MultiGetList.php';
