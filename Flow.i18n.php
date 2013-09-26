@@ -81,10 +81,22 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-paging-fwd' => 'Older topics',
 	'flow-last-modified' => 'Last modified about $1',
 
-	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your [$5 post] in $2 on [[$3|$4]].',
+	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your [$5 post] in $2 on \'$4\'.',
 	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} your [$5 post] in $2 on [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
-	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].'
+	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].',
+
+	// Notification primary links and secondary links
+	'flow-notification-link-text-view-post' => 'View post',
+	'flow-notification-link-text-view-board' => 'View board',
+
+	// Notification Email messages
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|replied}} to your post',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|replied}} to your post in $2 on \'$3\'',
+
+	// Notification preference
+	'echo-category-title-flow-discussion' => 'Discussion board',
+	'echo-pref-tooltip-flow-discussion' => 'Notify me when actions related to me occur in the disucssion board.',
 );
 
 /** Message documentation (Message documentation)
@@ -265,6 +277,8 @@ Parameters:
 * $5 - title for the Flow board
 * $6 - title for the page that the Flow board is attached to
 {{Related|Flow-notification}}',
+	'flow-notification-link-text-view-post' => 'Label for button that links to a flow post.',
+	'flow-notification-link-text-view-board' => 'Label for button that links to a flow board.',
 );
 
 /** Asturian (asturianu)

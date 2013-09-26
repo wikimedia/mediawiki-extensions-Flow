@@ -8,7 +8,7 @@ class FlowHooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
-		global $wgEchoNotifications, $wgHooks, $wgEchoNotificationIcons;
+		global $wgEchoNotifications, $wgHooks, $wgEchoNotificationIcons, $wgEchoNotificationCategories;
 
 		if ( isset( $wgEchoNotifications ) ) {
 			$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'FlowHooks::getDefaultNotifiedUsers';
@@ -19,7 +19,7 @@ class FlowHooks {
 				'formatter-class' => 'FlowCommentFormatter',
 				'icon' => 'flow-discussion',
 			);
-
+			
 			$wgEchoNotifications['flow-new-topic'] = array(
 				'title-message' => 'flow-notification-newtopic',
 				'title-params' => array( 'agent', 'flow-title', 'title', 'subject', 'topic-permalink' ),
@@ -27,8 +27,14 @@ class FlowHooks {
 			) + $notificationTemplate;
 
 			$wgEchoNotifications['flow-post-reply'] = array(
+				'primary-link' => array( 'message' => 'flow-notification-link-text-view-post', 'destination' => 'flow-post' ),
+				'secondary-link' => array( 'message' => 'flow-notification-link-text-view-board', 'destination' => 'flow-board' ),
 				'title-message' => 'flow-notification-reply',
 				'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
+				'email-subject-message' => 'flow-notification-reply-email-subject',
+				'email-subject-params' => array( 'agent' ),
+				'email-body-batch-message' => 'flow-notification-reply-email-batch-body',
+				'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
 				'payload' => array( 'comment-text' ),
 			) + $notificationTemplate;
 
@@ -53,7 +59,8 @@ class FlowHooks {
 			);
 
 			$wgEchoNotificationCategories['flow-discussion'] = array(
-				// 'echo-pref'
+				'priority' => 3,
+				'tooltip' => 'echo-pref-tooltip-flow-discussion',
 			);
 		}
 	}
