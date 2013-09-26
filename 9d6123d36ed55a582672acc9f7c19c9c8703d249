@@ -50,6 +50,24 @@
       "revId": "9d6123d36ed55a582672acc9f7c19c9c8703d249",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_6ca15ea6",
+        "filename": "templates/post.html.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-09-26T01:02:36Z",
+      "side": 1,
+      "message": "-\u003eparse()",
+      "parentUuid": "4946a543_0cb0daf2",
+      "revId": "9d6123d36ed55a582672acc9f7c19c9c8703d249",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
