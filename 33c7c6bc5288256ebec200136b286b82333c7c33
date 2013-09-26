@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4946a543_4c2102ff",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1339,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-26T04:22:08Z",
+      "side": 1,
+      "message": "heh, yea it really should.  Next patch.",
+      "parentUuid": "4946a543_8c612ad8",
+      "revId": "33c7c6bc5288256ebec200136b286b82333c7c33",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_cc841262",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2013-09-26T00:09:54Z",
       "side": 1,
       "message": "Why do we need to hard-code this particular moderation state?",
+      "revId": "33c7c6bc5288256ebec200136b286b82333c7c33",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_0c88dae7",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-26T04:22:08Z",
+      "side": 1,
+      "message": "I suppose whats really needed is a more granular system more like Revision::userCan. And perhaps more detail in what and how our moderation works.\n\nThis thought specifically came about in relation to the multiple usernames that are stored in the revision.\n\nThe primary username is the user that created this revision.  That is the user returned by this function.\n\nWe also have getCreator, which is denormalized data from the first revision and the username the post is attributed to in template/post.html.php\n\nAdditionally we have getLastContentEditorName, which is denormalized data from the most recent revision that changed the content(as opposed to revisions that change moderation states)\n\nWhich brings us to the other two types of moderation beyond censoring(which btw is supposed to be a joke, since we dont have a name yet for this level of moderation).   Hide and Delete.  Hide shouldn\u0027t effect the ability of any user to fetch the username, but it probably wont be displayed by  default in the template.\n\nDelete should.  But what its hiding should be the creator and the last content editor.  If delete hid the usertext you wouldn\u0027t know who did the deletion(or maybe your not supposed to? i dunno)\n\nAlso as long as i\u0027m writing a dissertation on the current state of moderation,  censoring is slightly special.  Setting the moderation state to anything other than censored creates a new revision.  Censor is applied to an existing revision.",
+      "parentUuid": "4946a543_cc841262",
       "revId": "33c7c6bc5288256ebec200136b286b82333c7c33",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
