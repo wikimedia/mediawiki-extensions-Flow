@@ -92,6 +92,7 @@ class Templating {
 			array(
 				'block' => $block,
 				'post' => $post,
+				'templating' => $this,
 			),
 			$return
 		);
