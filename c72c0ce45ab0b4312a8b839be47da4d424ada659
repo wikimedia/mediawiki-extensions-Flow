@@ -16,6 +16,24 @@
       "revId": "c72c0ce45ab0b4312a8b839be47da4d424ada659",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4946a543_1c71e1dd",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-27T14:33:00Z",
+      "side": 1,
+      "message": "For now, it\u0027s still unclear exactly how we\u0027ll want VE in Flow, and serves as a \"minimal effort temporary implementation\" :)\n\nDefinitely agree, though, this setup will most certainly need to change once more light is shed on this topic.",
+      "parentUuid": "4946a543_2ac5813f",
+      "revId": "c72c0ce45ab0b4312a8b839be47da4d424ada659",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
