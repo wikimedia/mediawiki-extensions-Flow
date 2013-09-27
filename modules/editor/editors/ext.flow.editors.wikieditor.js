@@ -37,7 +37,7 @@
 		if ( config.dialogs ) {
 			this.$node.wikiEditor( 'addModule', $.wikiEditor.modules.dialogs.config.getDefaultConfig() );
 		}
-	},
+	};
 
 	mw.flow.editors.wikieditor.prototype.destroy = function () {
 		$.wikiEditor.instances.splice( $.inArray( this.$node, $.wikiEditor.instances ), 1 );
