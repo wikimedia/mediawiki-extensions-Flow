@@ -360,6 +360,18 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-notification-rename' => '$1 {{GENDER:$1|änderte}} den Titel von [$2 $3] nach „$4“ auf [[$5|$6]]',
 );
 
+/** Spanish (español)
+ * @author Ovruni
+ */
+$messages['es'] = array(
+	'flow-edit-summary-link' => 'Editar resumen',
+	'flow-post-deleted-by' => '{{GENDER:$1|Eliminado}} por $1 $2',
+	'flow-post-actions' => 'acciones',
+	'flow-topic-actions' => 'acciones',
+	'flow-cancel' => 'Cancelar',
+	'flow-newtopic-title-placeholder' => 'Asunto del mensaje',
+);
+
 /** Finnish (suomi)
  * @author Nike
  * @author Stryn
@@ -669,11 +681,11 @@ $messages['it'] = array(
 	'flow-disclaimer' => 'Facendo click sul pulsante "Aggiungi messaggio", accetti le condizioni d\'uso, e accetti irrevocabilmente di rilasciare il tuo contributo sotto le licenze Creative Commons Attribuzione-Condividi allo stesso modo 3.0 e GFDL.
 Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'attribuzione in base alla licenza Creative Commons.',
 	'flow-post-hidden' => '[messaggio nascosto]',
-	'flow-post-hidden-by' => 'Nascosto da $1 $2',
+	'flow-post-hidden-by' => '{{GENDER:$1|Nascosto}} da $1 $2',
 	'flow-post-deleted' => '[messaggio cancellato]',
-	'flow-post-deleted-by' => 'Cancellato da $1 $2',
+	'flow-post-deleted-by' => '{{GENDER:$1|Cancellato}} da $1 $2',
 	'flow-post-censored' => '[messaggio censurato]',
-	'flow-post-censored-by' => 'Censurato da $1 $2',
+	'flow-post-censored-by' => '{{GENDER:$1|Censurato}} da $1 $2',
 	'flow-post-actions' => 'azioni',
 	'flow-topic-actions' => 'azioni',
 	'flow-cancel' => 'Annulla',
@@ -682,7 +694,7 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-newtopic-header' => 'Aggiungi una nuova discussione',
 	'flow-newtopic-save' => 'Aggiungi discussione',
 	'flow-newtopic-start-placeholder' => 'Clicca qui per iniziare una nuova discussione. Sii gentile!',
-	'flow-reply-placeholder' => 'Clicca per rispondere a $1. Sii gentile!',
+	'flow-reply-placeholder' => 'Clicca per {{GENDER:$1|rispondere}} a $1. Sii gentile!',
 	'flow-reply-submit' => 'Invia risposta',
 	'flow-edit-post-submit' => 'Invia modifiche',
 	'flow-post-action-view' => 'Link permanente',
@@ -702,12 +714,12 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-error-missing-content' => 'Il tuo messaggio non ha contenuto. Un minimo di contenuto è necessario per poter salvare un nuovo messaggio.',
 	'flow-error-missing-title' => 'La discussione non ha titolo. Serve un titolo per salvare una nuova discussione.',
 	'flow-error-parsoid-failure' => 'Impossibile analizzare il contenuto a causa di un errore di Parsoid.',
-	'flow-error-missing-replyto' => 'Non è stato indicato un parametro replyTo (rispondi_a). Questo parametro è richiesto per la funzione "reply" (rispondi).',
-	'flow-error-invalid-replyto' => 'Il parametro replyTo non era valido. Il messaggio indicato non è stato trovato.',
+	'flow-error-missing-replyto' => 'Non è stato indicato un parametro "rispondi_a". Questo parametro è richiesto per la funzione "rispondi".',
+	'flow-error-invalid-replyto' => 'Il parametro "rispondi_a" non era valido. Il messaggio indicato non è stato trovato.',
 	'flow-error-delete-failure' => 'La cancellazione di questo elemento non è riuscita.',
 	'flow-error-hide-failure' => 'Il tentativo di nascondere questo elemento non è riuscito.',
-	'flow-error-missing-postId' => 'Non è stato fornito alcun parametro postId. Questo parametro è necessario per poter elaborare un messaggio.',
-	'flow-error-invalid-postId' => 'Il parametro postId non era valido. Il messaggio indicato non è stato trovato.',
+	'flow-error-missing-postId' => 'Non è stato fornito alcun parametro "ID_messaggio". Questo parametro è necessario per poter elaborare un messaggio.',
+	'flow-error-invalid-postId' => 'Il parametro "ID_messaggio" non era valido. Il messaggio indicato non è stato trovato.',
 	'flow-error-restore-failure' => 'Il ripristino di questo elemento non è riuscito.',
 	'flow-summaryedit-submit' => 'Salva oggetto',
 	'flow-edit-title-submit' => 'Cambia titolo',
@@ -720,10 +732,10 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-paging-rev' => 'Discussioni più recenti',
 	'flow-paging-fwd' => 'Vecchie discussioni',
 	'flow-last-modified' => 'Ultima modifica $1',
-	'flow-notification-reply' => '$1 ha risposto al tuo [$5 messaggio] in $2 su [[$3|$4]].',
-	'flow-notification-edit' => '$1 ha modificato il tuo [$5 messaggio] in $2 su [[$3|$4]].',
-	'flow-notification-newtopic' => '$1 ha creato una [$5 nuova discussione] su [[$2|$3]]: $4.',
-	'flow-notification-rename' => '$1 ha cambiato il titolo di [$2 $3] in "$4" su [[$5|$6]]',
+	'flow-notification-reply' => '$1 ha {{GENDER:$1|risposto}} al tuo [$5 messaggio] in $2 su [[$3|$4]].',
+	'flow-notification-edit' => '$1 ha {{GENDER:$1|modificato}} il tuo [$5 messaggio] in $2 su [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 ha {{GENDER:$1|creato}} una [$5 nuova discussione] su [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 ha {{GENDER:$1|cambiato}} il titolo di [$2 $3] in "$4" su [[$5|$6]]',
 );
 
 /** Japanese (日本語)
@@ -1093,9 +1105,18 @@ $messages['roa-tara'] = array(
 
 /** Swedish (svenska)
  * @author Ainali
+ * @author Jopparn
+ * @author Lokal Profil
  * @author WikiPhoenix
  */
 $messages['sv'] = array(
+	'flow-edit-summary-link' => 'Redigeringssammanfattning',
+	'flow-post-hidden' => '[inlägg dolt]',
+	'flow-post-hidden-by' => '{{GENDER:$1|Dold}} av $1 $2',
+	'flow-post-deleted' => '[inlägg raderat]',
+	'flow-post-deleted-by' => '{{GENDER:$1|Raderad}} av $1 $2',
+	'flow-post-censored' => '[inlägg censurerat]',
+	'flow-post-censored-by' => '{{GENDER:$1|Censurerad}} av $1 $2',
 	'flow-cancel' => 'Avbryt',
 	'flow-newtopic-title-placeholder' => 'Meddelandeämne',
 	'flow-newtopic-content-placeholder' => 'Meddelandetext. Var trevlig!',
@@ -1106,7 +1127,9 @@ $messages['sv'] = array(
 	'flow-reply-submit' => 'Skicka svar',
 	'flow-edit-post-submit' => 'Skicka ändringar',
 	'flow-post-action-view' => 'Permanent länk',
+	'flow-post-action-censor-post' => 'Censurera inlägg',
 	'flow-post-action-delete-post' => 'Ta bort inlägg',
+	'flow-post-action-hide-post' => 'Dölj inlägg',
 	'flow-post-action-edit-post' => 'Redigera inlägg',
 	'flow-post-action-edit' => 'Redigera',
 	'flow-post-action-restore-post' => 'Återställ inlägg',
@@ -1120,6 +1143,13 @@ $messages['sv'] = array(
 	'flow-topic-history' => 'Ämneshistorik',
 	'flow-comment-restored' => 'Återställd kommentar',
 	'flow-comment-deleted' => 'Raderad kommentar',
+	'flow-comment-hidden' => 'Dold kommentar',
+	'flow-paging-fwd' => 'Äldre ämnen',
+	'flow-last-modified' => 'Ändrades senast om $1',
+	'flow-notification-reply' => '$1 {{GENDER:$1|svarade}} på ditt [$5 inlägg] om $2 på [[$3|$4]].',
+	'flow-notification-edit' => '$1 {{GENDER:$1|redigerade}} ditt [$5 inlägg] om $2 på [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|skapade}} ett [$5 nytt ämne] på [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|ändrade}} rubriken för [$2 $3] till "$4" på [[$5|$6]].',
 );
 
 /** Ukrainian (українська)
@@ -1274,13 +1304,30 @@ $messages['yi'] = array(
 
 /** Simplified Chinese (中文（简体）‎)
  * @author Liuxinyu970226
+ * @author Qiyue2001
  */
 $messages['zh-hans'] = array(
 	'flow-post-hidden' => '[发布隐藏]',
+	'flow-post-hidden-by' => '由$1$2{{GENDER:$1|隐藏}}',
+	'flow-post-deleted-by' => '由$1$2{{GENDER:$1|删除}}',
+	'flow-post-censored-by' => '由$1$2{{GENDER:$1|审查}}',
+	'flow-post-actions' => '操作',
+	'flow-topic-actions' => '操作',
 	'flow-cancel' => '取消',
 	'flow-newtopic-title-placeholder' => '信息工程',
 	'flow-newtopic-header' => '添加新主题',
 	'flow-newtopic-save' => '添加主题',
+	'flow-reply-submit' => '帖子回复',
 	'flow-post-action-post-history' => '发布历史',
+	'flow-post-action-hide-post' => '隐藏帖子',
+	'flow-post-action-edit-post' => '编辑帖子',
 	'flow-post-action-edit' => '编辑',
+	'flow-post-action-restore-post' => '恢复帖子',
+	'flow-topic-action-edit-title' => '编辑标题',
+	'flow-topic-action-history' => '主题历史',
+	'flow-error-http' => '与服务器联系时出错。未保存您的帖子。',
+	'flow-error-other' => '出现意外的错误。未保存您的帖子。',
+	'flow-error-hide-failure' => '隐藏此项失败。',
+	'flow-edit-title-submit' => '更改标题',
+	'flow-notification-rename' => '[$2 $3]的标题已被$1在[[$5|$6]]{{GENDER:$1|更改}}为“$4”。',
 );
