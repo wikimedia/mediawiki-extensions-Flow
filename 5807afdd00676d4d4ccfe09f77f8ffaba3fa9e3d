@@ -33,6 +33,23 @@
       "revId": "5807afdd00676d4d4ccfe09f77f8ffaba3fa9e3d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_74eb3ede",
+        "filename": "includes/NotificationController.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-09-30T21:18:37Z",
+      "side": 1,
+      "message": "This compares a user name with a page name of any namespace, I don\u0027t think this conditional is needed.  In Echo, we prevent sending mention notification to the owner of a user talk page because the user would receive a user talk notification, but there is no such notification in Flow",
+      "revId": "5807afdd00676d4d4ccfe09f77f8ffaba3fa9e3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
