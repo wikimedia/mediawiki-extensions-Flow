@@ -16,6 +16,24 @@
       "revId": "1d8c5a603c3181ec991b85f6732f0d0b5a79f821",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_5451e25f",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-09-30T22:13:48Z",
+      "side": 1,
+      "message": "Hmm, looks like i might have some cross-patch thinking going on in a few places,  must make things a little more confusing.  These comments are unused within this patch set. They were previously used, \n\nWithin my recentchanges patch set,  all calls to self::moderate will use the configured message from \u0027comment\u0027 as an i18n message in both recent changes and the post/topic history.\n\nI\u0027ve removed it from here, you can find it now in the recentchanges patch where it belongs :)",
+      "parentUuid": "29433135_6b76013e",
+      "revId": "1d8c5a603c3181ec991b85f6732f0d0b5a79f821",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
