@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_bf29ff8c",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 455
+      },
+      "writtenOn": "2013-09-30T22:58:58Z",
+      "side": 1,
+      "message": "Werdna\u0027s way of implementing this is fine for now – no community members are clamoring for the power to add Flow to their talk pages just yet :) I don\u0027t imagine they will until at least November, which still gives us 2 months at least where we\u0027ll still need some method for enabling Flow on select pages.\n\nBut I agree with you, Matthias, that community members will eventually need more control. When we\u0027re closer to releasing onwiki, we can assess whether to switch to your more populist occupying method in the second release.",
+      "parentUuid": "29433135_aba629c2",
+      "revId": "95d53947092cfa7707dd019e7c1c8b1c98e788f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_8ba16daf",
         "filename": "Hooks.php",
         "patchSetId": 2
