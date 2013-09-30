@@ -184,3 +184,7 @@ $wgFlowTokenSalt = 'flow';
 $wgFlowDefaultWorkflow = 'discussion';
 $wgFlowDefaultLimit = 5;
 $wgFlowMaxLimit = 50;
+
+// Echo notification subscription preference
+$wgDefaultUserOptions['echo-subscriptions-web-flow-discussion'] = true;
+$wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = true;

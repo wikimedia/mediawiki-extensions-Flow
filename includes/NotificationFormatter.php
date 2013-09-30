@@ -64,4 +64,41 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 			parent::processParam( $event, $param, $message, $user );
 		}
 	}
+
+	/**
+	 * Helper function for getLink()
+	 *
+	 * @param EchoEvent $event
+	 * @param User $user The user receiving the notification
+	 * @param String $destination The destination type for the link
+	 * @return Array including target and query parameters
+	 */
+	protected function getLinkParams( $event, $user, $destination ) {
+		$target = null;
+		$query  = array();
+		$title  = $event->getTitle();
+		// Set up link parameters based on the destination (or pass to parent)
+		switch ( $destination ) {
+			case 'flow-post':
+				$post  = $event->getExtraParam( 'post-id' );
+				$flow  = $event->getExtraParam( 'topic-workflow' );
+				if ( $post && $flow && $title ) {
+					$target = SpecialPage::getTitleFor( 'Flow', $title );
+					$query = array(
+						'topic[postId]' => $post->getHex(),
+						'workflow' => $flow->getHex(),
+						'action' => 'view'
+					);
+				}
+				break;
+			case 'flow-board':
+				if ( $title ) {
+					$target = SpecialPage::getTitleFor( 'Flow', $title );
+				}
+				break;
+			default:
+				return parent::getLinkParams( $event, $user, $destination );
+		}
+		return array( $target, $query );
+	}
 }
