@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "29433135_aba629c2",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-30T12:11:08Z",
+      "side": 1,
+      "message": "This list may grow quite large.\n\nThe current idea (e.g. workflows) also seems to be to put the community in charge as much as possible, but this will require WMF devs in order to update/deploy the list.\n\nNot sure about the current status of the \"how to archive existing talk pages\" discussion, but perhaps we could put the community in charge of activating Flow on pages, via a workflow like this:\n\n* Move the talk page content to another page (archive)\n* Add a magic word to the talk page, which is picked up by Flow (also: this edit action will result in output caches being cleared - see comment in Hooks.php)\n* (Additionally, the magic word could accept a parameter, which could be the normalized page title where the archived discussion is, so we could read that from Flow to display/link to the archived content)\n\nNot sure this is an ideal workflow or even something we\u0027d want right now, but it\u0027d put more control in the hands of the community.",
+      "revId": "95d53947092cfa7707dd019e7c1c8b1c98e788f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_8ba16daf",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-09-30T12:11:08Z",
+      "side": 1,
+      "message": "I may be mistaken here, but I\u0027m pretty sure that Varnish/Squid will be a PITA here; talk pages\u0027 caches will also need to be cleared before they\u0027re \"taken over\".",
+      "revId": "95d53947092cfa7707dd019e7c1c8b1c98e788f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_88e2f3d6",
         "filename": "includes/UrlGenerator.php",
         "patchSetId": 2
