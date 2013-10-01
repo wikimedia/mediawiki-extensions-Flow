@@ -12,9 +12,6 @@ $messages['en'] = array(
 	'flow-specialpage' => '$1 &ndash; Flow',
 	'flow-edit-summary-link' => 'Edit summary',
 
-	'flow-disclaimer' => "By clicking the \"Add message\" button, you agree to the Terms of Use,
-and you irrevocably agree to release your contribution under the CC BY-SA 3.0 License and the GFDL.
-You agree that a hyperlink or URL is sufficient attribution under the Creative Commons license.",
 	'flow-post-hidden' => '[post hidden]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Hidden}} by $1 $2',
 	'flow-post-deleted' => '[post deleted]',
@@ -32,7 +29,8 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-newtopic-start-placeholder' => 'Click here to start a new discussion. Be nice!',
 
 	'flow-reply-placeholder' => 'Click to {{GENDER:$1|reply}} to $1. Be nice!',
-	'flow-reply-submit' => 'Post reply',
+	'flow-reply-submit' => 'Reply',
+	'flow-reply-link' => 'Reply',
 
 	'flow-edit-post-submit' => 'Submit changes',
 
@@ -126,14 +124,6 @@ $messages['qqq'] = array(
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
 	'flow-edit-summary-link' => 'Used as text for the link which points to the "Edit summary" page.',
-	'flow-disclaimer' => 'Used as disclaimer text at the bottom of the form.
-
-Preceded by the Submit button which has the label either {{msg-mw|Flow-reply-submit}} or {{msg-mw|Flow-newtopic-save}}.
-
-"Add message" seems to refer these Submit buttons.
-
-See also:
-* {{msg-mw|Wikimedia-copyrightwarning}}',
 	'flow-post-hidden' => 'Used as username/content if the post was hidden.
 
 Translate this as "post which was hidden".',
@@ -181,6 +171,7 @@ Translate this as "post which was censored".',
 	'flow-reply-placeholder' => 'Used as placeholder for the Content textarea. Parameters:
 * $1 - username',
 	'flow-reply-submit' => 'Used as label for the Submit button.',
+	'flow-reply-link' => "Link text of the button that will (when clicked) display the editor to reply.",
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified
 * $1 - Username that created the most recent revision of the post

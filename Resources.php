@@ -8,12 +8,19 @@ $flowResourceTemplate = array(
 
 $wgResourceModules += array(
 	'ext.flow.base' => $flowResourceTemplate + array(
-		// 'styles' => 'base/ext.flow.base.css',
+		'styles' => array(
+			/*
+			 * This is CSS that add to/overrides Agora styles, meant to be
+			 * moved to mediawiki.ui at a later point
+			 */
+			'mediawiki.ui/agora-override.css',
+		),
 		'scripts' => array(
 			'base/ext.flow.base.js',
 			'base/ui-functions.js',
 		),
 		'dependencies' => array(
+			'mediawiki.ui',
 			'mediawiki.api',
 			'jquery.json',
 		),
@@ -21,6 +28,7 @@ $wgResourceModules += array(
 		),
 	),
 	'ext.flow.summary' => $flowResourceTemplate + array(
+		'styles' => 'summary/base.less',
 		'scripts' => 'summary/summary.js',
 		'dependencies' => array(
 			'ext.flow.editor',
@@ -28,8 +36,14 @@ $wgResourceModules += array(
 	),
 	'ext.flow.discussion' => $flowResourceTemplate + array(
 		'styles' => array(
-			'discussion/base.css',
-			'discussion/agora2-override.css',
+			'discussion/base.less',
+			'discussion/components/actionboxes.less',
+			'discussion/components/container.less',
+			'discussion/components/overlay.less',
+			'discussion/components/post.less',
+			'discussion/components/summary.less',
+			'discussion/components/timestamp.less',
+			'discussion/components/topic.less',
 		),
 		'scripts' => array(
 			'discussion/ui.js',
@@ -38,7 +52,6 @@ $wgResourceModules += array(
 			'discussion/init.js',
 		),
 		'dependencies' => array(
-			'mediawiki.ui',
 			'jquery.ui.core',
 			'ext.flow.base',
 			'ext.flow.editor',
