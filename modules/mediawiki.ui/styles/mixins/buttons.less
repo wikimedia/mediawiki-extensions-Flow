@@ -1,0 +1,81 @@
+.buttonColors(
+	@primary-color: @neutral-base, // background color
+	@counter-primary-color: #909090, // text color
+	@secondary-color: #ccc, // border color
+
+	@hover-primary-color: darken(@primary-color, 5%), // background color
+	@hover-counter-primary-color: @counter-primary-color, // text color
+	@hover-secondary-color: darken(@secondary-color, 5%), // border color
+
+	@active-primary-color: darken(@primary-color, 10%), // background color
+	@active-counter-primary-color: @counter-primary-color, // text color
+	@active-secondary-color: darken(@secondary-color, 10%), // border color
+
+	@inactive-primary-color: #fff, // background color
+	@inactive-counter-primary-color: @counter-primary-color, // text color
+	@inactive-secondary-color: #ccc // border color
+) {
+	color: @counter-primary-color !important;
+	background: @primary-color;
+	border: 1px solid @secondary-color;
+	font-weight: bold;
+	border-radius: 3px;
+	cursor: pointer;
+
+	&:hover,
+	&.mw-ui-hover {
+		color: @hover-counter-primary-color !important;
+		background: @hover-primary-color;
+		border: 1px solid @hover-secondary-color;
+	}
+
+	&:active,
+	&.mw-ui-active {
+		color: @active-counter-primary-color !important;
+		background: @active-primary-color;
+		border: 1px solid @active-secondary-color;
+	}
+
+	&:disabled,
+	&.mw-ui-disabled {
+		color: @inactive-counter-primary-color !important;
+		background: @inactive-primary-color;
+		border: 1px solid @inactive-secondary-color;
+	}
+
+
+	// text-only, borderless text-button
+	&.mw-ui-text {
+		border: 1px solid transparent;
+		background: none;
+
+		.darkerColor(@primary-color, @counter-primary-color);
+
+		&:hover,
+		&.mw-ui-hover {
+			.darkerColor(@hover-primary-color, @hover-counter-primary-color);
+		}
+
+		&:active,
+		&.mw-ui-active {
+			.darkerColor(@active-primary-color, @active-counter-primary-color);
+		}
+
+		&:disabled,
+		&.mw-ui-disabled {
+			.darkerColor(@inactive-primary-color, @inactive-counter-primary-color);
+		}
+	}
+}
+
+/**
+ * Mixin to help automatically set the correct text color:
+ * * Primary color is preferred
+ * * Unless it's too bright, which would hurt legibility
+ */
+.darkerColor(@primary-color, @secondary-color) {
+	color: @primary-color !important;
+}
+.darkerColor(@primary-color, @secondary-color) when (lightness(@primary-color) > 80%) {
+	color: @secondary-color !important;
+}

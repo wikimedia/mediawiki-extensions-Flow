@@ -124,12 +124,13 @@ $( document ).on( 'flow_init', function ( e ) {
 						)
 						.append(
 							$( '<div/>' )
-								.addClass( 'flow-post-controls' )
+								.addClass( 'flow-post-form-controls' )
 								.append(
 									$( '<a/>' )
 										.text( mw.msg( 'flow-cancel' ) )
 										.addClass( 'flow-cancel-link' )
-										.addClass( 'mw-ui-destructive' )
+										.addClass( 'mw-ui-button' )
+										.addClass( 'mw-ui-text' )
 										.attr( 'href', '#' )
 										.click( function ( e ) {
 											e.preventDefault();
@@ -141,11 +142,12 @@ $( document ).on( 'flow_init', function ( e ) {
 											);
 										} )
 								)
+								.append( ' ' )
 								.append(
 									$( '<input />' )
 										.attr( 'type', 'submit' )
 										.addClass( 'mw-ui-button' )
-										.addClass( 'mw-ui-primary' )
+										.addClass( 'mw-ui-constructive' )
 										.addClass( 'flow-edit-post-submit' )
 										.val( mw.msg( 'flow-edit-post-submit' ) )
 								)
@@ -200,48 +202,59 @@ $( document ).on( 'flow_init', function ( e ) {
 		} );
 
 	// Overload 'edit title' link.
-	$container.find( '.flow-action-edit-title a' )
+	$container.find( 'a.flow-edit-topic-link' )
 		.click( function ( e ) {
 			e.preventDefault();
 
 			var $topicContainer = $( this ).closest( '.flow-topic-container' ),
 				$titleBar = $topicContainer.find( '.flow-topic-title' ),
 				oldTitle = $topicContainer.data( 'title' ),
-				$titleEditForm = $( '<form />' );
+				$titleEditForm = $( '<form />' ),
+				$realTitle = $titleBar.find( '.flow-realtitle' );
 
-			$titleBar.find( '.flow-realtitle' )
-				.hide();
+			// check if form has not already been opened
+			if ( !$realTitle.is( ':visible' ) ) {
+				return;
+			}
+
+			$realTitle.hide();
 
 			$titleEditForm
 				.addClass( 'flow-edit-title-form' )
 				.append(
 					$( '<input />' )
+						.addClass( 'mw-ui-input' )
 						.addClass( 'flow-edit-title-textbox' )
 						.attr( 'type', 'text' )
 						.val( oldTitle )
 				)
 				.append(
-					$( '<a/>' )
-						.addClass( 'flow-cancel-link' )
-						.addClass( 'mw-ui-destructive' )
-						.attr( 'href', '#' )
-						.text( mw.msg( 'flow-cancel' ) )
-						.click( function ( e ) {
-							e.preventDefault();
-							$titleBar.children( 'form' )
-								.remove();
-							$titleBar.find( '.flow-realtitle' )
-								.show();
-							$titleEditForm.remove();
-						} )
-				)
-				.append(
-					$( '<input />' )
-						.addClass( 'flow-edit-title-submit' )
-						.addClass( 'mw-ui-button' )
-						.addClass( 'mw-ui-primary' )
-						.attr( 'type', 'submit' )
-						.val( mw.msg( 'flow-edit-title-submit' ) )
+					$( '<div class="flow-edit-title-controls"></div>' )
+						.append(
+							$( '<a/>' )
+								.addClass( 'flow-cancel-link' )
+								.addClass( 'mw-ui-button' )
+								.addClass( 'mw-ui-text' )
+								.attr( 'href', '#' )
+								.text( mw.msg( 'flow-cancel' ) )
+								.click( function ( e ) {
+									e.preventDefault();
+									$titleBar.children( 'form' )
+										.remove();
+									$realTitle
+										.show();
+									$titleEditForm.remove();
+								} )
+						)
+						.append( ' ' )
+						.append(
+							$( '<input />' )
+								.addClass( 'flow-edit-title-submit' )
+								.addClass( 'mw-ui-button' )
+								.addClass( 'mw-ui-constructive' )
+								.attr( 'type', 'submit' )
+								.val( mw.msg( 'flow-edit-title-submit' ) )
+						)
 				)
 				.appendTo( $titleBar )
 				.find( '.flow-edit-title-textbox' )
@@ -262,7 +275,7 @@ $( document ).on( 'flow_init', function ( e ) {
 					},
 					function ( promise ) {
 						promise.done( function ( output ) {
-							$titleBar.find( '.flow-realtitle' )
+							$realTitle
 								.empty()
 								.text( output.rendered )
 								.show();
