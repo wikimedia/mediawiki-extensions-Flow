@@ -1,0 +1,135 @@
+.flow-topic-actions, .flow-post-actions {
+	/* Hide until .flow-topic-actions-link or .flow-post-actions-link clicked */
+	display: none;
+
+	z-index: 60000;
+
+	position: absolute;
+	top: 44px;
+	right: 0;
+
+	background-color: #FFF;
+	border: 1px solid #E1E1E1;
+	box-shadow: 0px 3px 8px rgba(50, 50, 50, 0.35);
+	color: #808184;
+	font-size: 12px;
+
+	padding: 6px;
+}
+
+.flow-topic-actions a, .flow-post-actions a {
+	color: #808184;
+}
+
+.flow-topic-actions ul, .flow-post-actions ul {
+	list-style: none;
+	margin: 0;
+}
+
+.flow-topic-actions-link {
+	/* @embed */
+	background-image: url( 'images/chevron_down.png' ); /* @todo: chevron color (AAA, probably) */
+	background-repeat: no-repeat;
+	background-position: right center;
+	padding-right: 12px;
+}
+
+.flow-post-actions-link {
+	display: block;
+	width: 20px;
+	height: 20px;
+	text-indent: -9999px;
+
+	padding: 5px 0; /* .flow-post-interaction buttons are 30px, mimic that */
+
+	position: absolute;
+	right: 0;
+	bottom: 0;
+
+	/* @embed */
+	background-image: url( '../base/images/stub.png' ); /* @todo: real asset */
+	background-position: right;
+	background-size: 20px auto;
+	background-repeat: no-repeat;
+}
+
+.flow-topic-actions-link {
+	position: absolute;
+	right: 22px;
+	top: 22px;
+
+	width: 20px;
+	height: 20px;
+	text-indent: -9999px;
+}
+
+.flow-newtopic-form {
+	margin: 0 36px 44px 0;
+}
+
+.flow-newtopic-form input[type="text"] {
+	height: 33px;
+	margin-top: 5px;
+}
+
+#enterusername input[type="text"] {
+	width: 380px;
+	height: 33px;
+	margin-top: 5px;
+}
+
+.flow-newtopic-form label, #enterusername label {
+	font-weight: bold;
+}
+
+.flow-newtopic-form .mw-ui-input[type="text"]
+{
+	border: 1px solid #cccccc;
+	margin-bottom: 0px;
+	box-shadow: none;
+	-webkit-border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-moz-border-bottom-left-radius: 0;
+	-moz-border-bottom-right-radius: 0;
+	-ms-border-bottom-left-radius: 0;
+	-ms-border-bottom-right-radius: 0;
+	-o-border-bottom-left-radius: 0;
+	-o-border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+
+}
+.flow-newtopic-form textarea.mw-ui-input {
+	margin-top: 0px;
+	border-top: none;
+	box-shadow: none;
+	height: 150px;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	-moz-border-top-left-radius: 0;
+	-moz-border-top-right-radius: 0;
+	-ms-border-top-left-radius:	0;
+	-ms-border-top-right-radius: 0;
+	-o-border-top-left-radius:	0;
+	-o-border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.flow-newtopic-form textarea:focus,
+.flow-newtopic-form input[type="text"]:focus {
+	-moz-box-shadow:inset 7px 0px 0px #5088f7;
+	-webkit-box-shadow:inset 7px 0px 0px #5088f7;
+	box-shadow:inset 7px 0px 0px #5088f7;
+}
+
+.flow-newtopic-form textarea.mw-ui-error,
+.flow-newtopic-form input[type="text"].mw-ui-error {
+	-moz-box-shadow:inset 7px 0px 0px #cf1c1f;
+	-webkit-box-shadow:inset 7px 0px 0px #cf1c1f;
+	box-shadow:inset 7px 0px 0px #cf1c1f;
+}
+
+#setuserform {
+	text-align: left;
+}

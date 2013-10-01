@@ -122,17 +122,12 @@
 								deferredObject.resolve.apply( $button, arguments );
 							} )
 							.fail( function () {
-								var $errorDiv = $( '<div/>' ).flow( 'showError', arguments ),
-									$disclaimer = $form.find( '.flow-disclaimer' );
+								var $errorDiv = $( '<div/>' ).flow( 'showError', arguments );
 
 								$spinner.remove();
 								$button.show();
 
-								if ( $disclaimer.length ) {
-									$errorDiv.insertBefore( $disclaimer );
-								} else {
-									$form.append( $errorDiv );
-								}
+								$form.append( $errorDiv );
 
 								deferredObject.reject.apply( $button, arguments );
 							} );

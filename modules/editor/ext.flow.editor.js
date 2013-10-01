@@ -26,7 +26,7 @@
 			var editor = 'none';
 			// wikieditor is non-functional, doesn't make sense in this context
 			// editor = mw.config.get( 'wgWikiEditorEnabledModules' ) ? 'wikieditor' : editor;
-			editor = mw.user.options.get( 'visualeditor-enable' ) ? 'visualeditor' : editor;
+//			editor = mw.user.options.get( 'visualeditor-enable' ) ? 'visualeditor' : editor;
 			// @todo: check if VE is running
 
 			mw.loader.using( 'ext.flow.editors.' + editor, function () {
