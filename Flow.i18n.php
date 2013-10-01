@@ -84,7 +84,8 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	// Notification message
 	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your [$5 post] in $2 on "$4".',
 	'flow-notification-reply-bundle' => '$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|replied}} to your [$4 post] in $2 on "$3".',
-	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} your [$5 post] in $2 on [[$3|$4]].',
+	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} a [$5 post] in $2 on [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|edited}} a [$4 post] in $2 on "$3".',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].',
 	'flow-notification-mention' => '$1 {{GENDER:$1|mentioned}} you in their [$2 post] in "$3" on "$4"',
@@ -102,6 +103,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|mentioned}} you in their post in "$2" on "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|edited}} your post',
 	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|edited}} your post in $2 on "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|edited}} a post in $2 on "$3"',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|renamed}} your topic',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|renamed}} your topic $2 to $3 on "$4"',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|created}} a new topic on $2',
@@ -274,6 +276,16 @@ Parameters:
 * $1 Name of the user that edited the post
 * $2 Name of the topic the edited post belongs to
 * $3 Title of the page the topic belongs to',
+	'flow-notification-edit-email-batch-bundle-body' => 'Email notification body when a user receives post edits from multiple users, this message is used in both single email and email digest.
+
+Parameters:
+* $1 - username of the person who replied
+* $2 - title of the topic
+* $3 - title for the page that the Flow board is attached to
+* $4 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
+* $5 - a number used for plural support
+See also:
+* {{msg-mw|Flow-notification-edit-bundle}}',
 	'flow-notification-rename-email-subject' => 'Subject line of notification E-mail for topic being renamed
 * $1 - Name of the user that renamed the topic',
 	'flow-notification-rename-email-batch-body' => 'E-mail notification for topic being renamed
@@ -295,7 +307,7 @@ Parameters:
 * $4 - Title for the page that the Flow board is attached to
 * $5 - Permanent URL for the post
 {{Related|Flow-notification}}',
-	'flow-notification-reply-bundle' => 'Notification text for when a user receives replies from multiple users on the same post/topic.
+	'flow-notification-reply-bundle' => 'Notification text for when a user receives replies from multiple users on the same topic.
 
 Parameters:
 * $1 - username of the person who replied
@@ -313,6 +325,17 @@ See also:
 * $4 - Title for the page that the Flow board is attached to
 * $5 - Permanent URL for the post
 {{Related|Flow-notification}}",
+	'flow-notification-edit-bundle' => 'Notification text for when a user receives post edits from multiple users on the same topic.
+
+Parameters:
+* $1 - username of the person who edited post
+* $2 - title of the topic
+* $3 - title for the page that the Flow board is attached to
+* $4 - permantent URL for the topic
+* $5 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
+* $6 - a number used for plural support
+See also:
+* {{msg-mw|Flow-notification-edit-email-batch-bundle-body}}',
 	'flow-notification-newtopic' => 'Notification text for when a new topic is created. Parameters:
 * $1 - Username of the person who created the topic
 * $2 - Title for the Flow board

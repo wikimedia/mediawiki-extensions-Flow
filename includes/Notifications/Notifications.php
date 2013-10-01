@@ -19,10 +19,6 @@ $notifications = array(
 		),
 		'title-message' => 'flow-notification-newtopic',
 		'title-params' => array( 'agent', 'flow-title', 'title', 'subject', 'topic-permalink' ),
-		'bundle' => array(
-			'web' => true,
-			'email' => false
-		),
 		'email-subject-message' => 'flow-notification-newtopic-email-subject',
 		'email-subject-params' => array(),
 		'email-body-batch-message' => 'flow-notification-newtopic-email-batch-body',
@@ -69,10 +65,14 @@ $notifications = array(
 			'web' => true,
 			'email' => false
 		),
+		'bundle-message' => 'flow-notification-edit-bundle',
+		'bundle-params' => array( 'agent', 'subject', 'title', 'post-permalink', 'agent-other-display', 'agent-other-count' ),
 		'email-subject-message' => 'flow-notification-edit-email-subject',
 		'email-subject-params' => array( 'agent' ),
 		'email-body-batch-message' => 'flow-notification-edit-email-batch-body',
 		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
+		'email-body-batch-bundle-message' => 'flow-notification-edit-email-batch-bundle-body',
+		'email-body-batch-bundle-params' => array( 'agent', 'subject', 'title', 'agent-other-display', 'agent-other-count' ),
 	) + $notificationTemplate,
 	'flow-topic-renamed' => array(
 		'primary-link' => array(
