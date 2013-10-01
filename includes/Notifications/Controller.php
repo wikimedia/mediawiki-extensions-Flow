@@ -306,18 +306,11 @@ class NotificationController {
 	public static function onEchoGetBundleRules( $event, &$bundleString ) {
 		switch ( $event->getType() ) {
 			case 'flow-post-reply':
+			case 'flow-post-edited':
 				$extra = $event->getExtra();
-
-				if ( isset( $extra['reply-to'] ) ) {
-					$postId = $extra['reply-to'];
-				} elseif ( isset( $extra['post-id'] ) ) {
-					$postId = $extra['post-id'];
-				} else {
-					$postId = null;
-				}
-
-				if ( $postId ) {
-					$bundleString = 'flow-post-reply-' . $postId->getHex();
+				$topic = $extra['topic-workflow'];
+				if ( $topic ) {
+					$bundleString = 'flow-post-reply-' . $topic->getHex();
 				}
 			break;
 		}
@@ -351,17 +344,36 @@ class NotificationController {
 			}
 			break;
 		case 'flow-topic-renamed':
-			$postId = $extra['topic-workflow'];
+			$users += self::getUserForPost( array( $extra['topic-workflow'] ) );
+			break;
 		case 'flow-post-reply':
 		case 'flow-post-edited':
 		case 'flow-post-moderated':
 			if ( isset( $extra['reply-to'] ) ) {
 				$postId = $extra['reply-to'];
-			} elseif ( !isset( $postId ) || !$postId ) {
+			} else {
 				$postId = $extra['post-id'];
 			}
 
-			$post = $storage->find(
+			$ids = array( $postId );
+			$topic = $extra['topic-workflow'];
+
+			if ( $topic && $topic->getBinary() != $postId->getBinary() ) {
+				$ids[] = $topic;
+			}
+			$users += self::getUserForPost( $ids );
+			break;
+		default:
+			// Do nothing
+		}
+		return true;
+	}
+
+	protected static function getUserForPost( array $posts ) {
+		$users = array();
+		$container = Container::getContainer();
+		foreach ( $posts as $postId ) {
+			$post = $container['storage']->find(
 				'PostRevision',
 				array(
 					'tree_rev_descendant_id' => UUID::create( $postId )
@@ -382,10 +394,7 @@ class NotificationController {
 					$users[$user->getId()] = $user;
 				}
 			}
-			break;
-		default:
-			// Do nothing
 		}
-		return true;
-	}
+		return $users;
+        }
 }
