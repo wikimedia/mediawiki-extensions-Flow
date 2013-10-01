@@ -5,17 +5,20 @@
 		var $form = $( '.flow-summary-form' ),
 			$textarea = $form.find( 'textarea' );
 
-		// convert text-area into editor
-		mw.flow.editor.load( $textarea, $textarea.data( 'summary-id' ), 'Summary' );
+		// edit-form is showing
+		if ( $form.length > 0 ) {
+			// convert text-area into editor
+			mw.flow.editor.load( $textarea, $textarea.data( 'summary-id' ), 'Summary' );
 
-		// when submitting the form, grab the editor's content
-		$form.submit( function () {
-			var $textarea = $( this ).find( 'textarea' ),
-				content = mw.flow.editor.getContent( $textarea );
+			// when submitting the form, grab the editor's content
+			$form.submit( function () {
+				var $textarea = $( this ).find( 'textarea' ),
+					content = mw.flow.editor.getContent( $textarea );
 
-			// unload editor & paste content into textarea
-			mw.flow.editor.destroy( $textarea );
-			$textarea.val( content );
-		} );
+				// unload editor & paste content into textarea
+				mw.flow.editor.destroy( $textarea );
+				$textarea.val( content );
+			} );
+		}
 	});
 } ( jQuery, mediaWiki ) );

@@ -124,7 +124,7 @@ $( document ).on( 'flow_init', function ( e ) {
 						)
 						.append(
 							$( '<div/>' )
-								.addClass( 'flow-post-controls' )
+								.addClass( 'flow-post-controls' )// @todo: flow-post-controls has been removed; not yet sure what this is for, but will likely have to change too
 								.append(
 									$( '<a/>' )
 										.text( mw.msg( 'flow-cancel' ) )
@@ -199,7 +199,7 @@ $( document ).on( 'flow_init', function ( e ) {
 		} );
 
 	// Overload 'edit title' link.
-	$container.find( '.flow-action-edit-title a' )
+	$container.find( 'a.flow-edit-topic-link' )
 		.click( function ( e ) {
 			e.preventDefault();
 

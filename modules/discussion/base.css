@@ -145,10 +145,6 @@ input.flowsearch {
 	background-position: center bottom;
 }
 
-.flow-topic-closed.hasmention .flow-topic-datestamp {
-	margin-left: -13px;
-}
-
 .flow-post-mention-indicator {
 	position: relative;
 	float: left;
@@ -228,13 +224,6 @@ div.flow-topic-closed div.flow-topic-opener {
 	position: relative;
 	left: 30;
 	margin-top: -20;
-	width:670px;
-	max-width: 670px;
-}
-
-.flow-metabar {
-	margin-bottom: 5px;
-	margin-top: 5px;
 }
 
 /* SUMMARY STUFF */
@@ -329,15 +318,24 @@ div.flow-topic-closed div.flow-topic-opener {
 	margin-left: 400px;
 	color: #444444;
 }
-.flow-topic-datestamp {
-	font-size: 10pt;
-	color: #999999;
-}
 .flow-datestamp {
+	font-size: 16px;
+	line-height: 16px;
+	color: #AAA;
+}
+.flow-datestamp span {
+	line-height: 18px;
+	border-bottom: 1px solid #D3D4D4;
+}
+.flow-topic-header .flow-datestamp {
 	position: absolute;
-	right: 10px;
-	font-size: 10pt;
-	color: #999999;
+	right: 22px;
+	bottom: 22px;
+}
+.flow-post .flow-datestamp {
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 .editnotice {
 	font-size: 10pt;
@@ -347,16 +345,44 @@ div.flow-topic-closed div.flow-topic-opener {
 .unreadpost .flow-datestamp, .selfpost .flow-datestamp {
 	color: #ffffff;
 }
+.flow-titlebar {
+	padding: 22px;
+	margin: 0;
+	background-color: #EDEDED;
+	position: relative;
+	border: 1px solid #CCC;
+	border-bottom: 3px double #CCC;
+
+	/* preserve space on the right, for a.flow-edit-topic-link etc. */
+	margin-right: 36px;
+}
+.flow-titlebar p {
+	margin: 0;
+}
 .flow-topic-title {
-	color: #444444;
-	max-width: 600px;
-	overflow: wrap;
-	cursor: pointer;
-}
-.flow-topic-title, .flow-topic-title a, .ownerboard {
 	font-weight: bold;
-	font-size: 13pt;
+	font-size: 24px;
+	line-height: 30px;
+	color: #231F20;
 }
+
+a.flow-edit-topic-link {
+	display: block;
+	width: 20px;
+	height: 20px;
+	text-indent: -9999px;
+
+	position: absolute;
+	right: 0;
+	top: 22px;
+
+	/* @embed */
+	background-image: url( '../base/images/stub.png' ); /* @todo: real asset */
+	background-position: right;
+	background-size: 20px auto;
+	background-repeat: no-repeat;
+}
+
 
 .lockedtopic .flow-topic-title {
 	/* @embed */
@@ -364,6 +390,9 @@ div.flow-topic-closed div.flow-topic-opener {
 	background-repeat: no-repeat;
 	background-position: left center;
 	padding-left: 25px;
+
+	/* preserve space on the right, for .flow-topic-actions */
+	margin-right: 30px;
 }
 .lockedtopic .flow-topic-title:hover {
 	/* @embed */
@@ -374,12 +403,20 @@ div.flow-topic-closed div.flow-topic-opener {
 	padding-right: 5px;
 }
 
+.flow-topic-posts-meta {
+	font-size: 16px;
+	line-height: 28px;
+	color: #808184;
+}
+
 /* POST STUFF */
 .flow-post {
-	border-left: 2px solid #efefef;
-	border-bottom: 2px solid #efefef;
+	position: relative;
+}
+.flow-post-main {
+	position: relative;
 	padding: 0;
-	margin-bottom: 0;
+	margin: 0 46px 0 22px;
 }
 .flow-post-deleted .flow-post-title {
 	color: #cccccc;
@@ -394,10 +431,10 @@ div.flow-topic-closed div.flow-topic-opener {
 	border-bottom: 2px solid #0c53d7;
 }
 .flow-post-title {
-	padding-left: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background-color: #efefef;
+	font-weight: bold;
+	font-size: 16px;
+	color: #3C68B1;
+	margin: 22px 0 0 0;
 }
 .unreadpost .flow-post-title {
 	background-color: #318c6d;
@@ -408,9 +445,6 @@ div.flow-topic-closed div.flow-topic-opener {
 }
 .unreadpost .flow-post-title a, .selfpost .flow-post-title a {
 	color: #ffffff;
-}
-.flow-post-authorline {
-	height: 20px;
 }
 .authorname {
 	font-size: 13pt;
@@ -428,20 +462,11 @@ div.flow-topic-closed div.flow-topic-opener {
 }
 
 .flow-post-content {
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 10px;
-	background-color: #ffffff;
-}
+	margin: 22px 0 34px 0;
 
-.flow-post-controls {
-	padding-right: 5px;
-	padding-left: 10px;
-	padding-bottom: 5px;
-	height: 20px;
-	text-align: right;
-	position: relative;
+	font-size: 16px;
+	line-height: 25px;
+	color: #6D6E70;
 }
 
 .postingstatus {
@@ -488,13 +513,36 @@ div.flow-topic-closed div.flow-topic-opener {
 .editorbutton:hover {
 	border: 1px solid #efefef;
 }
+
+a.flow-reply-link, a.flow-thank-link {
+	display: inline-block;
+	border: 1px solid #d9d9d9;
+	border-radius: 3px;
+	padding: 0 12px;
+	height: 30px;
+	line-height: 30px;
+
+	margin-right: 10px;
+
+	font-size: 16px;
+	color: #58595B;
+}
+
+a.flow-thank-link {
+	color: #FFF;
+
+	padding-left: 40px;
+
+	/* @embed */
+	background-image: url( '../base/images/stub.png' ); /* @todo: real asset */
+	background-color: #00AF89;
+	background-position: 12px;
+	background-size: 20px auto;
+	background-repeat: no-repeat;
+}
+
 .flow-reply-form {
 	position: relative;
-	border: 2px solid #efefef;
-	border-top: none;
-	background-color: #ffffff;
-	min-height: 2em;
-	max-width: 670px;
 	color: #6D6D6D;
 	z-index: 3000;
 	padding: 0;
@@ -513,7 +561,7 @@ div.flow-topic-closed div.flow-topic-opener {
 	margin: 0;
 	height: 100px;
 	min-height: 100px;
-	border:none !important;
+	border: none !important;
 }
 
 .stalewarning {
@@ -648,20 +696,6 @@ tr.historyheader {
 	border:none !important;
 }
 
-.flow-reply-form textarea.flow-reply-box-closed {
-	/* @embed */
-	background: transparent url("images/chat_bubble_999999.png") 5px center no-repeat;
-	padding-left: 25px !important;
-	height: 31px;
-	min-height: 31px;
-	max-height: 31px;
-}
-
-.flow-reply-form textarea.flow-reply-box-closed:hover {
-	/* @embed */
-	background: transparent url("images/chat_bubble_green.png") 5px center no-repeat;
-}
-
 .flow-cancel-link {
 	margin-left: 10px;
 	margin-right: 10px;
@@ -693,87 +727,69 @@ tr.historyheader {
 }
 
 /* Action boxes */
-.flow-actionbox-pokey, .flow-actionbox-pokey {
-	/* @embed */
-	background-image: url('images/PokeyNorth.png');
-	background-repeat: no-repeat;
-	width: 21px;
-	height: 11px;
-	position: absolute;
-	z-index: 61000;
-	top: 20px;
-	right: 10px;	
-	display:none;
-}
-
-.flow-topic-actionbox, .flow-post-actionbox {
-	position: absolute;
-	top: 30px;
-	right: 0;
-	border: 1px solid silver;
-	background-color: #ffffff;
-	min-height: 2em;
-	width:auto;
-	min-width: 100px;
-	white-space: nowrap;
-	color: #6D6D6D;
-	z-index: 60000;
-	padding: 10px;
-	box-shadow: 0px 3px 8px rgba(50, 50, 50, 0.35);
-	display: none;
-	font-size: 8pt !important;
-}
-
 .flow-topic-actions, .flow-post-actions {
+	/* Hide until .flow-topic-actions-link or .flow-post-actions-link clicked */
+	display: none;
+
+	z-index: 60000;
+
+	position: absolute;
+	top: 44px;
+	right: 0;
+
+	background-color: #FFF;
+	border: 1px solid #E1E1E1;
+	box-shadow: 0px 3px 8px rgba(50, 50, 50, 0.35);
+	color: #808184;
+	font-size: 12px;
+
+	padding: 6px;
+}
+
+.flow-topic-actions a, .flow-post-actions a {
+	color: #808184;
+}
+
+.flow-topic-actions ul, .flow-post-actions ul {
+	list-style: none;
+	margin: 0;
+}
+
+.flow-topic-actions-link {
 	/* @embed */
-	background-image: url('images/micro_chevron_down_999999.png');
+	background-image: url( 'images/chevron_down.png' ); /* @todo: chevron color (AAA, probably) */
 	background-repeat: no-repeat;
 	background-position: right center;
 	padding-right: 12px;
 }
-.flow-topic-actions:hover, .flow-post-actions:hover {
-	/* @embed */
-	background-image: url('images/micro_chevron_down_blue.png');
-}
 
-.flow-topic-actions {
+.flow-post-actions-link {
+	display: block;
+	width: 20px;
+	height: 20px;
+	text-indent: -9999px;
+
+	padding: 5px 0; /* .flow-post-interaction buttons are 30px, mimic that */
+
 	position: absolute;
-	right: 5px;
-	font-size: 10pt;
-	color: #999999;
+	right: 0;
+	bottom: 0;
+
+	/* @embed */
+	background-image: url( '../base/images/stub.png' ); /* @todo: real asset */
+	background-position: right;
+	background-size: 20px auto;
+	background-repeat: no-repeat;
 }
 
-.flow-post-actions {
-	font-size: 10pt;
-	color: #999999;
-}
+.flow-topic-actions-link {
+	position: absolute;
+	right: 22px;
+	top: 22px;
 
-.flow-post-actions a, .flow-topic-actions a {
-	color: #999999 !important;
-	cursor: pointer;
-}
-
-.flow-topic-actions:hover, .flow-post-actions:hover {
-	color: #0645ac;
-	text-decoration:none !important;
-}
-
-.flow-topic-actionbox a, .flow-post-actionbox a {
-	font-size: 8pt !important;
-}
-
-.flow-topic-actionbox :hover, .flow-post-actionbox :hover {
-	text-decoration:none !important;
-}
-
-.flow-topic-actionbox ul, .flow-post-actionbox ul {
-	margin: 0px;
-	list-style: none;	
-	font-size: 8pt;
-}
-
-.flow-post-actionbox {
-	text-align: left;
+	width: 20px;
+	height: 20px;
+	text-indent: -9999px;
 }
 
 .flow-newtopic-start {

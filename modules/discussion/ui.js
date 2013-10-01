@@ -3,15 +3,16 @@
 		var $container = $( e.target );
 
 		// Set up menus
-		$container.find( '.flow-post-actions, .flow-topic-actions' )
-			.click( function () {
-				$( this ).children( '.flow-post-actionbox, .flow-topic-actionbox, .flow-actionbox-pokey' )
+		$container.find( '.flow-post-actions-link, .flow-topic-actions-link' )
+			.click( function ( e ) {
+				e.preventDefault();
+
+				$( this ).next( '.flow-post-actions, .flow-topic-actions' )
 					.show();
 			} )
 			.find( 'li' )
 			.click( function () {
 				$( this ).closest( '.flow-topic-actions, .flow-post-actions' )
-					.children( '.flow-post-actionbox, .flow-topic-actionbox, .flow-actionbox-pokey' )
 					.fadeOut();
 			} );
 
@@ -32,13 +33,24 @@
 		// Set up reply form
 		$container.find( '.flow-reply-form textarea' )
 			.addClass( 'flow-reply-box-closed' )
-			.click( function () {
-				$( this ).removeClass( 'flow-reply-box-closed' );
-				$( this ).closest( 'form' )
+			// it's meant to be visible for non-JS users
+			// when JS is available, hide until button is clicked
+			.hide();
+
+		$container.find( '.flow-reply-link' )
+			// when clicked, show textarea, load editor
+			.click( function ( e ) {
+				e.preventDefault();
+
+				var $form = $( this ).closest( '.flow-post' ).siblings( 'form' ),
+					$textarea = $form.find( '.flow-reply-form textarea' );
+
+				$form
 					.children( '.flow-post-form-extras' )
 					.show();
 
-				mw.flow.editor.load( $( this ) );
+				$textarea.removeClass( 'flow-reply-box-closed' );
+				mw.flow.editor.load( $textarea );
 			} );
 
 		$container.find( '.flow-post-form-extras' )
@@ -134,11 +146,16 @@
 
 	$( 'body' )
 		.click( function ( e ) {
-			if ( $( e.target )
-				.closest( '.flow-post-actions, .flow-topic-actions' )
-				.length === 0
+			if (
+				// clicked link to open actions
+				!$( e.target ).hasClass( 'flow-post-actions-link' ) &&
+				!$( e.target ).hasClass( 'flow-topic-actions-link' ) &&
+				// clicked inside actions box
+				$( e.target )
+					.closest( '.flow-post-actions, .flow-topic-actions' )
+					.length === 0
 			) {
-				$( '.flow-post-actionbox, .flow-topic-actionbox, .flow-actionbox-pokey' )
+				$( '.flow-post-actions, .flow-topic-actions' )
 					.fadeOut( 'fast' );
 			}
 		} );

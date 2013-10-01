@@ -1,13 +1,33 @@
 <?php
 
+echo Html::openElement(
+	'div',
+	array( 'id' => 'flow-summary' )
+);
+
 if ( $block->hasErrors( 'content' ) ) {
-	echo '<p>' . $block->getError( 'content' )->escaped() . '</p>';
-}
-if ( $summary ) {
-	// contains HTML5+RDFa content
-	echo $summary->getContent( $user, 'html' );
+	echo Html::element(
+		'p',
+		array( 'id' => 'flow-summary-error' ),
+		$block->getError( 'content' )->text()
+	);
 }
 
-$editLink = $this->generateUrl( $workflow, 'edit-summary' );
-?>
-<div class="flow-summary-edit-link"><a href="<?php echo htmlspecialchars( $editLink );?>"><?php echo wfMessage( 'flow-edit-summary-link' )->escaped()?></a></div>
+if ( $summary ) {
+	echo Html::rawElement(
+		'div',
+		array( 'id' => 'flow-summary-content' ),
+		$summary->getContent( $user, 'html' ) // contains HTML5+RDFa content
+	);
+}
+
+echo Html::element(
+	'a',
+	array(
+		'href' => $this->generateUrl( $workflow, 'edit-summary' ),
+		'class' => 'flow-summary-edit-link',
+	),
+	wfMessage( 'flow-edit-summary-link' )->text()
+);
+
+echo Html::closeElement( 'div' );

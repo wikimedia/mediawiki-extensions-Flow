@@ -33,6 +33,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	'flow-reply-placeholder' => 'Click to {{GENDER:$1|reply}} to $1. Be nice!',
 	'flow-reply-submit' => 'Post reply',
+	'flow-reply-link' => 'Reply',
 
 	'flow-edit-post-submit' => 'Submit changes',
 
@@ -167,6 +168,7 @@ Translate this as "post which was censored".',
 	'flow-reply-placeholder' => 'Used as placeholder for the Content textarea. Parameters:
 * $1 - username',
 	'flow-reply-submit' => 'Used as label for the Submit button.',
+	'flow-reply-link' => "Link text of the button that will (when clicked) display the editor to reply.",
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
 	'flow-post-action-view' => 'Used as text for the link which is used to view.
 {{Identical|Permalink}}',

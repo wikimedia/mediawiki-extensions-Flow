@@ -18,6 +18,7 @@ $wgResourceModules += array(
 		),
 	),
 	'ext.flow.summary' => $flowResourceTemplate + array(
+		'styles' => 'summary/summary.css',
 		'scripts' => 'summary/summary.js',
 		'dependencies' => array(
 			'ext.flow.editor',
