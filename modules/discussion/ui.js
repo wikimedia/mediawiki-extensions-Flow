@@ -3,51 +3,70 @@
 		var $container = $( e.target );
 
 		// Set up menus
-		$container.find( '.flow-post-actions, .flow-topic-actions' )
-			.click( function () {
-				$( this ).children( '.flow-post-actionbox, .flow-topic-actionbox, .flow-actionbox-pokey' )
+		$container.find( '.flow-post-actions-link, .flow-topic-actions-link' )
+			.click( function ( e ) {
+				e.preventDefault();
+				// don't bubble, so parent nodes' click binds aren't triggered
+				e.stopPropagation();
+
+				$( this ).next( '.flow-post-actions, .flow-topic-actions' )
 					.show();
-			} )
-			.find( 'li' )
+			} );
+		$container.find( '.flow-post-actions, .flow-topic-actions' )
+			.click( function ( e ) {
+				// don't bubble, so parent nodes' click binds aren't triggered
+				e.stopPropagation();
+			} );
+		$container.find( '.flow-post-actions a, .flow-topic-actions a' )
+			.add( 'body' )
 			.click( function () {
-				$( this ).closest( '.flow-topic-actions, .flow-post-actions' )
-					.children( '.flow-post-actionbox, .flow-topic-actionbox, .flow-actionbox-pokey' )
-					.fadeOut();
+				$( '.flow-post-actions, .flow-topic-actions' )
+					.fadeOut( 'fast' );
 			} );
 
 		// Set up timestamp on-hover
 		$container.find( '.flow-topic-datestamp, .flow-datestamp' )
-			.hover(function() {
+			.hover(function () {
 				$(this).children( '.flow-agotime' ).toggle();
 				$(this).children( '.flow-utctime' ).toggle();
 			} );
 
 		// Set up post creator on-hover
 		$container.find( '.flow-creator' )
-			.hover( function() {
+			.hover( function () {
 				$(this).children( '.flow-creator-simple' ).toggle();
 				$(this).children( '.flow-creator-full' ).toggle();
 			} );
 
 		// Set up reply form
 		$container.find( '.flow-reply-form textarea' )
-			.addClass( 'flow-reply-box-closed' )
-			.click( function () {
-				$( this ).removeClass( 'flow-reply-box-closed' );
-				$( this ).closest( 'form' )
-					.children( '.flow-post-form-extras' )
+			.addClass( 'flow-reply-box-closed' );
+
+		// Reply form is meant to be visible for non-JS users
+		// when JS is available, hide until button is clicked
+		$container.find( '.flow-reply-form' )
+			.hide();
+
+		$container.find( '.flow-reply-link' )
+			// when clicked, show textarea, load editor
+			.click( function ( e ) {
+				e.preventDefault();
+
+				var $form = $( this ).closest( '.flow-post' ).siblings( 'form.flow-reply-form' ),
+					$textarea = $form.find( 'textarea' );
+
+				$form
 					.show();
 
-				mw.flow.editor.load( $( this ) );
+				$textarea
+					.focus()
+					.removeClass( 'flow-reply-box-closed' );
+				mw.flow.editor.load( $textarea );
 			} );
-
-		$container.find( '.flow-post-form-extras' )
-			.hide();
 
 		$( '<a />' )
 			.attr( 'href', '#' )
 			.addClass( 'flow-cancel-link' )
-			.addClass( 'mw-ui-destructive' )
 			.text( mw.msg( 'flow-cancel' ) )
 			.click( function ( e ) {
 				e.preventDefault();
@@ -58,7 +77,7 @@
 						.find( ':data(flow-editor)' )
 				);
 
-				$( this ).closest( '.flow-post-form-extras' )
+				$( this ).closest( '.flow-reply-form' )
 					.slideUp( 'fast', function () {
 						$( this ).closest( '.flow-reply-form' )
 							.find( 'textarea' )
@@ -94,7 +113,6 @@
 		$( '<a />' )
 			.attr( 'href', '#' )
 			.addClass( 'flow-cancel-link' )
-			.addClass( 'mw-ui-destructive' )
 			.text( mw.msg( 'flow-cancel' ) )
 			.click( function ( e ) {
 				e.preventDefault();
@@ -117,29 +135,18 @@
 			.insertBefore( $container.find( '.flow-newtopic-form input[type=submit]' ) );
 
 		// Set up folding
-		$container.find( '.flow-topic-opener' )
+		$container.find( '.flow-titlebar' )
 			.click( function () {
-				var $topicContainer = $( this ).closest( '.flow-topic-container' )
-						.toggleClass( 'flow-topic-closed' ),
-					$hideElement = $( this ).closest( '.flow-topic-container' )
-						.children( '.flow-post-container' );
+				var $topicContainer = $( this ).closest( '.flow-topic-container' ),
+					$hideElement = $topicContainer.children( '.flow-post-container' );
 
-					if ( $topicContainer.hasClass( 'flow-topic-closed' ) ) {
-						$hideElement.slideUp();
-					} else {
-						$hideElement.slideDown();
-					}
+				$topicContainer.toggleClass( 'flow-topic-closed' );
+
+				if ( $topicContainer.hasClass( 'flow-topic-closed' ) ) {
+					$hideElement.slideUp();
+				} else {
+					$hideElement.slideDown();
+				}
 			} );
 	} );
-
-	$( 'body' )
-		.click( function ( e ) {
-			if ( $( e.target )
-				.closest( '.flow-post-actions, .flow-topic-actions' )
-				.length === 0
-			) {
-				$( '.flow-post-actionbox, .flow-topic-actionbox, .flow-actionbox-pokey' )
-					.fadeOut( 'fast' );
-			}
-		} );
 } )( jQuery, mediaWiki );

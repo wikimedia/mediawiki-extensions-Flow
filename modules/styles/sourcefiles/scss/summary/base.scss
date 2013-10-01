@@ -1,0 +1,31 @@
+#flow-summary {
+  position: relative;
+  margin-bottom: 34px;
+}
+
+#flow-summary-content {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 25px;
+  color: #58595B;
+
+  /* preserve space on the right, for a.flow-summary-edit-link */
+  margin-right: 36px;
+}
+
+a.flow-summary-edit-link {
+  display: block;
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  /* @embed */
+  background-image: url( '../base/images/stub.png' ); /* @todo: real asset */
+  background-position: right;
+  background-size: 20px auto;
+  background-repeat: no-repeat;
+}

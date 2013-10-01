@@ -1,0 +1,9 @@
+.mw-ui-button {
+    // Button colors determined by function.
+    // -----------------------------------------
+    &.mw-ui-deemphasized {
+        @include buttonColors($agoraWhite);
+        color: #58595B;
+        border: 1px solid darken($agoraWhite, 15%);
+    }
+}

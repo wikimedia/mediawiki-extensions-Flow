@@ -124,12 +124,11 @@ $( document ).on( 'flow_init', function ( e ) {
 						)
 						.append(
 							$( '<div/>' )
-								.addClass( 'flow-post-controls' )
+								.addClass( 'flow-post-form-controls' )
 								.append(
 									$( '<a/>' )
 										.text( mw.msg( 'flow-cancel' ) )
 										.addClass( 'flow-cancel-link' )
-										.addClass( 'mw-ui-destructive' )
 										.attr( 'href', '#' )
 										.click( function ( e ) {
 											e.preventDefault();
@@ -145,7 +144,7 @@ $( document ).on( 'flow_init', function ( e ) {
 									$( '<input />' )
 										.attr( 'type', 'submit' )
 										.addClass( 'mw-ui-button' )
-										.addClass( 'mw-ui-primary' )
+										.addClass( 'mw-ui-constructive' )
 										.addClass( 'flow-edit-post-submit' )
 										.val( mw.msg( 'flow-edit-post-submit' ) )
 								)
@@ -200,7 +199,7 @@ $( document ).on( 'flow_init', function ( e ) {
 		} );
 
 	// Overload 'edit title' link.
-	$container.find( '.flow-action-edit-title a' )
+	$container.find( 'a.flow-edit-topic-link' )
 		.click( function ( e ) {
 			e.preventDefault();
 
@@ -223,7 +222,6 @@ $( document ).on( 'flow_init', function ( e ) {
 				.append(
 					$( '<a/>' )
 						.addClass( 'flow-cancel-link' )
-						.addClass( 'mw-ui-destructive' )
 						.attr( 'href', '#' )
 						.text( mw.msg( 'flow-cancel' ) )
 						.click( function ( e ) {
@@ -239,7 +237,7 @@ $( document ).on( 'flow_init', function ( e ) {
 					$( '<input />' )
 						.addClass( 'flow-edit-title-submit' )
 						.addClass( 'mw-ui-button' )
-						.addClass( 'mw-ui-primary' )
+						.addClass( 'mw-ui-constructive' )
 						.attr( 'type', 'submit' )
 						.val( mw.msg( 'flow-edit-title-submit' ) )
 				)

@@ -8,7 +8,9 @@ $flowResourceTemplate = array(
 
 $wgResourceModules += array(
 	'ext.flow.base' => $flowResourceTemplate + array(
-		// 'styles' => 'base/ext.flow.base.css',
+		'styles' => array(
+			'mediawiki.ui/override.css',
+		),
 		'scripts' => array(
 			'base/ext.flow.base.js',
 			'base/ui-functions.js',
@@ -21,6 +23,7 @@ $wgResourceModules += array(
 		),
 	),
 	'ext.flow.summary' => $flowResourceTemplate + array(
+		'styles' => 'summary/base.css',
 		'scripts' => 'summary/summary.js',
 		'dependencies' => array(
 			'ext.flow.editor',
@@ -29,7 +32,6 @@ $wgResourceModules += array(
 	'ext.flow.discussion' => $flowResourceTemplate + array(
 		'styles' => array(
 			'discussion/base.css',
-			'discussion/agora2-override.css',
 		),
 		'scripts' => array(
 			'discussion/ui.js',

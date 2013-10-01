@@ -1,0 +1,122 @@
+.flow-input.flow-newtopic-title {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: bold;
+
+  height: 41px;
+  padding: 8px 15px;
+}
+
+.flow-topic-full {
+  padding-bottom: 0;
+  margin-bottom: 10px;
+}
+
+.flow-topic-mention-indicator {
+  position: relative;
+  float: left;
+  top: 9;
+  left: 11;
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  clear: both;
+  /* @embed */
+  background-image: url('images/mention_icon_small_green.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.flow-topic-container .flow-topic-mention-indicator {
+  display: none;
+}
+
+.flow-topic-controls {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 0;
+  top: 0;
+  clear: none;
+}
+
+.topicicon {
+  width: 20px;
+  height: 20px;
+  /* @embed */
+  background-image: url(images/tag.png);
+  float: left;
+}
+
+.flow-topic-header .flow-datestamp {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+}
+
+div.flow-titlebar {
+  position: relative;
+
+  /* override mw-ui-button style */
+  text-align: left;
+  display: block;
+  padding: 22px;
+  font-weight: normal;
+
+  /* preserve space on the right, for a.flow-edit-topic-link etc. */
+  margin-right: 36px;
+}
+.flow-titlebar p {
+  margin: 0;
+}
+.flow-topic-title {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  color: #231F20;
+}
+
+a.flow-edit-topic-link {
+  display: block;
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
+
+  position: absolute;
+  right: 0;
+  top: 22px;
+
+  /* @embed */
+  background-image: url( '../base/images/stub.png' ); /* @todo: real asset */
+  background-position: right;
+  background-size: 20px auto;
+  background-repeat: no-repeat;
+}
+
+.lockedtopic .flow-topic-title {
+  /* @embed */
+  background-image: url('images/lock_icon_444444.png');
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 25px;
+
+  /* preserve space on the right, for .flow-topic-actions */
+  margin-right: 30px;
+}
+.lockedtopic .flow-topic-title:hover {
+  /* @embed */
+  background-image: url('images/lock_icon_green.png');
+}
+
+.flow-topic-posts-meta {
+  font-size: 16px;
+  line-height: 28px;
+  color: #808184;
+}
+
+.flow-topic-container {
+  position: relative;
+  left: 30;
+  margin-top: -20;
+}
