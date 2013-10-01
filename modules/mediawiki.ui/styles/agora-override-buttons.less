@@ -1,0 +1,124 @@
+// based on Flow Prototype/Design/Iteration 5 "Buttons & Flyout Options
+
+@import 'settings/colors.less';
+@import 'mixins/buttons.less';
+
+.mw-ui-button {
+	.buttonColors(
+		// normal
+		@neutral-base, // background
+		#898989, //text
+		#ccc, //border
+
+		// hover
+		@neutral-base,
+		#898989,
+		#acacac,
+
+		// active
+		@neutral-active,
+		#898989,
+		#ccc,
+
+		// disabled
+		@neutral-base,
+		#898989,
+		#ccc
+	);
+
+	&.mw-ui-constructive {
+		.buttonColors(
+			// normal
+			@constructive-base, // background
+			#fff, // text
+			@constructive-base, // border
+
+			// hover
+			@constructive-base,
+			#fff,
+			#7fd7c4,
+
+			// active
+			@constructive-active,
+			#fff,
+			#7fd7c4,
+
+			// disabled
+			@neutral-base,
+			#898989,
+			#ccc
+		);
+	}
+
+	&.mw-ui-destructive {
+		.buttonColors(
+			// normal
+			@destructive-base, // background
+			#fff, // text
+			@destructive-base, // border
+
+			// hover
+			@destructive-base,
+			#fff,
+			#dc554d,
+
+			// active
+			@destructive-active,
+			#fff,
+			#dc554d,
+
+			// disabled
+			@neutral-base,
+			#898989,
+			#ccc
+		);
+
+		&.mw-ui-destructive-medium {
+			.buttonColors(
+				// normal
+				@destructive-medium-base, // background
+				#fff, // text
+				@destructive-medium-base, // border
+
+				// hover
+				@destructive-medium-base,
+				#fff,
+				#ff853f,
+
+				// active
+				@destructive-medium-active,
+				#fff,
+				#ff853f,
+
+				// disabled
+				@neutral-base,
+				#898989,
+				#ccc
+			);
+		}
+
+		&.mw-ui-destructive-low {
+			.buttonColors(
+				// normal
+				@destructive-low-base, // background
+				#fff, // text
+				@destructive-low-base, // border
+
+				// hover
+				@destructive-low-base,
+				#fff,
+				#e8b747,
+
+				// active
+				@destructive-low-active,
+				#fff,
+				#e8b747,
+
+				// disabled
+				@neutral-base,
+				#898989,
+				#ccc
+			);
+		}
+	}
+}

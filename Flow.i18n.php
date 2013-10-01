@@ -12,9 +12,6 @@ $messages['en'] = array(
 	'flow-specialpage' => '$1 &ndash; Flow',
 	'flow-edit-summary-link' => 'Edit summary',
 
-	'flow-disclaimer' => "By clicking the \"Add message\" button, you agree to the Terms of Use,
-and you irrevocably agree to release your contribution under the CC BY-SA 3.0 License and the GFDL.
-You agree that a hyperlink or URL is sufficient attribution under the Creative Commons license.",
 	'flow-post-hidden' => '[post hidden]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Hidden}} by $1 $2',
 	'flow-post-deleted' => '[post deleted]',
@@ -25,6 +22,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-topic-actions' => 'actions',
 	'flow-cancel' => 'Cancel',
 
+
 	'flow-newtopic-title-placeholder' => 'Message subject',
 	'flow-newtopic-content-placeholder' => 'Message text. Be nice!',
 	'flow-newtopic-header' => 'Add a new topic',
@@ -32,7 +30,8 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-newtopic-start-placeholder' => 'Click here to start a new discussion. Be nice!',
 
 	'flow-reply-placeholder' => 'Click to {{GENDER:$1|reply}} to $1. Be nice!',
-	'flow-reply-submit' => 'Post reply',
+	'flow-reply-submit' => 'Reply',
+	'flow-reply-link' => 'Reply',
 
 	'flow-edit-post-submit' => 'Submit changes',
 
@@ -46,6 +45,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-post-action-edit' => 'Edit',
 	'flow-post-action-restore-post' => 'Restore post',
 
+	'flow-topic-action-view' => 'Permalink',
 	'flow-topic-action-edit-title' => 'Edit title',
 	'flow-topic-action-history' => 'Topic history',
 
@@ -126,14 +126,6 @@ $messages['qqq'] = array(
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
 	'flow-edit-summary-link' => 'Used as text for the link which points to the "Edit summary" page.',
-	'flow-disclaimer' => 'Used as disclaimer text at the bottom of the form.
-
-Preceded by the Submit button which has the label either {{msg-mw|Flow-reply-submit}} or {{msg-mw|Flow-newtopic-save}}.
-
-"Add message" seems to refer these Submit buttons.
-
-See also:
-* {{msg-mw|Wikimedia-copyrightwarning}}',
 	'flow-post-hidden' => 'Used as username/content if the post was hidden.
 
 Translate this as "post which was hidden".',
@@ -181,6 +173,7 @@ Translate this as "post which was censored".',
 	'flow-reply-placeholder' => 'Used as placeholder for the Content textarea. Parameters:
 * $1 - username',
 	'flow-reply-submit' => 'Used as label for the Submit button.',
+	'flow-reply-link' => "Link text of the button that will (when clicked) display the editor to reply.",
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified. Parameters:
 * $1 - username that created the most recent revision of the post
@@ -207,6 +200,7 @@ Translate as label for the link or the Submit button.
 See also:
 * {{msg-mw|Flow-post-action-delete-post}}
 * {{msg-mw|Flow-post-action-censor-post}}',
+	'flow-topic-action-view' => "Title text for topic's permalink icon",
 	'flow-topic-action-edit-title' => 'Used as title for the link which is used to edit the title.',
 	'flow-topic-action-history' => 'Used as text for the link which is used to view topic-history.
 {{Identical|Topic history}}',

@@ -1,0 +1,149 @@
+@import 'settings/colors.less';
+
+.flow-topic-container {
+	padding-bottom: 54px;
+
+	.flow-titlebar {
+		position: relative;
+
+		// override mw-ui-button style
+		text-align: left;
+		display: block;
+		padding: 24px 22px;
+		margin-bottom: 30px;
+		font-weight: normal;
+		background: @topic-titlebar-background-color;
+
+		line-height: 28px;
+		color: @topic-titlebar-text-color;
+
+		// override mw-ui-button:hover style
+		&:hover,
+		&.mw-ui-hover {
+			background: @topic-titlebar-background-color;
+		}
+
+		.flow-topic-title {
+			padding-bottom: 30px;
+
+			// leave some room for .flow-topic-actions-link on the right
+			margin-right: 44px;
+
+			h2 {
+				font-weight: bold;
+				font-size: 24px;
+				line-height: 30px;
+				color: @topic-title-color;
+
+				// override default h2 style
+				border: none;
+				padding: 0;
+				margin: 0;
+			}
+		}
+
+		.flow-actions {
+			.flow-actions-link {
+				position: absolute;
+				right: 22px;
+				top: 22px;
+
+				width: 20px;
+				height: 20px;
+				text-indent: -9999px;
+
+				/* @embed */
+				background-image: url( '../images/chevron_down.png' ); /* @todo: chevron color (AAA, probably) */
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+
+			.flow-actions-box {
+				position: absolute;
+				top: 56px; // 14px + (22px top padding + 20px icon height)
+				right: 0;
+			}
+		}
+
+		ul.flow-topic-posts-meta {
+			list-style: none;
+			margin: 0;
+
+			li {
+				line-height: 16px;
+				padding: 0 0 14px 0;
+
+				&:last-child {
+					padding: 0;
+				}
+			}
+		}
+
+		.flow-datestamp {
+			margin: 0;
+
+			position: absolute;
+			right: 22px;
+			bottom: 22px;
+		}
+
+		.flow-icon {
+			// additional push to the right because of container's padding & border
+			margin-right: -23px; // container's right padding + right border
+
+			&.flow-icon-top-aligned {
+				margin-top: -12px; // half of container's top padding
+			}
+
+			&.flow-icon-bottom-aligned {
+				margin-top: -28px; // -40px - half of container's bottom padding
+			}
+		}
+
+		.flow-edit-topic-link {
+			/* @embed */
+			background-image: url( '../../base/images/stub.png' ); /* @todo: real asset */
+			background-position: center;
+			background-size: 20px auto;
+			background-repeat: no-repeat;
+		}
+
+		.flow-icon-permalink {
+			/* @embed */
+			background-image: url( '../../base/images/stub.png' ); /* @todo: real asset */
+			background-position: center;
+			background-size: 20px auto;
+			background-repeat: no-repeat;
+		}
+
+		.flow-icon-star {
+			/* @embed */
+			background-image: url( '../../base/images/stub.png' ); /* @todo: real asset */
+			background-position: center;
+			background-size: 20px auto;
+			background-repeat: no-repeat;
+		}
+
+		.flow-edit-title-form {
+			.flow-edit-title-textbox {
+				width: auto;
+			}
+
+			.flow-edit-title-controls {
+				float: right;
+			}
+		}
+	}
+}
+
+.flow-newtopic-form {
+	padding-bottom: 30px;
+
+	.flow-newtopic-title {
+		font-weight: bold;
+	}
+
+	.flow-post-form-controls {
+		text-align: right;
+	}
+}

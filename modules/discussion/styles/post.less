@@ -1,0 +1,105 @@
+@import 'settings/colors.less';
+
+.flow-post-container {
+	clear: both;
+	margin-top: 20px;
+	padding-left: 22px;
+
+	.flow-creator {
+		font-weight: bold;
+		color: @post-title-color;
+
+		padding-bottom: 22px;
+	}
+
+	.flow-post-content {
+		font-weight: normal;
+		color: @post-content-color;
+
+		padding-bottom: 20px;
+	}
+
+	.flow-datestamp {
+		float: right;
+		padding-right: 22px;
+	}
+
+	.flow-actions {
+		position: relative;
+
+		.flow-actions-link {
+			width: 20px;
+			height: 20px;
+			text-indent: -9999px;
+
+			/* @embed */
+			background-image: url( '../../base/images/stub.png' ); /* @todo: real asset */
+			background-position: center;
+			background-size: 20px auto;
+			background-repeat: no-repeat;
+		}
+
+		.flow-actions-box {
+			position: absolute;
+			top: -34px;
+			right: 0;
+		}
+	}
+
+	// Add icon to action buttons
+	.buttonIcon(@icon: '../../base/images/stub.png') {
+		padding-left: 42px;
+
+		// !important to overwrite MW core's background image
+		/* @embed */
+		background-image: url( @icon ) !important;
+		background-position: 16px !important;
+		background-size: 20px auto !important;
+		background-repeat: no-repeat !important;
+	}
+
+	.flow-hide-post-link {
+		.buttonIcon('../../base/images/stub.png'); /* @todo: real asset */
+	}
+
+	.flow-delete-post-link {
+		.buttonIcon('../../base/images/stub.png'); /* @todo: real asset */
+	}
+
+	.flow-censor-post-link {
+		.buttonIcon('../../base/images/stub.png'); /* @todo: real asset */
+	}
+
+	.flow-restore-post-link {
+		.buttonIcon('../../base/images/stub.png'); /* @todo: real asset */
+	}
+
+	.flow-post-replies {
+		.flow-post-container{
+			border-left: 1px solid #999;
+		}
+	}
+
+	.flow-reply-form {
+		padding-top: 20px;
+
+		.flow-post-form-controls {
+			text-align: right;
+		}
+
+		textarea {
+			width: 100%;
+			/*
+			 * The textarea has some padding for the text; make it easier to define the
+			 * exact length. box-sizing defines what the length is applied to. We want it
+			 * to include padding & border, so border-box it is (the default value,
+			 * content-box, applies length to content, making the textarea larger if e.g.
+			 * padding is defined)
+			 */
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+
+			font-family: sans-serif;
+		}
+	}
+}
