@@ -5,7 +5,11 @@ namespace Flow\Model;
 use Flow\Data\ObjectManager;
 
 class UUID {
+	// provided binary UUID
 	protected $binaryValue;
+	// alternate representations
+	protected $hexValue;
+	protected $timestamp;
 
 	function __construct( $binaryValue ) {
 		if ( strlen( $binaryValue ) !== 16 ) {
@@ -17,7 +21,7 @@ class UUID {
 	static public function create( $input = false ) {
 		if ( is_object( $input ) ) {
 			if ( $input instanceof UUID ) {
-				return new self( $input->getBinary() );
+				return clone $input;
 			} else {
 				throw new MWException( "Got unknown input of type " . get_class( $input ) );
 			}
@@ -46,7 +50,10 @@ class UUID {
 	}
 
 	public function getHex() {
-		return str_pad( bin2hex( $this->binaryValue ), 32, '0', STR_PAD_LEFT );
+		if ( $this->hexValue === null ) {
+			$this->hexValue = str_pad( bin2hex( $this->binaryValue ), 32, '0', STR_PAD_LEFT );
+		}
+		return $this->hexValue;
 	}
 
 	public function getBinary() {
@@ -58,19 +65,22 @@ class UUID {
 	}
 
 	public function getTimestampObj() {
-		// First 6 bytes === 48 bits
-		$hex = $this->getHex();
-		$timePortion = substr( $hex, 0, 12 );
-		$bits_48 = wfBaseConvert( $timePortion, 16, 2, 48 );
-		$bits_46 = substr( $bits_48, 0, 46 );
-		$msTimestamp = wfBaseConvert( $bits_46, 2, 10 );
+		if ( $this->timestamp === null ) {
+			// First 6 bytes === 48 bits
+			$hex = $this->getHex();
+			$timePortion = substr( $hex, 0, 12 );
+			$bits_48 = wfBaseConvert( $timePortion, 16, 2, 48 );
+			$bits_46 = substr( $bits_48, 0, 46 );
+			$msTimestamp = wfBaseConvert( $bits_46, 2, 10 );
 
-		try {
-			return new \MWTimestamp( intval( $msTimestamp / 1000 ) );
-		} catch ( \TimestampException $e ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ": bogus time value: UUID=$hex; VALUE=$msTimestamp" );
-			return false;
+			try {
+				$this->timestamp = new \MWTimestamp( intval( $msTimestamp / 1000 ) );
+			} catch ( \TimestampException $e ) {
+				wfDebugLog( __CLASS__, __FUNCTION__ . ": bogus time value: UUID=$hex; VALUE=$msTimestamp" );
+				return false;
+			}
 		}
+		return clone $this->timestamp;
 	}
 
 	public function getTimestamp() {
