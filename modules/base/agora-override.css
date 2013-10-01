@@ -1,0 +1,50 @@
+@charset "UTF-8";
+                                                                            /*
+* This file contains (potential) changes/additions to resources/mediawiki.ui/*,
+* derived from implementing https://www.mediawiki.org/wiki/Flow_Portal/Design/Iteration_4
+*/
+/* _effects.scss */
+/* Mixins for visual effects in CSS3 */
+/* line 4, sourcefiles/scss/components/vector/_buttons.scss */
+.mw-ui-button.mw-ui-deemphasized {
+  background-color: white;
+  *background-color: white;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFFFFFFF');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #ffffff));
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(top, #ffffff, #ffffff);
+  color: white;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  border: 1px solid #fafafa;
+  color: #58595B;
+  border: 1px solid #d9d9d9;
+}
+/* line 38, ../../../../resources/mediawiki.ui/sourcefiles/scss/mixins/_effects.scss */
+.mw-ui-button.mw-ui-deemphasized:hover, .mw-ui-button.mw-ui-deemphasized.mw-ui-hover {
+  background-color: white;
+  *background-color: white;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFFFFFFF');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #ffffff));
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(top, #ffffff, #ffffff);
+  text-decoration: none;
+}
+/* line 44, ../../../../resources/mediawiki.ui/sourcefiles/scss/mixins/_effects.scss */
+.mw-ui-button.mw-ui-deemphasized:active, .mw-ui-button.mw-ui-deemphasized.mw-ui-active {
+  background-image: none;
+  background-color: #f7f7f7;
+  text-shadow: none;
+}
+/* line 54, ../../../../resources/mediawiki.ui/sourcefiles/scss/mixins/_effects.scss */
+.mw-ui-button.mw-ui-deemphasized:disabled, .mw-ui-button.mw-ui-deemphasized.mw-ui-disabled {
+  background-image: none;
+  background-color: white;
+  opacity: 0.5;
+  text-shadow: none;
+}

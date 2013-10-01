@@ -1,0 +1,16 @@
+/*
+ * This file contains (potential) changes/additions to resources/mediawiki.ui/*,
+ * derived from implementing https://www.mediawiki.org/wiki/Flow_Portal/Design/Iteration_4
+ */
+
+@charset "UTF-8";
+
+@import "compass";
+
+// core Agore stuff
+@import "../../../../../../resources/mediawiki.ui/sourcefiles/scss/settings/all";
+@import "../../../../../../resources/mediawiki.ui/sourcefiles/scss/mixins/all";
+
+// additions
+@import "settings/colors";
+@import "components/vector/buttons";
