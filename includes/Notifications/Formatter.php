@@ -42,24 +42,21 @@ class NotificationFormatter extends EchoBasicFormatter {
 			}
 		} elseif ( $param === 'post-permalink' ) {
 			$postId = $extra['post-id'];
-			$url = $this->getUrlGenerator()->buildUrl(
-				$event->getTitle(),
+			$urlParams = array( );
+
+			if ( $this->bundleData['raw-data-count'] <= 1 ) {
+				$urlParams['topic[postId]'] = $postId->getHex();
+			}
+
+			$url = $this->getUrlGenerator()->generateUrl(
+				$extra['topic-workflow'],
 				'view',
-				array(
-					'topic[postId]' => $postId->getHex(),
-					'workflow' => $extra['topic-workflow']->getHex(),
-				)
+				$urlParams
 			);
 
 			$message->params( $url );
 		} elseif ( $param === 'topic-permalink' ) {
-			$url = $this->getUrlGenerator()->buildUrl(
-				$event->getTitle(),
-				'view',
-				array(
-					'workflow' => $extra['topic-workflow']->getHex(),
-				)
-			);
+			$url = $this->getUrlGenerator()->generateUrl( $extra['topic-workflow'] );
 
 			$message->params( $url );
 		} elseif ( $param == 'flow-title' ) {
@@ -98,10 +95,11 @@ class NotificationFormatter extends EchoBasicFormatter {
 				$post  = $event->getExtraParam( 'post-id' );
 				$flow  = $event->getExtraParam( 'topic-workflow' );
 				if ( $post && $flow && $title ) {
-					list( $target, $query ) =
-						$urlGenerator->generateUrlData( $flow, array(
-							'topic[postId]' => $post->getHex(),
-						) );
+					$urlParams = array( 'workflow' => $flow->getHex() );
+					if ( $this->bundleData['raw-data-count'] <= 1 ) {
+						$urlParams['topic[postId]'] = $post->getHex();	
+					}
+					list( $target, $query ) = $urlGenerator->generateUrlData( $flow, $urlParams );
 				}
 				break;
 			case 'flow-board':
