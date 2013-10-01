@@ -1,6 +1,7 @@
 <?php
 
 use Flow\UrlGenerator;
+use Flow\Container;
 
 class FlowCommentFormatter extends EchoBasicFormatter {
 	protected $urlGenerator;
@@ -39,7 +40,7 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 				$event->getTitle(),
 				'view',
 				array(
-					'topic[postId]' => $postId->getHex(),
+					'topic[postId]' => $this->getRelevantPostIdForNotification( $event, $user, $postId )->getHex(),
 					'workflow' => $extra['topic-workflow']->getHex(),
 				)
 			);
@@ -93,7 +94,7 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 				if ( $post && $flow && $title ) {
 					list( $target, $query ) =
 						$urlGenerator->generateUrlData( $flow, array(
-							'topic[postId]' => $post->getHex(),
+							'topic[postId]' => $this->getRelevantPostIdForNotification( $event, $user, $post )->getHex(),
 						) );
 				}
 				break;
@@ -123,5 +124,22 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 		}
 
 		return $this->urlGenerator;
+	}
+
+	/**
+	 * Get the relevant post id for notification, use topic id instead of individual
+	 * post id for bundle message on post-reply, post-edit, post-moderatation
+	 */
+	protected function getRelevantPostIdForNotification( $event, $user, $postId ) {
+		$notifTypes = array( 'flow-post-reply', 'flow-post-edited', 'flow-post-moderated' );
+		$container = Container::getContainer();
+
+		// Use the topic id for notification if this is a bundle message
+		if ( in_array( $event->getType(), $notifTypes ) && $this->bundleData['use-bundle'] ) {
+			$treeRepository = $container['repository.tree'];
+			$postId = $treeRepository->findRoot( $postId );
+		}
+
+		return $postId;
 	}
 }
