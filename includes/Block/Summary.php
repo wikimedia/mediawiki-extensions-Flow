@@ -84,9 +84,8 @@ class SummaryBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		if ( $this->action === 'edit-summary' ) {
-			$templating->getOutput()->addModules( 'ext.flow.summary' );
-		}
+		$templating->getOutput()->addModules( 'ext.flow.summary' );
+
 		$templateName = ( $this->action == 'edit-summary' ) ? 'edit-summary' : 'summary';
 		$templating->render( "flow:$templateName.html.php", array(
 			'block' => $this,
