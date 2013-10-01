@@ -16,6 +16,7 @@ use RequestContext;
 use SpecialPage;
 use Title;
 use User;
+use Flow\View\PostActionMenu;
 
 class Templating {
 	protected $namespaces;
@@ -92,6 +93,9 @@ class Templating {
 			array(
 				'block' => $block,
 				'post' => $post,
+				// An ideal world may pull this from the container, but for now this is fine.  This templating
+				// class has too many responsibilities to keep receiving all required objects in the constructor.
+				'postActionMenu' => new PostActionMenu( $this->urlGenerator ),
 			),
 			$return
 		);
