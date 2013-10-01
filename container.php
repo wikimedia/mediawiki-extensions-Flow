@@ -27,7 +27,8 @@ $c['repository.tree'] = $c->share( function( $c ) {
 // (this implementation is mostly useless actually)
 $c['url_generator'] = $c->share( function( $c ) {
 	return new Flow\UrlGenerator(
-		$c['storage.workflow']
+		$c['storage.workflow'],
+		$c['occupation_controller']
 	);
 } );
 $c['templating.namespaces'] = array(
@@ -299,6 +300,11 @@ $c['factory.loader.workflow'] = $c->share( function( $c ) {
 		$c['storage'],
 		$c['loader.root_post']
 	);
+} );
+
+$c['occupation_controller'] = $c->share( function( $c ) {
+	global $wgFlowOccupyPages;
+	return new Flow\TalkpageManager( $wgFlowOccupyPages );
 } );
 
 return $c;
