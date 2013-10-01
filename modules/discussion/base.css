@@ -96,6 +96,7 @@ input.flowsearch {
 	width: 540px;
 	padding-right: 10px;
 }
+
 .flow-container {
 	position: relative;
 	width: 700px;
@@ -103,31 +104,40 @@ input.flowsearch {
 	margin-left: 20px;
 }
 
+.flow-input.flow-newtopic-title {
+	font-family: sans-serif;
+	font-size: 16px;
+	line-height: 25px;
+
+	height: 41px;
+	padding: 8px 15px;
+}
+
+/*
+Duplication because browsers ignore groups containing an invalid selector.
+Only one of the below is valid per-browser.
+@see http://stackoverflow.com/a/2610741
+*/
+.flow-input.flow-newtopic-title::-webkit-input-placeholder {
+	font-style: italic;
+	color: #AAA;
+}
+.flow-input.flow-newtopic-title::-moz-placeholder {
+	font-style: italic;
+	color: #AAA;
+}
+.flow-input.flow-newtopic-title:-moz-placeholder {
+	font-style: italic;
+	color: #AAA;
+}
+.flow-input.flow-newtopic-title:-ms-input-placeholder {
+	font-style: italic;
+	color: #AAA;
+}
+
 .flow-topic-full {
 	padding-bottom: 0;
 	margin-bottom: 10px;
-}
-
-.flow-topic-separator {
-	width: 670px;
-	height: 1px;
-	border: 0;
-	margin-left: 30px;
-	color: #cccccc;
-	background-color: #cccccc;
-	margin-bottom: 10px;
-	margin-top: 10px;
-}
-
-.flow-topic-opener {
-	position: absolute;
-	left: -24px;
-	top: 0;
-	width: 20px;
-	height: 20px;
-	cursor: pointer;
-	/* @embed */
-	background-image: url(images/topic_control_read_down.png);
 }
 
 .flow-topic-mention-indicator {
@@ -143,10 +153,6 @@ input.flowsearch {
 	background-image: url('images/mention_icon_small_green.png');
 	background-repeat: no-repeat;
 	background-position: center bottom;
-}
-
-.flow-topic-closed.hasmention .flow-topic-datestamp {
-	margin-left: -13px;
 }
 
 .flow-post-mention-indicator {
@@ -170,21 +176,6 @@ input.flowsearch {
 
 .flow-topic-container .flow-topic-mention-indicator {
 	display: none;
-}
-
-div.flow-topic-closed div.flow-topic-opener {
-	/* @embed */
-	background-image: url(images/topic_control_read_right.png);	
-}
-
-.containsunread .flow-topic-opener {
-	/* @embed */
-	background-image: url(images/topic_control_unread_down.png);
-}
-
-.containsunread.flow-topic-closed .flow-topic-opener {
-	/* @embed */
-	background-image: url(images/topic_control_unread_right.png);
 }
 
 .flow-topic-controls {
@@ -228,13 +219,6 @@ div.flow-topic-closed div.flow-topic-opener {
 	position: relative;
 	left: 30;
 	margin-top: -20;
-	width:670px;
-	max-width: 670px;
-}
-
-.flow-metabar {
-	margin-bottom: 5px;
-	margin-top: 5px;
 }
 
 /* SUMMARY STUFF */
@@ -329,15 +313,24 @@ div.flow-topic-closed div.flow-topic-opener {
 	margin-left: 400px;
 	color: #444444;
 }
-.flow-topic-datestamp {
-	font-size: 10pt;
-	color: #999999;
-}
 .flow-datestamp {
+	font-size: 16px;
+	line-height: 16px;
+	color: #AAA;
+}
+.flow-datestamp span {
+	line-height: 18px;
+	border-bottom: 1px solid #D3D4D4;
+}
+.flow-topic-header .flow-datestamp {
 	position: absolute;
-	right: 10px;
-	font-size: 10pt;
-	color: #999999;
+	right: 22px;
+	bottom: 22px;
+}
+.flow-post .flow-datestamp {
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 .editnotice {
 	font-size: 10pt;
@@ -347,16 +340,45 @@ div.flow-topic-closed div.flow-topic-opener {
 .unreadpost .flow-datestamp, .selfpost .flow-datestamp {
 	color: #ffffff;
 }
+div.flow-titlebar {
+	position: relative;
+
+	/* override mw-ui-button style */
+	text-align: left;
+	display: block;
+	padding: 22px;
+	font-weight: normal;
+
+	/* preserve space on the right, for a.flow-edit-topic-link etc. */
+	margin-right: 36px;
+}
+.flow-titlebar p {
+	margin: 0;
+}
 .flow-topic-title {
-	color: #444444;
-	max-width: 600px;
-	overflow: wrap;
-	cursor: pointer;
-}
-.flow-topic-title, .flow-topic-title a, .ownerboard {
 	font-weight: bold;
-	font-size: 13pt;
+	font-size: 24px;
+	line-height: 30px;
+	color: #231F20;
 }
+
+a.flow-edit-topic-link {
+	display: block;
+	width: 20px;
+	height: 20px;
+	text-indent: -9999px;
+
+	position: absolute;
+	right: 0;
+	top: 22px;
+
+	/* @embed */
+	background-image: url( '../base/images/stub.png' ); /* @todo: real asset */
+	background-position: right;
+	background-size: 20px auto;
+	background-repeat: no-repeat;
+}
+
 
 .lockedtopic .flow-topic-title {
 	/* @embed */
@@ -364,6 +386,9 @@ div.flow-topic-closed div.flow-topic-opener {
 	background-repeat: no-repeat;
 	background-position: left center;
 	padding-left: 25px;
+
+	/* preserve space on the right, for .flow-topic-actions */
+	margin-right: 30px;
 }
 .lockedtopic .flow-topic-title:hover {
 	/* @embed */
@@ -374,12 +399,20 @@ div.flow-topic-closed div.flow-topic-opener {
 	padding-right: 5px;
 }
 
+.flow-topic-posts-meta {
+	font-size: 16px;
+	line-height: 28px;
+	color: #808184;
+}
+
 /* POST STUFF */
 .flow-post {
-	border-left: 2px solid #efefef;
-	border-bottom: 2px solid #efefef;
+	position: relative;
+}
+.flow-post-main {
+	position: relative;
 	padding: 0;
-	margin-bottom: 0;
+	margin: 0 46px 0 22px;
 }
 .flow-post-deleted .flow-post-title {
 	color: #cccccc;
@@ -394,10 +427,10 @@ div.flow-topic-closed div.flow-topic-opener {
 	border-bottom: 2px solid #0c53d7;
 }
 .flow-post-title {
-	padding-left: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background-color: #efefef;
+	font-weight: bold;
+	font-size: 16px;
+	color: #3C68B1;
+	margin: 22px 0 0 0;
 }
 .unreadpost .flow-post-title {
 	background-color: #318c6d;
@@ -408,9 +441,6 @@ div.flow-topic-closed div.flow-topic-opener {
 }
 .unreadpost .flow-post-title a, .selfpost .flow-post-title a {
 	color: #ffffff;
-}
-.flow-post-authorline {
-	height: 20px;
 }
 .authorname {
 	font-size: 13pt;
@@ -428,20 +458,11 @@ div.flow-topic-closed div.flow-topic-opener {
 }
 
 .flow-post-content {
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 10px;
-	background-color: #ffffff;
-}
+	margin: 22px 0 34px 0;
 
-.flow-post-controls {
-	padding-right: 5px;
-	padding-left: 10px;
-	padding-bottom: 5px;
-	height: 20px;
-	text-align: right;
-	position: relative;
+	font-size: 16px;
+	line-height: 25px;
+	color: #6D6E70;
 }
 
 .postingstatus {
@@ -464,21 +485,6 @@ div.flow-topic-closed div.flow-topic-opener {
 	display: inline;
 }
 
-.editortoolbox {
-	border: 1px solid #d0d0d0;
-	background-color: #ffffff;
-	padding: 5px;
-	float: left;
-	position: relative;
-	z-index: 10000;
-	margin-top: -30px;
-	margin-left: 15px;
-}
-
-.flow-post-form-extras .editortoolbox {
-	margin-left: 5px;
-}
-
 .editorbutton {
 	cursor: pointer;
 	padding: 5px;
@@ -488,16 +494,23 @@ div.flow-topic-closed div.flow-topic-opener {
 .editorbutton:hover {
 	border: 1px solid #efefef;
 }
+
+.mw-ui-button.flow-thank-link span {
+	padding-left: 30px;
+
+	/* @embed */
+	background-image: url( '../base/images/stub.png' ); /* @todo: real asset */
+	background-position: 0 center;
+	background-size: 20px auto;
+	background-repeat: no-repeat;
+}
+
 .flow-reply-form {
 	position: relative;
-	border: 2px solid #efefef;
-	border-top: none;
-	background-color: #ffffff;
-	min-height: 2em;
-	max-width: 670px;
 	color: #6D6D6D;
 	z-index: 3000;
 	padding: 0;
+	margin: 22px 46px 0 22px;
 }
 
 .flow-post-form-controls, .editboxcontrols, .mboxextras {
@@ -508,12 +521,37 @@ div.flow-topic-closed div.flow-topic-opener {
 	margin-left: 10px;
 }
 
-.flow-reply-form textarea, .editboxmaster textarea {
+.flow-newtopic-form textarea,
+.flow-post-content textarea,
+.flow-reply-form textarea,
+.editboxmaster textarea,
+/*
+type="text" is default, so may be omitted. FF doesn't seem to pick it up as
+[type="text"], though, so the :not() will take care of when it isn't present
+*/
+.flow-newtopic-form input[type="text"],
+.flow-newtopic-form input:not([type]) {
 	width: 100%;
+	/*
+	The textarea has some padding for the text; make it easier to define the
+	exact length. box-sizing defines what the length is applied to. We want it
+	to include padding & border, so border-box it is (the default value,
+	content-box, applies length to content, making the textarea larger if e.g.
+	padding is defined)
+	*/
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+
+}
+
+.flow-newtopic-form textarea,
+.flow-post-content textarea,
+.flow-reply-form textarea,
+.editboxmaster textarea {
 	margin: 0;
 	height: 100px;
 	min-height: 100px;
-	border:none !important;
+	border: none !important;
 }
 
 .stalewarning {
@@ -640,47 +678,13 @@ tr.historyheader {
 	text-align:left;
 }
 
-
-.flow-post-content textarea {
-	width: 100%;
-	margin: 0;
-	height: 100px;
-	border:none !important;
-}
-
-.flow-reply-form textarea.flow-reply-box-closed {
-	/* @embed */
-	background: transparent url("images/chat_bubble_999999.png") 5px center no-repeat;
-	padding-left: 25px !important;
-	height: 31px;
-	min-height: 31px;
-	max-height: 31px;
-}
-
-.flow-reply-form textarea.flow-reply-box-closed:hover {
-	/* @embed */
-	background: transparent url("images/chat_bubble_green.png") 5px center no-repeat;
-}
-
 .flow-cancel-link {
 	margin-left: 10px;
 	margin-right: 10px;
 }
 
-.flow-disclaimer {
-	margin-top: 5px;
-	font-size: 10pt;
-	color: #999999;
-}
-
 .editboxextras .disclaimer {
 	padding: 10px;
-}
-
-.flow-post-form-extras {
-	border-top: 1px solid #efefef;
-	padding: 10px;
-	background-color: #ffffff;
 }
 
 .editboxcontrols {
@@ -693,105 +697,76 @@ tr.historyheader {
 }
 
 /* Action boxes */
-.flow-actionbox-pokey, .flow-actionbox-pokey {
-	/* @embed */
-	background-image: url('images/PokeyNorth.png');
-	background-repeat: no-repeat;
-	width: 21px;
-	height: 11px;
-	position: absolute;
-	z-index: 61000;
-	top: 20px;
-	right: 10px;	
-	display:none;
-}
-
-.flow-topic-actionbox, .flow-post-actionbox {
-	position: absolute;
-	top: 30px;
-	right: 0;
-	border: 1px solid silver;
-	background-color: #ffffff;
-	min-height: 2em;
-	width:auto;
-	min-width: 100px;
-	white-space: nowrap;
-	color: #6D6D6D;
-	z-index: 60000;
-	padding: 10px;
-	box-shadow: 0px 3px 8px rgba(50, 50, 50, 0.35);
-	display: none;
-	font-size: 8pt !important;
-}
-
 .flow-topic-actions, .flow-post-actions {
+	/* Hide until .flow-topic-actions-link or .flow-post-actions-link clicked */
+	display: none;
+
+	z-index: 60000;
+
+	position: absolute;
+	top: 44px;
+	right: 0;
+
+	background-color: #FFF;
+	border: 1px solid #E1E1E1;
+	box-shadow: 0px 3px 8px rgba(50, 50, 50, 0.35);
+	color: #808184;
+	font-size: 12px;
+
+	padding: 6px;
+}
+
+.flow-topic-actions a, .flow-post-actions a {
+	color: #808184;
+}
+
+.flow-topic-actions ul, .flow-post-actions ul {
+	list-style: none;
+	margin: 0;
+}
+
+.flow-topic-actions-link {
 	/* @embed */
-	background-image: url('images/micro_chevron_down_999999.png');
+	background-image: url( 'images/chevron_down.png' ); /* @todo: chevron color (AAA, probably) */
 	background-repeat: no-repeat;
 	background-position: right center;
 	padding-right: 12px;
 }
-.flow-topic-actions:hover, .flow-post-actions:hover {
-	/* @embed */
-	background-image: url('images/micro_chevron_down_blue.png');
-}
 
-.flow-topic-actions {
+.flow-post-actions-link {
+	display: block;
+	width: 20px;
+	height: 20px;
+	text-indent: -9999px;
+
+	padding: 5px 0; /* .flow-post-interaction buttons are 30px, mimic that */
+
 	position: absolute;
-	right: 5px;
-	font-size: 10pt;
-	color: #999999;
-}
+	right: 0;
+	bottom: 0;
 
-.flow-post-actions {
-	font-size: 10pt;
-	color: #999999;
-}
-
-.flow-post-actions a, .flow-topic-actions a {
-	color: #999999 !important;
-	cursor: pointer;
-}
-
-.flow-topic-actions:hover, .flow-post-actions:hover {
-	color: #0645ac;
-	text-decoration:none !important;
-}
-
-.flow-topic-actionbox a, .flow-post-actionbox a {
-	font-size: 8pt !important;
-}
-
-.flow-topic-actionbox :hover, .flow-post-actionbox :hover {
-	text-decoration:none !important;
-}
-
-.flow-topic-actionbox ul, .flow-post-actionbox ul {
-	margin: 0px;
-	list-style: none;	
-	font-size: 8pt;
-}
-
-.flow-post-actionbox {
-	text-align: left;
-}
-
-.flow-newtopic-start {
-	width: 700px;
-	height: 33px;
-	margin-top: 10px;
 	/* @embed */
-	background: transparent url("images/chat_bubble_999999.png") 5px center no-repeat;
-	padding-left: 25px !important;	
+	background-image: url( '../base/images/stub.png' ); /* @todo: real asset */
+	background-position: right;
+	background-size: 20px auto;
+	background-repeat: no-repeat;
 }
 
-.flow-newtopic-start:hover {
-	/* @embed */
-	background: transparent url("images/chat_bubble_green.png") 5px center no-repeat;
+.flow-topic-actions-link {
+	position: absolute;
+	right: 22px;
+	top: 22px;
+
+	width: 20px;
+	height: 20px;
+	text-indent: -9999px;
+}
+
+.flow-newtopic-form {
+	margin: 0 36px 44px 0;
 }
 
 .flow-newtopic-form input[type="text"] {
-	width: 700px;
 	height: 33px;
 	margin-top: 5px;
 }
@@ -800,10 +775,6 @@ tr.historyheader {
 	width: 380px;
 	height: 33px;
 	margin-top: 5px;
-}
-
-.flow-newtopic-form textarea, #enterusername textarea {
-	width: 700px;
 }
 
 .flow-newtopic-form label, #enterusername label {
@@ -983,7 +954,8 @@ tr.historyheader {
 }
 
 .flow-post-replies {
-	margin-left: 1em;
+	border-left: 1px solid #E5E5E5;
+	margin-left: 22px;
 }
 
 .flow-error {
