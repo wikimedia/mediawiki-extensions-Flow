@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29433135_cdbd40d6",
+        "filename": "Flow.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-01T23:06:22Z",
+      "side": 1,
+      "message": "Any reason this can\u0027t be namespaced like the rest of the code? Echo just does new $class with whatever name is passed, it should(i didn\u0027t explicitly test, but have used the general idea before) work fully namespaced.\n\nThere may be other bugs though, if there are bugs in echo related to namespaced formatters its probably prudent to keep this as is.",
+      "revId": "947af0ae0019826b45b042a76e99a54ff7b51403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_cd2c6005",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-01T23:06:22Z",
+      "side": 1,
+      "message": "its kinda messy to pull in a file, and then magically have a new variable show up.\n\nhow about \n\n$wgEchoNotifications +\u003d $this-\u003eloadNotificationDefinitions();\n\nfunction loadNotificationDefinitions() {\n    return require( __DIR__ . \"/Notifications.php\" );\n}\n\nand within the file rather than setting the notifications variable, return it\n\nbasically the idea is just to reduce unknowns that require a developer to poke around in various files to understand whats happening.",
+      "revId": "947af0ae0019826b45b042a76e99a54ff7b51403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_4df87079",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-01T23:06:22Z",
+      "side": 1,
+      "message": "this can just be one line, only needs to be split to multi-line if there are a bunch of arguments",
+      "revId": "947af0ae0019826b45b042a76e99a54ff7b51403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
