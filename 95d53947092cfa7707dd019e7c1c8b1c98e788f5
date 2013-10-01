@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_da289938",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-01T05:57:07Z",
+      "side": 1,
+      "message": "That\u0027s fine. We can just null-edit the pages when we add them to the array / add the magic word to the page.",
+      "parentUuid": "29433135_8ba16daf",
+      "revId": "95d53947092cfa7707dd019e7c1c8b1c98e788f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_88e2f3d6",
         "filename": "includes/UrlGenerator.php",
         "patchSetId": 2
@@ -71,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_fa2d5545",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-01T05:57:07Z",
+      "side": 1,
+      "message": "Makes sense. I\u0027ve done this, but my naming is way off because I had no idea what to call them.",
+      "parentUuid": "4946a543_88e2f3d6",
+      "revId": "95d53947092cfa7707dd019e7c1c8b1c98e788f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4946a543_08cfe357",
         "filename": "includes/View.php",
         "patchSetId": 2
@@ -82,6 +118,24 @@
       "writtenOn": "2013-09-26T18:26:51Z",
       "side": 1,
       "message": "needs type hint for first parameter, primarily as documentation for future editors working on this code.",
+      "revId": "95d53947092cfa7707dd019e7c1c8b1c98e788f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_1a23015b",
+        "filename": "includes/View.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-01T05:57:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4946a543_08cfe357",
       "revId": "95d53947092cfa7707dd019e7c1c8b1c98e788f5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
