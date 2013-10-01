@@ -1,0 +1,49 @@
+@mixin agora-field-placeholder-styling() {
+    font-style: italic;
+    font-weight: normal;
+    color: #AAA;
+}
+
+// Font is not included.
+// For Vector, that should be layered on top with vector-type
+@mixin agora-field-styling() {
+    @include reset-focus;  // Removes OS field focus
+
+    border: {
+        style: solid;
+        width: 1px;
+        color: $agoraGray;
+    };
+
+    &:focus {
+        // @include box-shadow generates unneeded prefixes
+        // https://github.com/chriseppstein/compass/issues/1054 , so specify
+        // directly.
+        box-shadow: $agoraBlueShadow 0px 0px 5px;
+
+        border: {
+            color: $agoraBlueShadow;
+        };
+    }
+
+    color: $agoraTextColor;
+    padding: 0.35em 0 0.35em 0.5em;
+
+    /*
+     * Duplication because browsers ignore groups containing an invalid selector.
+     * Only one of the below is valid per-browser.
+     * @see http://stackoverflow.com/a/2610741
+     */
+    &::-webkit-input-placeholder { // webkit
+        @include agora-field-placeholder-styling;
+    }
+    &::-moz-placeholder { // FF 4-18
+        @include agora-field-placeholder-styling;
+    }
+    &:-moz-placeholder { // FF >= 19
+        @include agora-field-placeholder-styling;
+    }
+    &:-ms-input-placeholder { // IE >= 10
+        @include agora-field-placeholder-styling;
+    }
+}

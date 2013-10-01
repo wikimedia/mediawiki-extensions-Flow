@@ -1,1022 +1,1116 @@
+/* line 1, sourcefiles/scss/base.scss */
 #filters {
-	margin-bottom: 5px;
-	border-bottom: 1px solid #cccccc;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #cccccc;
 }
 
+/* line 6, sourcefiles/scss/base.scss */
 .filtertab {
-	display: inline-block;
-	border-bottom: 3px solid #cccccc;
-	margin-left: -3px;
-	margin-right: 0;
-	margin-bottom: -1px;
-	padding: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
-	color: #cccccc;
-	cursor: pointer;
+  display: inline-block;
+  border-bottom: 3px solid #cccccc;
+  margin-left: -3px;
+  margin-right: 0;
+  margin-bottom: -1px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #cccccc;
+  cursor: pointer;
 }
 
+/* line 19, sourcefiles/scss/base.scss */
 .filtertab.active {
-	border-bottom: 3px solid #1b61dd;
-	color: #000000;
+  border-bottom: 3px solid #1b61dd;
+  color: #000000;
 }
 
+/* line 24, sourcefiles/scss/base.scss */
 #boardmessagesystem.stuck, #singletopiccontrols.stuck {
-	position: fixed;
-	top: 0;
-	background-color: #ffffff;
-	padding-bottom: 10px;
-	border-bottom: none;
-	z-index: 90000;
-	-webkit-box-shadow: 0 5px 5px -6px #000000;
-	-moz-box-shadow: 0 5px 5px -6px #000000;
-	box-shadow: 0 5px 5px -6px #000000;
-	width: 700px;
+  position: fixed;
+  top: 0;
+  background-color: #ffffff;
+  padding-bottom: 10px;
+  border-bottom: none;
+  z-index: 90000;
+  -webkit-box-shadow: 0 5px 5px -6px #000000;
+  -moz-box-shadow: 0 5px 5px -6px #000000;
+  box-shadow: 0 5px 5px -6px #000000;
+  width: 700px;
 }
 
+/* line 37, sourcefiles/scss/base.scss */
 #singletopiccontrols, #boardmessagesystem {
-	padding-top: 10px;
+  padding-top: 10px;
 }
 
+/* line 41, sourcefiles/scss/base.scss */
 #boardmessagesystem, #singletopiccontrols {
-	background-color: #ffffff;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #cccccc;
-	z-index: 90000;
-	width: 700px;
+  background-color: #ffffff;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cccccc;
+  z-index: 90000;
+  width: 700px;
 }
 
+/* line 49, sourcefiles/scss/base.scss */
 h3 {
-	padding: 0;
-	margin-top: 0;
+  padding: 0;
+  margin-top: 0;
 }
 
+/* line 54, sourcefiles/scss/base.scss */
 .flowcontrols {
-	position: relative;
-	top: 0;
-	left: 0;
-	width: 700px;
-	max-width: 700px;
-	margin-bottom: 10px;
-	margin-left: 20px;
-	z-index: 90000;
-	display: block;
-	padding-top: 10px;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 700px;
+  max-width: 700px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  z-index: 90000;
+  display: block;
+  padding-top: 10px;
 }
 
+/* line 67, sourcefiles/scss/base.scss */
 #workingimage, #noresults {
-	position: relative;
-	width: 700px;
-	max-width: 700px;
-	margin-left: 20px;
-	text-align: center;
-	font-size: 15pt;
-	display: none;
+  position: relative;
+  width: 700px;
+  max-width: 700px;
+  margin-left: 20px;
+  text-align: center;
+  font-size: 15pt;
+  display: none;
 }
 
+/* line 77, sourcefiles/scss/base.scss */
 input.flowsearch {
-	width: 480px;
-	height: 33px;
-	margin-top: 0;
-	/* @embed */
-	background: transparent url('images/search_icon_999999.png') right center no-repeat;
-	margin-bottom: 0;
+  width: 480px;
+  height: 33px;
+  margin-top: 0;
+  /* @embed */
+  background: transparent url("images/search_icon_999999.png") right center no-repeat;
+  margin-bottom: 0;
 }
 
+/* line 86, sourcefiles/scss/base.scss */
 .flowsearchbutton {
-	margin-top: 0 !important;
+  margin-top: 0 !important;
 }
 
+/* line 90, sourcefiles/scss/base.scss */
 .flowsecondary {
-	position: absolute;
-	right: 0;
+  position: absolute;
+  right: 0;
 }
 
+/* line 95, sourcefiles/scss/base.scss */
 .aboutme {
-	width: 540px;
-	padding-right: 10px;
-}
-.flow-container {
-	position: relative;
-	width: 700px;
-	max-width: 700px;
-	margin-left: 20px;
+  width: 540px;
+  padding-right: 10px;
 }
 
-.flow-topic-full {
-	padding-bottom: 0;
-	margin-bottom: 10px;
-}
-
-.flow-topic-separator {
-	width: 670px;
-	height: 1px;
-	border: 0;
-	margin-left: 30px;
-	color: #cccccc;
-	background-color: #cccccc;
-	margin-bottom: 10px;
-	margin-top: 10px;
-}
-
-.flow-topic-opener {
-	position: absolute;
-	left: -24px;
-	top: 0;
-	width: 20px;
-	height: 20px;
-	cursor: pointer;
-	/* @embed */
-	background-image: url(images/topic_control_read_down.png);
-}
-
-.flow-topic-mention-indicator {
-	position: relative;
-	float: left;
-	top: 9;
-	left: 11;
-	width: 13px;
-	height: 13px;
-	margin: 0;
-	clear: both;
-	/* @embed */
-	background-image: url('images/mention_icon_small_green.png');
-	background-repeat: no-repeat;
-	background-position: center bottom;
-}
-
-.flow-topic-closed.hasmention .flow-topic-datestamp {
-	margin-left: -13px;
-}
-
-.flow-post-mention-indicator {
-	position: relative;
-	float: left;
-	top: 10;
-	left: -25;
-	width: 20px;
-	height: 20px;
-	margin: 0;
-	clear: both;
-	/* @embed */
-	background-image: url('images/mention_icon_green.png');
-	background-repeat: no-repeat;
-	background-position: center bottom;
-}
-
-.flow-post.hasmention .authorname {
-	margin-left: -10px;
-}
-
-.flow-topic-container .flow-topic-mention-indicator {
-	display: none;
-}
-
-div.flow-topic-closed div.flow-topic-opener {
-	/* @embed */
-	background-image: url(images/topic_control_read_right.png);	
-}
-
-.containsunread .flow-topic-opener {
-	/* @embed */
-	background-image: url(images/topic_control_unread_down.png);
-}
-
-.containsunread.flow-topic-closed .flow-topic-opener {
-	/* @embed */
-	background-image: url(images/topic_control_unread_right.png);
-}
-
-.flow-topic-controls {
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	right: 0;
-	top: 0;
-	clear: none;
-}
-
-.topicicon {
-	width: 20px;
-	height: 20px;
-	/* @embed */
-	background-image: url(images/tag.png);
-	float: left;
-}
-
+/* line 100, sourcefiles/scss/base.scss */
 .subscribeicon {
-	/* @embed */
-	background-image: url(images/star_empty.png);
+  /* @embed */
+  background-image: url(images/star_empty.png);
 }
 
+/* line 105, sourcefiles/scss/base.scss */
 .subscribedicon {
-	/* @embed */
-	background-image: url(images/star_full.png);
+  /* @embed */
+  background-image: url(images/star_full.png);
 }
 
+/* line 110, sourcefiles/scss/base.scss */
 .subscribeicon:hover {
-	/* @embed */
-	background-image: url(images/star_empty_blue.png);
+  /* @embed */
+  background-image: url(images/star_empty_blue.png);
 }
 
+/* line 115, sourcefiles/scss/base.scss */
 .subscribedicon:hover {
-	/* @embed */
-	background-image: url(images/star_full_blue.png);
+  /* @embed */
+  background-image: url(images/star_full_blue.png);
 }
 
-.flow-topic-container {
-	position: relative;
-	left: 30;
-	margin-top: -20;
-	width:670px;
-	max-width: 670px;
-}
-
-.flow-metabar {
-	margin-bottom: 5px;
-	margin-top: 5px;
-}
-
-/* SUMMARY STUFF */
-
-.topicsummary {
-	border: 1px solid #444444;
-	background-color: #d0d0d0;
-	margin-bottom: 5px;
-}
-
-.summarymeta {
-	background-color: #444444;
-	padding: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
-	font-size: 10pt !important;
-}
-
-.summarydate {
-	color: #ffffff !important;
-}
-
-.summaryauthor {
-	color: #ffffff !important;
-	font-size: 10pt;
-	text-decoration: none;
-}
-
-.summarytext {
-	padding: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
-	font-style: italic;
-}
-
+/* line 120, sourcefiles/scss/base.scss */
 .unread {
-	background-color: #00ae8b;
+  background-color: #00ae8b;
 }
 
+/* line 124, sourcefiles/scss/base.scss */
 .lockedtopic .replybox {
-	display: none;
+  display: none;
 }
 
+/* line 128, sourcefiles/scss/base.scss */
 .lockedtopic .editpostlink, .lockedtopic .deletepostlink {
-	display: none;
+  display: none;
 }
 
+/* line 132, sourcefiles/scss/base.scss */
 .collapsedposts {
-	height: 30px;
-	min-height: 20px;
-	cursor: pointer;
-	margin-bottom: 5px;
-	margin-left: -5px;
-	margin-top: -5px;
-	font-weight: bold;
-	color: #666666;
+  height: 30px;
+  min-height: 20px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  margin-left: -5px;
+  margin-top: -5px;
+  font-weight: bold;
+  color: #666666;
 }
 
+/* line 143, sourcefiles/scss/base.scss */
 .cleft {
-	width: 20;
-	height: 30;
-	/* @embed */
-	background-image: url(images/mini_chevron_right_444444.png);
-	background-repeat: no-repeat;
-	background-position: center center;
-	float: left;
-	left: 0;
+  width: 20;
+  height: 30;
+  /* @embed */
+  background-image: url(images/mini_chevron_right_444444.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  float: left;
+  left: 0;
 }
 
+/* line 154, sourcefiles/scss/base.scss */
 .crightold {
-	width: 10;
-	height: 30;
-	/* @embed */
-	background-image: url(images/crinkle_right.png);
-	float: right;
-	margin-right: 0;
+  width: 10;
+  height: 30;
+  /* @embed */
+  background-image: url(images/crinkle_right.png);
+  float: right;
+  margin-right: 0;
 }
 
+/* line 163, sourcefiles/scss/base.scss */
 .collapsetext {
-	font-size: 14px;
-	float:left;
-	padding-top: 6px;
+  font-size: 14px;
+  float: left;
+  padding-top: 6px;
 }
+
+/* line 168, sourcefiles/scss/base.scss */
 .ccount {
-	position: relative;
-	left: 0;
-	padding-right: 10px;
-	color: #444444;
+  position: relative;
+  left: 0;
+  padding-right: 10px;
+  color: #444444;
 }
-.taglist: {
-	position: relative;
-	margin-left: 400px;
-	color: #444444;
+
+/* line 174, sourcefiles/scss/base.scss */
+.taglist {
+  position: relative;
+  margin-left: 400px;
+  color: #444444;
 }
-.flow-topic-datestamp {
-	font-size: 10pt;
-	color: #999999;
-}
-.flow-datestamp {
-	position: absolute;
-	right: 10px;
-	font-size: 10pt;
-	color: #999999;
-}
+
+/* line 179, sourcefiles/scss/base.scss */
 .editnotice {
-	font-size: 10pt;
-	color: #999999;
-	float: left;	
+  font-size: 10pt;
+  color: #999999;
+  float: left;
 }
+
+/* line 184, sourcefiles/scss/base.scss */
 .unreadpost .flow-datestamp, .selfpost .flow-datestamp {
-	color: #ffffff;
-}
-.flow-topic-title {
-	color: #444444;
-	max-width: 600px;
-	overflow: wrap;
-	cursor: pointer;
-}
-.flow-topic-title, .flow-topic-title a, .ownerboard {
-	font-weight: bold;
-	font-size: 13pt;
+  color: #ffffff;
 }
 
-.lockedtopic .flow-topic-title {
-	/* @embed */
-	background-image: url('images/lock_icon_444444.png');
-	background-repeat: no-repeat;
-	background-position: left center;
-	padding-left: 25px;
-}
-.lockedtopic .flow-topic-title:hover {
-	/* @embed */
-	background-image: url('images/lock_icon_green.png');
-}
+/* line 187, sourcefiles/scss/base.scss */
 .boardnotice {
-	color: #318c6d;
-	padding-right: 5px;
+  color: #318c6d;
+  padding-right: 5px;
 }
 
-/* POST STUFF */
+/* line 1, sourcefiles/scss/components/_topic.scss */
+.flow-input.flow-newtopic-title {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: bold;
+  height: 41px;
+  padding: 8px 15px;
+}
+
+/* line 11, sourcefiles/scss/components/_topic.scss */
+.flow-topic-full {
+  padding-bottom: 0;
+  margin-bottom: 10px;
+}
+
+/* line 16, sourcefiles/scss/components/_topic.scss */
+.flow-topic-mention-indicator {
+  position: relative;
+  float: left;
+  top: 9;
+  left: 11;
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  clear: both;
+  /* @embed */
+  background-image: url("images/mention_icon_small_green.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+/* line 31, sourcefiles/scss/components/_topic.scss */
+.flow-topic-container .flow-topic-mention-indicator {
+  display: none;
+}
+
+/* line 35, sourcefiles/scss/components/_topic.scss */
+.flow-topic-controls {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 0;
+  top: 0;
+  clear: none;
+}
+
+/* line 44, sourcefiles/scss/components/_topic.scss */
+.topicicon {
+  width: 20px;
+  height: 20px;
+  /* @embed */
+  background-image: url(images/tag.png);
+  float: left;
+}
+
+/* line 52, sourcefiles/scss/components/_topic.scss */
+.flow-topic-header .flow-datestamp {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+}
+
+/* line 58, sourcefiles/scss/components/_topic.scss */
+div.flow-titlebar {
+  position: relative;
+  /* override mw-ui-button style */
+  text-align: left;
+  display: block;
+  padding: 22px;
+  font-weight: normal;
+  /* preserve space on the right, for a.flow-edit-topic-link etc. */
+  margin-right: 36px;
+}
+
+/* line 70, sourcefiles/scss/components/_topic.scss */
+.flow-titlebar p {
+  margin: 0;
+}
+
+/* line 73, sourcefiles/scss/components/_topic.scss */
+.flow-topic-title {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+  color: #231F20;
+}
+
+/* line 80, sourcefiles/scss/components/_topic.scss */
+a.flow-edit-topic-link {
+  display: block;
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
+  position: absolute;
+  right: 0;
+  top: 22px;
+  /* @embed */
+  background-image: url("../base/images/stub.png");
+  /* @todo: real asset */
+  background-position: right;
+  background-size: 20px auto;
+  background-repeat: no-repeat;
+}
+
+/* line 97, sourcefiles/scss/components/_topic.scss */
+.lockedtopic .flow-topic-title {
+  /* @embed */
+  background-image: url("images/lock_icon_444444.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 25px;
+  /* preserve space on the right, for .flow-topic-actions */
+  margin-right: 30px;
+}
+
+/* line 107, sourcefiles/scss/components/_topic.scss */
+.lockedtopic .flow-topic-title:hover {
+  /* @embed */
+  background-image: url("images/lock_icon_green.png");
+}
+
+/* line 112, sourcefiles/scss/components/_topic.scss */
+.flow-topic-posts-meta {
+  font-size: 16px;
+  line-height: 28px;
+  color: #808184;
+}
+
+/* line 118, sourcefiles/scss/components/_topic.scss */
+.flow-topic-container {
+  position: relative;
+  left: 30;
+  margin-top: -20;
+}
+
+/* line 1, sourcefiles/scss/components/_summary.scss */
+.topicsummary {
+  border: 1px solid #444444;
+  background-color: #d0d0d0;
+  margin-bottom: 5px;
+}
+
+/* line 7, sourcefiles/scss/components/_summary.scss */
+.summarymeta {
+  background-color: #444444;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 10pt !important;
+}
+
+/* line 15, sourcefiles/scss/components/_summary.scss */
+.summarydate {
+  color: #ffffff !important;
+}
+
+/* line 19, sourcefiles/scss/components/_summary.scss */
+.summaryauthor {
+  color: #ffffff !important;
+  font-size: 10pt;
+  text-decoration: none;
+}
+
+/* line 25, sourcefiles/scss/components/_summary.scss */
+.summarytext {
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-style: italic;
+}
+
+/* line 1, sourcefiles/scss/components/_post.scss */
 .flow-post {
-	border-left: 2px solid #efefef;
-	border-bottom: 2px solid #efefef;
-	padding: 0;
-	margin-bottom: 0;
+  position: relative;
 }
+
+/* line 4, sourcefiles/scss/components/_post.scss */
+.flow-post-main {
+  position: relative;
+  padding: 0;
+  margin: 0 46px 0 22px;
+}
+
+/* line 9, sourcefiles/scss/components/_post.scss */
 .flow-post-deleted .flow-post-title {
-	color: #cccccc;
-	font-style: oblique;
+  color: #cccccc;
+  font-style: oblique;
 }
+
+/* line 13, sourcefiles/scss/components/_post.scss */
 .unreadpost {
-	border-left: 2px solid #318c6d;
-	border-bottom: 2px solid #318c6d;
+  border-left: 2px solid #318c6d;
+  border-bottom: 2px solid #318c6d;
 }
+
+/* line 17, sourcefiles/scss/components/_post.scss */
 .selfpost {
-	border-left: 2px solid #0c53d7;
-	border-bottom: 2px solid #0c53d7;
+  border-left: 2px solid #0c53d7;
+  border-bottom: 2px solid #0c53d7;
 }
+
+/* line 21, sourcefiles/scss/components/_post.scss */
 .flow-post-title {
-	padding-left: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background-color: #efefef;
+  font-weight: bold;
+  font-size: 16px;
+  color: #3C68B1;
+  margin: 22px 0 0 0;
 }
+
+/* line 27, sourcefiles/scss/components/_post.scss */
 .unreadpost .flow-post-title {
-	background-color: #318c6d;
-	color: #ffffff;
+  background-color: #318c6d;
+  color: #ffffff;
 }
+
+/* line 31, sourcefiles/scss/components/_post.scss */
 .selfpost .flow-post-title {
-	background-color: #0c53d7;
+  background-color: #0c53d7;
 }
+
+/* line 34, sourcefiles/scss/components/_post.scss */
 .unreadpost .flow-post-title a, .selfpost .flow-post-title a {
-	color: #ffffff;
+  color: #ffffff;
 }
-.flow-post-authorline {
-	height: 20px;
-}
+
+/* line 37, sourcefiles/scss/components/_post.scss */
 .authorname {
-	font-size: 13pt;
-	text-decoration: none;
+  font-size: 13pt;
+  text-decoration: none;
 }
 
+/* line 42, sourcefiles/scss/components/_post.scss */
 .lowsig {
-	font-size: 8pt !important;
-	display: none;
-	margin-left: 5px;
+  font-size: 8pt !important;
+  display: none;
+  margin-left: 5px;
 }
 
+/* line 48, sourcefiles/scss/components/_post.scss */
 .lowsig a {
-	font-size: 8pt !important;	
+  font-size: 8pt !important;
 }
 
+/* line 52, sourcefiles/scss/components/_post.scss */
 .flow-post-content {
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 10px;
-	background-color: #ffffff;
+  margin: 22px 0 34px 0;
+  font-size: 16px;
+  line-height: 25px;
+  color: #6D6E70;
 }
 
-.flow-post-controls {
-	padding-right: 5px;
-	padding-left: 10px;
-	padding-bottom: 5px;
-	height: 20px;
-	text-align: right;
-	position: relative;
+/* line 60, sourcefiles/scss/components/_post.scss */
+.flow-post-mention-indicator {
+  position: relative;
+  float: left;
+  top: 10;
+  left: -25;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  clear: both;
+  /* @embed */
+  background-image: url("images/mention_icon_green.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
 }
 
+/* line 75, sourcefiles/scss/components/_post.scss */
+.flow-post.hasmention .authorname {
+  margin-left: -10px;
+}
+
+/* line 80, sourcefiles/scss/components/_post.scss */
 .postingstatus {
-	/* @embed */
-	background: transparent url('images/ajax-loader_blue.gif') 10px center no-repeat;
-	padding: 10px;
-	padding-left: 36px;
-	background-color: #0c53d7;
-	color: #ffffff;
+  /* @embed */
+  background: transparent url("images/ajax-loader_blue.gif") 10px center no-repeat;
+  padding: 10px;
+  padding-left: 36px;
+  background-color: #0c53d7;
+  color: #ffffff;
 }
 
+/* line 89, sourcefiles/scss/components/_post.scss */
 .flow-loading-indicator {
-	/* @embed */
-	background: transparent url(images/ajax-loader.gif);
-	background-position: center center;
-	background-repeat: no-repeat;
-	width: 20px;
-	height: 20px;
-	padding: 2px;
-	display: inline;
+  /* @embed */
+  background: transparent url(images/ajax-loader.gif);
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  display: inline;
 }
 
-.editortoolbox {
-	border: 1px solid #d0d0d0;
-	background-color: #ffffff;
-	padding: 5px;
-	float: left;
-	position: relative;
-	z-index: 10000;
-	margin-top: -30px;
-	margin-left: 15px;
-}
-
-.flow-post-form-extras .editortoolbox {
-	margin-left: 5px;
-}
-
+/* line 100, sourcefiles/scss/components/_post.scss */
 .editorbutton {
-	cursor: pointer;
-	padding: 5px;
-	margin: 0;
-	border: 1px solid #ffffff;
+  cursor: pointer;
+  padding: 5px;
+  margin: 0;
+  border: 1px solid #ffffff;
 }
+
+/* line 106, sourcefiles/scss/components/_post.scss */
 .editorbutton:hover {
-	border: 1px solid #efefef;
+  border: 1px solid #efefef;
 }
+
+/* line 110, sourcefiles/scss/components/_post.scss */
+.mw-ui-button.flow-thank-link span {
+  padding-left: 30px;
+  /* @embed */
+  background-image: url("../base/images/stub.png");
+  /* @todo: real asset */
+  background-position: 0 center;
+  background-size: 20px auto;
+  background-repeat: no-repeat;
+}
+
+/* line 120, sourcefiles/scss/components/_post.scss */
 .flow-reply-form {
-	position: relative;
-	border: 2px solid #efefef;
-	border-top: none;
-	background-color: #ffffff;
-	min-height: 2em;
-	max-width: 670px;
-	color: #6D6D6D;
-	z-index: 3000;
-	padding: 0;
+  position: relative;
+  color: #6D6D6D;
+  z-index: 3000;
+  padding: 0;
+  margin: 22px 46px 0 22px;
 }
 
+/* line 128, sourcefiles/scss/components/_post.scss */
 .flow-post-form-controls, .editboxcontrols, .mboxextras {
-	text-align: right;
+  text-align: right;
 }
 
+/* line 132, sourcefiles/scss/components/_post.scss */
 .flow-post-form-controls button, .editboxcontrols button, .mboxcontrols button {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
-.flow-reply-form textarea, .editboxmaster textarea {
-	width: 100%;
-	margin: 0;
-	height: 100px;
-	min-height: 100px;
-	border:none !important;
+/* line 145, sourcefiles/scss/components/_post.scss */
+.flow-newtopic-form textarea,
+.flow-post-content textarea,
+.flow-reply-form textarea,
+.editboxmaster textarea,
+.flow-newtopic-form input[type="text"],
+.flow-newtopic-form input:not([type]) {
+  width: 100%;
+  /*
+  The textarea has some padding for the text; make it easier to define the
+  exact length. box-sizing defines what the length is applied to. We want it
+  to include padding & border, so border-box it is (the default value,
+  content-box, applies length to content, making the textarea larger if e.g.
+  padding is defined)
+  */
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
+/* line 162, sourcefiles/scss/components/_post.scss */
+.flow-newtopic-form textarea,
+.flow-post-content textarea,
+.flow-reply-form textarea,
+.editboxmaster textarea {
+  margin: 0;
+  height: 100px;
+  min-height: 100px;
+  border: none !important;
+}
+
+/* line 169, sourcefiles/scss/components/_post.scss */
 .stalewarning {
-	padding: 5px;
-	color: #ffffff;
-	background-color: #cc0000;
-	margin: 5px;
-	display: none;
+  padding: 5px;
+  color: #ffffff;
+  background-color: #cc0000;
+  margin: 5px;
+  display: none;
 }
 
+/* line 177, sourcefiles/scss/components/_post.scss */
 .staletopic .stalewarning {
-	display: block;
+  display: block;
 }
 
+/* line 181, sourcefiles/scss/components/_post.scss */
 .mdialog {
-	min-width: 500px;
-	height: auto; 
-	width: auto; 
-	border:2px solid #444444; 
-	padding: 0px;
-	background-color: #ffffff;
+  min-width: 500px;
+  height: auto;
+  width: auto;
+  border: 2px solid #444444;
+  padding: 0px;
+  background-color: #ffffff;
 }
 
+/* line 190, sourcefiles/scss/components/_post.scss */
 #simplemodal-container a.modalCloseImg {
-	/* @embed */
-	background:url('images/x_icon_444444.png') no-repeat; /* adjust url as required */
-	width: 12px;
-	height: 12px;
-	display: inline;
-	z-index: 3200;
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	cursor: pointer;
+  /* @embed */
+  background: url("images/x_icon_444444.png") no-repeat;
+  /* adjust url as required */
+  width: 12px;
+  height: 12px;
+  display: inline;
+  z-index: 3200;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
 }
 
+/* line 203, sourcefiles/scss/components/_post.scss */
 .mdialog h3 {
-	padding: 0;
-	padding-left: 10px;
-	margin: 0;
-	background-color: #efefef;
-	border-bottom: 1px solid #d0d0d0;
+  padding: 0;
+  padding-left: 10px;
+  margin: 0;
+  background-color: #efefef;
+  border-bottom: 1px solid #d0d0d0;
 }
 
-.mdialog p { 
-	margin: 10px;
+/* line 211, sourcefiles/scss/components/_post.scss */
+.mdialog p {
+  margin: 10px;
 }
 
-.mboxextras{ 
-	margin-top: 10px;
-	padding: 10px;
+/* line 215, sourcefiles/scss/components/_post.scss */
+.mboxextras {
+  margin-top: 10px;
+  padding: 10px;
 }
 
+/* line 220, sourcefiles/scss/components/_post.scss */
 .mdialog .inputform {
-	max-width: 500px;
+  max-width: 500px;
 }
 
+/* line 224, sourcefiles/scss/components/_post.scss */
 .mdialog input[type="text"] {
-	height: 33px;
-	width: 500px;
-	margin: 10px;
+  height: 33px;
+  width: 500px;
+  margin: 10px;
 }
 
+/* line 230, sourcefiles/scss/components/_post.scss */
 .mdialog textarea {
-	height: 75px;
-	min-height: 75px;
-	margin: 0;
-	border: 1px solid #cccccc !important;
-	width: 500px;
+  height: 75px;
+  min-height: 75px;
+  margin: 0;
+  border: 1px solid #cccccc !important;
+  width: 500px;
 }
 
+/* line 238, sourcefiles/scss/components/_post.scss */
 .mdialog table.historytable {
-	margin-top: 10px;
-	margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
+/* line 243, sourcefiles/scss/components/_post.scss */
 .history {
-	display:none;
+  display: none;
 }
 
+/* line 247, sourcefiles/scss/components/_post.scss */
 .historytable {
-	min-width: 500px;
+  min-width: 500px;
 }
 
+/* line 251, sourcefiles/scss/components/_post.scss */
 .historydate, .historyauthor, .historysummary {
-	font-size: 8pt !important;
-	white-space: nowrap;
-	padding: 5px;
+  font-size: 8pt !important;
+  white-space: nowrap;
+  padding: 5px;
 }
 
+/* line 257, sourcefiles/scss/components/_post.scss */
 .historydate {
-	color: #0645AD;
+  color: #0645AD;
 }
 
+/* line 261, sourcefiles/scss/components/_post.scss */
 .historydate:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
+/* line 265, sourcefiles/scss/components/_post.scss */
 .historyauthor a {
-	font-size: 8pt !important;
+  font-size: 8pt !important;
 }
 
+/* line 269, sourcefiles/scss/components/_post.scss */
 .historysummary {
-	color: #999999;
-	font-style: italic;
+  color: #999999;
+  font-style: italic;
 }
 
+/* line 274, sourcefiles/scss/components/_post.scss */
 tr.historyheader {
-	background-color: #444444;
-	color: #ffffff;
+  background-color: #444444;
+  color: #ffffff;
 }
 
+/* line 279, sourcefiles/scss/components/_post.scss */
 .historytable th {
-	font-weight: bold;
-	font-size: 10pt;
-	padding: 5px;
+  font-weight: bold;
+  font-size: 10pt;
+  padding: 5px;
 }
 
+/* line 285, sourcefiles/scss/components/_post.scss */
 .historytable td {
-	font-size: 10pt;
+  font-size: 10pt;
 }
 
+/* line 289, sourcefiles/scss/components/_post.scss */
 .historytable .tleft {
-	text-align:left;
+  text-align: left;
 }
 
-
-.flow-post-content textarea {
-	width: 100%;
-	margin: 0;
-	height: 100px;
-	border:none !important;
-}
-
-.flow-reply-form textarea.flow-reply-box-closed {
-	/* @embed */
-	background: transparent url("images/chat_bubble_999999.png") 5px center no-repeat;
-	padding-left: 25px !important;
-	height: 31px;
-	min-height: 31px;
-	max-height: 31px;
-}
-
-.flow-reply-form textarea.flow-reply-box-closed:hover {
-	/* @embed */
-	background: transparent url("images/chat_bubble_green.png") 5px center no-repeat;
-}
-
+/* line 293, sourcefiles/scss/components/_post.scss */
 .flow-cancel-link {
-	margin-left: 10px;
-	margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.flow-disclaimer {
-	margin-top: 5px;
-	font-size: 10pt;
-	color: #999999;
-}
-
+/* line 298, sourcefiles/scss/components/_post.scss */
 .editboxextras .disclaimer {
-	padding: 10px;
+  padding: 10px;
 }
 
-.flow-post-form-extras {
-	border-top: 1px solid #efefef;
-	padding: 10px;
-	background-color: #ffffff;
-}
-
+/* line 302, sourcefiles/scss/components/_post.scss */
 .editboxcontrols {
-	padding: 10px;
-	background-color: #efefef;
+  padding: 10px;
+  background-color: #efefef;
 }
 
+/* line 307, sourcefiles/scss/components/_post.scss */
 .disclaimer, .disclaimer a {
-	font-size: 8pt !important;
+  font-size: 8pt !important;
 }
 
-/* Action boxes */
-.flow-actionbox-pokey, .flow-actionbox-pokey {
-	/* @embed */
-	background-image: url('images/PokeyNorth.png');
-	background-repeat: no-repeat;
-	width: 21px;
-	height: 11px;
-	position: absolute;
-	z-index: 61000;
-	top: 20px;
-	right: 10px;	
-	display:none;
+/* line 311, sourcefiles/scss/components/_post.scss */
+.flow-post .flow-datestamp {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
-.flow-topic-actionbox, .flow-post-actionbox {
-	position: absolute;
-	top: 30px;
-	right: 0;
-	border: 1px solid silver;
-	background-color: #ffffff;
-	min-height: 2em;
-	width:auto;
-	min-width: 100px;
-	white-space: nowrap;
-	color: #6D6D6D;
-	z-index: 60000;
-	padding: 10px;
-	box-shadow: 0px 3px 8px rgba(50, 50, 50, 0.35);
-	display: none;
-	font-size: 8pt !important;
-}
-
+/* line 1, sourcefiles/scss/components/_actionboxes.scss */
 .flow-topic-actions, .flow-post-actions {
-	/* @embed */
-	background-image: url('images/micro_chevron_down_999999.png');
-	background-repeat: no-repeat;
-	background-position: right center;
-	padding-right: 12px;
-}
-.flow-topic-actions:hover, .flow-post-actions:hover {
-	/* @embed */
-	background-image: url('images/micro_chevron_down_blue.png');
-}
-
-.flow-topic-actions {
-	position: absolute;
-	right: 5px;
-	font-size: 10pt;
-	color: #999999;
+  /* Hide until .flow-topic-actions-link or .flow-post-actions-link clicked */
+  display: none;
+  z-index: 60000;
+  position: absolute;
+  top: 44px;
+  right: 0;
+  background-color: #FFF;
+  border: 1px solid #E1E1E1;
+  box-shadow: 0px 3px 8px rgba(50, 50, 50, 0.35);
+  color: #808184;
+  font-size: 12px;
+  padding: 6px;
 }
 
-.flow-post-actions {
-	font-size: 10pt;
-	color: #999999;
+/* line 20, sourcefiles/scss/components/_actionboxes.scss */
+.flow-topic-actions a, .flow-post-actions a {
+  color: #808184;
 }
 
-.flow-post-actions a, .flow-topic-actions a {
-	color: #999999 !important;
-	cursor: pointer;
+/* line 24, sourcefiles/scss/components/_actionboxes.scss */
+.flow-topic-actions ul, .flow-post-actions ul {
+  list-style: none;
+  margin: 0;
 }
 
-.flow-topic-actions:hover, .flow-post-actions:hover {
-	color: #0645ac;
-	text-decoration:none !important;
+/* line 29, sourcefiles/scss/components/_actionboxes.scss */
+.flow-topic-actions-link {
+  /* @embed */
+  background-image: url("images/chevron_down.png");
+  /* @todo: chevron color (AAA, probably) */
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: 12px;
 }
 
-.flow-topic-actionbox a, .flow-post-actionbox a {
-	font-size: 8pt !important;
+/* line 37, sourcefiles/scss/components/_actionboxes.scss */
+.flow-post-actions-link {
+  display: block;
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
+  padding: 5px 0;
+  /* .flow-post-interaction buttons are 30px, mimic that */
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  /* @embed */
+  background-image: url("../base/images/stub.png");
+  /* @todo: real asset */
+  background-position: right;
+  background-size: 20px auto;
+  background-repeat: no-repeat;
 }
 
-.flow-topic-actionbox :hover, .flow-post-actionbox :hover {
-	text-decoration:none !important;
+/* line 56, sourcefiles/scss/components/_actionboxes.scss */
+.flow-topic-actions-link {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  width: 20px;
+  height: 20px;
+  text-indent: -9999px;
 }
 
-.flow-topic-actionbox ul, .flow-post-actionbox ul {
-	margin: 0px;
-	list-style: none;	
-	font-size: 8pt;
+/* line 66, sourcefiles/scss/components/_actionboxes.scss */
+.flow-newtopic-form {
+  margin: 0 36px 44px 0;
 }
 
-.flow-post-actionbox {
-	text-align: left;
-}
-
-.flow-newtopic-start {
-	width: 700px;
-	height: 33px;
-	margin-top: 10px;
-	/* @embed */
-	background: transparent url("images/chat_bubble_999999.png") 5px center no-repeat;
-	padding-left: 25px !important;	
-}
-
-.flow-newtopic-start:hover {
-	/* @embed */
-	background: transparent url("images/chat_bubble_green.png") 5px center no-repeat;
-}
-
+/* line 70, sourcefiles/scss/components/_actionboxes.scss */
 .flow-newtopic-form input[type="text"] {
-	width: 700px;
-	height: 33px;
-	margin-top: 5px;
+  height: 33px;
+  margin-top: 5px;
 }
 
+/* line 75, sourcefiles/scss/components/_actionboxes.scss */
 #enterusername input[type="text"] {
-	width: 380px;
-	height: 33px;
-	margin-top: 5px;
+  width: 380px;
+  height: 33px;
+  margin-top: 5px;
 }
 
-.flow-newtopic-form textarea, #enterusername textarea {
-	width: 700px;
-}
-
+/* line 81, sourcefiles/scss/components/_actionboxes.scss */
 .flow-newtopic-form label, #enterusername label {
-	font-weight: bold;
+  font-weight: bold;
 }
 
-.flow-newtopic-form .mw-ui-input[type="text"]
-{
-	border: 1px solid #cccccc;
-	margin-bottom: 0px;
-	box-shadow: none;
-	-webkit-border-bottom-left-radius: 0;
-	-webkit-border-bottom-right-radius: 0;
-	-moz-border-bottom-left-radius: 0;
-	-moz-border-bottom-right-radius: 0;
-	-ms-border-bottom-left-radius: 0;
-	-ms-border-bottom-right-radius: 0;
-	-o-border-bottom-left-radius: 0;
-	-o-border-bottom-right-radius: 0;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-
+/* line 86, sourcefiles/scss/components/_actionboxes.scss */
+.flow-newtopic-form .mw-ui-input[type="text"] {
+  border: 1px solid #cccccc;
+  margin-bottom: 0px;
+  box-shadow: none;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-bottom-left-radius: 0;
+  -moz-border-bottom-right-radius: 0;
+  -ms-border-bottom-left-radius: 0;
+  -ms-border-bottom-right-radius: 0;
+  -o-border-bottom-left-radius: 0;
+  -o-border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
+
+/* line 102, sourcefiles/scss/components/_actionboxes.scss */
 .flow-newtopic-form textarea.mw-ui-input {
-	margin-top: 0px;
-	border-top: none;
-	box-shadow: none;
-	height: 150px;
-	-webkit-border-top-left-radius: 0;
-	-webkit-border-top-right-radius: 0;
-	-moz-border-top-left-radius: 0;
-	-moz-border-top-right-radius: 0;
-	-ms-border-top-left-radius:  0;
-	-ms-border-top-right-radius: 0;
-	-o-border-top-left-radius:  0;
-	-o-border-top-right-radius: 0;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+  margin-top: 0px;
+  border-top: none;
+  box-shadow: none;
+  height: 150px;
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-top-right-radius: 0;
+  -moz-border-top-left-radius: 0;
+  -moz-border-top-right-radius: 0;
+  -ms-border-top-left-radius: 0;
+  -ms-border-top-right-radius: 0;
+  -o-border-top-left-radius: 0;
+  -o-border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
+/* line 120, sourcefiles/scss/components/_actionboxes.scss */
 .flow-newtopic-form textarea:focus,
 .flow-newtopic-form input[type="text"]:focus {
-	-moz-box-shadow:inset 7px 0px 0px #5088f7;
-	-webkit-box-shadow:inset 7px 0px 0px #5088f7;
-	box-shadow:inset 7px 0px 0px #5088f7;
+  -moz-box-shadow: inset 7px 0px 0px #5088f7;
+  -webkit-box-shadow: inset 7px 0px 0px #5088f7;
+  box-shadow: inset 7px 0px 0px #5088f7;
 }
 
+/* line 127, sourcefiles/scss/components/_actionboxes.scss */
 .flow-newtopic-form textarea.mw-ui-error,
 .flow-newtopic-form input[type="text"].mw-ui-error {
-	-moz-box-shadow:inset 7px 0px 0px #cf1c1f;
-	-webkit-box-shadow:inset 7px 0px 0px #cf1c1f;
-	box-shadow:inset 7px 0px 0px #cf1c1f;
+  -moz-box-shadow: inset 7px 0px 0px #cf1c1f;
+  -webkit-box-shadow: inset 7px 0px 0px #cf1c1f;
+  box-shadow: inset 7px 0px 0px #cf1c1f;
 }
 
+/* line 133, sourcefiles/scss/components/_actionboxes.scss */
 #setuserform {
-	text-align: left;
+  text-align: left;
 }
 
-/* Overlay */
-
+/* line 1, sourcefiles/scss/components/_overlay.scss */
 #simplemodal-overlay {
-	background-color: #000;
+  background-color: #000;
 }
 
+/* line 5, sourcefiles/scss/components/_overlay.scss */
 .flow-newtopic-form, #enterusername {
-	background-color: #ffffff;
+  background-color: #ffffff;
 }
 
-/* Container */
+/* line 1, sourcefiles/scss/components/_container.scss */
+.flow-container {
+  position: relative;
+  width: 700px;
+  max-width: 700px;
+  margin-left: 20px;
+}
 
+/* line 8, sourcefiles/scss/components/_container.scss */
 #enterusername {
-	height: 360px;
-	width: 600px;
-	border: 4px solid #444444;
-	padding: 20px;
+  height: 360px;
+  width: 600px;
+  border: 4px solid #444444;
+  padding: 20px;
 }
 
+/* line 15, sourcefiles/scss/components/_container.scss */
 .editboxmaster {
-	padding: 0 !important;
+  padding: 0 !important;
 }
 
+/* line 19, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks {
-	position: absolute;
-	right: 0;
-	top: 15px;
-	width: auto;
-	min-width: 160px;
-	padding: 10px;
-	background-color: #efefef;
-	border: 1px solid #efefef;
+  position: absolute;
+  right: 0;
+  top: 15px;
+  width: auto;
+  min-width: 160px;
+  padding: 10px;
+  background-color: #efefef;
+  border: 1px solid #efefef;
 }
 
+/* line 30, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a {
-	padding-left: 20px;
-	color: #444444;
+  padding-left: 20px;
+  color: #444444;
 }
 
+/* line 35, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a:hover {
-	color: #0645ac;
-	text-decoration: none;
+  color: #0645ac;
+  text-decoration: none;
 }
 
+/* line 40, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a.profilelink {
-	/* @embed */
-	background-image: url(images/icon_user_grey.png);
-	background-repeat: no-repeat;
-	background-position: left center;
+  /* @embed */
+  background-image: url(images/icon_user_grey.png);
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
+/* line 47, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a.archivedtalklink {
-	/* @embed */
-	background-image: url(images/icon_discussion_grey.png);
-	background-repeat: no-repeat;
-	background-position: left center;
+  /* @embed */
+  background-image: url(images/icon_discussion_grey.png);
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
+/* line 54, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a.contributionslink {
-	/* @embed */
-	background-image: url(images/icon_pencil_grey.png);
-	background-repeat: no-repeat;
-	background-position: left center;
+  /* @embed */
+  background-image: url(images/icon_pencil_grey.png);
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
+/* line 61, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a.emailuserlink {
-	/* @embed */
-	background-image: url(images/icon_mail_grey.png);
-	background-repeat: no-repeat;
-	background-position: left center;
+  /* @embed */
+  background-image: url(images/icon_mail_grey.png);
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
+/* line 68, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a.gratitudelink {
-	/* @embed */
-	background-image: url(images/icon_heart_grey.png);
-	background-repeat: no-repeat;
-	background-position: left center;
+  /* @embed */
+  background-image: url(images/icon_heart_grey.png);
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
+/* line 75, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a.profilelink:hover {
-	/* @embed */
-	background-image: url(images/icon_user_blue.png);
+  /* @embed */
+  background-image: url(images/icon_user_blue.png);
 }
 
+/* line 80, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a.archivedtalklink:hover {
-	/* @embed */
-	background-image: url(images/icon_discussion_blue.png);
+  /* @embed */
+  background-image: url(images/icon_discussion_blue.png);
 }
 
+/* line 85, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a.contributionslink:hover {
-	/* @embed */
-	background-image: url(images/icon_pencil_blue.png);
+  /* @embed */
+  background-image: url(images/icon_pencil_blue.png);
 }
 
+/* line 90, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a.emailuserlink:hover {
-	/* @embed */
-	background-image: url(images/icon_mail_blue.png);
+  /* @embed */
+  background-image: url(images/icon_mail_blue.png);
 }
 
+/* line 95, sourcefiles/scss/components/_container.scss */
 .flow-sidelinks a.gratitudelink:hover {
-	/* @embed */
-	background-image: url(images/icon_heart_blue.png);
+  /* @embed */
+  background-image: url(images/icon_heart_blue.png);
 }
 
+/* line 100, sourcefiles/scss/components/_container.scss */
 .flow-utctime {
-	cursor: pointer;
+  cursor: pointer;
 }
 
+/* line 104, sourcefiles/scss/components/_container.scss */
 .flow-input {
-	display: inline-block;
-	margin-bottom: 10px;
-	font-size: 14px;
-	line-height: 20px;
-	color: #555555;
-	vertical-align: middle;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  vertical-align: middle;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 
+/* line 116, sourcefiles/scss/components/_container.scss */
 .flow-post-replies {
-	margin-left: 1em;
+  border-left: 1px solid #E5E5E5;
+  margin-left: 22px;
 }
 
+/* line 121, sourcefiles/scss/components/_container.scss */
 .flow-error {
-	background-color: #ff8888;
-	color: #333333;
-	font-size: large;
-	padding: 4px;
-	margin: 2px;
-	border: 1px solid #ff0000;
+  background-color: #ff8888;
+  color: #333333;
+  font-size: large;
+  padding: 4px;
+  margin: 2px;
+  border: 1px solid #ff0000;
 }
 
+/* line 130, sourcefiles/scss/components/_container.scss */
 .flow-edit-title-form, .flow-edit-title-form a.flow-cancel-link {
-	font-size: 10px !important;
+  font-size: 10px !important;
 }
 
+/* line 134, sourcefiles/scss/components/_container.scss */
 .flow-edit-title-textbox {
-	width: 70%;
+  width: 70%;
 }
 
+/* line 138, sourcefiles/scss/components/_container.scss */
 .flow-edit-post-form {
-	padding: 4px;
+  padding: 4px;
 }
 
+/* line 142, sourcefiles/scss/components/_container.scss */
 .flow-paging {
-	padding: 4px;
-	font-size: large;
-	border: 1px solid #ddddff;
-	text-align: center;
+  padding: 4px;
+  font-size: large;
+  border: 1px solid #ddddff;
+  text-align: center;
 }
 
+/* line 149, sourcefiles/scss/components/_container.scss */
 .flow-paging-loading a {
-	padding-left: 20px;
-	background-image: url(images/ajax-loader.gif);
-	background-position: center left;
-	background-repeat: no-repeat;
+  padding-left: 20px;
+  background-image: url(images/ajax-loader.gif);
+  background-position: center left;
+  background-repeat: no-repeat;
+}
+
+/* line 1, sourcefiles/scss/components/_timestamp.scss */
+.flow-datestamp {
+  font-size: 16px;
+  line-height: 16px;
+  color: #AAA;
+}
+
+/* line 6, sourcefiles/scss/components/_timestamp.scss */
+.flow-datestamp span {
+  line-height: 18px;
+  border-bottom: 1px solid #D3D4D4;
 }

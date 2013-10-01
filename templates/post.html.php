@@ -27,19 +27,16 @@ $createReplyForm = function() use( $self, $block, $post, $editToken, $user ) {
 				$post->getCreatorName( $user ) )->text(),
 			'class' => 'flow-reply-content flow-input',
 		) ) .
-		Html::openElement( 'div', array( 'class' => 'flow-post-form-extras' ) ) .
+		// NOTE: cancel button will be added via JS, makes no sense in non-JS context
+
 		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ) .
-		Html::element( 'input', array(
-			'type' => 'submit',
-			'value' => wfMessage( 'flow-reply-submit' )->plain(),
-			'class' => 'mw-ui-button mw-ui-primary flow-reply-submit',
-		) ) .
+			Html::element( 'input', array(
+				'type' => 'submit',
+				'value' => wfMessage( 'flow-reply-submit' )->plain(),
+				'class' => 'mw-ui-button mw-ui-constructive flow-reply-submit',
+			) ) .
 		Html::closeElement( 'div' ) .
-		Html::element( 'div', array(
-			'class' => 'flow-disclaimer',
-		), wfMessage( 'flow-disclaimer' )->parse() ) .
-		Html::closeElement( 'div' ) .
-		'</form>';
+		Html::closeElement( 'form' );
 };
 
 $class = $post->isModerated() ? 'flow-post-moderated' : 'flow-post';
@@ -60,8 +57,8 @@ echo Html::openElement( 'div', array(
 		'data-post-id' => $post->getPostId()->getHex(),
 		'id' => 'flow-post-' . $post->getPostId()->getHex(),
 	) ); ?>
-		<div class="flow-post-title">
-			<div class="flow-post-authorline">
+		<div class="flow-post-main">
+			<div class="flow-post-title">
 				<span class="flow-creator">
 					<span class="flow-creator-simple" style="display: inline">
 						<?php echo $post->getCreatorName( $user ); ?>
@@ -70,15 +67,12 @@ echo Html::openElement( 'div', array(
 						<?php echo $this->userToolLinks( $post->getCreatorId(), $post->getCreatorName() ); ?>
 					</span>
 				</span>
-				<span class="flow-datestamp">
-					<span class="flow-agotime" style="display: inline">
-						<?php echo $post->getPostId()->getHumanTimestamp(); ?>
-					</span>
-					<span class="flow-utctime" style="display: none">
-						<?php echo $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ); ?>
-					</span>
-				</span>
+					</div>
+
+			<div class="flow-post-content">
+				<?php echo $post->getContent( $user, 'html' ); ?>
 			</div>
+
 			<?php if ( !$post->isOriginalContent() ): ?>
 				<div class="flow-post-edited">
 					<?php echo wfMessage(
@@ -88,26 +82,37 @@ echo Html::openElement( 'div', array(
 					); ?>
 				</div>
 			<?php endif ?>
-		</div>
-		<div class="flow-post-content">
-			<?php echo $post->getContent( $user, 'html' ); ?>
-		</div>
-		<div class="flow-post-controls">
-			<div class="flow-post-actions">
-				<a><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
-				<div class="flow-actionbox-pokey">&nbsp;</div>
-				<div class="flow-post-actionbox">
-					<ul>
-						<?php
-						foreach( $postActionMenu->get( $user, $block, $post, $editToken ) as $key => $action ) {
-							echo "<li class=\"flow-action-$key\">$action</li>";
-						}
-						?>
-					</ul>
-				</div>
+
+			<div class="flow-post-interaction">
+				<a class="flow-reply-link mw-ui-button mw-ui-deemphasized" href="#"><span><?php echo wfMessage( 'flow-reply-link' )->escaped(); ?></span></a>
+				<a class="flow-thank-link mw-ui-button mw-ui-constructive" href="#"><span>@todo: Thank</span></a>
 			</div>
+
+			<p class="flow-datestamp">
+				<span class="flow-agotime" style="display: inline">
+					<?php echo $post->getPostId()->getHumanTimestamp(); ?>
+				</span>
+				<span class="flow-utctime" style="display: none">
+					<?php echo $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ); ?>
+				</span>
+			</p>
 		</div>
+
+		<!-- @todo: these are currently barely visible because of CSS changes for topic-actions, these will need to change too though, don't forget -->
+		<a class="flow-post-actions-link" href="#"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
+		<div class="flow-post-actions">
+			<ul>
+				<?php
+				foreach( $postActionMenu->get( $user, $block, $post, $editToken ) as $key => $action ) {
+					// @todo: $actions currently includes a lot of actions, design only wants censor actions here; figure out where others belong
+					echo "<li class=\"flow-action-$key\">$action</li>";
+				}
+				?>
+			</ul>
+		</div>
+
 	</div>
+
 	<?php echo $replyForm; ?>
 	<div class='flow-post-replies'>
 		<?php
