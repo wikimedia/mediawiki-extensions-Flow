@@ -3,15 +3,16 @@
 		var $container = $( e.target );
 
 		// Set up menus
-		$container.find( '.flow-post-actions, .flow-topic-actions' )
-			.click( function () {
-				$( this ).children( '.flow-post-actionbox, .flow-topic-actionbox, .flow-actionbox-pokey' )
+		$container.find( '.flow-post-actions-link, .flow-topic-actions-link' )
+			.click( function ( e ) {
+				e.preventDefault();
+
+				$( this ).next( '.flow-post-actions, .flow-topic-actions' )
 					.show();
 			} )
 			.find( 'li' )
 			.click( function () {
 				$( this ).closest( '.flow-topic-actions, .flow-post-actions' )
-					.children( '.flow-post-actionbox, .flow-topic-actionbox, .flow-actionbox-pokey' )
 					.fadeOut();
 			} );
 
@@ -134,11 +135,16 @@
 
 	$( 'body' )
 		.click( function ( e ) {
-			if ( $( e.target )
-				.closest( '.flow-post-actions, .flow-topic-actions' )
-				.length === 0
+			if (
+				// clicked link to open actions
+				!$( e.target ).hasClass( 'flow-post-actions-link' ) &&
+				!$( e.target ).hasClass( 'flow-topic-actions-link' ) &&
+				// clicked inside actions box
+				$( e.target )
+					.closest( '.flow-post-actions, .flow-topic-actions' )
+					.length === 0
 			) {
-				$( '.flow-post-actionbox, .flow-topic-actionbox, .flow-actionbox-pokey' )
+				$( '.flow-post-actions, .flow-topic-actions' )
 					.fadeOut( 'fast' );
 			}
 		} );

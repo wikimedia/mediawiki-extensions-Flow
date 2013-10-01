@@ -160,32 +160,30 @@ echo Html::openElement( 'div', array(
 						<?php echo $this->userToolLinks( $post->getCreatorId(), $post->getCreatorName() ); ?>
 					</span>
 				</span>
-				<span class="flow-datestamp">
+				<p class="flow-datestamp">
 					<span class="flow-agotime" style="display: inline">
 						<?php echo $post->getPostId()->getHumanTimestamp(); ?>
 					</span>
 					<span class="flow-utctime" style="display: none">
 						<?php echo $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ); ?>
 					</span>
-				</span>
+				</p>
 			</div>
 		</div>
 		<div class="flow-post-content">
 			<?php echo $post->getContent( $user, 'html' ); ?>
 		</div>
 		<div class="flow-post-controls">
+			<!-- @todo: these are currently barely visible because of CSS changes for topic-actions, these will need to change too though, don't forget -->
+			<a class="flow-topic-actions-link" href="#"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
 			<div class="flow-post-actions">
-				<a><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
-				<div class="flow-actionbox-pokey">&nbsp;</div>
-				<div class="flow-post-actionbox">
-					<ul>
-						<?php
-						foreach( $actions as $key => $action ) {
-							echo '<li class="flow-action-'.$key.'">' . $action . "</li>\n";
-						}
-						?>
-					</ul>
-				</div>
+				<ul>
+					<?php
+					foreach( $actions as $key => $action ) {
+						echo '<li class="flow-action-'.$key.'">' . $action . "</li>\n";
+					}
+					?>
+				</ul>
 			</div>
 		</div>
 	</div>

@@ -19,39 +19,39 @@ echo Html::openElement( 'div', array(
 			<?php echo htmlspecialchars( $title ); ?>
 		</div>
 	</div>
-	<div class="flow-topiccontrols">
-	</div>
-</div>
-<div class="flow-metabar">
+
+	<a class="flow-topic-actions-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
 	<div class="flow-topic-actions">
-		<a><?php echo wfMessage( 'flow-topic-actions' )->escaped() ?></a>
-		<div class="flow-actionbox-pokey">&nbsp;</div>
-		<div class="flow-topic-actionbox">
-			<ul>
-				<li class="flow-action-edit-title">
-					<?php
-					echo Html::rawElement( 'a',
-						array(
-							'href' => $this->generateUrl( $root->getPostId(), 'edit-title' )
-						),
-						wfMessage( 'flow-topic-action-edit-title' )
-					);
-					?>
-				</li>
-				<li class="flow-action-topic-history">
-					<?php
-					echo Html::rawElement( 'a',
-						array(
-							'href' => $this->generateUrl( $root->getPostId(), 'topic-history' )
-						),
-						wfMessage( 'flow-topic-action-history' )
-					);
-					?>
-				</li>
-			</ul>
-		</div>
+		<ul>
+			<li class="flow-action-edit-title">
+				<?php
+				echo Html::rawElement( 'a',
+					array(
+						'href' => $this->generateUrl( $root->getPostId(), 'edit-title' )
+					),
+					wfMessage( 'flow-topic-action-edit-title' )
+				);
+				?>
+			</li>
+			<li class="flow-action-topic-history">
+				<?php
+				echo Html::rawElement( 'a',
+					array(
+						'href' => $this->generateUrl( $root->getPostId(), 'topic-history' )
+					),
+					wfMessage( 'flow-topic-action-history' )
+				);
+				?>
+			</li>
+		</ul>
 	</div>
-	<span class="flow-topic-datestamp">
+
+	<p class="flow-topic-posts-meta">
+		@todo: participants<br />
+		@todo: # comments
+	</p>
+
+	<p class="flow-topic-datestamp">
 		<span class="flow-agotime" style="display: inline">
 			<?php echo wfMessage( 'flow-last-modified' )->rawParams(
 				$topic->getLastModifiedObj()->getHumanTimestamp()
@@ -63,7 +63,7 @@ echo Html::openElement( 'div', array(
 			echo $ts->getTimestamp( TS_RFC2822 );
 			?>
 		</span>
-	</span>
+	</p>
 </div>
 
 <?php
