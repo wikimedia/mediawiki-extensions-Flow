@@ -317,7 +317,10 @@ class NotificationController {
 				}
 
 				if ( $postId ) {
-					$bundleString = 'flow-post-reply-' . $postId->getHex();
+					$container = Container::getContainer();
+					$treeRepository = $container['repository.tree'];
+					$rootId = $treeRepository->findRoot( $postId );
+					$bundleString = 'flow-post-reply-' . $rootId->getHex();
 				}
 			break;
 		}
@@ -351,17 +354,37 @@ class NotificationController {
 			}
 			break;
 		case 'flow-topic-renamed':
-			$postId = $extra['topic-workflow'];
+			$users += self::getUserForPost( array( $extra['topic-workflow'] ) );
+			break;
 		case 'flow-post-reply':
 		case 'flow-post-edited':
 		case 'flow-post-moderated':
 			if ( isset( $extra['reply-to'] ) ) {
 				$postId = $extra['reply-to'];
-			} elseif ( !isset( $postId ) || !$postId ) {
+			} else {
 				$postId = $extra['post-id'];
 			}
 
-			$post = $storage->find(
+			$ids = array( $postId );
+			$container = Container::getContainer();
+			$treeRepository = $container['repository.tree'];
+			$rootId = $treeRepository->findRoot( $postId );
+			if ( $rootId->getBinary() != $postId->getBinary() ) {
+				$ids[] = $rootId;
+			}
+			$users += self::getUserForPost( $ids );
+			break;
+		default:
+			// Do nothing
+		}
+		return true;
+	}
+
+	protected static function getUserForPost( array $posts ) {
+		$users = array();
+		$container = Container::getContainer();
+		foreach ( $posts as $postId ) {
+			$post = $container['storage']->find(
 				'PostRevision',
 				array(
 					'tree_rev_descendant_id' => UUID::create( $postId )
@@ -382,10 +405,7 @@ class NotificationController {
 					$users[$user->getId()] = $user;
 				}
 			}
-			break;
-		default:
-			// Do nothing
 		}
-		return true;
-	}
+		return $users;
+        }
 }
