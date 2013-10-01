@@ -395,9 +395,17 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-paging-fwd' => 'Ältere Themen',
 	'flow-last-modified' => 'Zuletzt geändert $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|antwortete}} auf deinen [$5 Beitrag] in „$2“ auf [[$3|$4]].',
+	'flow-notification-reply-bundle' => '$1 und {{PLURAL:$6|ein anderer|$5 andere}} {{GENDER:$1|antworteten}} auf deinen [$4 Beitrag] in $2 auf „$3“.',
 	'flow-notification-edit' => '$1 {{GENDER:$1|bearbeitete}} deinen [$5 Beitrag] in „$2“ auf [[$3|$4]].',
 	'flow-notification-newtopic' => '$1  {{GENDER:$1|erstellte}} ein [$5 neues Thema] auf [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|änderte}} den Titel von [$2 $3] nach „$4“ auf [[$5|$6]]',
+	'flow-notification-link-text-view-post' => 'Beitrag ansehen',
+	'flow-notification-link-text-view-board' => 'Brett ansehen',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|antwortete}} auf deinen Beitrag',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|antwortete}} auf deinen Beitrag in $2 auf „$3“',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 und {{PLURAL:$5|ein anderer|$4 andere}} {{GENDER:$1|antworteten}} auf deinen Beitrag in $2 auf „$3“',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Diskussion|Diskussionen}}',
+	'echo-pref-tooltip-flow-discussion' => 'Benachrichtige mich, wenn mich betreffende Aktionen auf dem Diskussionsbrett erscheinen.',
 );
 
 /** Spanish (español)
@@ -504,9 +512,17 @@ $messages['fr'] = array(
 	'flow-paging-fwd' => 'Sujets plus anciens',
 	'flow-last-modified' => 'Dernière modification $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|a répondu}} à votre [$5 note] sur $2 en [[$3|$4]].',
+	'flow-notification-reply-bundle' => '$1 et $5 {{PLURAL:$6|autre|autres}} {{GENDER:$1|ont répondu}} à votre [$4 note] concernant $2 sur « $3 ».',
 	'flow-notification-edit' => '$1 {{GENDER:$1|a modifié}} votre [$5 note] sur $2 en [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|a créé}} un [$5 nouveau sujet] en [[$2|$3]] : $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|a modifié}} le titre de [$2 $3] en « $4 » sur [[$5|$6]].',
+	'flow-notification-link-text-view-post' => 'Afficher la note',
+	'flow-notification-link-text-view-board' => 'Afficher le tableau',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|a répondu}} à votre note',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|a répondu}} a votre note concernant $2 sur « $3 »',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 et $4 {{PLURAL:$5|autre|autres}} {{GENDER:$1|ont répondu}} à votre note concernant $2 sur « $3 »',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussion|Discussions}}',
+	'echo-pref-tooltip-flow-discussion' => 'M’informer quand des actions me concernant ont lieu dans le cercle de discussion.',
 );
 
 /** Galician (galego)
@@ -852,6 +868,7 @@ $messages['ko'] = array(
 
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
+ * @author Soued031
  */
 $messages['lb'] = array(
 	'flow-desc' => 'Workflow-Management-System',
@@ -872,9 +889,9 @@ $messages['lb'] = array(
 	'flow-post-action-edit' => 'Änneren',
 	'flow-topic-action-edit-title' => 'Titel änneren',
 	'flow-error-missing-title' => "D'Thema huet keen Titel. Den Titel ass obligatoresch fir een neit Thema ze späicheren.",
-	'flow-error-delete-failure' => "D'Läsche vun dësem Element huet net fonctionnéiert.",
-	'flow-error-hide-failure' => 'Verstoppe vun dësem Element huet net fonctionnéiert.',
-	'flow-error-restore-failure' => "D'Restauréiere vun dësem Element huet net fonctionnéiert.",
+	'flow-error-delete-failure' => "D'Läsche vun dësem Element huet net funktionéiert.",
+	'flow-error-hide-failure' => 'Verstoppe vun dësem Element huet net funktionéiert.',
+	'flow-error-restore-failure' => "D'Restauréiere vun dësem Element huet net funktionéiert.",
 	'flow-summaryedit-submit' => 'Resumé späicheren',
 	'flow-edit-title-submit' => 'Titel änneren',
 	'flow-rev-message-new-post' => 'Thema ugeluecht',
@@ -1024,9 +1041,35 @@ Du godtar at en hyperlenke eller URL utgjør tilstrekkelig navngivelse under Cre
 
 /** Dutch (Nederlands)
  * @author Southparkfan
+ * @author TBloemink
  */
 $messages['nl'] = array(
-	'flow-post-deleted-by' => 'Verwijderd door $1 $2', # Fuzzy
+	'flow-disclaimer' => 'Door op de knop "Bericht toevoegen" te klikken gaat u akkoord met de gebruiksvoorwaarden, en geeft u onherroepelijk toestemming dat uw bijdrage wordt vrijgegeven onder de CC BY-SA 3.0 licentie en de GFDL. U gaat ermee akkoord dat een hyperlink of URL voldoende naamsvermelding is onder de Creative Commons licentie.',
+	'flow-post-hidden' => '[bericht verborgen]',
+	'flow-post-hidden-by' => '{{GENDER:$1|Verborgen}} door $1 $2',
+	'flow-post-deleted' => '[bericht verwijderd]',
+	'flow-post-deleted-by' => '{{GENDER:$1|Verwijderd}} door $1 $2',
+	'flow-post-censored' => '[bericht gecensureerd]',
+	'flow-post-censored-by' => '{{GENDER:$1|Gecensureerd}} door $1 $2',
+	'flow-cancel' => 'Annuleer',
+	'flow-newtopic-title-placeholder' => 'Onderwerp van het bericht',
+	'flow-newtopic-content-placeholder' => 'Tekst van het bericht. Wees beleefd!',
+	'flow-newtopic-header' => 'Nieuw kopje toevoegen',
+	'flow-newtopic-save' => 'Kopje toevoegen',
+	'flow-newtopic-start-placeholder' => 'Klik hier om een nieuwe discussie te starten. Wees beleefd!',
+	'flow-reply-placeholder' => 'Klik hier om te {{GENDER:$1|reageren}} op $1. Wees beleefd!',
+	'flow-reply-submit' => 'Reactie plaatsen',
+	'flow-edit-post-submit' => 'Wijzigingen opslaan',
+	'flow-post-action-view' => 'Permanente koppeling',
+	'flow-post-action-post-history' => 'Berichtgeschiedenis',
+	'flow-post-action-censor-post' => 'Censureer bericht',
+	'flow-post-action-delete-post' => 'Verwijder bericht',
+	'flow-post-action-hide-post' => 'Verberg bericht',
+	'flow-post-action-edit-post' => 'Bewerk bericht',
+	'flow-post-action-edit' => 'Bewerk',
+	'flow-post-action-restore-post' => 'Bericht terugplaatsen',
+	'flow-topic-action-edit-title' => 'Titel wijzigen',
+	'flow-error-other' => 'Er is een onverwachte fout opgetreden. Uw bericht is niet opgeslagen.',
 );
 
 /** Occitan (occitan)
@@ -1255,9 +1298,17 @@ $messages['uk'] = array(
 	'flow-paging-fwd' => 'Старіші теми',
 	'flow-last-modified' => 'Остання зміна про $1',
 	'flow-notification-reply' => '$1  {{GENDER:$1|відповів|відповіла}} на ваше [повідомлення $5] у $2 на [[$3|$4]].',
+	'flow-notification-reply-bundle' => '$1 та $5 {{PLURAL:$6|інший|інші|інших}} {{GENDER:$1|відповіли}} на ваш [допис $4] у $2 на "$3".',
 	'flow-notification-edit' => '$1  {{GENDER:$1|відредагував|відредагувала}} ваше [повідомлення $5] у $2 на [[$3|$4]].',
 	'flow-notification-newtopic' => '$1  {{GENDER:$1|створив|створила}} [нову тему $5] на [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1  {{GENDER:$1|змінив|змінила}} назву [$2 $3] на "$4" у [[$5|$6]]',
+	'flow-notification-link-text-view-post' => 'Переглянути допис',
+	'flow-notification-link-text-view-board' => 'Переглянути стіну',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|відповів|відповіла}} на ваш допис',
+	'flow-notification-reply-email-batch-body' => '$1  {{GENDER:$1|відповів|відповіла}} на ваш допис у $2 на $3.',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 та $4 {{PLURAL:$5|інший|інші|інших}} {{GENDER:$1|відповіли}} на ваш допис у $2 на "$3".',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Обговорення|Обговорення|Обговорень}}',
+	'echo-pref-tooltip-flow-discussion' => "Повідомити мене, коли дії, пов'язані зі мною, виникнуть на стіні обговорення.",
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -1271,11 +1322,11 @@ $messages['vi'] = array(
 và bạn đồng ý phát hành, một cách không thể hủy bỏ, đóng góp của mình theo Giấy phép Creative Commons Ghi công–Chia sẻ tương tự 3.0 và GFDL.
 Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều kiện ghi công trong giấy phép Creative Commons.',
 	'flow-post-hidden' => '[bài đăng bị ẩn]',
-	'flow-post-hidden-by' => 'Ẩn bởi $1 $2', # Fuzzy
+	'flow-post-hidden-by' => '{{GENDER:$1}}Ẩn bởi $1 $2',
 	'flow-post-deleted' => '[bài đăng bị xóa]',
-	'flow-post-deleted-by' => 'Xóa bởi $1 $2', # Fuzzy
+	'flow-post-deleted-by' => '{{GENDER:$1}}Xóa bởi $1 $2',
 	'flow-post-censored' => '[bài đăng bị kiểm duyệt]',
-	'flow-post-censored-by' => 'Kiểm duyệt bởi $1 $2', # Fuzzy
+	'flow-post-censored-by' => '{{GENDER:$1}}Kiểm duyệt bởi $1 $2',
 	'flow-post-actions' => 'tác vụ',
 	'flow-topic-actions' => 'tác vụ',
 	'flow-cancel' => 'Hủy bỏ',
@@ -1284,7 +1335,7 @@ Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều k
 	'flow-newtopic-header' => 'Thêm chủ đề mới',
 	'flow-newtopic-save' => 'Thêm chủ đề',
 	'flow-newtopic-start-placeholder' => 'Nhấn chuột vào đây để bắt đầu cuộc thảo luận mới. Hãy có thái độ thân thiện!',
-	'flow-reply-placeholder' => 'Nhấn chuột vào đây để trả lời $1. Hãy có thái độ thân thiện!', # Fuzzy
+	'flow-reply-placeholder' => 'Nhấn chuột vào đây để {{GENDER:$1}}trả lời $1. Hãy có thái độ thân thiện!',
 	'flow-reply-submit' => 'Trả lời',
 	'flow-edit-post-submit' => 'Gửi thay đổi',
 	'flow-post-action-view' => 'Liên kết thường trực',
@@ -1304,12 +1355,12 @@ Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều k
 	'flow-error-missing-content' => 'Bài đăng không có nội dung. Bài đăng mới phải có nội dung để lưu.',
 	'flow-error-missing-title' => 'Chủ đề không có tiêu đề. Chủ đề phải có tiêu đề để lưu.',
 	'flow-error-parsoid-failure' => 'Không thể phân tích nội dung vì Parsoid bị thất bại.',
-	'flow-error-missing-replyto' => 'Tham số replyTo không được cung cấp. Tham số này cần để thực hiện tác vụ “trả lời”.', # Fuzzy
-	'flow-error-invalid-replyto' => 'Tham số replyTo có giá trị không hợp lệ. Không tìm thấy bài đăng.', # Fuzzy
+	'flow-error-missing-replyto' => 'Tham số “replyTo” không được cung cấp. Tham số này cần để thực hiện tác vụ “trả lời”.',
+	'flow-error-invalid-replyto' => 'Tham số “replyTo” có giá trị không hợp lệ. Không tìm thấy bài đăng.',
 	'flow-error-delete-failure' => 'Thất bại khi xóa mục này.',
 	'flow-error-hide-failure' => 'Thất bại khi ẩn mục này.',
-	'flow-error-missing-postId' => 'Tham số postId không được cung cấp. Tham số này cần để xóa hoặc phục hồi bài đăng.', # Fuzzy
-	'flow-error-invalid-postId' => 'Tham số postId có giá trị không hợp lệ. Không tìm thấy bài đăng.', # Fuzzy
+	'flow-error-missing-postId' => 'Tham số “postId” không được cung cấp. Tham số này cần để xóa hoặc phục hồi bài đăng.',
+	'flow-error-invalid-postId' => 'Tham số “postId” có giá trị không hợp lệ. Không tìm thấy bài đăng.',
 	'flow-error-restore-failure' => 'Thất bại khi phục hồi mục này.',
 	'flow-summaryedit-submit' => 'Lưu lời tóm lược',
 	'flow-edit-title-submit' => 'Thay đổi tiêu đề',
@@ -1322,10 +1373,10 @@ Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều k
 	'flow-paging-rev' => 'Thêm chủ đề gần đây',
 	'flow-paging-fwd' => 'Chủ đề cũ hơn',
 	'flow-last-modified' => 'Thay đổi lần cuối cùng vào khoảng $1',
-	'flow-notification-reply' => '$1 đã trả lời [$5 bài đăng của bạn] về $2 tại [[$3|$4]].', # Fuzzy
-	'flow-notification-edit' => '$1 đã sửa đổi [$5 bài đăng của bạn] về $2 tại [[$3|$4]].', # Fuzzy
-	'flow-notification-newtopic' => '$1 đã tạo ra [$5 chủ đề mới] tại [[$2|$3]]: $4.', # Fuzzy
-	'flow-notification-rename' => '$1 đã thay đổi tiêu đề của [$2 $3] thành “$4” tại [[$5|$6]]', # Fuzzy
+	'flow-notification-reply' => '$1 đã {{GENDER:$1}}trả lời [$5 bài đăng của bạn] về $2 tại [[$3|$4]].',
+	'flow-notification-edit' => '$1 đã {{GENDER:$1}}sửa đổi [$5 bài đăng của bạn] về $2 tại [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 đã {{GENDER:$1}}tạo ra [$5 chủ đề mới] tại [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 đã {{GENDER:$1}}thay đổi tiêu đề của [$2 $3] thành “$4” tại [[$5|$6]].',
 );
 
 /** Yiddish (ייִדיש)
