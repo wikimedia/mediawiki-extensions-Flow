@@ -1,0 +1,43 @@
+@icons-space: 50px;
+
+.flow-container-content {
+	position: relative;
+
+	// .container-icons' space
+	padding-right: @icons-space;
+}
+
+.flow-icon {
+	clear: both;
+	float: right;
+
+	position: relative;
+	right: -@icons-space;
+
+	display: block;
+	width: 20px;
+	height: 20px;
+	text-indent: -9999px;
+
+	padding: 10px;
+
+	// icons bottom-aligned should in HTML be _after_ the element where they
+	// should align to the bottom, and have this class added (will push the
+	// button back up to lign up with the preceeding node)
+	&.flow-icon-bottom-aligned {
+		margin-top: -40px;
+	}
+
+	// icons top-aligned should in HTML be _before_ the element where they
+	// should align to the top, and have this class added
+	&.flow-icon-top-aligned {
+
+	}
+}
+
+.flow-container {
+	width: 610px;
+	font-size: 16px;
+
+	.flow-container-content;
+}

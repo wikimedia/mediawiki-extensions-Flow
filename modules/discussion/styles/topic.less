@@ -1,0 +1,166 @@
+@import 'settings/colors.less';
+@import '../../../../../resources/mediawiki.less/mediawiki.mixins.less';
+
+.flow-topic-container {
+	padding-bottom: 54px;
+
+	.flow-titlebar {
+		position: relative;
+
+		// override mw-ui-button style
+		text-align: left;
+		display: block;
+		padding: 24px 22px;
+		margin-bottom: 30px;
+		font-weight: normal;
+		background: @topic-titlebar-background-color;
+
+		line-height: 28px;
+		color: @topic-titlebar-text-color;
+
+		// override mw-ui-button:hover style
+		&:hover,
+		&.mw-ui-hover {
+			background: @topic-titlebar-background-color;
+		}
+
+		.flow-topic-title {
+			padding-bottom: 30px;
+
+			// leave some room for .flow-topic-actions-link on the right
+			margin-right: 44px;
+
+			h2 {
+				font-weight: bold;
+				font-size: 24px;
+				line-height: 30px;
+				color: @topic-title-color;
+
+				// override default h2 style
+				border: none;
+				padding: 0;
+				margin: 0;
+			}
+		}
+
+		.flow-actions {
+			.flow-actions-link {
+				position: absolute;
+				right: 22px;
+				top: 22px;
+
+				width: 20px;
+				height: 20px;
+				text-indent: -9999px;
+
+				background-repeat: no-repeat;
+				background-position: center;
+				.background-image-svg('../../base/images/junkdrawer_normal.svg', '../../base/images/junkdrawer_normal.png');
+
+				&:hover {
+					.background-image-svg('../../base/images/junkdrawer_hover.svg', '../../base/images/junkdrawer_hover.png');
+				}
+			}
+
+			.flow-actions-box {
+				position: absolute;
+				top: 56px; // 14px + (22px top padding + 20px icon height)
+				right: 0;
+			}
+		}
+
+		ul.flow-topic-posts-meta {
+			list-style: none;
+			margin: 0;
+
+			li {
+				line-height: 16px;
+				padding: 0 0 14px 0;
+
+				&:last-child {
+					padding: 0;
+				}
+			}
+		}
+
+		.flow-datestamp {
+			margin: 0;
+
+			position: absolute;
+			right: 22px;
+			bottom: 22px;
+		}
+
+		.flow-icon {
+			// additional push to the right because of container's padding & border
+			margin-right: -23px; // container's right padding + right border
+
+			&.flow-icon-top-aligned {
+				margin-top: -12px; // half of container's top padding
+			}
+
+			&.flow-icon-bottom-aligned {
+				margin-top: -28px; // -40px - half of container's bottom padding
+			}
+		}
+
+		.flow-edit-topic-link {
+			background-position: center;
+			background-size: 20px auto;
+			background-repeat: no-repeat;
+			.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
+
+			&:hover {
+				.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
+			}
+		}
+
+		.flow-icon-permalink {
+			background-position: center;
+			background-size: 20px auto;
+			background-repeat: no-repeat;
+			.background-image-svg('../../base/images/permalink_normal.svg', '../../base/images/permalink_normal.png');
+
+			&:hover {
+				.background-image-svg('../../base/images/permalink_hover.svg', '../../base/images/permalink_hover.png');
+			}
+		}
+
+		.flow-icon-watchlist {
+			background-position: center;
+			background-size: 20px auto;
+			background-repeat: no-repeat;
+			.background-image-svg('../../base/images/watchlist_normal.svg', '../../base/images/watchlist_normal.png');
+
+			&:hover {
+				.background-image-svg('../../base/images/watchlist_hover.svg', '../../base/images/watchlist_hover.png');
+			}
+
+			&.flow-icon-watchlist-active {
+				.background-image-svg('../../base/images/watchlist_active.svg', '../../base/images/watchlist_active.png');
+			}
+		}
+
+		.flow-edit-title-form {
+			.flow-edit-title-textbox {
+				width: auto;
+			}
+
+			.flow-edit-title-controls {
+				float: right;
+			}
+		}
+	}
+}
+
+.flow-newtopic-form {
+	padding-bottom: 30px;
+
+	.flow-newtopic-title {
+		font-weight: bold;
+	}
+
+	.flow-post-form-controls {
+		text-align: right;
+	}
+}

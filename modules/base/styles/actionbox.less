@@ -1,0 +1,36 @@
+.flow-actions {
+	.flow-actions-box {
+		// hide until .flow-actions-link clicked
+		display: none;
+
+		z-index: 99;
+
+		// actionboxes will likely have to be styled independently, this is just fallback
+		background-color: #FFF;
+		border: 1px solid #E1E1E1;
+		color: #808184;
+
+		ul {
+			list-style: none;
+			margin: 0;
+
+			li {
+				margin: 0;
+
+				// override formatting of buttons used in li's
+				.mw-ui-button {
+					display: block;
+
+					border-radius: 0;
+					border-left: none;
+					border-right: none;
+					border-bottom: none;
+				}
+
+				&:first-of-type .mw-ui-button {
+					border-top: none;
+				}
+			}
+		}
+	}
+}

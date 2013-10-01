@@ -33,13 +33,13 @@ class PostActionMenu {
 		switch( $post->getModerationState() ) {
 		case $post::MODERATED_NONE:
 			if ( $user->isAllowed( 'flow-hide' ) ) {
-				$actions['hide'] = $this->postAction( 'hide-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-destructive' );
+				$actions['hide'] = $this->postAction( 'hide-post', array( 'postId' => $post->getPostId()->getHex() ), 'flow-hide-post-link mw-ui-destructive mw-ui-destructive-low' );
 			}
 			if ( $user->isAllowed( 'flow-delete' ) ) {
-				$actions['delete'] = $this->postAction( 'delete-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-destructive' );
+				$actions['delete'] = $this->postAction( 'delete-post', array( 'postId' => $post->getPostId()->getHex() ), 'flow-delete-post-link mw-ui-destructive mw-ui-destructive-medium' );
 			}
 			if ( $user->isAllowed( 'flow-censor' ) ) {
-				$actions['censor'] = $this->postAction( 'censor-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-destructive' );
+				$actions['censor'] = $this->postAction( 'censor-post', array( 'postId' => $post->getPostId()->getHex() ), 'flow-censor-post-link mw-ui-destructive' );
 			}
 			$actions['history'] = $this->getAction( 'post-history' );
 			if ( $post->isAllowedToEdit( $user ) ) {
@@ -49,20 +49,20 @@ class PostActionMenu {
 
 		case $post::MODERATED_HIDDEN:
 			if ( $user->isAllowed( 'flow-hide' ) ) {
-				$actions['restore'] = $this->postAction( 'restore-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-constructive' );
+				$actions['restore'] = $this->postAction( 'restore-post', array( 'postId' => $post->getPostId()->getHex() ), 'flow-restore-post-link mw-ui-constructive mw-ui-destructive-low' );
 			}
 			if ( $user->isAllowed( 'flow-delete' ) ) {
-				$actions['delete'] = $this->postAction( 'delete-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-destructive' );
+				$actions['delete'] = $this->postAction( 'delete-post', array( 'postId' => $post->getPostId()->getHex() ), 'flow-delete-post-link mw-ui-destructive mw-ui-destructive-medium' );
 			}
 			if ( $user->isAllowed( 'flow-censor' ) ) {
-				$actions['censor'] = $this->postAction( 'censor-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-destructive' );
+				$actions['censor'] = $this->postAction( 'censor-post', array( 'postId' => $post->getPostId()->getHex() ), 'flow-censor-post-link mw-ui-destructive' );
 			}
 			$actions['history'] = $this->getAction( 'post-history' );
 			break;
 
 		case $post::MODERATED_DELETED:
 			if ( $user->isAllowedAny( 'flow-delete', 'flow-censor' ) ) {
-				$actions['restore'] = $this->postAction( 'restore-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-constructive' );
+				$actions['restore'] = $this->postAction( 'restore-post', array( 'postId' => $post->getPostId()->getHex() ), 'flow-restore-post-link mw-ui-constructive' );
 			}
 			$actions['history'] = $this->getAction( 'post-history' );
 			break;
@@ -72,7 +72,7 @@ class PostActionMenu {
 				// no children, no nothing
 				return;
 			}
-			$actions['restore'] = $this->postAction( 'restore-post', array( 'postId' => $post->getPostId()->getHex() ), 'mw-ui-constructive' );
+			$actions['restore'] = $this->postAction( 'restore-post', array( 'postId' => $post->getPostId()->getHex() ), 'flow-restore-post-link mw-ui-constructive' );
 			$actions['history'] = $this->getAction( 'post-history' );
 			break;
 		}
@@ -106,7 +106,8 @@ class PostActionMenu {
 			'type' => 'submit',
 			'class' => "mw-ui-button $class",
 			'value' => wfMessage( "flow-post-action-$action" )->plain(),
-		) ) . '</form>';
+		) ) .
+		Html::closeElement( 'form' );
 
 		return implode( '', $output );
 	}
