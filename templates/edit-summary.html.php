@@ -1,6 +1,9 @@
 <?php
 
 // owning workflow
+echo Html::openElement( 'div', array(
+	'id' => 'flow-summary'
+) );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
 	'action' => $this->generateUrl( $workflow, 'edit-summary' ),
@@ -25,12 +28,18 @@ echo Html::textarea(
 	$block->getName() . '[content]',
 	$summary ? $summary->getContent( $user, 'wikitext' ) : '',
 	array(
+		'class' => 'mw-ui-input',
 		'data-summary-id' => $summary ? $summary->getRevisionId()->getHex() : ''
 	)
 );
+echo Html::openElement( 'div', array(
+	'class' => 'flow-edit-summary-controls',
+) );
 echo Html::element( 'input', array(
 	'type' => 'submit',
 	'class' => 'mw-ui-button mw-ui-constructive',
 	'value' => wfMessage( 'flow-summaryedit-submit' )->plain(),
 ) );
+echo Html::closeElement( 'div' );
 echo Html::closeElement( 'form' );
+echo Html::closeElement( 'div' );

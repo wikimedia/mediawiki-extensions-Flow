@@ -1,0 +1,305 @@
+.flow-post {
+	position: relative;
+}
+.flow-post-main {
+	position: relative;
+	padding: 0;
+	margin: 0 46px 0 22px;
+}
+.flow-post-deleted .flow-post-title {
+	color: #cccccc;
+	font-style: oblique;
+}
+.unreadpost {
+	border-left: 2px solid #318c6d;
+	border-bottom: 2px solid #318c6d;
+}
+.selfpost {
+	border-left: 2px solid #0c53d7;
+	border-bottom: 2px solid #0c53d7;
+}
+.flow-post-title {
+	font-weight: bold;
+	font-size: 16px;
+	color: #3C68B1;
+	margin: 22px 0 0 0;
+}
+.unreadpost .flow-post-title {
+	background-color: #318c6d;
+	color: #ffffff;
+}
+.selfpost .flow-post-title {
+	background-color: #0c53d7;
+}
+.unreadpost .flow-post-title a, .selfpost .flow-post-title a {
+	color: #ffffff;
+}
+.authorname {
+	font-size: 13pt;
+	text-decoration: none;
+}
+
+.lowsig {
+	font-size: 8pt !important;
+	display: none;
+	margin-left: 5px;
+}
+
+.lowsig a {
+	font-size: 8pt !important;
+}
+
+.flow-post-content {
+	margin: 22px 0 34px 0;
+
+	font-size: 16px;
+	line-height: 25px;
+	color: #6D6E70;
+}
+
+.flow-post-mention-indicator {
+	position: relative;
+	float: left;
+	top: 10;
+	left: -25;
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	clear: both;
+	/* @embed */
+	background-image: url('images/mention_icon_green.png');
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+
+.flow-post.hasmention .authorname {
+	margin-left: -10px;
+}
+
+
+.postingstatus {
+	/* @embed */
+	background: transparent url('images/ajax-loader_blue.gif') 10px center no-repeat;
+	padding: 10px;
+	padding-left: 36px;
+	background-color: #0c53d7;
+	color: #ffffff;
+}
+
+
+.editorbutton {
+	cursor: pointer;
+	padding: 5px;
+	margin: 0;
+	border: 1px solid #ffffff;
+}
+.editorbutton:hover {
+	border: 1px solid #efefef;
+}
+
+.mw-ui-button.flow-thank-link span {
+	padding-left: 30px;
+
+	/* @embed */
+	background-image: url( '../base/images/stub.png' ); /* @todo: real asset */
+	background-position: 0 center;
+	background-size: 20px auto;
+	background-repeat: no-repeat;
+}
+
+.flow-reply-form {
+	position: relative;
+	color: #6D6D6D;
+	z-index: 3000;
+	padding: 0;
+	margin: 22px 46px 0 22px;
+}
+
+.flow-post-form-controls, .editboxcontrols, .mboxextras {
+	text-align: right;
+}
+
+.flow-post-form-controls button, .editboxcontrols button, .mboxcontrols button {
+	margin-left: 10px;
+}
+
+.flow-newtopic-form textarea,
+.flow-post-content textarea,
+.flow-reply-form textarea,
+.editboxmaster textarea,
+	/*
+	type="text" is default, so may be omitted. FF doesn't seem to pick it up as
+	[type="text"], though, so the :not() will take care of when it isn't present
+	*/
+.flow-newtopic-form input[type="text"],
+.flow-newtopic-form input:not([type]) {
+	width: 100%;
+	/*
+	The textarea has some padding for the text; make it easier to define the
+	exact length. box-sizing defines what the length is applied to. We want it
+	to include padding & border, so border-box it is (the default value,
+	content-box, applies length to content, making the textarea larger if e.g.
+	padding is defined)
+	*/
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+
+}
+
+.flow-newtopic-form textarea,
+.flow-post-content textarea,
+.flow-reply-form textarea,
+.editboxmaster textarea {
+	margin: 0;
+	height: 100px;
+	min-height: 100px;
+	border: none !important;
+}
+
+.stalewarning {
+	padding: 5px;
+	color: #ffffff;
+	background-color: #cc0000;
+	margin: 5px;
+	display: none;
+}
+
+.staletopic .stalewarning {
+	display: block;
+}
+
+.mdialog {
+	min-width: 500px;
+	height: auto;
+	width: auto;
+	border:2px solid #444444;
+	padding: 0px;
+	background-color: #ffffff;
+}
+
+#simplemodal-container a.modalCloseImg {
+	/* @embed */
+	background:url('images/x_icon_444444.png') no-repeat; /* adjust url as required */
+	width: 12px;
+	height: 12px;
+	display: inline;
+	z-index: 3200;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	cursor: pointer;
+}
+
+.mdialog h3 {
+	padding: 0;
+	padding-left: 10px;
+	margin: 0;
+	background-color: #efefef;
+	border-bottom: 1px solid #d0d0d0;
+}
+
+.mdialog p {
+	margin: 10px;
+}
+
+.mboxextras{
+	margin-top: 10px;
+	padding: 10px;
+}
+
+.mdialog .inputform {
+	max-width: 500px;
+}
+
+.mdialog input[type="text"] {
+	height: 33px;
+	width: 500px;
+	margin: 10px;
+}
+
+.mdialog textarea {
+	height: 75px;
+	min-height: 75px;
+	margin: 0;
+	border: 1px solid #cccccc !important;
+	width: 500px;
+}
+
+.mdialog table.historytable {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.history {
+	display:none;
+}
+
+.historytable {
+	min-width: 500px;
+}
+
+.historydate, .historyauthor, .historysummary {
+	font-size: 8pt !important;
+	white-space: nowrap;
+	padding: 5px;
+}
+
+.historydate {
+	color: #0645AD;
+}
+
+.historydate:hover {
+	text-decoration: underline;
+}
+
+.historyauthor a {
+	font-size: 8pt !important;
+}
+
+.historysummary {
+	color: #999999;
+	font-style: italic;
+}
+
+tr.historyheader {
+	background-color: #444444;
+	color: #ffffff;
+}
+
+.historytable th {
+	font-weight: bold;
+	font-size: 10pt;
+	padding: 5px;
+}
+
+.historytable td {
+	font-size: 10pt;
+}
+
+.historytable .tleft {
+	text-align:left;
+}
+
+.flow-cancel-link {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.editboxextras .disclaimer {
+	padding: 10px;
+}
+
+.editboxcontrols {
+	padding: 10px;
+	background-color: #efefef;
+}
+
+.disclaimer, .disclaimer a {
+	font-size: 8pt !important;
+}
+
+.flow-post .flow-datestamp {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
