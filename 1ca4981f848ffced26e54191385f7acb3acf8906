@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29433135_5d0f3938",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T20:13:18Z",
+      "side": 1,
+      "message": "add e.g. array( NS_USER_TALK );",
+      "revId": "1ca4981f848ffced26e54191385f7acb3acf8906",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_5d2659d2",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T20:13:18Z",
+      "side": 1,
+      "message": "All pages are passed to TalkPageManager\u0027s isTalkpageOccupied, not just talk pages.\n\nThat seems nice for flexibility -- you could have any page be a Flow board -- but it makes the names misleading.",
+      "revId": "1ca4981f848ffced26e54191385f7acb3acf8906",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
