@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_c831ae0c",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29433135_08f496ef",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_c897ee99",
         "filename": "modules/discussion/base.css",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2013-10-02T00:42:02Z",
       "side": 1,
       "message": "Delete this, the topic title box now serves as expand/collapse.",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_6368ddbb",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29433135_c897ee99",
       "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_8365c9e4",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29433135_486bfeb8",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_a862a2d8",
         "filename": "modules/discussion/base.css",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2013-10-02T00:42:02Z",
       "side": 1,
       "message": "trailing whitespace",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_a362c5d8",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29433135_a862a2d8",
       "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_83b6a93b",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29433135_4db0708a",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_28a7920f",
         "filename": "modules/discussion/base.css",
         "patchSetId": 2
@@ -98,6 +188,24 @@
       "writtenOn": "2013-10-02T00:42:02Z",
       "side": 1,
       "message": "You need a similar flow-topic-permalink icon, see https://www.mediawiki.org/wiki/File:2_OtherUser_Mouseover.png.  Maybe the CSS needs a container for them, or could they have fixed positions relative to each topic?",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_b9fbd211",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "I\u0027ll take care of properly adding all new icons asap.\nNot really sure how I\u0027ll do them, separate container may be hard as the positions seem to be \"linked\" to other elements in left column (as in: bottom \u0026 top of \"header\" box; next to \"buttons\", ...).\nI\u0027ll probably end up adding a couple of containers to the right :)",
+      "parentUuid": "29433135_28a7920f",
       "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_e3d76d48",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29433135_ad5f1449",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_680d1a36",
         "filename": "modules/discussion/base.css",
         "patchSetId": 2
@@ -132,6 +258,24 @@
       "writtenOn": "2013-10-02T00:42:02Z",
       "side": 1,
       "message": "The thank is a green button from the Agora spec, so it should be class\u003d\"mw-ui-button mw-ui-primary flow-thank\" and the class here just the override to add the icon.",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_a3e5653b",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29433135_680d1a36",
       "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_c3d2715b",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "There\u0027s a /extensions/Thanks/ThankYou.png file, but it\u0027s not exactly this icon. Can\u0027t find it in Echo either.",
+      "parentUuid": "29433135_a8170243",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_88b6c63b",
         "filename": "modules/discussion/base.css",
         "patchSetId": 2
@@ -166,6 +328,24 @@
       "writtenOn": "2013-10-02T00:42:02Z",
       "side": 1,
       "message": "remove, unused?",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_03cd59b9",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "It\u0027s still used for hide\u0026close topic",
+      "parentUuid": "29433135_88b6c63b",
       "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_9917f643",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": ".flow-post-actions-link is currently the \"flag\" one, which shows a (currently not correctly positioned/styled) popup for close/suppress tasks.\nI\u0027ll probably change the name (and all of it\u0027s occurences in code) of the class, because it\u0027s now unclear.\n\nDoing these things in sass would probably make things much easier. I have no experience with it though, so I\u0027ll try to figure that out tomorrow.",
+      "parentUuid": "29433135_28807249",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_28431218",
         "filename": "modules/discussion/base.css",
         "patchSetId": 2
@@ -200,6 +398,24 @@
       "writtenOn": "2013-10-02T00:42:02Z",
       "side": 1,
       "message": "need to draw a line on the left, see https://upload.wikimedia.org/wikipedia/commons/2/28/2_OtherUser_Mouseover.png",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_a301e5b3",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-02T15:46:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29433135_28431218",
       "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
