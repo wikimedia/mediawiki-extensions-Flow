@@ -4,6 +4,12 @@ use Flow\Model\UUID;
 use Flow\Container;
 
 class ApiQueryRevisionContentFlow extends ApiQueryBase {
+
+	private static $repos = array(
+		'Post' => 'tree_rev_descendant_id',
+		'Summary' => 'summary_workflow_id',
+	);
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rev' );
 	}
@@ -12,6 +18,9 @@ class ApiQueryRevisionContentFlow extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 
 		$container = Container::getContainer();
+		if ( !isset( self::$repos[$params['container']] ) ) {
+			throw new MWException( 'Unknown content type: ' . $params['container'] );
+		}
 		$storage = $container['storage']->getStorage( $params['container'] );
 
 		$id = UUID::create( $params['id'] );
@@ -19,7 +28,7 @@ class ApiQueryRevisionContentFlow extends ApiQueryBase {
 
 		if ( $id ) {
 			$post = $storage->find(
-				array( 'tree_rev_descendant_id' => $id->getBinary() ),
+				array( self::$repos[$params['container']] => $id->getBinary() ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 			);
 		}

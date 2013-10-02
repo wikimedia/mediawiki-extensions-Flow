@@ -25,7 +25,8 @@ echo Html::textarea(
 	$block->getName() . '[content]',
 	$summary ? $summary->getContent( $user, 'wikitext' ) : '',
 	array(
-		'data-summary-id' => $summary ? $summary->getRevisionId()->getHex() : ''
+		'data-workflow-id' => $summary ? $summary->getWorkflowId()->getHex() : '',
+		'data-summary-id' => $summary ? $summary->getRevisionId()->getHex() : '',
 	)
 );
 echo Html::element( 'input', array(

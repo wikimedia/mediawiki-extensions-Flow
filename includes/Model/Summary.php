@@ -35,5 +35,9 @@ class Summary extends AbstractRevision {
 	public function getRevisionType() {
 		return 'summary';
 	}
+
+	public function getWorkflowId() {
+		return $this->workflowId;
+	}
 }
 
