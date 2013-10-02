@@ -16,29 +16,68 @@ class UrlGenerator {
 
 	/**
 	 * Builds a URL for a given title and action, with a query string.
+	 * @todo We should probably have more descriptive names than
+	 * generateUrl and buildUrl
 	 * @param  Title $title Title of the Flow Board to link to.
 	 * @param  string $action Action to execute
 	 * @param  array $query Associative array of query parameters
 	 * @return String URL
 	 */
-	public function buildUrl( $title, $action, $query ) {
+	public function buildUrl( $title, $action = 'view', array $query = array() ) {
+		list( $linkTitle, $query ) = $this->buildUrlData( $title, $action, $query );
+
+		return $linkTitle->getFullUrl( $query );
+	}
+
+	/**
+	 * Builds a URL for a given title and action, with a query string.
+	 * @todo We should probably have more descriptive names than
+	 * generateUrl and buildUrl
+	 * @param  Title $title Title of the Flow Board to link to.
+	 * @param  string $action Action to execute
+	 * @param  array $query Associative array of query parameters
+	 * @return array Two element array, first element is the title to link to
+	 * and the second element is the query string to use.
+	 */
+	public function buildUrlData( $title, $action = 'view', array $query = array() ) {
 		$query['action'] = $action;
 
 		$linkTitle = $this->occupationController->isTalkpageOccupied( $title )
 			? $title
 			: SpecialPage::getTitleFor( 'Flow', $title->getPrefixedText() );
 
-		return $linkTitle->getFullUrl( $query );
+		return array( $linkTitle, $query );
 	}
 
 	/**
 	 * Builds a URL to link to a given Workflow
+	 *
+	 * @todo We should probably have more descriptive names than
+	 * generateUrl and buildUrl
 	 * @param  Workflow|UUID $workflow The Workflow to link to
 	 * @param  string $action The action to execute
 	 * @param  array  $query Associative array of query parameters
-	 * @return URL
+	 * @return Array Two element array, first element is the title to link to,
+	 * second element is the query string
 	 */
 	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
+		list( $linkTitle, $query ) = $this->generateUrlData( $workflow, $action, $query );
+
+		return $linkTitle->getFullUrl( $query );
+	}
+
+	/**
+	 * Returns the title/query string to link to a given Workflow
+	 *
+	 * @todo We should probably have more descriptive names than
+	 * generateUrl and buildUrl
+	 * @param  Workflow|UUID $workflow The Workflow to link to
+	 * @param  string $action The action to execute
+	 * @param  array  $query Associative array of query parameters
+	 * @return Array Two element array, first element is the title to link to,
+	 * second element is the query string
+	 */
+	public function generateUrlData( $workflow, $action = 'view', array $query = array() ) {
 		if ( ! $workflow instanceof Workflow ) {
 			$workflowId = $workflow;
 			// Only way to know what title the workflow points at
@@ -54,6 +93,6 @@ class UrlGenerator {
 			$query['workflow'] = $workflow->getId()->getHex();
 		}
 
-		return $this->buildUrl( $workflow->getArticleTitle(), $action, $query );
+		return $this->buildUrlData( $workflow->getArticleTitle(), $action, $query );
 	}
 }

@@ -298,13 +298,18 @@ $c['loader.root_post'] = $c->share( function( $c ) {
 $c['factory.loader.workflow'] = $c->share( function( $c ) {
 	return new Flow\WorkflowLoaderFactory(
 		$c['storage'],
-		$c['loader.root_post']
+		$c['loader.root_post'],
+		$c['controller.notification']
 	);
 } );
 
 $c['occupation_controller'] = $c->share( function( $c ) {
 	global $wgFlowOccupyPages;
 	return new Flow\TalkpageManager( $wgFlowOccupyPages );
+} );
+
+$c['controller.notification'] = $c->share( function( $c ) {
+	return new Flow\NotificationController;
 } );
 
 return $c;

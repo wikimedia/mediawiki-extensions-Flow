@@ -1,8 +1,15 @@
 <?php
 
-use Flow\UrlGenerator;
+namespace Flow;
 
-class FlowCommentFormatter extends EchoBasicFormatter {
+use Flow\Container;
+use Flow\UrlGenerator;
+use EchoBasicFormatter;
+use Special;
+use SpecialPage;
+
+// could be renamed later if we have more formatters
+class NotificationFormatter extends EchoBasicFormatter {
 	protected $urlGenerator;
 
 	protected function processParam( $event, $param, $message, $user ) {
@@ -14,7 +21,7 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 			$message->params( $output );
 		} elseif ( $param === 'subject' ) {
 			if ( isset( $extra['topic-title'] ) && $extra['topic-title'] ) {
-				$message->params( $extra['topic-title'] );
+				$message->params( trim($extra['topic-title']) );
 			} else {
 				$message->params( '' );
 			}
@@ -59,9 +66,9 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 			$title = $this->formatTitle( SpecialPage::getTitleFor( 'Flow', $event->getTitle() ) );
 			$message->params( $title );
 		} elseif ( $param == 'old-subject' ) {
-			$message->params( $extra['old-subject'] );
+			$message->params( trim($extra['old-subject']) );
 		} elseif ( $param == 'new-subject' ) {
-			$message->params( $extra['new-subject'] );
+			$message->params( trim($extra['new-subject']) );
 		} else {
 			parent::processParam( $event, $param, $message, $user );
 		}
@@ -79,34 +86,45 @@ class FlowCommentFormatter extends EchoBasicFormatter {
 		$target = null;
 		$query  = array();
 		$title  = $event->getTitle();
+
+		// Unfortunately this is not a Flow code path, so we have to reach
+		//  into global state.
+		$container = Container::getContainer();
+		$urlGenerator = $container['url_generator'];
+
 		// Set up link parameters based on the destination (or pass to parent)
 		switch ( $destination ) {
 			case 'flow-post':
 				$post  = $event->getExtraParam( 'post-id' );
 				$flow  = $event->getExtraParam( 'topic-workflow' );
 				if ( $post && $flow && $title ) {
-					$target = SpecialPage::getTitleFor( 'Flow', $title );
-					$query = array(
-						'topic[postId]' => $post->getHex(),
-						'workflow' => $flow->getHex(),
-						'action' => 'view'
-					);
+					list( $target, $query ) =
+						$urlGenerator->generateUrlData( $flow, array(
+							'topic[postId]' => $post->getHex(),
+						) );
 				}
 				break;
 			case 'flow-board':
 				if ( $title ) {
-					$target = SpecialPage::getTitleFor( 'Flow', $title );
+					list( $target, $query ) = $urlGenerator->buildUrlData( $title );
 				}
+				break;
+			case 'flow-topic':
+				$topic = $event->getExtraParam( 'topic-workflow' );
+
+				list( $target, $query ) =
+					$urlGenerator->generateUrlData( $topic );
 				break;
 			default:
 				return parent::getLinkParams( $event, $user, $destination );
 		}
+
 		return array( $target, $query );
 	}
 
 	protected function getUrlGenerator() {
 		if ( ! $this->urlGenerator ) {
-			$container = Flow\Container::getContainer();
+			$container = Container::getContainer();
 
 			$this->urlGenerator = $container['url_generator'];
 		}
