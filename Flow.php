@@ -202,8 +202,8 @@ $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = true;
 // Maximum number of users that can be mentioned in one comment
 $wgFlowMaxMentionCount = 100;
 
-// Pages to occupy is an array of normalised page names
+// Pages to occupy is an array of normalised page names, e.g. array( 'User talk:Zomg' ).
 $wgFlowOccupyPages = array();
 
-// Namespaces to occupy is a list of NS_* constants
+// Namespaces to occupy is an array of NS_* constants, e.g. array( NS_USER_TALK ).
 $wgFlowOccupyNamespaces = array();
