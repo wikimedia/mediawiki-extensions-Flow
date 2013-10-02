@@ -14,7 +14,8 @@ class TalkpageManager implements OccupationController {
 	/**
 	 * @param boolean|array $occupiedPages See documentation for $wgFlowOccupyPages
 	 */
-	public function __construct( $occupiedPages ) {
+	public function __construct( array $occupiedNamespaces, array $occupiedPages ) {
+		$this->occupiedNamespaces = $occupiedNamespaces;
 		$this->occupiedPages = $occupiedPages;
 	}
 
@@ -32,14 +33,7 @@ class TalkpageManager implements OccupationController {
 			return false;
 		}
 
-		$titleText = $title->getPrefixedText();
-
-		if ( $this->occupiedPages === true ) {
-			return true;
-		} elseif ( is_array( $this->occupiedPages ) ) {
-			return in_array( $titleText, $this->occupiedPages );
-		} else {
-			return false;
-		}
+		return in_array( $title->getPrefixedText(), $this->occupiedPages )
+			|| in_array( $title->getNamespace(), $this->occupiedNamespaces );
 	}
 }

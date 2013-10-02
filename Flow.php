@@ -198,9 +198,8 @@ $wgFlowMaxLimit = 50;
 $wgDefaultUserOptions['echo-subscriptions-web-flow-discussion'] = true;
 $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = true;
 
-// Pages to occupy
-// Possible values:
-// * true (occupy all talk pages);
-// * false (occupy no talk pages);
-// * an array of normalised page names.
-$wgFlowOccupyPages = array( 'User:Zomg' );
+// Pages to occupy is an array of normalised page names
+$wgFlowOccupyPages = array();
+
+// Namespaces to occupy is a list of NS_* constants
+$wgFlowOccupyNamespaces = array();

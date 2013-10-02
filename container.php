@@ -303,8 +303,8 @@ $c['factory.loader.workflow'] = $c->share( function( $c ) {
 } );
 
 $c['occupation_controller'] = $c->share( function( $c ) {
-	global $wgFlowOccupyPages;
-	return new Flow\TalkpageManager( $wgFlowOccupyPages );
+	global $wgFlowOccupyPages, $wgFlowOccupyNamespaces;
+	return new Flow\TalkpageManager( $wgFlowOccupyNamespaces, $wgFlowOccupyPages );
 } );
 
 return $c;
