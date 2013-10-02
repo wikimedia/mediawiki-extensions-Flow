@@ -149,6 +149,7 @@ $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 // User permissions
 $wgGroupPermissions['autoconfirmed']['flow-hide'] = true;
 $wgGroupPermissions['sysop']['flow-delete'] = true;
+$wgGroupPermissions['sysop']['flow-edit-post'] = true;
 $wgGroupPermissions['oversight']['flow-censor'] = true;
 
 // Configuration

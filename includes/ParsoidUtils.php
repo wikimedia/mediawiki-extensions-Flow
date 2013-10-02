@@ -63,6 +63,7 @@ abstract class ParsoidUtils {
 			true // POST
 		);
 
+		wfDebugLog( __CLASS__, __FUNCTION__ . ": Roundtripping parsoid for $from => $to" );
 		$api = new \ApiMain( $params, true );
 		$api->execute();
 		$result = $api->getResultData();
