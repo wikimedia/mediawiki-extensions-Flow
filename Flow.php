@@ -203,4 +203,4 @@ $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = true;
 // * true (occupy all talk pages);
 // * false (occupy no talk pages);
 // * an array of normalised page names.
-$wgFlowOccupyPages = array( 'User:Zomg' );
+$wgFlowOccupyPages = array( 'User talk:Zomg' );
