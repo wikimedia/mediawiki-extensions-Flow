@@ -32,12 +32,16 @@ class TalkpageManager implements OccupationController {
 			return false;
 		}
 
-		$titleText = $title->getPrefixedText();
-
 		if ( $this->occupiedPages === true ) {
-			return true;
-		} elseif ( is_array( $this->occupiedPages ) ) {
-			return in_array( $titleText, $this->occupiedPages );
+			// TODO: check namespace of page against a
+			// $wgFlowOccupyNamespaceList whitelist (all pages get routed here,
+			// not just Talk pages).
+			return $title->isTalkPage() && !$title->isSubpage();
+		}
+
+		if ( is_array( $this->occupiedPages ) ) {
+			$titleText = $title->getPrefixedText();
+			return in_array( $title->getPrefixedText(), $this->occupiedPages );
 		} else {
 			return false;
 		}

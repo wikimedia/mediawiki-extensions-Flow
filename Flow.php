@@ -203,7 +203,7 @@ $wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = true;
 // Possible values:
 // * true (occupy all talk pages);
 // * false (occupy no talk pages);
-// * an array of normalised page names.
+// * an array of normalised page names, e.g. array( 'User talk:Zomg' );
 $wgFlowOccupyPages = false;
 
 // Maximum number of users that can be mentioned in one comment
