@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29433135_08f496ef",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "this can be deleted?",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_c897ee99",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "Delete this, the topic title box now serves as expand/collapse.",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_486bfeb8",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "Delete this, the topic title box now serves as expand/collapse.",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_a862a2d8",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_4db0708a",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "I think the double-line bottom is a glitch in May\u0027s visual. The entire topic title is an Agora-like button with its hover and bevel behavior, on click it collapses and expands the topic.",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_28a7920f",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "You need a similar flow-topic-permalink icon, see https://www.mediawiki.org/wiki/File:2_OtherUser_Mouseover.png.  Maybe the CSS needs a container for them, or could they have fixed positions relative to each topic?",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_ad5f1449",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "May says the reply button is like the \"Other Actions\" button in Agora specs page 3, except smaller (mw-ui-regular ?).  So the styling here should be separated out into agora2-overrides (and really, into a new mediawiki.ui for the benefit of mankind).",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_680d1a36",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "The thank is a green button from the Agora spec, so it should be class\u003d\"mw-ui-button mw-ui-primary flow-thank\" and the class here just the override to add the icon.",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_a8170243",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "People say this icon is available in Echo for Thanks, but I don\u0027t see it. May should be providing assets soon.",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_88b6c63b",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "remove, unused?",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_28807249",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "need to replace this with individual flow-post-action-edit, flow-post-action-flag , etc.\n\nThis stuff should be so much easier with LESS, something like an @side_column() mix-in that sticks stuff in the column.",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_28431218",
+        "filename": "modules/discussion/base.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-02T00:42:02Z",
+      "side": 1,
+      "message": "need to draw a line on the left, see https://upload.wikimedia.org/wikipedia/commons/2/28/2_OtherUser_Mouseover.png",
+      "revId": "2a982d9a464b6f9fc4e5f4c937103b51915287c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
