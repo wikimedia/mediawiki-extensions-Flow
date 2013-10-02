@@ -171,7 +171,11 @@ Translate this as "post which was censored".',
 	'flow-post-action-view' => 'Used as text for the link which is used to view.
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.',
-	'flow-post-action-delete-post' => 'Used as label for the Submit button.
+	'flow-post-action-censor-post' => 'Used as a label for  the submit button in the censor form.
+
+See also:
+* {{msg-mw|Flow-post-action-restore-post}}',
+	'flow-post-action-delete-post' => 'Used as a label for the submit button in the deletion form.
 
 See also:
 * {{msg-mw|Flow-post-action-restore-post}}',
@@ -184,7 +188,8 @@ Translate as label for the link or the Submit button.
 	'flow-post-action-restore-post' => 'Used as label for the Submit button.
 
 See also:
-* {{msg-mw|Flow-post-action-delete-post}}',
+* {{msg-mw|Flow-post-action-delete-post}}
+* {{msg-mw|Flow-post-action-censor-post}}',
 	'flow-topic-action-edit-title' => 'Used as title for the link which is used to edit the title.',
 	'flow-topic-action-history' => 'Used as text for the link which is used to view topic-history.
 {{Identical|Topic history}}',
