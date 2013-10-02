@@ -34,6 +34,7 @@ class TalkpageManager implements OccupationController {
 		}
 
 		return in_array( $title->getPrefixedText(), $this->occupiedPages )
-			|| in_array( $title->getNamespace(), $this->occupiedNamespaces );
+			|| ( in_array( $title->getNamespace(), $this->occupiedNamespaces )
+				&& !$title->isSubpage() );
 	}
 }
