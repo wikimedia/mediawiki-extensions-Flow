@@ -258,13 +258,17 @@ Parameters:
 * $4 - Title for the page that the Flow board is attached to
 * $5 - Permanent URL for the post
 {{Related|Flow-notification}}',
-	'flow-notification-reply-bundle' => 'Notification text for when a user receives replies from multiple users on the same post/topic.  Params:
-* $1 - Username of the person who replied
-* $2 - Title of the topic
-* $3 - Title for the page that the Flow board is attached to
-* $4 - Permantent URL for the post
+	'flow-notification-reply-bundle' => 'Notification text for when a user receives replies from multiple users on the same post/topic.
+
+Parameters:
+* $1 - username of the person who replied
+* $2 - title of the topic
+* $3 - title for the page that the Flow board is attached to
+* $4 - permantent URL for the post
 * $5 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
-* $6 - a number used for plural support',
+* $6 - a number used for plural support
+See also:
+* {{msg-mw|Flow-notification-reply-email-batch-bundle-body}}',
 	'flow-notification-edit' => "Notification text for when a user's post is edited. Parameters:
 * $1 - Username of the person who edited the post
 * $2 - Title of the topic
@@ -289,22 +293,34 @@ Parameters:
 {{Related|Flow-notification}}',
 	'flow-notification-link-text-view-post' => 'Label for button that links to a flow post.',
 	'flow-notification-link-text-view-board' => 'Label for button that links to a flow discussion board.',
-	'flow-notification-reply-email-subject' => 'Email notification subject when a user receives a reply.  Parameters:
-* $1 - Username of the person who replied',
-	'flow-notification-reply-email-batch-body' => 'Email notification body when a user receives a reply, this message is used in both single email and email digest.  Parameters:
-* $1 - Username of the person who replied
-* $2 - Title of the topic
-* $3 - Title for the page that the Flow board is attached to',
-	'flow-notification-reply-email-batch-bundle-body' => 'Email notification body when a user receives reply from multiple users, this message is used in both single email and email digest.  Parameters:
-* $1 - Username of the person who replied
-* $2 - Title of the topic
-* $3 - Title for the page that the Flow board is attached to
+	'flow-notification-reply-email-subject' => 'Email notification subject when a user receives a reply. Parameters:
+* $1 - username of the person who replied
+See also:
+* {{msg-mw|Flow-notification-reply-email-batch-body}}',
+	'flow-notification-reply-email-batch-body' => 'Email notification body when a user receives a reply, this message is used in both single email and email digest.
+
+Parameters:
+* $1 - username of the person who replied
+* $2 - title of the topic
+* $3 - title for the page that the Flow board is attached to
+See also:
+* {{msg-mw|Flow-notification-reply-email-subject}}',
+	'flow-notification-reply-email-batch-bundle-body' => 'Email notification body when a user receives reply from multiple users, this message is used in both single email and email digest.
+
+Parameters:
+* $1 - username of the person who replied
+* $2 - title of the topic
+* $3 - title for the page that the Flow board is attached to
 * $4 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
-* $5 - a number used for plural support',
+* $5 - a number used for plural support
+See also:
+* {{msg-mw|Flow-notification-reply-bundle}}',
 	'echo-category-title-flow-discussion' => 'This is a short title for notification category.  Parameters:
 * $1 - number of mentions, for PLURAL support
-{{Related|Echo-category-title}}',
-	'echo-pref-tooltip-flow-discussion' => 'This is a short description of the flow-discussion notification category.',
+{{Related|Echo-category-title}}
+{{Identical|Discussion}}',
+	'echo-pref-tooltip-flow-discussion' => 'This is a short description of the flow-discussion notification category.
+{{Related|Echo-pref-tooltip}}',
 );
 
 /** Asturian (asturianu)
@@ -721,9 +737,17 @@ Tu accepta que un hyperligamine o URL suffice qua attribution sub le licentia Cr
 	'flow-paging-fwd' => 'Topicos plus vetule',
 	'flow-last-modified' => 'Ultime modification circa $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|respondeva}} a tu [$5 message] in $2 super [[$3|$4]].',
+	'flow-notification-reply-bundle' => '$1 e $5 {{PLURAL:$6|altere|alteres}} {{GENDER:$1|respondeva}} a tu [$4 message] in $2 sur "$3".',
 	'flow-notification-edit' => '$1 {{GENDER:$1|modificava}} tu [$5 message] in $2 super [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|creava}} un [$5 nove topico] super [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|cambiava}} le titulo de [$2 $3] a "$4" super [[$5|$6]].',
+	'flow-notification-link-text-view-post' => 'Vider message',
+	'flow-notification-link-text-view-board' => 'Vider tabuliero',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|respondeva}} a tu message',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|respondeva}} a tu message in $2 sur "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 e $4 {{PLURAL:$5|altere|alteres}} {{GENDER:$1|respondeva}} a tu message in $2 sur "$3"',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussion|Discussiones}}',
+	'echo-pref-tooltip-flow-discussion' => 'Notificar me quando actiones concernente me occurre in le tabuliero de discussion.',
 );
 
 /** Italian (italiano)
@@ -852,10 +876,18 @@ $messages['ja'] = array(
 	'flow-paging-rev' => '最近の話題',
 	'flow-paging-fwd' => '古い話題',
 	'flow-last-modified' => '最終更新 $1',
-	'flow-notification-reply' => '$1 が [[$3|$4]] の $2 でのあなたの[$5 投稿]に{{GENDER:$1|返信しました}}。',
+	'flow-notification-reply' => '$1 が「$4」の $2 でのあなたの[$5 投稿]に{{GENDER:$1|返信しました}}。',
+	'flow-notification-reply-bundle' => '$1 と他 $5 {{PLURAL:$6|人}}が「$3」の $2 でのあなたの[$4 投稿]に{{GENDER:$1|返信しました}}。',
 	'flow-notification-edit' => '$1 が [[$3|$4]] の $2 でのあなたの[$5 投稿]を{{GENDER:$1|編集しました}}。',
 	'flow-notification-newtopic' => '$1 が [[$2|$3]] で[$5 新しい話題]を{{GENDER:$1|作成しました}}: $4',
 	'flow-notification-rename' => '$1 が [[$5|$6]] で [$2 $3] のページ名を「$4」に{{GENDER:$1|変更しました}}。',
+	'flow-notification-link-text-view-post' => '投稿を閲覧',
+	'flow-notification-link-text-view-board' => '掲示板を閲覧',
+	'flow-notification-reply-email-subject' => '$1 があなたの投稿に{{GENDER:$1|返信しました}}',
+	'flow-notification-reply-email-batch-body' => '$1 が「$3」の $2 でのあなたの投稿に{{GENDER:$1|返信しました}}',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 と他 $4 {{PLURAL:$5|人}}が「$3」の $2 でのあなたの投稿に{{PLURAL:$1|返信しました}}',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|議論}}',
+	'echo-pref-tooltip-flow-discussion' => '議論掲示板で私に関連する操作がなされたときに通知する。',
 );
 
 /** Korean (한국어)
@@ -966,9 +998,17 @@ $messages['mk'] = array(
 	'flow-paging-fwd' => 'Постари теми',
 	'flow-last-modified' => 'Последна измена: $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|ви одговори}} на вашата [$5 порака] во $2 на [[$3|$4]].',
+	'flow-notification-reply-bundle' => '$1 и $5 уште {{PLURAL:$6|еден друг|$5 други}} {{GENDER:$1|ви одговорија}} на вашата [$4 објава] во $2 на „$3“.',
 	'flow-notification-edit' => '$1 {{GENDER:$1|ви ја измени}} измени вашата [$5 порака] во $2 на [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|создаде}} [$5 нова тема] во [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 го {{GENDER:$1|смени}} насловот на [$2 $3] во „$4“ на [[$5|$6]]',
+	'flow-notification-link-text-view-post' => 'Погл. објавата',
+	'flow-notification-link-text-view-board' => 'Погл. таблата',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|ви одговори}} на објавата',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|ви одговори}} на вашата објава во $2 на „$3“',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 и уште {{PLURAL:$5|еден друг|$4 други}} {{GENDER:$1|ви одговорија}} на вашата објава во $2 на „$3“',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Дискусија|Дискусии}}',
+	'echo-pref-tooltip-flow-discussion' => 'Извести ме кога на таблата со дискусија ќе се случи нешто поврзано со мене.',
 );
 
 /** Marathi (मराठी)
@@ -1186,6 +1226,32 @@ $messages['roa-tara'] = array(
 	'flow-edit-title-submit' => "Cange 'u titole",
 );
 
+/** Slovenian (slovenščina)
+ * @author Eleassar
+ */
+$messages['sl'] = array(
+	'flow-post-hidden-by' => '{{GENDER:$1|Skril uporabnik|Skrila uporabnica}} $1 $2',
+	'flow-post-deleted-by' => '{{GENDER:$1|Izbrisal uporabnik|Izbrisala uporabnica}} $1 $2',
+	'flow-post-censored-by' => '{{GENDER:$1|Cenzuriral uporabnik|Cenzurirala uporabnica}} $1 $2',
+	'flow-reply-placeholder' => 'Kliknite za {{GENDER:$1|odgovor uporabniku|odgovor uporabnici}} $1. Bodite prijazni!',
+	'flow-error-missing-replyto' => 'Podan ni bil noben parameter »odgovori na«. Ta parameter je za dejanje »odgovorite« obvezen.',
+	'flow-error-invalid-replyto' => 'Parameter »odgovori« je bil neveljaven. Navedene objave ni bilo mogoče najti.',
+	'flow-error-missing-postId' => 'Podan ni bil noben parameter »postId«. Ta parameter je za upravljanje z objavo obvezen.',
+	'flow-error-invalid-postId' => 'Parameter »postId« je bil neveljaven. Navedene objave ni bilo mogoče najti.',
+	'flow-notification-reply' => '$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo [$5 objavo] v razdelku $2 na strani »$4«.',
+	'flow-notification-reply-bundle' => '$1 in $5 {{PLURAL:$6|drug|druga|drugi|drugih}} {{GENDER:$1|je odgovoril|je odgovorila|so odgovorili}} na vašo [$4 objavo] v razdelku $2 na strani »$3«.',
+	'flow-notification-edit' => '$1 {{GENDER:$1|je urejal|je urejala}} vašo [$5 objavo] v razdelku $2 na [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|je ustvaril|je ustvarila}} [$5 novo temo] na [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|je spremenil|je spremenila}} naslov [$2 $3] v »$4« na [[$5|$6]].',
+	'flow-notification-link-text-view-post' => 'Ogled objave',
+	'flow-notification-link-text-view-board' => 'Ogled deske',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo objavo',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo objavo v razdelku $2 na strani »$3«',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 in $4 {{PLURAL:$5|drugi|druga|drugi|drugih}} {{PLURAL:$5|sta {{GENDER:$1|odgovorila}}|so odgovorili}} na vašo objavo v razdelku $2 na strani »$3«',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Pogovor|Pogovori}}',
+	'echo-pref-tooltip-flow-discussion' => 'Obvesti me, ko se na pogovornih deskah pojavijo dejanja v zvezi z mano.',
+);
+
 /** Swedish (svenska)
  * @author Ainali
  * @author Jopparn
@@ -1394,6 +1460,7 @@ $messages['yi'] = array(
 );
 
 /** Simplified Chinese (中文（简体）‎)
+ * @author Hzy980512
  * @author Liuxinyu970226
  * @author Qiyue2001
  */
@@ -1421,4 +1488,25 @@ $messages['zh-hans'] = array(
 	'flow-error-hide-failure' => '隐藏此项失败。',
 	'flow-edit-title-submit' => '更改标题',
 	'flow-notification-rename' => '[$2 $3]的标题已被$1在[[$5|$6]]{{GENDER:$1|更改}}为“$4”。',
+	'flow-notification-link-text-view-post' => '浏览帖子',
+	'flow-notification-link-text-view-board' => '查看讨论版',
+	'flow-notification-reply-email-subject' => '$1回复了您的帖子',
+	'flow-notification-reply-email-batch-body' => '$1回复了您在$3的帖子$2',
+	'echo-category-title-flow-discussion' => '$1个讨论',
+	'echo-pref-tooltip-flow-discussion' => '在讨论版发生有关我的动作时通知我。',
+);
+
+/** Traditional Chinese (中文（繁體）‎)
+ * @author Cwlin0416
+ */
+$messages['zh-hant'] = array(
+	'flow-notification-reply' => '$1 {{GENDER:$1|已回覆}}您的 [$5 留言] 於 $2 的 "$4"。',
+	'flow-notification-reply-bundle' => '$1 與另外 $5 {{PLURAL:$6|個人|個人}}已{{GENDER:$1|回覆}}您的 [$4 留言] 於 $2 的 "$3"。',
+	'flow-notification-link-text-view-post' => '檢視留言',
+	'flow-notification-link-text-view-board' => '檢視討論版',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|已回覆}}您的留言',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|已回覆}}您的留言於 $2 的 "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 與另外 $4 {{PLURAL:$5|個人|個人}} {{GENDER:$1|已回覆}} 您的留言於 $2 的 "$3"',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|討論|討論}}',
+	'echo-pref-tooltip-flow-discussion' => '通知我，當有與我相關的動作發生在討論版時',
 );
