@@ -27,11 +27,8 @@ class WorkflowLoader {
 		if ( $pageTitle === null ) {
 			throw new \MWException( 'Invalid article requested' );
 		}
-		if ( $pageTitle && $pageTitle->mInterwiki ) {
+		if ( $pageTitle->mInterwiki ) {
 			throw new \MWException( 'Interwiki not implemented yet' );
-		}
-		if ( $pageTitle && $pageTitle->getArticleID() === 0 ) {
-			throw new \MWException( 'Can only load workflows for existing page. Page '.( $pageTitle->getPrefixedText() ). ' does not exist.' );
 		}
 
 		$this->storage = $storage;
@@ -75,7 +72,8 @@ class WorkflowLoader {
 		$found = $storage->find( array(
 			'workflow_definition_id' => $definition->getId(),
 			'workflow_wiki' => $title->isLocal() ? wfWikiId() : $title->getTransWikiID(),
-			'workflow_page_id' => $title->getArticleID(),
+			'workflow_namespace' => $title->getNamespace(),
+			'workflow_title_text' => $title->getDBkey(),
 		) );
 		if ( $found ) {
 			$workflow = reset( $found );

@@ -28,8 +28,8 @@ class TalkpageManager implements OccupationController {
 	 * @return boolean True if the talk page is occupied, False otherwise.
 	 */
 	public function isTalkpageOccupied( $title ) {
-		if ( ! $title || ! $title->exists() ) {
-			// Page does not exist
+		if ( ! $title ) {
+			// Invalid parameter
 			return false;
 		}
 
