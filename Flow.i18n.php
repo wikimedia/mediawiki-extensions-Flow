@@ -113,7 +113,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 
 	// Notification preference
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussion|Discussions}}',
-	'echo-pref-tooltip-flow-discussion' => 'Notify me when actions related to me occur in the disucssion board.',
+	'echo-pref-tooltip-flow-discussion' => 'Notify me when actions related to me occur in the discussion board.',
 );
 
 /** Message documentation (Message documentation)
