@@ -216,6 +216,7 @@ See also:
 * $1 - error message
 See also:
 * {{msg-mw|Flow-error-external-multi}}',
+	'flow-error-edit-restricted' => 'Used as error message when a user attempts to edit a post they do not have the permissions for.',
 	'flow-error-external-multi' => 'Used as error message. Parameters:
 * $1 - list of error messages
 See also:
@@ -246,7 +247,6 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 	'flow-error-restore-failure' => 'Used as error message when restoring a post.
 
 "this item" seems to refer "this post".',
-	'flow-error-edit-restricted' => "Used as error message when a user attempts to edit a post they do not have the permissions for.",
 	'flow-summaryedit-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-reply' => 'Used as comment when the new reply has been posted.',
@@ -274,38 +274,6 @@ See also:
 
 Parameters:
 * $1 - most significant unit of time since modification rendered by MWTimestamp::getHumanTimestamp',
-
-	'flow-notification-link-text-view-topic' => 'Link text in for the view topic button in a notification',
-	'flow-notification-edit-email-subject' => 'Subject line of notification E-mail for post being edited
-* $1 - Name of the user that edited the post',
-	'flow-notification-edit-email-batch-body' => 'E-mail notification for post being edited
-* $1 Name of the user that edited the post
-* $2 Name of the topic the edited post belongs to
-* $3 Title of the page the topic belongs to',
-	'flow-notification-edit-email-batch-bundle-body' => 'Email notification body when a user receives post edits from multiple users, this message is used in both single email and email digest.
-
-Parameters:
-* $1 - username of the person who replied
-* $2 - title of the topic
-* $3 - title for the page that the Flow board is attached to
-* $4 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
-* $5 - a number used for plural support
-See also:
-* {{msg-mw|Flow-notification-edit-bundle}}',
-	'flow-notification-rename-email-subject' => 'Subject line of notification E-mail for topic being renamed
-* $1 - Name of the user that renamed the topic',
-	'flow-notification-rename-email-batch-body' => 'E-mail notification for topic being renamed
-* $1 - Name of the user that renamed the topic
-* $2 - The original topic title
-* $3 - The new topic title
-* $4 - Title of the page the topic belongs to',
-	'flow-notification-newtopic-email-subject' => 'Subject line of notification E-mail for new topic creation
-* $1 - Name of the user that created a new topic',
-	'flow-notification-newtopic-email-batch-body' => 'E-Mail notification for new topic creation
-* $1 - Name of the user that created a new topic
-* $2 - The title of the new topic
-* $3 - Title of the page the topic belongs to',
-
 	'flow-notification-reply' => 'Notification text for when a user receives a reply. Parameters:
 * $1 - Username of the person who replied
 * $2 - Title of the topic
@@ -365,6 +333,7 @@ See also:
 {{Related|Flow-notification}}',
 	'flow-notification-link-text-view-post' => 'Label for button that links to a flow post.',
 	'flow-notification-link-text-view-board' => 'Label for button that links to a flow discussion board.',
+	'flow-notification-link-text-view-topic' => 'Link text in for the view topic button in a notification',
 	'flow-notification-reply-email-subject' => 'Email notification subject when a user receives a reply. Parameters:
 * $1 - username of the person who replied
 See also:
@@ -394,6 +363,35 @@ See also:
 * $1 - Username of the person who mentions other users
 * $2 - Title of the topic
 * $3 - Title for the page that the Flow board is attached to',
+	'flow-notification-edit-email-subject' => 'Subject line of notification E-mail for post being edited
+* $1 - Name of the user that edited the post',
+	'flow-notification-edit-email-batch-body' => 'E-mail notification for post being edited
+* $1 Name of the user that edited the post
+* $2 Name of the topic the edited post belongs to
+* $3 Title of the page the topic belongs to',
+	'flow-notification-edit-email-batch-bundle-body' => 'Email notification body when a user receives post edits from multiple users, this message is used in both single email and email digest.
+
+Parameters:
+* $1 - username of the person who replied
+* $2 - title of the topic
+* $3 - title for the page that the Flow board is attached to
+* $4 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
+* $5 - a number used for plural support
+See also:
+* {{msg-mw|Flow-notification-edit-bundle}}',
+	'flow-notification-rename-email-subject' => 'Subject line of notification E-mail for topic being renamed
+* $1 - Name of the user that renamed the topic',
+	'flow-notification-rename-email-batch-body' => 'E-mail notification for topic being renamed
+* $1 - Name of the user that renamed the topic
+* $2 - The original topic title
+* $3 - The new topic title
+* $4 - Title of the page the topic belongs to',
+	'flow-notification-newtopic-email-subject' => 'Subject line of notification E-mail for new topic creation
+* $1 - Name of the user that created a new topic',
+	'flow-notification-newtopic-email-batch-body' => 'E-Mail notification for new topic creation
+* $1 - Name of the user that created a new topic
+* $2 - The title of the new topic
+* $3 - Title of the page the topic belongs to',
 	'echo-category-title-flow-discussion' => 'This is a short title for notification category.  Parameters:
 * $1 - number of mentions, for PLURAL support
 {{Related|Echo-category-title}}
@@ -454,6 +452,7 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-reply-placeholder' => 'Klicke, um $1 zu {{GENDER:$1|antworten}}. Sei freundlich!',
 	'flow-reply-submit' => 'Antworten',
 	'flow-edit-post-submit' => 'Änderungen übertragen',
+	'flow-post-edited' => 'Beitrag {{GENDER:$1|bearbeitet}} von $1 $2',
 	'flow-post-action-view' => 'Permanentlink',
 	'flow-post-action-post-history' => 'Beitragsgeschichte',
 	'flow-post-action-censor-post' => 'Beitrag zensieren',
@@ -467,6 +466,7 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-error-http' => 'Beim Kontaktieren des Servers ist ein Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert.',
 	'flow-error-other' => 'Ein unerwarteter Fehler ist aufgetreten. Dein Beitrag wurde nicht gespeichert.',
 	'flow-error-external' => 'Beim Speichern deines Beitrags ist ein Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert.<br /><small>Die empfangene Fehlermeldung lautete: $1</small>',
+	'flow-error-edit-restricted' => 'Du bist nicht berechtigt, diesen Beitrag zu bearbeiten.',
 	'flow-error-external-multi' => 'Beim Speichern deines Beitrags sind Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert. <br /> $1',
 	'flow-error-missing-content' => 'Der Beitrag hat keinen Inhalt. Dieser ist erforderlich, um einen neuen Beitrag zu speichern.',
 	'flow-error-missing-title' => 'Das Thema hat keinen Titel. Dieser ist erforderlich, um ein neues Thema zu speichern.',
@@ -491,14 +491,22 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-last-modified' => 'Zuletzt geändert $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|antwortete}} auf deinen [$5 Beitrag] in „$2“ auf [[$3|$4]].',
 	'flow-notification-reply-bundle' => '$1 und {{PLURAL:$6|ein anderer|$5 andere}} {{GENDER:$1|antworteten}} auf deinen [$4 Beitrag] in $2 auf „$3“.',
-	'flow-notification-edit' => '$1 {{GENDER:$1|bearbeitete}} deinen [$5 Beitrag] in „$2“ auf [[$3|$4]].',
+	'flow-notification-edit' => '$1 {{GENDER:$1|bearbeitete}} einen [$5 Beitrag] in „$2“ auf [[$3|$4]].',
 	'flow-notification-newtopic' => '$1  {{GENDER:$1|erstellte}} ein [$5 neues Thema] auf [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|änderte}} den Titel von [$2 $3] nach „$4“ auf [[$5|$6]]',
 	'flow-notification-link-text-view-post' => 'Beitrag ansehen',
 	'flow-notification-link-text-view-board' => 'Brett ansehen',
+	'flow-notification-link-text-view-topic' => 'Thema ansehen',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|antwortete}} auf deinen Beitrag',
 	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|antwortete}} auf deinen Beitrag in $2 auf „$3“',
 	'flow-notification-reply-email-batch-bundle-body' => '$1 und {{PLURAL:$5|ein anderer|$4 andere}} {{GENDER:$1|antworteten}} auf deinen Beitrag in $2 auf „$3“',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|erwähnte}} dich auf $2',
+	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|bearbeitete}} deinen Beitrag',
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|bearbeitete}} deinen Beitrag in $2 auf der Seite „$3“',
+	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|benannte}} dein Thema um',
+	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|benannte}} dein Thema $2 in $3 auf der Seite „$4“ um',
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|erstellte}} ein neues Thema auf $2',
+	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|erstellte}} ein neues Thema mit dem Titel „$2“ auf $3',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Diskussion|Diskussionen}}',
 	'echo-pref-tooltip-flow-discussion' => 'Benachrichtige mich, wenn mich betreffende Aktionen auf dem Diskussionsbrett erscheinen.',
 );
@@ -608,7 +616,7 @@ $messages['fr'] = array(
 	'flow-last-modified' => 'Dernière modification $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|a répondu}} à votre [$5 note] sur $2 en [[$3|$4]].',
 	'flow-notification-reply-bundle' => '$1 et $5 {{PLURAL:$6|autre|autres}} {{GENDER:$1|ont répondu}} à votre [$4 note] concernant $2 sur « $3 ».',
-	'flow-notification-edit' => '$1 {{GENDER:$1|a modifié}} votre [$5 note] sur $2 en [[$3|$4]].',
+	'flow-notification-edit' => '$1 {{GENDER:$1|a modifié}} votre [$5 note] sur $2 en [[$3|$4]].', # Fuzzy
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|a créé}} un [$5 nouveau sujet] en [[$2|$3]] : $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|a modifié}} le titre de [$2 $3] en « $4 » sur [[$5|$6]].',
 	'flow-notification-link-text-view-post' => 'Afficher la note',
@@ -682,10 +690,18 @@ Acepta que unha hiperligazón ou un enderezo URL é recoñecemento abondo baixo 
 	'flow-paging-rev' => 'Temas máis recentes',
 	'flow-paging-fwd' => 'Temas máis vellos',
 	'flow-last-modified' => 'Última modificación $1',
-	'flow-notification-reply' => '$1 {{GENDER:$1|respondeu}} á súa [$5 mensaxe] en "$2" en "[[$3|$4]]".',
-	'flow-notification-edit' => '$1 {{GENDER:$1|editou}} a súa [$5 mensaxe] en "$2" en "[[$3|$4]]".',
+	'flow-notification-reply' => '$1 {{GENDER:$1|respondeu}} á súa [$5 mensaxe] "$2" en "$4".',
+	'flow-notification-reply-bundle' => '$1 e {{PLURAL:$6|outra persoa|outras $5 persoas}} {{GENDER:$1|responderon}} á súa [$4 mensaxe] "$2" en "$3".',
+	'flow-notification-edit' => '$1 {{GENDER:$1|editou}} a súa [$5 mensaxe] "$2" en "[[$3|$4]]".', # Fuzzy
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|creou}} un [$5 novo tema] en "[[$2|$3]]": "$4".',
 	'flow-notification-rename' => '$1 {{GENDER:$1|cambiou}} o título de "[$2 $3]" a "$4" en "[[$5|$6]]"',
+	'flow-notification-link-text-view-post' => 'Ver a mensaxe',
+	'flow-notification-link-text-view-board' => 'Ver o taboleiro',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|respondeu}} á súa mensaxe',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|respondeu}} á súa mensaxe "$2" en "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 e {{PLURAL:$5|outra persoa|outras $4 persoas}} {{GENDER:$1|responderon}} á súa mensaxe "$2" en "$3"',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Conversa|Conversas}}',
+	'echo-pref-tooltip-flow-discussion' => 'Notificádeme cando sucedan accións relacionadas comigo no taboleiro de conversas.',
 );
 
 /** Hebrew (עברית)
@@ -817,7 +833,7 @@ Tu accepta que un hyperligamine o URL suffice qua attribution sub le licentia Cr
 	'flow-last-modified' => 'Ultime modification circa $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|respondeva}} a tu [$5 message] in $2 super [[$3|$4]].',
 	'flow-notification-reply-bundle' => '$1 e $5 {{PLURAL:$6|altere|alteres}} {{GENDER:$1|respondeva}} a tu [$4 message] in $2 sur "$3".',
-	'flow-notification-edit' => '$1 {{GENDER:$1|modificava}} tu [$5 message] in $2 super [[$3|$4]].',
+	'flow-notification-edit' => '$1 {{GENDER:$1|modificava}} tu [$5 message] in $2 super [[$3|$4]].', # Fuzzy
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|creava}} un [$5 nove topico] super [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|cambiava}} le titulo de [$2 $3] a "$4" super [[$5|$6]].',
 	'flow-notification-link-text-view-post' => 'Vider message',
@@ -891,13 +907,20 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-paging-rev' => 'Discussioni più recenti',
 	'flow-paging-fwd' => 'Vecchie discussioni',
 	'flow-last-modified' => 'Ultima modifica $1',
-	'flow-notification-reply' => '$1 ha {{GENDER:$1|risposto}} al tuo [$5 messaggio] in $2 su [[$3|$4]].',
-	'flow-notification-edit' => '$1 ha {{GENDER:$1|modificato}} il tuo [$5 messaggio] in $2 su [[$3|$4]].',
+	'flow-notification-reply' => '$1 {{GENDER:$1|ha risposto}} al tuo [$5 messaggio] in $2 su "$4".',
+	'flow-notification-reply-bundle' => '$1 e {{PLURAL:$6|un altro|altri $5}} utenti {{GENDER:$1|hanno risposto}} al tuo [$4 messaggio] in $2 su "$3".',
+	'flow-notification-edit' => '$1 ha {{GENDER:$1|modificato}} il tuo [$5 messaggio] in $2 su [[$3|$4]].', # Fuzzy
 	'flow-notification-newtopic' => '$1 ha {{GENDER:$1|creato}} una [$5 nuova discussione] su [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 ha {{GENDER:$1|cambiato}} il titolo di [$2 $3] in "$4" su [[$5|$6]]',
+	'flow-notification-link-text-view-post' => 'Vedi messaggio',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|ha risposto}} al tuo messaggio',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|ha risposto}} al tuo messaggio in $2 su "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 e {{PLURAL:$5|un altro|altri $4}} {{GENDER:$1|hanno risposto}} al tuo messaggio in $2 su "$3"',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussione|Discussioni}}',
 );
 
 /** Japanese (日本語)
+ * @author Fryed-peach
  * @author Shirayuki
  */
 $messages['ja'] = array(
@@ -908,6 +931,7 @@ $messages['ja'] = array(
 自分の投稿内容を CC BY-SA 3.0 ライセンスおよび GFDL のもとで公開することに同意したことになります。この同意は取り消せません。
 また、あなたはハイパーリンクまたは URL がクリエイティブ・コモンズライセンスにおける帰属表示として十分であると認めたことになります。',
 	'flow-post-hidden' => '[非表示の投稿]',
+	'flow-post-hidden-by' => '$1 が$2に{{GENDER:$1|非表示化}}',
 	'flow-post-deleted' => '[削除された投稿]',
 	'flow-post-deleted-by' => '$1 が$2に{{GENDER:$1|削除}}',
 	'flow-post-actions' => '操作',
@@ -957,7 +981,7 @@ $messages['ja'] = array(
 	'flow-last-modified' => '最終更新 $1',
 	'flow-notification-reply' => '$1 が「$4」の $2 でのあなたの[$5 投稿]に{{GENDER:$1|返信しました}}。',
 	'flow-notification-reply-bundle' => '$1 と他 $5 {{PLURAL:$6|人}}が「$3」の $2 でのあなたの[$4 投稿]に{{GENDER:$1|返信しました}}。',
-	'flow-notification-edit' => '$1 が [[$3|$4]] の $2 でのあなたの[$5 投稿]を{{GENDER:$1|編集しました}}。',
+	'flow-notification-edit' => '$1 が [[$3|$4]] の $2 でのあなたの[$5 投稿]を{{GENDER:$1|編集しました}}。', # Fuzzy
 	'flow-notification-newtopic' => '$1 が [[$2|$3]] で[$5 新しい話題]を{{GENDER:$1|作成しました}}: $4',
 	'flow-notification-rename' => '$1 が [[$5|$6]] で [$2 $3] のページ名を「$4」に{{GENDER:$1|変更しました}}。',
 	'flow-notification-link-text-view-post' => '投稿を閲覧',
@@ -997,6 +1021,7 @@ $messages['lb'] = array(
 	'flow-newtopic-start-placeholder' => 'Klickt hei fir eng nei Diskussioun unzefänken. Sidd frëndlech!',
 	'flow-reply-placeholder' => 'Klickt fir dem $1 ze {{GENDER:$1|äntwerten}}. Sidd frëndlech!',
 	'flow-edit-post-submit' => 'Ännerunge späicheren',
+	'flow-post-action-view' => 'Permanentlink',
 	'flow-post-action-edit' => 'Änneren',
 	'flow-topic-action-edit-title' => 'Titel änneren',
 	'flow-error-missing-title' => "D'Thema huet keen Titel. Den Titel ass obligatoresch fir een neit Thema ze späicheren.",
@@ -1012,6 +1037,8 @@ $messages['lb'] = array(
 	'flow-paging-rev' => 'Méi rezent Themen',
 	'flow-paging-fwd' => 'Méi al Themen',
 	'flow-last-modified' => "Fir d'lescht geännert ongeféier $1",
+	'flow-notification-rename' => '$1 {{GENDER:$1|huet}} den Titel vu(n) [$2 $3] op "$4" op [[$5|$6]] geännert.',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Diskussioun|Diskussiounen}}',
 );
 
 /** Macedonian (македонски)
@@ -1078,7 +1105,7 @@ $messages['mk'] = array(
 	'flow-last-modified' => 'Последна измена: $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|ви одговори}} на вашата [$5 порака] во $2 на [[$3|$4]].',
 	'flow-notification-reply-bundle' => '$1 и $5 уште {{PLURAL:$6|еден друг|$5 други}} {{GENDER:$1|ви одговорија}} на вашата [$4 објава] во $2 на „$3“.',
-	'flow-notification-edit' => '$1 {{GENDER:$1|ви ја измени}} измени вашата [$5 порака] во $2 на [[$3|$4]].',
+	'flow-notification-edit' => '$1 {{GENDER:$1|ви ја измени}} измени вашата [$5 порака] во $2 на [[$3|$4]].', # Fuzzy
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|создаде}} [$5 нова тема] во [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 го {{GENDER:$1|смени}} насловот на [$2 $3] во „$4“ на [[$5|$6]]',
 	'flow-notification-link-text-view-post' => 'Погл. објавата',
@@ -1319,7 +1346,7 @@ $messages['sl'] = array(
 	'flow-error-invalid-postId' => 'Parameter »postId« je bil neveljaven. Navedene objave ni bilo mogoče najti.',
 	'flow-notification-reply' => '$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo [$5 objavo] v razdelku $2 na strani »$4«.',
 	'flow-notification-reply-bundle' => '$1 in $5 {{PLURAL:$6|drug|druga|drugi|drugih}} {{GENDER:$1|je odgovoril|je odgovorila|so odgovorili}} na vašo [$4 objavo] v razdelku $2 na strani »$3«.',
-	'flow-notification-edit' => '$1 {{GENDER:$1|je urejal|je urejala}} vašo [$5 objavo] v razdelku $2 na [[$3|$4]].',
+	'flow-notification-edit' => '$1 {{GENDER:$1|je urejal|je urejala}} vašo [$5 objavo] v razdelku $2 na [[$3|$4]].', # Fuzzy
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|je ustvaril|je ustvarila}} [$5 novo temo] na [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|je spremenil|je spremenila}} naslov [$2 $3] v »$4« na [[$5|$6]].',
 	'flow-notification-link-text-view-post' => 'Ogled objave',
@@ -1375,7 +1402,7 @@ $messages['sv'] = array(
 	'flow-paging-fwd' => 'Äldre ämnen',
 	'flow-last-modified' => 'Ändrades senast om $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|svarade}} på ditt [$5 inlägg] om $2 på [[$3|$4]].',
-	'flow-notification-edit' => '$1 {{GENDER:$1|redigerade}} ditt [$5 inlägg] om $2 på [[$3|$4]].',
+	'flow-notification-edit' => '$1 {{GENDER:$1|redigerade}} ditt [$5 inlägg] om $2 på [[$3|$4]].', # Fuzzy
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|skapade}} ett [$5 nytt ämne] på [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|ändrade}} rubriken för [$2 $3] till "$4" på [[$5|$6]].',
 );
@@ -1444,7 +1471,7 @@ $messages['uk'] = array(
 	'flow-last-modified' => 'Остання зміна про $1',
 	'flow-notification-reply' => '$1  {{GENDER:$1|відповів|відповіла}} на ваше [повідомлення $5] у $2 на [[$3|$4]].',
 	'flow-notification-reply-bundle' => '$1 та $5 {{PLURAL:$6|інший|інші|інших}} {{GENDER:$1|відповіли}} на ваш [допис $4] у $2 на "$3".',
-	'flow-notification-edit' => '$1  {{GENDER:$1|відредагував|відредагувала}} ваше [повідомлення $5] у $2 на [[$3|$4]].',
+	'flow-notification-edit' => '$1  {{GENDER:$1|відредагував|відредагувала}} ваше [повідомлення $5] у $2 на [[$3|$4]].', # Fuzzy
 	'flow-notification-newtopic' => '$1  {{GENDER:$1|створив|створила}} [нову тему $5] на [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1  {{GENDER:$1|змінив|змінила}} назву [$2 $3] на "$4" у [[$5|$6]]',
 	'flow-notification-link-text-view-post' => 'Переглянути допис',
@@ -1519,7 +1546,7 @@ Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều k
 	'flow-paging-fwd' => 'Chủ đề cũ hơn',
 	'flow-last-modified' => 'Thay đổi lần cuối cùng vào khoảng $1',
 	'flow-notification-reply' => '$1 đã {{GENDER:$1}}trả lời [$5 bài đăng của bạn] về $2 tại [[$3|$4]].',
-	'flow-notification-edit' => '$1 đã {{GENDER:$1}}sửa đổi [$5 bài đăng của bạn] về $2 tại [[$3|$4]].',
+	'flow-notification-edit' => '$1 đã {{GENDER:$1}}sửa đổi [$5 bài đăng của bạn] về $2 tại [[$3|$4]].', # Fuzzy
 	'flow-notification-newtopic' => '$1 đã {{GENDER:$1}}tạo ra [$5 chủ đề mới] tại [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 đã {{GENDER:$1}}thay đổi tiêu đề của [$2 $3] thành “$4” tại [[$5|$6]].',
 );
