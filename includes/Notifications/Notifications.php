@@ -24,9 +24,9 @@ $notifications = array(
 			'email' => false
 		),
 		'email-subject-message' => 'flow-notification-newtopic-email-subject',
-		'email-subject-params' => array(),
+		'email-subject-params' => array( 'agent', 'title' ),
 		'email-body-batch-message' => 'flow-notification-newtopic-email-batch-body',
-		'email-body-batch-params' => array(),
+		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
 		'payload' => array( 'comment-text' ),
 	) + $notificationTemplate,
 	'flow-post-reply' => array(
