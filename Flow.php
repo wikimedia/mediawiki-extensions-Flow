@@ -127,10 +127,8 @@ $wgSpecialPageGroups['Flow'] = 'unknown';
 
 // API modules
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
-$wgAutoloadClasses['ApiQueryRevisionContentFlow'] = "$dir/includes/api/ApiQueryRevisionContentFlow.php";
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
-$wgAPIListModules['flow-revision-content'] = 'ApiQueryRevisionContentFlow';
 $wgAPIListModules['flow'] = 'ApiQueryFlow';
 $wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';

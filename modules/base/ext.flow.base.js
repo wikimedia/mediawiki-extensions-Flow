@@ -131,6 +131,10 @@ mw.flow = {
 			return mw.flow.api.readBlock( pageName, topicId, 'topic', options );
 		},
 
+		'readSummary' : function( pageName, workflowId, options ) {
+			return mw.flow.api.readBlock( pageName, workflowId, 'summary', options );
+		},
+
 		/**
 		 * @param {string} actionName
 		 * @param {object} parameterList
