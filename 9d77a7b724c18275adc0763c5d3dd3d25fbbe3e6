@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_a6e2cea1",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T01:45:54Z",
+      "side": 1,
+      "message": "I might take a look.",
+      "parentUuid": "29433135_86cf9256",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_66cd4687",
         "filename": "Hooks.php",
         "patchSetId": 8
@@ -176,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_c6dfdad1",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T01:45:54Z",
+      "side": 1,
+      "message": "You use $wgContLang (content language, the language that the wiki\u0027s content is in)",
+      "parentUuid": "29433135_e627761f",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_26ac1ea1",
         "filename": "includes/Data/RecentChanges.php",
         "patchSetId": 8
@@ -205,6 +241,24 @@
       "side": 1,
       "message": "The actual root a post belongs to is only stored within the tree repository.  It could be found by recursive querying the post revisions, but tree repo should be more efficient than that.\n\nOn the upside the common case for this operation should be to fetch an array from memcache and peek at the first item on the list.  The memcache data may or may not already be in the application,  after a quick glance at the tree repo though it looks like it needs to be ported from BagOStuff to BufferedCache so it can avoid multiple requests for same data.",
       "parentUuid": "29433135_26ac1ea1",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_e6ecd695",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T01:45:54Z",
+      "side": 1,
+      "message": "Nod, makes sense to me.",
+      "parentUuid": "29433135_a6464ec1",
       "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -257,6 +311,24 @@
       "side": 1,
       "message": "I\u0027m almost tempted to change the comment field to a new name. At this point in time its more like \"The action performed which caused a new revision to be created\" which is very useful if you actually want to do something with in the onAfterInsert hook.",
       "parentUuid": "29433135_8693125a",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_06f2c26e",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T01:45:54Z",
+      "side": 1,
+      "message": "Ohhh, right. Yeah, that is very confusing. I was reading this line as part of the redaction itself.",
+      "parentUuid": "29433135_26e89eb5",
       "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
