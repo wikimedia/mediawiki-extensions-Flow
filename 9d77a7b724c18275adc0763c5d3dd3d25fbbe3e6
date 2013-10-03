@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_86cf9256",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-03T01:04:50Z",
+      "side": 1,
+      "message": "Unfortunatly no.  Aude told me they looked into enhanced and it was hard, so i\u0027ve kinda been avoiding looking.  But we really should.",
+      "parentUuid": "29433135_86ca326e",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_66cd4687",
         "filename": "Hooks.php",
         "patchSetId": 8
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_66fb8677",
+        "filename": "container.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-03T01:04:50Z",
+      "side": 1,
+      "message": "Seems possible, and its much easier to do this now that revisions record what action caused them to be created.",
+      "parentUuid": "29433135_a6c72e66",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_c6c43a64",
         "filename": "includes/Data/RecentChanges.php",
         "patchSetId": 8
@@ -64,6 +100,24 @@
       "writtenOn": "2013-10-03T00:44:33Z",
       "side": 1,
       "message": "It kinda sucks that we have to have all of these no-ops but I can\u0027t think of a better way to do it.",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_c6f27a98",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-03T01:04:50Z",
+      "side": 1,
+      "message": "The no-ops are kinda the OO way.  One way around it is to make smaller interfaces, or when i first wrote this OM there was a \u0027NullLifecycleHandler\u0027 which implements all of them null and other handlers can extend from it. When i shrank the handler interface from 8 to 4 methods i also pulled the null lifecycle handler, but i suppose we could bring it back.",
+      "parentUuid": "29433135_c6c43a64",
       "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -104,6 +158,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_e627761f",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-03T01:04:50Z",
+      "side": 1,
+      "message": "Hmm, yea actually this should get truncated before being inserted,  is it appropriate to use $wgLang-\u003etruncate since this will be potentially shown to many different languages?",
+      "parentUuid": "29433135_06a722c1",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_26ac1ea1",
         "filename": "includes/Data/RecentChanges.php",
         "patchSetId": 8
@@ -115,6 +187,24 @@
       "writtenOn": "2013-10-03T00:44:33Z",
       "side": 1,
       "message": "I figured the $row that was passed along might actually contain the tree information?",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_a6464ec1",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-03T01:04:50Z",
+      "side": 1,
+      "message": "The actual root a post belongs to is only stored within the tree repository.  It could be found by recursive querying the post revisions, but tree repo should be more efficient than that.\n\nOn the upside the common case for this operation should be to fetch an array from memcache and peek at the first item on the list.  The memcache data may or may not already be in the application,  after a quick glance at the tree repo though it looks like it needs to be ported from BagOStuff to BufferedCache so it can avoid multiple requests for same data.",
+      "parentUuid": "29433135_26ac1ea1",
       "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
