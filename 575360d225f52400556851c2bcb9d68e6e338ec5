@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29433135_66d8e6ee",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T02:28:10Z",
+      "side": 1,
+      "message": "* Missing PHPDocumenter comments\n* This should be getUsersForPosts because there are multiple users and multiple posts.",
+      "revId": "575360d225f52400556851c2bcb9d68e6e338ec5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_668aa6c2",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T02:28:10Z",
+      "side": 1,
+      "message": "This can probably be eliminated, and we can use generateUrl instead.",
+      "revId": "575360d225f52400556851c2bcb9d68e6e338ec5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
