@@ -121,6 +121,23 @@
     },
     {
       "key": {
+        "uuid": "29433135_c6c0ba30",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-03T00:53:45Z",
+      "side": 1,
+      "message": "this should have been end( $keys );",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_8693125a",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 8
@@ -132,6 +149,24 @@
       "writtenOn": "2013-10-03T00:44:33Z",
       "side": 1,
       "message": "I don\u0027t really like the idea of setting the comment on the object to the display text for that moderation state. I\u0027d prefer to replace it at display time.",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_26e89eb5",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-03T00:53:45Z",
+      "side": 1,
+      "message": "I\u0027m almost tempted to change the comment field to a new name. At this point in time its more like \"The action performed which caused a new revision to be created\" which is very useful if you actually want to do something with in the onAfterInsert hook.",
+      "parentUuid": "29433135_8693125a",
       "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
