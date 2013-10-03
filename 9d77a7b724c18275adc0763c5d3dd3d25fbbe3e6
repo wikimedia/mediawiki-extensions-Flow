@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29433135_86ca326e",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "Does this also work for the \"enhanced recent changes\"?",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_66cd4687",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "flow-recentchanges-line?",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_a6c72e66",
+        "filename": "container.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "I like the way you\u0027ve done this. Should we later integrate all of the NotificationController stuff in as well?",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_c6c43a64",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "It kinda sucks that we have to have all of these no-ops but I can\u0027t think of a better way to do it.",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_e6a136ae",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "Stick them in rc_params?",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_06a722c1",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "I\u0027m very nervous about passing content along. I know in most cases it will fit in a BLOB, but it seems like it would bloat the size of the recentchanges table quite a bit. As I understand it, it\u0027s very important to watchlist performance that the recentchanges table fits in memory.",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_26ac1ea1",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "I figured the $row that was passed along might actually contain the tree information?",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_8693125a",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "I don\u0027t really like the idea of setting the comment on the object to the display text for that moderation state. I\u0027d prefer to replace it at display time.",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_a679ee2d",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "Should use UrlGenerator",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_867cf21d",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "Should use UrlGenerator",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_667f0613",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "Should use UrlGenerator",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_468a0a1b",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "I think this function already exists, as Skin::userLink and Skin::userToolLinks",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29433135_2685fe0a",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-03T00:44:33Z",
+      "side": 1,
+      "message": "You should use UrlGenerator for this.",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
