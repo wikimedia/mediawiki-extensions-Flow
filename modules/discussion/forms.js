@@ -152,7 +152,7 @@ $( document ).on( 'flow_init', function ( e ) {
 						)
 						.insertAfter( $contentContainer );
 
-					mw.flow.editor.load( $postForm.find( 'textarea' ), postId, 'PostRevision' );
+					mw.flow.editor.load( $postForm.find( 'textarea' ), data[0].content['*'] );
 
 					$contentContainer.hide();
 

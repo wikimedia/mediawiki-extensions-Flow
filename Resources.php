@@ -9,7 +9,10 @@ $flowResourceTemplate = array(
 $wgResourceModules += array(
 	'ext.flow.base' => $flowResourceTemplate + array(
 		// 'styles' => 'base/ext.flow.base.css',
-		'scripts' => 'base/ext.flow.base.js',
+		'scripts' => array(
+			'base/ext.flow.base.js',
+			'base/ui-functions.js',
+		),
 		'dependencies' => array(
 			'mediawiki.api',
 			'jquery.json',
@@ -29,7 +32,6 @@ $wgResourceModules += array(
 			'discussion/agora2-override.css',
 		),
 		'scripts' => array(
-			'discussion/ui-functions.js',
 			'discussion/ui.js',
 			'discussion/forms.js',
 			'discussion/paging.js',

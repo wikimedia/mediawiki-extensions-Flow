@@ -3,10 +3,12 @@
 
 	$( function () {
 		var $form = $( '.flow-summary-form' ),
-			$textarea = $form.find( 'textarea' );
+			$textarea = $form.find( 'textarea' ),
+			workflowId = $form.flow( 'getTopicWorkflowId' ),
+			pageName = $form.closest( '.flow-container' ).data( 'page-title' );
 
 		// convert text-area into editor
-		mw.flow.editor.load( $textarea, $textarea.data( 'summary-id' ), 'Summary' );
+		mw.flow.editor.load( $textarea, $textarea.val() );
 
 		// when submitting the form, grab the editor's content
 		$form.submit( function () {
