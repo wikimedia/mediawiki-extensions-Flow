@@ -36,16 +36,15 @@
 
 		/**
 		 * @param {jQuery} $node
-		 * @param {string} [id] 32-char rev_id, to load existing content
-		 * @param {string} [container], to load existing content
+		 * @param {string} [content] Existing content to load
 		 */
-		load: function ( $node, id, container ) {
+		load: function ( $node, content ) {
 			/**
 			 * When calling load(), init() may nog yet have completed loading the
 			 * dependencies. To make sure it doesn't break, this will in interval,
 			 * check for it and only start loading once initialization is complete.
 			 */
-			var load = function ( $node, id, container ) {
+			var load = function ( $node, content ) {
 				if ( mw.flow.editor.editor === null ) {
 					return;
 				} else {
@@ -57,27 +56,13 @@
 					return;
 				}
 
-				if ( id && container ) {
-					new mw.Api()
-						.get( {
-							action: 'query',
-							list: 'flow-revision-content',
-							revid: id, // e.g. '05021b0a3015fc3eb5dbb8f6b11bc701'
-							revcontainer: container, // e.g. 'PostRevision'
-							revformat: mw.flow.editor.getFormat() // e.g. 'html'
-						} )
-						.done( function ( response ) {
-							mw.flow.editor.create( $node, response.query['flow-revision-content'].content );
-						} )
-						.fail( function () {
-							// @todo: proper error handling
-							alert( 'Could not fetch content' );
-						} );
-				} else {
-					mw.flow.editor.create( $node, '' );
+				if ( ! content ) {
+					content = '';
 				}
+
+				mw.flow.editor.create( $node, content );
 			},
-			interval = setInterval( load.bind( this, $node, id, container ), 10 );
+			interval = setInterval( load.bind( this, $node, content ), 10 );
 		},
 
 		/**
