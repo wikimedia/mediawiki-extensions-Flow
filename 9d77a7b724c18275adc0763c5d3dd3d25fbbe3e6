@@ -159,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "29433135_2cecfd8f",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-03T20:27:28Z",
+      "side": 1,
+      "message": "lol, well yes thats what i did :)  I was more thinking about how we could go from a uuid and find the related recentchanges, but thats not going to be possible.  When we do the moderation/oversight stuff for recentchanges we will probably want to stick the appropriate rc_id in flow_revision table so we know where to look.",
+      "parentUuid": "29433135_e6a136ae",
+      "revId": "9d77a7b724c18275adc0763c5d3dd3d25fbbe3e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29433135_06a722c1",
         "filename": "includes/Data/RecentChanges.php",
         "patchSetId": 8
