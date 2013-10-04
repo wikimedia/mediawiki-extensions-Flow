@@ -17,6 +17,9 @@ echo Html::input(
 	)
 );
 
+// @Todo - Update href to a real link for no-js support
+echo Html::element( 'a', array( 'class' => 'flow-new-topic-link', 'href' => '#' ), wfMessage( 'flow-newtopic-start-placeholder' )->text() );
+
 if ( $block->hasErrors( 'content' ) ) {
 	echo '<p>' . $block->getError( 'content' )->escaped() . '</p>';
 }
