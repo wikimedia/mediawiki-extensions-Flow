@@ -107,6 +107,11 @@
 
 				mw.flow.editor.load( $( '.flow-newtopic-content' ) );
 			} );
+		$container.find( '.flow-new-topic-link' ).click ( function( e ) {
+			e.preventDefault();
+			$container.find( '.flow-newtopic-title' ).trigger( 'click' ).focus();
+			$( this ).hide();
+		} );
 
 		$( '<a />' )
 			.attr( 'href', '#' )
@@ -131,6 +136,7 @@
 						$form.find( '.flow-error' )
 							.remove();
 					} );
+				$container.find( '.flow-new-topic-link' ).show();
 			} )
 			.after( ' ' )
 			.insertBefore( $container.find( '.flow-newtopic-form input[type=submit]' ) );
