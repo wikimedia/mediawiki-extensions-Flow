@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_5f8f2f76",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-04T16:01:21Z",
+      "side": 1,
+      "message": "In https://gerrit.wikimedia.org/r/#/c/86856/, I had started this mediawiki.ui in Flow.\n\nIt\u0027s basically where I\u0027ll be putting CSS that may be useful to port to MW core\u0027s mediawiki.ui.\nOnce the new design has been implemented, we should look into how these additions/changes can be folded to core.\nIt\u0027s easier to keep these inside of Flow for now, otherwise applying the new design will require jugling multiple patches in multiple projects.\n\nErik has been porting the SCSS I had been writing to LESS, which seems to be where we\u0027re moving towards, and had only in part ported over these mediawiki.ui overrides. For now, I\u0027ll keep mediawiki.ui changes in SCSS though, but it makes sense to have Flow-specific code be LESS.",
+      "parentUuid": "0932edd2_9e8b6d18",
+      "revId": "79838498365af5610a9c72f240da0f2311cdf46e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_deaec581",
         "filename": "Resources.php",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_7f8cf380",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-04T16:01:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0932edd2_deaec581",
+      "revId": "79838498365af5610a9c72f240da0f2311cdf46e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_9e10cdac",
         "filename": "Resources.php",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2013-10-04T01:44:23Z",
       "side": 1,
       "message": "all these comments should be \"loaded by JS\", not \"via JS\", because there\u0027s no intermediary.  Loading in PHP still results in script tags with executable code, thus \"via JS\" applies to it as well.",
+      "revId": "79838498365af5610a9c72f240da0f2311cdf46e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_dfa15ffc",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-04T16:01:21Z",
+      "side": 1,
+      "message": "There actually is an intermediary: ext.flow.editor.js (L32)\n\nThis one will load the specific editor (e.g. ext.flow.editors.visualeditor), which basically is a dependency here, but since there are multiple possible editors, I\u0027m not listing them here because I don\u0027t want all to be loaded, just one.\n\nThought I\u0027d leave this comment here to be more clear, but it seems to be causing confusion instead :)",
+      "parentUuid": "0932edd2_9e10cdac",
       "revId": "79838498365af5610a9c72f240da0f2311cdf46e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
