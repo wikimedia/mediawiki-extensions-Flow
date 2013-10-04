@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_9e8b6d18",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-04T01:44:23Z",
+      "side": 1,
+      "message": "You want to separate out those CSS modules that appear on the page with or without JS, and add them separately to the page using AddModuleStyles().\n\nThe initial mediawiki.ui in core is entirely CSS-only; there will be (and already is, in marktraceur\u0027s Agora checkbox patch, a \u0027mediawiki.ui.js\u0027 module of JS and CSS.\n\nI don\u0027t see where you\u0027re loading the rest of mediawiki.ui, like modules/mediawiki.ui/components/buttons.less and .../mixins/forms.less.  Were you going to redefine that module using the .less files?",
+      "revId": "79838498365af5610a9c72f240da0f2311cdf46e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_deaec581",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-04T01:44:23Z",
+      "side": 1,
+      "message": "I thought you were replacing mediawiki.ui :-)\n\nAs I mention above, the core \u0027mediawiki.ui\u0027 module should be added to the page using addModuleStyles(). Don\u0027t put it as a dependency here, see https://www.mediawiki.org/wiki/ResourceLoader/Developing_with_ResourceLoader#CSS_2",
+      "revId": "79838498365af5610a9c72f240da0f2311cdf46e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_9e10cdac",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-04T01:44:23Z",
+      "side": 1,
+      "message": "all these comments should be \"loaded by JS\", not \"via JS\", because there\u0027s no intermediary.  Loading in PHP still results in script tags with executable code, thus \"via JS\" applies to it as well.",
+      "revId": "79838498365af5610a9c72f240da0f2311cdf46e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
