@@ -116,12 +116,39 @@
 	}
 }
 
-.flow-newtopic-form {
-	.flow-newtopic-title {
-		font-weight: bold;
-	}
+.flow-new-topic-container {
+	.flow-newtopic-form {
+		.flow-newtopic-title {
+			font-weight: bold;
+		}
 
-	.flow-post-form-controls {
-		text-align: right;
+		.flow-post-form-controls {
+			text-align: right;
+		}
+
+		.flow-new-topic-link {
+			/* @embed */
+			background-image: url("../images/createtopic_normal.png");
+			/* @embed */
+			background-image: -webkit-linear-gradient(transparent, transparent), url("../images/createtopic_normal.svg");
+			/* @embed */
+			background-image: -moz-linear-gradient(transparent, transparent), url("../images/createtopic_normal.svg");
+			/* @embed */
+			background-image: linear-gradient(transparent, transparent), url("../images/createtopic_normal.svg");
+			background-position: center center;
+			background-size: 25px auto;
+			background-repeat: no-repeat;
+		}
+
+		.flow-new-topic-link:hover {
+			/* @embed */
+			background-image: url("../images/createtopic_hover.png");
+			/* @embed */
+			background-image: -webkit-linear-gradient(transparent, transparent), url("../images/createtopic_hover.svg");
+			/* @embed */
+			background-image: -moz-linear-gradient(transparent, transparent), url("../images/createtopic_hover.svg");
+			/* @embed */
+			background-image: linear-gradient(transparent, transparent), url("../images/createtopic_hover.svg");
+		}
 	}
 }
