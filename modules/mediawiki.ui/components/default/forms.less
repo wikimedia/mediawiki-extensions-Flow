@@ -1,4 +1,7 @@
 // overwrite core .mw-ui-input, which is changed in mixins/_forms.scss
+
+@import "../../mixins/forms.less";
+
 .mw-ui-input {
-    @include agora-field-styling; // mixins/_forms.scss
+    .agora-field-styling();
 }

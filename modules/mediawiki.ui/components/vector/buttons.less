@@ -1,8 +1,12 @@
+
+@import "../../settings/colors.less";
+@import "../../mixins/forms.less";
+
 .mw-ui-button {
     // Button colors determined by function.
     // -----------------------------------------
     &.mw-ui-deemphasized {
-        @include buttonColors($agoraWhite);
+        .buttonColors(@agoraWhite);
         color: #58595B;
         border: 1px solid darken($agoraWhite, 15%);
     }

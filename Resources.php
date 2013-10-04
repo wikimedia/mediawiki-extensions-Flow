@@ -9,7 +9,7 @@ $flowResourceTemplate = array(
 $wgResourceModules += array(
 	'ext.flow.base' => $flowResourceTemplate + array(
 		'styles' => array(
-			'mediawiki.ui/override.css',
+			'mediawiki.ui/settings/colors.less',
 		),
 		'scripts' => array(
 			'base/ext.flow.base.js',
@@ -23,7 +23,7 @@ $wgResourceModules += array(
 		),
 	),
 	'ext.flow.summary' => $flowResourceTemplate + array(
-		'styles' => 'summary/base.css',
+		'styles' => 'summary/base.less',
 		'scripts' => 'summary/summary.js',
 		'dependencies' => array(
 			'ext.flow.editor',
@@ -31,7 +31,14 @@ $wgResourceModules += array(
 	),
 	'ext.flow.discussion' => $flowResourceTemplate + array(
 		'styles' => array(
-			'discussion/base.css',
+			'discussion/base.less',
+			'discussion/components/actionboxes.less',
+			'discussion/components/container.less',
+			'discussion/components/overlay.less',
+			'discussion/components/post.less',
+			'discussion/components/summary.less',
+			'discussion/components/timestamp.less',
+			'discussion/components/topic.less',
 		),
 		'scripts' => array(
 			'discussion/ui.js',
