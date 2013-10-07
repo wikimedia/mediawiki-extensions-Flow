@@ -915,6 +915,7 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-reply-placeholder' => 'Clicca per {{GENDER:$1|rispondere}} a $1. Sii gentile!',
 	'flow-reply-submit' => 'Invia risposta',
 	'flow-edit-post-submit' => 'Invia modifiche',
+	'flow-post-edited' => 'Messaggio {{GENDER:$1|modificato}} da $1 $2',
 	'flow-post-action-view' => 'Link permanente',
 	'flow-post-action-post-history' => 'Cronologia del messaggio',
 	'flow-post-action-censor-post' => 'Censura messaggio',
@@ -928,6 +929,7 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-error-http' => 'Si è verificato un errore durante la comunicazione con il server. Il tuo messaggio non è stato salvato.',
 	'flow-error-other' => 'Si è verificato un errore imprevisto. Il tuo messaggio non è stato salvato.',
 	'flow-error-external' => 'Si è verificato un errore durante il salvataggio del tuo messaggio. Il tuo messaggio, perciò, non è stato salvato.<br /><small>Il messaggio di errore ricevuto è: $1</small>',
+	'flow-error-edit-restricted' => 'Non è consentito modificare questo messaggio.',
 	'flow-error-external-multi' => 'Si sono verificati errori durante il salvataggio del tuo messaggio. Il tuo messaggio, perciò, non è stato salvato.<br />$1',
 	'flow-error-missing-content' => 'Il tuo messaggio non ha contenuto. Un minimo di contenuto è necessario per poter salvare un nuovo messaggio.',
 	'flow-error-missing-title' => 'La discussione non ha titolo. Serve un titolo per salvare una nuova discussione.',
@@ -952,14 +954,28 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-last-modified' => 'Ultima modifica $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|ha risposto}} al tuo [$5 messaggio] in $2 su "$4".',
 	'flow-notification-reply-bundle' => '$1 e {{PLURAL:$6|un altro|altri $5}} utenti {{GENDER:$1|hanno risposto}} al tuo [$4 messaggio] in $2 su "$3".',
-	'flow-notification-edit' => '$1 ha {{GENDER:$1|modificato}} il tuo [$5 messaggio] in $2 su [[$3|$4]].', # Fuzzy
+	'flow-notification-edit' => '$1 ha {{GENDER:$1|modificato}} un [$5 messaggio] in $2 su [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 e {{PLURAL:$6|un altro|altri $5}} utenti {{GENDER:$1|hanno modificato}} un [$4 messaggio] in $2 su "$3".',
 	'flow-notification-newtopic' => '$1 ha {{GENDER:$1|creato}} una [$5 nuova discussione] su [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 ha {{GENDER:$1|cambiato}} il titolo di [$2 $3] in "$4" su [[$5|$6]]',
+	'flow-notification-mention' => '$1 ti {{GENDER:$1|ha menzionato}} nel suo [$2 messaggio] in "$3" su "$4"',
 	'flow-notification-link-text-view-post' => 'Vedi messaggio',
+	'flow-notification-link-text-view-board' => 'Vedi bacheca',
+	'flow-notification-link-text-view-topic' => 'Vedi discussione',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|ha risposto}} al tuo messaggio',
 	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|ha risposto}} al tuo messaggio in $2 su "$3"',
 	'flow-notification-reply-email-batch-bundle-body' => '$1 e {{PLURAL:$5|un altro|altri $4}} {{GENDER:$1|hanno risposto}} al tuo messaggio in $2 su "$3"',
+	'flow-notification-mention-email-subject' => '$1 ti {{GENDER:$1|ha menzionato}} su $2',
+	'flow-notification-mention-email-batch-body' => '$1 ti {{GENDER:$1|ha menzionato}} nel suo messaggio in "$2" su "$3"',
+	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|ha modificato}} il tuo messaggio',
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|ha modificato}} il tuo messaggio in $2 su "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 e {{PLURAL:$5|un altro|altri $4}} utenti {{GENDER:$1|hanno modificato}} un messaggio in $2 su "$3"',
+	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|ha rinominato}} la tua discussione',
+	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|ha rinominato}} la discussione $2 in $3 su "$4"',
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|ha creato}} una nuova discussione su $2',
+	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|ha creato}} una nuova discussione "$2" su $3',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussione|Discussioni}}',
+	'echo-pref-tooltip-flow-discussion' => 'Avvisami quando vengono eseguite azioni connesse a me nella bacheca delle discussioni.',
 );
 
 /** Japanese (日本語)
@@ -1051,11 +1067,16 @@ $messages['ja'] = array(
 );
 
 /** Korean (한국어)
+ * @author Hym411
  * @author 아라
  */
 $messages['ko'] = array(
 	'flow-desc' => '워크플로우 관리 시스템',
 	'flow-specialpage' => '$1 &ndash; 플로우',
+	'flow-error-edit-restricted' => '이 문서의 편집을 허용하지 않습니다.',
+	'flow-notification-link-text-view-post' => '게시물 보기',
+	'flow-notification-reply-email-subject' => '$1이 당신의 글에 덧글을 달았습니다.',
+	'flow-notification-rename-email-subject' => '$1 이 당신의 주제를 바꾸었습니다.',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
