@@ -1,0 +1,27 @@
+@import 'settings/colors.less';
+@import 'mediawiki.mixins.less';
+
+#flow-summary {
+	padding-bottom: 30px;
+
+	#flow-summary-content {
+		font-weight: bold;
+		line-height: 25px;
+		color: @summary-content-color;
+	}
+
+	.flow-summary-edit-link {
+		background-position: center;
+		background-size: 20px auto;
+		background-repeat: no-repeat;
+		.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
+
+		&:hover {
+			.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
+		}
+	}
+
+	.flow-edit-summary-controls{
+		text-align: right;
+	}
+}
