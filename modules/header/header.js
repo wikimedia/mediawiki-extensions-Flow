@@ -2,7 +2,7 @@
 	'use strict';
 
 	$( function () {
-		var $form = $( '.flow-summary-form' );
+		var $form = $( '.flow-header-form' );
 
 		// edit-form is showing
 		if ( $form.length > 0 ) {

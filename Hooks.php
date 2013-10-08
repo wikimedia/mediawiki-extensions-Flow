@@ -27,9 +27,13 @@ class FlowHooks {
 		$baseSQLFile = "$dir/flow.sql";
 		$updater->addExtensionTable( 'flow_revision', $baseSQLFile );
 		$updater->addExtensionField( 'flow_revision', 'rev_last_edit_id', "$dir/db_patches/patch-revision_last_editor.sql" );
-		if ( $updater->getDB()->getType() !== 'sqlite' ) {
+		if ( $updater->getDB()->getType() === 'sqlite' ) {
+			$updater->modifyExtensionField( 'flow_subscription', 'subscription_user_id', "$dir/db_patches/patch-subscription_user_id.sqlite.sql" );
+		} else {
 			// sqlite doesn't support alter table change, it also considers all types the same so
 			// this patch doesn't matter to it.
+			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id', "$dir/db_patches/patch-summary2header.sql" );
+			// renames columns, alternate patch is above for sqlite
 			$updater->modifyExtensionField( 'flow_subscription', 'subscription_user_id', "$dir/db_patches/patch-subscription_user_id.sql" );
 		}
 

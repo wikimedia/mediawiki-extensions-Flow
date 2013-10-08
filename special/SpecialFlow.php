@@ -1,9 +1,5 @@
 <?php
 
-use Flow\Block\SummaryBlock;
-use Flow\Block\TopicBlock;
-use Flow\Block\TopicListBlock;
-use Flow\Model\Definition;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\WorkflowLoader;

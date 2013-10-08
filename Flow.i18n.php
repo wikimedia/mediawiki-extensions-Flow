@@ -10,7 +10,7 @@ $messages = array();
 $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-summary-link' => 'Edit summary',
+	'flow-edit-header-link' => 'Edit header',
 
 	'flow-post-moderated-toggle-show' => '[Show]',
 	'flow-post-moderated-toggle-hide' => '[Hide]',
@@ -70,7 +70,7 @@ $messages['en'] = array(
 	'flow-error-invalid-postId' => '"postId" parameter was invalid. The specified post could not be found.',
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
 
-	'flow-summaryedit-submit' => 'Save summary',
+	'flow-headeredit-submit' => 'Save header',
 
 	'flow-edit-title-submit' => 'Change title',
 
@@ -79,8 +79,8 @@ $messages['en'] = array(
 	'flow-rev-message-new-post' => 'Topic created',
 	'flow-rev-message-hid-post' => 'Hid post',
 	'flow-rev-message-edit-title' => 'Edited topic title',
-	'flow-rev-message-create-summary' => 'Created summary',
-	'flow-rev-message-edit-summary' => 'Edited summary',
+	'flow-rev-message-create-header' => 'Created header',
+	'flow-rev-message-edit-header' => 'Edited header',
 	'flow-rev-message-restored-post' => 'Unhid post',
 	'flow-rev-message-hid-post' => 'Hid post',
 	'flow-rev-message-deleted-post' => 'Deleted post',
@@ -149,6 +149,9 @@ $messages['qqq'] = array(
 {{Identical|Show}}',
 	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post.
 {{Identical|Hide}}',
+	'flow-disclaimer' => 'Used as disclaimer text at the bottom of the form.',
+	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
+	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post',
 	'flow-post-hidden' => 'Used as username/content if the post was hidden.
 
 Translate this as "post which was hidden".',
@@ -274,15 +277,15 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 	'flow-error-restore-failure' => 'Used as error message when restoring a post.
 
 "this item" seems to refer "this post".',
-	'flow-summaryedit-submit' => 'Used as label for the Submit button.',
+	'flow-headeredit-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited',
 	'flow-rev-message-reply' => 'Used as a revision comment when a new reply has been posted.',
 	'flow-rev-message-new-post' => 'Used as revision comment when the topic has been created.',
 	'flow-rev-message-hid-post' => 'Used as revision comment when a post has been hidden',
 	'flow-rev-message-edit-title' => 'Used as revision comment when a post has been edited',
-	'flow-rev-message-create-summary' => 'Used as revision comment when a summary has been created',
-	'flow-rev-message-edit-summary' => 'Used as revision comment when a summary has been edited',
+	'flow-rev-message-create-header' => 'Used as revision comment when a header has been created',
+	'flow-rev-message-edit-header' => 'Used as revision comment when a header has been edited',
 	'flow-rev-message-restored-post' => 'Used as revision comment when a post has been restored(un-hidden)',
 	'flow-rev-message-deleted-post' => 'Used as revision comment when a post has been deleted',
 	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been censored(oversighted)',

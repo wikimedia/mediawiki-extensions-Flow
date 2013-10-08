@@ -70,7 +70,7 @@ abstract class RecentChanges implements LifecycleHandler {
 	}
 }
 
-class SummaryRecentChanges extends RecentChanges {
+class HeaderRecentChanges extends RecentChanges {
 	public function __construct( ManagerGroup $storage, Language $contLang ) {
 		$this->storage = $storage;
 		$this->contLang = $contLang;
@@ -80,7 +80,7 @@ class SummaryRecentChanges extends RecentChanges {
 		$workflowId = $object->getWorkflowId();
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 		if ( !$workflow ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow for summary " . $object->getRevisionId()->getHex() );
+			wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow for header " . $object->getRevisionId()->getHex() );
 			return;
 		}
 
