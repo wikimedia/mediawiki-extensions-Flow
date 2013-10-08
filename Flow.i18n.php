@@ -767,7 +767,7 @@ $messages['he'] = array(
 	'flow-newtopic-header' => 'הוספת נושא חדש',
 	'flow-newtopic-save' => 'נוספת נושא',
 	'flow-newtopic-start-placeholder' => 'יש ללחוץ כאן כדי להתחיל דיון חדש. זה צריך להיות משהו נחמד!',
-	'flow-reply-placeholder' => 'יש ללחוץ כדי לענות ל{{GRAMMAR:תחילית|$1}}. נא לכתוב דברים נחמדים!',
+	'flow-reply-placeholder' => 'יש ללחוץ כדי לענות ל{{GRAMMAR:תחילית|$1}}. נא לכתוב דברים נחמדים!', # Fuzzy
 	'flow-reply-submit' => 'שליחת תשובה',
 	'flow-edit-post-submit' => 'שליחת שינויים',
 	'flow-post-action-view' => 'קישור קבוע',
@@ -786,11 +786,11 @@ $1',
 	'flow-error-missing-content' => 'ברשומה אין תוכן. דרוש תוכן כדי לשמור רשומה חדשה.',
 	'flow-error-missing-title' => 'לנושא אין כותרת. דרושה כותרת כדי לשמור נושא חדש.',
 	'flow-error-parsoid-failure' => 'לא ניתן לפענח את התוכן עקב כשל בפרסואיד.',
-	'flow-error-missing-replyto' => 'לא נשלח פרמטר replyTo. הפרמטר הזה דרוש לפעולת "reply".',
-	'flow-error-invalid-replyto' => 'פרמטר replyTo שנשלח היה בלתי־תקין. לא נמצאה הרשומה שצוינה.',
+	'flow-error-missing-replyto' => 'לא נשלח פרמטר replyTo. הפרמטר הזה דרוש לפעולת "reply".', # Fuzzy
+	'flow-error-invalid-replyto' => 'פרמטר replyTo שנשלח היה בלתי־תקין. לא נמצאה הרשומה שצוינה.', # Fuzzy
 	'flow-error-delete-failure' => 'מחירת הפריט הזה נכשלה.',
-	'flow-error-missing-postId' => 'לא ניתן פרמטר postId. הפרמטר הזה דרוש כדי לשנות רשומה.',
-	'flow-error-invalid-postId' => 'פרמטר postId שנשלח היה בלתי־תקין. הרשומה לא נמצאה.',
+	'flow-error-missing-postId' => 'לא ניתן פרמטר postId. הפרמטר הזה דרוש כדי לשנות רשומה.', # Fuzzy
+	'flow-error-invalid-postId' => 'פרמטר postId שנשלח היה בלתי־תקין. הרשומה לא נמצאה.', # Fuzzy
 	'flow-error-restore-failure' => 'שחזור הפריט נכשל.',
 	'flow-summaryedit-submit' => 'שמירת סיכום',
 	'flow-edit-title-submit' => 'שינוי כותרת',
@@ -799,7 +799,6 @@ $1',
 	'flow-topic-history' => 'היסטוריית הנושא',
 	'flow-comment-restored' => 'הערה משוחזרת',
 	'flow-comment-deleted' => 'הערה מחוקה',
-	'flow-months-ago' => 'לפני {{PLURAL:$1|חודש|חודשיים|$1 חודשים}}',
 );
 
 /** Armenian (Հայերեն)
@@ -808,7 +807,7 @@ $1',
 $messages['hy'] = array(
 	'flow-post-deleted-by' => '$1-ը {{GENDER:$1|ջնջեց}} $2',
 	'flow-reply-placeholder' => 'Սեղմեք {{GENDER:$1|պատասխանել}} $1-ում: Կլինի լա՜վ',
-	'flow-notification-edit' => '$1՝ {{GENDER:$1|խմբագրեց}} ձեր [$5 գրառում(ներ)ը] $2-ում [[$3|$4]]ի վրա:',
+	'flow-notification-edit' => '$1՝ {{GENDER:$1|խմբագրեց}} ձեր [$5 գրառում(ներ)ը] $2-ում [[$3|$4]]ի վրա:', # Fuzzy
 	'flow-notification-rename' => '$1՝ {{GENDER:$1|փոխեց}} վերնագրիրը [$2 $3]-ի "$4"-ում [[$5|$6]]-ի վրա:',
 );
 
@@ -1323,11 +1322,11 @@ $messages['oc'] = array(
 	'flow-edit-summary-link' => 'Resumit',
 	'flow-disclaimer' => "En clicant sul boton « Apondre un messatge », acceptatz nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr condicions d'utilizacion] e acceptatz de plaçar irrevocablament vòstra contribucion jos [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licéncia Creative Commons paternitat-partiment de las condicions inicialas a l'identica 3.0] e [http://www.gnu.org/copyleft/fdl.html GFDL]. Acceptatz d’èsser creditat pels reütilizaires al minimum via un iperligam o una URL jos la licéncia Creative Commons.",
 	'flow-post-hidden' => '[nòta amagada]',
-	'flow-post-hidden-by' => 'Amagat per $1 $2',
+	'flow-post-hidden-by' => 'Amagat per $1 $2', # Fuzzy
 	'flow-post-deleted' => '[messatge suprimit]',
-	'flow-post-deleted-by' => 'Suprimit per $1 $2',
+	'flow-post-deleted-by' => 'Suprimit per $1 $2', # Fuzzy
 	'flow-post-censored' => '[nòta censurada]',
-	'flow-post-censored-by' => 'Censurat per $1 $2',
+	'flow-post-censored-by' => 'Censurat per $1 $2', # Fuzzy
 	'flow-post-actions' => 'accions',
 	'flow-topic-actions' => 'accions',
 	'flow-cancel' => 'Anullar',
@@ -1336,7 +1335,7 @@ $messages['oc'] = array(
 	'flow-newtopic-header' => 'Apondre un subjècte novèl',
 	'flow-newtopic-save' => 'Apondre un subjècte',
 	'flow-newtopic-start-placeholder' => 'Clicatz aicí per començar una novèla discussion. Siatz gent !',
-	'flow-reply-placeholder' => 'Clicatz aicí per respondre a $1. Siatz gent !',
+	'flow-reply-placeholder' => 'Clicatz aicí per respondre a $1. Siatz gent !', # Fuzzy
 	'flow-reply-submit' => 'Postar una responsa',
 	'flow-edit-post-submit' => 'Sometre las modificacions',
 	'flow-post-action-view' => 'Ligam permanent',
@@ -1356,12 +1355,12 @@ $messages['oc'] = array(
 	'flow-error-missing-content' => 'Lo messatge a pas cap de contengut. Es requesit per enregistrar un messatge novèl.',
 	'flow-error-missing-title' => 'Lo subjècte a pas cap de títol. Es requesit per enregistrar un subjècte novèl.',
 	'flow-error-parsoid-failure' => "Impossible d'analisar lo contengut a causa d'una pana de Parsoid.",
-	'flow-error-missing-replyto' => "Cap de paramètre replyTo es pas estat provesit. Aqueste paramètre es requesit per l'accion « respondre ».",
-	'flow-error-invalid-replyto' => 'Lo paramètre replyTo èra pas valid. Lo messatge especificat es introbable.',
+	'flow-error-missing-replyto' => "Cap de paramètre replyTo es pas estat provesit. Aqueste paramètre es requesit per l'accion « respondre ».", # Fuzzy
+	'flow-error-invalid-replyto' => 'Lo paramètre replyTo èra pas valid. Lo messatge especificat es introbable.', # Fuzzy
 	'flow-error-delete-failure' => "Fracàs de la supression d'aquesta entrada.",
 	'flow-error-hide-failure' => "L'amagatge d'aqueste element a fracassat.",
-	'flow-error-missing-postId' => 'Cap de paramètre postId es pas estat provesit. Aqueste paramètre es requesit per manipular un messatge.',
-	'flow-error-invalid-postId' => 'Lo paramètre postId èra pas valid. Lo messatge especificat es introbable.',
+	'flow-error-missing-postId' => 'Cap de paramètre postId es pas estat provesit. Aqueste paramètre es requesit per manipular un messatge.', # Fuzzy
+	'flow-error-invalid-postId' => 'Lo paramètre postId èra pas valid. Lo messatge especificat es introbable.', # Fuzzy
 	'flow-error-restore-failure' => "Fracàs del restabliment d'aquesta entrada.",
 	'flow-summaryedit-submit' => 'Enregistrar lo resumit',
 	'flow-edit-title-submit' => 'Cambiar lo títol',
@@ -1374,10 +1373,10 @@ $messages['oc'] = array(
 	'flow-paging-rev' => 'Subjèctes los mai recents',
 	'flow-paging-fwd' => 'Subjèctes mai ancians',
 	'flow-last-modified' => 'Darrièr cambiament $1',
-	'flow-notification-reply' => '$1 a respondut a vòstra [$5 nòta] sus $2 en [[$3|$4]].',
-	'flow-notification-edit' => '$1 a modificat vòstra [$5 nòta] sus $2 en [[$3|$4]].',
-	'flow-notification-newtopic' => '$1 a creat un [$5 subjècte novèl] en [[$2|$3]] : $4.',
-	'flow-notification-rename' => '$1 a modificat lo títol de [$2 $3] en « $4 » sus [[$5|$6]]',
+	'flow-notification-reply' => '$1 a respondut a vòstra [$5 nòta] sus $2 en [[$3|$4]].', # Fuzzy
+	'flow-notification-edit' => '$1 a modificat vòstra [$5 nòta] sus $2 en [[$3|$4]].', # Fuzzy
+	'flow-notification-newtopic' => '$1 a creat un [$5 subjècte novèl] en [[$2|$3]] : $4.', # Fuzzy
+	'flow-notification-rename' => '$1 a modificat lo títol de [$2 $3] en « $4 » sus [[$5|$6]]', # Fuzzy
 );
 
 /** Polish (polski)
@@ -1426,7 +1425,7 @@ $messages['roa-tara'] = array(
 	'flow-newtopic-header' => "Aggiunge 'n'argomende nuève",
 	'flow-newtopic-save' => "Aggiunge 'n'argomende",
 	'flow-newtopic-start-placeholder' => "Cazze aqquà pe accumenzà 'nu 'ngazzamende nuève. Sì belle!",
-	'flow-reply-placeholder' => 'Cazze pe responnere a $1. Sì belle!',
+	'flow-reply-placeholder' => 'Cazze pe responnere a $1. Sì belle!', # Fuzzy
 	'flow-reply-submit' => "Manne 'na resposte",
 	'flow-post-action-delete-post' => "Scangìlle 'u messàgge",
 	'flow-post-action-restore-post' => "Repristine 'u messàgge",
