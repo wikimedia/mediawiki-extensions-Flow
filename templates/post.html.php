@@ -1,12 +1,11 @@
 <?php
 
-$self = $this;
-
-$createReplyForm = function() use( $self, $block, $post, $editToken, $user ) {
+$replyForm = '';
+if ( !$post->isModerated() ) {
 	$replyForm = Html::openElement( 'form', array(
 			'method' => 'POST',
 			// root post id is same as topic workflow id
-			'action' => $self->generateUrl( $block->getWorkflowId(), 'reply' ),
+			'action' => $this->generateUrl( $block->getWorkflowId(), 'reply' ),
 			'class' => 'flow-reply-form',
 		) );
 	$replyForm .= Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
@@ -16,7 +15,7 @@ $createReplyForm = function() use( $self, $block, $post, $editToken, $user ) {
 			$replyForm .= $error->text() . '<br>'; // the pain ...
 		}
 	}
-	return $replyForm .
+	$replyForm .=
 		Html::element( 'input', array(
 			'type' => 'hidden',
 			'name' => $block->getName() . '[replyTo]',
@@ -37,15 +36,11 @@ $createReplyForm = function() use( $self, $block, $post, $editToken, $user ) {
 			) ) .
 		Html::closeElement( 'div' ) .
 		Html::closeElement( 'form' );
-};
+}
 
 $class = $post->isModerated() ? 'flow-post flow-post-moderated' : 'flow-post';
 $actions = array();
-$replyForm = '';
 
-if ( !$post->isModerated() ) {
-	$replyForm = $createReplyForm();
-}
 
 // The actual output
 echo Html::openElement( 'div', array(
