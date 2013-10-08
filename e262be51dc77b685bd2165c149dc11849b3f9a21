@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_2c8cfb2e",
+        "filename": "db_patches/patch-rev_change_type.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-08T19:15:37Z",
+      "side": 1,
+      "message": "springle made a good argument for why we should use varbinary(255) rather than varchar(255) binary,  see https://gerrit.wikimedia.org/r/#/c/85787/3/maintenance/archives/patch-rc_source.sql\n\nPerhaps it should be better documented, but going forward it sounds like varbinary(255) is the safest field type.",
+      "revId": "e262be51dc77b685bd2165c149dc11849b3f9a21",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
