@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_0c31f7eb",
+        "filename": "modules/base/images/createtopic_hover.svg",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T18:55:32Z",
+      "side": 1,
+      "message": "TODO: is there an SVG crusher, like pngcrush?\nAt least, remove the carriage-returns",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_8c5de720",
+        "filename": "modules/base/styles/actionbox.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T18:55:32Z",
+      "side": 1,
+      "message": "Is \"Action box\" what the design calls a \"Flyout\"? I don\u0027t have a preference, but comment the naming.",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_ac42ab3f",
+        "filename": "modules/base/styles/container.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T18:55:32Z",
+      "side": 1,
+      "message": "Excellent",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_0c4ad755",
+        "filename": "modules/base/styles/container.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T18:55:32Z",
+      "side": 1,
+      "message": "I wonder if we should use mix-in functions for things like this. It\u0027s more compact and makes intent clearer, but any changes to the function risk breaking all the call sites that use it.",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_6c7193a8",
+        "filename": "modules/base/styles/container.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T18:55:32Z",
+      "side": 1,
+      "message": "variables and/or comments for these.  Where did 610px width come from?",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_ac6b8bb7",
+        "filename": "modules/base/styles/form.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T18:55:32Z",
+      "side": 1,
+      "message": "variable or function for this. (New font stack is coming...)",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_6ca27301",
+        "filename": "modules/base/styles/various.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T18:55:32Z",
+      "side": 1,
+      "message": "There\u0027s a background-image() function in LESS,  resources/mediawiki.less/mediawiki.mixins.less\n\nWe should reuse an image from core for this,\n\nresources/jquery/images/spinner-large.gif\nresources/jquery/images/spinner.gif\nresources/jquery.ui/themes/vector/images/ui-anim_basic_16x16.gif\nresources/mediawiki/mediawiki.feedback.spinner.gif\n\nIf designers don\u0027t like these, let me know so I can file another inconsistency bug.",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
