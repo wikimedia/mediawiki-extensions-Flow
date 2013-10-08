@@ -36,7 +36,7 @@
 
 		/**
 		 * @param {jQuery} $node
-		 * @param {string} [content] Existing content to load
+		 * @param {string} [content] Existing content to load, in wikitext format
 		 */
 		load: function ( $node, content ) {
 			/**
@@ -56,7 +56,9 @@
 					return;
 				}
 
-				if ( ! content ) {
+				if ( content ) {
+					content = mw.flow.parsoid.convert( 'wikitext', mw.flow.editor.getFormat(), content );
+				} else {
 					content = '';
 				}
 
