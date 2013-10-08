@@ -1,5 +1,6 @@
 <?php
 
+echo Html::openElement( 'div', array( 'class' => 'flow-new-topic-container' ) );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
 	'action' => $this->generateUrl( $block->getWorkflow(), 'new-topic' ),
@@ -17,6 +18,12 @@ echo Html::input(
 	)
 );
 
+// @Todo - Update href to a real link for no-js support
+echo Html::element( 'a', array(
+	'class' => array( 'flow-new-topic-link', 'flow-icon', 'flow-icon-bottom-aligned' ),
+	'href' => '#'
+), wfMessage( 'flow-newtopic-start-placeholder' )->text() );
+
 if ( $block->hasErrors( 'content' ) ) {
 	echo '<p>' . $block->getError( 'content' )->escaped() . '</p>';
 }
@@ -32,7 +39,8 @@ echo Html::element( 'input', array(
 	'value' => wfMessage( 'flow-newtopic-save' )->text(),
 ) );
 echo Html::closeElement( 'div' );
-echo '</form>';
+echo Html::closeElement( 'form' );
+echo Html::closeElement( 'div' );
 
 if ( $page && $page->getPagingLink( 'rev' ) ) {
 	$linkData = $page->getPagingLink( 'rev' );

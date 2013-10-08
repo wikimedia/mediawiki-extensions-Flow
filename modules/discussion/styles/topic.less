@@ -153,14 +153,27 @@
 	}
 }
 
-.flow-newtopic-form {
-	padding-bottom: 30px;
+.flow-new-topic-container {
+	.flow-newtopic-form {
+		padding-bottom: 30px;
 
-	.flow-newtopic-title {
-		font-weight: bold;
-	}
+		.flow-newtopic-title {
+			font-weight: bold;
+		}
 
-	.flow-post-form-controls {
-		text-align: right;
+		.flow-post-form-controls {
+			text-align: right;
+		}
+
+		.flow-new-topic-link {
+			background-position: center center;
+			background-size: 25px auto;
+			background-repeat: no-repeat;
+			.background-image-svg('../../base/images/createtopic_normal.svg', '../../base/images/createtopic_normal.png');
+
+			&:hover {
+				.background-image-svg('../../base/images/createtopic_hover.svg', '../../base/images/createtopic_hover.png');
+			}
+		}
 	}
 }
