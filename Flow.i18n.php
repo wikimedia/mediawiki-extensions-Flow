@@ -10,7 +10,7 @@ $messages = array();
 $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-summary-link' => 'Edit summary',
+	'flow-edit-header-link' => 'Edit header',
 
 	'flow-post-moderated-toggle-show' => '[Show]',
 	'flow-post-moderated-toggle-hide' => '[Hide]',
@@ -70,7 +70,7 @@ $messages['en'] = array(
 	'flow-error-invalid-postId' => '"postId" parameter was invalid. The specified post could not be found.',
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
 
-	'flow-summaryedit-submit' => 'Save summary',
+	'flow-headeredit-submit' => 'Save header',
 
 	'flow-edit-title-submit' => 'Change title',
 
@@ -129,9 +129,17 @@ $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
-	'flow-edit-summary-link' => 'Used as text for the link which points to the "Edit summary" page.',
 	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
 	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post',
+	'flow-edit-header-link' => 'Used as text for the link which points to the "Edit header" page.',
+	'flow-disclaimer' => 'Used as disclaimer text at the bottom of the form.
+
+Preceded by the Submit button which has the label either {{msg-mw|Flow-reply-submit}} or {{msg-mw|Flow-newtopic-save}}.
+
+"Add message" seems to refer these Submit buttons.
+
+See also:
+* {{msg-mw|Wikimedia-copyrightwarning}}',
 	'flow-post-hidden' => 'Used as username/content if the post was hidden.
 
 Translate this as "post which was hidden".',
@@ -254,7 +262,7 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 	'flow-error-restore-failure' => 'Used as error message when restoring a post.
 
 "this item" seems to refer "this post".',
-	'flow-summaryedit-submit' => 'Used as label for the Submit button.',
+	'flow-headeredit-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-reply' => 'Used as comment when the new reply has been posted.',
 	'flow-rev-message-new-post' => 'Used as comment when the topic has been created.',

@@ -73,7 +73,7 @@ $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.
 $wgAutoloadClasses['Flow\Model\Metadata'] = $dir . 'includes/Model/Metadata.php';
 $wgAutoloadClasses['Flow\Model\AbstractRevision'] = $dir . 'includes/Model/AbstractRevision.php';
 $wgAutoloadClasses['Flow\Model\PostRevision'] = $dir . 'includes/Model/PostRevision.php';
-$wgAutoloadClasses['Flow\Model\Summary'] = $dir . 'includes/Model/Summary.php';
+$wgAutoloadClasses['Flow\Model\Header'] = $dir . 'includes/Model/Header.php';
 $wgAutoloadClasses['Flow\Model\TopicListEntry'] = $dir . 'includes/Model/TopicListEntry.php';
 $wgAutoloadClasses['Flow\Model\Workflow'] = $dir . 'includes/Model/Workflow.php';
 $wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
@@ -107,14 +107,13 @@ $wgAutoloadClasses['Flow\Data\PagerPage'] = $dir . 'includes/Data/PagerPage.php'
 
 // database interaction for singular models
 $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
-$wgAutoloadClasses['Flow\Data\SummaryRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
+$wgAutoloadClasses['Flow\Data\HeaderRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 
 // The individual workflow pieces
 $wgAutoloadClasses['Flow\Block\Block'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\AbstractBlock'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\BlockView'] = $dir . 'includes/Block/Block.php';
-$wgAutoloadClasses['Flow\Block\SummaryBlock'] = $dir . 'includes/Block/Summary.php';
-$wgAutoloadClasses['Flow\Block\SummaryView'] = $dir . 'includes/Block/Summary.php';
+$wgAutoloadClasses['Flow\Block\HeaderBlock'] = $dir . 'includes/Block/Header.php';
 $wgAutoloadClasses['Flow\Block\TopicListBlock'] = $dir . 'includes/Block/TopicList.php';
 $wgAutoloadClasses['Flow\Block\TopicListView'] = $dir . 'includes/Block/TopicList.php';
 $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';

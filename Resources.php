@@ -33,9 +33,9 @@ $wgResourceModules += array(
 		'messages' => array(
 		),
 	),
-	'ext.flow.summary' => $flowResourceTemplate + array(
-		'styles' => 'summary/styles/base.less',
-		'scripts' => 'summary/summary.js',
+	'ext.flow.header' => $flowResourceTemplate + array(
+		'styles' => 'header/styles/base.less',
+		'scripts' => 'header/header.js',
 		'dependencies' => array(
 			'ext.flow.editor',
 		),

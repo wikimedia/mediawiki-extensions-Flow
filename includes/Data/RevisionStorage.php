@@ -403,24 +403,24 @@ class PostRevisionStorage extends RevisionStorage {
 	}
 }
 
-class SummaryRevisionStorage extends RevisionStorage {
+class HeaderRevisionStorage extends RevisionStorage {
 
 	protected function joinTable() {
-		return 'flow_summary_revision';
+		return 'flow_header_revision';
 	}
 
 	protected function relatedPk() {
-		return 'summary_workflow_id';
+		return 'header_workflow_id';
 	}
 
 	protected function joinField() {
-		return 'summary_rev_id';
+		return 'header_rev_id';
 	}
 
-	protected function insertRelated( array $row, array $summary ) {
+	protected function insertRelated( array $row, array $header ) {
 		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->joinTable(),
-			$summary,
+			$header,
 			__METHOD__
 		);
 		if ( !$res ) {
@@ -429,9 +429,9 @@ class SummaryRevisionStorage extends RevisionStorage {
 		return $row;
 	}
 
-	// There is changable data in the summary half, it just points to the correct workflow
-	protected function updateRelated( array $rev, array $summaryChanges ) {
-		if ( $summaryChanges ) {
+	// There is changable data in the header half, it just points to the correct workflow
+	protected function updateRelated( array $rev, array $headerChanges ) {
+		if ( $headerChanges ) {
 			throw new \MWException( 'No update allowed' );
 		}
 	}
