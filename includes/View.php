@@ -52,7 +52,7 @@ class View {
 			}
 		}
 
-		$workflowId = $workflow->getId()->getHex();
+		$workflowId = $workflow->isNew() ? '' : $workflow->getId()->getHex();
 		$title = $workflow->getArticleTitle();
 		$this->output->addHTML( Html::openElement( 'div',
 			array(

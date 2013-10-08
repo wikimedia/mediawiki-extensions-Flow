@@ -14,12 +14,21 @@ if ( $block->hasErrors( 'content' ) ) {
 }
 
 if ( $header ) {
-	echo Html::rawElement(
-		'div',
-		array( 'id' => 'flow-header-content' ),
-		$header->getContent( $user, 'html' ) // contains HTML5+RDFa content
-	);
+	$headerContent = $header->getContent( $user, 'html' );
+	$class = 'flow-header-exists';
+} else {
+	$headerContent = wfMessage( 'flow-header-empty' )->parse();
+	$class = 'flow-header-empty';
 }
+
+echo Html::rawElement(
+	'div',
+	array(
+		'id' => 'flow-header-content',
+		'class' => $class,
+	),
+	$headerContent
+);
 
 echo Html::element(
 	'a',

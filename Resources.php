@@ -35,7 +35,10 @@ $wgResourceModules += array(
 	),
 	'ext.flow.header' => $flowResourceTemplate + array(
 		'styles' => 'header/styles/base.less',
-		'scripts' => 'header/header.js',
+		'scripts' => array(
+			'header/editor-nonajax.js',
+			'header/forms.js',
+		),
 		'dependencies' => array(
 			'ext.flow.editor',
 		),
@@ -78,6 +81,7 @@ $wgResourceModules += array(
 			'flow-edit-post-submit',
 			'flow-paging-fwd',
 			'flow-paging-rev',
+			'flow-edit-header-submit',
 			'flow-post-moderated-toggle-show',
 			'flow-post-moderated-toggle-hide',
 		),
