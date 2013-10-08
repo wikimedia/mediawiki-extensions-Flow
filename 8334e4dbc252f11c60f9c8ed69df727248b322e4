@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_6efb4e77",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "So you redefine .mw-ui classes in this file?  I guess so. The optimistic alternative is to come up with a new mediawiki.ui for core and deploy that on our server.  Talk to Matt Flaschen, he\u0027s responsible for the login forms that are currently the main user of mw-ui stuff.",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_4e068a87",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "This is a great way to spec it, nice!",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_ae4626c1",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "Iteration 5 https://www.mediawiki.org/wiki/File:Guide_Color.png says 898989",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_6e7fce12",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "what does \"counter\" mean here? The term isn\u0027t in the Agora specs or the Iteration 5 document as far as I can tell.\n\nComment where you\u0027re getting these values, e.g. \u0027Flow Portal/Design/Iteration 5 \"Color Guide\"\u0027",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_2e96b63d",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "Iteration5  Color guide says inactive field outline is #ccc.",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_8e7c021e",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "Do you need !important?  That makes it harder to have .mw-ui-primary, .mw-ui-constructive, etc. just override the button color.",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_2eaf967f",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "I think there\u0027s still a bottom bevel (DEMAND clarity from May Galloway) on hover.  agora2-override.css had a box-shadow:inset 0px -5px 0px #d0d0d0; , I\u0027m not sure how it\u0027s changed.",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_8ec6c24a",
+        "filename": "modules/mediawiki.ui/styles/settings/colors.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "Again, add a comment \u0027From Flow Prototype/Design/Iteration 5 \"Buttons \u0026 Flyout Options\"\u0027",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_0ee3b2dd",
+        "filename": "modules/mediawiki.ui/styles/settings/colors.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "Flow Prototype/Design/Iteration 5 \"Buttons \u0026 Flyout Options\" describes CCC as \"Underline - inactive field outline - Neutral button...\" Nothing about it being the active color as far as I can see.",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_2ee876b5",
+        "filename": "modules/mediawiki.ui/styles/settings/colors.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "Flow Prototype/Design/Iteration 5 \"Buttons \u0026 Flyout Options\" says B51700",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_8ecfa256",
+        "filename": "modules/summary/styles/base.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:25:58Z",
+      "side": 1,
+      "message": "This should be in a colors.less file. I don\u0027t see this value in Iteration 5\u0027s https://www.mediawiki.org/wiki/File:SummarizeTopic.png or in https://www.mediawiki.org/wiki/File:Guide_Color.png",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
