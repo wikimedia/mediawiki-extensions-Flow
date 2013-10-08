@@ -2,7 +2,7 @@
 
 namespace Flow;
 
-use Flow\Block\SummaryBlock;
+use Flow\Block\HeaderBlock;
 use Flow\Block\TopicBlock;
 use Flow\Block\TopicListBlock;
 use Flow\Model\Definition;
@@ -130,7 +130,7 @@ class WorkflowLoader {
 		switch( $this->definition->getType() ) {
 		case 'discussion':
 			return array(
-				'summary' => new SummaryBlock( $this->workflow, $this->storage, $this->notificationController ),
+				'header' => new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
 				'topics' => new TopicListBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
 			);
 

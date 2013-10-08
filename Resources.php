@@ -20,8 +20,8 @@ $wgResourceModules += array(
 		'messages' => array(
 		),
 	),
-	'ext.flow.summary' => $flowResourceTemplate + array(
-		'scripts' => 'summary/summary.js',
+	'ext.flow.header' => $flowResourceTemplate + array(
+		'scripts' => 'header/header.js',
 		'dependencies' => array(
 			'ext.flow.editor',
 		),
