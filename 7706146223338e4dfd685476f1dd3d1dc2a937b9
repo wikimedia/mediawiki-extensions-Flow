@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_6e250e0c",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T06:33:36Z",
+      "side": 1,
+      "message": "Take a look at core/resources/mediawiki.less/mediawiki.mixins.less , it provides functions for specifying .background-image(@url) and .background-image-svg(@svg, @fallback).\n\nIf this isn\u0027t documented, hassle jdlrobson to do so.",
+      "revId": "7706146223338e4dfd685476f1dd3d1dc2a937b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
