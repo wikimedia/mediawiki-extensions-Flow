@@ -80,8 +80,8 @@ class Formatter {
 			$links[] = $this->postHistoryLink( $title, $changeData );
 			break;
 
-		case 'flow-rev-message-create-summary': // fall through
-		case 'flow-rev-message-edit-summary':
+		case 'flow-rev-message-create-header': // fall through
+		case 'flow-rev-message-edit-header':
 			//$links[] = $this->workflowLink( $title, $changeData );
 			break;
 

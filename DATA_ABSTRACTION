@@ -68,7 +68,7 @@ know what changed in the case of an update.
 ==== Limit ourselves to just user to user conversations, what are the actions? ====
 
 Render user board:
-* Find most recent summary content attached to users discussion workflow
+* Find most recent hedaer content attached to users discussion workflow
 * Find all workflows user is subscribed to, sorted by last updated date, along with the timestamp of the most recently read items of that workflow
 ** Somehow the user needs to be able to subscribe to a 'discussion' object, but not have the actual discussion object listed in their board.  The subscription to the discussion will be used for subscribing the user to new topics on that discussion.
 * Find post tree/content for all topics we are rendering to the board
@@ -79,13 +79,13 @@ Actions from user board:
 * Some sort of mark specific-topics read via api?
 
 Actions on a topic:
-* Need to be able to query a 'Topic History' of date/author/update summary
+* Need to be able to query a 'Topic History' of date/author/update header
 * (un)Subscribe to topic
 * Close topic 
 * Delete topic
 * Mark All Read
 * Change topic title
-** Should topic titles be stored as a summary, so they have revision info and all?
+** Should topic titles be stored as a header, so they have revision info and all?
 
 Actions on a post:
 * Revision history list
@@ -180,8 +180,8 @@ $topic = $topicManager->get( $topicObjId ); // same id as its backing flow objec
 $topicListManager = ...;
 $list = $topicListManager->get( $objectId ); // same id as its backing flow object
 
-$summaryManager = ...;
-$summary = $summaryManager->get( $objectId ); // same id as its backing flow object
+$headerManager = ...;
+$header = $headerManager->get( $objectId ); // same id as its backing flow object
 How do they interact?
 
 post -> flow object -> update timestamp
@@ -199,8 +199,8 @@ flow object - needs to know the timestamp,
 	    JOIN flow_tree_node ON node_ancestor = :topicId
 	   WHERE fpr_post_id = :postId
 		- But only for topics, and maybe topic lists like discussion workflow (another join...)
-	- SELECT MAX(id) FROM flow_summary_revision WHERE fpr_object_id = :objectId
-		- But only for workflow types that define summarys
+	- SELECT MAX(id) FROM flow_header_revision WHERE fpr_object_id = :objectId
+		- But only for workflow types that define headers
 	- Whatever else ... basically its completely arbitrary depending on the blocks involved
 	- Is updating the active objects with a timestamp on every update too much?
 		- Can only be done in cache, could use redis for some more resilience
@@ -271,10 +271,10 @@ $postRevisionIndexes = array(
 
 
 // read/write
-$summaryRevision' = array(
+$headerRevision' = array(
 		new UniqueIndex( 'rev_id' ),
 		new SecondaryIndex( 'fsr_object_id', array(
-			'sort' => array( 'SummaryRevision', 'sortNewestToOldest' ),
+			'sort' => array( 'HeaderRevision', 'sortNewestToOldest' ),
 			'limit' => 20,
 		) ),
 	),

@@ -2,7 +2,10 @@
 	'use strict';
 
 	$( function () {
-		var $form = $( '.flow-summary-form' );
+		var $form = $( '.flow-header-form' ),
+			$textarea = $form.find( 'textarea' ),
+			workflowId = $form.flow( 'getTopicWorkflowId' ),
+			pageName = $form.closest( '.flow-container' ).data( 'page-title' );
 
 		// edit-form is showing
 		if ( $form.length > 0 ) {

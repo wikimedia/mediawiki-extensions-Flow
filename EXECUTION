@@ -39,7 +39,7 @@ Good Question.  Most of what Special:Flow does needs to be accessible from the A
 Think of blocks as individual controllers?  They receive an action(request) from a user
 and do something with it.  They also provide data to the rendering layer.
 
-=== Summary ===
+=== Header ===
 
 Accepted Actions:
 * edit
