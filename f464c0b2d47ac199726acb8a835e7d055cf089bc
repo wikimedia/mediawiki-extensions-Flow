@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_f531d10b",
+        "filename": "Hooks.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-08T01:05:43Z",
+      "side": 1,
+      "message": "Looks like a merge conflict. This should be in a different file.",
+      "revId": "f464c0b2d47ac199726acb8a835e7d055cf089bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_153745ff",
+        "filename": "Hooks.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-08T01:05:43Z",
+      "side": 1,
+      "message": "Might be nice to have this autodetected instead.",
+      "revId": "f464c0b2d47ac199726acb8a835e7d055cf089bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_d5068d21",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-08T01:05:43Z",
+      "side": 1,
+      "message": "Another idea on this: we could look up by the timestamp. It\u0027s hacky, but it would work for moderation provided we have (say) \u003c1000 actions per second.",
+      "revId": "f464c0b2d47ac199726acb8a835e7d055cf089bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_f8fb8810",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-08T01:05:43Z",
+      "side": 1,
+      "message": "Could use a type hint here on $object.",
+      "revId": "f464c0b2d47ac199726acb8a835e7d055cf089bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_18013c08",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-08T01:05:43Z",
+      "side": 1,
+      "message": "Type hint on $object",
+      "revId": "f464c0b2d47ac199726acb8a835e7d055cf089bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_78deb86b",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-08T01:05:43Z",
+      "side": 1,
+      "message": "Need to look at this more closely, it looks like the logic has been reversed.",
+      "revId": "f464c0b2d47ac199726acb8a835e7d055cf089bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_b8c11085",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-08T01:05:43Z",
+      "side": 1,
+      "message": "Should the default be something different now?",
+      "revId": "f464c0b2d47ac199726acb8a835e7d055cf089bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_18393ca1",
+        "filename": "includes/Model/Summary.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-08T01:05:43Z",
+      "side": 1,
+      "message": "Ditto, should the default be something different?",
+      "revId": "f464c0b2d47ac199726acb8a835e7d055cf089bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_330b8180",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-08T01:05:43Z",
+      "side": 1,
+      "message": "This will break for create-summary and edit-summary.",
+      "revId": "f464c0b2d47ac199726acb8a835e7d055cf089bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_13903d49",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-08T01:05:43Z",
+      "side": 1,
+      "message": "This might be seen as \"lego messages\". I\u0027m not quite sure on the best way to implement this, but I think if you ask Siebrand he will probably come up with some obscure language where this doesn\u0027t quite work.\n\nPerhaps we could pass it as another parameter to the message?",
+      "revId": "f464c0b2d47ac199726acb8a835e7d055cf089bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
