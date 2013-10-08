@@ -51,7 +51,7 @@ class Formatter {
 			. ' '
 			. $this->userLinks( $cl, $rc->getAttribute( 'rc_user_id' ), $rc->getAttribute( 'rc_user_text' ) )
 			. ' '
-			. $this->getComment( $changeData );
+			. $this->getActionDescription( $changeData );
 
 		return $line;
 	}
@@ -173,7 +173,7 @@ class Formatter {
 		);
 	}
 
-	public function getComment( array $changeData ) {
+	public function getActionDescription( array $changeData ) {
 		$msg = wfMessage( $changeData['type'] )->text();
 
 		if ( isset( $changeData['topic'] ) ) {
