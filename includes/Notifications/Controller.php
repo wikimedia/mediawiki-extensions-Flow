@@ -22,7 +22,7 @@ class NotificationController {
 		$wgEchoNotifications += $notifications;
 
 		$wgEchoNotificationIcons['flow-discussion'] = array(
-			'path' => 'Flow/modules/discussion/images/Talk.png',
+			'path' => 'Flow/modules/base/images/Talk.png',
 		);
 
 		$wgEchoNotificationCategories['flow-discussion'] = array(
