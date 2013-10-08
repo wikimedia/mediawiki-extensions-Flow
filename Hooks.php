@@ -31,6 +31,7 @@ class FlowHooks {
 			// sqlite doesn't support alter table change, it also considers all types the same so
 			// this patch doesn't matter to it.
 			$updater->modifyExtensionField( 'flow_subscription', 'subscription_user_id', "$dir/db_patches/patch-subscription_user_id.sql" );
+			$updater->modifyExtensionField( 'flow_revision', 'rev_comment', "$dir/db_patches/patch-rev_change_type.sql" );
 		}
 
 		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_lookup', "$dir/db_patches/patch-workflow_lookup_idx.sql" );

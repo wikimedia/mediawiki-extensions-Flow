@@ -112,8 +112,9 @@ CREATE TABLE /*_*/flow_revision (
 	rev_flags tinyblob not null,
 	-- content of the revision
 	rev_content mediumblob not null,
-	-- comment attached to revision's flag change
-	rev_comment varchar(255) binary null,
+	-- the type of change that was made. MW message key.
+	-- formerly rev_comment
+	rev_change_type varchar(255) binary null,
 	-- current moderation state
 	rev_mod_state varchar(32) binary not null,
 	-- moderated by who?

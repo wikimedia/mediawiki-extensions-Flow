@@ -6,7 +6,7 @@ foreach ( $history as $revision ) {
 	echo '<li>'
 		. $revision->getRevisionId()->getHex() . ' : '
 		. $revision->getUserText() . ' : '
-		. wfMessage( $revision->getComment() )->parse()
+		. wfMessage( $revision->getChangeType() )->parse()
 		. '</li>';
 }
 echo '</ul>';
