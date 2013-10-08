@@ -31,7 +31,7 @@ if ( !$post->isModerated() ) {
 		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ) .
 			Html::element( 'input', array(
 				'type' => 'submit',
-				'value' => wfMessage( 'flow-reply-submit', $post->getCreatorName( $user ) )->plain(),
+				'value' => wfMessage( 'flow-reply-submit', $post->getCreatorName( $user ) )->text(),
 				'class' => 'mw-ui-button mw-ui-constructive flow-reply-submit',
 			) ) .
 		Html::closeElement( 'div' ) .
