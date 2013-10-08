@@ -28,7 +28,7 @@ $messages['en'] = array(
 	'flow-newtopic-content-placeholder' => 'Message text. Be nice!',
 	'flow-newtopic-header' => 'Add a new topic',
 	'flow-newtopic-save' => 'Add topic',
-	'flow-newtopic-start-placeholder' => 'Click here to start a new discussion. Be nice!',
+	'flow-newtopic-start-placeholder' => 'Start a new topic',
 
 	'flow-reply-placeholder' => 'Click to {{GENDER:$1|reply}} to $1. Be nice!',
 	'flow-reply-submit' => '{{GENDER:$1|Reply}}',
