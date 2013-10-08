@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_ece82314",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 13
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T19:42:56Z",
+      "side": 1,
+      "message": "How about @primary-contrast-color, and add your comment\n\n   Primary \u0026 secondary are basically background \u0026 border colors; xx-contrast-color is a contrasting color, used for text and other effects.",
+      "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_cf68b1bd",
+        "filename": "modules/summary/styles/base.less",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T19:42:56Z",
+      "side": 1,
+      "message": "Brion sez \"Just @import \u0027mediawiki.mixins.less\u0027, it\u0027s in the include path\"",
+      "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_2f986dc9",
+        "filename": "modules/summary/styles/settings/colors.less",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T19:42:56Z",
+      "side": 1,
+      "message": "Comment giving the source for it please.",
+      "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_2f814d51",
+        "filename": "modules/summary/summary.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T19:42:56Z",
+      "side": 1,
+      "message": "In general, comments are easier to read if they have sentence capitalization and punctuation.\n^ like this one :)",
+      "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_afde1d68",
+        "filename": "templates/edit-summary.html.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-08T19:42:56Z",
+      "side": 1,
+      "message": "Is this the Flow board header? I thought werdna went through and renamed it.  \"Summary\" is the thing where you can close off an individual workflow/topic.",
+      "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
