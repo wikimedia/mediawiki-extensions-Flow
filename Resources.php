@@ -78,6 +78,8 @@ $wgResourceModules += array(
 			'flow-edit-post-submit',
 			'flow-paging-fwd',
 			'flow-paging-rev',
+			'flow-post-moderated-toggle-show',
+			'flow-post-moderated-toggle-hide',
 		),
 	),
 	'ext.flow.editor' => $flowResourceTemplate + array(

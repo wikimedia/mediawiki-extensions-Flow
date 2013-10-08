@@ -12,6 +12,8 @@ $messages['en'] = array(
 	'flow-specialpage' => '$1 &ndash; Flow',
 	'flow-edit-summary-link' => 'Edit summary',
 
+	'flow-post-moderated-toggle-show' => '[Show]',
+	'flow-post-moderated-toggle-hide' => '[Hide]',
 	'flow-post-hidden' => '[post hidden]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Hidden}} by $1 $2',
 	'flow-post-deleted' => '[post deleted]',
@@ -32,6 +34,7 @@ $messages['en'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Reply}}',
 	'flow-reply-link' => '{{GENDER:$1|Reply}}',
 	'flow-thank-link' => '{{GENDER:$1|Thank}}',
+	'flow-talk-link' => 'Talk to {{GENDER:$1|$1}}',
 
 	'flow-edit-post-submit' => 'Submit changes',
 
@@ -127,6 +130,8 @@ $messages['qqq'] = array(
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
 	'flow-edit-summary-link' => 'Used as text for the link which points to the "Edit summary" page.',
+	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
+	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post',
 	'flow-post-hidden' => 'Used as username/content if the post was hidden.
 
 Translate this as "post which was hidden".',
@@ -179,6 +184,8 @@ Translate this as "post which was censored".',
 * $1 - username, can be used for GENDER",
 	'flow-thank-link' => 'Link text of the button that will (when clicked) thank the editor of the comment Parameters:
 * $1 - username, can be used for GENDER',
+	'flow-talk-link' => "Link text of the button that links to the talk page of the user whose comment is deleted. Parameters:
+* $1 - username of the user whose comment is deleted, can be used for GENDER",
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified. Parameters:
 * $1 - username that created the most recent revision of the post

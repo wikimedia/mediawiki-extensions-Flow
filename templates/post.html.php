@@ -32,14 +32,14 @@ $createReplyForm = function() use( $self, $block, $post, $editToken, $user ) {
 		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ) .
 			Html::element( 'input', array(
 				'type' => 'submit',
-				'value' => wfMessage( 'flow-reply-submit', $post->getCreatorName() )->plain(),
+				'value' => wfMessage( 'flow-reply-submit', $post->getCreatorName( $user ) )->plain(),
 				'class' => 'mw-ui-button mw-ui-constructive flow-reply-submit',
 			) ) .
 		Html::closeElement( 'div' ) .
 		Html::closeElement( 'form' );
 };
 
-$class = $post->isModerated() ? 'flow-post-moderated' : 'flow-post';
+$class = $post->isModerated() ? 'flow-post flow-post-moderated' : 'flow-post';
 $actions = array();
 $replyForm = '';
 
@@ -57,6 +57,15 @@ echo Html::openElement( 'div', array(
 		'data-post-id' => $post->getPostId()->getHex(),
 		'id' => 'flow-post-' . $post->getPostId()->getHex(),
 	) ); ?>
+
+		<?php if ( $post->isModerated() ): ?>
+			<p class="flow-post-moderated-message flow-post-moderated-<?php echo $post->getModerationState(); ?> flow-post-content-<?php echo $post->isAllowed( $user ) ? 'allowed' : 'disallowed'; ?>">
+			<?php
+				// passing in null as user (unprivileged) will get the "hidden/deleted/suppressed by XYZ" text
+				echo $post->getContent( null );
+			?>
+		</p>
+		<?php endif; ?>
 
 		<div class="flow-post-main">
 			<div class="flow-post-title">
@@ -93,12 +102,20 @@ echo Html::openElement( 'div', array(
 				</span>
 			</p>
 
-			<?php if ( !$post->isModerated() ): ?>
-				<div class="flow-post-interaction">
-					<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo wfMessage( 'flow-reply-link', $post->getCreatorName() )->escaped(); ?></span></a>
-					<a class="flow-thank-link mw-ui-button" href="#" onclick="alert( '@todo: Not yet implemented!' ); return false;"><span><?php echo wfMessage( 'flow-thank-link', $post->getCreatorName() )->escaped(); ?></span></a>
-				</div>
-			<?php endif; ?>
+			<div class="flow-post-interaction">
+				<?php if ( !$post->isModerated() ): ?>
+					<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo wfMessage( 'flow-reply-link', $post->getCreatorName( $user ) )->escaped(); ?></span></a>
+					<a class="flow-thank-link mw-ui-button" href="#" onclick="alert( '@todo: Not yet implemented!' ); return false;"><span><?php echo wfMessage( 'flow-thank-link', $post->getCreatorName( $user ) )->escaped(); ?></span></a>
+				<?php else: ?>
+					<?php
+						$user = User::newFromId( $post->getModeratedByUserId() );
+						$title = $user->getTalkPage();
+					?>
+					<a class="flow-talk-link mw-ui-button" href="<?php echo $title->getLinkURL(); ?>">
+						<span><?php echo wfMessage( 'flow-talk-link', $post->getModeratedByUserText() )->escaped(); ?></span>
+					</a>
+				<?php endif; ?>
+			</div>
 		</div>
 
 		<div class="flow-actions">
