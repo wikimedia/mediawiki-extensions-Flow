@@ -7,7 +7,7 @@ use User;
 class Summary extends AbstractRevision {
 	protected $workflowId;
 
-	static public function create( Workflow $workflow, User $user, $content, $comment = 'flow-create-summary' ) {
+	static public function create( Workflow $workflow, User $user, $content, $changeType = 'flow-create-summary' ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
@@ -15,7 +15,7 @@ class Summary extends AbstractRevision {
 		$obj->userText = $user->getName();
 		$obj->prevRevision = null; // no prior revision
 		$obj->setContent( $content );
-		$obj->comment = $comment;
+		$obj->changeType = $changeType;
 		return $obj;
 	}
 
