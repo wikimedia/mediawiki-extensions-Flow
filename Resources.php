@@ -55,6 +55,7 @@ $wgResourceModules += array(
 			'flow-edit-post-submit',
 			'flow-paging-fwd',
 			'flow-paging-rev',
+			'flow-edit-header-submit',
 		),
 	),
 	'ext.flow.editor' => $flowResourceTemplate + array(

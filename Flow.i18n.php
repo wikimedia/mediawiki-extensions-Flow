@@ -66,7 +66,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-error-invalid-postId' => '"postId" parameter was invalid. The specified post could not be found.',
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
 
-	'flow-headeredit-submit' => 'Save header',
+	'flow-edit-header-submit' => 'Save header',
 
 	'flow-edit-title-submit' => 'Change title',
 
@@ -247,7 +247,7 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 	'flow-error-restore-failure' => 'Used as error message when restoring a post.
 
 "this item" seems to refer "this post".',
-	'flow-headeredit-submit' => 'Used as label for the Submit button.',
+	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-reply' => 'Used as comment when the new reply has been posted.',
 	'flow-rev-message-new-post' => 'Used as comment when the topic has been created.',

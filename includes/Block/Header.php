@@ -74,7 +74,8 @@ class HeaderBlock extends AbstractBlock {
 			$this->storage->put( $this->header );
 
 			return array(
-				'new-revision-id' => $this->header->getRevisionId()
+				'new-revision-id' => $this->header->getRevisionId(),
+				'rendered' => $this->header->getContent( 'html' ),
 			);
 			break;
 
