@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_af5d3d47",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 13
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T19:59:41Z",
+      "side": 1,
+      "message": "Good suggestion!",
+      "parentUuid": "0932edd2_ece82314",
+      "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_cf68b1bd",
         "filename": "modules/summary/styles/base.less",
         "patchSetId": 13
@@ -30,6 +48,24 @@
       "writtenOn": "2013-10-08T19:42:56Z",
       "side": 1,
       "message": "Brion sez \"Just @import \u0027mediawiki.mixins.less\u0027, it\u0027s in the include path\"",
+      "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_cf2351bf",
+        "filename": "modules/summary/styles/base.less",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T19:59:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0932edd2_cf68b1bd",
       "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_2f1b0d80",
+        "filename": "modules/summary/styles/settings/colors.less",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T19:59:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0932edd2_2f986dc9",
+      "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_2f814d51",
         "filename": "modules/summary/summary.js",
         "patchSetId": 13
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_cf0c3145",
+        "filename": "modules/summary/summary.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T19:59:41Z",
+      "side": 1,
+      "message": "Makes sense; I\u0027ll update all comments some day in another patch!",
+      "parentUuid": "0932edd2_2f814d51",
+      "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_afde1d68",
         "filename": "templates/edit-summary.html.php",
         "patchSetId": 13
@@ -81,6 +153,24 @@
       "writtenOn": "2013-10-08T19:42:56Z",
       "side": 1,
       "message": "Is this the Flow board header? I thought werdna went through and renamed it.  \"Summary\" is the thing where you can close off an individual workflow/topic.",
+      "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_5a01e106",
+        "filename": "templates/edit-summary.html.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T19:59:41Z",
+      "side": 1,
+      "message": "It is indeed the board header; Depending of which patch is merged in first, I\u0027ll switch the naming then, in the one that needs rebase.",
+      "parentUuid": "0932edd2_afde1d68",
       "revId": "7b07bb78318d85419cf28c04ac059ccfd591a28c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
