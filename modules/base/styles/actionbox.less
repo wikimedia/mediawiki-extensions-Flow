@@ -19,7 +19,13 @@
 
 				// override formatting of buttons used in li's
 				.mw-ui-button {
+					// buttons in li should take up full width
 					display: block;
+					width: 100%;
+					// .mw-ui-button can be input element; padding would
+					// increase length in default box-sizing: content-box
+					box-sizing: border-box;
+					-moz-box-sizing: border-box;
 
 					border-radius: 0;
 					border-left: none;
