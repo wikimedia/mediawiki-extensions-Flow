@@ -71,14 +71,14 @@ CREATE TABLE /*_*/flow_tree_revision (
 CREATE UNIQUE INDEX /*i*/flow_tree_descendant_id_revisions
 	ON /*_*/flow_tree_revision ( tree_rev_descendant_id, tree_rev_id );
 
--- Summary Content
--- Instead of summary, should this be more generic 'revisioned scratchpad'
--- or something?  Main limit in current setup can only associate one summary per
+-- Header Content
+-- Instead of header, should this be more generic 'revisioned scratchpad'
+-- or something?  Main limit in current setup can only associate one header per
 -- workflow
-CREATE TABLE /*_*/flow_summary_revision (
-	summary_workflow_id binary(16) not null,
-	summary_rev_id binary(16) not null,
-	PRIMARY KEY ( summary_workflow_id, summary_rev_id )
+CREATE TABLE /*_*/flow_header_revision (
+	header_workflow_id binary(16) not null,
+	header_rev_id binary(16) not null,
+	PRIMARY KEY ( header_workflow_id, header_rev_id )
 ) /*$wgDBTableOptions*/;
 
 -- Content
@@ -98,7 +98,7 @@ CREATE TABLE /*_*/flow_summary_revision (
 CREATE TABLE /*_*/flow_revision (
 	-- UID::newTimestampedUID128()
 	rev_id binary(16) not null,
-	-- What kind of revision is this: tree/summary/etc.
+	-- What kind of revision is this: tree/header/etc.
 	rev_type varchar(16) binary not null,
 	-- user id creating the revision
 	rev_user_id bigint unsigned not null,
