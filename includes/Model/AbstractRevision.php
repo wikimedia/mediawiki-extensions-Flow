@@ -24,10 +24,10 @@ abstract class AbstractRevision {
 			'content' => null,
 			// This is the bit of text rendered instead of the post creator
 			'usertext' => null,
-			// i18n key for history and recentchanges comment
-			'comment' => 'flow-rev-message-restored-post',
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => true,
+			// i18n key for history and recentchanges
+			'change-type' => 'flow-rev-message-restored-post',
 		),
 		self::MODERATED_HIDDEN => array(
 			// The permission needed from User::isAllowed to see and create new revisions
@@ -37,10 +37,10 @@ abstract class AbstractRevision {
 			'content' => 'flow-post-hidden-by',
 			// This is the bit of text rendered instead of the post creator
 			'usertext' => 'flow-rev-message-hid-post',
-			// i18n key for history and recentchanges comment
-			'comment' => 'flow-rev-message-hid-post',
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => true,
+			// i18n key for history and recentchanges
+			'change-type' => 'flow-rev-message-hid-post',
 		),
 		self::MODERATED_DELETED => array(
 			// The permission needed from User::isAllowed to see and create new revisions
@@ -49,10 +49,10 @@ abstract class AbstractRevision {
 			'content' => 'flow-post-deleted-by',
 			// This is the bit of text rendered instead of the post creator
 			'usertext' => 'flow-rev-message-deleted-post',
-			// i18n key for history and recentchanges comment
-			'comment' => 'flow-rev-message-deleted-post',
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => false,
+			// i18n key for history and recentchanges
+			'change-type' => 'flow-rev-message-deleted-post',
 		),
 		self::MODERATED_CENSORED => array(
 			// The permission needed from User::isAllowed to see and create new revisions
@@ -61,10 +61,10 @@ abstract class AbstractRevision {
 			'content' => 'flow-post-censored-by',
 			// This is the bit of text rendered instead of the post creator
 			'usertext' => 'flow-rev-message-censored-post',
-			// i18n key for history and recentchanges comment
-			'comment' => 'flow-rev-message-censored-post',
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => false,
+			// i18n key for history and recentchanges
+			'change-type' => 'flow-rev-message-censored-post',
 		),
 	);
 
@@ -81,7 +81,7 @@ abstract class AbstractRevision {
 	// An i18n message key indicating what kind of change this revision is
 	// primary use case is the a revision history list.
 	// TODO: i18n key may be too limiting, consider allowing custom revision comments
-	protected $comment;
+	protected $changeType;
 	// UUID of the revision prior to this one, or null if this is first revision
 	protected $prevRevision;
 
@@ -117,7 +117,7 @@ abstract class AbstractRevision {
 		$obj->userId = $row['rev_user_id'];
 		$obj->userText = $row['rev_user_text'];
 		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
-		$obj->comment = $row['rev_comment'];
+		$obj->changeType = $row['rev_change_type'];
 	 	$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
 		$obj->content = $row['rev_content'];
 		// null if external store is not being used
@@ -143,7 +143,7 @@ abstract class AbstractRevision {
 			'rev_user_id' => $obj->userId,
 			'rev_user_text' => $obj->userText,
 			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getBinary() : null,
-			'rev_comment' => $obj->comment,
+			'rev_change_type' => $obj->changeType,
 			'rev_type' => $obj->getRevisionType(),
 
 			'rev_content' => $obj->content,
@@ -172,17 +172,17 @@ abstract class AbstractRevision {
 		$obj->userId = $user->getId();
 		$obj->userText = $user->getName();
 		$obj->prevRevision = $this->revId;
-		$obj->comment = '';
+		$obj->changeType = '';
 		return $obj;
 	}
 
 	/**
 	 * Create the next revision with new content
 	 */
-	public function newNextRevision( User $user, $content, $comment ) {
+	public function newNextRevision( User $user, $content, $changeType ) {
 		$obj = $this->newNullRevision( $user );
 		$obj->setNextContent( $user, $content );
-		$obj->comment = $comment;
+		$obj->changeType = $changeType;
 		return $obj;
 	}
 
@@ -198,7 +198,7 @@ abstract class AbstractRevision {
 		return $keys[max( $aPos, $bPos )];
 	}
 
-	public function moderate( User $user, $state, $comment = null ) {
+	public function moderate( User $user, $state, $changeType = null ) {
 		if ( !isset( self::$perms[$state] ) ) {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ': Provided moderation state does not exist : ' . $state );
 			return null;
@@ -227,10 +227,10 @@ abstract class AbstractRevision {
 			$obj->moderatedByUserText = $user->getName();
 			$obj->moderationTimestamp = wfTimestampNow();
 		}
-		if ( $comment === null && isset( self::$perms[$state]['comment'] ) ) {
-			$obj->comment = self::$perms[$state]['comment'];
+		if ( $changeType === null && isset( self::$perms[$state]['change-type'] ) ) {
+			$obj->changeType = self::$perms[$state]['change-type'];
 		} else {
-			$obj->comment = $comment;
+			$obj->changeType = $changeType;
 		}
 		return $obj;
 	}
@@ -424,8 +424,8 @@ abstract class AbstractRevision {
 		return $this->prevRevision;
 	}
 
-	public function getComment() {
-		return $this->comment;
+	public function getChangeType() {
+		return $this->changeType;
 	}
 
 	public function getModerationState() {
