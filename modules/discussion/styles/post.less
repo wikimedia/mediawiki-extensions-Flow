@@ -119,4 +119,85 @@
 			font-family: sans-serif;
 		}
 	}
+
+	.flow-post-moderated {
+		.flow-post-moderated-message {
+			color: #aaa;
+			padding: 0;
+			margin: 0 0 20px 0;
+
+			a {
+				color: #aaa;
+				text-decoration: none;
+				line-height: 18px;
+
+				&:hover {
+					border-bottom: 1px solid #ccc;
+				}
+			}
+
+			&.flow-post-moderated-hide,
+			&.flow-post-moderated-delete,
+			&.flow-post-moderated-censor {
+				padding-left: 22px;
+
+				background-position: left;
+				background-size: 14px auto;
+				background-repeat: no-repeat;
+			}
+
+			&.flow-post-moderated-hide {
+				.background-image-svg('../../base/images/hidden_normal.svg', '../../base/images/hidden_normal.png');
+
+				&:hover {
+					.background-image-svg('../../base/images/hidden_hover.svg', '../../base/images/hidden_hover.png');
+				}
+			}
+
+			&.flow-post-moderated-delete {
+				.background-image-svg('../../base/images/deleted_normal.svg', '../../base/images/deleted_normal.png');
+
+				&:hover {
+					.background-image-svg('../../base/images/deleted_hover.svg', '../../base/images/deleted_hover.png');
+				}
+			}
+
+			&.flow-post-moderated-censor {
+				.background-image-svg('../../base/images/suppressed_normal.svg', '../../base/images/suppressed_normal.png');
+
+				&:hover {
+					.background-image-svg('../../base/images/suppressed_hover.svg', '../../base/images/suppressed_hover.png');
+				}
+			}
+		}
+
+		&.flow-post-moderated-visible {
+			.flow-post-moderated-message {
+				&.flow-post-moderated-hide {
+					.background-image-svg('../../base/images/hidden_active.svg', '../../base/images/hidden_active.png');
+				}
+
+				&.flow-post-moderated-delete {
+					.background-image-svg('../../base/images/deleted_active.svg', '../../base/images/deleted_active.png');
+				}
+
+				&.flow-post-moderated-censor {
+					.background-image-svg('../../base/images/suppressed_active.svg', '../../base/images/suppressed_active.png');
+				}
+			}
+		}
+
+		.flow-post-main {
+			// hide post if it's been moderated (can be toggled back via JS)
+			display: none;
+
+			color: #aaa;
+
+			// hide non-essential elements
+			.flow-post-title,
+			.flow-datestamp {
+				display: none;
+			}
+		}
+	}
 }

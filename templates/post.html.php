@@ -39,7 +39,7 @@ $createReplyForm = function() use( $self, $block, $post, $editToken, $user ) {
 		Html::closeElement( 'form' );
 };
 
-$class = $post->isModerated() ? 'flow-post-moderated' : 'flow-post';
+$class = $post->isModerated() ? 'flow-post flow-post-moderated' : 'flow-post';
 $actions = array();
 $replyForm = '';
 
@@ -57,6 +57,15 @@ echo Html::openElement( 'div', array(
 		'data-post-id' => $post->getPostId()->getHex(),
 		'id' => 'flow-post-' . $post->getPostId()->getHex(),
 	) ); ?>
+
+		<?php if ( $post->isModerated() ): ?>
+		<p class="flow-post-moderated-message flow-post-moderated-<?php echo $post->getModerationState(); ?>">
+			<?php
+				// passing in null as user (unprivileged) will get the "hidden/deleted/suppressed by XYZ" text
+				echo $post->getContent( null );
+			?>
+		</p>
+		<?php endif; ?>
 
 		<div class="flow-post-main">
 			<div class="flow-post-title">
