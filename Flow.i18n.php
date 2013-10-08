@@ -433,7 +433,7 @@ $messages['cs'] = array(
 $messages['de'] = array(
 	'flow-desc' => 'Workflow-Management-System',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-header-link' => 'Bearbeitungszusammenfassung',
+	'flow-headeredit-link' => 'Bearbeitungszusammenfassung',
 	'flow-disclaimer' => 'Durch Klicken auf „Nachricht hinzufügen“ stimmst du den Nutzungsbedingungen
 und der unwiderruflichen Veröffentlichung deines Beitrags unter der CC-BY-SA-3.0-Lizenz sowie der GFDL zu.
 Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennung der Creative-Commons-Lizenz steht.',
@@ -521,7 +521,7 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
  * @author Ovruni
  */
 $messages['es'] = array(
-	'flow-edit-header-link' => 'Editar resumen',
+	'flow-headeredit-link' => 'Editar resumen',
 	'flow-post-deleted-by' => '{{GENDER:$1|Eliminado}} por $1 $2',
 	'flow-post-actions' => 'acciones',
 	'flow-topic-actions' => 'acciones',
@@ -550,7 +550,7 @@ $messages['es'] = array(
  * @author Stryn
  */
 $messages['fi'] = array(
-	'flow-edit-header-link' => 'Muokkauksen yhteenveto',
+	'flow-headeredit-link' => 'Muokkauksen yhteenveto',
 	'flow-disclaimer' => 'Tallentamalla muutokset osoitat hyväksyväsi, että muokkauksesi julkaistaan pysyvästi Creative Commons Nimeä-Tarttuva 3.0- ja GFDL-lisenssien ehdoin. Hyväksyt, että hyperlinkki tai URL on riittävä Creative Commons -lisenssillä.',
 	'flow-post-hidden' => '[viesti piilotettu]',
 	'flow-post-deleted' => '[viesti poistettu]',
@@ -582,7 +582,7 @@ $messages['fi'] = array(
 $messages['fr'] = array(
 	'flow-desc' => 'Système de gestion du flux de travail',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-header-link' => 'Résumé',
+	'flow-headeredit-link' => 'Résumé',
 	'flow-disclaimer' => "En cliquant sur le bouton « Ajouter un message », vous acceptez nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr conditions d'utilisation] et acceptez de placer irrévocablement votre contribution sous [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licence Creative Commons paternité-partage des conditions initiales à l'identique 3.0] et [http://www.gnu.org/copyleft/fdl.html GFDL]. Vous acceptez d’être crédité par les ré-utilisateurs au minimum via un hyperlien ou une URL sous la licence Creative Commons.",
 	'flow-post-hidden' => '[note masquée]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Masqué}} par $1 $2',
@@ -670,7 +670,7 @@ $messages['fr'] = array(
 $messages['gl'] = array(
 	'flow-desc' => 'Sistema de xestión do fluxo de traballo',
 	'flow-specialpage' => '$1 &ndash; Fluxo',
-	'flow-edit-header-link' => 'Resumo de edición',
+	'flow-headeredit-link' => 'Resumo de edición',
 	'flow-disclaimer' => 'Ao premer no botón "Engadir a mensaxe" acepta os termos de uso
 e acepta liberar irrevogablemente a súa contribución baixo a licenza CC-BY-SA 3.0 e a GFDL.
 Acepta que unha hiperligazón ou un enderezo URL é recoñecemento abondo baixo a licenza Creative Commons.',
@@ -754,7 +754,7 @@ $messages['gu'] = array(
 $messages['he'] = array(
 	'flow-desc' => 'מערכת לניהול זרימת עבודה',
 	'flow-specialpage' => '$1 – זרימה',
-	'flow-edit-header-link' => 'תקציר העריכה',
+	'flow-headeredit-link' => 'תקציר העריכה',
 	'flow-disclaimer' => 'לחיצה על כפתור "הוספת הודעה" היא הסכמה לתנאי שימוש,
 לפרסום של כל התרומות שלך לפי תנאי רישיונות CC-BY-SA 3.0 ו־GFDL
 ולכן שהיפר־קישור או כתובת URL הם ייחוס מספק לפי תנאי רישיון קריאייטיב קומונז.',
@@ -817,7 +817,7 @@ $messages['hy'] = array(
 $messages['ia'] = array(
 	'flow-desc' => 'Systema de gestion de fluxo de travalio',
 	'flow-specialpage' => '$1 &ndash; Fluxo',
-	'flow-edit-header-link' => 'Summario del modification',
+	'flow-headeredit-link' => 'Summario del modification',
 	'flow-disclaimer' => 'Cliccante le button "Adder message", tu accepta le Conditiones de Uso,
 e tu accepta de liberar irrevocabilemente tu contribution sub le licentia Creative Commons BY-SA 3.0 e sub le Licentia GNU pro Documentation Libere.
 Tu accepta que un hyperligamine o URL suffice qua attribution sub le licentia Creative Commons.',
@@ -894,7 +894,7 @@ Tu accepta que un hyperligamine o URL suffice qua attribution sub le licentia Cr
 $messages['it'] = array(
 	'flow-desc' => 'Sistema di gestione del flusso di lavoro',
 	'flow-specialpage' => '$1 &ndash; Flusso',
-	'flow-edit-header-link' => 'Modifica oggetto',
+	'flow-headeredit-link' => 'Modifica oggetto',
 	'flow-disclaimer' => 'Facendo click sul pulsante "Aggiungi messaggio", accetti le condizioni d\'uso, e accetti irrevocabilmente di rilasciare il tuo contributo sotto le licenze Creative Commons Attribuzione-Condividi allo stesso modo 3.0 e GFDL.
 Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'attribuzione in base alla licenza Creative Commons.',
 	'flow-post-hidden' => '[messaggio nascosto]',
@@ -984,7 +984,7 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 $messages['ja'] = array(
 	'flow-desc' => 'ワークフロー管理システム',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-header-link' => '要約を編集',
+	'flow-headeredit-link' => '要約を編集',
 	'flow-disclaimer' => '「メッセージを追加」ボタンをクリックすると、利用規約に同意するとともに、
 自分の投稿内容を CC BY-SA 3.0 ライセンスおよび GFDL のもとで公開することに同意したことになります。この同意は取り消せません。
 また、あなたはハイパーリンクまたは URL がクリエイティブ・コモンズライセンスにおける帰属表示として十分であると認めたことになります。',
@@ -1084,7 +1084,7 @@ $messages['ko'] = array(
  */
 $messages['lb'] = array(
 	'flow-desc' => 'Workflow-Management-System',
-	'flow-edit-header-link' => 'Resumé vun der Ännerung',
+	'flow-headeredit-link' => 'Resumé vun der Ännerung',
 	'flow-post-hidden-by' => '{{GENDER:$1|Verstoppt}} vum $1 $2',
 	'flow-post-deleted-by' => '{{GENDER:$1|Geläscht}} vum $1 $2',
 	'flow-post-censored-by' => '{{GENDER:$1|Zensuréiert}} vum $1 $2',
@@ -1127,7 +1127,7 @@ $messages['lb'] = array(
 $messages['mk'] = array(
 	'flow-desc' => 'Систем за раководење со работниот тек',
 	'flow-specialpage' => '$1 &ndash; Тек',
-	'flow-edit-header-link' => 'Опис на уредувањето',
+	'flow-headeredit-link' => 'Опис на уредувањето',
 	'flow-disclaimer' => 'Стискајќи на копчето „Додај порака“, се согласувате со Условите на употреба,
 и неотповикливо се согласувате дека ги објавувате вашите придонеси под лиценцата CC-BY-SA 3.0 и ГЛСД.
 Се согласувате дека хиперврска или URL претставува достатно оддавање на заслуга согласно лиценцата на Криејтив комонс.',
@@ -1215,7 +1215,7 @@ $messages['mk'] = array(
  * @author V.narsikar
  */
 $messages['mr'] = array(
-	'flow-edit-header-link' => 'संपादन सारांश',
+	'flow-headeredit-link' => 'संपादन सारांश',
 	'flow-newtopic-title-placeholder' => 'संदेशाचा विषय',
 	'flow-error-external' => 'आपले उत्तर जतन करण्यात त्रूटी घडली.आपले उत्तर जतन झाले नाही.<br /><small>मिळालेला त्रूटी संदेश असा होता: $1</small>',
 	'flow-error-external-multi' => 'आपले उत्तर जतन करण्यात त्रूटी आढळल्या.आपले उत्तर जतन झाले नाही.<br />$1',
@@ -1226,7 +1226,7 @@ $messages['mr'] = array(
  */
 $messages['nb'] = array(
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-header-link' => 'Redigeringsforklaring',
+	'flow-headeredit-link' => 'Redigeringsforklaring',
 	'flow-disclaimer' => 'Ved å trykke på knappen «Legg til melding» godtar du bruksvilkårene og samtykker ugjenkallelig til å utgi ditt bidrag under CC BY-SA 3.0 og GFDL.
 Du godtar at en hyperlenke eller URL utgjør tilstrekkelig navngivelse under Creative Commons-lisensen.',
 	'flow-post-hidden' => '[skjult melding]',
@@ -1319,7 +1319,7 @@ $messages['nl'] = array(
 $messages['oc'] = array(
 	'flow-desc' => 'Sistèma de gestion del flux de trabalh',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-header-link' => 'Resumit',
+	'flow-headeredit-link' => 'Resumit',
 	'flow-disclaimer' => "En clicant sul boton « Apondre un messatge », acceptatz nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr condicions d'utilizacion] e acceptatz de plaçar irrevocablament vòstra contribucion jos [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licéncia Creative Commons paternitat-partiment de las condicions inicialas a l'identica 3.0] e [http://www.gnu.org/copyleft/fdl.html GFDL]. Acceptatz d’èsser creditat pels reütilizaires al minimum via un iperligam o una URL jos la licéncia Creative Commons.",
 	'flow-post-hidden' => '[nòta amagada]',
 	'flow-post-hidden-by' => 'Amagat per $1 $2', # Fuzzy
@@ -1415,7 +1415,7 @@ $messages['pt-br'] = array(
 $messages['roa-tara'] = array(
 	'flow-desc' => 'Sisteme de Gestione de le Flusse de fatìe',
 	'flow-specialpage' => '$1 &ndash; Flusse',
-	'flow-edit-header-link' => "Cange 'u Riepiloghe",
+	'flow-headeredit-link' => "Cange 'u Riepiloghe",
 	'flow-post-deleted' => '[messàgge scangellate]',
 	'flow-post-actions' => 'aziune',
 	'flow-topic-actions' => 'aziune',
@@ -1469,7 +1469,7 @@ $messages['sl'] = array(
  * @author WikiPhoenix
  */
 $messages['sv'] = array(
-	'flow-edit-header-link' => 'Redigeringssammanfattning',
+	'flow-headeredit-link' => 'Redigeringssammanfattning',
 	'flow-post-hidden' => '[inlägg dolt]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Dold}} av $1 $2',
 	'flow-post-deleted' => '[inlägg raderat]',
@@ -1517,7 +1517,7 @@ $messages['sv'] = array(
 $messages['uk'] = array(
 	'flow-desc' => 'Система управління робочими процесами',
 	'flow-specialpage' => '$1 &ndash; Потік',
-	'flow-edit-header-link' => 'Редагувати підсумок',
+	'flow-headeredit-link' => 'Редагувати підсумок',
 	'flow-disclaimer' => 'Натиснувши кнопку "Додати Повідомлення", ви погоджуєтеся з Умовами Використання
 і ви безповоротно погоджуєтесь здійснювати свій внесок відповідно до ліцензій CC-BY-SA 3.0 та GFDL.
 Ви згідні, що гіперпосилання або URL-адреса є достатнім внеском під ліцензією Creative Commons license.',
@@ -1607,7 +1607,7 @@ $messages['uk'] = array(
 $messages['vi'] = array(
 	'flow-desc' => 'Hệ thống quản lý luồng công việc',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-header-link' => 'Tóm lược sửa đổi',
+	'flow-headeredit-link' => 'Tóm lược sửa đổi',
 	'flow-disclaimer' => 'Với việc bấm nút “Nhắn tin”, bạn chấp nhận các Điều khoản Sử dụng,
 và bạn đồng ý phát hành, một cách không thể hủy bỏ, đóng góp của mình theo Giấy phép Creative Commons Ghi công–Chia sẻ tương tự 3.0 và GFDL.
 Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều kiện ghi công trong giấy phép Creative Commons.',
@@ -1695,7 +1695,7 @@ Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều k
  * @author פוילישער
  */
 $messages['yi'] = array(
-	'flow-edit-header-link' => 'רעדאקטירונג רעזומע',
+	'flow-headeredit-link' => 'רעדאקטירונג רעזומע',
 	'flow-disclaimer' => 'ביים קליקן אויפן "צושטעלן מעלדונג" קנעפל, טוט איר מסכים זיין צו די ניצבאדינגונגען, אומאפשפריילעך צו פארעפנטלעכן אייער ביישטייער אונטערן CC-BY-SA 3.0 ליצענץ און דעם GFDL.
 איר זענט מסכים אז א היפערלינק אדער URL איז גענוג צושרייבן אונטערן קריעטיוו־קאמאנס ליצענס.',
 	'flow-newtopic-title-placeholder' => 'מעלדונג סוביעקט',
