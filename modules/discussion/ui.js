@@ -165,5 +165,24 @@
 					$hideElement.slideDown();
 				}
 			} );
+
+		// Moderated posts need click to display content
+		$( '<a href="#" class="flow-post-moderated-view"></a>' )
+			.text( mw.msg( 'flow-post-moderated-toggle-show' ) )
+			.click( function ( e ) {
+				e.preventDefault();
+
+				var $post = $( this ).closest( '.flow-post-moderated' ),
+					$comment = $post.find( '.flow-post-main' );
+
+				if ( $comment.is( ':visible' ) ) {
+					$comment.hide();
+					$( this ).text( mw.msg( 'flow-post-moderated-toggle-show' ) );
+				} else {
+					$comment.show();
+					$( this ).text( mw.msg( 'flow-post-moderated-toggle-hide' ) );
+				}
+			} )
+			.prependTo( $container.find( '.flow-post-moderated-message' ) );
 	} );
 } )( jQuery, mediaWiki );

@@ -102,4 +102,61 @@
 			font-family: sans-serif;
 		}
 	}
+
+	.flow-post-moderated {
+		.flow-post-moderated-message {
+			color: #aaa;
+			padding: 0;
+			margin: 0 0 20px 0;
+
+			a {
+				color: #aaa;
+				text-decoration: none;
+				line-height: 18px;
+
+				&:hover {
+					border-bottom: 1px solid #ccc;
+				}
+			}
+
+			.moderatedPost(@icon, @hover-icon) {
+				padding-left: 30px;
+
+				/* @embed */
+				background-image: url( @icon );
+				background-position: left;
+				background-size: 20px auto;
+				background-repeat: no-repeat;
+
+				&:hover {
+					background-image: url( @hover-icon );
+				}
+			}
+
+			&.flow-post-moderated-hide {
+				.moderatedPost('../../base/images/stub.png', '../../base/images/stub.png'); /* @todo: real assets */
+			}
+
+			&.flow-post-moderated-delete {
+				.moderatedPost('../../base/images/stub.png', '../../base/images/stub.png'); /* @todo: real assets */
+			}
+
+			&.flow-post-moderated-censor {
+				.moderatedPost('../../base/images/stub.png', '../../base/images/stub.png'); /* @todo: real assets */
+			}
+		}
+
+		.flow-post-main {
+			// hide post if it's been moderated (can be toggled back via JS)
+			display: none;
+
+			color: #aaa;
+
+			// hide non-essential elements
+			.flow-post-title,
+			.flow-datestamp {
+				display: none;
+			}
+		}
+	}
 }

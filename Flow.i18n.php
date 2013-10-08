@@ -12,6 +12,8 @@ $messages['en'] = array(
 	'flow-specialpage' => '$1 &ndash; Flow',
 	'flow-edit-summary-link' => 'Edit summary',
 
+	'flow-post-moderated-toggle-show' => '[Show]',
+	'flow-post-moderated-toggle-hide' => '[Hide]',
 	'flow-post-hidden' => '[post hidden]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Hidden}} by $1 $2',
 	'flow-post-deleted' => '[post deleted]',
@@ -21,7 +23,6 @@ $messages['en'] = array(
 	'flow-post-actions' => 'actions',
 	'flow-topic-actions' => 'actions',
 	'flow-cancel' => 'Cancel',
-
 
 	'flow-newtopic-title-placeholder' => 'Message subject',
 	'flow-newtopic-content-placeholder' => 'Message text. Be nice!',
@@ -126,6 +127,8 @@ $messages['qqq'] = array(
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
 	'flow-edit-summary-link' => 'Used as text for the link which points to the "Edit summary" page.',
+	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
+	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post',
 	'flow-post-hidden' => 'Used as username/content if the post was hidden.
 
 Translate this as "post which was hidden".',
