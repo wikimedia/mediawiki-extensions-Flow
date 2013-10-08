@@ -78,16 +78,6 @@ echo Html::openElement( 'div', array(
 				<?php echo $post->getContent( $user, 'html' ); ?>
 			</div>
 
-			<?php if ( !$post->isOriginalContent() ): ?>
-				<div class="flow-post-edited">
-					<?php echo wfMessage(
-						'flow-post-edited',
-						$post->getLastContentEditorName( $user ),
-						$post->getLastContentEditId()->getHumanTimestamp()
-					); ?>
-				</div>
-			<?php endif ?>
-
 			<p class="flow-datestamp">
 				<span class="flow-agotime" style="display: inline">
 					<?php echo $post->getPostId()->getHumanTimestamp(); ?>
