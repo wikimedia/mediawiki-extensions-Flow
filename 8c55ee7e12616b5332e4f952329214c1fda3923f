@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_efe2d5a2",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-10-08T19:34:18Z",
+      "side": 1,
+      "message": "Superfluous newline.",
+      "revId": "8c55ee7e12616b5332e4f952329214c1fda3923f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_cfd511b7",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-10-08T19:34:18Z",
+      "side": 1,
+      "message": "All these three messages should support GENDER.",
+      "revId": "8c55ee7e12616b5332e4f952329214c1fda3923f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
