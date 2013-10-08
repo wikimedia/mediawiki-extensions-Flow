@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_e4975d99",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T13:02:28Z",
+      "side": 1,
+      "message": "These _may_ be worth moving to core.\nBecause I don\u0027t want us to be blocked by getting the core change in, I\u0027m doing it in Flow for now.\nBut I\u0027ll definitely talk to Matt to get (part of) this work folded into core, if that makes sense.",
+      "parentUuid": "0932edd2_6efb4e77",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_4e068a87",
         "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
         "patchSetId": 10
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_44a7490e",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T13:02:28Z",
+      "side": 1,
+      "message": "I had color-picked from i5\u0027s Buttons_Flyout.png, which is 909090.",
+      "parentUuid": "0932edd2_ae4626c1",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_6e7fce12",
         "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
         "patchSetId": 10
@@ -64,6 +100,24 @@
       "writtenOn": "2013-10-08T06:25:58Z",
       "side": 1,
       "message": "what does \"counter\" mean here? The term isn\u0027t in the Agora specs or the Iteration 5 document as far as I can tell.\n\nComment where you\u0027re getting these values, e.g. \u0027Flow Portal/Design/Iteration 5 \"Color Guide\"\u0027",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_84a941e1",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T13:02:28Z",
+      "side": 1,
+      "message": "Primary \u0026 secondary are basically background \u0026 border colors.\nCounter-color is a the (contrasting) color used for text.\n\nI didn\u0027t want to name the variables \"background\", \"border\" and \"text\", because I also wanted to add .mw-ui-text, which then builds a text-only button (e.g. the \"Cancel\" links in Flow), which uses the primary (background) color as text color (with no border/background).\n\nI agree that \"counter\" is probably quite a bad name, though. Suggestions?",
+      "parentUuid": "0932edd2_6e7fce12",
       "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_c4b3394b",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T13:02:28Z",
+      "side": 1,
+      "message": "Not really sure where I got this from anymore :)",
+      "parentUuid": "0932edd2_2e96b63d",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_8e7c021e",
         "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
         "patchSetId": 10
@@ -98,6 +170,24 @@
       "writtenOn": "2013-10-08T06:25:58Z",
       "side": 1,
       "message": "Do you need !important?  That makes it harder to have .mw-ui-primary, .mw-ui-constructive, etc. just override the button color.",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_4480294a",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T13:02:28Z",
+      "side": 1,
+      "message": "Core had some !important somewhere, which was overriding any of my buttons. Can\u0027t seem to reproduce anymore though, guess I fluked.",
+      "parentUuid": "0932edd2_8e7c021e",
       "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +211,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_c48c1983",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T13:02:28Z",
+      "side": 1,
+      "message": "Hadn\u0027t noticed any - I\u0027ll ask.",
+      "parentUuid": "0932edd2_2eaf967f",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_8ec6c24a",
         "filename": "modules/mediawiki.ui/styles/settings/colors.less",
         "patchSetId": 10
@@ -132,6 +240,24 @@
       "writtenOn": "2013-10-08T06:25:58Z",
       "side": 1,
       "message": "Again, add a comment \u0027From Flow Prototype/Design/Iteration 5 \"Buttons \u0026 Flyout Options\"\u0027",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_64de0d6c",
+        "filename": "modules/mediawiki.ui/styles/settings/colors.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T13:02:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0932edd2_8ec6c24a",
       "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +281,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_24f415f0",
+        "filename": "modules/mediawiki.ui/styles/settings/colors.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T13:02:28Z",
+      "side": 1,
+      "message": "Color-picked from Buttons_Flyout.png; from the \"Reply\" button. (Thank button has d0d0d0).\n\nColor guide doesn\u0027t really state the active background. I\u0027ll ask May, because I just noticed in Buttons_Flyout.png the \"Thank\" button has d0d0d0 instead of ccc (hadn\u0027t noticed before)",
+      "parentUuid": "0932edd2_0ee3b2dd",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_2ee876b5",
         "filename": "modules/mediawiki.ui/styles/settings/colors.less",
         "patchSetId": 10
@@ -172,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_44f909e6",
+        "filename": "modules/mediawiki.ui/styles/settings/colors.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T13:02:28Z",
+      "side": 1,
+      "message": "I guess this was a typo :)",
+      "parentUuid": "0932edd2_2ee876b5",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_8ecfa256",
         "filename": "modules/summary/styles/base.less",
         "patchSetId": 10
@@ -183,6 +345,24 @@
       "writtenOn": "2013-10-08T06:25:58Z",
       "side": 1,
       "message": "This should be in a colors.less file. I don\u0027t see this value in Iteration 5\u0027s https://www.mediawiki.org/wiki/File:SummarizeTopic.png or in https://www.mediawiki.org/wiki/File:Guide_Color.png",
+      "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_e4d2fd5a",
+        "filename": "modules/summary/styles/base.less",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T13:02:28Z",
+      "side": 1,
+      "message": "Color-picked from Talkpage_Other_MoreParticipants.png\n\nWill ask May for confirmation.",
+      "parentUuid": "0932edd2_8ecfa256",
       "revId": "8334e4dbc252f11c60f9c8ed69df727248b322e4",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
