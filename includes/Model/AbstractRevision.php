@@ -194,7 +194,7 @@ abstract class AbstractRevision {
 	 * @return boolean True when the user is allowed to see the current revision
 	 */
 	// Is the user allowed to see this revision ?
-	protected function isAllowed( $user = null, $state = null ) {
+	public function isAllowed( $user = null, $state = null ) {
 		// allowing a $state to be passed is a bit hackish
 		if ( $state === null ) {
 			$state = $this->moderationState;
