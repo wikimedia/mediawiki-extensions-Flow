@@ -33,9 +33,9 @@ $wgResourceModules += array(
 		'messages' => array(
 		),
 	),
-	'ext.flow.summary' => $flowResourceTemplate + array(
-		'styles' => 'summary/styles/base.less',
-		'scripts' => 'summary/summary.js',
+	'ext.flow.header' => $flowResourceTemplate + array(
+		'styles' => 'header/styles/base.less',
+		'scripts' => 'header/header.js',
 		'dependencies' => array(
 			'ext.flow.editor',
 		),
@@ -50,7 +50,7 @@ $wgResourceModules += array(
 			'discussion/styles/components/container.less',
 			'discussion/styles/components/overlay.less',
 			'discussion/styles/components/post.less',
-			'discussion/styles/components/summary.less',
+			'discussion/styles/components/header.less',
 			'discussion/styles/components/timestamp.less',
 			'discussion/styles/components/topic.less',
 */
