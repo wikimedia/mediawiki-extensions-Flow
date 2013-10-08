@@ -2,13 +2,13 @@
 	'use strict';
 
 	$( function () {
-		var $form = $( '.flow-header-form' ),
-			$textarea = $form.find( 'textarea' ),
-			workflowId = $form.flow( 'getTopicWorkflowId' ),
-			pageName = $form.closest( '.flow-container' ).data( 'page-title' );
+		var $form = $( '.flow-header-form' );
 
 		// edit-form is showing
 		if ( $form.length > 0 ) {
+			var $textarea = $form.find( 'textarea' ),
+				workflowId = $form.flow( 'getTopicWorkflowId' ),
+				pageName = $form.closest( '.flow-container' ).data( 'page-title' );
 			// convert text-area into editor
 			mw.flow.editor.load( $textarea, $textarea.val() );
 

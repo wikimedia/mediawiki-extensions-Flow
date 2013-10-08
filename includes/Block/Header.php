@@ -74,7 +74,8 @@ class HeaderBlock extends AbstractBlock {
 			$this->storage->put( $this->header );
 
 			return array(
-				'new-revision-id' => $this->header->getRevisionId()
+				'new-revision-id' => $this->header->getRevisionId(),
+				'rendered' => $this->header->getContent( 'html' ),
 			);
 			break;
 
@@ -84,9 +85,7 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		if ( $this->action === 'edit-header' ) {
-			$templating->getOutput()->addModules( 'ext.flow.header' );
-		}
+		$templating->getOutput()->addModules( 'ext.flow.header' );
 		$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
 		$templating->render( "flow:$templateName.html.php", array(
 			'block' => $this,
