@@ -135,14 +135,27 @@ mw.flow = {
 			return mw.flow.api.readBlock( pageName, workflowId, 'header', options );
 		},
 
+		generateTopicAction: function( actionName, parameterList, promiseFilterCallback ) {
+			var params = $.makeArray( arguments );
+			params.unshift( 'topic' );
+			var innerAction = mw.flow.api.generateBlockAction.apply( this, params );
+
+			return function( topicId ) {
+				var actionParams = $.makeArray( arguments );
+				topicId = actionParams.shift( 'topic' );
+				actionParams.unshift( { 'workflow' : topicId } );
+				return innerAction.apply( this, actionParams );
+			};
+		},
+
 		/**
 		 * @param {string} actionName
 		 * @param {object} parameterList
 		 * @param {function} promiseFilterCallback
 		 * @return {function}
 		 */
-		'generateTopicAction' : function ( actionName, parameterList, promiseFilterCallback ) {
-			return function ( workflowId ) {
+		'generateBlockAction' : function ( blockName, actionName, parameterList, promiseFilterCallback ) {
+			return function ( workflowSpec ) {
 				var deferredObject = $.Deferred(),
 					requestParams = {},
 					paramIndex = 1,
@@ -154,14 +167,14 @@ mw.flow = {
 					paramIndex++;
 				} );
 
+				var realParams = {};
+				realParams[blockName] = requestParams;
+
 				mw.flow.api.executeAction(
-					{
-						'workflow' : workflowId
-					},
+					workflowSpec,
 					actionName,
-					{ 'topic' :
-						requestParams
-					}, true
+					realParams,
+					true
 				).done( function ( data ) {
 					var output;
 
@@ -174,12 +187,12 @@ mw.flow = {
 						!data.flow ||
 						!data.flow[actionName] ||
 						!data.flow[actionName].result ||
-						!data.flow[actionName].result.topic
+						!data.flow[actionName].result[blockName]
 					) {
 						deferredObject.reject( 'invalid-result', 'Unable to find appropriate section in result' );
 						return;
 					}
-					output = data.flow[actionName].result.topic;
+					output = data.flow[actionName].result[blockName];
 
 					deferredObject.resolve( output, data );
 				} )
@@ -196,55 +209,18 @@ mw.flow = {
 
 				return deferredObject.promise();
 			};
-		},
-
-		/**
-		 * @param {object} workflowParam
-		 * @param {string} title
-		 * @param {string} content
-		 * @return {Deferred}
-		 */
-		'newTopic' : function ( workflowParam, title, content ) {
-			var deferredObject = $.Deferred();
-
-			mw.flow.api.executeAction(
-				workflowParam,
-				'new-topic',
-				{ 'topic_list' :
-					{
-						'topic' : title,
-						'content' : content
-					}
-				}, true
-			).done( function ( data ) {
-				var output;
-
-				if ( data.flow['new-topic'].errors ) {
-					deferredObject.reject( 'block-errors', data.flow['new-topic'].errors );
-					return;
-				}
-
-				if (
-					!data.flow ||
-					!data.flow['new-topic'] ||
-					!data.flow['new-topic'].result ||
-					!data.flow['new-topic'].result.topic_list
-				) {
-					deferredObject.reject( 'invalid-result', 'Unable to find appropriate section in result' );
-					return;
-				}
-				output = data.flow['new-topic'].result.topic_list;
-
-				deferredObject.resolve( output, data );
-			} )
-			.fail( function () {
-				deferredObject.reject.apply( this, arguments );
-			} );
-
-			return deferredObject.promise();
 		}
 	}
 };
+
+mw.flow.api.newTopic = mw.flow.api.generateBlockAction(
+	'topic_list',
+	'new-topic',
+	[
+		'topic',
+		'content'
+	]
+);
 
 /**
  * @param {string} workflowId
@@ -278,6 +254,15 @@ mw.flow.api.editPost = mw.flow.api.generateTopicAction(
 	[
 		'postId',
 		'content'
+	]
+);
+
+mw.flow.api.editHeader = mw.flow.api.generateBlockAction(
+	'header',
+	'edit-header',
+	[
+		'content',
+		'prev_revision'
 	]
 );
 } );

@@ -67,6 +67,87 @@
 				return $form;
 			},
 
+			'setupEditForm' : function( type, initialContent, submitFunction ) {
+					var deferredObject = $.Deferred();
+					var $contentContainer = $(this);
+					var $postForm = $('<form/>')
+						.addClass( 'flow-edit-'+type+'-form' )
+						.hide()
+						.insertAfter( $contentContainer );
+
+					$postForm
+						.append(
+							$( '<textarea />' )
+								.addClass( 'flow-edit-'+type+'-content' )
+						)
+						.append(
+							$( '<div/>' )
+								.addClass( 'flow-edit-'+type+'-controls' )
+								.append(
+									$( '<a/>' )
+										.text( mw.msg( 'flow-cancel' ) )
+										.addClass( 'flow-cancel-link' )
+										.addClass( 'mw-ui-destructive' )
+										.attr( 'href', '#' )
+										.click( function ( e ) {
+											e.preventDefault();
+											$postForm.slideUp( 'fast',
+												function () {
+													$contentContainer.show();
+													$postForm.remove();
+												}
+											);
+										} )
+								)
+								.append(
+									$( '<input />' )
+										.attr( 'type', 'submit' )
+										.addClass( 'mw-ui-button' )
+										.addClass( 'mw-ui-primary' )
+										.addClass( 'flow-edit-'+type+'-submit' )
+										.val( mw.msg( 'flow-edit-'+type+'-submit' ) )
+								)
+						)
+						.insertAfter( $contentContainer );
+
+					mw.flow.editor.load( $postForm.find( 'textarea' ), initialContent );
+
+					$contentContainer.hide();
+
+					$postForm.flow( 'setupFormHandler',
+						'.flow-edit-'+type+'-submit',
+						submitFunction,
+						function () {
+							var content = mw.flow.editor.getContent( $postForm.find( '.flow-edit-'+type+'-content' ) );
+							return [ content ];
+						},
+						function ( content ) {
+							return content;
+						},
+						function ( promise ) {
+							promise
+								.done( function () {
+									deferredObject.resolve.apply( $contentContainer, arguments );
+								} )
+								.fail( function() {
+									deferredObject.reject.apply( $contentContainer, arguments );
+								} );
+						}
+					);
+
+					$postForm.flow( 'setupEmptyDisabler',
+						[
+							'.flow-edit-'+type+'-content'
+						],
+						'.flow-edit-'+type+'-submit'
+					);
+
+					$contentContainer.hide();
+					$postForm.show();
+
+					return deferredObject.promise();
+			},
+
 			/**
 			 * @param {string} submitSelector jQuery selector string to capture submit button
 			 * @param {function} submitFunction Function to execute when submitting form
@@ -82,7 +163,7 @@
 				validateCallback,
 				promiseCallback
 			) {
-				var $container = this;
+				var $container = $(this);
 
 				$container.find( submitSelector )
 					.click( function ( e ) {
