@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_ce919af1",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-10-08T07:35:43Z",
+      "side": 1,
+      "message": "This will almost certainly lead to frequent merge issues, as translations are being added to many languages on a daily basis. Advice is to only rename \"en\" and \"qqq\". See https://www.mediawiki.org/wiki/I18n#Changing_existing_messages item #3.",
+      "revId": "865fb3506d12d4a823494bad3e0171409345bf3a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
