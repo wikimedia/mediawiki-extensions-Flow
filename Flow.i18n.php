@@ -10,7 +10,9 @@ $messages = array();
 $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
 	'flow-specialpage' => '$1 &ndash; Flow',
+
 	'flow-edit-header-link' => 'Edit header',
+	'flow-header-empty' => 'This talk page currently has no header.',
 
 	'flow-post-moderated-toggle-show' => '[Show]',
 	'flow-post-moderated-toggle-hide' => '[Hide]',
@@ -70,7 +72,7 @@ $messages['en'] = array(
 	'flow-error-invalid-postId' => '"postId" parameter was invalid. The specified post could not be found.',
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
 
-	'flow-headeredit-submit' => 'Save header',
+	'flow-edit-header-submit' => 'Save header',
 
 	'flow-edit-title-submit' => 'Change title',
 
@@ -144,11 +146,12 @@ $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
-	'flow-edit-summary-link' => 'Used as text for the link which points to the "Edit summary" page.',
 	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post.
 {{Identical|Show}}',
 	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post.
 {{Identical|Hide}}',
+	'flow-edit-header-link' => 'Used as text for the link which points to the "Edit header" page.',
+	'flow-header-empty' => 'Used as a placeholder text for headers which have no content.',
 	'flow-disclaimer' => 'Used as disclaimer text at the bottom of the form.',
 	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
 	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post',
@@ -278,7 +281,7 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 	'flow-error-restore-failure' => 'Used as error message when restoring a post.
 
 "this item" seems to refer "this post".',
-	'flow-headeredit-submit' => 'Used as label for the Submit button.',
+	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited',
 	'flow-rev-message-reply' => 'Used as a revision comment when a new reply has been posted.',
