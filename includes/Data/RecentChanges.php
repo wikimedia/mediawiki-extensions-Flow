@@ -85,7 +85,7 @@ class HeaderRecentChanges extends RecentChanges {
 		}
 
 		$this->insert(
-			$object->getComment(),
+			$object->getChangeType(),
 			$row,
 			$workflow,
 			$object->getRevisionId(),
@@ -119,7 +119,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 		}
 
 		$this->insert(
-			$object->getComment(),
+			$object->getChangeType(),
 			$row,
 			$workflow,
 			$object->getRevisionId(),

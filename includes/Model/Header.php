@@ -7,7 +7,7 @@ use User;
 class Header extends AbstractRevision {
 	protected $workflowId;
 
-	static public function create( Workflow $workflow, User $user, $content, $comment = 'flow-create-header' ) {
+	static public function create( Workflow $workflow, User $user, $content, $changeType = 'flow-create-header' ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
@@ -15,7 +15,7 @@ class Header extends AbstractRevision {
 		$obj->userText = $user->getName();
 		$obj->prevRevision = null; // no prior revision
 		$obj->setContent( $content );
-		$obj->comment = $comment;
+		$obj->changeType = $changeType;
 		return $obj;
 	}
 

@@ -122,7 +122,7 @@ $c['storage.header'] = $c->share( function( $c ) {
 
 	$pk = new UniqueFeatureIndex(
 		$cache, $storage,
-		'flow_header:pk', array( 'rev_id' )
+		'flow_header:v2:pk', array( 'rev_id' )
 	);
 	$workflowIndexOptions = array(
 		'sort' => 'rev_id',
@@ -188,7 +188,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 	$treeRepo = $c['repository.tree'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\PostRevision' );
 	$storage = new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $treeRepo );
-	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_revision:pk', array( 'rev_id' ) );
+	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_revision:v2:pk', array( 'rev_id' ) );
 	$indexes = array(
 		$pk,
 		// revision history

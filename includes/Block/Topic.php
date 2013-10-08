@@ -428,7 +428,7 @@ class TopicBlock extends AbstractBlock {
 			$output[] = array(
 				'revision-id' => $revision->getRevisionId()->getHex(),
 				'revision-author' => $revision->getUserText(),
-				'revision-comment' => $revision->getComment(),
+				'revision-change-type' => $revision->getChangeType(),
 			);
 		}
 
