@@ -57,7 +57,7 @@ use Flow\Data\LocalBufferedCache;
 use Flow\Data\BasicObjectMapper;
 use Flow\Data\BasicDbStorage;
 use Flow\Data\PostRevisionStorage;
-use Flow\Data\SummaryRevisionStorage;
+use Flow\Data\HeaderRevisionStorage;
 use Flow\Data\UniqueFeatureIndex;
 use Flow\Data\TopKIndex;
 use Flow\Data\TopicHistoryIndex;
@@ -113,16 +113,16 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 	return new ObjectManager( $mapper, $storage, $indexes, $lifecycle );
 } );
 // Arbitrary bit of revisioned wiki-text attached to a workflow
-$c['storage.summary'] = $c->share( function( $c ) {
+$c['storage.header'] = $c->share( function( $c ) {
 	global $wgFlowExternalStore;
 
 	$cache = $c['memcache.buffered'];
-	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Summary' );
-	$storage = new SummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
+	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Header' );
+	$storage = new HeaderRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
 
 	$pk = new UniqueFeatureIndex(
 		$cache, $storage,
-		'flow_summary:pk', array( 'rev_id' )
+		'flow_header:pk', array( 'rev_id' )
 	);
 	$workflowIndexOptions = array(
 		'sort' => 'rev_id',
@@ -136,12 +136,12 @@ $c['storage.summary'] = $c->share( function( $c ) {
 		$pk,
 		new TopKIndex(
 			$cache, $storage,
-			'flow_summary:workflow', array( 'summary_workflow_id' ),
+			'flow_header:workflow', array( 'header_workflow_id' ),
 			array( 'limit' => 100 ) + $workflowIndexOptions
 		),
 		new TopKIndex(
 			$cache, $storage,
-			'flow_summary:latest', array( 'summary_workflow_id' ),
+			'flow_header:latest', array( 'header_workflow_id' ),
 			array( 'limit'  => 1 ) + $workflowIndexOptions
 		),
 	);
@@ -283,8 +283,8 @@ $c['storage'] = $c->share( function( $c ) {
 			'Flow\\Model\\TopicListEntry' => 'storage.topic_list',
 			'TopicListEntry' => 'storage.topic_list',
 
-			'Flow\\Model\\Summary' => 'storage.summary',
-			'Summary' => 'storage.summary',
+			'Flow\\Model\\Header' => 'storage.header',
+			'Header' => 'storage.header',
 		)
 	);
 } );

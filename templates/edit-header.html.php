@@ -3,18 +3,18 @@
 // owning workflow
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
-	'action' => $this->generateUrl( $workflow, 'edit-summary' ),
-	'class' => 'flow-summary-form',
+	'action' => $this->generateUrl( $workflow, 'edit-header' ),
+	'class' => 'flow-header-form',
 ) );
 echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 if ( $block->hasErrors( 'prev_revision' ) ) {
 	echo '<p>' . $block->getError( 'prev_revision' )->escaped() . '</p>';
 }
-if ( $summary ) {
+if ( $header ) {
 	echo Html::element( 'input', array(
 		'type' => 'hidden',
 		'name' => $block->getName()."[prev_revision]",
-		'value' => $summary->getRevisionId()->getHex(),
+		'value' => $header->getRevisionId()->getHex(),
 	) );
 }
 if ( $block->hasErrors( 'content' ) ) {
@@ -23,14 +23,14 @@ if ( $block->hasErrors( 'content' ) ) {
 
 echo Html::textarea(
 	$block->getName() . '[content]',
-	$summary ? $summary->getContent( $user, 'wikitext' ) : '',
+	$header ? $header->getContent( $user, 'wikitext' ) : '',
 	array(
-		'data-summary-id' => $summary ? $summary->getRevisionId()->getHex() : ''
+		'data-header-id' => $header ? $header->getRevisionId()->getHex() : ''
 	)
 );
 echo Html::element( 'input', array(
 	'type' => 'submit',
 	'class' => 'mw-ui-button mw-ui-constructive',
-	'value' => wfMessage( 'flow-summaryedit-submit' )->plain(),
+	'value' => wfMessage( 'flow-headeredit-submit' )->plain(),
 ) );
 echo Html::closeElement( 'form' );

@@ -10,7 +10,7 @@ $messages = array();
 $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-summary-link' => 'Edit summary',
+	'flow-edit-header-link' => 'Edit header',
 
 	'flow-disclaimer' => "By clicking the \"Add message\" button, you agree to the Terms of Use,
 and you irrevocably agree to release your contribution under the CC BY-SA 3.0 License and the GFDL.
@@ -66,7 +66,7 @@ You agree that a hyperlink or URL is sufficient attribution under the Creative C
 	'flow-error-invalid-postId' => '"postId" parameter was invalid. The specified post could not be found.',
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
 
-	'flow-summaryedit-submit' => 'Save summary',
+	'flow-headeredit-submit' => 'Save header',
 
 	'flow-edit-title-submit' => 'Change title',
 
@@ -125,7 +125,7 @@ $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
-	'flow-edit-summary-link' => 'Used as text for the link which points to the "Edit summary" page.',
+	'flow-edit-header-link' => 'Used as text for the link which points to the "Edit header" page.',
 	'flow-disclaimer' => 'Used as disclaimer text at the bottom of the form.
 
 Preceded by the Submit button which has the label either {{msg-mw|Flow-reply-submit}} or {{msg-mw|Flow-newtopic-save}}.
@@ -247,7 +247,7 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 	'flow-error-restore-failure' => 'Used as error message when restoring a post.
 
 "this item" seems to refer "this post".',
-	'flow-summaryedit-submit' => 'Used as label for the Submit button.',
+	'flow-headeredit-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-reply' => 'Used as comment when the new reply has been posted.',
 	'flow-rev-message-new-post' => 'Used as comment when the topic has been created.',
@@ -433,7 +433,7 @@ $messages['cs'] = array(
 $messages['de'] = array(
 	'flow-desc' => 'Workflow-Management-System',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-summary-link' => 'Bearbeitungszusammenfassung',
+	'flow-edit-header-link' => 'Bearbeitungszusammenfassung',
 	'flow-disclaimer' => 'Durch Klicken auf „Nachricht hinzufügen“ stimmst du den Nutzungsbedingungen
 und der unwiderruflichen Veröffentlichung deines Beitrags unter der CC-BY-SA-3.0-Lizenz sowie der GFDL zu.
 Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennung der Creative-Commons-Lizenz steht.',
@@ -480,7 +480,7 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-error-missing-postId' => 'Es wurde kein Parameter „postId“ angegeben. Dieser Parameter ist zum Löschen/Wiederherstellen eines Beitrags erforderlich.',
 	'flow-error-invalid-postId' => 'Der Parameter „postId“ war ungültig. Der angegebene Beitrag konnte nicht gefunden werden.',
 	'flow-error-restore-failure' => 'Das Wiederherstellen dieses Objektes ist fehlgeschlagen.',
-	'flow-summaryedit-submit' => 'Zusammenfassung speichern',
+	'flow-headeredit-submit' => 'Zusammenfassung speichern',
 	'flow-edit-title-submit' => 'Titel ändern',
 	'flow-rev-message-reply' => 'Neue Antwort hinterlassen',
 	'flow-rev-message-new-post' => 'Thema erstellt',
@@ -521,7 +521,7 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
  * @author Ovruni
  */
 $messages['es'] = array(
-	'flow-edit-summary-link' => 'Editar resumen',
+	'flow-edit-header-link' => 'Editar resumen',
 	'flow-post-deleted-by' => '{{GENDER:$1|Eliminado}} por $1 $2',
 	'flow-post-actions' => 'acciones',
 	'flow-topic-actions' => 'acciones',
@@ -550,7 +550,7 @@ $messages['es'] = array(
  * @author Stryn
  */
 $messages['fi'] = array(
-	'flow-edit-summary-link' => 'Muokkauksen yhteenveto',
+	'flow-edit-header-link' => 'Muokkauksen yhteenveto',
 	'flow-disclaimer' => 'Tallentamalla muutokset osoitat hyväksyväsi, että muokkauksesi julkaistaan pysyvästi Creative Commons Nimeä-Tarttuva 3.0- ja GFDL-lisenssien ehdoin. Hyväksyt, että hyperlinkki tai URL on riittävä Creative Commons -lisenssillä.',
 	'flow-post-hidden' => '[viesti piilotettu]',
 	'flow-post-deleted' => '[viesti poistettu]',
@@ -571,7 +571,7 @@ $messages['fi'] = array(
 	'flow-post-action-restore-post' => 'Palauta viesti',
 	'flow-topic-action-edit-title' => 'Muokkaa otsikkoa',
 	'flow-topic-action-history' => 'Aiheen historia',
-	'flow-summaryedit-submit' => 'Tallenna yhteenveto',
+	'flow-headeredit-submit' => 'Tallenna yhteenveto',
 	'flow-edit-title-submit' => 'Muuta otsikkoa',
 );
 
@@ -582,7 +582,7 @@ $messages['fi'] = array(
 $messages['fr'] = array(
 	'flow-desc' => 'Système de gestion du flux de travail',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-summary-link' => 'Résumé',
+	'flow-edit-header-link' => 'Résumé',
 	'flow-disclaimer' => "En cliquant sur le bouton « Ajouter un message », vous acceptez nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr conditions d'utilisation] et acceptez de placer irrévocablement votre contribution sous [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licence Creative Commons paternité-partage des conditions initiales à l'identique 3.0] et [http://www.gnu.org/copyleft/fdl.html GFDL]. Vous acceptez d’être crédité par les ré-utilisateurs au minimum via un hyperlien ou une URL sous la licence Creative Commons.",
 	'flow-post-hidden' => '[note masquée]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Masqué}} par $1 $2',
@@ -627,7 +627,7 @@ $messages['fr'] = array(
 	'flow-error-missing-postId' => 'Aucun paramètre « postId » n’a été fourni. Ce paramètre est obligatoire pour manipuler un message.',
 	'flow-error-invalid-postId' => 'Le paramètre « postId » n’était pas valide. Le message spécifié n’a pas pu être trouvé.',
 	'flow-error-restore-failure' => 'Échec de la restauration de cette entrée.',
-	'flow-summaryedit-submit' => 'Enregistrer le résumé',
+	'flow-headeredit-submit' => 'Enregistrer le résumé',
 	'flow-edit-title-submit' => 'Changer le titre',
 	'flow-rev-message-reply' => 'Nouvelle réponse publiée',
 	'flow-rev-message-new-post' => 'Sujet créé',
@@ -670,7 +670,7 @@ $messages['fr'] = array(
 $messages['gl'] = array(
 	'flow-desc' => 'Sistema de xestión do fluxo de traballo',
 	'flow-specialpage' => '$1 &ndash; Fluxo',
-	'flow-edit-summary-link' => 'Resumo de edición',
+	'flow-edit-header-link' => 'Resumo de edición',
 	'flow-disclaimer' => 'Ao premer no botón "Engadir a mensaxe" acepta os termos de uso
 e acepta liberar irrevogablemente a súa contribución baixo a licenza CC-BY-SA 3.0 e a GFDL.
 Acepta que unha hiperligazón ou un enderezo URL é recoñecemento abondo baixo a licenza Creative Commons.',
@@ -715,7 +715,7 @@ Acepta que unha hiperligazón ou un enderezo URL é recoñecemento abondo baixo 
 	'flow-error-missing-postId' => 'Non se achegou ningún parámetro de identificación. Este parámetro é obrigatorio para a manipular unha mensaxe.',
 	'flow-error-invalid-postId' => 'O parámetro de identificación non é válido. Non se puido atopar a mensaxe especificada.',
 	'flow-error-restore-failure' => 'Houbo un erro ao restaurar este elemento.',
-	'flow-summaryedit-submit' => 'Gardar o resumo',
+	'flow-headeredit-submit' => 'Gardar o resumo',
 	'flow-edit-title-submit' => 'Cambiar o título',
 	'flow-rev-message-reply' => 'Publicouse unha nova resposta',
 	'flow-rev-message-new-post' => 'Creouse un tema',
@@ -754,7 +754,7 @@ $messages['gu'] = array(
 $messages['he'] = array(
 	'flow-desc' => 'מערכת לניהול זרימת עבודה',
 	'flow-specialpage' => '$1 – זרימה',
-	'flow-edit-summary-link' => 'תקציר העריכה',
+	'flow-edit-header-link' => 'תקציר העריכה',
 	'flow-disclaimer' => 'לחיצה על כפתור "הוספת הודעה" היא הסכמה לתנאי שימוש,
 לפרסום של כל התרומות שלך לפי תנאי רישיונות CC-BY-SA 3.0 ו־GFDL
 ולכן שהיפר־קישור או כתובת URL הם ייחוס מספק לפי תנאי רישיון קריאייטיב קומונז.',
@@ -792,7 +792,7 @@ $1',
 	'flow-error-missing-postId' => 'לא ניתן פרמטר postId. הפרמטר הזה דרוש כדי לשנות רשומה.', # Fuzzy
 	'flow-error-invalid-postId' => 'פרמטר postId שנשלח היה בלתי־תקין. הרשומה לא נמצאה.', # Fuzzy
 	'flow-error-restore-failure' => 'שחזור הפריט נכשל.',
-	'flow-summaryedit-submit' => 'שמירת סיכום',
+	'flow-headeredit-submit' => 'שמירת סיכום',
 	'flow-edit-title-submit' => 'שינוי כותרת',
 	'flow-rev-message-reply' => 'נשלחה תשובה חדשה',
 	'flow-rev-message-new-post' => 'נוצר נושא',
@@ -817,7 +817,7 @@ $messages['hy'] = array(
 $messages['ia'] = array(
 	'flow-desc' => 'Systema de gestion de fluxo de travalio',
 	'flow-specialpage' => '$1 &ndash; Fluxo',
-	'flow-edit-summary-link' => 'Summario del modification',
+	'flow-edit-header-link' => 'Summario del modification',
 	'flow-disclaimer' => 'Cliccante le button "Adder message", tu accepta le Conditiones de Uso,
 e tu accepta de liberar irrevocabilemente tu contribution sub le licentia Creative Commons BY-SA 3.0 e sub le Licentia GNU pro Documentation Libere.
 Tu accepta que un hyperligamine o URL suffice qua attribution sub le licentia Creative Commons.',
@@ -862,7 +862,7 @@ Tu accepta que un hyperligamine o URL suffice qua attribution sub le licentia Cr
 	'flow-error-missing-postId' => 'Nulle parametro "postId" ha essite specificate. Iste parametro es necessari pro manipular un entrata.',
 	'flow-error-invalid-postId' => 'Le parametro "postId" es invalide. Le entrata specificate non poteva esser trovate.',
 	'flow-error-restore-failure' => 'Le restauration de iste elemento ha fallite.',
-	'flow-summaryedit-submit' => 'Salveguardar summario',
+	'flow-headeredit-submit' => 'Salveguardar summario',
 	'flow-edit-title-submit' => 'Cambiar titulo',
 	'flow-rev-message-reply' => 'Nove responsa publicate',
 	'flow-rev-message-new-post' => 'Topico create',
@@ -894,7 +894,7 @@ Tu accepta que un hyperligamine o URL suffice qua attribution sub le licentia Cr
 $messages['it'] = array(
 	'flow-desc' => 'Sistema di gestione del flusso di lavoro',
 	'flow-specialpage' => '$1 &ndash; Flusso',
-	'flow-edit-summary-link' => 'Modifica oggetto',
+	'flow-edit-header-link' => 'Modifica oggetto',
 	'flow-disclaimer' => 'Facendo click sul pulsante "Aggiungi messaggio", accetti le condizioni d\'uso, e accetti irrevocabilmente di rilasciare il tuo contributo sotto le licenze Creative Commons Attribuzione-Condividi allo stesso modo 3.0 e GFDL.
 Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'attribuzione in base alla licenza Creative Commons.',
 	'flow-post-hidden' => '[messaggio nascosto]',
@@ -940,7 +940,7 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-error-missing-postId' => 'Non è stato fornito alcun parametro "ID_messaggio". Questo parametro è necessario per poter elaborare un messaggio.',
 	'flow-error-invalid-postId' => 'Il parametro "ID_messaggio" non era valido. Il messaggio indicato non è stato trovato.',
 	'flow-error-restore-failure' => 'Il ripristino di questo elemento non è riuscito.',
-	'flow-summaryedit-submit' => 'Salva oggetto',
+	'flow-headeredit-submit' => 'Salva oggetto',
 	'flow-edit-title-submit' => 'Cambia titolo',
 	'flow-rev-message-reply' => 'Nuova risposta inviata',
 	'flow-rev-message-new-post' => 'Discussione creata',
@@ -984,7 +984,7 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 $messages['ja'] = array(
 	'flow-desc' => 'ワークフロー管理システム',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-summary-link' => '要約を編集',
+	'flow-edit-header-link' => '要約を編集',
 	'flow-disclaimer' => '「メッセージを追加」ボタンをクリックすると、利用規約に同意するとともに、
 自分の投稿内容を CC BY-SA 3.0 ライセンスおよび GFDL のもとで公開することに同意したことになります。この同意は取り消せません。
 また、あなたはハイパーリンクまたは URL がクリエイティブ・コモンズライセンスにおける帰属表示として十分であると認めたことになります。',
@@ -1028,7 +1028,7 @@ $messages['ja'] = array(
 	'flow-error-missing-postId' => '「投稿 ID」のパラメーターを指定していません。投稿を操作するには、このパラメーターが必要です。',
 	'flow-error-invalid-postId' => '「投稿 ID」のパラメーターが無効です。指定した投稿が見つかりませんでした。',
 	'flow-error-restore-failure' => 'この項目を復元できませんでした。',
-	'flow-summaryedit-submit' => '要約を保存',
+	'flow-headeredit-submit' => '要約を保存',
 	'flow-edit-title-submit' => 'タイトルを変更',
 	'flow-rev-message-reply' => '新しい返信を投稿',
 	'flow-rev-message-new-post' => '話題を作成',
@@ -1084,7 +1084,7 @@ $messages['ko'] = array(
  */
 $messages['lb'] = array(
 	'flow-desc' => 'Workflow-Management-System',
-	'flow-edit-summary-link' => 'Resumé vun der Ännerung',
+	'flow-edit-header-link' => 'Resumé vun der Ännerung',
 	'flow-post-hidden-by' => '{{GENDER:$1|Verstoppt}} vum $1 $2',
 	'flow-post-deleted-by' => '{{GENDER:$1|Geläscht}} vum $1 $2',
 	'flow-post-censored-by' => '{{GENDER:$1|Zensuréiert}} vum $1 $2',
@@ -1105,7 +1105,7 @@ $messages['lb'] = array(
 	'flow-error-delete-failure' => "D'Läsche vun dësem Element huet net funktionéiert.",
 	'flow-error-hide-failure' => 'Verstoppe vun dësem Element huet net funktionéiert.',
 	'flow-error-restore-failure' => "D'Restauréiere vun dësem Element huet net funktionéiert.",
-	'flow-summaryedit-submit' => 'Resumé späicheren',
+	'flow-headeredit-submit' => 'Resumé späicheren',
 	'flow-edit-title-submit' => 'Titel änneren',
 	'flow-rev-message-new-post' => 'Thema ugeluecht',
 	'flow-comment-restored' => 'Restauréiert Bemierkung',
@@ -1127,7 +1127,7 @@ $messages['lb'] = array(
 $messages['mk'] = array(
 	'flow-desc' => 'Систем за раководење со работниот тек',
 	'flow-specialpage' => '$1 &ndash; Тек',
-	'flow-edit-summary-link' => 'Опис на уредувањето',
+	'flow-edit-header-link' => 'Опис на уредувањето',
 	'flow-disclaimer' => 'Стискајќи на копчето „Додај порака“, се согласувате со Условите на употреба,
 и неотповикливо се согласувате дека ги објавувате вашите придонеси под лиценцата CC-BY-SA 3.0 и ГЛСД.
 Се согласувате дека хиперврска или URL претставува достатно оддавање на заслуга согласно лиценцата на Криејтив комонс.',
@@ -1174,7 +1174,7 @@ $messages['mk'] = array(
 	'flow-error-missing-postId' => 'Нема зададено параметар „postId“. Овој параметар е потребен за работа со пораката.',
 	'flow-error-invalid-postId' => 'Параметарот на „postId“ е неважечки. Не можев да ја најдам укажаната порака.',
 	'flow-error-restore-failure' => 'Повраќањето на ставката не успеа.',
-	'flow-summaryedit-submit' => 'Зачувај опис',
+	'flow-headeredit-submit' => 'Зачувај опис',
 	'flow-edit-title-submit' => 'Измени наслов',
 	'flow-rev-message-reply' => 'Објавен нов одговор',
 	'flow-rev-message-new-post' => 'Создадена тема',
@@ -1215,7 +1215,7 @@ $messages['mk'] = array(
  * @author V.narsikar
  */
 $messages['mr'] = array(
-	'flow-edit-summary-link' => 'संपादन सारांश',
+	'flow-edit-header-link' => 'संपादन सारांश',
 	'flow-newtopic-title-placeholder' => 'संदेशाचा विषय',
 	'flow-error-external' => 'आपले उत्तर जतन करण्यात त्रूटी घडली.आपले उत्तर जतन झाले नाही.<br /><small>मिळालेला त्रूटी संदेश असा होता: $1</small>',
 	'flow-error-external-multi' => 'आपले उत्तर जतन करण्यात त्रूटी आढळल्या.आपले उत्तर जतन झाले नाही.<br />$1',
@@ -1226,7 +1226,7 @@ $messages['mr'] = array(
  */
 $messages['nb'] = array(
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-summary-link' => 'Redigeringsforklaring',
+	'flow-edit-header-link' => 'Redigeringsforklaring',
 	'flow-disclaimer' => 'Ved å trykke på knappen «Legg til melding» godtar du bruksvilkårene og samtykker ugjenkallelig til å utgi ditt bidrag under CC BY-SA 3.0 og GFDL.
 Du godtar at en hyperlenke eller URL utgjør tilstrekkelig navngivelse under Creative Commons-lisensen.',
 	'flow-post-hidden' => '[skjult melding]',
@@ -1319,7 +1319,7 @@ $messages['nl'] = array(
 $messages['oc'] = array(
 	'flow-desc' => 'Sistèma de gestion del flux de trabalh',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-summary-link' => 'Resumit',
+	'flow-edit-header-link' => 'Resumit',
 	'flow-disclaimer' => "En clicant sul boton « Apondre un messatge », acceptatz nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr condicions d'utilizacion] e acceptatz de plaçar irrevocablament vòstra contribucion jos [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licéncia Creative Commons paternitat-partiment de las condicions inicialas a l'identica 3.0] e [http://www.gnu.org/copyleft/fdl.html GFDL]. Acceptatz d’èsser creditat pels reütilizaires al minimum via un iperligam o una URL jos la licéncia Creative Commons.",
 	'flow-post-hidden' => '[nòta amagada]',
 	'flow-post-hidden-by' => 'Amagat per $1 $2', # Fuzzy
@@ -1362,7 +1362,7 @@ $messages['oc'] = array(
 	'flow-error-missing-postId' => 'Cap de paramètre postId es pas estat provesit. Aqueste paramètre es requesit per manipular un messatge.', # Fuzzy
 	'flow-error-invalid-postId' => 'Lo paramètre postId èra pas valid. Lo messatge especificat es introbable.', # Fuzzy
 	'flow-error-restore-failure' => "Fracàs del restabliment d'aquesta entrada.",
-	'flow-summaryedit-submit' => 'Enregistrar lo resumit',
+	'flow-headeredit-submit' => 'Enregistrar lo resumit',
 	'flow-edit-title-submit' => 'Cambiar lo títol',
 	'flow-rev-message-reply' => 'Novèla responsa publicada',
 	'flow-rev-message-new-post' => 'Subjècte creat',
@@ -1415,7 +1415,7 @@ $messages['pt-br'] = array(
 $messages['roa-tara'] = array(
 	'flow-desc' => 'Sisteme de Gestione de le Flusse de fatìe',
 	'flow-specialpage' => '$1 &ndash; Flusse',
-	'flow-edit-summary-link' => "Cange 'u Riepiloghe",
+	'flow-edit-header-link' => "Cange 'u Riepiloghe",
 	'flow-post-deleted' => '[messàgge scangellate]',
 	'flow-post-actions' => 'aziune',
 	'flow-topic-actions' => 'aziune',
@@ -1432,7 +1432,7 @@ $messages['roa-tara'] = array(
 	'flow-topic-action-edit-title' => "Cange 'u titole",
 	'flow-error-http' => "Ha assute 'n'errore condattanne 'u server. 'U messàgge tune non g'ha state reggistrate.",
 	'flow-error-other' => "Ha assute 'n'errore. 'U messàgge tune non g'ha state reggistrate.",
-	'flow-summaryedit-submit' => "Reggistre 'u riepiloghe",
+	'flow-headeredit-submit' => "Reggistre 'u riepiloghe",
 	'flow-edit-title-submit' => "Cange 'u titole",
 );
 
@@ -1469,7 +1469,7 @@ $messages['sl'] = array(
  * @author WikiPhoenix
  */
 $messages['sv'] = array(
-	'flow-edit-summary-link' => 'Redigeringssammanfattning',
+	'flow-edit-header-link' => 'Redigeringssammanfattning',
 	'flow-post-hidden' => '[inlägg dolt]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Dold}} av $1 $2',
 	'flow-post-deleted' => '[inlägg raderat]',
@@ -1495,7 +1495,7 @@ $messages['sv'] = array(
 	'flow-topic-action-edit-title' => 'Redigera titel',
 	'flow-topic-action-history' => 'Ämneshistorik',
 	'flow-error-http' => 'Ett fel uppstod när servern kontaktades. Ditt inlägg har inte sparats.',
-	'flow-summaryedit-submit' => 'Spara sammanfattning',
+	'flow-headeredit-submit' => 'Spara sammanfattning',
 	'flow-edit-title-submit' => 'Ändra titel',
 	'flow-rev-message-reply' => 'Nytt svar postat',
 	'flow-rev-message-new-post' => 'Ämnet skapat',
@@ -1517,7 +1517,7 @@ $messages['sv'] = array(
 $messages['uk'] = array(
 	'flow-desc' => 'Система управління робочими процесами',
 	'flow-specialpage' => '$1 &ndash; Потік',
-	'flow-edit-summary-link' => 'Редагувати підсумок',
+	'flow-edit-header-link' => 'Редагувати підсумок',
 	'flow-disclaimer' => 'Натиснувши кнопку "Додати Повідомлення", ви погоджуєтеся з Умовами Використання
 і ви безповоротно погоджуєтесь здійснювати свій внесок відповідно до ліцензій CC-BY-SA 3.0 та GFDL.
 Ви згідні, що гіперпосилання або URL-адреса є достатнім внеском під ліцензією Creative Commons license.',
@@ -1564,7 +1564,7 @@ $messages['uk'] = array(
 	'flow-error-missing-postId' => 'Параметр „postId“ не був наданий. Цей параметр вимагає, щоб маніпулювати публікацією.',
 	'flow-error-invalid-postId' => 'Параметр „postId“ неприпустимий. Не вдалося знайти вказану публікацію.',
 	'flow-error-restore-failure' => 'Не вдалося виконати відновлення цього елемента.',
-	'flow-summaryedit-submit' => 'Зберегти підсумок',
+	'flow-headeredit-submit' => 'Зберегти підсумок',
 	'flow-edit-title-submit' => 'Змінити заголовок',
 	'flow-rev-message-reply' => 'Нова відповідь опублікована',
 	'flow-rev-message-new-post' => 'Тема створена',
@@ -1607,7 +1607,7 @@ $messages['uk'] = array(
 $messages['vi'] = array(
 	'flow-desc' => 'Hệ thống quản lý luồng công việc',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-summary-link' => 'Tóm lược sửa đổi',
+	'flow-edit-header-link' => 'Tóm lược sửa đổi',
 	'flow-disclaimer' => 'Với việc bấm nút “Nhắn tin”, bạn chấp nhận các Điều khoản Sử dụng,
 và bạn đồng ý phát hành, một cách không thể hủy bỏ, đóng góp của mình theo Giấy phép Creative Commons Ghi công–Chia sẻ tương tự 3.0 và GFDL.
 Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều kiện ghi công trong giấy phép Creative Commons.',
@@ -1654,7 +1654,7 @@ Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều k
 	'flow-error-missing-postId' => 'Tham số “postId” không được cung cấp. Tham số này cần để xóa hoặc phục hồi bài đăng.',
 	'flow-error-invalid-postId' => 'Tham số “postId” có giá trị không hợp lệ. Không tìm thấy bài đăng.',
 	'flow-error-restore-failure' => 'Thất bại khi phục hồi mục này.',
-	'flow-summaryedit-submit' => 'Lưu lời tóm lược',
+	'flow-headeredit-submit' => 'Lưu lời tóm lược',
 	'flow-edit-title-submit' => 'Thay đổi tiêu đề',
 	'flow-rev-message-reply' => 'Đã đăng bài trả lời',
 	'flow-rev-message-new-post' => 'Đã tạo chủ đề',
@@ -1695,7 +1695,7 @@ Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều k
  * @author פוילישער
  */
 $messages['yi'] = array(
-	'flow-edit-summary-link' => 'רעדאקטירונג רעזומע',
+	'flow-edit-header-link' => 'רעדאקטירונג רעזומע',
 	'flow-disclaimer' => 'ביים קליקן אויפן "צושטעלן מעלדונג" קנעפל, טוט איר מסכים זיין צו די ניצבאדינגונגען, אומאפשפריילעך צו פארעפנטלעכן אייער ביישטייער אונטערן CC-BY-SA 3.0 ליצענץ און דעם GFDL.
 איר זענט מסכים אז א היפערלינק אדער URL איז גענוג צושרייבן אונטערן קריעטיוו־קאמאנס ליצענס.',
 	'flow-newtopic-title-placeholder' => 'מעלדונג סוביעקט',
