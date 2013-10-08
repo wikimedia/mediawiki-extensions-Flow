@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_af6b7db7",
+        "filename": "modules/base/styles/actionbox.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T19:16:38Z",
+      "side": 1,
+      "message": "That\u0027s it indeed; I prefer flyout; changed it",
+      "parentUuid": "0932edd2_8c5de720",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_ac42ab3f",
         "filename": "modules/base/styles/container.less",
         "patchSetId": 12
@@ -70,6 +88,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_ccd51fb7",
+        "filename": "modules/base/styles/container.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T19:16:38Z",
+      "side": 1,
+      "message": "I settled for plain old classes because that\u0027s pretty much what they\u0027re for: applying similar style to multiple elements.\n\nI could live with either solution though.",
+      "parentUuid": "0932edd2_0c4ad755",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_6c7193a8",
         "filename": "modules/base/styles/container.less",
         "patchSetId": 12
@@ -81,6 +117,24 @@
       "writtenOn": "2013-10-08T18:55:32Z",
       "side": 1,
       "message": "variables and/or comments for these.  Where did 610px width come from?",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_0f31e9eb",
+        "filename": "modules/base/styles/container.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T19:16:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0932edd2_6c7193a8",
       "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -104,6 +158,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_2cb95bea",
+        "filename": "modules/base/styles/form.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T19:16:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0932edd2_ac6b8bb7",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_6ca27301",
         "filename": "modules/base/styles/various.less",
         "patchSetId": 12
@@ -115,6 +187,24 @@
       "writtenOn": "2013-10-08T18:55:32Z",
       "side": 1,
       "message": "There\u0027s a background-image() function in LESS,  resources/mediawiki.less/mediawiki.mixins.less\n\nWe should reuse an image from core for this,\n\nresources/jquery/images/spinner-large.gif\nresources/jquery/images/spinner.gif\nresources/jquery.ui/themes/vector/images/ui-anim_basic_16x16.gif\nresources/mediawiki/mediawiki.feedback.spinner.gif\n\nIf designers don\u0027t like these, let me know so I can file another inconsistency bug.",
+      "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_ec1d830c",
+        "filename": "modules/base/styles/various.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-08T19:16:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0932edd2_6ca27301",
       "revId": "af893c98ce51da6f6e8b2e690d6ec4e8baeaffa6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
