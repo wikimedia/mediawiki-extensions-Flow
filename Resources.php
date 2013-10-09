@@ -93,6 +93,7 @@ $wgResourceModules += array(
 	'ext.flow.editors.visualeditor' => $flowResourceTemplate + array(
 		'scripts' => 'editor/editors/ext.flow.editors.visualeditor.js',
 		'dependencies' => array(
+			'jquery.spinner',
 			// ve dependencies will be loaded via JS
 		),
 	),
