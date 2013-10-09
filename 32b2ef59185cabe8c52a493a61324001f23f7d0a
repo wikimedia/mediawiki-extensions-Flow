@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_0d980ec9",
+        "filename": "DATA_ABSTRACTION",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T14:39:57Z",
+      "side": 1,
+      "message": "typo: header",
+      "revId": "32b2ef59185cabe8c52a493a61324001f23f7d0a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_2d9dd2b8",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T14:39:57Z",
+      "side": 1,
+      "message": "This key is not in \u0027en\u0027.\n\nSince it\u0027s not in the new designs, I\u0027ve removed this one; I assume it slipped back in in rebase :)",
+      "revId": "32b2ef59185cabe8c52a493a61324001f23f7d0a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_2d86b268",
+        "filename": "Hooks.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T14:39:57Z",
+      "side": 1,
+      "message": "This will cause sqlite environments not to get this new SQL \u0026 code will break :)",
+      "revId": "32b2ef59185cabe8c52a493a61324001f23f7d0a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_edbe5afa",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T14:39:57Z",
+      "side": 1,
+      "message": "This if-statement was removed in new design patch (probably rebase issue?)\nThe CSS (and at some point probably also JS) should always be applied, not just in the edit-view",
+      "revId": "32b2ef59185cabe8c52a493a61324001f23f7d0a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_cd5276dd",
+        "filename": "modules/header/header.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T14:39:57Z",
+      "side": 1,
+      "message": "These shouldn\u0027t be moved back to the top.\n\nIf $form.length \u003d\u003d 0, it doesn\u0027t make sense to find child nodes in there.\n\nMore importantly though, .flow() will not function if $flow is empty.",
+      "revId": "32b2ef59185cabe8c52a493a61324001f23f7d0a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
