@@ -1,4 +1,6 @@
 // based on Flow Prototype/Design/Iteration 5 "Buttons & Flyout Options"
+//
+// text-shadow: 0px 1px 0px rgba(0,0,0,20);4
 
 @import 'settings/colors.less';
 @import 'mixins/buttons.less';
@@ -29,25 +31,32 @@
 	&.mw-ui-constructive {
 		.buttonColors(
 			// normal
-			@constructive-base, // background
+			#7fd7c4, // background
 			#fff, // text
 			@constructive-base, // border
 
 			// hover
-			@constructive-base,
-			#fff,
 			#7fd7c4,
+			#fff,
+			@constructive-base,
 
 			// active
 			@constructive-active,
 			#fff,
-			#7fd7c4,
+			@constructive-active,
 
 			// disabled
 			@neutral-base,
 			#898989,
 			#ccc
 		);
+
+		// override borders
+		border: 0px transparent;
+
+		&:disabled {
+			border: 1px solid #ccc;
+		}
 	}
 
 	&.mw-ui-destructive {
