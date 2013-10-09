@@ -44,16 +44,6 @@ $wgResourceModules += array(
 		'styles' => array(
 			'discussion/styles/topic.less',
 			'discussion/styles/post.less',
-/*
-			'discussion/styles/base.less',
-			'discussion/styles/components/actionboxes.less',
-			'discussion/styles/components/container.less',
-			'discussion/styles/components/overlay.less',
-			'discussion/styles/components/post.less',
-			'discussion/styles/components/summary.less',
-			'discussion/styles/components/timestamp.less',
-			'discussion/styles/components/topic.less',
-*/
 		),
 		'scripts' => array(
 			'discussion/ui.js',
