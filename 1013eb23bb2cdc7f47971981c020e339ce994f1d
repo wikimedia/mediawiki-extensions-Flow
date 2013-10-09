@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_7ba06747",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T14:01:48Z",
+      "side": 1,
+      "message": "This would not be applied to sqlite installations (not that I think there are any, currently)\n\nFor sqlite, we could make a script that renames old table, makes a new table, copies over all data \u0026 drops renamed table. See Echo\u0027s patch-event_variant_nullability.sqlite.sql",
+      "revId": "1013eb23bb2cdc7f47971981c020e339ce994f1d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
