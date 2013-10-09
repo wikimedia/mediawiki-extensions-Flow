@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_ad8702b7",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T15:54:28Z",
+      "side": 1,
+      "message": "getContent\u0027s first argument is $user, IIRC; \u0027html\u0027 should be second argument",
+      "revId": "418bdef868b8ebfbb8b39f60f3ba193aa40eacfa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_cd46f6c2",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T15:54:28Z",
+      "side": 1,
+      "message": "Also needs these to render correctly:\n\n    .addClass( \u0027mw-ui-button\u0027 )\n    .addClass( \u0027mw-ui-text\u0027 )",
+      "revId": "418bdef868b8ebfbb8b39f60f3ba193aa40eacfa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_6d10aaa8",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T15:54:28Z",
+      "side": 1,
+      "message": "mw-ui-destructive (once mw-ui-button is added) will render the text red (but design suggests gray), so we should probably drop this class",
+      "revId": "418bdef868b8ebfbb8b39f60f3ba193aa40eacfa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_ed43bab0",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T15:54:28Z",
+      "side": 1,
+      "message": "Probably should also:\n\n    .append( \u0027 \u0027 )\n\nIn Html, we usually add html element on new lines (with newline/tabs in between them)\n\nAdding them in JS without any whitespace in between would make these buttons appear right next to each other, without said whitespace.",
+      "revId": "418bdef868b8ebfbb8b39f60f3ba193aa40eacfa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_0d11eeae",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T15:54:28Z",
+      "side": 1,
+      "message": "I assume the button will need to be green, similarly to the buttons to submit a post/topic. That\u0027s mw-ui-constructive instead of mw-ui-primary",
+      "revId": "418bdef868b8ebfbb8b39f60f3ba193aa40eacfa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
