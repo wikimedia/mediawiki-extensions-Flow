@@ -145,8 +145,10 @@ $messages['qqq'] = array(
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
 	'flow-edit-summary-link' => 'Used as text for the link which points to the "Edit summary" page.',
-	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
-	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post',
+	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post.
+{{Identical|Show}}',
+	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post.
+{{Identical|Hide}}',
 	'flow-post-hidden' => 'Used as username/content if the post was hidden.
 
 Translate this as "post which was hidden".',
@@ -194,13 +196,14 @@ Translate this as "post which was censored".',
 	'flow-reply-placeholder' => 'Used as placeholder for the Content textarea. Parameters:
 * $1 - username',
 	'flow-reply-submit' => 'Used as label for the Submit button. Parameters:
+* $1 - username, can be used for GENDER
+{{Identical|Reply}}',
+	'flow-reply-link' => 'Link text of the button that will (when clicked) display the editor to reply. Parameters:
 * $1 - username, can be used for GENDER',
-	'flow-reply-link' => "Link text of the button that will (when clicked) display the editor to reply. Parameters:
-* $1 - username, can be used for GENDER",
 	'flow-thank-link' => 'Link text of the button that will (when clicked) thank the editor of the comment Parameters:
 * $1 - username, can be used for GENDER',
-	'flow-talk-link' => "Link text of the button that links to the talk page of the user whose comment is deleted. Parameters:
-* $1 - username of the user whose comment is deleted, can be used for GENDER",
+	'flow-talk-link' => 'Link text of the button that links to the talk page of the user whose comment is deleted. Parameters:
+* $1 - username of the user whose comment is deleted, can be used for GENDER',
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified. Parameters:
 * $1 - username that created the most recent revision of the post
@@ -227,8 +230,10 @@ Translate as label for the link or the Submit button.
 See also:
 * {{msg-mw|Flow-post-action-delete-post}}
 * {{msg-mw|Flow-post-action-censor-post}}',
-	'flow-topic-action-view' => "Title text for topic's permalink icon",
-	'flow-topic-action-watchlist' => "Title text for topic's watchlist icon",
+	'flow-topic-action-view' => "Title text for topic's permalink icon.
+{{Identical|Permalink}}",
+	'flow-topic-action-watchlist' => "Title text for topic's watchlist icon.
+{{Identical|Watchlist}}",
 	'flow-topic-action-edit-title' => 'Used as title for the link which is used to edit the title.',
 	'flow-topic-action-history' => 'Used as text for the link which is used to view topic-history.
 {{Identical|Topic history}}',
@@ -271,19 +276,16 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 "this item" seems to refer "this post".',
 	'flow-summaryedit-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
-
-	'flow-rev-message-reply' => 'Used as a revision comment when a new reply has been posted.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited',
+	'flow-rev-message-reply' => 'Used as a revision comment when a new reply has been posted.',
 	'flow-rev-message-new-post' => 'Used as revision comment when the topic has been created.',
 	'flow-rev-message-hid-post' => 'Used as revision comment when a post has been hidden',
 	'flow-rev-message-edit-title' => 'Used as revision comment when a post has been edited',
 	'flow-rev-message-create-summary' => 'Used as revision comment when a summary has been created',
 	'flow-rev-message-edit-summary' => 'Used as revision comment when a summary has been edited',
 	'flow-rev-message-restored-post' => 'Used as revision comment when a post has been restored(un-hidden)',
-	'flow-rev-message-hid-post' => 'Used as revision comment when a post has been hidden',
 	'flow-rev-message-deleted-post' => 'Used as revision comment when a post has been deleted',
 	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been censored(oversighted)',
-
 	'flow-topic-history' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page.
 {{Identical|Topic history}}',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
@@ -433,12 +435,10 @@ See also:
 
 {{Related|Echo-category-title}}
 {{Identical|Discussion}}',
-	'echo-pref-tooltip-flow-discussion' => 'This is a short description of the flow-discussion notification category.
-{{Related|Echo-pref-tooltip}}',
 	'echo-pref-tooltip-flow-discussion' => 'This is a short description of the flow-discussion notification category.',
-
 	'flow-link-post' => 'Text used when linking to a post from recentchanges',
-	'flow-link-topic' => 'Text used when linking to a topic from recentchanges',
+	'flow-link-topic' => 'Text used when linking to a topic from recentchanges.
+{{Identical|Topic}}',
 	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges',
 );
 
@@ -474,9 +474,8 @@ $messages['de'] = array(
 	'flow-desc' => 'Workflow-Management-System',
 	'flow-specialpage' => '$1 &ndash; Flow',
 	'flow-edit-summary-link' => 'Bearbeitungszusammenfassung',
-	'flow-disclaimer' => 'Durch Klicken auf „Nachricht hinzufügen“ stimmst du den Nutzungsbedingungen
-und der unwiderruflichen Veröffentlichung deines Beitrags unter der CC-BY-SA-3.0-Lizenz sowie der GFDL zu.
-Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennung der Creative-Commons-Lizenz steht.',
+	'flow-post-moderated-toggle-show' => '[Anzeigen]',
+	'flow-post-moderated-toggle-hide' => '[Ausblenden]',
 	'flow-post-hidden' => '[Beitrag versteckt]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Versteckt}} von $1 $2',
 	'flow-post-deleted' => '[Beitrag gelöscht]',
@@ -490,9 +489,12 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-newtopic-content-placeholder' => 'Nachrichtentext. Sei freundlich!',
 	'flow-newtopic-header' => 'Ein neues Thema hinzufügen',
 	'flow-newtopic-save' => 'Thema hinzufügen',
-	'flow-newtopic-start-placeholder' => 'Hier klicken, um eine neue Diskussion zu starten. Sei freundlich!',
+	'flow-newtopic-start-placeholder' => 'Ein neues Thema starten',
 	'flow-reply-placeholder' => 'Klicke, um $1 zu {{GENDER:$1|antworten}}. Sei freundlich!',
-	'flow-reply-submit' => 'Antworten',
+	'flow-reply-submit' => '{{GENDER:$1|Antworten}}',
+	'flow-reply-link' => '{{GENDER:$1|Antworten}}',
+	'flow-thank-link' => '{{GENDER:$1|Danken}}',
+	'flow-talk-link' => 'Mit {{GENDER:$1|$1}} diskutieren',
 	'flow-edit-post-submit' => 'Änderungen übertragen',
 	'flow-post-edited' => 'Beitrag {{GENDER:$1|bearbeitet}} von $1 $2',
 	'flow-post-action-view' => 'Permanentlink',
@@ -503,6 +505,8 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-post-action-edit-post' => 'Beitrag bearbeiten',
 	'flow-post-action-edit' => 'Bearbeiten',
 	'flow-post-action-restore-post' => 'Beitrag wiederherstellen',
+	'flow-topic-action-view' => 'Permanentlink',
+	'flow-topic-action-watchlist' => 'Beobachtungsliste',
 	'flow-topic-action-edit-title' => 'Titel bearbeiten',
 	'flow-topic-action-history' => 'Themengeschichte',
 	'flow-error-http' => 'Beim Kontaktieren des Servers ist ein Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert.',
@@ -522,12 +526,21 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-error-restore-failure' => 'Das Wiederherstellen dieses Objektes ist fehlgeschlagen.',
 	'flow-summaryedit-submit' => 'Zusammenfassung speichern',
 	'flow-edit-title-submit' => 'Titel ändern',
+	'flow-rev-message-edit-post' => 'Beitragsinhalt bearbeitet',
 	'flow-rev-message-reply' => 'Neue Antwort hinterlassen',
 	'flow-rev-message-new-post' => 'Thema erstellt',
+	'flow-rev-message-hid-post' => 'Beitrag versteckt',
+	'flow-rev-message-edit-title' => 'Thementitel bearbeitet',
+	'flow-rev-message-create-summary' => 'Zusammenfassung erstellt',
+	'flow-rev-message-edit-summary' => 'Zusammenfassung bearbeitet',
+	'flow-rev-message-restored-post' => 'Beitrag eingeblendet',
+	'flow-rev-message-deleted-post' => 'Beitrag gelöscht',
+	'flow-rev-message-censored-post' => 'Beitrag zensiert',
 	'flow-topic-history' => 'Themengeschichte',
 	'flow-comment-restored' => 'Kommentar wiederhergestellt',
 	'flow-comment-deleted' => 'Kommentar gelöscht',
 	'flow-comment-hidden' => 'Versteckter Kommentar',
+	'flow-comment-moderated' => 'Kommentar moderiert',
 	'flow-paging-rev' => 'Mehr aktuelle Themen',
 	'flow-paging-fwd' => 'Ältere Themen',
 	'flow-last-modified' => 'Zuletzt geändert $1',
@@ -555,6 +568,9 @@ Du stimmst zu, dass ein Hyperlink oder eine URL unter ausreichender Namensnennun
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|erstellte}} ein neues Thema mit dem Titel „$2“ auf $3',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Diskussion|Diskussionen}}',
 	'echo-pref-tooltip-flow-discussion' => 'Benachrichtige mich, wenn mich betreffende Aktionen auf dem Diskussionsbrett erscheinen.',
+	'flow-link-post' => 'Beitrag',
+	'flow-link-topic' => 'Thema',
+	'flow-link-history' => 'Versionsgeschichte',
 );
 
 /** Spanish (español)
@@ -569,9 +585,9 @@ $messages['es'] = array(
 	'flow-newtopic-title-placeholder' => 'Asunto del mensaje',
 	'flow-newtopic-header' => 'Añadir un nuevo tema',
 	'flow-newtopic-save' => 'Añadir tema',
-	'flow-newtopic-start-placeholder' => 'Haga clic aquí para iniciar una nueva discusión. Ser amable!',
+	'flow-newtopic-start-placeholder' => 'Haga clic aquí para iniciar una nueva discusión. Ser amable!', # Fuzzy
 	'flow-reply-placeholder' => 'Haga clic para {{GENDER:$1|responder}} a $1. Ser amable!',
-	'flow-reply-submit' => 'Publicar respuesta',
+	'flow-reply-submit' => 'Publicar respuesta', # Fuzzy
 	'flow-edit-post-submit' => 'Enviar cambios',
 	'flow-post-edited' => 'Mensaje {{GENDER:$1|editado}} por $1 $2',
 	'flow-post-action-view' => 'Enlace permanente',
@@ -623,7 +639,8 @@ $messages['fr'] = array(
 	'flow-desc' => 'Système de gestion du flux de travail',
 	'flow-specialpage' => '$1 &ndash; Flow',
 	'flow-edit-summary-link' => 'Résumé',
-	'flow-disclaimer' => "En cliquant sur le bouton « Ajouter un message », vous acceptez nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr conditions d'utilisation] et acceptez de placer irrévocablement votre contribution sous [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licence Creative Commons paternité-partage des conditions initiales à l'identique 3.0] et [http://www.gnu.org/copyleft/fdl.html GFDL]. Vous acceptez d’être crédité par les ré-utilisateurs au minimum via un hyperlien ou une URL sous la licence Creative Commons.",
+	'flow-post-moderated-toggle-show' => '[Afficher]',
+	'flow-post-moderated-toggle-hide' => '[Masquer]',
 	'flow-post-hidden' => '[note masquée]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Masqué}} par $1 $2',
 	'flow-post-deleted' => '[message supprimé]',
@@ -637,9 +654,12 @@ $messages['fr'] = array(
 	'flow-newtopic-content-placeholder' => 'Texte du message. Soyez gentil !',
 	'flow-newtopic-header' => 'Ajouter un nouveau sujet',
 	'flow-newtopic-save' => 'Ajouter sujet',
-	'flow-newtopic-start-placeholder' => 'Cliquez ici pour commencer une nouvelle discussion. Soyez gentil !',
+	'flow-newtopic-start-placeholder' => 'Commencer un nouveau sujet',
 	'flow-reply-placeholder' => 'Cliquez ici pour {{GENDER:$1|répondre}} à $1. Soyez gentil !',
-	'flow-reply-submit' => 'Poster une réponse',
+	'flow-reply-submit' => '{{GENDER:$1|Répondre}}',
+	'flow-reply-link' => '{{GENDER:$1|Répondre}}',
+	'flow-thank-link' => '{{GENDER:$1|Remercier}}',
+	'flow-talk-link' => 'Parler à {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'Soumettre les modifications',
 	'flow-post-edited' => 'Note {{GENDER:$1|modifiée}} par $1 $2',
 	'flow-post-action-view' => 'Lien permanent',
@@ -650,6 +670,8 @@ $messages['fr'] = array(
 	'flow-post-action-edit-post' => 'Modifier la publication',
 	'flow-post-action-edit' => 'Modifier',
 	'flow-post-action-restore-post' => 'Restaurer le message',
+	'flow-topic-action-view' => 'Lien permanent',
+	'flow-topic-action-watchlist' => 'Liste de surveillance',
 	'flow-topic-action-edit-title' => 'Modifier le titre',
 	'flow-topic-action-history' => 'Historique des sujets',
 	'flow-error-http' => "Une erreur s'est produite en communiquant avec le serveur. Votre message n'a pas été enregistré.",
@@ -669,12 +691,21 @@ $messages['fr'] = array(
 	'flow-error-restore-failure' => 'Échec de la restauration de cette entrée.',
 	'flow-summaryedit-submit' => 'Enregistrer le résumé',
 	'flow-edit-title-submit' => 'Changer le titre',
+	'flow-rev-message-edit-post' => 'Contenu de la note modifié',
 	'flow-rev-message-reply' => 'Nouvelle réponse publiée',
 	'flow-rev-message-new-post' => 'Sujet créé',
+	'flow-rev-message-hid-post' => 'Masquer la note',
+	'flow-rev-message-edit-title' => 'Titre du sujet modifié',
+	'flow-rev-message-create-summary' => 'Sommaire créé',
+	'flow-rev-message-edit-summary' => 'Sommaire modifié',
+	'flow-rev-message-restored-post' => 'Note démasquée',
+	'flow-rev-message-deleted-post' => 'Note supprimée',
+	'flow-rev-message-censored-post' => 'Note censurée',
 	'flow-topic-history' => 'Historique des sujets',
 	'flow-comment-restored' => 'Commentaire rétabli',
 	'flow-comment-deleted' => 'Commentaire supprimé',
 	'flow-comment-hidden' => 'Commentaire masqué',
+	'flow-comment-moderated' => 'Commentaire soumis à modération',
 	'flow-paging-rev' => 'Sujets les plus récents',
 	'flow-paging-fwd' => 'Sujets plus anciens',
 	'flow-last-modified' => 'Dernière modification $1',
@@ -702,6 +733,9 @@ $messages['fr'] = array(
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|a créé}} un nouveau sujet avec le titre « $2 » en $3',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussion|Discussions}}',
 	'echo-pref-tooltip-flow-discussion' => 'M’informer quand des actions me concernant ont lieu dans le cercle de discussion.',
+	'flow-link-post' => 'note',
+	'flow-link-topic' => 'sujet',
+	'flow-link-history' => 'historique',
 );
 
 /** Galician (galego)
@@ -711,9 +745,6 @@ $messages['gl'] = array(
 	'flow-desc' => 'Sistema de xestión do fluxo de traballo',
 	'flow-specialpage' => '$1 &ndash; Fluxo',
 	'flow-edit-summary-link' => 'Resumo de edición',
-	'flow-disclaimer' => 'Ao premer no botón "Engadir a mensaxe" acepta os termos de uso
-e acepta liberar irrevogablemente a súa contribución baixo a licenza CC-BY-SA 3.0 e a GFDL.
-Acepta que unha hiperligazón ou un enderezo URL é recoñecemento abondo baixo a licenza Creative Commons.',
 	'flow-post-hidden' => '[mensaxe agochada]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Agochada}} por $1 $2',
 	'flow-post-deleted' => '[mensaxe borrada]',
@@ -727,9 +758,9 @@ Acepta que unha hiperligazón ou un enderezo URL é recoñecemento abondo baixo 
 	'flow-newtopic-content-placeholder' => 'Texto da mensaxe. Sexa amable!',
 	'flow-newtopic-header' => 'Engadir un novo tema',
 	'flow-newtopic-save' => 'Nova sección',
-	'flow-newtopic-start-placeholder' => 'Prema aquí para iniciar un novo debate. Sexa amable!',
+	'flow-newtopic-start-placeholder' => 'Prema aquí para iniciar un novo debate. Sexa amable!', # Fuzzy
 	'flow-reply-placeholder' => 'Prema para {{GENDER:$1|responder}} a $1. Sexa amable!',
-	'flow-reply-submit' => 'Publicar a resposta',
+	'flow-reply-submit' => 'Publicar a resposta', # Fuzzy
 	'flow-edit-post-submit' => 'Enviar os cambios',
 	'flow-post-action-view' => 'Ligazón permanente',
 	'flow-post-action-post-history' => 'Historial da mensaxe',
@@ -858,9 +889,6 @@ $messages['ia'] = array(
 	'flow-desc' => 'Systema de gestion de fluxo de travalio',
 	'flow-specialpage' => '$1 &ndash; Fluxo',
 	'flow-edit-summary-link' => 'Summario del modification',
-	'flow-disclaimer' => 'Cliccante le button "Adder message", tu accepta le Conditiones de Uso,
-e tu accepta de liberar irrevocabilemente tu contribution sub le licentia Creative Commons BY-SA 3.0 e sub le Licentia GNU pro Documentation Libere.
-Tu accepta que un hyperligamine o URL suffice qua attribution sub le licentia Creative Commons.',
 	'flow-post-hidden' => '[entrata celate]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Celate}} per $1 $2',
 	'flow-post-deleted' => '[entrata delite]',
@@ -874,9 +902,9 @@ Tu accepta que un hyperligamine o URL suffice qua attribution sub le licentia Cr
 	'flow-newtopic-content-placeholder' => 'Texto del message. Sia gentil!',
 	'flow-newtopic-header' => 'Adder un nove topico',
 	'flow-newtopic-save' => 'Adder topico',
-	'flow-newtopic-start-placeholder' => 'Clicca hic pro initiar un nove discussion. Sia gentil!',
+	'flow-newtopic-start-placeholder' => 'Clicca hic pro initiar un nove discussion. Sia gentil!', # Fuzzy
 	'flow-reply-placeholder' => 'Clicca pro {{GENDER:$1|responder}} a $1. Sia gentil!',
-	'flow-reply-submit' => 'Publicar responsa',
+	'flow-reply-submit' => 'Publicar responsa', # Fuzzy
 	'flow-edit-post-submit' => 'Submitter modificationes',
 	'flow-post-action-view' => 'Permaligamine',
 	'flow-post-action-post-history' => 'Historia de messages',
@@ -935,8 +963,8 @@ $messages['it'] = array(
 	'flow-desc' => 'Sistema di gestione del flusso di lavoro',
 	'flow-specialpage' => '$1 &ndash; Flusso',
 	'flow-edit-summary-link' => 'Modifica oggetto',
-	'flow-disclaimer' => 'Facendo click sul pulsante "Aggiungi messaggio", accetti le condizioni d\'uso, e accetti irrevocabilmente di rilasciare il tuo contributo sotto le licenze Creative Commons Attribuzione-Condividi allo stesso modo 3.0 e GFDL.
-Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'attribuzione in base alla licenza Creative Commons.',
+	'flow-post-moderated-toggle-show' => '[Mostra]',
+	'flow-post-moderated-toggle-hide' => '[Nascondi]',
 	'flow-post-hidden' => '[messaggio nascosto]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Nascosto}} da $1 $2',
 	'flow-post-deleted' => '[messaggio cancellato]',
@@ -950,9 +978,12 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-newtopic-content-placeholder' => 'Testo del messaggio. Sii gentile!',
 	'flow-newtopic-header' => 'Aggiungi una nuova discussione',
 	'flow-newtopic-save' => 'Aggiungi discussione',
-	'flow-newtopic-start-placeholder' => 'Clicca qui per iniziare una nuova discussione. Sii gentile!',
+	'flow-newtopic-start-placeholder' => 'Inizia una nuova discussione',
 	'flow-reply-placeholder' => 'Clicca per {{GENDER:$1|rispondere}} a $1. Sii gentile!',
-	'flow-reply-submit' => 'Invia risposta',
+	'flow-reply-submit' => '{{GENDER:$1|Rispondi}}',
+	'flow-reply-link' => '{{GENDER:$1|Rispondi}}',
+	'flow-thank-link' => '{{GENDER:$1|Ringrazia}}',
+	'flow-talk-link' => 'Scrivi a {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'Invia modifiche',
 	'flow-post-edited' => 'Messaggio {{GENDER:$1|modificato}} da $1 $2',
 	'flow-post-action-view' => 'Link permanente',
@@ -963,6 +994,8 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-post-action-edit-post' => 'Modifica messaggio',
 	'flow-post-action-edit' => 'Modifica',
 	'flow-post-action-restore-post' => 'Ripristina messaggio',
+	'flow-topic-action-view' => 'Link permanente',
+	'flow-topic-action-watchlist' => 'Osservati speciali',
 	'flow-topic-action-edit-title' => 'Modifica titolo',
 	'flow-topic-action-history' => 'Cronologia della discussione',
 	'flow-error-http' => 'Si è verificato un errore durante la comunicazione con il server. Il tuo messaggio non è stato salvato.',
@@ -982,12 +1015,21 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-error-restore-failure' => 'Il ripristino di questo elemento non è riuscito.',
 	'flow-summaryedit-submit' => 'Salva oggetto',
 	'flow-edit-title-submit' => 'Cambia titolo',
+	'flow-rev-message-edit-post' => 'Modificato contenuto del messaggio',
 	'flow-rev-message-reply' => 'Nuova risposta inviata',
 	'flow-rev-message-new-post' => 'Discussione creata',
+	'flow-rev-message-hid-post' => 'Messaggio nascosto',
+	'flow-rev-message-edit-title' => 'Modificato titolo della discussione',
+	'flow-rev-message-create-summary' => 'Oggetto creato',
+	'flow-rev-message-edit-summary' => 'Oggetto modificato',
+	'flow-rev-message-restored-post' => 'Messaggio reso visibile',
+	'flow-rev-message-deleted-post' => 'Messaggio cancellato',
+	'flow-rev-message-censored-post' => 'Messaggio censurato',
 	'flow-topic-history' => 'Cronologia della discussione',
 	'flow-comment-restored' => 'Commento ripristinato',
 	'flow-comment-deleted' => 'Commento cancellato',
 	'flow-comment-hidden' => 'Commento nascosto',
+	'flow-comment-moderated' => 'Commento moderato',
 	'flow-paging-rev' => 'Discussioni più recenti',
 	'flow-paging-fwd' => 'Vecchie discussioni',
 	'flow-last-modified' => 'Ultima modifica $1',
@@ -1015,6 +1057,9 @@ Accetti inoltre che un collegamento ipertestuale o URL sia sufficiente per l\'at
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|ha creato}} una nuova discussione "$2" su $3',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussione|Discussioni}}',
 	'echo-pref-tooltip-flow-discussion' => 'Avvisami quando vengono eseguite azioni connesse a me nella bacheca delle discussioni.',
+	'flow-link-post' => 'messaggio',
+	'flow-link-topic' => 'discussione',
+	'flow-link-history' => 'cronologia',
 );
 
 /** Japanese (日本語)
@@ -1025,9 +1070,8 @@ $messages['ja'] = array(
 	'flow-desc' => 'ワークフロー管理システム',
 	'flow-specialpage' => '$1 &ndash; Flow',
 	'flow-edit-summary-link' => '要約を編集',
-	'flow-disclaimer' => '「メッセージを追加」ボタンをクリックすると、利用規約に同意するとともに、
-自分の投稿内容を CC BY-SA 3.0 ライセンスおよび GFDL のもとで公開することに同意したことになります。この同意は取り消せません。
-また、あなたはハイパーリンクまたは URL がクリエイティブ・コモンズライセンスにおける帰属表示として十分であると認めたことになります。',
+	'flow-post-moderated-toggle-show' => '[表示]',
+	'flow-post-moderated-toggle-hide' => '[非表示]',
 	'flow-post-hidden' => '[非表示の投稿]',
 	'flow-post-hidden-by' => '$1 が$2に{{GENDER:$1|非表示化}}',
 	'flow-post-deleted' => '[削除された投稿]',
@@ -1039,9 +1083,11 @@ $messages['ja'] = array(
 	'flow-newtopic-content-placeholder' => 'メッセージの本文',
 	'flow-newtopic-header' => '新しい話題の追加',
 	'flow-newtopic-save' => '話題を追加',
-	'flow-newtopic-start-placeholder' => '新しい議論を開始するにはここをクリックしてください。',
+	'flow-newtopic-start-placeholder' => '新しい話題の作成',
 	'flow-reply-placeholder' => '$1 に{{GENDER:$1|返信する}}にはクリックしてください。',
-	'flow-reply-submit' => '返信を投稿',
+	'flow-reply-submit' => '{{GENDER:$1|返信}}',
+	'flow-thank-link' => '{{GENDER:$1|感謝}}',
+	'flow-talk-link' => '{{GENDER:$1|$1}} のトーク',
 	'flow-edit-post-submit' => '変更を保存',
 	'flow-post-edited' => '$1 が $2 に{{GENDER:$1|編集した}}投稿',
 	'flow-post-action-view' => '固定リンク',
@@ -1051,6 +1097,8 @@ $messages['ja'] = array(
 	'flow-post-action-edit-post' => '投稿を編集',
 	'flow-post-action-edit' => '編集',
 	'flow-post-action-restore-post' => '投稿を復元',
+	'flow-topic-action-view' => '固定リンク',
+	'flow-topic-action-watchlist' => 'ウォッチリスト',
 	'flow-topic-action-edit-title' => 'タイトルを編集',
 	'flow-topic-action-history' => '話題の履歴',
 	'flow-error-http' => 'サーバーと通信する際にエラーが発生しました。投稿内容は保存されませんでした。',
@@ -1072,6 +1120,7 @@ $messages['ja'] = array(
 	'flow-edit-title-submit' => 'タイトルを変更',
 	'flow-rev-message-reply' => '新しい返信を投稿',
 	'flow-rev-message-new-post' => '話題を作成',
+	'flow-rev-message-deleted-post' => '投稿を削除',
 	'flow-topic-history' => '話題の履歴',
 	'flow-comment-restored' => 'コメントを復元',
 	'flow-comment-deleted' => 'コメントを削除',
@@ -1103,6 +1152,7 @@ $messages['ja'] = array(
 	'flow-notification-newtopic-email-batch-body' => '$1 が $3 で新しい話題「$2」を{{GENDER:$1|作成しました}}',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|議論}}',
 	'echo-pref-tooltip-flow-discussion' => '議論掲示板で私に関連する操作がなされたときに通知する。',
+	'flow-link-topic' => '話題',
 );
 
 /** Korean (한국어)
@@ -1135,7 +1185,7 @@ $messages['lb'] = array(
 	'flow-newtopic-content-placeholder' => 'Text vum Message. Sidd frëndlech!',
 	'flow-newtopic-header' => 'En neit Thema derbäisetzen',
 	'flow-newtopic-save' => 'Thema derbäisetzen',
-	'flow-newtopic-start-placeholder' => 'Klickt hei fir eng nei Diskussioun unzefänken. Sidd frëndlech!',
+	'flow-newtopic-start-placeholder' => 'Klickt hei fir eng nei Diskussioun unzefänken. Sidd frëndlech!', # Fuzzy
 	'flow-reply-placeholder' => 'Klickt fir dem $1 ze {{GENDER:$1|äntwerten}}. Sidd frëndlech!',
 	'flow-edit-post-submit' => 'Ännerunge späicheren',
 	'flow-post-action-view' => 'Permanentlink',
@@ -1168,9 +1218,8 @@ $messages['mk'] = array(
 	'flow-desc' => 'Систем за раководење со работниот тек',
 	'flow-specialpage' => '$1 &ndash; Тек',
 	'flow-edit-summary-link' => 'Опис на уредувањето',
-	'flow-disclaimer' => 'Стискајќи на копчето „Додај порака“, се согласувате со Условите на употреба,
-и неотповикливо се согласувате дека ги објавувате вашите придонеси под лиценцата CC-BY-SA 3.0 и ГЛСД.
-Се согласувате дека хиперврска или URL претставува достатно оддавање на заслуга согласно лиценцата на Криејтив комонс.',
+	'flow-post-moderated-toggle-show' => '[Прикажи]',
+	'flow-post-moderated-toggle-hide' => '[Скриј]',
 	'flow-post-hidden' => '[пораката е скриена]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Скриена}} од $1 $2',
 	'flow-post-deleted' => '[пораката е избришана]',
@@ -1184,9 +1233,12 @@ $messages['mk'] = array(
 	'flow-newtopic-content-placeholder' => 'Текст на пораката. Бидете фини!',
 	'flow-newtopic-header' => 'Додај нова тема',
 	'flow-newtopic-save' => 'Додај тема',
-	'flow-newtopic-start-placeholder' => 'Стиснете тука за да почнете нова дискусија. Бидете фини!',
+	'flow-newtopic-start-placeholder' => 'Почнете нова тема',
 	'flow-reply-placeholder' => 'Стиснете за да {{GENDER:$1|му одговорите|ѝ одговорите|одговорите}} на $1. Бидете фини!',
-	'flow-reply-submit' => 'Објави одговор',
+	'flow-reply-submit' => '{{GENDER:$1|Одговори}}',
+	'flow-reply-link' => '{{GENDER:$1|Одговори}}',
+	'flow-thank-link' => '{{GENDER:$1|Заблагодари се}}',
+	'flow-talk-link' => 'Разговарај со {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'Спроведи измени',
 	'flow-post-edited' => '$1 {{GENDER:$1|измени}} објава во $2',
 	'flow-post-action-view' => 'Постојана врска',
@@ -1197,6 +1249,8 @@ $messages['mk'] = array(
 	'flow-post-action-edit-post' => 'Уреди ја пораката',
 	'flow-post-action-edit' => 'Измени',
 	'flow-post-action-restore-post' => 'Поврати ја пораката',
+	'flow-topic-action-view' => 'Постојана врска',
+	'flow-topic-action-watchlist' => 'Набљудувања',
 	'flow-topic-action-edit-title' => 'Уреди наслов',
 	'flow-topic-action-history' => 'Историја на темата',
 	'flow-error-http' => 'Се јави грешка при поврзувањето со опслужувачот. Пораката не е зачувана.',
@@ -1216,12 +1270,21 @@ $messages['mk'] = array(
 	'flow-error-restore-failure' => 'Повраќањето на ставката не успеа.',
 	'flow-summaryedit-submit' => 'Зачувај опис',
 	'flow-edit-title-submit' => 'Измени наслов',
+	'flow-rev-message-edit-post' => 'Изменета содржина во објава',
 	'flow-rev-message-reply' => 'Објавен нов одговор',
 	'flow-rev-message-new-post' => 'Создадена тема',
+	'flow-rev-message-hid-post' => 'Скриена објава',
+	'flow-rev-message-edit-title' => 'Изменет наслов на тема',
+	'flow-rev-message-create-summary' => 'Создаден опис',
+	'flow-rev-message-edit-summary' => 'Изменет опис',
+	'flow-rev-message-restored-post' => 'Откриена објава',
+	'flow-rev-message-deleted-post' => 'Избришана објава',
+	'flow-rev-message-censored-post' => 'Цензурирана објава',
 	'flow-topic-history' => 'Историја на темата',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
 	'flow-comment-hidden' => 'Скриен коментар',
+	'flow-comment-moderated' => 'Модериран коментар',
 	'flow-paging-rev' => 'Најнови теми',
 	'flow-paging-fwd' => 'Постари теми',
 	'flow-last-modified' => 'Последна измена: $1',
@@ -1249,6 +1312,9 @@ $messages['mk'] = array(
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|создаде}} нова тема со наслов „$2“ на $3',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Дискусија|Дискусии}}',
 	'echo-pref-tooltip-flow-discussion' => 'Извести ме кога на таблата со дискусија ќе се случи нешто поврзано со мене.',
+	'flow-link-post' => 'објава',
+	'flow-link-topic' => 'тема',
+	'flow-link-history' => 'историја',
 );
 
 /** Marathi (मराठी)
@@ -1326,7 +1392,6 @@ Du godtar at en hyperlenke eller URL utgjør tilstrekkelig navngivelse under Cre
  * @author TBloemink
  */
 $messages['nl'] = array(
-	'flow-disclaimer' => 'Door op de knop "Bericht toevoegen" te klikken gaat u akkoord met de gebruiksvoorwaarden en geeft u onherroepelijk toestemming dat uw bijdrage wordt vrijgegeven onder de licentie CC BY-SA 3.0 en de GFDL. U gaat ermee akkoord dat een hyperlink of URL voldoende naamsvermelding is onder de Creative Commons-licentie.',
 	'flow-post-hidden' => '[bericht verborgen]',
 	'flow-post-hidden-by' => '$2 {{GENDER:$1|verborgen}} door $1',
 	'flow-post-deleted' => '[bericht verwijderd]',
@@ -1338,9 +1403,9 @@ $messages['nl'] = array(
 	'flow-newtopic-content-placeholder' => 'Tekst van het bericht. Wees beleefd!',
 	'flow-newtopic-header' => 'Nieuw onderwerp toevoegen',
 	'flow-newtopic-save' => 'Onderwerp toevoegen',
-	'flow-newtopic-start-placeholder' => 'Klik hier om een nieuw over te starten. Wees beleefd!',
+	'flow-newtopic-start-placeholder' => 'Klik hier om een nieuw over te starten. Wees beleefd!', # Fuzzy
 	'flow-reply-placeholder' => 'Klik hier om te {{GENDER:$1|reageren}} op $1. Wees beleefd!',
-	'flow-reply-submit' => 'Reageren',
+	'flow-reply-submit' => 'Reageren', # Fuzzy
 	'flow-edit-post-submit' => 'Wijzigingen opslaan',
 	'flow-post-edited' => 'Bericht $2 {{GENDER:$1|bewerkt}} door $1',
 	'flow-post-action-view' => 'Permanente koppeling',
@@ -1494,6 +1559,50 @@ $messages['roa-tara'] = array(
 	'flow-edit-title-submit' => "Cange 'u titole",
 );
 
+/** Russian (русский)
+ * @author Okras
+ */
+$messages['ru'] = array(
+	'flow-desc' => 'Система управления потоками работ',
+	'flow-specialpage' => '$1 &ndash; Поток',
+	'flow-post-moderated-toggle-show' => '[Показать]',
+	'flow-post-moderated-toggle-hide' => '[Скрыть]',
+	'flow-post-hidden' => '[сообщение скрыто]',
+	'flow-post-hidden-by' => 'Скрыто {{GENDER:$1|участником|участницей}} $1 $2',
+	'flow-post-deleted' => '[сообщение удалено]',
+	'flow-post-deleted-by' => 'Удалено {{GENDER:$1|участником|участницей}} $1 $2',
+	'flow-post-actions' => 'действия',
+	'flow-topic-actions' => 'действия',
+	'flow-cancel' => 'Отменить',
+	'flow-newtopic-title-placeholder' => 'Тема сообщения',
+	'flow-newtopic-content-placeholder' => 'Текст сообщения. Будьте вежливы!',
+	'flow-newtopic-header' => 'Добавить новую тему',
+	'flow-newtopic-save' => 'Добавить тему',
+	'flow-newtopic-start-placeholder' => 'Начать новое обсуждение',
+	'flow-reply-placeholder' => 'Щелкните, чтобы ответить {{GENDER:$1|участнику|участнице}} $1. Будьте вежливы!',
+	'flow-reply-submit' => '{{GENDER:$1|Ответить}}',
+	'flow-reply-link' => '{{GENDER:$1|Ответить}}',
+	'flow-thank-link' => '{{GENDER:$1|Поблагодарить}}',
+	'flow-edit-post-submit' => 'Подтвердить изменения',
+	'flow-post-edited' => 'Сообщение отредактировано {{GENDER:$1|участником|участницей}} $1 $2',
+	'flow-post-action-view' => 'Постоянная ссылка',
+	'flow-post-action-delete-post' => 'Удалить сообщение',
+	'flow-post-action-hide-post' => 'Скрыть сообщение',
+	'flow-post-action-edit-post' => 'Редактировать сообщение',
+	'flow-post-action-edit' => 'Править',
+	'flow-post-action-restore-post' => 'Восстановить сообщение',
+	'flow-topic-action-edit-title' => 'Редактировать заголовок',
+	'flow-error-other' => 'Произошла непредвиденная ошибка. Ваше сообщение не было сохранено.',
+	'flow-error-edit-restricted' => 'Вам не разрешено редактировать это сообщение.',
+	'flow-rev-message-deleted-post' => 'Удалённое сообщение',
+	'flow-comment-restored' => 'Восстановленный комментарий',
+	'flow-comment-deleted' => 'Удалённый комментарий',
+	'flow-comment-hidden' => 'Скрытый комментарий',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|ответил|ответила}} на ваше сообщение',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|упомянул|упомянула}} вас в $2',
+	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|отредактировал|отредактировала}} ваше сообщение',
+);
+
 /** Slovenian (slovenščina)
  * @author Eleassar
  */
@@ -1576,9 +1685,8 @@ $messages['uk'] = array(
 	'flow-desc' => 'Система управління робочими процесами',
 	'flow-specialpage' => '$1 &ndash; Потік',
 	'flow-edit-summary-link' => 'Редагувати підсумок',
-	'flow-disclaimer' => 'Натиснувши кнопку "Додати Повідомлення", ви погоджуєтеся з Умовами Використання
-і ви безповоротно погоджуєтесь здійснювати свій внесок відповідно до ліцензій CC-BY-SA 3.0 та GFDL.
-Ви згідні, що гіперпосилання або URL-адреса є достатнім внеском під ліцензією Creative Commons license.',
+	'flow-post-moderated-toggle-show' => '[Показати]',
+	'flow-post-moderated-toggle-hide' => '[Сховати]',
 	'flow-post-hidden' => '[прихована публікація]',
 	'flow-post-hidden-by' => '$1 {{GENDER:$1|приховав|приховала}} о $2',
 	'flow-post-deleted' => '[пост видалено]',
@@ -1592,9 +1700,12 @@ $messages['uk'] = array(
 	'flow-newtopic-content-placeholder' => 'Текст повідомлення. Будьте приємним!',
 	'flow-newtopic-header' => 'Додати нову тему',
 	'flow-newtopic-save' => 'Додати тему',
-	'flow-newtopic-start-placeholder' => 'Натисніть тут, щоб почати нове обговорення. Будьте приємним!',
+	'flow-newtopic-start-placeholder' => 'Почати нову тему',
 	'flow-reply-placeholder' => 'Натисніть, щоб {{GENDER:$1|відповісти|відповісти}} $1. Будьте приємним!',
-	'flow-reply-submit' => 'Опублікувати відповідь',
+	'flow-reply-submit' => '{{GENDER:$1|Відповісти}}',
+	'flow-reply-link' => '{{GENDER:$1|Відповісти}}',
+	'flow-thank-link' => '{{GENDER:$1|Подякувати}}',
+	'flow-talk-link' => 'Поговорити з {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'Подати зміни',
 	'flow-post-edited' => 'Допис {{GENDER:$1|відредагував|відредагувала}} $1 $2',
 	'flow-post-action-view' => 'Постійне посилання',
@@ -1605,6 +1716,8 @@ $messages['uk'] = array(
 	'flow-post-action-edit-post' => 'Редагувати публікацію',
 	'flow-post-action-edit' => 'Редагувати',
 	'flow-post-action-restore-post' => 'Відновити публікацію',
+	'flow-topic-action-view' => 'Постійне посилання',
+	'flow-topic-action-watchlist' => 'Список спостереження',
 	'flow-topic-action-edit-title' => 'Змінити заголовок',
 	'flow-topic-action-history' => 'Історія теми',
 	'flow-error-http' => 'Сталася помилка при зверненні до сервера. Ваша публікація не збережена.',
@@ -1624,12 +1737,21 @@ $messages['uk'] = array(
 	'flow-error-restore-failure' => 'Не вдалося виконати відновлення цього елемента.',
 	'flow-summaryedit-submit' => 'Зберегти підсумок',
 	'flow-edit-title-submit' => 'Змінити заголовок',
+	'flow-rev-message-edit-post' => 'Відредаговано вміст допису',
 	'flow-rev-message-reply' => 'Нова відповідь опублікована',
 	'flow-rev-message-new-post' => 'Тема створена',
+	'flow-rev-message-hid-post' => 'Прихований допис',
+	'flow-rev-message-edit-title' => 'Відредагована назва теми',
+	'flow-rev-message-create-summary' => 'Створений підсумок',
+	'flow-rev-message-edit-summary' => 'Відредагований підсумок',
+	'flow-rev-message-restored-post' => 'Неприхований допис',
+	'flow-rev-message-deleted-post' => 'Видалений допис',
+	'flow-rev-message-censored-post' => 'Цензурований допис',
 	'flow-topic-history' => 'Історія теми',
 	'flow-comment-restored' => 'Відновлений коментар',
 	'flow-comment-deleted' => 'Видалений коментар',
 	'flow-comment-hidden' => 'Прихований коментар',
+	'flow-comment-moderated' => 'Модерований коментар',
 	'flow-paging-rev' => 'Новіші теми',
 	'flow-paging-fwd' => 'Старіші теми',
 	'flow-last-modified' => 'Остання зміна про $1',
@@ -1657,6 +1779,9 @@ $messages['uk'] = array(
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|створив|створила}} нову тему під назвою "$2" на $3',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Обговорення|Обговорення|Обговорень}}',
 	'echo-pref-tooltip-flow-discussion' => "Повідомити мене, коли дії, пов'язані зі мною, виникнуть на стіні обговорення.",
+	'flow-link-post' => 'допис',
+	'flow-link-topic' => 'тема',
+	'flow-link-history' => 'історія',
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -1666,9 +1791,6 @@ $messages['vi'] = array(
 	'flow-desc' => 'Hệ thống quản lý luồng công việc',
 	'flow-specialpage' => '$1 &ndash; Flow',
 	'flow-edit-summary-link' => 'Tóm lược sửa đổi',
-	'flow-disclaimer' => 'Với việc bấm nút “Nhắn tin”, bạn chấp nhận các Điều khoản Sử dụng,
-và bạn đồng ý phát hành, một cách không thể hủy bỏ, đóng góp của mình theo Giấy phép Creative Commons Ghi công–Chia sẻ tương tự 3.0 và GFDL.
-Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều kiện ghi công trong giấy phép Creative Commons.',
 	'flow-post-hidden' => '[bài đăng bị ẩn]',
 	'flow-post-hidden-by' => 'Ẩn bởi $1 $2',
 	'flow-post-deleted' => '[bài đăng bị xóa]',
@@ -1682,9 +1804,9 @@ Bạn đồng ý rằng một siêu liên kết hoặc URL thỏa mãn điều k
 	'flow-newtopic-content-placeholder' => 'Văn bản tin nhắn. Hãy có thái độ thân thiện!',
 	'flow-newtopic-header' => 'Thêm chủ đề mới',
 	'flow-newtopic-save' => 'Thêm chủ đề',
-	'flow-newtopic-start-placeholder' => 'Nhấn chuột vào đây để bắt đầu cuộc thảo luận mới. Hãy có thái độ thân thiện!',
+	'flow-newtopic-start-placeholder' => 'Nhấn chuột vào đây để bắt đầu cuộc thảo luận mới. Hãy có thái độ thân thiện!', # Fuzzy
 	'flow-reply-placeholder' => 'Nhấn chuột vào đây để trả lời $1. Hãy có thái độ thân thiện!',
-	'flow-reply-submit' => 'Trả lời',
+	'flow-reply-submit' => 'Trả lời', # Fuzzy
 	'flow-edit-post-submit' => 'Gửi thay đổi',
 	'flow-post-edited' => 'Bài đăng được sửa đổi bởi $1 $2',
 	'flow-post-action-view' => 'Liên kết thường trực',
@@ -1764,28 +1886,41 @@ $messages['yi'] = array(
 );
 
 /** Simplified Chinese (中文（简体）‎)
+ * @author Dreamism
  * @author Hzy980512
  * @author Liuxinyu970226
  * @author Qiyue2001
  */
 $messages['zh-hans'] = array(
+	'flow-post-moderated-toggle-show' => '[显示]',
+	'flow-post-moderated-toggle-hide' => '[隐藏]',
 	'flow-post-hidden' => '[发布隐藏]',
 	'flow-post-hidden-by' => '由$1$2{{GENDER:$1|隐藏}}',
+	'flow-post-deleted' => '[回复已删除]',
 	'flow-post-deleted-by' => '由$1$2{{GENDER:$1|删除}}',
 	'flow-post-censored-by' => '由$1$2{{GENDER:$1|审查}}',
 	'flow-post-actions' => '操作',
 	'flow-topic-actions' => '操作',
 	'flow-cancel' => '取消',
 	'flow-newtopic-title-placeholder' => '信息工程',
+	'flow-newtopic-content-placeholder' => '消息正文。祝好！',
 	'flow-newtopic-header' => '添加新主题',
 	'flow-newtopic-save' => '添加主题',
-	'flow-reply-submit' => '帖子回复',
+	'flow-newtopic-start-placeholder' => '开启一个新话题',
+	'flow-reply-placeholder' => '点此{{GENDER:$1|回复}}$1。祝好！',
+	'flow-reply-submit' => '{{GENDER:$1|帖子回复}}',
+	'flow-reply-link' => '{{GENDER:$1|回复}}',
+	'flow-thank-link' => '{{GENDER:$1|感谢}}',
+	'flow-talk-link' => '讨论{{GENDER:$1|$1}}',
 	'flow-post-edited' => '评论由$1 $2{{GENDER:$1|编辑}}',
 	'flow-post-action-post-history' => '发布历史',
+	'flow-post-action-delete-post' => '删除回复',
 	'flow-post-action-hide-post' => '隐藏帖子',
 	'flow-post-action-edit-post' => '编辑帖子',
 	'flow-post-action-edit' => '编辑',
 	'flow-post-action-restore-post' => '恢复帖子',
+	'flow-topic-action-view' => '永久链接',
+	'flow-topic-action-watchlist' => '监视列表',
 	'flow-topic-action-edit-title' => '编辑标题',
 	'flow-topic-action-history' => '主题历史',
 	'flow-error-http' => '与服务器联系时出错。未保存您的帖子。',
@@ -1794,11 +1929,17 @@ $messages['zh-hans'] = array(
 	'flow-error-external-multi' => '保存帖子时遇到错误。帖子未保存。<br />$1',
 	'flow-error-missing-content' => '帖子无内容。只能保存有内容的帖子。',
 	'flow-error-hide-failure' => '隐藏此项失败。',
+	'flow-summaryedit-submit' => '保存摘要',
 	'flow-edit-title-submit' => '更改标题',
+	'flow-rev-message-edit-post' => '编辑帖子内容',
+	'flow-rev-message-deleted-post' => '已删除的回复',
 	'flow-topic-history' => '主题历史',
 	'flow-comment-restored' => '恢复的评论',
 	'flow-comment-deleted' => '已删除的评论',
+	'flow-paging-rev' => '更多最新主题',
+	'flow-paging-fwd' => '更早的话题',
 	'flow-notification-edit' => '$1{{GENDER:$1|删除}}了一个在$2的[[$3|$4]]的[$5 评论]。',
+	'flow-notification-newtopic' => '$1在[[$2|$3]]{{GENDER:$1|创建了}}一个[$5 新话题]：$4。',
 	'flow-notification-rename' => '[$2 $3]的标题已被$1在[[$5|$6]]{{GENDER:$1|更改}}为“$4”。',
 	'flow-notification-link-text-view-post' => '浏览帖子',
 	'flow-notification-link-text-view-board' => '查看讨论版',
@@ -1812,6 +1953,9 @@ $messages['zh-hans'] = array(
 	'flow-notification-newtopic-email-subject' => '$1在$2创建了新主题',
 	'echo-category-title-flow-discussion' => '$1个讨论',
 	'echo-pref-tooltip-flow-discussion' => '在讨论版发生有关我的动作时通知我。',
+	'flow-link-post' => '帖子',
+	'flow-link-topic' => '主题',
+	'flow-link-history' => '历史',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
