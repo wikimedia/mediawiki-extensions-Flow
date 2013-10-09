@@ -374,11 +374,6 @@ abstract class AbstractRevision {
 			$this->lastEditId = $this->getRevisionId();
 			$this->lastEditUserId = $user->getId();
 			$this->lastEditUserText = $user->getName();
-
-			// flags are strictly related to the content
-			// should this only remove a subset of flags?
-			$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
-			$this->flags[] = $storageFormat;
 		}
 	}
 
