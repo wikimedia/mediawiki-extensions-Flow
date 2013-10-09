@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_5537f2fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2013-10-09T01:47:30Z",
+      "side": 1,
+      "message": "Add X to icon hovers, remove X from icon hovers, improve X to be Y in icon hovers, fix broken X in icon hovers, extend icon hovers to have X.\n\nA more elaborate commit subject would be useful (I\u0027m aware the line below clarifies it, but the subject line should clarify it).",
+      "revId": "28e10b824f117f8bd8f32512c02975f45d46db59",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
