@@ -22,32 +22,41 @@
 	font-weight: bold;
 	border-radius: 3px;
 	cursor: pointer;
+	text-shadow: 0px 1px 0px 0px rgba(0,0,0,.20);
 
 	&:hover,
 	&.mw-ui-hover {
 		color: @hover-primary-contrast-color !important;
 		background: @hover-primary-color;
-		border: 1px solid @hover-secondary-color;
+
+		box-shadow: 0px 1px 0px 0px rgba(0,0,0,.20), inset 0px -3px 0px 0px rgba(0,0,0,.20);
+		-webkit-box-shadow: 0px 1px 0px 0px rgba(0,0,0,.20), inset 0px -3px 0px 0px rgba(0,0,0,.20);
+		-moz-box-shadow: 0px 1px 0px 0px rgba(0,0,0,.20), inset 0px -3px 0px 0px rgba(0,0,0,.20);
 	}
 
 	&:active,
 	&.mw-ui-active {
 		color: @active-primary-contrast-color !important;
 		background: @active-primary-color;
-		border: 1px solid @active-secondary-color;
+
+		box-shadow: 0px 0px 0px 0px transparent;
+		-webkit-box-shadow: 0px 0px 0px 0px transparent;
+		-moz-box-shadow: 0px 0px 0px 0px transparent;
 	}
 
 	&:disabled,
 	&.mw-ui-disabled {
 		color: @inactive-primary-contrast-color !important;
 		background: @inactive-primary-color;
-		border: 1px solid @inactive-secondary-color;
 	}
 
 
 	// text-only, borderless text-button
 	&.mw-ui-text {
 		border: 1px solid transparent;
+		box-shadow: 0px 0px 0px 0px transparent;
+		-webkit-box-shadow: 0px 0px 0px 0px transparent;
+		-moz-box-shadow: 0px 0px 0px 0px transparent;
 		background: none;
 
 		.darkerColor(@primary-color, @primary-contrast-color);
