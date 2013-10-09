@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_b07cb91d",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-10-09T17:05:02Z",
+      "side": 1,
+      "message": "Can you please add a definition of \u0027header\u0027 in a flow context to one of the message docs, or if there is a glossary or design page, add links to them? I think this may greatly improve the translations we will get.",
+      "revId": "32b2ef59185cabe8c52a493a61324001f23f7d0a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_2d9dd2b8",
         "filename": "Flow.i18n.php",
         "patchSetId": 5
