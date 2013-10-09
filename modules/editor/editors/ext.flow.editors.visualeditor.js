@@ -46,6 +46,8 @@
 			$veNode.focus();
 		}
 
+		$veNode.addClass( 'mw-ui-input' );
+
 		// simulate a keyup event on the original node, so the validation code will
 		// pick up changes in the new node
 		$veNode.keyup( function () {
