@@ -13,17 +13,14 @@
 		// hover
 		@neutral-base,
 		#898989,
-		#acacac,
 
 		// active
 		@neutral-active,
 		#898989,
-		#ccc,
 
 		// disabled
 		@neutral-base,
 		#898989,
-		#ccc
 	);
 
 	&.mw-ui-constructive {
@@ -31,23 +28,27 @@
 			// normal
 			@constructive-base, // background
 			#fff, // text
-			@constructive-base, // border
+			#00af8b, // border
 
 			// hover
 			@constructive-base,
 			#fff,
-			#7fd7c4,
 
 			// active
 			@constructive-active,
 			#fff,
-			#7fd7c4,
 
 			// disabled
 			@neutral-base,
 			#898989,
-			#ccc
 		);
+
+		// override borders
+		border: 0px transparent;
+
+		&:disabled {
+			border: 1px solid #ccc;
+		}
 	}
 
 	&.mw-ui-destructive {
@@ -60,17 +61,14 @@
 			// hover
 			@destructive-base,
 			#fff,
-			#dc554d,
 
 			// active
 			@destructive-active,
 			#fff,
-			#dc554d,
 
 			// disabled
 			@neutral-base,
 			#898989,
-			#ccc
 		);
 
 		&.mw-ui-destructive-medium {
@@ -83,17 +81,14 @@
 				// hover
 				@destructive-medium-base,
 				#fff,
-				#ff853f,
 
 				// active
 				@destructive-medium-active,
 				#fff,
-				#ff853f,
 
 				// disabled
 				@neutral-base,
 				#898989,
-				#ccc
 			);
 		}
 
@@ -107,17 +102,14 @@
 				// hover
 				@destructive-low-base,
 				#fff,
-				#e8b747,
 
 				// active
 				@destructive-low-active,
 				#fff,
-				#e8b747,
 
 				// disabled
 				@neutral-base,
 				#898989,
-				#ccc
 			);
 		}
 	}
