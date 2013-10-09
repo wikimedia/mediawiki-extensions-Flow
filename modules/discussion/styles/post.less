@@ -28,6 +28,12 @@
 	.flow-actions {
 		position: relative;
 
+		.flow-actions-flyout {
+			position: absolute;
+			top: -34px;
+			right: 0;
+		}
+
 		.flow-actions-link {
 			width: 20px;
 			height: 20px;
@@ -36,18 +42,16 @@
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
+		}
+	}
 
+	.flow-post:hover {
+		.flow-actions-link {
 			.background-image-svg('../../base/images/flag_normal.svg', '../../base/images/flag_normal.png');
 
 			&:hover {
 				.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
 			}
-		}
-
-		.flow-actions-flyout {
-			position: absolute;
-			top: -34px;
-			right: 0;
 		}
 	}
 
