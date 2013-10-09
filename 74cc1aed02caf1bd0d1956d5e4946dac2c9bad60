@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_3b634f47",
+        "filename": "modules/base/styles/actionbox.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-09T12:53:11Z",
+      "side": 1,
+      "message": "I don\u0027t know much about LESS, but shouldn\u0027t this be after mw-ui-button, not inside?",
+      "revId": "74cc1aed02caf1bd0d1956d5e4946dac2c9bad60",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
