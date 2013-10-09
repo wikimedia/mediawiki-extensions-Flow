@@ -213,26 +213,11 @@ abstract class AbstractRevision {
 		} else {
 			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
 
-			if ( $this->moderationState === self::MODERATED_CENSORED ) {
-				// Censored is based on timestamp of this revision
-				$createdAt = $this->revId->getTimestampObj();
-			} elseif ( $this->prevRevision ) {
-				// Everything else is based on timestamp of previous revision
-				$createdAt = $this->prevRevision->getTimestampObj();
-			} else {
-				// not censored, but this is the first revision.  We should never get here.
-				wfDebugLog( __CLASS__, __FUNCTION__ . ': Unreachable condition, un censored but moderated first post : ' . $this->revId->getHex() );
-				$createdAt = $this->revId->getTimestampObj();
-			}
-
 			// Messages: flow-post-hidden-by, flow-post-deleted-by, flow-post-censored-by
 			return wfMessage(
 				self::$perms[$this->moderationState]['content'],
 				$this->moderatedByUserText,
-				// FIXME (spage, 2013-09-13) results in, e.g. "Deleted by Admin In 8 days".
-				// Removing createdAt gives right timeframe, but all the $createdAt code
-				// above suggests we intend something like "3 days later"?
-				$moderatedAt->getHumanTimestamp( $createdAt )
+				$moderatedAt->getHumanTimestamp()
 			);
 		}
 	}
