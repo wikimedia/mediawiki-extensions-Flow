@@ -16,6 +16,24 @@
       "revId": "74cc1aed02caf1bd0d1956d5e4946dac2c9bad60",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_7bcea72f",
+        "filename": "modules/base/styles/actionbox.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-09T13:00:18Z",
+      "side": 1,
+      "message": "You could either do it like this (after):\n\n    .mw-ui-button {\n        // some css\n    }\n    .mw-ui-button:hover {\n        // some css for hover\n    }\n\nOr, like in this patch (inside):\n\n    .mw-ui-button {\n        // some css\n        \n        \u0026:hover {\n            // some css for hover\n        }\n    }\n\nSpot the \u0026!\n\nAnything nested inside usually refers to a child element. Quite like normal css\u0027s:\n\n    .parent-class .child class\n\nAnything nested inside, with an \u0026, applies to that same element. Quite like normal css\u0027s:\n\n    .parent-class.another-parent-class\n\nor, in this case:\n\n    .parent-class:hover\n\nSo having \u0026:hover inside .mw-ui-button, will translate to:\n\n    .mw-ui-button:hover",
+      "parentUuid": "0932edd2_3b634f47",
+      "revId": "74cc1aed02caf1bd0d1956d5e4946dac2c9bad60",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
