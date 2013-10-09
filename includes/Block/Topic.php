@@ -98,7 +98,7 @@ class TopicBlock extends AbstractBlock {
 				throw new \Exception( 'No revision associated with workflow?' );
 			}
 
-			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-title' );
+			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'flow-rev-message-edit-title' );
 
 			$this->setNotification(
 				'flow-topic-renamed',
@@ -125,7 +125,7 @@ class TopicBlock extends AbstractBlock {
 			} else {
 				// TODO: assert post belongs to this tree?  Does it really matter?
 				// answer: might not belong, and probably does matter due to inter-wiki interaction
-				$this->newRevision = $post->reply( $this->user, $this->submitted['content'], 'flow-comment-added' );
+				$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
 
 				$this->setNotification(
 					'flow-post-reply',
@@ -158,7 +158,6 @@ class TopicBlock extends AbstractBlock {
 
 		$this->newRevision = $post->moderate( $this->user, $moderationState );
 		if ( !$this->newRevision ) {
-			die( 'no allowed' );
 			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
 		}
 	}
