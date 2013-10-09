@@ -9,6 +9,14 @@
 		// node the editor is associated with.
 		this.$node = $node;
 
+		// Replace the node with a spinner
+		$node.hide();
+		$node.injectSpinner( {
+			'size' : 'large',
+			'type' : 'block',
+			'id' : 'flow-editor-loading'
+		} );
+
 		// load dependencies & init editor
 		mw.loader.using( this.getModules(), this.init.bind( this, content || '' ) );
 	};
@@ -31,7 +39,7 @@
 		// add i18n messages to VE
 		window.ve.init.platform.addMessages( mw.messages.values );
 
-		this.$node.hide();
+		$.removeSpinner( 'flow-editor-loading' );
 
 		// init ve, save target object
 		this.target = new window.ve.init.sa.Target(
@@ -40,10 +48,14 @@
 			window.ve.createDocumentFromHtml( content || '' )
 		);
 
-		// focus VE instance if textarea had focus
 		$veNode = this.target.surface.$.find( '.ve-ce-documentNode' );
-		if ( this.$node.is( ':focus' ) ) {
+
+		// focus VE instance if textarea had focus
+		var $focussedElement = $( ':focus' );
+		if ( !$focussedElement.length || this.$node.is( $focussedElement ) ) {
 			$veNode.focus();
+		} else {
+			$focussedElement.focus();
 		}
 
 		// simulate a keyup event on the original node, so the validation code will
@@ -100,6 +112,11 @@
 	 */
 	mw.flow.editors.visualeditor.prototype.getRawContent = function () {
 		var doc;
+
+		// If we haven't fully loaded yet, just return nothing.
+		if ( ! this.target ) {
+			return '';
+		}
 
 		// get document from ve
 		doc = this.target.surface.getModel().getDocument();
