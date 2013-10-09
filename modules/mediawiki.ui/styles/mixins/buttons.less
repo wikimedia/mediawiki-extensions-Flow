@@ -28,6 +28,10 @@
 		color: @hover-primary-contrast-color !important;
 		background: @hover-primary-color;
 		border: 1px solid @hover-secondary-color;
+
+		box-shadow: 0px 1px 0px 0px @hover-secondary-color, inset 0px -3px 0px 0px @hover-secondary-color;
+		-webkit-box-shadow: 0px 1px 0px 0px @hover-secondary-color, inset 0px -3px 0px 0px @hover-secondary-color;
+		-moz-box-shadow: 0px 1px 0px 0px @hover-secondary-color, inset 0px -3px 0px 0px @hover-secondary-color;
 	}
 
 	&:active,
@@ -48,6 +52,9 @@
 	// text-only, borderless text-button
 	&.mw-ui-text {
 		border: 1px solid transparent;
+		box-shadow: 0px 0px 0px 0px transparent;
+		-webkit-box-shadow: 0px 0px 0px 0px transparent;
+		-moz-box-shadow: 0px 0px 0px 0px transparent;
 		background: none;
 
 		.darkerColor(@primary-color, @primary-contrast-color);
