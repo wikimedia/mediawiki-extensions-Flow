@@ -79,7 +79,7 @@ $( document ).on( 'flow_init', function ( e ) {
 	);
 
 	// Overload 'edit post' link.
-	$container.find( '.flow-action-edit-post a' )
+	$container.find( '.flow-edit-post-link' )
 		.click( function ( e ) {
 			e.preventDefault();
 			var $postContainer = $( this ).closest( '.flow-post' ),

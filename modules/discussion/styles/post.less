@@ -20,9 +20,31 @@
 		padding-bottom: 20px;
 	}
 
+	.flow-edit-post-link {
+		margin-top: -60px; // default -40px + -20px to be pushed up (because of .flow-post-content bottom padding)
+
+		background-position: center;
+		background-size: 20px auto;
+		background-repeat: no-repeat;
+	}
+
+	.flow-post:hover {
+		.flow-edit-post-link {
+			.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
+
+			&:hover {
+				.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
+			}
+		}
+	}
+
 	.flow-datestamp {
 		float: right;
 		padding-right: 22px;
+
+		a.flow-action-history-link {
+			color: inherit;
+		}
 	}
 
 	.flow-actions {
