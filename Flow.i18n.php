@@ -199,7 +199,8 @@ Translate this as "post which was censored".',
 * $1 - username, can be used for GENDER
 {{Identical|Reply}}',
 	'flow-reply-link' => 'Link text of the button that will (when clicked) display the editor to reply. Parameters:
-* $1 - username, can be used for GENDER',
+* $1 - username, can be used for GENDER
+{{Identical|Reply}}',
 	'flow-thank-link' => 'Link text of the button that will (when clicked) thank the editor of the comment Parameters:
 * $1 - username, can be used for GENDER',
 	'flow-talk-link' => 'Link text of the button that links to the talk page of the user whose comment is deleted. Parameters:
@@ -436,10 +437,12 @@ See also:
 {{Related|Echo-category-title}}
 {{Identical|Discussion}}',
 	'echo-pref-tooltip-flow-discussion' => 'This is a short description of the flow-discussion notification category.',
-	'flow-link-post' => 'Text used when linking to a post from recentchanges',
+	'flow-link-post' => 'Text used when linking to a post from recentchanges.
+{{Identical|Post}}',
 	'flow-link-topic' => 'Text used when linking to a topic from recentchanges.
 {{Identical|Topic}}',
-	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges',
+	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges.
+{{Identical|History}}',
 );
 
 /** Asturian (asturianu)
@@ -1086,6 +1089,7 @@ $messages['ja'] = array(
 	'flow-newtopic-start-placeholder' => '新しい話題の作成',
 	'flow-reply-placeholder' => '$1 に{{GENDER:$1|返信する}}にはクリックしてください。',
 	'flow-reply-submit' => '{{GENDER:$1|返信}}',
+	'flow-reply-link' => '{{GENDER:$1|返信}}',
 	'flow-thank-link' => '{{GENDER:$1|感謝}}',
 	'flow-talk-link' => '{{GENDER:$1|$1}} のトーク',
 	'flow-edit-post-submit' => '変更を保存',
@@ -1118,8 +1122,12 @@ $messages['ja'] = array(
 	'flow-error-restore-failure' => 'この項目を復元できませんでした。',
 	'flow-summaryedit-submit' => '要約を保存',
 	'flow-edit-title-submit' => 'タイトルを変更',
+	'flow-rev-message-edit-post' => '投稿の本文を編集',
 	'flow-rev-message-reply' => '新しい返信を投稿',
 	'flow-rev-message-new-post' => '話題を作成',
+	'flow-rev-message-edit-title' => '話題のタイトルを編集',
+	'flow-rev-message-create-summary' => '要約を作成',
+	'flow-rev-message-edit-summary' => '要約を編集',
 	'flow-rev-message-deleted-post' => '投稿を削除',
 	'flow-topic-history' => '話題の履歴',
 	'flow-comment-restored' => 'コメントを復元',
@@ -1152,7 +1160,9 @@ $messages['ja'] = array(
 	'flow-notification-newtopic-email-batch-body' => '$1 が $3 で新しい話題「$2」を{{GENDER:$1|作成しました}}',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|議論}}',
 	'echo-pref-tooltip-flow-discussion' => '議論掲示板で私に関連する操作がなされたときに通知する。',
+	'flow-link-post' => '投稿',
 	'flow-link-topic' => '話題',
+	'flow-link-history' => '履歴',
 );
 
 /** Korean (한국어)
@@ -1162,10 +1172,17 @@ $messages['ja'] = array(
 $messages['ko'] = array(
 	'flow-desc' => '워크플로우 관리 시스템',
 	'flow-specialpage' => '$1 &ndash; 플로우',
+	'flow-post-moderated-toggle-show' => '[보기]',
+	'flow-topic-action-view' => '고유링크',
 	'flow-error-edit-restricted' => '이 문서의 편집을 허용하지 않습니다.',
+	'flow-rev-message-edit-title' => '주제 제목이 편집되었습니다',
+	'flow-rev-message-edit-summary' => '편집 요약',
+	'flow-rev-message-restored-post' => '게시글 숨김 해제',
+	'flow-rev-message-deleted-post' => '삭제된 게시글',
 	'flow-notification-link-text-view-post' => '게시물 보기',
 	'flow-notification-reply-email-subject' => '$1이 당신의 글에 덧글을 달았습니다.',
 	'flow-notification-rename-email-subject' => '$1 이 당신의 주제를 바꾸었습니다.',
+	'flow-link-topic' => '주제',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -1175,6 +1192,8 @@ $messages['ko'] = array(
 $messages['lb'] = array(
 	'flow-desc' => 'Workflow-Management-System',
 	'flow-edit-summary-link' => 'Resumé vun der Ännerung',
+	'flow-post-moderated-toggle-show' => '[Weisen]',
+	'flow-post-moderated-toggle-hide' => '[Verstoppen]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Verstoppt}} vum $1 $2',
 	'flow-post-deleted-by' => '{{GENDER:$1|Geläscht}} vum $1 $2',
 	'flow-post-censored-by' => '{{GENDER:$1|Zensuréiert}} vum $1 $2',
@@ -1185,11 +1204,13 @@ $messages['lb'] = array(
 	'flow-newtopic-content-placeholder' => 'Text vum Message. Sidd frëndlech!',
 	'flow-newtopic-header' => 'En neit Thema derbäisetzen',
 	'flow-newtopic-save' => 'Thema derbäisetzen',
-	'flow-newtopic-start-placeholder' => 'Klickt hei fir eng nei Diskussioun unzefänken. Sidd frëndlech!', # Fuzzy
+	'flow-newtopic-start-placeholder' => 'En neit Thema ufänken',
 	'flow-reply-placeholder' => 'Klickt fir dem $1 ze {{GENDER:$1|äntwerten}}. Sidd frëndlech!',
+	'flow-reply-link' => '{{GENDER:$1|Äntwerten}}',
 	'flow-edit-post-submit' => 'Ännerunge späicheren',
 	'flow-post-action-view' => 'Permanentlink',
 	'flow-post-action-edit' => 'Änneren',
+	'flow-topic-action-watchlist' => 'Iwwerwaachungslëscht',
 	'flow-topic-action-edit-title' => 'Titel änneren',
 	'flow-error-missing-title' => "D'Thema huet keen Titel. Den Titel ass obligatoresch fir een neit Thema ze späicheren.",
 	'flow-error-delete-failure' => "D'Läsche vun dësem Element huet net funktionéiert.",
@@ -1198,6 +1219,8 @@ $messages['lb'] = array(
 	'flow-summaryedit-submit' => 'Resumé späicheren',
 	'flow-edit-title-submit' => 'Titel änneren',
 	'flow-rev-message-new-post' => 'Thema ugeluecht',
+	'flow-rev-message-create-summary' => 'Resumé ugeluecht',
+	'flow-rev-message-edit-summary' => 'Resumé geännert',
 	'flow-comment-restored' => 'Restauréiert Bemierkung',
 	'flow-comment-deleted' => 'Geläscht Bemierkung',
 	'flow-comment-hidden' => 'Verstoppte Bemierkung',
@@ -1209,6 +1232,7 @@ $messages['lb'] = array(
 	'flow-notification-link-text-view-topic' => 'Thema weisen',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Diskussioun|Diskussiounen}}',
 	'echo-pref-tooltip-flow-discussion' => 'Mech informéieren wann Aktiounen déi mech betreffen um Diskussiouns-Board geschéien.',
+	'flow-link-history' => 'Versiounen',
 );
 
 /** Macedonian (македонски)
@@ -1504,9 +1528,26 @@ $messages['oc'] = array(
 
 /** Polish (polski)
  * @author Chrumps
+ * @author Woytecr
  */
 $messages['pl'] = array(
+	'flow-post-moderated-toggle-show' => '[Pokaż]',
+	'flow-post-moderated-toggle-hide' => '[Ukryj]',
+	'flow-post-hidden' => '[post ukryty]',
+	'flow-post-hidden-by' => '{{GENDER:$1|Ukryty}} przez $1 $2',
+	'flow-post-deleted' => '[post usunięty]',
+	'flow-post-deleted-by' => '{{GENDER:$1|Usunięty}} przez $1 $2',
 	'flow-cancel' => 'Anuluj',
+	'flow-newtopic-title-placeholder' => 'Temat wiadomości',
+	'flow-newtopic-header' => 'Dodaj nowy temat',
+	'flow-newtopic-save' => 'Dodaj temat',
+	'flow-newtopic-start-placeholder' => 'Rozpocznij nowy temat',
+	'flow-edit-post-submit' => 'Zapisz zmiany',
+	'flow-paging-fwd' => 'Starsze tematy',
+	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|odpowiedział|odpowiedziała}} na twój post',
+	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|zmienił|zmieniła}} nazwę twojego tematu',
+	'flow-link-topic' => 'temat',
+	'flow-link-history' => 'historia',
 );
 
 /** Pashto (پښتو)
@@ -1592,9 +1633,22 @@ $messages['ru'] = array(
 	'flow-post-action-edit' => 'Править',
 	'flow-post-action-restore-post' => 'Восстановить сообщение',
 	'flow-topic-action-edit-title' => 'Редактировать заголовок',
+	'flow-topic-action-history' => 'История темы',
+	'flow-error-http' => 'Произошла ошибка при обращении к серверу. Ваше сообщение не было сохранено.',
 	'flow-error-other' => 'Произошла непредвиденная ошибка. Ваше сообщение не было сохранено.',
+	'flow-error-external' => 'Произошла ошибка при обращении к серверу. Ваше сообщение не было сохранено.<br /><small>Было получено следующее сообщение об ошибке: $1</small>',
 	'flow-error-edit-restricted' => 'Вам не разрешено редактировать это сообщение.',
+	'flow-error-missing-content' => 'Сообщение не имеет содержимого. Для сохранения нового сообщения требуется содержимое.',
+	'flow-error-missing-title' => 'Тема не имеет заголовка. Заголовок необходим для сохранения новой темы.',
+	'flow-error-parsoid-failure' => 'Не удаётся выполнить разбор содержимого из-за сбоя Parsoid.',
+	'flow-error-delete-failure' => 'Не удалось удалить этот элемент.',
+	'flow-error-hide-failure' => 'Не удалось скрыть этот элемент.',
+	'flow-error-restore-failure' => 'Не удалось восстановить этот элемент.',
+	'flow-edit-title-submit' => 'Изменить название',
+	'flow-rev-message-reply' => 'Новый ответ размещён',
+	'flow-rev-message-new-post' => 'Тема создана',
 	'flow-rev-message-deleted-post' => 'Удалённое сообщение',
+	'flow-topic-history' => 'История темы',
 	'flow-comment-restored' => 'Восстановленный комментарий',
 	'flow-comment-deleted' => 'Удалённый комментарий',
 	'flow-comment-hidden' => 'Скрытый комментарий',
