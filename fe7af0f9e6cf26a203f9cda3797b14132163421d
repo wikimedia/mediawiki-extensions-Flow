@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_172817ef",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-10T11:34:43Z",
+      "side": 1,
+      "message": "Not really sure what this comment is for? :)",
+      "revId": "fe7af0f9e6cf26a203f9cda3797b14132163421d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_973c072f",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-10T11:34:43Z",
+      "side": 1,
+      "message": "Are you certain this main background color should change? It looks a very light green, but TextField_CommentReplies.png suggest this darker #00af89 (@constructive-base)\n\nAll @*-base are used for background color, except for this one where it\u0027d now be the border color.\n\nIf this new color is correct, I\u0027d update the @constructive-base variable, might get confusing otherwise.",
+      "revId": "fe7af0f9e6cf26a203f9cda3797b14132163421d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_7706b387",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-10T11:34:43Z",
+      "side": 1,
+      "message": "If @hover-secondary-color, @active-secondary-color \u0026 @inactive-secondary-color are no longer used, we can probably get rid of them here?",
+      "revId": "fe7af0f9e6cf26a203f9cda3797b14132163421d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_771073a8",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-10T11:34:43Z",
+      "side": 1,
+      "message": "Should all borders be removed? That was the only difference for the neutral inactive button (where inactive border is lighter than the normal state), so it\u0027d now be undistinguishable from normal button.",
+      "revId": "fe7af0f9e6cf26a203f9cda3797b14132163421d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
