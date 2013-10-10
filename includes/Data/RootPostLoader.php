@@ -69,9 +69,9 @@ class RootPostLoader {
 		// link parents to their children
 		foreach ( $posts as $postId => $post ) {
 			if ( isset( $children[$postId] ) ) {
-				// sort children with newest items first
+				// sort children with oldest items first
 				usort( $children[$postId], function( $a, $b ) {
-					return $a->compareCreateTime( $b );
+					return $b->compareCreateTime( $a );
 				} );
 				$post->setChildren( $children[$postId] );
 			} else {
