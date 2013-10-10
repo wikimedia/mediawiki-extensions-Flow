@@ -1,0 +1,13 @@
+#ruby=ruby-2.0.0-p247
+#ruby-gemset=Flow
+
+source 'https://rubygems.org'
+
+gem 'cucumber'
+gem 'json'
+gem 'mediawiki-selenium'
+gem 'net-http-persistent'
+gem 'page-object'
+gem 'rest-client'
+gem 'rspec-expectations'
+gem 'syntax'
