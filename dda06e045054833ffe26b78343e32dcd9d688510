@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_52affd7d",
+        "filename": "tests/browser/features/step_definitions/login_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2013-10-10T14:00:22Z",
+      "side": 1,
+      "message": "Actually, this entire file is probably not needed if you do not plan to extensively test login functionality.",
+      "revId": "dda06e045054833ffe26b78343e32dcd9d688510",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
