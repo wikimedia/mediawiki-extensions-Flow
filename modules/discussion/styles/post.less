@@ -115,12 +115,23 @@
 	}
 
 	.flow-thank-link {
+		display: none;
 		padding-left: 46px;
 
 		.background-image-svg('../../base/images/thank.svg', '../../base/images/thank.png');
 		background-position: 16px;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
+	}
+
+	.flow-reply-link {
+		display: none;
+	}
+
+	.flow-post:hover {
+		.flow-reply-link, .flow-thank-link {
+			display: inline-block;
+		}
 	}
 
 	.flow-reply-form {
@@ -226,4 +237,13 @@
 			}
 		}
 	}
+}
+
+.flow-post-container .flow-post-container .flow-post-container {
+	padding-left: 0px;
+	border-left: 0px transparent;
+}
+
+.flow-post-container .flow-post-container .flow-reply-link {
+	display: none !important;
 }
