@@ -38,8 +38,6 @@ if ( !$post->isModerated() ) {
 		Html::closeElement( 'form' );
 }
 
-$actions = array();
-
 
 // The actual output
 echo Html::openElement( 'div', array(
@@ -76,14 +74,25 @@ echo Html::openElement( 'div', array(
 			<div class="flow-post-content">
 				<?php echo $post->getContent( $user, 'html' ); ?>
 			</div>
+			<?php if ( $postActionMenu->isAllowed( 'edit-post' ) ) {
+				echo $postActionMenu->getButton( 'edit-post', wfMessage( 'flow-post-action-edit-post' )->plain(), 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' );
+			}
+			?>
 
 			<p class="flow-datestamp">
-				<span class="flow-agotime" style="display: inline">
-					<?php echo $post->getPostId()->getHumanTimestamp(); ?>
-				</span>
-				<span class="flow-utctime" style="display: none">
-					<?php echo $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ); ?>
-				</span>
+				<?php
+					// timestamp html
+					$content = '
+						<span class="flow-agotime" style="display: inline">'. $post->getPostId()->getHumanTimestamp() .'</span>
+						<span class="flow-utctime" style="display: none">'. $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ) .'</span>';
+
+					// build history button with timestamp html as content
+					if ( $postActionMenu->isAllowed( 'post-history' ) ) {
+						echo $postActionMenu->getButton( 'post-history', $content, 'flow-action-history-link' );
+					} else {
+						echo $content;
+					}
+				?>
 			</p>
 
 			<div class="flow-post-interaction">
@@ -102,19 +111,26 @@ echo Html::openElement( 'div', array(
 			</div>
 		</div>
 
+		<?php if ( $postActionMenu->isAllowedAny( 'hide-post', 'delete-post', 'censor-post' ) ): ?>
 		<div class="flow-actions">
 			<a class="flow-actions-link flow-icon flow-icon-bottom-aligned" href="#"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
 			<div class="flow-actions-flyout">
 				<ul>
 					<?php
-					foreach( $postActionMenu->get( $user, $block, $post, $editToken ) as $key => $action ) {
-						// @todo: $actions currently includes a lot of actions, design only wants censor actions here; figure out where others belong
-						echo "<li class=\"flow-action-$key\">$action</li>";
+					if ( $postActionMenu->isAllowed( 'hide-post' ) ) {
+						echo '<li class="flow-action-hide">'. $postActionMenu->getButton( 'hide-post', wfMessage( 'flow-post-action-hide-post' )->plain(), 'flow-hide-post-link mw-ui-button mw-ui-destructive mw-ui-destructive-low' ) .'</li>';
+					}
+					if ( $postActionMenu->isAllowed( 'delete-post' ) ) {
+						echo '<li class="flow-action-delete">'. $postActionMenu->getButton( 'delete-post', wfMessage( 'flow-post-action-delete-post' )->plain(), 'flow-delete-post-link mw-ui-button mw-ui-destructive mw-ui-destructive-medium' ) .'</li>';
+					}
+					if ( $postActionMenu->isAllowed( 'censor-post' ) ) {
+						echo '<li class="flow-action-censor">'. $postActionMenu->getButton( 'censor-post', wfMessage( 'flow-post-action-censor-post' )->plain(), 'flow-censor-post-link mw-ui-button mw-ui-destructive' ) .'</li>';
 					}
 					?>
 				</ul>
 			</div>
 		</div>
+		<?php endif; ?>
 
 	</div>
 

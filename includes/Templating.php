@@ -88,6 +88,8 @@ class Templating {
 	}
 
 	public function renderPost( PostRevision $post, Block $block, $return = true ) {
+		global $wgUser, $wgFlowTokenSalt;
+
 		return $this->render(
 			'flow:post.html.php',
 			array(
@@ -95,7 +97,13 @@ class Templating {
 				'post' => $post,
 				// An ideal world may pull this from the container, but for now this is fine.  This templating
 				// class has too many responsibilities to keep receiving all required objects in the constructor.
-				'postActionMenu' => new PostActionMenu( $this->urlGenerator ),
+				'postActionMenu' => new PostActionMenu(
+					$this->urlGenerator,
+					$wgUser,
+					$block,
+					$post,
+					$wgUser->getEditToken( $wgFlowTokenSalt )
+				),
 			),
 			$return
 		);
