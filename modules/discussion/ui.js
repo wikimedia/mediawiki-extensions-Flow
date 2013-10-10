@@ -22,8 +22,8 @@
 		// Set up timestamp on-hover
 		$container.find( '.flow-topic-datestamp, .flow-datestamp' )
 			.hover(function () {
-				$(this).children( '.flow-agotime' ).toggle();
-				$(this).children( '.flow-utctime' ).toggle();
+				$(this).find( '.flow-agotime' ).toggle();
+				$(this).find( '.flow-utctime' ).toggle();
 			} );
 
 		// Set up post creator on-hover

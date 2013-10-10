@@ -159,6 +159,7 @@ class PostRevision extends AbstractRevision {
 			return false;
 		}
 	}
+
 	public function isAllowedToEdit( $user ) {
 		if ( $user->isAnon() ) {
 			return false;
