@@ -50,6 +50,40 @@
       "revId": "b33f229230a8b6fc2520ca187ebdb169928bf3a0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_926ed52e",
+        "filename": "tests/browser/features/step_definitions/flow_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2013-10-10T14:37:31Z",
+      "side": 1,
+      "message": "There is no need for \"when_present\" in line 9, since line 8 already makes sure the element is there.",
+      "revId": "b33f229230a8b6fc2520ca187ebdb169928bf3a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_b26bd91e",
+        "filename": "tests/browser/features/step_definitions/flow_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2013-10-10T14:37:31Z",
+      "side": 1,
+      "message": "\"Given\" steps should not check for anything. Only \"Then\" steps should contain \"should\".",
+      "revId": "b33f229230a8b6fc2520ca187ebdb169928bf3a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
