@@ -2,7 +2,7 @@ There will be a few default workflows distributed with flow:
 
 
 discussion:
-	summary - custom table
+	header - custom table
 	topic list - custom table
 
 topic:
@@ -44,7 +44,7 @@ The prototype for Flow is very simple, all we need to implement is a discussion 
 slightly complicated by both the top level Discussion and the individual Topic's being "Flow Objects".
 To accomplish this we will define 3 types of blocks:
 
-	Summary
+	Header
 	TopicList
 	Topic
 
@@ -52,7 +52,7 @@ The blocks will be refered to by 2 individual workflows.
 The discussion workflow will be defined as:
 
 	name: discussion
-	blocks: [ Summary, TopicList ]
+	blocks: [ Header, TopicList ]
 	topic_workflow: discussion-topic
 	singleton: true  // Only a single discussion may exist per wiki page
 	closeable: false // Discussions are not closeable, they are forever
