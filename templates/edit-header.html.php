@@ -38,7 +38,7 @@ echo Html::openElement( 'div', array(
 echo Html::element( 'input', array(
 	'type' => 'submit',
 	'class' => 'mw-ui-button mw-ui-constructive',
-	'value' => wfMessage( 'flow-headeredit-submit' )->plain(),
+	'value' => wfMessage( 'flow-edit-header-submit' )->plain(),
 ) );
 echo Html::closeElement( 'div' );
 echo Html::closeElement( 'form' );
