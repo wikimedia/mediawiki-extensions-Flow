@@ -25,7 +25,7 @@ end
 Then(/^the Flow page should contain (.+)$/) do |flow_topic|
   on(FlowPage) do |page|
     page.wait_until(20) do	# 10 seconds wasn't enough on ee-flow...
-      page.text.include? 'just now'
+      page.text.include? 'about 1 second' or page.text.include? 'just now'
     end
     page.flow_body.should match(flow_topic + @random_string + @automated_test_marker)
   end
