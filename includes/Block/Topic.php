@@ -289,7 +289,8 @@ class TopicBlock extends AbstractBlock {
 			$root = $this->loadRootPost();
 
 			if ( isset( $options['postId'] ) ) {
-				$post = $root->findDescendant( $options['postId'] );
+				$indexDescendant = $root->registerDescendant( $options['postId'] );
+				$post = $root->getDescendant( $indexDescendant );
 
 				return $templating->renderPost(
 					$post,
@@ -335,7 +336,9 @@ class TopicBlock extends AbstractBlock {
 	public function renderAPI( Templating $templating, array $options ) {
 		if ( isset( $options['postId'] ) ) {
 			$rootPost = $this->loadRootPost();
-			$post = $rootPost->findDescendant( $options['postId'] );
+
+			$indexDescendant = $rootPost->registerDescendant( $options['postId'] );
+			$post = $rootPost->getDescendant( $indexDescendant );
 
 			if ( ! $post ) {
 				throw new MWException( "Requested post could not be found" );
