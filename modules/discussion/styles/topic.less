@@ -210,9 +210,10 @@
 		}
 	}
 
-	// until focussed, make the textarea look similar to a normal input field
-	.flow-topic-reply-content:not(:focus) {
-		height: 34px;
-		padding-top: 6px;
+	&:not(:hover) {
+		.flow-topic-reply-content:not(:focus) {
+			height: 34px;
+			padding-top: 6px;
+		}
 	}
 }

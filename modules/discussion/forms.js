@@ -103,25 +103,17 @@ $( document ).on( 'flow_init', function ( e ) {
 		function ( promise ) {
 			promise
 				.done( function ( output ) {
-					// Replies are currently sorted in timestamp descending order.
-					// If we change it to ascending order, then we need to append
-					// the new element to the end of the container and remove the
-					// sliding-up effect
-					var $replyContainer = $( this )
-							.closest( '.flow-topic-container' ).children(":first"),
-						$newRegion = $( output.rendered )
-							.hide()
-							.insertAfter( $replyContainer )
-							.trigger( 'flow_init' )
-							.slideDown();
-					$( 'html,body' ).animate( {
-						'scrollTop': $( '#flow-topic-' + $( this ).closest( '.flow-topic-container' ).data( 'topic-id' ) ).offset().top
-					}, 500 );
+					$( output.rendered )
+						.hide()
+						.insertBefore( $( this ).closest( '.flow-topic-reply-container' ) )
+						.trigger( 'flow_init' )
+						.slideDown();
 					// Reset the form
 					// @Todo - this works but doesn't seem right
 					var $form = $( this ).closest( '.flow-topic-reply-form' );
 					mw.flow.editor.destroy( $form.find( '.flow-topic-reply-content' ) );
 					mw.flow.editor.load( $form.find( '.flow-topic-reply-content' ) );
+					$form.find( '.flow-post-form-controls' ).hide();
 				} );
 		}
 	);
