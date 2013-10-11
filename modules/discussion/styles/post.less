@@ -6,6 +6,11 @@
 	margin-top: 20px;
 	padding-left: 22px;
 
+	// Leave space for hover buttons to not change the height
+	.flow-post-unmoderated {
+		min-height: 115px;
+	}
+
 	.flow-creator {
 		font-weight: bold;
 		color: @post-title-color;
@@ -94,8 +99,10 @@
 	}
 
 	.flow-post-replies {
-		.flow-post-container{
-			border-left: 1px solid #999;
+		border-left: 1px solid #999;
+		
+		.flow-post-replies {
+			border-left: 0px solid transparent;
 		}
 	}
 
@@ -233,16 +240,18 @@
 			}
 		}
 	}
-}
 
-// hacky way to flatten conversation;
-// make anything over 2 indentation levels appear on same level
-.flow-post-container .flow-post-container .flow-post-container {
-	padding-left: 0px;
-	border-left: 0px transparent;
-}
+	.flow-post-container {
+		// hacky way to flatten conversation;
+		// make anything over 2 indentation levels appear on same level
+		margin-top: 0px;
+		.flow-post-container {
+			padding-left: 0px;
+		}
 
-// hacky way to not allow replies on an already too-deep level of indentation
-.flow-post-container .flow-post-container .flow-reply-link {
-	display: none !important;
+		// hacky way to not allow replies on an already too-deep level of indentation
+		.flow-reply-link {
+			display: none !important;
+		}
+	}
 }
