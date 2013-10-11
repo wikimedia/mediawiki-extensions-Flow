@@ -179,6 +179,7 @@
 					'.flow-actions',
 					'.flow-icon-permalink',
 					'.flow-icon-watchlist',
+					'.flow-action-history-link'
 				];
 				if ( $( e.target ).closest( ignore.join( ',' ) ).length > 0 ) {
 					return true;
