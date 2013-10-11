@@ -66,8 +66,28 @@ echo Html::openElement( 'div', array(
 	?>
 
 	<ul class="flow-topic-posts-meta">
-		<li>@todo: participants</li>
-		<li class="flow-post-number" data-topic-id="<?php echo $topic->getId()->getHex() ?>">@todo: # comments</li>
+		<li class="flow-topic-participants">
+			<?php
+				$participants = $root->getParticipantsRecursive();
+				$parameters = array(
+					count( $participants ), // total number of participants
+					count( $participants ) - 2, // total number minus 2
+					array_shift( $participants ), // first participant
+					array_shift( $participants ), // second participant
+				);
+
+				echo wfMessage( 'flow-topic-participants', $parameters )->text();
+			?>
+		</li>
+		<li class="flow-topic-comments">
+			<a href="#" class="flow-reply-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
+				<?php
+					// get total amount of posts in topic, but subtract original post
+					$comments = $root->getChildrenAmountRecursive() - 1;
+					echo wfMessage( 'flow-topic-comments', $comments )->text();
+				?>
+			</a>
+		</li>
 	</ul>
 
 	<?php

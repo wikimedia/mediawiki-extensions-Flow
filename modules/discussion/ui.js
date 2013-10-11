@@ -145,7 +145,7 @@
 		// Hide reply button until user initiates reply (hidden in JS because it needs to be there for non-JS users)
 		$container.find( '.flow-topic-reply-form .flow-post-form-controls' ).hide();
 		// Set up topic reply form
-		$container.find( '.flow-topic-reply-content' ).click( function() {
+			$container.find( '.flow-topic-reply-content' ).click( function() {
 			mw.flow.editor.load( $( this ) );
 
 			// display controls
@@ -153,13 +153,16 @@
 		} );
 
 		// Set up the scroll to new topic reply form
-		$container.find( '.flow-topic-posts-meta .flow-post-number' ).click(
+		$container.find( '.flow-topic-comments .flow-reply-link' ).click(
 			function( e ) {
 				var $hideElement = $( this ).closest( '.flow-topic-container' ).children( '.flow-post-container' ), self = this;
 				e.stopPropagation();
+
 				$hideElement.slideDown( function() {
-					$( 'html,body' ).animate( {
-						'scrollTop': $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) ).offset().top
+					$( 'html, body' ).animate( {
+						'scrollTop': $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) ).offset().top,
+						// trigger click event to immediately open editor
+						'complete': $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) ).find( '.flow-topic-reply-content' ).click()
 					}, 500 );
 				} );
 			}
@@ -179,6 +182,7 @@
 					'.flow-actions',
 					'.flow-icon-permalink',
 					'.flow-icon-watchlist',
+					'.flow-topic-comments'
 				];
 				if ( $( e.target ).closest( ignore.join( ',' ) ).length > 0 ) {
 					return true;

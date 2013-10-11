@@ -82,17 +82,25 @@ class PostRevision extends AbstractRevision {
 		return $this->origUserId;
 	}
 
+	/**
+	 * Returns the username or false if the current user has insufficient
+	 * permissions to access this data for this post.
+	 *
+	 * @param null $user
+	 * @return string|bool
+	 */
 	public function getCreatorName( $user = null ) {
 		if ( $this->isAllowed( $user ) ) {
+			$user = User::newFromId( $this->getCreatorId() );
+
+			// @todo: not here
+			if ( $user->isAnon() ) {
+				return wfMessage( 'flow-user-anonymous' )->plain();
+			}
+
 			return $this->getCreatorNameRaw();
 		} else {
-			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
-
-			return wfMessage(
-				self::$perms[$this->moderationState]['content'],
-				$this->moderatedByUserText,
-				$moderatedAt->getHumanTimestamp()
-			);
+			return false;
 		}
 	}
 
@@ -117,6 +125,64 @@ class PostRevision extends AbstractRevision {
 			throw new \Exception( 'Children not loaded for post: ' . $this->postId->getHex() );
 		}
 		return $this->children;
+	}
+
+	/**
+	 * Get the amount of posts in this topic.
+	 *
+	 * @return int
+	 */
+	public function getChildrenAmount() {
+		return count( $this->getChildren() );
+	}
+
+	/**
+	 * Get the amount of posts in this topic.
+	 *
+	 * @return int
+	 */
+	public function getChildrenAmountRecursive() {
+		$amount = $this->getChildrenAmount();
+
+		foreach ( $this->getChildren() as $child ) {
+			$amount += $child->getChildrenAmountRecursive();
+		}
+
+		return $amount;
+	}
+
+	/**
+	 * Get a list of all participants on this level.
+	 *
+	 * @return array
+	 */
+	public function getParticipants() {
+		$creators = array();
+
+		foreach ( $this->getChildren() as $child ) {
+			$name = $this->getCreatorName();
+			if ( $name !== false ) {
+				// origUserText is unique to user, creatorname may return multiple "Anonymous"
+				$creators[$this->origUserText] = $name;
+			}
+		}
+
+		return $creators;
+	}
+
+	/**
+	 * Get a list of all participants on this and deeper nested levels.
+	 *
+	 * @return array
+	 */
+	public function getParticipantsRecursive() {
+		$creators = $this->getParticipants();
+
+		foreach ( $this->getChildren() as $child ) {
+			$creators += $child->getParticipantsRecursive();
+		}
+
+		return $creators;
 	}
 
 	public function findDescendant( $postId ) {

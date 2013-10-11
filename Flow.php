@@ -148,6 +148,7 @@ $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 $wgHooks['ApiTokensGetTokenTypes'][] = 'FlowHooks::onApiTokensGetTokenTypes';
 $wgHooks['MediaWikiPerformAction'][] = 'FlowHooks::onPerformAction';
 $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
+$wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
