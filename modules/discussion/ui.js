@@ -142,6 +142,33 @@
 			.after( ' ' )
 			.insertBefore( $container.find( '.flow-newtopic-form input[type=submit]' ) );
 
+		// Hide all Reply/Thanks buttons
+		$container.find( '.flow-post-main .flow-post-interaction' ).hide();
+		$container.find( '.flow-post-main' ).hover( function() {
+				$( this ).find( '.flow-post-interaction' ).show(); },
+			function() {
+				$( this ).find( '.flow-post-interaction' ).hide();
+			}
+		);
+
+		// Set up topic reply form
+		$container.find( '.flow-topic-reply-content' ).each( function() {
+			mw.flow.editor.load( $( this ) );
+		} );
+
+		// Set up the scroll to new topic reply form
+		$container.find( '.flow-topic-posts-meta .flow-post-number' ).click(
+			function( e ) {
+				var $hideElement = $( this ).closest( '.flow-topic-container' ).children( '.flow-post-container' ), self = this;
+				e.stopPropagation();
+				$hideElement.slideDown( function() {
+					$( 'html,body' ).animate( {
+						'scrollTop': $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) ).offset().top
+					}, 500 );
+				} );
+			}
+		);
+
 		// Set up folding
 		$container.find( '.flow-titlebar' )
 			.click( function ( e ) {
