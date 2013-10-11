@@ -3,6 +3,11 @@
 // treat title like unparsed (wiki)text
 $title = $root->getContent( $user, 'wikitext' );
 
+// pre-register recursive callbacks; will then be fetched all at once when the
+// first one's result is requested
+$indexDescendantCount = $root->registerDescendantCount();
+$indexParticipants = $root->registerParticipants();
+
 echo Html::openElement( 'div', array(
 	'class' => 'flow-topic-container flow-topic-full',
 	'id' => 'flow-topic-' . $topic->getId()->getHex(),
@@ -55,8 +60,18 @@ echo Html::openElement( 'div', array(
 	?>
 
 	<ul class="flow-topic-posts-meta">
-		<li>@todo: participants</li>
-		<li class="flow-post-number" data-topic-id="<?php echo $topic->getId()->getHex() ?>">@todo: # comments</li>
+		<li class="flow-topic-participants">
+			<?php echo $this->printParticipants( $root, $indexParticipants ); ?>
+		</li>
+		<li class="flow-topic-comments">
+			<a href="#" class="flow-reply-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
+				<?php
+					// get total number of posts in topic
+					$comments = $root->getDescendantCount( $indexDescendantCount );
+					echo wfMessage( 'flow-topic-comments', $comments )->text();
+				?>
+			</a>
+		</li>
 	</ul>
 
 	<?php
@@ -137,7 +152,7 @@ echo Html::openElement( 'div', array(
 	Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
 	Html::element( 'input', array(
 		'type' => 'submit',
-		'value' => wfMessage( 'flow-reply-submit', $root->getCreatorName( $user ) )->text(),
+		'value' => wfMessage( 'flow-reply-submit', $this->getUserText( $root->getCreator( $user ), $root ) )->text(),
 		'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
 	) ),
 	Html::closeElement( 'div' ),

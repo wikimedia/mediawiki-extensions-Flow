@@ -152,4 +152,13 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * @param array $names
+	 * @return bool
+	 */
+	public static function onUserGetReservedNames( &$names ) {
+		$names[] = 'msg:flow-user-anonymous';
+		return true;
+	}
 }
