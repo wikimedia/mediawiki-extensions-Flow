@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "0932edd2_e38adebf",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-11T13:41:41Z",
+      "side": 1,
+      "message": "I\u0027ve made @constructive-base the new, lighter, color (#7fd7c4), since, from what I heard, the darker one definitely was incorrect.\n\nIf this color is not the correct one, we\u0027ll hear about it ;)",
+      "parentUuid": "0932edd2_f448de31",
+      "revId": "fe7af0f9e6cf26a203f9cda3797b14132163421d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0932edd2_7706b387",
         "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
         "patchSetId": 2
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "not sure if they are really unused, or if i just have this wrong :)  There should be three colors, but then when he shows me his designs they arn\u0027t directly changing the bottom color, they are applying a black transparency at 20% (the rgba(0,0,0,0.20) );",
       "parentUuid": "0932edd2_7706b387",
+      "revId": "fe7af0f9e6cf26a203f9cda3797b14132163421d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_0388d2c5",
+        "filename": "modules/mediawiki.ui/styles/mixins/buttons.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-11T13:41:41Z",
+      "side": 1,
+      "message": "Ok, good to know. I definitely prefer increasing the darkness of the base color over defining multiple colors. I\u0027m getting rid of the @*-secondary-color definitions.",
+      "parentUuid": "0932edd2_14465224",
       "revId": "fe7af0f9e6cf26a203f9cda3797b14132163421d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
