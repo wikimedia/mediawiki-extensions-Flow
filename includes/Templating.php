@@ -161,4 +161,94 @@ class Templating {
 
 		return Linker::userLink( $userId, $userText ) . Linker::userToolLinks( $userId, $userText );
 	}
+
+	/**
+	 * Returns a message that displays information on the participants of a topic.
+	 *
+	 * @param PostRevision $post
+	 * @param int[optional] $registered The identifier that was returned when
+	 * registering the callback via PostRevision::registerRecursive()
+	 * @return string
+	 */
+	public function printParticipants( PostRevision $post, $registered = null ) {
+		$participants = $post->getRecursiveResult( $registered );
+		$participantCount = count( $participants );
+
+		$participant1 = false;
+		$participant2 = false;
+		$haveAnon = false;
+
+		while(
+			( $participant1 === false || $participant2 === false ) &&
+			count( $participants )
+		) {
+			$participant = array_shift( $participants );
+
+			if ( // Special conditions for anonymous users
+				$participant->isAnon() &&
+				$haveAnon && // Try not to show two anonymous users
+				count( $participants ) // Unless we have no other option
+			) {
+				continue;
+			} elseif ( $participant->isAnon() ) {
+				$haveAnon = true;
+			}
+
+			$text = $this->getUserText( $participant );
+
+			if ( !$text || !$participant ) {
+				continue;
+			}
+
+			if ( $participant1 === false ) {
+				$participant1 = $text;
+			} else {
+				$participant2 = $text;
+			}
+		}
+
+		return wfMessage(
+			'flow-topic-participants',
+			$participantCount,
+			max( 0, $participantCount - 2 ),
+			$participant1,
+			$participant2
+		)->parse();
+	}
+
+	/**
+	 * Gets a Flow-formatted plaintext human-readable identifier for a user.
+	 * Usually the user's name, but it can also return "an anonymous user",
+	 * or information about an item's moderation state.
+	 * 
+	 * @param  User             $user    The User object to get a description for.
+	 * @param  AbstractRevision $rev     An AbstractRevision object to retrieve moderation state from.
+	 * @param  bool             $showIPs Whether or not to show IP addresses for anonymous users
+	 * @return String                    A human-readable identifier for the given User.
+	 */
+	public function getUserText( $user, $rev = null, $showIPs = false ) {
+		if ( $user === false && $rev instanceof AbstractRevision ) {
+			$state = $rev->getModerationState();
+
+			if ( $rev->getModeratedByUserId() ) {
+				$user = User::newFromId( $rev->getModeratedByUserId() );
+			} else {
+				$user = User::newFromName( $rev->getModeratedByUserName() );
+			}
+
+			$moderatedAt = new MWTimestamp( $rev->getModerationTimestamp );
+
+			return wfMessage(
+					AbstractRevision::$perms[$state]['content'],
+					$this->getUserText( $user ),
+					$moderatedAt->getHumanTimestamp()
+			);
+		} elseif ( $user === false ) {
+			return wfMessage( 'flow-user-moderated' );
+		} elseif ( $user->isAnon() && !$showIPs ) {
+			return wfMessage( 'flow-user-anonymous' );
+		} else {
+			return $user->getName();
+		}
+	}
 }
