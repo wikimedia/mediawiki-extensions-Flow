@@ -69,11 +69,16 @@ $( document ).on( 'flow_init', function ( e ) {
 							.children( '.flow-post-replies' ),
 						$newRegion = $( output.rendered )
 							.hide()
-							.prependTo( $replyContainer );
+							.appendTo( $replyContainer ),
+						$mainContainer = $('html,body');
 
 					$newRegion.trigger( 'flow_init' );
 
 					$newRegion.slideDown();
+
+					$mainContainer.animate({
+						scrollTop: $newRegion.offset().top - $mainContainer.height() / 2
+					});
 				} );
 		}
 	);
