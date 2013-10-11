@@ -78,26 +78,61 @@ class PostRevision extends AbstractRevision {
 		return $this->postId;
 	}
 
-	public function getCreatorId() {
-		return $this->origUserId;
+	/**
+	 * Get the user ID of the user who created this post.
+	 * Checks permissions and returns false 
+	 *
+	 * @param $user User The user to check permissions for.
+	 * @return int|bool The user ID, or false
+	 */
+	public function getCreatorId( $user = null ) {
+		$creator = $this->getCreator( $user );
+
+		return $creator === false ? false : $creator->getId();
 	}
 
+	/**
+	 * Get the username of the User who created this post.
+	 * Checks permissions, and returns false if the current user is not permitted
+	 * to access that information
+	 *
+	 * @param User $user The user to check permissions for.
+	 * @return string|bool The username of the User who created this post.
+	 */
 	public function getCreatorName( $user = null ) {
-		if ( $this->isAllowed( $user ) ) {
-			return $this->getCreatorNameRaw();
-		} else {
-			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
+		$creator = $this->getCreator( $user );
 
-			return wfMessage(
-				self::$perms[$this->moderationState]['content'],
-				$this->moderatedByUserText,
-				$moderatedAt->getHumanTimestamp()
-			);
+		return $creator === false ? false : $creator->getName();
+	}
+
+	/**
+	 * Get the User who created this post.
+	 * Checks permissions, and returns false if the current user is not permitted
+	 * to access that information
+	 *
+	 * @param User $user The user to check permissions for.
+	 * @return User|bool The username of the User who created this post.
+	 */
+	public function getCreator( $user = null ) {
+		if ( $this->isAllowed( $user ) ) {
+			if ( $this->getCreatorIdRaw() === 0 ) {
+				$user = User::newFromId( $this->getCreatorIdRaw() );
+			} else {
+				$user = User::newFromName( $this->getCreatorNameRaw() );
+			}
+
+			return $user;
+		} else {
+			return false;
 		}
 	}
 
 	public function getCreatorNameRaw() {
 		return $this->origUserText;
+	}
+
+	public function getCreatorIdRaw() {
+		return $this->origUserId;
 	}
 
 	public function isTopicTitle() {
@@ -114,9 +149,98 @@ class PostRevision extends AbstractRevision {
 
 	public function getChildren() {
 		if ( $this->children === null ) {
-			throw new \Exception( 'Children not loaded for post: ' . $this->postId->getHex() );
+			throw new \MWException( 'Children not loaded for post: ' . $this->postId->getHex() );
 		}
 		return $this->children;
+	}
+
+	/**
+	 * Get the amount of posts in this topic.
+	 *
+	 * @return int
+	 */
+	public function getChildCount() {
+		return count( $this->getChildren() );
+	}
+
+	/**
+	 * Runs a callback on every descendant of this post.
+	 * @param  callable $callback The callback to call. Accepts two parameters:
+	 * $child: The child PostRevision.
+	 * $cancelCallback: A callback that can be called to abort execution.
+	 * @param  int      $maxDepth The maximum depth to travel
+	 * @return bool     Whether or not execution was cancelled
+	 */
+	public function foreachDescendant( $callback, $maxDepth = 10 ) {
+		$cancel = false;
+
+		$cancelCallback = function() use ( &$cancel ) {
+			$cancel = true;
+		};
+
+		foreach( $this->getChildren() as $child ) {
+			call_user_func( $callback, $child, $cancelCallback );
+
+			if ( $cancel ) {
+				return true;
+			}
+
+			$cancel = $child->foreachDescendant( $callback, $maxDepth - 1 );
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get the number of descendant posts.
+	 *
+	 * @return int
+	 */
+	public function getDescendantCount() {
+		$count = $this->getChildCount();
+
+		$this->foreachDescendant( function( $post ) use ($count) {
+			$count++;
+		} );
+
+		return $count;
+	}
+
+	/**
+	 * Get a list of all participants on this level.
+	 *
+	 * @param $anonymousBehaviour string Behaviour to use for anonymous users. Options:
+	 * once: Include all anonymous users as one combined user.
+	 * each: Include each anonymous user separately.
+	 * none: Do not include anonymous users
+	 * @return array
+	 */
+	public function getParticipants( $anonymousBehaviour = 'each' ) {
+		$creators = array();
+
+		$this->foreachDescendant( function( $post ) use ( &$creators, $anonymousBehaviour ) {
+			$creator = $post->getCreator();
+
+			if ( ! $creator instanceof User ) {
+				return;
+			}
+
+			if ( $creator->isAnon() ) {
+				if ( $anonymousBehaviour === 'once' ) {
+					$creators['anon'] = $creator;
+				} elseif ( $anonymousBehaviour === 'each' ) {
+					$creators[$creator->getName()] = $creator;
+				} elseif ( $anonymousBehaviour === 'none' ) {
+					// Do nothing
+				} else {
+					throw new MWException( "Unknown anonymous behaviour $anonymousBehaviour" );
+				}
+			} else {
+				$creators[$creator->getId()] = $creator;
+			}
+		} );
+
+		return $creators;
 	}
 
 	public function findDescendant( $postId ) {
@@ -124,18 +248,20 @@ class PostRevision extends AbstractRevision {
 			$postId = UUID::create( $postId );
 		}
 
-		$stack = array( $this );
-		while( $stack ) {
-			$post = array_pop( $stack );
-			if ( $post->getPostId()->equals( $postId ) ) {
-				return $post;
-			}
-			foreach ( $post->getChildren() as $child ) {
-				$stack[] = $child;
-			}
-		}
+		$foundPost = false;
 
-		throw new \Exception( 'Requested postId is not available within post tree' );
+		$this->foreachDescendant( function( $post, $cancelCallback ) use ( &$postId ) {
+			if ( $post->getPostId()->equals( $postId ) ) {
+				$foundPost = $post;
+				$cancelCallback();
+			}
+		} );
+
+		if ( $foundPost !== false ) {
+			return $foundPost;
+		} else {
+			throw new \MWException( 'Requested postId is not available within post tree' );
+		}
 	}
 
 	/**

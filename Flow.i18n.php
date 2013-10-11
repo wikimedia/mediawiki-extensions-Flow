@@ -11,6 +11,9 @@ $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
 	'flow-specialpage' => '$1 &ndash; Flow',
 
+	'flow-user-anonymous' => 'Anonymous',
+	'flow-user-moderated' => 'Moderated user',
+
 	'flow-edit-header-link' => 'Edit header',
 	'flow-header-empty' => 'This talk page currently has no header.',
 
@@ -91,6 +94,8 @@ $messages['en'] = array(
 	'flow-rev-message-censored-post' => 'Censored post',
 
 	'flow-topic-history' => 'Topic history',
+	'flow-topic-participants' => '{{PLURAL:$1|$3 started this topic|{{GENDER:$3|$3}} and {{GENDER:$4|$4}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} and $2 others}}',
+	'flow-topic-comments' => '{{PLURAL:$1|0=Be the first to comment!|Comment ($1)}}',
 
 	'flow-comment-restored' => 'Restored comment',
 	'flow-comment-deleted' => 'Deleted comment',
@@ -146,6 +151,8 @@ $messages['en'] = array(
  */
 $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
+	'flow-user-anonymous' => 'Name to display for anonymous users',
+	'flow-user-moderated' => 'Name to display instead of a moderated user name',
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
 	'flow-edit-header-link' => 'Used as text for the link which points to the "Edit header" page.',
@@ -295,6 +302,13 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been censored(oversighted)',
 	'flow-topic-history' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page.
 {{Identical|Topic history}}',
+	'flow-topic-participants' => 'Message to display the amount of participants in this discussion (and potentially a couple of names). Parameters:
+* $1: The total amount of participants in the conversation, can be used for PLURAL
+* $2: The total amount of participants minus 2, can be used to generate a message like (X, Y and $2 others)
+* $3: Username of the topic starter, can be used for GENDER
+* $4: Username of a second participant (if there is a second, otherwise not available), can be used for GENDER',
+	'flow-topic-comments' => 'Message to display the amount of comments in this discussion. Parameters:
+* $1: The amount of comments on this topic, can be used for PLURAL',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
