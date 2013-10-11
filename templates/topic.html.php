@@ -38,17 +38,6 @@ echo Html::openElement( 'div', array(
 				<li class="flow-action-close">
 					<a href="#" class="mw-ui-button">@todo: Close topic</a>
 				</li>
-				<li class="flow-action-topic-history">
-					<?php
-					echo Html::rawElement( 'a',
-						array(
-							'class' => 'mw-ui-button',
-							'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
-						),
-						wfMessage( 'flow-topic-action-history' )
-					);
-					?>
-				</li>
 			</ul>
 		</div>
 	</div>
@@ -88,17 +77,21 @@ echo Html::openElement( 'div', array(
 	?>
 
 	<p class="flow-datestamp">
-		<span class="flow-agotime" style="display: inline">
-			<?php echo wfMessage( 'flow-last-modified' )->rawParams(
-				$topic->getLastModifiedObj()->getHumanTimestamp()
-			); ?>
-		</span>
-		<span class="flow-utctime" style="display: none">
-			<?php
-			$ts = new MWTimestamp( $topic->getLastModified() );
-			echo $ts->getTimestamp( TS_RFC2822 );
-			?>
-		</span>
+		<?php
+			// timestamp html
+			$content = '
+				<span class="flow-agotime" style="display: inline">'. $topic->getLastModifiedObj()->getHumanTimestamp() .'</span>
+				<span class="flow-utctime" style="display: none">'. $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) .'</span>';
+
+			// build history button with timestamp html as content
+			echo Html::rawElement( 'a',
+				array(
+					'class' => 'flow-action-history-link',
+					'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
+				),
+				$content
+			);
+		?>
 	</p>
 </div>
 
