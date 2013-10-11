@@ -142,6 +142,29 @@
 			.after( ' ' )
 			.insertBefore( $container.find( '.flow-newtopic-form input[type=submit]' ) );
 
+		// Hide reply button until user initiates reply (hidden in JS because it needs to be there for non-JS users)
+		$container.find( '.flow-topic-reply-form .flow-post-form-controls' ).hide();
+		// Set up topic reply form
+		$container.find( '.flow-topic-reply-content' ).click( function() {
+			mw.flow.editor.load( $( this ) );
+
+			// display controls
+			$( this ).closest( '.flow-topic-reply-form' ).find( '.flow-post-form-controls' ).show();
+		} );
+
+		// Set up the scroll to new topic reply form
+		$container.find( '.flow-topic-posts-meta .flow-post-number' ).click(
+			function( e ) {
+				var $hideElement = $( this ).closest( '.flow-topic-container' ).children( '.flow-post-container' ), self = this;
+				e.stopPropagation();
+				$hideElement.slideDown( function() {
+					$( 'html,body' ).animate( {
+						'scrollTop': $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) ).offset().top
+					}, 500 );
+				} );
+			}
+		);
+
 		// Set up folding
 		$container.find( '.flow-titlebar' )
 			.click( function ( e ) {

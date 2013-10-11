@@ -14,6 +14,11 @@ $( document ).on( 'flow_init', function ( e ) {
 		'.flow-newtopic-submit'
 	);
 
+	$container.find( 'form.flow-topic-reply-form' ).flow( 'setupEmptyDisabler',
+		['.flow-topic-reply-content'],
+		'.flow-topic-reply-submit'
+	);
+
 	// Overload 'new topic' handler.
 	$container.flow( 'setupFormHandler',
 		'.flow-newtopic-submit',
@@ -74,6 +79,49 @@ $( document ).on( 'flow_init', function ( e ) {
 					$newRegion.trigger( 'flow_init' );
 
 					$newRegion.slideDown();
+				} );
+		}
+	);
+
+	// Overload 'topic reply' handler
+	$container.flow( 'setupFormHandler',
+		'.flow-topic-reply-submit',
+		mw.flow.api.reply,
+		function() {
+			var $form = $( this ).closest( '.flow-topic-reply-form' ),
+				workflowId = $( this ).flow( 'getTopicWorkflowId' ),
+				replyToId = $( this )
+					.closest( '.flow-topic-reply-container' )
+					.data( 'post-id' ),
+				content = mw.flow.editor.getContent( $form.find( '.flow-topic-reply-content' ) );
+
+			return [ workflowId, replyToId, content ];
+		},
+		function ( workflowId, replyTo, content ) {
+			return content;
+		},
+		function ( promise ) {
+			promise
+				.done( function ( output ) {
+					// Replies are currently sorted in timestamp descending order.
+					// If we change it to ascending order, then we need to append
+					// the new element to the end of the container and remove the
+					// sliding-up effect
+					var $replyContainer = $( this )
+							.closest( '.flow-topic-container' ).children(":first"),
+						$newRegion = $( output.rendered )
+							.hide()
+							.insertAfter( $replyContainer )
+							.trigger( 'flow_init' )
+							.slideDown();
+					$( 'html,body' ).animate( {
+						'scrollTop': $( '#flow-topic-' + $( this ).closest( '.flow-topic-container' ).data( 'topic-id' ) ).offset().top
+					}, 500 );
+					// Reset the form
+					// @Todo - this works but doesn't seem right
+					var $form = $( this ).closest( '.flow-topic-reply-form' );
+					mw.flow.editor.destroy( $form.find( '.flow-topic-reply-content' ) );
+					mw.flow.editor.load( $form.find( '.flow-topic-reply-content' ) );
 				} );
 		}
 	);
