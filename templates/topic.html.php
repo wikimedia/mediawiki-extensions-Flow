@@ -66,7 +66,19 @@ echo Html::openElement( 'div', array(
 	?>
 
 	<ul class="flow-topic-posts-meta">
-		<li>@todo: participants</li>
+		<li>
+			<?php
+				$participants = $root->getParticipants();
+				$parameters = array(
+					count( $participants ), // total number of participants
+					count( $participants ) - 2, // total number minus 2
+					array_shift( $participants ), // first participant
+					array_shift( $participants ), // second participant
+				);
+
+				echo wfMessage( 'flow-topic-participants', $parameters )->text();
+			?>
+		</li>
 		<li>@todo: # comments</li>
 	</ul>
 

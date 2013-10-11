@@ -82,17 +82,25 @@ class PostRevision extends AbstractRevision {
 		return $this->origUserId;
 	}
 
+	/**
+	 * Returns the username or false if the current user has insufficient
+	 * permissions to access this data for this post.
+	 *
+	 * @param null $user
+	 * @return string|bool
+	 */
 	public function getCreatorName( $user = null ) {
 		if ( $this->isAllowed( $user ) ) {
+			$user = User::newFromId( $this->getCreatorId() );
+
+			// @todo: not here
+			if ( $user->isAnon() ) {
+				return wfMessage( 'flow-user-anonymous' )->plain();
+			}
+
 			return $this->getCreatorNameRaw();
 		} else {
-			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
-
-			return wfMessage(
-				self::$perms[$this->moderationState]['content'],
-				$this->moderatedByUserText,
-				$moderatedAt->getHumanTimestamp()
-			);
+			return false;
 		}
 	}
 
@@ -117,6 +125,23 @@ class PostRevision extends AbstractRevision {
 			throw new \Exception( 'Children not loaded for post: ' . $this->postId->getHex() );
 		}
 		return $this->children;
+	}
+
+	public function getParticipants() {
+		$children = $this->getChildren();
+		$creators = array();
+
+		foreach ( $children as $child ) {
+			$name = $this->getCreatorName();
+			if ( $name !== false ) {
+				// origUserText is unique to user, creatorname may return multiple "Anonymous"
+				$creators[$this->origUserText] = $name;
+			}
+
+			$creators += $child->getParticipants();
+		}
+
+		return array_values( $creators );
 	}
 
 	public function findDescendant( $postId ) {
