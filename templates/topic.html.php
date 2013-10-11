@@ -66,8 +66,18 @@ echo Html::openElement( 'div', array(
 	?>
 
 	<ul class="flow-topic-posts-meta">
-		<li>@todo: participants</li>
-		<li class="flow-post-number" data-topic-id="<?php echo $topic->getId()->getHex() ?>">@todo: # comments</li>
+		<li class="flow-topic-participants">
+			<?php echo $this->printParticipants( $root ); ?>
+		</li>
+		<li class="flow-topic-comments">
+			<a href="#" class="flow-reply-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
+				<?php
+					// get total number of posts in topic
+					$comments = $root->getDescendantCount();
+					echo wfMessage( 'flow-topic-comments', $comments )->text();
+				?>
+			</a>
+		</li>
 	</ul>
 
 	<?php
@@ -144,7 +154,7 @@ echo Html::openElement( 'div', array(
 	Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
 	Html::element( 'input', array(
 		'type' => 'submit',
-		'value' => wfMessage( 'flow-reply-submit', $root->getCreatorName( $user ) )->text(),
+		'value' => wfMessage( 'flow-reply-submit', $this->getUserText( $root->getCreator( $user ), $root ) )->text(),
 		'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
 	) ),
 	Html::closeElement( 'div' ),

@@ -23,7 +23,7 @@ if ( !$post->isModerated() ) {
 		) ) .
 		Html::textarea( $block->getName() . '[content]', '', array(
 			'placeholder' => wfMessage( 'flow-reply-placeholder',
-				$post->getCreatorName( $user ) )->text(),
+				$this->getUserText( $post->getCreator( $user, $post ) ) )->text(),
 			'class' => 'flow-reply-content flow-input mw-ui-input',
 		) ) .
 		// NOTE: cancel button will be added via JS, makes no sense in non-JS context
@@ -31,7 +31,7 @@ if ( !$post->isModerated() ) {
 		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ) .
 			Html::element( 'input', array(
 				'type' => 'submit',
-				'value' => wfMessage( 'flow-reply-submit', $post->getCreatorName( $user ) )->text(),
+				'value' => wfMessage( 'flow-reply-submit', $this->getUserText( $post->getCreator( $user ), $post ) )->text(),
 				'class' => 'mw-ui-button mw-ui-constructive flow-reply-submit',
 			) ) .
 		Html::closeElement( 'div' ) .
@@ -63,10 +63,10 @@ echo Html::openElement( 'div', array(
 			<div class="flow-post-title">
 				<span class="flow-creator">
 					<span class="flow-creator-simple" style="display: inline">
-						<?php echo $post->getCreatorName( $user ); ?>
+						<?php echo $this->getUserText( $post->getCreator( $user ), $post ); ?>
 					</span>
 					<span class="flow-creator-full" style="display: none">
-						<?php echo $this->userToolLinks( $post->getCreatorId(), $post->getCreatorName() ); ?>
+						<?php echo $this->userToolLinks( $post->getCreatorId( $user ), $post->getCreatorName( $user ) ); ?>
 					</span>
 				</span>
 					</div>
@@ -97,8 +97,8 @@ echo Html::openElement( 'div', array(
 
 			<div class="flow-post-interaction">
 				<?php if ( !$post->isModerated() ): ?>
-					<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo wfMessage( 'flow-reply-link', $post->getCreatorName( $user ) )->escaped(); ?></span></a>
-					<a class="flow-thank-link mw-ui-button" href="#" onclick="alert( '@todo: Not yet implemented!' ); return false;"><span><?php echo wfMessage( 'flow-thank-link', $post->getCreatorName( $user ) )->escaped(); ?></span></a>
+					<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo wfMessage( 'flow-reply-link', $this->getUserText( $post->getCreator( $user ), $post ) )->escaped(); ?></span></a>
+					<a class="flow-thank-link mw-ui-button" href="#" onclick="alert( '@todo: Not yet implemented!' ); return false;"><span><?php echo wfMessage( 'flow-thank-link', $this->getUserText( $post->getCreator( $user ), $post ) )->escaped(); ?></span></a>
 				<?php else: ?>
 					<?php
 						$user = User::newFromId( $post->getModeratedByUserId() );
