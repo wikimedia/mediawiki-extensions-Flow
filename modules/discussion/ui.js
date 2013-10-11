@@ -54,6 +54,9 @@
 					// We're in a tangent
 					$form = $( this ).closest( '.flow-post-replies' ).siblings( 'form.flow-reply-form' );
 					$( this ).closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
+				} else if ( $(this).is( '.flow-topic-comments .flow-reply-link' ) ) {
+					// We're in the topic title
+					$form = $( this ).closest( '.flow-topic-container').find( '.flow-topic-reply-form');
 				} else {
 					// Not in a tangent
 					$form = $( this ).closest( '.flow-post' ).siblings( 'form.flow-reply-form' );
@@ -177,15 +180,18 @@
 		} );
 
 		// Set up the scroll to new topic reply form
-		$container.find( '.flow-topic-posts-meta .flow-post-number' ).click(
+		$container.find( '.flow-topic-comments .flow-reply-link' ).click(
 			function( e ) {
 				var $hideElement = $( this ).closest( '.flow-topic-container' ).children( '.flow-post-container' ), self = this;
 				e.stopPropagation();
+
 				$hideElement.slideDown( function() {
 					var $viewport = $( 'html,body' ),
 						$replyContainer = $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) );
+
 					$viewport.animate( {
-						'scrollTop': $replyContainer.offset().top - $viewport.height()/2
+						'scrollTop': $replyContainer.offset().top - $viewport.height()/2,
+						'complete': $replyContainer.find( '.flow-topic-reply-content' ).click()
 					}, 500 );
 				} );
 			}
@@ -205,7 +211,8 @@
 					'.flow-actions',
 					'.flow-icon-permalink',
 					'.flow-icon-watchlist',
-					'.flow-action-history-link'
+					'.flow-action-history-link',
+					'.flow-topic-comments'
 				];
 				if ( $( e.target ).closest( ignore.join( ',' ) ).length > 0 ) {
 					return true;

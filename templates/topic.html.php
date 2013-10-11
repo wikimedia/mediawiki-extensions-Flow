@@ -3,6 +3,11 @@
 // treat title like unparsed (wiki)text
 $title = $root->getContent( $user, 'wikitext' );
 
+// pre-register recursive callbacks; will then be fetched all at once when the
+// first one's result is requested
+$indexDescendantCount = $root->registerDescendantCount();
+$indexParticipants = $root->registerParticipants();
+
 echo Html::openElement( 'div', array(
 	'class' => 'flow-topic-container flow-topic-full',
 	'id' => 'flow-topic-' . $topic->getId()->getHex(),
@@ -42,6 +47,24 @@ echo Html::openElement( 'div', array(
 			</div>
 		</div>
 
+		<p class="flow-datestamp">
+			<?php
+				// timestamp html
+				$content = '
+					<span class="flow-agotime" style="display: inline">'. $topic->getLastModifiedObj()->getHumanTimestamp() .'</span>
+					<span class="flow-utctime" style="display: none">'. $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) .'</span>';
+
+				// build history button with timestamp html as content
+				echo Html::rawElement( 'a',
+					array(
+						'class' => 'flow-action-history-link',
+						'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
+					),
+					$content
+				);
+			?>
+		</p>
+
 		<?php
 			echo Html::element(
 				'a',
@@ -55,8 +78,18 @@ echo Html::openElement( 'div', array(
 		?>
 
 		<ul class="flow-topic-posts-meta">
-			<li>@todo: participants</li>
-			<li class="flow-post-number" data-topic-id="<?php echo $topic->getId()->getHex() ?>">@todo: # comments</li>
+			<li class="flow-topic-participants">
+				<?php echo $this->printParticipants( $root, $indexParticipants ); ?>
+			</li>
+			<li class="flow-topic-comments">
+				<a href="#" class="flow-reply-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
+					<?php
+						// get total number of posts in topic
+						$comments = $root->getDescendantCount( $indexDescendantCount );
+						echo wfMessage( 'flow-topic-comments', $comments )->text();
+					?>
+				</a>
+			</li>
 		</ul>
 
 		<?php
@@ -75,24 +108,6 @@ echo Html::openElement( 'div', array(
 				wfMessage( 'flow-topic-action-watchlist' )->text()
 			);
 		?>
-
-		<p class="flow-datestamp">
-			<?php
-				// timestamp html
-				$content = '
-					<span class="flow-agotime" style="display: inline">'. $topic->getLastModifiedObj()->getHumanTimestamp() .'</span>
-					<span class="flow-utctime" style="display: none">'. $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) .'</span>';
-
-				// build history button with timestamp html as content
-				echo Html::rawElement( 'a',
-					array(
-						'class' => 'flow-action-history-link',
-						'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
-					),
-					$content
-				);
-			?>
-		</p>
 	</div>
 </div>
 <?php
@@ -138,7 +153,7 @@ echo Html::openElement( 'div', array(
 	Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
 	Html::element( 'input', array(
 		'type' => 'submit',
-		'value' => wfMessage( 'flow-reply-submit', $root->getCreatorName( $user ) )->text(),
+		'value' => wfMessage( 'flow-reply-submit', $this->getUserText( $root->getCreator( $user ), $root ) )->text(),
 		'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
 	) ),
 	Html::closeElement( 'div' ),
