@@ -28,14 +28,9 @@
 		background-repeat: no-repeat;
 	}
 
-	.flow-post:hover {
-		.flow-edit-post-link {
-			.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
-
-			&:hover {
-				.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
-			}
-		}
+	.flow-post-interaction {
+		// hide reply/thank buttons until post is hovered
+		display: none;
 	}
 
 	.flow-datestamp {
@@ -64,16 +59,6 @@
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
-		}
-	}
-
-	.flow-post:hover {
-		.flow-actions-link {
-			.background-image-svg('../../base/images/flag_normal.svg', '../../base/images/flag_normal.png');
-
-			&:hover {
-				.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
-			}
 		}
 	}
 
@@ -115,23 +100,12 @@
 	}
 
 	.flow-thank-link {
-		display: none;
 		padding-left: 46px;
 
 		.background-image-svg('../../base/images/thank.svg', '../../base/images/thank.png');
 		background-position: 16px;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
-	}
-
-	.flow-reply-link {
-		display: none;
-	}
-
-	.flow-post:hover {
-		.flow-reply-link, .flow-thank-link {
-			display: inline-block;
-		}
 	}
 
 	.flow-reply-form {
@@ -154,6 +128,28 @@
 			-moz-box-sizing: border-box;
 
 			font-family: sans-serif;
+		}
+	}
+
+	.flow-post:hover {
+		.flow-edit-post-link {
+			.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
+
+			&:hover {
+				.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
+			}
+		}
+
+		.flow-actions-link {
+			.background-image-svg('../../base/images/flag_normal.svg', '../../base/images/flag_normal.png');
+
+			&:hover {
+				.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
+			}
+		}
+
+		.flow-post-interaction {
+			display: block;
 		}
 	}
 
@@ -239,11 +235,14 @@
 	}
 }
 
+// hacky way to flatten conversation;
+// make anything over 2 indentation levels appear on same level
 .flow-post-container .flow-post-container .flow-post-container {
 	padding-left: 0px;
 	border-left: 0px transparent;
 }
 
+// hacky way to not allow replies on an already too-deep level of indentation
 .flow-post-container .flow-post-container .flow-reply-link {
 	display: none !important;
 }

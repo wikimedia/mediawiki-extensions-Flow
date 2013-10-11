@@ -67,7 +67,7 @@ echo Html::openElement( 'div', array(
 
 	<ul class="flow-topic-posts-meta">
 		<li>@todo: participants</li>
-		<li>@todo: # comments</li>
+		<li class="flow-post-number" data-topic-id="<?php echo $topic->getId()->getHex() ?>">@todo: # comments</li>
 	</ul>
 
 	<?php
@@ -101,10 +101,54 @@ echo Html::openElement( 'div', array(
 		</span>
 	</p>
 </div>
-
 <?php
 foreach( $root->getChildren() as $child ) {
 	echo $this->renderPost( $child, $block, $root );
 }
+
+// Topic reply box
+echo Html::openElement( 'div', array(
+	'class' => 'flow-topic-reply-container flow-post-container',
+	'data-post-id' => $root->getRevisionId()->getHex(),
+	'id' => 'flow-topic-reply-' . $topic->getId()->getHex()
+) );
+?>
+	<span class="flow-creator">
+		<span class="flow-creator-simple" style="display: inline">
+			<?php echo htmlspecialchars( $user->getName() ); ?>
+		</span>
+		<span class="flow-creator-full" style="display: none">
+			<?php echo $this->userToolLinks( $user->getId(), $user->getName() ); ?>
+		</span>
+	</span>
+<?php
+	echo Html::openElement( 'form', array(
+		'method' => 'POST',
+		'action' => $this->generateUrl( $block->getWorkflow(), 'reply' ),
+		'class' => 'flow-topic-reply-form',
+	) ),
+	Html::element( 'input', array(
+		'type' => 'hidden',
+		'name' => $block->getName() . '[replyTo]',
+		'value' => $topic->getId()->getHex(),
+	) ),
+	Html::element( 'input', array(
+		'type' => 'hidden',
+		'name' => 'wpEditToken',
+		'value' => $editToken,
+	) ),
+	Html::textarea( $block->getName() . '[topic-reply-content]', '', array(
+		'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
+		'class' => 'flow-input mw-ui-input flow-topic-reply-content',
+	) ),
+	Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
+	Html::element( 'input', array(
+		'type' => 'submit',
+		'value' => wfMessage( 'flow-reply-submit', $root->getCreatorName( $user ) )->text(),
+		'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
+	) ),
+	Html::closeElement( 'div' ),
+	Html::closeElement( 'form' ),
+	Html::closeElement( 'div' );
 ?>
 </div>

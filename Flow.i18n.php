@@ -10,7 +10,6 @@ $messages = array();
 $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-header-link' => 'Edit header',
 
 	'flow-post-moderated-toggle-show' => '[Show]',
 	'flow-post-moderated-toggle-hide' => '[Hide]',
@@ -29,6 +28,8 @@ $messages['en'] = array(
 	'flow-newtopic-header' => 'Add a new topic',
 	'flow-newtopic-save' => 'Add topic',
 	'flow-newtopic-start-placeholder' => 'Start a new topic',
+
+	'flow-reply-topic-placeholder' => '{{GENDER:$1|Comment}} on "$2"',
 
 	'flow-reply-placeholder' => 'Click to {{GENDER:$1|reply}} to $1. Be nice!',
 	'flow-reply-submit' => '{{GENDER:$1|Reply}}',
@@ -196,6 +197,9 @@ Translate this as "post which was censored".',
 	'flow-newtopic-header' => 'Unused at this time.',
 	'flow-newtopic-save' => 'Used as label for the Submit button.',
 	'flow-newtopic-start-placeholder' => 'Used as placeholder for the "Topic" textarea.',
+	'flow-reply-topic-placeholder' => 'Used as placeholder for the "reply to this topic" textarea. Parameters:
+* $1 - username of the logged in user, can be used for GENDER,
+* $2 - topic title',
 	'flow-reply-placeholder' => 'Used as placeholder for the Content textarea. Parameters:
 * $1 - username',
 	'flow-reply-submit' => 'Used as label for the Submit button. Parameters:
