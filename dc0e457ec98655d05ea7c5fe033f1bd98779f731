@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_231eb608",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-11T12:59:19Z",
+      "side": 1,
+      "message": "I\u0027d do this in CSS",
+      "revId": "dc0e457ec98655d05ea7c5fe033f1bd98779f731",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_43c1ea30",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-11T12:59:19Z",
+      "side": 1,
+      "message": "Should only be loaded if the user starts replying/clicks the reply textarea",
+      "revId": "dc0e457ec98655d05ea7c5fe033f1bd98779f731",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_83ba02bc",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-11T12:59:19Z",
+      "side": 1,
+      "message": "Placeholder text should be \u0027Comment on \"\u003ctopic title\u003e\"\u0027",
+      "revId": "dc0e457ec98655d05ea7c5fe033f1bd98779f731",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_03c7f248",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-11T12:59:19Z",
+      "side": 1,
+      "message": "Button should only be visible if the user starts replying, not by default always visible",
+      "revId": "dc0e457ec98655d05ea7c5fe033f1bd98779f731",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
