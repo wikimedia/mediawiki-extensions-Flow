@@ -75,6 +75,7 @@ $wgResourceModules += array(
 			'flow-post-moderated-toggle-show',
 			'flow-post-moderated-toggle-hide',
 		),
+		'position' => 'top',
 	),
 	'ext.flow.editor' => $flowResourceTemplate + array(
 		'scripts' => 'editor/ext.flow.editor.js',
