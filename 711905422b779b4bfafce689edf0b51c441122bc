@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_71c4f5f7",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-10-12T00:12:00Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to match PLURAL documentation: https://www.mediawiki.org/wiki/Localisation#.E2.80.A6on_numbers_via_PLURAL",
+      "revId": "711905422b779b4bfafce689edf0b51c441122bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_7486a369",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-10-12T00:12:00Z",
+      "side": 1,
+      "message": "This will make Anonymous a reserved keyword for user name, why not use the IPs?  The user link also links to User_talk:Anonymous",
+      "revId": "711905422b779b4bfafce689edf0b51c441122bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_b1482d8a",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-10-12T00:12:00Z",
+      "side": 1,
+      "message": "The creator name is displayed in some template, returning false will result in an empty user name",
+      "revId": "711905422b779b4bfafce689edf0b51c441122bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_b40bbb24",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-10-12T00:12:00Z",
+      "side": 1,
+      "message": "Just to be safe, It\u0027s not clear how many level of reply nesting we are going to allow, maybe put a bound here to prevent exceeding recursion limit?  We may also want to display a large number in {num}+ format",
+      "revId": "711905422b779b4bfafce689edf0b51c441122bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
