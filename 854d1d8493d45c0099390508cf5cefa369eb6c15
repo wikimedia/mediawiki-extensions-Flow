@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_d4cd8f88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2013-10-12T00:56:50Z",
+      "side": 1,
+      "message": "This affects the position in the load queue, not the module itself. The load queue is in the html output, so this relates to the page html cache. Not resourceloader. Touching or invalidating it will not change anything afaics.",
+      "revId": "854d1d8493d45c0099390508cf5cefa369eb6c15",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
