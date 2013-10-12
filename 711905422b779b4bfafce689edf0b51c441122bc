@@ -67,6 +67,40 @@
       "revId": "711905422b779b4bfafce689edf0b51c441122bc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_d4fbcf74",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-12T06:25:15Z",
+      "side": 1,
+      "message": "This and getChildrenRecursive both walk the child tree, and do it in a different manner than findDescendant. The topic header winds up calling getChildren() at each level four times. If this is expensive, or even just for clarity, it seems better to have a descendChildren() function which takes one or more callbacks, so you walk it once counting participants and accumulating names. There\u0027s probably some computer science-y map-filter lambda pattern for it :)\n\n(It\u0027s fine to mention this as a FIXME or TODO.)",
+      "revId": "711905422b779b4bfafce689edf0b51c441122bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_14dd670b",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-10-12T06:25:15Z",
+      "side": 1,
+      "message": "unexpected indent on line above",
+      "revId": "711905422b779b4bfafce689edf0b51c441122bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
