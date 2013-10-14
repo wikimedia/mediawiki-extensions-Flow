@@ -275,7 +275,7 @@ class NotificationController {
 	protected function getMentionedUsersFromWikitext( $wikitext ) {
 		global $wgParser;
 
-		$title = \SpecialPage::getTitleFor( 'Flow' );
+		$title = \SpecialPage::getTitleFor( 'Flow' ); // Bogus title used for parser
 
 		$options = new \ParserOptions;
 		$options->setTidy( true );
