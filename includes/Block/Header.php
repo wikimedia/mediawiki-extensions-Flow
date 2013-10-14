@@ -99,8 +99,15 @@ class HeaderBlock extends AbstractBlock {
 		$output = array();
 		$output['type'] = 'header';
 
+		$contentFormat = 'wikitext';
+
+		if ( isset( $options['contentFormat'] ) ) {
+			$contentFormat = $options['contentFormat'];
+		}
+
 		if ( $this->header !== null ) {
-			$output['*'] = $this->header->getContent( $this->user, 'wikitext' );
+			$output['*'] = $this->header->getContent( $this->user, $contentFormat );
+			$output['format'] = $contentFormat;
 			$output['header-id'] = $this->header->getRevisionId()->getHex();
 		} else {
 			$output['missing'] = 'missing';
