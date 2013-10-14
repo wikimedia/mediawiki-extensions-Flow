@@ -5,8 +5,6 @@ namespace Flow;
 use Flow\Container;
 use Flow\UrlGenerator;
 use EchoBasicFormatter;
-use Special;
-use SpecialPage;
 
 // could be renamed later if we have more formatters
 class NotificationFormatter extends EchoBasicFormatter {
@@ -14,12 +12,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 	protected function processParam( $event, $param, $message, $user ) {
 		$extra = $event->getExtra();
-		if ( $param === 'flow-board' ) {
-			$title = $event->getTitle();
-			$boardTitle = Special::getTitleFor( 'Flow', $title->getPrefixedText() );
-			$output = $this->formatTitle( $boardTitle );
-			$message->params( $output );
-		} elseif ( $param === 'subject' ) {
+		if ( $param === 'subject' ) {
 			if ( isset( $extra['topic-title'] ) && $extra['topic-title'] ) {
 				$message->params( trim($extra['topic-title']) );
 			} else {
@@ -60,8 +53,9 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 			$message->params( $url );
 		} elseif ( $param == 'flow-title' ) {
-			$title = $this->formatTitle( SpecialPage::getTitleFor( 'Flow', $event->getTitle() ) );
-			$message->params( $title );
+			list( $title ) = $this->getUrlGenerator()->buildUrlData( $event->getTitle() );
+			$formatted = $this->formatTitle( $title );
+			$message->params( $formatted );
 		} elseif ( $param == 'old-subject' ) {
 			$message->params( trim($extra['old-subject']) );
 		} elseif ( $param == 'new-subject' ) {

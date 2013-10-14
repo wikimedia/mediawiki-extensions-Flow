@@ -13,7 +13,6 @@ use Html;
 use Linker;
 use MWTimestamp;
 use RequestContext;
-use SpecialPage;
 use Title;
 use User;
 use Flow\View\PostActionMenu;

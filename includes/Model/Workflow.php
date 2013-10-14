@@ -3,7 +3,6 @@
 namespace Flow\Model;
 
 use MWTimestamp;
-use SpecialPage;
 use Title;
 use User;
 
@@ -84,11 +83,6 @@ class Workflow {
 		$obj->updateLastModified();
 
 		return $obj;
-	}
-
-	public function getTitle() {
-		$article = $this->getArticleTitle();
-		return SpecialPage::getTitleFor( 'Flow', $article->getPrefixedDBkey() );
 	}
 
 	public function getArticleTitle() {
