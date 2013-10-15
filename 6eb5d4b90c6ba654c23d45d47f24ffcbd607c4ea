@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_59362c51",
+        "filename": "modules/editor/ext.flow.editor.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-15T15:02:42Z",
+      "side": 1,
+      "message": "Perhaps add in comment that null defaults to wikitext",
+      "revId": "6eb5d4b90c6ba654c23d45d47f24ffcbd607c4ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
