@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_afdd160d",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-15T19:08:37Z",
+      "side": 1,
+      "message": "I\u0027m unsure about this method of canceling recursion,  best way forward to show that it works asintended is probably to adda few phpunit tests that use the functionality.",
+      "revId": "064643b3572e2af4bd5e99dd3e106504bb572b62",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_4fec9ac8",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-15T19:08:37Z",
+      "side": 1,
+      "message": "$count should start at 0, foreachDescendant calls for current children as well as descendant children",
+      "revId": "064643b3572e2af4bd5e99dd3e106504bb572b62",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0932edd2_0fe2a2d8",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-15T19:08:37Z",
+      "side": 1,
+      "message": "$count doesn\u0027t do anything since its not a reference",
+      "revId": "064643b3572e2af4bd5e99dd3e106504bb572b62",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
