@@ -68,26 +68,82 @@
 	}
 
 	// Add icon to action buttons
-	.buttonIcon(@icon, @fallback-icon) {
-		padding-left: 42px;
+	.buttonIcon(
+		@active-icon,
+		@active-fallback-icon,
 
+		@hover-icon,
+		@hover-fallback-icon,
+
+		@normal-icon,
+		@normal-fallback-icon,
+
+		@onclick-icon,
+		@onclick-fallback-icon
+	) {
+		padding-left: 42px;
 		// !important to overwrite MW core's background image
-		.background-image-svg(@icon, @fallback-icon) !important;
+		.background-image-svg(@normal-icon, @normal-fallback-icon) !important;
+
+		&:active {
+			.background-image-svg(@active-icon, @active-fallback-icon) !important;
+		}
+
+		&:hover {
+			.background-image-svg(@hover-icon, @hover-fallback-icon) !important;
+		}
+
 		background-position: 16px !important;
 		background-size: 14px auto !important;
 		background-repeat: no-repeat !important;
 	}
 
 	.flow-hide-post-link {
-		.buttonIcon('../../base/images/hidden_button.svg', '../../base/images/hidden_button.png');
+		.buttonIcon(
+			'../../base/images/moderate_menu_hidden_active.svg',
+			'../../base/images/moderate_menu_hidden_active.png',
+
+			'../../base/images/moderate_menu_hidden_hover.svg',
+			'../../base/images/moderate_menu_hidden_hover.png',
+
+			'../../base/images/moderate_menu_hidden_normal.svg',
+			'../../base/images/moderate_menu_hidden_normal.png',
+
+			'../../base/images/moderate_menu_hidden_onclick.svg',
+			'../../base/images/moderate_menu_hidden_onclick.png',
+		);
 	}
 
 	.flow-delete-post-link {
-		.buttonIcon('../../base/images/deleted_button.svg', '../../base/images/deleted_button.png');
+		.buttonIcon(
+			'../../base/images/moderate_menu_deleted_active.svg',
+			'../../base/images/moderate_menu_deleted_active.png',
+
+			'../../base/images/moderate_menu_deleted_hover.svg',
+			'../../base/images/moderate_menu_deleted_hover.png',
+
+			'../../base/images/moderate_menu_deleted_normal.svg',
+			'../../base/images/moderate_menu_deleted_normal.png',
+
+			'../../base/images/moderate_menu_deleted_onclick.svg',
+			'../../base/images/moderate_menu_deleted_onclick.png',
+		);
 	}
 
 	.flow-censor-post-link {
-		.buttonIcon('../../base/images/suppressed_button.svg', '../../base/images/suppressed_button.png');
+		.buttonIcon(
+			'../../base/images/moderate_menu_suppressed_active.svg',
+			'../../base/images/moderate_menu_suppressed_active.png',
+
+			'../../base/images/moderate_menu_suppressed_hover.svg',
+			'../../base/images/moderate_menu_suppressed_hover.png',
+
+			'../../base/images/moderate_menu_suppressed_normal.svg',
+			'../../base/images/moderate_menu_suppressed_normal.png',
+
+			'../../base/images/moderate_menu_suppressed_onclick.svg',
+			'../../base/images/moderate_menu_suppressed_onclick.png',
+		);
 	}
 
 	.flow-restore-post-link {
