@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_c71b14c6",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-15T12:49:00Z",
+      "side": 1,
+      "message": "Why was this added?\n\nThe below code just gives the textarea the same appearance of the \"Start a new topic\" input field, until it is clicked (at which point this CSS is not longer applied and it looks like a normal textarea again)\n\nNow, when hovering the reply form, the textarea already shifts appearance \u0026 I can\u0027t think of any reason why it should at this point.",
+      "revId": "da2f50d3aa21fd264049433041ebb7f956b0a2d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
