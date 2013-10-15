@@ -125,7 +125,7 @@ $messages['en'] = array(
 	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|edited}} your post in $2 on "$3"',
 	'flow-notification-edit-email-batch-bundle-body' => '$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|edited}} a post in $2 on "$3"',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|renamed}} your topic',
-	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|renamed}} your topic $2 to $3 on "$4"',
+	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|renamed}} your topic "$2" to "$3" on "$4"',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|created}} a new topic on $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|created}} a new topic with the title "$2" on $3',
 

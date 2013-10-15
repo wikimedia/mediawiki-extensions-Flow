@@ -14,7 +14,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 		$extra = $event->getExtra();
 		if ( $param === 'subject' ) {
 			if ( isset( $extra['topic-title'] ) && $extra['topic-title'] ) {
-				$message->params( trim($extra['topic-title']) );
+				$this->setTopicTitle( $message, $extra['topic-title'] );
 			} else {
 				$message->params( '' );
 			}
@@ -57,14 +57,30 @@ class NotificationFormatter extends EchoBasicFormatter {
 			$formatted = $this->formatTitle( $title );
 			$message->params( $formatted );
 		} elseif ( $param == 'old-subject' ) {
-			$message->params( trim($extra['old-subject']) );
+			$this->setTopicTitle( $message, $extra['old-subject'] );
 		} elseif ( $param == 'new-subject' ) {
-			$message->params( trim($extra['new-subject']) );
+			$this->setTopicTitle( $message, $extra['new-subject'] );
 		} else {
 			parent::processParam( $event, $param, $message, $user );
 		}
 	}
 
+	/**
+	 * Set the topic title
+	 * @param $message Message
+	 * @param $topic string
+	 */
+	protected function setTopicTitle( $message, $topic ) {
+		$topic = trim( $topic );
+
+		// Plain text email does not need escape
+		if ( $this->outputFormat !== 'email' ) {
+			$topic = htmlspecialchars( $topic );
+		}
+
+		$message->rawParams( $topic );
+	}
+	
 	/**
 	 * Helper function for getLink()
 	 *

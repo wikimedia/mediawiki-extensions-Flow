@@ -52,7 +52,7 @@ $notifications = array(
 	) + $notificationTemplate,
 	'flow-post-edited' => array(
 		'primary-link' => array(
-			'message' => 'notification-link-text-view-post',
+			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
 		),
 		'secondary-link' => array(
@@ -76,7 +76,7 @@ $notifications = array(
 	) + $notificationTemplate,
 	'flow-topic-renamed' => array(
 		'primary-link' => array(
-			'message' => 'notification-link-text-view-post',
+			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
 		),
 		'secondary-link' => array(
@@ -92,7 +92,7 @@ $notifications = array(
 	) + $notificationTemplate,
 	'flow-mention' => array(
 		'primary-link' => array(
-			'message' => 'notification-link-text-view-post',
+			'message' => 'flow-notification-link-text-view-post',
 			'destination' => 'flow-post'
 		),
 		'secondary-link' => array(
