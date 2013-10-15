@@ -143,7 +143,8 @@ $( document ).on( 'flow_init', function ( e ) {
 				{
 					'topic' : {
 						'no-children' : true,
-						'postId' : postId
+						'postId' : postId,
+						'contentFormat' : mw.flow.editor.getFormat()
 					}
 				}
 			)
@@ -162,7 +163,10 @@ $( document ).on( 'flow_init', function ( e ) {
 
 				$contentContainer.flow( 'setupEditForm',
 						'post',
-						data[0].content['*'],
+						{
+							'content' : data[0].content['*'],
+							'format' : data[0].content.format
+						},
 						function( content ) {
 							return mw.flow.api.editPost( workflowId, postId, content );
 						}

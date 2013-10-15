@@ -390,11 +390,19 @@ class TopicBlock extends AbstractBlock {
 		$output = array();
 
 		$output['post-id'] = $post->getPostId()->getHex();
+		$contentFormat = 'wikitext';
+
+		if ( isset( $options['contentFormat'] ) ) {
+			$contentFormat = $options['contentFormat'];
+		}
 
 		if ( $post->isModerated() ) {
 			$output['post-moderated'] = 'post-moderated';
 		} else {
-			$output['content'] = array( '*' => $post->getContent( null, 'wikitext' ) );
+			$output['content'] = array(
+				'*' => $post->getContent( null, $contentFormat ),
+				'format' => $contentFormat
+			);
 			$output['user'] = $post->getUserText();
 		}
 

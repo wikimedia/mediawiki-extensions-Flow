@@ -12,7 +12,13 @@ $( document ).on( 'flow_init', function ( e ) {
 
 			mw.flow.api.readHeader(
 				pageName,
-				workflowId
+				workflowId,
+				{
+					'header' :
+					{
+						'contentFormat' : mw.flow.editor.getFormat()
+					}
+				}
 			).done( function( data ) {
 				if ( ! data[0] ) {
 					console.dir( data );
@@ -26,12 +32,16 @@ $( document ).on( 'flow_init', function ( e ) {
 				}
 
 				var startContent = data[0].missing ? '' : data[0]['*'];
+				var dataFormat = data[0].missing ? 'wikitext' : data[0].format;
 
 				$headerContainer
 					.find( '#flow-header-content' )
 					.flow( 'setupEditForm',
 						'header',
-						startContent,
+						{
+							'content' : startContent,
+							'format' : dataFormat
+						},
 						function( content ) {
 							var spec = {
 								'workflowId' : workflowId,

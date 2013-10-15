@@ -67,6 +67,16 @@
 				return $form;
 			},
 
+			/**
+			 * Sets up an edit form.
+			 * @param  {string} type                  The type of edit form (single word)
+			 * @param  {string|object} initialContent The content to pre-fill.
+			 * An object, with the keys 'content' and 'format'. Or a plain string of wikitext.
+			 * @param  {function} submitFunction      Function to call in order to submit the form.
+			 * One parameter, the content.
+			 * @return {Promise}                      A promise that will be resolved or rejected
+			 * when the form submission has returned.
+			 */
 			'setupEditForm' : function( type, initialContent, submitFunction ) {
 					var deferredObject = $.Deferred();
 					var $contentContainer = $(this);
@@ -112,7 +122,14 @@
 						)
 						.insertAfter( $contentContainer );
 
-					mw.flow.editor.load( $postForm.find( 'textarea' ), initialContent );
+					if ( typeof initialContent != 'object' ) {
+						initialContent = {
+							'content' : initialContent,
+							'format' : 'wikitext'
+						};
+					}
+
+					mw.flow.editor.load( $postForm.find( 'textarea' ), initialContent.content, initialContent.format );
 
 					$contentContainer.hide();
 
