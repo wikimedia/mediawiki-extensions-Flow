@@ -118,13 +118,13 @@ echo Html::openElement( 'div', array(
 				<ul>
 					<?php
 					if ( $postActionMenu->isAllowed( 'hide-post' ) ) {
-						echo '<li class="flow-action-hide">'. $postActionMenu->getButton( 'hide-post', wfMessage( 'flow-post-action-hide-post' )->plain(), 'flow-hide-post-link mw-ui-button mw-ui-destructive mw-ui-destructive-low' ) .'</li>';
+						echo '<li class="flow-action-hide">'. $postActionMenu->getButton( 'hide-post', wfMessage( 'flow-post-action-hide-post' )->plain(), 'flow-hide-post-link mw-ui-button' ) .'</li>';
 					}
 					if ( $postActionMenu->isAllowed( 'delete-post' ) ) {
-						echo '<li class="flow-action-delete">'. $postActionMenu->getButton( 'delete-post', wfMessage( 'flow-post-action-delete-post' )->plain(), 'flow-delete-post-link mw-ui-button mw-ui-destructive mw-ui-destructive-medium' ) .'</li>';
+						echo '<li class="flow-action-delete">'. $postActionMenu->getButton( 'delete-post', wfMessage( 'flow-post-action-delete-post' )->plain(), 'flow-delete-post-link mw-ui-button' ) .'</li>';
 					}
 					if ( $postActionMenu->isAllowed( 'censor-post' ) ) {
-						echo '<li class="flow-action-censor">'. $postActionMenu->getButton( 'censor-post', wfMessage( 'flow-post-action-censor-post' )->plain(), 'flow-censor-post-link mw-ui-button mw-ui-destructive' ) .'</li>';
+						echo '<li class="flow-action-censor">'. $postActionMenu->getButton( 'censor-post', wfMessage( 'flow-post-action-censor-post' )->plain(), 'flow-censor-post-link mw-ui-button' ) .'</li>';
 					}
 					// @todo restore button will probably be moved somewhere else, some day
 					if ( $postActionMenu->isAllowed( 'restore-post' ) ) {
