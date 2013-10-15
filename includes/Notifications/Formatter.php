@@ -14,7 +14,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 		$extra = $event->getExtra();
 		if ( $param === 'subject' ) {
 			if ( isset( $extra['topic-title'] ) && $extra['topic-title'] ) {
-				$message->params( trim($extra['topic-title']) );
+				$this->processParamEscaped( $message, trim( $extra['topic-title'] ) );
 			} else {
 				$message->params( '' );
 			}
@@ -57,14 +57,14 @@ class NotificationFormatter extends EchoBasicFormatter {
 			$formatted = $this->formatTitle( $title );
 			$message->params( $formatted );
 		} elseif ( $param == 'old-subject' ) {
-			$message->params( trim($extra['old-subject']) );
+			$this->processParamEscaped( $message, trim( $extra['old-subject'] ) );
 		} elseif ( $param == 'new-subject' ) {
-			$message->params( trim($extra['new-subject']) );
+			$this->processParamEscaped( $message, trim( $extra['new-subject'] ) );
 		} else {
 			parent::processParam( $event, $param, $message, $user );
 		}
 	}
-
+	
 	/**
 	 * Helper function for getLink()
 	 *
