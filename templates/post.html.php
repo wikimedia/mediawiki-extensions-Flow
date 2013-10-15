@@ -138,7 +138,6 @@ echo Html::openElement( 'div', array(
 
 	</div>
 
-	<?php echo $replyForm; ?>
 	<div class='flow-post-replies'>
 		<?php
 		foreach( $post->getChildren() as $child ) {
@@ -146,4 +145,6 @@ echo Html::openElement( 'div', array(
 		}
 		?>
 	</div>
+
+	<?php echo $replyForm; ?>
 </div>

@@ -47,16 +47,40 @@
 			.click( function ( e ) {
 				e.preventDefault();
 
-				var $form = $( this ).closest( '.flow-post' ).siblings( 'form.flow-reply-form' ),
-					$textarea = $form.find( 'textarea' );
+				var $form;
+
+				if ( $(this).is( '.flow-post-container .flow-post-container *' ) ) {
+					// We're in a tangent
+					$form = $( this ).closest( '.flow-post-replies' ).siblings( 'form.flow-reply-form' );
+					$( this ).closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
+				} else {
+					// Not in a tangent
+					$form = $( this ).closest( '.flow-post' ).siblings( 'form.flow-reply-form' );
+				}
+
+				$textarea = $form.find( 'textarea' );
 
 				$form
-					.show();
+					.show()
+					.find( '.flow-cancel-link' )
+					.click( function( e ) {
+						e.preventDefault();
+						$( this )
+							.closest( '.flow-topic-container' )
+							.find( '.flow-topic-reply-container' )
+							.show();
+					} );
 
 				$textarea
 					.focus()
 					.removeClass( 'flow-reply-box-closed' );
 				mw.flow.editor.load( $textarea );
+
+				// Scroll to the form
+				// @todo should we try to center the form instead?
+				$( 'html, body' ).animate( {
+					'scrollTop' : $form.offset().top
+				} );
 			} );
 
 		$( '<a />' )
