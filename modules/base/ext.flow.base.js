@@ -1,6 +1,7 @@
 ( function ( $, mw ) {
-$( function () {
+
 mw.flow = {
+
 	'api' : {
 		/**
 		 * Execute a Flow action, fires API call.
@@ -213,6 +214,7 @@ mw.flow = {
 	}
 };
 
+// Define some higher-level functions using mw.flow.api "primitives".
 mw.flow.api.newTopic = mw.flow.api.generateBlockAction(
 	'topic_list',
 	'new-topic',
@@ -265,5 +267,5 @@ mw.flow.api.editHeader = mw.flow.api.generateBlockAction(
 		'prev_revision'
 	]
 );
-} );
+
 } )( jQuery, mediaWiki );
