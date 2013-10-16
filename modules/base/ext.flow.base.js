@@ -143,7 +143,7 @@ mw.flow = {
 
 			return function( topicId ) {
 				var actionParams = $.makeArray( arguments );
-				topicId = actionParams.shift( 'topic' );
+				topicId = actionParams.shift();
 				actionParams.unshift( { 'workflow' : topicId } );
 				return innerAction.apply( this, actionParams );
 			};
@@ -268,4 +268,12 @@ mw.flow.api.editHeader = mw.flow.api.generateBlockAction(
 	]
 );
 
+mw.flow.api.moderatePost = mw.flow.api.generateTopicAction(
+	'moderate-post',
+	[
+		'postId',
+		'moderationState',
+		'reason'
+	]
+);
 } )( jQuery, mediaWiki );

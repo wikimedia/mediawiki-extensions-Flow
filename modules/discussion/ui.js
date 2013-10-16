@@ -230,6 +230,30 @@
 				}
 			} );
 
+		// Moderation controls
+		var moderationTypes = [ 'hide', 'delete', 'censor', 'restore' ];
+		$.each( moderationTypes, function( k, moderationType ) {
+			$container
+				.delegate(
+					'.flow-'+moderationType+'-post-link',
+					'click',
+					function(e) {
+						e.preventDefault();
+						var $link = $( this );
+						$link
+							.closest( '.flow-actions-flyout' )
+							.fadeOut( 'fast' )
+							.siblings( '.flow-actions-flyout' )
+								.injectSpinner( { 'size' : 'small', 'id' : 'flow-moderation-loading' } );
+
+						mw.loader.using( ['ext.flow.moderation'], function() {
+							$.removeSpinner( 'flow-moderation-loading' );
+							$link.flow( 'showModerationDialog', moderationType );
+						} );
+					}
+				);
+	} );
+
 		// Moderated posts need click to display content
 		$( '<a href="#" class="flow-post-moderated-view"></a>' )
 			.text( mw.msg( 'flow-post-moderated-toggle-show' ) )
