@@ -31,6 +31,11 @@
 		background-position: center;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
+		.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
+
+		&:hover {
+			.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
+		}
 	}
 
 	.flow-post-interaction {
@@ -64,6 +69,11 @@
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
+			.background-image-svg('../../base/images/flag_normal.svg', '../../base/images/flag_normal.png');
+
+			&:hover {
+				.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
+			}
 		}
 	}
 
@@ -193,22 +203,6 @@
 	}
 
 	.flow-post:hover {
-		.flow-edit-post-link {
-			.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
-
-			&:hover {
-				.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
-			}
-		}
-
-		.flow-actions-link {
-			.background-image-svg('../../base/images/flag_normal.svg', '../../base/images/flag_normal.png');
-
-			&:hover {
-				.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
-			}
-		}
-
 		.flow-post-interaction {
 			display: block;
 		}

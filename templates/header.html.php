@@ -2,7 +2,10 @@
 
 echo Html::openElement(
 	'div',
-	array( 'id' => 'flow-header' )
+	array(
+		'id' => 'flow-header',
+		'class' => 'flow-element-container',
+	)
 );
 
 if ( $block->hasErrors( 'content' ) ) {
