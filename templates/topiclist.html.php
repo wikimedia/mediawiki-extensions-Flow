@@ -1,6 +1,6 @@
 <?php
 
-echo Html::openElement( 'div', array( 'class' => 'flow-new-topic-container' ) );
+echo Html::openElement( 'div', array( 'class' => 'flow-new-topic-container flow-element-container' ) );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
 	'action' => $this->generateUrl( $block->getWorkflow(), 'new-topic' ),

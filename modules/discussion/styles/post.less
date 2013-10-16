@@ -4,7 +4,10 @@
 .flow-post-container {
 	clear: both;
 	margin-top: 20px;
-	padding-left: 22px;
+
+	.flow-post {
+		padding-left: 22px;
+	}
 
 	// Leave space for hover buttons to not change the height
 	.flow-post-unmoderated {
@@ -31,6 +34,11 @@
 		background-position: center;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
+		.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
+
+		&:hover {
+			.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
+		}
 	}
 
 	.flow-post-interaction {
@@ -64,6 +72,11 @@
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
+			.background-image-svg('../../base/images/flag_normal.svg', '../../base/images/flag_normal.png');
+
+			&:hover {
+				.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
+			}
 		}
 	}
 
@@ -152,6 +165,7 @@
 	}
 
 	.flow-post-replies {
+		margin-left: 22px;
 		border-left: 1px solid #999;
 		
 		.flow-post-replies {
@@ -193,22 +207,6 @@
 	}
 
 	.flow-post:hover {
-		.flow-edit-post-link {
-			.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
-
-			&:hover {
-				.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
-			}
-		}
-
-		.flow-actions-link {
-			.background-image-svg('../../base/images/flag_normal.svg', '../../base/images/flag_normal.png');
-
-			&:hover {
-				.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
-			}
-		}
-
 		.flow-post-interaction {
 			display: block;
 		}
