@@ -43,6 +43,7 @@ if ( !$post->isModerated() ) {
 echo Html::openElement( 'div', array(
 	'class' => 'flow-post-container',
 	'data-post-id' => $post->getRevisionId()->getHex(),
+	'data-creator-name' => $post->getCreatorName(),
 ) );
 	echo Html::openElement( 'div', array(
 		'class' => $post->isModerated() ? 'flow-post flow-post-moderated' : 'flow-post flow-post-unmoderated',
