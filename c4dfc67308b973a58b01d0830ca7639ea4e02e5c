@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_c69b0cc4",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-16T15:51:02Z",
+      "side": 1,
+      "message": "This should be minus instead of plus",
+      "revId": "c4dfc67308b973a58b01d0830ca7639ea4e02e5c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
