@@ -47,7 +47,8 @@
 			.click( function ( e ) {
 				e.preventDefault();
 
-				var $form;
+				var $form,
+					$viewport = $('main, html');
 
 				if ( $(this).is( '.flow-post-container .flow-post-container *' ) ) {
 					// We're in a tangent
@@ -77,10 +78,9 @@
 				mw.flow.editor.load( $textarea );
 
 				// Scroll to the form
-				// @todo should we try to center the form instead?
-				$( 'html, body' ).animate( {
-					'scrollTop' : $form.offset().top
-				} );
+				$viewport.animate( {
+					'scrollTop' : $form.offset().top - $viewport.height()/2
+				}, 500 );
 			} );
 
 		$( '<a />' )
@@ -182,8 +182,10 @@
 				var $hideElement = $( this ).closest( '.flow-topic-container' ).children( '.flow-post-container' ), self = this;
 				e.stopPropagation();
 				$hideElement.slideDown( function() {
-					$( 'html,body' ).animate( {
-						'scrollTop': $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) ).offset().top
+					var $viewport = $( 'html,body' ),
+						$replyContainer = $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) );
+					$viewport.animate( {
+						'scrollTop': $replyContainer.offset().top - $viewport.height()/2
 					}, 500 );
 				} );
 			}
