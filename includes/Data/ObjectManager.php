@@ -475,7 +475,7 @@ class ObjectManager extends ObjectLocator {
 			}
 			$this->loaded[$object] = $new;
 		} catch ( \Exception $e ) {
-			throw new PersistenceException( 'failed update', null, $e );
+			throw new PersistenceException( 'failed update: '.$e->getMessage(), null, $e );
 		}
 	}
 
