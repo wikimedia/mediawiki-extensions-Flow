@@ -83,7 +83,7 @@ class NotificationController {
 			case 'flow-topic-renamed':
 				$extraData += array(
 					'old-subject' => $data['old-subject'],
-					'new-subject' => $data['old-subject'],
+					'new-subject' => $data['new-subject'],
 				);
 			break;
 			case 'flow-post-edited':
@@ -149,7 +149,7 @@ class NotificationController {
 				'board-workflow' => $boardWorkflow->getId(),
 				'topic-workflow' => $topicWorkflow->getId(),
 				'post-id' => $firstPost->getRevisionId(),
-				'topic-title' => $topicPost->getContent(),
+				'topic-title' => $topicPost->getContentRaw(),
 				'content' => $firstPost->getContent(),
 			)
 		) );
@@ -159,7 +159,7 @@ class NotificationController {
 				'title' => $boardWorkflow->getArticleTitle(),
 				'user' => $user,
 				'post' => $firstPost,
-				'topic-title' => $topicPost->getContent('html'),
+				'topic-title' => $topicPost->getContentRaw(),
 				'topic-workflow' => $topicWorkflow,
 			) )
 		);
