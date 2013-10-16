@@ -3,19 +3,21 @@
 
 .flow-post-container {
 	clear: both;
-	margin-top: 20px;
-	padding-left: 22px;
 
-	// Leave space for hover buttons to not change the height
-	.flow-post-unmoderated {
-		min-height: 115px;
+	.flow-post {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		padding-left: 22px;
 	}
 
-	.flow-creator {
-		font-weight: bold;
-		color: @post-title-color;
-
+	.flow-post-title {
 		padding-bottom: 22px;
+
+		.flow-creator {
+			font-weight: bold;
+			color: @post-title-color;
+
+		}
 	}
 
 	.flow-post-content {
@@ -23,6 +25,14 @@
 		color: @post-content-color;
 
 		padding-bottom: 20px;
+
+		*:first-child {
+			margin-top: 0;
+		}
+
+		*:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	.flow-edit-post-link {
@@ -31,11 +41,16 @@
 		background-position: center;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
+		.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
+
+		&:hover {
+			.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
+		}
 	}
 
 	.flow-post-interaction {
 		// hide reply/thank buttons until post is hovered
-		display: none;
+		visibility: hidden;
 	}
 
 	.flow-datestamp {
@@ -64,6 +79,11 @@
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
+			.background-image-svg('../../base/images/flag_normal.svg', '../../base/images/flag_normal.png');
+
+			&:hover {
+				.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
+			}
 		}
 	}
 
@@ -152,6 +172,7 @@
 	}
 
 	.flow-post-replies {
+		margin-left: 22px;
 		border-left: 1px solid #999;
 		
 		.flow-post-replies {
@@ -193,24 +214,8 @@
 	}
 
 	.flow-post:hover {
-		.flow-edit-post-link {
-			.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
-
-			&:hover {
-				.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
-			}
-		}
-
-		.flow-actions-link {
-			.background-image-svg('../../base/images/flag_normal.svg', '../../base/images/flag_normal.png');
-
-			&:hover {
-				.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
-			}
-		}
-
 		.flow-post-interaction {
-			display: block;
+			visibility: visible;
 		}
 	}
 

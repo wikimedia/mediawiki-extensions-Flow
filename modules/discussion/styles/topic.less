@@ -112,9 +112,6 @@
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
-		}
-
-		&:hover .flow-edit-topic-link {
 			.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
 
 			&:hover {
@@ -126,9 +123,6 @@
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
-		}
-
-		&:hover .flow-icon-permalink {
 			.background-image-svg('../../base/images/permalink_normal.svg', '../../base/images/permalink_normal.png');
 
 			&:hover {
@@ -140,9 +134,6 @@
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
-		}
-
-		&:hover .flow-icon-watchlist {
 			.background-image-svg('../../base/images/watchlist_normal.svg', '../../base/images/watchlist_normal.png');
 
 			&:hover {
@@ -210,8 +201,14 @@
 		}
 	}
 
-	&:not(:hover) {
-		.flow-topic-reply-content:not(:focus) {
+	// Make the "comment on topic" textarea look like the "start a new topic"
+	// input field. Once the textarea is focussed, it can appear like a regular
+	// textarea. The parent's :not(:active) will make sure that when clicking
+	// outside the textarea, but still in the parent, the textarea does not yet
+	// shrink to the input-like height; otherwise, attempting to click "submit"
+	// will shrink the textarea, and the "submit" button will be missed.
+	&:not(:active) {
+		.flow-topic-reply-content:empty:not(:focus) {
 			height: 34px;
 			padding-top: 6px;
 		}

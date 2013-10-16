@@ -45,7 +45,7 @@ echo Html::openElement( 'div', array(
 	'data-post-id' => $post->getRevisionId()->getHex(),
 ) );
 	echo Html::openElement( 'div', array(
-		'class' => $post->isModerated() ? 'flow-post flow-post-moderated' : 'flow-post flow-post-unmoderated',
+		'class' => 'flow-post flow-element-container ' . ( $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ),
 		'data-post-id' => $post->getPostId()->getHex(),
 		'id' => 'flow-post-' . $post->getPostId()->getHex(),
 	) ); ?>
