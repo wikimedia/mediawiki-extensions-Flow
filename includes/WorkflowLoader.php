@@ -27,6 +27,7 @@ class WorkflowLoader {
 		if ( $pageTitle === null ) {
 			throw new \MWException( 'Invalid article requested' );
 		}
+
 		if ( $pageTitle && $pageTitle->mInterwiki ) {
 			throw new \MWException( 'Interwiki not implemented yet' );
 		}
