@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0932edd2_14ce2e84",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-10-16T20:40:40Z",
+      "side": 1,
+      "message": "The code looks good! However, I think the main responsibility of the post object is to provide basic functions like: register callbacks, traverse the tree, execute callbacks.  The definition of the callback should be defined outside the post object itself.  This is just a thought and should not block merging this patch",
+      "revId": "0933f3a417e4d4542fbeb461e16ac5298a01ad05",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
