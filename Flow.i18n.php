@@ -137,6 +137,16 @@ $messages['en'] = array(
 	'flow-link-post' => 'post',
 	'flow-link-topic' => 'topic',
 	'flow-link-history' => 'history',
+
+	// Moderation dialog
+	'flow-moderation-title-censor' => 'Censor post',
+	'flow-moderation-title-delete' => 'Delete post',
+	'flow-moderation-title-hide'   => 'Hide post',
+	'flow-moderation-intro-censor' => 'Please confirm that you wish to censor the post by {{GENDER:$1|$1}} in the thread "$2", and provide a reason for your action.',
+	'flow-moderation-intro-delete' => 'Please confirm that you wish to delete the post by {{GENDER:$1|$1}} in the thread "$2", and provide a reason for your action.',
+	'flow-moderation-intro-hide'   => 'Please confirm that you wish to hide the post by {{GENDER:$1|$1}} in the thread "$2", and provide a reason for your action.',
+	'flow-moderation-reason' => 'Reason:',
+	'flow-moderation-confirm' => 'Confirm action',
 );
 
 /** Message documentation (Message documentation)
@@ -449,6 +459,21 @@ See also:
 {{Identical|Topic}}',
 	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges.
 {{Identical|History}}',
+
+	'flow-moderation-title-censor' => 'Title for the moderation confirmation dialog when a post is being censored.',
+	'flow-moderation-title-delete' => 'Title for the moderation confirmation dialog when a post is being deleted.',
+	'flow-moderation-title-hide'   => 'Title for the moderation confirmation dialog when a post is being hidden.',
+	'flow-moderation-intro-censor' => 'Intro for the moderation confirmation dialog when a post is being censored. Parameters:
+* $1 the name of the user whose post is being censored. GENDER supported.
+* $2 the subject of the topic in which a post is being censored.',
+	'flow-moderation-intro-delete' => 'Intro for the moderation confirmation dialog when a post is being deleted. Parameters:
+* $1 the name of the user whose post is being deleted. GENDER supported.
+* $2 the subject of the topic in which a post is being deleted.',
+	'flow-moderation-intro-hide'   => 'Intro for the moderation confirmation dialog when a post is being hidden. Parameters:
+* $1 the name of the user whose post is being hidden. GENDER supported.
+* $2 the subject of the topic in which a post is being hidden.',
+	'flow-moderation-reason' => 'Prompt for a text field in which the user should fill in the reason for their action.',
+	'flow-moderation-confirm' => 'Label for a button that will confirm a moderation action.',
 );
 
 /** Asturian (asturianu)

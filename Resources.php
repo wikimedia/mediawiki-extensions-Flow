@@ -58,6 +58,7 @@ $wgResourceModules += array(
 			'jquery.ui.core',
 			'ext.flow.base',
 			'ext.flow.editor',
+			'jquery.spinner',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
@@ -74,6 +75,26 @@ $wgResourceModules += array(
 			'flow-edit-header-submit',
 			'flow-post-moderated-toggle-show',
 			'flow-post-moderated-toggle-hide',
+		),
+	),
+	'ext.flow.moderation' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'moderation/moderation.js',
+		),
+		'messages' => array(
+			'flow-moderation-title-censor',
+			'flow-moderation-title-delete',
+			'flow-moderation-title-hide',
+			'flow-moderation-intro-censor',
+			'flow-moderation-intro-delete',
+			'flow-moderation-intro-hide',
+			'flow-moderation-reason',
+			'flow-moderation-confirm',
+		),
+		'dependencies' => array(
+			'jquery.ui.core',
+			'ext.flow.base',
+			'jquery.ui.dialog',
 		),
 	),
 	'ext.flow.editor' => $flowResourceTemplate + array(
