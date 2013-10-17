@@ -36,7 +36,6 @@ class PostActionMenu {
 				'method' => 'POST',
 				'permissions' => array(
 					PostRevision::MODERATED_NONE => 'flow-hide',
-					PostRevision::MODERATED_HIDDEN => 'flow-hide',
 				),
 			),
 			'delete-post' => array(
@@ -51,11 +50,13 @@ class PostActionMenu {
 				'permissions' => array(
 					PostRevision::MODERATED_NONE => 'flow-censor',
 					PostRevision::MODERATED_HIDDEN => 'flow-censor',
+					PostRevision::MODERATED_DELETED => 'flow-censor',
 				),
 			),
 			'restore-post' => array(
 				'method' => 'POST',
 				'permissions' => array(
+					PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
 					PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
 					PostRevision::MODERATED_CENSORED => 'flow-censor',
 				),
@@ -120,10 +121,9 @@ class PostActionMenu {
 	 * Check if a user is allowed to perform (a) certain action(s).
 	 *
 	 * @param string $action
-	 * @param string[optional] $action2 Overloadable to check if either of the provided actions are allowed
 	 * @return bool
 	 */
-	public function isAllowed( $action /* [, $action2 [, ... ]] */ ) {
+	public function isAllowed( $action ) {
 		$details = $this->getActionDetails( $action );
 
 		// check if permission is set for this action
