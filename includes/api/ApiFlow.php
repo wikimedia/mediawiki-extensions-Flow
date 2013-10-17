@@ -140,7 +140,7 @@ class ApiFlow extends ApiBase {
 			'action' => 'The action to take',
 			'workflow' => 'The Workflow to take an action on',
 			'params' => 'The parameters to pass',
-			'token' => 'A token retrieved from api.php?action=tokens&type=flow.',
+			'token' => 'A token retrieved from api.php?action=tokens&type=flow',
 			'render' => 'Set this to something to include a block-specific rendering in the output',
 		);
 	}
