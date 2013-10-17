@@ -162,8 +162,7 @@ class Formatter {
 	protected function workflowLink( Title $title, array $changeData ) {
 		list( $linkTitle, $query ) = $this->urlGenerator->buildUrlData(
 			$title,
-			'view',
-			array( 'workflow' => $changeData['workflow'] )
+			'view'
 		);
 
 		return Html::element(
