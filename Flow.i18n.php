@@ -151,10 +151,10 @@ $messages['en'] = array(
  */
 $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
-	'flow-user-anonymous' => 'Name to display for anonymous users',
-	'flow-user-moderated' => 'Name to display instead of a moderated user name',
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
+	'flow-user-anonymous' => 'Name to display for anonymous users',
+	'flow-user-moderated' => 'Name to display instead of a moderated user name',
 	'flow-edit-header-link' => 'Used as text for the link which points to the "Edit header" page.',
 	'flow-header-empty' => 'Used as a placeholder text for headers which have no content.',
 	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
@@ -1240,6 +1240,8 @@ $messages['ko'] = array(
 	'flow-post-moderated-toggle-hide' => '[숨김]',
 	'flow-newtopic-start-placeholder' => '새 주제',
 	'flow-reply-topic-placeholder' => '$1의 "$2"에 대한 의견',
+	'flow-reply-submit' => '답변', # Fuzzy
+	'flow-talk-link' => '$1에게 말하기',
 	'flow-topic-action-view' => '고유링크',
 	'flow-topic-action-watchlist' => '주시문서 목록',
 	'flow-error-edit-restricted' => '이 문서의 편집을 허용하지 않습니다.',
