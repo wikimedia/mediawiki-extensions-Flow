@@ -153,7 +153,8 @@ $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
-	'flow-user-anonymous' => 'Name to display for anonymous users',
+	'flow-user-anonymous' => 'Name to display for anonymous users.
+{{Identical|Anonymous}}',
 	'flow-user-moderated' => 'Name to display instead of a moderated user name',
 	'flow-edit-header-link' => 'Used as text for the link which points to the "Edit header" page.',
 	'flow-header-empty' => 'Used as a placeholder text for headers which have no content.',
@@ -308,7 +309,7 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 * $3: Username of the topic starter, can be used for GENDER
 * $4: Username of a second participant (if there is a second, otherwise not available), can be used for GENDER',
 	'flow-topic-comments' => 'Message to display the amount of comments in this discussion. Parameters:
-* $1: The amount of comments on this topic, can be used for PLURAL',
+* $1 - The amount of comments on this topic, can be used for PLURAL',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
@@ -472,6 +473,16 @@ $messages['ast'] = array(
 	'flow-desc' => 'Sistema de xestión del fluxu de trabayu',
 );
 
+/** Bulgarian (български)
+ * @author DCLXVI
+ */
+$messages['bg'] = array(
+	'flow-post-moderated-toggle-show' => '[Показване]',
+	'flow-post-moderated-toggle-hide' => '[Скриване]',
+	'flow-topic-action-watchlist' => 'Списък за наблюдение',
+	'flow-link-history' => 'история',
+);
+
 /** Breton (brezhoneg)
  * @author Y-M D
  */
@@ -496,6 +507,8 @@ $messages['cs'] = array(
 $messages['de'] = array(
 	'flow-desc' => 'Workflow-Management-System',
 	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-user-anonymous' => 'Anonym',
+	'flow-user-moderated' => 'Moderierter Benutzer',
 	'flow-edit-header-link' => 'Überschrift bearbeiten',
 	'flow-header-empty' => 'Diese Diskussionsseite hat derzeit keine Überschrift.',
 	'flow-post-moderated-toggle-show' => '[Anzeigen]',
@@ -562,6 +575,8 @@ $messages['de'] = array(
 	'flow-rev-message-deleted-post' => 'Beitrag gelöscht',
 	'flow-rev-message-censored-post' => 'Beitrag zensiert',
 	'flow-topic-history' => 'Themengeschichte',
+	'flow-topic-participants' => '{{PLURAL:$1|0=Noch keine Teilnehmer|$3 startete dieses Thema|{{GENDER:$3|$3}} und {{GENDER:$4|$4}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} und $2 andere}}',
+	'flow-topic-comments' => '{{PLURAL:$1|0=Sei der erste!|Kommentieren ($1)}}',
 	'flow-comment-restored' => 'Kommentar wiederhergestellt',
 	'flow-comment-deleted' => 'Kommentar gelöscht',
 	'flow-comment-hidden' => 'Versteckter Kommentar',
@@ -662,6 +677,8 @@ $messages['fi'] = array(
 $messages['fr'] = array(
 	'flow-desc' => 'Système de gestion du flux de travail',
 	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-user-anonymous' => 'Anonyme',
+	'flow-user-moderated' => 'Utilisateur modéré',
 	'flow-edit-header-link' => 'Modifier l’entête',
 	'flow-header-empty' => 'Cette page de discussion n’a pas d’entête pour l’instant.',
 	'flow-post-moderated-toggle-show' => '[Afficher]',
@@ -728,6 +745,8 @@ $messages['fr'] = array(
 	'flow-rev-message-deleted-post' => 'Note supprimée',
 	'flow-rev-message-censored-post' => 'Note censurée',
 	'flow-topic-history' => 'Historique des sujets',
+	'flow-topic-participants' => '{{PLURAL:$1|0=Encore aucune participation|$3 a démarré ce sujet|{{GENDER:$3|$3}} et {{GENDER:$4|$4}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} et $2 autres}}',
+	'flow-topic-comments' => '{{PLURAL:$1|0=Soyez le premier à laisser un commentaire !|Commenter ($1)}}',
 	'flow-comment-restored' => 'Commentaire rétabli',
 	'flow-comment-deleted' => 'Commentaire supprimé',
 	'flow-comment-hidden' => 'Commentaire masqué',
@@ -1132,6 +1151,7 @@ $messages['it'] = array(
 $messages['ja'] = array(
 	'flow-desc' => 'ワークフロー管理システム',
 	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-user-anonymous' => '匿名',
 	'flow-edit-header-link' => 'ヘッダーを編集',
 	'flow-header-empty' => '現在、このトークページにはヘッダーがありません。',
 	'flow-post-moderated-toggle-show' => '[表示]',
@@ -1192,6 +1212,8 @@ $messages['ja'] = array(
 	'flow-rev-message-edit-header' => 'ヘッダーを編集',
 	'flow-rev-message-deleted-post' => '投稿を削除',
 	'flow-topic-history' => '話題の履歴',
+	'flow-topic-participants' => '{{PLURAL:$1|0=まだ誰も参加していません|$3 がこの話題を開始|{{GENDER:$3|$3}} と {{GENDER:$4|$4}}|{{GENDER:$3|$3}}、{{GENDER:$4|$4}} と他 $2 人}}',
+	'flow-topic-comments' => '{{PLURAL:$1|0=最初のコメントを書きましょう!|コメント ($1)}}',
 	'flow-comment-restored' => 'コメントを復元',
 	'flow-comment-deleted' => 'コメントを削除',
 	'flow-comment-hidden' => 'コメントを非表示',
@@ -1334,6 +1356,8 @@ $messages['lv'] = array(
 $messages['mk'] = array(
 	'flow-desc' => 'Систем за раководење со работниот тек',
 	'flow-specialpage' => '$1 &ndash; Тек',
+	'flow-user-anonymous' => 'Анонимен',
+	'flow-user-moderated' => 'Модериран корисник',
 	'flow-edit-header-link' => 'Измени наслов',
 	'flow-header-empty' => 'Страницава засега нема заглавие.',
 	'flow-post-moderated-toggle-show' => '[Прикажи]',
@@ -1400,6 +1424,7 @@ $messages['mk'] = array(
 	'flow-rev-message-deleted-post' => 'Избришана објава',
 	'flow-rev-message-censored-post' => 'Цензурирана објава',
 	'flow-topic-history' => 'Историја на темата',
+	'flow-topic-participants' => '{{PLURAL:$1|0=Досега никој не учествувал|Темава ја започна $3|{{GENDER:$3|$3}} и {{GENDER:$4|$4}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} и уште $2 корисници}}',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
 	'flow-comment-hidden' => 'Скриен коментар',
@@ -2165,7 +2190,7 @@ $messages['zh-hans'] = array(
 	'flow-notification-edit-email-subject' => '$1编辑了您的帖子',
 	'flow-notification-edit-email-batch-body' => '$1在编辑了您在“$3”的主题$2上的帖子',
 	'flow-notification-rename-email-subject' => '$1重命名了您的主题',
-	'flow-notification-rename-email-batch-body' => '$1将您在“$4”的主题$2重命名为$3', # Fuzzy
+	'flow-notification-rename-email-batch-body' => '$1将您在“$4”的主题“$2”重命名为“$3”',
 	'flow-notification-newtopic-email-subject' => '$1在$2创建了新主题',
 	'echo-category-title-flow-discussion' => '$1个讨论',
 	'echo-pref-tooltip-flow-discussion' => '在讨论版发生有关我的动作时通知我。',
