@@ -85,6 +85,7 @@ $wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
 
 // Helpers for templating
 $wgAutoloadClasses['Flow\View\PostActionMenu'] = "$dir/includes/View/PostActionMenu.php";
+$wgAutoloadClasses['Flow\View\Post'] = "$dir/includes/View/Post.php";
 
 // Classes that deal with database interaction between database and the models
 $wgAutoloadClasses['Flow\Repository\TreeRepository'] = $dir . 'includes/Repository/TreeRepository.php';

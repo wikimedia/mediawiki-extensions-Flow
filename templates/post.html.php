@@ -22,8 +22,7 @@ if ( !$post->isModerated() ) {
 			'value' => $post->getPostId()->getHex(),
 		) ) .
 		Html::textarea( $block->getName() . '[content]', '', array(
-			'placeholder' => wfMessage( 'flow-reply-placeholder',
-				$this->getUserText( $post->getCreator( $user ), $post ) )->text(),
+			'placeholder' => $postView->replyPlaceholder( $post ),
 			'class' => 'flow-reply-content flow-input mw-ui-input',
 		) ) .
 		// NOTE: cancel button will be added via JS, makes no sense in non-JS context
@@ -31,7 +30,7 @@ if ( !$post->isModerated() ) {
 		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ) .
 			Html::element( 'input', array(
 				'type' => 'submit',
-				'value' => wfMessage( 'flow-reply-submit', $this->getUserText( $post->getCreator( $user ), $post ) )->text(),
+				'value' => $postView->replySubmit( $post ),
 				'class' => 'mw-ui-button mw-ui-constructive flow-reply-submit',
 			) ) .
 		Html::closeElement( 'div' ) .
@@ -39,17 +38,11 @@ if ( !$post->isModerated() ) {
 }
 
 
-// The actual output
-echo Html::openElement( 'div', array(
-	'class' => 'flow-post-container',
-	'data-post-id' => $post->getRevisionId()->getHex(),
-) );
-	echo Html::openElement( 'div', array(
-		'class' => 'flow-post flow-element-container ' . ( $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ),
-		'data-post-id' => $post->getPostId()->getHex(),
-		'id' => 'flow-post-' . $post->getPostId()->getHex(),
-	) ); ?>
-
+?>
+<div class='flow-post-container'
+	data-revision-id='<?php echo $post->getRevisionId()->getHex() ?>'
+	data-post-id='<?php echo $post->getPostId()->getHex() ?>' >
+	<div class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >
 		<?php if ( $post->isModerated() ): ?>
 			<p class="flow-post-moderated-message flow-post-moderated-<?php echo $post->getModerationState(); ?> flow-post-content-<?php echo $post->isAllowed( $user ) ? 'allowed' : 'disallowed'; ?>">
 			<?php
@@ -63,21 +56,18 @@ echo Html::openElement( 'div', array(
 			<div class="flow-post-title">
 				<span class="flow-creator">
 					<span class="flow-creator-simple" style="display: inline">
-						<?php echo $this->getUserText( $post->getCreator( $user ), $post ); ?>
+						<?php echo $postView->creator( $post ) ?>
 					</span>
 					<span class="flow-creator-full" style="display: none">
-						<?php echo $this->userToolLinks( $post->getCreatorId( $user ), $post->getCreatorName( $user ) ); ?>
+						<?php echo $postView->creatorToolLinks( $post ) ?>
 					</span>
 				</span>
-					</div>
+			</div>
 
 			<div class="flow-post-content">
 				<?php echo $post->getContent( $user, 'html' ); ?>
 			</div>
-			<?php if ( $postActionMenu->isAllowed( 'edit-post' ) ) {
-				echo $postActionMenu->getButton( 'edit-post', wfMessage( 'flow-post-action-edit-post' )->plain(), 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' );
-			}
-			?>
+			<?php echo $postView->editPostButton( $post, 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' ); ?>
 
 			<p class="flow-datestamp">
 				<?php
@@ -87,48 +77,43 @@ echo Html::openElement( 'div', array(
 						<span class="flow-utctime" style="display: none">'. $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ) .'</span>';
 
 					// build history button with timestamp html as content
-					if ( $postActionMenu->isAllowed( 'post-history' ) ) {
-						echo $postActionMenu->getButton( 'post-history', $content, 'flow-action-history-link' );
-					} else {
-						echo $content;
-					}
+					echo $postView->postHistoryButton( $post, $content );
 				?>
 			</p>
 
 			<div class="flow-post-interaction">
 				<?php if ( !$post->isModerated() ): ?>
-					<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo wfMessage( 'flow-reply-link', $this->getUserText( $post->getCreator( $user ), $post ) )->escaped(); ?></span></a>
-					<a class="flow-thank-link mw-ui-button" href="#" onclick="alert( '@todo: Not yet implemented!' ); return false;"><span><?php echo wfMessage( 'flow-thank-link', $this->getUserText( $post->getCreator( $user ), $post ) )->escaped(); ?></span></a>
+					<a class="flow-reply-link mw-ui-button" href="#"><span><?php $postView->replyLink( $post ); ?></span></a>
+					<a class="flow-thank-link mw-ui-button" href="#" onclick="return mw.flow.notImplemented()">
+						<span><?php $postView->thankLink( $post ); ?></span>
+					</a>
 				<?php else: ?>
-					<?php
-						$user = User::newFromId( $post->getModeratedByUserId() );
-						$title = $user->getTalkPage();
-					?>
-					<a class="flow-talk-link mw-ui-button" href="<?php echo $title->getLinkURL(); ?>">
-						<span><?php echo wfMessage( 'flow-talk-link', $post->getModeratedByUserText() )->escaped(); ?></span>
+					<?php list( $talkUrl, $talkLink ) = $postView->moderatedTalkLink( $post ); ?>
+					<a class="flow-talk-link mw-ui-button" href="<?php echo $talkUrl; ?>">
+						<span><?php echo $talkLink; ?></span>
 					</a>
 				<?php endif; ?>
 			</div>
 		</div>
 
-		<?php if ( $postActionMenu->isAllowedAny( 'hide-post', 'delete-post', 'censor-post', 'restore-post' ) ): ?>
+		<?php if ( $postView->actions()->isAllowedAny( 'hide-post', 'delete-post', 'censor-post', 'restore-post' ) ): ?>
 		<div class="flow-actions">
 			<a class="flow-actions-link flow-icon flow-icon-bottom-aligned" href="#"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
 			<div class="flow-actions-flyout">
 				<ul>
 					<?php
-					if ( $postActionMenu->isAllowed( 'hide-post' ) ) {
-						echo '<li class="flow-action-hide">'. $postActionMenu->getButton( 'hide-post', wfMessage( 'flow-post-action-hide-post' )->plain(), 'flow-hide-post-link mw-ui-button' ) .'</li>';
+					if ( $hidePost = $postView->hidePostButton( $post, 'flow-hide-post-link mw-ui-button' ) ) {
+						echo "<li class='flow-action-hide'>$hidePost</li>";
 					}
-					if ( $postActionMenu->isAllowed( 'delete-post' ) ) {
-						echo '<li class="flow-action-delete">'. $postActionMenu->getButton( 'delete-post', wfMessage( 'flow-post-action-delete-post' )->plain(), 'flow-delete-post-link mw-ui-button' ) .'</li>';
+					if ( $deletePost = $postView->deletePostButton( $post, 'flow-delete-post-link mw-ui-button' ) ) {
+						echo "<li class='flow-action-delete'>$deletePost</li>";
 					}
-					if ( $postActionMenu->isAllowed( 'censor-post' ) ) {
-						echo '<li class="flow-action-censor">'. $postActionMenu->getButton( 'censor-post', wfMessage( 'flow-post-action-censor-post' )->plain(), 'flow-censor-post-link mw-ui-button' ) .'</li>';
+					if ( $suppressPost = $postView->suppressPostButton( $post, 'flow-censor-post-link mw-ui-button' ) ) {
+						echo "<li class='flow-action-censor'>$suppressPost</li>";
 					}
 					// @todo restore button will probably be moved somewhere else, some day
-					if ( $postActionMenu->isAllowed( 'restore-post' ) ) {
-						echo '<li class="flow-action-restore">'. $postActionMenu->getButton( 'restore-post', wfMessage( 'flow-post-action-restore-post' )->plain(), 'flow-restore-post-link mw-ui-button mw-ui-constructive' ) .'</li>';
+					if ( $restorePost = $postView->restorePostButton( $post, 'flow-restore-post-link mw-ui-button mw-ui-constructive' ) ) {
+						echo "<li class='flow-action-restore'>$restorePost</li>";
 					}
 					?>
 				</ul>
