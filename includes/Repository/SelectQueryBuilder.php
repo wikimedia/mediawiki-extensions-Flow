@@ -63,7 +63,7 @@ class SelectQueryBuilder {
 		$conditions = $this->conditions;
 		foreach ( $this->pending as $row ) {
 			list( $field, $op, $value ) = $row;
-			$conditions[] = "$field $op	" . $dbr->addQuotes( $value );
+			$conditions[] = "$field $op	" . $db->addQuotes( $value );
 		}
 		$res = $db->select( $this->table, $this->fields, $conditions, $fname, $this->options );
 		if ( $this->resultHandler ) {

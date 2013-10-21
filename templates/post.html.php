@@ -141,6 +141,8 @@ echo Html::openElement( 'div', array(
 	<div class='flow-post-replies'>
 		<?php
 		foreach( $post->getChildren() as $child ) {
+			// @todo: build PostBlock and call $post->render() on it (see TopicBlock::getPostBlock)
+
 			echo $this->renderPost( $child, $block );
 		}
 		?>

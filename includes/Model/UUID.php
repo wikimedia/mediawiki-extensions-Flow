@@ -31,7 +31,7 @@ class UUID {
 			}
 		} elseif ( strlen( $input ) == 16 ) {
 			$binaryValue = $input;
-		} elseif ( strlen( $input ) == 32 && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
+		} elseif ( strlen( $input ) == 32 && preg_match( '/^[a-fA-F0-9]{32}$/', $input ) ) {
 			$hexValue = $input;
 			$binaryValue = pack( 'H*', $hexValue );
 		} elseif ( is_numeric( $input ) ) {

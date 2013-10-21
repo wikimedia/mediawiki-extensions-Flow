@@ -60,4 +60,3 @@ class Definition {
 		return Workflow::create( $this, $user, $title );
 	}
 }
-

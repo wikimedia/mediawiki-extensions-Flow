@@ -40,8 +40,22 @@ class FlowInsertDefaultDefinitions extends LoggedUpdateMaintenance {
 	}
 
 	protected function insertDefinitions( DatabaseBase $dbw ) {
+		$postId = UUID::create();
 		$topicId = UUID::create();
 		$discussionId = UUID::create();
+
+		// @todo: this should go into a separate script by itself or so ;)
+		$dbw->insert(
+			'flow_definition',
+			array(
+				'definition_id' => $postId->getBinary(),
+				'definition_wiki' => wfWikiId(),
+				'definition_name' => 'post',
+				'definition_type' => 'post',
+				'definition_options' => null
+			),
+			__METHOD__
+		);
 
 		$dbw->insert(
 			'flow_definition',
@@ -50,7 +64,9 @@ class FlowInsertDefaultDefinitions extends LoggedUpdateMaintenance {
 				'definition_wiki' => wfWikiId(),
 				'definition_name' => 'topic',
 				'definition_type' => 'topic',
-				'definition_options' => null
+				'definition_options' => serialize( array(
+					'post_definition_id' => $postId,
+				) ),
 			),
 			__METHOD__
 		);
