@@ -268,4 +268,9 @@ mw.flow.api.editHeader = mw.flow.api.generateBlockAction(
 	]
 );
 
+// random onclick handler moved from html template
+mw.flow.notImplemented = function() {
+	alert( '@todo: Not yet implemented!' );
+	return false;
+};
 } )( jQuery, mediaWiki );

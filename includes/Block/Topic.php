@@ -347,7 +347,7 @@ class TopicBlock extends AbstractBlock {
 			}
 
 			if ( ! $post ) {
-				throw new MWException( "Requested post could not be found" );
+				throw new \MWException( "Requested post could not be found" );
 			}
 
 			return array( $this->renderPostAPI( $templating, $post, $options ) );

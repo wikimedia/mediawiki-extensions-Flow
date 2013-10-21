@@ -275,7 +275,11 @@ abstract class AbstractRevision {
 
 	public function getContent( $user = null, $format = 'html' ) {
 		if ( $this->isAllowed( $user ) ) {
-			return $this->getConvertedContent( $format );
+			if ( $this->isFormatted() ) {
+				return $this->getConvertedContent( $format );
+			} else {
+				return $this->getContentRaw();
+			}
 		} else {
 			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
 
