@@ -15,7 +15,6 @@ use MWTimestamp;
 use RequestContext;
 use Title;
 use User;
-use Flow\View\PostActionMenu;
 
 class Templating {
 	protected $namespaces;
@@ -88,21 +87,25 @@ class Templating {
 
 	public function renderPost( PostRevision $post, Block $block, $return = true ) {
 		global $wgUser, $wgFlowTokenSalt;
-
+		$view = new View\Post(
+			$wgUser,
+			$post,
+			new View\PostActionMenu(
+				$this->urlGenerator,
+				$wgUser,
+				$block,
+				$post,
+				$wgUser->getEditToken( $wgFlowTokenSalt )
+			)
+		);
 		return $this->render(
 			'flow:post.html.php',
 			array(
 				'block' => $block,
 				'post' => $post,
+				'postView' => $view,
 				// An ideal world may pull this from the container, but for now this is fine.  This templating
 				// class has too many responsibilities to keep receiving all required objects in the constructor.
-				'postActionMenu' => new PostActionMenu(
-					$this->urlGenerator,
-					$wgUser,
-					$block,
-					$post,
-					$wgUser->getEditToken( $wgFlowTokenSalt )
-				),
 			),
 			$return
 		);
@@ -153,13 +156,18 @@ class Templating {
 
 	public function userToolLinks( $userId, $userText ) {
 		global $wgLang;
+		static $cache = array();
+		if ( isset( $cache[$userId][$userText] ) ) {
+			return $cache[$userId][$userText];
+		}
 
 		if ( $userText instanceof MWMessage ) {
 			// username was moderated away, we dont know who this is
-			return '';
+			$res = '';
+		} else {
+			$res = Linker::userLink( $userId, $userText ) . Linker::userToolLinks( $userId, $userText );
 		}
-
-		return Linker::userLink( $userId, $userText ) . Linker::userToolLinks( $userId, $userText );
+		return $cache[$userId][$userText] = $res;
 	}
 
 	/**
@@ -194,7 +202,7 @@ class Templating {
 				$haveAnon = true;
 			}
 
-			$text = $this->getUserText( $participant );
+			$text = self::getUserText( $participant );
 
 			if ( !$text || !$participant ) {
 				continue;
@@ -220,13 +228,13 @@ class Templating {
 	 * Gets a Flow-formatted plaintext human-readable identifier for a user.
 	 * Usually the user's name, but it can also return "an anonymous user",
 	 * or information about an item's moderation state.
-	 * 
-	 * @param  User             $user    The User object to get a description for.
+	 *
+	 * @param  User             $user    The User object to get a description of.
 	 * @param  AbstractRevision $rev     An AbstractRevision object to retrieve moderation state from.
 	 * @param  bool             $showIPs Whether or not to show IP addresses for anonymous users
 	 * @return String                    A human-readable identifier for the given User.
 	 */
-	public function getUserText( $user, $rev = null, $showIPs = false ) {
+	static public function getUserText( $user, $rev = null, $showIPs = false ) {
 		if ( $user === false && $rev instanceof AbstractRevision ) {
 			$state = $rev->getModerationState();
 
@@ -240,7 +248,7 @@ class Templating {
 
 			return wfMessage(
 					AbstractRevision::$perms[$state]['content'],
-					$this->getUserText( $user ),
+					self::getUserText( $user ),
 					$moderatedAt->getHumanTimestamp()
 			);
 		} elseif ( $user === false ) {

@@ -1,0 +1,1690 @@
+./Notifications/Formatter.php:		$extra = $event->getExtra();
+./Notifications/Formatter.php:			if ( isset( $extra['topic-title'] ) && $extra['topic-title'] ) {
+./Notifications/Formatter.php:				$this->processParamEscaped( $message, trim( $extra['topic-title'] ) );
+./Notifications/Formatter.php:				$message->params( '' );
+./Notifications/Formatter.php:				$content = $wgLang->truncate( $content, 200 );
+./Notifications/Formatter.php:				$message->params( $content );
+./Notifications/Formatter.php:				$message->params( '' );
+./Notifications/Formatter.php:		} elseif ( $param === 'post-permalink' ) {
+./Notifications/Formatter.php:			$postId = $extra['post-id'];
+./Notifications/Formatter.php:			if ( $this->bundleData['raw-data-count'] <= 1 ) {
+./Notifications/Formatter.php:				$urlParams['topic[postId]'] = $postId->getHex();
+./Notifications/Formatter.php:			$url = $this->getUrlGenerator()->generateUrl(
+./Notifications/Formatter.php:				$extra['topic-workflow'],
+./Notifications/Formatter.php:			$message->params( $url );
+./Notifications/Formatter.php:		} elseif ( $param === 'topic-permalink' ) {
+./Notifications/Formatter.php:			$url = $this->getUrlGenerator()->generateUrl( $extra['topic-workflow'] );
+./Notifications/Formatter.php:			$message->params( $url );
+./Notifications/Formatter.php:		} elseif ( $param == 'flow-title' ) {
+./Notifications/Formatter.php:			list( $title ) = $this->getUrlGenerator()->buildUrlData( $event->getTitle() );
+./Notifications/Formatter.php:			$formatted = $this->formatTitle( $title );
+./Notifications/Formatter.php:			$message->params( $formatted );
+./Notifications/Formatter.php:		} elseif ( $param == 'old-subject' ) {
+./Notifications/Formatter.php:			$this->processParamEscaped( $message, trim( $extra['old-subject'] ) );
+./Notifications/Formatter.php:		} elseif ( $param == 'new-subject' ) {
+./Notifications/Formatter.php:			$this->processParamEscaped( $message, trim( $extra['new-subject'] ) );
+./Notifications/Formatter.php:		$title  = $event->getTitle();
+./Notifications/Formatter.php:			case 'flow-post':
+./Notifications/Formatter.php:				$post  = $event->getExtraParam( 'post-id' );
+./Notifications/Formatter.php:				$flow  = $event->getExtraParam( 'topic-workflow' );
+./Notifications/Formatter.php:					$urlParams = array( 'workflow' => $flow->getHex() );
+./Notifications/Formatter.php:					if ( $this->bundleData['raw-data-count'] <= 1 ) {
+./Notifications/Formatter.php:						$urlParams['topic[postId]'] = $post->getHex();	
+./Notifications/Formatter.php:					list( $target, $query ) = $urlGenerator->generateUrlData( $flow, $urlParams );
+./Notifications/Formatter.php:			case 'flow-board':
+./Notifications/Formatter.php:					list( $target, $query ) = $urlGenerator->buildUrlData( $title );
+./Notifications/Formatter.php:			case 'flow-topic':
+./Notifications/Formatter.php:				$topic = $event->getExtraParam( 'topic-workflow' );
+./Notifications/Formatter.php:					$urlGenerator->generateUrlData( $topic );
+./Notifications/Formatter.php:		if ( ! $this->urlGenerator ) {
+./Notifications/Formatter.php:			$this->urlGenerator = $container['url_generator'];
+./Notifications/Formatter.php:		return $this->urlGenerator;
+./Notifications/Notifications.php:	'category' => 'flow-discussion',
+./Notifications/Notifications.php:	'formatter-class' => 'Flow\NotificationFormatter',
+./Notifications/Notifications.php:	'icon' => 'flow-discussion',
+./Notifications/Notifications.php:	'flow-new-topic' => array(
+./Notifications/Notifications.php:		'primary-link' => array(
+./Notifications/Notifications.php:			'message' => 'flow-notification-link-text-view-topic',
+./Notifications/Notifications.php:			'destination' => 'flow-topic'
+./Notifications/Notifications.php:		'secondary-link' => array(
+./Notifications/Notifications.php:			'message' => 'flow-notification-link-text-view-board',
+./Notifications/Notifications.php:			'destination' => 'flow-board'
+./Notifications/Notifications.php:		'title-message' => 'flow-notification-newtopic',
+./Notifications/Notifications.php:		'title-params' => array( 'agent', 'flow-title', 'title', 'subject', 'topic-permalink' ),
+./Notifications/Notifications.php:		'email-subject-message' => 'flow-notification-newtopic-email-subject',
+./Notifications/Notifications.php:		'email-subject-params' => array( 'agent', 'title' ),
+./Notifications/Notifications.php:		'email-body-batch-message' => 'flow-notification-newtopic-email-batch-body',
+./Notifications/Notifications.php:		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
+./Notifications/Notifications.php:		'payload' => array( 'comment-text' ),
+./Notifications/Notifications.php:	'flow-post-reply' => array(
+./Notifications/Notifications.php:		'primary-link' => array(
+./Notifications/Notifications.php:			'message' => 'flow-notification-link-text-view-post',
+./Notifications/Notifications.php:			'destination' => 'flow-post'
+./Notifications/Notifications.php:		'secondary-link' => array(
+./Notifications/Notifications.php:			'message' => 'flow-notification-link-text-view-board',
+./Notifications/Notifications.php:			'destination' => 'flow-board'
+./Notifications/Notifications.php:		'title-message' => 'flow-notification-reply',
+./Notifications/Notifications.php:		'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
+./Notifications/Notifications.php:		'bundle-message' => 'flow-notification-reply-bundle',
+./Notifications/Notifications.php:		'bundle-params' => array( 'agent', 'subject', 'title', 'post-permalink', 'agent-other-display', 'agent-other-count' ),
+./Notifications/Notifications.php:		'email-subject-message' => 'flow-notification-reply-email-subject',
+./Notifications/Notifications.php:		'email-subject-params' => array( 'agent' ),
+./Notifications/Notifications.php:		'email-body-batch-message' => 'flow-notification-reply-email-batch-body',
+./Notifications/Notifications.php:		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
+./Notifications/Notifications.php:		'email-body-batch-bundle-message' => 'flow-notification-reply-email-batch-bundle-body',
+./Notifications/Notifications.php:		'email-body-batch-bundle-params' => array( 'agent', 'subject', 'title', 'agent-other-display', 'agent-other-count' ),
+./Notifications/Notifications.php:		'payload' => array( 'comment-text' ),
+./Notifications/Notifications.php:	'flow-post-edited' => array(
+./Notifications/Notifications.php:		'primary-link' => array(
+./Notifications/Notifications.php:			'message' => 'flow-notification-link-text-view-post',
+./Notifications/Notifications.php:			'destination' => 'flow-post'
+./Notifications/Notifications.php:		'secondary-link' => array(
+./Notifications/Notifications.php:			'message' => 'flow-notification-link-text-view-board',
+./Notifications/Notifications.php:			'destination' => 'flow-board'
+./Notifications/Notifications.php:		'title-message' => 'flow-notification-edit',
+./Notifications/Notifications.php:		'title-params' => array( 'agent', 'subject', 'flow-title', 'title', 'post-permalink' ),
+./Notifications/Notifications.php:		'bundle-message' => 'flow-notification-edit-bundle',
+./Notifications/Notifications.php:		'bundle-params' => array( 'agent', 'subject', 'title', 'post-permalink', 'agent-other-display', 'agent-other-count' ),
+./Notifications/Notifications.php:		'email-subject-message' => 'flow-notification-edit-email-subject',
+./Notifications/Notifications.php:		'email-subject-params' => array( 'agent' ),
+./Notifications/Notifications.php:		'email-body-batch-message' => 'flow-notification-edit-email-batch-body',
+./Notifications/Notifications.php:		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
+./Notifications/Notifications.php:		'email-body-batch-bundle-message' => 'flow-notification-edit-email-batch-bundle-body',
+./Notifications/Notifications.php:		'email-body-batch-bundle-params' => array( 'agent', 'subject', 'title', 'agent-other-display', 'agent-other-count' ),
+./Notifications/Notifications.php:	'flow-topic-renamed' => array(
+./Notifications/Notifications.php:		'primary-link' => array(
+./Notifications/Notifications.php:			'message' => 'flow-notification-link-text-view-post',
+./Notifications/Notifications.php:			'destination' => 'flow-post'
+./Notifications/Notifications.php:		'secondary-link' => array(
+./Notifications/Notifications.php:			'message' => 'flow-notification-link-text-view-board',
+./Notifications/Notifications.php:			'destination' => 'flow-board'
+./Notifications/Notifications.php:		'title-message' => 'flow-notification-rename',
+./Notifications/Notifications.php:		'title-params' => array( 'agent', 'topic-permalink', 'old-subject', 'new-subject', 'flow-title', 'title' ),
+./Notifications/Notifications.php:		'email-subject-message' => 'flow-notification-rename-email-subject',
+./Notifications/Notifications.php:		'email-subject-params' => array( 'agent' ),
+./Notifications/Notifications.php:		'email-body-batch-message' => 'flow-notification-rename-email-batch-body',
+./Notifications/Notifications.php:		'email-body-batch-params' => array( 'agent', 'old-subject', 'new-subject', 'title' ),
+./Notifications/Notifications.php:	'flow-mention' => array(
+./Notifications/Notifications.php:		'primary-link' => array(
+./Notifications/Notifications.php:			'message' => 'flow-notification-link-text-view-post',
+./Notifications/Notifications.php:			'destination' => 'flow-post'
+./Notifications/Notifications.php:		'secondary-link' => array(
+./Notifications/Notifications.php:			'message' => 'flow-notification-link-text-view-board',
+./Notifications/Notifications.php:			'destination' => 'flow-board'
+./Notifications/Notifications.php:		'title-message' => 'flow-notification-mention',
+./Notifications/Notifications.php:		'title-params' => array( 'agent', 'post-permalink', 'subject', 'title' ),
+./Notifications/Notifications.php:		'email-subject-message' => 'flow-notification-mention-email-subject',
+./Notifications/Notifications.php:		'email-subject-params' => array( 'agent', 'flow-title' ),
+./Notifications/Notifications.php:		'email-body-batch-message' => 'flow-notification-mention-email-batch-body',
+./Notifications/Notifications.php:		'email-body-batch-params' => array( 'agent', 'subject', 'title' ),
+./Notifications/Controller.php:		// @Todo - put this hook in controller as well?
+./Notifications/Controller.php:		$wgEchoNotificationIcons['flow-discussion'] = array(
+./Notifications/Controller.php:		$wgEchoNotificationCategories['flow-discussion'] = array(
+./Notifications/Controller.php:			'tooltip' => 'echo-pref-tooltip-flow-discussion',
+./Notifications/Controller.php:	 * * post-reply
+./Notifications/Controller.php:	 * * topic-renamed
+./Notifications/Controller.php:	 * * post-edited
+./Notifications/Controller.php:	 * * topic-workflow: The Workflow object for the topic. Always required.
+./Notifications/Controller.php:	 * * reply-to: The UUID of the post that is being replied to. Required for replies.
+./Notifications/Controller.php:	 * * topic-title: The Title of the Topic that the post belongs to. Required except for topic renames.
+./Notifications/Controller.php:	 * * old-subject: The old subject of a Topic. Required for topic renames.
+./Notifications/Controller.php:	 * * new-subject: The new subject of a Topic. Required for topic renames.
+./Notifications/Controller.php:		$topicTitle = $data['topic-title'];
+./Notifications/Controller.php:		$topicWorkflow = $data['topic-workflow'];
+./Notifications/Controller.php:		$extraData['revision-id'] = $revision->getRevisionId();
+./Notifications/Controller.php:		$extraData['post-id'] = $revision->getPostId();
+./Notifications/Controller.php:		$extraData['topic-workflow'] = $topicWorkflow->getId();
+./Notifications/Controller.php:			case 'flow-post-reply':
+./Notifications/Controller.php:				$replyToPost = $data['reply-to'];
+./Notifications/Controller.php:					'reply-to' => $replyToPost->getPostId(),
+./Notifications/Controller.php:					'content' => $revision->getContent(),
+./Notifications/Controller.php:					'topic-title' => $topicTitle,
+./Notifications/Controller.php:			case 'flow-topic-renamed':
+./Notifications/Controller.php:					'old-subject' => $data['old-subject'],
+./Notifications/Controller.php:					'new-subject' => $data['new-subject'],
+./Notifications/Controller.php:			case 'flow-post-edited':
+./Notifications/Controller.php:					'content' => $revision->getContent(),
+./Notifications/Controller.php:					'topic-title' => $topicTitle,
+./Notifications/Controller.php:		if ( $eventName == 'flow-post-reply' ) {
+./Notifications/Controller.php:				$this->notifyNewPost( array(
+./Notifications/Controller.php:					'topic-title' => $topicTitle,
+./Notifications/Controller.php:					'topic-workflow' => $topicWorkflow,
+./Notifications/Controller.php:	 * * board-workflow: Workflow object for the Flow board.
+./Notifications/Controller.php:	 * * topic-workflow: Workflow object for the new Topic.
+./Notifications/Controller.php:	 * * title-post: PostRevision object for the "topic post", containing the
+./Notifications/Controller.php:	 * * first-post: PostRevision object for the first post.
+./Notifications/Controller.php:		$topicWorkflow = $params['topic-workflow'];
+./Notifications/Controller.php:		$topicPost = $params['title-post'];
+./Notifications/Controller.php:		$firstPost = $params['first-post'];
+./Notifications/Controller.php:		$boardWorkflow = $params['board-workflow'];
+./Notifications/Controller.php:			'type' => 'flow-new-topic',
+./Notifications/Controller.php:			'title' => $boardWorkflow->getArticleTitle(),
+./Notifications/Controller.php:				'board-workflow' => $boardWorkflow->getId(),
+./Notifications/Controller.php:				'topic-workflow' => $topicWorkflow->getId(),
+./Notifications/Controller.php:				'post-id' => $firstPost->getRevisionId(),
+./Notifications/Controller.php:				'topic-title' => $topicPost->getContentRaw(),
+./Notifications/Controller.php:				'content' => $firstPost->getContent(),
+./Notifications/Controller.php:			$this->notifyNewPost( array(
+./Notifications/Controller.php:				'title' => $boardWorkflow->getArticleTitle(),
+./Notifications/Controller.php:				'topic-title' => $topicPost->getContentRaw(),
+./Notifications/Controller.php:				'topic-workflow' => $topicWorkflow,
+./Notifications/Controller.php:	 * * topic-title: The title for the Topic.
+./Notifications/Controller.php:		$topicWorkflow = $data['topic-workflow'];
+./Notifications/Controller.php:		$mentionedUsers = $this->getMentionedUsers( $newRevision, $title );
+./Notifications/Controller.php:				'type' => 'flow-mention',
+./Notifications/Controller.php:					'content' => $newRevision->getContent(),
+./Notifications/Controller.php:					'topic-title' => $data['topic-title'],
+./Notifications/Controller.php:					'post-id' => $newRevision->getPostId(),
+./Notifications/Controller.php:					'mentioned-users' => $mentionedUsers,
+./Notifications/Controller.php:					'topic-workflow' => $topicWorkflow->getId(),
+./Notifications/Controller.php:		$wikitext = $post->getContent( null, 'wikitext' );
+./Notifications/Controller.php:		$mentions = $this->getMentionedUsersFromWikitext( $wikitext );
+./Notifications/Controller.php:		$notifyUsers = $this->filterMentionedUsers( $mentions, $post, $title );
+./Notifications/Controller.php:	 * Removes duplicates, anonymous users, self-mentions, and mentions of the
+./Notifications/Controller.php:			if ( $mentionedUser->isAnon() ) {
+./Notifications/Controller.php:			if ( $mentionedUser->getId() == $post->getUserId() ) {
+./Notifications/Controller.php:			$outputMentions[$mentionedUser->getId()] = $mentionedUser->getId();
+./Notifications/Controller.php:		$options->setTidy( true );
+./Notifications/Controller.php:		$options->setEditSection( false );
+./Notifications/Controller.php:		$output = $wgParser->parse( $wikitext, $title, $options );
+./Notifications/Controller.php:		$links = $output->getLinks();
+./Notifications/Controller.php:		switch ( $event->getType() ) {
+./Notifications/Controller.php:			case 'flow-post-reply':
+./Notifications/Controller.php:			case 'flow-post-edited':
+./Notifications/Controller.php:				$extra = $event->getExtra();
+./Notifications/Controller.php:				$topic = $extra['topic-workflow'];
+./Notifications/Controller.php:					$bundleString = $event->getType() . '-' . $topic->getHex();
+./Notifications/Controller.php:		$extra = $event->getExtra();
+./Notifications/Controller.php:		switch ( $event->getType() ) {
+./Notifications/Controller.php:		case 'flow-mention':
+./Notifications/Controller.php:			$mentionedUsers = $extra['mentioned-users'];
+./Notifications/Controller.php:		case 'flow-new-topic':
+./Notifications/Controller.php:			$title = $event->getTitle();
+./Notifications/Controller.php:			if ( $title->getNamespace() == NS_USER_TALK ) {
+./Notifications/Controller.php:				$users[] = User::newFromName( $title->getText() );
+./Notifications/Controller.php:		case 'flow-topic-renamed':
+./Notifications/Controller.php:			$users += self::getCreatorsFromPostIDs( array( $extra['topic-workflow'] ) );
+./Notifications/Controller.php:		case 'flow-post-reply':
+./Notifications/Controller.php:		case 'flow-post-edited':
+./Notifications/Controller.php:		case 'flow-post-moderated':
+./Notifications/Controller.php:			if ( isset( $extra['reply-to'] ) ) {
+./Notifications/Controller.php:				$postId = $extra['reply-to'];
+./Notifications/Controller.php:				$postId = $extra['post-id'];
+./Notifications/Controller.php:			$topic = $extra['topic-workflow'];
+./Notifications/Controller.php:			if ( $topic && $topic->getBinary() != $postId->getBinary() ) {
+./Notifications/Controller.php:			$post = $container['storage']->find(
+./Notifications/Controller.php:				$user = $post->getCreator();
+./Notifications/Controller.php:				if ( $user && !$user->isAnon() ) {
+./Notifications/Controller.php:					$users[$user->getId()] = $user;
+Binary file ./.Templating.php.swp matches
+./Templating.php:		$this->urlGenerator = $urlGenerator;
+./Templating.php:		$this->output = $output;
+./Templating.php:			$this->addNamespace( $ns, $path );
+./Templating.php:		$this->globals = $globals;
+./Templating.php:		return $this->output;
+./Templating.php:		$this->namespaces[$ns] = rtrim( $path, '/' );
+./Templating.php:		$this->globals[$name] = $value;
+./Templating.php:		$file = $this->applyNamespacing( $file );
+./Templating.php:		$this->_render( $file, $vars + $this->globals );
+./Templating.php:			$this->output->addHTML( $content );
+./Templating.php:		if ( !isset( $this->namespaces[$ns] ) ) {
+./Templating.php:		return $this->namespaces[$ns] . '/' . ltrim( $file, '/' );
+./Templating.php:		return $this->urlGenerator->generateUrl( $workflow, $action, $query );
+./Templating.php:		return $this->render(
+./Templating.php:					$this->urlGenerator,
+./Templating.php:					$wgUser->getEditToken( $wgFlowTokenSalt )
+./Templating.php:		return $this->render( "flow:topic.html.php", array(
+./Templating.php:			'topic' => $block->getWorkflow(),
+./Templating.php:		// Use the message/class flow-paging-fwd or flow-paging-rev
+./Templating.php:				'href' => $this->generateUrl(
+./Templating.php:					$block->getWorkflowId(),
+./Templating.php:						$block->getName().'[offset-id]' => $offset,
+./Templating.php:						$block->getName().'[offset-dir]' => $direction,
+./Templating.php:						$block->getName().'[limit]' => $limit,
+./Templating.php:			wfMessage( 'flow-paging-'.$direction )->parse()
+./Templating.php:				'class' => 'flow-paging flow-paging-'.$direction,
+./Templating.php:				'data-offset' => $offset,
+./Templating.php:				'data-direction' => $direction,
+./Templating.php:				'data-limit' => $limit,
+./Templating.php:		$participants = $post->getRecursiveResult( $registered );
+./Templating.php:				$participant->isAnon() &&
+./Templating.php:			} elseif ( $participant->isAnon() ) {
+./Templating.php:			$text = $this->getUserText( $participant );
+./Templating.php:			'flow-topic-participants',
+./Templating.php:			max( 0, $participantCount - 2 ),
+./Templating.php:		)->parse();
+./Templating.php:	 * Gets a Flow-formatted plaintext human-readable identifier for a user.
+./Templating.php:	 * @return String                    A human-readable identifier for the given User.
+./Templating.php:			$state = $rev->getModerationState();
+./Templating.php:			if ( $rev->getModeratedByUserId() ) {
+./Templating.php:				$user = User::newFromId( $rev->getModeratedByUserId() );
+./Templating.php:				$user = User::newFromName( $rev->getModeratedByUserName() );
+./Templating.php:			$moderatedAt = new MWTimestamp( $rev->getModerationTimestamp );
+./Templating.php:					$this->getUserText( $user ),
+./Templating.php:					$moderatedAt->getHumanTimestamp()
+./Templating.php:			return wfMessage( 'flow-user-moderated' );
+./Templating.php:		} elseif ( $user->isAnon() && !$showIPs ) {
+./Templating.php:			return wfMessage( 'flow-user-anonymous' );
+./Templating.php:			return $user->getName();
+./View.php:		$this->templating = $templating;
+./View.php:		$this->urlGenerator = $urlGenerator;
+./View.php:		$this->context = $requestContext;
+./View.php:		$this->output = $this->context->getOutput();
+./View.php:		$this->output->addModuleStyles( array( 'mediawiki.ui' ) );
+./View.php:		$this->output->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
+./View.php:		$workflow = $loader->getWorkflow();
+./View.php:		$definition = $loader->getDefinition();
+./View.php:		$title = $workflow->getArticleTitle();
+./View.php:		$this->output->setPageTitle( wfMessage( 'flow-specialpage', $title->getPrefixedText() )->text() );
+./View.php:		$request = $this->context->getRequest();
+./View.php:		$user = $this->context->getUser();
+./View.php:		$blocks = $loader->createBlocks();
+./View.php:			$block->init( $action, $user );
+./View.php:		if ( $request->getMethod() === 'POST' ) {
+./View.php:			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
+./View.php:				$this->output->addHTML( $error );
+./View.php:				$request = $this->context->getRequest();
+./View.php:				$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
+./View.php:					$loader->commit( $workflow, $blocksToCommit );
+./View.php:					$this->redirect( $workflow, 'view' );
+./View.php:		$workflowId = $workflow->isNew() ? '' : $workflow->getId()->getHex();
+./View.php:		$title = $workflow->getArticleTitle();
+./View.php:		$this->output->addHTML( Html::openElement( 'div',
+./View.php:				'class' => 'flow-container',
+./View.php:				'data-workflow-id' => $workflowId,
+./View.php:				'data-page-title' => $title->getPrefixedText(),
+./View.php:				'data-workflow-existence' => $workflow->isNew() ? 'new' : 'existing',
+./View.php:			$block->render( $this->templating, $request->getArray( $block->getName(), array() ) );
+./View.php:		$this->output->addHTML( "</div>" );
+./View.php:		$url = $this->urlGenerator->generateUrl( $workflow, $action, $query );
+./View.php:		$this->output->redirect( $url );
+./RecentChanges/Formatter.php:		$this->urlGenerator = $urlGenerator;
+./RecentChanges/Formatter.php:		$this->lang = $lang;
+./RecentChanges/Formatter.php:		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
+./RecentChanges/Formatter.php:		$changeData = $params['flow-workflow-change'];
+./RecentChanges/Formatter.php:		// used in $this->buildActionLinks()
+./RecentChanges/Formatter.php:		$title = $rc->getTitle();
+./RecentChanges/Formatter.php:		$links = $this->buildActionLinks( $title, $changeData );
+./RecentChanges/Formatter.php:			$linksContent = $cl->getLanguage()->pipeList( $links );
+./RecentChanges/Formatter.php:			$line .= wfMessage( 'parentheses' )->rawParams( $linksContent )->text()
+./RecentChanges/Formatter.php:				. $this->changeSeparator();
+./RecentChanges/Formatter.php:		$line .= $this->workflowLink( $title, $changeData )
+./RecentChanges/Formatter.php:			. wfMessage( 'semicolon-separator' )->text()
+./RecentChanges/Formatter.php:			. $this->getTimestamp( $cl, $rc )
+./RecentChanges/Formatter.php:			. $this->changeSeparator()
+./RecentChanges/Formatter.php:			. $this->userLinks( $cl, $rc->getAttribute( 'rc_user_id' ), $rc->getAttribute( 'rc_user_text' ) )
+./RecentChanges/Formatter.php:			. $this->getActionDescription( $changeData );
+./RecentChanges/Formatter.php:		case 'flow-rev-message-reply':
+./RecentChanges/Formatter.php:			$links[] = $this->topicLink( $title, $changeData );
+./RecentChanges/Formatter.php:		case 'flow-rev-message-new-post': // fall through
+./RecentChanges/Formatter.php:		case 'flow-rev-message-edit-post':
+./RecentChanges/Formatter.php:			$links[] = $this->topicLink( $title, $changeData );
+./RecentChanges/Formatter.php:			$links[] = $this->postLink( $title, $changeData );
+./RecentChanges/Formatter.php:		case 'flow-rev-message-hid-comment':
+./RecentChanges/Formatter.php:			$links[] = $this->topicLink( $title, $changeData );
+./RecentChanges/Formatter.php:			$links[] = $this->postHistoryLink( $title, $changeData );
+./RecentChanges/Formatter.php:		case 'flow-rev-message-edit-title':
+./RecentChanges/Formatter.php:			$links[] = $this->topicLink( $title, $changeData );
+./RecentChanges/Formatter.php:			$links[] = $this->postHistoryLink( $title, $changeData );
+./RecentChanges/Formatter.php:		case 'flow-rev-message-create-header': // fall through
+./RecentChanges/Formatter.php:		case 'flow-rev-message-edit-header':
+./RecentChanges/Formatter.php:			//$links[] = $this->workflowLink( $title, $changeData );
+./RecentChanges/Formatter.php:		return ' <span class="mw-changeslist-separator">. .</span> ';
+./RecentChanges/Formatter.php:		return '<span class="mw-changeslist-date">'
+./RecentChanges/Formatter.php:				. $cl->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $cl->getUser() )
+./RecentChanges/Formatter.php:				'href' => $this->urlGenerator->buildUrl(
+./RecentChanges/Formatter.php:					'post-history',
+./RecentChanges/Formatter.php:			wfMessage( 'flow-link-history' )->text()
+./RecentChanges/Formatter.php:				'href' => $this->urlGenerator->buildUrl(
+./RecentChanges/Formatter.php:			wfMessage( 'flow-link-topic' )->text()
+./RecentChanges/Formatter.php:				'href' => $this->urlGenerator->buildUrl(
+./RecentChanges/Formatter.php:			wfMessage( 'flow-link-post' )
+./RecentChanges/Formatter.php:		list( $linkTitle, $query ) = $this->urlGenerator->buildUrlData(
+./RecentChanges/Formatter.php:			array( 'href' => $linkTitle->getFullUrl( $query ) ),
+./RecentChanges/Formatter.php:			$linkTitle->getPrefixedText()
+./RecentChanges/Formatter.php:		$msg = wfMessage( $changeData['type'] )->text();
+./RecentChanges/Formatter.php:			$msg .= ' ' . wfMessage( 'parentheses' )->rawParams( $changeData['topic'] );
+Binary file ./.AccessControl.php.swp matches
+./DbFactory.php:		$this->wiki = $wiki;
+./DbFactory.php:		return wfGetDB( $db, $groups, $this->wiki );
+./DbFactory.php:		return wfGetLB( $this->wiki );
+./Block/Header.php:	protected $supportedActions = array( 'edit-header' );
+./Block/Header.php:		if ( $this->workflow->isNew() ) {
+./Block/Header.php:			$this->needCreate = true;
+./Block/Header.php:		$found = $this->storage->find(
+./Block/Header.php:			array( 'header_workflow_id' => $this->workflow->getId() ),
+./Block/Header.php:			$this->header = reset( $found );
+./Block/Header.php:		if ( empty( $this->submitted['content'] ) ) {
+./Block/Header.php:			$this->errors['content'] = wfMessage( 'flow-missing-header-content' );
+./Block/Header.php:		if ( $this->header ) {
+./Block/Header.php:			if ( empty( $this->submitted['prev_revision'] ) ) {
+./Block/Header.php:				$this->errors['prev_revision'] = wfMessage( 'flow-missing-prev-revision-identifier' );
+./Block/Header.php:			} elseif ( $this->header->getRevisionId()->getHex() !== $this->submitted['prev_revision'] ) {
+./Block/Header.php:				$this->errors['prev_revision'] = wfMessage( 'flow-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getHex() );
+./Block/Header.php:			// this isnt really part of validate, but we want the error-rendering template to see the users edited header
+./Block/Header.php:			$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-header' );
+./Block/Header.php:			if ( empty( $this->submitted['prev_revision'] ) ) {
+./Block/Header.php:				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'] );
+./Block/Header.php:				$this->errors['prev_revision'] = wfMessage( 'flow-prev-revision-does-not-exist' );
+./Block/Header.php:		return $this->needCreate;
+./Block/Header.php:		switch( $this->action ) {
+./Block/Header.php:		case 'edit-header':
+./Block/Header.php:			$this->storage->put( $this->header );
+./Block/Header.php:				'new-revision-id' => $this->header->getRevisionId(),
+./Block/Header.php:				'rendered' => $this->header->getContent( $this->user, 'html' ),
+./Block/Header.php:		$templating->getOutput()->addModules( 'ext.flow.header' );
+./Block/Header.php:		$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
+./Block/Header.php:		$templating->render( "flow:$templateName.html.php", array(
+./Block/Header.php:			'workflow' => $this->workflow,
+./Block/Header.php:			'header' => $this->header,
+./Block/Header.php:			'user' => $this->user,
+./Block/Header.php:		if ( $this->header !== null ) {
+./Block/Header.php:			$output['*'] = $this->header->getContent( $this->user, $contentFormat );
+./Block/Header.php:			$output['header-id'] = $this->header->getRevisionId()->getHex();
+./Block/TopicList.php:	protected $supportedActions = array( 'new-topic' );
+./Block/TopicList.php:		$this->rootLoader = $rootLoader;
+./Block/TopicList.php:		if ( !isset( $this->submitted['topic'] ) ) {
+./Block/TopicList.php:			$this->errors['topic'] = wfMessage( 'flow-error-missing-title' );
+./Block/TopicList.php:		if ( !isset( $this->submitted['content'] ) ) {
+./Block/TopicList.php:			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
+./Block/TopicList.php:		if ( $this->action !== 'new-topic' ) {
+./Block/TopicList.php:		$storage = $this->storage;
+./Block/TopicList.php:		$defStorage = $this->storage->getStorage( 'Definition' );
+./Block/TopicList.php:		$sourceDef = $defStorage->get( $this->workflow->getDefinitionId() );
+./Block/TopicList.php:		$topicDef = $defStorage->get( $sourceDef->getOption( 'topic_definition_id' ) );
+./Block/TopicList.php:		$topicWorkflow = Workflow::create( $topicDef, $this->user, $this->workflow->getArticleTitle() );
+./Block/TopicList.php:		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
+./Block/TopicList.php:		$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
+./Block/TopicList.php:		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
+./Block/TopicList.php:		$topicPost->setChildren( array( $firstPost ) );
+./Block/TopicList.php:		$firstPost->setChildren( array() );
+./Block/TopicList.php:		$storage->put( $topicWorkflow );
+./Block/TopicList.php:		$storage->put( $topicPost );
+./Block/TopicList.php:		$storage->put( $firstPost );
+./Block/TopicList.php:		$storage->put( $topicListEntry );
+./Block/TopicList.php:		$this->notificationController->notifyNewTopic( array(
+./Block/TopicList.php:			'board-workflow' => $this->workflow,
+./Block/TopicList.php:			'topic-workflow' => $topicWorkflow,
+./Block/TopicList.php:			'title-post' => $topicPost,
+./Block/TopicList.php:			'first-post' => $firstPost,
+./Block/TopicList.php:			'user' => $this->user,
+./Block/TopicList.php:		$user = $this->user;
+./Block/TopicList.php:		$notificationController = $this->notificationController;
+./Block/TopicList.php:			'created-topic-id' => $topicWorkflow->getId(),
+./Block/TopicList.php:			'created-post-id' => $firstPost->getRevisionId(),
+./Block/TopicList.php:			'render-function' => function( $templating )
+./Block/TopicList.php:				return $templating->renderTopic( $topicPost, $block, true );
+./Block/TopicList.php:		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
+./Block/TopicList.php:		if ( $this->workflow->isNew() ) {
+./Block/TopicList.php:			$templating->render( "flow:topiclist.html.php", array(
+./Block/TopicList.php:				'user' => $this->user,
+./Block/TopicList.php:			$findOptions = $this->getFindOptions( $options );
+./Block/TopicList.php:			$page = $this->getPage( $findOptions );
+./Block/TopicList.php:			$topics = $this->getTopics( $page );
+./Block/TopicList.php:			$templating->render( "flow:topiclist.html.php", array(
+./Block/TopicList.php:				'user' => $this->user,
+./Block/TopicList.php:		if ( ! $this->workflow->isNew() ) {
+./Block/TopicList.php:			$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
+./Block/TopicList.php:			$page = $this->getPage( $findOptions );
+./Block/TopicList.php:			$topics = $this->getTopics( $page );
+./Block/TopicList.php:				$output[] = $topic->renderAPI( $templating, $options );
+./Block/TopicList.php:			$output['paging'] = $page->getPagingLinks();
+./Block/TopicList.php:		$limit = $this->getLimit( $requestOptions );
+./Block/TopicList.php:		if ( isset( $requestOptions['offset-id'] ) ) {
+./Block/TopicList.php:			$findOptions['pager-offset'] = UUID::create( $requestOptions['offset-id'] );
+./Block/TopicList.php:			$findOptions['pager-offset'] = intval( $requestOptions['offset'] );
+./Block/TopicList.php:		if ( isset( $requestOptions['offset-dir'] ) ) {
+./Block/TopicList.php:			$findOptions['pager-dir'] = $requestOptions['offset-dir'];
+./Block/TopicList.php:			$findOptions['offset-elastic'] = false;
+./Block/TopicList.php:		$findOptions['pager-limit'] = $limit;
+./Block/TopicList.php:			$this->storage->getStorage( 'TopicListEntry' ),
+./Block/TopicList.php:			array( 'topic_list_id' => $this->workflow->getId() ),
+./Block/TopicList.php:		return $pager->getPage();
+./Block/TopicList.php:		$found = $page->getResults();
+./Block/TopicList.php:			$topicIds[] = $entry->getId();
+./Block/TopicList.php:		$roots = $this->rootLoader->getMulti( $topicIds );
+./Block/TopicList.php:		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
+./Block/TopicList.php:			$hexId = $workflow->getId()->getHex();
+./Block/TopicList.php:			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
+./Block/TopicList.php:			$topics[$hexId]->init( $this->action, $this->user );
+./Block/Block.php:		$this->workflow = $workflow;
+./Block/Block.php:		$this->storage = $storage;
+./Block/Block.php:		$this->notificationController = $notificationController;
+./Block/Block.php:		$this->action = $action;
+./Block/Block.php:		$this->user = $user;
+./Block/Block.php:		if ( false === array_search( $action, $this->supportedActions ) ) {
+./Block/Block.php:		$this->user = $user;
+./Block/Block.php:		$this->submitted = $data;
+./Block/Block.php:		$this->validate();
+./Block/Block.php:		return !$this->errors;
+./Block/Block.php:			return (bool) $this->errors;
+./Block/Block.php:		return isset( $this->errors[$type] );
+./Block/Block.php:		return $this->errors;
+./Block/Block.php:		return isset( $this->errors[$type] ) ? $this->errors[$type] : null;
+./Block/Block.php:		return $this->workflow;
+./Block/Block.php:		return $this->workflow->getId();
+./Block/Topic.php:		'edit-post', 'reply',
+./Block/Topic.php:		'hide-post', 'delete-post', 'censor-post', 'restore-post',
+./Block/Topic.php:		'hide-topic', 'edit-title',
+./Block/Topic.php:			$this->root = $root;
+./Block/Topic.php:			$this->rootLoader = $root;
+./Block/Topic.php:		switch( $this->action ) {
+./Block/Topic.php:		case 'edit-title':
+./Block/Topic.php:			$this->validateEditTitle();
+./Block/Topic.php:			$this->validateReply();
+./Block/Topic.php:		case 'hide-topic':
+./Block/Topic.php:			// this should be a workflow level action, not implemented per-block
+./Block/Topic.php:			$this->validateHideTopic();
+./Block/Topic.php:		case 'hide-post':
+./Block/Topic.php:			$this->validateModeratePost( AbstractRevision::MODERATED_HIDDEN );
+./Block/Topic.php:		case 'delete-post':
+./Block/Topic.php:			$this->validateModeratePost( AbstractRevision::MODERATED_DELETED );
+./Block/Topic.php:		case 'censor-post':
+./Block/Topic.php:			$this->validateModeratePost( AbstractRevision::MODERATED_CENSORED );
+./Block/Topic.php:		case 'restore-post':
+./Block/Topic.php:			$this->validateRestorePost();
+./Block/Topic.php:		case 'edit-post':
+./Block/Topic.php:			$this->validateEditPost();
+./Block/Topic.php:			throw new \MWException( "Unexpected action: {$this->action}" );
+./Block/Topic.php:		if ( $this->workflow->isNew() ) {
+./Block/Topic.php:			$this->errors['content'] = wfMessage( 'flow-no-existing-workflow' );
+./Block/Topic.php:		} elseif ( empty( $this->submitted['content'] ) ) {
+./Block/Topic.php:			$this->errors['content'] = wfMessage( 'flow-missing-title-content' );
+./Block/Topic.php:			$topicTitle = $this->loadTopicTitle();
+./Block/Topic.php:			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'flow-rev-message-edit-title' );
+./Block/Topic.php:			$this->setNotification(
+./Block/Topic.php:				'flow-topic-renamed',
+./Block/Topic.php:					'old-subject' => $topicTitle->getContent( null, 'wikitext' ),
+./Block/Topic.php:					'new-subject' => $this->newRevision->getContent( null, 'wikitext' ),
+./Block/Topic.php:		if ( empty( $this->submitted['content'] ) ) {
+./Block/Topic.php:			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
+./Block/Topic.php:		if ( !isset( $this->submitted['replyTo'] ) ) {
+./Block/Topic.php:			$this->errors['replyTo'] = wfMessage( 'flow-error-missing-replyto' );
+./Block/Topic.php:			$this->submitted['replyTo'] = UUID::create( $this->submitted['replyTo']  );
+./Block/Topic.php:			$post = $this->storage->get( 'PostRevision', $this->submitted['replyTo'] );
+./Block/Topic.php:				$this->errors['replyTo'] = wfMessage( 'flow-error-invalid-replyto' );
+./Block/Topic.php:				// answer: might not belong, and probably does matter due to inter-wiki interaction
+./Block/Topic.php:				$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
+./Block/Topic.php:				$this->setNotification(
+./Block/Topic.php:					'flow-post-reply',
+./Block/Topic.php:						'reply-to' => $post,
+./Block/Topic.php:						'content' => $this->submitted['content'],
+./Block/Topic.php:						'topic-title' => $this->getTitleText(),
+./Block/Topic.php:		if ( !$this->workflow->lock( $this->user ) ) {
+./Block/Topic.php:			$this->errors['hide-topic'] = wfMessage( 'flow-error-hide-failure' );
+./Block/Topic.php:		if ( empty( $this->submitted['postId'] ) ) {
+./Block/Topic.php:			$this->errors['moderate-post'] = wfMessage( 'flow-error-missing-postId' );
+./Block/Topic.php:		$post = $this->loadRequestedPost( $this->submitted['postId'] );
+./Block/Topic.php:			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-postId' );
+./Block/Topic.php:		$this->newRevision = $post->moderate( $this->user, $moderationState );
+./Block/Topic.php:		if ( !$this->newRevision ) {
+./Block/Topic.php:			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
+./Block/Topic.php:		if ( empty( $this->submitted['postId'] ) ) {
+./Block/Topic.php:			$this->errors['restore-post'] = wfMessage( 'flow-error-missing-postId' );
+./Block/Topic.php:		$post = $this->loadRequestedPost( $this->submitted['postId'] );
+./Block/Topic.php:			$this->errors['restore-post'] = wfMessage( 'flow-error-invalid-postId' );
+./Block/Topic.php:		$this->newRevision = $post->restore( $this->user );
+./Block/Topic.php:		if ( !$this->newRevision ) {
+./Block/Topic.php:			$this->errors['restore-post'] = wfMessage( 'flow-error-not-allowed' );
+./Block/Topic.php:		if ( empty( $this->submitted['postId'] ) ) {
+./Block/Topic.php:			$this->errors['edit-post'] = wfMessage( 'flow-no-post-provided' );
+./Block/Topic.php:		if ( empty( $this->submitted['content'] ) ) {
+./Block/Topic.php:			$this->errors['content'] = wfMessage( 'flow-missing-post-content' );
+./Block/Topic.php:		$post = $this->loadRequestedPost( $this->submitted['postId'] );
+./Block/Topic.php:			$this->errors['edit-post'] = wfMessage( 'flow-post-not-found' );
+./Block/Topic.php:		if ( !$post->isAllowedToEdit( $this->user ) ) {
+./Block/Topic.php:			$this->errors['edit-post'] = wfMessage( 'flow-error-edit-restricted' );
+./Block/Topic.php:		$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
+./Block/Topic.php:		$this->setNotification(
+./Block/Topic.php:			'flow-post-edited',
+./Block/Topic.php:				'content' => $this->submitted['content'],
+./Block/Topic.php:				'topic-title' => $this->getTitleText(),
+./Block/Topic.php:		$this->workflow->updateLastModified();
+./Block/Topic.php:		switch( $this->action ) {
+./Block/Topic.php:		case 'hide-post':
+./Block/Topic.php:		case 'delete-post':
+./Block/Topic.php:		case 'censor-post':
+./Block/Topic.php:		case 'restore-post':
+./Block/Topic.php:		case 'edit-title':
+./Block/Topic.php:		case 'edit-post':
+./Block/Topic.php:			if ( $this->newRevision === null ) {
+./Block/Topic.php:			$this->storage->put( $this->newRevision );
+./Block/Topic.php:			$this->storage->put( $this->workflow );
+./Block/Topic.php:			$newRevision = $this->newRevision;
+./Block/Topic.php:			$rootPost = $this->loadRootPost();
+./Block/Topic.php:			$newRevision->setChildren( array() );
+./Block/Topic.php:			if ( $this->action == 'edit-title' ) {
+./Block/Topic.php:					return $newRevision->getContent( null, 'wikitext' );
+./Block/Topic.php:					return $templating->renderPost( $newRevision, $self, $rootPost );
+./Block/Topic.php:			if ( is_array( $this->notification ) ) {
+./Block/Topic.php:				$this->notification['params']['revision'] = $this->newRevision;
+./Block/Topic.php:				$this->notificationController->notifyPostChange( $this->notification['type'], $this->notification['params'] );
+./Block/Topic.php:				'new-revision-id' => $this->newRevision->getRevisionId(),
+./Block/Topic.php:				'render-function' => $renderFunction,
+./Block/Topic.php:		case 'delete-topic':
+./Block/Topic.php:			$this->storage->put( $this->workflow );
+./Block/Topic.php:			throw new \MWException( "Unknown commit action: {$this->action}" );
+./Block/Topic.php:		$templating->getOutput()->addModules( 'ext.flow.discussion' );
+./Block/Topic.php:		switch( $this->action ) {
+./Block/Topic.php:		case 'post-history':
+./Block/Topic.php:			return $this->renderPostHistory( $templating, $options, $return );
+./Block/Topic.php:		case 'topic-history':
+./Block/Topic.php:			return $templating->render( "flow:topic-history.html.php", array(
+./Block/Topic.php:				'topic' => $this->workflow,
+./Block/Topic.php:				'history' => $this->loadTopicHistory(),
+./Block/Topic.php:		case 'edit-post':
+./Block/Topic.php:			return $this->renderEditPost( $templating, $options, $return );
+./Block/Topic.php:		case 'edit-title':
+./Block/Topic.php:			return $templating->render( "flow:edit-title.html.php", array(
+./Block/Topic.php:				'topic' => $this->workflow,
+./Block/Topic.php:				'topicTitle' => $this->loadTopicTitle(),
+./Block/Topic.php:			$root = $this->loadRootPost();
+./Block/Topic.php:				$indexDescendant = $root->registerDescendant( $options['postId'] );
+./Block/Topic.php:				$post = $root->getRecursiveResult( $indexDescendant );
+./Block/Topic.php:				return $templating->renderPost(
+./Block/Topic.php:				return $templating->renderTopic(
+./Block/Topic.php:		return $templating->render( "flow:post-history.html.php", array(
+./Block/Topic.php:			'topic' => $this->workflow,
+./Block/Topic.php:			'history' => $this->getHistory( $options['postId'] ),
+./Block/Topic.php:		$post = $this->loadRequestedPost( $options['postId'] );
+./Block/Topic.php:		if ( $post->isModerated() ) {
+./Block/Topic.php:		return $templating->render( "flow:edit-post.html.php", array(
+./Block/Topic.php:			'topic' => $this->workflow,
+./Block/Topic.php:			'post' => $this->loadRequestedPost( $options['postId'] ),
+./Block/Topic.php:			$rootPost = $this->loadRootPost();
+./Block/Topic.php:			$indexDescendant = $rootPost->registerDescendant( $options['postId'] );
+./Block/Topic.php:			$post = $rootPost->getRecursiveResult( $indexDescendant );
+./Block/Topic.php:			return array( $this->renderPostAPI( $templating, $post, $options ) );
+./Block/Topic.php:			return $this->renderTopicAPI( $templating, $options );
+./Block/Topic.php:		$rootPost = $this->loadRootPost();
+./Block/Topic.php:		$topic = $this->workflow;
+./Block/Topic.php:			'title' => $rootPost->getContent( null, 'wikitext' ),
+./Block/Topic.php:			'topic-id' => $topic->getId()->getHex(),
+./Block/Topic.php:			$historyBatch = $this->getHistoryBatch( (array)$options['showhistoryfor'] );
+./Block/Topic.php:					$postId = $historyEntry->getPostId()->getHex();
+./Block/Topic.php:			$output['rendered'] = $templating->renderTopic( $rootPost, $this, true );
+./Block/Topic.php:		foreach( $rootPost->getChildren() as $child ) {
+./Block/Topic.php:			$output[] = $this->renderPostAPI( $templating, $child, $options );
+./Block/Topic.php:		$output['post-id'] = $post->getPostId()->getHex();
+./Block/Topic.php:		if ( $post->isModerated() ) {
+./Block/Topic.php:			$output['post-moderated'] = 'post-moderated';
+./Block/Topic.php:				'*' => $post->getContent( null, $contentFormat ),
+./Block/Topic.php:			$output['user'] = $post->getUserText();
+./Block/Topic.php:		if ( ! isset( $options['no-children'] ) ) {
+./Block/Topic.php:			foreach( $post->getChildren() as $child ) {
+./Block/Topic.php:				$children[] = $this->renderPostAPI( $templating, $child, $options );
+./Block/Topic.php:		$postId = $post->getPostId()->getHex();
+./Block/Topic.php:			$output['revisions'] = $this->getAPIHistory( $postId, $options['history'][$postId] );
+./Block/Topic.php:		$output['post-id'] = $postId;
+./Block/Topic.php:				'revision-id' => $revision->getRevisionId()->getHex(),
+./Block/Topic.php:				'revision-author' => $revision->getUserText(),
+./Block/Topic.php:				'revision-change-type' => $revision->getChangeType(),
+./Block/Topic.php:		return $this->storage->find(
+./Block/Topic.php:			$searchItems[$uuid->getHex()] = array(
+./Block/Topic.php:		$traversalQueue = array( $this->root );
+./Block/Topic.php:			foreach( $cur->getChildren() as $child ) {
+./Block/Topic.php:			$postId = $cur->getPostId()->getHex();
+./Block/Topic.php:		return $this->storage->findMulti(
+./Block/Topic.php:		if ( $this->root !== null ) {
+./Block/Topic.php:			return $this->root;
+./Block/Topic.php:		return $this->topicTitle = $this->root = $this->rootLoader->get( $this->workflow->getId() );
+./Block/Topic.php:		if ( $this->topicTitle === null ) {
+./Block/Topic.php:			$found = $this->storage->find(
+./Block/Topic.php:				array( 'tree_rev_descendant_id' => $this->workflow->getId() ),
+./Block/Topic.php:				$this->topicTitle = reset( $found );
+./Block/Topic.php:		return $this->topicTitle;
+./Block/Topic.php:		return $this->loadTopicTitle()->getContent( null, 'wikitext' );
+./Block/Topic.php:		$found = $this->storage->find(
+./Block/Topic.php:			array( 'topic_root' => $this->workflow->getId() ),
+./Block/Topic.php:			throw new \MWException( "Unable to load topic history for topic " . $this->workflow->getId()->getHex() );
+./Block/Topic.php:		if ( !isset( $this->requestedPost[$postId] ) ) {
+./Block/Topic.php:			$found = $this->storage->find(
+./Block/Topic.php:				$this->requestedPost[$postId] = reset( $found );
+./Block/Topic.php:				$this->requestedPost[$postId] = false;
+./Block/Topic.php:		return $this->requestedPost[$postId] ?: null;
+./Block/Topic.php:		return isset( $this->submitted['replyTo'] ) ? $this->submitted['replyTo'] : null;
+./Block/Topic.php:		$repliedTo = $this->getRepliedTo();
+./Block/Topic.php:		return $repliedTo instanceof UUID ? $repliedTo->getHex() : $repliedTo;
+./Block/Topic.php:		$this->notification = array(
+./Block/Topic.php:					'topic-workflow' => $this->workflow,
+./Block/Topic.php:					'title' => $this->workflow->getArticleTitle(),
+./Block/Topic.php:					'user' => $this->user,
+./Data/MultiDimArray.php: * This object can be used to easily set keys in a multi-dimensional array.
+./Data/MultiDimArray.php: *   var_export( $arr->all() );
+./Data/MultiDimArray.php:		return $this->data;
+./Data/MultiDimArray.php:		$it = new RecursiveArrayIterator( $this->data );
+./Data/MultiDimArray.php:		$data =& $this->data;
+./Data/MultiDimArray.php:		$data =& $this->data;
+./Data/MultiDimArray.php:			$data =& $this->data;
+./Data/MultiDimArray.php:		$data =& $this->data;
+./Data/MultiDimArray.php:// Add query arrays with a multi-dimensional position
+./Data/MultiDimArray.php:		$this->queryKeys = $queryKeys;
+./Data/MultiDimArray.php:		$this->dimensions = $dimensions;
+./Data/MultiDimArray.php:		$this->desiredOrder = new MultiDimArray;
+./Data/MultiDimArray.php:		$this->queryMap = new MultiDimArray;
+./Data/MultiDimArray.php:		$this->result = new MultiDimArray;
+./Data/MultiDimArray.php:		if ( $dim !== $this->dimensions ) {
+./Data/MultiDimArray.php:			throw new \InvalidArgumentException( "Expection position with {$this->dimensions} dimensions, received $dim" );
+./Data/MultiDimArray.php:		$query = ObjectManager::splitFromRow( $query, $this->queryKeys );
+./Data/MultiDimArray.php:		$this->desiredOrder[$position] = $query;
+./Data/MultiDimArray.php:		if ( !isset( $this->queryMap[$query] ) ) {
+./Data/MultiDimArray.php:			$this->queries[] = $query;
+./Data/MultiDimArray.php:			$this->queryMap[$query] = true;
+./Data/MultiDimArray.php:		$query = ObjectManager::splitFromRow( $query, $this->queryKeys );
+./Data/MultiDimArray.php:		$this->result[$query] = $result;
+./Data/MultiDimArray.php:		return $this->queries;
+./Data/MultiDimArray.php:		return self::sortResult( $this->desiredOrder->all(), $this->result, $this->dimensions );
+./Data/MultiDimArray.php:				$final[$position] = self::sortResult( $query, $result, $dimensions - 1 );
+./Data/Pager.php:		$this->storage = $storage;
+./Data/Pager.php:		$this->sort = $storage->getIndexFor(
+./Data/Pager.php:			array( 'limit' => $options['pager-limit'] )
+./Data/Pager.php:		)->getSort();
+./Data/Pager.php:		$this->query = $query;
+./Data/Pager.php:		$this->options = $options;
+./Data/Pager.php:		$direction = $this->getDirection( $this->options );
+./Data/Pager.php:		$offset = $this->getOffset( $this->options );
+./Data/Pager.php:		$pageLimit = $this->getLimit( $this->options );
+./Data/Pager.php:		$options = $this->options + array(
+./Data/Pager.php:			'offset-dir' => $direction,
+./Data/Pager.php:			'offset-key' => $offset,
+./Data/Pager.php:			'offset-elastic' => true,
+./Data/Pager.php:		$results = $this->storage->find( $this->query, $options );
+./Data/Pager.php:		return $this->processPage( $direction, $offset, $pageLimit, $results );
+./Data/Pager.php:		return $this->defaultLimit;
+./Data/Pager.php:		$this->defaultLimit = $newLimit;
+./Data/Pager.php:				$pagingLinks['fwd'] = $this->makePagingLink(
+./Data/Pager.php:				$pagingLinks['rev'] = $this->makePagingLink(
+./Data/Pager.php:				$pagingLinks['rev'] = $this->makePagingLink(
+./Data/Pager.php:				$pagingLinks['fwd'] = $this->makePagingLink(
+./Data/Pager.php:		$offset = $this->storage->serializeOffset( $object, $this->sort );
+./Data/Pager.php:		if ( isset( $options['pager-dir'] ) ) {
+./Data/Pager.php:			if ( $this->validateDirection( $options['pager-dir'] ) ) {
+./Data/Pager.php:				$direction = $options['pager-dir'];
+./Data/Pager.php:		if ( isset( $options['pager-limit'] ) ) {
+./Data/Pager.php:			$requestedLimit = intval( $options['pager-limit'] );
+./Data/Pager.php:			if ( $requestedLimit > 0 && $requestedLimit < $this->getMaxLimit() ) {
+./Data/Pager.php:		return $this->getDefaultLimit();
+./Data/Pager.php:		if ( isset( $options['pager-offset'] ) ) {
+./Data/Pager.php:			return $options['pager-offset'];
+./Data/Pager.php:		$this->results = $results;
+./Data/Pager.php:		$this->pagingLinks = $pagingLinks;
+./Data/Pager.php:		$this->pager = $pager;
+./Data/Pager.php:		return $this->pager;
+./Data/Pager.php:		return $this->results;
+./Data/Pager.php:		if ( isset( $this->pagingLinks[$direction] ) ) {
+./Data/Pager.php:			return $this->pagingLinks[$direction];
+./Data/Pager.php:		return $this->pagingLinks;
+./Data/RootPostLoader.php:		$this->storage = $storage;
+./Data/RootPostLoader.php:		$this->treeRepo = $treeRepo;
+./Data/RootPostLoader.php:		$result = $this->getMulti( array( $topicId ) );
+./Data/RootPostLoader.php:		$allPostIds =  $this->fetchRelatedPostIds( $topicIds );
+./Data/RootPostLoader.php:		$found = $this->storage->findMulti( 'PostRevision', $queries, array(
+./Data/RootPostLoader.php:			if ( isset( $posts[$post->getPostId()->getHex()] ) ) {
+./Data/RootPostLoader.php:				throw new \Exception( 'Multiple results for id: ' . $post->getPostId()->getHex() );
+./Data/RootPostLoader.php:			$posts[$post->getPostId()->getHex()] = $post;
+./Data/RootPostLoader.php:			if ( $post->getReplyToId() ) {
+./Data/RootPostLoader.php:				$children[$post->getReplyToId()->getHex()][] = $post;
+./Data/RootPostLoader.php:			$prettyPostIds[] = $id->getHex();
+./Data/RootPostLoader.php:			// TODO: fake up a pseudo-post to hold the children? At this point in
+./Data/RootPostLoader.php:					return $b->compareCreateTime( $a );
+./Data/RootPostLoader.php:				$post->setChildren( $children[$postId] );
+./Data/RootPostLoader.php:				$post->setChildren( array() );
+./Data/RootPostLoader.php:			$roots[$id->getHex()] = $posts[$id->getHex()];
+./Data/RootPostLoader.php:		$nodeList = $this->treeRepo->fetchSubtreeNodeList( $postIds );
+./Data/RootPostLoader.php:			$retval[$id->getHex()] = $id;
+./Data/RecentChanges.php:		// Deletion. Not kinda-sorta deleted, like 100% GONE. Should never happen.
+./Data/RecentChanges.php:			$timestamp = $timestamp->getTimestamp();
+./Data/RecentChanges.php:		$title = $workflow->getArticleTitle();
+./Data/RecentChanges.php:			'rc_namespace' => $title->getNamespace(),
+./Data/RecentChanges.php:			'rc_title' => $title->getDBkey(),
+./Data/RecentChanges.php:				'flow-workflow-change' => array(
+./Data/RecentChanges.php:					'workflow' => $workflow->getId()->getHex(),
+./Data/RecentChanges.php:					'definition' => $workflow->getDefinitionId()->getHex(),
+./Data/RecentChanges.php:		return $dbw->insert( 'recentchanges', $attribs, __METHOD__ );
+./Data/RecentChanges.php:		$this->storage = $storage;
+./Data/RecentChanges.php:		$this->contLang = $contLang;
+./Data/RecentChanges.php:		$workflowId = $object->getWorkflowId();
+./Data/RecentChanges.php:		$workflow = $this->storage->get( 'Workflow', $workflowId );
+./Data/RecentChanges.php:			wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow for header " . $object->getRevisionId()->getHex() );
+./Data/RecentChanges.php:		$this->insert(
+./Data/RecentChanges.php:			$object->getChangeType(),
+./Data/RecentChanges.php:			$object->getRevisionId(),
+./Data/RecentChanges.php:				'revision' => $object->getRevisionId()->getHex(),
+./Data/RecentChanges.php:				'content' => $this->contLang->truncate( $object->getContent(), self::TRUNCATE_LENGTH ),
+./Data/RecentChanges.php:		$this->storage = $storage;
+./Data/RecentChanges.php:		$this->tree = $tree;
+./Data/RecentChanges.php:		$this->contLang = $contLang;
+./Data/RecentChanges.php:		$workflowId = $this->tree->findRoot( $object->getPostId() );
+./Data/RecentChanges.php:			wfWarn( __METHOD__ . ": could not locate root for post " . $object->getPostId()->getHex() );
+./Data/RecentChanges.php:		// These are likely already in the in-process cache
+./Data/RecentChanges.php:		$workflow = $this->storage->get( 'Workflow', $workflowId );
+./Data/RecentChanges.php:		$this->insert(
+./Data/RecentChanges.php:			$object->getChangeType(),
+./Data/RecentChanges.php:			$object->getRevisionId(),
+./Data/RecentChanges.php:				'post' => $object->getPostId()->getHex(),
+./Data/RecentChanges.php:				'revision' => $object->getRevisionId()->getHex(),
+./Data/RecentChanges.php:				'topic' => $this->getTopicTitle( $object ),
+./Data/RecentChanges.php:		if ( $rev->isTopicTitle() ) {
+./Data/RecentChanges.php:			return $rev->getContent( null, 'wikitext' );
+./Data/RecentChanges.php:		$topicTitleId = $this->tree->findRoot( $rev->getPostId() );
+./Data/RecentChanges.php:		$found = $this->storage->find(
+./Data/RecentChanges.php:		return $this->contLang->truncate(
+./Data/RecentChanges.php:			reset( $found )->getContent( null, 'wikitext' ),
+./Data/ObjectManager.php:// - But we want to be able to replace that cache with a buffered cache that flushes
+./Data/ObjectManager.php:// - Perhaps one buffered cache could wrap both redis and memcache? seems odd though
+./Data/ObjectManager.php:	 * @return array The resulting $row including any auto-assigned ids or false on failure
+./Data/ObjectManager.php:	 * post-processing by the caller.
+./Data/ObjectManager.php:	 * @param array $cached The multi-dimensional array results of BagOStuff::multiGet
+./Data/ObjectManager.php:	 * @param array $keyToQuery An array mapping memcache-key to the values used to generate that cache key
+./Data/ObjectManager.php:		$this->container = $container;
+./Data/ObjectManager.php:		$this->classMap = $classMap;
+./Data/ObjectManager.php:		if ( !isset( $this->classMap[$className] ) ) {
+./Data/ObjectManager.php:			throw new \Exception( "Request for '$className' is not in classmap: " . implode( ', ', array_keys( $this->classMap ) ) );
+./Data/ObjectManager.php:		return $this->container[$this->classMap[$className]];
+./Data/ObjectManager.php:		return $this->getStorage( get_class( $object ) )->put( $object );
+./Data/ObjectManager.php:			array( $this->getStorage( $className ), $method ),
+./Data/ObjectManager.php:		return $this->call( __FUNCTION__, func_get_args() );
+./Data/ObjectManager.php:		return $this->call( __FUNCTION__, func_get_args() );
+./Data/ObjectManager.php:		return $this->call( __FUNCTION__, func_get_args() );
+./Data/ObjectManager.php:		return $this->call( __FUNCTION__, func_get_args() );
+./Data/ObjectManager.php: * Denormalized indexes that are query-only.  The indexes used here must
+./Data/ObjectManager.php:		$this->mapper = $mapper;
+./Data/ObjectManager.php:		$this->storage = $storage;
+./Data/ObjectManager.php:		$this->indexes = $indexes;
+./Data/ObjectManager.php:		$this->lifecycleHandlers = array_merge( $indexes, $lifecycleHandlers );
+./Data/ObjectManager.php:		$result = $this->findMulti( array( $attributes ), $options );
+./Data/ObjectManager.php:		return $this->storage->getIterator();
+./Data/ObjectManager.php:		$index = $this->getIndexFor( $keys, $options );
+./Data/ObjectManager.php:		$res = $index->findMulti( $queries );
+./Data/ObjectManager.php:			list( $startPos, $limit ) = $this->getOffsetLimit( $rows, $index, $options );
+./Data/ObjectManager.php:				$retval[$i][$j] = $this->load( $rows[$j] );
+./Data/ObjectManager.php:		return $this->storage->getPrimaryKeyColumns();
+./Data/ObjectManager.php:		$result = $this->getMulti( array( $id ) );
+./Data/ObjectManager.php:		$pk = $this->storage->getPrimaryKeyColumns();
+./Data/ObjectManager.php:		$res = $this->findMulti( $queries );
+./Data/ObjectManager.php:		$limit = isset( $options['limit'] ) ? $options['limit'] : $index->getLimit();
+./Data/ObjectManager.php:		if ( ! isset( $options['offset-key'] ) ) {
+./Data/ObjectManager.php:		$offsetKey = $options['offset-key'];
+./Data/ObjectManager.php:			$offsetKey = $offsetKey->getBinary();
+./Data/ObjectManager.php:			isset( $options['offset-dir'] ) &&
+./Data/ObjectManager.php:			$options['offset-dir'] === 'rev'
+./Data/ObjectManager.php:		$offset = $this->getOffsetFromKey( $rows, $offsetKey, $index );
+./Data/ObjectManager.php:			$startPos = $offset - $limit;
+./Data/ObjectManager.php:					isset( $options['offset-elastic'] ) &&
+./Data/ObjectManager.php:					$options['offset-elastic'] === false
+./Data/ObjectManager.php:					// If non-elastic, then reduce the number of items shown commeasurately
+./Data/ObjectManager.php:			$comparisonValue = $index->compareRowToOffset( $row, $offsetKey );
+./Data/ObjectManager.php:		foreach ( $this->storage as $rows ) {
+./Data/ObjectManager.php:				call_user_func( $callback, $this->load( $row ) );
+./Data/ObjectManager.php:			$this->clear();
+./Data/ObjectManager.php:		foreach ( $this->indexes as $index ) {
+./Data/ObjectManager.php:			if ( !$index->canAnswer( $keys, $options ) ) {
+./Data/ObjectManager.php:			if ( $current === null || $index->getLimit() < $current->getLimit() ) {
+./Data/ObjectManager.php:			$count = count( $this->indexes );
+./Data/ObjectManager.php:		$object = $this->mapper->fromStorageRow( $row );
+./Data/ObjectManager.php:		foreach ( $this->lifecycleHandlers as $handler ) {
+./Data/ObjectManager.php:			$handler->onAfterLoad( $object, $row );
+./Data/ObjectManager.php:		$this->loaded = new SplObjectStorage;
+./Data/ObjectManager.php:		if ( isset( $this->loaded[$object] ) ) {
+./Data/ObjectManager.php:			$this->update( $object );
+./Data/ObjectManager.php:			$this->insert( $object );
+./Data/ObjectManager.php:		if ( !isset( $this->loaded[$object] ) ) {
+./Data/ObjectManager.php:			$this->loaded[$object] = $this->mapper->toStorageRow( $object );
+./Data/ObjectManager.php:			$row = $this->mapper->toStorageRow( $object );
+./Data/ObjectManager.php:			$stored = $this->storage->insert( $row );
+./Data/ObjectManager.php:			// propogate auto-id's and such back into $object
+./Data/ObjectManager.php:			$this->mapper->fromStorageRow( $stored, $object );
+./Data/ObjectManager.php:			foreach ( $this->lifecycleHandlers as $handler ) {
+./Data/ObjectManager.php:				$handler->onAfterInsert( $object, $stored );
+./Data/ObjectManager.php:			$this->loaded[$object] = $stored;
+./Data/ObjectManager.php:			$old = $this->loaded[$object];
+./Data/ObjectManager.php:			$new = $this->mapper->toStorageRow( $object );
+./Data/ObjectManager.php:			$this->storage->update( $old, $new );
+./Data/ObjectManager.php:			foreach ( $this->lifecycleHandlers as $handler ) {
+./Data/ObjectManager.php:				$handler->onAfterUpdate( $object, $old, $new );
+./Data/ObjectManager.php:			$this->loaded[$object] = $new;
+./Data/ObjectManager.php:			$old = $this->loaded[$object];
+./Data/ObjectManager.php:			$this->storage->remove( $old );
+./Data/ObjectManager.php:			foreach ( $this->lifecycleHandlers as $handler ) {
+./Data/ObjectManager.php:				$handler->onAfterRemove( $object, $old );
+./Data/ObjectManager.php:			unset( $this->loaded[$object] );
+./Data/ObjectManager.php:		$this->loaded = new SplObjectStorage;
+./Data/ObjectManager.php:		$this->loaded[$object] = $row;
+./Data/ObjectManager.php:		$row = $this->mapper->toStorageRow( $object );
+./Data/ObjectManager.php:				$value = UUID::create( $value )->getHex();
+./Data/ObjectManager.php:		$this->toStorageRow = $toStorageRow;
+./Data/ObjectManager.php:		$this->fromStorageRow = $fromStorageRow;
+./Data/ObjectManager.php:		return call_user_func( $this->toStorageRow, $object );
+./Data/ObjectManager.php:		return call_user_func( $this->fromStorageRow, $row, $object );
+./Data/ObjectManager.php: * Doesn't support auto-increment pk yet
+./Data/ObjectManager.php:		$this->dbFactory = $dbFactory;
+./Data/ObjectManager.php:		$this->table = $table;
+./Data/ObjectManager.php:		$this->primaryKey = $primaryKey;
+./Data/ObjectManager.php:	// Does not support auto-increment id yet
+./Data/ObjectManager.php:		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
+./Data/ObjectManager.php:			$this->table,
+./Data/ObjectManager.php:		$pk = ObjectManager::splitFromRow( $old, $this->primaryKey );
+./Data/ObjectManager.php:			$missing = array_diff( $this->primaryKey, array_keys( $old ) );
+./Data/ObjectManager.php:		$dbw = $this->dbFactory->getDB( DB_MASTER );
+./Data/ObjectManager.php:		$res = $dbw->update( $this->table, $updates, UUID::convertUUIDs( $pk ), __METHOD__ );
+./Data/ObjectManager.php:		// $dbw->update returns boolean true/false as $res
+./Data/ObjectManager.php:		return $res && $dbw->affectedRows();
+./Data/ObjectManager.php:		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
+./Data/ObjectManager.php:			$missing = array_diff( $this->primaryKey, array_keys( $row ) );
+./Data/ObjectManager.php:		$dbw = $this->dbFactory->getDB( DB_MASTER );
+./Data/ObjectManager.php:		$res = $dbw->delete( $this->table, UUID::convertUUIDs( $pk ), __METHOD__ );
+./Data/ObjectManager.php:		return $res && $dbw->affectedRows();
+./Data/ObjectManager.php:		wfDebug( "Running search on table {$this->table}\n" );
+./Data/ObjectManager.php:				$value = $value->getHex();
+./Data/ObjectManager.php:			wfDebug( " -- $key = $value\n" );
+./Data/ObjectManager.php:		$res = $this->dbFactory->getDB( DB_MASTER )->select(
+./Data/ObjectManager.php:			$this->table,
+./Data/ObjectManager.php:			$result[$key] = $this->find( $query, $options );
+./Data/ObjectManager.php:		return $this->fallbackFindMulti( $queries, $options );
+./Data/ObjectManager.php:			$this->dbFactory->getDB( DB_MASTER ),
+./Data/ObjectManager.php:			$this->table,
+./Data/ObjectManager.php:			$this->primaryKey,
+./Data/ObjectManager.php:		return $this->primaryKey;
+./Data/ObjectManager.php:		$this->cache = $cache;
+./Data/ObjectManager.php:		$this->storage = $storage;
+./Data/ObjectManager.php:		$this->prefix = $prefix;
+./Data/ObjectManager.php:		$this->rowCompactor = new FeatureCompactor( $indexedColumns );
+./Data/ObjectManager.php:		$this->indexed = $indexedColumns;
+./Data/ObjectManager.php:		$this->indexedOrdered = $indexedColumns;
+./Data/ObjectManager.php:	 * array_combine( $index->getPrimaryKeyColumns(), $primaryKeyValues )
+./Data/ObjectManager.php:		return $this->indexed;
+./Data/ObjectManager.php:		if ( $featureColumns !== $this->indexedOrdered ) {
+./Data/ObjectManager.php:			if ( $max > $this->getLimit() ) {
+./Data/ObjectManager.php:		return isset( $this->options['sort'] ) ? $this->options['sort'] : false;
+./Data/ObjectManager.php:		$sortFields = $this->getSort();
+./Data/ObjectManager.php:				return -1;
+./Data/ObjectManager.php:		$indexed = ObjectManager::splitFromRow( $new , $this->indexed );
+./Data/ObjectManager.php:		// is un-indexable a bail-worthy occasion? Probably not but makes debugging easier
+./Data/ObjectManager.php:		$compacted = $this->rowCompactor->compactRow( $new );
+./Data/ObjectManager.php:		if ( !$this->maybeCreateIndex( $indexed, $new, $compacted ) ) {
+./Data/ObjectManager.php:			$this->addToIndex( $indexed, $compacted );
+./Data/ObjectManager.php:		$oldIndexed = ObjectManager::splitFromRow( $old, $this->indexed );
+./Data/ObjectManager.php:		$newIndexed = ObjectManager::splitFromRow( $new, $this->indexed );
+./Data/ObjectManager.php:		$oldCompacted = $this->rowCompactor->compactRow( $old );
+./Data/ObjectManager.php:		$newCompacted = $this->rowCompactor->compactRow( $new );
+./Data/ObjectManager.php:			$this->replaceInIndex( $oldIndexed, $oldCompacted, $newCompacted );
+./Data/ObjectManager.php:			$this->removeFromIndex( $oldIndexed, $oldCompacted );
+./Data/ObjectManager.php:			$this->addToIndex( $newIndexed, $newCompacted );
+./Data/ObjectManager.php:		$indexed = ObjectManager::splitFromRow( $old, $this->indexed );
+./Data/ObjectManager.php:		$this->removeFromIndex( $indexed, $old );
+./Data/ObjectManager.php:		$results = $this->findMulti( array( $attributes ) );
+./Data/ObjectManager.php:			if ( array_keys( $query ) !== $this->indexedOrdered ) {
+./Data/ObjectManager.php:			$key = $this->cacheKey( $query );
+./Data/ObjectManager.php:		$cached = $this->cache->getMulti( array_keys( $keyToIdx ) );
+./Data/ObjectManager.php:		foreach( $this->rowCompactor->expandCacheResult( $cached, $keyToQuery ) as $key => $rows ) {
+./Data/ObjectManager.php:		return $this->backingStoreFindMulti( $queries, $idxToKey, $results );
+./Data/ObjectManager.php:		$stored = $this->storage->findMulti( $queries, $this->queryOptions() );
+./Data/ObjectManager.php:						throw new \Exception( "Received non-scalar row value for '$k' from: " . get_class( $this->storage ) );
+./Data/ObjectManager.php:			$this->cache->add( $idxToKey[$idx], $this->rowCompactor->compactRows( $rows ) );
+./Data/ObjectManager.php:		$this->removeFromIndex( $indexed, $old );
+./Data/ObjectManager.php:		$this->addToIndex( $indexed, $new );
+./Data/ObjectManager.php:				$attributes[$key] = $attr->getHex();
+./Data/ObjectManager.php:				$attributes[$key] = $uuid->getHex();
+./Data/ObjectManager.php:		return wfForeignMemcKey( $db, '', $this->prefix, implode( ':', $attributes ) );
+./Data/ObjectManager.php:		$this->cache->set( $this->cacheKey( $indexed ), array( $row ) );
+./Data/ObjectManager.php:		$this->cache->delete( $this->cacheKey( $indexed ) );
+./Data/ObjectManager.php:		$this->cache->set( $this->cacheKey( $indexed ), array( $newRow ) );
+./Data/ObjectManager.php:		$this->options = $options + array(
+./Data/ObjectManager.php:		if ( !is_array( $this->options['sort'] ) ) {
+./Data/ObjectManager.php:			$this->options['sort'] = array( $this->options['sort'] );
+./Data/ObjectManager.php:		if ( $this->options['shallow'] ) {
+./Data/ObjectManager.php:			$this->rowCompactor = new ShallowCompactor( $this->rowCompactor, $this->options['shallow'], $this->options['sort'] );
+./Data/ObjectManager.php:			return $options['sort'] === $this->options['sort']
+./Data/ObjectManager.php:				&& $options['order'] === $this->options['order'];
+./Data/ObjectManager.php:		return $this->options['limit'];
+./Data/ObjectManager.php:		if ( call_user_func( $this->options['create'], $sourceRow ) ) {
+./Data/ObjectManager.php:			$this->cache->set( $this->cacheKey( $indexed ), array( $compacted ) );
+./Data/ObjectManager.php:		$this->cache->merge(
+./Data/ObjectManager.php:			$this->cacheKey( $indexed ),
+./Data/ObjectManager.php:				$retval = $self->sortIndex( $retval );
+./Data/ObjectManager.php:				$retval = $self->limitIndexSize( $retval );
+./Data/ObjectManager.php:		$this->cache->merge(
+./Data/ObjectManager.php:			$this->cacheKey( $indexed ),
+./Data/ObjectManager.php:		$this->cache->merge(
+./Data/ObjectManager.php:			$this->cacheKey( $indexed ),
+./Data/ObjectManager.php:				$retval = $self->sortIndex( $retval );
+./Data/ObjectManager.php:				$retval = $self->limitIndexSize( $retval );
+./Data/ObjectManager.php:		usort( $values, new SortArrayByKeys( $this->options['sort'], true ) );
+./Data/ObjectManager.php:		if ( $this->options['order'] === 'DESC' ) {
+./Data/ObjectManager.php:		return array_slice( $values, 0, $this->options['limit'] );
+./Data/ObjectManager.php:		$options = array( 'LIMIT' => $this->options['limit'] );
+./Data/ObjectManager.php:		$order = $this->options['order'];
+./Data/ObjectManager.php:		foreach ( $this->options['sort'] as $key ) {
+./Data/ObjectManager.php: * Re-adds them when retreiving from cache.
+./Data/ObjectManager.php:		$this->indexed = $indexedColumns;
+./Data/ObjectManager.php:		foreach ( $this->indexed as $key ) {
+./Data/ObjectManager.php:	 * These values are re-added to the results found in memcache.
+./Data/ObjectManager.php:		$this->inner = $inner;
+./Data/ObjectManager.php:		$this->shallow = $shallow;
+./Data/ObjectManager.php:		$this->sort = $sortedColumns;
+./Data/ObjectManager.php:		$keys = array_merge( $this->shallow->getPrimaryKeyColumns(), $this->sort );
+./Data/ObjectManager.php:		return $this->inner->compactRow( $row );
+./Data/ObjectManager.php:		$results = $this->inner->expandCacheResult( $cached, $keyToQuery );
+./Data/ObjectManager.php:		$duplicator = new ResultDuplicator( $this->shallow->getPrimaryKeyColumns(), 2 );
+./Data/ObjectManager.php:				$duplicator->add( $row, array( $i, $j ) );
+./Data/ObjectManager.php:		$innerResult = $this->shallow->findMulti( $duplicator->getUniqueQueries() );
+./Data/ObjectManager.php:			$duplicator->merge( $first, $first );
+./Data/ObjectManager.php:		return $duplicator->getResult( /* strict = */ true );
+./Data/ObjectManager.php:		$this->keys = $keys;
+./Data/ObjectManager.php:		$this->strict = $strict;
+./Data/ObjectManager.php:		return self::compare( $a, $b, $this->keys, $this->strict );
+./Data/ObjectManager.php:			return isset( $b[$key] ) ? -1 : 0;
+./Data/ObjectManager.php:			return $a[$key] > $b[$key] ? 1 : -1;
+./Data/ObjectManager.php:		if ( array_key_exists( $key, $this->internal ) ) {
+./Data/ObjectManager.php:			return $this->internal;
+./Data/ObjectManager.php:		return $this->internal[$key] = parent::get( $key );
+./Data/ObjectManager.php:			if ( array_key_exists( $key, $this->internal ) ) {
+./Data/ObjectManager.php:				if ( $this->internal[$key] !== false ) {
+./Data/ObjectManager.php:					$found[$key] = $this->internal[$key];
+./Data/ObjectManager.php:				$this->internal[$key] = $found[$key] = $value;
+./Data/ObjectManager.php:				$this->internal[$key] = false;
+./Data/ObjectManager.php:		if ( $this->buffer === null ) {
+./Data/ObjectManager.php:			if ( $this->cache->add( $key, $value, $exptime ) ) {
+./Data/ObjectManager.php:				$this->internal[$key] = $value;
+./Data/ObjectManager.php:			$this->buffer[] = array(
+./Data/ObjectManager.php:			if ( !array_key_exists( $key, $this->internal ) || $this->internal[$key] === false ) {
+./Data/ObjectManager.php:				$this->internal[$key] = $value;
+./Data/ObjectManager.php:		$this->internal[$key] = $value;
+./Data/ObjectManager.php:		$this->cache = $cache;
+./Data/ObjectManager.php:		return $this->cache->get( $key );
+./Data/ObjectManager.php:		return $this->cache->getMulti( $keys );
+./Data/ObjectManager.php:		if ( $this->buffer === null ) {
+./Data/ObjectManager.php:			$this->cache->add( $key, $value, $exptime );
+./Data/ObjectManager.php:			$this->buffer[] = array(
+./Data/ObjectManager.php:		if ( $this->buffer === null ) {
+./Data/ObjectManager.php:			$this->cache->set( $key, $value, $exptime );
+./Data/ObjectManager.php:			$this->buffer[] = array(
+./Data/ObjectManager.php:		if ( $this->buffer === null ) {
+./Data/ObjectManager.php:			$this->cache->delete( $key, $time );
+./Data/ObjectManager.php:			$this->buffer[] = array(
+./Data/ObjectManager.php:		if ( $this->buffer === null ) {
+./Data/ObjectManager.php:			$this->cache->merge( $key, $callback, $exptime, $attempts );
+./Data/ObjectManager.php:			$this->buffer[] = array(
+./Data/ObjectManager.php:		if ( $this->buffer === null ) {
+./Data/ObjectManager.php:			$this->buffer = array();
+./Data/ObjectManager.php:		if ( $this->buffer === null ) {
+./Data/ObjectManager.php:		foreach ( $this->buffer as $row ) {
+./Data/ObjectManager.php:				array( $this->cache, $row['command'] ),
+./Data/ObjectManager.php:		$this->buffer = null;
+./Data/RevisionStorage.php:		$this->dbFactory = $dbFactory;
+./Data/RevisionStorage.php:		$this->externalStore = $externalStore;
+./Data/RevisionStorage.php:		$multi = $this->findMulti( array( $attributes ), $options );
+./Data/RevisionStorage.php:		$dbr = $this->dbFactory->getDB( DB_MASTER );
+./Data/RevisionStorage.php:		$res = $dbr->select(
+./Data/RevisionStorage.php:			array( $this->joinTable(), 'rev' => 'flow_revision' ),
+./Data/RevisionStorage.php:			array( 'rev' => array( 'JOIN', $this->joinField() . ' = rev_id' ) )
+./Data/RevisionStorage.php:			$retval[UUID::create( $row->rev_id )->getHex()] = (array) $row;
+./Data/RevisionStorage.php:			$res = $this->fallbackFindMulti( $queries, $options );
+./Data/RevisionStorage.php:			$res = $this->findMultiInternal( $queries, $options );
+./Data/RevisionStorage.php:		return $this->mergeExternalContent( $res );
+./Data/RevisionStorage.php:			$result[$key] = $this->findInternal( $attributes, $options );
+./Data/RevisionStorage.php:		$joinField = $this->joinField();
+./Data/RevisionStorage.php:			in_array( reset( $queriedKeys ), array( 'rev_id', $this->joinField() ) ) &&
+./Data/RevisionStorage.php:			in_array( reset( $options['ORDER BY'] ), array( 'rev_id DESC', "{$this->joinField()} DESC" ) )
+./Data/RevisionStorage.php:			return $this->findMostRecent( $queries );
+./Data/RevisionStorage.php:		return $this->fallbackFindMulti( $queries, $options );
+./Data/RevisionStorage.php:			$duplicator->add( $query, $idx );
+./Data/RevisionStorage.php:		$dbr = $this->dbFactory->getDB( DB_MASTER );
+./Data/RevisionStorage.php:		$res = $dbr->select(
+./Data/RevisionStorage.php:			$this->joinTable(),
+./Data/RevisionStorage.php:			array( $joinField => "MAX( {$this->joinField()} )" ),
+./Data/RevisionStorage.php:			$this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ),
+./Data/RevisionStorage.php:			$revisionIds[] = $row->$joinField;
+./Data/RevisionStorage.php:		$res = $dbr->select(
+./Data/RevisionStorage.php:			array( 'flow_revision', 'rev' => $this->joinTable() ),
+./Data/RevisionStorage.php:			$duplicator->merge( $row, array( $row ) );
+./Data/RevisionStorage.php:		return $duplicator->getResult();
+./Data/RevisionStorage.php:				$conditions[] = $dbr->makeList( $query, LIST_AND );
+./Data/RevisionStorage.php:			return $dbr->makeList( $conditions, LIST_OR );
+./Data/RevisionStorage.php:		if ( $this->externalStore && !isset( $row['rev_content_url'] ) ) {
+./Data/RevisionStorage.php:			$row = $this->insertExternalStore( $row );
+./Data/RevisionStorage.php:		list( $rev, $related ) = $this->splitUpdate( $row );
+./Data/RevisionStorage.php:		$dbw = $this->dbFactory->getDB( DB_MASTER );
+./Data/RevisionStorage.php:		$res = $dbw->insert(
+./Data/RevisionStorage.php:		return $this->insertRelated( $row, $related );
+./Data/RevisionStorage.php:		$url = ExternalStore::insertWithFallback( $this->externalStore, $row['rev_content'] );
+./Data/RevisionStorage.php:		list( $rev, $related ) = $this->splitUpdate( $changeSet );
+./Data/RevisionStorage.php:			$dbw = $this->dbFactory->getDB( DB_MASTER );
+./Data/RevisionStorage.php:			$res = $dbw->update(
+./Data/RevisionStorage.php:			if ( !( $res && $dbw->affectedRows() ) ) {
+./Data/RevisionStorage.php:		return $this->updateRelated( $rev, $related );
+./Data/RevisionStorage.php:		$res = $this->dbFactory->getDB( DB_MASTER )->delete(
+./Data/RevisionStorage.php:		if ( !( $res && $res->numRows() ) ) {
+./Data/RevisionStorage.php:		return $this->removeRelated( $row );
+./Data/RevisionStorage.php:		$this->treeRepo = $treeRepo;
+./Data/RevisionStorage.php:		$dbw = $this->dbFactory->getDB( DB_MASTER );
+./Data/RevisionStorage.php:		$res = $dbw->insert(
+./Data/RevisionStorage.php:			$this->joinTable(),
+./Data/RevisionStorage.php:			$res = (bool) $this->treeRepo->insert(
+./Data/RevisionStorage.php:	// and we arn't going to re-parent its children;
+./Data/RevisionStorage.php:		return $this->dbFactory->getDB( DB_MASTER )->delete(
+./Data/RevisionStorage.php:			$this->joinTable(),
+./Data/RevisionStorage.php:			array( $this-joinField() => $row['rev_id'] )
+./Data/RevisionStorage.php:		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
+./Data/RevisionStorage.php:			$this->joinTable(),
+./Data/RevisionStorage.php:		return $this->dbFactory->getDB( DB_MASTER )->delete(
+./Data/RevisionStorage.php:			$this->joinTable(),
+./Data/RevisionStorage.php:			array( $this-joinField() => $row['rev_id'] )
+./Data/RevisionStorage.php:		$this->treeRepository = $treeRepo;
+./Data/RevisionStorage.php:		$new['topic_root'] = $this->treeRepository->findRoot( UUID::create( $new['tree_rev_descendant_id'] ) )->getBinary();
+./Data/RevisionStorage.php:		$old['topic_root'] = $new['topic_root'] = $this->treeRepository->findRoot( UUID::create( $old['tree_rev_descendant_id'] ) )->getBinary();
+./Data/RevisionStorage.php:		$old['topic_root'] = $this->treeRepository->findRoot( UUID::create( $old['tree_rev_descendant_id'] ) );
+./Data/RevisionStorage.php:		// This isn't a hot path(should be pre-populated into index) but we still dont want
+./Data/RevisionStorage.php:		$nodeList = $this->treeRepository->fetchSubtreeNodeList( $roots );
+./Data/RevisionStorage.php:			$nodes = $nodeList[$features['topic_root']->getHex()];
+./Data/RevisionStorage.php:		$res = $this->storage->findMulti( $descendantQueries, $this->queryOptions() );
+./Data/RevisionStorage.php:			$this->cache->add( $idxToKey[$idx], $this->rowCompactor->compactRows( $rows ) );
+./Data/RevisionStorage.php: * This assists in performing client-side 1-to-1 joins.  It collects the foreign key
+./Data/RevisionStorage.php: * from a multi-dimensional array, queries a callable for the foreign key values and
+./Data/RevisionStorage.php:	 * Same as self::merge, but for 3-dimensional source arrays
+./api/ApiFlow.php:		$this->container = Flow\Container::getContainer();
+./api/ApiFlow.php:		$params = $this->extractRequestParams();
+./api/ApiFlow.php:			$this->dieUsage( 'missing-param', 'One of workflow or page parameters must be provided' );
+./api/ApiFlow.php:		$this->loader = $this->container['factory.loader.workflow']
+./api/ApiFlow.php:			->createWorkflowLoader( $page, $id );
+./api/ApiFlow.php:		$request = new DerivativeRequest( $this->getContext()->getRequest(), $requestParams, true );
+./api/ApiFlow.php:		$blocks = $this->loader->createBlocks();
+./api/ApiFlow.php:		$user = $this->getContext()->getUser();
+./api/ApiFlow.php:			$block->init( $action, $user );
+./api/ApiFlow.php:		$blocksToCommit = $this->loader->handleSubmit( $action, $blocks, $user, $request );
+./api/ApiFlow.php:			$commitResults = $this->loader->commit( $this->loader->getWorkflow(), $blocksToCommit );
+./api/ApiFlow.php:				$savedBlocks[] = $block->getName();
+./api/ApiFlow.php:				$output[$action]['result'][$key] = $this->processCommitResult( $value, $doRender );
+./api/ApiFlow.php:				if ( $block->hasErrors() ) {
+./api/ApiFlow.php:					$errors = $block->getErrors();
+./api/ApiFlow.php:						$nativeErrors[$key] = $error->plain();
+./api/ApiFlow.php:					$output[$action]['errors'][$block->getName()] = $nativeErrors;
+./api/ApiFlow.php:		$this->getResult()->addValue( null, $this->getModuleName(), $output );
+./api/ApiFlow.php:		$templating = $this->container['templating'];
+./api/ApiFlow.php:				$output[$key] = $value->getHex();
+./api/ApiFlow.php:			} elseif ( $key === 'render-function' ) {
+./api/ApiFlow.php:		$templating = $this->container['templating'];
+./api/ApiFlow.php:			$output[$block->getName()] = $block->render( $templating, array() );
+./api/ApiFlow.php:			'render' => 'Set this to something to include a block-specific rendering in the output',
+./api/ApiParsoidUtilsFlow.php:		$params = $this->extractRequestParams();
+./api/ApiParsoidUtilsFlow.php:		$this->getResult()->addValue( null, $this->getModuleName(), $result );
+./api/ApiParsoidUtilsFlow.php:			"api.php?action=flow-parsoid-utils&parsefrom=wikitext&parseto=html&parsecontent='''lorem'''+''blah''",
+./api/ApiParsoidUtilsFlow.php:		return __CLASS__ . '-0.1';
+./api/ApiQueryFlow.php:		$this->container = Flow\Container::getContainer();
+./api/ApiQueryFlow.php:		$params = $this->extractRequestParams();
+./api/ApiQueryFlow.php:		$this->loader = $this->container['factory.loader.workflow']
+./api/ApiQueryFlow.php:			->createWorkflowLoader( $pageTitle, $id );
+./api/ApiQueryFlow.php:		$blocks = $this->loader->createBlocks();
+./api/ApiQueryFlow.php:			$block->init( $params['action'], $this->getContext()->getUser() );
+./api/ApiQueryFlow.php:			if ( isset( $passedParams[$block->getName()] ) ) {
+./api/ApiQueryFlow.php:				$blockParams = $passedParams[$block->getName()];
+./api/ApiQueryFlow.php:			$templating = $this->container['templating'];
+./api/ApiQueryFlow.php:			$thisBlock = $block->renderAPI( $templating, $blockParams ) +
+./api/ApiQueryFlow.php:					'block-name' => $block->getName()
+./api/ApiQueryFlow.php:			$templating = $this->container['templating'];
+./api/ApiQueryFlow.php:			'workflow-id' => $this->loader->getWorkflow()->getId()->getHex(),
+./api/ApiQueryFlow.php:		$this->getResult()->addValue( 'query', $this->getModuleName(), $result );
+./api/ApiQueryFlow.php:			'workflow' => 'Hex-encoded ID of the workflow to query',
+./api/ApiQueryFlow.php:			'action' => 'The view-type action to take',
+./api/ApiQueryFlow.php:		return __CLASS__ . '-0.1';
+./ParsoidUtils.php:				'page' => \SpecialPage::getTitleFor( 'Flow' )->getPrefixedDBkey(),
+./ParsoidUtils.php:		$api->execute();
+./ParsoidUtils.php:		$result = $api->getResultData();
+./ParsoidUtils.php:		$options->setTidy( true );
+./ParsoidUtils.php:		$options->setEditSection( false );
+./ParsoidUtils.php:		$output = $wgParser->parse( $content, $title, $options );
+./ParsoidUtils.php:		return $output->getText();
+./UrlGenerator.php:		$this->occupationController = $occupationController;
+./UrlGenerator.php:		$this->storage = $workflowStorage;
+./UrlGenerator.php:		list( $linkTitle, $query ) = $this->buildUrlData( $title, $action, $query );
+./UrlGenerator.php:		return $linkTitle->getFullUrl( $query );
+./UrlGenerator.php:		$linkTitle = $this->occupationController->isTalkpageOccupied( $title )
+./UrlGenerator.php:			: SpecialPage::getTitleFor( 'Flow', $title->getPrefixedText() );
+./UrlGenerator.php:		list( $linkTitle, $query ) = $this->generateUrlData( $workflow, $action, $query );
+./UrlGenerator.php:		return $linkTitle->getFullUrl( $query );
+./UrlGenerator.php:			$workflow = $this->storage->get( $workflowId );
+./UrlGenerator.php:		if ( $workflow->isNew() ) {
+./UrlGenerator.php:			$query['definition'] = $workflow->getDefinitionId()->getHex();
+./UrlGenerator.php:			// TODO: workflow parameter is only necessary if the definition is non-unique.  Likely need to pass
+./UrlGenerator.php:			$query['workflow'] = $workflow->getId()->getHex();
+./UrlGenerator.php:		return $this->buildUrlData( $workflow->getArticleTitle(), $action, $query );
+./Model/PostRevision.php:		$obj->revId = UUID::create();
+./Model/PostRevision.php:		$obj->postId = $topic->getId();
+./Model/PostRevision.php:		$obj->origUserId = $obj->userId = $topic->getUserId();
+./Model/PostRevision.php:		$obj->origUserText = $obj->userText = $topic->getUserText();
+./Model/PostRevision.php:		$obj->origCreateTime = wfTimestampNow();
+./Model/PostRevision.php:		$obj->replyToId = null; // not a reply to anything
+./Model/PostRevision.php:		$obj->prevRevId = null; // no parent revision
+./Model/PostRevision.php:		$obj->changeType = 'flow-rev-message-new-post';
+./Model/PostRevision.php:		$obj->setContent( $content );
+./Model/PostRevision.php:		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
+./Model/PostRevision.php:		$obj->postId = UUID::create( $row['tree_rev_descendant_id'] );
+./Model/PostRevision.php:		$obj->origCreateTime = $row['tree_orig_create_time'];
+./Model/PostRevision.php:		$obj->origUserId = $row['tree_orig_user_id'];
+./Model/PostRevision.php:		$obj->origUserText = $row['tree_orig_user_text'];
+./Model/PostRevision.php:			'tree_parent_id' => $rev->replyToId ? $rev->replyToId->getBinary() : null,
+./Model/PostRevision.php:			'tree_rev_descendant_id' => $rev->postId->getBinary(),
+./Model/PostRevision.php:			'tree_rev_id' => $rev->revId->getBinary(),
+./Model/PostRevision.php:			'tree_orig_create_time' => $rev->origCreateTime,
+./Model/PostRevision.php:			'tree_orig_user_id' => $rev->origUserId,
+./Model/PostRevision.php:			'tree_orig_user_text' => $rev->origUserText,
+./Model/PostRevision.php:	public function reply( User $user, $content, $changeType = 'flow-rev-message-reply' ) {
+./Model/PostRevision.php:		$reply->revId = $reply->postId = UUID::create();
+./Model/PostRevision.php:		$reply->userId = $reply->origUserId = $user->getId();
+./Model/PostRevision.php:		$reply->userText = $reply->origUserText = $user->getName();
+./Model/PostRevision.php:		$reply->origCreateTime = wfTimestampNow();
+./Model/PostRevision.php:		$reply->setContent( $content );
+./Model/PostRevision.php:		$reply->replyToId = $this->postId;
+./Model/PostRevision.php:		$reply->changeType = $changeType;
+./Model/PostRevision.php:		return $this->postId;
+./Model/PostRevision.php:		$creator = $this->getCreator( $user );
+./Model/PostRevision.php:		// Not using $creator->getId() to avoid having to fetch the id if that
+./Model/PostRevision.php:		return $creator === false ? false : $this->getCreatorIdRaw();
+./Model/PostRevision.php:		$creator = $this->getCreator( $user );
+./Model/PostRevision.php:		// Not using $creator->getName() to avoid having to fetch the name if
+./Model/PostRevision.php:		return $creator === false ? false : $this->getCreatorNameRaw();
+./Model/PostRevision.php:		if ( $this->isAllowed( $user ) ) {
+./Model/PostRevision.php:			if ( $this->getCreatorIdRaw() !== 0 ) {
+./Model/PostRevision.php:				$user = User::newFromId( $this->getCreatorIdRaw() );
+./Model/PostRevision.php:				$user = User::newFromName( $this->getCreatorNameRaw() );
+./Model/PostRevision.php:		return $this->origUserText;
+./Model/PostRevision.php:		return $this->origUserId;
+./Model/PostRevision.php:		return $this->replyToId === null;
+./Model/PostRevision.php:		return $this->replyToId;
+./Model/PostRevision.php:		$this->children = $children;
+./Model/PostRevision.php:		if ( $this->children === null ) {
+./Model/PostRevision.php:			throw new \MWException( 'Children not loaded for post: ' . $this->postId->getHex() );
+./Model/PostRevision.php:		return $this->children;
+./Model/PostRevision.php:		return count( $this->getChildren() );
+./Model/PostRevision.php:		$i = count( $this->recursiveResults );
+./Model/PostRevision.php:		$this->recursiveCallbacks[$i] = $callback;
+./Model/PostRevision.php:		$this->recursiveResults[$i] = $init;
+./Model/PostRevision.php:		$this->recursiveResults = $this->descendRecursive(
+./Model/PostRevision.php:			$this->recursiveCallbacks,
+./Model/PostRevision.php:			$this->recursiveResults
+./Model/PostRevision.php:		$this->recursiveCallbacks = array_fill( 0, count( $this->recursiveResults ), null );
+./Model/PostRevision.php:		return $this->recursiveResults[$registered];
+./Model/PostRevision.php:		foreach ( $this->getChildren() as $child ) {
+./Model/PostRevision.php:			$results = $child->descendRecursive( $callbacks, $results, $maxDepth - 1 );
+./Model/PostRevision.php:		return $this->registerRecursive( $callback, 0 );
+./Model/PostRevision.php:			$creator = $post->getCreator();
+./Model/PostRevision.php:				if ( $creator->isAnon() ) {
+./Model/PostRevision.php:						$result[$post->getCreatorName()] = $creator;
+./Model/PostRevision.php:					$result[$post->getCreatorId()] = $creator;
+./Model/PostRevision.php:		return $this->registerRecursive( $callback, array() );
+./Model/PostRevision.php:			if ( $post->getPostId()->equals( $postId ) ) {
+./Model/PostRevision.php:		return $this->registerRecursive( $callback, false );
+./Model/PostRevision.php:	 * Returns 1 if $this is newer than $rev, -1 is $rev is newer than
+./Model/PostRevision.php:		return strcmp( $rev->postId->getNumber(), $this->postId->getNumber() );
+./Model/PostRevision.php:		if ( !is_null( $this->replyToId ) ) {
+./Model/PostRevision.php:		if ( $user->isAnon() ) {
+./Model/PostRevision.php:		return $user->getId() == $this->getCreatorId() || $user->isAllowed( 'flow-edit-post' );
+./Model/Workflow.php:		$obj->id = UUID::create( $row['workflow_id'] );
+./Model/Workflow.php:		$obj->isNew = false;
+./Model/Workflow.php:		$obj->wiki = $row['workflow_wiki'];
+./Model/Workflow.php:		$obj->pageId = $row['workflow_page_id'];
+./Model/Workflow.php:		$obj->namespace = (int) $row['workflow_namespace'];
+./Model/Workflow.php:		$obj->titleText = $row['workflow_title_text'];
+./Model/Workflow.php:		$obj->userId = $row['workflow_user_id'];
+./Model/Workflow.php:		$obj->userText = $row['workflow_user_text'];
+./Model/Workflow.php:		$obj->lockState = $row['workflow_lock_state'];
+./Model/Workflow.php:		$obj->definitionId = UUID::create( $row['workflow_definition_id'] );
+./Model/Workflow.php:		$obj->lastModified = $row['workflow_last_update_timestamp'];
+./Model/Workflow.php:			'workflow_id' => $obj->id->getBinary(),
+./Model/Workflow.php:			'workflow_wiki' => $obj->wiki,
+./Model/Workflow.php:			'workflow_page_id' => $obj->pageId,
+./Model/Workflow.php:			'workflow_namespace' => $obj->namespace,
+./Model/Workflow.php:			'workflow_title_text' => $obj->titleText,
+./Model/Workflow.php:			'workflow_user_id' => $obj->userId,
+./Model/Workflow.php:			'workflow_user_text' => $obj->userText,
+./Model/Workflow.php:			'workflow_lock_state' => $obj->lockState,
+./Model/Workflow.php:			'workflow_definition_id' => $obj->definitionId->getBinary(),
+./Model/Workflow.php:			'workflow_last_update_timestamp' => $obj->lastModified,
+./Model/Workflow.php:		if ( $title->isLocal() ) {
+./Model/Workflow.php:			$wiki = $title->getTransWikiID();
+./Model/Workflow.php:		if ( $definition->getWiki() !== $wiki ) {
+./Model/Workflow.php:		$obj->id = UUID::create();
+./Model/Workflow.php:		$obj->isNew = true; // has not been persisted
+./Model/Workflow.php:		$obj->wiki = $definition->getWiki();
+./Model/Workflow.php:		$obj->pageId = $title->getArticleID();
+./Model/Workflow.php:		$obj->namespace = $title->getNamespace();
+./Model/Workflow.php:		$obj->titleText = $title->getDBkey();
+./Model/Workflow.php:		$obj->userId = $user->getId();
+./Model/Workflow.php:		$obj->userText = $user->getName();
+./Model/Workflow.php:		$obj->lockState = 0;
+./Model/Workflow.php:		$obj->definitionId = $definition->getId();
+./Model/Workflow.php:		$obj->updateLastModified();
+./Model/Workflow.php:		if ( $this->wiki !== wfWikiId() ) {
+./Model/Workflow.php:		return Title::makeTitleSafe( $this->namespace, $this->titleText );
+./Model/Workflow.php:	public function getId() { return $this->id; }
+./Model/Workflow.php:	public function isNew() { return (bool) $this->isNew; }
+./Model/Workflow.php:	public function getDefinitionId() { return $this->definitionId; }
+./Model/Workflow.php:	public function getUserId() { return $this->userId; }
+./Model/Workflow.php:	public function getUserText() { return $this->userText; }
+./Model/Workflow.php:	public function getLastModified() { return $this->lastModified; }
+./Model/Workflow.php:	public function getLastModifiedObj() { return new MWTimestamp( $this->lastModified ); }
+./Model/Workflow.php:		$this->lastModified = wfTimestampNow();
+./Model/Workflow.php:		return $wgContLang->getNsText( $this->namespace );
+./Model/Workflow.php:		$ns = $this->getNamespaceName();
+./Model/Workflow.php:			return $ns . ':' . $this->titleText;
+./Model/Workflow.php:			return $this->titleText;
+./Model/Workflow.php:		if ( $title->getNamespace() !== $this->namespace ) {
+./Model/Workflow.php:		if ( $title->getDBkey() !== $this->titleText ) {
+./Model/Workflow.php:		if ( $title->isLocal() ) {
+./Model/Workflow.php:			return $this->wiki === wfWikiId();
+./Model/Workflow.php:			return $this->wiki === $title->getTransWikiID();
+./Model/Workflow.php:		$this->lockState[] = array(
+./Model/Workflow.php:			'user' => $user->getId(),
+./Model/Workflow.php:		if ( !$this->lockState ) {
+./Model/Workflow.php:		$state = end( $this->lockState );
+./Model/Header.php:	static public function create( Workflow $workflow, User $user, $content, $changeType = 'flow-create-header' ) {
+./Model/Header.php:		$obj->revId = UUID::create();
+./Model/Header.php:		$obj->workflowId = $workflow->getId();
+./Model/Header.php:		$obj->userId = $user->getId();
+./Model/Header.php:		$obj->userText = $user->getName();
+./Model/Header.php:		$obj->prevRevision = null; // no prior revision
+./Model/Header.php:		$obj->setContent( $content );
+./Model/Header.php:		$obj->changeType = $changeType;
+./Model/Header.php:		$obj->workflowId = UUID::create( $row['header_workflow_id'] );
+./Model/Header.php:			'header_rev_id' => $obj->revId->getBinary(),
+./Model/Header.php:			'header_workflow_id' => $obj->workflowId->getBinary(),
+./Model/Header.php:		return $this->workflowId;
+./Model/TopicListEntry.php:		$obj->topicListId = $topicList->getId();
+./Model/TopicListEntry.php:		$obj->topicId = $topic->getId();
+./Model/TopicListEntry.php:		$obj->topicListId = UUID::create( $row['topic_list_id'] );
+./Model/TopicListEntry.php:		$obj->topicId = UUID::create( $row['topic_id'] );
+./Model/TopicListEntry.php:			'topic_list_id' => $obj->topicListId->getBinary(),
+./Model/TopicListEntry.php:			'topic_id' => $obj->topicId->getBinary(),
+./Model/TopicListEntry.php:		return $this->topicId;
+./Model/TopicListEntry.php:		return $this-topicListId;
+./Model/AbstractRevision.php:			'new-revision' => true,
+./Model/AbstractRevision.php:			'change-type' => 'flow-rev-message-restored-post',
+./Model/AbstractRevision.php:			'perm' => 'flow-hide',
+./Model/AbstractRevision.php:			'content' => 'flow-post-hidden-by',
+./Model/AbstractRevision.php:			'usertext' => 'flow-rev-message-hid-post',
+./Model/AbstractRevision.php:			'new-revision' => true,
+./Model/AbstractRevision.php:			'change-type' => 'flow-rev-message-hid-post',
+./Model/AbstractRevision.php:			'perm' => 'flow-delete',
+./Model/AbstractRevision.php:			'content' => 'flow-post-deleted-by',
+./Model/AbstractRevision.php:			'usertext' => 'flow-rev-message-deleted-post',
+./Model/AbstractRevision.php:			'new-revision' => false,
+./Model/AbstractRevision.php:			'change-type' => 'flow-rev-message-deleted-post',
+./Model/AbstractRevision.php:			'perm' => 'flow-censor',
+./Model/AbstractRevision.php:			'content' => 'flow-post-censored-by',
+./Model/AbstractRevision.php:			'usertext' => 'flow-rev-message-censored-post',
+./Model/AbstractRevision.php:			'new-revision' => false,
+./Model/AbstractRevision.php:			'change-type' => 'flow-rev-message-censored-post',
+./Model/AbstractRevision.php:	// This is decompressed on-demand from $this->content in self::getContent()
+./Model/AbstractRevision.php:	// Converted (wikitext|html) content, based off of $this->decompressedContent
+./Model/AbstractRevision.php:		$obj->revId = UUID::create( $row['rev_id'] );
+./Model/AbstractRevision.php:		$obj->userId = $row['rev_user_id'];
+./Model/AbstractRevision.php:		$obj->userText = $row['rev_user_text'];
+./Model/AbstractRevision.php:		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
+./Model/AbstractRevision.php:		$obj->changeType = $row['rev_change_type'];
+./Model/AbstractRevision.php:	 	$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
+./Model/AbstractRevision.php:		$obj->content = $row['rev_content'];
+./Model/AbstractRevision.php:		$obj->contentUrl = $row['rev_content_url'];
+./Model/AbstractRevision.php:		$obj->decompressedContent = null;
+./Model/AbstractRevision.php:		$obj->moderationState = $row['rev_mod_state'];
+./Model/AbstractRevision.php:		$obj->moderatedByUserId = $row['rev_mod_user_id'];
+./Model/AbstractRevision.php:		$obj->moderatedByUserText = $row['rev_mod_user_text'];
+./Model/AbstractRevision.php:		$obj->moderationTimestamp = $row['rev_mod_timestamp'];
+./Model/AbstractRevision.php:		$obj->lastEditId = isset( $row['rev_last_edit_id'] ) ? UUID::create( $row['rev_last_edit_id'] ) : null;
+./Model/AbstractRevision.php:		$obj->lastEditUserId = isset( $row['rev_edit_user_id'] ) ? $row['rev_edit_user_id'] : null;
+./Model/AbstractRevision.php:		$obj->lastEditUserText = isset( $row['rev_edit_user_text'] ) ? $row['rev_edit_user_text'] : null;
+./Model/AbstractRevision.php:			'rev_id' => $obj->revId->getBinary(),
+./Model/AbstractRevision.php:			'rev_user_id' => $obj->userId,
+./Model/AbstractRevision.php:			'rev_user_text' => $obj->userText,
+./Model/AbstractRevision.php:			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getBinary() : null,
+./Model/AbstractRevision.php:			'rev_change_type' => $obj->changeType,
+./Model/AbstractRevision.php:			'rev_type' => $obj->getRevisionType(),
+./Model/AbstractRevision.php:			'rev_content' => $obj->content,
+./Model/AbstractRevision.php:			'rev_content_url' => $obj->contentUrl,
+./Model/AbstractRevision.php:			'rev_flags' => implode( ',', $obj->flags ),
+./Model/AbstractRevision.php:			'rev_mod_state' => $obj->moderationState,
+./Model/AbstractRevision.php:			'rev_mod_user_id' => $obj->moderatedByUserId,
+./Model/AbstractRevision.php:			'rev_mod_user_text' => $obj->moderatedByUserText,
+./Model/AbstractRevision.php:			'rev_mod_timestamp' => $obj->moderationTimestamp,
+./Model/AbstractRevision.php:			'rev_last_edit_id' => $obj->lastEditId ? $obj->lastEditId->getBinary() : null,
+./Model/AbstractRevision.php:			'rev_edit_user_id' => $obj->lastEditUserId,
+./Model/AbstractRevision.php:			'rev_edit_user_text' => $obj->lastEditUserText,
+./Model/AbstractRevision.php:		$obj->revId = UUID::create();
+./Model/AbstractRevision.php:		$obj->userId = $user->getId();
+./Model/AbstractRevision.php:		$obj->userText = $user->getName();
+./Model/AbstractRevision.php:		$obj->prevRevision = $this->revId;
+./Model/AbstractRevision.php:		$obj->changeType = '';
+./Model/AbstractRevision.php:		$obj = $this->newNullRevision( $user );
+./Model/AbstractRevision.php:		$obj->setNextContent( $user, $content );
+./Model/AbstractRevision.php:		$obj->changeType = $changeType;
+./Model/AbstractRevision.php:		$mostRestrictive = self::mostRestrictivePermission( $state, $this->moderationState );
+./Model/AbstractRevision.php:		if ( !$this->isAllowed( $user, $mostRestrictive ) ) {
+./Model/AbstractRevision.php:		if ( self::$perms[$state]['new-revision'] ) {
+./Model/AbstractRevision.php:			$obj = $this->newNullRevision( $user );
+./Model/AbstractRevision.php:		$obj->moderationState = $state;
+./Model/AbstractRevision.php:			$obj->moderatedByUserId = null;
+./Model/AbstractRevision.php:			$obj->moderatedByUserText = null;
+./Model/AbstractRevision.php:			$obj->moderationTimestamp = null;
+./Model/AbstractRevision.php:			$obj->moderatedByUserId = $user->getId();
+./Model/AbstractRevision.php:			$obj->moderatedByUserText = $user->getName();
+./Model/AbstractRevision.php:			$obj->moderationTimestamp = wfTimestampNow();
+./Model/AbstractRevision.php:		if ( $changeType === null && isset( self::$perms[$state]['change-type'] ) ) {
+./Model/AbstractRevision.php:			$obj->changeType = self::$perms[$state]['change-type'];
+./Model/AbstractRevision.php:			$obj->changeType = $changeType;
+./Model/AbstractRevision.php:		return $this->moderate( $user, self::MODERATED_NONE );
+./Model/AbstractRevision.php:		return $this->revId;
+./Model/AbstractRevision.php:			$state = $this->moderationState;
+./Model/AbstractRevision.php:		return $perm === null || ( $user && $user->isAllowed( $perm ) );
+./Model/AbstractRevision.php:		return $this->moderationState === self::MODERATED_HIDDEN;
+./Model/AbstractRevision.php:		if ( $this->hasHiddenContent() ) {
+./Model/AbstractRevision.php:			return $this->getConvertedContent( $format );
+./Model/AbstractRevision.php:		if ( $this->isAllowed( $user ) ) {
+./Model/AbstractRevision.php:			return $this->getConvertedContent( $format );
+./Model/AbstractRevision.php:			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
+./Model/AbstractRevision.php:			// Messages: flow-post-hidden-by, flow-post-deleted-by, flow-post-censored-by
+./Model/AbstractRevision.php:				self::$perms[$this->moderationState]['content'],
+./Model/AbstractRevision.php:				$this->moderatedByUserText,
+./Model/AbstractRevision.php:				$moderatedAt->getHumanTimestamp()
+./Model/AbstractRevision.php:		if ( $this->decompressedContent === null ) {
+./Model/AbstractRevision.php:			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
+./Model/AbstractRevision.php:		return $this->decompressedContent;
+./Model/AbstractRevision.php:		if ( !isset( $this->convertedContent[$format] ) ) {
+./Model/AbstractRevision.php:			$sourceFormat = in_array( 'html', $this->flags ) ? 'html' : 'wikitext';
+./Model/AbstractRevision.php:			$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $this->getContentRaw() );
+./Model/AbstractRevision.php:		return $this->convertedContent[$format];
+./Model/AbstractRevision.php:		return $this->userId;
+./Model/AbstractRevision.php:		if ( $this->isCensored() ) {
+./Model/AbstractRevision.php:			// Messages: flow-post-hidden, flow-post-deleted, flow-post-censored
+./Model/AbstractRevision.php:			return wfMessage( self::$perms[$this->moderationState]['usertext'] );
+./Model/AbstractRevision.php:			return $this->getUserTextRaw();
+./Model/AbstractRevision.php:		return $this->userText;
+./Model/AbstractRevision.php:		if ( $this->moderationState !== self::MODERATED_NONE ) {
+./Model/AbstractRevision.php:		if ( $this->content !== null ) {
+./Model/AbstractRevision.php:		$this->convertedContent = array( $inputFormat  => $content );
+./Model/AbstractRevision.php:		$storageFormat = $this->getStorageFormat();
+./Model/AbstractRevision.php:		if ( $this->isFormatted() && $storageFormat !== $inputFormat ) {
+./Model/AbstractRevision.php:			$this->convertedContent[$storageFormat] = ParsoidUtils::convert(
+./Model/AbstractRevision.php:		$this->content = $this->decompressedContent = $this->convertedContent[$storageFormat];
+./Model/AbstractRevision.php:		$this->contentUrl = null;
+./Model/AbstractRevision.php:		$this->flags = array_filter( explode( ',', \Revision::compressRevisionText( $this->content ) ) );
+./Model/AbstractRevision.php:		$this->flags[] = $storageFormat;
+./Model/AbstractRevision.php:		if ( $this->moderationState !== self::MODERATED_NONE ) {
+./Model/AbstractRevision.php:		if ( $content !== $this->getContent() ) {
+./Model/AbstractRevision.php:			$this->content = null;
+./Model/AbstractRevision.php:			$this->setContent( $content );
+./Model/AbstractRevision.php:			$this->lastEditId = $this->getRevisionId();
+./Model/AbstractRevision.php:			$this->lastEditUserId = $user->getId();
+./Model/AbstractRevision.php:			$this->lastEditUserText = $user->getName();
+./Model/AbstractRevision.php:		return $this->isFormatted() ? $wgFlowContentFormat : 'wikitext';
+./Model/AbstractRevision.php:		return $this->prevRevision;
+./Model/AbstractRevision.php:		return $this->changeType;
+./Model/AbstractRevision.php:		return $this->moderationState;
+./Model/AbstractRevision.php:		return $this->moderationState !== self::MODERATED_NONE;
+./Model/AbstractRevision.php:		return $this->moderationState === self::MODERATED_HIDDEN;
+./Model/AbstractRevision.php:		return $this->moderationState === self::MODERATED_CENSORED;
+./Model/AbstractRevision.php:		return $this->moderationTimestamp;
+./Model/AbstractRevision.php:			if ( false !== array_search( $flag, $this->flags ) ) {
+./Model/AbstractRevision.php:			if ( false === array_search( $flag, $this->flags ) ) {
+./Model/AbstractRevision.php:		return $this->prevRevision === null;
+./Model/AbstractRevision.php:		return $this->lastEditId === null;
+./Model/AbstractRevision.php:		// configurable per-wiki, pass revisions into it(or wrap them in it for
+./Model/AbstractRevision.php:		if ( $this->isAllowed( $user ) ) {
+./Model/AbstractRevision.php:			return $this->lastEditUserText;
+./Model/AbstractRevision.php:		return $this->lastEditId;
+./Model/AbstractRevision.php:		return $this->moderatedByUserText;
+./Model/AbstractRevision.php:		return $this->moderatedByUserId;
+./Model/UUID.php:		$this->binaryValue = $binaryValue;
+./Model/UUID.php:		} elseif ( strlen( $input ) == 32 && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
+./Model/UUID.php:		$uuid->hexValue = $hexValue;
+./Model/UUID.php:		echo "<p>UUID: ". $this->getHex() . "</p>";
+./Model/UUID.php:		// return $this->getHex();
+./Model/UUID.php:		if ( $this->hexValue === null ) {
+./Model/UUID.php:			$this->hexValue = str_pad( bin2hex( $this->binaryValue ), 32, '0', STR_PAD_LEFT );
+./Model/UUID.php:		return $this->hexValue;
+./Model/UUID.php:		return $this->binaryValue;
+./Model/UUID.php:		return wfBaseConvert( $this->getHex(), 16, 10 );
+./Model/UUID.php:		if ( $this->timestamp === null ) {
+./Model/UUID.php:			$hex = $this->getHex();
+./Model/UUID.php:				$this->timestamp = new \MWTimestamp( intval( $msTimestamp / 1000 ) );
+./Model/UUID.php:		return clone $this->timestamp;
+./Model/UUID.php:		$ts = $this->getTimestampObj();
+./Model/UUID.php:		return $ts ? $ts->getTimestamp( TS_MW ) : false;
+./Model/UUID.php:			$relativeTo = $relativeTo->getTimestampObj() ?: null;
+./Model/UUID.php:		$ts = $this->getTimestampObj();
+./Model/UUID.php:		return $ts ? $ts->getHumanTimestamp( $relativeTo, $user, $lang ) : false;
+./Model/UUID.php:				$array[$key] = $value->getBinary();
+./Model/UUID.php:		return $other->getBinary() === $this->getBinary();
+./Model/Definition.php:		$obj->id = UUID::create( $row['definition_id'] );
+./Model/Definition.php:		$obj->type = $row['definition_type'];
+./Model/Definition.php:		$obj->wiki = $row['definition_wiki'];
+./Model/Definition.php:		$obj->name = $row['definition_name'];
+./Model/Definition.php:		$obj->options = $row['definition_options'] ? unserialize( $row['definition_options'] ) : array();
+./Model/Definition.php:			'definition_id' => $obj->id->getBinary(),
+./Model/Definition.php:			'definition_type' => $obj->type,
+./Model/Definition.php:			'definition_wiki' => $obj->wiki,
+./Model/Definition.php:			'definition_name' => $obj->name,
+./Model/Definition.php:			'definition_options' => $obj->options ? serialize( $obj->options ) : null,
+./Model/Definition.php:		$obj->id = UUID::create();
+./Model/Definition.php:		$obj->wiki = wfWikiId();
+./Model/Definition.php:		$obj->name = $name;
+./Model/Definition.php:		$obj->type = $type;
+./Model/Definition.php:		$obj->options = $options;
+./Model/Definition.php:	public function getId() { return $this->id; }
+./Model/Definition.php:	public function getWiki() { return $this->wiki; }
+./Model/Definition.php:	public function getName() { return $this->name; }
+./Model/Definition.php:	public function getType() { return $this->type; }
+./Model/Definition.php:	public function getOptions() { return $this->options; }
+./Model/Definition.php:		return array_key_exists( $key, $this->options ) ? $this->options[$key] : $default;
+./AccessControl.php:		$this->container = $container;
+./AccessControl.php:		$this->classMap = $classMap;
+./AccessControl.php:		if ( !isset( $this->classMap[$class] ) ) {
+./AccessControl.php:		return new PostAccessControl( $this->user, $block, $post );
+./AccessControl.php:		$this->block = $block;
+./AccessControl.php:		$this->post = $post;
+./AccessControl.php:			'hide-post' => array(
+./AccessControl.php:					PostRevision::MODERATED_NONE => 'flow-hide',
+./AccessControl.php:			'delete-post' => array(
+./AccessControl.php:					PostRevision::MODERATED_NONE => 'flow-delete',
+./AccessControl.php:					PostRevision::MODERATED_HIDDEN => 'flow-delete',
+./AccessControl.php:			'censor-post' => array(
+./AccessControl.php:					PostRevision::MODERATED_NONE => 'flow-censor',
+./AccessControl.php:					PostRevision::MODERATED_HIDDEN => 'flow-censor',
+./AccessControl.php:					PostRevision::MODERATED_DELETED => 'flow-censor',
+./AccessControl.php:			'restore-post' => array(
+./AccessControl.php:					PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
+./AccessControl.php:					PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
+./AccessControl.php:					PostRevision::MODERATED_CENSORED => 'flow-censor',
+./AccessControl.php:			'post-history' => array(
+./AccessControl.php:					PostRevision::MODERATED_CENSORED => 'flow-censor',
+./AccessControl.php:			'edit-post' => array(
+./AccessControl.php:					PostRevision::MODERATED_NONE => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
+./AccessControl.php:					PostRevision::MODERATED_HIDDEN => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
+./AccessControl.php:					PostRevision::MODERATED_DELETED => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
+./AccessControl.php:					PostRevision::MODERATED_CENSORED => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
+./AccessControl.php:		$details = $this->getActionDetails( $action );
+./AccessControl.php:		if ( !$this->isAllowed( $action ) ) {
+./AccessControl.php:		$data = array( $this->block->getName() . '[postId]' => $this->post->getPostId()->getHex() );
+./AccessControl.php:			return $this->postAction( $action, $data, $content, $class );
+./AccessControl.php:			return $this->getAction( $action, $data, $content, $class );
+./AccessControl.php:		$details = $this->getActionDetails( $action );
+./AccessControl.php:		if ( !isset( $details['permissions'][$this->post->getModerationState()] ) ) {
+./AccessControl.php:			array( $this->user, 'isAllowedAny' ),
+./AccessControl.php:			(array) $details['permissions'][$this->post->getModerationState()]
+./AccessControl.php:			$allowed |= $this->isAllowed( $action );
+./AccessControl.php:				'action' => $this->urlGenerator->generateUrl( $this->block->getWorkflowId(), $action )
+./AccessControl.php:			Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $this->editToken ) )
+./AccessControl.php:		$url = $this->urlGenerator->generateUrl(
+./AccessControl.php:			$this->block->getWorkflowId(),
+./View/PostActionMenu.php:		$this->urlGenerator = $urlGenerator;
+./View/PostActionMenu.php:		$this->user = $user;
+./View/PostActionMenu.php:		$this->block = $block;
+./View/PostActionMenu.php:		$this->post = $post;
+./View/PostActionMenu.php:		$this->editToken = $editToken;
+./View/PostActionMenu.php:			'hide-post' => array(
+./View/PostActionMenu.php:					PostRevision::MODERATED_NONE => 'flow-hide',
+./View/PostActionMenu.php:			'delete-post' => array(
+./View/PostActionMenu.php:					PostRevision::MODERATED_NONE => 'flow-delete',
+./View/PostActionMenu.php:					PostRevision::MODERATED_HIDDEN => 'flow-delete',
+./View/PostActionMenu.php:			'censor-post' => array(
+./View/PostActionMenu.php:					PostRevision::MODERATED_NONE => 'flow-censor',
+./View/PostActionMenu.php:					PostRevision::MODERATED_HIDDEN => 'flow-censor',
+./View/PostActionMenu.php:					PostRevision::MODERATED_DELETED => 'flow-censor',
+./View/PostActionMenu.php:			'restore-post' => array(
+./View/PostActionMenu.php:					PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
+./View/PostActionMenu.php:					PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
+./View/PostActionMenu.php:					PostRevision::MODERATED_CENSORED => 'flow-censor',
+./View/PostActionMenu.php:			'post-history' => array(
+./View/PostActionMenu.php:					PostRevision::MODERATED_CENSORED => 'flow-censor',
+./View/PostActionMenu.php:			'edit-post' => array(
+./View/PostActionMenu.php:					PostRevision::MODERATED_NONE => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
+./View/PostActionMenu.php:					PostRevision::MODERATED_HIDDEN => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
+./View/PostActionMenu.php:					PostRevision::MODERATED_DELETED => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
+./View/PostActionMenu.php:					PostRevision::MODERATED_CENSORED => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
+./View/PostActionMenu.php:		$details = $this->getActionDetails( $action );
+./View/PostActionMenu.php:		if ( !$this->isAllowed( $action ) ) {
+./View/PostActionMenu.php:		$data = array( $this->block->getName() . '[postId]' => $this->post->getPostId()->getHex() );
+./View/PostActionMenu.php:			return $this->postAction( $action, $data, $content, $class );
+./View/PostActionMenu.php:			return $this->getAction( $action, $data, $content, $class );
+./View/PostActionMenu.php:		$details = $this->getActionDetails( $action );
+./View/PostActionMenu.php:		if ( !isset( $details['permissions'][$this->post->getModerationState()] ) ) {
+./View/PostActionMenu.php:			array( $this->user, 'isAllowedAny' ),
+./View/PostActionMenu.php:			(array) $details['permissions'][$this->post->getModerationState()]
+./View/PostActionMenu.php:			$allowed |= $this->isAllowed( $action );
+./View/PostActionMenu.php:				'action' => $this->urlGenerator->generateUrl( $this->block->getWorkflowId(), $action )
+./View/PostActionMenu.php:			Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $this->editToken ) )
+./View/PostActionMenu.php:		$url = $this->urlGenerator->generateUrl(
+./View/PostActionMenu.php:			$this->block->getWorkflowId(),
+./TalkpageManager.php:		$this->occupiedNamespaces = $occupiedNamespaces;
+./TalkpageManager.php:		$this->occupiedPages = $occupiedPages;
+./TalkpageManager.php:			throw new \Exception( 'Non-falsy non-object title passed: ' . var_export( $title, true ) );
+./TalkpageManager.php:		return in_array( $title->getPrefixedText(), $this->occupiedPages )
+./TalkpageManager.php:			|| ( in_array( $title->getNamespace(), $this->occupiedNamespaces )
+./TalkpageManager.php:				&& !$title->isSubpage() );
+./Repository/MultiGetList.php:		$this->cache = $cache;
+./Repository/MultiGetList.php:				$cacheId = $id->getHex();
+./Repository/MultiGetList.php:		return $this->getByKey( $cacheKeys, $loadCallback );
+./Repository/MultiGetList.php:		$multiRes = $this->cache->getMulti( array_keys( $cacheKeys ) );
+./Repository/MultiGetList.php:					$idx = $cacheKeys[$key]->getBinary();
+./Repository/MultiGetList.php:				$id = $id->getHex();
+./Repository/MultiGetList.php:				$this->cache->set( $invCacheKeys[$id], $row );
+./Repository/SelectQueryBuilder.php:		$this->table = $table;
+./Repository/SelectQueryBuilder.php:		$this->fields = (array) $fields;
+./Repository/SelectQueryBuilder.php:		$this->conditions = (array) $conditions;
+./Repository/SelectQueryBuilder.php:		$this->conditions[$field] = $value;
+./Repository/SelectQueryBuilder.php:		$this->conditions = array_merge( $this->conditions, (array) $conditions );
+./Repository/SelectQueryBuilder.php:		$this->pending[] = array( $field, '<=', $value );
+./Repository/SelectQueryBuilder.php:		$this->options = (array) $options;
+./Repository/SelectQueryBuilder.php:		$this->resultHandler = $callback;
+./Repository/SelectQueryBuilder.php:		$conditions = $this->conditions;
+./Repository/SelectQueryBuilder.php:		foreach ( $this->pending as $row ) {
+./Repository/SelectQueryBuilder.php:			$conditions[] = "$field $op	" . $dbr->addQuotes( $value );
+./Repository/SelectQueryBuilder.php:		$res = $db->select( $this->table, $this->fields, $conditions, $fname, $this->options );
+./Repository/SelectQueryBuilder.php:		if ( $this->resultHandler ) {
+./Repository/SelectQueryBuilder.php:			return call_user_func( $this->resultHandler, $res );
+./Repository/TreeRepository.php: * flow:tree:parent:<descendant> - should we just use rootpath?
+./Repository/TreeRepository.php:		$this->dbFactory = $dbFactory;
+./Repository/TreeRepository.php:		$this->cache = $cache;
+./Repository/TreeRepository.php:		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant->getHex() );
+./Repository/TreeRepository.php:		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant->getHex() );
+./Repository/TreeRepository.php:		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
+./Repository/TreeRepository.php:		$this->cache->set( $subtreeKey, array( $descendant ) );
+./Repository/TreeRepository.php:			$this->cache->set( $parentKey, null );
+./Repository/TreeRepository.php:			$this->cache->set( $pathKey, array( $descendant ) );
+./Repository/TreeRepository.php:			$this->cache->set( $parentKey, $ancestor );
+./Repository/TreeRepository.php:			$path = $this->findRootPath( $ancestor );
+./Repository/TreeRepository.php:			$this->cache->set( $pathKey, $path );
+./Repository/TreeRepository.php:		$dbw = $this->dbFactory->getDB( DB_MASTER );
+./Repository/TreeRepository.php:		$res = $dbw->insert(
+./Repository/TreeRepository.php:			$this->tableName,
+./Repository/TreeRepository.php:				'tree_descendant_id' => $descendant->getBinary(),
+./Repository/TreeRepository.php:				'tree_ancestor_id' => $descendant->getBinary(),
+./Repository/TreeRepository.php:			$res = $dbw->insertSelect(
+./Repository/TreeRepository.php:				$this->tableName,
+./Repository/TreeRepository.php:				$this->tableName,
+./Repository/TreeRepository.php:					'tree_descendant_id' => $dbw->addQuotes( $descendant->getBinary() ),
+./Repository/TreeRepository.php:					'tree_descendant_id' => $ancestor->getBinary(),
+./Repository/TreeRepository.php:			$this->cache->del( $parentKey );
+./Repository/TreeRepository.php:			$this->cache->del( $pathKey );
+./Repository/TreeRepository.php:		$this->appendToSubtreeCache( $descendant, $path );
+./Repository/TreeRepository.php:			$value[$descendant->getHex()] = $descendant;
+./Repository/TreeRepository.php:			$this->cache->merge(
+./Repository/TreeRepository.php:				wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex() ),
+./Repository/TreeRepository.php:		$map = $this->fetchParentMap( array( $descendant ) );
+./Repository/TreeRepository.php:		return isset( $map[$descendant->getHex()] ) ? $map[$descendant->getHex()] : null;
+./Repository/TreeRepository.php:		$cacheKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
+./Repository/TreeRepository.php:		$path = $this->cache->get( $cacheKey );
+./Repository/TreeRepository.php:		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+./Repository/TreeRepository.php:		$res = $dbr->select(
+./Repository/TreeRepository.php:			$this->tableName,
+./Repository/TreeRepository.php:				'tree_descendant_id' => $descendant->getBinary(),
+./Repository/TreeRepository.php:			$path[$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
+./Repository/TreeRepository.php:			throw new \Exception( 'No root path found? Is this a root already? ' . $descendant->getHex() );
+./Repository/TreeRepository.php:		$this->cache->set( $cacheKey, $path );
+./Repository/TreeRepository.php:		$path = $this->findRootPath( $descendant );
+./Repository/TreeRepository.php:	 * @return array Multi-dimensional tree
+./Repository/TreeRepository.php:		$nodes = $this->fetchSubtreeNodeList( ObjectManager::makeArray( $root ) );
+./Repository/TreeRepository.php:			$parentMap = $this->fetchParentMap( reset( $nodes ) );
+./Repository/TreeRepository.php:			$parentMap = $this->fetchParentMap( call_user_func_array( 'array_merge', $nodes ) );
+./Repository/TreeRepository.php:		$identityMap = $this->fetchSubtreeIdentityMap( $root, $maxDepth );
+./Repository/TreeRepository.php:		if ( !isset( $identityMap[$root->getHex()] ) ) {
+./Repository/TreeRepository.php:		return $this->fetchSubtree( $this->findRoot( $nodeId ) );
+./Repository/TreeRepository.php:		$list = new MultiGetList( $this->cache );
+./Repository/TreeRepository.php:		$res = $list->get(
+./Repository/TreeRepository.php:			$retval[UUID::create( $idx )->getHex()] = $val;
+./Repository/TreeRepository.php:		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
+./Repository/TreeRepository.php:			$this->tableName,
+./Repository/TreeRepository.php:			$ancestor = UUID::create( $node->tree_ancestor_id );
+./Repository/TreeRepository.php:			$descendant = UUID::create( $node->tree_descendant_id );
+./Repository/TreeRepository.php:			$nodes[$ancestor->getHex()][$descendant->getHex()] = $descendant;
+./Repository/TreeRepository.php:	 * Fetch the id of the immediate parent node of all ids in $nodes.  Non-existant
+./Repository/TreeRepository.php:		$list = new MultiGetList( $this->cache );
+./Repository/TreeRepository.php:		return $list->get(
+./Repository/TreeRepository.php:		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+./Repository/TreeRepository.php:		$res = $dbr->select(
+./Repository/TreeRepository.php:			$this->tableName,
+./Repository/TreeRepository.php:			if ( isset( $result[$node->tree_descendant_id] ) ) {
+./Repository/TreeRepository.php:				throw new MWException( 'Already have a parent for ' . $node->tree_descendant_id );
+./Repository/TreeRepository.php:			$descendant = UUID::create( $node->tree_descendant_id );
+./Repository/TreeRepository.php:			$result[$descendant->getHex()] = UUID::create( $node->tree_ancestor_id );
+./WorkflowLoader.php:		if ( $pageTitle && $pageTitle->mInterwiki ) {
+./WorkflowLoader.php:		$this->storage = $storage;
+./WorkflowLoader.php:		$this->rootPostLoader = $rootPostLoader;
+./WorkflowLoader.php:		$this->notificationController = $notificationController;
+./WorkflowLoader.php:		$this->definitionRequest = $definitionRequest;
+./WorkflowLoader.php:			list( $workflow, $definition ) = $this->loadWorkflowById( $pageTitle, $workflowId );
+./WorkflowLoader.php:			list( $workflow, $definition ) = $this->loadWorkflow( $pageTitle );
+./WorkflowLoader.php:		$this->workflow = $workflow;
+./WorkflowLoader.php:		$this->definition = $definition;
+./WorkflowLoader.php:		return $this->definition;
+./WorkflowLoader.php:		return $this->workflow;
+./WorkflowLoader.php:		$storage = $this->storage->getStorage( 'Workflow');
+./WorkflowLoader.php:		$definition = $this->loadDefinition();
+./WorkflowLoader.php:		if ( !$definition->getOption( 'unique' ) ) {
+./WorkflowLoader.php:			throw new \MWException( 'Workflow is non-unique, can only fetch object by title + id' );
+./WorkflowLoader.php:		$found = $storage->find( array(
+./WorkflowLoader.php:			'workflow_definition_id' => $definition->getId(),
+./WorkflowLoader.php:			'workflow_wiki' => $title->isLocal() ? wfWikiId() : $title->getTransWikiID(),
+./WorkflowLoader.php:			'workflow_namespace' => $title->getNamespace(),
+./WorkflowLoader.php:			'workflow_title_text' => $title->getDBkey(),
+./WorkflowLoader.php:		$workflow = $this->storage->getStorage( 'Workflow' )->get( $workflowId );
+./WorkflowLoader.php:		if ( $title !== false && !$workflow->matchesTitle( $title ) ) {
+./WorkflowLoader.php:		$definition = $this->storage->getStorage( 'Definition' )->get( $workflow->getDefinitionId() );
+./WorkflowLoader.php:			throw new \MWException( 'Flow workflow references unknown definition id: ' . $workflow->getDefinitionId()->getHex() );
+./WorkflowLoader.php:		$repo = $this->storage->getStorage( 'Definition' );
+./WorkflowLoader.php:		$id = $this->definitionRequest;
+./WorkflowLoader.php:			$definition = $repo->get( $id );
+./WorkflowLoader.php:			$found = $repo->find( array(
+./WorkflowLoader.php:		switch( $this->definition->getType() ) {
+./WorkflowLoader.php:				'header' => new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
+./WorkflowLoader.php:				'topics' => new TopicListBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+./WorkflowLoader.php:				'topic' => new TopicBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+./WorkflowLoader.php:		$workflow = $this->getWorkflow();
+./WorkflowLoader.php:			$data = $request->getArray( $block->getName(), array() );
+./WorkflowLoader.php:			$result = $block->onSubmit( $action, $user, $data );
+./WorkflowLoader.php:		$this->storage->getStorage( 'Workflow' )->put( $workflow );
+./WorkflowLoader.php:			$results[$block->getName()] = $block->commit();
+./WorkflowLoader.php:		$this->storage = $storage;
+./WorkflowLoader.php:		$this->rootPostLoader = $rootPostLoader;
+./WorkflowLoader.php:		$this->notificationController = $notificationController;
+./WorkflowLoader.php:			$this->storage,
+./WorkflowLoader.php:			$this->rootPostLoader,
+./WorkflowLoader.php:			$this->notificationController
