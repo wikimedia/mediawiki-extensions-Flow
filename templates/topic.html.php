@@ -2,6 +2,7 @@
 
 // treat title like unparsed (wiki)text
 $title = $root->getContent( $user, 'wikitext' );
+$rootPost = $block->getPostBlock( $root );
 
 // pre-register recursive callbacks; will then be fetched all at once when the
 // first one's result is requested
@@ -111,8 +112,8 @@ echo Html::openElement( 'div', array(
 	</div>
 </div>
 <?php
-foreach( $root->getChildren() as $child ) {
-	echo $this->renderPost( $child, $block, $root );
+foreach ( $block->getPosts() as $post ) {
+	echo $post->render( $this, array(), true );
 }
 
 // Topic reply box
@@ -133,12 +134,12 @@ echo Html::openElement( 'div', array(
 <?php
 	echo Html::openElement( 'form', array(
 		'method' => 'POST',
-		'action' => $this->generateUrl( $block->getWorkflow(), 'reply' ),
+		'action' => $this->generateUrl( $rootPost->getWorkflow(), 'reply' ),
 		'class' => 'flow-topic-reply-form',
 	) ),
 	Html::element( 'input', array(
 		'type' => 'hidden',
-		'name' => $block->getName() . '[replyTo]',
+		'name' => $rootPost->getName() . '[replyTo]',
 		'value' => $topic->getId()->getHex(),
 	) ),
 	Html::element( 'input', array(
@@ -146,7 +147,7 @@ echo Html::openElement( 'div', array(
 		'name' => 'wpEditToken',
 		'value' => $editToken,
 	) ),
-	Html::textarea( $block->getName() . '[topic-reply-content]', '', array(
+	Html::textarea( $rootPost->getName() . '[topic-reply-content]', '', array(
 		'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
 		'class' => 'flow-input mw-ui-input flow-topic-reply-content',
 	) ),

@@ -2,7 +2,6 @@
 
 namespace Flow\Block;
 
-use Flow\DbFactory;
 use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectManager;
 use Flow\Data\Pager;
@@ -44,27 +43,27 @@ class TopicListBlock extends AbstractBlock {
 			throw new \MWException( 'Unknown commit action' );
 		}
 
-		$storage = $this->storage;
-		$defStorage = $this->storage->getStorage( 'Definition' );
-		$sourceDef = $defStorage->get( $this->workflow->getDefinitionId() );
-		$topicDef = $defStorage->get( $sourceDef->getOption( 'topic_definition_id' ) );
-		if ( !$topicDef ) {
-			throw new \MWException( 'Invalid definition owns this TopicList, needs a valid topic_definition_id option assigned' );
-		}
-
-		$topicWorkflow = Workflow::create( $topicDef, $this->user, $this->workflow->getArticleTitle() );
+		// build topic
+		$topicWorkflow = $this->findWorkflow( 'topic_definition_id' );
+		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
 		// Should we really have a top level post for the topic title?  Simplifies allowing
 		// a revisioned title.
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
-		$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
-		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
+
+		// build initial post in this topic
+		$topicBlock = new TopicBlock( $topicWorkflow, $this->storage, $this->notificationController, $topicPost );
+		$topicBlock->init( $this->action, $this->user ); // @todo: this $action won't actually exist in TopicBlock
+		$postWorkflow = $topicBlock->findWorkflow( 'post_definition_id' );
+		$firstPost = PostRevision::create( $postWorkflow, $this->submitted['content'] );
 		$topicPost->setChildren( array( $firstPost ) );
 		$firstPost->setChildren( array() );
 
-		$storage->put( $topicWorkflow );
-		$storage->put( $topicPost );
-		$storage->put( $firstPost );
-		$storage->put( $topicListEntry );
+		// save to storage
+		$this->storage->put( $topicListEntry );
+		$this->storage->put( $topicWorkflow );
+		$this->storage->put( $topicPost );
+		$this->storage->put( $postWorkflow );
+		$this->storage->put( $firstPost );
 
 		$this->notificationController->notifyNewTopic( array(
 			'board-workflow' => $this->workflow,
@@ -75,15 +74,13 @@ class TopicListBlock extends AbstractBlock {
 		) );
 
 		$user = $this->user;
-		$notificationController = $this->notificationController;
+		$action = $this->action;
 		$output = array(
 			'created-topic-id' => $topicWorkflow->getId(),
 			'created-post-id' => $firstPost->getRevisionId(),
-			'render-function' => function( $templating )
-					use ( $topicWorkflow, $firstPost, $topicPost, $storage, $user, $notificationController )
-			{
-				$block = new TopicBlock( $topicWorkflow, $storage, $notificationController, $topicPost );
-				return $templating->renderTopic( $topicPost, $block, true );
+			'render-function' => function( $templating ) use ( $topicBlock, $topicPost, $user, $action ) {
+				$topicBlock->init( $action, $user );
+				return $topicBlock->render( $templating, array(), true );
 			},
 		);
 
@@ -149,7 +146,6 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	protected function getFindOptions( $requestOptions ) {
-		global $wgFlowDefaultLimit, $wgFlowMaxLimit;
 		$findOptions = array();
 
 		// Compute offset/limit
@@ -187,7 +183,7 @@ class TopicListBlock extends AbstractBlock {
 	protected function getTopics( $page ) {
 		$found = $page->getResults();
 
-		if ( ! count( $found ) ) {
+		if ( !count( $found ) ) {
 			return array();
 		}
 
@@ -205,4 +201,3 @@ class TopicListBlock extends AbstractBlock {
 		return $topics;
 	}
 }
-

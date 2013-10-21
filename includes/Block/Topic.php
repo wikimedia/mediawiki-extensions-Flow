@@ -4,14 +4,12 @@ namespace Flow\Block;
 
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
-use Flow\DbFactory;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\NotificationController;
 use Flow\Templating;
-use EchoEvent;
 use User;
 
 class TopicBlock extends AbstractBlock {
@@ -23,14 +21,11 @@ class TopicBlock extends AbstractBlock {
 	protected $notification;
 	protected $requestedPost;
 
+	protected $post;
+
 	// POST actions, GET do not need to be listed
 	// unrecognized GET actions fallback to 'view'
 	protected $supportedActions = array(
-		// Standard editing
-		'edit-post', 'reply',
-		// Moderation
-		'hide-post', 'delete-post', 'censor-post', 'restore-post',
-		// Other stuff
 		'hide-topic', 'edit-title',
 	);
 
@@ -53,33 +48,9 @@ class TopicBlock extends AbstractBlock {
 			$this->validateEditTitle();
 			break;
 
-		case 'reply':
-			$this->validateReply();
-			break;
-
 		case 'hide-topic':
 			// this should be a workflow level action, not implemented per-block
 			$this->validateHideTopic();
-			break;
-
-		case 'hide-post':
-			$this->validateModeratePost( AbstractRevision::MODERATED_HIDDEN );
-			break;
-
-		case 'delete-post':
-			$this->validateModeratePost( AbstractRevision::MODERATED_DELETED );
-			break;
-
-		case 'censor-post':
-			$this->validateModeratePost( AbstractRevision::MODERATED_CENSORED );
-			break;
-
-		case 'restore-post':
-			$this->validateRestorePost();
-			break;
-
-		case 'edit-post':
-			$this->validateEditPost();
 			break;
 
 		default:
@@ -110,115 +81,17 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	protected function validateReply() {
-		if ( empty( $this->submitted['content'] ) ) {
-			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
-		}
-
-		if ( !isset( $this->submitted['replyTo'] ) ) {
-			$this->errors['replyTo'] = wfMessage( 'flow-error-missing-replyto' );
-		} else {
-			$this->submitted['replyTo'] = UUID::create( $this->submitted['replyTo']  );
-			$post = $this->storage->get( 'PostRevision', $this->submitted['replyTo'] );
-			if ( !$post ) {
-				$this->errors['replyTo'] = wfMessage( 'flow-error-invalid-replyto' );
-			} else {
-				// TODO: assert post belongs to this tree?  Does it really matter?
-				// answer: might not belong, and probably does matter due to inter-wiki interaction
-				$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
-
-				$this->setNotification(
-					'flow-post-reply',
-					array(
-						'reply-to' => $post,
-						'content' => $this->submitted['content'],
-						'topic-title' => $this->getTitleText(),
-					)
-				);
-			}
-		}
-	}
-
 	protected function validateHideTopic() {
 		if ( !$this->workflow->lock( $this->user ) ) {
 			$this->errors['hide-topic'] = wfMessage( 'flow-error-hide-failure' );
 		}
 	}
 
-	protected function validateModeratePost( $moderationState ) {
-		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['moderate-post'] = wfMessage( 'flow-error-missing-postId' );
-			return;
-		}
-		$post = $this->loadRequestedPost( $this->submitted['postId'] );
-		if ( !$post ) {
-			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-postId' );
-			return;
-		}
-
-		$this->newRevision = $post->moderate( $this->user, $moderationState );
-		if ( !$this->newRevision ) {
-			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
-		}
-	}
-
-	protected function validateRestorePost() {
-		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-error-missing-postId' );
-			return;
-		}
-		$post = $this->loadRequestedPost( $this->submitted['postId'] );
-		if ( !$post ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-error-invalid-postId' );
-			return;
-		}
-
-		$this->newRevision = $post->restore( $this->user );
-		if ( !$this->newRevision ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-error-not-allowed' );
-		}
-	}
-
-	protected function validateEditPost() {
-		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['edit-post'] = wfMessage( 'flow-no-post-provided' );
-			return;
-		}
-		if ( empty( $this->submitted['content'] ) ) {
-			$this->errors['content'] = wfMessage( 'flow-missing-post-content' );
-			return;
-		}
-		$post = $this->loadRequestedPost( $this->submitted['postId'] );
-		if ( !$post ) {
-			$this->errors['edit-post'] = wfMessage( 'flow-post-not-found' );
-			return;
-		}
-		if ( !$post->isAllowedToEdit( $this->user ) ) {
-			$this->errors['edit-post'] = wfMessage( 'flow-error-edit-restricted' );
-			return;
-		}
-
-		$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
-		$this->setNotification(
-			'flow-post-edited',
-			array(
-				'content' => $this->submitted['content'],
-				'topic-title' => $this->getTitleText(),
-			)
-		);
-	}
-
 	public function commit() {
 		$this->workflow->updateLastModified();
 
 		switch( $this->action ) {
-		case 'reply':
-		case 'hide-post':
-		case 'delete-post':
-		case 'censor-post':
-		case 'restore-post':
 		case 'edit-title':
-		case 'edit-post':
 			if ( $this->newRevision === null ) {
 				throw new \MWException( 'Attempt to save null revision' );
 			}
@@ -235,10 +108,6 @@ class TopicBlock extends AbstractBlock {
 				$renderFunction = function( $templating ) use ( $newRevision ) {
 					return $newRevision->getContent( null, 'wikitext' );
 				};
-			} else {
-				$renderFunction = function( $templating ) use ( $self, $newRevision, $rootPost ) {
-					return $templating->renderPost( $newRevision, $self, $rootPost );
-				};
 			}
 
 			if ( is_array( $this->notification ) ) {
@@ -252,10 +121,12 @@ class TopicBlock extends AbstractBlock {
 				'render-function' => $renderFunction,
 			);
 
-		case 'delete-topic':
+		case 'delete-topic': // @todo: what? this one doesn't even exist ^^
 			$this->storage->put( $this->workflow );
 
 			return 'success';
+
+		// @todo: hide-topic (and other moderations actions) are missing
 
 		default:
 			throw new \MWException( "Unknown commit action: {$this->action}" );
@@ -265,18 +136,12 @@ class TopicBlock extends AbstractBlock {
 	public function render( Templating $templating, array $options, $return = false ) {
 		$templating->getOutput()->addModules( 'ext.flow.discussion' );
 		switch( $this->action ) {
-		case 'post-history':
-			return $this->renderPostHistory( $templating, $options, $return );
-
 		case 'topic-history':
 			return $templating->render( "flow:topic-history.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
 				'history' => $this->loadTopicHistory(),
 			) );
-
-		case 'edit-post':
-			return $this->renderEditPost( $templating, $options, $return );
 
 		case 'edit-title':
 			return $templating->render( "flow:edit-title.html.php", array(
@@ -288,76 +153,19 @@ class TopicBlock extends AbstractBlock {
 		default:
 			$root = $this->loadRootPost();
 
-			if ( isset( $options['postId'] ) ) {
-				$indexDescendant = $root->registerDescendant( $options['postId'] );
-				$post = $root->getRecursiveResult( $indexDescendant );
-				if ( $post === false ) {
-					throw new \MWException( 'Requested postId is not available within post tree' );
-				}
-
-				return $templating->renderPost(
-					$post,
-					$this,
-					$return
-				);
-			} else {
-				return $templating->renderTopic(
-					$root,
-					$this,
-					$return
-				);
-			}
+			return $templating->render( "flow:topic.html.php", array(
+				'block' => $this,
+				'topic' => $this->getWorkflow(),
+				'root' => $root
+			), $return );
 		}
-	}
-
-	protected function renderPostHistory( Templating $templating, array $options, $return = false ) {
-		if ( !isset( $options['postId'] ) ) {
-			throw new \Exception( 'No postId provided' );
-		}
-		return $templating->render( "flow:post-history.html.php", array(
-			'block' => $this,
-			'topic' => $this->workflow,
-			'history' => $this->getHistory( $options['postId'] ),
-		), $return );
-	}
-
-	protected function renderEditPost( Templating $templating, array $options, $return = false ) {
-		if ( !isset( $options['postId'] ) ) {
-			throw new \Exception( 'No postId provided' );
-		}
-		$post = $this->loadRequestedPost( $options['postId'] );
-		if ( $post->isModerated() ) {
-			throw new \Exception( 'Cannot edit restricted post.  Restore first.' );
-		}
-		return $templating->render( "flow:edit-post.html.php", array(
-			'block' => $this,
-			'topic' => $this->workflow,
-			'post' => $this->loadRequestedPost( $options['postId'] ),
-		), $return );
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
-		if ( isset( $options['postId'] ) ) {
-			$rootPost = $this->loadRootPost();
-
-			$indexDescendant = $rootPost->registerDescendant( $options['postId'] );
-			$post = $rootPost->getRecursiveResult( $indexDescendant );
-			if ( $post === false ) {
-				throw new \MWException( 'Requested postId is not available within post tree' );
-			}
-
-			if ( ! $post ) {
-				throw new MWException( "Requested post could not be found" );
-			}
-
-			return array( $this->renderPostAPI( $templating, $post, $options ) );
-		} else {
-			return $this->renderTopicAPI( $templating, $options );
-		}
+		return $this->renderTopicAPI( $templating, $options );
 	}
 
-	public function renderTopicAPI ( Templating $templating, array $options ) {
-		$output = array();
+	public function renderTopicAPI( Templating $templating, array $options ) {
 		$rootPost = $this->loadRootPost();
 		$topic = $this->workflow;
 
@@ -385,51 +193,11 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		if ( isset( $options['render'] ) ) {
-			$output['rendered'] = $templating->renderTopic( $rootPost, $this, true );
+			$output['rendered'] = $this->render( $templating, array(), true );
 		}
 
 		foreach( $rootPost->getChildren() as $child ) {
 			$output[] = $this->renderPostAPI( $templating, $child, $options );
-		}
-
-		return $output;
-	}
-
-	protected function renderPostAPI( Templating $templating, PostRevision $post, array $options ) {
-		$output = array();
-
-		$output['post-id'] = $post->getPostId()->getHex();
-		$contentFormat = 'wikitext';
-
-		if ( isset( $options['contentFormat'] ) ) {
-			$contentFormat = $options['contentFormat'];
-		}
-
-		if ( $post->isModerated() ) {
-			$output['post-moderated'] = 'post-moderated';
-		} else {
-			$output['content'] = array(
-				'*' => $post->getContent( null, $contentFormat ),
-				'format' => $contentFormat
-			);
-			$output['user'] = $post->getUserText();
-		}
-
-		if ( ! isset( $options['no-children'] ) ) {
-			$children = array( '_element' => 'post' );
-
-			foreach( $post->getChildren() as $child ) {
-				$children[] = $this->renderPostAPI( $templating, $child, $options );
-			}
-
-			if ( count( $children ) > 1 ) {
-				$output['replies'] = $children;
-			}
-		}
-
-		$postId = $post->getPostId()->getHex();
-		if ( isset( $options['history'][$postId] ) ) {
-			$output['revisions'] = $this->getAPIHistory( $postId, $options['history'][$postId] );
 		}
 
 		return $output;
@@ -539,34 +307,6 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	protected function loadRequestedPost( $postId ) {
-		if ( !isset( $this->requestedPost[$postId] ) ) {
-			$found = $this->storage->find(
-				'PostRevision',
-				array( 'tree_rev_descendant_id' => UUID::create( $postId ) ),
-				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-			);
-			if ( $found ) {
-				$this->requestedPost[$postId] = reset( $found );
-			} else {
-				// meh, signals that its not found, dont look again
-				$this->requestedPost[$postId] = false;
-			}
-		}
-		// catches the === false and returns null as expected
-		return $this->requestedPost[$postId] ?: null;
-	}
-
-	// Somehow the template has to know which post the errors go with
-	public function getRepliedTo() {
-		return isset( $this->submitted['replyTo'] ) ? $this->submitted['replyTo'] : null;
-	}
-
-	public function getHexRepliedTo() {
-		$repliedTo = $this->getRepliedTo();
-		return $repliedTo instanceof UUID ? $repliedTo->getHex() : $repliedTo;
-	}
-
 	// The prefix used for form data
 	public function getName() {
 		return 'topic';
@@ -583,4 +323,38 @@ class TopicBlock extends AbstractBlock {
 			);
 	}
 
+	/**
+	 * Returns an array of all PostBlock children for this topic.
+	 *
+	 * @return array
+	 */
+	public function getPosts() {
+		$root = $this->loadRootPost();
+		$revisions = $root->getChildren();
+
+		$posts = array();
+
+		foreach ( $revisions as $revision ) {
+			$post = $this->getPostBlock( $revision );
+			$hexId = $post->getWorkflowId()->getHex();
+			$posts[$hexId] = $post;
+		}
+
+		return $posts;
+	}
+
+	/**
+	 * Returns PostBlock object for the given PostRevision.
+	 *
+	 * @param PostRevision $revision
+	 * @return PostBlock
+	 */
+	public function getPostBlock( PostRevision $revision ) {
+		$workflow = $this->findWorkflow( 'post_definition_id' );
+
+		$post = new PostBlock( $workflow, $this->storage, $this->notificationController, $revision );
+		$post->init( $this->action, $this->user );
+
+		return $post;
+	}
 }

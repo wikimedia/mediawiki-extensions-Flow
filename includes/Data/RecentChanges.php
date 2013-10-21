@@ -114,7 +114,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 		// These are likely already in the in-process cache
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 		if ( !$workflow ) {
-			wfWarn( __METHOD__ . ": could not locate workflow $workflowId" );
+			wfWarn( __METHOD__ . ": could not locate workflow " . $workflowId->getHex() );
 			return;
 		}
 

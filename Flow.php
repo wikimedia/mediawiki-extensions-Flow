@@ -125,7 +125,7 @@ $wgAutoloadClasses['Flow\Block\HeaderBlock'] = $dir . 'includes/Block/Header.php
 $wgAutoloadClasses['Flow\Block\TopicListBlock'] = $dir . 'includes/Block/TopicList.php';
 $wgAutoloadClasses['Flow\Block\TopicListView'] = $dir . 'includes/Block/TopicList.php';
 $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';
-$wgAutoloadClasses['Flow\Block\TopicView'] = $dir . 'includes/Block/Topic.php';
+$wgAutoloadClasses['Flow\Block\PostBlock'] = $dir . 'includes/Block/Post.php';
 
 // Special page for rendering flows
 $wgAutoloadClasses['SpecialFlow'] = $dir . 'special/SpecialFlow.php';
@@ -217,3 +217,6 @@ $wgFlowOccupyPages = array();
 
 // Namespaces to occupy is an array of NS_* constants, e.g. array( NS_USER_TALK ).
 $wgFlowOccupyNamespaces = array();
+
+// @todo: for test purposes
+$wgCompressRevisions = false;

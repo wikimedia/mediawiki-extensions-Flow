@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
+use Flow\Block\PostBlock;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
@@ -86,36 +87,6 @@ class Templating {
 		return $this->urlGenerator->generateUrl( $workflow, $action, $query );
 	}
 
-	public function renderPost( PostRevision $post, Block $block, $return = true ) {
-		global $wgUser, $wgFlowTokenSalt;
-
-		return $this->render(
-			'flow:post.html.php',
-			array(
-				'block' => $block,
-				'post' => $post,
-				// An ideal world may pull this from the container, but for now this is fine.  This templating
-				// class has too many responsibilities to keep receiving all required objects in the constructor.
-				'postActionMenu' => new PostActionMenu(
-					$this->urlGenerator,
-					$wgUser,
-					$block,
-					$post,
-					$wgUser->getEditToken( $wgFlowTokenSalt )
-				),
-			),
-			$return
-		);
-	}
-
-	public function renderTopic( PostRevision $root, TopicBlock $block, $return = true ) {
-		return $this->render( "flow:topic.html.php", array(
-			'block' => $block,
-			'topic' => $block->getWorkflow(),
-			'root' => $root,
-		), $return );
-	}
-
 	public function getPagingLink( $block, $direction, $offset, $limit ) {
 		$output = '';
 
@@ -152,8 +123,6 @@ class Templating {
 	}
 
 	public function userToolLinks( $userId, $userText ) {
-		global $wgLang;
-
 		if ( $userText instanceof MWMessage ) {
 			// username was moderated away, we dont know who this is
 			return '';

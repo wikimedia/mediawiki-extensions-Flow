@@ -106,4 +106,15 @@ abstract class AbstractBlock implements Block {
 	public function getWorkflowId() {
 		return $this->workflow->getId();
 	}
+
+	public function findWorkflow( $option ) {
+		$defStorage = $this->storage->getStorage( 'Definition' );
+		$sourceDef = $defStorage->get( $this->workflow->getDefinitionId() );
+		$requestedDef = $defStorage->get( $sourceDef->getOption( $option ) );
+		if ( !$requestedDef ) {
+			throw new \MWException( "Invalid definition owns this ". get_class() .", needs a valid $option option assigned" );
+		}
+
+		return $requestedDef->createWorkflow( $this->user, $this->workflow->getArticleTitle() );
+	}
 }

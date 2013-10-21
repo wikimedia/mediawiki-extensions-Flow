@@ -108,11 +108,10 @@ class PostActionMenu {
 			return false;
 		}
 
-		$data = array( $this->block->getName() . '[postId]' => $this->post->getPostId()->getHex() );
 		if ( $details['method'] === 'POST' ) {
-			return $this->postAction( $action, $data, $content, $class );
+			return $this->postAction( $action, array(), $content, $class );
 		} else {
-			return $this->getAction( $action, $data, $content, $class );
+			return $this->getAction( $action, array(), $content, $class );
 		}
 	}
 

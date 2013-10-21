@@ -149,6 +149,19 @@ mw.flow = {
 			};
 		},
 
+		generatePostAction: function( actionName, parameterList, promiseFilterCallback ) { // @todo: too identical to generateTopicAction; merge 'em
+			var params = $.makeArray( arguments );
+			params.unshift( 'post' );
+			var innerAction = mw.flow.api.generateBlockAction.apply( this, params );
+
+			return function( postId ) {
+				var actionParams = $.makeArray( arguments );
+				postId = actionParams.shift( 'post' );
+				actionParams.unshift( { 'workflow' : postId } );
+				return innerAction.apply( this, actionParams );
+			};
+		},
+
 		/**
 		 * @param {string} actionName
 		 * @param {object} parameterList
@@ -228,7 +241,7 @@ mw.flow.api.newTopic = mw.flow.api.generateBlockAction(
  * @param {string} workflowId
  * @return {Deferred}
  */
-mw.flow.api.reply = mw.flow.api.generateTopicAction(
+mw.flow.api.reply = mw.flow.api.generatePostAction(
 	'reply',
 	[
 		'replyTo',
@@ -241,6 +254,7 @@ mw.flow.api.reply = mw.flow.api.generateTopicAction(
  * @return {Deferred}
  */
 mw.flow.api.changeTitle = mw.flow.api.generateTopicAction(
+	'edit-post',
 	'edit-title',
 	[
 		'content'
@@ -251,10 +265,10 @@ mw.flow.api.changeTitle = mw.flow.api.generateTopicAction(
  * @param {string} workflowId
  * @return {Deferred}
  */
-mw.flow.api.editPost = mw.flow.api.generateTopicAction(
+mw.flow.api.editPost = mw.flow.api.generatePostAction(
 	'edit-post',
 	[
-		'postId',
+		'id',
 		'content'
 	]
 );
