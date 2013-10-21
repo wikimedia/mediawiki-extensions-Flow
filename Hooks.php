@@ -154,6 +154,62 @@ class FlowHooks {
 	}
 
 	/**
+	 * Regular article-based checks are useless for Flow-enabled pages.
+	 * Whis will make sure we won't have redlinks for Flow boards.
+	 *
+	 * @param Title $title
+	 * @param bool $isKnown
+	 * @return bool
+	 */
+	public static function onTitleIsAlwaysKnown( Title $title, &$isKnown) {
+		$container = Container::getContainer();
+		$occupationController = $container['occupation_controller'];
+
+		if ( $occupationController->isTalkpageOccupied( $title ) ) {
+			$loader = $container['factory.loader.workflow']
+				->createWorkflowLoader( $title );
+			$workflow = $loader->getWorkflow();
+
+			$isKnown = !$workflow->isNew();
+		}
+
+		return true;
+	}
+
+	/**
+	 * Regular talk page "Create source" and "Add topic" links are quite useless
+	 * in the context of Flow boards. Let's get rid of them.
+	 *
+	 * @param SkinTemplate $template
+	 * @param array $links
+	 * @return bool
+	 */
+	public static function onSkinTemplateNavigation( SkinTemplate &$template, &$links ) {
+		$title = $template->getTitle();
+
+		$container = Container::getContainer();
+		$occupationController = $container['occupation_controller'];
+
+		// if Flow is enabled on this talk page, overrule talk page red link
+		if ( $occupationController->isTalkpageOccupied( $title ) ) {
+			$links['views'] = array();
+			unset(
+				$links['actions']['protect'],
+				$links['actions']['unprotect'],
+				$links['actions']['delete'],
+				$links['actions']['move'],
+				$links['actions']['undelete']
+			);
+
+			// @todo: at some point, we'll probably want to re-use/override:
+			// - ['views']['history']
+			// - ['actions']['protect'] & ['actions']['unprotect']
+		}
+
+		return true;
+	}
+
+	/**
 	 * @param array $names
 	 * @return bool
 	 */

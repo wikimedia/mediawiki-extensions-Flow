@@ -149,6 +149,8 @@ $wgHooks['ApiTokensGetTokenTypes'][] = 'FlowHooks::onApiTokensGetTokenTypes';
 $wgHooks['MediaWikiPerformAction'][] = 'FlowHooks::onPerformAction';
 $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
 $wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
+$wgHooks['TitleIsAlwaysKnown'][] = 'FlowHooks::onTitleIsAlwaysKnown';
+$wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavigation';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
