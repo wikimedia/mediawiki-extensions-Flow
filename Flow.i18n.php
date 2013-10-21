@@ -37,7 +37,7 @@ $messages['en'] = array(
 
 	'flow-reply-topic-placeholder' => '{{GENDER:$1|Comment}} on "$2"',
 
-	'flow-reply-placeholder' => 'Click to {{GENDER:$1|reply}} to $1. Be nice!',
+	'flow-reply-placeholder' => '{{GENDER:$1|Reply}} to $1',
 	'flow-reply-submit' => '{{GENDER:$1|Reply}}',
 	'flow-reply-link' => '{{GENDER:$1|Reply}}',
 	'flow-thank-link' => '{{GENDER:$1|Thank}}',
