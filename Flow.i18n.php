@@ -94,7 +94,7 @@ $messages['en'] = array(
 	'flow-rev-message-censored-post' => 'Censored post',
 
 	'flow-topic-history' => 'Topic history',
-	'flow-topic-participants' => '{{PLURAL:$1|0=No participation yet|$3 started this topic|{{GENDER:$3|$3}} and {{GENDER:$4|$4}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} and $2 others}}',
+	'flow-topic-participants' => '{{PLURAL:$1|$3 started this topic|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} and {{PLURAL:$2|other|others}}|0=No participation yet|2={{GENDER:$3|$3}} and {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Be the first to comment!|Comment ($1)}}',
 
 	'flow-comment-restored' => 'Restored comment',
@@ -305,7 +305,7 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 {{Identical|Topic history}}',
 	'flow-topic-participants' => 'Message to display the amount of participants in this discussion (and potentially a couple of names). Parameters:
 * $1: The total amount of participants in the conversation, can be used for PLURAL
-* $2: The total amount of participants minus 2, can be used to generate a message like (X, Y and $2 others)
+* $2: The total amount of participants minus 2, can be used to generate a message like: X, Y and $2 others ($3 and $4 will be usernames)
 * $3: Username of the topic starter, can be used for GENDER
 * $4: Username of a second participant (if there is a second, otherwise not available), can be used for GENDER',
 	'flow-topic-comments' => 'Message to display the amount of comments in this discussion. Parameters:
