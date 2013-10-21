@@ -91,6 +91,7 @@ $wgAutoloadClasses['Flow\View\History\History'] = "$dir/includes/View/History/Hi
 $wgAutoloadClasses['Flow\View\History\HistoryRecord'] = "$dir/includes/View/History/HistoryRecord.php";
 $wgAutoloadClasses['Flow\View\History\HistoryBundle'] = "$dir/includes/View/History/HistoryBundle.php";
 $wgAutoloadClasses['Flow\View\History\HistoryRenderer'] = "$dir/includes/View/History/HistoryRenderer.php";
+$wgAutoloadClasses['Flow\View\Post'] = "$dir/includes/View/Post.php";
 
 // Classes that deal with database interaction between database and the models
 $wgAutoloadClasses['Flow\Repository\TreeRepository'] = $dir . 'includes/Repository/TreeRepository.php';

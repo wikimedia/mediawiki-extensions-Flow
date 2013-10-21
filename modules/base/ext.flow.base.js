@@ -276,4 +276,10 @@ mw.flow.api.moderatePost = mw.flow.api.generateTopicAction(
 		'reason'
 	]
 );
+
+// random onclick handler moved from html template
+mw.flow.notImplemented = function() {
+	alert( '@todo: Not yet implemented!' );
+	return false;
+};
 } )( jQuery, mediaWiki );
