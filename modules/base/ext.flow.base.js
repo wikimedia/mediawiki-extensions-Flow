@@ -277,6 +277,14 @@ mw.flow.api.moderatePost = mw.flow.api.generateTopicAction(
 	]
 );
 
+mw.flow.api.moderateTopic = mw.flow.api.generateTopicAction(
+	'moderate-topic',
+	[
+		'moderationState',
+		'reason'
+	]
+);
+
 // random onclick handler moved from html template
 mw.flow.notImplemented = function() {
 	alert( '@todo: Not yet implemented!' );

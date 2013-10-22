@@ -8,6 +8,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\View\PostActionMenu;
 use OutputPage;
 // These dont really belong here
 use Html;
@@ -98,23 +99,18 @@ class Templating {
 			throw new \MWException( 'Cannot render topic with ' . __METHOD__ );
 		}
 
-		// @todo: I don't like container being pulled in here, improve this some day
-		$container = Container::getContainer();
-
 		// An ideal world may pull this from the container, but for now this is fine.  This templating
 		// class has too many responsibilities to keep receiving all required objects in the constructor.
+		$actionMenu = $this->createActionMenu( $post, $block );
 		$view = new View\Post(
-			$container['user'],
+			$this->globals['user'], // There is no guarantee of this existing
 			$post,
-			new View\PostActionMenu(
-				$this->urlGenerator,
-				$container['flow_actions'],
-				new PostActionPermissions( $container['flow_actions'], $container['user'] ),
-				$block,
-				$post,
-				$container['user']->getEditToken( $wgFlowTokenSalt )
-			)
+			$actionMenu
 		);
+
+		if ( !$actionMenu->isAllowed( 'view' ) ) {
+			return '';
+		}
 
 		return $this->render(
 			'flow:post.html.php',
@@ -128,14 +124,34 @@ class Templating {
 	}
 
 	public function renderTopic( PostRevision $root, TopicBlock $block, $return = true ) {
-		$container = Container::getContainer();
-
+		$actionMenu = $this->createActionMenu( $root, $block );
+		if ( !$actionMenu->isAllowed( 'view' ) ) {
+			return '';
+		}
 		return $this->render( "flow:topic.html.php", array(
 			'block' => $block,
 			'topic' => $block->getWorkflow(),
 			'root' => $root,
-			'permissions' => new PostActionPermissions( $container['flow_actions'], $container['user'] ),
+			'postActionMenu' => $actionMenu,
 		), $return );
+	}
+
+	// An ideal world may pull this from the container, but for now this is fine.  This templating
+	// class has too many responsibilities to keep receiving all required objects in the constructor.
+	protected function createActionMenu( PostRevision $post, Block $block ) {
+		global $wgUser, $wgFlowTokenSalt;
+
+		// @todo: I don't like container being pulled in here, improve this some day
+		$container = Container::getContainer();
+
+		return new PostActionMenu(
+			$this->urlGenerator,
+			$container['flow_actions'],
+			new PostActionPermissions( $container['flow_actions'], $wgUser ),
+			$block,
+			$post,
+			$wgUser->getEditToken( $wgFlowTokenSalt )
+		);
 	}
 
 	public function getPagingLink( $block, $direction, $offset, $limit ) {

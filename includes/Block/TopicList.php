@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use Flow\Container;
 use Flow\DbFactory;
 use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectManager;
@@ -12,6 +13,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
+use Flow\PostActionPermissions;
 use Flow\Templating;
 use User;
 
@@ -29,6 +31,11 @@ class TopicListBlock extends AbstractBlock {
 	) {
 		parent::__construct( $workflow, $storage, $notificationController );
 		$this->rootLoader = $rootLoader;
+	}
+
+	public function init( $action, $user ) {
+		parent::init( $action, $user );
+		$this->permissions = new PostActionPermissions( Container::get( 'flow_actions' ), $user );
 	}
 
 	protected function validate() {
@@ -58,15 +65,12 @@ class TopicListBlock extends AbstractBlock {
 		// Should we really have a top level post for the topic title?  Simplifies allowing
 		// a revisioned title.
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
-		$topicChildren = array();
 		$firstPost = null;
 		if ( !empty( $this->submitted['content'] ) ) {
 			$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
-			$firstPost->setChildren( array() );
-			$topicChildren[] = $firstPost;
+			$topicPost->setChildren( array( $firstPost ) );
 		}
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
-		$topicPost->setChildren( $topicChildren );
 
 		$storage->put( $topicWorkflow );
 		$storage->put( $topicListEntry );
@@ -186,6 +190,16 @@ class TopicListBlock extends AbstractBlock {
 		return $findOptions;
 	}
 
+	/**
+	 * @todo
+	 *
+	 * when this returns deleted topics they dont get displayed to most
+	 * users, which means they will have less topics loaded than they expected.
+	 * Not as noticible with inf scroll, but exploitable to force blank page loads.
+	 *
+	 * One possible solution would be to filter the query at the storage level.
+	 *
+	 */
 	protected function getPage( $findOptions ) {
 		$pager = new Pager(
 			$this->storage->getStorage( 'TopicListEntry' ),
@@ -204,10 +218,22 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		$topics = array();
+		// @var $entry TopicListEntry
 		foreach( $found as $entry ) {
 			$topicIds[] = $entry->getId();
 		}
 		$roots = $this->rootLoader->getMulti( $topicIds );
+		foreach ( $topicIds as $idx => $topicId ) {
+			if ( !$this->permissions->isAllowed( $roots[$topicId->getHex()], 'view' ) ) {
+				unset( $roots[$topicId->getHex()] );
+				unset( $topicIds[$idx] );
+			}
+		}
+		foreach ( $roots as $idx => $topicTitle ) {
+			if ( !$this->permissions->isAllowed( $topicTitle, 'view' ) ) {
+				unset( $roots[$idx] );
+			}
+		}
 		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
 			$hexId = $workflow->getId()->getHex();
 			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
