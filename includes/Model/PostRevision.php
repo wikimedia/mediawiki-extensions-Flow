@@ -8,7 +8,7 @@ use MWTimestamp;
 class PostRevision extends AbstractRevision {
 	protected $postId;
 
-	// denormalized data the must not change between revisions of same post
+	// denormalized data that must not change between revisions of same post
 	protected $origCreateTime;
 	protected $origUserId;
 	protected $origUserText;
@@ -39,6 +39,7 @@ class PostRevision extends AbstractRevision {
 		$obj->replyToId = null; // not a reply to anything
 		$obj->prevRevId = null; // no parent revision
 		$obj->changeType = 'flow-rev-message-new-post';
+		$obj->changeTimestamp = wfTimestampNow();
 		$obj->setContent( $content );
 		return $obj;
 	}
@@ -79,6 +80,7 @@ class PostRevision extends AbstractRevision {
 		$reply->setContent( $content );
 		$reply->replyToId = $this->postId;
 		$reply->changeType = $changeType;
+		$reply->changeTimestamp = wfTimestampNow();
 		return $reply;
 	}
 
@@ -346,7 +348,7 @@ class PostRevision extends AbstractRevision {
 		}
 
 		/**
-		 * Rrturns the found post.
+		 * Returns the found post.
 		 *
 		 * @param PostRevision $post
 		 * @param int $result

@@ -115,6 +115,8 @@ CREATE TABLE /*_*/flow_revision (
 	-- the type of change that was made. MW message key.
 	-- formerly rev_comment
 	rev_change_type varbinary(255) null,
+	-- timestamp the change was made
+	rev_change_timestamp varchar(14) binary,
 	-- current moderation state
 	rev_mod_state varchar(32) binary not null,
 	-- moderated by who?

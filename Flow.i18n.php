@@ -89,11 +89,13 @@ $messages['en'] = array(
 	'flow-rev-message-create-header' => 'Created header',
 	'flow-rev-message-edit-header' => 'Edited header',
 	'flow-rev-message-restored-post' => 'Unhid post',
-	'flow-rev-message-hid-post' => 'Hid post',
 	'flow-rev-message-deleted-post' => 'Deleted post',
 	'flow-rev-message-censored-post' => 'Censored post',
 
-	'flow-topic-history' => 'Topic history',
+	'flow-topic-history' => '"$1" Topic History',
+	'flow-topic-history-day' => 'Today',
+	'flow-topic-history-week' => 'Last week',
+	'flow-topic-history-old' => 'Older',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 started this topic|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} and {{PLURAL:$2|other|others}}|0=No participation yet|2={{GENDER:$3|$3}} and {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Be the first to comment!|Comment ($1)}}',
 
@@ -301,8 +303,11 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 	'flow-rev-message-restored-post' => 'Used as revision comment when a post has been restored(un-hidden)',
 	'flow-rev-message-deleted-post' => 'Used as revision comment when a post has been deleted',
 	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been censored(oversighted)',
-	'flow-topic-history' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page.
-{{Identical|Topic history}}',
+	'flow-topic-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Topic history" page. Parameters:
+* $1: The topic title',
+	'flow-topic-history-day' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history of today',
+	'flow-topic-history-week' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history of last week (excluding today, which is {{msg-mw|Flow-topic-history-day}})',
+	'flow-topic-history-old' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history (excluding last week & today, which are {{msg-mw|Flow-topic-history-week}} and {{msg-mw|Flow-topic-history-day}})',
 	'flow-topic-participants' => 'Message to display the amount of participants in this discussion (and potentially a couple of names). Parameters:
 * $1: The total amount of participants in the conversation, can be used for PLURAL
 * $2: The total amount of participants minus 2, can be used to generate a message like: X, Y and $2 others ($3 and $4 will be usernames)

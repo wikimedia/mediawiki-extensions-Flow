@@ -82,6 +82,7 @@ abstract class AbstractRevision {
 	// primary use case is the a revision history list.
 	// TODO: i18n key may be too limiting, consider allowing custom revision comments
 	protected $changeType;
+	protected $changeTimestamp;
 	// UUID of the revision prior to this one, or null if this is first revision
 	protected $prevRevision;
 
@@ -118,6 +119,8 @@ abstract class AbstractRevision {
 		$obj->userText = $row['rev_user_text'];
 		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
 		$obj->changeType = $row['rev_change_type'];
+		// isset required because there is a possible db migration, cached data will not have it
+		$obj->changeTimestamp = isset( $row['rev_change_timestamp'] ) ? $row['rev_change_timestamp'] : null;
 	 	$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
 		$obj->content = $row['rev_content'];
 		// null if external store is not being used
@@ -144,6 +147,7 @@ abstract class AbstractRevision {
 			'rev_user_text' => $obj->userText,
 			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getBinary() : null,
 			'rev_change_type' => $obj->changeType,
+			'rev_change_timestamp' => $obj->changeTimestamp,
 			'rev_type' => $obj->getRevisionType(),
 
 			'rev_content' => $obj->content,
@@ -173,6 +177,7 @@ abstract class AbstractRevision {
 		$obj->userText = $user->getName();
 		$obj->prevRevision = $this->revId;
 		$obj->changeType = '';
+		$obj->changeTimestamp = wfTimestampNow();
 		return $obj;
 	}
 
@@ -183,6 +188,7 @@ abstract class AbstractRevision {
 		$obj = $this->newNullRevision( $user );
 		$obj->setNextContent( $user, $content );
 		$obj->changeType = $changeType;
+		$obj->changeTimestamp = wfTimestampNow();
 		return $obj;
 	}
 
@@ -232,6 +238,7 @@ abstract class AbstractRevision {
 		} else {
 			$obj->changeType = $changeType;
 		}
+		$obj->changeTimestamp = wfTimestampNow();
 		return $obj;
 	}
 
@@ -406,6 +413,10 @@ abstract class AbstractRevision {
 
 	public function getChangeType() {
 		return $this->changeType;
+	}
+
+	public function getChangeTimestamp() {
+		return $this->changeTimestamp;
 	}
 
 	public function getModerationState() {

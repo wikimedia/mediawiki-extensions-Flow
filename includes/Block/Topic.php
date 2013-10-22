@@ -269,9 +269,12 @@ class TopicBlock extends AbstractBlock {
 			return $this->renderPostHistory( $templating, $options, $return );
 
 		case 'topic-history':
+			$root = $this->loadRootPost();
+
 			return $templating->render( "flow:topic-history.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
+				'root' => $root,
 				'history' => $this->loadTopicHistory(),
 			) );
 

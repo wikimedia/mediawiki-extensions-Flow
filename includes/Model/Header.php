@@ -16,6 +16,7 @@ class Header extends AbstractRevision {
 		$obj->prevRevision = null; // no prior revision
 		$obj->setContent( $content );
 		$obj->changeType = $changeType;
+		$obj->changeTimestamp = wfTimestampNow();
 		return $obj;
 	}
 
