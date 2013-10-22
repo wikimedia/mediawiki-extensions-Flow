@@ -251,7 +251,7 @@
 				}
 
 				var $topicContainer = $( this ).closest( '.flow-topic-container' ),
-					$hideElement = $topicContainer.children( '.flow-post-container' );
+					$hideElement = $topicContainer.children( '.flow-topic-children-container' );
 
 				$topicContainer.toggleClass( 'flow-topic-closed' );
 
@@ -266,7 +266,7 @@
 		var moderationTypes = [ 'hide', 'delete', 'censor', 'restore' ];
 		$.each( moderationTypes, function( k, moderationType ) {
 			$container
-				.find( '.flow-'+moderationType+'-post-link' )
+				.find( '.flow-'+moderationType+'-post-link, .flow-'+moderationType+'-topic-link' )
 				.click(
 				function(e) {
 					e.preventDefault();

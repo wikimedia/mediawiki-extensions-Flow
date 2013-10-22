@@ -20,32 +20,32 @@ abstract class AbstractRevision {
 		self::MODERATED_NONE => array(
 			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => null,
-			// Whether or not to create a new revision when setting this state
-			'new-revision' => true,
+			// Whether or not to apply transition to this moderation state to historical revisions
+			'historical' => true,
 			// i18n key for history and recentchanges
 			'change-type' => 'restore-post',
 		),
 		self::MODERATED_HIDDEN => array(
 			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => 'flow-hide',
-			// Whether or not to create a new revision when setting this state
-			'new-revision' => true,
+			// Whether or not to apply transition to this moderation state to historical revisions
+			'historical' => false,
 			// i18n key for history and recentchanges
 			'change-type' => 'hide-post',
 		),
 		self::MODERATED_DELETED => array(
 			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => 'flow-delete',
-			// Whether or not to create a new revision when setting this state
-			'new-revision' => false,
+			// Whether or not to apply transition to this moderation state to historical revisions
+			'historical' => true,
 			// i18n key for history and recentchanges
 			'change-type' => 'delete-post',
 		),
 		self::MODERATED_CENSORED => array(
 			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => 'flow-censor',
-			// Whether or not to create a new revision when setting this state
-			'new-revision' => false,
+			// Whether or not to apply transition to this moderation state to historical revisions
+			'historical' => true,
 			// i18n key for history and recentchanges
 			'change-type' => 'censor-post',
 		),
@@ -177,16 +177,20 @@ abstract class AbstractRevision {
 		$aPos = array_search( $a, $keys );
 		$bPos = array_search( $b, $keys );
 		if ( $aPos === false || $bPos === false ) {
-			wfWarn( __CLASS__, __FUNCTION__ . ": Invalid permissions provided: '$a' '$b'" );
+			wfWarn( __METHOD__ . ": Invalid permissions provided: '$a' '$b'" );
 			// err on the side of safety, most restrictive
 			return end( $keys );
 		}
 		return $keys[max( $aPos, $bPos )];
 	}
 
-	public function moderate( User $user, $state, $changeType = null ) {
+	/**
+	 * $historical revisions must be provided when self::needsModerateHistorical
+	 * returns true.
+	 */
+	public function moderate( User $user, $state, $changeType = null, array $historical = array() ) {
 		if ( ! $this->isValidModerationState( $state ) ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ': Provided moderation state does not exist : ' . $state );
+			wfWarn( __METHOD__ . ': Provided moderation state does not exist : ' . $state );
 			return null;
 		}
 
@@ -194,31 +198,31 @@ abstract class AbstractRevision {
 		if ( !$this->isAllowed( $user, $mostRestrictive ) ) {
 			return null;
 		}
-		// Censoring is special,  other moderation types just create
-		// a new revision but censoring adjusts the existing revision.
-		// Yes this mucks with the history just being a revision list.
-		if ( self::$perms[$state]['new-revision'] ) {
-			$obj = $this->newNullRevision( $user );
-		} else {
-			$obj = $this;
+		if ( !$historical && $this->needsModerateHistorical( $state ) ) {
+			throw new \MWException( 'Requested state change requires historical revisions, but they were not provided.' );
 		}
 
-		$obj->moderationState = $state;
-		if ( $state === self::MODERATED_NONE ) {
-			$obj->moderatedByUserId = null;
-			$obj->moderatedByUserText = null;
-			$obj->moderationTimestamp = null;
+		$historical[] = $obj = $this->newNullRevision( $user );
+		$historical[] = $this;
+		if ( $changeType === null && isset( self::$perms[$state]['change-type'] ) ) {
+			$obj->changeType = self::$perms[$state]['change-type'];
 		} else {
-			$obj->moderatedByUserId = $user->getId();
-			$obj->moderatedByUserText = $user->getName();
-			$obj->moderationTimestamp = wfTimestampNow();
+			$obj->changeType = $changeType;
 		}
-
-		if ( $obj !== $this ) {
-			if ( $changeType === null && isset( self::$perms[$state]['change-type'] ) ) {
-				$obj->changeType = self::$perms[$state]['change-type'];
+		$timestamp = wfTimestampNow();
+		foreach ( $historical as $rev ) {
+			if ( !$rev->isAllowed( $user ) ) {
+				continue;
+			}
+			$rev->moderationState = $state;
+			if ( $state === self::MODERATED_NONE ) {
+				$rev->moderatedByUserId = null;
+				$rev->moderatedByUserText = null;
+				$rev->moderationTimestamp = null;
 			} else {
-				$obj->changeType = $changeType;
+				$rev->moderatedByUserId = $user->getId();
+				$rev->moderatedByUserText = $user->getName();
+				$rev->moderationTimestamp = $timestamp;
 			}
 		}
 
@@ -227,6 +231,17 @@ abstract class AbstractRevision {
 
 	public function isValidModerationState( $state ) {
 		return isset( self::$perms[$state] );
+	}
+
+	public function needsModerateHistorical( $state ) {
+		if ( $this->isFirstRevision() ) {
+			return false;
+		}
+		if ( !isset( self::$perms[$state]['historical'] ) ) {
+			wfWarn( __METHOD__ . ": Moderation state does not exist : $state" );
+			return false;
+		}
+		return self::$perms[$state]['historical'];
 	}
 
 	public function restore( User $user ) {
