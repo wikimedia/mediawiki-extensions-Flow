@@ -21,6 +21,7 @@ class Templating {
 	protected $namespaces;
 	protected $globals;
 	protected $output;
+	public $urlGenerator;
 
 	public function __construct( UrlGenerator $urlGenerator, OutputPage $output, array $namespaces = array(), array $globals = array() ) {
 		$this->urlGenerator = $urlGenerator;
@@ -152,10 +153,8 @@ class Templating {
 	}
 
 	public function userToolLinks( $userId, $userText ) {
-		global $wgLang;
-
 		if ( $userText instanceof MWMessage ) {
-			// username was moderated away, we dont know who this is
+			// username was moderated away, we don't know who this is
 			return '';
 		}
 

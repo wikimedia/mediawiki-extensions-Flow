@@ -84,18 +84,24 @@ $messages['en'] = array(
 	'flow-edit-title-submit' => 'Change title',
 
 	'flow-rev-message-edit-post' => 'Edited post content',
-	'flow-rev-message-reply' => 'New reply posted',
-	'flow-rev-message-new-post' => 'Topic created',
-	'flow-rev-message-hid-post' => 'Hid post',
-	'flow-rev-message-edit-title' => 'Edited topic title',
+	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|added}} a <span class="plainlinks">[$2 comment]</span>.',
+	'flow-rev-message-reply-bundle' => '$1 {{PLURAL:$1|comment|comments}} were added.',
+	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|created}} the topic <span class="plainlinks">[$2 $3]</span>.',
+	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|hid}} a <span class="plainlinks">[$3 comment]</span>.',
+	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|edited}} the topic title to <span class="plainlinks">[$2 $3]</span>.',
 	'flow-rev-message-create-header' => 'Created header',
 	'flow-rev-message-edit-header' => 'Edited header',
-	'flow-rev-message-restored-post' => 'Unhid post',
-	'flow-rev-message-hid-post' => 'Hid post',
-	'flow-rev-message-deleted-post' => 'Deleted post',
-	'flow-rev-message-censored-post' => 'Censored post',
+	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|restored}} a <span class="plainlinks">[$3 comment]</span>.',
+	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|deleted}} a <span class="plainlinks">[$3 comment]</span>.',
+	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|suppressed}} a <span class="plainlinks">[$3 comment]</span>.',
 
-	'flow-topic-history' => 'Topic history',
+	'flow-topic-history' => '"$1" Topic History',
+	'flow-post-history' => 'Comment by {{GENDER:$2|$2}} Post History',
+	'flow-history-last4' => 'Last 4 hours',
+	'flow-history-day' => 'Today',
+	'flow-history-week' => 'Last week',
+	'flow-history-old' => 'Older',
+	'flow-history-pages-post' => 'Appears on <span class="plainlinks">[$1 $2]</span>',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 started this topic|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} and {{PLURAL:$2|other|others}}|0=No participation yet|2={{GENDER:$3|$3}} and {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Be the first to comment!|Comment ($1)}}',
 
@@ -316,17 +322,65 @@ Usually indicates a code bug, so technical terminology is okay.',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited',
-	'flow-rev-message-reply' => 'Used as a revision comment when a new reply has been posted.',
+	'flow-rev-message-reply' => 'Used as a revision comment when a new reply has been posted.
+
+Parameters:
+* $1: Username of the user who replied. Can be used for GENDER
+* $2: The url of the post',
+	'flow-rev-message-reply-bundle' => "When multiple replies have been posted, they're bundled. This is the message to describe that multiple replies were posted.
+
+Parameters:
+* $1: The amount of replies posted",
 	'flow-rev-message-new-post' => 'Used as revision comment when the topic has been created.',
-	'flow-rev-message-hid-post' => 'Used as revision comment when a post has been hidden',
-	'flow-rev-message-edit-title' => 'Used as revision comment when a post has been edited',
+	'flow-rev-message-hid-post' => 'Used as revision comment when a post has been hidden.
+
+Parameters:
+* $1: Username of the user who moderated the comment. Can be used for GENDER
+* $2: Username of the user who had posted the comment. Can be used for GENDER
+* $3: Permalink to the comment',
+	'flow-rev-message-edit-title' => "Used as revision comment when a post has been edited.
+
+Parameters:
+* $1: Username of the user who edited the title. Can be used for GENDER
+* $2: The url of the topic
+* $3: The topic title",
 	'flow-rev-message-create-header' => 'Used as revision comment when a header has been created',
 	'flow-rev-message-edit-header' => 'Used as revision comment when a header has been edited',
-	'flow-rev-message-restored-post' => 'Used as revision comment when a post has been restored(un-hidden)',
-	'flow-rev-message-deleted-post' => 'Used as revision comment when a post has been deleted',
-	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been censored(oversighted)',
-	'flow-topic-history' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page.
-{{Identical|Topic history}}',
+	'flow-rev-message-restored-post' => 'Used as revision comment when a post has been restored (un-hidden).
+
+Parameters:
+* $1: Username of the user who restored the comment. Can be used for GENDER
+* $2: Username of the user who had posted the comment. Can be used for GENDER
+* $3: Permalink to the comment',
+	'flow-rev-message-deleted-post' => 'Used as revision comment when a post has been deleted.
+
+Parameters:
+* $1: Username of the user who moderated the comment. Can be used for GENDER
+* $2: Username of the user who had posted the comment. Can be used for GENDER
+* $3: Permalink to the comment',
+	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been censored (oversighted).
+
+Parameters:
+* $1: Username of the user who moderated the comment. Can be used for GENDER
+* $2: Username of the user who had posted the comment. Can be used for GENDER
+* $3: Permalink to the comment',
+	'flow-topic-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Topic history" page.
+
+Parameters:
+* $1: The topic title',
+	'flow-post-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Post history" page.
+
+Parameters:
+* $1: The topic title
+* $1: The username of the creator of the post. Can be used for GENDER',
+	'flow-history-last4' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history of the last 4 hours',
+	'flow-history-day' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history of today',
+	'flow-history-week' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history of last week',
+	'flow-history-old' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history',
+	'flow-history-pages-post' => 'Used to describe what topic the post is added to. Parameters:
+
+* $1: The link to the topic
+* $2: The topic title',
 	'flow-topic-participants' => 'Message to display the amount of participants in this discussion (and potentially a couple of names).
 
 Parameters:
@@ -334,7 +388,9 @@ Parameters:
 * $2 - the total amount of participants minus 2, can be used to generate a message like: X, Y and $2 others ($3 and $4 will be usernames)
 * $3 - username of the topic starter, can be used for GENDER
 * $4 - username of a second participant (if there is a second, otherwise not available), can be used for GENDER',
-	'flow-topic-comments' => 'Message to display the amount of comments in this discussion. Parameters:
+	'flow-topic-comments' => 'Message to display the amount of comments in this discussion.
+
+Parameters:
 * $1 - The amount of comments on this topic, can be used for PLURAL',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
