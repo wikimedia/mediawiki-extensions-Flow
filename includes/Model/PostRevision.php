@@ -41,7 +41,10 @@ class PostRevision extends AbstractRevision {
 		$obj->prevRevId = null; // no parent revision
 		$obj->changeType = 'new-post';
 		$obj->setContent( $content );
-		$obj->depth = 0;
+		// A newly created post has no children and a depth of 0
+		$obj->setChildren( array() );
+		$obj->setDepth( 0 );
+
 		return $obj;
 	}
 
@@ -81,7 +84,9 @@ class PostRevision extends AbstractRevision {
 		$reply->replyToId = $this->postId;
 		$reply->setContent( $content );
 		$reply->changeType = $changeType;
+		$reply->setChildren( array() );
 		$reply->setDepth( $this->getDepth() + 1 );
+
 		return $reply;
 	}
 
