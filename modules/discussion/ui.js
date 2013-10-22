@@ -219,7 +219,7 @@
 				}
 
 				var $topicContainer = $( this ).closest( '.flow-topic-container' ),
-					$hideElement = $topicContainer.children( '.flow-post-container' );
+					$hideElement = $topicContainer.children( '.flow-topic-children-container' );
 
 				$topicContainer.toggleClass( 'flow-topic-closed' );
 

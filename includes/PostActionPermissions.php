@@ -66,9 +66,12 @@ class PostActionPermissions {
 			'edit-title' => array(
 				PostRevision::MODERATED_NONE => '',
 			),
-
-
 		);
+
+		$this->actions['hide-topic'] = $this->actions['hide-post'];
+		$this->actions['delete-topic'] = $this->actions['delete-post'];
+		$this->actions['censor-topic'] = $this->actions['censor-post'];
+		$this->actions['restore-topic'] = $this->actions['restore-post'];
 	}
 
 	/**

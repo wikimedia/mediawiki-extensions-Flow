@@ -32,6 +32,20 @@ class PostActionMenu {
 	 */
 	protected function getActionDetails( $action ) {
 		$actions = array(
+			// Not sure about mixing topic's and post's, although they are handled
+			// the same currently.
+			'hide-topic' => array(
+				'method' => 'POST',
+			),
+			'delete-topic' => array(
+				'method' => 'POST',
+			),
+			'censor-topic' => array(
+				'method' => 'POST',
+			),
+			'restore-topic' => array(
+				'method' => 'POST',
+			),
 			'hide-post' => array(
 				'method' => 'POST',
 			),
