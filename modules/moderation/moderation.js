@@ -12,45 +12,64 @@
 		var $postContainer = $( this ).closest( '.flow-post-container' ),
 			$topicContainer = $( this ).closest( '.flow-topic-container' ),
 			subject = $topicContainer.data( 'title' ),
-			user = $postContainer.data( 'creator-name' ),
 			$dialog = $( '<div />' ),
-			$form = $( '<form/>' );
+			$form = $( '<form/>' ),
+			type, apiCallback, $resultContainer, user;
+
+			if ( $postContainer.length === 0 ) {
+				// moderating a topic
+				apiCallback = mw.flow.api.moderateTopic;
+				$resultContainer = $topicContainer;
+				type = 'topic';
+			} else {
+				apiCallback = mw.flow.api.moderatePost;
+				$resultContainer = $postContainer;
+				type = 'post';
+			}
+			user = $resultContainer.data( 'creator-name' );
+
 			$dialog
 				.addClass( 'flow-moderation-dialog' )
 				.dialog( {
-					'title' : mw.msg( 'flow-moderation-title-'+moderationType ),
+					'title' : mw.msg( 'flow-moderation-title-'+moderationType+'-'+type ),
 					'modal' : true,
 					'buttons' : [
 						{
-							'text' : mw.msg( 'flow-moderation-confirm-'+moderationType ),
+							'text' : mw.msg( 'flow-moderation-confirm-'+moderationType+'-'+type ),
 							'click' : $(this).flow( 'getFormHandler',
-								mw.flow.api.moderatePost,
+								apiCallback,
 								function() {
-									return [
-										$topicContainer.data( 'topic-id' ),
-										$postContainer.data( 'post-id' ),
-										moderationType,
-										$form.find( '#flow-moderation-reason' ).val()
-									];
+									var res = [ $topicContainer.data( 'topic-id' ) ];
+									if ( $postContainer.length > 0 ) {
+										res.push( $postContainer.data( 'post-id' ) );
+									}
+									res.push( moderationType, $form.find( '#flow-moderation-reason' ).val() );
+									return res;
 								},
 								undefined,
 								function( promise ) {
 									promise.done( function( output ) {
-											var confirmationMsg = 'flow-moderation-confirmation-'+moderationType;
+											var confirmationMsg = 'flow-moderation-confirmation-'+moderationType+'-'+type,
+												$newContainer = $( output.rendered );
+
 											$dialog.empty()
 												.dialog( 'option', 'buttons', null )
 												.append(
 													$( '<p/>' )
 														.text( mw.msg( confirmationMsg, user ) )
 												);
-											var $newContainer = $( output.rendered );
-											$postContainer.replaceWith( $newContainer );
+
+											$resultContainer.replaceWith( $newContainer );
 											$newContainer.trigger( 'flow_init' );
 										} )
 										.fail( function() {
-											var $errorDiv = $( '<div/>' )
-												.flow( 'showError', arguments );
-											$form.append( $errorDiv );
+											var $errorDiv = $( '<div/>' ).flow( 'showError', arguments ),
+												$errors = $form.children( '.flow-error' );
+											if ( $errors.length ) {
+												$errors.replaceWith( $errorDiv );
+											} else {
+												$form.append( $errorDiv );
+											}
 										} );
 								}
 							)
@@ -63,7 +82,7 @@
 						.append(
 							$( 'label' )
 								.attr( 'for', 'flow-moderation-reason' )
-								.text( mw.msg( 'flow-moderation-intro-'+moderationType, user, subject ) )
+								.text( mw.msg( 'flow-moderation-intro-'+moderationType+'-'+type, user, subject ) )
 						)
 				)
 				.append(

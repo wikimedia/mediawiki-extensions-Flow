@@ -24,6 +24,7 @@ class TopicBlock extends AbstractBlock {
 	protected $topicTitle;
 	protected $rootLoader;
 	protected $newRevision;
+	protected $relatedRevisions = array();
 	protected $notification;
 	protected $requestedPost = array();
 
@@ -33,9 +34,10 @@ class TopicBlock extends AbstractBlock {
 		// Standard editing
 		'edit-post', 'reply',
 		// Moderation
+		'moderate-topic',
 		'moderate-post', 'hide-post', 'delete-post', 'censor-post', 'restore-post',
 		// Other stuff
-		'hide-topic', 'edit-title',
+		'edit-title',
 	);
 
 	/**
@@ -59,11 +61,8 @@ class TopicBlock extends AbstractBlock {
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
 
-		$this->permissions = new PostActionPermissions(
-			// @todo: I don't like pulling stuff from container in here, improve this some day
-			Container::get( 'flow_actions' ),
-			$user
-		);
+		// @todo: I don't like pulling stuff from container in here, improve this some day
+		$this->permissions = new PostActionPermissions( Container::get( 'flow_actions' ), $user );
 	}
 
 	protected function validate() {
@@ -76,9 +75,8 @@ class TopicBlock extends AbstractBlock {
 			$this->validateReply();
 			break;
 
-		case 'hide-topic':
-			// this should be a workflow level action, not implemented per-block
-			$this->validateHideTopic();
+		case 'moderate-topic':
+			$this->validateModerateTopic();
 			break;
 
 		case 'moderate-post':
@@ -140,88 +138,110 @@ class TopicBlock extends AbstractBlock {
 	protected function validateReply() {
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
+			return;
+		} elseif ( !isset( $this->submitted['replyTo'] ) ) {
+			$this->errors['replyTo'] = wfMessage( 'flow-error-missing-replyto' );
+			return;
 		}
 
-		if ( !isset( $this->submitted['replyTo'] ) ) {
-			$this->errors['replyTo'] = wfMessage( 'flow-error-missing-replyto' );
+		$post = $this->loadRequestedPost( $this->submitted['replyTo'] );
+		if ( !$post ) {
+			return; // loadRequestedPost adds its own errors
+		} elseif ( !$this->permissions->isAllowed( $post, 'reply' ) ) {
+			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
 		} else {
-			$post = $this->loadRequestedPost( $this->submitted['replyTo'] );
-			if ( !$post ) {
-				$this->errors['replyTo'] = wfMessage( 'flow-error-invalid-replyto' );
-			} elseif ( !$this->permissions->isAllowed( $post, 'reply' ) ) {
-				// Or should the check be rolled into the !$post condition?
-				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
-			} else {
-				// TODO: assert post belongs to this tree?  Does it really matter?
-				// answer: might not belong, and probably does matter due to inter-wiki interaction
-				$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
+			$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
 
-				$this->setNotification(
-					'flow-post-reply',
-					array(
-						'reply-to' => $post,
-						'content' => $this->submitted['content'],
-						'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
-					)
-				);
-			}
+			$this->setNotification(
+				'flow-post-reply',
+				array(
+					'reply-to' => $post,
+					'content' => $this->submitted['content'],
+					'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
+				)
+			);
 		}
 	}
 
-	protected function validateHideTopic() {
-		if ( !$this->workflow->lock( $this->user ) ) {
-			$this->errors['hide-topic'] = wfMessage( 'flow-error-hide-failure' );
+	protected function validateModerateTopic( $moderationState = null ) {
+		$root = $this->loadRootPost();
+		if ( !$root ) {
+			return;
 		}
+
+		$this->doModerate( $root, $moderationState );
 	}
 
 	protected function validateModeratePost( $moderationState = null ) {
 		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['moderate-post'] = wfMessage( 'flow-error-missing-postId' );
+			$this->errors['moderate'] = wfMessage( 'flow-error-missing-postId' );
 			return;
-		}
-
-		// Moderation state supplied in parameters
-		if ( $moderationState === null ) {
-			$moderationState = $this->submitted['moderationState'];
 		}
 
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( !$post ) {
-			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-postId', $this->submitted['postId'] );
+			// loadRequestedPost added its own messages to $this->errors;
+			return;
+		}
+		if ( $post->isTopicTitle() ) {
+			$this->errors['moderate'] = wfMessage( 'flow-error-not-a-post' );
+			return;
+		}
+		$this->doModerate( $post, $moderationState );
+	}
+
+	protected function doModerate( PostRevision $post, $moderationState = null ) {
+		// Moderation state supplied in request parameters rather than the action
+		if ( $moderationState === null ) {
+			$moderationState = $this->submitted['moderationState'];
+		}
+		// $moderationState should be a string like 'restore', 'censor', etc.  The exact strings allowed
+		// are checked below with $post->isValidModerationState(), but this is checked first otherwise
+		// a blank string would restore a post(due to AbstractRevision::MODERATED_NONE === '').
+		if ( ! $moderationState ) {
+			$this->errors['moderate'] = wfMessage( 'flow-error-invalid-moderation-state' );
 			return;
 		}
 
-		$newState = $moderationState;
-		if ( !$moderationState ) {
-			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-moderation-state' );
-			return;
-		} elseif ( $moderationState === 'restore' ) {
-			$newState = '';
+		// By allowing the moderationState to be sourced from $this->submitted['moderationState']
+		// we no longer have a unique action name for use with the permissions system.  This rebuilds
+		// an action name. e.x. restore-post, restore-topic, censor-topic, etc.
+		$action = $moderationState . ( $post->isTopicTitle() ? "-topic" : "-post" );
+
+		// 'restore' isn't an actual state, it returns a post to unmoderated status
+
+		if ( $moderationState === 'restore' ) {
+			$newState = AbstractRevision::MODERATED_NONE;
+		} else {
+			$newState = $moderationState;
 		}
 
-		if ( !$post->isValidModerationState( $newState ) ) {
-			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-moderation-state' );
+		if ( ! $post->isValidModerationState( $newState ) ) {
+			$this->errors['moderate'] = wfMessage( 'flow-error-invalid-moderation-state' );
 			return;
-		} elseif ( !$this->permissions->isAllowed( $post, "$moderationState-post" ) ) {
+		} elseif ( !$this->permissions->isAllowed( $post, $action ) ) {
 			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
 			return;
 		}
 
 		if ( empty( $this->submitted['reason'] ) ) {
-			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-moderation-reason' );
+			$this->errors['moderate'] = wfMessage( 'flow-error-invalid-moderation-reason' );
 			return;
 		}
+		if ( $post->needsModerateHistorical( $newState ) ) {
+			$this->relatedRevisions = $this->loadHistorical( $post );
+		}
 
-		$this->newRevision = $post->moderate( $this->user, $newState );
+		$this->newRevision = $post->moderate( $this->user, $newState, $action, $this->relatedRevisions );
 		if ( !$this->newRevision ) {
 			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
 		} else {
 			// @todo: would be nice to get this logging into a LifecycleHandler
 			$logger = Container::get( 'logger' );
-			if ( $logger->canLog( $post, "$moderationState-post" ) ) {
+			if ( $logger->canLog( $post, $action ) ) {
 				$logger->log(
 					$post,
-					"$moderationState-post",
+					$action,
 					$this->submitted['reason'],
 					$this->getWorkflow(),
 					array(
@@ -243,7 +263,6 @@ class TopicBlock extends AbstractBlock {
 		}
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( !$post ) {
-			$this->errors['edit-post'] = wfMessage( 'flow-post-not-found' );
 			return;
 		}
 		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {
@@ -266,6 +285,7 @@ class TopicBlock extends AbstractBlock {
 
 		switch( $this->action ) {
 		case 'reply':
+		case 'moderate-topic':
 		case 'hide-post':
 		case 'delete-post':
 		case 'censor-post':
@@ -278,17 +298,32 @@ class TopicBlock extends AbstractBlock {
 			}
 			$this->storage->put( $this->newRevision );
 			$this->storage->put( $this->workflow );
+			// These are moderated historical revisions of $this->newRevision
+			foreach ( $this->relatedRevisions as $revision ) {
+				$this->storage->put( $revision );
+			}
 			$self = $this;
 			$newRevision = $this->newRevision;
 			$user = $this->user;
 			$rootPost = $this->loadRootPost();
 
-			$newRevision->setChildren( array() );
+			// If no context was loaded render the post in isolation
+			// @todo make more explicit
+			try {
+				$newRevision->getChildren();
+			} catch ( \MWException $e ) {
+				$newRevision->setChildren( array() );
+			}
+
 
 			// FIXME special case
 			if ( $this->action == 'edit-title' ) {
 				$renderFunction = function( $templating ) use ( $newRevision, $user ) {
 					return $templating->getContent( $newRevision, 'wikitext', $user );
+				};
+			} elseif ( $this->action === 'moderate-topic' ) {
+				$renderFunction = function( $templating ) use ( $self, $newRevision ) {
+					return $templating->renderTopic( $newRevision, $self );
 				};
 			} else {
 				$renderFunction = function( $templating ) use ( $self, $newRevision, $rootPost ) {
@@ -307,18 +342,13 @@ class TopicBlock extends AbstractBlock {
 				'render-function' => $renderFunction,
 			);
 
-		case 'delete-topic':
-			$this->storage->put( $this->workflow );
-
-			return 'success';
-
 		default:
 			throw new \MWException( "Unknown commit action: {$this->action}" );
 		}
 	}
 
 	public function render( Templating $templating, array $options, $return = false ) {
-		$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion' ) );
+		$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
 		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		$prefix = '';
 
@@ -337,6 +367,9 @@ class TopicBlock extends AbstractBlock {
 			}
 
 			$root = $this->loadRootPost();
+			if ( !$root ) {
+				return;
+			}
 
 			return $prefix . $templating->render( "flow:topic-history.html.php", array(
 				'block' => $this,
@@ -344,7 +377,7 @@ class TopicBlock extends AbstractBlock {
 				'root' => $root,
 				'history' => new History( $history ),
 				'historyRenderer' => new HistoryRenderer( $templating, $this ),
-			) );
+			), $return );
 
 		case 'edit-post':
 			return $prefix . $this->renderEditPost( $templating, $options, $return );
@@ -352,21 +385,21 @@ class TopicBlock extends AbstractBlock {
 		case 'edit-title':
 			$topicTitle = $this->loadTopicTitle();
 			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
-				throw new \MWException( 'Not Allowed' );
+				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
 			}
 			return $prefix . $templating->render( "flow:edit-title.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
-				'topicTitle' => $this->loadTopicTitle(),
+				'topicTitle' => $topicTitle,
 			), $return );
 
 		default:
 			$root = $this->loadRootPost();
-
-			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
-				throw new \MWException( 'Not Allowed' );
+			if ( !$root ) {
+				return;
 			}
-			if ( !isset( $options['topiclist-block'] ) ) {
+
+			if ( ! isset( $options['topiclist-block'] ) ) {
 				$prefix = $templating->render(
 					'flow:topic-permalink-warning.html.php',
 					array(
@@ -374,6 +407,9 @@ class TopicBlock extends AbstractBlock {
 					),
 					$return
 				);
+			}
+			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
+				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
 			}
 
 			return $prefix . $templating->renderTopic(
@@ -386,17 +422,16 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderPostHistory( Templating $templating, array $options, $return = false ) {
 		if ( !isset( $options['postId'] ) ) {
-			throw new \MWException( 'No postId provided' );
+			$this->errors['post'] = wfMessage( 'flow-error-missing-postId' );
+			return;
 		}
-		$root = $this->loadRootPost();
-		$indexDescendant = $root->registerDescendant( $options['postId'] );
-		$post = $root->getRecursiveResult( $indexDescendant );
-		if ( $post === false ) {
-			throw new \MWException( 'Requested postId is not available within post tree' );
+		$post = $this->loadRequestedPost( $options['postId'] );
+		if ( !$post ) {
+			return;
 		}
-		$history = $this->getHistory( $options['postId'] );
-		if ( !$this->permissions->isAllowed( reset( $history ), 'post-history' ) ) {
-			throw new \MWException( 'Not Allowed' );
+		if ( !$this->permissions->isAllowed( $post, 'post-history' ) ) {
+			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+			return;
 		}
 
 		return $templating->render( "flow:post-history.html.php", array(
@@ -414,19 +449,25 @@ class TopicBlock extends AbstractBlock {
 			throw new \MWException( 'No postId provided' );
 		}
 		$post = $this->loadRequestedPost( $options['postId'] );
+		if ( !$post ) {
+			return;
+		}
 		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {
 			throw new \MWException( 'Not Allowed' );
 		}
 		return $templating->render( "flow:edit-post.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
-			'post' => $this->loadRequestedPost( $options['postId'] ),
+			'post' => $post,
 		), $return );
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
 		if ( isset( $options['postId'] ) ) {
 			$rootPost = $this->loadRootPost();
+			if ( !$rootPost ) {
+				return;
+			}
 
 			$indexDescendant = $rootPost->registerDescendant( $options['postId'] );
 			$post = $rootPost->getRecursiveResult( $indexDescendant );
@@ -454,12 +495,12 @@ class TopicBlock extends AbstractBlock {
 
 	public function renderTopicAPI( Templating $templating, array $options ) {
 		$output = array();
-		$rootPost = $this->loadRootPost();
 		$topic = $this->workflow;
-
-		if ( !$this->permissions->isAllowed( $rootPost, 'view' ) ) {
-			throw new \MWException( 'Not Allowed' );
+		$rootPost = $this->loadRootPost();
+		if ( !$rootPost ) {
+			return;
 		}
+
 		$output = array(
 			'_element' => 'post',
 			'title' => $templating->getContent( $rootPost, 'wikitext', $this->user ),
@@ -615,21 +656,32 @@ class TopicBlock extends AbstractBlock {
 		if ( $this->root !== null ) {
 			return $this->root;
 		}
-		// topicTitle is same as root, difference is root has children populated to full depth
-		return $this->topicTitle = $this->root = $this->rootLoader->get( $this->workflow->getId() );
+
+		$rootPost = $this->rootLoader->get( $this->workflow->getId() );
+
+		if ( $this->permissions->isAllowed( $rootPost, 'view' ) ) {
+			// topicTitle is same as root, difference is root has children populated to full depth
+			return $this->topicTitle = $this->root = $rootPost;
+		}
+
+		$this->errors['moderation'] = wfMessage( 'flow-error-not-allowed' );
 	}
 
 	// Loads only the title, as opposed to loadRootPost which gets the entire tree of posts.
 	protected function loadTopicTitle() {
+		if ( $this->workflow->isNew() ) {
+			throw new \MWException( 'New workflows do not have any related content' );
+		}
 		if ( $this->topicTitle === null ) {
 			$found = $this->storage->find(
 				'PostRevision',
 				array( 'tree_rev_descendant_id' => $this->workflow->getId() ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 			);
-			if ( $found ) {
-				$this->topicTitle = reset( $found );
+			if ( !$found ) {
+				throw new \MWException( 'Every workflow must have an associated topic title' );
 			}
+			$this->topicTitle = reset( $found );
 		}
 		return $this->topicTitle;
 	}
@@ -647,28 +699,78 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
+	/**
+	 * Loads the post referenced by $postId. Returns null when:
+	 *    $postId does not belong to the workflow
+	 *    The user does not have view access to the topic title
+	 *    The user does not have view access to the referenced post
+	 * All these conditions add a relevant error message to $this->errors when returning null
+	 *
+	 * @param UUID|string $postId The post being requested
+	 * @return PostRevision|null
+	 */
 	protected function loadRequestedPost( $postId ) {
-		if ( !isset( $this->requestedPost[$postId] ) ) {
-			$found = $this->storage->find(
-				'PostRevision',
-				array( 'tree_rev_descendant_id' => UUID::create( $postId ) ),
-				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-			);
-			if ( $found ) {
-				$post = reset( $found );
+		if ( !$postId instanceof UUID ) {
+			$postId = UUID::create( $postId );
+		}
 
-				// using the path to the root post, we can know the post's depth
-				$rootPath = $this->rootLoader->treeRepo->findRootPath( UUID::create( $postId ) );
-				$post->setDepth( count( $rootPath ) );
+		if ( $this->rootLoader === null ) {
+			// Since there is no root loader the full tree is already loaded
+			$topicTitle = $root = $this->loadRootPost();
+			if ( !$topicTitle ) {
+				return;
+			}
+			$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
+			if ( !$post ) {
+				// The requested postId is not a member of the current workflow
+				$this->errors['post'] = wfMessage( 'flow-error-invalid-postId', $postId->getHex() );
+				return;
+			}
+		} else {
+			// Load the post and its root
+			$found = $this->rootLoader->getWithRoot( $postId );
+			if ( !$found['post'] || !$found['root'] || !$found['root']->getPostId()->equals( $this->workflow->getId() ) ) {
+				$this->errors['post'] = wfMessage( 'flow-error-invalid-postId', $postId->getHex() );
+				return;
+			}
+			$topicTitle = $found['root'];
+			$post = $found['post'];
 
-				$this->requestedPost[$postId] = $post;
-			} else {
-				// meh, signals that its not found, dont look again
-				$this->requestedPost[$postId] = false;
+			// using the path to the root post, we can know the post's depth
+			$rootPath = $this->rootLoader->treeRepo->findRootPath( UUID::create( $postId ) );
+			$post->setDepth( count( $rootPath ) );
+		}
+
+		if ( $this->permissions->isAllowed( $topicTitle, 'view' )
+			&& $this->permissions->isAllowed( $post, 'view' ) ) {
+			return $post;
+		}
+
+		$this->errors['moderation'] = wfMessage( 'flow-error-not-allowed' );
+	}
+
+	protected function loadHistorical( PostRevision $post ) {
+		if ( $post->isFirstRevision() ) {
+			return array();
+		}
+
+		$found = $this->storage->find(
+			'PostRevision',
+			array( 'tree_rev_descendant_id' => $post->getPostId() )
+		);
+		if ( !$found ) {
+			throw new \MWException( 'Should have found revisions' );
+		}
+		// Because storage returns a new object for every query
+		// We need to find $post in the array and replace it
+		$revId = $post->getRevisionId();
+		foreach ( $found as $idx => $revision ) {
+			if ( $revId->equals( $revision->getRevisionId() ) ) {
+				$found[$idx] = $post;
+				break;
 			}
 		}
-		// catches the === false and returns null as expected
-		return $this->requestedPost[$postId] ?: null;
+		return $found;
 	}
 
 	// Somehow the template has to know which post the errors go with
