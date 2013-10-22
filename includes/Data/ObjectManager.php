@@ -153,7 +153,7 @@ class ManagerGroup {
 
 	public function getStorage( $className ) {
 		if ( !isset( $this->classMap[$className] ) ) {
-			throw new \Exception( "Request for '$className' is not in classmap: " . implode( ', ', array_keys( $this->classMap ) ) );
+			throw new \MWException( "Request for '$className' is not in classmap: " . implode( ', ', array_keys( $this->classMap ) ) );
 		}
 
 		return $this->container[$this->classMap[$className]];
@@ -388,7 +388,7 @@ class ObjectLocator implements ObjectStorage {
 		}
 		if ( $current === null ) {
 			$count = count( $this->indexes );
-			throw new \Exception(
+			throw new \MWException(
 				"No index (out of $count) available to answer query for " . implode( ", ", $keys ) .
 				' with options ' . json_encode( $options )
 			);
@@ -444,7 +444,7 @@ class ObjectManager extends ObjectLocator {
 			$row = $this->mapper->toStorageRow( $object );
 			$stored = $this->storage->insert( $row );
 			if ( !$stored ) {
-				throw new \Exception( 'failed insert' );
+				throw new \MWException( 'failed insert' );
 			}
 			// propogate auto-id's and such back into $object
 			$this->mapper->fromStorageRow( $stored, $object );
@@ -452,7 +452,7 @@ class ObjectManager extends ObjectLocator {
 				$handler->onAfterInsert( $object, $stored );
 			}
 			$this->loaded[$object] = $stored;
-		} catch ( \Exception $e ) {
+		} catch ( \MWException $e ) {
 			throw new PersistenceException( 'failed insert', null, $e );
 		}
 	}
@@ -474,7 +474,7 @@ class ObjectManager extends ObjectLocator {
 				$handler->onAfterUpdate( $object, $old, $new );
 			}
 			$this->loaded[$object] = $new;
-		} catch ( \Exception $e ) {
+		} catch ( \MWException $e ) {
 			throw new PersistenceException( 'failed update', null, $e );
 		}
 	}
@@ -487,7 +487,7 @@ class ObjectManager extends ObjectLocator {
 				$handler->onAfterRemove( $object, $old );
 			}
 			unset( $this->loaded[$object] );
-		} catch ( \Exception $e ) {
+		} catch ( \MWException $e ) {
 			throw new PersistenceException( 'failed remove', null, $e );
 		}
 	}
@@ -567,14 +567,14 @@ class ObjectManager extends ObjectLocator {
 	}
 
 	public function multiPut( array $objects ) {
-		throw new \Exception( 'Not Implemented' );
+		throw new \MWException( 'Not Implemented' );
 	}
 
 	public function multiDelete( array $objects ) {
-		throw new \Exception( 'Not Implemented' );
+		throw new \MWException( 'Not Implemented' );
 	}
 }
-class PersistenceException extends \Exception {
+class PersistenceException extends \MWException {
 }
 
 /**
@@ -611,7 +611,7 @@ class BasicObjectMapper implements ObjectMapper {
 class BasicDbStorage implements WritableObjectStorage {
 	public function __construct( DbFactory $dbFactory, $table, array $primaryKey ) {
 		if ( !$primaryKey ) {
-			throw new \Exception( 'PK required' );
+			throw new \MWException( 'PK required' );
 		}
 		$this->dbFactory = $dbFactory;
 		$this->table = $table;
@@ -928,7 +928,7 @@ abstract class FeatureIndex implements Index {
 			foreach( $rows as $row ) {
 				foreach ( $row as $k => $foo ) {
 					if ( $foo !== null && !is_scalar( $foo ) ) {
-						throw new \Exception( "Received non-scalar row value for '$k' from: " . get_class( $this->storage ) );
+						throw new \MWException( "Received non-scalar row value for '$k' from: " . get_class( $this->storage ) );
 					}
 				}
 			}
