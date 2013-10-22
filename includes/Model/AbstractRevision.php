@@ -22,10 +22,12 @@ abstract class AbstractRevision {
 			'perm' => null,
 			// i18n key to replace content with when state is active(unused with perm === null )
 			'content' => null,
+			// This is the bit of text rendered instead of the content when isTopicTitle returns true
+			'topic' => null,
 			// This is the bit of text rendered instead of the post creator
 			'usertext' => null,
-			// Whether or not to create a new revision when setting this state
-			'new-revision' => true,
+			// Whether or not to apply transition to this moderation state to historical revisions
+			'historical' => true,
 			// i18n key for history and recentchanges
 			'change-type' => 'flow-rev-message-restored-post',
 		),
@@ -35,10 +37,12 @@ abstract class AbstractRevision {
 			// i18n key to replace content with when state is active
 			// NOTE: special case self::getHiddenContent still retrieves content in this case only
 			'content' => 'flow-post-hidden-by',
+			// This is the bit of text rendered instead of the content when isTopicTitle returns true
+			'topic' => 'flow-topic-hidden-by',
 			// This is the bit of text rendered instead of the post creator
 			'usertext' => 'flow-rev-message-hid-post',
-			// Whether or not to create a new revision when setting this state
-			'new-revision' => true,
+			// Whether or not to apply transition to this moderation state to historical revisions
+			'historical' => false,
 			// i18n key for history and recentchanges
 			'change-type' => 'flow-rev-message-hid-post',
 		),
@@ -47,10 +51,12 @@ abstract class AbstractRevision {
 			'perm' => 'flow-delete',
 			// i18n key to replace content with when state is active
 			'content' => 'flow-post-deleted-by',
+			// This is the bit of text rendered instead of the content when isTopicTitle returns true
+			'topic' => 'flow-topic-deleted-by',
 			// This is the bit of text rendered instead of the post creator
 			'usertext' => 'flow-rev-message-deleted-post',
-			// Whether or not to create a new revision when setting this state
-			'new-revision' => false,
+			// Whether or not to apply transition to this moderation state to historical revisions
+			'historical' => true,
 			// i18n key for history and recentchanges
 			'change-type' => 'flow-rev-message-deleted-post',
 		),
@@ -59,10 +65,12 @@ abstract class AbstractRevision {
 			'perm' => 'flow-censor',
 			// i18n key to replace content with when state is active
 			'content' => 'flow-post-censored-by',
+			// This is the bit of text rendered instead of the content when isTopicTitle returns true
+			'topic' => 'flow-topic-censored-by',
 			// This is the bit of text rendered instead of the post creator
 			'usertext' => 'flow-rev-message-censored-post',
-			// Whether or not to create a new revision when setting this state
-			'new-revision' => false,
+			// Whether or not to apply transition to this moderation state to historical revisions
+			'historical' => true,
 			// i18n key for history and recentchanges
 			'change-type' => 'flow-rev-message-censored-post',
 		),
@@ -191,16 +199,20 @@ abstract class AbstractRevision {
 		$aPos = array_search( $a, $keys );
 		$bPos = array_search( $b, $keys );
 		if ( $aPos === false || $bPos === false ) {
-			wfWarn( __CLASS__, __FUNCTION__ . ": Invalid permissions provided: '$a' '$b'" );
+			wfWarn( __METHOD__ . ": Invalid permissions provided: '$a' '$b'" );
 			// err on the side of safety, most restrictive
 			return end( $keys );
 		}
 		return $keys[max( $aPos, $bPos )];
 	}
 
-	public function moderate( User $user, $state, $changeType = null ) {
+	/**
+	 * $historical revisions must be provided when self::needsModerateHistorical
+	 * returns true.
+	 */
+	public function moderate( User $user, $state, $changeType = null, array $historical = array() ) {
 		if ( !isset( self::$perms[$state] ) ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ': Provided moderation state does not exist : ' . $state );
+			wfWarn( __METHOD__ . ': Provided moderation state does not exist : ' . $state );
 			return null;
 		}
 
@@ -208,31 +220,47 @@ abstract class AbstractRevision {
 		if ( !$this->isAllowed( $user, $mostRestrictive ) ) {
 			return null;
 		}
-		// Censoring is special,  other moderation types just create
-		// a new revision but censoring adjusts the existing revision.
-		// Yes this mucks with the history just being a revision list.
-		if ( self::$perms[$state]['new-revision'] ) {
-			$obj = $this->newNullRevision( $user );
-		} else {
-			$obj = $this;
+		if ( !$historical && $this->needsModerateHistorical( $state ) ) {
+			wfWarn( __METHOD__ . ': Requested state change requires historical revisions, but they were not provided.' );
+			return null;
 		}
 
-		$obj->moderationState = $state;
-		if ( $state === self::MODERATED_NONE ) {
-			$obj->moderatedByUserId = null;
-			$obj->moderatedByUserText = null;
-			$obj->moderationTimestamp = null;
-		} else {
-			$obj->moderatedByUserId = $user->getId();
-			$obj->moderatedByUserText = $user->getName();
-			$obj->moderationTimestamp = wfTimestampNow();
-		}
+		$historical[] = $obj = $this->newNullRevision( $user );
+		$historical[] = $this;
 		if ( $changeType === null && isset( self::$perms[$state]['change-type'] ) ) {
 			$obj->changeType = self::$perms[$state]['change-type'];
 		} else {
 			$obj->changeType = $changeType;
 		}
+		$timestamp = wfTimestampNow();
+		foreach ( $historical as $rev ) {
+			if ( !$rev->isAllowed( $user ) ) {
+				continue;
+			}
+			$rev->moderationState = $state;
+			if ( $state === self::MODERATED_NONE ) {
+				$rev->moderatedByUserId = null;
+				$rev->moderatedByUserText = null;
+				$rev->moderationTimestamp = null;
+			} else {
+				$rev->moderatedByUserId = $user->getId();
+				$rev->moderatedByUserText = $user->getName();
+				$rev->moderationTimestamp = $timestamp;
+			}
+		}
+
 		return $obj;
+	}
+
+	public function needsModerateHistorical( $state ) {
+		if ( $this->isFirstRevision() ) {
+			return false;
+		}
+		if ( !isset( self::$perms[$state]['historical'] ) ) {
+			wfWarn( __METHOD__ . ": Moderation state does not exist : $state" );
+			return false;
+		}
+		return self::$perms[$state]['historical'];
 	}
 
 	public function restore( User $user ) {
@@ -277,15 +305,24 @@ abstract class AbstractRevision {
 		if ( $this->isAllowed( $user ) ) {
 			return $this->getConvertedContent( $format );
 		} else {
-			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
-
-			// Messages: flow-post-hidden-by, flow-post-deleted-by, flow-post-censored-by
-			return wfMessage(
-				self::$perms[$this->moderationState]['content'],
-				$this->moderatedByUserText,
-				$moderatedAt->getHumanTimestamp()
-			);
+			return $this->getModeratedContent();
 		}
+	}
+
+	public function getModeratedContent() {
+		if ( $this->moderationState === self::MODERATED_NONE ) {
+			return '';
+		}
+
+		$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
+
+		// Messages: flow-post-hidden-by, flow-post-deleted-by, flow-post-censored-by
+		return wfMessage(
+			self::$perms[$this->moderationState]['content'],
+			$this->moderatedByUserText,
+			$moderatedAt->getHumanTimestamp(),
+			User::newFromId( $this->moderatedByUserId )->getTalkPage()->getPrefixedText()
+		);
 	}
 
 	public function getContentRaw() {

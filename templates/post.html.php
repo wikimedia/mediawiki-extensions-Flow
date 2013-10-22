@@ -52,10 +52,7 @@ echo Html::openElement( 'div', array(
 
 		<?php if ( $post->isModerated() ): ?>
 			<p class="flow-post-moderated-message flow-post-moderated-<?php echo $post->getModerationState(); ?> flow-post-content-<?php echo $post->isAllowed( $user ) ? 'allowed' : 'disallowed'; ?>">
-			<?php
-				// passing in null as user (unprivileged) will get the "hidden/deleted/suppressed by XYZ" text
-				echo $post->getContent( null );
-			?>
+			<?php echo $post->getModeratedContent()->parse() ?>
 		</p>
 		<?php endif; ?>
 
@@ -99,14 +96,6 @@ echo Html::openElement( 'div', array(
 				<?php if ( !$post->isModerated() ): ?>
 					<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo wfMessage( 'flow-reply-link', $this->getUserText( $post->getCreator( $user ), $post ) )->escaped(); ?></span></a>
 					<a class="flow-thank-link mw-ui-button" href="#" onclick="alert( '@todo: Not yet implemented!' ); return false;"><span><?php echo wfMessage( 'flow-thank-link', $this->getUserText( $post->getCreator( $user ), $post ) )->escaped(); ?></span></a>
-				<?php else: ?>
-					<?php
-						$user = User::newFromId( $post->getModeratedByUserId() );
-						$title = $user->getTalkPage();
-					?>
-					<a class="flow-talk-link mw-ui-button" href="<?php echo $title->getLinkURL(); ?>">
-						<span><?php echo wfMessage( 'flow-talk-link', $post->getModeratedByUserText() )->escaped(); ?></span>
-					</a>
 				<?php endif; ?>
 			</div>
 		</div>

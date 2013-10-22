@@ -32,11 +32,47 @@ class PostActionMenu {
 	 */
 	protected function getActionDetails( $action ) {
 		$actions = array(
+			// Not sure about mixing topic's and post's, although they are handled
+			// the same currently.
+			'hide-topic' => array(
+				'method' => 'POST',
+				'permissions' => array(
+					PostRevision::MODERATED_NONE => 'flow-hide',
+					PostRevision::MODERATED_HIDDEN => 'flow-hide',
+				),
+				'skip-state' => PostRevision::MODERATED_HIDDEN,
+			),
+			'delete-topic' => array(
+				'method' => 'POST',
+				'permissions' => array(
+					PostRevision::MODERATED_NONE => 'flow-delete',
+					PostRevision::MODERATED_HIDDEN => 'flow-delete',
+				),
+				'skip-state' => PostRevision::MODERATED_DELETED,
+			),
+			'censor-topic' => array(
+				'method' => 'POST',
+				'permissions' => array(
+					PostRevision::MODERATED_NONE => 'flow-censor',
+					PostRevision::MODERATED_HIDDEN => 'flow-censor',
+				),
+				'skip-state' => PostRevision::MODERATED_CENSORED,
+			),
+			'restore-topic' => array(
+				'method' => 'POST',
+				'permissions' => array(
+					PostRevision::MODERATED_HIDDEN => 'flow-hide',
+					PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
+					PostRevision::MODERATED_CENSORED => 'flow-censor',
+				),
+				'skip-state' => PostRevision::MODERATED_NONE,
+			),
 			'hide-post' => array(
 				'method' => 'POST',
 				'permissions' => array(
 					PostRevision::MODERATED_NONE => 'flow-hide',
 				),
+				'skip-state' => PostRevision::MODERATED_HIDDEN,
 			),
 			'delete-post' => array(
 				'method' => 'POST',
@@ -44,6 +80,7 @@ class PostActionMenu {
 					PostRevision::MODERATED_NONE => 'flow-delete',
 					PostRevision::MODERATED_HIDDEN => 'flow-delete',
 				),
+				'skip-state' => PostRevision::MODERATED_DELETED,
 			),
 			'censor-post' => array(
 				'method' => 'POST',
@@ -52,6 +89,7 @@ class PostActionMenu {
 					PostRevision::MODERATED_HIDDEN => 'flow-censor',
 					PostRevision::MODERATED_DELETED => 'flow-censor',
 				),
+				'skip-state' => PostRevision::MODERATED_CENSORED,
 			),
 			'restore-post' => array(
 				'method' => 'POST',
@@ -60,6 +98,7 @@ class PostActionMenu {
 					PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
 					PostRevision::MODERATED_CENSORED => 'flow-censor',
 				),
+				'skip-state' => PostRevision::MODERATED_NONE,
 			),
 			'post-history' => array(
 				'method' => 'GET',
@@ -84,9 +123,9 @@ class PostActionMenu {
 				'method' => 'GET',
 				'permissions' => array(
 					PostRevision::MODERATED_NONE => '',
-					PostRevision::MODERATED_HIDDEN => '',
-					PostRevision::MODERATED_DELETED => '',
-					PostRevision::MODERATED_CENSORED => '',
+					PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
+					PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
+					PostRevision::MODERATED_CENSORED => 'flow-censor',
 				),
 			),
 		);
@@ -127,7 +166,12 @@ class PostActionMenu {
 		$details = $this->getActionDetails( $action );
 
 		// check if permission is set for this action
-		if ( !isset( $details['permissions'][$this->post->getModerationState()] ) ) {
+		$state = $this->post->getModerationState();
+		if ( !isset( $details['permissions'][$state] ) ) {
+			return false;
+		}
+		// Action transitions to new state, post is already in that state
+		if ( isset( $details['skip-state'] ) && $details['skip-state'] === $state  ) {
 			return false;
 		}
 

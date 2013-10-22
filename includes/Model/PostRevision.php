@@ -88,7 +88,7 @@ class PostRevision extends AbstractRevision {
 
 	/**
 	 * Get the user ID of the user who created this post.
-	 * Checks permissions and returns false 
+	 * Checks permissions and returns false
 	 *
 	 * @param $user User The user to check permissions for.
 	 * @return int|bool The user ID, or false
@@ -388,5 +388,20 @@ class PostRevision extends AbstractRevision {
 			return false;
 		}
 		return $user->getId() == $this->getCreatorId() || $user->isAllowed( 'flow-edit-post' );
+	}
+
+	public function getModeratedContent() {
+		if ( $this->isTopicTitle() ) {
+			if ( $this->moderationState === self::MODERATED_NONE ) {
+				return '';
+			}
+			return wfMessage(
+				self::$perms[$this->moderationState]['topic'],
+				User::newFromId( $this->moderatedByUserId )->getTalkPage()->getPrefixedText(),
+				$this->moderatedByUserText
+			);
+		} else {
+			return parent::getModeratedContent();
+		}
 	}
 }
