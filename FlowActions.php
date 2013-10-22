@@ -171,6 +171,20 @@ $wgFlowActions = array(
 		),
 	),
 
+	'hide-topic' => array(
+		'log_type' => false,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => 'flow-hide',
+		),
+		'button-method' => 'POST',
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-hid-topic',
+			'i18m-params' => array(
+			),
+			'class' => 'flow-history-hid-topic',
+		),
+	),
+
 	'delete-post' => array(
 		'log_type' => 'delete',
 		'permissions' => array(
@@ -193,6 +207,21 @@ $wgFlowActions = array(
 				},
 			),
 			'class' => 'flow-history-deleted-post',
+		),
+	),
+
+	'delete-topic' => array(
+		'log_type' => 'delete',
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => 'flow-delete',
+			PostRevision::MODERATED_HIDDEN => 'flow-delete',
+		),
+		'button-method' => 'POST',
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-deleted-topic',
+			'i18n-params' => array(
+			),
+			'class' => 'flow-history-deleted-topic',
 		),
 	),
 
@@ -219,6 +248,22 @@ $wgFlowActions = array(
 				},
 			),
 			'class' => 'flow-history-censored-post',
+		),
+	),
+
+	'censor-topic' => array(
+		'log_type' => 'suppress',
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => 'flow-censor',
+			PostRevision::MODERATED_HIDDEN => 'flow-censor',
+			PostRevision::MODERATED_DELETED => 'flow-censor',
+		),
+		'button-method' => 'POST',
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-censored-topic',
+			'i18n-params' => array(
+			),
+			'class' => 'flow-history-censored-topic',
 		),
 	),
 
@@ -253,6 +298,28 @@ $wgFlowActions = array(
 				},
 			),
 			'class' => 'flow-history-restored-post',
+		),
+	),
+
+	'restore-topic' => array(
+		'log_type' => function( PostRevision $topicTitle, Logger $logger ) {
+			// Kind of log depends on the previous change type:
+			// * if topic was deleted, restore should go to deletion log
+			// * if topic was suppressed, restore should go to suppression log
+			global $wgFlowActions;
+			return $wgFlowActions[$topicTitle->getModerationState() . '-topic']['log_type'];
+		},
+		'permissions' => array(
+			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
+			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
+			PostRevision::MODERATED_CENSORED => 'flow-censor',
+		),
+		'button-method' => 'POST',
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-restored-topic',
+			'i18n-params' => array(
+			),
+			'class' => 'flow-history-restored-topic',
 		),
 	),
 
@@ -337,3 +404,4 @@ $wgFlowActions = array(
 	'flow-rev-message-create-header' => 'create-header',
 	'flow-create-summary' => 'create-header',
 );
+
