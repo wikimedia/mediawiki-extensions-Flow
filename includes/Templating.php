@@ -18,7 +18,7 @@ use User;
 use Flow\View\PostActionMenu;
 
 class Templating {
-	protected $urlGenerator;
+	public $urlGenerator;
 	protected $output;
 	protected $namespaces;
 	protected $globals;
@@ -157,10 +157,8 @@ class Templating {
 	}
 
 	public function userToolLinks( $userId, $userText ) {
-		global $wgLang;
-
 		if ( $userText instanceof MWMessage ) {
-			// username was moderated away, we dont know who this is
+			// username was moderated away, we don't know who this is
 			return '';
 		}
 

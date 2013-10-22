@@ -2,6 +2,8 @@
 
 namespace Flow\Block;
 
+use Flow\View\History\History;
+use Flow\View\History\HistoryRenderer;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
 use Flow\DbFactory;
@@ -321,18 +323,25 @@ class TopicBlock extends AbstractBlock {
 
 		switch( $this->action ) {
 		case 'post-history':
-			return $prefix . $this->renderPostHistory( $templating, $options, $return );
+			$templating->getOutput()->addModules( 'ext.flow.history' );
+			return $this->renderPostHistory( $templating, $options, $return );
 
 		case 'topic-history':
+			$templating->getOutput()->addModules( 'ext.flow.history' );
 			$history = $this->loadTopicHistory();
 			if ( !$this->permissions->isAllowed( reset( $history ), 'post-history' ) ) {
 				throw new \MWException( 'Not Allowed' );
 			}
-			return $prefix . $templating->render( "flow:topic-history.html.php", array(
+
+			$root = $this->loadRootPost();
+
+			return $templating->render( "flow:topic-history.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
-				'history' => $this->loadTopicHistory(),
-			), $return );
+				'root' => $root,
+				'history' => new History( $history ),
+				'historyRenderer' => new HistoryRenderer( $templating, $this ),
+			) );
 
 		case 'edit-post':
 			return $prefix . $this->renderEditPost( $templating, $options, $return );
@@ -388,17 +397,27 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderPostHistory( Templating $templating, array $options, $return = false ) {
 		if ( !isset( $options['postId'] ) ) {
-			throw new \Exception( 'No postId provided' );
+			throw new \MWException( 'No postId provided' );
+		}
+		$root = $this->loadRootPost();
+		$indexDescendant = $root->registerDescendant( $options['postId'] );
+		$post = $root->getRecursiveResult( $indexDescendant );
+		if ( $post === false ) {
+			throw new \MWException( 'Requested postId is not available within post tree' );
 		}
 		$history = $this->getHistory( $options['postId'] );
 		if ( !$this->permissions->isAllowed( reset( $history ), 'post-history' ) ) {
 			throw new \MWException( 'Not Allowed' );
 		}
+
 		return $templating->render( "flow:post-history.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
-			'history' => $this->getHistory( $options['postId'] ),
-		), $return );
+			'root' => $root,
+			'post' => $post,
+			'history' => new History( $history ),
+			'historyRenderer' => new HistoryRenderer( $templating, $this ),
+		) );
 	}
 
 	protected function renderEditPost( Templating $templating, array $options, $return = false ) {
@@ -444,7 +463,7 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	public function renderTopicAPI ( Templating $templating, array $options ) {
+	public function renderTopicAPI( Templating $templating, array $options ) {
 		$output = array();
 		$rootPost = $this->loadRootPost();
 		$topic = $this->workflow;
