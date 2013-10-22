@@ -1,0 +1,124 @@
+@import 'settings/colors.less';
+@import 'mediawiki.mixins.less';
+
+.flow-history-container {
+	color: @history-content-color;
+
+	a {
+		text-decoration: none;
+		font-weight: bold;
+		color: inherit;
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		&:visited {
+			color: inherit;
+		}
+	}
+
+	.flow-history-pages {
+		color: @history-pages-color;
+		margin: 0;
+		padding-bottom: 30px;
+
+		a {
+			color: @history-pages-color;
+		}
+	}
+
+	.flow-history-log {
+		border-top: 1px solid #e4e4e5;
+		padding-top: 22px;
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding-left: 22px;
+
+			li {
+				padding: 0 0 22px 30px;
+				background-position: left 2px;
+				background-size: 15px auto;
+				background-repeat: no-repeat;
+
+				&.flow-history-bundle {
+					cursor: pointer;
+
+					// bundled history open
+					.background-image-svg('../../base/images/junkdrawer_inverse_normal.svg', '../../base/images/junkdrawer_inverse_normal.png');
+
+					&:hover {
+						.background-image-svg('../../base/images/junkdrawer_inverse_hover.svg', '../../base/images/junkdrawer_inverse_hover.png');
+					}
+
+					// bundled history closed
+					&.flow-history-bundle-inactive {
+						.background-image-svg('../../base/images/junkdrawer_normal.svg', '../../base/images/junkdrawer_normal.png');
+
+						&:hover {
+							.background-image-svg('../../base/images/junkdrawer_hover.svg', '../../base/images/junkdrawer_hover.png');
+						}
+					}
+				}
+
+				&.flow-rev-message-edit-title {
+					.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
+
+					&:hover {
+						.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
+					}
+				}
+
+				&.flow-rev-message-new-post {
+					.background-image-svg('../../base/images/new_normal.svg', '../../base/images/new_normal.png'); // @todo: need "plus" icon
+
+					&:hover {
+						.background-image-svg('../../base/images/new_hover.svg', '../../base/images/new_hover.png'); // @todo: need "plus" icon
+					}
+				}
+
+				&.flow-rev-message-reply {
+					.background-image-svg('../../base/images/new_normal.svg', '../../base/images/new_normal.png'); // @todo: need "plus" icon
+
+					&:hover {
+						.background-image-svg('../../base/images/new_hover.svg', '../../base/images/new_hover.png'); // @todo: need "plus" icon
+					}
+				}
+
+				a {
+					color: inherit;
+
+					&:visited {
+						color: inherit;
+					}
+				}
+
+				p {
+					margin: 0;
+				}
+
+				.flow-datestamp {
+					font-size: 14px;
+					display: inline-block;
+					color: @history-content-color;
+
+					a {
+						font-weight: normal;
+					}
+				}
+
+				// bundled
+				ul {
+					padding: 22px 0 0 0;
+					cursor: auto;
+
+					li:last-child {
+						padding-bottom: 0;
+					}
+				}
+			}
+		}
+	}
+}
