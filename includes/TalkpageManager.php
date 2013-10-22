@@ -28,7 +28,7 @@ class TalkpageManager implements OccupationController {
 	 * @return boolean True if the talk page is occupied, False otherwise.
 	 */
 	public function isTalkpageOccupied( $title ) {
-		if ( ! $title ) {
+		if ( !$title ) {
 			// Invalid parameter
 			return false;
 		}
