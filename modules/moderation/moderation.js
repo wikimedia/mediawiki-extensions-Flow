@@ -14,7 +14,25 @@
 			subject = $topicContainer.data( 'title' ),
 			user = $postContainer.data( 'creator-name' ),
 			$dialog = $( '<div />' ),
-			$form = $( '<form/>' );
+			$form = $( '<form/>' ),
+			apiCallback, successCallback;
+
+			if ( $postContainer.length === 0 ) {
+				// moderating a topic
+				apiCallback = mw.flow.api.moderateTopic;
+				successCallback = function( html ) {
+					var $newContainer = $( html );
+					$topicContainer.replaceWith( $newContainer );
+					$newContainer.trigger( 'flow_init' );
+				};
+			} else {
+				apiCallback = mw.flow.api.moderatePost;
+				successCallback = function( html) {
+					var $newContainer = $( html );
+					$postContainer.replaceWith( $newContainer );
+					$newContainer.trigger( 'flow_init' );
+				};
+			}
 			$dialog
 				.addClass( 'flow-moderation-dialog' )
 				.dialog( {
@@ -24,14 +42,14 @@
 						{
 							'text' : mw.msg( 'flow-moderation-confirm' ),
 							'click' : $(this).flow( 'getFormHandler',
-								mw.flow.api.moderatePost,
+								apiCallback,
 								function() {
-									return [
-										$topicContainer.data( 'topic-id' ),
-										$postContainer.data( 'post-id' ),
-										moderationType,
-										$form.find( '#flow-moderation-reason' ).val()
-									];
+									var res = [ $topicContainer.data( 'topic-id' ) ];
+									if ( $postContainer.length > 0 ) {
+										res.push( $postContainer.data( 'post-id' ) );
+									}
+									res.push( moderationType, $form.find( '#flow-moderation-reason' ).val() );
+									return res;
 								},
 								undefined,
 								function( promise ) {
@@ -46,9 +64,7 @@
 													$( '<p/>' )
 														.text( mw.msg( confirmationMsg, user ) )
 												);
-											var $newContainer = $( output.rendered );
-											$postContainer.replaceWith( $newContainer );
-											$newContainer.trigger( 'flow_init' );
+											successCallback( output.rendered );
 										} )
 										.fail( function() {
 											var $errorDiv = $( '<div/>' )

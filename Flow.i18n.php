@@ -26,13 +26,16 @@ $messages['en'] = array(
 	'flow-post-moderated-toggle-show' => '[Show]',
 	'flow-post-moderated-toggle-hide' => '[Hide]',
 	'flow-post-hidden' => '[post hidden]',
-	'flow-post-hidden-by' => '{{GENDER:$1|Hidden}} by $1 $2',
+	'flow-post-hidden-by' => '{{GENDER:$1|Hidden}} by [[$3|$1]] $2',
 	'flow-post-deleted' => '[post deleted]',
-	'flow-post-deleted-by' => '{{GENDER:$1|Deleted}} by $1 $2',
+	'flow-post-deleted-by' => '{{GENDER:$1|Deleted}} by [[$3|$1]] $2',
 	'flow-post-censored' => '[post censored]',
-	'flow-post-censored-by' => '{{GENDER:$1|Censored}} by $1 $2',
 	'flow-post-actions' => 'Actions',
 	'flow-topic-actions' => 'Actions',
+	'flow-post-censored-by' => '{{GENDER:$1|Censored}} by [[$3|$1]] $2',
+	'flow-topic-hidden-by' => 'This topic was hidden by [[$1|$2]]',
+	'flow-topic-deleted-by' => 'This topic was deleted by [[$1|$2]]',
+	'flow-topic-censored-by' => 'This topic was suppressed by [[$1|$2]]',
 	'flow-cancel' => 'Cancel',
 
 	'flow-newtopic-title-placeholder' => 'Message subject',
@@ -65,6 +68,10 @@ $messages['en'] = array(
 	'flow-topic-action-watchlist' => 'Watchlist',
 	'flow-topic-action-edit-title' => 'Edit title',
 	'flow-topic-action-history' => 'Topic history',
+	'flow-topic-action-hide-topic' => 'Hide topic',
+	'flow-topic-action-delete-topic' => 'Delete topic',
+	'flow-topic-action-censor-topic' => 'Suppress topic',
+	'flow-topic-action-restore-topic' => 'Restore topic',
 
 	'flow-error-http' => 'An error occurred while contacting the server. Your post was not saved.', // Needs real copy
 	'flow-error-other' => 'An unexpected error occurred. Your post was not saved.',
@@ -237,6 +244,7 @@ Translate this as "post which was hidden".',
 ** day and month; localized
 ** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
 ** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
+* $3 - talk page of the moderating user
 {{Related|Flow-post-by}}',
 	'flow-post-deleted' => 'Used as username/content if the post was deleted.
 
@@ -248,6 +256,7 @@ Translate this as "post which was deleted".',
 ** day and month; localized
 ** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
 ** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
+* $3 - talk page of the moderating user
 {{Related|Flow-post-by}}',
 	'flow-post-censored' => 'Used as username/content if the post was censored.
 
@@ -259,11 +268,21 @@ Translate this as "post which was censored".',
 ** day and month; localized
 ** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
 ** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
+* $3 - talk page of the moderating user
 {{Related|Flow-post-by}}',
 	'flow-post-actions' => 'Used as link text.
 {{Identical|Action}}',
 	'flow-topic-actions' => 'Used as link text.
 {{Identical|Action}}',
+	'flow-topic-hidden-by' => 'Used as replacement topic title when hidden. Parameters:
+* $1 - talk page of the user that hid the topic
+* $2 - username of the user that hid the topic',
+	'flow-topic-deleted-by' => 'Used as replacement topic title when deleted. Parameters:
+* $1 - talk page of the user that deleted te topic
+* $2 - username of the user that deleted the topic',
+	'flow-topic-censored-by' => 'Used as replacement topic title when suppressed. Parameters:
+* $1 - talk page of the user that suppressed the topic
+* $2 - username of the user that suppressed the topic',
 	'flow-cancel' => 'Used as action link text.
 {{Identical|Cancel}}',
 	'flow-newtopic-title-placeholder' => 'Used as placeholder for the "Subject/Title for topic" textarea.',
@@ -321,6 +340,10 @@ See also:
 	'flow-topic-action-edit-title' => 'Used as title for the link which is used to edit the title.',
 	'flow-topic-action-history' => 'Used as text for the link which is used to view topic-history.
 {{Identical|Topic history}}',
+	'flow-topic-action-hide-topic' => 'Used as a link in a dropdown menu to hide a topic.',
+	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.',
+	'flow-topic-action-censor-topic' => 'Used as a link in a dropdown menu to suppress a topic.',
+	'flow-topic-action-restore-topic' => 'Used as a link in a dropdown menu to clear existing moderation.',
 	'flow-error-http' => 'Used as error message on HTTP error.',
 	'flow-error-other' => 'Used as generic error message.',
 	'flow-error-external' => 'Uses as error message. Parameters:

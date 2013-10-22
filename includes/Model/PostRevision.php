@@ -401,4 +401,19 @@ class PostRevision extends AbstractRevision {
 		}
 		return $user->getId() == $this->getCreatorId();
 	}
+
+	public function getModeratedContent() {
+		if ( $this->isTopicTitle() ) {
+			if ( $this->moderationState === self::MODERATED_NONE ) {
+				return '';
+			}
+			return wfMessage(
+				self::$perms[$this->moderationState]['topic'],
+				User::newFromId( $this->moderatedByUserId )->getTalkPage()->getPrefixedText(),
+				$this->moderatedByUserText
+			);
+		} else {
+			return parent::getModeratedContent();
+		}
+	}
 }
