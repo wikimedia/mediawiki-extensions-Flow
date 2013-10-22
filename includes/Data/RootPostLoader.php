@@ -3,6 +3,7 @@
 namespace Flow\Data;
 
 use Flow\Block\TopicBlock;
+use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 
 /**
@@ -13,6 +14,49 @@ class RootPostLoader {
 	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo ) {
 		$this->storage = $storage;
 		$this->treeRepo = $treeRepo;
+	}
+
+	/**
+	 * Retrieves a single post and the related topic title.
+	 *
+	 * @param UUID|string $postId The uid of the post being requested
+	 * @return array associative array with 'root' and 'post' keys. Array
+	 *   values may be null if not found.
+	 */
+	public function getWithRoot( $postId ) {
+		$postId = UUID::create( $postId );
+		$rootId = $this->treeRepo->findRoot( $postId );
+		$found = $this->storage->findMulti(
+			'PostRevision',
+			array(
+				array( 'tree_rev_descendant_id' => $postId->getBinary() ),
+				array( 'tree_rev_descendant_id' => $rootId->getBinary() ),
+			),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+		);
+		$res = array(
+			'post' => null,
+			'root' => null,
+		);
+		if ( !$found ) {
+			return $res;
+		}
+		foreach ( $found as $result ) {
+			// limit = 1 means single result
+			$post = reset( $result );
+			if ( $postId->equals( $post->getPostId() ) ) {
+				$res['post'] = $post;
+			} elseif( $rootId->equals( $post->getPostId() ) ) {
+				$res['root'] = $post;
+			} else {
+				die( 'Unmatched: ' . $post->getPostId()->getHex() );
+			}
+		}
+		// The above doesn't catch this condition
+		if ( $postId->equals( $rootId ) ) {
+			$res['root'] = $res['post'];
+		}
+		return $res;
 	}
 
 	public function get( $topicId ) {
