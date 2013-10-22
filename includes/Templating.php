@@ -83,8 +83,12 @@ class Templating {
 	// abstracted templating implementation so these can be elsewhere.  Figure out if we can transition to an
 	// industry standard templating solution and stop the NIH.
 
+	public function getUrlGenerator() {
+		return $this->urlGenerator;
+	}
+
 	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
-		return $this->urlGenerator->generateUrl( $workflow, $action, $query );
+		return $this->getUrlGenerator()->generateUrl( $workflow, $action, $query );
 	}
 
 	public function renderPost( PostRevision $post, Block $block, $return = true ) {
@@ -157,10 +161,8 @@ class Templating {
 	}
 
 	public function userToolLinks( $userId, $userText ) {
-		global $wgLang;
-
 		if ( $userText instanceof MWMessage ) {
-			// username was moderated away, we dont know who this is
+			// username was moderated away, we don't know who this is
 			return '';
 		}
 

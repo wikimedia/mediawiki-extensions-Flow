@@ -8,7 +8,7 @@ use MWTimestamp;
 class PostRevision extends AbstractRevision {
 	protected $postId;
 
-	// denormalized data the must not change between revisions of same post
+	// denormalized data that must not change between revisions of same post
 	protected $origCreateTime;
 	protected $origUserId;
 	protected $origUserText;
@@ -38,7 +38,7 @@ class PostRevision extends AbstractRevision {
 		$obj->origCreateTime = wfTimestampNow();
 		$obj->replyToId = null; // not a reply to anything
 		$obj->prevRevId = null; // no parent revision
-		$obj->changeType = 'flow-rev-message-new-post';
+		$obj->changeType = 'new-post';
 		$obj->setContent( $content );
 		return $obj;
 	}
@@ -69,7 +69,7 @@ class PostRevision extends AbstractRevision {
 		);
 	}
 
-	public function reply( User $user, $content, $changeType = 'flow-rev-message-reply' ) {
+	public function reply( User $user, $content, $changeType = 'reply' ) {
 		$reply = new self;
 		// No great reason to create two uuid's,  a post and its first revision can share a uuid
 		$reply->revId = $reply->postId = UUID::create();
@@ -208,10 +208,11 @@ class PostRevision extends AbstractRevision {
 	 * @return mixed
 	 */
 	public function getRecursiveResult( $registered ) {
-		$this->recursiveResults = $this->descendRecursive(
+		list( $callbacks, $results ) = $this->descendRecursive(
 			$this->recursiveCallbacks,
 			$this->recursiveResults
 		);
+		$this->recursiveResults = $results;
 
 		// Once all callbacks have run, null the callbacks to make sure they won't run again
 		$this->recursiveCallbacks = array_fill( 0, count( $this->recursiveResults ), null );
@@ -263,10 +264,12 @@ class PostRevision extends AbstractRevision {
 				break;
 			}
 
-			$results = $child->descendRecursive( $callbacks, $results, $maxDepth - 1 );
+			// Also fetch callbacks from children, some may have been nulled to
+			// prevent further execution.
+			list( $callbacks, $results ) = $child->descendRecursive( $callbacks, $results, $maxDepth - 1 );
 		}
 
-		return $results;
+		return array( $callbacks, $results );
 	}
 
 	/**
@@ -346,7 +349,7 @@ class PostRevision extends AbstractRevision {
 		}
 
 		/**
-		 * Rrturns the found post.
+		 * Returns the found post.
 		 *
 		 * @param PostRevision $post
 		 * @param int $result
@@ -356,6 +359,7 @@ class PostRevision extends AbstractRevision {
 			if ( $post->getPostId()->equals( $postId ) ) {
 				return array( $post, false );
 			}
+			return array( false, true );
 		};
 
 		return $this->registerRecursive( $callback, false );

@@ -27,7 +27,7 @@ abstract class AbstractRevision {
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => true,
 			// i18n key for history and recentchanges
-			'change-type' => 'flow-rev-message-restored-post',
+			'change-type' => 'restore-post',
 		),
 		self::MODERATED_HIDDEN => array(
 			// The permission needed from User::isAllowed to see and create new revisions
@@ -36,11 +36,11 @@ abstract class AbstractRevision {
 			// NOTE: special case self::getHiddenContent still retrieves content in this case only
 			'content' => 'flow-post-hidden-by',
 			// This is the bit of text rendered instead of the post creator
-			'usertext' => 'flow-rev-message-hid-post',
+			'usertext' => 'flow-rev-message-hid-post', // @todo: message has changed
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => true,
 			// i18n key for history and recentchanges
-			'change-type' => 'flow-rev-message-hid-post',
+			'change-type' => 'hide-post',
 		),
 		self::MODERATED_DELETED => array(
 			// The permission needed from User::isAllowed to see and create new revisions
@@ -48,11 +48,11 @@ abstract class AbstractRevision {
 			// i18n key to replace content with when state is active
 			'content' => 'flow-post-deleted-by',
 			// This is the bit of text rendered instead of the post creator
-			'usertext' => 'flow-rev-message-deleted-post',
+			'usertext' => 'flow-rev-message-deleted-post', // @todo: message has changed
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => false,
 			// i18n key for history and recentchanges
-			'change-type' => 'flow-rev-message-deleted-post',
+			'change-type' => 'delete-post',
 		),
 		self::MODERATED_CENSORED => array(
 			// The permission needed from User::isAllowed to see and create new revisions
@@ -60,11 +60,11 @@ abstract class AbstractRevision {
 			// i18n key to replace content with when state is active
 			'content' => 'flow-post-censored-by',
 			// This is the bit of text rendered instead of the post creator
-			'usertext' => 'flow-rev-message-censored-post',
+			'usertext' => 'flow-rev-message-censored-post', // @todo: message has changed
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => false,
 			// i18n key for history and recentchanges
-			'change-type' => 'flow-rev-message-censored-post',
+			'change-type' => 'censor-post',
 		),
 	);
 
