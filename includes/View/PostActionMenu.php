@@ -32,6 +32,37 @@ class PostActionMenu {
 	 */
 	protected function getActionDetails( $action ) {
 		$actions = array(
+			// Not sure about mixing topic's and post's, although they are handled
+			// the same currently.
+			'hide-topic' => array(
+				'method' => 'POST',
+				'permissions' => array(
+					PostRevision::MODERATED_NONE => 'flow-hide',
+					PostRevision::MODERATED_HIDDEN => 'flow-hide',
+				),
+			),
+			'delete-topic' => array(
+				'method' => 'POST',
+				'permissions' => array(
+					PostRevision::MODERATED_NONE => 'flow-delete',
+					PostRevision::MODERATED_HIDDEN => 'flow-delete',
+				),
+			),
+			'censor-topic' => array(
+				'method' => 'POST',
+				'permissions' => array(
+					PostRevision::MODERATED_NONE => 'flow-censor',
+					PostRevision::MODERATED_HIDDEN => 'flow-censor',
+				),
+			),
+			'restore-topic' => array(
+				'method' => 'POST',
+				'permissions' => array(
+					PostRevision::MODERATED_HIDDEN => 'flow-hide',
+					PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
+					PostRevision::MODERATED_CENSORED => 'flow-censor',
+				),
+			),
 			'hide-post' => array(
 				'method' => 'POST',
 				'permissions' => array(

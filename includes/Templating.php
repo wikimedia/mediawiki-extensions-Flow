@@ -94,15 +94,7 @@ class Templating {
 			array(
 				'block' => $block,
 				'post' => $post,
-				// An ideal world may pull this from the container, but for now this is fine.  This templating
-				// class has too many responsibilities to keep receiving all required objects in the constructor.
-				'postActionMenu' => new PostActionMenu(
-					$this->urlGenerator,
-					$wgUser,
-					$block,
-					$post,
-					$wgUser->getEditToken( $wgFlowTokenSalt )
-				),
+				'postActionMenu' => $this->createActionMenu( $post, $block ),
 			),
 			$return
 		);
@@ -113,7 +105,22 @@ class Templating {
 			'block' => $block,
 			'topic' => $block->getWorkflow(),
 			'root' => $root,
+			'postActionMenu' => $this->createActionMenu( $root, $block ),
 		), $return );
+	}
+
+	// An ideal world may pull this from the container, but for now this is fine.  This templating
+	// class has too many responsibilities to keep receiving all required objects in the constructor.
+	protected function createActionMenu( PostRevision $post, Block $block ) {
+		global $wgUser, $wgFlowTokenSalt;
+
+		return new PostActionMenu(
+			$this->urlGenerator,
+			$wgUser,
+			$block,
+			$post,
+			$wgUser->getEditToken( $wgFlowTokenSalt )
+		);
 	}
 
 	public function getPagingLink( $block, $direction, $offset, $limit ) {
@@ -220,7 +227,7 @@ class Templating {
 	 * Gets a Flow-formatted plaintext human-readable identifier for a user.
 	 * Usually the user's name, but it can also return "an anonymous user",
 	 * or information about an item's moderation state.
-	 * 
+	 *
 	 * @param  User             $user    The User object to get a description for.
 	 * @param  AbstractRevision $rev     An AbstractRevision object to retrieve moderation state from.
 	 * @param  bool             $showIPs Whether or not to show IP addresses for anonymous users

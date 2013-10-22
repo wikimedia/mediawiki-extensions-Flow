@@ -9,7 +9,7 @@ $indexDescendantCount = $root->registerDescendantCount();
 $indexParticipants = $root->registerParticipants();
 
 echo Html::openElement( 'div', array(
-	'class' => 'flow-topic-container flow-topic-full' . ( $root->isModerated() ? ' flow-topic-moderated' : '' ),
+	'class' => 'flow-topic-container flow-topic-full' . $root->isModerated() ? ' flow-topic-moderated' : '',
 	'id' => 'flow-topic-' . $topic->getId()->getHex(),
 	'data-topic-id' => $topic->getId()->getHex(),
 	'data-title' => $root->isModerated() ? '' : $title,

@@ -20,6 +20,7 @@ class TopicBlock extends AbstractBlock {
 	protected $topicTitle;
 	protected $rootLoader;
 	protected $newRevision;
+	protected $relatedRevisions = array();
 	protected $notification;
 	protected $requestedPost;
 
@@ -28,10 +29,12 @@ class TopicBlock extends AbstractBlock {
 	protected $supportedActions = array(
 		// Standard editing
 		'edit-post', 'reply',
-		// Moderation
+		// Topic Moderation
+		'hide-topic', 'delete-topic', 'censor-topic', 'restore-topic',
+		// Post Moderation
 		'hide-post', 'delete-post', 'censor-post', 'restore-post',
 		// Other stuff
-		'hide-topic', 'edit-title',
+		'edit-title',
 	);
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController, $root ) {
@@ -58,8 +61,19 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		case 'hide-topic':
-			// this should be a workflow level action, not implemented per-block
-			$this->validateHideTopic();
+			$this->validateModerateTopic( AbstractRevision::MODERATED_HIDDEN );
+			break;
+
+		case 'delete-topic':
+			$this->validateModerateTopic( AbstractRevision::MODERATED_DELETED );
+			break;
+
+		case 'censor-topic':
+			$this->validateModerateTopic( AbstractRevision::MODERATED_CENSORED );
+			break;
+
+		case 'restore-topic':
+			$this->validateRestorePost();
 			break;
 
 		case 'hide-post':
@@ -139,9 +153,27 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	protected function validateHideTopic() {
-		if ( !$this->workflow->lock( $this->user ) ) {
-			$this->errors['hide-topic'] = wfMessage( 'flow-error-hide-failure' );
+	protected function validateModerateTopic( $moderationState ) {
+		$topic = $this->loadTopicTitle();
+		$this->newRevision = $topic->moderate( $this->user, $moderationState );
+		// The application of moderation to historical revisions is pushed out of the
+		// model because the moderation is in AbstractRevision, but not all revisions
+		// (ex: header) will want moderation to apply to historical revisions.
+		if ( $this->newRevision && $this->newRevision->needsModerateHistorical() ) {
+			$this->relatedRevisions = $this->loadHistorical( $topic );
+			foreach ( $this->relatedRevisions as $revision ) {
+				$revision->moderate( $this->user, $moderationState, null, /* $createRevision = */ false );
+			}
+		} elseif ( !$this->newRevision ) {
+			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
+		}
+	}
+
+	protected function validateRestoreTopic() {
+		$topic = $this->loadTopicTitle();
+		$this->newRevision = $topic->restore( $this->user );
+		if ( !$this->newRevision ) {
+			$this->errors['restore-topic'] = wfMessage( 'flow-error-not-allowed' );
 		}
 	}
 
@@ -213,6 +245,10 @@ class TopicBlock extends AbstractBlock {
 
 		switch( $this->action ) {
 		case 'reply':
+		case 'hide-topic':
+		case 'delete-topic':
+		case 'censor-topic':
+		case 'restore-topic':
 		case 'hide-post':
 		case 'delete-post':
 		case 'censor-post':
@@ -224,6 +260,10 @@ class TopicBlock extends AbstractBlock {
 			}
 			$this->storage->put( $this->newRevision );
 			$this->storage->put( $this->workflow );
+			// These are moderated historical revisions of $this->newRevision
+			foreach ( $this->relatedRevisions as $revision ) {
+				$this->storage->put( $revision );
+			}
 			$self = $this;
 			$newRevision = $this->newRevision;
 			$rootPost = $this->loadRootPost();
@@ -555,6 +595,33 @@ class TopicBlock extends AbstractBlock {
 		}
 		// catches the === false and returns null as expected
 		return $this->requestedPost[$postId] ?: null;
+	}
+
+	protected function loadHistorical( PostRevision $post ) {
+		if ( $post->isFirstRevision() ) {
+			throw new \Exception( 'first?' );
+			return array();
+		}
+
+		$found = $this->storage->find(
+			'PostRevision',
+			array( 'tree_rev_descendant_id' => $post->getPostId() ),
+			// TODO: should we really be reverting moderation state for more than
+			// 50 revisions?
+			array( 'limit' => 50 )
+		);
+		if ( !$found ) {
+			throw new \Exception( 'should have found revisions' );
+		}
+		// We need to filter out $post
+		$revId = $post->getRevisionId();
+		foreach ( $found as $idx => $revision ) {
+			if ( $revId->equals( $revision->getRevisionId() ) ) {
+				unset( $found[$idx] );
+				break;
+			}
+		}
+		return $found;
 	}
 
 	// Somehow the template has to know which post the errors go with
