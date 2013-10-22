@@ -2,6 +2,8 @@
 
 namespace Flow\Block;
 
+use Flow\View\History\History;
+use Flow\View\History\HistoryRenderer;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
 use Flow\DbFactory;
@@ -317,14 +319,18 @@ class TopicBlock extends AbstractBlock {
 			return $this->renderPostHistory( $templating, $options, $return );
 
 		case 'topic-history':
-			$history = $this->loadTopicHistory();
-			if ( !$this->permissions->isAllowed( reset( $history ), 'post-history' ) ) {
+			$root = $this->loadRootPost();
+			if ( !$this->permissions->isAllowed( $root, 'post-history' ) ) {
 				throw new \MWException( 'Not Allowed' );
 			}
+			$history = $this->loadTopicHistory();
+
 			return $templating->render( "flow:topic-history.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
-				'history' => $this->loadTopicHistory(),
+				'root' => $root,
+				'history' => new History( $history ),
+				'historyRenderer' => new HistoryRenderer( $templating, $this ),
 			) );
 
 		case 'edit-post':
@@ -374,15 +380,29 @@ class TopicBlock extends AbstractBlock {
 		if ( !isset( $options['postId'] ) ) {
 			throw new \Exception( 'No postId provided' );
 		}
+<<<<<<< HEAD
 		$history = $this->getHistory( $options['postId'] );
 		if ( !$this->permissions->isAllowed( reset( $history ), 'post-history' ) ) {
 			throw new \MWException( 'Not Allowed' );
 		}
+=======
+		$root = $this->loadRootPost();
+		$indexDescendant = $root->registerDescendant( $options['postId'] );
+		$post = $root->getRecursiveResult( $indexDescendant );
+		if ( $post === false ) {
+			throw new \MWException( 'Requested postId is not available within post tree' );
+		}
+		$history = $this->getHistory( $options['postId'] );
+
+>>>>>>> WIP - Historical view of a topic
 		return $templating->render( "flow:post-history.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
-			'history' => $this->getHistory( $options['postId'] ),
-		), $return );
+			'root' => $root,
+			'post' => $post,
+			'history' => new History( $history ),
+			'historyRenderer' => new HistoryRenderer( $templating, $this ),
+		) );
 	}
 
 	protected function renderEditPost( Templating $templating, array $options, $return = false ) {

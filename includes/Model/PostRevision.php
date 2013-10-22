@@ -8,7 +8,7 @@ use MWTimestamp;
 class PostRevision extends AbstractRevision {
 	protected $postId;
 
-	// denormalized data the must not change between revisions of same post
+	// denormalized data that must not change between revisions of same post
 	protected $origCreateTime;
 	protected $origUserId;
 	protected $origUserText;
@@ -346,7 +346,7 @@ class PostRevision extends AbstractRevision {
 		}
 
 		/**
-		 * Rrturns the found post.
+		 * Returns the found post.
 		 *
 		 * @param PostRevision $post
 		 * @param int $result
