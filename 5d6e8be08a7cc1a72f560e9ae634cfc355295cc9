@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_18fa31bb",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2013-10-22T11:36:10Z",
+      "side": 1,
+      "message": "spaces\n\n\u0027failed update: \u0027.$e-\u003egetMessage()\n\u0027failed update: \u0027 . $e-\u003egetMessage()",
+      "revId": "5d6e8be08a7cc1a72f560e9ae634cfc355295cc9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_38f7edd3",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2013-10-22T11:36:10Z",
+      "side": 1,
+      "message": "eww tabs :)",
+      "revId": "5d6e8be08a7cc1a72f560e9ae634cfc355295cc9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
