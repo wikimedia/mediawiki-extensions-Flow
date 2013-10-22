@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "291c1151_4f9dc053",
+        "filename": "includes/View/History.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-22T18:17:51Z",
+      "side": 1,
+      "message": "no need for .\u003d",
+      "revId": "91aef150f6ad41dad3eb4bf16af7a1d38d90fbe3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_8f68988a",
         "filename": "includes/View/History.php",
         "patchSetId": 1
@@ -30,6 +47,23 @@
       "writtenOn": "2013-10-22T18:10:51Z",
       "side": 1,
       "message": "return $this-\u003egetRevision()-\u003egetRevisionId()-\u003egetTimestampObj();",
+      "revId": "91aef150f6ad41dad3eb4bf16af7a1d38d90fbe3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_cfe290d8",
+        "filename": "templates/topic-history.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-22T18:17:51Z",
+      "side": 1,
+      "message": "$timestamp \u003d $revision-\u003egetRevisionId()-\u003egetTimestamp();",
       "revId": "91aef150f6ad41dad3eb4bf16af7a1d38d90fbe3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
