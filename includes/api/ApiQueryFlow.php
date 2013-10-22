@@ -38,8 +38,6 @@ class ApiQueryFlow extends ApiQueryBase {
 					'block-name' => $block->getName()
 				);
 
-			$templating = $this->container['templating'];
-
 			$blockOutput[] = $thisBlock;
 		}
 
