@@ -83,8 +83,8 @@ echo Html::openElement( 'div', array(
 				<?php
 					// timestamp html
 					$content = '
-						<span class="flow-agotime" style="display: inline">'. $post->getPostId()->getHumanTimestamp() .'</span>
-						<span class="flow-utctime" style="display: none">'. $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ) .'</span>';
+						<span class="flow-agotime" style="display: inline">' . htmlspecialchars( $post->getPostId()->getHumanTimestamp() ) . '</span>
+						<span class="flow-utctime" style="display: none">' . htmlspecialchars( $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ) ) . '</span>';
 
 					// build history button with timestamp html as content
 					if ( $postActionMenu->isAllowed( 'post-history' ) ) {
