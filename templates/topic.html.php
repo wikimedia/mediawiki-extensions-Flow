@@ -51,8 +51,8 @@ echo Html::openElement( 'div', array(
 			<?php
 				// timestamp html
 				$content = '
-					<span class="flow-agotime" style="display: inline">'. $topic->getLastModifiedObj()->getHumanTimestamp() .'</span>
-					<span class="flow-utctime" style="display: none">'. $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) .'</span>';
+					<span class="flow-agotime" style="display: inline">' . htmlspecialchars( $topic->getLastModifiedObj()->getHumanTimestamp() ) . '</span>
+					<span class="flow-utctime" style="display: none">' . htmlspecialchars( $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) ) . '</span>';
 
 				// build history button with timestamp html as content
 				echo Html::rawElement( 'a',
