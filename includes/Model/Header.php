@@ -40,5 +40,13 @@ class Header extends AbstractRevision {
 	public function getWorkflowId() {
 		return $this->workflowId;
 	}
+
+	/**
+	 * Headers are more like wiki pages and as such are moderated
+	 * one revision at a time.
+	 */
+	public function needsModerateHistorical( $state ) {
+		return false;
+	}
 }
 

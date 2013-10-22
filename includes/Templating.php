@@ -89,31 +89,47 @@ class Templating {
 	public function renderPost( PostRevision $post, Block $block, $return = true ) {
 		global $wgUser, $wgFlowTokenSalt;
 
+		$actionMenu = $this->createActionMenu( $post, $block );
+		if ( !$actionMenu->isAllowed( 'view' ) ) {
+			return '';
+		}
+
 		return $this->render(
 			'flow:post.html.php',
 			array(
 				'block' => $block,
 				'post' => $post,
-				// An ideal world may pull this from the container, but for now this is fine.  This templating
-				// class has too many responsibilities to keep receiving all required objects in the constructor.
-				'postActionMenu' => new PostActionMenu(
-					$this->urlGenerator,
-					new PostActionPermissions( $wgUser ),
-					$block,
-					$post,
-					$wgUser->getEditToken( $wgFlowTokenSalt )
-				),
+				'postActionMenu' => $actionMenu,
 			),
 			$return
 		);
 	}
 
 	public function renderTopic( PostRevision $root, TopicBlock $block, $return = true ) {
+		$actionMenu = $this->createActionMenu( $root, $block );
+		if ( !$actionMenu->isAllowed( 'view' ) ) {
+			return '';
+		}
 		return $this->render( "flow:topic.html.php", array(
 			'block' => $block,
 			'topic' => $block->getWorkflow(),
 			'root' => $root,
+			'postActionMenu' => $actionMenu,
 		), $return );
+	}
+
+	// An ideal world may pull this from the container, but for now this is fine.  This templating
+	// class has too many responsibilities to keep receiving all required objects in the constructor.
+	protected function createActionMenu( PostRevision $post, Block $block ) {
+		global $wgUser, $wgFlowTokenSalt;
+
+		return new PostActionMenu(
+			$this->urlGenerator,
+			new PostActionPermissions( $wgUser ),
+			$block,
+			$post,
+			$wgUser->getEditToken( $wgFlowTokenSalt )
+		);
 	}
 
 	public function getPagingLink( $block, $direction, $offset, $limit ) {
