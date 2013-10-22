@@ -27,6 +27,9 @@ $messages['en'] = array(
 	'flow-post-censored-by' => '{{GENDER:$1|Censored}} by $1 $2',
 	'flow-post-actions' => 'actions',
 	'flow-topic-actions' => 'actions',
+	'flow-topic-hidden-by' => 'This topic was hidden by $1',
+	'flow-topic-deleted-by' => 'This topic was deleted by $1',
+	'flow-topic-censored-by' => 'This topic was suppressed by $1',
 	'flow-cancel' => 'Cancel',
 
 	'flow-newtopic-title-placeholder' => 'Message subject',
@@ -59,6 +62,10 @@ $messages['en'] = array(
 	'flow-topic-action-watchlist' => 'Watchlist',
 	'flow-topic-action-edit-title' => 'Edit title',
 	'flow-topic-action-history' => 'Topic history',
+	'flow-topic-action-hide-topic' => 'Hide topic',
+	'flow-topic-action-delete-topic' => 'Delete topic',
+	'flow-topic-action-censor-topic' => 'Suppress topic',
+	'flow-topic-action-restore-topic' => 'Restore topic',
 
 	'flow-error-http' => 'An error occurred while contacting the server. Your post was not saved.', // Needs real copy
 	'flow-error-other' => 'An unexpected error occurred. Your post was not saved.',
@@ -197,6 +204,12 @@ Translate this as "post which was censored".',
 {{Identical|Action}}',
 	'flow-topic-actions' => 'Used as link text.
 {{Identical|Action}}',
+	'flow-topic-hidden-by' => 'Used as replacement topic title when hidden. Parameters:
+* $1 - username of the user that hid the topic',
+	'flow-topic-deleted-by' => 'Used as replacement topic title when deleted. Parameters:
+* $1 - username of the user that deleted the topic',
+	'flow-topic-censored-by' => 'Used as replacement topic title when suppressed. Parameters:
+* $1 - username of the user that suppressed the topic',
 	'flow-cancel' => 'Used as action link text.
 {{Identical|Cancel}}',
 	'flow-newtopic-title-placeholder' => 'Used as placeholder for the "Subject/Title for topic" textarea.',
@@ -252,6 +265,10 @@ See also:
 	'flow-topic-action-edit-title' => 'Used as title for the link which is used to edit the title.',
 	'flow-topic-action-history' => 'Used as text for the link which is used to view topic-history.
 {{Identical|Topic history}}',
+	'flow-topic-action-hide-topic' => 'Used as a link in a dropdown menu to hide a topic.',
+	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.',
+	'flow-topic-action-censor-topic' => 'Used as a link in a dropdown menu to suppress a topic.',
+	'flow-topic-action-restore-topic' => 'Used as a link in a dropdown menu to clear existing moderation.',
 	'flow-error-http' => 'Used as error message on HTTP error.',
 	'flow-error-other' => 'Used as generic error message.',
 	'flow-error-external' => 'Uses as error message. Parameters:

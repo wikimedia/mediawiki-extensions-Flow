@@ -20,6 +20,7 @@ class TopicBlock extends AbstractBlock {
 	protected $topicTitle;
 	protected $rootLoader;
 	protected $newRevision;
+	protected $relatedRevisions = array();
 	protected $notification;
 	protected $requestedPost;
 
@@ -28,10 +29,12 @@ class TopicBlock extends AbstractBlock {
 	protected $supportedActions = array(
 		// Standard editing
 		'edit-post', 'reply',
-		// Moderation
+		// Topic Moderation
+		'hide-topic', 'delete-topic', 'censor-topic', 'restore-topic',
+		// Post Moderation
 		'hide-post', 'delete-post', 'censor-post', 'restore-post',
 		// Other stuff
-		'hide-topic', 'edit-title',
+		'edit-title',
 	);
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController, $root ) {
@@ -58,8 +61,19 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		case 'hide-topic':
-			// this should be a workflow level action, not implemented per-block
-			$this->validateHideTopic();
+			$this->validateModerateTopic( AbstractRevision::MODERATED_HIDDEN );
+			break;
+
+		case 'delete-topic':
+			$this->validateModerateTopic( AbstractRevision::MODERATED_DELETED );
+			break;
+
+		case 'censor-topic':
+			$this->validateModerateTopic( AbstractRevision::MODERATED_CENSORED );
+			break;
+
+		case 'restore-topic':
+			$this->validateModerateTopic( AbstractRevision::MODERATED_NONE );
 			break;
 
 		case 'hide-post':
@@ -75,7 +89,7 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		case 'restore-post':
-			$this->validateRestorePost();
+			$this->validateModeratePost( AbstractRevision::MODERATED_NONE );
 			break;
 
 		case 'edit-post':
@@ -139,11 +153,10 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	protected function validateHideTopic() {
-		if ( !$this->workflow->lock( $this->user ) ) {
-			$this->errors['hide-topic'] = wfMessage( 'flow-error-hide-failure' );
-		}
+	protected function validateModerateTopic( $moderationState ) {
+		$this->doModerate( $this->loadTopicTitle(), $moderationState );
 	}
+
 
 	protected function validateModeratePost( $moderationState ) {
 		if ( empty( $this->submitted['postId'] ) ) {
@@ -156,26 +169,17 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		$this->newRevision = $post->moderate( $this->user, $moderationState );
-		if ( !$this->newRevision ) {
-			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
-		}
+		$this->doModerate( $post, $moderationState );
 	}
 
-	protected function validateRestorePost() {
-		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-error-missing-postId' );
-			return;
-		}
-		$post = $this->loadRequestedPost( $this->submitted['postId'] );
-		if ( !$post ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-error-invalid-postId' );
-			return;
+	protected function doModerate( PostRevision $post, $moderationState ) {
+		if ( $post->needsModerateHistorical( $moderationState ) ) {
+			$this->relatedRevisions = $this->loadHistorical( $post );
 		}
 
-		$this->newRevision = $post->restore( $this->user );
+		$this->newRevision = $post->moderate( $this->user, $moderationState, null, $this->relatedRevisions );
 		if ( !$this->newRevision ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-error-not-allowed' );
+			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
 		}
 	}
 
@@ -213,6 +217,10 @@ class TopicBlock extends AbstractBlock {
 
 		switch( $this->action ) {
 		case 'reply':
+		case 'hide-topic':
+		case 'delete-topic':
+		case 'censor-topic':
+		case 'restore-topic':
 		case 'hide-post':
 		case 'delete-post':
 		case 'censor-post':
@@ -224,6 +232,10 @@ class TopicBlock extends AbstractBlock {
 			}
 			$this->storage->put( $this->newRevision );
 			$this->storage->put( $this->workflow );
+			// These are moderated historical revisions of $this->newRevision
+			foreach ( $this->relatedRevisions as $revision ) {
+				$this->storage->put( $revision );
+			}
 			$self = $this;
 			$newRevision = $this->newRevision;
 			$rootPost = $this->loadRootPost();
@@ -555,6 +567,33 @@ class TopicBlock extends AbstractBlock {
 		}
 		// catches the === false and returns null as expected
 		return $this->requestedPost[$postId] ?: null;
+	}
+
+	protected function loadHistorical( PostRevision $post ) {
+		if ( $post->isFirstRevision() ) {
+			return array();
+		}
+
+		$found = $this->storage->find(
+			'PostRevision',
+			array( 'tree_rev_descendant_id' => $post->getPostId() ),
+			// TODO: should we really be reverting moderation state for more than
+			// 50 revisions?
+			array( 'limit' => 50 )
+		);
+		if ( !$found ) {
+			throw new \Exception( 'should have found revisions' );
+		}
+		// Because storage returns a new object for every query
+		// We need to find $post in the array and replace it
+		$revId = $post->getRevisionId();
+		foreach ( $found as $idx => $revision ) {
+			if ( $revId->equals( $revision->getRevisionId() ) ) {
+				$found[$idx] = $post;
+				break;
+			}
+		}
+		return $found;
 	}
 
 	// Somehow the template has to know which post the errors go with
