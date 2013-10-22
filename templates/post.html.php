@@ -66,10 +66,7 @@ if ( !$post->isModerated() ) {
 	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >
 		<?php if ( $post->isModerated() ): ?>
 			<p class="flow-post-moderated-message flow-post-moderated-<?php echo $post->getModerationState(); ?> flow-post-content-<?php echo $post->isAllowed( $user ) ? 'allowed' : 'disallowed'; ?>">
-			<?php
-				// passing in null as user (unprivileged) will get the "hidden/deleted/suppressed by XYZ" text
-				echo $post->getContent( null );
-			?>
+			<?php echo $post->getModeratedContent()->parse() ?>
 		</p>
 		<?php endif; ?>
 

@@ -1,5 +1,7 @@
 <?php
 
+use Flow\Model\PostRevision;
+
 // treat title like unparsed (wiki)text
 $title = $root->getContent( $user, 'wikitext' );
 
@@ -8,11 +10,62 @@ $title = $root->getContent( $user, 'wikitext' );
 $indexDescendantCount = $root->registerDescendantCount();
 $indexParticipants = $root->registerParticipants();
 
+// topic reply box
+if ( !$root->isModerated() ) {
+	// Topic reply box
+	$topicReplyBox = Html::openElement( 'div', array(
+			'class' => 'flow-topic-reply-container flow-post-container flow-element-container',
+			'data-post-id' => $root->getRevisionId()->getHex(),
+			'id' => 'flow-topic-reply-' . $topic->getId()->getHex()
+		) ) .
+		'<span class="flow-creator">
+			<span class="flow-creator-simple" style="display: inline">' .
+				$this->getUserText( $user ) .
+			'</span>
+			<span class="flow-creator-full" style="display: none">' .
+				$this->userToolLinks( $user->getId(), $user->getName() ) .
+			'</span>
+		</span>' .
+		Html::openElement( 'form', array(
+			'method' => 'POST',
+			'action' => $this->generateUrl( $block->getWorkflow(), 'reply' ),
+			'class' => 'flow-topic-reply-form',
+		) ) .
+			Html::element( 'input', array(
+				'type' => 'hidden',
+				'name' => $block->getName() . '[replyTo]',
+				'value' => $topic->getId()->getHex(),
+			) ) .
+			Html::element( 'input', array(
+				'type' => 'hidden',
+				'name' => 'wpEditToken',
+				'value' => $editToken,
+			) ) .
+			Html::textarea( $block->getName() . '[topic-reply-content]', '', array(
+				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
+				'title' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
+				'class' => 'flow-input mw-ui-input flow-topic-reply-content',
+			) ) .
+			Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ) .
+				Html::element( 'input', array(
+					'type' => 'submit',
+					'value' => wfMessage( 'flow-reply-submit', $this->getUserText( $root->getCreator( $user ), $root ) )->text(),
+					'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
+				) ) .
+			Html::closeElement( 'div' ) .
+		Html::closeElement( 'form' ) .
+	Html::closeElement( 'div' );
+}
+
+//
+// Content starts here
+//
+
 echo Html::openElement( 'div', array(
-	'class' => 'flow-topic-container flow-topic-full',
+	'class' => 'flow-topic-container flow-topic-full' . ( $root->isModerated() ? ' flow-topic-moderated' : '' ),
 	'id' => 'flow-topic-' . $topic->getId()->getHex(),
 	'data-topic-id' => $topic->getId()->getHex(),
-	'data-title' => $title,
+	'data-title' => $root->isModerated() ? '' : $title,
 ) );
 ?>
 <div class="flow-element-container">
@@ -30,17 +83,49 @@ echo Html::openElement( 'div', array(
 		?>
 
 		<div class="flow-topic-title">
-			<h2 class="flow-realtitle">
-				<?php echo htmlspecialchars( $title ); ?>
-			</h2>
+			<?php if ( $root->isModerated() ): ?>
+				<h2 class='flow-topic-moderated flow-topic-moderated-<?php echo $root->getModerationState() ?>'>
+					<?php echo $root->getModeratedContent()->parse(); ?>
+				</h2>
+			<?php else: ?>
+				<h2 class="flow-realtitle">
+					<?php echo htmlspecialchars( $title ); ?>
+				</h2>
+			<?php endif ?>
 		</div>
+
 		<div class="flow-actions">
 			<a class="flow-actions-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
 			<div class="flow-actions-flyout">
 				<ul>
-					<li class="flow-action-hide">
-						<a href="#" class="mw-ui-button mw-ui-destructive">@todo: Hide topic</a>
-					</li>
+					<?php if ( $postActionMenu->isAllowed( 'hide-topic' ) ) {
+						echo '<li class="flow-action-hide">', $postActionMenu->getButton(
+							'hide-topic',
+							wfMessage( 'flow-topic-action-hide-topic' )->plain(),
+							'mw-ui-button flow-hide-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $postActionMenu->isAllowed( 'delete-topic' ) ) {
+						echo '<li class="flow-action-delete">', $postActionMenu->getButton(
+							'delete-topic',
+							wfMessage( 'flow-topic-action-delete-topic' )->plain(),
+							'mw-ui-button flow-delete-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $postActionMenu->isAllowed( 'censor-topic' ) ) {
+						echo '<li class="flow-action-censor">', $postActionMenu->getButton(
+							'censor-topic',
+							wfMessage( 'flow-topic-action-censor-topic' )->plain(),
+							'mw-ui-button flow-censor-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $postActionMenu->isAllowed( 'restore-topic' ) ) {
+						echo '<li class="flow-action-restore">', $postActionMenu->getButton(
+							'restore-topic',
+							wfMessage( 'flow-topic-action-restore-topic' )->plain(),
+							'mw-ui-button flow-restore-topic-link'
+						), '</li>';
+					} ?>
 					<li class="flow-action-close">
 						<a href="#" class="mw-ui-button">@todo: Close topic</a>
 					</li>
@@ -131,54 +216,17 @@ echo Html::openElement( 'div', array(
 	</div>
 </div>
 <?php
-foreach( $root->getChildren() as $child ) {
-	echo $this->renderPost( $child, $block, $root );
+// If the root is moderated away then all children are moderated.
+if ( $root->isAllowed( $user ) ) {
+	$children = $root->getChildren();
+	echo '<div class="flow-topic-children-container">';
+	foreach( $children as $child ) {
+		echo $this->renderPost( $child, $block, $root );
+	}
+	if ( isset( $topicReplyBox ) ) {
+		echo $topicReplyBox;
+	}
+	echo "</div>";
 }
+echo '</div>';
 
-// Topic reply box
-echo Html::openElement( 'div', array(
-	'class' => 'flow-topic-reply-container flow-post-container flow-element-container',
-	'data-post-id' => $root->getRevisionId()->getHex(),
-	'id' => 'flow-topic-reply-' . $topic->getId()->getHex()
-) );
-?>
-	<span class="flow-creator">
-		<span class="flow-creator-simple" style="display: inline">
-			<?php echo $this->getUserText( $user ); ?>
-		</span>
-		<span class="flow-creator-full" style="display: none">
-			<?php echo $this->userToolLinks( $user->getId(), $user->getName() ); ?>
-		</span>
-	</span>
-<?php
-	echo Html::openElement( 'form', array(
-		'method' => 'POST',
-		'action' => $this->generateUrl( $block->getWorkflow(), 'reply' ),
-		'class' => 'flow-topic-reply-form',
-	) ),
-	Html::element( 'input', array(
-		'type' => 'hidden',
-		'name' => $block->getName() . '[replyTo]',
-		'value' => $topic->getId()->getHex(),
-	) ),
-	Html::element( 'input', array(
-		'type' => 'hidden',
-		'name' => 'wpEditToken',
-		'value' => $editToken,
-	) ),
-	Html::textarea( $block->getName() . '[topic-reply-content]', '', array(
-		'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
-		'title' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
-		'class' => 'flow-input mw-ui-input flow-topic-reply-content',
-	) ),
-	Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
-	Html::element( 'input', array(
-		'type' => 'submit',
-		'value' => wfMessage( 'flow-reply-submit', $this->getUserText( $root->getCreator( $user ), $root ) )->text(),
-		'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
-	) ),
-	Html::closeElement( 'div' ),
-	Html::closeElement( 'form' ),
-	Html::closeElement( 'div' );
-?>
-</div>
