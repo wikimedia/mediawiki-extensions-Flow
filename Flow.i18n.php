@@ -32,6 +32,10 @@ $messages['en'] = array(
 	'flow-censor-usertext' => "''Username suppressed''",
 	'flow-post-actions' => 'Actions',
 	'flow-topic-actions' => 'Actions',
+	'flow-post-censored-by' => '{{GENDER:$1|Censored}} by [[$3|$1]] $2',
+	'flow-topic-hidden-by' => 'This topic was {{GENDER:$2|hidden}} by [[$1|$2]]',
+	'flow-topic-deleted-by' => 'This topic was {{GENDER:$2|deleted}} by [[$1|$2]]',
+	'flow-topic-censored-by' => 'This topic was {{GENDER:$2|suppressed}} by [[$1|$2]]',
 	'flow-cancel' => 'Cancel',
 
 	'flow-newtopic-title-placeholder' => 'New topic',
@@ -64,6 +68,10 @@ $messages['en'] = array(
 	'flow-topic-action-watchlist' => 'Watchlist',
 	'flow-topic-action-edit-title' => 'Edit title',
 	'flow-topic-action-history' => 'Topic history',
+	'flow-topic-action-hide-topic' => 'Hide topic',
+	'flow-topic-action-delete-topic' => 'Delete topic',
+	'flow-topic-action-censor-topic' => 'Suppress topic',
+	'flow-topic-action-restore-topic' => 'Restore topic',
 
 	'flow-error-http' => 'An error occurred while contacting the server. Your post was not saved.', // Needs real copy
 	'flow-error-other' => 'An unexpected error occurred. Your post was not saved.',
@@ -234,6 +242,7 @@ Parameters:
 ** day and month; localized
 ** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
 ** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
+* $3 - talk page of the moderating user
 {{Related|Flow-post-by}}',
 	'flow-hide-usertext' => 'Used as username if the post was hidden.
 
@@ -246,6 +255,7 @@ Parameters:
 ** day and month; localized
 ** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
 ** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
+* $3 - talk page of the moderating user
 {{Related|Flow-post-by}}',
 	'flow-delete-usertext' => 'Used as username if the post was deleted.
 
@@ -258,6 +268,7 @@ Parameters:
 ** day and month; localized
 ** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
 ** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
+* $3 - talk page of the moderating user
 {{Related|Flow-post-by}}',
 	'flow-censor-usertext' => 'Used as username if the post was suppressed.
 
@@ -267,6 +278,15 @@ Parameters:
 {{Identical|Action}}',
 	'flow-topic-actions' => 'Used as link text.
 {{Identical|Action}}',
+	'flow-topic-hidden-by' => 'Used as replacement topic title when hidden. Parameters:
+* $1 - talk page of the user that hid the topic
+* $2 - username of the user that hid the topic',
+	'flow-topic-deleted-by' => 'Used as replacement topic title when deleted. Parameters:
+* $1 - talk page of the user that deleted te topic
+* $2 - username of the user that deleted the topic',
+	'flow-topic-censored-by' => 'Used as replacement topic title when suppressed. Parameters:
+* $1 - talk page of the user that suppressed the topic
+* $2 - username of the user that suppressed the topic',
 	'flow-cancel' => 'Used as action link text.
 {{Identical|Cancel}}',
 	'flow-newtopic-title-placeholder' => 'Used as placeholder for the "Subject/Title for topic" textarea.',
@@ -324,6 +344,10 @@ See also:
 	'flow-topic-action-edit-title' => 'Used as title for the link which is used to edit the title.',
 	'flow-topic-action-history' => 'Used as text for the link which is used to view topic-history.
 {{Identical|Topic history}}',
+	'flow-topic-action-hide-topic' => 'Used as a link in a dropdown menu to hide a topic.',
+	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.',
+	'flow-topic-action-censor-topic' => 'Used as a link in a dropdown menu to suppress a topic.',
+	'flow-topic-action-restore-topic' => 'Used as a link in a dropdown menu to clear existing moderation.',
 	'flow-error-http' => 'Used as error message on HTTP error.',
 	'flow-error-other' => 'Used as generic error message.',
 	'flow-error-external' => 'Uses as error message. Parameters:
