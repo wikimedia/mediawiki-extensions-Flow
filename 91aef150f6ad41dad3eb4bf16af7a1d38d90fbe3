@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_8f4fb834",
+        "filename": "flow.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-22T18:10:51Z",
+      "side": 1,
+      "message": "This is available as $post-\u003egetRevisionId()-\u003egetTimestamp()\n\nBasically all uuid\u0027s double as timestamps, as long as the uuid was created at the correct time.  rev_change_type should only be set when creating a new revision so its revision id ought to be correct.\n\nThat would lose the timestamp for moderation, but we have a patch in the works that will always add a new revision on the top of the stack to record moderation history in addition to delete/censor updating historical revisions.",
+      "revId": "91aef150f6ad41dad3eb4bf16af7a1d38d90fbe3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_8f68988a",
+        "filename": "includes/View/History.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-22T18:10:51Z",
+      "side": 1,
+      "message": "return $this-\u003egetRevision()-\u003egetRevisionId()-\u003egetTimestampObj();",
+      "revId": "91aef150f6ad41dad3eb4bf16af7a1d38d90fbe3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
