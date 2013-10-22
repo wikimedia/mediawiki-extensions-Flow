@@ -303,11 +303,13 @@ The variable name "postId" is invisible to users, so "postId" can be translated.
 	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been censored(oversighted)',
 	'flow-topic-history' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page.
 {{Identical|Topic history}}',
-	'flow-topic-participants' => 'Message to display the amount of participants in this discussion (and potentially a couple of names). Parameters:
-* $1: The total amount of participants in the conversation, can be used for PLURAL
-* $2: The total amount of participants minus 2, can be used to generate a message like: X, Y and $2 others ($3 and $4 will be usernames)
-* $3: Username of the topic starter, can be used for GENDER
-* $4: Username of a second participant (if there is a second, otherwise not available), can be used for GENDER',
+	'flow-topic-participants' => 'Message to display the amount of participants in this discussion (and potentially a couple of names).
+
+Parameters:
+* $1 - the total amount of participants in the conversation, can be used for PLURAL
+* $2 - the total amount of participants minus 2, can be used to generate a message like: X, Y and $2 others ($3 and $4 will be usernames)
+* $3 - username of the topic starter, can be used for GENDER
+* $4 - username of a second participant (if there is a second, otherwise not available), can be used for GENDER',
 	'flow-topic-comments' => 'Message to display the amount of comments in this discussion. Parameters:
 * $1 - The amount of comments on this topic, can be used for PLURAL',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
@@ -479,6 +481,11 @@ $messages['ast'] = array(
 $messages['bg'] = array(
 	'flow-post-moderated-toggle-show' => '[Показване]',
 	'flow-post-moderated-toggle-hide' => '[Скриване]',
+	'flow-cancel' => 'Отказване',
+	'flow-newtopic-header' => 'Добавяне на нова тема',
+	'flow-newtopic-save' => 'Добавяне на тема',
+	'flow-newtopic-start-placeholder' => 'Започване на нова тема',
+	'flow-post-action-edit' => 'Редактиране',
 	'flow-topic-action-watchlist' => 'Списък за наблюдение',
 	'flow-link-history' => 'история',
 );
@@ -1064,7 +1071,7 @@ $messages['it'] = array(
 	'flow-newtopic-save' => 'Aggiungi discussione',
 	'flow-newtopic-start-placeholder' => 'Inizia una nuova discussione',
 	'flow-reply-topic-placeholder' => '{{GENDER:$1|Commento}} su "$2"',
-	'flow-reply-placeholder' => 'Clicca per {{GENDER:$1|rispondere}} a $1. Sii gentile!', # Fuzzy
+	'flow-reply-placeholder' => '{{GENDER:$1|Rispondi}} a $1',
 	'flow-reply-submit' => '{{GENDER:$1|Rispondi}}',
 	'flow-reply-link' => '{{GENDER:$1|Rispondi}}',
 	'flow-thank-link' => '{{GENDER:$1|Ringrazia}}',
@@ -1172,7 +1179,7 @@ $messages['ja'] = array(
 	'flow-newtopic-save' => '話題を追加',
 	'flow-newtopic-start-placeholder' => '新しい話題の作成',
 	'flow-reply-topic-placeholder' => '「$2」に{{GENDER:$1|コメントする}}',
-	'flow-reply-placeholder' => '$1 に{{GENDER:$1|返信する}}にはクリックしてください。', # Fuzzy
+	'flow-reply-placeholder' => '$1 への{{GENDER:$1|返信}}',
 	'flow-reply-submit' => '{{GENDER:$1|返信}}',
 	'flow-reply-link' => '{{GENDER:$1|返信}}',
 	'flow-thank-link' => '{{GENDER:$1|感謝}}',
@@ -1215,7 +1222,7 @@ $messages['ja'] = array(
 	'flow-rev-message-edit-header' => 'ヘッダーを編集',
 	'flow-rev-message-deleted-post' => '投稿を削除',
 	'flow-topic-history' => '話題の履歴',
-	'flow-topic-participants' => '{{PLURAL:$1|0=まだ誰も参加していません|$3 がこの話題を開始|{{GENDER:$3|$3}} と {{GENDER:$4|$4}}|{{GENDER:$3|$3}}、{{GENDER:$4|$4}} と他 $2 人}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|$3 がこの話題を開始|{{GENDER:$3|$3}}、{{GENDER:$4|$4}} と他 $2 {{PLURAL:$2|人}}|0=まだ誰も参加していません|2={{GENDER:$3|$3}} と {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=最初のコメントを書きましょう!|コメント ($1)}}',
 	'flow-comment-restored' => 'コメントを復元',
 	'flow-comment-deleted' => 'コメントを削除',
@@ -1384,7 +1391,7 @@ $messages['mk'] = array(
 	'flow-newtopic-save' => 'Додај тема',
 	'flow-newtopic-start-placeholder' => 'Почнете нова тема',
 	'flow-reply-topic-placeholder' => '{{GENDER:$1|Коментирај}} на „$2“',
-	'flow-reply-placeholder' => 'Стиснете за да {{GENDER:$1|му одговорите|ѝ одговорите|одговорите}} на $1. Бидете фини!', # Fuzzy
+	'flow-reply-placeholder' => '{{GENDER:$1|Одговорете му|Одговорете ѝ одговорите|Одговорете}} на $1',
 	'flow-reply-submit' => '{{GENDER:$1|Одговори}}',
 	'flow-reply-link' => '{{GENDER:$1|Одговори}}',
 	'flow-thank-link' => '{{GENDER:$1|Заблагодари се}}',
@@ -1431,7 +1438,7 @@ $messages['mk'] = array(
 	'flow-rev-message-deleted-post' => 'Избришана објава',
 	'flow-rev-message-censored-post' => 'Цензурирана објава',
 	'flow-topic-history' => 'Историја на темата',
-	'flow-topic-participants' => '{{PLURAL:$1|0=Досега никој не учествувал|Темава ја започна $3|{{GENDER:$3|$3}} и {{GENDER:$4|$4}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} и уште $2 корисници}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|Темата ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{PLURAL:$2|еден друг|други}}|0=Досега ниокј не учествувал|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Бидете први со коментар!|Коментари ($1)}}',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
