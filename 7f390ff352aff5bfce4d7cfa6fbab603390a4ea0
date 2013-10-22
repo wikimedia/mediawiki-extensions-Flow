@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_0085570a",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-22T22:48:58Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "291c1151_a562d53f",
+      "revId": "7f390ff352aff5bfce4d7cfa6fbab603390a4ea0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_e53bede6",
         "filename": "modules/moderation/moderation.js",
         "patchSetId": 7
@@ -65,6 +83,24 @@
       "writtenOn": "2013-10-22T21:49:51Z",
       "side": 1,
       "message": "mention \"using jQuery.ui dialog\"\n\nAdd a\n  @param {string} moderationType for messages and moderatePost API call. \u0027restore\u0027, \u0027hide\u0027, .. etc.\n\nhttps://www.mediawiki.org/wiki/Manual:Coding_conventions/JavaScript#Documentation",
+      "revId": "7f390ff352aff5bfce4d7cfa6fbab603390a4ea0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_208a531a",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-22T22:48:58Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "291c1151_e53bede6",
       "revId": "7f390ff352aff5bfce4d7cfa6fbab603390a4ea0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
