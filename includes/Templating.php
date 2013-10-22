@@ -152,10 +152,8 @@ class Templating {
 	}
 
 	public function userToolLinks( $userId, $userText ) {
-		global $wgLang;
-
 		if ( $userText instanceof MWMessage ) {
-			// username was moderated away, we dont know who this is
+			// username was moderated away, we don't know who this is
 			return '';
 		}
 

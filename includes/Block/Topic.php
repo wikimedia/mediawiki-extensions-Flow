@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use Flow\View\History;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
 use Flow\DbFactory;
@@ -269,10 +270,20 @@ class TopicBlock extends AbstractBlock {
 			return $this->renderPostHistory( $templating, $options, $return );
 
 		case 'topic-history':
+			global $wgUser;
+			$root = $this->loadRootPost();
+			$history = $this->loadTopicHistory();
+
 			return $templating->render( "flow:topic-history.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
-				'history' => $this->loadTopicHistory(),
+				'root' => $root,
+				'history' => new History(
+					$history,
+					$templating->urlGenerator,
+					$wgUser,
+					$this
+				),
 			) );
 
 		case 'edit-post':
