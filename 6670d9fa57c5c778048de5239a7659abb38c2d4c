@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_a9be27f9",
+        "filename": ".gitmodules",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-23T23:34:11Z",
+      "side": 1,
+      "message": "cannot pull from github due to security concerns.  We would have to make our own repo somewhere.  \n\n\nWe should probably just pull the one file we need into somewhere",
+      "revId": "6670d9fa57c5c778048de5239a7659abb38c2d4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_29431718",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-23T23:34:11Z",
+      "side": 1,
+      "message": "is this related to hotkeys?",
+      "revId": "6670d9fa57c5c778048de5239a7659abb38c2d4c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
