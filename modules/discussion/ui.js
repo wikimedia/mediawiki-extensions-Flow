@@ -251,5 +251,26 @@
 			} )
 			// only add toggle if user is allowed to view the content
 			.prependTo( $container.find( '.flow-post-content-allowed' ) );
+
+		var highlightPost = function( $elem ) {
+			var $viewport = $( 'main, html' );
+
+			$container.find( '.flow-post-highlighted' ).removeClass( 'flow-post-highlighted' );
+			$elem
+				.closest( '.flow-post-container' )
+				.addClass( 'flow-post-highlighted' );
+			$viewport.animate( {
+				'scrollTop' : $elem.offset().top - $viewport.height()/2
+			}, 500 );
+		};
+
+		if ( window.location.hash ) {
+			highlightPost( $( '.flow-post' + window.location.hash ) );
+		}
+		// perform same highlighting to anchors within page for consistency
+		$container.find( '.flow-icon-permalink' ).click( function( e ) {
+			e.preventDefault();
+			highlightPost( $( this.hash ) );
+		} );
 	} );
 } )( jQuery, mediaWiki );

@@ -264,29 +264,41 @@ class TopicBlock extends AbstractBlock {
 
 	public function render( Templating $templating, array $options, $return = false ) {
 		$templating->getOutput()->addModules( 'ext.flow.discussion' );
+		$prefix = '';
+
 		switch( $this->action ) {
 		case 'post-history':
-			return $this->renderPostHistory( $templating, $options, $return );
+			return $prefix . $this->renderPostHistory( $templating, $options, $return );
 
 		case 'topic-history':
-			return $templating->render( "flow:topic-history.html.php", array(
+			return $prefix . $templating->render( "flow:topic-history.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
 				'history' => $this->loadTopicHistory(),
-			) );
+			), $return );
 
 		case 'edit-post':
-			return $this->renderEditPost( $templating, $options, $return );
+			return $prefix . $this->renderEditPost( $templating, $options, $return );
 
 		case 'edit-title':
-			return $templating->render( "flow:edit-title.html.php", array(
+			return $prefix . $templating->render( "flow:edit-title.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
 				'topicTitle' => $this->loadTopicTitle(),
-			) );
+			), $return );
 
 		default:
 			$root = $this->loadRootPost();
+
+			if ( ! isset( $options['topiclist-block'] ) ) {
+				$prefix = $templating->render(
+					'flow:topic-permalink-warning.html.php',
+					array(
+						'block' => $this,
+					),
+					$return
+				);
+			}
 
 			if ( isset( $options['postId'] ) ) {
 				$indexDescendant = $root->registerDescendant( $options['postId'] );
@@ -295,13 +307,13 @@ class TopicBlock extends AbstractBlock {
 					throw new \MWException( 'Requested postId is not available within post tree' );
 				}
 
-				return $templating->renderPost(
+				return $prefix . $templating->renderPost(
 					$post,
 					$this,
 					$return
 				);
 			} else {
-				return $templating->renderTopic(
+				return $prefix . $templating->renderTopic(
 					$root,
 					$this,
 					$return
