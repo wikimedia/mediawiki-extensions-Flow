@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_c94d2375",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-23T23:19:18Z",
+      "side": 1,
+      "message": "should be available as $this-\u003euser",
+      "revId": "20d42565cf2e219fd7139b45117ace50cef8ae2f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_1e3ccfde",
+        "filename": "includes/View/History.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-23T23:19:18Z",
+      "side": 1,
+      "message": "$this isn\u0027t accessible until 5.4 inside a closure",
+      "revId": "20d42565cf2e219fd7139b45117ace50cef8ae2f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
