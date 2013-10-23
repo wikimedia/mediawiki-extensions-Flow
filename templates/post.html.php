@@ -75,9 +75,19 @@ echo Html::openElement( 'div', array(
 			<div class="flow-post-content">
 				<?php echo $post->getContent( $user, 'html' ); ?>
 			</div>
-			<?php if ( $postActionMenu->isAllowed( 'edit-post' ) ) {
+			<?php
+			if ( $postActionMenu->isAllowed( 'edit-post' ) ) {
 				echo $postActionMenu->getButton( 'edit-post', wfMessage( 'flow-post-action-edit-post' )->plain(), 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' );
 			}
+			echo Html::element(
+				'a',
+				array(
+					'class' => 'flow-icon-permalink flow-icon flow-icon-top-aligned',
+					'title' => wfMessage( 'flow-post-action-view' )->text(),
+					'href' => $this->generateUrl( $block->getWorkflowId() ) . '#flow-post-' . $post->getPostId()->getHex(),
+				),
+				wfMessage( 'flow-topic-action-view' )->text()
+			);
 			?>
 
 			<p class="flow-datestamp">
