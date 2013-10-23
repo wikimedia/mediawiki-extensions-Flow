@@ -53,11 +53,13 @@ $wgResourceModules += array(
 			'discussion/forms.js',
 			'discussion/paging.js',
 			'discussion/init.js',
+			'discussion/hotkeys.js',
 		),
 		'dependencies' => array(
 			'jquery.ui.core',
 			'ext.flow.base',
 			'ext.flow.editor',
+			'jquery.hotkeys',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
@@ -106,5 +108,8 @@ $wgResourceModules += array(
 		'dependencies' => array(
 			'ext.flow.base',
 		)
+	),
+	'jquery.hotkeys' => $flowResourceTemplate + array(
+		'scripts' => 'jquery.hotkeys.js',
 	),
 );
