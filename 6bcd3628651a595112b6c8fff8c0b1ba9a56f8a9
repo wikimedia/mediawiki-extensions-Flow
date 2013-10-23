@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_1bb146f8",
+        "filename": "includes/View/History.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-23T01:09:21Z",
+      "side": 1,
+      "message": "Might be worth escaping these timestamps out of an abundance of caution.",
+      "revId": "6bcd3628651a595112b6c8fff8c0b1ba9a56f8a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_db8fae29",
+        "filename": "templates/topic-history.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-23T01:09:21Z",
+      "side": 1,
+      "message": "Do we want to consider paging here?",
+      "revId": "6bcd3628651a595112b6c8fff8c0b1ba9a56f8a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
