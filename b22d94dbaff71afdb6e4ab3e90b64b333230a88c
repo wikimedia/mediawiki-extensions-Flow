@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_3eec2b90",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-23T22:33:53Z",
+      "side": 1,
+      "message": "needs qqq about $1",
+      "revId": "b22d94dbaff71afdb6e4ab3e90b64b333230a88c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_fef1b36a",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-23T22:33:53Z",
+      "side": 1,
+      "message": "14 levels of indent!!!",
+      "revId": "b22d94dbaff71afdb6e4ab3e90b64b333230a88c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
