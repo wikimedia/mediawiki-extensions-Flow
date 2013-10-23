@@ -142,6 +142,9 @@ $messages['en'] = array(
 	'flow-link-post' => 'post',
 	'flow-link-topic' => 'topic',
 	'flow-link-history' => 'history',
+
+	// Permalink related stuff
+	'flow-topic-permalink-warning' => 'You are viewing a single topic from [$2 $1]',
 );
 
 /** Message documentation (Message documentation)
@@ -466,6 +469,10 @@ See also:
 {{Identical|Topic}}',
 	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges.
 {{Identical|History}}',
+
+	'flow-topic-permalink-warning' => 'Displayed at the top of a page when a person has clicked on a permanent link to a topic. Parameters:
+* $1: Display text for a link to the board that the topic comes from.
+* $2: URL for a link to the board that the topic comes from.',
 );
 
 /** Asturian (asturianu)

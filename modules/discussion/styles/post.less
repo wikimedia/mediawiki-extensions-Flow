@@ -7,7 +7,7 @@
 	.flow-post {
 		margin-top: 20px;
 		margin-bottom: 20px;
-		padding-left: 22px;
+		padding-left: 16px;
 	}
 
 	.flow-post-title {
@@ -36,7 +36,7 @@
 	}
 
 	.flow-edit-post-link {
-		margin-top: -60px; // default -40px + -20px to be pushed up (because of .flow-post-content bottom padding)
+		margin-top: -60px !important; // default -40px + -20px to be pushed up (because of .flow-post-content bottom padding)
 
 		background-position: center;
 		background-size: 20px auto;
@@ -45,6 +45,19 @@
 
 		&:hover {
 			.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
+		}
+	}
+
+	.flow-icon-permalink {
+		margin-top: -30px !important;
+
+		background-position: center;
+		background-size: 20px auto;
+		background-repeat: no-repeat;
+		.background-image-svg('../../base/images/permalink_normal.svg', '../../base/images/permalink_normal.png');
+
+		&:hover {
+			.background-image-svg('../../base/images/permalink_hover.svg', '../../base/images/permalink_hover.png');
 		}
 	}
 
@@ -308,5 +321,11 @@
 		.flow-post-container {
 			padding-left: 0px;
 		}
+	}
+
+	border-left: 6px solid transparent;
+
+	&.flow-post-highlighted {
+		border-left: 6px solid #00AF89
 	}
 }

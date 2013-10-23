@@ -251,5 +251,15 @@
 			} )
 			// only add toggle if user is allowed to view the content
 			.prependTo( $container.find( '.flow-post-content-allowed' ) );
+
+			if ( window.location.hash ) {
+				$( '.flow-post' + window.location.hash )
+					.closest( '.flow-post-container' )
+					.addClass( 'flow-post-highlighted' );
+				$viewport = $( 'main, html' );
+
+				$viewport.scrollTop( $(window.location.hash).offset().top - $viewport.height() / 2 );
+
+			}
 	} );
 } )( jQuery, mediaWiki );
