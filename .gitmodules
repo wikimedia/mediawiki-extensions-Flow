@@ -1,0 +1,3 @@
+[submodule "modules/jquery.hotkeys"]
+	path = modules/jquery.hotkeys
+	url = https://github.com/jeresig/jquery.hotkeys.git
