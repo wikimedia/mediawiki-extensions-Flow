@@ -48,7 +48,12 @@ if ( $page && $page->getPagingLink( 'rev' ) ) {
 }
 
 foreach ( $topics as $topic ) {
-	echo $topic->render( $this, array(), true );
+	echo $topic->render( $this,
+		array(
+			'topiclist-block' => $block,
+		),
+		true
+	);
 }
 
 if ( $page && $page->getPagingLink( 'fwd' ) ) {
