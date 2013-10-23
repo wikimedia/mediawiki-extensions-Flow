@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_db388e9f",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-23T00:47:16Z",
+      "side": 1,
+      "message": "I don\u0027t like the arbitrary limit. We should either error out or moderate all of them.",
+      "revId": "5454b99ab9e196766fceec275066fed9b495634f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
