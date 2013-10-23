@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_056f29fe",
+        "filename": "includes/Block/Block.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-23T23:28:18Z",
+      "side": 1,
+      "message": "get_class() will always return AbstractBlock,  get_class( $this ) should be used here",
+      "revId": "75e85a3ef7d4b25723970aa2a41221da0c8eed07",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
