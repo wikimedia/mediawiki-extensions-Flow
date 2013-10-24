@@ -84,6 +84,24 @@
       "revId": "d24b3224d08e745c4caf9c51fadfa13e84a71386",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_097bbb79",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-24T00:29:48Z",
+      "side": 1,
+      "message": "No, it means JavaScript highlighting of linked posts doesn\u0027t work for non-JS.\n\nI\u0027ve added the scrolling part because the viewport will often move thanks to the FOUC.",
+      "parentUuid": "291c1151_1e0bef7f",
+      "revId": "d24b3224d08e745c4caf9c51fadfa13e84a71386",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
