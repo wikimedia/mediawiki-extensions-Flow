@@ -16,6 +16,24 @@
       "revId": "0155b9219611aa17c698a6b0569eb2a93252e473",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_21624bb1",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-24T19:18:32Z",
+      "side": 1,
+      "message": "this should probably have been commented, its not intended to make it into the final patch, i was submitted this so it could be pulled to ee-flow and show others the way if renders if we hide/dont hide the children for different circumstances.",
+      "parentUuid": "291c1151_a4b3ae4b",
+      "revId": "0155b9219611aa17c698a6b0569eb2a93252e473",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
