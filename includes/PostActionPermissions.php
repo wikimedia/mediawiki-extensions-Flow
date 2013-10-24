@@ -58,6 +58,16 @@ class PostActionPermissions {
 				PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
 				PostRevision::MODERATED_CENSORED => 'flow-censor',
 			),
+
+			'reply' => array(
+				PostRevision::MODERATED_NONE => '',
+			),
+
+			'edit-title' => array(
+				PostRevision::MODERATED_NONE => '',
+			),
+
+
 		);
 	}
 
