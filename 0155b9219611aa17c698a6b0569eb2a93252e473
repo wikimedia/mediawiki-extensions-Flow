@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_a4b3ae4b",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-24T02:18:15Z",
+      "side": 1,
+      "message": "Still not sure I understand your idea here. For topics that are moderated, you want to show the first post (and only the first post) for users who are permitted to see it? That doesn\u0027t make any sense to me.",
+      "revId": "0155b9219611aa17c698a6b0569eb2a93252e473",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
