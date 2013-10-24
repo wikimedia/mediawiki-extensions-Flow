@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_6a397d3c",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "typo: denies",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_ea648d25",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "Nitpick: I\u0027d slightly prefer $preferences over $security (which in mear ears sounds more like an object that would have methods to escape input, etc)",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_2a6f85fe",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be $this-\u003eerrors[\u0027security\u0027] (similar to the others)",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_4a74c1ce",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "MWException",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_6a717ddd",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "MWException",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_8a7eb9aa",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "MWException",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_ca48b18e",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "This if-statement seems quite useless without body? :p",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_8a579924",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "I assume this isn\u0027t intended? Now the method only returns false-y or throws an exception?",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_6a87bdb8",
+        "filename": "includes/PostActions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "class PostActionPermissions?",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_2a1065a7",
+        "filename": "includes/PostActions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "Unrelated to this patch, but I\u0027ve been meaning to ask: should a user still be able to edit his comments if it\u0027s been hidden/deleted/suppressed?",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_ca7991fb",
+        "filename": "includes/PostActions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "My bad, since I originally had only 1 method instead of both isAllowed \u0026 isAllowedAny, but we should get rid of the plural in this comment:\n\n    Check if a user is allowed to perform a certain action.",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_ea156d9a",
+        "filename": "includes/PostActions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "1st argument, $post, is missing from phpdoc",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_aa4375b1",
+        "filename": "includes/PostActions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "1st argument, $post, is missing from phpdoc",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_8afb1944",
+        "filename": "includes/PostActions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-24T17:03:58Z",
+      "side": 1,
+      "message": "I\u0027m not sure here, and since I\u0027m running PHP 5.5, I can\u0027t really test.\n\nFunction array dereferencing has only been introduced in PHP 5.4, so I\u0027m not sure array_slice actually accepts that function return value as array.\n\nAlso, since you may to have to break it down to assinging the return value to an array, might as well then call array_shift on it instead of array_slice :)",
+      "revId": "a712abc74a83bba28d9ea0f77dce39d48495781d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
