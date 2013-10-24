@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_ca10b1ad",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-24T16:59:49Z",
+      "side": 1,
+      "message": "I will remove the caching, the main purpose of these functions is to consolidate the various parameter passing for information needed from a post to render the message.\n\nWith having a function per i18n message I\u0027m basically thinking that one of the reasons the templates are getting so hard to read is because to generate these i18n messages a variety of information from the model has to be collected.  This ends up being multiple lines of php code(for some messages) which muddies up the templates which should primarily be concerned with html(which tags, classes, ids, etc)\n\nI can almost hear you saying some of these i18n messages are so simple they don\u0027t deserve their own method,  my thoughts there are that if we are going to start hiding some i18n messages behind a class in the template, we should just do all of them (not all i18n messages, but the ones used for a specific template) for consistency\u0027s sake.",
+      "parentUuid": "291c1151_3bc9a25c",
+      "revId": "60de6780570544a2af779595f3b67de5ee0efbb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_fbe70ae5",
         "filename": "templates/post.html.php",
         "patchSetId": 1
