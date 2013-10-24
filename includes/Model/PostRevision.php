@@ -88,7 +88,7 @@ class PostRevision extends AbstractRevision {
 
 	/**
 	 * Get the user ID of the user who created this post.
-	 * Checks permissions and returns false 
+	 * Checks permissions and returns false
 	 *
 	 * @param $user User The user to check permissions for.
 	 * @return int|bool The user ID, or false
@@ -383,10 +383,10 @@ class PostRevision extends AbstractRevision {
 		}
 	}
 
-	public function isAllowedToEdit( $user ) {
+	public function isCreator( $user ) {
 		if ( $user->isAnon() ) {
 			return false;
 		}
-		return $user->getId() == $this->getCreatorId() || $user->isAllowed( 'flow-edit-post' );
+		return $user->getId() == $this->getCreatorId();
 	}
 }
