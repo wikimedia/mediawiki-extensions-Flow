@@ -4,9 +4,9 @@ namespace Flow\View;
 
 use Flow\Block\Block;
 use Flow\Model\PostRevision;
+use Flow\PostActionPermissions;
 use Flow\UrlGenerator;
 use Html;
-use User;
 
 class PostActionMenu {
 	// Received via constructor
@@ -16,9 +16,9 @@ class PostActionMenu {
 	protected $post;
 	protected $user;
 
-	public function __construct( UrlGenerator $urlGenerator, User $user, Block $block, PostRevision $post, $editToken ) {
+	public function __construct( UrlGenerator $urlGenerator, PostActionPermissions $permissions, Block $block, PostRevision $post, $editToken ) {
 		$this->urlGenerator = $urlGenerator;
-		$this->user = $user;
+		$this->permissions = $permissions;
 		$this->block = $block;
 		$this->post = $post;
 		$this->editToken = $editToken;
@@ -34,60 +34,24 @@ class PostActionMenu {
 		$actions = array(
 			'hide-post' => array(
 				'method' => 'POST',
-				'permissions' => array(
-					PostRevision::MODERATED_NONE => 'flow-hide',
-				),
 			),
 			'delete-post' => array(
 				'method' => 'POST',
-				'permissions' => array(
-					PostRevision::MODERATED_NONE => 'flow-delete',
-					PostRevision::MODERATED_HIDDEN => 'flow-delete',
-				),
 			),
 			'censor-post' => array(
 				'method' => 'POST',
-				'permissions' => array(
-					PostRevision::MODERATED_NONE => 'flow-censor',
-					PostRevision::MODERATED_HIDDEN => 'flow-censor',
-					PostRevision::MODERATED_DELETED => 'flow-censor',
-				),
 			),
 			'restore-post' => array(
 				'method' => 'POST',
-				'permissions' => array(
-					PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
-					PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
-					PostRevision::MODERATED_CENSORED => 'flow-censor',
-				),
 			),
 			'post-history' => array(
 				'method' => 'GET',
-				'permissions' => array(
-					PostRevision::MODERATED_NONE => '',
-					PostRevision::MODERATED_HIDDEN => '',
-					PostRevision::MODERATED_DELETED => '',
-					PostRevision::MODERATED_CENSORED => 'flow-censor',
-				),
 			),
 			'edit-post' => array(
 				'method' => 'GET',
-				'permissions' => array(
-					// no permissions needed for own posts
-					PostRevision::MODERATED_NONE => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
-					PostRevision::MODERATED_HIDDEN => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
-					PostRevision::MODERATED_DELETED => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
-					PostRevision::MODERATED_CENSORED => $this->post->isAllowedToEdit( $this->user ) ? '' : 'flow-edit-post',
-				),
 			),
 			'view' => array(
 				'method' => 'GET',
-				'permissions' => array(
-					PostRevision::MODERATED_NONE => '',
-					PostRevision::MODERATED_HIDDEN => '',
-					PostRevision::MODERATED_DELETED => '',
-					PostRevision::MODERATED_CENSORED => '',
-				),
 			),
 		);
 
@@ -103,13 +67,11 @@ class PostActionMenu {
 	 * @return string|bool Button HTML or false on failure
 	 */
 	public function getButton( $action, $content, $class ) {
-		$details = $this->getActionDetails( $action );
-
-		if ( !$this->isAllowed( $action ) ) {
+		if ( !$this->permissions->isAllowed( $this->post, $action ) ) {
 			return false;
 		}
-
 		$data = array( $this->block->getName() . '[postId]' => $this->post->getPostId()->getHex() );
+		$details = $this->getActionDetails( $action );
 		if ( $details['method'] === 'POST' ) {
 			return $this->postAction( $action, $data, $content, $class );
 		} else {
@@ -117,48 +79,15 @@ class PostActionMenu {
 		}
 	}
 
-	/**
-	 * Check if a user is allowed to perform (a) certain action(s).
-	 *
-	 * @param string $action
-	 * @return bool
-	 */
 	public function isAllowed( $action ) {
-		$details = $this->getActionDetails( $action );
-
-		// check if permission is set for this action
-		if ( !isset( $details['permissions'][$this->post->getModerationState()] ) ) {
-			return false;
-		}
-
-		// check if user is allowed to perform action
-		return call_user_func_array(
-			array( $this->user, 'isAllowedAny' ),
-			(array) $details['permissions'][$this->post->getModerationState()]
-		);
+		return $this->permissions->isAllowed( $this->post, $action );
 	}
 
-	/**
-	 * Check if a user is allowed to perform certain actions.
-	 *
-	 * @param string $action
-	 * @param string[optional] $action2 Overloadable to check if either of the provided actions are allowed
-	 * @return bool
-	 */
 	public function isAllowedAny( $action /* [, $action2 [, ... ]] */ ) {
-		$actions = func_get_args();
-		$allowed = false;
+		$arguments = func_get_args();
+		array_unshift( $arguments, $this->post );
 
-		foreach ( $actions as $action ) {
-			$allowed |= $this->isAllowed( $action );
-
-			// as soon as we've found one that is allowed, break
-			if ( $allowed ) {
-				break;
-			}
-		}
-
-		return $allowed;
+		return call_user_func_array( array( $this->permissions, 'isAllowedAny' ), $arguments );
 	}
 
 	/**
