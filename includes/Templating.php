@@ -98,7 +98,7 @@ class Templating {
 				// class has too many responsibilities to keep receiving all required objects in the constructor.
 				'postActionMenu' => new PostActionMenu(
 					$this->urlGenerator,
-					$wgUser,
+					new PostActions( $wgUser ),
 					$block,
 					$post,
 					$wgUser->getEditToken( $wgFlowTokenSalt )
@@ -220,7 +220,7 @@ class Templating {
 	 * Gets a Flow-formatted plaintext human-readable identifier for a user.
 	 * Usually the user's name, but it can also return "an anonymous user",
 	 * or information about an item's moderation state.
-	 * 
+	 *
 	 * @param  User             $user    The User object to get a description for.
 	 * @param  AbstractRevision $rev     An AbstractRevision object to retrieve moderation state from.
 	 * @param  bool             $showIPs Whether or not to show IP addresses for anonymous users

@@ -10,6 +10,7 @@ use Flow\Model\Workflow;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\NotificationController;
+use Flow\PostActions;
 use Flow\Templating;
 use EchoEvent;
 use User;
@@ -34,6 +35,12 @@ class TopicBlock extends AbstractBlock {
 		'hide-topic', 'edit-title',
 	);
 
+	/**
+	 * @var PostActions $security Allows or denys actions to be performed
+	 */
+	protected $security;
+
+
 	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController, $root ) {
 		parent::__construct( $workflow, $storage, $notificationController );
 		if ( $root instanceof PostRevision ) {
@@ -45,6 +52,11 @@ class TopicBlock extends AbstractBlock {
 				'Expected PostRevision or RootPostLoader, received: ' . is_object( $root ) ? get_class( $root ) : gettype( $root )
 			);
 		}
+	}
+
+	public function init( $action, $user ) {
+		parent::init( $action, $user );
+		$this->security = new PostActions( $user );
 	}
 
 	protected function validate() {
@@ -97,6 +109,10 @@ class TopicBlock extends AbstractBlock {
 			if ( !$topicTitle ) {
 				throw new \Exception( 'No revision associated with workflow?' );
 			}
+			if ( !$this->security->isAllowed( $topicTitle, 'edit-title' ) ) {
+				$this->errors['security'] = wfMessage( 'flow-error-not-allowed' );
+				return;
+			}
 
 			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'flow-rev-message-edit-title' );
 
@@ -122,6 +138,9 @@ class TopicBlock extends AbstractBlock {
 			$post = $this->storage->get( 'PostRevision', $this->submitted['replyTo'] );
 			if ( !$post ) {
 				$this->errors['replyTo'] = wfMessage( 'flow-error-invalid-replyto' );
+			} elseif ( !$this->security->isAllowed( $post, 'reply' ) ) {
+				// Or should the check be rolled into the !$post condition?
+				$this->errors['security'] = wfMessage( 'flow-error-not-allowed' );
 			} else {
 				// TODO: assert post belongs to this tree?  Does it really matter?
 				// answer: might not belong, and probably does matter due to inter-wiki interaction
@@ -154,6 +173,9 @@ class TopicBlock extends AbstractBlock {
 		if ( !$post ) {
 			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-postId' );
 			return;
+		} elseif ( !$this->security->isAllowed( $post, "{$moderationState}-post" ) ) {
+			$this->errors['security'] = wfMessage( 'flow-error-not-allowed' );
+			return;
 		}
 
 		$this->newRevision = $post->moderate( $this->user, $moderationState );
@@ -170,6 +192,9 @@ class TopicBlock extends AbstractBlock {
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( !$post ) {
 			$this->errors['restore-post'] = wfMessage( 'flow-error-invalid-postId' );
+			return;
+		} elseif ( !$this->security->isAllowed( $post, "restore-post" ) ) {
+			$this->errors['restore-post'] = wfMessage( 'flow-error-not-allowed' );
 			return;
 		}
 
@@ -193,8 +218,8 @@ class TopicBlock extends AbstractBlock {
 			$this->errors['edit-post'] = wfMessage( 'flow-post-not-found' );
 			return;
 		}
-		if ( !$post->isAllowedToEdit( $this->user ) ) {
-			$this->errors['edit-post'] = wfMessage( 'flow-error-edit-restricted' );
+		if ( !$this->security->isAllowed( $post, 'edit-post' ) ) {
+			$this->errors['security'] = wfMessage( 'flow-error-not-allowed' );
 			return;
 		}
 
@@ -269,6 +294,10 @@ class TopicBlock extends AbstractBlock {
 			return $this->renderPostHistory( $templating, $options, $return );
 
 		case 'topic-history':
+			$history = $this->loadTopicHistory();
+			if ( !$this->security->isAllowed( reset( $history ), 'post-history' ) ) {
+				throw new \Exception( 'Not Allowed' );
+			}
 			return $templating->render( "flow:topic-history.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
@@ -279,6 +308,10 @@ class TopicBlock extends AbstractBlock {
 			return $this->renderEditPost( $templating, $options, $return );
 
 		case 'edit-title':
+			$topicTitle = $this->loadTopicTitle();
+			if ( !$this->security->isAllowed( $topicTitle, 'edit-post' ) ) {
+				throw new \Exception( 'Not Allowed' );
+			}
 			return $templating->render( "flow:edit-title.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
@@ -288,10 +321,14 @@ class TopicBlock extends AbstractBlock {
 		default:
 			$root = $this->loadRootPost();
 
+			if ( !$this->security->isAllowed( $root, 'view' ) ) {
+				throw new \Exception( 'Not Allowed' );
+			}
+
 			if ( isset( $options['postId'] ) ) {
 				$indexDescendant = $root->registerDescendant( $options['postId'] );
 				$post = $root->getRecursiveResult( $indexDescendant );
-				if ( $post === false ) {
+				if ( $post === null ) {
 					throw new \MWException( 'Requested postId is not available within post tree' );
 				}
 
@@ -314,6 +351,10 @@ class TopicBlock extends AbstractBlock {
 		if ( !isset( $options['postId'] ) ) {
 			throw new \Exception( 'No postId provided' );
 		}
+		$history = $this->getHistory( $options['postId'] );
+		if ( !$this->security->isAllowed( reset( $history ), 'post-history' ) ) {
+			throw new \MWException( 'Not Allowed' );
+		}
 		return $templating->render( "flow:post-history.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
@@ -328,6 +369,9 @@ class TopicBlock extends AbstractBlock {
 		$post = $this->loadRequestedPost( $options['postId'] );
 		if ( $post->isModerated() ) {
 			throw new \Exception( 'Cannot edit restricted post.  Restore first.' );
+		}
+		if ( !$this->security->isAllowed( $post, 'edit-post' ) ) {
+			throw new \MWException( 'Not Allowed' );
 		}
 		return $templating->render( "flow:edit-post.html.php", array(
 			'block' => $this,
@@ -347,12 +391,19 @@ class TopicBlock extends AbstractBlock {
 			}
 
 			if ( ! $post ) {
-				throw new MWException( "Requested post could not be found" );
+				throw new \MWException( "Requested post could not be found" );
 			}
 
-			return array( $this->renderPostAPI( $templating, $post, $options ) );
+			$res = $this->renderPostAPI( $templating, $post, $options );
+			if ( $res === null ) {
+				throw new \MWException( 'Not Allowed' );
+			}
+			return array( $res );
 		} else {
-			return $this->renderTopicAPI( $templating, $options );
+			$output = $this->renderTopicAPI( $templating, $options );
+			if ( $output === null ) {
+			}
+			return $output;
 		}
 	}
 
@@ -361,6 +412,9 @@ class TopicBlock extends AbstractBlock {
 		$rootPost = $this->loadRootPost();
 		$topic = $this->workflow;
 
+		if ( !$this->security->isAllowed( $rootPost, 'view' ) ) {
+			throw new \MWException( 'Not Allowed' );
+		}
 		$output = array(
 			'_element' => 'post',
 			'title' => $rootPost->getContent( null, 'wikitext' ),
@@ -389,15 +443,23 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		foreach( $rootPost->getChildren() as $child ) {
-			$output[] = $this->renderPostAPI( $templating, $child, $options );
+			$res = $this->renderPostAPI( $templating, $child, $options );
+			if ( $res !== null ) {
+				$output[] = $res;
+			}
 		}
 
 		return $output;
 	}
 
 	protected function renderPostAPI( Templating $templating, PostRevision $post, array $options ) {
-		$output = array();
+		if ( !$this->security->isAllowed( $post, 'view' ) ) {
+			// we have to return null, or we would have to duplicate this call when rendering children.
+			// callers must check for null and do as appropriate
+			return null;
+		}
 
+		$output = array();
 		$output['post-id'] = $post->getPostId()->getHex();
 		$contentFormat = 'wikitext';
 
@@ -412,14 +474,17 @@ class TopicBlock extends AbstractBlock {
 				'*' => $post->getContent( null, $contentFormat ),
 				'format' => $contentFormat
 			);
-			$output['user'] = $post->getUserText();
+			$output['user'] = $post->getCreatorText();
 		}
 
 		if ( ! isset( $options['no-children'] ) ) {
 			$children = array( '_element' => 'post' );
 
 			foreach( $post->getChildren() as $child ) {
-				$children[] = $this->renderPostAPI( $templating, $child, $options );
+				$res = $this->renderPostAPI( $templating, $child, $options );
+				if ( $res !== null ) {
+					$children[] = $res;
+				}
 			}
 
 			if ( count( $children ) > 1 ) {
@@ -442,11 +507,13 @@ class TopicBlock extends AbstractBlock {
 		$output['post-id'] = $postId;
 
 		foreach( $history as $revision ) {
-			$output[] = array(
-				'revision-id' => $revision->getRevisionId()->getHex(),
-				'revision-author' => $revision->getUserText(),
-				'revision-change-type' => $revision->getChangeType(),
-			);
+			if ( $this->security->isAllowed( $revision, 'view' ) ) {
+				$output[] = array(
+					'revision-id' => $revision->getRevisionId()->getHex(),
+					'revision-author' => $revision->getUserText(),
+					'revision-change-type' => $revision->getChangeType(),
+				);
+			}
 		}
 
 		return $output;
@@ -532,7 +599,7 @@ class TopicBlock extends AbstractBlock {
 			array( 'topic_root' => $this->workflow->getId() ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 		);
-		if ( $found ) {
+		if ( !$found ) {
 			return $found;
 		} else {
 			throw new \MWException( "Unable to load topic history for topic " . $this->workflow->getId()->getHex() );
