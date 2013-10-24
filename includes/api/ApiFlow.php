@@ -9,7 +9,7 @@ class ApiFlow extends ApiBase {
 		$output = array();
 
 		if ( ! $params['workflow'] && ! $params['page'] ) {
-			$this->dieUsage( 'missing-param', 'One of workflow or page parameters must be provided' );
+			$this->dieUsage( 'One of workflow or page parameters must be provided', 'badparams' );
 			return;
 		}
 
@@ -24,6 +24,12 @@ class ApiFlow extends ApiBase {
 			->createWorkflowLoader( $page, $id );
 
 		$requestParams = json_decode( $params['params'], true );
+
+		if ( ! $requestParams ) {
+			$this->dieUsage( 'The params parameter must be a valid JSON string', 'badparams' );
+			return;
+		}
+
 		$request = new DerivativeRequest( $this->getContext()->getRequest(), $requestParams, true );
 
 		$blocks = $this->loader->createBlocks();
