@@ -199,7 +199,7 @@ abstract class AbstractRevision {
 	}
 
 	public function moderate( User $user, $state, $changeType = null ) {
-		if ( !isset( self::$perms[$state] ) ) {
+		if ( ! $this->isValidModerationState( $state ) ) {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ': Provided moderation state does not exist : ' . $state );
 			return null;
 		}
@@ -227,12 +227,20 @@ abstract class AbstractRevision {
 			$obj->moderatedByUserText = $user->getName();
 			$obj->moderationTimestamp = wfTimestampNow();
 		}
-		if ( $changeType === null && isset( self::$perms[$state]['change-type'] ) ) {
-			$obj->changeType = self::$perms[$state]['change-type'];
-		} else {
-			$obj->changeType = $changeType;
+
+		if ( $obj !== $this ) {
+			if ( $changeType === null && isset( self::$perms[$state]['change-type'] ) ) {
+				$obj->changeType = self::$perms[$state]['change-type'];
+			} else {
+				$obj->changeType = $changeType;
+			}
 		}
+
 		return $obj;
+	}
+
+	public function isValidModerationState( $state ) {
+		return isset( self::$perms[$state] );
 	}
 
 	public function restore( User $user ) {

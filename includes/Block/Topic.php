@@ -30,7 +30,7 @@ class TopicBlock extends AbstractBlock {
 		// Standard editing
 		'edit-post', 'reply',
 		// Moderation
-		'hide-post', 'delete-post', 'censor-post', 'restore-post',
+		'moderate-post', 'hide-post', 'delete-post', 'censor-post', 'restore-post',
 		// Other stuff
 		'hide-topic', 'edit-title',
 	);
@@ -72,6 +72,10 @@ class TopicBlock extends AbstractBlock {
 		case 'hide-topic':
 			// this should be a workflow level action, not implemented per-block
 			$this->validateHideTopic();
+			break;
+
+		case 'moderate-post':
+			$this->validateModeratePost();
 			break;
 
 		case 'hide-post':
@@ -164,14 +168,32 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	protected function validateModeratePost( $moderationState ) {
+	protected function validateModeratePost( $moderationState = null ) {
 		if ( empty( $this->submitted['postId'] ) ) {
 			$this->errors['moderate-post'] = wfMessage( 'flow-error-missing-postId' );
 			return;
 		}
+
+		// Moderation state supplied in parameters
+		if ( $moderationState === null ) {
+			$moderationState = $this->submitted['moderationState'];
+		}
+
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
 		if ( !$post ) {
-			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-postId' );
+			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-postId', $this->submitted['postId'] );
+			return;
+		}
+
+		if ( ! $moderationState ) {
+			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-moderation-state' );
+			return;
+		} elseif ( $moderationState === 'restore' ) {
+			$moderationState = '';
+		}
+
+		if ( ! $post->isValidModerationState( $moderationState ) ) {
+			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-moderation-state' );
 			return;
 		} elseif ( !$this->permissions->isAllowed( $post, "{$moderationState}-post" ) ) {
 			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
@@ -242,6 +264,7 @@ class TopicBlock extends AbstractBlock {
 		case 'delete-post':
 		case 'censor-post':
 		case 'restore-post':
+		case 'moderate-post':
 		case 'edit-title':
 		case 'edit-post':
 			if ( $this->newRevision === null ) {

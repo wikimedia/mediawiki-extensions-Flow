@@ -74,8 +74,10 @@ $messages['en'] = array(
 	'flow-error-delete-failure' => 'Deletion of this item failed.',
 	'flow-error-hide-failure' => 'Hiding this item failed.',
 	'flow-error-missing-postId' => 'No "postId" parameter was supplied. This parameter is required to manipulate a post.',
-	'flow-error-invalid-postId' => '"postId" parameter was invalid. The specified post could not be found.',
+	'flow-error-invalid-postId' => '"postId" parameter was invalid. The specified post ($1) could not be found.',
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
+	'flow-error-invalid-moderation-state' => 'An invalid value was provided for moderationState',
+	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
 
 	'flow-edit-header-submit' => 'Save header',
 
@@ -142,6 +144,22 @@ $messages['en'] = array(
 	'flow-link-post' => 'post',
 	'flow-link-topic' => 'topic',
 	'flow-link-history' => 'history',
+
+	// Moderation dialog
+	'flow-moderation-title-censor' => 'Censor post',
+	'flow-moderation-title-delete' => 'Delete post',
+	'flow-moderation-title-hide'   => 'Hide post',
+	'flow-moderation-title-restore'=> 'Restore post.',
+	'flow-moderation-intro-censor' => 'Please confirm that you wish to censor the post by {{GENDER:$1|$1}} in the thread "$2", and provide a reason for your action.',
+	'flow-moderation-intro-delete' => 'Please confirm that you wish to delete the post by {{GENDER:$1|$1}} in the thread "$2", and provide a reason for your action.',
+	'flow-moderation-intro-hide'   => 'Please confirm that you wish to hide the post by {{GENDER:$1|$1}} in the thread "$2", and provide a reason for your action.',
+	'flow-moderation-intro-restore'=> 'Please confirm that you wish to restore the post by {{GENDER:$1|$1}} in the thread "$2", and provide a reason for youra ction.',
+	'flow-moderation-reason' => 'Reason:',
+	'flow-moderation-confirm' => 'Confirm action',
+	'flow-moderation-confirmation' => 'You have successfully moderated this post.
+Please consider giving $1 feedback about {{GENDER:$1|his|her|their}} post.',
+	'flow-moderation-confirmation-restore' => 'You have successfully restored this post.',
+	'flow-moderation-reason-placeholder' => 'Enter your reason here',
 );
 
 /** Message documentation (Message documentation)
@@ -285,10 +303,16 @@ The variable name "replyTo" is invisible to users, so "replyTo" can be translate
 "manipulate" refers either "delete" or "restore".',
 	'flow-error-invalid-postId' => 'Used as error message when deleting/restoring a post.
 
-The variable name "postId" is invisible to users, so "postId" can be translated.',
+The variable name "postId" is invisible to users, so "postId" can be translated.
+
+$1 will contain the postId that was specified.',
 	'flow-error-restore-failure' => 'Used as error message when restoring a post.
 
 "this item" seems to refer "this post".',
+	'flow-error-invalid-moderation-state' => 'Used as error message.
+Usually indicates a code bug, so technical terminology is okay.',
+	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
+
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited',
@@ -466,6 +490,30 @@ See also:
 {{Identical|Topic}}',
 	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges.
 {{Identical|History}}',
+
+	'flow-moderation-title-censor' => 'Title for the moderation confirmation dialog when a post is being censored.',
+	'flow-moderation-title-delete' => 'Title for the moderation confirmation dialog when a post is being deleted.',
+	'flow-moderation-title-hide'   => 'Title for the moderation confirmation dialog when a post is being hidden.',
+	'flow-moderation-title-restore'   => 'Title for the moderation confirmation dialog when a post is being restored.',
+	'flow-moderation-intro-censor' => 'Intro for the moderation confirmation dialog when a post is being censored. Parameters:
+* $1 the name of the user whose post is being censored. GENDER supported.
+* $2 the subject of the topic in which a post is being censored.',
+	'flow-moderation-intro-restore' => 'Intro for the restore confirmation dialog. Parameters:
+* $1 the name of the user whose post is being censored. GENDER supported.
+* $2 the subject of the topic in which a post is being censored.',
+	'flow-moderation-intro-delete' => 'Intro for the moderation confirmation dialog when a post is being deleted. Parameters:
+* $1 the name of the user whose post is being deleted. GENDER supported.
+* $2 the subject of the topic in which a post is being deleted.',
+	'flow-moderation-intro-hide'   => 'Intro for the moderation confirmation dialog when a post is being hidden. Parameters:
+* $1 the name of the user whose post is being hidden. GENDER supported.
+* $2 the subject of the topic in which a post is being hidden.',
+	'flow-moderation-reason' => 'Prompt for a text field in which the user should fill in the reason for their action.',
+	'flow-moderation-confirm' => 'Label for a button that will confirm a moderation action.',
+	'flow-moderation-confirmation' => 'Message displayed after a successful moderation action. Parameters:
+* $1 the name of the user whose post is being moderated. GENDER supported.',
+	'flow-moderation-confirmation-restore' => 'Message displayed after a successful reversal of a moderation action. Parameters:
+* $1 the name of the user whose post is being restored. GENDER supported.',
+	'flow-moderation-reason-placeholder' => 'Placeholder text for the textbox that holds the reason field on moderation confirmation dialogs.',
 );
 
 /** Asturian (asturianu)

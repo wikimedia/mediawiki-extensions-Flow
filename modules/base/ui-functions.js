@@ -43,10 +43,10 @@
 
 						if ( isOk ) {
 							$container.find( submitSelector )
-								.removeAttr( 'disabled' );
+								.prop( 'disabled', false );
 						} else {
 							$container.find( submitSelector )
-								.attr( 'disabled', 'disabled' );
+								.prop( 'disabled', true );
 						}
 					};
 
@@ -183,57 +183,74 @@
 				promiseCallback
 			) {
 				var $container = $(this);
+				var handler = $( this ).flow(
+					'getFormHandler',
+					submitFunction,
+					loadParametersCallback,
+					validateCallback,
+					promiseCallback
+				);
 
 				$container.find( submitSelector )
 					.click( function ( e ) {
 						e.preventDefault();
-
-						var $button = $( this ),
-							$form = $button.closest( 'form' ),
-							params = loadParametersCallback.apply( this ),
-							$spinner = $( '<div/>' ),
-							deferredObject = $.Deferred();
-
-						$form.find( '.flow-error' )
-							.remove();
-
-						if ( validateCallback && !validateCallback.apply( this, params ) ) {
-							$button.attr( 'disabled', 'disabled' );
-							console.log( 'Validate callback failed' );
-							return;
-						}
-
-						$button.hide();
-						$spinner
-							.addClass( 'flow-loading-indicator' )
-							.insertAfter( $button );
-
-						if ( promiseCallback ) {
-							promiseCallback( deferredObject.promise() );
-						}
-
-						submitFunction.apply( this, params )
-							.done( function ( output ) {
-								$spinner.remove();
-								$button.show();
-								$form.find( '.flow-cancel-link' )
-									.click();
-
-								deferredObject.resolve.apply( $button, arguments );
-							} )
-							.fail( function () {
-								var $errorDiv = $( '<div/>' ).flow( 'showError', arguments );
-
-								$spinner.remove();
-								$button.show();
-
-								$form.append( $errorDiv );
-
-								deferredObject.reject.apply( $button, arguments );
-							} );
+						handler.apply( e.target, [e] );
 					} );
 
 				return $container;
+			},
+
+			'getFormHandler' : function(
+				submitFunction,
+				loadParametersCallback,
+				validateCallback,
+				promiseCallback
+			) {
+				return function() {
+					var $button = $( this ),
+						$form = $button.closest( 'form' ),
+						params = loadParametersCallback.apply( this ),
+						$spinner,
+						deferredObject = $.Deferred();
+
+					$form.find( '.flow-error' )
+						.remove();
+
+					if ( validateCallback && !validateCallback.apply( this, params ) ) {
+						$button.prop( 'disabled', true );
+						console.log( 'Validate callback failed' );
+						return;
+					}
+
+					$button.hide();
+					$spinner = $.createSpinner().insertAfter( $button );
+
+					if ( promiseCallback ) {
+						promiseCallback( deferredObject.promise() );
+					}
+
+					submitFunction.apply( this, params )
+						.done( function ( output ) {
+							$spinner.remove();
+							$button.show();
+							$form.find( '.flow-cancel-link' )
+								.click();
+
+							deferredObject.resolve.apply( $button, arguments );
+						} )
+						.fail( function () {
+							var $errorDiv = $( '<div/>' ).flow( 'showError', arguments );
+
+							$spinner.remove();
+							$button.show();
+
+							if ( $form ) {
+								$form.append( $errorDiv );
+							}
+
+							deferredObject.reject.apply( $button, arguments );
+						} );
+				};
 			},
 
 			/**
