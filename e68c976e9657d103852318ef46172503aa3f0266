@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_e327531f",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-25T15:45:57Z",
+      "side": 1,
+      "message": "Perhaps just reply the Message object? Then called still has to do -\u003etext() or -\u003eescaped(), based on the context",
+      "revId": "e68c976e9657d103852318ef46172503aa3f0266",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
