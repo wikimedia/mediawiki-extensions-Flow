@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_c3bed7fa",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 121
+      },
+      "writtenOn": "2013-10-25T14:56:26Z",
+      "side": 1,
+      "message": "Are you sure, that \"censor\" is a good wording? How is \"censor\" defined? I know delete/hide/oversight/suppression only.",
+      "revId": "7bc472e007f4845971545067379bca51cb2df3a7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
