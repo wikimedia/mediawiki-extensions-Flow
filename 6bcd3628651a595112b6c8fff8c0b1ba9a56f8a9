@@ -33,6 +33,24 @@
       "revId": "6bcd3628651a595112b6c8fff8c0b1ba9a56f8a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_2385eb0a",
+        "filename": "templates/topic-history.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-25T15:28:03Z",
+      "side": 1,
+      "message": "For now, the history being fetched seems to be limited to only 100 entries.\n\nThat may not be enough for board history, though. Once we get to that, we should probably add in some paging.\n\nRight now, the $history is pulled in Topic.php. We should add paging \u0026 limit in there, to make sure $history only has a certain number of revisions.\n\nThen nothing should have to change in all of this code (other than adding previous/next links)",
+      "parentUuid": "291c1151_db8fae29",
+      "revId": "6bcd3628651a595112b6c8fff8c0b1ba9a56f8a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
