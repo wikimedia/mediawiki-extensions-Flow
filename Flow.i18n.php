@@ -312,7 +312,6 @@ $1 will contain the postId that was specified.',
 	'flow-error-invalid-moderation-state' => 'Used as error message.
 Usually indicates a code bug, so technical terminology is okay.',
 	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
-
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited',
@@ -490,23 +489,22 @@ See also:
 {{Identical|Topic}}',
 	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges.
 {{Identical|History}}',
-
 	'flow-moderation-title-censor' => 'Title for the moderation confirmation dialog when a post is being censored.',
 	'flow-moderation-title-delete' => 'Title for the moderation confirmation dialog when a post is being deleted.',
-	'flow-moderation-title-hide'   => 'Title for the moderation confirmation dialog when a post is being hidden.',
-	'flow-moderation-title-restore'   => 'Title for the moderation confirmation dialog when a post is being restored.',
+	'flow-moderation-title-hide' => 'Title for the moderation confirmation dialog when a post is being hidden.',
+	'flow-moderation-title-restore' => 'Title for the moderation confirmation dialog when a post is being restored.',
 	'flow-moderation-intro-censor' => 'Intro for the moderation confirmation dialog when a post is being censored. Parameters:
-* $1 the name of the user whose post is being censored. GENDER supported.
-* $2 the subject of the topic in which a post is being censored.',
-	'flow-moderation-intro-restore' => 'Intro for the restore confirmation dialog. Parameters:
 * $1 the name of the user whose post is being censored. GENDER supported.
 * $2 the subject of the topic in which a post is being censored.',
 	'flow-moderation-intro-delete' => 'Intro for the moderation confirmation dialog when a post is being deleted. Parameters:
 * $1 the name of the user whose post is being deleted. GENDER supported.
 * $2 the subject of the topic in which a post is being deleted.',
-	'flow-moderation-intro-hide'   => 'Intro for the moderation confirmation dialog when a post is being hidden. Parameters:
+	'flow-moderation-intro-hide' => 'Intro for the moderation confirmation dialog when a post is being hidden. Parameters:
 * $1 the name of the user whose post is being hidden. GENDER supported.
 * $2 the subject of the topic in which a post is being hidden.',
+	'flow-moderation-intro-restore' => 'Intro for the restore confirmation dialog. Parameters:
+* $1 the name of the user whose post is being censored. GENDER supported.
+* $2 the subject of the topic in which a post is being censored.',
 	'flow-moderation-reason' => 'Prompt for a text field in which the user should fill in the reason for their action.',
 	'flow-moderation-confirm' => 'Label for a button that will confirm a moderation action.',
 	'flow-moderation-confirmation' => 'Message displayed after a successful moderation action. Parameters:
@@ -616,8 +614,10 @@ $messages['de'] = array(
 	'flow-error-delete-failure' => 'Das Löschen dieses Objektes ist fehlgeschlagen.',
 	'flow-error-hide-failure' => 'Das Verstecken dieses Objektes ist fehlgeschlagen.',
 	'flow-error-missing-postId' => 'Es wurde kein Parameter „postId“ angegeben. Dieser Parameter ist zum Löschen/Wiederherstellen eines Beitrags erforderlich.',
-	'flow-error-invalid-postId' => 'Der Parameter „postId“ war ungültig. Der angegebene Beitrag konnte nicht gefunden werden.',
+	'flow-error-invalid-postId' => 'Der Parameter „postId“ war ungültig. Der angegebene Beitrag ($1) konnte nicht gefunden werden.',
 	'flow-error-restore-failure' => 'Das Wiederherstellen dieses Objektes ist fehlgeschlagen.',
+	'flow-error-invalid-moderation-state' => 'Für moderationState wurde ein ungültiger Wert angegeben',
+	'flow-error-not-allowed' => 'Keine ausreichenden Berechtigungen zum Ausführen dieser Aktion',
 	'flow-edit-header-submit' => 'Überschrift speichern',
 	'flow-edit-title-submit' => 'Titel ändern',
 	'flow-rev-message-edit-post' => 'Beitragsinhalt bearbeitet',
@@ -667,6 +667,20 @@ $messages['de'] = array(
 	'flow-link-post' => 'Beitrag',
 	'flow-link-topic' => 'Thema',
 	'flow-link-history' => 'Versionsgeschichte',
+	'flow-moderation-title-censor' => 'Beitrag zensieren',
+	'flow-moderation-title-delete' => 'Beitrag löschen',
+	'flow-moderation-title-hide' => 'Beitrag verstecken',
+	'flow-moderation-title-restore' => 'Beitrag wiederherstellen',
+	'flow-moderation-intro-censor' => 'Bitte bestätige, dass du den Beitrag von {{GENDER:$1|$1}} im Thread „$2“ zensieren willst und gib einen Grund für deine Aktion an.',
+	'flow-moderation-intro-delete' => 'Bitte bestätige, dass du den Beitrag von {{GENDER:$1|$1}} im Thread „$2“ löschen willst und gib einen Grund für deine Aktion an.',
+	'flow-moderation-intro-hide' => 'Bitte bestätige, dass du den Beitrag von {{GENDER:$1|$1}} im Thread „$2“ ausblenden willst und gib einen Grund für deine Aktion an.',
+	'flow-moderation-intro-restore' => 'Bitte bestätige, dass du den Beitrag von {{GENDER:$1|$1}} im Thread „$2“ wiederherstellen willst und gib einen Grund für deine Aktion an.',
+	'flow-moderation-reason' => 'Begründung:',
+	'flow-moderation-confirm' => 'Aktion bestätigen',
+	'flow-moderation-confirmation' => 'Du hast erfolgreich diesen Beitrag moderiert.
+Bitte ziehe in Erwägung, $1 Rückmeldung über {{GENDER:$1|seinen|ihren|den}} Beitrag zu geben.',
+	'flow-moderation-confirmation-restore' => 'Du hast erfolgreich diesen Beitrag wiederhergestellt.',
+	'flow-moderation-reason-placeholder' => 'Hier Begründung eingeben',
 );
 
 /** Spanish (español)
@@ -786,7 +800,7 @@ $messages['fr'] = array(
 	'flow-error-delete-failure' => 'Échec de la suppression de cette entrée.',
 	'flow-error-hide-failure' => 'Le masquage de cet élément a échoué.',
 	'flow-error-missing-postId' => 'Aucun paramètre « postId » n’a été fourni. Ce paramètre est obligatoire pour manipuler un message.',
-	'flow-error-invalid-postId' => 'Le paramètre « postId » n’était pas valide. Le message spécifié n’a pas pu être trouvé.',
+	'flow-error-invalid-postId' => 'Le paramètre « postId » n’était pas valide. Le message spécifié n’a pas pu être trouvé.', # Fuzzy
 	'flow-error-restore-failure' => 'Échec de la restauration de cette entrée.',
 	'flow-edit-header-submit' => 'Enregistrer l’entête',
 	'flow-edit-title-submit' => 'Changer le titre',
@@ -1077,7 +1091,7 @@ $messages['ia'] = array(
 	'flow-error-delete-failure' => 'Le deletion de iste elemento ha fallite.',
 	'flow-error-hide-failure' => 'Le celamento de iste elemento ha fallite.',
 	'flow-error-missing-postId' => 'Nulle parametro "postId" ha essite specificate. Iste parametro es necessari pro manipular un entrata.',
-	'flow-error-invalid-postId' => 'Le parametro "postId" es invalide. Le entrata specificate non poteva esser trovate.',
+	'flow-error-invalid-postId' => 'Le parametro "postId" es invalide. Le entrata specificate non poteva esser trovate.', # Fuzzy
 	'flow-error-restore-failure' => 'Le restauration de iste elemento ha fallite.',
 	'flow-edit-header-submit' => 'Salveguardar titulo',
 	'flow-edit-title-submit' => 'Cambiar titulo',
@@ -1172,7 +1186,7 @@ $messages['it'] = array(
 	'flow-error-delete-failure' => 'La cancellazione di questo elemento non è riuscita.',
 	'flow-error-hide-failure' => 'Il tentativo di nascondere questo elemento non è riuscito.',
 	'flow-error-missing-postId' => 'Non è stato fornito alcun parametro "ID_messaggio". Questo parametro è necessario per poter elaborare un messaggio.',
-	'flow-error-invalid-postId' => 'Il parametro "ID_messaggio" non era valido. Il messaggio indicato non è stato trovato.',
+	'flow-error-invalid-postId' => 'Il parametro "ID_messaggio" non era valido. Il messaggio indicato non è stato trovato.', # Fuzzy
 	'flow-error-restore-failure' => 'Il ripristino di questo elemento non è riuscito.',
 	'flow-edit-header-submit' => 'Salva intestazione',
 	'flow-edit-title-submit' => 'Cambia titolo',
@@ -1279,7 +1293,7 @@ $messages['ja'] = array(
 	'flow-error-delete-failure' => 'この項目を削除できませんでした。',
 	'flow-error-hide-failure' => 'この項目を非表示にできませんでした。',
 	'flow-error-missing-postId' => '「投稿 ID」のパラメーターを指定していません。投稿を操作するには、このパラメーターが必要です。',
-	'flow-error-invalid-postId' => '「投稿 ID」のパラメーターが無効です。指定した投稿が見つかりませんでした。',
+	'flow-error-invalid-postId' => '「投稿 ID」のパラメーターが無効です。指定した投稿が見つかりませんでした。', # Fuzzy
 	'flow-error-restore-failure' => 'この項目を復元できませんでした。',
 	'flow-edit-header-submit' => 'ヘッダーを保存',
 	'flow-edit-title-submit' => 'タイトルを変更',
@@ -1492,7 +1506,7 @@ $messages['mk'] = array(
 	'flow-error-delete-failure' => 'Бришењето на ставката не успеа.',
 	'flow-error-hide-failure' => 'Не успеав да ја скријам ставката.',
 	'flow-error-missing-postId' => 'Нема зададено параметар „postId“. Овој параметар е потребен за работа со пораката.',
-	'flow-error-invalid-postId' => 'Параметарот на „postId“ е неважечки. Не можев да ја најдам укажаната порака.',
+	'flow-error-invalid-postId' => 'Параметарот на „postId“ е неважечки. Не можев да ја најдам укажаната порака.', # Fuzzy
 	'flow-error-restore-failure' => 'Повраќањето на ставката не успеа.',
 	'flow-edit-header-submit' => 'Зачувај заглавие',
 	'flow-edit-title-submit' => 'Измени наслов',
@@ -1612,7 +1626,7 @@ $messages['nb'] = array(
 	'flow-error-delete-failure' => 'Sletting av dette innlegget feilet.',
 	'flow-error-hide-failure' => 'Skjuling av dette innlegget feilet.',
 	'flow-error-missing-postId' => 'Ingen "postId"-parameter ble sendt inn. Parameteren er påkrevd for å redigere et innlegg.',
-	'flow-error-invalid-postId' => 'Parameteren "postId" var ugyldig. Det angitte innlegget ble ikke funnet.',
+	'flow-error-invalid-postId' => 'Parameteren "postId" var ugyldig. Det angitte innlegget ble ikke funnet.', # Fuzzy
 	'flow-error-restore-failure' => 'Gjenoppretting av dette innlegget feilet.',
 	'flow-edit-header-submit' => 'Lagre overskrift',
 	'flow-edit-title-submit' => 'Endre tittel',
@@ -1986,7 +2000,7 @@ $messages['sv'] = array(
 	'flow-error-delete-failure' => 'Borttagning av detta objekt misslyckades.',
 	'flow-error-hide-failure' => 'Döljandet av detta objekt misslyckades.',
 	'flow-error-missing-postId' => 'Ingen "postId" parameter tillhandahölls. Denna parameter krävs för att påverka ett inlägg.',
-	'flow-error-invalid-postId' => '"postId" parametern var ogiltig. Det angivna inlägget kunde inte hittas.',
+	'flow-error-invalid-postId' => '"postId" parametern var ogiltig. Det angivna inlägget kunde inte hittas.', # Fuzzy
 	'flow-error-restore-failure' => 'Det gick inte att återställa objektet.',
 	'flow-edit-header-submit' => 'Spara rubrik',
 	'flow-edit-title-submit' => 'Ändra titel',
@@ -2108,8 +2122,10 @@ $messages['uk'] = array(
 	'flow-error-delete-failure' => 'Не вдалося видалити цей елемент.',
 	'flow-error-hide-failure' => 'Приховання цього елементу не вдалося.',
 	'flow-error-missing-postId' => 'Параметр „postId“ не був наданий. Цей параметр вимагає, щоб маніпулювати публікацією.',
-	'flow-error-invalid-postId' => 'Параметр „postId“ неприпустимий. Не вдалося знайти вказану публікацію.',
+	'flow-error-invalid-postId' => 'Параметр „postId“ неприпустимий. Не вдалося знайти вказану публікацію  ($1).',
 	'flow-error-restore-failure' => 'Не вдалося виконати відновлення цього елемента.',
+	'flow-error-invalid-moderation-state' => 'Неприпустиме значення було надано для стану модерування',
+	'flow-error-not-allowed' => 'Недостатні дозволи для виконання цієї дії',
 	'flow-edit-header-submit' => 'Зберегти заголовок',
 	'flow-edit-title-submit' => 'Змінити заголовок',
 	'flow-rev-message-edit-post' => 'Відредаговано вміст допису',
@@ -2159,6 +2175,20 @@ $messages['uk'] = array(
 	'flow-link-post' => 'допис',
 	'flow-link-topic' => 'тема',
 	'flow-link-history' => 'історія',
+	'flow-moderation-title-censor' => 'Цензурувати публікацію',
+	'flow-moderation-title-delete' => 'Видалити публікацію',
+	'flow-moderation-title-hide' => 'Приховати публікацію',
+	'flow-moderation-title-restore' => 'Відновити публікацію.',
+	'flow-moderation-intro-censor' => 'Будь ласка, підтвердіть, що ви бажаєте піддавати цензурі публікації {{GENDER:$1|$1}} в гілці "$2", і вказати причину ваших дій.',
+	'flow-moderation-intro-delete' => 'Будь ласка, підтвердіть, що ви хочете, щоб видалити повідомлення {{GENDER:$1|$1}} у обговоренні "$2" і вкажіть причину для ваших дій.',
+	'flow-moderation-intro-hide' => 'Будь ласка, підтвердіть, що ви бажаєте приховати публікації {{GENDER:$1|$1}} в гілці "$2" і вкажіть причину ваших дій.',
+	'flow-moderation-intro-restore' => 'Будь ласка, підтвердіть, що ви бажаєте відновити публікації {{GENDER:$1|$1}} в гілці "$2" і вкажіть причину ваших дій.',
+	'flow-moderation-reason' => 'Причина:',
+	'flow-moderation-confirm' => 'Підтвердити дію',
+	'flow-moderation-confirmation' => 'Ви успішно промодерували цю публікацію.
+Будь ласка, подумайте над надсиланням $1 відгуку про {{GENDER:$1|його|її|їх}} публікацію.',
+	'flow-moderation-confirmation-restore' => 'Ви успішно відновили цю публікацію.',
+	'flow-moderation-reason-placeholder' => 'Введіть вашу причина тут',
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -2220,7 +2250,7 @@ $messages['vi'] = array(
 	'flow-error-delete-failure' => 'Thất bại khi xóa mục này.',
 	'flow-error-hide-failure' => 'Thất bại khi ẩn mục này.',
 	'flow-error-missing-postId' => 'Tham số “postId” không được cung cấp. Tham số này cần để xóa hoặc phục hồi bài đăng.',
-	'flow-error-invalid-postId' => 'Tham số “postId” có giá trị không hợp lệ. Không tìm thấy bài đăng.',
+	'flow-error-invalid-postId' => 'Tham số “postId” có giá trị không hợp lệ. Không tìm thấy bài đăng.', # Fuzzy
 	'flow-error-restore-failure' => 'Thất bại khi phục hồi mục này.',
 	'flow-edit-header-submit' => 'Lưu đầu đề',
 	'flow-edit-title-submit' => 'Thay đổi tiêu đề',
