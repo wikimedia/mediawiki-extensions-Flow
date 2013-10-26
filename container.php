@@ -61,6 +61,10 @@ use Flow\Data\HeaderRevisionStorage;
 use Flow\Data\UniqueFeatureIndex;
 use Flow\Data\TopKIndex;
 use Flow\Data\TopicHistoryIndex;
+use Flow\Data\BoardHistoryStorage;
+use Flow\Data\BoardHistoryTopicListIndex;
+use Flow\Data\BoardHistoryHeaderIndex;
+use Flow\Data\BoardHistoryIndex;
 use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectManager;
 
@@ -112,6 +116,24 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 
 	return new ObjectManager( $mapper, $storage, $indexes, $lifecycle );
 } );
+
+$c['storage.board_history'] = $c->share( function( $c ) {
+	$cache = $c['memcache.buffered'];
+	$mapper = BasicObjectMapper::model( 'Flow\\Model\\BoardHistoryEntry' );
+	$storage = new BoardHistoryStorage( $c['db.factory'] );
+
+	$indexes = array(
+		new BoardHistoryIndex( $cache, $storage, 'flow_revision:topic_list_history',
+			array( 'topic_list_id' ),
+			array(
+				'limit' => 500,
+				'sort' => 'rev_id',
+				'order' => 'DESC'
+		) ),
+	);
+	return new ObjectManager( $mapper, $storage, $indexes );
+} );
+
 // Arbitrary bit of revisioned wiki-text attached to a workflow
 $c['storage.header'] = $c->share( function( $c ) {
 	global $wgFlowExternalStore, $wgContLang;
@@ -144,6 +166,13 @@ $c['storage.header'] = $c->share( function( $c ) {
 			'flow_header:latest', array( 'header_workflow_id' ),
 			array( 'limit'  => 1 ) + $workflowIndexOptions
 		),
+		new BoardHistoryHeaderIndex( $cache, new BoardHistoryStorage( $c['db.factory'] ), 'flow_revision:topic_list_history',
+			array( 'topic_list_id' ),
+			array(
+				'limit' => 500,
+				'sort' => 'rev_id',
+				'order' => 'DESC'
+		) ),
 	);
 
 	$handlers = array(
@@ -232,7 +261,14 @@ $c['storage.post'] = $c->share( function( $c ) {
 					return $row['tree_parent_id'] === null
 						&& $row['rev_parent_id'] === null;
 				},
-		) )
+		) ),
+		new BoardHistoryTopicListIndex( $cache, new BoardHistoryStorage( $c['db.factory'] ), $c['repository.tree'], 'flow_revision:topic_list_history',
+			array( 'topic_list_id' ),
+			array(
+				'limit' => 500,
+				'sort' => 'rev_id',
+				'order' => 'DESC'
+		) ),
 	);
 
 	$handlers = array(
@@ -293,6 +329,9 @@ $c['storage'] = $c->share( function( $c ) {
 
 			'Flow\\Model\\Header' => 'storage.header',
 			'Header' => 'storage.header',
+
+			'Flow\\Model\\BoardHistoryEntry' => 'storage.board_history',
+			'BoardHistoryEntry' => 'storage.board_history',
 		)
 	);
 } );

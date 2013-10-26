@@ -2,6 +2,8 @@
 
 namespace Flow\Block;
 
+use Flow\View\History\History;
+use Flow\View\History\HistoryRenderer;
 use Flow\DbFactory;
 use Flow\Data\ObjectManager;
 use Flow\Model\Workflow;
@@ -85,14 +87,26 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		$templating->getOutput()->addModules( 'ext.flow.header' );
-		$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
-		$templating->render( "flow:$templateName.html.php", array(
-			'block' => $this,
-			'workflow' => $this->workflow,
-			'header' => $this->header,
-			'user' => $this->user,
-		) );
+		// Render board history view in header block and suppress the rendering of topiclist block
+		// @Todo - Refactor workflowloader to load blocks based on actions, eg, there will
+		// only be a history block for discussion type on action=history
+		if ( $this->action === 'board-history' ) {
+			$templating->getOutput()->addModules( 'ext.flow.history' );
+			$templating->render( "flow:board-history.html.php", array(
+				'title' => wfMessage( 'flow-board-history', $this->workflow->getArticleTitle() )->escaped(),
+				'history' => new History( $this->loadBoardHistory() ),
+				'historyRenderer' => new HistoryRenderer( $templating, $this ),
+			) );
+		} else {
+			$templating->getOutput()->addModules( 'ext.flow.header' );
+			$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
+			$templating->render( "flow:$templateName.html.php", array(
+				'block' => $this,
+				'workflow' => $this->workflow,
+				'header' => $this->header,
+				'user' => $this->user,
+			) );
+		}
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
@@ -119,6 +133,20 @@ class HeaderBlock extends AbstractBlock {
 		);
 
 		return $output;
+	}
+
+	protected function loadBoardHistory() {
+		$found = $this->storage->find(
+			'BoardHistoryEntry',
+			array( 'topic_list_id' => $this->workflow->getId() ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 300 )
+		);
+
+		if ( $found === false ) {
+			throw new \MWException( "Unable to load topic list history for " . $this->workflow->getId()->getHex() );
+		}
+
+		return $found;
 	}
 
 	public function getName() {

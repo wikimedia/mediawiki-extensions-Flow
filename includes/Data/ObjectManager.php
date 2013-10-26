@@ -234,6 +234,9 @@ class ObjectLocator implements ObjectStorage {
 		}
 
 		$index = $this->getIndexFor( $keys, $options );
+		if ( !$index->isSearchIndex() ) {
+			throw new \MWException( 'Index: ' . get_class( $index ) . ' is not a search index' );
+		}
 		$res = $index->findMulti( $queries );
 
 		if ( $res === null ) {
@@ -766,6 +769,23 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
+	 * Return true if this index can be used for data search, false otherwise
+	 * @return boolean
+	 */
+	public function isSearchIndex() {
+		return true;
+	}
+
+	/**
+	 * Determine if this index can be used for building data cache, false
+	 * otherwise
+	 * @return boolean
+	 */
+	public function isBuildIndex() {
+		return true;
+	}
+
+	/**
 	 * This must be in the provided order so portions of the application can
 	 * array_combine( $index->getPrimaryKeyColumns(), $primaryKeyValues )
 	 */
@@ -819,6 +839,9 @@ abstract class FeatureIndex implements Index {
 	}
 
 	public function onAfterInsert( $object, array $new ) {
+		if ( !$this->isBuildIndex() ) {
+			throw new \MWException( 'Index: ' . __CLASS__ . ' is not a build index' );
+		}
 		$indexed = ObjectManager::splitFromRow( $new , $this->indexed );
 		// is un-indexable a bail-worthy occasion? Probably not but makes debugging easier
 		if ( !$indexed ) {
@@ -833,6 +856,9 @@ abstract class FeatureIndex implements Index {
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new ) {
+		if ( !$this->isBuildIndex() ) {
+			throw new \MWException( 'Index: ' . __CLASS__ . ' is not a build index' );
+		}
 		$oldIndexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		$newIndexed = ObjectManager::splitFromRow( $new, $this->indexed );
 		if ( !$oldIndexed ) {
@@ -858,6 +884,9 @@ abstract class FeatureIndex implements Index {
 	}
 
 	public function onAfterRemove( $object, array $old ) {
+		if ( !$this->isBuildIndex() ) {
+			throw new \MWException( 'Index: ' . __CLASS__ . ' is not a build index' );
+		}
 		$indexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		if ( !$indexed ) {
 			throw new \MWException( 'Unindexable row: ' .json_encode( $old ) );
