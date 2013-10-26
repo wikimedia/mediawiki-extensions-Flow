@@ -61,8 +61,15 @@ use Flow\Data\HeaderRevisionStorage;
 use Flow\Data\UniqueFeatureIndex;
 use Flow\Data\TopKIndex;
 use Flow\Data\TopicHistoryIndex;
+use Flow\Data\BoardHistoryStorage;
+use Flow\Data\BoardHistoryTopicListIndex;
+use Flow\Data\BoardHistoryHeaderIndex;
+use Flow\Data\BoardHistoryIndex;
 use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectManager;
+use Flow\Data\ObjectLocator;
+use Flow\Model\Header;
+use Flow\Model\PostRevision;
 
 // TODO: this is still pass-thru untill it gets hooked up to the begin/commit
 //       transaction.  Easiest will be to explicitly start/end the transaction
@@ -112,6 +119,40 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 
 	return new ObjectManager( $mapper, $storage, $indexes, $lifecycle );
 } );
+
+$c['storage.board_history.backing'] = $c->share( function( $c ) {
+	return new BoardHistoryStorage( $c['db.factory'] );
+} );
+
+$c['storage.board_history'] = $c->share( function( $c ) {
+	$cache = $c['memcache.buffered'];
+	$mapper = new BasicObjectMapper(
+		function( $rev ) {
+			return $rev->toStorageRow( $rev );
+		},
+		function( array $row, $obj = null ) {
+			if ( $row['rev_type'] === 'header' ) {
+				return Header::fromStorageRow( $row, $obj );
+			} elseif ( $row['rev_type'] === 'post' ) {
+				return PostRevision::fromStorageRow( $row, $obj );
+			} else {
+				throw new \MWException( 'Invalid rev_type for board history entry: ' . $row['rev_type'] );
+			}
+		}
+	);
+
+	$indexes = array(
+		new BoardHistoryIndex( $cache, $c['storage.board_history.backing'], 'flow_revision:topic_list_history',
+			array( 'topic_list_id' ),
+			array(
+				'limit' => 500,
+				'sort' => 'rev_id',
+				'order' => 'DESC'
+		) ),
+	);
+	return new ObjectLocator( $mapper, $c['storage.board_history.backing'], $indexes );
+} );
+
 // Arbitrary bit of revisioned wiki-text attached to a workflow
 $c['storage.header'] = $c->share( function( $c ) {
 	global $wgFlowExternalStore, $wgContLang;
@@ -148,6 +189,13 @@ $c['storage.header'] = $c->share( function( $c ) {
 
 	$handlers = array(
 		new Flow\Data\HeaderRecentChanges( $c['storage'], $wgContLang ),
+		new BoardHistoryHeaderIndex( $cache, $c['storage.board_history.backing'], 'flow_revision:topic_list_history',
+			array( 'topic_list_id' ),
+			array(
+				'limit' => 500,
+				'sort' => 'rev_id',
+				'order' => 'DESC'
+		) ),
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
@@ -232,11 +280,18 @@ $c['storage.post'] = $c->share( function( $c ) {
 					return $row['tree_parent_id'] === null
 						&& $row['rev_parent_id'] === null;
 				},
-		) )
+		) ),
 	);
 
 	$handlers = array(
 		new Flow\Data\PostRevisionRecentChanges( $c['storage'], $c['repository.tree'], $wgContLang ),
+		new BoardHistoryTopicListIndex( $cache, $c['storage.board_history.backing'], $c['repository.tree'], 'flow_revision:topic_list_history',
+			array( 'topic_list_id' ),
+			array(
+				'limit' => 500,
+				'sort' => 'rev_id',
+				'order' => 'DESC'
+		) ),
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
@@ -293,6 +348,8 @@ $c['storage'] = $c->share( function( $c ) {
 
 			'Flow\\Model\\Header' => 'storage.header',
 			'Header' => 'storage.header',
+
+			'BoardHistoryEntry' => 'storage.board_history',
 		)
 	);
 } );

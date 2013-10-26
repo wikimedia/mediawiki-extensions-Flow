@@ -41,7 +41,7 @@ class TopicListEntry {
 	}
 
 	public function getListId() {
-		return $this-topicListId;
+		return $this->topicListId;
 	}
 }
 
