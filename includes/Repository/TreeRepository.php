@@ -273,7 +273,7 @@ class TreeRepository {
 			$this->tableName,
 			array( 'tree_ancestor_id', 'tree_descendant_id' ),
 			array(
-				'tree_descendant_id' => $nodes,
+				'tree_descendant_id' => UUID::convertUUIDs( $nodes ),
 				'tree_depth' => 1,
 			),
 			__METHOD__
