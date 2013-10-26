@@ -19,6 +19,7 @@ class TopicListBlock extends AbstractBlock {
 
 	protected $treeRepo;
 	protected $supportedActions = array( 'new-topic' );
+	protected $suppressedActions = array( 'board-history' );
 
 	public function __construct(
 		Workflow $workflow,
@@ -62,9 +63,9 @@ class TopicListBlock extends AbstractBlock {
 		$firstPost->setChildren( array() );
 
 		$storage->put( $topicWorkflow );
+		$storage->put( $topicListEntry );
 		$storage->put( $topicPost );
 		$storage->put( $firstPost );
-		$storage->put( $topicListEntry );
 
 		$this->notificationController->notifyNewTopic( array(
 			'board-workflow' => $this->workflow,
@@ -100,7 +101,7 @@ class TopicListBlock extends AbstractBlock {
 				'user' => $this->user,
 				'page' => false,
 			) );
-		} else {
+		} elseif ( !in_array( $this->action, $this->suppressedActions, true ) ) {
 			$findOptions = $this->getFindOptions( $options );
 			$page = $this->getPage( $findOptions );
 			$topics = $this->getTopics( $page );

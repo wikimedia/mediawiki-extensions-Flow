@@ -1,5 +1,19 @@
 <?php
 
+// View board history link
+echo Html::rawElement(
+	'div',
+	array( 'class' => 'flow-element-container flow-header-nav' ),
+	Html::element(
+		'a',
+		array(
+			'class' => 'flow-header-history-link',
+			'href' => $this->generateUrl( $workflow, 'board-history' )
+		),
+		wfMessage( 'flow-view-history' )->text()
+	)
+);
+
 echo Html::openElement(
 	'div',
 	array(
