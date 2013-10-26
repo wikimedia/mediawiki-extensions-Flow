@@ -19,6 +19,7 @@ class TopicListBlock extends AbstractBlock {
 
 	protected $treeRepo;
 	protected $supportedActions = array( 'new-topic' );
+	protected $suppressedActions = array( 'board-history' );
 
 	public function __construct(
 		Workflow $workflow,
@@ -62,9 +63,9 @@ class TopicListBlock extends AbstractBlock {
 		$firstPost->setChildren( array() );
 
 		$storage->put( $topicWorkflow );
+		$storage->put( $topicListEntry );
 		$storage->put( $topicPost );
 		$storage->put( $firstPost );
-		$storage->put( $topicListEntry );
 
 		$this->notificationController->notifyNewTopic( array(
 			'board-workflow' => $this->workflow,
@@ -93,24 +94,26 @@ class TopicListBlock extends AbstractBlock {
 	public function render( Templating $templating, array $options ) {
 		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 
-		if ( $this->workflow->isNew() ) {
-			$templating->render( "flow:topiclist.html.php", array(
-				'block' => $this,
-				'topics' => array(),
-				'user' => $this->user,
-				'page' => false,
-			) );
-		} else {
-			$findOptions = $this->getFindOptions( $options );
-			$page = $this->getPage( $findOptions );
-			$topics = $this->getTopics( $page );
+		if ( !in_array( $this->action, $this->suppressedActions, true ) ) {
+			if ( $this->workflow->isNew() ) {
+				$templating->render( "flow:topiclist.html.php", array(
+					'block' => $this,
+					'topics' => array(),
+					'user' => $this->user,
+					'page' => false,
+				) );
+			} else {
+				$findOptions = $this->getFindOptions( $options );
+				$page = $this->getPage( $findOptions );
+				$topics = $this->getTopics( $page );
 
-			$templating->render( "flow:topiclist.html.php", array(
-				'block' => $this,
-				'topics' => $topics,
-				'user' => $this->user,
-				'page' => $page,
-			) );
+				$templating->render( "flow:topiclist.html.php", array(
+					'block' => $this,
+					'topics' => $topics,
+					'user' => $this->user,
+					'page' => $page,
+				) );
+			}
 		}
 	}
 

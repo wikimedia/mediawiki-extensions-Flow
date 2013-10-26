@@ -2,26 +2,26 @@
 
 namespace Flow\View\History;
 
-use Flow\Model\PostRevision;
+use Flow\Model\AbstractRevision;
 use MWException;
 use MWTimestamp;
 use Message;
 
 /**
- * HistoryRecord accepts a PostRevision and, based on $wgFlowHistoryActions,
+ * HistoryRecord accepts a AbstractRevision and, based on $wgFlowHistoryActions,
  * provides some methods to access history-related information for this
  * revision's specific action.
  */
 class HistoryRecord {
 	/**
-	 * @var PostRevision
+	 * @var AbstractRevision
 	 */
 	protected $data;
 
 	/**
-	 * @param PostRevision $revision
+	 * @param AbstractRevision $revision
 	 */
-	public function __construct( PostRevision $revision ) {
+	public function __construct( AbstractRevision $revision ) {
 		$this->data = $revision;
 	}
 
@@ -42,14 +42,14 @@ class HistoryRecord {
 	}
 
 	/**
-	 * @return PostRevision
+	 * @return AbstractRevision
 	 */
 	public function getData() {
 		return $this->data;
 	}
 
 	/**
-	 * @return PostRevision
+	 * @return AbstractRevision
 	 */
 	public function getRevision() {
 		return $this->getData();

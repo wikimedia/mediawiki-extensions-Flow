@@ -50,6 +50,7 @@ CREATE TABLE /*_*/flow_topic_list (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/flow_topic_list_pk ON /*_*/flow_topic_list( topic_list_id, topic_id);
+CREATE INDEX /*i*/flow_topic_list_topic_id ON /*_*/flow_topic_list (topic_id);
 
 -- Post Content Revisions.  Connects 1 Post to Many revisions.
 -- also denormalizes information commonly needed with a revision
