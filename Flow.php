@@ -104,6 +104,8 @@ $wgAutoloadClasses['Flow\Data\Index'] = $dir . 'includes/Data/ObjectManager.php'
 $wgAutoloadClasses['Flow\Data\UniqueFeatureIndex'] = $dir . 'includes/Data/ObjectManager.php';
 $wgAutoloadClasses['Flow\Data\TopKIndex'] = $dir . 'includes/Data/ObjectManager.php';
 $wgAutoloadClasses['Flow\Data\TopicHistoryIndex'] = $dir . 'includes/Data/ObjectManager.php';
+$wgAutoloadClasses['Flow\Data\BoardHistoryStorage'] = $dir . 'includes/Data/BoardHistoryStorage.php';
+$wgAutoloadClasses['Flow\Data\BoardHistoryIndex'] = $dir . 'includes/Data/BoardHistoryStorage.php';
 $wgAutoloadClasses['Flow\Data\ObjectStorage'] = $dir . 'includes/Data/ObjectManager.php';
 $wgAutoloadClasses['Flow\Data\BasicDbStorage'] = $dir . 'includes/Data/ObjectManager.php';
 $wgAutoloadClasses['Flow\Data\ObjectMapper'] = $dir . 'includes/Data/ObjectManager.php';
@@ -124,6 +126,7 @@ $wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
 $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
 
 // database interaction for singular models
+$wgAutoloadClasses['Flow\Data\RevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 $wgAutoloadClasses['Flow\Data\HeaderRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 

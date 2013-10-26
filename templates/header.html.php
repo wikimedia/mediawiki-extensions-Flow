@@ -1,5 +1,4 @@
 <?php
-
 echo Html::openElement(
 	'div',
 	array(

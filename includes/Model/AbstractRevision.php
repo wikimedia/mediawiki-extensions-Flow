@@ -121,7 +121,7 @@ abstract class AbstractRevision {
 	 	$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
 		$obj->content = $row['rev_content'];
 		// null if external store is not being used
-		$obj->contentUrl = $row['rev_content_url'];
+		$obj->contentUrl = isset( $row['rev_content_url'] ) ? $row['rev_content_url'] : null;
 		$obj->decompressedContent = null;
 
 		$obj->moderationState = $row['rev_mod_state'];
