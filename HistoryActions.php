@@ -2,6 +2,7 @@
 
 use Flow\View\History;
 use Flow\Model\PostRevision;
+use Flow\Model\Header;
 use Flow\Block\Block;
 use Flow\UrlGenerator;
 
@@ -18,6 +19,24 @@ use Flow\UrlGenerator;
  *   the list-item & clicking on it will reveal the individual history entries)
  */
 $wgFlowHistoryActions = array(
+	'flow-edit-header' => array(
+		'i18n-message' => 'flow-rev-message-edit-header',
+		'i18n-params' => array(
+			function ( Header $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
+				return $revision->getUserText( $user );
+			},
+		),
+		'class' => 'flow-rev-message-edit-header',
+	),
+	'flow-create-header' => array(
+		'i18n-message' => 'flow-rev-message-create-header',
+		'i18n-params' => array(
+			function ( Header $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
+				return $revision->getUserText( $user );
+			},
+		),
+		'class' => 'flow-rev-message-create-header',
+	),
 	'flow-rev-message-edit-post' => array(
 		'i18n-message' => 'flow-rev-message-edit-post',
 		'i18n-params' => array(
@@ -83,16 +102,6 @@ $wgFlowHistoryActions = array(
 			// @todo: find previous revision & return title of that revision
 		),
 		'class' => 'flow-rev-message-edit-title',
-	),
-	'flow-rev-message-create-header' => array(
-		'i18n-message' => 'flow-rev-message-create-header',
-		// @todo: AFAIK, we don't have a board history yet, where this will be surfaced
-		'class' => 'flow-rev-message-create-header',
-	),
-	'flow-rev-message-edit-header' => array(
-		'i18n-message' => 'flow-rev-message-edit-header',
-		// @todo: AFAIK, we don't have a board history yet, where this will be surfaced
-		'class' => 'flow-rev-message-edit-header',
 	),
 	'flow-rev-message-restored-post' => array(
 		'i18n-message' => 'flow-rev-message-restored-post',
