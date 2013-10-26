@@ -251,7 +251,8 @@ Translate this as "post which was censored".',
 	'flow-post-action-censor-post' => 'Used as a label for  the submit button in the censor form.
 
 See also:
-* {{msg-mw|Flow-post-action-restore-post}}',
+* {{msg-mw|Flow-post-action-restore-post}}
+{{Identical|Censor post}}',
 	'flow-post-action-delete-post' => 'Used as a label for the submit button in the deletion form.
 
 See also:
@@ -266,7 +267,8 @@ Translate as label for the link or the Submit button.
 
 See also:
 * {{msg-mw|Flow-post-action-delete-post}}
-* {{msg-mw|Flow-post-action-censor-post}}',
+* {{msg-mw|Flow-post-action-censor-post}}
+{{Identical|Restore post}}',
 	'flow-topic-action-view' => "Title text for topic's permalink icon.
 {{Identical|Permalink}}",
 	'flow-topic-action-watchlist' => "Title text for topic's watchlist icon.
@@ -309,12 +311,16 @@ The variable name "replyTo" is invisible to users, so "replyTo" can be translate
 
 The variable name "postId" is invisible to users, so "postId" can be translated.
 
-$1 will contain the postId that was specified.',
+Parameters:
+* $1 - contains the postId that was specified',
 	'flow-error-restore-failure' => 'Used as error message when restoring a post.
 
 "this item" seems to refer "this post".',
 	'flow-error-invalid-moderation-state' => 'Used as error message.
-Usually indicates a code bug, so technical terminology is okay.',
+
+Usually indicates a code bug, so technical terminology is okay.
+
+Valid values for moderationState are: none, hidden, deleted, censored',
 	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
@@ -493,36 +499,55 @@ See also:
 {{Identical|Topic}}',
 	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges.
 {{Identical|History}}',
-	'flow-moderation-title-censor' => 'Title for the moderation confirmation dialog when a post is being censored.',
-	'flow-moderation-title-delete' => 'Title for the moderation confirmation dialog when a post is being deleted.',
-	'flow-moderation-title-hide' => 'Title for the moderation confirmation dialog when a post is being hidden.',
-	'flow-moderation-title-restore' => 'Title for the moderation confirmation dialog when a post is being restored.',
+	'flow-moderation-title-censor' => 'Title for the moderation confirmation dialog when a post is being censored.
+{{Related|Flow-moderation-title}}
+{{Identical|Censor post}}',
+	'flow-moderation-title-delete' => 'Title for the moderation confirmation dialog when a post is being deleted.
+{{Related|Flow-moderation-title}}
+{{Identical|Delete post}}',
+	'flow-moderation-title-hide' => 'Title for the moderation confirmation dialog when a post is being hidden.
+{{Related|Flow-moderation-title}}',
+	'flow-moderation-title-restore' => 'Title for the moderation confirmation dialog when a post is being restored.
+{{Related|Flow-moderation-title}}',
 	'flow-moderation-intro-censor' => 'Intro for the moderation confirmation dialog when a post is being censored. Parameters:
-* $1 the name of the user whose post is being censored. GENDER supported.
-* $2 the subject of the topic in which a post is being censored.',
+* $1 - the name of the user whose post is being censored. GENDER supported.
+* $2 - the subject of the topic in which a post is being censored
+{{Related|Flow-moderation-intro}}',
 	'flow-moderation-intro-delete' => 'Intro for the moderation confirmation dialog when a post is being deleted. Parameters:
-* $1 the name of the user whose post is being deleted. GENDER supported.
-* $2 the subject of the topic in which a post is being deleted.',
+* $1 - the name of the user whose post is being deleted. GENDER supported.
+* $2 - the subject of the topic in which a post is being deleted
+{{Related|Flow-moderation-intro}}',
 	'flow-moderation-intro-hide' => 'Intro for the moderation confirmation dialog when a post is being hidden. Parameters:
-* $1 the name of the user whose post is being hidden. GENDER supported.
-* $2 the subject of the topic in which a post is being hidden.',
+* $1 - the name of the user whose post is being hidden. GENDER supported.
+* $2 - the subject of the topic in which a post is being hidden
+{{Related|Flow-moderation-intro}}',
 	'flow-moderation-intro-restore' => 'Intro for the restore confirmation dialog. Parameters:
 * $1 the name of the user whose post is being censored. GENDER supported.
-* $2 the subject of the topic in which a post is being censored.',
-	'flow-moderation-reason' => 'Prompt for a text field in which the user should fill in the reason for their action.',
-	'flow-moderation-confirm' => 'Label for a button that will confirm a moderation action.',
+* $2 the subject of the topic in which a post is being censored
+{{Related|Flow-moderation-intro}}',
+	'flow-moderation-reason' => 'Prompt for a text field in which the user should fill in the reason for their action.
+{{Identical|Reason}}',
+	'flow-moderation-confirm' => 'Label for a button that will confirm a moderation action.
+{{Identical|Confirm action}}',
 	'flow-moderation-confirmation' => 'Message displayed after a successful moderation action. Parameters:
 * $1 the name of the user whose post is being moderated. GENDER supported.',
 	'flow-moderation-confirmation-restore' => 'Message displayed after a successful reversal of a moderation action. Parameters:
 * $1 the name of the user whose post is being restored. GENDER supported.',
 	'flow-moderation-reason-placeholder' => 'Placeholder text for the textbox that holds the reason field on moderation confirmation dialogs.',
+	'flow-topic-permalink-warning' => 'Displayed at the top of a page when a person has clicked on a permanent link to a topic.
 
-	'flow-topic-permalink-warning' => 'Displayed at the top of a page when a person has clicked on a permanent link to a topic. Parameters:
-* $1: Display text for a link to the board that the topic comes from.
-* $2: URL for a link to the board that the topic comes from.',
-	'flow-topic-permalink-warning-user-board' => 'Displayed at the top of a page when a person has clicked on a permanent link to a topic from a user\'s board. Parameters:
-* $1: The user\'s name. Supports GENDER..
-* $2: URL for a link to the board that the topic comes from.',
+Parameters:
+* $1 - display text for a link to the board that the topic comes from
+* $2 - URL for a link to the board that the topic comes from
+See also:
+* {{msg-mw|Flow-topic-permalink-warning-user-board}}',
+	'flow-topic-permalink-warning-user-board' => "Displayed at the top of a page when a person has clicked on a permanent link to a topic from a user's board.
+
+Parameters:
+* $1 - the user's name. Supports GENDER.
+* $2 - URL for a link to the board that the topic comes from
+See also:
+* {{msg-mw|Flow-topic-permalink-warning}}",
 );
 
 /** Asturian (asturianu)
@@ -692,6 +717,8 @@ $messages['de'] = array(
 Bitte ziehe in Erwägung, $1 Rückmeldung über {{GENDER:$1|seinen|ihren|den}} Beitrag zu geben.',
 	'flow-moderation-confirmation-restore' => 'Du hast erfolgreich diesen Beitrag wiederhergestellt.',
 	'flow-moderation-reason-placeholder' => 'Hier Begründung eingeben',
+	'flow-topic-permalink-warning' => 'Dieses Thema wurde gestartet auf  [$2 $1]',
+	'flow-topic-permalink-warning-user-board' => 'Dieses Thema wurde gestartet auf dem [$2 Brett von {{GENDER:$1|$1}}]',
 );
 
 /** Spanish (español)
@@ -726,8 +753,6 @@ $messages['es'] = array(
  * @author Stryn
  */
 $messages['fi'] = array(
-	'flow-edit-summary-link' => 'Muokkauksen yhteenveto',
-	'flow-disclaimer' => 'Tallentamalla muutokset osoitat hyväksyväsi, että muokkauksesi julkaistaan pysyvästi Creative Commons Nimeä-Tarttuva 3.0- ja GFDL-lisenssien ehdoin. Hyväksyt, että hyperlinkki tai URL on riittävä Creative Commons -lisenssillä.',
 	'flow-post-hidden' => '[viesti piilotettu]',
 	'flow-post-deleted' => '[viesti poistettu]',
 	'flow-post-censored' => '[viesti sensuroitu]',
@@ -738,17 +763,25 @@ $messages['fi'] = array(
 	'flow-newtopic-content-placeholder' => 'Viestin teksti. Ole mukava!',
 	'flow-newtopic-header' => 'Lisää uusi aihe',
 	'flow-newtopic-save' => 'Lisää aihe',
-	'flow-newtopic-start-placeholder' => 'Aloita uusi aihe napsauttamalla tästä. Muistathan kohteliaat käytöstavat!',
+	'flow-newtopic-start-placeholder' => 'Aloita uusi aihe napsauttamalla tästä. Muistathan kohteliaat käytöstavat!', # Fuzzy
 	'flow-reply-placeholder' => 'Paina tästä vastataksesi käyttäjälle $1. Ole mukava!', # Fuzzy
-	'flow-reply-submit' => 'Lähetä vastaus',
+	'flow-reply-submit' => 'Lähetä vastaus', # Fuzzy
 	'flow-edit-post-submit' => 'Lähetä muutokset',
 	'flow-post-action-view' => 'Ikilinkki',
 	'flow-post-action-edit' => 'Muokkaa',
 	'flow-post-action-restore-post' => 'Palauta viesti',
 	'flow-topic-action-edit-title' => 'Muokkaa otsikkoa',
 	'flow-topic-action-history' => 'Aiheen historia',
-	'flow-summaryedit-submit' => 'Tallenna yhteenveto',
+	'flow-error-not-allowed' => 'Käyttöoikeutesi eivät riitä tämän toiminnon suorittamiseen',
 	'flow-edit-title-submit' => 'Muuta otsikkoa',
+	'flow-moderation-title-censor' => 'Viestin sensurointi',
+	'flow-moderation-title-delete' => 'Viestin poisto',
+	'flow-moderation-title-hide' => 'Viestin piilotus',
+	'flow-moderation-title-restore' => 'Viestin palauttaminen',
+	'flow-moderation-reason' => 'Syy',
+	'flow-moderation-confirm' => 'Vahvista toiminto',
+	'flow-moderation-confirmation-restore' => 'Viesti on palautettu.',
+	'flow-moderation-reason-placeholder' => 'Kirjoita syy tähän',
 );
 
 /** French (français)
@@ -1033,6 +1066,13 @@ $1',
 	'flow-comment-deleted' => 'הערה מחוקה',
 );
 
+/** Croatian (hrvatski)
+ * @author MaGa
+ */
+$messages['hr'] = array(
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|vas je spomenuo|vas je spomenula}} na projektu $2',
+);
+
 /** Armenian (Հայերեն)
  * @author Vadgt
  */
@@ -1304,8 +1344,10 @@ $messages['ja'] = array(
 	'flow-error-delete-failure' => 'この項目を削除できませんでした。',
 	'flow-error-hide-failure' => 'この項目を非表示にできませんでした。',
 	'flow-error-missing-postId' => '「投稿 ID」のパラメーターを指定していません。投稿を操作するには、このパラメーターが必要です。',
-	'flow-error-invalid-postId' => '「投稿 ID」のパラメーターが無効です。指定した投稿が見つかりませんでした。', # Fuzzy
+	'flow-error-invalid-postId' => '「投稿 ID」のパラメーターが無効です。指定した投稿 ($1) が見つかりませんでした。',
 	'flow-error-restore-failure' => 'この項目を復元できませんでした。',
+	'flow-error-invalid-moderation-state' => 'moderationState に指定した値は無効です。',
+	'flow-error-not-allowed' => 'この操作を実行するのに十分な権限がありません',
 	'flow-edit-header-submit' => 'ヘッダーを保存',
 	'flow-edit-title-submit' => 'タイトルを変更',
 	'flow-rev-message-edit-post' => '投稿の本文を編集',
@@ -1351,6 +1393,13 @@ $messages['ja'] = array(
 	'flow-link-post' => '投稿',
 	'flow-link-topic' => '話題',
 	'flow-link-history' => '履歴',
+	'flow-moderation-title-delete' => '投稿の削除',
+	'flow-moderation-title-restore' => '投稿を復元',
+	'flow-moderation-reason' => '理由:',
+	'flow-moderation-confirm' => '操作を確認',
+	'flow-moderation-reason-placeholder' => '理由をここに入力',
+	'flow-topic-permalink-warning' => 'この話題は [$2 $1] で開始されました',
+	'flow-topic-permalink-warning-user-board' => 'この話題は [$2 {{GENDER:$1|$1}} の掲示板]で開始されました',
 );
 
 /** Korean (한국어)
@@ -1433,6 +1482,10 @@ $messages['lb'] = array(
 	'echo-pref-tooltip-flow-discussion' => 'Mech informéieren wann Aktiounen déi mech betreffen um Diskussiouns-Board geschéien.',
 	'flow-link-topic' => 'Thema',
 	'flow-link-history' => 'Versiounen',
+	'flow-moderation-reason' => 'Grond:',
+	'flow-moderation-confirm' => 'Aktioun confirméieren',
+	'flow-moderation-reason-placeholder' => 'Gitt Äre Grond hei an',
+	'flow-topic-permalink-warning' => 'Dëse Sujet gouf op [$2 $1] ugefaang',
 );
 
 /** Latvian (latviešu)
@@ -1517,8 +1570,10 @@ $messages['mk'] = array(
 	'flow-error-delete-failure' => 'Бришењето на ставката не успеа.',
 	'flow-error-hide-failure' => 'Не успеав да ја скријам ставката.',
 	'flow-error-missing-postId' => 'Нема зададено параметар „postId“. Овој параметар е потребен за работа со пораката.',
-	'flow-error-invalid-postId' => 'Параметарот на „postId“ е неважечки. Не можев да ја најдам укажаната порака.', # Fuzzy
+	'flow-error-invalid-postId' => 'Параметарот на „postId“ е неважечки. Не можев да ја најдам укажаната порака ($1).',
 	'flow-error-restore-failure' => 'Повраќањето на ставката не успеа.',
+	'flow-error-invalid-moderation-state' => 'Укажана е неважечка вредност за состојбата на модерација',
+	'flow-error-not-allowed' => 'Немате дозвола за да го извршите ова дејство',
 	'flow-edit-header-submit' => 'Зачувај заглавие',
 	'flow-edit-title-submit' => 'Измени наслов',
 	'flow-rev-message-edit-post' => 'Изменета содржина во објава',
@@ -1568,6 +1623,20 @@ $messages['mk'] = array(
 	'flow-link-post' => 'објава',
 	'flow-link-topic' => 'тема',
 	'flow-link-history' => 'историја',
+	'flow-moderation-title-censor' => 'Цензурирање на објавата',
+	'flow-moderation-title-delete' => 'Бришење на објавата',
+	'flow-moderation-title-hide' => 'Скривање на објавата',
+	'flow-moderation-title-restore' => 'Повраток на објавата',
+	'flow-moderation-intro-censor' => 'Потврдете дека сакате да ја цензурирате објавата на {{GENDER:$1|$1}} во нишката „$2“ и наведете причина за тоа.',
+	'flow-moderation-intro-delete' => 'Потврдете дека сакате да ја избришете објавата на {{GENDER:$1|$1}} во нишката „$2“ и наведете причина за тоа.',
+	'flow-moderation-intro-hide' => 'Потврдете дека сакате да ја скриете објавата на {{GENDER:$1|$1}} во нишката „$2“ и наведете причина за тоа.',
+	'flow-moderation-intro-restore' => 'Потврдете дека сакате да ја повратите објавата на {{GENDER:$1|$1}} во нишката „$2“ и наведете причина за тоа.',
+	'flow-moderation-reason' => 'Причина:',
+	'flow-moderation-confirm' => 'Потврди дејство',
+	'flow-moderation-confirmation' => 'Успешно ја измодериравте објавата.
+Ви препорачуваме да {{GENDER:$1|му пишете образложение/совет на|ѝ пишете образложение/совет на|му пишете образложение/совет на корисникот}} $1 во врска со објавеното.',
+	'flow-moderation-confirmation-restore' => 'Успешно ја повративте објавата.',
+	'flow-moderation-reason-placeholder' => 'Тука внесете причина',
 );
 
 /** Marathi (मराठी)
@@ -1586,6 +1655,7 @@ $messages['mr'] = array(
 $messages['nb'] = array(
 	'flow-specialpage' => '$1 &ndash; Flow',
 	'flow-user-anonymous' => 'Anonym',
+	'flow-user-moderated' => 'Moderert bruker',
 	'flow-edit-header-link' => 'Rediger overskrift',
 	'flow-header-empty' => 'Denne diskusjonssiden har ingen overskrift.',
 	'flow-post-moderated-toggle-show' => '[Vis]',
@@ -1605,7 +1675,7 @@ $messages['nb'] = array(
 	'flow-newtopic-save' => 'Legg til emne',
 	'flow-newtopic-start-placeholder' => 'Start en ny diskusjon',
 	'flow-reply-topic-placeholder' => '{{GENDER:$1|Kommentér}} «$2»',
-	'flow-reply-placeholder' => 'Trykk for å {{GENDER:$1|svare}} $1. Vær hyggelig!', # Fuzzy
+	'flow-reply-placeholder' => '{{GENDER:$1|Svar}} til $1',
 	'flow-reply-submit' => '{{GENDER:$1|Svar}}',
 	'flow-reply-link' => '{{GENDER:$1|Svar}}',
 	'flow-thank-link' => '{{GENDER:$1|Takk}}',
@@ -1637,8 +1707,10 @@ $messages['nb'] = array(
 	'flow-error-delete-failure' => 'Sletting av dette innlegget feilet.',
 	'flow-error-hide-failure' => 'Skjuling av dette innlegget feilet.',
 	'flow-error-missing-postId' => 'Ingen "postId"-parameter ble sendt inn. Parameteren er påkrevd for å redigere et innlegg.',
-	'flow-error-invalid-postId' => 'Parameteren "postId" var ugyldig. Det angitte innlegget ble ikke funnet.', # Fuzzy
+	'flow-error-invalid-postId' => 'Parameteren «postId» var ugyldig. Det angitte innlegget ($1) ble ikke funnet.',
 	'flow-error-restore-failure' => 'Gjenoppretting av dette innlegget feilet.',
+	'flow-error-invalid-moderation-state' => 'En ugyldig verdi ble gitt for moderationState',
+	'flow-error-not-allowed' => 'Manglende rettigheter til å utføre denne handlingen',
 	'flow-edit-header-submit' => 'Lagre overskrift',
 	'flow-edit-title-submit' => 'Endre tittel',
 	'flow-rev-message-edit-post' => 'Rediger meldingsinnhold',
@@ -1652,7 +1724,7 @@ $messages['nb'] = array(
 	'flow-rev-message-deleted-post' => 'Slettet melding',
 	'flow-rev-message-censored-post' => 'Sensurerte melding',
 	'flow-topic-history' => 'Samtalehistorikk',
-	'flow-topic-participants' => '{{PLURAL:$1|0=Ingen deltakelse enda|$3 startet denne diskusjonen|{{GENDER:$3|$3}} og {{GENDER:$4|$4}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} og $2 andre}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|$3 startet denne diskusjonen|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} og {{PLURAL:$2|annen|andre}}|0=Ingen deltakelse enda|2={{GENDER:$3|$3}} og {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Bli den første til å kommentere!|Kommentér ($1)}}',
 	'flow-comment-restored' => 'Gjenopprettet kommentar',
 	'flow-comment-deleted' => 'Slettet kommentar',
@@ -1672,6 +1744,25 @@ $messages['nb'] = array(
 	'flow-notification-link-text-view-topic' => 'Vis samtale',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|svarte}} på meldingen din',
 	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|svarte}} på innlegget ditt under $2 på «$3»',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 og $4 {{PLURAL:$5|annen|andre}} {{GENDER:$1|svarte}} på innlegget ditt i $2 på «$3»',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|nevnte}} deg på $2',
+	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|nevnte}} deg i innlegget sitt i «$2» på «$3»',
+	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|redigerte}} innlegget ditt',
+	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Diskusjon|Diskusjoner}}',
+	'flow-link-post' => 'innlegg',
+	'flow-link-topic' => 'diskusjon',
+	'flow-link-history' => 'historikk',
+	'flow-moderation-title-censor' => 'Sensurer melding',
+	'flow-moderation-title-delete' => 'Slett melding',
+	'flow-moderation-title-hide' => 'Skjul melding',
+	'flow-moderation-title-restore' => 'Gjenopprett melding.',
+	'flow-moderation-intro-censor' => 'Bekreft at du ønsker å sensurere melding av {{GENDER:$1|$1}} i diskusjonen «$2», og oppgi en årsak for handlingen.',
+	'flow-moderation-intro-delete' => 'Bekreft at du ønsker å slette meldingen av {{GENDER:$1|$1}} i diskusjonen «$2», og oppgi en årsak for handlingen.',
+	'flow-moderation-intro-hide' => 'Bekreft at du ønsker å skjule meldingen av {{GENDER:$1|$1}} i diskusjonen «$2», og oppgi en årsak for handlingen.',
+	'flow-moderation-intro-restore' => 'Bekreft at du ønsker å gjenopprette meldingen av {{GENDER:$1|$1}} i diskusjonen «$2», og oppgi en årsak for handlingen.',
+	'flow-moderation-reason' => 'Årsak:',
+	'flow-moderation-confirm' => 'Bekreft handling',
+	'flow-moderation-reason-placeholder' => 'Skriv inn årsaken her',
 );
 
 /** Dutch (Nederlands)
@@ -1927,14 +2018,16 @@ $messages['ru'] = array(
  * @author Eleassar
  */
 $messages['sl'] = array(
+	'flow-post-moderated-toggle-show' => '[Prikaži]',
+	'flow-post-moderated-toggle-hide' => '[Skrij]',
 	'flow-post-hidden-by' => '{{GENDER:$1|Skril uporabnik|Skrila uporabnica}} $1 $2',
 	'flow-post-deleted-by' => '{{GENDER:$1|Izbrisal uporabnik|Izbrisala uporabnica}} $1 $2',
 	'flow-post-censored-by' => '{{GENDER:$1|Cenzuriral uporabnik|Cenzurirala uporabnica}} $1 $2',
-	'flow-reply-placeholder' => 'Kliknite za {{GENDER:$1|odgovor uporabniku|odgovor uporabnici}} $1. Bodite prijazni!', # Fuzzy
+	'flow-reply-placeholder' => 'Odgovorite {{GENDER:$1|uporabniku|uporabnici}} $1',
 	'flow-error-missing-replyto' => 'Podan ni bil noben parameter »odgovori na«. Ta parameter je za dejanje »odgovorite« obvezen.',
 	'flow-error-invalid-replyto' => 'Parameter »odgovori« je bil neveljaven. Navedene objave ni bilo mogoče najti.',
 	'flow-error-missing-postId' => 'Podan ni bil noben parameter »postId«. Ta parameter je za upravljanje z objavo obvezen.',
-	'flow-error-invalid-postId' => 'Parameter »postId« je bil neveljaven. Navedene objave ni bilo mogoče najti.',
+	'flow-error-invalid-postId' => 'Parameter »postId« ni veljaven. Navedene objave ($1) ni bilo mogoče najti.',
 	'flow-notification-reply' => '$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo [$5 objavo] v razdelku $2 na strani »$4«.',
 	'flow-notification-reply-bundle' => '$1 in $5 {{PLURAL:$6|drug|druga|drugi|drugih}} {{GENDER:$1|je odgovoril|je odgovorila|so odgovorili}} na vašo [$4 objavo] v razdelku $2 na strani »$3«.',
 	'flow-notification-edit' => '$1 {{GENDER:$1|je urejal|je urejala}} [$5 objavo] v razdelku $2 na [[$3|$4]].',
@@ -1947,6 +2040,16 @@ $messages['sl'] = array(
 	'flow-notification-reply-email-batch-bundle-body' => '$1 in $4 {{PLURAL:$5|drugi|druga|drugi|drugih}} {{PLURAL:$5|sta {{GENDER:$1|odgovorila}}|so odgovorili}} na vašo objavo v razdelku $2 na strani »$3«',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Pogovor|Pogovori}}',
 	'echo-pref-tooltip-flow-discussion' => 'Obvesti me, ko se na pogovornih deskah pojavijo dejanja v zvezi z mano.',
+	'flow-link-post' => 'objava',
+	'flow-link-topic' => 'tema',
+	'flow-link-history' => 'zgodovina',
+	'flow-moderation-title-censor' => 'Cenzoriraj objavo',
+	'flow-moderation-title-delete' => 'Izbriši objavo',
+	'flow-moderation-title-hide' => 'Skrij objavo',
+	'flow-moderation-title-restore' => 'Obnovi objavo',
+	'flow-moderation-reason' => 'Razlog:',
+	'flow-moderation-confirm' => 'Potrdi dejanje',
+	'flow-moderation-reason-placeholder' => 'Tukaj vnesite svoj razlog',
 );
 
 /** Swedish (svenska)
@@ -2200,6 +2303,8 @@ $messages['uk'] = array(
 Будь ласка, подумайте над надсиланням $1 відгуку про {{GENDER:$1|його|її|їх}} публікацію.',
 	'flow-moderation-confirmation-restore' => 'Ви успішно відновили цю публікацію.',
 	'flow-moderation-reason-placeholder' => 'Введіть вашу причина тут',
+	'flow-topic-permalink-warning' => 'Ця тема розпочата [$2 $1]',
+	'flow-topic-permalink-warning-user-board' => 'Ця тема розпочата на [$2 стіні {{GENDER:$1|$1}}]',
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -2312,6 +2417,14 @@ $messages['vi'] = array(
 	'flow-link-post' => 'bài đăng',
 	'flow-link-topic' => 'chủ đề',
 	'flow-link-history' => 'lịch sử',
+);
+
+/** Volapük (Volapük)
+ * @author Malafaya
+ */
+$messages['vo'] = array(
+	'flow-user-anonymous' => 'Nennemik',
+	'flow-moderation-reason' => 'Kod:',
 );
 
 /** Yiddish (ייִדיש)
