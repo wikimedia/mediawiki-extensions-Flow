@@ -89,8 +89,8 @@ $messages['en'] = array(
 	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|created}} the topic <span class="plainlinks">[$2 $3]</span>.',
 	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|hid}} a <span class="plainlinks">[$3 comment]</span>.',
 	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|edited}} the topic title to <span class="plainlinks">[$2 $3]</span>.',
-	'flow-rev-message-create-header' => 'Created header',
-	'flow-rev-message-edit-header' => 'Edited header',
+	'flow-rev-message-create-header' => "[[User:$1|$1]] {{GENDER:$1|created}} the header '''$2'''.",
+	'flow-rev-message-edit-header' => "[[User:$1|$1]] {{GENDER:$1|edited}} the header '''$2'''.",
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|restored}} a <span class="plainlinks">[$3 comment]</span>.',
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|deleted}} a <span class="plainlinks">[$3 comment]</span>.',
 	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|suppressed}} a <span class="plainlinks">[$3 comment]</span>.',
@@ -104,6 +104,8 @@ $messages['en'] = array(
 	'flow-history-pages-post' => 'Appears on <span class="plainlinks">[$1 $2]</span>',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 started this topic|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} and {{PLURAL:$2|other|others}}|0=No participation yet|2={{GENDER:$3|$3}} and {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Be the first to comment!|Comment ($1)}}',
+
+	'flow-board-history' => '"$1" History',
 
 	'flow-comment-restored' => 'Restored comment',
 	'flow-comment-deleted' => 'Deleted comment',
@@ -357,8 +359,16 @@ Parameters:
 * $1: Username of the user who edited the title. Can be used for GENDER
 * $2: The url of the topic
 * $3: The topic title",
-	'flow-rev-message-create-header' => 'Used as revision comment when a header has been created',
-	'flow-rev-message-edit-header' => 'Used as revision comment when a header has been edited',
+	'flow-rev-message-create-header' => 'Used as revision comment when the header has been created.
+	
+Parameters:
+* $1: Username of the user who created the header.  Can be used for GENDER
+* $2: The header text',
+	'flow-rev-message-edit-header' => 'Used as revision comment when the header has been edited.
+	
+Parameters:
+* $1: Username of the user who edited the header.  Can be used for GENDER
+* $2: The header text',
 	'flow-rev-message-restored-post' => 'Used as revision comment when a post has been restored (un-hidden).
 
 Parameters:
@@ -408,6 +418,10 @@ Parameters:
 
 Parameters:
 * $1 - The amount of comments on this topic, can be used for PLURAL',
+	'flow-board-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Board history" page.
+
+Parameters:
+* $1: The title to which the flow board belongs',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:

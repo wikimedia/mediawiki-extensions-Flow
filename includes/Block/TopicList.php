@@ -2,6 +2,8 @@
 
 namespace Flow\Block;
 
+use Flow\View\History\History;
+use Flow\View\History\HistoryRenderer;
 use Flow\DbFactory;
 use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectManager;
@@ -62,9 +64,10 @@ class TopicListBlock extends AbstractBlock {
 		$firstPost->setChildren( array() );
 
 		$storage->put( $topicWorkflow );
+		$storage->put( $topicListEntry );
 		$storage->put( $topicPost );
 		$storage->put( $firstPost );
-		$storage->put( $topicListEntry );
+		
 
 		$this->notificationController->notifyNewTopic( array(
 			'board-workflow' => $this->workflow,
@@ -101,16 +104,25 @@ class TopicListBlock extends AbstractBlock {
 				'page' => false,
 			) );
 		} else {
-			$findOptions = $this->getFindOptions( $options );
-			$page = $this->getPage( $findOptions );
-			$topics = $this->getTopics( $page );
-
-			$templating->render( "flow:topiclist.html.php", array(
-				'block' => $this,
-				'topics' => $topics,
-				'user' => $this->user,
-				'page' => $page,
-			) );
+			if ( $this->action == 'board-history' ) {
+				$templating->getOutput()->addModules( 'ext.flow.history' );
+				$templating->render( "flow:board-history.html.php", array(
+					'title' => wfMessage( 'flow-board-history', $this->workflow->getArticleTitle() )->escaped(),
+					'history' => new History( $this->getTopicListHistory() ),
+					'historyRenderer' => new HistoryRenderer( $templating, $this ),
+				) );
+			} else {
+				$findOptions = $this->getFindOptions( $options );
+				$page = $this->getPage( $findOptions );
+				$topics = $this->getTopics( $page );
+	
+				$templating->render( "flow:topiclist.html.php", array(
+					'block' => $this,
+					'topics' => $topics,
+					'user' => $this->user,
+					'page' => $page,
+				) );
+			}
 		}
 	}
 
@@ -203,6 +215,20 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		return $topics;
+	}
+
+	protected function getTopicListHistory() {
+		$found = $this->storage->find(
+			'BoardHistoryEntry',
+			array( 'topic_list_id' => $this->workflow->getId() ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 300 )
+		);
+
+		if ( $found === false ) {
+			throw new \MWException( "Unable to load topic list history for " . $this->workflow->getId()->getHex() );
+		}
+
+		return $found;
 	}
 }
 

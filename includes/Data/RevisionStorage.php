@@ -66,7 +66,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 			$res = $this->findMultiInternal( $queries, $options );
 		}
 		// Fetches content for all revisions flagged 'external'
-		return $this->mergeExternalContent( $res );
+		return self::mergeExternalContent( $res );
 	}
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
@@ -181,7 +181,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	 * @param array $cacheResult 2d array of rows
 	 * @return array 2d array of rows with content merged and rev_content_url populated
 	 */
-	protected function mergeExternalContent( array $cacheResult ) {
+	public static function mergeExternalContent( array $cacheResult ) {
 		foreach ( $cacheResult as &$source ) {
 			foreach ( $source as &$row ) {
 				$flags = explode( ',', $row['rev_flags'] );

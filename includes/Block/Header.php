@@ -85,14 +85,17 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		$templating->getOutput()->addModules( 'ext.flow.header' );
-		$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
-		$templating->render( "flow:$templateName.html.php", array(
-			'block' => $this,
-			'workflow' => $this->workflow,
-			'header' => $this->header,
-			'user' => $this->user,
-		) );
+		// Don't show header in board history page
+		if ( $this->action !== 'board-history' ) {
+			$templating->getOutput()->addModules( 'ext.flow.header' );
+			$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
+			$templating->render( "flow:$templateName.html.php", array(
+				'block' => $this,
+				'workflow' => $this->workflow,
+				'header' => $this->header,
+				'user' => $this->user,
+			) );
+		}
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {

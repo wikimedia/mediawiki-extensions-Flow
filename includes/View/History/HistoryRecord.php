@@ -3,6 +3,7 @@
 namespace Flow\View\History;
 
 use Flow\Model\PostRevision;
+use Flow\Model\AbstractRevision;
 use MWException;
 use MWTimestamp;
 use Message;
@@ -21,7 +22,7 @@ class HistoryRecord {
 	/**
 	 * @param PostRevision $revision
 	 */
-	public function __construct( PostRevision $revision ) {
+	public function __construct( AbstractRevision $revision ) {
 		$this->data = $revision;
 	}
 

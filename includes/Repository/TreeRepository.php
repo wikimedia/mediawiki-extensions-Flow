@@ -267,6 +267,12 @@ class TreeRepository {
 	}
 
 	public function fetchParentMapFromDb( array $nodes ) {
+		foreach ( $nodes as $key => $node ) {
+			if ( $node instanceof UUID ) {
+				$node = $node->getBinary();
+			}
+			$nodes[$key] = $node;
+		}
 		// Find out who the parent is for those nodes
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 		$res = $dbr->select(
