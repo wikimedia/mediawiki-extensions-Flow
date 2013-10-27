@@ -522,8 +522,8 @@ See also:
 * $2 - the subject of the topic in which a post is being hidden
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-intro-restore' => 'Intro for the restore confirmation dialog. Parameters:
-* $1 the name of the user whose post is being censored. GENDER supported.
-* $2 the subject of the topic in which a post is being censored
+* $1 - the name of the user whose post is being censored. GENDER supported.
+* $2 - the subject of the topic in which a post is being censored
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-reason' => 'Prompt for a text field in which the user should fill in the reason for their action.
 {{Identical|Reason}}',
@@ -1768,6 +1768,7 @@ $messages['nb'] = array(
 /** Dutch (Nederlands)
  * @author Krinkle
  * @author Siebrand
+ * @author Sjoerddebruin
  * @author Southparkfan
  * @author TBloemink
  */
@@ -1814,6 +1815,8 @@ $messages['nl'] = array(
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|heeft}} een nieuw onderwerp aangemaakt op $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|heeft}} op $3 een nieuw onderwerp aangemaakt met de naam "$2"',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Overleg|Overleggen}}',
+	'flow-moderation-title-hide' => 'Bericht verbergen',
+	'flow-moderation-reason' => 'Reden:',
 );
 
 /** Occitan (occitan)
@@ -1822,14 +1825,12 @@ $messages['nl'] = array(
 $messages['oc'] = array(
 	'flow-desc' => 'Sistèma de gestion del flux de trabalh',
 	'flow-specialpage' => '$1 &ndash; Flow',
-	'flow-edit-summary-link' => 'Resumit',
-	'flow-disclaimer' => "En clicant sul boton « Apondre un messatge », acceptatz nos [https://wikimediafoundation.org/wiki/Terms_of_Use/fr condicions d'utilizacion] e acceptatz de plaçar irrevocablament vòstra contribucion jos [http://creativecommons.org/licenses/by-sa/3.0/deed.fr licéncia Creative Commons paternitat-partiment de las condicions inicialas a l'identica 3.0] e [http://www.gnu.org/copyleft/fdl.html GFDL]. Acceptatz d’èsser creditat pels reütilizaires al minimum via un iperligam o una URL jos la licéncia Creative Commons.",
 	'flow-post-hidden' => '[nòta amagada]',
-	'flow-post-hidden-by' => 'Amagat per $1 $2', # Fuzzy
+	'flow-post-hidden-by' => '{{GENDER:$1|Amagat}} per $1 $2',
 	'flow-post-deleted' => '[messatge suprimit]',
-	'flow-post-deleted-by' => 'Suprimit per $1 $2', # Fuzzy
+	'flow-post-deleted-by' => '{{GENDER:$1|Suprimit}} per $1 $2',
 	'flow-post-censored' => '[nòta censurada]',
-	'flow-post-censored-by' => 'Censurat per $1 $2', # Fuzzy
+	'flow-post-censored-by' => '{{GENDER:$1|Censurat}} per $1 $2',
 	'flow-post-actions' => 'accions',
 	'flow-topic-actions' => 'accions',
 	'flow-cancel' => 'Anullar',
@@ -1837,9 +1838,9 @@ $messages['oc'] = array(
 	'flow-newtopic-content-placeholder' => 'Tèxte del messatge. Siatz gent !',
 	'flow-newtopic-header' => 'Apondre un subjècte novèl',
 	'flow-newtopic-save' => 'Apondre un subjècte',
-	'flow-newtopic-start-placeholder' => 'Clicatz aicí per començar una novèla discussion. Siatz gent !',
+	'flow-newtopic-start-placeholder' => 'Començar un subjècte novèl',
 	'flow-reply-placeholder' => 'Clicatz aicí per respondre a $1. Siatz gent !', # Fuzzy
-	'flow-reply-submit' => 'Postar una responsa',
+	'flow-reply-submit' => '{{GENDER:$1|Respondre}}',
 	'flow-edit-post-submit' => 'Sometre las modificacions',
 	'flow-post-action-view' => 'Ligam permanent',
 	'flow-post-action-post-history' => 'Istoric de las publicacions',
@@ -1865,7 +1866,6 @@ $messages['oc'] = array(
 	'flow-error-missing-postId' => 'Cap de paramètre postId es pas estat provesit. Aqueste paramètre es requesit per manipular un messatge.', # Fuzzy
 	'flow-error-invalid-postId' => 'Lo paramètre postId èra pas valid. Lo messatge especificat es introbable.', # Fuzzy
 	'flow-error-restore-failure' => "Fracàs del restabliment d'aquesta entrada.",
-	'flow-summaryedit-submit' => 'Enregistrar lo resumit',
 	'flow-edit-title-submit' => 'Cambiar lo títol',
 	'flow-rev-message-reply' => 'Novèla responsa publicada',
 	'flow-rev-message-new-post' => 'Subjècte creat',
@@ -2050,6 +2050,13 @@ $messages['sl'] = array(
 	'flow-moderation-reason' => 'Razlog:',
 	'flow-moderation-confirm' => 'Potrdi dejanje',
 	'flow-moderation-reason-placeholder' => 'Tukaj vnesite svoj razlog',
+);
+
+/** Serbian (Cyrillic script) (српски (ћирилица)‎)
+ * @author Milicevic01
+ */
+$messages['sr-ec'] = array(
+	'flow-link-topic' => 'тема',
 );
 
 /** Swedish (svenska)
