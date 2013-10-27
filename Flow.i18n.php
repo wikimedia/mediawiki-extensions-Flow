@@ -115,7 +115,7 @@ $messages['en'] = array(
 	'flow-notification-edit-bundle' => '$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|edited}} a [$4 post] in $2 on "$3".',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].',
-	'flow-notification-mention' => '$1 {{GENDER:$1|mentioned}} you in their [$2 post] in "$3" on "$4"',
+	'flow-notification-mention' => '$1 {{GENDER:$1|mentioned}} you in their [$2 post] in "$3" on "$4".',
 
 	// Notification primary links and secondary links
 	'flow-notification-link-text-view-post' => 'View post',
@@ -149,7 +149,7 @@ $messages['en'] = array(
 	'flow-moderation-title-censor' => 'Censor post',
 	'flow-moderation-title-delete' => 'Delete post',
 	'flow-moderation-title-hide'   => 'Hide post',
-	'flow-moderation-title-restore'=> 'Restore post.',
+	'flow-moderation-title-restore'=> 'Restore post',
 	'flow-moderation-intro-censor' => 'Please confirm that you wish to censor the post by {{GENDER:$1|$1}} in the thread "$2", and provide a reason for your action.',
 	'flow-moderation-intro-delete' => 'Please confirm that you wish to delete the post by {{GENDER:$1|$1}} in the thread "$2", and provide a reason for your action.',
 	'flow-moderation-intro-hide'   => 'Please confirm that you wish to hide the post by {{GENDER:$1|$1}} in the thread "$2", and provide a reason for your action.',
