@@ -10,6 +10,9 @@ use Language;
 
 abstract class RecentChanges implements LifecycleHandler {
 
+	// Value used in rc_source field of recentchanges to identify flow specific changes
+	const SRC_FLOW = "flow";
+
 	// Maximum length any user generated content is truncated to before storing
 	// in recentchanges
 	const TRUNCATE_LENGTH = 164;
@@ -44,7 +47,7 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_user' => $row['rev_user_id'],
 			'rc_user_text' => $row['rev_user_text'],
 			'rc_type' => RC_FLOW,
-			// 'rc_source' => RC_SRC_FLOW, // depends on core change in gerrit 85787
+			'rc_source' => self::SRC_FLOW,
 			'rc_minor' => 0,
 			'rc_bot' => 0, // TODO: is revision by bot
 			'rc_patrolled' => 0,
