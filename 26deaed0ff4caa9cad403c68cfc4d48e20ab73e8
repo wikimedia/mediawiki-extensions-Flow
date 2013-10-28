@@ -16,6 +16,24 @@
       "revId": "26deaed0ff4caa9cad403c68cfc4d48e20ab73e8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_152f3341",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T23:06:44Z",
+      "side": 1,
+      "message": "Those should be handled already as part of https://gerrit.wikimedia.org/r/#/c/91562/\n\nBasically this check is a \"last line of defense\" against accidents, but  the actual permission should be checked before hand in both the view(before rendering link) and block(before performing action) and provide more user friendly experience than dieing with a fatal exception.\n\nThe other half of this patch adjusts the PostActionPermissions, which the block and view\u0027s use to determine if something is allowed, and prevents the links from being generated or the blocks from allowing the action.\n\nTbh though i\u0027m not sure if this check is a great idea though,  to be consistent we would have to add this check to every possible way to create a revision not just newNullRevision(which creates the \u0027next\u0027 revision)",
+      "parentUuid": "291c1151_b56e5f95",
+      "revId": "26deaed0ff4caa9cad403c68cfc4d48e20ab73e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
