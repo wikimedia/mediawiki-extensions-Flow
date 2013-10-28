@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_04638bdf",
+        "filename": "HistoryActions.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-28T18:22:33Z",
+      "side": 1,
+      "message": "https://gerrit.wikimedia.org/r/#/c/92346/ moves most action details to FlowActions.php\n\nI consider creating an sql patch to change all existing changetype comments (e.g. flow-rev-message-edit-post) to the action name (e.g. reply)\n\nThen all this info can also be moved to FlowActions.php, which is than a \"grand accumulation of all actions config\" array. I\u0027d like to have most of the actions config stuff in one place - fewer chances to overlook something.\n\nWhat do you think?",
+      "revId": "4a249149ebeeec60beb76ebcff5e3520499397c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
