@@ -73,6 +73,8 @@ $wgAutoloadClasses['Flow\TalkpageManager'] = $dir . 'includes/TalkpageManager.ph
 $wgAutoloadClasses['Flow\NotificationFormatter'] = $dir . 'includes/Notifications/Formatter.php';
 $wgAutoloadClasses['Flow\NotificationController'] = $dir . 'includes/Notifications/Controller.php';
 $wgAutoloadClasses['Flow\PostActionPermissions'] = $dir . 'includes/PostActionPermissions.php';
+$wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
+$wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
@@ -152,6 +154,7 @@ $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRece
 $wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
 $wgHooks['TitleIsAlwaysKnown'][] = 'FlowHooks::onTitleIsAlwaysKnown';
 $wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavigation';
+$wgHooks['Article::MissingArticleConditions'][] = 'FlowHooks::onMissingArticleConditions';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
@@ -220,3 +223,21 @@ $wgFlowOccupyPages = array();
 
 // Namespaces to occupy is an array of NS_* constants, e.g. array( NS_USER_TALK ).
 $wgFlowOccupyNamespaces = array();
+
+// Action details config file
+require $dir . 'FlowActions.php';
+
+// Register activity log formatter hooks
+foreach( $wgFlowActions as $action => $options ) {
+	if ( isset( $options['log_type'] ) ) {
+		$log = $options['log_type'];
+
+		// Some actions are more complex closures - to be added manually.
+		if ( is_string( $log ) ) {
+			$wgLogActionsHandlers["$log/flow-$action"] = 'Flow\Log\Formatter';
+		}
+	}
+}
+// Manually add that more complex actions
+$wgLogActionsHandlers['delete/flow-restore-post'] = 'Flow\Log\Formatter';
+$wgLogActionsHandlers['suppress/flow-restore-post'] = 'Flow\Log\Formatter';

@@ -30,32 +30,9 @@ class PostActionMenu {
 	 * @param string $action
 	 * @return array|bool Array of action details or false if invalid
 	 */
-	protected function getActionDetails( $action ) {
-		$actions = array(
-			'hide-post' => array(
-				'method' => 'POST',
-			),
-			'delete-post' => array(
-				'method' => 'POST',
-			),
-			'censor-post' => array(
-				'method' => 'POST',
-			),
-			'restore-post' => array(
-				'method' => 'POST',
-			),
-			'post-history' => array(
-				'method' => 'GET',
-			),
-			'edit-post' => array(
-				'method' => 'GET',
-			),
-			'view' => array(
-				'method' => 'GET',
-			),
-		);
-
-		return isset( $actions[$action] ) ? $actions[$action] : false;
+	protected function getMethod( $action ) {
+		global $wgFlowActions;
+		return isset( $wgFlowActions[$action]['method'] ) ? $wgFlowActions[$action]['method'] : false;
 	}
 
 	/**
@@ -71,8 +48,7 @@ class PostActionMenu {
 			return false;
 		}
 		$data = array( $this->block->getName() . '[postId]' => $this->post->getPostId()->getHex() );
-		$details = $this->getActionDetails( $action );
-		if ( $details['method'] === 'POST' ) {
+		if ( $this->getMethod( $action ) === 'POST' ) {
 			return $this->postAction( $action, $data, $content, $class );
 		} else {
 			return $this->getAction( $action, $data, $content, $class );

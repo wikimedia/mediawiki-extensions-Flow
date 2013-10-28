@@ -4,71 +4,29 @@ namespace Flow;
 
 use Flow\Model\PostRevision;
 use Closure;
+use User;
 
 /**
  * role based security for posts based on moderation state
  */
 class PostActionPermissions {
+	/**
+	 * @var array
+	 */
+	protected $actions = array();
+
+	/**
+	 * @var User
+	 */
+	public $user;
 
 	public function __construct( $user ) {
 		$this->user = $user;
 
-		$this->actions = array(
-			'hide-post' => array(
-				// Permissions required to perform action. The key is the moderation state
-				// of the post to perform the action against. The value is a string or array
-				// of user rights that can allow this action.
-				PostRevision::MODERATED_NONE => 'flow-hide',
-			),
-
-			'delete-post' => array(
-				PostRevision::MODERATED_NONE => 'flow-delete',
-				PostRevision::MODERATED_HIDDEN => 'flow-delete',
-			),
-
-			'censor-post' => array(
-				PostRevision::MODERATED_NONE => 'flow-censor',
-				PostRevision::MODERATED_HIDDEN => 'flow-censor',
-				PostRevision::MODERATED_DELETED => 'flow-censor',
-			),
-
-			'restore-post' => array(
-				PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
-				PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
-				PostRevision::MODERATED_CENSORED => 'flow-censor',
-			),
-
-			'post-history' => array(
-				PostRevision::MODERATED_NONE => '',
-				PostRevision::MODERATED_HIDDEN => '',
-				PostRevision::MODERATED_DELETED => '',
-				PostRevision::MODERATED_CENSORED => 'flow-censor',
-			),
-
-			'edit-post' => function( PostRevision $post ) use ( $user ) {
-				// no permissions needed for own posts
-				return array(
-					PostRevision::MODERATED_NONE => $post->isCreator( $user ) ? '' : 'flow-edit-post',
-				);
-			},
-
-			'view' => array(
-				PostRevision::MODERATED_NONE => '',
-				PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
-				PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
-				PostRevision::MODERATED_CENSORED => 'flow-censor',
-			),
-
-			'reply' => array(
-				PostRevision::MODERATED_NONE => '',
-			),
-
-			'edit-title' => array(
-				PostRevision::MODERATED_NONE => '',
-			),
-
-
-		);
+		global $wgFlowActions;
+		$this->actions = array_map( function( $action ) {
+			return $action['permissions'];
+		}, $wgFlowActions );
 	}
 
 	/**
@@ -98,10 +56,8 @@ class PostActionPermissions {
 		if ( !isset( $this->actions[$action] ) ) {
 			return false;
 		}
+
 		$permissions = $this->actions[$action];
-		if ( $permissions instanceof Closure ) {
-			$permissions = $permissions( $post );
-		}
 		$state = $post->getModerationState();
 		// If no permission is defined for this state, then the action is not allowed
 		// check if permission is set for this action
@@ -109,10 +65,18 @@ class PostActionPermissions {
 			return false;
 		}
 
+		// Some permissions may be more complex to be defined as simple array
+		// values, in which case they're a Closure (which will accept
+		// PostRevision & PostActionPermissions as arguments)
+		$permission = $permissions[$state];
+		if ( $permission instanceof Closure ) {
+			$permission = $permission( $post, $this );
+		}
+
 		// check if user is allowed to perform action
 		$res = call_user_func_array(
 			array( $this->user, 'isAllowedAny' ),
-			(array) $permissions[$state]
+			(array) $permission
 		);
 		return $res;
 	}
@@ -143,4 +107,3 @@ class PostActionPermissions {
 		return $allowed;
 	}
 }
-

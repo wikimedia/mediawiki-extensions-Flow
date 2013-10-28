@@ -217,4 +217,37 @@ class FlowHooks {
 		$names[] = 'msg:flow-user-anonymous';
 		return true;
 	}
+
+	/**
+	 * When a (talk) page does not exist, one of the checks being performed is
+	 * to see if the page had once existed but was removed. In doing so, the
+	 * deletion & move log is checked.
+	 *
+	 * In theory, a Flow board could overtake a non-existing talk page. If that
+	 * board is later removed, this will be run to see if a message can be
+	 * displayed to inform the user if the page has been deleted/moved.
+	 *
+	 * Since, in Flow, we also write (topic, post, ...) deletion to the deletion
+	 * log, we don't want those to appear, since they're not actually actions
+	 * related to that talk page (rather: they were actions on the board)
+	 *
+	 * @param array &$conds Array of conditions
+	 * @param array &$logTypes Array of log types
+	 * @return bool
+	 */
+	public static function onMissingArticleConditions( array &$conds, array $logTypes ) {
+		global $wgFlowActions, $wgLogActionsHandlers;
+
+		foreach ( $wgFlowActions as $action => $details ) {
+			foreach ( $logTypes as $logType ) {
+				// Check if Flow actions are defined for the requested log types
+				// and make sure they're ignored.
+				if ( isset( $wgLogActionsHandlers["$logType/flow-$action"] ) ) {
+					$conds[] = "log_action != 'flow-$action'";
+				}
+			}
+		}
+
+		return true;
+	}
 }
