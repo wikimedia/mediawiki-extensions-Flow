@@ -2,8 +2,12 @@
 @import 'mediawiki.mixins.less';
 
 .flow-topic-container {
-	padding-bottom: 54px;
+	padding-bottom: 30px;
 
+	.flow-topic-children-container {
+		/* This combines with the padding-top: 20px on '.flow-post-container .flow-post' for a total 30px gap */
+		padding-top: 10px;
+	}
 	&.flow-topic-moderated {
 		.flow-topic-children-container {
 			display: none
@@ -43,7 +47,6 @@
 		text-align: left;
 		display: block;
 		padding: 24px 22px;
-		margin-bottom: 30px;
 		font-weight: normal;
 		background: @topic-titlebar-background-color;
 
