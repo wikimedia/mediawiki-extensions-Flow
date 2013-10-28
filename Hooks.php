@@ -86,7 +86,7 @@ class FlowHooks {
 			if ( $rcType !== RC_FLOW ) {
 				return true;
 			}
-		} elseif ( $source !== RC_SRC_FLOW ) {
+		} elseif ( $source !== Flow\Data\RecentChanges::SRC_FLOW ) {
 			return true;
 		}
 
@@ -257,6 +257,16 @@ class FlowHooks {
 			}
 		}
 
+		return true;
+	}
+
+	/**
+	 * Adds Flow entries to watchlists
+	 * @param  array &$types Type array to modify
+	 * @return boolean       true
+	 */
+	public static function onSpecialWatchlistGetNonRevisionTypes( &$types ) {
+		$types[] = Flow\Data\RecentChanges::SRC_FLOW;
 		return true;
 	}
 }

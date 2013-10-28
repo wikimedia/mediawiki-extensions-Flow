@@ -42,7 +42,6 @@ $wgExtensionCredits['specialpage'][] = array(
 
 // Constants
 define( 'RC_FLOW', 142 ); // soon to be obsolete, random number chosen
-define( 'RC_SRC_FLOW', 'flow' ); // replaces RC_FLOW
 
 // Autoload
 $dir = __DIR__ . '/';
@@ -165,6 +164,7 @@ $wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
 $wgHooks['TitleIsAlwaysKnown'][] = 'FlowHooks::onTitleIsAlwaysKnown';
 $wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavigation';
 $wgHooks['Article::MissingArticleConditions'][] = 'FlowHooks::onMissingArticleConditions';
+$wgHooks['SpecialWatchlistGetNonRevisionTypes'][] = 'FlowHooks::onSpecialWatchlistGetNonRevisionTypes';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
