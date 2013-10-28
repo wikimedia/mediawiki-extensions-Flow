@@ -125,7 +125,7 @@ class NotificationController {
 	 * * topic-workflow: Workflow object for the new Topic.
 	 * * title-post: PostRevision object for the "topic post", containing the
 	 *    title.
-	 * * first-post: PostRevision object for the first post.
+	 * * first-post: PostRevision object for the first post, or null when no first post.
 	 * * user: The User who created the topic.
 	 * @return array Array of created EchoEvent objects.
 	 */
@@ -148,9 +148,9 @@ class NotificationController {
 			'extra' => array(
 				'board-workflow' => $boardWorkflow->getId(),
 				'topic-workflow' => $topicWorkflow->getId(),
-				'post-id' => $firstPost->getRevisionId(),
+				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
 				'topic-title' => $topicPost->getContentRaw(),
-				'content' => $firstPost->getContent(),
+				'content' => $firstPost ? $firstPost->getContent() : null,
 			)
 		) );
 
@@ -185,16 +185,16 @@ class NotificationController {
 		$topicWorkflow = $data['topic-workflow'];
 		$events = array();
 
-		$mentionedUsers = $this->getMentionedUsers( $newRevision, $title );
+		$mentionedUsers = $newRevision ? $this->getMentionedUsers( $newRevision, $title ) : array();
 
 		if ( count( $mentionedUsers ) ) {
 			$events[] = EchoEvent::create( array(
 				'type' => 'flow-mention',
 				'title' => $title,
 				'extra' => array(
-					'content' => $newRevision->getContent(),
+					'content' => $newRevision ? $newRevision->getContent() : null,
 					'topic-title' => $data['topic-title'],
-					'post-id' => $newRevision->getPostId(),
+					'post-id' => $newRevision ? $newRevision->getPostId() : null,
 					'mentioned-users' => $mentionedUsers,
 					'topic-workflow' => $topicWorkflow->getId(),
 				),
@@ -377,7 +377,7 @@ class NotificationController {
 	protected static function getCreatorsFromPostIDs( array $posts ) {
 		$users = array();
 		$container = Container::getContainer();
-		
+
 		foreach ( $posts as $postId ) {
 			$post = $container['storage']->find(
 				'PostRevision',
@@ -403,5 +403,5 @@ class NotificationController {
 		}
 
 		return $users;
-    }
+	}
 }
