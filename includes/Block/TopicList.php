@@ -34,9 +34,6 @@ class TopicListBlock extends AbstractBlock {
 		if ( !isset( $this->submitted['topic'] ) ) {
 			$this->errors['topic'] = wfMessage( 'flow-error-missing-title' );
 		}
-		if ( !isset( $this->submitted['content'] ) ) {
-			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
-		}
 	}
 
 	public function commit() {
@@ -56,14 +53,21 @@ class TopicListBlock extends AbstractBlock {
 		// Should we really have a top level post for the topic title?  Simplifies allowing
 		// a revisioned title.
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
-		$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
+		$topicChildren = array();
+		$firstPost = null;
+		if ( !empty( $this->submitted['content'] ) ) {
+			$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
+			$firstPost->setChildren( array() );
+			$topicChildren[] = $firstPost;
+		}
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
-		$topicPost->setChildren( array( $firstPost ) );
-		$firstPost->setChildren( array() );
+		$topicPost->setChildren( $topicChildren );
 
 		$storage->put( $topicWorkflow );
 		$storage->put( $topicPost );
-		$storage->put( $firstPost );
+		if ( $firstPost !== null ) {
+			$storage->put( $firstPost );
+		}
 		$storage->put( $topicListEntry );
 
 		$this->notificationController->notifyNewTopic( array(
@@ -78,7 +82,7 @@ class TopicListBlock extends AbstractBlock {
 		$notificationController = $this->notificationController;
 		$output = array(
 			'created-topic-id' => $topicWorkflow->getId(),
-			'created-post-id' => $firstPost->getRevisionId(),
+			'created-post-id' => $firstPost ? $firstPost->getRevisionId() : null,
 			'render-function' => function( $templating )
 					use ( $topicWorkflow, $firstPost, $topicPost, $storage, $user, $notificationController )
 			{

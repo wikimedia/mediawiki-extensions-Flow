@@ -144,7 +144,7 @@ class TopicBlock extends AbstractBlock {
 				$this->errors['replyTo'] = wfMessage( 'flow-error-invalid-replyto' );
 			} elseif ( !$this->permissions->isAllowed( $post, 'reply' ) ) {
 				// Or should the check be rolled into the !$post condition?
-				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+				$this->errors['permissions'] = wfMessage( 'wtf' ); //wfMessage( 'flow-error-not-allowed' );
 			} else {
 				// TODO: assert post belongs to this tree?  Does it really matter?
 				// answer: might not belong, and probably does matter due to inter-wiki interaction
