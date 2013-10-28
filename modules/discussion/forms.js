@@ -7,15 +7,12 @@ $( document ).on( 'flow_init', function ( e ) {
 	);
 
 	$( 'form.flow-newtopic-form' ).flow( 'setupEmptyDisabler',
-		[
-			'.flow-newtopic-title',
-			'.flow-newtopic-content'
-		],
+		[ '.flow-newtopic-title' ],
 		'.flow-newtopic-submit'
 	);
 
 	$container.find( 'form.flow-topic-reply-form' ).flow( 'setupEmptyDisabler',
-		['.flow-topic-reply-content'],
+		[ '.flow-topic-reply-content' ],
 		'.flow-topic-reply-submit'
 	);
 
@@ -32,7 +29,7 @@ $( document ).on( 'flow_init', function ( e ) {
 			return [ workflowParam, title, content ];
 		},
 		function ( workflowParam, title, content ) {
-			return title && content;
+			return !!title;
 		},
 		function ( promise ) {
 			promise
