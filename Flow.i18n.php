@@ -384,7 +384,8 @@ Parameters:
 * $5 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
 * $6 - a number used for plural support
 See also:
-* {{msg-mw|Flow-notification-reply-email-batch-bundle-body}}',
+* {{msg-mw|Flow-notification-reply-email-batch-bundle-body}}
+{{Related|Flow-notification}}',
 	'flow-notification-edit' => "Notification text for when a user's post is edited. Parameters:
 * $1 - Username of the person who edited the post
 * $2 - Title of the topic
@@ -402,7 +403,8 @@ Parameters:
 * $5 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
 * $6 - a number used for plural support
 See also:
-* {{msg-mw|Flow-notification-edit-email-batch-bundle-body}}',
+* {{msg-mw|Flow-notification-edit-email-batch-bundle-body}}
+{{Related|Flow-notification}}',
 	'flow-notification-newtopic' => 'Notification text for when a new topic is created. Parameters:
 * $1 - Username of the person who created the topic
 * $2 - Title for the Flow board
@@ -1237,8 +1239,10 @@ $messages['it'] = array(
 	'flow-error-delete-failure' => 'La cancellazione di questo elemento non è riuscita.',
 	'flow-error-hide-failure' => 'Il tentativo di nascondere questo elemento non è riuscito.',
 	'flow-error-missing-postId' => 'Non è stato fornito alcun parametro "ID_messaggio". Questo parametro è necessario per poter elaborare un messaggio.',
-	'flow-error-invalid-postId' => 'Il parametro "ID_messaggio" non era valido. Il messaggio indicato non è stato trovato.', # Fuzzy
+	'flow-error-invalid-postId' => 'Il parametro "ID_messaggio" non era valido. Il messaggio indicato ($1) non è stato trovato.',
 	'flow-error-restore-failure' => 'Il ripristino di questo elemento non è riuscito.',
+	'flow-error-invalid-moderation-state' => 'È stato fornito un valore non valido per moderationState',
+	'flow-error-not-allowed' => 'Autorizzazioni insufficienti per eseguire questa azione',
 	'flow-edit-header-submit' => 'Salva intestazione',
 	'flow-edit-title-submit' => 'Cambia titolo',
 	'flow-rev-message-edit-post' => 'Modificato contenuto del messaggio',
@@ -1286,6 +1290,14 @@ $messages['it'] = array(
 	'flow-link-post' => 'messaggio',
 	'flow-link-topic' => 'discussione',
 	'flow-link-history' => 'cronologia',
+	'flow-moderation-title-censor' => 'Censura messaggio',
+	'flow-moderation-title-delete' => 'Cancella messaggio',
+	'flow-moderation-title-hide' => 'Nascondi messaggio',
+	'flow-moderation-title-restore' => 'Ripristina messaggio',
+	'flow-moderation-reason' => 'Motivo:',
+	'flow-moderation-confirm' => "Conferma l'azione",
+	'flow-moderation-confirmation-restore' => 'Hai ripristinato con successo questo messaggio.',
+	'flow-moderation-reason-placeholder' => 'Inserisci qui la motivazione',
 );
 
 /** Japanese (日本語)
@@ -1372,7 +1384,7 @@ $messages['ja'] = array(
 	'flow-notification-edit-bundle' => '$1 と他 $5 {{PLURAL:$6|人}}が「$3」の $2 での[$4 投稿]を{{GENDER:$1|編集しました}}。',
 	'flow-notification-newtopic' => '$1 が [[$2|$3]] で[$5 新しい話題]を{{GENDER:$1|作成しました}}: $4',
 	'flow-notification-rename' => '$1 が [[$5|$6]] で [$2 $3] のページ名を「$4」に{{GENDER:$1|変更しました}}。',
-	'flow-notification-mention' => '$1 が「$4」の「$3」での自身の[$2 投稿]であなたに{{GENDER:$1|言及しました}}',
+	'flow-notification-mention' => '$1 が「$4」の「$3」での自身の[$2 投稿]であなたに{{GENDER:$1|言及しました}}。',
 	'flow-notification-link-text-view-post' => '投稿を閲覧',
 	'flow-notification-link-text-view-board' => '掲示板を閲覧',
 	'flow-notification-link-text-view-topic' => '話題を閲覧',
@@ -1466,6 +1478,7 @@ $messages['lb'] = array(
 	'flow-error-delete-failure' => "D'Läsche vun dësem Element huet net funktionéiert.",
 	'flow-error-hide-failure' => 'Verstoppe vun dësem Element huet net funktionéiert.',
 	'flow-error-restore-failure' => "D'Restauréiere vun dësem Element huet net funktionéiert.",
+	'flow-error-not-allowed' => 'Net genuch Rechter fir dës Aktioun ze maachen',
 	'flow-edit-title-submit' => 'Titel änneren',
 	'flow-rev-message-new-post' => 'Thema ugeluecht',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Sidd deen éischten deen enge Bemierkung mecht!|Bemierkung ($1)}}',
@@ -1637,6 +1650,8 @@ $messages['mk'] = array(
 Ви препорачуваме да {{GENDER:$1|му пишете образложение/совет на|ѝ пишете образложение/совет на|му пишете образложение/совет на корисникот}} $1 во врска со објавеното.',
 	'flow-moderation-confirmation-restore' => 'Успешно ја повративте објавата.',
 	'flow-moderation-reason-placeholder' => 'Тука внесете причина',
+	'flow-topic-permalink-warning' => 'Темата е започната на [$2 $1]',
+	'flow-topic-permalink-warning-user-board' => 'Темата е започната на [$2 таблата на {{GENDER:$1|$1}}]',
 );
 
 /** Marathi (मराठी)
