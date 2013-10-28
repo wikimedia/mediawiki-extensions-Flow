@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "291c1151_fad9a41f",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T21:18:51Z",
+      "side": 1,
+      "message": "These messages get used in Flow\\RecentChanges\\Formatter::getActionDescription(),  it needs to switch from -\u003etext() to -\u003eparse()",
+      "revId": "4a249149ebeeec60beb76ebcff5e3520499397c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_4465831e",
         "filename": "HistoryActions.php",
         "patchSetId": 16
@@ -47,6 +64,40 @@
       "writtenOn": "2013-10-28T19:10:05Z",
       "side": 1,
       "message": "Note to self: should only toggle when clicked on bundle, not when clicked inside children.",
+      "revId": "4a249149ebeeec60beb76ebcff5e3520499397c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_1ab5a0ce",
+        "filename": "templates/post.html.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T21:18:51Z",
+      "side": 1,
+      "message": "rather than $post-\u003egetPrevRevisionId() !\u003d\u003d null, use !$post-\u003eisFirstRevision()",
+      "revId": "4a249149ebeeec60beb76ebcff5e3520499397c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_3ae33cde",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T21:18:51Z",
+      "side": 1,
+      "message": "prefer $root-\u003eisFirstRevision() method here as well.\n\nAlso need to check $children[0]-\u003eisFirstRevision() for the final bit :)",
       "revId": "4a249149ebeeec60beb76ebcff5e3520499397c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
