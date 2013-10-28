@@ -18,9 +18,10 @@ use User;
 use Flow\View\PostActionMenu;
 
 class Templating {
+	protected $urlGenerator;
+	protected $output;
 	protected $namespaces;
 	protected $globals;
-	protected $output;
 
 	public function __construct( UrlGenerator $urlGenerator, OutputPage $output, array $namespaces = array(), array $globals = array() ) {
 		$this->urlGenerator = $urlGenerator;
@@ -87,7 +88,10 @@ class Templating {
 	}
 
 	public function renderPost( PostRevision $post, Block $block, $return = true ) {
-		global $wgUser, $wgFlowTokenSalt;
+		global $wgFlowTokenSalt;
+
+		// @todo: I don't like container being pulled in here, improve this some day
+		$container = Container::getContainer();
 
 		return $this->render(
 			'flow:post.html.php',
@@ -98,10 +102,11 @@ class Templating {
 				// class has too many responsibilities to keep receiving all required objects in the constructor.
 				'postActionMenu' => new PostActionMenu(
 					$this->urlGenerator,
-					new PostActionPermissions( $wgUser ),
+					$container['flow_actions'],
+					new PostActionPermissions( $container['flow_actions'], $container['user'] ),
 					$block,
 					$post,
-					$wgUser->getEditToken( $wgFlowTokenSalt )
+					$container['user']->getEditToken( $wgFlowTokenSalt )
 				),
 			),
 			$return
