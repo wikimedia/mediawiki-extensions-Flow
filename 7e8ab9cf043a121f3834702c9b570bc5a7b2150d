@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_84edbbc6",
+        "filename": "container.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "Since this object isn\u0027t queryable, it should be a part of $handlers rather than $indexes.\n\nAdditionally, instead of creating BoardHistoryStorage in two parts of the container prefer to give it a name and use $c[\u0027whatever.name\u0027] so that we only have one thing to change later when the constructor inevitably changes.",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_a46b97b7",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "I\u0027m a bit wary of allowing the workflow loader to know what exactly is happening in the blocks or which actions they support",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_e4aaef71",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "This put\u0027s the name of the page on screen of the history, but we don\u0027t have any links that go back to the owning page.  Perhaps this render of the Article Title should be a link back to the main page?",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_64a27f01",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "can consolidate this with the } else { on previous line",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_a4955788",
+        "filename": "includes/Data/BoardHistoryStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "needs tab",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_24ea4711",
+        "filename": "includes/Data/BoardHistoryStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "I think this bakes in the assumption only one board is being queried?  Thats ok for now i think, we should just throw some exception when count( $queries ) \u003e 1 to make it explicit and prevent future bugs.",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_443903a0",
+        "filename": "includes/Model/BoardHistoryEntry.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "If the reset of the code allows it (I have not tried but i think it should) I would be ok with just passing these two functions as closures in container.php to new BasicObjectMapper",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_440bc3d7",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "This is the same as $nodes \u003d ObjectManager::convertUUIDs( $nodes )",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_a4239758",
+        "filename": "includes/View/History/HistoryRecord.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "Unused",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_4434a391",
+        "filename": "includes/View/History/HistoryRecord.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "AbstractRevision",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_a4fab7b8",
+        "filename": "includes/View/History/HistoryRecord.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "AbstractRevision",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_c4f7b3d0",
+        "filename": "includes/View/History/HistoryRecord.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "AbstractRevision",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_0402abb6",
+        "filename": "includes/View/History/HistoryRecord.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "AbstractRevision",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_242fa741",
+        "filename": "includes/View/History/HistoryRecord.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T19:03:08Z",
+      "side": 1,
+      "message": "AbstractRevision\n\n(also why do we have two functions, getData() and getRevision() that are the same?  I know though not part of this patch)",
+      "revId": "7e8ab9cf043a121f3834702c9b570bc5a7b2150d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
