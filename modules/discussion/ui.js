@@ -290,9 +290,9 @@
 		if ( window.location.hash ) {
 			highlightPost( $( '.flow-post' + window.location.hash ) );
 		}
+
 		// perform same highlighting to anchors within page for consistency
 		$container.find( '.flow-icon-permalink' ).click( function( e ) {
-			e.preventDefault();
 			highlightPost( $( this.hash ) );
 		} );
 	} );
