@@ -54,7 +54,7 @@ class MultiDimArray implements \ArrayAccess {
 		$data =& $this->data;
 		foreach ( (array) $offset as $key ) {
 			if ( !isset( $data[$key] ) ) {
-				throw new \OutOfBoundException( 'Does not exist' );
+				throw new \OutOfBoundsException( 'Does not exist' );
 			}
 			$data =& $data[$key];
 		}

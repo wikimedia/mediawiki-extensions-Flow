@@ -23,7 +23,6 @@ class View {
 		$this->output->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
 
 		$workflow = $loader->getWorkflow();
-		$definition = $loader->getDefinition();
 
 		$title = $workflow->getArticleTitle();
 		$this->output->setPageTitle( wfMessage( 'flow-specialpage', $title->getPrefixedText() )->text() );

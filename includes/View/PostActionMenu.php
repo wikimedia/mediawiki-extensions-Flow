@@ -3,6 +3,7 @@
 namespace Flow\View;
 
 use Flow\Block\Block;
+use Flow\FlowActions;
 use Flow\Model\PostRevision;
 use Flow\PostActionPermissions;
 use Flow\UrlGenerator;
@@ -11,13 +12,23 @@ use Html;
 class PostActionMenu {
 	// Received via constructor
 	protected $urlGenerator;
+	protected $actions;
+	protected $permissions;
 	protected $block;
 	protected $editToken;
 	protected $post;
-	protected $user;
 
-	public function __construct( UrlGenerator $urlGenerator, PostActionPermissions $permissions, Block $block, PostRevision $post, $editToken ) {
+	/**
+	 * @param UrlGenerator $urlGenerator
+	 * @param FlowActions $actions
+	 * @param PostActionPermissions $permissions
+	 * @param Block $block
+	 * @param PostRevision $post
+	 * @param string $editToken
+	 */
+	public function __construct( UrlGenerator $urlGenerator, FlowActions $actions, PostActionPermissions $permissions, Block $block, PostRevision $post, $editToken ) {
 		$this->urlGenerator = $urlGenerator;
+		$this->actions = $actions;
 		$this->permissions = $permissions;
 		$this->block = $block;
 		$this->post = $post;
@@ -28,34 +39,10 @@ class PostActionMenu {
 	 * Returns action details.
 	 *
 	 * @param string $action
-	 * @return array|bool Array of action details or false if invalid
+	 * @return array|null Array of action details or null if invalid
 	 */
-	protected function getActionDetails( $action ) {
-		$actions = array(
-			'hide-post' => array(
-				'method' => 'POST',
-			),
-			'delete-post' => array(
-				'method' => 'POST',
-			),
-			'censor-post' => array(
-				'method' => 'POST',
-			),
-			'restore-post' => array(
-				'method' => 'POST',
-			),
-			'post-history' => array(
-				'method' => 'GET',
-			),
-			'edit-post' => array(
-				'method' => 'GET',
-			),
-			'view' => array(
-				'method' => 'GET',
-			),
-		);
-
-		return isset( $actions[$action] ) ? $actions[$action] : false;
+	protected function getMethod( $action ) {
+		return $this->actions->getValue( $action, 'button-method' );
 	}
 
 	/**
@@ -71,18 +58,27 @@ class PostActionMenu {
 			return false;
 		}
 		$data = array( $this->block->getName() . '[postId]' => $this->post->getPostId()->getHex() );
-		$details = $this->getActionDetails( $action );
-		if ( $details['method'] === 'POST' ) {
+		if ( $this->getMethod( $action ) === 'POST' ) {
 			return $this->postAction( $action, $data, $content, $class );
 		} else {
 			return $this->getAction( $action, $data, $content, $class );
 		}
 	}
 
+	/**
+	 * @param string $action
+	 * @return bool
+	 */
 	public function isAllowed( $action ) {
 		return $this->permissions->isAllowed( $this->post, $action );
 	}
 
+	/**
+	 * @param string $action
+	 * @param string[optional] $action2 This function can be overloaded to test
+	 * if any one of multiple actions is allowed
+	 * @return mixed
+	 */
 	public function isAllowedAny( $action /* [, $action2 [, ... ]] */ ) {
 		$arguments = func_get_args();
 		array_unshift( $arguments, $this->post );

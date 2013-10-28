@@ -9,6 +9,12 @@ $c['request'] = $GLOBALS['wgRequest'];
 //$c['memcache'] = new \HashBagOStuff;
 $c['memcache'] = $GLOBALS['wgMemc'];
 
+// Flow config
+$c['flow_actions'] = $c->share( function( $c ) {
+	global $wgFlowActions;
+	return new Flow\FlowActions( $wgFlowActions );
+} );
+
 // Always returns the correct database for flow storage
 $c['db.factory'] = $c->share( function( $c ) {
 	global $wgFlowDefaultWikiDb;
@@ -325,6 +331,14 @@ $c['recentchanges.formatter'] = $c->share( function( $c ) {
 	return new Flow\RecentChanges\Formatter(
 		$c['url_generator'],
 		$wgLang
+	);
+} );
+
+$c['logger'] = $c->share( function( $c ) {
+	return new Flow\Log\Logger(
+		$c['flow_actions'],
+		$c['url_generator'],
+		$c['user']
 	);
 } );
 

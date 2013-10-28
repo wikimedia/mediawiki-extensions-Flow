@@ -63,7 +63,7 @@ class WorkflowLoader {
 	}
 
 	protected function loadWorkflow( \Title $title ) {
-		global $wgContLang, $wgUser;
+		global $wgUser;
 		$storage = $this->storage->getStorage( 'Workflow');
 
 		$definition = $this->loadDefinition();
@@ -148,7 +148,6 @@ class WorkflowLoader {
 	public function handleSubmit( $action, array $blocks, $user, \WebRequest $request ) {
 		$success = true;
 		$interestedBlocks = array();
-		$workflow = $this->getWorkflow();
 
 		foreach ( $blocks as $block ) {
 			$data = $request->getArray( $block->getName(), array() );

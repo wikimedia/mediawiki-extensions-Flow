@@ -12,6 +12,7 @@ use Flow\Model\PostRevision;
 use Flow\NotificationController;
 use Flow\PostActionPermissions;
 use Flow\Templating;
+use Flow\Container;
 use EchoEvent;
 use User;
 
@@ -40,7 +41,6 @@ class TopicBlock extends AbstractBlock {
 	 */
 	protected $permissions;
 
-
 	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController, $root ) {
 		parent::__construct( $workflow, $storage, $notificationController );
 		if ( $root instanceof PostRevision ) {
@@ -56,7 +56,12 @@ class TopicBlock extends AbstractBlock {
 
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
-		$this->permissions = new PostActionPermissions( $user );
+
+		$this->permissions = new PostActionPermissions(
+			// @todo: I don't like pulling stuff from container in here, improve this some day
+			Container::get( 'flow_actions' ),
+			$user
+		);
 	}
 
 	protected function validate() {
@@ -91,7 +96,7 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		case 'restore-post':
-			$this->validateRestorePost();
+			$this->validateModeratePost( 'restore' );
 			break;
 
 		case 'edit-post':
@@ -185,44 +190,44 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		if ( ! $moderationState ) {
+		$newState = $moderationState;
+		if ( !$moderationState ) {
 			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-moderation-state' );
 			return;
 		} elseif ( $moderationState === 'restore' ) {
-			$moderationState = '';
+			$newState = '';
 		}
 
-		if ( ! $post->isValidModerationState( $moderationState ) ) {
+		if ( !$post->isValidModerationState( $newState ) ) {
 			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-moderation-state' );
 			return;
-		} elseif ( !$this->permissions->isAllowed( $post, "{$moderationState}-post" ) ) {
+		} elseif ( !$this->permissions->isAllowed( $post, "$moderationState-post" ) ) {
 			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
 			return;
 		}
 
-		$this->newRevision = $post->moderate( $this->user, $moderationState );
+		if ( empty( $this->submitted['reason'] ) ) {
+			$this->errors['moderate-post'] = wfMessage( 'flow-error-invalid-moderation-reason' );
+			return;
+		}
+
+		$this->newRevision = $post->moderate( $this->user, $newState );
 		if ( !$this->newRevision ) {
 			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
-		}
-	}
-
-	protected function validateRestorePost() {
-		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-error-missing-postId' );
-			return;
-		}
-		$post = $this->loadRequestedPost( $this->submitted['postId'] );
-		if ( !$post ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-error-invalid-postId' );
-			return;
-		} elseif ( !$this->permissions->isAllowed( $post, "restore-post" ) ) {
-			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
-			return;
-		}
-
-		$this->newRevision = $post->restore( $this->user );
-		if ( !$this->newRevision ) {
-			$this->errors['restore-post'] = wfMessage( 'flow-error-not-allowed' );
+		} else {
+			// @todo: would be nice to get this logging into a LifecycleHandler
+			$logger = Container::get( 'logger' );
+			if ( $logger->canLog( $post, "$moderationState-post" ) ) {
+				$logger->log(
+					$post,
+					"$moderationState-post",
+					$this->submitted['reason'],
+					$this->getWorkflow(),
+					array(
+						$this->getName() . '[postId]' => $post->getPostId()->getHex(),
+					)
+				);
+			}
 		}
 	}
 
