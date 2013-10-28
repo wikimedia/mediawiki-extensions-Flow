@@ -328,4 +328,11 @@ $c['recentchanges.formatter'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['logger'] = $c->share( function( $c ) {
+	return new Flow\Log\Logger(
+		$c['url_generator'],
+		$c['user']
+	);
+} );
+
 return $c;

@@ -11,6 +11,12 @@ $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
 	'flow-specialpage' => '$1 &ndash; Flow',
 
+	'log-name-flow' => 'Flow activity log',
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|deleted}} a <span class="plainlinks">[$4 comment]</span> on [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|restored}} a <span class="plainlinks">[$4 comment]</span> on [[$3]]',
+	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|suppressed}} a <span class="plainlinks">[$4 comment]</span> on [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|deleted}} a <span class="plainlinks">[$4 comment]</span> on [[$3]]',
+
 	'flow-user-anonymous' => 'Anonymous',
 	'flow-user-moderated' => 'Moderated user',
 
@@ -77,6 +83,7 @@ $messages['en'] = array(
 	'flow-error-invalid-postId' => '"postId" parameter was invalid. The specified post ($1) could not be found.',
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
 	'flow-error-invalid-moderation-state' => 'An invalid value was provided for moderationState',
+	'flow-error-invalid-moderation-reason' => 'Please provide a reason for the moderation',
 	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
 
 	'flow-edit-header-submit' => 'Save header',
@@ -175,6 +182,36 @@ $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
 	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
 * $1 - page title',
+	'log-name-flow' => '{{doc-logpage}}
+Name of the Flow log filter on the [[Special:Log]] page.',
+	'logentry-delete-flow-delete-post' => 'Text for a deletion log entry when a post was deleted.
+
+Parameters:
+* $1: The user: link to the user page.
+* $2: The username. Can be used for GENDER.
+* $3: The page where the post was moderated.
+* $4: Permalink url to the moderated post.',
+	'logentry-delete-flow-restore-post' => 'Text for a deletion log entry when a deleted post was restored.
+
+Parameters:
+* $1: The user: link to the user page.
+* $2: The username. Can be used for GENDER.
+* $3: The page where the post was moderated.
+* $4: Permalink url to the moderated post.',
+	'logentry-suppress-flow-censor-post' => 'Text for a deletion log entry when a post was suppressed.
+
+Parameters:
+* $1: The user: link to the user page.
+* $2: The username. Can be used for GENDER.
+* $3: The page where the post was moderated.
+* $4: Permalink url to the moderated post.',
+	'logentry-suppress-flow-restore-post' => 'Text for a deletion log entry when a suppressed post was restored.
+
+Parameters:
+* $1: The user: link to the user page.
+* $2: The username. Can be used for GENDER.
+* $3: The page where the post was moderated.
+* $4: Permalink url to the moderated post.',
 	'flow-user-anonymous' => 'Name to display for anonymous users.
 {{Identical|Anonymous}}',
 	'flow-user-moderated' => 'Name to display instead of a moderated user name',
@@ -320,7 +357,8 @@ Parameters:
 
 Usually indicates a code bug, so technical terminology is okay.
 
-Valid values for moderationState are: none, hidden, deleted, censored',
+Valid values for moderationState are: (none), hidden, deleted, censored',
+	'flow-error-invalid-moderation-reason' => 'Used as error message when no reason is given for the moderation of a post.',
 	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',

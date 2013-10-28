@@ -1,0 +1,96 @@
+<?php
+
+namespace Flow\Log;
+
+use Flow\Model\PostRevision;
+use Flow\Model\Workflow;
+use Flow\UrlGenerator;
+use ManualLogEntry;
+use User;
+use Closure;
+
+class Logger {
+	/**
+	 * @var UrlGenerator
+	 */
+	public $urlGenerator;
+
+	/**
+	 * @var User
+	 */
+	public $user;
+
+	/**
+	 * @param User $user
+	 */
+	public function __construct( UrlGenerator $urlGenerator, User $user ) {
+		$this->urlGenerator = $urlGenerator;
+		$this->user = $user;
+	}
+
+	/**
+	 * Check if an action should be logged (= if a log_type is set)
+	 *
+	 * @param PostRevision $post
+	 * @param string $action
+	 * @return bool
+	 */
+	public function canLog( PostRevision $post, $action ) {
+		return (bool) $this->getLogType( $post, $action );
+	}
+
+	/**
+	 * Adds an activity item to the log under the flow|suppress.
+	 *
+	 * @param PostRevision $post
+	 * @param string $action The action we'll be logging
+	 * @param string $reason Comment, reason for the moderation
+	 * @param Workflow $workflow Workflow being worked on
+	 * @param array $params Additional parameters to be saved
+	 * @return int The id of the newly inserted log entry
+	 */
+	public function log( PostRevision $post, $action, $reason, Workflow $workflow, $params = array() ) {
+		wfProfileIn( __METHOD__ );
+
+		if ( !$this->canLog( $post, $action ) ) {
+			wfProfileOut( __METHOD__ );
+			return null;
+		}
+
+		$logType = $this->getLogType( $post, $action );
+
+		list( $title, $query ) = $this->urlGenerator->generateUrlData(
+			$workflow,
+			'view',
+			$params
+		);
+
+		// insert logging entry
+		$logEntry = new ManualLogEntry( $logType, "flow-$action" );
+		$logEntry->setTarget( $title );
+		$logEntry->setPerformer( $this->user );
+		$logEntry->setParameters( $params );
+		$logEntry->setComment( $reason );
+		$logId = $logEntry->insert();
+		$logEntry->publish( $logId );
+
+		wfProfileOut( __METHOD__ );
+		return $logId;
+	}
+
+	/**
+	 * @param PostRevision $post
+	 * @param string $action
+	 * @return string
+	 */
+	public function getLogType( PostRevision $post, $action ) {
+		global $wgFlowActions;
+
+		$logType = $wgFlowActions[$action]['log_type'];
+		if ( $logType instanceof Closure) {
+			$logType = $logType( $post, $this );
+		}
+
+		return $logType;
+	}
+}
