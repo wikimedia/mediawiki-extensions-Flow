@@ -101,6 +101,24 @@
       "revId": "4a249149ebeeec60beb76ebcff5e3520499397c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_d5a03ba5",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-28T23:29:48Z",
+      "side": 1,
+      "message": "Additionally, i think i have now broken this ability in https://gerrit.wikimedia.org/r/92454\n\nThat patch allows topics to be created without a first post, so this would have to get even more complex to see if the first post and the topic were created at the \"same\" time.",
+      "parentUuid": "291c1151_3ae33cde",
+      "revId": "4a249149ebeeec60beb76ebcff5e3520499397c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
