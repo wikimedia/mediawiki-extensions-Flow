@@ -16,6 +16,23 @@
       "revId": "4a249149ebeeec60beb76ebcff5e3520499397c1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_e494afe2",
+        "filename": "modules/history/history.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-28T19:10:05Z",
+      "side": 1,
+      "message": "Note to self: should only toggle when clicked on bundle, not when clicked inside children.",
+      "revId": "4a249149ebeeec60beb76ebcff5e3520499397c1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
