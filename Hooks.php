@@ -217,4 +217,9 @@ class FlowHooks {
 		$names[] = 'msg:flow-user-anonymous';
 		return true;
 	}
+
+	public static function onSpecialWatchlistGetNonRevisionTypes( &$types ) {
+		$types[] = Flow\Data\RecentChanges::SRC_FLOW;
+		return true;
+	}
 }

@@ -152,6 +152,7 @@ $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRece
 $wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
 $wgHooks['TitleIsAlwaysKnown'][] = 'FlowHooks::onTitleIsAlwaysKnown';
 $wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavigation';
+$wgHooks['SpecialWatchlistGetNonRevisionTypes'][] = 'FlowHooks::onSpecialWatchlistGetNonRevisionTypes';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
