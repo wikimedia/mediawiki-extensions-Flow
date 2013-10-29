@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_fc6b5fb6",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T15:32:29Z",
+      "side": 1,
+      "message": "I\u0027d rather add/remove some class to/from the container and use CSS to show/hide things depending on that class.\n\nAlso (I have not tested it or may be missing something), it looks like on the \"cancel\" case is re-enabling the controls. When submitting the edit, they\u0027re not re-enabling?",
+      "revId": "56e96ef71b32cbb33f56dbb57dfffd5c5c08d3ef",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
