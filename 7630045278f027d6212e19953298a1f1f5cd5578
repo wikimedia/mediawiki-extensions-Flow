@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_5f4465b9",
+        "filename": "modules/base/init.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T15:36:00Z",
+      "side": 1,
+      "message": "trailing redundant space after the classname",
+      "revId": "7630045278f027d6212e19953298a1f1f5cd5578",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
