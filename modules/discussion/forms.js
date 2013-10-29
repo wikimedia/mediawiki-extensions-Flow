@@ -160,7 +160,6 @@ $( document ).on( 'flow_init', function ( e ) {
 					return;
 				}
 
-
 				$contentContainer.flow( 'setupEditForm',
 						'post',
 						{
@@ -178,6 +177,16 @@ $( document ).on( 'flow_init', function ( e ) {
 									.find( '.flow-post' )
 									.children()
 							);
+					} );
+
+				$postContainer.find( '.flow-post-interaction' )
+					.hide();
+
+				$contentContainer.siblings( 'form' )
+					.find( '.flow-cancel-link' )
+					.click( function(e) {
+						$postContainer.find( '.flow-post-interaction' )
+							.show();
 					} );
 			} )
 			.fail( function () {
