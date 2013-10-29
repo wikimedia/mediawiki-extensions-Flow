@@ -16,6 +16,24 @@
       "revId": "f041ff6820ca1fb8041a5d48c8f6452c25248bbb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_1f5bcd52",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-29T16:29:08Z",
+      "side": 1,
+      "message": "lol, yea.  All the permissions errors have the same message so i wanted to be sure this was the failing check :)",
+      "parentUuid": "291c1151_df1055aa",
+      "revId": "f041ff6820ca1fb8041a5d48c8f6452c25248bbb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
