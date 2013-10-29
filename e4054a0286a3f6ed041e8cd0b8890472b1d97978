@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_7cfccf09",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T09:16:09Z",
+      "side": 1,
+      "message": "I\u0027m not too keen on callers passing in their own identifiers; need to be careful then when adding new callers.",
+      "revId": "e4054a0286a3f6ed041e8cd0b8890472b1d97978",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_bc06471d",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T09:16:09Z",
+      "side": 1,
+      "message": "The breaking problem was that $callbacks is being nulled, but that was not propagated upwards.\n\nSo when the registerDescendant callback has found the correct post in one of the children (recursive here), its $callbacks value was being nulled. When the recursive run has resolved and going back to the parent, $callbacks in the parent was not nulled.\n\nMy fix was to return both $callbacks \u0026 $results to the parent (https://gerrit.wikimedia.org/r/#/c/91206/16/includes/Model/PostRevision.php)\n\nI think this + $results may lead to a working fix. However, $results is already tossed in to the recursive run, which can then add/manipulate $results \u0026 return it. Then adding parent + $results again may be confusing.\n\nAlso, the $callbacks should definitely be returned to the parent, because as soon as a callback should no longer be executed, the parent should no longer execute it either.",
+      "revId": "e4054a0286a3f6ed041e8cd0b8890472b1d97978",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
