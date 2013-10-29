@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_a29d42ba",
+        "filename": "HistoryActions.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-29T17:46:09Z",
+      "side": 1,
+      "message": "If we are going to change these keys from i18n messages (which are then prefixed flow-rev-message-* ) we should change all of them and update the db (matthias also mentioned making this change in the history patch this is based on, so perhaps that could be done there and then this will be consistent)",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_82ea060f",
+        "filename": "container.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-29T17:46:09Z",
+      "side": 1,
+      "message": "The more i think about it, the more i think BoardHistoryIndex, BoardHistoryHeaderIndex, and BoardHistoryTopicListIndex should be a single instance of the same class.\n\nWe would then instantiate the class once and give it a name in the container ( storage.board_history.index ? or maybe something more specific ) and pass that same object to the three places that need it.",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_02dff666",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-29T17:46:09Z",
+      "side": 1,
+      "message": "this bit of code doesn\u0027t suppress the topiclist block, should adjust the comment to be clear we don\u0027t want the topiclist block, and its suppressed inside the topic list class when action \u003d \u0027board-history\u0027",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_e2b1faf8",
+        "filename": "includes/Data/BoardHistoryStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-29T17:46:09Z",
+      "side": 1,
+      "message": "Capitalize TopKIndex",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_42a1eea5",
+        "filename": "includes/Data/BoardHistoryStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-29T17:46:09Z",
+      "side": 1,
+      "message": "I think this condition accepts any post that has a parent(that is a reply to something).  \n\nThis is called from the onAfter* series of functions which receives the object in addition to the array of data that represents the object. I think we can just call $obj-\u003eisRootPost() ?",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
