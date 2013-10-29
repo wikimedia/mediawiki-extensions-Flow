@@ -1,5 +1,5 @@
 ( function ( $, mw ) {
-$( document ).on( 'flow_init', function ( e ) {
+$( document ).flow( 'registerInitFunction', function(e) {
 	var $container = $( e.target );
 	$container.find( 'form.flow-reply-form' ).flow( 'setupEmptyDisabler',
 		['.flow-reply-content'],

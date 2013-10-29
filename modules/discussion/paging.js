@@ -21,7 +21,7 @@
 			);
 	};
 
-	$( document ).on( 'flow_init', function () {
+	$( document ).flow( 'registerInitFunction', function () {
 		$( this ).find( '.flow-paging a' ).click( function ( e ) {
 			e.preventDefault();
 			var $pagingLinkDiv = $( this ).closest( '.flow-paging' );
