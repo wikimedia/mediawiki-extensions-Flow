@@ -90,7 +90,7 @@ mw.flow = {
 						!output.query.flow ||
 						output.query.flow._element !== 'block'
 					) {
-						deferredObject.fail( 'invalid-result', 'Unable to understand the API result' );
+						deferredObject.reject( 'invalid-result', 'Unable to understand the API result' );
 						return;
 					}
 
@@ -102,11 +102,11 @@ mw.flow = {
 						}
 					} );
 
-					deferredObject.fail( 'invalid-result', 'Unable to find the '+
+					deferredObject.reject( 'invalid-result', 'Unable to find the '+
 						blockName+' block in the API result' );
 				} )
 				.fail( function () {
-					deferredObject.fail( arguments );
+					deferredObject.reject.apply( this, arguments );
 				} );
 
 			return deferredObject.promise();
