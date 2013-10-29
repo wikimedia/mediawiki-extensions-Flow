@@ -24,6 +24,7 @@ $wgResourceModules += array(
 		'scripts' => array(
 			'base/ext.flow.base.js',
 			'base/ui-functions.js',
+			'base/init.js',
 		),
 		'dependencies' => array(
 			'mediawiki.ui',
@@ -52,7 +53,6 @@ $wgResourceModules += array(
 			'discussion/ui.js',
 			'discussion/forms.js',
 			'discussion/paging.js',
-			'discussion/init.js',
 		),
 		'dependencies' => array(
 			'jquery.ui.core',
