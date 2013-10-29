@@ -173,11 +173,30 @@
 		$container.find( '.flow-topic-reply-form .flow-post-form-controls' ).hide();
 		// Set up topic reply form
 		$container.find( '.flow-topic-reply-content' ).click( function() {
-			mw.flow.editor.load( $( this ) );
+			var $textbox = $( this );
+			mw.flow.editor.load( $textbox );
+			$form = $( this ).closest( '.flow-topic-reply-form' );
 
 			// display controls
-			$( this ).closest( '.flow-topic-reply-form' ).find( '.flow-post-form-controls' ).show();
+			$form.find( '.flow-post-form-controls' ).show();
 		} );
+
+		// Add cancel link to topic reply forms
+		$( '<a />' )
+			.attr( 'href', '#' )
+			.addClass( 'flow-cancel-link' )
+			.addClass( 'mw-ui-button' )
+			.addClass( 'mw-ui-text' )
+			.text( mw.msg( 'flow-cancel' ) )
+			.click( function ( e ) {
+				e.preventDefault();
+				$form = $( this ).closest( '.flow-topic-reply-form' );
+				$form.find( '.flow-post-form-controls' )
+					.hide();
+
+				mw.flow.editor.destroy( $form.find( 'textarea' ) );
+			} )
+			.prependTo( $container.find( '.flow-topic-reply-form .flow-post-form-controls') );
 
 		// Set up the scroll to new topic reply form
 		$container.find( '.flow-topic-comments .flow-reply-link' ).click(
