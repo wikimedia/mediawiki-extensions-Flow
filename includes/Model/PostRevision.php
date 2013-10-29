@@ -181,6 +181,9 @@ class PostRevision extends AbstractRevision {
 	 * Used to defer going recursive more than once: if all recursive
 	 * functionality is first registered, we can fetch all results in one go.
 	 *
+	 * @param string $identifier A string identifier for this callback, to be
+	 * also passed to PostRevision::getRecursiveResult() to retrieve the result
+	 * of this callback.
 	 * @param callable $callback The callback to call. 2 parameters:
 	 * PostRevision (the post being iterated) & $result (the current result at
 	 * time of iteration). They must respond with [ $result, $continue ],
@@ -190,13 +193,11 @@ class PostRevision extends AbstractRevision {
 	 * @return int $i Identifier to pass to getRecursiveResult() to retrieve
 	 * the callback's result
 	 */
-	public function registerRecursive( $callback, $init ) {
-		$i = count( $this->recursiveResults );
+	public function registerRecursive( $identifier, $callback, $init ) {
+		$this->recursiveCallbacks[$identifier] = $callback;
+		$this->recursiveResults[$identifier] = $init;
 
-		$this->recursiveCallbacks[$i] = $callback;
-		$this->recursiveResults[$i] = $init;
-
-		return $i;
+		return $identifier;
 	}
 
 	/**
@@ -213,8 +214,8 @@ class PostRevision extends AbstractRevision {
 			$this->recursiveResults
 		);
 
-		// Once all callbacks have run, null the callbacks to make sure they won't run again
-		$this->recursiveCallbacks = array_fill( 0, count( $this->recursiveResults ), null );
+		// Once all callbacks have run, empty out the callback list
+		$this->recursiveCallbacks = array();
 
 		return $this->recursiveResults[$registered];
 	}
@@ -244,6 +245,11 @@ class PostRevision extends AbstractRevision {
 				if ( is_callable( $callback ) ) {
 					$return = $callback( $child, $results[$i] );
 
+					if ( ! is_array( $return ) ) {
+						$continue = true;
+						continue;
+					}
+
 					// Callbacks respond with: [ result, continue ]
 					// Continue can be set to false if a callback has completed
 					// what it set out to do, then we can stop running it.
@@ -253,7 +259,7 @@ class PostRevision extends AbstractRevision {
 					// If this specific callback has responded it should no longer
 					// continue, get rid of it.
 					if ( $return[1] === false ) {
-						$callbacks[$i] = null;
+						unset( $callbacks[$i] );
 					}
 				}
 			}
@@ -263,7 +269,7 @@ class PostRevision extends AbstractRevision {
 				break;
 			}
 
-			$results = $child->descendRecursive( $callbacks, $results, $maxDepth - 1 );
+			$results = $child->descendRecursive( $callbacks, $results, $maxDepth - 1 ) + $results;
 		}
 
 		return $results;
@@ -287,7 +293,7 @@ class PostRevision extends AbstractRevision {
 			return array( $result + 1, true );
 		};
 
-		return $this->registerRecursive( $callback, 0 );
+		return $this->registerRecursive( 'count', $callback, 0 );
 	}
 
 	/**
@@ -330,7 +336,7 @@ class PostRevision extends AbstractRevision {
 			return array( $result, true );
 		};
 
-		return $this->registerRecursive( $callback, array() );
+		return $this->registerRecursive( 'participants', $callback, array() );
 	}
 
 	/**
@@ -356,9 +362,11 @@ class PostRevision extends AbstractRevision {
 			if ( $post->getPostId()->equals( $postId ) ) {
 				return array( $post, false );
 			}
+
+			return array( null, true );
 		};
 
-		return $this->registerRecursive( $callback, false );
+		return $this->registerRecursive( 'descendant:'.$postId->getHex(), $callback, false );
 	}
 
 	/**
