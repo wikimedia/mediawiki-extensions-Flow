@@ -24,10 +24,14 @@
 	$( document ).on( 'flow_init', function () {
 		$( this ).find( '.flow-paging a' ).click( function ( e ) {
 			e.preventDefault();
-			var $pagingLinkDiv = $( this ).closest( '.flow-paging' )
-					.addClass( 'flow-paging-loading' ),
+			var $pagingLinkDiv = $( this ).closest( '.flow-paging' );
 
-				offset = $pagingLinkDiv.data( 'offset' ),
+			if( $pagingLinkDiv.hasClass( 'flow-paging-loading' ) ) {
+				return;
+			}
+			$pagingLinkDiv.addClass( 'flow-paging-loading' );
+
+			var offset = $pagingLinkDiv.data( 'offset' ),
 				direction = $pagingLinkDiv.data( 'direction' ),
 				limit = $pagingLinkDiv.data( 'limit' ),
 				workflowId = $( this ).flow( 'getTopicWorkflowId' ),
@@ -52,7 +56,7 @@
 						$replaceContent;
 
 					$.each( data, function ( k, v ) {
-						if ( k - 0 === k ) {
+						if ( parseInt( k, 10 ) == k ) {
 							topics.push( v );
 						}
 					} );
