@@ -13,6 +13,17 @@
 		},
 
 		'_flow' : {
+			'registerInitFunction' : function( callback ) {
+				$( this ).on( 'flow_init', callback );
+
+				$( '.flow-initialised' ).each( function() {
+					callback.apply( this, [ {
+						'type' : 'flow_init',
+						'target' : this
+					} ] );
+				} );
+			},
+
 			/**
 			 * Checks on every keyup if all fieldSelectors are filled out and
 			 * (if so) enabled submitSelector.
