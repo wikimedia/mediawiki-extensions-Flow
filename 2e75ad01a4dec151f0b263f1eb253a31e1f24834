@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_9c2a6b7e",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T09:26:52Z",
+      "side": 1,
+      "message": "I think this entire click handler is no longer needed now? Clicking the link will go a new url; that page will load, and L291-293 will already pick up the highlighting from there?\n\nPerhaps the click handler is there to make it feel snappier? So that the post is immediately highlighted while waiting for the page to reload. That may confuse people, however.\n\nIf \"making it feel snappy\" is the reason to keep this here, perhaps we should keep e.preventDefault() and use history.pushState() to push the url to the address bar?",
+      "revId": "2e75ad01a4dec151f0b263f1eb253a31e1f24834",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
