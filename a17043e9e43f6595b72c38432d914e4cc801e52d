@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "291c1151_a2be22cf",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "We won\u0027t need $2 in header messages (see comment on https://gerrit.wikimedia.org/r/#/c/92159/5/HistoryActions.php)",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_c2da3e48",
+        "filename": "HistoryActions.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "Header can be long \u0026 complex, we probably shouldn\u0027t display the full header text. Design says \"\u003cuser\u003e edited the board header\" so we can probably just omit any header content from the message.",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_62ec2af5",
+        "filename": "HistoryActions.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "The @todo for title was because the design says something like \"changed title to xyz from abc\" and I have not yet looked into fetching the abc part. The header design doesn\u0027t mention anything similar, so this @todo can be dropped here :)",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_629eea60",
+        "filename": "HistoryActions.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "Talk to design about this, but I can imagine bundling being advised here, since the header will likely be edited often.",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_a29d42ba",
         "filename": "HistoryActions.php",
         "patchSetId": 5
@@ -13,6 +81,41 @@
       "writtenOn": "2013-10-29T17:46:09Z",
       "side": 1,
       "message": "If we are going to change these keys from i18n messages (which are then prefixed flow-rev-message-* ) we should change all of them and update the db (matthias also mentioned making this change in the history patch this is based on, so perhaps that could be done there and then this will be consistent)",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_227dd218",
+        "filename": "HistoryActions.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "Yeah, I\u0027ll do that soon",
+      "parentUuid": "291c1151_a29d42ba",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_e2df3a35",
+        "filename": "HistoryActions.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "Header can be long \u0026 complex, we probably shouldn\u0027t display the full header text. Design says \"\u003cuser\u003e edited the board header\" so we can probably just omit any header content from the message.",
       "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -70,6 +173,40 @@
     },
     {
       "key": {
+        "uuid": "291c1151_a290e24a",
+        "filename": "includes/Data/BoardHistoryStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "typo: TopKIndex should start with capital T",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_a2baa2bb",
+        "filename": "includes/Data/BoardHistoryStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "I\u0027ll agree with Erik\u0027s idea to combine BoardHistoryIndex, BoardHistoryHeaderIndex, and BoardHistoryTopicListIndex.\n\nWhile I would probably also have separated them myself (they\u0027re dealing with completely different storage types), I think it\u0027s a good idea to combine it into 1 class.\n\nAll onAfter* methods will then need some if-statements to separate logic for both storage types it handles, but that should be about it, I think.",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_42a1eea5",
         "filename": "includes/Data/BoardHistoryStorage.php",
         "patchSetId": 5
@@ -81,6 +218,91 @@
       "writtenOn": "2013-10-29T17:46:09Z",
       "side": 1,
       "message": "I think this condition accepts any post that has a parent(that is a reply to something).  \n\nThis is called from the onAfter* series of functions which receives the object in addition to the array of data that represents the object. I think we can just call $obj-\u003eisRootPost() ?",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_2294f240",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "Instead of making this static and call it \"from the outside\" (BoardHistory), we should probably create some new class that both RevisionStorage \u0026 BoardHistory can extend, or something along those lines?",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_c2107e03",
+        "filename": "modules/header/styles/base.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "When re-using existing MW \"Show history\" link, this won\u0027t be necessary",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_820686cf",
+        "filename": "modules/header/styles/settings/colors.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "When re-using existing MW \"Show history\" link, this won\u0027t be necessary",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_e25c9aec",
+        "filename": "modules/history/styles/history.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "Yeah, this is better than listing them all separately.\n\nSince there\u0027s like 6 classes that share this icon, we probably better just collapse all of them in 1 definition :p",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_e2f9fae7",
+        "filename": "templates/header.html.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-29T17:59:40Z",
+      "side": 1,
+      "message": "I\u0027d re-use existing MW top right \"See history\" button.\n\nWe\u0027ve gotten rid of it in https://gerrit.wikimedia.org/r/#/c/90917/, but can probably add a new link via $template-\u003etabAction()\n\nCheck with Maryana/design to be sure though, but I\u0027d prefer consistency with existing MW if possible :)",
       "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
