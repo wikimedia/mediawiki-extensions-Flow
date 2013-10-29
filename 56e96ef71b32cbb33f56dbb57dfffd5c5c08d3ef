@@ -16,6 +16,24 @@
       "revId": "56e96ef71b32cbb33f56dbb57dfffd5c5c08d3ef",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_2daea32e",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-29T21:30:09Z",
+      "side": 1,
+      "message": "In the form success handler (see $.fn._flow.getFormHandler; ui-functions.js line 236–7):\n\n$form.find( \u0027.flow-cancel-link\u0027 )\n\t.click();",
+      "parentUuid": "291c1151_fc6b5fb6",
+      "revId": "56e96ef71b32cbb33f56dbb57dfffd5c5c08d3ef",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
