@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_624fcabd",
+        "filename": "HistoryActions.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-10-29T19:52:13Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s a good point",
+      "parentUuid": "291c1151_c2da3e48",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_62ec2af5",
         "filename": "HistoryActions.php",
         "patchSetId": 5
@@ -105,6 +123,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_22d6b2c2",
+        "filename": "HistoryActions.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-10-29T19:52:13Z",
+      "side": 1,
+      "message": "I will leave it this way for now and do a rebase once the change is in the parent patch",
+      "parentUuid": "291c1151_227dd218",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_e2df3a35",
         "filename": "HistoryActions.php",
         "patchSetId": 5
@@ -133,6 +169,24 @@
       "writtenOn": "2013-10-29T17:46:09Z",
       "side": 1,
       "message": "The more i think about it, the more i think BoardHistoryIndex, BoardHistoryHeaderIndex, and BoardHistoryTopicListIndex should be a single instance of the same class.\n\nWe would then instantiate the class once and give it a name in the container ( storage.board_history.index ? or maybe something more specific ) and pass that same object to the three places that need it.",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_82bf665d",
+        "filename": "container.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-10-29T19:52:13Z",
+      "side": 1,
+      "message": "We could merge them into a single class, but lifecyclehandlers functions like onAfterInsert would have to deal with two different types",
+      "parentUuid": "291c1151_82ea060f",
       "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -241,6 +295,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_420ace27",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-10-29T19:52:13Z",
+      "side": 1,
+      "message": "Yeah, I agree that making it static is kind of ugly in here.  This function is more like a utility function, I am not sure about having RevisionStorage \u0026 BoardHistory extend the same type",
+      "parentUuid": "291c1151_2294f240",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_c2107e03",
         "filename": "modules/header/styles/base.less",
         "patchSetId": 5
@@ -303,6 +375,24 @@
       "writtenOn": "2013-10-29T17:59:40Z",
       "side": 1,
       "message": "I\u0027d re-use existing MW top right \"See history\" button.\n\nWe\u0027ve gotten rid of it in https://gerrit.wikimedia.org/r/#/c/90917/, but can probably add a new link via $template-\u003etabAction()\n\nCheck with Maryana/design to be sure though, but I\u0027d prefer consistency with existing MW if possible :)",
+      "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_42ae4e2f",
+        "filename": "templates/header.html.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-10-29T19:52:13Z",
+      "side": 1,
+      "message": "I just hack this up so the history page is accessible since this is not in the design, :), I will talk to design about this",
+      "parentUuid": "291c1151_e2f9fae7",
       "revId": "a17043e9e43f6595b72c38432d914e4cc801e52d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
