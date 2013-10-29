@@ -187,16 +187,20 @@ class PostRevision extends AbstractRevision {
 	 * where $result is the result after that post's iteration & $continue a
 	 * boolean value indicating if the iteration still needs to continue
 	 * @param mixed $init The initial $result value to be fed to the callback
-	 * @return int $i Identifier to pass to getRecursiveResult() to retrieve
+	 * @param string[optional] $label Can be used to make the identifier
+	 * slightly more descriptive (just simple integers can be quite opaque when
+	 * debugging)
+	 * @return int Identifier to pass to getRecursiveResult() to retrieve
 	 * the callback's result
 	 */
-	public function registerRecursive( $callback, $init ) {
+	public function registerRecursive( $callback, $init, $label = '' ) {
 		$i = count( $this->recursiveResults );
+		$identifier = "$i-$label";
 
-		$this->recursiveCallbacks[$i] = $callback;
-		$this->recursiveResults[$i] = $init;
+		$this->recursiveCallbacks[$identifier] = $callback;
+		$this->recursiveResults[$identifier] = $init;
 
-		return $i;
+		return $identifier;
 	}
 
 	/**
@@ -290,7 +294,7 @@ class PostRevision extends AbstractRevision {
 			return array( $result + 1, true );
 		};
 
-		return $this->registerRecursive( $callback, 0 );
+		return $this->registerRecursive( $callback, 0, 'count' );
 	}
 
 	/**
@@ -333,7 +337,7 @@ class PostRevision extends AbstractRevision {
 			return array( $result, true );
 		};
 
-		return $this->registerRecursive( $callback, array() );
+		return $this->registerRecursive( $callback, array(), 'participants' );
 	}
 
 	/**
@@ -362,7 +366,7 @@ class PostRevision extends AbstractRevision {
 			return array( false, true );
 		};
 
-		return $this->registerRecursive( $callback, false );
+		return $this->registerRecursive( $callback, false, 'descendant-' . $postId->getHex() );
 	}
 
 	/**
