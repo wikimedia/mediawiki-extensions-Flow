@@ -1,5 +1,5 @@
 ( function( $, mw ) {
-$( document ).on( 'flow_init', function ( e ) {
+$( document ).flow( 'registerInitFunction', function ( e ) {
 	$container = $( e.target );
 	// Overload "edit header" link.
 	$container.find( '.flow-header-edit-link' )
