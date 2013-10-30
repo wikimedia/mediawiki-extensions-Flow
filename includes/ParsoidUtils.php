@@ -36,43 +36,43 @@ abstract class ParsoidUtils {
 	 * @return string
 	 */
 	protected static function parsoid( $from, $to, $content ) {
-		if ( !class_exists( 'ApiVisualEditor' ) ) {
-			throw new \MWException( 'VisualEditor is unavailable' );
+		global $wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout;
+
+		if ( ! isset( $wgVisualEditorParsoidURL ) || ! $wgVisualEditorParsoidURL ) {
+			throw new \MWException( "VisualEditor parsoid configuration is unavailable" );
 		}
 
-		if ( $to === 'html' ) {
-			$action = 'parsefragment';
-		} elseif ( $to === 'wikitext' ) {
-			$action = 'serialize';
+		if ( $from == 'html' ) {
+			$from = 'html';
+		} elseif ( in_array( $from, array( 'wt', 'wikitext' ) ) ) {
+			$from = 'wt';
 		} else {
-			throw new \MWException( 'Unknown format: '. $to );
+			throw new \MWException( 'Unknown source format: ' . $from );
 		}
 
-		global $wgRequest;
-		$params = new \DerivativeRequest(
-			$wgRequest,
+		$response = \Http::post(
+			$wgVisualEditorParsoidURL . '/' . $wgVisualEditorParsoidPrefix . '/',
 			array(
-				'action' => 'visualeditor',
-				'page' => \SpecialPage::getTitleFor( 'Flow' )->getPrefixedDBkey(),
-				// 'basetimestamp' => ?,
-				// 'starttimestamp' => ?,
-				'paction' => $action,
-				'oldid' => '',
-				$from => $content,
-			),
-			true // POST
+				'postData' => array( $from => $content ),
+				'timeout' => $wgVisualEditorParsoidTimeout
+			)
 		);
 
-		wfDebugLog( __CLASS__, __FUNCTION__ . ": Roundtripping parsoid for $from => $to" );
-		$api = new \ApiMain( $params, true );
-		$api->execute();
-		$result = $api->getResultData();
+		// Full HTML document is returned, we only want what's inside <body>
+		if ( $to == 'html' ) {
+			$dom = new \DOMDocument();
+			$dom->loadHTML( $response );
+			$body = $dom->getElementsByTagName( 'body' )->item(0);
 
-		if ( !isset( $result['visualeditor']['content'] ) ) {
-			throw new \MWException( 'Unable to parse content' );
+			$response = '';
+			foreach( $body->childNodes as $child ) {
+				$response .= $child->ownerDocument->saveXML( $child );
+			}
+		} else {
+			throw new \MWException( "Unknown format requested: " . $to );
 		}
 
-		return $result['visualeditor']['content'];
+		return $response;
 	}
 
 	/**
