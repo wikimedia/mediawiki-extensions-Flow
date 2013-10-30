@@ -50,9 +50,25 @@
 				var $form,
 					$viewport = $('main, html');
 
+				/**
+				 * Internal helper function for adjusting the ReplyTo target
+				 * @param $btn the reply button jquery object
+				 * @param $targetFrom the form juqery object to submit post reply
+				 */
+				function adjustReplyTarget( $btn, $targetForm ) {
+					var replyTo = $btn.closest( '.flow-post' ).attr( 'data-post-id' );
+					var replyDefaultText = $btn.closest( '.flow-post' )
+						.siblings( 'form.flow-reply-form' )
+						.find( 'textarea' )
+						.attr( 'placeholder' );
+					$targetForm.find( 'input[name="topic[replyTo]"]' ).val( replyTo );
+					$targetForm.find( 'textarea' ).val( replyDefaultText );
+				}
+
 				if ( $(this).is( '.flow-post-container .flow-post-container *' ) ) {
 					// We're in a tangent
 					$form = $( this ).closest( '.flow-post-replies' ).siblings( 'form.flow-reply-form' );
+					adjustReplyTarget( $( this ), $form );
 					$( this ).closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
 				} else if ( $(this).is( '.flow-topic-comments .flow-reply-link' ) ) {
 					// We're in the topic title
@@ -60,6 +76,7 @@
 				} else {
 					// Not in a tangent
 					$form = $( this ).closest( '.flow-post' ).siblings( 'form.flow-reply-form' );
+					adjustReplyTarget( $( this ), $form );
 				}
 
 				$textarea = $form.find( 'textarea' );
