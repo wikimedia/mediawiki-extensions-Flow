@@ -53,9 +53,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 		function() {
 			var $form = $( this ).closest( '.flow-reply-form' ),
 				workflowId = $( this ).flow( 'getTopicWorkflowId' ),
-				replyToId = $( this )
-					.closest( '.flow-post-container' )
-					.data( 'post-id' ),
+				replyToId = $form.find( 'input[name="topic[replyTo]"]' ).val(),
 				content = mw.flow.editor.getContent( $form.find( '.flow-reply-content' ) );
 
 			return [ workflowId, replyToId, content ];
