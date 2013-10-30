@@ -16,6 +16,24 @@
       "revId": "eac2fe5187607407045f2c51c5ad4a0e8372b5ff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_16580f53",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-30T23:58:48Z",
+      "side": 1,
+      "message": "One of aaron\u0027s comments on the original core patch is that they are trying to get away from globally defined constants, preferring class constants.  Within core these constants are RecentChange::SRC_EDIT and such.",
+      "parentUuid": "291c1151_96431f6f",
+      "revId": "eac2fe5187607407045f2c51c5ad4a0e8372b5ff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
