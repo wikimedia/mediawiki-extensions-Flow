@@ -590,6 +590,17 @@ See also:
 * {{msg-mw|Flow-topic-permalink-warning}}",
 );
 
+/** Arabic (العربية)
+ * @author Claw eg
+ */
+$messages['ar'] = array(
+	'flow-moderation-title-restore' => 'استعد الصفحة',
+	'flow-moderation-reason' => 'سبب:',
+	'flow-moderation-confirm' => 'تأكيد',
+	'flow-moderation-confirmation-restore' => 'لقد استعدت هذه الصفحة بنجاح.',
+	'flow-topic-permalink-warning' => 'بدأ هذا الموضوع في [$2  $1]',
+);
+
 /** Asturian (asturianu)
  * @author Xuacu
  */
@@ -852,7 +863,7 @@ $messages['fr'] = array(
 	'flow-newtopic-save' => 'Ajouter sujet',
 	'flow-newtopic-start-placeholder' => 'Commencer un nouveau sujet',
 	'flow-reply-topic-placeholder' => '{{GENDER:$1|Commenter}} « $2 »',
-	'flow-reply-placeholder' => 'Cliquez ici pour {{GENDER:$1|répondre}} à $1. Soyez gentil !', # Fuzzy
+	'flow-reply-placeholder' => '{{GENDER:$1|Répondre}} à $1',
 	'flow-reply-submit' => '{{GENDER:$1|Répondre}}',
 	'flow-reply-link' => '{{GENDER:$1|Répondre}}',
 	'flow-thank-link' => '{{GENDER:$1|Remercier}}',
@@ -884,8 +895,10 @@ $messages['fr'] = array(
 	'flow-error-delete-failure' => 'Échec de la suppression de cette entrée.',
 	'flow-error-hide-failure' => 'Le masquage de cet élément a échoué.',
 	'flow-error-missing-postId' => 'Aucun paramètre « postId » n’a été fourni. Ce paramètre est obligatoire pour manipuler un message.',
-	'flow-error-invalid-postId' => 'Le paramètre « postId » n’était pas valide. Le message spécifié n’a pas pu être trouvé.', # Fuzzy
+	'flow-error-invalid-postId' => 'Le paramètre « postId » n’était pas valide. Le message spécifié ($1) n’a pas pu être trouvé.',
 	'flow-error-restore-failure' => 'Échec de la restauration de cette entrée.',
+	'flow-error-invalid-moderation-state' => 'Une valeur non valide a été fournie pour moderationState',
+	'flow-error-not-allowed' => 'Droits insuffisants pour exécuter cette action',
 	'flow-edit-header-submit' => 'Enregistrer l’entête',
 	'flow-edit-title-submit' => 'Changer le titre',
 	'flow-rev-message-edit-post' => 'Contenu de la note modifié',
@@ -899,7 +912,7 @@ $messages['fr'] = array(
 	'flow-rev-message-deleted-post' => 'Note supprimée',
 	'flow-rev-message-censored-post' => 'Note censurée',
 	'flow-topic-history' => 'Historique des sujets',
-	'flow-topic-participants' => '{{PLURAL:$1|0=Encore aucune participation|$3 a démarré ce sujet|{{GENDER:$3|$3}} et {{GENDER:$4|$4}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} et $2 autres}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|$3 a démarré ce sujet|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} et {{PLURAL:$2|autre|autres}}|0=Encore aucune participation|2={{GENDER:$3|$3}} et {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Soyez le premier à laisser un commentaire !|Commenter ($1)}}',
 	'flow-comment-restored' => 'Commentaire rétabli',
 	'flow-comment-deleted' => 'Commentaire supprimé',
@@ -935,6 +948,22 @@ $messages['fr'] = array(
 	'flow-link-post' => 'note',
 	'flow-link-topic' => 'sujet',
 	'flow-link-history' => 'historique',
+	'flow-moderation-title-censor' => 'Censurer la note',
+	'flow-moderation-title-delete' => 'Supprimer la note',
+	'flow-moderation-title-hide' => 'Masquer la note',
+	'flow-moderation-title-restore' => 'Restaurer la note',
+	'flow-moderation-intro-censor' => 'Veuillez confirmer que vous voulez censurer la note de {{GENDER:$1|$1}} dans le fil « $2 », et fournir un motif à votre action.',
+	'flow-moderation-intro-delete' => 'Veuillez confirmer que vous voulez supprimer la note de {{GENDER:$1|$1}} dans le fil « $2 », et fournir un motif à votre action.',
+	'flow-moderation-intro-hide' => 'Veuillez confirmer que vous voulez masquer la note de {{GENDER:$1|$1}} dans le fil « $2 », et fournir un motif à votre action.',
+	'flow-moderation-intro-restore' => 'Veuillez confirmer que vous voulez restaurer la note de {{GENDER:$1|$1}} dans le fil « $2 », et fournir un motif à votre action.',
+	'flow-moderation-reason' => 'Motif :',
+	'flow-moderation-confirm' => 'Confirmer l’action',
+	'flow-moderation-confirmation' => 'Vous avez bien modéré cette note.
+Veuillez donner à $1 un retour sur {{GENDER:$1|sa}} note.',
+	'flow-moderation-confirmation-restore' => 'Vous avez bien restauré cette note.',
+	'flow-moderation-reason-placeholder' => 'Saisissez votre motif ici',
+	'flow-topic-permalink-warning' => 'Ce sujet a été démarré sur [$2 $1]',
+	'flow-topic-permalink-warning-user-board' => 'Ce sujet a été démarré sur le tableau de [$2 {{GENDER:$1|$1}}]',
 );
 
 /** Galician (galego)
@@ -1453,6 +1482,7 @@ $messages['ja'] = array(
 );
 
 /** Korean (한국어)
+ * @author Daisy2002
  * @author Hym411
  * @author 아라
  */
@@ -1464,13 +1494,19 @@ $messages['ko'] = array(
 	'flow-header-empty' => '이 토론 문서에는 머릿말이 없습니다.',
 	'flow-post-moderated-toggle-show' => '[보기]',
 	'flow-post-moderated-toggle-hide' => '[숨김]',
+	'flow-newtopic-save' => '새 항목',
 	'flow-newtopic-start-placeholder' => '새 주제',
 	'flow-reply-topic-placeholder' => '$1의 "$2"에 대한 의견',
 	'flow-reply-submit' => '답변', # Fuzzy
 	'flow-talk-link' => '$1에게 말하기',
+	'flow-post-action-edit' => '편집',
 	'flow-topic-action-view' => '고유링크',
 	'flow-topic-action-watchlist' => '주시문서 목록',
+	'flow-error-http' => '서버 접속 중에 에러가 발생했습니다. 편집이 저장이 되지 않았습니다.',
+	'flow-error-other' => '예기치 않은 에러가 발생했습니다. 편집이 저장이 되지 않았습니다.',
+	'flow-error-external' => '포스트를 저장하는 중에 에러가 발생했습니다.편집이 저장이 되지 않았습니다.<br /><small>에러 메시지: $1</small>',
 	'flow-error-edit-restricted' => '이 문서의 편집을 허용하지 않습니다.',
+	'flow-error-external-multi' => '에러가 발생해 편집 저장에 실패하였습니다.<br />$1',
 	'flow-rev-message-hid-post' => '내용 숨겨짐',
 	'flow-rev-message-edit-title' => '주제 제목이 편집되었습니다',
 	'flow-rev-message-edit-header' => '수정된 머리말',
@@ -1838,7 +1874,7 @@ $messages['nl'] = array(
 	'flow-newtopic-header' => 'Nieuw onderwerp toevoegen',
 	'flow-newtopic-save' => 'Onderwerp toevoegen',
 	'flow-newtopic-start-placeholder' => 'Nieuw onderwerp',
-	'flow-reply-placeholder' => 'Klik hier om te {{GENDER:$1|reageren}} op $1. Wees beleefd!', # Fuzzy
+	'flow-reply-placeholder' => '{{GENDER:$1|Reageren}} op $1',
 	'flow-reply-submit' => '{{GENDER:$1|Reageren}}',
 	'flow-edit-post-submit' => 'Wijzigingen opslaan',
 	'flow-post-edited' => 'Bericht $2 {{GENDER:$1|bewerkt}} door $1',
@@ -2041,6 +2077,7 @@ $messages['ru'] = array(
 	'flow-post-action-edit-post' => 'Редактировать сообщение',
 	'flow-post-action-edit' => 'Править',
 	'flow-post-action-restore-post' => 'Восстановить сообщение',
+	'flow-topic-action-watchlist' => 'Список наблюдения',
 	'flow-topic-action-edit-title' => 'Редактировать заголовок',
 	'flow-topic-action-history' => 'История темы',
 	'flow-error-http' => 'Произошла ошибка при обращении к серверу. Ваше сообщение не было сохранено.',
@@ -2061,9 +2098,21 @@ $messages['ru'] = array(
 	'flow-comment-restored' => 'Восстановленный комментарий',
 	'flow-comment-deleted' => 'Удалённый комментарий',
 	'flow-comment-hidden' => 'Скрытый комментарий',
+	'flow-notification-link-text-view-post' => 'Посмотреть сообщение',
+	'flow-notification-link-text-view-topic' => 'Посмотреть тему',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|ответил|ответила}} на ваше сообщение',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|ответил|ответила}} на ваше сообщение в теме $2 в «$3»',
 	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|упомянул|упомянула}} вас в $2',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|отредактировал|отредактировала}} ваше сообщение',
+	'flow-link-post' => 'сообщение',
+	'flow-link-topic' => 'тема',
+	'flow-link-history' => 'история',
+	'flow-moderation-title-delete' => 'Удалить сообщение',
+	'flow-moderation-title-hide' => 'Скрыть сообщение',
+	'flow-moderation-title-restore' => 'Восстановить сообщение',
+	'flow-moderation-reason' => 'Причина:',
+	'flow-moderation-confirm' => 'Подтвердить действие',
+	'flow-moderation-reason-placeholder' => 'Введите причину здесь',
 );
 
 /** Slovenian (slovenščina)
@@ -2110,6 +2159,16 @@ $messages['sl'] = array(
  */
 $messages['sr-ec'] = array(
 	'flow-link-topic' => 'тема',
+	'flow-moderation-reason' => 'Разлог:',
+	'flow-moderation-confirm' => 'Потврди акцију',
+);
+
+/** Serbian (Latin script) (srpski (latinica)‎)
+ * @author Milicevic01
+ */
+$messages['sr-el'] = array(
+	'flow-moderation-reason' => 'Razlog:',
+	'flow-moderation-confirm' => 'Potvrdi akciju',
 );
 
 /** Swedish (svenska)
