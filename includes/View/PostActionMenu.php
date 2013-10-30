@@ -117,7 +117,7 @@ class PostActionMenu {
 			'class' => $class,
 			'value' => $content,
 		) ) .
-		Html::closeElement( 'form' );
+		$output[] = Html::closeElement( 'form' );
 
 		return implode( '', $output );
 	}
