@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_9c918b48",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-30T14:28:42Z",
+      "side": 1,
+      "message": "The if-statement should\u0027ve said \u0027reason\u0027 instead of \u0027postId\u0027",
+      "parentUuid": "291c1151_da6b0885",
+      "revId": "4fc2c3afc2e2beb89c8e64d838ba9e480e82d1e7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_5a10f800",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2013-10-28T20:48:42Z",
       "side": 1,
       "message": "I\u0027m not sure how i feel about putting the logging from the controller, it means that we need to put logging code all over the place rather than some centralized location.\n\nIs it possible for the logger to attach to ObjectManager\u0027s like the RecentChanges code does, and decide what gets logged based on the revision change type?",
+      "revId": "4fc2c3afc2e2beb89c8e64d838ba9e480e82d1e7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_dcbea35e",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-30T14:28:42Z",
+      "side": 1,
+      "message": "I had not yet thought about that.\n\nHowever, I\u0027ve now been looking into it and it\u0027s not going to be fun. The big problem is that the submitted data (or the block) is not available in lifecyclehandler objects; just the PostRevision $object and database $row.\n\nI need to save 2 submitted things:\n\n* Action performed\n* Moderation comment\n\nThe action being performed may soon be available from $object-\u003egetChangeType() (since I plan on changing \u0027flow-rev-message-restored-post\u0027 change types to the actual action name), but the submitted moderation reason is not saved anywhere.\n\nI attempted getting the submitted data out of $wgRequest, but then figured out data in $wgRequest is different between regular page requests \u0026 api, so that\u0027s not a bright idea either.\n\nThe only workable solution to get logging to work from inside a lifecyclehandler, seems to be to also save the moderation reason into flow_revision (or at least someplace PostRevision::fromStorageRow can get it from). Unless we actually need that reason for something other than the deletion log, I don\u0027t really like to do this, as it would only pollute our DB.\n\nFor now, I\u0027ll just add an @todo here, saying it would be nice if we could some day move this into a lifecyclehandler. I\u0027m all out of ideas on how to accomplish this currently, so suggestions are welcome :)",
+      "parentUuid": "291c1151_5a10f800",
       "revId": "4fc2c3afc2e2beb89c8e64d838ba9e480e82d1e7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_9c16eba4",
+        "filename": "includes/PostActionPermissions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-30T14:28:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "291c1151_faeb64db",
+      "revId": "4fc2c3afc2e2beb89c8e64d838ba9e480e82d1e7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_3abedcd1",
         "filename": "includes/PostActionPermissions.php",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_4e5035d4",
+        "filename": "includes/PostActionPermissions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-30T14:28:42Z",
+      "side": 1,
+      "message": "An object from this class is created from both Templating \u0026 TopicBlock.\n\nI\u0027m changing it to accept the actions in the constructor.\n\nI\u0027m not going to toss in the container to Templating or TopicBlock constructors, though, since what\u0027s needed from $container is still quite limited and I don\u0027t want to make it too easy to just grab anything from container in there. For now, I\u0027m going to fetch them there via Container::get*\n\nSome day, we should refactor some of that. Either we inject $container into Templating (and get rid of injecting urlGenerator etc, which can then be fetched from container), or make sure we don\u0027t need the container in there.\n\nFor this patch, I suggest leaving it \"hacky\", with a simple @todo that we should some day improve it - once we refactor the shit out of Templating ;)",
+      "parentUuid": "291c1151_3abedcd1",
+      "revId": "4fc2c3afc2e2beb89c8e64d838ba9e480e82d1e7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_ba93ac59",
         "filename": "includes/View/PostActionMenu.php",
         "patchSetId": 1
@@ -81,6 +153,24 @@
       "writtenOn": "2013-10-28T20:48:42Z",
       "side": 1,
       "message": "similar concerns with globals here, have not looked into what it would take to push this out into the container.",
+      "revId": "4fc2c3afc2e2beb89c8e64d838ba9e480e82d1e7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_6e5df1e8",
+        "filename": "includes/View/PostActionMenu.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-10-30T14:28:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "291c1151_ba93ac59",
       "revId": "4fc2c3afc2e2beb89c8e64d838ba9e480e82d1e7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
