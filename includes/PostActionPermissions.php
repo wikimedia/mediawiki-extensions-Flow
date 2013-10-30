@@ -10,6 +10,13 @@ use Closure;
  */
 class PostActionPermissions {
 
+	/**
+	 * @var array List of actions (as strings) that do *not* modify anything
+	 *            and are used strictly for viewing.  A user *must* have the core
+	 *            'edit' permission to perform any action not in this list.
+	 */
+	static private $readPermissions = array( 'post-history', 'view' );
+
 	public function __construct( $user ) {
 		$this->user = $user;
 
@@ -96,6 +103,10 @@ class PostActionPermissions {
 	 */
 	public function isAllowed( PostRevision $post, $action ) {
 		if ( !isset( $this->actions[$action] ) ) {
+			return false;
+		}
+		// Users must have the core 'edit' permission to perform any write action in flow
+		if ( false === array_search( $action, self::$readPermissions ) && !$this->user->isAllowed( 'edit' ) ) {
 			return false;
 		}
 		$permissions = $this->actions[$action];

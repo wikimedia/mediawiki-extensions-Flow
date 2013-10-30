@@ -167,6 +167,9 @@ abstract class AbstractRevision {
 	 * and it is not the most recent revision.
 	 */
 	public function newNullRevision( User $user ) {
+		if ( !$user->isAllowed( 'edit' ) ) {
+			throw new \MWException( 'User does not have core edit permission' );
+		}
 		$obj = clone $this;
 		$obj->revId = UUID::create();
 		$obj->userId = $user->getId();
@@ -252,11 +255,12 @@ abstract class AbstractRevision {
 	}
 
 	/**
+	 * Is the user allowed to see this revision?
+	 *
 	 * @param User $user The user requesting access.  When null assumes a user with no permissions.
 	 * @param int $state One of the self::MODERATED_* constants. When null the internal moderation state is used.
 	 * @return boolean True when the user is allowed to see the current revision
 	 */
-	// Is the user allowed to see this revision ?
 	public function isAllowed( $user = null, $state = null ) {
 		// allowing a $state to be passed is a bit hackish
 		if ( $state === null ) {
