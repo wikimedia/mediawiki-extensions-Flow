@@ -16,6 +16,24 @@
       "revId": "2e75ad01a4dec151f0b263f1eb253a31e1f24834",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_65deef0f",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-10-30T19:39:39Z",
+      "side": 1,
+      "message": "Locally testing with chrome that bit of code isn\u0027t triggered if already on the page, only when loading a new page.",
+      "parentUuid": "291c1151_9c2a6b7e",
+      "revId": "2e75ad01a4dec151f0b263f1eb253a31e1f24834",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
