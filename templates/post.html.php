@@ -15,15 +15,21 @@ if ( !$post->isModerated() ) {
 			$replyForm .= $error->text() . '<br>'; // the pain ...
 		}
 	}
+
+	$placeHolder = wfMessage( 'flow-reply-placeholder', $this->getUserText( $post->getCreator( $user ), $post ) )->text();
 	$replyForm .=
 		Html::element( 'input', array(
 			'type' => 'hidden',
 			'name' => $block->getName() . '[replyTo]',
 			'value' => $post->getPostId()->getHex(),
 		) ) .
+		Html::element( 'input', array(
+			'type' => 'hidden',
+			'name' => 'placeholder',
+			'value' => $placeHolder,
+		) ) .
 		Html::textarea( $block->getName() . '[content]', '', array(
-			'placeholder' => wfMessage( 'flow-reply-placeholder',
-				$this->getUserText( $post->getCreator( $user ), $post ) )->text(),
+			'placeholder' => $placeHolder,
 			'class' => 'flow-reply-content flow-input mw-ui-input',
 		) ) .
 		// NOTE: cancel button will be added via JS, makes no sense in non-JS context
