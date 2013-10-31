@@ -27,12 +27,12 @@ class FlowActions {
 
 	/**
 	 * @param string $action
-	 * @param string $type
+	 * @param string[optional] $type
 	 * @param string[optional] $option Function can be overloaded in case the
 	 * desired value is nested deeper
 	 * @return mixed|null Requested value or null if missing
 	 */
-	public function getValue( $action, $type /* [, $option = null [, ...]] */ ) {
+	public function getValue( $action, $type = null /* [, $option = null [, ...]] */ ) {
 		$arguments = func_get_args();
 
 		try {
