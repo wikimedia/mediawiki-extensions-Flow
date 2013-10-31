@@ -65,18 +65,6 @@ echo Html::openElement( 'div', array(
 			?>
 		</p>
 
-		<?php
-			echo Html::element(
-				'a',
-				array(
-					'class' => 'flow-icon-permalink flow-icon flow-icon-top-aligned',
-					'title' => wfMessage( 'flow-topic-action-view' )->text(),
-					'href' => $this->generateUrl( $topic ),
-				),
-				wfMessage( 'flow-topic-action-view' )->text()
-			);
-		?>
-
 		<ul class="flow-topic-posts-meta">
 			<li class="flow-topic-participants">
 				<?php echo $this->printParticipants( $root, $indexParticipants ); ?>
@@ -85,6 +73,7 @@ echo Html::openElement( 'div', array(
 				<a href="#" class="flow-reply-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
 					<?php
 						// get total number of posts in topic
+						// @todo : the number of comments should not be a part of the link
 						$comments = $root->getRecursiveResult( $indexDescendantCount );
 						echo wfMessage( 'flow-topic-comments', $comments )->text();
 					?>
@@ -93,9 +82,23 @@ echo Html::openElement( 'div', array(
 		</ul>
 
 		<?php
-			// @todo: afaik, there's no watchlist functionality yet; this blurb is just to position it correctly already
+			echo Html::element(
+				'a',
+				array(
+					'class' => 'flow-icon-permalink flow-icon flow-icon-bottom-aligned',
+					'title' => wfMessage( 'flow-topic-action-view' )->text(),
+					'href' => $this->generateUrl( $topic ),
+				),
+				wfMessage( 'flow-topic-action-view' )->text()
+			);
+		?>
+
+		<?php
 
 			$watchlistActive = false; // @todo: true if already watchlisted, false if not
+			/* @todo: afaik, there's no watchlist functionality yet; this blurb is just to
+			 * position it correctly already
+			 *
 			echo Html::element(
 				'a',
 				array(
@@ -107,6 +110,7 @@ echo Html::openElement( 'div', array(
 				),
 				wfMessage( 'flow-topic-action-watchlist' )->text()
 			);
+			*/
 		?>
 	</div>
 </div>
@@ -149,6 +153,7 @@ echo Html::openElement( 'div', array(
 	Html::textarea( $block->getName() . '[topic-reply-content]', '', array(
 		'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
 		'class' => 'flow-input mw-ui-input flow-topic-reply-content',
+		'title' => wfMessage( 'flow-reply-submit', $this->getUserText( $root->getCreator( $user ), $root ) )->text(),
 	) ),
 	Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
 	Html::element( 'input', array(
