@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Model\PostRevision;
+use Flow\Model\Header;
 use Flow\PostActionPermissions;
 use Flow\Log\Logger;
 use Flow\UrlGenerator;
@@ -219,7 +220,9 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-restored-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getModeratedByUserText();
+					// moderatedByUserText is null for restored (because that
+					// that actually reverts any moderation to MODERATED_NONE)
+					return $revision->getUserText( $user );
 				},
 				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
 					return $revision->getUserText( $user );
