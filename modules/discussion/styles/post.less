@@ -5,13 +5,13 @@
 	clear: both;
 
 	.flow-post {
-		margin-top: 20px;
-		margin-bottom: 20px;
+		margin: 10px 0;
 		padding-left: 16px;
 	}
 
 	.flow-post-title {
-		padding-bottom: 22px;
+		padding-bottom: 8px;
+		padding-top: 10px;
 
 		.flow-creator {
 			font-weight: bold;
@@ -24,7 +24,7 @@
 		font-weight: normal;
 		color: @post-content-color;
 
-		padding-bottom: 20px;
+		padding-bottom: 13px;
 
 		*:first-child {
 			margin-top: 0;
@@ -36,7 +36,7 @@
 	}
 
 	.flow-edit-post-link {
-		margin-top: -60px !important; // default -40px + -20px to be pushed up (because of .flow-post-content bottom padding)
+		margin-top: -73px !important; // default -40px + -20px to be pushed up (because of .flow-post-content bottom padding)
 
 		background-position: center;
 		background-size: 20px auto;
@@ -49,7 +49,7 @@
 	}
 
 	.flow-icon-permalink {
-		margin-top: -30px !important;
+		margin-top: -40px !important;
 
 		background-position: center;
 		background-size: 20px auto;
@@ -69,6 +69,7 @@
 	.flow-datestamp {
 		float: right;
 		padding-right: 22px;
+		font-size: 14px;
 
 		a.flow-action-history-link {
 			color: inherit;
@@ -114,7 +115,7 @@
 		@onclick-icon,
 		@onclick-fallback-icon
 	) {
-		padding-left: 42px;
+		padding-left: 41px;
 		// !important to overwrite MW core's background image
 		.background-image-svg(@normal-icon, @normal-fallback-icon) !important;
 
@@ -186,7 +187,7 @@
 
 	.flow-post-replies {
 		margin-left: 22px;
-		border-left: 1px solid #999;
+		border-left: 2px dotted #CCC;
 		
 		.flow-post-replies {
 			border-left: 0px solid transparent;
@@ -194,11 +195,18 @@
 		}
 	}
 
+	.flow-thank-link, .flow-reply-link {
+		height: 16px;
+		padding-bottom: 9px;
+		padding-top: 5px;
+		font-size: 14px;
+		margin-right: 8px;
+	}
 	.flow-thank-link {
-		padding-left: 46px;
+		padding-left: 41px;
 
 		.background-image-svg('../../base/images/thank.svg', '../../base/images/thank.png');
-		background-position: 16px;
+		background-position: 12px 4px;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
 	}
@@ -317,7 +325,9 @@
 	.flow-post-container {
 		// hacky way to flatten conversation;
 		// make anything over 2 indentation levels appear on same level
-		margin-top: 0px;
+		margin-top: 20px;
+		font-size: 14px;
+
 		.flow-post-container {
 			padding-left: 0px;
 		}
