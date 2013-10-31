@@ -57,7 +57,7 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_last_oldid' => 0,
 			'rc_params' => serialize( array(
 				'flow-workflow-change' => array(
-					'type' => $type,
+					'type' => $type, // @todo: need a maintenance script that retroactively fixes these
 					'workflow' => $workflow->getId()->getHex(),
 					'definition' => $workflow->getDefinitionId()->getHex(),
 				) + $changes,
