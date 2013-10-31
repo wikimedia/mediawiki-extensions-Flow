@@ -2,16 +2,19 @@
 @import 'mediawiki.mixins.less';
 
 .flow-topic-container {
-	padding-bottom: 54px;
+	padding-bottom: 20px;
 
 	.flow-titlebar {
 		position: relative;
+		
+		.flow-topic-children-container {
+			padding-top: 10px;
+		}
 
 		// override mw-ui-button style
 		text-align: left;
 		display: block;
-		padding: 24px 22px;
-		margin-bottom: 30px;
+		padding: 15px 22px;
 		font-weight: normal;
 		background: @topic-titlebar-background-color;
 
@@ -25,7 +28,7 @@
 		}
 
 		.flow-topic-title {
-			padding-bottom: 30px;
+			padding-bottom: 15px;
 
 			// leave some room for .flow-topic-actions-link on the right
 			margin-right: 44px;
@@ -75,7 +78,7 @@
 
 			li {
 				line-height: 16px;
-				padding: 0 0 14px 0;
+				padding: 0 0 9px 0;
 
 				&:last-child {
 					padding: 0;
@@ -92,7 +95,8 @@
 
 			position: absolute;
 			right: 22px;
-			bottom: 22px;
+			bottom: 16px;
+			font-size: 14px;
 
 			a.flow-action-history-link {
 				color: inherit;
@@ -101,14 +105,14 @@
 
 		.flow-icon {
 			// additional push to the right because of container's padding & border
-			margin-right: -23px; // container's right padding + right border
+			margin-right: -20px; // container's right padding + right border
 
 			&.flow-icon-top-aligned {
-				margin-top: -12px; // half of container's top padding
+				margin-top: -2px;
 			}
 
 			&.flow-icon-bottom-aligned {
-				margin-top: -28px; // -40px - half of container's bottom padding
+				margin-top: -31px;
 			}
 		}
 
@@ -162,12 +166,16 @@
 	}
 }
 
-.flow-new-topic-container {
-	.flow-newtopic-form {
+.flow-new-topic-container {;
+	.flow-newtopic-form {;
 		padding-bottom: 30px;
+		height: 42px;
 
 		.flow-newtopic-title {
 			font-weight: bold;
+
+			padding-left: 45px;
+			padding-top: 3px;
 		}
 
 		.flow-post-form-controls {
@@ -175,6 +183,10 @@
 		}
 
 		.flow-new-topic-link {
+			margin-left: -44px;
+			margin-top: 1px;
+			float: left;
+
 			background-position: center center;
 			background-size: 25px auto;
 			background-repeat: no-repeat;
@@ -190,6 +202,7 @@
 .flow-topic-reply-container {
 	padding-left: 22px;
 	margin-top: 20px;
+	margin-bottom: 20px;
 
 	.flow-creator {
 		font-weight: bold;
@@ -198,10 +211,17 @@
 	}
 
 	.flow-topic-reply-form {
-		margin-top: 22px;
+		margin-top: 8px;
+		height: 42px;
 
 		.flow-post-form-controls {
 			text-align: right;
+		}
+
+		textarea {
+			padding: 9px 0 9px 15px;
+			resize: none;
+			height: 42px;
 		}
 	}
 
@@ -213,8 +233,8 @@
 	// will shrink the textarea, and the "submit" button will be missed.
 	&:not(:active) {
 		.flow-topic-reply-content:empty:not(:focus) {
-			height: 34px;
-			padding-top: 6px;
+			// height: 34px;
+			//padding-top: 6px;
 		}
 	}
 }
