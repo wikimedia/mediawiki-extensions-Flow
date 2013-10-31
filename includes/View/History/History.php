@@ -6,8 +6,8 @@ use MWTimestamp;
 use FakeResultWrapper;
 
 /**
- * History is just an Iterator which takes an array of PostRevisions and sorts
- * them on timestamp, DESC.
+ * History is just an Iterator which takes an array of AbstractRevisions and
+ * sorts them on timestamp, DESC.
  * It provides 1 addition method: getTimespan, which will return all records
  * between 2 specified dates.
  */

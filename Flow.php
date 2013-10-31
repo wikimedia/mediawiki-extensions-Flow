@@ -47,7 +47,6 @@ define( 'RC_SRC_FLOW', 'flow' ); // replaces RC_FLOW
 // Autoload
 $dir = __DIR__ . '/';
 require $dir . 'Resources.php';
-require $dir . 'HistoryActions.php';
 
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
 $wgExtensionMessagesFiles['FlowAlias'] = $dir . 'Flow.alias.php';
@@ -232,7 +231,7 @@ $wgFlowMaxMentionCount = 100;
 $wgFlowOccupyPages = array();
 
 // Namespaces to occupy is an array of NS_* constants, e.g. array( NS_USER_TALK ).
-$wgFlowOccupyNamespaces = array();
+$wgFlowOccupyNamespaces = array( NS_TALK );
 
 // Action details config file
 require $dir . 'FlowActions.php';

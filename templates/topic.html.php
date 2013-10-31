@@ -54,14 +54,23 @@ echo Html::openElement( 'div', array(
 					<span class="flow-agotime" style="display: inline">' . htmlspecialchars( $topic->getLastModifiedObj()->getHumanTimestamp() ) . '</span>
 					<span class="flow-utctime" style="display: none">' . htmlspecialchars( $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) ) . '</span>';
 
-				// build history button with timestamp html as content
-				echo Html::rawElement( 'a',
-					array(
-						'class' => 'flow-action-history-link',
-						'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
-					),
-					$content
-				);
+				// topic has history if:
+				// * $root (topic title) revision has been changed
+				// * $root has > 1 children (= 1st post is the topic content)
+				// * 1st post has > 1 children (= replies to the first post)
+				$children = $root->getChildren();
+				if ( $root->getPrevRevisionId() !== null || count( $children ) > 1 || count( $children[0]->getChildren() ) > 0 ) {
+					// build history button with timestamp html as content
+					echo Html::rawElement( 'a',
+						array(
+							'class' => 'flow-action-history-link',
+							'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
+						),
+						$content
+					);
+				} else {
+					echo $content;
+				}
 			?>
 		</p>
 

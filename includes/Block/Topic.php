@@ -125,7 +125,7 @@ class TopicBlock extends AbstractBlock {
 				return;
 			}
 
-			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'flow-rev-message-edit-title' );
+			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
 
 			$this->setNotification(
 				'flow-topic-renamed',
@@ -324,7 +324,7 @@ class TopicBlock extends AbstractBlock {
 		switch( $this->action ) {
 		case 'post-history':
 			$templating->getOutput()->addModules( 'ext.flow.history' );
-			return $this->renderPostHistory( $templating, $options, $return );
+			return $prefix . $this->renderPostHistory( $templating, $options, $return );
 
 		case 'topic-history':
 			$templating->getOutput()->addModules( 'ext.flow.history' );
@@ -335,7 +335,7 @@ class TopicBlock extends AbstractBlock {
 
 			$root = $this->loadRootPost();
 
-			return $templating->render( "flow:topic-history.html.php", array(
+			return $prefix . $templating->render( "flow:topic-history.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
 				'root' => $root,
@@ -705,5 +705,4 @@ class TopicBlock extends AbstractBlock {
 				)
 			);
 	}
-
 }
