@@ -32,7 +32,7 @@ abstract class RecentChanges implements LifecycleHandler {
 		// nothing to do
 	}
 
-	protected function insert( $type, array $row, Workflow $workflow, $timestamp, array $changes ) {
+	protected function insert( $action, $block, $revisionType, $revisionId, array $row, Workflow $workflow, $timestamp, array $changes ) {
 		if ( $timestamp instanceof UUID ) {
 			$timestamp = $timestamp->getTimestamp();
 		}
@@ -54,7 +54,10 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_last_oldid' => 0,
 			'rc_params' => serialize( array(
 				'flow-workflow-change' => array(
-					'type' => $type, // @todo: need a maintenance script that retroactively fixes these
+					'action' => $action,
+					'block' => $block,
+					'revision_type' => $revisionType,
+					'revision' => $revisionId,
 					'workflow' => $workflow->getId()->getHex(),
 					'definition' => $workflow->getDefinitionId()->getHex(),
 				) + $changes,
@@ -86,11 +89,13 @@ class HeaderRecentChanges extends RecentChanges {
 
 		$this->insert(
 			$object->getChangeType(),
+			'header',
+			'Header',
+			$object->getRevisionId()->getHex(),
 			$row,
 			$workflow,
 			$object->getRevisionId(),
 			array(
-				'revision' => $object->getRevisionId()->getHex(),
 				'content' => $this->contLang->truncate( $object->getContent(), self::TRUNCATE_LENGTH ),
 			)
 		);
@@ -120,12 +125,14 @@ class PostRevisionRecentChanges extends RecentChanges {
 
 		$this->insert(
 			$object->getChangeType(),
+			'topic',
+			'PostRevision',
+			$object->getRevisionId()->getHex(),
 			$row,
 			$workflow,
 			$object->getRevisionId(),
 			array(
 				'post' => $object->getPostId()->getHex(),
-				'revision' => $object->getRevisionId()->getHex(),
 				'topic' => $this->getTopicTitle( $object ),
 			)
 		);

@@ -3,8 +3,12 @@
 namespace Flow\RecentChanges;
 
 use Flow\Container;
+use Flow\Data\ManagerGroup;
+use Flow\FlowActions;
+use Flow\Model\UUID;
 use Flow\UrlGenerator;
 use ChangesList;
+use Flow\WorkflowLoaderFactory;
 use Language;
 use Linker;
 use Html;
@@ -13,7 +17,35 @@ use Title;
 use User;
 
 class Formatter {
-	public function __construct( UrlGenerator $urlGenerator, Language $lang ) {
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
+
+	/**
+	 * @var WorkflowLoaderFactory
+	 */
+	protected $workflowLoaderFactory;
+
+	/**
+	 * @var FlowActions
+	 */
+	protected $actions;
+
+	/**
+	 * @var UrlGenerator
+	 */
+	protected $urlGenerator;
+
+	/**
+	 * @var Language
+	 */
+	protected $lang;
+
+	public function __construct( ManagerGroup $storage, WorkflowLoaderFactory $workflowLoaderFactory, FlowActions $actions, UrlGenerator $urlGenerator, Language $lang ) {
+		$this->actions = $actions;
+		$this->storage = $storage;
+		$this->workflowLoaderFactory = $workflowLoaderFactory;
 		$this->urlGenerator = $urlGenerator;
 		$this->lang = $lang;
 	}
@@ -28,15 +60,15 @@ class Formatter {
 		}
 
 		// used in $this->buildActionLinks()
-		if ( !array_key_exists( 'type', $changeData ) ) {
-			wfWarn( __METHOD__ . ': Flow change type missing' );
+		if ( !array_key_exists( 'action', $changeData ) ) {
+			wfWarn( __METHOD__ . ': Flow action missing' );
 			return false;
 		}
 
 		$line = '';
 		$title = $rc->getTitle();
 		$links = $this->buildActionLinks( $title, $changeData );
-		
+
 		if ( $links ) {
 			$linksContent = $cl->getLanguage()->pipeList( $links );
 			$line .= wfMessage( 'parentheses' )->rawParams( $linksContent )->text()
@@ -51,47 +83,47 @@ class Formatter {
 			. ' '
 			. $this->userLinks( $cl, $rc->getAttribute( 'rc_user_id' ), $rc->getAttribute( 'rc_user_text' ) )
 			. ' '
-			. $this->getActionDescription( $changeData );
+			. $this->getActionDescription( $changeData, $cl, $rc );
 
 		return $line;
 	}
 
 	protected function buildActionLinks( Title $title, array $changeData ) {
 		$links = array();
-		switch( $changeData['type'] ) {
-		case 'flow-rev-message-reply':
-			$links[] = $this->topicLink( $title, $changeData );
-			break;
+		switch( $changeData['action'] ) {
+			case 'reply':
+				$links[] = $this->topicLink( $title, $changeData );
+				break;
 
-		case 'flow-rev-message-new-post': // fall through
-		case 'flow-rev-message-edit-post':
-			$links[] = $this->topicLink( $title, $changeData );
-			$links[] = $this->postLink( $title, $changeData );
-			break;
+			case 'new-post': // fall through
+			case 'edit-post':
+				$links[] = $this->topicLink( $title, $changeData );
+				$links[] = $this->postLink( $title, $changeData );
+				break;
 
-		case 'flow-rev-message-hid-comment':
-			$links[] = $this->topicLink( $title, $changeData );
-			$links[] = $this->postHistoryLink( $title, $changeData );
-			break;
+			case 'hide-post':
+				$links[] = $this->topicLink( $title, $changeData );
+				$links[] = $this->postHistoryLink( $title, $changeData );
+				break;
 
-		case 'flow-rev-message-edit-title':
-			$links[] = $this->topicLink( $title, $changeData );
-			// This links to the history of the topic title
-			$links[] = $this->postHistoryLink( $title, $changeData );
-			break;
+			case 'edit-title':
+				$links[] = $this->topicLink( $title, $changeData );
+				// This links to the history of the topic title
+				$links[] = $this->postHistoryLink( $title, $changeData );
+				break;
 
-		case 'flow-rev-message-create-header': // fall through
-		case 'flow-rev-message-edit-header':
-			//$links[] = $this->workflowLink( $title, $changeData );
-			break;
+			case 'create-header': // fall through
+			case 'edit-header':
+				//$links[] = $this->workflowLink( $title, $changeData );
+				break;
 
-		case null:
-			wfWarn( __METHOD__ . ': Flow change has null change type' );
-			return false;
+			case null:
+				wfWarn( __METHOD__ . ': Flow change has null change type' );
+				return false;
 
-		default:
-			wfWarn( __METHOD__ . ': Unknown Flow change type: ' . $changeData['type'] );
-			return false;
+			default:
+				wfWarn( __METHOD__ . ': Unknown Flow action: ' . $changeData['action'] );
+				return false;
 		}
 
 		return $links;
@@ -172,13 +204,67 @@ class Formatter {
 		);
 	}
 
-	public function getActionDescription( array $changeData ) {
-		$msg = wfMessage( $changeData['type'] )->text();
-
-		if ( isset( $changeData['topic'] ) ) {
-			$msg .= ' ' . wfMessage( 'parentheses' )->rawParams( $changeData['topic'] );
+	public function getActionDescription( array $changeData, ChangesList $cl, RecentChange $rc ) {
+		// Fetch Block object
+		$title = Title::newFromText( $rc->getAttribute( 'rc_title' ), (int) $rc->getAttribute( 'rc_namespace' ) );
+		$block = $this->loadBlock( $title, $changeData['workflow'], $changeData['block'] );
+		if ( !$block ) {
+			return '';
 		}
 
-		return $msg;
+		// Fetch requested Revision
+		$revision = $this->storage->get( $changeData['revision_type'], UUID::create( $changeData['revision'] ) );
+		if ( !$revision ) {
+			return '';
+		}
+
+		// Build description message, piggybacking on history i18n
+		$msg = $this->actions->getValue( $changeData['action'], 'history', 'i18n-message' );
+		$params = $this->actions->getValue( $changeData['action'], 'history', 'i18n-params' );
+		return $this->buildMessage( $msg, (array) $params, array(
+			$revision,
+			$this->urlGenerator,
+			$cl->getUser(),
+			$block
+		) )->parse();
+	}
+
+	/**
+	 * @param Title $title
+	 * @param string $definitionId
+	 * @param string $workflowId
+	 * @param string $name Block name
+	 * @return AbstractBlock|false Requested block or false on failure
+	 */
+	protected function loadBlock( Title $title, $workflowId, $name ) {
+		$loader = $this->workflowLoaderFactory
+			->createWorkflowLoader( $title, UUID::create( $workflowId ) );
+		$blocks = $loader->createBlocks();
+		return isset( $blocks[$name] ) ? $blocks[$name] : false;
+	}
+
+	/**
+	 * Returns i18n message for $msg; piggybacking on History i18n.
+	 *
+	 * Complex parameters can be injected in the i18n messages. Anything in
+	 * $params will be call_user_func'ed, with these given $arguments.
+	 * Those results will be used as message parameters.
+	 *
+	 * Note: return array( 'raw' => $value ) or array( 'num' => $value ) for
+	 * raw or numeric parameter input.
+	 *
+	 * @param string $msg i18n key
+	 * @param array[optional] $params Callbacks for parameters
+	 * @param array[optional] $arguments Arguments for the callbacks
+	 * @return Message
+	 */
+	protected function buildMessage( $msg, array $params = array(), array $arguments = array() ) {
+		foreach ( $params as &$param ) {
+			$param = call_user_func_array( $param, $arguments );
+		}
+var_dump($msg);
+var_dump($params);
+
+		return wfMessage( $msg, $params );
 	}
 }
