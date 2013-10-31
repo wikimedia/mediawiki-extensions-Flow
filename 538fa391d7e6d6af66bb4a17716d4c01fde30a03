@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_f1e1bd00",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-31T04:22:28Z",
+      "side": 1,
+      "message": "Wouldn\u0027t mind a comment here to be clear on what\u0027s going on.",
+      "revId": "538fa391d7e6d6af66bb4a17716d4c01fde30a03",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_31c5155e",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-31T04:22:28Z",
+      "side": 1,
+      "message": "Should either throw an error or do all revisions.",
+      "revId": "538fa391d7e6d6af66bb4a17716d4c01fde30a03",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_51a291b2",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-10-31T04:22:28Z",
+      "side": 1,
+      "message": "Throw an exception rather than a warning.",
+      "revId": "538fa391d7e6d6af66bb4a17716d4c01fde30a03",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
