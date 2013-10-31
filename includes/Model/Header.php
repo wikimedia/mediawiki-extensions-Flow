@@ -41,4 +41,3 @@ class Header extends AbstractRevision {
 		return $this->workflowId;
 	}
 }
-
