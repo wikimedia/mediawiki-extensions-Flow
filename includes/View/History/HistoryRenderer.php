@@ -110,7 +110,7 @@ class HistoryRenderer {
 				continue;
 
 			// This record is part of a bundle, render it.
-			} elseif ( $record->isBundled() &&count( $bundles[$class] ) > 1 ) {
+			} elseif ( $record->isBundled() && count( $bundles[$class] ) > 1 ) {
 				$bundle = new HistoryBundle( $bundles[$class] );
 				$output .= $this->renderLine( $bundle );
 
@@ -146,7 +146,7 @@ class HistoryRenderer {
 			'message' => $record->getMessage(
 				// Arguments for the i18n messages' parameter callbacks.
 				$record->getData(),
-				$this->templating->urlGenerator,
+				$this->templating->getUrlGenerator(),
 				$wgUser,
 				$this->block
 			),
