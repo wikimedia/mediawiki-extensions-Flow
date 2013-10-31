@@ -2,11 +2,11 @@
 
 namespace Flow\View\History;
 
-use Flow\Model\PostRevision;
+use Flow\Model\AbstractRevision;
 
 /**
  * HistoryBundle is quite similar to HistoryRecord, but accepts an array of
- * PostRevision values. Instead of return the info for a specific revision's
+ * AbstractRevision values. Instead of return the info for a specific revision's
  * action, it will return the action's bundle info.
  */
 class HistoryBundle extends HistoryRecord {
@@ -30,7 +30,7 @@ class HistoryBundle extends HistoryRecord {
 	}
 
 	/**
-	 * @return PostRevision
+	 * @return AbstractRevision
 	 */
 	public function getRevision() {
 		return $this->data[0];
@@ -38,10 +38,15 @@ class HistoryBundle extends HistoryRecord {
 
 	/**
 	 * @param string $action
-	 * @return array|bool Array of action details or false if invalid
+	 * @return array Array of action details
 	 */
 	protected function getActionDetails( $action ) {
-		$details = parent::getActionDetails( $action );
-		return isset( $details['bundle'] ) ? $details['bundle'] : false;
+		$details = $this->getActions()->getValue( $action, 'history', 'bundle' );
+
+		if ( $details === null ) {
+			throw new MWException( "History bundle action '$action' is not defined." );
+		}
+
+		return $details;
 	}
 }

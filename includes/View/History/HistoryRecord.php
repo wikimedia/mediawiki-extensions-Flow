@@ -2,15 +2,17 @@
 
 namespace Flow\View\History;
 
+use Flow\Container;
+use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use MWException;
 use MWTimestamp;
 use Message;
 
 /**
- * HistoryRecord accepts a AbstractRevision and, based on $wgFlowHistoryActions,
- * provides some methods to access history-related information for this
- * revision's specific action.
+ * HistoryRecord accepts an AbstractRevision and, based on FlowActions, provides
+ * some methods to access history-related information for this revision's
+ * specific action.
  */
 class HistoryRecord {
 	/**
@@ -26,19 +28,31 @@ class HistoryRecord {
 	}
 
 	/**
+	 * @return FlowActions
+	 */
+	protected function getActions() {
+		/*
+		 * It's not pretty how this is just pulled form container, but I don't
+		 * want to pass along the actions config to all classes.
+		 * I think pulling config is perhaps not that bad ;)
+		 */
+		return Container::get( 'flow_actions' );
+	}
+
+	/**
 	 * Returns action details.
 	 *
 	 * @param string $action
 	 * @return array|bool Array of action details or false if invalid
 	 */
 	protected function getActionDetails( $action ) {
-		global $wgFlowHistoryActions;
+		$details = $this->getActions()->getValue( $action, 'history' );
 
-		if ( !isset( $wgFlowHistoryActions[$action] ) ) {
+		if ( $details === null ) {
 			throw new MWException( "History action '$action' is not defined." );
 		}
 
-		return $wgFlowHistoryActions[$action];
+		return $details;
 	}
 
 	/**
