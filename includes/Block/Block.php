@@ -106,4 +106,8 @@ abstract class AbstractBlock implements Block {
 	public function getWorkflowId() {
 		return $this->workflow->getId();
 	}
+
+	public function getStorage() {
+		return $this->storage;
+	}
 }

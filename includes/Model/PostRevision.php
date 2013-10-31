@@ -38,7 +38,7 @@ class PostRevision extends AbstractRevision {
 		$obj->origCreateTime = wfTimestampNow();
 		$obj->replyToId = null; // not a reply to anything
 		$obj->prevRevId = null; // no parent revision
-		$obj->changeType = 'flow-rev-message-new-post';
+		$obj->changeType = 'new-post';
 		$obj->setContent( $content );
 		return $obj;
 	}
@@ -69,7 +69,7 @@ class PostRevision extends AbstractRevision {
 		);
 	}
 
-	public function reply( User $user, $content, $changeType = 'flow-rev-message-reply' ) {
+	public function reply( User $user, $content, $changeType = 'reply' ) {
 		$reply = new self;
 		// No great reason to create two uuid's,  a post and its first revision can share a uuid
 		$reply->revId = $reply->postId = UUID::create();
