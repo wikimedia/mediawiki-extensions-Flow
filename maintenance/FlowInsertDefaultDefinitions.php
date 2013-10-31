@@ -3,17 +3,12 @@
 use Flow\Container;
 use Flow\Model\UUID;
 
-/**
- * Remove invalid events from echo_event and echo_notification
- *
- * @ingroup Maintenance
- */
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
 	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
 
 /**
- * Maintenance script that removes invalid notifications
+ * Inserts Flow's default definitions
  *
  * @ingroup Maintenance
  */
@@ -21,7 +16,7 @@ class FlowInsertDefaultDefinitions extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$container = Container::getContainer();
-		$dbw = $container[ 'db.factory']->getDB( DB_MASTER );
+		$dbw = $container['db.factory']->getDB( DB_MASTER );
 
 		$res = $dbw->select(
 			/* table */'flow_definition',

@@ -47,6 +47,9 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowInsertDefaultDefinitions.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowInsertDefaultDefinitions' );
 
+		require_once __DIR__.'/maintenance/FlowUpdateRecentChanges.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRecentChanges' );
+
 		return true;
 	}
 

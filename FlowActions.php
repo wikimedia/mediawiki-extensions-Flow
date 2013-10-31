@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Model\PostRevision;
+use Flow\Model\Header;
 use Flow\PostActionPermissions;
 use Flow\Log\Logger;
 use Flow\UrlGenerator;

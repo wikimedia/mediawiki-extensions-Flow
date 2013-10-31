@@ -231,7 +231,7 @@ $wgFlowMaxMentionCount = 100;
 $wgFlowOccupyPages = array();
 
 // Namespaces to occupy is an array of NS_* constants, e.g. array( NS_USER_TALK ).
-$wgFlowOccupyNamespaces = array( NS_TALK );
+$wgFlowOccupyNamespaces = array();
 
 // Action details config file
 require $dir . 'FlowActions.php';
