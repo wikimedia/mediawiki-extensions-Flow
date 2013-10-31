@@ -376,6 +376,9 @@ $c['controller.notification'] = $c->share( function( $c ) {
 $c['recentchanges.formatter'] = $c->share( function( $c ) {
 	global $wgLang;
 	return new Flow\RecentChanges\Formatter(
+		$c['storage'],
+		$c['factory.loader.workflow'],
+		$c['flow_actions'],
 		$c['url_generator'],
 		$wgLang
 	);
