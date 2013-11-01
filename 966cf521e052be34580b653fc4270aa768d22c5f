@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_b17ae0b5",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-01T00:30:27Z",
+      "side": 1,
+      "message": "Are these here on purpose?",
+      "revId": "966cf521e052be34580b653fc4270aa768d22c5f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_11449475",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-01T00:30:27Z",
+      "side": 1,
+      "message": "Should either remove or uncomment.",
+      "revId": "966cf521e052be34580b653fc4270aa768d22c5f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
