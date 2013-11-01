@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_1472c2ad",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-01T01:52:34Z",
+      "side": 1,
+      "message": "There won\u0027t be any mentionedUsers if there\u0027s no new revision, so this is safe to leave as is.",
+      "revId": "8938981535b4cc7ef0b14df7fee6bb58a754468e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_3475fe93",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-01T01:52:34Z",
+      "side": 1,
+      "message": ":p",
+      "revId": "8938981535b4cc7ef0b14df7fee6bb58a754468e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
