@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "291c1151_7a211dff",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-11-01T18:51:00Z",
+      "side": 1,
+      "message": "If a topic is hidden, the page would just throw an internal error for users without viewing right due to this exception.  In this case, we should skip hidden topic rendering.  In other page rendering blocks, we may want to add nicer error handling than just throwing an exception",
+      "revId": "538fa391d7e6d6af66bb4a17716d4c01fde30a03",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_31c5155e",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 6
