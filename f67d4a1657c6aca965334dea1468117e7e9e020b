@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_1a33c962",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-11-01T18:43:38Z",
+      "side": 1,
+      "message": "Would there be a problem with adding the plainlinks span around the full mesasge, removing it from the L10n and moving it to the code?",
+      "revId": "f67d4a1657c6aca965334dea1468117e7e9e020b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
