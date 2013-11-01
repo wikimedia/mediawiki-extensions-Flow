@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_45d1e652",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-01T20:56:12Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "291c1151_f1e1bd00",
+      "revId": "538fa391d7e6d6af66bb4a17716d4c01fde30a03",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_7a211dff",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2013-11-01T18:51:00Z",
       "side": 1,
       "message": "If a topic is hidden, the page would just throw an internal error for users without viewing right due to this exception.  In this case, we should skip hidden topic rendering.  In other page rendering blocks, we may want to add nicer error handling than just throwing an exception",
+      "revId": "538fa391d7e6d6af66bb4a17716d4c01fde30a03",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_85c3de8b",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-01T20:56:12Z",
+      "side": 1,
+      "message": "Good call, i will go back through and make these various permission denied render an error page roughly similar to what a user would see visiting a similarly moderated core revision",
+      "parentUuid": "291c1151_7a211dff",
       "revId": "538fa391d7e6d6af66bb4a17716d4c01fde30a03",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_455ba6f3",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-01T20:56:12Z",
+      "side": 1,
+      "message": "throwing an error is probably unacceptable, it makes a post un-moderatable once it gets to a certain length.  \n\nWhat if we moved the \u0027historical\u0027 moderation into the storage class and out of the frontend code, such that storage sees a new revision being written and does the historical update with direct DB manipulation?",
+      "parentUuid": "291c1151_31c5155e",
+      "revId": "538fa391d7e6d6af66bb4a17716d4c01fde30a03",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_51a291b2",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2013-10-31T04:22:28Z",
       "side": 1,
       "message": "Throw an exception rather than a warning.",
+      "revId": "538fa391d7e6d6af66bb4a17716d4c01fde30a03",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_a56c5a9e",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-01T20:56:12Z",
+      "side": 1,
+      "message": "Yea this likely deserves a fatal.",
+      "parentUuid": "291c1151_51a291b2",
       "revId": "538fa391d7e6d6af66bb4a17716d4c01fde30a03",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
