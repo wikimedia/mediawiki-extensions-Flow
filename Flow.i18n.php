@@ -383,7 +383,7 @@ Parameters:
 	'flow-rev-message-reply-bundle' => "When multiple replies have been posted, they're bundled. This is the message to describe that multiple replies were posted.
 
 Parameters:
-* $1: The amount of replies posted",
+* $1 - the amount of replies posted",
 	'flow-rev-message-new-post' => 'Used as revision comment when the topic has been created.',
 	'flow-rev-message-hid-post' => 'Used as revision comment when a post has been hidden.
 
@@ -430,19 +430,21 @@ Parameters:
 	'flow-post-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Post history" page.
 
 Parameters:
-* $1: The topic title
-* $1: The username of the creator of the post. Can be used for GENDER',
+* $1 - the topic title
+* $2 - the username of the creator of the post. Can be used for GENDER',
 	'flow-history-last4' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history of the last 4 hours',
-	'flow-history-day' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history of today',
-	'flow-history-week' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history of last week',
+	'flow-history-day' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history of today.
+{{Identical|Today}}',
+	'flow-history-week' => 'Used as <code><nowiki><h2></nowiki></code> heading in the "Topic history" page to display all history of last week.
+
+This "Last week" is equal to "Last 7 days".
+{{Identical|Last week}}',
 	'flow-history-pages-topic' => 'Used to describe what board the topic is added to. Parameters:
-
-* $1: The link to the page
-* $2: The page title',
+* $1 - the link to the page
+* $2 - the page title',
 	'flow-history-pages-post' => 'Used to describe what topic the post is added to. Parameters:
-
-* $1: The link to the topic
-* $2: The topic title',
+* $1 - the link to the topic
+* $2 - the topic title',
 	'flow-topic-participants' => 'Message to display the amount of participants in this discussion (and potentially a couple of names).
 
 Parameters:
@@ -457,7 +459,8 @@ Parameters:
 	'flow-board-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Board history" page.
 
 Parameters:
-* $1: The title to which the flow board belongs',
+* $1 - the title to which the flow board belongs
+{{Identical|History}}',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
@@ -862,9 +865,14 @@ Bitte ziehe in Erwägung, $1 Rückmeldung über {{GENDER:$1|seinen|ihren|den}} B
 );
 
 /** Spanish (español)
+ * @author Benfutbol10
  * @author Ovruni
  */
 $messages['es'] = array(
+	'flow-user-anonymous' => 'Anónimo',
+	'flow-user-moderated' => 'Usuario moderado',
+	'flow-post-moderated-toggle-show' => '[Mostrar]',
+	'flow-post-moderated-toggle-hide' => '[Ocultar]',
 	'flow-post-deleted-by' => '{{GENDER:$1|Eliminado}} por $1 $2',
 	'flow-post-actions' => 'acciones',
 	'flow-topic-actions' => 'acciones',
@@ -873,7 +881,7 @@ $messages['es'] = array(
 	'flow-newtopic-header' => 'Añadir un nuevo tema',
 	'flow-newtopic-save' => 'Añadir tema',
 	'flow-newtopic-start-placeholder' => 'Haga clic aquí para iniciar una nueva discusión. Ser amable!', # Fuzzy
-	'flow-reply-placeholder' => 'Haga clic para {{GENDER:$1|responder}} a $1. Ser amable!',
+	'flow-reply-placeholder' => 'Haga clic para {{GENDER:$1|responder}} a $1. Ser amable!', # Fuzzy
 	'flow-reply-submit' => 'Publicar respuesta', # Fuzzy
 	'flow-edit-post-submit' => 'Enviar cambios',
 	'flow-post-edited' => 'Mensaje {{GENDER:$1|editado}} por $1 $2',
@@ -886,6 +894,18 @@ $messages['es'] = array(
 	'flow-post-action-edit' => 'Editar',
 	'flow-post-action-restore-post' => 'Restaurar mensaje',
 	'flow-topic-action-edit-title' => 'Editar título',
+	'flow-rev-message-deleted-post' => '[[User:$1|$1]] borró un <span class="plainlinks">[$3 comentario]</span>.',
+	'flow-moderation-reason' => 'Razón:',
+	'flow-moderation-confirm' => 'Confirmar acción',
+	'flow-moderation-reason-placeholder' => 'Ingresa tu razón aquí',
+);
+
+/** Persian (فارسی)
+ * @author Ebraminio
+ */
+$messages['fa'] = array(
+	'flow-desc' => 'سامانهٔ مدیریت گردش کار',
+	'flow-specialpage' => '$1 &ndash; جربان',
 );
 
 /** Finnish (suomi)
@@ -1417,6 +1437,7 @@ $messages['it'] = array(
 	'flow-error-invalid-postId' => 'Il parametro "ID_messaggio" non era valido. Il messaggio indicato ($1) non è stato trovato.',
 	'flow-error-restore-failure' => 'Il ripristino di questo elemento non è riuscito.',
 	'flow-error-invalid-moderation-state' => 'È stato fornito un valore non valido per moderationState',
+	'flow-error-invalid-moderation-reason' => 'Fornisci una motivazione per la moderazione',
 	'flow-error-not-allowed' => 'Autorizzazioni insufficienti per eseguire questa azione',
 	'flow-edit-header-submit' => 'Salva intestazione',
 	'flow-edit-title-submit' => 'Cambia titolo',
@@ -1436,6 +1457,8 @@ $messages['it'] = array(
 	'flow-history-last4' => 'Ultime 4 ore',
 	'flow-history-day' => 'Oggi',
 	'flow-history-week' => 'Ultima settimana',
+	'flow-topic-participants' => '{{PLURAL:$1|$3 ha iniziato questa discussione|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} e {{PLURAL:$2|un altro|altri}}|0=Nessuno ha partecipato ancora|2={{GENDER:$3|$3}} e {{GENDER:$4|$4}}}}',
+	'flow-topic-comments' => '{{PLURAL:$1|0=Sii il primo a commentare!|Commenti ($1)}}',
 	'flow-board-history' => 'Cronologia di "$1"',
 	'flow-comment-restored' => 'Commento ripristinato',
 	'flow-comment-deleted' => 'Commento cancellato',
@@ -1475,8 +1498,14 @@ $messages['it'] = array(
 	'flow-moderation-title-delete' => 'Cancella messaggio',
 	'flow-moderation-title-hide' => 'Nascondi messaggio',
 	'flow-moderation-title-restore' => 'Ripristina messaggio',
+	'flow-moderation-intro-censor' => 'Conferma che vuoi censurare il messaggio di {{GENDER:$1|$1}} nel thread "$2", e fornisci una motivazione per questa azione.',
+	'flow-moderation-intro-delete' => 'Conferma che vuoi cancellare il messaggio di {{GENDER:$1|$1}} nel thread "$2", e fornisci una motivazione per questa azione.',
+	'flow-moderation-intro-hide' => 'Conferma che vuoi nascondere il messaggio di {{GENDER:$1|$1}} nel thread "$2", e fornisci una motivazione per questa azione.',
+	'flow-moderation-intro-restore' => 'Conferma che vuoi ripristinare il messaggio di {{GENDER:$1|$1}} nel thread "$2", e fornisci una motivazione per questa azione.',
 	'flow-moderation-reason' => 'Motivo:',
 	'flow-moderation-confirm' => "Conferma l'azione",
+	'flow-moderation-confirmation' => 'Hai moderato con successo questo messaggio.
+Considera di lasciare un feedback a $1 riguardo il {{GENDER:$1|suo}} messaggio.',
 	'flow-moderation-confirmation-restore' => 'Hai ripristinato con successo questo messaggio.',
 	'flow-moderation-reason-placeholder' => 'Inserisci qui la motivazione',
 );
@@ -1549,6 +1578,7 @@ $messages['ja'] = array(
 	'flow-edit-title-submit' => 'タイトルを変更',
 	'flow-rev-message-edit-post' => '[[User:$1|$1]] が<span class="plainlinks">[$2 コメント]</span>を{{GENDER:$1|編集}}',
 	'flow-rev-message-reply' => '[[User:$1|$1]] が<span class="plainlinks">[$2 コメント]</span>を{{GENDER:$1|追加}}',
+	'flow-rev-message-reply-bundle' => '$1 {{PLURAL:$1|件のコメント}}が追加されました。',
 	'flow-rev-message-new-post' => '[[User:$1|$1]] が話題 <span class="plainlinks">[$2 $3]</span> を{{GENDER:$1|作成}}',
 	'flow-rev-message-edit-title' => '[[User:$1|$1]] が話題の名前を <span class="plainlinks">[$2 $3]</span> に{{GENDER:$1|編集}}',
 	'flow-rev-message-create-header' => '[[User:$1|$1]] が掲示板のヘッダーを{{GENDER:$1|作成}}',
@@ -1556,8 +1586,13 @@ $messages['ja'] = array(
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] が<span class="plainlinks">[$3 コメント]</span>を{{GENDER:$1|復元}}',
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] が<span class="plainlinks">[$3 コメント]</span>を{{GENDER:$1|削除}}',
 	'flow-topic-history' => '話題「$1」の履歴',
+	'flow-post-history' => '{{GENDER:$2|$2}} によるコメント 投稿履歴',
+	'flow-history-last4' => '過去 4 時間',
+	'flow-history-day' => '今日',
+	'flow-history-week' => '過去 1 週間',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 がこの話題を開始|{{GENDER:$3|$3}}、{{GENDER:$4|$4}} と他 $2 {{PLURAL:$2|人}}|0=まだ誰も参加していません|2={{GENDER:$3|$3}} と {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=最初のコメントを書きましょう!|コメント ($1)}}',
+	'flow-board-history' => '「$1」の履歴',
 	'flow-comment-restored' => 'コメントを復元',
 	'flow-comment-deleted' => 'コメントを削除',
 	'flow-comment-hidden' => 'コメントを非表示',
@@ -1645,6 +1680,7 @@ $messages['ko'] = array(
  */
 $messages['lb'] = array(
 	'flow-desc' => 'Workflow-Management-System',
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|huet}} eng <span class="plainlinks">[$4 Bemierkung]</span> op [[$3]] geläscht',
 	'flow-user-anonymous' => 'Anonym',
 	'flow-header-empty' => 'Dës Diskussiounssäit huet elo keng Iwwerschrëft',
 	'flow-post-moderated-toggle-show' => '[Weisen]',
@@ -1660,8 +1696,12 @@ $messages['lb'] = array(
 	'flow-newtopic-header' => 'En neit Thema derbäisetzen',
 	'flow-newtopic-save' => 'Thema derbäisetzen',
 	'flow-newtopic-start-placeholder' => 'En neit Thema ufänken',
+	'flow-reply-topic-placeholder' => '"$2" {{GENDER:$1|kommentéieren}}',
 	'flow-reply-placeholder' => 'Dem $1 {{GENDER:$1|äntwerten}}',
+	'flow-reply-submit' => '{{GENDER:$1|Äntwerten}}',
 	'flow-reply-link' => '{{GENDER:$1|Äntwerten}}',
+	'flow-thank-link' => '{{GENDER:$1|Merci soen}}',
+	'flow-talk-link' => 'Mam {{GENDER:$1|$1}} schwëtzen',
 	'flow-edit-post-submit' => 'Ännerunge späicheren',
 	'flow-post-action-view' => 'Permanentlink',
 	'flow-post-action-edit' => 'Änneren',
@@ -1672,9 +1712,20 @@ $messages['lb'] = array(
 	'flow-error-hide-failure' => 'Verstoppe vun dësem Element huet net funktionéiert.',
 	'flow-error-restore-failure' => "D'Restauréiere vun dësem Element huet net funktionéiert.",
 	'flow-error-not-allowed' => 'Net genuch Rechter fir dës Aktioun ze maachen',
+	'flow-edit-header-submit' => 'Iwwerschrëft späicheren',
 	'flow-edit-title-submit' => 'Titel änneren',
-	'flow-rev-message-new-post' => 'Thema ugeluecht', # Fuzzy
+	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|huet}} eng <span class="plainlinks">[$2 Bemierkung]</span> geännert.',
+	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|huet}} eng <span class="plainlinks">[$2 Bemierkung]</span> derbäigesat.',
+	'flow-rev-message-reply-bundle' => '{{PLURAL:$1|Eng Bemierkung gouf|$1 Bemierkunge goufen}} derbäigesat.',
+	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|huet}} Thema <span class="plainlinks">[$2 $3]</span> ugeluecht.',
+	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|huet}} eng <span class="plainlinks">[$3 Bemierkung]</span> verstoppt.',
+	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|huet}} eng <span class="plainlinks">[$3 Bemierkung]</span> geläscht.',
+	'flow-topic-history' => 'Versioune vum Thema "$1"',
+	'flow-history-last4' => 'Lescht 4 Stonnen',
+	'flow-history-day' => 'Haut',
+	'flow-history-week' => 'Lescht Woch',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Sidd deen éischten deen enge Bemierkung mecht!|Bemierkung ($1)}}',
+	'flow-board-history' => 'Versioune vun "$1"',
 	'flow-comment-restored' => 'Restauréiert Bemierkung',
 	'flow-comment-deleted' => 'Geläscht Bemierkung',
 	'flow-comment-hidden' => 'Verstoppte Bemierkung',
@@ -1788,19 +1839,27 @@ $messages['mk'] = array(
 	'flow-error-not-allowed' => 'Немате дозвола за да го извршите ова дејство',
 	'flow-edit-header-submit' => 'Зачувај заглавие',
 	'flow-edit-title-submit' => 'Измени наслов',
-	'flow-rev-message-edit-post' => 'Изменета содржина во објава', # Fuzzy
-	'flow-rev-message-reply' => 'Објавен нов одговор', # Fuzzy
-	'flow-rev-message-new-post' => 'Создадена тема', # Fuzzy
-	'flow-rev-message-hid-post' => 'Скриена објава', # Fuzzy
-	'flow-rev-message-edit-title' => 'Изменет наслов на тема', # Fuzzy
-	'flow-rev-message-create-header' => 'Создадено заглавие', # Fuzzy
-	'flow-rev-message-edit-header' => 'Изменето заглавие', # Fuzzy
-	'flow-rev-message-restored-post' => 'Откриена објава', # Fuzzy
-	'flow-rev-message-deleted-post' => 'Избришана објава', # Fuzzy
-	'flow-rev-message-censored-post' => 'Цензурирана објава', # Fuzzy
-	'flow-topic-history' => 'Историја на темата', # Fuzzy
+	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|измени}} еден <span class="plainlinks">[$2 коментар]</span>',
+	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|додаде}} <span class="plainlinks">[$2 коментар]</span>.',
+	'flow-rev-message-reply-bundle' => '{{PLURAL:$1|Додаден е еден коментар.|Додадени се $1 коментари}}.',
+	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|ја создаде}} темата <span class="plainlinks">[$2 $3]</span>.',
+	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|скри}} еден <span class="plainlinks">[$3 коментар]</span>.',
+	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|го измени}} насловот на темата <span class="plainlinks">[$2 $3]</span>.',
+	'flow-rev-message-create-header' => '[[User:$1|$1]] {{GENDER:$1|го создаде}} заглавието на таблата.',
+	'flow-rev-message-edit-header' => '[[User:$1|$1]] {{GENDER:$1|го измени}} заглавието на таблата.',
+	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|поврати}} еден <span class="plainlinks">[$3 коментар]</span>.',
+	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|избриша}} еден <span class="plainlinks">[$3 коментар]</span>.',
+	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|притаи}} еден <span class="plainlinks">[$3 коментар]</span>.',
+	'flow-topic-history' => 'Историја на темата „$1“',
+	'flow-post-history' => 'Историја на објавите — Коментар од {{GENDER:$2|$2}}',
+	'flow-history-last4' => 'Последниве 4 часа',
+	'flow-history-day' => 'Денес',
+	'flow-history-week' => 'Минатата седмица',
+	'flow-history-pages-topic' => 'Фигурира на <span class="plainlinks">[$1 таблата „$2“]</span>',
+	'flow-history-pages-post' => 'Фигурира на <span class="plainlinks">[$1 $2]</span>',
 	'flow-topic-participants' => '{{PLURAL:$1|Темата ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{PLURAL:$2|еден друг|други}}|0=Досега ниокј не учествувал|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Бидете први со коментар!|Коментари ($1)}}',
+	'flow-board-history' => 'Историја на „$1“',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
 	'flow-comment-hidden' => 'Скриен коментар',
@@ -2176,6 +2235,7 @@ $messages['roa-tara'] = array(
 $messages['ru'] = array(
 	'flow-desc' => 'Система управления потоками работ',
 	'flow-specialpage' => '$1 &ndash; Поток',
+	'flow-edit-header-link' => 'Изменить заголовок',
 	'flow-post-moderated-toggle-show' => '[Показать]',
 	'flow-post-moderated-toggle-hide' => '[Скрыть]',
 	'flow-post-hidden' => '[сообщение скрыто]',
@@ -2215,11 +2275,12 @@ $messages['ru'] = array(
 	'flow-error-delete-failure' => 'Не удалось удалить этот элемент.',
 	'flow-error-hide-failure' => 'Не удалось скрыть этот элемент.',
 	'flow-error-restore-failure' => 'Не удалось восстановить этот элемент.',
+	'flow-edit-header-submit' => 'Сохранить заголовок',
 	'flow-edit-title-submit' => 'Изменить название',
-	'flow-rev-message-reply' => 'Новый ответ размещён', # Fuzzy
-	'flow-rev-message-new-post' => 'Тема создана', # Fuzzy
-	'flow-rev-message-deleted-post' => 'Удалённое сообщение', # Fuzzy
-	'flow-topic-history' => 'История темы', # Fuzzy
+	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|добавил|добавила}} <span class="plainlinks">[$2 комментарий]</span>.',
+	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|создал|создала}} тему <span class="plainlinks">[$2 $3]</span>.',
+	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|удалил|удалила}} a <span class="plainlinks">[$3 комментарий]</span>.',
+	'flow-topic-history' => 'История темы «$1»',
 	'flow-comment-restored' => 'Восстановленный комментарий',
 	'flow-comment-deleted' => 'Удалённый комментарий',
 	'flow-comment-hidden' => 'Скрытый комментарий',
@@ -2689,13 +2750,25 @@ $messages['vo'] = array(
  * @author פוילישער
  */
 $messages['yi'] = array(
+	'flow-user-anonymous' => 'אַנאנים',
+	'flow-user-moderated' => 'מאדערירטער באניצער',
 	'flow-edit-header-link' => 'רעדאקטירט קעפל',
 	'flow-header-empty' => 'דער דאזיקער שמועס־בלאט האט נישט קיין קעפל.',
 	'flow-post-moderated-toggle-show' => '[ווייזן]',
 	'flow-post-moderated-toggle-hide' => '[באהאלטן]',
+	'flow-post-hidden-by' => '{{GENDER:$1|באהאלטן}} פון $1 $2',
+	'flow-post-deleted-by' => '{{GENDER:$1|אויסגעמעקט}} פון $1 $2',
+	'flow-post-censored-by' => '{{GENDER:$1|צענזורירט}} פון $1 $2',
+	'flow-post-actions' => 'אַקציעס',
+	'flow-topic-actions' => 'אַקציעס',
+	'flow-cancel' => 'אַנולירן',
 	'flow-newtopic-title-placeholder' => 'מעלדונג סוביעקט',
 	'flow-newtopic-content-placeholder' => 'מעלדונג טעקסט. זייט פריינדלעך!',
+	'flow-newtopic-header' => 'צולייגן א נײַע טעמע',
 	'flow-newtopic-save' => 'צושטעלן טעמע',
+	'flow-newtopic-start-placeholder' => 'אנהייבן א נײַע טעמע',
+	'flow-reply-topic-placeholder' => '{{GENDER:$1|קאמענטירן}} אויף "$2"',
+	'flow-reply-placeholder' => '{{GENDER:$1|ענטפערן}} צו $1',
 	'flow-reply-submit' => '{{GENDER:$1|ענטפערן}}',
 	'flow-reply-link' => '{{GENDER:$1|ענטפערן}}',
 	'flow-thank-link' => '{{GENDER:$1|דאַנקען}}',
@@ -2712,11 +2785,13 @@ $messages['yi'] = array(
 	'flow-error-restore-failure' => 'צוריקשטעלן דעם אביעקט אדורכגעפאלן.',
 	'flow-edit-header-submit' => 'אויפהיטן קעפל.',
 	'flow-edit-title-submit' => 'ענדערן טיטל',
-	'flow-rev-message-new-post' => 'טעמע געשאפן',
-	'flow-rev-message-edit-title' => 'רעדאקטירט טעמע טיטל',
-	'flow-rev-message-create-header' => 'געשאפן קעפל',
-	'flow-rev-message-edit-header' => 'רעדאקטירט קעפל',
-	'flow-topic-history' => 'טעמע היסטאריע',
+	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|געשאפן}} די טעמע <span class="plainlinks">[$2 $3]</span>.',
+	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|האט באהאלטן}} אן <span class="plainlinks">[$3 הערה]</span>.',
+	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|רעדאקטירט}} דעם טעמע טיטל צו <span class="plainlinks">[$2 $3]</span>.',
+	'flow-rev-message-create-header' => '[[User:$1|$1]] {{GENDER:$1|האט באשאפן}} דאס ברעט קעפל.',
+	'flow-rev-message-edit-header' => '[[User:$1|$1]] {{GENDER:$1|רעדאקטירט}} דאס טאוול קעפל.',
+	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|האט צוריקגעשטעלט}} א <span class="plainlinks">[$3 הערה]</span>.',
+	'flow-topic-history' => '"$1" טעמע היסטאריע',
 	'flow-comment-restored' => 'צוריקגעשטעלט הערה',
 	'flow-comment-deleted' => 'אויסגעמעקט הערה',
 	'flow-comment-hidden' => 'באהאלטענע הערה',
