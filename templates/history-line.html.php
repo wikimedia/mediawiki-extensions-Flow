@@ -1,5 +1,5 @@
 <li class="<?php echo $class; ?>">
-	<p><?php echo $message->parse(); ?></p>
+	<p><span class="plainlinks"><?php echo $message->parse(); ?></span></p>
 	<p class="flow-datestamp">
 		<a href="<?php echo '#'; /* @todo: link to historical revision */ ?>">
 			<span class="flow-agotime" style="display: inline"><?php echo htmlspecialchars( $timestamp->getHumanTimestamp() ); ?></span>
