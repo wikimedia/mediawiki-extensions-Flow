@@ -23,7 +23,7 @@ class Formatter extends \LogFormatter {
 		// logentry-delete-flow-delete-post, logentry-delete-flow-restore-post,
 		// logentry-suppress-flow-restore-post, logentry-suppress-flow-censor-post,
 		$language = $skin === null ? $wgContLang : $wgLang;
-		return wfMessage( "logentry-$type-$action" )
+		$message = wfMessage( "logentry-$type-$action" )
 			->params( array(
 				Message::rawParam( $this->getPerformerElement() ),
 				$this->entry->getPerformer()->getId(),
@@ -32,6 +32,12 @@ class Formatter extends \LogFormatter {
 			) )
 			->inLanguage( $language )
 			->parse();
+
+		return \Html::rawElement(
+			'span',
+			array( 'class' => 'plainlinks' ),
+			$message
+		);
 	}
 
 	/**
