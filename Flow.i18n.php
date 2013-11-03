@@ -102,8 +102,9 @@ $messages['en'] = array(
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|deleted}} a [$3 comment].',
 	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|suppressed}} a [$3 comment].',
 
-	'flow-topic-history' => '"$1" Topic History',
-	'flow-post-history' => 'Comment by {{GENDER:$2|$2}} Post History',
+	'flow-board-history' => '"$1" history',
+	'flow-topic-history' => '"$1" topic history',
+	'flow-post-history' => '"Comment by {{GENDER:$2|$2}}" post history',
 	'flow-history-last4' => 'Last 4 hours',
 	'flow-history-day' => 'Today',
 	'flow-history-week' => 'Last week',
@@ -111,8 +112,6 @@ $messages['en'] = array(
 	'flow-history-pages-post' => 'Appears on [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 started this topic|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} and {{PLURAL:$2|other|others}}|0=No participation yet|2={{GENDER:$3|$3}} and {{GENDER:$4|$4}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Be the first to comment!|Comment ($1)}}',
-
-	'flow-board-history' => '"$1" History',
 
 	'flow-comment-restored' => 'Restored comment',
 	'flow-comment-deleted' => 'Deleted comment',
@@ -423,6 +422,11 @@ Parameters:
 * $1: Username of the user who moderated the comment. Can be used for GENDER
 * $2: Username of the user who had posted the comment. Can be used for GENDER
 * $3: Permalink to the comment',
+	'flow-board-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Board history" page.
+
+Parameters:
+* $1 - the title to which the flow board belongs
+{{Identical|History}}',
 	'flow-topic-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Topic history" page.
 
 Parameters:
@@ -456,11 +460,6 @@ Parameters:
 
 Parameters:
 * $1 - The amount of comments on this topic, can be used for PLURAL',
-	'flow-board-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Board history" page.
-
-Parameters:
-* $1 - the title to which the flow board belongs
-{{Identical|History}}',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
