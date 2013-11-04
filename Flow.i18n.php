@@ -863,6 +863,14 @@ Bitte ziehe in Erwägung, $1 Rückmeldung über {{GENDER:$1|seinen|ihren|den}} B
 	'flow-topic-permalink-warning-user-board' => 'Dieses Thema wurde gestartet auf dem [$2 Brett von {{GENDER:$1|$1}}]',
 );
 
+/** Greek (Ελληνικά)
+ * @author Astralnet
+ */
+$messages['el'] = array(
+	'flow-history-last4' => 'Τελευταίες 4 ώρες',
+	'flow-history-day' => 'Σήμερα',
+);
+
 /** Spanish (español)
  * @author Benfutbol10
  * @author Ovruni
@@ -1261,7 +1269,7 @@ $1',
  * @author MaGa
  */
 $messages['hr'] = array(
-	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|vas je spomenuo|vas je spomenula}} na projektu $2',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|Vas je spomenuo|Vas je spomenula}} na projektu $2',
 );
 
 /** Armenian (Հայերեն)
@@ -1586,7 +1594,7 @@ $messages['ja'] = array(
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] が[$3 コメント]を{{GENDER:$1|削除}}',
 	'flow-board-history' => '「$1」の履歴',
 	'flow-topic-history' => '話題「$1」の履歴',
-	'flow-post-history' => '{{GENDER:$2|$2}} によるコメント 投稿履歴',
+	'flow-post-history' => '「{{GENDER:$2|$2}} によるコメント」投稿履歴',
 	'flow-history-last4' => '過去 4 時間',
 	'flow-history-day' => '今日',
 	'flow-history-week' => '過去 1 週間',
@@ -2418,22 +2426,22 @@ $messages['sv'] = array(
 	'flow-error-delete-failure' => 'Borttagning av detta objekt misslyckades.',
 	'flow-error-hide-failure' => 'Döljandet av detta objekt misslyckades.',
 	'flow-error-missing-postId' => 'Ingen "postId" parameter tillhandahölls. Denna parameter krävs för att påverka ett inlägg.',
-	'flow-error-invalid-postId' => '"postId" parametern var ogiltig. Det angivna inlägget kunde inte hittas.', # Fuzzy
+	'flow-error-invalid-postId' => 'Parametern "postId" var ogiltig. Det angivna inlägget ($1) kunde inte hittas.',
 	'flow-error-restore-failure' => 'Det gick inte att återställa objektet.',
 	'flow-edit-header-submit' => 'Spara rubrik',
 	'flow-edit-title-submit' => 'Ändra titel',
-	'flow-rev-message-edit-post' => 'Redigerade inläggets innehåll', # Fuzzy
-	'flow-rev-message-reply' => 'Nytt svar postat', # Fuzzy
+	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|redigerade}} en [$2 kommentar]',
+	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|lade till}} en [$2 kommentar].',
 	'flow-rev-message-reply-bundle' => '$1 {{PLURAL:$1|kommentar|kommentarer}} lades till.',
 	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|skapade}} ämnet [$2 $3].',
-	'flow-rev-message-hid-post' => 'Dölj inlägg', # Fuzzy
-	'flow-rev-message-edit-title' => 'Redigerade ämnestiteln', # Fuzzy
+	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|dolde}} en [$3 kommentar].',
+	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|ändrade}} ämnestiteln till [$2 $3].',
 	'flow-rev-message-create-header' => 'Skapade rubrik', # Fuzzy
 	'flow-rev-message-edit-header' => 'Redigera rubrik', # Fuzzy
-	'flow-rev-message-restored-post' => 'Visa inlägg', # Fuzzy
+	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|återställde}} en [$3 kommentar].',
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|raderade}} en [$3 kommentar].',
-	'flow-rev-message-censored-post' => 'Censurerade inlägg', # Fuzzy
-	'flow-topic-history' => 'Ämneshistorik', # Fuzzy
+	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|upphävde}} en [$3 kommentar].',
+	'flow-topic-history' => 'Ämneshistorik för "$1"',
 	'flow-history-last4' => 'Senaste 4 timmarna',
 	'flow-history-day' => 'I dag',
 	'flow-history-week' => 'Senaste veckan',
