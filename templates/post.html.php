@@ -6,7 +6,7 @@ if ( !$post->isModerated() ) {
 			'method' => 'POST',
 			// root post id is same as topic workflow id
 			'action' => $this->generateUrl( $block->getWorkflowId(), 'reply' ),
-			'class' => 'flow-reply-form',
+			'class' => 'flow-reply-form flow-element-container',
 		) );
 	$replyForm .= Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 
