@@ -242,36 +242,34 @@ class PostRevision extends AbstractRevision {
 			return;
 		}
 
-		foreach ( $this->getChildren() as $child ) {
-			$continue = false;
+		$continue = false;
+		foreach ( $callbacks as $i => $callback ) {
+			if ( is_callable( $callback ) ) {
+				$return = $callback( $this, $results[$i] );
 
-			foreach ( $callbacks as $i => $callback ) {
-				if ( is_callable( $callback ) ) {
-					$return = $callback( $child, $results[$i] );
+				// Callbacks respond with: [ result, continue ]
+				// Continue can be set to false if a callback has completed
+				// what it set out to do, then we can stop running it.
+				$results[$i] = $return[0];
+				$continue |= $return[1];
 
-					// Callbacks respond with: [ result, continue ]
-					// Continue can be set to false if a callback has completed
-					// what it set out to do, then we can stop running it.
-					$results[$i] = $return[0];
-					$continue |= $return[1];
-
-					// If this specific callback has responded it should no longer
-					// continue, get rid of it.
-					if ( $return[1] === false ) {
-						$callbacks[$i] = null;
-					}
+				// If this specific callback has responded it should no longer
+				// continue, get rid of it.
+				if ( $return[1] === false ) {
+					$callbacks[$i] = null;
 				}
 			}
-
-			// All of the callbacks have completed what they set out to do = quit
-			if ( !$continue ) {
-				break;
-			}
-
-			// Also fetch callbacks from children, some may have been nulled to
-			// prevent further execution.
-			list( $callbacks, $results ) = $child->descendRecursive( $callbacks, $results, $maxDepth - 1 );
 		}
+
+		// All of the callbacks have completed what they set out to do = quit
+		if ( $continue ) {
+			foreach ( $this->getChildren() as $child ) {
+				// Also fetch callbacks from children, some may have been nulled to
+				// prevent further execution.
+				list( $callbacks, $results ) = $child->descendRecursive( $callbacks, $results, $maxDepth - 1 );
+			}
+		}
+
 
 		return array( $callbacks, $results );
 	}
@@ -294,7 +292,8 @@ class PostRevision extends AbstractRevision {
 			return array( $result + 1, true );
 		};
 
-		return $this->registerRecursive( $callback, 0, 'count' );
+		// Start at -1 because parent doesn't count as "descendant"
+		return $this->registerRecursive( $callback, -1, 'count' );
 	}
 
 	/**
