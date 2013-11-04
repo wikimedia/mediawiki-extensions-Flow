@@ -9,7 +9,7 @@ $messages = array();
  */
 $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
-	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-page-title' => '$1 &ndash; Flow',
 
 	'log-name-flow' => 'Flow activity log',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|deleted}} a [$4 comment] on [[$3]]',
@@ -187,7 +187,7 @@ Please consider giving $1 feedback about {{GENDER:$1|his|her|their}} post.',
  */
 $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
-	'flow-specialpage' => 'Used as page title in [[Special:Flow]]. Parameters:
+	'flow-page-title' => 'Used as page title in a flow board. Parameters:
 * $1 - page title',
 	'log-name-flow' => '{{doc-logpage}}
 Name of the Flow log filter on the [[Special:Log]] page.',

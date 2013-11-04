@@ -5,7 +5,6 @@ namespace Flow;
 use FlowHooks;
 use Flow\Data\ObjectManager;
 use Flow\Model\Workflow;
-use SpecialPage;
 use Title;
 
 class UrlGenerator {
@@ -41,12 +40,7 @@ class UrlGenerator {
 	 */
 	public function buildUrlData( $title, $action = 'view', array $query = array() ) {
 		$query['action'] = $action;
-
-		$linkTitle = $this->occupationController->isTalkpageOccupied( $title )
-			? $title
-			: SpecialPage::getTitleFor( 'Flow', $title->getPrefixedText() );
-
-		return array( $linkTitle, $query );
+		return array( $title, $query );
 	}
 
 	/**
@@ -83,7 +77,7 @@ class UrlGenerator {
 			// Only way to know what title the workflow points at
 			$workflow = $this->storage->get( $workflowId );
 			if ( !$workflow ) {
-				return array( SpecialPage::getTitleFor( 'Flow' ), 'missing=true' );
+				throw \MWException( 'Invalid workflow: ' . $workflowId );
 			}
 		}
 
