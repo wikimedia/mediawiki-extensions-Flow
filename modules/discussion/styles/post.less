@@ -70,6 +70,14 @@
 		float: right;
 		padding-right: 22px;
 
+		// right next to the datestamp is the "moderation actions" icon, which
+		// is also floated right, but then moved to the right side via a
+		// negative right-padding. This move to the right via negative padding
+		// does not affect the surrounding elements, thus we're manually moving
+		// this one to the right (over the icon's original position) via a
+		// similar trick.
+		margin-right: -40px;
+
 		a.flow-action-history-link {
 			color: inherit;
 		}
