@@ -124,13 +124,13 @@ $( document ).on( 'flow_init', function ( e ) {
 	$container.find( '.flow-edit-post-link' )
 		.click( function ( e ) {
 			e.preventDefault();
-			var $postContainer = $( this ).closest( '.flow-post' ),
-				$contentContainer = $postContainer.find( '.flow-post-content' ),
+			var $post = $( this ).closest( '.flow-post' ),
+				$contentContainer = $post.find( '.flow-post-content' ),
 				workflowId = $( this ).flow( 'getTopicWorkflowId' ),
 				pageName = $( this ).closest( '.flow-container' ).data( 'page-title' ),
-				postId = $postContainer.data( 'post-id' );
+				postId = $post.data( 'post-id' );
 
-			if ( $postContainer.find( '.flow-edit-post-form' ).length ) {
+			if ( $post.find( '.flow-edit-post-form' ).length ) {
 				return;
 			}
 
@@ -157,7 +157,6 @@ $( document ).on( 'flow_init', function ( e ) {
 					return;
 				}
 
-
 				$contentContainer.flow( 'setupEditForm',
 						'post',
 						{
@@ -168,13 +167,22 @@ $( document ).on( 'flow_init', function ( e ) {
 							return mw.flow.api.editPost( workflowId, postId, content );
 						}
 					).done( function ( output ) {
-						$postContainer
+						$post
 							.empty()
 							.append(
 								$( output.rendered )
 									.find( '.flow-post' )
 									.children()
 							);
+					} );
+
+				$post.addClass( 'flow-post-nocontrols' );
+
+				$contentContainer.siblings( 'form' )
+					.find( '.flow-cancel-link' )
+					.click( function(e) {
+						$post
+							.removeClass( 'flow-post-nocontrols' );
 					} );
 			} )
 			.fail( function () {
