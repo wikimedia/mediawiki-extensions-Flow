@@ -53,7 +53,8 @@ abstract class ParsoidUtils {
 			$wgRequest,
 			array(
 				'action' => 'visualeditor',
-				'page' => \SpecialPage::getTitleFor( 'Flow' )->getPrefixedDBkey(),
+				// Bogus title used for parser
+				'page' => \Title::newMainPage()->getPrefixedDBkey(),
 				// 'basetimestamp' => ?,
 				// 'starttimestamp' => ?,
 				'paction' => $action,
@@ -92,7 +93,8 @@ abstract class ParsoidUtils {
 
 		global $wgParser;
 
-		$title = \SpecialPage::getTitleFor( 'Flow' );
+		// Bogus title used for parser
+		$title = \Title::newMainPage();
 
 		$options = new \ParserOptions;
 		$options->setTidy( true );

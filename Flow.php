@@ -140,11 +140,6 @@ $wgAutoloadClasses['Flow\Block\TopicListView'] = $dir . 'includes/Block/TopicLis
 $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';
 $wgAutoloadClasses['Flow\Block\TopicView'] = $dir . 'includes/Block/Topic.php';
 
-// Special page for rendering flows
-$wgAutoloadClasses['SpecialFlow'] = $dir . 'special/SpecialFlow.php';
-$wgSpecialPages['Flow'] = 'SpecialFlow';
-$wgSpecialPageGroups['Flow'] = 'unknown';
-
 // API modules
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
