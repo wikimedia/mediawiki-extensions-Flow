@@ -31,8 +31,8 @@ $messages['en'] = array(
 	'flow-post-deleted-by' => '{{GENDER:$1|Deleted}} by $1 $2',
 	'flow-post-censored' => '[post censored]',
 	'flow-post-censored-by' => '{{GENDER:$1|Censored}} by $1 $2',
-	'flow-post-actions' => 'actions',
-	'flow-topic-actions' => 'actions',
+	'flow-post-actions' => 'Actions',
+	'flow-topic-actions' => 'Actions',
 	'flow-cancel' => 'Cancel',
 
 	'flow-newtopic-title-placeholder' => 'Message subject',

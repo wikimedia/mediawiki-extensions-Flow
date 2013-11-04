@@ -37,6 +37,7 @@ echo Html::element(
 	array(
 		'href' => $this->generateUrl( $workflow, 'edit-header' ),
 		'class' => 'flow-header-edit-link flow-icon flow-icon-bottom-aligned',
+		'title' => wfMessage( 'flow-edit-header-link' )->text()
 	),
 	wfMessage( 'flow-edit-header-link' )->text()
 );

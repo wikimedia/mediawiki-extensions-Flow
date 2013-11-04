@@ -116,6 +116,7 @@ class PostActionMenu {
 			'type' => 'submit',
 			'class' => $class,
 			'value' => $content,
+			'title' => strip_tags( $content ),
 		) ) .
 		$output[] = Html::closeElement( 'form' );
 
@@ -143,6 +144,7 @@ class PostActionMenu {
 			array(
 				'href' => $url,
 				'class' => $class,
+				'title' => strip_tags( $content ),
 			),
 			$content
 		);
