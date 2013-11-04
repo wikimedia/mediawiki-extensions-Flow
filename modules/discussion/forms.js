@@ -128,7 +128,7 @@ $( document ).on( 'flow_init', function ( e ) {
 				$contentContainer = $post.find( '.flow-post-content' ),
 				workflowId = $( this ).flow( 'getTopicWorkflowId' ),
 				pageName = $( this ).closest( '.flow-container' ).data( 'page-title' ),
-				postId = $post.data( 'post-id' );
+				postId = $post.closest( '.flow-post-container' ).data( 'post-id' );
 
 			if ( $post.find( '.flow-edit-post-form' ).length ) {
 				return;
