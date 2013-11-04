@@ -56,7 +56,7 @@
 				 * @param $targetFrom the form juqery object to submit post reply
 				 */
 				function adjustReplyTarget( $btn, $targetForm ) {
-					var replyTo = $btn.closest( '.flow-post' ).attr( 'data-post-id' );
+					var replyTo = $btn.closest( '.flow-post-container' ).attr( 'data-post-id' );
 					var replyDefaultText = $btn.closest( '.flow-post' )
 						.siblings( 'form.flow-reply-form' )
 						.find( 'input[name="placeholder"]' ).val();
