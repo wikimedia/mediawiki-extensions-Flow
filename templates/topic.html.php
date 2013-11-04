@@ -18,13 +18,14 @@ echo Html::openElement( 'div', array(
 <div class="flow-element-container">
 	<div class="flow-titlebar mw-ui-button">
 		<?php
-		echo Html::rawElement(
+		echo Html::element(
 			'a',
 			array(
 				'href' => $this->generateUrl( $root->getPostId(), 'edit-title' ),
 				'class' => 'flow-edit-topic-link flow-icon flow-icon-top-aligned',
+				'title' => wfMessage( 'flow-topic-action-edit-title' )->text(),
 			),
-			wfMessage( 'flow-topic-action-edit-title' )
+			wfMessage( 'flow-topic-action-edit-title' )->text()
 		);
 		?>
 

@@ -21,7 +21,8 @@ echo Html::input(
 // @Todo - Update href to a real link for no-js support
 echo Html::element( 'a', array(
 	'class' => array( 'flow-new-topic-link', 'flow-icon', 'flow-icon-bottom-aligned' ),
-	'href' => '#'
+	'href' => '#',
+	'title' => wfMessage( 'flow-newtopic-start-placeholder' )->text(),
 ), wfMessage( 'flow-newtopic-start-placeholder' )->text() );
 
 if ( $block->hasErrors( 'content' ) ) {
