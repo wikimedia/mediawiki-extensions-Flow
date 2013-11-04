@@ -32,7 +32,7 @@ EOT;
 }
 
 // Extension credits that will show up on Special:Version
-$wgExtensionCredits['specialpage'][] = array(
+$wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'Flow',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Flow',
@@ -49,8 +49,6 @@ require $dir . 'Resources.php';
 require $dir . 'HistoryActions.php';
 
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
-$wgExtensionMessagesFiles['FlowAlias'] = $dir . 'Flow.alias.php';
-
 
 $wgAutoloadClasses['FlowInsertDefaultDefinitions'] = $dir . 'maintenance/FlowInsertDefaultDefinitions.php';
 
@@ -139,11 +137,6 @@ $wgAutoloadClasses['Flow\Block\TopicListBlock'] = $dir . 'includes/Block/TopicLi
 $wgAutoloadClasses['Flow\Block\TopicListView'] = $dir . 'includes/Block/TopicList.php';
 $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';
 $wgAutoloadClasses['Flow\Block\TopicView'] = $dir . 'includes/Block/Topic.php';
-
-// Special page for rendering flows
-$wgAutoloadClasses['SpecialFlow'] = $dir . 'special/SpecialFlow.php';
-$wgSpecialPages['Flow'] = 'SpecialFlow';
-$wgSpecialPageGroups['Flow'] = 'unknown';
 
 // API modules
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";

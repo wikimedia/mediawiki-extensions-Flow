@@ -25,7 +25,7 @@ class View {
 		$workflow = $loader->getWorkflow();
 
 		$title = $workflow->getArticleTitle();
-		$this->output->setPageTitle( wfMessage( 'flow-specialpage', $title->getPrefixedText() )->text() );
+		$this->output->setPageTitle( wfMessage( 'flow-page-title', $title->getPrefixedText() )->text() );
 
 		$request = $this->context->getRequest();
 		$user = $this->context->getUser();
