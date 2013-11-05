@@ -3,7 +3,10 @@ Attempt to document the basic flow of execution through flow:
 
 == Controller ==
 
-All requests start at Special:Flow.  The code for this special page will:
+TODO: This part is out of date.
+
+Requests are captured by a hook, and an OccupationController determines whether
+or not the request should be handled by Flow.
 
 * Figure out which article title the request is asking for.
 * Figure out which workflow definition is being used against this article title
@@ -24,15 +27,13 @@ Most work within flow will be done by Blocks(think widget).  The Controller will
 
 === Why? ===
 
-Special:Flow is intended to bootstrap flow.
-
 The controller is intended to orchestrate the block implementation.  
 
 The rendering portion should be seperate from the form handling in 
 
 === What about API calls? ===
 
-Good Question.  Most of what Special:Flow does needs to be accessible from the API calls.
+Good Question.  Most UI-accessible actions need to be accessible from the API calls.
 
 == Blocks ==
 

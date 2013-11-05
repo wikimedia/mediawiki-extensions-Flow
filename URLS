@@ -11,17 +11,13 @@ historical workflows will, like wiki revisions, require the full object id in th
 
 All workflows will be allowed to be marked with either Unique, or Not-Unique.
 
-Unique workflows, like the discussion, will be addressable with the following url structure:
+Unique workflows, like the discussion, will be addressable simply by going to an occupied page:
 
-/Special:Flow/User:Zomg
+/User talk:Zomg
 
 redirects to default workflow:
 
-/Special:Flow/User:Zomg?workflow=discussion
-
-or possibly
-
-/User_Flow:Zomg?workflow=discussion
+/User talk:Zomg?workflow=discussion
 
 It is expected that unique workflows will be used as a container for the non-unique workflows, 
 any URL refering to a non-unique workflow must, like closed objects, contain the object id.
@@ -29,7 +25,7 @@ any URL refering to a non-unique workflow must, like closed objects, contain the
 ----------
 How to address non-unique objects within a unique workflow?
 
-/Special:Flow/User:Zomg?objectId=12345
+/User talk:Zomg?objectId=12345
 
 This feels sucky,  
 
