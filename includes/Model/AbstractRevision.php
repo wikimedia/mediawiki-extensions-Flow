@@ -36,7 +36,7 @@ abstract class AbstractRevision {
 			// NOTE: special case self::getHiddenContent still retrieves content in this case only
 			'content' => 'flow-post-hidden-by',
 			// This is the bit of text rendered instead of the post creator
-			'usertext' => 'flow-rev-message-hid-post', // @todo: message has changed
+			'usertext' => 'flow-post-hidden-usertext',
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => true,
 			// i18n key for history and recentchanges
@@ -48,7 +48,7 @@ abstract class AbstractRevision {
 			// i18n key to replace content with when state is active
 			'content' => 'flow-post-deleted-by',
 			// This is the bit of text rendered instead of the post creator
-			'usertext' => 'flow-rev-message-deleted-post', // @todo: message has changed
+			'usertext' => 'flow-post-deleted-usertext',
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => false,
 			// i18n key for history and recentchanges
@@ -60,7 +60,7 @@ abstract class AbstractRevision {
 			// i18n key to replace content with when state is active
 			'content' => 'flow-post-censored-by',
 			// This is the bit of text rendered instead of the post creator
-			'usertext' => 'flow-rev-message-censored-post', // @todo: message has changed
+			'usertext' => 'flow-post-censored-usertext',
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => false,
 			// i18n key for history and recentchanges
@@ -323,13 +323,14 @@ abstract class AbstractRevision {
 	}
 
 	public function getUserText( $user = null ) {
-		// The text of *this* revision is only stripped when fully moderated
-		if ( $this->isCensored() ) {
-			// Messages: flow-post-hidden, flow-post-deleted, flow-post-censored
-			return wfMessage( self::$perms[$this->moderationState]['usertext'] );
-		} else {
-			return $this->getUserTextRaw();
+		$username = $this->getUserTextRaw();
+
+		if ( isset( self::$perms[$this->moderationState]['usertext'] ) ) {
+			// Messages: flow-post-hidden-usertext, flow-post-deleted-usertext, flow-post-censored-usertext
+			return wfMessage( self::$perms[$this->moderationState]['usertext'], $username );
 		}
+
+		return $username;
 	}
 
 	public function getUserTextRaw() {
