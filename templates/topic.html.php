@@ -142,7 +142,7 @@ echo Html::openElement( 'div', array(
 ?>
 	<span class="flow-creator">
 		<span class="flow-creator-simple" style="display: inline">
-			<?php echo $this->getUserText( $user ); ?>
+			<?php echo $user->getName(); ?>
 		</span>
 		<span class="flow-creator-full" style="display: none">
 			<?php echo $this->userToolLinks( $user->getId(), $user->getName() ); ?>
@@ -171,7 +171,7 @@ echo Html::openElement( 'div', array(
 	Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
 	Html::element( 'input', array(
 		'type' => 'submit',
-		'value' => wfMessage( 'flow-reply-submit', $this->getUserText( $root->getCreator( $user ), $root ) )->text(),
+		'value' => wfMessage( 'flow-reply-submit', $root->getCreatorName( $user ) )->text(),
 		'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
 	) ),
 	Html::closeElement( 'div' ),
