@@ -2,7 +2,6 @@
 
 // all UI "container" elements should have this class, which will preserve some
 // space on the right for icons.
-// @todo: more comment?
 .flow-element-container {
 	position: relative;
 
@@ -11,7 +10,7 @@
 
 	.flow-icon {
 		// only display when hovered
-		display: none;
+		visibility: hidden;
 
 		clear: both;
 		float: right;
@@ -44,7 +43,7 @@
 
 	&:hover {
 		.flow-icon {
-			display: block;
+			visibility: visible;
 		}
 	}
 }
