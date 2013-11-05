@@ -33,10 +33,32 @@ class FlowActions {
 	 * @return mixed|null Requested value or null if missing
 	 */
 	public function getValue( $action, $type /* [, $option = null [, ...]] */ ) {
+		$arguments = func_get_args();
+
 		try {
-			return $this->actions[func_get_args()];
+			return $this->actions[$arguments];
 		} catch ( \OutOfBoundsException $e ) {
-			return null;
+			// Do nothing; the whole remainder of this method is fail-case.
 		}
+
+		/*
+		 * If no value is found, check if the action is not actually referencing
+		 * another action (for BC reasons), then try fetching the requested data
+		 * from that action.
+		 */
+		try {
+			$referencedAction = $this->actions[$action];
+			if ( is_string( $referencedAction ) && $referencedAction != $action ) {
+				// Replace action name in arguments.
+				array_shift( $arguments );
+				array_unshift( $arguments, $referencedAction );
+
+				return call_user_func_array( array( $this, 'getValue' ), $arguments );
+			}
+		} catch ( \OutOfBoundsException $e ) {
+			// Do nothing; the whole remainder of this method is fail-case.
+		}
+
+		return null;
 	}
 }

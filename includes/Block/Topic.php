@@ -125,7 +125,7 @@ class TopicBlock extends AbstractBlock {
 				return;
 			}
 
-			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'flow-rev-message-edit-title' );
+			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
 
 			$this->setNotification(
 				'flow-topic-renamed',
@@ -705,5 +705,4 @@ class TopicBlock extends AbstractBlock {
 				)
 			);
 	}
-
 }
