@@ -49,7 +49,7 @@ if ( !$post->isModerated() ) {
 	data-revision-id='<?php echo $post->getRevisionId()->getHex() ?>'
 	data-post-id='<?php echo $post->getPostId()->getHex() ?>'
 	data-creator-name='<?php echo $post->getCreatorName() ?>'>
-	<div class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >
+	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >
 		<?php if ( $post->isModerated() ): ?>
 			<p class="flow-post-moderated-message flow-post-moderated-<?php echo $post->getModerationState(); ?> flow-post-content-<?php echo $post->isAllowed( $user ) ? 'allowed' : 'disallowed'; ?>">
 			<?php
