@@ -35,19 +35,16 @@ class NotificationFormatter extends EchoBasicFormatter {
 			}
 		} elseif ( $param === 'post-permalink' ) {
 			$postId = $extra['post-id'];
-			$urlParams = array( );
-
-			if ( $this->bundleData['raw-data-count'] <= 1 ) {
-				$urlParams['topic[postId]'] = $postId->getHex();
-			}
-
-			$url = $this->getUrlGenerator()->generateUrl(
+			list( $title, $query ) = $this->getUrlGenerator()->generateUrlData(
 				$extra['topic-workflow'],
-				'view',
-				$urlParams
+				'view'
 			);
-
-			$message->params( $url );
+			// Take user to the post if there is only one target post,
+			// otherwise, take user to the topic view
+			if ( $this->bundleData['raw-data-count'] <= 1 ) {
+				$title->setFragment( '#flow-post-' . $postId->getHex() );
+			}
+			$message->params( $title->getFullUrl( $query ) );
 		} elseif ( $param === 'topic-permalink' ) {
 			$url = $this->getUrlGenerator()->generateUrl( $extra['topic-workflow'] );
 
@@ -89,11 +86,12 @@ class NotificationFormatter extends EchoBasicFormatter {
 				$post  = $event->getExtraParam( 'post-id' );
 				$flow  = $event->getExtraParam( 'topic-workflow' );
 				if ( $post && $flow && $title ) {
-					$urlParams = array( 'workflow' => $flow->getHex() );
+					list( $target, $query ) = $urlGenerator->generateUrlData( $flow );
+					// Take user to the post if there is only one target post,
+					// otherwise, take user to the topic view
 					if ( $this->bundleData['raw-data-count'] <= 1 ) {
-						$urlParams['topic[postId]'] = $post->getHex();	
+						$target->setFragment( '#flow-post-' . $post->getHex() );
 					}
-					list( $target, $query ) = $urlGenerator->generateUrlData( $flow, $urlParams );
 				}
 				break;
 			case 'flow-board':
