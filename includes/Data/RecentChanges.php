@@ -151,9 +151,12 @@ class PostRevisionRecentChanges extends RecentChanges {
 			return null;
 		}
 
-		return $this->contLang->truncate(
-			reset( $found )->getContent( null, 'wikitext' ),
-			self::TRUNCATE_LENGTH
-		);
+		$content = reset( $found )->getContent( null, 'wikitext' );
+		if ( is_object( $content ) ) {
+			// moderated
+			return null;
+		}
+
+		return $this->contLang->truncate( $content, self::TRUNCATE_LENGTH );
 	}
 }
