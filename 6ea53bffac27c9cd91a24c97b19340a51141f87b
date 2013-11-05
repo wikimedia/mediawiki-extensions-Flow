@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_51efdae9",
+        "filename": "FlowActions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-05T06:54:38Z",
+      "side": 1,
+      "message": "What does \u0027\u0027 mean compared to null, as you have above?\n\nAlso, why are these being added in a patch which is supposedly only to fold in history config? Were they unnecessary if there was no history config?",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_71ea16db",
+        "filename": "FlowActions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-05T06:54:38Z",
+      "side": 1,
+      "message": "Do you plan to do that in this patch or the next?",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_91b952ec",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-05T06:54:38Z",
+      "side": 1,
+      "message": "Looks unrelated, you\u0027ll want to split this into another patch.",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_b1bc8ed9",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-05T06:54:38Z",
+      "side": 1,
+      "message": "Apparently unrelated?",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_d1b3ca07",
+        "filename": "includes/View/History/HistoryRecord.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-05T06:54:38Z",
+      "side": 1,
+      "message": "Hmmm, in theory the \"correct\" solution is to have a FlowActionManager object that accepts the flow_actions as a parameter, and then to pass that to every HistoryRecord in the constructor.\n\nI\u0027d see what Erik thinks, he\u0027s the one who likes this dependency injection stuff :)",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_f1b606f7",
+        "filename": "modules/history/styles/history.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-05T06:54:38Z",
+      "side": 1,
+      "message": "Probably also unrelated, but I could let it slide cause it\u0027s at least history related.",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_11ce4284",
+        "filename": "templates/post.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-05T06:54:38Z",
+      "side": 1,
+      "message": "This is unrelated and already done in another changeset.",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_31c97e7b",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-05T06:54:38Z",
+      "side": 1,
+      "message": "Also unrelated and already done in another changeset.",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
