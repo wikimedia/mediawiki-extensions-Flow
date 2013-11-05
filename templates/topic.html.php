@@ -137,8 +137,8 @@ foreach( $root->getChildren() as $child ) {
 	echo $this->renderPost( $child, $block, $root );
 }
 
+// Topic reply box
 if ( $permissions->isAllowed( $root, 'reply' ) ) {
-	// Topic reply box
 	echo Html::openElement( 'div', array(
 		'class' => 'flow-topic-reply-container flow-post-container flow-element-container',
 		'data-post-id' => $root->getRevisionId()->getHex(),
@@ -147,7 +147,7 @@ if ( $permissions->isAllowed( $root, 'reply' ) ) {
 	?>
 		<span class="flow-creator">
 			<span class="flow-creator-simple" style="display: inline">
-				<?php echo $this->getUserText( $user ); ?>
+				<?php echo htmlentities( $user->getName() ); ?>
 			</span>
 			<span class="flow-creator-full" style="display: none">
 				<?php echo $this->userToolLinks( $user->getId(), $user->getName() ); ?>
@@ -159,28 +159,27 @@ if ( $permissions->isAllowed( $root, 'reply' ) ) {
 			'action' => $this->generateUrl( $block->getWorkflow(), 'reply' ),
 			'class' => 'flow-topic-reply-form',
 		) ),
-			Html::element( 'input', array(
-				'type' => 'hidden',
-				'name' => $block->getName() . '[replyTo]',
-				'value' => $topic->getId()->getHex(),
-			) ),
-			Html::element( 'input', array(
-				'type' => 'hidden',
-				'name' => 'wpEditToken',
-				'value' => $editToken,
-			) ),
-			Html::textarea( $block->getName() . '[topic-reply-content]', '', array(
-				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
-				'title' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
-				'class' => 'flow-input mw-ui-input flow-topic-reply-content',
-			) ),
-			Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
-				Html::element( 'input', array(
-					'type' => 'submit',
-					'value' => wfMessage( 'flow-reply-submit', $this->getUserText( $root->getCreator( $user ), $root ) )->text(),
-					'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
-				) ),
-			Html::closeElement( 'div' ),
+		Html::element( 'input', array(
+			'type' => 'hidden',
+			'name' => $block->getName() . '[replyTo]',
+			'value' => $topic->getId()->getHex(),
+		) ),
+		Html::element( 'input', array(
+			'type' => 'hidden',
+			'name' => 'wpEditToken',
+			'value' => $editToken,
+		) ),
+		Html::textarea( $block->getName() . '[topic-reply-content]', '', array(
+			'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
+			'class' => 'flow-input mw-ui-input flow-topic-reply-content',
+		) ),
+		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
+		Html::element( 'input', array(
+			'type' => 'submit',
+			'value' => wfMessage( 'flow-reply-submit', $root->getCreatorName( $user ) )->text(),
+			'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
+		) ),
+		Html::closeElement( 'div' ),
 		Html::closeElement( 'form' ),
 	Html::closeElement( 'div' );
 } /* $user->isAllowed( 'edit' ) */ ?>
