@@ -130,7 +130,7 @@ class PostRevision extends AbstractRevision {
 			if ( $this->getCreatorIdRaw() !== 0 ) {
 				$user = User::newFromId( $this->getCreatorIdRaw() );
 			} else {
-				$user = User::newFromName( $this->getCreatorNameRaw() );
+				$user = User::newFromName( $this->getCreatorNameRaw(), false );
 			}
 
 			return $user;
