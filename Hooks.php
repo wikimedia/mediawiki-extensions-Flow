@@ -195,8 +195,10 @@ class FlowHooks {
 		if ( $occupationController->isTalkpageOccupied( $title ) ) {
 			$skname = $template->skinname;
 
+			global $wgRequest;
+			$selected = $wgRequest->getVal( 'action' ) == 'board-history';
 			$links['views'] = array( array(
-				'class' => false,
+				'class' => $selected ? 'selected' : '',
 				'text' => wfMessageFallback( "$skname-view-history", "history_short" )->text(),
 				'href' => $title->getLocalURL( 'action=board-history' ),
 			) );
@@ -208,10 +210,6 @@ class FlowHooks {
 				$links['actions']['move'],
 				$links['actions']['undelete']
 			);
-
-			// @todo: at some point, we'll probably want to re-use/override:
-			// - ['views']['history']
-			// - ['actions']['protect'] & ['actions']['unprotect']
 		}
 
 		return true;
