@@ -130,6 +130,7 @@ class PostRevision extends AbstractRevision {
 			if ( $this->getCreatorIdRaw() !== 0 ) {
 				$user = User::newFromId( $this->getCreatorIdRaw() );
 			} else {
+				// Don't validate username; (anon) IP user object is fine.
 				$user = User::newFromName( $this->getCreatorNameRaw(), false );
 			}
 
@@ -304,14 +305,10 @@ class PostRevision extends AbstractRevision {
 	/**
 	 * Registers callback function to compile a list of participants.
 	 *
-	 * @param string[optional] $anonymousBehaviour string Behaviour to use for anonymous users. Options:
-	 * once: Include all anonymous users as one combined user.
-	 * each: Include each anonymous user separately.
-	 * none: Do not include anonymous users
 	 * @return int $registered The identifier that was returned when registering
 	 * the callback via PostRevision::registerRecursive()
 	 */
-	public function registerParticipants( $anonymousBehaviour = 'each' ) {
+	public function registerParticipants() {
 		/**
 		 * Adds the user object of this post's creator.
 		 *
@@ -319,23 +316,10 @@ class PostRevision extends AbstractRevision {
 		 * @param int $result
 		 * @return array Return array in the format of [result, continue]
 		 */
-		$callback = function( $post, $result ) use ( $anonymousBehaviour ) {
+		$callback = function( $post, $result ) {
 			$creator = $post->getCreator();
-
 			if ( $creator instanceof User ) {
-				if ( $creator->isAnon() ) {
-					if ( $anonymousBehaviour === 'once' ) {
-						$result['anon'] = $creator;
-					} elseif ( $anonymousBehaviour === 'each' ) {
-						$result[$post->getCreatorName()] = $creator;
-					} elseif ( $anonymousBehaviour === 'none' ) {
-						// Do nothing
-					} else {
-						throw new MWException( "Unknown anonymous behaviour $anonymousBehaviour" );
-					}
-				} else {
-					$result[$post->getCreatorId()] = $creator;
-				}
+				$result[$post->getCreatorName()] = $creator;
 			}
 
 			return array( $result, true );
