@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_cce891b8",
+        "filename": "FlowActions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-05T13:30:42Z",
+      "side": 1,
+      "message": "\u0027\u0027 means no permissions required.\n\nThe 2 header \u0027permissions\u0027 are null because they are currently unused. There\u0027s a PostActionPermissions class that uses there to check permissions for posts; we don\u0027t yet have anything similar in place for header yet since headers can be changed by anyone for now.\n\nI should comment that in the code \u0026 will do so right away ;)",
+      "parentUuid": "291c1151_51efdae9",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_71ea16db",
         "filename": "FlowActions.php",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2013-11-05T06:54:38Z",
       "side": 1,
       "message": "Do you plan to do that in this patch or the next?",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_4cdd810a",
+        "filename": "FlowActions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-05T13:30:42Z",
+      "side": 1,
+      "message": "Was like that in the previous patch already \u0026 was planning to do that some day later. But I\u0027m going to add in in right away now",
+      "parentUuid": "291c1151_71ea16db",
       "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_0ccaa950",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-05T13:30:42Z",
+      "side": 1,
+      "message": "You\u0027re right, I\u0027ll submit another patch",
+      "parentUuid": "291c1151_91b952ec",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_b1bc8ed9",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2013-11-05T06:54:38Z",
       "side": 1,
       "message": "Apparently unrelated?",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_2cc5a53f",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-05T13:30:42Z",
+      "side": 1,
+      "message": "Indeed, I\u0027ll submit another patch",
+      "parentUuid": "291c1151_b1bc8ed9",
       "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_acb8b5c5",
+        "filename": "includes/View/History/HistoryRecord.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-05T13:30:42Z",
+      "side": 1,
+      "message": "That would indeed be the most correct solution.\n\nI didn\u0027t really want to go there because then we\u0027d have to toss around the FlowActions object to History, HistoryRecord, HistoryBundle \u0026 HistoryRenderer constructors, only because this function needs that data.\n\nI didn\u0027t want to go that path because that\u0027s eventually slowly building up to objects that take a billion arguments in their constructor just because some class instantiated on a way deeper level may need some other class.\n\nFor now, this seemed the least nasty solution. But it indeed has it\u0027s own issues, hence that comment ^^ Better suggestions are definitely welcome :)",
+      "parentUuid": "291c1151_d1b3ca07",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_f1b606f7",
         "filename": "modules/history/styles/history.less",
         "patchSetId": 3
@@ -98,6 +188,24 @@
       "writtenOn": "2013-11-05T06:54:38Z",
       "side": 1,
       "message": "Probably also unrelated, but I could let it slide cause it\u0027s at least history related.",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_4c7ae121",
+        "filename": "modules/history/styles/history.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-05T13:30:42Z",
+      "side": 1,
+      "message": "While moving all history stuff to FlowActions, I also changed the classnames; I wanted to get rid of old \"flow-rev-message-* occurences, which were currently used in a variety of places (as classname here, as messages for History, RC \u0026 moderation...)\n\nUntil now, it re-used the old \"flow-rev-message-*\" strings also as classname, but since that has been separated out, these classnames are clearer.",
+      "parentUuid": "291c1151_f1b606f7",
       "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_ac8ef52c",
+        "filename": "templates/post.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-05T13:30:42Z",
+      "side": 1,
+      "message": "Shouldn\u0027t have made it in here :)",
+      "parentUuid": "291c1151_11ce4284",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_31c97e7b",
         "filename": "templates/topic.html.php",
         "patchSetId": 3
@@ -132,6 +258,24 @@
       "writtenOn": "2013-11-05T06:54:38Z",
       "side": 1,
       "message": "Also unrelated and already done in another changeset.",
+      "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_8c8bf91f",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-05T13:30:42Z",
+      "side": 1,
+      "message": "Mmh, this shouldn\u0027t have made it in here; probably bad rebase :)",
+      "parentUuid": "291c1151_31c97e7b",
       "revId": "6ea53bffac27c9cd91a24c97b19340a51141f87b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
