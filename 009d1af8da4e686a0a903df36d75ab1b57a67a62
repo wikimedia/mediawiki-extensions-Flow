@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_9706a2cf",
+        "filename": "Flow.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-05T14:58:59Z",
+      "side": 1,
+      "message": "type should probably no longer be \u0027specialpage\u0027; based on http://www.mediawiki.org/wiki/Manual:$wgExtensionCredits, I\u0027d guess \u0027other\u0027?",
+      "revId": "009d1af8da4e686a0a903df36d75ab1b57a67a62",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
