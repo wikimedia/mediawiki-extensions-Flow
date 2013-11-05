@@ -22,7 +22,7 @@
 					'modal' : true,
 					'buttons' : [
 						{
-							'text' : mw.msg( 'flow-moderation-confirm' ),
+							'text' : mw.msg( 'flow-moderation-confirm-'+moderationType ),
 							'click' : $(this).flow( 'getFormHandler',
 								mw.flow.api.moderatePost,
 								function() {
@@ -36,10 +36,7 @@
 								undefined,
 								function( promise ) {
 									promise.done( function( output ) {
-											var confirmationMsg = 'flow-moderation-confirmation';
-											if ( moderationType === 'restore' ) {
-												confirmationMsg = 'flow-moderation-confirmation-restore';
-											}
+											var confirmationMsg = 'flow-moderation-confirmation-'+moderationType;
 											$dialog.empty()
 												.dialog( 'option', 'buttons', null )
 												.append(
@@ -63,14 +60,10 @@
 			$form
 				.append(
 					$( '<p/>' )
-						.text( mw.msg( 'flow-moderation-intro-'+moderationType, user, subject ) )
-				)
-				.append(
-					$( '<p/>' )
 						.append(
 							$( 'label' )
 								.attr( 'for', 'flow-moderation-reason' )
-								.text( mw.msg( 'flow-moderation-reason' ) )
+								.text( mw.msg( 'flow-moderation-intro-'+moderationType, user, subject ) )
 						)
 				)
 				.append(
