@@ -3,7 +3,7 @@
 $topicTitle = $root->getContent( $user, 'wikitext' );
 $topicLink = $this->generateUrl( $topic );
 
-$creator = $this->getUserText( $post->getCreator() );
+$creator = $post->getCreatorName();
 $title = wfMessage( 'flow-post-history', $topicTitle, $creator )->escaped();
 $this->getOutput()->setHtmlTitle( $title );
 $this->getOutput()->setPageTitle( $title );

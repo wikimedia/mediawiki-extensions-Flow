@@ -21,11 +21,7 @@ class Post {
 		$this->post = $post;
 		$this->actions = $actions;
 
-		$this->creatorUserText = Templating::getUserText(
-			$post->getCreator( $this->user ),
-			$post
-		);
-
+		$this->creatorUserText = $post->getCreatorName( $this->user );
 	}
 
 	public function replyPlaceholder() {
@@ -150,19 +146,5 @@ class Post {
 	public function allowedAnyActions() {
 		// This will need to change, but not sure best way
 		return $this->actions->isAllowedAny( 'hide-post', 'delete-post', 'censor-post', 'restore-post' );
-	}
-
-	/**
-	* Gets a Flow-formatted plaintext human-readable identifier for a user.
-	* Usually the user's name, but it can also return "an anonymous user",
-	* or information about an item's moderation state.
-	*
-	* @param  User             $user    The User object to get a description of.
-	* @param  AbstractRevision $rev     An AbstractRevision object to retrieve moderation state from.
-	* @param  bool             $showIPs Whether or not to show IP addresses for anonymous users
-	* @return String                    A human-readable identifier for the given User.
-	*/
-	public function getUserText( $user, $rev = null, $showIPs = false ) {
-		return Templating::getUserText( $user, $rev, $showIPs );
 	}
 }

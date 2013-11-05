@@ -218,15 +218,6 @@ class FlowHooks {
 	}
 
 	/**
-	 * @param array $names
-	 * @return bool
-	 */
-	public static function onUserGetReservedNames( &$names ) {
-		$names[] = 'msg:flow-user-anonymous';
-		return true;
-	}
-
-	/**
 	 * When a (talk) page does not exist, one of the checks being performed is
 	 * to see if the page had once existed but was removed. In doing so, the
 	 * deletion & move log is checked.

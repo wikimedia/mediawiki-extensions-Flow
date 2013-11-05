@@ -162,7 +162,6 @@ class Templating {
 	}
 
 	public function userToolLinks( $userId, $userText ) {
-		global $wgLang;
 		static $cache = array();
 		if ( isset( $cache[$userId][$userText] ) ) {
 			return $cache[$userId][$userText];
@@ -189,81 +188,17 @@ class Templating {
 		$participants = $post->getRecursiveResult( $registered );
 		$participantCount = count( $participants );
 
-		$participant1 = false;
-		$participant2 = false;
-		$haveAnon = false;
-
-		while(
-			( $participant1 === false || $participant2 === false ) &&
-			count( $participants )
-		) {
-			$participant = array_shift( $participants );
-
-			if ( // Special conditions for anonymous users
-				$participant->isAnon() &&
-				$haveAnon && // Try not to show two anonymous users
-				count( $participants ) // Unless we have no other option
-			) {
-				continue;
-			} elseif ( $participant->isAnon() ) {
-				$haveAnon = true;
-			}
-
-			$text = self::getUserText( $participant );
-
-			if ( !$text || !$participant ) {
-				continue;
-			}
-
-			if ( $participant1 === false ) {
-				$participant1 = $text;
-			} else {
-				$participant2 = $text;
-			}
-		}
+		$originalPoster = array_shift( $participants );
+		$mostRecentPoster = array_pop( $participants );
+		$secondMostRecentPoster = array_pop( $participants );
 
 		return wfMessage(
 			'flow-topic-participants',
 			$participantCount,
-			max( 0, $participantCount - 2 ),
-			$participant1,
-			$participant2
+			max( 0, $participantCount - 3 ),
+			$originalPoster,
+			$mostRecentPoster,
+			$secondMostRecentPoster
 		)->parse();
-	}
-
-	/**
-	 * Gets a Flow-formatted plaintext human-readable identifier for a user.
-	 * Usually the user's name, but it can also return "an anonymous user",
-	 * or information about an item's moderation state.
-	 *
-	 * @param  User             $user    The User object to get a description of.
-	 * @param  AbstractRevision $rev     An AbstractRevision object to retrieve moderation state from.
-	 * @param  bool             $showIPs Whether or not to show IP addresses for anonymous users
-	 * @return String                    A human-readable identifier for the given User.
-	 */
-	static public function getUserText( $user, $rev = null, $showIPs = false ) {
-		if ( $user === false && $rev instanceof AbstractRevision ) {
-			$state = $rev->getModerationState();
-
-			if ( $rev->getModeratedByUserId() ) {
-				$user = User::newFromId( $rev->getModeratedByUserId() );
-			} else {
-				$user = User::newFromName( $rev->getModeratedByUserName() );
-			}
-
-			$moderatedAt = new MWTimestamp( $rev->getModerationTimestamp );
-
-			return wfMessage(
-					AbstractRevision::$perms[$state]['content'],
-					self::getUserText( $user ),
-					$moderatedAt->getHumanTimestamp()
-			);
-		} elseif ( $user === false ) {
-			return wfMessage( 'flow-user-moderated' );
-		} elseif ( $user->isAnon() && !$showIPs ) {
-			return wfMessage( 'flow-user-anonymous' );
-		} else {
-			return $user->getName();
-		}
 	}
 }
