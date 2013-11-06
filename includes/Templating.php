@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
@@ -204,5 +205,63 @@ class Templating {
 			$mostRecentPoster,
 			$secondMostRecentPoster
 		)->parse();
+	}
+
+	/**
+	 * Formats a revision's usertext for displaying. Usually, the revision's
+	 * usertext can just be displayed. In the event of moderation, however, that
+	 * info should not be exposed.
+	 *
+	 * If a specific i18n message is available for a certain moderation level,
+	 * that message will be returned (well, unless the user actually has the
+	 * required permissions to view the full username). Otherwise, in normal
+	 * cases, the full username will be returned.
+	 *
+	 * @param AbstractRevision $revision Revision to display usertext for
+	 * @param User[optional] $permissionsUser User to display usertext to
+	 * @return string
+	 */
+	public function getUserText( AbstractRevision $revision, User $permissionsUser = null ) {
+		$state = $revision->getModerationState();
+		$username = $revision->getUserText();
+
+		// Messages: flow-hide-usertext, flow-delete-usertext, flow-censor-usertext
+		$message = wfMessage( "flow-$state-usertext", $username );
+
+		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
+			return $message->text();
+		} else {
+			return $username;
+		}
+	}
+
+	/**
+	 * Formats a revision's content for displaying. Usually, the revisions's
+	 * content can just be displayed. In the event of moderation, however, that
+	 * info should not be exposed.
+	 *
+	 * If a specific i18n message is available for a certain moderation level,
+	 * that message will be returned (well, unless the user actually has the
+	 * required permissions to view the full content). Otherwise, in normal
+	 * cases, the full content will be returned.
+	 *
+	 * @param AbstractRevision $revision Revision to display content for
+	 * @param string[optional] $format Format to output content in (html|wikitext)
+	 * @param User[optional] $permissionsUser User to display content to
+	 * @return string
+	 */
+	public function getContent( AbstractRevision $revision, $format = 'html', User $permissionsUser = null ) {
+		$state = $revision->getModerationState();
+		$user = $revision->getModeratedByUserText();
+		$moderatedAt = new MWTimestamp( $revision->getModerationTimestamp() );
+
+		// Messages: flow-hide-content, flow-delete-content, flow-censor-content
+		$message = wfMessage( "flow-$state-content", $user, $moderatedAt->getHumanTimestamp() );
+
+		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
+			return $message->text();
+		} else {
+			return $revision->getContent( $format );
+		}
 	}
 }

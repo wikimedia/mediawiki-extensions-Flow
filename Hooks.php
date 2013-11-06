@@ -259,4 +259,21 @@ class FlowHooks {
 		$types[] = Flow\Data\RecentChanges::SRC_FLOW;
 		return true;
 	}
+
+	/**
+	 * Make sure no user can register a flow-*-usertext username, to avoid
+	 * confusion with a real user when we print e.g. "Censored" instead of a
+	 * username.
+	 *
+	 * @param array $names
+	 * @return bool
+	 */
+	public static function onUserGetReservedNames( &$names ) {
+		$permissions = array_keys( AbstractRevision::$perms );
+		foreach ( $permissions as $permission ) {
+			$names[] = "msg:flow-$permission-usertext";
+		}
+
+		return true;
+	}
 }

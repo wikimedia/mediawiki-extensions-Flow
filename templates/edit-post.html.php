@@ -22,7 +22,7 @@ echo Html::element( 'input', array(
 		'name' => $block->getName() . '[postId]',
 		'value' => $post->getPostId()->getHex(),
 	) ),
-	Html::textarea( $block->getName() . '[content]', $post->getContent( $user, 'wikitext' ) ),
+	Html::textarea( $block->getName() . '[content]', $this->getContent( $post, 'wikitext', $user ) ),
 	Html::element( 'input', array(
 		'type' => 'submit',
 		'class' => 'mw-ui-button mw-ui-primary',
