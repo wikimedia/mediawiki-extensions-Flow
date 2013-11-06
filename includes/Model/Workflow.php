@@ -26,7 +26,7 @@ class Workflow {
 		if ( $obj === null ) {
 			$obj = new self;
 		} elseif ( !$obj instanceof self ) {
-			throw new \Exception( 'Wrong obj type: ' . get_class( $obj ) );
+			throw new \MWException( 'Wrong obj type: ' . get_class( $obj ) );
 		}
 		$obj->id = UUID::create( $row['workflow_id'] );
 		$obj->isNew = false;
@@ -64,7 +64,7 @@ class Workflow {
 			$wiki = $title->getTransWikiID();
 		}
 		if ( $definition->getWiki() !== $wiki ) {
-				throw new \Exception( 'Title and Definition are from separate wikis' );
+				throw new \MWException( 'Title and Definition are from separate wikis' );
 		}
 
 		$obj = new self;
@@ -123,11 +123,12 @@ class Workflow {
 	// these are exceptions currently to make debugging easier
 	// it should return false later on to allow wider use.
 	public function matchesTitle( Title $title ) {
+		// Needs to be a non-strict comparrison
 		if ( $title->getNamespace() != $this->namespace ) {
-			throw new \Exception( 'namespace' );
+			throw new \MWException( 'namespace' );
 		}
 		if ( $title->getDBkey() !== $this->titleText ) {
-			throw new \Exception( 'title' );
+			throw new \MWException( 'title' );
 		}
 		if ( $title->isLocal() ) {
 			return $this->wiki === wfWikiId();

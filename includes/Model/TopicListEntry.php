@@ -22,7 +22,7 @@ class TopicListEntry {
 		if ( $obj === null ) {
 			$obj = new self;
 		} elseif ( !$obj instanceof self ) {
-			throw new \Exception( 'Wrong obj type: ' . get_class( $obj ) );
+			throw new \MWException( 'Wrong obj type: ' . get_class( $obj ) );
 		}
 		$obj->topicListId = UUID::create( $row['topic_list_id'] );
 		$obj->topicId = UUID::create( $row['topic_id'] );

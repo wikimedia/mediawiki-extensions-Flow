@@ -35,7 +35,7 @@ class TalkpageManager implements OccupationController {
 
 		if ( !is_object( $title ) ) {
 			// wtf?
-			throw new \Exception( 'Non-falsy non-object title passed: ' . var_export( $title, true ) );
+			throw new \MWException( 'Non-falsy non-object title passed: ' . var_export( $title, true ) );
 		}
 		return in_array( $title->getPrefixedText(), $this->occupiedPages )
 			|| ( in_array( $title->getNamespace(), $this->occupiedNamespaces )

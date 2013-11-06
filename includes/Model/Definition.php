@@ -17,7 +17,7 @@ class Definition {
 		if ( $obj === null ) {
 			$obj = new self;
 		} elseif ( !$obj instanceof self ) {
-			throw new \Exception( 'Wrong obj type: ' . get_class( $obj ) );
+			throw new \MWException( 'Wrong obj type: ' . get_class( $obj ) );
 		}
 		$obj->id = UUID::create( $row['definition_id'] );
 		$obj->type = $row['definition_type'];

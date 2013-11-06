@@ -308,7 +308,7 @@ PersistenceException from the ObjectManager for consistent error handling.
 					$handler->onPostLoad( $this, $object );
 				}
 				return $object;
-			} catch ( \Exception $e ) {
+			} catch ( \MWException $e ) {
 				...
 			}
 		}
@@ -320,7 +320,7 @@ PersistenceException from the ObjectManager for consistent error handling.
 				}
 				$data = $this->mapper->serialize( $object );
 				$this->storage->put( $data ) );
-			} catch ( \Exception $e ) {
+			} catch ( \MWException $e ) {
 				...
 			}
 		};

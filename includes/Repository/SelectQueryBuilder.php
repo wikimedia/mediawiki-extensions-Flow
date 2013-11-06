@@ -53,7 +53,7 @@ class SelectQueryBuilder {
 
 	public function resultHandler( $callback ) {
 		if ( !is_callable( $callback ) ) {
-			throw new \Exception( 'Callback must be callable' );
+			throw new \MWException( 'Callback must be callable' );
 		}
 		$this->resultHandler = $callback;
 		return $this;

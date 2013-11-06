@@ -19,7 +19,7 @@ abstract class ParsoidUtils {
 		try {
 			// use VE API (which connects to Parsoid) if available...
 			return self::parsoid( $from, $to, $content );
-		} catch ( \Exception $e ) {
+		} catch ( \MWException $e ) {
 			// ... otherwise default to parser
 			return self::parser( $from, $to, $content );
 		}
