@@ -20,10 +20,6 @@ abstract class AbstractRevision {
 		self::MODERATED_NONE => array(
 			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => null,
-			// i18n key to replace content with when state is active(unused with perm === null )
-			'content' => null,
-			// This is the bit of text rendered instead of the post creator
-			'usertext' => null,
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => true,
 			// i18n key for history and recentchanges
@@ -32,11 +28,6 @@ abstract class AbstractRevision {
 		self::MODERATED_HIDDEN => array(
 			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => 'flow-hide',
-			// i18n key to replace content with when state is active
-			// NOTE: special case self::getHiddenContent still retrieves content in this case only
-			'content' => 'flow-post-hidden-by',
-			// This is the bit of text rendered instead of the post creator
-			'usertext' => 'flow-rev-message-hid-post', // @todo: message has changed
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => true,
 			// i18n key for history and recentchanges
@@ -45,10 +36,6 @@ abstract class AbstractRevision {
 		self::MODERATED_DELETED => array(
 			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => 'flow-delete',
-			// i18n key to replace content with when state is active
-			'content' => 'flow-post-deleted-by',
-			// This is the bit of text rendered instead of the post creator
-			'usertext' => 'flow-rev-message-deleted-post', // @todo: message has changed
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => false,
 			// i18n key for history and recentchanges
@@ -57,10 +44,6 @@ abstract class AbstractRevision {
 		self::MODERATED_CENSORED => array(
 			// The permission needed from User::isAllowed to see and create new revisions
 			'perm' => 'flow-censor',
-			// i18n key to replace content with when state is active
-			'content' => 'flow-post-censored-by',
-			// This is the bit of text rendered instead of the post creator
-			'usertext' => 'flow-rev-message-censored-post', // @todo: message has changed
 			// Whether or not to create a new revision when setting this state
 			'new-revision' => false,
 			// i18n key for history and recentchanges
@@ -278,28 +261,6 @@ abstract class AbstractRevision {
 		return $this->moderationState === self::MODERATED_HIDDEN;
 	}
 
-	public function getHiddenContent( $format ) {
-		if ( $this->hasHiddenContent() ) {
-			return $this->getConvertedContent( $format );
-		}
-		return '';
-	}
-
-	public function getContent( $user = null, $format = 'html' ) {
-		if ( $this->isAllowed( $user ) ) {
-			return $this->getConvertedContent( $format );
-		} else {
-			$moderatedAt = new MWTimestamp( $this->moderationTimestamp );
-
-			// Messages: flow-post-hidden-by, flow-post-deleted-by, flow-post-censored-by
-			return wfMessage(
-				self::$perms[$this->moderationState]['content'],
-				$this->moderatedByUserText,
-				$moderatedAt->getHumanTimestamp()
-			);
-		}
-	}
-
 	public function getContentRaw() {
 		if ( $this->decompressedContent === null ) {
 			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
@@ -308,7 +269,15 @@ abstract class AbstractRevision {
 		return $this->decompressedContent;
 	}
 
-	public function getConvertedContent( $format = 'html' ) {
+	/**
+	 * DO NOT USE THIS METHOD to output the content; use
+	 * Templating::getContent, which will do additional (permissions-based)
+	 * checks to make sure it outputs something the user can see.
+	 *
+	 * @param string[optional] $format Format to output content in (html|wikitext)
+	 * @return string
+	 */
+	public function getContent( $format = 'html' ) {
 		if ( !isset( $this->convertedContent[$format] ) ) {
 			// check how content is stored & convert to requested format
 			$sourceFormat = in_array( 'html', $this->flags ) ? 'html' : 'wikitext';
@@ -322,17 +291,14 @@ abstract class AbstractRevision {
 		return $this->userId;
 	}
 
-	public function getUserText( $user = null ) {
-		// The text of *this* revision is only stripped when fully moderated
-		if ( $this->isCensored() ) {
-			// Messages: flow-post-hidden, flow-post-deleted, flow-post-censored
-			return wfMessage( self::$perms[$this->moderationState]['usertext'] );
-		} else {
-			return $this->getUserTextRaw();
-		}
-	}
-
-	public function getUserTextRaw() {
+	/**
+	 * DO NOT USE THIS METHOD to output the username; use
+	 * Templating::getUserText, which will do additional (permissions-based)
+	 * checks to make sure it outputs something the user can see.
+	 *
+	 * @return string
+	 */
+	public function getUserText() {
 		return $this->userText;
 	}
 
