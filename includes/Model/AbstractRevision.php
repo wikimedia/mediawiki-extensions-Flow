@@ -111,7 +111,7 @@ abstract class AbstractRevision {
 		if ( $obj === null ) {
 			$obj = new static;
 		} elseif ( !$obj instanceof static ) {
-			throw new \Exception( 'wrong object type' );
+			throw new \MWException( 'wrong object type' );
 		}
 		$obj->revId = UUID::create( $row['rev_id'] );
 		$obj->userId = $row['rev_user_id'];
@@ -267,7 +267,7 @@ abstract class AbstractRevision {
 			$state = $this->moderationState;
 		}
 		if ( !isset( self::$perms[$state] ) ) {
-			throw new \Exception( 'Unknown stored moderation state' );
+			throw new \MWException( 'Unknown stored moderation state' );
 		}
 
 		$perm = self::$perms[$state]['perm'];
@@ -341,17 +341,17 @@ abstract class AbstractRevision {
 	 * use self::setNextContent
 	 *
 	 * @param string $content Content in wikitext format
-	 * @throws \Exception
+	 * @throws \MWException
 	 */
 	protected function setContent( $content ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
-			throw new \Exception( 'TODO: Cannot change content of restricted revision' );
+			throw new \MWException( 'TODO: Cannot change content of restricted revision' );
 		}
 
 		// TODO: How is this guarantee of only receiving wikitext made?
 		$inputFormat = 'wikitext';
 		if ( $this->content !== null ) {
-			throw new \Exception( 'Updating content must use setNextContent method' );
+			throw new \MWException( 'Updating content must use setNextContent method' );
 		}
 		$this->convertedContent = array( $inputFormat  => $content );
 
@@ -378,7 +378,7 @@ abstract class AbstractRevision {
 	 */
 	protected function setNextContent( User $user, $content ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
-			throw new \Exception( 'Cannot change content of restricted revision' );
+			throw new \MWException( 'Cannot change content of restricted revision' );
 		}
 		if ( $content !== $this->getContent() ) {
 			$this->content = null;

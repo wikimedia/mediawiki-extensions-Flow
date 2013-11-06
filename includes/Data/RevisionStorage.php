@@ -135,7 +135,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		);
 		if ( !$res ) {
 			// TODO: dont fail, but dont end up caching bad result either
-			throw new \Exception( 'query failure' );
+			throw new \MWException( 'query failure' );
 		}
 
 		$revisionIds = array();
@@ -160,7 +160,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		);
 		if ( !$res ) {
 			// TODO: dont fail, but dont end up caching bad result either
-			throw new \Exception( 'query failure' );
+			throw new \MWException( 'query failure' );
 		}
 
 		$result = array();
@@ -453,7 +453,7 @@ class TopicHistoryIndex extends TopKIndex {
 
 	public function __construct( BufferedCache $cache, PostRevisionStorage $storage, TreeRepository $treeRepo, $prefix, array $indexed, array $options = array() ) {
 		if ( $indexed !== array( 'topic_root' ) ) {
-			throw new \Exception( __CLASS__ . ' is hardcoded to only index topic_root: ' . print_r( $indexed, true ) );
+			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root: ' . print_r( $indexed, true ) );
 		}
 		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
 		$this->treeRepository = $treeRepo;
