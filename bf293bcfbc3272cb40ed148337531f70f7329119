@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_ff3ec886",
+        "filename": "includes/Templating.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-06T02:11:12Z",
+      "side": 0,
+      "message": "I\u0027d prefer that we didn\u0027t restore the situation where the revision class was responsible for formatting moderation placeholders, though that may just be because I wrote this function ;-)\n\nIt\u0027s clearly a Templating (display) concern rather than a Model concern.",
+      "revId": "bf293bcfbc3272cb40ed148337531f70f7329119",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
