@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_daf03a68",
+        "filename": "Flow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-06T16:28:03Z",
+      "side": 1,
+      "message": "Oh I must\u0027ve missed this one landing in core; thought I had added it in myself \u0026 got rid of it ;)",
+      "parentUuid": "291c1151_1c057279",
+      "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_5cf7ea89",
         "filename": "FlowActions.php",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2013-11-06T00:13:06Z",
       "side": 1,
       "message": "Also looks a bit unrelated, but it *is* related to history so I guess it can slide.",
+      "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_3a022e42",
+        "filename": "FlowActions.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-06T16:28:03Z",
+      "side": 1,
+      "message": "I\u0027ll submit a separate patch",
+      "parentUuid": "291c1151_5cf7ea89",
       "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_fae7b6ac",
+        "filename": "Hooks.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-06T16:28:03Z",
+      "side": 1,
+      "message": "I thought that, if run without the field existing, an entry would be saved to updatelog already. Looking at the code, I was wrong :)",
+      "parentUuid": "291c1151_7cf6668e",
+      "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_9cf16296",
         "filename": "db_patches/patch-rc_source.sql",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2013-11-06T00:13:06Z",
       "side": 1,
       "message": "I think this would be better in a separate patch.",
+      "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_5afd2a37",
+        "filename": "db_patches/patch-rc_source.sql",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-06T16:28:03Z",
+      "side": 1,
+      "message": "I\u0027ll submit a separate patch",
+      "parentUuid": "291c1151_9cf16296",
       "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_3a8b0ec6",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-06T16:28:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "291c1151_3c3dce29",
+      "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_9c4242ad",
         "filename": "includes/Model/Workflow.php",
         "patchSetId": 5
@@ -98,6 +188,24 @@
       "writtenOn": "2013-11-06T00:13:06Z",
       "side": 1,
       "message": "These changes are unrelated.",
+      "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_9a9082ed",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-06T16:28:03Z",
+      "side": 1,
+      "message": "I\u0027ll submit a separate patch",
+      "parentUuid": "291c1151_9c4242ad",
       "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_5567bdeb",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-06T16:28:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "291c1151_fc0b367c",
+      "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_7c2026fb",
         "filename": "includes/RecentChanges/Formatter.php",
         "patchSetId": 5
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_1abd7262",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-06T16:28:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "291c1151_7c2026fb",
+      "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_5c6a8a1c",
         "filename": "includes/WorkflowLoader.php",
         "patchSetId": 5
@@ -149,6 +293,24 @@
       "writtenOn": "2013-11-06T00:13:06Z",
       "side": 1,
       "message": "Wouldn\u0027t mind at least having a double check that there aren\u0027t duplicate blocks. I dunno, we don\u0027t have them now but I can see it happening in the future.",
+      "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_f5a269fe",
+        "filename": "includes/WorkflowLoader.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-06T16:28:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "291c1151_5c6a8a1c",
       "revId": "20b76d37c3a38d44be6aa4ac318d515ac7cf4cb0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
