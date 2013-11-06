@@ -147,7 +147,7 @@ class TreeRepository {
 			$path[$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
 		}
 		if ( !$path ) {
-			throw new \Exception( 'No root path found? Is this a root already? ' . $descendant->getHex() );
+			throw new \MWException( 'No root path found? Is this a root already? ' . $descendant->getHex() );
 		}
 		ksort( $path );
 		$path = array_reverse( $path );

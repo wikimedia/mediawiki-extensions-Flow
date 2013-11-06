@@ -102,7 +102,7 @@ class BoardHistoryIndex extends TopKIndex {
 
 	public function __construct( BufferedCache $cache, BoardHistoryStorage $storage, $prefix, array $indexed, array $options = array() ) {
 		if ( $indexed !== array( 'topic_list_id' ) ) {
-			throw new \Exception( __CLASS__ . ' is hardcoded to only index topic_list_id: ' . print_r( $indexed, true ) );
+			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_list_id: ' . print_r( $indexed, true ) );
 		}
 		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
 	}

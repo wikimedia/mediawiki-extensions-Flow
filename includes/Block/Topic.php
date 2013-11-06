@@ -118,7 +118,7 @@ class TopicBlock extends AbstractBlock {
 		} else {
 			$topicTitle = $this->loadTopicTitle();
 			if ( !$topicTitle ) {
-				throw new \Exception( 'No revision associated with workflow?' );
+				throw new \MWException( 'No revision associated with workflow?' );
 			}
 			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
 				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
@@ -422,7 +422,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderEditPost( Templating $templating, array $options, $return = false ) {
 		if ( !isset( $options['postId'] ) ) {
-			throw new \Exception( 'No postId provided' );
+			throw new \MWException( 'No postId provided' );
 		}
 		$post = $this->loadRequestedPost( $options['postId'] );
 		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {

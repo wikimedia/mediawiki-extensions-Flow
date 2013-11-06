@@ -39,7 +39,7 @@ class RootPostLoader {
 		foreach ( $found as $indexResult ) {
 			$post = reset( $indexResult ); // limit => 1 means only 1 result per query
 			if ( isset( $posts[$post->getPostId()->getHex()] ) ) {
-				throw new \Exception( 'Multiple results for id: ' . $post->getPostId()->getHex() );
+				throw new \MWException( 'Multiple results for id: ' . $post->getPostId()->getHex() );
 			}
 			$posts[$post->getPostId()->getHex()] = $post;
 			if ( $post->getReplyToId() ) {
@@ -54,16 +54,16 @@ class RootPostLoader {
 		if ( $missing ) {
 			// TODO: fake up a pseudo-post to hold the children? At this point in
 			// dev its probably a bug we want to see.
-			throw new \Exception( 'Missing Posts: ' . json_encode( $missing ) );
+			throw new \MWException( 'Missing Posts: ' . json_encode( $missing ) );
 		}
 		// another helper to catch bugs in dev
 		$extra = array_diff( array_keys( $posts ), $prettyPostIds );
 		if ( $extra ) {
-			throw new \Exception( 'Found unrequested posts: ' . json_encode( $extra ) );
+			throw new \MWException( 'Found unrequested posts: ' . json_encode( $extra ) );
 		}
 		$extraParents = array_diff( array_keys( $children ), $prettyPostIds );
 		if ( $extraParents ) {
-			throw new \Exception( 'Found posts with unrequested parents: ' . json_encode( $extraParents ) );
+			throw new \MWException( 'Found posts with unrequested parents: ' . json_encode( $extraParents ) );
 		}
 
 		// link parents to their children
