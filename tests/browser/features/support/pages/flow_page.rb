@@ -4,7 +4,8 @@ class FlowPage
   include PageObject
 
   include URL
-  page_url URL.url('Special:Flow/Flow_QA')
+  # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
+  page_url URL.url('Talk:Flow_QA')
 
   span(:author_link, class: 'flow-creator-simple')
   a(:talk_link, text: 'Talk')
