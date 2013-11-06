@@ -15,7 +15,7 @@ echo Html::openElement( 'form', array(
 		'action' => $this->generateUrl( $topicTitle->getPostId(), 'edit-title' ),
 	) ),
 	Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken ) ),
-		Html::textarea( $block->getName() . '[content]', $topicTitle->getContent( $user, 'wikitext' ) ),
+		Html::textarea( $block->getName() . '[content]', $this->getContent( $topicTitlex, 'wikitext', $topicTitle ) ),
 		Html::element( 'input',
 			array(
 				'type' => 'submit',
