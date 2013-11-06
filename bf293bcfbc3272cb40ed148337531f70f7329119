@@ -16,6 +16,24 @@
       "revId": "bf293bcfbc3272cb40ed148337531f70f7329119",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_5a1fea04",
+        "filename": "includes/Templating.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-06T14:18:40Z",
+      "side": 0,
+      "message": "Kind of.\n\nWe don\u0027t need any of the code that was in this method anymore: we can just display any username, whether it\u0027s ip or anonymous.\n\nHowever, AbstractRevision::getUserText() already outputs specific i18n messages depending on the moderation status. I believe that that would indeed fit Templating better: we want AbstractRevision to return accurate data, and format it for output in Templating.\n\nI\u0027ll push a separate patch for that.",
+      "parentUuid": "291c1151_ff3ec886",
+      "revId": "bf293bcfbc3272cb40ed148337531f70f7329119",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
