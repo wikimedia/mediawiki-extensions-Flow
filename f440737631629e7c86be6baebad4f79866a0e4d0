@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_5ac9aa79",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-11-06T14:27:01Z",
+      "side": 1,
+      "message": "Yay for terminology change :).",
+      "revId": "f440737631629e7c86be6baebad4f79866a0e4d0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_fab33607",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-11-06T14:27:01Z",
+      "side": 1,
+      "message": "Topic, question and now also discussion. That\u0027s a lot of words for the same concept. I could imagine the wording to be more consistent. IMO the previous version of this string is correct and consistent.",
+      "revId": "f440737631629e7c86be6baebad4f79866a0e4d0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
