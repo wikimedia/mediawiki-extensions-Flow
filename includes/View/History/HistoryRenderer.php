@@ -146,7 +146,7 @@ class HistoryRenderer {
 			'message' => $record->getMessage(
 				// Arguments for the i18n messages' parameter callbacks.
 				$record->getData(),
-				$this->templating->getUrlGenerator(),
+				$this->templating,
 				$wgUser,
 				$this->block
 			),

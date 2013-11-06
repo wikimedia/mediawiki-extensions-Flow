@@ -26,7 +26,7 @@ if ( $block->hasErrors( 'content' ) ) {
 
 echo Html::textarea(
 	$block->getName() . '[content]',
-	$header ? $header->getContent( $user, 'wikitext' ) : '',
+	$header ? $this->getContent( $header, 'wikitext', $user ) : '',
 	array(
 		'class' => 'mw-ui-input',
 		'data-header-id' => $header ? $header->getRevisionId()->getHex() : ''
