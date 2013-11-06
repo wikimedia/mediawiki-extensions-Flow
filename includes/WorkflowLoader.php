@@ -130,19 +130,32 @@ class WorkflowLoader {
 	public function createBlocks( ) {
 		switch( $this->definition->getType() ) {
 		case 'discussion':
-			return array(
-				'header' => new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
-				'topics' => new TopicListBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+			$blocks = array(
+				new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
+				new TopicListBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
 			);
+			break;
 
 		case 'topic':
-			return array(
-				'topic' => new TopicBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+			$blocks = array(
+				new TopicBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
 			);
+			break;
 
 		default:
 			throw new \MWException( 'Not Implemented' );
 		}
+
+		$return = array();
+		foreach ( $blocks as $block ) {
+			if ( !isset( $return[$block->getName()] ) ) {
+				$return[$block->getName()] = $block;
+			} else {
+				throw new \MWException( 'Multiple blocks with same name is not yet supported' );
+			}
+		}
+
+		return $return;
 	}
 
 	public function handleSubmit( $action, array $blocks, $user, \WebRequest $request ) {

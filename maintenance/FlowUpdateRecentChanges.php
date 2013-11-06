@@ -1,0 +1,176 @@
+<?php
+
+use Flow\Container;
+use Flow\Model\UUID;
+
+require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
+	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
+	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
+
+/**
+ * Updates recentchanges entries to contain information to build the
+ * AbstractBlock objects.
+ *
+ * @ingroup Maintenance
+ */
+class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
+	/**
+	 * The number of entries completed
+	 *
+	 * @var int
+	 */
+	private $completeCount = 0;
+
+	/**
+	 * Max number of records to process at a time
+	 *
+	 * @var int
+	 */
+	protected $batchSize = 300;
+
+	protected function doDBUpdates() {
+		$container = Container::getContainer();
+		$dbw = $container['db.factory']->getDB( DB_MASTER );
+
+		$continue = 0;
+
+		while ( $continue !== null ) {
+			$continue = $this->refreshBatch( $dbw, $continue );
+			wfWaitForSlaves();
+		}
+
+		return true;
+	}
+
+	/**
+	 * Refreshes a batch of recentchanges entries
+	 *
+	 * @param DatabaseBase $dbw
+	 * @param int[optional] $continue The next batch starting at rc_id
+	 * @return int Start id for the next batch
+	 */
+	public function refreshBatch( DatabaseBase $dbw, $continue = null ) {
+		$rows = $dbw->select(
+			/* table */'recentchanges',
+			/* select */array( 'rc_id', 'rc_params' ),
+			/* conds */array( "rc_id > $continue", 'rc_type' => RC_FLOW ),
+			__METHOD__,
+			/* options */array( 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'rc_id' )
+		);
+
+		$continue = null;
+
+		foreach ( $rows as $row ) {
+			$continue = $row->rc_id;
+
+			// build params
+			$params = @unserialize( $row->rc_params );
+			if ( !$params ) {
+				$params = array();
+			}
+
+			// Don't fix entries that have been dealt with already
+			if ( !isset( $params['flow-workflow-change']['type'] ) ) {
+				continue;
+			}
+
+			// Set action, based on older 'type' values
+			switch ( $params['flow-workflow-change']['type'] ) {
+				case 'flow-rev-message-edit-title':
+				case 'flow-edit-title':
+					$params['flow-workflow-change']['action'] = 'edit-title';
+					$params['flow-workflow-change']['block'] = 'topic';
+					$params['flow-workflow-change']['revision_type'] = 'PostRevision';
+					break;
+
+				case 'flow-rev-message-new-post':
+				case 'flow-new-post':
+					$params['flow-workflow-change']['action'] = 'new-post';
+					$params['flow-workflow-change']['block'] = 'topic';
+					$params['flow-workflow-change']['revision_type'] = 'PostRevision';
+					break;
+
+				case 'flow-rev-message-edit-post':
+				case 'flow-edit-post':
+					$params['flow-workflow-change']['action'] = 'edit-post';
+					$params['flow-workflow-change']['block'] = 'topic';
+					$params['flow-workflow-change']['revision_type'] = 'PostRevision';
+					break;
+
+				case 'flow-rev-message-reply':
+				case 'flow-reply':
+					$params['flow-workflow-change']['action'] = 'reply';
+					$params['flow-workflow-change']['block'] = 'topic';
+					$params['flow-workflow-change']['revision_type'] = 'PostRevision';
+					break;
+
+				case 'flow-rev-message-restored-post':
+				case 'flow-post-restored':
+					$params['flow-workflow-change']['action'] = 'restore-post';
+					$params['flow-workflow-change']['block'] = 'topic';
+					$params['flow-workflow-change']['revision_type'] = 'PostRevision';
+					break;
+
+				case 'flow-rev-message-hid-post':
+				case 'flow-post-hidden':
+					$params['flow-workflow-change']['action'] = 'hide-post';
+					$params['flow-workflow-change']['block'] = 'topic';
+					$params['flow-workflow-change']['revision_type'] = 'PostRevision';
+					break;
+
+				case 'flow-rev-message-deleted-post':
+				case 'flow-post-deleted':
+					$params['flow-workflow-change']['action'] = 'delete-post';
+					$params['flow-workflow-change']['block'] = 'topic';
+					$params['flow-workflow-change']['revision_type'] = 'PostRevision';
+					break;
+
+				case 'flow-rev-message-censored-post':
+				case 'flow-post-censored':
+					$params['flow-workflow-change']['action'] = 'censor-post';
+					$params['flow-workflow-change']['block'] = 'topic';
+					$params['flow-workflow-change']['revision_type'] = 'PostRevision';
+					break;
+
+				case 'flow-rev-message-edit-header':
+				case 'flow-edit-summary':
+					$params['flow-workflow-change']['action'] = 'edit-header';
+					$params['flow-workflow-change']['block'] = 'header';
+					$params['flow-workflow-change']['revision_type'] = 'Header';
+					break;
+
+				case 'flow-rev-message-create-header':
+				case 'flow-create-summary':
+					$params['flow-workflow-change']['action'] = 'create-header';
+					$params['flow-workflow-change']['block'] = 'header';
+					$params['flow-workflow-change']['revision_type'] = 'Header';
+					break;
+			}
+
+			unset( $params['flow-workflow-change']['type'] );
+
+			// update log entry
+			$dbw->update(
+				'recentchanges',
+				array( 'rc_params' => serialize( $params ) ),
+				array( 'rc_id' => $row->rc_id )
+			);
+
+			$this->completeCount++;
+		}
+
+		return $continue;
+	}
+
+	/**
+	 * Get the update key name to go in the update log table
+	 *
+	 * @return string
+	 */
+	protected function getUpdateKey() {
+		return 'FlowUpdateRecentChanges';
+	}
+}
+
+$maintClass = 'FlowUpdateRecentChanges'; // Tells it to run the class
+require_once( RUN_MAINTENANCE_IF_MAIN );

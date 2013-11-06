@@ -123,7 +123,7 @@ class Workflow {
 	// these are exceptions currently to make debugging easier
 	// it should return false later on to allow wider use.
 	public function matchesTitle( Title $title ) {
-		if ( $title->getNamespace() !== $this->namespace ) {
+		if ( $title->getNamespace() != $this->namespace ) {
 			throw new \Exception( 'namespace' );
 		}
 		if ( $title->getDBkey() !== $this->titleText ) {

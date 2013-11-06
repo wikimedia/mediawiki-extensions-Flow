@@ -24,6 +24,7 @@ class HeaderBlock extends AbstractBlock {
 			$this->needCreate = true;
 			return;
 		}
+
 		// Get the latest revision attached to this workflow
 		$found = $this->storage->find(
 			'Header',
@@ -53,7 +54,7 @@ class HeaderBlock extends AbstractBlock {
 				$this->errors['prev_revision'] = wfMessage( 'flow-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getHex() );
 			}
 			// this isnt really part of validate, but we want the error-rendering template to see the users edited header
-			$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-header' );
+			$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
 		} else {
 			if ( empty( $this->submitted['prev_revision'] ) ) {
 				// this isnt really part of validate either, should validate be renamed or should this logic be redone?
