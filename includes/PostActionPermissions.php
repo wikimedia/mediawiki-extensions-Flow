@@ -54,8 +54,8 @@ class PostActionPermissions {
 	 */
 	public function isAllowed( PostRevision $post, $action ) {
 		// Users must have the core 'edit' permission to perform any write action in flow
-		$method = $this->actions->getValue( $action, 'button-method' );
-		if ( $method !== 'GET' && !$this->user->isAllowed( 'edit' ) ) {
+		$performsWrites = $this->actions->getValue( $action, 'performs-writes' );
+		if ( $performsWrites && !$this->user->isAllowed( 'edit' ) ) {
 			return false;
 		}
 		$permission = $this->actions->getValue( $action, 'permissions', $post->getModerationState() );

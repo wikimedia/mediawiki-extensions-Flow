@@ -32,6 +32,10 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	protected function validate() {
+		// @todo some sort of restriction along the lines of article protection
+		if ( !$this->user->isAllowed( 'edit' ) ) {
+			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+		}
 		if ( !isset( $this->submitted['topic'] ) ) {
 			$this->errors['topic'] = wfMessage( 'flow-error-missing-title' );
 		}

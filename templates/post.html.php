@@ -1,7 +1,7 @@
 <?php
 
 $replyForm = '';
-if ( !$post->isModerated() ) {
+if ( $postView->actions()->isAllowed( 'reply' ) ) {
 	$replyForm = Html::openElement( 'div', array( 'class' => 'flow-post-reply-container' ) );
 
 	$replyForm .= '
@@ -105,7 +105,9 @@ if ( !$post->isModerated() ) {
 
 			<div class="flow-post-interaction">
 				<?php if ( !$post->isModerated() ): ?>
-					<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo $postView->replyLink( $post ); ?></span></a>
+					<?php if ( $postView->actions()->isAllowed( 'reply' ) ): ?>
+						<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo $postView->replyLink( $post ); ?></span></a>
+					<?php endif ?>
 					<a class="flow-thank-link mw-ui-button" href="#" onclick="return mw.flow.notImplemented()">
 						<span><?php echo $postView->thankLink( $post ); ?></span>
 					</a>
