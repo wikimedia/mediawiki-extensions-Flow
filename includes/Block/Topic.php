@@ -384,6 +384,50 @@ class TopicBlock extends AbstractBlock {
 				'topicTitle' => $topicTitle,
 			), $return );
 
+		case 'compare-revisions':
+			if ( ! isset( $options['oldRevision'] ) || ! isset( $options['newRevision'] ) ) {
+				throw new \MWException( "Two revisions must be specified to compare them" );
+			}
+
+			$oldRevId = UUID::create( $options['oldRevision'] );
+			$newRevId = UUID::create( $options['newRevision'] );
+
+			list( $oldRev, $newRev ) = $this->storage->getMulti(
+				'PostRevision',
+				array(
+					$oldRevId,
+					$newRevId
+				)
+			);
+
+			// In theory the backend will return things in increasing PK order
+			// (i.e. earlier revision first), but let's be sure.
+			if (
+				$oldRev->getRevisionId()->getTimestamp() >
+				$newRev->getRevisionId()->getTimestamp()
+			) {
+				$temp = $oldRev;
+				$oldRev = $newRev;
+				$newRev = $temp;
+			}
+
+			if ( ! $oldRev->getPostId()->equals( $newRev->getPostId() ) ) {
+				throw new \MWException( "Attempt to compare revisions of different posts" );
+			}
+
+			$templating->getOutput()->addModules( 'ext.flow.history' );
+
+			return $prefix . $templating->render(
+				'flow:compare-revisions.html.php',
+				array(
+					'block' => $this,
+					'user' => $this->user,
+					'oldRevision' => $oldRev,
+					'newRevision' => $newRev,
+				), $return
+			);
+			break;
+
 		default:
 			$root = $this->loadRootPost();
 			if ( !$root ) {
@@ -403,12 +447,45 @@ class TopicBlock extends AbstractBlock {
 					$return
 				);
 			}
+
 			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
 				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
+			} elseif ( isset( $options['revId'] ) ) {
+				return $this->renderRevision( $templating, $options, $return );
+			} else {
+				return $prefix . $templating->renderTopic(
+					$root,
+					$this,
+					$return
+				);
 			}
+		}
+	}
 
+	protected function renderRevision( Templating $templating, array $options, $return = false ) {
+		$postRevision = $this->loadRequestedRevision( $options['revId'] );
+
+		// @todo Do we perhaps want to show the children that did exist at the time of editing?
+		$postRevision->setChildren( array() );
+
+		$prefix = $templating->render(
+			'flow:revision-permalink-warning.html.php',
+			array(
+				'block' => $this,
+				'revision' => $postRevision,
+			),
+			$return
+		);
+
+		if ( $postRevision->isTopicTitle() ) {
 			return $prefix . $templating->renderTopic(
-				$root,
+				$postRevision,
+				$this,
+				$return
+			);
+		} else {
+			return $prefix . $templating->renderPost(
+				$postRevision,
 				$this,
 				$return
 			);
@@ -647,7 +724,7 @@ class TopicBlock extends AbstractBlock {
 		);
 	}
 
-	protected function loadRootPost() {
+	public function loadRootPost() {
 		if ( $this->root !== null ) {
 			return $this->root;
 		}
@@ -663,11 +740,11 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	// Loads only the title, as opposed to loadRootPost which gets the entire tree of posts.
-	protected function loadTopicTitle() {
+	public function loadTopicTitle() {
 		if ( $this->workflow->isNew() ) {
 			throw new \MWException( 'New workflows do not have any related content' );
 		}
-		if ( $this->topicTitle === null ) {
+		if ( true ) {//$this->topicTitle === null ) {
 			$found = $this->storage->find(
 				'PostRevision',
 				array( 'tree_rev_descendant_id' => $this->workflow->getId() ),
@@ -748,6 +825,27 @@ class TopicBlock extends AbstractBlock {
 		$this->errors['moderation'] = wfMessage( 'flow-error-not-allowed' );
 	}
 
+	protected function loadRequestedRevision( $revisionId ) {
+		if ( !$revisionId instanceof UUID ) {
+			$revisionId = UUID::create( $revisionId );
+		}
+
+		$found = $this->storage->get( 'PostRevision', $revisionId );
+
+		if ( !$found ) {
+			throw new \MWException( 'The requested revision could not be found' );
+		} else if ( !$this->permissions->isAllowed( $found, 'view' ) ) {
+			$this->errors['moderation'] = wfMessage( 'flow-error-not-allowed' );
+			return null;
+		}
+
+		// using the path to the root post, we can know the post's depth
+		$rootPath = $this->rootLoader->treeRepo->findRootPath( $found->getPostId() );
+		$found->setDepth( count( $rootPath ) - 1 );
+
+		return $found;
+	}
+
 	protected function loadHistorical( PostRevision $post ) {
 		if ( $post->isFirstRevision() ) {
 			return array();
@@ -785,6 +883,28 @@ class TopicBlock extends AbstractBlock {
 	// The prefix used for form data
 	public function getName() {
 		return 'topic';
+	}
+
+	/**
+	 * Builds query info to use with urlGenerator, to link to a specific
+	 * PostRevision.
+	 *
+	 * @param PostRevision $revision
+	 * @param bool[optional] $specificRevision Link to this specific revision?
+	 * @return array
+	 */
+	public function getUrlQuery( PostRevision $revision, $specificRevision = false ) {
+		$data = array();
+
+		if ( !$revision->isTopicTitle() ) {
+			$data[$this->getName() . '[postId]'] = $revision->getPostId()->getHex();
+		}
+
+		if ( $specificRevision ) {
+			$data[$this->getName() . '[revId]'] = $revision->getRevisionId()->getHex();
+		}
+
+		return $data;
 	}
 
 	protected function setNotification( $notificationType, array $extraVars ) {

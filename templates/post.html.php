@@ -101,20 +101,16 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 						</ul>
 					</div>
 				</div>
-			<?php endif; ?>
+			<?php
+				endif;
 
-			<p class="flow-datestamp">
-				<?php
-					// timestamp html
-					$content = '
-						<span class="flow-agotime">' . htmlspecialchars( $post->getPostId()->getHumanTimestamp() ) . '</span>
-						<span class="flow-utctime">' . htmlspecialchars( $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ) ) . '</span>';
+				$historyLink = $postView->postHistoryLink();
 
-					// build history button with timestamp html as content
-					echo $postView->postHistoryButton( $content );
-				?>
-			</p>
-
+				echo $this->render( 'flow:timestamp.html.php', array(
+					'historicalLink' => $historyLink,
+					'timestamp' => $post->getPostId()->getTimestampObj(),
+				), true );
+			?>
 			<div class="flow-post-interaction">
 				<?php if ( !$post->isModerated() ): ?>
 					<?php if ( $postView->actions()->isAllowed( 'reply' ) ): ?>
