@@ -84,15 +84,21 @@ echo Html::openElement( 'div', array(
 		</p>
 
 		<?php
+/*
+			// @todo: there's no watchlist functionality yet; this blurb is just to position it correctly already
+			$watchlistActive = false; // @todo: true if already watchlisted, false if not
 			echo Html::element(
 				'a',
 				array(
-					'class' => 'flow-icon-permalink flow-icon flow-icon-top-aligned',
-					'title' => wfMessage( 'flow-topic-action-view' )->text(),
-					'href' => $this->generateUrl( $topic ),
+					'class' => 'flow-icon-watchlist flow-icon flow-icon-top-aligned'
+						. ( $watchlistActive ? ' flow-icon-watchlist-active' : '' ),
+					'title' => wfMessage( 'flow-topic-action-watchlist' )->text(),
+					'href' => '#',
+					'onclick' => "alert( '@todo: Not yet implemented!' ); return false;"
 				),
-				wfMessage( 'flow-topic-action-view' )->text()
+				wfMessage( 'flow-topic-action-watchlist' )->text()
 			);
+*/
 		?>
 
 		<ul class="flow-topic-posts-meta">
@@ -103,6 +109,7 @@ echo Html::openElement( 'div', array(
 				<a href="#" class="flow-reply-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
 					<?php
 						// get total number of posts in topic
+						// @todo: the number of comments should not be a part of the link
 						$comments = $root->getRecursiveResult( $indexDescendantCount );
 						echo wfMessage( 'flow-topic-comments', $comments )->text();
 					?>
@@ -111,19 +118,14 @@ echo Html::openElement( 'div', array(
 		</ul>
 
 		<?php
-			// @todo: afaik, there's no watchlist functionality yet; this blurb is just to position it correctly already
-
-			$watchlistActive = false; // @todo: true if already watchlisted, false if not
 			echo Html::element(
 				'a',
 				array(
-					'class' => 'flow-icon-watchlist flow-icon flow-icon-bottom-aligned'
-						. ( $watchlistActive ? ' flow-icon-watchlist-active' : '' ),
-					'title' => wfMessage( 'flow-topic-action-watchlist' )->text(),
-					'href' => '#',
-					'onclick' => "alert( '@todo: Not yet implemented!' ); return false;"
+					'class' => 'flow-icon-permalink flow-icon flow-icon-bottom-aligned',
+					'title' => wfMessage( 'flow-topic-action-view' )->text(),
+					'href' => $this->generateUrl( $topic ),
 				),
-				wfMessage( 'flow-topic-action-watchlist' )->text()
+				wfMessage( 'flow-topic-action-view' )->text()
 			);
 		?>
 	</div>
@@ -166,6 +168,7 @@ echo Html::openElement( 'div', array(
 	) ),
 	Html::textarea( $block->getName() . '[topic-reply-content]', '', array(
 		'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
+		'title' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
 		'class' => 'flow-input mw-ui-input flow-topic-reply-content',
 	) ),
 	Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
