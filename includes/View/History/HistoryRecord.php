@@ -46,6 +46,11 @@ class HistoryRecord {
 	 * @return array|bool Array of action details or false if invalid
 	 */
 	protected function getActionDetails( $action ) {
+		// Backwards-compatibility handling
+		if ( !is_array( $this->getActions()->getValue( $action ) ) ) {
+			$action = $this->getActions()->getValue( $action );
+		}
+
 		$details = $this->getActions()->getValue( $action, 'history' );
 
 		if ( $details === null ) {
