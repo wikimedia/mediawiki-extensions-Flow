@@ -139,6 +139,13 @@ class HistoryRenderer {
 				$historyRecord = new HistoryRecord( $revision );
 				$children .= $this->renderLine( $historyRecord );
 			}
+			$historicalLink = null;
+		} else {
+			$historicalLink = $this->templating->getUrlGenerator()->generateUrl(
+				$this->block->getWorkflowId(),
+				'view',
+				$this->block->getUrlQuery( $record->getRevision(), true )
+			);
 		}
 
 		return $this->templating->render( 'flow:history-line.html.php', array(
@@ -151,7 +158,8 @@ class HistoryRenderer {
 				$this->block
 			),
 			'timestamp' => $record->getTimestamp(),
-			'children' => $children
+			'children' => $children,
+			'historicalLink' => $historicalLink,
 		), true );
 	}
 }

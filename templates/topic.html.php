@@ -145,22 +145,12 @@ echo Html::openElement( 'div', array(
 		</div>
 		<?php endif; ?>
 
-		<p class="flow-datestamp">
-			<?php
-				// timestamp html
-				echo Html::rawElement( 'a',
-					array(
-						'class' => 'flow-action-history-link',
-						'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
-					),
-					'<span class="flow-agotime" style="display: inline">' . 
-						htmlspecialchars( $topic->getLastModifiedObj()->getHumanTimestamp() ) . 
-					'</span><span class="flow-utctime" style="display: none">' . 
-						htmlspecialchars( $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) ) . 
-					'</span>'
-				);
-			?>
-		</p>
+		<?php
+			echo $this->render( 'flow:timestamp.html.php', array(
+				'historicalLink' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
+				'timestamp' => $topic->getLastModifiedObj(),
+			), true );
+		?>
 
 		<?php
 /*

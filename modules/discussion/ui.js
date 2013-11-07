@@ -254,7 +254,7 @@
 					'.flow-actions',
 					'.flow-icon-permalink',
 					'.flow-icon-watchlist',
-					'.flow-action-history-link',
+					'.flow-datestamp a',
 					'.flow-topic-comments'
 				];
 				if ( $( e.target ).closest( ignore.join( ',' ) ).length > 0 ) {
