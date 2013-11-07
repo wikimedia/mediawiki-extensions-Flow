@@ -39,7 +39,7 @@
 
 		// Reply form is meant to be visible for non-JS users
 		// when JS is available, hide until button is clicked
-		$container.find( '.flow-reply-form' )
+		$container.find( '.flow-post-reply-container' )
 			.hide();
 
 		$container.find( '.flow-reply-link' )
@@ -47,7 +47,7 @@
 			.click( function ( e ) {
 				e.preventDefault();
 
-				var $form,
+				var $formContainer,
 					$viewport = $('main, html');
 
 				/**
@@ -57,30 +57,28 @@
 				 */
 				function adjustReplyTarget( $btn, $targetForm ) {
 					var replyTo = $btn.closest( '.flow-post-container' ).data( 'post-id' );
-					var replyDefaultText = $btn.closest( '.flow-post' )
-						.siblings( 'form.flow-reply-form' )
-						.find( 'input[name="placeholder"]' ).val();
+					var replyDefaultText = $btn.closest( '.flow-post-container' )
+						.find( 'form.flow-reply-form input[name="placeholder"]' ).val();
 					$targetForm.find( 'input[name="topic[replyTo]"]' ).val( replyTo );
 					$targetForm.find( 'textarea' ).attr( 'placeholder',  replyDefaultText );
 				}
 
-				if ( $(this).is( '.flow-post-container .flow-post-container *' ) ) {
+				if ( $( this ).is( '.flow-post-container .flow-post-container *' ) ) {
 					// We're in a tangent
-					$form = $( this ).parents( '.flow-post-container' ).last().children( 'form.flow-reply-form' );
-					adjustReplyTarget( $( this ), $form );
+					$formContainer = $( this ).parents( '.flow-post-container' ).last().find( '.flow-post-reply-container:first' );
+					adjustReplyTarget( $( this ), $formContainer );
 					$( this ).closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
 				} else if ( $(this).is( '.flow-topic-comments .flow-reply-link' ) ) {
 					// We're in the topic title
-					$form = $( this ).closest( '.flow-topic-container').find( '.flow-topic-reply-form');
+					$formContainer = $( this ).closest( '.flow-topic-container' );
 				} else {
 					// Not in a tangent
-					$form = $( this ).closest( '.flow-post' ).siblings( 'form.flow-reply-form' );
-					adjustReplyTarget( $( this ), $form );
+					$formContainer = $( this ).closest( '.flow-post-container' ).find( '.flow-post-reply-container:last' );
+					adjustReplyTarget( $( this ), $formContainer );
+					$( this ).closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
 				}
 
-				$textarea = $form.find( 'textarea' );
-
-				$form
+				$formContainer
 					.show()
 					.find( '.flow-cancel-link' )
 					.click( function( e ) {
@@ -91,6 +89,7 @@
 							.show();
 					} );
 
+				$textarea = $formContainer.find( 'textarea' );
 				$textarea
 					.focus()
 					.removeClass( 'flow-reply-box-closed' );
@@ -98,7 +97,7 @@
 
 				// Scroll to the form
 				$viewport.animate( {
-					'scrollTop' : $form.offset().top - $viewport.height()/2
+					'scrollTop' : $formContainer.offset().top - $viewport.height()/2
 				}, 500 );
 			} );
 
@@ -113,11 +112,11 @@
 
 				mw.flow.editor.destroy(
 					$( this )
-						.closest( '.flow-reply-form' )
+						.closest( '.flow-post-reply-container' )
 						.find( ':data(flow-editor)' )
 				);
 
-				$( this ).closest( '.flow-reply-form' )
+				$( this ).closest( '.flow-post-reply-container' )
 					.slideUp( 'fast', function () {
 						$( this ).closest( '.flow-reply-form' )
 							.find( 'textarea' )
