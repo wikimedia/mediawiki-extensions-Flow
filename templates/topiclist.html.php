@@ -14,22 +14,17 @@ if ( $block->hasErrors( 'topic' ) ) {
 echo Html::input(
 	$block->getName() . '[topic]', '', 'text', array(
 		'placeholder' => wfMessage( 'flow-newtopic-title-placeholder' )->text(),
+		'title' => wfMessage( 'flow-newtopic-title-placeholder' )->text(),
 		'class' => 'flow-newtopic-title mw-ui-input flow-input',
 	)
 );
-
-// @Todo - Update href to a real link for no-js support
-echo Html::element( 'a', array(
-	'class' => array( 'flow-new-topic-link', 'flow-icon', 'flow-icon-bottom-aligned' ),
-	'href' => '#',
-	'title' => wfMessage( 'flow-newtopic-start-placeholder' )->text(),
-), wfMessage( 'flow-newtopic-start-placeholder' )->text() );
 
 if ( $block->hasErrors( 'content' ) ) {
 	echo '<p>' . $block->getError( 'content' )->escaped() . '</p>';
 }
 echo Html::textarea( $block->getName() . '[content]', '', array(
 	'placeholder' => wfMessage( 'flow-newtopic-content-placeholder' )->text(),
+	'title' => wfMessage( 'flow-newtopic-content-placeholder' )->text(),
 	'class' => 'flow-newtopic-step2 flow-newtopic-content flow-input mw-ui-input',
 	'rows' => '10',
 ) );

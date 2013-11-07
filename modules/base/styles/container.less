@@ -1,4 +1,4 @@
-@icons-space: 50px;
+@icons-space: 44px;
 
 // all UI "container" elements should have this class, which will preserve some
 // space on the right for icons.
@@ -29,15 +29,15 @@
 
 		// icons bottom-aligned should in HTML be _after_ the element where they
 		// should align to the bottom, and have this class added (will push the
-		// button back up to lign up with the preceeding node)
+		// button back up to line up with the preceding node)
 		&.flow-icon-bottom-aligned {
-			margin-top: -40px;
+			margin-top: -30px;
 		}
 
 		// icons top-aligned should in HTML be _before_ the element where they
 		// should align to the top, and have this class added
 		&.flow-icon-top-aligned {
-
+			margin-top: -10px;
 		}
 	}
 
@@ -51,6 +51,7 @@
 .flow-container {
 	font-size: 16px;
 
-	// based on width in Flow Prototype/Design/Iteration 5 "Talkpage_*"
-	width: 660px;
+	// allow width to float a bit so we can accommodate some smaller screens
+	min-width: 400px;
+	max-width: 800px;
 }
