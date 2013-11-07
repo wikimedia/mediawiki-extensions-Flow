@@ -87,6 +87,25 @@ class PostActionMenu {
 	}
 
 	/**
+	 * Get the URL for a given action.
+	 * Includes permissions checking.
+	 * @param  string $action The action to get the URL for
+	 * @param  array  $data   Optional parameters to pass
+	 * @return string         The URL for the given action
+	 */
+	public function actionUrl( $action, array $data = array() ) {
+		if ( ! $this->isAllowed( $action ) ) {
+			return null;
+		}
+
+		return $this->urlGenerator->generateUrl(
+			$this->block->getWorkflowId(),
+			$action,
+			$data
+		);
+	}
+
+	/**
 	 * Create form for actions that require POST.
 	 *
 	 * @param string $action
@@ -99,7 +118,7 @@ class PostActionMenu {
 		$output = array(
 			Html::openElement( 'form', array(
 				'method' => 'POST',
-				'action' => $this->urlGenerator->generateUrl( $this->block->getWorkflowId(), $action )
+				'action' => $this->actionUrl(  $action )
 			) ),
 			Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $this->editToken ) )
 		);
@@ -133,11 +152,7 @@ class PostActionMenu {
 	 * @return string
 	 */
 	protected function getAction( $action, array $data, $content, $class ) {
-		$url = $this->urlGenerator->generateUrl(
-			$this->block->getWorkflowId(),
-			$action,
-			$data
-		);
+		$url = $this->actionUrl( $action, $data );
 
 		return Html::rawElement(
 			'a',

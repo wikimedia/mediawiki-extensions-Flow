@@ -1,10 +1,10 @@
 <li class="<?php echo $class; ?>">
 	<p><span class="plainlinks"><?php echo $message->parse(); ?></span></p>
-	<p class="flow-datestamp">
-		<a href="<?php echo '#'; /* @todo: link to historical revision */ ?>">
-			<span class="flow-agotime" style="display: inline"><?php echo htmlspecialchars( $timestamp->getHumanTimestamp() ); ?></span>
-			<span class="flow-utctime" style="display: none"><?php echo htmlspecialchars( $timestamp->getTimestamp( TS_RFC2822 ) ); ?></span>
-		</a>
-	</p>
+<?php
+echo $this->render( 'flow:timestamp.html.php', array(
+	'timestamp' => $timestamp,
+	'historicalLink' => $historicalLink,
+), true );
+?>
 	<?php echo $children ? '<ul>' . $children . '</ul>' : ''; ?>
 </li>

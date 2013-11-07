@@ -211,6 +211,15 @@ $messages['en'] = array(
 	// Permalink related stuff
 	'flow-topic-permalink-warning' => 'This topic was started on [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'This topic was started on [$2 {{GENDER:$1|$1}}\'s board]',
+	'flow-revision-permalink-warning-post' => 'This is a permanent link to a single version of this post.
+This version is from $1.
+You can see the [$5 differences from the previous version], or view other versions on the [$4 post history page].',
+	'flow-revision-permalink-warning-post-first' => 'This is a permanent link to the first version of this post.
+You can view later versions on the [$4 post history page].',
+
+	'flow-compare-revisions-revision-header' => 'Version by {{GENDER:$2|$2}} from $1',
+	'flow-compare-revisions-header-post' => 'This page shows the changes between two versions of a post by $3 in the topic "[$5 $2]" on [$4 $1].
+You can see other versions of this post at its [$6 history page].',
 );
 
 /** Message documentation (Message documentation)
@@ -856,6 +865,37 @@ Parameters:
 * $2 - URL for a link to the board that the topic comes from
 See also:
 * {{msg-mw|Flow-topic-permalink-warning}}",
+
+	'flow-revision-permalink-warning-post' => 'Header displayed at the top of a page when somebody is viewing a single-revision permalink of a post.
+This message will not appear for the first revision, which has its own message (flow-revision-permalink-warning-post-first).
+Note that the "topic permalink warning" (see flow-topic-permalink-warning) will also be displayed.
+
+Parameters:
+* $1: Date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC-2822 timestamp when hovered over. I hope that doesn\'t cause too much translation trouble.
+* $2: Title of the Flow Board that the post appears on. Example: User talk:Andrew
+* $3: Title of the topic that this post appears in.
+* $4: URL to the history page.
+* $5: URL to the diff from the previous revision to this one.',
+	'flow-revision-permalink-warning-post-first' => 'Header displayed at the top of a page when somebody is viewing a single-revision permalink of a post.
+This message will only be shown for the first revision.
+Note that the "topic permalink warning" (see flow-topic-permalink-warning) will also be displayed.
+
+Parameters:
+* $1: Date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC-2822 timestamp when hovered over. I hope that doesn\'t cause too much translation trouble.
+* $2: Title of the Flow Board that the post appears on. Example: User talk:Andrew
+* $3: Title of the topic that this post appears in.
+* $4: URL to the history page.',
+
+	'flow-compare-revisions-revision-header' => 'Diff column header for a revision. Parameters:
+* $1: Date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC-2822 timestamp when hovered over. I hope that doesn\'t cause too much translation trouble.
+* $2: User who made this revision.',
+	'flow-compare-revisions-header-post' => 'Header for a page showing a "diff" between two revisions of a Flow post. Parameters:
+* $1: The title of the Board on which this post sits. Example: User talk:Andrew.
+* $2: The subject of the Topic in which this post sits.
+* $3: The username of the author of the post.
+* $4: URL to the Board, with the fragment set to the post in question.
+* $5: URL to the Topic, with the fragment set to the post in question.
+* $5: URL to the history page for this post.',
 );
 
 /** Achinese (Acèh)

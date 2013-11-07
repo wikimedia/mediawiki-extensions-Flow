@@ -168,4 +168,15 @@ class HeaderBlock extends AbstractBlock {
 		return 'header';
 	}
 
+	/**
+	 * Builds query info to use with urlGenerator, to link to a specific
+	 * Header.
+	 *
+	 * @param Header $revision
+	 * @param bool[optional] $specificRevision Link to this specific revision?
+	 * @return array
+	 */
+	public function getUrlQuery( Header $revision, $specificRevision = false ) {
+		return array();
+	}
 }
