@@ -286,7 +286,7 @@
 					} );
 				}
 			);
-	} );
+		} );
 
 		// Moderated posts need click to display content
 		$( '<a href="#" class="flow-post-moderated-view"></a>' )
