@@ -56,7 +56,7 @@ class MultiDimArray implements \ArrayAccess {
 			if ( !isset( $data[$key] ) ) {
 				throw new \OutOfBoundsException( 'Does not exist' );
 			} elseif ( ! is_array( $data ) ) {
-				throw new \MWException( "Requested offset {$key} (full offset ".implode(':', $offset)."), but $data is not an array." );
+				throw new \OutOfBoundsException( "Requested offset {$key} (full offset ".implode(':', $offset)."), but $data is not an array." );
 			}
 			$data =& $data[$key];
 		}
