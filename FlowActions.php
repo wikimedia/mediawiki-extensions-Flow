@@ -25,6 +25,7 @@ use Flow\Block\Block;
  */
 $wgFlowActions = array(
 	'create-header' => array(
+		'performs-writes' => true,
 		'log_type' => false,
 		/*
 		 * null doesn't actually have any meaning here; we just have not (yet?)
@@ -46,6 +47,7 @@ $wgFlowActions = array(
 	),
 
 	'edit-header' => array(
+		'performs-writes' => true,
 		'log_type' => false,
 		/*
 		 * null doesn't actually have any meaning here; we just have not (yet?)
@@ -67,6 +69,7 @@ $wgFlowActions = array(
 	),
 
 	'edit-title' => array(
+		'performs-writes' => true,
 		'log_type' => false,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
@@ -99,6 +102,7 @@ $wgFlowActions = array(
 	),
 
 	'new-post' => array(
+		'performs-writes' => true,
 		'log_type' => false,
 		'permissions' => null,
 		'button-method' => 'POST',
@@ -120,6 +124,7 @@ $wgFlowActions = array(
 	),
 
 	'edit-post' => array(
+		'performs-writes' => true,
 		'log_type' => false,
 		'permissions' => array(
 			// no permissions needed for own posts
@@ -144,6 +149,7 @@ $wgFlowActions = array(
 	),
 
 	'hide-post' => array(
+		'performs-writes' => true,
 		'log_type' => false,
 		'permissions' => array(
 			// Permissions required to perform action. The key is the moderation state
@@ -171,6 +177,7 @@ $wgFlowActions = array(
 	),
 
 	'delete-post' => array(
+		'performs-writes' => true,
 		'log_type' => 'delete',
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => 'flow-delete',
@@ -196,6 +203,7 @@ $wgFlowActions = array(
 	),
 
 	'censor-post' => array(
+		'performs-writes' => true,
 		'log_type' => 'suppress',
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => 'flow-censor',
@@ -222,6 +230,7 @@ $wgFlowActions = array(
 	),
 
 	'restore-post' => array(
+		'performs-writes' => true,
 		'log_type' => function( PostRevision $post, Logger $logger ) {
 			// Kind of log depends on the previous change type:
 			// * if post was deleted, restore should go to deletion log
@@ -254,6 +263,7 @@ $wgFlowActions = array(
 	),
 
 	'post-history' => array(
+		'performs-writes' => false,
 		'log_type' => false,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
@@ -265,6 +275,7 @@ $wgFlowActions = array(
 	),
 
 	'view' => array(
+		'performs-writes' => false,
 		'log_type' => false, // don't log views
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
@@ -277,6 +288,7 @@ $wgFlowActions = array(
 	),
 
 	'reply' => array(
+		'performs-writes' => true,
 		'log_type' => false,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',

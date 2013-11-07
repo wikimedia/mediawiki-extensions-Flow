@@ -123,10 +123,13 @@ class Templating {
 	}
 
 	public function renderTopic( PostRevision $root, TopicBlock $block, $return = true ) {
+		$container = Container::getContainer();
+
 		return $this->render( "flow:topic.html.php", array(
 			'block' => $block,
 			'topic' => $block->getWorkflow(),
 			'root' => $root,
+			'permissions' => new PostActionPermissions( $container['flow_actions'], $container['user'] ),
 		), $return );
 	}
 
