@@ -357,6 +357,31 @@ class TopicBlock extends AbstractBlock {
 				'topicTitle' => $this->loadTopicTitle(),
 			), $return );
 
+		case 'compare-revisions':
+			if ( ! isset( $options['oldRevision'] ) || ! isset( $options['newRevision'] ) ) {
+				throw new \MWException( "Two revisions must be specified to compare them" );
+			}
+
+			$oldRev = $this->storage->get( 'PostRevision', UUID::create( $options['oldRevision'] ) );
+			$newRev = $this->storage->get( 'PostRevision', UUID::create( $options['newRevision'] ) );
+
+			if ( ! $oldRev->getPostId()->equals( $newRev->getPostId() ) ) {
+				throw new \MWException( "Attempt to compare revisions of different posts" );
+			}
+
+			$templating->getOutput()->addModules( 'ext.flow.history' );
+
+			return $prefix . $templating->render(
+				'flow:compare-revisions.html.php',
+				array(
+					'block' => $this,
+					'user' => $this->user,
+					'oldRevision' => $oldRev,
+					'newRevision' => $newRev,
+				), $return
+			);
+			break;
+
 		default:
 			$root = $this->loadRootPost();
 
@@ -382,6 +407,36 @@ class TopicBlock extends AbstractBlock {
 
 				return $prefix . $templating->renderPost(
 					$post,
+					$this,
+					$return
+				);
+			} elseif ( isset( $options['revId'] ) ) {
+				$postRevision = $this->storage->get(
+					'PostRevision',
+					UUID::create( $options['revId'] )
+				);
+
+				if ( ! $postRevision ) {
+					throw new \MWException( "The requested revision could not be found" );
+				}
+
+				$templating->getOutput()->addModules( 'ext.flow.history' );
+
+				// Set children as empty, otherwise it's just confusing
+				// @todo Do we perhaps want to show children at the time of editing?
+				$postRevision->setChildren( array() );
+
+				$prefix = $templating->render(
+					'flow:revision-permalink-warning.html.php',
+					array(
+						'block' => $this,
+						'revision' => $postRevision,
+					),
+					$return
+				);
+
+				return $prefix . $templating->renderPost(
+					$postRevision,
 					$this,
 					$return
 				);
