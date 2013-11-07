@@ -286,7 +286,7 @@
 					} );
 				}
 			);
-	} );
+		} );
 
 		// Moderated posts need click to display content
 		$( '<a href="#" class="flow-post-moderated-view"></a>' )
@@ -329,6 +329,14 @@
 		// perform same highlighting to anchors within page for consistency
 		$container.find( '.flow-icon-permalink' ).click( function( e ) {
 			highlightPost( $( this.hash ) );
+		} );
+
+		// auto-expand text-area as content grows
+		$container.find( 'textarea' ).keyup( function() {
+			var scrollHeight = this.scrollHeight;
+			if ( scrollHeight > $( this ).height() ) {
+				$( this ).animate( { height: scrollHeight }, 50 );
+			}
 		} );
 	} );
 } )( jQuery, mediaWiki );
