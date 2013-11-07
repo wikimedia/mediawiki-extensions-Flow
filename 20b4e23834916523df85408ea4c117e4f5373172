@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_354ebc6a",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-11-07T08:34:58Z",
+      "side": 1,
+      "message": "See comment in qqq section.",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_5549785f",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-11-07T08:34:58Z",
+      "side": 1,
+      "message": "See comment in qqq section.",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_153f00b2",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-11-07T08:34:58Z",
+      "side": 1,
+      "message": "Timestamps in running sentences should have a time and date as separate variables. See https://www.mediawiki.org/wiki/I18n#Separate_times_from_dates_in_sentences",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_7578348e",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-11-07T08:34:58Z",
+      "side": 1,
+      "message": "See above.",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
