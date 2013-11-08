@@ -67,9 +67,9 @@ if ( !$post->isModerated() ) {
 			<p class="flow-post-moderated-message flow-post-moderated-<?php echo $post->getModerationState(); ?> flow-post-content-<?php echo $post->isAllowed( $user ) ? 'allowed' : 'disallowed'; ?>">
 			<?php
 				// passing in null as user (unprivileged) will get the "hidden/deleted/suppressed by XYZ" text
-				echo $post->getContent( null );
+				echo $this->getContent( $post, 'html', null );
 			?>
-		</p>
+			</p>
 		<?php endif; ?>
 
 		<div class="flow-post-main">
@@ -85,7 +85,7 @@ if ( !$post->isModerated() ) {
 			</div>
 
 			<div class="flow-post-content">
-				<?php echo $post->getContent( $user, 'html' ); ?>
+				<?php echo $this->getContent( $post, 'html', $user ); ?>
 			</div>
 
 			<?php echo $postView->editPostButton( $post, 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' ); ?>

@@ -149,7 +149,7 @@ class NotificationController {
 				'board-workflow' => $boardWorkflow->getId(),
 				'topic-workflow' => $topicWorkflow->getId(),
 				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
-				'topic-title' => $topicPost->getContentRaw(),
+				'topic-title' => $topicPost->getContent(),
 				'content' => $firstPost ? $firstPost->getContent() : null,
 			)
 		) );
@@ -159,7 +159,7 @@ class NotificationController {
 				'title' => $boardWorkflow->getArticleTitle(),
 				'user' => $user,
 				'post' => $firstPost,
-				'topic-title' => $topicPost->getContentRaw(),
+				'topic-title' => $topicPost->getContent(),
 				'topic-workflow' => $topicWorkflow,
 			) )
 		);
@@ -214,7 +214,7 @@ class NotificationController {
 		// At the moment, it is not possible to get a list of mentioned users from HTML
 		//  unless that HTML comes from Parsoid. But VisualEditor (what is currently used
 		//  to convert wikitext to HTML) does not currently use Parsoid.
-		$wikitext = $post->getContent( null, 'wikitext' );
+		$wikitext = $post->getContent( 'wikitext' );
 		$mentions = $this->getMentionedUsersFromWikitext( $wikitext );
 		$notifyUsers = $this->filterMentionedUsers( $mentions, $post, $title );
 

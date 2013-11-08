@@ -4,8 +4,8 @@ use Flow\Model\PostRevision;
 use Flow\Model\Header;
 use Flow\PostActionPermissions;
 use Flow\Log\Logger;
-use Flow\UrlGenerator;
 use Flow\Block\Block;
+use Flow\Templating;
 
 /**
  * Flow actions: key => value map with key being the action name.
@@ -38,8 +38,8 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-header',
 			'i18n-params' => array(
-				function ( Header $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( Header $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
 			),
 			'class' => 'flow-history-create-header',
@@ -59,8 +59,8 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-header',
 			'i18n-params' => array(
-				function ( Header $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( Header $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
 			),
 			'class' => 'flow-history-edit-header',
@@ -76,20 +76,20 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-title',
 			'i18n-params' => array(
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $urlGenerator->generateUrl( $revision->getPostId() );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUrlGenerator()->generateUrl( $revision->getPostId() );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getContent( $user, 'wikitext' );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getContent( $revision, 'wikitext', $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$previousId = $revision->getPrevRevisionId();
 					if ( $previousId ) {
 						$previousRevision = $block->getStorage()->get( get_class( $revision ), $previousId );
-						return $previousRevision->getContent( $user, 'wikitext' );
+						return $templating->getContent( $previousRevision, 'wikitext', $user );
 					}
 
 					return '';
@@ -106,14 +106,14 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-new-post',
 			'i18n-params' => array(
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $urlGenerator->generateUrl( $revision->getPostId() );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUrlGenerator()->generateUrl( $revision->getPostId() );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getContent( $user, 'wikitext' );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getContent( $revision, 'wikitext', $user );
 				},
 			),
 			'class' => 'flow-history-new-post',
@@ -132,12 +132,12 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-post',
 			'i18n-params' => array(
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $urlGenerator->generateUrl( $block->getWorkflowId(), 'view', $data );
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
 				},
 			),
 			'class' => 'flow-history-edit-post',
@@ -156,15 +156,15 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-post',
 			'i18n-params' => array(
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $urlGenerator->generateUrl( $block->getWorkflowId(), 'view', $data );
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
 				},
 			),
 			'class' => 'flow-history-hid-post',
@@ -181,15 +181,15 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-post',
 			'i18n-params' => array(
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $urlGenerator->generateUrl( $block->getWorkflowId(), 'view', $data );
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
 				},
 			),
 			'class' => 'flow-history-deleted-post',
@@ -207,15 +207,15 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-censored-post',
 			'i18n-params' => array(
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $urlGenerator->generateUrl( $block->getWorkflowId(), 'view', $data );
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
 				},
 			),
 			'class' => 'flow-history-censored-post',
@@ -239,15 +239,15 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-restored-post',
 			'i18n-params' => array(
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $urlGenerator->generateUrl( $block->getWorkflowId(), 'view', $data );
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
 				},
 			),
 			'class' => 'flow-history-restored-post',
@@ -286,19 +286,19 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-reply',
 			'i18n-params' => array(
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getUserText( $user );
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return $templating->getUserText( $revision, $user );
 				},
-				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $urlGenerator->generateUrl( $block->getWorkflowId(), 'view', $data );
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
 				},
 			),
 			'class' => 'flow-history-reply',
 			'bundle' => array(
 				'i18n-message' => 'flow-rev-message-reply-bundle',
 				'i18n-params' => array(
-					function ( array $revisions, UrlGenerator $urlGenerator, User $user, Block $block ) {
+					function ( array $revisions, Templating $templating, User $user, Block $block ) {
 						return array( 'num' => count( $revisions ) );
 					}
 				),

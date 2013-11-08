@@ -76,9 +76,14 @@ class HeaderBlock extends AbstractBlock {
 		case 'edit-header':
 			$this->storage->put( $this->header );
 
+			$header = $this->header;
+			$user = $this->user;
+
 			return array(
 				'new-revision-id' => $this->header->getRevisionId(),
-				'rendered' => $this->header->getContent( $this->user, 'html' ),
+				'render-function' => function( $templating ) use ( $header, $user ) {
+					return $templating->getContent( $header, 'html', $user );
+				},
 			);
 			break;
 
@@ -128,7 +133,7 @@ class HeaderBlock extends AbstractBlock {
 		}
 
 		if ( $this->header !== null ) {
-			$output['*'] = $this->header->getContent( $this->user, $contentFormat );
+			$output['*'] = $templating->getContent( $this->header, $contentFormat, $this->user );
 			$output['format'] = $contentFormat;
 			$output['header-id'] = $this->header->getRevisionId()->getHex();
 		} else {

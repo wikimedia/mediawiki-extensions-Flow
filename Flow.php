@@ -157,6 +157,7 @@ $wgHooks['TitleIsAlwaysKnown'][] = 'FlowHooks::onTitleIsAlwaysKnown';
 $wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavigation';
 $wgHooks['Article::MissingArticleConditions'][] = 'FlowHooks::onMissingArticleConditions';
 $wgHooks['SpecialWatchlistGetNonRevisionTypes'][] = 'FlowHooks::onSpecialWatchlistGetNonRevisionTypes';
+$wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';

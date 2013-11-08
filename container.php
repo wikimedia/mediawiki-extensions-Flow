@@ -379,7 +379,7 @@ $c['recentchanges.formatter'] = $c->share( function( $c ) {
 		$c['storage'],
 		$c['factory.loader.workflow'],
 		$c['flow_actions'],
-		$c['url_generator'],
+		$c['templating'],
 		$wgLang
 	);
 } );

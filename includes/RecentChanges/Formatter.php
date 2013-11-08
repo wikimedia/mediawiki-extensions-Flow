@@ -6,8 +6,9 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\FlowActions;
 use Flow\Model\UUID;
-use Flow\UrlGenerator;
 use ChangesList;
+use Flow\Templating;
+use Flow\UrlGenerator;
 use Flow\WorkflowLoaderFactory;
 use Language;
 use Linker;
@@ -33,7 +34,12 @@ class Formatter {
 	protected $actions;
 
 	/**
-	 * @var UrlGenerator
+	 * @var Templating
+	 */
+	protected $templating;
+
+	/**
+	 * @var UrlGenerator;
 	 */
 	protected $urlGenerator;
 
@@ -42,12 +48,21 @@ class Formatter {
 	 */
 	protected $lang;
 
-	public function __construct( ManagerGroup $storage, WorkflowLoaderFactory $workflowLoaderFactory, FlowActions $actions, UrlGenerator $urlGenerator, Language $lang ) {
+	/**
+	 * @param ManagerGroup $storage
+	 * @param WorkflowLoaderFactory $workflowLoaderFactory
+	 * @param FlowActions $actions
+	 * @param Templating $templating
+	 * @param Language $lang
+	 */
+	public function __construct( ManagerGroup $storage, WorkflowLoaderFactory $workflowLoaderFactory, FlowActions $actions, Templating $templating, Language $lang ) {
 		$this->actions = $actions;
 		$this->storage = $storage;
 		$this->workflowLoaderFactory = $workflowLoaderFactory;
-		$this->urlGenerator = $urlGenerator;
+		$this->templating = $templating;
 		$this->lang = $lang;
+
+		$this->urlGenerator = $this->templating->getUrlGenerator();
 	}
 
 	public function format( ChangesList $cl, RecentChange $rc ) {
@@ -250,7 +265,7 @@ class Formatter {
 		$params = $this->actions->getValue( $changeData['action'], 'history', 'i18n-params' );
 		return $this->buildMessage( $msg, (array) $params, array(
 			$revision,
-			$this->urlGenerator,
+			$this->templating,
 			$cl->getUser(),
 			$block
 		) )->parse();
