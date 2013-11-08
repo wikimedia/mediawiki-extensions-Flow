@@ -130,8 +130,8 @@ class TopicBlock extends AbstractBlock {
 			$this->setNotification(
 				'flow-topic-renamed',
 				array(
-					'old-subject' => $topicTitle->getContent( null, 'wikitext' ),
-					'new-subject' => $this->newRevision->getContent( null, 'wikitext' ),
+					'old-subject' => $topicTitle->getContent( 'wikitext' ),
+					'new-subject' => $this->newRevision->getContent( 'wikitext' ),
 				)
 			);
 		}
@@ -162,7 +162,7 @@ class TopicBlock extends AbstractBlock {
 					array(
 						'reply-to' => $post,
 						'content' => $this->submitted['content'],
-						'topic-title' => $this->getTitleText(),
+						'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
 					)
 				);
 			}
@@ -257,7 +257,7 @@ class TopicBlock extends AbstractBlock {
 			'flow-post-edited',
 			array(
 				'content' => $this->submitted['content'],
-				'topic-title' => $this->getTitleText(),
+				'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
 			)
 		);
 	}
@@ -281,14 +281,15 @@ class TopicBlock extends AbstractBlock {
 			$this->storage->put( $this->workflow );
 			$self = $this;
 			$newRevision = $this->newRevision;
+			$user = $this->user;
 			$rootPost = $this->loadRootPost();
 
 			$newRevision->setChildren( array() );
 
 			// FIXME special case
 			if ( $this->action == 'edit-title' ) {
-				$renderFunction = function( $templating ) use ( $newRevision ) {
-					return $newRevision->getContent( null, 'wikitext' );
+				$renderFunction = function( $templating ) use ( $newRevision, $user ) {
+					return $templating->getContent( $newRevision, 'wikitext', $user );
 				};
 			} else {
 				$renderFunction = function( $templating ) use ( $self, $newRevision, $rootPost ) {
@@ -473,7 +474,7 @@ class TopicBlock extends AbstractBlock {
 		}
 		$output = array(
 			'_element' => 'post',
-			'title' => $rootPost->getContent( null, 'wikitext' ),
+			'title' => $templating->getContent( $rootPost, 'wikitext', $this->user ),
 			'topic-id' => $topic->getId()->getHex(),
 		);
 
@@ -527,7 +528,7 @@ class TopicBlock extends AbstractBlock {
 			$output['post-moderated'] = 'post-moderated';
 		} else {
 			$output['content'] = array(
-				'*' => $post->getContent( null, $contentFormat ),
+				'*' => $templating->getContent( $post, $contentFormat, $this->user ),
 				'format' => $contentFormat
 			);
 			$output['user'] = $post->getCreatorName();
@@ -550,13 +551,13 @@ class TopicBlock extends AbstractBlock {
 
 		$postId = $post->getPostId()->getHex();
 		if ( isset( $options['history'][$postId] ) ) {
-			$output['revisions'] = $this->getAPIHistory( $postId, $options['history'][$postId] );
+			$output['revisions'] = $this->getAPIHistory( $templating, $postId, $options['history'][$postId] );
 		}
 
 		return $output;
 	}
 
-	protected function getAPIHistory( /*string*/ $postId, array $history ) {
+	protected function getAPIHistory( Templating $templating, /*string*/ $postId, array $history ) {
 		$output = array();
 
 		$output['_element'] = 'revision';
@@ -566,7 +567,7 @@ class TopicBlock extends AbstractBlock {
 			if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 				$output[] = array(
 					'revision-id' => $revision->getRevisionId()->getHex(),
-					'revision-author' => $revision->getUserText(),
+					'revision-author' => $templating->getUserText( $revision ),
 					'revision-change-type' => $revision->getChangeType(),
 				);
 			}
@@ -643,10 +644,6 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 		return $this->topicTitle;
-	}
-
-	public function getTitleText() {
-		return $this->loadTopicTitle()->getContent( null, 'wikitext' );
 	}
 
 	protected function loadTopicHistory() {

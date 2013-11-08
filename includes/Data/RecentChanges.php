@@ -154,7 +154,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 
 	protected function getTopicTitle( PostRevision $rev ) {
 		if ( $rev->isTopicTitle() ) {
-			return $rev->getContent( null, 'wikitext' );
+			return $rev->getContent( 'wikitext' );
 		}
 		$topicTitleId = $this->tree->findRoot( $rev->getPostId() );
 		if ( $topicTitleId === null ) {
@@ -169,7 +169,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 			return null;
 		}
 
-		$content = reset( $found )->getContent( null, 'wikitext' );
+		$content = reset( $found )->getContent( 'wikitext' );
 		if ( is_object( $content ) ) {
 			// moderated
 			return null;

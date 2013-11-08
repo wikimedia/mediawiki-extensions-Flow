@@ -1,7 +1,7 @@
 <?php
 
 // treat title like unparsed (wiki)text
-$title = $root->getContent( $user, 'wikitext' );
+$title = $this->getContent( $root, 'wikitext', $user );
 
 // pre-register recursive callbacks; will then be fetched all at once when the
 // first one's result is requested
