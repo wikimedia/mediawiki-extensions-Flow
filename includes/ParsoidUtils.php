@@ -16,6 +16,7 @@ abstract class ParsoidUtils {
 			return $content;
 		}
 
+		//throw new \MWException( "Attempt to round trip '$from' -> '$to'" );
 		try {
 			// use VE API (which connects to Parsoid) if available...
 			return self::parsoid( $from, $to, $content );
@@ -51,7 +52,8 @@ abstract class ParsoidUtils {
 		}
 
 		$response = \Http::post(
-			$wgVisualEditorParsoidURL . '/' . $wgVisualEditorParsoidPrefix . '/',
+			// @todo needs a big refactor to get a page title in here, fake Main_Page for now
+			$wgVisualEditorParsoidURL . '/' . $wgVisualEditorParsoidPrefix . '/Main_Page',
 			array(
 				'postData' => array( $from => $content ),
 				'timeout' => $wgVisualEditorParsoidTimeout
