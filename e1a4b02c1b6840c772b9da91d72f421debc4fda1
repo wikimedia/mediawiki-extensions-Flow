@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_4c172a44",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T19:36:37Z",
+      "side": 1,
+      "message": "doesn\u0027t the button drawn in the interface still need to know if it should be GET or POST?",
+      "parentUuid": "291c1151_717bdf89",
+      "revId": "e1a4b02c1b6840c772b9da91d72f421debc4fda1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_d16c93d1",
         "filename": "FlowActions.php",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_11962be9",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T19:36:37Z",
+      "side": 1,
+      "message": "There may be a visible page that does not perform a write, but the end result is still going to be a write action to the database.  As such we shouldn\u0027t provide the option to users who wont be able to write to the database anyways (ppl without the core edit permission).\n\nAdditionally because in the block we use permissions-\u003eisAllowed( $post, \u0027edit-title\u0027 ), that permissions check should always return false.",
+      "parentUuid": "291c1151_d16c93d1",
+      "revId": "e1a4b02c1b6840c772b9da91d72f421debc4fda1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_f167cfe9",
         "filename": "FlowActions.php",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2013-11-08T15:56:14Z",
       "side": 1,
       "message": "Same remark as with \u0027edit-title\u0027\n\nThe \"edit post\" icon should be a link to another page where (non-JS) users will see a form to edit the post; not submit the action right away.",
+      "revId": "e1a4b02c1b6840c772b9da91d72f421debc4fda1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_91ba1b6b",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T19:36:37Z",
+      "side": 1,
+      "message": "same reply",
+      "parentUuid": "291c1151_f167cfe9",
       "revId": "e1a4b02c1b6840c772b9da91d72f421debc4fda1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
