@@ -2,7 +2,19 @@
 
 $replyForm = '';
 if ( !$post->isModerated() ) {
-	$replyForm = Html::openElement( 'form', array(
+	$replyForm = Html::openElement( 'div', array( 'class' => 'flow-post-reply-container' ) );
+
+	$replyForm .= '
+		<span class="flow-creator">
+			<span class="flow-creator-simple" style="display: inline">
+				' .$this->getUserText( $user ) . '
+			</span>
+			<span class="flow-creator-full" style="display: none">
+				' . $this->userToolLinks( $user->getId(), $user->getName() ) .'
+			</span>
+		</span>';
+
+	$replyForm .= Html::openElement( 'form', array(
 			'method' => 'POST',
 			// root post id is same as topic workflow id
 			'action' => $this->generateUrl( $block->getWorkflowId(), 'reply' ),
@@ -41,7 +53,8 @@ if ( !$post->isModerated() ) {
 				'class' => 'mw-ui-button mw-ui-constructive flow-reply-submit',
 			) ) .
 		Html::closeElement( 'div' ) .
-		Html::closeElement( 'form' );
+		Html::closeElement( 'form' ) .
+		Html::closeElement( 'div' );
 }
 
 ?>
