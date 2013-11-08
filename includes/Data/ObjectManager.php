@@ -1113,9 +1113,10 @@ class TopKIndex extends FeatureIndex {
 	}
 
 	protected function replaceInIndex( array $indexed, array $oldRow, array $newRow ) {
+		$self = $this;
 		$this->cache->merge(
 			$this->cacheKey( $indexed ),
-			function( BagOStuff $cache, $key, $value ) use( $oldRow, $newRow ) {
+			function( BagOStuff $cache, $key, $value ) use( $self, $oldRow, $newRow ) {
 				if ( $value === false ) {
 					return false;
 				}
