@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_717bdf89",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-08T15:56:14Z",
+      "side": 1,
+      "message": "These can be removed now",
+      "revId": "e1a4b02c1b6840c772b9da91d72f421debc4fda1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_d16c93d1",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-08T15:56:14Z",
+      "side": 1,
+      "message": "I think this should be false (in that sense, the \"performs-writes\" name may be confusing)\n\nIf the \"link\" (well, form, actually) is POST (like moderation activity), non-JS users that click on the \"edit title\" icon, will immediately submit the edit-title action and probably get an error messag e(for not having submitted any content for the new title).\n\nInstead, the edit-title button should be GET. Non-JS users clicking it should be led to a page where they get a form to edit the title, then submit it there.",
+      "revId": "e1a4b02c1b6840c772b9da91d72f421debc4fda1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_f167cfe9",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-08T15:56:14Z",
+      "side": 1,
+      "message": "Same remark as with \u0027edit-title\u0027\n\nThe \"edit post\" icon should be a link to another page where (non-JS) users will see a form to edit the post; not submit the action right away.",
+      "revId": "e1a4b02c1b6840c772b9da91d72f421debc4fda1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
