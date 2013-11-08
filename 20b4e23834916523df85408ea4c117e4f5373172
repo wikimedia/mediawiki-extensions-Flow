@@ -85,6 +85,142 @@
       "revId": "20b4e23834916523df85408ea4c117e4f5373172",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_3bdf86d4",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T07:20:20Z",
+      "side": 1,
+      "message": "getMulti these so its only one round trip, although i suppose its a litle uglier to then have $oldRev and $newRev separately.  I suppose the FeatureIndex class could be adjusted to use ResultDuplicator, that would result in them being returned in the same order as requested, but thats for another day :)",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_3ba786ab",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T07:20:20Z",
+      "side": 1,
+      "message": "we talked about that (children when editing) at the estimation meeting, but i dont see the card on the next iteration currently.  Its certainly something we want to do.",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_bb88d6e9",
+        "filename": "templates/compare-revisions.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T07:20:20Z",
+      "side": 1,
+      "message": "templates that are 99% php would be a reasonable place to try your ideas about a renderable object rather than always using a template file",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_db6f522a",
+        "filename": "templates/compare-revisions.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T07:20:20Z",
+      "side": 1,
+      "message": "we should just clone in the getArticleTitle method, i cant think of any time we would intentionally want the same object",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_1b7acae8",
+        "filename": "templates/compare-revisions.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T07:20:20Z",
+      "side": 1,
+      "message": "puting the clone in getArticleTitle would also handle this case",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_7b673e50",
+        "filename": "templates/timestamp.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T07:20:20Z",
+      "side": 1,
+      "message": "This file is pretty hard to read, could pull a couple of the statements into variables at the top to enhance readability?",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_5b64424c",
+        "filename": "templates/timestamp.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T07:20:20Z",
+      "side": 1,
+      "message": "Curly braces can be hard to spot in the middle of markup\n\n  \u003c?php if ( ... ): ?\u003e\n  \u003c?php endif ?\u003e",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_9b5eba72",
+        "filename": "templates/timestamp.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-08T07:20:20Z",
+      "side": 1,
+      "message": "when\n  $foo \u003d null;\nthen\n  isset( $foo ) \u003d\u003d\u003d false",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
