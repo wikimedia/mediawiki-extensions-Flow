@@ -157,7 +157,7 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-hid-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getModeratedByUserText();
+					return $revision->getUserText( $user );
 				},
 				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
 					return $revision->getUserText( $user );
@@ -182,7 +182,7 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-deleted-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getModeratedByUserText();
+					return $revision->getUserText( $user );
 				},
 				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
 					return $revision->getUserText( $user );
@@ -208,7 +208,7 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-censored-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					return $revision->getModeratedByUserText();
+					return $revision->getUserText( $user );
 				},
 				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
 					return $revision->getUserText( $user );
@@ -240,8 +240,6 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-restored-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
-					// moderatedByUserText is null for restored (because that
-					// actually reverts any moderation to MODERATED_NONE)
 					return $revision->getUserText( $user );
 				},
 				function ( PostRevision $revision, UrlGenerator $urlGenerator, User $user, Block $block ) {
