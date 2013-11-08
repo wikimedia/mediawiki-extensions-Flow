@@ -5,18 +5,21 @@
 	clear: both;
 
 	.flow-post {
-		margin-top: 20px;
-		margin-bottom: 20px;
+		margin: 10px 0;
 		padding-left: 16px;
 	}
 
+	.flow-post-main {
+		position: relative;
+	}
+
 	.flow-post-title {
-		padding-bottom: 22px;
+		padding-top: 10px;
+		padding-bottom: 8px;
 
 		.flow-creator {
 			font-weight: bold;
 			color: @post-title-color;
-
 		}
 	}
 
@@ -24,7 +27,7 @@
 		font-weight: normal;
 		color: @post-content-color;
 
-		padding-bottom: 20px;
+		padding-bottom: 13px;
 
 		*:first-child {
 			margin-top: 0;
@@ -36,7 +39,7 @@
 	}
 
 	.flow-edit-post-link {
-		margin-top: -60px !important; // default -40px + -20px to be pushed up (because of .flow-post-content bottom padding)
+		margin-top: -43px !important; // default -30px + -13px to be pushed up (because of .flow-post-content bottom padding)
 
 		background-position: center;
 		background-size: 20px auto;
@@ -49,8 +52,6 @@
 	}
 
 	.flow-icon-permalink {
-		margin-top: -30px !important;
-
 		background-position: center;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
@@ -67,16 +68,11 @@
 	}
 
 	.flow-datestamp {
-		float: right;
+		position: absolute;
+		right: 0;
+		bottom: 0;
 		padding-right: 22px;
-
-		// right next to the datestamp is the "moderation actions" icon, which
-		// is also floated right, but then moved to the right side via a
-		// negative right-padding. This move to the right via negative padding
-		// does not affect the surrounding elements, thus we're manually moving
-		// this one to the right (over the icon's original position) via a
-		// similar trick.
-		margin-right: -40px;
+		margin: 0;
 
 		a.flow-action-history-link {
 			color: inherit;
@@ -88,11 +84,14 @@
 
 		.flow-actions-flyout {
 			position: absolute;
-			top: -34px;
+			top: -50px;
 			right: 0;
 		}
 
 		.flow-actions-link {
+			// position it nicely between .flow-edit-post-link & .flow-actions-link
+			margin-top: -61px !important;
+
 			width: 20px;
 			height: 20px;
 			text-indent: -9999px;
@@ -122,7 +121,7 @@
 		@onclick-icon,
 		@onclick-fallback-icon
 	) {
-		padding-left: 42px;
+		padding-left: 41px;
 		// !important to overwrite MW core's background image
 		.background-image-svg(@normal-icon, @normal-fallback-icon) !important;
 
@@ -194,7 +193,7 @@
 
 	.flow-post-replies {
 		margin-left: 22px;
-		border-left: 1px solid #999;
+		border-left: 2px dotted #CCC;
 		
 		.flow-post-replies {
 			border-left: 0px solid transparent;
@@ -203,10 +202,10 @@
 	}
 
 	.flow-thank-link {
-		padding-left: 46px;
+		padding-left: 41px;
 
 		.background-image-svg('../../base/images/thank.svg', '../../base/images/thank.png');
-		background-position: 16px;
+		background-position: 12px;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
 	}
@@ -333,9 +332,10 @@
 	}
 
 	.flow-post-container {
+		margin-top: 20px;
+		font-size: 14px;
 		// hacky way to flatten conversation;
 		// make anything over 2 indentation levels appear on same level
-		margin-top: 0px;
 		.flow-post-container {
 			padding-left: 0px;
 		}

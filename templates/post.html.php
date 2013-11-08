@@ -42,6 +42,7 @@ if ( !$post->isModerated() ) {
 		) ) .
 		Html::textarea( $block->getName() . '[content]', '', array(
 			'placeholder' => $placeHolder,
+			'title' => $placeHolder,
 			'class' => 'flow-reply-content flow-input mw-ui-input',
 		) ) .
 		// NOTE: cancel button will be added via JS, makes no sense in non-JS context
@@ -90,18 +91,6 @@ if ( !$post->isModerated() ) {
 
 			<?php echo $postView->editPostButton( $post, 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' ); ?>
 
-			<?php
-			echo Html::element(
-				'a',
-				array(
-					'class' => 'flow-icon-permalink flow-icon flow-icon-top-aligned',
-					'title' => wfMessage( 'flow-post-action-view' )->text(),
-					'href' => $this->generateUrl( $block->getWorkflowId() ) . '#flow-post-' . $post->getPostId()->getHex(),
-				),
-				wfMessage( 'flow-topic-action-view' )->text()
-			);
-			?>
-
 			<p class="flow-datestamp">
 				<?php
 					// timestamp html
@@ -128,6 +117,18 @@ if ( !$post->isModerated() ) {
 				<?php endif; ?>
 			</div>
 		</div>
+
+		<?php
+		echo Html::element(
+			'a',
+			array(
+				'class' => 'flow-icon-permalink flow-icon flow-icon-bottom-aligned',
+				'title' => wfMessage( 'flow-post-action-view' )->text(),
+				'href' => $this->generateUrl( $block->getWorkflowId() ) . '#flow-post-' . $post->getPostId()->getHex(),
+			),
+			wfMessage( 'flow-topic-action-view' )->text()
+		);
+		?>
 
 		<?php if ( $postView->actions()->isAllowedAny( 'hide-post', 'delete-post', 'censor-post', 'restore-post' ) ): ?>
 		<div class="flow-actions">

@@ -2,11 +2,13 @@
 @import 'mediawiki.mixins.less';
 
 .flow-topic-container {
-	padding-bottom: 30px;
+	padding-bottom: 20px;
 
-	.flow-topic-children-container {
-		// This combines with the padding-top: 20px on '.flow-post-container .flow-post' for a total 30px gap
-		padding-top: 10px;
+	&>*:last-child {
+		// This combines with the padding-bottom: 20px on .flow-topic-container
+		// for a total 30px gap. We want the gap to be only 20px when topic is
+		// collapsed, which is why we're adding the remaining 10px to last child.
+		padding-bottom: 10px;
 	}
 
 	.flow-titlebar {
@@ -15,9 +17,10 @@
 		// override mw-ui-button style
 		text-align: left;
 		display: block;
-		padding: 24px 22px;
+		padding: 15px 22px;
 		font-weight: normal;
 		background: @topic-titlebar-background-color;
+		font-size: 16px;
 
 		line-height: 28px;
 		color: @topic-titlebar-text-color;
@@ -29,7 +32,7 @@
 		}
 
 		.flow-topic-title {
-			padding-bottom: 30px;
+			padding-bottom: 15px;
 
 			// leave some room for .flow-topic-actions-link on the right
 			margin-right: 44px;
@@ -50,15 +53,17 @@
 		.flow-actions {
 			.flow-actions-link {
 				position: absolute;
-				right: 22px;
-				top: 22px;
+				right: 12px;
+				top: 5px;
 
 				width: 20px;
 				height: 20px;
 				text-indent: -9999px;
+				padding: 10px;
 
-				background-repeat: no-repeat;
 				background-position: center;
+				background-size: 20px auto;
+				background-repeat: no-repeat;
 				.background-image-svg('../../base/images/junkdrawer_normal.svg', '../../base/images/junkdrawer_normal.png');
 
 				&:hover {
@@ -68,7 +73,7 @@
 
 			.flow-actions-flyout {
 				position: absolute;
-				top: 56px; // 14px + (22px top padding + 20px icon height)
+				top: 49px; // 14px + (15px top padding + 20px icon height)
 				right: 0;
 			}
 		}
@@ -79,7 +84,7 @@
 
 			li {
 				line-height: 16px;
-				padding: 0 0 14px 0;
+				padding: 0 0 9px 0;
 
 				&:last-child {
 					padding: 0;
@@ -87,6 +92,7 @@
 
 				a {
 					color: inherit;
+					text-decoration: underline;
 				}
 			}
 		}
@@ -96,7 +102,7 @@
 
 			position: absolute;
 			right: 22px;
-			bottom: 22px;
+			bottom: 16px;
 
 			a.flow-action-history-link {
 				color: inherit;
@@ -106,14 +112,6 @@
 		.flow-icon {
 			// additional push to the right because of container's padding & border
 			margin-right: -23px; // container's right padding + right border
-
-			&.flow-icon-top-aligned {
-				margin-top: -12px; // half of container's top padding
-			}
-
-			&.flow-icon-bottom-aligned {
-				margin-top: -28px; // -40px - half of container's bottom padding
-			}
 		}
 
 		.flow-edit-topic-link {
@@ -172,21 +170,17 @@
 
 		.flow-newtopic-title {
 			font-weight: bold;
+
+			padding-left: 45px;
+
+			background-position: left 10px center;
+			background-size: 25px auto;
+			background-repeat: no-repeat;
+			.background-image-svg('../../base/images/createtopic_normal.svg', '../../base/images/createtopic_normal.png');
 		}
 
 		.flow-post-form-controls {
 			text-align: right;
-		}
-
-		.flow-new-topic-link {
-			background-position: center center;
-			background-size: 25px auto;
-			background-repeat: no-repeat;
-			.background-image-svg('../../base/images/createtopic_normal.svg', '../../base/images/createtopic_normal.png');
-
-			&:hover {
-				.background-image-svg('../../base/images/createtopic_hover.svg', '../../base/images/createtopic_hover.png');
-			}
 		}
 	}
 }

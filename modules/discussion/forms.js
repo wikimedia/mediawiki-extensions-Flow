@@ -34,10 +34,10 @@ $( document ).flow( 'registerInitFunction', function(e) {
 		function ( promise ) {
 			promise
 				.done( function ( output ) {
-					var $form = $( this ).closest( '.flow-newtopic-form' ),
+					var $container = $( this ).closest( '.flow-new-topic-container' ),
 						$newRegion = $( output.rendered )
 							.hide()
-							.insertAfter( $form );
+							.insertAfter( $container );
 
 					$newRegion.trigger( 'flow_init' );
 

@@ -4,6 +4,11 @@
 @import 'mixins/buttons.less';
 
 .mw-ui-button {
+	// if button is followed by another button, add some space in between
+	+ .mw-ui-button{
+		margin-left: 8px;
+	}
+
 	.buttonColors(
 		// normal
 		@neutral-base, // background
@@ -20,7 +25,7 @@
 
 		// disabled
 		@neutral-base,
-		#898989,
+		#898989
 	);
 
 	&.mw-ui-constructive {
@@ -40,7 +45,7 @@
 
 			// disabled
 			@neutral-base,
-			#898989,
+			#898989
 		);
 
 		// override borders
@@ -68,7 +73,7 @@
 
 			// disabled
 			@neutral-base,
-			#898989,
+			#898989
 		);
 
 		&.mw-ui-destructive-medium {
@@ -88,7 +93,7 @@
 
 				// disabled
 				@neutral-base,
-				#898989,
+				#898989
 			);
 		}
 
@@ -109,7 +114,7 @@
 
 				// disabled
 				@neutral-base,
-				#898989,
+				#898989
 			);
 		}
 	}
