@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_8c64c224",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-11-08T23:33:27Z",
+      "side": 1,
+      "message": "Need gender support",
+      "revId": "2bc7454d495998bf1d4107320a86a871e313de10",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_c77f7561",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 9
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-11-08T23:33:27Z",
+      "side": 1,
+      "message": "The error message would just keep appending to the form.  The old one should be replaced with the new one instead.",
+      "revId": "2bc7454d495998bf1d4107320a86a871e313de10",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
