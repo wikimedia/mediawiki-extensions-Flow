@@ -93,6 +93,10 @@ class Templating {
 	public function renderPost( PostRevision $post, Block $block, $return = true ) {
 		global $wgFlowTokenSalt;
 
+		if ( $post->isTopicTitle() ) {
+			throw new \MWException( 'Cannot render topic with ' . __METHOD__ );
+		}
+
 		// @todo: I don't like container being pulled in here, improve this some day
 		$container = Container::getContainer();
 
