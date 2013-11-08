@@ -243,6 +243,34 @@ class Templating {
 	}
 
 	/**
+	 * Formats a post's creator name for displaying. Usually, the post's creator
+	 * name can just be displayed. In the event of moderation, however, that
+	 * info should not be exposed.
+	 *
+	 * If a specific i18n message is available for a certain moderation level,
+	 * that message will be returned (well, unless the user actually has the
+	 * required permissions to view the full username). Otherwise, in normal
+	 * cases, the full creator name will be returned.
+	 *
+	 * @param PostRevision $revision Revision to display creator name for
+	 * @param User[optional] $permissionsUser User to display creator name to
+	 * @return string
+	 */
+	public function getCreatorText( PostRevision $revision, User $permissionsUser = null ) {
+		$state = $revision->getModerationState();
+		$username = $revision->getCreatorNameRaw();
+
+		// Messages: flow-hide-usertext, flow-delete-usertext, flow-censor-usertext
+		$message = wfMessage( "flow-$state-usertext", $username );
+
+		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
+			return $message->text();
+		} else {
+			return $username;
+		}
+	}
+
+	/**
 	 * Formats a revision's content for displaying. Usually, the revisions's
 	 * content can just be displayed. In the event of moderation, however, that
 	 * info should not be exposed.

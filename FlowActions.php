@@ -166,7 +166,7 @@ $wgFlowActions = array(
 					return $templating->getUserText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getCreatorText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
@@ -192,7 +192,7 @@ $wgFlowActions = array(
 					return $templating->getUserText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getCreatorText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
@@ -219,7 +219,7 @@ $wgFlowActions = array(
 					return $templating->getUserText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getCreatorText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
@@ -252,7 +252,7 @@ $wgFlowActions = array(
 					return $templating->getUserText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getCreatorText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
