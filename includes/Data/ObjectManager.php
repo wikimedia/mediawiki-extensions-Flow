@@ -959,13 +959,6 @@ abstract class FeatureIndex implements Index {
 	}
 
 	protected function cacheKey( array $attributes ) {
-		global $wgFlowDefaultWikiDb; // meh
-		if ( $wgFlowDefaultWikiDb === false ) {
-			$db = wfWikiId();
-		} else {
-			$db = $wgFlowDefaultWikiDb;
-		}
-
 		foreach( $attributes as $key => $attr ) {
 			if ( $attr instanceof \Flow\Model\UUID ) {
 				$attributes[$key] = $attr->getHex();
@@ -975,7 +968,19 @@ abstract class FeatureIndex implements Index {
 			}
 		}
 
-		return wfForeignMemcKey( $db, '', $this->prefix, implode( ':', $attributes ) );
+		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, implode( ':', $attributes ) );
+	}
+
+	/**
+	 * @return string The id of the database being cached
+	 */
+	static public function cachedDbId() {
+		global $wgFlowDefaultWikiDb;
+		if ( $wgFlowDefaultWikiDb === false ) {
+			return wfWikiId();
+		} else {
+			return $wgFlowDefaultWikiDb;
+		}
 	}
 }
 
