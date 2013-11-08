@@ -12,7 +12,7 @@ abstract class ParsoidUtils {
 	 * @return string
 	 */
 	public static function convert( $from, $to, $content ) {
-		if ( $from === $to ) {
+		if ( $from === $to || $content === '' ) {
 			return $content;
 		}
 
