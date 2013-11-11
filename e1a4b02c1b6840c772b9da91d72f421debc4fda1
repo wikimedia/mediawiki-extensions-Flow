@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_55f16668",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-11T11:03:46Z",
+      "side": 1,
+      "message": "Nevermind my comments. I had mistaken the change from \u0027button-method\u0027 to \u0027performs-writes\u0027 in PostActionPermissions for PostActionMenu.\n\nIf is still used in PostActionMenu, so should indeed not be removed.\n\nMy other 2 comments are also invalid; I had thought this \u0027performs-write\u0027 was used to render the links in PostActionMenu, but it is not.",
+      "parentUuid": "291c1151_4c172a44",
+      "revId": "e1a4b02c1b6840c772b9da91d72f421debc4fda1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_d16c93d1",
         "filename": "FlowActions.php",
         "patchSetId": 2
