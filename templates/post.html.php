@@ -28,7 +28,7 @@ if ( $postView->actions()->isAllowed( 'reply' ) ) {
 		}
 	}
 
-	$placeHolder = $postView->replyPlaceholder( $post );
+	$placeHolder = $postView->replyPlaceholder();
 	$replyForm .=
 		Html::element( 'input', array(
 			'type' => 'hidden',
@@ -50,7 +50,7 @@ if ( $postView->actions()->isAllowed( 'reply' ) ) {
 		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ) .
 			Html::element( 'input', array(
 				'type' => 'submit',
-				'value' => $postView->replySubmit( $post ),
+				'value' => $postView->replySubmit(),
 				'class' => 'mw-ui-button mw-ui-constructive flow-reply-submit',
 			) ) .
 		Html::closeElement( 'div' ) .
@@ -77,10 +77,10 @@ if ( $postView->actions()->isAllowed( 'reply' ) ) {
 			<div class="flow-post-title">
 				<span class="flow-creator">
 					<span class="flow-creator-simple" style="display: inline">
-						<?php echo $postView->creator( $post ) ?>
+						<?php echo $postView->creator() ?>
 					</span>
 					<span class="flow-creator-full" style="display: none">
-						<?php echo $postView->creatorToolLinks( $post ) ?>
+						<?php echo $postView->creatorToolLinks() ?>
 					</span>
 				</span>
 			</div>
@@ -89,7 +89,7 @@ if ( $postView->actions()->isAllowed( 'reply' ) ) {
 				<?php echo $post->getContent( $user, 'html' ); ?>
 			</div>
 
-			<?php echo $postView->editPostButton( $post, 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' ); ?>
+			<?php echo $postView->editPostButton( 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' ); ?>
 
 			<p class="flow-datestamp">
 				<?php
@@ -99,20 +99,20 @@ if ( $postView->actions()->isAllowed( 'reply' ) ) {
 						<span class="flow-utctime" style="display: none">' . htmlspecialchars( $post->getPostId()->getTimestampObj()->getTimestamp( TS_RFC2822 ) ) . '</span>';
 
 					// build history button with timestamp html as content
-					echo $postView->postHistoryButton( $post, $content );
+					echo $postView->postHistoryButton( $content );
 				?>
 			</p>
 
 			<div class="flow-post-interaction">
 				<?php if ( !$post->isModerated() ): ?>
 					<?php if ( $postView->actions()->isAllowed( 'reply' ) ): ?>
-						<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo $postView->replyLink( $post ); ?></span></a>
+						<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo $postView->replyLink(); ?></span></a>
 					<?php endif ?>
 					<a class="flow-thank-link mw-ui-button" href="#" onclick="return mw.flow.notImplemented()">
-						<span><?php echo $postView->thankLink( $post ); ?></span>
+						<span><?php echo $postView->thankLink(); ?></span>
 					</a>
 				<?php else: ?>
-					<?php list( $talkUrl, $talkLink ) = $postView->moderatedTalkLink( $post ); ?>
+					<?php list( $talkUrl, $talkLink ) = $postView->moderatedTalkLink(); ?>
 					<a class="flow-talk-link mw-ui-button" href="<?php echo $talkUrl; ?>">
 						<span><?php echo $talkLink; ?></span>
 					</a>
@@ -138,17 +138,17 @@ if ( $postView->actions()->isAllowed( 'reply' ) ) {
 			<div class="flow-actions-flyout">
 				<ul>
 					<?php
-					if ( $hidePost = $postView->hidePostButton( $post, 'flow-hide-post-link mw-ui-button' ) ) {
+					if ( $hidePost = $postView->hidePostButton( 'flow-hide-post-link mw-ui-button' ) ) {
 						echo "<li class='flow-action-hide'>$hidePost</li>";
 					}
-					if ( $deletePost = $postView->deletePostButton( $post, 'flow-delete-post-link mw-ui-button' ) ) {
+					if ( $deletePost = $postView->deletePostButton( 'flow-delete-post-link mw-ui-button' ) ) {
 						echo "<li class='flow-action-delete'>$deletePost</li>";
 					}
-					if ( $suppressPost = $postView->suppressPostButton( $post, 'flow-censor-post-link mw-ui-button' ) ) {
+					if ( $suppressPost = $postView->suppressPostButton( 'flow-censor-post-link mw-ui-button' ) ) {
 						echo "<li class='flow-action-censor'>$suppressPost</li>";
 					}
 					// @todo restore button will probably be moved somewhere else, some day
-					if ( $restorePost = $postView->restorePostButton( $post, 'flow-restore-post-link mw-ui-button mw-ui-constructive' ) ) {
+					if ( $restorePost = $postView->restorePostButton( 'flow-restore-post-link mw-ui-button mw-ui-constructive' ) ) {
 						echo "<li class='flow-action-restore'>$restorePost</li>";
 					}
 					?>
