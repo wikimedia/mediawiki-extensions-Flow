@@ -35,11 +35,6 @@ if ( $postView->actions()->isAllowed( 'reply' ) ) {
 			'name' => $block->getName() . '[replyTo]',
 			'value' => $post->getPostId()->getHex(),
 		) ) .
-		Html::element( 'input', array(
-			'type' => 'hidden',
-			'name' => 'placeholder',
-			'value' => $placeHolder,
-		) ) .
 		Html::textarea( $block->getName() . '[content]', '', array(
 			'placeholder' => $placeHolder,
 			'title' => $placeHolder,
