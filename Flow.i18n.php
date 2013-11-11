@@ -1348,7 +1348,8 @@ $messages['hy'] = array(
  */
 $messages['ia'] = array(
 	'flow-desc' => 'Systema de gestion de fluxo de travalio',
-	'flow-specialpage' => '$1 &ndash; Fluxo',
+	'flow-page-title' => '$1 &ndash; Fluxo',
+	'log-name-flow' => 'Registro de activitate de fluxo',
 	'flow-user-anonymous' => 'Anonyme',
 	'flow-user-moderated' => 'Usator moderate',
 	'flow-edit-header-link' => 'Modificar titulo',
@@ -1361,8 +1362,8 @@ $messages['ia'] = array(
 	'flow-post-deleted-by' => '{{GENDER:$1|Delite}} per $1 $2',
 	'flow-post-censored' => '[entrata censurate]',
 	'flow-post-censored-by' => '{{GENDER:$1|Censurate}} per $1 $2',
-	'flow-post-actions' => 'actiones',
-	'flow-topic-actions' => 'actiones',
+	'flow-post-actions' => 'actiones', # Fuzzy
+	'flow-topic-actions' => 'actiones', # Fuzzy
 	'flow-cancel' => 'Cancellar',
 	'flow-newtopic-title-placeholder' => 'Subjecto del message',
 	'flow-newtopic-content-placeholder' => 'Texto del message. Sia gentil!',
@@ -1406,17 +1407,17 @@ $messages['ia'] = array(
 	'flow-error-restore-failure' => 'Le restauration de iste elemento ha fallite.',
 	'flow-edit-header-submit' => 'Salveguardar titulo',
 	'flow-edit-title-submit' => 'Cambiar titulo',
-	'flow-rev-message-edit-post' => 'Contento del entrata modificate',
-	'flow-rev-message-reply' => 'Nove responsa publicate',
-	'flow-rev-message-new-post' => 'Topico create',
-	'flow-rev-message-hid-post' => 'Entrata celate',
-	'flow-rev-message-edit-title' => 'Titulo del discussion modificate',
-	'flow-rev-message-create-header' => 'Titulo create',
-	'flow-rev-message-edit-header' => 'Titulo modificate',
-	'flow-rev-message-restored-post' => 'Entrata revelate',
-	'flow-rev-message-deleted-post' => 'Entrata delite',
-	'flow-rev-message-censored-post' => 'Entrata censurate',
-	'flow-topic-history' => 'Historia de topicos',
+	'flow-rev-message-edit-post' => 'Contento del entrata modificate', # Fuzzy
+	'flow-rev-message-reply' => 'Nove responsa publicate', # Fuzzy
+	'flow-rev-message-new-post' => 'Topico create', # Fuzzy
+	'flow-rev-message-hid-post' => 'Entrata celate', # Fuzzy
+	'flow-rev-message-edit-title' => 'Titulo del discussion modificate', # Fuzzy
+	'flow-rev-message-create-header' => 'Titulo create', # Fuzzy
+	'flow-rev-message-edit-header' => 'Titulo modificate', # Fuzzy
+	'flow-rev-message-restored-post' => 'Entrata revelate', # Fuzzy
+	'flow-rev-message-deleted-post' => 'Entrata delite', # Fuzzy
+	'flow-rev-message-censored-post' => 'Entrata censurate', # Fuzzy
+	'flow-topic-history' => 'Historia de topicos', # Fuzzy
 	'flow-comment-restored' => 'Commento restaurate',
 	'flow-comment-deleted' => 'Commento delite',
 	'flow-comment-hidden' => 'Commento celate',
@@ -2720,11 +2721,12 @@ $messages['uk'] = array(
 );
 
 /** Vietnamese (Tiếng Việt)
+ * @author Baonguyen21022003
  * @author Minh Nguyen
  */
 $messages['vi'] = array(
 	'flow-desc' => 'Hệ thống quản lý luồng công việc',
-	'flow-specialpage' => '$1 &ndash; Flow',
+	'flow-page-title' => '$1 &ndash; Flow', # Fuzzy
 	'flow-user-anonymous' => 'Vô danh',
 	'flow-user-moderated' => 'Người dùng bị kiểm duyệt',
 	'flow-edit-header-link' => 'Sửa đầu đề',
@@ -2737,8 +2739,8 @@ $messages['vi'] = array(
 	'flow-post-deleted-by' => 'Xóa bởi $1 $2',
 	'flow-post-censored' => '[bài đăng bị kiểm duyệt]',
 	'flow-post-censored-by' => 'Kiểm duyệt bởi $1 $2',
-	'flow-post-actions' => 'tác vụ',
-	'flow-topic-actions' => 'tác vụ',
+	'flow-post-actions' => 'tác vụ', # Fuzzy
+	'flow-topic-actions' => 'tác vụ', # Fuzzy
 	'flow-cancel' => 'Hủy bỏ',
 	'flow-newtopic-title-placeholder' => 'Tiêu đề tin nhắn',
 	'flow-newtopic-content-placeholder' => 'Văn bản tin nhắn. Hãy có thái độ thân thiện!',
@@ -2790,8 +2792,8 @@ $messages['vi'] = array(
 	'flow-rev-message-create-header' => 'Đã tạo đầu đề', # Fuzzy
 	'flow-rev-message-edit-header' => 'Đã sửa đổi đầu đề', # Fuzzy
 	'flow-rev-message-restored-post' => 'Đã hiện bài đăng', # Fuzzy
-	'flow-rev-message-deleted-post' => 'Đã xóa bài đăng', # Fuzzy
-	'flow-rev-message-censored-post' => 'Kiểm duyệt bài đăng', # Fuzzy
+	'flow-rev-message-deleted-post' => '[[Thành viên:$1|$1]] {{GENDER:$1|đã xóa}} [bình luận $3]', # Fuzzy
+	'flow-rev-message-censored-post' => '[[Thành viên:$1|$1]] {{GENDER:$1|đàn áp}} một [$3 bình luận].', # Fuzzy
 	'flow-topic-history' => 'Lịch sử chủ đề', # Fuzzy
 	'flow-topic-participants' => '{{PLURAL:$1|$3 đã bắt đầu chủ đề này|$3, $4, và {{PLURAL:$2|một người|những người}} khác|0=Chưa có ai tham gia|2=$3 và $4}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Hãy là người đầu tiên bình luận!|Bình luận ($1)}}',
