@@ -362,6 +362,13 @@ class NotificationController {
 				$ids[] = $topic;
 			}
 			$users += self::getCreatorsFromPostIDs( $ids );
+
+			// ignore mentioned users, they'll get another notification already
+			if ( isset( $extra['mentioned-users'] ) ) {
+				foreach ( $extra['mentioned-users'] as $uid => $user ) {
+					unset( $users[$uid] );
+				}
+			}
 			break;
 		default:
 			// Do nothing
