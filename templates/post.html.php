@@ -1,7 +1,12 @@
 <?php
 
 $replyForm = '';
-if ( $postView->actions()->isAllowed( 'reply' ) ) {
+/*
+ * Only display reply form if:
+ * * new reply depth will be no more than maxThreadingDepth
+ * * user has sufficient permissions
+ */
+if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllowed( 'reply' ) ) {
 	$replyForm = Html::openElement( 'div', array( 'class' => 'flow-post-reply-container' ) );
 
 	$replyForm .= '
@@ -59,7 +64,7 @@ if ( $postView->actions()->isAllowed( 'reply' ) ) {
 }
 
 ?>
-<div class='flow-post-container'
+<div class='flow-post-container <?php if ( $post->getDepth() == $maxThreadingDepth ) { echo 'flow-post-max-depth'; } ?>'
 	data-revision-id='<?php echo $post->getRevisionId()->getHex() ?>'
 	data-post-id='<?php echo $post->getPostId()->getHex() ?>'
 	data-creator-name='<?php echo $post->getCreatorName() ?>'>
@@ -156,7 +161,6 @@ if ( $postView->actions()->isAllowed( 'reply' ) ) {
 			</div>
 		</div>
 		<?php endif; ?>
-
 	</div>
 
 	<div class='flow-post-replies'>
