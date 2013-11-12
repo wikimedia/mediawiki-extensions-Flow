@@ -72,7 +72,7 @@ class Post {
 			$this->post->getCreatorName( $this->user )
 		);
 	}
-	public function editPostButton( PostRevision $post, $buttonClass ) {
+	public function editPostButton( $buttonClass ) {
 		if ( !$this->actions->isAllowed( 'edit-post' ) ) {
 			return '';
 		}
@@ -83,8 +83,8 @@ class Post {
 		);
 	}
 
-	public function postHistoryButton( PostRevision $post, $content ) {
-		if ( !$post->isFirstRevision() && $this->actions->isAllowed( 'post-history' ) ) {
+	public function postHistoryButton( $content ) {
+		if ( !$this->post->isFirstRevision() && $this->actions->isAllowed( 'post-history' ) ) {
 			return $this->actions->getButton(
 				'post-history',
 				$content,
@@ -95,7 +95,7 @@ class Post {
 		}
 	}
 
-	public function hidePostButton( PostRevision $post, $buttonClass ) {
+	public function hidePostButton( $buttonClass ) {
 		if ( !$this->actions->isAllowed( 'hide-post' ) ) {
 			return '';
 		}
@@ -106,7 +106,7 @@ class Post {
 		);
 	}
 
-	public function deletePostButton( PostRevision $post, $buttonClass ) {
+	public function deletePostButton( $buttonClass ) {
 		if ( !$this->actions->isAllowed( 'delete-post' ) ) {
 			return '';
 		}
@@ -117,7 +117,7 @@ class Post {
 		);
 	}
 
-	public function suppressPostButton( PostRevision $post, $buttonClass ) {
+	public function suppressPostButton( $buttonClass ) {
 		if ( !$this->actions->isAllowed( 'censor-post' ) ) {
 			return '';
 		}
@@ -128,7 +128,7 @@ class Post {
 		);
 	}
 
-	public function restorePostButton( PostRevision $post, $buttonClass ) {
+	public function restorePostButton( $buttonClass ) {
 		if ( !$this->actions->isAllowed( 'restore-post' ) ) {
 			return '';
 		}
