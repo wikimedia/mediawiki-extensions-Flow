@@ -49,7 +49,7 @@
 			window.ve.createDocumentFromHtml( content || '' )
 		);
 
-		$veNode = this.target.surface.$element.find( '.ve-ce-documentNode' );
+		$veNode = this.target.surface.$.find( '.ve-ce-documentNode' );
 
 		// focus VE instance if textarea had focus
 		if ( !$focussedElement.length || this.$node.is( $focussedElement ) ) {
