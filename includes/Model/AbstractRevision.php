@@ -319,6 +319,8 @@ abstract class AbstractRevision {
 		if ( $this->content !== null ) {
 			throw new \MWException( 'Updating content must use setNextContent method' );
 		}
+		// Keep consistent with normal edit page, trim only trailing whitespaces
+		$content = rtrim( $content );
 		$this->convertedContent = array( $inputFormat  => $content );
 
 		// convert content to desired storage format
