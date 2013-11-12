@@ -52,13 +52,13 @@
 
 				/**
 				 * Internal helper function for adjusting the ReplyTo target
-				 * @param $btn the reply button jquery object
-				 * @param $targetFrom the form juqery object to submit post reply
+				 * @param {jQuery} $btn the reply button
+				 * @param {jQuery} $targetFrom the form to submit post reply
 				 */
 				function adjustReplyTarget( $btn, $targetForm ) {
 					var replyTo = $btn.closest( '.flow-post-container' ).data( 'post-id' );
 					var replyDefaultText = $btn.closest( '.flow-post-container' )
-						.find( 'form.flow-reply-form input[name="placeholder"]' ).val();
+						.find( 'form.flow-reply-form textarea' ).attr( 'placeholder' );
 					$targetForm.find( 'input[name="topic[replyTo]"]' ).val( replyTo );
 					$targetForm.find( 'textarea' ).attr( 'placeholder',  replyDefaultText );
 				}
