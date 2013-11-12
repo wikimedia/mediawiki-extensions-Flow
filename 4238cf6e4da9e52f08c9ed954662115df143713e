@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_1309bc97",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-12T22:29:34Z",
+      "side": 1,
+      "message": "this is fine for now, although i wonder if we need a better method to initialize posts, it seems possible there are other things beyond edit post that need the same handling.",
+      "revId": "4238cf6e4da9e52f08c9ed954662115df143713e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
