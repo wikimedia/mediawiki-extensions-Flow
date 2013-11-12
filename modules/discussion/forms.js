@@ -118,9 +118,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 		}
 	);
 
-	// Overload 'edit post' link.
-	$container.find( '.flow-edit-post-link' )
-		.click( function ( e ) {
+	function editPostLink( e ) {
 			e.preventDefault();
 			var $post = $( this ).closest( '.flow-post' ),
 				$contentContainer = $post.find( '.flow-post-content' ),
@@ -170,7 +168,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 							.append(
 								$( output.rendered )
 									.find( '.flow-post' )
-									.children()
+									.children().click( editPostLink )
 							);
 					} );
 
@@ -193,7 +191,10 @@ $( document ).flow( 'registerInitFunction', function(e) {
 				$errorDiv.insertAfter( $contentContainer )
 					.slideDown();
 			} );
-		});
+	}
+	// Overload 'edit post' link.
+	$container.find( '.flow-edit-post-link' )
+		.click( editPostLink );
 
 	// Overload 'edit title' link.
 	$container.find( 'a.flow-edit-topic-link' )
