@@ -142,7 +142,7 @@ interface Compactor {
 
 
 /**
- * A little glue code to allow passing arround and manipulating multiple
+ * A little glue code to allow passing around and manipulating multiple
  * ObjectManagers more convenient.
  */
 class ManagerGroup {

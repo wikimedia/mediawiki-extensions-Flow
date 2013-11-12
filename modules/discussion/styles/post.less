@@ -191,10 +191,21 @@
 //		.buttonIcon('../../base/images/restored_button.svg', '../../base/images/restored_button.png');
 	}
 
+	// any non-first-level reply
 	.flow-post-replies {
+		font-size: 14px;
+
+		margin-top: 20px;
 		margin-left: 22px;
 		border-left: 2px dotted #CCC;
-		
+	}
+
+	/*
+	 * Although the reply form is not displayed if a reply would violate
+	 * threading depth, there may be legacy data (e.g. when decreasing threading
+	 * depth) where we need to flatten out deeper threaded replies.
+	 */
+	.flow-post-max-depth {
 		.flow-post-replies {
 			border-left: 0px solid transparent;
 			margin-left: 0px;
@@ -328,16 +339,6 @@
 			.flow-datestamp {
 				display: none;
 			}
-		}
-	}
-
-	.flow-post-container {
-		margin-top: 20px;
-		font-size: 14px;
-		// hacky way to flatten conversation;
-		// make anything over 2 indentation levels appear on same level
-		.flow-post-container {
-			padding-left: 0px;
 		}
 	}
 
