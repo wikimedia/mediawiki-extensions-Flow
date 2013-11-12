@@ -92,7 +92,7 @@ $notifications = array(
 	) + $notificationTemplate,
 	'flow-mention' => array(
 		'primary-link' => array(
-			'message' => 'flow-notification-link-text-view-post',
+			'message' => 'notification-link-text-view-mention',
 			'destination' => 'flow-post'
 		),
 		'secondary-link' => array(
