@@ -48,14 +48,24 @@
 				e.preventDefault();
 
 				var $formContainer,
-					$viewport = $('main, html');
+					$viewport = $( 'main, html' ),
+					username = '',
+					defaultContent = '';
 
 				if ( $( this ).is( '.flow-topic-comments .flow-reply-link' ) ) {
 					// We're in the topic title
 					$formContainer = $( this ).closest( '.flow-topic-container' );
+
 				} else {
 					$formContainer = $( this ).closest( '.flow-post-container:not(.flow-post-max-depth)' ).find( '.flow-post-reply-container' );
 					$( this ).closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
+
+					// Prefill reply textarea with link to User we're replying to
+					username = $( this ).closest( '.flow-post-container' ).data( 'creator-name' );
+					if ( !mw.util.isIPv4Address( username , true ) && !mw.util.isIPv6Address( username , true ) ) {
+						username = '[[' + mw.Title.newFromText( username, 2 ).getPrefixedText() + ']]';
+					}
+					defaultContent = username + ': ';
 				}
 
 				$formContainer
@@ -73,11 +83,11 @@
 				$textarea
 					.focus()
 					.removeClass( 'flow-reply-box-closed' );
-				mw.flow.editor.load( $textarea );
+				mw.flow.editor.load( $textarea, defaultContent, 'wikitext' );
 
 				// Scroll to the form
 				$viewport.animate( {
-					'scrollTop' : $formContainer.offset().top - $viewport.height()/2
+					'scrollTop' : $formContainer.offset().top - $viewport.height() / 2
 				}, 500 );
 			} );
 
