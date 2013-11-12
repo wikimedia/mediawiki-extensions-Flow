@@ -364,7 +364,7 @@ class TopicBlock extends AbstractBlock {
 			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
 				throw new \MWException( 'Not Allowed' );
 			}
-			if ( ! isset( $options['topiclist-block'] ) ) {
+			if ( !isset( $options['topiclist-block'] ) ) {
 				$prefix = $templating->render(
 					'flow:topic-permalink-warning.html.php',
 					array(
@@ -374,25 +374,11 @@ class TopicBlock extends AbstractBlock {
 				);
 			}
 
-			if ( isset( $options['postId'] ) ) {
-				$indexDescendant = $root->registerDescendant( $options['postId'] );
-				$post = $root->getRecursiveResult( $indexDescendant );
-				if ( $post === null ) {
-					throw new \MWException( 'Requested postId is not available within post tree' );
-				}
-
-				return $prefix . $templating->renderPost(
-					$post,
-					$this,
-					$return
-				);
-			} else {
-				return $prefix . $templating->renderTopic(
-					$root,
-					$this,
-					$return
-				);
-			}
+			return $prefix . $templating->renderTopic(
+				$root,
+				$this,
+				$return
+			);
 		}
 	}
 
