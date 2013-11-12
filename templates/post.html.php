@@ -39,6 +39,7 @@ if ( $postView->actions()->isAllowed( 'reply' ) ) {
 			'placeholder' => $placeHolder,
 			'title' => $placeHolder,
 			'class' => 'flow-reply-content flow-input mw-ui-input',
+			'rows' => '10',
 		) ) .
 		// NOTE: cancel button will be added via JS, makes no sense in non-JS context
 
