@@ -273,7 +273,7 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onUserGetReservedNames( &$names ) {
-		$permissions = array_keys( AbstractRevision::$perms );
+		$permissions = array_keys( Flow\Model\AbstractRevision::$perms );
 		foreach ( $permissions as $permission ) {
 			$names[] = "msg:flow-$permission-usertext";
 		}
