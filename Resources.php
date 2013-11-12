@@ -59,6 +59,8 @@ $wgResourceModules += array(
 			'ext.flow.base',
 			'ext.flow.editor',
 			'jquery.spinner',
+			'mediawiki.Title',
+			'mediawiki.util',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
