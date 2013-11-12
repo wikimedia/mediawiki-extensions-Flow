@@ -50,31 +50,11 @@
 				var $formContainer,
 					$viewport = $('main, html');
 
-				/**
-				 * Internal helper function for adjusting the ReplyTo target
-				 * @param $btn the reply button jquery object
-				 * @param $targetFrom the form juqery object to submit post reply
-				 */
-				function adjustReplyTarget( $btn, $targetForm ) {
-					var replyTo = $btn.closest( '.flow-post-container' ).data( 'post-id' );
-					var replyDefaultText = $btn.closest( '.flow-post-container' )
-						.find( 'form.flow-reply-form input[name="placeholder"]' ).val();
-					$targetForm.find( 'input[name="topic[replyTo]"]' ).val( replyTo );
-					$targetForm.find( 'textarea' ).attr( 'placeholder',  replyDefaultText );
-				}
-
-				if ( $( this ).is( '.flow-post-container .flow-post-container *' ) ) {
-					// We're in a tangent
-					$formContainer = $( this ).parents( '.flow-post-container' ).last().find( '.flow-post-reply-container:first' );
-					adjustReplyTarget( $( this ), $formContainer );
-					$( this ).closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
-				} else if ( $(this).is( '.flow-topic-comments .flow-reply-link' ) ) {
+				if ( $( this ).is( '.flow-topic-comments .flow-reply-link' ) ) {
 					// We're in the topic title
 					$formContainer = $( this ).closest( '.flow-topic-container' );
 				} else {
-					// Not in a tangent
-					$formContainer = $( this ).closest( '.flow-post-container' ).find( '.flow-post-reply-container:last' );
-					adjustReplyTarget( $( this ), $formContainer );
+					$formContainer = $( this ).closest( '.flow-post-container:not(.flow-post-max-depth)' ).find( '.flow-post-reply-container' );
 					$( this ).closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
 				}
 

@@ -16,6 +16,7 @@ class PostRevision extends AbstractRevision {
 
 	// Data that is loaded externally and set
 	protected $children;
+	protected $depth;
 
 	/**
 	 * Variables callback functions & their results will be saved to.
@@ -79,6 +80,7 @@ class PostRevision extends AbstractRevision {
 		$reply->setContent( $content );
 		$reply->replyToId = $this->postId;
 		$reply->changeType = $changeType;
+		$reply->setDepth( $this->getDepth() + 1 );
 		return $reply;
 	}
 
@@ -164,6 +166,17 @@ class PostRevision extends AbstractRevision {
 			throw new \MWException( 'Children not loaded for post: ' . $this->postId->getHex() );
 		}
 		return $this->children;
+	}
+
+	public function setDepth( $depth ) {
+		$this->depth = $depth;
+	}
+
+	public function getDepth() {
+		if ( $this->depth === null ) {
+			throw new \MWException( 'Depth not loaded for post: ' . $this->postId->getHex() );
+		}
+		return $this->depth;
 	}
 
 	/**

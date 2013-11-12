@@ -66,18 +66,30 @@ class RootPostLoader {
 			throw new \MWException( 'Found posts with unrequested parents: ' . json_encode( $extraParents ) );
 		}
 
-		// link parents to their children
 		foreach ( $posts as $postId => $post ) {
+			$postChildren = array();
+			$postDepth = 0;
+
+			// link parents to their children
 			if ( isset( $children[$postId] ) ) {
 				// sort children with oldest items first
 				usort( $children[$postId], function( $a, $b ) {
 					return $b->compareCreateTime( $a );
 				} );
-				$post->setChildren( $children[$postId] );
-			} else {
-				$post->setChildren( array() );
+				$postChildren = $children[$postId];
 			}
+
+			// determine threading depth of post
+			$replyToId = $post->getReplyToId();
+			while ( $replyToId && isset( $children[$replyToId->getHex()] ) ) {
+				$postDepth++;
+				$replyToId = $posts[$replyToId->getHex()]->getReplyToId();
+			}
+
+			$post->setChildren( $postChildren );
+			$post->setDepth( $postDepth );
 		}
+
 		// return only the requested posts, rest are available as children.
 		// Return in same order as requested
 		$roots = array();
