@@ -41,11 +41,12 @@ $c['templating.namespaces'] = array(
 	'flow' => __DIR__ . '/templates',
 );
 $c['templating.global_variables'] = $c->share( function( $c ) {
-	global $wgFlowTokenSalt;
+	global $wgFlowTokenSalt, $wgFlowMaxThreadingDepth;
 
 	return array(
 		'user' => $c['user'],
 		'editToken' => $c['user']->getEditToken( $wgFlowTokenSalt ),
+		'maxThreadingDepth' => $wgFlowMaxThreadingDepth,
 	);
 } );
 $c['templating'] = $c->share( function( $c ) {

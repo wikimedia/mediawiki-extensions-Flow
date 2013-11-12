@@ -25,7 +25,7 @@ class TopicBlock extends AbstractBlock {
 	protected $rootLoader;
 	protected $newRevision;
 	protected $notification;
-	protected $requestedPost;
+	protected $requestedPost = array();
 
 	// POST actions, GET do not need to be listed
 	// unrecognized GET actions fallback to 'view'
@@ -145,8 +145,7 @@ class TopicBlock extends AbstractBlock {
 		if ( !isset( $this->submitted['replyTo'] ) ) {
 			$this->errors['replyTo'] = wfMessage( 'flow-error-missing-replyto' );
 		} else {
-			$this->submitted['replyTo'] = UUID::create( $this->submitted['replyTo']  );
-			$post = $this->storage->get( 'PostRevision', $this->submitted['replyTo'] );
+			$post = $this->loadRequestedPost( $this->submitted['replyTo'] );
 			if ( !$post ) {
 				$this->errors['replyTo'] = wfMessage( 'flow-error-invalid-replyto' );
 			} elseif ( !$this->permissions->isAllowed( $post, 'reply' ) ) {
@@ -653,7 +652,13 @@ class TopicBlock extends AbstractBlock {
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 			);
 			if ( $found ) {
-				$this->requestedPost[$postId] = reset( $found );
+				$post = reset( $found );
+
+				// using the path to the root post, we can know the post's depth
+				$rootPath = $this->rootLoader->treeRepo->findRootPath( UUID::create( $postId ) );
+				$post->setDepth( count( $rootPath ) );
+
+				$this->requestedPost[$postId] = $post;
 			} else {
 				// meh, signals that its not found, dont look again
 				$this->requestedPost[$postId] = false;
