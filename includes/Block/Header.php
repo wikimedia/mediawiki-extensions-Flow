@@ -96,7 +96,8 @@ class HeaderBlock extends AbstractBlock {
 		// Render board history view in header block, topiclist block will not be renderred
 		// when action = 'board-history'
 		if ( $this->action === 'board-history' ) {
-			$templating->getOutput()->addModules( 'ext.flow.history' );
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
+			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 			$tplVars = array(
 				'title' => wfMessage( 'flow-board-history', $this->workflow->getArticleTitle() )->escaped(),
 				'historyExists' => false,
@@ -111,7 +112,8 @@ class HeaderBlock extends AbstractBlock {
 
 			$templating->render( "flow:board-history.html.php", $tplVars );
 		} else {
-			$templating->getOutput()->addModules( 'ext.flow.header' );
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
+			$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
 			$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
 			$templating->render( "flow:$templateName.html.php", array(
 				'block' => $this,

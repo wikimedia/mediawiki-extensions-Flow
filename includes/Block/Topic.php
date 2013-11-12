@@ -318,16 +318,19 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options, $return = false ) {
-		$templating->getOutput()->addModules( 'ext.flow.discussion' );
+		$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion' ) );
+		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		$prefix = '';
 
 		switch( $this->action ) {
 		case 'post-history':
-			$templating->getOutput()->addModules( 'ext.flow.history' );
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
+			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 			return $prefix . $this->renderPostHistory( $templating, $options, $return );
 
 		case 'topic-history':
-			$templating->getOutput()->addModules( 'ext.flow.history' );
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
+			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 			$history = $this->loadTopicHistory();
 			if ( !$this->permissions->isAllowed( reset( $history ), 'post-history' ) ) {
 				throw new \MWException( 'Not Allowed' );
