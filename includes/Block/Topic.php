@@ -67,6 +67,9 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function validate() {
+		if ( isset( $this->submitted['content'] ) ) {
+			$this->submitted['content'] = trim( $this->submitted['content'] );
+		}
 		switch( $this->action ) {
 		case 'edit-title':
 			$this->validateEditTitle();
