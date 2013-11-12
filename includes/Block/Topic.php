@@ -293,7 +293,7 @@ class TopicBlock extends AbstractBlock {
 				};
 			} else {
 				$renderFunction = function( $templating ) use ( $self, $newRevision, $rootPost ) {
-					return $templating->renderPost( $newRevision, $self, $rootPost );
+					return $templating->renderPost( $newRevision, $self );
 				};
 			}
 

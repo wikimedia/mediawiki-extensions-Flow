@@ -134,7 +134,7 @@ echo Html::openElement( 'div', array(
 </div>
 <?php
 foreach( $root->getChildren() as $child ) {
-	echo $this->renderPost( $child, $block, $root );
+	echo $this->renderPost( $child, $block );
 }
 
 // Topic reply box
