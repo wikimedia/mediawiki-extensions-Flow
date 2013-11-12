@@ -35,7 +35,8 @@
 
 		// Set up reply form
 		$container.find( '.flow-reply-form textarea' )
-			.addClass( 'flow-reply-box-closed' );
+			.addClass( 'flow-reply-box-closed' )
+			.attr( 'rows', '6' );
 
 		// Reply form is meant to be visible for non-JS users
 		// when JS is available, hide until button is clicked
@@ -186,6 +187,7 @@
 
 		// Hide reply button until user initiates reply (hidden in JS because it needs to be there for non-JS users)
 		$container.find( '.flow-topic-reply-form .flow-post-form-controls' ).hide();
+		$container.find( '.flow-topic-reply-form textarea' ).attr( 'rows', '6' );
 		// Set up topic reply form
 		$container.find( '.flow-topic-reply-content' ).click( function() {
 			var $textbox = $( this );

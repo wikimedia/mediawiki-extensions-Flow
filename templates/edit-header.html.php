@@ -29,6 +29,7 @@ echo Html::textarea(
 	$header ? $this->getContent( $header, 'wikitext', $user ) : '',
 	array(
 		'class' => 'mw-ui-input',
+		'rows' => '10',
 		'data-header-id' => $header ? $header->getRevisionId()->getHex() : ''
 	)
 );
