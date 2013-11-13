@@ -158,6 +158,7 @@ $wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavi
 $wgHooks['Article::MissingArticleConditions'][] = 'FlowHooks::onMissingArticleConditions';
 $wgHooks['SpecialWatchlistGetNonRevisionTypes'][] = 'FlowHooks::onSpecialWatchlistGetNonRevisionTypes';
 $wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
+$wgHooks['ResourceLoaderGetConfigVars'][] = 'FlowHooks::onResourceLoaderGetConfigVars';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
@@ -229,6 +230,9 @@ $wgFlowOccupyNamespaces = array( NS_TALK );
 
 // Max threading depth
 $wgFlowMaxThreadingDepth = 2;
+
+// A list of editors to use, in priority order
+$wgFlowEditorList = array( 'visualeditor', 'none' );
 
 // Action details config file
 require $dir . 'FlowActions.php';

@@ -280,4 +280,11 @@ class FlowHooks {
 
 		return true;
 	}
+
+	public static function onResourceLoaderGetConfigVars( &$vars ) {
+		global $wgFlowEditorList;
+
+		$vars['wgFlowEditorList'] = $wgFlowEditorList;
+		return true;
+	}
 }
