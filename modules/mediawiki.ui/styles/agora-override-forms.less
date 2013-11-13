@@ -8,7 +8,6 @@
 	border: 1px solid #e6e6e5;
 	color: #6d6e70;
 
-	// padding messes up textarea's bottom right "enlarge icon", I'll set height instead
 	padding: 6px 10px 6px 15px;
 
 	&:hover {
@@ -47,4 +46,10 @@ input.mw-ui-input {
 	vertical-align: middle;
 
 	height: 34px;
+}
+
+// padding messes up textarea's right scroll bar & bottom right resize grabber
+// in FF, so hide it as long as it's not necessary
+textarea.mw-ui-input:empty {
+	overflow: hidden;
 }

@@ -177,16 +177,22 @@
 
 		// Hide reply button until user initiates reply (hidden in JS because it needs to be there for non-JS users)
 		$container.find( '.flow-topic-reply-form .flow-post-form-controls' ).hide();
-		$container.find( '.flow-topic-reply-form textarea' ).attr( 'rows', '6' );
-		// Set up topic reply form
-		$container.find( '.flow-topic-reply-content' ).click( function() {
-			var $textbox = $( this );
-			mw.flow.editor.load( $textbox );
-			$form = $( this ).closest( '.flow-topic-reply-form' );
+		$container.find( '.flow-topic-reply-form textarea' )
+			// Override textarea height; doesn't need to be too large initially,
+			// it'll auto-expand
+			.attr( 'rows', '6' )
+			// Textarea will auto-expand + textarea padding will cause the
+			// resize grabber to be positioned badly (in FF) so get rid of it
+			.css( 'resize', 'none' )
+			// Set up topic reply form
+			.click( function() {
+				var $textbox = $( this );
+				mw.flow.editor.load( $textbox );
+				$form = $( this ).closest( '.flow-topic-reply-form' );
 
-			// display controls
-			$form.find( '.flow-post-form-controls' ).show();
-		} );
+				// display controls
+				$form.find( '.flow-post-form-controls' ).show();
+			} );
 
 		// Add cancel link to topic reply forms
 		$( '<a />' )
