@@ -9,9 +9,11 @@
 		this.$node = $node;
 		this.$node.val( content || '' );
 
-		// auto-expansion shouldn't shrink too much; set default height as min
 		this.$node.css( 'overflow', 'hidden' );
-		this.$node.css( 'min-height', this.$node.height() );
+		this.$node.css( 'resize', 'none' );
+
+		// auto-expansion shouldn't shrink too much; set default height as min
+		this.$node.css( 'min-height', this.$node.outerHeight() );
 		this.$node.keyup( this.autoExpand );
 	};
 
@@ -39,6 +41,7 @@
 	 */
 	mw.flow.editors.none.prototype.autoExpand = function() {
 		var height = $( this ).height(),
+			padding = $( this ).outerHeight() - $( this ).height(),
 			scrollHeight;
 
 		/*
@@ -59,7 +62,7 @@
 		 * want every keystroke firing a 50ms animation.
 		 */
 		if ( scrollHeight != $( this ).height() ) {
-			$( this ).animate( { height: scrollHeight }, 50 );
+			$( this ).animate( { height: scrollHeight + padding }, 50 );
 		}
 	};
 } ( jQuery, mediaWiki ) );

@@ -17,7 +17,7 @@ if ( $user->isAllowed( 'edit' ) ) {
 		$block->getName() . '[topic]', '', 'text', array(
 			'placeholder' => wfMessage( 'flow-newtopic-title-placeholder' )->text(),
 			'title' => wfMessage( 'flow-newtopic-title-placeholder' )->text(),
-			'class' => 'flow-newtopic-title mw-ui-input flow-input',
+			'class' => 'flow-newtopic-title mw-ui-input',
 		)
 	);
 
@@ -27,7 +27,7 @@ if ( $user->isAllowed( 'edit' ) ) {
 	echo Html::textarea( $block->getName() . '[content]', '', array(
 		'placeholder' => wfMessage( 'flow-newtopic-content-placeholder' )->text(),
 		'title' => wfMessage( 'flow-newtopic-content-placeholder' )->text(),
-		'class' => 'flow-newtopic-step2 flow-newtopic-content flow-input mw-ui-input',
+		'class' => 'flow-newtopic-step2 flow-newtopic-content mw-ui-input',
 		'rows' => '10',
 	) );
 	echo Html::openElement( 'div', array( 'class' => 'flow-post-form-controls flow-newtopic-step2' ) );

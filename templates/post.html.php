@@ -43,7 +43,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		Html::textarea( $block->getName() . '[content]', '', array(
 			'placeholder' => $placeHolder,
 			'title' => $placeHolder,
-			'class' => 'flow-reply-content flow-input mw-ui-input',
+			'class' => 'flow-reply-content mw-ui-input',
 			'rows' => '10',
 		) ) .
 		// NOTE: cancel button will be added via JS, makes no sense in non-JS context

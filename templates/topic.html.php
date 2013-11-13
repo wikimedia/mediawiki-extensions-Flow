@@ -171,7 +171,7 @@ if ( $permissions->isAllowed( $root, 'reply' ) ) {
 		) ),
 		Html::textarea( $block->getName() . '[topic-reply-content]', '', array(
 			'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
-			'class' => 'flow-input mw-ui-input flow-topic-reply-content',
+			'class' => 'mw-ui-input flow-topic-reply-content',
 			'rows' => '10',
 		) ),
 		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ),
