@@ -41,6 +41,7 @@ class PostRevision extends AbstractRevision {
 		$obj->prevRevId = null; // no parent revision
 		$obj->changeType = 'new-post';
 		$obj->setContent( $content );
+		$obj->depth = 0;
 		return $obj;
 	}
 
