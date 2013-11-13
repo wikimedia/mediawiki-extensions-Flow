@@ -10,6 +10,10 @@ $( document ).flow( 'registerInitFunction', function ( e ) {
 				workflowId = $flowContainer.data( 'workflow-id' ),
 				$headerContainer = $( this ).closest( '#flow-header' );
 
+			if ( $headerContainer.find( '.flow-edit-header-form' ).length ) {
+				return;
+			}
+
 			mw.flow.api.readHeader(
 				pageName,
 				workflowId,
