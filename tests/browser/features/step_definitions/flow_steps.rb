@@ -11,7 +11,7 @@ When(/^I create a (.+) in Flow new topic$/) do |flow_title|
 end
 
 When(/^I create a (.+) into VisualEditor Flow body$/) do |flow_body|
-  on(FlowPage).new_topic_body_ve_element.when_present.send_keys(flow_body + @random_string + @automated_test_marker)
+  on(FlowPage).new_topic_body_ve_element.when_present(10).send_keys(flow_body + @random_string + @automated_test_marker)
 end
 
 When(/^I create a (.+) into Flow body$/) do |flow_body|
