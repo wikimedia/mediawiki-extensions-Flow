@@ -452,25 +452,25 @@ class TopicHistoryIndex extends TopKIndex {
 	protected $treeRepository;
 
 	public function __construct( BufferedCache $cache, PostRevisionStorage $storage, TreeRepository $treeRepo, $prefix, array $indexed, array $options = array() ) {
-		if ( $indexed !== array( 'topic_root' ) ) {
-			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root: ' . print_r( $indexed, true ) );
+		if ( $indexed !== array( 'topic_root_id' ) ) {
+			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root_id: ' . print_r( $indexed, true ) );
 		}
 		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
 		$this->treeRepository = $treeRepo;
 	}
 
 	public function onAfterInsert( $object, array $new ) {
-		$new['topic_root'] = $this->treeRepository->findRoot( UUID::create( $new['tree_rev_descendant_id'] ) )->getBinary();
+		$new['topic_root_id'] = $this->treeRepository->findRoot( UUID::create( $new['tree_rev_descendant_id'] ) )->getBinary();
 		parent::onAfterInsert( $object, $new );
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new ) {
-		$old['topic_root'] = $new['topic_root'] = $this->treeRepository->findRoot( UUID::create( $old['tree_rev_descendant_id'] ) )->getBinary();
+		$old['topic_root_id'] = $new['topic_root_id'] = $this->treeRepository->findRoot( UUID::create( $old['tree_rev_descendant_id'] ) )->getBinary();
 		parent::onAfterUpdate( $object, $old, $new );
 	}
 
 	public function onAfterRemove( $object, array $old ) {
-		$old['topic_root'] = $this->treeRepository->findRoot( UUID::create( $old['tree_rev_descendant_id'] ) );
+		$old['topic_root_id'] = $this->treeRepository->findRoot( UUID::create( $old['tree_rev_descendant_id'] ) );
 		parent::onAfterRemove( $object, $old );
 	}
 
@@ -485,7 +485,7 @@ class TopicHistoryIndex extends TopKIndex {
 
 		$roots = array();
 		foreach ( $queries as $idx => $features ) {
-			$roots[] = UUID::create( $features['topic_root'] );
+			$roots[] = UUID::create( $features['topic_root_id'] );
 		}
 		$nodeList = $this->treeRepository->fetchSubtreeNodeList( $roots );
 		if ( $nodeList === false ) {
@@ -495,7 +495,7 @@ class TopicHistoryIndex extends TopKIndex {
 
 		$descendantQueries = array();
 		foreach ( $queries as $idx => $features ) {
-			$nodes = $nodeList[$features['topic_root']->getHex()];
+			$nodes = $nodeList[$features['topic_root_id']->getHex()];
 			$descendantQueries[$idx] = array(
 				'tree_rev_descendant_id' => UUID::convertUUIDs( $nodes ),
 			);

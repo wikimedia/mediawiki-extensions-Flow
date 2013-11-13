@@ -271,7 +271,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
 		new TopicHistoryIndex( $cache, $storage, $c['repository.tree'], 'flow_revision:topic',
-			array( 'topic_root' ),
+			array( 'topic_root_id' ),
 			array(
 				'limit' => 500,
 				'sort' => 'rev_id',
