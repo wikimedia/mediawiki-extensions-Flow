@@ -11,4 +11,4 @@ UPDATE /*_*/flow_revision SET rev_change_type = 'delete-post' WHERE rev_change_t
 UPDATE /*_*/flow_revision SET rev_change_type = 'censor-post' WHERE rev_change_type IN('flow-rev-message-censored-post', 'flow-post-censored') AND rev_type = 'post';
 
 UPDATE /*_*/flow_revision SET rev_change_type = 'edit-header' WHERE rev_change_type IN ('flow-rev-message-edit-header', 'flow-edit-summary') AND rev_type = 'header';
-UPDATE /*_*/flow_revision SET rev_change_type = 'create-header' WHERE rev_change_type IS NULL OR rev_change_type IN ('flow-rev-message-create-header', 'flow-create-summary') AND rev_type = 'header';
+UPDATE /*_*/flow_revision SET rev_change_type = 'create-header' WHERE rev_change_type IS NULL OR rev_change_type IN ('flow-rev-message-create-header', 'flow-create-summary', 'flow-create-header') AND rev_type = 'header';

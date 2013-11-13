@@ -346,4 +346,5 @@ $wgFlowActions = array(
 	'flow-edit-summary' => 'edit-header',
 	'flow-rev-message-create-header' => 'create-header',
 	'flow-create-summary' => 'create-header',
+	'flow-create-header' => 'create-header',
 );
