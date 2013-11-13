@@ -89,8 +89,13 @@
 			 * when the form submission has returned.
 			 */
 			'setupEditForm' : function( type, initialContent, submitFunction ) {
-					var deferredObject = $.Deferred();
 					var $contentContainer = $(this);
+					var deferredObject = $.Deferred();
+					if ( $contentContainer.siblings( '.flow-edit-'+type+'-form' ).length ) {
+						// This is a bit yucky, but should behave correctly in most cases
+						return deferredObject.promise();
+					}
+
 					var $postForm = $('<form/>')
 						.addClass( 'flow-edit-'+type+'-form' )
 						.hide()
