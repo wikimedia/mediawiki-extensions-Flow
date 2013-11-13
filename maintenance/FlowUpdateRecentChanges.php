@@ -141,6 +141,7 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 
 				case 'flow-rev-message-create-header':
 				case 'flow-create-summary':
+				case 'flow-create-header':
 					$params['flow-workflow-change']['action'] = 'create-header';
 					$params['flow-workflow-change']['block'] = 'header';
 					$params['flow-workflow-change']['revision_type'] = 'Header';
