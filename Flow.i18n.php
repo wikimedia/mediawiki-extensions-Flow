@@ -91,7 +91,7 @@ $messages['en'] = array(
 
 	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|edited}} a [$2 comment]',
 	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|added}} a [$2 comment].',
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|comment|comments}}''' were added.",
+	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|comment|comments}}''' {{PLURAL:$1|was|were}} added.",
 	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|created}} the topic [$2 $3].',
 	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|hid}} a [$3 comment].',
 	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|edited}} the topic title to [$2 $3] from $4.',
