@@ -64,7 +64,7 @@
 					// Prefill reply textarea with link to User we're replying to
 					username = $( this ).closest( '.flow-post-container' ).data( 'creator-name' );
 					if ( !mw.util.isIPv4Address( username , true ) && !mw.util.isIPv6Address( username , true ) ) {
-						username = '[[' + mw.Title.newFromText( username, 2 ).getPrefixedText() + ']]';
+						username = '[[' + mw.Title.newFromText( username, 2 ).getPrefixedText() + '|' + username + ']]';
 					}
 					defaultContent = username + ': ';
 				}
