@@ -263,12 +263,18 @@ class Formatter {
 		// Build description message, piggybacking on history i18n
 		$msg = $this->actions->getValue( $changeData['action'], 'history', 'i18n-message' );
 		$params = $this->actions->getValue( $changeData['action'], 'history', 'i18n-params' );
-		return $this->buildMessage( $msg, (array) $params, array(
+		$message = $this->buildMessage( $msg, (array) $params, array(
 			$revision,
 			$this->templating,
 			$cl->getUser(),
 			$block
 		) )->parse();
+
+		return \Html::rawElement(
+			'span',
+			array( 'class' => 'plainlinks' ),
+			$message
+		);
 	}
 
 	/**
