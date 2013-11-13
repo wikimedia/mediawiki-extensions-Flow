@@ -10,6 +10,9 @@ $( document ).flow( 'registerInitFunction', function ( e ) {
 				workflowId = $flowContainer.data( 'workflow-id' ),
 				$headerContainer = $( this ).closest( '#flow-header' );
 
+			$headerContainer.find( '.flow-header-edit-link' )
+				.hide();
+
 			mw.flow.api.readHeader(
 				pageName,
 				workflowId,
@@ -55,6 +58,12 @@ $( document ).flow( 'registerInitFunction', function ( e ) {
 							.empty()
 							.append( $( output.rendered ) );
 					} );
+
+					$headerContainer.find( '.flow-cancel-link' )
+						.click( function() {
+							$headerContainer.find( '.flow-header-edit-link' )
+								.show();
+						} );
 			} );
 		} );
 } );
