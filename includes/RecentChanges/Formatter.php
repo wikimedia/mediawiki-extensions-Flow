@@ -131,9 +131,20 @@ class Formatter {
 				$links[] = $this->postLink( $title, $changeData );
 				break;
 
+			case 'censor-post':
+			case 'delete-post':
 			case 'hide-post':
+			case 'restore-post':
 				$links[] = $this->topicLink( $title, $changeData );
 				$links[] = $this->postHistoryLink( $title, $changeData );
+				break;
+
+			case 'censor-topic':
+			case 'delete-topic':
+			case 'hide-topic':
+			case 'restore-topic':
+				$links[] = $this->topicLink( $title, $changeData );
+				$links[] = $this->topicHistoryLink( $title, $changeData );
 				break;
 
 			case 'edit-title':
@@ -167,6 +178,20 @@ class Formatter {
 		return '<span class="mw-changeslist-date">'
 				. $cl->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $cl->getUser() )
 			. '</span> ';
+	}
+
+	public function topicHistoryLink( Title $title, array $changeData ) {
+		return Html::rawElement(
+			'a',
+			array(
+				'href' => $this->urlGeneratr->buildUrl(
+					$title,
+					'topic-history',
+					array( 'workflow' => $changeData['workflow'] )
+				),
+			),
+			wfMessage( 'flow-link-history' )->text()
+		);
 	}
 
 	public function postHistoryLink( Title $title, array $changeData ) {
