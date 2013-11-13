@@ -637,7 +637,7 @@ class TopicBlock extends AbstractBlock {
 	protected function loadTopicHistory() {
 		$found = $this->storage->find(
 			'PostRevision',
-			array( 'topic_root' => $this->workflow->getId() ),
+			array( 'topic_root_id' => $this->workflow->getId() ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 		);
 		if ( $found ) {
