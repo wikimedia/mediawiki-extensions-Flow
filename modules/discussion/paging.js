@@ -37,14 +37,11 @@
 				workflowId = $( this ).flow( 'getTopicWorkflowId' ),
 				pageName = $( this ).closest( '.flow-container' ).data( 'page-title' ),
 
-				// One more for paging forward.
-				requestLimit = limit + 1,
-
 				request = {
 					'topic_list' : {
 						'offset-dir' : direction,
 						'offset-id' : offset,
-						'limit' : requestLimit,
+						'limit' : limit,
 						'render' : true
 					}
 				};

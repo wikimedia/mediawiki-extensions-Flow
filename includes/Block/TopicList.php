@@ -161,7 +161,6 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	protected function getFindOptions( $requestOptions ) {
-		global $wgFlowDefaultLimit, $wgFlowMaxLimit;
 		$findOptions = array();
 
 		// Compute offset/limit
