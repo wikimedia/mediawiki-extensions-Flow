@@ -269,7 +269,8 @@ Parameters:
 {{Identical|Action}}',
 	'flow-cancel' => 'Used as action link text.
 {{Identical|Cancel}}',
-	'flow-newtopic-title-placeholder' => 'Used as placeholder for the "Subject/Title for topic" textarea.',
+	'flow-newtopic-title-placeholder' => 'Used as placeholder for the "Subject/Title for topic" textarea.
+{{Identical|New topic}}',
 	'flow-newtopic-content-placeholder' => 'Used as placeholder for the "Content" textarea.',
 	'flow-newtopic-header' => 'Unused at this time.',
 	'flow-newtopic-save' => 'Used as label for the Submit button.',
@@ -300,12 +301,14 @@ Parameters:
 
 See also:
 * {{msg-mw|Flow-post-action-restore-post}}
-{{Identical|Suppress post}}',
+{{Identical|Suppress}}',
 	'flow-post-action-delete-post' => 'Used as a label for the submit button in the deletion form.
 
 See also:
-* {{msg-mw|Flow-post-action-restore-post}}',
-	'flow-post-action-hide-post' => 'Used as label for the Submit button.',
+* {{msg-mw|Flow-post-action-restore-post}}
+{{Identical|Delete}}',
+	'flow-post-action-hide-post' => 'Used as label for the Submit button.
+{{Identical|Hide}}',
 	'flow-post-action-edit-post' => 'Used as text for the link which is used to edit the post.',
 	'flow-post-action-edit' => 'Unused at this time.
 
@@ -613,8 +616,7 @@ See also:
 	'echo-category-title-flow-discussion' => 'This is a short title for notification category.  Parameters:
 * $1 - number of mentions, for PLURAL support
 
-{{Related|Echo-category-title}}
-{{Identical|Discussion}}',
+{{Related|Echo-category-title}}',
 	'echo-pref-tooltip-flow-discussion' => 'This is a short description of the flow-discussion notification category.',
 	'flow-link-post' => 'Text used when linking to a post from recentchanges.
 {{Identical|Post}}',
@@ -623,15 +625,16 @@ See also:
 	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges.
 {{Identical|History}}',
 	'flow-moderation-title-censor' => 'Title for the moderation confirmation dialog when a post is being suppressed.
-{{Related|Flow-moderation-title}}
-{{Identical|Suppress post}}',
+{{Related|Flow-moderation-title}}',
 	'flow-moderation-title-delete' => 'Title for the moderation confirmation dialog when a post is being deleted.
 {{Related|Flow-moderation-title}}
 {{Identical|Delete post}}',
 	'flow-moderation-title-hide' => 'Title for the moderation confirmation dialog when a post is being hidden.
-{{Related|Flow-moderation-title}}',
+{{Related|Flow-moderation-title}}
+{{Identical|Hide post}}',
 	'flow-moderation-title-restore' => 'Title for the moderation confirmation dialog when a post is being restored.
-{{Related|Flow-moderation-title}}',
+{{Related|Flow-moderation-title}}
+{{Identical|Restore post}}',
 	'flow-moderation-intro-censor' => 'Intro for the moderation confirmation dialog when a post is being suppressed. Parameters:
 * $1 - the name of the user whose post is being suppressed. GENDER supported.
 * $2 - the subject of the topic in which a post is being suppressed
@@ -649,25 +652,29 @@ See also:
 * $2 - the subject of the topic in which a post is being suppressed
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-confirm-censor' => 'Label for a button that will confirm suppression of a post.
-{{Relate|Flow-moderation-confirm}}',
+{{Related|Flow-moderation-confirm}}
+{{Identical|Suppress}}',
 	'flow-moderation-confirm-delete' => 'Label for a button that will confirm deletion of a post.
-{{Relate|Flow-moderation-confirm}}',
+{{Related|Flow-moderation-confirm}}
+{{Identical|Delete}}',
 	'flow-moderation-confirm-hide' => 'Label for a button that will confirm hiding of a post.
-{{Relate|Flow-moderation-confirm}}',
+{{Related|Flow-moderation-confirm}}
+{{Identical|Hide}}',
 	'flow-moderation-confirm-restore' => 'Label for a button that will confirm restoring of a post.
-{{Relate|Flow-moderation-confirm}}',
+{{Related|Flow-moderation-confirm}}
+{{Identical|Restore}}',
 	'flow-moderation-confirmation-censor' => 'Message displayed after a successful suppression of a post. Parameters:
-* $1 the name of the user whose post is being moderated. GENDER supported.
-{{Relate|Flow-moderation-confirmation}}',
+* $1 - the name of the user whose post is being moderated. GENDER supported.
+{{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-confirmation-delete' => 'Message displayed after a successful deletion of a post. Parameters:
-* $1 the name of the user whose post is being moderated. GENDER supported.
-{{Relate|Flow-moderation-confirmation}}',
+* $1 - the name of the user whose post is being moderated. GENDER supported.
+{{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-confirmation-hide' => 'Message displayed after a successful hiding of a post. Parameters:
-* $1 the name of the user whose post is being moderated. GENDER supported.
-{{Relate|Flow-moderation-confirmation}}',
+* $1 - the name of the user whose post is being moderated. GENDER supported.
+{{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-confirmation-restore' => 'Message displayed after a successful restoring of a post. Parameters:
-* $1 the name of the user whose post is being restored. GENDER supported.
-{{Relate|Flow-moderation-confirmation}}',
+* $1 - the name of the user whose post is being restored. GENDER supported.
+{{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-reason-placeholder' => 'Placeholder text for the textbox that holds the reason field on moderation confirmation dialogs.',
 	'flow-topic-permalink-warning' => 'Displayed at the top of a page when a person has clicked on a permanent link to a topic.
 
@@ -753,20 +760,24 @@ $messages['de'] = array(
 	'flow-desc' => 'Workflow-Management-System',
 	'flow-page-title' => '$1 &ndash; Flow',
 	'log-name-flow' => 'Flow-Aktivitätslogbuch',
-	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|löschte}} einen [$4 Kommentar] auf [[$3]]', # Fuzzy
-	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|stellte}} einen [$4 Kommentar] auf [[$3]] wieder her', # Fuzzy
-	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|unterdrückte}} einen [$4 Kommentar] auf [[$3]]', # Fuzzy
-	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|löschte}} einen [$4 Kommentar] auf [[$3]]', # Fuzzy
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|löschte}} einen [$4 Beitrag] auf [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|stellte}} einen [$4 Beitrag] auf [[$3]] wieder her',
+	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|unterdrückte}} einen [$4 Beitrag] auf [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|löschte}} einen [$4 Beitrag] auf [[$3]]',
 	'flow-user-moderated' => 'Moderierter Benutzer',
 	'flow-edit-header-link' => 'Überschrift bearbeiten',
 	'flow-header-empty' => 'Diese Diskussionsseite hat derzeit keine Überschrift.',
 	'flow-post-moderated-toggle-show' => '[Anzeigen]',
 	'flow-post-moderated-toggle-hide' => '[Ausblenden]',
+	'flow-hide-content' => '{{GENDER:$1|Versteckt}} von $1 $2',
+	'flow-delete-content' => '{{GENDER:$1|Gelöscht}} von $1 $2',
+	'flow-censor-content' => '{{GENDER:$1|Unterdrückt}} von $1 $2',
+	'flow-censor-usertext' => "''Benutzername unterdrückt''",
 	'flow-post-actions' => 'Aktionen',
 	'flow-topic-actions' => 'Aktionen',
 	'flow-cancel' => 'Abbrechen',
-	'flow-newtopic-title-placeholder' => 'Betreff der Nachricht', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'Nachrichtentext. Sei freundlich!', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Neues Thema',
+	'flow-newtopic-content-placeholder' => 'Gib hier Einzelheiten ein, wenn du möchtest.',
 	'flow-newtopic-header' => 'Ein neues Thema hinzufügen',
 	'flow-newtopic-save' => 'Thema hinzufügen',
 	'flow-newtopic-start-placeholder' => 'Ein neues Thema starten',
@@ -780,9 +791,9 @@ $messages['de'] = array(
 	'flow-post-edited' => 'Beitrag {{GENDER:$1|bearbeitet}} von $1 $2',
 	'flow-post-action-view' => 'Permanentlink',
 	'flow-post-action-post-history' => 'Beitragsversionsgeschichte',
-	'flow-post-action-censor-post' => 'Beitrag zensieren', # Fuzzy
-	'flow-post-action-delete-post' => 'Beitrag löschen', # Fuzzy
-	'flow-post-action-hide-post' => 'Beitrag verstecken', # Fuzzy
+	'flow-post-action-censor-post' => 'Unterdrücken',
+	'flow-post-action-delete-post' => 'Löschen',
+	'flow-post-action-hide-post' => 'Verstecken',
 	'flow-post-action-edit-post' => 'Beitrag bearbeiten',
 	'flow-post-action-edit' => 'Bearbeiten',
 	'flow-post-action-restore-post' => 'Beitrag wiederherstellen',
@@ -829,7 +840,7 @@ $messages['de'] = array(
 	'flow-history-week' => 'Letzte Woche',
 	'flow-history-pages-topic' => 'Erscheint auf dem [$1 Brett „$2“]',
 	'flow-history-pages-post' => 'Erscheint auf [$1 $2]',
-	'flow-topic-participants' => '{{PLURAL:$1|$3 startete dieses Thema|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} und {{PLURAL:$2|ein anderer|andere}}|0=Noch keine Teilnehmer|2={{GENDER:$3|$3}} und {{GENDER:$4|$4}}}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|$3 startete dieses Thema|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} und {{PLURAL:$2|ein anderer|andere}}|0=Noch keine Teilnehmer|2={{GENDER:$3|$3}} und {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} und {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Sei der erste!|Kommentieren ($1)}}',
 	'flow-comment-restored' => 'Kommentar wiederhergestellt',
 	'flow-comment-deleted' => 'Kommentar gelöscht',
@@ -860,19 +871,26 @@ $messages['de'] = array(
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|benannte}} dein Thema „$2“ in „$3“ auf der Seite „$4“ um',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|erstellte}} ein neues Thema auf $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|erstellte}} ein neues Thema mit dem Titel „$2“ auf $3',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Diskussion|Diskussionen}}', # Fuzzy
-	'echo-pref-tooltip-flow-discussion' => 'Benachrichtige mich, wenn mich betreffende Aktionen auf dem Diskussionsbrett erscheinen.', # Fuzzy
+	'echo-category-title-flow-discussion' => 'Flow',
+	'echo-pref-tooltip-flow-discussion' => 'Benachrichtige mich, wenn mich betreffende Aktionen in Flow stattfinden.',
 	'flow-link-post' => 'Beitrag',
 	'flow-link-topic' => 'Thema',
 	'flow-link-history' => 'Versionsgeschichte',
-	'flow-moderation-title-censor' => 'Beitrag zensieren', # Fuzzy
-	'flow-moderation-title-delete' => 'Beitrag löschen', # Fuzzy
-	'flow-moderation-title-hide' => 'Beitrag verstecken', # Fuzzy
-	'flow-moderation-title-restore' => 'Beitrag wiederherstellen', # Fuzzy
-	'flow-moderation-intro-censor' => 'Bitte bestätige, dass du den Beitrag von {{GENDER:$1|$1}} im Thread „$2“ zensieren willst und gib einen Grund für deine Aktion an.', # Fuzzy
-	'flow-moderation-intro-delete' => 'Bitte bestätige, dass du den Beitrag von {{GENDER:$1|$1}} im Thread „$2“ löschen willst und gib einen Grund für deine Aktion an.', # Fuzzy
-	'flow-moderation-intro-hide' => 'Bitte bestätige, dass du den Beitrag von {{GENDER:$1|$1}} im Thread „$2“ ausblenden willst und gib einen Grund für deine Aktion an.', # Fuzzy
-	'flow-moderation-intro-restore' => 'Bitte bestätige, dass du den Beitrag von {{GENDER:$1|$1}} im Thread „$2“ wiederherstellen willst und gib einen Grund für deine Aktion an.', # Fuzzy
+	'flow-moderation-title-censor' => 'Beitrag unterdrücken?',
+	'flow-moderation-title-delete' => 'Beitrag löschen?',
+	'flow-moderation-title-hide' => 'Beitrag verstecken?',
+	'flow-moderation-title-restore' => 'Beitrag wiederherstellen?',
+	'flow-moderation-intro-censor' => 'Bitte erkläre, warum du diesen Beitrag unterdrückst.',
+	'flow-moderation-intro-delete' => 'Bitte erkläre, warum du diesen Beitrag löschst.',
+	'flow-moderation-intro-hide' => 'Bitte erkläre, warum du diesen Beitrag versteckst.',
+	'flow-moderation-intro-restore' => 'Bitte erkläre, warum du diesen Beitrag wiederherstellst.',
+	'flow-moderation-confirm-censor' => 'Unterdrücken',
+	'flow-moderation-confirm-delete' => 'Löschen',
+	'flow-moderation-confirm-hide' => 'Verstecken',
+	'flow-moderation-confirm-restore' => 'Wiederherstellen',
+	'flow-moderation-confirmation-censor' => 'Ziehe in Erwägung, $1 eine Rückmeldung für diesen Beitrag zu geben.',
+	'flow-moderation-confirmation-delete' => 'Ziehe in Erwägung, $1 eine Rückmeldung für diesen Beitrag zu geben.',
+	'flow-moderation-confirmation-hide' => 'Ziehe in Erwägung, $1 eine Rückmeldung für diesen Beitrag zu geben.',
 	'flow-moderation-confirmation-restore' => 'Du hast erfolgreich diesen Beitrag wiederhergestellt.',
 	'flow-moderation-reason-placeholder' => 'Hier Begründung eingeben',
 	'flow-topic-permalink-warning' => 'Dieses Thema wurde gestartet auf  [$2 $1]',
@@ -971,25 +989,30 @@ $messages['fi'] = array(
 /** French (français)
  * @author Gomoko
  * @author Sherbrooke
+ * @author VIGNERON
  */
 $messages['fr'] = array(
 	'flow-desc' => 'Système de gestion du flux de travail',
 	'flow-page-title' => '$1 &ndash; Flux',
 	'log-name-flow' => 'Journal de flux d’activité',
-	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|a supprimé}} un [$4 commentaire] sur [[$3]]', # Fuzzy
-	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|a rétabli}} un [$4 commentaire] sur [[$3]]', # Fuzzy
-	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|a effacé}} un [$4 commentaire] sur [[$3]]', # Fuzzy
-	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|a supprimé}} un [$4 commentaire] sur [[$3]]', # Fuzzy
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|a supprimé}} une [$4 note] sur [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|a rétabli}} une [$4 note] sur [[$3]]',
+	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|a effacé}} une [$4 note] sur [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|a supprimé}} une [$4 note] sur [[$3]]',
 	'flow-user-moderated' => 'Utilisateur modéré',
 	'flow-edit-header-link' => 'Modifier l’entête',
 	'flow-header-empty' => 'Cette page de discussion n’a pas d’entête pour l’instant.',
 	'flow-post-moderated-toggle-show' => '[Afficher]',
 	'flow-post-moderated-toggle-hide' => '[Masquer]',
+	'flow-hide-content' => '{{GENDER:$1|Masqué}} par $1 $2',
+	'flow-delete-content' => '{{GENDER:$1|Supprimé}} par $1 $2',
+	'flow-censor-content' => '{{GENDER:$1|Supprimé}} par $1 $2',
+	'flow-censor-usertext' => '« Nom d’utilisateur supprimé »',
 	'flow-post-actions' => 'Actions',
 	'flow-topic-actions' => 'Actions',
 	'flow-cancel' => 'Annuler',
-	'flow-newtopic-title-placeholder' => 'Objet du message', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'Texte du message. Soyez gentil !', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Nouveau sujet',
+	'flow-newtopic-content-placeholder' => 'Ajouter des détails si vous le voulez',
 	'flow-newtopic-header' => 'Ajouter un nouveau sujet',
 	'flow-newtopic-save' => 'Ajouter sujet',
 	'flow-newtopic-start-placeholder' => 'Commencer un nouveau sujet',
@@ -1003,9 +1026,9 @@ $messages['fr'] = array(
 	'flow-post-edited' => 'Note {{GENDER:$1|modifiée}} par $1 $2',
 	'flow-post-action-view' => 'Lien permanent',
 	'flow-post-action-post-history' => 'Historique des publications',
-	'flow-post-action-censor-post' => 'Censurer la note', # Fuzzy
-	'flow-post-action-delete-post' => 'Supprimer le message', # Fuzzy
-	'flow-post-action-hide-post' => 'Masquer la note', # Fuzzy
+	'flow-post-action-censor-post' => 'Supprimer',
+	'flow-post-action-delete-post' => 'Supprimer',
+	'flow-post-action-hide-post' => 'Masquer',
 	'flow-post-action-edit-post' => 'Modifier la publication',
 	'flow-post-action-edit' => 'Modifier',
 	'flow-post-action-restore-post' => 'Restaurer le message',
@@ -1052,7 +1075,7 @@ $messages['fr'] = array(
 	'flow-history-week' => 'Semaine dernière',
 	'flow-history-pages-topic' => 'Apparaît sur [$1 le tableau « $2 »]',
 	'flow-history-pages-post' => 'Apparaît sur [$1 $2]',
-	'flow-topic-participants' => '{{PLURAL:$1|$3 a démarré ce sujet|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} et {{PLURAL:$2|autre|autres}}|0=Encore aucune participation|2={{GENDER:$3|$3}} et {{GENDER:$4|$4}}}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|$3 a démarré ce sujet|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} et {{PLURAL:$2|autre|autres}}|0=Encore aucune participation|2={{GENDER:$3|$3}} et {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} et {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Soyez le premier à laisser un commentaire !|Commenter ($1)}}',
 	'flow-comment-restored' => 'Commentaire rétabli',
 	'flow-comment-deleted' => 'Commentaire supprimé',
@@ -1083,19 +1106,26 @@ $messages['fr'] = array(
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|a renommé}} votre sujet « $2 » en « $3 » sur « $4 »',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|a créé}} un nouveau sujet sur $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|a créé}} un nouveau sujet avec le titre « $2 » en $3',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussion|Discussions}}', # Fuzzy
-	'echo-pref-tooltip-flow-discussion' => 'M’informer quand des actions me concernant ont lieu dans le cercle de discussion.', # Fuzzy
+	'echo-category-title-flow-discussion' => 'Flux',
+	'echo-pref-tooltip-flow-discussion' => 'M’informer quand des actions me concernant ont lieu dans le flux.',
 	'flow-link-post' => 'note',
 	'flow-link-topic' => 'sujet',
 	'flow-link-history' => 'historique',
-	'flow-moderation-title-censor' => 'Censurer la note', # Fuzzy
-	'flow-moderation-title-delete' => 'Supprimer la note', # Fuzzy
-	'flow-moderation-title-hide' => 'Masquer la note', # Fuzzy
-	'flow-moderation-title-restore' => 'Restaurer la note', # Fuzzy
-	'flow-moderation-intro-censor' => 'Veuillez confirmer que vous voulez censurer la note de {{GENDER:$1|$1}} dans le fil « $2 », et fournir un motif à votre action.', # Fuzzy
-	'flow-moderation-intro-delete' => 'Veuillez confirmer que vous voulez supprimer la note de {{GENDER:$1|$1}} dans le fil « $2 », et fournir un motif à votre action.', # Fuzzy
-	'flow-moderation-intro-hide' => 'Veuillez confirmer que vous voulez masquer la note de {{GENDER:$1|$1}} dans le fil « $2 », et fournir un motif à votre action.', # Fuzzy
-	'flow-moderation-intro-restore' => 'Veuillez confirmer que vous voulez restaurer la note de {{GENDER:$1|$1}} dans le fil « $2 », et fournir un motif à votre action.', # Fuzzy
+	'flow-moderation-title-censor' => 'Censurer la note ?',
+	'flow-moderation-title-delete' => 'Supprimer la note ?',
+	'flow-moderation-title-hide' => 'Masquer la note ?',
+	'flow-moderation-title-restore' => 'Restaurer la note ?',
+	'flow-moderation-intro-censor' => 'Veuillez expliquer pourquoi vous censurez cette note.',
+	'flow-moderation-intro-delete' => 'Veuillez expliquer pourquoi vous supprimez cette note.',
+	'flow-moderation-intro-hide' => 'Veuillez expliquer pourquoi vous cachez cette note.',
+	'flow-moderation-intro-restore' => 'Veuillez expliquer pourquoi vous restaurez cette note.',
+	'flow-moderation-confirm-censor' => 'Supprimer',
+	'flow-moderation-confirm-delete' => 'Supprimer',
+	'flow-moderation-confirm-hide' => 'Masquer',
+	'flow-moderation-confirm-restore' => 'Rétablir',
+	'flow-moderation-confirmation-censor' => 'Penser à donner à $1 un avis sur cette note.',
+	'flow-moderation-confirmation-delete' => 'Penser à donner à $1 un avis sur cette note.',
+	'flow-moderation-confirmation-hide' => 'Penser à donner à $1 un avis sur cette note.',
 	'flow-moderation-confirmation-restore' => 'Vous avez bien restauré cette note.',
 	'flow-moderation-reason-placeholder' => 'Saisissez votre motif ici',
 	'flow-topic-permalink-warning' => 'Ce sujet a été démarré sur [$2 $1]',
@@ -1324,20 +1354,24 @@ $messages['ia'] = array(
 	'flow-desc' => 'Systema de gestion de fluxo de travalio',
 	'flow-page-title' => '$1 &ndash; Fluxo',
 	'log-name-flow' => 'Registro de activitate de fluxo',
-	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|deleva}} un [$4 commento] in [[$3]]', # Fuzzy
-	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|restaurava}} un [$4 commento] in [[$3]]', # Fuzzy
-	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|supprimeva}} un [$4 commento] in [[$3]]', # Fuzzy
-	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|deleva}} un [$4 commento] in [[$3]]', # Fuzzy
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|deleva}} un [$4 message] in [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|restaurava}} un [$4 message] in [[$3]]',
+	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|supprimeva}} un [$4 message] in [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|deleva}} un [$4 message] in [[$3]]',
 	'flow-user-moderated' => 'Usator moderate',
 	'flow-edit-header-link' => 'Modificar titulo',
 	'flow-header-empty' => 'Iste pagina de discussion actualmente non ha titulo.',
 	'flow-post-moderated-toggle-show' => '[Monstrar]',
 	'flow-post-moderated-toggle-hide' => '[Celar]',
+	'flow-hide-content' => '{{GENDER:$1|Celate}} per $1 $2',
+	'flow-delete-content' => '{{GENDER:$1|Delite}} per $1 $2',
+	'flow-censor-content' => '{{GENDER:$1|Supprimite}} per $1 $2',
+	'flow-censor-usertext' => "''Nomine de usator supprimite''",
 	'flow-post-actions' => 'Actiones',
 	'flow-topic-actions' => 'Actiones',
 	'flow-cancel' => 'Cancellar',
-	'flow-newtopic-title-placeholder' => 'Subjecto del message', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'Texto del message. Sia gentil!', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Nove topico',
+	'flow-newtopic-content-placeholder' => 'Adde detalios si tu vole',
 	'flow-newtopic-header' => 'Adder un nove topico',
 	'flow-newtopic-save' => 'Adder topico',
 	'flow-newtopic-start-placeholder' => 'Initiar un nove discussion',
@@ -1351,9 +1385,9 @@ $messages['ia'] = array(
 	'flow-post-edited' => 'Entrata {{GENDER:$1|modificate}} per $1 $2',
 	'flow-post-action-view' => 'Permaligamine',
 	'flow-post-action-post-history' => 'Historia de messages',
-	'flow-post-action-censor-post' => 'Censurar entrata', # Fuzzy
-	'flow-post-action-delete-post' => 'Deler entrata', # Fuzzy
-	'flow-post-action-hide-post' => 'Celar entrata', # Fuzzy
+	'flow-post-action-censor-post' => 'Supprimer',
+	'flow-post-action-delete-post' => 'Deler',
+	'flow-post-action-hide-post' => 'Celar',
 	'flow-post-action-edit-post' => 'Modificar entrata',
 	'flow-post-action-edit' => 'Modificar',
 	'flow-post-action-restore-post' => 'Restaurar entrata',
@@ -1421,20 +1455,24 @@ $messages['it'] = array(
 	'flow-desc' => 'Sistema di gestione del flusso di lavoro',
 	'flow-page-title' => '$1 &ndash; Flusso',
 	'log-name-flow' => 'Attività sui flussi',
-	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 commento] su [[$3]]', # Fuzzy
-	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|ha ripristinato}} un [$4 commento] su [[$3]]', # Fuzzy
-	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|ha soppresso}} un [$4 commento] su [[$3]]', # Fuzzy
-	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 commento] su [[$3]]', # Fuzzy
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 messaggio] su [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|ha ripristinato}} un [$4 messaggio] su [[$3]]',
+	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|ha soppresso}} un [$4 messaggio] su [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 messaggio] su [[$3]]',
 	'flow-user-moderated' => 'Utente moderato',
 	'flow-edit-header-link' => 'Modifica intestazione',
 	'flow-header-empty' => 'Questa pagina di discussione attualmente non ha alcuna intestazione.',
 	'flow-post-moderated-toggle-show' => '[Mostra]',
 	'flow-post-moderated-toggle-hide' => '[Nascondi]',
+	'flow-hide-content' => '{{GENDER:$1|Nascosto}} da $1 $2',
+	'flow-delete-content' => '{{GENDER:$1|Cancellato}} da $1 $2',
+	'flow-censor-content' => '{{GENDER:$1|Soppresso}} da $1 $2',
+	'flow-censor-usertext' => "''Nome utente soppresso''",
 	'flow-post-actions' => 'Azioni',
 	'flow-topic-actions' => 'Azioni',
 	'flow-cancel' => 'Annulla',
-	'flow-newtopic-title-placeholder' => 'Oggetto del messaggio', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'Testo del messaggio. Sii gentile!', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Nuova discussione',
+	'flow-newtopic-content-placeholder' => 'Aggiungi qualche dettaglio, se vuoi',
 	'flow-newtopic-header' => 'Aggiungi una nuova discussione',
 	'flow-newtopic-save' => 'Aggiungi discussione',
 	'flow-newtopic-start-placeholder' => 'Inizia una nuova discussione',
@@ -1448,9 +1486,9 @@ $messages['it'] = array(
 	'flow-post-edited' => 'Messaggio {{GENDER:$1|modificato}} da $1 $2',
 	'flow-post-action-view' => 'Link permanente',
 	'flow-post-action-post-history' => 'Cronologia del messaggio',
-	'flow-post-action-censor-post' => 'Censura messaggio', # Fuzzy
-	'flow-post-action-delete-post' => 'Cancella messaggio', # Fuzzy
-	'flow-post-action-hide-post' => 'Nascondi messaggio', # Fuzzy
+	'flow-post-action-censor-post' => 'Sopprimi',
+	'flow-post-action-delete-post' => 'Cancella',
+	'flow-post-action-hide-post' => 'Nascondi',
 	'flow-post-action-edit-post' => 'Modifica messaggio',
 	'flow-post-action-edit' => 'Modifica',
 	'flow-post-action-restore-post' => 'Ripristina messaggio',
@@ -1497,7 +1535,7 @@ $messages['it'] = array(
 	'flow-history-week' => 'Ultima settimana',
 	'flow-history-pages-topic' => 'Apparso sulla [$1 scheda "$2"]',
 	'flow-history-pages-post' => 'Apparso su [$1  $2]',
-	'flow-topic-participants' => '{{PLURAL:$1|$3 ha iniziato questa discussione|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} e {{PLURAL:$2|un altro|altri}}|0=Nessuno ha partecipato ancora|2={{GENDER:$3|$3}} e {{GENDER:$4|$4}}}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|$3 ha iniziato questa discussione|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} e {{PLURAL:$2|un altro|altri}}|0=Nessuno ha partecipato ancora|2={{GENDER:$3|$3}} e {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} e {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Sii il primo a commentare!|Commenti ($1)}}',
 	'flow-comment-restored' => 'Commento ripristinato',
 	'flow-comment-deleted' => 'Commento cancellato',
@@ -1528,19 +1566,23 @@ $messages['it'] = array(
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|ha rinominato}} la discussione "$2" in "$3" su "$4"',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|ha creato}} una nuova discussione su $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|ha creato}} una nuova discussione "$2" su $3',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussione|Discussioni}}', # Fuzzy
-	'echo-pref-tooltip-flow-discussion' => 'Avvisami quando vengono eseguite azioni connesse a me nella bacheca delle discussioni.', # Fuzzy
+	'echo-category-title-flow-discussion' => 'Flusso',
+	'echo-pref-tooltip-flow-discussion' => 'Avvisami quando vengono eseguite azioni connesse a me nel flusso delle discussioni.',
 	'flow-link-post' => 'messaggio',
 	'flow-link-topic' => 'discussione',
 	'flow-link-history' => 'cronologia',
-	'flow-moderation-title-censor' => 'Censura messaggio', # Fuzzy
-	'flow-moderation-title-delete' => 'Cancella messaggio', # Fuzzy
-	'flow-moderation-title-hide' => 'Nascondi messaggio', # Fuzzy
-	'flow-moderation-title-restore' => 'Ripristina messaggio', # Fuzzy
-	'flow-moderation-intro-censor' => 'Conferma che vuoi censurare il messaggio di {{GENDER:$1|$1}} nel thread "$2", e fornisci una motivazione per questa azione.', # Fuzzy
-	'flow-moderation-intro-delete' => 'Conferma che vuoi cancellare il messaggio di {{GENDER:$1|$1}} nel thread "$2", e fornisci una motivazione per questa azione.', # Fuzzy
-	'flow-moderation-intro-hide' => 'Conferma che vuoi nascondere il messaggio di {{GENDER:$1|$1}} nel thread "$2", e fornisci una motivazione per questa azione.', # Fuzzy
-	'flow-moderation-intro-restore' => 'Conferma che vuoi ripristinare il messaggio di {{GENDER:$1|$1}} nel thread "$2", e fornisci una motivazione per questa azione.', # Fuzzy
+	'flow-moderation-title-censor' => 'Sopprimere il messaggio?',
+	'flow-moderation-title-delete' => 'Cancellare il messaggio?',
+	'flow-moderation-title-hide' => 'Nascondere il messaggio?',
+	'flow-moderation-title-restore' => 'Ripristinare il messaggio?',
+	'flow-moderation-intro-censor' => 'Spiega perché stai sopprimendo questo messaggio.',
+	'flow-moderation-intro-delete' => 'Spiega perché stai cancellando questo messaggio.',
+	'flow-moderation-intro-hide' => 'Spiega perché stai nascondendo questo messaggio.',
+	'flow-moderation-intro-restore' => 'Spiega perché stai ripristinando questo messaggio.',
+	'flow-moderation-confirm-censor' => 'Sopprimi',
+	'flow-moderation-confirm-delete' => 'Cancella',
+	'flow-moderation-confirm-hide' => 'Nascondi',
+	'flow-moderation-confirm-restore' => 'Ripristina',
 	'flow-moderation-confirmation-restore' => 'Hai ripristinato con successo questo messaggio.',
 	'flow-moderation-reason-placeholder' => 'Inserisci qui la motivazione',
 	'flow-topic-permalink-warning' => 'La discussione è iniziata su [$2 $1]',
@@ -1555,9 +1597,9 @@ $messages['ja'] = array(
 	'flow-desc' => 'ワークフロー管理システム',
 	'flow-page-title' => '$1 &ndash; Flow',
 	'log-name-flow' => 'Flow活動記録',
-	'logentry-delete-flow-delete-post' => '$1 が [[$3]] の[$4 コメント]を{{GENDER:$2|削除}}', # Fuzzy
-	'logentry-delete-flow-restore-post' => '$1 が [[$3]] の[$4 コメント]を{{GENDER:$2|復元}}', # Fuzzy
-	'logentry-suppress-flow-restore-post' => '$1 が [[$3]] の[$4 コメント]を{{GENDER:$2|削除}}', # Fuzzy
+	'logentry-delete-flow-delete-post' => '$1 が [[$3]] の[$4 投稿]を{{GENDER:$2|削除}}',
+	'logentry-delete-flow-restore-post' => '$1 が [[$3]] の[$4 投稿]を{{GENDER:$2|復元}}',
+	'logentry-suppress-flow-restore-post' => '$1 が [[$3]] の[$4 投稿]を{{GENDER:$2|削除}}',
 	'flow-edit-header-link' => 'ヘッダーを編集',
 	'flow-header-empty' => '現在、このトークページにはヘッダーがありません。',
 	'flow-post-moderated-toggle-show' => '[表示]',
@@ -1565,7 +1607,7 @@ $messages['ja'] = array(
 	'flow-post-actions' => '操作',
 	'flow-topic-actions' => '操作',
 	'flow-cancel' => 'キャンセル',
-	'flow-newtopic-title-placeholder' => 'メッセージの件名', # Fuzzy
+	'flow-newtopic-title-placeholder' => '新しい話題',
 	'flow-newtopic-content-placeholder' => 'メッセージの本文', # Fuzzy
 	'flow-newtopic-header' => '新しい話題の追加',
 	'flow-newtopic-save' => '話題を追加',
@@ -1580,8 +1622,8 @@ $messages['ja'] = array(
 	'flow-post-edited' => '$1 が $2 に{{GENDER:$1|編集した}}投稿',
 	'flow-post-action-view' => '固定リンク',
 	'flow-post-action-post-history' => '投稿履歴',
-	'flow-post-action-delete-post' => '投稿を削除', # Fuzzy
-	'flow-post-action-hide-post' => '投稿を非表示にする', # Fuzzy
+	'flow-post-action-delete-post' => '削除',
+	'flow-post-action-hide-post' => '非表示にする',
 	'flow-post-action-edit-post' => '投稿を編集',
 	'flow-post-action-edit' => '編集',
 	'flow-post-action-restore-post' => '投稿を復元',
@@ -1623,7 +1665,7 @@ $messages['ja'] = array(
 	'flow-history-last4' => '過去 4 時間',
 	'flow-history-day' => '今日',
 	'flow-history-week' => '過去 1 週間',
-	'flow-topic-participants' => '{{PLURAL:$1|$3 がこの話題を開始|{{GENDER:$3|$3}}、{{GENDER:$4|$4}} と他 $2 {{PLURAL:$2|人}}|0=まだ誰も参加していません|2={{GENDER:$3|$3}} と {{GENDER:$4|$4}}}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|$3 がこの話題を開始|{{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}} と他 $2 {{PLURAL:$2|人}}|0=まだ誰も参加していません|2={{GENDER:$3|$3}} と {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=最初のコメントを書きましょう!|コメント ($1)}}',
 	'flow-comment-restored' => 'コメントを復元',
 	'flow-comment-deleted' => 'コメントを削除',
@@ -1653,13 +1695,20 @@ $messages['ja'] = array(
 	'flow-notification-rename-email-batch-body' => '$1 が「$4」のあなたの話題「$2」の名前を「$3」に{{GENDER:$1|変更しました}}',
 	'flow-notification-newtopic-email-subject' => '$1 が $2 に新しい話題を{{GENDER:$1|作成しました}}',
 	'flow-notification-newtopic-email-batch-body' => '$1 が $3 で新しい話題「$2」を{{GENDER:$1|作成しました}}',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|議論}}', # Fuzzy
-	'echo-pref-tooltip-flow-discussion' => '議論掲示板で私に関連する操作がなされたときに通知する。', # Fuzzy
+	'echo-category-title-flow-discussion' => 'Flow',
+	'echo-pref-tooltip-flow-discussion' => 'Flow で私に関連する操作がなされたときに通知する。',
 	'flow-link-post' => '投稿',
 	'flow-link-topic' => '話題',
 	'flow-link-history' => '履歴',
-	'flow-moderation-title-delete' => '投稿の削除', # Fuzzy
-	'flow-moderation-title-restore' => '投稿を復元', # Fuzzy
+	'flow-moderation-title-delete' => '投稿を削除しますか?',
+	'flow-moderation-title-hide' => '投稿を非表示にしますか?',
+	'flow-moderation-title-restore' => '投稿を復元しますか?',
+	'flow-moderation-intro-delete' => 'この投稿を削除する理由を説明してください。',
+	'flow-moderation-intro-restore' => 'この投稿を復元する理由を説明してください。',
+	'flow-moderation-confirm-delete' => '削除',
+	'flow-moderation-confirm-hide' => '非表示にする',
+	'flow-moderation-confirm-restore' => '復元',
+	'flow-moderation-confirmation-restore' => 'この投稿を復元しました。',
 	'flow-moderation-reason-placeholder' => '理由をここに入力',
 	'flow-topic-permalink-warning' => 'この話題は [$2 $1] で開始されました',
 	'flow-topic-permalink-warning-user-board' => 'この話題は [$2 {{GENDER:$1|$1}} の掲示板]で開始されました',
@@ -1717,7 +1766,7 @@ $messages['lb'] = array(
 	'flow-post-actions' => 'Aktiounen',
 	'flow-topic-actions' => 'Aktiounen',
 	'flow-cancel' => 'Ofbriechen',
-	'flow-newtopic-title-placeholder' => 'Sujet vum Message', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Neit Thema',
 	'flow-newtopic-content-placeholder' => 'Text vum Message. Sidd frëndlech!', # Fuzzy
 	'flow-newtopic-header' => 'En neit Thema derbäisetzen',
 	'flow-newtopic-save' => 'Thema derbäisetzen',
@@ -1730,6 +1779,8 @@ $messages['lb'] = array(
 	'flow-talk-link' => 'Mam {{GENDER:$1|$1}} schwëtzen',
 	'flow-edit-post-submit' => 'Ännerunge späicheren',
 	'flow-post-action-view' => 'Permanentlink',
+	'flow-post-action-delete-post' => 'Läschen',
+	'flow-post-action-hide-post' => 'Verstoppen',
 	'flow-post-action-edit' => 'Änneren',
 	'flow-topic-action-watchlist' => 'Iwwerwaachungslëscht',
 	'flow-topic-action-edit-title' => 'Titel änneren',
@@ -1765,6 +1816,9 @@ $messages['lb'] = array(
 	'echo-pref-tooltip-flow-discussion' => 'Mech informéieren wann Aktiounen déi mech betreffen um Diskussiouns-Board geschéien.', # Fuzzy
 	'flow-link-topic' => 'Thema',
 	'flow-link-history' => 'Versiounen',
+	'flow-moderation-confirm-delete' => 'Läschen',
+	'flow-moderation-confirm-hide' => 'Verstoppen',
+	'flow-moderation-confirm-restore' => 'Restauréieren',
 	'flow-moderation-reason-placeholder' => 'Gitt Äre Grond hei an',
 	'flow-topic-permalink-warning' => 'Dëse Sujet gouf op [$2 $1] ugefaang',
 );
@@ -1799,20 +1853,24 @@ $messages['mk'] = array(
 	'flow-desc' => 'Систем за раководење со работниот тек',
 	'flow-page-title' => '$1 &mdash; Тек',
 	'log-name-flow' => 'Дневник на активности во текот',
-	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|избриша}} [$4 коментар] на [[$3]]', # Fuzzy
-	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|поврати}} [$4 коментар] на [[$3]]', # Fuzzy
-	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|скри}} [$4 коментар] на [[$3]]', # Fuzzy
-	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|избриша}} [$4 коментар] на [[$3]]', # Fuzzy
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|избриша}} [$4 објава] на [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|поврати}} [$4 објава] на [[$3]]',
+	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|скри}} [$4 објава] на [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|избриша}} [$4 објава] на [[$3]]',
 	'flow-user-moderated' => 'Модериран корисник',
 	'flow-edit-header-link' => 'Измени наслов',
 	'flow-header-empty' => 'Страницава засега нема заглавие.',
 	'flow-post-moderated-toggle-show' => '[Прикажи]',
 	'flow-post-moderated-toggle-hide' => '[Скриј]',
+	'flow-hide-content' => '{{GENDER:$1|Скриена}} од $1 $2',
+	'flow-delete-content' => '{{GENDER:$1|Избришана}} од $1 $2',
+	'flow-censor-content' => '{{GENDER:$1|Притаена}} од $1 $2',
+	'flow-censor-usertext' => "''Корисничкото име е притаено''",
 	'flow-post-actions' => 'Дејства',
 	'flow-topic-actions' => 'Дејства',
 	'flow-cancel' => 'Откажи',
-	'flow-newtopic-title-placeholder' => 'Наслов на пораката', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'Текст на пораката. Бидете фини!', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Нова тема',
+	'flow-newtopic-content-placeholder' => 'Додајте подробности, ако сакате',
 	'flow-newtopic-header' => 'Додај нова тема',
 	'flow-newtopic-save' => 'Додај тема',
 	'flow-newtopic-start-placeholder' => 'Почнете нова тема',
@@ -1826,9 +1884,9 @@ $messages['mk'] = array(
 	'flow-post-edited' => '$1 {{GENDER:$1|измени}} објава во $2',
 	'flow-post-action-view' => 'Постојана врска',
 	'flow-post-action-post-history' => 'Историја на пораки',
-	'flow-post-action-censor-post' => 'Цензурирај ја пораката', # Fuzzy
-	'flow-post-action-delete-post' => 'Избриши ја пораката', # Fuzzy
-	'flow-post-action-hide-post' => 'Скриј ја пораката', # Fuzzy
+	'flow-post-action-censor-post' => 'Притај',
+	'flow-post-action-delete-post' => 'Избриши',
+	'flow-post-action-hide-post' => 'Скриј',
 	'flow-post-action-edit-post' => 'Уреди ја пораката',
 	'flow-post-action-edit' => 'Измени',
 	'flow-post-action-restore-post' => 'Поврати ја пораката',
@@ -1875,7 +1933,7 @@ $messages['mk'] = array(
 	'flow-history-week' => 'Минатата седмица',
 	'flow-history-pages-topic' => 'Фигурира на [$1 таблата „$2“]',
 	'flow-history-pages-post' => 'Фигурира на [$1 $2]',
-	'flow-topic-participants' => '{{PLURAL:$1|Темата ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{PLURAL:$2|еден друг|други}}|0=Досега ниокј не учествувал|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|Темата ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} и {{PLURAL:$2|еден друг|други}}|0=Досега ниокј не учествувал|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{GENDER:$5|$5}}}}}', # Fuzzy
 	'flow-topic-comments' => '{{PLURAL:$1|0=Бидете први со коментар!|Коментари ($1)}}',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
@@ -1906,19 +1964,25 @@ $messages['mk'] = array(
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|ја преименуваше}} вашата тема „$2“ во „$3“ на „$4“',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|создаде}} нова тема на $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|создаде}} нова тема со наслов „$2“ на $3',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Дискусија|Дискусии}}', # Fuzzy
-	'echo-pref-tooltip-flow-discussion' => 'Извести ме кога на таблата со дискусија ќе се случи нешто поврзано со мене.', # Fuzzy
+	'echo-category-title-flow-discussion' => 'Тек',
+	'echo-pref-tooltip-flow-discussion' => 'Извести ме кога во Тек ќе се случат дејства поврзани со мене.',
 	'flow-link-post' => 'објава',
 	'flow-link-topic' => 'тема',
 	'flow-link-history' => 'историја',
-	'flow-moderation-title-censor' => 'Цензурирање на објавата', # Fuzzy
-	'flow-moderation-title-delete' => 'Бришење на објавата', # Fuzzy
-	'flow-moderation-title-hide' => 'Скривање на објавата', # Fuzzy
-	'flow-moderation-title-restore' => 'Повраток на објавата', # Fuzzy
-	'flow-moderation-intro-censor' => 'Потврдете дека сакате да ја цензурирате објавата на {{GENDER:$1|$1}} во нишката „$2“ и наведете причина за тоа.', # Fuzzy
-	'flow-moderation-intro-delete' => 'Потврдете дека сакате да ја избришете објавата на {{GENDER:$1|$1}} во нишката „$2“ и наведете причина за тоа.', # Fuzzy
-	'flow-moderation-intro-hide' => 'Потврдете дека сакате да ја скриете објавата на {{GENDER:$1|$1}} во нишката „$2“ и наведете причина за тоа.', # Fuzzy
-	'flow-moderation-intro-restore' => 'Потврдете дека сакате да ја повратите објавата на {{GENDER:$1|$1}} во нишката „$2“ и наведете причина за тоа.', # Fuzzy
+	'flow-moderation-title-censor' => 'Да ја притаам објавата?',
+	'flow-moderation-title-delete' => 'Да ја избришам објавата?',
+	'flow-moderation-title-hide' => 'Да ја скријам објавата?',
+	'flow-moderation-title-restore' => 'Да ја повратам објавата?',
+	'flow-moderation-intro-censor' => 'Објаснете зошто ја притајувате објавава.',
+	'flow-moderation-intro-delete' => 'Објаснете зошто ја бришење објавава.',
+	'flow-moderation-intro-hide' => 'Објаснете зошто ја скривате објавава.',
+	'flow-moderation-intro-restore' => 'Објаснете зошто ја повраќате објавава.',
+	'flow-moderation-confirm-censor' => 'Притај',
+	'flow-moderation-confirm-delete' => 'Избриши',
+	'flow-moderation-confirm-hide' => 'Скриј',
+	'flow-moderation-confirm-restore' => 'Поврати',
+	'flow-moderation-confirmation-delete' => 'Ви препорачуваме  на $1 да {{GENDER:$2|му|ѝ}} дадете образложение и/или совет за објавата.', # Fuzzy
+	'flow-moderation-confirmation-hide' => 'Ви препорачуваме  на $1 да {{GENDER:$2|му|ѝ}} дадете образложение и/или совет за објавата.', # Fuzzy
 	'flow-moderation-confirmation-restore' => 'Успешно ја повративте објавата.',
 	'flow-moderation-reason-placeholder' => 'Тука внесете причина',
 	'flow-topic-permalink-warning' => 'Темата е започната на [$2 $1]',
@@ -2058,9 +2122,17 @@ $messages['nb'] = array(
  * @author TBloemink
  */
 $messages['nl'] = array(
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] verwijderd van [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] teruggeplaatst op [[$3]]',
+	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] onderdrukt op [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] verwijderd van [[$3]]',
+	'flow-hide-content' => 'Op $2 {{GENDER:$1|verborgen}} door $1',
+	'flow-delete-content' => 'Op $2 {{GENDER:$1|verwijderd}} door $1',
+	'flow-censor-content' => '$2 {{GENDER:$1|onderdrukt}} door $1',
+	'flow-censor-usertext' => "''Gebruikersnaam onderdrukt''",
 	'flow-cancel' => 'Annuleren',
-	'flow-newtopic-title-placeholder' => 'Onderwerp', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'Tekst van het bericht. Wees beleefd!', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Nieuw onderwerp',
+	'flow-newtopic-content-placeholder' => 'Voeg nog wat details toe als u dat wilt',
 	'flow-newtopic-header' => 'Nieuw onderwerp toevoegen',
 	'flow-newtopic-save' => 'Onderwerp toevoegen',
 	'flow-newtopic-start-placeholder' => 'Nieuw onderwerp',
@@ -2070,15 +2142,16 @@ $messages['nl'] = array(
 	'flow-post-edited' => 'Bericht $2 {{GENDER:$1|bewerkt}} door $1',
 	'flow-post-action-view' => 'Permanente koppeling',
 	'flow-post-action-post-history' => 'Berichtgeschiedenis',
-	'flow-post-action-censor-post' => 'Bericht censureren', # Fuzzy
-	'flow-post-action-delete-post' => 'Bericht verwijderen', # Fuzzy
-	'flow-post-action-hide-post' => 'Bericht verbergen', # Fuzzy
+	'flow-post-action-censor-post' => 'Onderdrukken',
+	'flow-post-action-delete-post' => 'Verwijderen',
+	'flow-post-action-hide-post' => 'Verbergen',
 	'flow-post-action-edit-post' => 'Bericht bewerken',
 	'flow-post-action-edit' => 'Bewerken',
 	'flow-post-action-restore-post' => 'Bericht terugplaatsen',
 	'flow-topic-action-edit-title' => 'Titel wijzigen',
 	'flow-error-other' => 'Er is een onverwachte fout opgetreden. Uw bericht is niet opgeslagen.',
 	'flow-error-edit-restricted' => 'U mag dit bericht niet bewerken.',
+	'flow-topic-participants' => '{{PLURAL:$1|$3 is dit onderwerp begonnen|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} en {{PLURAL:$2|een andere gebruiker|andere gebruikers}}|0=Nog geen deelnemers|2={{GENDER:$3|$3}} en {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} en {{GENDER:$5|$5}}}}',
 	'flow-notification-edit' => '$1 {{GENDER:$1|heeft}} een [$5 bericht] geplaatst in $2 op [[$3|$4]].',
 	'flow-notification-edit-bundle' => '$1 en $5 {{PLURAL:$6|andere gebruiker|anderen}} {{GENDER:$1|hebben}} een [$4 bericht] geplaatst in $2 op "$3".',
 	'flow-notification-mention' => '$1 heeft u genoemd in {{GENDER:$1|zijn|haar|zijn/haar}} [$2 bericht] in "$3" op "$4"',
@@ -2093,8 +2166,23 @@ $messages['nl'] = array(
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|heeft}} uw onderwerp $2 op "$4" hernoemd naar $3', # Fuzzy
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|heeft}} een nieuw onderwerp aangemaakt op $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|heeft}} op $3 een nieuw onderwerp aangemaakt met de naam "$2"',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Overleg|Overleggen}}', # Fuzzy
-	'flow-moderation-title-hide' => 'Bericht verbergen', # Fuzzy
+	'echo-category-title-flow-discussion' => 'Flow',
+	'echo-pref-tooltip-flow-discussion' => 'U een melding sturen als er handelingen over u in Flow plaatsvinden.',
+	'flow-moderation-title-censor' => 'Bericht onderdrukken?',
+	'flow-moderation-title-delete' => 'Bericht verwijderen?',
+	'flow-moderation-title-hide' => 'Bericht verbergen?',
+	'flow-moderation-title-restore' => 'Bericht terugplaatsen?',
+	'flow-moderation-intro-censor' => 'Geef een reden op waarom u dit bericht onderdrukt.',
+	'flow-moderation-intro-delete' => 'Geef een reden op waarom u dit bericht verwijdert.',
+	'flow-moderation-intro-hide' => 'Geef een reden op waarom u dit bericht verbergt.',
+	'flow-moderation-intro-restore' => 'Geef een reden op waarom u dit bericht terugplaatst.',
+	'flow-moderation-confirm-censor' => 'Onderdrukken',
+	'flow-moderation-confirm-delete' => 'Verwijderen',
+	'flow-moderation-confirm-hide' => 'Verbergen',
+	'flow-moderation-confirm-restore' => 'Terugplaatsen',
+	'flow-moderation-confirmation-censor' => 'Overweeg $1 terugkoppeling te geven over dit bericht.',
+	'flow-moderation-confirmation-delete' => 'Overweeg $1 terugkoppeling te geven over dit bericht.',
+	'flow-moderation-confirmation-hide' => 'Overweeg $1 terugkoppeling te geven over dit bericht.',
 );
 
 /** Occitan (occitan)
@@ -2241,7 +2329,7 @@ $messages['ru'] = array(
 	'flow-desc' => 'Система управления потоками работ',
 	'flow-page-title' => '$1 &ndash; Поток',
 	'log-name-flow' => 'Журнал активности потоков',
-	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|удалил|удалила}} [$4 комментарий] на странице [[$3]]', # Fuzzy
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|удалил|удалила}} [$4 сообщение] на странице [[$3]]',
 	'flow-edit-header-link' => 'Изменить заголовок',
 	'flow-header-empty' => 'У этой страницы обсуждения в настоящее время нет заголовка.',
 	'flow-post-moderated-toggle-show' => '[Показать]',
@@ -2249,8 +2337,8 @@ $messages['ru'] = array(
 	'flow-post-actions' => 'Действия',
 	'flow-topic-actions' => 'Действия',
 	'flow-cancel' => 'Отменить',
-	'flow-newtopic-title-placeholder' => 'Тема сообщения', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'Текст сообщения. Будьте вежливы!', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Новая тема',
+	'flow-newtopic-content-placeholder' => 'Добавьте, если хотите, какие-нибудь подробности',
 	'flow-newtopic-header' => 'Добавить новую тему',
 	'flow-newtopic-save' => 'Добавить тему',
 	'flow-newtopic-start-placeholder' => 'Начать новое обсуждение',
@@ -2261,8 +2349,8 @@ $messages['ru'] = array(
 	'flow-edit-post-submit' => 'Подтвердить изменения',
 	'flow-post-edited' => 'Сообщение отредактировано {{GENDER:$1|участником|участницей}} $1 $2',
 	'flow-post-action-view' => 'Постоянная ссылка',
-	'flow-post-action-delete-post' => 'Удалить сообщение', # Fuzzy
-	'flow-post-action-hide-post' => 'Скрыть сообщение', # Fuzzy
+	'flow-post-action-delete-post' => 'Удалить',
+	'flow-post-action-hide-post' => 'Скрыть',
 	'flow-post-action-edit-post' => 'Редактировать сообщение',
 	'flow-post-action-edit' => 'Править',
 	'flow-post-action-restore-post' => 'Восстановить сообщение',
@@ -2301,9 +2389,9 @@ $messages['ru'] = array(
 	'flow-link-post' => 'сообщение',
 	'flow-link-topic' => 'тема',
 	'flow-link-history' => 'история',
-	'flow-moderation-title-delete' => 'Удалить сообщение', # Fuzzy
-	'flow-moderation-title-hide' => 'Скрыть сообщение', # Fuzzy
-	'flow-moderation-title-restore' => 'Восстановить сообщение', # Fuzzy
+	'flow-moderation-title-delete' => 'Удалить сообщение?',
+	'flow-moderation-title-hide' => 'Скрыть сообщение?',
+	'flow-moderation-title-restore' => 'Восстановить сообщение?',
 	'flow-moderation-reason-placeholder' => 'Введите причину здесь',
 	'flow-topic-permalink-warning' => 'Эта тема была начата на [$2 $1]',
 );
@@ -2487,6 +2575,17 @@ $messages['tr'] = array(
 	'flow-link-history' => 'geçmiş',
 );
 
+/** Uyghur (Arabic script) (ئۇيغۇرچە)
+ * @author Tel'et
+ */
+$messages['ug-arab'] = array(
+	'flow-post-action-delete-post' => 'ئۆچۈر',
+	'flow-post-action-hide-post' => 'يوشۇر',
+	'flow-moderation-title-delete' => 'بۇ ئۇچۇرنى ئۆچۈرەمسىز؟',
+	'flow-moderation-confirm-delete' => 'ئۆچۈر',
+	'flow-moderation-confirm-restore' => 'ئەسلىگە كەلتۈر',
+);
+
 /** Ukrainian (українська)
  * @author Andriykopanytsia
  */
@@ -2494,20 +2593,24 @@ $messages['uk'] = array(
 	'flow-desc' => 'Система управління робочими процесами',
 	'flow-page-title' => '$1 &ndash; Потік',
 	'log-name-flow' => 'Журнал активності потоку',
-	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|вилучив|вилучила}} [$4 коментар] на [[$3]]', # Fuzzy
-	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|відновив|відновила}} [$4 коментар] на [[$3]]', # Fuzzy
-	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|подавив|подавила}} [$4 коментар] на [[$3]]', # Fuzzy
-	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|вилучив|вилучила}} [$4 коментар] на [[$3]]', # Fuzzy
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|вилучив|вилучила}} [допис $4] на [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|відновив|відновила}} [допис $4] на [[$3]]',
+	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|приховав|приховала}} [допис $4] на [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|вилучив|вилучила}} [допис $4] на [[$3]]',
 	'flow-user-moderated' => 'Обмежений користувач',
 	'flow-edit-header-link' => 'Редагувати заговок',
 	'flow-header-empty' => 'Ця сторінка обговорення не має зараз заголовка.',
 	'flow-post-moderated-toggle-show' => '[Показати]',
 	'flow-post-moderated-toggle-hide' => '[Сховати]',
+	'flow-hide-content' => '$1 {{GENDER:$1|приховав|приховала}} $2',
+	'flow-delete-content' => '$1 {{GENDER:$1|вилучив|вилучила}} о $2',
+	'flow-censor-content' => '$1 {{GENDER:$1|приховав|приховала}} $2',
+	'flow-censor-usertext' => "Ім'я користувача приховано",
 	'flow-post-actions' => 'Дії',
 	'flow-topic-actions' => 'Дії',
 	'flow-cancel' => 'Скасувати',
-	'flow-newtopic-title-placeholder' => 'Тема повідомлення', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'Текст повідомлення. Будьте приємним!', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Нова тема',
+	'flow-newtopic-content-placeholder' => 'Додайте деякі деталі, якщо ви хочете',
 	'flow-newtopic-header' => 'Додати нову тему',
 	'flow-newtopic-save' => 'Додати тему',
 	'flow-newtopic-start-placeholder' => 'Почати нову тему',
@@ -2521,9 +2624,9 @@ $messages['uk'] = array(
 	'flow-post-edited' => 'Допис {{GENDER:$1|відредагував|відредагувала}} $1 $2',
 	'flow-post-action-view' => 'Постійне посилання',
 	'flow-post-action-post-history' => 'Опублікувати історію',
-	'flow-post-action-censor-post' => 'Цензурувати публікацію', # Fuzzy
-	'flow-post-action-delete-post' => 'Видалити публікацію', # Fuzzy
-	'flow-post-action-hide-post' => 'Приховати публікацію', # Fuzzy
+	'flow-post-action-censor-post' => 'Прибрати',
+	'flow-post-action-delete-post' => 'Видалити',
+	'flow-post-action-hide-post' => 'Приховати',
 	'flow-post-action-edit-post' => 'Редагувати публікацію',
 	'flow-post-action-edit' => 'Редагувати',
 	'flow-post-action-restore-post' => 'Відновити публікацію',
@@ -2570,7 +2673,7 @@ $messages['uk'] = array(
 	'flow-history-week' => 'Останній тиждень',
 	'flow-history-pages-topic' => 'З\'являється на [стіні $1  "$2"]',
 	'flow-history-pages-post' => "З'являється на [$1 $2]",
-	'flow-topic-participants' => '{{PLURAL:$1|0=Ще немає учасників|{{GENDER:$3|$3 розпочав|$3 розпочала}} цю тему|{{GENDER:$3|$3}} та {{GENDER:$4|$4}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} та $2 інші}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|$3 {{GENDER:$3|розпочав цю тему|розпочала цю тему}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} та {{PLURAL:$2|інший|інші|інших}}|0=Ще не має учасників|2={{GENDER:$3|$3}} та {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} та {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Залиште перший коментар!|Коментар ($1)|Коментарі ($1)|Коментарів ($1)}}',
 	'flow-comment-restored' => 'Відновлений коментар',
 	'flow-comment-deleted' => 'Видалений коментар',
@@ -2601,19 +2704,26 @@ $messages['uk'] = array(
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|перейменував|перейменувала}} вашу тему   з „$2“ на „$3“  у „$4“',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|створив|створила}} нову тему на $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|створив|створила}} нову тему під назвою "$2" на $3',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Обговорення|Обговорення|Обговорень}}', # Fuzzy
-	'echo-pref-tooltip-flow-discussion' => "Повідомити мене, коли дії, пов'язані зі мною, виникнуть на стіні обговорення.", # Fuzzy
+	'echo-category-title-flow-discussion' => 'Потік',
+	'echo-pref-tooltip-flow-discussion' => "Повідомляти, коли відбуваються дії, пов'язані зі мною в потоці.",
 	'flow-link-post' => 'допис',
 	'flow-link-topic' => 'тема',
 	'flow-link-history' => 'історія',
-	'flow-moderation-title-censor' => 'Цензурувати публікацію', # Fuzzy
-	'flow-moderation-title-delete' => 'Видалити публікацію', # Fuzzy
-	'flow-moderation-title-hide' => 'Приховати публікацію', # Fuzzy
-	'flow-moderation-title-restore' => 'Відновити публікацію.', # Fuzzy
-	'flow-moderation-intro-censor' => 'Будь ласка, підтвердіть, що ви бажаєте піддавати цензурі публікації {{GENDER:$1|$1}} в гілці "$2", і вказати причину ваших дій.', # Fuzzy
-	'flow-moderation-intro-delete' => 'Будь ласка, підтвердіть, що ви хочете, щоб видалити повідомлення {{GENDER:$1|$1}} у обговоренні "$2" і вкажіть причину для ваших дій.', # Fuzzy
-	'flow-moderation-intro-hide' => 'Будь ласка, підтвердіть, що ви бажаєте приховати публікації {{GENDER:$1|$1}} в гілці "$2" і вкажіть причину ваших дій.', # Fuzzy
-	'flow-moderation-intro-restore' => 'Будь ласка, підтвердіть, що ви бажаєте відновити публікації {{GENDER:$1|$1}} в гілці "$2" і вкажіть причину ваших дій.', # Fuzzy
+	'flow-moderation-title-censor' => 'Прибрати допис?',
+	'flow-moderation-title-delete' => 'Видалити допис?',
+	'flow-moderation-title-hide' => 'Приховати допис?',
+	'flow-moderation-title-restore' => 'Відновити допис?',
+	'flow-moderation-intro-censor' => 'Будь ласка, поясніть, чому ви прибрали цей допис.',
+	'flow-moderation-intro-delete' => 'Будь ласка, поясніть, чому ви хочете видалити цей допис.',
+	'flow-moderation-intro-hide' => 'Будь ласка, чому ви приховуєте цей допис.',
+	'flow-moderation-intro-restore' => 'Будь ласка, поясніть, чому ви відновлюєте цей допис.',
+	'flow-moderation-confirm-censor' => 'Прибрати',
+	'flow-moderation-confirm-delete' => 'Видалити',
+	'flow-moderation-confirm-hide' => 'Приховати',
+	'flow-moderation-confirm-restore' => 'Відновити',
+	'flow-moderation-confirmation-censor' => 'Розгляньте питання про надання відгуку $1 на цей допис.',
+	'flow-moderation-confirmation-delete' => 'Розгляньте питання про надання відгуку $1 на цей допис.',
+	'flow-moderation-confirmation-hide' => 'Розгляньте питання про надання відгуку $1 на цей допис.',
 	'flow-moderation-confirmation-restore' => 'Ви успішно відновили цю публікацію.',
 	'flow-moderation-reason-placeholder' => 'Введіть вашу причина тут',
 	'flow-topic-permalink-warning' => 'Ця тема розпочата [$2 $1]',
@@ -2626,17 +2736,26 @@ $messages['uk'] = array(
  */
 $messages['vi'] = array(
 	'flow-desc' => 'Hệ thống quản lý luồng công việc',
-	'flow-page-title' => '$1 &ndash; Flow', # Fuzzy
+	'flow-page-title' => '$1 &ndash; Flow',
+	'log-name-flow' => 'Nhật trình hoạt động Flow',
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2}}đã xóa một [$4 bài đăng] tại [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2}}đã phục hồi một [$4 bài đăng] tại [[$3]]',
+	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2}}đã đàn áp một [$4 bài đăng] tại [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2}}đã xóa một [$4 bài đăng] tại [[$3]]',
 	'flow-user-moderated' => 'Người dùng bị kiểm duyệt',
 	'flow-edit-header-link' => 'Sửa đầu đề',
 	'flow-header-empty' => 'Trang thảo luận này hiện không có đầu đề.',
 	'flow-post-moderated-toggle-show' => '[Xem]',
 	'flow-post-moderated-toggle-hide' => '[Ẩn]',
-	'flow-post-actions' => 'tác vụ', # Fuzzy
-	'flow-topic-actions' => 'tác vụ', # Fuzzy
+	'flow-hide-content' => 'Ẩn bởi $1 vào $2',
+	'flow-delete-content' => 'Xóa bởi $1 vào $2',
+	'flow-censor-content' => 'Đàn áp bởi $1 vào $2',
+	'flow-censor-usertext' => "''Tên người dùng bị đàn áp''",
+	'flow-post-actions' => 'Tác vụ',
+	'flow-topic-actions' => 'Tác vụ',
 	'flow-cancel' => 'Hủy bỏ',
-	'flow-newtopic-title-placeholder' => 'Tiêu đề tin nhắn', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'Văn bản tin nhắn. Hãy có thái độ thân thiện!', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Chủ đề mới',
+	'flow-newtopic-content-placeholder' => 'Thêm những chi tiết theo ý bạn',
 	'flow-newtopic-header' => 'Thêm chủ đề mới',
 	'flow-newtopic-save' => 'Thêm chủ đề',
 	'flow-newtopic-start-placeholder' => 'Bắt đầu cuộc thảo luận mới',
@@ -2650,9 +2769,9 @@ $messages['vi'] = array(
 	'flow-post-edited' => 'Bài đăng được sửa đổi bởi $1 $2',
 	'flow-post-action-view' => 'Liên kết thường trực',
 	'flow-post-action-post-history' => 'Lịch sử bài đăng',
-	'flow-post-action-censor-post' => 'Kiểm duyệt bài đăng', # Fuzzy
-	'flow-post-action-delete-post' => 'Xóa bài đăng', # Fuzzy
-	'flow-post-action-hide-post' => 'Ẩn bài đăng', # Fuzzy
+	'flow-post-action-censor-post' => 'Đàn áp',
+	'flow-post-action-delete-post' => 'Xóa',
+	'flow-post-action-hide-post' => 'Ẩn',
 	'flow-post-action-edit-post' => 'Sửa bài đăng',
 	'flow-post-action-edit' => 'Sửa đổi',
 	'flow-post-action-restore-post' => 'Phục hồi bài đăng',
@@ -2673,22 +2792,35 @@ $messages['vi'] = array(
 	'flow-error-delete-failure' => 'Thất bại khi xóa mục này.',
 	'flow-error-hide-failure' => 'Thất bại khi ẩn mục này.',
 	'flow-error-missing-postId' => 'Tham số “postId” không được cung cấp. Tham số này cần để xóa hoặc phục hồi bài đăng.',
-	'flow-error-invalid-postId' => 'Tham số “postId” có giá trị không hợp lệ. Không tìm thấy bài đăng.', # Fuzzy
+	'flow-error-invalid-postId' => 'Tham số “postId” có giá trị không hợp lệ. Không tìm thấy bài đăng được chỉ định ($1).',
 	'flow-error-restore-failure' => 'Thất bại khi phục hồi mục này.',
+	'flow-error-invalid-moderation-state' => 'Một giá trị không hợp lệ được cung cấp cho moderationState',
+	'flow-error-invalid-moderation-reason' => 'Xin vui lòng cung cấp một lý do kiểm duyệt',
+	'flow-error-not-allowed' => 'Không có đủ quyền để thực hiện tác vụ này',
 	'flow-edit-header-submit' => 'Lưu đầu đề',
 	'flow-edit-title-submit' => 'Thay đổi tiêu đề',
-	'flow-rev-message-edit-post' => 'Đã sửa nội dung bài đăng', # Fuzzy
-	'flow-rev-message-reply' => 'Đã đăng bài trả lời', # Fuzzy
-	'flow-rev-message-new-post' => 'Đã tạo chủ đề', # Fuzzy
-	'flow-rev-message-hid-post' => 'Đã ẩn bài đăng', # Fuzzy
-	'flow-rev-message-edit-title' => 'Đã sửa đổi tiêu đề của chủ đề', # Fuzzy
-	'flow-rev-message-create-header' => 'Đã tạo đầu đề', # Fuzzy
-	'flow-rev-message-edit-header' => 'Đã sửa đổi đầu đề', # Fuzzy
-	'flow-rev-message-restored-post' => 'Đã hiện bài đăng', # Fuzzy
+	'flow-rev-message-edit-post' => '[[User:$1|$1]] đã sửa đổi một [$2 bình luận]',
+	'flow-rev-message-reply' => '[[User:$1|$1]] đã thêm một [$2 bình luận].',
+	'flow-rev-message-reply-bundle' => "'''$1 bình luận''' được thêm vào.",
+	'flow-rev-message-new-post' => '[[User:$1|$1]] đã tạo chủ đề [$2 $3].',
+	'flow-rev-message-hid-post' => '[[User:$1|$1]] đã ẩn một [$3 bình luận].',
+	'flow-rev-message-edit-title' => 'Đã sửa đổi tiêu đề của chủ đề
+[[User:$1|$1]] đã sửa đổi tiêu đề của chủ đề $4 thành [$2 $3].',
+	'flow-rev-message-create-header' => '[[User:$1|$1]] đã tạo đầu đề bảng tin nhắn.',
+	'flow-rev-message-edit-header' => 'Đã sửa đổi đầu đề
+[[User:$1|$1]] đã sửa đổi đầu đề bảng tin nhắn.',
+	'flow-rev-message-restored-post' => '[[User:$1|$1]] đã phục hồi một [$3 bình luận].',
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1}}đã xóa một [$3 bình luận]',
 	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1}}đã đàn áp một [$3 bình luận].',
-	'flow-topic-history' => 'Lịch sử chủ đề', # Fuzzy
-	'flow-topic-participants' => '{{PLURAL:$1|$3 đã bắt đầu chủ đề này|$3, $4, và {{PLURAL:$2|một người|những người}} khác|0=Chưa có ai tham gia|2=$3 và $4}}', # Fuzzy
+	'flow-board-history' => 'Lịch sử “$1”',
+	'flow-topic-history' => 'Lịch sử chủ đề “$1”',
+	'flow-post-history' => 'Lịch sử bài đăng “Bình luận của $2”',
+	'flow-history-last4' => '4 giờ trước đây',
+	'flow-history-day' => 'Hôm nay',
+	'flow-history-week' => 'Tuần trước',
+	'flow-history-pages-topic' => 'Xuất hiện trên [$1 bảng tin nhắn “$2”]',
+	'flow-history-pages-post' => 'Xuất hiện trên [$1 $2]',
+	'flow-topic-participants' => '{{PLURAL:$1|$3 đã bắt đầu chủ đề này|$3, $4, $5, và {{PLURAL:$2|một người|những người}} khác|0=Chưa có ai tham gia|2=$3 và $4|3=$3, $4, và $5}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Hãy là người đầu tiên bình luận!|Bình luận ($1)}}',
 	'flow-comment-restored' => 'Bình luận đã được phục hồi',
 	'flow-comment-deleted' => 'Bình luận đã bị xóa',
@@ -2719,11 +2851,30 @@ $messages['vi'] = array(
 	'flow-notification-rename-email-batch-body' => '$1 đã đổi tên chủ đề của bạn từ “$2” thành “$3” tại “$4”',
 	'flow-notification-newtopic-email-subject' => '$1 đã bắt đầu một chủ đề mới tại $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 đã bắt đầu một chủ đề mới với tiêu đề “$2” tại $3',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1}}Thảo luận', # Fuzzy
-	'echo-pref-tooltip-flow-discussion' => 'Thông báo cho tôi khi các hành động có liên quan đến tôi xảy ra trên bảng tin nhắn.', # Fuzzy
+	'echo-category-title-flow-discussion' => 'Flow',
+	'echo-pref-tooltip-flow-discussion' => 'Thông báo cho tôi khi các hành động có liên quan đến tôi xảy ra trên Flow.',
 	'flow-link-post' => 'bài đăng',
 	'flow-link-topic' => 'chủ đề',
 	'flow-link-history' => 'lịch sử',
+	'flow-moderation-title-censor' => 'Đàn áp bài đăng?',
+	'flow-moderation-title-delete' => 'Xóa bài đăng?',
+	'flow-moderation-title-hide' => 'Ẩn bài đăng?',
+	'flow-moderation-title-restore' => 'Phục hồi bài đăng?',
+	'flow-moderation-intro-censor' => 'Xin vui lòng giải thích tại sao bạn đàn áp bài đăng này.',
+	'flow-moderation-intro-delete' => 'Xin vui lòng giải thích tại sao bạn xóa bài đăng này.',
+	'flow-moderation-intro-hide' => 'Xin vui lòng giải thích tại sao bạn ẩn bài đăng này.',
+	'flow-moderation-intro-restore' => 'Xin vui lòng giải thích tại sao bạn phục hồi bài đăng này.',
+	'flow-moderation-confirm-censor' => 'Đàn áp',
+	'flow-moderation-confirm-delete' => 'Xóa',
+	'flow-moderation-confirm-hide' => 'Ẩn',
+	'flow-moderation-confirm-restore' => 'Phục hồi',
+	'flow-moderation-confirmation-censor' => 'Xin nghĩ đến việc gửi phản hồi cho $1 về bài đăng này.',
+	'flow-moderation-confirmation-delete' => 'Xin nghĩ đến việc gửi phản hồi cho $1 về bài đăng này.',
+	'flow-moderation-confirmation-hide' => 'Xin nghĩ đến việc gửi phản hồi cho $1 về bài đăng này.',
+	'flow-moderation-confirmation-restore' => 'Bạn đã phục hồi bài đăng này thành công.',
+	'flow-moderation-reason-placeholder' => 'Nhập lý do của bạn vào đây',
+	'flow-topic-permalink-warning' => 'Chủ đề này được bắt đầu tại [$2 $1]',
+	'flow-topic-permalink-warning-user-board' => 'Chủ đề này được bắt đầu tại [$2 bảng tin nhắn của $1]',
 );
 
 /** Volapük (Volapük)
@@ -2793,13 +2944,20 @@ $messages['yi'] = array(
  * @author Qiyue2001
  */
 $messages['zh-hans'] = array(
+	'logentry-delete-flow-delete-post' => '$1在[[$3]]{{GENDER:$2|删除}}了一个[$4 帖子]',
+	'logentry-delete-flow-restore-post' => '$1在[[$3]]{{GENDER:$2|恢复}}了一个[$4 帖子]',
+	'logentry-suppress-flow-censor-post' => '$1在[[$3]]{{GENDER:$2|压制}}了一个[$4 帖子]',
+	'logentry-suppress-flow-restore-post' => '$1在[[$3]]{{GENDER:$2|删除}}了一个[$4 帖子]',
 	'flow-edit-header-link' => '编辑页顶',
 	'flow-post-moderated-toggle-show' => '[显示]',
 	'flow-post-moderated-toggle-hide' => '[隐藏]',
+	'flow-hide-content' => '已由$1于$2隐藏',
+	'flow-delete-content' => '由$1 $2删除',
+	'flow-censor-usertext' => "''用户名已压制''",
 	'flow-post-actions' => '操作', # Fuzzy
 	'flow-topic-actions' => '操作', # Fuzzy
 	'flow-cancel' => '取消',
-	'flow-newtopic-title-placeholder' => '信息工程', # Fuzzy
+	'flow-newtopic-title-placeholder' => '新主题',
 	'flow-newtopic-content-placeholder' => '消息正文。祝好！', # Fuzzy
 	'flow-newtopic-header' => '添加新主题',
 	'flow-newtopic-save' => '添加主题',
@@ -2813,8 +2971,9 @@ $messages['zh-hans'] = array(
 	'flow-post-edited' => '评论由$1 $2{{GENDER:$1|编辑}}',
 	'flow-post-action-view' => '永久链接',
 	'flow-post-action-post-history' => '发布历史',
-	'flow-post-action-delete-post' => '删除回复', # Fuzzy
-	'flow-post-action-hide-post' => '隐藏帖子', # Fuzzy
+	'flow-post-action-censor-post' => '压制',
+	'flow-post-action-delete-post' => '删除',
+	'flow-post-action-hide-post' => '隐藏',
 	'flow-post-action-edit-post' => '编辑帖子',
 	'flow-post-action-edit' => '编辑',
 	'flow-post-action-restore-post' => '恢复帖子',
@@ -2861,9 +3020,14 @@ $messages['zh-hans'] = array(
 	'flow-link-post' => '帖子',
 	'flow-link-topic' => '主题',
 	'flow-link-history' => '历史',
-	'flow-moderation-title-delete' => '删除回复', # Fuzzy
-	'flow-moderation-title-hide' => '隐藏回复', # Fuzzy
-	'flow-moderation-title-restore' => '恢复回复', # Fuzzy
+	'flow-moderation-title-censor' => '压制帖子？',
+	'flow-moderation-title-delete' => '删除帖子？',
+	'flow-moderation-title-hide' => '隐藏帖子？',
+	'flow-moderation-title-restore' => '恢复帖子？',
+	'flow-moderation-confirm-censor' => '压制',
+	'flow-moderation-confirm-delete' => '删除',
+	'flow-moderation-confirm-hide' => '隐藏',
+	'flow-moderation-confirm-restore' => '恢复',
 	'flow-moderation-reason-placeholder' => '在此输入您的原因',
 	'flow-topic-permalink-warning' => '本主题已在[$2 $1]开启',
 	'flow-topic-permalink-warning-user-board' => '本主题已在[$2 $1的通告版]开启',
