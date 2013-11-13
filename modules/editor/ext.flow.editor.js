@@ -23,14 +23,33 @@
 
 		init: function () {
 			// determine editor instance to use, depending on availability
-			var editor = 'none';
-			// wikieditor is non-functional, doesn't make sense in this context
-			// editor = mw.config.get( 'wgWikiEditorEnabledModules' ) ? 'wikieditor' : editor;
-			editor = mw.user.options.get( 'visualeditor-enable' ) ? 'visualeditor' : editor;
-			// @todo: check if VE is running
+			mw.flow.editor.loadEditor();
+		},
+
+		loadEditor: function ( editorIndex ) {
+			var editorList = mw.config.get( 'wgFlowEditorList' );
+			var editor;
+
+			if ( ! editorIndex ) {
+				editorIndex = 0;
+			}
+
+			if ( editorList[editorIndex] ) {
+				editor = editorList[editorIndex];
+			} else {
+				editor = 'none';
+			}
 
 			mw.loader.using( 'ext.flow.editors.' + editor, function () {
-				mw.flow.editor.editor = mw.flow.editors[editor];
+				// Some editors only work sometimes
+				if (
+					$.isFunction( mw.flow.editors[editor].isSupported ) &&
+					! mw.flow.editors[editor].isSupported()
+				) {
+					mw.flow.editor.loadEditor( editorIndex + 1 );
+				} else {
+					mw.flow.editor.editor = mw.flow.editors[editor];
+				}
 			} );
 		},
 

@@ -127,4 +127,8 @@
 		// document content will include html, head & body nodes; get only content inside body node
 		return $( window.ve.properOuterHtml( doc.documentElement ) ).wrapAll( '<div>' ).parent().html();
 	};
+
+	mw.flow.editors.visualeditor.isSupported = function() {
+		return mw.user.options.get( 'visualeditor-enable' ) ? true : false;
+	};
 } ( jQuery, mediaWiki ) );
