@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_fc7ce8b4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-13T23:29:37Z",
+      "side": 1,
+      "message": "I think this needs a capital B to trigger the bugzilla hooks",
+      "revId": "791f3687c0890faeabd5d8fc1b0947314537b22e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
