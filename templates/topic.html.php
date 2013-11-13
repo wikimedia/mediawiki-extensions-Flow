@@ -141,7 +141,7 @@ foreach( $root->getChildren() as $child ) {
 if ( $permissions->isAllowed( $root, 'reply' ) ) {
 	echo Html::openElement( 'div', array(
 		'class' => 'flow-topic-reply-container flow-post-container flow-element-container',
-		'data-post-id' => $root->getRevisionId()->getHex(),
+		'data-post-id' => $root->getPostId()->getHex(),
 		'id' => 'flow-topic-reply-' . $topic->getId()->getHex()
 	) );
 	?>
