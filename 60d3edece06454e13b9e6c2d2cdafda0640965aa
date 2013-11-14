@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_f52ebba4",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T15:22:53Z",
+      "side": 1,
+      "message": "getHexId() doesn\u0027t seem to exist? Also find it odd a getHex() method would have to be called after a method named getHexId()\n\nI assume this should be getPostId()-\u003egetHex()?",
+      "revId": "60d3edece06454e13b9e6c2d2cdafda0640965aa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
