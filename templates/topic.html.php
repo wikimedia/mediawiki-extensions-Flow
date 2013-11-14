@@ -3,6 +3,9 @@
 // treat title like unparsed (wiki)text
 $title = $this->getContent( $root, 'wikitext', $user );
 
+$this->getOutput()->setHtmlTitle( $title );
+$this->getOutput()->setPageTitle( $title );
+
 // pre-register recursive callbacks; will then be fetched all at once when the
 // first one's result is requested
 $indexDescendantCount = $root->registerDescendantCount();
