@@ -81,7 +81,6 @@ class Logger {
 		$logEntry->setParameters( $params );
 		$logEntry->setComment( $reason );
 		$logId = $logEntry->insert();
-		$logEntry->publish( $logId );
 
 		wfProfileOut( __METHOD__ );
 		return $logId;
