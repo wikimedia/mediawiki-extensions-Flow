@@ -272,8 +272,8 @@ class Formatter {
 
 		return \Html::rawElement(
 			'span',
-			array( 'class' => 'plainlinks' ),
-			$message
+			array( 'class' => array( 'comment', 'plainlinks' ) ),
+			wfMessage( 'parentheses' )->rawParams( $message )->escaped()
 		);
 	}
 
