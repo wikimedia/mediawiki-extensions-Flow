@@ -1,6 +1,5 @@
 <?php
 
-echo wfMessage( 'flow-action-edit-title' )->escaped();
 if ( $block->hasErrors() ) {
 	echo wfMessage( 'flow-action-errors' )->escaped(), '<ul>';
 	foreach ( $block->getErrors() as $error ) {
@@ -15,11 +14,11 @@ echo Html::openElement( 'form', array(
 		'action' => $this->generateUrl( $topicTitle->getPostId(), 'edit-title' ),
 	) ),
 	Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken ) ),
-		Html::textarea( $block->getName() . '[content]', $this->getContent( $topicTitlex, 'wikitext', $topicTitle ) ),
+		Html::textarea( $block->getName() . '[content]', $this->getContent( $topicTitle, 'wikitext', $user ) ),
 		Html::element( 'input',
 			array(
 				'type' => 'submit',
-				'value' => wfMessage( 'flow-action-edit-title' )->plain(),
+				'value' => wfMessage( 'flow-edit-title-submit' )->plain(),
 				'class' => 'mw-ui-button mw-ui-primary',
 			)
 		),

@@ -351,7 +351,7 @@ class TopicBlock extends AbstractBlock {
 
 		case 'edit-title':
 			$topicTitle = $this->loadTopicTitle();
-			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-post' ) ) {
+			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
 				throw new \MWException( 'Not Allowed' );
 			}
 			return $prefix . $templating->render( "flow:edit-title.html.php", array(
