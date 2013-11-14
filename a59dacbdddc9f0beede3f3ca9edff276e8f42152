@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_6550580b",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-14T21:35:40Z",
+      "side": 1,
+      "message": "Since all topic rendering, including list views, goes through this template file this changes the title on more pages than desired.",
+      "revId": "a59dacbdddc9f0beede3f3ca9edff276e8f42152",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
