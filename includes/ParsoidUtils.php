@@ -68,7 +68,13 @@ abstract class ParsoidUtils {
 		if ( $to == 'html' ) {
 			$dom = new \DOMDocument();
 			$dom->loadHTML( $response );
-			$body = $dom->getElementsByTagName( 'body' )->item(0);
+			foreach ( $dom->getElementsByTagName( 'a' ) as $node ) {
+				$attr = $node->attributes->getNamedItem( 'href' );
+				if ( $attr !== null ) {
+					self::fixAttrUrl( $attr );
+				}
+			}
+			$body = $dom->getElementsByTagName( 'body' )->item( 0 );
 
 			$response = '';
 			foreach( $body->childNodes as $child ) {
@@ -107,6 +113,30 @@ abstract class ParsoidUtils {
 
 		$output = $wgParser->parse( $content, $title, $options );
 		return $output->getText();
+	}
+
+	/**
+	 * Parsoid always prefixes links/images/etc with enough ../ to bring it
+	 * back to /wiki/.  Here we strip the ../ and ./ and always give it /wiki/.
+	 * This does ignore the existing <base href="...">, would be better to resolve
+	 * it properly but not going to pull in a url library just to do it.
+	 *
+	 * @param DOMDocument $dom
+	 * @param string $baseHref
+	 */
+	protected static function fixAttrUrl( \DOMAttr $attr ) {
+		if ( $attr->value[0] !== '.' ) {
+			// All relative links in parsoid start with '.'
+			return;
+		}
+		// Strip leading ../../../../
+		$partial = preg_replace( '|^(../)+|', '', $attr->value );
+		// Strip leading ./
+		if ( substr( $partial , 0, 2 ) === './' ) {
+			$partial = substr( $partial, 2 );
+		}
+		// Update to always use /wiki/
+		$attr->value = "/wiki/$partial";
 	}
 }
 
