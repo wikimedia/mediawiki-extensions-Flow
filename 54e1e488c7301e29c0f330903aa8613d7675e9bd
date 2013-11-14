@@ -1,0 +1,531 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_e7a8da7b",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "New terminology: suppressed\n\nI don\u0027t see this message elsewhere though; perhaps some old rebase leftover?",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_35b773d8",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Not sure we need this parameter; link could be made like: [[User_talk:$1|$1]], using solely the username\n\nAlso, this parameter does not appear to be tossed in?",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_27b752d8",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Not sure we need this parameter; link could be made like: [[User_talk:$1|$1]], using solely the username\n\nAlso: this message does not seem to exist (rebase issue, I think; these *-by messages used to exist)",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_f20251b6",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Message not in i18n.php",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_d5c8df58",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "typo in \"i18n\"; missing params",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_15d8b719",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Class does not yet have any CSS associated with it, to display icons",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_1200cdac",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Message not in i18n.php",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_f5c15b33",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Missing params",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_35093398",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Class does not yet have any CSS associated with it, to display icons",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_323149a3",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Message not in i18n.php",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_15bfd7a7",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Missing params",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_550eaf9f",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Class does not yet have any CSS associated with it, to display icons",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_5236c59a",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Message not in i18n.php",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_35e053d0",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Missing params",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_75ff2b64",
+        "filename": "FlowActions.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Class does not yet have any CSS associated with it, to display icons",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_72aae187",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Similar to how loadRequestedPost already checks permissions etc, we should probably move this check into loadRootPost?",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_75948b34",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "$changeType should not be null, or AbstracRevision\u0027s $perms[][\u0027change-type\u0027] will be used, which defaults to *-post\n\nCome to think of it, if we do pass in the correct changetype here, we can (and probably should, since they are only accurate for posts) get rid of these change-type keys in AbstractRevision",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_75f2cb06",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "lol; I believe that \u0027something\u0027 still has to change? :p",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_92b2fde2",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "MWException",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_07bfb6a7",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "use setChildren \u0026 setDepth?",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_75cbaba6",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "use setChildren?",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_15bd17fe",
+        "filename": "includes/Templating.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "$this-\u003eglobals[\u0027user\u0027]",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_f5bf9bf5",
+        "filename": "includes/Templating.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "$this-\u003eglobals[\u0027editToken\u0027]",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_753c8b8f",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "missing ;",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_95410710",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 12
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "missing ;",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_35d21334",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Messages should probably be different per post/topic",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_75d80b50",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Messages should probably be different per post/topic",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_d5229f53",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Messages should probably be different per post/topic",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_f51b1b16",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Messages should probably be different per post/topic",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_955ae7ed",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Unused?",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_5536af9a",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 12
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T14:45:37Z",
+      "side": 1,
+      "message": "Perhaps check if user has any of these below actions; if not, we don\u0027t need to render anything",
+      "revId": "54e1e488c7301e29c0f330903aa8613d7675e9bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
