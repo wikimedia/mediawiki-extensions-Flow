@@ -24,11 +24,11 @@ $messages['en'] = array(
 
 	'flow-post-moderated-toggle-show' => '[Show]',
 	'flow-post-moderated-toggle-hide' => '[Hide]',
-	'flow-hide-content' => '{{GENDER:$1|Hidden}} by $1 $2',
+	'flow-hide-content' => '{{GENDER:$1|Hidden}} by $1',
 	'flow-hide-usertext' => '$1',
-	'flow-delete-content' => '{{GENDER:$1|Deleted}} by $1 $2',
+	'flow-delete-content' => '{{GENDER:$1|Deleted}} by $1',
 	'flow-delete-usertext' => '$1',
-	'flow-censor-content' => '{{GENDER:$1|Suppressed}} by $1 $2',
+	'flow-censor-content' => '{{GENDER:$1|Suppressed}} by $1',
 	'flow-censor-usertext' => "''Username suppressed''",
 	'flow-post-actions' => 'Actions',
 	'flow-topic-actions' => 'Actions',
@@ -227,38 +227,26 @@ Parameters:
 	'flow-header-empty' => 'Used as a placeholder text for headers which have no content.',
 	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
 	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post',
-	'flow-hide-content' => 'Parameters:
-* $1 - username that hid the post, can be used for GENDER
-* $2 - timestamp, relative to post creation date, of when the post was hidden. Any one of the following:
-** timestamp (time and date); localized
-** day and month; localized
-** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
-** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
-{{Related|Flow-post-by}}',
+	'flow-hide-content' => 'Message to display instead of content when the content has been hidden.
+
+Parameters:
+* $1 - username that hid the post, can be used for GENDER',
 	'flow-hide-usertext' => 'Used as username if the post was hidden.
 
 Parameters:
 * $1 - Username of the post creator. Can be used for GENDER',
-	'flow-delete-content' => 'Parameters:
-* $1 - username that deleted the post, can be used for GENDER
-* $2 - timestamp, relative to post creation date, of when the post was deleted. Any one of the following:
-** timestamp (time and date); localized
-** day and month; localized
-** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
-** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
-{{Related|Flow-post-by}}',
+	'flow-delete-content' => 'Message to display instead of content when the content has been deleted.
+
+Parameters:
+* $1 - username that deleted the post, can be used for GENDER',
 	'flow-delete-usertext' => 'Used as username if the post was deleted.
 
 Parameters:
 * $1 - Username of the post creator. Can be used for GENDER',
-	'flow-censor-content' => 'Parameters:
-* $1 - username that suppressed the post, can be used for GENDER
-* $2 - timestamp, relative to post creation date, of when the post was suppressed. Any one of the following:
-** timestamp (time and date); localized
-** day and month; localized
-** {{msg-mw|Sunday-at}}, {{msg-mw|Monday-at}}, {{msg-mw|Tuesday-at}}, ...
-** {{msg-mw|Yesterday-at}}, {{msg-mw|Today-at}}
-{{Related|Flow-post-by}}',
+	'flow-censor-content' => 'Message to display instead of content when the content has been suppressed.
+
+Parameters:
+* $1 - username that suppressed the post, can be used for GENDER',
 	'flow-censor-usertext' => 'Used as username if the post was suppressed.
 
 Parameters:
