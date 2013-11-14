@@ -65,11 +65,11 @@ $messages['en'] = array(
 	'flow-topic-action-edit-title' => 'Edit title',
 	'flow-topic-action-history' => 'Topic history',
 
-	'flow-error-http' => 'An error occurred while contacting the server. Your post was not saved.', // Needs real copy
-	'flow-error-other' => 'An unexpected error occurred. Your post was not saved.',
-	'flow-error-external' => 'An error occurred while saving your post. Your post was not saved.<br /><small>The error message received was: $1</small>',
+	'flow-error-http' => 'An error occurred while contacting the server.', // Needs real copy
+	'flow-error-other' => 'An unexpected error occurred.',
+	'flow-error-external' => 'An error occurred.<br /><small>The error message received was: $1</small>',
 	'flow-error-edit-restricted' => 'You are not allowed to edit this post.',
-	'flow-error-external-multi' => 'Errors were encountered while saving your post. Your post was not saved.<br />$1',
+	'flow-error-external-multi' => 'Errors were encountered.<br />$1',
 
 	'flow-error-missing-content' => 'Post has no content. Content is required to save a new post.',
 	'flow-error-missing-title' => 'Topic has no title. Title is required to save a new topic.',
