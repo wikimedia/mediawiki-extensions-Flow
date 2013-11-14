@@ -304,7 +304,7 @@ class Templating {
 		$moderatedAt = new MWTimestamp( $revision->getModerationTimestamp() );
 
 		// Messages: flow-hide-content, flow-delete-content, flow-censor-content
-		$message = wfMessage( "flow-$state-content", $user, $moderatedAt->getHumanTimestamp() );
+		$message = wfMessage( "flow-$state-content", $user );
 
 		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
 			return $message->text();
