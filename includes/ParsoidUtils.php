@@ -70,7 +70,14 @@ abstract class ParsoidUtils {
 			$dom->loadHTML( $response );
 			$body = $dom->getElementsByTagName( 'body' )->item(0);
 
-			$response = '';
+			// Save the <base href="..."> tag if it exists.
+			// @todo At some point we will need to actually do something with this, but
+			// for now because we only render posts from the same source page together we
+			// can currently just include the tag anywhere in the output html.  To display
+			// posts from multiple sources in one page this will have to change.
+			$baseHref = $dom->getElementsByTagName( 'base' )->item(0);
+
+			$response = $baseHref->ownerDocument->saveXML( $baseHref );
 			foreach( $body->childNodes as $child ) {
 				$response .= $child->ownerDocument->saveXML( $child );
 			}
