@@ -279,6 +279,9 @@ abstract class AbstractRevision {
 	 * @return string
 	 */
 	public function getContent( $format = 'html' ) {
+		if ( !$this->isFormatted() ) {
+			return $this->getContentRaw();
+		}
 		if ( !isset( $this->convertedContent[$format] ) ) {
 			// check how content is stored & convert to requested format
 			$sourceFormat = in_array( 'html', $this->flags ) ? 'html' : 'wikitext';
