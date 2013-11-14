@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_df9f1e4b",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-14T00:42:34Z",
+      "side": 1,
+      "message": "the \u0027plainlinks\u0027 was so the external link syntax in the i18n messages would still render links that look internal, perhaps we just need both here?",
+      "revId": "96c4a1215104485ddc2ec1be41a7a25e49fa46d2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
