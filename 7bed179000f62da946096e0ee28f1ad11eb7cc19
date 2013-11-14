@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_e5ae08e7",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-14T21:44:56Z",
+      "side": 1,
+      "message": "This seems like a better solution, although looking at my localhost it seems mediawiki already includes\n\n    \u003cmeta charset\u003d\"UTF-8\"\u003e\n\nin the html along with\n\n    Content-Type:text/html; charset\u003dUTF-8\n\nas an http response header.  \n\nThis patch as-is fixes the problem, but i honestly don\u0027t understand why it needs to be converted since the browsers should know we sent them utf-8. I dunno, i\u0027m ok with a merge just confused.",
+      "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
