@@ -78,8 +78,8 @@ class PostRevision extends AbstractRevision {
 		$reply->userId = $reply->origUserId = $user->getId();
 		$reply->userText = $reply->origUserText = $user->getName();
 		$reply->origCreateTime = wfTimestampNow();
-		$reply->setContent( $content );
 		$reply->replyToId = $this->postId;
+		$reply->setContent( $content );
 		$reply->changeType = $changeType;
 		$reply->setDepth( $this->getDepth() + 1 );
 		return $reply;
