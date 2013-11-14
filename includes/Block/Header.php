@@ -112,7 +112,7 @@ class HeaderBlock extends AbstractBlock {
 
 			$templating->render( "flow:board-history.html.php", $tplVars );
 		} else {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.header' ) );
 			$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
 			$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
 			$templating->render( "flow:$templateName.html.php", array(
