@@ -16,6 +16,24 @@
       "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_c5bcac68",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-14T23:24:15Z",
+      "side": 1,
+      "message": "Nah, the issue is with the *Parsoid* response. The response from Parsoid doesn\u0027t have a specified charset (I suspect actually that it does have one, but it\u0027s in the HTTP headers rather than in the HTML), so our parsing with DOMDocument is munging the UTF-8 characters because it thinks that it\u0027s ISO-whatever it is",
+      "parentUuid": "291c1151_e5ae08e7",
+      "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
