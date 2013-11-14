@@ -122,6 +122,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_7941ef0c",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-14T23:56:47Z",
+      "side": 1,
+      "message": "I\u0027m not sure you understand – what I mean is: when viewing a single revision of a post, should we show what children that post had at the time when that revision was created?",
+      "parentUuid": "291c1151_3ba786ab",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_bb88d6e9",
         "filename": "templates/compare-revisions.html.php",
         "patchSetId": 1
