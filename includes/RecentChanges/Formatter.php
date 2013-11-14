@@ -184,7 +184,7 @@ class Formatter {
 		return Html::rawElement(
 			'a',
 			array(
-				'href' => $this->urlGeneratr->buildUrl(
+				'href' => $this->urlGenerator->buildUrl(
 					$title,
 					'topic-history',
 					array( 'workflow' => $changeData['workflow'] )
