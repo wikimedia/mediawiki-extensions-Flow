@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_d0446d4e",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-14T15:30:57Z",
+      "side": 1,
+      "message": "typo: urlGenerator",
+      "revId": "1601eca847a4c77dbcf8ced23ed229f9eae83e33",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
