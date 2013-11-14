@@ -66,13 +66,22 @@ abstract class ParsoidUtils {
 
 		// Full HTML document is returned, we only want what's inside <body>
 		if ( $to == 'html' ) {
+			/*
+			 * Workaround because DOMDocument can't guess charset.
+			 * Parsoid provides utf-8. Alternative "workarounds" would be to
+			 * provide the charset in $response, as either:
+			 * * <?xml encoding="utf-8" ?>
+			 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			 */
+			$response = mb_convert_encoding( $response, 'HTML-ENTITIES', 'UTF-8' );
+
 			$dom = new \DOMDocument();
 			$dom->loadHTML( $response );
 			$body = $dom->getElementsByTagName( 'body' )->item(0);
 
 			$response = '';
 			foreach( $body->childNodes as $child ) {
-				$response .= $child->ownerDocument->saveXML( $child );
+				$response .= $child->ownerDocument->saveHTML( $child );
 			}
 		} elseif ( !in_array( $to, array( 'wt', 'wikitext' ) ) ) {
 			throw new \MWException( "Unknown format requested: " . $to );
