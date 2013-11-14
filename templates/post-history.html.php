@@ -1,10 +1,10 @@
 <?php
 
-$topicTitle = $this->getContent( $root, 'wikitext', $user );
+$titleText = $this->getContent( $topicTitle, 'wikitext', $user );
 $topicLink = $this->generateUrl( $topic );
 
 $creator = $post->getCreatorName();
-$title = wfMessage( 'flow-post-history', $topicTitle, $creator )->escaped();
+$title = wfMessage( 'flow-post-history', $titleText, $creator )->escaped();
 $this->getOutput()->setHtmlTitle( $title );
 $this->getOutput()->setPageTitle( $title );
 
@@ -14,7 +14,7 @@ $timespans = $historyRenderer->getTimespans( $history );
 <div class="flow-history-container">
 	<p class='flow-history-pages'>
 		<span class="plainlinks">
-			<?php echo wfMessage( 'flow-history-pages-post', $topicLink, $topicTitle )->parse(); ?>
+			<?php echo wfMessage( 'flow-history-pages-post', $topicLink, $titleText )->parse(); ?>
 		</span>
 	</p>
 
