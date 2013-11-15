@@ -2,45 +2,59 @@
 
 namespace Flow;
 
+use Title;
+
 abstract class ParsoidUtils {
 	/**
-	 * Convert form/to wikitext/html.
+	 * Convert from/to wikitext/html.
 	 *
 	 * @param string $from Format of content to convert: html|wikitext
 	 * @param string $to Format to convert to: html|wikitext
 	 * @param string $content
+	 * @param Title[optional] $title Defaults to $wgTitle
 	 * @return string
 	 */
-	public static function convert( $from, $to, $content ) {
+	public static function convert( $from, $to, $content, Title $title = null ) {
 		if ( $from === $to || $content === '' ) {
 			return $content;
 		}
 
-		//throw new \MWException( "Attempt to round trip '$from' -> '$to'" );
+		if ( !$title instanceof Title ) {
+			global $wgTitle;
+			$title = $wgTitle;
+		}
+
+		// Parsoid will fail if title does not exist
+		if ( !$title->exists() ) {
+			throw new \MWException( 'Title "' . $title->getPrefixedDBkey() . '" does not exist.' );
+		}
+
 		try {
 			// use VE API (which connects to Parsoid) if available...
-			return self::parsoid( $from, $to, $content );
+			return self::parsoid( $from, $to, $content, $title );
 		} catch ( NoParsoidException $e ) {
 			// ... otherwise default to parser
-			return self::parser( $from, $to, $content );
+			return self::parser( $from, $to, $content, $title );
 		}
 	}
 
 	/**
-	 * Convert form/to wikitext/html using VisualEditor's API.
+	 * Convert from/to wikitext/html via Parsoid, piggy-backing on
+	 * VisualEditor's globals.
 	 *
 	 * This will assume Parsoid is installed, which is a dependency of VE.
 	 *
 	 * @param string $from Format of content to convert: html|wikitext
 	 * @param string $to Format to convert to: html|wikitext
 	 * @param string $content
+	 * @param Title $title
 	 * @return string
 	 */
-	protected static function parsoid( $from, $to, $content ) {
+	protected static function parsoid( $from, $to, $content, Title $title ) {
 		global $wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout;
 
-		if ( ! isset( $wgVisualEditorParsoidURL ) || ! $wgVisualEditorParsoidURL ) {
-			throw new NoParsoidException( "VisualEditor parsoid configuration is unavailable" );
+		if ( !isset( $wgVisualEditorParsoidURL ) || ! $wgVisualEditorParsoidURL ) {
+			throw new NoParsoidException( 'VisualEditor Parsoid configuration is unavailable' );
 		}
 
 		if ( $from == 'html' ) {
@@ -52,8 +66,7 @@ abstract class ParsoidUtils {
 		}
 
 		$response = \Http::post(
-			// @todo needs a big refactor to get a page title in here, fake Main_Page for now
-			$wgVisualEditorParsoidURL . '/' . $wgVisualEditorParsoidPrefix . '/Main_Page',
+			$wgVisualEditorParsoidURL . '/' . $wgVisualEditorParsoidPrefix . '/' . $title->getPrefixedDBkey(),
 			array(
 				'postData' => array( $from => $content ),
 				'timeout' => $wgVisualEditorParsoidTimeout
@@ -61,7 +74,7 @@ abstract class ParsoidUtils {
 		);
 
 		if ( $response === false ) {
-			throw new \MWException( 'Failed contacting parsoid' );
+			throw new \MWException( 'Failed contacting Parsoid' );
 		}
 
 		// Full HTML document is returned, we only want what's inside <body>
@@ -91,24 +104,22 @@ abstract class ParsoidUtils {
 	}
 
 	/**
-	 * Convert form/to wikitext/html using Parser.
+	 * Convert from/to wikitext/html using Parser.
 	 *
 	 * This only supports wikitext to HTML.
 	 *
 	 * @param string $from Format of content to convert: wikitext
 	 * @param string $to Format to convert to: html
 	 * @param string $content
+	 * @param Title $title
 	 * @return string
 	 */
-	protected static function parser( $from, $to, $content ) {
+	protected static function parser( $from, $to, $content, Title $title ) {
 		if ( $from !== 'wikitext' && $to !== 'html' ) {
 			throw new \MWException( 'Parser only supports wikitext to HTML conversion' );
 		}
 
 		global $wgParser;
-
-		// Bogus title used for parser
-		$title = \Title::newMainPage();
 
 		$options = new \ParserOptions;
 		$options->setTidy( true );
@@ -120,4 +131,3 @@ abstract class ParsoidUtils {
 }
 
 class NoParsoidExceptions extends \MWException {}
-
