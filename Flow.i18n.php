@@ -255,7 +255,8 @@ Parameters:
 	'flow-hide-content' => 'Message to display instead of content when the content has been hidden.
 
 Parameters:
-* $1 - username that hid the post, can be used for GENDER',
+* $1 - username that hid the post, can be used for GENDER
+{{Related|Flow-content}}',
 	'flow-hide-usertext' => 'Used as username if the post was hidden.
 
 Parameters:
@@ -263,7 +264,8 @@ Parameters:
 	'flow-delete-content' => 'Message to display instead of content when the content has been deleted.
 
 Parameters:
-* $1 - username that deleted the post, can be used for GENDER',
+* $1 - username that deleted the post, can be used for GENDER
+{{Related|Flow-content}}',
 	'flow-delete-usertext' => 'Used as username if the post was deleted.
 
 Parameters:
@@ -271,7 +273,8 @@ Parameters:
 	'flow-censor-content' => 'Message to display instead of content when the content has been suppressed.
 
 Parameters:
-* $1 - username that suppressed the post, can be used for GENDER',
+* $1 - username that suppressed the post, can be used for GENDER
+{{Related|Flow-content}}',
 	'flow-censor-usertext' => 'Used as username if the post was suppressed.
 
 Parameters:
@@ -311,27 +314,23 @@ Parameters:
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.',
 	'flow-post-action-censor-post' => 'Used as a label for  the submit button in the suppression form.
-
-See also:
-* {{msg-mw|Flow-post-action-restore-post}}
+{{Related|Flow-action}}
 {{Identical|Suppress}}',
 	'flow-post-action-delete-post' => 'Used as a label for the submit button in the deletion form.
-
-See also:
-* {{msg-mw|Flow-post-action-restore-post}}
+{{Related|Flow-action}}
 {{Identical|Delete}}',
 	'flow-post-action-hide-post' => 'Used as label for the Submit button.
+{{Related|Flow-action}}
 {{Identical|Hide}}',
-	'flow-post-action-edit-post' => 'Used as text for the link which is used to edit the post.',
+	'flow-post-action-edit-post' => 'Used as text for the link which is used to edit the post.
+{{Related|Flow-action}}
+{{Identical|Edit post}}',
 	'flow-post-action-edit' => 'Unused at this time.
 
 Translate as label for the link or the Submit button.
 {{Identical|Edit}}',
 	'flow-post-action-restore-post' => 'Used as label for the Submit button.
-
-See also:
-* {{msg-mw|Flow-post-action-delete-post}}
-* {{msg-mw|Flow-post-action-censor-post}}
+{{Related|Flow-action}}
 {{Identical|Restore post}}',
 	'flow-topic-action-view' => "Title text for topic's permalink icon.
 {{Identical|Permalink}}",
@@ -340,10 +339,15 @@ See also:
 	'flow-topic-action-edit-title' => 'Used as title for the link which is used to edit the title.',
 	'flow-topic-action-history' => 'Used as text for the link which is used to view topic-history.
 {{Identical|Topic history}}',
-	'flow-topic-action-hide-topic' => 'Used as a link in a dropdown menu to hide a topic.',
-	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.',
-	'flow-topic-action-censor-topic' => 'Used as a link in a dropdown menu to suppress a topic.',
-	'flow-topic-action-restore-topic' => 'Used as a link in a dropdown menu to clear existing moderation.',
+	'flow-topic-action-hide-topic' => 'Used as a link in a dropdown menu to hide a topic.
+{{Related|Flow-action}}',
+	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.
+{{Related|Flow-action}}',
+	'flow-topic-action-censor-topic' => 'Used as a link in a dropdown menu to suppress a topic.
+{{Related|Flow-action}}',
+	'flow-topic-action-restore-topic' => 'Used as a link in a dropdown menu to clear existing moderation.
+{{Related|Flow-action}}
+{{Identical|Restore topic}}',
 	'flow-error-http' => 'Used as error message on HTTP error.',
 	'flow-error-other' => 'Used as generic error message.',
 	'flow-error-external' => 'Uses as error message. Parameters:
@@ -396,81 +400,101 @@ Valid values for moderationState are: (none), hidden, deleted, censored',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited.
 
 Parameters:
-* $1: Username of the user who edited the post. Can be used for GENDER
-* $2: The url of the post',
+* $1 - username of the user who edited the post. Can be used for GENDER
+* $2 - the URL of the post
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-reply' => 'Used as a revision comment when a new reply has been posted.
 
 Parameters:
-* $1: Username of the user who replied. Can be used for GENDER
-* $2: The url of the post',
+* $1 - username of the user who replied. Can be used for GENDER
+* $2 - the URL of the post
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-reply-bundle' => "When multiple replies have been posted, they're bundled. This is the message to describe that multiple replies were posted.
 
 Parameters:
-* $1 - the amount of replies posted",
-	'flow-rev-message-new-post' => 'Used as revision comment when the topic has been created.',
+* $1 - the amount of replies posted
+{{Related|Flow-rev-message}}",
+	'flow-rev-message-new-post' => 'Used as revision comment when the topic has been created.
+
+Parameters:
+* $1 - username. Can be used for GENDER
+* $2 - the URL of the topic
+* $3 - the topic title
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-edit-title' => 'Used as revision comment when a post has been edited.
 
 Parameters:
-* $1: Username of the user who edited the title. Can be used for GENDER
-* $2: The url of the topic
-* $3: The topic title
-* $4: The previous topic title',
+* $1 - username of the user who edited the title. Can be used for GENDER
+* $2 - the URL of the topic
+* $3 - the topic title
+* $4 - the previous topic title
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-create-header' => 'Used as revision comment when the header has been created.
 
 Parameters:
-* $1: Username of the user who created the header.  Can be used for GENDER',
+* $1 - username of the user who created the header. Can be used for GENDER
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-edit-header' => 'Used as revision comment when the header has been edited.
 
 Parameters:
-* $1: Username of the user who edited the header.  Can be used for GENDER',
+* $1 - username of the user who edited the header. Can be used for GENDER
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-hid-post' => 'Used as revision comment when a post has been hidden.
 
 Parameters:
-* $1: Username of the user who moderated the comment. Can be used for GENDER
-* $2: Username of the user who had posted the comment. Can be used for GENDER
-* $3: Permalink to the comment',
+* $1 - username of the user who moderated the comment. Can be used for GENDER
+* $2 - username of the user who had posted the comment. Can be used for GENDER
+* $3 - permalink to the comment
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-deleted-post' => 'Used as revision comment when a post has been deleted.
 
 Parameters:
-* $1: Username of the user who moderated the comment. Can be used for GENDER
-* $2: Username of the user who had posted the comment. Can be used for GENDER
-* $3: Permalink to the comment',
+* $1 - username of the user who moderated the comment. Can be used for GENDER
+* $2 - username of the user who had posted the comment. Can be used for GENDER
+* $3 - permalink to the comment
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been suppressed.
 
 Parameters:
-* $1: Username of the user who moderated the comment. Can be used for GENDER
-* $2: Username of the user who had posted the comment. Can be used for GENDER
-* $3: Permalink to the comment',
+* $1 - username of the user who moderated the comment. Can be used for GENDER
+* $2 - username of the user who had posted the comment. Can be used for GENDER
+* $3 - permalink to the comment
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-restored-post' => 'Used as revision comment when a post has been restored (un-hidden).
 
 Parameters:
-* $1: Username of the user who restored the comment. Can be used for GENDER
-* $2: Username of the user who had posted the comment. Can be used for GENDER
-* $3: Permalink to the comment',
+* $1 - username of the user who restored the comment. Can be used for GENDER
+* $2 - username of the user who had posted the comment. Can be used for GENDER
+* $3 - permalink to the comment
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-hid-topic' => 'Used as revision comment when a topic has been hidden.
 
 Parameters:
-* $1: Username of the user who moderated the topic. Can be used for GENDER
-* $2: Username of the user who had posted the topic. Can be used for GENDER
-* $3: Permalink to the topic',
+* $1 - username of the user who moderated the topic. Can be used for GENDER
+* $2 - username of the user who had posted the topic. Can be used for GENDER
+* $3 - permalink to the topic
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-deleted-topic' => 'Used as revision comment when a topic has been deleted.
 
 Parameters:
-* $1: Username of the user who moderated the topic. Can be used for GENDER
-* $2: Username of the user who had posted the topic. Can be used for GENDER
-* $3: Permalink to the topic',
+* $1 - username of the user who moderated the topic. Can be used for GENDER
+* $2 - username of the user who had posted the topic. Can be used for GENDER
+* $3 - permalink to the topic
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-censored-topic' => 'Used as revision comment when a topic has been suppressed.
 
 Parameters:
-* $1: Username of the user who moderated the topic. Can be used for GENDER
-* $2: Username of the user who had posted the topic. Can be used for GENDER
-* $3: Permalink to the topic',
+* $1 - username of the user who moderated the topic. Can be used for GENDER
+* $2 - username of the user who had posted the topic. Can be used for GENDER
+* $3 - permalink to the topic
+{{Related|Flow-rev-message}}',
 	'flow-rev-message-restored-topic' => 'Used as revision comment when a topic has been restored (un-hidden).
 
 Parameters:
-* $1: Username of the user who restored the topic. Can be used for GENDER
-* $2: Username of the user who had posted the topic. Can be used for GENDER
-* $3: Permalink to the topic',
+* $1 - username of the user who restored the topic. Can be used for GENDER
+* $2 - username of the user who had posted the topic. Can be used for GENDER
+* $3 - permalink to the topic
+{{Related|Flow-rev-message}}',
 	'flow-board-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Board history" page.
 
 Parameters:
@@ -784,14 +808,40 @@ See also:
 * {{msg-mw|Flow-topic-permalink-warning}}",
 );
 
+/** Achinese (Acèh)
+ * @author Rachmat.Wahidi
+ */
+$messages['ace'] = array(
+	'flow-hide-content' => '{{GENDER:$1|Geupeusom}} lé $1',
+	'flow-delete-content' => '{{GENDER:$1|Geusampôh}} lé $1',
+	'flow-topic-action-hide-topic' => 'Peusom topik',
+	'flow-topic-action-delete-topic' => 'Sampôh topik',
+	'flow-topic-action-restore-topic' => 'Peuriwang topik',
+	'flow-rev-message-hid-topic' => '[[Ureuëng Nguy:$1|$1]] {{GENDER:$1|geupeusom}} [topic $3].', # Fuzzy
+	'flow-rev-message-deleted-topic' => '[[Ureuëng Nguy:$1|$1]] {{GENDER:$1|sampôh}} [kumènta $3].', # Fuzzy
+	'flow-rev-message-restored-topic' => '[[Ureuëng Nguy:$1|$1]] {{GENDER:$1|peuriwang}} [topik $3].', # Fuzzy
+	'flow-moderation-title-delete-topic' => 'Sampôh topik?',
+	'flow-moderation-title-hide-topic' => 'Peusom topik?',
+	'flow-moderation-title-restore-topic' => 'Peuriwang topik?',
+	'flow-moderation-intro-delete-topic' => 'Tulông peutrang pakön droeneuh neuneuk sampôh topik nyoe.',
+	'flow-moderation-intro-hide-topic' => 'Neutulông peutrang pakön peusom topik nyoe.',
+	'flow-moderation-confirm-delete-topic' => 'Sampôh',
+	'flow-moderation-confirm-hide-topic' => 'Peusom',
+	'flow-moderation-confirm-restore-topic' => 'Peuriwang',
+	'flow-moderation-confirmation-restore-topic' => 'Droeneuh ka lheuh neupeuriwang topik nyoe.',
+);
+
 /** Arabic (العربية)
  * @author Claw eg
+ * @author مشعل الحربي
  */
 $messages['ar'] = array(
 	'flow-post-actions' => 'الإجراءات',
 	'flow-topic-actions' => 'الإجراءات',
-	'flow-moderation-title-restore' => 'استعد الصفحة', # Fuzzy
-	'flow-moderation-confirmation-restore' => 'لقد استعدت هذه الصفحة بنجاح.',
+	'flow-error-http' => 'حدث خطأ أثناء الاتصال بالخادم.',
+	'flow-error-external' => 'حدث خطأ.<br /><small>رسالة الخطأ المتلقاة هي: $1</small>',
+	'flow-moderation-title-restore-post' => 'استعد الصفحة',
+	'flow-moderation-confirmation-restore-post' => 'لقد استعدت هذه الصفحة بنجاح.',
 	'flow-topic-permalink-warning' => 'بدأ هذا الموضوع في [$2  $1]',
 );
 
@@ -824,8 +874,13 @@ $messages['br'] = array(
 	'flow-post-actions' => 'Oberoù',
 	'flow-topic-actions' => 'Oberoù',
 	'flow-cancel' => 'Nullañ',
+	'flow-post-action-delete-post' => 'Dilemel',
+	'flow-post-action-hide-post' => 'Kuzhat',
 	'flow-post-action-edit' => 'Kemmañ',
 	'flow-topic-action-edit-title' => 'Kemmañ an titl',
+	'flow-moderation-confirm-delete-topic' => 'Diverkañ',
+	'flow-moderation-confirm-hide-topic' => 'Kuzhat',
+	'flow-moderation-confirm-restore-topic' => 'Assevel',
 );
 
 /** Chechen (нохчийн)
@@ -861,9 +916,9 @@ $messages['de'] = array(
 	'flow-header-empty' => 'Diese Diskussionsseite hat derzeit keine Überschrift.',
 	'flow-post-moderated-toggle-show' => '[Anzeigen]',
 	'flow-post-moderated-toggle-hide' => '[Ausblenden]',
-	'flow-hide-content' => '{{GENDER:$1|Versteckt}} von $1 $2',
-	'flow-delete-content' => '{{GENDER:$1|Gelöscht}} von $1 $2',
-	'flow-censor-content' => '{{GENDER:$1|Unterdrückt}} von $1 $2',
+	'flow-hide-content' => '{{GENDER:$1|Versteckt}} von $1',
+	'flow-delete-content' => '{{GENDER:$1|Gelöscht}} von $1',
+	'flow-censor-content' => '{{GENDER:$1|Unterdrückt}} von $1',
 	'flow-censor-usertext' => "''Benutzername unterdrückt''",
 	'flow-post-actions' => 'Aktionen',
 	'flow-topic-actions' => 'Aktionen',
@@ -893,11 +948,15 @@ $messages['de'] = array(
 	'flow-topic-action-watchlist' => 'Beobachtungsliste',
 	'flow-topic-action-edit-title' => 'Titel bearbeiten',
 	'flow-topic-action-history' => 'Themenversionsgeschichte',
-	'flow-error-http' => 'Beim Kontaktieren des Servers ist ein Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert.',
-	'flow-error-other' => 'Ein unerwarteter Fehler ist aufgetreten. Dein Beitrag wurde nicht gespeichert.',
-	'flow-error-external' => 'Beim Speichern deines Beitrags ist ein Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert.<br /><small>Die empfangene Fehlermeldung lautete: $1</small>',
+	'flow-topic-action-hide-topic' => 'Thema verstecken',
+	'flow-topic-action-delete-topic' => 'Thema löschen',
+	'flow-topic-action-censor-topic' => 'Thema unterdrücken',
+	'flow-topic-action-restore-topic' => 'Thema wiederherstellen',
+	'flow-error-http' => 'Beim Kontaktieren des Servers ist ein Fehler aufgetreten.',
+	'flow-error-other' => 'Ein unerwarteter Fehler ist aufgetreten.',
+	'flow-error-external' => 'Es ist ein Fehler aufgetreten.<br /><small>Die empfangene Fehlermeldung lautete: $1</small>',
 	'flow-error-edit-restricted' => 'Du bist nicht berechtigt, diesen Beitrag zu bearbeiten.',
-	'flow-error-external-multi' => 'Beim Speichern deines Beitrags sind Fehler aufgetreten. Dein Beitrag wurde nicht gespeichert. <br /> $1',
+	'flow-error-external-multi' => 'Es sind Fehler aufgetreten.<br />$1',
 	'flow-error-missing-content' => 'Der Beitrag hat keinen Inhalt. Dieser ist erforderlich, um einen neuen Beitrag zu speichern.',
 	'flow-error-missing-title' => 'Das Thema hat keinen Titel. Dieser ist erforderlich, um ein neues Thema zu speichern.',
 	'flow-error-parsoid-failure' => 'Aufgrund eines Parsoid-Fehlers konnte der Inhalt nicht geparst werden.',
@@ -924,6 +983,10 @@ $messages['de'] = array(
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|löschte}} einen [$3 Kommentar].',
 	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|unterdrückte}} einen [$3 Kommentar].',
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|stellte}} einen [$3 Kommentar] wieder her.',
+	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|versteckte}} das [$3 Thema].',
+	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|löschte}} den [$3 Kommentar].', # Fuzzy
+	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|unterdrückte}} das [$3 Thema].',
+	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|stellte}} das [$3 Thema] wieder her.',
 	'flow-board-history' => 'Versionsgeschichte von „$1“',
 	'flow-topic-history' => 'Themenversionsgeschichte von „$1“',
 	'flow-post-history' => 'Beitragsversionsgeschichte – Kommentar von {{GENDER:$2|$2}}',
@@ -981,10 +1044,26 @@ $messages['de'] = array(
 	'flow-moderation-confirm-delete-post' => 'Löschen',
 	'flow-moderation-confirm-hide-post' => 'Verstecken',
 	'flow-moderation-confirm-restore-post' => 'Wiederherstellen',
-	'flow-moderation-confirmation-censor-post' => 'Ziehe in Erwägung, $1 eine Rückmeldung für diesen Beitrag zu geben.', # Fuzzy
-	'flow-moderation-confirmation-delete-post' => 'Ziehe in Erwägung, $1 eine Rückmeldung für diesen Beitrag zu geben.', # Fuzzy
-	'flow-moderation-confirmation-hide-post' => 'Ziehe in Erwägung, $1 eine Rückmeldung für diesen Beitrag zu geben.', # Fuzzy
+	'flow-moderation-confirmation-censor-post' => 'Ziehe in Erwägung, $1 eine Rückmeldung für diesen Beitrag zu {{GENDER:$1|geben}}.',
+	'flow-moderation-confirmation-delete-post' => 'Ziehe in Erwägung, $1 eine Rückmeldung für diesen Beitrag zu {{GENDER:$1|geben}}.',
+	'flow-moderation-confirmation-hide-post' => 'Ziehe in Erwägung, $1 eine Rückmeldung für diesen Beitrag zu {{GENDER:$1|geben}}.',
 	'flow-moderation-confirmation-restore-post' => 'Du hast erfolgreich diesen Beitrag wiederhergestellt.',
+	'flow-moderation-title-censor-topic' => 'Thema unterdrücken?',
+	'flow-moderation-title-delete-topic' => 'Thema löschen?',
+	'flow-moderation-title-hide-topic' => 'Thema verstecken?',
+	'flow-moderation-title-restore-topic' => 'Thema wiederherstellen?',
+	'flow-moderation-intro-censor-topic' => 'Bitte erkläre, warum du dieses Thema unterdrückst.',
+	'flow-moderation-intro-delete-topic' => 'Bitte erkläre, warum du dieses Thema löschst.',
+	'flow-moderation-intro-hide-topic' => 'Bitte erkläre, warum du dieses Thema versteckst.',
+	'flow-moderation-intro-restore-topic' => 'Bitte erkläre, warum du dieses Thema wiederherstellst.',
+	'flow-moderation-confirm-censor-topic' => 'Unterdrücken',
+	'flow-moderation-confirm-delete-topic' => 'Löschen',
+	'flow-moderation-confirm-hide-topic' => 'Verstecken',
+	'flow-moderation-confirm-restore-topic' => 'Wiederherstellen',
+	'flow-moderation-confirmation-censor-topic' => 'Ziehe in Erwägung, $1 eine Rückmeldung für dieses Thema zu {{GENDER:$1|geben}}.',
+	'flow-moderation-confirmation-delete-topic' => 'Ziehe in Erwägung, $1 eine Rückmeldung für dieses Thema zu {{GENDER:$1|geben}}.',
+	'flow-moderation-confirmation-hide-topic' => 'Ziehe in Erwägung, $1 eine Rückmeldung für dieses Thema zu {{GENDER:$1|geben}}.',
+	'flow-moderation-confirmation-restore-topic' => 'Du hast dieses Thema erfolgreich wiederhergestellt.',
 	'flow-topic-permalink-warning' => 'Dieses Thema wurde gestartet auf  [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Dieses Thema wurde gestartet auf dem [$2 Brett von {{GENDER:$1|$1}}]',
 );
@@ -1029,7 +1108,7 @@ $messages['es'] = array(
 	'flow-topic-action-watchlist' => 'Lista de seguimiento',
 	'flow-topic-action-edit-title' => 'Editar título',
 	'flow-topic-action-history' => 'Historial del tema',
-	'flow-error-http' => 'Ha ocurrido un error mientras se contactaba al servidor. Tu mensaje no ha sido guardado.',
+	'flow-error-http' => 'Ha ocurrido un error mientras se contactaba al servidor. Tu mensaje no ha sido guardado.', # Fuzzy
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] borró un [$3 comentario].',
 	'flow-moderation-reason-placeholder' => 'Ingresa tu razón aquí',
 );
@@ -1096,9 +1175,9 @@ $messages['fr'] = array(
 	'flow-header-empty' => 'Cette page de discussion n’a pas d’entête pour l’instant.',
 	'flow-post-moderated-toggle-show' => '[Afficher]',
 	'flow-post-moderated-toggle-hide' => '[Masquer]',
-	'flow-hide-content' => '{{GENDER:$1|Masqué}} par $1 $2',
-	'flow-delete-content' => '{{GENDER:$1|Supprimé}} par $1 $2',
-	'flow-censor-content' => '{{GENDER:$1|Supprimé}} par $1 $2',
+	'flow-hide-content' => '{{GENDER:$1|Masqué}} par $1',
+	'flow-delete-content' => '{{GENDER:$1|Supprimé}} par $1',
+	'flow-censor-content' => '{{GENDER:$1|Supprimé}} par $1',
 	'flow-censor-usertext' => '« Nom d’utilisateur supprimé »',
 	'flow-post-actions' => 'Actions',
 	'flow-topic-actions' => 'Actions',
@@ -1128,11 +1207,15 @@ $messages['fr'] = array(
 	'flow-topic-action-watchlist' => 'Liste de surveillance',
 	'flow-topic-action-edit-title' => 'Modifier le titre',
 	'flow-topic-action-history' => 'Historique des sujets',
-	'flow-error-http' => "Une erreur s'est produite en communiquant avec le serveur. Votre message n'a pas été enregistré.",
-	'flow-error-other' => "Une erreur inattendue s'est produite. Votre message n'a pas été enregistré.",
-	'flow-error-external' => "Une erreur s'est produite lors de l'enregistrement de votre message. Il n'a pas été enregistré.<br /><small>Le message d'erreur reçu était :$1</small>",
+	'flow-topic-action-hide-topic' => 'Masquer le sujet',
+	'flow-topic-action-delete-topic' => 'Supprimer le sujet',
+	'flow-topic-action-censor-topic' => 'Supprimer le sujet',
+	'flow-topic-action-restore-topic' => 'Rétablir le sujet',
+	'flow-error-http' => 'Une erreur s’est produite en communiquant avec le serveur.',
+	'flow-error-other' => 'Une erreur inattendue s’est produite.',
+	'flow-error-external' => 'Une erreur s’est produite.<br /><small>Le message d’erreur reçu était : $1</small>',
 	'flow-error-edit-restricted' => 'Vous n’êtes pas autorisé à modifier cette note',
-	'flow-error-external-multi' => "Des erreurs se sont produites lors de l'enregistrement de votre message. Votre message n'a pas été enregistré.<br /> $1",
+	'flow-error-external-multi' => 'Des erreurs se sont produites.<br />$1',
 	'flow-error-missing-content' => "Le message n'a aucun contenu. C'est requis pour enregistrer un nouveau message.",
 	'flow-error-missing-title' => "Le sujet n'a aucun titre. C'est requis pour enregistrer un nouveau sujet.",
 	'flow-error-parsoid-failure' => "Impossible d'analyser le contenu en raison d'une panne de Parsoid.",
@@ -1159,6 +1242,10 @@ $messages['fr'] = array(
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|a supprimé}} un [$3 commentaire].',
 	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|a effacé}} un [$3 commentaire].',
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|a rétabli}} un [$3 commentaire].',
+	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|a masqué}} le [$3 sujet].',
+	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|a supprimé}} le [$3 commentaire].', # Fuzzy
+	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|a supprimé}} le [$3 sujet].',
+	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|a rétabli}} le [$3 sujet].',
 	'flow-board-history' => 'Historique de « $1 »',
 	'flow-topic-history' => 'Historique du sujet « $1 »',
 	'flow-post-history' => 'Commentaire par {{GENDER:$2|$2}} Historique de la note',
@@ -1216,10 +1303,26 @@ $messages['fr'] = array(
 	'flow-moderation-confirm-delete-post' => 'Supprimer',
 	'flow-moderation-confirm-hide-post' => 'Masquer',
 	'flow-moderation-confirm-restore-post' => 'Rétablir',
-	'flow-moderation-confirmation-censor-post' => 'Penser à donner à $1 un avis sur cette note.', # Fuzzy
-	'flow-moderation-confirmation-delete-post' => 'Penser à donner à $1 un avis sur cette note.', # Fuzzy
-	'flow-moderation-confirmation-hide-post' => 'Penser à donner à $1 un avis sur cette note.', # Fuzzy
+	'flow-moderation-confirmation-censor-post' => 'Penser à {{GENDER:$1|donner}} à $1 un avis sur cette note.',
+	'flow-moderation-confirmation-delete-post' => 'Penser à {{GENDER:$1|donner}} à $1 un avis sur cette note.',
+	'flow-moderation-confirmation-hide-post' => 'Penser à {{GENDER:$1|donner}} à $1 un avis sur cette note.',
 	'flow-moderation-confirmation-restore-post' => 'Vous avez bien restauré cette note.',
+	'flow-moderation-title-censor-topic' => 'Supprimer le sujet ?',
+	'flow-moderation-title-delete-topic' => 'Supprimer le sujet ?',
+	'flow-moderation-title-hide-topic' => 'Masquer le sujet ?',
+	'flow-moderation-title-restore-topic' => 'Rétablir le sujet ?',
+	'flow-moderation-intro-censor-topic' => 'Veuillez expliquer pourquoi vous supprimez ce sujet.',
+	'flow-moderation-intro-delete-topic' => 'Veuillez expliquer pourquoi vous supprimez ce sujet.',
+	'flow-moderation-intro-hide-topic' => 'Veuillez expliquer pourquoi vous masquez ce sujet.',
+	'flow-moderation-intro-restore-topic' => 'Veuillez expliquer pourquoi vous rétablissez ce sujet.',
+	'flow-moderation-confirm-censor-topic' => 'Supprimer',
+	'flow-moderation-confirm-delete-topic' => 'Supprimer',
+	'flow-moderation-confirm-hide-topic' => 'Masquer',
+	'flow-moderation-confirm-restore-topic' => 'Rétablir',
+	'flow-moderation-confirmation-censor-topic' => 'Penser à {{GENDER:$1|donner}} à $1 un avis sur ce sujet.',
+	'flow-moderation-confirmation-delete-topic' => 'Penser à {{GENDER:$1|donner}} à $1 un avis sur ce sujet.',
+	'flow-moderation-confirmation-hide-topic' => 'Penser à {{GENDER:$1|donner}} à $1 un avis sur ce sujet.',
+	'flow-moderation-confirmation-restore-topic' => 'Vous avez bien rétabli ce sujet.',
 	'flow-topic-permalink-warning' => 'Ce sujet a été démarré sur [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Ce sujet a été démarré sur le tableau de [$2 {{GENDER:$1|$1}}]',
 );
@@ -1262,11 +1365,11 @@ $messages['gl'] = array(
 	'flow-topic-action-watchlist' => 'Lista de vixilancia',
 	'flow-topic-action-edit-title' => 'Editar o título',
 	'flow-topic-action-history' => 'Historial do fío',
-	'flow-error-http' => 'Produciuse un erro ao contactar co servidor. Non se gardou a súa mensaxe.',
-	'flow-error-other' => 'Produciuse un erro inesperado. Non se gardou a súa mensaxe.',
-	'flow-error-external' => 'Produciuse un erro ao gardar a súa mensaxe. Non se gardou a súa mensaxe.<br /><small>A mensaxe de erro recibida foi: $1</small>',
+	'flow-error-http' => 'Produciuse un erro ao contactar co servidor. Non se gardou a súa mensaxe.', # Fuzzy
+	'flow-error-other' => 'Produciuse un erro inesperado. Non se gardou a súa mensaxe.', # Fuzzy
+	'flow-error-external' => 'Produciuse un erro ao gardar a súa mensaxe. Non se gardou a súa mensaxe.<br /><small>A mensaxe de erro recibida foi: $1</small>', # Fuzzy
 	'flow-error-edit-restricted' => 'Non lle está permitido editar esta mensaxe.',
-	'flow-error-external-multi' => 'Producíronse erros ao gardar a súa mensaxe. Non se gardou a súa mensaxe.<br />$1',
+	'flow-error-external-multi' => 'Producíronse erros ao gardar a súa mensaxe. Non se gardou a súa mensaxe.<br />$1', # Fuzzy
 	'flow-error-missing-content' => 'A mensaxe non ten contido. O contido é obrigatorio para gardar unha nova mensaxe.',
 	'flow-error-missing-title' => 'O fío non ten título. O título é obrigatorio para gardar un novo fío.',
 	'flow-error-parsoid-failure' => 'Non é posible analizar o contido debido a un fallo do Parsoid.',
@@ -1455,9 +1558,9 @@ $messages['ia'] = array(
 	'flow-header-empty' => 'Iste pagina de discussion actualmente non ha titulo.',
 	'flow-post-moderated-toggle-show' => '[Monstrar]',
 	'flow-post-moderated-toggle-hide' => '[Celar]',
-	'flow-hide-content' => '{{GENDER:$1|Celate}} per $1 $2',
-	'flow-delete-content' => '{{GENDER:$1|Delite}} per $1 $2',
-	'flow-censor-content' => '{{GENDER:$1|Supprimite}} per $1 $2',
+	'flow-hide-content' => '{{GENDER:$1|Celate}} per $1',
+	'flow-delete-content' => '{{GENDER:$1|Delite}} per $1',
+	'flow-censor-content' => '{{GENDER:$1|Supprimite}} per $1',
 	'flow-censor-usertext' => "''Nomine de usator supprimite''",
 	'flow-post-actions' => 'Actiones',
 	'flow-topic-actions' => 'Actiones',
@@ -1487,11 +1590,11 @@ $messages['ia'] = array(
 	'flow-topic-action-watchlist' => 'Observatorio',
 	'flow-topic-action-edit-title' => 'Modificar titulo',
 	'flow-topic-action-history' => 'Historia del topico',
-	'flow-error-http' => 'Un error occurreva durante le communication con le servitor. Tu message non ha essite salveguardate.',
-	'flow-error-other' => 'Un error inexpectate ha occurrite. Tu message non ha essite salveguardate.',
-	'flow-error-external' => 'Un error ha occurrite durante le salveguarda de tu message. Tu message non ha essite salveguardate.<br /><small>Le message de error recipite es: $1</small>',
+	'flow-error-http' => 'Un error occurreva durante le communication con le servitor. Tu message non ha essite salveguardate.', # Fuzzy
+	'flow-error-other' => 'Un error inexpectate ha occurrite. Tu message non ha essite salveguardate.', # Fuzzy
+	'flow-error-external' => 'Un error ha occurrite durante le salveguarda de tu message. Tu message non ha essite salveguardate.<br /><small>Le message de error recipite es: $1</small>', # Fuzzy
 	'flow-error-edit-restricted' => 'Tu non es autorisate a modificar iste entrata.',
-	'flow-error-external-multi' => 'Errores ha essite incontrate durante le salveguarda de tu message. Tu message non ha essite salveguardate.<br />$1',
+	'flow-error-external-multi' => 'Errores ha essite incontrate durante le salveguarda de tu message. Tu message non ha essite salveguardate.<br />$1', # Fuzzy
 	'flow-error-missing-content' => 'Le message non ha contento. Contento es necessari pro salveguardar un nove message.',
 	'flow-error-missing-title' => 'Le topico non ha titulo. Le titulo es necessari pro salveguardar un nove topico.',
 	'flow-error-parsoid-failure' => 'Impossibile interpretar le contento a causa de un fallimento de Parsoid.',
@@ -1557,9 +1660,9 @@ $messages['it'] = array(
 	'flow-header-empty' => 'Questa pagina di discussione attualmente non ha alcuna intestazione.',
 	'flow-post-moderated-toggle-show' => '[Mostra]',
 	'flow-post-moderated-toggle-hide' => '[Nascondi]',
-	'flow-hide-content' => '{{GENDER:$1|Nascosto}} da $1 $2',
-	'flow-delete-content' => '{{GENDER:$1|Cancellato}} da $1 $2',
-	'flow-censor-content' => '{{GENDER:$1|Soppresso}} da $1 $2',
+	'flow-hide-content' => '{{GENDER:$1|Nascosto}} da $1',
+	'flow-delete-content' => '{{GENDER:$1|Cancellato}} da $1',
+	'flow-censor-content' => '{{GENDER:$1|Soppresso}} da $1',
 	'flow-censor-usertext' => "''Nome utente soppresso''",
 	'flow-post-actions' => 'Azioni',
 	'flow-topic-actions' => 'Azioni',
@@ -1589,11 +1692,15 @@ $messages['it'] = array(
 	'flow-topic-action-watchlist' => 'Osservati speciali',
 	'flow-topic-action-edit-title' => 'Modifica titolo',
 	'flow-topic-action-history' => 'Cronologia della discussione',
-	'flow-error-http' => 'Si è verificato un errore durante la comunicazione con il server. Il tuo messaggio non è stato salvato.',
-	'flow-error-other' => 'Si è verificato un errore imprevisto. Il tuo messaggio non è stato salvato.',
-	'flow-error-external' => 'Si è verificato un errore durante il salvataggio del tuo messaggio. Il tuo messaggio, perciò, non è stato salvato.<br /><small>Il messaggio di errore ricevuto è: $1</small>',
+	'flow-topic-action-hide-topic' => 'Nascondi discussione',
+	'flow-topic-action-delete-topic' => 'Cancella discussione',
+	'flow-topic-action-censor-topic' => 'Sopprimi discussione',
+	'flow-topic-action-restore-topic' => 'Ripristina discussione',
+	'flow-error-http' => 'Si è verificato un errore durante la comunicazione con il server.',
+	'flow-error-other' => 'Si è verificato un errore imprevisto.',
+	'flow-error-external' => 'Si è verificato un errore.<br /><small>Il messaggio di errore ricevuto è: $1</small>',
 	'flow-error-edit-restricted' => 'Non è consentito modificare questo messaggio.',
-	'flow-error-external-multi' => 'Si sono verificati errori durante il salvataggio del tuo messaggio. Il tuo messaggio, perciò, non è stato salvato.<br />$1',
+	'flow-error-external-multi' => 'Si sono verificati errori.<br />$1',
 	'flow-error-missing-content' => 'Il tuo messaggio non ha contenuto. Un minimo di contenuto è necessario per poter salvare un nuovo messaggio.',
 	'flow-error-missing-title' => 'La discussione non ha titolo. Serve un titolo per salvare una nuova discussione.',
 	'flow-error-parsoid-failure' => 'Impossibile analizzare il contenuto a causa di un errore di Parsoid.',
@@ -1620,6 +1727,10 @@ $messages['it'] = array(
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|ha cancellato}} un [$3 commento]',
 	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|ha soppresso}} un [$3 commento]',
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|ha ripristinato}} un [$3 commento]',
+	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|ha nascosto}} la [$3 discussione]',
+	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|ha cancellato}} la [$3 discussione]', # Fuzzy
+	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|ha soppresso}} la [$3 discussione]',
+	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|ha ripristinato}} la [$3 discussione]',
 	'flow-board-history' => 'Cronologia di "$1"',
 	'flow-topic-history' => 'Cronologia della discussione "$1"',
 	'flow-post-history' => 'Cronologia del commento di {{GENDER:$2|$2}}',
@@ -1677,16 +1788,33 @@ $messages['it'] = array(
 	'flow-moderation-confirm-delete-post' => 'Cancella',
 	'flow-moderation-confirm-hide-post' => 'Nascondi',
 	'flow-moderation-confirm-restore-post' => 'Ripristina',
-	'flow-moderation-confirmation-censor-post' => 'Scrivi a $1 riguardo a questo messaggio.', # Fuzzy
-	'flow-moderation-confirmation-delete-post' => 'Scrivi a $1 riguardo a questo messaggio.', # Fuzzy
-	'flow-moderation-confirmation-hide-post' => 'Scrivi a $1 riguardo a questo messaggio.', # Fuzzy
+	'flow-moderation-confirmation-censor-post' => '{{GENDER:$1|Scrivi}} a $1 riguardo a questo messaggio.',
+	'flow-moderation-confirmation-delete-post' => '{{GENDER:$1|Scrivi}} a $1 riguardo a questo messaggio.',
+	'flow-moderation-confirmation-hide-post' => '{{GENDER:$1|Scrivi}} a $1 riguardo a questo messaggio.',
 	'flow-moderation-confirmation-restore-post' => 'Hai ripristinato con successo questo messaggio.',
+	'flow-moderation-title-censor-topic' => 'Sopprimere la discussione?',
+	'flow-moderation-title-delete-topic' => 'Cancellare la discussione?',
+	'flow-moderation-title-hide-topic' => 'Nascondere la discussione?',
+	'flow-moderation-title-restore-topic' => 'Ripristinare la discussione?',
+	'flow-moderation-intro-censor-topic' => 'Spiega perché stai sopprimendo questa discussione.',
+	'flow-moderation-intro-delete-topic' => 'Spiega perché stai cancellando questa discussione.',
+	'flow-moderation-intro-hide-topic' => 'Spiega perché stai nascondendo questa discussione.',
+	'flow-moderation-intro-restore-topic' => 'Spiega perché stai ripristinando questa discussione.',
+	'flow-moderation-confirm-censor-topic' => 'Sopprimi',
+	'flow-moderation-confirm-delete-topic' => 'Cancella',
+	'flow-moderation-confirm-hide-topic' => 'Nascondi',
+	'flow-moderation-confirm-restore-topic' => 'Ripristina',
+	'flow-moderation-confirmation-censor-topic' => '{{GENDER:$1|Scrivi}} a $1 riguardo a questo messaggio.',
+	'flow-moderation-confirmation-delete-topic' => '{{GENDER:$1|Scrivi}} a $1 riguardo a questo messaggio.',
+	'flow-moderation-confirmation-hide-topic' => '{{GENDER:$1|Scrivi}} a $1 riguardo a questo messaggio.',
+	'flow-moderation-confirmation-restore-topic' => 'Hai ripristinato con successo questa discussione.',
 	'flow-topic-permalink-warning' => 'La discussione è iniziata su [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'La discussione è iniziata sulla [$2 scheda di {{GENDER:$1|$1}}]',
 );
 
 /** Japanese (日本語)
  * @author Fryed-peach
+ * @author Kanon und wikipedia
  * @author Shirayuki
  */
 $messages['ja'] = array(
@@ -1700,11 +1828,13 @@ $messages['ja'] = array(
 	'flow-header-empty' => '現在、このトークページにはヘッダーがありません。',
 	'flow-post-moderated-toggle-show' => '[表示]',
 	'flow-post-moderated-toggle-hide' => '[非表示]',
+	'flow-hide-content' => '$1 が{{GENDER:$1|非表示にしました}}',
+	'flow-delete-content' => '$1 が{{GENDER:$1|削除しました}}',
 	'flow-post-actions' => '操作',
 	'flow-topic-actions' => '操作',
 	'flow-cancel' => 'キャンセル',
 	'flow-newtopic-title-placeholder' => '新しい話題',
-	'flow-newtopic-content-placeholder' => 'メッセージの本文', # Fuzzy
+	'flow-newtopic-content-placeholder' => '任意で詳細な情報を与える事も出来ます。',
 	'flow-newtopic-header' => '新しい話題の追加',
 	'flow-newtopic-save' => '話題を追加',
 	'flow-newtopic-start-placeholder' => '新しい話題の作成',
@@ -1727,11 +1857,14 @@ $messages['ja'] = array(
 	'flow-topic-action-watchlist' => 'ウォッチリスト',
 	'flow-topic-action-edit-title' => 'タイトルを編集',
 	'flow-topic-action-history' => '話題の履歴',
-	'flow-error-http' => 'サーバーと通信する際にエラーが発生しました。投稿内容は保存されませんでした。',
-	'flow-error-other' => '予期しないエラーが発生しました。投稿内容は保存されませんでした。',
-	'flow-error-external' => '投稿内容を保存する際にエラーが発生しました。投稿内容は保存されませんでした。<br /><small>エラー メッセージ: $1</small>',
+	'flow-topic-action-hide-topic' => '話題を非表示にする',
+	'flow-topic-action-delete-topic' => '話題を削除',
+	'flow-topic-action-restore-topic' => '話題を復元',
+	'flow-error-http' => 'サーバとの通信中にエラーが発生しました。',
+	'flow-error-other' => '予期せぬエラーが発生しました。',
+	'flow-error-external' => 'エラーが発生しました。<br /><small>受信したエラーメッセージ: $1</small>',
 	'flow-error-edit-restricted' => 'あなたはこの投稿を編集を許可されていません。',
-	'flow-error-external-multi' => '投稿内容を保存する際にエラーが発生しました。投稿内容は保存されませんでした。<br /> $1',
+	'flow-error-external-multi' => '複数のエラーが発生しました。<br /> $1',
 	'flow-error-missing-content' => '投稿の本文がありません。新しい投稿を保存するには本文が必要です。',
 	'flow-error-missing-title' => '話題のタイトルがありません。新しい話題を保存するにはタイトルが必要です。',
 	'flow-error-parsoid-failure' => 'Parsoid でエラーが発生したため、本文を構文解析できませんでした。',
@@ -1753,8 +1886,12 @@ $messages['ja'] = array(
 	'flow-rev-message-edit-title' => '[[User:$1|$1]] が話題の名前を $4 から [$2 $3] に{{GENDER:$1|編集}}',
 	'flow-rev-message-create-header' => '[[User:$1|$1]] が掲示板のヘッダーを{{GENDER:$1|作成}}',
 	'flow-rev-message-edit-header' => '[[User:$1|$1]] が掲示板のヘッダーを{{GENDER:$1|編集}}',
+	'flow-rev-message-hid-post' => '[[User:$1|$1]] が[$3 コメント]を{{GENDER:$1|非表示化}}',
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] が[$3 コメント]を{{GENDER:$1|削除}}',
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] が[$3 コメント]を{{GENDER:$1|復元}}',
+	'flow-rev-message-hid-topic' => '[[User:$1|$1]] が[$3 話題]を{{GENDER:$1|非表示化}}',
+	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] が[$3 話題]を{{GENDER:$1|削除}}', # Fuzzy
+	'flow-rev-message-restored-topic' => '[[User:$1|$1]] が[$3 話題]を{{GENDER:$1|復元}}',
 	'flow-board-history' => '「$1」の履歴',
 	'flow-topic-history' => '話題「$1」の履歴',
 	'flow-post-history' => '「{{GENDER:$2|$2}} によるコメント」投稿履歴',
@@ -1801,11 +1938,22 @@ $messages['ja'] = array(
 	'flow-moderation-title-hide-post' => '投稿を非表示にしますか?',
 	'flow-moderation-title-restore-post' => '投稿を復元しますか?',
 	'flow-moderation-intro-delete-post' => 'この投稿を削除する理由を説明してください。',
+	'flow-moderation-intro-hide-post' => 'この投稿を非表示にする理由を説明してください。',
 	'flow-moderation-intro-restore-post' => 'この投稿を復元する理由を説明してください。',
 	'flow-moderation-confirm-delete-post' => '削除',
 	'flow-moderation-confirm-hide-post' => '非表示にする',
 	'flow-moderation-confirm-restore-post' => '復元',
 	'flow-moderation-confirmation-restore-post' => 'この投稿を復元しました。',
+	'flow-moderation-title-delete-topic' => '話題を削除しますか?',
+	'flow-moderation-title-hide-topic' => '話題を非表示にしますか?',
+	'flow-moderation-title-restore-topic' => '話題を復元しますか?',
+	'flow-moderation-intro-delete-topic' => 'この話題を削除する理由を説明してください。',
+	'flow-moderation-intro-hide-topic' => 'この話題を非表示にする理由を説明してください。',
+	'flow-moderation-intro-restore-topic' => 'この話題を復元する理由を説明してください。',
+	'flow-moderation-confirm-delete-topic' => '削除',
+	'flow-moderation-confirm-hide-topic' => '非表示にする',
+	'flow-moderation-confirm-restore-topic' => '復元',
+	'flow-moderation-confirmation-restore-topic' => 'この話題を復元しました。',
 	'flow-topic-permalink-warning' => 'この話題は [$2 $1] で開始されました',
 	'flow-topic-permalink-warning-user-board' => 'この話題は [$2 {{GENDER:$1|$1}} の掲示板]で開始されました',
 );
@@ -1916,6 +2064,9 @@ $messages['lb'] = array(
 	'flow-moderation-confirm-delete-post' => 'Läschen',
 	'flow-moderation-confirm-hide-post' => 'Verstoppen',
 	'flow-moderation-confirm-restore-post' => 'Restauréieren',
+	'flow-moderation-confirm-delete-topic' => 'Läschen',
+	'flow-moderation-confirm-hide-topic' => 'Verstoppen',
+	'flow-moderation-confirm-restore-topic' => 'Restauréieren',
 	'flow-topic-permalink-warning' => 'Dëse Sujet gouf op [$2 $1] ugefaang',
 );
 
@@ -1958,9 +2109,9 @@ $messages['mk'] = array(
 	'flow-header-empty' => 'Страницава засега нема заглавие.',
 	'flow-post-moderated-toggle-show' => '[Прикажи]',
 	'flow-post-moderated-toggle-hide' => '[Скриј]',
-	'flow-hide-content' => '{{GENDER:$1|Скриена}} од $1 $2',
-	'flow-delete-content' => '{{GENDER:$1|Избришана}} од $1 $2',
-	'flow-censor-content' => '{{GENDER:$1|Притаена}} од $1 $2',
+	'flow-hide-content' => '{{GENDER:$1|Скриена}} од $1',
+	'flow-delete-content' => '{{GENDER:$1|Избришана}} од $1',
+	'flow-censor-content' => '{{GENDER:$1|Притаена}} од $1',
 	'flow-censor-usertext' => "''Корисничкото име е притаено''",
 	'flow-post-actions' => 'Дејства',
 	'flow-topic-actions' => 'Дејства',
@@ -1990,11 +2141,15 @@ $messages['mk'] = array(
 	'flow-topic-action-watchlist' => 'Набљудувања',
 	'flow-topic-action-edit-title' => 'Уреди наслов',
 	'flow-topic-action-history' => 'Историја на темата',
-	'flow-error-http' => 'Се јави грешка при поврзувањето со опслужувачот. Пораката не е зачувана.',
-	'flow-error-other' => 'Се појави неочекувана грешка. Пораката не е зачувана',
-	'flow-error-external' => 'Се појави грешка при зачувувањето на пораката, и затоа не е зачувана.<br /><small>Добиена е грешката: $1</small>',
+	'flow-topic-action-hide-topic' => 'Скриј тема',
+	'flow-topic-action-delete-topic' => 'Избриши тема',
+	'flow-topic-action-censor-topic' => 'Притај тема',
+	'flow-topic-action-restore-topic' => 'Поврати тема',
+	'flow-error-http' => 'Се јави грешка при поврзувањето со опслужувачот. Пораката не е зачувана.', # Fuzzy
+	'flow-error-other' => 'Се појави неочекувана грешка. Пораката не е зачувана', # Fuzzy
+	'flow-error-external' => 'Се појави грешка при зачувувањето на пораката, и затоа не е зачувана.<br /><small>Добиена е грешката: $1</small>', # Fuzzy
 	'flow-error-edit-restricted' => 'Не ви е дозволено да ја менувате објавата.',
-	'flow-error-external-multi' => 'Наидов на грешки при зачувувањето на пораката, и затоа не е зачувана.<br />$1',
+	'flow-error-external-multi' => 'Наидов на грешки при зачувувањето на пораката, и затоа не е зачувана.<br />$1', # Fuzzy
 	'flow-error-missing-content' => 'Пораката нема содржина. За да се зачува, мора да има содржина.',
 	'flow-error-missing-title' => 'Темата нема наслов. Се бара наслов за да може да се зачува темата.',
 	'flow-error-parsoid-failure' => 'Не можам да ја парсирам содржината поради проблем со Parsoid.',
@@ -2021,6 +2176,10 @@ $messages['mk'] = array(
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|избриша}} еден [$3 коментар].',
 	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|притаи}} еден [$3 коментар].',
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|поврати}} еден [$3 коментар].',
+	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|ја скри}} [$3 темата].',
+	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|ја избриша}} [$3 темата].', # Fuzzy
+	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|ја притаи}} [$3 темата].',
+	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|ја поврати}} [$3 темата].',
 	'flow-board-history' => 'Историја на „$1“',
 	'flow-topic-history' => 'Историја на темата „$1“',
 	'flow-post-history' => 'Историја на објавите — Коментар од {{GENDER:$2|$2}}',
@@ -2029,7 +2188,7 @@ $messages['mk'] = array(
 	'flow-history-week' => 'Минатата седмица',
 	'flow-history-pages-topic' => 'Фигурира на [$1 таблата „$2“]',
 	'flow-history-pages-post' => 'Фигурира на [$1 $2]',
-	'flow-topic-participants' => '{{PLURAL:$1|Темата ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} и {{PLURAL:$2|еден друг|други}}|0=Досега ниокј не учествувал|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{GENDER:$5|$5}}}}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|Темата ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} и {{PLURAL:$2|еден друг|други}}|0=Досега никој не зел учество|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{GENDER:$5|$5}}}}}', # Fuzzy
 	'flow-topic-comments' => '{{PLURAL:$1|0=Бидете први со коментар!|Коментари ($1)}}',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
@@ -2078,10 +2237,26 @@ $messages['mk'] = array(
 	'flow-moderation-confirm-delete-post' => 'Избриши',
 	'flow-moderation-confirm-hide-post' => 'Скриј',
 	'flow-moderation-confirm-restore-post' => 'Поврати',
-	'flow-moderation-confirmation-censor-post' => 'Ви препорачуваме на $1 да {{GENDER:$2|му|ѝ}} дадете образложение и/или совет за објавата.', # Fuzzy
-	'flow-moderation-confirmation-delete-post' => 'Ви препорачуваме на $1 да {{GENDER:$2|му|ѝ}} дадете образложение и/или совет за објавата.', # Fuzzy
-	'flow-moderation-confirmation-hide-post' => 'Ви препорачуваме на $1 да {{GENDER:$2|му|ѝ}} дадете образложение и/или совет за објавата.', # Fuzzy
+	'flow-moderation-confirmation-censor-post' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за објавата.',
+	'flow-moderation-confirmation-delete-post' => 'Ви препорачуваме на $1 да {{GENDER:$12|му|ѝ}} дадете образложение и/или совет за објавата.',
+	'flow-moderation-confirmation-hide-post' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за објавата.',
 	'flow-moderation-confirmation-restore-post' => 'Успешно ја повративте објавата.',
+	'flow-moderation-title-censor-topic' => 'Да ја притаам темата?',
+	'flow-moderation-title-delete-topic' => 'Да ја избришам темата?',
+	'flow-moderation-title-hide-topic' => 'Да ја скријам темата?',
+	'flow-moderation-title-restore-topic' => 'Да ја повратам темата?',
+	'flow-moderation-intro-censor-topic' => 'Објаснете зошто ја притајувате темава.',
+	'flow-moderation-intro-delete-topic' => 'Објаснете зошто ја бришете темава.',
+	'flow-moderation-intro-hide-topic' => 'Објаснете зошто ја скривате темава.',
+	'flow-moderation-intro-restore-topic' => 'Објаснете зошто ја повраќате темава.',
+	'flow-moderation-confirm-censor-topic' => 'Притај',
+	'flow-moderation-confirm-delete-topic' => 'Избриши',
+	'flow-moderation-confirm-hide-topic' => 'Скриј',
+	'flow-moderation-confirm-restore-topic' => 'Поврати',
+	'flow-moderation-confirmation-censor-topic' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за темата.',
+	'flow-moderation-confirmation-delete-topic' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за темата.',
+	'flow-moderation-confirmation-hide-topic' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за темата.',
+	'flow-moderation-confirmation-restore-topic' => 'Успешно ја повративте темата.',
 	'flow-topic-permalink-warning' => 'Темата е започната на [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Темата е започната на [$2 таблата на {{GENDER:$1|$1}}]',
 );
@@ -2138,11 +2313,11 @@ $messages['nb'] = array(
 	'flow-topic-action-watchlist' => 'Overvåkningsliste',
 	'flow-topic-action-edit-title' => 'Rediger tittel',
 	'flow-topic-action-history' => 'Emnehistorikk',
-	'flow-error-http' => 'Det oppsto en nettverksfeil. Meldingen din ble ikke lagret.',
-	'flow-error-other' => 'Det oppsto en ukjent feil. Meldingen din ble ikke lagret.',
-	'flow-error-external' => 'Det oppsto en feil under lagring av meldingen. Meldingen din ble ikke lagret.<br /><small>Feilmeldingen var: $1</small>',
+	'flow-error-http' => 'Det oppsto en nettverksfeil. Meldingen din ble ikke lagret.', # Fuzzy
+	'flow-error-other' => 'Det oppsto en ukjent feil. Meldingen din ble ikke lagret.', # Fuzzy
+	'flow-error-external' => 'Det oppsto en feil under lagring av meldingen. Meldingen din ble ikke lagret.<br /><small>Feilmeldingen var: $1</small>', # Fuzzy
 	'flow-error-edit-restricted' => 'Du har ikke tilgang til å redigere denne meldingen.',
-	'flow-error-external-multi' => 'Feil oppsto under lagring av meldingen. Meldingen din ble ikke lagret.<br />$1',
+	'flow-error-external-multi' => 'Feil oppsto under lagring av meldingen. Meldingen din ble ikke lagret.<br />$1', # Fuzzy
 	'flow-error-missing-content' => 'Meldingen har ikke noe innhold. Innhold er påkrevd for at meldingen skal bli lagret.',
 	'flow-error-missing-title' => 'Meldingen har ingen tittel. En tittel er påkrevd for at meldingen skal bli lagret.',
 	'flow-error-parsoid-failure' => 'Innholdet kunne ikke parseres pga. et Parsord-problem.',
@@ -2238,9 +2413,9 @@ $messages['nl'] = array(
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] teruggeplaatst op [[$3]]',
 	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] onderdrukt op [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] verwijderd van [[$3]]',
-	'flow-hide-content' => 'Op $2 {{GENDER:$1|verborgen}} door $1',
-	'flow-delete-content' => 'Op $2 {{GENDER:$1|verwijderd}} door $1',
-	'flow-censor-content' => '$2 {{GENDER:$1|onderdrukt}} door $1',
+	'flow-hide-content' => 'Op $2 {{GENDER:$1|verborgen}} door $1', # Fuzzy
+	'flow-delete-content' => 'Op $2 {{GENDER:$1|verwijderd}} door $1', # Fuzzy
+	'flow-censor-content' => '$2 {{GENDER:$1|onderdrukt}} door $1', # Fuzzy
 	'flow-censor-usertext' => "''Gebruikersnaam onderdrukt''",
 	'flow-cancel' => 'Annuleren',
 	'flow-newtopic-title-placeholder' => 'Nieuw onderwerp',
@@ -2261,7 +2436,7 @@ $messages['nl'] = array(
 	'flow-post-action-edit' => 'Bewerken',
 	'flow-post-action-restore-post' => 'Bericht terugplaatsen',
 	'flow-topic-action-edit-title' => 'Titel wijzigen',
-	'flow-error-other' => 'Er is een onverwachte fout opgetreden. Uw bericht is niet opgeslagen.',
+	'flow-error-other' => 'Er is een onverwachte fout opgetreden. Uw bericht is niet opgeslagen.', # Fuzzy
 	'flow-error-edit-restricted' => 'U mag dit bericht niet bewerken.',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 is dit onderwerp begonnen|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} en {{PLURAL:$2|een andere gebruiker|andere gebruikers}}|0=Nog geen deelnemers|2={{GENDER:$3|$3}} en {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} en {{GENDER:$5|$5}}}}',
 	'flow-notification-edit' => '$1 {{GENDER:$1|heeft}} een [$5 bericht] geplaatst in $2 op [[$3|$4]].',
@@ -2469,9 +2644,9 @@ $messages['ru'] = array(
 	'flow-topic-action-watchlist' => 'Список наблюдения',
 	'flow-topic-action-edit-title' => 'Редактировать заголовок',
 	'flow-topic-action-history' => 'История темы',
-	'flow-error-http' => 'Произошла ошибка при обращении к серверу. Ваше сообщение не было сохранено.',
-	'flow-error-other' => 'Произошла непредвиденная ошибка. Ваше сообщение не было сохранено.',
-	'flow-error-external' => 'Произошла ошибка при обращении к серверу. Ваше сообщение не было сохранено.<br /><small>Было получено следующее сообщение об ошибке: $1</small>',
+	'flow-error-http' => 'Произошла ошибка при обращении к серверу. Ваше сообщение не было сохранено.', # Fuzzy
+	'flow-error-other' => 'Произошла непредвиденная ошибка. Ваше сообщение не было сохранено.', # Fuzzy
+	'flow-error-external' => 'Произошла ошибка при обращении к серверу. Ваше сообщение не было сохранено.<br /><small>Было получено следующее сообщение об ошибке: $1</small>', # Fuzzy
 	'flow-error-edit-restricted' => 'Вам не разрешено редактировать это сообщение.',
 	'flow-error-missing-content' => 'Сообщение не имеет содержимого. Для сохранения нового сообщения требуется содержимое.',
 	'flow-error-missing-title' => 'Тема не имеет заголовка. Заголовок необходим для сохранения новой темы.',
@@ -2714,9 +2889,9 @@ $messages['uk'] = array(
 	'flow-header-empty' => 'Ця сторінка обговорення не має зараз заголовка.',
 	'flow-post-moderated-toggle-show' => '[Показати]',
 	'flow-post-moderated-toggle-hide' => '[Сховати]',
-	'flow-hide-content' => '$1 {{GENDER:$1|приховав|приховала}} $2',
-	'flow-delete-content' => '$1 {{GENDER:$1|вилучив|вилучила}} о $2',
-	'flow-censor-content' => '$1 {{GENDER:$1|приховав|приховала}} $2',
+	'flow-hide-content' => ' {{GENDER:$1|приховано}} $1',
+	'flow-delete-content' => '{{GENDER:$1|вилучено}} $1',
+	'flow-censor-content' => '{{GENDER:$1|прибрано}} $1',
 	'flow-censor-usertext' => "Ім'я користувача приховано",
 	'flow-post-actions' => 'Дії',
 	'flow-topic-actions' => 'Дії',
@@ -2746,11 +2921,15 @@ $messages['uk'] = array(
 	'flow-topic-action-watchlist' => 'Список спостереження',
 	'flow-topic-action-edit-title' => 'Змінити заголовок',
 	'flow-topic-action-history' => 'Історія теми',
-	'flow-error-http' => 'Сталася помилка при зверненні до сервера. Ваша публікація не збережена.',
-	'flow-error-other' => 'Неочікувана помилка. Ваш публікація не врятована.',
-	'flow-error-external' => 'Сталася помилка під час збереження Вашого вкладу. Ваше повідомлення не було збережено.<br /><small>Отримане повідомлення було:$1</small>',
+	'flow-topic-action-hide-topic' => 'Приховати тему',
+	'flow-topic-action-delete-topic' => 'Видалити тему',
+	'flow-topic-action-censor-topic' => 'Прибрати тему',
+	'flow-topic-action-restore-topic' => 'Відновити тему',
+	'flow-error-http' => 'Сталася помилка при зверненні до сервера.',
+	'flow-error-other' => 'Трапилася неочікувана помилка.',
+	'flow-error-external' => 'Сталася помилка.<br /><small>Отримане повідомлення було:$1</small>',
 	'flow-error-edit-restricted' => 'Вам не дозволено редагувати цей допис.',
-	'flow-error-external-multi' => 'Сталася помилка під час збереження Вашого внеску. Ваше повідомлення не було збережено.<br /> $1',
+	'flow-error-external-multi' => 'Виявлені помилки.<br /> $1',
 	'flow-error-missing-content' => 'Публікація не має ніякого вмісту. Необхідний вміст, щоб зберегти нову публікацію.',
 	'flow-error-missing-title' => 'Тема не має назви. Потрібна назва, щоб зберегти нову тему.',
 	'flow-error-parsoid-failure' => 'Не вдалося проаналізувати вміст через помилку Parsoid.',
@@ -2777,6 +2956,10 @@ $messages['uk'] = array(
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|видалив|видалила}} [коментар $3]',
 	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|подавив|подавила}} [коментар $3].',
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|відновив|відновила}} [коментар $3]',
+	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|приховав|приховала}} [тему $3].',
+	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|вилучив}} [коментар $3].', # Fuzzy
+	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|прибрав}} [тему $3].',
+	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|відновив}} [тему $3].',
 	'flow-board-history' => 'Історія "$1"',
 	'flow-topic-history' => 'Історія теми "$1"',
 	'flow-post-history' => 'Коментарі від історії дописів {{GENDER:$2|$2}}',
@@ -2834,10 +3017,26 @@ $messages['uk'] = array(
 	'flow-moderation-confirm-delete-post' => 'Видалити',
 	'flow-moderation-confirm-hide-post' => 'Приховати',
 	'flow-moderation-confirm-restore-post' => 'Відновити',
-	'flow-moderation-confirmation-censor-post' => 'Розгляньте питання про надання відгуку $1 на цей допис.', # Fuzzy
-	'flow-moderation-confirmation-delete-post' => 'Розгляньте питання про надання відгуку $1 на цей допис.', # Fuzzy
-	'flow-moderation-confirmation-hide-post' => 'Розгляньте питання про надання відгуку $1 на цей допис.', # Fuzzy
+	'flow-moderation-confirmation-censor-post' => 'Розгляньте відгук {{GENDER:$1|наданий}} $1 на цей допис.',
+	'flow-moderation-confirmation-delete-post' => 'Розгляньте відгук {{GENDER:$1|наданий}} $1 на цей допис.',
+	'flow-moderation-confirmation-hide-post' => 'Розгляньте відгук {{GENDER:$1|наданий}} $1 на цей допис.',
 	'flow-moderation-confirmation-restore-post' => 'Ви успішно відновили цю публікацію.',
+	'flow-moderation-title-censor-topic' => 'Прибрати тему?',
+	'flow-moderation-title-delete-topic' => 'Видалити тему?',
+	'flow-moderation-title-hide-topic' => 'Приховати тему?',
+	'flow-moderation-title-restore-topic' => 'Відновити тему?',
+	'flow-moderation-intro-censor-topic' => 'Будь ласка, поясніть, чому ви прибрали цю тему.',
+	'flow-moderation-intro-delete-topic' => 'Будь ласка, поясніть, чому ви вилучаєте цю тему.',
+	'flow-moderation-intro-hide-topic' => 'Будь ласка, чому ви приховуєте цю тему.',
+	'flow-moderation-intro-restore-topic' => 'Будь ласка, поясніть, чому ви відновлюєте цю тему.',
+	'flow-moderation-confirm-censor-topic' => 'Прибрати',
+	'flow-moderation-confirm-delete-topic' => 'Видалити',
+	'flow-moderation-confirm-hide-topic' => 'Приховати',
+	'flow-moderation-confirm-restore-topic' => 'Відновити',
+	'flow-moderation-confirmation-censor-topic' => 'Розгляньте відгук {{GENDER:$1|наданий}} $1 на цю тему.',
+	'flow-moderation-confirmation-delete-topic' => 'Розгляньте відгук {{GENDER:$1|наданий}} $1 на цю тему.',
+	'flow-moderation-confirmation-hide-topic' => 'Розгляньте відгук {{GENDER:$1|наданий}} $1 на цю тему.',
+	'flow-moderation-confirmation-restore-topic' => 'Ви успішно відновили цю тему.',
 	'flow-topic-permalink-warning' => 'Ця тема розпочата [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Ця тема розпочата на [$2 стіні {{GENDER:$1|$1}}]',
 );
@@ -2859,9 +3058,9 @@ $messages['vi'] = array(
 	'flow-header-empty' => 'Trang thảo luận này hiện không có đầu đề.',
 	'flow-post-moderated-toggle-show' => '[Xem]',
 	'flow-post-moderated-toggle-hide' => '[Ẩn]',
-	'flow-hide-content' => 'Ẩn bởi $1 vào $2',
-	'flow-delete-content' => 'Xóa bởi $1 vào $2',
-	'flow-censor-content' => 'Đàn áp bởi $1 vào $2',
+	'flow-hide-content' => 'Ẩn bởi $1 vào $2', # Fuzzy
+	'flow-delete-content' => 'Xóa bởi $1 vào $2', # Fuzzy
+	'flow-censor-content' => 'Đàn áp bởi $1 vào $2', # Fuzzy
 	'flow-censor-usertext' => "''Tên người dùng bị đàn áp''",
 	'flow-post-actions' => 'Tác vụ',
 	'flow-topic-actions' => 'Tác vụ',
@@ -2891,11 +3090,11 @@ $messages['vi'] = array(
 	'flow-topic-action-watchlist' => 'Danh sách theo dõi',
 	'flow-topic-action-edit-title' => 'Sửa tiêu đề',
 	'flow-topic-action-history' => 'Lịch sử chủ đề',
-	'flow-error-http' => 'Đã xuất hiện lỗi khi liên lạc với máy chủ. Bài đăng của bạn không được lưu.',
-	'flow-error-other' => 'Đã xuất hiện lỗi bất ngờ. Bài đăng của bạn không được lưu.',
-	'flow-error-external' => 'Đã xuất hiện lỗi khi lưu bài đăng của bạn. Bài đăng của bạn không được lưu.<br /><small>Lỗi nhận được là: $1</small>',
+	'flow-error-http' => 'Đã xuất hiện lỗi khi liên lạc với máy chủ. Bài đăng của bạn không được lưu.', # Fuzzy
+	'flow-error-other' => 'Đã xuất hiện lỗi bất ngờ. Bài đăng của bạn không được lưu.', # Fuzzy
+	'flow-error-external' => 'Đã xuất hiện lỗi khi lưu bài đăng của bạn. Bài đăng của bạn không được lưu.<br /><small>Lỗi nhận được là: $1</small>', # Fuzzy
 	'flow-error-edit-restricted' => 'Bạn không có quyền sửa đổi bài đăng này.',
-	'flow-error-external-multi' => 'Đã xuất hiện lỗi khi lưu bài đăng của bạn. Bài đăng của bạn không được lưu.<br />$1',
+	'flow-error-external-multi' => 'Đã xuất hiện lỗi khi lưu bài đăng của bạn. Bài đăng của bạn không được lưu.<br />$1', # Fuzzy
 	'flow-error-missing-content' => 'Bài đăng không có nội dung. Bài đăng mới phải có nội dung để lưu.',
 	'flow-error-missing-title' => 'Chủ đề không có tiêu đề. Chủ đề phải có tiêu đề để lưu.',
 	'flow-error-parsoid-failure' => 'Không thể phân tích nội dung vì Parsoid bị thất bại.',
@@ -3009,8 +3208,8 @@ $messages['yi'] = array(
 	'flow-post-actions' => 'אַקציעס',
 	'flow-topic-actions' => 'אַקציעס',
 	'flow-cancel' => 'אַנולירן',
-	'flow-newtopic-title-placeholder' => 'מעלדונג סוביעקט', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'מעלדונג טעקסט. זייט פריינדלעך!', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'נײַע טעמע',
+	'flow-newtopic-content-placeholder' => 'צולייגן פרטים אז איר ווילט',
 	'flow-newtopic-header' => 'צולייגן א נײַע טעמע',
 	'flow-newtopic-save' => 'צושטעלן טעמע',
 	'flow-newtopic-start-placeholder' => 'אנהייבן א נײַע טעמע',
@@ -3044,7 +3243,7 @@ $messages['yi'] = array(
 	'flow-comment-hidden' => 'באהאלטענע הערה',
 	'flow-comment-moderated' => 'מאדערירטע הערה',
 	'flow-paging-fwd' => 'עלטערע טעמעס',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|דיסקוסיע|דיסקוסיעס}}', # Fuzzy
+	'echo-category-title-flow-discussion' => 'פֿלוסן',
 	'flow-link-topic' => 'טעמע',
 	'flow-link-history' => 'היסטאריע',
 );
@@ -3063,8 +3262,8 @@ $messages['zh-hans'] = array(
 	'flow-edit-header-link' => '编辑页顶',
 	'flow-post-moderated-toggle-show' => '[显示]',
 	'flow-post-moderated-toggle-hide' => '[隐藏]',
-	'flow-hide-content' => '已由$1于$2隐藏',
-	'flow-delete-content' => '由$1 $2删除',
+	'flow-hide-content' => '已由$1于$2隐藏', # Fuzzy
+	'flow-delete-content' => '由$1删除',
 	'flow-censor-usertext' => "''用户名已压制''",
 	'flow-post-actions' => '操作', # Fuzzy
 	'flow-topic-actions' => '操作', # Fuzzy
@@ -3093,10 +3292,10 @@ $messages['zh-hans'] = array(
 	'flow-topic-action-watchlist' => '监视列表',
 	'flow-topic-action-edit-title' => '编辑标题',
 	'flow-topic-action-history' => '主题历史',
-	'flow-error-http' => '与服务器联系时出错。未保存您的帖子。',
-	'flow-error-other' => '出现意外的错误。未保存您的帖子。',
+	'flow-error-http' => '与服务器联系时出错。未保存您的帖子。', # Fuzzy
+	'flow-error-other' => '出现意外的错误。未保存您的帖子。', # Fuzzy
 	'flow-error-edit-restricted' => '您无权编辑此帖子。',
-	'flow-error-external-multi' => '保存帖子时遇到错误。帖子未保存。<br />$1',
+	'flow-error-external-multi' => '保存帖子时遇到错误。帖子未保存。<br />$1', # Fuzzy
 	'flow-error-missing-content' => '帖子无内容。只能保存有内容的帖子。',
 	'flow-error-delete-failure' => '删除本项失败。',
 	'flow-error-hide-failure' => '隐藏此项失败。',
