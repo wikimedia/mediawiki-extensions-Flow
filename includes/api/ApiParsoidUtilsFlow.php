@@ -9,10 +9,11 @@ class ApiParsoidUtilsFlow extends ApiBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$page = $this->getTitleOrPageId( $params );
 
 		$result = array(
 			'format' => $params['to'],
-			'content' => ParsoidUtils::convert( $params['from'], $params['to'], $params['content'] ),
+			'content' => ParsoidUtils::convert( $params['from'], $params['to'], $params['content'], $page->getTitle() ),
 		);
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
@@ -28,14 +29,22 @@ class ApiParsoidUtilsFlow extends ApiBase {
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
+			'title' => null,
+			'pageid' => array(
+				ApiBase::PARAM_ISMULTI => false,
+				ApiBase::PARAM_TYPE => 'integer'
+			),
 		);
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
 			'from' => 'Format of content tossed in (html|wikitext)',
 			'to' => 'Format to convert content to (html|wikitext)',
 			'content' => 'Content to be converted',
+			'title' => "Title of the page. Cannot be used together with {$p}pageid",
+			'pageid' => "ID of the page. Cannot be used together with {$p}title",
 		);
 	}
 
@@ -45,7 +54,7 @@ class ApiParsoidUtilsFlow extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			"api.php?action=flow-parsoid-utils&parsefrom=wikitext&parseto=html&parsecontent='''lorem'''+''blah''",
+			"api.php?action=flow-parsoid-utils&parsefrom=wikitext&parseto=html&parsecontent='''lorem'''+''blah''&parsetitle=Main_Page",
 		);
 	}
 
