@@ -199,6 +199,12 @@ $wgFlowExternalStore = false;
 // might as well set this to HTML right away)
 $wgFlowContentFormat = 'wikitext'; // possible values: wikitext|html
 
+// Flow Parsoid config
+// If null, VE's defaults (if available) will be used
+$wgFlowParsoidURL = null; // defaults to $wgVisualEditorParsoidURL
+$wgFlowParsoidPrefix = null; // defaults to $wgVisualEditorParsoidPrefix
+$wgFlowParsoidTimeout = null; // defaults to $wgVisualEditorParsoidTimeout
+
 // Flow Configuration for EventLogging
 $wgFlowConfig = array(
 	'version' => '0.1.0',
