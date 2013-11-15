@@ -123,6 +123,8 @@ class FlowHooks {
 		$occupationController = $container['occupation_controller'];
 
 		if ( $occupationController->isTalkpageOccupied( $title ) ) {
+			$occupationController->ensureFlowRevision( $article );
+
 			$view = new Flow\View(
 				$container['templating'],
 				$container['url_generator'],
