@@ -34,6 +34,24 @@
       "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_a8414568",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-15T08:36:06Z",
+      "side": 1,
+      "message": "Parsoid\u0027s response indeed doesn\u0027t have the charset in the HTML. It does have the charset in HTTP headers.\n\nHowever, we fetch its output via HTTP::post and assign that return value to the $response string. All DOMDocument sees is a string being tossed in, and doesn\u0027t know anything about what charset it\u0027s supposed to be in.",
+      "parentUuid": "291c1151_c5bcac68",
+      "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
