@@ -8,8 +8,10 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\Rendering\UIElement;
 use OutputPage;
 // These dont really belong here
+use DOMDocument;
 use Html;
 use Linker;
 use MWTimestamp;
@@ -52,11 +54,54 @@ class Templating {
 		$content = ob_get_contents();
 		ob_end_clean();
 
+		$content = $this->postprocess( $content );
+
 		if ( $return ) {
 			return $content;
 		} else {
 			$this->output->addHTML( $content );
 		}
+	}
+
+	/**
+	 * Postprocessing for a template call.
+	 *
+	 * Currently, just allows HTML to call a Flow UI Element.
+	 * @param  string $content HTML content
+	 * @return string          Postprocessed HTML
+	 */
+	protected function postprocess( $content ) {
+		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', "UTF-8" );
+
+		// Sort of dirty hack to improve performance
+		if ( strpos( $content, '<flow-element' ) !== false ) {
+			$originalUseInternalErrors = libxml_use_internal_errors( true );
+
+			$dom = new DOMDocument();
+			$dom->loadHTML( $content );
+
+			$embeddedElements = $dom->getElementsByTagName( 'flow-element' );
+
+			foreach( $embeddedElements as $element ) {
+				$params = array();
+
+				foreach( $element->attributes as $attr ) {
+					$params[$attr->nodeName] = $attr->nodeValue;
+				}
+
+				$replacementHTML = $this->renderElement( $params['elementname'], $params, true );
+				$replacementFragment = $dom->createDocumentFragment();
+				$replacementFragment->appendXML( $replacementHTML );
+
+				$element->parentNode->replaceChild( $replacementFragment, $element );
+			}
+
+			$content = $dom->saveHTML();
+
+			libxml_use_internal_errors( $originalUseInternalErrors );
+		}
+
+		return $content;
 	}
 
 	protected function applyNamespacing( $file ) {
@@ -82,6 +127,23 @@ class Templating {
 	// Everything below here *DOES* *NOT*  belong in this class.  Its also pointless for us to invent a properly
 	// abstracted templating implementation so these can be elsewhere.  Figure out if we can transition to an
 	// industry standard templating solution and stop the NIH.
+	
+	public function renderElement( $element, $parameters, $return = false ) {
+		$parameters += array(
+			'templating' => $this,
+			'urlGenerator' => $this->urlGenerator,
+		);
+
+		// @todo Pass to constructor instead once initial approach is validated
+		$elementFactory = Container::get( 'factory.uielement' );
+		$html = $elementFactory->getElement( $element, $parameters )->render();
+
+		if ( $return ) {
+			return $html;
+		} else {
+			$this->output->addHTML( $html );
+		}
+	}
 
 	public function getUrlGenerator() {
 		return $this->urlGenerator;
@@ -92,36 +154,12 @@ class Templating {
 	}
 
 	public function renderPost( PostRevision $post, Block $block, $return = true ) {
-		global $wgFlowTokenSalt;
-
-		if ( $post->isTopicTitle() ) {
-			throw new \MWException( 'Cannot render topic with ' . __METHOD__ );
-		}
-
-		// @todo: I don't like container being pulled in here, improve this some day
-		$container = Container::getContainer();
-
-		// An ideal world may pull this from the container, but for now this is fine.  This templating
-		// class has too many responsibilities to keep receiving all required objects in the constructor.
-		$view = new View\Post(
-			$container['user'],
-			$post,
-			new View\PostActionMenu(
-				$this->urlGenerator,
-				$container['flow_actions'],
-				new PostActionPermissions( $container['flow_actions'], $container['user'] ),
-				$block,
-				$post,
-				$container['user']->getEditToken( $wgFlowTokenSalt )
-			)
-		);
-
-		return $this->render(
-			'flow:post.html.php',
+		return $this->renderElement( 'post',
 			array(
-				'block' => $block,
 				'post' => $post,
-				'postView' => $view,
+				'block' => $block,
+				'urlGenerator' => $this->urlGenerator,
+				'user' => Container::get( 'user' ),
 			),
 			$return
 		);

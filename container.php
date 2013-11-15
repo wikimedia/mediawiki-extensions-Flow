@@ -393,4 +393,12 @@ $c['logger'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['factory.uielement'] = $c->share( function( $c ) {
+	global $wgFlowUIElements;
+
+	return new Flow\Rendering\UIElementFactory(
+		$wgFlowUIElements
+	);
+} );
+
 return $c;

@@ -1,27 +1,82 @@
 <?php
 
-namespace Flow\View;
+namespace Flow\Rendering;
 
+use Flow\Container;
 use Flow\Model\PostRevision;
+use Flow\PostActionPermissions;
 use Flow\Templating;
+use Flow\View\PostActionMenu;
 use Linker;
 use User;
 
-class Post {
+class Post extends TemplateRenderer {
 	protected $user;
 	protected $post;
 	protected $actions;
 	protected $creatorUserText;
 
-	/**
-	 * @param  User             $user    The User viewing posts
-	 */
-	public function __construct( User $user, PostRevision $post, PostActionMenu $actions ) {
-		$this->user = $user;
-		$this->post = $post;
-		$this->actions = $actions;
+	// @todo This method has too many responsibilities
+	public function instantiate( array $parameters ) {
+		parent::instantiate( $parameters + array(
+			'template' => 'flow:post.html.php',
+		) );
+		global $wgFlowTokenSalt;
 
-		$this->creatorUserText = $post->getCreatorName( $this->user );
+		$this->user = $parameters['user'];
+		$this->block = $parameters['block'];
+		$this->post = $parameters['post'];
+		$this->urlGenerator = $parameters['urlGenerator'];
+
+		if ( $this->post->isTopicTitle() ) {
+			throw new \MWException( 'Cannot render topic title with ' . __CLASS__ );
+		}
+
+		$this->creatorUserText = $this->post->getCreatorName( $this->user );
+
+		// @todo pass this in as a parameter later
+		$actions = Container::get( 'flow_actions' );
+
+		$this->actions = new PostActionMenu(
+			$this->urlGenerator,
+			$actions,
+			new PostActionPermissions( $actions, $this->user ),
+			$this->block,
+			$this->post,
+			$this->user->getEditToken( $wgFlowTokenSalt )
+		);
+	}
+
+	public function getParameters() {
+		return parent::getParameters() + array(
+			'postView' => $this,
+		);
+	}
+
+	public function getValidParameters() {
+		$params = parent::getValidParameters() + array(
+			'urlGenerator' => array(
+				'required' => true,
+				'description' => 'A URLGenerator object',
+			),
+			'user' => array(
+				'required' => true,
+				'description' => 'The User who is viewing the post',
+			),
+			'post' => array(
+				'required' => true,
+				'description' => 'The PostRevision object to show',
+			),
+			'block' => array(
+				'required' => true,
+				'description' => 'The Block object that this post is being shown in',
+			),
+		);
+
+		// We handle this ourselves
+		unset( $params['template'] );
+
+		return $params;
 	}
 
 	public function replyPlaceholder() {

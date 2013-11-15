@@ -50,40 +50,31 @@ echo Html::openElement( 'div', array(
 			</div>
 		</div>
 
-		<p class="flow-datestamp">
-			<?php
-				// timestamp html
-				$content = '
-					<span class="flow-agotime" style="display: inline">' . htmlspecialchars( $topic->getLastModifiedObj()->getHumanTimestamp() ) . '</span>
-					<span class="flow-utctime" style="display: none">' . htmlspecialchars( $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) ) . '</span>';
+		<?php
+			$children = $root->getChildren();
 
-				$children = $root->getChildren();
+			// Timestamp should be turned into a link to history if:
+			$history = false;
+			// topic title has changed
+			$history |= !$root->isFirstRevision();
+			// topic has more than 1 comment
+			$history |= count( $children ) > 1;
+			// first comment was submitted separately from topic title
+			$history |= isset( $children[0] ) && $children[0]->getRevisionId()->getTimestamp() !== $root->getRevisionId()->getTimestamp();
+			// original topic comment has replies
+			$history |= isset( $children[0] ) && count( $children[0]->getChildren() ) > 0;
 
-				// Timestamp should be turned into a link to history if:
-				$history = false;
-				// topic title has changed
-				$history |= !$root->isFirstRevision();
-				// topic has more than 1 comment
-				$history |= count( $children ) > 1;
-				// first comment was submitted separately from topic title
-				$history |= isset( $children[0] ) && $children[0]->getRevisionId()->getTimestamp() !== $root->getRevisionId()->getTimestamp();
-				// original topic comment has replies
-				$history |= isset( $children[0] ) && count( $children[0]->getChildren() ) > 0;
+			if ( $history ) {
+				$historyUrl = $this->generateUrl( $root->getPostId(), 'topic-history' );
+			} else {
+				$historyUrl = null;
+			}
+		?>
 
-				if ( $history ) {
-					// build history button with timestamp html as content
-					echo Html::rawElement( 'a',
-						array(
-							'class' => 'flow-action-history-link',
-							'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
-						),
-						$content
-					);
-				} else {
-					echo $content;
-				}
-			?>
-		</p>
+		<flow-element
+			elementName="timestamp"
+			timestamp="<?php echo htmlspecialchars( $topic->getLastModifiedObj()->getTimestamp() ); ?>"
+			historicalLink="<?php echo $historyUrl; ?>" />
 
 		<?php
 /*

@@ -137,6 +137,12 @@ $wgAutoloadClasses['Flow\Block\TopicListView'] = $dir . 'includes/Block/TopicLis
 $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';
 $wgAutoloadClasses['Flow\Block\TopicView'] = $dir . 'includes/Block/Topic.php';
 
+// UI rendering stuff
+$wgAutoloadClasses['Flow\Rendering\UIRenderer'] = $dir . 'includes/Rendering/UIRenderer.php';
+$wgAutoloadClasses['Flow\Rendering\TemplateRenderer'] = $dir . 'includes/Rendering/TemplateRenderer.php';
+$wgAutoloadClasses['Flow\Rendering\UIElement'] = $dir . 'includes/Rendering/UIRenderer.php';
+$wgAutoloadClasses['Flow\Rendering\UIElementFactory'] = $dir . 'includes/Rendering/UIRenderer.php';
+
 // API modules
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
@@ -232,6 +238,9 @@ $wgFlowMaxThreadingDepth = 2;
 
 // Action details config file
 require $dir . 'FlowActions.php';
+
+// UI element config file
+require $dir . 'UI.php';
 
 // Register activity log formatter hooks
 foreach( $wgFlowActions as $action => $options ) {
