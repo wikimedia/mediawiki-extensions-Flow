@@ -69,6 +69,24 @@
       "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_2e9f1d5d",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-15T17:28:08Z",
+      "side": 1,
+      "message": "Yes, the content is indeed UTF-8, the problem is DOMDocument.\n\nBecause it\u0027s passed a string, it doesn\u0027t know about the HTTP headers specifying it\u0027s UTF-8.\n\nUnless we\u0027d tell it otherwise by also defining the charset in the content, it seems to assume ISO-8859-1.\n\nRelated: http://stackoverflow.com/questions/11309194/php-domdocument-failing-to-handle-utf-8-characters",
+      "parentUuid": "291c1151_6ebbd5e2",
+      "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
