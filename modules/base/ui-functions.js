@@ -396,7 +396,8 @@
 										action: 'flow-parsoid-utils',
 										parsefrom: mw.flow.editor.getFormat(),
 										parseto: 'html',
-										parsecontent: $form.find( identifier ).val()
+										parsecontent: $form.find( identifier ).val(),
+										parsetitle: mw.config.get( 'wgPageName' )
 									} )
 									.done( success )
 									.fail( failure );

@@ -15,19 +15,21 @@ class ApiFlow extends ApiBase {
 
 		$id = UUID::create( $params['workflow'] );
 		$page = false;
-
 		if ( $params['page'] ) {
 			$page = Title::newFromText( $params['page'] );
 		}
-
 		$this->loader = $this->container['factory.loader.workflow']
 			->createWorkflowLoader( $page, $id );
-
 		$occupationController = $this->container['occupation_controller'];
 		$workflow = $this->loader->getWorkflow();
+		$article = new Article( $workflow->getArticleTitle(), 0 );
+
+		// @todo: this is a hack; see ParsoidUtils::convert
+		global $wgFlowParsoidTitle;
+		$wgFlowParsoidTitle = $workflow->getArticleTitle();
+
 		$isNew = $workflow->isNew();
 		// Is this making unnecesary db round trips?
-		$article = new \Article( $workflow->getArticleTitle(), 0 );
 		if ( !$isNew ) {
 			$occupationController->ensureFlowRevision( $article );
 		}
