@@ -18,6 +18,10 @@ class ApiFlow extends ApiBase {
 
 		if ( $params['page'] ) {
 			$page = Title::newFromText( $params['page'] );
+
+			// @todo: this is a hack; see ParsoidUtils::convert
+			global $parsoidTitle;
+			$parsoidTitle = $page;
 		}
 
 		$this->loader = $this->container['factory.loader.workflow']
