@@ -123,6 +123,7 @@ class FlowHooks {
 		$occupationController = $container['occupation_controller'];
 
 		if ( $occupationController->isTalkpageOccupied( $title ) ) {
+
 			$view = new Flow\View(
 				$container['templating'],
 				$container['url_generator'],
@@ -135,7 +136,17 @@ class FlowHooks {
 			$loader = $container['factory.loader.workflow']
 				->createWorkflowLoader( $title, UUID::create( $workflowId ) );
 
+			$isNew = $loader->getWorkflow()->isNew();
+			if ( !$isNew ) {
+				// Workflow currently exists, make sure a revision also exists
+				$occupationController->ensureFlowRevision( $article );
+			}
+
 			$view->show( $loader, $action );
+			if ( $isNew && !$loader->getWorkflow()->isNew() ) {
+				// Workflow was just created, make sure a revision also exists
+				$occupationController->ensureFlowRevision( $article );
+			}
 			return false;
 		}
 
