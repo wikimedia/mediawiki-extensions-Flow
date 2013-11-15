@@ -87,6 +87,41 @@
       "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_0e3c212b",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 164
+      },
+      "writtenOn": "2013-11-15T17:54:49Z",
+      "side": 1,
+      "message": "Using XML parsing directly might actually fix this, at least the stackoverflow post sounds like it might be loadHTML-specific.",
+      "parentUuid": "291c1151_2e9f1d5d",
+      "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_0efb4176",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 164
+      },
+      "writtenOn": "2013-11-15T17:54:49Z",
+      "side": 1,
+      "message": "You don\u0027t need loadHTML btw- we are emitting XML.",
+      "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
