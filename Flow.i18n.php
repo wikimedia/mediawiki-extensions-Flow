@@ -35,7 +35,7 @@ $messages['en'] = array(
 	'flow-cancel' => 'Cancel',
 
 	'flow-newtopic-title-placeholder' => 'New topic',
-	'flow-newtopic-content-placeholder' => "Add some details if you’d like",
+	'flow-newtopic-content-placeholder' => "Add some details if you'd like",
 	'flow-newtopic-header' => 'Add a new topic',
 	'flow-newtopic-save' => 'Add topic',
 	'flow-newtopic-start-placeholder' => 'Start a new topic',
@@ -93,7 +93,7 @@ $messages['en'] = array(
 
 	'flow-edit-title-submit' => 'Change title',
 
-	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|edited}} a [$2 comment]',
+	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|edited}} a [$2 comment].',
 	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|added}} a [$2 comment].',
 	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|comment|comments}}''' {{PLURAL:$1|was|were}} added.",
 	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|created}} the topic [$2 $3].',
@@ -107,7 +107,7 @@ $messages['en'] = array(
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|restored}} a [$3 comment].',
 
 	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|hid}} the [$3 topic].',
-	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|deleted}} the [$3 comment].',
+	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|deleted}} the [$3 topic].',
 	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|suppressed}} the [$3 topic].',
 	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|restored}} the [$3 topic].',
 
