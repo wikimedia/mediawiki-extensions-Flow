@@ -140,6 +140,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_88880974",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-15T00:02:45Z",
+      "side": 1,
+      "message": "seems like something that would be possible, but more complex than its worth with our current storage method.  If we switched over to gwicke\u0027s idea regarding a topic document that would become much more reasonable to implement.\n\n(by possible, i mean we could foreseeably find the right revisions within the revision lists by looking at the timestamps of the uuid\u0027s we cache into memcache, but not sure yet how the code would have to look)",
+      "parentUuid": "291c1151_7941ef0c",
+      "revId": "20b4e23834916523df85408ea4c117e4f5373172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_bb88d6e9",
         "filename": "templates/compare-revisions.html.php",
         "patchSetId": 1
