@@ -55,23 +55,6 @@ class FlowHooks {
 	}
 
 	/**
-	 * After completing setup, adds Special namespace to VE's supported
-	 * namespaces, so we can (ab)use it's API to convert wikitext<->html.
-	 *
-	 * Hook: SetupAfterCache
-	 *
-	 * @return bool
-	 */
-	public static function onSetupAfterCache() {
-		global $wgVisualEditorNamespaces;
-		if ( $wgVisualEditorNamespaces && !in_array( -1, $wgVisualEditorNamespaces ) ) {
-			$wgVisualEditorNamespaces[] = -1;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Hook: UnitTestsList
 	 *
 	 * @see http://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList
