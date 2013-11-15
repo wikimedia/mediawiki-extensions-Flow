@@ -52,6 +52,23 @@
       "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_6ebbd5e2",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 164
+      },
+      "writtenOn": "2013-11-15T17:21:54Z",
+      "side": 1,
+      "message": "Normally there should be little need for entity decoding / recoding. We already leave everything possible as UTF8, only \u003c and \" are entity-encoded.",
+      "revId": "7bed179000f62da946096e0ee28f1ad11eb7cc19",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
