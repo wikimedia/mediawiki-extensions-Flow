@@ -33,6 +33,7 @@ $messages['en'] = array(
 	'flow-post-actions' => 'Actions',
 	'flow-topic-actions' => 'Actions',
 	'flow-cancel' => 'Cancel',
+	'flow-preview' => 'Preview',
 
 	'flow-newtopic-title-placeholder' => 'New topic',
 	'flow-newtopic-content-placeholder' => "Add some details if you'd like",
@@ -285,6 +286,8 @@ Parameters:
 {{Identical|Action}}',
 	'flow-cancel' => 'Used as action link text.
 {{Identical|Cancel}}',
+	'flow-preview' => 'Used as action link text.
+{{Identical|Preview}}',
 	'flow-newtopic-title-placeholder' => 'Used as placeholder for the "Subject/Title for topic" textarea.
 {{Identical|New topic}}',
 	'flow-newtopic-content-placeholder' => 'Used as placeholder for the "Content" textarea.',
