@@ -14,6 +14,7 @@ $wgResourceModules += array(
 			'base/styles/form.less',
 			'base/styles/actionbox.less',
 			'base/styles/various.less',
+			'base/styles/preview.less',
 			/*
 			 * This is CSS that adds to/overrides Agora styles, meant to be
 			 * moved to mediawiki.ui at a later point
@@ -32,6 +33,7 @@ $wgResourceModules += array(
 			'jquery.json',
 		),
 		'messages' => array(
+			'flow-preview',
 		),
 	),
 	'ext.flow.header' => $flowResourceTemplate + array(
