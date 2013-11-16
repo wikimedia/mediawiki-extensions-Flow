@@ -124,9 +124,10 @@
 													$postForm.remove();
 												}
 											);
+											mw.flow.preview.hide( $postForm );
 										} )
 								)
-								.append( ' ' )
+								.append( ' ' ) 
 								.append(
 									$( '<input />' )
 										.attr( 'type', 'submit' )
@@ -137,6 +138,8 @@
 								)
 						)
 						.insertAfter( $contentContainer );
+
+					mw.flow.preview.attachPreview( $postForm );
 
 					if ( typeof initialContent != 'object' ) {
 						initialContent = {

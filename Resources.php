@@ -14,6 +14,7 @@ $wgResourceModules += array(
 			'base/styles/form.less',
 			'base/styles/actionbox.less',
 			'base/styles/various.less',
+			'base/styles/preview.less',
 			/*
 			 * This is CSS that adds to/overrides Agora styles, meant to be
 			 * moved to mediawiki.ui at a later point
@@ -32,6 +33,7 @@ $wgResourceModules += array(
 			'jquery.json',
 		),
 		'messages' => array(
+			'flow-preview',
 		),
 	),
 	'ext.flow.header' => $flowResourceTemplate + array(
@@ -42,6 +44,7 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'ext.flow.editor',
+			'ext.flow.preview',
 		),
 	),
 	'ext.flow.discussion' => $flowResourceTemplate + array(
@@ -61,6 +64,7 @@ $wgResourceModules += array(
 			'jquery.spinner',
 			'mediawiki.Title',
 			'mediawiki.util',
+			'ext.flow.preview'
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
@@ -128,6 +132,13 @@ $wgResourceModules += array(
 			'ext.flow.base',
 			'jquery.ui.dialog',
 			'jquery.spinner',
+		),
+	),
+	'ext.flow.preview' => $flowResourceTemplate + array(
+		'scripts' => 'preview/preview.js',
+		'styles' => 'preview/styles/preview.less',
+		'dependencies' => array(
+			'ext.flow.base',
 		),
 	),
 	'ext.flow.editor' => $flowResourceTemplate + array(

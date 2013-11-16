@@ -117,9 +117,13 @@
 							.find( '.flow-error' )
 								.remove();
 					} );
+				mw.flow.preview.hide( $( this ).closest( '.flow-reply-form' ) );
 			} )
 			.after( ' ' )
 			.insertBefore( $container.find( '.flow-reply-form input[type=submit]' ) );
+		$container.find( 'form.flow-reply-form' ).each( function() {
+			mw.flow.preview.attachPreview( $( this ) );
+		} );
 
 		// Set up new topic form
 		$container.find( '.flow-newtopic-step2' ).hide();
@@ -171,10 +175,15 @@
 							.remove();
 					} );
 				$container.find( '.flow-new-topic-link' ).show();
+				mw.flow.preview.hide( $form );
 			} )
 			.after( ' ' )
 			.insertBefore( $container.find( '.flow-newtopic-form input[type=submit]' ) );
 
+		mw.flow.preview.attachPreview(
+			$container.find( 'form.flow-newtopic-form' ),
+			{ '.flow-newtopic-title': 'plain', 'textarea': 'parse' }
+		);
 		// Hide reply button until user initiates reply (hidden in JS because it needs to be there for non-JS users)
 		$container.find( '.flow-topic-reply-form .flow-post-form-controls' ).hide();
 		$container.find( '.flow-topic-reply-form textarea' )
@@ -208,8 +217,13 @@
 					.hide();
 
 				mw.flow.editor.destroy( $form.find( 'textarea' ) );
+				mw.flow.preview.hide( $form );
 			} )
 			.prependTo( $container.find( '.flow-topic-reply-form .flow-post-form-controls') );
+
+		$container.find( 'form.flow-topic-reply-form' ).each( function() {
+			mw.flow.preview.attachPreview( $( this ) );
+		} );
 
 		// Set up the scroll to new topic reply form
 		$container.find( '.flow-topic-comments .flow-reply-link' ).click(
