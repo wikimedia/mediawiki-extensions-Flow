@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_624e813a",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-17T23:56:59Z",
+      "side": 1,
+      "message": "This is unrelated.\n\nI would just ignore it because it\u0027s related enough, but this will cause fatal errors if you merge it without the rest of the patch.",
+      "revId": "4f9d60ebd3a06612b680e923c5eccf4f859324c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
