@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_a2887973",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-17T23:32:35Z",
+      "side": 1,
+      "message": "This should go either here or in the base module, but not both.\n\nI would actually not bother having a separate module, and fold it into ui-functions.js or make it use that.",
+      "revId": "ec4b354e032d4e5e14a0f9a370b136fc32dcd9a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_c279f580",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-17T23:32:35Z",
+      "side": 1,
+      "message": "Trailing whitespace.",
+      "revId": "ec4b354e032d4e5e14a0f9a370b136fc32dcd9a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_e27ef165",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-17T23:32:35Z",
+      "side": 1,
+      "message": "This doesn\u0027t follow the usual semantics for Flow JS.\n\nSee ui-functions.js for an example of what we\u0027re generally doing with Flow JS [and see modules/moderation/moderation.js for an example of extending that from another module].\n\nIn particular, I\u0027d prefer that this looks like $postForm.flow( \u0027attachPreview\u0027 ) – mw.flow is used for internal non-UI stuff.",
+      "revId": "ec4b354e032d4e5e14a0f9a370b136fc32dcd9a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_c2f2d504",
+        "filename": "modules/preview/preview.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-17T23:32:35Z",
+      "side": 1,
+      "message": "Maybe it\u0027d be nice to wrap these in divs, hmm.",
+      "revId": "ec4b354e032d4e5e14a0f9a370b136fc32dcd9a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_628be169",
+        "filename": "modules/preview/preview.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-17T23:32:35Z",
+      "side": 1,
+      "message": "This would be ugly on a slow connection – better to use asynchronous requests if we can.",
+      "revId": "ec4b354e032d4e5e14a0f9a370b136fc32dcd9a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_e2f7d1f1",
+        "filename": "modules/preview/styles/preview.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-17T23:32:35Z",
+      "side": 1,
+      "message": "This looks like a copy of the one in base?",
+      "revId": "ec4b354e032d4e5e14a0f9a370b136fc32dcd9a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
