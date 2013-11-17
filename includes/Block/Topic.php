@@ -399,7 +399,11 @@ class TopicBlock extends AbstractBlock {
 				return;
 			}
 
-			if ( ! isset( $options['topiclist-block'] ) ) {
+			if ( !isset( $options['topiclist-block'] ) ) {
+				$title = $templating->getContent( $root, 'wikitext', $this->user );
+				$templating->getOutput()->setHtmlTitle( $title );
+				$templating->getOutput()->setPageTitle( $title );
+
 				$prefix = $templating->render(
 					'flow:topic-permalink-warning.html.php',
 					array(
