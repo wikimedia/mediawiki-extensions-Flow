@@ -371,7 +371,9 @@ $c['occupation_controller'] = $c->share( function( $c ) {
 } );
 
 $c['controller.notification'] = $c->share( function( $c ) {
-	return new Flow\NotificationController;
+	return new Flow\NotificationController(
+		$c['templating']
+	);
 } );
 
 $c['recentchanges.formatter'] = $c->share( function( $c ) {

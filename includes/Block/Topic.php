@@ -128,8 +128,13 @@ class TopicBlock extends AbstractBlock {
 			$this->setNotification(
 				'flow-topic-renamed',
 				array(
-					'old-subject' => $topicTitle->getContent( 'wikitext' ),
-					'new-subject' => $this->newRevision->getContent( 'wikitext' ),
+					/*
+					 * We don't have to call Template::getContent here:
+					 * * permissions checks are useless, this is sent immediately
+					 * * no need to parse (no wikitext supported), just raw content
+					 */
+					'old-subject' => $topicTitle->getContent(),
+					'new-subject' => $this->newRevision->getContent(),
 				)
 			);
 		}
@@ -157,7 +162,12 @@ class TopicBlock extends AbstractBlock {
 				array(
 					'reply-to' => $post,
 					'content' => $this->submitted['content'],
-					'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
+					/*
+					 * We don't have to call Template::getContent here:
+					 * * permissions checks are useless, this is sent immediately
+					 * * no need to parse (no wikitext supported), just raw content
+					 */
+					'topic-title' => $this->loadTopicTitle()->getContent(),
 				)
 			);
 		}
@@ -275,7 +285,12 @@ class TopicBlock extends AbstractBlock {
 			'flow-post-edited',
 			array(
 				'content' => $this->submitted['content'],
-				'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
+				/*
+				 * We don't have to call Template::getContent here:
+				 * * permissions checks are useless, this is sent immediately
+				 * * no need to parse (no wikitext supported), just raw content
+				 */
+				'topic-title' => $this->loadTopicTitle()->getContent(),
 			)
 		);
 	}

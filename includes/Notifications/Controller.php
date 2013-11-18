@@ -11,6 +11,18 @@ use MWException;
 use User;
 
 class NotificationController {
+	/**
+	 * @var Templating
+	 */
+	protected $templating;
+
+	/**
+	 * @param Templating $templating
+	 */
+	public function __construct( Templating $templating ) {
+		$this->templating = $templating;
+	}
+
 	public function setup() {
 		global $wgEchoNotifications, $wgHooks, $wgEchoNotificationIcons, $wgEchoNotificationCategories;
 		$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
@@ -57,7 +69,6 @@ class NotificationController {
 			return;
 		}
 
-		$events = array();
 		$title = $data['title'];
 		$user = $data['user'];
 
@@ -76,7 +87,7 @@ class NotificationController {
 				$replyToPost = $data['reply-to'];
 				$extraData += array(
 					'reply-to' => $replyToPost->getPostId(),
-					'content' => $revision->getContent(),
+					'content' => $this->templating->getContent( $revision, 'wikitext', $user ),
 					'topic-title' => $topicTitle,
 				);
 			break;
@@ -88,7 +99,7 @@ class NotificationController {
 			break;
 			case 'flow-post-edited':
 				$extraData += array(
-					'content' => $revision->getContent(),
+					'content' => $this->templating->getContent( $revision, 'wikitext', $user ),
 					'topic-title' => $topicTitle,
 				);
 			break;
@@ -149,8 +160,8 @@ class NotificationController {
 				'board-workflow' => $boardWorkflow->getId(),
 				'topic-workflow' => $topicWorkflow->getId(),
 				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
-				'topic-title' => $topicPost->getContent(),
-				'content' => $firstPost ? $firstPost->getContent() : null,
+				'topic-title' => $this->templating->getContent( $topicPost, 'wikitext', $user ),
+				'content' => $firstPost ? $this->templating->getContent( $firstPost, 'wikitext', $user ) : null,
 			)
 		) );
 
@@ -159,7 +170,7 @@ class NotificationController {
 				'title' => $boardWorkflow->getArticleTitle(),
 				'user' => $user,
 				'post' => $firstPost,
-				'topic-title' => $topicPost->getContent(),
+				'topic-title' => $this->templating->getContent( $topicPost, 'wikitext', $user ),
 				'topic-workflow' => $topicWorkflow,
 			) )
 		);
@@ -192,7 +203,7 @@ class NotificationController {
 				'type' => 'flow-mention',
 				'title' => $title,
 				'extra' => array(
-					'content' => $newRevision ? $newRevision->getContent() : null,
+					'content' => $newRevision ? $this->templating->getContent( $newRevision, 'wikitext', $user ) : null,
 					'topic-title' => $data['topic-title'],
 					'post-id' => $newRevision ? $newRevision->getPostId() : null,
 					'mentioned-users' => $mentionedUsers,
@@ -212,9 +223,8 @@ class NotificationController {
 	 */
 	protected function getMentionedUsers( $post, $title ) {
 		// At the moment, it is not possible to get a list of mentioned users from HTML
-		//  unless that HTML comes from Parsoid. But VisualEditor (what is currently used
-		//  to convert wikitext to HTML) does not currently use Parsoid.
-		$wikitext = $post->getContent( 'wikitext' );
+		//  unless that HTML comes from Parsoid.
+		$wikitext = $this->templating->getContent( $post, 'wikitext', $user );
 		$mentions = $this->getMentionedUsersFromWikitext( $wikitext );
 		$notifyUsers = $this->filterMentionedUsers( $mentions, $post, $title );
 

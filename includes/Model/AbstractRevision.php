@@ -66,8 +66,6 @@ abstract class AbstractRevision {
 	protected $contentUrl;
 	// This is decompressed on-demand from $this->content in self::getContent()
 	protected $decompressedContent;
-	// Converted (wikitext|html) content, based off of $this->decompressedContent
-	protected $convertedContent = array();
 
 	// moderation states for the revision.  This is technically denormalized data
 	// since it can be overwritten and does not provide a full history.
@@ -262,33 +260,20 @@ abstract class AbstractRevision {
 		return $this->moderationState === self::MODERATED_HIDDEN;
 	}
 
-	public function getContentRaw() {
+	/**
+	 * DO NOT USE THIS METHOD to output the content; use
+	 * Templating::getContent, which will do additional (permissions-based)
+	 * checks to make sure it outputs something the user can see, as well as
+	 * convert the content to the requested format (wikitext|html)
+	 *
+	 * @return string
+	 */
+	public function getContent() {
 		if ( $this->decompressedContent === null ) {
 			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
 		}
 
 		return $this->decompressedContent;
-	}
-
-	/**
-	 * DO NOT USE THIS METHOD to output the content; use
-	 * Templating::getContent, which will do additional (permissions-based)
-	 * checks to make sure it outputs something the user can see.
-	 *
-	 * @param string[optional] $format Format to output content in (html|wikitext)
-	 * @return string
-	 */
-	public function getContent( $format = 'html' ) {
-		if ( !$this->isFormatted() ) {
-			return $this->getContentRaw();
-		}
-		if ( !isset( $this->convertedContent[$format] ) ) {
-			// check how content is stored & convert to requested format
-			$sourceFormat = in_array( 'html', $this->flags ) ? 'html' : 'wikitext';
-			$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $this->getContentRaw() );
-		}
-
-		return $this->convertedContent[$format];
 	}
 
 	public function getUserId() {
@@ -313,25 +298,23 @@ abstract class AbstractRevision {
 	 * @param string $content Content in wikitext format
 	 * @throws \MWException
 	 */
-	protected function setContent( $content ) {
+	protected function setContent( $content, $format = 'wikitext' ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
 			throw new \MWException( 'TODO: Cannot change content of restricted revision' );
 		}
-
-		// TODO: How is this guarantee of only receiving wikitext made?
-		$inputFormat = 'wikitext';
 		if ( $this->content !== null ) {
 			throw new \MWException( 'Updating content must use setNextContent method' );
 		}
+
 		// Keep consistent with normal edit page, trim only trailing whitespaces
 		$content = rtrim( $content );
-		$this->convertedContent = array( $inputFormat  => $content );
+		$this->convertedContent = array( $format  => $content );
 
 		// convert content to desired storage format
 		$storageFormat = $this->getStorageFormat();
-		if ( $this->isFormatted() && $storageFormat !== $inputFormat ) {
+		if ( $this->isFormatted() && $storageFormat !== $format ) {
 			$this->convertedContent[$storageFormat] = ParsoidUtils::convert(
-				$inputFormat,
+				$format,
 				$storageFormat,
 				$content
 			);
@@ -348,13 +331,13 @@ abstract class AbstractRevision {
 	/**
 	 * Apply new content to a revision.
 	 */
-	protected function setNextContent( User $user, $content ) {
+	protected function setNextContent( User $user, $content, $format = 'wikitext' ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
 			throw new \MWException( 'Cannot change content of restricted revision' );
 		}
 		if ( $content !== $this->getContent() ) {
 			$this->content = null;
-			$this->setContent( $content );
+			$this->setContent( $content, $format );
 			$this->lastEditId = $this->getRevisionId();
 			$this->lastEditUserId = $user->getId();
 			$this->lastEditUserText = $user->getName();
@@ -369,7 +352,7 @@ abstract class AbstractRevision {
 	 * instances of the same class.
 	 * @return boolean True for formatted, False for plaintext
 	 */
-	protected function isFormatted() {
+	public function isFormatted() {
 		return true;
 	}
 
@@ -380,6 +363,8 @@ abstract class AbstractRevision {
 	 * @return string The name of the storage format.
 	 */
 	protected function getStorageFormat() {
+		// @todo: I want to get rid of this here
+
 		global $wgFlowContentFormat;
 		return $this->isFormatted() ? $wgFlowContentFormat : 'wikitext';
 	}

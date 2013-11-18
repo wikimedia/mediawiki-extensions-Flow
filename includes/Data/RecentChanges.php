@@ -109,9 +109,7 @@ class HeaderRecentChanges extends RecentChanges {
 			$row,
 			$workflow,
 			$object->getRevisionId(),
-			array(
-				'content' => $this->contLang->truncate( $object->getContent(), self::TRUNCATE_LENGTH ),
-			)
+			array()
 		);
 	}
 }
@@ -147,34 +145,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 			$object->getRevisionId(),
 			array(
 				'post' => $object->getPostId()->getHex(),
-				'topic' => $this->getTopicTitle( $object ),
 			)
 		);
-	}
-
-	protected function getTopicTitle( PostRevision $rev ) {
-		if ( $rev->isTopicTitle() ) {
-			return $rev->getContent( 'wikitext' );
-		}
-		$topicTitleId = $this->tree->findRoot( $rev->getPostId() );
-		if ( $topicTitleId === null ) {
-			return null;
-		}
-		$found = $this->storage->find(
-			'PostRevision',
-			array( 'tree_rev_descendant_id' => $topicTitleId ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-		);
-		if ( !$found ) {
-			return null;
-		}
-
-		$content = reset( $found )->getContent( 'wikitext' );
-		if ( is_object( $content ) ) {
-			// moderated
-			return null;
-		}
-
-		return $this->contLang->truncate( $content, self::TRUNCATE_LENGTH );
 	}
 }

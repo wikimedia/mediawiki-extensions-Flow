@@ -301,7 +301,6 @@ class Templating {
 	public function getContent( AbstractRevision $revision, $format = 'html', User $permissionsUser = null ) {
 		$state = $revision->getModerationState();
 		$user = $revision->getModeratedByUserText();
-		$moderatedAt = new MWTimestamp( $revision->getModerationTimestamp() );
 
 		// Messages: flow-hide-content, flow-delete-content, flow-censor-content
 		$message = wfMessage( "flow-$state-content", $user );
@@ -309,7 +308,15 @@ class Templating {
 		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
 			return $message->text();
 		} else {
-			return $revision->getContent( $format );
+			$content = $revision->getContent();
+
+			if ( $revision->isFormatted() ) {
+				// check how content is stored & convert to requested format
+				$sourceFormat = in_array( 'html', $revision->getFlags() ) ? 'html' : 'wikitext';
+				$content = ParsoidUtils::convert( $sourceFormat, $format, $content );
+			}
+
+			return $content;
 		}
 	}
 }
