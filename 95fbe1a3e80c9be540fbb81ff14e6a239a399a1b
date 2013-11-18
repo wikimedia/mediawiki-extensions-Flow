@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_9da83722",
+        "filename": "modules/base/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-18T23:15:54Z",
+      "side": 1,
+      "message": "Also it seems VisualEditor has a very similar but slightly different version of the same\nVisualEditor/modules/jquery.uls/src/jquery.uls.core.js:424:     $.fn.scrollIntoView \u003d function () {",
+      "parentUuid": "291c1151_9d8f57cc",
+      "revId": "95fbe1a3e80c9be540fbb81ff14e6a239a399a1b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_1da36753",
         "filename": "modules/discussion/ui.js",
         "patchSetId": 3
