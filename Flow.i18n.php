@@ -1159,6 +1159,7 @@ $messages['fi'] = array(
 
 /** French (français)
  * @author Gomoko
+ * @author Linedwell
  * @author Sherbrooke
  * @author VIGNERON
  */
@@ -1243,7 +1244,7 @@ $messages['fr'] = array(
 	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|a effacé}} un [$3 commentaire].',
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|a rétabli}} un [$3 commentaire].',
 	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|a masqué}} le [$3 sujet].',
-	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|a supprimé}} le [$3 commentaire].', # Fuzzy
+	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|a supprimé}} le [$3 sujet].',
 	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|a supprimé}} le [$3 sujet].',
 	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|a rétabli}} le [$3 sujet].',
 	'flow-board-history' => 'Historique de « $1 »',
@@ -2277,7 +2278,7 @@ $messages['ml'] = array(
 	'flow-post-action-hide-post' => 'മറയ്ക്കുക',
 	'flow-topic-action-hide-topic' => 'വിഷയം മറയ്ക്കുക',
 	'flow-topic-action-delete-topic' => 'വിഷയം മായ്ക്കുക',
-	'flow-topic-action-censor-topic' => 'വിഷയം അടക്കിവയ്ക്കുക',
+	'flow-topic-action-censor-topic' => 'വിഷയം ഒതുക്കുക',
 	'flow-topic-action-restore-topic' => 'വിഷയം പുനഃസ്ഥാപിക്കുക',
 	'flow-error-other' => 'അപ്രതീക്ഷിതമായ പിഴവ് ഉണ്ടായി.',
 	'flow-moderation-title-censor-topic' => 'വിഷയം ഒതുക്കണോ?',
@@ -2287,7 +2288,7 @@ $messages['ml'] = array(
 	'flow-moderation-intro-censor-topic' => 'എന്തുകൊണ്ടാണ് ഈ വിഷയം ഒതുക്കേണ്ടതെന്ന് ദയവായി വിശദീകരിക്കുക.',
 	'flow-moderation-intro-delete-topic' => 'എന്തുകൊണ്ടാണ് ഈ വിഷയം മായ്ക്കുന്നതെന്ന് വിശദീകരിക്കുക.',
 	'flow-moderation-intro-hide-topic' => 'എന്തുകൊണ്ടാണ് ഈ വിഷയം മറയ്ക്കുന്നതെന്ന് വിശദീകരിക്കുക.',
-	'flow-moderation-intro-restore-topic' => 'എന്തുകൊണ്ടാണ് ഈ വിഷയം പുനഃസ്ഥാപിക്കുന്നതെന്ന് വിശദീകരിക്കുക',
+	'flow-moderation-intro-restore-topic' => 'എന്തുകൊണ്ടാണ് ഈ വിഷയം പുനഃസ്ഥാപിക്കുന്നതെന്ന് ദയവായി വിശദീകരിക്കുക.',
 	'flow-moderation-confirm-censor-topic' => 'ഒതുക്കുക',
 	'flow-moderation-confirm-delete-topic' => 'മായ്ക്കുക',
 	'flow-moderation-confirm-hide-topic' => 'മറയ്ക്കുക',
