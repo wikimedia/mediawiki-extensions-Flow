@@ -73,9 +73,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 
 					$newRegion.slideDown();
 
-					$mainContainer.animate({
-						scrollTop: $newRegion.offset().top - $mainContainer.height() / 2
-					});
+					$newRegion.scrollIntoView();
 				} );
 		}
 	);

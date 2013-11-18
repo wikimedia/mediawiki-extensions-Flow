@@ -29,6 +29,11 @@
 	mw.flow.editors.visualeditor.format = 'html';
 
 	/**
+	 * List of callbacks to execute when VE is fully loaded
+	 */
+	mw.flow.editors.visualeditor.prototype.initCallbacks = [];
+
+	/**
 	 * Callback function, executed after all VE dependencies have been loaded.
 	 *
 	 * @param {string} [content='']
@@ -53,7 +58,7 @@
 
 		// focus VE instance if textarea had focus
 		if ( !$focussedElement.length || this.$node.is( $focussedElement ) ) {
-			$veNode.focus();
+			this.focus();
 		} else {
 			$focussedElement.focus();
 		}
@@ -64,6 +69,10 @@
 		// pick up changes in the new node
 		$veNode.keyup( function () {
 			this.$node.keyup();
+		}.bind( this ) );
+
+		$.each( this.initCallbacks, function( k, callback ) {
+			callback.apply( this );
 		}.bind( this ) );
 	};
 
@@ -128,5 +137,29 @@
 
 	mw.flow.editors.visualeditor.isSupported = function() {
 		return mw.user.options.get( 'visualeditor-enable' ) ? true : false;
+	};
+
+	mw.flow.editors.visualeditor.prototype.focus = function() {
+		if ( ! this.target ) {
+			this.initCallbacks.push( function() {
+				this.focus();
+			} );
+			return;
+		}
+		this.target.surface.$element.find( '.ve-ce-documentNode' ).focus();
+	};
+
+	mw.flow.editors.visualeditor.prototype.moveCursorToEnd = function () {
+		if ( ! this.target ) {
+			this.initCallbacks.push( function() {
+				this.moveCursorToEnd();
+			} );
+			return;
+		}
+
+		var data = this.target.surface.getModel().getDocument().data,
+			cursorPos = data.getNearestContentOffset( data.getLength(), -1 );
+
+		this.target.surface.getModel().setSelection( new ve.Range( cursorPos ) );
 	};
 } ( jQuery, mediaWiki ) );
