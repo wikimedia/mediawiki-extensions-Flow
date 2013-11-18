@@ -348,7 +348,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options, $return = false ) {
-		$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion' ) );
+		$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
 		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		$prefix = '';
 

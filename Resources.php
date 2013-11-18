@@ -85,9 +85,8 @@ $wgResourceModules += array(
 		'scripts' => 'history/history.js',
 	),
 	'ext.flow.moderation' => $flowResourceTemplate + array(
-		'scripts' => array(
-			'moderation/moderation.js',
-		),
+		'styles' => 'moderation/styles/moderation.less',
+		'scripts' => 'moderation/moderation.js',
 		'messages' => array(
 			'flow-moderation-reason-placeholder',
 			'flow-moderation-title-censor-post',

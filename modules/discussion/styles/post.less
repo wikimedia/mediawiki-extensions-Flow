@@ -27,14 +27,16 @@
 		font-weight: normal;
 		color: @post-content-color;
 
-		padding-bottom: 13px;
-
 		*:first-child {
 			margin-top: 0;
 		}
 
 		*:last-child {
 			margin-bottom: 0;
+		}
+
+		ul {
+			list-style-image: none;
 		}
 	}
 
@@ -63,8 +65,21 @@
 	}
 
 	.flow-post-interaction {
+		padding-top: 13px;
+
 		// hide reply/thank buttons until post is hovered
 		visibility: hidden;
+
+		.mw-ui-button {
+			border: none;
+			padding: 0;
+			background: none;
+			color: #777;
+
+			box-shadow: none;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+		}
 	}
 
 	.flow-datestamp {
@@ -89,9 +104,6 @@
 		}
 
 		.flow-actions-link {
-			// position it nicely between .flow-edit-post-link & .flow-actions-link
-			margin-top: -61px !important;
-
 			width: 20px;
 			height: 20px;
 			text-indent: -9999px;
@@ -107,95 +119,10 @@
 		}
 	}
 
-	// Add icon to action buttons
-	.buttonIcon(
-		@active-icon,
-		@active-fallback-icon,
-
-		@hover-icon,
-		@hover-fallback-icon,
-
-		@normal-icon,
-		@normal-fallback-icon,
-
-		@onclick-icon,
-		@onclick-fallback-icon
-	) {
-		padding-left: 41px;
-		// !important to overwrite MW core's background image
-		.background-image-svg(@normal-icon, @normal-fallback-icon) !important;
-
-		&:active {
-			.background-image-svg(@active-icon, @active-fallback-icon) !important;
-		}
-
-		&:hover {
-			.background-image-svg(@hover-icon, @hover-fallback-icon) !important;
-		}
-
-		background-position: 16px !important;
-		background-size: 14px auto !important;
-		background-repeat: no-repeat !important;
-	}
-
-	.flow-hide-post-link {
-		.buttonIcon(
-			'../../base/images/moderate_menu_hidden_active.svg',
-			'../../base/images/moderate_menu_hidden_active.png',
-
-			'../../base/images/moderate_menu_hidden_hover.svg',
-			'../../base/images/moderate_menu_hidden_hover.png',
-
-			'../../base/images/moderate_menu_hidden_normal.svg',
-			'../../base/images/moderate_menu_hidden_normal.png',
-
-			'../../base/images/moderate_menu_hidden_onclick.svg',
-			'../../base/images/moderate_menu_hidden_onclick.png'
-		);
-	}
-
-	.flow-delete-post-link {
-		.buttonIcon(
-			'../../base/images/moderate_menu_deleted_active.svg',
-			'../../base/images/moderate_menu_deleted_active.png',
-
-			'../../base/images/moderate_menu_deleted_hover.svg',
-			'../../base/images/moderate_menu_deleted_hover.png',
-
-			'../../base/images/moderate_menu_deleted_normal.svg',
-			'../../base/images/moderate_menu_deleted_normal.png',
-
-			'../../base/images/moderate_menu_deleted_onclick.svg',
-			'../../base/images/moderate_menu_deleted_onclick.png'
-		);
-	}
-
-	.flow-censor-post-link {
-		.buttonIcon(
-			'../../base/images/moderate_menu_suppressed_active.svg',
-			'../../base/images/moderate_menu_suppressed_active.png',
-
-			'../../base/images/moderate_menu_suppressed_hover.svg',
-			'../../base/images/moderate_menu_suppressed_hover.png',
-
-			'../../base/images/moderate_menu_suppressed_normal.svg',
-			'../../base/images/moderate_menu_suppressed_normal.png',
-
-			'../../base/images/moderate_menu_suppressed_onclick.svg',
-			'../../base/images/moderate_menu_suppressed_onclick.png'
-		);
-	}
-
-	.flow-restore-post-link {
-		// @todo: need icon
-//		.buttonIcon('../../base/images/restored_button.svg', '../../base/images/restored_button.png');
-	}
-
 	// any non-first-level reply
 	.flow-post-replies {
 		font-size: 14px;
 
-		margin-top: 20px;
 		margin-left: 22px;
 		border-left: 2px dotted #CCC;
 	}
@@ -236,6 +163,7 @@
 		padding-top: 20px;
 
 		.flow-post-form-controls {
+			margin-top: 5px;
 			text-align: right;
 		}
 
