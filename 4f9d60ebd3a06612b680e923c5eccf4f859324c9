@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "291c1151_7df37b9d",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-18T22:51:52Z",
+      "side": 1,
+      "message": "The new code below adds a 4th parameter to this call.",
+      "revId": "4f9d60ebd3a06612b680e923c5eccf4f859324c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_624e813a",
         "filename": "includes/ParsoidUtils.php",
         "patchSetId": 1
@@ -13,6 +30,23 @@
       "writtenOn": "2013-11-17T23:56:59Z",
       "side": 1,
       "message": "This is unrelated.\n\nI would just ignore it because it\u0027s related enough, but this will cause fatal errors if you merge it without the rest of the patch.",
+      "revId": "4f9d60ebd3a06612b680e923c5eccf4f859324c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_5d3b1f35",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-18T22:51:52Z",
+      "side": 1,
+      "message": "needs moar indent?",
       "revId": "4f9d60ebd3a06612b680e923c5eccf4f859324c9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
