@@ -122,6 +122,7 @@ $wgAutoloadClasses['Flow\Data\Merger'] = $dir . 'includes/Data/RevisionStorage.p
 $wgAutoloadClasses['Flow\RecentChanges\Formatter'] = $dir . 'includes/RecentChanges/Formatter.php';
 $wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
 $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
+$wgAutoloadClasses['Flow\Log\PostModerationLogger'] = $dir . 'includes/Log/PostModerationLogger.php';
 
 // database interaction for singular models
 $wgAutoloadClasses['Flow\Data\RevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
