@@ -78,7 +78,6 @@
 				e.preventDefault();
 
 				var $formContainer,
-					$viewport = $( 'main, html' ),
 					username = '',
 					defaultContent = '';
 
@@ -111,14 +110,15 @@
 
 				$textarea = $formContainer.find( 'textarea' );
 				$textarea
-					.focus()
 					.removeClass( 'flow-reply-box-closed' );
 				mw.flow.editor.load( $textarea, defaultContent, 'wikitext' );
 
 				// Scroll to the form
-				$viewport.animate( {
-					'scrollTop' : $formContainer.offset().top - $viewport.height() / 2
-				}, 500 );
+				$formContainer.scrollIntoView( null, null, {
+					'complete' : function() {
+						mw.flow.editor.focus( $textarea );
+					}
+				} );
 			} );
 
 		$( '<a />' )
@@ -259,13 +259,11 @@
 				e.stopPropagation();
 
 				$hideElement.slideDown( function() {
-					var $viewport = $( 'html,body' ),
-						$replyContainer = $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) );
+						var $replyContainer = $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) );
 
-					$viewport.animate( {
-						'scrollTop': $replyContainer.offset().top - $viewport.height()/2,
+					$replyContainer.scrollIntoView( null, null, {
 						'complete': $replyContainer.find( '.flow-topic-reply-content' ).click()
-					}, 500 );
+					} );
 				} );
 			}
 		);
@@ -394,18 +392,15 @@
 			.prependTo( $container.find( '.flow-post-content-allowed' ) );
 
 		var highlightPost = function( $elem ) {
-			var $viewport = $( 'main, html' );
-
 			if ( !$elem.length ) {
 				return;
 			}
+			
 			$container.find( '.flow-post-highlighted' ).removeClass( 'flow-post-highlighted' );
 			$elem
 				.closest( '.flow-post-container' )
 				.addClass( 'flow-post-highlighted' );
-			$viewport.animate( {
-				'scrollTop' : $elem.offset().top - $viewport.height()/2
-			}, 500 );
+			$elem.scrollIntoView();
 		};
 
 		if ( window.location.hash ) {
