@@ -15,9 +15,15 @@ class Formatter extends \LogFormatter {
 
 		$type = $this->entry->getType();
 		$action = $this->entry->getSubtype();
-		$title = $this->entry->getTarget();
+		$linkTitle = $title = $this->entry->getTarget();
 		$skin = $this->plaintext ? null : $this->context->getSkin();
 		$params = $this->entry->getParameters();
+
+		if ( isset( $params['postId'] ) ) {
+			$linkTitle = clone $title;
+			$linkTitle->setFragment( '#flow-post-' . $params['postId'] );
+			unset( $params['postId'] );
+		}
 
 		// Give grep a chance to find the usages:
 		// logentry-delete-flow-delete-post, logentry-delete-flow-restore-post,
@@ -28,7 +34,7 @@ class Formatter extends \LogFormatter {
 				Message::rawParam( $this->getPerformerElement() ),
 				$this->entry->getPerformer()->getId(),
 				$title,
-				$title->getFullUrl( $params ),
+				$linkTitle->getFullUrl( $params ),
 			) )
 			->inLanguage( $language )
 			->parse();
