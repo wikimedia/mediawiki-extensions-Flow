@@ -20,6 +20,7 @@ class WorkflowLoader {
 			$pageTitle,
 			/*UUID or NULL*/ $workflowId,
 			$definitionRequest,
+			DbFactory $dbFactory,
 			ManagerGroup $storage,
 			RootPostLoader $rootPostLoader,
 			NotificationController $notificationController
@@ -32,6 +33,7 @@ class WorkflowLoader {
 			throw new \MWException( 'Interwiki not implemented yet' );
 		}
 
+		$this->dbFactory = $dbFactory;
 		$this->storage = $storage;
 		$this->rootPostLoader = $rootPostLoader;
 		$this->notificationController = $notificationController;
@@ -185,13 +187,15 @@ class WorkflowLoader {
 	}
 
 	public function commit( Workflow $workflow, array $blocks ) {
-		$this->storage->getStorage( 'Workflow' )->put( $workflow );
-		$results = array();
-		foreach ( $blocks as $block ) {
-			$results[$block->getName()] = $block->commit();
-		}
-
-		return $results;
+		$storage = $this->storage;
+		return $this->dbFactory->transactional( function() use( $storage, $workflow, $blocks ) {
+			$storage->getStorage( 'Workflow' )->put( $workflow );
+			$results = array();
+			foreach ( $blocks as $block ) {
+				$results[$block->getName()] = $block->commit();
+			}
+			return $results;
+		} );
 	}
 
 }
@@ -199,7 +203,8 @@ class WorkflowLoader {
 class WorkflowLoaderFactory {
 	protected $storage, $rootPostLoader, $notificationController;
 
-	function __construct( ManagerGroup $storage, RootPostLoader $rootPostLoader, NotificationController $notificationController ) {
+	function __construct( DbFactory $dbFactory, ManagerGroup $storage, RootPostLoader $rootPostLoader, NotificationController $notificationController ) {
+		$this->dbFactory = $dbFactory;
 		$this->storage = $storage;
 		$this->rootPostLoader = $rootPostLoader;
 		$this->notificationController = $notificationController;
@@ -210,6 +215,7 @@ class WorkflowLoaderFactory {
 			$pageTitle,
 			$workflowId,
 			$definitionRequest,
+			$this->dbFactory,
 			$this->storage,
 			$this->rootPostLoader,
 			$this->notificationController

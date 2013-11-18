@@ -1471,4 +1471,11 @@ class BufferedCache {
 		}
 		$this->buffer = null;
 	}
+
+	public function rollback() {
+		if ( $this->buffer === null ) {
+			throw new \MWException( 'No transaction in progress' );
+		}
+		$this->buffer = null;
+	}
 }

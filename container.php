@@ -18,7 +18,7 @@ $c['flow_actions'] = $c->share( function( $c ) {
 // Always returns the correct database for flow storage
 $c['db.factory'] = $c->share( function( $c ) {
 	global $wgFlowDefaultWikiDb;
-	return new Flow\DbFactory( $wgFlowDefaultWikiDb );
+	return new Flow\DbFactory( $c['memcache.buffered'], $wgFlowDefaultWikiDb );
 } );
 
 // Database Access Layer external from main implementation
@@ -359,6 +359,7 @@ $c['loader.root_post'] = $c->share( function( $c ) {
 
 $c['factory.loader.workflow'] = $c->share( function( $c ) {
 	return new Flow\WorkflowLoaderFactory(
+		$c['db.factory'],
 		$c['storage'],
 		$c['loader.root_post'],
 		$c['controller.notification']
