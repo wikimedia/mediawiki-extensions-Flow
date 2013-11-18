@@ -228,27 +228,16 @@ class TopicBlock extends AbstractBlock {
 			$this->errors['moderate'] = wfMessage( 'flow-error-invalid-moderation-reason' );
 			return;
 		}
+
+		$reason = $this->submitted['reason'];
+
 		if ( $post->needsModerateHistorical( $newState ) ) {
 			$this->relatedRevisions = $this->loadHistorical( $post );
 		}
 
-		$this->newRevision = $post->moderate( $this->user, $newState, $action, $this->relatedRevisions );
+		$this->newRevision = $post->moderate( $this->user, $newState, $action, $reason, $this->relatedRevisions );
 		if ( !$this->newRevision ) {
 			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
-		} else {
-			// @todo: would be nice to get this logging into a LifecycleHandler
-			$logger = Container::get( 'logger' );
-			if ( $logger->canLog( $post, $action ) ) {
-				$logger->log(
-					$post,
-					$action,
-					$this->submitted['reason'],
-					$this->getWorkflow(),
-					array(
-						$this->getName() . '[postId]' => $post->getPostId()->getHex(),
-					)
-				);
-			}
 		}
 	}
 

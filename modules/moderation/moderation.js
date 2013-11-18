@@ -88,6 +88,7 @@
 				.append(
 					$( '<textarea/>' )
 						.attr( 'id', 'flow-moderation-reason' )
+						.byteLimit( 255 )
 						.attr( 'placeholder', mw.msg( 'flow-moderation-reason-placeholder' ) )
 				)
 				.appendTo( $dialog );
