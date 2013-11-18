@@ -53,6 +53,7 @@
 
 		// focus VE instance if textarea had focus
 		if ( !$focussedElement.length || this.$node.is( $focussedElement ) ) {
+			this.focus();
 			$veNode.focus();
 		} else {
 			$focussedElement.focus();
@@ -130,5 +131,9 @@
 
 	mw.flow.editors.visualeditor.isSupported = function() {
 		return mw.user.options.get( 'visualeditor-enable' ) ? true : false;
+	};
+
+	mw.flow.editors.visualeditor.focus = function() {
+		this.target.surface.$.find( '.ve-ce-documentNode' ).focus();
 	};
 } ( jQuery, mediaWiki ) );

@@ -167,6 +167,16 @@
 		 */
 		getEditor: function ( $node ) {
 			return mw.flow.editor.editors[$node.data( 'flow-editor' )];
+		},
+
+		focus: function( $node ) {
+			var editor = mw.flow.editor.getEditor( $node );
+
+			if ( editor.focus ) {
+				editor.focus();
+			} else {
+				$node.focus();
+			}
 		}
 	};
 	$( mw.flow.editor.init );
