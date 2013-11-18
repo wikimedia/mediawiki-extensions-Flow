@@ -106,9 +106,6 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 					<?php if ( $postView->actions()->isAllowed( 'reply' ) ): ?>
 						<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo $postView->replyLink(); ?></span></a>
 					<?php endif ?>
-					<a class="flow-thank-link mw-ui-button" href="#" onclick="return mw.flow.notImplemented()">
-						<span><?php echo $postView->thankLink(); ?></span>
-					</a>
 				<?php else: ?>
 					<?php list( $talkUrl, $talkLink ) = $postView->moderatedTalkLink(); ?>
 					<a class="flow-talk-link mw-ui-button" href="<?php echo $talkUrl; ?>">
