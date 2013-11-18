@@ -65,4 +65,10 @@
 			$( this ).animate( { height: scrollHeight + padding }, 50 );
 		}
 	};
+
+	mw.flow.editors.none.prototype.focus = function() {
+		return this.$node
+			.focus()
+			.selectRange( this.$node.val().length );
+	};
 } ( jQuery, mediaWiki ) );

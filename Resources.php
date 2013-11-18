@@ -25,6 +25,7 @@ $wgResourceModules += array(
 			'base/ext.flow.base.js',
 			'base/ui-functions.js',
 			'base/init.js',
+			'base/utils.js',
 		),
 		'dependencies' => array(
 			'mediawiki.ui',
