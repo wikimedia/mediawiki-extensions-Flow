@@ -79,4 +79,10 @@
 			$( this ).animate( { height: scrollHeight + padding }, animationTime );
 		}
 	};
+
+	mw.flow.editors.none.prototype.focus = function() {
+		return this.$node
+			.focus()
+			.selectRange( this.$node.val().length );
+	};
 } ( jQuery, mediaWiki ) );
