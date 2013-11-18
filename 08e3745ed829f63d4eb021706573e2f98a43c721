@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_fd404b64",
+        "filename": "modules/discussion/styles/settings/colors.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-18T23:50:43Z",
+      "side": 1,
+      "message": "should this be #333 ?",
+      "revId": "08e3745ed829f63d4eb021706573e2f98a43c721",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_5d5cff47",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-18T23:50:43Z",
+      "side": 1,
+      "message": "we use it regularly enough, might as well give this a name",
+      "revId": "08e3745ed829f63d4eb021706573e2f98a43c721",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_a0478c4c",
+        "filename": "modules/moderation/styles/mixins/buttonicon.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-18T23:50:43Z",
+      "side": 1,
+      "message": "These variables are almost always the same, it would be nice to have a shorthand function that makes the less using it nicer\n\nThe following appears to work in a quick test:\n\n    .buttonIcon(@icon-prefix) {\n        .buttonIconExplicit(\n            ~\"@{icon-prefix}_active.svg\", \n            ~\"@{icon-prefix}_active.png\",\n\n            ~\"@{icon-prefix}_hover.svg\", \n            ~\"@{icon-prefix}_hover.png\",\n\n            ~\"@{icon-prefix}_normal.svg\", \n            ~\"@{icon-prefix}_normal.png\",\n\n            ~\"@{icon-prefix}_onclick.svg\", \n            ~\"@{icon-prefix}_onclick.png\",\n        );\n    }\n\n\nThen using a button just becomes\n\n    .buttonIcon( \u0027../../base/images/moderate_menu_hidden\u0027 );\n\nCould possibly be cleaned up even more, since passing half a path feels wierd too :)",
+      "revId": "08e3745ed829f63d4eb021706573e2f98a43c721",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
