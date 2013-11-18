@@ -287,6 +287,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 	);
 
 	$handlers = array(
+		new Flow\Log\PostModerationLogger( $c['storage'], $c['repository.tree'], $c['logger'] ),
 		new Flow\Data\PostRevisionRecentChanges( $c['storage'], $c['repository.tree'], $wgContLang ),
 		$c['storage.board_history.index'],
 	);

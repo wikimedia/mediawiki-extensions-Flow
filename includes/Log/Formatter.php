@@ -2,6 +2,7 @@
 
 namespace Flow\Log;
 
+use Flow\Model\UUID;
 use Message;
 
 class Formatter extends \LogFormatter {
@@ -18,6 +19,29 @@ class Formatter extends \LogFormatter {
 		$title = $this->entry->getTarget();
 		$skin = $this->plaintext ? null : $this->context->getSkin();
 		$params = $this->entry->getParameters();
+
+		// FIXME this is ugly. Why were we treating log parameters as
+		// URL GET parameters in the first place?
+		if ( isset( $params['postId'] ) ) {
+			$title = clone $title;
+			$postId = $params['postId'];
+			if ( $postId instanceof UUID ) {
+				$postId = $postId->getHex();
+			}
+			$title->setFragment( '#flow-post-' . $postId );
+			unset( $params['postId'] );
+		}
+
+		if ( isset( $params['topicId'] ) ) {
+			$title = clone $title;
+			$topicId = $params['topicId'];
+			if ( $topicId instanceof UUID ) {
+				$topicId = $topicId->getHex();
+			}
+
+			$title->setFragment( '#flow-topic-' . $topicId );
+			unset( $params['topicId'] );
+		}
 
 		// Give grep a chance to find the usages:
 		// logentry-delete-flow-delete-post, logentry-delete-flow-restore-post,

@@ -77,6 +77,7 @@ abstract class AbstractRevision {
 	protected $moderationTimestamp;
 	protected $moderatedByUserId;
 	protected $moderatedByUserText;
+	protected $moderatedReason;
 
 	protected $lastEditId;
 	protected $lastEditUserId;
@@ -103,6 +104,7 @@ abstract class AbstractRevision {
 		$obj->moderatedByUserId = $row['rev_mod_user_id'];
 		$obj->moderatedByUserText = $row['rev_mod_user_text'];
 		$obj->moderationTimestamp = $row['rev_mod_timestamp'];
+		$obj->moderatedReason = isset( $row['rev_mod_reason'] ) ? $row['rev_mod_reason'] : null;
 
 		// isset required because there is a possible db migration, cached data will not have it
 		$obj->lastEditId = isset( $row['rev_last_edit_id'] ) ? UUID::create( $row['rev_last_edit_id'] ) : null;
@@ -129,6 +131,7 @@ abstract class AbstractRevision {
 			'rev_mod_user_id' => $obj->moderatedByUserId,
 			'rev_mod_user_text' => $obj->moderatedByUserText,
 			'rev_mod_timestamp' => $obj->moderationTimestamp,
+			'rev_mod_reason' => $obj->moderatedReason,
 
 			'rev_last_edit_id' => $obj->lastEditId ? $obj->lastEditId->getBinary() : null,
 			'rev_edit_user_id' => $obj->lastEditUserId,
@@ -180,7 +183,7 @@ abstract class AbstractRevision {
 	 * $historical revisions must be provided when self::needsModerateHistorical
 	 * returns true.
 	 */
-	public function moderate( User $user, $state, $changeType, array $historical = array() ) {
+	public function moderate( User $user, $state, $changeType, $reason, array $historical = array() ) {
 		if ( ! $this->isValidModerationState( $state ) ) {
 			wfWarn( __METHOD__ . ': Provided moderation state does not exist : ' . $state );
 			return null;
@@ -209,10 +212,14 @@ abstract class AbstractRevision {
 				$rev->moderatedByUserId = null;
 				$rev->moderatedByUserText = null;
 				$rev->moderationTimestamp = null;
+				// This is a bit hacky, but we store the restore reason
+				// in the "moderated reason" field. Hmmph.
+				$rev->moderatedReason = $reason;
 			} else {
 				$rev->moderatedByUserId = $user->getId();
 				$rev->moderatedByUserText = $user->getName();
 				$rev->moderationTimestamp = $timestamp;
+				$rev->moderatedReason = $reason;
 			}
 		}
 
@@ -394,6 +401,10 @@ abstract class AbstractRevision {
 
 	public function getModerationState() {
 		return $this->moderationState;
+	}
+
+	public function getModeratedReason() {
+		return $this->moderatedReason;
 	}
 
 	public function isModerated() {

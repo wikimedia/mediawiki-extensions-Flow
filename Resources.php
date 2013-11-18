@@ -129,6 +129,7 @@ $wgResourceModules += array(
 			'ext.flow.base',
 			'jquery.ui.dialog',
 			'jquery.spinner',
+			'jquery.byteLimit',
 		),
 	),
 	'ext.flow.editor' => $flowResourceTemplate + array(

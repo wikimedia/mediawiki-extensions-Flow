@@ -11,7 +11,11 @@ use User;
 
 abstract class RevisionStorage implements WritableObjectStorage {
 	static protected $allowedUpdateColumns = array(
-		'rev_mod_state', 'rev_mod_user_id', 'rev_mod_user_text', 'rev_mod_timestamp',
+		'rev_mod_state',
+		'rev_mod_user_id',
+		'rev_mod_user_text',
+		'rev_mod_timestamp',
+		'rev_mod_reason',
 	);
 	protected $dbFactory;
 	protected $externalStores;
