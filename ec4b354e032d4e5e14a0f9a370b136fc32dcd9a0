@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "291c1151_e07d047d",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-11-18T23:52:52Z",
+      "side": 1,
+      "message": "You are right, it should be put in ui-functions.js so it follows the usual UI semantics, :)",
+      "parentUuid": "291c1151_e27ef165",
+      "revId": "ec4b354e032d4e5e14a0f9a370b136fc32dcd9a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "291c1151_c2f2d504",
         "filename": "modules/preview/preview.js",
         "patchSetId": 1
@@ -98,6 +116,24 @@
       "writtenOn": "2013-11-17T23:32:35Z",
       "side": 1,
       "message": "This looks like a copy of the one in base?",
+      "revId": "ec4b354e032d4e5e14a0f9a370b136fc32dcd9a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_006f80c6",
+        "filename": "modules/preview/styles/preview.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-11-18T23:52:52Z",
+      "side": 1,
+      "message": "I initially put it in base module, but forgot to remove the duplicate when I decided to make preview a separate module, :(",
+      "parentUuid": "291c1151_e2f7d1f1",
       "revId": "ec4b354e032d4e5e14a0f9a370b136fc32dcd9a0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
