@@ -26,6 +26,7 @@ $wgResourceModules += array(
 			'base/ext.flow.base.js',
 			'base/ui-functions.js',
 			'base/init.js',
+			'base/utils.js',
 		),
 		'dependencies' => array(
 			'mediawiki.ui',
@@ -157,6 +158,9 @@ $wgResourceModules += array(
 	),
 	'ext.flow.editors.none' => $flowResourceTemplate + array(
 		'scripts' => 'editor/editors/ext.flow.editors.none.js',
+		'dependencies' => array(
+			'ext.flow.base',
+		),
 	),
 	'ext.flow.editors.wikieditor' => $flowResourceTemplate + array(
 		'scripts' => 'editor/editors/ext.flow.editors.wikieditor.js',
