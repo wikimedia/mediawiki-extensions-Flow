@@ -8,18 +8,22 @@ use Flow\Block\TopicListBlock;
 use Flow\Model\Definition;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectStorage;
 use Flow\Data\RootPostLoader;
 use Flow\NotificationController;
 
 class WorkflowLoader {
+	protected $dbFactory, $bufferedCache;
 	protected $workflow, $definition, $storage, $rootPostLoader, $notificationController, $definitionRequest;
 
 	public function __construct(
 			$pageTitle,
 			/*UUID or NULL*/ $workflowId,
 			$definitionRequest,
+			DbFactory $dbFactory,
+			BufferedCache $bufferedCache,
 			ManagerGroup $storage,
 			RootPostLoader $rootPostLoader,
 			NotificationController $notificationController
@@ -32,6 +36,8 @@ class WorkflowLoader {
 			throw new \MWException( 'Interwiki not implemented yet' );
 		}
 
+		$this->dbFactory = $dbFactory;
+		$this->bufferedCache = $bufferedCache;
 		$this->storage = $storage;
 		$this->rootPostLoader = $rootPostLoader;
 		$this->notificationController = $notificationController;
@@ -185,10 +191,22 @@ class WorkflowLoader {
 	}
 
 	public function commit( Workflow $workflow, array $blocks ) {
-		$this->storage->getStorage( 'Workflow' )->put( $workflow );
-		$results = array();
-		foreach ( $blocks as $block ) {
-			$results[$block->getName()] = $block->commit();
+		$cache = $this->bufferedCache;
+
+		try {
+			$cache->begin();
+			$this->storage->getStorage( 'Workflow' )->put( $workflow );
+			$results = array();
+			foreach ( $blocks as $block ) {
+				$results[$block->getName()] = $block->commit();
+			}
+			// Delay writing to cache until after db transaction has commited.
+			$this->dbFactory->getDB( DB_MASTER )->onTransactionIdle( function() use( $cache ) {
+				$cache->commit();
+			} );
+		} catch ( \Exception $e ) {
+			$cache->rollback();
+			throw $e;
 		}
 
 		return $results;
@@ -199,7 +217,9 @@ class WorkflowLoader {
 class WorkflowLoaderFactory {
 	protected $storage, $rootPostLoader, $notificationController;
 
-	function __construct( ManagerGroup $storage, RootPostLoader $rootPostLoader, NotificationController $notificationController ) {
+	function __construct( DbFactory $dbFactory, BufferedCache $bufferedCache, ManagerGroup $storage, RootPostLoader $rootPostLoader, NotificationController $notificationController ) {
+		$this->dbFactory = $dbFactory;
+		$this->bufferedCache = $bufferedCache;
 		$this->storage = $storage;
 		$this->rootPostLoader = $rootPostLoader;
 		$this->notificationController = $notificationController;
@@ -210,6 +230,8 @@ class WorkflowLoaderFactory {
 			$pageTitle,
 			$workflowId,
 			$definitionRequest,
+			$this->dbFactory,
+			$this->bufferedCache,
 			$this->storage,
 			$this->rootPostLoader,
 			$this->notificationController
