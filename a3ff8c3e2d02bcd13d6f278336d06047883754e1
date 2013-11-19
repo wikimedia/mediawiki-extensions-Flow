@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_20139c0d",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-11-19T00:55:42Z",
+      "side": 1,
+      "message": "I guess this is no longer valid since it has been handled in patch 96065",
+      "revId": "a3ff8c3e2d02bcd13d6f278336d06047883754e1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
