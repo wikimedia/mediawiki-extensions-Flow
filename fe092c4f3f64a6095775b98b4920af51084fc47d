@@ -16,6 +16,24 @@
       "revId": "fe092c4f3f64a6095775b98b4920af51084fc47d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_f154f4fe",
+        "filename": "includes/View.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-19T12:20:10Z",
+      "side": 1,
+      "message": "I think Parsoid plans to do that, it\u0027s documented as a hack in Parsoid\u0027s code.\n\nUntil then, I think this temp hack is probably the best way to deal with it from our side.",
+      "parentUuid": "291c1151_8bdab112",
+      "revId": "fe092c4f3f64a6095775b98b4920af51084fc47d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
