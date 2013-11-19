@@ -36,10 +36,6 @@ class Post {
 		return wfMessage( 'flow-reply-link', $this->creatorUserText )->escaped();
 	}
 
-	public function thankLink() {
-		return wfMessage( 'flow-thank-link', $this->creatorUserText)->escaped();
-	}
-
 	public function moderatedTalkLink() {
 		$user = User::newFromId( $this->post->getModeratedByUserId() );
 		$title = $user->getTalkPage();
@@ -72,6 +68,7 @@ class Post {
 			$this->post->getCreatorName( $this->user )
 		);
 	}
+
 	public function editPostButton( $buttonClass ) {
 		if ( !$this->actions->isAllowed( 'edit-post' ) ) {
 			return '';
