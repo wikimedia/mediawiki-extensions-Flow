@@ -301,7 +301,6 @@ class Templating {
 	public function getContent( AbstractRevision $revision, $format = 'html', User $permissionsUser = null ) {
 		$state = $revision->getModerationState();
 		$user = $revision->getModeratedByUserText();
-		$moderatedAt = new MWTimestamp( $revision->getModerationTimestamp() );
 
 		// Messages: flow-hide-content, flow-delete-content, flow-censor-content
 		$message = wfMessage( "flow-$state-content", $user );
