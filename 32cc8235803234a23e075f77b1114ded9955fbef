@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_40ab33d7",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-19T23:43:23Z",
+      "side": 1,
+      "message": "probably doesn\u0027t need to be repeated :)",
+      "revId": "32cc8235803234a23e075f77b1114ded9955fbef",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
