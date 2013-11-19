@@ -16,6 +16,24 @@
       "revId": "a3ff8c3e2d02bcd13d6f278336d06047883754e1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "291c1151_80a8d07a",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-19T02:24:19Z",
+      "side": 1,
+      "message": "there are actually two different files with a .buttonIcon function.  Would have to check w mlitn on why there are two.  96055 added a moderation specific butonIcon mixing.  Probably best to figure that out before merging.",
+      "parentUuid": "291c1151_20139c0d",
+      "revId": "a3ff8c3e2d02bcd13d6f278336d06047883754e1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
