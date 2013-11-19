@@ -27,9 +27,9 @@ abstract class ParsoidUtils {
 	}
 
 	/**
-	 * Convert form/to wikitext/html using VisualEditor's API.
+	 * Convert from/to wikitext/html via Parsoid.
 	 *
-	 * This will assume Parsoid is installed, which is a dependency of VE.
+	 * This will assume Parsoid is installed.
 	 *
 	 * @param string $from Format of content to convert: html|wikitext
 	 * @param string $to Format to convert to: html|wikitext
@@ -37,10 +37,9 @@ abstract class ParsoidUtils {
 	 * @return string
 	 */
 	protected static function parsoid( $from, $to, $content ) {
-		global $wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout;
-
-		if ( ! isset( $wgVisualEditorParsoidURL ) || ! $wgVisualEditorParsoidURL ) {
-			throw new NoParsoidException( "VisualEditor parsoid configuration is unavailable" );
+		list( $parsoidURL, $parsoidPrefix, $parsoidTimeout ) = self::parsoidConfig();
+		if ( !isset( $parsoidURL ) || !$parsoidURL ) {
+			throw new NoParsoidException( 'Flow Parsoid configuration is unavailable' );
 		}
 
 		if ( $from == 'html' ) {
@@ -53,10 +52,10 @@ abstract class ParsoidUtils {
 
 		$response = \Http::post(
 			// @todo needs a big refactor to get a page title in here, fake Main_Page for now
-			$wgVisualEditorParsoidURL . '/' . $wgVisualEditorParsoidPrefix . '/Main_Page',
+			$parsoidURL . '/' . $parsoidPrefix . '/Main_Page',
 			array(
 				'postData' => array( $from => $content ),
-				'timeout' => $wgVisualEditorParsoidTimeout
+				'timeout' => $parsoidTimeout
 			)
 		);
 
@@ -117,7 +116,25 @@ abstract class ParsoidUtils {
 		$output = $wgParser->parse( $content, $title, $options );
 		return $output->getText();
 	}
+
+	/**
+	 * Returns Flow's Parsoid config. $wgFlowParsoid* variables can be used to
+	 * specify a certain Parsoid installation. If none specified, we'll piggy-
+	 * back on VisualEditor's Parsoid setup.
+	 *
+	 * @return array Parsoid config, in array(URL, prefix, timeout) format
+	 */
+	protected static function parsoidConfig() {
+		global
+			$wgFlowParsoidURL, $wgFlowParsoidPrefix, $wgFlowParsoidTimeout,
+			$wgVisualEditorParsoidURL, $wgVisualEditorParsoidPrefix, $wgVisualEditorParsoidTimeout;
+
+		return array(
+			$wgFlowParsoidURL ? $wgFlowParsoidURL : $wgVisualEditorParsoidURL,
+			$wgFlowParsoidPrefix ? $wgFlowParsoidPrefix : $wgVisualEditorParsoidPrefix,
+			$wgFlowParsoidTimeout ? $wgFlowParsoidTimeout : $wgVisualEditorParsoidTimeout,
+		);
+	}
 }
 
-class NoParsoidExceptions extends \MWException {}
-
+class NoParsoidException extends \MWException {}
