@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_6c0e6b3c",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-19T19:25:44Z",
+      "side": 1,
+      "message": "Perhaps i\u0027m worrying over nothing, but the other three fields (user id/user text/timestamp) are all denormalized data.  If/when a future moderation overwrites these fields the information still exists within the object created by newNullRevision. This moderatedReason on the other hand will be overwritten and no longer available except within the external logs.\n\nI\u0027m not entirely certain which direction we should go here, i suppose it depends on what content needs to be displayed where\n\nAlso unrelated to this patch, but it just occured to me moderationTimestamp would be better represented as moderatedByRevisionId, which being a UUID would include a timestamp as well.",
+      "revId": "2796964feafbb5a370f88fdd2ee7de654082d87e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
