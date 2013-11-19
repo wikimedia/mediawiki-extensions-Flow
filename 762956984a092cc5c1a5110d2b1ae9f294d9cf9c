@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "291c1151_6022f455",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 164
+      },
+      "writtenOn": "2013-11-19T01:03:34Z",
+      "side": 1,
+      "message": "The prefix depends on the configuration. You should not hard-code /wiki/ here.\n\nRather than messing with the prefix I\u0027d rewrite this to a proper relative link using the appropriate number of \u0027../\u0027 prefixes. This would be none when the title has no slash in it, and more if there are slashes.",
+      "revId": "762956984a092cc5c1a5110d2b1ae9f294d9cf9c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
