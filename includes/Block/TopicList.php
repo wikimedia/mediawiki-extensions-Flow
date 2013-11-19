@@ -106,7 +106,7 @@ class TopicListBlock extends AbstractBlock {
 	public function render( Templating $templating, array $options ) {
 		// Don't render the topcilist block for some actions, eg: board-history
 		if ( !in_array( $this->action, $this->suppressedActions, true ) ) {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion' ) );
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
 			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 			if ( $this->workflow->isNew() ) {
 				$templating->render( "flow:topiclist.html.php", array(

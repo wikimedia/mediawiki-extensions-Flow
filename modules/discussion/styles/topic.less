@@ -55,7 +55,7 @@
 		font-size: 16px;
 
 		line-height: 28px;
-		color: @topic-titlebar-text-color;
+		color: @topic-titlebar-text-color !important; // override mw-ui-button
 
 		// override mw-ui-button:hover style
 		&:hover,
@@ -141,6 +141,7 @@
 
 		.flow-datestamp {
 			margin: 0;
+			color: #898989 !important;
 
 			position: absolute;
 			right: 22px;
@@ -222,6 +223,7 @@
 		}
 
 		.flow-post-form-controls {
+			margin-top: 5px;
 			text-align: right;
 		}
 	}
@@ -241,6 +243,7 @@
 		margin-top: 22px;
 
 		.flow-post-form-controls {
+			margin-top: 5px;
 			text-align: right;
 		}
 	}

@@ -2,12 +2,22 @@
 @import 'mediawiki.mixins.less';
 
 #flow-header {
-	padding-bottom: 30px;
+	// should be about 30px total; taking the content line-height into account,
+	// this 25px padding will make it look more like a 30px gap
+	padding-bottom: 25px;
 
 	#flow-header-content {
 		font-weight: bold;
 		line-height: 25px;
 		color: @header-content-color;
+
+		*:first-child {
+			margin-top: 0;
+		}
+
+		*:last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	.flow-header-edit-link {
