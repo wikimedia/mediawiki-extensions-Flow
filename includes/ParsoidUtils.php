@@ -55,6 +55,7 @@ abstract class ParsoidUtils {
 			$parsoidURL . '/' . $parsoidPrefix . '/Main_Page',
 			array(
 				'postData' => array( $from => $content ),
+				'body' => true,
 				'timeout' => $parsoidTimeout
 			)
 		);
@@ -63,7 +64,7 @@ abstract class ParsoidUtils {
 			throw new \MWException( 'Failed contacting parsoid' );
 		}
 
-		// Full HTML document is returned, we only want what's inside <body>
+		// HTML is wrapped in <body> tag, undo that.
 		if ( $to == 'html' ) {
 			/*
 			 * Workaround because DOMDocument can't guess charset.
