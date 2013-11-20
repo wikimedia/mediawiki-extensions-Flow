@@ -256,6 +256,31 @@ class Templating {
 	}
 
 	/**
+	 * Returns pretty-printed user links + user tool links for history and
+	 * RecentChanges pages.
+	 *
+	 * Moderation-aware.
+	 * 
+	 * @param  AbstractRevision $revision        Revision to display
+	 * @param  User             $permissionsUser The User to check permissions for
+	 * @return string                            HTML
+	 */
+	public function getUserLinks( AbstractRevision $revision, User $permissionsUser = null ) {
+		$state = $revision->getModerationState();
+		$userid = $revision->getUserId();
+		$username = $revision->getUserText();
+
+		// Messages: flow-hide-usertext, flow-delete-usertext, flow-censor-usertext
+		$message = wfMessage( "flow-$state-usertext", $username );
+
+		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
+			return $message->text();
+		} else {
+			return Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
+		}
+	}
+
+	/**
 	 * Formats a post's creator name for displaying. Usually, the post's creator
 	 * name can just be displayed. In the event of moderation, however, that
 	 * info should not be exposed.

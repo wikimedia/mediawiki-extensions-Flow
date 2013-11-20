@@ -6,6 +6,7 @@ use Flow\PostActionPermissions;
 use Flow\Log\Logger;
 use Flow\Block\Block;
 use Flow\Templating;
+use \Message;
 
 /**
  * Flow actions: key => value map with key being the action name.
@@ -40,6 +41,9 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-create-header',
 			'i18n-params' => array(
 				function ( Header $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
+				function ( Header $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
 			),
@@ -62,6 +66,9 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-edit-header',
 			'i18n-params' => array(
 				function ( Header $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
+				function ( Header $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
 			),
@@ -79,6 +86,9 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-title',
 			'i18n-params' => array(
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
@@ -111,6 +121,9 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-new-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
@@ -138,6 +151,9 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-edit-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
@@ -162,6 +178,9 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-post',
 			'i18n-params' => array(
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
@@ -188,6 +207,9 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-hid-topic',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
@@ -212,6 +234,9 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-post',
 			'i18n-params' => array(
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
@@ -239,6 +264,9 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-deleted-topic',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
@@ -264,6 +292,9 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-censored-post',
 			'i18n-params' => array(
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
@@ -291,6 +322,9 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-censored-topic',
 			'i18n-params' => array(
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
@@ -324,6 +358,9 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-restored-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
@@ -356,6 +393,9 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-restored-topic',
 			'i18n-params' => array(
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
@@ -405,6 +445,9 @@ $wgFlowActions = array(
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-reply',
 			'i18n-params' => array(
+				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
+					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUserText( $revision, $user );
 				},
