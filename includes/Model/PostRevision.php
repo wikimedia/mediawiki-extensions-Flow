@@ -289,12 +289,11 @@ class PostRevision extends AbstractRevision {
 				list( $callbacks, $results ) = $child->descendRecursive( $callbacks, $results, $maxDepth - 1 );
 
 				// Check to see if we should exit
-				if ( ! count( array_filter( $callbacks ) ) ) {
+				if ( !count( array_filter( $callbacks ) ) ) {
 					break;
 				}
 			}
 		}
-
 
 		return array( $callbacks, $results );
 	}
