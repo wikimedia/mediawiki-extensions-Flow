@@ -74,8 +74,7 @@ abstract class ParsoidUtils {
 			 */
 			$response = mb_convert_encoding( $response, 'HTML-ENTITIES', 'UTF-8' );
 
-			$dom = new \DOMDocument();
-			$dom->loadHTML( $response );
+			$dom = self::createDOM( $response );
 			$body = $dom->getElementsByTagName( 'body' )->item(0);
 
 			$response = '';
@@ -134,6 +133,57 @@ abstract class ParsoidUtils {
 			$wgFlowParsoidPrefix ? $wgFlowParsoidPrefix : $wgVisualEditorParsoidPrefix,
 			$wgFlowParsoidTimeout ? $wgFlowParsoidTimeout : $wgVisualEditorParsoidTimeout,
 		);
+	}
+
+	/**
+	 * Turns given $content string into a DOMDocument object.
+	 *
+	 * Some errors are forgivable (e.g. 801: there may be "invalid" HTML tags,
+	 * like figcaption), so these can be ignored. Other errors will cause a
+	 * warning.
+	 *
+	 * @param string $content
+	 * @param array[optional] $ignoreErrorCodes
+	 * @return \DOMDocument
+	 * @throws \MWException
+	 * @see http://www.xmlsoft.org/html/libxml-xmlerror.html
+	 */
+	public static function createDOM( $content, $ignoreErrorCodes = array( 801 ) ) {
+		/*
+		 * Workaround because DOMDocument can't guess charset.
+		 * Content should be utf-8. Alternative "workarounds" would be to
+		 * provide the charset in $response, as either:
+		 * * <?xml encoding="utf-8" ?>
+		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		 */
+		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
+
+		$dom = new \DOMDocument();
+
+		// don't output warnings
+		$useErrors = libxml_use_internal_errors( true );
+
+		$dom->loadHTML( $content );
+
+		// check error codes; if not in the supplied list of ignorable errors,
+		// throw an exception
+		$errors = array_filter(
+			libxml_get_errors(),
+			function( $error ) use( $ignoreErrorCodes ) {
+				return !in_array( $error->code, $ignoreErrorCodes );
+			}
+		);
+		if ( $errors ) {
+			throw new \MWException(
+				implode( "\n", array_map( $errors, function( $error ) { return $error->message; } ) )
+			);
+		}
+
+		// restore libxml error reporting
+		libxml_clear_errors();
+		libxml_use_internal_errors( $useErrors );
+
+		return $dom;
 	}
 }
 
