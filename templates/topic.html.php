@@ -197,7 +197,7 @@ echo Html::openElement( 'div', array(
 				<?php echo $this->printParticipants( $root, $indexParticipants ); ?>
 			</li>
 			<li class="flow-topic-comments">
-				<a href="#" class="flow-reply-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
+				<a href="#<?php echo 'flow-topic-reply-' . $topic->getId()->getHex(); ?>" class="flow-reply-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
 					<?php
 						// get total number of posts in topic
 						// @todo: the number of comments should not be a part of the link
