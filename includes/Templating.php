@@ -308,7 +308,67 @@ class Templating {
 		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
 			return $message->text();
 		} else {
-			return $revision->getContent( $format );
+			$content = $revision->getContent( $format );
+
+			if ( $format === 'html' ) {
+				// Parsoid doesn't render redlinks
+				$content = $this->applyRedlinks( $content );
+			}
+
+			return $content;
 		}
+	}
+
+	/**
+	 * Parsoid ignores red links. With good reason: redlinks should only be
+	 * applied when rendering the content, not when it's created.
+	 *
+	 * This method will parse a given content, fetch all of its links & let MW's
+	 * Linker class build the link HTML (which will take redlinks into account.)
+	 * It will then substitute original link HTML for the one Linker generated.
+	 *
+	 * @param string $content
+	 * @return string
+	 */
+	protected function applyRedlinks( $content ) {
+		/*
+		 * Workaround because DOMDocument can't guess charset.
+		 * Content should be utf-8. Alternative "workarounds" would be to
+		 * provide the charset in $response, as either:
+		 * * <?xml encoding="utf-8" ?>
+		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		 */
+		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
+
+		$dom = new \DOMDocument();
+		$dom->loadHTML( $content );
+
+		$linkNodes = $dom->getElementsByTagName( 'a' );
+		foreach ( $linkNodes as $linkNode ) {
+			$parsoid = $linkNode->getAttribute( 'data-parsoid' );
+
+			if ( $parsoid ) {
+				$parsoid = json_decode( $parsoid, true );
+
+				if ( isset( $parsoid['sa']['href'] ) ) {
+					// let MW build link HTML based on Parsoid data
+					$title = Title::newFromText( $parsoid['sa']['href'] );
+					$linkHTML = Linker::link( $title );
+
+					// create new DOM from this MW-built link
+					$linkDom = new \DOMDocument;
+					$linkDom->loadHTML( $linkHTML );
+
+					// import MW-built link node into content DOM
+					$replacementNode = $linkDom->getElementsByTagName( 'a' )->item( 0 );
+					$replacementNode = $dom->importNode( $replacementNode, true );
+
+					// replace Parsoid link with MW-built link
+					$linkNode->parentNode->replaceChild( $replacementNode, $linkNode );
+				}
+			}
+		}
+
+		return $dom->saveHTML();
 	}
 }
