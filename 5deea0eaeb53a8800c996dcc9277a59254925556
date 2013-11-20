@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_e27766ce",
+        "filename": "includes/DbFactory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-11-20T20:03:21Z",
+      "side": 1,
+      "message": "I would wrap this as callback for onTransactionIdle() so it doesn\u0027t implicitly commit other transaction",
+      "revId": "5deea0eaeb53a8800c996dcc9277a59254925556",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
