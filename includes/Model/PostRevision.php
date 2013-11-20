@@ -289,12 +289,11 @@ class PostRevision extends AbstractRevision {
 				list( $callbacks, $results ) = $child->descendRecursive( $callbacks, $results, $maxDepth - 1 );
 
 				// Check to see if we should exit
-				if ( ! count( array_filter( $callbacks ) ) ) {
+				if ( !count( array_filter( $callbacks ) ) ) {
 					break;
 				}
 			}
 		}
-
 
 		return array( $callbacks, $results );
 	}
@@ -335,7 +334,7 @@ class PostRevision extends AbstractRevision {
 		 * @param int $result
 		 * @return array Return array in the format of [result, continue]
 		 */
-		$callback = function( $post, $result ) {
+		$callback = function( PostRevision $post, $result ) {
 			$creator = $post->getCreator();
 			if ( $creator instanceof User ) {
 				$result[$post->getCreatorName()] = $creator;
@@ -366,7 +365,7 @@ class PostRevision extends AbstractRevision {
 		 * @param int $result
 		 * @return array Return array in the format of [result, continue]
 		 */
-		$callback = function( $post, $result ) use ( &$postId ) {
+		$callback = function( PostRevision $post, $result ) use ( &$postId ) {
 			if ( $post->getPostId()->equals( $postId ) ) {
 				return array( $post, false );
 			}

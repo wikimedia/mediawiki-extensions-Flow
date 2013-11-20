@@ -46,6 +46,16 @@ if ( $page && $page->getPagingLink( 'rev' ) ) {
 	echo $this->getPagingLink( $block, 'rev', $linkData['offset'], $linkData['limit'] );
 }
 
+/*
+ * We'll want to register the Parsoidlinks callback as soon as possible, so that
+ * once the first topic is being rendered, the links for the last topic have
+ * already been pre-loaded as well.
+ */
+foreach ( $topics as $topic ) {
+	$root = $topic->loadRootPost();
+	$this->registerParsoidLinks( $root );
+}
+
 foreach ( $topics as $topic ) {
 	echo $topic->render( $this,
 		array(

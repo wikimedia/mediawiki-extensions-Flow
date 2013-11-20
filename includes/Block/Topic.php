@@ -656,7 +656,7 @@ class TopicBlock extends AbstractBlock {
 		);
 	}
 
-	protected function loadRootPost() {
+	public function loadRootPost() {
 		if ( $this->root !== null ) {
 			return $this->root;
 		}
