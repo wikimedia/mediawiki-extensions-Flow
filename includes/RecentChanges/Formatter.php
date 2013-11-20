@@ -111,8 +111,6 @@ class Formatter {
 			. ' '
 			. $this->changeSeparator()
 			. ' '
-			. $this->userLinks( $cl, $rc->getAttribute( 'rc_user_id' ), $rc->getAttribute( 'rc_user_text' ) )
-			. ' '
 			. $this->getActionDescription( $changeData, $cl, $rc );
 
 		return $line;
@@ -242,10 +240,6 @@ class Formatter {
 		);
 	}
 
-	public function userLinks( $cl, $userId, $userName ) {
-		return Linker::userLink( $userId, $userName ) . Linker::userToolLinks( $userId, $userName );
-	}
-
 	protected function workflowLink( Title $title, array $changeData ) {
 		list( $linkTitle, $query ) = $this->urlGenerator->buildUrlData(
 			$title,
@@ -333,7 +327,9 @@ class Formatter {
 	 */
 	protected function buildMessage( $msg, array $params = array(), array $arguments = array() ) {
 		foreach ( $params as &$param ) {
-			$param = call_user_func_array( $param, $arguments );
+			if ( is_callable( $param ) ) {
+				$param = call_user_func_array( $param, $arguments );
+			}
 		}
 
 		return wfMessage( $msg, $params );

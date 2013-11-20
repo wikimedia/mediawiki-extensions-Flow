@@ -93,23 +93,23 @@ $messages['en'] = array(
 
 	'flow-edit-title-submit' => 'Change title',
 
-	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|edited}} a [$2 comment].',
-	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|added}} a [$2 comment].',
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|comment|comments}}''' {{PLURAL:$1|was|were}} added.",
-	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|created}} the topic [$2 $3].',
-	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|edited}} the topic title to [$2 $3] from $4.',
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|edited}} a [$3 comment].',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|added}} a [$3 comment].',
+	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$2|comment|comments}}''' {{PLURAL:$2|was|were}} added.",
+	'flow-rev-message-new-post' => '$1 {{GENDER:$2|created}} the topic [$3 $4].',
+	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|changed}} the topic title to [$3 $4] from $5.',
 
-	'flow-rev-message-create-header' => "[[User:$1|$1]] {{GENDER:$1|created}} the board header.",
-	'flow-rev-message-edit-header' => "[[User:$1|$1]] {{GENDER:$1|edited}} the board header.",
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|hid}} a [$3 comment].',
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|deleted}} a [$3 comment].',
-	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|suppressed}} a [$3 comment].',
-	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|restored}} a [$3 comment].',
+	'flow-rev-message-create-header' => "$1 {{GENDER:$2|created}} the board header.",
+	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|edited}} the board header.",
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|hid}} a [$4 comment].',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|deleted}} a [$4 comment].',
+	'flow-rev-message-censored-post' => '$1 {{GENDER:$2|suppressed}} a [$4 comment].',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|restored}} a [$4 comment].',
 
-	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|hid}} the [$3 topic].',
-	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|deleted}} the [$3 topic].',
-	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|suppressed}} the [$3 topic].',
-	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|restored}} the [$3 topic].',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|hid}} the [$4 topic].',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|deleted}} the [$4 topic].',
+	'flow-rev-message-censored-topic' => '$1 {{GENDER:$2|suppressed}} the [$4 topic].',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|restored}} the [$4 topic].',
 
 	'flow-board-history' => '"$1" history',
 	'flow-topic-history' => '"$1" topic history',
@@ -400,14 +400,16 @@ Valid values for moderationState are: (none), hidden, deleted, censored',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited.
 
 Parameters:
-* $1 - username of the user who edited the post. Can be used for GENDER
-* $2 - the URL of the post
+* $1 - user link and tool links for the user.
+* $2 - username of the user who edited the post. Can be used for GENDER
+* $3 - the URL of the post
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-reply' => 'Used as a revision comment when a new reply has been posted.
 
 Parameters:
-* $1 - username of the user who replied. Can be used for GENDER
-* $2 - the URL of the post
+* $1 - user link and tool links for the user.
+* $2 - username of the user who replied. Can be used for GENDER
+* $3 - the URL of the post
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-reply-bundle' => "When multiple replies have been posted, they're bundled. This is the message to describe that multiple replies were posted.
 
@@ -417,83 +419,95 @@ Parameters:
 	'flow-rev-message-new-post' => 'Used as revision comment when the topic has been created.
 
 Parameters:
-* $1 - username. Can be used for GENDER
-* $2 - the URL of the topic
-* $3 - the topic title
+* $1 - user link and tool links for the user.
+* $2 - username. Can be used for GENDER
+* $3 - the URL of the topic
+* $4 - the topic title
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-edit-title' => 'Used as revision comment when a post has been edited.
 
 Parameters:
-* $1 - username of the user who edited the title. Can be used for GENDER
-* $2 - the URL of the topic
-* $3 - the topic title
-* $4 - the previous topic title
+* $1 - user link and tool links for the user.
+* $2 - username of the user who edited the title. Can be used for GENDER
+* $3 - the URL of the topic
+* $4 - the topic title
+* $5 - the previous topic title
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-create-header' => 'Used as revision comment when the header has been created.
 
 Parameters:
-* $1 - username of the user who created the header. Can be used for GENDER
+* $1 - user link and tool links for the user.
+* $2 - username of the user who created the header. Can be used for GENDER
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-edit-header' => 'Used as revision comment when the header has been edited.
 
 Parameters:
-* $1 - username of the user who edited the header. Can be used for GENDER
+* $1 - user link and tool links for the user.
+* $2 - username of the user who edited the header. Can be used for GENDER
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-hid-post' => 'Used as revision comment when a post has been hidden.
 
 Parameters:
-* $1 - username of the user who moderated the comment. Can be used for GENDER
-* $2 - username of the user who had posted the comment. Can be used for GENDER
-* $3 - permalink to the comment
+* $1 - user link and tool links for the user.
+* $2 - username of the user who moderated the comment. Can be used for GENDER
+* $3 - username of the user who had posted the comment. Can be used for GENDER
+* $4 - permalink to the comment
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-deleted-post' => 'Used as revision comment when a post has been deleted.
 
 Parameters:
-* $1 - username of the user who moderated the comment. Can be used for GENDER
-* $2 - username of the user who had posted the comment. Can be used for GENDER
-* $3 - permalink to the comment
+* $1 - user link and tool links for the user.
+* $2 - username of the user who moderated the comment. Can be used for GENDER
+* $3 - username of the user who had posted the comment. Can be used for GENDER
+* $4 - permalink to the comment
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been suppressed.
 
 Parameters:
-* $1 - username of the user who moderated the comment. Can be used for GENDER
-* $2 - username of the user who had posted the comment. Can be used for GENDER
-* $3 - permalink to the comment
+* $1 - user link and tool links for the user.
+* $2 - username of the user who moderated the comment. Can be used for GENDER
+* $3 - username of the user who had posted the comment. Can be used for GENDER
+* $4 - permalink to the comment
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-restored-post' => 'Used as revision comment when a post has been restored (un-hidden).
 
 Parameters:
-* $1 - username of the user who restored the comment. Can be used for GENDER
-* $2 - username of the user who had posted the comment. Can be used for GENDER
-* $3 - permalink to the comment
+* $1 - user link and tool links for the user.
+* $2 - username of the user who restored the comment. Can be used for GENDER
+* $3 - username of the user who had posted the comment. Can be used for GENDER
+* $4 - permalink to the comment
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-hid-topic' => 'Used as revision comment when a topic has been hidden.
 
 Parameters:
-* $1 - username of the user who moderated the topic. Can be used for GENDER
-* $2 - username of the user who had posted the topic. Can be used for GENDER
-* $3 - permalink to the topic
+* $1 - user link and tool links for the user.
+* $2 - username of the user who moderated the topic. Can be used for GENDER
+* $3 - username of the user who had posted the topic. Can be used for GENDER
+* $4 - permalink to the topic
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-deleted-topic' => 'Used as revision comment when a topic has been deleted.
 
 Parameters:
-* $1 - username of the user who moderated the topic. Can be used for GENDER
-* $2 - username of the user who had posted the topic. Can be used for GENDER
-* $3 - permalink to the topic
+* $1 - user link and tool links for the user.
+* $2 - username of the user who moderated the topic. Can be used for GENDER
+* $3 - username of the user who had posted the topic. Can be used for GENDER
+* $4 - permalink to the topic
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-censored-topic' => 'Used as revision comment when a topic has been suppressed.
 
 Parameters:
-* $1 - username of the user who moderated the topic. Can be used for GENDER
-* $2 - username of the user who had posted the topic. Can be used for GENDER
-* $3 - permalink to the topic
+* $1 - user link and tool links for the user.
+* $2 - username of the user who moderated the topic. Can be used for GENDER
+* $3 - username of the user who had posted the topic. Can be used for GENDER
+* $4 - permalink to the topic
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-restored-topic' => 'Used as revision comment when a topic has been restored (un-hidden).
 
 Parameters:
-* $1 - username of the user who restored the topic. Can be used for GENDER
-* $2 - username of the user who had posted the topic. Can be used for GENDER
-* $3 - permalink to the topic
+* $1 - user link and tool links for the user.
+* $2 - username of the user who restored the topic. Can be used for GENDER
+* $3 - username of the user who had posted the topic. Can be used for GENDER
+* $4 - permalink to the topic
 {{Related|Flow-rev-message}}',
 	'flow-board-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Board history" page.
 
