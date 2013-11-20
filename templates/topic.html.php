@@ -7,6 +7,7 @@ $title = $this->getContent( $root, 'wikitext', $user );
 // first one's result is requested
 $indexDescendantCount = $root->registerDescendantCount();
 $indexParticipants = $root->registerParticipants();
+$this->registerParsoidLinks( $root );
 
 // topic reply box.
 $topicReplyBox = '';
