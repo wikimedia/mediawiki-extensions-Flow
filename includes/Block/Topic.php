@@ -348,19 +348,21 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options, $return = false ) {
-		$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
-		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
+		if ( in_array( $this->action, array( 'post-history', 'topic-history' ) ) ) {
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
+			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
+		} else {
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
+			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) ); 	
+		}
+
 		$prefix = '';
 
 		switch( $this->action ) {
 		case 'post-history':
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 			return $prefix . $this->renderPostHistory( $templating, $options, $return );
 
 		case 'topic-history':
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 			$history = $this->loadTopicHistory();
 			if ( !$this->permissions->isAllowed( reset( $history ), 'post-history' ) ) {
 				throw new \MWException( 'Not Allowed' );

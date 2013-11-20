@@ -20,4 +20,10 @@
 		// hide bundled records by default
 		.addClass( 'flow-history-bundle-inactive' )
 		.find( 'ul' ).hide();
+
+	$( '.flow-history-log' ).find( '.flow-datestamp' )
+		.hover(function () {
+			$(this).find( '.flow-agotime' ).toggle();
+			$(this).find( '.flow-utctime' ).toggle();
+		} );
 } )( jQuery, mediaWiki );
