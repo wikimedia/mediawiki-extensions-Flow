@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_42f732f3",
+        "filename": "includes/Templating.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-20T18:38:45Z",
+      "side": 1,
+      "message": "This works, but I\u0027m not sure its going to be as performant as we want.  To work well with many links on page we will need a two pass solution.\n\nIdeally, we could collect all the links across all the content we want to display, issue one query to collect the redlink information, and run that through LinkCache::addGoodLinkObjFromRow / LinkCache::addBadLinkObj so this second pass through doesn\u0027t make a round trip for every link.",
+      "revId": "6f8dc686d6988814ce0876c785f126f1f15ee97d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
