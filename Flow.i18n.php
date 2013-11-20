@@ -101,15 +101,15 @@ $messages['en'] = array(
 
 	'flow-rev-message-create-header' => "[[User:$1|$1]] {{GENDER:$1|created}} the board header.",
 	'flow-rev-message-edit-header' => "[[User:$1|$1]] {{GENDER:$1|edited}} the board header.",
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|hid}} a [$3 comment].',
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|deleted}} a [$3 comment].',
-	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|suppressed}} a [$3 comment].',
-	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|restored}} a [$3 comment].',
+	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|hid}} a [$3 comment] (\'\' $4 \'\').',
+	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|deleted}} a [$3 comment] (\'\' $4 \'\').',
+	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|suppressed}} a [$3 comment] (\'\' $4 \'\').',
+	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|restored}} a [$3 comment] (\'\' $4 \'\').',
 
-	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|hid}} the [$3 topic].',
-	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|deleted}} the [$3 topic].',
-	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|suppressed}} the [$3 topic].',
-	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|restored}} the [$3 topic].',
+	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|hid}} the [$3 topic] (\'\' $4 \'\').',
+	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|deleted}} the [$3 topic] (\'\' $4 \'\').',
+	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|suppressed}} the [$3 topic] (\'\' $4 \'\').',
+	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|restored}} the [$3 topic] (\'\' $4 \'\').',
 
 	'flow-board-history' => '"$1" history',
 	'flow-topic-history' => '"$1" topic history',

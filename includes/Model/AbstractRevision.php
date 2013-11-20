@@ -212,16 +212,16 @@ abstract class AbstractRevision {
 				$rev->moderatedByUserId = null;
 				$rev->moderatedByUserText = null;
 				$rev->moderationTimestamp = null;
-				// This is a bit hacky, but we store the restore reason
-				// in the "moderated reason" field. Hmmph.
-				$rev->moderatedReason = $reason;
 			} else {
 				$rev->moderatedByUserId = $user->getId();
 				$rev->moderatedByUserText = $user->getName();
 				$rev->moderationTimestamp = $timestamp;
-				$rev->moderatedReason = $reason;
 			}
 		}
+
+		// This is a bit hacky, but we store the restore reason
+		// in the "moderated reason" field. Hmmph.
+		$obj->moderatedReason = $reason;
 
 		return $obj;
 	}
