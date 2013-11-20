@@ -2,16 +2,16 @@
 
 // Add icon to action buttons
 .buttonIcon(@icon-prefix) {
-    .buttonIconExplicit(
-        ~"@{icon-prefix}_active.svg", 
-        ~"@{icon-prefix}_active.png",
-        ~"@{icon-prefix}_hover.svg", 
-        ~"@{icon-prefix}_hover.png",
-        ~"@{icon-prefix}_normal.svg", 
-        ~"@{icon-prefix}_normal.png",
-        ~"@{icon-prefix}_onclick.svg", 
-        ~"@{icon-prefix}_onclick.png",
-    );
+	.buttonIconExplicit(
+		~"@{icon-prefix}_active.svg",
+		~"@{icon-prefix}_active.png",
+		~"@{icon-prefix}_hover.svg",
+		~"@{icon-prefix}_hover.png",
+		~"@{icon-prefix}_normal.svg",
+		~"@{icon-prefix}_normal.png",
+		~"@{icon-prefix}_onclick.svg",
+		~"@{icon-prefix}_onclick.png"
+	);
 }
 
 .buttonIconExplicit(
@@ -28,6 +28,7 @@
 	@onclick-fallback-icon
 ) {
 	padding-left: 41px;
+
 	// !important to overwrite MW core's background image
 	.background-image-svg(@normal-icon, @normal-fallback-icon) !important;
 
