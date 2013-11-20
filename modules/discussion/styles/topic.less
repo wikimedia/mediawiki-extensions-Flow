@@ -20,9 +20,7 @@
 		}
 	}
 
-	.flow-topic-moderated-hide,
-	.flow-topic-moderated-deleted,
-	.flow-topic-moderated-suppressed {
+	.flow-topic-moderated {
 		padding-left: 22px !important;
 
 		background-position: left;
@@ -34,11 +32,11 @@
 		.background-image-svg('../../base/images/moderate_menu_hidden_normal.svg', '../../base/images/moderate_menu_hidden_normal.png');
 	}
 
-	.flow-topic-moderated-deleted {
+	.flow-topic-moderated-delete {
 		.background-image-svg('../../base/images/moderated_normal.svg', '../../base/images/moderated_normal.png');
 	}
 
-	.flow-topic-moderated-censored {
+	.flow-topic-moderated-censor {
 		.background-image-svg('../../base/images/suppressed_normal.svg', '../../base/images/suppressed_normal.png');
 	}
 
@@ -61,16 +59,6 @@
 		&:hover,
 		&.mw-ui-hover {
 			background: @topic-titlebar-background-color;
-
-			.flow-topic-moderated-censored {
-				.background-image-svg('../../base/images/suppressed_hover.svg', '../../base/images/suppressed_hover.png');
-			}
-			.flow-topic-moderated-deleted {
-				.background-image-svg('../../base/images/moderated_hover.svg', '../../base/images/moderated_hover.png');
-			}
-			.flow-topic-moderated-hide {
-				.background-image-svg('../../base/images/moderate_menu_hidden_hover.svg', '../../base/images/moderate_menu_hidden_hover.png');
-			}
 		}
 
 		.flow-topic-title {

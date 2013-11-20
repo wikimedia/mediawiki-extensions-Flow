@@ -59,9 +59,15 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 //
 // Content starts here
 //
+$moderationClass = '';
+
+if ( $root->isModerated() ) {
+	$moderationClass .= ' flow-topic-moderated';
+	$moderationClass .= ' flow-topic-moderated-'.$root->getModerationState();
+}
 
 echo Html::openElement( 'div', array(
-	'class' => 'flow-topic-container flow-topic-full' . ( $root->isModerated() ? ' flow-topic-moderated' : '' ),
+	'class' => 'flow-topic-container flow-topic-full' . $moderationClass,
 	'id' => 'flow-topic-' . $topic->getId()->getHex(),
 	'data-topic-id' => $topic->getId()->getHex(),
 	'data-creator-name' => $this->getCreatorText( $root, $user ),
