@@ -415,6 +415,7 @@ Parameters:
 
 Parameters:
 * $1 - the amount of replies posted
+* $2 - ...
 {{Related|Flow-rev-message}}",
 	'flow-rev-message-new-post' => 'Used as revision comment when the topic has been created.
 
@@ -450,7 +451,7 @@ Parameters:
 Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who moderated the comment. Can be used for GENDER
-* $3 - username of the user who had posted the comment. Can be used for GENDER
+* $3 - (Optional) username of the user who had posted the comment. Can be used for GENDER
 * $4 - permalink to the comment
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-deleted-post' => 'Used as revision comment when a post has been deleted.
@@ -458,7 +459,7 @@ Parameters:
 Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who moderated the comment. Can be used for GENDER
-* $3 - username of the user who had posted the comment. Can be used for GENDER
+* $3 - (Optional) username of the user who had posted the comment. Can be used for GENDER
 * $4 - permalink to the comment
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been suppressed.
@@ -466,7 +467,7 @@ Parameters:
 Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who moderated the comment. Can be used for GENDER
-* $3 - username of the user who had posted the comment. Can be used for GENDER
+* $3 - (Optional) username of the user who had posted the comment. Can be used for GENDER
 * $4 - permalink to the comment
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-restored-post' => 'Used as revision comment when a post has been restored (un-hidden).
@@ -474,7 +475,7 @@ Parameters:
 Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who restored the comment. Can be used for GENDER
-* $3 - username of the user who had posted the comment. Can be used for GENDER
+* $3 - (Optional) username of the user who had posted the comment. Can be used for GENDER
 * $4 - permalink to the comment
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-hid-topic' => 'Used as revision comment when a topic has been hidden.
@@ -482,7 +483,7 @@ Parameters:
 Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who moderated the topic. Can be used for GENDER
-* $3 - username of the user who had posted the topic. Can be used for GENDER
+* $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER
 * $4 - permalink to the topic
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-deleted-topic' => 'Used as revision comment when a topic has been deleted.
@@ -490,7 +491,7 @@ Parameters:
 Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who moderated the topic. Can be used for GENDER
-* $3 - username of the user who had posted the topic. Can be used for GENDER
+* $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER
 * $4 - permalink to the topic
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-censored-topic' => 'Used as revision comment when a topic has been suppressed.
@@ -498,7 +499,7 @@ Parameters:
 Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who moderated the topic. Can be used for GENDER
-* $3 - username of the user who had posted the topic. Can be used for GENDER
+* $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER
 * $4 - permalink to the topic
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-restored-topic' => 'Used as revision comment when a topic has been restored (un-hidden).
@@ -506,7 +507,7 @@ Parameters:
 Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who restored the topic. Can be used for GENDER
-* $3 - username of the user who had posted the topic. Can be used for GENDER
+* $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER
 * $4 - permalink to the topic
 {{Related|Flow-rev-message}}',
 	'flow-board-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Board history" page.
@@ -1246,21 +1247,21 @@ $messages['fr'] = array(
 	'flow-error-not-allowed' => 'Droits insuffisants pour exécuter cette action',
 	'flow-edit-header-submit' => 'Enregistrer l’entête',
 	'flow-edit-title-submit' => 'Changer le titre',
-	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|a modifié}} un [$2 commentaire]', # Fuzzy
-	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|a ajouté}} un [$2 commentaire].', # Fuzzy
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|commentaire|commentaires}}''' {{PLURAL:$1|a été ajouté|ont été ajoutés}}.", # Fuzzy
-	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|a créé}} le sujet [$2 $3].', # Fuzzy
-	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|a modifié}} le titre du sujet de [$2 $3], précédemment $4.', # Fuzzy
-	'flow-rev-message-create-header' => '[[User:$1|$1]] {{GENDER:$1|a créé}} l’entête du tableau.', # Fuzzy
-	'flow-rev-message-edit-header' => '[[User:$1|$1]] {{GENDER:$1|a modifié}} l’entête du tableau.', # Fuzzy
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|a masqué}} un [$3 commentaire].', # Fuzzy
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|a supprimé}} un [$3 commentaire].', # Fuzzy
-	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|a effacé}} un [$3 commentaire].', # Fuzzy
-	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|a rétabli}} un [$3 commentaire].', # Fuzzy
-	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|a masqué}} le [$3 sujet].', # Fuzzy
-	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|a supprimé}} le [$3 sujet].', # Fuzzy
-	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|a supprimé}} le [$3 sujet].', # Fuzzy
-	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|a rétabli}} le [$3 sujet].', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|a modifié}} un [$3 commentaire].',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|a ajouté}} un [$3 commentaire].',
+	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$2|commentaire|commentaires}}''' {{PLURAL:$2|a été ajouté|ont été ajoutés}}.",
+	'flow-rev-message-new-post' => '$1 {{GENDER:$2|a créé}} le sujet [$3 $4].',
+	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|a changé}} le titre du sujet de [$3 $4], précédemment $5.',
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|a créé}} l’entête du tableau.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|a modifié}} l’entête du tableau.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|a masqué}} un [$4 commentaire].',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|a supprimé}} un [$4 commentaire].',
+	'flow-rev-message-censored-post' => '$1 {{GENDER:$2|a effacé}} un [$4 commentaire].',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|a rétabli}} un [$4 commentaire].',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|a masqué}} le [$4 sujet].',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|a supprimé}} le [$4 sujet].',
+	'flow-rev-message-censored-topic' => '$1 {{GENDER:$2|a supprimé}} le [$4 sujet].',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|a rétabli}} le [$4 sujet].',
 	'flow-board-history' => 'Historique de « $1 »',
 	'flow-topic-history' => 'Historique du sujet « $1 »',
 	'flow-post-history' => 'Commentaire par {{GENDER:$2|$2}} Historique de la note',
@@ -1902,19 +1903,19 @@ $messages['ja'] = array(
 	'flow-error-not-allowed' => 'この操作を実行するのに十分な権限がありません',
 	'flow-edit-header-submit' => 'ヘッダーを保存',
 	'flow-edit-title-submit' => 'タイトルを変更',
-	'flow-rev-message-edit-post' => '[[User:$1|$1]] が[$2 コメント]を{{GENDER:$1|編集}}', # Fuzzy
-	'flow-rev-message-reply' => '[[User:$1|$1]] が[$2 コメント]を{{GENDER:$1|追加}}', # Fuzzy
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|件のコメント}}'''が追加{{PLURAL:$1|されました}}。", # Fuzzy
-	'flow-rev-message-new-post' => '[[User:$1|$1]] が話題 [$2 $3] を{{GENDER:$1|作成}}', # Fuzzy
-	'flow-rev-message-edit-title' => '[[User:$1|$1]] が話題の名前を $4 から [$2 $3] に{{GENDER:$1|編集}}', # Fuzzy
-	'flow-rev-message-create-header' => '[[User:$1|$1]] が掲示板のヘッダーを{{GENDER:$1|作成}}', # Fuzzy
-	'flow-rev-message-edit-header' => '[[User:$1|$1]] が掲示板のヘッダーを{{GENDER:$1|編集}}', # Fuzzy
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] が[$3 コメント]を{{GENDER:$1|非表示化}}', # Fuzzy
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] が[$3 コメント]を{{GENDER:$1|削除}}', # Fuzzy
-	'flow-rev-message-restored-post' => '[[User:$1|$1]] が[$3 コメント]を{{GENDER:$1|復元}}', # Fuzzy
-	'flow-rev-message-hid-topic' => '[[User:$1|$1]] が[$3 話題]を{{GENDER:$1|非表示化}}', # Fuzzy
-	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] が[$3 話題]を{{GENDER:$1|削除}}', # Fuzzy
-	'flow-rev-message-restored-topic' => '[[User:$1|$1]] が[$3 話題]を{{GENDER:$1|復元}}', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 が[$3 コメント]を{{GENDER:$2|編集}}',
+	'flow-rev-message-reply' => '$1 が[$3 コメント]を{{GENDER:$2|追加}}',
+	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$2|件のコメント}}'''が追加{{PLURAL:$2|されました}}。",
+	'flow-rev-message-new-post' => '$1 が話題 [$3 $4] を{{GENDER:$2|作成}}',
+	'flow-rev-message-edit-title' => '$1 が話題の名前を $5 から [$3 $4] に{{GENDER:$2|変更}}',
+	'flow-rev-message-create-header' => '$1 が掲示板のヘッダーを{{GENDER:$2|作成}}',
+	'flow-rev-message-edit-header' => '$1 が掲示板のヘッダーを{{GENDER:$2|編集}}',
+	'flow-rev-message-hid-post' => '$1 が[$4 コメント]を{{GENDER:$2|非表示化}}',
+	'flow-rev-message-deleted-post' => '$1 が[$4 コメント]を{{GENDER:$2|削除}}',
+	'flow-rev-message-restored-post' => '$1 が[$4 コメント]を{{GENDER:$2|復元}}',
+	'flow-rev-message-hid-topic' => '$1 が[$4 話題]を{{GENDER:$2|非表示化}}',
+	'flow-rev-message-deleted-topic' => '$1 が[$4 話題]を{{GENDER:$2|削除}}',
+	'flow-rev-message-restored-topic' => '$1 が[$4 話題]を{{GENDER:$2|復元}}',
 	'flow-board-history' => '「$1」の履歴',
 	'flow-topic-history' => '話題「$1」の履歴',
 	'flow-post-history' => '「{{GENDER:$2|$2}} によるコメント」投稿履歴',
@@ -2582,18 +2583,12 @@ $messages['nl'] = array(
  */
 $messages['oc'] = array(
 	'flow-desc' => 'Sistèma de gestion del flux de trabalh',
-	'flow-page-title' => '$1 &ndash; Flow', # Fuzzy
-	'flow-post-hidden' => '[nòta amagada]',
-	'flow-post-hidden-by' => '{{GENDER:$1|Amagat}} per $1 $2',
-	'flow-post-deleted' => '[messatge suprimit]',
-	'flow-post-deleted-by' => '{{GENDER:$1|Suprimit}} per $1 $2',
-	'flow-post-censored' => '[nòta censurada]',
-	'flow-post-censored-by' => '{{GENDER:$1|Censurat}} per $1 $2',
-	'flow-post-actions' => 'accions', # Fuzzy
-	'flow-topic-actions' => 'accions', # Fuzzy
+	'flow-page-title' => '$1 &ndash; Flux',
+	'flow-post-actions' => 'Accions',
+	'flow-topic-actions' => 'Accions',
 	'flow-cancel' => 'Anullar',
-	'flow-newtopic-title-placeholder' => 'Objècte del messatge',
-	'flow-newtopic-content-placeholder' => 'Tèxte del messatge. Siatz gent !',
+	'flow-newtopic-title-placeholder' => 'Subjècte novèl',
+	'flow-newtopic-content-placeholder' => 'Apondre de detalhs se o volètz',
 	'flow-newtopic-header' => 'Apondre un subjècte novèl',
 	'flow-newtopic-save' => 'Apondre un subjècte',
 	'flow-newtopic-start-placeholder' => 'Començar un subjècte novèl',
@@ -2602,18 +2597,18 @@ $messages['oc'] = array(
 	'flow-edit-post-submit' => 'Sometre las modificacions',
 	'flow-post-action-view' => 'Ligam permanent',
 	'flow-post-action-post-history' => 'Istoric de las publicacions',
-	'flow-post-action-censor-post' => 'Censurar la nòta',
-	'flow-post-action-delete-post' => 'Suprimir lo messatge',
-	'flow-post-action-hide-post' => 'Amagar la nòta',
+	'flow-post-action-censor-post' => 'Suprimir',
+	'flow-post-action-delete-post' => 'Suprimir',
+	'flow-post-action-hide-post' => 'Amagar',
 	'flow-post-action-edit-post' => 'Modificar la publicacion',
 	'flow-post-action-edit' => 'Modificar',
 	'flow-post-action-restore-post' => 'Restablir lo messatge',
 	'flow-topic-action-edit-title' => 'Modificar lo títol',
 	'flow-topic-action-history' => 'Istoric dels subjèctes',
-	'flow-error-http' => "Una error s'es producha en comunicant amb lo servidor. Vòstre messatge es pas estat enregistrat.",
-	'flow-error-other' => "Una error imprevista s'es producha. Vòstre messatge es pas estat enregistrat.",
-	'flow-error-external' => "Una error s'es producha al moment de l'enregistrament de vòstre messatge. Es pas estat enregistrat.<br /><small>Lo messatge d'error recebut èra :$1</small>",
-	'flow-error-external-multi' => "D'errors se son produchas al moment de l'enregistrament de vòstre messatge. Vòstre messatge es pas estat enregistrat.<br /> $1",
+	'flow-error-http' => "Una error s'es producha en comunicant amb lo servidor.",
+	'flow-error-other' => "Una error imprevista s'es producha.",
+	'flow-error-external' => "Una error s'es producha.<br /><small>Lo messatge d'error recebut èra :$1</small>",
+	'flow-error-external-multi' => "D'errors se son produchas.<br /> $1",
 	'flow-error-missing-content' => 'Lo messatge a pas cap de contengut. Es requesit per enregistrar un messatge novèl.',
 	'flow-error-missing-title' => 'Lo subjècte a pas cap de títol. Es requesit per enregistrar un subjècte novèl.',
 	'flow-error-parsoid-failure' => "Impossible d'analisar lo contengut a causa d'una pana de Parsoid.",
@@ -2625,8 +2620,8 @@ $messages['oc'] = array(
 	'flow-error-invalid-postId' => 'Lo paramètre « postId » èra pas valid. Lo messatge especificat ($1) es pas estat trobat.',
 	'flow-error-restore-failure' => "Fracàs del restabliment d'aquesta entrada.",
 	'flow-edit-title-submit' => 'Cambiar lo títol',
-	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|a apondut}} un [$2 comentari].',
-	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|a creat}} lo subjècte [$2 $3].',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|a apondut}} un [$3 comentari].',
+	'flow-rev-message-new-post' => '$1 {{GENDER:$2|a creat}} lo subjècte [$3 $4].',
 	'flow-topic-history' => 'Istoric del subjècte « $1 »',
 	'flow-comment-restored' => 'Comentari restablit',
 	'flow-comment-deleted' => 'Comentari suprimit',
@@ -2634,7 +2629,7 @@ $messages['oc'] = array(
 	'flow-paging-rev' => 'Subjèctes los mai recents',
 	'flow-paging-fwd' => 'Subjèctes mai ancians',
 	'flow-last-modified' => 'Darrièr cambiament $1',
-	'flow-notification-reply' => '$1 {{GENDER:$1|a respondut}} a vòstra [$5 nòta] sus $2 en [[$3|$4]].', # Fuzzy
+	'flow-notification-reply' => '$1 {{GENDER:$1|a respondut}} a vòstra [$5 nòta] sus $2 en "$4".',
 	'flow-notification-edit' => '$1 {{GENDER:$1|a modificat}} una [$5 nòta] sus $2 en [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|a creat}} un [$5 subjècte novèl] en [[$2|$3]] : $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|a modificat}} lo títol de [$2 $3] en « $4 » sus [[$5|$6]].',
@@ -2682,9 +2677,11 @@ $messages['pt'] = array(
 
 /** Brazilian Portuguese (português do Brasil)
  * @author Helder.wiki
+ * @author Tuliouel
  */
 $messages['pt-br'] = array(
 	'flow-desc' => 'Sistema de Gerenciamento do Fluxo de Trabalho',
+	'flow-link-post' => 'publicar',
 );
 
 /** tarandíne (tarandíne)
