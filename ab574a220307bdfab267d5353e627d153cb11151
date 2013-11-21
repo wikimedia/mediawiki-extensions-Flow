@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_17b3a64d",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-11-21T15:48:07Z",
+      "side": 0,
+      "message": "This looks like mistake.\nhttp://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Flow-rev-message-reply-bundle/en_(3)",
+      "revId": "ab574a220307bdfab267d5353e627d153cb11151",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
