@@ -34,14 +34,11 @@ $( document ).flow( 'registerInitFunction', function(e) {
 		function ( promise ) {
 			promise
 				.done( function ( output ) {
-					var $container = $( this ).closest( '.flow-new-topic-container' ),
-						$newRegion = $( output.rendered )
-							.hide()
-							.insertAfter( $container );
-
-					$newRegion.trigger( 'flow_init' );
-
-					$newRegion.slideDown();
+					$( output.rendered )
+						.hide()
+						.prependTo( $( '.flow-topics' ) )
+						.trigger( 'flow_init' )
+						.slideDown();
 				} );
 		}
 	);

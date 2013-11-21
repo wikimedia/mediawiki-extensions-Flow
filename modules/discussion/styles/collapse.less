@@ -1,0 +1,64 @@
+@import 'mediawiki.mixins.less';
+
+.collapseButtonIcon(@icon-prefix) {
+	.background-image-svg( ~"@{icon-prefix}_normal.svg", ~"@{icon-prefix}_normal.png" );
+
+	&.active {
+		.background-image-svg( ~"@{icon-prefix}_selected.svg", ~"@{icon-prefix}_selected.png" );
+	}
+
+	background-position: 16px !important;
+	background-size: 14px auto !important;
+	background-repeat: no-repeat !important;
+}
+
+.topic-collapser {
+
+	li {
+		float: right;
+		text-indent: -9999px;
+		width: 30px;
+		list-style: none;
+		&:first-child {
+			padding-right: 50px;
+		}
+	}
+
+	li:last-child {
+	}
+
+	.topic-one-line {
+		.collapseButtonIcon( '../../base/images/toggle_one_line' );
+	}
+
+	.topic-collapsed {
+		.collapseButtonIcon( '../../base/images/toggle_collapsed' );
+	}
+
+	.topic-complete {
+		.collapseButtonIcon( '../../base/images/toggle_complete' );
+	}
+}
+
+.flow-container {
+	.flow-topic-posts-meta-minimal {
+		display: none;
+		margin: 0;
+	}
+	&.topic-collapsed-one-line .flow-topic-closed {
+		.flow-realtitle {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+	}
+
+	&.topic-collapsed-one-line .flow-topic-closed {
+		.flow-topic-posts-meta {
+			display: none;
+		}
+		.flow-topic-posts-meta-minimal {
+			display: block;
+		}
+	}
+}
