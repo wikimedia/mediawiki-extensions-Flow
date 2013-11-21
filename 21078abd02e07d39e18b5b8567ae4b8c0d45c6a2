@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_c29fb761",
+        "filename": "tests/browser/features/step_definitions/flow_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-11-21T23:47:44Z",
+      "side": 1,
+      "message": "but there are many pencil icons: one to Edit header, then N to Edit title (of a topic),  then NxM to Edit post (only your own posts unless you have special permissions).\nThe actual element you\u0027re matching is   a(:topic_pencil_icon, text: \u0027Edit title\u0027) , or just \u0027edit_topic_title\u0027",
+      "revId": "21078abd02e07d39e18b5b8567ae4b8c0d45c6a2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_8291af54",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-11-21T23:47:44Z",
+      "side": 1,
+      "message": "As I remarked elsewhere, of the many pencil icons this is really topic_pencil_icon",
+      "revId": "21078abd02e07d39e18b5b8567ae4b8c0d45c6a2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
