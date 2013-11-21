@@ -20,16 +20,23 @@
 		}
 	}
 
+	&:hover {
+		.flow-header-edit-link {
+			opacity: 0.5;
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
 	.flow-header-edit-link {
 		background-position: center;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
+		.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
 
-		.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
-
-		&:hover {
-			.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
-		}
+		opacity: 0;
+		transition: opacity 0.2s;
 	}
 
 	.flow-edit-header-controls{
