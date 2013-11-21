@@ -165,18 +165,14 @@ echo Html::openElement( 'div', array(
 				// original topic comment has replies
 				$history |= isset( $children[0] ) && count( $children[0]->getChildren() ) > 0;
 
-				if ( $history ) {
-					// build history button with timestamp html as content
-					echo Html::rawElement( 'a',
-						array(
-							'class' => 'flow-action-history-link',
-							'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
-						),
-						$content
-					);
-				} else {
-					echo $content;
-				}
+				// build history button with timestamp html as content
+				echo Html::rawElement( 'a',
+					array(
+						'class' => 'flow-action-history-link',
+						'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
+					),
+					$content
+				);
 			?>
 		</p>
 
