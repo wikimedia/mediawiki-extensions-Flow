@@ -46,6 +46,24 @@ if ( $page && $page->getPagingLink( 'rev' ) ) {
 	echo $this->getPagingLink( $block, 'rev', $linkData['offset'], $linkData['limit'] );
 }
 
+// @todo hide for non-js users, or support them?
+?>
+
+<ul class="topic-collapser ui-helper-clearfix">
+	<?php $msg = wfMessage( 'flow-topic-collapsed-one-line' )->escaped(); ?>
+	<li class="topic-one-line" data-collapse-class="topic-collapsed-one-line" title="<?php echo $msg; ?>">
+		<?php echo $msg; ?>
+	</li>
+	<?php $msg = wfMessage( 'flow-topic-collapsed-full' )->escaped(); ?>
+	<li class="topic-collapsed" data-collapse-class="topic-collapsed-full" title="<?php echo $msg; ?>">
+		<?php echo $msg; ?>
+	</li>
+	<?php $msg = wfMessage( 'flow-topic-complete' )->escaped(); ?>
+	<li class="topic-complete active" title="<?php echo $msg; ?>"><?php echo $msg; ?></li>
+</ul>
+
+<div class="flow-topics">
+<?php
 /*
  * We'll want to register the Parsoidlinks callback as soon as possible, so that
  * once the first topic is being rendered, the links for the last topic have
@@ -57,15 +75,12 @@ foreach ( $topics as $topic ) {
 }
 
 foreach ( $topics as $topic ) {
-	echo $topic->render( $this,
-		array(
-			'topiclist-block' => $block,
-		),
-		true
-	);
+	echo $topic->render( $this, array( 'topiclist-block' => $block ), true );
 }
 
 if ( $page && $page->getPagingLink( 'fwd' ) ) {
 	$linkData = $page->getPagingLink( 'fwd' );
 	echo $this->getPagingLink( $block, 'fwd', $linkData['offset'], $linkData['limit'] );
 }
+?>
+</div>
