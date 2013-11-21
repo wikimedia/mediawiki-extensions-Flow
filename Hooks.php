@@ -243,7 +243,7 @@ class FlowHooks {
 	 * @return boolean       true
 	 */
 	public static function onSpecialWatchlistGetNonRevisionTypes( &$types ) {
-		$types[] = Flow\Data\RecentChanges::SRC_FLOW;
+		$types[] = RC_FLOW;
 		return true;
 	}
 
