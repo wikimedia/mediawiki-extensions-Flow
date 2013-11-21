@@ -46,29 +46,22 @@
 		background-position: center;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
-		.background-image-svg('../../base/images/edit_normal.svg', '../../base/images/edit_normal.png');
-
-		&:hover {
-			.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
-		}
+		.background-image-svg('../../base/images/edit_hover.svg', '../../base/images/edit_hover.png');
 	}
 
 	.flow-icon-permalink {
 		background-position: center;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
-		.background-image-svg('../../base/images/permalink_normal.svg', '../../base/images/permalink_normal.png');
-
-		&:hover {
-			.background-image-svg('../../base/images/permalink_hover.svg', '../../base/images/permalink_hover.png');
-		}
+		.background-image-svg('../../base/images/permalink_hover.svg', '../../base/images/permalink_hover.png');
 	}
 
 	.flow-post-interaction {
 		padding-top: 13px;
 
 		// hide reply/thank buttons until post is hovered
-		visibility: hidden;
+		opacity: 0;
+		transition: opacity 0.2s;
 
 		.mw-ui-button {
 			border: none;
@@ -81,6 +74,12 @@
 			-moz-box-shadow: none;
 		}
 	}
+
+	.flow-element-container:hover .flow-post-interaction {
+		opacity: 1;
+	}
+
+
 
 	.flow-datestamp {
 		position: absolute;
@@ -111,11 +110,7 @@
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
-			.background-image-svg('../../base/images/flag_normal.svg', '../../base/images/flag_normal.png');
-
-			&:hover {
-				.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
-			}
+			.background-image-svg('../../base/images/flag_hover.svg', '../../base/images/flag_hover.png');
 		}
 	}
 
@@ -180,12 +175,6 @@
 			-moz-box-sizing: border-box;
 
 			font-family: sans-serif;
-		}
-	}
-
-	.flow-post:hover {
-		.flow-post-interaction {
-			visibility: visible;
 		}
 	}
 
