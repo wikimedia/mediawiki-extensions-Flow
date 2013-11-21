@@ -124,6 +124,7 @@
 													$postForm.remove();
 												}
 											);
+											$postForm.flow( 'hidePreview' );
 										} )
 								)
 								.append( ' ' )
@@ -137,6 +138,8 @@
 								)
 						)
 						.insertAfter( $contentContainer );
+
+					$postForm.flow( 'setupPreview' );
 
 					if ( typeof initialContent != 'object' ) {
 						initialContent = {
@@ -353,6 +356,66 @@
 				}
 
 				return $errorDiv;
+			},
+
+			/**
+			 * Setup preview function
+			 * @param {Object Literal} The key specifies the content identifier in the form
+			 * and value is output format
+			 */
+			'setupPreview': function( contents ) {
+				var $form = this, api = new mw.Api(),
+					$previewContainer = $( '<div>' ).addClass( 'flow-content-preview' );
+
+				// Default output format is parsed
+				if ( !contents ) {
+					contents = { 'textarea': 'parsed' };
+				}
+
+				$form.prepend( $previewContainer );
+
+				// Set up click handler for showing preview
+				$( '<input />' )
+					.attr( 'type', 'submit' )
+					.val( mw.msg( 'flow-preview' ) )
+					.addClass( 'mw-ui-button flow-preview-submit' )
+					.click( function ( e ) {
+						e.preventDefault();
+						$previewContainer.empty();
+						var success = function ( data ) {
+							$div.html( data['flow-parsoid-utils'].content );
+						}, failure = function ( code, data ) {
+							alert( data.error.info || 'Failed to convert wikitext to HTML.' );
+						};
+						for ( var identifier in contents ) {
+							var $div = $( '<div>' ).addClass( 'flow-preview-sub-container' );
+							$previewContainer.append( $div );
+							if ( contents[identifier] === 'parsed' ) {
+								if ( mw.flow.editor.getFormat() !== 'html' ) {
+									api.post( {
+										action: 'flow-parsoid-utils',
+										parsefrom: mw.flow.editor.getFormat(),
+										parseto: 'html',
+										parsecontent: $form.find( identifier ).val()
+									} )
+									.done( success )
+									.fail( failure );
+								} else {
+									$div.text( $form.find( identifier ).val() );
+								}
+							} else {
+								$div.text( $form.find( identifier ).val() );
+							}
+						}
+						$previewContainer.show();
+					} ).insertAfter( $form.find( '.flow-cancel-link' ) );
+			},
+
+			/**
+			 * Hide the preview
+			 */
+			'hidePreview': function() {
+				this.find( '.flow-content-preview' ).empty().hide();
 			}
 		}
 	} );

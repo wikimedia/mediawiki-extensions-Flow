@@ -239,6 +239,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 									$realTitle
 										.show();
 									$titleEditForm.remove();
+									$titleEditForm.flow( 'hidePreview' );
 								} )
 						)
 						.append( ' ' )
@@ -255,7 +256,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 				.find( '.flow-edit-title-textbox' )
 					.focus()
 					.select();
-
+				$titleEditForm.flow( 'setupPreview', { '.flow-edit-title-textbox': 'plain' } );
 				$titleEditForm.flow( 'setupFormHandler',
 					'.flow-edit-title-submit',
 					mw.flow.api.changeTitle,
