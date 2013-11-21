@@ -148,35 +148,17 @@ echo Html::openElement( 'div', array(
 		<p class="flow-datestamp">
 			<?php
 				// timestamp html
-				$content = '
-					<span class="flow-agotime" style="display: inline">' . htmlspecialchars( $topic->getLastModifiedObj()->getHumanTimestamp() ) . '</span>
-					<span class="flow-utctime" style="display: none">' . htmlspecialchars( $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) ) . '</span>';
-
-				$children = $root->getChildren();
-
-				// Timestamp should be turned into a link to history if:
-				$history = false;
-				// topic title has changed
-				$history |= !$root->isFirstRevision();
-				// topic has more than 1 comment
-				$history |= count( $children ) > 1;
-				// first comment was submitted separately from topic title
-				$history |= isset( $children[0] ) && $children[0]->getRevisionId()->getTimestamp() !== $root->getRevisionId()->getTimestamp();
-				// original topic comment has replies
-				$history |= isset( $children[0] ) && count( $children[0]->getChildren() ) > 0;
-
-				if ( $history ) {
-					// build history button with timestamp html as content
-					echo Html::rawElement( 'a',
-						array(
-							'class' => 'flow-action-history-link',
-							'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
-						),
-						$content
-					);
-				} else {
-					echo $content;
-				}
+				echo Html::rawElement( 'a',
+					array(
+						'class' => 'flow-action-history-link',
+						'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
+					),
+					'<span class="flow-agotime" style="display: inline">' . 
+						htmlspecialchars( $topic->getLastModifiedObj()->getHumanTimestamp() ) . 
+					'</span><span class="flow-utctime" style="display: none">' . 
+						htmlspecialchars( $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) ) . 
+					'</span>'
+				);
 			?>
 		</p>
 
