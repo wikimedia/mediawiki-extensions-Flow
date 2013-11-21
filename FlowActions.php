@@ -11,6 +11,8 @@ use \Message;
 /**
  * Flow actions: key => value map with key being the action name.
  * The value consists of an array of these below keys (and appropriate values):
+ * * performs-write: Must be boolean true for any action that writes to the wiki.
+ *     actions with this set will additionally require the core 'edit' permission.
  * * log_type: the Special:Log filter to save actions to.
  * * permissions: array of permissions, where each key is the existing post
  *   state and value is the action required to execute the action.
