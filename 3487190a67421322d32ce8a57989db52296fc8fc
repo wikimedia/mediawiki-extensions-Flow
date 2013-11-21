@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_ff0c9847",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-21T22:27:19Z",
+      "side": 1,
+      "message": "not really a complaint, it just seems odd to .each these, just to call a jquery method on it.  Calling .flow( \u0027setupPreview\u0027 ) should be able to set them all up at the same time?",
+      "revId": "3487190a67421322d32ce8a57989db52296fc8fc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
