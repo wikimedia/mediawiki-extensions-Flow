@@ -34,6 +34,24 @@
       "revId": "5deea0eaeb53a8800c996dcc9277a59254925556",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_e2a2bba3",
+        "filename": "includes/DbFactory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-11-21T23:23:32Z",
+      "side": 1,
+      "message": "Transaction should not be committed implicitly.  If this code block is already inside a mediawiki transaction,  $dbw-\u003ebegin() would close the transaction unintentionally.",
+      "parentUuid": "0ee75395_3f15609d",
+      "revId": "5deea0eaeb53a8800c996dcc9277a59254925556",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
