@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_7f91a851",
+        "filename": "includes/Templating.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-21T21:46:11Z",
+      "side": 1,
+      "message": "unrelated to this patch, but i wonder if we could stuff a bunch of other titles we know we will use into here as well. Possible targets include User/User_talk for all the comment authors",
+      "revId": "f10f093326b80f27399c6435e2cc45b4646ff64c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_3f9a0067",
+        "filename": "includes/Templating.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-21T21:46:11Z",
+      "side": 1,
+      "message": "also i suppose unrelated to this patch, but there are some tags that parsoid can output that DOMDocuemnt doesn\u0027t accept, it will throw warnings like\n\n    PHP Warning:  DOMDocument::loadHTML(): Tag figcaption invalid in Entity\n\n(to get a figcaption you need TimedMediaHandler exception and make a wikilink to a video file)\n\nThis could be worked arround with\n\n    $dom \u003d new DOMDocument;\n    libxml_use_internal_errors(true);\n    $dom-\u003eloadHTML(\u0027...\u0027);\n    libxml_clear_errors();\n\nBut i also worry a little about just throwing away potential errors.  Perhaps we should have a ParsoidUtils::createDOM( $content ) method that returns a valid DOMDocument or some such",
+      "revId": "f10f093326b80f27399c6435e2cc45b4646ff64c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_bfa5f09c",
+        "filename": "includes/Templating.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-21T21:46:11Z",
+      "side": 1,
+      "message": "since the only thing we are pulling in via use is $this, perhaps this could just be a public function marked as internal with a comment? then $callback is just array( $this, \u0027somethingSomething\u0027 )",
+      "revId": "f10f093326b80f27399c6435e2cc45b4646ff64c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
