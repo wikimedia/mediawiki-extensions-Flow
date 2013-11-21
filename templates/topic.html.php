@@ -186,6 +186,11 @@ echo Html::openElement( 'div', array(
 				</a>
 			</li>
 		</ul>
+		<ul class="flow-topic-posts-meta-minimal">
+			<?php
+			$userCount = count( $root->getRecursiveResult( $indexParticipants ) );
+			echo wfMessage( 'flow-topic-meta-minimal', $comments, $userCount )->escaped(); ?>
+		</ul>
 
 		<?php
 			echo Html::element(

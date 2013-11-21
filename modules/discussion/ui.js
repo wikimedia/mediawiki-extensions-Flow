@@ -227,8 +227,20 @@
 		);
 
 		// Set up folding
+		var $topicContainers = $container.is( '.flow-topic-container' ) ? $container : $container.find( '.flow-topic-container' );
+		$topicContainers
+			.on( "collapse", function() {
+				$( this ) .addClass( 'flow-topic-closed' )
+					.children( '.flow-topic-children-container' )
+					.slideUp();
+			} )
+			.on( "expand", function() {
+				$( this ) .removeClass( 'flow-topic-closed' )
+					.children( '.flow-topic-children-container' )
+					.slideDown();
+			} );
 		$container.find( '.flow-titlebar' )
-			.click( function ( e ) {
+			.on( "click", function ( e ) {
 				/*
 				 * When clicked anywhere in these elements, the click should not
 				 * collapse/expand the topic (likely because the node is, in
@@ -247,15 +259,11 @@
 					return true;
 				}
 
-				var $topicContainer = $( this ).closest( '.flow-topic-container' ),
-					$hideElement = $topicContainer.children( '.flow-topic-children-container' );
-
-				$topicContainer.toggleClass( 'flow-topic-closed' );
-
-				if ( $topicContainer.hasClass( 'flow-topic-closed' ) ) {
-					$hideElement.slideUp();
+				var $topicContainer = $( this ).closest( '.flow-topic-container' );
+				if ( $topicContainer.is( '.flow-topic-closed' ) ) {
+					$topicContainer.trigger( "expand" );
 				} else {
-					$hideElement.slideDown();
+					$topicContainer.trigger( "collapse" );
 				}
 			} );
 
@@ -324,5 +332,40 @@
 		$container.find( '.flow-icon-permalink' ).click( function( e ) {
 			highlightPost( $( this.hash ) );
 		} );
+
+		// Setup topic collapser
+		$container.find( '.topic-collapser li' )
+			.on( "enable", function() {
+				var $this = $( this ),
+					collapseClass = $this.data( 'collapse-class' ),
+					topicContainers = $( '.flow-topic-container' );
+
+				$this.addClass( 'active' );
+				if ( collapseClass === undefined ) {
+					topicContainers.trigger( "expand" );
+				} else {
+					$( '.flow-container' ).addClass( collapseClass );
+					topicContainers.trigger( "collapse" );
+				}
+			} )
+			.on( "disable", function() {
+				var $this = $( this ),
+					collapseClass = $this.data( 'collapse-class' );
+				$this.removeClass( 'active' );
+				if ( collapseClass !== undefined ) {
+					$( '.flow-container' ).removeClass( collapseClass );
+				}
+			} )
+			.on( "click", function( e ) {
+				var $this = $( this );
+
+				e.preventDefault();
+				if ( $this.is( '.active' ) ) {
+					return;
+				}
+
+				$this.siblings( '.active' ).trigger( "disable" );
+				$this.trigger( "enable" );
+			} );
 	} );
 } )( jQuery, mediaWiki );
