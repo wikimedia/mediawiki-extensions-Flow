@@ -81,7 +81,7 @@ class Post {
 	}
 
 	public function postHistoryButton( $content ) {
-		if ( !$this->post->isFirstRevision() && $this->actions->isAllowed( 'post-history' ) ) {
+		if ( $this->actions->isAllowed( 'post-history' ) ) {
 			return $this->actions->getButton(
 				'post-history',
 				$content,
