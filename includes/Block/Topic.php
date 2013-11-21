@@ -748,7 +748,7 @@ class TopicBlock extends AbstractBlock {
 
 			// using the path to the root post, we can know the post's depth
 			$rootPath = $this->rootLoader->treeRepo->findRootPath( $postId );
-			$post->setDepth( count( $rootPath ) );
+			$post->setDepth( count( $rootPath ) - 1 );
 		}
 
 		if ( $this->permissions->isAllowed( $topicTitle, 'view' )
