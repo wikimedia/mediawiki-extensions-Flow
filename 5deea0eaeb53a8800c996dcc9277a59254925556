@@ -16,6 +16,24 @@
       "revId": "5deea0eaeb53a8800c996dcc9277a59254925556",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_3f15609d",
+        "filename": "includes/DbFactory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-21T21:59:53Z",
+      "side": 1,
+      "message": "I think thats what we want here,\n\n$dbw-\u003ebegin() should have implicitly closed any transaction that was already open(mysql supports nested transactions via savepoint/rollback to, but apparently mediawiki does not)\n\nThat should mean the only transaction that can possibly be open is our own, unless something inside $callback started its own transaction.  I suppose thats possible, since $callback can be anything, but i would call that a bug to be fixed.",
+      "parentUuid": "0ee75395_e27766ce",
+      "revId": "5deea0eaeb53a8800c996dcc9277a59254925556",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
