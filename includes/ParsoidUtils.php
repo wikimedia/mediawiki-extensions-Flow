@@ -76,7 +76,7 @@ abstract class ParsoidUtils {
 			$response = mb_convert_encoding( $response, 'HTML-ENTITIES', 'UTF-8' );
 
 			$dom = new \DOMDocument();
-			$dom->loadXML( $response );
+			$dom->loadHTML( $response );
 			$body = $dom->getElementsByTagName( 'body' )->item(0);
 
 			$response = '';
