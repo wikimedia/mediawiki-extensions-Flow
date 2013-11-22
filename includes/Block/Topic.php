@@ -663,7 +663,7 @@ class TopicBlock extends AbstractBlock {
 			return $this->root;
 		}
 
-		$rootPost = $this->rootLoader->get( $this->workflow->getId() );
+		$rootPost = $this->rootLoader->get( $this->workflow );
 
 		if ( $this->permissions->isAllowed( $rootPost, 'view' ) ) {
 			// topicTitle is same as root, difference is root has children populated to full depth
@@ -688,6 +688,7 @@ class TopicBlock extends AbstractBlock {
 				throw new \MWException( 'Every workflow must have an associated topic title' );
 			}
 			$this->topicTitle = reset( $found );
+			$this->topicTitle->setWorkflow( $this->workflow );
 			if ( !$this->permissions->isAllowed( $this->topicTitle, 'view' ) ) {
 				$this->topicTitle = null;
 				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
@@ -724,31 +725,15 @@ class TopicBlock extends AbstractBlock {
 			$postId = UUID::create( $postId );
 		}
 
-		if ( $this->rootLoader === null ) {
-			// Since there is no root loader the full tree is already loaded
-			$topicTitle = $root = $this->loadRootPost();
-			if ( !$topicTitle ) {
-				return;
-			}
-			$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
-			if ( !$post ) {
-				// The requested postId is not a member of the current workflow
-				$this->errors['post'] = wfMessage( 'flow-error-invalid-postId', $postId->getHex() );
-				return;
-			}
-		} else {
-			// Load the post and its root
-			$found = $this->rootLoader->getWithRoot( $postId );
-			if ( !$found['post'] || !$found['root'] || !$found['root']->getPostId()->equals( $this->workflow->getId() ) ) {
-				$this->errors['post'] = wfMessage( 'flow-error-invalid-postId', $postId->getHex() );
-				return;
-			}
-			$this->topicTitle = $topicTitle = $found['root'];
-			$post = $found['post'];
-
-			// using the path to the root post, we can know the post's depth
-			$rootPath = $this->rootLoader->treeRepo->findRootPath( $postId );
-			$post->setDepth( count( $rootPath ) - 1 );
+		$topicTitle = $root = $this->loadRootPost();
+		if ( !$topicTitle ) {
+			return;
+		}
+		$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
+		if ( !$post ) {
+			// The requested postId is not a member of the current workflow
+			$this->errors['post'] = wfMessage( 'flow-error-invalid-postId', $postId->getHex() );
+			return;
 		}
 
 		if ( $this->permissions->isAllowed( $topicTitle, 'view' )
