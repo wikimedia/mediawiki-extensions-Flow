@@ -27,6 +27,10 @@
 	mw.flow.editors.none.prototype.destroy = function () {
 		// unset min-height that was set for auto-expansion
 		this.$node.css( 'min-height', '' );
+		// unset height that was set by auto-expansion
+		this.$node.css( 'height', '' );
+		// clear content
+		this.$node.val( '' );
 	};
 
 	/**
