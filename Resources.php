@@ -56,9 +56,10 @@ $wgResourceModules += array(
 			'discussion/paging.js',
 		),
 		'dependencies' => array(
-			'jquery.ui.core',
 			'ext.flow.base',
 			'ext.flow.editor',
+			'jquery.ui.core',
+			'jquery.scroll',
 			'jquery.spinner',
 			'mediawiki.Title',
 			'mediawiki.util',
