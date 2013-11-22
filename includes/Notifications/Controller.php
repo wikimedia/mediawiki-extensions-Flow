@@ -292,7 +292,10 @@ class NotificationController {
 
 		$users = array();
 		foreach ( $links[NS_USER] as $dbk => $page_id ) {
-			$users[] = User::newFromName( $dbk );
+			$user = User::newFromName( $dbk );
+			if ( $user ) {
+				$users[] = $user;
+			}
 		}
 
 		return $users;
@@ -340,7 +343,10 @@ class NotificationController {
 		case 'flow-new-topic':
 			$title = $event->getTitle();
 			if ( $title->getNamespace() == NS_USER_TALK ) {
-				$users[] = User::newFromName( $title->getText() );
+				$user = User::newFromName( $title->getText() );
+				if ( $user ) {
+					$users[] = $user;
+				}
 			}
 			break;
 		case 'flow-topic-renamed':
