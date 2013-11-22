@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_336eb794",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-22T15:03:15Z",
+      "side": 1,
+      "message": "Throughout MW, there\u0027s (almost) consistently no space after !, so if I happen to come across one, I get rid of it",
+      "parentUuid": "0ee75395_9dc35461",
+      "revId": "f10f093326b80f27399c6435e2cc45b4646ff64c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_7db890e2",
         "filename": "includes/Templating.php",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2013-11-22T03:47:31Z",
       "side": 1,
       "message": "I think this should not be in Templating, I think that if we\u0027re going to do extensive postprocessing, then we should add this somewhere else.",
+      "revId": "f10f093326b80f27399c6435e2cc45b4646ff64c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_13e853dc",
+        "filename": "includes/Templating.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-22T15:03:15Z",
+      "side": 1,
+      "message": "You mean like another, new class?\n\nPerhaps rename \"ParsoidUtils\" to \"ContentUtils\" and add functionality like this in there? Seems like the most fitting existing place.\n\nOr make something new where e.g. EBernhardson\u0027s below suggestion could also live?",
+      "parentUuid": "0ee75395_7db890e2",
       "revId": "f10f093326b80f27399c6435e2cc45b4646ff64c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_538b7b20",
+        "filename": "includes/Templating.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-22T15:03:15Z",
+      "side": 1,
+      "message": "I\u0027ll ignore this is this patch, but not a bad idea",
+      "parentUuid": "0ee75395_7f91a851",
+      "revId": "f10f093326b80f27399c6435e2cc45b4646ff64c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_3f9a0067",
         "filename": "includes/Templating.php",
         "patchSetId": 4
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_13cf3384",
+        "filename": "includes/Templating.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-22T15:03:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_3f9a0067",
+      "revId": "f10f093326b80f27399c6435e2cc45b4646ff64c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_bfa5f09c",
         "filename": "includes/Templating.php",
         "patchSetId": 4
@@ -81,6 +153,24 @@
       "writtenOn": "2013-11-21T21:46:11Z",
       "side": 1,
       "message": "since the only thing we are pulling in via use is $this, perhaps this could just be a public function marked as internal with a comment? then $callback is just array( $this, \u0027somethingSomething\u0027 )",
+      "revId": "f10f093326b80f27399c6435e2cc45b4646ff64c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_33991781",
+        "filename": "includes/Templating.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-22T15:03:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_bfa5f09c",
       "revId": "f10f093326b80f27399c6435e2cc45b4646ff64c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
