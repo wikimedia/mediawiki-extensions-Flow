@@ -221,22 +221,15 @@ class TopicListBlock extends AbstractBlock {
 		foreach( $found as $entry ) {
 			$topicIds[] = $entry->getId();
 		}
-		$roots = $this->rootLoader->getMulti( $topicIds );
-		foreach ( $topicIds as $idx => $topicId ) {
-			if ( !$this->permissions->isAllowed( $roots[$topicId->getHex()], 'view' ) ) {
-				unset( $roots[$topicId->getHex()] );
-				unset( $topicIds[$idx] );
-			}
-		}
-		foreach ( $roots as $idx => $topicTitle ) {
-			if ( !$this->permissions->isAllowed( $topicTitle, 'view' ) ) {
-				unset( $roots[$idx] );
-			}
-		}
-		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
+		$workflows = $this->storage->getMulti( 'Workflow', $topicIds );
+		$roots = $this->rootLoader->getMulti( $workflows );
+		$topics = array();
+		foreach ( $workflows as $workflow ) {
 			$hexId = $workflow->getId()->getHex();
-			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
-			$topics[$hexId]->init( $this->action, $this->user );
+			if ( isset( $roots[$hexId] ) && $this->permissions->isAllowed( $roots[$hexId], 'view' ) ) {
+				$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
+				$topics[$hexId]->init( $this->action, $this->user );
+			}
 		}
 
 		return $topics;

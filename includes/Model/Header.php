@@ -9,6 +9,7 @@ class Header extends AbstractRevision {
 
 	static public function create( Workflow $workflow, User $user, $content, $changeType = 'flow-create-header' ) {
 		$obj = new self;
+		$obj->workflow = $workflow;
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
 		$obj->userId = $user->getId();
@@ -39,6 +40,17 @@ class Header extends AbstractRevision {
 
 	public function getWorkflowId() {
 		return $this->workflowId;
+	}
+
+	public function getWorkflow() {
+		if ( $this->workflow === null ) {
+			throw new \MWException( 'Workflow not loaded for header: ' . $this->revId->getHex() );
+		}
+		return $this->workflow;
+	}
+
+	public function setWorkflow( Workflow $workflow ) {
+		$this->workflow = $workflow;
 	}
 
 	/**

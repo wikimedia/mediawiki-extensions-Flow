@@ -15,6 +15,8 @@ class PostRevision extends AbstractRevision {
 	protected $replyToId;
 
 	// Data that is loaded externally and set
+	protected $workflow;
+	protected $parent;
 	protected $children;
 	protected $depth;
 
@@ -82,10 +84,12 @@ class PostRevision extends AbstractRevision {
 		$reply->userText = $reply->origUserText = $user->getName();
 		$reply->origCreateTime = wfTimestampNow();
 		$reply->replyToId = $this->postId;
-		$reply->setContent( $content );
 		$reply->changeType = $changeType;
+		$reply->parent = $this;
 		$reply->setChildren( array() );
 		$reply->setDepth( $this->getDepth() + 1 );
+		// Must happen last
+		$reply->setContent( $content );
 
 		return $reply;
 	}
@@ -173,6 +177,39 @@ class PostRevision extends AbstractRevision {
 			throw new \MWException( 'Children not loaded for post: ' . $this->postId->getHex() );
 		}
 		return $this->children;
+	}
+
+	public function setParent( PostRevision $parent ) {
+		$this->parent = $parent;
+	}
+
+	public function getParent() {
+		if ( $this->parent === null && $this->replyToId !== null ) {
+			throw new \MWException( 'Parent not loaded for post: ' . $this->postId->getHex() . ' expected ' . $this->replyToId->getHex() );
+		}
+		return $this->parent;
+	}
+	
+	public function getTopicTitle() {
+		$root = $this;
+		while ( $parent = $root->getParent() ) {
+			$root = $parent;
+		}
+		return $root;
+	}
+
+	public function setWorkflow( Workflow $workflow ) {
+		$this->workflow = $workflow;
+	}
+
+	public function getWorkflow() {
+		if ( !$this->isTopicTitle() ) {
+			return $this->getTopicTitle()->getWorkflow();
+		} elseif ( $this->workflow === null ) {
+			throw new \MWException( 'No workflow loaded for topic title: ' . $this->postId->getHex() );
+		} else {
+			return $this->workflow;
+		}
 	}
 
 	public function setDepth( $depth ) {

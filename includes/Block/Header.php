@@ -34,6 +34,7 @@ class HeaderBlock extends AbstractBlock {
 
 		if ( $found ) {
 			$this->header = reset( $found );
+			$this->header->setWorkflow( $this->workflow );
 		}
 	}
 

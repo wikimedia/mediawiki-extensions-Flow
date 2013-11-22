@@ -3,6 +3,7 @@
 namespace Flow\Data;
 
 use Flow\Block\TopicBlock;
+use Flow\Model\Workflow;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 
@@ -16,57 +17,21 @@ class RootPostLoader {
 		$this->treeRepo = $treeRepo;
 	}
 
-	/**
-	 * Retrieves a single post and the related topic title.
-	 *
-	 * @param UUID|string $postId The uid of the post being requested
-	 * @return array associative array with 'root' and 'post' keys. Array
-	 *   values may be null if not found.
-	 */
-	public function getWithRoot( $postId ) {
-		$postId = UUID::create( $postId );
-		$rootId = $this->treeRepo->findRoot( $postId );
-		$found = $this->storage->findMulti(
-			'PostRevision',
-			array(
-				array( 'tree_rev_descendant_id' => $postId->getBinary() ),
-				array( 'tree_rev_descendant_id' => $rootId->getBinary() ),
-			),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-		);
-		$res = array(
-			'post' => null,
-			'root' => null,
-		);
-		if ( !$found ) {
-			return $res;
-		}
-		foreach ( $found as $result ) {
-			// limit = 1 means single result
-			$post = reset( $result );
-			if ( $postId->equals( $post->getPostId() ) ) {
-				$res['post'] = $post;
-			} elseif( $rootId->equals( $post->getPostId() ) ) {
-				$res['root'] = $post;
-			} else {
-				die( 'Unmatched: ' . $post->getPostId()->getHex() );
-			}
-		}
-		// The above doesn't catch this condition
-		if ( $postId->equals( $rootId ) ) {
-			$res['root'] = $res['post'];
-		}
-		return $res;
-	}
-
-	public function get( $topicId ) {
-		$result = $this->getMulti( array( $topicId ) );
+	public function get( Workflow $workflow ) {
+		$result = $this->getMulti( array( $workflow ) );
 		return reset( $result );
 	}
 
-	public function getMulti( array $topicIds ) {
-		if ( !$topicIds ) {
+	public function getMulti( array $workflows ) {
+		if ( !$workflows ) {
 			return array();
+		}
+		$topicIds = array();
+		foreach ( $workflows as $idx => $workflow ) {
+			$topicIds[] = $workflow->getId();
+			// re-index by hexid
+			unset( $workflows[$idx] );
+			$workflows[$workflow->getId()->getHex()] = $workflow;
 		}
 		// load posts for all located post ids
 		$allPostIds =  $this->fetchRelatedPostIds( $topicIds );
@@ -132,6 +97,9 @@ class RootPostLoader {
 
 			$post->setChildren( $postChildren );
 			$post->setDepth( $postDepth );
+			foreach ( $postChildren as $child ) {
+				$child->setParent( $post );
+			}
 		}
 
 		// return only the requested posts, rest are available as children.
@@ -139,7 +107,9 @@ class RootPostLoader {
 		$roots = array();
 		foreach ( $topicIds as $id ) {
 			$roots[$id->getHex()] = $posts[$id->getHex()];
+			$roots[$id->getHex()]->setWorkflow( $workflow );
 		}
+
 		return $roots;
 	}
 

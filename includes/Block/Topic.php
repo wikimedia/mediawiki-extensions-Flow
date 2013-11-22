@@ -21,7 +21,6 @@ use User;
 class TopicBlock extends AbstractBlock {
 
 	protected $root;
-	protected $topicTitle;
 	protected $rootLoader;
 	protected $newRevision;
 	protected $relatedRevisions = array();
@@ -114,21 +113,21 @@ class TopicBlock extends AbstractBlock {
 		} elseif ( empty( $this->submitted['content'] ) ) {
 			$this->errors['content'] = wfMessage( 'flow-missing-title-content' );
 		} else {
-			$topicTitle = $this->loadTopicTitle();
-			if ( !$topicTitle ) {
+			$root = $this->loadRoot();
+			if ( !$root ) {
 				throw new \MWException( 'No revision associated with workflow?' );
 			}
-			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
+			if ( !$this->permissions->isAllowed( $root, 'edit-title' ) ) {
 				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
 				return;
 			}
 
-			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
+			$this->newRevision = $root->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
 
 			$this->setNotification(
 				'flow-topic-renamed',
 				array(
-					'old-subject' => $topicTitle->getContent( 'wikitext' ),
+					'old-subject' => $root->getContent( 'wikitext' ),
 					'new-subject' => $this->newRevision->getContent( 'wikitext' ),
 				)
 			);
@@ -157,7 +156,7 @@ class TopicBlock extends AbstractBlock {
 				array(
 					'reply-to' => $post,
 					'content' => $this->submitted['content'],
-					'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
+					'topic-title' => $this->loadRoot()->getContent( 'wikitext' ),
 				)
 			);
 		}
@@ -275,7 +274,7 @@ class TopicBlock extends AbstractBlock {
 			'flow-post-edited',
 			array(
 				'content' => $this->submitted['content'],
-				'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
+				'topic-title' => $this->loadRoot()->getContent( 'wikitext' ),
 			)
 		);
 	}
@@ -385,14 +384,14 @@ class TopicBlock extends AbstractBlock {
 			return $prefix . $this->renderEditPost( $templating, $options, $return );
 
 		case 'edit-title':
-			$topicTitle = $this->loadTopicTitle();
-			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
+			$root = $this->loadRoot();
+			if ( !$this->permissions->isAllowed( $root, 'edit-title' ) ) {
 				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
 			}
 			return $prefix . $templating->render( "flow:edit-title.html.php", array(
 				'block' => $this,
 				'topic' => $this->workflow,
-				'topicTitle' => $topicTitle,
+				'topicTitle' => $root,
 			), $return );
 
 		default:
@@ -443,7 +442,7 @@ class TopicBlock extends AbstractBlock {
 		return $templating->render( "flow:post-history.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
-			'topicTitle' => $this->loadTopicTitle(), // pre-loaded by loadRequestedPost
+			'topicTitle' => $this->loadRoot(), // pre-loaded by loadRequestedPost
 			'post' => $post,
 			'history' => new History( $this->getHistory( $options['postId'] ) ),
 			'historyRenderer' => new HistoryRenderer( $templating, $this ),
@@ -663,37 +662,13 @@ class TopicBlock extends AbstractBlock {
 			return $this->root;
 		}
 
-		$rootPost = $this->rootLoader->get( $this->workflow->getId() );
+		$rootPost = $this->rootLoader->get( $this->workflow );
 
 		if ( $this->permissions->isAllowed( $rootPost, 'view' ) ) {
-			// topicTitle is same as root, difference is root has children populated to full depth
-			return $this->topicTitle = $this->root = $rootPost;
+			return $this->root = $rootPost;
 		}
 
 		$this->errors['moderation'] = wfMessage( 'flow-error-not-allowed' );
-	}
-
-	// Loads only the title, as opposed to loadRootPost which gets the entire tree of posts.
-	protected function loadTopicTitle() {
-		if ( $this->workflow->isNew() ) {
-			throw new \MWException( 'New workflows do not have any related content' );
-		}
-		if ( $this->topicTitle === null ) {
-			$found = $this->storage->find(
-				'PostRevision',
-				array( 'tree_rev_descendant_id' => $this->workflow->getId() ),
-				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-			);
-			if ( !$found ) {
-				throw new \MWException( 'Every workflow must have an associated topic title' );
-			}
-			$this->topicTitle = reset( $found );
-			if ( !$this->permissions->isAllowed( $this->topicTitle, 'view' ) ) {
-				$this->topicTitle = null;
-				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
-			}
-		}
-		return $this->topicTitle;
 	}
 
 	protected function loadTopicHistory() {
@@ -724,34 +699,18 @@ class TopicBlock extends AbstractBlock {
 			$postId = UUID::create( $postId );
 		}
 
-		if ( $this->rootLoader === null ) {
-			// Since there is no root loader the full tree is already loaded
-			$topicTitle = $root = $this->loadRootPost();
-			if ( !$topicTitle ) {
-				return;
-			}
-			$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
-			if ( !$post ) {
-				// The requested postId is not a member of the current workflow
-				$this->errors['post'] = wfMessage( 'flow-error-invalid-postId', $postId->getHex() );
-				return;
-			}
-		} else {
-			// Load the post and its root
-			$found = $this->rootLoader->getWithRoot( $postId );
-			if ( !$found['post'] || !$found['root'] || !$found['root']->getPostId()->equals( $this->workflow->getId() ) ) {
-				$this->errors['post'] = wfMessage( 'flow-error-invalid-postId', $postId->getHex() );
-				return;
-			}
-			$this->topicTitle = $topicTitle = $found['root'];
-			$post = $found['post'];
-
-			// using the path to the root post, we can know the post's depth
-			$rootPath = $this->rootLoader->treeRepo->findRootPath( $postId );
-			$post->setDepth( count( $rootPath ) - 1 );
+		$root = $root = $this->loadRootPost();
+		if ( !$root ) {
+			return;
+		}
+		$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
+		if ( !$post ) {
+			// The requested postId is not a member of the current workflow
+			$this->errors['post'] = wfMessage( 'flow-error-invalid-postId', $postId->getHex() );
+			return;
 		}
 
-		if ( $this->permissions->isAllowed( $topicTitle, 'view' )
+		if ( $this->permissions->isAllowed( $root, 'view' )
 			&& $this->permissions->isAllowed( $post, 'view' ) ) {
 			return $post;
 		}

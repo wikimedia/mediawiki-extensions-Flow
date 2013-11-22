@@ -82,6 +82,9 @@ abstract class AbstractRevision {
 	protected $lastEditUserId;
 	protected $lastEditUserText;
 
+	// @return Workflow
+	abstract public function getWorkflow();
+
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			$obj = new static;
@@ -285,7 +288,7 @@ abstract class AbstractRevision {
 		if ( !isset( $this->convertedContent[$format] ) ) {
 			// check how content is stored & convert to requested format
 			$sourceFormat = in_array( 'html', $this->flags ) ? 'html' : 'wikitext';
-			$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $this->getContentRaw() );
+			$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $this->getContentRaw(), $this->getWorkflow()->getArticleTitle() );
 		}
 
 		return $this->convertedContent[$format];
@@ -333,7 +336,8 @@ abstract class AbstractRevision {
 			$this->convertedContent[$storageFormat] = ParsoidUtils::convert(
 				$inputFormat,
 				$storageFormat,
-				$content
+				$content,
+				$this->getWorkflow()->getArticleTitle()
 			);
 		}
 
