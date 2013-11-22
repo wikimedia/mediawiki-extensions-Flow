@@ -16,6 +16,24 @@
       "revId": "2796964feafbb5a370f88fdd2ee7de654082d87e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_3d6e8894",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-11-22T02:58:08Z",
+      "side": 1,
+      "message": "Yeah, you were right – that was a bug. I\u0027ve fixed it.",
+      "parentUuid": "291c1151_6c0e6b3c",
+      "revId": "2796964feafbb5a370f88fdd2ee7de654082d87e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
