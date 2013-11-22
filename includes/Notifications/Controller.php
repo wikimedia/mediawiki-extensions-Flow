@@ -292,7 +292,10 @@ class NotificationController {
 
 		$users = array();
 		foreach ( $links[NS_USER] as $dbk => $page_id ) {
-			$users[] = User::newFromName( $dbk );
+			$user = User::newFromName( $dbk );
+			if ( $user ) {
+				$users[] = $users;
+			}
 		}
 
 		return $users;
