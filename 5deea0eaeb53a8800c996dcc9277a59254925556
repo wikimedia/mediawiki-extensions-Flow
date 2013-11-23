@@ -52,6 +52,23 @@
       "revId": "5deea0eaeb53a8800c996dcc9277a59254925556",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_76d2ead6",
+        "filename": "includes/DbFactory.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-11-23T01:08:23Z",
+      "side": 1,
+      "message": "There is another hack we can do.\n\nWe can have the bufferedCache commit execute in deferred update, eg: DeferredUpdates::addCallableUpdate( function() { commit() } ), this will be executed after primary db connections have been committed.  In that case, we can remove db-\u003ebegin and db-\u003ecommit, cache will only be committed if data is written into the db successfully",
+      "revId": "5deea0eaeb53a8800c996dcc9277a59254925556",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
