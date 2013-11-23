@@ -941,6 +941,7 @@ $messages['de'] = array(
 	'flow-post-actions' => 'Aktionen',
 	'flow-topic-actions' => 'Aktionen',
 	'flow-cancel' => 'Abbrechen',
+	'flow-preview' => 'Vorschau',
 	'flow-newtopic-title-placeholder' => 'Neues Thema',
 	'flow-newtopic-content-placeholder' => 'Gib hier Einzelheiten ein, wenn du möchtest.',
 	'flow-newtopic-header' => 'Ein neues Thema hinzufügen',
@@ -1089,28 +1090,37 @@ $messages['de'] = array(
 /** Greek (Ελληνικά)
  * @author Astralnet
  * @author Evropi
+ * @author Geraki
  */
 $messages['el'] = array(
 	'flow-topic-actions' => 'Ενέργειες',
+	'flow-preview' => 'Προεπισκόπηση',
 	'flow-history-last4' => 'Τελευταίες 4 ώρες',
 	'flow-history-day' => 'Σήμερα',
 );
 
 /** Spanish (español)
  * @author Benfutbol10
+ * @author Fitoschido
+ * @author Ihojose
  * @author Ovruni
  */
 $messages['es'] = array(
+	'flow-desc' => 'Sistema de gestión de flujo de trabajo',
+	'flow-page-title' => '$1 &ndash; Flujo',
+	'log-name-flow' => 'Registro de actividad de flujo',
 	'flow-user-moderated' => 'Usuario moderado',
 	'flow-post-moderated-toggle-show' => '[Mostrar]',
 	'flow-post-moderated-toggle-hide' => '[Ocultar]',
 	'flow-post-actions' => 'Acciones',
 	'flow-topic-actions' => 'Acciones',
 	'flow-cancel' => 'Cancelar',
-	'flow-newtopic-title-placeholder' => 'Asunto del mensaje', # Fuzzy
+	'flow-preview' => 'Previsualizar',
+	'flow-newtopic-title-placeholder' => 'Tema nuevo',
+	'flow-newtopic-content-placeholder' => 'Si quieres, añade detalles',
 	'flow-newtopic-header' => 'Añadir un nuevo tema',
 	'flow-newtopic-save' => 'Añadir tema',
-	'flow-newtopic-start-placeholder' => 'Haga clic aquí para iniciar una nueva discusión. Ser amable!', # Fuzzy
+	'flow-newtopic-start-placeholder' => 'Iniciar un tema nuevo',
 	'flow-reply-placeholder' => 'Haga clic para {{GENDER:$1|responder}} a $1. Ser amable!', # Fuzzy
 	'flow-reply-submit' => 'Publicar respuesta', # Fuzzy
 	'flow-edit-post-submit' => 'Enviar cambios',
@@ -1123,11 +1133,18 @@ $messages['es'] = array(
 	'flow-post-action-edit-post' => 'Editar mensaje',
 	'flow-post-action-edit' => 'Editar',
 	'flow-post-action-restore-post' => 'Restaurar mensaje',
+	'flow-topic-action-view' => 'Enlace permanente',
 	'flow-topic-action-watchlist' => 'Lista de seguimiento',
 	'flow-topic-action-edit-title' => 'Editar título',
 	'flow-topic-action-history' => 'Historial del tema',
-	'flow-error-http' => 'Ha ocurrido un error mientras se contactaba al servidor. Tu mensaje no ha sido guardado.', # Fuzzy
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] borró un [$3 comentario].',
+	'flow-topic-action-hide-topic' => 'Ocultar el tema',
+	'flow-topic-action-delete-topic' => 'Eliminar el tema',
+	'flow-topic-action-censor-topic' => 'Suprimir el tema',
+	'flow-topic-action-restore-topic' => 'Restaurar el tema',
+	'flow-error-http' => 'Ha ocurrido un error mientras se contactaba al servidor.',
+	'flow-error-other' => 'Ha ocurrido un error inesperado.',
+	'flow-error-edit-restricted' => 'No tienes permitido editar esta entrada.',
+	'flow-rev-message-deleted-post' => '[[User:$1|$1]] borró un [$3 comentario].', # Fuzzy
 	'flow-moderation-reason-placeholder' => 'Ingresa tu razón aquí',
 );
 
@@ -1176,6 +1193,7 @@ $messages['fi'] = array(
 );
 
 /** French (français)
+ * @author Ayack
  * @author Gomoko
  * @author Linedwell
  * @author Sherbrooke
@@ -1201,6 +1219,7 @@ $messages['fr'] = array(
 	'flow-post-actions' => 'Actions',
 	'flow-topic-actions' => 'Actions',
 	'flow-cancel' => 'Annuler',
+	'flow-preview' => 'Prévisualiser',
 	'flow-newtopic-title-placeholder' => 'Nouveau sujet',
 	'flow-newtopic-content-placeholder' => 'Ajouter des détails si vous le voulez',
 	'flow-newtopic-header' => 'Ajouter un nouveau sujet',
@@ -1452,6 +1471,7 @@ $messages['gl'] = array(
  * @author KartikMistry
  */
 $messages['gu'] = array(
+	'flow-preview' => 'પૂર્વદર્શન',
 	'flow-notification-link-text-view-topic' => 'વિષય જુઓ',
 );
 
@@ -1694,6 +1714,7 @@ $messages['it'] = array(
 	'flow-post-actions' => 'Azioni',
 	'flow-topic-actions' => 'Azioni',
 	'flow-cancel' => 'Annulla',
+	'flow-preview' => 'Anteprima',
 	'flow-newtopic-title-placeholder' => 'Nuova discussione',
 	'flow-newtopic-content-placeholder' => 'Aggiungi qualche dettaglio, se vuoi',
 	'flow-newtopic-header' => 'Aggiungi una nuova discussione',
@@ -1743,21 +1764,21 @@ $messages['it'] = array(
 	'flow-error-not-allowed' => 'Autorizzazioni insufficienti per eseguire questa azione',
 	'flow-edit-header-submit' => 'Salva intestazione',
 	'flow-edit-title-submit' => 'Cambia titolo',
-	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|ha modificato}} un [$2 commento]', # Fuzzy
-	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|ha aggiunto}} un [$2 commento]', # Fuzzy
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|commento|commenti}}''' {{PLURAL:$1|è stato aggiunto|sono stati aggiunti}}.", # Fuzzy
-	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|ha creato}} la discussione [$2 $3].', # Fuzzy
-	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|ha modificato}} il titolo della discussione in [$2 $3] da $4.', # Fuzzy
-	'flow-rev-message-create-header' => "[[User:$1|$1]] {{GENDER:$1|ha creato}} l'intestazione della scheda.", # Fuzzy
-	'flow-rev-message-edit-header' => "[[User:$1|$1]] {{GENDER:$1|ha modificato}} l'intestazione della scheda.", # Fuzzy
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|ha nascosto}} un [$3 commento]', # Fuzzy
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|ha cancellato}} un [$3 commento]', # Fuzzy
-	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|ha soppresso}} un [$3 commento]', # Fuzzy
-	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|ha ripristinato}} un [$3 commento]', # Fuzzy
-	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|ha nascosto}} la [$3 discussione]', # Fuzzy
-	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|ha cancellato}} la [$3 discussione]', # Fuzzy
-	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|ha soppresso}} la [$3 discussione]', # Fuzzy
-	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|ha ripristinato}} la [$3 discussione]', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|ha modificato}} un [$3 commento].',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|ha aggiunto}} un [$3 commento].',
+	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$2|commento|commenti}}''' {{PLURAL:$2|è stato aggiunto|sono stati aggiunti}}.",
+	'flow-rev-message-new-post' => '$1 {{GENDER:$2|ha creato}} la discussione [$3 $4].',
+	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|ha modificato}} il titolo della discussione in [$3 $4] da $5.',
+	'flow-rev-message-create-header' => "$1 {{GENDER:$2|ha creato}} l'intestazione della scheda.",
+	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|ha modificato}} l'intestazione della scheda.",
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|ha nascosto}} un [$4 commento].',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 commento].',
+	'flow-rev-message-censored-post' => '$1 {{GENDER:$2|ha soppresso}} un [$4 commento].',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|ha ripristinato}} un [$4 commento].',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|ha nascosto}} la [$4 discussione].',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|ha cancellato}} la [$4 discussione].',
+	'flow-rev-message-censored-topic' => '$1 {{GENDER:$2|ha soppresso}} la [$4 discussione].',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|ha ripristinato}} la [$4 discussione].',
 	'flow-board-history' => 'Cronologia di "$1"',
 	'flow-topic-history' => 'Cronologia della discussione "$1"',
 	'flow-post-history' => 'Cronologia del commento di {{GENDER:$2|$2}}',
@@ -1860,6 +1881,7 @@ $messages['ja'] = array(
 	'flow-post-actions' => '操作',
 	'flow-topic-actions' => '操作',
 	'flow-cancel' => 'キャンセル',
+	'flow-preview' => 'プレビュー',
 	'flow-newtopic-title-placeholder' => '新しい話題',
 	'flow-newtopic-content-placeholder' => '詳細情報を入力 (省略可能)',
 	'flow-newtopic-header' => '新しい話題の追加',
@@ -2154,6 +2176,7 @@ $messages['mk'] = array(
 	'flow-post-actions' => 'Дејства',
 	'flow-topic-actions' => 'Дејства',
 	'flow-cancel' => 'Откажи',
+	'flow-preview' => 'Преглед',
 	'flow-newtopic-title-placeholder' => 'Нова тема',
 	'flow-newtopic-content-placeholder' => 'Додајте подробности, ако сакате',
 	'flow-newtopic-header' => 'Додај нова тема',
@@ -2203,21 +2226,21 @@ $messages['mk'] = array(
 	'flow-error-not-allowed' => 'Немате дозвола за да го извршите ова дејство',
 	'flow-edit-header-submit' => 'Зачувај заглавие',
 	'flow-edit-title-submit' => 'Измени наслов',
-	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|измени}} еден [$2 коментар]', # Fuzzy
-	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|додаде}} [$2 коментар].', # Fuzzy
-	'flow-rev-message-reply-bundle' => "'''{{PLURAL:$1|Додаден е коментар|Додадени се $1 коментари}}'''.", # Fuzzy
-	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|ја создаде}} темата [$2 $3].', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|измени}} [$3 коментар].',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|доидаде}} [$3 коментар].',
+	'flow-rev-message-reply-bundle' => "'''{{PLURAL:$2|Додаден|Додадени}} {{PLURAL:$2|еден коментар|$1 коментари}}''' .",
+	'flow-rev-message-new-post' => '$1 {{GENDER:$2|ја создаде}} темата [$3 $4].',
 	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|го измени}} насловот на темата од $4 во [$2 $3].', # Fuzzy
-	'flow-rev-message-create-header' => '[[User:$1|$1]] {{GENDER:$1|го создаде}} заглавието на таблата.', # Fuzzy
-	'flow-rev-message-edit-header' => '[[User:$1|$1]] {{GENDER:$1|го измени}} заглавието на таблата.', # Fuzzy
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|скри}} еден [$3 коментар].', # Fuzzy
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|избриша}} еден [$3 коментар].', # Fuzzy
-	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|притаи}} еден [$3 коментар].', # Fuzzy
-	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|поврати}} еден [$3 коментар].', # Fuzzy
-	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|ја скри}} [$3 темата].', # Fuzzy
-	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|ја избриша}} [$3 темата].', # Fuzzy
-	'flow-rev-message-censored-topic' => '[[User:$1|$1]] {{GENDER:$1|ја притаи}} [$3 темата].', # Fuzzy
-	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|ја поврати}} [$3 темата].', # Fuzzy
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|го создаде}} заглавието на таблата.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|го измени}} заглавието на таблата.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|скри}} [$4 коментар].',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|избриша}} [$4 коментар].',
+	'flow-rev-message-censored-post' => '$1 {{GENDER:$2|притаи}} [$4 коментар].',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|поврати}} [$4 коментар].',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|ја скри}} [$4 темата].',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|ја избриша}} [$4 темата].',
+	'flow-rev-message-censored-topic' => '$1 {{GENDER:$2|ја притаи}} [$4 темата].',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|ја поврати}} [$4 темата].',
 	'flow-board-history' => 'Историја на „$1“',
 	'flow-topic-history' => 'Историја на темата „$1“',
 	'flow-post-history' => 'Историја на објавите — Коментар од {{GENDER:$2|$2}}',
@@ -2226,7 +2249,7 @@ $messages['mk'] = array(
 	'flow-history-week' => 'Минатата седмица',
 	'flow-history-pages-topic' => 'Фигурира на [$1 таблата „$2“]',
 	'flow-history-pages-post' => 'Фигурира на [$1 $2]',
-	'flow-topic-participants' => '{{PLURAL:$1|Темата ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} и {{PLURAL:$2|уште еден друг|уште $2 други}}|0=Досега никој не зел учество|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{GENDER:$5|$5}}}}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|Темава ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} и {{PLURAL:$2|уште еден|$2 други}}|0=Досега никој не учествувал|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Бидете први со коментар!|Коментари ($1)}}',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
@@ -2861,8 +2884,8 @@ $messages['sv'] = array(
 	'flow-post-actions' => 'åtgärder', # Fuzzy
 	'flow-topic-actions' => 'åtgärder', # Fuzzy
 	'flow-cancel' => 'Avbryt',
-	'flow-newtopic-title-placeholder' => 'Meddelandeämne', # Fuzzy
-	'flow-newtopic-content-placeholder' => 'Meddelandetext. Var trevlig!', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Nytt ämne',
+	'flow-newtopic-content-placeholder' => 'Lägg till några detaljer om du vill',
 	'flow-newtopic-header' => 'Lägg till ett nytt ämne',
 	'flow-newtopic-save' => 'Lägg till ämne',
 	'flow-newtopic-start-placeholder' => 'Starta ett nytt ämne',
@@ -2877,8 +2900,8 @@ $messages['sv'] = array(
 	'flow-post-action-view' => 'Permanent länk',
 	'flow-post-action-post-history' => 'Inläggshistorik',
 	'flow-post-action-censor-post' => 'Censurera inlägg', # Fuzzy
-	'flow-post-action-delete-post' => 'Ta bort inlägg', # Fuzzy
-	'flow-post-action-hide-post' => 'Dölj inlägg', # Fuzzy
+	'flow-post-action-delete-post' => 'Radera',
+	'flow-post-action-hide-post' => 'Dölj',
 	'flow-post-action-edit-post' => 'Redigera inlägg',
 	'flow-post-action-edit' => 'Redigera',
 	'flow-post-action-restore-post' => 'Återställ inlägg',
@@ -2886,11 +2909,11 @@ $messages['sv'] = array(
 	'flow-topic-action-watchlist' => 'Bevakningslista',
 	'flow-topic-action-edit-title' => 'Redigera titel',
 	'flow-topic-action-history' => 'Ämneshistorik',
-	'flow-error-http' => 'Ett fel uppstod när servern kontaktades. Ditt inlägg har inte sparats.', # Fuzzy
-	'flow-error-other' => 'Ett oväntat fel uppstod. Ditt inlägg har inte sparats.', # Fuzzy
-	'flow-error-external' => 'Ett fel uppstod när ditt inlägg sparades. Ditt inlägg har inte sparats.<br /><small>Felmeddelandet var: $1</small>', # Fuzzy
+	'flow-error-http' => 'Ett fel uppstod när servern kontaktades.',
+	'flow-error-other' => 'Ett oväntat fel uppstod.',
+	'flow-error-external' => 'Ett fel uppstod.<br /><small>Felmeddelandet var: $1</small>',
 	'flow-error-edit-restricted' => 'Du har inte rätt att redigera detta inlägg.',
-	'flow-error-external-multi' => 'Fel uppstod när ditt inlägg sparades. Ditt inlägg har inte sparats.<br />$1', # Fuzzy
+	'flow-error-external-multi' => 'Fel uppstod.<br />$1',
 	'flow-error-missing-content' => 'Inlägget har inget innehåll. Innehåll krävs för att spara ett nytt inlägg.',
 	'flow-error-missing-title' => 'Ämnet har ingen titel. En titel krävs för att spara ett nytt ämne.',
 	'flow-error-parsoid-failure' => 'Det gick inte att parsa innehållet på grund av ett Parsoid-fel.',
@@ -2903,23 +2926,23 @@ $messages['sv'] = array(
 	'flow-error-restore-failure' => 'Det gick inte att återställa objektet.',
 	'flow-edit-header-submit' => 'Spara rubrik',
 	'flow-edit-title-submit' => 'Ändra titel',
-	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|redigerade}} en [$2 kommentar]', # Fuzzy
-	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|lade till}} en [$2 kommentar].', # Fuzzy
-	'flow-rev-message-reply-bundle' => '$1 {{PLURAL:$1|kommentar|kommentarer}} lades till.', # Fuzzy
-	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|skapade}} ämnet [$2 $3].', # Fuzzy
-	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|ändrade}} ämnestiteln till [$2 $3].', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|redigerade}} en [$3 kommentar]',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|lade till}} en [$3 kommentar].',
+	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$2|kommentar|kommentarer}}''' lades till.",
+	'flow-rev-message-new-post' => '$1 {{GENDER:$1|skapade}} ämnet [$3 $4].', # Fuzzy
+	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|ändrade}} ämnestiteln till [$3 $4] från $5.',
 	'flow-rev-message-create-header' => 'Skapade rubrik', # Fuzzy
 	'flow-rev-message-edit-header' => 'Redigera rubrik', # Fuzzy
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|dolde}} en [$3 kommentar].', # Fuzzy
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|raderade}} en [$3 kommentar].', # Fuzzy
-	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|upphävde}} en [$3 kommentar].', # Fuzzy
-	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|återställde}} en [$3 kommentar].', # Fuzzy
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|dolde}} en [$4 kommentar].',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|raderade}} en [$4 kommentar].',
+	'flow-rev-message-censored-post' => '$1 {{GENDER:$1|upphävde}} en [$4 kommentar].', # Fuzzy
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$1|återställde}} en [$4 kommentar].', # Fuzzy
 	'flow-topic-history' => 'Ämneshistorik för "$1"',
 	'flow-history-last4' => 'Senaste 4 timmarna',
 	'flow-history-day' => 'I dag',
 	'flow-history-week' => 'Senaste veckan',
 	'flow-history-pages-post' => 'Visas på [$1 $2]',
-	'flow-topic-participants' => '{{PLURAL:$1|$3 påbörjade detta ämne|{{GENDER:$3|$3}}, {{GENDER:$4|$4}} och {{PLURAL:$2|annan|andra}}|0=Inget deltagande ännu|2={{GENDER:$3|$3}} och {{GENDER:$4|$4}}}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|$3 påbörjade detta ämne|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} och $2 {{PLURAL:$2|annan|andra}}|0=Inget deltagande ännu|2={{GENDER:$3|$3}} och {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} och {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Var först med att kommentera!|Kommentar ($1)}}',
 	'flow-comment-restored' => 'Återställd kommentar',
 	'flow-comment-deleted' => 'Raderad kommentar',
@@ -2950,8 +2973,8 @@ $messages['sv'] = array(
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|byt namn på}} ditt ämne "$2" till "$3" på "$4"',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|skapade}} ett nytt ämne på $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|skapade}} ett ny ämne med titeln "$2" på $3',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Diskussion|Diskussioner}}', # Fuzzy
-	'echo-pref-tooltip-flow-discussion' => 'Meddela mig när åtgärder som rör mig förekommer i diskussionsforumet.', # Fuzzy
+	'echo-category-title-flow-discussion' => 'Flöde',
+	'echo-pref-tooltip-flow-discussion' => 'Meddela mig när åtgärder som rör mig förekommer i flödet.',
 	'flow-link-post' => 'inlägg',
 	'flow-link-topic' => 'ämne',
 	'flow-link-history' => 'historik',
@@ -3001,6 +3024,7 @@ $messages['uk'] = array(
 	'flow-post-actions' => 'Дії',
 	'flow-topic-actions' => 'Дії',
 	'flow-cancel' => 'Скасувати',
+	'flow-preview' => 'Попередній перегляд',
 	'flow-newtopic-title-placeholder' => 'Нова тема',
 	'flow-newtopic-content-placeholder' => 'Додайте деякі деталі, якщо ви хочете',
 	'flow-newtopic-header' => 'Додати нову тему',
@@ -3358,6 +3382,7 @@ $messages['yi'] = array(
  * @author Hzy980512
  * @author Liuxinyu970226
  * @author Qiyue2001
+ * @author TianyinLee
  */
 $messages['zh-hans'] = array(
 	'logentry-delete-flow-delete-post' => '$1在[[$3]]{{GENDER:$2|删除}}了一个[$4 帖子]',
@@ -3373,6 +3398,7 @@ $messages['zh-hans'] = array(
 	'flow-post-actions' => '操作', # Fuzzy
 	'flow-topic-actions' => '操作', # Fuzzy
 	'flow-cancel' => '取消',
+	'flow-preview' => '预览',
 	'flow-newtopic-title-placeholder' => '新主题',
 	'flow-newtopic-content-placeholder' => '消息正文。祝好！', # Fuzzy
 	'flow-newtopic-header' => '添加新主题',
