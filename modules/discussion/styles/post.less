@@ -13,6 +13,12 @@
 		position: relative;
 	}
 
+	// must be outside .flow-post-title for specificity
+	.flow-creator .mw-usertoollinks {
+		opacity: 0;
+		transition: opacity 0.2s;
+	}
+
 	.flow-post-title {
 		padding-top: 10px;
 		padding-bottom: 8px;
@@ -20,6 +26,10 @@
 		.flow-creator {
 			font-weight: bold;
 			color: @post-title-color;
+
+			&:hover .mw-usertoollinks {
+				opacity: 1;
+			}
 		}
 	}
 
