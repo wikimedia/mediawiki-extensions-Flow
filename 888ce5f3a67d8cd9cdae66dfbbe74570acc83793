@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_c621f9ad",
+        "filename": "Resources.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T17:10:41Z",
+      "side": 1,
+      "message": "ext.flow.base is dependency now (selectRange)",
+      "revId": "888ce5f3a67d8cd9cdae66dfbbe74570acc83793",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_0659215d",
+        "filename": "modules/base/utils.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T17:10:41Z",
+      "side": 1,
+      "message": "I\u0027m getting \"extraAnimation is not defined\"\n\nwill need a check if object extraAnimation exists, before calling .complete on it",
+      "revId": "888ce5f3a67d8cd9cdae66dfbbe74570acc83793",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_260ae529",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T17:10:41Z",
+      "side": 1,
+      "message": "Just 1 indent too many",
+      "revId": "888ce5f3a67d8cd9cdae66dfbbe74570acc83793",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_063001fb",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T17:10:41Z",
+      "side": 1,
+      "message": "We should probably also have this in visualeditor\u0027s focus() method.\n\nNitpicking: we definitely need this, I\u0027m just not sure it belongs inside this focus() function: having focus() also move the cursor might be unexpected (I\u0027d merge the patch even if it stays in here though, don\u0027t really care too much about it :p)",
+      "revId": "888ce5f3a67d8cd9cdae66dfbbe74570acc83793",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_e6351df5",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T17:10:41Z",
+      "side": 1,
+      "message": "call this.focus()",
+      "revId": "888ce5f3a67d8cd9cdae66dfbbe74570acc83793",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
