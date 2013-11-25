@@ -26,13 +26,6 @@
 				$(this).find( '.flow-utctime' ).toggle();
 			} );
 
-		// Set up post creator on-hover
-		$container.find( '.flow-creator' )
-			.hover( function () {
-				$(this).children( '.flow-creator-simple' ).toggle();
-				$(this).children( '.flow-creator-full' ).toggle();
-			} );
-
 		// Set up reply form
 		$container.find( '.flow-reply-form textarea' )
 			.addClass( 'flow-reply-box-closed' )

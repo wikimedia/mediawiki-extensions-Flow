@@ -9,15 +9,9 @@ $replyForm = '';
 if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllowed( 'reply' ) ) {
 	$replyForm = Html::openElement( 'div', array( 'class' => 'flow-post-reply-container' ) );
 
-	$replyForm .= '
-		<span class="flow-creator">
-			<span class="flow-creator-simple" style="display: inline">
-				' . htmlentities( $user->getName() ) . '
-			</span>
-			<span class="flow-creator-full" style="display: none">
-				' . $this->userToolLinks( $user->getId(), $user->getName() ) .'
-			</span>
-		</span>';
+	$replyForm .= '<span class="flow-creator">' .
+		$this->userToolLinks( $user->getId(), $user->getName() ) .
+		'</span>';
 
 	$replyForm .= Html::openElement( 'form', array(
 			'method' => 'POST',
@@ -74,12 +68,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		<div class="flow-post-main">
 			<div class="flow-post-title">
 				<span class="flow-creator">
-					<span class="flow-creator-simple" style="display: inline">
-						<?php echo $postView->creator() ?>
-					</span>
-					<span class="flow-creator-full" style="display: none">
-						<?php echo $postView->creatorToolLinks() ?>
-					</span>
+					<?php echo $postView->creatorToolLinks() ?>
 				</span>
 			</div>
 
