@@ -13,4 +13,26 @@
 .flow-datestamp {
 	color: #aaa;
 	font-size: 14px;
+
+	.flow-agotime {
+		opacity: 1;
+		transition: opacity 0.2s;
+		// Position flow-agotime ontop of flow-utctime
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
+	.flow-utctime {
+		opacity: 0;
+		transition: opacity 0.2s;
+	}
+	// a necessary for specificity
+	&:hover a {
+		.flow-agotime {
+			opacity: 0;
+		}
+		.flow-utctime {
+			opacity: 1;
+		}
+	}
 }
