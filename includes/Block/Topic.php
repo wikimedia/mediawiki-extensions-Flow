@@ -688,6 +688,12 @@ class TopicBlock extends AbstractBlock {
 				throw new \MWException( 'Every workflow must have an associated topic title' );
 			}
 			$this->topicTitle = reset( $found );
+
+			// this method loads only title, nothing else; otherwise, you're
+			// looking for loadRootPost
+			$this->topicTitle->setChildren( array() );
+			$this->topicTitle->setDepth( 0 );
+
 			if ( !$this->permissions->isAllowed( $this->topicTitle, 'view' ) ) {
 				$this->topicTitle = null;
 				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
