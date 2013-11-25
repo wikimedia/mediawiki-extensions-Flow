@@ -135,7 +135,7 @@ class PostRevision extends AbstractRevision {
 	 */
 	public function getCreator( $user = null ) {
 		if ( $this->isAllowed( $user ) ) {
-			if ( $this->getCreatorIdRaw() !== 0 ) {
+			if ( $this->getCreatorIdRaw() != 0 ) {
 				$user = User::newFromId( $this->getCreatorIdRaw() );
 			} else {
 				// Don't validate username; (anon) IP user object is fine.
