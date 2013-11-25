@@ -2097,6 +2097,7 @@ $messages['lb'] = array(
 	'flow-topic-action-delete-topic' => 'Thema läschen',
 	'flow-topic-action-restore-topic' => 'Thema restauréieren',
 	'flow-error-other' => 'En onerwaarte Feeler ass geschitt.',
+	'flow-error-external' => 'Et ass e Feeler geschitt.<br /><small>De Feelermessage war:$1</ small>',
 	'flow-error-missing-title' => "D'Thema huet keen Titel. Den Titel ass obligatoresch fir een neit Thema ze späicheren.",
 	'flow-error-delete-failure' => "D'Läsche vun dësem Element huet net funktionéiert.",
 	'flow-error-hide-failure' => 'Verstoppe vun dësem Element huet net funktionéiert.',
@@ -2104,13 +2105,13 @@ $messages['lb'] = array(
 	'flow-error-not-allowed' => 'Net genuch Rechter fir dës Aktioun ze maachen',
 	'flow-edit-header-submit' => 'Iwwerschrëft späicheren',
 	'flow-edit-title-submit' => 'Titel änneren',
-	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|huet}} eng [$2 Bemierkung] geännert.', # Fuzzy
-	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|huet}} eng [$2 Bemierkung] derbäigesat.', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|huet}} eng [$3 Bemierkung] geännert.',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|huet}} eng [$3 Bemierkung] derbäigesat.',
 	'flow-rev-message-reply-bundle' => "'''{{PLURAL:$1|Eng Bemierkung gouf|$1 Bemierkunge goufen}} derbäigesat'''.", # Fuzzy
 	'flow-rev-message-new-post' => "$1 {{GENDER:$1|huet}} d'Thema [$2 $3] ugeluecht.", # Fuzzy
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|huet}} eng [$3 Bemierkung] verstoppt.', # Fuzzy
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|huet}} eng [$3 Bemierkung] geläscht.', # Fuzzy
-	'flow-rev-message-deleted-topic' => "[[User:$1|$1]] {{GENDER:$1|huet}} d'[Thema $3] geläscht.", # Fuzzy
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] verstoppt.',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] geläscht.',
+	'flow-rev-message-deleted-topic' => "$1 {{GENDER:$2|huet}} d'[Thema $4] geläscht.",
 	'flow-board-history' => 'Versioune vun "$1"',
 	'flow-topic-history' => 'Versioune vum Thema "$1"',
 	'flow-history-last4' => 'Lescht 4 Stonnen',
@@ -2120,6 +2121,7 @@ $messages['lb'] = array(
 	'flow-comment-restored' => 'Restauréiert Bemierkung',
 	'flow-comment-deleted' => 'Geläscht Bemierkung',
 	'flow-comment-hidden' => 'Verstoppte Bemierkung',
+	'flow-comment-moderated' => 'Moderéiert Bemierkung',
 	'flow-paging-rev' => 'Méi rezent Themen',
 	'flow-paging-fwd' => 'Méi al Themen',
 	'flow-last-modified' => "Fir d'lescht geännert ongeféier $1",
@@ -2509,6 +2511,7 @@ $messages['ne'] = array(
  * @author Breghtje
  * @author Effeietsanders
  * @author Krinkle
+ * @author SPQRobin
  * @author Siebrand
  * @author Sjoerddebruin
  * @author Southparkfan
@@ -2571,6 +2574,10 @@ $messages['nl'] = array(
 	'flow-error-delete-failure' => 'Het verwijderen van dit object is mislukt.',
 	'flow-error-hide-failure' => 'Het verbergen van dit object is mislukt.',
 	'flow-error-invalid-postId' => '"postId" parameter is ongeldig. Het opgegeven bericht ($1) kan niet worden gevonden.',
+	'flow-edit-title-submit' => 'Titel wijzigen',
+	'flow-history-last4' => 'Laatste 4 uur',
+	'flow-history-day' => 'Vandaag',
+	'flow-history-week' => 'Afgelopen week',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 is dit onderwerp begonnen|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} en {{PLURAL:$2|een andere gebruiker|andere gebruikers}}|0=Nog geen deelnemers|2={{GENDER:$3|$3}} en {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} en {{GENDER:$5|$5}}}}',
 	'flow-notification-edit' => '$1 {{GENDER:$1|heeft}} een [$5 bericht] geplaatst in $2 op [[$3|$4]].',
 	'flow-notification-edit-bundle' => '$1 en $5 {{PLURAL:$6|andere gebruiker|anderen}} {{GENDER:$1|hebben}} een [$4 bericht] geplaatst in $2 op "$3".',
@@ -2588,6 +2595,7 @@ $messages['nl'] = array(
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|heeft}} op $3 een nieuw onderwerp aangemaakt met de naam "$2"',
 	'echo-category-title-flow-discussion' => 'Flow',
 	'echo-pref-tooltip-flow-discussion' => 'U een melding sturen als er handelingen over u in Flow plaatsvinden.',
+	'flow-link-history' => 'geschiedenis',
 	'flow-moderation-title-censor-post' => 'Bericht onderdrukken?',
 	'flow-moderation-title-delete-post' => 'Bericht verwijderen?',
 	'flow-moderation-title-hide-post' => 'Bericht verbergen?',
