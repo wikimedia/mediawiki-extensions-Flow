@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_66eb4ddc",
+        "filename": "db_patches/patch-moderation_reason.sql",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T16:49:46Z",
+      "side": 1,
+      "message": "We should add a maxlength\u003d255 to the moderation dialog textarea to avoid people adding lengthy moderation reasons, only to have them truncated in DB.",
+      "revId": "7d0ea082f72621d44857e4b3415578d04401786d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_46cf2983",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T16:49:46Z",
+      "side": 1,
+      "message": "Unsafe. E.g.\n\n    \u0026topic[postId]\u003d\u0027;alert(\u0027test\u0027);\u0027",
+      "revId": "7d0ea082f72621d44857e4b3415578d04401786d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_e6919dfc",
+        "filename": "includes/Log/Formatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T16:49:46Z",
+      "side": 1,
+      "message": "Instead of these postId hacks, perhaps we should extend urlGenerator to accept fragments, so we can set the correct link right away?",
+      "revId": "7d0ea082f72621d44857e4b3415578d04401786d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_064fe1c1",
+        "filename": "includes/Log/PostModerationLogger.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T16:49:46Z",
+      "side": 1,
+      "message": "I\u0027m confused here; why not $object? This is the previous revision, and I\u0027d think we need to log for the revision that has just been inserted?",
+      "revId": "7d0ea082f72621d44857e4b3415578d04401786d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_66990d80",
+        "filename": "includes/Log/PostModerationLogger.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T16:49:46Z",
+      "side": 1,
+      "message": "If !$object-\u003eisTopicTitle(), params should be array()\n\nAlso not really big a fan of this hacky, different, way to link to a specific post :p",
+      "revId": "7d0ea082f72621d44857e4b3415578d04401786d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
