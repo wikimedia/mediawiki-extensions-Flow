@@ -153,9 +153,9 @@ echo Html::openElement( 'div', array(
 						'class' => 'flow-action-history-link',
 						'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
 					),
-					'<span class="flow-agotime" style="display: inline">' . 
+					'<span class="flow-agotime">' . 
 						htmlspecialchars( $topic->getLastModifiedObj()->getHumanTimestamp() ) . 
-					'</span><span class="flow-utctime" style="display: none">' . 
+					'</span><span class="flow-utctime">' . 
 						htmlspecialchars( $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) ) . 
 					'</span>'
 				);
