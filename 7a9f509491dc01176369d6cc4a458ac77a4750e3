@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_4bd4d4be",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T14:41:32Z",
+      "side": 1,
+      "message": "Will now also need to have depth set (-\u003esetDepth())",
+      "revId": "7a9f509491dc01176369d6cc4a458ac77a4750e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_cb6c6408",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T14:41:32Z",
+      "side": 1,
+      "message": "Trying to load Topic history will prompt a \"Cannot render topic with Flow\\Templating::renderPost\"",
+      "revId": "7a9f509491dc01176369d6cc4a458ac77a4750e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_a6a955de",
+        "filename": "templates/compare-revisions.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T14:41:32Z",
+      "side": 1,
+      "message": "use Templating::getContent()",
+      "revId": "7a9f509491dc01176369d6cc4a458ac77a4750e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_cb05847e",
+        "filename": "templates/compare-revisions.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T14:41:32Z",
+      "side": 1,
+      "message": "method getTitleText doesn\u0027t exist",
+      "revId": "7a9f509491dc01176369d6cc4a458ac77a4750e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_abfa4071",
+        "filename": "templates/revision-permalink-warning.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T14:41:32Z",
+      "side": 1,
+      "message": "method getTitleText doesn\u0027t exist",
+      "revId": "7a9f509491dc01176369d6cc4a458ac77a4750e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_2bc0702e",
+        "filename": "templates/timestamp.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T14:41:32Z",
+      "side": 1,
+      "message": "Should also only link if user has permissions to view history",
+      "revId": "7a9f509491dc01176369d6cc4a458ac77a4750e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_4bc3b43d",
+        "filename": "templates/timestamp.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T14:41:32Z",
+      "side": 1,
+      "message": "Redundant \u003c/a\u003e; it\u0027ll be closed on the next line",
+      "revId": "7a9f509491dc01176369d6cc4a458ac77a4750e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_2bd750f4",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-11-25T14:41:32Z",
+      "side": 1,
+      "message": "In discussion/ui.js, this class is used to ignore certain nodes from collapsing the title when clicked.",
+      "revId": "7a9f509491dc01176369d6cc4a458ac77a4750e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
