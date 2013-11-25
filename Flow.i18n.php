@@ -16,6 +16,10 @@ $messages['en'] = array(
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|restored}} a [$4 post] on [[$3]]',
 	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|suppressed}} a [$4 post] on [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|deleted}} a [$4 post] on [[$3]]',
+	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|deleted}} a [$4 topic] on [[$3]]',
+	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|restored}} a [$4 topic] on [[$3]]',
+	'logentry-suppress-flow-censor-topic' => '$1 {{GENDER:$2|suppressed}} a [$4 topic] on [[$3]]',
+	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|deleted}} a [$4 topic] on [[$3]]',
 
 	'flow-user-moderated' => 'Moderated user',
 
@@ -247,7 +251,35 @@ Parameters:
 * $1 - the user: link to the user page
 * $2 - the username. Can be used for GENDER.
 * $3 - the page where the post was moderated
-* $4 - permalink url to the moderated post',
+* $4 - permalink url to the moderated post.',
+	'logentry-delete-flow-delete-topic' => 'Text for a deletion log entry when a topic was deleted.
+
+Parameters:
+* $1: The user: link to the user page.
+* $2: The username. Can be used for GENDER.
+* $3: The page where the topic was moderated.
+* $4: Permalink url to the moderated topic.',
+	'logentry-delete-flow-restore-topic' => 'Text for a deletion log entry when a deleted topic was restored.
+
+Parameters:
+* $1: The user: link to the user page.
+* $2: The username. Can be used for GENDER.
+* $3: The page where the topic was moderated.
+* $4: Permalink url to the moderated topic.',
+	'logentry-suppress-flow-censor-topic' => 'Text for a deletion log entry when a topic was suppressed.
+
+Parameters:
+* $1: The user: link to the user page.
+* $2: The username. Can be used for GENDER.
+* $3: The page where the topic was moderated.
+* $4: Permalink url to the moderated topic.',
+	'logentry-suppress-flow-restore-topic' => 'Text for a deletion log entry when a suppressed topic was restored.
+
+Parameters:
+* $1 - the user: link to the user page
+* $2 - the username. Can be used for GENDER.
+* $3 - the page where the topic was moderated
+* $4 - permalink url to the moderated topic.',
 	'flow-user-moderated' => 'Name to display instead of a moderated user name',
 	'flow-edit-header-link' => 'Used as text for the link which points to the "Edit header" page.',
 	'flow-header-empty' => 'Used as a placeholder text for headers which have no content.',
