@@ -10,7 +10,8 @@
 
 	.flow-icon {
 		// only display when hovered
-		visibility: hidden;
+		opacity: 0;
+		transition: opacity 0.2s;
 
 		clear: both;
 		float: right;
@@ -41,10 +42,12 @@
 		}
 	}
 
-	&:hover {
-		.flow-icon {
-			visibility: visible;
-		}
+	// div is a hack to add specificity
+	&:hover div .flow-icon {
+		opacity: 0.5;
+	}
+	div .flow-icon:hover {
+		opacity: 1;
 	}
 }
 
