@@ -45,6 +45,7 @@ class FlowHooks {
 		$updater->addExtensionIndex( 'flow_topic_list', 'flow_topic_list_topic_id', "$dir/db_patches/patch-topic_list_topic_id_idx.sql" );
 		$updater->modifyExtensionField( 'flow_revision', 'rev_change_type', "$dir/db_patches/patch-rev_change_type_update.sql" );
 		$updater->modifyExtensionField( 'recentchanges', 'rc_source', "$dir/db_patches/patch-rc_source.sql" );
+		$updater->modifyExtensionField( 'flow_revision', 'rev_change_type', "$dir/db_patches/patch-censor_to_suppress.sql" );
 
 		require_once __DIR__.'/maintenance/FlowInsertDefaultDefinitions.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowInsertDefaultDefinitions' );
@@ -250,7 +251,7 @@ class FlowHooks {
 
 	/**
 	 * Make sure no user can register a flow-*-usertext username, to avoid
-	 * confusion with a real user when we print e.g. "Censored" instead of a
+	 * confusion with a real user when we print e.g. "Suppressed" instead of a
 	 * username.
 	 *
 	 * @param array $names

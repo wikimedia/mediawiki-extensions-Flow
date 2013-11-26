@@ -239,7 +239,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 	$treeRepo = $c['repository.tree'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\PostRevision' );
 	$storage = new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $treeRepo );
-	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_revision:v3:pk', array( 'rev_id' ) );
+	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_revision:v4:pk', array( 'rev_id' ) );
 	$indexes = array(
 		$pk,
 		// revision history

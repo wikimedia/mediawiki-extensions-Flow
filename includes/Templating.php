@@ -243,7 +243,7 @@ class Templating {
 		$state = $revision->getModerationState();
 		$username = $revision->getUserText();
 
-		// Messages: flow-hide-usertext, flow-delete-usertext, flow-censor-usertext
+		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
 		$message = wfMessage( "flow-$state-usertext", $username );
 
 		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
@@ -268,7 +268,7 @@ class Templating {
 		$userid = $revision->getUserId();
 		$username = $revision->getUserText();
 
-		// Messages: flow-hide-usertext, flow-delete-usertext, flow-censor-usertext
+		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
 		$message = wfMessage( "flow-$state-usertext", $username );
 
 		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
@@ -296,7 +296,7 @@ class Templating {
 		$state = $revision->getModerationState();
 		$username = $revision->getCreatorNameRaw();
 
-		// Messages: flow-hide-usertext, flow-delete-usertext, flow-censor-usertext
+		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
 		$message = wfMessage( "flow-$state-usertext", $username );
 
 		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
@@ -325,7 +325,7 @@ class Templating {
 		$state = $revision->getModerationState();
 		$user = $revision->getModeratedByUserText();
 
-		// Messages: flow-hide-content, flow-delete-content, flow-censor-content
+		// Messages: flow-hide-content, flow-delete-content, flow-suppress-content
 		$message = wfMessage( "flow-$state-content", $user );
 
 		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {

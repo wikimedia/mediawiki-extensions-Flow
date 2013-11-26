@@ -294,17 +294,17 @@ $wgFlowActions = array(
 		),
 	),
 
-	'censor-post' => array(
+	'suppress-post' => array(
 		'performs-writes' => true,
 		'log_type' => 'suppress',
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => 'flow-censor',
-			PostRevision::MODERATED_HIDDEN => 'flow-censor',
-			PostRevision::MODERATED_DELETED => 'flow-censor',
+			PostRevision::MODERATED_NONE => 'flow-suppress',
+			PostRevision::MODERATED_HIDDEN => 'flow-suppress',
+			PostRevision::MODERATED_DELETED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
 		'history' => array(
-			'i18n-message' => 'flow-rev-message-censored-post',
+			'i18n-message' => 'flow-rev-message-suppressed-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
@@ -323,21 +323,21 @@ $wgFlowActions = array(
 					return $revision->getModeratedReason();
 				},
 			),
-			'class' => 'flow-history-censored-post',
+			'class' => 'flow-history-suppressed-post',
 		),
 	),
 
-	'censor-topic' => array(
+	'suppress-topic' => array(
 		'performs-write' => true,
 		'log_type' => 'suppress',
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => 'flow-censor',
-			PostRevision::MODERATED_HIDDEN => 'flow-censor',
-			PostRevision::MODERATED_DELETED => 'flow-censor',
+			PostRevision::MODERATED_NONE => 'flow-suppress',
+			PostRevision::MODERATED_HIDDEN => 'flow-suppress',
+			PostRevision::MODERATED_DELETED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
 		'history' => array(
-			'i18n-message' => 'flow-rev-message-censored-topic',
+			'i18n-message' => 'flow-rev-message-suppressed-topic',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
@@ -355,7 +355,7 @@ $wgFlowActions = array(
 					return $revision->getModeratedReason();
 				},
 			),
-			'class' => 'flow-history-censored-topic',
+			'class' => 'flow-history-suppressed-topic',
 		),
 	),
 
@@ -369,9 +369,9 @@ $wgFlowActions = array(
 			return $wgFlowActions[$post->getModerationState() . '-post']['log_type'];
 		},
 		'permissions' => array(
-			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
-			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
-			PostRevision::MODERATED_CENSORED => 'flow-censor',
+			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
 		'history' => array(
@@ -408,9 +408,9 @@ $wgFlowActions = array(
 			return $wgFlowActions[$topicTitle->getModerationState() . '-topic']['log_type'];
 		},
 		'permissions' => array(
-			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
-			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
-			PostRevision::MODERATED_CENSORED => 'flow-censor',
+			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
 		'history' => array(
@@ -443,7 +443,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => '',
 			PostRevision::MODERATED_DELETED => '',
-			PostRevision::MODERATED_CENSORED => 'flow-censor',
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'GET',
 	),
@@ -453,9 +453,9 @@ $wgFlowActions = array(
 		'log_type' => false, // don't log views
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
-			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-censor' ),
-			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-censor' ),
-			PostRevision::MODERATED_CENSORED => 'flow-censor',
+			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'GET',
 		'history' => array() // views don't generate history
@@ -516,11 +516,17 @@ $wgFlowActions = array(
 	'flow-post-hidden' => 'hide-post',
 	'flow-rev-message-deleted-post' => 'delete-post',
 	'flow-post-deleted' => 'delete-post',
-	'flow-rev-message-censored-post' => 'censor-post',
-	'flow-post-censored' => 'censor-post',
+	'flow-rev-message-censored-post' => 'suppress-post',
+	'flow-post-censored' => 'suppress-post',
 	'flow-rev-message-edit-header' => 'edit-header',
 	'flow-edit-summary' => 'edit-header',
 	'flow-rev-message-create-header' => 'create-header',
 	'flow-create-summary' => 'create-header',
 	'flow-create-header' => 'create-header',
+	/*
+	 * Backwards compatibility for previous suppression terminology (=censor).
+	 * patch-censor_to_suppress.sql should take care of all of these occurrences.
+	 */
+	'censor-post' => 'suppress-post',
+	'censor-topic' => 'suppress-topic',
 );

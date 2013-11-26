@@ -14,11 +14,11 @@ $messages['en'] = array(
 	'log-name-flow' => 'Flow activity log',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|deleted}} a [$4 post] on [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|restored}} a [$4 post] on [[$3]]',
-	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|suppressed}} a [$4 post] on [[$3]]',
+	'logentry-suppress-flow-suppress-post' => '$1 {{GENDER:$2|suppressed}} a [$4 post] on [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|deleted}} a [$4 post] on [[$3]]',
 	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|deleted}} a [$4 topic] on [[$3]]',
 	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|restored}} a [$4 topic] on [[$3]]',
-	'logentry-suppress-flow-censor-topic' => '$1 {{GENDER:$2|suppressed}} a [$4 topic] on [[$3]]',
+	'logentry-suppress-flow-suppress-topic' => '$1 {{GENDER:$2|suppressed}} a [$4 topic] on [[$3]]',
 	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|deleted}} a [$4 topic] on [[$3]]',
 
 	'flow-user-moderated' => 'Moderated user',
@@ -32,8 +32,8 @@ $messages['en'] = array(
 	'flow-hide-usertext' => '$1',
 	'flow-delete-content' => '{{GENDER:$1|Deleted}} by $1',
 	'flow-delete-usertext' => '$1',
-	'flow-censor-content' => '{{GENDER:$1|Suppressed}} by $1',
-	'flow-censor-usertext' => "''Username suppressed''",
+	'flow-suppress-content' => '{{GENDER:$1|Suppressed}} by $1',
+	'flow-suppress-usertext' => "''Username suppressed''",
 	'flow-post-actions' => 'Actions',
 	'flow-topic-actions' => 'Actions',
 	'flow-cancel' => 'Cancel',
@@ -58,7 +58,7 @@ $messages['en'] = array(
 	'flow-post-edited' => 'Post {{GENDER:$1|edited}} by $1 $2',
 	'flow-post-action-view' => 'Permalink',
 	'flow-post-action-post-history' => 'Post history',
-	'flow-post-action-censor-post' => 'Suppress',
+	'flow-post-action-suppress-post' => 'Suppress',
 	'flow-post-action-delete-post' => 'Delete',
 	'flow-post-action-hide-post' => 'Hide',
 	'flow-post-action-edit-post' => 'Edit post',
@@ -71,7 +71,7 @@ $messages['en'] = array(
 	'flow-topic-action-history' => 'Topic history',
 	'flow-topic-action-hide-topic' => 'Hide topic',
 	'flow-topic-action-delete-topic' => 'Delete topic',
-	'flow-topic-action-censor-topic' => 'Suppress topic',
+	'flow-topic-action-suppress-topic' => 'Suppress topic',
 	'flow-topic-action-restore-topic' => 'Restore topic',
 
 	'flow-error-http' => 'An error occurred while contacting the server.', // Needs real copy
@@ -106,14 +106,15 @@ $messages['en'] = array(
 
 	'flow-rev-message-create-header' => "$1 {{GENDER:$2|created}} the board header.",
 	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|edited}} the board header.",
+
 	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|hid}} a [$4 comment] (\'\' $5 \'\').',
 	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|deleted}} a [$4 comment] (\'\' $5 \'\').',
-	'flow-rev-message-censored-post' => '$1 {{GENDER:$2|suppressed}} a [$4 comment] (\'\' $5 \'\').',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|suppressed}} a [$4 comment] (\'\' $5 \'\').',
 	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|restored}} a [$4 comment] (\'\' $5 \'\').',
 
 	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|hid}} the [$4 topic] (\'\' $5 \'\').',
 	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|deleted}} the [$4 topic] (\'\' $5 \'\').',
-	'flow-rev-message-censored-topic' => '$1 {{GENDER:$2|suppressed}} the [$4 topic] (\'\' $5 \'\').',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|suppressed}} the [$4 topic] (\'\' $5 \'\').',
 	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|restored}} the [$4 topic] (\'\' $5 \'\').',
 
 	'flow-board-history' => '"$1" history',
@@ -175,35 +176,35 @@ $messages['en'] = array(
 
 	// Moderation dialog
 	'flow-moderation-reason-placeholder' => 'Enter your reason here',
-	'flow-moderation-title-censor-post' => 'Suppress post?',
+	'flow-moderation-title-suppress-post' => 'Suppress post?',
 	'flow-moderation-title-delete-post' => 'Delete post?',
 	'flow-moderation-title-hide-post' => 'Hide post?',
 	'flow-moderation-title-restore-post'=> 'Restore post?',
-	'flow-moderation-intro-censor-post' => "Please explain why you're suppressing this post.",
+	'flow-moderation-intro-suppress-post' => "Please explain why you're suppressing this post.",
 	'flow-moderation-intro-delete-post' => "Please explain why you're deleting this post.",
 	'flow-moderation-intro-hide-post' => "Please explain why you're hiding this post.",
 	'flow-moderation-intro-restore-post'=> "Please explain why you're restoring this post.",
-	'flow-moderation-confirm-censor-post' => 'Suppress',
+	'flow-moderation-confirm-suppress-post' => 'Suppress',
 	'flow-moderation-confirm-delete-post' => 'Delete',
 	'flow-moderation-confirm-hide-post' => 'Hide',
 	'flow-moderation-confirm-restore-post' => 'Restore',
-	'flow-moderation-confirmation-censor-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
+	'flow-moderation-confirmation-suppress-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
 	'flow-moderation-confirmation-delete-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
 	'flow-moderation-confirmation-hide-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
 	'flow-moderation-confirmation-restore-post' => 'You have successfully restored this post.',
-	'flow-moderation-title-censor-topic' => 'Suppress topic?',
+	'flow-moderation-title-suppress-topic' => 'Suppress topic?',
 	'flow-moderation-title-delete-topic' => 'Delete topic?',
 	'flow-moderation-title-hide-topic' => 'Hide topic?',
 	'flow-moderation-title-restore-topic'=> 'Restore topic?',
-	'flow-moderation-intro-censor-topic' => "Please explain why you're suppressing this topic.",
+	'flow-moderation-intro-suppress-topic' => "Please explain why you're suppressing this topic.",
 	'flow-moderation-intro-delete-topic' => "Please explain why you're deleting this topic.",
 	'flow-moderation-intro-hide-topic' => "Please explain why you're hiding this topic.",
 	'flow-moderation-intro-restore-topic'=> "Please explain why you're restoring this topic.",
-	'flow-moderation-confirm-censor-topic' => 'Suppress',
+	'flow-moderation-confirm-suppress-topic' => 'Suppress',
 	'flow-moderation-confirm-delete-topic' => 'Delete',
 	'flow-moderation-confirm-hide-topic' => 'Hide',
 	'flow-moderation-confirm-restore-topic' => 'Restore',
-	'flow-moderation-confirmation-censor-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
+	'flow-moderation-confirmation-suppress-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
 	'flow-moderation-confirmation-delete-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
 	'flow-moderation-confirmation-hide-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
 	'flow-moderation-confirmation-restore-topic' => 'You have successfully restored this topic.',
@@ -236,7 +237,7 @@ Name of the Flow log filter on the [[Special:Log]] page.',
 * $3 - the page where the post was moderated
 * $4 - permalink URL to the moderated post
 {{Related|Flow-logentry}}',
-	'logentry-suppress-flow-censor-post' => 'Text for a deletion log entry when a post was suppressed. Parameters:
+	'logentry-suppress-flow-suppress-post' => 'Text for a deletion log entry when a post was suppressed. Parameters:
 * $1 - the user: link to the user page
 * $2 - the username. Can be used for GENDER.
 * $3 - the page where the post was moderated
@@ -260,7 +261,7 @@ Name of the Flow log filter on the [[Special:Log]] page.',
 * $3 - the page where the topic was moderated
 * $4 - permalink URL to the moderated topic
 {{Related|Flow-logentry}}',
-	'logentry-suppress-flow-censor-topic' => 'Text for a deletion log entry when a topic was suppressed. Parameters:
+	'logentry-suppress-flow-suppress-topic' => 'Text for a deletion log entry when a topic was suppressed. Parameters:
 * $1 - the user: link to the user page
 * $2 - the username. Can be used for GENDER.
 * $3 - the page where the topic was moderated
@@ -295,12 +296,12 @@ Parameters:
 
 Parameters:
 * $1 - Username of the post creator. Can be used for GENDER',
-	'flow-censor-content' => 'Message to display instead of content when the content has been suppressed.
+	'flow-suppress-content' => 'Message to display instead of content when the content has been suppressed.
 
 Parameters:
 * $1 - username that suppressed the post, can be used for GENDER
 {{Related|Flow-content}}',
-	'flow-censor-usertext' => 'Used as username if the post was suppressed.
+	'flow-suppress-usertext' => 'Used as username if the post was suppressed.
 
 Parameters:
 * $1 - Username of the post creator. Can be used for GENDER',
@@ -340,7 +341,7 @@ Parameters:
 	'flow-post-action-view' => 'Used as text for the link which is used to view.
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.',
-	'flow-post-action-censor-post' => 'Used as a label for  the submit button in the suppression form.
+	'flow-post-action-suppress-post' => 'Used as a label for  the submit button in the suppression form.
 {{Related|Flow-action}}
 {{Identical|Suppress}}',
 	'flow-post-action-delete-post' => 'Used as a label for the submit button in the deletion form.
@@ -370,7 +371,7 @@ Translate as label for the link or the Submit button.
 {{Related|Flow-action}}',
 	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.
 {{Related|Flow-action}}',
-	'flow-topic-action-censor-topic' => 'Used as a link in a dropdown menu to suppress a topic.
+	'flow-topic-action-suppress-topic' => 'Used as a link in a dropdown menu to suppress a topic.
 {{Related|Flow-action}}',
 	'flow-topic-action-restore-topic' => 'Used as a link in a dropdown menu to clear existing moderation.
 {{Related|Flow-action}}
@@ -419,7 +420,7 @@ Parameters:
 
 Usually indicates a code bug, so technical terminology is okay.
 
-Valid values for moderationState are: (none), hidden, deleted, censored',
+Valid values for moderationState are: (none), hidden, deleted, suppressed',
 	'flow-error-invalid-moderation-reason' => 'Used as error message when no reason is given for the moderation of a post.',
 	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
@@ -491,7 +492,7 @@ Parameters:
 * $4 - permalink to the comment
 * $5 - Reason, from the moderating user, for moderating this post
 {{Related|Flow-rev-message}}',
-	'flow-rev-message-censored-post' => 'Used as revision comment when a post has been suppressed.
+	'flow-rev-message-suppressed-post' => 'Used as revision comment when a post has been suppressed.
 
 Parameters:
 * $1 - user link and tool links for the user.
@@ -527,7 +528,7 @@ Parameters:
 * $4 - permalink to the topic
 * $5 - Reason, from the moderating user, for moderating this topic
 {{Related|Flow-rev-message}}',
-	'flow-rev-message-censored-topic' => 'Used as revision comment when a topic has been suppressed.
+	'flow-rev-message-suppressed-topic' => 'Used as revision comment when a topic has been suppressed.
 
 Parameters:
 * $1 - user link and tool links for the user.
@@ -740,7 +741,7 @@ See also:
 	'flow-link-history' => 'Text used when linking to history of a post/topic from recentchanges.
 {{Identical|History}}',
 	'flow-moderation-reason-placeholder' => 'Placeholder text for the textbox that holds the reason field on moderation confirmation dialogs.',
-	'flow-moderation-title-censor-post' => 'Title for the moderation confirmation dialog when a post is being suppressed.
+	'flow-moderation-title-suppress-post' => 'Title for the moderation confirmation dialog when a post is being suppressed.
 {{Related|Flow-moderation-title}}',
 	'flow-moderation-title-delete-post' => 'Title for the moderation confirmation dialog when a post is being deleted.
 {{Related|Flow-moderation-title}}
@@ -751,7 +752,7 @@ See also:
 	'flow-moderation-title-restore-post' => 'Title for the moderation confirmation dialog when a post is being restored.
 {{Related|Flow-moderation-title}}
 {{Identical|Restore post}}',
-	'flow-moderation-intro-censor-post' => 'Intro for the moderation confirmation dialog when a post is being suppressed. Parameters:
+	'flow-moderation-intro-suppress-post' => 'Intro for the moderation confirmation dialog when a post is being suppressed. Parameters:
 * $1 - the name of the user whose post is being suppressed. GENDER supported.
 * $2 - the subject of the topic in which a post is being suppressed
 {{Related|Flow-moderation-intro}}',
@@ -767,7 +768,7 @@ See also:
 * $1 - the name of the user whose post is being suppressed. GENDER supported.
 * $2 - the subject of the topic in which a post is being suppressed
 {{Related|Flow-moderation-intro}}',
-	'flow-moderation-confirm-censor-post' => 'Label for a button that will confirm suppression of a post.
+	'flow-moderation-confirm-suppress-post' => 'Label for a button that will confirm suppression of a post.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Suppress}}',
 	'flow-moderation-confirm-delete-post' => 'Label for a button that will confirm deletion of a post.
@@ -779,7 +780,7 @@ See also:
 	'flow-moderation-confirm-restore-post' => 'Label for a button that will confirm restoring of a post.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Restore}}',
-	'flow-moderation-confirmation-censor-post' => 'Message displayed after a successful suppression of a post. Parameters:
+	'flow-moderation-confirmation-suppress-post' => 'Message displayed after a successful suppression of a post. Parameters:
 * $1 - the name of the user whose post is being moderated. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-confirmation-delete-post' => 'Message displayed after a successful deletion of a post. Parameters:
@@ -791,7 +792,7 @@ See also:
 	'flow-moderation-confirmation-restore-post' => 'Message displayed after a successful restoring of a post. Parameters:
 * $1 - the name of the user whose post is being restored. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-title-censor-topic' => 'Title for the moderation confirmation dialog when a topic is being suppressed.
+	'flow-moderation-title-suppress-topic' => 'Title for the moderation confirmation dialog when a topic is being suppressed.
 {{Related|Flow-moderation-title}}',
 	'flow-moderation-title-delete-topic' => 'Title for the moderation confirmation dialog when a topic is being deleted.
 {{Related|Flow-moderation-title}}
@@ -802,7 +803,7 @@ See also:
 	'flow-moderation-title-restore-topic' => 'Title for the moderation confirmation dialog when a topic is being restored.
 {{Related|Flow-moderation-title}}
 {{Identical|Restore topic}}',
-	'flow-moderation-intro-censor-topic' => 'Intro for the moderation confirmation dialog when a topic is being suppressed. Parameters:
+	'flow-moderation-intro-suppress-topic' => 'Intro for the moderation confirmation dialog when a topic is being suppressed. Parameters:
 * $1 - the name of the user whose post is being suppressed. GENDER supported.
 * $2 - the subject of the topic in which a topic is being suppressed
 {{Related|Flow-moderation-intro}}',
@@ -818,7 +819,7 @@ See also:
 * $1 - the name of the user whose post is being suppressed. GENDER supported.
 * $2 - the subject of the topic in which a topic is being suppressed
 {{Related|Flow-moderation-intro}}',
-	'flow-moderation-confirm-censor-topic' => 'Label for a button that will confirm suppression of a topic.
+	'flow-moderation-confirm-suppress-topic' => 'Label for a button that will confirm suppression of a topic.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Suppress}}',
 	'flow-moderation-confirm-delete-topic' => 'Label for a button that will confirm deletion of a topic.
@@ -830,7 +831,7 @@ See also:
 	'flow-moderation-confirm-restore-topic' => 'Label for a button that will confirm restoring of a topic.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Restore}}',
-	'flow-moderation-confirmation-censor-topic' => 'Message displayed after a successful suppression of a topic. Parameters:
+	'flow-moderation-confirmation-suppress-topic' => 'Message displayed after a successful suppression of a topic. Parameters:
 * $1 - the name of the user whose post is being moderated. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-confirmation-delete-topic' => 'Message displayed after a successful deletion of a topic. Parameters:

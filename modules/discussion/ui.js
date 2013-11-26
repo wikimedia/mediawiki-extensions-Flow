@@ -260,7 +260,7 @@
 			} );
 
 		// Moderation controls
-		var moderationTypes = [ 'hide', 'delete', 'censor', 'restore' ];
+		var moderationTypes = [ 'hide', 'delete', 'suppress', 'restore' ];
 		$.each( moderationTypes, function( k, moderationType ) {
 			$container
 				.find( '.flow-'+moderationType+'-post-link, .flow-'+moderationType+'-topic-link' )
