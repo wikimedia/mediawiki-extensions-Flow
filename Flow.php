@@ -266,3 +266,16 @@ $wgLogActionsHandlers['delete/flow-restore-post'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['suppress/flow-restore-post'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['delete/flow-restore-topic'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['suppress/flow-restore-topic'] = 'Flow\Log\Formatter';
+
+// Set this to false to disable all memcache usage.  Do not just turn the cache
+// back on, it will be out of sync with the database.  There is not yet an official
+// process for re-sync'ing the cache yet, currently the per-index versions would
+// need to incremented(ask the flow team).
+//
+// This will reduce, but not necessarily kill, performance.  The queries issued
+// will be the queries necessary to fill the cache rather than only the queries
+// needed to answer the request.  A bit of a refactor in ObjectManager::findMulti
+// to allow query without indexes, along with adjusting container.php to only
+// include the indexes when this is true, would get most of the way twords making
+// this a reasonably performant option.
+$wgFlowUseMemcache = true;
