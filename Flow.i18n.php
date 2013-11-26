@@ -224,62 +224,54 @@ $messages['qqq'] = array(
 * $1 - page title',
 	'log-name-flow' => '{{doc-logpage}}
 Name of the Flow log filter on the [[Special:Log]] page.',
-	'logentry-delete-flow-delete-post' => 'Text for a deletion log entry when a post was deleted.
-
-Parameters:
-* $1: The user: link to the user page.
-* $2: The username. Can be used for GENDER.
-* $3: The page where the post was moderated.
-* $4: Permalink url to the moderated post.',
-	'logentry-delete-flow-restore-post' => 'Text for a deletion log entry when a deleted post was restored.
-
-Parameters:
-* $1: The user: link to the user page.
-* $2: The username. Can be used for GENDER.
-* $3: The page where the post was moderated.
-* $4: Permalink url to the moderated post.',
-	'logentry-suppress-flow-censor-post' => 'Text for a deletion log entry when a post was suppressed.
-
-Parameters:
-* $1: The user: link to the user page.
-* $2: The username. Can be used for GENDER.
-* $3: The page where the post was moderated.
-* $4: Permalink url to the moderated post.',
-	'logentry-suppress-flow-restore-post' => 'Text for a deletion log entry when a suppressed post was restored.
-
-Parameters:
+	'logentry-delete-flow-delete-post' => 'Text for a deletion log entry when a post was deleted. Parameters:
 * $1 - the user: link to the user page
 * $2 - the username. Can be used for GENDER.
 * $3 - the page where the post was moderated
-* $4 - permalink url to the moderated post.',
-	'logentry-delete-flow-delete-topic' => 'Text for a deletion log entry when a topic was deleted.
-
-Parameters:
-* $1: The user: link to the user page.
-* $2: The username. Can be used for GENDER.
-* $3: The page where the topic was moderated.
-* $4: Permalink url to the moderated topic.',
-	'logentry-delete-flow-restore-topic' => 'Text for a deletion log entry when a deleted topic was restored.
-
-Parameters:
-* $1: The user: link to the user page.
-* $2: The username. Can be used for GENDER.
-* $3: The page where the topic was moderated.
-* $4: Permalink url to the moderated topic.',
-	'logentry-suppress-flow-censor-topic' => 'Text for a deletion log entry when a topic was suppressed.
-
-Parameters:
-* $1: The user: link to the user page.
-* $2: The username. Can be used for GENDER.
-* $3: The page where the topic was moderated.
-* $4: Permalink url to the moderated topic.',
-	'logentry-suppress-flow-restore-topic' => 'Text for a deletion log entry when a suppressed topic was restored.
-
-Parameters:
+* $4 - permalink URL to the moderated post
+{{Related|Flow-logentry}}',
+	'logentry-delete-flow-restore-post' => 'Text for a deletion log entry when a deleted post was restored. Parameters:
+* $1 - the user: link to the user page
+* $2 - the username. Can be used for GENDER.
+* $3 - the page where the post was moderated
+* $4 - permalink URL to the moderated post
+{{Related|Flow-logentry}}',
+	'logentry-suppress-flow-censor-post' => 'Text for a deletion log entry when a post was suppressed. Parameters:
+* $1 - the user: link to the user page
+* $2 - the username. Can be used for GENDER.
+* $3 - the page where the post was moderated
+* $4 - permalink URL to the moderated post
+{{Related|Flow-logentry}}',
+	'logentry-suppress-flow-restore-post' => 'Text for a deletion log entry when a suppressed post was restored. Parameters:
+* $1 - the user: link to the user page
+* $2 - the username. Can be used for GENDER.
+* $3 - the page where the post was moderated
+* $4 - permalink URL to the moderated post
+{{Related|Flow-logentry}}',
+	'logentry-delete-flow-delete-topic' => 'Text for a deletion log entry when a topic was deleted. Parameters:
 * $1 - the user: link to the user page
 * $2 - the username. Can be used for GENDER.
 * $3 - the page where the topic was moderated
-* $4 - permalink url to the moderated topic.',
+* $4 - permalink URL to the moderated topic
+{{Related|Flow-logentry}}',
+	'logentry-delete-flow-restore-topic' => 'Text for a deletion log entry when a deleted topic was restored. Parameters:
+* $1 - the user: link to the user page
+* $2 - the username. Can be used for GENDER.
+* $3 - the page where the topic was moderated
+* $4 - permalink URL to the moderated topic
+{{Related|Flow-logentry}}',
+	'logentry-suppress-flow-censor-topic' => 'Text for a deletion log entry when a topic was suppressed. Parameters:
+* $1 - the user: link to the user page
+* $2 - the username. Can be used for GENDER.
+* $3 - the page where the topic was moderated
+* $4 - permalink URL to the moderated topic
+{{Related|Flow-logentry}}',
+	'logentry-suppress-flow-restore-topic' => 'Text for a deletion log entry when a suppressed topic was restored. Parameters:
+* $1 - the user: link to the user page
+* $2 - the username. Can be used for GENDER.
+* $3 - the page where the topic was moderated
+* $4 - permalink URL to the moderated topic
+{{Related|Flow-logentry}}',
 	'flow-user-moderated' => 'Name to display instead of a moderated user name',
 	'flow-edit-header-link' => 'Used as text for the link which points to the "Edit header" page.',
 	'flow-header-empty' => 'Used as a placeholder text for headers which have no content.',
@@ -924,6 +916,7 @@ $messages['br'] = array(
 	'flow-post-actions' => 'Oberoù',
 	'flow-topic-actions' => 'Oberoù',
 	'flow-cancel' => 'Nullañ',
+	'flow-preview' => 'Rakwelet',
 	'flow-post-action-delete-post' => 'Dilemel',
 	'flow-post-action-hide-post' => 'Kuzhat',
 	'flow-post-action-edit' => 'Kemmañ',
@@ -961,6 +954,10 @@ $messages['de'] = array(
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|stellte}} einen [$4 Beitrag] auf [[$3]] wieder her',
 	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|unterdrückte}} einen [$4 Beitrag] auf [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|löschte}} einen [$4 Beitrag] auf [[$3]]',
+	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|löschte}} ein [$4 Thema] auf [[$3]]',
+	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|stellte}} ein [$4 Thema] auf [[$3]] wieder her',
+	'logentry-suppress-flow-censor-topic' => '$1 {{GENDER:$2|unterdrückte}} ein [$4 Thema] auf [[$3]]',
+	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|löschte}} ein [$4 Thema] auf [[$3]]',
 	'flow-user-moderated' => 'Moderierter Benutzer',
 	'flow-edit-header-link' => 'Überschrift bearbeiten',
 	'flow-header-empty' => 'Diese Diskussionsseite hat derzeit keine Überschrift.',
@@ -1240,6 +1237,10 @@ $messages['fr'] = array(
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|a rétabli}} une [$4 note] sur [[$3]]',
 	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|a effacé}} une [$4 note] sur [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|a supprimé}} une [$4 note] sur [[$3]]',
+	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|a supprimé}} un [$4 sujet] sur [[$3]]',
+	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|a rétabli}} un [$4 sujet] sur [[$3]]',
+	'logentry-suppress-flow-censor-topic' => '$1 {{GENDER:$2|a supprimé}} un [$4 sujet] sur [[$3]]',
+	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|a supprimé}} un [$4 sujet] sur [[$3]]',
 	'flow-user-moderated' => 'Utilisateur modéré',
 	'flow-edit-header-link' => 'Modifier l’entête',
 	'flow-header-empty' => 'Cette page de discussion n’a pas d’entête pour l’instant.',
@@ -1520,6 +1521,10 @@ $messages['he'] = array(
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|שחזר|שחזרה}} [$4 רשומה] בדף [[$3]]',
 	'logentry-suppress-flow-censor-post' => '$1 {{GENDER:$2|העלים|העלימה}} [$4 רשומה] בדף [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|מחק|מחקה}} [$4 רשומה] בדף [[$3]]',
+	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|מחק|מחקה}} [$4 רשומה] בדף [[$3]]',
+	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|שחזר|שחזרה}} [$4 רשומה] בדף [[$3]]',
+	'logentry-suppress-flow-censor-topic' => '$1 {{GENDER:$2|העלים|העלימה}} [$4 רשומה] בדף [[$3]]',
+	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|מחק|מחקה}} [$4 נושא] בדף [[$3]]',
 	'flow-header-empty' => 'לדף השיחה הזה אין כרגע כותרת.',
 	'flow-post-moderated-toggle-show' => '[להציג]',
 	'flow-post-moderated-toggle-hide' => '[להסתיר]',
@@ -1582,13 +1587,13 @@ $1',
 	'flow-edit-title-submit' => 'שינוי כותרת',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|ערך|ערכה}} [$3 הערה].',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|הוסיף|הוסיפה}} [$3 הערה].',
-	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|יצר|יצרה}} את הנושא [$2 $3].', # Fuzzy
-	'flow-rev-message-create-header' => '[[User:$1|$1]] {{GENDER:$1|יצר|יצרה}} את כותרת הלוח.', # Fuzzy
-	'flow-rev-message-edit-header' => '[[User:$1|$1]] {{GENDER:$1|ערך|ערכה}} את כותרת הלוח.', # Fuzzy
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|הסתיר|הסתירה}} [$3 הערה].', # Fuzzy
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|מחק|מחקה}} [$3 הערה].', # Fuzzy
-	'flow-rev-message-censored-post' => '[[User:$1|$1]] {{GENDER:$1|העלים|העלימה}} [$3 הערה].', # Fuzzy
-	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|שחזר|שחזרה}} [$3 הערה].', # Fuzzy
+	'flow-rev-message-new-post' => '$1 {{GENDER:$2|יצר|יצרה}} את הנושא [$3 $4].',
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|יצר|יצרה}} את כותרת הלוח.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|ערך|ערכה}} את כותרת הלוח.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|הסתיר|הסתירה}} [$4 הערה].',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|מחק|מחקה}} [$4 הערה].',
+	'flow-rev-message-censored-post' => '$1 {{GENDER:$2|העלים|העלימה}} [$4 הערה].',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|שחזר|שחזרה}} [$4 הערה].',
 	'flow-board-history' => 'ההיסטוריה של "$1"',
 	'flow-topic-history' => 'היסטוריית הנושא "$1"',
 	'flow-history-last4' => '4 השעות האחרונות',
@@ -1596,7 +1601,7 @@ $1',
 	'flow-history-week' => 'בשבוע שעבר',
 	'flow-history-pages-topic' => 'מופיע ב[$1 לוח "$2"]',
 	'flow-history-pages-post' => 'מופיע ב[$1 $2]',
-	'flow-topic-participants' => '{{PLURAL:$1|{{GENDER:$3|התחיל|התחילה}} את הנושא הזה|$3, $4 {{PLURAL:$2|ועוד אחד אחר|ואחרים}}|0=אין עדיין השתתפות|2=$3 ו{{GRAMMAR:תחילית|$4}}}}', # Fuzzy
+	'flow-topic-participants' => '{{PLURAL:$1|{{GENDER:$3|התחיל|התחילה}} את הנושא הזה|$3, $4, $5 ועוד {{PLURAL:$2|אחד אחר|$2 אחרים}}|0=אין עדיין השתתפות|2=$3 ו{{GRAMMAR:תחילית|$4}}|3=$3, $4 ו{{GRAMMAR:תחילית|$5}}}}',
 	'flow-comment-restored' => 'הערה משוחזרת',
 	'flow-comment-deleted' => 'הערה מחוקה',
 	'flow-comment-hidden' => 'הערה מוסתרת',
@@ -1606,6 +1611,39 @@ $1',
 	'flow-notification-link-text-view-post' => 'הצגת הרשומה',
 	'flow-notification-link-text-view-board' => 'הצגת הלוח',
 	'flow-notification-link-text-view-topic' => 'הצגת הנושא',
+	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|יצר|יצרה}} נושא חדש עם הכותרת "$2" ב{{GRAMMAR:תחלילית|$3}}',
+	'echo-category-title-flow-discussion' => 'זרם',
+	'echo-pref-tooltip-flow-discussion' => 'להודיע לי כשיש פעולות שקשורות אליי בזרם.',
+	'flow-link-post' => 'רשומה',
+	'flow-link-topic' => 'נושא',
+	'flow-link-history' => 'היסטוריה',
+	'flow-moderation-reason-placeholder' => 'נא להזין כאן את הסיבה שלך',
+	'flow-moderation-title-censor-post' => 'להעלים את הרשומה?',
+	'flow-moderation-title-delete-post' => 'למחוק את הרשומה?',
+	'flow-moderation-title-hide-post' => 'להסתיר את הרשומה?',
+	'flow-moderation-title-restore-post' => 'לשחזר את הרשומה?',
+	'flow-moderation-confirm-censor-post' => 'להעלים',
+	'flow-moderation-confirm-delete-post' => 'למחוק',
+	'flow-moderation-confirm-hide-post' => 'להסתיר',
+	'flow-moderation-confirm-restore-post' => 'לשחזר',
+	'flow-moderation-confirmation-censor-post' => 'נא לשקול לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.',
+	'flow-moderation-confirmation-delete-post' => 'נא לשקול לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.',
+	'flow-moderation-confirmation-hide-post' => 'נא לשקול לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.',
+	'flow-moderation-confirmation-restore-post' => 'שחזרת בהצלחה את הרשומה הזאת.',
+	'flow-moderation-title-censor-topic' => 'להעלים את הנושא?',
+	'flow-moderation-title-delete-topic' => 'למחוק את הנושא?',
+	'flow-moderation-title-hide-topic' => 'להסתיר את הנושא?',
+	'flow-moderation-title-restore-topic' => 'לשחזר את הנושא?',
+	'flow-moderation-confirm-censor-topic' => 'להעלים',
+	'flow-moderation-confirm-delete-topic' => 'למחוק',
+	'flow-moderation-confirm-hide-topic' => 'להסתיר',
+	'flow-moderation-confirm-restore-topic' => 'לשחזר',
+	'flow-moderation-confirmation-censor-topic' => 'נא לשקול לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.',
+	'flow-moderation-confirmation-delete-topic' => 'נא לשקול לתת ל{{GRAMMAR:תחילית|$1}} משוב על הנושא הזה.',
+	'flow-moderation-confirmation-hide-topic' => 'נא לשקול לתת ל{{GRAMMAR:תחילית|$1}} משוב על הנושא הזה.',
+	'flow-moderation-confirmation-restore-topic' => 'שחזרת בהצלחה את הרשומה הזאת.',
+	'flow-topic-permalink-warning' => 'הנושא הזה התחיל בדף [$2 $1]',
+	'flow-topic-permalink-warning-user-board' => 'הנושא הזה התחיל ב[$2 לוח של $1]',
 );
 
 /** Croatian (hrvatski)
@@ -1917,6 +1955,9 @@ $messages['ja'] = array(
 	'logentry-delete-flow-delete-post' => '$1 が [[$3]] の[$4 投稿]を{{GENDER:$2|削除}}',
 	'logentry-delete-flow-restore-post' => '$1 が [[$3]] の[$4 投稿]を{{GENDER:$2|復元}}',
 	'logentry-suppress-flow-restore-post' => '$1 が [[$3]] の[$4 投稿]を{{GENDER:$2|削除}}',
+	'logentry-delete-flow-delete-topic' => '$1 が [[$3]] の[$4 話題]を{{GENDER:$2|削除}}',
+	'logentry-delete-flow-restore-topic' => '$1 が [[$3]] の[$4 話題]を{{GENDER:$2|復元}}',
+	'logentry-suppress-flow-restore-topic' => '$1 が [[$3]] の[$4 話題]を{{GENDER:$2|削除}}',
 	'flow-edit-header-link' => 'ヘッダーを編集',
 	'flow-header-empty' => '現在、このトークページにはヘッダーがありません。',
 	'flow-post-moderated-toggle-show' => '[表示]',
@@ -2099,9 +2140,11 @@ $messages['ko'] = array(
 $messages['lb'] = array(
 	'flow-desc' => 'Workflow-Management-System',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] op [[$3]] geläscht', # Fuzzy
+	'flow-edit-header-link' => 'Iwwerschrëft änneren',
 	'flow-header-empty' => 'Dës Diskussiounssäit huet elo keng Iwwerschrëft',
 	'flow-post-moderated-toggle-show' => '[Weisen]',
 	'flow-post-moderated-toggle-hide' => '[Verstoppen]',
+	'flow-hide-content' => '{{GENDER:$1|Verstoppt}} vum $1',
 	'flow-delete-content' => '{{GENDER:$1|Geläscht}} vum $1',
 	'flow-post-actions' => 'Aktiounen',
 	'flow-topic-actions' => 'Aktiounen',
@@ -2139,7 +2182,7 @@ $messages['lb'] = array(
 	'flow-edit-title-submit' => 'Titel änneren',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|huet}} eng [$3 Bemierkung] geännert.',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|huet}} eng [$3 Bemierkung] derbäigesat.',
-	'flow-rev-message-reply-bundle' => "'''{{PLURAL:$1|Eng Bemierkung gouf|$1 Bemierkunge goufen}} derbäigesat'''.", # Fuzzy
+	'flow-rev-message-reply-bundle' => "'''{{PLURAL:$2|Eng Bemierkung gouf|$1 Bemierkunge goufen}} derbäigesat'''.",
 	'flow-rev-message-new-post' => "$1 {{GENDER:$1|huet}} d'Thema [$2 $3] ugeluecht.", # Fuzzy
 	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] verstoppt.',
 	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] geläscht.',
@@ -2790,6 +2833,7 @@ $messages['roa-tara'] = array(
 );
 
 /** Russian (русский)
+ * @author Midnight Gambler
  * @author Okras
  */
 $messages['ru'] = array(
@@ -2824,6 +2868,9 @@ $messages['ru'] = array(
 	'flow-topic-action-watchlist' => 'Список наблюдения',
 	'flow-topic-action-edit-title' => 'Редактировать заголовок',
 	'flow-topic-action-history' => 'История темы',
+	'flow-topic-action-hide-topic' => 'Скрыть тему',
+	'flow-topic-action-delete-topic' => 'Удалить тему',
+	'flow-topic-action-restore-topic' => 'Восстановить тему',
 	'flow-error-http' => 'Произошла ошибка при обращении к серверу.',
 	'flow-error-other' => 'Произошла непредвиденная ошибка.',
 	'flow-error-external' => 'Произошла ошибка.<br /><small>Было получено следующее сообщение об ошибке: $1</small>',
@@ -2860,6 +2907,15 @@ $messages['ru'] = array(
 	'flow-moderation-title-delete-post' => 'Удалить сообщение?',
 	'flow-moderation-title-hide-post' => 'Скрыть сообщение?',
 	'flow-moderation-title-restore-post' => 'Восстановить сообщение?',
+	'flow-moderation-confirm-delete-post' => 'Удалить',
+	'flow-moderation-confirm-hide-post' => 'Скрыть',
+	'flow-moderation-confirm-restore-post' => 'Восстановить',
+	'flow-moderation-title-delete-topic' => 'Удалить тему?',
+	'flow-moderation-title-hide-topic' => 'Скрыть тему?',
+	'flow-moderation-title-restore-topic' => 'Восстановить тему?',
+	'flow-moderation-intro-delete-topic' => 'Поясните причину удаления данной темы.',
+	'flow-moderation-intro-hide-topic' => 'Поясните, почему вы хотите скрыть данную тему.',
+	'flow-moderation-intro-restore-topic' => 'Поясните причину восстановления данной темы.',
 	'flow-topic-permalink-warning' => 'Эта тема была начата на [$2 $1]',
 );
 
@@ -3435,6 +3491,7 @@ $messages['yi'] = array(
  * @author Dreamism
  * @author Hzy980512
  * @author Liuxinyu970226
+ * @author Mys 721tx
  * @author Qiyue2001
  * @author TianyinLee
  */
@@ -3450,8 +3507,8 @@ $messages['zh-hans'] = array(
 	'flow-delete-content' => '由$1删除',
 	'flow-censor-content' => '已由$1抑制',
 	'flow-censor-usertext' => "''用户名已压制''",
-	'flow-post-actions' => '操作', # Fuzzy
-	'flow-topic-actions' => '操作', # Fuzzy
+	'flow-post-actions' => '操作',
+	'flow-topic-actions' => '操作',
 	'flow-cancel' => '取消',
 	'flow-preview' => '预览',
 	'flow-newtopic-title-placeholder' => '新主题',
@@ -3465,6 +3522,7 @@ $messages['zh-hans'] = array(
 	'flow-reply-link' => '{{GENDER:$1|回复}}',
 	'flow-thank-link' => '{{GENDER:$1|感谢}}',
 	'flow-talk-link' => '讨论{{GENDER:$1|$1}}',
+	'flow-edit-post-submit' => '提交更改',
 	'flow-post-edited' => '评论由$1 $2{{GENDER:$1|编辑}}',
 	'flow-post-action-view' => '永久链接',
 	'flow-post-action-post-history' => '发布历史',
@@ -3478,10 +3536,12 @@ $messages['zh-hans'] = array(
 	'flow-topic-action-watchlist' => '监视列表',
 	'flow-topic-action-edit-title' => '编辑标题',
 	'flow-topic-action-history' => '主题历史',
-	'flow-error-http' => '与服务器联系时出错。未保存您的帖子。', # Fuzzy
-	'flow-error-other' => '出现意外的错误。未保存您的帖子。', # Fuzzy
+	'flow-topic-action-hide-topic' => '隐藏主题',
+	'flow-topic-action-delete-topic' => '删除主题',
+	'flow-error-http' => '与服务器联系时出错。',
+	'flow-error-other' => '出现意外的错误。',
 	'flow-error-edit-restricted' => '您无权编辑此帖子。',
-	'flow-error-external-multi' => '保存帖子时遇到错误。帖子未保存。<br />$1', # Fuzzy
+	'flow-error-external-multi' => '遇到错误。<br />$1',
 	'flow-error-missing-content' => '帖子无内容。只能保存有内容的帖子。',
 	'flow-error-delete-failure' => '删除本项失败。',
 	'flow-error-hide-failure' => '隐藏此项失败。',
@@ -3489,9 +3549,9 @@ $messages['zh-hans'] = array(
 	'flow-edit-title-submit' => '更改标题',
 	'flow-rev-message-edit-post' => '$1{{GENDER:$2|编辑了}}一个[$3 评论]。',
 	'flow-rev-message-reply' => '$1{{GENDER:$2|添加了}}一个[$3 评论]。',
-	'flow-rev-message-create-header' => '已创建的页顶', # Fuzzy
-	'flow-rev-message-edit-header' => '已编辑的页顶', # Fuzzy
-	'flow-rev-message-deleted-post' => '已删除的回复', # Fuzzy
+	'flow-rev-message-create-header' => '$1已创建的页顶。', # Fuzzy
+	'flow-rev-message-edit-header' => '$1已编辑的页顶。', # Fuzzy
+	'flow-rev-message-deleted-post' => '$1删除了[$4 评论]', # Fuzzy
 	'flow-board-history' => '“$1”的历史',
 	'flow-topic-history' => '“$1”主题的历史',
 	'flow-history-last4' => '过去4个小时',
