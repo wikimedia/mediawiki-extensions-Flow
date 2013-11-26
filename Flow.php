@@ -260,3 +260,8 @@ $wgLogActionsHandlers['delete/flow-restore-post'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['suppress/flow-restore-post'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['delete/flow-restore-topic'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['suppress/flow-restore-topic'] = 'Flow\Log\Formatter';
+
+// Just in case 
+
+// Set this to false if there is some bug causing flow to break recent changes or watchlists
+$wgFlowEnableRecentChanges = true;

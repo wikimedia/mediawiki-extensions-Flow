@@ -69,6 +69,13 @@ class FlowHooks {
 	}
 
 	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+		global $wgFlowEnableRecentChanges;
+
+		// Hook to allow ops to easily disable recentchanges rendering
+		if ( !$wgFlowEnableRecentChanges ) {
+			return true;
+		}
+
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
 			$rcType = (int) $rc->getAttribute( 'rc_type' );
