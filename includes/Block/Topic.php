@@ -35,7 +35,7 @@ class TopicBlock extends AbstractBlock {
 		'edit-post', 'reply',
 		// Moderation
 		'moderate-topic',
-		'moderate-post', 'hide-post', 'delete-post', 'censor-post', 'restore-post',
+		'moderate-post', 'hide-post', 'delete-post', 'suppress-post', 'restore-post',
 		// Other stuff
 		'edit-title',
 	);
@@ -91,8 +91,8 @@ class TopicBlock extends AbstractBlock {
 			$this->validateModeratePost( AbstractRevision::MODERATED_DELETED );
 			break;
 
-		case 'censor-post':
-			$this->validateModeratePost( AbstractRevision::MODERATED_CENSORED );
+		case 'suppress-post':
+			$this->validateModeratePost( AbstractRevision::MODERATED_SUPPRESSED );
 			break;
 
 		case 'restore-post':
@@ -195,17 +195,21 @@ class TopicBlock extends AbstractBlock {
 		if ( $moderationState === null ) {
 			$moderationState = $this->submitted['moderationState'];
 		}
-		// $moderationState should be a string like 'restore', 'censor', etc.  The exact strings allowed
+		// $moderationState should be a string like 'restore', 'suppress', etc.  The exact strings allowed
 		// are checked below with $post->isValidModerationState(), but this is checked first otherwise
 		// a blank string would restore a post(due to AbstractRevision::MODERATED_NONE === '').
 		if ( ! $moderationState ) {
 			$this->errors['moderate'] = wfMessage( 'flow-error-invalid-moderation-state' );
 			return;
 		}
+		// BC: 'suppress' used to be called 'censor'
+		if ( $moderationState == 'censor' ) {
+			$moderationState = 'suppress';
+		}
 
 		// By allowing the moderationState to be sourced from $this->submitted['moderationState']
 		// we no longer have a unique action name for use with the permissions system.  This rebuilds
-		// an action name. e.x. restore-post, restore-topic, censor-topic, etc.
+		// an action name. e.x. restore-post, restore-topic, suppress-topic, etc.
 		$action = $moderationState . ( $post->isTopicTitle() ? "-topic" : "-post" );
 
 		// 'restore' isn't an actual state, it returns a post to unmoderated status
@@ -277,7 +281,7 @@ class TopicBlock extends AbstractBlock {
 		case 'moderate-topic':
 		case 'hide-post':
 		case 'delete-post':
-		case 'censor-post':
+		case 'suppress-post':
 		case 'restore-post':
 		case 'moderate-post':
 		case 'edit-title':

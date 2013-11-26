@@ -127,7 +127,7 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 
 				case 'flow-rev-message-censored-post':
 				case 'flow-post-censored':
-					$params['flow-workflow-change']['action'] = 'censor-post';
+					$params['flow-workflow-change']['action'] = 'suppress-post';
 					$params['flow-workflow-change']['block'] = 'topic';
 					$params['flow-workflow-change']['revision_type'] = 'PostRevision';
 					break;

@@ -272,7 +272,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 
 	// This is to *UPDATE* a revision.  It should hardly ever be used.
 	// For the most part should insert a new revision.  This will only be called
-	// for censoring?
+	// for suppressing?
 	public function update( array $old, array $new ) {
 		$changeSet = ObjectManager::calcUpdates( $old, $new );
 		$extra = array_diff( array_keys( $changeSet ), self::$allowedUpdateColumns );
