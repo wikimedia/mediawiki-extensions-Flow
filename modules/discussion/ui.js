@@ -19,13 +19,6 @@
 				}
 			} );
 
-		// Set up timestamp on-hover
-		$container.find( '.flow-topic-datestamp, .flow-datestamp' )
-			.hover(function () {
-				$(this).find( '.flow-agotime' ).toggle();
-				$(this).find( '.flow-utctime' ).toggle();
-			} );
-
 		// Set up post creator on-hover
 		$container.find( '.flow-creator' )
 			.hover( function () {
