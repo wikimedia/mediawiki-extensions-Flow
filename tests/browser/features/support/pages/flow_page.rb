@@ -1,11 +1,11 @@
-require 'page-object'
+require "page-object"
 
 class FlowPage
   include PageObject
 
   include URL
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
-  page_url URL.url('Talk:Flow_QA')
+  page_url URL.url("Talk:Flow_QA")
 
   span(:author_link, class: 'flow-creator')
   button(:change_post_save, class: 'mw-ui-button mw-ui-constructive flow-edit-post-submit')
