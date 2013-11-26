@@ -78,7 +78,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 				<?php echo $this->getContent( $post, 'html', $user ); ?>
 			</div>
 
-			<?php if ( $postView->actions()->isAllowedAny( 'hide-post', 'delete-post', 'censor-post', 'restore-post' ) ): ?>
+			<?php if ( $postView->actions()->isAllowedAny( 'hide-post', 'delete-post', 'suppress-post', 'restore-post' ) ): ?>
 				<div class="flow-actions">
 					<a class="flow-actions-link flow-icon flow-icon-bottom-aligned" href="#" title="<?php echo wfMessage( 'flow-post-actions' )->escaped(); ?>"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
 					<div class="flow-actions-flyout">
@@ -90,8 +90,8 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 							if ( $deletePost = $postView->deletePostButton( 'flow-delete-post-link mw-ui-button' ) ) {
 								echo "<li class='flow-action-delete'>$deletePost</li>";
 							}
-							if ( $suppressPost = $postView->suppressPostButton( 'flow-censor-post-link mw-ui-button' ) ) {
-								echo "<li class='flow-action-censor'>$suppressPost</li>";
+							if ( $suppressPost = $postView->suppressPostButton( 'flow-suppress-post-link mw-ui-button' ) ) {
+								echo "<li class='flow-action-suppress'>$suppressPost</li>";
 							}
 							// @todo restore button will probably be moved somewhere else, some day
 							if ( $restorePost = $postView->restorePostButton( 'flow-restore-post-link mw-ui-button mw-ui-constructive' ) ) {

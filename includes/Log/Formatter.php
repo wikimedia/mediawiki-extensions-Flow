@@ -45,7 +45,9 @@ class Formatter extends \LogFormatter {
 
 		// Give grep a chance to find the usages:
 		// logentry-delete-flow-delete-post, logentry-delete-flow-restore-post,
-		// logentry-suppress-flow-restore-post, logentry-suppress-flow-censor-post,
+		// logentry-suppress-flow-restore-post, logentry-suppress-flow-suppress-post,
+		// logentry-delete-flow-delete-topic, logentry-delete-flow-restore-topic,
+		// logentry-suppress-flow-restore-topic, logentry-suppress-flow-suppress-topic,
 		$language = $skin === null ? $wgContLang : $wgLang;
 		$message = wfMessage( "logentry-$type-$action" )
 			->params( array(

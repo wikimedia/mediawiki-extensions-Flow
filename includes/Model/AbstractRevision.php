@@ -10,7 +10,7 @@ abstract class AbstractRevision {
 	const MODERATED_NONE = '';
 	const MODERATED_HIDDEN = 'hide';
 	const MODERATED_DELETED = 'delete';
-	const MODERATED_CENSORED = 'censor';
+	const MODERATED_SUPPRESSED = 'suppress';
 
 	/**
 	 * Metadata relatied to moderation states from least restrictive
@@ -35,9 +35,9 @@ abstract class AbstractRevision {
 			// Whether or not to apply transition to this moderation state to historical revisions
 			'historical' => true,
 		),
-		self::MODERATED_CENSORED => array(
+		self::MODERATED_SUPPRESSED => array(
 			// The permission needed from User::isAllowed to see and create new revisions
-			'perm' => 'flow-censor',
+			'perm' => 'flow-suppress',
 			// Whether or not to apply transition to this moderation state to historical revisions
 			'historical' => true,
 		),
@@ -72,7 +72,7 @@ abstract class AbstractRevision {
 	// moderation states for the revision.  This is technically denormalized data
 	// since it can be overwritten and does not provide a full history.
 	// The tricky part is updating moderation is a new revision for hide and
-	// delete, but adjusts an existing revision for full censor.
+	// delete, but adjusts an existing revision for full suppression.
 	protected $moderationState = self::MODERATED_NONE;
 	protected $moderationTimestamp;
 	protected $moderatedByUserId;
@@ -415,8 +415,8 @@ abstract class AbstractRevision {
 		return $this->moderationState === self::MODERATED_HIDDEN;
 	}
 
-	public function isCensored() {
-		return $this->moderationState === self::MODERATED_CENSORED;
+	public function isSuppressed() {
+		return $this->moderationState === self::MODERATED_SUPPRESSED;
 	}
 
 	public function getModerationTimestamp() {

@@ -129,7 +129,7 @@ class Formatter {
 				$links[] = $this->postLink( $title, $changeData );
 				break;
 
-			case 'censor-post':
+			case 'suppress-post':
 			case 'delete-post':
 			case 'hide-post':
 			case 'restore-post':
@@ -137,7 +137,7 @@ class Formatter {
 				$links[] = $this->postHistoryLink( $title, $changeData );
 				break;
 
-			case 'censor-topic':
+			case 'suppress-topic':
 			case 'delete-topic':
 			case 'hide-topic':
 			case 'restore-topic':
