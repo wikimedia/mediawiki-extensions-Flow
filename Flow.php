@@ -265,3 +265,9 @@ $wgLogActionsHandlers['suppress/flow-restore-topic'] = 'Flow\Log\Formatter';
 
 // Set this to false if there is some bug causing flow to break recent changes or watchlists
 $wgFlowEnableRecentChanges = true;
+
+// Set this to false to disable all memcache usage.  Do not just turn the cache
+// back on, it will be out of sync with the database.  There is not yet an official
+// process for re-sync'ing the cache yet, currently the per-index versions would
+// need to incremented(ask the flow team).
+$wgFlowUseMemcache = true;

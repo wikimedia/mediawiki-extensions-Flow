@@ -6,8 +6,12 @@ $c = new Flow\Container;
 $c['user'] = $GLOBALS['wgUser'];
 $c['output'] = $GLOBALS['wgOut'];
 $c['request'] = $GLOBALS['wgRequest'];
-//$c['memcache'] = new \HashBagOStuff;
-$c['memcache'] = $GLOBALS['wgMemc'];
+if ( $GLOBALS['wgFlowUseMemcache'] ) {
+	$c['memcache'] = $GLOBALS['wgMemc'];
+} else {
+	$c['memcache'] = new \HashBagOStuff;
+}
+
 
 // Flow config
 $c['flow_actions'] = $c->share( function( $c ) {
