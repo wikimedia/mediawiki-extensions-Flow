@@ -115,12 +115,12 @@ class Post {
 	}
 
 	public function suppressPostButton( $buttonClass ) {
-		if ( !$this->actions->isAllowed( 'censor-post' ) ) {
+		if ( !$this->actions->isAllowed( 'suppress-post' ) ) {
 			return '';
 		}
 		return $this->actions->getButton(
-			'censor-post',
-			wfMessage( 'flow-post-action-censor-post' )->plain(),
+			'suppress-post',
+			wfMessage( 'flow-post-action-suppress-post' )->plain(),
 			$buttonClass
 		);
 	}
@@ -142,6 +142,6 @@ class Post {
 
 	public function allowedAnyActions() {
 		// This will need to change, but not sure best way
-		return $this->actions->isAllowedAny( 'hide-post', 'delete-post', 'censor-post', 'restore-post' );
+		return $this->actions->isAllowedAny( 'hide-post', 'delete-post', 'suppress-post', 'restore-post' );
 	}
 }

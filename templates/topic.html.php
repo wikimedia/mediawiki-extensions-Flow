@@ -102,7 +102,7 @@ echo Html::openElement( 'div', array(
 			<?php endif ?>
 		</div>
 
-		<?php if ( $postActionMenu->isAllowedAny( 'hide-topic', 'delete-topic', 'censor-topic', 'restore-topic' ) ): ?>
+		<?php if ( $postActionMenu->isAllowedAny( 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic' ) ): ?>
 		<div class="flow-actions">
 			<a class="flow-actions-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
 			<div class="flow-actions-flyout">
@@ -121,11 +121,11 @@ echo Html::openElement( 'div', array(
 							'mw-ui-button flow-delete-topic-link'
 						), '</li>';
 					} ?>
-					<?php if ( $postActionMenu->isAllowed( 'censor-topic' ) ) {
-						echo '<li class="flow-action-censor">', $postActionMenu->getButton(
-							'censor-topic',
-							wfMessage( 'flow-topic-action-censor-topic' )->plain(),
-							'mw-ui-button flow-censor-topic-link'
+					<?php if ( $postActionMenu->isAllowed( 'suppress-topic' ) ) {
+						echo '<li class="flow-action-suppress">', $postActionMenu->getButton(
+							'suppress-topic',
+							wfMessage( 'flow-topic-action-suppress-topic' )->plain(),
+							'mw-ui-button flow-suppress-topic-link'
 						), '</li>';
 					} ?>
 					<?php if ( $postActionMenu->isAllowed( 'restore-topic' ) ) {
