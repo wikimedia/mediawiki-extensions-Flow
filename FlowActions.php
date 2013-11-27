@@ -159,8 +159,7 @@ $wgFlowActions = array(
 					return $templating->getUserText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), 'flow-post-' . $revision->getPostId()->getHex() );
 				},
 			),
 			'class' => 'flow-history-edit-post',
@@ -190,8 +189,11 @@ $wgFlowActions = array(
 					return $templating->getCreatorText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
+					$fragment = '';
+					if ( $revision->isAllowed( $user, PostRevision::MODERATED_HIDDEN ) ) {
+						$fragment = 'flow-post-' . $revision->getPostId()->getHex();
+					}
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), $fragment );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $revision->getModeratedReason();
@@ -252,8 +254,11 @@ $wgFlowActions = array(
 					return $templating->getCreatorText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
+					$fragment = '';
+					if ( $revision->isAllowed( $user, PostRevision::MODERATED_DELETED ) ) {
+						$fragment = 'flow-post-' . $revision->getPostId()->getHex();
+					}
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), $fragment );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $revision->getModeratedReason();
@@ -316,8 +321,11 @@ $wgFlowActions = array(
 					return $templating->getCreatorText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
+					$fragment = '';
+					if ( $revision->isAllowed( $user, PostRevision::MODERATED_CENSORED ) ) {
+						$fragment = 'flow-post-' . $revision->getPostId()->getHex();
+					}
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), $fragment );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $revision->getModeratedReason();
@@ -387,8 +395,7 @@ $wgFlowActions = array(
 					return $templating->getCreatorText( $revision, $user );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );
-					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', $data );
+					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), 'flow-post-' . $revision->getPostId()->getHex() );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $revision->getModeratedReason();

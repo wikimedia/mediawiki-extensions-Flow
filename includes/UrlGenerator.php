@@ -51,11 +51,16 @@ class UrlGenerator {
 	 * @param  Workflow|UUID $workflow The Workflow to link to
 	 * @param  string $action The action to execute
 	 * @param  array  $query Associative array of query parameters
+	 * @param  string $fragment URL hash fragment
 	 * @return Array Two element array, first element is the title to link to,
 	 * second element is the query string
 	 */
-	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
+	public function generateUrl( $workflow, $action = 'view', array $query = array(), $fragment = '' ) {
 		list( $linkTitle, $query ) = $this->generateUrlData( $workflow, $action, $query );
+
+		if ( $fragment ) {
+			$linkTitle->setFragment( '#' . $fragment );
+		}
 
 		return $linkTitle->getFullUrl( $query );
 	}
