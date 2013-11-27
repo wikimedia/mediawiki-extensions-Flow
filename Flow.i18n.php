@@ -100,7 +100,7 @@ $messages['en'] = array(
 
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|edited}} a [$3 comment].',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|added}} a [$3 comment].',
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$2|comment|comments}}''' {{PLURAL:$2|was|were}} added.",
+	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|comment|comments}}''' {{PLURAL:$1|was|were}} added.",
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|created}} the topic [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|changed}} the topic title from $5 to [$3 $4].',
 
@@ -442,7 +442,6 @@ Parameters:
 
 Parameters:
 * $1 - the amount of replies posted
-* $2 - ...
 {{Related|Flow-rev-message}}",
 	'flow-rev-message-new-post' => 'Used as revision comment when the topic has been created.
 
