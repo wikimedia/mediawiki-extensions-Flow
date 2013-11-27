@@ -177,6 +177,9 @@ $wgGroupPermissions['oversight']['flow-censor'] = true;
 // URL for more information about the Flow notification system
 $wgFlowHelpPage = '//www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Flow';
 
+// Database cluster for Flow.  Set to false to use the main wiki database
+$wgFlowCluster = false;
+
 // Database to use for Flow metadata.  Set to false to use the wiki db.  Any number of wikis can
 // and should share the same Flow database.
 $wgFlowDefaultWikiDb = false;

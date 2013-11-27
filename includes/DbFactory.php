@@ -13,7 +13,15 @@ class DbFactory {
 	}
 
 	public function getDB( $db, $groups = array() ) {
-		return wfGetDB( $db, $groups, $this->wiki );
+		global $wgFlowCluster;
+
+		if ( $wgFlowCluster ) {
+			$lb = wfGetLBFactory()->getExternalLB( $wgFlowCluster, $this->wiki );
+		} else {
+			$lb = wfGetLB( $this->wiki );
+		}
+
+		return $lb->getConnection( $db, $groups, $this->wiki );
 	}
 
 	public function getLB() {
