@@ -17,8 +17,8 @@ $c['flow_actions'] = $c->share( function( $c ) {
 
 // Always returns the correct database for flow storage
 $c['db.factory'] = $c->share( function( $c ) {
-	global $wgFlowDefaultWikiDb;
-	return new Flow\DbFactory( $wgFlowDefaultWikiDb );
+	global $wgFlowDefaultWikiDb, $wgFlowCluster;
+	return new Flow\DbFactory( $wgFlowDefaultWikiDb, $wgFlowCluster );
 } );
 
 // Database Access Layer external from main implementation

@@ -177,6 +177,13 @@ $wgGroupPermissions['oversight']['flow-censor'] = true;
 // URL for more information about the Flow notification system
 $wgFlowHelpPage = '//www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Flow';
 
+// $wgFlowCluster will define what external DB server should be used.
+// If set to false, the current database (wfGetDB) will be used to read/write
+// data from/to. If Flow data is supposed to be stored on an external database,
+// set the value of this variable to the $wgExternalServers key representing
+// that external connection.
+$wgFlowCluster = false;
+
 // Database to use for Flow metadata.  Set to false to use the wiki db.  Any number of wikis can
 // and should share the same Flow database.
 $wgFlowDefaultWikiDb = false;
