@@ -1403,7 +1403,10 @@ class LocalBufferedCache extends BufferedCache {
 		return $found;
 	}
 
-	public function add( $key, $value, $exptime = 0 ) {
+	public function add( $key, $value, $exptime = null ) {
+		if ( $exptime === null ) {
+			$exptime = $this->exptime;
+		}
 		if ( $this->buffer === null ) {
 			if ( $this->cache->add( $key, $value, $exptime ) ) {
 				$this->internal[$key] = $value;
@@ -1421,7 +1424,7 @@ class LocalBufferedCache extends BufferedCache {
 		}
 	}
 
-	public function set( $key, $value, $exptime = 0 ) {
+	public function set( $key, $value, $exptime = null ) {
 		parent::set( $key, $value, $exptime );
 		$this->internal[$key] = $value;
 	}
@@ -1430,7 +1433,7 @@ class LocalBufferedCache extends BufferedCache {
 	 * How to cache merge?  Wrap the callback, but it wont know about failure.
 	 *
 	 *
-	public function merge( $key, \Closure $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, \Closure $callback, $exptime = null, $attempts = 10 ) {
 
 	}
 	 */
@@ -1442,41 +1445,65 @@ class LocalBufferedCache extends BufferedCache {
 class BufferedCache {
 	protected $cache;
 	protected $buffer;
+	protected $exptime;
 
-	public function __construct( BagOStuff $cache ) {
+	/**
+	 * @param BagOStuff $cache The cache implementation to back this buffer with
+	 * @param integer $exptime The default length of time to cache data. 0 for LRU.
+	 */
+	public function __construct( BagOStuff $cache, $exptime ) {
 		$this->cache = $cache;
+		$this->exptime = $exptime;
 	}
 
+	/**
+	 * @param string $key The cache key to fetch
+	 */
 	public function get( $key ) {
 		return $this->cache->get( $key );
 	}
 
+	/**
+	 * @param array $keys List of cache key strings to fetch
+	 */
 	public function getMulti( array $keys ) {
 		return $this->cache->getMulti( $keys );
 	}
 
-	public function add( $key, $value, $exptime = 0 ) {
+	/**
+	 * @param string $key
+	 * @param mixed $value
+	 */
+	public function add( $key, $value ) {
 		if ( $this->buffer === null ) {
-			$this->cache->add( $key, $value, $exptime );
+			$this->cache->add( $key, $value, $this->exptime );
 		} else {
 			$this->buffer[] = array(
 				'command' => __FUNCTION__,
-				'arguments' => compact( 'key', 'value', 'exptime' ),
+				'arguments' => array( $key, $value, $this->exptime ),
 			);
 		}
 	}
 
-	public function set( $key, $value, $exptime = 0 ) {
+	/**
+	 * @param string $key
+	 * @param mixed $value
+	 */
+	public function set( $key, $value ) {
 		if ( $this->buffer === null ) {
-			$this->cache->set( $key, $value, $exptime );
+			$this->cache->set( $key, $value, $this->exptime );
 		} else {
 			$this->buffer[] = array(
 				'command' => __FUNCTION__,
-				'arguments' => compact( 'key', 'value', 'exptime' )
+				'arguments' => array( $key, $value, $this->exptime ),
 			);
 		}
 	}
 
+	/**
+	 * @param string $key
+	 * @param integer $time
+	 */
 	public function delete( $key, $time = 0 ) {
 		if ( $this->buffer === null ) {
 			$this->cache->delete( $key, $time );
@@ -1488,17 +1515,30 @@ class BufferedCache {
 		}
 	}
 
-	public function merge( $key, \Closure $callback, $exptime = 0, $attempts = 10 ) {
+	/**
+	 * @param string $key
+	 * @param \Closure $callback
+	 * @param integer $attempts
+	 */
+	public function merge( $key, \Closure $callback, $attempts = 10 ) {
+		if ( $exptime === null ) {
+			$exptime = $this->exptime;
+		}
 		if ( $this->buffer === null ) {
-			$this->cache->merge( $key, $callback, $exptime, $attempts );
+			$this->cache->merge( $key, $callback, $this->exptime, $attempts );
 		} else {
 			$this->buffer[] = array(
 				'command' => __FUNCTION__,
-				'arguments' => compact( 'key', 'callback', 'exptime', 'attempts' ),
+				'arguments' => array( $key, $callback, $this->exptime, $attempts ),
 			);
 		}
 	}
 
+	/**
+	 * Begin buffering cache commands
+	 *
+	 * @throws MWException When buffering is already enabled.
+	 */
 	public function begin() {
 		if ( $this->buffer === null ) {
 			$this->buffer = array();
@@ -1507,6 +1547,11 @@ class BufferedCache {
 		}
 	}
 
+	/**
+	 * Write out all buffered commands to the cache
+	 *
+	 * @throws MWException When no buffer has been enabled
+	 */
 	public function commit() {
 		if ( $this->buffer === null ) {
 			throw new \MWException( 'No transaction in progress' );
