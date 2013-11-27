@@ -17,10 +17,6 @@
 	.flow-agotime {
 		opacity: 1;
 		transition: opacity 0.2s;
-		// Position flow-agotime ontop of flow-utctime
-		position: absolute;
-		right: 0;
-		bottom: 0;
 	}
 	.flow-utctime {
 		opacity: 0;
@@ -33,6 +29,17 @@
 		}
 		.flow-utctime {
 			opacity: 1;
+		}
+	}
+}
+
+.flow-element-container {
+	.flow-datestamp {
+		.flow-agotime {
+			// Position flow-agotime ontop of flow-utctime
+			position: absolute;
+			right: 0;
+			bottom: 0;
 		}
 	}
 }
