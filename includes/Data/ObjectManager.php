@@ -1355,7 +1355,10 @@ class LocalBufferedCache extends BufferedCache {
 		return $found;
 	}
 
-	public function add( $key, $value, $exptime = 0 ) {
+	public function add( $key, $value, $exptime = null ) {
+		if ( $exptime === null ) {
+			$exptime = $this->exptime;
+		}
 		if ( $this->buffer === null ) {
 			if ( $this->cache->add( $key, $value, $exptime ) ) {
 				$this->internal[$key] = $value;
@@ -1373,7 +1376,7 @@ class LocalBufferedCache extends BufferedCache {
 		}
 	}
 
-	public function set( $key, $value, $exptime = 0 ) {
+	public function set( $key, $value, $exptime = null ) {
 		parent::set( $key, $value, $exptime );
 		$this->internal[$key] = $value;
 	}
@@ -1382,7 +1385,7 @@ class LocalBufferedCache extends BufferedCache {
 	 * How to cache merge?  Wrap the callback, but it wont know about failure.
 	 *
 	 *
-	public function merge( $key, \Closure $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, \Closure $callback, $exptime = null, $attempts = 10 ) {
 
 	}
 	 */
@@ -1394,20 +1397,41 @@ class LocalBufferedCache extends BufferedCache {
 class BufferedCache {
 	protected $cache;
 	protected $buffer;
+	protected $exptime;
 
-	public function __construct( BagOStuff $cache ) {
+	/**
+	 * @param BagOStuff $cache The cache implementation to back this buffer with
+	 * @param integer $exptime The default length of time to cache data. 0 for LRU.
+	 */
+	public function __construct( BagOStuff $cache, $exptime ) {
 		$this->cache = $cache;
+		$this->exptime = $exptime;
 	}
 
+	/**
+	 * @param string $key The cache key to fetch
+	 */
 	public function get( $key ) {
 		return $this->cache->get( $key );
 	}
 
+	/**
+	 * @param array $keys List of cache key strings to fetch
+	 */
 	public function getMulti( array $keys ) {
 		return $this->cache->getMulti( $keys );
 	}
 
-	public function add( $key, $value, $exptime = 0 ) {
+	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int|null $exptime The number of seconds to cache data for. 0 is
+	 * 		LRU, null uses the Flow default exptime.
+	 */
+	public function add( $key, $value, $exptime = null ) {
+		if ( $exptime === null ) {
+			$exptime = $this->exptime;
+		}
 		if ( $this->buffer === null ) {
 			$this->cache->add( $key, $value, $exptime );
 		} else {
@@ -1418,7 +1442,16 @@ class BufferedCache {
 		}
 	}
 
-	public function set( $key, $value, $exptime = 0 ) {
+	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int|null $exptime The number of seconds to cache data for. 0 is
+	 * 		LRU, null uses the Flow default exptime.
+	 */
+	public function set( $key, $value, $exptime = null ) {
+		if ( $exptime === null ) {
+			$exptime = $this->exptime;
+		}
 		if ( $this->buffer === null ) {
 			$this->cache->set( $key, $value, $exptime );
 		} else {
@@ -1440,7 +1473,17 @@ class BufferedCache {
 		}
 	}
 
-	public function merge( $key, \Closure $callback, $exptime = 0, $attempts = 10 ) {
+	/**
+	 * @param string $key
+	 * @param \Closure $callback
+	 * @param integer $exptime The number of seconds to cache data for. 0 is
+	 * 		LRU, null uses the Flow default exptime.
+	 * @param integer $attempts
+	 */
+	public function merge( $key, \Closure $callback, $exptime = null, $attempts = 10 ) {
+		if ( $exptime === null ) {
+			$exptime = $this->exptime;
+		}
 		if ( $this->buffer === null ) {
 			$this->cache->merge( $key, $callback, $exptime, $attempts );
 		} else {
@@ -1451,6 +1494,11 @@ class BufferedCache {
 		}
 	}
 
+	/**
+	 * Begin buffering cache commands
+	 *
+	 * @throws MWException When buffering is already enabled.
+	 */
 	public function begin() {
 		if ( $this->buffer === null ) {
 			$this->buffer = array();
@@ -1459,6 +1507,11 @@ class BufferedCache {
 		}
 	}
 
+	/**
+	 * Write out all buffered commands to the cache
+	 *
+	 * @throws MWException When no buffer has been enabled
+	 */
 	public function commit() {
 		if ( $this->buffer === null ) {
 			throw new \MWException( 'No transaction in progress' );

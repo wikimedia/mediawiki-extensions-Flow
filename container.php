@@ -23,9 +23,11 @@ $c['db.factory'] = $c->share( function( $c ) {
 
 // Database Access Layer external from main implementation
 $c['repository.tree'] = $c->share( function( $c ) {
+	global $wgFlowCacheTime;
 	return new Flow\Repository\TreeRepository(
 		$c['db.factory'],
-		$c['memcache']
+		$c['memcache'],
+		$wgFlowCacheTime
 	);
 } );
 
@@ -80,7 +82,8 @@ use Flow\Model\PostRevision;
 //       transaction.  Easiest will be to explicitly start/end the transaction
 //       in the entry point ?
 $c['memcache.buffered'] = $c->share( function( $c ) {
-	return new LocalBufferedCache( $c['memcache'] );
+	global $wgFlowCacheTime;
+	return new LocalBufferedCache( $c['memcache'], $wgFlowCacheTime );
 } );
 // Per wiki workflow definitions (types of workflows)
 $c['storage.definition'] = $c->share( function( $c ) {
