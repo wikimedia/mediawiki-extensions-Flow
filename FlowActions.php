@@ -448,6 +448,18 @@ $wgFlowActions = array(
 		'button-method' => 'GET',
 	),
 
+	'topic-history' => array(
+		'performs-writes' => false,
+		'log_type' => false,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_HIDDEN => '',
+			PostRevision::MODERATED_DELETED => '',
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
+		),
+		'button-method' => 'GET',
+	),
+
 	'view' => array(
 		'performs-writes' => false,
 		'log_type' => false, // don't log views
