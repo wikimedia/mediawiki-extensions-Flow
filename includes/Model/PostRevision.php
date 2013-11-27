@@ -265,7 +265,7 @@ class PostRevision extends AbstractRevision {
 		$continue = false;
 		foreach ( $callbacks as $i => $callback ) {
 			if ( is_callable( $callback ) ) {
-				$return = $callback( $this, $results[$i] );
+				$return = call_user_func( $callback, $this, $results[$i] );
 
 				// Callbacks respond with: [ result, continue ]
 				// Continue can be set to false if a callback has completed

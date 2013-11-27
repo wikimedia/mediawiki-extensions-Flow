@@ -150,15 +150,6 @@ abstract class ParsoidUtils {
 	 * @see http://www.xmlsoft.org/html/libxml-xmlerror.html
 	 */
 	public static function createDOM( $content, $ignoreErrorCodes = array( 801 ) ) {
-		/*
-		 * Workaround because DOMDocument can't guess charset.
-		 * Content should be utf-8. Alternative "workarounds" would be to
-		 * provide the charset in $response, as either:
-		 * * <?xml encoding="utf-8" ?>
-		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		 */
-		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
-
 		$dom = new \DOMDocument();
 
 		// don't output warnings
