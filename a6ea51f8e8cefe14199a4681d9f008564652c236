@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_5ee806dd",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-11-27T11:06:11Z",
+      "side": 1,
+      "message": "Last sentence here isn\u0027t that helpful in qqq ;). Should also be removed a few times below.\n\n\"formatted as most are in Flow\": Should this be documented somewhere so translators can look this up?",
+      "revId": "a6ea51f8e8cefe14199a4681d9f008564652c236",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
