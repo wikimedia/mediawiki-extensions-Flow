@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_0f7126a7",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-11-27T18:46:41Z",
+      "side": 1,
+      "message": "Should use HTTPS link and lead to a localisable user documentation page, not an technical extension documentation page. Suggested link: https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Flow/Flow_board.",
+      "revId": "fc665e04c0e9ed143a02a1612201484ef96c9ea2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
