@@ -143,7 +143,7 @@ $messages['en'] = array(
 	'flow-notification-edit-bundle' => '$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|edited}} a [$4 post] in $2 on "$3".',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].',
-	'flow-notification-mention' => '$1 {{GENDER:$1|mentioned}} you in their [$2 post] in "$3" on "$4".',
+	'flow-notification-mention' => '$1 {{GENDER:$1|mentioned}} you in {{GENDER:$1|his|her|their}} [$2 post] in "$3" on "$4".',
 
 	// Notification primary links and secondary links
 	'flow-notification-link-text-view-post' => 'View post',
@@ -155,7 +155,7 @@ $messages['en'] = array(
 	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|replied}} to your post in $2 on "$3"',
 	'flow-notification-reply-email-batch-bundle-body' => '$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|replied}} to your post in $2 on "$3"',
 	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|mentioned}} you on $2',
-	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|mentioned}} you in their post in "$2" on "$3"',
+	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|mentioned}} you in {{GENDER:$1|his|her|their}} post in "$2" on "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|edited}} your post',
 	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|edited}} your post in $2 on "$3"',
 	'flow-notification-edit-email-batch-bundle-body' => '$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|edited}} a post in $2 on "$3"',
