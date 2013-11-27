@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_ecb3ad4a",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-27T21:57:31Z",
+      "side": 1,
+      "message": "might be more friendly to report all the non 801 errors, rather than just the first one.",
+      "revId": "68ac5fd604d692b0f6324dbb92ad2a7e3836902f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_4ca5f9ff",
+        "filename": "includes/Templating.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-27T21:57:31Z",
+      "side": 1,
+      "message": "This convert should probably be a part of ParsoidUtils::createDOM ?",
+      "revId": "68ac5fd604d692b0f6324dbb92ad2a7e3836902f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
