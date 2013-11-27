@@ -38,7 +38,7 @@ When(/^I create a (.+) into Flow body$/) do |flow_body|
 end
 
 When(/^I hover over the author link$/) do
-  on(FlowPage).author_link_element.fire_event('onmouseover')
+  on(FlowPage).author_link_element.hover
 end
 
 Then(/^links to talk and contrib should be visible$/) do
