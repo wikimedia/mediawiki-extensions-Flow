@@ -459,6 +459,10 @@ class Templating {
 	 * @return array Return array in the format of [result, continue]
 	 */
 	public function registerParsoidLinksCallback( PostRevision $post, $result ) {
+		// topic titles don't contain html
+		if ( $post->isTopicTitle() ) {
+			return array( array(), true );
+		}
 		$content = $post->getContent( 'html' );
 
 		// make sure a post is not checked more than once
