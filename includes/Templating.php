@@ -24,6 +24,24 @@ class Templating {
 	protected $namespaces;
 	protected $globals;
 
+	/**
+	 * @var array Array of PostRevision::registerRecursive return values
+	 * @see Templating::registerParsoidLinks
+	 */
+	public $parsoidLinksIdentifiers = array();
+
+	/**
+	 * @var array Array of processed post Ids
+	 * @see Templating::registerParsoidLinks
+	 */
+	public $parsoidLinksProcessed = array();
+
+	/**
+	 * @var array Array of Title objects
+	 * @see Templating::registerParsoidLinks
+	 */
+	public $parsoidLinks = array();
+
 	public function __construct( UrlGenerator $urlGenerator, OutputPage $output, array $namespaces = array(), array $globals = array() ) {
 		$this->urlGenerator = $urlGenerator;
 		$this->output = $output;
@@ -331,7 +349,146 @@ class Templating {
 		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
 			return $message->text();
 		} else {
-			return $revision->getContent( $format );
+			$content = $revision->getContent( $format );
+
+			if ( $format === 'html' ) {
+				// Parsoid doesn't render redlinks
+				$content = $this->applyRedlinks( $content );
+			}
+
+			return $content;
 		}
+	}
+
+	/**
+	 * Parsoid ignores red links. With good reason: redlinks should only be
+	 * applied when rendering the content, not when it's created.
+	 *
+	 * This method will parse a given content, fetch all of its links & let MW's
+	 * Linker class build the link HTML (which will take redlinks into account.)
+	 * It will then substitute original link HTML for the one Linker generated.
+	 *
+	 * @param string $content
+	 * @return string
+	 */
+	protected function applyRedlinks( $content ) {
+		/*
+		 * In order to efficiently replace redlinks, multiple recursive
+		 * functions (may) have been registered that fetch an array of linked-to
+		 * titles. Since we'll now need to apply redlinks, it's time to execute
+		 * all these callbacks & batch-load all of the titles they come up with.
+		 */
+		foreach ( $this->parsoidLinksIdentifiers as $identifier => $post ) {
+			$post->getRecursiveResult( $identifier );
+			unset( $this->parsoidLinksIdentifiers[$identifier] );
+		}
+		if ( $this->parsoidLinks ) {
+			$batch = new \LinkBatch( $this->parsoidLinks );
+			$batch->execute();
+			$this->parsoidLinks = array();
+		}
+
+		/*
+		 * Workaround because DOMDocument can't guess charset.
+		 * Content should be utf-8. Alternative "workarounds" would be to
+		 * provide the charset in $response, as either:
+		 * * <?xml encoding="utf-8" ?>
+		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		 */
+		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
+
+		$dom = ParsoidUtils::createDOM( $content );
+
+		// find links in DOM
+		$xpath = new \DOMXPath( $dom );
+		$linkNodes = $xpath->query( '//a[@rel="mw:WikiLink"][@data-parsoid]' );
+		foreach ( $linkNodes as $linkNode ) {
+			$parsoid = $linkNode->getAttribute( 'data-parsoid' );
+			$parsoid = json_decode( $parsoid, true );
+
+			if ( isset( $parsoid['sa']['href'] ) ) {
+				// gather existing link attributes
+				$attributes = array();
+				foreach ( $linkNode->attributes as $attribute ) {
+					$attributes[$attribute->name] = $attribute->value;
+				}
+
+				// let MW build link HTML based on Parsoid data
+				$title = Title::newFromText( $parsoid['sa']['href'] );
+				$linkHTML = Linker::link( $title, $linkNode->nodeValue, $attributes );
+
+				// create new DOM from this MW-built link
+				$linkDom = ParsoidUtils::createDOM( $linkHTML );
+
+				// import MW-built link node into content DOM
+				$replacementNode = $linkDom->getElementsByTagName( 'a' )->item( 0 );
+				$replacementNode = $dom->importNode( $replacementNode, true );
+
+				// replace Parsoid link with MW-built link
+				$linkNode->parentNode->replaceChild( $replacementNode, $linkNode );
+			}
+		}
+
+		return $dom->saveHTML();
+	}
+
+	/**
+	 * Registers callback function to find content links in Parsoid html.
+	 * The goal is to batch-load and add to LinkCache as much links as possible.
+	 */
+	public function registerParsoidLinks( PostRevision $post ) {
+		/*
+		 * This can be registered on multiple posts (e.g. multiple topics) to
+		 * batch-load as much as possible; all of the identifiers have to be
+		 * saved and will be processed as soon as they first are needed.
+		 */
+		$identifier = $post->registerRecursive( array( $this, 'registerParsoidLinksCallback' ), array(), 'parsoidlinks' );
+		$this->parsoidLinksIdentifiers[$identifier] = $post;
+	}
+
+	/**
+	 * DON'T CALL THIS METHOD!
+	 * This is for internal use only: it's a callback function to
+	 * PostRevision::registerRecursive, which can be registered via
+	 * Templating::registerParsoidLinks.
+	 *
+	 * Returns an array of linked pages in Parsoid.
+	 *
+	 * @param PostRevision $post
+	 * @param array $result
+	 * @return array Return array in the format of [result, continue]
+	 */
+	public function registerParsoidLinksCallback( PostRevision $post, $result ) {
+		$content = $post->getContent( 'html' );
+
+		// make sure a post is not checked more than once
+		$revisionId = $post->getRevisionId()->getHex();
+		if ( isset( $this->parsoidLinksProcessed[$revisionId] ) ) {
+			return array( array(), false );
+		}
+		$this->parsoidLinksProcessed[$revisionId] = true;
+
+		// find links in DOM
+		$dom = ParsoidUtils::createDOM( $content );
+		$xpath = new \DOMXPath( $dom );
+		$linkNodes = $xpath->query( '//a[@rel="mw:WikiLink"][@data-parsoid]' );
+
+		foreach ( $linkNodes as $linkNode ) {
+			$parsoid = $linkNode->getAttribute( 'data-parsoid' );
+			$parsoid = json_decode( $parsoid, true );
+
+			if ( isset( $parsoid['sa']['href'] ) ) {
+				// real results will be stored in Templating::parsoidLinks
+				$link = $parsoid['sa']['href'];
+				$this->parsoidLinks[$link] = Title::newFromText( $link );
+			}
+		}
+
+		/*
+		 * $result will not be used; we'll register this callback multiple
+		 * times and will want to gather overlapping results, so they'll
+		 * be stored at Templating::parsoidLinks
+		 */
+		return array( array(), true );
 	}
 }

@@ -295,7 +295,6 @@ class PostRevision extends AbstractRevision {
 			}
 		}
 
-
 		return array( $callbacks, $results );
 	}
 
@@ -335,7 +334,7 @@ class PostRevision extends AbstractRevision {
 		 * @param int $result
 		 * @return array Return array in the format of [result, continue]
 		 */
-		$callback = function( $post, $result ) {
+		$callback = function( PostRevision $post, $result ) {
 			$creator = $post->getCreator();
 			if ( $creator instanceof User ) {
 				$result[$post->getCreatorName()] = $creator;
@@ -366,7 +365,7 @@ class PostRevision extends AbstractRevision {
 		 * @param int $result
 		 * @return array Return array in the format of [result, continue]
 		 */
-		$callback = function( $post, $result ) use ( &$postId ) {
+		$callback = function( PostRevision $post, $result ) use ( &$postId ) {
 			if ( $post->getPostId()->equals( $postId ) ) {
 				return array( $post, false );
 			}
