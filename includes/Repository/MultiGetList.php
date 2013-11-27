@@ -7,8 +7,13 @@ use Flow\Model\UUID;
 
 class MultiGetList {
 
-	public function __construct( BagOStuff $cache ) {
+	/**
+	 * @param BagOStuff $cache
+	 * @param integer $cacheTime
+	 */
+	public function __construct( BagOStuff $cache, $cacheTime ) {
 		$this->cache = $cache;
+		$this->cacheTime = $cacheTime;
 	}
 
 	public function get( $key, array $ids, $loadCallback ) {
@@ -66,7 +71,7 @@ class MultiGetList {
 			// If we failed contacting memcache a moment ago dont bother trying to
 			// push values either.
 			if ( $multiRes !== false ) {
-				$this->cache->set( $invCacheKeys[$id], $row );
+				$this->cache->set( $invCacheKeys[$id], $row, $this->cacheTime );
 			}
 			$result[$id] = $row;
 		}

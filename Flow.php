@@ -267,3 +267,13 @@ $wgLogActionsHandlers['delete/flow-restore-post'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['suppress/flow-restore-post'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['delete/flow-restore-topic'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['suppress/flow-restore-topic'] = 'Flow\Log\Formatter';
+
+/**
+ * The default length of time to cache flow data in memcache.  This value can be tuned
+ * in conjunction with measurements of cache hit/miss ratios to achieve the desired 
+ * tradeoff between memory usage, db queries, and response time. The initial default
+ * of 3 days means Flow will attempt to keep in memcache all data models requested in
+ * the last 3 days.
+ */
+$wgFlowCacheTime = 60 * 60 * 24 * 3;
+
