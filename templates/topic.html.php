@@ -143,24 +143,14 @@ echo Html::openElement( 'div', array(
 				</ul>
 			</div>
 		</div>
-		<?php endif; ?>
+		<?php
+			endif;
 
-		<p class="flow-datestamp">
-			<?php
-				// timestamp html
-				echo Html::rawElement( 'a',
-					array(
-						'class' => 'flow-action-history-link',
-						'href' => $this->generateUrl( $root->getPostId(), 'topic-history' ),
-					),
-					'<span class="flow-agotime">' .
-						htmlspecialchars( $topic->getLastModifiedObj()->getHumanTimestamp() ) .
-					'</span><span class="flow-utctime">' .
-						htmlspecialchars( $topic->getLastModifiedObj()->getTimestamp( TS_RFC2822 ) ) .
-					'</span>'
-				);
-			?>
-		</p>
+			echo $this->render( 'flow:timestamp.html.php', array(
+				'historicalLink' => $postActionMenu->actionUrl( 'topic-history' ),
+				'timestamp' => $topic->getLastModifiedObj(),
+			), true );
+		?>
 
 		<?php
 /*

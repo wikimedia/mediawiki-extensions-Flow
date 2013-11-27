@@ -83,7 +83,10 @@ $wgResourceModules += array(
 		'position' => 'top',
 	),
 	'ext.flow.history' => $flowResourceTemplate + array(
-		'styles' => 'history/styles/history.less',
+		'styles' => array(
+			'history/styles/history.less',
+			'history/styles/diff.less',
+		),
 		'scripts' => 'history/history.js',
 	),
 	'ext.flow.moderation' => $flowResourceTemplate + array(

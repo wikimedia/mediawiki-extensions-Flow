@@ -80,16 +80,10 @@ class Post {
 		);
 	}
 
-	public function postHistoryButton( $content ) {
-		if ( $this->actions->isAllowed( 'post-history' ) ) {
-			return $this->actions->getButton(
-				'post-history',
-				$content,
-				'flow-action-history-link'
-			);
-		} else {
-			return $content;
-		}
+	public function postHistoryLink( ) {
+		return $this->actions->actionUrl(
+			'post-history'
+		);
 	}
 
 	public function hidePostButton( $buttonClass ) {
