@@ -16,6 +16,24 @@
       "revId": "7bc58e01b6362f46a7a2cba38d761ede4ddb3115",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_dbb788d2",
+        "filename": "Flow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-11-27T05:13:43Z",
+      "side": 1,
+      "message": "It wouldn\u0027t necessarily kill performance, i use this setting (without it being an official setting) semi-regularly in development work, but it will be less performant especially for heavily trafficked pages. \n\nSome of the queries issued will be less than optimal due to them querying the data to fill the cache rather than just what is asked for. A small refactor in container.php and ObjectManager::findMulti would allow us to additionally disable the index\u0027s.  This would allow the queries generated to match the request, rather than the index that answers the request.\n\nI will update this comment to more directly identify this.",
+      "parentUuid": "0ee75395_e8aa8081",
+      "revId": "7bc58e01b6362f46a7a2cba38d761ede4ddb3115",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
