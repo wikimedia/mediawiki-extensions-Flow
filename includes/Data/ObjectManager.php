@@ -624,7 +624,7 @@ class BasicDbStorage implements WritableObjectStorage {
 		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->table,
 			$row,
-			__METHOD__
+			__METHOD__ . " ({$this->table})"
 		);
 		if ( $res ) {
 			return $row;
@@ -645,7 +645,7 @@ class BasicDbStorage implements WritableObjectStorage {
 		}
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		// update returns boolean true/false as $res
-		$res = $dbw->update( $this->table, $updates, UUID::convertUUIDs( $pk ), __METHOD__ );
+		$res = $dbw->update( $this->table, $updates, UUID::convertUUIDs( $pk ), __METHOD__ . " ({$this->table})" );
 		// $dbw->update returns boolean true/false as $res
 		// we also want to check that $pk actually selected a row to update
 		return $res && $dbw->affectedRows();
@@ -661,7 +661,7 @@ class BasicDbStorage implements WritableObjectStorage {
 			throw new PersistenceException( 'Row has null primary key: ' . implode( $missing ) );
 		}
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
-		$res = $dbw->delete( $this->table, UUID::convertUUIDs( $pk ), __METHOD__ );
+		$res = $dbw->delete( $this->table, UUID::convertUUIDs( $pk ), __METHOD__ . " ({$this->table})" );
 		return $res && $dbw->affectedRows();
 	}
 
@@ -683,7 +683,7 @@ class BasicDbStorage implements WritableObjectStorage {
 			$this->table,
 			'*',
 			UUID::convertUUIDs( $attributes ),
-			__METHOD__,
+			__METHOD__ . " ({$this->table})",
 			$options
 		);
 		if ( ! $res ) {
