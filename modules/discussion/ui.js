@@ -66,9 +66,13 @@
 							.show();
 					} );
 
-				$textarea = $formContainer.find( 'textarea' );
+				var $textarea = $formContainer.find( 'textarea' ),
+					tval = $textarea.val();
+
 				$textarea
 					.focus()
+					.val( '' )
+					.val( tval ) // Move cursor to end
 					.removeClass( 'flow-reply-box-closed' );
 				mw.flow.editor.load( $textarea, defaultContent, 'wikitext' );
 
