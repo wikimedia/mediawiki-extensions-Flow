@@ -1292,6 +1292,7 @@ $messages['fi'] = array(
  * @author Ayack
  * @author Gomoko
  * @author Linedwell
+ * @author Ltrlg
  * @author Sherbrooke
  * @author VIGNERON
  */
@@ -1413,7 +1414,7 @@ $messages['fr'] = array(
 	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|a répondu}} a votre note concernant $2 sur « $3 »',
 	'flow-notification-reply-email-batch-bundle-body' => '$1 et $4 {{PLURAL:$5|autre|autres}} {{GENDER:$1|ont répondu}} à votre note concernant $2 sur « $3 »',
 	'flow-notification-mention-email-subject' => '$1 vous {{GENDER:$1|a mentionné}} en $2',
-	'flow-notification-mention-email-batch-body' => '$1 vous {{GENDER:$1|a mentionné|a mentionné|ont mentionné}}}} dans {{GENDER:$1|sa|sa|leur}} note sur « $2 » en « $3 »', # Fuzzy
+	'flow-notification-mention-email-batch-body' => '$1 vous {{GENDER:$1|a mentionné}} dans {{GENDER:$1|sa}} note sur « $2 » en « $3 »',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|a modifié}} votre note',
 	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|a modifié}} votre note sur $2 en « $3 »',
 	'flow-notification-edit-email-batch-bundle-body' => '$1 et $4 {{PLURAL:$5|autre|autres}} {{GENDER:$1|ont modifié}} une note sur $2 en « $3 »',
@@ -1597,7 +1598,7 @@ $messages['he'] = array(
 	'flow-hide-content' => 'הוסתר על־ידי $1',
 	'flow-delete-content' => 'הוסתר על־ידי $1',
 	'flow-suppress-content' => 'הועלם על־ידי $1',
-	'flow-suppress-usertext' => 'השם הועלם',
+	'flow-suppress-usertext' => "'''השם הועלם'''",
 	'flow-post-actions' => 'פעולות',
 	'flow-topic-actions' => 'פעולות',
 	'flow-cancel' => 'ביטול',
@@ -1607,10 +1608,10 @@ $messages['he'] = array(
 	'flow-newtopic-header' => 'הוספת נושא חדש',
 	'flow-newtopic-save' => 'נוספת נושא',
 	'flow-newtopic-start-placeholder' => 'התחלת נושא חדש',
-	'flow-reply-topic-placeholder' => '{{GENDER:$1|כתוב|כתבי|כתבו}} תגובה עד "$2"',
-	'flow-reply-placeholder' => '{{GENDER:$1|השב|השיבי|השיבו}} ל{{GRAMMAR:תחילית|$1}}',
-	'flow-reply-submit' => '{{GENDER:$1|הגב|הגיבי|הגיבו}}',
-	'flow-reply-link' => '{{GENDER:$1|הגב|הגיבי|הגיבו}}',
+	'flow-reply-topic-placeholder' => '{{GENDER:$1|הגב|הגיבי|להגיב}} על "$2"',
+	'flow-reply-placeholder' => '{{GENDER:$1|השב|השיבי|להגיב}} ל{{GRAMMAR:תחילית|$1}}',
+	'flow-reply-submit' => '{{GENDER:$1|השב|השיבי|להשיב}}',
+	'flow-reply-link' => '{{GENDER:$1|השב|השיבי|להשיב}}',
 	'flow-thank-link' => '{{GENDER:$1|תודה}}',
 	'flow-talk-link' => 'לדבר עם $1',
 	'flow-edit-post-submit' => 'שליחת שינויים',
@@ -1633,7 +1634,7 @@ $messages['he'] = array(
 	'flow-topic-action-restore-topic' => 'לשחזר נושא',
 	'flow-error-http' => 'אירעה שגיאה בעת התחברות לשרת',
 	'flow-error-other' => 'אירעה שגיאה בלתי־צפויה.',
-	'flow-error-external' => 'אירעה שגיאה בעת ניסיון לשמור את הרשומה שלך.<br /><small>התקבלה ההודעה הבאה: $1</small>',
+	'flow-error-external' => 'אירעה שגיאה בעת ניסיון לשמור את הרשומה שלך.<br /><small>התקבלה הודעת השגיאה הבאה: $1</small>',
 	'flow-error-edit-restricted' => 'אין לך הרשאה לערוך את הרשומה הזאת.',
 	'flow-error-external-multi' => 'אירעו שגיאות.<br />
 $1',
@@ -1717,9 +1718,9 @@ $1',
 	'flow-moderation-title-hide-post' => 'להסתיר את הרשומה?',
 	'flow-moderation-title-restore-post' => 'לשחזר את הרשומה?',
 	'flow-moderation-intro-suppress-post' => '{{GENDER:$1|הסבר|הסבירי}} בבקשה למה {{GENDER:$1|אתה מעלים|את מעלימה}} את הרשומה הזאת.',
-	'flow-moderation-intro-delete-post' => '{{GENDER:$1|הסבר|הסבירי}} הבקשה למה {{GENDER:$1|אתה מוחק|את מוחקת}} את הרשומה הזאת.', # Fuzzy
-	'flow-moderation-intro-hide-post' => '{{GENDER:$1|הסבר|הסבירי}} הבקשה למה {{GENDER:$1|אתה מסתיר|את מסתירה}} את הרשומה הזאת.', # Fuzzy
-	'flow-moderation-intro-restore-post' => '{{GENDER:$1|הסבר|הסבירי}} הבקשה למה {{GENDER:$1|אתה משחזר|את משחזרת}} את הרשומה הזאת.', # Fuzzy
+	'flow-moderation-intro-delete-post' => '{{GENDER:$1|הסבר|הסבירי}} בבקשה למה {{GENDER:$1|אתה מוחק|את מוחקת}} את הרשומה הזאת.', # Fuzzy
+	'flow-moderation-intro-hide-post' => '{{GENDER:$1|הסבר|הסבירי}} בבקשה למה {{GENDER:$1|אתה מסתיר|את מסתירה}} את הרשומה הזאת.', # Fuzzy
+	'flow-moderation-intro-restore-post' => '{{GENDER:$1|הסבר|הסבירי}} בבקשה למה {{GENDER:$1|אתה משחזר|את משחזרת}} את הרשומה הזאת.', # Fuzzy
 	'flow-moderation-confirm-suppress-post' => 'להעלים',
 	'flow-moderation-confirm-delete-post' => 'למחוק',
 	'flow-moderation-confirm-hide-post' => 'להסתיר',
@@ -1732,10 +1733,10 @@ $1',
 	'flow-moderation-title-delete-topic' => 'למחוק את הנושא?',
 	'flow-moderation-title-hide-topic' => 'להסתיר את הנושא?',
 	'flow-moderation-title-restore-topic' => 'לשחזר את הנושא?',
-	'flow-moderation-intro-suppress-topic' => '{{GENDER:$1|הסבר|הסבירי}} הבקשה למה {{GENDER:$1|אתה מעלים|את מעלימה}} את הנושא הזה.',
-	'flow-moderation-intro-delete-topic' => '{{GENDER:$1|הסבר|הסבירי}} הבקשה למה {{GENDER:$1|אתה מוחק|את מוחקת}} את הנושא הזה.', # Fuzzy
-	'flow-moderation-intro-hide-topic' => '{{GENDER:$1|הסבר|הסבירי}} הבקשה למה {{GENDER:$1|אתה מסתיר|את מסתירה}} את הנושא הזה.', # Fuzzy
-	'flow-moderation-intro-restore-topic' => '{{GENDER:$1|הסבר|הסבירי}} הבקשה למה {{GENDER:$1|אתה משחזר|את משחזרת}} את הנושא הזה.', # Fuzzy
+	'flow-moderation-intro-suppress-topic' => '{{GENDER:$1|הסבר|הסבירי}} בבקשה למה {{GENDER:$1|אתה מעלים|את מעלימה}} את הנושא הזה.', # Fuzzy
+	'flow-moderation-intro-delete-topic' => '{{GENDER:$1|הסבר|הסבירי}} בבקשה למה {{GENDER:$1|אתה מוחק|את מוחקת}} את הנושא הזה.', # Fuzzy
+	'flow-moderation-intro-hide-topic' => '{{GENDER:$1|הסבר|הסבירי}} בבקשה למה {{GENDER:$1|אתה מסתיר|את מסתירה}} את הנושא הזה.', # Fuzzy
+	'flow-moderation-intro-restore-topic' => '{{GENDER:$1|הסבר|הסבירי}} בבקשה למה {{GENDER:$1|אתה משחזר|את משחזרת}} את הנושא הזה.', # Fuzzy
 	'flow-moderation-confirm-suppress-topic' => 'להעלים',
 	'flow-moderation-confirm-delete-topic' => 'למחוק',
 	'flow-moderation-confirm-hide-topic' => 'להסתיר',
@@ -1894,9 +1895,11 @@ $messages['it'] = array(
 	'log-name-flow' => 'Attività sui flussi',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 messaggio] su [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|ha ripristinato}} un [$4 messaggio] su [[$3]]',
+	'logentry-suppress-flow-suppress-post' => '$1 {{GENDER:$2|ha soppresso}} un [$4 messaggio] su [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 messaggio] su [[$3]]',
 	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|ha cancellato}} una [$4 discussione] su [[$3]]',
 	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|ha ripristinato}} una [$4 discussione] su [[$3]]',
+	'logentry-suppress-flow-suppress-topic' => '$1 {{GENDER:$2|ha soppresso}} una [$4 discussione] su [[$3]]',
 	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|ha cancellato}} una [$4 discussione] su [[$3]]',
 	'flow-user-moderated' => 'Utente moderato',
 	'flow-edit-header-link' => 'Modifica intestazione',
@@ -1967,14 +1970,14 @@ $messages['it'] = array(
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|ha modificato}} il titolo della discussione in [$3 $4] da $5.',
 	'flow-rev-message-create-header' => "$1 {{GENDER:$2|ha creato}} l'intestazione della scheda.",
 	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|ha modificato}} l'intestazione della scheda.",
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|ha nascosto}} un [$4 commento].', # Fuzzy
-	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 commento].', # Fuzzy
+	'flow-rev-message-hid-post' => "$1 {{GENDER:$2|ha nascosto}} un [$4 commento] ('' $5 '').",
+	'flow-rev-message-deleted-post' => "$1 {{GENDER:$2|ha cancellato}} un [$4 commento] ('' $5 '').",
 	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|ha soppresso}} un [$4 commento].',
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|ha ripristinato}} un [$4 commento].', # Fuzzy
-	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|ha nascosto}} la [$4 discussione].', # Fuzzy
-	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|ha cancellato}} la [$4 discussione].', # Fuzzy
+	'flow-rev-message-restored-post' => "$1 {{GENDER:$2|ha ripristinato}} un [$4 commento] ('' $5 '').",
+	'flow-rev-message-hid-topic' => "$1 {{GENDER:$2|ha nascosto}} la [$4 discussione] ('' $5 '').",
+	'flow-rev-message-deleted-topic' => "$1 {{GENDER:$2|ha cancellato}} la [$4 discussione] ('' $5 '').",
 	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|ha soppresso}} la [$4 discussione].',
-	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|ha ripristinato}} la [$4 discussione].', # Fuzzy
+	'flow-rev-message-restored-topic' => "$1 {{GENDER:$2|ha ripristinato}} la [$4 discussione] ('' $5 '').",
 	'flow-board-history' => 'Cronologia di "$1"',
 	'flow-topic-history' => 'Cronologia della discussione "$1"',
 	'flow-post-history' => 'Cronologia del commento di {{GENDER:$2|$2}}',
@@ -1998,7 +2001,7 @@ $messages['it'] = array(
 	'flow-notification-edit-bundle' => '$1 e {{PLURAL:$6|un altro|altri $5}} utenti {{GENDER:$1|hanno modificato}} un [$4 messaggio] in $2 su "$3".',
 	'flow-notification-newtopic' => '$1 ha {{GENDER:$1|creato}} una [$5 nuova discussione] su [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 ha {{GENDER:$1|cambiato}} il titolo di [$2 $3] in "$4" su [[$5|$6]]',
-	'flow-notification-mention' => '$1 ti {{GENDER:$1|ha menzionato}} nel suo [$2 messaggio] in "$3" su "$4"', # Fuzzy
+	'flow-notification-mention' => '$1 ti {{GENDER:$1|ha menzionato}} nel suo [$2 messaggio] in "$3" su "$4".',
 	'flow-notification-link-text-view-post' => 'Vedi messaggio',
 	'flow-notification-link-text-view-board' => 'Vedi bacheca',
 	'flow-notification-link-text-view-topic' => 'Vedi discussione',
@@ -2006,7 +2009,7 @@ $messages['it'] = array(
 	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|ha risposto}} al tuo messaggio in $2 su "$3"',
 	'flow-notification-reply-email-batch-bundle-body' => '$1 e {{PLURAL:$5|un altro|altri $4}} {{GENDER:$1|hanno risposto}} al tuo messaggio in $2 su "$3"',
 	'flow-notification-mention-email-subject' => '$1 ti {{GENDER:$1|ha menzionato}} su $2',
-	'flow-notification-mention-email-batch-body' => '$1 ti {{GENDER:$1|ha menzionato}} nel suo messaggio in "$2" su "$3"', # Fuzzy
+	'flow-notification-mention-email-batch-body' => '$1 ti {{GENDER:$1|ha menzionato}} nel suo messaggio in "$2" su "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|ha modificato}} il tuo messaggio',
 	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|ha modificato}} il tuo messaggio in $2 su "$3"',
 	'flow-notification-edit-email-batch-bundle-body' => '$1 e {{PLURAL:$5|un altro|altri $4}} utenti {{GENDER:$1|hanno modificato}} un messaggio in $2 su "$3"',
@@ -2054,6 +2057,7 @@ $messages['it'] = array(
 	'flow-moderation-confirmation-restore-topic' => 'Hai ripristinato con successo questa discussione.',
 	'flow-topic-permalink-warning' => 'La discussione è iniziata su [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'La discussione è iniziata sulla [$2 scheda di {{GENDER:$1|$1}}]',
+	'flow-compare-revisions-revision-header' => 'Versione di {{GENDER:$2|$2}} del $1',
 );
 
 /** Japanese (日本語)
@@ -2376,9 +2380,11 @@ $messages['mk'] = array(
 	'log-name-flow' => 'Дневник на активности во текот',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|избриша}} [$4 објава] на [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|поврати}} [$4 објава] на [[$3]]',
+	'logentry-suppress-flow-suppress-post' => '$1 {{GENDER:$2|притаи}} [$4 објава] на [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|избриша}} [$4 објава] на [[$3]]',
 	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|избриша}} [$4 тема] на [[$3]]',
 	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|поврати}} [$4 тема] на [[$3]]',
+	'logentry-suppress-flow-suppress-topic' => '$1 {{GENDER:$2|притаи}} [$4 тема] на [[$3]]',
 	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|избриша}} [$4 тема] на [[$3]]',
 	'flow-user-moderated' => 'Модериран корисник',
 	'flow-edit-header-link' => 'Измени наслов',
@@ -2536,6 +2542,7 @@ $messages['mk'] = array(
 	'flow-moderation-confirmation-restore-topic' => 'Успешно ја повративте темата.',
 	'flow-topic-permalink-warning' => 'Темата е започната на [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Темата е започната на [$2 таблата на {{GENDER:$1|$1}}]',
+	'flow-compare-revisions-revision-header' => 'Верзија на {{GENDER:$2|$2}} од $1',
 );
 
 /** Malayalam (മലയാളം)
@@ -3086,9 +3093,8 @@ $messages['sl'] = array(
  * @author Milicevic01
  */
 $messages['sr-ec'] = array(
+	'flow-preview' => 'Претпреглед',
 	'flow-link-topic' => 'тема',
-	'flow-moderation-reason' => 'Разлог:',
-	'flow-moderation-confirm' => 'Потврди акцију',
 );
 
 /** Serbian (Latin script) (srpski (latinica)‎)
