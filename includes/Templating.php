@@ -325,6 +325,24 @@ class Templating {
 	}
 
 	/**
+	 * Returns the creator's gender.
+	 *
+	 * @param PostRevision $revision Revision to display creator name for
+	 * @param User[optional] $permissionsUser User to display creator name to
+	 * @return string 'male', 'female', 'unknown' or false if not permitted.
+	 */
+	public function getCreatorGender( PostRevision $revision, User $permissionsUser = null ) {
+		$creator = $revision->getCreator( $user );
+		if ( !$revision->isAllowed( $permissionsUser ) ||
+			!( $creator instanceof User )
+		) {
+			return false;
+		}
+
+		return $creator->getOption( 'gender' );
+	}
+
+	/**
 	 * Formats a revision's content for displaying. Usually, the revisions's
 	 * content can just be displayed. In the event of moderation, however, that
 	 * info should not be exposed.
