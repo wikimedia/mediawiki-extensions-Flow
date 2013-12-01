@@ -6,6 +6,12 @@ $messages = array();
 
 /**
  * English
+ * @author Erik Bernhardson
+ * @author Matthias Mullie
+ * @author Benny Situ
+ * @author Andrew Garrett
+ * @author Yuki Shira
+ * @author Amir E. Aharoni
  */
 $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
