@@ -71,6 +71,7 @@ echo Html::openElement( 'div', array(
 	'class' => 'flow-topic-container flow-topic-full' . $moderationClass,
 	'id' => 'flow-topic-' . $topic->getId()->getHex(),
 	'data-topic-id' => $topic->getId()->getHex(),
+	'data-creator-gender' => $this->getCreatorGender( $root, $user ),
 	'data-creator-name' => $this->getCreatorText( $root, $user ),
 	'data-title' => $root->isModerated() ? '' : $title,
 ) );

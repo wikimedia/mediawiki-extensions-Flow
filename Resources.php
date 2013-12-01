@@ -138,6 +138,8 @@ $wgResourceModules += array(
 			'jquery.ui.dialog',
 			'jquery.spinner',
 			'jquery.byteLimit',
+			'mediawiki.jqueryMsg',
+			'mediawiki.user',
 		),
 	),
 	'ext.flow.editor' => $flowResourceTemplate + array(
