@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_a26121d2",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-01T23:59:55Z",
+      "side": 1,
+      "message": "Be careful with this. You need to actually clone the title, here or in generateUrlData, otherwise if the Title object is reused somewhere else then random links in Flow start having fragments set.\n\nIt\u0027s a bit annoying, because it breaks our fudge of Title objects being immutable.",
+      "revId": "9cb59cdac87ad4d8087b9318e26243bb7b525207",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
