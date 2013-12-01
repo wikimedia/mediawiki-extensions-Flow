@@ -194,27 +194,27 @@ $messages['en'] = array(
 	'flow-moderation-title-suppress-post' => 'Suppress post?',
 	'flow-moderation-title-delete-post' => 'Delete post?',
 	'flow-moderation-title-hide-post' => 'Hide post?',
-	'flow-moderation-title-restore-post'=> 'Restore post?',
-	'flow-moderation-intro-suppress-post' => "Please explain why you're suppressing this post.",
-	'flow-moderation-intro-delete-post' => "Please explain why you're deleting this post.",
-	'flow-moderation-intro-hide-post' => "Please explain why you're hiding this post.",
-	'flow-moderation-intro-restore-post'=> "Please explain why you're restoring this post.",
+	'flow-moderation-title-restore-post' => 'Restore post?',
+	'flow-moderation-intro-suppress-post' => "Please {{GENDER:$3|explain}} why you're suppressing this post.",
+	'flow-moderation-intro-delete-post' => "Please {{GENDER:$3|explain}} why you're deleting this post.",
+	'flow-moderation-intro-hide-post' => "Please {{GENDER:$3|explain}} why you're hiding this post.",
+	'flow-moderation-intro-restore-post' => "Please {{GENDER:$3|explain}} why you're restoring thispost.",
 	'flow-moderation-confirm-suppress-post' => 'Suppress',
 	'flow-moderation-confirm-delete-post' => 'Delete',
 	'flow-moderation-confirm-hide-post' => 'Hide',
 	'flow-moderation-confirm-restore-post' => 'Restore',
-	'flow-moderation-confirmation-suppress-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
-	'flow-moderation-confirmation-delete-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
-	'flow-moderation-confirmation-hide-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
-	'flow-moderation-confirmation-restore-post' => 'You have successfully restored this post.',
+	'flow-moderation-confirmation-suppress-post' => '{{GENDER:$3|Consider}} {{GENDER:$2|giving}} $1 feedback on this post.',
+	'flow-moderation-confirmation-delete-post' => '{{GENDER:$3|Consider}} {{GENDER:$2|giving}} $1 feedback on this post.',
+	'flow-moderation-confirmation-hide-post' => '{{GENDER:$3|Consider}} {{GENDER:$2|giving}} $1 feedback on this post.',
+	'flow-moderation-confirmation-restore-post' => '{{GENDER:$3|You}} have successfully restored this post.',
 	'flow-moderation-title-suppress-topic' => 'Suppress topic?',
 	'flow-moderation-title-delete-topic' => 'Delete topic?',
 	'flow-moderation-title-hide-topic' => 'Hide topic?',
-	'flow-moderation-title-restore-topic'=> 'Restore topic?',
-	'flow-moderation-intro-suppress-topic' => "Please explain why you're suppressing this topic.",
-	'flow-moderation-intro-delete-topic' => "Please explain why you're deleting this topic.",
-	'flow-moderation-intro-hide-topic' => "Please explain why you're hiding this topic.",
-	'flow-moderation-intro-restore-topic'=> "Please explain why you're restoring this topic.",
+	'flow-moderation-title-restore-topic' => 'Restore topic?',
+	'flow-moderation-intro-suppress-topic' => "Please {{GENDER:$3|explain}} why you're suppressing this topic.",
+	'flow-moderation-intro-delete-topic' => "Please {{GENDER:$3|explain}} why you're deleting this topic.",
+	'flow-moderation-intro-hide-topic' => "Please {{GENDER:$3|explain}} why you're hiding this topic.",
+	'flow-moderation-intro-restore-topic' => "Please {{GENDER:$3|explain}} why you're restoring this topic.",
 	'flow-moderation-confirm-suppress-topic' => 'Suppress',
 	'flow-moderation-confirm-delete-topic' => 'Delete',
 	'flow-moderation-confirm-hide-topic' => 'Hide',
@@ -222,7 +222,7 @@ $messages['en'] = array(
 	'flow-moderation-confirmation-suppress-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
 	'flow-moderation-confirmation-delete-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
 	'flow-moderation-confirmation-hide-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
-	'flow-moderation-confirmation-restore-topic' => 'You have successfully restored this topic.',
+	'flow-moderation-confirmation-restore-topic' => '{{GENDER:$3|You}} have successfully restored this topic.',
 
 	// Permalink related stuff
 	'flow-topic-permalink-warning' => 'This topic was started on [$2 $1]',
@@ -810,20 +810,24 @@ See also:
 {{Related|Flow-moderation-title}}
 {{Identical|Restore post}}',
 	'flow-moderation-intro-suppress-post' => 'Intro for the moderation confirmation dialog when a post is being suppressed. Parameters:
-* $1 - (Unused) the name of the user whose post is being suppressed. GENDER supported.
-* $2 - (Unused) the subject of the topic in which a post is being suppressed
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-intro-delete-post' => 'Intro for the moderation confirmation dialog when a post is being deleted. Parameters:
-* $1 - (Unused) the name of the user whose post is being deleted. GENDER supported.
-* $2 - (Unused) the subject of the topic in which a post is being deleted
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-intro-hide-post' => 'Intro for the moderation confirmation dialog when a post is being hidden. Parameters:
-* $1 - (Unused) the name of the user whose post is being hidden. GENDER supported.
-* $2 - (Unused) the subject of the topic in which a post is being hidden
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-intro-restore-post' => 'Intro for the restore confirmation dialog. Parameters:
-* $1 - (Unused) the name of the user whose post is being suppressed. GENDER supported.
-* $2 - (Unused) the subject of the topic in which a post is being suppressed
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-confirm-suppress-post' => 'Label for a button that will confirm suppression of a post.
 {{Related|Flow-moderation-confirm}}
@@ -838,16 +842,24 @@ See also:
 {{Related|Flow-moderation-confirm}}
 {{Identical|Restore}}',
 	'flow-moderation-confirmation-suppress-post' => 'Message displayed after a successful suppression of a post. Parameters:
-* $1 - the name of the user whose post is being moderated. GENDER supported.
+* $1 - the user whose post is being moderated.
+* $2 - the gender of the user whose post is being moderated, for GENDER.
+* $3 - the current user, for GENDER.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-confirmation-delete-post' => 'Message displayed after a successful deletion of a post. Parameters:
-* $1 - the name of the user whose post is being moderated. GENDER supported.
+* $1 - the user whose post is being moderated.
+* $2 - the gender of the user whose post is being moderated, for GENDER.
+* $3 - the current user, for GENDER.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-confirmation-hide-post' => 'Message displayed after a successful hiding of a post. Parameters:
-* $1 - the name of the user whose post is being moderated. GENDER supported.
+* $1 - the user whose post is being moderated.
+* $2 - the gender of the user whose post is being moderated, for GENDER.
+* $3 - the current user, for GENDER.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-confirmation-restore-post' => 'Message displayed after a successful restoring of a post. Parameters:
-* $1 - the name of the user whose post is being restored. GENDER supported.
+* $1 - (unused) the user whose post is being moderated.
+* $2 - (unused) the gender of the user whose post is being moderated, for GENDER.
+* $3 - the current user, for GENDER.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-title-suppress-topic' => 'Title for the moderation confirmation dialog when a topic is being suppressed.
 {{Related|Flow-moderation-title}}',
@@ -861,20 +873,24 @@ See also:
 {{Related|Flow-moderation-title}}
 {{Identical|Restore topic}}',
 	'flow-moderation-intro-suppress-topic' => 'Intro for the moderation confirmation dialog when a topic is being suppressed. Parameters:
-* $1 - (Unused) the name of the user whose post is being suppressed. GENDER supported.
-* $2 - (Unused) the subject of the topic in which a topic is being suppressed
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-intro-delete-topic' => 'Intro for the moderation confirmation dialog when a topic is being deleted. Parameters:
-* $1 - (Unused) the name of the user whose post is being deleted. GENDER supported.
-* $2 - (Unused) the subject of the topic in which a topic is being deleted
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-intro-hide-topic' => 'Intro for the moderation confirmation dialog when a topic is being hidden. Parameters:
-* $1 - (Unused) the name of the user whose post is being hidden. GENDER supported.
-* $2 - (Unused) the subject of the topic in which a topic is being hidden
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-intro-restore-topic' => 'Intro for the restore confirmation dialog. Parameters:
-* $1 - (Unused) the name of the user whose post is being suppressed. GENDER supported.
-* $2 - (Unused) the subject of the topic in which a topic is being suppressed
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
 {{Related|Flow-moderation-intro}}',
 	'flow-moderation-confirm-suppress-topic' => 'Label for a button that will confirm suppression of a topic.
 {{Related|Flow-moderation-confirm}}
@@ -889,16 +905,24 @@ See also:
 {{Related|Flow-moderation-confirm}}
 {{Identical|Restore}}',
 	'flow-moderation-confirmation-suppress-topic' => 'Message displayed after a successful suppression of a topic. Parameters:
-* $1 - the name of the user whose post is being moderated. GENDER supported.
+* $1 - the user whose post is being moderated.
+* $2 - the gender of the user whose post is being moderated, for GENDER.
+* $3 - the current user, for GENDER.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-confirmation-delete-topic' => 'Message displayed after a successful deletion of a topic. Parameters:
-* $1 - the name of the user whose post is being moderated. GENDER supported.
+* $1 - the user whose post is being moderated.
+* $2 - the gender of the user whose post is being moderated, for GENDER.
+* $3 - the current user, for GENDER.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-confirmation-hide-topic' => 'Message displayed after a successful hiding of a topic. Parameters:
-* $1 - the name of the user whose post is being moderated. GENDER supported.
+* $1 - the user whose post is being moderated.
+* $2 - the gender of the user whose post is being moderated, for GENDER.
+* $3 - the current user, for GENDER.
 {{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-confirmation-restore-topic' => 'Message displayed after a successful restoring of a topic. Parameters:
-* $1 - the name of the user whose post is being restored. GENDER supported.
+	'flow-moderation-confirmation-restore-topic' => 'Message displayed after a successful restoring of a topic.
+* $1 - (unused) the user whose post is being moderated.
+* $2 - (unused) the gender of the user whose post is being moderated, for GENDER.
+* $3 - the current user, for GENDER.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-topic-permalink-warning' => 'Displayed at the top of a page when a person has clicked on a permanent link to a topic.
 

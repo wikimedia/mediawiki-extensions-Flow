@@ -59,6 +59,7 @@ echo Html::openElement( 'div', array(
 	'class' => 'flow-post-container ' . ( $post->getDepth() >= $maxThreadingDepth ? 'flow-post-max-depth' : '' ),
 	'data-revision-id' => $post->getRevisionId()->getHex(),
 	'data-post-id' => $post->getPostId()->getHex(),
+	'data-creator-gender' => $post->getCreatorGender(),
 	'data-creator-name' => $post->getCreatorName()
 ) );
 ?>

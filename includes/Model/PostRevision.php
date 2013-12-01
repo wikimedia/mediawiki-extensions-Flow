@@ -128,6 +128,20 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
+	 * Get the gender of the User who created this post.
+	 * Checks permissions, and returns false if the current user is not permitted
+	 * to access that information
+	 *
+	 * @param User $user The user to check permissions for.
+	 * @return string|bool 'male', 'female', 'unknown' if not defined, or false if not permitted.
+	 */
+	public function getCreatorGender( $user = null ) {
+			$creator = $this->getCreator( $user );
+
+			return $creator === false ? false : $creator->getOption( 'gender' );
+	}
+
+	/**
 	 * Get the User who created this post.
 	 * Checks permissions, and returns false if the current user is not permitted
 	 * to access that information
