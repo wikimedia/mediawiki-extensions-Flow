@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_e221699b",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-01T23:54:25Z",
+      "side": 1,
+      "message": "Why did you remove the subject from the parameters? It\u0027s not used with the current copy, but I don\u0027t think that means you should gratuitously remove it…\n\nAlso, I know you want to be B/C with existing translations, but I think it kinda sucks to then have an empty parameter…",
+      "revId": "2f2b73347f3070cd319369c17fa7038d17177f2e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
