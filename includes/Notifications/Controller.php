@@ -64,7 +64,6 @@ class NotificationController {
 		$extraData = array();
 
 		$revision = $data['revision'];
-		$topicTitle = $data['topic-title'];
 		$topicWorkflow = $data['topic-workflow'];
 
 		$extraData['revision-id'] = $revision->getRevisionId();
@@ -77,7 +76,7 @@ class NotificationController {
 				$extraData += array(
 					'reply-to' => $replyToPost->getPostId(),
 					'content' => $revision->getContent(),
-					'topic-title' => $topicTitle,
+					'topic-title' => $data['topic-title'],
 				);
 			break;
 			case 'flow-topic-renamed':
@@ -89,7 +88,7 @@ class NotificationController {
 			case 'flow-post-edited':
 				$extraData += array(
 					'content' => $revision->getContent(),
-					'topic-title' => $topicTitle,
+					'topic-title' => $data['topic-title'],
 				);
 			break;
 		}
@@ -109,7 +108,7 @@ class NotificationController {
 					'title' => $title,
 					'user' => $user,
 					'post' => $revision,
-					'topic-title' => $topicTitle,
+					'topic-title' => $data['topic-title'],
 					'topic-workflow' => $topicWorkflow,
 				) )
 			);
