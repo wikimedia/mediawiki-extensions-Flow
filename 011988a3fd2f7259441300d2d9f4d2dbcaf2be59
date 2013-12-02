@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_9a2685b4",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-02T16:57:16Z",
+      "side": 1,
+      "message": "How is a regular user to understand this?",
+      "revId": "011988a3fd2f7259441300d2d9f4d2dbcaf2be59",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
