@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_2efa9740",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-02T22:56:28Z",
+      "side": 1,
+      "message": "to be consistent with other mw, should probably be $wgFlowParsoidTitle ? Although hopefully this will soon be deprecated with a better solution",
+      "revId": "79307b9da61bea4eee2f0ef30f8c1953c9e8dcf9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_eedcafe7",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-02T22:56:28Z",
+      "side": 1,
+      "message": "If we dont have a $params[\u0027page\u0027], we should probably use $parsoidTitle \u003d $this-\u003eloader-\u003egetWorkflow()-\u003egetArticleTitle()",
+      "revId": "79307b9da61bea4eee2f0ef30f8c1953c9e8dcf9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
