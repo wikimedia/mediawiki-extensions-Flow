@@ -7,7 +7,9 @@ class FlowPage
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
   page_url URL.url("Talk:Flow_QA")
 
+  a(:actions_link, title: 'Actions')
   span(:author_link, class: 'flow-creator')
+  a(:block_user, title: /Special:Block/)
   button(:change_post_save, class: 'mw-ui-button mw-ui-constructive flow-edit-post-submit')
   button(:change_title_save, class: 'flow-edit-title-submit mw-ui-button mw-ui-constructive')
   a(:contrib_link, text: 'contribs')
