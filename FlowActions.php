@@ -98,13 +98,17 @@ $wgFlowActions = array(
 					return $templating->getUrlGenerator()->generateUrl( $revision->getPostId() );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getContent( $revision, 'wikitext', $user );
+					// make sure topic title isn't parsed
+					$content = $templating->getContent( $revision, 'wikitext', $user );
+					return array( 'raw' => htmlspecialchars( $content ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$previousId = $revision->getPrevRevisionId();
 					if ( $previousId ) {
 						$previousRevision = $block->getStorage()->get( get_class( $revision ), $previousId );
-						return $templating->getContent( $previousRevision, 'wikitext', $user );
+						// make sure topic title isn't parsed
+						$content = $templating->getContent( $previousRevision, 'wikitext', $user );
+						return array( 'raw' => htmlspecialchars( $content ) );
 					}
 
 					return '';
@@ -132,7 +136,9 @@ $wgFlowActions = array(
 					return $templating->getUrlGenerator()->generateUrl( $revision->getPostId() );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getContent( $revision, 'wikitext', $user );
+					// make sure topic title isn't parsed
+					$content = $templating->getContent( $revision, 'wikitext', $user );
+					return array( 'raw' => htmlspecialchars( $content ) );
 				},
 			),
 			'class' => 'flow-history-new-post',
