@@ -234,6 +234,7 @@ You can see other versions of this post at its [$6 history page].',
  * @author Beta16
  * @author Raymond
  * @author Shirayuki
+ * @author Siebrand
  */
 $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
@@ -599,7 +600,7 @@ Parameters:
 	'flow-topic-comments' => 'Message to display the amount of comments in this topic.
 
 Parameters:
-* $1 - The amount of comments on this topic, can be used for PLURAL',
+* $1 - The number of comments on this topic, can be used for PLURAL',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
@@ -1000,10 +1001,11 @@ $messages['ce'] = array(
 
 /** Czech (čeština)
  * @author Michaelbrabec
+ * @author Mormegil
  */
 $messages['cs'] = array(
 	'flow-cancel' => 'Storno',
-	'flow-newtopic-title-placeholder' => 'Předmět zprávy', # Fuzzy
+	'flow-newtopic-title-placeholder' => 'Nové téma',
 	'flow-topic-action-edit-title' => 'Upravit název',
 );
 
@@ -1303,9 +1305,11 @@ $messages['fr'] = array(
 	'log-name-flow' => 'Journal de flux d’activité',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|a supprimé}} une [$4 note] sur [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|a rétabli}} une [$4 note] sur [[$3]]',
+	'logentry-suppress-flow-suppress-post' => '$1 {{GENDER:$2|a supprimé}} une [$4 note] sur [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|a supprimé}} une [$4 note] sur [[$3]]',
 	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|a supprimé}} un [$4 sujet] sur [[$3]]',
 	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|a rétabli}} un [$4 sujet] sur [[$3]]',
+	'logentry-suppress-flow-suppress-topic' => '$1 {{GENDER:$2|a supprimé}} un [$4 sujet] sur [[$3]]',
 	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|a supprimé}} un [$4 sujet] sur [[$3]]',
 	'flow-user-moderated' => 'Utilisateur modéré',
 	'flow-edit-header-link' => 'Modifier l’entête',
@@ -1463,6 +1467,13 @@ $messages['fr'] = array(
 	'flow-moderation-confirmation-restore-topic' => 'Vous avez bien rétabli ce sujet.',
 	'flow-topic-permalink-warning' => 'Ce sujet a été démarré sur [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Ce sujet a été démarré sur le tableau de [$2 {{GENDER:$1|$1}}]',
+	'flow-revision-permalink-warning-post' => 'Voici un lien permanent vers une version unique de cette note.
+Cette version date de $1.
+Vous pouvez voir les [$5 différences depuis la version précédente], ou afficher d’autres versions sur la [$4 page d’historique de la note].',
+	'flow-revision-permalink-warning-post-first' => 'Voici un lien permanent vers la première version de cette note.
+Vous pouvez afficher des versions ultérieures depuis la [$4 page d’historique de la note].',
+	'flow-compare-revisions-revision-header' => 'Version par {{GENDER:$2|$2}} du $1',
+	'flow-compare-revisions-header-post' => 'Cette page affiche les modifications entre deux versions d’une note par $3 dans le sujet « [$5 $2] » sur [$4 $1].', # Fuzzy
 );
 
 /** Galician (galego)
@@ -2057,7 +2068,14 @@ $messages['it'] = array(
 	'flow-moderation-confirmation-restore-topic' => 'Hai ripristinato con successo questa discussione.',
 	'flow-topic-permalink-warning' => 'La discussione è iniziata su [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'La discussione è iniziata sulla [$2 scheda di {{GENDER:$1|$1}}]',
+	'flow-revision-permalink-warning-post' => 'Questo è un collegamento permanente ad una singola versione di questo messaggio.
+Questa versione è del $1.
+Puoi vedere le [$5 differenze dalla versione precedente] o le altre versioni nella [$4 cronologia della pagina].',
+	'flow-revision-permalink-warning-post-first' => 'Questo è un collegamento permanente alla prima versione di questo messaggio.
+Puoi vedere le versioni successive nella [$4 cronologia della pagina].',
 	'flow-compare-revisions-revision-header' => 'Versione di {{GENDER:$2|$2}} del $1',
+	'flow-compare-revisions-header-post' => 'Questa pagina mostra le modifiche tra due versioni del messaggio di $3, nella discussione "[$5 $2]" su [$4 $1].
+Puoi vedere le altre versioni nella [$4 cronologia della pagina].', # Fuzzy
 );
 
 /** Japanese (日本語)
@@ -2299,6 +2317,7 @@ $messages['lb'] = array(
 	'flow-topic-action-restore-topic' => 'Thema restauréieren',
 	'flow-error-other' => 'En onerwaarte Feeler ass geschitt.',
 	'flow-error-external' => 'Et ass e Feeler geschitt.<br /><small>De Feelermessage war:$1</ small>',
+	'flow-error-external-multi' => 'Et si Feeler geschitt.<br />$1',
 	'flow-error-missing-title' => "D'Thema huet keen Titel. Den Titel ass obligatoresch fir een neit Thema ze späicheren.",
 	'flow-error-delete-failure' => "D'Läsche vun dësem Element huet net funktionéiert.",
 	'flow-error-hide-failure' => 'Verstoppe vun dësem Element huet net funktionéiert.',
@@ -2314,6 +2333,7 @@ $messages['lb'] = array(
 	'flow-rev-message-deleted-post' => "$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] ('' $5 '') geläscht.",
 	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] (" $5 ") restauréiert.',
 	'flow-rev-message-deleted-topic' => "$1 {{GENDER:$2|huet}} d'[Thema $4] ('' $5 '') geläscht.",
+	'flow-rev-message-restored-topic' => "$1 {{GENDER:$2|huet}} d'[Thema $4] ('' $5 '') restauréiert.",
 	'flow-board-history' => 'Versioune vun "$1"',
 	'flow-topic-history' => 'Versioune vum Thema "$1"',
 	'flow-history-last4' => 'Lescht 4 Stonnen',
@@ -2327,9 +2347,11 @@ $messages['lb'] = array(
 	'flow-paging-rev' => 'Méi rezent Themen',
 	'flow-paging-fwd' => 'Méi al Themen',
 	'flow-last-modified' => "Fir d'lescht geännert ongeféier $1",
+	'flow-notification-newtopic' => '$1  {{GENDER:$1|huet}} een [$5 neit Thema] op [[$2|$3]]: $4 ugeluecht.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|huet}} den Titel vu(n) [$2 $3] op "$4" op [[$5|$6]] geännert.',
 	'flow-notification-link-text-view-board' => 'Tableau weisen',
 	'flow-notification-link-text-view-topic' => 'Thema weisen',
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|huet}} een neit Thema iwwer $2 ugeluecht',
 	'echo-category-title-flow-discussion' => 'Flow',
 	'echo-pref-tooltip-flow-discussion' => 'Mech informéiere wann Aktiounen déi mech betreffen a geschéien.',
 	'flow-link-topic' => 'Thema',
@@ -2347,6 +2369,7 @@ $messages['lb'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Läschen',
 	'flow-moderation-confirm-hide-topic' => 'Verstoppen',
 	'flow-moderation-confirm-restore-topic' => 'Restauréieren',
+	'flow-moderation-confirmation-restore-topic' => 'Dir hutt dëst Thema restauréiert.',
 	'flow-topic-permalink-warning' => 'Dëse Sujet gouf op [$2 $1] ugefaang',
 	'flow-compare-revisions-revision-header' => 'Versioun vum {{GENDER:$2|$2}} vum $1',
 );
@@ -2728,16 +2751,16 @@ $messages['ne'] = array(
  * @author TBloemink
  */
 $messages['nl'] = array(
-	'flow-desc' => 'Workflow managementsysteem',
+	'flow-desc' => 'Workflowmanagementsysteem',
 	'flow-page-title' => '$1 &ndash; Flow',
-	'log-name-flow' => 'Flow logboek',
+	'log-name-flow' => 'Logboek Flow',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] verwijderd van [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] teruggeplaatst op [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] verwijderd van [[$3]]',
-	'flow-edit-header-link' => 'Bewerk de koptekst',
+	'flow-edit-header-link' => 'Koptekst bewerken',
 	'flow-header-empty' => 'Deze overlegpagina heeft momenteel geen koptekst.',
-	'flow-post-moderated-toggle-show' => '[Toon]',
-	'flow-post-moderated-toggle-hide' => '[Verberg]',
+	'flow-post-moderated-toggle-show' => '[Weergeven]',
+	'flow-post-moderated-toggle-hide' => '[Verbergen]',
 	'flow-hide-content' => '{{GENDER:$1|Verborgen}} door $1',
 	'flow-delete-content' => '{{GENDER:$1|Verwijderd}} door $1',
 	'flow-suppress-content' => '{{GENDER:$1|Onderdrukt}} door $1',
@@ -2750,10 +2773,10 @@ $messages['nl'] = array(
 	'flow-newtopic-header' => 'Nieuw onderwerp toevoegen',
 	'flow-newtopic-save' => 'Onderwerp toevoegen',
 	'flow-newtopic-start-placeholder' => 'Nieuw onderwerp',
-	'flow-reply-topic-placeholder' => '{{GENDER:$1|Reageer}} op "$2"',
+	'flow-reply-topic-placeholder' => '{{GENDER:$1|Reageren}} op "$2"',
 	'flow-reply-placeholder' => '{{GENDER:$1|Reageren}} op $1',
 	'flow-reply-submit' => '{{GENDER:$1|Reageren}}',
-	'flow-reply-link' => '{{GENDER:$1|Reageer}}',
+	'flow-reply-link' => '{{GENDER:$1|Reageren}}',
 	'flow-thank-link' => '{{GENDER:$1|Bedanken}}',
 	'flow-edit-post-submit' => 'Wijzigingen opslaan',
 	'flow-post-edited' => 'Bericht $2 {{GENDER:$1|bewerkt}} door $1',
@@ -2772,18 +2795,18 @@ $messages['nl'] = array(
 	'flow-topic-action-delete-topic' => 'Onderwerp verwijderen',
 	'flow-topic-action-suppress-topic' => 'Onderwerp onderdrukken',
 	'flow-topic-action-restore-topic' => 'Onderwerp terugplaatsen',
-	'flow-error-http' => 'Er is een fout opgetreden bij het contacteren van de server.',
+	'flow-error-http' => 'Er is een fout opgetreden in het contact met de server.',
 	'flow-error-other' => 'Er is een onverwachte fout opgetreden.',
-	'flow-error-external' => 'Er is een fout opgetreden.<br /><small>De foutmelding is: <span class="notranslate" vertalen="no">$1</span></small>',
+	'flow-error-external' => 'Er is een fout opgetreden.<br /><small>De foutmelding is: $1</small>',
 	'flow-error-edit-restricted' => 'U mag dit bericht niet bewerken.',
-	'flow-error-external-multi' => 'Fouten zijn opgetreden. <br /> $1',
+	'flow-error-external-multi' => 'Er zijn fouten opgetreden.<br />$1',
 	'flow-error-missing-content' => 'Het bericht heeft geen inhoud. Inhoud is vereist voor het opslaan van een nieuw bericht.',
 	'flow-error-missing-title' => 'Onderwerp heeft geen titel. Een titel is vereist voor het opslaan van een nieuw onderwerp.',
-	'flow-error-invalid-replyto' => '"replyTo" parameter is ongeldig. Het opgegeven bericht kon niet worden gevonden.',
-	'flow-error-delete-failure' => 'Het verwijderen van dit object is mislukt.',
-	'flow-error-hide-failure' => 'Het verbergen van dit object is mislukt.',
-	'flow-error-invalid-postId' => '"postId" parameter is ongeldig. Het opgegeven bericht ($1) kan niet worden gevonden.',
-	'flow-edit-title-submit' => 'Titel wijzigen',
+	'flow-error-invalid-replyto' => 'De parameter "replyTo" is ongeldig. Het opgegeven bericht kon niet worden gevonden.',
+	'flow-error-delete-failure' => 'Het verwijderen van dit item is mislukt.',
+	'flow-error-hide-failure' => 'Het verbergen van dit item is mislukt.',
+	'flow-error-invalid-postId' => 'De parameter "postId" is ongeldig. Het opgegeven bericht ($1) kan niet worden gevonden.',
+	'flow-edit-title-submit' => 'Onderwerp wijzigen',
 	'flow-history-last4' => 'Laatste 4 uur',
 	'flow-history-day' => 'Vandaag',
 	'flow-history-week' => 'Afgelopen week',
@@ -3108,14 +3131,14 @@ $messages['sr-el'] = array(
  */
 $messages['sv'] = array(
 	'flow-desc' => 'Arbetsflödeshanteringssystem',
-	'flow-page-title' => '$1 &ndash; Flow', # Fuzzy
+	'flow-page-title' => '$1 &ndash; Flöde',
 	'flow-user-moderated' => 'Modererad användare',
 	'flow-edit-header-link' => 'Redigera sidhuvud',
 	'flow-header-empty' => 'Denna diskussionssida har för närvarande ingen rubrik.',
 	'flow-post-moderated-toggle-show' => '[Visa]',
 	'flow-post-moderated-toggle-hide' => '[Dölj]',
-	'flow-post-actions' => 'åtgärder', # Fuzzy
-	'flow-topic-actions' => 'åtgärder', # Fuzzy
+	'flow-post-actions' => 'Åtgärder',
+	'flow-topic-actions' => 'Åtgärder',
 	'flow-cancel' => 'Avbryt',
 	'flow-newtopic-title-placeholder' => 'Nytt ämne',
 	'flow-newtopic-content-placeholder' => 'Lägg till några detaljer om du vill',
@@ -3161,15 +3184,15 @@ $messages['sv'] = array(
 	'flow-edit-title-submit' => 'Ändra titel',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|redigerade}} en [$3 kommentar]',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|lade till}} en [$3 kommentar].',
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$2|kommentar|kommentarer}}''' lades till.", # Fuzzy
-	'flow-rev-message-new-post' => '$1 {{GENDER:$1|skapade}} ämnet [$3 $4].', # Fuzzy
+	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$2|kommentar|kommentarer}}''' {{PLURAL:$2|lades till}}.", # Fuzzy
+	'flow-rev-message-new-post' => '$1 {{GENDER:$2|skapade}} ämnet [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|ändrade}} ämnestiteln till [$3 $4] från $5.',
 	'flow-rev-message-create-header' => 'Skapade rubrik', # Fuzzy
 	'flow-rev-message-edit-header' => 'Redigera rubrik', # Fuzzy
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|dolde}} en [$4 kommentar].', # Fuzzy
-	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|raderade}} en [$4 kommentar].', # Fuzzy
+	'flow-rev-message-hid-post' => "$1 {{GENDER:$2|dolde}} en [$4 kommentar] ('' $5 '').",
+	'flow-rev-message-deleted-post' => "$1 {{GENDER:$2|raderade}} en [$4 kommentar] ('' $5 '').",
 	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$1|upphävde}} en [$4 kommentar].',
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$1|återställde}} en [$4 kommentar].', # Fuzzy
+	'flow-rev-message-restored-post' => "$1 {{GENDER:$2|återställde}} en [$4 kommentar] ('' $5 '').",
 	'flow-topic-history' => 'Ämneshistorik för "$1"',
 	'flow-history-last4' => 'Senaste 4 timmarna',
 	'flow-history-day' => 'I dag',
@@ -3190,7 +3213,7 @@ $messages['sv'] = array(
 	'flow-notification-edit-bundle' => '$1 och $5 {{PLURAL:$6|annan|andra}} {{GENDER:$1|redigerade}} ett [$4  inlägg] i $2 på "$3".',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|skapade}} ett [$5 nytt ämne] på [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|ändrade}} rubriken för [$2 $3] till "$4" på [[$5|$6]].',
-	'flow-notification-mention' => '$1 {{GENDER:$1|nämnde}} dig i deras [$2 inlägg] i "$3" på "$4"', # Fuzzy
+	'flow-notification-mention' => '$1 {{GENDER:$1|nämnde}} dig i {{GENDER:$1|hans|hennes|sitt}} [$2 inlägg] i "$3" på "$4".',
 	'flow-notification-link-text-view-post' => 'Visa inlägg',
 	'flow-notification-link-text-view-board' => 'Visa forum',
 	'flow-notification-link-text-view-topic' => 'Visa ämne',
@@ -3198,7 +3221,7 @@ $messages['sv'] = array(
 	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|svarade}} på ditt inlägg i $2 på "$3"',
 	'flow-notification-reply-email-batch-bundle-body' => '$1 och $4 {{PLURAL:$5|annan|andra}} {{GENDER:$1|svarade}} på ditt inlägg i $2 på "$3"',
 	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|omnämnde}} dig på $2',
-	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|omnämnde}} dig i deras inlägg i "$2" på "$3"', # Fuzzy
+	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|omnämnde}} dig i {{GENDER:$1|hans|hennes|sitt}} inlägg i "$2" på "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|redigerade}} ditt inlägg',
 	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|redigerade}} ditt inlägg i $2 på "$3"',
 	'flow-notification-edit-email-batch-bundle-body' => '$1 och $4 {{PLURAL:$5|annan|andra}} {{GENDER:$1|redigerade}} ett inlägg i $2 på "$3"',
