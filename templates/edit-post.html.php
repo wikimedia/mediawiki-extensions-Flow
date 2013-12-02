@@ -1,5 +1,14 @@
 <?php
 
+echo Html::openElement( 'div', array(
+	'class' => 'flow-topic-container flow-topic-full'
+) );
+echo Html::openElement( 'div', array(
+	'class' => 'flow-post-container'
+) );
+echo Html::openElement( 'div', array(
+	'class' => 'flow-edit-post-form flow-element-container'
+) );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
 	'action' => $this->generateUrl( $topic->getId(), 'edit-post' ),
@@ -22,10 +31,24 @@ echo Html::element( 'input', array(
 		'name' => $block->getName() . '[postId]',
 		'value' => $post->getPostId()->getHex(),
 	) ),
-	Html::textarea( $block->getName() . '[content]', $this->getContent( $post, 'wikitext', $user ) ),
-	Html::element( 'input', array(
-		'type' => 'submit',
-		'class' => 'mw-ui-button mw-ui-primary',
-		'value' => wfMessage( 'flow-edit-post-submit' )->plain()
+	Html::textarea(
+		$block->getName() . '[content]',
+		$this->getContent( $post, 'wikitext', $user ),
+		array(
+			'class' => 'mw-ui-input',
+			'rows' => '10'
+		)
+	),
+	Html::openElement( 'div', array(
+		'class' => 'flow-post-form-controls',
 	) ),
-	Html::closeElement( 'form' );
+		Html::element( 'input', array(
+			'type' => 'submit',
+			'class' => 'mw-ui-button mw-ui-constructive',
+			'value' => wfMessage( 'flow-edit-post-submit' )->plain()
+		) ),
+	Html::closeElement( 'div' ),
+Html::closeElement( 'form' ),
+Html::closeElement( 'div' ),
+Html::closeElement( 'div' ),
+Html::closeElement( 'div' );
