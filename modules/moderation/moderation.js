@@ -14,83 +14,84 @@
 			subject = $topicContainer.data( 'title' ),
 			$dialog = $( '<div />' ),
 			$form = $( '<form/>' ),
-			type, apiCallback, $resultContainer, user;
+			targetType, apiCallback, $resultContainer, user;
 
-			if ( $postContainer.length === 0 ) {
-				// moderating a topic
-				apiCallback = mw.flow.api.moderateTopic;
-				$resultContainer = $topicContainer;
-				type = 'topic';
-			} else {
-				apiCallback = mw.flow.api.moderatePost;
-				$resultContainer = $postContainer;
-				type = 'post';
-			}
-			user = $resultContainer.data( 'creator-name' );
+		if ( $postContainer.length === 0 ) {
+			// moderating a topic
+			apiCallback = mw.flow.api.moderateTopic;
+			$resultContainer = $topicContainer;
+			targetType = 'topic';
+		} else {
+			apiCallback = mw.flow.api.moderatePost;
+			$resultContainer = $postContainer;
+			targetType = 'post';
+		}
+		user = $resultContainer.data( 'creator-name' );
 
-			$dialog
-				.addClass( 'flow-moderation-dialog' )
-				.dialog( {
-					'title' : mw.msg( 'flow-moderation-title-'+moderationType+'-'+type ),
-					'modal' : true,
-					'buttons' : [
-						{
-							'text' : mw.msg( 'flow-moderation-confirm-'+moderationType+'-'+type ),
-							'click' : $(this).flow( 'getFormHandler',
-								apiCallback,
-								function() {
-									var res = [ $topicContainer.data( 'topic-id' ) ];
-									if ( $postContainer.length > 0 ) {
-										res.push( $postContainer.data( 'post-id' ) );
-									}
-									res.push( moderationType, $form.find( '#flow-moderation-reason' ).val() );
-									return res;
-								},
-								undefined,
-								function( promise ) {
-									promise.done( function( output ) {
-											var confirmationMsg = 'flow-moderation-confirmation-'+moderationType+'-'+type,
-												$newContainer = $( output.rendered );
-
-											$dialog.empty()
-												.dialog( 'option', 'buttons', null )
-												.append(
-													$( '<p/>' )
-														.text( mw.msg( confirmationMsg, user ) )
-												);
-
-											$resultContainer.replaceWith( $newContainer );
-											$newContainer.trigger( 'flow_init' );
-										} )
-										.fail( function() {
-											var $errorDiv = $( '<div/>' ).flow( 'showError', arguments ),
-												$errors = $form.children( '.flow-error' );
-											if ( $errors.length ) {
-												$errors.replaceWith( $errorDiv );
-											} else {
-												$form.append( $errorDiv );
-											}
-										} );
+		$dialog
+			.addClass( 'flow-moderation-dialog' )
+			.dialog( {
+				'title' : mw.msg( 'flow-moderation-title-' + moderationType + '-' + targetType ),
+				'modal' : true,
+				'buttons' : [
+					{
+						'text' : mw.msg( 'flow-moderation-confirm-' + moderationType + '-' + targetType ),
+						'click' : $(this).flow( 'getFormHandler',
+							apiCallback,
+							function() {
+								var res = [ $topicContainer.data( 'topic-id' ) ];
+								if ( $postContainer.length > 0 ) {
+									res.push( $postContainer.data( 'post-id' ) );
 								}
-							)
-						}
-					]
-				} );
-			$form
-				.append(
-					$( '<p/>' )
-						.append(
-							$( 'label' )
-								.attr( 'for', 'flow-moderation-reason' )
-								.text( mw.msg( 'flow-moderation-intro-'+moderationType+'-'+type, user, subject ) )
+								res.push( moderationType, $form.find( '#flow-moderation-reason' ).val() );
+								return res;
+							},
+							undefined,
+							function( promise ) {
+								promise.done( function( output ) {
+										var confirmationMsg = 'flow-moderation-confirmation-' + moderationType + '-' + targetType,
+											$newContainer = $( output.rendered );
+
+										$dialog.empty()
+											.dialog( 'option', 'buttons', null )
+											.append(
+												$( '<p/>' )
+													.text( mw.msg( confirmationMsg, user ) )
+											);
+
+										$resultContainer.replaceWith( $newContainer );
+										$newContainer.trigger( 'flow_init' );
+									} )
+									.fail( function() {
+										var $errorDiv = $( '<div/>' ).flow( 'showError', arguments ),
+											$errors = $form.children( '.flow-error' );
+										if ( $errors.length ) {
+											$errors.replaceWith( $errorDiv );
+										} else {
+											$form.append( $errorDiv );
+										}
+									} );
+							}
 						)
-				)
-				.append(
-					$( '<textarea/>' )
-						.attr( 'id', 'flow-moderation-reason' )
-						.byteLimit( 255 )
-						.attr( 'placeholder', mw.msg( 'flow-moderation-reason-placeholder' ) )
-				)
-				.appendTo( $dialog );
+					}
+				]
+			} );
+
+		$form
+			.append(
+				$( '<p/>' )
+					.append(
+						$( 'label' )
+							.attr( 'for', 'flow-moderation-reason' )
+							.text( mw.msg( 'flow-moderation-intro-' + moderationType + '-' + targetType, user, subject ) )
+					)
+			)
+			.append(
+				$( '<textarea/>' )
+					.attr( 'id', 'flow-moderation-reason' )
+					.byteLimit( 255 )
+					.attr( 'placeholder', mw.msg( 'flow-moderation-reason-placeholder' ) )
+			)
+			.appendTo( $dialog );
 	};
 } )( jQuery, mediaWiki );
