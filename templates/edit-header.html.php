@@ -9,19 +9,21 @@ echo Html::openElement( 'form', array(
 	'action' => $this->generateUrl( $workflow, 'edit-header' ),
 	'class' => 'flow-header-form',
 ) );
-echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
-if ( $block->hasErrors( 'prev_revision' ) ) {
-	echo '<p>' . $block->getError( 'prev_revision' )->escaped() . '</p>';
+if ( $block->hasErrors() ) {
+	echo '<ul>';
+	foreach ( $block->getErrors() as $error ) {
+		echo '<li>', $error->escaped() . '</li>';
+	}
+	echo '</ul>';
 }
+
+echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 if ( $header ) {
 	echo Html::element( 'input', array(
 		'type' => 'hidden',
 		'name' => $block->getName()."[prev_revision]",
 		'value' => $header->getRevisionId()->getHex(),
 	) );
-}
-if ( $block->hasErrors( 'content' ) ) {
-	echo '<p>' . $block->getError( 'content' )->escaped() . '</p>';
 }
 
 echo Html::textarea(
