@@ -1,5 +1,6 @@
 When(/^I click the Edit post pencil icon$/) do
   on(FlowPage) do |page|
+    @browser.window.resize_to(800, 800)
     page.topic_post_element.hover
     page.edit_post_icon_element.when_present.click
   end
