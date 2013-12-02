@@ -16,6 +16,24 @@
       "revId": "2f2b73347f3070cd319369c17fa7038d17177f2e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_02e56d9f",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 54
+      },
+      "writtenOn": "2013-12-02T07:58:26Z",
+      "side": 1,
+      "message": "I removed it because it is not used in the message, and not in any of the current translations, so BC with them is not much of an issue. And actually, if it\u0027s removed here, the whole variable should be removed (line 14). Given that it\u0027s completely unused, maybe we can recycle $2 for the current user\u0027s gender instead of adding $3.",
+      "parentUuid": "0ee75395_e221699b",
+      "revId": "2f2b73347f3070cd319369c17fa7038d17177f2e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
