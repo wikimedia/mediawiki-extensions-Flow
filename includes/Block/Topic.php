@@ -110,9 +110,9 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validateEditTitle() {
 		if ( $this->workflow->isNew() ) {
-			$this->errors['content'] = wfMessage( 'flow-no-existing-workflow' );
+			$this->errors['content'] = wfMessage( 'flow-error-no-existing-workflow' );
 		} elseif ( empty( $this->submitted['content'] ) ) {
-			$this->errors['content'] = wfMessage( 'flow-missing-title-content' );
+			$this->errors['content'] = wfMessage( 'flow-error-missing-title' );
 		} else {
 			$topicTitle = $this->loadTopicTitle();
 			if ( !$topicTitle ) {
@@ -174,7 +174,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validateModeratePost( $moderationState = null ) {
 		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['moderate'] = wfMessage( 'flow-error-missing-postId' );
+			$this->errors['post'] = wfMessage( 'flow-error-missing-postId' );
 			return;
 		}
 
@@ -247,11 +247,11 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validateEditPost() {
 		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['edit-post'] = wfMessage( 'flow-no-post-provided' );
+			$this->errors['post'] = wfMessage( 'flow-error-missing-postId' );
 			return;
 		}
 		if ( empty( $this->submitted['content'] ) ) {
-			$this->errors['content'] = wfMessage( 'flow-missing-post-content' );
+			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
 			return;
 		}
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
