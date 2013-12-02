@@ -2,7 +2,10 @@
 
 // owning workflow
 echo Html::openElement( 'div', array(
-	'id' => 'flow-header'
+	'id' => 'flow-header',
+) );
+echo Html::openElement( 'div', array(
+	'class' => 'flow-edit-header-form flow-element-container'
 ) );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
@@ -45,4 +48,5 @@ echo Html::element( 'input', array(
 ) );
 echo Html::closeElement( 'div' );
 echo Html::closeElement( 'form' );
+echo Html::closeElement( 'div' );
 echo Html::closeElement( 'div' );
