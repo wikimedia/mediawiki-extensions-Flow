@@ -34,6 +34,24 @@
       "revId": "2f2b73347f3070cd319369c17fa7038d17177f2e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_c2fe6535",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 685
+      },
+      "writtenOn": "2013-12-02T08:05:28Z",
+      "side": 1,
+      "message": "For backward compatibility, $2 should not be removed, regardless of whether it is used in the current message or not.",
+      "parentUuid": "0ee75395_02e56d9f",
+      "revId": "2f2b73347f3070cd319369c17fa7038d17177f2e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
