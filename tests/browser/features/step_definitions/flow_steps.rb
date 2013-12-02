@@ -41,6 +41,18 @@ When(/^I hover over the author link$/) do
   on(FlowPage).author_link_element.hover
 end
 
+When(/^I see a flow creator element$/) do
+  on(FlowPage).author_link_element.should be_visible
+end
+
+Then(/^I do not see an actions link$/) do
+   on(FlowPage).actions_link_element.should_not exist
+ end
+
+Then(/^I do not see a block user link$/) do
+   on(FlowPage).block_user_element.should_not exist
+ end
+
 Then(/^links to talk and contrib should be visible$/) do
   on(FlowPage) do |page|
     page.talk_link_element.should be_visible
@@ -64,5 +76,3 @@ Then(/^the Flow page should contain (.+)$/) do |flow_topic|
     page.flow_body.should match(flow_topic + @random_string + @automated_test_marker)
   end
 end
-
-
