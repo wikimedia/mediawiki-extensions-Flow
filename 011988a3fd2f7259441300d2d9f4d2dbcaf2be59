@@ -16,6 +16,24 @@
       "revId": "011988a3fd2f7259441300d2d9f4d2dbcaf2be59",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_fa94718f",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-02T17:12:12Z",
+      "side": 1,
+      "message": "A regular user shouldn\u0027t see this one. This error will be captured \u0026 it should eventually look like this: https://upload.wikimedia.org/wikipedia/commons/b/b7/Flow_fpo-editconflict-16.png\n\nSo the only place where this error message will be visible, is the API output.\n\nI have only just started working on that, so I\u0027ll make this message more end-user friendly, since the error message may for now still show up.",
+      "parentUuid": "0ee75395_9a2685b4",
+      "revId": "011988a3fd2f7259441300d2d9f4d2dbcaf2be59",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
