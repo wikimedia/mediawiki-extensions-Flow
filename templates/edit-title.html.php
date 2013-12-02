@@ -1,9 +1,9 @@
 <?php
 
 if ( $block->hasErrors() ) {
-	echo wfMessage( 'flow-action-errors' )->escaped(), '<ul>';
+	echo '<ul>';
 	foreach ( $block->getErrors() as $error ) {
-		echo $error->escaped();
+		echo '<li>', $error->escaped() . '</li>';
 	}
 	echo '</ul>';
 }

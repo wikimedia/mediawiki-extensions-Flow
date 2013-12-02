@@ -88,8 +88,8 @@ $messages['en'] = array(
 	'flow-error-edit-restricted' => 'You are not allowed to edit this post.',
 	'flow-error-external-multi' => 'Errors were encountered.<br />$1',
 
-	'flow-error-missing-content' => 'Post has no content. Content is required to save a new post.',
-	'flow-error-missing-title' => 'Topic has no title. Title is required to save a new topic.',
+	'flow-error-missing-content' => 'Post has no content. Content is required to save a post.',
+	'flow-error-missing-title' => 'Topic has no title. Title is required to save a topic.',
 	'flow-error-parsoid-failure' => 'Unable to parse content due to a Parsoid failure.',
 	'flow-error-missing-replyto' => 'No "replyTo" parameter was supplied. This parameter is required for the "reply" action.',
 	'flow-error-invalid-replyto' => '"replyTo" parameter was invalid. The specified post could not be found.',
@@ -101,6 +101,12 @@ $messages['en'] = array(
 	'flow-error-invalid-moderation-state' => 'An invalid value was provided for moderationState',
 	'flow-error-invalid-moderation-reason' => 'Please provide a reason for the moderation',
 	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
+	'flow-error-no-existing-workflow' => 'This workflow does not yet exist.',
+	'flow-error-not-a-post' => 'Topic title can not be saved as a post.',
+	'flow-error-missing-header-content' => 'Header has no content. Content is required to save a header.',
+	'flow-error-missing-prev-revision-identifier' => 'Previous revision identifier is missing.',
+	'flow-error-prev-revision-mismatch' => 'The edit could not be saved: a more recent change has already been submitted.',
+	'flow-error-prev-revision-does-not-exist' => 'Could not find the previous revision.',
 
 	'flow-edit-header-submit' => 'Save header',
 
@@ -442,7 +448,15 @@ Usually indicates a code bug, so technical terminology is okay.
 
 Valid values for moderationState are: (none), hidden, deleted, suppressed',
 	'flow-error-invalid-moderation-reason' => 'Used as error message when no reason is given for the moderation of a post.',
-	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
+	'flow-error-not-allowed' => 'Error message when the user has insufficient permissions to execute this action',
+	'flow-error-no-existing-workflow' => 'Error message when an edit to a non-existing topic is performed.',
+	'flow-error-not-a-post' => "Error message when a topic title is attempted to be saved as post (most likely a code issue - shouldn't happen).",
+	'flow-error-missing-header-content' => 'Error message when the header is submitted without content.',
+	'flow-error-missing-prev-revision-identifier' => 'Error message when the identifier for the previous header revision is missing.',
+	'flow-error-prev-revision-mismatch' => 'Error message when the provided previous revision identifier does not match the last stored revision. Parameters:
+* $1: The submitted previous revision id
+* $2: The actual latest revision id',
+	'flow-error-prev-revision-does-not-exist' => 'Error message when the provided previous revision identifier could not be found.',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited.
