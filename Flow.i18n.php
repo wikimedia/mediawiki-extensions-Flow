@@ -17,6 +17,8 @@ $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
 	'flow-page-title' => '$1 &ndash; Flow',
 
+	'flow-talk-taken-over' => 'This talk page has been taken over by a [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow board].',
+
 	'log-name-flow' => 'Flow activity log',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|deleted}} a [$4 post] on [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|restored}} a [$4 post] on [[$3]]',
@@ -240,6 +242,7 @@ $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
 	'flow-page-title' => 'Used as page title in a flow board. Parameters:
 * $1 - page title',
+	'flow-talk-taken-over' => 'Content to replace existing page content by for pages that are turned into Flow boards.',
 	'log-name-flow' => '{{doc-logpage}}
 Name of the Flow log filter on the [[Special:Log]] page.',
 	'logentry-delete-flow-delete-post' => 'Text for a deletion log entry when a post was deleted. Parameters:

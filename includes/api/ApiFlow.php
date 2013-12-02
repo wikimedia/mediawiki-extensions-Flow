@@ -23,6 +23,14 @@ class ApiFlow extends ApiBase {
 		$this->loader = $this->container['factory.loader.workflow']
 			->createWorkflowLoader( $page, $id );
 
+		$occupationController = $this->container['occupation_controller'];
+		$workflow = $this->loader->getWorkflow();
+		$isNew = $workflow->isNew();
+		// Is this making unnecesary db round trips?
+		$article = new \Article( $workflow->getArticleTitle(), 0 );
+		if ( !$isNew ) {
+			$occupationController->ensureFlowRevision( $article );
+		}
 		$requestParams = json_decode( $params['params'], true );
 
 		if ( ! $requestParams ) {
@@ -58,6 +66,10 @@ class ApiFlow extends ApiBase {
 
 			foreach( $commitResults as $key => $value ) {
 				$output[$action]['result'][$key] = $this->processCommitResult( $value, $doRender );
+			}
+			if ( $isNew && !$workflow->isNew() ) {
+				// Workflow was just created, ensure its underlying page is owned by flow
+				$occupationController->ensureFlowRevision( $article );
 			}
 		} else {
 			$output[$action] = array(
