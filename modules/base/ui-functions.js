@@ -148,7 +148,15 @@
 						};
 					}
 
-					mw.flow.editor.load( $postForm.find( 'textarea' ), initialContent.content, initialContent.format );
+					/*
+					 * Setting focus inside an event that grants focus (like
+					 * clicking the edit icon), is tricky. This is a workaround.
+					 */
+					setTimeout( function( $postForm, initialContent ) {
+						var $textarea = $postForm.find( 'textarea' );
+						$textarea.focus();
+						mw.flow.editor.load( $textarea, initialContent.content, initialContent.format );
+					}.bind( this, $postForm, initialContent ), 0 );
 
 					$contentContainer.hide();
 
