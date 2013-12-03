@@ -113,6 +113,8 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'content', wfMessage( 'flow-error-missing-title' ) );
 		} elseif ( strlen( $this->submitted['content'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
 			$this->addError( 'content', wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
+		} elseif ( empty( $this->submitted['prev_revision'] ) ) {
+			$this->addError( 'prev_revision', wfMessage( 'flow-error-missing-prev-revision-identifier' ) );
 		} else {
 			$topicTitle = $this->loadTopicTitle();
 			if ( !$topicTitle ) {
@@ -121,6 +123,17 @@ class TopicBlock extends AbstractBlock {
 			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
 				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 				return;
+			} elseif ( $topicTitle->getRevisionId()->getHex() !== $this->submitted['prev_revision'] ) {
+				// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
+				// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
+				// parent we and the submitter think is the latest, our insert will fail.
+				// TODO: Catch whatever exception happens there, make sure the most recent revision is the one in the cache before
+				// handing user back to specific dialog indicating race condition
+				$this->addError(
+					'prev_revision',
+					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $topicTitle->getRevisionId()->getHex() ),
+					array( 'revision_id' => $topicTitle->getRevisionId()->getHex() ) // save current revision ID
+				);
 			}
 
 			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
@@ -627,6 +640,7 @@ class TopicBlock extends AbstractBlock {
 
 		$output = array();
 		$output['post-id'] = $post->getPostId()->getHex();
+		$output['revision-id'] = $post->getRevisionId()->getHex();
 		$contentFormat = 'wikitext';
 
 		if ( isset( $options['contentFormat'] ) ) {

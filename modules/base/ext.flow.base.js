@@ -243,7 +243,8 @@ mw.flow.api.reply = mw.flow.api.generateTopicAction(
 mw.flow.api.changeTitle = mw.flow.api.generateTopicAction(
 	'edit-title',
 	[
-		'content'
+		'content',
+		'prev_revision'
 	]
 );
 
