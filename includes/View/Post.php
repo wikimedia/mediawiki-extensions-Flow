@@ -80,9 +80,10 @@ class Post {
 		);
 	}
 
-	public function postHistoryLink( ) {
+	public function postHistoryLink( $blockName ) {
 		return $this->actions->actionUrl(
-			'post-history'
+			'post-history',
+			array( $blockName . '[postId]' => $this->post->getPostId()->getHex() )
 		);
 	}
 
