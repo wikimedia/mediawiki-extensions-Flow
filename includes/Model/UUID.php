@@ -12,6 +12,11 @@ class UUID {
 	protected $hexValue;
 	protected $timestamp;
 
+	// UUID length in hex
+	const HEX_LEN = 32;
+	// UUID length in binary
+	const BIN_LEN = 16;
+
 	function __construct( $binaryValue ) {
 		if ( strlen( $binaryValue ) !== 16 ) {
 			throw new \InvalidArgumentException( 'Expected 16 char binary string, got: ' . $binaryValue );

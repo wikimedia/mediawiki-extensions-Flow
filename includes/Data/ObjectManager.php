@@ -1268,7 +1268,8 @@ class ShallowCompactor implements Compactor {
 			}
 		}
 
-		$innerResult = $this->shallow->findMulti( $duplicator->getUniqueQueries() );
+		// binary uuid's need to be converted to UUID objects to use them in a query
+		$innerResult = $this->shallow->findMulti( $this->convertUUIDs( $duplicator->getUniqueQueries() ) );
 		foreach ( $innerResult as $rows ) {
 			// __construct guaranteed the shallow backing index is a unique, so $first is only result
 			$first = reset( $rows );
@@ -1276,6 +1277,22 @@ class ShallowCompactor implements Compactor {
 		}
 
 		return $duplicator->getResult( /* strict = */ true );
+	}
+
+	/**
+	 * The cache result, as received in self::expandCacheResult, contains binary
+	 * UUID's. For the $this->shallow->findMulti call we must provide it UUID objects
+	 * so that it can use hex in the cache keys, and binary in the db calls. 
+	 */
+	protected function convertUUIDs( array $rows ) {
+		foreach ( $rows as $key => $row ) {
+			foreach ( $row as $k => $v ) {
+				if ( substr( $k, -3 ) == '_id' && is_string( $v ) && strlen( $v ) === UUID::BIN_LEN ) {
+					$rows[$key][$k] = UUID::create( $v );
+				}
+			}
+		}
+		return $rows;
 	}
 }
 
