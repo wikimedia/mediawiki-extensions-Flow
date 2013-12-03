@@ -216,7 +216,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 				{
 					'topic' : {
 						'no-children' : true,
-						'postId' : workflowId,
+						'postId' : workflowId, // fetch title post (not full topic)
 						'contentFormat' : mw.flow.editor.getFormat()
 					}
 				}
@@ -281,7 +281,11 @@ $( document ).flow( 'registerInitFunction', function(e) {
 					$titleEditForm.flow( 'setupPreview', { '.flow-edit-title-textbox': 'plain' } );
 					$titleEditForm.flow( 'setupFormHandler',
 						'.flow-edit-title-submit',
-						mw.flow.api.changeTitle,
+						function( workflowId, content ) {
+							// @todo: revision id in here
+							console
+							return mw.flow.api.changeTitle( workflowId, content, data[0]['revision-id'] );
+						},
 						function () {
 							var workflowId = $topicContainer.data( 'topic-id' ),
 								content = $titleEditForm.find( '.flow-edit-title-textbox' ).val();
