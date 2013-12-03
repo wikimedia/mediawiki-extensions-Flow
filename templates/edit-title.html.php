@@ -1,5 +1,23 @@
 <?php
 
+$revisionId = $topicTitle->getRevisionId()->getHex();
+
+/*
+ * If we tried to submit a change against a revision that is not the latest,
+ * $header will be our own change; let's get the real revision id from the
+ * error details.
+ */
+if ( $block->hasErrors( 'prev_revision' ) ) {
+	$error = $block->getErrorExtra( 'prev_revision' );
+	$revisionId = $error['revision_id'];
+}
+
+// submit button text will be different if there's a more recent change already
+$submitMessage = 'flow-edit-title-submit';
+if ( $block->hasErrors( 'prev_revision' ) ) {
+	$submitMessage = 'flow-edit-title-submit-overwrite';
+}
+
 echo Html::openElement( 'div', array(
 	'class' => 'flow-topic-container flow-topic-full'
 ) );
@@ -20,6 +38,11 @@ if ( $block->hasErrors() ) {
 }
 
 echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken ) ),
+	Html::element( 'input', array(
+		'type' => 'hidden',
+		'name' => $block->getName() . '[prev_revision]',
+		'value' => $revisionId
+	) ),
 	Html::element(
 		'input',
 		array(
@@ -35,7 +58,7 @@ echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken',
 		Html::element( 'input',
 			array(
 				'type' => 'submit',
-				'value' => wfMessage( 'flow-edit-title-submit' )->plain(),
+				'value' => wfMessage( $submitMessage )->plain(),
 				'class' => 'mw-ui-button mw-ui-constructive',
 			)
 		),
