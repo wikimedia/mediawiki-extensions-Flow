@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "0ee75395_219065f0",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-03T11:28:58Z",
+      "side": 1,
+      "message": "Parameter documentation is missing here.",
+      "revId": "2f2b73347f3070cd319369c17fa7038d17177f2e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_418129a3",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-03T11:28:58Z",
+      "side": 1,
+      "message": "This does not achieve your goal in JavaScript. JavaScript requires a user object, or \"male\" or \"female\" or other as input for GENDER per https://www.mediawiki.org/wiki/Manual:Messages_API#GENDER_in_JavaScript. You are now passing creatorName, which is just a username, so that will not work.\n\nTo illustrate the point; the message is:\n\n Consider {{GENDER:$1|giving}} $1 feedback on this\npost.\n\ncreatorName could be \"Siebrand\", but no GENDER can be determined based on that in JavaScript.\n\nYou will need another parameter that provides you with the GENDER of Siebrand, and pass that as a second parameter, so the message will need to be:\n\n Consider {{GENDER:$2|giving}} $1 feedback on this\npost.\n\nThis is a significant issue, and I\u0027ll not go below here with my reivew before this issue has been resolved. I think Santhosh and Matt Flaschen have both dealt with a similar issue before. Don\u0027t exactly recall where (Thanks comes to mind).",
+      "revId": "2f2b73347f3070cd319369c17fa7038d17177f2e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_e221699b",
         "filename": "modules/moderation/moderation.js",
         "patchSetId": 2
