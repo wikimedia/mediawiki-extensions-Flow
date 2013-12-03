@@ -85,10 +85,11 @@
 			 * An object, with the keys 'content' and 'format'. Or a plain string of wikitext.
 			 * @param  {function} submitFunction      Function to call in order to submit the form.
 			 * One parameter, the content.
+			 * @param  {function} loadFunction      Function to call once the form is loaded
 			 * @return {Promise}                      A promise that will be resolved or rejected
 			 * when the form submission has returned.
 			 */
-			'setupEditForm' : function( type, initialContent, submitFunction ) {
+			'setupEditForm' : function( type, initialContent, submitFunction, loadFunction ) {
 					var $contentContainer = $(this);
 					var deferredObject = $.Deferred();
 					if ( $contentContainer.siblings( '.flow-edit-'+type+'-form' ).length ) {
@@ -143,23 +144,6 @@
 
 					$postForm.flow( 'setupPreview' );
 
-					if ( typeof initialContent != 'object' ) {
-						initialContent = {
-							'content' : initialContent,
-							'format' : 'wikitext'
-						};
-					}
-
-					/*
-					 * Setting focus inside an event that grants focus (like
-					 * clicking the edit icon), is tricky. This is a workaround.
-					 */
-					setTimeout( function( $postForm, initialContent ) {
-						var $textarea = $postForm.find( 'textarea' );
-						$textarea.focus();
-						mw.flow.editor.load( $textarea, initialContent.content, initialContent.format );
-					}.bind( this, $postForm, initialContent ), 0 );
-
 					$contentContainer.hide();
 					$contentContainer.siblings( '.flow-datestamp' ).hide();
 
@@ -193,6 +177,24 @@
 
 					$contentContainer.hide();
 					$postForm.show();
+
+					if ( typeof initialContent != 'object' ) {
+						initialContent = {
+							'content' : initialContent,
+							'format' : 'wikitext'
+						};
+					}
+
+					/*
+					 * Setting focus inside an event that grants focus (like
+					 * clicking the edit icon), is tricky. This is a workaround.
+					 */
+					setTimeout( function( $postForm, initialContent, loadFunction ) {
+						var $textarea = $postForm.find( 'textarea' );
+						$textarea.focus();
+						mw.flow.editor.load( $textarea, initialContent.content, initialContent.format )
+							.done( loadFunction );
+					}.bind( this, $postForm, initialContent, loadFunction ), 0 );
 
 					return deferredObject.promise();
 			},
@@ -277,6 +279,11 @@
 							if ( $form ) {
 								$form.append( $errorDiv );
 							}
+
+							// Add error div to arguments to that it can be removed
+							// in submitFunction, if the error is recoverable.
+							// Can't just do arguments.push(), hence the workaround.
+							[].push.call( arguments, $errorDiv );
 
 							deferredObject.reject.apply( $button, arguments );
 						} );
