@@ -1326,6 +1326,8 @@ class LocalBufferedCache extends BufferedCache {
 	}
 
 	public function getMulti( array $keys ) {
+		array_map( array( $this, 'ensureNotBinary' ), $keys );
+
 		$found = array();
 		foreach ( $keys as $idx => $key ) {
 			if ( array_key_exists( $key, $this->internal ) ) {
@@ -1356,6 +1358,8 @@ class LocalBufferedCache extends BufferedCache {
 	}
 
 	public function add( $key, $value, $exptime = 0 ) {
+		$this->ensureNotBinary( $key );
+
 		if ( $this->buffer === null ) {
 			if ( $this->cache->add( $key, $value, $exptime ) ) {
 				$this->internal[$key] = $value;
@@ -1400,14 +1404,18 @@ class BufferedCache {
 	}
 
 	public function get( $key ) {
+		$this->ensureNotBinary( $key );
+
 		return $this->cache->get( $key );
 	}
 
 	public function getMulti( array $keys ) {
+		array_map( array( $this, 'ensureNotBinary' ), $keys );
 		return $this->cache->getMulti( $keys );
 	}
 
 	public function add( $key, $value, $exptime = 0 ) {
+		$this->ensureNotBinary( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->add( $key, $value, $exptime );
 		} else {
@@ -1419,6 +1427,7 @@ class BufferedCache {
 	}
 
 	public function set( $key, $value, $exptime = 0 ) {
+		$this->ensureNotBinary( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->set( $key, $value, $exptime );
 		} else {
@@ -1430,6 +1439,7 @@ class BufferedCache {
 	}
 
 	public function delete( $key, $time = 0 ) {
+		$this->ensureNotBinary( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->delete( $key, $time );
 		} else {
@@ -1441,6 +1451,7 @@ class BufferedCache {
 	}
 
 	public function merge( $key, \Closure $callback, $exptime = 0, $attempts = 10 ) {
+		$this->ensureNotBinary( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->merge( $key, $callback, $exptime, $attempts );
 		} else {
@@ -1477,5 +1488,11 @@ class BufferedCache {
 			throw new \MWException( 'No transaction in progress' );
 		}
 		$this->buffer = null;
+	}
+
+	protected function ensureNotBinary( $key ) {
+		if ( !ctype_print( $key ) ) {
+			throw new \MWException( "Cache keys must be plain strings, provided: $key" );
+		}
 	}
 }
