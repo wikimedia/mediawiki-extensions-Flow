@@ -151,6 +151,9 @@ $wgResourceModules += array(
 			// ve dependencies will be loaded via JS
 		),
 	),
+	'ext.flow.editors.contenteditable' => $flowResourceTemplate + array(
+		'scripts' => 'editor/editors/ext.flow.editors.contenteditable.js',
+	),
 	'ext.flow.editors.none' => $flowResourceTemplate + array(
 		'scripts' => 'editor/editors/ext.flow.editors.none.js',
 	),
