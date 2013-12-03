@@ -1,48 +1,48 @@
-.flow-actions {
-	.flow-actions-flyout {
-		// hide until .flow-actions-link clicked
-		display: none;
+@flyout-border-color: #E1E1E1;
 
-		z-index: 99;
+.flow-tipsy-flyout {
+	// hide until .flow-tipsy-link clicked
+	display: none;
 
-		// actionboxes will likely have to be styled independently, this is just fallback
-		background-color: #FFF;
-		border: 1px solid #E1E1E1;
-		color: #808184;
+	z-index: 99;
 
-		ul {
-			list-style: none;
+	// actionboxes will likely have to be styled independently, this is just fallback
+	background-color: #FFF;
+	border: 1px solid @flyout-border-color;
+	color: #808184;
+
+	ul {
+		list-style: none;
+		margin: 0;
+
+		li {
 			margin: 0;
 
-			li {
-				margin: 0;
+			// override formatting of buttons used in li's
+			.mw-ui-button {
+				// buttons in li should take up full width
+				display: block;
+				width: 100%;
+				// .mw-ui-button can be input element; padding would
+				// increase length in default box-sizing: content-box
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
 
-				// override formatting of buttons used in li's
-				.mw-ui-button {
-					// buttons in li should take up full width
-					display: block;
-					width: 100%;
-					// .mw-ui-button can be input element; padding would
-					// increase length in default box-sizing: content-box
-					box-sizing: border-box;
-					-moz-box-sizing: border-box;
+				border-radius: 0;
+				border-left: none;
+				border-right: none;
+				border-bottom: none;
 
+				&:hover {
 					border-radius: 0;
 					border-left: none;
 					border-right: none;
 					border-bottom: none;
-
-					&:hover {
-						border-radius: 0;
-						border-left: none;
-						border-right: none;
-						border-bottom: none;
-					}
 				}
+			}
 
-				&:first-of-type .mw-ui-button {
-					border-top: none;
-				}
+			&:first-of-type .mw-ui-button {
+				border-top: none;
 			}
 		}
 	}
@@ -50,11 +50,32 @@
 
 // for non-JS users, hide the action link & show flyout immediately
 .client-nojs {
-	.flow-actions-link {
+	.flow-tipsy-link {
 		display: none;
 	}
 
-	.flow-actions-flyout {
+	.flow-tipsy-flyout {
 		display: block;
+	}
+}
+
+.tipsy {
+	.tipsy-inner {
+		padding: 0;
+		border: 1px solid @flyout-border-color;
+	}
+
+	// overwrite tipsy arrow
+	.tipsy-arrow {
+		/* @embed */
+		background-image: url('../images/tipsy-arrow.png');
+		// note: if @flyout-border-color changes, this image should too!
+	}
+
+	.flow-tipsy-flyout {
+		display: block;
+
+		// when using tipsy, don't use own border
+		border: none;
 	}
 }
