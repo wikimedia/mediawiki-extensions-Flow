@@ -1,5 +1,25 @@
 <?php
 
+$revisionId = $post->getRevisionId()->getHex();
+
+/*
+ * If we tried to submit a change against a revision that is not the latest,
+ * $header will be our own change; let's get the real revision id from the
+ * error details.
+ */
+if ( $block->hasErrors( 'prev_revision' ) ) {
+	$error = $block->getErrorExtra( 'prev_revision' );
+	$revisionId = $error['revision_id'];
+}
+
+// submit button text will be different if there's a more recent change already
+$submitMessage = 'flow-edit-post-submit';
+$submitClass = 'mw-ui-button mw-ui-constructive';
+if ( $block->hasErrors( 'prev_revision' ) ) {
+	$submitMessage = 'flow-edit-post-submit-overwrite';
+	$submitClass = 'mw-ui-button mw-ui-destructive';
+}
+
 echo Html::openElement( 'div', array(
 	'class' => 'flow-topic-container flow-topic-full'
 ) );
@@ -31,6 +51,11 @@ echo Html::element( 'input', array(
 		'name' => $block->getName() . '[postId]',
 		'value' => $post->getPostId()->getHex(),
 	) ),
+	Html::element( 'input', array(
+		'type' => 'hidden',
+		'name' => $block->getName() . '[prev_revision]',
+		'value' => $revisionId
+	) ),
 	Html::textarea(
 		$block->getName() . '[content]',
 		$this->getContent( $post, 'wikitext' ),
@@ -44,8 +69,8 @@ echo Html::element( 'input', array(
 	) ),
 		Html::element( 'input', array(
 			'type' => 'submit',
-			'class' => 'mw-ui-button mw-ui-constructive',
-			'value' => wfMessage( 'flow-edit-post-submit' )->plain()
+			'class' => $submitClass,
+			'value' => wfMessage( $submitMessage )->plain()
 		) ),
 	Html::closeElement( 'div' ),
 Html::closeElement( 'form' ),
