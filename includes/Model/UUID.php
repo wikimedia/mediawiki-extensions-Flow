@@ -13,13 +13,13 @@ class UUID {
 	protected $timestamp;
 
 	// UUID length in hex
-	const HEX_LEN = 32;
+	const HEX_LEN = 22;
 	// UUID length in binary
-	const BIN_LEN = 16;
+	const BIN_LEN = 11;
 
 	function __construct( $binaryValue ) {
 		if ( strlen( $binaryValue ) !== self::BIN_LEN ) {
-			throw new \InvalidArgumentException( 'Expected ' . self::BIN_LEN . 'char binary string, got: ' . $binaryValue );
+			throw new \InvalidArgumentException( 'Expected ' . self::BIN_LEN . ' char binary string, got: ' . $binaryValue );
 		}
 		$this->binaryValue = $binaryValue;
 	}
@@ -37,7 +37,8 @@ class UUID {
 		} elseif ( $input === null ) {
 			return null;
 		} elseif ( $input === false ) {
-			$hexValue = str_pad( \UIDGenerator::newTimestampedUID128( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
+			// new uuid in base 16 and pad to HEX_LEN with 0's
+			$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
 		} elseif ( !is_string( $input ) && !is_int( $input ) ) {
 			throw new \MWException( "Unknown input type to UUID class: " . gettype( $input ) );
 		} elseif ( strlen( $input ) == self::BIN_LEN ) {
@@ -45,15 +46,23 @@ class UUID {
 		} elseif ( strlen( $input ) == self::HEX_LEN && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
 			$hexValue = $input;
 		} elseif ( is_numeric( $input ) ) {
+			// convert base 10 to base 16 and pad to HEX_LEN with 0's
 			$hexValue = wfBaseConvert( $input, 10, 16, self::HEX_LEN );
+		} elseif ( strlen( $input ) == 16 ) {
+			// Old binary length
+			$binaryValue = substr( $input, 0, self::BIN_LEN );
+		} elseif ( strlen( $input ) == 32 ) {
+			// Old hex length
+			$hexValue = substr( $input, 0, self::HEX_LEN );
 		} else {
-			throw new \MWException( "Unknown input to UUID class" );
+			$len = strlen( $input );
+			$type = gettype( $input );
+			throw new \MWException( "Unknown input to UUID class : $type : $len" );
 		}
 
 		if ( $binaryValue === null && $hexValue !== null ) {
 			$binaryValue = pack( 'H*', $hexValue );
 		}
-
 		$uuid = new self( $binaryValue );
 		$uuid->hexValue = $hexValue;
 
