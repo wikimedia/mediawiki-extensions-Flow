@@ -16,6 +16,91 @@
       "revId": "b7597b7e71b593d97b64bddfc9aefa67fc345c00",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_d7361b00",
+        "filename": "modules/discussion/styles/collapse.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-03T17:38:21Z",
+      "side": 1,
+      "message": "png image is missing:\n\n$ mogrify -format png toggle_*.svg",
+      "revId": "b7597b7e71b593d97b64bddfc9aefa67fc345c00",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_b73957f1",
+        "filename": "modules/discussion/styles/collapse.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-03T17:38:21Z",
+      "side": 1,
+      "message": "png image is missing:\n\n$ mogrify -format png toggle_*.svg",
+      "revId": "b7597b7e71b593d97b64bddfc9aefa67fc345c00",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_7a205696",
+        "filename": "modules/discussion/styles/collapse.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-03T17:38:21Z",
+      "side": 1,
+      "message": "Needs list-style: none; to get rid of li bullets",
+      "revId": "b7597b7e71b593d97b64bddfc9aefa67fc345c00",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_5a10f252",
+        "filename": "templates/topiclist.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-03T17:38:21Z",
+      "side": 1,
+      "message": "Since only icons will be displayed, add title\u003d\"\u003ctext\u003e\" attribute to have tooltips clarify what the icons stand for",
+      "revId": "b7597b7e71b593d97b64bddfc9aefa67fc345c00",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_97177356",
+        "filename": "templates/topiclist.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-03T17:38:21Z",
+      "side": 1,
+      "message": "Use full \u003c?php open tags",
+      "revId": "b7597b7e71b593d97b64bddfc9aefa67fc345c00",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
