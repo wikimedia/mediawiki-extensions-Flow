@@ -166,7 +166,7 @@
 		);
 
 		deferred.done( $.proxy( this.render, this ) );
-//		deferred.fail( $.proxy( this.conflict, this, deferred ) ); // @todo: not yet implemented
+		deferred.fail( $.proxy( this.conflict, this, deferred, data ) );
 
 		return deferred;
 	};
@@ -183,6 +183,65 @@
 			// replacing container node with new content will result in binds on old
 			// nodes being useless and we'll need to bind again to the new DOM
 			.trigger( 'flow_init' );
+	};
+
+	/**
+	 * Called when submitFunction failed.
+	 *
+	 * @param {jQuery.Deferred} deferred
+	 * @param {object} data Old (invalid) this.prepareResult return value
+	 * @param {string} error
+	 * @param {object} errorData
+	 */
+	mw.flow.action.post.edit.prototype.conflict = function ( deferred, data, error, errorData ) {
+		if (
+			error === 'block-errors' &&
+			errorData.topic && errorData.topic.prev_revision &&
+			errorData.topic.prev_revision.extra && errorData.topic.prev_revision.extra.revision_id
+		) {
+			var $textarea = this.post.$container.find( 'textarea' );
+
+			/*
+			 * Overwrite data revision & content.
+			 * We'll use raw editor content & editor format to avoid having
+			 * to parse it.
+			 */
+			data.content = mw.flow.editor.getRawContent( $textarea );
+			data.format = mw.flow.editor.getFormat( $textarea );
+			data.revision = errorData.topic.prev_revision.extra.revision_id;
+
+			/*
+			 * At this point, we're still in the deferred's reject callbacks.
+			 * Only after these are completed, is the spinner removed and the
+			 * error message added.
+			 * I'm adding another fail-callback, which will be executed after
+			 * the fail has been handled. Only then, we can properly clean up.
+			 */
+			deferred.fail( function ( data, error, errorData ) {
+				/*
+				 * Tipsy will be positioned at the element where it's bound
+				 * to, at the time it's asked to show. It won't reposition
+				 * if the element moves. Since we re-launch the form, there
+				 * may be some movement, so let's have this as callback when
+				 * the form has completed loading before doing these changes.
+				 */
+				var formLoaded = function () {
+					var $button = this.post.$container.find( '.flow-edit-post-submit' );
+					$button.val( mw.msg( 'flow-edit-post-submit-overwrite' ) );
+					this.tipsy( $button, errorData.topic.prev_revision.message );
+
+					/*
+					 * Trigger keyup in editor, to trick setupEmptyDisabler
+					 * into believing we've made a change & enable submit.
+					 */
+					this.post.$container.find( 'textarea' ).keyup();
+				}.bind( this, data, error, errorData );
+
+				// kill form & error message & re-launch edit form
+				this.post.$container.find( 'form, .flow-error' ).remove();
+				this.setupEditForm( data, formLoaded );
+			}.bind( this, data, error, errorData ) );
+		}
 	};
 
 	/**

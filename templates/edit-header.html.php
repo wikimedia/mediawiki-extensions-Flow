@@ -1,5 +1,21 @@
 <?php
 
+$revisionId = '';
+if ( $header ) {
+	// if header already exists, propagate it's revisions id
+	$revisionId = $header->getRevisionId()->getHex();
+
+	/*
+	 * If we tried to submit a change against a revision that is not the latest,
+	 * $header will be our own change; let's get the real revision id from the
+	 * error details.
+	 */
+	if ( $block->hasErrors( 'prev_revision' ) ) {
+		$error = $block->getErrorExtra( 'prev_revision' );
+		$revisionId = $error['revision_id'];
+	}
+}
+
 // owning workflow
 echo Html::openElement( 'div', array(
 	'id' => 'flow-header',
@@ -20,12 +36,17 @@ if ( $block->hasErrors() ) {
 	echo '</ul>';
 }
 
-echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
+echo Html::element( 'input', array(
+	'type' => 'hidden',
+	'name' => 'wpEditToken',
+	'value' => $editToken
+) );
+
 if ( $header ) {
 	echo Html::element( 'input', array(
 		'type' => 'hidden',
 		'name' => $block->getName()."[prev_revision]",
-		'value' => $header->getRevisionId()->getHex(),
+		'value' => $revisionId
 	) );
 }
 
@@ -35,7 +56,7 @@ echo Html::textarea(
 	array(
 		'class' => 'mw-ui-input',
 		'rows' => '10',
-		'data-header-id' => $header ? $header->getRevisionId()->getHex() : ''
+		'data-header-id' => $revisionId
 	)
 );
 echo Html::openElement( 'div', array(
@@ -44,12 +65,21 @@ echo Html::openElement( 'div', array(
 echo Html::rawElement( 'div', array(
 	'class' => 'flow-terms-of-use plainlinks',
 ), wfMessage( 'flow-terms-of-use-new-topic' )->parse() );
+
+// submit button text will be different if there's a more recent change already
+$submitMessage = 'flow-edit-header-submit';
+$submitClass = 'mw-ui-button mw-ui-constructive';
+if ( $block->hasErrors( 'prev_revision' ) ) {
+	$submitMessage = 'flow-edit-header-submit-overwrite';
+	$submitClass = 'mw-ui-button mw-ui-destructive';
+}
 echo Html::element( 'input', array(
 	'type' => 'submit',
-	'class' => 'mw-ui-button mw-ui-constructive',
-	'value' => wfMessage( 'flow-edit-header-submit' )->plain(),
+	'class' => $submitClass,
+	'value' => wfMessage( $submitMessage )->plain(),
 ) );
 echo Html::element( 'div', array( 'class' => 'clear' ) );
+
 echo Html::closeElement( 'div' );
 echo Html::closeElement( 'form' );
 echo Html::closeElement( 'div' );

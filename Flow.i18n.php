@@ -74,8 +74,6 @@ $messages['en'] = array(
 	'flow-thank-link' => '{{GENDER:$1|Thank}}',
 	'flow-post-interaction-separator' => '&#32;•&#32;', # only translate this message to other languages if you have to change it
 
-	'flow-edit-post-submit' => 'Submit changes',
-
 	'flow-post-edited' => 'Post {{GENDER:$1|edited}} by $1 $2',
 	'flow-post-action-view' => 'Permalink',
 	'flow-post-action-post-history' => 'History',
@@ -118,7 +116,7 @@ $messages['en'] = array(
 	'flow-error-not-a-post' => 'Topic title cannot be saved as a post.',
 	'flow-error-missing-header-content' => 'Header has no content. Content is required to save a header.',
 	'flow-error-missing-prev-revision-identifier' => 'Previous revision identifier is missing.',
-	'flow-error-prev-revision-mismatch' => 'The edit could not be saved: a more recent change has already been submitted.',
+	'flow-error-prev-revision-mismatch' => 'Another user just edited this post a few seconds ago. Are you sure you want to overwrite the recent change?',
 	'flow-error-prev-revision-does-not-exist' => 'Could not find the previous revision.',
 	'flow-error-default' => 'An error has occurred.',
 	'flow-error-invalid-input' => 'Invalid value was provided for loading flow content.',
@@ -137,7 +135,13 @@ $messages['en'] = array(
 	'flow-error-no-index' => 'Failed to find an index to perform data search.',
 
 	'flow-edit-header-submit' => 'Save header',
+	'flow-edit-header-submit-overwrite' => 'Overwrite header',
+
 	'flow-edit-title-submit' => 'Change title',
+	'flow-edit-title-submit-overwrite' => 'Overwrite title',
+
+	'flow-edit-post-submit' => 'Submit changes',
+	'flow-edit-post-submit-overwrite' => 'Overwrite changes',
 
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|edited}} a [$3 comment].',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|added}} a [$3 comment].',
@@ -600,7 +604,11 @@ Parameters:
 	'flow-error-process-wikitext' => 'Error message when failing to process html/wikitext conversion.',
 	'flow-error-no-index' => 'Error message when failing to find an index to perform data search.',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
+	'flow-edit-header-submit-overwrite' => 'Used as label for the Submit button, when submitting will overwrite a more recent change.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
+	'flow-edit-title-submit-overwrite' => 'Used as label for the Submit button, when submitting will overwrite a more recent change.',
+	'flow-edit-post-submit' => 'Used as label for the Submit button.',
+	'flow-edit-post-submit-overwrite' => 'Used as label for the Submit button, when submitting wil overwrite a more recent change.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited.
 
 Parameters:
