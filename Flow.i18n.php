@@ -60,8 +60,6 @@ $messages['en'] = array(
 	'flow-thank-link' => '{{GENDER:$1|Thank}}',
 	'flow-talk-link' => 'Talk to {{GENDER:$1|$1}}',
 
-	'flow-edit-post-submit' => 'Submit changes',
-
 	'flow-post-edited' => 'Post {{GENDER:$1|edited}} by $1 $2',
 	'flow-post-action-view' => 'Permalink',
 	'flow-post-action-post-history' => 'Post history',
@@ -105,12 +103,17 @@ $messages['en'] = array(
 	'flow-error-not-a-post' => 'Topic title can not be saved as a post.',
 	'flow-error-missing-header-content' => 'Header has no content. Content is required to save a header.',
 	'flow-error-missing-prev-revision-identifier' => 'Previous revision identifier is missing.',
-	'flow-error-prev-revision-mismatch' => 'The edit could not be saved: a more recent change has already been submitted.',
+	'flow-error-prev-revision-mismatch' => 'Another user just edited this post a few seconds ago. Are you sure you want to overwrite the recent change?',
 	'flow-error-prev-revision-does-not-exist' => 'Could not find the previous revision.',
 
 	'flow-edit-header-submit' => 'Save header',
+	'flow-edit-header-submit-overwrite' => 'Overwrite header',
 
 	'flow-edit-title-submit' => 'Change title',
+	'flow-edit-title-submit-overwrite' => 'Overwrite title',
+
+	'flow-edit-post-submit' => 'Submit changes',
+	'flow-edit-post-submit-overwrite' => 'Overwrite changes',
 
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|edited}} a [$3 comment].',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|added}} a [$3 comment].',
@@ -364,7 +367,6 @@ Parameters:
 * $1 - username, can be used for GENDER',
 	'flow-talk-link' => 'Link text of the button that links to the talk page of the user whose comment is deleted. Parameters:
 * $1 - username of the user whose comment is deleted, can be used for GENDER',
-	'flow-edit-post-submit' => 'Used as label for the Submit button.',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified. Parameters:
 * $1 - username that created the most recent revision of the post
 * $2 - humanized timestamp, relative to now, of when the edit occurred; rendered by MWTimestamp::getHumanTimestamp',
@@ -469,7 +471,11 @@ Parameters:
 * $2: The actual latest revision id',
 	'flow-error-prev-revision-does-not-exist' => 'Error message when the provided previous revision identifier could not be found.',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
+	'flow-edit-header-submit-overwrite' => 'Used as label for the Submit button, when submitting will overwrite a more recent change.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
+	'flow-edit-title-submit-overwrite' => 'Used as label for the Submit button, when submitting will overwrite a more recent change.',
+	'flow-edit-post-submit' => 'Used as label for the Submit button.',
+	'flow-edit-post-submit-overwrite' => 'Used as label for the Submit button, when submitting wil overwrite a more recent change.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited.
 
 Parameters:
