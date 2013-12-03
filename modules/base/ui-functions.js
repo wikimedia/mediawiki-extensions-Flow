@@ -278,6 +278,11 @@
 								$form.append( $errorDiv );
 							}
 
+							// Add error div to arguments to that it can be removed
+							// in submitFunction, if the error is recoverable.
+							// Can't just do arguments.push(), hence the workaround.
+							[].push.call( arguments, $errorDiv );
+
 							deferredObject.reject.apply( $button, arguments );
 						} );
 				};

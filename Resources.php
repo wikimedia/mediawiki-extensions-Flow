@@ -44,9 +44,11 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'ext.flow.editor',
+			'jquery.tipsy',
 		),
 		'messages' => array(
 			'flow-error-other',
+			'flow-edit-header-submit-overwrite',
 		),
 	),
 	'ext.flow.discussion' => $flowResourceTemplate + array(
