@@ -6,6 +6,8 @@ use User;
 use MWTimestamp;
 
 class PostRevision extends AbstractRevision {
+	const MAX_TOPIC_LENGTH = 260;
+
 	protected $postId;
 
 	// denormalized data that must not change between revisions of same post

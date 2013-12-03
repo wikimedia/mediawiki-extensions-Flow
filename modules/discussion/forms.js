@@ -221,6 +221,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 						.addClass( 'mw-ui-input' )
 						.addClass( 'flow-edit-title-textbox' )
 						.attr( 'type', 'text' )
+						.byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
 						.val( oldTitle )
 				)
 				.append(

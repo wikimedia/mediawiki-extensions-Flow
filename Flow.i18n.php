@@ -101,6 +101,7 @@ $messages['en'] = array(
 	'flow-error-invalid-moderation-state' => 'An invalid value was provided for moderationState',
 	'flow-error-invalid-moderation-reason' => 'Please provide a reason for the moderation',
 	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
+	'flow-error-title-too-long' => 'Topic titles are restricted to $1 {{PLURAL:$1|byte|bytes}}.',
 
 	'flow-edit-header-submit' => 'Save header',
 
@@ -443,6 +444,10 @@ Usually indicates a code bug, so technical terminology is okay.
 Valid values for moderationState are: (none), hidden, deleted, suppressed',
 	'flow-error-invalid-moderation-reason' => 'Used as error message when no reason is given for the moderation of a post.',
 	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
+	'flow-error-title-too-long' => 'Used as error message when a user submits a topic title that is too long to save.
+
+Parameters:
+* $1 - The number of bytes allowed',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited.

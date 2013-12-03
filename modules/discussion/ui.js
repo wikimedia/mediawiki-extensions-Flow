@@ -115,6 +115,7 @@
 		$container.find( '.flow-newtopic-step2' ).hide();
 		$container.find( '.flow-newtopic-title' )
 			.addClass( 'flow-newtopic-start' )
+			.byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
 			.attr( 'placeholder', mw.msg( 'flow-newtopic-start-placeholder' ) )
 			.click( function () {
 				if ( !$( this ).hasClass( 'flow-newtopic-start' ) ) {
