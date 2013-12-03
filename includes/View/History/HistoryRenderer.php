@@ -134,18 +134,34 @@ class HistoryRenderer {
 		global $wgUser;
 
 		$children = '';
+		$historicalLink = null;
 		if ( $record instanceof HistoryBundle ) {
 			foreach ( $record->getData() as $revision ) {
 				$historyRecord = new HistoryRecord( $revision );
 				$children .= $this->renderLine( $historyRecord );
 			}
-			$historicalLink = null;
 		} else {
-			$historicalLink = $this->templating->getUrlGenerator()->generateUrl(
-				$this->block->getWorkflowId(),
-				'view',
-				$this->block->getUrlQuery( $record->getRevision(), true )
-			);
+			$revision = $record->getRevision();
+			$workFlowId = null;
+
+			// Topic/Post history
+			if ( $this->block->getName() === 'topic' ) {
+				$workFlowId = $this->block->getWorkflowId();
+			// Board history
+			} else {
+				if ( $revision->getRevisionType() === 'post' ) {
+					$workFlowId = \Flow\Container::get( 'repository.tree' )->findRoot( $revision->getPostId() );
+				} else {
+					$workFlowId = $revision->getWorkflowId();
+				}
+			}
+			if ( $workFlowId ) {
+				$historicalLink = $this->templating->getUrlGenerator()->generateBlockUrl(
+					$workFlowId,
+					$revision,
+					true
+				);
+			}
 		}
 
 		return $this->templating->render( 'flow:history-line.html.php', array(
