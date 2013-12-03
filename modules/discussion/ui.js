@@ -346,6 +346,10 @@
 
 		// Jump to a specific post if one is in the URL
 		if ( window.location.hash ) {
+			if ( window.location.hash.length == 32 ) {
+				// BC for 128 bit uuids
+				window.location.hash = window.location.hash.substr( 0, 22 );
+			}
 			this.highlightElement( $( '.flow-post' + window.location.hash ) );
 		}
 	}, mw.flow.discussion );
