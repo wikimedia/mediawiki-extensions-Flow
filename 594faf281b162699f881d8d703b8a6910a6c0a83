@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_eb8c9634",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1431,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-03T21:54:20Z",
+      "side": 1,
+      "message": "I don\u0027t think we need the 3rd parameter, we can just use $this-\u003eexptime.  Having the additional param gets more flexibility so you can set various expiration time per method call, but this goes against the purpose of this patch: making all cache use the same expiration time.",
+      "revId": "594faf281b162699f881d8d703b8a6910a6c0a83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
