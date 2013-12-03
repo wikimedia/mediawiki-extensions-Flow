@@ -134,7 +134,7 @@ $messages['en'] = array(
 	'flow-history-pages-topic' => 'Appears on [$1 "$2" board]',
 	'flow-history-pages-post' => 'Appears on [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 started this topic|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} and $2 {{PLURAL:$2|other|others}}|0=No participation yet|2={{GENDER:$3|$3}} and {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} and {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Comment ($1)|Comments ($1)|0=Be the first to comment!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|{{GENDER:$2|Comment}} ($1)|Comments ($1)|0={{GENDER:$2|Be the first}} to comment!}}',
 
 	'flow-comment-restored' => 'Restored comment',
 	'flow-comment-deleted' => 'Deleted comment',
@@ -603,7 +603,8 @@ Parameters:
 	'flow-topic-comments' => 'Message to display the amount of comments in this topic.
 
 Parameters:
-* $1 - The number of comments on this topic, can be used for PLURAL',
+* $1 - The number of comments on this topic, can be used for PLURAL
+* $2 - The name of the current user, for GENDER',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
