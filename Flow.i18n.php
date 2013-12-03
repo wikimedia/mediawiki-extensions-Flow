@@ -140,7 +140,7 @@ $messages['en'] = array(
 	'flow-history-pages-topic' => 'Appears on [$1 "$2" board]',
 	'flow-history-pages-post' => 'Appears on [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 started this topic|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} and $2 {{PLURAL:$2|other|others}}|0=No participation yet|2={{GENDER:$3|$3}} and {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} and {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Comment ($1)|Comments ($1)|0=Be the first to comment!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|Comment ($1)|Comments ($1)|0={{GENDER:$2|Be the first}} to comment!}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Be the first to comment!|$1 {{PLURAL:$1|comment|comments}} by $2 {{PLURAL:$2|user|users}}}}',
 
 	'flow-comment-restored' => 'Restored comment',
@@ -625,10 +625,11 @@ Parameters:
 * $3 - username of the topic starter, can be used for GENDER
 * $4 - username of the most recent participant (if there is a second participant, otherwise not available), can be used for GENDER
 * $5 - username of the second most recent participant (if there is a third participant, otherwise not available), can be used for GENDER',
-	'flow-topic-comments' => 'Message to display the amount of comments in this topic.
+	'flow-topic-comments' => 'Message to display the amount of comments in this topic. Shown as a link after the topic title and the line with the topic authors. Clicking the link lets the current user write a new comment.
 
 Parameters:
 * $1 - the number of comments on this topic, can be used for PLURAL
+* $2 - the name of the current user, can be used for GENDER
 See also:
 * {{msg-mw|Flow-topic-meta-minimal}}',
 	'flow-topic-meta-minimal' => 'Message to display the amount of users and comments in a topic in the collapsed topic views.
