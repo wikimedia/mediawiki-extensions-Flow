@@ -4,6 +4,17 @@
 .flow-history-container {
 	color: @history-content-color;
 
+	.flow-datestamp {
+		position: relative;
+
+		.flow-agotime {
+			// Position flow-agotime ontop of flow-utctime
+			position: absolute;
+			left: 0;
+			bottom: 0;
+		}
+	}
+
 	a {
 		text-decoration: none;
 		font-weight: bold;
