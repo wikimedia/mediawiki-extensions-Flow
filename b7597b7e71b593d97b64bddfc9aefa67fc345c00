@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_4f2a7590",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-03T07:30:17Z",
+      "side": 1,
+      "message": "Why use \"Awaiting comments\" here, and \"Be the first to comment!\" in \u0027flow-topic-comments\u0027? Isn\u0027t the context the same?",
+      "revId": "b7597b7e71b593d97b64bddfc9aefa67fc345c00",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
