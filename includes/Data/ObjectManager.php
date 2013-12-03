@@ -620,6 +620,12 @@ class BasicDbStorage implements WritableObjectStorage {
 
 	// Does not support auto-increment id yet
 	public function insert( array $row ) {
+		// Only allow the row to include key/value pairs.
+		// No raw SQL.
+		if ( $this->hasRawSQL( $row ) ) {
+			throw new \MWException( "Raw SQL found in row" );
+		}
+
 		// insert returns boolean true/false
 		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->table,
@@ -643,6 +649,13 @@ class BasicDbStorage implements WritableObjectStorage {
 		if ( !$updates ) {
 			return true; // nothing to change, success
 		}
+
+		// Only allow the row to include key/value pairs.
+		// No raw SQL.
+		if ( $this->hasRawSQL( $updates ) || $this->hasRawSQL( $pk ) ) {
+			throw new \MWException( "Raw SQL found in input" );
+		}
+
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		// update returns boolean true/false as $res
 		$res = $dbw->update( $this->table, $updates, UUID::convertUUIDs( $pk ), __METHOD__ . " ({$this->table})" );
@@ -660,6 +673,13 @@ class BasicDbStorage implements WritableObjectStorage {
 			$missing = array_diff( $this->primaryKey, array_keys( $row ) );
 			throw new PersistenceException( 'Row has null primary key: ' . implode( $missing ) );
 		}
+
+		// Only allow the row to include key/value pairs.
+		// No raw SQL.
+		if ( $this->hasRawSQL( $pk ) ) {
+			throw new \MWException( "Raw SQL found in PK" );
+		}
+
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->delete( $this->table, UUID::convertUUIDs( $pk ), __METHOD__ . " ({$this->table})" );
 		return $res && $dbw->affectedRows();
@@ -677,6 +697,12 @@ class BasicDbStorage implements WritableObjectStorage {
 				$value = $value->getHex();
 			}
 			wfDebug( " -- $key = $value\n" );
+		}
+
+		// Only allow the row to include key/value pairs.
+		// No raw SQL.
+		if ( $this->hasRawSQL( $attributes ) ) {
+			throw new \MWException( "Raw SQL found in select condition" );
 		}
 
 		$res = $this->dbFactory->getDB( DB_MASTER )->select(
@@ -724,6 +750,28 @@ class BasicDbStorage implements WritableObjectStorage {
 
 	public function getPrimaryKeyColumns() {
 		return $this->primaryKey;
+	}
+
+	/**
+	 * Internal security function which checks a row object
+	 * (for inclusion as a condition or a row for insert/update)
+	 * for any numeric keys (= raw SQL), or field names with
+	 * potentially unsafe characters.
+	 * @param  array   $row The row to check.
+	 * @return boolean      True if raw SQL is found
+	 */
+	protected function hasRawSQL( array $row ) {
+		foreach( $row as $key => $value ) {
+			if ( is_numeric( $key ) ) {
+				return true;
+			}
+
+			if ( ! preg_match( '/^[A-Za-z\._]+$/', $key ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
 
