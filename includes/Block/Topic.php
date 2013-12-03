@@ -111,8 +111,10 @@ class TopicBlock extends AbstractBlock {
 	protected function validateEditTitle() {
 		if ( $this->workflow->isNew() ) {
 			$this->errors['content'] = wfMessage( 'flow-no-existing-workflow' );
-		} elseif ( empty( $this->submitted['content'] ) ) {
+		} elseif ( !isset( $this->submitted['content'] ) || !is_string( $this->submitted['content'] ) || strlen( $this->submitted['content'] ) === 0 ) {
 			$this->errors['content'] = wfMessage( 'flow-missing-title-content' );
+		} elseif ( strlen( $this->submitted['content'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
+			$this->errors['content'] = wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH );
 		} else {
 			$topicTitle = $this->loadTopicTitle();
 			if ( !$topicTitle ) {
