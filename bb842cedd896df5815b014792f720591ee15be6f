@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_a1491592",
+        "filename": "tests/browser/features/step_definitions/edit_existing_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2013-12-03T11:38:25Z",
+      "side": 1,
+      "message": "Is this supposed to make the browser bigger or smaller?\n\nWe are already resizing the browser in the gem to 1280x1024[1].\n\nMaybe Flow repo just needs to update the version of the gem.\n\nhttps://github.com/wikimedia/mediawiki-selenium/blob/master/lib/mediawiki/selenium/env.rb#L93",
+      "revId": "bb842cedd896df5815b014792f720591ee15be6f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
