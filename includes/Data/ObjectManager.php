@@ -594,7 +594,7 @@ class ObjectManager extends ObjectLocator {
 		foreach( $sortFields as $field ) {
 			$value = $row[$field];
 
-			if ( strlen( $value ) == 16 && substr( $field, -3 ) === '_id' ) {
+			if ( strlen( $value ) === UUID::BIN_LEN && substr( $field, -3 ) === '_id' ) {
 				$value = UUID::create( $value )->getHex();
 			}
 			$offsetFields[] = $value;
@@ -1158,9 +1158,9 @@ abstract class FeatureIndex implements Index {
 
 	protected function cacheKey( array $attributes ) {
 		foreach( $attributes as $key => $attr ) {
-			if ( $attr instanceof \Flow\Model\UUID ) {
+			if ( $attr instanceof UUID ) {
 				$attributes[$key] = $attr->getHex();
-			} elseif ( strlen( $attr ) == 16 && substr( $key, -3 ) === '_id' ) {
+			} elseif ( strlen( $attr ) === UUID::BIN_LEN && substr( $key, -3 ) === '_id' ) {
 				$uuid = new \Flow\Model\UUID( $attr );
 				$attributes[$key] = $uuid->getHex();
 			}
