@@ -2,20 +2,64 @@
 	$( document ).flow( 'registerInitFunction', function ( e ) {
 		var $container = $( e.target );
 
-		// Set up menus
-		$container.find( '.flow-actions-link' )
+		/*
+		 * Set up tipsy.
+		 *
+		 * Tipsy html should look like this:
+		 * <div class="flow-tipsy">
+		 *     <a class="flow-tipsy-link"></a>
+		 *     <div class="flow-tipsy-flyout"></div>
+		 * </div>
+		 *
+		 * .flow-tipsy-link is the target that, when clicked, will trigger the
+		 * tipsy dialog. .flow-tipsy-flyout is the dialog content.
+		 */
+		$container.find( '.flow-tipsy-link' ).tipsy( {
+			fade: true,
+			gravity: function() {
+				// tipsy position can be defined via data-tipsy-gravity
+				// attribute, or fall back to north
+				return $( this ).data( 'tipsy-gravity') || 'n' ;
+			},
+			html: true,
+			trigger: 'manual',
+			className: '',
+			title: function() {
+				// .html() only returns inner html, so attach the node to a new
+				// parent & grab the full html there
+				var $clone = $( this ).parent( '.flow-tipsy' ).find( '.flow-tipsy-flyout' ).clone();
+				return $( '<div>' ).append( $clone ).html();
+			}
+		} );
+		// open tipsy dialog associated with this link
+		$container.find( '.flow-tipsy-link' )
 			.click( function ( e ) {
 				e.preventDefault();
 
-				$( this ).next( '.flow-actions-flyout' )
-					.show();
+				// close other tipsy that may be open
+				$( '.flow-tipsy-open' ).each( function() {
+					$( this )
+						.removeClass( 'flow-tipsy-open' )
+						.tipsy( 'hide' );
+				} );
+
+				$( this ).addClass( 'flow-tipsy-open' );
+				$( this ).tipsy( 'show' );
 			} );
-		$container.find( '.flow-actions-flyout a' )
-			.add( 'body' )
+		$( document )
 			.click( function ( e ) {
-				if ( !$( e.target ).hasClass( 'flow-actions-link' ) ) {
-					$( '.flow-actions-flyout' )
-						.fadeOut( 'fast' );
+				// check if clicked on tipsy trigger link or inside tipsy dialog
+				var inTipsy =
+					$( e.target ).closest( '.flow-tipsy-link' ).length > 0 ||
+					$( e.target ).closest( '.flow-tipsy-flyout' ).length > 0;
+
+				// if clicked anywhere outside of tipsy, close dialog
+				if ( !inTipsy ) {
+					$( '.flow-tipsy-open' ).each( function() {
+						$( this )
+							.removeClass( 'flow-tipsy-open' )
+							.tipsy( 'hide' );
+					} );
 				}
 			} );
 
@@ -269,27 +313,64 @@
 			} );
 
 		// Moderation controls
-		var moderationTypes = [ 'hide', 'delete', 'suppress', 'restore' ];
+		var moderationTypes = [ 'hide', 'delete', 'suppress', 'restore' ],
+			classes = [];
 		$.each( moderationTypes, function( k, moderationType ) {
-			$container
-				.find( '.flow-'+moderationType+'-post-link, .flow-'+moderationType+'-topic-link' )
-				.click(
-				function(e) {
-					e.preventDefault();
-					var $link = $( this );
-					$link
-						.closest( '.flow-actions-flyout' )
-						.fadeOut( 'fast' )
-						.siblings( '.flow-actions-flyout' )
-							.injectSpinner( { 'size' : 'small', 'id' : 'flow-moderation-loading' } );
+			var classNames = ['.flow-'+moderationType+'-post-link', '.flow-'+moderationType+'-topic-link'];
 
-					mw.loader.using( ['ext.flow.moderation'], function() {
-						$.removeSpinner( 'flow-moderation-loading' );
-						$link.flow( 'showModerationDialog', moderationType );
-					} );
-				}
-			);
+			for ( var i in classNames ) {
+				classes.push( classNames[i] );
+
+				// don't use .data() to set the type, because this is not the
+				// exact node that will be clicked on: tipsy will clone the node,
+				// outside of $container
+				$container.find( classNames[i] ).attr( 'data-moderation-type', moderationType );
+			}
 		} );
+
+		// live bind to document because tipsy will move the links outside $container
+		// only bind once! when node is replaced (e.g. after moderation), we don't
+		// want the event to be bound again, since document node won't have changed
+		$( document )
+			.one( 'click', classes.join( ', ' ), function( e ) {
+				var moderationType = $( this ).data( 'moderation-type' );
+
+				e.preventDefault();
+
+				// while moderation is being loaded, hide buttons & show spinner
+				$( this ).closest( 'li' )
+					.fadeOut( 'fast', function() {
+						$( this ).injectSpinner( { 'size' : 'medium', 'id' : 'flow-moderation-loading' } );
+					} );
+
+				mw.loader.using( ['ext.flow.moderation'], function() {
+					$tipsyTrigger = $( '.flow-tipsy-open' );
+
+					$.removeSpinner( 'flow-moderation-loading' );
+
+					// close tipsy
+					$tipsyTrigger.each( function() {
+						$( this ).removeClass( 'flow-tipsy-open' );
+						$( this ).tipsy( 'hide' );
+					} );
+
+					/*
+					 * $tipsyTrigger is actually just the link that opens
+					 * the tipsy window, not the moderation button we just
+					 * clicked. For the purpose of showModerationDialog, it
+					 * should do just fine though; all it needs the element
+					 * for is to fetch parent post & topic nodes.
+					 *
+					 * @todo: we should refactor showModerationDialog some
+					 * day to not rely on a specific node being tossed in;
+					 * it's too vague what exactly it should be, and we
+					 * may not always be able to guarantee nodes' positions
+					 * withing the DOM (e.g. tipsy pulls them out)
+					 */
+					$tipsyTrigger.flow( 'showModerationDialog', moderationType );
+				} );
+			}
+		);
 
 		// Moderated posts need click to display content
 		$( '<a href="#" class="flow-post-moderated-view"></a>' )
