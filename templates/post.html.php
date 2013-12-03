@@ -79,9 +79,9 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 			</div>
 
 			<?php if ( $postView->actions()->isAllowedAny( 'hide-post', 'delete-post', 'suppress-post', 'restore-post' ) ): ?>
-				<div class="flow-actions">
-					<a class="flow-actions-link flow-icon flow-icon-bottom-aligned" href="#" title="<?php echo wfMessage( 'flow-post-actions' )->escaped(); ?>"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
-					<div class="flow-actions-flyout">
+				<div class="flow-tipsy flow-actions">
+					<a class="flow-tipsy-link flow-icon flow-icon-bottom-aligned" href="#" title="<?php echo wfMessage( 'flow-post-actions' )->escaped(); ?>" data-tipsy-gravity="e"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
+					<div class="flow-tipsy-flyout">
 						<ul>
 							<?php
 							if ( $hidePost = $postView->hidePostButton( 'flow-hide-post-link mw-ui-button' ) ) {

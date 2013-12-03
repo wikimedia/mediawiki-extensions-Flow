@@ -63,6 +63,7 @@ $wgResourceModules += array(
 			'jquery.spinner',
 			'mediawiki.Title',
 			'mediawiki.util',
+			'jquery.tipsy',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
