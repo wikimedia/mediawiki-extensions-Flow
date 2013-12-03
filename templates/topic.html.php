@@ -181,7 +181,7 @@ echo Html::openElement( 'div', array(
 						// get total number of posts in topic
 						// @todo: the number of comments should not be a part of the link
 						$comments = $root->getRecursiveResult( $indexDescendantCount );
-						echo wfMessage( 'flow-topic-comments', $comments )->text();
+						echo wfMessage( 'flow-topic-comments', $comments, $user->getName() )->text();
 					?>
 				</a>
 			</li>
