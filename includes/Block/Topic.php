@@ -895,28 +895,6 @@ class TopicBlock extends AbstractBlock {
 		return 'topic';
 	}
 
-	/**
-	 * Builds query info to use with urlGenerator, to link to a specific
-	 * PostRevision.
-	 *
-	 * @param PostRevision $revision
-	 * @param bool[optional] $specificRevision Link to this specific revision?
-	 * @return array
-	 */
-	public function getUrlQuery( PostRevision $revision, $specificRevision = false ) {
-		$data = array();
-
-		if ( !$revision->isTopicTitle() ) {
-			$data[$this->getName() . '[postId]'] = $revision->getPostId()->getHex();
-		}
-
-		if ( $specificRevision ) {
-			$data[$this->getName() . '[revId]'] = $revision->getRevisionId()->getHex();
-		}
-
-		return $data;
-	}
-
 	protected function setNotification( $notificationType, array $extraVars ) {
 		$this->notification = array(
 				'type' => $notificationType,

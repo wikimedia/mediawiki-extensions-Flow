@@ -68,6 +68,29 @@ class UrlGenerator {
 	}
 
 	/**
+	 * Generate a block viewing url based on a revision
+	 *
+	 * @param Workflow|UUID $workflow The Workflow to link to
+	 * @param AbstractRevision $revision The revision to build the block
+	 * @param boolean $specificRevision whether to show specific revision
+	 */
+	public function generateBlockUrl( $workflow, $revision, $specificRevision = false ) {
+		$data = array();
+		switch ( $revision->getRevisionType() ) {
+			case 'post':
+				if ( !$revision->isTopicTitle() ) {
+					$data['topic[postId]'] = $revision->getPostId()->getHex();
+				}
+		
+				if ( $specificRevision ) {
+					$data['topic[revId]'] = $revision->getRevisionId()->getHex();
+				}
+			break;
+		}
+		return $this->generateUrl( $workflow, 'view', $data );
+	}
+
+	/**
 	 * Returns the title/query string to link to a given Workflow
 	 *
 	 * @todo We should probably have more descriptive names than
@@ -84,7 +107,7 @@ class UrlGenerator {
 			// Only way to know what title the workflow points at
 			$workflow = $this->storage->get( $workflowId );
 			if ( !$workflow ) {
-				throw \MWException( 'Invalid workflow: ' . $workflowId );
+				throw new \MWException( 'Invalid workflow: ' . $workflowId );
 			}
 		}
 
