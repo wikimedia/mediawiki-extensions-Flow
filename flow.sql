@@ -2,7 +2,7 @@
 -- This file contains only the unsharded global data
 
 CREATE TABLE /*_*/flow_definition (
-	definition_id binary(16) NOT NULL,
+	definition_id binary(11) NOT NULL,
 	definition_wiki varchar(32) binary NOT NULL,
 	definition_name varchar(32) binary NOT NULL,
 	definition_type varchar(32) binary NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE /*_*/flow_definition (
 CREATE UNIQUE INDEX /*i*/flow_definition_unique_name ON /*_*/flow_definition (definition_wiki, definition_name);
 
 CREATE TABLE /*_*/flow_workflow (
-	workflow_id binary(16) not null,
+	workflow_id binary(11) not null,
 	workflow_wiki varchar(16) binary not null,
 	workflow_namespace int not null,
 	workflow_page_id int unsigned not null,
@@ -27,7 +27,7 @@ CREATE TABLE /*_*/flow_workflow (
 	-- TODO: is this usefull as a bitfield?  may be premature optimization, a string
 	-- or list of strings may be simpler and use only a little more space.
 	workflow_lock_state int unsigned not null,
-	workflow_definition_id binary(16) not null,
+	workflow_definition_id binary(11) not null,
 	PRIMARY KEY (workflow_id)
 ) /*$wgDBTableOptions*/;
 
@@ -45,8 +45,8 @@ CREATE INDEX /*i*/flow_subscription_lookup ON /*_*/flow_subscription (subscripti
 
 -- TopicList Tables
 CREATE TABLE /*_*/flow_topic_list (
-	topic_list_id binary(16) not null,
-	topic_id binary(16)
+	topic_list_id binary(11) not null,
+	topic_id binary(11)
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/flow_topic_list_pk ON /*_*/flow_topic_list( topic_list_id, topic_id);
@@ -56,16 +56,16 @@ CREATE INDEX /*i*/flow_topic_list_topic_id ON /*_*/flow_topic_list (topic_id);
 -- also denormalizes information commonly needed with a revision
 CREATE TABLE /*_*/flow_tree_revision (
 	-- the id of the post in the post tree
-	tree_rev_descendant_id binary(16) not null,
+	tree_rev_descendant_id binary(11) not null,
 	-- fk to flow_revision
-	tree_rev_id binary(16) not null,
+	tree_rev_id binary(11) not null,
 	-- denormalized so we dont need to keep finding the first revision of a post
 	tree_orig_create_time varchar(12) binary not null,
 	tree_orig_user_id bigint unsigned not null,
 	tree_orig_user_text varchar(255) binary not null,
 	-- denormalize post parent as well? Prevents an extra query when building
 	-- tree from closure table.  unnecessary?
-	tree_parent_id binary(16),
+	tree_parent_id binary(11),
 	PRIMARY KEY( tree_rev_id )
 ) /*$wgDBTableOptions*/;
 
@@ -77,8 +77,8 @@ CREATE UNIQUE INDEX /*i*/flow_tree_descendant_id_revisions
 -- or something?  Main limit in current setup can only associate one header per
 -- workflow
 CREATE TABLE /*_*/flow_header_revision (
-	header_workflow_id binary(16) not null,
-	header_rev_id binary(16) not null,
+	header_workflow_id binary(11) not null,
+	header_rev_id binary(11) not null,
 	PRIMARY KEY ( header_workflow_id, header_rev_id )
 ) /*$wgDBTableOptions*/;
 
@@ -98,7 +98,7 @@ CREATE TABLE /*_*/flow_header_revision (
 --
 CREATE TABLE /*_*/flow_revision (
 	-- UID::newTimestampedUID128()
-	rev_id binary(16) not null,
+	rev_id binary(11) not null,
 	-- What kind of revision is this: tree/header/etc.
 	rev_type varchar(16) binary not null,
 	-- user id creating the revision
@@ -108,7 +108,7 @@ CREATE TABLE /*_*/flow_revision (
 	--       will be needed to map from rev_user_id -> user name
 	rev_user_text varchar(255) binary not null default '',
 	-- rev_id of parent or null if no previous revision
-	rev_parent_id binary(16),
+	rev_parent_id binary(11) null,
 	-- comma separated set of ascii flags.
 	rev_flags tinyblob not null,
 	-- content of the revision
@@ -126,7 +126,7 @@ CREATE TABLE /*_*/flow_revision (
 	rev_mod_reason varchar(255) binary,
 
 	-- track who made the most recent content edit
-	rev_last_edit_id binary(16) null,
+	rev_last_edit_id binary(11) null,
 	rev_edit_user_id bigint unsigned,
 	rev_edit_user_text varchar(255) binary,
 
@@ -140,8 +140,8 @@ CREATE UNIQUE INDEX /*i*/flow_revision_unique_parent ON
 -- Closure table implementation of tree storage in sql
 -- We may be able to go simpler than this
 CREATE TABLE /*_*/flow_tree_node (
-	tree_ancestor_id binary(16) not null,
-	tree_descendant_id binary(16) not null,
+	tree_ancestor_id binary(11) not null,
+	tree_descendant_id binary(11) not null,
 	tree_depth smallint not null
 ) /*$wgDBTableOptions*/;
 

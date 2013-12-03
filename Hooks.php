@@ -31,6 +31,8 @@ class FlowHooks {
 		if ( $updater->getDB()->getType() === 'sqlite' ) {
 			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id', "$dir/db_patches/patch-summary2header.sqlite.sql" );
 			$updater->modifyExtensionField( 'flow_revision', 'rev_comment', "$dir/db_patches/patch-rev_change_type.sqlite.sql" );
+			// sqlite ignores field types, this just substr's uuid's to 88 bits
+			$updater->modifyExtensionField( 'flow_definition', 'definition_id', "$dir/db_patches/patch-88bit_uuids.sqlite.sql" );
 		} else {
 			// sqlite doesn't support alter table change, it also considers all types the same so
 			// this patch doesn't matter to it.
@@ -39,6 +41,8 @@ class FlowHooks {
 			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id', "$dir/db_patches/patch-summary2header.sql" );
 			// rename rev_change_type -> rev_comment, alternate patch is above for sqlite
 			$updater->modifyExtensionField( 'flow_revision', 'rev_comment', "$dir/db_patches/patch-rev_change_type.sql" );
+			// convert 128 bit uuid's into 88bit
+			$updater->modifyExtensionField( 'flow_definition', 'definition_id', "$dir/db_patches/patch-88bit_uuids.sql" );
 		}
 
 		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_lookup', "$dir/db_patches/patch-workflow_lookup_idx.sql" );
