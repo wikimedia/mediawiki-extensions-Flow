@@ -44,9 +44,13 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'ext.flow.editor',
+			'jquery.tipsy',
 		),
 		'messages' => array(
 			'flow-error-other',
+			'flow-edit-header-submit',
+			'flow-edit-header-submit-overwrite',
+			'flow-edit-header-submit-overwrite',
 		),
 	),
 	'ext.flow.discussion' => $flowResourceTemplate + array(
@@ -86,9 +90,9 @@ $wgResourceModules += array(
 			'flow-error-external-multi',
 			'flow-edit-title-submit',
 			'flow-edit-post-submit',
+			'flow-edit-post-submit-overwrite',
 			'flow-paging-fwd',
 			'flow-paging-rev',
-			'flow-edit-header-submit',
 			'flow-post-moderated-toggle-show',
 			'flow-post-moderated-toggle-hide',
 		),
