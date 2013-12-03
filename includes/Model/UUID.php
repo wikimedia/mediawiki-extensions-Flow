@@ -29,6 +29,13 @@ class UUID {
 			} else {
 				throw new MWException( "Got unknown input of type " . get_class( $input ) );
 			}
+		} elseif ( $input === null ) {
+			return null;
+		} elseif ( $input === false ) {
+			$hexValue = str_pad( \UIDGenerator::newTimestampedUID128( 16 ), 32, '0', STR_PAD_LEFT );
+			$binaryValue = pack( 'H*', $hexValue );
+		} elseif ( !is_string( $input ) && !is_int( $input ) ) {
+			throw new \MWException( "Unknown input type to UUID class: " . gettype( $input ) );
 		} elseif ( strlen( $input ) == 16 ) {
 			$binaryValue = $input;
 		} elseif ( strlen( $input ) == 32 && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
@@ -37,11 +44,6 @@ class UUID {
 		} elseif ( is_numeric( $input ) ) {
 			$hexValue = wfBaseConvert( $input, 10, 16, 32 );
 			$binaryValue = pack( 'H*', $hexValue );
-		} elseif ( $input === false ) {
-			$hexValue = str_pad( \UIDGenerator::newTimestampedUID128( 16 ), 32, '0', STR_PAD_LEFT );
-			$binaryValue = pack( 'H*', $hexValue );
-		} elseif ( $input === null ) {
-			return null;
 		} else {
 			throw new \MWException( "Unknown input to UUID class" );
 		}
