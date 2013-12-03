@@ -202,7 +202,7 @@ $wgFlowActions = array(
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), $fragment );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $revision->getModeratedReason();
+					return array( 'raw' => htmlspecialchars( $revision->getModeratedReason() ) );
 				},
 			),
 			'class' => 'flow-history-hid-post',
@@ -232,7 +232,7 @@ $wgFlowActions = array(
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array() );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $revision->getModeratedReason();
+					return array( 'raw' => htmlspecialchars( $revision->getModeratedReason() ) );
 				},
 			),
 			'class' => 'flow-history-hid-topic',
@@ -267,7 +267,7 @@ $wgFlowActions = array(
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), $fragment );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $revision->getModeratedReason();
+					return array( 'raw' => htmlspecialchars( $revision->getModeratedReason() ) );
 				},
 			),
 			'class' => 'flow-history-deleted-post',
@@ -298,7 +298,7 @@ $wgFlowActions = array(
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array() );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $revision->getModeratedReason();
+					return array( 'raw' => htmlspecialchars( $revision->getModeratedReason() ) );
 				},
 			),
 			'class' => 'flow-history-deleted-topic',
@@ -334,7 +334,7 @@ $wgFlowActions = array(
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), $fragment );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $revision->getModeratedReason();
+					return array( 'raw' => htmlspecialchars( $revision->getModeratedReason() ) );
 				},
 			),
 			'class' => 'flow-history-suppressed-post',
@@ -366,7 +366,7 @@ $wgFlowActions = array(
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array() );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $revision->getModeratedReason();
+					return array( 'raw' => htmlspecialchars( $revision->getModeratedReason() ) );
 				},
 			),
 			'class' => 'flow-history-suppressed-topic',
@@ -404,7 +404,7 @@ $wgFlowActions = array(
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), 'flow-post-' . $revision->getPostId()->getHex() );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $revision->getModeratedReason();
+					return array( 'raw' => htmlspecialchars( $revision->getModeratedReason() ) );
 				},
 			),
 			'class' => 'flow-history-restored-post',
@@ -442,7 +442,7 @@ $wgFlowActions = array(
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array() );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $revision->getModeratedReason();
+					return array( 'raw' => htmlspecialchars( $revision->getModeratedReason() ) );
 				},
 			),
 			'class' => 'flow-history-restored-topic',
