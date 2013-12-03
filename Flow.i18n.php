@@ -109,6 +109,7 @@ $messages['en'] = array(
 	'flow-error-prev-revision-does-not-exist' => 'Could not find the previous revision.',
 
 	'flow-edit-header-submit' => 'Save header',
+	'flow-edit-header-submit-overwrite' => 'Overwrite header',
 
 	'flow-edit-title-submit' => 'Change title',
 
@@ -469,6 +470,7 @@ Parameters:
 * $2: The actual latest revision id',
 	'flow-error-prev-revision-does-not-exist' => 'Error message when the provided previous revision identifier could not be found.',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
+	'flow-edit-header-submit-overwrite' => 'Used as label for the Submit button, when submitting will overwrite a more recent change.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-rev-message-edit-post' => 'Used as a revision comment when a post has been edited.
 
