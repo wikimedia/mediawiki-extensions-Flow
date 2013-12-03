@@ -34,6 +34,24 @@
       "revId": "0e1b5ab02a5ceb6824eea463f0fe931fea260d21",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_97e533a2",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-03T17:08:51Z",
+      "side": 1,
+      "message": "I wasn\u0027t meant as imperative, although it could perhaps be considered as such, since clicking it will take you to the reply-textarea. I think in this context, followed by the amount of comments, it makes more sense as noun \u0026 {{GENDER}} isn\u0027t needed there?",
+      "parentUuid": "0ee75395_042c4f8e",
+      "revId": "0e1b5ab02a5ceb6824eea463f0fe931fea260d21",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
