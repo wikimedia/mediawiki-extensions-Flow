@@ -407,6 +407,11 @@ class Templating {
 			$parsoid = json_decode( $parsoid, true );
 
 			if ( isset( $parsoid['sa']['href'] ) ) {
+				// Don't process invalid links
+				$title = Title::newFromText( $parsoid['sa']['href'] );
+				if ( $title === null ) {
+					continue;
+				}
 				// gather existing link attributes
 				$attributes = array();
 				foreach ( $linkNode->attributes as $attribute ) {
@@ -414,7 +419,6 @@ class Templating {
 				}
 
 				// let MW build link HTML based on Parsoid data
-				$title = Title::newFromText( $parsoid['sa']['href'] );
 				$linkHTML = Linker::link( $title, $linkNode->nodeValue, $attributes );
 
 				// create new DOM from this MW-built link
@@ -463,7 +467,6 @@ class Templating {
 		if ( $post->isTopicTitle() ) {
 			return array( array(), true );
 		}
-		$content = $post->getContent( 'html' );
 
 		// make sure a post is not checked more than once
 		$revisionId = $post->getRevisionId()->getHex();
@@ -473,6 +476,7 @@ class Templating {
 		$this->parsoidLinksProcessed[$revisionId] = true;
 
 		// find links in DOM
+		$content = $post->getContent( 'html' );
 		$dom = ParsoidUtils::createDOM( $content );
 		$xpath = new \DOMXPath( $dom );
 		$linkNodes = $xpath->query( '//a[@rel="mw:WikiLink"][@data-parsoid]' );
@@ -484,7 +488,10 @@ class Templating {
 			if ( isset( $parsoid['sa']['href'] ) ) {
 				// real results will be stored in Templating::parsoidLinks
 				$link = $parsoid['sa']['href'];
-				$this->parsoidLinks[$link] = Title::newFromText( $link );
+				$title = Title::newFromText( $link );
+				if ( $title !== null ) {
+					$this->parsoidLinks[$link] = $title;
+				}
 			}
 		}
 
