@@ -318,6 +318,10 @@
 		};
 
 		if ( window.location.hash ) {
+			if ( window.location.hash.length == 32 ) {
+				// BC for 128 bit uuids
+				window.location.hash = window.location.hash.substr( 0, 22 );
+			}
 			highlightPost( $( '.flow-post' + window.location.hash ) );
 		}
 
