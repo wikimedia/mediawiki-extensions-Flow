@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_643e7bb7",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 54
+      },
+      "writtenOn": "2013-12-03T12:17:55Z",
+      "side": 1,
+      "message": "I am aware of this. I\u0027m not sure how to resolve it and I reported it already as https://bugzilla.wikimedia.org/show_bug.cgi?id\u003d57814 .\n\nI would still love to know your opinion about using parameters below.",
+      "parentUuid": "0ee75395_418129a3",
+      "revId": "2f2b73347f3070cd319369c17fa7038d17177f2e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_e221699b",
         "filename": "modules/moderation/moderation.js",
         "patchSetId": 2
