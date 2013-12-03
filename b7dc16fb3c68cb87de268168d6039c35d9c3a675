@@ -16,6 +16,41 @@
       "revId": "b7dc16fb3c68cb87de268168d6039c35d9c3a675",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_7a0f36e5",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-03T18:06:51Z",
+      "side": 1,
+      "message": "ahh, yes its missing that.  The intention was to receive nulls here to not confuse with 0, but always pass a proper int on into BagOStuff",
+      "parentUuid": "0ee75395_dad52249",
+      "revId": "b7dc16fb3c68cb87de268168d6039c35d9c3a675",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_5af6b2d5",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 1376,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-03T18:06:51Z",
+      "side": 1,
+      "message": "probably needs \u003d null, parent::set will do the appropriate thing with the null.",
+      "revId": "b7dc16fb3c68cb87de268168d6039c35d9c3a675",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
