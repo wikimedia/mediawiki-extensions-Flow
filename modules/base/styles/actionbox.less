@@ -1,48 +1,53 @@
-.flow-actions {
-	.flow-actions-flyout {
-		// hide until .flow-actions-link clicked
-		display: none;
+@import '../../mediawiki.ui/styles/settings/colors.less';
+@import 'mixins/arrow.less';
 
-		z-index: 99;
+@flyout-border-color: #E1E1E1;
+@arrow-size: 5px;
+@arrow-border-size: 1px;
 
-		// actionboxes will likely have to be styled independently, this is just fallback
-		background-color: #FFF;
-		border: 1px solid #E1E1E1;
-		color: #808184;
+.flow-tipsy-flyout {
+	// hide until .flow-tipsy-link clicked
+	display: none;
 
-		ul {
-			list-style: none;
+	z-index: 99;
+
+	// actionboxes will likely have to be styled independently, this is just fallback
+	background-color: @neutral-base;
+	border: 1px solid @flyout-border-color;
+	color: #808184;
+
+	ul {
+		list-style: none;
+		margin: 0;
+
+		li {
 			margin: 0;
 
-			li {
-				margin: 0;
+			// override formatting of buttons used in li's
+			.mw-ui-button {
+				// buttons in li should take up full width
+				display: block;
+				width: 100%;
+				// .mw-ui-button can be input element; padding would
+				// increase length in default box-sizing: content-box
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
 
-				// override formatting of buttons used in li's
-				.mw-ui-button {
-					// buttons in li should take up full width
-					display: block;
-					width: 100%;
-					// .mw-ui-button can be input element; padding would
-					// increase length in default box-sizing: content-box
-					box-sizing: border-box;
-					-moz-box-sizing: border-box;
+				border-radius: 0;
+				border-left: none;
+				border-right: none;
+				border-bottom: none;
 
+				&:hover {
 					border-radius: 0;
 					border-left: none;
 					border-right: none;
 					border-bottom: none;
-
-					&:hover {
-						border-radius: 0;
-						border-left: none;
-						border-right: none;
-						border-bottom: none;
-					}
 				}
+			}
 
-				&:first-of-type .mw-ui-button {
-					border-top: none;
-				}
+			&:first-of-type .mw-ui-button {
+				border-top: none;
 			}
 		}
 	}
@@ -50,11 +55,124 @@
 
 // for non-JS users, hide the action link & show flyout immediately
 .client-nojs {
-	.flow-actions-link {
+	.flow-tipsy-link {
 		display: none;
 	}
 
-	.flow-actions-flyout {
+	.flow-tipsy-flyout {
 		display: block;
+	}
+}
+
+.tipsy {
+	.tipsy-inner {
+		padding: 0;
+		border: 1px solid @flyout-border-color;
+	}
+
+	.flow-tipsy-flyout {
+		display: block;
+
+		// when using tipsy, don't use own border
+		border: none;
+	}
+
+	// overwrite tipsy arrow
+	.tipsy-arrow {
+		// overwrite core bg image
+		background: none;
+
+		// build new arrow
+		.arrow(@arrow-size, @arrow-border-size, @neutral-base, @flyout-border-color);
+	}
+
+	// rotate arrow to match gravitation
+	&.tipsy-n {
+		.tipsy-arrow {
+			// arrow is upwards already
+
+			top: 1px;
+		}
+	}
+
+	&.tipsy-e {
+		.tipsy-arrow {
+			-webkit-transform: rotate(90deg);
+			-moz-transform: rotate(90deg);
+			-ms-transform: rotate(90deg);
+			-o-transform: rotate(90deg);
+			transform: rotate(90deg);
+
+			right: -1px;
+		}
+	}
+
+	&.tipsy-s {
+		.tipsy-arrow {
+			-webkit-transform: rotate(180deg);
+			-moz-transform: rotate(180deg);
+			-ms-transform: rotate(180deg);
+			-o-transform: rotate(180deg);
+			transform: rotate(180deg);
+
+			bottom: 1px;
+		}
+	}
+
+	&.tipsy-w {
+		.tipsy-arrow {
+			-webkit-transform: rotate(-90deg);
+			-moz-transform: rotate(-90deg);
+			-ms-transform: rotate(-90deg);
+			-o-transform: rotate(-90deg);
+			transform: rotate(-90deg);
+
+			left: -1px;
+		}
+	}
+
+	// add "mw-ui-button"-like tipsy background colors
+	&.flow-tipsy-constructive {
+		.tipsy-inner {
+			background-color: @constructive-base;
+			color: @neutral-base;
+		}
+
+		.tipsy-arrow {
+			.arrow(@arrow-size, @arrow-border-size, @constructive-base, @constructive-base);
+		}
+	}
+
+	&.flow-tipsy-destructive {
+		.tipsy-inner {
+			background-color: @destructive-base;
+			color: @neutral-base;
+		}
+
+		.tipsy-arrow {
+			.arrow(@arrow-size, @arrow-border-size, @destructive-base, @destructive-base);
+		}
+	}
+
+	&.flow-tipsy-destructive-medium {
+		.tipsy-inner {
+			background-color: @destructive-medium-base;
+			color: @neutral-base;
+		}
+
+		.tipsy-arrow {
+			.arrow(@arrow-size, @arrow-border-size, @destructive-medium-base, @destructive-medium-base);
+		}
+	}
+
+	&.flow-tipsy-destructive-low {
+		.tipsy-inner {
+			background-color: @destructive-low-base;
+			color: @neutral-base;
+		}
+
+		.tipsy-arrow {
+			.arrow(@arrow-size, @arrow-border-size, @destructive-low-base, @destructive-low-base);
+		}
 	}
 }

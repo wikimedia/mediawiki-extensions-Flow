@@ -1,0 +1,29 @@
+// overwrite tipsy arrow
+.arrow(@arrow-size, @arrow-border-size, @arrow-color, @arrow-border-color) {
+	// build arrow using CSS (easier to change multiple colors)
+	// this will be the arrow "border"
+	// this will be an arrow pointing upwards
+	width: 0;
+	height: 0;
+	border-left: @arrow-size solid transparent;
+	border-right: @arrow-size solid transparent;
+	border-bottom: @arrow-size solid @arrow-border-color;
+
+	// add smaller arrow over it, which will serve as the arrow background
+	&:after{
+		width: 0;
+		height: 0;
+		border-left: calc(@arrow-size - @arrow-border-size) solid transparent;
+		border-right: calc(@arrow-size - @arrow-border-size) solid transparent;
+		border-bottom: calc(@arrow-size - @arrow-border-size) solid @arrow-color;
+
+		// position correctly over parent
+		position: absolute;
+		left: calc(@arrow-border-size - @arrow-size);
+		top: @arrow-border-size;
+
+		// :after should have some content in order to show up
+		content: '.';
+		text-indent: -9999px;
+	}
+}
