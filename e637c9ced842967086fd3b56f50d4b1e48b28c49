@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_9723f353",
+        "filename": "templates/edit-header.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-03T16:08:58Z",
+      "side": 1,
+      "message": "Very long line.",
+      "revId": "e637c9ced842967086fd3b56f50d4b1e48b28c49",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
