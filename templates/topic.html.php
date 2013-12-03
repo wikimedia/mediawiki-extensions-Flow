@@ -104,9 +104,9 @@ echo Html::openElement( 'div', array(
 		</div>
 
 		<?php if ( $postActionMenu->isAllowedAny( 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic' ) ): ?>
-		<div class="flow-actions">
-			<a class="flow-actions-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
-			<div class="flow-actions-flyout">
+		<div class="flow-tipsy flow-actions">
+			<a class="flow-tipsy-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
+			<div class="flow-tipsy-flyout">
 				<ul>
 					<?php if ( $postActionMenu->isAllowed( 'hide-topic' ) ) {
 						echo '<li class="flow-action-hide">', $postActionMenu->getButton(
