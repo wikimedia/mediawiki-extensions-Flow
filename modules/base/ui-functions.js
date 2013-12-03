@@ -85,7 +85,7 @@
 			 * An object, with the keys 'content' and 'format'. Or a plain string of wikitext.
 			 * @param  {function} submitFunction      Function to call in order to submit the form.
 			 * One parameter, the content.
-			 * @param {function} loadFunction         Function to call once the form is loaded.
+			 * @param  {function} loadFunction        Function to call once the form is loaded.
 			 * @return {Promise}                      A promise that will be resolved or rejected
 			 * when the form submission has returned.
 			 */
