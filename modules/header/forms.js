@@ -98,8 +98,9 @@
 		 * this = #flow-header
 		 *
 		 * @param {object} data mw.flow.header.prepareResult return value
+		 * @param {function} [loadFunction] callback to be executed when form is loaded
 		 */
-		setupEditForm: function ( data ) {
+		setupEditForm: function ( data, loadFunction ) {
 			var $editLink = $( this ).find( '.flow-header-edit-link' );
 
 			$( this ).find( '#flow-header-content' )
@@ -110,7 +111,8 @@
 						content: data.content,
 						format: data.format
 					},
-					mw.flow.header.submitFunction.bind( this, data )
+					mw.flow.header.submitFunction.bind( this, data ),
+					loadFunction
 				);
 
 			// hide edit link and re-reveal it if the cancel link - which is
@@ -131,27 +133,133 @@
 		 * @return {jQuery.Deferred}
 		 */
 		submitFunction: function ( data, content ) {
-			return mw.flow.api.editHeader( {
+			var deferred = mw.flow.api.editHeader( {
 					workflowId: data.workflow,
 					page: data.page
 				},
 				content,
 				data.revision
-			).done( mw.flow.header.render.bind( this ) );
+			);
+
+			deferred.done( mw.flow.header.render.bind( deferred, $( this ), data ) );
+			deferred.fail( mw.flow.header.conflict.bind( deferred, $( this ), data ) );
+
+			return deferred;
 		},
 
 		/**
-		 * Called when setupEditForm is resolved.
+		 * Called when submitFunction is resolved.
 		 *
-		 * this = #flow-header
+		 * this = deferred
 		 *
+		 * @param {jQuery} $container
+		 * @param {object} data mw.flow.header.prepareResult return value
 		 * @param {object} output
 		 */
-		render: function ( output ) {
-			$( this )
+		render: function ( $container, data, output ) {
+			$container
 				.find( '#flow-header-content' )
 				.empty()
 				.append( $( output.rendered ) );
+		},
+
+		/**
+		 * Called when submitFunction failed.
+		 *
+		 * this = deferred
+		 *
+		 * @param {jQuery} $container
+		 * @param {object} data Old (invalid) mw.flow.header.prepareResult return value
+		 * @param {string} error
+		 * @param {object} errorData
+		 */
+		conflict: function ( $container, data, error, errorData ) {
+			if (
+				error === 'block-errors' &&
+				errorData.header && errorData.header.prev_revision &&
+				errorData.header.prev_revision.extra && errorData.header.prev_revision.extra.revision_id
+			) {
+				var $textarea = $container.find( 'textarea' );
+
+				/*
+				 * Overwrite data revision & content.
+				 * We'll use raw editor content & editor format to avoid having
+				 * to parse it.
+				 */
+				data.revision = errorData.header.prev_revision.extra.revision_id;
+				data.format = mw.flow.editor.getFormat( $textarea );
+				data.content = mw.flow.editor.getRawContent( $textarea );
+
+				/*
+				 * At this point, we're still in the deferred's reject callbacks.
+				 * Only after these are completed, is the spinner removed and the
+				 * error message added.
+				 * I'm adding another fail-callback, which will be executed after
+				 * the fail has been handled. Only then, we can properly clean up.
+				 */
+				this.fail( function( data, error, errorData ) {
+					/*
+					 * Tipsy will be positioned at the element where it's bound
+					 * to, at the time it's asked to show. It won't reposition
+					 * if the element moves. Since we re-launch the form, there
+					 * may be some movement, so let's have this as callback when
+					 * the form has completed loading before doing these changes.
+					 */
+					var formLoaded = function () {
+						var $button = $( this ).find( '.flow-edit-header-submit' );
+						$button.val( mw.msg( 'flow-edit-header-submit-overwrite' ) );
+						mw.flow.header.tipsy( $button, errorData.header.prev_revision.message );
+
+						/*
+						 * Trigger keyup in editor, to trick setupEmptyDisabler
+						 * into believing we've made a change & enable submit.
+						 */
+						$( this ).find( 'textarea' ).keyup();
+					}.bind( this, data, error, errorData );
+
+					// kill form & error message & re-launch edit form
+					$( this ).find( 'form, flow-error' ).remove();
+					mw.flow.header.setupEditForm.call( this, data, formLoaded );
+				}.bind( $container.get( 0 ), data, error, errorData ) );
+			}
+		},
+
+		/**
+		 * Adds tipsy to an element, with the given text.
+		 *
+		 * @param {jQuery} $element
+		 * @param {string} text
+		 */
+		tipsy: function ( $element, text ) {
+			$element
+				.click( function() {
+					$( this ).tipsy( 'hide' );
+				} )
+				.tipsy( {
+					fade: true,
+					gravity: 'w',
+					html: true,
+					trigger: 'manual',
+					className: 'flow-tipsy-destructive',
+					title: function() {
+						/*
+						 * I'd prefer to only return content here, instead of wrapping
+						 * it in a div. But we need to add some padding inside the tipsy.
+						 * Tipsy has an option "className", which we could use to target
+						 * the element though CSS, but that className is only applied
+						 * _after_ tipsy has calculated position, so it's positioning
+						 * would then be incorrect.
+						 * Tossing in the content inside another div (which does have a
+						 * class to target) works around this problem.
+						 */
+
+						// .html() only returns inner html, so attach the node to a new
+						// parent & grab the full html there
+						var $warning = $( '<div class="flow-tipsy-noflyout">' ).text( text );
+						return $( '<div>' ).append( $warning ).html();
+					}
+				} )
+				.tipsy( 'show' );
 		},
 
 		/**
@@ -160,9 +268,9 @@
 		 * this = #flow-header
 		 *
 		 * @param {string} error
-		 * @param {object} data
+		 * @param {object} errorData
 		 */
-		showError: function ( error, data ) {
+		showError: function ( error, errorData ) {
 			$( this ).flow( 'showError', arguments );
 		}
 	};
