@@ -281,6 +281,8 @@ class FlowHooks {
 		global $wgFlowEditorList;
 
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
+		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
+
 		return true;
 	}
 }
