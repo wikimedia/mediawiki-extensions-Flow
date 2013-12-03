@@ -82,7 +82,8 @@ class Post {
 
 	public function postHistoryLink( ) {
 		return $this->actions->actionUrl(
-			'post-history'
+			'post-history',
+			array( 'topic[postId]' => $this->post->getPostId()->getHex() )
 		);
 	}
 
