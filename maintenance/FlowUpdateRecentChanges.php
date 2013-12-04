@@ -29,8 +29,7 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 	protected $batchSize = 300;
 
 	protected function doDBUpdates() {
-		$container = Container::getContainer();
-		$dbw = $container['db.factory']->getDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 
 		$continue = 0;
 
