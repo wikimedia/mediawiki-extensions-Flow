@@ -16,6 +16,24 @@
       "revId": "594faf281b162699f881d8d703b8a6910a6c0a83",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_af01f072",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1431,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-04T21:57:06Z",
+      "side": 1,
+      "message": "Seems reasonable.  Will also make it more obvious that TreeRepository and MultiGetList are correct(in a mythical future where we switch them to BufferedCache from BagOStuff)",
+      "parentUuid": "0ee75395_eb8c9634",
+      "revId": "594faf281b162699f881d8d703b8a6910a6c0a83",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
