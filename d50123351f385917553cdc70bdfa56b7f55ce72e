@@ -16,6 +16,24 @@
       "revId": "d50123351f385917553cdc70bdfa56b7f55ce72e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_b28dd738",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1295,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-04T23:22:23Z",
+      "side": 1,
+      "message": "yea your right, this patch is actually unnecessary.  I was running into this issue because i changed the uuid length but the cacheKey method was still using the old hardcoded uuid length for checks.",
+      "parentUuid": "0ee75395_88174da8",
+      "revId": "d50123351f385917553cdc70bdfa56b7f55ce72e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
