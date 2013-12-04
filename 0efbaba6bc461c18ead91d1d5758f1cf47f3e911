@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_f24d9fe1",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-04T23:38:37Z",
+      "side": 1,
+      "message": "prefer to throw a specific exception that indicates no index exists, and only catch that exception.  Otherwise this will eat up db errors and all sorts of things.",
+      "revId": "0efbaba6bc461c18ead91d1d5758f1cf47f3e911",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
