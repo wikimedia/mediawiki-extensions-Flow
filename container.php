@@ -395,6 +395,22 @@ $c['recentchanges.formatter'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['contribitions.query'] = $c->share( function( $c ) {
+	return new Flow\Contributions\Query(
+		$c['storage'],
+		$c['memcache'],
+		$c['repository.tree']
+	);
+} );
+$c['contribitions.formatter'] = $c->share( function( $c ) {
+	return new Flow\Contributions\Formatter(
+		$c['storage'],
+		$c['factory.loader.workflow'],
+		$c['flow_actions'],
+		$c['templating']
+	);
+} );
+
 $c['logger'] = $c->share( function( $c ) {
 	return new Flow\Log\Logger(
 		$c['flow_actions'],
