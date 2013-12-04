@@ -346,8 +346,14 @@ class Templating {
 		// Messages: flow-hide-content, flow-delete-content, flow-suppress-content
 		$message = wfMessage( "flow-$state-content", $user );
 
-		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
-			return $message->text();
+		if ( !$revision->isAllowed( $permissionsUser ) ) {
+			if ( $message->exists() ) {
+				return $message->text();
+			} else {
+				wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
+
+				return wfMessage( 'flow-error-other' )->text();
+			}
 		} else {
 			$content = $revision->getContent( $format );
 
