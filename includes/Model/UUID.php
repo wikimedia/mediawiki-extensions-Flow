@@ -118,4 +118,22 @@ class UUID {
 	public function equals( UUID $other ) {
 		return $other->getBinary() === $this->getBinary();
 	}
+
+	/**
+	 * Generates a fake UUID for a given timestamp that will have comparison
+	 * results equivalent to a real UUID generated at that time
+	 * @param  mixed $ts Something accepted by wfTimestamp()
+	 * @return UUID object.
+	 */
+	public static function getComparisonUUID( $ts ) {
+		// It should be comparable with UUIDs in binary mode.
+		// Easiest way to do this is to take the 46 MSBs of the UNIX timestamp * 1000
+		// and pad the remaining characters with zeroes.
+		$millitime = wfTimestamp( TS_UNIX, $ts ) * 1000;
+		$timestampBinary = wfBaseConvert( $millitime, 10, 2, 46 );
+		$uuidBase2 = str_pad( $timestampBinary, self::BIN_LEN * 8, '0', STR_PAD_RIGHT );
+		$uuidHex = wfBaseConvert( 2, 16, $uuidBase2, self::HEX_LEN );
+
+		return self::create( $uuidHex );
+	}
 }
