@@ -602,18 +602,89 @@ class BasicObjectMapper implements ObjectMapper {
 }
 
 /**
+ * Base class for all WritableObjectStorage implementers
+ * which use a database as the backing store.
+ *
+ * Includes some utility methods for database management and
+ * SQL security.
+ */
+abstract class DbStorage implements WritableObjectStorage {
+	protected $dbFactory;
+
+	public function __construct( DbFactory $dbFactory ) {
+		$this->dbFactory = $dbFactory;
+	}
+
+	/**
+	 * At the moment, does three things:
+	 * 1. Finds UUID objects and returns their database representation.
+	 * 2. Checks for unarmoured raw SQL and errors out if it exists.
+	 * 3. Finds armoured raw SQL and expands it out.
+	 *
+	 * @param  array $data Query conditions for DatabaseBase::select
+	 * @return array query conditions escaped for use
+	 */
+	protected function preprocessSqlArray( array $data ) {
+		// Assuming that all databases have the same escaping settings.
+		$db = $this->dbFactory->getDB( DB_SLAVE );
+
+		$data = UUID::convertUUIDs( $data );
+
+		foreach( $data as $key => $value ) {
+			if ( $value instanceof RawSql ) {
+				$data[$key] = $value->getSql( $db );
+			} elseif ( is_numeric( $key ) ) {
+				throw new \MWException( "Unescaped raw SQL found in " . __METHOD__ );
+			} elseif ( ! preg_match( '/^[A-Za-z0-9\._]+$/', $key ) ) {
+				throw new \MWException( "Dangerous SQL field name '$key' found in " . __METHOD__ );
+			}
+		}
+
+		return $data;
+	}
+
+	/**
+	 * Internal security function which checks a row object
+	 * (for inclusion as a condition or a row for insert/update)
+	 * for any numeric keys (= raw SQL), or field names with
+	 * potentially unsafe characters.
+	 *
+	 * @param  array   $row The row to check.
+	 * @return boolean      True if raw SQL is found
+	 */
+	protected function hasUnescapedSQL( array $row ) {
+		foreach( $row as $key => $value ) {
+			if ( $value instanceof RawSql ) {
+				// Specifically allowed SQL
+				continue;
+			}
+
+			if ( is_numeric( $key ) ) {
+				return true;
+			}
+
+			if ( ! preg_match( '/^[A-Za-z0-9\._]+$/', $key ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+}
+
+/**
  * Standard backing store for data model with no special cases which is stored
  * in a single table in mysql.
  *
  * Doesn't support updating primary key value yet
  * Doesn't support auto-increment pk yet
  */
-class BasicDbStorage implements WritableObjectStorage {
+class BasicDbStorage extends DbStorage {
 	public function __construct( DbFactory $dbFactory, $table, array $primaryKey ) {
 		if ( !$primaryKey ) {
 			throw new \MWException( 'PK required' );
 		}
-		$this->dbFactory = $dbFactory;
+		parent::__construct( $dbFactory );
 		$this->table = $table;
 		$this->primaryKey = $primaryKey;
 	}
@@ -739,60 +810,6 @@ class BasicDbStorage implements WritableObjectStorage {
 
 	public function getPrimaryKeyColumns() {
 		return $this->primaryKey;
-	}
-
-	/**
-	 * At the moment, does three things:
-	 * 1. Finds UUID objects and returns their database representation.
-	 * 2. Checks for unarmoured raw SQL and errors out if it exists.
-	 * 3. Finds armoured raw SQL and expands it out.
-	 * @param  [type] $data [description]
-	 * @return [type]       [description]
-	 */
-	protected function preprocessSqlArray( $data ) {
-		// Assuming that all databases have the same escaping settings.
-		$db = $this->dbFactory->getDB( DB_SLAVE );
-
-		$data = UUID::convertUUIDs( $data );
-
-		foreach( $data as $key => $value ) {
-			if ( $value instanceof RawSql ) {
-				$data[$key] = $value->getSql( $db );
-			} elseif ( is_numeric( $key ) ) {
-				throw new \MWException( "Unescaped raw SQL found in " . __METHOD__ );
-			} elseif ( ! preg_match( '/^[A-Za-z0-9\._]+$/', $key ) ) {
-				throw new \MWException( "Dangerous SQL field name '$key' found in " . __METHOD__ );
-			}
-		}
-
-		return $data;
-	}
-
-	/**
-	 * Internal security function which checks a row object
-	 * (for inclusion as a condition or a row for insert/update)
-	 * for any numeric keys (= raw SQL), or field names with
-	 * potentially unsafe characters.
-	 * @param  array   $row The row to check.
-	 * @return boolean      True if raw SQL is found
-	 */
-	protected function hasUnescapedSQL( array $row ) {
-		foreach( $row as $key => $value ) {
-			if ( $value instanceof RawSql ) {
-				// Specifically allowed SQL
-				continue;
-			}
-
-			if ( is_numeric( $key ) ) {
-				return true;
-			}
-
-			if ( ! preg_match( '/^[A-Za-z0-9\._]+$/', $key ) ) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 }
 

@@ -9,7 +9,7 @@ use DatabaseBase;
 use ExternalStore;
 use User;
 
-abstract class RevisionStorage implements WritableObjectStorage {
+abstract class RevisionStorage extends DbStorage {
 	static protected $allowedUpdateColumns = array(
 		'rev_mod_state',
 		'rev_mod_user_id',
@@ -17,7 +17,6 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		'rev_mod_timestamp',
 		'rev_mod_reason',
 	);
-	protected $dbFactory;
 	protected $externalStores;
 
 	abstract protected function joinTable();
@@ -29,7 +28,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 	abstract protected function removeRelated( array $row );
 
 	public function __construct( DbFactory $dbFactory, $externalStore ) {
-		$this->dbFactory = $dbFactory;
+		parent::__construct( $dbFactory );
 		$this->externalStore = $externalStore;
 	}
 
@@ -48,7 +47,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		$res = $dbr->select(
 			array( $this->joinTable(), 'rev' => 'flow_revision' ),
 			'*',
-			UUID::convertUUIDs( $attributes ),
+			$this->preprocessSqlArray( $attributes ),
 			__METHOD__,
 			$options,
 			array( 'rev' => array( 'JOIN', $this->joinField() . ' = rev_id' ) )
@@ -133,7 +132,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		$res = $dbr->select(
 			$this->joinTable(),
 			array( $joinField => "MAX( {$this->joinField()} )" ),
-			$this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ),
+			$this->preprocessSqlArray( $this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ) ),
 			__METHOD__,
 			array( 'GROUP BY' => $keys )
 		);
@@ -244,7 +243,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
 			'flow_revision',
-			$rev,
+			$this->preprocessSqlArray( $rev ),
 			__METHOD__
 		);
 		if ( !$res ) {
@@ -286,7 +285,7 @@ abstract class RevisionStorage implements WritableObjectStorage {
 			$dbw = $this->dbFactory->getDB( DB_MASTER );
 			$res = $dbw->update(
 				'flow_revision',
-				$rev,
+				$this->preprocessSqlArray( $rev ),
 				array( 'rev_id' => $old['rev_id'] ),
 				__METHOD__
 			);
@@ -367,7 +366,7 @@ class PostRevisionStorage extends RevisionStorage {
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
 			$this->joinTable(),
-			UUID::convertUUIDs( $tree ),
+			$this->preprocessSqlArray( $tree ),
 			__METHOD__
 		);
 
@@ -424,7 +423,7 @@ class HeaderRevisionStorage extends RevisionStorage {
 	protected function insertRelated( array $row, array $header ) {
 		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->joinTable(),
-			$header,
+			$this->preprocessSqlArray( $header ),
 			__METHOD__
 		);
 		if ( !$res ) {
