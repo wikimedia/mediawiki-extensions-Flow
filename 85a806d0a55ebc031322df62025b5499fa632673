@@ -16,6 +16,24 @@
       "revId": "85a806d0a55ebc031322df62025b5499fa632673",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_92ee5385",
+        "filename": "modules/history/history.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-04T23:51:06Z",
+      "side": 1,
+      "message": "Yeah, I tried that approach originally, it didn\u0027t work for some reason.  I guess it\u0027s mainly because these two timestamps in the main post render are absolutely positioned.  I will see how this can be improved",
+      "parentUuid": "0ee75395_cff0b4c6",
+      "revId": "85a806d0a55ebc031322df62025b5499fa632673",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
