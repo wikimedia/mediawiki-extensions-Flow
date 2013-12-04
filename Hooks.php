@@ -257,4 +257,64 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * Intercept contribution entries and format those belonging to Flow
+	 *
+	 * @param ContribsPager $page Contributions object
+	 * @param string $ret The HTML line
+	 * @param stdClass $row The data for this line
+	 * @param array $classes the classes to add to the surrounding <li>
+	 * @return bool
+	 */
+	public static function onContributionsLineEnding( $pager, &$ret, $row, &$classes ) {
+		if ( !isset( $row->flow_contribution ) || $row->flow_contribution !== 'flow' ) {
+			return true;
+		}
+
+		$line = Container::get( 'contribitions.formatter' )->format( $pager, $row );
+
+		if ( $line === false ) {
+			return false;
+		}
+
+		$classes[] = 'mw-flow-contribution';
+		$ret = $line;
+
+		return true;
+	}
+
+	/**
+	 * Adds Flow contributions to the Contributions special page
+	 *
+	 * @param $data array an array of results of all contribs queries, to be merged to form all contributions data
+	 * @param ContribsPager $pager Object hooked into
+	 * @param string $offset Index offset, inclusive
+	 * @param int $limit Exact query limit
+	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @return bool
+	 */
+	public static function onContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
+		global $wgFlowOccupyNamespaces;
+
+		// Not searching within Flow namespace = ignore
+		if ( $pager->namespace != '' && !in_array( $pager->namespace, $wgFlowOccupyNamespaces ) ) {
+			return true;
+		}
+
+		// Flow has nothing to do with the tag filter, so ignore tag searches
+		if ( $pager->tagFilter != false ) {
+			return true;
+		}
+
+		$results = Container::get( 'contribitions.query' )->getResults( $pager, $offset, $limit, $descending );
+
+		if ( $results === false ) {
+			return false;
+		}
+
+		$data[] = $results;
+
+		return true;
+	}
 }
