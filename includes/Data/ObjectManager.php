@@ -557,7 +557,7 @@ class ObjectManager extends ObjectLocator {
 		foreach( $sortFields as $field ) {
 			$value = $row[$field];
 
-			if ( strlen( $value ) == 16 && preg_match( '/_id$/', $field ) ) {
+			if ( strlen( $value ) === UUID::BIN_LEN && preg_match( '/_id$/', $field ) ) {
 				$value = UUID::create( $value )->getHex();
 			}
 			$offsetFields[] = $value;
@@ -1044,9 +1044,9 @@ abstract class FeatureIndex implements Index {
 
 	protected function cacheKey( array $attributes ) {
 		foreach( $attributes as $key => $attr ) {
-			if ( $attr instanceof \Flow\Model\UUID ) {
+			if ( $attr instanceof UUID ) {
 				$attributes[$key] = $attr->getHex();
-			} elseif ( strlen( $attr ) == 16 && preg_match( '/_id$/', $key ) ) {
+			} elseif ( strlen( $attr ) === UUID::BIN_LEN && substr( $key, -3 ) === '_id' ) {
 				$uuid = new \Flow\Model\UUID( $attr );
 				$attributes[$key] = $uuid->getHex();
 			}
@@ -1352,7 +1352,8 @@ class ShallowCompactor implements Compactor {
 			}
 		}
 
-		$innerResult = $this->shallow->findMulti( $duplicator->getUniqueQueries() );
+		// binary uuid's need to be converted to UUID objects to use them in a query
+		$innerResult = $this->shallow->findMulti( $this->convertUUIDs( $duplicator->getUniqueQueries() ) );
 		foreach ( $innerResult as $rows ) {
 			// __construct guaranteed the shallow backing index is a unique, so $first is only result
 			$first = reset( $rows );
@@ -1360,6 +1361,22 @@ class ShallowCompactor implements Compactor {
 		}
 
 		return $duplicator->getResult( /* strict = */ true );
+	}
+
+	/**
+	 * The cache result, as received in self::expandCacheResult, contains binary
+	 * UUID's. For the $this->shallow->findMulti call we must provide it UUID objects
+	 * so that it can use hex in the cache keys, and binary in the db calls. 
+	 */
+	protected function convertUUIDs( array $rows ) {
+		foreach ( $rows as $key => $row ) {
+			foreach ( $row as $k => $v ) {
+				if ( substr( $k, -3 ) == '_id' && is_string( $v ) && strlen( $v ) === UUID::BIN_LEN ) {
+					$rows[$key][$k] = UUID::create( $v );
+				}
+			}
+		}
+		return $rows;
 	}
 }
 
@@ -1410,6 +1427,8 @@ class LocalBufferedCache extends BufferedCache {
 	}
 
 	public function getMulti( array $keys ) {
+		array_map( array( $this, 'ensureNotBinary' ), $keys );
+
 		$found = array();
 		foreach ( $keys as $idx => $key ) {
 			if ( array_key_exists( $key, $this->internal ) ) {
@@ -1440,6 +1459,8 @@ class LocalBufferedCache extends BufferedCache {
 	}
 
 	public function add( $key, $value, $exptime = 0 ) {
+		$this->ensureNotBinary( $key );
+
 		if ( $this->buffer === null ) {
 			if ( $this->cache->add( $key, $value, $exptime ) ) {
 				$this->internal[$key] = $value;
@@ -1484,14 +1505,18 @@ class BufferedCache {
 	}
 
 	public function get( $key ) {
+		$this->ensureNotBinary( $key );
+
 		return $this->cache->get( $key );
 	}
 
 	public function getMulti( array $keys ) {
+		array_map( array( $this, 'ensureNotBinary' ), $keys );
 		return $this->cache->getMulti( $keys );
 	}
 
 	public function add( $key, $value, $exptime = 0 ) {
+		$this->ensureNotBinary( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->add( $key, $value, $exptime );
 		} else {
@@ -1503,6 +1528,7 @@ class BufferedCache {
 	}
 
 	public function set( $key, $value, $exptime = 0 ) {
+		$this->ensureNotBinary( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->set( $key, $value, $exptime );
 		} else {
@@ -1514,6 +1540,7 @@ class BufferedCache {
 	}
 
 	public function delete( $key, $time = 0 ) {
+		$this->ensureNotBinary( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->delete( $key, $time );
 		} else {
@@ -1525,6 +1552,7 @@ class BufferedCache {
 	}
 
 	public function merge( $key, \Closure $callback, $exptime = 0, $attempts = 10 ) {
+		$this->ensureNotBinary( $key );
 		if ( $this->buffer === null ) {
 			$this->cache->merge( $key, $callback, $exptime, $attempts );
 		} else {
@@ -1561,6 +1589,12 @@ class BufferedCache {
 			throw new \MWException( 'No transaction in progress' );
 		}
 		$this->buffer = null;
+	}
+
+	protected function ensureNotBinary( $key ) {
+		if ( !ctype_print( $key ) ) {
+			throw new \MWException( "Cache keys must be plain strings, provided: $key" );
+		}
 	}
 }
 
