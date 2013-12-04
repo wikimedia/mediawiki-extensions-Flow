@@ -177,6 +177,9 @@ abstract class ParsoidUtils {
 	public static function createDOM( $content, $ignoreErrorCodes = array( 801 ) ) {
 		$dom = new \DOMDocument();
 
+		// Otherwise the parser may attempt to load the dtd from an external source
+		$dom->resolveExternals = false;
+
 		// don't output warnings
 		$useErrors = libxml_use_internal_errors( true );
 
