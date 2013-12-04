@@ -21,6 +21,10 @@ Given(/^the talk and contrib links are not visible$/) do
   end
 end
 
+When(/^I click Actions$/) do
+  on(FlowPage).actions_link_element.when_present.click
+end
+
 When(/^I click New topic save$/) do
   on(FlowPage).new_topic_save_element.when_present.click
 end
@@ -35,6 +39,10 @@ end
 
 When(/^I create a (.+) into Flow body$/) do |flow_body|
   on(FlowPage).new_topic_body_element.when_present.send_keys(flow_body + @random_string + @automated_test_marker)
+end
+
+When(/^I hover over the Actions link$/) do
+  visit(FlowPage).actions_link_element.hover
 end
 
 When(/^I hover over the author link$/) do
@@ -75,4 +83,20 @@ Then(/^the Flow page should contain (.+)$/) do |flow_topic|
     end
     page.flow_body.should match(flow_topic + @random_string + @automated_test_marker)
   end
+end
+
+Then(/^I should see a Block User link$/) do
+  on(FlowPage).block_user_element.should be_visible
+end
+
+Then(/^I should see a Delete button$/) do
+  on(FlowPage).delete_button_element.should be_visible
+end
+
+Then(/^I should see a Hide button$/) do
+  on(FlowPage).hide_button_element.should be_visible
+end
+
+Then(/^I should see a Suppress button$/) do
+  on(FlowPage).suppress_button_element.should be_visible
 end
