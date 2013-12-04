@@ -15,3 +15,16 @@ Background:
       And the talk and contrib links are not visible
     When I hover over the author link
       Then links to talk and contrib should be visible
+
+  Scenario: Block
+    Given I am on Flow page
+    When I hover over the author link
+    Then I should see a Block User link
+
+  Scenario: Actions
+    Given I am on Flow page
+    When I hover over the Actions link
+      And I click Actions
+    Then I should see a Hide button
+      And I should see a Delete button
+      And I should see a Suppress button
