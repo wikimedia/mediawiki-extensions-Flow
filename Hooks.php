@@ -242,7 +242,7 @@ class FlowHooks {
 				// Check if Flow actions are defined for the requested log types
 				// and make sure they're ignored.
 				if ( isset( $wgLogActionsHandlers["$logType/flow-$action"] ) ) {
-					$conds[] = "log_action != 'flow-$action'";
+					$conds[] = "log_action != " . wfGetDB( DB_SLAVE )->addQuotes( "flow-$action" );
 				}
 			}
 		}
