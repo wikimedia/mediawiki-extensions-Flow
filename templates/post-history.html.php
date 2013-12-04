@@ -14,7 +14,7 @@ $timespans = $historyRenderer->getTimespans( $history );
 <div class="flow-history-container">
 	<p class='flow-history-pages'>
 		<span class="plainlinks">
-			<?php echo wfMessage( 'flow-history-pages-post', $topicLink, $titleText )->parse(); ?>
+			<?php echo wfMessage( 'flow-history-pages-post', $topicLink, array( 'raw' => htmlspecialchars( $titleText ) ) )->parse(); ?>
 		</span>
 	</p>
 
