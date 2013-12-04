@@ -104,10 +104,12 @@
 					$postForm
 						.append(
 							$( '<textarea />' )
+								.addClass( 'mw-ui-input' )
 								.addClass( 'flow-edit-'+type+'-content' )
 						)
 						.append(
 							$( '<div/>' )
+								.addClass( 'flow-'+type+'-form-controls' )
 								.addClass( 'flow-edit-'+type+'-controls' )
 								.append(
 									$( '<a/>' )
@@ -151,6 +153,7 @@
 					mw.flow.editor.load( $postForm.find( 'textarea' ), initialContent.content, initialContent.format );
 
 					$contentContainer.hide();
+					$contentContainer.siblings( '.flow-datestamp' ).hide();
 
 					$postForm.flow( 'setupFormHandler',
 						'.flow-edit-'+type+'-submit',
