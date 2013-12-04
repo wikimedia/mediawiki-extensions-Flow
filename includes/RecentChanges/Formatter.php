@@ -101,12 +101,12 @@ class Formatter {
 
 		if ( $links ) {
 			$linksContent = $cl->getLanguage()->pipeList( $links );
-			$line .= wfMessage( 'parentheses' )->rawParams( $linksContent )->text()
+			$line .= wfMessage( 'parentheses' )->rawParams( $linksContent )->escaped()
 				. $this->changeSeparator();
 		}
 
 		$line .= $this->workflowLink( $title, $changeData )
-			. wfMessage( 'semicolon-separator' )->text()
+			. wfMessage( 'semicolon-separator' )->escaped()
 			. $this->getTimestamp( $cl, $rc )
 			. ' '
 			. $this->changeSeparator()
@@ -188,7 +188,7 @@ class Formatter {
 					array( 'workflow' => $changeData['workflow'] )
 				),
 			),
-			wfMessage( 'flow-link-history' )->text()
+			wfMessage( 'flow-link-history' )->escaped()
 		);
 	}
 
@@ -205,7 +205,7 @@ class Formatter {
 					)
 				),
 			),
-			wfMessage( 'flow-link-history' )->text()
+			wfMessage( 'flow-link-history' )->escaped()
 		);
 	}
 
@@ -219,7 +219,7 @@ class Formatter {
 					array( 'workflow' => $changeData['workflow'] )
 				),
 			),
-			wfMessage( 'flow-link-topic' )->text()
+			wfMessage( 'flow-link-topic' )->escaped()
 		);
 	}
 
@@ -236,7 +236,7 @@ class Formatter {
 					)
 				),
 			),
-			wfMessage( 'flow-link-post' )
+			wfMessage( 'flow-link-post' )->escaped()
 		);
 	}
 
