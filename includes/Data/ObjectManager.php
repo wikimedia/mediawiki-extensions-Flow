@@ -233,8 +233,19 @@ class ObjectLocator implements ObjectStorage {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
 		}
 
-		$index = $this->getIndexFor( $keys, $options );
-		$res = $index->findMulti( $queries );
+		try {
+			$index = $this->getIndexFor( $keys, $options );
+			$res = $index->findMulti( $queries );
+		} catch ( \MWException $excep ) {
+			$res = $this->storage->findMulti( $queries, $options );
+			$output = array();
+
+			foreach( $res as $index => $queryOutput ) {
+				$output[$index] = array_map( array( $this, 'load' ), $queryOutput );
+			}
+
+			return $output;
+		}
 
 		if ( $res === null ) {
 			return null;
