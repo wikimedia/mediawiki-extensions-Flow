@@ -12,12 +12,12 @@
 		this.$node.css( 'overflow', 'hidden' );
 		this.$node.css( 'resize', 'none' );
 
-		this.$node.height( this.$node.prop( 'scrollHeight' ) );
 		// auto-expansion shouldn't shrink too much; set default height as min
 		this.$node.css( 'min-height', this.$node.outerHeight() );
+
+		// initialize at height of existing content & update on every keyup
 		this.$node.keyup( this.autoExpand );
-		this.$node.focus();
-		this.$node[0].setSelectionRange( 0, 0 );
+		this.autoExpand.call( this.$node.get( 0 ) );
 	};
 
 	/**
