@@ -289,4 +289,65 @@ class FlowHooks {
 
 		return true;
 	}
+
+	public static function onContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
+		$storage = Flow\Container::get( 'storage' );
+		$treeRepo = Flow\Container::get( 'repository.tree' );
+
+		$target = $pager->target;
+		$conditions = array();
+
+		// Work out user condition
+		if ( $pager->contribs == 'newbie' ) {
+			// Not supported yet
+			return true;
+		} else {
+			$uid = User::idFromName( $target );
+			if ( $uid ) {
+				$conditions['rev_user_id'] = $uid;
+			} else {
+				$conditions['rev_user_name'] = $target;
+			}
+		}
+
+		// Make offset parameter.
+		if ( $offset ) {
+			$offsetUUID = UUID::getComparisonUUID( $offset );
+			$direction = $descending ? '<' : '>';
+			$offsetCondition = "rev_id $direction " . quote( $offsetUUID->getBinary() );
+			$conditions[] = new Flow\Data\RawSql( $offsetCondition );
+		}
+
+		$results = $storage->find( 'PostRevision', $conditions, array(
+			'LIMIT' => $limit,
+		) );
+
+		$output = array();
+
+		foreach( $results as $result ) {
+			$uuid = $result->getRevisionId();
+			$postId = $result->getPostId();
+			$uuidHex = $uuid->getHex();
+			$timestamp = $uuid->getTimestamp();
+			$fakeRow = array();
+
+			// FIXME this sucks, we should really be able to batch this query.
+			if ( ! $result->isTopicTitle() ) {
+				$rootPost = $treeRepo->findRoot( $postId );
+			} else {
+				$rootPost = $result->getPostId();
+			}
+			$workflow = $storage->get( 'Workflow', $rootPost );
+
+			$fakeRow['rev_timestamp'] = $timestamp;
+			$fakeRow['page_namespace'] = $workflow->getArticleTitle()->getNamespace();
+			$fakeRow['page_title'] = $workflow->getArticleTitle()->getDBkey();
+			$fakeRow['revision'] = $result;
+			$output[] = (object)$fakeRow;
+		}
+
+		$data[] = $output;
+
+		return true;
+	}
 }
