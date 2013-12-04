@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_57744096",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-04T17:11:43Z",
+      "side": 1,
+      "message": "this is performing network requests within a loop, instead need to extend the repository to be able to batch request the roots for multiple uuids.",
+      "revId": "05923c1f9e03eaf24d6c13b106be4f352047f23d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_777184a6",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-04T17:11:43Z",
+      "side": 1,
+      "message": "Unfortunately this also turns into network requests, unless the workflow has been loaded earlier in the request.  For board history that\u0027s not the case.",
+      "revId": "05923c1f9e03eaf24d6c13b106be4f352047f23d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
