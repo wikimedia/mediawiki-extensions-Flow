@@ -161,6 +161,7 @@ $wgHooks['Article::MissingArticleConditions'][] = 'FlowHooks::onMissingArticleCo
 $wgHooks['SpecialWatchlistGetNonRevisionTypes'][] = 'FlowHooks::onSpecialWatchlistGetNonRevisionTypes';
 $wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
 $wgHooks['ResourceLoaderGetConfigVars'][] = 'FlowHooks::onResourceLoaderGetConfigVars';
+$wgHooks['ContribsPager::reallyDoQuery'][] = 'FlowHooks::onContributionsQuery';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
