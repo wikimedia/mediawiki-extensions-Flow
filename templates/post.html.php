@@ -104,7 +104,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 			<?php
 				endif;
 
-				$historyLink = $postView->postHistoryLink();
+				$historyLink = $postView->postHistoryLink( $block->getName() );
 
 				echo $this->render( 'flow:timestamp.html.php', array(
 					'historicalLink' => $historyLink,
