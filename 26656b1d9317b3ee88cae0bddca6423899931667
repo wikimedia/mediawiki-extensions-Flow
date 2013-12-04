@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_921ad3ce",
+        "filename": "templates/post-history.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2013-12-04T23:38:56Z",
+      "side": 1,
+      "message": "Message::rawParam() is clearer than just making it an array.",
+      "revId": "26656b1d9317b3ee88cae0bddca6423899931667",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
