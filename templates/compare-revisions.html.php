@@ -36,10 +36,10 @@ $getRevisionHeader = function( $revision ) use ( $templating, $block ) {
 		);
 
 	$permalinkUrl = $templating->getUrlGenerator()
-		->generateUrl(
+		->generateBlockUrl(
 			$block->getWorkflow(),
-			'view',
-			$block->getUrlQuery( $revision, true )
+			$revision,
+			true
 		);
 
 	$link = Html::rawElement( 'a',
