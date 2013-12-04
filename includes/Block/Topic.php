@@ -471,6 +471,10 @@ class TopicBlock extends AbstractBlock {
 	protected function renderRevision( Templating $templating, array $options, $return = false ) {
 		$postRevision = $this->loadRequestedRevision( $options['revId'] );
 
+		if ( !$postRevision ) {
+			return;
+		}
+
 		// @todo Do we perhaps want to show the children that did exist at the time of editing?
 		$postRevision->setChildren( array() );
 
