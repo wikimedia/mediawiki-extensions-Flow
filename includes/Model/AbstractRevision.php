@@ -278,7 +278,7 @@ abstract class AbstractRevision {
 		return $this->moderationState === self::MODERATED_HIDDEN;
 	}
 
-	private function getContentRaw() {
+	public function getContentRaw() {
 		if ( $this->decompressedContent === null ) {
 			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
 		}
