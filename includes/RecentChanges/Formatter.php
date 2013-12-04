@@ -188,7 +188,7 @@ class Formatter {
 					array( 'workflow' => $changeData['workflow'] )
 				),
 			),
-			wfMessage( 'flow-link-history' )->text()
+			wfMessage( 'flow-link-history' )->escaped()
 		);
 	}
 
@@ -205,7 +205,7 @@ class Formatter {
 					)
 				),
 			),
-			wfMessage( 'flow-link-history' )->text()
+			wfMessage( 'flow-link-history' )->escaped()
 		);
 	}
 
@@ -219,7 +219,7 @@ class Formatter {
 					array( 'workflow' => $changeData['workflow'] )
 				),
 			),
-			wfMessage( 'flow-link-topic' )->text()
+			wfMessage( 'flow-link-topic' )->escaped()
 		);
 	}
 
@@ -236,7 +236,7 @@ class Formatter {
 					)
 				),
 			),
-			wfMessage( 'flow-link-post' )
+			wfMessage( 'flow-link-post' )->escaped()
 		);
 	}
 
