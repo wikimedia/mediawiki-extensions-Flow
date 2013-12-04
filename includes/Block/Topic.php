@@ -112,7 +112,7 @@ class TopicBlock extends AbstractBlock {
 		if ( $this->workflow->isNew() ) {
 			$this->errors['content'] = wfMessage( 'flow-no-existing-workflow' );
 		} elseif ( !isset( $this->submitted['content'] ) || !is_string( $this->submitted['content'] ) || strlen( $this->submitted['content'] ) === 0 ) {
-			$this->errors['content'] = wfMessage( 'flow-missing-title-content' );
+			$this->errors['content'] = wfMessage( 'flow-error-missing-title' );
 		} elseif ( strlen( $this->submitted['content'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
 			$this->errors['content'] = wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH );
 		} else {
@@ -176,7 +176,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validateModeratePost( $moderationState = null ) {
 		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['moderate'] = wfMessage( 'flow-error-missing-postId' );
+			$this->errors['post'] = wfMessage( 'flow-error-missing-postId' );
 			return;
 		}
 
@@ -249,11 +249,11 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validateEditPost() {
 		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['edit-post'] = wfMessage( 'flow-no-post-provided' );
+			$this->errors['post'] = wfMessage( 'flow-error-missing-postId' );
 			return;
 		}
 		if ( empty( $this->submitted['content'] ) ) {
-			$this->errors['content'] = wfMessage( 'flow-missing-post-content' );
+			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
 			return;
 		}
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
