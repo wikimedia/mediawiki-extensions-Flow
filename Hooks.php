@@ -138,17 +138,12 @@ class FlowHooks {
 			$loader = $container['factory.loader.workflow']
 				->createWorkflowLoader( $title, UUID::create( $workflowId ) );
 
-			$isNew = $loader->getWorkflow()->isNew();
-			if ( !$isNew ) {
+			if ( !$loader->getWorkflow()->isNew() ) {
 				// Workflow currently exists, make sure a revision also exists
 				$occupationController->ensureFlowRevision( $article );
 			}
 
 			$view->show( $loader, $action );
-			if ( $isNew && !$loader->getWorkflow()->isNew() ) {
-				// Workflow was just created, make sure a revision also exists
-				$occupationController->ensureFlowRevision( $article );
-			}
 			return false;
 		}
 
