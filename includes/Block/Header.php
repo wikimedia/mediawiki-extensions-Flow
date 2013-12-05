@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use Flow\RevisionActionPermissions;
 use Flow\View\History\History;
 use Flow\View\History\HistoryRenderer;
 use Flow\DbFactory;
@@ -10,6 +11,7 @@ use Flow\Model\Workflow;
 use Flow\Model\Header;
 use Flow\Repository\HeaderRepository;
 use Flow\Templating;
+use Flow\Container;
 use User;
 
 class HeaderBlock extends AbstractBlock {
@@ -17,6 +19,11 @@ class HeaderBlock extends AbstractBlock {
 	protected $header;
 	protected $needCreate = false;
 	protected $supportedActions = array( 'edit-header' );
+
+	/**
+	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
+	 */
+	protected $permissions;
 
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
@@ -35,6 +42,8 @@ class HeaderBlock extends AbstractBlock {
 		if ( $found ) {
 			$this->header = reset( $found );
 		}
+
+		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 	}
 
 	protected function validate() {
@@ -48,6 +57,11 @@ class HeaderBlock extends AbstractBlock {
 		}
 
 		if ( $this->header ) {
+			if ( !$this->permissions->isAllowed( $this->header, 'edit-header' ) ) {
+				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+				return;
+			}
+
 			if ( empty( $this->submitted['prev_revision'] ) ) {
 				$this->errors['prev_revision'] = wfMessage( 'flow-error-missing-prev-revision-identifier' );
 			} elseif ( $this->header->getRevisionId()->getHex() !== $this->submitted['prev_revision'] ) {
@@ -61,6 +75,11 @@ class HeaderBlock extends AbstractBlock {
 			// this isnt really part of validate, but we want the error-rendering template to see the users edited header
 			$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
 		} else {
+			if ( !$this->permissions->isAllowed( null, 'create-header' ) ) {
+				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+				return;
+			}
+
 			if ( empty( $this->submitted['prev_revision'] ) ) {
 				$title = $this->workflow->getArticleTitle();
 				if ( !$title->exists() ) {
@@ -69,7 +88,8 @@ class HeaderBlock extends AbstractBlock {
 					// parsoid requires the page exist.
 					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );	
 				}
-				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'] );
+
+				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
 			} else {
 				// User submitted a previous revision, but we couldn't find one.  This is likely
 				// an internal error and not a user error, consider better handling
