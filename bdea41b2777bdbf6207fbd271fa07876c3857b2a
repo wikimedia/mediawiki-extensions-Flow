@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_85684b1a",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-05T01:53:25Z",
+      "side": 1,
+      "message": "It doesn\u0027t hurt to keep the subject, maybe it will be resurrected in the future?",
+      "revId": "bdea41b2777bdbf6207fbd271fa07876c3857b2a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
