@@ -15,7 +15,6 @@ $messages = array();
  */
 $messages['en'] = array(
 	'flow-desc' => 'Workflow management system',
-	'flow-page-title' => '$1 &ndash; Flow',
 
 	'flow-talk-taken-over' => 'This talk page has been taken over by a [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow board].',
 
