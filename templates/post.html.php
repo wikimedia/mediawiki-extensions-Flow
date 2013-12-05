@@ -118,12 +118,18 @@ echo Html::openElement( 'div', array(
 					<?php if ( $postView->actions()->isAllowed( 'reply' ) ): ?>
 						<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo $postView->replyLink(); ?></span></a>
 					<?php endif ?>
-				<?php else: ?>
-					<?php list( $talkUrl, $talkLink ) = $postView->moderatedTalkLink(); ?>
-					<a class="flow-talk-link mw-ui-button" href="<?php echo $talkUrl; ?>">
-						<span><?php echo $talkLink; ?></span>
-					</a>
-				<?php endif; ?>
+				<?php else:
+					list( $talkUrl, $talkLink ) = $postView->moderatedTalkLink(); 
+					echo Html::rawElement( 
+						'a', 
+						array(
+							'class' => 'flow-talk-link mw-ui-button',
+							'href' => $talkUrl,
+						),
+						// $talkLink is pre-escaped from moderatedTalkLink
+						"<span>$talkLink</span>"
+					);
+				endif; ?>
 			</div>
 
 			<?php
