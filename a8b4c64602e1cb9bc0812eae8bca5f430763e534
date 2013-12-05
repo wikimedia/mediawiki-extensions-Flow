@@ -16,6 +16,24 @@
       "revId": "a8b4c64602e1cb9bc0812eae8bca5f430763e534",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_68499e8f",
+        "filename": "templates/post-history.html.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2013-12-05T09:04:48Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "0ee75395_05d31bd8",
+      "revId": "a8b4c64602e1cb9bc0812eae8bca5f430763e534",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
