@@ -160,7 +160,7 @@ class Templating {
 		return new PostActionMenu(
 			$this->urlGenerator,
 			$container['flow_actions'],
-			new PostActionPermissions( $container['flow_actions'], $this->globals['user'] ),
+			new RevisionActionPermissions( $container['flow_actions'], $this->globals['user'] ),
 			$block,
 			$post,
 			$this->globals['editToken']
