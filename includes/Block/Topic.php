@@ -12,7 +12,7 @@ use Flow\Model\Workflow;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\NotificationController;
-use Flow\PostActionPermissions;
+use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Container;
 use EchoEvent;
@@ -41,7 +41,7 @@ class TopicBlock extends AbstractBlock {
 	);
 
 	/**
-	 * @var PostActionPermissions $permissions Allows or denies actions to be performed
+	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
 	 */
 	protected $permissions;
 
@@ -60,9 +60,7 @@ class TopicBlock extends AbstractBlock {
 
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
-
-		// @todo: I don't like pulling stuff from container in here, improve this some day
-		$this->permissions = new PostActionPermissions( Container::get( 'flow_actions' ), $user );
+		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 	}
 
 	protected function validate() {

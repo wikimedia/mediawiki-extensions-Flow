@@ -1,6 +1,6 @@
 <?php
 
-// @todo consolidate into FlowActions, currently isAllowed method only exists in PostActionPermissions
+// @todo consolidate into FlowActions, currently isAllowed method only exists in RevisionActionPermissions
 if ( $user->isAllowed( 'edit' ) ) {
 	echo Html::openElement( 'div', array( 'class' => 'flow-new-topic-container flow-element-container' ) );
 	echo Html::openElement( 'form', array(
