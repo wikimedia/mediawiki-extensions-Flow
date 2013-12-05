@@ -156,29 +156,6 @@ class FlowHooks {
 	}
 
 	/**
-	 * Regular article-based checks are useless for Flow-enabled pages.
-	 * Whis will make sure we won't have redlinks for Flow boards.
-	 *
-	 * @param Title $title
-	 * @param bool $isKnown
-	 * @return bool
-	 */
-	public static function onTitleIsAlwaysKnown( Title $title, &$isKnown) {
-		$container = Container::getContainer();
-		$occupationController = $container['occupation_controller'];
-
-		if ( $occupationController->isTalkpageOccupied( $title ) ) {
-			$loader = $container['factory.loader.workflow']
-				->createWorkflowLoader( $title );
-			$workflow = $loader->getWorkflow();
-
-			$isKnown = !$workflow->isNew();
-		}
-
-		return true;
-	}
-
-	/**
 	 * Regular talk page "Create source" and "Add topic" links are quite useless
 	 * in the context of Flow boards. Let's get rid of them.
 	 *
