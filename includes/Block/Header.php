@@ -38,6 +38,11 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	protected function validate() {
+		// @todo some sort of restriction along the lines of article protection
+		if ( !$this->user->isAllowed( 'edit' ) ) {
+			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+			return false;
+		}
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->errors['content'] = wfMessage( 'flow-error-missing-header-content' );
 		}
