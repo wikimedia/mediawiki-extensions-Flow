@@ -53,11 +53,13 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		Html::closeElement( 'div' );
 }
 
+echo Html::openElement( 'div', array(
+	'class' => 'flow-post-container ' . ( $post->getDepth() >= $maxThreadingDepth ? 'flow-post-max-depth' : '' ),
+	'data-revision-id' => $post->getRevisionId()->getHex(),
+	'data-post-id' => $post->getPostId()->getHex(),
+	'data-creator-name' => $post->getCreatorName()
+) );
 ?>
-<div class='flow-post-container <?php if ( $post->getDepth() >= $maxThreadingDepth ) { echo 'flow-post-max-depth'; } ?>'
-	data-revision-id='<?php echo $post->getRevisionId()->getHex() ?>'
-	data-post-id='<?php echo $post->getPostId()->getHex() ?>'
-	data-creator-name='<?php echo $post->getCreatorName() ?>'>
 	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >
 		<?php if ( $post->isModerated() ): ?>
 			<p class="flow-post-moderated-message flow-post-moderated-<?php echo $post->getModerationState(); ?> flow-post-content-<?php echo $post->isAllowed( $user ) ? 'allowed' : 'disallowed'; ?>">
