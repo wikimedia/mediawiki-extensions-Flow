@@ -1,7 +1,6 @@
 <?php
 
-// @todo consolidate into FlowActions, currently isAllowed method only exists in PostActionPermissions
-if ( $user->isAllowed( 'edit' ) ) {
+if ( $permissions->isAllowed( null, 'new-post' ) ) {
 	echo Html::openElement( 'div', array( 'class' => 'flow-new-topic-container flow-element-container' ) );
 	echo Html::openElement( 'form', array(
 		'method' => 'POST',
