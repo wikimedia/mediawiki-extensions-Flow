@@ -111,28 +111,28 @@ echo Html::openElement( 'div', array(
 					<?php if ( $postActionMenu->isAllowed( 'hide-topic' ) ) {
 						echo '<li class="flow-action-hide">', $postActionMenu->getButton(
 							'hide-topic',
-							wfMessage( 'flow-topic-action-hide-topic' )->plain(),
+							wfMessage( 'flow-topic-action-hide-topic' )->escaped(),
 							'mw-ui-button flow-hide-topic-link'
 						), '</li>';
 					} ?>
 					<?php if ( $postActionMenu->isAllowed( 'delete-topic' ) ) {
 						echo '<li class="flow-action-delete">', $postActionMenu->getButton(
 							'delete-topic',
-							wfMessage( 'flow-topic-action-delete-topic' )->plain(),
+							wfMessage( 'flow-topic-action-delete-topic' )->escaped(),
 							'mw-ui-button flow-delete-topic-link'
 						), '</li>';
 					} ?>
 					<?php if ( $postActionMenu->isAllowed( 'suppress-topic' ) ) {
 						echo '<li class="flow-action-suppress">', $postActionMenu->getButton(
 							'suppress-topic',
-							wfMessage( 'flow-topic-action-suppress-topic' )->plain(),
+							wfMessage( 'flow-topic-action-suppress-topic' )->escaped(),
 							'mw-ui-button flow-suppress-topic-link'
 						), '</li>';
 					} ?>
 					<?php if ( $postActionMenu->isAllowed( 'restore-topic' ) ) {
 						echo '<li class="flow-action-restore">', $postActionMenu->getButton(
 							'restore-topic',
-							wfMessage( 'flow-topic-action-restore-topic' )->plain(),
+							wfMessage( 'flow-topic-action-restore-topic' )->escaped(),
 							'mw-ui-button flow-restore-topic-link'
 						), '</li>';
 					} ?>

@@ -147,7 +147,7 @@ class PostActionMenu {
 	 *
 	 * @param string $action
 	 * @param array $data
-	 * @param string $content
+	 * @param string $content Make sure $content is safe HTML!
 	 * @param string $class
 	 * @return string
 	 */
