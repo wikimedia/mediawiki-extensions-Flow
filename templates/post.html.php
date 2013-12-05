@@ -144,7 +144,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 			echo $this->renderPost( $child, $block );
 		}
 		?>
+	<?php echo $replyForm; ?>
 	</div>
 
-	<?php echo $replyForm; ?>
 </div>
