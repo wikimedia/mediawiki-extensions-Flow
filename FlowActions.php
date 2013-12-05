@@ -2,7 +2,7 @@
 
 use Flow\Model\PostRevision;
 use Flow\Model\Header;
-use Flow\PostActionPermissions;
+use Flow\RevisionActionPermissions;
 use Flow\Log\Logger;
 use Flow\Block\Block;
 use Flow\Templating;
@@ -31,13 +31,9 @@ $wgFlowActions = array(
 	'create-header' => array(
 		'performs-writes' => true,
 		'log_type' => false,
-		/*
-		 * null doesn't actually have any meaning here; we just have not (yet?)
-		 * implemented any permissions for headers (anyone can edit them),
-		 * only for posts (PostActionPermissions). This 1 key can, for now,
-		 * safely be ignored here.
-		 */
-		'permissions' => null,
+		'permissions' => array(
+			Header::MODERATED_NONE => 'edit',
+		),
 		'button-method' => 'POST',
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-header',
@@ -56,13 +52,9 @@ $wgFlowActions = array(
 	'edit-header' => array(
 		'performs-writes' => true,
 		'log_type' => false,
-		/*
-		 * null doesn't actually have any meaning here; we just have not (yet?)
-		 * implemented any permissions for headers (anyone can edit them),
-		 * only for posts (PostActionPermissions). This 1 key can, for now,
-		 * safely be ignored here.
-		 */
-		'permissions' => null,
+		'permissions' => array(
+			Header::MODERATED_NONE => 'edit',
+		),
 		'button-method' => 'POST',
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-header',
@@ -82,7 +74,7 @@ $wgFlowActions = array(
 		'performs-writes' => true,
 		'log_type' => false,
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_NONE => 'edit',
 		),
 		'button-method' => 'GET',
 		'history' => array(
@@ -121,7 +113,9 @@ $wgFlowActions = array(
 	'new-post' => array(
 		'performs-writes' => true,
 		'log_type' => false,
-		'permissions' => null,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => 'edit',
+		),
 		'button-method' => 'POST',
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-new-post',
@@ -150,8 +144,8 @@ $wgFlowActions = array(
 		'log_type' => false,
 		'permissions' => array(
 			// no permissions needed for own posts
-			PostRevision::MODERATED_NONE => function( PostRevision $post, PostActionPermissions $permissions ) {
-					return $post->isCreator( $permissions->getUser() ) ? '' : 'flow-edit-post';
+			PostRevision::MODERATED_NONE => function( PostRevision $post, RevisionActionPermissions $permissions ) {
+					return $post->isCreator( $permissions->getUser() ) ? 'edit' : 'flow-edit-post';
 				}
 		),
 		'button-method' => 'GET',
@@ -490,7 +484,7 @@ $wgFlowActions = array(
 		'performs-writes' => true,
 		'log_type' => false,
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_NONE => 'edit',
 		),
 		'button-method' => 'GET',
 		'history' => array(

@@ -13,7 +13,7 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
-use Flow\PostActionPermissions;
+use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use User;
 
@@ -35,14 +35,16 @@ class TopicListBlock extends AbstractBlock {
 
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
-		$this->permissions = new PostActionPermissions( Container::get( 'flow_actions' ), $user );
+		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 	}
 
 	protected function validate() {
-		// @todo some sort of restriction along the lines of article protection
-		if ( !$this->user->isAllowed( 'edit' ) ) {
+		// for now, new topic is considered a new post; perhaps some day topic creation should get it's own permissions?
+		if ( !$this->permissions->isAllowed( null, 'new-post' ) ) {
 			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+			return;
 		}
+
 		if ( !isset( $this->submitted['topic'] ) || !is_string( $this->submitted['topic'] ) || strlen( $this->submitted['topic'] === 0 ) ) {
 			$this->errors['topic'] = wfMessage( 'flow-error-missing-title' );
 		} elseif ( strlen( $this->submitted['topic'] ) > PostRevision::MAX_TOPIC_LENGTH ) {

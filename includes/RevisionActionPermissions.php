@@ -2,14 +2,14 @@
 
 namespace Flow;
 
-use Flow\Model\PostRevision;
+use Flow\Model\AbstractRevision;
 use Closure;
 use User;
 
 /**
- * role based security for posts based on moderation state
+ * Role based security for revisions based on moderation state
  */
-class PostActionPermissions {
+class RevisionActionPermissions {
 	/**
 	 * @var FlowActions
 	 */
@@ -32,13 +32,13 @@ class PostActionPermissions {
 	/**
 	 * Get the name of all the actions the user is allowed to perform.
 	 *
-	 * @param PostRevision $post The post to check permissions against
+	 * @param AbstractRevision[optional] $revision The revision to check permissions against
 	 * @return array Array of action names that are allowed
 	 */
-	public function getAllowedActions( PostRevision $post ) {
+	public function getAllowedActions( AbstractRevision $revision = null ) {
 		$allowed = array();
 		foreach( array_keys( $this->actions->getActions() ) as $action ) {
-			if ( $this->isAllowedAny( $post, $action ) ) {
+			if ( $this->isAllowedAny( $revision, $action ) ) {
 				$allowed[] = $action;
 			}
 		}
@@ -48,17 +48,23 @@ class PostActionPermissions {
 	/**
 	 * Check if a user is allowed to perform a certain action.
 	 *
-	 * @param PostRevision $post
+	 * @param AbstractRevision[optional] $revision
 	 * @param string $action
 	 * @return bool
 	 */
-	public function isAllowed( PostRevision $post, $action ) {
+	public function isAllowed( AbstractRevision $revision = null, $action ) {
 		// Users must have the core 'edit' permission to perform any write action in flow
 		$performsWrites = $this->actions->getValue( $action, 'performs-writes' );
 		if ( $performsWrites && !$this->user->isAllowed( 'edit' ) ) {
 			return false;
 		}
-		$permission = $this->actions->getValue( $action, 'permissions', $post->getModerationState() );
+
+		// $revision may be null if the revision has yet to be created
+		$moderationState = AbstractRevision::MODERATED_NONE;
+		if ( $revision instanceof AbstractRevision ) {
+			$moderationState = $revision->getModerationState();
+		}
+		$permission = $this->actions->getValue( $action, 'permissions', $moderationState );
 
 		// If no permission is defined for this state, then the action is not allowed
 		// check if permission is set for this action
@@ -68,9 +74,9 @@ class PostActionPermissions {
 
 		// Some permissions may be more complex to be defined as simple array
 		// values, in which case they're a Closure (which will accept
-		// PostRevision & PostActionPermissions as arguments)
+		// AbstractRevision & FlowActionPermissions as arguments)
 		if ( $permission instanceof Closure ) {
-			$permission = $permission( $post, $this );
+			$permission = $permission( $revision, $this );
 		}
 
 		// check if user is allowed to perform action
@@ -83,19 +89,19 @@ class PostActionPermissions {
 	/**
 	 * Check if a user is allowed to perform certain actions.
 	 *
-	 * @param PostRevision $post
+	 * @param AbstractRevision[optional] $revision
 	 * @param string $action
 	 * @param string[optional] $action2 Overloadable to check if either of the provided actions are allowed
 	 * @return bool
 	 */
-	public function isAllowedAny( PostRevision $post, $action /* [, $action2 [, ... ]] */ ) {
+	public function isAllowedAny( AbstractRevision $revision = null, $action /* [, $action2 [, ... ]] */ ) {
 		$actions = func_get_args();
-		// Pull $post out of the actions list
+		// Pull $revision out of the actions list
 		array_shift( $actions );
 		$allowed = false;
 
 		foreach ( $actions as $action ) {
-			$allowed |= $this->isAllowed( $post, $action );
+			$allowed |= $this->isAllowed( $revision, $action );
 
 			// as soon as we've found one that is allowed, break
 			if ( $allowed ) {
