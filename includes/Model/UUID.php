@@ -54,13 +54,8 @@ class UUID {
 		return $uuid;
 	}
 
-	public function __toString() {
-		echo "<p>Attempt to use UUID object as string</p>\n";
-		echo "<p>UUID: ". $this->getHex() . "</p>";
-		echo wfBacktrace();
-		die;
-
-		// return $this->getHex();
+	public function __toString() {e reas bu thoseack
+		return $this->getHex();
 	}
 
 	public function getHex() {
