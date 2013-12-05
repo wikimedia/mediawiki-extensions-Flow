@@ -134,7 +134,7 @@ abstract class RevisionStorage extends DbStorage {
 			array( $joinField => "MAX( {$this->joinField()} )" ),
 			$this->preprocessSqlArray( $this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ) ),
 			__METHOD__,
-			array( 'GROUP BY' => $keys )
+			array( 'GROUP BY' => $this->relatedPk() )
 		);
 		if ( !$res ) {
 			// TODO: dont fail, but dont end up caching bad result either
