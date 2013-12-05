@@ -57,7 +57,13 @@ class HeaderBlock extends AbstractBlock {
 			$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
 		} else {
 			if ( empty( $this->submitted['prev_revision'] ) ) {
-				// this isnt really part of validate either, should validate be renamed or should this logic be redone?
+				$title = $this->workflow->getArticleTitle();
+				if ( !$title->exists() ) {
+					// if $wgFlowContentFormat is set to html the Header::create
+					// call will convert the wikitext input into html via parsoid, and
+					// parsoid requires the page exist.
+					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );	
+				}
 				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'] );
 			} else {
 				// User submitted a previous revision, but we couldn't find one.  This is likely

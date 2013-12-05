@@ -50,6 +50,10 @@ class TopicListBlock extends AbstractBlock {
 		}
 	}
 
+	/**
+	 * Create a new topic attached to the current topic list and write it
+	 * out to storage. Additionally generates notifications.
+	 */
 	public function commit() {
 		if ( $this->action !== 'new-topic' ) {
 			throw new \MWException( 'Unknown commit action' );
@@ -63,9 +67,15 @@ class TopicListBlock extends AbstractBlock {
 			throw new \MWException( 'Invalid definition owns this TopicList, needs a valid topic_definition_id option assigned' );
 		}
 
-		$topicWorkflow = Workflow::create( $topicDef, $this->user, $this->workflow->getArticleTitle() );
-		// Should we really have a top level post for the topic title?  Simplifies allowing
-		// a revisioned title.
+		$title = $this->workflow->getArticleTitle();
+		$topicWorkflow = Workflow::create( $topicDef, $this->user, $title );
+
+		if ( !$title->exists() ) {
+			// if $wgFlowContentFormat is set to html the PostRevision::create
+			// call will convert the wikitext input into html via parsoid, and
+			// parsoid requires the page exist.
+			Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );	
+		}
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 		$firstPost = null;
 		if ( !empty( $this->submitted['content'] ) ) {
