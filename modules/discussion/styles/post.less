@@ -267,4 +267,9 @@
 	.flow-post-nocontrols .flow-post-interaction {
 		display: none;
 	}
+
+	a[rel~="mw:ExtLink"]:empty:after {
+		content: "[" counter(flow-mwNumberedExternalLinkNode) "]";
+		counter-increment: flow-mwNumberedExternalLinkNode;
+	}
 }
