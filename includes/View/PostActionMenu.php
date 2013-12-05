@@ -5,7 +5,7 @@ namespace Flow\View;
 use Flow\Block\Block;
 use Flow\FlowActions;
 use Flow\Model\PostRevision;
-use Flow\PostActionPermissions;
+use Flow\RevisionActionPermissions;
 use Flow\UrlGenerator;
 use Html;
 
@@ -21,12 +21,12 @@ class PostActionMenu {
 	/**
 	 * @param UrlGenerator $urlGenerator
 	 * @param FlowActions $actions
-	 * @param PostActionPermissions $permissions
+	 * @param RevisionActionPermissions $permissions
 	 * @param Block $block
 	 * @param PostRevision $post
 	 * @param string $editToken
 	 */
-	public function __construct( UrlGenerator $urlGenerator, FlowActions $actions, PostActionPermissions $permissions, Block $block, PostRevision $post, $editToken ) {
+	public function __construct( UrlGenerator $urlGenerator, FlowActions $actions, RevisionActionPermissions $permissions, Block $block, PostRevision $post, $editToken ) {
 		$this->urlGenerator = $urlGenerator;
 		$this->actions = $actions;
 		$this->permissions = $permissions;
