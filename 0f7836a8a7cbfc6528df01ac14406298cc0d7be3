@@ -16,6 +16,24 @@
       "revId": "0f7836a8a7cbfc6528df01ac14406298cc0d7be3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_f9946248",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-05T16:38:53Z",
+      "side": 1,
+      "message": "IIRC, it\u0027s used in the contribs patch",
+      "parentUuid": "0ee75395_8f6bcced",
+      "revId": "0f7836a8a7cbfc6528df01ac14406298cc0d7be3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
