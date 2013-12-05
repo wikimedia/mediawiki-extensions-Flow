@@ -622,9 +622,7 @@ class BasicDbStorage implements WritableObjectStorage {
 	public function insert( array $row ) {
 		// Only allow the row to include key/value pairs.
 		// No raw SQL.
-		if ( $this->hasRawSQL( $row ) ) {
-			throw new \MWException( "Raw SQL found in row" );
-		}
+		$row = $this->preprocessSqlArray( $row );
 
 		// insert returns boolean true/false
 		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
@@ -652,13 +650,12 @@ class BasicDbStorage implements WritableObjectStorage {
 
 		// Only allow the row to include key/value pairs.
 		// No raw SQL.
-		if ( $this->hasRawSQL( $updates ) || $this->hasRawSQL( $pk ) ) {
-			throw new \MWException( "Raw SQL found in input" );
-		}
+		$updates = $this->preprocessSqlArray( $updates );
+		$pk = $this->preprocessSqlArray( $pk );
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		// update returns boolean true/false as $res
-		$res = $dbw->update( $this->table, $updates, UUID::convertUUIDs( $pk ), __METHOD__ . " ({$this->table})" );
+		$res = $dbw->update( $this->table, $updates, $pk, __METHOD__ . " ({$this->table})" );
 		// $dbw->update returns boolean true/false as $res
 		// we also want to check that $pk actually selected a row to update
 		return $res && $dbw->affectedRows();
@@ -674,14 +671,10 @@ class BasicDbStorage implements WritableObjectStorage {
 			throw new PersistenceException( 'Row has null primary key: ' . implode( $missing ) );
 		}
 
-		// Only allow the row to include key/value pairs.
-		// No raw SQL.
-		if ( $this->hasRawSQL( $pk ) ) {
-			throw new \MWException( "Raw SQL found in PK" );
-		}
+		$pk = $this->preprocessSqlArray( $pk );
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
-		$res = $dbw->delete( $this->table, UUID::convertUUIDs( $pk ), __METHOD__ . " ({$this->table})" );
+		$res = $dbw->delete( $this->table, $pk, __METHOD__ . " ({$this->table})" );
 		return $res && $dbw->affectedRows();
 	}
 
@@ -699,16 +692,12 @@ class BasicDbStorage implements WritableObjectStorage {
 			wfDebug( " -- $key = $value\n" );
 		}
 
-		// Only allow the row to include key/value pairs.
-		// No raw SQL.
-		if ( $this->hasRawSQL( $attributes ) ) {
-			throw new \MWException( "Raw SQL found in select condition" );
-		}
+		$attributes = $this->preprocessSqlArray( $attributes );
 
 		$res = $this->dbFactory->getDB( DB_MASTER )->select(
 			$this->table,
 			'*',
-			UUID::convertUUIDs( $attributes ),
+			$attributes,
 			__METHOD__ . " ({$this->table})",
 			$options
 		);
@@ -753,6 +742,33 @@ class BasicDbStorage implements WritableObjectStorage {
 	}
 
 	/**
+	 * At the moment, does three things:
+	 * 1. Finds UUID objects and returns their database representation.
+	 * 2. Checks for unarmoured raw SQL and errors out if it exists.
+	 * 3. Finds armoured raw SQL and expands it out.
+	 * @param  [type] $data [description]
+	 * @return [type]       [description]
+	 */
+	protected function preprocessSqlArray( $data ) {
+		// Assuming that all databases have the same escaping settings.
+		$db = $this->dbFactory->getDB( DB_SLAVE );
+
+		$data = UUID::convertUUIDs( $data );
+
+		foreach( $data as $key => $value ) {
+			if ( $value instanceof RawSql ) {
+				$data[$key] = $value->getSql( $db );
+			} elseif ( is_numeric( $key ) ) {
+				throw new \MWException( "Unescaped raw SQL found in " . __METHOD__ );
+			} elseif ( ! preg_match( '/^[A-Za-z0-9\._]+$/', $key ) ) {
+				throw new \MWException( "Dangerous SQL field name '$key' found in " . __METHOD__ );
+			}
+		}
+
+		return $data;
+	}
+
+	/**
 	 * Internal security function which checks a row object
 	 * (for inclusion as a condition or a row for insert/update)
 	 * for any numeric keys (= raw SQL), or field names with
@@ -760,8 +776,13 @@ class BasicDbStorage implements WritableObjectStorage {
 	 * @param  array   $row The row to check.
 	 * @return boolean      True if raw SQL is found
 	 */
-	protected function hasRawSQL( array $row ) {
+	protected function hasUnescapedSQL( array $row ) {
 		foreach( $row as $key => $value ) {
+			if ( $value instanceof RawSql ) {
+				// Specifically allowed SQL
+				continue;
+			}
+
 			if ( is_numeric( $key ) ) {
 				return true;
 			}
@@ -1564,5 +1585,19 @@ class BufferedCache {
 			throw new \MWException( 'No transaction in progress' );
 		}
 		$this->buffer = null;
+	}
+}
+
+class RawSql {
+	function __construct( $sql ) {
+		$this->sql = $sql;
+	}
+
+	function getSQL( $db ) {
+		if ( is_callable( $this->sql ) ) {
+			return call_user_func( $this->sql, $db );
+		}
+
+		return $this->sql;
 	}
 }
