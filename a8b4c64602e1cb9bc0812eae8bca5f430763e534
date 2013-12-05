@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_05d31bd8",
+        "filename": "templates/post-history.html.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-05T01:51:44Z",
+      "side": 1,
+      "message": "Another way to do this is: wfMessage( \u0027key\u0027, param1 )-\u003erawParams( param2 )-\u003eparse()",
+      "revId": "a8b4c64602e1cb9bc0812eae8bca5f430763e534",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
