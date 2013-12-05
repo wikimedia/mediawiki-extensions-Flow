@@ -39,7 +39,12 @@ class UrlGenerator {
 	 * and the second element is the query string to use.
 	 */
 	public function buildUrlData( $title, $action = 'view', array $query = array() ) {
-		$query['action'] = $action;
+		if ( $action === 'view' ) {
+			// view is implicit
+			unset( $query['action'] );
+		} else {
+			$query['action'] = $action;
+		}
 		return array( $title, $query );
 	}
 
