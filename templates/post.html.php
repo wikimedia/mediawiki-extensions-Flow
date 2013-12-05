@@ -152,7 +152,7 @@ echo Html::openElement( 'div', array(
 			echo $this->renderPost( $child, $block );
 		}
 		?>
+	<?php echo $replyForm; ?>
 	</div>
 
-	<?php echo $replyForm; ?>
 </div>
