@@ -278,3 +278,11 @@ $wgLogActionsHandlers['suppress/flow-restore-topic'] = 'Flow\Log\Formatter';
 // include the indexes when this is true, would get most of the way twords making
 // this a reasonably performant option.
 $wgFlowUseMemcache = true;
+
+// The default length of time to cache flow data in memcache.  This value can be tuned
+// in conjunction with measurements of cache hit/miss ratios to achieve the desired 
+// tradeoff between memory usage, db queries, and response time. The initial default
+// of 3 days means Flow will attempt to keep in memcache all data models requested in
+// the last 3 days.
+$wgFlowCacheTime = 60 * 60 * 24 * 3;
+
