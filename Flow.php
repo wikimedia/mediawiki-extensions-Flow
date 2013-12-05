@@ -70,7 +70,7 @@ $wgAutoloadClasses['Flow\TalkpageManager'] = $dir . 'includes/TalkpageManager.ph
 $wgAutoloadClasses['Flow\NotificationFormatter'] = $dir . 'includes/Notifications/Formatter.php';
 $wgAutoloadClasses['Flow\NotificationController'] = $dir . 'includes/Notifications/Controller.php';
 $wgAutoloadClasses['Flow\FlowActions'] = $dir . 'includes/FlowActions.php';
-$wgAutoloadClasses['Flow\PostActionPermissions'] = $dir . 'includes/PostActionPermissions.php';
+$wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/RevisionActionPermissions.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
