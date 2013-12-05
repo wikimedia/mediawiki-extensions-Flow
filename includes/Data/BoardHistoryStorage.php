@@ -8,13 +8,9 @@ use Flow\Model\Header;
 use Flow\DbFactory;
 use Flow\Container;
 
-class BoardHistoryStorage implements WritableObjectStorage {
+class BoardHistoryStorage extends DbStorage {
 
 	protected $dbFactory;
-
-	public function __construct( DbFactory $dbFactory ) {
-		$this->dbFactory = $dbFactory;
-	}
 
 	function find( array $attributes, array $options = array() ) {
 		$multi = $this->findMulti( $attributes, $options );
@@ -37,7 +33,7 @@ class BoardHistoryStorage implements WritableObjectStorage {
 	}
 
 	function findHeaderHistory( array $queries, array $options = array() ) {
-		$queries = reset( $queries );
+		$queries = $this->preprocessSqlArray( reset( $queries ) );
 
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
 			array( 'flow_header_revision', 'flow_revision' ),
@@ -58,10 +54,12 @@ class BoardHistoryStorage implements WritableObjectStorage {
 	}
 
 	function findTopicListHistory( array $queries, array $options = array() ) {
+		$queries = $this->preprocessSqlArray( reset( $queries ) );
+
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
 			array( 'flow_topic_list', 'flow_tree_revision', 'flow_revision' ),
 			array( '*' ),
-			array( 'tree_rev_id = rev_id', 'tree_rev_descendant_id = topic_id' ) + UUID::convertUUIDs( reset( $queries ) ),
+			array( 'tree_rev_id = rev_id', 'tree_rev_descendant_id = topic_id' ) + $queries,
 			__METHOD__,
 			$options
 		);
