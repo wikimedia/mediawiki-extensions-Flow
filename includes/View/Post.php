@@ -75,7 +75,7 @@ class Post {
 		}
 		return $this->actions->getButton(
 			'edit-post',
-			wfMessage( 'flow-post-action-edit-post' )->plain(),
+			wfMessage( 'flow-post-action-edit-post' )->escaped(),
 			$buttonClass
 		);
 	}
@@ -93,7 +93,7 @@ class Post {
 		}
 		return $this->actions->getButton(
 			'hide-post',
-			wfMessage( 'flow-post-action-hide-post' )->plain(),
+			wfMessage( 'flow-post-action-hide-post' )->escaped(),
 			$buttonClass
 		);
 	}
@@ -104,7 +104,7 @@ class Post {
 		}
 		return $this->actions->getButton(
 			'delete-post',
-			wfMessage( 'flow-post-action-delete-post' )->plain(),
+			wfMessage( 'flow-post-action-delete-post' )->escaped(),
 			$buttonClass
 		);
 	}
@@ -115,7 +115,7 @@ class Post {
 		}
 		return $this->actions->getButton(
 			'suppress-post',
-			wfMessage( 'flow-post-action-suppress-post' )->plain(),
+			wfMessage( 'flow-post-action-suppress-post' )->escaped(),
 			$buttonClass
 		);
 	}
@@ -126,7 +126,7 @@ class Post {
 		}
 		return $this->actions->getButton(
 			'restore-post',
-			wfMessage( 'flow-post-action-restore-post' )->plain(),
+			wfMessage( 'flow-post-action-restore-post' )->escaped(),
 			$buttonClass
 		);
 	}
