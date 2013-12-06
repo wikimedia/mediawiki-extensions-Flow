@@ -66,9 +66,17 @@
 							)
 						);
 					}
+
 					$.each( topics, function ( k, topic ) {
 						$output.append( topic.rendered );
 					} );
+
+					if ( $( '.topic-collapsed-one-line, .topic-collapsed-full' ).length > 0 ) {
+						$output.find( '.flow-topic-container' ).addClass( 'flow-topic-closed'  )
+							.children( '.flow-topic-children-container' )
+							.css( 'display', 'none' );
+					}
+
 					if ( direction === 'fwd' && data.paging.fwd ) {
 						$output.append(
 							getPagingLink(
