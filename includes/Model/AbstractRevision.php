@@ -485,4 +485,25 @@ abstract class AbstractRevision {
 	public function getModeratedByUserId() {
 		return $this->moderatedByUserId;
 	}
+
+	/**
+	 * @param string $name User name
+	 */
+	public function setUserText( $name ) {
+		$this->userText = $name;
+	}
+
+	/**
+	 * @param string $name User name
+	 */
+	public function setModeratedByUserText( $name ) {
+		$this->moderatedByUserText = $name;
+	}
+
+	/**
+	 * @param string $name User name
+	 */
+	public function setLastEditUserText( $name ) {
+		$this->lastEditUserText = $name;
+	}
 }

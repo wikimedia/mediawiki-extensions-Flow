@@ -153,5 +153,12 @@ class Workflow {
 		$state = end( $this->lockState );
 		return $state['state'] === self::LOCKED;
 	}
+
+	/**
+	 * @param string $name User name
+	 */
+	public function setUserText( $name ) {
+		$this->userText = $name;
+	}
 }
 

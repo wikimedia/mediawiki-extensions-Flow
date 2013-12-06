@@ -46,6 +46,7 @@ class FlowHooks {
 		$updater->modifyExtensionField( 'flow_revision', 'rev_change_type', "$dir/db_patches/patch-rev_change_type_update.sql" );
 		$updater->modifyExtensionField( 'recentchanges', 'rc_source', "$dir/db_patches/patch-rc_source.sql" );
 		$updater->modifyExtensionField( 'flow_revision', 'rev_change_type', "$dir/db_patches/patch-censor_to_suppress.sql" );
+		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_user', "$dir/db_patches/patch-user_idx.sql" );
 
 		require_once __DIR__.'/maintenance/FlowInsertDefaultDefinitions.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowInsertDefaultDefinitions' );
@@ -256,5 +257,22 @@ class FlowHooks {
 		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
 
 		return true;
+	}
+
+	/**
+	 * @param int $userId The user id
+	 * @param $old string The old username
+	 * @param $new string The new username
+	 * @return bool
+	 */
+	public static function onRenameUserComplete( $userId, $old, $new ) {
+		$renamer = Container::get( 'renameuser' );
+
+		return
+			$renamer->workflow( $userId, $old, $new ) &&
+			$renamer->revisionUser( $userId, $old, $new ) &&
+			$renamer->revisionModeratedByUser( $userId, $old, $new ) &&
+			$renamer->revisionLastEditUser( $userId, $old, $new ) &&
+			$renamer->treeRevision( $userId, $old, $new );
 	}
 }

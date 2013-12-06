@@ -125,6 +125,7 @@ $wgAutoloadClasses['Flow\RecentChanges\Formatter'] = $dir . 'includes/RecentChan
 $wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
 $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
 $wgAutoloadClasses['Flow\Log\PostModerationLogger'] = $dir . 'includes/Log/PostModerationLogger.php';
+$wgAutoloadClasses['Flow\RenameUser\RenameUser'] = $dir . 'includes/RenameUser/RenameUser.php';
 
 // database interaction for singular models
 $wgAutoloadClasses['Flow\Data\RevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
@@ -161,6 +162,7 @@ $wgHooks['Article::MissingArticleConditions'][] = 'FlowHooks::onMissingArticleCo
 $wgHooks['SpecialWatchlistGetNonRevisionTypes'][] = 'FlowHooks::onSpecialWatchlistGetNonRevisionTypes';
 $wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
 $wgHooks['ResourceLoaderGetConfigVars'][] = 'FlowHooks::onResourceLoaderGetConfigVars';
+$wgHooks['RenameUserComplete'][] = 'FlowHooks::onRenameUserComplete';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';

@@ -403,4 +403,11 @@ $c['logger'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['renameuser'] = $c->share( function( $c ) {
+	return new Flow\RenameUser\RenameUser(
+		$c['db.factory'],
+		$c['storage']
+	);
+} );
+
 return $c;

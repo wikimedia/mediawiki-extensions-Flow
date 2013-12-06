@@ -11,11 +11,13 @@ use User;
 
 abstract class RevisionStorage extends DbStorage {
 	static protected $allowedUpdateColumns = array(
+		'rev_user_text', // Special:RenameUser
 		'rev_mod_state',
 		'rev_mod_user_id',
-		'rev_mod_user_text',
+		'rev_mod_user_text', // Special:RenameUser
 		'rev_mod_timestamp',
 		'rev_mod_reason',
+		'rev_edit_user_text', // Special:RenameUser
 	);
 	protected $externalStores;
 
@@ -23,8 +25,8 @@ abstract class RevisionStorage extends DbStorage {
 	abstract protected function relatedPk();
 	abstract protected function joinField();
 
-	abstract protected function insertRelated( array $row, array $related );
-	abstract protected function updateRelated( array $rev, array $related );
+	abstract protected function insertRelated( array $row );
+	abstract protected function updateRelated( array $changes, array $old );
 	abstract protected function removeRelated( array $row );
 
 	public function __construct( DbFactory $dbFactory, $externalStore ) {
@@ -232,7 +234,7 @@ abstract class RevisionStorage extends DbStorage {
 		if ( $this->externalStore && !isset( $row['rev_content_url'] ) ) {
 			$row = $this->insertExternalStore( $row );
 		}
-		list( $rev, $related ) = $this->splitUpdate( $row );
+		$rev = $this->splitUpdate( $row, 'rev' );
 		// If a content url is available store that in the db
 		// instead of real content.
 		if ( isset( $rev['rev_content_url'] ) ) {
@@ -251,7 +253,7 @@ abstract class RevisionStorage extends DbStorage {
 			return false;
 		}
 
-		return $this->insertRelated( $row, $related );
+		return $this->insertRelated( $row );
 	}
 
 	protected function insertExternalStore( array $row ) {
@@ -274,12 +276,12 @@ abstract class RevisionStorage extends DbStorage {
 	// for suppressing?
 	public function update( array $old, array $new ) {
 		$changeSet = ObjectManager::calcUpdates( $old, $new );
-		$extra = array_diff( array_keys( $changeSet ), self::$allowedUpdateColumns );
+		$extra = array_diff( array_keys( $changeSet ), static::$allowedUpdateColumns );
 		if ( $extra ) {
 			throw new \MWException( 'Update not allowed on: ' . implode( ', ', $extra ) );
 		}
 
-		list( $rev, $related ) = $this->splitUpdate( $changeSet );
+		$rev = $this->splitUpdate( $changeSet, 'rev' );
 
 		if ( $rev ) {
 			$dbw = $this->dbFactory->getDB( DB_MASTER );
@@ -293,8 +295,8 @@ abstract class RevisionStorage extends DbStorage {
 				return false;
 			}
 		}
-		// TODO: this probably wont work, it needs $row
-		return $this->updateRelated( $rev, $related );
+
+		return $this->updateRelated( $changeSet, $old );
 	}
 
 
@@ -326,24 +328,37 @@ abstract class RevisionStorage extends DbStorage {
 		throw new \MWException( 'Not Implemented' );
 	}
 
-	// Separates $row into two arrays, one with the rev_ prefix
-	// and the other with everything else.  May need to split more
-	// specifically if we want > 2 prefixes.
-	protected function splitUpdate( array $row ) {
-		$rev = $related = array();
+	/**
+	 * Gets all columns from $row that start with a given prefix and omits other
+	 * columns.
+	 *
+	 * @param array $row Rows to split
+	 * @param string[optional] $prefix
+	 * @return array Remaining rows
+	 */
+	protected function splitUpdate( array $row, $prefix = 'rev' ) {
+		$rev = array();
 		foreach ( $row as $key => $value ) {
-			$prefix = substr( $key, 0, 4 );
-			if ( $prefix === 'rev_' ) {
+			$keyPrefix = strstr( $key, '_', true );
+			if ( $keyPrefix === $prefix ) {
 				$rev[$key] = $value;
-			} else {
-				$related[$key] = $value;
 			}
 		}
-		return array( $rev, $related );
+		return $rev;
 	}
 }
 
 class PostRevisionStorage extends RevisionStorage {
+	static protected $allowedUpdateColumns = array(
+		'tree_orig_user_text', // Special:RenameUser
+		'rev_user_text', // Special:RenameUser
+		'rev_mod_state',
+		'rev_mod_user_id',
+		'rev_mod_user_text', // Special:RenameUser
+		'rev_mod_timestamp',
+		'rev_mod_reason',
+		'rev_edit_user_text', // Special:RenameUser
+	);
 
 	public function __construct( DbFactory $dbFactory, $externalStore, TreeRepository $treeRepo ) {
 		parent::__construct( $dbFactory, $externalStore );
@@ -362,7 +377,9 @@ class PostRevisionStorage extends RevisionStorage {
 		return 'tree_rev_id';
 	}
 
-	protected function insertRelated( array $row, array $tree ) {
+	protected function insertRelated( array $row ) {
+		$tree = $this->splitUpdate( $row, 'tree' );
+
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
 			$this->joinTable(),
@@ -389,10 +406,32 @@ class PostRevisionStorage extends RevisionStorage {
 	// Topic split will primarily be done through the TreeRepository directly,  but
 	// we will need to accept updates to the denormalized tree_parent_id field for
 	// the new root post
-	protected function updateRelated( array $row, array $treeChanges ) {
-		if ( $treeChanges ) {
-			throw new \MWException( 'Update not allowed' );
+	protected function updateRelated( array $changes, array $old ) {
+		$treeChanges = $this->splitUpdate( $changes, 'tree' );
+
+		// no changes to be performed
+		if ( !$treeChanges ) {
+			return $changes;
 		}
+
+		$extra = array_diff( array_keys( $treeChanges ), static::$allowedUpdateColumns );
+		if ( $extra ) {
+			throw new \MWException( 'Update not allowed on: ' . implode( ', ', $extra ) );
+		}
+
+		$dbw = $this->dbFactory->getDB( DB_MASTER );
+		$res = $dbw->update(
+			$this->joinTable(),
+			$this->preprocessSqlArray( $treeChanges ),
+			array( 'tree_rev_id' => $old['tree_rev_id'] ),
+			__METHOD__
+		);
+
+		if ( !$res ) {
+			return false;
+		}
+
+		return $changes;
 	}
 
 	// this doesnt delete the whole post, it just deletes the revision.
@@ -420,7 +459,8 @@ class HeaderRevisionStorage extends RevisionStorage {
 		return 'header_rev_id';
 	}
 
-	protected function insertRelated( array $row, array $header ) {
+	protected function insertRelated( array $row ) {
+		$header = $this->splitUpdate( $row, 'header' );
 		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->joinTable(),
 			$this->preprocessSqlArray( $header ),
@@ -433,7 +473,8 @@ class HeaderRevisionStorage extends RevisionStorage {
 	}
 
 	// There is changable data in the header half, it just points to the correct workflow
-	protected function updateRelated( array $rev, array $headerChanges ) {
+	protected function updateRelated( array $changes, array $old ) {
+		$headerChanges = $this->splitUpdate( $changes, 'header' );
 		if ( $headerChanges ) {
 			throw new \MWException( 'No update allowed' );
 		}

@@ -32,6 +32,7 @@ CREATE TABLE /*_*/flow_workflow (
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/flow_workflow_lookup ON /*_*/flow_workflow (workflow_wiki, workflow_namespace, workflow_title_text, workflow_definition_id);
+CREATE INDEX /*i*/flow_workflow_user ON /*_*/flow_workflow (workflow_user_id, workflow_user_text);
 
 CREATE TABLE /*_*/flow_subscription (
   subscription_workflow_id int unsigned not null,
@@ -71,6 +72,8 @@ CREATE TABLE /*_*/flow_tree_revision (
 
 CREATE UNIQUE INDEX /*i*/flow_tree_descendant_id_revisions
 	ON /*_*/flow_tree_revision ( tree_rev_descendant_id, tree_rev_id );
+
+CREATE INDEX /*i*/flow_tree_orig_user ON /*_*/flow_tree_revision (tree_orig_user_id, tree_orig_user_text);
 
 -- Header Content
 -- Instead of header, should this be more generic 'revisioned scratchpad'
@@ -136,6 +139,10 @@ CREATE TABLE /*_*/flow_revision (
 -- Prevents inconsistency, but perhaps will hurt inserts?
 CREATE UNIQUE INDEX /*i*/flow_revision_unique_parent ON
 	/*_*/flow_revision (rev_parent_id);
+
+CREATE INDEX /*i*/flow_rev_user ON /*_*/flow_revision (rev_user_id, rev_user_text);
+CREATE INDEX /*i*/flow_rev_nod_user ON /*_*/flow_revision (rev_mod_user_id, rev_mod_user_text);
+CREATE INDEX /*i*/flow_rev_edit_user ON /*_*/flow_revision (rev_edit_user_id, rev_edit_user_text);
 
 -- Closure table implementation of tree storage in sql
 -- We may be able to go simpler than this

@@ -405,4 +405,11 @@ class PostRevision extends AbstractRevision {
 		}
 		return $user->getId() == $this->getCreatorId();
 	}
+
+	/**
+	 * @param string $name User name
+	 */
+	public function setOrigUserText( $name ) {
+		$this->origUserText = $name;
+	}
 }
