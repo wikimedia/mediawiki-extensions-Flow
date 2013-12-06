@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_5d81f090",
+        "filename": "includes/RenameUser/RenameUser.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-06T19:23:43Z",
+      "side": 1,
+      "message": "An active flow editor may have a lot of revision edits, retrieving all at once may not be a good idea.  I haven\u0027t look in much detail on the code, I am wondering if we could delay all these update to a job with a batched update.  On the other hand, I am thinking if we could just use the immutable user_id to get the latest username, then we don\u0027t need to worry about user rename.  Thoughts?",
+      "revId": "f8347c4b68493dc1aa46f9f7e019481df7be9a4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
