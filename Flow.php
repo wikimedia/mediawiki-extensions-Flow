@@ -246,7 +246,7 @@ $wgFlowOccupyNamespaces = array();
 $wgFlowMaxThreadingDepth = 2;
 
 // A list of editors to use, in priority order
-$wgFlowEditorList = array( 'visualeditor', 'none' );
+$wgFlowEditorList = array( 'none' );  // EXPERIMENTAL prepend 'visualeditor'
 
 // Action details config file
 require $dir . 'FlowActions.php';
@@ -282,7 +282,7 @@ $wgLogActionsHandlers['suppress/flow-restore-topic'] = 'Flow\Log\Formatter';
 $wgFlowUseMemcache = true;
 
 // The default length of time to cache flow data in memcache.  This value can be tuned
-// in conjunction with measurements of cache hit/miss ratios to achieve the desired 
+// in conjunction with measurements of cache hit/miss ratios to achieve the desired
 // tradeoff between memory usage, db queries, and response time. The initial default
 // of 3 days means Flow will attempt to keep in memcache all data models requested in
 // the last 3 days.
