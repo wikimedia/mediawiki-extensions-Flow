@@ -332,7 +332,7 @@
 					$errorList = $( '<ul/>' );
 
 				$errorDiv
-					.addClass( 'flow-error' )
+					.addClass( 'flow-error errorbox' )
 					.hide()
 					.slideDown( 'fast' );
 
