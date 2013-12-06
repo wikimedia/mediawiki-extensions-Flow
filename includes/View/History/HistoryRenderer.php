@@ -42,7 +42,9 @@ class HistoryRenderer {
 	 * included.
 	 *
 	 * @param History $history
-	 * @return array
+	 * @return array The keys of this array are properly escaped for output as 
+	 *     raw html, the values are an associative array containing 'from' and
+	 *     'to' keys mapping to MWTimestamp objects.
 	 */
 	public function getTimespans( History $history ) {
 		global $wgLang;
