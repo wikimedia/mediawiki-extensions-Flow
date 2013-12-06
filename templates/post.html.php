@@ -60,12 +60,19 @@ echo Html::openElement( 'div', array(
 	'data-creator-name' => $post->getCreatorName()
 ) );
 ?>
-	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class="flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>" >
-		<?php if ( $post->isModerated() ): ?>
-			<p class="flow-post-moderated-message flow-post-moderated-<?php echo $post->getModerationState(); ?> flow-post-content-<?php echo $post->isAllowed( $user ) ? 'allowed' : 'disallowed'; ?>">
-				<?php echo $this->getContent( $post, 'html' ); /* Passing null user will return the 'moderated by Foo' content */ ?>
-			</p>
-		<?php endif; ?>
+	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >
+		<?php
+		if ( $post->isModerated() ):
+			$moderationState = $post->getModerationState();
+			$allowed = $post->isAllowed( $user ) ? 'allowed' : 'disallowed';
+			echo Html::rawElement(
+				'p',
+				array( 'class' => "flow-post-moderated-message flow-post-moderated-$moderationState flow-post-content-$allowed", ),
+				// Passing null user will return the 'moderated by Foo' content
+				$this->getContent( $post, 'html' )
+			);
+		endif;
+		?>
 
 		<div class="flow-post-main">
 			<div class="flow-post-title">
@@ -119,9 +126,9 @@ echo Html::openElement( 'div', array(
 						<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo $postView->replyLink(); ?></span></a>
 					<?php endif ?>
 				<?php else:
-					list( $talkUrl, $talkLink ) = $postView->moderatedTalkLink(); 
-					echo Html::rawElement( 
-						'a', 
+					list( $talkUrl, $talkLink ) = $postView->moderatedTalkLink();
+					echo Html::rawElement(
+						'a',
 						array(
 							'class' => 'flow-talk-link mw-ui-button',
 							'href' => $talkUrl,
