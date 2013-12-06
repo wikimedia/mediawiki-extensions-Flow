@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_2a3f0385",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 531
+      },
+      "writtenOn": "2013-12-06T00:29:44Z",
+      "side": 1,
+      "message": "attributes",
+      "revId": "7fa1e6bc1c5d570d0a20d7e8687d5e2b0bcda49b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
