@@ -21,7 +21,7 @@ class FlowInsertDefaultDefinitions extends LoggedUpdateMaintenance {
 		$res = $dbw->select(
 			/* table */'flow_definition',
 			/* select */'definition_id',
-			/* conds */array( 'definition_name' => 'topic' ),
+			/* conds */array( 'definition_name' => 'topic', 'wiki' => wfWikiId() ),
 			__METHOD__
 		);
 		if ( $res ) {
