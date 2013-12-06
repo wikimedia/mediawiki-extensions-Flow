@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_4a536743",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 1622,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-06T02:07:12Z",
+      "side": 1,
+      "message": "Memcache key length can only go up to 250 bytes.  In some cases we use page title as part of the key, this would not work if the title has long length.  I am wondering if we should just sha1() the key inside cacheKey(), then we don\u0027t need to worry about non binary chars as well",
+      "revId": "af66fbc673de495cad77e067514a7853b125fbdc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
