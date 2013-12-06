@@ -4,6 +4,7 @@ namespace Flow\Block;
 
 use Flow\View\History\History;
 use Flow\View\History\HistoryRenderer;
+use Flow\Container;
 use Flow\DbFactory;
 use Flow\Data\ObjectManager;
 use Flow\Model\Workflow;
