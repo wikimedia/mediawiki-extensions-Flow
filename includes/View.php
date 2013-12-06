@@ -25,7 +25,7 @@ class View {
 		$workflow = $loader->getWorkflow();
 
 		$title = $workflow->getArticleTitle();
-		$this->output->setPageTitle( wfMessage( 'flow-page-title', $title->getPrefixedText() )->text() );
+		$this->output->setPageTitle( $title->getPrefixedText() );
 		// Temporary hack to make relative links work when the page is requested as /w/index.php?title=
 		// @todo this wont work when we eventually display posts from multiple source pages,
 		// @todo Patch core to either deprecate /w/index.php?title= and issue redirects, or
