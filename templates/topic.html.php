@@ -92,15 +92,16 @@ echo Html::openElement( 'div', array(
 		?>
 
 		<div class="flow-topic-title">
-			<?php if ( $root->isModerated() ): ?>
-				<h2 class='flow-topic-moderated flow-topic-moderated-<?php echo $root->getModerationState() ?>'>
-					<?php echo $this->getContent( $root, 'wikitext' ); /* Passing no user always gets the 'moderated by Foo' message */ ?>
-				</h2>
-			<?php else: ?>
-				<h2 class="flow-realtitle">
-					<?php echo htmlspecialchars( $title ); ?>
-				</h2>
-			<?php endif ?>
+			<?php if ( $root->isModerated() ):
+				echo Html::rawElement(
+					'h2',
+					array( 'class' => 'flow-topic-moderated flow-topic-moderated-' . $root->getModerationState() ),
+					/* Passing no user always gets the 'moderated by Foo' message */
+					$this->getContent( $root, 'wikitext' )
+				);
+			else: 
+				echo Html::element( 'h2', array( 'class' => 'flow-realtitle' ), $title );
+			endif ?>
 		</div>
 
 		<?php if ( $postActionMenu->isAllowedAny( 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic' ) ): ?>
