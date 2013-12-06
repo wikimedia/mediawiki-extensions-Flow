@@ -11,10 +11,13 @@ use MWException;
 use User;
 
 class NotificationController {
+
+	/**
+	 * Set up Echo notification for Flow extension
+	 */
 	public function setup() {
 		global $wgEchoNotifications, $wgHooks, $wgEchoNotificationIcons, $wgEchoNotificationCategories;
 		$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
-		// @Todo - put this hook in controller as well?
 		$wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
 
 		// Load notification definitions from file.
@@ -48,12 +51,8 @@ class NotificationController {
 	 * * new-subject: The new subject of a Topic. Required for topic renames.
 	 * @return array Array of created EchoEvent objects.
 	 */
-	public function notifyPostChange(
-		$eventName,
-		$data = array()
-	) {
-		if ( ! class_exists( 'EchoEvent' ) ) {
-			// Nothing to do here.
+	public function notifyPostChange( $eventName, $data = array() ) {
+		if ( !class_exists( 'EchoEvent' ) ) {
 			return;
 		}
 
@@ -108,6 +107,7 @@ class NotificationController {
 					'title' => $title,
 					'user' => $user,
 					'post' => $revision,
+					'reply-to' => $replyToPost->getPostId(),
 					'topic-title' => $data['topic-title'],
 					'topic-workflow' => $topicWorkflow,
 				) )
@@ -196,6 +196,7 @@ class NotificationController {
 					'post-id' => $newRevision ? $newRevision->getPostId() : null,
 					'mentioned-users' => $mentionedUsers,
 					'topic-workflow' => $topicWorkflow->getId(),
+					'reply-to' => isset( $data['reply-to'] ) ? $data['reply-to'] : null
 				),
 				'agent' => $user,
 			) );
@@ -335,8 +336,22 @@ class NotificationController {
 		case 'flow-mention':
 			$mentionedUsers = $extra['mentioned-users'];
 
+			// Ignore mention if the user gets another notification
+			// already from the same flow event
+			$ids = array();
+			$topic = $extra['topic-workflow'];
+			if ( $topic ) {
+				$ids[$topic->getHex()] = $topic;
+			}
+			if ( isset( $extra['reply-to'] ) ) {
+				$ids[$extra['reply-to']->getHex()] = $extra['reply-to'];	
+			}
+			$notifiedUsers = self::getCreatorsFromPostIDs( $ids );
+
 			foreach( $mentionedUsers as $uid ) {
-				$users[$uid] = User::newFromId( $uid );
+				if ( !isset( $notifiedUsers[$uid] ) ) {
+					$users[$uid] = User::newFromId( $uid );
+				}
 			}
 			break;
 		case 'flow-new-topic':
@@ -367,13 +382,6 @@ class NotificationController {
 				$ids[] = $topic;
 			}
 			$users += self::getCreatorsFromPostIDs( $ids );
-
-			// ignore mentioned users, they'll get another notification already
-			if ( isset( $extra['mentioned-users'] ) ) {
-				foreach ( $extra['mentioned-users'] as $uid => $user ) {
-					unset( $users[$uid] );
-				}
-			}
 			break;
 		default:
 			// Do nothing
