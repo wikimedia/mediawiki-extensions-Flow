@@ -60,7 +60,7 @@ echo Html::openElement( 'div', array(
 	'data-creator-name' => $post->getCreatorName()
 ) );
 ?>
-	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >
+	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class="flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>" >
 		<?php if ( $post->isModerated() ): ?>
 			<p class="flow-post-moderated-message flow-post-moderated-<?php echo $post->getModerationState(); ?> flow-post-content-<?php echo $post->isAllowed( $user ) ? 'allowed' : 'disallowed'; ?>">
 				<?php echo $this->getContent( $post, 'html' ); /* Passing null user will return the 'moderated by Foo' content */ ?>
@@ -87,17 +87,17 @@ echo Html::openElement( 'div', array(
 						<ul>
 							<?php
 							if ( $hidePost = $postView->hidePostButton( 'flow-hide-post-link mw-ui-button' ) ) {
-								echo "<li class='flow-action-hide'>$hidePost</li>";
+								echo '<li class="flow-action-hide">' . $hidePost . '</li>';
 							}
 							if ( $deletePost = $postView->deletePostButton( 'flow-delete-post-link mw-ui-button' ) ) {
-								echo "<li class='flow-action-delete'>$deletePost</li>";
+								echo '<li class="flow-action-delete">' . $deletePost . '</li>';
 							}
 							if ( $suppressPost = $postView->suppressPostButton( 'flow-suppress-post-link mw-ui-button' ) ) {
-								echo "<li class='flow-action-suppress'>$suppressPost</li>";
+								echo '<li class="flow-action-suppress">' . $suppressPost . '</li>';
 							}
 							// @todo restore button will probably be moved somewhere else, some day
 							if ( $restorePost = $postView->restorePostButton( 'flow-restore-post-link mw-ui-button mw-ui-constructive' ) ) {
-								echo "<li class='flow-action-restore'>$restorePost</li>";
+								echo '<li class="flow-action-restore">' . $restorePost . '</li>';
 							}
 							?>
 						</ul>
@@ -146,7 +146,7 @@ echo Html::openElement( 'div', array(
 		</div>
 	</div>
 
-	<div class='flow-post-replies'>
+	<div class="flow-post-replies">
 		<?php
 		foreach( $post->getChildren() as $child ) {
 			echo $this->renderPost( $child, $block );
