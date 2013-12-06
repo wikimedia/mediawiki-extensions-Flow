@@ -549,9 +549,6 @@ class Merger {
 		if ( !$ids ) {
 			return $source;
 		}
-		if ( !$ids ) {
-			return $source;
-		}
 		$res = call_user_func( $callable, $ids );
 		if ( $res === false ) {
 			return false;
