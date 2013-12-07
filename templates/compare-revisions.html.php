@@ -31,9 +31,7 @@ $getRevisionHeader = function( $revision ) use ( $templating, $block ) {
 	);
 	$message = wfMessage( 'flow-compare-revisions-revision-header' )
 		->rawParams( $timestamp )
-		->params(
-			$revision->getUserText()
-		);
+		->params( $templating->getUserText( $revision, $user ) );
 
 	$permalinkUrl = $templating->getUrlGenerator()
 		->generateBlockUrl(

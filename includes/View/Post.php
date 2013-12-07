@@ -2,6 +2,7 @@
 
 namespace Flow\View;
 
+use Flow\Data\UsernameBatch;
 use Flow\Model\PostRevision;
 use Flow\Templating;
 use Linker;
@@ -16,12 +17,16 @@ class Post {
 	/**
 	 * @param  User             $user    The User viewing posts
 	 */
-	public function __construct( User $user, PostRevision $post, PostActionMenu $actions ) {
+	public function __construct( User $user, PostRevision $post, PostActionMenu $actions, UsernameBatch $usernames ) {
 		$this->user = $user;
 		$this->post = $post;
 		$this->actions = $actions;
+		$this->usernames = $usernames;
 
-		$this->creatorUserText = $post->getCreatorName( $this->user );
+		$this->creatorUserText = $post->getCreatorIp();
+		if ( $this->creatorUserText === null ) {
+			$this->creatorUserText = $usernames->get( wfWikiId(), $post->getCreatorId( $this->user ) );
+		}
 	}
 
 	public function replyPlaceholder() {
@@ -40,11 +45,15 @@ class Post {
 		$user = User::newFromId( $this->post->getModeratedByUserId() );
 		$title = $user->getTalkPage();
 
+		$username = $this->post->getModeratedByUserIp();
+		if ( $username === null ) {
+			$username = $this->usernames->get( wfWikiId(), $this->post->getModeratedByUserId() );
+		}
 		return array(
 			$title->getLinkUrl(),
 			wfMessage(
 				'flow-talk-link',
-				$this->post->getModeratedByUserText()
+				$username
 			)->escaped()
 		);
 	}
@@ -63,10 +72,18 @@ class Post {
 	}
 
 	public function creatorToolLinks() {
-		return $this->userToolLinks(
-			$this->post->getCreatorId( $this->user ),
-			$this->post->getCreatorName( $this->user )
-		);
+		$userid = $this->post->getCreatorId( $this->user );
+		$username = $this->post->getCreatorIp( $this->user );
+		if ( $username === null ) {
+			$username = $this->usernames->get( wfWikiId(), $this->post->getCreatorId( $this->user ) );
+		}
+		if ( empty( $username ) ) {
+			echo '<pre>';
+			var_dump( $this->post );
+			echo '</pre>';
+			throw new \MWException( 'no username?' );
+		}
+		return $this->userToolLinks( $userid, $username );
 	}
 
 	public function editPostButton( $buttonClass ) {

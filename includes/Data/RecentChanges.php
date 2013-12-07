@@ -56,7 +56,7 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
 			'rc_user' => $row['rev_user_id'],
-			'rc_user_text' => $row['rev_user_text'],
+			'rc_user_text' => '',
 			'rc_type' => RC_FLOW,
 			'rc_source' => self::SRC_FLOW, // depends on core change in gerrit 85787
 			'rc_minor' => 0,

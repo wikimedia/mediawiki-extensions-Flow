@@ -44,8 +44,12 @@ abstract class AbstractRevision {
 	);
 
 	protected $revId;
+
+	/**
+	 * Either userId *OR* userIp will be set.
+	 */
 	protected $userId;
-	protected $userText;
+	protected $userIp;
 
 	/**
 	 * Array of flags strictly related to the content. Flags are reset when
@@ -75,13 +79,19 @@ abstract class AbstractRevision {
 	// delete, but adjusts an existing revision for full suppression.
 	protected $moderationState = self::MODERATED_NONE;
 	protected $moderationTimestamp;
+	/**
+	 * Either moderatedByUserId *OR* moderatedByUserIp will be set
+	 */
 	protected $moderatedByUserId;
-	protected $moderatedByUserText;
+	protected $moderatedByUserIp;
 	protected $moderatedReason;
 
 	protected $lastEditId;
+	/**
+	 * Either lastEditUserId *OR* lastEditUserIp will be set
+	 */
 	protected $lastEditUserId;
-	protected $lastEditUserText;
+	protected $lastEditUserIp;
 
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
@@ -91,7 +101,11 @@ abstract class AbstractRevision {
 		}
 		$obj->revId = UUID::create( $row['rev_id'] );
 		$obj->userId = $row['rev_user_id'];
-		$obj->userText = $row['rev_user_text'];
+		if ( isset( $row['rev_user_ip'] ) ) {
+			$obj->userIp = $row['rev_user_ip'];
+		} elseif ( isset( $row['rev_user_text'] ) && $obj->userId === 0 ) {
+			$obj->userIp = $row['rev_user_text'];
+		}
 		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
 		$obj->changeType = $row['rev_change_type'];
 	 	$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
@@ -102,7 +116,12 @@ abstract class AbstractRevision {
 
 		$obj->moderationState = $row['rev_mod_state'];
 		$obj->moderatedByUserId = $row['rev_mod_user_id'];
-		$obj->moderatedByUserText = $row['rev_mod_user_text'];
+		if ( isset( $row['rev_mod_user_ip'] ) ) {
+			$obj->moderatedByUserIp = $row['rev_mod_user_ip'];
+		// BC for rev_mod_user_text field
+		} elseif ( isset( $row['rev_mod_user_text'] ) && $obj->moderatedByUserId === 0 ) {
+			$obj->moderatedByUserIp = $row['rev_mod_user_text'];
+		}
 		$obj->moderationTimestamp = $row['rev_mod_timestamp'];
 		$obj->moderatedReason = isset( $row['rev_mod_reason'] ) ? $row['rev_mod_reason'] : null;
 
@@ -114,7 +133,13 @@ abstract class AbstractRevision {
 		// isset required because there is a possible db migration, cached data will not have it
 		$obj->lastEditId = isset( $row['rev_last_edit_id'] ) ? UUID::create( $row['rev_last_edit_id'] ) : null;
 		$obj->lastEditUserId = isset( $row['rev_edit_user_id'] ) ? $row['rev_edit_user_id'] : null;
-		$obj->lastEditUserText = isset( $row['rev_edit_user_text'] ) ? $row['rev_edit_user_text'] : null;
+		if ( isset( $row['rev_edit_user_ip'] ) ) {
+			$obj->lastEditUserIp = $row['rev_edit_user_ip'];
+		// BC from rev_edit_user_text field
+		} elseif ( isset( $row['rev_edit_user_text'] ) && $obj->lastEditUserId === 0 ) {
+			$obj->lastEditUserIp = $row['rev_edit_user_text'];
+		}
+		$obj->lastEditUserIp = isset( $row['rev_edit_user_ip'] ) ? $row['rev_edit_user_ip'] : null;
 
 		return $obj;
 	}
@@ -123,7 +148,7 @@ abstract class AbstractRevision {
 		return array(
 			'rev_id' => $obj->revId->getBinary(),
 			'rev_user_id' => $obj->userId,
-			'rev_user_text' => $obj->userText,
+			'rev_user_ip' => $obj->userIp,
 			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getBinary() : null,
 			'rev_change_type' => $obj->changeType,
 			'rev_type' => $obj->getRevisionType(),
@@ -134,13 +159,13 @@ abstract class AbstractRevision {
 
 			'rev_mod_state' => $obj->moderationState,
 			'rev_mod_user_id' => $obj->moderatedByUserId,
-			'rev_mod_user_text' => $obj->moderatedByUserText,
+			'rev_mod_user_ip' => $obj->moderatedByUserIp,
 			'rev_mod_timestamp' => $obj->moderationTimestamp,
 			'rev_mod_reason' => $obj->moderatedReason,
 
 			'rev_last_edit_id' => $obj->lastEditId ? $obj->lastEditId->getBinary() : null,
 			'rev_edit_user_id' => $obj->lastEditUserId,
-			'rev_edit_user_text' => $obj->lastEditUserText,
+			'rev_edit_user_ip' => $obj->lastEditUserIp,
 		);
 	}
 
@@ -155,8 +180,7 @@ abstract class AbstractRevision {
 		}
 		$obj = clone $this;
 		$obj->revId = UUID::create();
-		$obj->userId = $user->getId();
-		$obj->userText = $user->getName();
+		list( $obj->userId, $obj->userIp ) = self::userFields( $user );
 		$obj->prevRevision = $this->revId;
 		$obj->changeType = '';
 		return $obj;
@@ -213,13 +237,13 @@ abstract class AbstractRevision {
 				continue;
 			}
 			$rev->moderationState = $state;
+			list( $userId, $userIp ) = self::userFields( $user );
 			if ( $state === self::MODERATED_NONE ) {
 				$rev->moderatedByUserId = null;
-				$rev->moderatedByUserText = null;
 				$rev->moderationTimestamp = null;
 			} else {
-				$rev->moderatedByUserId = $user->getId();
-				$rev->moderatedByUserText = $user->getName();
+				$rev->moderatedByUserId = $userId;
+				$rev->moderatedByUserIp = $userIp;
 				$rev->moderationTimestamp = $timestamp;
 			}
 		}
@@ -303,19 +327,18 @@ abstract class AbstractRevision {
 		return $this->convertedContent[$format];
 	}
 
+	/**
+	 * @return integer
+	 */
 	public function getUserId() {
 		return $this->userId;
 	}
 
 	/**
-	 * DO NOT USE THIS METHOD to output the username; use
-	 * Templating::getUserText, which will do additional (permissions-based)
-	 * checks to make sure it outputs something the user can see.
-	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getUserText() {
-		return $this->userText;
+	public function getUserIp() {
+		return $this->userIp;
 	}
 
 	/**
@@ -368,8 +391,7 @@ abstract class AbstractRevision {
 			$this->content = null;
 			$this->setContent( $content );
 			$this->lastEditId = $this->getRevisionId();
-			$this->lastEditUserId = $user->getId();
-			$this->lastEditUserText = $user->getName();
+			list( $this->lastEditUserId, $this->lastEditUserIp ) = self::userFields( $user );
 		}
 	}
 
@@ -458,31 +480,29 @@ abstract class AbstractRevision {
 		return $this->lastEditId === null;
 	}
 
-	/**
-	 * @param $user User requesting access to last content editor
-	 * @return string
-	 */
-	public function getLastContentEditorName( $user = null ) {
-		// TODO: to write this function properly will need to flesh out how
-		// oversighting works.  Prefer to create an external security class that is
-		// configurable per-wiki, pass revisions into it(or wrap them in it for
-		// view objects?) to get possibly protected content.
-		if ( $this->isAllowed( $user ) ) {
-			return $this->lastEditUserText;
-		} else {
-			return '';
-		}
-	}
-
 	public function getLastContentEditId() {
 		return $this->lastEditId;
 	}
 
-	public function getModeratedByUserText() {
-		return $this->moderatedByUserText;
-	}
-
 	public function getModeratedByUserId() {
 		return $this->moderatedByUserId;
+	}
+
+	public function getModeratedByUserIp() {
+		return $this->moderatedByUserIp;
+	}
+
+	static public function userFields( $user ) {
+		if ( $user->isAnon() ) {
+			$userId = 0;
+			$userIp = $user->getName();
+			if ( $userIp === null ) {
+				throw new \MWException( 'no user ip?' );
+			}
+		} else {
+			$userId = $user->getId();
+			$userIp = null;
+		}
+		return array( $userId, $userIp );
 	}
 }
