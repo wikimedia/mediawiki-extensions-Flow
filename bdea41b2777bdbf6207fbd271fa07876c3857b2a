@@ -16,6 +16,23 @@
       "revId": "bdea41b2777bdbf6207fbd271fa07876c3857b2a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_91c3df8b",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 685
+      },
+      "writtenOn": "2013-12-07T00:18:28Z",
+      "side": 1,
+      "message": "$2 should not be removed for backward compatibility.",
+      "revId": "bdea41b2777bdbf6207fbd271fa07876c3857b2a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
