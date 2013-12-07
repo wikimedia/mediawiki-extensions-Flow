@@ -16,6 +16,24 @@
       "revId": "f8347c4b68493dc1aa46f9f7e019481df7be9a4e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_51b437cf",
+        "filename": "includes/RenameUser/RenameUser.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-07T00:57:15Z",
+      "side": 1,
+      "message": "Based on this suggestion  I put together https://gerrit.wikimedia.org/r/99789 .  It batches username requests so we can always display the accepted wiki name.  Then handling of renames is not our problem, and blocks are either a join or extra query done as part of the lookup.",
+      "parentUuid": "0ee75395_5d81f090",
+      "revId": "f8347c4b68493dc1aa46f9f7e019481df7be9a4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
