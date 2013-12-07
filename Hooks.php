@@ -31,6 +31,7 @@ class FlowHooks {
 		if ( $updater->getDB()->getType() === 'sqlite' ) {
 			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id', "$dir/db_patches/patch-summary2header.sqlite.sql" );
 			$updater->modifyExtensionField( 'flow_revision', 'rev_comment', "$dir/db_patches/patch-rev_change_type.sqlite.sql" );
+			$updater->dropExtensionField( 'flow_workflow', 'workflow_user_text', "$dir/db_patches/patch-remove_usernames.sqlite.sql" );
 		} else {
 			// sqlite doesn't support alter table change, it also considers all types the same so
 			// this patch doesn't matter to it.
@@ -39,6 +40,9 @@ class FlowHooks {
 			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id', "$dir/db_patches/patch-summary2header.sql" );
 			// rename rev_change_type -> rev_comment, alternate patch is above for sqlite
 			$updater->modifyExtensionField( 'flow_revision', 'rev_comment', "$dir/db_patches/patch-rev_change_type.sql" );
+			// drop *_user_text fields and add matching *_user_ip fields, only populated when
+			// *_user_text = 0. Alternate patch above for sqlite
+			$updater->dropExtensionField( 'flow_workflow', 'workflow_user_text', "$dir/db_patches/patch-remove_usernames.sql" );
 		}
 
 		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_lookup', "$dir/db_patches/patch-workflow_lookup_idx.sql" );

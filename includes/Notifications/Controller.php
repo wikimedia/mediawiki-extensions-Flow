@@ -405,11 +405,10 @@ class NotificationController {
 
 			$post = reset( $post );
 
-			if ( $post ) {
-				$user = $post->getCreator();
-
-				if ( $user && !$user->isAnon() ) {
-					$users[$user->getId()] = $user;
+			if ( $post && $post->isAllowed() ) {
+				$userid = $post->getCreatorId();
+				if ( $userid ) {
+					$users[$userid] = User::newFromId( $userid );
 				}
 			}
 		}
