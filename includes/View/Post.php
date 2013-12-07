@@ -2,6 +2,7 @@
 
 namespace Flow\View;
 
+use Flow\Data\UsernameBatch;
 use Flow\Model\PostRevision;
 use Flow\Templating;
 use Linker;
@@ -16,12 +17,17 @@ class Post {
 	/**
 	 * @param  User             $user    The User viewing posts
 	 */
-	public function __construct( User $user, PostRevision $post, PostActionMenu $actions ) {
+	public function __construct( User $user, PostRevision $post, PostActionMenu $actions, UsernameBatch $usernames ) {
 		$this->user = $user;
 		$this->post = $post;
 		$this->actions = $actions;
+		$this->usernames = $usernames;
 
-		$this->creatorUserText = $post->getCreatorName( $this->user );
+		$this->creatorUserText = $usernames->get(
+			wfWikiId(),
+			$post->getCreatorId(),
+			$post->getCreatorIp()
+		);
 	}
 
 	public function replyPlaceholder() {
@@ -50,10 +56,7 @@ class Post {
 	}
 
 	public function creatorToolLinks() {
-		return $this->userToolLinks(
-			$this->post->getCreatorId( $this->user ),
-			$this->post->getCreatorName( $this->user )
-		);
+		return $this->userToolLinks( $this->post->getCreatorId(), $this->creatorUserText );
 	}
 
 	public function editPostButton( $buttonClass ) {
