@@ -48,4 +48,8 @@ class DbFactory {
 			return wfGetLB( $this->wiki );
 		}
 	}
+
+	public function waitForSlaves() {
+		wfWaitForSlaves( false, $this->wiki, $this->cluster );
+	}
 }
