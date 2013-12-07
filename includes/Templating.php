@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
+use Flow\Data\UserNameBatch;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
@@ -42,7 +43,8 @@ class Templating {
 	 */
 	public $parsoidLinks = array();
 
-	public function __construct( UrlGenerator $urlGenerator, OutputPage $output, array $namespaces = array(), array $globals = array() ) {
+	public function __construct( UserNameBatch $usernames, UrlGenerator $urlGenerator, OutputPage $output, array $namespaces = array(), array $globals = array() ) {
+		$this->usernames = $usernames;
 		$this->urlGenerator = $urlGenerator;
 		$this->output = $output;
 		foreach ( $namespaces as $ns => $path ) {
@@ -259,7 +261,7 @@ class Templating {
 	 */
 	public function getUserText( AbstractRevision $revision, User $permissionsUser = null ) {
 		$state = $revision->getModerationState();
-		$username = $revision->getUserText();
+		$username = $this->usernames->get( wfWikiId(), $revision->getUserId() );
 
 		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
 		$message = wfMessage( "flow-$state-usertext", $username );
@@ -284,7 +286,7 @@ class Templating {
 	public function getUserLinks( AbstractRevision $revision, User $permissionsUser = null ) {
 		$state = $revision->getModerationState();
 		$userid = $revision->getUserId();
-		$username = $revision->getUserText();
+		$username = $this->usernames->get( wfWikiId(), $userid );
 
 		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
 		$message = wfMessage( "flow-$state-usertext", $username );
@@ -312,7 +314,7 @@ class Templating {
 	 */
 	public function getCreatorText( PostRevision $revision, User $permissionsUser = null ) {
 		$state = $revision->getModerationState();
-		$username = $revision->getCreatorNameRaw();
+		$username = $this->usernames->get( wfWikiId(), $revision->getCreatorNameRaw() );
 
 		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
 		$message = wfMessage( "flow-$state-usertext", $username );
@@ -341,7 +343,7 @@ class Templating {
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'html', User $permissionsUser = null ) {
 		$state = $revision->getModerationState();
-		$user = $revision->getModeratedByUserText();
+		$user = $this->usernames->get( wfWikiId(), $revision->getModeratedByUserId() );
 
 		// Messages: flow-hide-content, flow-delete-content, flow-suppress-content
 		$message = wfMessage( "flow-$state-content", $user );
