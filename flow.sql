@@ -21,9 +21,7 @@ CREATE TABLE /*_*/flow_workflow (
 	workflow_last_update_timestamp binary(14) not null,
 	-- TODO: check what the new global user ids need for storage
 	workflow_user_id bigint unsigned not null,
-	-- TODO: James F said the global ids wont require us to store user_text,
-	-- because anon users will get a global id as well.
-	workflow_user_text varchar(255) binary not null,
+	workflow_user_ip varbinary(39) default null,
 	-- TODO: is this usefull as a bitfield?  may be premature optimization, a string
 	-- or list of strings may be simpler and use only a little more space.
 	workflow_lock_state int unsigned not null,
@@ -62,7 +60,7 @@ CREATE TABLE /*_*/flow_tree_revision (
 	-- denormalized so we dont need to keep finding the first revision of a post
 	tree_orig_create_time varchar(12) binary not null,
 	tree_orig_user_id bigint unsigned not null,
-	tree_orig_user_text varchar(255) binary not null,
+	tree_orig_user_ip varbinary(39) default null,
 	-- denormalize post parent as well? Prevents an extra query when building
 	-- tree from closure table.  unnecessary?
 	tree_parent_id binary(16),
@@ -103,10 +101,7 @@ CREATE TABLE /*_*/flow_revision (
 	rev_type varchar(16) binary not null,
 	-- user id creating the revision
 	rev_user_id bigint unsigned not null,
-	-- name of user creating the revision, or ip address if anon
-	-- TODO: global user logins will obviate the need for this, but a round trip
-	--       will be needed to map from rev_user_id -> user name
-	rev_user_text varchar(255) binary not null default '',
+	rev_user_ip varbinary(39) default null,
 	-- rev_id of parent or null if no previous revision
 	rev_parent_id binary(16),
 	-- comma separated set of ascii flags.
@@ -120,7 +115,7 @@ CREATE TABLE /*_*/flow_revision (
 	rev_mod_state varchar(32) binary not null,
 	-- moderated by who?
 	rev_mod_user_id bigint unsigned,
-	rev_mod_user_text varchar(255) binary,
+	rev_mod_user_ip varbinary(39) default null,
 	rev_mod_timestamp varchar(14) binary,
 	-- moderated why? (coming soon: how?, where? and what?)
 	rev_mod_reason varchar(255) binary,
@@ -128,7 +123,7 @@ CREATE TABLE /*_*/flow_revision (
 	-- track who made the most recent content edit
 	rev_last_edit_id binary(16) null,
 	rev_edit_user_id bigint unsigned,
-	rev_edit_user_text varchar(255) binary,
+	rev_edit_user_ip varbinary(39) default null,
 
 	PRIMARY KEY (rev_id)
 ) /*$wgDBTableOptions*/;
