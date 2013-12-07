@@ -57,6 +57,7 @@ $c['templating.global_variables'] = $c->share( function( $c ) {
 } );
 $c['templating'] = $c->share( function( $c ) {
 	return new Flow\Templating(
+		$c['repository.username'],
 		$c['url_generator'],
 		$c['output'],
 		$c['templating.namespaces'],
@@ -88,6 +89,10 @@ use Flow\Model\PostRevision;
 $c['memcache.buffered'] = $c->share( function( $c ) {
 	global $wgFlowCacheTime;
 	return new LocalBufferedCache( $c['memcache'], $wgFlowCacheTime );
+} );
+// Batched username loader
+$c['repository.username'] = $c->share( function( $c ) {
+	return new Flow\Data\UserNameBatch;
 } );
 // Per wiki workflow definitions (types of workflows)
 $c['storage.definition'] = $c->share( function( $c ) {
@@ -126,8 +131,14 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 			array( 'shallow' => $pk, 'limit' => 1, 'sort' => 'workflow_id' )
 		),
 	);
-	//ch /valulds t not ready yet
-	$lifecycle = array(); // $c['storage.user_subs.user_index'] );
+	$lifecycle = array(
+		new Flow\Data\UserNameListener(
+			$c['repository.username'],
+			array( 'workflow_user_id' ),
+			'workflow_wiki'
+		),
+		// $c['storage.user_subs.user_index']
+	);
 
 	return new ObjectManager( $mapper, $storage, $indexes, $lifecycle );
 } );
@@ -204,8 +215,16 @@ $c['storage.header'] = $c->share( function( $c ) {
 	);
 
 	$handlers = array(
-		new Flow\Data\HeaderRecentChanges( $c['storage'], $wgContLang ),
+		new Flow\Data\HeaderRecentChanges( $c['repository.username'], $c['storage'], $wgContLang ),
 		$c['storage.board_history.index'],
+		new Flow\Data\UserNameListener(
+			$c['repository.username'],
+			array( 'rev_user_id', 'rev_mod_user_id', 'rev_edit_user_id' ),
+			null,
+			// @todo composite wiki id + user columns, for now this
+			// works as we only display content from this wiki
+			wfWikiId()
+		),
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
@@ -295,8 +314,16 @@ $c['storage.post'] = $c->share( function( $c ) {
 
 	$handlers = array(
 		new Flow\Log\PostModerationLogger( $c['storage'], $c['repository.tree'], $c['logger'] ),
-		new Flow\Data\PostRevisionRecentChanges( $c['storage'], $c['repository.tree'], $wgContLang ),
+		new Flow\Data\PostRevisionRecentChanges( $c['repository.username'], $c['storage'], $c['repository.tree'], $wgContLang ),
 		$c['storage.board_history.index'],
+		new Flow\Data\UserNameListener(
+			$c['repository.username'],
+			array( 'rev_user_id', 'rev_mod_user_id', 'rev_edit_user_id', 'tree_orig_user_id' ),
+			null,
+			// @todo composite wiki id + user columns, for now this
+			// works as we only display content from this wiki
+			wfWikiId()
+		),
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes, $handlers );

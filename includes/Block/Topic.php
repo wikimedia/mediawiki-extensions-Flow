@@ -640,7 +640,10 @@ class TopicBlock extends AbstractBlock {
 				'*' => $templating->getContent( $post, $contentFormat, $this->user ),
 				'format' => $contentFormat
 			);
-			$output['user'] = $post->getCreatorName();
+			$output['user'] = $templating->getCreatorText( $post, $this->user );
+			if ( $output['user'] instanceof \Message ) {
+				$output['user'] = $output['user']->text();
+			}
 		}
 
 		if ( ! isset( $options['no-children'] ) ) {
