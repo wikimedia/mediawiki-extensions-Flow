@@ -17,6 +17,18 @@ abstract class RecentChanges implements LifecycleHandler {
 	// in recentchanges
 	const TRUNCATE_LENGTH = 164;
 
+	/**
+	 * @var UserNameBatch
+	 */
+	protected $usernames;
+
+	/**
+	 * @param UserNameBatch $usernames
+	 */
+	public function __construct( UserNameBatch $usernames ) {
+		$this->usernames = $usernames;
+	}
+
 	public function onAfterInsert( $object, array $row ) {
 		// New Revision
 		throw new \MWException( 'onAfterInsert must be implemented' );
@@ -56,7 +68,7 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
 			'rc_user' => $row['rev_user_id'],
-			'rc_user_text' => $row['rev_user_text'],
+			'rc_user_text' => $this->usernames->get( wfWikiId(), $row['rev_user_id'], $row['rev_user_ip'] ),
 			'rc_type' => RC_FLOW,
 			'rc_source' => self::SRC_FLOW, // depends on core change in gerrit 85787
 			'rc_minor' => 0,
@@ -88,7 +100,18 @@ abstract class RecentChanges implements LifecycleHandler {
 }
 
 class HeaderRecentChanges extends RecentChanges {
-	public function __construct( ManagerGroup $storage, Language $contLang ) {
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
+
+	/**
+	 * @var Language Content Language
+	 */
+	protected $contLang;
+
+	public function __construct( UserNameBatch $usernames, ManagerGroup $storage, Language $contLang ) {
+		parent::__construct( $usernames );
 		$this->storage = $storage;
 		$this->contLang = $contLang;
 	}
@@ -117,7 +140,23 @@ class HeaderRecentChanges extends RecentChanges {
 }
 
 class PostRevisionRecentChanges extends RecentChanges {
-	public function __construct( ManagerGroup $storage, TreeRepository $tree, Language $contLang ) {
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
+
+	/**
+	 * @var TreeRepository
+	 */
+	protected $tree;
+
+	/**
+	 * @var Language
+	 */
+	protected $contLang;
+
+	public function __construct( UserNameBatch $usernames, ManagerGroup $storage, TreeRepository $tree, Language $contLang ) {
+		parent::__construct( $usernames );
 		$this->storage = $storage;
 		$this->tree = $tree;
 		$this->contLang = $contLang;

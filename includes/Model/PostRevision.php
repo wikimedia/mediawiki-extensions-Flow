@@ -13,7 +13,7 @@ class PostRevision extends AbstractRevision {
 	// denormalized data that must not change between revisions of same post
 	protected $origCreateTime;
 	protected $origUserId;
-	protected $origUserText;
+	protected $origUserIp;
 	protected $replyToId;
 
 	// Data that is loaded externally and set
@@ -37,7 +37,7 @@ class PostRevision extends AbstractRevision {
 		$obj->revId = UUID::create();
 		$obj->postId = $topic->getId();
 		$obj->origUserId = $obj->userId = $topic->getUserId();
-		$obj->origUserText = $obj->userText = $topic->getUserText();
+		$obj->origUserIp = $obj->userIp = $topic->getUserIp();
 		$obj->origCreateTime = wfTimestampNow();
 		$obj->replyToId = null; // not a reply to anything
 		$obj->prevRevId = null; // no parent revision
@@ -60,7 +60,12 @@ class PostRevision extends AbstractRevision {
 		$obj->postId = UUID::create( $row['tree_rev_descendant_id'] );
 		$obj->origCreateTime = $row['tree_orig_create_time'];
 		$obj->origUserId = $row['tree_orig_user_id'];
-		$obj->origUserText = $row['tree_orig_user_text'];
+		if ( isset( $row['tree_orig_user_ip'] ) ) {
+			$obj->origUserIp = $row['tree_orig_user_ip'];
+		// BC for tree_orig_user_text field
+		} elseif ( isset( $row['tree_orig_user_text'] ) && $obj->origUserId === 0 ) {
+			$obj->origUserIp = $row['tree_orig_user_text'];
+		}
 		return $obj;
 	}
 
@@ -72,7 +77,7 @@ class PostRevision extends AbstractRevision {
 			// rest of tree_ is denormalized data about first post revision
 			'tree_orig_create_time' => $rev->origCreateTime,
 			'tree_orig_user_id' => $rev->origUserId,
-			'tree_orig_user_text' => $rev->origUserText,
+			'tree_orig_user_ip' => $rev->origUserIp,
 		);
 	}
 
@@ -80,8 +85,9 @@ class PostRevision extends AbstractRevision {
 		$reply = new self;
 		// No great reason to create two uuid's,  a post and its first revision can share a uuid
 		$reply->revId = $reply->postId = UUID::create();
-		$reply->userId = $reply->origUserId = $user->getId();
-		$reply->userText = $reply->origUserText = $user->getName();
+		list( $reply->userId, $reply->userIp ) = self::userFields( $user );
+		$reply->origUserId = $reply->userId;
+		$reply->origUserIp = $reply->userIp;
 		$reply->origCreateTime = wfTimestampNow();
 		$reply->replyToId = $this->postId;
 		$reply->setContent( $content );
@@ -98,64 +104,21 @@ class PostRevision extends AbstractRevision {
 
 	/**
 	 * Get the user ID of the user who created this post.
-	 * Checks permissions and returns false
 	 *
-	 * @param $user User The user to check permissions for.
-	 * @return int|bool The user ID, or false
+	 * @return int The user ID
 	 */
-	public function getCreatorId( $user = null ) {
-		$creator = $this->getCreator( $user );
-
-		// Not using $creator->getId() to avoid having to fetch the id if that
-		// User object was created via newFromName
-		return $creator === false ? false : $this->getCreatorIdRaw();
-	}
-
-	/**
-	 * Get the username of the User who created this post.
-	 * Checks permissions, and returns false if the current user is not permitted
-	 * to access that information
-	 *
-	 * @param User $user The user to check permissions for.
-	 * @return string|bool The username of the User who created this post.
-	 */
-	public function getCreatorName( $user = null ) {
-		$creator = $this->getCreator( $user );
-
-		// Not using $creator->getName() to avoid having to fetch the name if
-		// that User object was created via newFromId
-		return $creator === false ? false : $this->getCreatorNameRaw();
-	}
-
-	/**
-	 * Get the User who created this post.
-	 * Checks permissions, and returns false if the current user is not permitted
-	 * to access that information
-	 *
-	 * @param User $user The user to check permissions for.
-	 * @return User|bool The username of the User who created this post.
-	 */
-	public function getCreator( $user = null ) {
-		if ( $this->isAllowed( $user ) ) {
-			if ( $this->getCreatorIdRaw() != 0 ) {
-				$user = User::newFromId( $this->getCreatorIdRaw() );
-			} else {
-				// Don't validate username; (anon) IP user object is fine.
-				$user = User::newFromName( $this->getCreatorNameRaw(), false );
-			}
-
-			return $user;
-		} else {
-			return false;
-		}
-	}
-
-	public function getCreatorNameRaw() {
-		return $this->origUserText;
-	}
-
-	public function getCreatorIdRaw() {
+	public function getCreatorId() {
 		return $this->origUserId;
+	}
+
+	/**
+	 * Get the user ip of the user who created this post if it
+	 * was created by an anonymous user
+	 *
+	 * @return string|null String if an creator is anon, or null if not.
+	 */
+	public function getCreatorIp() {
+		return $this->origUserIp;
 	}
 
 	public function isTopicTitle() {
@@ -337,9 +300,10 @@ class PostRevision extends AbstractRevision {
 		 * @return array Return array in the format of [result, continue]
 		 */
 		$callback = function( PostRevision $post, $result ) {
-			$creator = $post->getCreator();
-			if ( $creator instanceof User ) {
-				$result[$post->getCreatorName()] = $creator;
+			// if visible to unprivliged user
+			if ( $post->isAllowed() ) {
+				$key = $post->getCreatorId() ?: $post->getCreatorIp();
+				$result[$key] = array( $post->getCreatorId(), $post->getCreatorIp() );
 			}
 
 			return array( $result, true );
