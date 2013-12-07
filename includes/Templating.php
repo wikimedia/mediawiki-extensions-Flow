@@ -414,7 +414,11 @@ class Templating {
 
 			if ( isset( $parsoid['sa']['href'] ) ) {
 				// Don't process invalid links
-				$title = Title::newFromText( $parsoid['sa']['href'] );
+				if ( $parsoid['sa']['href'][0] === '/' ) {
+					$title = $this->resolveSubpage( $parsoid['sa']['href'] );
+				} else {
+					$title = Title::newFromText( $parsoid['sa']['href'] );
+				}
 				if ( $title === null ) {
 					continue;
 				}
@@ -440,6 +444,15 @@ class Templating {
 		}
 
 		return $dom->saveHTML();
+	}
+
+	protected function resolveSubpage( $text ) {
+		global $wgTitle, $wgFlowParsoidTitle;
+		if ( $wgFlowParsoidTitle === null ) {
+			return Title::newFromText( $wgTitle->getDBkey() . $text, $wgTitle->getNamespace() );
+		} else {
+			return Title::newFromText( $wgFlowParsoidTitle->getDBkey() . $text, $wgFlowParsoidTitle->getNamespace() );
+		}
 	}
 
 	/**
