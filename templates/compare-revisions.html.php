@@ -31,9 +31,7 @@ $getRevisionHeader = function( $revision ) use ( $templating, $block ) {
 	);
 	$message = wfMessage( 'flow-compare-revisions-revision-header' )
 		->rawParams( $timestamp )
-		->params(
-			$revision->getUserText()
-		);
+		->params( $templating->getUserText( $revision, $user ) );
 
 	$permalinkUrl = $templating->getUrlGenerator()
 		->generateBlockUrl(
@@ -89,7 +87,7 @@ switch( $newRevision->getRevisionType() ) {
 			->params(
 				$block->getWorkflow()->getArticleTitle(),
 				$this->getContent( $block->loadTopicTitle(), 'wikitext', $user ),
-				$newRevision->getCreator()->getName(),
+				$this->usernames->get( wfWikiId(), $newRevision->getCreatorId() ),
 				$boardLink,
 				$topicLinkTitle->getFullUrl( $topicLinkQuery ),
 				$historyLink
