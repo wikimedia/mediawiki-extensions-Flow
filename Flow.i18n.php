@@ -252,8 +252,6 @@ You can see other versions of this post at its [$6 history page].',
  */
 $messages['qqq'] = array(
 	'flow-desc' => '{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}',
-	'flow-page-title' => 'Used as page title in a flow board. Parameters:
-* $1 - page title',
 	'flow-talk-taken-over' => 'Content to replace existing page content by for pages that are turned into Flow boards.',
 	'log-name-flow' => '{{doc-logpage}}
 Name of the Flow log filter on the [[Special:Log]] page.',
@@ -630,12 +628,16 @@ Parameters:
 	'flow-topic-comments' => 'Message to display the amount of comments in this topic.
 
 Parameters:
-* $1 - The number of comments on this topic, can be used for PLURAL',
+* $1 - the number of comments on this topic, can be used for PLURAL
+See also:
+* {{msg-mw|Flow-topic-meta-minimal}}',
 	'flow-topic-meta-minimal' => 'Message to display the amount of users and comments in a topic in the collapsed topic views.
 
 Parameters:
-* $1 - The number of comments in this topic, can be used for PLURAL
-* $2 - The number of users participating in this topic, can be used for PLURAL',
+* $1 - the number of comments in this topic, can be used for PLURAL
+* $2 - the number of users participating in this topic, can be used for PLURAL
+See also:
+* {{msg-mw|Flow-topic-comments}}',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
@@ -948,9 +950,12 @@ See also:
 * $4: URL to the Board, with the fragment set to the post in question.
 * $5: URL to the Topic, with the fragment set to the post in question.
 * $5: URL to the history page for this post.',
-	'flow-topic-collapsed-one-line' => 'Used as title for the icon which is used to show small view of topics.',
+	'flow-topic-collapsed-one-line' => 'Used as title for the icon which is used to show small view of topics.
+
+"Small view" is also called "Collapsed one line view".',
 	'flow-topic-collapsed-full' => 'Used as title for the icon which is used to show collapsed view of topics.',
-	'flow-topic-complete' => 'Used as title for the icon which is used to show full view of topics.',
+	'flow-topic-complete' => 'Used as title for the icon which is used to show full view of topics.
+{{Identical|Full view}}',
 );
 
 /** Achinese (Acèh)
@@ -1052,7 +1057,6 @@ $messages['cs'] = array(
  */
 $messages['de'] = array(
 	'flow-desc' => 'Workflow-Management-System',
-	'flow-page-title' => '$1 &ndash; Flow',
 	'flow-talk-taken-over' => 'Diese Diskussionsseite wurde von einem [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow-Board] übernommen.',
 	'log-name-flow' => 'Flow-Aktivitätslogbuch',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|löschte}} einen [$4 Beitrag] auf [[$3]]',
@@ -1157,6 +1161,7 @@ $messages['de'] = array(
 	'flow-history-pages-post' => 'Erscheint auf [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 startete dieses Thema|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} und {{PLURAL:$2|ein anderer|andere}}|0=Noch keine Teilnehmer|2={{GENDER:$3|$3}} und {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} und {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|Kommentar ($1)|Kommentare ($1)|0=Sei der erste!}}',
+	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Sei der erste!|{{PLURAL:$1|Ein Kommentar|$1 Kommentare}} von {{PLURAL:$2|einem Benutzer|$2 Benutzern}}}}',
 	'flow-comment-restored' => 'Kommentar wiederhergestellt',
 	'flow-comment-deleted' => 'Kommentar gelöscht',
 	'flow-comment-hidden' => 'Versteckter Kommentar',
@@ -1234,6 +1239,9 @@ Du kannst spätere Versionen in der [$4 Versionsgeschichte] ansehen.',
 	'flow-compare-revisions-revision-header' => 'Version von {{GENDER:$2|$2}} vom $1',
 	'flow-compare-revisions-header-post' => 'Diese Seite zeigt die Änderungen zwischen zwei Versionen eines Beitrags von $3 im Thema „[$5 $2]“ auf [$4 $1] an.
 Du kannst andere Versionen dieses Beitrags in der [$6 Versionsgeschichte] ansehen.',
+	'flow-topic-collapsed-one-line' => 'Kleine Ansicht',
+	'flow-topic-collapsed-full' => 'Zusammengeklappte Ansicht',
+	'flow-topic-complete' => 'Volle Ansicht',
 );
 
 /** Greek (Ελληνικά)
@@ -1256,7 +1264,6 @@ $messages['el'] = array(
  */
 $messages['es'] = array(
 	'flow-desc' => 'Sistema de gestión de flujo de trabajo',
-	'flow-page-title' => '$1 &ndash; Flujo',
 	'log-name-flow' => 'Registro de actividad de flujo',
 	'flow-user-moderated' => 'Usuario moderado',
 	'flow-post-moderated-toggle-show' => '[Mostrar]',
@@ -1341,7 +1348,6 @@ $messages['es'] = array(
  */
 $messages['fa'] = array(
 	'flow-desc' => 'سامانهٔ مدیریت گردش کار',
-	'flow-page-title' => '$1 &ndash; جربان', # Fuzzy
 );
 
 /** Finnish (suomi)
@@ -1386,7 +1392,6 @@ $messages['fi'] = array(
  */
 $messages['fr'] = array(
 	'flow-desc' => 'Système de gestion du flux de travail',
-	'flow-page-title' => '$1 &ndash; Flux',
 	'flow-talk-taken-over' => "Cette page de discussion a été remplacée par un [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal ''Flow board''].",
 	'log-name-flow' => 'Journal de flux d’activité',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|a supprimé}} une [$4 note] sur [[$3]]',
@@ -1575,7 +1580,6 @@ Vous pouvez voir d’autres versions de cette note dans sa [$6 page d’historiq
  */
 $messages['gl'] = array(
 	'flow-desc' => 'Sistema de xestión do fluxo de traballo',
-	'flow-page-title' => '$1 &ndash; Fluxo',
 	'flow-edit-header-link' => 'Editar a cabeceira',
 	'flow-header-empty' => 'Actualmente, esta páxina de conversa non ten cabeceira.',
 	'flow-post-moderated-toggle-show' => '[Mostrar]',
@@ -1613,8 +1617,8 @@ $messages['gl'] = array(
 	'flow-error-external' => 'Produciuse un erro ao gardar a súa mensaxe. Non se gardou a súa mensaxe.<br /><small>A mensaxe de erro recibida foi: $1</small>', # Fuzzy
 	'flow-error-edit-restricted' => 'Non lle está permitido editar esta mensaxe.',
 	'flow-error-external-multi' => 'Producíronse erros ao gardar a súa mensaxe. Non se gardou a súa mensaxe.<br />$1', # Fuzzy
-	'flow-error-missing-content' => 'A mensaxe non ten contido. O contido é obrigatorio para gardar unha nova mensaxe.',
-	'flow-error-missing-title' => 'O fío non ten título. O título é obrigatorio para gardar un novo fío.',
+	'flow-error-missing-content' => 'A mensaxe non ten contido. O contido é obrigatorio para gardar unha nova mensaxe.', # Fuzzy
+	'flow-error-missing-title' => 'O fío non ten título. O título é obrigatorio para gardar un novo fío.', # Fuzzy
 	'flow-error-parsoid-failure' => 'Non é posible analizar o contido debido a un fallo do Parsoid.',
 	'flow-error-missing-replyto' => 'Non se achegou ningún parámetro de resposta. Este parámetro é obrigatorio para a acción "responder".',
 	'flow-error-invalid-replyto' => 'O parámetro de resposta non é válido. Non se puido atopar a mensaxe especificada.',
@@ -1633,7 +1637,7 @@ $messages['gl'] = array(
 	'flow-rev-message-edit-header' => 'Editouse a cabeceira', # Fuzzy
 	'flow-rev-message-hid-post' => 'Agochouse a mensaxe', # Fuzzy
 	'flow-rev-message-deleted-post' => 'Borrouse a mensaxe', # Fuzzy
-	'flow-rev-message-suppressed-post' => 'Censurouse a mensaxe',
+	'flow-rev-message-suppressed-post' => 'Censurouse a mensaxe', # Fuzzy
 	'flow-rev-message-restored-post' => 'Descubriuse a mensaxe', # Fuzzy
 	'flow-topic-history' => 'Historial do fío', # Fuzzy
 	'flow-comment-restored' => 'Comentario restaurado',
@@ -1686,7 +1690,6 @@ $messages['gu'] = array(
  */
 $messages['he'] = array(
 	'flow-desc' => 'מערכת לניהול זרימת עבודה',
-	'flow-page-title' => '$1 – זרימה',
 	'flow-talk-taken-over' => 'דף השיחה הוחלף על־ידי [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal לוח זרימה].',
 	'log-name-flow' => 'יומן פעילות זרימה',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|מחק|מחקה}} [$4 רשומה] בדף [[$3]]',
@@ -1705,7 +1708,7 @@ $messages['he'] = array(
 	'flow-hide-content' => 'הוסתר על־ידי $1',
 	'flow-delete-content' => 'הוסתר על־ידי $1',
 	'flow-suppress-content' => 'הועלם על־ידי $1',
-	'flow-suppress-usertext' => "'''השם הועלם'''", # Fuzzy
+	'flow-suppress-usertext' => '<strong>השם הועלם</strong>',
 	'flow-post-actions' => 'פעולות',
 	'flow-topic-actions' => 'פעולות',
 	'flow-cancel' => 'ביטול',
@@ -1889,7 +1892,6 @@ $messages['hy'] = array(
  */
 $messages['ia'] = array(
 	'flow-desc' => 'Systema de gestion de fluxo de travalio',
-	'flow-page-title' => '$1 &ndash; Fluxo',
 	'log-name-flow' => 'Registro de activitate de fluxo',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|deleva}} un [$4 message] in [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|restaurava}} un [$4 message] in [[$3]]',
@@ -1902,7 +1904,7 @@ $messages['ia'] = array(
 	'flow-hide-content' => '{{GENDER:$1|Celate}} per $1',
 	'flow-delete-content' => '{{GENDER:$1|Delite}} per $1',
 	'flow-suppress-content' => '{{GENDER:$1|Supprimite}} per $1',
-	'flow-suppress-usertext' => "''Nomine de usator supprimite''",
+	'flow-suppress-usertext' => "''Nomine de usator supprimite''", # Fuzzy
 	'flow-post-actions' => 'Actiones',
 	'flow-topic-actions' => 'Actiones',
 	'flow-cancel' => 'Cancellar',
@@ -1940,8 +1942,8 @@ $messages['ia'] = array(
 	'flow-error-external' => 'Un error ha occurrite.<br /><small>Le message de error recipite es: $1</small>',
 	'flow-error-edit-restricted' => 'Tu non es autorisate a modificar iste entrata.',
 	'flow-error-external-multi' => 'Errores ha occurrite.<br />$1',
-	'flow-error-missing-content' => 'Le message non ha contento. Contento es necessari pro salveguardar un nove message.',
-	'flow-error-missing-title' => 'Le topico non ha titulo. Le titulo es necessari pro salveguardar un nove topico.',
+	'flow-error-missing-content' => 'Le message non ha contento. Contento es necessari pro salveguardar un nove message.', # Fuzzy
+	'flow-error-missing-title' => 'Le topico non ha titulo. Le titulo es necessari pro salveguardar un nove topico.', # Fuzzy
 	'flow-error-parsoid-failure' => 'Impossibile interpretar le contento a causa de un fallimento de Parsoid.',
 	'flow-error-missing-replyto' => 'Nulle parametro "replyTo" ha essite fornite. Iste parametro es necessari pro le action "responder".',
 	'flow-error-invalid-replyto' => 'Le parametro "replyTo" es invalide. Le entrata specificate non pote esser trovate.',
@@ -1957,18 +1959,18 @@ $messages['ia'] = array(
 	'flow-edit-title-submit' => 'Cambiar titulo',
 	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|modificava}} un [$2 commento]', # Fuzzy
 	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|addeva}} un [$2 commento].', # Fuzzy
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|commento|commentos}}''' ha essite addite.", # Fuzzy
+	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|commento|commentos}}</strong> ha essite addite.',
 	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|creava}} le topico [$2 $3].', # Fuzzy
 	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|cambiava}} le titulo del topico de $4 in [$2 $3].', # Fuzzy
 	'flow-rev-message-create-header' => '[[User:$1|$1]] {{GENDER:$1|creava}} le titulo del tabuliero.', # Fuzzy
 	'flow-rev-message-edit-header' => '[[User:$1|$1]] {{GENDER:$1|modificava}} le titulo del tabuliero.', # Fuzzy
 	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|celava}} un [$3 commento].', # Fuzzy
 	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|deleva}} un [$3 commento].', # Fuzzy
-	'flow-rev-message-suppressed-post' => '[[User:$1|$1]] {{GENDER:$1|supprimeva}} un [$3 commento].',
+	'flow-rev-message-suppressed-post' => '[[User:$1|$1]] {{GENDER:$1|supprimeva}} un [$3 commento].', # Fuzzy
 	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|restaurava}} un [$3 commento].', # Fuzzy
 	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|celava}} le [$3 topico].', # Fuzzy
 	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|deleva}} le [$3 topico].', # Fuzzy
-	'flow-rev-message-suppressed-topic' => '[[User:$1|$1]] {{GENDER:$1|supprimeva}} le [$3 topico].',
+	'flow-rev-message-suppressed-topic' => '[[User:$1|$1]] {{GENDER:$1|supprimeva}} le [$3 topico].', # Fuzzy
 	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|restaurava}} le [$3 topico].', # Fuzzy
 	'flow-topic-history' => 'Historia de topicos', # Fuzzy
 	'flow-comment-restored' => 'Commento restaurate',
@@ -1998,7 +2000,6 @@ $messages['ia'] = array(
  */
 $messages['it'] = array(
 	'flow-desc' => 'Sistema di gestione del flusso di lavoro',
-	'flow-page-title' => '$1 &ndash; Flusso',
 	'flow-talk-taken-over' => 'Questa pagina di discussione è stata sostituita da una 
 [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal bacheca dei flussi].',
 	'log-name-flow' => 'Attività sui flussi',
@@ -2104,6 +2105,7 @@ $messages['it'] = array(
 	'flow-history-pages-post' => 'Apparso su [$1  $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 ha iniziato questa discussione|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} e {{PLURAL:$2|un altro|altri}}|0=Nessuno ha partecipato ancora|2={{GENDER:$3|$3}} e {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} e {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|Commento ($1)|Commenti ($1)|0=Sii il primo a commentare!}}',
+	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Sii il primo a commentare!|$1 {{PLURAL:$1|commento|commenti}} di $2 {{PLURAL:$2|utente|utenti}}}}',
 	'flow-comment-restored' => 'Commento ripristinato',
 	'flow-comment-deleted' => 'Commento cancellato',
 	'flow-comment-hidden' => 'Commento nascosto',
@@ -2190,7 +2192,6 @@ Puoi vedere le altre versioni nella [$6 cronologia della pagina].',
  */
 $messages['ja'] = array(
 	'flow-desc' => 'ワークフロー管理システム',
-	'flow-page-title' => '$1 &ndash; Flow',
 	'flow-talk-taken-over' => 'このトークページは、[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow 掲示板]に引き継がれました。',
 	'log-name-flow' => 'Flow活動記録',
 	'logentry-delete-flow-delete-post' => '$1 が [[$3]] の[$4 投稿]を{{GENDER:$2|削除}}',
@@ -2282,6 +2283,7 @@ $messages['ja'] = array(
 	'flow-history-week' => '過去 1 週間',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 がこの話題を開始|{{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}} と他 $2 {{PLURAL:$2|人}}|0=まだ誰も参加していません|2={{GENDER:$3|$3}} と {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|コメント ($1)|0=最初のコメントを書きましょう!}}',
+	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=最初のコメントを書きましょう!|$2 {{PLURAL:$2|人の利用者}}による $1 {{PLURAL:$1|件のコメント}}}}',
 	'flow-comment-restored' => 'コメントを復元',
 	'flow-comment-deleted' => 'コメントを削除',
 	'flow-comment-hidden' => 'コメントを非表示',
@@ -2345,6 +2347,9 @@ $messages['ja'] = array(
 [$4 投稿の履歴ページ]で以降の版を閲覧できます。',
 	'flow-compare-revisions-header-post' => 'このページでは、[$4 $1] の話題「[$5 $2]」での $3 の投稿の 2 つの版の差分を表示しています。
 この投稿の[$6 履歴ページ]でその他の版を閲覧できます。',
+	'flow-topic-collapsed-one-line' => '縮小表示',
+	'flow-topic-collapsed-full' => '折りたたみ表示',
+	'flow-topic-complete' => '全体表示',
 );
 
 /** Korean (한국어)
@@ -2354,7 +2359,6 @@ $messages['ja'] = array(
  */
 $messages['ko'] = array(
 	'flow-desc' => '워크플로우 관리 시스템',
-	'flow-page-title' => '$1 &ndash; 플로우', # Fuzzy
 	'flow-edit-header-link' => '머리말 고치기',
 	'flow-header-empty' => '이 토론 문서에는 머릿말이 없습니다.',
 	'flow-post-moderated-toggle-show' => '[보기]',
@@ -2379,7 +2383,7 @@ $messages['ko'] = array(
 	'flow-rev-message-hid-post' => '내용 숨겨짐', # Fuzzy
 	'flow-rev-message-deleted-post' => '삭제된 게시글', # Fuzzy
 	'flow-rev-message-restored-post' => '게시글 숨김 해제', # Fuzzy
-	'flow-topic-comments' => '{{PLURAL:$1|0=첫 댓글을 달아 보세요!|댓글 ($1개)}}',
+	'flow-topic-comments' => '{{PLURAL:$1|0=첫 댓글을 달아 보세요!|댓글 ($1개)}}', # Fuzzy
 	'flow-notification-link-text-view-post' => '게시물 보기',
 	'flow-notification-reply-email-subject' => '$1이 당신의 글에 덧글을 달았습니다.',
 	'flow-notification-rename-email-subject' => '$1 이 당신의 주제를 바꾸었습니다.',
@@ -2430,11 +2434,12 @@ $messages['lb'] = array(
 	'flow-error-other' => 'En onerwaarte Feeler ass geschitt.',
 	'flow-error-external' => 'Et ass e Feeler geschitt.<br /><small>De Feelermessage war:$1</ small>',
 	'flow-error-external-multi' => 'Et si Feeler geschitt.<br />$1',
-	'flow-error-missing-title' => "D'Thema huet keen Titel. Den Titel ass obligatoresch fir een neit Thema ze späicheren.", # Fuzzy
+	'flow-error-missing-title' => "D'Thema huet keen Titel. Den Titel ass obligatoresch fir een Thema ze späicheren.",
 	'flow-error-delete-failure' => "D'Läsche vun dësem Element huet net funktionéiert.",
 	'flow-error-hide-failure' => 'Verstoppe vun dësem Element huet net funktionéiert.',
 	'flow-error-restore-failure' => "D'Restauréiere vun dësem Element huet net funktionéiert.",
 	'flow-error-not-allowed' => 'Net genuch Rechter fir dës Aktioun ze maachen',
+	'flow-error-prev-revision-mismatch' => 'Dës Ännerung konnt net gespäichert ginn: méi eng rezent Ännerung gouf scho gespäichert.',
 	'flow-edit-header-submit' => 'Iwwerschrëft späicheren',
 	'flow-edit-title-submit' => 'Titel änneren',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|huet}} eng [$3 Bemierkung] geännert.',
@@ -2504,7 +2509,7 @@ $messages['lv'] = array(
 	'flow-rev-message-create-header' => 'Izveidoja galveni', # Fuzzy
 	'flow-rev-message-edit-header' => 'Izmainīja galveni', # Fuzzy
 	'flow-rev-message-deleted-post' => 'Dzēsts ieraksts', # Fuzzy
-	'flow-rev-message-suppressed-post' => 'Cenzēts ieraksts',
+	'flow-rev-message-suppressed-post' => 'Cenzēts ieraksts', # Fuzzy
 	'flow-link-topic' => 'tēma',
 	'flow-link-history' => 'vēsture',
 );
@@ -2515,7 +2520,6 @@ $messages['lv'] = array(
  */
 $messages['mk'] = array(
 	'flow-desc' => 'Систем за раководење со работниот тек',
-	'flow-page-title' => '$1 &mdash; Тек',
 	'flow-talk-taken-over' => 'Оваа страница за разговор е преземена [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Таблата за тек].',
 	'log-name-flow' => 'Дневник на активности во текот',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|избриша}} [$4 објава] на [[$3]]',
@@ -2744,7 +2748,6 @@ $messages['mr'] = array(
  * @author Danmichaelo
  */
 $messages['nb'] = array(
-	'flow-page-title' => '$1 &ndash; Flow',
 	'log-name-flow' => 'Flow-aktivitetslogg',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|slettet}} et [$4 innlegg] på [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|gjenopprettet}} et [$4 innlegg] på [[$3]]',
@@ -2803,7 +2806,7 @@ $messages['nb'] = array(
 	'flow-edit-title-submit' => 'Endre tittel',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|redigerte}} en [$3 kommentar].',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|la inn}} en [$3 kommentar].',
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|kommentar|kommentarer}}''' {{PLURAL:$1|ble}} lagt til.", # Fuzzy
+	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|kommentar|kommentarer}}</strong> {{PLURAL:$1|ble}} lagt til.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|opprettet}} emnet [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|redigerte}} emnetittelen fra $5 til [$3 $4].',
 	'flow-rev-message-create-header' => 'Opprettet overskrift', # Fuzzy
@@ -2863,7 +2866,7 @@ $messages['ne'] = array(
 	'flow-post-action-suppress-post' => 'दबाउने',
 	'flow-post-action-delete-post' => 'हटाउने',
 	'flow-post-action-hide-post' => 'लुकाउनुहोस्',
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$1|टिप्पणी|टिप्पणीहरू}}''' {{PLURAL:$1|थपिएको|थपिएका}} थिए ।", # Fuzzy
+	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|टिप्पणी|टिप्पणीहरू}}</strong> {{PLURAL:$1|थपिएको|थपिएका}} थिए ।',
 	'flow-moderation-confirm-suppress-post' => 'दबाउने',
 	'flow-moderation-confirm-delete-post' => 'मेट्ने',
 	'flow-moderation-confirm-hide-post' => 'लुकाउनुहोस्',
@@ -2882,7 +2885,7 @@ $messages['ne'] = array(
  */
 $messages['nl'] = array(
 	'flow-desc' => 'Workflowmanagementsysteem',
-	'flow-page-title' => '$1 &ndash; Flow',
+	'flow-talk-taken-over' => 'Deze overlegpagina is overgenomen door een [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal prikbord van Flow].',
 	'log-name-flow' => 'Logboek Flow',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] verwijderd van [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|heeft}} een [$4 bericht] teruggeplaatst op [[$3]]',
@@ -2900,7 +2903,7 @@ $messages['nl'] = array(
 	'flow-hide-content' => '{{GENDER:$1|Verborgen}} door $1',
 	'flow-delete-content' => '{{GENDER:$1|Verwijderd}} door $1',
 	'flow-suppress-content' => '{{GENDER:$1|Onderdrukt}} door $1',
-	'flow-suppress-usertext' => "''Gebruikersnaam onderdrukt''", # Fuzzy
+	'flow-suppress-usertext' => '<em>Gebruikersnaam onderdrukt</em>',
 	'flow-post-actions' => 'Handelingen',
 	'flow-topic-actions' => 'Handelingen',
 	'flow-cancel' => 'Annuleren',
@@ -2939,8 +2942,8 @@ $messages['nl'] = array(
 	'flow-error-external' => 'Er is een fout opgetreden.<br /><small>De foutmelding is: $1</small>',
 	'flow-error-edit-restricted' => 'U mag dit bericht niet bewerken.',
 	'flow-error-external-multi' => 'Er zijn fouten opgetreden.<br />$1',
-	'flow-error-missing-content' => 'Het bericht heeft geen inhoud. Inhoud is vereist voor het opslaan van een nieuw bericht.', # Fuzzy
-	'flow-error-missing-title' => 'Onderwerp heeft geen titel. Een titel is vereist voor het opslaan van een nieuw onderwerp.', # Fuzzy
+	'flow-error-missing-content' => 'Het bericht heeft geen inhoud. Inhoud is vereist voor het opslaan van een bericht.',
+	'flow-error-missing-title' => 'Onderwerp heeft geen titel. Een titel is vereist voor het opslaan van een onderwerp.',
 	'flow-error-parsoid-failure' => 'Verwerken is niet mogelijk vanwege een fout in Parsoid.',
 	'flow-error-missing-replyto' => 'Er is geen parameter "replyTo" opgegeven. Deze parameter is verplicht voor de handeling "reply".',
 	'flow-error-invalid-replyto' => 'De parameter "replyTo" is ongeldig. Het opgegeven bericht kon niet worden gevonden.',
@@ -2952,11 +2955,18 @@ $messages['nl'] = array(
 	'flow-error-invalid-moderation-state' => 'Er is een ongeldige waarde opgegeven voor "moderationState".',
 	'flow-error-invalid-moderation-reason' => 'Geef een reden op voor de moderatie.',
 	'flow-error-not-allowed' => 'Onvoldoende rechten voor het uitvoeren van deze handeling.',
+	'flow-error-title-too-long' => 'Onderwerpen kunnen niet langer zijn dan  $1 {{PLURAL:$1|teken|tekens}}.',
+	'flow-error-no-existing-workflow' => 'Deze workflow bestaat nog niet.',
+	'flow-error-not-a-post' => 'Dit onderwerp kan niet als bericht worden opgeslagen.',
+	'flow-error-missing-header-content' => 'De koptekst heeft geen inhoud. Zonder inhoud voor de koptekst, kunt u niet opslaan.',
+	'flow-error-missing-prev-revision-identifier' => 'Het ID van de vorige versie ontbreekt.',
+	'flow-error-prev-revision-mismatch' => 'De bewerking kon niet worden opgeslagen.  Er is al een meer recente wijziging opgeslagen.',
+	'flow-error-prev-revision-does-not-exist' => 'De vorige versie kon niet gevonden worden.',
 	'flow-edit-header-submit' => 'Koptekst opslaan',
 	'flow-edit-title-submit' => 'Onderwerp wijzigen',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|heeft}} een [$3 reactie] bewerkt.',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|heeft}} een [$3 reactie] toegevoegd.',
-	'flow-rev-message-reply-bundle' => "Er {{PLURAL:$1|is|zijn}} '''$1 {{PLURAL:$1|reactie|reacties}}''' toegevoegd.", # Fuzzy
+	'flow-rev-message-reply-bundle' => 'Er {{PLURAL:$1|is|zijn}} <strong>$1 {{PLURAL:$1|reactie|reacties}}</strong> toegevoegd.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|heeft}} het onderwerp [$3 $4] aangemaakt.',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|heeft}} het onderwerp gewijzigd van $5 naar [$3 $4].',
 	'flow-rev-message-create-header' => '$1 {{GENDER:$2|heeft}} prikbordaanhef aangemaakt.',
@@ -2978,7 +2988,8 @@ $messages['nl'] = array(
 	'flow-history-pages-topic' => 'Komt voor op het [$1 prikbord "$2"]',
 	'flow-history-pages-post' => 'Komt voor op [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 is dit onderwerp begonnen|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} en {{PLURAL:$2|een andere gebruiker|andere gebruikers}}|0=Nog geen deelnemers|2={{GENDER:$3|$3}} en {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} en {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|0=Reageer als eerste!|Reactie|Reacties ($1)}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|0=Reageer als eerste!|Reactie|Reacties ($1)}}',
+	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Reageer als eerste!|$1 {{PLURAL:$1|reactie|reacties}} van $2 {{PLURAL:$2|gebruiker|gebruikers}}}}',
 	'flow-comment-restored' => 'Teruggeplaatste reactie',
 	'flow-comment-deleted' => 'Verwijderde reactie',
 	'flow-comment-hidden' => 'Verborgen reactie',
@@ -3048,6 +3059,17 @@ $messages['nl'] = array(
 	'flow-moderation-confirmation-restore-topic' => 'Dit onderwerp is teruggeplaatst.',
 	'flow-topic-permalink-warning' => 'Dit onderwerp is gestart op [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Dit onderwerp is gestart op het [$2 prikbord van {{GENDER:$1|$1}}]',
+	'flow-revision-permalink-warning-post' => 'Dit is een permanente koppeling naar een enkele versie van dit bericht.
+Deze versie is van $1.
+U kunt de [$5 verschillen ten opzichte van de vorige versie] bekijken, of andere versies bekijken op de [$4 geschiedenispagina van het bericht].',
+	'flow-revision-permalink-warning-post-first' => 'Dit is een permanente kopeeling naar de eerste versie van dit bericht.
+U kunt nieuwere versies bekijken op de [$4 geschiedenispagina van dit bericht].',
+	'flow-compare-revisions-revision-header' => 'Version van $1 door {{GENDER:$2|$2}}',
+	'flow-compare-revisions-header-post' => 'Op deze pagina worden de verschillen tussen twee versies weergegeven van een bericht van $3 in het onderwerp "[$5 $2]" op [$4 $1].
+U kunt de andere versie van dit bericht bekijken op de [$6 geschiedenispagina].',
+	'flow-topic-collapsed-one-line' => 'Kleine weergave',
+	'flow-topic-collapsed-full' => 'Ingeklapte weergave',
+	'flow-topic-complete' => 'Volledige weergave',
 );
 
 /** Occitan (occitan)
@@ -3055,7 +3077,6 @@ $messages['nl'] = array(
  */
 $messages['oc'] = array(
 	'flow-desc' => 'Sistèma de gestion del flux de trabalh',
-	'flow-page-title' => '$1 &ndash; Flux',
 	'flow-post-actions' => 'Accions',
 	'flow-topic-actions' => 'Accions',
 	'flow-cancel' => 'Anullar',
@@ -3081,8 +3102,8 @@ $messages['oc'] = array(
 	'flow-error-other' => "Una error imprevista s'es producha.",
 	'flow-error-external' => "Una error s'es producha.<br /><small>Lo messatge d'error recebut èra :$1</small>",
 	'flow-error-external-multi' => "D'errors se son produchas.<br /> $1",
-	'flow-error-missing-content' => 'Lo messatge a pas cap de contengut. Es requesit per enregistrar un messatge novèl.',
-	'flow-error-missing-title' => 'Lo subjècte a pas cap de títol. Es requesit per enregistrar un subjècte novèl.',
+	'flow-error-missing-content' => 'Lo messatge a pas cap de contengut. Es requesit per enregistrar un messatge novèl.', # Fuzzy
+	'flow-error-missing-title' => 'Lo subjècte a pas cap de títol. Es requesit per enregistrar un subjècte novèl.', # Fuzzy
 	'flow-error-parsoid-failure' => "Impossible d'analisar lo contengut a causa d'una pana de Parsoid.",
 	'flow-error-missing-replyto' => "Cap de paramètre « replyTo » es pas estat provesit. Aqueste paramètre es requesit per l'accion « respondre ».",
 	'flow-error-invalid-replyto' => 'Lo paramètre « replyTo » èra pas valid. Lo messatge especificat es pas estat trobat.',
@@ -3159,7 +3180,6 @@ $messages['pt-br'] = array(
  */
 $messages['roa-tara'] = array(
 	'flow-desc' => 'Sisteme de Gestione de le Flusse de fatìe',
-	'flow-page-title' => '$1 &ndash; Flusse', # Fuzzy
 	'flow-post-actions' => 'aziune', # Fuzzy
 	'flow-topic-actions' => 'aziune', # Fuzzy
 	'flow-cancel' => 'Annulle',
@@ -3184,7 +3204,6 @@ $messages['roa-tara'] = array(
  */
 $messages['ru'] = array(
 	'flow-desc' => 'Система управления потоками работ',
-	'flow-page-title' => '$1 &ndash; Поток',
 	'log-name-flow' => 'Журнал активности потоков',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|удалил|удалила}} [$4 сообщение] на странице [[$3]]',
 	'flow-edit-header-link' => 'Изменить заголовок',
@@ -3323,7 +3342,6 @@ $messages['sr-el'] = array(
  */
 $messages['sv'] = array(
 	'flow-desc' => 'Arbetsflödeshanteringssystem',
-	'flow-page-title' => '$1 &ndash; Flöde',
 	'flow-user-moderated' => 'Modererad användare',
 	'flow-edit-header-link' => 'Redigera sidhuvud',
 	'flow-header-empty' => 'Denna diskussionssida har för närvarande ingen rubrik.',
@@ -3376,7 +3394,7 @@ $messages['sv'] = array(
 	'flow-edit-title-submit' => 'Ändra titel',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|redigerade}} en [$3 kommentar]',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|lade till}} en [$3 kommentar].',
-	'flow-rev-message-reply-bundle' => "'''$1 {{PLURAL:$2|kommentar|kommentarer}}''' {{PLURAL:$2|lades till}}.", # Fuzzy
+	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$2|kommentar|kommentarer}}</strong> {{PLURAL:$2|lades till}}.', # Fuzzy
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|skapade}} ämnet [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|ändrade}} ämnestiteln till [$3 $4] från $5.',
 	'flow-rev-message-create-header' => 'Skapade rubrik', # Fuzzy
@@ -3454,7 +3472,6 @@ $messages['ug-arab'] = array(
  */
 $messages['uk'] = array(
 	'flow-desc' => 'Система управління робочими процесами',
-	'flow-page-title' => '$1 &ndash; Потік',
 	'flow-talk-taken-over' => 'Ця сторінка обговорення була перейняти від [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal стіни Потоку].',
 	'log-name-flow' => 'Журнал активності потоку',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|вилучив|вилучила}} [допис $4] на [[$3]]',
@@ -3644,7 +3661,6 @@ $messages['uk'] = array(
  */
 $messages['vi'] = array(
 	'flow-desc' => 'Hệ thống quản lý luồng công việc',
-	'flow-page-title' => '$1 &ndash; Flow',
 	'log-name-flow' => 'Nhật trình hoạt động Flow',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2}}đã xóa một [$4 bài đăng] tại [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2}}đã phục hồi một [$4 bài đăng] tại [[$3]]',
@@ -3708,7 +3724,7 @@ $messages['vi'] = array(
 	'flow-edit-title-submit' => 'Thay đổi tiêu đề',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2}}đã sửa đổi một [$3 bình luận].',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2}}đã thêm một [$3 bình luận].',
-	'flow-rev-message-reply-bundle' => "'''$1 bình luận''' được thêm vào.", # Fuzzy
+	'flow-rev-message-reply-bundle' => '<strong>$1 bình luận</strong> được thêm vào.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2}}đã tạo chủ đề [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2}}đã đổi tiêu đề của chủ đề từ $5 thành [$3 $4].',
 	'flow-rev-message-create-header' => '$1 {{GENDER:$2}}đã tạo đầu đề bảng tin nhắn.',
