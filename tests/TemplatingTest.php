@@ -77,6 +77,9 @@ class TemplatingTest extends \MediaWikiTestCase {
 	}
 
 	protected function mockTemplating() {
+		$usernames = $this->getMockBuilder( 'Flow\Data\UserNameBatch' )
+			->disableOriginalConstructor()
+			->getMock();
 		$urlGenerator = $this->getMockBuilder( 'Flow\UrlGenerator' )
 			->disableOriginalConstructor()
 			->getMock();
@@ -84,6 +87,6 @@ class TemplatingTest extends \MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		return new Templating( $urlGenerator, $output );
+		return new Templating( $usernames, $urlGenerator, $output );
 	}
 }
