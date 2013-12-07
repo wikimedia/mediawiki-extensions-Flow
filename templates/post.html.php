@@ -59,7 +59,7 @@ echo Html::openElement( 'div', array(
 	'class' => 'flow-post-container ' . ( $post->getDepth() >= $maxThreadingDepth ? 'flow-post-max-depth' : '' ),
 	'data-revision-id' => $post->getRevisionId()->getHex(),
 	'data-post-id' => $post->getPostId()->getHex(),
-	'data-creator-name' => $post->getCreatorName()
+	'data-creator-name' => $postView->creator(),
 ) );
 ?>
 	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >

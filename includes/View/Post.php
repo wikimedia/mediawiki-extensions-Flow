@@ -2,6 +2,7 @@
 
 namespace Flow\View;
 
+use Flow\Data\UsernameBatch;
 use Flow\Model\PostRevision;
 use Flow\Block\AbstractBlock;
 use Flow\UrlGenerator;
@@ -23,13 +24,18 @@ class Post {
 	 * @param PostActionMenu $actions Action menus
 	 * @param UrlGenerator $urlGenerator Url generator object
 	 */
-	public function __construct( User $user, PostRevision $post, PostActionMenu $actions, UrlGenerator $urlGenerator ) {
+	public function __construct( User $user, PostRevision $post, PostActionMenu $actions, UrlGenerator $urlGenerator, UsernameBatch $usernames ) {
 		$this->user = $user;
 		$this->post = $post;
 		$this->actions = $actions;
 		$this->urlGenerator = $urlGenerator;
+		$this->usernames = $usernames;
 
-		$this->creatorUserText = $post->getCreatorName( $this->user );
+		$this->creatorUserText = $usernames->get(
+			wfWikiId(),
+			$post->getCreatorId(),
+			$post->getCreatorIp()
+		);
 	}
 
 	public function replyPlaceholder() {
@@ -58,10 +64,7 @@ class Post {
 	}
 
 	public function creatorToolLinks() {
-		return $this->userToolLinks(
-			$this->post->getCreatorId( $this->user ),
-			$this->post->getCreatorName( $this->user )
-		);
+		return $this->userToolLinks( $this->post->getCreatorId(), $this->creatorUserText );
 	}
 
 	public function editPostButton( $buttonClass ) {
