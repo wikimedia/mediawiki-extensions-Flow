@@ -1748,8 +1748,8 @@ $messages['he'] = array(
 	'flow-error-edit-restricted' => 'אין לך הרשאה לערוך את הרשומה הזאת.',
 	'flow-error-external-multi' => 'אירעו שגיאות.<br />
 $1',
-	'flow-error-missing-content' => 'ברשומה אין תוכן. דרוש תוכן כדי לשמור רשומה חדשה.', # Fuzzy
-	'flow-error-missing-title' => 'לנושא אין כותרת. דרושה כותרת כדי לשמור נושא חדש.', # Fuzzy
+	'flow-error-missing-content' => 'ברשומה אין תוכן. דרוש תוכן כדי לשמור רשומה',
+	'flow-error-missing-title' => 'לנושא אין כותרת. דרושה כותרת כדי לשמור נושא.',
 	'flow-error-parsoid-failure' => 'לא ניתן לפענח את התוכן עקב כשל בפרסואיד.',
 	'flow-error-missing-replyto' => 'לא נשלח פרמטר "replyTo". הפרמטר הזה דרוש לפעולת "reply".',
 	'flow-error-invalid-replyto' => 'פרמטר "replyTo" שנשלח היה בלתי־תקין. לא נמצאה הרשומה שצוינה.',
@@ -1762,11 +1762,17 @@ $1',
 	'flow-error-invalid-moderation-reason' => 'נא לתת סיבה להחלת הפיקוח',
 	'flow-error-not-allowed' => 'אין הרשאות מספיקות לביצוע הפעולה הזאת',
 	'flow-error-title-too-long' => 'כותרות של נושאים מוגבלות {{PLURAL:$1|לבית אחד|ל־$1 בתים}}',
+	'flow-error-no-existing-workflow' => 'הזרימה הזאת עוד לא קיימת.',
+	'flow-error-not-a-post' => 'לא ניתן לשמור כותרת נושא בתור רשומה.',
+	'flow-error-missing-header-content' => 'בתיאור אין תוכן. התוכן נחוץ לשם שמירת תיאור.',
+	'flow-error-missing-prev-revision-identifier' => 'חסר מזהה גרסה קודמת.',
+	'flow-error-prev-revision-mismatch' => 'לא ניתן לשמור את העריכה: כבר נשלחה גרסה חדשה יותר.',
+	'flow-error-prev-revision-does-not-exist' => 'לא נמצאה גרסה קודמת.',
 	'flow-edit-header-submit' => 'שמירת התיאור',
 	'flow-edit-title-submit' => 'שינוי כותרת',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|ערך|ערכה}} [$3 הערה].',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|הוסיף|הוסיפה}} [$3 הערה].',
-	'flow-rev-message-reply-bundle' => "{{PLURAL:$1|נוספה '''הערה אחת'''|נוספו '''$1 הערות'''}}", # Fuzzy
+	'flow-rev-message-reply-bundle' => '{{PLURAL:$1|נוספה <strong>הערה אחת</strong>|נוספו <strong>$1 הערות</strong>}}',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|יצר|יצרה}} את הנושא [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|שינה|שינתה}} את כותרת הנושא מ{{GRAMMAR:תחילית|$5}} אל [$3 $4].',
 	'flow-rev-message-create-header' => '$1 {{GENDER:$2|יצר|יצרה}} את תיאור הלוח.',
@@ -1867,6 +1873,9 @@ $1',
 	'flow-compare-revisions-header-post' => 'הדף הזה מציג את השינויים בין שתי גרסאות של רשומה מאת $3 בנושא "[$5 $2]" בלוח [$4 $1].
 
 באפשרותך לראות גרסאות אחרות של הרשומה הזאת ב[$6 דף ההיסטוריה].',
+	'flow-topic-collapsed-one-line' => 'תצוגה מוקטנת',
+	'flow-topic-collapsed-full' => 'תצוגה מקופלת',
+	'flow-topic-complete' => 'תצוגה מלאה',
 );
 
 /** Croatian (hrvatski)
@@ -2624,6 +2633,7 @@ $messages['mk'] = array(
 	'flow-history-pages-post' => 'Фигурира на [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|Темава ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} и {{PLURAL:$2|уште еден|$2 други}}|0=Досега никој не учествувал|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|Коментар ($1)|Коментари ($1)|0=Бидете први со коментар!}}',
+	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Бидете први со коментар!|$1 {{PLURAL:$1|коментар|коментари}} од {{PLURAL:$2|еден корисник|$2 корисници}}}}',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
 	'flow-comment-hidden' => 'Скриен коментар',
@@ -2701,6 +2711,9 @@ $messages['mk'] = array(
 	'flow-compare-revisions-revision-header' => 'Верзија на {{GENDER:$2|$2}} од $1',
 	'flow-compare-revisions-header-post' => 'На страницава се прикажани разликите помеѓу две верзии на објава на $3 во темата „[$5 $2]“ на [$4 $1].
 Можете да ги погледате другите верзии на објавата во [$6 нејзината историја].',
+	'flow-topic-collapsed-one-line' => 'Мал приказ',
+	'flow-topic-collapsed-full' => 'Расклопен приказ',
+	'flow-topic-complete' => 'Целосен приказ',
 );
 
 /** Malayalam (മലയാളം)
@@ -3576,6 +3589,7 @@ $messages['uk'] = array(
 	'flow-history-pages-post' => "З'являється на [$1 $2]",
 	'flow-topic-participants' => '{{PLURAL:$1|$3 {{GENDER:$3|розпочав цю тему|розпочала цю тему}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} та {{PLURAL:$2|інший|інші|інших}}|0=Ще не має учасників|2={{GENDER:$3|$3}} та {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} та {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|Коментар ($1)|Коментарі ($1)|Коментарів ($1)|0=Залиште перший коментар!}}',
+	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Залиште перший коментар!|$1 {{PLURAL:$1|коментар|коментарі|коментарів}} від $2 {{PLURAL:$2|користувача|користувачів}}}}',
 	'flow-comment-restored' => 'Відновлений коментар',
 	'flow-comment-deleted' => 'Видалений коментар',
 	'flow-comment-hidden' => 'Прихований коментар',
@@ -3653,6 +3667,9 @@ $messages['uk'] = array(
 	'flow-compare-revisions-revision-header' => 'Версія від {{GENDER:$2|$2}} за $1',
 	'flow-compare-revisions-header-post' => 'Ця сторінка відображає зміни між двома версіями допису від $3 у розділі "[$5 $2]" на [$4 $1].
 Ви можете побачити інші версії цього допису на його [сторінці історії $6].',
+	'flow-topic-collapsed-one-line' => 'Малий вигляд',
+	'flow-topic-collapsed-full' => 'Згорнутий вигляд',
+	'flow-topic-complete' => 'Повний вигляд',
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -3982,6 +3999,9 @@ $messages['zh-hans'] = array(
 	'flow-moderation-confirm-restore-topic' => '恢复',
 	'flow-topic-permalink-warning' => '本主题已在[$2 $1]开启',
 	'flow-topic-permalink-warning-user-board' => '本主题已在[$2 $1的通告版]开启',
+	'flow-topic-collapsed-one-line' => '小型视图',
+	'flow-topic-collapsed-full' => '折叠视图',
+	'flow-topic-complete' => '完整视图',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
