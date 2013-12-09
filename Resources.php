@@ -45,6 +45,9 @@ $wgResourceModules += array(
 		'dependencies' => array(
 			'ext.flow.editor',
 		),
+		'messages' => array(
+			'flow-error-other',
+		),
 	),
 	'ext.flow.discussion' => $flowResourceTemplate + array(
 		'styles' => array(
