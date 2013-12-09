@@ -84,8 +84,9 @@ class ApiFlow extends ApiBase {
 					$errors = $block->getErrors();
 					$nativeErrors = array();
 
-					foreach( $errors as $key => $error ) {
-						$nativeErrors[$key] = $error->plain();
+					foreach( $errors as $key ) {
+						$nativeErrors[$key]['message'] = $block->getErrorMessage( $key )->plain();
+						$nativeErrors[$key]['extra'] = json_encode( $block->getErrorExtra( $key ) );
 					}
 
 					$output[$action]['errors'][$block->getName()] = $nativeErrors;
