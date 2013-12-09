@@ -15,7 +15,7 @@ echo Html::openElement( 'form', array(
 if ( $block->hasErrors() ) {
 	echo '<ul>';
 	foreach ( $block->getErrors() as $error ) {
-		echo '<li>', $error->escaped() . '</li>';
+		echo '<li>', $block->getErrorMessage( $error )->escaped() . '</li>';
 	}
 	echo '</ul>';
 }
@@ -41,6 +41,7 @@ echo Html::textarea(
 echo Html::openElement( 'div', array(
 	'class' => 'flow-edit-header-controls',
 ) );
+
 echo Html::element( 'input', array(
 	'type' => 'submit',
 	'class' => 'mw-ui-button mw-ui-constructive',

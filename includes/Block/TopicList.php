@@ -41,15 +41,15 @@ class TopicListBlock extends AbstractBlock {
 	protected function validate() {
 		// for now, new topic is considered a new post; perhaps some day topic creation should get it's own permissions?
 		if ( !$this->permissions->isAllowed( null, 'new-post' ) ) {
-			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 		} elseif ( !isset( $this->submitted['topic'] ) || !is_string( $this->submitted['topic'] ) ) {
-			$this->errors['topic'] = wfMessage( 'flow-error-missing-title' );
+			$this->addError( 'topic', wfMessage( 'flow-error-missing-title' ) );
 		} else {
 			$this->submitted['topic'] = trim( $this->submitted['topic'] );
 			if ( strlen( $this->submitted['topic'] === 0 ) ) {
-				$this->errors['topic'] = wfMessage( 'flow-error-missing-title' );
+				$this->addError( 'topic', wfMessage( 'flow-error-missing-title' ) );
 			} elseif ( strlen( $this->submitted['topic'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
-				$this->errors['topic'] = wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH );
+				$this->addError( 'topic', wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
 			}
 		}
 	}
