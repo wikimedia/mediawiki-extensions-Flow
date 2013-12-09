@@ -133,7 +133,7 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 	);
 	//ch /valulds t not ready yet
 	$lifecycle = array(
-		new Flow\Data\UserNameListener( 
+		new Flow\Data\UserNameListener(
 			$c['repository.username'],
 			array( 'workflow_user_id' ),
 			'workflow_wiki'
@@ -218,7 +218,7 @@ $c['storage.header'] = $c->share( function( $c ) {
 	$handlers = array(
 		new Flow\Data\HeaderRecentChanges( $c['storage'], $wgContLang ),
 		$c['storage.board_history.index'],
-		new Flow\Data\UserNameListener( 
+		new Flow\Data\UserNameListener(
 			$c['repository.username'],
 			array( 'rev_user_id', 'rev_mod_user_id', 'rev_last_edit_user_id' ),
 			null,
@@ -317,7 +317,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 		new Flow\Log\PostModerationLogger( $c['storage'], $c['repository.tree'], $c['logger'] ),
 		new Flow\Data\PostRevisionRecentChanges( $c['storage'], $c['repository.tree'], $wgContLang ),
 		$c['storage.board_history.index'],
-		new Flow\Data\UserNameListener( 
+		new Flow\Data\UserNameListener(
 			$c['repository.username'],
 			array( 'rev_user_id', 'rev_mod_user_id', 'rev_last_edit_user_id', 'tree_orig_user_id' ),
 			null,

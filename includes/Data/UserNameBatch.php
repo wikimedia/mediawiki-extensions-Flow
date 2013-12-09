@@ -16,7 +16,7 @@ class UserNameListener implements LifecycleHandler {
 		$this->batch = $batch;
 		$this->keys = $keys;
 		if ( $wikiKey !== null ) {
-			$this->wikiKey = $wikiKey;	
+			$this->wikiKey = $wikiKey;
 		} elseif ( $wiki === null ) {
 			$this->wiki = wfWikiId();
 		} else {
@@ -48,7 +48,6 @@ class UserNameListener implements LifecycleHandler {
 	public function onAfterRemove( $object, array $old ) {
 
 	}
-
 }
 
 /**
@@ -75,7 +74,7 @@ class UserNameBatch {
 	/**
 	 * @param string $wiki
 	 * @param integer $userId
-	 * @param string $userName Non null to set known usernames like $wgUser
+	 * @param string[optional] $userName Non null to set known usernames like $wgUser
 	 */
 	public function add( $wiki, $userId, $userName = null ) {
 		if ( $userName === null ) {
@@ -109,87 +108,134 @@ class UserNameBatch {
 		if ( empty( $this->queued[$wiki] ) ) {
 			return;
 		}
-		$queued = array_unique( $this->queued[$wiki] );
-		$res = $this->query( $wiki, $queued );
-		unset( $this->queued[$wiki] );
-		if ( $res ) {
-			$found = array();
-			foreach ( $res as $row ) {
-				$this->usernames[$wiki][$row->user_id] = $row->user_name;
-				$found[] = $row->user_id;
-			}
-			$missing = array_diff( $queued, $found );
-		} else {
-			$missing = $queued;
+
+		// batch-load usernames from User cache
+		$this->resolveFromCache( $wiki );
+
+		// batch-load usernames from DB
+		$this->resolveFromDB( $wiki );
+
+		// usernames that could not be resolved = false
+		$missing = array_diff( $this->queued[$wiki], array_keys( $this->usernames[$wiki] ) );
+		foreach ( $missing as $userId ) {
+			$this->usernames[$wiki][$userId] = false;
 		}
-		foreach ( $missing as $id ) {
-			$this->usernames[$wiki][$id] = false;
+		unset( $this->queued[$wiki] );
+	}
+
+	/**
+	 * Resolve userids from DB
+	 *
+	 * @param string $wiki
+	 */
+	protected function resolveFromDB( $wiki ) {
+		$queued = array_unique( $this->queued[$wiki] );
+
+		// fetch data from database, in 3 queries
+		$users = $this->getUsers( $queued, $wiki );
+		$groups = $this->getUserGroups( $queued, $wiki );
+		$options = $this->getUserOptions( $queued, $wiki );
+
+		foreach ( $users as $user ) {
+			$userId = $user->getId();
+			$this->usernames[$userId] = $user->getName();
+
+			// fill out some more data (User::$mCacheVars) & cache user obj
+			$user->mGroups = $groups[$userId];
+			$user->mOptionOverrides = $options[$userId];
+			$user->mOptionsLoaded = true;
+
+			$user->saveToCache();
 		}
 	}
 
 	/**
-	 * Look up usernames while respecting ipblocks with two queries
+	 * Resolve userids from User cache
+	 *
+	 * @param string $wiki
+	 */
+	protected function resolveFromCache( $wiki ) {
+		$queued = array_unique( $this->queued[$wiki] );
+
+		foreach ( $queued as $userId ) {
+			$user = \User::newFromId( $userId );
+			$cache = $user->loadFromCache();
+			if ( $cache ) {
+				$this->usernames[$userId] = $user->getName();
+				unset( $this->queued[$wiki][$userId] );
+			}
+		}
+	}
+
+	/**
+	 * Load data from table user
 	 *
 	 * @param string $wiki
 	 * @param array $userIds
+	 * @return array
 	 */
-	protected function query( $wiki, array $userIds ) {
+	protected function loadUsers( $wiki, array $userIds ) {
+		$dbr = wfGetDB( DB_SLAVE, array(), $wiki );
+		$rows = $dbr->select(
+			'user',
+			\User::selectFields(),
+			array( 'user_id' => $userIds ),
+			__METHOD__
+		);
+
+		$users = array();
+		foreach ( $rows as $row ) {
+			$users[$row->user_id] = \User::newFromRow( $row );
+		}
+
+		return $users;
+	}
+
+	/**
+	 * Loads data from table user_groups
+	 *
+	 * @param string $wiki
+	 * @param array $userIds
+	 * @return array
+	 */
+	protected function loadUserGroups( $wiki, array $userIds ) {
+		$dbr = wfGetDB( DB_SLAVE, array(), $wiki );
+		$rows = $dbr->select(
+			'user_groups',
+			array( 'ug_user', 'ug_group' ),
+			array( 'ug_user' => $userIds ),
+			__METHOD__
+		);
+
+		$groups = array();
+		foreach ( $rows as $row ) {
+			$groups[$row->ug_user][] = $row->ug_group;
+		}
+
+		return $groups;
+	}
+
+	/**
+	 * Loads data from table user_properties
+	 *
+	 * @param string $wiki
+	 * @param array $userIds
+	 * @return array
+	 */
+	protected function loadUserOptions( $wiki, array $userIds ) {
 		$dbr = wfGetDB( DB_SLAVE, array(), $wiki );
 		$res = $dbr->select(
-			'ipblocks',
-			'ipb_user',
-			array(
-				'ipb_user' => $userIds,
-				'ipb_deleted' => 1,
-			),
+			'user_properties',
+			array( 'up_user', 'up_property', 'up_value' ),
+			array( 'up_user' => $userIds ),
 			__METHOD__
 		);
-		if ( !$res ) {
-			return $res;
-		}
-		$blocked = array();
-		foreach ( $res as $row ) {
-			$blocked[] = $row->ipb_user;
-		}
-		// return ids in $userIds that are not in $blocked
-		$allowed = array_diff( $userIds, $blocked );
-		if ( !$allowed ) {
-			return false;
-		}
-		return $dbr->select(
-			'user',
-			array( 'user_id', 'user_name' ),
-			array( 'user_id' => $allowed ),
-			__METHOD__
-		);
-	}
 
-	/**
-	 * Look up usernames while respecting ipblocks with one query.
-	 * Unused, check to see if this is reasonable to use.
-	 *
-	 * @param string $wiki
-	 * @param array $userIds
-	 */
-	protected function executeSingleQuery( $wiki, array $userIds ) {
-		$dbr = wfGetDB( DB_SLAVE, array(), $wiki );
-		return $dbr->select(
-			/* table */ array( 'user', 'ipblocks' ),
-			/* select */ array( 'user_id', 'user_name' ),
-			/* conds */ array(
-				'user_id' => $userIds,
-				// only accept records that did not match ipblocks
-				'ipb_deleted is null'
-			),
-			__METHOD__,
-			/* options */ array(),
-			/* join_conds */ array(
-				'ipblocks' => array( 'LEFT OUTER', array(
-					'ipb_user' => 'user_id',
-					// match only deleted users
-					'ipb_deleted' => 1,
-				) )
-			)
-		);
+		$options = array();
+		foreach ( $res as $row ) {
+			$options[$row->up_user][$row->up_property] = $row->up_value;
+		}
+
+		return $options;
 	}
 }
