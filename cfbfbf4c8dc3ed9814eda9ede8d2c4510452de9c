@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_6b6dfc2c",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-09T14:31:18Z",
+      "side": 1,
+      "message": "Not sure if we should care about ipblocks table. They\u0027re blocked from editing, but is there a reason we shouldn\u0027t display they\u0027re username if they did post something before they were blocked?",
+      "revId": "cfbfbf4c8dc3ed9814eda9ede8d2c4510452de9c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_eb68ec1a",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-09T14:31:18Z",
+      "side": 1,
+      "message": "User class has some built-in cache. I\u0027ve submitted a follow-up patch that would let us use that first (if available) and only fallback to querying db if data was not in cache.",
+      "revId": "cfbfbf4c8dc3ed9814eda9ede8d2c4510452de9c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
