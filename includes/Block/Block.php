@@ -84,6 +84,13 @@ abstract class AbstractBlock implements Block {
 		return !$this->errors;
 	}
 
+	/**
+	 * Checks if any errors have occurred in the block (no argument), or if a
+	 * specific error has occurred (argument being the error type)
+	 *
+	 * @param string[optional] $type
+	 * @return bool
+	 */
 	public function hasErrors( $type = null ) {
 		if ( $type === null ) {
 			return (bool) $this->errors;
@@ -91,12 +98,44 @@ abstract class AbstractBlock implements Block {
 		return isset( $this->errors[$type] );
 	}
 
+	/**
+	 * Returns an array of all error types encountered in this block. The values
+	 * in the returned array can be used to pass to getErrorMessage() or
+	 * getErrorExtra() to respectively fetch the specific error message or
+	 * additional details.
+	 *
+	 * @return array
+	 */
 	public function getErrors() {
-		return $this->errors;
+		return array_keys( $this->errors );
 	}
 
-	public function getError( $type ) {
-		return isset( $this->errors[$type] ) ? $this->errors[$type] : null;
+	/**
+	 * @param $type
+	 * @return Message
+	 */
+	public function getErrorMessage( $type ) {
+		return isset( $this->errors[$type]['message'] ) ? $this->errors[$type]['message'] : null;
+	}
+
+	/**
+	 * @param $type
+	 * @return mixed
+	 */
+	public function getErrorExtra( $type ) {
+		return isset( $this->errors[$type]['extra'] ) ? $this->errors[$type]['extra'] : null;
+	}
+
+	/**
+	 * @param string $type
+	 * @param Message $message
+	 * @param mixed[optional] $extra
+	 */
+	public function addError( $type, \Message $message, $extra = null ) {
+		$this->errors[$type] = array(
+			'message' => $message,
+			'extra' => $extra,
+		);
 	}
 
 	public function getWorkflow() {
