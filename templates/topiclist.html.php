@@ -10,7 +10,7 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 	echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 
 	if ( $block->hasErrors( 'topic' ) ) {
-		echo '<p>' . $block->getError( 'topic' )->escaped() . '</p>';
+		echo '<p>' . $block->getErrorMessage( 'topic' )->escaped() . '</p>';
 	}
 	echo Html::input(
 		$block->getName() . '[topic]', '', 'text', array(
@@ -21,7 +21,7 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 	);
 
 	if ( $block->hasErrors( 'content' ) ) {
-		echo '<p>' . $block->getError( 'content' )->escaped() . '</p>';
+		echo '<p>' . $block->getErrorMessage( 'content' )->escaped() . '</p>';
 	}
 	echo Html::textarea( $block->getName() . '[content]', '', array(
 		'placeholder' => wfMessage( 'flow-newtopic-content-placeholder' )->text(),
