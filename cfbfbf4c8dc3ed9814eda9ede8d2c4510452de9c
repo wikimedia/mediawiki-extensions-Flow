@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_8eff2e31",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-09T17:37:06Z",
+      "side": 1,
+      "message": "I checked with csteipp and we do need to check the ipblocks table.  In addition to blocking editing the ipb_deleted field indicates that the username must not be displayed anywhere.",
+      "parentUuid": "0ee75395_6b6dfc2c",
+      "revId": "cfbfbf4c8dc3ed9814eda9ede8d2c4510452de9c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_eb68ec1a",
         "filename": "includes/Data/UserNameBatch.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2013-12-09T14:31:18Z",
       "side": 1,
       "message": "User class has some built-in cache. I\u0027ve submitted a follow-up patch that would let us use that first (if available) and only fallback to querying db if data was not in cache.",
+      "revId": "cfbfbf4c8dc3ed9814eda9ede8d2c4510452de9c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_4ef92649",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-09T17:37:06Z",
+      "side": 1,
+      "message": "Sounds reasonable.  Will want to make sure its batch loading from cache if possible instead of generating potentially 50 or 100 round trips to the cache.",
+      "parentUuid": "0ee75395_eb68ec1a",
       "revId": "cfbfbf4c8dc3ed9814eda9ede8d2c4510452de9c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
