@@ -41,23 +41,26 @@ class HeaderBlock extends AbstractBlock {
 	protected function validate() {
 		// @todo some sort of restriction along the lines of article protection
 		if ( !$this->user->isAllowed( 'edit' ) ) {
-			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return false;
 		}
 		if ( empty( $this->submitted['content'] ) ) {
-			$this->errors['content'] = wfMessage( 'flow-error-missing-header-content' );
+			$this->addError( 'content', wfMessage( 'flow-error-missing-header-content' ) );
 		}
 
 		if ( $this->header ) {
 			if ( empty( $this->submitted['prev_revision'] ) ) {
-				$this->errors['prev_revision'] = wfMessage( 'flow-error-missing-prev-revision-identifier' );
+				$this->addError( 'prev_revision', wfMessage( 'flow-error-missing-prev-revision-identifier' ) );
 			} elseif ( $this->header->getRevisionId()->getHex() !== $this->submitted['prev_revision'] ) {
 				// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
 				// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
 				// parent we and the submitter think is the latest, our insert will fail.
 				// TODO: Catch whatever exception happens there, make sure the most recent revision is the one in the cache before
 				// handing user back to specific dialog indicating race condition
-				$this->errors['prev_revision'] = wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getHex() );
+				$this->addError(
+					'prev_revision',
+					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getHex() )
+				);
 			}
 			// this isnt really part of validate, but we want the error-rendering template to see the users edited header
 			$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
@@ -74,7 +77,7 @@ class HeaderBlock extends AbstractBlock {
 			} else {
 				// User submitted a previous revision, but we couldn't find one.  This is likely
 				// an internal error and not a user error, consider better handling
-				$this->errors['prev_revision'] = wfMessage( 'flow-error-prev-revision-does-not-exist' );
+				$this->addError( 'prev_revision', wfMessage( 'flow-error-prev-revision-does-not-exist' ) );
 			}
 		}
 	}

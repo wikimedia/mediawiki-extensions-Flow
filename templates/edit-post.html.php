@@ -16,7 +16,7 @@ echo Html::openElement( 'form', array(
 if ( $block->hasErrors() ) {
 	echo '<ul>';
 	foreach ( $block->getErrors() as $error ) {
-		echo '<li>', $error->escaped() . '</li>';
+		echo '<li>', $block->getErrorMessage( $error )->escaped() . '</li>';
 	}
 	echo '</ul>';
 }

@@ -344,8 +344,8 @@
 					console.dir( errorArgs[1] );
 				} else if ( errorArgs[0] === 'block-errors' ) {
 					$.each( errorArgs[1], function ( block, blockErrors ) {
-						$.each( blockErrors, function ( field, errorMsg ) {
-							errors.push( errorMsg );
+						$.each( blockErrors, function ( field, error ) {
+							errors.push( error.message );
 						} );
 					} );
 

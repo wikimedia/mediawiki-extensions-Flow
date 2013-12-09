@@ -110,18 +110,18 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validateEditTitle() {
 		if ( $this->workflow->isNew() ) {
-			$this->errors['content'] = wfMessage( 'flow-no-existing-workflow' );
+			$this->addError( 'content', wfMessage( 'flow-error-no-existing-workflow' ) );
 		} elseif ( !isset( $this->submitted['content'] ) || !is_string( $this->submitted['content'] ) || strlen( $this->submitted['content'] ) === 0 ) {
-			$this->errors['content'] = wfMessage( 'flow-error-missing-title' );
+			$this->addError( 'content', wfMessage( 'flow-error-missing-title' ) );
 		} elseif ( strlen( $this->submitted['content'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
-			$this->errors['content'] = wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH );
+			$this->addError( 'content', wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
 		} else {
 			$topicTitle = $this->loadTopicTitle();
 			if ( !$topicTitle ) {
 				throw new \MWException( 'No revision associated with workflow?' );
 			}
 			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
-				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 				return;
 			}
 
@@ -139,10 +139,10 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validateReply() {
 		if ( empty( $this->submitted['content'] ) ) {
-			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
+			$this->addError( 'content', wfMessage( 'flow-error-missing-content' ) );
 			return;
 		} elseif ( !isset( $this->submitted['replyTo'] ) ) {
-			$this->errors['replyTo'] = wfMessage( 'flow-error-missing-replyto' );
+			$this->addError( 'replyTo', wfMessage( 'flow-error-missing-replyto' ) );
 			return;
 		}
 
@@ -150,7 +150,7 @@ class TopicBlock extends AbstractBlock {
 		if ( !$post ) {
 			return; // loadRequestedPost adds its own errors
 		} elseif ( !$this->permissions->isAllowed( $post, 'reply' ) ) {
-			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 		} else {
 			$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
 
@@ -176,7 +176,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function validateModeratePost( $moderationState = null ) {
 		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['post'] = wfMessage( 'flow-error-missing-postId' );
+			$this->addError( 'post', wfMessage( 'flow-error-missing-postId' ) );
 			return;
 		}
 
@@ -186,7 +186,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		if ( $post->isTopicTitle() ) {
-			$this->errors['moderate'] = wfMessage( 'flow-error-not-a-post' );
+			$this->addError( 'moderate', wfMessage( 'flow-error-not-a-post' ) );
 			return;
 		}
 		$this->doModerate( $post, $moderationState );
@@ -201,7 +201,7 @@ class TopicBlock extends AbstractBlock {
 		// are checked below with $post->isValidModerationState(), but this is checked first otherwise
 		// a blank string would restore a post(due to AbstractRevision::MODERATED_NONE === '').
 		if ( ! $moderationState ) {
-			$this->errors['moderate'] = wfMessage( 'flow-error-invalid-moderation-state' );
+			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-state' ) );
 			return;
 		}
 		// BC: 'suppress' used to be called 'censor'
@@ -223,15 +223,15 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		if ( ! $post->isValidModerationState( $newState ) ) {
-			$this->errors['moderate'] = wfMessage( 'flow-error-invalid-moderation-state' );
+			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-state' ) );
 			return;
 		} elseif ( !$this->permissions->isAllowed( $post, $action ) ) {
-			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
 
 		if ( empty( $this->submitted['reason'] ) ) {
-			$this->errors['moderate'] = wfMessage( 'flow-error-invalid-moderation-reason' );
+			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
 			return;
 		}
 
@@ -243,17 +243,17 @@ class TopicBlock extends AbstractBlock {
 
 		$this->newRevision = $post->moderate( $this->user, $newState, $action, $reason, $this->relatedRevisions );
 		if ( !$this->newRevision ) {
-			$this->errors['moderate'] = wfMessage( 'flow-error-not-allowed' );
+			$this->addError( 'moderate', wfMessage( 'flow-error-not-allowed' ) );
 		}
 	}
 
 	protected function validateEditPost() {
 		if ( empty( $this->submitted['postId'] ) ) {
-			$this->errors['post'] = wfMessage( 'flow-error-missing-postId' );
+			$this->addError( 'post', wfMessage( 'flow-error-missing-postId' ) );
 			return;
 		}
 		if ( empty( $this->submitted['content'] ) ) {
-			$this->errors['content'] = wfMessage( 'flow-error-missing-content' );
+			$this->addError( 'content', wfMessage( 'flow-error-missing-content' ) );
 			return;
 		}
 		$post = $this->loadRequestedPost( $this->submitted['postId'] );
@@ -261,7 +261,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {
-			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
 
@@ -504,7 +504,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderPostHistory( Templating $templating, array $options, $return = false ) {
 		if ( !isset( $options['postId'] ) ) {
-			$this->errors['post'] = wfMessage( 'flow-error-missing-postId' );
+			$this->addError( 'post', wfMessage( 'flow-error-missing-postId' ) );
 			return;
 		}
 		$post = $this->loadRequestedPost( $options['postId'] );
@@ -512,7 +512,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		if ( !$this->permissions->isAllowed( $post, 'post-history' ) ) {
-			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
 
@@ -746,7 +746,7 @@ class TopicBlock extends AbstractBlock {
 			return $this->topicTitle = $this->root = $rootPost;
 		}
 
-		$this->errors['moderation'] = wfMessage( 'flow-error-not-allowed' );
+		$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
 	}
 
 	// Loads only the title, as opposed to loadRootPost which gets the entire tree of posts.
@@ -772,7 +772,7 @@ class TopicBlock extends AbstractBlock {
 
 			if ( !$this->permissions->isAllowed( $this->topicTitle, 'view' ) ) {
 				$this->topicTitle = null;
-				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			}
 		}
 		return $this->topicTitle;
@@ -815,14 +815,14 @@ class TopicBlock extends AbstractBlock {
 			$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
 			if ( !$post ) {
 				// The requested postId is not a member of the current workflow
-				$this->errors['post'] = wfMessage( 'flow-error-invalid-postId', $postId->getHex() );
+				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getHex() ) );
 				return;
 			}
 		} else {
 			// Load the post and its root
 			$found = $this->rootLoader->getWithRoot( $postId );
 			if ( !$found['post'] || !$found['root'] || !$found['root']->getPostId()->equals( $this->workflow->getId() ) ) {
-				$this->errors['post'] = wfMessage( 'flow-error-invalid-postId', $postId->getHex() );
+				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getHex() ) );
 				return;
 			}
 			$this->topicTitle = $topicTitle = $found['root'];
@@ -838,7 +838,7 @@ class TopicBlock extends AbstractBlock {
 			return $post;
 		}
 
-		$this->errors['moderation'] = wfMessage( 'flow-error-not-allowed' );
+		$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
 	}
 
 	protected function loadRequestedRevision( $revisionId ) {
@@ -851,7 +851,7 @@ class TopicBlock extends AbstractBlock {
 		if ( !$found ) {
 			throw new \MWException( 'The requested revision could not be found' );
 		} else if ( !$this->permissions->isAllowed( $found, 'view' ) ) {
-			$this->errors['moderation'] = wfMessage( 'flow-error-not-allowed' );
+			$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
 			return null;
 		}
 
