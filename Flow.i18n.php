@@ -1496,6 +1496,7 @@ $messages['fr'] = array(
 	'flow-history-pages-post' => 'Apparaît sur [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 a démarré ce sujet|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} et {{PLURAL:$2|autre|autres}}|0=Encore aucune participation|2={{GENDER:$3|$3}} et {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} et {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|0=Soyez le premier à laisser un commentaire !|Commenter ($1)}}',
+	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Soyez le premier à commenter !|$1 {{PLURAL:$1|commentaire|commentaires}} par $2 {{PLURAL:$2|utilisateur|utilisateurs}}}}',
 	'flow-comment-restored' => 'Commentaire rétabli',
 	'flow-comment-deleted' => 'Commentaire supprimé',
 	'flow-comment-hidden' => 'Commentaire masqué',
@@ -1573,6 +1574,9 @@ Vous pouvez afficher des versions ultérieures depuis la [$4 page d’historique
 	'flow-compare-revisions-revision-header' => 'Version par {{GENDER:$2|$2}} du $1',
 	'flow-compare-revisions-header-post' => 'Cette page affiche les modifications entre deux versions d’une note par $3 dans le sujet « [$5 $2] » sur [$4 $1].
 Vous pouvez voir d’autres versions de cette note dans sa [$6 page d’historique].',
+	'flow-topic-collapsed-one-line' => 'Vue petite',
+	'flow-topic-collapsed-full' => 'Vue réduite',
+	'flow-topic-complete' => 'Vue complète',
 );
 
 /** Galician (galego)
