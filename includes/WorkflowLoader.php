@@ -13,6 +13,10 @@ use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectStorage;
 use Flow\Data\RootPostLoader;
 use Flow\NotificationController;
+use Flow\Exception\InvalidInputException;
+use Flow\Exception\FlowException;
+use Flow\Exception\InvalidDataException;
+use Flow\Exception\InvalidActionException;
 
 class WorkflowLoader {
 	protected $dbFactory, $bufferedCache;
@@ -29,11 +33,11 @@ class WorkflowLoader {
 			NotificationController $notificationController
 	) {
 		if ( $pageTitle === null ) {
-			throw new \MWException( 'Invalid article requested' );
+			throw new InvalidInputException( 'Invalid article requested', 'invalid-title' );
 		}
 
 		if ( $pageTitle && $pageTitle->mInterwiki ) {
-			throw new \MWException( 'Interwiki not implemented yet' );
+			throw new FlowException( 'Interwiki not implemented yet', 'default' );
 		}
 
 		$this->dbFactory = $dbFactory;
@@ -53,7 +57,7 @@ class WorkflowLoader {
 		}
 
 		if ( ! $workflow || ! $definition ) {
-			throw new \MWException( "Unable to load workflow and definition" );
+			throw new InvalidDataException( 'Unable to load workflow and definition', 'fail-load-data' );
 		}
 
 		$this->workflow = $workflow;
@@ -74,7 +78,7 @@ class WorkflowLoader {
 
 		$definition = $this->loadDefinition();
 		if ( !$definition->getOption( 'unique' ) ) {
-			throw new \MWException( 'Workflow is non-unique, can only fetch object by title + id' );
+			throw new InvalidDataException( 'Workflow is non-unique, can only fetch object by title + id', 'fail-load-data' );
 		}
 		$found = $storage->find( array(
 			'workflow_definition_id' => $definition->getId(),
@@ -94,15 +98,14 @@ class WorkflowLoader {
 	protected function loadWorkflowById( /* Title or false */ $title, $workflowId ) {
 		$workflow = $this->storage->getStorage( 'Workflow' )->get( $workflowId );
 		if ( !$workflow ) {
-			throw new \MWException( 'Invalid workflow requested by id' );
+			throw new InvalidInputException( 'Invalid workflow requested by id', 'invalid-input' );
 		}
 		if ( $title !== false && !$workflow->matchesTitle( $title ) ) {
-			// todo: redirect?
-			throw new \MWException( 'Flow workflow is for different page' );
+			throw new InvalidInputException( 'Flow workflow is for different page', 'invalid-input' );
 		}
 		$definition = $this->storage->getStorage( 'Definition' )->get( $workflow->getDefinitionId() );
 		if ( !$definition ) {
-			throw new \MWException( 'Flow workflow references unknown definition id: ' . $workflow->getDefinitionId()->getHex() );
+			throw new InvalidInputException( 'Flow workflow references unknown definition id: ' . $workflow->getDefinitionId()->getHex(), 'invalid-input' );
 		}
 
 		return array( $workflow, $definition );
@@ -116,7 +119,7 @@ class WorkflowLoader {
 		if ( $id instanceof UUID ) {
 			$definition = $repo->get( $id );
 			if ( $definition === null ) {
-				throw new MWException( "Unknown flow id '$id' requested" );
+				throw new InvalidInputException( "Unknown flow id '$id' requested", 'invalid-input' );
 			}
 		} else {
 			$workflowName = $id ? $id : $wgFlowDefaultWorkflow;
@@ -127,7 +130,7 @@ class WorkflowLoader {
 			if ( $found ) {
 				$definition = reset( $found );
 			} else {
-				throw new \MWException( "Unknown flow type '$workflowName' requested" );
+				throw new InvalidInputException( "Unknown flow type '$workflowName' requested", 'invalid-input' );
 			}
 		}
 		return $definition;
@@ -149,7 +152,7 @@ class WorkflowLoader {
 			break;
 
 		default:
-			throw new \MWException( 'Not Implemented' );
+			throw new InvalidInputException( 'Not Implemented', 'invalid-definition' );
 		}
 
 		$return = array();
@@ -157,7 +160,7 @@ class WorkflowLoader {
 			if ( !isset( $return[$block->getName()] ) ) {
 				$return[$block->getName()] = $block;
 			} else {
-				throw new \MWException( 'Multiple blocks with same name is not yet supported' );
+				throw new InvalidDataException( 'Multiple blocks with same name is not yet supported', 'fail-load-data' );
 			}
 		}
 
@@ -178,14 +181,14 @@ class WorkflowLoader {
 		}
 		if ( !$interestedBlocks ) {
 			if ( !$blocks ) {
-				throw new \MWException( 'No Blocks?!?' );
+				throw new InvalidDataException( 'No Blocks?!?', 'fail-load-data' );
 			}
 			$type = array();
 			foreach ( $blocks as $block ) {
 				$type[] = get_class( $block );
 			}
 			// All blocks returned null, nothing knows how to handle this action
-			throw new \MWException( "No block accepted the '$action' action: " .  implode( ',', array_unique( $type ) ) );
+			throw new InvalidActionException( "No block accepted the '$action' action: " .  implode( ',', array_unique( $type ) ), 'invalid-action' );
 		}
 		return $success ? $interestedBlocks : array();
 	}

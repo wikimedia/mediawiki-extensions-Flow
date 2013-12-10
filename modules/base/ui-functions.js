@@ -396,7 +396,7 @@
 						var success = function ( data ) {
 							$div.html( data['flow-parsoid-utils'].content );
 						}, failure = function ( code, data ) {
-							alert( data.error.info || 'Failed to convert wikitext to HTML.' );
+							$( '<div>' ).flow( 'showError', arguments ).insertBefore( $form );
 						};
 						for ( var identifier in contents ) {
 							var $div = $( '<div>' ).addClass( 'flow-preview-sub-container' );

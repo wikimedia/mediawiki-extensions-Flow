@@ -17,6 +17,10 @@ use Flow\Templating;
 use Flow\Container;
 use EchoEvent;
 use User;
+use Flow\Exception\InvalidInputException;
+use Flow\Exception\InvalidActionException;
+use Flow\Exception\FailCommitException;
+use Flow\Exception\PermissionException;
 
 class TopicBlock extends AbstractBlock {
 
@@ -52,8 +56,8 @@ class TopicBlock extends AbstractBlock {
 		} elseif ( $root instanceof RootPostLoader ) {
 			$this->rootLoader = $root;
 		} else {
-			throw new \InvalidArgumentException(
-				'Expected PostRevision or RootPostLoader, received: ' . is_object( $root ) ? get_class( $root ) : gettype( $root )
+			throw new InvalidInputException(
+				'Expected PostRevision or RootPostLoader, received: ' . is_object( $root ) ? get_class( $root ) : gettype( $root ), 'invalid-input'
 			);
 		}
 	}
@@ -104,21 +108,19 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		default:
-			throw new \MWException( "Unexpected action: {$this->action}" );
+			throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
 	}
 
 	protected function validateEditTitle() {
-		if ( $this->workflow->isNew() ) {
-			$this->errors['content'] = wfMessage( 'flow-no-existing-workflow' );
-		} elseif ( !isset( $this->submitted['content'] ) || !is_string( $this->submitted['content'] ) || strlen( $this->submitted['content'] ) === 0 ) {
+		if ( !isset( $this->submitted['content'] ) || !is_string( $this->submitted['content'] ) || strlen( $this->submitted['content'] ) === 0 ) {
 			$this->errors['content'] = wfMessage( 'flow-error-missing-title' );
 		} elseif ( strlen( $this->submitted['content'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
 			$this->errors['content'] = wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH );
 		} else {
 			$topicTitle = $this->loadTopicTitle();
 			if ( !$topicTitle ) {
-				throw new \MWException( 'No revision associated with workflow?' );
+				throw new InvalidInputException( 'No revision associated with workflow?', 'missing-revision' );
 			}
 			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
 				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
@@ -289,7 +291,7 @@ class TopicBlock extends AbstractBlock {
 		case 'edit-title':
 		case 'edit-post':
 			if ( $this->newRevision === null ) {
-				throw new \MWException( 'Attempt to save null revision' );
+				throw new FailCommitException( 'Attempt to save null revision', 'fail-commit' );
 			}
 			$this->storage->put( $this->newRevision );
 			$this->storage->put( $this->workflow );
@@ -338,7 +340,7 @@ class TopicBlock extends AbstractBlock {
 			);
 
 		default:
-			throw new \MWException( "Unknown commit action: {$this->action}" );
+			throw new InvalidActionException( "Unknown commit action: {$this->action}", 'invalid-action' );
 		}
 	}
 
@@ -360,7 +362,7 @@ class TopicBlock extends AbstractBlock {
 		case 'topic-history':
 			$history = $this->loadTopicHistory();
 			if ( !$this->permissions->isAllowed( reset( $history ), 'post-history' ) ) {
-				throw new \MWException( 'Not Allowed' );
+				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 			}
 
 			$root = $this->loadRootPost();
@@ -392,7 +394,7 @@ class TopicBlock extends AbstractBlock {
 
 		case 'compare-revisions':
 			if ( ! isset( $options['oldRevision'] ) || ! isset( $options['newRevision'] ) ) {
-				throw new \MWException( "Two revisions must be specified to compare them" );
+				throw new InvalidInputException( 'Two revisions must be specified to compare them', 'revision-comparison' );
 			}
 
 			$oldRevId = UUID::create( $options['oldRevision'] );
@@ -418,7 +420,7 @@ class TopicBlock extends AbstractBlock {
 			}
 
 			if ( ! $oldRev->getPostId()->equals( $newRev->getPostId() ) ) {
-				throw new \MWException( "Attempt to compare revisions of different posts" );
+				throw new InvalidInputException( 'Attempt to compare revisions of different posts', 'revision-comparison' );
 			}
 
 			$templating->getOutput()->addModules( 'ext.flow.history' );
@@ -528,14 +530,14 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderEditPost( Templating $templating, array $options, $return = false ) {
 		if ( !isset( $options['postId'] ) ) {
-			throw new \MWException( 'No postId provided' );
+			throw new InvalidInputException( 'No postId provided', 'invalid-input' );
 		}
 		$post = $this->loadRequestedPost( $options['postId'] );
 		if ( !$post ) {
 			return;
 		}
 		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {
-			throw new \MWException( 'Not Allowed' );
+			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 		}
 		return $templating->render( "flow:edit-post.html.php", array(
 			'block' => $this,
@@ -554,22 +556,22 @@ class TopicBlock extends AbstractBlock {
 			$indexDescendant = $rootPost->registerDescendant( $options['postId'] );
 			$post = $rootPost->getRecursiveResult( $indexDescendant );
 			if ( $post === false ) {
-				throw new \MWException( 'Requested postId is not available within post tree' );
+				throw new InvalidInputException( 'Requested postId is not available within post tree', 'invalid-input' );
 			}
 
-			if ( ! $post ) {
-				throw new \MWException( "Requested post could not be found" );
+			if ( !$post ) {
+				throw new InvalidInputException( 'Requested post could not be found', 'invalid-input' );
 			}
 
 			$res = $this->renderPostAPI( $templating, $post, $options );
 			if ( $res === null ) {
-				throw new \MWException( 'Not Allowed' );
+				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 			}
 			return array( $res );
 		} else {
 			$output = $this->renderTopicAPI( $templating, $options );
 			if ( $output === null ) {
-				throw new \MWException( 'Not Allowed' );
+				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 			}
 			return $output;
 		}
@@ -752,7 +754,7 @@ class TopicBlock extends AbstractBlock {
 	// Loads only the title, as opposed to loadRootPost which gets the entire tree of posts.
 	public function loadTopicTitle() {
 		if ( $this->workflow->isNew() ) {
-			throw new \MWException( 'New workflows do not have any related content' );
+			throw new InvalidDataException( 'New workflows do not have any related content', 'missing-topic-title' );
 		}
 		if ( $this->topicTitle === null ) {
 			$found = $this->storage->find(
@@ -761,7 +763,7 @@ class TopicBlock extends AbstractBlock {
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 			);
 			if ( !$found ) {
-				throw new \MWException( 'Every workflow must have an associated topic title' );
+				throw new InvalidDataException( 'Every workflow must have an associated topic title', 'missing-topic-title' );
 			}
 			$this->topicTitle = reset( $found );
 
@@ -787,7 +789,7 @@ class TopicBlock extends AbstractBlock {
 		if ( $found ) {
 			return $found;
 		} else {
-			throw new \MWException( "Unable to load topic history for topic " . $this->workflow->getId()->getHex() );
+			throw new InvalidDataException( 'Unable to load topic history for topic ' . $this->workflow->getId()->getHex(), 'fail-load-history' );
 		}
 	}
 
@@ -849,7 +851,7 @@ class TopicBlock extends AbstractBlock {
 		$found = $this->storage->get( 'PostRevision', $revisionId );
 
 		if ( !$found ) {
-			throw new \MWException( 'The requested revision could not be found' );
+			throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
 		} else if ( !$this->permissions->isAllowed( $found, 'view' ) ) {
 			$this->errors['moderation'] = wfMessage( 'flow-error-not-allowed' );
 			return null;
@@ -872,7 +874,7 @@ class TopicBlock extends AbstractBlock {
 			array( 'tree_rev_descendant_id' => $post->getPostId() )
 		);
 		if ( !$found ) {
-			throw new \MWException( 'Should have found revisions' );
+			throw new InvalidInputException( 'Should have found revisions', 'missing-revision' );
 		}
 		// Because storage returns a new object for every query
 		// We need to find $post in the array and replace it

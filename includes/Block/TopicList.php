@@ -16,6 +16,7 @@ use Flow\NotificationController;
 use Flow\PostActionPermissions;
 use Flow\Templating;
 use User;
+use Flow\Exception\FailCommitException;
 
 class TopicListBlock extends AbstractBlock {
 
@@ -56,7 +57,7 @@ class TopicListBlock extends AbstractBlock {
 	 */
 	public function commit() {
 		if ( $this->action !== 'new-topic' ) {
-			throw new \MWException( 'Unknown commit action' );
+			throw new FailCommitException( 'Unknown commit action', 'fail-commit' );
 		}
 
 		$storage = $this->storage;
@@ -64,7 +65,7 @@ class TopicListBlock extends AbstractBlock {
 		$sourceDef = $defStorage->get( $this->workflow->getDefinitionId() );
 		$topicDef = $defStorage->get( $sourceDef->getOption( 'topic_definition_id' ) );
 		if ( !$topicDef ) {
-			throw new \MWException( 'Invalid definition owns this TopicList, needs a valid topic_definition_id option assigned' );
+			throw new FailCommitException( 'Invalid definition owns this TopicList, needs a valid topic_definition_id option assigned', 'fail-commit' );
 		}
 
 		$title = $this->workflow->getArticleTitle();

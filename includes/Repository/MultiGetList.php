@@ -4,6 +4,7 @@ namespace Flow\Repository;
 
 use BagOStuff;
 use Flow\Model\UUID;
+use Flow\Exception\InvalidInputException;
 
 class MultiGetList {
 
@@ -23,7 +24,7 @@ class MultiGetList {
 			if ( $id instanceof \Flow\Model\UUID ) {
 				$cacheId = $id->getHex();
 			} elseif ( !is_scalar( $id ) ) {
-				throw new \InvalidArgumentException( 'Not scalar:' . gettype( $id ) );
+				throw new InvalidInputException( 'Not scalar:' . gettype( $id ), 'invalid-input' );
 			} else {
 				$cacheId = $id;
 			}
