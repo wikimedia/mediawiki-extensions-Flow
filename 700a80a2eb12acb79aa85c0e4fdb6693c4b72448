@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_98408d0b",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-10T19:54:55Z",
+      "side": 1,
+      "message": "edit will already be checked, since performs-write \u003d\u003e true.  The reason we didn\u0027t wrap edit into this list is because its evaluated with isAllowedAny.",
+      "revId": "700a80a2eb12acb79aa85c0e4fdb6693c4b72448",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_38fd01af",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-10T19:54:55Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "700a80a2eb12acb79aa85c0e4fdb6693c4b72448",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_f82af929",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-10T19:54:55Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "700a80a2eb12acb79aa85c0e4fdb6693c4b72448",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_d82f3539",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-10T19:54:55Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "700a80a2eb12acb79aa85c0e4fdb6693c4b72448",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_b820f147",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-10T19:54:55Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "700a80a2eb12acb79aa85c0e4fdb6693c4b72448",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_98252d59",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-10T19:54:55Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "700a80a2eb12acb79aa85c0e4fdb6693c4b72448",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_98576dcd",
+        "filename": "templates/topiclist.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-10T19:54:55Z",
+      "side": 1,
+      "message": "Should probably pass permissions into this template and use $permissions-\u003eisAllowed(  null, \u0027create-topic\u0027 )",
+      "revId": "700a80a2eb12acb79aa85c0e4fdb6693c4b72448",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
