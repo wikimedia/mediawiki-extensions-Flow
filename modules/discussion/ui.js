@@ -316,6 +316,9 @@
 		var highlightPost = function( $elem ) {
 			var $viewport = $( 'main, html' );
 
+			if ( !$elem.length ) {
+				return;
+			}
 			$container.find( '.flow-post-highlighted' ).removeClass( 'flow-post-highlighted' );
 			$elem
 				.closest( '.flow-post-container' )
