@@ -233,8 +233,19 @@ class ObjectLocator implements ObjectStorage {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
 		}
 
-		$index = $this->getIndexFor( $keys, $options );
-		$res = $index->findMulti( $queries );
+		try {
+			$index = $this->getIndexFor( $keys, $options );
+			$res = $index->findMulti( $queries );
+		} catch ( NoIndexException $e ) {
+			$res = $this->storage->findMulti( $queries, $options );
+			$output = array();
+
+			foreach( $res as $index => $queryOutput ) {
+				$output[$index] = array_map( array( $this, 'load' ), $queryOutput );
+			}
+
+			return $output;
+		}
 
 		if ( $res === null ) {
 			return null;
@@ -388,7 +399,7 @@ class ObjectLocator implements ObjectStorage {
 		}
 		if ( $current === null ) {
 			$count = count( $this->indexes );
-			throw new \MWException(
+			throw new NoIndexException(
 				"No index (out of $count) available to answer query for " . implode( ", ", $keys ) .
 				' with options ' . json_encode( $options )
 			);
@@ -1693,3 +1704,5 @@ class RawSql {
 		return $this->sql;
 	}
 }
+
+class NoIndexException extends \MWException {}
