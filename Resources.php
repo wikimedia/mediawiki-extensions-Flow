@@ -39,7 +39,6 @@ $wgResourceModules += array(
 	'ext.flow.header' => $flowResourceTemplate + array(
 		'styles' => 'header/styles/base.less',
 		'scripts' => array(
-			'header/editor-nonajax.js',
 			'header/forms.js',
 		),
 		'dependencies' => array(
