@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_95b3b9fc",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-10T07:55:23Z",
+      "side": 1,
+      "message": "HTML should be in capitals. This sentence feels a bit staccato.",
+      "revId": "154cc21bf9625dd41ab33cccc3eafcfc6d05870a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_b5b0fdf1",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-10T07:55:23Z",
+      "side": 1,
+      "message": "Trailing whitespace (TAB).",
+      "revId": "154cc21bf9625dd41ab33cccc3eafcfc6d05870a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
