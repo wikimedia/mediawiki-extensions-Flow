@@ -62,6 +62,11 @@ class TopicListBlock extends AbstractBlock {
 		$storage = $this->storage;
 		$defStorage = $this->storage->getStorage( 'Definition' );
 		$sourceDef = $defStorage->get( $this->workflow->getDefinitionId() );
+
+		if ( ! $sourceDef ) {
+			throw new \MWException( "Unable to retrieve definition for this workflow" );
+		}
+
 		$topicDef = $defStorage->get( $sourceDef->getOption( 'topic_definition_id' ) );
 		if ( !$topicDef ) {
 			throw new \MWException( 'Invalid definition owns this TopicList, needs a valid topic_definition_id option assigned' );

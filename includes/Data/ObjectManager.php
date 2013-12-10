@@ -663,12 +663,83 @@ abstract class DbStorage implements WritableObjectStorage {
 				return true;
 			}
 
-			if ( ! preg_match( '/^[A-Za-z0-9\._]+$/', $key ) ) {
+			if ( ! preg_match( '/^' . $this->getFieldRegex() . '$/', $key ) ) {
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	/**
+	 * Returns a regular expression fragment suitable for matching a valid
+	 * SQL field name, and hopefully no injection attacks
+	 * @return string Regular expression fragment
+	 */
+	protected function getFieldRegexFragment() {
+		return '\s*[A-Za-z0-9\._]+\s*';
+	}
+
+	/**
+	 * Internal security function to check an options array for
+	 * SQL injection and other funkiness
+	 * @todo Currently only supports LIMIT, OFFSET and ORDER BY
+	 * @param  array $options An options array passed to a query.
+	 * @return boolean
+	 */
+	protected function validateOptions( $options ) {
+		static $validUnaryOptions = array(
+			'UNIQUE',
+			'EXPLAIN',
+		);
+
+		$fieldRegex = $this->getFieldRegexFragment();
+
+		foreach( $options as $key => $value ) {
+			if ( is_numeric( $key ) && in_array( strtoupper( $value ), $validUnaryOptions ) ) {
+				continue;
+			} elseif ( is_numeric( $key ) ) {
+				wfDebug( __METHOD__.": Unrecognised unary operator $value\n" );
+				return false;
+			}
+
+			if ( $key === 'LIMIT' ) {
+				// LIMIT is one or two integers, separated by a comma.
+				if ( ! preg_match ( '/^\d+(,\d+)?$/', $value ) ) {
+					wfDebug( __METHOD__.": Invalid LIMIT $value\n" );
+					return false;
+				}
+			} elseif ( $key === 'ORDER BY' ) {
+				// ORDER BY is a list of field names with ASC / DESC afterwards
+				if ( is_string( $value ) ) {
+					$value = explode( ',', $value );
+				}
+				$orderByRegex = "/^\s*$fieldRegex\s*(ASC|DESC)?\s*$/i";
+
+				foreach( $value as $orderByField ) {
+					if ( ! preg_match( $orderByRegex, $orderByField ) ) {
+						wfDebug( __METHOD__.": invalid ORDER BY field $orderByField\n" );
+						return false;
+					}
+				}
+			} elseif ( $key === 'OFFSET' ) {
+				// OFFSET is just an integer
+				if ( ! is_numeric( $value ) ) {
+					wfDebug( __METHOD__.": non-numeric offset $offset\n" );
+					return false;
+				}
+			} elseif ( $key === 'GROUP BY' ) {
+				if ( ! preg_match( "/^{$fieldRegex}(,{$fieldRegex})+$/", $value ) ) {
+					wfDebug( __METHOD__.": invalid GROUP BY field\n" );
+				}
+			} else {
+				wfDebug( __METHOD__.": Unknown option $key\n" );
+				return false;
+			}
+		}
+
+		// Everything passes
+		return true;
 	}
 }
 
@@ -764,6 +835,10 @@ class BasicDbStorage extends DbStorage {
 		}
 
 		$attributes = $this->preprocessSqlArray( $attributes );
+
+		if ( ! $this->validateOptions( $options ) ) {
+			throw new MWException( "Validation error in database options" );
+		}
 
 		$res = $this->dbFactory->getDB( DB_MASTER )->select(
 			$this->table,

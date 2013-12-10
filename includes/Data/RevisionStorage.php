@@ -7,6 +7,7 @@ use Flow\DbFactory;
 use Flow\Repository\TreeRepository;
 use DatabaseBase;
 use ExternalStore;
+use MWException;
 use User;
 
 abstract class RevisionStorage extends DbStorage {
@@ -44,6 +45,11 @@ abstract class RevisionStorage extends DbStorage {
 
 	protected function findInternal( array $attributes, array $options = array() ) {
 		$dbr = $this->dbFactory->getDB( DB_MASTER );
+
+		if ( ! $this->validateOptions( $options ) ) {
+			throw new MWException( "Validation error in database options" );
+		}
+
 		$res = $dbr->select(
 			array( $this->joinTable(), 'rev' => 'flow_revision' ),
 			'*',
