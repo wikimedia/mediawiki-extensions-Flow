@@ -83,7 +83,12 @@
 				}
 
 				if ( content ) {
-					content = mw.flow.parsoid.convert( contentFormat, mw.flow.editor.getFormat(), content );
+					try {
+						content = mw.flow.parsoid.convert( contentFormat, mw.flow.editor.getFormat(), content );
+					} catch ( e ) {
+						$( '<div>' ).flow( 'showError', e.getErrorInfo() ).insertAfter( $node );
+						return;
+					}
 				} else {
 					content = '';
 				}
@@ -142,8 +147,13 @@
 		 * @return {string}
 		 */
 		getContent: function ( $node ) {
-			var content = mw.flow.editor.getRawContent( $node );
-			return mw.flow.parsoid.convert( mw.flow.editor.getFormat(), 'wikitext', content );
+			var content = mw.flow.editor.getRawContent( $node ), convetedContent = '';
+			try {
+				convetedContent = mw.flow.parsoid.convert( mw.flow.editor.getFormat(), 'wikitext', content );
+			} catch ( e ) {
+				$( '<div>' ).flow( 'showError', e.getErrorInfo() ).insertAfter( $node );
+			}
+			return convetedContent;
 		},
 
 		/**

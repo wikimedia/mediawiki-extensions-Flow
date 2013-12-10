@@ -28,8 +28,7 @@
 					content = data['flow-parsoid-utils'].content;
 				} )
 				.fail( function ( code, data ) {
-					// @todo: proper error handling
-					alert( data.error.info || 'Failed to convert wikitext to HTML.' );
+					throw new mw.flow.exception( code, data );
 				} );
 			}
 

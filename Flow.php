@@ -172,6 +172,18 @@ $wgGroupPermissions['sysop']['flow-delete'] = true;
 $wgGroupPermissions['sysop']['flow-edit-post'] = true;
 $wgGroupPermissions['oversight']['flow-suppress'] = true;
 
+// Exception
+$wgAutoloadClasses['Flow\Exception\FlowExceptionHandling'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\FlowException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\InvalidInputException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\InvalidActionException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\InvalidDataException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\PermissionException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\DataModelException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\DataPersistenceException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\WikitextException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\IndexException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+
 // Configuration
 
 // URL for more information about the Flow notification system

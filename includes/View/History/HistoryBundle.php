@@ -3,6 +3,7 @@
 namespace Flow\View\History;
 
 use Flow\Model\AbstractRevision;
+use Flow\Exception\InvalidActionException;
 
 /**
  * HistoryBundle is quite similar to HistoryRecord, but accepts an array of
@@ -44,7 +45,7 @@ class HistoryBundle extends HistoryRecord {
 		$details = $this->getActions()->getValue( $action, 'history', 'bundle' );
 
 		if ( $details === null ) {
-			throw new MWException( "History bundle action '$action' is not defined." );
+			throw new InvalidActionException( "History bundle action '$action' is not defined.", 'invalid-action' );
 		}
 
 		return $details;
