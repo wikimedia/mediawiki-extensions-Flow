@@ -49,7 +49,7 @@ if ( $page && $page->getPagingLink( 'rev' ) ) {
 // @todo hide for non-js users, or support them?
 ?>
 
-<ul class="topic-collapser ui-helper-clearfix">
+<ul class="topic-collapser ui-helper-clearfix flow-element-container">
 	<?php $msg = wfMessage( 'flow-topic-collapsed-one-line' )->escaped(); ?>
 	<li class="topic-one-line" data-collapse-class="topic-collapsed-one-line" title="<?php echo $msg; ?>">
 		<?php echo $msg; ?>
