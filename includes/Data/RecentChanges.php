@@ -17,11 +17,6 @@ abstract class RecentChanges implements LifecycleHandler {
 	// in recentchanges
 	const TRUNCATE_LENGTH = 164;
 
-	public function onAfterInsert( $object, array $row ) {
-		// New Revision
-		throw new \MWException( 'onAfterInsert must be implemented' );
-	}
-
 	public function onAfterUpdate( $object, array $old, array $new ) {
 		// Moderation.  Doesn't need to log anything because all moderation also inserts
 		// a new null revision to track who and when.

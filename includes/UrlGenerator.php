@@ -6,6 +6,7 @@ use FlowHooks;
 use Flow\Data\ObjectManager;
 use Flow\Model\Workflow;
 use Title;
+use Flow\Exception\InvalidInputException;
 
 class UrlGenerator {
 	public function __construct( ObjectManager $workflowStorage, OccupationController $occupationController ) {
@@ -112,7 +113,7 @@ class UrlGenerator {
 			// Only way to know what title the workflow points at
 			$workflow = $this->storage->get( $workflowId );
 			if ( !$workflow ) {
-				throw new \MWException( 'Invalid workflow: ' . $workflowId );
+				throw new InvalidInputException( 'Invalid workflow: ' . $workflowId, 'invalid-workflow' );
 			}
 		}
 

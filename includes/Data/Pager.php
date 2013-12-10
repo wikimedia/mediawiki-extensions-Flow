@@ -2,6 +2,8 @@
 
 namespace Flow\Data;
 
+use Flow\Exception\InvalidInputException;
+
 class Pager {
 	protected $storage, $index;
 	protected $defaultLimit = 5;
@@ -95,7 +97,7 @@ class Pager {
 				);
 			}
 		} else {
-			throw new MWException( "Unrecognised direction $direction" );
+			throw new InvalidInputException( "Unrecognised direction $direction", 'invalid-input' );
 		}
 
 		return new PagerPage( $results, $pagingLinks, $this );

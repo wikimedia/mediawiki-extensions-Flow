@@ -5,6 +5,8 @@ namespace Flow\Model;
 use MWTimestamp;
 use Title;
 use User;
+use Flow\Exception\DataModelException;
+use Flow\Exception\InvalidInputException;
 
 class Workflow {
 	protected $id;
@@ -26,7 +28,7 @@ class Workflow {
 		if ( $obj === null ) {
 			$obj = new self;
 		} elseif ( !$obj instanceof self ) {
-			throw new \MWException( 'Wrong obj type: ' . get_class( $obj ) );
+			throw new DataModelException( 'Wrong obj type: ' . get_class( $obj ), 'process-data' );
 		}
 		$obj->id = UUID::create( $row['workflow_id'] );
 		$obj->isNew = false;
@@ -64,7 +66,7 @@ class Workflow {
 			$wiki = $title->getTransWikiID();
 		}
 		if ( $definition->getWiki() !== $wiki ) {
-				throw new \MWException( 'Title and Definition are from separate wikis' );
+			throw new DataModelException( 'Title and Definition are from separate wikis', 'process-data' );
 		}
 
 		$obj = new self;
@@ -87,7 +89,7 @@ class Workflow {
 
 	public function getArticleTitle() {
 		if ( $this->wiki !== wfWikiId() ) {
-			throw new \MWException( 'Interwiki not implemented' );
+			throw new FlowException( 'Interwiki not implemented', 'default' );
 		}
 		return Title::makeTitleSafe( $this->namespace, $this->titleText );
 	}
@@ -125,10 +127,10 @@ class Workflow {
 	public function matchesTitle( Title $title ) {
 		// Needs to be a non-strict comparrison
 		if ( $title->getNamespace() != $this->namespace ) {
-			throw new \MWException( 'namespace' );
+			throw new InvalidInputException( 'namespace', 'invalid-input' );
 		}
 		if ( $title->getDBkey() !== $this->titleText ) {
-			throw new \MWException( 'title' );
+			throw new InvalidInputException( 'title', 'invalid-input' );
 		}
 		if ( $title->isLocal() ) {
 			return $this->wiki === wfWikiId();

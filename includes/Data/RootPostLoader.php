@@ -5,6 +5,7 @@ namespace Flow\Data;
 use Flow\Block\TopicBlock;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
+use Flow\Exception\InvalidDataException;
 
 /**
  * I'm pretty sure this will generally work for any subtree, not just the topic
@@ -83,7 +84,7 @@ class RootPostLoader {
 		foreach ( $found as $indexResult ) {
 			$post = reset( $indexResult ); // limit => 1 means only 1 result per query
 			if ( isset( $posts[$post->getPostId()->getHex()] ) ) {
-				throw new \MWException( 'Multiple results for id: ' . $post->getPostId()->getHex() );
+				throw new InvalidDataException( 'Multiple results for id: ' . $post->getPostId()->getHex(), 'fail-load-data' );
 			}
 			$posts[$post->getPostId()->getHex()] = $post;
 			if ( $post->getReplyToId() ) {
@@ -98,16 +99,16 @@ class RootPostLoader {
 		if ( $missing ) {
 			// TODO: fake up a pseudo-post to hold the children? At this point in
 			// dev its probably a bug we want to see.
-			throw new \MWException( 'Missing Posts: ' . json_encode( $missing ) );
+			throw new InvalidDataException( 'Missing Posts: ' . json_encode( $missing ), 'fail-load-data' );
 		}
 		// another helper to catch bugs in dev
 		$extra = array_diff( array_keys( $posts ), $prettyPostIds );
 		if ( $extra ) {
-			throw new \MWException( 'Found unrequested posts: ' . json_encode( $extra ) );
+			throw new InvalidDataException( 'Found unrequested posts: ' . json_encode( $extra ), 'fail-load-data' );
 		}
 		$extraParents = array_diff( array_keys( $children ), $prettyPostIds );
 		if ( $extraParents ) {
-			throw new \MWException( 'Found posts with unrequested parents: ' . json_encode( $extraParents ) );
+			throw new InvalidDataException( 'Found posts with unrequested parents: ' . json_encode( $extraParents ), 'fail-load-data' );
 		}
 
 		foreach ( $posts as $postId => $post ) {
