@@ -378,6 +378,10 @@ class Templating {
 	 * @return string
 	 */
 	protected function applyRedlinks( $content ) {
+		if ( !$content ) {
+			return;
+		}
+
 		/*
 		 * In order to efficiently replace redlinks, multiple recursive
 		 * functions (may) have been registered that fetch an array of linked-to
@@ -496,20 +500,22 @@ class Templating {
 
 		// find links in DOM
 		$content = $post->getContent( 'html' );
-		$dom = ParsoidUtils::createDOM( $content );
-		$xpath = new \DOMXPath( $dom );
-		$linkNodes = $xpath->query( '//a[@rel="mw:WikiLink"][@data-parsoid]' );
+		if ( $content ) {
+			$dom = ParsoidUtils::createDOM( $content );
+			$xpath = new \DOMXPath( $dom );
+			$linkNodes = $xpath->query( '//a[@rel="mw:WikiLink"][@data-parsoid]' );
 
-		foreach ( $linkNodes as $linkNode ) {
-			$parsoid = $linkNode->getAttribute( 'data-parsoid' );
-			$parsoid = json_decode( $parsoid, true );
+			foreach ( $linkNodes as $linkNode ) {
+				$parsoid = $linkNode->getAttribute( 'data-parsoid' );
+				$parsoid = json_decode( $parsoid, true );
 
-			if ( isset( $parsoid['sa']['href'] ) ) {
-				// real results will be stored in Templating::parsoidLinks
-				$link = $parsoid['sa']['href'];
-				$title = Title::newFromText( $link );
-				if ( $title !== null ) {
-					$this->parsoidLinks[$link] = $title;
+				if ( isset( $parsoid['sa']['href'] ) ) {
+					// real results will be stored in Templating::parsoidLinks
+					$link = $parsoid['sa']['href'];
+					$title = Title::newFromText( $link );
+					if ( $title !== null ) {
+						$this->parsoidLinks[$link] = $title;
+					}
 				}
 			}
 		}

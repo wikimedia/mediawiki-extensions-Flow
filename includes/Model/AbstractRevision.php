@@ -68,6 +68,10 @@ abstract class AbstractRevision {
 	protected $decompressedContent;
 	// Converted (wikitext|html) content, based off of $this->decompressedContent
 	protected $convertedContent = array();
+	// html content has been allowed by the xss check.  When we find the next xss
+	// in the parser this hook allows preventing any disply of hostile html. True
+	// means the content is allowed. False means not allowed. Null means unchecked
+	protected $xssCheck;
 
 	// moderation states for the revision.  This is technically denormalized data
 	// since it can be overwritten and does not provide a full history.
@@ -274,7 +278,7 @@ abstract class AbstractRevision {
 		return $this->moderationState === self::MODERATED_HIDDEN;
 	}
 
-	public function getContentRaw() {
+	private function getContentRaw() {
 		if ( $this->decompressedContent === null ) {
 			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
 		}
@@ -291,13 +295,25 @@ abstract class AbstractRevision {
 	 * @return string
 	 */
 	public function getContent( $format = 'html' ) {
+		if ( $this->xssCheck === false ) {
+			return '';
+		}
+		$raw = $this->getContentRaw();
+		$sourceFormat = in_array( 'html', $this->flags ) ? 'html' : 'wikitext';
+		if ( $this->xssCheck === null && $sourceFormat === 'html' ) {
+			// returns true if no handler aborted the hook
+			$this->xssCheck = wfRunHooks( 'FlowCheckHtmlContentXss', array( $raw ) );
+			if ( !$this->xssCheck ) {
+				return '';
+			}
+		}
+
 		if ( !$this->isFormatted() ) {
-			return $this->getContentRaw();
+			return $raw;
 		}
 		if ( !isset( $this->convertedContent[$format] ) ) {
-			// check how content is stored & convert to requested format
-			$sourceFormat = in_array( 'html', $this->flags ) ? 'html' : 'wikitext';
-			$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $this->getContentRaw() );
+			// convert to requested format
+			$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $raw );
 		}
 
 		return $this->convertedContent[$format];
