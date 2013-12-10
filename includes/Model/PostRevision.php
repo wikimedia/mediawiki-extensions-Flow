@@ -4,6 +4,7 @@ namespace Flow\Model;
 
 use User;
 use MWTimestamp;
+use Flow\Exception\DataModelException;
 
 class PostRevision extends AbstractRevision {
 	const MAX_TOPIC_LENGTH = 260;
@@ -52,7 +53,7 @@ class PostRevision extends AbstractRevision {
 
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $row['rev_id'] !== $row['tree_rev_id'] ) {
-			throw new \MWException( 'tree revision doesn\'t match provided revision' );
+			throw new DataModelException( 'tree revision doesn\'t match provided revision', 'process-data' );
 		}
 		$obj = parent::fromStorageRow( $row, $obj );
 
@@ -172,7 +173,7 @@ class PostRevision extends AbstractRevision {
 
 	public function getChildren() {
 		if ( $this->children === null ) {
-			throw new \MWException( 'Children not loaded for post: ' . $this->postId->getHex() );
+			throw new DataModelException( 'Children not loaded for post: ' . $this->postId->getHex(), 'process-data' );
 		}
 		return $this->children;
 	}
@@ -183,7 +184,7 @@ class PostRevision extends AbstractRevision {
 
 	public function getDepth() {
 		if ( $this->depth === null ) {
-			throw new \MWException( 'Depth not loaded for post: ' . $this->postId->getHex() );
+			throw new DataModelException( 'Depth not loaded for post: ' . $this->postId->getHex(), 'process-data' );
 		}
 		return $this->depth;
 	}

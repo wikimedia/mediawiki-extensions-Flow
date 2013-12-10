@@ -9,6 +9,7 @@ use DatabaseBase;
 use ExternalStore;
 use MWException;
 use User;
+use Flow\Exception\DataModelException;
 
 abstract class RevisionStorage extends DbStorage {
 	static protected $allowedUpdateColumns = array(
@@ -145,7 +146,7 @@ abstract class RevisionStorage extends DbStorage {
 		);
 		if ( !$res ) {
 			// TODO: dont fail, but dont end up caching bad result either
-			throw new \MWException( 'query failure' );
+			throw new DataModelException( 'query failure', 'process-data' );
 		}
 
 		$revisionIds = array();
@@ -170,7 +171,7 @@ abstract class RevisionStorage extends DbStorage {
 		);
 		if ( !$res ) {
 			// TODO: dont fail, but dont end up caching bad result either
-			throw new \MWException( 'query failure' );
+			throw new DataModelException( 'query failure', 'process-data' );
 		}
 
 		$result = array();
@@ -264,7 +265,7 @@ abstract class RevisionStorage extends DbStorage {
 	protected function insertExternalStore( array $row ) {
 		$url = ExternalStore::insertWithFallback( $this->externalStore, $row['rev_content'] );
 		if ( !$url ) {
-			throw new \MWException( "Unable to store text to external storage" );
+			throw new DataModelException( "Unable to store text to external storage", 'process-data' );
 		}
 		$row['rev_content_url'] = $url;
 		if ( $row['rev_flags'] ) {
@@ -283,7 +284,7 @@ abstract class RevisionStorage extends DbStorage {
 		$changeSet = ObjectManager::calcUpdates( $old, $new );
 		$extra = array_diff( array_keys( $changeSet ), self::$allowedUpdateColumns );
 		if ( $extra ) {
-			throw new \MWException( 'Update not allowed on: ' . implode( ', ', $extra ) );
+			throw new DataModelException( 'Update not allowed on: ' . implode( ', ', $extra ), 'process-data' );
 		}
 
 		list( $rev, $related ) = $this->splitUpdate( $changeSet );
@@ -330,7 +331,7 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	public function getIterator() {
-		throw new \MWException( 'Not Implemented' );
+		throw new DataModelException( 'Not Implemented', 'process-data' );
 	}
 
 	// Separates $row into two arrays, one with the rev_ prefix
@@ -398,7 +399,7 @@ class PostRevisionStorage extends RevisionStorage {
 	// the new root post
 	protected function updateRelated( array $row, array $treeChanges ) {
 		if ( $treeChanges ) {
-			throw new \MWException( 'Update not allowed' );
+			throw new DataModelException( 'Update not allowed', 'process-data' );
 		}
 	}
 
@@ -442,7 +443,7 @@ class HeaderRevisionStorage extends RevisionStorage {
 	// There is changable data in the header half, it just points to the correct workflow
 	protected function updateRelated( array $rev, array $headerChanges ) {
 		if ( $headerChanges ) {
-			throw new \MWException( 'No update allowed' );
+			throw new DataModelException( 'No update allowed', 'process-data' );
 		}
 	}
 

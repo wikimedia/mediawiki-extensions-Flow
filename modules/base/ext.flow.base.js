@@ -290,4 +290,23 @@ mw.flow.notImplemented = function() {
 	alert( '@todo: Not yet implemented!' );
 	return false;
 };
+
+// Simple flow exception
+mw.flow.exception = function( code, data ) {
+	this.code = code;
+	this.data = data;
+};
+
+mw.flow.exception.prototype.getCode = function() {
+	return this.code;	
+};
+
+mw.flow.exception.prototype.getData = function() {
+	return this.data;	
+};
+
+mw.flow.exception.prototype.getErrorInfo = function() {
+	return [this.code, this.data];	
+};
+
 } )( jQuery, mediaWiki );

@@ -2,6 +2,9 @@
 
 namespace Flow\Model;
 
+use Flow\Exception\DataModelException;
+use Flow\Exception\InvalidDataException;
+
 class Definition {
 
 	protected $id;
@@ -11,13 +14,13 @@ class Definition {
 	protected $options = array();
 
 	static public function fromStorageRow( array $row, $obj = null ) {
-		if ( ! $row['definition_wiki'] ) {
-			throw new \MWException( "No definition_wiki" );
+		if ( !$row['definition_wiki'] ) {
+			throw new InvalidDataException( "No definition_wiki", 'fail-load-data' );
 		}
 		if ( $obj === null ) {
 			$obj = new self;
 		} elseif ( !$obj instanceof self ) {
-			throw new \MWException( 'Wrong obj type: ' . get_class( $obj ) );
+			throw new DataModelException( 'Wrong obj type: ' . get_class( $obj ), 'process-data' );
 		}
 		$obj->id = UUID::create( $row['definition_id'] );
 		$obj->type = $row['definition_type'];
