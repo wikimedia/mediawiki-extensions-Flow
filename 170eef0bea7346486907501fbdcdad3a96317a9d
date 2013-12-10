@@ -1,0 +1,276 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_9ae768df",
+        "filename": "container.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "Trailing whitespace.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_fa01d471",
+        "filename": "container.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "Looks like this does not quite match up:\n        rev_edit_user_id bigint unsigned,",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_7acee460",
+        "filename": "container.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "Trailing whitespace",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_da04d082",
+        "filename": "container.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "See above.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_bafb4c76",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "I think you do need to put the user text in here. Not sure though.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_9afe4865",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "Trailing whitespace.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_5a3fa020",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "What if the user_id is zero?",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_da1a90cf",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "This usually throws a PHP notice, I think. I think you need to actually set queued[$wiki] to array() at some point.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_1a4918d3",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "Should be fine.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_ba40ec5b",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "This looks like it should use batch queries as well?",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_9a43e866",
+        "filename": "includes/Templating.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "Might do well to make it clearer that what\u0027s going on here is that we\u0027re returning the IP address if it\u0027s an IP, and otherwise retrieving from the username batch.\n\nEasiest way to do this would be to rename the variable.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_7a2a6490",
+        "filename": "includes/Templating.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "Repeated pattern – maybe it should be abstracted somehow?",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_5a2560bb",
+        "filename": "includes/Templating.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "People will probably want the message names here so that they can grep for them.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_3a34dcf0",
+        "filename": "includes/Templating.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "Another instance of this pattern.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_1a2fd89d",
+        "filename": "includes/Templating.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "Another instance of that pattern.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_5a0c4045",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 1,
+      "message": "Probably should make this proper error handling.",
+      "revId": "170eef0bea7346486907501fbdcdad3a96317a9d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

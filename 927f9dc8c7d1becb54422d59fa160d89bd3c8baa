@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_da3970f0",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-10T05:10:54Z",
+      "side": 0,
+      "message": "$rev-\u003emoderatedByUserIp \u003d null?",
+      "revId": "927f9dc8c7d1becb54422d59fa160d89bd3c8baa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
