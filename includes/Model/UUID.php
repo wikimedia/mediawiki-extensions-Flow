@@ -3,7 +3,7 @@
 namespace Flow\Model;
 
 use Flow\Data\ObjectManager;
-use MWException;
+use Flow\Exception\InvalidInputException;
 
 class UUID {
 	// provided binary UUID
@@ -14,7 +14,7 @@ class UUID {
 
 	function __construct( $binaryValue ) {
 		if ( strlen( $binaryValue ) !== 16 ) {
-			throw new \InvalidArgumentException( 'Expected 16 char binary string, got: ' . $binaryValue );
+			throw new InvalidInputException( 'Expected 16 char binary string, got: ' . $binaryValue, 'invalid-input' );
 		}
 		$this->binaryValue = $binaryValue;
 	}
@@ -27,7 +27,7 @@ class UUID {
 			if ( $input instanceof UUID ) {
 				return clone $input;
 			} else {
-				throw new MWException( "Got unknown input of type " . get_class( $input ) );
+				throw new InvalidInputException( 'Unknown input of type ' . get_class( $input ), 'invalid-input' );
 			}
 		} elseif ( $input === null ) {
 			return null;
@@ -35,7 +35,7 @@ class UUID {
 			$hexValue = str_pad( \UIDGenerator::newTimestampedUID128( 16 ), 32, '0', STR_PAD_LEFT );
 			$binaryValue = pack( 'H*', $hexValue );
 		} elseif ( !is_string( $input ) && !is_int( $input ) ) {
-			throw new \MWException( "Unknown input type to UUID class: " . gettype( $input ) );
+			throw new InvalidInputException( 'Unknown input type to UUID class: ' . gettype( $input ), 'invalid-input' );
 		} elseif ( strlen( $input ) == 16 ) {
 			$binaryValue = $input;
 		} elseif ( strlen( $input ) == 32 && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
@@ -45,7 +45,7 @@ class UUID {
 			$hexValue = wfBaseConvert( $input, 10, 16, 32 );
 			$binaryValue = pack( 'H*', $hexValue );
 		} else {
-			throw new \MWException( "Unknown input to UUID class" );
+			throw new InvalidInputException( 'Unknown input to UUID class', 'invalid-input' );
 		}
 
 		$uuid = new self( $binaryValue );

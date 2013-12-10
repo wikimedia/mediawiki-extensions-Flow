@@ -2,6 +2,8 @@
 
 namespace Flow\Data;
 
+use Flow\Exception\InvalidInputException;
+
 /**
  * This object can be used to easily set keys in a multi-dimensional array.
  *
@@ -121,7 +123,7 @@ class ResultDuplicator {
 	public function add( $query, $position ) {
 		$dim = count( (array) $position );
 		if ( $dim !== $this->dimensions ) {
-			throw new \InvalidArgumentException( "Expection position with {$this->dimensions} dimensions, received $dim" );
+			throw new \InvalidInputException( "Expection position with {$this->dimensions} dimensions, received $dim", 'invalid-input' );
 		}
 		$query = ObjectManager::splitFromRow( $query, $this->queryKeys );
 		if ( $query === null ) {

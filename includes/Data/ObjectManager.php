@@ -8,6 +8,10 @@ use Flow\DbFactory;
 use BagOStuff;
 use RuntimeException;
 use SplObjectStorage;
+use Flow\Exception\DataModelException;
+use Flow\Exception\InvalidInputException;
+use Flow\Exception\DataPersistenceException;
+use Flow\Exception\IndexException;
 
 // Perhaps rethink lifecycle interface.  Simpler.
 // Indexes need access to the cache and the backend storage.
@@ -153,7 +157,7 @@ class ManagerGroup {
 
 	public function getStorage( $className ) {
 		if ( !isset( $this->classMap[$className] ) ) {
-			throw new \MWException( "Request for '$className' is not in classmap: " . implode( ', ', array_keys( $this->classMap ) ) );
+			throw new DataModelException( "Request for '$className' is not in classmap: " . implode( ', ', array_keys( $this->classMap ) ), 'process-data' );
 		}
 
 		return $this->container[$this->classMap[$className]];
@@ -236,7 +240,7 @@ class ObjectLocator implements ObjectStorage {
 		try {
 			$index = $this->getIndexFor( $keys, $options );
 			$res = $index->findMulti( $queries );
-		} catch ( NoIndexException $e ) {
+		} catch ( IndexException $e ) {
 			$res = $this->storage->findMulti( $queries, $options );
 			$output = array();
 
@@ -357,7 +361,7 @@ class ObjectLocator implements ObjectStorage {
 		}
 
 		if ( $offset === false ) {
-			throw new \MWException( "Unable to find specified offset in query results" );
+			throw new DataModelException( 'Unable to find specified offset in query results', 'process-data' );
 		}
 
 		return $offset;
@@ -399,9 +403,9 @@ class ObjectLocator implements ObjectStorage {
 		}
 		if ( $current === null ) {
 			$count = count( $this->indexes );
-			throw new NoIndexException(
+			throw new IndexException(
 				"No index (out of $count) available to answer query for " . implode( ", ", $keys ) .
-				' with options ' . json_encode( $options )
+				' with options ' . json_encode( $options ), 'process-data', 'no-index'
 			);
 		}
 		return $current;
@@ -455,7 +459,7 @@ class ObjectManager extends ObjectLocator {
 			$row = $this->mapper->toStorageRow( $object );
 			$stored = $this->storage->insert( $row );
 			if ( !$stored ) {
-				throw new \MWException( 'failed insert' );
+				throw new DataModelException( 'failed insert', 'process-data' );
 			}
 			// propogate auto-id's and such back into $object
 			$this->mapper->fromStorageRow( $stored, $object );
@@ -464,7 +468,7 @@ class ObjectManager extends ObjectLocator {
 			}
 			$this->loaded[$object] = $stored;
 		} catch ( \MWException $e ) {
-			throw new PersistenceException( 'failed insert', null, $e );
+			throw new DataPersistenceException( 'failed insert', 'process-data', $e );
 		}
 	}
 
@@ -477,7 +481,7 @@ class ObjectManager extends ObjectLocator {
 			}
 			foreach ( $new as $k => $x ) {
 				if ( $x !== null && !is_scalar( $x ) ) {
-					throw new \RuntimeException( "Expected mapper to return all scalars, but '$k' is " . gettype( $x ) );
+					throw new DataModelException( "Expected mapper to return all scalars, but '$k' is " . gettype( $x ), 'process-data' );
 				}
 			}
 			$this->storage->update( $old, $new );
@@ -486,7 +490,7 @@ class ObjectManager extends ObjectLocator {
 			}
 			$this->loaded[$object] = $new;
 		} catch ( \MWException $e ) {
-			throw new PersistenceException( 'failed update', null, $e );
+			throw new DataPersistenceException( 'failed update', 'process-data', $e );
 		}
 	}
 
@@ -499,7 +503,7 @@ class ObjectManager extends ObjectLocator {
 			}
 			unset( $this->loaded[$object] );
 		} catch ( \MWException $e ) {
-			throw new PersistenceException( 'failed remove', null, $e );
+			throw new DataPersistenceException( 'failed remove', 'process-data', $e );
 		}
 	}
 
@@ -578,11 +582,11 @@ class ObjectManager extends ObjectLocator {
 	}
 
 	public function multiPut( array $objects ) {
-		throw new \MWException( 'Not Implemented' );
+		throw new DataModelException( 'Not Implemented', 'process-data' );
 	}
 
 	public function multiDelete( array $objects ) {
-		throw new \MWException( 'Not Implemented' );
+		throw new DataModelException( 'Not Implemented', 'process-data' );
 	}
 }
 class PersistenceException extends \MWException {
@@ -645,9 +649,9 @@ abstract class DbStorage implements WritableObjectStorage {
 			if ( $value instanceof RawSql ) {
 				$data[$key] = $value->getSql( $db );
 			} elseif ( is_numeric( $key ) ) {
-				throw new \MWException( "Unescaped raw SQL found in " . __METHOD__ );
+				throw new DataModelException( "Unescaped raw SQL found in " . __METHOD__, 'process-data' );
 			} elseif ( ! preg_match( '/^[A-Za-z0-9\._]+$/', $key ) ) {
-				throw new \MWException( "Dangerous SQL field name '$key' found in " . __METHOD__ );
+				throw new DataModelException( "Dangerous SQL field name '$key' found in " . __METHOD__, 'process-data' );
 			}
 		}
 
@@ -764,7 +768,7 @@ abstract class DbStorage implements WritableObjectStorage {
 class BasicDbStorage extends DbStorage {
 	public function __construct( DbFactory $dbFactory, $table, array $primaryKey ) {
 		if ( !$primaryKey ) {
-			throw new \MWException( 'PK required' );
+			throw new DataModelException( 'PK required', 'process-data' );
 		}
 		parent::__construct( $dbFactory );
 		$this->table = $table;
@@ -794,7 +798,7 @@ class BasicDbStorage extends DbStorage {
 		$pk = ObjectManager::splitFromRow( $old, $this->primaryKey );
 		if ( $pk === null ) {
 			$missing = array_diff( $this->primaryKey, array_keys( $old ) );
-			throw new PersistenceException( 'Row has null primary key: ' . implode( $missing ) );
+			throw new DataPersistenceException( 'Row has null primary key: ' . implode( $missing ), 'process-data' );
 		}
 		$updates = ObjectManager::calcUpdates( $old, $new );
 		if ( !$updates ) {
@@ -821,7 +825,7 @@ class BasicDbStorage extends DbStorage {
 		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
 		if ( $pk === null ) {
 			$missing = array_diff( $this->primaryKey, array_keys( $row ) );
-			throw new PersistenceException( 'Row has null primary key: ' . implode( $missing ) );
+			throw new DataPersistenceException( 'Row has null primary key: ' . implode( $missing ), 'process-data' );
 		}
 
 		$pk = $this->preprocessSqlArray( $pk );
@@ -972,7 +976,7 @@ abstract class FeatureIndex implements Index {
 		$fieldIndex = 0;
 
 		if ( $sortFields === false ) {
-			throw new MWException( "This Index implementation does not support key offsets" );
+			throw new DataModelException( 'This Index implementation does not support key offsets', 'process-data' );
 		}
 
 		foreach( $sortFields as $field ) {
@@ -994,7 +998,7 @@ abstract class FeatureIndex implements Index {
 		$indexed = ObjectManager::splitFromRow( $new , $this->indexed );
 		// is un-indexable a bail-worthy occasion? Probably not but makes debugging easier
 		if ( !$indexed ) {
-			throw new \MWException( 'Unindexable row: ' .json_encode( $new ) );
+			throw new DataModelException( 'Unindexable row: ' .json_encode( $new ), 'process-data' );
 		}
 		$compacted = $this->rowCompactor->compactRow( $new );
 		// give implementing index option to create rather than append
@@ -1008,10 +1012,10 @@ abstract class FeatureIndex implements Index {
 		$oldIndexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		$newIndexed = ObjectManager::splitFromRow( $new, $this->indexed );
 		if ( !$oldIndexed ) {
-			throw new \MWException( 'Unindexable row: ' .json_encode( $oldIndexed ) );
+			throw new DataModelException( 'Unindexable row: ' .json_encode( $oldIndexed ), 'process-data' );
 		}
 		if ( !$newIndexed ) {
-			throw new \MWException( 'Unindexable row: ' .json_encode( $newIndexed ) );
+			throw new DataModelException( 'Unindexable row: ' .json_encode( $newIndexed ), 'process-data' );
 		}
 		$oldCompacted = $this->rowCompactor->compactRow( $old );
 		$newCompacted = $this->rowCompactor->compactRow( $new );
@@ -1032,7 +1036,7 @@ abstract class FeatureIndex implements Index {
 	public function onAfterRemove( $object, array $old ) {
 		$indexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		if ( !$indexed ) {
-			throw new \MWException( 'Unindexable row: ' .json_encode( $old ) );
+			throw new DataModelException( 'Unindexable row: ' .json_encode( $old ), 'process-data' );
 		}
 		$this->removeFromIndex( $indexed, $old );
 	}
@@ -1056,8 +1060,8 @@ abstract class FeatureIndex implements Index {
 		foreach ( $queries as $idx => $query ) {
 			ksort( $query );
 			if ( array_keys( $query ) !== $this->indexedOrdered ) {
-				throw new \MWException(
-					'Cannot answer query for columns: ' . implode( ', ', array_keys( $queries[$idx] ) )
+				throw new DataModelException(
+					'Cannot answer query for columns: ' . implode( ', ', array_keys( $queries[$idx] ) ), 'process-data'
 				);
 			}
 			$key = $this->cacheKey( $query );
@@ -1100,7 +1104,7 @@ abstract class FeatureIndex implements Index {
 			foreach( $rows as $row ) {
 				foreach ( $row as $k => $foo ) {
 					if ( $foo !== null && !is_scalar( $foo ) ) {
-						throw new \MWException( "Received non-scalar row value for '$k' from: " . get_class( $this->storage ) );
+						throw new DataModelException( "Received non-scalar row value for '$k' from: " . get_class( $this->storage ), 'process-data' );
 					}
 				}
 			}
@@ -1172,7 +1176,7 @@ class UniqueFeatureIndex extends FeatureIndex {
 
 	public function limitIndexSize( array $values ) {
 		if ( count( $values ) > 1 ) {
-			throw new \MWException( 'Unique index should never have more than 1 value' );
+			throw new DataModelException( 'Unique index should never have more than 1 value', 'process-data' );
 		}
 		return $values;
 	}
@@ -1196,7 +1200,7 @@ class UniqueFeatureIndex extends FeatureIndex {
 class TopKIndex extends FeatureIndex {
 	public function __construct( BufferedCache $cache, ObjectStorage $storage, $prefix, array $indexed, array $options = array() ) {
 		if ( empty( $options['sort'] ) ) {
-			throw new \InvalidArgumentException( 'TopKIndex must be sorted' );
+			throw new InvalidInputException( 'TopKIndex must be sorted', 'invalid-input' );
 		}
 
 		parent::__construct( $cache, $storage, $prefix, $indexed );
@@ -1361,7 +1365,7 @@ class FeatureCompactor implements Compactor {
 		}
 		foreach ( $row as $foo ) {
 			if ( $foo !== null && !is_scalar( $foo ) ) {
-				throw new \MWException( 'Attempted to compact row containing objects, must be scalar values: ' . print_r( $foo, true ) );
+				throw new DataModelException( 'Attempted to compact row containing objects, must be scalar values: ' . print_r( $foo, true ), 'process-data' );
 			}
 		}
 		return $row;
@@ -1389,13 +1393,13 @@ class FeatureCompactor implements Compactor {
 			$query = $keyToQuery[$key];
 			foreach ( $query as $foo ) {
 				if ( $foo !== null && !is_scalar( $foo ) ) {
-					throw new \MWException( 'Query values to merge with cache contains objects, should be scalar values: ' . print_r( $foo, true ) );
+					throw new DataModelException( 'Query values to merge with cache contains objects, should be scalar values: ' . print_r( $foo, true ), 'process-data' );
 				}
 			}
 			foreach ( $rows as $k => $row ) {
 				foreach ( $row as $foo ) {
 					if ( $foo !== null && !is_scalar( $foo ) ) {
-						throw new \MWException( 'Result from cache contains objects, should be scalar values: ' . print_r( $foo, true ) );
+						throw new DataModelException( 'Result from cache contains objects, should be scalar values: ' . print_r( $foo, true ), 'process-data' );
 					}
 				}
 				$cached[$key][$k] += $query;
@@ -1663,7 +1667,7 @@ class BufferedCache {
 		if ( $this->buffer === null ) {
 			$this->buffer = array();
 		} else {
-			throw new \MWException( 'Transaction already in progress' );
+			throw new DataModelException( 'Transaction already in progress', 'process-data' );
 		}
 	}
 
@@ -1687,7 +1691,7 @@ class BufferedCache {
 
 	public function rollback() {
 		if ( $this->buffer === null ) {
-			throw new \MWException( 'No transaction in progress' );
+			throw new DataModelException( 'No transaction in progress', 'process-data' );
 		}
 		$this->buffer = null;
 	}
@@ -1706,5 +1710,3 @@ class RawSql {
 		return $this->sql;
 	}
 }
-
-class NoIndexException extends \MWException {}

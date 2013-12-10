@@ -7,6 +7,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\Header;
 use Flow\DbFactory;
 use Flow\Container;
+use Flow\Exception\DataModelException;
 
 class BoardHistoryStorage extends DbStorage {
 
@@ -22,7 +23,7 @@ class BoardHistoryStorage extends DbStorage {
 
 	function findMulti( array $queries, array $options = array() ) {
 		if ( count( $queries ) > 1 ) {
-			throw new \MWException( __METHOD__ . ' expects only one value in $queries' );
+			throw new DataModelException( __METHOD__ . ' expects only one value in $queries', 'process-data' );
 		}
 		return RevisionStorage::mergeExternalContent(
 			 array(
@@ -79,19 +80,19 @@ class BoardHistoryStorage extends DbStorage {
 	}
 
 	public function insert( array $row ) {
-		throw new \MWException( __CLASS__ . ' does not support insert action' );
+		throw new DataModelException( __CLASS__ . ' does not support insert action', 'process-data' );
 	}
 
 	public function update( array $old, array $new ) {
-		throw new \MWException( __CLASS__ . ' does not support update action' );
+		throw new DataModelException( __CLASS__ . ' does not support update action', 'process-data' );
 	}
 
 	public function remove( array $row ) {
-		throw new \MWException( __CLASS__ . ' does not support remove action' );
+		throw new DataModelException( __CLASS__ . ' does not support remove action', 'process-data' );
 	}
 
 	public function getIterator() {
-		throw new \MWException( 'Not Implemented' );
+		throw new DataModelException( 'Not Implemented', 'process-data' );
 	}
 
 }
@@ -100,14 +101,14 @@ class BoardHistoryIndex extends TopKIndex {
 
 	public function __construct( BufferedCache $cache, BoardHistoryStorage $storage, $prefix, array $indexed, array $options = array() ) {
 		if ( $indexed !== array( 'topic_list_id' ) ) {
-			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_list_id: ' . print_r( $indexed, true ) );
+			throw new DataModelException( __CLASS__ . ' is hardcoded to only index topic_list_id: ' . print_r( $indexed, true ), 'process-data' );
 		}
 		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
 	}
 
 	public function findMulti( array $queries ) {
 		if ( count( $queries ) > 1 ) {
-			throw new \MWException( __METHOD__ . ' expects only one value in $queries' );
+			throw new DataModelException( __METHOD__ . ' expects only one value in $queries', 'process-data' );
 		}
 		return parent::findMulti( $queries );
 	}
