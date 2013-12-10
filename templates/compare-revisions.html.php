@@ -98,7 +98,7 @@ switch( $newRevision->getRevisionType() ) {
 	case 'header':
 		// @todo later
 	default:
-		throw new MWException( "Unsupported revision type ".$newRevision->getRevisionType() );
+		throw new \Flow\Exception\InvalidDataException( "Unsupported revision type ".$newRevision->getRevisionType(), 'fail-load' );
 }
 
 if ( $headerMsg ) {

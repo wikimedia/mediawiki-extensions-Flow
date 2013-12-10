@@ -131,19 +131,25 @@ class FlowHooks {
 				$container['url_generator'],
 				RequestContext::getMain()
 			);
-
-			$workflowId = $request->getVal( 'workflow' );
-			$action = $request->getVal( 'action', 'view' );
-
-			$loader = $container['factory.loader.workflow']
-				->createWorkflowLoader( $title, UUID::create( $workflowId ) );
-
-			if ( !$loader->getWorkflow()->isNew() ) {
-				// Workflow currently exists, make sure a revision also exists
-				$occupationController->ensureFlowRevision( $article );
+			
+			try {
+				$workflowId = $request->getVal( 'workflow' );
+				$action = $request->getVal( 'action', 'view' );
+	
+				$loader = $container['factory.loader.workflow']
+					->createWorkflowLoader( $title, UUID::create( $workflowId ) );
+	
+				if ( !$loader->getWorkflow()->isNew() ) {
+					// Workflow currently exists, make sure a revision also exists
+					$occupationController->ensureFlowRevision( $article );
+				}
+	
+				$view->show( $loader, $action );
+			} catch ( Flow\Exception\FlowException $e ) {
+				$handling = new Flow\Exception\FlowExceptionHandling( $container['templating'], RequestContext::getMain() );
+				$handling->handle( $e );
 			}
 
-			$view->show( $loader, $action );
 			return false;
 		}
 

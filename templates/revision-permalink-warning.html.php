@@ -53,7 +53,7 @@ switch( $revision->getRevisionType() ) {
 		// @todo Implement
 		break;
 	default:
-		throw new \MWException( "Unknown revision type: " . $revision->getRevisionType() );
+		throw new \Flow\Exception\InvalidDataException( "Unknown revision type: " . $revision->getRevisionType(), 'fail-load' );
 }
 
 echo Html::rawElement(

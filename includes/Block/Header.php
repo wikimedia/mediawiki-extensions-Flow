@@ -12,6 +12,8 @@ use Flow\Model\Header;
 use Flow\Repository\HeaderRepository;
 use Flow\Templating;
 use User;
+use Flow\Exception\InvalidActionException;
+use Flow\Exception\InvalidDataException;
 
 class HeaderBlock extends AbstractBlock {
 
@@ -85,22 +87,22 @@ class HeaderBlock extends AbstractBlock {
 
 	public function commit() {
 		switch( $this->action ) {
-		case 'edit-header':
-			$this->storage->put( $this->header );
-
-			$header = $this->header;
-			$user = $this->user;
-
-			return array(
-				'new-revision-id' => $this->header->getRevisionId(),
-				'render-function' => function( $templating ) use ( $header, $user ) {
-					return $templating->getContent( $header, 'html', $user );
-				},
-			);
-			break;
-
-		default:
-			throw new \MWException( 'Unrecognized commit action' );
+			case 'edit-header':
+				$this->storage->put( $this->header );
+	
+				$header = $this->header;
+				$user = $this->user;
+	
+				return array(
+					'new-revision-id' => $this->header->getRevisionId(),
+					'render-function' => function( $templating ) use ( $header, $user ) {
+						return $templating->getContent( $header, 'html', $user );
+					},
+				);
+				break;
+	
+			default:
+				throw new InvalidActionException( 'Unrecognized commit action', 'invalid-action' );
 		}
 	}
 
@@ -170,7 +172,7 @@ class HeaderBlock extends AbstractBlock {
 		);
 
 		if ( $found === false ) {
-			throw new \MWException( "Unable to load topic list history for " . $this->workflow->getId()->getHex() );
+			throw new InvalidDataException( 'Unable to load topic list history for ' . $this->workflow->getId()->getHex(), 'fail-load-history' );
 		}
 
 		return $found;

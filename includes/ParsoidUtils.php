@@ -3,6 +3,8 @@
 namespace Flow;
 
 use Title;
+use Flow\Exception\WikitextException;
+use Flow\Exception\InvalidDataException;
 
 abstract class ParsoidUtils {
 	/**
@@ -41,7 +43,7 @@ abstract class ParsoidUtils {
 
 		// Parsoid will fail if title does not exist
 		if ( !$title->exists() ) {
-			throw new \MWException( 'Title "' . $title->getPrefixedDBkey() . '" does not exist.' );
+			throw new InvalidDataException( 'Title "' . $title->getPrefixedDBkey() . '" does not exist.', 'invalid-title' );
 		}
 
 		try {
@@ -75,7 +77,7 @@ abstract class ParsoidUtils {
 		} elseif ( in_array( $from, array( 'wt', 'wikitext' ) ) ) {
 			$from = 'wt';
 		} else {
-			throw new \MWException( 'Unknown source format: ' . $from );
+			throw new WikitextException( 'Unknown source format: ' . $from, 'process-wikitext' );
 		}
 
 		$response = \Http::post(
@@ -88,7 +90,7 @@ abstract class ParsoidUtils {
 		);
 
 		if ( $response === false ) {
-			throw new \MWException( 'Failed contacting Parsoid' );
+			throw new WikitextException( 'Failed contacting Parsoid', 'process-wikitext' );
 		}
 
 		// HTML is wrapped in <body> tag, undo that.
@@ -110,7 +112,7 @@ abstract class ParsoidUtils {
 				$response .= $child->ownerDocument->saveHTML( $child );
 			}
 		} elseif ( !in_array( $to, array( 'wt', 'wikitext' ) ) ) {
-			throw new \MWException( "Unknown format requested: " . $to );
+			throw new WikitextException( "Unknown format requested: " . $to, 'process-wikitext' );
 		}
 
 		return $response;
@@ -129,7 +131,7 @@ abstract class ParsoidUtils {
 	 */
 	protected static function parser( $from, $to, $content, Title $title ) {
 		if ( $from !== 'wikitext' && $to !== 'html' ) {
-			throw new \MWException( 'Parser only supports wikitext to HTML conversion' );
+			throw new WikitextException( 'Parser only supports wikitext to HTML conversion', 'process-wikitext' );
 		}
 
 		global $wgParser;
@@ -194,8 +196,8 @@ abstract class ParsoidUtils {
 			}
 		);
 		if ( $errors ) {
-			throw new \MWException(
-				implode( "\n", array_map( $errors, function( $error ) { return $error->message; } ) )
+			throw new WikitextException(
+				implode( "\n", array_map( $errors, function( $error ) { return $error->message; } ), 'process-wikitext' )
 			);
 		}
 

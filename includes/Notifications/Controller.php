@@ -257,16 +257,6 @@ class NotificationController {
 	}
 
 	/**
-	 * Examines an HTML string from Parsoid and finds users who were mentioned.
-	 * @todo Implement
-	 * @param  string $html
-	 * @return array Array of User objects.
-	 */
-	protected function getMentionedUsersFromHtml( $html ) {
-		throw new \MWException( "Currently, it is not possible to extract a list of mentioned users from HTML" );
-	}
-
-	/**
 	 * Examines a wikitext string and finds users that were mentioned
 	 * @param  string $wikitext
 	 * @return array Array of User objects
