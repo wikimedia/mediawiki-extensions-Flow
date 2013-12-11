@@ -1,4 +1,4 @@
-@ee-prototype.wmflabs.org @login
+@ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @login
 
 Feature: Create new topic logged in
 
