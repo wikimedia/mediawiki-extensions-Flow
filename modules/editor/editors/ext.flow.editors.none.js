@@ -17,7 +17,7 @@
 
 		// initialize at height of existing content & update on every keyup
 		this.$node.keyup( this.autoExpand );
-		this.autoExpand.call( this.$node.get( 0 ) );
+		this.autoExpand.call( this.$node.get( 0 ), 0 );
 	};
 
 	/**
@@ -45,11 +45,18 @@
 
 	/**
 	 * Auto-expand/shrink as content changes.
+	 *
+	 * @param {int} [animationTime] Time in milliseconds to animate to new height.
 	 */
 	mw.flow.editors.none.prototype.autoExpand = function() {
 		var height = $( this ).height(),
 			padding = $( this ).outerHeight() - $( this ).height(),
 			scrollHeight;
+
+		// if not specified, default animation time = 50
+		if ( typeof animationTime !== 'number' ) {
+			animationTime = 50;
+		}
 
 		/*
 		 * Collapse to 0 height to get accurate scrollHeight for the content,
@@ -69,7 +76,7 @@
 		 * want every keystroke firing a 50ms animation.
 		 */
 		if ( scrollHeight != $( this ).height() ) {
-			$( this ).animate( { height: scrollHeight + padding }, 50 );
+			$( this ).animate( { height: scrollHeight + padding }, animationTime );
 		}
 	};
 } ( jQuery, mediaWiki ) );
