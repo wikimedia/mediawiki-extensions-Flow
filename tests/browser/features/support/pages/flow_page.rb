@@ -26,6 +26,10 @@ class FlowPage
   button(:suppress_button, css: 'div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-suppress > input.flow-suppress-post-link.mw-ui-button ')
   a(:talk_link, text: 'Talk')
   text_field(:title_edit, class: 'mw-ui-input flow-edit-title-textbox')
+  a(:topic_actions_link, text: 'Actions', index: 0)
+  button(:topic_delete_button, css: 'div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-delete > input.mw-ui-button.flow-delete-topic-link')
+  button(:topic_hide_button, css: 'div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-hide > input.mw-ui-button.flow-hide-topic-link')
   div(:topic_post, class: 'flow-post-content')
+  button(:topic_suppress_button, css: 'div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-suppress > input.mw-ui-button.flow-suppress-topic-link')
   div(:topic_title, class: 'flow-topic-title')
 end

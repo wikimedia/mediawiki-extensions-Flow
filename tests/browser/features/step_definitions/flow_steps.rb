@@ -100,3 +100,19 @@ end
 Then(/^I should see a Suppress button$/) do
   on(FlowPage).suppress_button_element.should be_visible
 end
+
+When(/^I click the Topic Actions link$/) do
+  on(FlowPage).topic_actions_link_element.when_present.click
+end
+
+Then(/^I should see a Hide topic button$/) do
+  on(FlowPage).topic_hide_button_element.when_present.should be_visible
+end
+
+Then(/^I should see a Delete topic button$/) do
+  on(FlowPage).topic_delete_button_element.when_present.should be_visible
+end
+
+Then(/^I should see a Suppress topic button$/) do
+  on(FlowPage).topic_suppress_button_element.when_present.should be_visible
+end
