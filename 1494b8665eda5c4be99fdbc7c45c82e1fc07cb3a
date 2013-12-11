@@ -16,6 +16,24 @@
       "revId": "1494b8665eda5c4be99fdbc7c45c82e1fc07cb3a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_41920ca3",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-11T00:04:05Z",
+      "side": 1,
+      "message": "its currently a byte length, there is a bug to change it into char length.",
+      "parentUuid": "0ee75395_a1831856",
+      "revId": "1494b8665eda5c4be99fdbc7c45c82e1fc07cb3a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
