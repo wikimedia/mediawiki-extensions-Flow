@@ -94,7 +94,7 @@ Then(/^I should see a Delete button$/) do
 end
 
 Then(/^I should see a Hide button$/) do
-  on(FlowPage).hide_button_element.should be_visible
+  on(FlowPage).hide_button_element.when_present.should be_visible
 end
 
 Then(/^I should see a Suppress button$/) do
