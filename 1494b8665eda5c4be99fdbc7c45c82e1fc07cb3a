@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_a1831856",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-11T00:03:14Z",
+      "side": 1,
+      "message": "Is MAX_TOPIC_LENGTH a byte length or character length? If it\u0027s character length, we need to use mb_strlen() in here, some languages contain multi-byte characters.",
+      "revId": "1494b8665eda5c4be99fdbc7c45c82e1fc07cb3a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
