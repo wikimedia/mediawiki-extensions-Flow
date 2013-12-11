@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_2f480ece",
+        "filename": "Hooks.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-11T21:15:40Z",
+      "side": 1,
+      "message": "no function named quote?",
+      "revId": "d874a775b567adc9d1ad37f3ebe317a4e895ba44",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_0f19cadb",
+        "filename": "Hooks.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-11T21:15:40Z",
+      "side": 1,
+      "message": "so edit TreeRepository and make a batch method ;-)",
+      "revId": "d874a775b567adc9d1ad37f3ebe317a4e895ba44",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_6f2976e0",
+        "filename": "Hooks.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-11T21:15:40Z",
+      "side": 1,
+      "message": "We probably also need to check moderation status / visibility before including in Special:Contributions.  Based on how we are doing things elsewhere we have to check both the post itself and its topic title.",
+      "revId": "d874a775b567adc9d1ad37f3ebe317a4e895ba44",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_4fec72b8",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-11T21:15:40Z",
+      "side": 1,
+      "message": "$offset is undefined",
+      "revId": "d874a775b567adc9d1ad37f3ebe317a4e895ba44",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_ef36a64e",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-11T21:15:40Z",
+      "side": 1,
+      "message": "$offsetUnix undefined",
+      "revId": "d874a775b567adc9d1ad37f3ebe317a4e895ba44",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_4f4b52cd",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-11T21:15:40Z",
+      "side": 1,
+      "message": "__construct takes a binary uuid",
+      "revId": "d874a775b567adc9d1ad37f3ebe317a4e895ba44",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
