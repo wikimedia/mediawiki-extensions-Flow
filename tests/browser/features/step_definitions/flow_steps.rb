@@ -29,6 +29,10 @@ When(/^I click New topic save$/) do
   on(FlowPage).new_topic_save_element.when_present.click
 end
 
+When(/^I click the Topic Actions link$/) do
+  on(FlowPage).topic_actions_link_element.when_present.click
+end
+
 When(/^I create a (.+) in Flow new topic$/) do |flow_title|
   @automated_test_marker = " browsertest edit"
   on(FlowPage) do |page|
@@ -93,10 +97,22 @@ Then(/^I should see a Delete button$/) do
   on(FlowPage).delete_button_element.should be_visible
 end
 
+Then(/^I should see a Delete topic button$/) do
+  on(FlowPage).topic_delete_button_element.when_present.should be_visible
+end
+
 Then(/^I should see a Hide button$/) do
   on(FlowPage).hide_button_element.when_present.should be_visible
 end
 
+Then(/^I should see a Hide topic button$/) do
+  on(FlowPage).topic_hide_button_element.when_present.should be_visible
+end
+
 Then(/^I should see a Suppress button$/) do
   on(FlowPage).suppress_button_element.should be_visible
+end
+
+Then(/^I should see a Suppress topic button$/) do
+  on(FlowPage).topic_suppress_button_element.when_present.should be_visible
 end
