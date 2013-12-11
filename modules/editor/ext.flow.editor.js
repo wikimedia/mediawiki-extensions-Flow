@@ -27,8 +27,8 @@
 		},
 
 		loadEditor: function ( editorIndex ) {
-			var editorList = mw.config.get( 'wgFlowEditorList' );
-			var editor;
+			var editorList = mw.config.get( 'wgFlowEditorList' ),
+				editor;
 
 			if ( ! editorIndex ) {
 				editorIndex = 0;
@@ -44,7 +44,7 @@
 				// Some editors only work sometimes
 				if (
 					$.isFunction( mw.flow.editors[editor].isSupported ) &&
-					! mw.flow.editors[editor].isSupported()
+					!mw.flow.editors[editor].isSupported()
 				) {
 					mw.flow.editor.loadEditor( editorIndex + 1 );
 				} else {
@@ -57,6 +57,7 @@
 		 * @param {jQuery} $node
 		 * @param {string} [content] Existing content to load, in any format
 		 * @param {string} [contentFormat] The format that content is in, or null (defaults to wikitext)
+		 * @return {jQuery.Deferred} Will resolve once editor instance is loaded
 		 */
 		load: function ( $node, content, contentFormat ) {
 			/**
@@ -77,6 +78,7 @@
 
 				// quit early if editor is already loaded
 				if ( mw.flow.editor.getEditor( $node ) ) {
+					deferred.resolve();
 					return;
 				}
 
@@ -87,8 +89,12 @@
 				}
 
 				mw.flow.editor.create( $node, content );
+				deferred.resolve();
 			},
+			deferred = $.Deferred(),
 			interval = setInterval( load.bind( this, $node, content, contentFormat ), 10 );
+
+			return deferred.promise();
 		},
 
 		/**
