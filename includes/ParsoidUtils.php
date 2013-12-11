@@ -177,13 +177,16 @@ abstract class ParsoidUtils {
 	public static function createDOM( $content, $ignoreErrorCodes = array( 801 ) ) {
 		$dom = new \DOMDocument();
 
-		// Otherwise the parser may attempt to load the dtd from an external source
-		$dom->resolveExternals = false;
+		// Otherwise the parser may attempt to load the dtd from an external source.
+		// See: https://www.mediawiki.org/wiki/XML_External_Entity_Processing
+		$loadEntities = libxml_disable_entity_loader( true );
 
 		// don't output warnings
 		$useErrors = libxml_use_internal_errors( true );
 
 		$dom->loadHTML( $content );
+
+		libxml_disable_entity_loader( $loadEntities );
 
 		// check error codes; if not in the supplied list of ignorable errors,
 		// throw an exception
