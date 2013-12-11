@@ -42,11 +42,15 @@ class TopicListBlock extends AbstractBlock {
 		// @todo some sort of restriction along the lines of article protection
 		if ( !$this->user->isAllowed( 'edit' ) ) {
 			$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
-		}
-		if ( !isset( $this->submitted['topic'] ) || !is_string( $this->submitted['topic'] ) || strlen( $this->submitted['topic'] === 0 ) ) {
+		} elseif ( !isset( $this->submitted['topic'] ) || !is_string( $this->submitted['topic'] ) ) {
 			$this->errors['topic'] = wfMessage( 'flow-error-missing-title' );
-		} elseif ( strlen( $this->submitted['topic'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
-			$this->errors['topic'] = wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH );
+		} else {
+			$this->submitted['topic'] = trim( $this->submitted['topic'] );
+			if ( strlen( $this->submitted['topic'] === 0 ) ) {
+				$this->errors['topic'] = wfMessage( 'flow-error-missing-title' );
+			} elseif ( strlen( $this->submitted['topic'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
+				$this->errors['topic'] = wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH );
+			}
 		}
 	}
 
