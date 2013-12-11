@@ -1,4 +1,4 @@
-@en.wikipedia.beta.wmflabs.org @ee-prototype.wmflabs.org @login
+@test2.wikipedia.org @en.wikipedia.beta.wmflabs.org @ee-prototype.wmflabs.org @login
 
 Feature: Edit existing title
 
