@@ -178,7 +178,7 @@ abstract class ParsoidUtils {
 		$dom = new \DOMDocument();
 
 		// Otherwise the parser may attempt to load the dtd from an external source
-		$dom->resolveExternals = false;
+		libxml_disable_entity_loader( true );
 
 		// don't output warnings
 		$useErrors = libxml_use_internal_errors( true );
