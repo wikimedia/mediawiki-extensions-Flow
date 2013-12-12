@@ -2196,6 +2196,9 @@ Puoi vedere le versioni successive nella [$4 cronologia della pagina].',
 	'flow-compare-revisions-revision-header' => 'Versione di {{GENDER:$2|$2}} del $1',
 	'flow-compare-revisions-header-post' => 'Questa pagina mostra le modifiche tra due versioni del messaggio di $3, nella discussione "[$5 $2]" su [$4 $1].
 Puoi vedere le altre versioni nella [$6 cronologia della pagina].',
+	'flow-topic-collapsed-one-line' => 'Vista piccola',
+	'flow-topic-collapsed-full' => 'Vista compatta',
+	'flow-topic-complete' => 'Vista completa',
 );
 
 /** Japanese (日本語)
