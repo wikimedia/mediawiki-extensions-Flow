@@ -54,11 +54,13 @@ class HistoryRenderer {
 		$timestampDay = new MWTimestamp( strtotime( date( 'Y-m-d' ) ) );
 		$timestampWeek = new MWTimestamp( strtotime( '1 week ago' ) );
 
-		$timespans = array(
-			wfMessage( 'flow-history-last4' )->escaped() => array( 'from' => $timestampLast4, 'to' => null ),
-			wfMessage( 'flow-history-day' )->escaped() => array( 'from' => $timestampDay, 'to' => $timestampLast4 ),
-			wfMessage( 'flow-history-week' )->escaped() => array( 'from' => $timestampWeek, 'to' => $timestampDay ),
-		);
+		$timespans = array();
+		$timespans[wfMessage( 'flow-history-last4' )->escaped()] = array( 'from' => $timestampLast4, 'to' => null );
+		// if now is within first 4 hours of the day, all histories would be included in '4 hours ago'
+		if ( $timestampDay < $timestampLast4 ) {
+			$timespans[wfMessage( 'flow-history-day' )->escaped()] = array( 'from' => $timestampDay, 'to' => $timestampLast4 );
+		}
+		$timespans[wfMessage( 'flow-history-week' )->escaped()] = array( 'from' => $timestampWeek, 'to' => $timestampDay );
 
 		// Find last timestamp.
 		$history->seek( $history->numRows() - 1 );
