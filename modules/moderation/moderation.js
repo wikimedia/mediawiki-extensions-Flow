@@ -11,7 +11,7 @@
 	$.fn._flow.showModerationDialog = function( moderationType ) {
 		var $postContainer = $( this ).closest( '.flow-post-container' ),
 			$topicContainer = $( this ).closest( '.flow-topic-container' ),
-			subject = $topicContainer.data( 'title' ),
+			subject = $topicContainer.find( '.flow-realtitle' ).text(),
 			$dialog = $( '<div />' ),
 			$form = $( '<form/>' ),
 			targetType, apiCallback, $resultContainer, user;
