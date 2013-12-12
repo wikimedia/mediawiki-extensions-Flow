@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_e1dec043",
+        "filename": "db_patches/patch-remove_usernames.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-12T19:01:40Z",
+      "side": 1,
+      "message": "Need table prefix.  we should probably add a new field instead of renaming the field, I am not sure how we can apply the change to production in the same patch",
+      "revId": "b95de8d0bdb401599dc1685b32e62df49320620c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_5e31c2ff",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-12T19:01:40Z",
+      "side": 1,
+      "message": "This is probably an oversight question, should we display \u0027user blocked\u0027 instead of just having false or empty username",
+      "revId": "b95de8d0bdb401599dc1685b32e62df49320620c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_0d08b293",
+        "filename": "includes/Templating.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-12T19:01:40Z",
+      "side": 1,
+      "message": "escaped() in here and all the ones below?",
+      "revId": "b95de8d0bdb401599dc1685b32e62df49320620c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
