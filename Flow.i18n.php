@@ -223,10 +223,13 @@ $messages['en'] = array(
 	'flow-moderation-confirm-delete-post' => 'Delete',
 	'flow-moderation-confirm-hide-post' => 'Hide',
 	'flow-moderation-confirm-restore-post' => 'Restore',
-	'flow-moderation-confirmation-suppress-post' => '{{GENDER:$2|Consider}} giving $1 feedback on this post.',
-	'flow-moderation-confirmation-delete-post' => '{{GENDER:$2|Consider}} giving $1 feedback on this post.',
-	'flow-moderation-confirmation-hide-post' => '{{GENDER:$2|Consider}} giving $1 feedback on this post.',
-	'flow-moderation-confirmation-restore-post' => '{{GENDER:$2|You}} have successfully restored this post.',
+	'flow-moderation-confirmation-suppress-post' => 'The post was successfully suppressed.
+Consider {{GENDER:$1|giving}} $1 feedback on this post.',
+	'flow-moderation-confirmation-delete-post' => 'The post was successfully deleted.
+Consider {{GENDER:$1|giving}} $1 feedback on this post.',
+	'flow-moderation-confirmation-hide-post' => 'The post was successfully hidden.
+Consider {{GENDER:$1|giving}} $1 feedback on this post.',
+	'flow-moderation-confirmation-restore-post' => 'You have successfully restored the above post.',
 	'flow-moderation-title-suppress-topic' => 'Suppress topic?',
 	'flow-moderation-title-delete-topic' => 'Delete topic?',
 	'flow-moderation-title-hide-topic' => 'Hide topic?',
@@ -239,10 +242,13 @@ $messages['en'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Delete',
 	'flow-moderation-confirm-hide-topic' => 'Hide',
 	'flow-moderation-confirm-restore-topic' => 'Restore',
-	'flow-moderation-confirmation-suppress-topic' => '{{GENDER:$2|Consider}} giving $1 feedback on this topic.',
-	'flow-moderation-confirmation-delete-topic' => '{{GENDER:$2|Consider}} giving $1 feedback on this topic.',
-	'flow-moderation-confirmation-hide-topic' => '{{GENDER:$2|Consider}} giving $1 feedback on this topic.',
-	'flow-moderation-confirmation-restore-topic' => '{{GENDER:$2|You}} have successfully restored this topic.',
+	'flow-moderation-confirmation-suppress-topic' => 'The topic was successfully suppressed.
+Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
+	'flow-moderation-confirmation-delete-topic' => 'The topic was successfully deleted.
+Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
+	'flow-moderation-confirmation-hide-topic' => 'The topic was successfully hidden.
+Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
+	'flow-moderation-confirmation-restore-topic' => 'You have successfully restored this topic.',
 
 	// Permalink related stuff
 	'flow-topic-permalink-warning' => 'This topic was started on [$2 $1]',

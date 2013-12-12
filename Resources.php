@@ -144,6 +144,7 @@ $wgResourceModules += array(
 			'jquery.byteLimit',
 			'mediawiki.jqueryMsg',
 			'mediawiki.user',
+			'mediawiki.notify',
 		),
 	),
 	'ext.flow.editor' => $flowResourceTemplate + array(
