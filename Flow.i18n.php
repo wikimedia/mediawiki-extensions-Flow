@@ -203,10 +203,13 @@ $messages['en'] = array(
 	'flow-moderation-confirm-delete-post' => 'Delete',
 	'flow-moderation-confirm-hide-post' => 'Hide',
 	'flow-moderation-confirm-restore-post' => 'Restore',
-	'flow-moderation-confirmation-suppress-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
-	'flow-moderation-confirmation-delete-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
-	'flow-moderation-confirmation-hide-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
-	'flow-moderation-confirmation-restore-post' => 'You have successfully restored this post.',
+	'flow-moderation-confirmation-suppress-post' => 'The above post was successfully suppressed.
+Consider {{GENDER:$1|giving}} $1 feedback on this post.',
+	'flow-moderation-confirmation-delete-post' => 'The above post was successfully deleted.
+Consider {{GENDER:$1|giving}} $1 feedback on this post.',
+	'flow-moderation-confirmation-hide-post' => 'The above post was successfully hidden.
+Consider {{GENDER:$1|giving}} $1 feedback on this post.',
+	'flow-moderation-confirmation-restore-post' => 'You have successfully restored the above post.',
 	'flow-moderation-title-suppress-topic' => 'Suppress topic?',
 	'flow-moderation-title-delete-topic' => 'Delete topic?',
 	'flow-moderation-title-hide-topic' => 'Hide topic?',
@@ -223,6 +226,7 @@ $messages['en'] = array(
 	'flow-moderation-confirmation-delete-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
 	'flow-moderation-confirmation-hide-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
 	'flow-moderation-confirmation-restore-topic' => 'You have successfully restored this topic.',
+	'flow-moderation-confirmation-close' => 'close',
 
 	// Permalink related stuff
 	'flow-topic-permalink-warning' => 'This topic was started on [$2 $1]',
@@ -899,6 +903,7 @@ See also:
 	'flow-moderation-confirmation-restore-topic' => 'Message displayed after a successful restoring of a topic. Parameters:
 * $1 - the name of the user whose post is being restored. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
+	'flow-moderation-confirmation-close' => 'Label for a UI element that will close the confirmation of a moderation action',
 	'flow-topic-permalink-warning' => 'Displayed at the top of a page when a person has clicked on a permanent link to a topic.
 
 Parameters:

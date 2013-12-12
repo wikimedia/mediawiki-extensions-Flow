@@ -52,15 +52,32 @@
 										var confirmationMsg = 'flow-moderation-confirmation-' + moderationType + '-' + targetType,
 											$newContainer = $( output.rendered );
 
-										$dialog.empty()
-											.dialog( 'option', 'buttons', null )
-											.append(
-												$( '<p/>' )
-													.text( mw.msg( confirmationMsg, user ) )
-											);
+										$dialog.dialog( 'close' )
+											.remove();
 
 										$resultContainer.replaceWith( $newContainer );
 										$newContainer.trigger( 'flow_init' );
+
+										$confirmContainer = $( '<div/>' )
+											.text( mw.msg( confirmationMsg, user ) )
+											.addClass( 'flow-moderation-confirmation' )
+											.insertAfter( $newContainer )
+											.append(
+												$('<a/>' )
+													.addClass( 'flow-moderation-confirmation-close' )
+													.text( mw.msg( 'flow-moderation-confirmation-close' ) )
+													.click( function() {
+														$(this).closest( '.flow-moderation-confirmation' )
+															.remove();
+													} )
+											);
+
+										$confirmContainer.find( '.flow-moderation-confirmation-close' )
+											.css( 'margin-left', function( index, value ) {
+												return parseFloat( value, 10 ) - $( this ).width();
+											} )
+											.end()
+											.scrollIntoView();
 									} )
 									.fail( function() {
 										var $errorDiv = $( '<div/>' ).flow( 'showError', arguments ),
