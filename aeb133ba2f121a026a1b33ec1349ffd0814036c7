@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_e8aa1c68",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-12T09:46:36Z",
+      "side": 1,
+      "message": "Please remove \"successfully\". The message expresses success without it.",
+      "revId": "aeb133ba2f121a026a1b33ec1349ffd0814036c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_c8af5877",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-12T09:46:36Z",
+      "side": 1,
+      "message": "Please remove \"successfully\". The message expresses success without it.",
+      "revId": "aeb133ba2f121a026a1b33ec1349ffd0814036c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_a8c8945a",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-12T09:46:36Z",
+      "side": 1,
+      "message": "Please remove \"successfully\". The message expresses success without it.",
+      "revId": "aeb133ba2f121a026a1b33ec1349ffd0814036c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_68be0cad",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-12T09:46:36Z",
+      "side": 1,
+      "message": "Any reason for not capitalising this? Usually action related UI strings start with a capital letter in the English locale.",
+      "revId": "aeb133ba2f121a026a1b33ec1349ffd0814036c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_28dc841b",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-12T09:46:36Z",
+      "side": 1,
+      "message": "15 levels of indentation is a lot...",
+      "revId": "aeb133ba2f121a026a1b33ec1349ffd0814036c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
