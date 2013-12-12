@@ -346,7 +346,7 @@ class TopicBlock extends AbstractBlock {
 			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 		} else {
 			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) ); 	
+			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		}
 
 		$prefix = '';
@@ -627,7 +627,7 @@ class TopicBlock extends AbstractBlock {
 
 		$output = array();
 		$output['post-id'] = $post->getPostId()->getHex();
-		$contentFormat = 'wikitext';
+		$contentFormat = null;
 
 		if ( isset( $options['contentFormat'] ) ) {
 			$contentFormat = $options['contentFormat'];
@@ -636,10 +636,15 @@ class TopicBlock extends AbstractBlock {
 		if ( $post->isModerated() ) {
 			$output['post-moderated'] = 'post-moderated';
 		} else {
-			$output['content'] = array(
-				'*' => $templating->getContent( $post, $contentFormat, $this->user ),
-				'format' => $contentFormat
-			);
+			// This forces a round trip through parsoid for the wikitext when
+			// posts are stored as html, as such it should only be used when
+			// actually needed
+			if ( $contentFormat !== null ) {
+				$output['content'] = array(
+					'*' => $templating->getContent( $post, $contentFormat, $this->user ),
+					'format' => $contentFormat
+				);
+			}
 			$output['user'] = $post->getCreatorName();
 		}
 
