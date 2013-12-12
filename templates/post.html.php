@@ -22,9 +22,11 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 	$replyForm .= Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 
 	if ( $block->getHexRepliedTo() === $post->getPostId()->getHex() ) {
+		$replyForm .= '<ul>';
 		foreach ( $block->getErrors() as $error ) {
-			$replyForm .= $error->text() . '<br>'; // the pain ...
+			$replyForm .= '<li>' . $block->getErrorMessage( $error )->escaped() . '</li>';
 		}
+		$replyForm .= '</ul>';
 	}
 
 	$placeHolder = $postView->replyPlaceholder();
