@@ -132,6 +132,7 @@ $wgResourceModules += array(
 			'flow-moderation-confirmation-delete-topic',
 			'flow-moderation-confirmation-hide-topic',
 			'flow-moderation-confirmation-restore-topic',
+			'flow-moderation-confirmation-close',
 		),
 		'dependencies' => array(
 			'jquery.ui.core',
@@ -139,6 +140,7 @@ $wgResourceModules += array(
 			'jquery.ui.dialog',
 			'jquery.spinner',
 			'jquery.byteLimit',
+			'jquery.scroll',
 		),
 	),
 	'ext.flow.editor' => $flowResourceTemplate + array(
