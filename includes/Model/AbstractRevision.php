@@ -296,7 +296,7 @@ abstract class AbstractRevision {
 		}
 		if ( !isset( $this->convertedContent[$format] ) ) {
 			// check how content is stored & convert to requested format
-			$sourceFormat = in_array( 'html', $this->flags ) ? 'html' : 'wikitext';
+			$sourceFormat = $this->getContentFormat();
 			$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $this->getContentRaw() );
 		}
 
@@ -386,9 +386,17 @@ abstract class AbstractRevision {
 	}
 
 	/**
+	 * @return string The content format of this revision
+	 */
+	public function getContentFormat() {
+		return in_array( 'html', $this->flags ) ? 'html' : 'wikitext';
+	}
+
+	/**
 	 * Determines the appropriate format to store content in.
 	 * Usually, the default storage format, but if isFormatted() returns
 	 * false, then it will return 'wikitext'.
+	 * NOTE: The format of the current content is retrieved with getContentFormat
 	 * @return string The name of the storage format.
 	 */
 	protected function getStorageFormat() {

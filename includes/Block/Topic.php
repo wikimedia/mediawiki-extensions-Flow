@@ -346,7 +346,7 @@ class TopicBlock extends AbstractBlock {
 			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 		} else {
 			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) ); 	
+			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		}
 
 		$prefix = '';
@@ -627,8 +627,11 @@ class TopicBlock extends AbstractBlock {
 
 		$output = array();
 		$output['post-id'] = $post->getPostId()->getHex();
-		$contentFormat = 'wikitext';
+		$contentFormat = $post->getContentFormat();
 
+		// This may force a round trip through parsoid for the wikitext when
+		// posts are stored as html, as such it should only be used when
+		// actually needed
 		if ( isset( $options['contentFormat'] ) ) {
 			$contentFormat = $options['contentFormat'];
 		}
