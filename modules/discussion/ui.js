@@ -256,17 +256,16 @@
 		// Set up the scroll to new topic reply form
 		$container.find( '.flow-topic-comments .flow-reply-link' ).click(
 			function( e ) {
-				var $hideElement = $( this ).closest( '.flow-topic-container' ).children( '.flow-post-container' ), self = this;
+				var $showElement = $( this ).closest( '.flow-topic-container' ).children( '.flow-post-container' ),
+					$replyContainer = $( '#flow-topic-reply-' + $( this ).data( 'topic-id' ) );
+
 				e.stopPropagation();
-
-				$hideElement.slideDown( function() {
-					var $replyContainer = $( '#flow-topic-reply-' + $( self ).data( 'topic-id' ) );
-
-					$replyContainer.scrollIntoView( {
-						'complete': function () {
-							$replyContainer.find( '.flow-topic-reply-content' ).click();
-						}
-					} );
+				$replyContainer
+					.find( '.flow-topic-reply-content' )
+					.click()
+					.focus();
+				$showElement.slideDown( function() {
+					$replyContainer.scrollIntoView();
 				} );
 			}
 		);
