@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_8705b318",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "I think this means search for contributions in User_talk when only some pages are enabled(via $wgFlowOccupyPages) will return nothing?",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_c7297be2",
+        "filename": "container.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "Pretty much everything uses $c[\u0027memcache.buffered\u0027].  Looking at the Query class it looks reasonable to pass $c[\u0027memcache\u0027](dont want to buffer this value) but should document here so its obvious.",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_e7d91ff9",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "could we share this with recent changes formatting (and all the copied functions below too)?",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_e7aebf2a",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "well, the thing about searching for a workflow that doesn\u0027t exist is we don\u0027t cache failures: it will have to check the database to ensure it doesn\u0027t exist.",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_071ac37d",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "We should probably also check $revision-\u003eisAllowed().  Although doing it here will result in less than the requested number of rows returned.  unsure best way forward.",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_a731d702",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "the other keys are using foo_bar but this is foo-bar",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_473d6bda",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "SpecialContributions::getUserCond is already running this query in the same request.  Seems like it would be better to somehow get that data into the ContribsPager ?   It seems like would require a bit of a refactor on SpecialContributions though, up to you.",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_0743e367",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "lets save some vertical space and put single value arrays on one line :-)",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_6a25d6a8",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "probably doesn\u0027t matter, but is the substr necessary?",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_d5b248f8",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "you want to build an array of keys and multiGet them",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_aa175e49",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "Warning: ksort() expects parameter 1 to be array, null given.\n\nIn the other parts of flow we don\u0027t cache failures, perhaps\n\n    if ( !$path ) { continue; }",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_8a149a45",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-13T21:03:47Z",
+      "side": 1,
+      "message": "angry red line",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
