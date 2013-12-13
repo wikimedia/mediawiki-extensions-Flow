@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_2a38ee38",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-13T22:08:41Z",
+      "side": 1,
+      "message": "It\u0027s nothing to do with this patch, but why doesn\u0027t this store repeatedly called values such as $block-\u003egetName() and $root-\u003egetPostId()-\u003egetHex() in, e.g. a $templateVars array? It calls the latter five times.",
+      "revId": "82b081b7c34eb59634b170cbe92b7a7b2f71da87",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
