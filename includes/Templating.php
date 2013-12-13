@@ -276,7 +276,7 @@ class Templating {
 	 * RecentChanges pages.
 	 *
 	 * Moderation-aware.
-	 * 
+	 *
 	 * @param  AbstractRevision $revision        Revision to display
 	 * @param  User             $permissionsUser The User to check permissions for
 	 * @return string                            HTML
@@ -359,7 +359,13 @@ class Templating {
 
 			if ( $format === 'html' ) {
 				// Parsoid doesn't render redlinks
-				$content = $this->applyRedlinks( $content );
+				try {
+					$content = $this->applyRedlinks( $content );
+				} catch ( \Exception $e ) {
+					wfDebugLog( __CLASS__, __METHOD__ . ': Failed applying redlinks for rev_id = ' . $revision->getRevisionId()->getHex() );
+					\MWExceptionHandler::logException( $e );
+				}
+
 			}
 
 			return $content;
