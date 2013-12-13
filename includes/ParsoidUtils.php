@@ -92,7 +92,8 @@ abstract class ParsoidUtils {
 		}
 
 		// HTML is wrapped in <body> tag, undo that.
-		if ( $to == 'html' ) {
+		// unless $response is empty
+		if ( $to == 'html' && $response ) {
 			/*
 			 * Workaround because DOMDocument can't guess charset.
 			 * Parsoid provides utf-8. Alternative "workarounds" would be to
