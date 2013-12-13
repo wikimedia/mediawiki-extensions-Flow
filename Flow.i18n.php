@@ -2771,19 +2771,29 @@ $messages['nb'] = array(
 	'log-name-flow' => 'Flow-aktivitetslogg',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|slettet}} et [$4 innlegg] på [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|gjenopprettet}} et [$4 innlegg] på [[$3]]',
+	'logentry-suppress-flow-suppress-post' => '$1 {{GENDER:$2|sensurerte}} et [$4 innlegg] på [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|slettet}} et [$4 innlegg] på [[$3]]',
+	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|slettet}} et [$4 innlegg] på [[$3]]',
+	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|gjenopprettet}} et [$4 innlegg] på [[$3]]',
+	'logentry-suppress-flow-suppress-topic' => '$1 {{GENDER:$2|sensurerte}} et [$4 innlegg] på [[$3]]',
+	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|slettet}} et [$4 innlegg] på [[$3]]',
 	'flow-user-moderated' => 'Moderert bruker',
 	'flow-edit-header-link' => 'Rediger overskrift',
 	'flow-header-empty' => 'Denne diskusjonssiden har ingen overskrift.',
 	'flow-post-moderated-toggle-show' => '[Vis]',
 	'flow-post-moderated-toggle-hide' => '[Skjul]',
+	'flow-hide-content' => '{{GENDER:$1|Skjult}} av $1',
+	'flow-delete-content' => '{{GENDER:$1|Slettet}} av $1',
+	'flow-suppress-content' => '{{GENDER:$1|Sensurert}} av $1',
+	'flow-suppress-usertext' => '<em>Brukernavn sensurert</em>',
 	'flow-post-actions' => 'Handlinger',
 	'flow-topic-actions' => 'Handlinger',
 	'flow-cancel' => 'Avbryt',
+	'flow-preview' => 'Forhåndsvis',
 	'flow-newtopic-title-placeholder' => 'Nytt emne',
-	'flow-newtopic-content-placeholder' => 'Legg til noen detaljer om du vil',
+	'flow-newtopic-content-placeholder' => 'Skriv noen ord om du vil',
 	'flow-newtopic-header' => 'Legg til et nytt emne',
-	'flow-newtopic-save' => 'Legg til emne',
+	'flow-newtopic-save' => 'Legg til diskusjon',
 	'flow-newtopic-start-placeholder' => 'Start en ny diskusjon',
 	'flow-reply-topic-placeholder' => '{{GENDER:$1|Kommentér}} «$2»',
 	'flow-reply-placeholder' => '{{GENDER:$1|Svar}} til $1',
@@ -2805,13 +2815,17 @@ $messages['nb'] = array(
 	'flow-topic-action-watchlist' => 'Overvåkningsliste',
 	'flow-topic-action-edit-title' => 'Rediger tittel',
 	'flow-topic-action-history' => 'Emnehistorikk',
+	'flow-topic-action-hide-topic' => 'Skjul diskusjon',
+	'flow-topic-action-delete-topic' => 'Slett diskusjon',
+	'flow-topic-action-suppress-topic' => 'Sensurer diskusjon',
+	'flow-topic-action-restore-topic' => 'Gjenopprett diskusjon',
 	'flow-error-http' => 'Det oppsto en feil ved kontakt med serveren.',
 	'flow-error-other' => 'Det oppsto en ukjent feil.',
 	'flow-error-external' => 'Det oppsto en feil.<br /><small>Feilmeldingen var: $1</small>',
 	'flow-error-edit-restricted' => 'Du har ikke tilgang til å redigere denne meldingen.',
 	'flow-error-external-multi' => 'Feil oppsto under lagring av meldingen.<br />$1',
-	'flow-error-missing-content' => 'Meldingen har ikke noe innhold. Innhold er påkrevd for at meldingen skal bli lagret.', # Fuzzy
-	'flow-error-missing-title' => 'Meldingen har ingen tittel. En tittel er påkrevd for at meldingen skal bli lagret.', # Fuzzy
+	'flow-error-missing-content' => 'Meldingen har ikke noe innhold. Innhold kreves for å lagre en melding.',
+	'flow-error-missing-title' => 'Meldingen har ingen tittel. En tittel kreves for å lagre en diskusjon.',
 	'flow-error-parsoid-failure' => 'Innholdet kunne ikke parseres pga. et Parsord-problem.',
 	'flow-error-missing-replyto' => 'Ingen "replyTo"-parameter ble sendt inn. Parameteren er påkrevd for "reply"-handlingen.',
 	'flow-error-invalid-replyto' => 'Parameteren "replyTo" var ugyldig. Det angitte innlegget ble ikke funnet.',
@@ -2821,6 +2835,7 @@ $messages['nb'] = array(
 	'flow-error-invalid-postId' => 'Parameteren «postId» var ugyldig. Det angitte innlegget ($1) ble ikke funnet.',
 	'flow-error-restore-failure' => 'Gjenoppretting av dette innlegget feilet.',
 	'flow-error-invalid-moderation-state' => 'En ugyldig verdi ble gitt for moderationState',
+	'flow-error-invalid-moderation-reason' => 'Vennligst oppgi en grunn for modereringen',
 	'flow-error-not-allowed' => 'Manglende rettigheter til å utføre denne handlingen',
 	'flow-edit-header-submit' => 'Lagre overskrift',
 	'flow-edit-title-submit' => 'Endre tittel',
@@ -2829,18 +2844,23 @@ $messages['nb'] = array(
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|kommentar|kommentarer}}</strong> {{PLURAL:$1|ble}} lagt til.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|opprettet}} emnet [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|redigerte}} emnetittelen fra $5 til [$3 $4].',
-	'flow-rev-message-create-header' => 'Opprettet overskrift', # Fuzzy
-	'flow-rev-message-edit-header' => 'Redigerte overskrift', # Fuzzy
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|skjulte}} en [$3 kommentar].', # Fuzzy
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|slettet}} en [$3 kommentar].', # Fuzzy
-	'flow-rev-message-suppressed-post' => 'Sensurerte melding', # Fuzzy
-	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|gjenopprettet}} en [$3 kommentar].', # Fuzzy
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|opprettet}} overskrift.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|redigerte}} overskrift.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|skjulte}} en [$4 kommentar] (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|slettet}} en [$4 kommentar] (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|sensurerte}} en [$4 kommentar] (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|gjenopprettet}} en [$4 kommentar] (<em>$5</em>).',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|skjulte}} [$4 diskusjonen] (<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|slettet}} [$4 diskusjonen] (<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|sensurerte}} [$4 diskusjonen] (<em>$5</em>).',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|gjenopprettet}} [$4 diskusjonen] (<em>$5</em>).',
+	'flow-board-history' => 'Historikk for «$1»',
 	'flow-topic-history' => '«$1» Samtalehistorikk',
 	'flow-history-last4' => 'Siste 4 timer',
 	'flow-history-day' => 'I dag',
 	'flow-history-week' => 'Forrige uke',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 startet denne diskusjonen|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} og {{PLURAL:$2|annen|andre}}|0=Ingen deltakelse enda|2={{GENDER:$3|$3}} og {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} og {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|0=Bli den første til å kommentere!|Kommentér ($1)}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|Kommentér ($1)|Kommentarer ($1)|0=Bli den første til å kommentere!}}',
 	'flow-comment-restored' => 'Gjenopprettet kommentar',
 	'flow-comment-deleted' => 'Slettet kommentar',
 	'flow-comment-hidden' => 'Skjult kommentar',
@@ -2876,6 +2896,25 @@ $messages['nb'] = array(
 	'flow-moderation-intro-delete-post' => 'Bekreft at du ønsker å slette meldingen av {{GENDER:$1|$1}} i diskusjonen «$2», og oppgi en årsak for handlingen.',
 	'flow-moderation-intro-hide-post' => 'Bekreft at du ønsker å skjule meldingen av {{GENDER:$1|$1}} i diskusjonen «$2», og oppgi en årsak for handlingen.',
 	'flow-moderation-intro-restore-post' => 'Bekreft at du ønsker å gjenopprette meldingen av {{GENDER:$1|$1}} i diskusjonen «$2», og oppgi en årsak for handlingen.',
+	'flow-moderation-confirm-suppress-post' => 'Sensurer',
+	'flow-moderation-confirm-delete-post' => 'Slett',
+	'flow-moderation-confirm-hide-post' => 'Skjul',
+	'flow-moderation-confirm-restore-post' => 'Gjenopprett',
+	'flow-moderation-confirmation-restore-post' => 'Du har gjenopprettet dette innlegget.',
+	'flow-moderation-title-suppress-topic' => 'Sensurer diskusjon?',
+	'flow-moderation-title-delete-topic' => 'Slett diskusjon?',
+	'flow-moderation-title-hide-topic' => 'Skjul diskusjon?',
+	'flow-moderation-title-restore-topic' => 'Gjenopprett diskusjon?',
+	'flow-moderation-intro-suppress-topic' => 'Forklar hvorfor du sensurerer denne diskusjonen.',
+	'flow-moderation-intro-delete-topic' => 'Forklar hvorfor du sletter denne diskusjonen.',
+	'flow-moderation-intro-hide-topic' => 'Forklar hvorfor du skjuler denne diskusjonen.',
+	'flow-moderation-intro-restore-topic' => 'Forklar hvorfor du gjenoppretter denne diskusjonen.',
+	'flow-moderation-confirm-suppress-topic' => 'Sensurer',
+	'flow-moderation-confirm-delete-topic' => 'Slett',
+	'flow-moderation-confirm-hide-topic' => 'Skjul',
+	'flow-moderation-confirm-restore-topic' => 'Gjenopprett',
+	'flow-topic-permalink-warning' => 'Denne diskusjonen startet på [$2 $1]',
+	'flow-topic-permalink-warning-user-board' => 'Denne diskusjonen startet på [$2 {{GENDER:$1|$1}}s diskusjonsside]',
 );
 
 /** Nepali (नेपाली)
@@ -3302,6 +3341,13 @@ $messages['ru'] = array(
 	'flow-moderation-intro-hide-topic' => 'Поясните, почему вы хотите скрыть данную тему.',
 	'flow-moderation-intro-restore-topic' => 'Поясните причину восстановления данной темы.',
 	'flow-topic-permalink-warning' => 'Эта тема была начата на [$2 $1]',
+);
+
+/** Sicilian (sicilianu)
+ * @author Gmelfi
+ */
+$messages['scn'] = array(
+	'flow-thank-link' => '{{GENDER:$1|Arringràzzia}}',
 );
 
 /** Slovenian (slovenščina)
@@ -3941,8 +3987,8 @@ $messages['yi'] = array(
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|האט געענדערט}} דעם טעמע טיטל צו [$3 $4] פון $5.',
 	'flow-rev-message-create-header' => '$1  {{GENDER:$2|האט באשאפן}} דאס טאוול קעפל.',
 	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|האט רעדאקטירט}} דאס טאוול קעפל.',
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|האט באהאלטן}} א [$4 הערה] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|האט צוריקגעשטעלט}} א [$4 הערה] (<em>$5</em>).', # Fuzzy
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|האט באהאלטן}} א [$4 הערה] (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|האט צוריקגעשטעלט}} א [$4 הערה] (<em>$5</em>).',
 	'flow-topic-history' => '"$1" טעמע היסטאריע',
 	'flow-comment-restored' => 'צוריקגעשטעלט הערה',
 	'flow-comment-deleted' => 'אויסגעמעקט הערה',
