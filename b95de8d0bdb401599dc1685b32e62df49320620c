@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0ee75395_2f36c3b0",
+        "filename": "db_patches/patch-remove_usernames.sql",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-13T16:04:48Z",
+      "side": 1,
+      "message": "IIRC, sqlite can\u0027t deal with column renames.\n\nWould probably need another, sqlite-specific, patch where table is renamed, new table is constructed, data is moved \u0026 old column deleted.",
+      "revId": "b95de8d0bdb401599dc1685b32e62df49320620c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_e1dec043",
         "filename": "db_patches/patch-remove_usernames.sql",
         "patchSetId": 4
@@ -13,6 +30,23 @@
       "writtenOn": "2013-12-12T19:01:40Z",
       "side": 1,
       "message": "Need table prefix.  we should probably add a new field instead of renaming the field, I am not sure how we can apply the change to production in the same patch",
+      "revId": "b95de8d0bdb401599dc1685b32e62df49320620c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_8ff4afcb",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-13T16:04:48Z",
+      "side": 1,
+      "message": "Not sure if getCreatorText should return a Message object - see comment in Templating.php",
       "revId": "b95de8d0bdb401599dc1685b32e62df49320620c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -36,6 +70,23 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_cf251758",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-13T16:04:48Z",
+      "side": 1,
+      "message": "Nitpicking: $userId will always be set, even if only 0 (comment would lead me to believe 1 of these will always be null :p)",
+      "revId": "b95de8d0bdb401599dc1685b32e62df49320620c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_0d08b293",
         "filename": "includes/Templating.php",
         "patchSetId": 4
@@ -47,6 +98,23 @@
       "writtenOn": "2013-12-12T19:01:40Z",
       "side": 1,
       "message": "escaped() in here and all the ones below?",
+      "revId": "b95de8d0bdb401599dc1685b32e62df49320620c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_6f660bba",
+        "filename": "includes/Templating.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-13T16:04:48Z",
+      "side": 1,
+      "message": "If we return Message object here, we probably also should on L352, and change phpdoc to @return string|Message\n\nOr just make this one also just return a string.",
       "revId": "b95de8d0bdb401599dc1685b32e62df49320620c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
