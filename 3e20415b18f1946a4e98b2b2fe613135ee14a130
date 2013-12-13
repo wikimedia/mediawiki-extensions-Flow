@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_d4748ece",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-13T14:00:48Z",
+      "side": 1,
+      "message": "Instead of not outputting content unless format is explicitly defined, perhaps we can just default to the storage format ($wgFlowContentFormat)?\n\nThen we\u0027d have consistent API output without having to roundtrip to Parsoid unless requested?",
+      "revId": "3e20415b18f1946a4e98b2b2fe613135ee14a130",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
