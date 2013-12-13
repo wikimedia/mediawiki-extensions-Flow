@@ -5,8 +5,10 @@ namespace Flow;
 class IndexTest extends \MediaWikiTestCase {
 
 	public function testShallow() {
+		global $wgFlowCacheTime;
+
 		$bag = new \HashBagOStuff;
-		$cache = new Data\BufferedCache( $bag );
+		$cache = new Data\BufferedCache( $bag, $wgFlowCacheTime );
 
 		// As we are only testing the cached result, storage should never be called
 		// not sure how to test that
@@ -47,8 +49,10 @@ class IndexTest extends \MediaWikiTestCase {
 	}
 
 	public function testCompositeShallow() {
+		global $wgFlowCacheTime;
+
 		$bag = new \HashBagOStuff;
-		$cache = new \Flow\Data\BufferedCache( $bag );
+		$cache = new \Flow\Data\BufferedCache( $bag, $wgFlowCacheTime );
 		$storage = $this->getMock( 'Flow\\Data\\ObjectStorage' );
 
 		$unique = new \Flow\Data\UniqueFeatureIndex(
