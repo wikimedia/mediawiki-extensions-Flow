@@ -197,15 +197,16 @@ abstract class ParsoidUtils {
 				return !in_array( $error->code, $ignoreErrorCodes );
 			}
 		);
+
+		// restore libxml state before anything else
+		libxml_clear_errors();
+		libxml_use_internal_errors( $useErrors );
+
 		if ( $errors ) {
 			throw new \MWException(
 				implode( "\n", array_map( function( $error ) { return $error->message; }, $errors ) )
 			);
 		}
-
-		// restore libxml error reporting
-		libxml_clear_errors();
-		libxml_use_internal_errors( $useErrors );
 
 		return $dom;
 	}

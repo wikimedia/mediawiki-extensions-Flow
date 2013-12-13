@@ -45,6 +45,14 @@ class TemplatingTest extends \MediaWikiTestCase {
 				// expect string
 				htmlentities( 'Main_Page/SubPage&action=edit&redlink=1' ),
 			),
+
+			array(
+				'Link containing html entities should be properly handled',
+				// title text from parsoid
+				'Foo&bar',
+				// expect string
+				htmlspecialchars( 'Foo%26bar&action=edit&redlink=1' ),
+			),
 		);
 	}
 
@@ -56,8 +64,11 @@ class TemplatingTest extends \MediaWikiTestCase {
 		$this->setMwGlobals( 'wgTitle', Title::newMainPage() );
 
 		$parsoid = htmlentities( json_encode( array( 'sa' => array( 'href' => $saHref ) ) ) );
+		$uid = Model\UUID::create( '0509b4bf4b2d616abe79080027a08222' );
 		$rev = Model\PostRevision::fromStorageRow( array(
-			'rev_content' => '<a rel="mw:WikiLink" data-parsoid="' . $parsoid . '"></a>',
+			'rev_id' => $uid->getBinary(),
+			'tree_rev_id' => $uid->getBinary(),
+			'rev_content' => '<a rel="mw:WikiLink" data-parsoid="' . $parsoid . '">' . htmlspecialchars( $saHref ) . '</a>',
 			'rev_flags' => 'html'
 		) + self::$postRow );
 
