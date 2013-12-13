@@ -136,7 +136,7 @@ class PostActionMenu {
 			'class' => $class,
 			'value' => $content,
 			'title' => strip_tags( $content ),
-		) ) .
+		) );
 		$output[] = Html::closeElement( 'form' );
 
 		return implode( '', $output );
