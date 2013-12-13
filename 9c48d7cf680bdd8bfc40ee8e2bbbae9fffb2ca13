@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_d4e7eea5",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-13T13:50:51Z",
+      "side": 1,
+      "message": "They\u0027re output in the order they\u0027re in $timespans, so now day would come after week.",
+      "revId": "9c48d7cf680bdd8bfc40ee8e2bbbae9fffb2ca13",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
