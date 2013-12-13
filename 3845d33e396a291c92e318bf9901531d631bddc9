@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_54575e29",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-13T14:19:38Z",
+      "side": 1,
+      "message": "Without having a counter-reset, the counter seems to be 1 for all ocurrences.",
+      "revId": "3845d33e396a291c92e318bf9901531d631bddc9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
