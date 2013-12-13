@@ -63,8 +63,9 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 $moderationClass = '';
 
 if ( $root->isModerated() ) {
-	$moderationClass .= ' flow-topic-moderated';
-	$moderationClass .= ' flow-topic-moderated-'.$root->getModerationState();
+	// moderated posts start out collapsed
+	$moderationClass .= ' flow-topic-closed flow-topic-moderated';
+	$moderationClass .= ' flow-topic-closed flow-topic-moderated-'.$root->getModerationState();
 }
 
 echo Html::openElement( 'div', array(
@@ -99,7 +100,7 @@ echo Html::openElement( 'div', array(
 					/* Passing no user always gets the 'moderated by Foo' message */
 					$this->getContent( $root, 'wikitext' )
 				);
-			else: 
+			else:
 				echo Html::element( 'h2', array( 'class' => 'flow-realtitle' ), $title );
 			endif ?>
 		</div>
