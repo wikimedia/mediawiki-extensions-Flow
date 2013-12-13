@@ -195,7 +195,7 @@ abstract class ParsoidUtils {
 		);
 		if ( $errors ) {
 			throw new \MWException(
-				implode( "\n", array_map( $errors, function( $error ) { return $error->message; } ) )
+				implode( "\n", array_map( function( $error ) { return $error->message; }, $errors ) )
 			);
 		}
 
