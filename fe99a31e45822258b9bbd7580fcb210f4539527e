@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_ef51fb11",
+        "filename": "includes/Templating.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-13T15:18:52Z",
+      "side": 1,
+      "message": "Return empty string (\u003d no content) instead of null, which is (inconsistently) used to return in case of error.",
+      "revId": "fe99a31e45822258b9bbd7580fcb210f4539527e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
