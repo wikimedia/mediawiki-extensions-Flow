@@ -99,7 +99,7 @@ echo Html::openElement( 'div', array(
 					/* Passing no user always gets the 'moderated by Foo' message */
 					$this->getContent( $root, 'wikitext' )
 				);
-			else: 
+			else:
 				echo Html::element( 'h2', array( 'class' => 'flow-realtitle' ), $title );
 			endif ?>
 		</div>
@@ -177,7 +177,7 @@ echo Html::openElement( 'div', array(
 				<?php echo $this->printParticipants( $root, $indexParticipants ); ?>
 			</li>
 			<li class="flow-topic-comments">
-				<a href="#<?php echo 'flow-topic-reply-' . $topic->getId()->getHex(); ?>" class="flow-reply-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
+				<a href="#<?php echo 'flow-topic-reply-' . $topic->getId()->getHex(); ?>" class="flow-reply-link flow-topic-comments-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
 					<?php
 						// get total number of posts in topic
 						// @todo: the number of comments should not be a part of the link

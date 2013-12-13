@@ -297,7 +297,7 @@
 					'.flow-icon-permalink',
 					'.flow-icon-watchlist',
 					'.flow-datestamp a',
-					'.flow-topic-comments'
+					'.flow-topic-comments-link'
 				];
 				if ( $( e.target ).closest( ignore.join( ',' ) ).length > 0 ) {
 					return true;
