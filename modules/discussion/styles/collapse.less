@@ -1,13 +1,13 @@
 @import 'mediawiki.mixins.less';
 
-.collapseButtonIcon(@icon-prefix) {
-	.background-image-svg( ~"@{icon-prefix}_normal.svg", ~"@{icon-prefix}_normal.png" );
+.collapseButtonIcon(@icon-prefix; @dir: '') {
+	.background-image-svg( ~"@{icon-prefix}_normal@{dir}.svg", ~"@{icon-prefix}_normal@{dir}.png" );
 
 	&.active {
-		.background-image-svg( ~"@{icon-prefix}_selected.svg", ~"@{icon-prefix}_selected.png" );
+		.background-image-svg( ~"@{icon-prefix}_selected@{dir}.svg", ~"@{icon-prefix}_selected@{dir}.png" );
 	}
 
-	background-position: 16px !important;
+	background-position: left 16px center !important;
 	background-size: 14px auto !important;
 	background-repeat: no-repeat !important;
 }
@@ -34,7 +34,7 @@
 	}
 
 	.topic-complete {
-		.collapseButtonIcon( '../../base/images/toggle_complete' );
+		.collapseButtonIcon( '../../base/images/toggle_complete'; '_ltr' );
 	}
 }
 
