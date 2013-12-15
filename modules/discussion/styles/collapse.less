@@ -7,7 +7,21 @@
 		.background-image-svg( ~"@{icon-prefix}_selected.svg", ~"@{icon-prefix}_selected.png" );
 	}
 
-	background-position: 16px !important;
+	.collapseButtonBackground()
+}
+
+.collapseButtonIconBidi(@icon-prefix) {
+	.background-image-svg( ~"@{icon-prefix}_normal_ltr.svg", ~"@{icon-prefix}_normal_ltr.png" );
+
+	&.active {
+		.background-image-svg( ~"@{icon-prefix}_selected_ltr.svg", ~"@{icon-prefix}_selected_ltr.png" );
+	}
+
+	.collapseButtonBackground()
+}
+
+.collapseButtonBackground() {
+	background-position: left 16px center !important;
 	background-size: 14px auto !important;
 	background-repeat: no-repeat !important;
 }
@@ -34,7 +48,7 @@
 	}
 
 	.topic-complete {
-		.collapseButtonIcon( '../../base/images/toggle_complete' );
+		.collapseButtonIconBidi( '../../base/images/toggle_complete' );
 	}
 }
 
