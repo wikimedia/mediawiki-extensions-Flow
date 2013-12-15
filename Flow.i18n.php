@@ -1345,10 +1345,12 @@ $messages['es'] = array(
 );
 
 /** Persian (فارسی)
+ * @author Amire80
  * @author Ebraminio
  */
 $messages['fa'] = array(
 	'flow-desc' => 'سامانهٔ مدیریت گردش کار',
+	'flow-topic-comments' => '{{PLURAL:$1|نظر ($1)|نظرها ($1)|0=اولین شخصی باشید که نظر می‌گذارد!}}',
 );
 
 /** Finnish (suomi)
@@ -2010,13 +2012,13 @@ $messages['ia'] = array(
 );
 
 /** Italian (italiano)
+ * @author Amire80
  * @author Beta16
  * @author Gianfranco
  */
 $messages['it'] = array(
 	'flow-desc' => 'Sistema di gestione del flusso di lavoro',
-	'flow-talk-taken-over' => 'Questa pagina di discussione è stata sostituita da una 
-[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal bacheca dei flussi].',
+	'flow-talk-taken-over' => 'Questa pagina di discussione è stata sostituita da una [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal bacheca dei flussi].',
 	'log-name-flow' => 'Attività sui flussi',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 messaggio] su [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|ha ripristinato}} un [$4 messaggio] su [[$3]]',
