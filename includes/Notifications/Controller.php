@@ -16,7 +16,9 @@ class NotificationController {
 	 * Set up Echo notification for Flow extension
 	 */
 	public function setup() {
-		global $wgEchoNotifications, $wgHooks, $wgEchoNotificationIcons, $wgEchoNotificationCategories;
+		global $wgHooks, $wgLang,
+			$wgEchoNotifications, $wgEchoNotificationIcons, $wgEchoNotificationCategories;
+
 		$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
 		$wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
 
@@ -25,7 +27,9 @@ class NotificationController {
 		$wgEchoNotifications += $notifications;
 
 		$wgEchoNotificationIcons['flow-discussion'] = array(
-			'path' => 'Flow/modules/base/images/Talk.png',
+			// Possible images:
+			// Talk-ltr.png, Talk-rtl.png
+			'path' => 'Flow/modules/base/images/Talk-' + $wgLang->getDir() + '.png',
 		);
 
 		$wgEchoNotificationCategories['flow-discussion'] = array(
