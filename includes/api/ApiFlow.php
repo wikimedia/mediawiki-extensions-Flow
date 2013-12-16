@@ -3,6 +3,10 @@
 use Flow\Model\UUID;
 
 class ApiFlow extends ApiBase {
+
+	/** @var Flow\Container $container */
+	protected $container;
+
 	public function execute() {
 		$this->container = Flow\Container::getContainer();
 		$params = $this->extractRequestParams();
