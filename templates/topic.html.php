@@ -63,8 +63,9 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 $moderationClass = '';
 
 if ( $root->isModerated() ) {
-	$moderationClass .= ' flow-topic-moderated';
-	$moderationClass .= ' flow-topic-moderated-'.$root->getModerationState();
+	// moderated posts start out collapsed
+	$moderationClass .= ' flow-topic-closed flow-topic-moderated';
+	$moderationClass .= ' flow-topic-closed flow-topic-moderated-'.$root->getModerationState();
 }
 
 echo Html::openElement( 'div', array(
