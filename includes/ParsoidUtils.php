@@ -81,7 +81,7 @@ abstract class ParsoidUtils {
 		$response = \Http::post(
 			$parsoidURL . '/' . $parsoidPrefix . '/' . $title->getPrefixedDBkey(),
 			array(
-				'postData' => array( $from => $content ),
+				'postData' => wfArrayToCgi( array( $from => $content ) ),
 				'body' => true,
 				'timeout' => $parsoidTimeout
 			)
