@@ -60,6 +60,7 @@ $wgResourceModules += array(
 		'scripts' => array(
 			'discussion/ui.js',
 			'discussion/forms.js',
+			'discussion/topic.js',
 			'discussion/paging.js',
 		),
 		'dependencies' => array(
@@ -72,6 +73,7 @@ $wgResourceModules += array(
 			'jquery.byteLimit',
 			'jquery.tipsy',
 			'jquery.scroll',
+			'ext.flow.parsoid',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
