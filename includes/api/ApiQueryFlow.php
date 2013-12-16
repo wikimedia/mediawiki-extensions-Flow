@@ -1,10 +1,9 @@
 <?php
 
-use Flow\WorkflowLoader;
 use Flow\Model\UUID;
 
 class ApiQueryFlow extends ApiQueryBase {
-	protected $loader, $workflow, $definition;
+	protected $loader, $workflow, $definition, $container;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'flow' );
@@ -86,13 +85,5 @@ class ApiQueryFlow extends ApiQueryBase {
 		return array(
 			'api.php?action=query&list=flow&flowpage=Main_Page',
 		);
-	}
-
-	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Flow_Portal';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . '-0.1';
 	}
 }
