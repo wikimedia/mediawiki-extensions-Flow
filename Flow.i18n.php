@@ -1162,7 +1162,7 @@ $messages['de'] = array(
 	'flow-history-pages-topic' => 'Erscheint auf dem [$1 Board „$2“]',
 	'flow-history-pages-post' => 'Erscheint auf [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 startete dieses Thema|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} und {{PLURAL:$2|ein anderer|andere}}|0=Noch keine Teilnehmer|2={{GENDER:$3|$3}} und {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} und {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Kommentar ($1)|Kommentare ($1)|0=Sei der erste!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|Kommentar ($1)|Kommentare ($1)|0={{GENDER:$2|Sei der erste!}}}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Sei der erste!|{{PLURAL:$1|Ein Kommentar|$1 Kommentare}} von {{PLURAL:$2|einem Benutzer|$2 Benutzern}}}}',
 	'flow-comment-restored' => 'Kommentar wiederhergestellt',
 	'flow-comment-deleted' => 'Kommentar gelöscht',
@@ -1351,7 +1351,7 @@ $messages['es'] = array(
  */
 $messages['fa'] = array(
 	'flow-desc' => 'سامانهٔ مدیریت گردش کار',
-	'flow-topic-comments' => '{{PLURAL:$1|نظر ($1)|نظرها ($1)|0=اولین شخصی باشید که نظر می‌گذارد!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|نظر ($1)|نظرها ($1)|0=اولین شخصی باشید که نظر می‌گذارد!}}', # Fuzzy
 );
 
 /** Finnish (suomi)
@@ -1499,7 +1499,7 @@ $messages['fr'] = array(
 	'flow-history-pages-topic' => 'Apparaît sur [$1 le tableau « $2 »]',
 	'flow-history-pages-post' => 'Apparaît sur [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 a démarré ce sujet|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} et {{PLURAL:$2|autre|autres}}|0=Encore aucune participation|2={{GENDER:$3|$3}} et {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} et {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|0=Soyez le premier à laisser un commentaire !|Commenter ($1)}}',
+	'flow-topic-comments' => '{{PLURAL:$1|0=Soyez le premier à laisser un commentaire !|Commenter ($1)}}', # Fuzzy
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Soyez le premier à commenter !|$1 {{PLURAL:$1|commentaire|commentaires}} par $2 {{PLURAL:$2|utilisateur|utilisateurs}}}}',
 	'flow-comment-restored' => 'Commentaire rétabli',
 	'flow-comment-deleted' => 'Commentaire supprimé',
@@ -1802,7 +1802,7 @@ $1',
 	'flow-history-pages-topic' => 'מופיע ב[$1 לוח "$2"]',
 	'flow-history-pages-post' => 'מופיע ב[$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 {{GENDER:$3|התחיל|התחילה}} את הנושא הזה|$3, $4, $5 ועוד {{PLURAL:$2|אדם אחד|$2 אנשים}}|0=אין עדיין השתתפות|2=$3 ו{{GRAMMAR:תחילית|$4}}|3=$3, $4 ו{{GRAMMAR:תחילית|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|0=כתיבת תגובה ראשונה|תגובה ($1)}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|תגובה ($1)|תגובות ($1)|0={{GENDER:$2|כתוב|כתבי}} את התגובה הראשונה!}}',
 	'flow-comment-restored' => 'הערה משוחזרת',
 	'flow-comment-deleted' => 'הערה מחוקה',
 	'flow-comment-hidden' => 'הערה מוסתרת',
@@ -2122,7 +2122,7 @@ $messages['it'] = array(
 	'flow-history-pages-topic' => 'Apparso sulla [$1 bacheca "$2"]',
 	'flow-history-pages-post' => 'Apparso su [$1  $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 ha iniziato questa discussione|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} e {{PLURAL:$2|un altro|altri}}|0=Nessuno ha partecipato ancora|2={{GENDER:$3|$3}} e {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} e {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Commento ($1)|Commenti ($1)|0=Sii il primo a commentare!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|Commento ($1)|Commenti ($1)|0=Sii il primo a commentare!}}', # Fuzzy
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Sii il primo a commentare!|$1 {{PLURAL:$1|commento|commenti}} di $2 {{PLURAL:$2|utente|utenti}}}}',
 	'flow-comment-restored' => 'Commento ripristinato',
 	'flow-comment-deleted' => 'Commento cancellato',
@@ -2460,7 +2460,9 @@ $messages['lb'] = array(
 	'flow-error-hide-failure' => 'Verstoppe vun dësem Element huet net funktionéiert.',
 	'flow-error-restore-failure' => "D'Restauréiere vun dësem Element huet net funktionéiert.",
 	'flow-error-not-allowed' => 'Net genuch Rechter fir dës Aktioun ze maachen',
+	'flow-error-missing-header-content' => "D'Iwwerschrëft huet keen Inhalt. Den Inhalt ass obligatoresch fir eng Iwwerschrëft ze späicheren.",
 	'flow-error-prev-revision-mismatch' => 'Dës Ännerung konnt net gespäichert ginn: méi eng rezent Ännerung gouf scho gespäichert.',
+	'flow-error-prev-revision-does-not-exist' => 'Déi vireg Versioun konnt net fonnt ginn.',
 	'flow-edit-header-submit' => 'Iwwerschrëft späicheren',
 	'flow-edit-title-submit' => 'Titel änneren',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|huet}} eng [$3 Bemierkung] geännert.',
@@ -2477,7 +2479,7 @@ $messages['lb'] = array(
 	'flow-history-last4' => 'Lescht 4 Stonnen',
 	'flow-history-day' => 'Haut',
 	'flow-history-week' => 'Lescht Woch',
-	'flow-topic-comments' => '{{PLURAL:$1|Bemierkung ($1)|Bemierkunge(n) ($1)|0=Sidd deen éischten deen enge Bemierkung mécht!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|Bemierkung ($1)|Bemierkunge(n) ($1)|0=Sidd deen éischten deen enge Bemierkung mécht!}}', # Fuzzy
 	'flow-comment-restored' => 'Restauréiert Bemierkung',
 	'flow-comment-deleted' => 'Geläscht Bemierkung',
 	'flow-comment-hidden' => 'Verstoppte Bemierkung',
@@ -2875,7 +2877,7 @@ $messages['nb'] = array(
 	'flow-history-day' => 'I dag',
 	'flow-history-week' => 'Forrige uke',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 startet denne diskusjonen|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} og {{PLURAL:$2|annen|andre}}|0=Ingen deltakelse enda|2={{GENDER:$3|$3}} og {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} og {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Kommentér ($1)|Kommentarer ($1)|0=Bli den første til å kommentere!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|Kommentér ($1)|Kommentarer ($1)|0=Bli den første til å kommentere!}}', # Fuzzy
 	'flow-comment-restored' => 'Gjenopprettet kommentar',
 	'flow-comment-deleted' => 'Slettet kommentar',
 	'flow-comment-hidden' => 'Skjult kommentar',
@@ -3527,7 +3529,7 @@ $messages['sv'] = array(
 	'flow-history-pages-topic' => 'Visas på [$1 "$2" board]',
 	'flow-history-pages-post' => 'Visas på [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 påbörjade detta ämne|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} och $2 {{PLURAL:$2|annan|andra}}|0=Inget deltagande ännu|2={{GENDER:$3|$3}} och {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} och {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Kommentera ($1)|Kommentarer ($1)|0=Var den första att kommentera!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|Kommentera ($1)|Kommentarer ($1)|0=Var den första att kommentera!}}', # Fuzzy
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Var först med att kommentera!|$1 {{PLURAL:$1|kommentar|kommentarer}} av $2 {{PLURAL:$2|användare|användare}}}}',
 	'flow-comment-restored' => 'Återställd kommentar',
 	'flow-comment-deleted' => 'Raderad kommentar',
@@ -3740,7 +3742,7 @@ $messages['uk'] = array(
 	'flow-history-pages-topic' => 'З\'являється на [стіні $1  "$2"]',
 	'flow-history-pages-post' => "З'являється на [$1 $2]",
 	'flow-topic-participants' => '{{PLURAL:$1|$3 {{GENDER:$3|розпочав цю тему|розпочала цю тему}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} та {{PLURAL:$2|інший|інші|інших}}|0=Ще не має учасників|2={{GENDER:$3|$3}} та {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} та {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Коментар ($1)|Коментарі ($1)|Коментарів ($1)|0=Залиште перший коментар!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|Коментар ($1)|Коментарі ($1)|Коментарів ($1)|0={{GENDER:$2|Залиште перший коментар!}}}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Залиште перший коментар!|$1 {{PLURAL:$1|коментар|коментарі|коментарів}} від $2 {{PLURAL:$2|користувача|користувачів}}}}',
 	'flow-comment-restored' => 'Відновлений коментар',
 	'flow-comment-deleted' => 'Видалений коментар',
@@ -3911,7 +3913,7 @@ $messages['vi'] = array(
 	'flow-history-pages-topic' => 'Xuất hiện trên [$1 bảng tin nhắn “$2”]',
 	'flow-history-pages-post' => 'Xuất hiện trên [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 đã bắt đầu chủ đề này|$3, $4, $5, và {{PLURAL:$2|một người|những người}} khác|0=Chưa có ai tham gia|2=$3 và $4|3=$3, $4, và $5}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Bình luận ($1)|0=Hãy là người đầu tiên bình luận!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|Bình luận ($1)|0=Hãy là người đầu tiên bình luận!}}', # Fuzzy
 	'flow-comment-restored' => 'Bình luận đã được phục hồi',
 	'flow-comment-deleted' => 'Bình luận đã bị xóa',
 	'flow-comment-hidden' => 'Bình luận đã bị ẩn',
