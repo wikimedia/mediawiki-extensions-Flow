@@ -57,6 +57,7 @@ $wgResourceModules += array(
 		'scripts' => array(
 			'discussion/ui.js',
 			'discussion/forms.js',
+			'discussion/title.js',
 			'discussion/paging.js',
 		),
 		'dependencies' => array(
@@ -68,6 +69,7 @@ $wgResourceModules += array(
 			'mediawiki.util',
 			'jquery.byteLimit',
 			'jquery.tipsy',
+			'ext.flow.parsoid',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
