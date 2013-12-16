@@ -12,7 +12,7 @@ class Container extends \Pimple {
 	 *  special page or API module), there is a good chance that your code
 	 *  requires refactoring
 	 *
-	 * @return FLow\Container
+	 * @return Flow\Container
 	 */
 	public static function getContainer() {
 		static $container;
