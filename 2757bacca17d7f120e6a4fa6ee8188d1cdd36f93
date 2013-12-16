@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_f7f306e1",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 54
+      },
+      "writtenOn": "2013-12-16T14:52:44Z",
+      "side": 1,
+      "message": "Now that I think of it - no, there\u0027s no reason for having the author\u0027s gender here. I\u0027ll just restore it as the username and mark it as unused.",
+      "parentUuid": "0ee75395_3474cccb",
+      "revId": "2757bacca17d7f120e6a4fa6ee8188d1cdd36f93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_d459205f",
         "filename": "modules/moderation/moderation.js",
         "patchSetId": 8
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_b7f9fec2",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 54
+      },
+      "writtenOn": "2013-12-16T14:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_d459205f",
+      "revId": "2757bacca17d7f120e6a4fa6ee8188d1cdd36f93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_b4569c2b",
         "filename": "modules/moderation/moderation.js",
         "patchSetId": 8
@@ -47,6 +83,24 @@
       "writtenOn": "2013-12-16T13:55:20Z",
       "side": 1,
       "message": "In mw.message(), GENDER cannot be determined based on a username. See https://www.mediawiki.org/wiki/Manual:Messages_API#GENDER_in_JavaScript",
+      "revId": "2757bacca17d7f120e6a4fa6ee8188d1cdd36f93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_972a7a29",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 54
+      },
+      "writtenOn": "2013-12-16T14:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_b4569c2b",
       "revId": "2757bacca17d7f120e6a4fa6ee8188d1cdd36f93",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
