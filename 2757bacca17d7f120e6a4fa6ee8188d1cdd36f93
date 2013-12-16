@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_3474cccb",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-16T13:55:20Z",
+      "side": 1,
+      "message": "Just checking: You\u0027re not really improving GENDER support here by adding a mention for $1, but you\u0027re adding a feature, right? This basically changes the messages to:\n\n Please {{GENDER:$3|explain}} why you\u0027re suppressing {{GENDER:$1|this}} post by $1.\n\nIs this really needed from a grammatical perspective, because from a localisation perspective, it adds a lot of complexity? This also applies to several (most?) changes below.",
+      "revId": "2757bacca17d7f120e6a4fa6ee8188d1cdd36f93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_d459205f",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-16T13:55:20Z",
+      "side": 1,
+      "message": "In mw.msg(), GENDER cannot be determined based on a username. See https://www.mediawiki.org/wiki/Manual:Messages_API#GENDER_in_JavaScript",
+      "revId": "2757bacca17d7f120e6a4fa6ee8188d1cdd36f93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_b4569c2b",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-16T13:55:20Z",
+      "side": 1,
+      "message": "In mw.message(), GENDER cannot be determined based on a username. See https://www.mediawiki.org/wiki/Manual:Messages_API#GENDER_in_JavaScript",
+      "revId": "2757bacca17d7f120e6a4fa6ee8188d1cdd36f93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
