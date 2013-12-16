@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_96fde3b0",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 54
+      },
+      "writtenOn": "2013-12-16T11:26:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_418129a3",
+      "revId": "2f2b73347f3070cd319369c17fa7038d17177f2e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_e221699b",
         "filename": "modules/moderation/moderation.js",
         "patchSetId": 2
