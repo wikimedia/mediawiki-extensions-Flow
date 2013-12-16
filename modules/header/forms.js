@@ -145,7 +145,7 @@
 		 *
 		 * this = #flow-header
 		 *
-		 * @param {string} output
+		 * @param {object} output
 		 */
 		render: function ( output ) {
 			$( this )
