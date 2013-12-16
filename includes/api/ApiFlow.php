@@ -8,10 +8,7 @@ class ApiFlow extends ApiBase {
 		$params = $this->extractRequestParams();
 		$output = array();
 
-		if ( ! $params['workflow'] && ! $params['page'] ) {
-			$this->dieUsage( 'One of workflow or page parameters must be provided', 'badparams' );
-			return;
-		}
+		$this->requireOnlyOneParameter( $params, 'workflow', 'page' );
 
 		$id = UUID::create( $params['workflow'] );
 		$page = false;
