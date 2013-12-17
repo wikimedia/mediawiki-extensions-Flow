@@ -26,6 +26,17 @@
 		background-position: left;
 		background-size: 14px auto;
 		background-repeat: no-repeat;
+
+		// hide user links until hovered
+		.mw-usertoollinks {
+			color: @post-title-color;
+			display: none;
+		}
+		&:hover {
+			.mw-usertoollinks {
+				display: inline;
+			}
+		}
 	}
 
 	.flow-topic-moderated-hide {

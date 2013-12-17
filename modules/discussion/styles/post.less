@@ -191,15 +191,30 @@
 		.flow-post-moderated-message {
 			color: #aaa;
 			padding: 0;
-			margin: 0 0 20px 0;
+			font-weight: bold;
 
 			a {
-				color: #aaa;
 				text-decoration: none;
 				line-height: 18px;
 
 				&:hover {
-					border-bottom: 1px solid #ccc;
+					text-decoration: underline;
+				}
+			}
+
+			// turn show/hide link gray
+			.flow-post-moderated-view {
+				color: #aaa;
+			}
+
+			// hide user links until hovered
+			.mw-usertoollinks {
+				color: @post-title-color;
+				display: none;
+			}
+			&:hover {
+				.mw-usertoollinks {
+					display: inline;
 				}
 			}
 
@@ -249,7 +264,6 @@
 			color: #aaa;
 
 			// hide non-essential elements
-			.flow-post-title,
 			.flow-datestamp {
 				display: none;
 			}
