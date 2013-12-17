@@ -136,7 +136,7 @@ class PostRevision extends AbstractRevision {
 	 * @return User|bool The username of the User who created this post.
 	 */
 	public function getCreator( $user = null ) {
-		if ( $this->isAllowed( $user ) ) {
+		if ( $this->isAllowed( $user, 'view' ) ) {
 			if ( $this->getCreatorIdRaw() != 0 ) {
 				$user = User::newFromId( $this->getCreatorIdRaw() );
 			} else {

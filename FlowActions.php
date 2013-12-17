@@ -190,7 +190,8 @@ $wgFlowActions = array(
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$fragment = '';
-					if ( $revision->isAllowed( $user, PostRevision::MODERATED_HIDDEN ) ) {
+					$permissions = $templating->getActionPermissions( $user );
+					if ( $permissions->isAllowed( $revision, 'view' ) ) {
 						$fragment = 'flow-post-' . $revision->getPostId()->getHex();
 					}
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), $fragment );
@@ -255,7 +256,8 @@ $wgFlowActions = array(
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$fragment = '';
-					if ( $revision->isAllowed( $user, PostRevision::MODERATED_DELETED ) ) {
+					$permissions = $templating->getActionPermissions( $user );
+					if ( $permissions->isAllowed( $revision, 'view' ) ) {
 						$fragment = 'flow-post-' . $revision->getPostId()->getHex();
 					}
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), $fragment );
@@ -322,7 +324,8 @@ $wgFlowActions = array(
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$fragment = '';
-					if ( $revision->isAllowed( $user, PostRevision::MODERATED_SUPPRESSED ) ) {
+					$permissions = $templating->getActionPermissions( $user );
+					if ( $permissions->isAllowed( $revision, 'view' ) ) {
 						$fragment = 'flow-post-' . $revision->getPostId()->getHex();
 					}
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), $fragment );
@@ -472,7 +475,10 @@ $wgFlowActions = array(
 		'log_type' => false, // don't log views
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
-			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_HIDDEN => function( PostRevision $post, RevisionActionPermissions $permissions ) {
+					// visible for logged in users (or anyone with hide permission)
+					return $permissions->getUser()->isLoggedIn() ? '' : 'flow-hide';
+				},
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
