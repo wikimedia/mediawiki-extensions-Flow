@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_88b937c9",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-17T22:34:00Z",
+      "side": 1,
+      "message": "I don\u0027t think we should handle that at this level,  the \u0027username blocked\u0027 text needs to be distinctive from a normal username, meaning it must be wrapped in some sort of html. I don\u0027t think we should be returning valid escaped html at this point, but i do agree a simple \u0027false\u0027 is perhaps error prone.  What else could we do?",
+      "parentUuid": "0ee75395_5e31c2ff",
+      "revId": "b95de8d0bdb401599dc1685b32e62df49320620c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_cf251758",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 4
