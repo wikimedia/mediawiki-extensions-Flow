@@ -346,7 +346,7 @@ class TopicBlock extends AbstractBlock {
 			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 		} else {
 			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) ); 	
+			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		}
 
 		$prefix = '';
@@ -359,8 +359,37 @@ class TopicBlock extends AbstractBlock {
 			$history = $this->loadTopicHistory();
 
 			// get rid of history entries user doesn't have sufficient permissions for
-			foreach ( $history as $i => $post ) {
-				if ( !$this->permissions->isAllowed( $post, 'topic-history' ) ) {
+			$needed = $query = array();
+			foreach ( $history as $i => $revision ) {
+				$hex = $revision->getPostId()->getHex();
+				if ( !isset( $needed[$hex] ) ) {
+					$query[] = array( 'tree_rev_descendant_id' => $revision->getPostId() );
+				}
+				$needed[$hex][] = $i;
+			}
+			$found = $this->storage->findMulti(
+				'PostRevision',
+				$query,
+				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			);
+			foreach ( $found as $newest ) {
+				$newest = reset( $newest );
+				$hex = $newest->getPostId()->getHex();
+				if ( !isset( $needed[$hex] ) ) {
+					wfWarn( __METHOD__ . ': Received unrequested postId : ' . $hex );
+					continue;
+				}
+				$indexes = $needed[$hex];
+				unset( $needed[$hex] );
+				if ( !$this->permissions->isAllowed( $newest, 'topic-history' ) ) {
+					foreach ( $indexes as $i ) {
+						unset( $history[$i] );
+					}
+				}
+			}
+			foreach ( $needed as $hex => $indexes ) {
+				wfWarn( __METHOD__ . ': Did not receive postId: ' . $hex );
+				foreach ( $indexes as $i ) {
 					unset( $history[$i] );
 				}
 			}
@@ -514,12 +543,21 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		$history = $this->getHistory( $options['postId'] );
+		$topicTitle = $this->loadTopicTitle(); // pre-loaded by loadRequestedPost
+		if ( !$this->permissions->isAllowed( $topicTitle, 'view' ) ) {
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			return;
+		}
 
-		// get rid of history entries user doesn't have sufficient permissions for
-		foreach ( $history as $i => $post ) {
-			if ( !$this->permissions->isAllowed( $post, 'post-history' ) ) {
-				unset( $history[$i] );
+		$history = array();
+		// don't show post history if user doesn't have permissions
+		// @todo: if some day, we have rev-delete, we'll need to also check for that in here
+		if ( $this->permissions->isAllowed( $post, 'post-history' ) ) {
+			// get rid of history entries user doesn't have sufficient permissions for
+			foreach ( $this->getHistory( $options['postId'] ) as $i => $post ) {
+				if ( $this->permissions->isAllowed( $post, 'post-history' ) ) {
+					$history[$i] = $post;
+				}
 			}
 		}
 
