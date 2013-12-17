@@ -241,6 +241,7 @@ class ObjectLocator implements ObjectStorage {
 			$index = $this->getIndexFor( $keys, $options );
 			$res = $index->findMulti( $queries );
 		} catch ( NoIndexException $e ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ': ' . $e->getMessage() );
 			$res = $this->storage->findMulti( $queries, $this->convertToDbOptions( $options ) );
 			$output = array();
 

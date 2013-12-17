@@ -470,6 +470,21 @@ $wgFlowActions = array(
 		'button-method' => 'GET',
 	),
 
+	'board-history' => array(
+		'performs-writes' => false,
+		'log_type' => false,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_HIDDEN => function( PostRevision $post, RevisionActionPermissions $permissions ) {
+					// visible for logged in users (or anyone with hide permission)
+					return $permissions->getUser()->isLoggedIn() ? '' : 'flow-hide';
+				},
+			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
+		),
+		'button-method' => 'GET',
+	),
+
 	'view' => array(
 		'performs-writes' => false,
 		'log_type' => false, // don't log views
