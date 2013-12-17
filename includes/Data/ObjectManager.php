@@ -1207,6 +1207,8 @@ class TopKIndex extends FeatureIndex {
 			'create' => function() { return false; },
 			'shallow' => null,
 		);
+		$this->options['order'] = strtoupper( $this->options['order'] );
+
 		if ( !is_array( $this->options['sort'] ) ) {
 			$this->options['sort'] = array( $this->options['sort'] );
 		}
@@ -1222,7 +1224,7 @@ class TopKIndex extends FeatureIndex {
 		}
 		if ( isset( $options['sort'], $options['order'] ) ) {
 			return $options['sort'] === $this->options['sort']
-				&& $options['order'] === $this->options['order'];
+				&& strtoupper( $options['order'] ) === $this->options['order'];
 		}
 		return true;
 	}
