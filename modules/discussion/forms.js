@@ -115,7 +115,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 		}
 	);
 
-	function editPostLink( e ) {
+	$container.find( '.flow-edit-post-link' ).click( function ( e ) {
 			e.preventDefault();
 			var $post = $( this ).closest( '.flow-post' ),
 				$contentContainer = $post.find( '.flow-post-content' ),
@@ -160,13 +160,11 @@ $( document ).flow( 'registerInitFunction', function(e) {
 							return mw.flow.api.editPost( workflowId, postId, content );
 						}
 					).done( function ( output ) {
-						$post
-							.empty()
-							.append(
-								$( output.rendered )
-									.find( '.flow-post' )
-									.children().click( editPostLink )
-							);
+						var $content = $( output.rendered );
+						$post.closest( '.flow-post-container' )
+							.replaceWith( $content );
+						$content
+							.trigger( 'flow_init' );
 					} );
 
 				$post.addClass( 'flow-post-nocontrols' );
@@ -188,10 +186,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 				$errorDiv.insertAfter( $contentContainer )
 					.slideDown();
 			} );
-	}
-	// Overload 'edit post' link.
-	$container.find( '.flow-edit-post-link' )
-		.click( editPostLink );
+	} );
 
 	// Overload 'edit title' link.
 	$container.find( 'a.flow-edit-topic-link' )
