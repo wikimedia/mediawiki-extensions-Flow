@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_9fe848a4",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-17T19:30:54Z",
+      "side": 1,
+      "message": "The option should be like array( \u0027sort\u0027 \u003d\u003e \u0027rev_id\u0027, \u0027order\u0027 \u003d\u003e \u0027DESC\u0027, \u0027limit\u0027 \u003d\u003e 1 ).  The object manager is not expecting a db equivalent option.",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_7a3592a2",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-17T19:30:54Z",
+      "side": 1,
+      "message": "1% of users is still quite a lot for enwiki.  Could we cache the result instead and update the cache based on max user_Id in cache?",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
