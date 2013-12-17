@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_29fa2ada",
+        "filename": "Resources.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-17T14:59:37Z",
+      "side": 1,
+      "message": "Yeah, but RL throws an exception if you try to register an existing module.",
+      "parentUuid": "0ee75395_35f84379",
+      "revId": "68032fb4e7473a60e4735b615fe93481007635d8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_55e067c7",
         "filename": "modules/discussion/ui.js",
         "patchSetId": 11
