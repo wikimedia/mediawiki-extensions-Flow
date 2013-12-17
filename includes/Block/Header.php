@@ -89,7 +89,7 @@ class HeaderBlock extends AbstractBlock {
 					// if $wgFlowContentFormat is set to html the Header::create
 					// call will convert the wikitext input into html via parsoid, and
 					// parsoid requires the page exist.
-					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );	
+					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
 				}
 
 				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
@@ -137,10 +137,39 @@ class HeaderBlock extends AbstractBlock {
 				'historyExists' => false,
 			);
 
-			$historyRecord = $this->loadBoardHistory();
-			if ( $historyRecord ) {
+			$history = $this->loadBoardHistory();
+
+			// get rid of history entries user doesn't have sufficient permissions for
+			foreach ( $history as $i => $revision ) {
+				switch( $revision->getRevisionType() ) {
+					case 'header':
+						// headers can't be moderated
+						break;
+					case 'post':
+						// comments should not be in board history
+						if ( !$revision->isTopicTitle() ) {
+							unset( $history[$i] );
+						}
+
+						// check permissions against most recent revision
+						// NOTE: code duplicated from Topic::loadTopicTitle
+						$postId = $revision->getPostId();
+						$found = $this->storage->find(
+							'PostRevision',
+							array( 'tree_rev_descendant_id' => $postId ),
+							array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+						);
+
+						if ( !$found || !$this->permissions->isAllowed( reset( $found ), 'board-history' ) ) {
+							unset( $history[$i] );
+						}
+						break;
+				}
+			}
+
+			if ( $history ) {
 				$tplVars['historyExists'] = true;
-				$tplVars['history'] = new History( $historyRecord );
+				$tplVars['history'] = new History( $history );
 				$tplVars['historyRenderer'] = new HistoryRenderer( $templating, $this );
 			}
 
