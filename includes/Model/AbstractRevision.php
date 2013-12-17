@@ -501,4 +501,6 @@ abstract class AbstractRevision {
 	public function getModeratedByUserId() {
 		return $this->moderatedByUserId;
 	}
+
+	abstract public function getRevisionType();
 }
