@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0ee75395_62ca84a4",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-17T23:04:31Z",
+      "side": 1,
+      "message": "Document that this returns valid HTML",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_1f92f5a1",
         "filename": "includes/Contributions/Formatter.php",
         "patchSetId": 9
@@ -53,6 +70,40 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_42c78099",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-17T23:04:31Z",
+      "side": 1,
+      "message": "typo : timeAndDate",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_62d4c417",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-17T23:04:31Z",
+      "side": 1,
+      "message": "The formatter should not be loading any revisions, it should all be prepared for it in the query class.  This is because the formatter works one line at a time and must request these in separate round trips.",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_9fe848a4",
         "filename": "includes/Contributions/Query.php",
         "patchSetId": 9
@@ -87,6 +138,23 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_42b2e047",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-17T23:04:31Z",
+      "side": 1,
+      "message": "The SpecialContributions::getUserCond \u0027newbie\u0027 option also uses \n\n    \u0027ug_group\u0027 \u003d\u003e User::getGroupsWithPermissions( \u0027bot\u0027 )\n\nas a join condition.  As is we are selecting any user that is in no groups rather than just removing bots.\n\nAlso see comment below, i think it might be more optimal to select a list of bots in the newest 1% rather than the list of non-bots.",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_7a3592a2",
         "filename": "includes/Contributions/Query.php",
         "patchSetId": 9
@@ -98,6 +166,41 @@
       "writtenOn": "2013-12-17T19:30:54Z",
       "side": 1,
       "message": "1% of users is still quite a lot for enwiki.  Could we cache the result instead and update the cache based on max user_Id in cache?",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_028f3879",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-17T23:04:31Z",
+      "side": 1,
+      "message": "This does seem like a lot, it will probably generate a massive IN condition.\n\nIt looks like the newbie flag in SpecialContributions is for selecting the newest 1% of users that arn\u0027t bots, likely the bot list is much smaller.  Could we instead do something like\n\n    user_id \u003e $minimumNewbie and user_id NOT IN (list, of, found, bot, ids)",
+      "parentUuid": "0ee75395_7a3592a2",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_62e3a432",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-17T23:04:31Z",
+      "side": 1,
+      "message": "Its not obvious that this does anything,  in general i\u0027m not a fan of \u0026$path.",
       "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
