@@ -35,11 +35,17 @@ $messages['en'] = array(
 
 	'flow-post-moderated-toggle-show' => '[Show]',
 	'flow-post-moderated-toggle-hide' => '[Hide]',
-	'flow-hide-content' => '{{GENDER:$1|Hidden}} by $1',
+	'flow-hide-post-content' => 'This comment was {{GENDER:$1|hidden}} by $2',
+	'flow-hide-title-content' => '{{GENDER:$1|Hidden}} by $2',
+	'flow-hide-header-content' => '{{GENDER:$1|Hidden}} by $2',
 	'flow-hide-usertext' => '$1',
-	'flow-delete-content' => '{{GENDER:$1|Deleted}} by $1',
+	'flow-delete-post-content' => 'This comment was {{GENDER:$1|deleted}} by $2',
+	'flow-delete-title-content' => '{{GENDER:$1|Deleted}} by $2',
+	'flow-delete-header-content' => '{{GENDER:$1|Deleted}} by $2',
 	'flow-delete-usertext' => '$1',
-	'flow-suppress-content' => '{{GENDER:$1|Suppressed}} by $1',
+	'flow-suppress-post-content' => 'This comment was {{GENDER:$1|suppressed}} by $2',
+	'flow-suppress-title-content' => '{{GENDER:$1|Suppressed}} by $2',
+	'flow-suppress-header-content' => '{{GENDER:$1|Suppressed}} by $2',
 	'flow-suppress-usertext' => "<em>Username suppressed</em>",
 	'flow-post-actions' => 'Actions',
 	'flow-topic-actions' => 'Actions',
@@ -308,28 +314,67 @@ Name of the Flow log filter on the [[Special:Log]] page.',
 	'flow-header-empty' => 'Used as a placeholder text for headers which have no content.',
 	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
 	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post',
-	'flow-hide-content' => 'Message to display instead of content when the content has been hidden.
+	'flow-hide-post-content' => 'Message to display instead of content when the post has been hidden.
 
 Parameters:
 * $1 - username that hid the post, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-hide-title-content' => 'Message to display instead of content when the title has been hidden.
+
+Parameters:
+* $1 - username that hid the title, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-hide-header-content' => 'Message to display instead of content when the header has been hidden.
+
+Parameters:
+* $1 - username that hid the header, can be used for GENDER
+* $2 - user link and tool links for the user.
 {{Related|Flow-content}}',
 	'flow-hide-usertext' => 'Used as username if the post was hidden.
 
 Parameters:
 * $1 - Username of the post creator. Can be used for GENDER',
-	'flow-delete-content' => 'Message to display instead of content when the content has been deleted.
+	'flow-delete-post-content' => 'Message to display instead of content when the post has been deleted.
 
 Parameters:
 * $1 - username that deleted the post, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-delete-title-content' => 'Message to display instead of content when the title has been deleted.
+
+Parameters:
+* $1 - username that deleted the title, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-delete-header-content' => 'Message to display instead of content when the header has been deleted.
+
+Parameters:
+* $1 - username that deleted the header, can be used for GENDER
+* $2 - user link and tool links for the user.
 {{Related|Flow-content}}',
 	'flow-delete-usertext' => 'Used as username if the post was deleted.
 
 Parameters:
 * $1 - Username of the post creator. Can be used for GENDER',
-	'flow-suppress-content' => 'Message to display instead of content when the content has been suppressed.
+	'flow-suppress-post-content' => 'Message to display instead of content when the post has been suppressed.
 
 Parameters:
 * $1 - username that suppressed the post, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-suppress-title-content' => 'Message to display instead of content when the title has been suppressed.
+
+Parameters:
+* $1 - username that suppressed the title, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-suppress-header-content' => 'Message to display instead of content when the header has been suppressed.
+
+Parameters:
+* $1 - username that suppressed the header, can be used for GENDER
+* $2 - user link and tool links for the user.
 {{Related|Flow-content}}',
 	'flow-suppress-usertext' => 'Used as username if the post was suppressed.
 

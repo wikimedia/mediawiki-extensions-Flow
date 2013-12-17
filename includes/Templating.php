@@ -354,14 +354,21 @@ class Templating {
 	 * @return string
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'html', User $permissionsUser = null ) {
-		$state = $revision->getModerationState();
-		$user = $revision->getModeratedByUserText();
-
-		// Messages: flow-hide-content, flow-delete-content, flow-suppress-content
-		$message = wfMessage( "flow-$state-content", $user );
-
+		// if user isn't allowed to see content, display message to tell it's been moderated
 		$permissions = $this->getActionPermissions( $permissionsUser );
 		if ( !$permissions->isAllowed( $revision, 'view' ) ) {
+			$state = $revision->getModerationState();
+			$user = User::newFromId( $revision->getModeratedByUserId() );
+
+			// get revision type to make more precise message
+			$type = $revision->getRevisionType();
+			if ( $type == 'post' && $revision->isTopicTitle() ) {
+				$type = 'title';
+			}
+
+			// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
+			//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
+			$message = wfMessage( "flow-$state-$type-content", $user, $this->getUserLinks( $revision, $user ) );
 			if ( $message->exists() ) {
 				return $message->text();
 			} else {

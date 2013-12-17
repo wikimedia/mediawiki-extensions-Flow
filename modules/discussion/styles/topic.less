@@ -26,6 +26,18 @@
 		background-position: left;
 		background-size: 14px auto;
 		background-repeat: no-repeat;
+
+		// hide user links until hovered
+		.mw-usertoollinks {
+			color: @post-title-color;
+			opacity: 0;
+			transition: opacity 0.2s;
+		}
+		&:hover {
+			.mw-usertoollinks {
+				opacity: 1;
+			}
+		}
 	}
 
 	.flow-topic-moderated-hide {
