@@ -66,7 +66,7 @@ echo Html::openElement( 'div', array(
 		<?php
 		if ( $post->isModerated() ):
 			$moderationState = $post->getModerationState();
-			$allowed = $post->isAllowed( $user ) ? 'allowed' : 'disallowed';
+			$allowed = $postView->actions()->isAllowed( 'view' ) ? 'allowed' : 'disallowed';
 			echo Html::rawElement(
 				'p',
 				array( 'class' => "flow-post-moderated-message flow-post-moderated-$moderationState flow-post-content-$allowed", ),

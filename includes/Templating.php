@@ -160,11 +160,22 @@ class Templating {
 		return new PostActionMenu(
 			$this->urlGenerator,
 			$container['flow_actions'],
-			new RevisionActionPermissions( $container['flow_actions'], $this->globals['user'] ),
+			$this->getActionPermissions( $this->globals['user'] ),
 			$block,
 			$post,
 			$this->globals['editToken']
 		);
+	}
+
+	// An ideal world may pull this from the container, but for now this is fine.  This templating
+	// class has too many responsibilities to keep receiving all required objects in the constructor.
+	protected function getActionPermissions( User $user = null ) {
+		// if no user defined, assume anonymous user
+		if ( !$user instanceof User ) {
+			$user = new User;
+		}
+
+		return new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 	}
 
 	public function getPagingLink( $block, $direction, $offset, $limit ) {
@@ -264,7 +275,8 @@ class Templating {
 		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
 		$message = wfMessage( "flow-$state-usertext", $username );
 
-		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
+		$permissions = $this->getActionPermissions( $permissionsUser );
+		if ( !$permissions->isAllowed( $revision, 'view' ) && $message->exists() ) {
 			return $message->text();
 		} else {
 			return $username;
@@ -289,7 +301,8 @@ class Templating {
 		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
 		$message = wfMessage( "flow-$state-usertext", $username );
 
-		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
+		$permissions = $this->getActionPermissions( $permissionsUser );
+		if ( !$permissions->isAllowed( $revision, 'view' ) && $message->exists() ) {
 			return $message->text();
 		} else {
 			return Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
@@ -317,7 +330,8 @@ class Templating {
 		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
 		$message = wfMessage( "flow-$state-usertext", $username );
 
-		if ( !$revision->isAllowed( $permissionsUser ) && $message->exists() ) {
+		$permissions = $this->getActionPermissions( $permissionsUser );
+		if ( !$permissions->isAllowed( $revision, 'view' ) && $message->exists() ) {
 			return $message->text();
 		} else {
 			return $username;
@@ -341,7 +355,8 @@ class Templating {
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'html', User $permissionsUser = null ) {
 		// if user isn't allowed to see content, display message to tell it's been moderated
-		if ( !$revision->isAllowed( $permissionsUser ) ) {
+		$permissions = $this->getActionPermissions( $permissionsUser );
+		if ( !$permissions->isAllowed( $revision, 'view' ) ) {
 			$state = $revision->getModerationState();
 			$user = User::newFromId( $revision->getModeratedByUserId() );
 
