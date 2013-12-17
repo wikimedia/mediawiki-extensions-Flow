@@ -206,7 +206,7 @@ $messages['en'] = array(
 	'flow-moderation-confirmation-suppress-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
 	'flow-moderation-confirmation-delete-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
 	'flow-moderation-confirmation-hide-post' => 'Consider {{GENDER:$1|giving}} $1 feedback on this post.',
-	'flow-moderation-confirmation-restore-post' => 'You have successfully restored this post.',
+	'flow-moderation-confirmation-restore-post' => 'You have restored this post.',
 	'flow-moderation-title-suppress-topic' => 'Suppress topic?',
 	'flow-moderation-title-delete-topic' => 'Delete topic?',
 	'flow-moderation-title-hide-topic' => 'Hide topic?',
@@ -222,7 +222,7 @@ $messages['en'] = array(
 	'flow-moderation-confirmation-suppress-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
 	'flow-moderation-confirmation-delete-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
 	'flow-moderation-confirmation-hide-topic' => 'Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
-	'flow-moderation-confirmation-restore-topic' => 'You have successfully restored this topic.',
+	'flow-moderation-confirmation-restore-topic' => 'You have restored this topic.',
 
 	// Permalink related stuff
 	'flow-topic-permalink-warning' => 'This topic was started on [$2 $1]',
@@ -371,7 +371,7 @@ Parameters:
 	'flow-post-action-view' => 'Used as text for the link which is used to view.
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.',
-	'flow-post-action-suppress-post' => 'Used as a label for  the submit button in the suppression form.
+	'flow-post-action-suppress-post' => 'Used as a label for the submit button in the suppression form.
 {{Related|Flow-action}}
 {{Identical|Suppress}}',
 	'flow-post-action-delete-post' => 'Used as a label for the submit button in the deletion form.
@@ -746,7 +746,7 @@ Parameters:
 * $5 - a number used for plural support
 See also:
 * {{msg-mw|Flow-notification-reply-bundle}}',
-	'flow-notification-mention-email-subject' => 'Email notification subject when a user is mentioned in a post.  Parameters:
+	'flow-notification-mention-email-subject' => 'Email notification subject when a user is mentioned in a post. Parameters:
 * $1 - Username of the person who mentions other users
 * $2 - Flow title text',
 	'flow-notification-mention-email-batch-body' => '{{doc-singularthey}}
@@ -786,7 +786,7 @@ See also:
 * $1 - name of the user that created a new topic
 * $2 - the title of the new topic
 * $3 - title of the page the topic belongs to',
-	'echo-category-title-flow-discussion' => 'This is a short title for notification category.  Parameters:
+	'echo-category-title-flow-discussion' => 'This is a short title for notification category. Parameters:
 * $1 - number of mentions, for PLURAL support
 
 {{Related|Echo-category-title}}',
@@ -831,22 +831,22 @@ See also:
 	'flow-moderation-confirm-delete-post' => 'Label for a button that will confirm deletion of a post.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Delete}}',
-	'flow-moderation-confirm-hide-post' => 'Label for a button that will confirm hiding of a post.
+	'flow-moderation-confirm-hide-post' => 'Label for a button that will confirm hiding a post.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Hide}}',
-	'flow-moderation-confirm-restore-post' => 'Label for a button that will confirm restoring of a post.
+	'flow-moderation-confirm-restore-post' => 'Label for a button that will confirm restoring a post.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Restore}}',
-	'flow-moderation-confirmation-suppress-post' => 'Message displayed after a successful suppression of a post. Parameters:
+	'flow-moderation-confirmation-suppress-post' => 'Message displayed after suppressing a post. Parameters:
 * $1 - the name of the user whose post is being moderated. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-confirmation-delete-post' => 'Message displayed after a successful deletion of a post. Parameters:
+	'flow-moderation-confirmation-delete-post' => 'Message displayed after deleting a post. Parameters:
 * $1 - the name of the user whose post is being moderated. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-confirmation-hide-post' => 'Message displayed after a successful hiding of a post. Parameters:
+	'flow-moderation-confirmation-hide-post' => 'Message displayed after hiding a post. Parameters:
 * $1 - the name of the user whose post is being moderated. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-confirmation-restore-post' => 'Message displayed after a successful restoring of a post. Parameters:
+	'flow-moderation-confirmation-restore-post' => 'Message displayed after restoring a post. Parameters:
 * $1 - the name of the user whose post is being restored. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-moderation-title-suppress-topic' => 'Title for the moderation confirmation dialog when a topic is being suppressed.
@@ -882,22 +882,22 @@ See also:
 	'flow-moderation-confirm-delete-topic' => 'Label for a button that will confirm deletion of a topic.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Delete}}',
-	'flow-moderation-confirm-hide-topic' => 'Label for a button that will confirm hiding of a topic.
+	'flow-moderation-confirm-hide-topic' => 'Label for a button that will confirm hiding a topic.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Hide}}',
-	'flow-moderation-confirm-restore-topic' => 'Label for a button that will confirm restoring of a topic.
+	'flow-moderation-confirm-restore-topic' => 'Label for a button that will confirm restoring a topic.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Restore}}',
-	'flow-moderation-confirmation-suppress-topic' => 'Message displayed after a successful suppression of a topic. Parameters:
+	'flow-moderation-confirmation-suppress-topic' => 'Message displayed after suppressing a topic. Parameters:
 * $1 - the name of the user whose post is being moderated. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-confirmation-delete-topic' => 'Message displayed after a successful deletion of a topic. Parameters:
+	'flow-moderation-confirmation-delete-topic' => 'Message displayed after deleting a topic. Parameters:
 * $1 - the name of the user whose post is being moderated. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-confirmation-hide-topic' => 'Message displayed after a successful hiding of a topic. Parameters:
+	'flow-moderation-confirmation-hide-topic' => 'Message displayed after hiding a topic. Parameters:
 * $1 - the name of the user whose post is being moderated. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-confirmation-restore-topic' => 'Message displayed after a successful restoring of a topic. Parameters:
+	'flow-moderation-confirmation-restore-topic' => 'Message displayed after restoring a topic. Parameters:
 * $1 - the name of the user whose post is being restored. GENDER supported.
 {{Related|Flow-moderation-confirmation}}',
 	'flow-topic-permalink-warning' => 'Displayed at the top of a page when a person has clicked on a permanent link to a topic.
