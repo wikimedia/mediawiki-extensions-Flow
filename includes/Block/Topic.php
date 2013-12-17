@@ -359,8 +359,10 @@ class TopicBlock extends AbstractBlock {
 			$history = $this->loadTopicHistory();
 
 			// get rid of history entries user doesn't have sufficient permissions for
-			foreach ( $history as $i => $post ) {
-				if ( !$this->permissions->isAllowed( $post, 'topic-history' ) ) {
+			foreach ( $history as $i => $revision ) {
+				// check permissions against most recent revision
+				$last = $this->loadRequestedPost( $revision->getPostId() );
+				if ( !$last || !$this->permissions->isAllowed( $last, 'topic-history' ) ) {
 					unset( $history[$i] );
 				}
 			}
@@ -524,13 +526,11 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		$history = $this->getHistory( $options['postId'] );
-
-		// get rid of history entries user doesn't have sufficient permissions for
-		foreach ( $history as $i => $post ) {
-			if ( !$this->permissions->isAllowed( $post, 'post-history' ) ) {
-				unset( $history[$i] );
-			}
+		$history = array();
+		// don't show post history if user doesn't have permissions
+		// @todo: if some day, we have rev-delete, we'll need to also check for that in here
+		if ( $this->permissions->isAllowed( $post, 'post-history' ) ) {
+			$history = $this->getHistory( $options['postId'] );
 		}
 
 		return $templating->render( "flow:post-history.html.php", array(
