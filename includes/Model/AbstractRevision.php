@@ -2,6 +2,8 @@
 
 namespace Flow\Model;
 
+use Flow\Container;
+use Flow\RevisionActionPermissions;
 use MWTimestamp;
 use User;
 use Flow\ParsoidUtils;
@@ -18,26 +20,18 @@ abstract class AbstractRevision {
 	 **/
 	static public $perms = array(
 		self::MODERATED_NONE => array(
-			// The permission needed from User::isAllowed to see and create new revisions
-			'perm' => null,
 			// Whether or not to apply transition to this moderation state to historical revisions
 			'historical' => true,
 		),
 		self::MODERATED_HIDDEN => array(
-			// The permission needed from User::isAllowed to see and create new revisions
-			'perm' => 'flow-hide',
 			// Whether or not to apply transition to this moderation state to historical revisions
 			'historical' => false,
 		),
 		self::MODERATED_DELETED => array(
-			// The permission needed from User::isAllowed to see and create new revisions
-			'perm' => 'flow-delete',
 			// Whether or not to apply transition to this moderation state to historical revisions
 			'historical' => true,
 		),
 		self::MODERATED_SUPPRESSED => array(
-			// The permission needed from User::isAllowed to see and create new revisions
-			'perm' => 'flow-suppress',
 			// Whether or not to apply transition to this moderation state to historical revisions
 			'historical' => true,
 		),
@@ -176,18 +170,6 @@ abstract class AbstractRevision {
 		return $obj;
 	}
 
-	protected function mostRestrictivePermission( $a, $b ) {
-		$keys = array_keys( self::$perms );
-		$aPos = array_search( $a, $keys );
-		$bPos = array_search( $b, $keys );
-		if ( $aPos === false || $bPos === false ) {
-			wfWarn( __METHOD__ . ": Invalid permissions provided: '$a' '$b'" );
-			// err on the side of safety, most restrictive
-			return end( $keys );
-		}
-		return $keys[max( $aPos, $bPos )];
-	}
-
 	/**
 	 * $historical revisions must be provided when self::needsModerateHistorical
 	 * returns true.
@@ -198,8 +180,8 @@ abstract class AbstractRevision {
 			return null;
 		}
 
-		$mostRestrictive = self::mostRestrictivePermission( $state, $this->moderationState );
-		if ( !$this->isAllowed( $user, $mostRestrictive ) ) {
+		// doublecheck if user has permissions for but moderation action & last action
+		if ( !$this->isAllowed( $user, array( $changeType, $this->changeType ) ) ) {
 			return null;
 		}
 		if ( !$historical && $this->needsModerateHistorical( $state ) ) {
@@ -257,21 +239,31 @@ abstract class AbstractRevision {
 	/**
 	 * Is the user allowed to see this revision?
 	 *
+	 * Used permissions defined in FlowActions.
+	 *
 	 * @param User $user The user requesting access.  When null assumes a user with no permissions.
-	 * @param int $state One of the self::MODERATED_* constants. When null the internal moderation state is used.
+	 * @param string|array $action Action (or array of multiple actions) to check if allowed.
 	 * @return boolean True when the user is allowed to see the current revision
 	 */
-	public function isAllowed( $user = null, $state = null ) {
-		// allowing a $state to be passed is a bit hackish
-		if ( $state === null ) {
-			$state = $this->moderationState;
-		}
-		if ( !isset( self::$perms[$state] ) ) {
-			throw new \MWException( 'Unknown stored moderation state' );
+	public function isAllowed( $user = null, $action = null ) {
+		// allowing an $action to be passed is a bit hackish
+		if ( $action === null ) {
+			// unless a specific action has been passed in, assume we're checking user wants to view the post
+			$action = 'view';
 		}
 
-		$perm = self::$perms[$state]['perm'];
-		return $perm === null || ( $user && $user->isAllowed( $perm ) );
+		// if no user specified, assume anonymous user
+		if ( !$user instanceof User ) {
+			$user = new User;
+		}
+
+		$actions = Container::get( 'flow_actions' );
+		$permissions = new RevisionActionPermissions( $actions, $user );
+
+		return call_user_func_array(
+			array( $permissions, 'isAllowedAny' ),
+			array_merge( array( $this ), (array) $action )
+		);
 	}
 
 	public function hasHiddenContent() {
