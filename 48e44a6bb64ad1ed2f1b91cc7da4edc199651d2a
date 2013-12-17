@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_8e75bcf6",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-17T13:14:50Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure both workflow+page are allowed together in some cases, in which case it would not throw an error here.\n\ncreateWorkflowLoader accepts both $id (derived from param workflow) and $page (derived from param page). In some cases, both can (and should) be set to load the correct workflow; in other cases, only 1 will work (e.g. only page, when creating new workflow)",
+      "revId": "48e44a6bb64ad1ed2f1b91cc7da4edc199651d2a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
