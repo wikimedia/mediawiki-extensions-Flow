@@ -58,6 +58,10 @@ class History extends FakeResultWrapper {
 	 * @return HistoryRecord|bool
 	 */
 	public function fetchRow() {
+		if ( $this->numRows() === 0 ) {
+			return false;
+		}
+
 		$index = parent::fetchRow();
 		if ( $index !== false ) {
 			$this->currentRow = $this->records[$index];
