@@ -49,6 +49,10 @@ class HistoryRenderer {
 	public function getTimespans( History $history ) {
 		global $wgLang;
 
+		if ( $history->numRows() === 0 ) {
+			return array();
+		}
+
 		// Get history for pre-determined timespans.
 		$timestampLast4 = new MWTimestamp( strtotime( '4 hours ago' ) );
 		$timestampDay = new MWTimestamp( strtotime( date( 'Y-m-d' ) ) );
