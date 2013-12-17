@@ -139,6 +139,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_c2bf105b",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-17T23:38:12Z",
+      "side": 1,
+      "message": "Did you use \u0027DESC\u0027 instead of \u0027desc\u0027 for \u0027order\u0027?  The index is defining it with upper case \u0027DESC\u0027, patch 102348 would fix this problem.  The code above works but it bypasses the index cache",
+      "parentUuid": "0ee75395_22a7dca5",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_7fb221fa",
         "filename": "includes/Contributions/Query.php",
         "patchSetId": 9
