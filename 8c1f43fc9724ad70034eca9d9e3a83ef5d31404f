@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_75248bad",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-17T00:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_8705b318",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_c7297be2",
         "filename": "container.php",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2013-12-13T21:03:47Z",
       "side": 1,
       "message": "Pretty much everything uses $c[\u0027memcache.buffered\u0027].  Looking at the Query class it looks reasonable to pass $c[\u0027memcache\u0027](dont want to buffer this value) but should document here so its obvious.",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_151f7f5f",
+        "filename": "container.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-17T00:11:53Z",
+      "side": 1,
+      "message": "This is Matthias, so I\u0027ll let him do that documentation – your guess is as good as mine here.",
+      "parentUuid": "0ee75395_c7297be2",
       "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_5550670d",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-17T00:11:53Z",
+      "side": 1,
+      "message": "Made this slightly smarter.",
+      "parentUuid": "0ee75395_e7aebf2a",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_071ac37d",
         "filename": "includes/Contributions/Query.php",
         "patchSetId": 8
@@ -98,6 +152,24 @@
       "writtenOn": "2013-12-13T21:03:47Z",
       "side": 1,
       "message": "the other keys are using foo_bar but this is foo-bar",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_95414f3c",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-17T00:11:53Z",
+      "side": 1,
+      "message": "My intention was to make clear that this is *not* a database column but an object inserted somewhere else.",
+      "parentUuid": "0ee75395_a731d702",
       "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -138,6 +210,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_35516311",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-17T00:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_0743e367",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_6a25d6a8",
         "filename": "includes/Model/UUID.php",
         "patchSetId": 8
@@ -149,6 +239,24 @@
       "writtenOn": "2013-12-13T21:03:47Z",
       "side": 1,
       "message": "probably doesn\u0027t matter, but is the substr necessary?",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_553aa794",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-17T00:11:53Z",
+      "side": 1,
+      "message": "Not sure. I figured it would be since the UIDGenerator specifically refers to the 46 MSBs (which, actually, I\u0027m not doing right – I\u0027m taking the 46 LSBs – because that makes more sense to me), but I don\u0027t think it matters because the result always has 46 bits, and will always have 46 bits until the year 4199.",
+      "parentUuid": "0ee75395_6a25d6a8",
       "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
