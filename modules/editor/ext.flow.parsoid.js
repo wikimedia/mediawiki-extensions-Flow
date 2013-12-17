@@ -19,10 +19,10 @@
 
 				api.post( {
 					action: 'flow-parsoid-utils',
-					parsefrom: from,
-					parseto: to,
-					parsecontent: content,
-					parsetitle: title
+					from: from,
+					to: to,
+					content: content,
+					title: title
 				} )
 				.done( function ( data ) {
 					content = data['flow-parsoid-utils'].content;

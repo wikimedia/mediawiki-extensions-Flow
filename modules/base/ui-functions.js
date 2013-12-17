@@ -394,10 +394,10 @@
 								if ( mw.flow.editor.getFormat() !== 'html' ) {
 									api.post( {
 										action: 'flow-parsoid-utils',
-										parsefrom: mw.flow.editor.getFormat(),
-										parseto: 'html',
-										parsecontent: $form.find( identifier ).val(),
-										parsetitle: mw.config.get( 'wgPageName' )
+										from: mw.flow.editor.getFormat(),
+										to: 'html',
+										content: $form.find( identifier ).val(),
+										title: mw.config.get( 'wgPageName' )
 									} )
 									.done( success )
 									.fail( failure );

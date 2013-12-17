@@ -3,9 +3,6 @@
 use Flow\ParsoidUtils;
 
 class ApiParsoidUtilsFlow extends ApiBase {
-	public function __construct( $query, $moduleName ) {
-		parent::__construct( $query, $moduleName, 'parse' );
-	}
 
 	public function execute() {
 		$params = $this->extractRequestParams();
@@ -56,7 +53,7 @@ class ApiParsoidUtilsFlow extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			"api.php?action=flow-parsoid-utils&parsefrom=wikitext&parseto=html&parsecontent='''lorem'''+''blah''&parsetitle=Main_Page",
+			"api.php?action=flow-parsoid-utils&from=wikitext&to=html&content='''lorem'''+''blah''&title=Main_Page",
 		);
 	}
 }
