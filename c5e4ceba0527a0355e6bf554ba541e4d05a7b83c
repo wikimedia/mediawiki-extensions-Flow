@@ -121,6 +121,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_22a7dca5",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-17T23:08:29Z",
+      "side": 1,
+      "message": "That doesn\u0027t seem to be true. That\u0027s what I had originally, and what I got was a validation error from validateOptionsArray()",
+      "parentUuid": "0ee75395_9fe848a4",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_7fb221fa",
         "filename": "includes/Contributions/Query.php",
         "patchSetId": 9
