@@ -346,7 +346,7 @@ class TopicBlock extends AbstractBlock {
 			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 		} else {
 			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) ); 	
+			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		}
 
 		$prefix = '';
@@ -472,6 +472,10 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderRevision( Templating $templating, array $options, $return = false ) {
 		$postRevision = $this->loadRequestedRevision( $options['revId'] );
+		if ( !$this->permissions->isAllowed( $postRevision, 'view' ) ) {
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			return null;
+		}
 
 		if ( !$postRevision ) {
 			return;
@@ -514,6 +518,12 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
+		$topicTitle = $this->loadTopicTitle(); // pre-loaded by loadRequestedPost
+		if ( !$this->permissions->isAllowed( $topicTitle, 'view' ) ) {
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			return;
+		}
+
 		$history = $this->getHistory( $options['postId'] );
 
 		// get rid of history entries user doesn't have sufficient permissions for
@@ -526,7 +536,7 @@ class TopicBlock extends AbstractBlock {
 		return $templating->render( "flow:post-history.html.php", array(
 			'block' => $this,
 			'topic' => $this->workflow,
-			'topicTitle' => $this->loadTopicTitle(), // pre-loaded by loadRequestedPost
+			'topicTitle' => $topicTitle,
 			'post' => $post,
 			'history' => new History( $history ),
 			'historyRenderer' => new HistoryRenderer( $templating, $this ),
@@ -555,6 +565,9 @@ class TopicBlock extends AbstractBlock {
 		if ( isset( $options['postId'] ) ) {
 			$rootPost = $this->loadRootPost();
 			if ( !$rootPost ) {
+				return;
+			} elseif ( !$this->permissions->isAllowed( $rootPost, 'view' ) ) {
+				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 				return;
 			}
 
@@ -587,6 +600,9 @@ class TopicBlock extends AbstractBlock {
 		$topic = $this->workflow;
 		$rootPost = $this->loadRootPost();
 		if ( !$rootPost ) {
+			return;
+		} elseif ( !$this->permissions->isAllowed( $rootPost, 'view' ) ) {
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
 
@@ -748,12 +764,8 @@ class TopicBlock extends AbstractBlock {
 
 		$rootPost = $this->rootLoader->get( $this->workflow->getId() );
 
-		if ( $this->permissions->isAllowed( $rootPost, 'view' ) ) {
-			// topicTitle is same as root, difference is root has children populated to full depth
-			return $this->topicTitle = $this->root = $rootPost;
-		}
-
-		$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
+		// topicTitle is same as root, difference is root has children populated to full depth
+		return $this->topicTitle = $this->root = $rootPost;
 	}
 
 	// Loads only the title, as opposed to loadRootPost which gets the entire tree of posts.
@@ -776,11 +788,6 @@ class TopicBlock extends AbstractBlock {
 			// looking for loadRootPost
 			$this->topicTitle->setChildren( array() );
 			$this->topicTitle->setDepth( 0 );
-
-			if ( !$this->permissions->isAllowed( $this->topicTitle, 'view' ) ) {
-				$this->topicTitle = null;
-				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-			}
 		}
 		return $this->topicTitle;
 	}
@@ -840,12 +847,7 @@ class TopicBlock extends AbstractBlock {
 			$post->setDepth( count( $rootPath ) - 1 );
 		}
 
-		if ( $this->permissions->isAllowed( $topicTitle, 'view' )
-			&& $this->permissions->isAllowed( $post, 'view' ) ) {
-			return $post;
-		}
-
-		$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
+		return $post;
 	}
 
 	protected function loadRequestedRevision( $revisionId ) {
@@ -857,9 +859,6 @@ class TopicBlock extends AbstractBlock {
 
 		if ( !$found ) {
 			throw new \MWException( 'The requested revision could not be found' );
-		} else if ( !$this->permissions->isAllowed( $found, 'view' ) ) {
-			$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
-			return null;
 		}
 
 		// using the path to the root post, we can know the post's depth
