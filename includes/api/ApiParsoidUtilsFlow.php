@@ -22,9 +22,11 @@ class ApiParsoidUtilsFlow extends ApiBase {
 		return array(
 			'from' => array(
 				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
 			),
 			'to' => array(
 				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
 			),
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
@@ -40,8 +42,8 @@ class ApiParsoidUtilsFlow extends ApiBase {
 	public function getParamDescription() {
 		$p = $this->getModulePrefix();
 		return array(
-			'from' => 'Format of content tossed in (html|wikitext)',
-			'to' => 'Format to convert content to (html|wikitext)',
+			'from' => 'Format of content tossed in',
+			'to' => 'Format to convert content to',
 			'content' => 'Content to be converted',
 			'title' => "Title of the page. Cannot be used together with {$p}pageid",
 			'pageid' => "ID of the page. Cannot be used together with {$p}title",
@@ -49,20 +51,12 @@ class ApiParsoidUtilsFlow extends ApiBase {
 	}
 
 	public function getDescription() {
-		return 'Convert text from/to wikitext/html';
+		return 'Convert text from/to wikitext/html using Parsoid';
 	}
 
 	public function getExamples() {
 		return array(
 			"api.php?action=flow-parsoid-utils&parsefrom=wikitext&parseto=html&parsecontent='''lorem'''+''blah''&parsetitle=Main_Page",
 		);
-	}
-
-	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/Flow_Portal';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . '-0.1';
 	}
 }
