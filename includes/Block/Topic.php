@@ -357,8 +357,12 @@ class TopicBlock extends AbstractBlock {
 
 		case 'topic-history':
 			$history = $this->loadTopicHistory();
-			if ( !$this->permissions->isAllowed( reset( $history ), 'post-history' ) ) {
-				throw new \MWException( 'Not Allowed' );
+
+			// get rid of history entries user doesn't have sufficient permissions for
+			foreach ( $history as $i => $post ) {
+				if ( !$this->permissions->isAllowed( $post, 'topic-history' ) ) {
+					unset( $history[$i] );
+				}
 			}
 
 			$root = $this->loadRootPost();
@@ -509,9 +513,14 @@ class TopicBlock extends AbstractBlock {
 		if ( !$post ) {
 			return;
 		}
-		if ( !$this->permissions->isAllowed( $post, 'post-history' ) ) {
-			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-			return;
+
+		$history = $this->getHistory( $options['postId'] );
+
+		// get rid of history entries user doesn't have sufficient permissions for
+		foreach ( $history as $i => $post ) {
+			if ( !$this->permissions->isAllowed( $post, 'post-history' ) ) {
+				unset( $history[$i] );
+			}
 		}
 
 		return $templating->render( "flow:post-history.html.php", array(
@@ -519,7 +528,7 @@ class TopicBlock extends AbstractBlock {
 			'topic' => $this->workflow,
 			'topicTitle' => $this->loadTopicTitle(), // pre-loaded by loadRequestedPost
 			'post' => $post,
-			'history' => new History( $this->getHistory( $options['postId'] ) ),
+			'history' => new History( $history ),
 			'historyRenderer' => new HistoryRenderer( $templating, $this ),
 		) );
 	}
