@@ -1348,10 +1348,29 @@ $messages['es'] = array(
 /** Persian (فارسی)
  * @author Amire80
  * @author Ebraminio
+ * @author Omidh
  */
 $messages['fa'] = array(
 	'flow-desc' => 'سامانهٔ مدیریت گردش کار',
+	'flow-post-moderated-toggle-show' => '[نمایش]',
+	'flow-post-moderated-toggle-hide' => '[پنهان کردن]',
+	'flow-edit-post-submit' => 'ثبت تغییرات',
+	'flow-post-action-delete-post' => 'حذف',
+	'flow-post-action-hide-post' => 'نهفتن',
+	'flow-post-action-edit-post' => 'ویرایش پست',
+	'flow-post-action-edit' => 'ویرایش',
+	'flow-edit-title-submit' => 'تغییر عنوان',
+	'flow-history-last4' => '4 ساعت گذشته',
+	'flow-history-day' => 'امروز',
+	'flow-history-week' => 'هفتهٔ گذشته',
 	'flow-topic-comments' => '{{PLURAL:$1|نظر ($1)|نظرها ($1)|0=اولین شخصی باشید که نظر می‌گذارد!}}', # Fuzzy
+	'flow-comment-deleted' => 'نظر حذف شده',
+	'flow-notification-link-text-view-post' => 'نمایش پست',
+	'flow-moderation-confirm-delete-post' => 'حذف',
+	'flow-moderation-confirm-restore-post' => 'بازیابی',
+	'flow-moderation-confirm-delete-topic' => 'حذف',
+	'flow-moderation-confirm-hide-topic' => 'نهفتن',
+	'flow-moderation-confirm-restore-topic' => 'بازیابی',
 );
 
 /** Finnish (suomi)
@@ -1499,7 +1518,7 @@ $messages['fr'] = array(
 	'flow-history-pages-topic' => 'Apparaît sur [$1 le tableau « $2 »]',
 	'flow-history-pages-post' => 'Apparaît sur [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 a démarré ce sujet|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} et {{PLURAL:$2|autre|autres}}|0=Encore aucune participation|2={{GENDER:$3|$3}} et {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} et {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|0=Soyez le premier à laisser un commentaire !|Commenter ($1)}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|Commenter ($1)|0={{GENDER:$2|Soyez le premier|Soyez la première}} à laisser un commentaire !}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Soyez le premier à commenter !|$1 {{PLURAL:$1|commentaire|commentaires}} par $2 {{PLURAL:$2|utilisateur|utilisateurs}}}}',
 	'flow-comment-restored' => 'Commentaire rétabli',
 	'flow-comment-deleted' => 'Commentaire supprimé',
@@ -2303,7 +2322,7 @@ $messages['ja'] = array(
 	'flow-history-day' => '今日',
 	'flow-history-week' => '過去 1 週間',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 がこの話題を開始|{{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}} と他 $2 {{PLURAL:$2|人}}|0=まだ誰も参加していません|2={{GENDER:$3|$3}} と {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|コメント ($1)|0=最初のコメントを書きましょう!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|コメント ($1)|0=最初のコメントを{{GENDER:$2|書きましょう}}!}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=最初のコメントを書きましょう!|$2 {{PLURAL:$2|人の利用者}}による $1 {{PLURAL:$1|件のコメント}}}}',
 	'flow-comment-restored' => 'コメントを復元',
 	'flow-comment-deleted' => 'コメントを削除',
@@ -2479,7 +2498,7 @@ $messages['lb'] = array(
 	'flow-history-last4' => 'Lescht 4 Stonnen',
 	'flow-history-day' => 'Haut',
 	'flow-history-week' => 'Lescht Woch',
-	'flow-topic-comments' => '{{PLURAL:$1|Bemierkung ($1)|Bemierkunge(n) ($1)|0=Sidd deen éischten deen enge Bemierkung mécht!}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|Bemierkung ($1)|Bemierkunge(n) ($1)|0=Sidd deen éischten {{GENDER:$2|deen éischten deen|déi éischt déi} eng Bemierkung mécht!}}', # Fuzzy
 	'flow-comment-restored' => 'Restauréiert Bemierkung',
 	'flow-comment-deleted' => 'Geläscht Bemierkung',
 	'flow-comment-hidden' => 'Verstoppte Bemierkung',
@@ -3529,7 +3548,7 @@ $messages['sv'] = array(
 	'flow-history-pages-topic' => 'Visas på [$1 "$2" board]',
 	'flow-history-pages-post' => 'Visas på [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 påbörjade detta ämne|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} och $2 {{PLURAL:$2|annan|andra}}|0=Inget deltagande ännu|2={{GENDER:$3|$3}} och {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} och {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Kommentera ($1)|Kommentarer ($1)|0=Var den första att kommentera!}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|Kommentera ($1)|Kommentarer ($1)|0=Bli den {{GENDER:$2|förste|första}} att kommentera!}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Var först med att kommentera!|$1 {{PLURAL:$1|kommentar|kommentarer}} av $2 {{PLURAL:$2|användare|användare}}}}',
 	'flow-comment-restored' => 'Återställd kommentar',
 	'flow-comment-deleted' => 'Raderad kommentar',
