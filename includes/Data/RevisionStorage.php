@@ -103,7 +103,7 @@ abstract class RevisionStorage extends DbStorage {
 		if ( $options['LIMIT'] === 1 &&
 			!isset( $options['OFFSET'] ) &&
 			count( $queriedKeys ) === 1 &&
-			in_array( reset( $queriedKeys ), array( 'rev_id', $this->joinField() ) ) &&
+			in_array( reset( $queriedKeys ), array( 'rev_id', $this->joinField(), $this->relatedPk() ) ) &&
 			isset( $options['ORDER BY'] ) && count( $options['ORDER BY'] ) === 1 &&
 			in_array( reset( $options['ORDER BY'] ), array( 'rev_id DESC', "{$this->joinField()} DESC" ) )
 		) {
@@ -130,8 +130,9 @@ abstract class RevisionStorage extends DbStorage {
 		//		 ) max ON max.tree_rev_id = rev.tree_rev_id
 		//
 		$duplicator = new ResultDuplicator( array_keys( reset( $queries ) ), 1 );
+		$joinField = $this->joinField();
 		foreach ( $queries as $idx => $query ) {
-			$duplicator->add( $query, $idx );
+			$duplicator->add( UUID::convertUUIDs( $query ), $idx );
 		}
 
 		$dbr = $this->dbFactory->getDB( DB_MASTER );
