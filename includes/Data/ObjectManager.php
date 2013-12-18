@@ -237,7 +237,7 @@ class ObjectLocator implements ObjectStorage {
 			$index = $this->getIndexFor( $keys, $options );
 			$res = $index->findMulti( $queries );
 		} catch ( NoIndexException $e ) {
-			$res = $this->storage->findMulti( $queries, $options );
+			$res = $this->storage->findMulti( $queries, $this->convertToDbOptions( $options ) );
 			$output = array();
 
 			foreach( $res as $index => $queryOutput ) {
@@ -413,6 +413,32 @@ class ObjectLocator implements ObjectStorage {
 			$handler->onAfterLoad( $object, $row );
 		}
 		return $object;
+	}
+
+	/**
+	 * Convert index options to db equivalent options
+	 */
+	protected function convertToDbOptions( $options ) {
+		$dbOptions = $orderby = array();
+		$order = '';
+
+		if ( isset( $options['limit'] ) ) {
+			$dbOptions['LIMIT'] = (int)$options['limit'];
+		}
+
+		if ( isset( $options['order'] ) ) {
+			$order = ' ' . $options['order'];
+		}
+		if ( isset( $options['sort'] ) ) {
+			foreach ( $options['sort'] as $val ) {
+				$orderby[] = $val . $order;
+			}
+		}
+		if ( $orderby ) {
+			$dbOptions['ORDER BY'] = $orderby;
+		}
+
+		return $dbOptions;
 	}
 }
 
