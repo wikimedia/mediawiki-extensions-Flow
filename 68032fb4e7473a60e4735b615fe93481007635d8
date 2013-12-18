@@ -88,6 +88,75 @@
     },
     {
       "key": {
+        "uuid": "eeebdf60_a1495ed5",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T17:26:59Z",
+      "side": 1,
+      "message": "How is it called statically in ext.flow.editor.js? It\u0027s called on the editor object (editor.focus)\n\nI would keep it as-is (prototype)",
+      "parentUuid": "0ee75395_3585e3d3",
+      "revId": "68032fb4e7473a60e4735b615fe93481007635d8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_6196b6f5",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T17:26:59Z",
+      "side": 1,
+      "message": "In none-editor, this method doesn\u0027t select a range.\nAnd in ext.flow.editor.js, if editor has no method \"focus\", it\u0027ll call focus() on the node, also without applying range selection\n\nEither we should drop this selection here, or also add this to the other places it\u0027s missing.\n\nI\u0027d say drop it:\n\n* from this function, since it\u0027s more than what would be expected from a function called \"focus\".\n* there could be good reasons one only wants to focus, without selecting full content\n\nPerhaps make range selection into its own function too and just call that from wherever it\u0027s needed?",
+      "revId": "68032fb4e7473a60e4735b615fe93481007635d8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_a1d39e04",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T17:26:59Z",
+      "side": 1,
+      "message": "this line ($veNode.focus()) can be removed; the this.focus() call will do exactly this.",
+      "revId": "68032fb4e7473a60e4735b615fe93481007635d8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_411052ad",
+        "filename": "modules/editor/editors/ext.flow.editors.visualeditor.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T17:26:59Z",
+      "side": 1,
+      "message": "Should be mw.flow.editors.visualeditor.prototype.focus",
+      "revId": "68032fb4e7473a60e4735b615fe93481007635d8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_158adfe3",
         "filename": "modules/jquery.scroll.js",
         "patchSetId": 11
