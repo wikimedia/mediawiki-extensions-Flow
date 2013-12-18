@@ -84,6 +84,13 @@ class TemplatingTest extends \MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		return new Templating( $urlGenerator, $output );
+		$permissions = $this->getMockBuilder( 'Flow\RevisionActionPermissions' )
+			->disableOriginalConstructor()
+			->getMock();
+		$permissions->expects( $this->any() )
+			->method( 'isAllowed' )
+			->will( $this->returnValue( true ) );
+
+		return new Templating( $urlGenerator, $output, array(), compact( 'permissions' ) );
 	}
 }

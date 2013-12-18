@@ -297,7 +297,6 @@ class TopicBlock extends AbstractBlock {
 			}
 			$self = $this;
 			$newRevision = $this->newRevision;
-			$user = $this->user;
 			$rootPost = $this->loadRootPost();
 
 			// If no context was loaded render the post in isolation
@@ -311,8 +310,8 @@ class TopicBlock extends AbstractBlock {
 
 			// FIXME special case
 			if ( $this->action == 'edit-title' ) {
-				$renderFunction = function( $templating ) use ( $newRevision, $user ) {
-					return $templating->getContent( $newRevision, 'wikitext', $user );
+				$renderFunction = function( $templating ) use ( $newRevision ) {
+					return $templating->getContent( $newRevision, 'wikitext' );
 				};
 			} elseif ( $this->action === 'moderate-topic' ) {
 				$renderFunction = function( $templating ) use ( $self, $newRevision ) {
@@ -346,7 +345,7 @@ class TopicBlock extends AbstractBlock {
 			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 		} else {
 			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) ); 	
+			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		}
 
 		$prefix = '';
@@ -439,7 +438,7 @@ class TopicBlock extends AbstractBlock {
 			}
 
 			if ( !isset( $options['topiclist-block'] ) ) {
-				$title = $templating->getContent( $root, 'wikitext', $this->user );
+				$title = $templating->getContent( $root, 'wikitext' );
 				$templating->getOutput()->setHtmlTitle( $title );
 				$templating->getOutput()->setPageTitle( $title );
 
@@ -583,7 +582,7 @@ class TopicBlock extends AbstractBlock {
 
 		$output = array(
 			'_element' => 'post',
-			'title' => $templating->getContent( $rootPost, 'wikitext', $this->user ),
+			'title' => $templating->getContent( $rootPost, 'wikitext' ),
 			'topic-id' => $topic->getId()->getHex(),
 		);
 
@@ -637,7 +636,7 @@ class TopicBlock extends AbstractBlock {
 			$output['post-moderated'] = 'post-moderated';
 		} else {
 			$output['content'] = array(
-				'*' => $templating->getContent( $post, $contentFormat, $this->user ),
+				'*' => $templating->getContent( $post, $contentFormat ),
 				'format' => $contentFormat
 			);
 			$output['user'] = $post->getCreatorName();

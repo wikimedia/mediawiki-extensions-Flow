@@ -41,7 +41,7 @@ switch( $revision->getRevisionType() ) {
 			->rawParams( $formattedTimestamp )
 			->params(
 				$block->getWorkflow()->getArticleTitle(),
-				$this->getContent( $block->loadTopicTitle(), 'wikitext', $user ),
+				$this->getContent( $block->loadTopicTitle(), 'wikitext' ),
 				$historyLink
 			);
 

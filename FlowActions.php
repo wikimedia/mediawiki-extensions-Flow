@@ -2,7 +2,7 @@
 
 use Flow\Model\PostRevision;
 use Flow\Model\Header;
-use Flow\RevisionActionPermissions;
+use Flow\PostActionPermissions;
 use Flow\Log\Logger;
 use Flow\Block\Block;
 use Flow\Templating;
@@ -31,18 +31,22 @@ $wgFlowActions = array(
 	'create-header' => array(
 		'performs-writes' => true,
 		'log_type' => false,
-		'permissions' => array(
-			Header::MODERATED_NONE => '',
-		),
+		/*
+		 * null doesn't actually have any meaning here; we just have not (yet?)
+		 * implemented any permissions for headers (anyone can edit them),
+		 * only for posts (PostActionPermissions). This 1 key can, for now,
+		 * safely be ignored here.
+		 */
+		'permissions' => null,
 		'button-method' => 'POST',
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-header',
 			'i18n-params' => array(
 				function ( Header $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( Header $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 			),
 			'class' => 'flow-history-create-header',
@@ -52,18 +56,22 @@ $wgFlowActions = array(
 	'edit-header' => array(
 		'performs-writes' => true,
 		'log_type' => false,
-		'permissions' => array(
-			Header::MODERATED_NONE => '',
-		),
+		/*
+		 * null doesn't actually have any meaning here; we just have not (yet?)
+		 * implemented any permissions for headers (anyone can edit them),
+		 * only for posts (PostActionPermissions). This 1 key can, for now,
+		 * safely be ignored here.
+		 */
+		'permissions' => null,
 		'button-method' => 'POST',
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-header',
 			'i18n-params' => array(
 				function ( Header $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( Header $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 			),
 			'class' => 'flow-history-edit-header',
@@ -81,17 +89,9 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-edit-title',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
-				},
-				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUrlGenerator()->generateUrl( $revision->getPostId() );
-				},
-				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					// make sure topic title isn't parsed
-					$content = $templating->getContent( $revision, 'wikitext', $user );
 					return array( 'raw' => htmlspecialchars( $content ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
@@ -99,7 +99,7 @@ $wgFlowActions = array(
 					if ( $previousId ) {
 						$previousRevision = $block->getStorage()->get( get_class( $revision ), $previousId );
 						// make sure topic title isn't parsed
-						$content = $templating->getContent( $previousRevision, 'wikitext', $user );
+						$content = $templating->getContent( $previousRevision, 'wikitext' );
 						return array( 'raw' => htmlspecialchars( $content ) );
 					}
 
@@ -121,17 +121,17 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-new-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUrlGenerator()->generateUrl( $revision->getPostId() );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					// make sure topic title isn't parsed
-					$content = $templating->getContent( $revision, 'wikitext', $user );
+					$content = $templating->getContent( $revision, 'wikitext' );
 					return array( 'raw' => htmlspecialchars( $content ) );
 				},
 			),
@@ -153,10 +153,10 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-edit-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), 'flow-post-' . $revision->getPostId()->getHex() );
@@ -180,13 +180,13 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-hid-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getCreatorText( $revision, $user );
+					return $templating->getCreatorText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$fragment = '';
@@ -215,13 +215,13 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-hid-topic',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getCreatorText( $revision, $user );
+					return $templating->getCreatorText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array() );
@@ -246,13 +246,13 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-deleted-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getCreatorText( $revision, $user );
+					return $templating->getCreatorText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$fragment = '';
@@ -282,13 +282,13 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-deleted-topic',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getCreatorText( $revision, $user );
+					return $templating->getCreatorText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array() );
@@ -314,13 +314,13 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-suppressed-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getCreatorText( $revision, $user );
+					return $templating->getCreatorText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$fragment = '';
@@ -351,13 +351,13 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-suppressed-topic',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getCreatorText( $revision, $user );
+					return $templating->getCreatorText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array() );
@@ -389,13 +389,13 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-restored-post',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getCreatorText( $revision, $user );
+					return $templating->getCreatorText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array(), 'flow-post-' . $revision->getPostId()->getHex() );
@@ -427,13 +427,13 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-restored-topic',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getCreatorText( $revision, $user );
+					return $templating->getCreatorText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					return $templating->getUrlGenerator()->generateUrl( $block->getWorkflowId(), 'view', array() );
@@ -497,10 +497,10 @@ $wgFlowActions = array(
 			'i18n-message' => 'flow-rev-message-reply',
 			'i18n-params' => array(
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return Message::rawParam( $templating->getUserLinks( $revision, $user ) );
+					return Message::rawParam( $templating->getUserLinks( $revision ) );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
-					return $templating->getUserText( $revision, $user );
+					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, User $user, Block $block ) {
 					$data = array( $block->getName() . '[postId]' => $revision->getPostId()->getHex() );

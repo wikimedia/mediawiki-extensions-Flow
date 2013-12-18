@@ -1,7 +1,7 @@
 <?php
 
 // treat title like unparsed (wiki)text
-$title = $this->getContent( $root, 'wikitext', $user );
+$title = $this->getContent( $root, 'wikitext' );
 
 // pre-register recursive callbacks; will then be fetched all at once when the
 // first one's result is requested
@@ -49,7 +49,7 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 			'<div class="flow-post-form-controls">' .
 				Html::element( 'input', array(
 					'type' => 'submit',
-					'value' => wfMessage( 'flow-reply-submit', $this->getCreatorText( $root, $user ) ),
+					'value' => wfMessage( 'flow-reply-submit', $this->getCreatorText( $root ) ),
 					'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
 				) ) .
 			Html::closeElement( 'div' ) .
@@ -72,7 +72,7 @@ echo Html::openElement( 'div', array(
 	'class' => 'flow-topic-container flow-topic-full' . $moderationClass,
 	'id' => 'flow-topic-' . $topic->getId()->getHex(),
 	'data-topic-id' => $topic->getId()->getHex(),
-	'data-creator-name' => $this->getCreatorText( $root, $user ),
+	'data-creator-name' => $this->getCreatorText( $root ),
 ) );
 ?>
 <div class="flow-element-container">
@@ -96,8 +96,7 @@ echo Html::openElement( 'div', array(
 				echo Html::rawElement(
 					'h2',
 					array( 'class' => 'flow-topic-moderated flow-topic-moderated-' . $root->getModerationState() ),
-					/* Passing no user always gets the 'moderated by Foo' message */
-					$this->getContent( $root, 'wikitext' )
+					$this->getModeratedContentMessage( $root, 'wikitext' )
 				);
 			else:
 				echo Html::element( 'h2', array( 'class' => 'flow-realtitle' ), $title );

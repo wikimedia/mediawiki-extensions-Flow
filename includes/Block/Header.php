@@ -89,7 +89,7 @@ class HeaderBlock extends AbstractBlock {
 					// if $wgFlowContentFormat is set to html the Header::create
 					// call will convert the wikitext input into html via parsoid, and
 					// parsoid requires the page exist.
-					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );	
+					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
 				}
 
 				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
@@ -111,12 +111,11 @@ class HeaderBlock extends AbstractBlock {
 			$this->storage->put( $this->header );
 
 			$header = $this->header;
-			$user = $this->user;
 
 			return array(
 				'new-revision-id' => $this->header->getRevisionId(),
-				'render-function' => function( $templating ) use ( $header, $user ) {
-					return $templating->getContent( $header, 'html', $user );
+				'render-function' => function( $templating ) use ( $header ) {
+					return $templating->getContent( $header, 'html' );
 				},
 			);
 			break;
@@ -169,7 +168,7 @@ class HeaderBlock extends AbstractBlock {
 		}
 
 		if ( $this->header !== null ) {
-			$output['*'] = $templating->getContent( $this->header, $contentFormat, $this->user );
+			$output['*'] = $templating->getContent( $this->header, $contentFormat );
 			$output['format'] = $contentFormat;
 			$output['header-id'] = $this->header->getRevisionId()->getHex();
 		} else {

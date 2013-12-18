@@ -1,6 +1,6 @@
 <?php
 
-$titleText = $this->getContent( $topicTitle, 'wikitext', $user );
+$titleText = $this->getContent( $topicTitle, 'wikitext' );
 $topicLink = $this->generateUrl( $topic );
 
 $creator = $post->getCreatorName();
