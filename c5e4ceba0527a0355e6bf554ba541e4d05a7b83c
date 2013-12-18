@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_cbd96b5d",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_62ca84a4",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_1f92f5a1",
         "filename": "includes/Contributions/Formatter.php",
         "patchSetId": 9
@@ -30,6 +48,24 @@
       "writtenOn": "2013-12-17T22:45:09Z",
       "side": 1,
       "message": "unnecessary escaping",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_2bf457c9",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_1f92f5a1",
       "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_ab2f4739",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_df692df7",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_7f7461cc",
         "filename": "includes/Contributions/Formatter.php",
         "patchSetId": 9
@@ -64,6 +118,24 @@
       "writtenOn": "2013-12-17T22:45:09Z",
       "side": 1,
       "message": "escaped?",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_96682ab9",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_7f7461cc",
       "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_eb10aff9",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_42c78099",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_62d4c417",
         "filename": "includes/Contributions/Formatter.php",
         "patchSetId": 9
@@ -98,6 +188,41 @@
       "writtenOn": "2013-12-17T23:04:31Z",
       "side": 1,
       "message": "The formatter should not be loading any revisions, it should all be prepared for it in the query class.  This is because the formatter works one line at a time and must request these in separate round trips.",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_d65c72f6",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_62d4c417",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_d688f277",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "Didn\u0027t really bother looking into all of Pager.php again, but (from testing), it looks like \u003e \u0026 \u003c should be reversed here",
       "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -157,6 +282,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_b661eea5",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_c2bf105b",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_7fb221fa",
         "filename": "includes/Contributions/Query.php",
         "patchSetId": 9
@@ -168,6 +311,24 @@
       "writtenOn": "2013-12-17T22:45:09Z",
       "side": 1,
       "message": "Save the result to cache as well?",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_96526adc",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_7fb221fa",
       "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -220,6 +381,41 @@
       "side": 1,
       "message": "This does seem like a lot, it will probably generate a massive IN condition.\n\nIt looks like the newbie flag in SpecialContributions is for selecting the newest 1% of users that arn\u0027t bots, likely the bot list is much smaller.  Could we instead do something like\n\n    user_id \u003e $minimumNewbie and user_id NOT IN (list, of, found, bot, ids)",
       "parentUuid": "0ee75395_7a3592a2",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_16141aec",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ee75395_028f3879",
+      "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_cbdbab23",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:34:50Z",
+      "side": 1,
+      "message": "* Not te be merged before https://gerrit.wikimedia.org/r/#/c/98995/, where BIN_LEN \u0026 HEX_LEN are introduced\n* wfBaseConvert parameters are in incorrect order. first argument should be input ($uuidBase2); 2\u00263 from \u0026 to base (so 2 \u0026 16)",
       "revId": "c5e4ceba0527a0355e6bf554ba541e4d05a7b83c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
