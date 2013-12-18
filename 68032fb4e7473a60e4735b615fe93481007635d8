@@ -106,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "eeebdf60_64348447",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-18T18:29:47Z",
+      "side": 1,
+      "message": "Yeah, you are right.  The editor array is pushed with objects instantiated with new.  The visualeditor one should be added with .prototype",
+      "parentUuid": "eeebdf60_a1495ed5",
+      "revId": "68032fb4e7473a60e4735b615fe93481007635d8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eeebdf60_6196b6f5",
         "filename": "modules/editor/editors/ext.flow.editors.none.js",
         "patchSetId": 11
