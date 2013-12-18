@@ -16,5 +16,5 @@ Feature: Edit existing title
     Given I am on Flow page
     When I click the Edit post pencil icon
     Then I should be able to edit the post field with Post edited
-      And I should be able to save the new post body
-      And the saved topic body should contain Post edited
+      And I should be able to save the new post
+      And the saved post should contain Post edited
