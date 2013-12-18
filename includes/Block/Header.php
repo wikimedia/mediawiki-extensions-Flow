@@ -113,15 +113,13 @@ class HeaderBlock extends AbstractBlock {
 				$this->storage->put( $this->header );
 
 				$header = $this->header;
-				$user = $this->user;
 
 				return array(
 					'new-revision-id' => $this->header->getRevisionId(),
-					'render-function' => function( $templating ) use ( $header, $user ) {
-						return $templating->getContent( $header, 'html', $user );
+					'render-function' => function( $templating ) use ( $header ) {
+						return $templating->getContent( $header, 'html' );
 					},
 				);
-				break;
 
 			default:
 				throw new InvalidActionException( 'Unrecognized commit action', 'invalid-action' );
@@ -224,7 +222,7 @@ class HeaderBlock extends AbstractBlock {
 		}
 
 		if ( $this->header !== null ) {
-			$output['*'] = $templating->getContent( $this->header, $contentFormat, $this->user );
+			$output['*'] = $templating->getContent( $this->header, $contentFormat );
 			$output['format'] = $contentFormat;
 			$output['header-id'] = $this->header->getRevisionId()->getHex();
 		} else {

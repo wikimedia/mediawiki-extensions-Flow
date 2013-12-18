@@ -33,7 +33,7 @@ echo Html::element( 'input', array(
 	) ),
 	Html::textarea(
 		$block->getName() . '[content]',
-		$this->getContent( $post, 'wikitext', $user ),
+		$this->getContent( $post, 'wikitext' ),
 		array(
 			'class' => 'mw-ui-input',
 			'rows' => '10'

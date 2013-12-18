@@ -35,7 +35,13 @@ class Templating {
 	protected $output;
 
 	/**
-	 * @var array
+	 * @var RevisionActionPermissions
+	 */
+	protected $permissions;
+
+	/**
+	 * @var array Array of PostRevision::registerRecursive return values
+	 * @see Templating::registerParsoidLinks
 	 */
 	protected $namespaces;
 
@@ -64,10 +70,22 @@ class Templating {
 		}
 		$this->globals = $globals;
 		$this->redlinks = $redlinks;
+		// meh ... but the constructor is already huge
+		$this->permissions = $globals['permissions'];
 	}
 
+	/**
+	 * @return OutputPage
+	 */
 	public function getOutput() {
 		return $this->output;
+	}
+
+	/**
+	 * @return RevisionActionPermissions
+	 */
+	public function getActionPermissions() {
+		return $this->permissions;
 	}
 
 	public function addNamespace( $ns, $path ) {
@@ -186,22 +204,11 @@ class Templating {
 		return new PostActionMenu(
 			$this->urlGenerator,
 			$container['flow_actions'],
-			$this->getActionPermissions( $this->globals['user'] ),
+			$this->permissions,
 			$block,
 			$post,
 			$this->globals['editToken']
 		);
-	}
-
-	// An ideal world may pull this from the container, but for now this is fine.  This templating
-	// class has too many responsibilities to keep receiving all required objects in the constructor.
-	public function getActionPermissions( User $user = null ) {
-		// if no user defined, assume anonymous user
-		if ( !$user instanceof User ) {
-			$user = new User;
-		}
-
-		return new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 	}
 
 	public function getPagingLink( $block, $direction, $offset, $limit ) {
@@ -291,12 +298,10 @@ class Templating {
 	 * cases, the full username will be returned.
 	 *
 	 * @param AbstractRevision $revision Revision to display usertext for
-	 * @param User[optional] $permissionsUser User to display usertext to
 	 * @return string
 	 */
-	public function getUserText( AbstractRevision $revision, User $permissionsUser = null ) {
-		$permissions = $this->getActionPermissions( $permissionsUser );
-		if ( $permissions->isAllowed( $revision, 'view' ) ) {
+	public function getUserText( AbstractRevision $revision ) {
+		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 			return $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
 		} else {
 			$username = $this->usernames->get(
@@ -323,18 +328,15 @@ class Templating {
 	 * Moderation-aware.
 	 *
 	 * @param  AbstractRevision $revision        Revision to display
-	 * @param  User             $permissionsUser The User to check permissions for
 	 * @return string                            HTML
 	 */
-	public function getUserLinks( AbstractRevision $revision, User $permissionsUser = null ) {
-		$permissions = $this->getActionPermissions( $permissionsUser );
-		if ( $permissions->isAllowed( $revision, 'view' ) ) {
+	public function getUserLinks( AbstractRevision $revision ) {
+		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 			$userid = $revision->getUserId();
 			$username = $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
 			return Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
 		} else {
 			$state = $revision->getModerationState();
-			$userid = $revision->getModeratedByUserId();
 			$username = $this->usernames->get(
 				wfWikiId(),
 				$revision->getModeratedByUserId(),
@@ -363,12 +365,10 @@ class Templating {
 	 * cases, the full creator name will be returned.
 	 *
 	 * @param PostRevision $revision Revision to display creator name for
-	 * @param User[optional] $permissionsUser User to display creator name to
 	 * @return string
 	 */
-	public function getCreatorText( PostRevision $revision, User $permissionsUser = null ) {
-		$permissions = $this->getActionPermissions( $permissionsUser );
-		if ( $permissions->isAllowed( $revision, 'view' ) ) {
+	public function getCreatorText( PostRevision $revision ) {
+		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 			return $this->usernames->get(
 				wfWikiId(),
 				$revision->getCreatorId(),
@@ -405,12 +405,10 @@ class Templating {
 	 *
 	 * @param AbstractRevision $revision Revision to display content for
 	 * @param string[optional] $format Format to output content in (html|wikitext)
-	 * @param User[optional] $permissionsUser User to display content to
 	 * @return string HTML
 	 */
-	public function getContent( AbstractRevision $revision, $format = 'html', User $permissionsUser = null ) {
-		$permissions = $this->getActionPermissions( $permissionsUser );
-		if ( $permissions->isAllowed( $revision, 'view' ) ) {
+	public function getContent( AbstractRevision $revision, $format = 'html' ) {
+		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 			$content = $revision->getContent( $format );
 
 			if ( $format === 'html' ) {
@@ -441,7 +439,7 @@ class Templating {
 
 			// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
 			//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
-			$message = wfMessage( "flow-$state-$type-content", $username, $this->getUserLinks( $revision, $permissionsUser ) );
+			$message = wfMessage( "flow-$state-$type-content", $username, $this->getUserLinks( $revision ) );
 			if ( $message->exists() ) {
 				return $message->escaped();
 			} else {
@@ -452,7 +450,38 @@ class Templating {
 		}
 	}
 
+	public function getModeratedContent( AbstractRevision $revision ) {
+		$state = $revision->getModerationState();
+		if ( $state === $revision::MODERATED_NONE ) {
+			return '';
+		}
+		$username = $this->usernames->get(
+			wfWikiId(),
+			$revision->getModeratedByUserId(),
+			$revision->getModeratedByUserIp()
+		);
+
+		// get revision type to make more precise message
+		$type = $revision->getRevisionType();
+		if ( $type == 'post' && $revision->isTopicTitle() ) {
+			$type = 'title';
+		}
+
+		// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
+		//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
+		$message = wfMessage( "flow-$state-$type-content", $username )->rawParams( $this->getUserLinks( $revision ) );
+
+		if ( $message->exists() ) {
+			return $message->escaped();
+		} else {
+			wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
+
+			return wfMessage( 'flow-error-other' )->escaped();
+		}
+	}
+
 	public function registerParsoidLinks( AbstractRevision $revision ) {
 		$this->redlinks->registerPost( $revision );
 	}
+
 }

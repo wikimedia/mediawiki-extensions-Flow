@@ -16,7 +16,7 @@ if ( $block->hasErrors( 'content' ) ) {
 }
 
 if ( $header ) {
-	$headerContent = $this->getContent( $header, 'html', $user );
+	$headerContent = $this->getContent( $header, 'html' );
 	$class = 'flow-header-exists';
 } else {
 	$headerContent = wfMessage( 'flow-header-empty' )->parse();

@@ -7,8 +7,8 @@ if ( $oldRevision->getRevisionId()->getTimestamp() > $newRevision->getRevisionId
 	$newRevision = $temp;
 }
 
-$oldContent = $this->getContent( $oldRevision, 'wikitext', $user );
-$newContent = $this->getContent( $newRevision, 'wikitext', $user );
+$oldContent = $this->getContent( $oldRevision, 'wikitext' );
+$newContent = $this->getContent( $newRevision, 'wikitext' );
 
 $differenceEngine = new DifferenceEngine();
 $templating = $this;
@@ -86,7 +86,7 @@ switch( $newRevision->getRevisionType() ) {
 		$headerMsg = wfMessage( 'flow-compare-revisions-header-post' )
 			->params(
 				$block->getWorkflow()->getArticleTitle(),
-				$this->getContent( $block->loadTopicTitle(), 'wikitext', $user ),
+				$this->getContent( $block->loadTopicTitle(), 'wikitext' ),
 				$this->usernames->get( wfWikiId(), $newRevision->getCreatorId() ),
 				$boardLink,
 				$topicLinkTitle->getFullUrl( $topicLinkQuery ),
