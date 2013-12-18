@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_248b1c22",
+        "filename": "includes/Templating.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T18:09:17Z",
+      "side": 1,
+      "message": "This(and the similar ones below) will create and destroy a bunch of objects that do the same thing(for the same permissionsUser) while rendering. not a big deal but we should probably either pass the permissions object around, or remove $user from the constructor and always pass the $user in isAllowed calls.",
+      "revId": "904c3b9224db4ea8f24ced4a20bddfdd6e812bf0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
