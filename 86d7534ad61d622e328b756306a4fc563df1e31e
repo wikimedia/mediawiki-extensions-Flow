@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_a55c1683",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T01:26:13Z",
+      "side": 1,
+      "message": "This no longer checks if the user is able to view the topic this post belongs to",
+      "revId": "86d7534ad61d622e328b756306a4fc563df1e31e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_85611234",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T01:26:13Z",
+      "side": 1,
+      "message": "This no longer checks if the user is able to view the topic this post belongs to",
+      "revId": "86d7534ad61d622e328b756306a4fc563df1e31e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_655a8e86",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T01:26:13Z",
+      "side": 1,
+      "message": "This no longer checks if the user is able to view the topic this post belongs to",
+      "revId": "86d7534ad61d622e328b756306a4fc563df1e31e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_4529cadf",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T01:26:13Z",
+      "side": 1,
+      "message": "permissions against $post are never checked",
+      "revId": "86d7534ad61d622e328b756306a4fc563df1e31e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_a5cbf61f",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T01:26:13Z",
+      "side": 1,
+      "message": "This no longer checks if the user is able to view the topic this post belongs to",
+      "revId": "86d7534ad61d622e328b756306a4fc563df1e31e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
