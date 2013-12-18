@@ -49,7 +49,7 @@
 			window.ve.createDocumentFromHtml( content || '' )
 		);
 
-		$veNode = this.target.surface.$.find( '.ve-ce-documentNode' );
+		$veNode = this.target.surface.$element.find( '.ve-ce-documentNode' );
 
 		// focus VE instance if textarea had focus
 		if ( !$focussedElement.length || this.$node.is( $focussedElement ) ) {
@@ -113,19 +113,17 @@
 	 * @return {string}
 	 */
 	mw.flow.editors.visualeditor.prototype.getRawContent = function () {
-		var doc;
-
 		// If we haven't fully loaded yet, just return nothing.
 		if ( ! this.target ) {
 			return '';
 		}
 
 		// get document from ve
-		doc = this.target.surface.getModel().getDocument();
-		doc = window.ve.dm.converter.getDomFromData( doc.getFullData(), doc.getStore(), doc.getInternalList() );
+		var model = this.target.surface.getModel(),
+			doc = window.ve.dm.converter.getDomFromModel( model );
 
 		// document content will include html, head & body nodes; get only content inside body node
-		return $( window.ve.properOuterHtml( doc.documentElement ) ).wrapAll( '<div>' ).parent().html();
+		return $( window.ve.properOuterHtml( model.getDocument().documentElement ) ).wrapAll( '<div>' ).parent().html();
 	};
 
 	mw.flow.editors.visualeditor.isSupported = function() {
