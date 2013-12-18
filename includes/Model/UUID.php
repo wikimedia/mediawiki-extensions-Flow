@@ -131,8 +131,8 @@ class UUID {
 		// and pad the remaining characters with zeroes.
 		$millitime = wfTimestamp( TS_UNIX, $ts ) * 1000;
 		$timestampBinary = wfBaseConvert( $millitime, 10, 2, 46 );
-		$uuidBase2 = str_pad( $timestampBinary, 16 * 8, '0', STR_PAD_RIGHT );
-		$uuidHex = wfBaseConvert( $uuidBase2, 2, 16, 32 );
+		$uuidBase2 = str_pad( $timestampBinary, self::BIN_LEN * 8, '0', STR_PAD_RIGHT );
+		$uuidHex = wfBaseConvert( $uuidBase2, 2, 16, self::HEX_LEN );
 
 		return self::create( $uuidHex );
 	}
