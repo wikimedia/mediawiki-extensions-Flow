@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_f5d3a0d5",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T22:50:24Z",
+      "side": 1,
+      "message": "This (likely) makes network requests inside a loop",
+      "revId": "c9b8fa38ab07dc516efc29a8153044de571abf2c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_d5e09c95",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T22:50:24Z",
+      "side": 1,
+      "message": "this probably makes network requests inside a loop as well",
+      "revId": "c9b8fa38ab07dc516efc29a8153044de571abf2c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
