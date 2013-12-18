@@ -149,6 +149,11 @@ abstract class AbstractRevision {
 	}
 
 	/**
+	 * Get the revision type
+	 */
+	abstract public function getRevisionType();
+
+	/**
 	 * NOTE: No guarantee is made here regarding if $this is the newest revision.  Validation
 	 * must happen externally.  DB *will* throw an exception if this attempts to write to db
 	 * and it is not the most recent revision.
