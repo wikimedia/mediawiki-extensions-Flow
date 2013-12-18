@@ -31,7 +31,7 @@ if ( $header ) {
 
 echo Html::textarea(
 	$block->getName() . '[content]',
-	$header ? $this->getContent( $header, 'wikitext', $user ) : '',
+	$header ? $this->getContent( $header, 'wikitext' ) : '',
 	array(
 		'class' => 'mw-ui-input',
 		'rows' => '10',

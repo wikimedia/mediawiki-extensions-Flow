@@ -86,7 +86,7 @@ echo Html::openElement( 'div', array(
 			<?php echo $postView->editPostButton( 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' ); ?>
 
 			<div class="flow-post-content">
-				<?php echo $this->getContent( $post, 'html', $user ); ?>
+				<?php echo $this->getContent( $post, 'html' ); ?>
 			</div>
 
 			<?php if ( $postView->actions()->isAllowedAny( 'hide-post', 'delete-post', 'suppress-post', 'restore-post' ) ): ?>
