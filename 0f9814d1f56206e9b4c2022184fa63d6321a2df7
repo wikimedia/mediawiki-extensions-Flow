@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_16a77aa5",
+        "filename": "includes/Contributions/Query.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:52:53Z",
+      "side": 1,
+      "message": "Not sure why this one is used?\n\nI changed the dash to underscore, but couldn\u0027t find this value being used anywhere?",
+      "revId": "0f9814d1f56206e9b4c2022184fa63d6321a2df7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ee75395_56f6228d",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:52:53Z",
+      "side": 1,
+      "message": "I\u0027ve changed these to not use self::BIN_LEN \u0026 HEX_LEN, since that\u0027s introduced in another patch (https://gerrit.wikimedia.org/r/#/c/98995/,)\n\nI\u0027ve pushed https://gerrit.wikimedia.org/r/#/c/102441/ to reinstate these consts in here, once the other patch that introduces them has been merged",
+      "revId": "0f9814d1f56206e9b4c2022184fa63d6321a2df7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
