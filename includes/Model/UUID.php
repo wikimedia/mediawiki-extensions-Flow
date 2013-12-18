@@ -12,9 +12,14 @@ class UUID {
 	protected $hexValue;
 	protected $timestamp;
 
+	// UUID length in hex
+	const HEX_LEN = 32;
+	// UUID length in binary
+	const BIN_LEN = 16;
+
 	function __construct( $binaryValue ) {
-		if ( strlen( $binaryValue ) !== 16 ) {
-			throw new InvalidInputException( 'Expected 16 char binary string, got: ' . $binaryValue, 'invalid-input' );
+		if ( strlen( $binaryValue ) !== self::BIN_LEN ) {
+			throw new InvalidInputException( 'Expected ' . self::BIN_LEN . ' char binary string, got: ' . $binaryValue, 'invalid-input' );
 		}
 		$this->binaryValue = $binaryValue;
 	}
@@ -32,20 +37,21 @@ class UUID {
 		} elseif ( $input === null ) {
 			return null;
 		} elseif ( $input === false ) {
-			$hexValue = str_pad( \UIDGenerator::newTimestampedUID128( 16 ), 32, '0', STR_PAD_LEFT );
-			$binaryValue = pack( 'H*', $hexValue );
+			$hexValue = str_pad( \UIDGenerator::newTimestampedUID128( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
 		} elseif ( !is_string( $input ) && !is_int( $input ) ) {
 			throw new InvalidInputException( 'Unknown input type to UUID class: ' . gettype( $input ), 'invalid-input' );
-		} elseif ( strlen( $input ) == 16 ) {
+		} elseif ( strlen( $input ) == self::BIN_LEN ) {
 			$binaryValue = $input;
-		} elseif ( strlen( $input ) == 32 && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
+		} elseif ( strlen( $input ) == self::HEX_LEN && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
 			$hexValue = $input;
-			$binaryValue = pack( 'H*', $hexValue );
 		} elseif ( is_numeric( $input ) ) {
-			$hexValue = wfBaseConvert( $input, 10, 16, 32 );
-			$binaryValue = pack( 'H*', $hexValue );
+			$hexValue = wfBaseConvert( $input, 10, 16, self::HEX_LEN );
 		} else {
 			throw new InvalidInputException( 'Unknown input to UUID class', 'invalid-input' );
+		}
+
+		if ( $binaryValue === null && $hexValue !== null ) {
+			$binaryValue = pack( 'H*', $hexValue );
 		}
 
 		$uuid = new self( $binaryValue );
@@ -60,7 +66,7 @@ class UUID {
 
 	public function getHex() {
 		if ( $this->hexValue === null ) {
-			$this->hexValue = str_pad( bin2hex( $this->binaryValue ), 32, '0', STR_PAD_LEFT );
+			$this->hexValue = str_pad( bin2hex( $this->binaryValue ), self::HEX_LEN, '0', STR_PAD_LEFT );
 		}
 		return $this->hexValue;
 	}
@@ -130,9 +136,12 @@ class UUID {
 		// Easiest way to do this is to take the 46 MSBs of the UNIX timestamp * 1000
 		// and pad the remaining characters with zeroes.
 		$millitime = wfTimestamp( TS_UNIX, $ts ) * 1000;
+		// base 10 -> base 2, taking 46 bits
 		$timestampBinary = wfBaseConvert( $millitime, 10, 2, 46 );
-		$uuidBase2 = str_pad( $timestampBinary, 16 * 8, '0', STR_PAD_RIGHT );
-		$uuidHex = wfBaseConvert( $uuidBase2, 2, 16, 32 );
+		// pad out the 46 bits to binary len with 0's
+		$uuidBase2 = str_pad( $timestampBinary, self::BIN_LEN * 8, '0', STR_PAD_RIGHT );
+		// base 2 -> base 16
+		$uuidHex = wfBaseConvert( $uuidBase2, 2, 16, self::HEX_LEN );
 
 		return self::create( $uuidHex );
 	}
