@@ -12,9 +12,14 @@ class UUID {
 	protected $hexValue;
 	protected $timestamp;
 
+	// UUID length in hex
+	const HEX_LEN = 32;
+	// UUID length in binary
+	const BIN_LEN = 16;
+
 	function __construct( $binaryValue ) {
-		if ( strlen( $binaryValue ) !== 16 ) {
-			throw new \InvalidArgumentException( 'Expected 16 char binary string, got: ' . $binaryValue );
+		if ( strlen( $binaryValue ) !== self::BIN_LEN ) {
+			throw new \InvalidArgumentException( 'Expected ' . self::BIN_LEN . 'char binary string, got: ' . $binaryValue );
 		}
 		$this->binaryValue = $binaryValue;
 	}
@@ -32,20 +37,21 @@ class UUID {
 		} elseif ( $input === null ) {
 			return null;
 		} elseif ( $input === false ) {
-			$hexValue = str_pad( \UIDGenerator::newTimestampedUID128( 16 ), 32, '0', STR_PAD_LEFT );
-			$binaryValue = pack( 'H*', $hexValue );
+			$hexValue = str_pad( \UIDGenerator::newTimestampedUID128( 16 ), self::BIN_LEN, '0', STR_PAD_LEFT );
 		} elseif ( !is_string( $input ) && !is_int( $input ) ) {
 			throw new \MWException( "Unknown input type to UUID class: " . gettype( $input ) );
-		} elseif ( strlen( $input ) == 16 ) {
+		} elseif ( strlen( $input ) == self::BIN_LEN ) {
 			$binaryValue = $input;
-		} elseif ( strlen( $input ) == 32 && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
+		} elseif ( strlen( $input ) == self::HEX_LEN && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
 			$hexValue = $input;
-			$binaryValue = pack( 'H*', $hexValue );
 		} elseif ( is_numeric( $input ) ) {
-			$hexValue = wfBaseConvert( $input, 10, 16, 32 );
-			$binaryValue = pack( 'H*', $hexValue );
+			$hexValue = wfBaseConvert( $input, 10, 16, self::BIN_LEN );
 		} else {
 			throw new \MWException( "Unknown input to UUID class" );
+		}
+
+		if ( $binaryValue === null && $hexValue !== null ) {
+			$binaryValue = pack( 'H*', $hexValue );
 		}
 
 		$uuid = new self( $binaryValue );
@@ -60,7 +66,7 @@ class UUID {
 
 	public function getHex() {
 		if ( $this->hexValue === null ) {
-			$this->hexValue = str_pad( bin2hex( $this->binaryValue ), 32, '0', STR_PAD_LEFT );
+			$this->hexValue = str_pad( bin2hex( $this->binaryValue ), self::BIN_LEN, '0', STR_PAD_LEFT );
 		}
 		return $this->hexValue;
 	}
