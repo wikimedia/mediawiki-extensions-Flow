@@ -127,39 +127,97 @@ class TreeRepository {
 	}
 
 	/**
-	 * Given a specific child node find the path from that node to the root of its tree.
+	 * Given a list of nodes, find the path from each node to the root of its tree.
 	 * the root must be the first element of the array, $node must be the last element.
+	 * @param $descendants array Array of UUID objects to find the root paths for.
+	 * @return array Associative array, key is the post ID in hex, value is the path as an array.
 	 */
-	public function findRootPath( UUID $descendant ) {
-		$cacheKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
-		$path = $this->cache->get( $cacheKey );
-		if ( $path !== false ) {
-			return $path;
+	public function findRootPaths( array $descendants ) {
+		$cacheKeys = array();
+		$cacheValues = array();
+		$missingValues = array();
+
+		foreach( $descendants as $descendant ) {
+			$cacheKeys[$descendant->getHex()] = wfForeignMemcKey( 'flow', 'tree', 'rootpath', $descendant->getHex() );
+		}
+
+		$cacheResult = $this->cache->getMulti( array_values( $cacheKeys ) );
+
+		foreach( $descendants as $descendant ) {
+			if ( isset( $cacheResult[$cacheKeys[$descendant->getHex()]] ) ) {
+				$cacheValues[$descendant->getHex()] = $cacheResult[$cacheKeys[$descendant->getHex()]];
+			} else {
+				// This doubles as a way to convert binary UUIDs to hex
+				$missingValues[$descendant->getBinary()] = $descendant->getHex();
+			}
+		}
+
+		if ( ! count( $missingValues ) ) {
+			return $cacheValues;
 		}
 
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 		$res = $dbr->select(
 			$this->tableName,
-			array( 'tree_ancestor_id', 'tree_depth' ),
+			array( 'tree_descendant_id', 'tree_ancestor_id', 'tree_depth' ),
 			array(
-				'tree_descendant_id' => $descendant->getBinary(),
+				'tree_descendant_id' => array_keys( $missingValues ),
 			),
 			__METHOD__
 		);
-		if ( !$res ) {
-			return null;
+
+		if ( !$res || $res->numRows() === 0 ) {
+			return $cacheValues;
 		}
-		$path = array();
+
+		$paths = array_fill_keys( array_keys( $missingValues ), array() );
 		foreach ( $res as $row ) {
-			$path[$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
+			$hexId = $missingValues[$row->tree_descendant_id];
+			$paths[$hexId][$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
 		}
-		if ( !$path ) {
-			throw new \MWException( 'No root path found? Is this a root already? ' . $descendant->getHex() );
+
+		foreach( $paths as $descendantId => &$path) {
+			if ( !$path ) {
+				$path = null;
+				continue;
+			}
+
+			ksort( $path );
+			$path = array_reverse( $path );
+
+			$this->cache->set( $cacheKeys[$descendantId], $path, $this->cacheTime );
 		}
-		ksort( $path );
-		$path = array_reverse( $path );
-		$this->cache->set( $cacheKey, $path, $this->cacheTime );
-		return $path;
+
+		return $paths + $cacheValues;
+	}
+
+	/**
+	 * Finds the root path for a single post ID.
+	 * @param  UUID   $descendant Post ID
+	 * @return array Path to the root of that node.
+	 */
+	public function findRootPath( UUID $descendant ) {
+		$paths = $this->findRootPaths( array( $descendant ) );
+
+		return isset( $paths[$descendant->getHex()] ) ? $paths[$descendant->getHex()] : null;
+	}
+
+	/**
+	 * Finds the root posts of a list of posts.
+	 * @param  array  $descendants Array of PostRevision objects to find roots for.
+	 * @return array Associative array of post ID (as hex) to UUID object representing its root.
+	 */
+	public function findRoots( array $descendants ) {
+		$paths = $this->findRootPaths( $descendants );
+		$roots = array();
+
+		foreach( $descendants as $descendant ) {
+			if ( isset( $paths[$descendant->getHex()] ) ) {
+				$roots[$descendant->getHex()] = $paths[$descendant->getHex()][0];
+			}
+		}
+
+		return $roots;
 	}
 
 	/**
@@ -169,7 +227,13 @@ class TreeRepository {
 		// To simplify caching we will work through the root path instead
 		// of caching our own value
 		$path = $this->findRootPath( $descendant );
-		return array_shift( $path );
+		$root = array_shift( $path );
+
+		if ( ! $root ) {
+			throw new MWException( $descendant->getHex().' has no root post. Probably is a root post.' );
+		}
+
+		return $root;
 	}
 
 	/**
