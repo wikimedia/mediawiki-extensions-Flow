@@ -2,9 +2,11 @@
 
 Feature: Create new topic logged in
 
-For now this test is assumed to run against http://ee-prototype.wmflabs.org/ only
-It requires VisualEditor not be in place, the cldr extension, a "Flow QA" page, and the "Selenium user".
-If VisualEditor is enabled for Selenium_user, the flow_page definitions have to change.
+It requires the cldr extension, a "Flow QA" page, and a "Selenium user" who has
+permission to Delete (usually 'sysop'/administrator user right) and to Suppress
+(usually the 'oversight' user right).
+If the Selenium_user's Flow editor is VisualEditor, then the flow_page
+definitions have to change.
 
 Background:
   Given I am logged in
