@@ -103,9 +103,9 @@ $messages['en'] = array(
 	'flow-error-missing-postId' => 'No "postId" parameter was supplied. This parameter is required to manipulate a post.',
 	'flow-error-invalid-postId' => '"postId" parameter was invalid. The specified post ($1) could not be found.',
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
-	'flow-error-invalid-moderation-state' => 'An invalid value was provided for moderationState',
-	'flow-error-invalid-moderation-reason' => 'Please provide a reason for the moderation',
-	'flow-error-not-allowed' => 'Insufficient permissions to execute this action',
+	'flow-error-invalid-moderation-state' => 'An invalid value was provided for moderationState.',
+	'flow-error-invalid-moderation-reason' => 'Please provide a reason for the moderation.',
+	'flow-error-not-allowed' => 'Insufficient permissions to execute this action.',
 	'flow-error-title-too-long' => 'Topic titles are restricted to $1 {{PLURAL:$1|byte|bytes}}.',
 	'flow-error-no-existing-workflow' => 'This workflow does not yet exist.',
 	'flow-error-not-a-post' => 'Topic title can not be saved as a post.',
@@ -240,7 +240,7 @@ You can see the [$5 differences from the previous version], or view other versio
 You can view later versions on the [$4 post history page].',
 
 	'flow-compare-revisions-revision-header' => 'Version by {{GENDER:$2|$2}} from $1',
-	'flow-compare-revisions-header-post' => 'This page shows the changes between two versions of a post by $3 in the topic "[$5 $2]" on [$4 $1].
+	'flow-compare-revisions-header-post' => 'This page shows the {{GENDER:$3|changes}} between two versions of a post by $3 in the topic "[$5 $2]" on [$4 $1].
 You can see other versions of this post at its [$6 history page].',
 
 	// Topic collapse states
@@ -309,7 +309,7 @@ Name of the Flow log filter on the [[Special:Log]] page.',
 * $3 - the page where the topic was moderated
 * $4 - permalink URL to the moderated topic
 {{Related|Flow-logentry}}',
-	'flow-user-moderated' => 'Name to display instead of a moderated user name',
+	'flow-user-moderated' => 'Name to display when the current user is not allowed to see the users name due to moderation',
 	'flow-edit-header-link' => 'Used as text for the button that either allows editing the header in place or brings the user to a page for editing the header.',
 	'flow-header-empty' => 'Used as a placeholder text for headers which have no content.',
 	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
