@@ -373,6 +373,7 @@
 
 		// Moderated posts need click to display content
 		$( '<a href="#" class="flow-post-moderated-view"></a>' )
+			.after( ' ' )
 			.text( mw.msg( 'flow-post-moderated-toggle-show' ) )
 			.click( function ( e ) {
 				e.preventDefault();
