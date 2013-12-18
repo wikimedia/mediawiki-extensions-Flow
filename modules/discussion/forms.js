@@ -195,85 +195,108 @@ $( document ).flow( 'registerInitFunction', function(e) {
 
 			var $topicContainer = $( this ).closest( '.flow-topic-container' ),
 				$titleBar = $topicContainer.find( '.flow-topic-title' ),
-				oldTitle = $topicContainer.data( 'title' ),
 				$titleEditForm = $( '<form />' ),
-				$realTitle = $titleBar.find( '.flow-realtitle' );
+				$realTitle = $titleBar.find( '.flow-realtitle' ),
+				workflowId = $topicContainer.data( 'topic-id' ),
+				pageName = $( this ).closest( '.flow-container' ).data( 'page-title' );
 
 			// check if form has not already been opened
 			if ( !$realTitle.is( ':visible' ) ) {
 				return;
 			}
 
-			$realTitle.hide();
+			mw.flow.api.readTopic(
+				pageName,
+				workflowId,
+				{
+					'topic' : {
+						'no-children' : true,
+						'postId' : workflowId,
+						'contentFormat' : mw.flow.editor.getFormat()
+					}
+				}
+			)
+			.done( function ( data ) {
+				if ( !data[0] || data[0]['post-id'] !== workflowId ) {
+					console.dir( data );
+					$( '<div/>' )
+						.addClass( 'flow-error' )
+						.text( mw.msg( 'flow-error-other' ) )
+						.hide()
+						.insertAfter( $topicContainer )
+						.slideDown();
+					return;
+				}
 
-			$titleEditForm
-				.addClass( 'flow-edit-title-form' )
-				.append(
-					$( '<input />' )
-						.addClass( 'mw-ui-input' )
-						.addClass( 'flow-edit-title-textbox' )
-						.attr( 'type', 'text' )
-						.byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
-						.val( oldTitle )
-				)
-				.append(
-					$( '<div class="flow-edit-title-controls"></div>' )
-						.append(
-							$( '<a/>' )
-								.addClass( 'flow-cancel-link' )
-								.addClass( 'mw-ui-button' )
-								.addClass( 'mw-ui-text' )
-								.attr( 'href', '#' )
-								.text( mw.msg( 'flow-cancel' ) )
-								.click( function ( e ) {
-									e.preventDefault();
-									$titleBar.children( 'form' )
-										.remove();
-									$realTitle
-										.show();
-									$titleEditForm.remove();
-									$titleEditForm.flow( 'hidePreview' );
-								} )
-						)
-						.append( ' ' )
-						.append(
-							$( '<input />' )
-								.addClass( 'flow-edit-title-submit' )
-								.addClass( 'mw-ui-button' )
-								.addClass( 'mw-ui-constructive' )
-								.attr( 'type', 'submit' )
-								.val( mw.msg( 'flow-edit-title-submit' ) )
-						)
-				)
-				.appendTo( $titleBar )
-				.find( '.flow-edit-title-textbox' )
-					.focus()
-					.select();
-				$titleEditForm.flow( 'setupPreview', { '.flow-edit-title-textbox': 'plain' } );
-				$titleEditForm.flow( 'setupFormHandler',
-					'.flow-edit-title-submit',
-					mw.flow.api.changeTitle,
-					function () {
-						var workflowId = $topicContainer.data( 'topic-id' ),
-							content = $titleEditForm.find( '.flow-edit-title-textbox' ).val();
+				$realTitle.hide();
 
-						return [ workflowId, content ];
-					},
-					function ( workflowId, content ) {
-						return content && true;
-					},
-					function ( promise ) {
-						promise.done( function ( output ) {
-							$realTitle
-								.empty()
-								.text( output.rendered )
-								.show();
+				$titleEditForm
+					.addClass( 'flow-edit-title-form' )
+					.append(
+						$( '<input />' )
+							.addClass( 'mw-ui-input' )
+							.addClass( 'flow-edit-title-textbox' )
+							.attr( 'type', 'text' )
+							.byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
+							.val( data[0].content['*'] )
+					)
+					.append(
+						$( '<div class="flow-edit-title-controls"></div>' )
+							.append(
+								$( '<a/>' )
+									.addClass( 'flow-cancel-link' )
+									.addClass( 'mw-ui-button' )
+									.addClass( 'mw-ui-text' )
+									.attr( 'href', '#' )
+									.text( mw.msg( 'flow-cancel' ) )
+									.click( function ( e ) {
+										e.preventDefault();
+										$titleBar.children( 'form' )
+											.remove();
+										$realTitle
+											.show();
+										$titleEditForm.remove();
+										$titleEditForm.flow( 'hidePreview' );
+									} )
+							)
+							.append( ' ' )
+							.append(
+								$( '<input />' )
+									.addClass( 'flow-edit-title-submit' )
+									.addClass( 'mw-ui-button' )
+									.addClass( 'mw-ui-constructive' )
+									.attr( 'type', 'submit' )
+									.val( mw.msg( 'flow-edit-title-submit' ) )
+							)
+					)
+					.appendTo( $titleBar )
+					.find( '.flow-edit-title-textbox' )
+						.focus()
+						.select();
+					$titleEditForm.flow( 'setupPreview', { '.flow-edit-title-textbox': 'plain' } );
+					$titleEditForm.flow( 'setupFormHandler',
+						'.flow-edit-title-submit',
+						mw.flow.api.changeTitle,
+						function () {
+							var workflowId = $topicContainer.data( 'topic-id' ),
+								content = $titleEditForm.find( '.flow-edit-title-textbox' ).val();
 
-							$topicContainer.data( 'title', output.rendered );
+							return [ workflowId, content ];
+						},
+						function ( workflowId, content ) {
+							return content && true;
+						},
+						function ( promise ) {
+							promise.done( function ( output ) {
+								$realTitle
+									.empty()
+									.text( output.rendered )
+									.show();
 
-							$titleEditForm.remove();
+								$titleEditForm.remove();
+							} );
 						} );
-					} );
+				} );
 		} );
 } );
 } )( jQuery, mediaWiki );

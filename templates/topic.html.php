@@ -73,7 +73,6 @@ echo Html::openElement( 'div', array(
 	'id' => 'flow-topic-' . $topic->getId()->getHex(),
 	'data-topic-id' => $topic->getId()->getHex(),
 	'data-creator-name' => $this->getCreatorText( $root, $user ),
-	'data-title' => $root->isModerated() ? '' : $title,
 ) );
 ?>
 <div class="flow-element-container">
