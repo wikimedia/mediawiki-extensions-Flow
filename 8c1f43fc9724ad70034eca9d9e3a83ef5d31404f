@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "0ee75395_5784f20e",
+        "filename": "includes/Contributions/Formatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-18T14:35:09Z",
+      "side": 1,
+      "message": "We should, but I\u0027d do that in a follow-up patch",
+      "parentUuid": "0ee75395_e7d91ff9",
+      "revId": "8c1f43fc9724ad70034eca9d9e3a83ef5d31404f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ee75395_e7aebf2a",
         "filename": "includes/Contributions/Query.php",
         "patchSetId": 8
