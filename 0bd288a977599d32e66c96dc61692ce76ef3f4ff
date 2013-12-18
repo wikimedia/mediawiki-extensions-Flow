@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_249afc66",
+        "filename": "includes/Templating.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T18:20:06Z",
+      "side": 1,
+      "message": "i18n message comment needs update to match the keys that are generated",
+      "revId": "0bd288a977599d32e66c96dc61692ce76ef3f4ff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_a4bcccb2",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T18:20:06Z",
+      "side": 1,
+      "message": "To be consistent with the other hover effects, instead of changing display on hover we should change the opacity.  This gives a more gradual fade-in effect.\n\n    display: inline;\n    opacity: 0;\n    transition: opacity 0.2;\n\nalong with opacity: 1 in the hover state.",
+      "revId": "0bd288a977599d32e66c96dc61692ce76ef3f4ff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_44e3c0d4",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-18T18:20:06Z",
+      "side": 1,
+      "message": "use css transitions for opacity here too",
+      "revId": "0bd288a977599d32e66c96dc61692ce76ef3f4ff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
