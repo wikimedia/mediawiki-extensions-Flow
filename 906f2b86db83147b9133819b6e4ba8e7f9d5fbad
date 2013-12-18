@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ee75395_e5933e02",
+        "filename": "flow.sql",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-18T02:32:28Z",
+      "side": 1,
+      "message": "varchar(39) should be enough to hold IPv6, also the alter patch defines it as varchar(255)",
+      "revId": "906f2b86db83147b9133819b6e4ba8e7f9d5fbad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
