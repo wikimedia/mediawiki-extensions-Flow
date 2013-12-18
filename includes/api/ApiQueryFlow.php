@@ -28,7 +28,7 @@ class ApiQueryFlow extends ApiQueryBase {
 		$blocks = $this->loader->createBlocks();
 		$blockOutput = array();
 		foreach( $blocks as $block ) {
-			$block->init( $params['action'], $this->getContext()->getUser() );
+			$block->init( $params['action'], $this->getUser() );
 
 			$blockParams = array();
 			if ( isset( $passedParams[$block->getName()] ) ) {

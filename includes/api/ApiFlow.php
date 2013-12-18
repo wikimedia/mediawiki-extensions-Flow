@@ -44,11 +44,11 @@ class ApiFlow extends ApiBase {
 			return;
 		}
 
-		$request = new DerivativeRequest( $this->getContext()->getRequest(), $requestParams, true );
+		$request = new DerivativeRequest( $this->getRequest(), $requestParams, true );
 
 		$blocks = $this->loader->createBlocks();
 		$action = $params['flowaction'];
-		$user = $this->getContext()->getUser();
+		$user = $this->getUser();
 
 		foreach( $blocks as $block ) {
 			$block->init( $action, $user );
