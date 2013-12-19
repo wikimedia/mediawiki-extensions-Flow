@@ -147,7 +147,6 @@ $messages['en'] = array(
 	'flow-history-pages-post' => 'Appears on [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 started this topic|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} and $2 {{PLURAL:$2|other|others}}|0=No participation yet|2={{GENDER:$3|$3}} and {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} and {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|Comment ($1)|Comments ($1)|0={{GENDER:$2|Be the first}} to comment!}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|Be the first}} to comment!|$1 {{PLURAL:$1|comment|comments}} by $2 {{PLURAL:$2|user|users}}}}',
 
 	'flow-comment-restored' => 'Restored comment',
 	'flow-comment-deleted' => 'Deleted comment',
@@ -674,17 +673,7 @@ Parameters:
 
 Parameters:
 * $1 - the number of comments on this topic, can be used for PLURAL
-* $2 - the name of the current user, can be used for GENDER
-See also:
-* {{msg-mw|Flow-topic-meta-minimal}}',
-	'flow-topic-meta-minimal' => 'Message to display the amount of users and comments in a topic in the collapsed topic views.
-
-Parameters:
-* $1 - the number of comments in this topic, can be used for PLURAL
-* $2 - the number of users participating in this topic, can be used for PLURAL
-* $3 - the name of the current user, can be used for GENDER
-See also:
-* {{msg-mw|Flow-topic-comments}}',
+* $2 - the name of the current user, can be used for GENDER',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
