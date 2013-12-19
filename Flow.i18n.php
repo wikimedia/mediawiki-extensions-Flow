@@ -64,7 +64,6 @@ $messages['en'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Reply}}',
 	'flow-reply-link' => '{{GENDER:$1|Reply}}',
 	'flow-thank-link' => '{{GENDER:$1|Thank}}',
-	'flow-talk-link' => 'Talk to {{GENDER:$1|$1}}',
 
 	'flow-edit-post-submit' => 'Submit changes',
 
@@ -407,8 +406,6 @@ Parameters:
 {{Identical|Reply}}',
 	'flow-thank-link' => 'Link text of the button that will (when clicked) thank the editor of the comment Parameters:
 * $1 - username, can be used for GENDER',
-	'flow-talk-link' => 'Link text of the button that links to the talk page of the user whose comment is deleted. Parameters:
-* $1 - username of the user whose comment is deleted, can be used for GENDER',
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified. Parameters:
 * $1 - username that created the most recent revision of the post

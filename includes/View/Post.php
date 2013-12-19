@@ -36,19 +36,6 @@ class Post {
 		return wfMessage( 'flow-reply-link', $this->creatorUserText )->escaped();
 	}
 
-	public function moderatedTalkLink() {
-		$user = User::newFromId( $this->post->getModeratedByUserId() );
-		$title = $user->getTalkPage();
-
-		return array(
-			$title->getLinkUrl(),
-			wfMessage(
-				'flow-talk-link',
-				$this->post->getModeratedByUserText()
-			)->escaped()
-		);
-	}
-
 	public function creator() {
 		return $this->creatorUserText;
 	}
