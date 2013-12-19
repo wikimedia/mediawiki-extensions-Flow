@@ -54,7 +54,7 @@ class RootPostLoader {
 			} elseif( $rootId->equals( $post->getPostId() ) ) {
 				$res['root'] = $post;
 			} else {
-				die( 'Unmatched: ' . $post->getPostId()->getHex() );
+				die( 'Unmatched: ' . $post->getPostId()->getAlphadecimal() );
 			}
 		}
 		// The above doesn't catch this condition
@@ -87,14 +87,14 @@ class RootPostLoader {
 		$posts = $children = array();
 		foreach ( $found as $indexResult ) {
 			$post = reset( $indexResult ); // limit => 1 means only 1 result per query
-			if ( isset( $posts[$post->getPostId()->getHex()] ) ) {
-				throw new InvalidDataException( 'Multiple results for id: ' . $post->getPostId()->getHex(), 'fail-load-data' );
+			if ( isset( $posts[$post->getPostId()->getAlphadecimal()] ) ) {
+				throw new InvalidDataException( 'Multiple results for id: ' . $post->getPostId()->getAlphadecimal(), 'fail-load-data' );
 			}
-			$posts[$post->getPostId()->getHex()] = $post;
+			$posts[$post->getPostId()->getAlphadecimal()] = $post;
 		}
 		$prettyPostIds = array();
 		foreach ( $allPostIds as $id ) {
-			$prettyPostIds[] = $id->getHex();
+			$prettyPostIds[] = $id->getAlphadecimal();
 		}
 		$missing = array_diff( $prettyPostIds, array_keys( $posts ) );
 		if ( $missing ) {
@@ -117,8 +117,8 @@ class RootPostLoader {
 
 				// create a stub post instead of failing completely
 				$post = PostRevision::newFromId( $postId, $user, $content );
-				$post->setReplyToId( $parents[$postId->getHex()] );
-				$posts[$postId->getHex()] = $post;
+				$post->setReplyToId( $parents[$postId->getAlphadecimal()] );
+				$posts[$postId->getAlphadecimal()] = $post;
 
 				wfWarn( 'Missing Posts: ' . FormatJson::encode( $missing ) );
 			}
@@ -132,7 +132,7 @@ class RootPostLoader {
 		// populate array of children
 		foreach ( $posts as $post ) {
 			if ( $post->getReplyToId() ) {
-				$children[$post->getReplyToId()->getHex()][] = $post;
+				$children[$post->getReplyToId()->getAlphadecimal()][] = $post;
 			}
 		}
 		$extraParents = array_diff( array_keys( $children ), $prettyPostIds );
@@ -155,9 +155,9 @@ class RootPostLoader {
 
 			// determine threading depth of post
 			$replyToId = $post->getReplyToId();
-			while ( $replyToId && isset( $children[$replyToId->getHex()] ) ) {
+			while ( $replyToId && isset( $children[$replyToId->getAlphadecimal()] ) ) {
 				$postDepth++;
-				$replyToId = $posts[$replyToId->getHex()]->getReplyToId();
+				$replyToId = $posts[$replyToId->getAlphadecimal()]->getReplyToId();
 			}
 
 			$post->setChildren( $postChildren );
@@ -168,7 +168,7 @@ class RootPostLoader {
 		// Return in same order as requested
 		$roots = array();
 		foreach ( $topicIds as $id ) {
-			$roots[$id->getHex()] = $posts[$id->getHex()];
+			$roots[$id->getAlphadecimal()] = $posts[$id->getAlphadecimal()];
 		}
 		// Attach every post in the tree to its root. setRootPost
 		// recursivly applies it to all children as well.
@@ -194,7 +194,7 @@ class RootPostLoader {
 
 		$retval = array();
 		foreach ( $res as $id ) {
-			$retval[$id->getHex()] = $id;
+			$retval[$id->getAlphadecimal()] = $id;
 		}
 		return $retval;
 	}
