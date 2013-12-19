@@ -21,7 +21,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		) );
 	$replyForm .= Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 
-	if ( $block->getHexRepliedTo() === $post->getPostId()->getHex() ) {
+	if ( $block->getPrettyRepliedTo() === $post->getPostId()->getPretty() ) {
 		$replyForm .= '<ul>';
 		foreach ( $block->getErrors() as $error ) {
 			$replyForm .= '<li>' . $block->getErrorMessage( $error )->escaped() . '</li>';
@@ -34,7 +34,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		Html::element( 'input', array(
 			'type' => 'hidden',
 			'name' => $block->getName() . '[replyTo]',
-			'value' => $post->getPostId()->getHex(),
+			'value' => $post->getPostId()->getPretty(),
 		) ) .
 		Html::textarea( $block->getName() . '[content]', '', array(
 			'placeholder' => $placeHolder,
@@ -57,12 +57,12 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 
 echo Html::openElement( 'div', array(
 	'class' => 'flow-post-container ' . ( $post->getDepth() >= $maxThreadingDepth ? 'flow-post-max-depth' : '' ),
-	'data-revision-id' => $post->getRevisionId()->getHex(),
-	'data-post-id' => $post->getPostId()->getHex(),
+	'data-revision-id' => $post->getRevisionId()->getPretty(),
+	'data-post-id' => $post->getPostId()->getPretty(),
 	'data-creator-name' => $post->getCreatorName()
 ) );
 ?>
-	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >
+	<div id="flow-post-<?php echo $post->getPostId()->getPretty()?>" class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >
 		<?php
 		if ( $post->isModerated() ):
 			$moderationState = $post->getModerationState();
@@ -147,7 +147,7 @@ echo Html::openElement( 'div', array(
 				array(
 					'class' => 'flow-icon-permalink flow-icon flow-icon-bottom-aligned',
 					'title' => wfMessage( 'flow-post-action-view' )->text(),
-					'href' => $this->generateUrl( $block->getWorkflowId() ) . '#flow-post-' . $post->getPostId()->getHex(),
+					'href' => $this->generateUrl( $block->getWorkflowId() ) . '#flow-post-' . $post->getPostId()->getPretty(),
 				),
 				wfMessage( 'flow-topic-action-view' )->text()
 			);

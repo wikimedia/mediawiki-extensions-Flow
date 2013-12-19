@@ -49,7 +49,7 @@ class RootPostLoader {
 			} elseif( $rootId->equals( $post->getPostId() ) ) {
 				$res['root'] = $post;
 			} else {
-				die( 'Unmatched: ' . $post->getPostId()->getHex() );
+				die( 'Unmatched: ' . $post->getPostId()->getPretty() );
 			}
 		}
 		// The above doesn't catch this condition
@@ -82,17 +82,17 @@ class RootPostLoader {
 		$posts = $children = array();
 		foreach ( $found as $indexResult ) {
 			$post = reset( $indexResult ); // limit => 1 means only 1 result per query
-			if ( isset( $posts[$post->getPostId()->getHex()] ) ) {
-				throw new \MWException( 'Multiple results for id: ' . $post->getPostId()->getHex() );
+			if ( isset( $posts[$post->getPostId()->getPretty()] ) ) {
+				throw new \MWException( 'Multiple results for id: ' . $post->getPostId()->getPretty() );
 			}
-			$posts[$post->getPostId()->getHex()] = $post;
+			$posts[$post->getPostId()->getPretty()] = $post;
 			if ( $post->getReplyToId() ) {
-				$children[$post->getReplyToId()->getHex()][] = $post;
+				$children[$post->getReplyToId()->getPretty()][] = $post;
 			}
 		}
 		$prettyPostIds = array();
 		foreach ( $allPostIds as $id ) {
-			$prettyPostIds[] = $id->getHex();
+			$prettyPostIds[] = $id->getPretty();
 		}
 		$missing = array_diff( $prettyPostIds, array_keys( $posts ) );
 		if ( $missing ) {
@@ -125,9 +125,9 @@ class RootPostLoader {
 
 			// determine threading depth of post
 			$replyToId = $post->getReplyToId();
-			while ( $replyToId && isset( $children[$replyToId->getHex()] ) ) {
+			while ( $replyToId && isset( $children[$replyToId->getPretty()] ) ) {
 				$postDepth++;
-				$replyToId = $posts[$replyToId->getHex()]->getReplyToId();
+				$replyToId = $posts[$replyToId->getPretty()]->getReplyToId();
 			}
 
 			$post->setChildren( $postChildren );
@@ -138,7 +138,7 @@ class RootPostLoader {
 		// Return in same order as requested
 		$roots = array();
 		foreach ( $topicIds as $id ) {
-			$roots[$id->getHex()] = $posts[$id->getHex()];
+			$roots[$id->getPretty()] = $posts[$id->getPretty()];
 		}
 		return $roots;
 	}
@@ -159,7 +159,7 @@ class RootPostLoader {
 
 		$retval = array();
 		foreach ( $res as $id ) {
-			$retval[$id->getHex()] = $id;
+			$retval[$id->getPretty()] = $id;
 		}
 		return $retval;
 	}

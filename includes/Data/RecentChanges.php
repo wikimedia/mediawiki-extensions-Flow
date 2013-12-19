@@ -72,8 +72,8 @@ abstract class RecentChanges implements LifecycleHandler {
 					'block' => $block,
 					'revision_type' => $revisionType,
 					'revision' => $revisionId,
-					'workflow' => $workflow->getId()->getHex(),
-					'definition' => $workflow->getDefinitionId()->getHex(),
+					'workflow' => $workflow->getId()->getPretty(),
+					'definition' => $workflow->getDefinitionId()->getPretty(),
 				) + $changes,
 			) ),
 			'rc_cur_id' => 0, // TODO: wtf do we do with uuid's?
@@ -97,7 +97,7 @@ class HeaderRecentChanges extends RecentChanges {
 		$workflowId = $object->getWorkflowId();
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 		if ( !$workflow ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow for header " . $object->getRevisionId()->getHex() );
+			wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow for header " . $object->getRevisionId()->getPretty() );
 			return;
 		}
 
@@ -105,7 +105,7 @@ class HeaderRecentChanges extends RecentChanges {
 			$object->getChangeType(),
 			'header',
 			'Header',
-			$object->getRevisionId()->getHex(),
+			$object->getRevisionId()->getPretty(),
 			$row,
 			$workflow,
 			$object->getRevisionId(),
@@ -127,7 +127,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 		// There might be a more efficient way to get this workflow id
 		$workflowId = $this->tree->findRoot( $object->getPostId() );
 		if ( !$workflowId ) {
-			wfWarn( __METHOD__ . ": could not locate root for post " . $object->getPostId()->getHex() );
+			wfWarn( __METHOD__ . ": could not locate root for post " . $object->getPostId()->getPretty() );
 			return;
 		}
 		// These are likely already in the in-process cache
@@ -141,12 +141,12 @@ class PostRevisionRecentChanges extends RecentChanges {
 			$object->getChangeType(),
 			'topic',
 			'PostRevision',
-			$object->getRevisionId()->getHex(),
+			$object->getRevisionId()->getPretty(),
 			$row,
 			$workflow,
 			$object->getRevisionId(),
 			array(
-				'post' => $object->getPostId()->getHex(),
+				'post' => $object->getPostId()->getPretty(),
 				'topic' => $this->getTopicTitle( $object ),
 			)
 		);

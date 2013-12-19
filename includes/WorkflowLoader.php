@@ -102,7 +102,7 @@ class WorkflowLoader {
 		}
 		$definition = $this->storage->getStorage( 'Definition' )->get( $workflow->getDefinitionId() );
 		if ( !$definition ) {
-			throw new \MWException( 'Flow workflow references unknown definition id: ' . $workflow->getDefinitionId()->getHex() );
+			throw new \MWException( 'Flow workflow references unknown definition id: ' . $workflow->getDefinitionId()->getPretty() );
 		}
 
 		return array( $workflow, $definition );

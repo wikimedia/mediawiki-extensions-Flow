@@ -63,7 +63,7 @@ abstract class RevisionStorage extends DbStorage {
 		}
 		$retval = array();
 		foreach ( $res as $row ) {
-			$retval[UUID::create( $row->rev_id )->getHex()] = (array) $row;
+			$retval[UUID::create( $row->rev_id )->getPretty()] = (array) $row;
 		}
 		return $retval;
 	}
@@ -505,7 +505,7 @@ class TopicHistoryIndex extends TopKIndex {
 
 		$descendantQueries = array();
 		foreach ( $queries as $idx => $features ) {
-			$nodes = $nodeList[$features['topic_root_id']->getHex()];
+			$nodes = $nodeList[$features['topic_root_id']->getPretty()];
 			$descendantQueries[$idx] = array(
 				'tree_rev_descendant_id' => UUID::convertUUIDs( $nodes ),
 			);
