@@ -190,15 +190,9 @@ echo Html::openElement( 'div', array(
 				</a>
 			</li>
 		</ul>
-		<ul class="flow-topic-posts-meta-minimal">
-			<?php
-				$userCount = count( $root->getRecursiveResult( $indexParticipants ) );
-				echo wfMessage( 'flow-topic-meta-minimal' )
-					->numParams( $comments, $userCount )
-					->params( $user->getName() )
-					->escaped();
-			?>
-		</ul>
+		<p class="flow-topic-posts-meta-minimal">
+			<?php echo count( $root->getRecursiveResult( $indexParticipants ) ); ?>
+		</p>
 
 		<?php
 			echo Html::element(
