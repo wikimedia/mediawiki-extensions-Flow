@@ -319,7 +319,7 @@ class NotificationController {
 				$extra = $event->getExtra();
 				$topic = $extra['topic-workflow'];
 				if ( $topic ) {
-					$bundleString = $event->getType() . '-' . $topic->getHex();
+					$bundleString = $event->getType() . '-' . $topic->getAlphadecimal();
 				}
 			break;
 		}
@@ -347,10 +347,10 @@ class NotificationController {
 			$ids = array();
 			$topic = $extra['topic-workflow'];
 			if ( $topic ) {
-				$ids[$topic->getHex()] = $topic;
+				$ids[$topic->getAlphadecimal()] = $topic;
 			}
 			if ( isset( $extra['reply-to'] ) ) {
-				$ids[$extra['reply-to']->getHex()] = $extra['reply-to'];
+				$ids[$extra['reply-to']->getAlphadecimal()] = $extra['reply-to'];
 			}
 			$notifiedUsers = self::getCreatorsFromPostIDs( $ids );
 

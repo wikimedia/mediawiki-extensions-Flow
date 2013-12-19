@@ -18,8 +18,8 @@ if ( $revision->getPrevRevisionId() ) {
 		$block->getWorkflow(),
 		'compare-revisions',
 		array(
-			$block->getName().'_newRevision' => $revision->getRevisionId()->getHex(),
-			$block->getName().'_oldRevision' => $revision->getPrevRevisionId()->getHex()
+			$block->getName().'_newRevision' => $revision->getRevisionId()->getAlphadecimal(),
+			$block->getName().'_oldRevision' => $revision->getPrevRevisionId()->getAlphadecimal()
 		)
 	);
 } else {
@@ -32,7 +32,7 @@ switch( $revision->getRevisionType() ) {
 			$block->getWorkflow(),
 			'post-history',
 			array(
-				$block->getName().'_postId' => $revision->getPostId()->getHex(),
+				$block->getName().'_postId' => $revision->getPostId()->getAlphadecimal(),
 			)
 		);
 

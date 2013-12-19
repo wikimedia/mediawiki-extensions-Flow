@@ -141,7 +141,7 @@ class TopicBlock extends AbstractBlock {
 			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
 				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 				return;
-			} elseif ( $topicTitle->getRevisionId()->getHex() !== $this->submitted['prev_revision'] ) {
+			} elseif ( $topicTitle->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
 				// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
 				// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
 				// parent we and the submitter think is the latest, our insert will fail.
@@ -149,8 +149,8 @@ class TopicBlock extends AbstractBlock {
 				// handing user back to specific dialog indicating race condition
 				$this->addError(
 					'prev_revision',
-					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $topicTitle->getRevisionId()->getHex() ),
-					array( 'revision_id' => $topicTitle->getRevisionId()->getHex() ) // save current revision ID
+					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $topicTitle->getRevisionId()->getAlphadecimal() ),
+					array( 'revision_id' => $topicTitle->getRevisionId()->getAlphadecimal() ) // save current revision ID
 				);
 				return;
 			}
@@ -323,7 +323,7 @@ class TopicBlock extends AbstractBlock {
 		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
-		} elseif ( $post->getRevisionId()->getHex() !== $this->submitted['prev_revision'] ) {
+		} elseif ( $post->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
 			// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
 			// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
 			// parent we and the submitter think is the latest, our insert will fail.
@@ -331,8 +331,8 @@ class TopicBlock extends AbstractBlock {
 			// handing user back to specific dialog indicating race condition
 			$this->addError(
 				'prev_revision',
-				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $post->getRevisionId()->getHex() ),
-				array( 'revision_id' => $post->getRevisionId()->getHex() ) // save current revision ID
+				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $post->getRevisionId()->getAlphadecimal() ),
+				array( 'revision_id' => $post->getRevisionId()->getAlphadecimal() ) // save current revision ID
 			);
 			return;
 		}
@@ -443,7 +443,7 @@ class TopicBlock extends AbstractBlock {
 			// get rid of history entries user doesn't have sufficient permissions for
 			$needed = $query = array();
 			foreach ( $history as $i => $revision ) {
-				$hex = $revision->getPostId()->getHex();
+				$hex = $revision->getPostId()->getAlphadecimal();
 				if ( !isset( $needed[$hex] ) ) {
 					$query[] = array( 'tree_rev_descendant_id' => $revision->getPostId() );
 				}
@@ -456,7 +456,7 @@ class TopicBlock extends AbstractBlock {
 			);
 			foreach ( $found as $newest ) {
 				$newest = reset( $newest );
-				$hex = $newest->getPostId()->getHex();
+				$hex = $newest->getPostId()->getAlphadecimal();
 				if ( !isset( $needed[$hex] ) ) {
 					wfWarn( __METHOD__ . ': Received unrequested postId : ' . $hex );
 					continue;
@@ -713,7 +713,7 @@ class TopicBlock extends AbstractBlock {
 		$output = array(
 			'_element' => 'post',
 			'title' => $templating->getContent( $rootPost, 'wikitext' ),
-			'topic-id' => $topic->getId()->getHex(),
+			'topic-id' => $topic->getId()->getAlphadecimal(),
 		);
 
 		if ( isset( $options['showhistoryfor'] ) ) {
@@ -723,7 +723,7 @@ class TopicBlock extends AbstractBlock {
 
 			foreach( $historyBatch as $historyGroup ) {
 				foreach( $historyGroup as $historyEntry ) {
-					$postId = $historyEntry->getPostId()->getHex();
+					$postId = $historyEntry->getPostId()->getAlphadecimal();
 					if ( ! isset( $options['history'][$postId] ) ) {
 						$options['history'][$postId] = array();
 					}
@@ -755,8 +755,8 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$output = array();
-		$output['post-id'] = $post->getPostId()->getHex();
-		$output['revision-id'] = $post->getRevisionId()->getHex();
+		$output['post-id'] = $post->getPostId()->getAlphadecimal();
+		$output['revision-id'] = $post->getRevisionId()->getAlphadecimal();
 		$contentFormat = $post->getContentFormat();
 
 		// This may force a round trip through parsoid for the wikitext when
@@ -791,7 +791,7 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		$postId = $post->getPostId()->getHex();
+		$postId = $post->getPostId()->getAlphadecimal();
 		if ( isset( $options['history'][$postId] ) ) {
 			$output['revisions'] = $this->getAPIHistory( $templating, $postId, $options['history'][$postId] );
 		}
@@ -808,7 +808,7 @@ class TopicBlock extends AbstractBlock {
 		foreach( $history as $revision ) {
 			if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 				$output[] = array(
-					'revision-id' => $revision->getRevisionId()->getHex(),
+					'revision-id' => $revision->getRevisionId()->getAlphadecimal(),
 					'revision-author' => $templating->getUserText( $revision ),
 					'revision-change-type' => $revision->getChangeType(),
 				);
@@ -832,7 +832,7 @@ class TopicBlock extends AbstractBlock {
 		// Make list of candidate conditions
 		foreach( $postIds as $postId ) {
 			$uuid = UUID::create( $postId );
-			$searchItems[$uuid->getHex()] = array(
+			$searchItems[$uuid->getAlphadecimal()] = array(
 				'tree_rev_descendant_id' => $uuid,
 			);
 		}
@@ -848,7 +848,7 @@ class TopicBlock extends AbstractBlock {
 				array_push( $traversalQueue, $child );
 			}
 
-			$postId = $cur->getPostId()->getHex();
+			$postId = $cur->getPostId()->getAlphadecimal();
 			if ( isset( $searchItems[$postId] ) ) {
 				$searchConditions[] = $searchItems[$postId];
 			}
@@ -919,7 +919,7 @@ class TopicBlock extends AbstractBlock {
 		if ( $found ) {
 			return $found;
 		} else {
-			throw new InvalidDataException( 'Unable to load topic history for topic ' . $this->workflow->getId()->getHex(), 'fail-load-history' );
+			throw new InvalidDataException( 'Unable to load topic history for topic ' . $this->workflow->getId()->getAlphadecimal(), 'fail-load-history' );
 		}
 	}
 
@@ -947,14 +947,14 @@ class TopicBlock extends AbstractBlock {
 			$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
 			if ( !$post ) {
 				// The requested postId is not a member of the current workflow
-				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getHex() ) );
+				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
 				return;
 			}
 		} else {
 			// Load the post and its root
 			$found = $this->rootLoader->getWithRoot( $postId );
 			if ( !$found['post'] || !$found['root'] || !$found['root']->getPostId()->equals( $this->workflow->getId() ) ) {
-				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getHex() ) );
+				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
 				return;
 			}
 			$this->topicTitle = $topicTitle = $found['root'];
@@ -1027,9 +1027,9 @@ class TopicBlock extends AbstractBlock {
 		return isset( $this->submitted['replyTo'] ) ? $this->submitted['replyTo'] : null;
 	}
 
-	public function getHexRepliedTo() {
+	public function getAlphadecimalRepliedTo() {
 		$repliedTo = $this->getRepliedTo();
-		return $repliedTo instanceof UUID ? $repliedTo->getHex() : $repliedTo;
+		return $repliedTo instanceof UUID ? $repliedTo->getAlphadecimal() : $repliedTo;
 	}
 
 	// The prefix used for form data
