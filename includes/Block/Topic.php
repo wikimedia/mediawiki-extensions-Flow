@@ -414,7 +414,7 @@ class TopicBlock extends AbstractBlock {
 			// get rid of history entries user doesn't have sufficient permissions for
 			$needed = $query = array();
 			foreach ( $history as $i => $revision ) {
-				$hex = $revision->getPostId()->getHex();
+				$hex = $revision->getPostId()->getAlphadecimal();
 				if ( !isset( $needed[$hex] ) ) {
 					$query[] = array( 'tree_rev_descendant_id' => $revision->getPostId() );
 				}
@@ -427,7 +427,7 @@ class TopicBlock extends AbstractBlock {
 			);
 			foreach ( $found as $newest ) {
 				$newest = reset( $newest );
-				$hex = $newest->getPostId()->getHex();
+				$hex = $newest->getPostId()->getAlphadecimal();
 				if ( !isset( $needed[$hex] ) ) {
 					wfWarn( __METHOD__ . ': Received unrequested postId : ' . $hex );
 					continue;
@@ -684,7 +684,7 @@ class TopicBlock extends AbstractBlock {
 		$output = array(
 			'_element' => 'post',
 			'title' => $templating->getContent( $rootPost, 'wikitext' ),
-			'topic-id' => $topic->getId()->getHex(),
+			'topic-id' => $topic->getId()->getAlphadecimal(),
 		);
 
 		if ( isset( $options['showhistoryfor'] ) ) {
@@ -694,7 +694,7 @@ class TopicBlock extends AbstractBlock {
 
 			foreach( $historyBatch as $historyGroup ) {
 				foreach( $historyGroup as $historyEntry ) {
-					$postId = $historyEntry->getPostId()->getHex();
+					$postId = $historyEntry->getPostId()->getAlphadecimal();
 					if ( ! isset( $options['history'][$postId] ) ) {
 						$options['history'][$postId] = array();
 					}
@@ -726,7 +726,7 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$output = array();
-		$output['post-id'] = $post->getPostId()->getHex();
+		$output['post-id'] = $post->getPostId()->getAlphadecimal();
 		$contentFormat = $post->getContentFormat();
 
 		// This may force a round trip through parsoid for the wikitext when
@@ -761,7 +761,7 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		$postId = $post->getPostId()->getHex();
+		$postId = $post->getPostId()->getAlphadecimal();
 		if ( isset( $options['history'][$postId] ) ) {
 			$output['revisions'] = $this->getAPIHistory( $templating, $postId, $options['history'][$postId] );
 		}
@@ -778,7 +778,7 @@ class TopicBlock extends AbstractBlock {
 		foreach( $history as $revision ) {
 			if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 				$output[] = array(
-					'revision-id' => $revision->getRevisionId()->getHex(),
+					'revision-id' => $revision->getRevisionId()->getAlphadecimal(),
 					'revision-author' => $templating->getUserText( $revision ),
 					'revision-change-type' => $revision->getChangeType(),
 				);
@@ -802,7 +802,7 @@ class TopicBlock extends AbstractBlock {
 		// Make list of candidate conditions
 		foreach( $postIds as $postId ) {
 			$uuid = UUID::create( $postId );
-			$searchItems[$uuid->getHex()] = array(
+			$searchItems[$uuid->getAlphadecimal()] = array(
 				'tree_rev_descendant_id' => $uuid,
 			);
 		}
@@ -818,7 +818,7 @@ class TopicBlock extends AbstractBlock {
 				array_push( $traversalQueue, $child );
 			}
 
-			$postId = $cur->getPostId()->getHex();
+			$postId = $cur->getPostId()->getAlphadecimal();
 			if ( isset( $searchItems[$postId] ) ) {
 				$searchConditions[] = $searchItems[$postId];
 			}
@@ -889,7 +889,7 @@ class TopicBlock extends AbstractBlock {
 		if ( $found ) {
 			return $found;
 		} else {
-			throw new InvalidDataException( 'Unable to load topic history for topic ' . $this->workflow->getId()->getHex(), 'fail-load-history' );
+			throw new InvalidDataException( 'Unable to load topic history for topic ' . $this->workflow->getId()->getAlphadecimal(), 'fail-load-history' );
 		}
 	}
 
@@ -917,14 +917,14 @@ class TopicBlock extends AbstractBlock {
 			$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
 			if ( !$post ) {
 				// The requested postId is not a member of the current workflow
-				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getHex() ) );
+				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
 				return;
 			}
 		} else {
 			// Load the post and its root
 			$found = $this->rootLoader->getWithRoot( $postId );
 			if ( !$found['post'] || !$found['root'] || !$found['root']->getPostId()->equals( $this->workflow->getId() ) ) {
-				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getHex() ) );
+				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
 				return;
 			}
 			$this->topicTitle = $topicTitle = $found['root'];
@@ -997,9 +997,9 @@ class TopicBlock extends AbstractBlock {
 		return isset( $this->submitted['replyTo'] ) ? $this->submitted['replyTo'] : null;
 	}
 
-	public function getHexRepliedTo() {
+	public function getAlphadecimalRepliedTo() {
 		$repliedTo = $this->getRepliedTo();
-		return $repliedTo instanceof UUID ? $repliedTo->getHex() : $repliedTo;
+		return $repliedTo instanceof UUID ? $repliedTo->getAlphadecimal() : $repliedTo;
 	}
 
 	// The prefix used for form data
