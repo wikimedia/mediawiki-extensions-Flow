@@ -520,7 +520,7 @@ class Templating {
 		}
 
 		// make sure a post is not checked more than once
-		$revisionId = $post->getRevisionId()->getHex();
+		$revisionId = $post->getRevisionId()->getPretty();
 		if ( isset( $this->parsoidLinksProcessed[$revisionId] ) ) {
 			return array( array(), false );
 		}

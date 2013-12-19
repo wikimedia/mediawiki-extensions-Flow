@@ -107,7 +107,7 @@ class ApiFlow extends ApiBase {
 		$output = array();
 		foreach( $result as $key => $value ) {
 			if ( $value instanceof UUID ) {
-				$output[$key] = $value->getHex();
+				$output[$key] = $value->getPretty();
 			} elseif ( $key === 'render-function' ) {
 				if ( $render ) {
 					$function = $value;
