@@ -26,7 +26,7 @@ class Formatter extends \LogFormatter {
 			$title = clone $title;
 			$postId = $params['postId'];
 			if ( $postId instanceof UUID ) {
-				$postId = $postId->getHex();
+				$postId = $postId->getPretty();
 			}
 			$title->setFragment( '#flow-post-' . $postId );
 			unset( $params['postId'] );
@@ -36,7 +36,7 @@ class Formatter extends \LogFormatter {
 			$title = clone $title;
 			$topicId = $params['topicId'];
 			if ( $topicId instanceof UUID ) {
-				$topicId = $topicId->getHex();
+				$topicId = $topicId->getPretty();
 			}
 
 			$title->setFragment( '#flow-topic-' . $topicId );

@@ -85,11 +85,11 @@ class UrlGenerator {
 		switch ( $revision->getRevisionType() ) {
 			case 'post':
 				if ( !$revision->isTopicTitle() ) {
-					$data['topic[postId]'] = $revision->getPostId()->getHex();
+					$data['topic[postId]'] = $revision->getPostId()->getPretty();
 				}
-		
+
 				if ( $specificRevision ) {
-					$data['topic[revId]'] = $revision->getRevisionId()->getHex();
+					$data['topic[revId]'] = $revision->getRevisionId()->getPretty();
 				}
 			break;
 		}
@@ -118,12 +118,12 @@ class UrlGenerator {
 		}
 
 		if ( $workflow->isNew() ) {
-			$query['definition'] = $workflow->getDefinitionId()->getHex();
+			$query['definition'] = $workflow->getDefinitionId()->getPretty();
 		} else {
 			// TODO: workflow parameter is only necessary if the definition is non-unique.  Likely need to pass
 			// ManagerGroup into this class rather than the workflow ObjectManager so we can fetch definition as
 			// needed.
-			$query['workflow'] = $workflow->getId()->getHex();
+			$query['workflow'] = $workflow->getId()->getPretty();
 		}
 
 		return $this->buildUrlData( $workflow->getArticleTitle(), $action, $query );

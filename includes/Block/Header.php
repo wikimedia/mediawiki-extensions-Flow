@@ -66,7 +66,7 @@ class HeaderBlock extends AbstractBlock {
 
 			if ( empty( $this->submitted['prev_revision'] ) ) {
 				$this->addError( 'prev_revision', wfMessage( 'flow-error-missing-prev-revision-identifier' ) );
-			} elseif ( $this->header->getRevisionId()->getHex() !== $this->submitted['prev_revision'] ) {
+			} elseif ( $this->header->getRevisionId()->getPretty() !== $this->submitted['prev_revision'] ) {
 				// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
 				// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
 				// parent we and the submitter think is the latest, our insert will fail.
@@ -74,7 +74,7 @@ class HeaderBlock extends AbstractBlock {
 				// handing user back to specific dialog indicating race condition
 				$this->addError(
 					'prev_revision',
-					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getHex() )
+					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getPretty() )
 				);
 			}
 			// this isnt really part of validate, but we want the error-rendering template to see the users edited header
@@ -91,7 +91,7 @@ class HeaderBlock extends AbstractBlock {
 					// if $wgFlowContentFormat is set to html the Header::create
 					// call will convert the wikitext input into html via parsoid, and
 					// parsoid requires the page exist.
-					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );	
+					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
 				}
 
 				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
@@ -173,7 +173,7 @@ class HeaderBlock extends AbstractBlock {
 		if ( $this->header !== null ) {
 			$output['*'] = $templating->getContent( $this->header, $contentFormat, $this->user );
 			$output['format'] = $contentFormat;
-			$output['header-id'] = $this->header->getRevisionId()->getHex();
+			$output['header-id'] = $this->header->getRevisionId()->getPretty();
 		} else {
 			$output['missing'] = 'missing';
 		}
@@ -194,7 +194,7 @@ class HeaderBlock extends AbstractBlock {
 		);
 
 		if ( $found === false ) {
-			throw new InvalidDataException( 'Unable to load topic list history for ' . $this->workflow->getId()->getHex(), 'fail-load-history' );
+			throw new InvalidDataException( 'Unable to load topic list history for ' . $this->workflow->getId()->getPretty(), 'fail-load-history' );
 		}
 
 		return $found;

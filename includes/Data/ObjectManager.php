@@ -599,7 +599,7 @@ class ObjectManager extends ObjectLocator {
 			$value = $row[$field];
 
 			if ( strlen( $value ) === UUID::BIN_LEN && substr( $field, -3 ) === '_id' ) {
-				$value = UUID::create( $value )->getHex();
+				$value = UUID::create( $value )->getPretty();
 			}
 			$offsetFields[] = $value;
 		}
@@ -870,7 +870,7 @@ class BasicDbStorage extends DbStorage {
 
 		foreach( $attributes as $key => $value ) {
 			if ( $value instanceof \Flow\Model\UUID ) {
-				$value = $value->getHex();
+				$value = $value->getPretty();
 			}
 			wfDebug( " -- $key = $value\n" );
 		}
@@ -1163,10 +1163,10 @@ abstract class FeatureIndex implements Index {
 	protected function cacheKey( array $attributes ) {
 		foreach( $attributes as $key => $attr ) {
 			if ( $attr instanceof UUID ) {
-				$attributes[$key] = $attr->getHex();
+				$attributes[$key] = $attr->getPretty();
 			} elseif ( strlen( $attr ) === UUID::BIN_LEN && substr( $key, -3 ) === '_id' ) {
 				$uuid = new \Flow\Model\UUID( $attr );
-				$attributes[$key] = $uuid->getHex();
+				$attributes[$key] = $uuid->getPretty();
 			}
 		}
 

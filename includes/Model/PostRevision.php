@@ -173,7 +173,7 @@ class PostRevision extends AbstractRevision {
 
 	public function getChildren() {
 		if ( $this->children === null ) {
-			throw new DataModelException( 'Children not loaded for post: ' . $this->postId->getHex(), 'process-data' );
+			throw new DataModelException( 'Children not loaded for post: ' . $this->postId->getPretty(), 'process-data' );
 		}
 		return $this->children;
 	}
@@ -184,7 +184,7 @@ class PostRevision extends AbstractRevision {
 
 	public function getDepth() {
 		if ( $this->depth === null ) {
-			throw new DataModelException( 'Depth not loaded for post: ' . $this->postId->getHex(), 'process-data' );
+			throw new DataModelException( 'Depth not loaded for post: ' . $this->postId->getPretty(), 'process-data' );
 		}
 		return $this->depth;
 	}
@@ -375,7 +375,7 @@ class PostRevision extends AbstractRevision {
 			return array( false, true );
 		};
 
-		return $this->registerRecursive( $callback, false, 'descendant-' . $postId->getHex() );
+		return $this->registerRecursive( $callback, false, 'descendant-' . $postId->getPretty() );
 	}
 
 	/**
