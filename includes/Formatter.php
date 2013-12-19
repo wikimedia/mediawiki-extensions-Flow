@@ -161,7 +161,7 @@ abstract class AbstractFormatter {
 			$this->urlGenerator->buildUrl(
 				$title,
 				'topic-history',
-				array( 'workflow' => $workflowId->getHex() )
+				array( 'workflow' => $workflowId->getAlphadecimal() )
 			),
 			wfMessage( 'flow-link-history' )->text()
 		);
@@ -173,8 +173,8 @@ abstract class AbstractFormatter {
 				$title,
 				'post-history',
 				array(
-					'workflow' => $workflowId->getHex(),
-					'topic' => array( 'postId' => $postId->getHex() ),
+					'workflow' => $workflowId->getAlphadecimal(),
+					'topic' => array( 'postId' => $postId->getAlphadecimal() ),
 				)
 			),
 			wfMessage( 'flow-link-history' )->text()
@@ -186,7 +186,7 @@ abstract class AbstractFormatter {
 			$this->urlGenerator->buildUrl(
 				$title,
 				'view',
-				array( 'workflow' => $workflowId->getHex() )
+				array( 'workflow' => $workflowId->getAlphadecimal() )
 			),
 			wfMessage( 'flow-link-topic' )->text()
 		);
@@ -198,8 +198,8 @@ abstract class AbstractFormatter {
 				$title,
 				'view',
 				array(
-					'workflow' => $workflowId->getHex(),
-					'topic' => array( 'postId' => $postId->getHex() ),
+					'workflow' => $workflowId->getAlphadecimal(),
+					'topic' => array( 'postId' => $postId->getAlphadecimal() ),
 				)
 			),
 			wfMessage( 'flow-link-post' )->text()
@@ -270,12 +270,12 @@ abstract class AbstractFormatter {
 	 */
 	protected function loadWorkflow( UUID $workflowId ) {
 		$results = $this->loadWorkflows( array( $workflowId ) );
-		if ( !isset( $results[$workflowId->getHex()] ) ) {
-			wfWarn( __METHOD__ . ': Could not load workflow ' . $workflowId->getHex() );
+		if ( !isset( $results[$workflowId->getAlphadecimal()] ) ) {
+			wfWarn( __METHOD__ . ': Could not load workflow ' . $workflowId->getAlphadecimal() );
 			return false;
 		}
 
-		return $results[$workflowId->getHex()];
+		return $results[$workflowId->getAlphadecimal()];
 	}
 
 	/**
@@ -287,12 +287,12 @@ abstract class AbstractFormatter {
 	 */
 	protected function loadRevision( UUID $revisionId, $revisionType ) {
 		$results = $this->loadRevisions( array( $revisionType => array( $revisionId ) ) );
-		if ( !isset( $results[$revisionId->getHex()] ) ) {
-			wfWarn( __METHOD__ . ': Could not load workflow ' . $revisionId->getHex() );
+		if ( !isset( $results[$revisionId->getAlphadecimal()] ) ) {
+			wfWarn( __METHOD__ . ': Could not load workflow ' . $revisionId->getAlphadecimal() );
 			return false;
 		}
 
-		return $results[$revisionId->getHex()];
+		return $results[$revisionId->getAlphadecimal()];
 	}
 
 	/**
@@ -334,8 +334,8 @@ abstract class AbstractFormatter {
 
 		foreach ( $workflowIds as $i => $workflowId ) {
 			// don't query for workflows already in cache
-			if ( isset( $this->workflows[$workflowId->getHex()] ) ) {
-				$results[$workflowId->getHex()] = $this->workflows[$workflowId->getHex()];
+			if ( isset( $this->workflows[$workflowId->getAlphadecimal()] ) ) {
+				$results[$workflowId->getAlphadecimal()] = $this->workflows[$workflowId->getAlphadecimal()];
 				unset( $workflowIds[$i] );
 			}
 		}
@@ -343,7 +343,7 @@ abstract class AbstractFormatter {
 		// fetch missing workflows
 		$workflows = (array) $this->storage->getMulti( 'Workflow', $workflowIds );
 		foreach ( $workflows as $workflow ) {
-			$results[$workflow->getId()->getHex()] = $workflow;
+			$results[$workflow->getId()->getAlphadecimal()] = $workflow;
 		}
 
 		// cache in object
@@ -369,8 +369,8 @@ abstract class AbstractFormatter {
 
 			foreach ( $ids as $i => $id ) {
 				// don't query for revisions already in cache
-				if ( isset( $this->revisions[$id->getHex()] ) ) {
-					$results[$id->getHex()] = $this->revisions[$id->getHex()];
+				if ( isset( $this->revisions[$id->getAlphadecimal()] ) ) {
+					$results[$id->getAlphadecimal()] = $this->revisions[$id->getAlphadecimal()];
 					unset( $ids[$i] );
 				}
 			}
@@ -378,7 +378,7 @@ abstract class AbstractFormatter {
 			// fetch missing revisions
 			$revisions = (array) $this->storage->getMulti( $class, $ids );
 			foreach ( $revisions as $revision ) {
-				$results[$revision->getRevisionId()->getHex()] = $revision;
+				$results[$revision->getRevisionId()->getAlphadecimal()] = $revision;
 			}
 		}
 

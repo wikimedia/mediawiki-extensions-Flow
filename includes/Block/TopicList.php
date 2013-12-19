@@ -293,8 +293,8 @@ class TopicListBlock extends AbstractBlock {
 		}
 		$roots = $this->rootLoader->getMulti( $topicIds );
 		foreach ( $topicIds as $idx => $topicId ) {
-			if ( !$this->permissions->isAllowed( $roots[$topicId->getHex()], 'view' ) ) {
-				unset( $roots[$topicId->getHex()] );
+			if ( !$this->permissions->isAllowed( $roots[$topicId->getAlphadecimal()], 'view' ) ) {
+				unset( $roots[$topicId->getAlphadecimal()] );
 				unset( $topicIds[$idx] );
 			}
 		}
@@ -304,7 +304,7 @@ class TopicListBlock extends AbstractBlock {
 			}
 		}
 		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
-			$hexId = $workflow->getId()->getHex();
+			$hexId = $workflow->getId()->getAlphadecimal();
 			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
 			$topics[$hexId]->init( $this->action, $this->user );
 		}
