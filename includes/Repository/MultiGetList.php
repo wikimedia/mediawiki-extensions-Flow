@@ -22,7 +22,7 @@ class MultiGetList {
 		$cacheKeys = array();
 		foreach ( $ids as $id ) {
 			if ( $id instanceof \Flow\Model\UUID ) {
-				$cacheId = $id->getHex();
+				$cacheId = $id->getPretty();
 			} elseif ( !is_scalar( $id ) ) {
 				throw new InvalidInputException( 'Not scalar:' . gettype( $id ), 'invalid-input' );
 			} else {
@@ -64,7 +64,7 @@ class MultiGetList {
 		$invCacheKeys = array();
 		foreach ( $cacheKeys as $cacheKey => $id ) {
 			if ( $id instanceof UUID ) {
-				$id = $id->getHex();
+				$id = $id->getPretty();
 			}
 			$invCacheKeys[$id] = $cacheKey;
 		}
