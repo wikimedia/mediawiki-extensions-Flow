@@ -1,6 +1,6 @@
 <?php
 
-$revisionId = $post->getRevisionId()->getHex();
+$revisionId = $post->getRevisionId()->getAlphadecimal();
 
 /*
  * If we tried to submit a change against a revision that is not the latest,
@@ -49,7 +49,7 @@ echo Html::element( 'input', array(
 	Html::element( 'input', array(
 		'type' => 'hidden',
 		'name' => $block->getName() . '_postId',
-		'value' => $post->getPostId()->getHex(),
+		'value' => $post->getPostId()->getAlphadecimal(),
 	) ),
 	Html::element( 'input', array(
 		'type' => 'hidden',

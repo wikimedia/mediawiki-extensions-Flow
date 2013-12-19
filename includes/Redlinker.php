@@ -97,7 +97,7 @@ class Redlinker {
 	 * saved and will be processed as soon as they first are needed.
 	 */
 	public function registerPost( PostRevision $post ) {
-		$revisionId = $post->getRevisionId()->getHex();
+		$revisionId = $post->getRevisionId()->getAlphadecimal();
 		if ( !isset( $this->processed[$revisionId], $this->registered[$revisionId] ) ) {
 			$this->registered[$revisionId] = true;
 			$identifier = $post->registerRecursive( $this->recursiveCallback(), array(), __METHOD__ );
@@ -122,7 +122,7 @@ class Redlinker {
 			}
 
 			// make sure a post is not checked more than once
-			$revisionId = $post->getRevisionId()->getHex();
+			$revisionId = $post->getRevisionId()->getAlphadecimal();
 			if ( isset( $processed[$revisionId] ) ) {
 				return array( array(), false );
 			}

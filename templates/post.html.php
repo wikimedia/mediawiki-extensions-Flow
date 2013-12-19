@@ -21,7 +21,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		) );
 	$replyForm .= Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 
-	if ( $block->getHexRepliedTo() === $post->getPostId()->getHex() ) {
+	if ( $block->getAlphadecimalRepliedTo() === $post->getPostId()->getAlphadecimal() ) {
 		$replyForm .= '<ul>';
 		foreach ( $block->getErrors() as $error ) {
 			$replyForm .= '<li>' . $block->getErrorMessage( $error )->parse() . '</li>';
@@ -34,7 +34,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		Html::element( 'input', array(
 			'type' => 'hidden',
 			'name' => $block->getName() . '_replyTo',
-			'value' => $post->getPostId()->getHex(),
+			'value' => $post->getPostId()->getAlphadecimal(),
 		) ) .
 		Html::textarea( $block->getName() . '_content', '', array(
 			'placeholder' => $placeHolder,
@@ -66,8 +66,8 @@ if ( $post->getDepth() >= $maxThreadingDepth ) {
 
 echo Html::openElement( 'div', array(
 	'class' => $containerClass,
-	'data-revision-id' => $post->getRevisionId()->getHex(),
-	'data-post-id' => $post->getPostId()->getHex(),
+	'data-revision-id' => $post->getRevisionId()->getAlphadecimal(),
+	'data-post-id' => $post->getPostId()->getAlphadecimal(),
 	'data-creator-name' => $postView->creator(),
 ) );
 
@@ -83,7 +83,7 @@ if ( $post->isModerated() ) {
 	$postClass .= ' flow-post-unmoderated';
 }
 ?>
-	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class='<?php echo $postClass; ?>' >
+	<div id="flow-post-<?php echo $post->getPostId()->getAlphadecimal()?>" class='<?php echo $postClass; ?>' >
 		<?php
 		if ( $post->isModerated() ):
 			$moderationState = htmlspecialchars( $post->getModerationState() );
@@ -113,7 +113,7 @@ if ( $post->isModerated() ) {
 							wfMessage( 'flow-post-action-view' )->escaped(),
 							'mw-ui-button flow-action-permalink-link',
 							// This URL fragment triggers highlightPost behavior in front-end JS.
-							'flow-post-' . $post->getPostId()->getHex()
+							'flow-post-' . $post->getPostId()->getAlphadecimal()
 						);
 						if ( $viewButton ) {
 							echo '<li class="flow-action-permalink">', $viewButton, '</li>';

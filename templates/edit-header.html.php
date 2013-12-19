@@ -3,7 +3,7 @@
 $revisionId = '';
 if ( $header ) {
 	// if header already exists, propagate it's revisions id
-	$revisionId = $header->getRevisionId()->getHex();
+	$revisionId = $header->getRevisionId()->getAlphadecimal();
 
 	/*
 	 * If we tried to submit a change against a revision that is not the latest,
