@@ -1,6 +1,6 @@
 <?php
 
-$revisionId = $topicTitle->getRevisionId()->getHex();
+$revisionId = $topicTitle->getRevisionId()->getAlphadecimal();
 
 /*
  * If we tried to submit a change against a revision that is not the latest,
