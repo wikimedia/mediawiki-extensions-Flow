@@ -607,7 +607,7 @@ class TopicBlock extends AbstractBlock {
 		$output = array(
 			'_element' => 'post',
 			'title' => $templating->getContent( $rootPost, 'wikitext', $this->user ),
-			'topic-id' => $topic->getId()->getHex(),
+			'topic-id' => $topic->getId()->getPretty(),
 		);
 
 		if ( isset( $options['showhistoryfor'] ) ) {
@@ -617,7 +617,7 @@ class TopicBlock extends AbstractBlock {
 
 			foreach( $historyBatch as $historyGroup ) {
 				foreach( $historyGroup as $historyEntry ) {
-					$postId = $historyEntry->getPostId()->getHex();
+					$postId = $historyEntry->getPostId()->getPretty();
 					if ( ! isset( $options['history'][$postId] ) ) {
 						$options['history'][$postId] = array();
 					}
@@ -649,7 +649,7 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$output = array();
-		$output['post-id'] = $post->getPostId()->getHex();
+		$output['post-id'] = $post->getPostId()->getPretty();
 		$contentFormat = $post->getContentFormat();
 
 		// This may force a round trip through parsoid for the wikitext when
@@ -684,7 +684,7 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		$postId = $post->getPostId()->getHex();
+		$postId = $post->getPostId()->getPretty();
 		if ( isset( $options['history'][$postId] ) ) {
 			$output['revisions'] = $this->getAPIHistory( $templating, $postId, $options['history'][$postId] );
 		}
@@ -701,7 +701,7 @@ class TopicBlock extends AbstractBlock {
 		foreach( $history as $revision ) {
 			if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 				$output[] = array(
-					'revision-id' => $revision->getRevisionId()->getHex(),
+					'revision-id' => $revision->getRevisionId()->getPretty(),
 					'revision-author' => $templating->getUserText( $revision ),
 					'revision-change-type' => $revision->getChangeType(),
 				);
@@ -725,7 +725,7 @@ class TopicBlock extends AbstractBlock {
 		// Make list of candidate conditions
 		foreach( $postIds as $postId ) {
 			$uuid = UUID::create( $postId );
-			$searchItems[$uuid->getHex()] = array(
+			$searchItems[$uuid->getPretty()] = array(
 				'tree_rev_descendant_id' => $uuid,
 			);
 		}
@@ -741,7 +741,7 @@ class TopicBlock extends AbstractBlock {
 				array_push( $traversalQueue, $child );
 			}
 
-			$postId = $cur->getPostId()->getHex();
+			$postId = $cur->getPostId()->getPretty();
 			if ( isset( $searchItems[$postId] ) ) {
 				$searchConditions[] = $searchItems[$postId];
 			}
@@ -811,7 +811,7 @@ class TopicBlock extends AbstractBlock {
 		if ( $found ) {
 			return $found;
 		} else {
-			throw new InvalidDataException( 'Unable to load topic history for topic ' . $this->workflow->getId()->getHex(), 'fail-load-history' );
+			throw new InvalidDataException( 'Unable to load topic history for topic ' . $this->workflow->getId()->getPretty(), 'fail-load-history' );
 		}
 	}
 
@@ -839,14 +839,14 @@ class TopicBlock extends AbstractBlock {
 			$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
 			if ( !$post ) {
 				// The requested postId is not a member of the current workflow
-				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getHex() ) );
+				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getPretty() ) );
 				return;
 			}
 		} else {
 			// Load the post and its root
 			$found = $this->rootLoader->getWithRoot( $postId );
 			if ( !$found['post'] || !$found['root'] || !$found['root']->getPostId()->equals( $this->workflow->getId() ) ) {
-				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getHex() ) );
+				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getPretty() ) );
 				return;
 			}
 			$this->topicTitle = $topicTitle = $found['root'];
@@ -915,9 +915,9 @@ class TopicBlock extends AbstractBlock {
 		return isset( $this->submitted['replyTo'] ) ? $this->submitted['replyTo'] : null;
 	}
 
-	public function getHexRepliedTo() {
+	public function getPrettyRepliedTo() {
 		$repliedTo = $this->getRepliedTo();
-		return $repliedTo instanceof UUID ? $repliedTo->getHex() : $repliedTo;
+		return $repliedTo instanceof UUID ? $repliedTo->getPretty() : $repliedTo;
 	}
 
 	// The prefix used for form data

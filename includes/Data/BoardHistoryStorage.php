@@ -48,7 +48,7 @@ class BoardHistoryStorage extends DbStorage {
 
 		if ( $res ) {
 			foreach ( $res as $row ) {
-				$retval[UUID::create( $row->rev_id )->getHex()] = (array) $row;
+				$retval[UUID::create( $row->rev_id )->getPretty()] = (array) $row;
 			}
 		}
 		return $retval;
@@ -69,7 +69,7 @@ class BoardHistoryStorage extends DbStorage {
 
 		if ( $res ) {
 			foreach ( $res as $row ) {
-				$retval[UUID::create( $row->rev_id )->getHex()] = (array) $row;
+				$retval[UUID::create( $row->rev_id )->getPretty()] = (array) $row;
 			}
 		}
 		return $retval;

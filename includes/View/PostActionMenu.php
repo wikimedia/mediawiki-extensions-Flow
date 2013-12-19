@@ -57,7 +57,7 @@ class PostActionMenu {
 		if ( !$this->permissions->isAllowed( $this->post, $action ) ) {
 			return false;
 		}
-		$data = array( $this->block->getName() . '[postId]' => $this->post->getPostId()->getHex() );
+		$data = array( $this->block->getName() . '[postId]' => $this->post->getPostId()->getPretty() );
 		if ( $this->getMethod( $action ) === 'POST' ) {
 			return $this->postAction( $action, $data, $content, $class );
 		} else {

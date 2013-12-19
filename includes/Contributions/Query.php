@@ -205,7 +205,7 @@ class Query {
 
 		$workflow = $this->getWorkflow( $revision );
 		if ( !$workflow ) {
-			wfWarn( __METHOD__ . ": could not locate workflow for revision " . $revision->getRevisionId()->getHex() );
+			wfWarn( __METHOD__ . ": could not locate workflow for revision " . $revision->getRevisionId()->getPretty() );
 			return false;
 		}
 
@@ -258,12 +258,12 @@ class Query {
 			return null;
 		}
 
-		if ( !isset( $this->postCache[$previousRevisionId->getHex()] ) ) {
-			$this->postCache[$previousRevisionId->getHex()] =
+		if ( !isset( $this->postCache[$previousRevisionId->getPretty()] ) ) {
+			$this->postCache[$previousRevisionId->getPretty()] =
 				$this->storage->get( 'PostRevision', $previousRevisionId );
 		}
 
-		return $this->postCache[$previousRevisionId->getHex()];
+		return $this->postCache[$previousRevisionId->getPretty()];
 	}
 
 	/**
@@ -274,12 +274,12 @@ class Query {
 	protected function getRootPost( PostRevision $revision ) {
 		$rootPostId = $this->getRootPostId( $revision );
 
-		if ( !isset( $this->postCache[$rootPostId->getHex()] ) ) {
-			$this->postCache[$rootPostId->getHex()] =
+		if ( !isset( $this->postCache[$rootPostId->getPretty()] ) ) {
+			$this->postCache[$rootPostId->getPretty()] =
 				$this->storage->get( 'PostRevision', $rootPostId );
 		}
 
-		$rootPost = $this->postCache[$rootPostId->getHex()];
+		$rootPost = $this->postCache[$rootPostId->getPretty()];
 		if ( $rootPost && !$rootPost->isTopicTitle() ) {
 			throw new \MWException( "Not a topic title: " . $rootPost->getRevisionId() );
 		}
@@ -296,8 +296,8 @@ class Query {
 		$postId = $revision->getPostId();
 		if ( $revision->isTopicTitle() ) {
 			return $postId;
-		} elseif ( isset( $this->rootPostIdCache[$postId->getHex()] ) ) {
-			return $this->rootPostIdCache[$postId->getHex()];
+		} elseif ( isset( $this->rootPostIdCache[$postId->getPretty()] ) ) {
+			return $this->rootPostIdCache[$postId->getPretty()];
 		} else {
 			throw new \MWException( "Unable to find root post ID for post $postId" );
 		}
@@ -309,10 +309,10 @@ class Query {
 	 * @return Workflow           The Workflow.
 	 */
 	protected function getWorkflowById( UUID $workflowId ) {
-		if ( isset( $this->workflowCache[$workflowId->getHex()] ) ) {
-			return $this->workflowCache[$workflowId->getHex()];
+		if ( isset( $this->workflowCache[$workflowId->getPretty()] ) ) {
+			return $this->workflowCache[$workflowId->getPretty()];
 		} else {
-			return $this->workflowCache[$workflowId->getHex()] = $this->storage->get( 'Workflow', $workflowId );
+			return $this->workflowCache[$workflowId->getPretty()] = $this->storage->get( 'Workflow', $workflowId );
 		}
 	}
 

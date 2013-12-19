@@ -168,7 +168,7 @@ abstract class AbstractFormatter {
 			$this->urlGenerator->buildUrl(
 				$title,
 				'topic-history',
-				array( 'workflow' => $workflowId->getHex() )
+				array( 'workflow' => $workflowId->getPretty() )
 			),
 			wfMessage( 'flow-link-history' )->text()
 		);
@@ -180,8 +180,8 @@ abstract class AbstractFormatter {
 				$title,
 				'post-history',
 				array(
-					'workflow' => $workflowId->getHex(),
-					'topic' => array( 'postId' => $postId->getHex() ),
+					'workflow' => $workflowId->getPretty(),
+					'topic' => array( 'postId' => $postId->getPretty() ),
 				)
 			),
 			wfMessage( 'flow-link-history' )->text()
@@ -193,7 +193,7 @@ abstract class AbstractFormatter {
 			$this->urlGenerator->buildUrl(
 				$title,
 				'view',
-				array( 'workflow' => $workflowId->getHex() )
+				array( 'workflow' => $workflowId->getPretty() )
 			),
 			wfMessage( 'flow-link-topic' )->text()
 		);
@@ -205,8 +205,8 @@ abstract class AbstractFormatter {
 				$title,
 				'view',
 				array(
-					'workflow' => $workflowId->getHex(),
-					'topic' => array( 'postId' => $postId->getHex() ),
+					'workflow' => $workflowId->getPretty(),
+					'topic' => array( 'postId' => $postId->getPretty() ),
 				)
 			),
 			wfMessage( 'flow-link-post' )->text()
@@ -282,7 +282,7 @@ abstract class AbstractFormatter {
 		$blocks = $loader->createBlocks();
 
 		if ( !isset( $blocks[$name] ) ) {
-			wfWarn( __METHOD__ . ': Could not load block ' . $name . ' for workflow ' . $workflowId->getHex() );
+			wfWarn( __METHOD__ . ': Could not load block ' . $name . ' for workflow ' . $workflowId->getPretty() );
 			return false;
 		}
 
@@ -297,12 +297,12 @@ abstract class AbstractFormatter {
 	 */
 	protected function loadWorkflow( UUID $workflowId ) {
 		$results = $this->loadWorkflows( array( $workflowId ) );
-		if ( !isset( $results[$workflowId->getHex()] ) ) {
-			wfWarn( __METHOD__ . ': Could not load workflow ' . $workflowId->getHex() );
+		if ( !isset( $results[$workflowId->getPretty()] ) ) {
+			wfWarn( __METHOD__ . ': Could not load workflow ' . $workflowId->getPretty() );
 			return false;
 		}
 
-		return $results[$workflowId->getHex()];
+		return $results[$workflowId->getPretty()];
 	}
 
 	/**
@@ -314,12 +314,12 @@ abstract class AbstractFormatter {
 	 */
 	protected function loadRevision( UUID $revisionId, $revisionType ) {
 		$results = $this->loadRevisions( array( $revisionType => array( $revisionId ) ) );
-		if ( !isset( $results[$revisionId->getHex()] ) ) {
-			wfWarn( __METHOD__ . ': Could not load workflow ' . $revisionId->getHex() );
+		if ( !isset( $results[$revisionId->getPretty()] ) ) {
+			wfWarn( __METHOD__ . ': Could not load workflow ' . $revisionId->getPretty() );
 			return false;
 		}
 
-		return $results[$revisionId->getHex()];
+		return $results[$revisionId->getPretty()];
 	}
 
 	/**
@@ -361,8 +361,8 @@ abstract class AbstractFormatter {
 
 		foreach ( $workflowIds as $i => $workflowId ) {
 			// don't query for workflows already in cache
-			if ( isset( $this->workflows[$workflowId->getHex()] ) ) {
-				$results[$workflowId->getHex()] = $this->workflows[$workflowId->getHex()];
+			if ( isset( $this->workflows[$workflowId->getPretty()] ) ) {
+				$results[$workflowId->getPretty()] = $this->workflows[$workflowId->getPretty()];
 				unset( $workflowIds[$i] );
 			}
 		}
@@ -370,7 +370,7 @@ abstract class AbstractFormatter {
 		// fetch missing workflows
 		$workflows = (array) $this->storage->getMulti( 'Workflow', $workflowIds );
 		foreach ( $workflows as $workflow ) {
-			$results[$workflow->getId()->getHex()] = $workflow;
+			$results[$workflow->getId()->getPretty()] = $workflow;
 		}
 
 		// cache in object
@@ -396,8 +396,8 @@ abstract class AbstractFormatter {
 
 			foreach ( $ids as $i => $id ) {
 				// don't query for revisions already in cache
-				if ( isset( $this->revisions[$id->getHex()] ) ) {
-					$results[$id->getHex()] = $this->revisions[$id->getHex()];
+				if ( isset( $this->revisions[$id->getPretty()] ) ) {
+					$results[$id->getPretty()] = $this->revisions[$id->getPretty()];
 					unset( $ids[$i] );
 				}
 			}
@@ -405,7 +405,7 @@ abstract class AbstractFormatter {
 			// fetch missing revisions
 			$revisions = (array) $this->storage->getMulti( $class, $ids );
 			foreach ( $revisions as $revision ) {
-				$results[$revision->getRevisionId()->getHex()] = $revision;
+				$results[$revision->getRevisionId()->getPretty()] = $revision;
 			}
 		}
 
