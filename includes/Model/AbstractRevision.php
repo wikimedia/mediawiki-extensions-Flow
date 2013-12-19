@@ -290,7 +290,7 @@ abstract class AbstractRevision {
 			// returns true if no handler aborted the hook
 			$this->xssCheck = wfRunHooks( 'FlowCheckHtmlContentXss', array( $raw ) );
 			if ( !$this->xssCheck ) {
-				wfDebugLog( __CLASS__, __FUNCTION__ . ': XSS check prevented display of revision ' . $this->revId->getHex() );
+				wfDebugLog( __CLASS__, __FUNCTION__ . ': XSS check prevented display of revision ' . $this->revId->getPretty() );
 				return '';
 			}
 		}

@@ -46,7 +46,7 @@ class ApiQueryFlow extends ApiQueryBase {
 
 		$result = array(
 			'_element' => 'block',
-			'workflow-id' => $this->loader->getWorkflow()->getId()->getHex(),
+			'workflow-id' => $this->loader->getWorkflow()->getId()->getPretty(),
 		) + $blockOutput;
 
 		$this->getResult()->addValue( 'query', $this->getModuleName(), $result );
