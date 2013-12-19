@@ -42,7 +42,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 			// Take user to the post if there is only one target post,
 			// otherwise, take user to the topic view
 			if ( $this->bundleData['raw-data-count'] <= 1 ) {
-				$title->setFragment( '#flow-post-' . $postId->getHex() );
+				$title->setFragment( '#flow-post-' . $postId->getAlphadecimal() );
 			}
 			$message->params( $title->getFullUrl( $query ) );
 		} elseif ( $param === 'topic-permalink' ) {
@@ -94,7 +94,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 					// Take user to the post if there is only one target post,
 					// otherwise, take user to the topic view
 					if ( $this->bundleData['raw-data-count'] <= 1 ) {
-						$target->setFragment( '#flow-post-' . $post->getHex() );
+						$target->setFragment( '#flow-post-' . $post->getAlphadecimal() );
 					}
 				}
 				break;

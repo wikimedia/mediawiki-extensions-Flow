@@ -16,8 +16,8 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 	// Topic reply box
 	$topicReplyBox = Html::openElement( 'div', array(
 			'class' => 'flow-topic-reply-container flow-post-container flow-element-container',
-			'data-post-id' => $root->getPostId()->getHex(),
-			'id' => 'flow-topic-reply-' . $topic->getId()->getHex()
+			'data-post-id' => $root->getPostId()->getAlphadecimal(),
+			'id' => 'flow-topic-reply-' . $topic->getId()->getAlphadecimal()
 		) ) .
 		'<span class="flow-creator">' .
 			$this->userToolLinks( $user->getId(), $user->getName() ) .
@@ -30,7 +30,7 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 			Html::element( 'input', array(
 				'type' => 'hidden',
 				'name' => $block->getName() . '_replyTo',
-				'value' => $root->getPostId()->getHex(),
+				'value' => $root->getPostId()->getAlphadecimal(),
 			) ) .
 			Html::element( 'input', array(
 				'type' => 'hidden',
@@ -70,8 +70,8 @@ if ( $root->isModerated() ) {
 
 echo Html::openElement( 'div', array(
 	'class' => 'flow-topic-container flow-topic-full' . $moderationClass,
-	'id' => 'flow-topic-' . $topic->getId()->getHex(),
-	'data-topic-id' => $topic->getId()->getHex(),
+	'id' => 'flow-topic-' . $topic->getId()->getAlphadecimal(),
+	'data-topic-id' => $topic->getId()->getAlphadecimal(),
 	'data-creator-name' => $this->getCreatorText( $root ),
 ) );
 ?>
@@ -188,7 +188,7 @@ echo Html::openElement( 'div', array(
 				<?php echo $this->printParticipants( $root, $indexParticipants ); ?>
 			</li>
 			<li class="flow-topic-comments">
-				<a href="#<?php echo 'flow-topic-reply-' . $topic->getId()->getHex(); ?>" class="flow-reply-link flow-topic-comments-link" data-topic-id="<?php echo $topic->getId()->getHex() ?>">
+				<a href="#<?php echo 'flow-topic-reply-' . $topic->getId()->getAlphadecimal(); ?>" class="flow-reply-link flow-topic-comments-link" data-topic-id="<?php echo $topic->getId()->getAlphadecimal() ?>">
 					<?php
 						// get total number of posts in topic
 						// @todo: the number of comments should not be a part of the link
