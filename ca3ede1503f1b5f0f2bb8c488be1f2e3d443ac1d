@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_f4c15984",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2013-12-19T23:29:04Z",
+      "side": 1,
+      "message": "Dunno if it makes sense to have this comment anymore.",
+      "revId": "ca3ede1503f1b5f0f2bb8c488be1f2e3d443ac1d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
