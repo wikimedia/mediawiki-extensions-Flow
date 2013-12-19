@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_908b421b",
+        "filename": "tests/browser/features/collapse.feature",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-19T00:20:28Z",
+      "side": 1,
+      "message": "Tests pass, but I don\u0027t understand how cucumber maps \"Title of Flow Topic\" or \"Body of Flow Topic\"  to a page element.",
+      "revId": "5f93dec57dd4458567a43bff442e3946305436c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_b0f1a6ca",
+        "filename": "tests/browser/features/collapse.feature",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-19T00:20:28Z",
+      "side": 1,
+      "message": "Note gerrit 102594 removes \"post body\" language. I think \"topic body\" for \"The tree of posts that gets hidden\" is OK, we don\u0027t yet have a name for it. Maybe \"Flow Topic Post Tree\", but that\u0027s long-winded.",
+      "revId": "5f93dec57dd4458567a43bff442e3946305436c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_f07cce1d",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-19T00:20:28Z",
+      "side": 1,
+      "message": "use double quotes now gerrit 102204 is merged :)\n\nBTW I just figured out the sort order in page files , PageObject\u0027s \"kind(:NameWeCareAbout, more, more)\" is quite obscure :)",
+      "revId": "5f93dec57dd4458567a43bff442e3946305436c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
