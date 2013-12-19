@@ -10,12 +10,23 @@ class UUID {
 	protected $binaryValue;
 	// alternate representations
 	protected $hexValue;
+	protected $prettyValue;
+
 	protected $timestamp;
 
-	// UUID length in hex
+	// UUID length in hex, always padded
 	const HEX_LEN = 22;
-	// UUID length in binary
+	// UUID length in binary, always padded
 	const BIN_LEN = 11;
+	// UUID length in base36, with padding
+	const PRETTY_LEN = 19;
+	// unpadded base36 input string
+	const MIN_PRETTY_LEN = 16;
+
+	// 126 bit binary length
+	const OLD_BIN_LEN = 16;
+	// 128 bit hex length
+	const OLD_HEX_LEN = 32;
 
 	function __construct( $binaryValue ) {
 		if ( strlen( $binaryValue ) !== self::BIN_LEN ) {
@@ -27,6 +38,7 @@ class UUID {
 	static public function create( $input = false ) {
 		$binaryValue = null;
 		$hexValue = null;
+		$prettyValue = null;
 
 		if ( is_object( $input ) ) {
 			if ( $input instanceof UUID ) {
@@ -36,26 +48,31 @@ class UUID {
 			}
 		} elseif ( $input === null ) {
 			return null;
-		} elseif ( $input === false ) {
+		}
+
+		$len = strlen( $input );
+		if ( $input === false ) {
 			// new uuid in base 16 and pad to HEX_LEN with 0's
 			$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
 		} elseif ( !is_string( $input ) && !is_int( $input ) ) {
 			throw new \MWException( "Unknown input type to UUID class: " . gettype( $input ) );
-		} elseif ( strlen( $input ) == self::BIN_LEN ) {
+		} elseif ( $len === self::BIN_LEN ) {
 			$binaryValue = $input;
-		} elseif ( strlen( $input ) == self::HEX_LEN && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
+		} elseif ( $len >= self::MIN_PRETTY_LEN && $len <= self::PRETTY_LEN && ctype_alnum( $input ) ) {
+			$prettyValue = $input;
+			// convert base 36 to base 16 and pad to HEX_LEN with 0's
+			$hexValue = wfBaseConvert( $input, 36, 16, self::HEX_LEN );
+		} elseif ( $len === self::HEX_LEN && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
 			$hexValue = $input;
+		} elseif ( $len === self::OLD_BIN_LEN ) {
+			$binaryValue = substr( $input, 0, self::BIN_LEN );
+		} elseif ( $len === self::OLD_HEX_LEN ) {
+			$hexValue = substr( $input, 0, self::HEX_LEN );
 		} elseif ( is_numeric( $input ) ) {
 			// convert base 10 to base 16 and pad to HEX_LEN with 0's
 			$hexValue = wfBaseConvert( $input, 10, 16, self::HEX_LEN );
-		} elseif ( strlen( $input ) == 16 ) {
-			// Old binary length
-			$binaryValue = substr( $input, 0, self::BIN_LEN );
-		} elseif ( strlen( $input ) == 32 ) {
-			// Old hex length
-			$hexValue = substr( $input, 0, self::HEX_LEN );
 		} else {
-			$len = strlen( $input );
+			$len = $len;
 			$type = gettype( $input );
 			throw new \MWException( "Unknown input to UUID class : $type : $len" );
 		}
@@ -65,12 +82,13 @@ class UUID {
 		}
 		$uuid = new self( $binaryValue );
 		$uuid->hexValue = $hexValue;
+		$uuid->prettyValue = $prettyValue;
 
 		return $uuid;
 	}
 
 	public function __toString() {
-		return $this->getHex();
+		return $this->getPretty();
 	}
 
 	public function getHex() {
@@ -132,5 +150,15 @@ class UUID {
 
 	public function equals( UUID $other ) {
 		return $other->getBinary() === $this->getBinary();
+	}
+
+	/**
+	 * pretty-ish ;)
+	 */
+	public function getPretty() {
+		if ( $this->prettyValue === null ) {
+			$this->prettyValue = wfBaseConvert( $this->getHex(), 16, 36 );
+		}
+		return $this->prettyValue;
 	}
 }

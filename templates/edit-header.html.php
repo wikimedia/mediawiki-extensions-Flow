@@ -25,7 +25,7 @@ if ( $header ) {
 	echo Html::element( 'input', array(
 		'type' => 'hidden',
 		'name' => $block->getName()."[prev_revision]",
-		'value' => $header->getRevisionId()->getHex(),
+		'value' => $header->getRevisionId()->getPretty(),
 	) );
 }
 
@@ -35,7 +35,7 @@ echo Html::textarea(
 	array(
 		'class' => 'mw-ui-input',
 		'rows' => '10',
-		'data-header-id' => $header ? $header->getRevisionId()->getHex() : ''
+		'data-header-id' => $header ? $header->getRevisionId()->getPretty() : ''
 	)
 );
 echo Html::openElement( 'div', array(

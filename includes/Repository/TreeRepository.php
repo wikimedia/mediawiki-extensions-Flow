@@ -55,9 +55,9 @@ class TreeRepository {
 	 * has what we need
 	 */
 	public function insert( UUID $descendant, UUID $ancestor = null ) {
-		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant->getHex() );
-		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant->getHex() );
-		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
+		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant->getPretty() );
+		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant->getPretty() );
+		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getPretty() );
 		$this->cache->set( $subtreeKey, array( $descendant ), $this->cacheTime );
 		if ( $ancestor === null ) {
 			$this->cache->set( $parentKey, null, $this->cacheTime );
@@ -109,13 +109,13 @@ class TreeRepository {
 			if ( $value === false ) {
 				return false;
 			}
-			$value[$descendant->getHex()] = $descendant;
+			$value[$descendant->getPretty()] = $descendant;
 			return $value;
 		};
 		// This could be pretty slow if there is contention
 		foreach ( $rootPath as $subtreeRoot ) {
 			$this->cache->merge(
-				wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex() ),
+				wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getPretty() ),
 				$callback,
 				$this->cacheTime
 			);
@@ -123,7 +123,7 @@ class TreeRepository {
 	}
 	public function findParent( UUID $descendant ) {
 		$map = $this->fetchParentMap( array( $descendant ) );
-		return isset( $map[$descendant->getHex()] ) ? $map[$descendant->getHex()] : null;
+		return isset( $map[$descendant->getPretty()] ) ? $map[$descendant->getPretty()] : null;
 	}
 
 	/**
@@ -131,7 +131,7 @@ class TreeRepository {
 	 * the root must be the first element of the array, $node must be the last element.
 	 */
 	public function findRootPath( UUID $descendant ) {
-		$cacheKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
+		$cacheKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getPretty() );
 		$path = $this->cache->get( $cacheKey );
 		if ( $path !== false ) {
 			return $path;
@@ -154,7 +154,7 @@ class TreeRepository {
 			$path[$row->tree_depth] = UUID::create( $row->tree_ancestor_id );
 		}
 		if ( !$path ) {
-			throw new \MWException( 'No root path found? Is this a root already? ' . $descendant->getHex() );
+			throw new \MWException( 'No root path found? Is this a root already? ' . $descendant->getPretty() );
 		}
 		ksort( $path );
 		$path = array_reverse( $path );
@@ -200,7 +200,7 @@ class TreeRepository {
 
 	public function fetchSubtree( UUID $root, $maxDepth = null ) {
 		$identityMap = $this->fetchSubtreeIdentityMap( $root, $maxDepth );
-		if ( !isset( $identityMap[$root->getHex()] ) ) {
+		if ( !isset( $identityMap[$root->getPretty()] ) ) {
 			throw new MWException( 'No root exists in the identityMap' );
 		}
 
@@ -229,7 +229,7 @@ class TreeRepository {
 		// $idx is a binary UUID
 		$retval = array();
 		foreach ( $res as $idx => $val ) {
-			$retval[UUID::create( $idx )->getHex()] = $val;
+			$retval[UUID::create( $idx )->getPretty()] = $val;
 		}
 		return $retval;
 	}
@@ -254,7 +254,7 @@ class TreeRepository {
 		foreach ( $res as $node ) {
 			$ancestor = UUID::create( $node->tree_ancestor_id );
 			$descendant = UUID::create( $node->tree_descendant_id );
-			$nodes[$ancestor->getHex()][$descendant->getHex()] = $descendant;
+			$nodes[$ancestor->getPretty()][$descendant->getPretty()] = $descendant;
 		}
 
 		return $nodes;
@@ -294,7 +294,7 @@ class TreeRepository {
 				throw new MWException( 'Already have a parent for ' . $node->tree_descendant_id );
 			}
 			$descendant = UUID::create( $node->tree_descendant_id );
-			$result[$descendant->getHex()] = UUID::create( $node->tree_ancestor_id );
+			$result[$descendant->getPretty()] = UUID::create( $node->tree_ancestor_id );
 		}
 		foreach ( $nodes as $node ) {
 			if ( !isset( $result[$node] ) ) {

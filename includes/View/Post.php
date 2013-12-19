@@ -83,7 +83,7 @@ class Post {
 	public function postHistoryLink( $blockName ) {
 		return $this->actions->actionUrl(
 			'post-history',
-			array( $blockName . '[postId]' => $this->post->getPostId()->getHex() )
+			array( $blockName . '[postId]' => $this->post->getPostId()->getPretty() )
 		);
 	}
 
