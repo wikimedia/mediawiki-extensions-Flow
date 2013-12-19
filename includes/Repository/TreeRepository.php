@@ -52,7 +52,7 @@ class TreeRepository {
 	 * @return string
 	 */
 	protected function cacheKey( $type, UUID $uuid ) {
-		return wfForeignMemcKey( 'flow', '', 'tree', $type, $uuid->getHex(), Container::get( 'cache.version' ) );
+		return wfForeignMemcKey( 'flow', '', 'tree', $type, $uuid->getAlphadecimal(), Container::get( 'cache.version' ) );
 	}
 
 	/**
@@ -120,7 +120,7 @@ class TreeRepository {
 			if ( $value === false ) {
 				return false;
 			}
-			$value[$descendant->getHex()] = $descendant;
+			$value[$descendant->getAlphadecimal()] = $descendant;
 			return $value;
 		};
 
@@ -139,7 +139,7 @@ class TreeRepository {
 
 	public function findParent( UUID $descendant ) {
 		$map = $this->fetchParentMap( array( $descendant ) );
-		return isset( $map[$descendant->getHex()] ) ? $map[$descendant->getHex()] : null;
+		return isset( $map[$descendant->getAlphadecimal()] ) ? $map[$descendant->getAlphadecimal()] : null;
 	}
 
 	/**
@@ -154,17 +154,17 @@ class TreeRepository {
 		$missingValues = array();
 
 		foreach( $descendants as $descendant ) {
-			$cacheKeys[$descendant->getHex()] = $this->cacheKey( 'rootpath', $descendant );
+			$cacheKeys[$descendant->getAlphadecimal()] = $this->cacheKey( 'rootpath', $descendant );
 		}
 
 		$cacheResult = $this->cache->getMulti( array_values( $cacheKeys ) );
 
 		foreach( $descendants as $descendant ) {
-			if ( isset( $cacheResult[$cacheKeys[$descendant->getHex()]] ) ) {
-				$cacheValues[$descendant->getHex()] = $cacheResult[$cacheKeys[$descendant->getHex()]];
+			if ( isset( $cacheResult[$cacheKeys[$descendant->getAlphadecimal()]] ) ) {
+				$cacheValues[$descendant->getAlphadecimal()] = $cacheResult[$cacheKeys[$descendant->getAlphadecimal()]];
 			} else {
 				// This doubles as a way to convert binary UUIDs to hex
-				$missingValues[$descendant->getBinary()] = $descendant->getHex();
+				$missingValues[$descendant->getBinary()] = $descendant->getAlphadecimal();
 			}
 		}
 
@@ -215,7 +215,7 @@ class TreeRepository {
 	public function findRootPath( UUID $descendant ) {
 		$paths = $this->findRootPaths( array( $descendant ) );
 
-		return isset( $paths[$descendant->getHex()] ) ? $paths[$descendant->getHex()] : null;
+		return isset( $paths[$descendant->getAlphadecimal()] ) ? $paths[$descendant->getAlphadecimal()] : null;
 	}
 
 	/**
@@ -228,8 +228,8 @@ class TreeRepository {
 		$roots = array();
 
 		foreach( $descendants as $descendant ) {
-			if ( isset( $paths[$descendant->getHex()] ) ) {
-				$roots[$descendant->getHex()] = $paths[$descendant->getHex()][0];
+			if ( isset( $paths[$descendant->getAlphadecimal()] ) ) {
+				$roots[$descendant->getAlphadecimal()] = $paths[$descendant->getAlphadecimal()][0];
 			}
 		}
 
@@ -246,7 +246,7 @@ class TreeRepository {
 		$root = array_shift( $path );
 
 		if ( ! $root ) {
-			throw new DataModelException( $descendant->getHex().' has no root post. Probably is a root post.', 'process-data' );
+			throw new DataModelException( $descendant->getAlphadecimal().' has no root post. Probably is a root post.', 'process-data' );
 		}
 
 		return $root;
@@ -280,7 +280,7 @@ class TreeRepository {
 
 	public function fetchSubtree( UUID $root, $maxDepth = null ) {
 		$identityMap = $this->fetchSubtreeIdentityMap( $root, $maxDepth );
-		if ( !isset( $identityMap[$root->getHex()] ) ) {
+		if ( !isset( $identityMap[$root->getAlphadecimal()] ) ) {
 			throw new DataModelException( 'No root exists in the identityMap', 'process-data' );
 		}
 
@@ -309,7 +309,7 @@ class TreeRepository {
 		// $idx is a binary UUID
 		$retval = array();
 		foreach ( $res as $idx => $val ) {
-			$retval[UUID::create( $idx )->getHex()] = $val;
+			$retval[UUID::create( $idx )->getAlphadecimal()] = $val;
 		}
 		return $retval;
 	}
@@ -334,7 +334,7 @@ class TreeRepository {
 		foreach ( $res as $node ) {
 			$ancestor = UUID::create( $node->tree_ancestor_id );
 			$descendant = UUID::create( $node->tree_descendant_id );
-			$nodes[$ancestor->getHex()][$descendant->getHex()] = $descendant;
+			$nodes[$ancestor->getAlphadecimal()][$descendant->getAlphadecimal()] = $descendant;
 		}
 
 		return $nodes;
@@ -374,10 +374,10 @@ class TreeRepository {
 				throw new DataModelException( 'Already have a parent for ' . $node->tree_descendant_id, 'process-data' );
 			}
 			$descendant = UUID::create( $node->tree_descendant_id );
-			$result[$descendant->getHex()] = UUID::create( $node->tree_ancestor_id );
+			$result[$descendant->getAlphadecimal()] = UUID::create( $node->tree_ancestor_id );
 		}
 		foreach ( $nodes as $node ) {
-			if ( !isset( $result[$node->getHex()] ) ) {
+			if ( !isset( $result[$node->getAlphadecimal()] ) ) {
 				// $node is a root, it has no parent
 				$result[$node] = null;
 			}
