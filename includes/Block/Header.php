@@ -68,7 +68,7 @@ class HeaderBlock extends AbstractBlock {
 
 			if ( empty( $this->submitted['prev_revision'] ) ) {
 				$this->addError( 'prev_revision', wfMessage( 'flow-error-missing-prev-revision-identifier' ) );
-			} elseif ( $this->header->getRevisionId()->getHex() !== $this->submitted['prev_revision'] ) {
+			} elseif ( $this->header->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
 				// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
 				// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
 				// parent we and the submitter think is the latest, our insert will fail.
@@ -76,8 +76,8 @@ class HeaderBlock extends AbstractBlock {
 				// handing user back to specific dialog indicating race condition
 				$this->addError(
 					'prev_revision',
-					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getHex() ),
-					array( 'revision_id' => $this->header->getRevisionId()->getHex() ) // save current revision ID
+					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getAlphadecimal() ),
+					array( 'revision_id' => $this->header->getRevisionId()->getAlphadecimal() ) // save current revision ID
 				);
 			}
 
@@ -193,7 +193,7 @@ class HeaderBlock extends AbstractBlock {
 					break;
 				case 'post':
 					if ( $revision->isTopicTitle() ) {
-						$needed[$revision->getPostId()->getHex()] = $i;
+						$needed[$revision->getPostId()->getAlphadecimal()] = $i;
 						$query[] = array( 'tree_rev_descendant_id' => $revision->getPostId() );
 					} else {
 						// comments should not be in board history
@@ -215,7 +215,7 @@ class HeaderBlock extends AbstractBlock {
 		);
 		foreach ( $found as $newest ) {
 			$newest = reset( $newest );
-			$id = $newest->getPostId()->getHex();
+			$id = $newest->getPostId()->getAlphadecimal();
 
 			if ( isset( $needed[$id] ) ) {
 				$i = $needed[$id];
@@ -248,7 +248,7 @@ class HeaderBlock extends AbstractBlock {
 		if ( $this->header !== null ) {
 			$output['*'] = $templating->getContent( $this->header, $contentFormat );
 			$output['format'] = $contentFormat;
-			$output['header-id'] = $this->header->getRevisionId()->getHex();
+			$output['header-id'] = $this->header->getRevisionId()->getAlphadecimal();
 		} else {
 			$output['missing'] = 'missing';
 		}
@@ -269,7 +269,7 @@ class HeaderBlock extends AbstractBlock {
 		);
 
 		if ( $found === false ) {
-			throw new InvalidDataException( 'Unable to load topic list history for ' . $this->workflow->getId()->getHex(), 'fail-load-history' );
+			throw new InvalidDataException( 'Unable to load topic list history for ' . $this->workflow->getId()->getAlphadecimal(), 'fail-load-history' );
 		}
 
 		return $found;

@@ -103,11 +103,11 @@ class UrlGenerator {
 		switch ( $revision->getRevisionType() ) {
 			case 'post':
 				if ( !$revision->isTopicTitle() ) {
-					$data['topic_postId'] = $revision->getPostId()->getHex();
+					$data['topic_postId'] = $revision->getPostId()->getAlphadecimal();
 				}
 
 				if ( $specificRevision ) {
-					$data['topic_revId'] = $revision->getRevisionId()->getHex();
+					$data['topic_revId'] = $revision->getRevisionId()->getAlphadecimal();
 				}
 			break;
 		}
@@ -131,14 +131,14 @@ class UrlGenerator {
 		if ( $workflow instanceof UUID ) {
 			// Only way to know what title the workflow points at
 			$workflowId = $workflow;
-			if ( isset( $this->workflows[$workflowId->getHex()] ) ) {
-				$workflow = $this->workflows[$workflowId->getHex()];
+			if ( isset( $this->workflows[$workflowId->getAlphadecimal()] ) ) {
+				$workflow = $this->workflows[$workflowId->getAlphadecimal()];
 			} else {
 				$workflow = $this->storage->get( $workflowId );
 				if ( !$workflow ) {
 					throw new InvalidInputException( 'Invalid workflow: ' . $workflowId, 'invalid-workflow' );
 				}
-				$this->workflows[$workflowId->getHex()] = $workflow;
+				$this->workflows[$workflowId->getAlphadecimal()] = $workflow;
 			}
 		} elseif ( !$workflow instanceof Workflow ) {
 			// otherwise calling a method on $workflow will fatal error
@@ -146,12 +146,12 @@ class UrlGenerator {
 		}
 
 		if ( $workflow->isNew() ) {
-			$query['definition'] = $workflow->getDefinitionId()->getHex();
+			$query['definition'] = $workflow->getDefinitionId()->getAlphadecimal();
 		} else {
 			// TODO: workflow parameter is only necessary if the definition is non-unique.  Likely need to pass
 			// ManagerGroup into this class rather than the workflow ObjectManager so we can fetch definition as
 			// needed.
-			$query['workflow'] = $workflow->getId()->getHex();
+			$query['workflow'] = $workflow->getId()->getAlphadecimal();
 		}
 
 		return $this->buildUrlData( $workflow->getArticleTitle(), $action, $query );
