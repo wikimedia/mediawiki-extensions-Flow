@@ -55,7 +55,7 @@ $headerMsg = null;
 
 switch( $newRevision->getRevisionType() ) {
 	case 'post':
-		$postFragment = '#flow-post-' . $newRevision->getPostId()->getHex();
+		$postFragment = '#flow-post-' . $newRevision->getPostId()->getAlphadecimal();
 		$boardLinkTitle = clone $block->getWorkflow()->getArticleTitle();
 		$boardLinkTitle->setFragment( $postFragment );
 		$boardLink = $templating->getUrlGenerator()
@@ -68,7 +68,7 @@ switch( $newRevision->getRevisionType() ) {
 				$block->getWorkflow(),
 				'view',
 				array(
-					$block->getName().'[postId]' => $newRevision->getPostId()->getHex()
+					$block->getName().'[postId]' => $newRevision->getPostId()->getAlphadecimal()
 				)
 			);
 
@@ -80,7 +80,7 @@ switch( $newRevision->getRevisionType() ) {
 				$block->getWorkflow(),
 				'post-history',
 				array(
-					$block->getName().'[postId]' => $newRevision->getPostId()->getHex()
+					$block->getName().'[postId]' => $newRevision->getPostId()->getAlphadecimal()
 				)
 			);
 		$headerMsg = wfMessage( 'flow-compare-revisions-header-post' )
