@@ -862,15 +862,6 @@ class BasicDbStorage extends DbStorage {
 	 *                     success.
 	 */
 	public function find( array $attributes, array $options = array() ) {
-		wfDebug( "Running search on table {$this->table}\n" );
-
-		foreach( $attributes as $key => $value ) {
-			if ( $value instanceof \Flow\Model\UUID ) {
-				$value = $value->getHex();
-			}
-			wfDebug( " -- $key = $value\n" );
-		}
-
 		$attributes = $this->preprocessSqlArray( $attributes );
 
 		if ( ! $this->validateOptions( $options ) ) {
@@ -887,6 +878,7 @@ class BasicDbStorage extends DbStorage {
 		if ( ! $res ) {
 			return null;
 		}
+
 		$result = array();
 		foreach ( $res as $row ) {
 			$result[] = (array) $row;
@@ -904,8 +896,43 @@ class BasicDbStorage extends DbStorage {
 	}
 
 	public function findMulti( array $queries, array $options = array() ) {
-		// TODO
-		return $this->fallbackFindMulti( $queries, $options );
+		$keys = array_keys( reset( $queries ) );
+		$pks  = $this->getPrimaryKeyColumns();
+		if ( count( $keys ) !== count( $pks ) || array_diff( $keys, $pks ) ) {
+			return $this->fallbackFindMulti( $queries, $options );
+		}
+		$conds = array();
+		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		foreach ( $queries as $key => &$query ) {
+			$query = UUID::convertUUIDs( $query );
+			$conds[] = $dbr->makeList( $query, LIST_AND );
+		}
+		unset( $query );
+		
+		$conds = $dbr->makeList( $conds, LIST_OR );
+		
+		$result = array();
+		$i = 0;
+		$temp = array();
+		foreach ( $this->find( array( new RawSql( $conds ) ) ) as $val ) {
+			$temp[$this->primaryKeyHash( $val )] = $val;
+		}
+
+		foreach ( $queries as $key => $val ) {
+			if ( isset( $temp[$this->primaryKeyHash( $val )] ) ) {
+				$result[$i++][] = $temp[$this->primaryKeyHash( $val )];
+			}
+		}
+
+		return $result;
+	}
+
+	protected function primaryKeyHash( $val ) {
+		$hash = '';
+		foreach( $this->primaryKey as $key ) {
+			$hash .= $val[$key];
+		}
+		return md5( $hash );
 	}
 
 	/**
