@@ -29,7 +29,7 @@ echo Html::element( 'input', array(
 	Html::element( 'input', array(
 		'type' => 'hidden',
 		'name' => $block->getName() . '[postId]',
-		'value' => $post->getPostId()->getHex(),
+		'value' => $post->getPostId()->getAlphadecimal(),
 	) ),
 	Html::textarea(
 		$block->getName() . '[content]',

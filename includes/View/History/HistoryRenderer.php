@@ -165,7 +165,7 @@ class HistoryRenderer {
 					$workflowId = $revision->getWorkflowId();
 				}
 			}
-			$revs[$workflowId->getBinary()][] = $revision->getRevisionId()->getHex();
+			$revs[$workflowId->getBinary()][] = $revision->getRevisionId()->getAlphadecimal();
 			$uuids[] = $workflowId;
 		}
 
@@ -195,8 +195,8 @@ class HistoryRenderer {
 			}
 		} else {
 			$revision = $record->getRevision();
-			if ( isset( $this->workflows[$revision->getRevisionId()->getHex()] ) ) {
-				$workflowId = $this->workflows[$revision->getRevisionId()->getHex()];
+			if ( isset( $this->workflows[$revision->getRevisionId()->getAlphadecimal()] ) ) {
+				$workflowId = $this->workflows[$revision->getRevisionId()->getAlphadecimal()];
 				$historicalLink = $this->templating->getUrlGenerator()->generateBlockUrl(
 					$workflowId,
 					$revision,

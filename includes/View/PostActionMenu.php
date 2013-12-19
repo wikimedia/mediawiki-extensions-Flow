@@ -58,7 +58,7 @@ class PostActionMenu {
 		if ( !$this->permissions->isAllowed( $this->post, $action ) ) {
 			return false;
 		}
-		$data = array( $this->block->getName() . '[postId]' => $this->post->getPostId()->getHex() );
+		$data = array( $this->block->getName() . '[postId]' => $this->post->getPostId()->getAlphadecimal() );
 		if ( $this->getMethod( $action ) === 'POST' ) {
 			return $this->postAction( $action, $data, $content, $class );
 		} else {
@@ -164,7 +164,7 @@ class PostActionMenu {
 				'href' => $url,
 				'class' => $class,
 				'title' => strip_tags( $content ),
-				'data-post-id' => $this->post->getPostId()->getHex()
+				'data-post-id' => $this->post->getPostId()->getAlphadecimal()
 			),
 			$content
 		);
