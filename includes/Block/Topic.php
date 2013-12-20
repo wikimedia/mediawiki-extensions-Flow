@@ -480,14 +480,27 @@ class TopicBlock extends AbstractBlock {
 			return $prefix . $this->renderEditPost( $templating, $options, $return );
 
 		case 'edit-title':
+			// Check permissions against the current title
 			$topicTitle = $this->loadTopicTitle();
 			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
 				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
 			}
-			return $prefix . $templating->render( "flow:edit-title.html.php", array(
-				'block' => $this,
-				'topic' => $this->workflow,
-				'topicTitle' => $this->newRevision ?: $topicTitle, // if already submitted, use submitted revision,
+			$revisionId = $topicTitle->getRevisionId();
+			// If there was a validation failure $this->newRevision contains
+			// the submitted content.
+			if ( $this->newRevision ) {
+				$topicTitle = $this->newRevision;
+			}
+
+			// Container access is temporary hack until $templating is deprecated
+			$template = Container::get( 'template' );
+			return $prefix . $template->render( 'flow:edit-title.html.php', array(
+				'isEditConflict' => $this->hasErrors( 'prev_revision' ),
+				'editTitleUrl' => $templating->generateUrl( $topicTitle->getPostId(), 'edit-title' ),
+				'name' => $this->getName(),
+				'revisionId' => $revisionId->getHex(),
+				'validationErrors' => $template->errors()->block( $this ),
+				'wikiTextContent' => $templating->getContent( $topicTitle, 'wikitext' ),
 			), $return );
 
 		case 'compare-revisions':
