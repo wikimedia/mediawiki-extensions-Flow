@@ -60,6 +60,7 @@ $wgAutoloadClasses['Pimple'] = $dir . 'vendor/Pimple.php';
 $wgAutoloadClasses['Flow\Container'] = $dir . 'includes/Container.php';
 $wgAutoloadClasses['Flow\DbFactory'] = $dir . 'includes/DbFactory.php';
 $wgAutoloadClasses['Flow\ParsoidUtils'] = $dir . 'includes/ParsoidUtils.php';
+$wgAutoloadClasses['Flow\AbuseFilterUtils'] = $dir . 'includes/AbuseFilterUtils.php';
 $wgAutoloadClasses['Flow\Templating'] = $dir . 'includes/Templating.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\View'] = $dir . 'includes/View.php';
@@ -305,3 +306,18 @@ $wgFlowUseMemcache = true;
 // the last 3 days.
 $wgFlowCacheTime = 60 * 60 * 24 * 3;
 
+// Custom group name for AbuseFilter
+// Acceptable values:
+// * a specific value for flow-specific filters
+// * 'default' to use core filters; make sure they are compatible with both core
+//   and Flow (e.g. Flow has no 'summary' variable to test on)
+// * false to not use AbuseFilter
+$wgFlowAbuseFilterGroup = 'flow';
+if ( !in_array( $wgFlowAbuseFilterGroup, $wgAbuseFilterValidGroups ) ) {
+	$wgAbuseFilterValidGroups[] = $wgFlowAbuseFilterGroup;
+
+	// AbuseFilter emergency disable values for Flow
+	$wgAbuseFilterEmergencyDisableThreshold[$wgFlowAbuseFilterGroup] = 0.10;
+	$wgAbuseFilterEmergencyDisableCount[$wgFlowAbuseFilterGroup] = 50;
+	$wgAbuseFilterEmergencyDisableAge[$wgFlowAbuseFilterGroup] = 86400; // One day.
+}
