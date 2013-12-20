@@ -7,6 +7,9 @@ use Flow\RevisionActionPermissions;
 use MWTimestamp;
 use User;
 use Flow\ParsoidUtils;
+use Flow\Exception\DataModelException;
+use Flow\Exception\PermissionException;
+use Flow\Exception\InvalidInputException;
 
 abstract class AbstractRevision {
 	const MODERATED_NONE = '';
@@ -85,7 +88,7 @@ abstract class AbstractRevision {
 		if ( $obj === null ) {
 			$obj = new static;
 		} elseif ( !$obj instanceof static ) {
-			throw new \MWException( 'wrong object type' );
+			throw new DataModelException( 'wrong object type', 'process-data' );
 		}
 		$obj->revId = UUID::create( $row['rev_id'] );
 		$obj->userId = $row['rev_user_id'];
@@ -149,7 +152,7 @@ abstract class AbstractRevision {
 	 */
 	public function newNullRevision( User $user ) {
 		if ( !$user->isAllowed( 'edit' ) ) {
-			throw new \MWException( 'User does not have core edit permission' );
+			throw new PermissionException( 'User does not have core edit permission', 'insufficient-permission' );
 		}
 		$obj = clone $this;
 		$obj->revId = UUID::create();
@@ -185,7 +188,7 @@ abstract class AbstractRevision {
 			return null;
 		}
 		if ( !$historical && $this->needsModerateHistorical( $state ) ) {
-			throw new \MWException( 'Requested state change requires historical revisions, but they were not provided.' );
+			throw new InvalidInputException( 'Requested state change requires historical revisions, but they were not provided.', 'invalid-input' );
 		}
 
 		$historical[] = $obj = $this->newNullRevision( $user );
@@ -326,13 +329,13 @@ abstract class AbstractRevision {
 	 */
 	protected function setContent( $content ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
-			throw new \MWException( 'TODO: Cannot change content of restricted revision' );
+			throw new DataModelException( 'TODO: Cannot change content of restricted revision', 'process-data' );
 		}
 
 		// TODO: How is this guarantee of only receiving wikitext made?
 		$inputFormat = 'wikitext';
 		if ( $this->content !== null ) {
-			throw new \MWException( 'Updating content must use setNextContent method' );
+			throw new DataModelException( 'Updating content must use setNextContent method', 'process-data' );
 		}
 		// Keep consistent with normal edit page, trim only trailing whitespaces
 		$content = rtrim( $content );
@@ -361,7 +364,7 @@ abstract class AbstractRevision {
 	 */
 	protected function setNextContent( User $user, $content ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
-			throw new \MWException( 'Cannot change content of restricted revision' );
+			throw new DataModelException( 'Cannot change content of restricted revision', 'process-data' );
 		}
 		if ( $content !== $this->getContent() ) {
 			$this->content = null;

@@ -8,6 +8,7 @@ use Flow\Model\AbstractRevision;
 use MWException;
 use MWTimestamp;
 use Message;
+use Flow\Exception\InvalidActionException;
 
 /**
  * HistoryRecord accepts an AbstractRevision and, based on FlowActions, provides
@@ -47,9 +48,8 @@ class HistoryRecord {
 	 */
 	protected function getActionDetails( $action ) {
 		$details = $this->getActions()->getValue( $action, 'history' );
-
 		if ( $details === null ) {
-			throw new MWException( "History action '$action' is not defined." );
+			throw new InvalidActionException( "History action '$action' is not defined.", 'invalid-action' );
 		}
 
 		return $details;

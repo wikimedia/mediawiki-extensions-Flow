@@ -6,7 +6,7 @@ use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Model\UUID;
 use BagOStuff;
-use MWException;
+use Flow\Exception\DataModelException;
 
 /*
  *
@@ -98,7 +98,7 @@ class TreeRepository {
 		if ( !$res ) {
 			$this->cache->del( $parentKey );
 			$this->cache->del( $pathKey );
-			throw new MWEception( 'Failed inserting new tree node' );
+			throw new DataModelException( 'Failed inserting new tree node', 'process-data' );
 		}
 		$this->appendToSubtreeCache( $descendant, $path );
 		return true;
@@ -230,7 +230,7 @@ class TreeRepository {
 		$root = array_shift( $path );
 
 		if ( ! $root ) {
-			throw new MWException( $descendant->getHex().' has no root post. Probably is a root post.' );
+			throw new DataModelException( $descendant->getHex().' has no root post. Probably is a root post.', 'process-data' );
 		}
 
 		return $root;
@@ -243,7 +243,7 @@ class TreeRepository {
 	public function fetchSubtreeIdentityMap( $root, $maxDepth = null ) {
 		$nodes = $this->fetchSubtreeNodeList( ObjectManager::makeArray( $root ) );
 		if ( !$nodes ) {
-			throw new \MWException( 'subtree node list should have at least returned root: ' . $root );
+			throw new DataModelException( 'subtree node list should have at least returned root: ' . $root, 'process-data' );
 		} elseif ( count( $nodes ) === 1 ) {
 			$parentMap = $this->fetchParentMap( reset( $nodes ) );
 		} else {
@@ -265,7 +265,7 @@ class TreeRepository {
 	public function fetchSubtree( UUID $root, $maxDepth = null ) {
 		$identityMap = $this->fetchSubtreeIdentityMap( $root, $maxDepth );
 		if ( !isset( $identityMap[$root->getHex()] ) ) {
-			throw new MWException( 'No root exists in the identityMap' );
+			throw new DataModelException( 'No root exists in the identityMap', 'process-data' );
 		}
 
 		return $identityMap[$root];
@@ -355,7 +355,7 @@ class TreeRepository {
 		$result = array();
 		foreach ( $res as $node ) {
 			if ( isset( $result[$node->tree_descendant_id] ) ) {
-				throw new MWException( 'Already have a parent for ' . $node->tree_descendant_id );
+				throw new DataModelException( 'Already have a parent for ' . $node->tree_descendant_id, 'process-data' );
 			}
 			$descendant = UUID::create( $node->tree_descendant_id );
 			$result[$descendant->getHex()] = UUID::create( $node->tree_ancestor_id );

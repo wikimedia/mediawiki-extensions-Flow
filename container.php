@@ -158,7 +158,7 @@ $c['storage.board_history'] = $c->share( function( $c ) {
 			} elseif ( $row['rev_type'] === 'post' ) {
 				return PostRevision::fromStorageRow( $row, $obj );
 			} else {
-				throw new \MWException( 'Invalid rev_type for board history entry: ' . $row['rev_type'] );
+				throw new \Flow\Exception\InvalidDataException( 'Invalid rev_type for board history entry: ' . $row['rev_type'], 'fail-load-data' );
 			}
 		}
 	);

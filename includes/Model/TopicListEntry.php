@@ -2,6 +2,8 @@
 
 namespace Flow\Model;
 
+use Flow\Exception\DataModelException;
+
 // TODO: We shouldn't need this class
 class TopicListEntry {
 	protected $topicListId;
@@ -22,7 +24,7 @@ class TopicListEntry {
 		if ( $obj === null ) {
 			$obj = new self;
 		} elseif ( !$obj instanceof self ) {
-			throw new \MWException( 'Wrong obj type: ' . get_class( $obj ) );
+			throw new DataModelException( 'Wrong obj type: ' . get_class( $obj ), 'process-data' );
 		}
 		$obj->topicListId = UUID::create( $row['topic_list_id'] );
 		$obj->topicId = UUID::create( $row['topic_id'] );

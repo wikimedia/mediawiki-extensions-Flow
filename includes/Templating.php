@@ -17,6 +17,7 @@ use MWTimestamp;
 use RequestContext;
 use Title;
 use User;
+use Flow\Exception\InvalidDataException;
 
 class Templating {
 	public $urlGenerator;
@@ -84,7 +85,7 @@ class Templating {
 		}
 		list( $ns, $file ) = explode( ':', $file, 2 );
 		if ( !isset( $this->namespaces[$ns] ) ) {
-			throw new MWException( 'Unknown template namespace' );
+			throw new InvalidDataException( 'Unknown template namespace', 'fail-load-data' );
 		}
 
 		return $this->namespaces[$ns] . '/' . ltrim( $file, '/' );
@@ -112,7 +113,7 @@ class Templating {
 
 	public function renderPost( PostRevision $post, Block $block, $return = true ) {
 		if ( $post->isTopicTitle() ) {
-			throw new \MWException( 'Cannot render topic with ' . __METHOD__ );
+			throw new InvalidDataException( 'Cannot render topic with ' . __METHOD__, 'fail-load-data' );
 		}
 
 		// An ideal world may pull this from the container, but for now this is fine.  This templating
