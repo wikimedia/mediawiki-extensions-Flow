@@ -42,7 +42,7 @@ class HistoryRenderer {
 	 * included.
 	 *
 	 * @param History $history
-	 * @return array The keys of this array are properly escaped for output as 
+	 * @return array The keys of this array are properly escaped for output as
 	 *     raw html, the values are an associative array containing 'from' and
 	 *     'to' keys mapping to MWTimestamp objects.
 	 */
@@ -179,7 +179,8 @@ class HistoryRenderer {
 				$record->getData(),
 				$this->templating,
 				$wgUser,
-				$this->block
+				$this->block->getWorkflowId(),
+				$this->block->getName()
 			),
 			'timestamp' => $record->getTimestamp(),
 			'children' => $children,

@@ -20,15 +20,9 @@ class Formatter extends AbstractFormatter {
 		$user = $pager->getUser();
 		$title = $workflow->getArticleTitle();
 
-		// Fetch Block object
-		$block = $this->loadBlock( $title, $workflow->getId(), $row->blocktype );
-		if ( !$block ) {
-			return false;
-		}
-
 		// Fetch required data
 		$charDiff = $this->getCharDiff( $revision, $row->previous_revision );
-		$description = $this->getActionDescription( $workflow, $block, $revision, $user );
+		$description = $this->getActionDescription( $workflow, $row->blocktype, $revision, $user );
 		$dateFormats = $this->getDateFormats( $revision, $user, $lang );
 		$links = $this->buildActionLinks(
 			$title,

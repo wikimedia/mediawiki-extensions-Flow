@@ -42,11 +42,6 @@ class Formatter extends AbstractFormatter {
 			return false;
 		}
 
-		$block = $this->loadBlock( $title, $workflow->getId(), $changeData['block'] );
-		if ( !$block ) {
-			return false;
-		}
-
 		$links = (array) $this->buildActionLinks(
 			$title,
 			$revision->getChangeType(),
@@ -89,7 +84,7 @@ class Formatter extends AbstractFormatter {
 			. ' '
 			. $this->changeSeparator()
 			. ' '
-			. $this->getActionDescription( $workflow, $block, $revision, $user );
+			. $this->getActionDescription( $workflow, $row->blocktype, $revision, $user );
 	}
 
 	protected function changeSeparator() {
