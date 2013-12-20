@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_14f27ddf",
+        "filename": "includes/Formatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-20T00:37:35Z",
+      "side": 1,
+      "message": "perhaps just nitpicking, but since there are no abstract methods how about just making most of these methods public, and have RecentChanges and Contributions formatters receive an instances of the main formatter.",
+      "revId": "b02b58ad25263750ebcfaadb6481ad3ce055a659",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_f46719b3",
+        "filename": "includes/Formatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-20T00:37:35Z",
+      "side": 1,
+      "message": "This re-uses the $revisions variable name.  the above foreach( $revisions ... ) still works, because php is iterating a copy of $revisions in the foreach loop, but its error prone.",
+      "revId": "b02b58ad25263750ebcfaadb6481ad3ce055a659",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
