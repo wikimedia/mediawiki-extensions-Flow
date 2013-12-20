@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_94056d7f",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-20T00:49:21Z",
+      "side": 1,
+      "message": "i suppose this is fine, although other parts of flow use the MultiDimArray to accomplish the same goal.\n\n    $temp \u003d new MultiDimArray;\n    foreach ( $res as $val ) {\n        $pk \u003d ObjectManager::splitFromRow( $val, $this-\u003eprimaryKey );\n        $temp[$pk] \u003d $val;\u003d\u003e \n    }\n    ...\n    foreach ( $queries as $key \u003d\u003e $val ) {\n        $pk \u003d ObjectManager::splitFromRow( $val, $this-\u003eprimaryKey );\n        if ( isset( $temp[$pk] ) ) {\n            ...\n        }\n    }",
+      "revId": "61bc097ff5e67c12159c060b0d38018936608eb3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
