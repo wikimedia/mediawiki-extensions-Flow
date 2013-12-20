@@ -12,6 +12,7 @@ use Flow\Model\Workflow;
 use Flow\Model\Header;
 use Flow\Repository\HeaderRepository;
 use Flow\Templating;
+use Flow\AbuseFilterUtils;
 use User;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
@@ -60,7 +61,7 @@ class HeaderBlock extends AbstractBlock {
 
 		if ( $this->header ) {
 			if ( !$this->permissions->isAllowed( $this->header, 'edit-header' ) ) {
-				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 				return;
 			}
 
@@ -77,11 +78,23 @@ class HeaderBlock extends AbstractBlock {
 					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getHex() )
 				);
 			}
+
 			// this isnt really part of validate, but we want the error-rendering template to see the users edited header
+			$oldHeader = $this->header;
 			$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
+
+			// run through AbuseFilter
+			$status = AbuseFilterUtils::validate( $this->header, $oldHeader );
+			if ( !$status->isOK() ) {
+				foreach ( $status->getErrorsArray() as $message ) {
+					$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+				}
+				return;
+			}
+
 		} else {
 			if ( !$this->permissions->isAllowed( null, 'create-header' ) ) {
-				$this->errors['permissions'] = wfMessage( 'flow-error-not-allowed' );
+				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 				return;
 			}
 
@@ -95,6 +108,15 @@ class HeaderBlock extends AbstractBlock {
 				}
 
 				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
+
+				// run through AbuseFilter
+				$status = AbuseFilterUtils::validate( $this->header, null );
+				if ( !$status->isOK() ) {
+					foreach ( $status->getErrorsArray() as $message ) {
+						$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+					}
+					return;
+				}
 			} else {
 				// User submitted a previous revision, but we couldn't find one.  This is likely
 				// an internal error and not a user error, consider better handling

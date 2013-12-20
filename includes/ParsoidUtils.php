@@ -33,6 +33,7 @@ abstract class ParsoidUtils {
 			 *
 			 * We should definitely think about a nicer way to pass the correct
 			 * title to this method, from wherever it is being called from.
+			 * Also update AbuseFilterUtils.php then, which has the same hack.
 			 */
 			if ( $wgFlowParsoidTitle ) {
 				$title = $wgFlowParsoidTitle;
