@@ -70,6 +70,7 @@ $wgAutoloadClasses['Flow\OccupationController'] = $dir . 'includes/TalkpageManag
 $wgAutoloadClasses['Flow\TalkpageManager'] = $dir . 'includes/TalkpageManager.php';
 $wgAutoloadClasses['Flow\NotificationFormatter'] = $dir . 'includes/Notifications/Formatter.php';
 $wgAutoloadClasses['Flow\NotificationController'] = $dir . 'includes/Notifications/Controller.php';
+$wgAutoloadClasses['Flow\SpamFilter\Controller'] = $dir . 'includes/SpamFilter/Controller.php';
 $wgAutoloadClasses['Flow\FlowActions'] = $dir . 'includes/FlowActions.php';
 $wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/RevisionActionPermissions.php';
 
@@ -169,6 +170,7 @@ $wgHooks['UserGetReservedNames'][] = 'FlowHooks::onUserGetReservedNames';
 $wgHooks['ResourceLoaderGetConfigVars'][] = 'FlowHooks::onResourceLoaderGetConfigVars';
 $wgHooks['ContribsPager::reallyDoQuery'][] = 'FlowHooks::onContributionsQuery';
 $wgHooks['ContributionsLineEnding'][] = 'FlowHooks::onContributionsLineEnding';
+$wgHooks['AbuseFilter-computeVariable'][] = 'FlowHooks::onAbuseFilterComputeVariable';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
@@ -307,3 +309,15 @@ $wgFlowUseMemcache = true;
 // the last 3 days.
 $wgFlowCacheTime = 60 * 60 * 24 * 3;
 
+// Custom group name for AbuseFilter
+// Acceptable values:
+// * a specific value for flow-specific filters
+// * 'default' to use core filters; make sure they are compatible with both core
+//   and Flow (e.g. Flow has no 'summary' variable to test on)
+// * false to not use AbuseFilter
+$wgFlowAbuseFilterGroup = 'flow';
+
+// AbuseFilter emergency disable values for Flow
+$wgFlowAbuseFilterEmergencyDisableThreshold = 0.10;
+$wgFlowAbuseFilterEmergencyDisableCount = 50;
+$wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.

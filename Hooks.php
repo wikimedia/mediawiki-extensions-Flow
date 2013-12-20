@@ -9,10 +9,25 @@ class FlowHooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
-		global $wgEchoNotifications;
+		global $wgEchoNotifications,
+			$wgFlowAbuseFilterGroup,
+			$wgFlowAbuseFilterEmergencyDisableThreshold,
+			$wgFlowAbuseFilterEmergencyDisableCount,
+			$wgFlowAbuseFilterEmergencyDisableAge;
 
 		if ( isset( $wgEchoNotifications ) ) {
 			Container::get( 'controller.notification' )->setup();
+		}
+
+		if ( $wgFlowAbuseFilterGroup ) {
+			Container::get( 'controller.spamfilter' )->setup(
+				$wgFlowAbuseFilterGroup,
+				array(
+					'threshold' => $wgFlowAbuseFilterEmergencyDisableThreshold,
+					'count' => $wgFlowAbuseFilterEmergencyDisableCount,
+					'age' => $wgFlowAbuseFilterEmergencyDisableAge,
+				)
+			);
 		}
 	}
 
@@ -329,5 +344,29 @@ class FlowHooks {
 		$data[] = $results;
 
 		return true;
+	}
+
+	/**
+	 * Adds lazy-load methods for AbstractRevision objects.
+	 *
+	 * @param string $method: Method to generate the variable
+	 * @param AbuseFilterVariableHolder $vars
+	 * @param array $parameters Parameters with data to compute the value
+	 * @param mixed &$result Result of the computation
+	 */
+	public static function onAbuseFilterComputeVariable( $method, AbuseFilterVariableHolder $vars, $parameters, &$result ) {
+		$spamfilter = Container::get( 'controller.spamfilter' );
+
+		// fetch all lazy-load methods
+		$methods = $spamfilter->lazyLoadMethods();
+
+		// method isn't known here
+		if ( !isset( $methods[$method] ) ) {
+			return true;
+		}
+
+		// fetch variable result from lazy-load method
+		$result = $methods[$method]( $vars, $parameters );
+		return false;
 	}
 }
