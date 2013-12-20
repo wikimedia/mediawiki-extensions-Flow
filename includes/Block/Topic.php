@@ -15,6 +15,7 @@ use Flow\NotificationController;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Container;
+use Flow\AbuseFilterUtils;
 use EchoEvent;
 use User;
 use Flow\Exception\InvalidInputException;
@@ -129,6 +130,15 @@ class TopicBlock extends AbstractBlock {
 
 			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
 
+			// run through AbuseFilter
+			$status = AbuseFilterUtils::validate( $this->newRevision, $topicTitle, $this->workflow->getArticleTitle() );
+			if ( !$status->isOK() ) {
+				foreach ( $status->getErrorsArray() as $message ) {
+					$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+				}
+				return;
+			}
+
 			$this->setNotification(
 				'flow-topic-renamed',
 				array(
@@ -155,6 +165,15 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 		} else {
 			$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
+
+			// run through AbuseFilter
+			$status = AbuseFilterUtils::validate( $this->newRevision, $post, $this->workflow->getArticleTitle() );
+			if ( !$status->isOK() ) {
+				foreach ( $status->getErrorsArray() as $message ) {
+					$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+				}
+				return;
+			}
 
 			$this->setNotification(
 				'flow-post-reply',
@@ -246,6 +265,16 @@ class TopicBlock extends AbstractBlock {
 		$this->newRevision = $post->moderate( $this->user, $newState, $action, $reason, $this->relatedRevisions );
 		if ( !$this->newRevision ) {
 			$this->addError( 'moderate', wfMessage( 'flow-error-not-allowed' ) );
+			return;
+		}
+
+		// run through AbuseFilter
+		$status = AbuseFilterUtils::validate( $this->newRevision, $post, $this->workflow->getArticleTitle() );
+		if ( !$status->isOK() ) {
+			foreach ( $status->getErrorsArray() as $message ) {
+				$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+			}
+			return;
 		}
 	}
 
@@ -268,6 +297,16 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
+
+		// run through AbuseFilter
+		$status = AbuseFilterUtils::validate( $this->newRevision, $post, $this->workflow->getArticleTitle() );
+		if ( !$status->isOK() ) {
+			foreach ( $status->getErrorsArray() as $message ) {
+				$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+			}
+			return;
+		}
+
 		$this->setNotification(
 			'flow-post-edited',
 			array(
