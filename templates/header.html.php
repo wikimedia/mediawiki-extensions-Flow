@@ -1,45 +1,24 @@
 <?php
-echo Html::openElement(
-	'div',
-	array(
-		'id' => 'flow-header',
-		'class' => 'flow-element-container',
-	)
-);
+/**
+ * Variables expected:
+ *
+ *	block - instance of Flow\Block\Block
+ *	exists  - Boolean false if no header has been created
+ *	content - The main content
+ *	editUrl - Url to visit to edit this header
+ */
+?>
 
-if ( $block->hasErrors( 'content' ) ) {
-	echo Html::element(
-		'p',
-		array( 'id' => 'flow-header-error' ),
-		$block->getErrorMessage( 'content' )->text()
-	);
-}
+<div id="flow-header" class="flow-element-container">
+	<?php if ( $error = $this->block->getErrorMessage( 'content' ) ): ?>
+		<p id="flow-header-error"><?php echo $error->escaped() ?></p>
+	<?php endif ?>
 
-if ( $header ) {
-	$headerContent = $this->getContent( $header, 'html', $user );
-	$class = 'flow-header-exists';
-} else {
-	$headerContent = wfMessage( 'flow-header-empty' )->parse();
-	$class = 'flow-header-empty';
-}
+	<div id="flow-header-content" class="<?php echo $this->exists ? 'flow-header-exists' : 'flow-header-empty' ?>">
+		<?php echo $this->exists ? $this->content->escaped() : wfMessage( 'flow-header-empty' )->escaped() ?>
+	</div>
 
-echo Html::rawElement(
-	'div',
-	array(
-		'id' => 'flow-header-content',
-		'class' => $class,
-	),
-	$headerContent
-);
-
-echo Html::element(
-	'a',
-	array(
-		'href' => $this->generateUrl( $workflow, 'edit-header' ),
-		'class' => 'flow-header-edit-link flow-icon flow-icon-bottom-aligned',
-		'title' => wfMessage( 'flow-edit-header-link' )->text()
-	),
-	wfMessage( 'flow-edit-header-link' )->text()
-);
-
-echo Html::closeElement( 'div' );
+	<?php $linkText = wfMessage( 'flow-edit-header-link' )->escaped() ?>
+	<a href="<?php echo $this->editUrl->escaped() ?>" class="flow-header-edit-link flow-icon flow-icon-bottom-aligned"
+	   title="<?php echo $linkText ?>"><?php echo $linkText ?></a>
+</div>
