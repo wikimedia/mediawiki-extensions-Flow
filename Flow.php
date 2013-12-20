@@ -121,6 +121,7 @@ $wgAutoloadClasses['Flow\Data\PostRevisionRecentChanges'] = $dir . 'includes/Dat
 $wgAutoloadClasses['Flow\Data\HeaderRecentChanges'] = $dir . 'includes/Data/RecentChanges.php';
 $wgAutoloadClasses['Flow\Data\Merger'] = $dir . 'includes/Data/RevisionStorage.php';
 $wgAutoloadClasses['Flow\Data\RawSql'] = $dir . 'includes/Data/ObjectManager.php';
+$wgAutoloadClasses['Flow\AbstractFormatter'] = $dir . 'includes/Formatter.php';
 $wgAutoloadClasses['Flow\RecentChanges\Formatter'] = $dir . 'includes/RecentChanges/Formatter.php';
 $wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
 $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
