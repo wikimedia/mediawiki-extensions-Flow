@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_12ee0cb2",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-20T15:14:51Z",
+      "side": 1,
+      "message": "This works, though I wonder if there\u0027s a reason not to .appendTo( $newContainer)?\n\nI\u0027d even append to the first .flow-element-container child (then positioning will be better - right now the confirmation is wider than the post widths):\n\n    .appendTo( $newContainer.find( \u0027.flow-element-container:first\u0027 ) )",
+      "revId": "3fa5a919a5bbc8c5afa517850863e527063e40cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_32f11093",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-20T15:14:51Z",
+      "side": 1,
+      "message": "Also add \u0027title\u0027 attribute, with \"close\" text.\n\nI\u0027m no big fan of having \"close\" as text; I\u0027d prefer some X-icon. Not sure we have anything like that; otherwise perhaps just make text content \u0027×\u0027?",
+      "revId": "3fa5a919a5bbc8c5afa517850863e527063e40cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_f2bcc8b3",
+        "filename": "modules/moderation/moderation.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-20T15:14:51Z",
+      "side": 1,
+      "message": "JS-CSS shouldn\u0027t be needed; can be positioned in CSS - see comment in moderation.less",
+      "revId": "3fa5a919a5bbc8c5afa517850863e527063e40cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_b2b760d3",
+        "filename": "modules/moderation/styles/moderation.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-20T15:14:51Z",
+      "side": 1,
+      "message": "Is this purple-color intended? I\u0027d expect some green-ish color to confirm a succesful action :p",
+      "revId": "3fa5a919a5bbc8c5afa517850863e527063e40cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_d2b2e4e3",
+        "filename": "modules/moderation/styles/moderation.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-20T15:14:51Z",
+      "side": 1,
+      "message": "I think this could also use:\n\n    margin-bottom: 20px;",
+      "revId": "3fa5a919a5bbc8c5afa517850863e527063e40cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_d200a46f",
+        "filename": "modules/moderation/styles/moderation.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-20T15:14:51Z",
+      "side": 1,
+      "message": "This one is probably redundant since we\u0027re positioning absolutely?",
+      "revId": "3fa5a919a5bbc8c5afa517850863e527063e40cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_92e33cd4",
+        "filename": "modules/moderation/styles/moderation.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-20T15:14:51Z",
+      "side": 1,
+      "message": "top, left \u0026 margin-left can be replaced by:\n\n    top: 15px;\n    right: 22px;\n\nThen icon is at about the same position in the confirmation box as the junkdrawer icon is in title bar.",
+      "revId": "3fa5a919a5bbc8c5afa517850863e527063e40cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
