@@ -1,53 +1,42 @@
 <?php
+/**
+ * Variables passed in:
+ *
+ *	$block - instance of Flow\Block\Block
+ *	$content - The content of the header, as wikitext
+ *	$formUrl - String url for form submission
+ *	$revisionId - The id of the most recent header for this block
+ */
 
-// owning workflow
-echo Html::openElement( 'div', array(
-	'id' => 'flow-header',
-) );
-echo Html::openElement( 'div', array(
-	'class' => 'flow-edit-header-form flow-element-container'
-) );
-echo Html::openElement( 'form', array(
-	'method' => 'POST',
-	'action' => $this->generateUrl( $workflow, 'edit-header' ),
-	'class' => 'flow-header-form',
-) );
+$errors = array();
 if ( $block->hasErrors() ) {
-	echo '<ul>';
 	foreach ( $block->getErrors() as $error ) {
-		echo '<li>', $block->getErrorMessage( $error )->escaped() . '</li>';
+		$errors[] = $block->getErrorMessage( $error )->escaped();
 	}
-	echo '</ul>';
 }
 
-echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
-if ( $header ) {
-	echo Html::element( 'input', array(
-		'type' => 'hidden',
-		'name' => $block->getName()."[prev_revision]",
-		'value' => $header->getRevisionId()->getHex(),
-	) );
-}
+?>
 
-echo Html::textarea(
-	$block->getName() . '[content]',
-	$header ? $this->getContent( $header, 'wikitext', $user ) : '',
-	array(
-		'class' => 'mw-ui-input',
-		'rows' => '10',
-		'data-header-id' => $header ? $header->getRevisionId()->getHex() : ''
-	)
-);
-echo Html::openElement( 'div', array(
-	'class' => 'flow-edit-header-controls',
-) );
-
-echo Html::element( 'input', array(
-	'type' => 'submit',
-	'class' => 'mw-ui-button mw-ui-constructive',
-	'value' => wfMessage( 'flow-edit-header-submit' )->plain(),
-) );
-echo Html::closeElement( 'div' );
-echo Html::closeElement( 'form' );
-echo Html::closeElement( 'div' );
-echo Html::closeElement( 'div' );
+<div id="flow-header">
+	<div class="flow-edit-header-form flow-element-container">
+		<form method="POST" action="<?= htmlspecialchars( $formUrl ) ?>" class="flow-header-form">
+			<?php if ( $errors ): ?>
+				<ul><li><?= implode( '</li><li>', $errors ) ?></li></ul>
+			<?php endif; ?>
+			<input type="hidden" name="wpEditToken" value="<?= htmlspecialchars( $editToken ) ?>">
+			<?php if ( $revisionId ): ?>
+				<input type="hidden"
+				       name="<?= htmlspecialchars( $block->getName() ) ?>[prev_revision]"
+					   value="<?= htmlspecialchars( $revisionId ) ?>">
+			<?php endif ?>
+			<textarea name="<?= htmlspecialchars( $block->getName() ) ?>[content]"
+			          class="mw-ui-input" rows="10"
+					  data-header-id="<?= htmlspecialchars( $revisionId ) ?>"
+			><?= htmlspecialchars( $content ) ?></textarea>
+			<div class="flow-edit-header-controls">
+				<input type="submit" class="mw-ui-button mw-ui-constructive"
+					   value="<?= wfMessage( 'flow-edit-header-submit' )->escaped() ?>">
+			</div>
+		</form>
+	</div>
+</div>

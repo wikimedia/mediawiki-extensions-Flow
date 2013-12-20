@@ -19,6 +19,7 @@ use Flow\Exception\InvalidDataException;
 class HeaderBlock extends AbstractBlock {
 
 	protected $header;
+	protected $origHeader;
 	protected $needCreate = false;
 	protected $supportedActions = array( 'edit-header' );
 
@@ -42,7 +43,7 @@ class HeaderBlock extends AbstractBlock {
 		);
 
 		if ( $found ) {
-			$this->header = reset( $found );
+			$this->header = $this->origHeader = reset( $found );
 		}
 
 		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
@@ -147,16 +148,34 @@ class HeaderBlock extends AbstractBlock {
 			}
 
 			$templating->render( "flow:board-history.html.php", $tplVars );
-		} else {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.header' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
-			$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
-			$templating->render( "flow:$templateName.html.php", array(
+			return;
+		}
+		$templating->getOutput()->addModuleStyles( array( 'ext.flow.header' ) );
+		$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
+		if ( $this->action === 'edit-header' ) {
+			$tplVars = array(
 				'block' => $this,
-				'workflow' => $this->workflow,
-				'header' => $this->header,
-				'user' => $this->user,
-			) );
+				'content' => '',
+				'formUrl' => $templating->generateUrl( $this->workflow, 'edit-header' ),
+				'revisionId' => '',
+			);
+			if ( $this->header ) {
+				// On a submitted but failed form $this->header will have a unique unsaved rev id
+				$tplVars['content'] = $templating->getContent( $this->header, 'wikitext', $this->user );
+				$tplVars['revisionId'] = $this->origHeader->getRevisionId()->getHex();
+			}
+			$templating->render( "flow:edit-header.html.php", $tplVars );
+		} else {
+			// default view action
+			$tplVars = array(
+				'block' => $this,
+				'content' => '',
+				'editUrl' => $templating->generateUrl( $this->workflow, 'edit-header' ),
+			);
+			if ( $this->header ) {
+				$tplVars['content'] = $templating->getContent( $this->header, 'html', $this->user );
+			}
+			$templating->render( "flow:header.html.php", $tplVars );
 		}
 	}
 
