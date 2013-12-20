@@ -187,7 +187,7 @@ $wgAutoloadClasses['Flow\Exception\PermissionException'] = $dir . 'includes/Exce
 $wgAutoloadClasses['Flow\Exception\DataModelException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\DataPersistenceException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\WikitextException'] = $dir . 'includes/Exception/ExceptionHandling.php';
-$wgAutoloadClasses['Flow\Exception\IndexException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\NoIndexException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 
 // Configuration
 
