@@ -390,10 +390,12 @@ class TopicBlock extends AbstractBlock {
 			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
 				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
 			}
-			return $prefix . $templating->render( "flow:edit-title.html.php", array(
+
+			return Container::get( 'template' )
+				->render( 'flow:edit-title.html.php', array(
 				'block' => $this,
-				'topic' => $this->workflow,
-				'topicTitle' => $topicTitle,
+				'content' => $templating->getContent( $topicTitle, 'wikitext', $this->user ),
+				'editTitleUrl' => $templating->generateUrl( $topicTitle->getPostId(), 'edit-title' ),
 			), $return );
 
 		case 'compare-revisions':
