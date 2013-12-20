@@ -15,6 +15,7 @@ use Flow\Model\Workflow;
 use Flow\NotificationController;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
+use Flow\SpamFilter\Controller;
 use User;
 use Flow\Exception\FailCommitException;
 
@@ -23,6 +24,10 @@ class TopicListBlock extends AbstractBlock {
 	protected $treeRepo;
 	protected $supportedActions = array( 'new-topic' );
 	protected $suppressedActions = array( 'board-history' );
+	protected $topicWorkflow;
+	protected $topicListEntry;
+	protected $topicPost;
+	protected $firstPost;
 
 	public function __construct(
 		Workflow $workflow,
@@ -56,6 +61,74 @@ class TopicListBlock extends AbstractBlock {
 				$this->addError( 'topic', wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
 			}
 		}
+
+		// creates Workflow, Revision & TopicListEntry objects to be inserted into storage
+		list( $this->topicWorkflow, $this->topicListEntry, $this->topicPost, $this->firstPost ) = $this->create();
+
+		// run through AbuseFilter
+		$status = Container::get( 'controller.spamfilter' )->validate( $this->topicPost, null, $this->workflow->getArticleTitle() );
+		if ( !$status->isOK() ) {
+			foreach ( $status->getErrorsArray() as $message ) {
+				$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+			}
+			return;
+		}
+
+		if ( $this->firstPost ) {
+			// run through AbuseFilter
+			$status = Container::get( 'controller.spamfilter' )->validate( $this->firstPost, null, $this->workflow->getArticleTitle() );
+			if ( !$status->isOK() ) {
+				foreach ( $status->getErrorsArray() as $message ) {
+					$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+				}
+				return;
+			}
+		}
+	}
+
+	/**
+	 * Creates the objects about to be inserted into storage:
+	 * * $this->topicWorkflow
+	 * * $this->topicListEntry
+	 * * $this->topicPost
+	 * * $this->firstPost
+	 *
+	 * @throws \MWException
+	 * @throws \Flow\Exception\FailCommitException
+	 * @return array Array of [$topicWorkflow, $topicListEntry, $topicPost, $firstPost]
+	 */
+	protected function create() {
+		$defStorage = $this->storage->getStorage( 'Definition' );
+		$sourceDef = $defStorage->get( $this->workflow->getDefinitionId() );
+
+		if ( !$sourceDef ) {
+			throw new \MWException( "Unable to retrieve definition for this workflow" );
+		}
+
+		$topicDef = $defStorage->get( $sourceDef->getOption( 'topic_definition_id' ) );
+		if ( !$topicDef ) {
+			throw new FailCommitException( 'Invalid definition owns this TopicList, needs a valid topic_definition_id option assigned', 'fail-commit' );
+		}
+
+		$title = $this->workflow->getArticleTitle();
+		$topicWorkflow = Workflow::create( $topicDef, $this->user, $title );
+		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
+
+		if ( !$title->exists() ) {
+			// if $wgFlowContentFormat is set to html the PostRevision::create
+			// call will convert the wikitext input into html via parsoid, and
+			// parsoid requires the page exist.
+			Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
+		}
+		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
+
+		if ( !empty( $this->submitted['content'] ) ) {
+			$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
+			$topicPost->setChildren( array( $firstPost ) );
+		}
+
+
+		return array( $topicWorkflow, $topicListEntry, $topicPost, $firstPost );
 	}
 
 	/**
@@ -68,57 +141,30 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		$storage = $this->storage;
-		$defStorage = $this->storage->getStorage( 'Definition' );
-		$sourceDef = $defStorage->get( $this->workflow->getDefinitionId() );
 
-		if ( ! $sourceDef ) {
-			throw new \MWException( "Unable to retrieve definition for this workflow" );
-		}
-
-		$topicDef = $defStorage->get( $sourceDef->getOption( 'topic_definition_id' ) );
-		if ( !$topicDef ) {
-			throw new FailCommitException( 'Invalid definition owns this TopicList, needs a valid topic_definition_id option assigned', 'fail-commit' );
-		}
-
-		$title = $this->workflow->getArticleTitle();
-		$topicWorkflow = Workflow::create( $topicDef, $this->user, $title );
-
-		if ( !$title->exists() ) {
-			// if $wgFlowContentFormat is set to html the PostRevision::create
-			// call will convert the wikitext input into html via parsoid, and
-			// parsoid requires the page exist.
-			Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
-		}
-		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
-		$firstPost = null;
-		if ( !empty( $this->submitted['content'] ) ) {
-			$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
-			$topicPost->setChildren( array( $firstPost ) );
-		}
-		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
-
-		$storage->put( $topicWorkflow );
-		$storage->put( $topicListEntry );
-		$storage->put( $topicPost );
-		if ( $firstPost !== null ) {
-			$storage->put( $firstPost );
+		$storage->put( $this->topicWorkflow );
+		$storage->put( $this->topicListEntry );
+		$storage->put( $this->topicPost );
+		if ( $this->firstPost !== null ) {
+			$storage->put( $this->firstPost );
 		}
 
 		$this->notificationController->notifyNewTopic( array(
 			'board-workflow' => $this->workflow,
-			'topic-workflow' => $topicWorkflow,
-			'title-post' => $topicPost,
-			'first-post' => $firstPost,
+			'topic-workflow' => $this->topicWorkflow,
+			'title-post' => $this->topicPost,
+			'first-post' => $this->firstPost,
 			'user' => $this->user,
 		) );
 
-		$user = $this->user;
 		$notificationController = $this->notificationController;
+		$topicWorkflow = $this->topicWorkflow;
+		$topicPost = $this->topicPost;
 		$output = array(
-			'created-topic-id' => $topicWorkflow->getId(),
-			'created-post-id' => $firstPost ? $firstPost->getRevisionId() : null,
+			'created-topic-id' => $this->topicWorkflow->getId(),
+			'created-post-id' => $this->firstPost ? $this->firstPost->getRevisionId() : null,
 			'render-function' => function( $templating )
-					use ( $topicWorkflow, $firstPost, $topicPost, $storage, $user, $notificationController )
+					use ( $topicWorkflow, $topicPost, $storage, $notificationController )
 			{
 				$block = new TopicBlock( $topicWorkflow, $storage, $notificationController, $topicPost );
 				return $templating->renderTopic( $topicPost, $block, true );
