@@ -47,7 +47,7 @@ abstract class AbstractBlock implements Block {
 
 	protected $user;
 	protected $submitted;
-	protected $errors;
+	protected $errors = array();
 	protected $action;
 	protected $supportedActions = array();
 	protected $notificationController;
