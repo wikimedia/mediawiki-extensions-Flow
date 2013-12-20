@@ -1,74 +1,35 @@
 <?php
-
-$revisionId = $topicTitle->getRevisionId()->getHex();
-
-/*
- * If we tried to submit a change against a revision that is not the latest,
- * $header will be our own change; let's get the real revision id from the
- * error details.
- */
-if ( $block->hasErrors( 'prev_revision' ) ) {
-	$error = $block->getErrorExtra( 'prev_revision' );
-	$revisionId = $error['revision_id'];
-}
-
 // submit button text will be different if there's a more recent change already
-$submitMessage = 'flow-edit-title-submit';
-$submitClass = 'mw-ui-button mw-ui-constructive';
-if ( $block->hasErrors( 'prev_revision' ) ) {
-	$submitMessage = 'flow-edit-title-submit-overwrite';
-	$submitClass = 'mw-ui-button mw-ui-destructive';
+// Checking validationErrors isn't a great solution, need to figure out how to
+// construct this such
+if ( $this->isEditConflict->__raw() ) {
+	$submitMessage = "flow-edit-title-submit-overwrite";
+	$submitClass = "mw-ui-button mw-ui-destructive";
+} else {
+	$submitMessage = "flow-edit-title-submit";
+	$submitClass = "mw-ui-button mw-ui-constructive";
 }
-
-echo Html::openElement( 'div', array(
-	'class' => 'flow-topic-container flow-topic-full'
-) );
-echo Html::openElement( 'div', array(
-	'class' => 'flow-edit-title-form flow-element-container'
-) );
-echo Html::openElement( 'form', array(
-	'method' => 'POST',
-	// root post shares its uuid with the workflow
-	'action' => $this->generateUrl( $topicTitle->getPostId(), 'edit-title' ),
-) );
-if ( $block->hasErrors() ) {
-	echo '<ul>';
-	foreach ( $block->getErrors() as $error ) {
-		echo '<li>', $block->getErrorMessage( $error )->parse() . '</li>';
-	}
-	echo '</ul>';
-}
-
-echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken ) ),
-	Html::element( 'input', array(
-		'type' => 'hidden',
-		'name' => $block->getName() . '[prev_revision]',
-		'value' => $revisionId
-	) ),
-	Html::element(
-		'input',
-		array(
-			'name' => $block->getName() . '_content',
-			'class' => 'flow-edit-title-textbox mw-ui-input',
-			'value' => $this->getContent( $topicTitle, 'wikitext' ),
-		),
-		$this->getContent( $topicTitle, 'wikitext' )
-	),
-	Html::openElement( 'div', array(
-		'class' => 'flow-edit-title-controls',
-	) ),
-	Html::rawElement( 'div', array(
-		'class' => 'flow-terms-of-use plainlinks'
-	),  wfMessage( 'flow-terms-of-use-reply' )->parse() ),
-		Html::element( 'input',
-			array(
-				'type' => 'submit',
-				'class' => $submitClass,
-				'value' => wfMessage( $submitMessage )->plain(),
-			)
-		),
-	Html::element( 'div', array( 'class' => 'clear' ) ),
-	Html::closeElement( 'div' ),
-Html::closeElement( 'form' ),
-Html::closeElement( 'div' ),
-Html::closeElement( 'div' );
+?>
+<div class="flow-topic-container flow-topic-full">
+	<div class="flow-edit-title-form flow-element-container">
+		<form method="POST" action="<?php echo $this->editTitleUrl->escaped() ?>">
+			<?php echo $this->validationErrors->escaped() ?>
+			<?php /* echo $this->antispam()->formField()->escaped() // not implemented yet */ ?>
+			<input type="hidden" name="wpEditToken" value="<?php echo $this->editToken->escaped() ?>">
+			<input type="hidden"
+			       name="<?php echo $this->name->escaped() ?>_prev_revision"
+			       value="<?php echo $this->revisionId->escaped() ?>">
+			<input name="<?php echo $this->name->escaped() ?>_content"
+			       class="flow-edit-title-textbox mw-ui-input"
+			       value="<?php echo $this->wikiTextContent->escaped() ?>">
+			<div class="flow-edit-title-controls">
+				<div class="flow-terms-of-use plainlinks">
+					<?php echo wfMessage( "flow-terms-of-use-reply" )->parse() ?>
+				</div>
+				<input type="submit" class="<?php echo $this->escape( $submitClass )->escaped() ?>"
+				       value="<?php echo wfMessage( $submitMessage )->escaped() ?>">
+				<div class="ui-helper-clearfix"></div>
+			</div>
+		</form>
+	</div>
+</div>
