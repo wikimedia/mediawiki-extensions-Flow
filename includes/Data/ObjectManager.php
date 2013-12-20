@@ -866,15 +866,6 @@ class BasicDbStorage extends DbStorage {
 	 *                     success.
 	 */
 	public function find( array $attributes, array $options = array() ) {
-		wfDebug( "Running search on table {$this->table}\n" );
-
-		foreach( $attributes as $key => $value ) {
-			if ( $value instanceof \Flow\Model\UUID ) {
-				$value = $value->getHex();
-			}
-			wfDebug( " -- $key = $value\n" );
-		}
-
 		$attributes = $this->preprocessSqlArray( $attributes );
 
 		if ( ! $this->validateOptions( $options ) ) {
@@ -891,6 +882,7 @@ class BasicDbStorage extends DbStorage {
 		if ( ! $res ) {
 			return null;
 		}
+
 		$result = array();
 		foreach ( $res as $row ) {
 			$result[] = (array) $row;
@@ -908,8 +900,42 @@ class BasicDbStorage extends DbStorage {
 	}
 
 	public function findMulti( array $queries, array $options = array() ) {
-		// TODO
-		return $this->fallbackFindMulti( $queries, $options );
+		$keys = array_keys( reset( $queries ) );
+		$pks  = $this->getPrimaryKeyColumns();
+		if ( count( $keys ) !== count( $pks ) || array_diff( $keys, $pks ) ) {
+			return $this->fallbackFindMulti( $queries, $options );
+		}
+		$conds = array();
+		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+		foreach ( $queries as $key => &$query ) {
+			$query = UUID::convertUUIDs( $query );
+			$conds[] = $dbr->makeList( $query, LIST_AND );
+		}
+		unset( $query );
+
+		$conds = $dbr->makeList( $conds, LIST_OR );
+
+		$result = array();
+		// options can be ignored for primary key search
+		$res = $this->find( array( new RawSql( $conds ) ) );
+		if ( !$res ) {
+			return $result;
+		}
+
+		$temp = new MultiDimArray();
+		foreach ( $res as $val ) {
+			$temp[ObjectManager::splitFromRow( $val, $this->primaryKey )] = $val;
+		}
+
+		$i = 0;
+		foreach ( $queries as $key => $val ) {
+			$pk = ObjectManager::splitFromRow( $val, $this->primaryKey );
+			if ( isset( $temp[$pk] ) ) {
+				$result[$i++][] = $temp[$pk];
+			}
+		}
+
+		return $result;
 	}
 
 	/**
