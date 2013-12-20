@@ -108,7 +108,11 @@ class Query {
 			$revisions = $this->findRevisions( $pager, $conditions, $limit, $revisionClass );
 			$this->loadMetadataBatch( $revisions );
 			foreach ( $revisions as $revision ) {
-				$results[] = $this->buildResult( $pager, $revision, $blockType );
+				$result = $this->buildResult( $pager, $revision, $blockType );
+
+				if ( $result ) {
+					$results[] = $result;
+				}
 			}
 		}
 
@@ -201,6 +205,10 @@ class Query {
 		$fakeRow = array();
 
 		$workflow = $this->getWorkflow( $revision );
+
+		if ( !$workflow ) {
+			return false;
+		}
 
 		// other contributions entries
 		$fakeRow[$pager->getIndexField()] = $timestamp; // used for navbar
