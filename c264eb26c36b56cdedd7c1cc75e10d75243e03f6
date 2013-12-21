@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_9e534343",
+        "filename": "scripts/pre-commit",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 33
+      },
+      "writtenOn": "2013-12-21T03:18:18Z",
+      "side": 1,
+      "message": "heh :)",
+      "revId": "c264eb26c36b56cdedd7c1cc75e10d75243e03f6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
