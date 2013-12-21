@@ -1729,6 +1729,13 @@ Vous pouvez voir d’autres versions de cette note dans sa [$6 page d’historiq
 	'flow-topic-complete' => 'Vue complète',
 );
 
+/** Western Frisian (Frysk)
+ * @author Kening Aldgilles
+ */
+$messages['fy'] = array(
+	'flow-cancel' => 'Ofbrekke',
+);
+
 /** Galician (galego)
  * @author Toliño
  */
@@ -3770,7 +3777,7 @@ $messages['sv'] = array(
 	'flow-history-pages-post' => 'Visas på [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 påbörjade detta ämne|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} och $2 {{PLURAL:$2|annan|andra}}|0=Inget deltagande ännu|2={{GENDER:$3|$3}} och {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} och {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|Kommentera ($1)|Kommentarer ($1)|0=Bli den {{GENDER:$2|förste|första}} att kommentera!}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|Var}} först med att kommentera!|$1 {{PLURAL:$1|kommentar|kommentarer}} av $2 {{PLURAL:$2|användare|användare}}}}',
+	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|Var först med}} att kommentera!|$1 {{PLURAL:$1|kommentar|kommentarer}} av $2 {{PLURAL:$2|användare|användare}}}}',
 	'flow-comment-restored' => 'Återställd kommentar',
 	'flow-comment-deleted' => 'Raderad kommentar',
 	'flow-comment-hidden' => 'Dold kommentar',
