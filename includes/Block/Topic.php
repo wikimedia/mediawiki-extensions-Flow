@@ -550,8 +550,9 @@ class TopicBlock extends AbstractBlock {
 		}
 		return $templating->render( "flow:edit-post.html.php", array(
 			'block' => $this,
-			'topic' => $this->workflow,
-			'post' => $post,
+			'content' => $templating->getContent( $post, 'wikitext', $this->user ),
+			'editPostUrl' => $templating->generateUrl( $this->workflow, 'edit-post' ),
+			'postId' => $post->getPostId()->getHex(),
 		), $return );
 	}
 
