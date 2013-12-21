@@ -16,6 +16,24 @@
       "revId": "c264eb26c36b56cdedd7c1cc75e10d75243e03f6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_1e0df341",
+        "filename": "scripts/pre-commit",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-21T03:38:50Z",
+      "side": 1,
+      "message": "Haha. I was committing a bad version of the script to test itself. I fixed the intentional whitespace problems on-disk, but because I didn\u0027t `git add` the new version, the file that the commit hook verifies is not the version that\u0027s being checked in. This is an actual bug with the commit hook, hmmm. Maybe there\u0027s a way to check the version of the file that\u0027s about to be checked in, but there\u0027s no `git show --cached \"$f\"` option.\n\nNew version won\u0027t have the whitespace error.",
+      "parentUuid": "eeebdf60_9e534343",
+      "revId": "c264eb26c36b56cdedd7c1cc75e10d75243e03f6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
