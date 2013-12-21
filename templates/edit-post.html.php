@@ -1,54 +1,27 @@
 <?php
-
-echo Html::openElement( 'div', array(
-	'class' => 'flow-topic-container flow-topic-full'
-) );
-echo Html::openElement( 'div', array(
-	'class' => 'flow-post-container'
-) );
-echo Html::openElement( 'div', array(
-	'class' => 'flow-edit-post-form flow-element-container'
-) );
-echo Html::openElement( 'form', array(
-	'method' => 'POST',
-	'action' => $this->generateUrl( $topic->getId(), 'edit-post' ),
-) );
-if ( $block->hasErrors() ) {
-	echo '<ul>';
-	foreach ( $block->getErrors() as $error ) {
-		echo '<li>', $block->getErrorMessage( $error )->escaped() . '</li>';
-	}
-	echo '</ul>';
-}
-
-echo Html::element( 'input', array(
-		'type' => 'hidden',
-		'name' => 'wpEditToken',
-		'value' => $editToken,
-	) ),
-	Html::element( 'input', array(
-		'type' => 'hidden',
-		'name' => $block->getName() . '[postId]',
-		'value' => $post->getPostId()->getHex(),
-	) ),
-	Html::textarea(
-		$block->getName() . '[content]',
-		$this->getContent( $post, 'wikitext', $user ),
-		array(
-			'class' => 'mw-ui-input',
-			'rows' => '10'
-		)
-	),
-	Html::openElement( 'div', array(
-		'class' => 'flow-post-form-controls',
-	) ),
-		Html::element( 'input', array(
-			'type' => 'submit',
-			'class' => 'mw-ui-button mw-ui-constructive',
-			'value' => wfMessage( 'flow-edit-post-submit' )->plain()
-		) ),
-	Html::closeElement( 'div' ),
-Html::closeElement( 'form' ),
-Html::closeElement( 'div' ),
-Html::closeElement( 'div' ),
-Html::closeElement( 'div' );
+/**
+ * Variables expected:
+ *
+ *	block - Instance of Flow\Block\Block
+ *	content - Wikitext of the post being edited
+ *	editPostUrl - Url to submit edited post content to
+ *	postId - Id of the post being edited
+ */
+?>
+<div class="flow-topic-container flow-topic-full">
+	<div class="flow-post-container">
+		<div class="flow-edit-post-form flow-element-container">
+			<form method="POST" action="<?php echo $this->editPostUrl->escaped() ?>">
+				<?php echo $this->errors()->block( $this->block )->escaped() ?>
+				<input type="hidden" name="wpEditToken" value="<?php echo $this->editToken->escaped() ?>">
+				<input type="hidden" name="<?php echo $this->block->getName()->escaped() ?>[postId]" value="<?php echo $this->postId->escaped() ?>">
+				<textarea name="<?php echo $this->block->getName()->escaped() ?>[content]"
+				          class="mw-ui-input" rows="10"><?php echo $this->content->escaped() ?></textarea>
+				<div class="flow-post-form-controls">
+					<input type="submit" class="mw-ui-button mw-ui-constructive"
+					       value="<?php echo wfMessage( 'flow-edit-post-submit' )->escaped() ?>">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
