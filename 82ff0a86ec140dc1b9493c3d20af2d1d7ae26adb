@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_f88b8219",
+        "filename": "Flow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2013-12-21T23:15:04Z",
+      "side": 1,
+      "message": "If someone changes the group name in their LocalSettings.php, this won\u0027t work. I would just make the \u0027flow\u0027 part non-customizable.",
+      "revId": "82ff0a86ec140dc1b9493c3d20af2d1d7ae26adb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_d890be48",
+        "filename": "includes/AbuseFilterUtils.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2013-12-21T23:15:04Z",
+      "side": 1,
+      "message": "Can we make the title non optional?",
+      "revId": "82ff0a86ec140dc1b9493c3d20af2d1d7ae26adb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
