@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_1ea97321",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-21T04:33:19Z",
+      "side": 1,
+      "message": "Explain why there is $header and $origHeader.  (BTW I\u0027ve never seen PHP reset() before, learn something new every day.)",
+      "revId": "7aa08f2fc5fefd56bf910d37da30ad556e7933c4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_de81cb93",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-21T04:33:19Z",
+      "side": 1,
+      "message": "Whitespace error!  Please try https://gerrit.wikimedia.org/r/103085 :)",
+      "revId": "7aa08f2fc5fefd56bf910d37da30ad556e7933c4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_c970f3a5",
+        "filename": "templates/edit-header.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-21T04:33:19Z",
+      "side": 1,
+      "message": "But they\u0027re not \"passed in\".",
+      "revId": "7aa08f2fc5fefd56bf910d37da30ad556e7933c4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_e943b741",
+        "filename": "templates/edit-header.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-21T04:33:19Z",
+      "side": 1,
+      "message": "I see why you were complaining about htmlspecialchars(). So this newer version is easier to read, probably higher performance, but you have to be vigilant to look for htmlspecialchars().\n\nHow about access variables from the $block object that has basic methods to output member variables, instead of these pseudo-global variables.\n\n   \u003c?\u003d $block-\u003egetVal( \u0027formUrl\u0027 )-\u003eescaped() ?\u003e\n\nWorks like your $block-\u003egetErrorMessage() and wfMessage() handling, with similar methods. For extra super-bonus points, maybe there\u0027s PHP magic to make $block( \u0027formUrl\u0027 ) act like a function, or you could export getVal() within this chunk of PHP so you could just call\n\n   \u003c?\u003d $blockVars( \u0027formUrl\u0027 )-\u003eescaped() ?\u003e",
+      "revId": "7aa08f2fc5fefd56bf910d37da30ad556e7933c4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
