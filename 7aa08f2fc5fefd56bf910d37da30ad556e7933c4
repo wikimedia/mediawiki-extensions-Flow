@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "eeebdf60_696fa7c1",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-21T05:09:43Z",
+      "side": 1,
+      "message": "Having to set default values for all the template vars seems prone to error, forget to set one and the template will generate \"Notice: undefined variable: content\" errors. Better to use PHP get/set overloading as in http://www.php.net/manual/en/language.oop5.overloading.php#object.set , so that accessing an unset value can default to a reasonable value like null.",
+      "revId": "7aa08f2fc5fefd56bf910d37da30ad556e7933c4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eeebdf60_c970f3a5",
         "filename": "templates/edit-header.html.php",
         "patchSetId": 2
