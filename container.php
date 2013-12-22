@@ -36,6 +36,21 @@ $c['repository.tree'] = $c->share( function( $c ) {
 } );
 
 // Templating
+
+// not shared, new template every time
+$c['template.locator'] = $c->share( function( $c ) {
+	return new Flow\Template\Locator( $c['templating.namespaces'] );	
+} );
+$c['template.helpers'] = $c->share( function( $c ) {
+	return new Flow\Template\Helpers( array(
+		// Example:
+		// 'post' => function() use ( $c ) { return $c['template.helpers.post']; },
+	) );
+} );
+$c['template'] = function( $c ) {
+	return new Flow\Template( $c['template.locator'], $c['template.helpers'] );
+};
+
 // (this implementation is mostly useless actually)
 $c['url_generator'] = $c->share( function( $c ) {
 	return new Flow\UrlGenerator(
