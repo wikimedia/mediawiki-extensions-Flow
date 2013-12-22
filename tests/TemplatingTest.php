@@ -4,7 +4,7 @@ namespace Flow;
 
 use Title;
 
-class TemplatingTest extends \MediaWikiTestCase {
+class RedLinkTest extends \MediaWikiTestCase {
 
 	// Default values for PostRevision::newFromRow to work
 	static protected $postRow = array(
@@ -59,31 +59,66 @@ class TemplatingTest extends \MediaWikiTestCase {
 	/**
 	 * @dataProvider redLinkProvider
 	 */
-	public function testRedLinks( $message, $saHref, $expect ) {
-		// needs a page to resolve subpage links against
-		$this->setMwGlobals( 'wgTitle', Title::newMainPage() );
-
-		$parsoid = htmlentities( json_encode( array( 'sa' => array( 'href' => $saHref ) ) ) );
-		$uid = Model\UUID::create( '0509b4bf4b2d616abe79080027a08222' );
-		$rev = Model\PostRevision::fromStorageRow( array(
-			'rev_id' => $uid->getBinary(),
-			'tree_rev_id' => $uid->getBinary(),
-			'rev_content' => '<a rel="mw:WikiLink" data-parsoid="' . $parsoid . '">' . htmlspecialchars( $saHref ) . '</a>',
-			'rev_flags' => 'html'
-		) + self::$postRow );
-
-		$content = $this->mockTemplating()->getContent( $rev, 'html' );
-		$this->assertContains( $expect, $content, $message );
+	public function testApplysRedLinks( $message, $saHref, $expect ) {
+		$anchor = \Html::element( 'a', array(
+			'rel' => 'mw:WikiLink',
+			'data-parsoid' => json_encode( array( 'sa' => array( 'href' => $saHref ) ) ),
+		), $saHref );
+		$redlink = new Redlinker( Title::newMainPage(), $this->getMock( 'LinkBatch' ) );
+		$result = $redlink->apply( $anchor );
+		$this->assertContains( $expect, $result, $message );
 	}
 
-	protected function mockTemplating() {
-		$urlGenerator = $this->getMockBuilder( 'Flow\UrlGenerator' )
-			->disableOriginalConstructor()
-			->getMock();
-		$output = $this->getMockBuilder( 'OutputPage' )
-			->disableOriginalConstructor()
-			->getMock();
+	public function testRegistersAnchors() {
+		$saHref = 'Main_Page';
+		$anchor = \Html::element( 'a', array(
+			'rel' => 'mw:WikiLink',
+			'data-parsoid' => json_encode( array( 'sa' => array( 'href' => $saHref ) ) ),
+		), $saHref );
 
-		return new Templating( $urlGenerator, $output );
+		// We don't need a real id, just something reasonable.
+		$uid = Model\UUID::getComparisonUUID( null );
+		$post = Model\PostRevision::fromStorageRow( array(
+			'rev_id' => $uid,
+			'tree_rev_id' => $uid,
+			'tree_rev_descendant_id' => $uid,
+			'tree_parent_id' => $uid,
+			'rev_content' => $anchor,
+			'rev_flags' => 'html',
+		) + self::$postRow );
+		$post->setChildren( array() );
+
+		$batch = $this->getMock( 'LinkBatch' );
+		$batch->expects( $this->once() )
+			->method( 'addObj' )
+			->with( new MethodReturnsConstraint(
+				'getDBkey',
+				$this->matches( $saHref )
+			) );
+
+		$redlinker = new Redlinker( Title::newMainPage(), $batch );
+		$redlinker->register( $post );
+		$redlinker->resolveLinkStatus();
+	}
+
+
+}
+
+class MethodReturnsConstraint extends \PHPUnit_Framework_Constraint {
+	public function __construct( $method, \PHPUnit_Framework_Constraint $constraint ) {
+		$this->method = $method;
+		$this->constraint = $constraint;
+	}
+
+	protected function matches( $other ) {
+		return $this->constraint->matches( call_user_func( array( $other, $this->method ) ) );
+	}
+
+	public function toString() {
+		return $this->constraint->toString();
+	}
+
+	protected function failureDescription( $other ) {
+		return $this->constraint->failureDescription( $other ) . " from {$this->method} method";
 	}
 }
