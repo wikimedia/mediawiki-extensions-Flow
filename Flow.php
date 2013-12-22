@@ -132,6 +132,14 @@ $wgAutoloadClasses['Flow\Contributions\Formatter'] = $dir . 'includes/Contributi
 $wgAutoloadClasses['Flow\Data\UserNameListener'] = $dir . 'includes/Data/UserNameBatch.php';
 $wgAutoloadClasses['Flow\Data\UserNameBatch'] = $dir . 'includes/Data/UserNameBatch.php';
 
+// Templating
+$wgAutoloadClasses['Flow\Template'] = $dir . 'includes/Template.php';
+$wgAutoloadClasses['Flow\Template\Escaper'] = $dir . 'includes/Template/Escaper.php';
+$wgAutoloadClasses['Flow\Template\OutputString'] = $dir . 'includes/Template/OutputString.php';
+$wgAutoloadClasses['Flow\Template\TextString'] = $dir . 'includes/Template/OutputString.php';
+$wgAutoloadClasses['Flow\Template\HtmlString'] = $dir . 'includes/Template/OutputString.php';
+$wgAutoloadClasses['Flow\Template\ErrorHelper'] = $dir . 'includes/Template/ErrorHelper.php';
+
 // database interaction for singular models
 $wgAutoloadClasses['Flow\Data\RevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
@@ -190,6 +198,7 @@ $wgAutoloadClasses['Flow\Exception\DataModelException'] = $dir . 'includes/Excep
 $wgAutoloadClasses['Flow\Exception\DataPersistenceException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\WikitextException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\NoIndexException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\RuntimeException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 
 // Configuration
 
