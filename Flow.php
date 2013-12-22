@@ -130,6 +130,16 @@ $wgAutoloadClasses['Flow\Log\PostModerationLogger'] = $dir . 'includes/Log/PostM
 $wgAutoloadClasses['Flow\Contributions\Query'] = $dir . 'includes/Contributions/Query.php';
 $wgAutoloadClasses['Flow\Contributions\Formatter'] = $dir . 'includes/Contributions/Formatter.php';
 
+// Templating
+$wgAutoloadClasses['Flow\Template'] = $dir . 'includes/Data/Template.php';
+$wgAutoloadClasses['Flow\TemplateFactory'] = $dir . 'includes/Data/Template.php';
+$wgAutoloadClasses['Flow\Template\Escaper'] = $dir . 'includes/Data/Template/Escaper.php';
+$wgAutoloadClasses['Flow\Template\Locator'] = $dir . 'includes/Data/Template/Locator.php';
+$wgAutoloadClasses['Flow\Template\Helpers'] = $dir . 'includes/Data/Template/Helpers.php';
+$wgAutoloadClasses['Flow\Template\OutputString'] = $dir . 'includes/Data/Template/OutputString.php';
+$wgAutoloadClasses['Flow\Template\TextString'] = $dir . 'includes/Data/Template/OutputString.php';
+$wgAutoloadClasses['Flow\Template\HtmlString'] = $dir . 'includes/Data/Template/OutputString.php';
+
 // database interaction for singular models
 $wgAutoloadClasses['Flow\Data\RevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
