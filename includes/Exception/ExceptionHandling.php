@@ -2,7 +2,6 @@
 
 namespace Flow\Exception;
 
-use MWExceptionHandler;
 use MWException;
 use OutputPage;
 
@@ -195,5 +194,11 @@ class WikitextException extends FlowException {
 class NoIndexException extends FlowException {
 	protected function getErrorCodeList() {
 		return array ( 'no-index' );
+	}
+}
+
+class RuntimeException extends FlowException {
+	protected function getErrorCodeList() {
+		return array( 'other' );
 	}
 }
