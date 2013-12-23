@@ -92,15 +92,20 @@ echo Html::openElement( 'div', array(
 		?>
 
 		<div class="flow-topic-title">
+			<?php
+				echo Html::element( 'h2',
+					array( 'class' => 'flow-realtitle' ),
+					$title
+				);
+			?>
+
 			<?php if ( $root->isModerated() ):
 				echo Html::rawElement(
 					'h2',
-					array( 'class' => 'flow-topic-moderated flow-topic-moderated-' . $root->getModerationState() ),
+					array( 'class' => 'flow-moderated-title' ),
 					/* Passing no user always gets the 'moderated by Foo' message */
 					$this->getContent( $root, 'wikitext' )
 				);
-			else:
-				echo Html::element( 'h2', array( 'class' => 'flow-realtitle' ), $title );
 			endif ?>
 		</div>
 
