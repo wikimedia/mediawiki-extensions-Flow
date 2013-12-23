@@ -73,6 +73,12 @@
 			background: @topic-titlebar-background-color;
 		}
 
+		// title is a mw-ui-button, which has a border
+		// unless hovered, we don't want this border to be displayed
+		&:not(:hover) {
+			border: 1px solid transparent;
+		}
+
 		.flow-topic-title {
 			padding-bottom: 15px;
 
@@ -103,9 +109,9 @@
 			padding: 10px;
 
 			background-position: center;
-			background-size: 20px auto;
+			background-size: 32px auto;
 			background-repeat: no-repeat;
-			.background-image-svg('../../base/images/junkdrawer_hover.svg', '../../base/images/junkdrawer_hover.png');
+			.background-image-svg('../../base/images/more_dots.svg', '../../base/images/more_dots.png');
 
 			opacity: 0.3;
 			&:hover {
