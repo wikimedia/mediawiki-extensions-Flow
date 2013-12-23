@@ -1,4 +1,5 @@
 @import 'settings/colors.less';
+@import 'mixins/collapse.less';
 @import 'mediawiki.mixins.less';
 
 .flow-topic-container {
@@ -11,9 +12,9 @@
 		padding-bottom: 10px;
 	}
 
-
 	&.flow-topic-moderated {
-		.flow-topic-title {
+		// Make space for moderation icon
+		.flow-element-container .flow-titlebar .flow-topic-title {
 			padding-left: 22px !important;
 
 			background-position: left;
@@ -22,9 +23,6 @@
 		}
 
 		&:not(.flow-topic-closed) {
-			.flow-realtitle {
-				display: block;
-			}
 			// position moderated title even with the timestamp
 			.flow-titlebar {
 				padding-bottom: 10px;
@@ -39,41 +37,24 @@
 		}
 
 		&.flow-topic-closed {
-			.flow-titlebar {
-				height: 30px;
-				.flow-topic-title {
-					overflow: hidden;
-					white-space: nowrap;
-					padding: 0;
-
-					.flow-moderated-title {
-						overflow: ellipsis;
-					}
-				}
-			}
-
+			.flow-collapse-one-line;
 			.flow-topic-children-container {
-				display: none;
-			}
-			.flow-topic-posts-meta {
 				display: none;
 			}
 			.flow-realtitle {
 				display: none;
 			}
-			.flow-moderated-title {
-				display: block;
+		}
 
-				// hide user links until hovered
+		.flow-moderated-title {
+			// hide user links until hovered
+			.mw-usertoollinks {
+				opacity: 0;
+				transition: opacity 0.2s;
+			}
+			&:hover {
 				.mw-usertoollinks {
-					color: @post-title-color;
-					opacity: 0;
-					transition: opacity 0.2s;
-				}
-				&:hover {
-					.mw-usertoollinks {
-						opacity: 1;
-					}
+					opacity: 1;
 				}
 			}
 		}
