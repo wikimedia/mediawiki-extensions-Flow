@@ -51,6 +51,8 @@ $messages['en'] = array(
 	'flow-topic-actions' => 'Actions',
 	'flow-cancel' => 'Cancel',
 	'flow-preview' => 'Preview',
+	'flow-show-change' => 'Show changes',
+	'flow-last-modified-by' => 'Last {{GENDER:$1|modified}} by $1',
 
 	'flow-newtopic-title-placeholder' => 'New topic',
 	'flow-newtopic-content-placeholder' => "Add some details if you'd like",
@@ -402,6 +404,10 @@ Parameters:
 {{Identical|Cancel}}',
 	'flow-preview' => 'Used as action link text.
 {{Identical|Preview}}',
+	'flow-show-change' => 'Used as action link text.
+{{Identical|Show changes}}',
+	'flow-last-modified-by' => 'Used as text to show who made the last content modification. Parameters:
+* $1 - username of the user who last made the content modification, can be used for GENDER support',
 	'flow-newtopic-title-placeholder' => 'Used as placeholder for the "Subject/Title for topic" textarea.
 {{Identical|New topic}}',
 	'flow-newtopic-content-placeholder' => 'Used as placeholder for the "Content" textarea.',

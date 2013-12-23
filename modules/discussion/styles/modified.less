@@ -1,0 +1,28 @@
+@import 'mediawiki.mixins.less';
+
+.flow-content-modified-tipsy-link {
+	margin-left: 10px;
+	height: 14px;
+	width: 14px;
+	display: inline-block;
+	text-indent: -9999px;
+	vertical-align: middle;
+
+	background-position: center;
+	background-size: 14px auto;
+	background-repeat: no-repeat;
+	.background-image-svg('../../base/images/content_edited.svg', '../../base/images/content_edited.png');
+}
+
+.flow-content-modified-tipsy-flyout {
+	display: block;
+	padding: 10px;
+
+	a {
+		color: #787879;
+	}
+	.flow-show-change-link {
+		font-weight: bold;
+		text-decoration: none;
+	}
+}
