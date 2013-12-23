@@ -1,0 +1,27 @@
+#!/bin/bash
+# Enable this pre-commit hook by executing the following from the project root directory
+# $ ln -s $PWD/scripts/pre-commit .git/hooks/pre-commit
+#
+# Code from https://gist.github.com/holysugar/1318698 , simpler than
+# http://stackoverflow.com/a/6262715/451712
+
+function error() {
+  echo "'$1' has trailing whitespace\n" >&2
+}
+
+# FIXME this reads the version of the file on-disk, which may not be the version
+# about to be committed if you made changes to it since `git add`.
+git diff --cached --name-only | (while read f; do
+  ERROR=0
+  if grep -n '[[:space:]]$' "$f" ; then
+    error $f
+    ERROR=1
+  fi
+done; exit $ERROR)
+
+if [ $? -eq 0 -o "$IGNORE_WHITESPACE" ]; then
+  exit
+else
+  echo "if you know what you are doing, use 'IGNORE_WHITESPACE=1 git commit'"
+  exit 1
+fi
