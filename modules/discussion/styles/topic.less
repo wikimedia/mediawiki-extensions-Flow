@@ -12,44 +12,62 @@
 	}
 
 	&.flow-topic-moderated {
-		.flow-topic-children-container {
-			display: none;
-		}
-		.flow-topic-posts-meta {
-			display: none;
-		}
-	}
+		.flow-topic-title {
+			padding-left: 22px !important;
 
-	.flow-topic-moderated {
-		padding-left: 22px !important;
-
-		background-position: left;
-		background-size: 14px auto;
-		background-repeat: no-repeat;
-
-		// hide user links until hovered
-		.mw-usertoollinks {
-			color: @post-title-color;
-			opacity: 0;
-			transition: opacity 0.2s;
+			background-position: left;
+			background-size: 14px auto;
+			background-repeat: no-repeat;
 		}
-		&:hover {
-			.mw-usertoollinks {
-				opacity: 1;
+
+		&:not(.flow-topic-closed) {
+			.flow-realtitle {
+				display: block;
+			}
+			.flow-moderated-title {
+				display: none;
 			}
 		}
-	}
 
-	.flow-topic-moderated-hide {
-		.background-image-svg('../../base/images/hidden_normal.svg', '../../base/images/hidden_normal.png');
-	}
 
-	.flow-topic-moderated-delete {
-		.background-image-svg('../../base/images/deleted_normal.svg', '../../base/images/deleted_normal.png');
-	}
+		&.flow-topic-closed {
+			.flow-topic-children-container {
+				display: none;
+			}
+			.flow-topic-posts-meta {
+				display: none;
+			}
+			.flow-realtitle {
+				display: none;
+			}
+			.flow-moderated-title {
+				display: block;
 
-	.flow-topic-moderated-suppress {
-		.background-image-svg('../../base/images/suppressed_normal.svg', '../../base/images/suppressed_normal.png');
+				// hide user links until hovered
+				.mw-usertoollinks {
+					color: @post-title-color;
+					opacity: 0;
+					transition: opacity 0.2s;
+				}
+				&:hover {
+					.mw-usertoollinks {
+						opacity: 1;
+					}
+				}
+			}
+		}
+
+		&.flow-topic-moderated-hide .flow-topic-title {
+			.background-image-svg('../../base/images/hidden_normal.svg', '../../base/images/hidden_normal.png');
+		}
+
+		&.flow-topic-moderated-delete .flow-topic-title {
+			.background-image-svg('../../base/images/deleted_normal.svg', '../../base/images/deleted_normal.png');
+		}
+
+		&.flow-topic-moderated-suppress .flow-topic-title {
+			.background-image-svg('../../base/images/suppressed_normal.svg', '../../base/images/suppressed_normal.png');
+		}
 	}
 
 
@@ -80,7 +98,7 @@
 		}
 
 		.flow-topic-title {
-			padding-bottom: 15px;
+			margin-bottom: 15px;
 
 			// leave some room for .flow-topic-actions-link on the right
 			margin-right: 44px;
