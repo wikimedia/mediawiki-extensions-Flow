@@ -3,6 +3,16 @@
 		var $container = $( e.target );
 
 		/*
+		 * Set up tipsy to show the user who made last topic/post modification
+		 */
+		$container.find( '.flow-content-modified-tipsy-link' ).each( function() {
+			$( this ).flow(
+				'setupTipsy',
+				$( this ).parent().find( '.flow-content-modified-tipsy-flyout' ),
+				'mouseover'
+			);	
+		} );
+		/*
 		 * Set up tipsy.
 		 *
 		 * Tipsy html should look like this:
@@ -14,37 +24,14 @@
 		 * .flow-tipsy-link is the target that, when clicked, will trigger the
 		 * tipsy dialog. .flow-tipsy-flyout is the dialog content.
 		 */
-		$container.find( '.flow-tipsy-link' ).tipsy( {
-			fade: true,
-			gravity: function() {
-				// tipsy position can be defined via data-tipsy-gravity
-				// attribute, or fall back to north
-				return $( this ).data( 'tipsy-gravity') || 'n' ;
-			},
-			html: true,
-			trigger: 'manual',
-			title: function() {
-				// .html() only returns inner html, so attach the node to a new
-				// parent & grab the full html there
-				var $clone = $( this ).parent( '.flow-tipsy' ).find( '.flow-tipsy-flyout' ).clone();
-				return $( '<div>' ).append( $clone ).html();
-			}
+		$container.find( '.flow-tipsy-link' ).each( function() {
+			$( this ).flow(
+				'setupTipsy',
+				$( this ).parent( '.flow-tipsy' ).find( '.flow-tipsy-flyout' ),
+				'click'
+			);	
 		} );
-		// open tipsy dialog associated with this link
-		$container.find( '.flow-tipsy-link' )
-			.click( function ( e ) {
-				e.preventDefault();
-
-				// close other tipsy that may be open
-				$( '.flow-tipsy-open' ).each( function() {
-					$( this )
-						.removeClass( 'flow-tipsy-open' )
-						.tipsy( 'hide' );
-				} );
-
-				$( this ).addClass( 'flow-tipsy-open' );
-				$( this ).tipsy( 'show' );
-			} );
+		
 		$( document )
 			.click( function ( e ) {
 				// check if clicked on tipsy trigger link or inside tipsy dialog
