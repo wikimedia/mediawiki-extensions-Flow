@@ -86,9 +86,9 @@ echo Html::openElement( 'div', array(
 			<?php echo $postView->editPostButton( 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' ); ?>
 
 			<div class="flow-post-content">
-				<?php echo $this->getContent( $post, 'html', $user ); ?>
+				<?php echo $this->getContent( $post, 'html', $user ), $postView->createModifiedTipsyLink( $block ); ?>
+				<?php echo $postView->createModifiedTipsyHtml( $block ); ?>
 			</div>
-
 			<?php if ( $postView->actions()->isAllowedAny( 'hide-post', 'delete-post', 'suppress-post', 'restore-post' ) ): ?>
 				<div class="flow-tipsy flow-actions">
 					<a class="flow-tipsy-link flow-icon flow-icon-bottom-aligned" href="#" title="<?php echo wfMessage( 'flow-post-actions' )->escaped(); ?>" data-tipsy-gravity="e"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
