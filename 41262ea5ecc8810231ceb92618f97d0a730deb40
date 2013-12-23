@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "eeebdf60_a00ff832",
+        "filename": "includes/Template.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2013-12-23T23:49:18Z",
+      "side": 1,
+      "message": "I just don\u0027t like state in singletons. It\u0027s just asking for trouble.",
+      "parentUuid": "eeebdf60_9dfe9f34",
+      "revId": "41262ea5ecc8810231ceb92618f97d0a730deb40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eeebdf60_1d7e0fe2",
         "filename": "includes/Template/ErrorHelper.php",
         "patchSetId": 3
