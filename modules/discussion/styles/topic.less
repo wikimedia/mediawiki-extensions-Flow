@@ -1,4 +1,5 @@
 @import 'settings/colors.less';
+@import 'mixins/collapse.less';
 @import 'mediawiki.mixins.less';
 
 .flow-topic-container {
@@ -12,10 +13,9 @@
 	}
 
 	&.flow-topic-moderated {
+		.flow-collapse-one-line;
+
 		.flow-topic-children-container {
-			display: none;
-		}
-		.flow-topic-posts-meta {
 			display: none;
 		}
 	}
