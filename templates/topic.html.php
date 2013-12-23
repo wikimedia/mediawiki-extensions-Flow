@@ -97,7 +97,8 @@ echo Html::openElement( 'div', array(
 				echo Html::element( 'h2',
 					array( 'class' => 'flow-realtitle' ),
 					$title
-				);
+				), $postView->createModifiedTipsyLink( $block );
+				echo $postView->createModifiedTipsyHtml( $block );
 			?>
 
 			<?php if ( $root->isModerated() ):

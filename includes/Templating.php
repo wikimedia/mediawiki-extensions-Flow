@@ -129,7 +129,8 @@ class Templating {
 		$view = new View\Post(
 			$this->globals['user'], // There is no guarantee of this existing
 			$post,
-			$actionMenu
+			$actionMenu,
+			$this->urlGenerator
 		);
 
 		if ( !$actionMenu->isAllowed( 'view' ) ) {
@@ -149,6 +150,12 @@ class Templating {
 
 	public function renderTopic( PostRevision $root, TopicBlock $block, $return = true ) {
 		$actionMenu = $this->createActionMenu( $root, $block );
+		$view = new View\Post(
+			$this->globals['user'], // There is no guarantee of this existing
+			$root,
+			$actionMenu,
+			$this->urlGenerator
+		);
 		if ( !$actionMenu->isAllowed( 'view' ) ) {
 			return '';
 		}
@@ -158,6 +165,7 @@ class Templating {
 			'topic' => $block->getWorkflow(),
 			'root' => $root,
 			'postActionMenu' => $actionMenu,
+			'postView' => $view
 		), $return );
 	}
 

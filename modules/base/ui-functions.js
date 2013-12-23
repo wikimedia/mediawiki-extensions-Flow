@@ -372,6 +372,42 @@
 			},
 
 			/**
+			 * Setup tipsy function
+			 * @param {JQuery} the JQuery object that contains tipsy content
+			 * @param {string} the action listener that triggers the tipsy
+			 */
+			'setupTipsy': function( $flyout, action ) {
+				var $element = this, tipsyCallback = function( e ) {
+					e.preventDefault();
+					// close other tipsy that may be open
+					$( '.flow-tipsy-open' ).each( function() {
+						$( this )
+							.removeClass( 'flow-tipsy-open' )
+							.tipsy( 'hide' );
+					} );
+
+					$( this ).addClass( 'flow-tipsy-open' );
+					$( this ).tipsy( 'show' );
+				};
+				$element.tipsy( {
+					fade: true,
+					gravity: function() {
+						return $( this ).data( 'tipsy-gravity') || 'n' ;
+					},
+					html: true,
+					trigger: 'manual',
+					title: function() {
+						var $clone = $flyout.clone();
+						return $( '<div>' ).append( $clone ).html();
+					}
+				} );
+				if ( !action ) {
+					action = 'click';
+				}
+				$element.on( action, tipsyCallback );
+			},
+
+			/**
 			 * Setup preview function
 			 * @param {Object Literal} The key specifies the content identifier in the form
 			 * and value is output format
