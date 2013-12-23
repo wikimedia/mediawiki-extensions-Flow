@@ -3,8 +3,10 @@
 namespace Flow\View;
 
 use Flow\Model\PostRevision;
+use Flow\UrlGenerator;
 use Flow\Templating;
 use Linker;
+use Html;
 use User;
 
 class Post {
@@ -12,14 +14,16 @@ class Post {
 	protected $post;
 	protected $actions;
 	protected $creatorUserText;
+	protected $urlGenerator;
 
 	/**
-	 * @param  User             $user    The User viewing posts
+	 * @param  User             $user    The User viewing posts                     
 	 */
-	public function __construct( User $user, PostRevision $post, PostActionMenu $actions ) {
+	public function __construct( User $user, PostRevision $post, PostActionMenu $actions, UrlGenerator $urlGenerator ) {
 		$this->user = $user;
 		$this->post = $post;
 		$this->actions = $actions;
+		$this->urlGenerator = $urlGenerator;
 
 		$this->creatorUserText = $post->getCreatorName( $this->user );
 	}
@@ -138,5 +142,47 @@ class Post {
 	public function allowedAnyActions() {
 		// This will need to change, but not sure best way
 		return $this->actions->isAllowedAny( 'hide-post', 'delete-post', 'suppress-post', 'restore-post' );
+	}
+
+	protected function getLatestDiffLink( $block ) {
+		$compareLink = $this->urlGenerator->generateUrl(
+			$block->getWorkflow(),
+			'compare-revisions',
+			array(
+				$block->getName().'[newRevision]' => $this->post->getRevisionId()->getHex(),
+				$block->getName().'[oldRevision]' => $this->post->getPrevRevisionId()->getHex()
+			)
+		);
+		return $compareLink;
+	}
+
+	public function createModifiedTipsyLink( $block ) {
+		if ( $this->post->getPrevRevisionId() ) {
+			$link = Html::element(
+				'a',
+				array( 'class' => 'flow-content-modified-tipsy-link', 'href' => $this->getLatestDiffLink( $block ) ),
+				wfMessage( 'flow-show-change' )->text()
+			);
+		} else {
+			$link = '';
+		}
+		return $link;
+	}
+
+	public function createModifiedTipsyHtml( $block ) {
+		$html = '';
+		if ( $this->post->getLastContentEditorName() ) {
+			$html .= Html::openElement( 'div', array( 'class' => 'flow-content-modified-tipsy-flyout' ) );
+			$html .= Html::element(
+				'div',
+				array( 'class' => 'flow-last-modified-user' ),
+				wfMessage( 'flow-last-modified-by', $this->post->getLastContentEditorName() )->text()
+			);
+			$html .= Html::openElement( 'div', array( 'class' => 'flow-show-change-link' ) );
+			$html .= Html::element( 'a', array( 'href' => $this->getLatestDiffLink( $block ) ), wfMessage( 'flow-show-change' )->text() );
+			$html .= Html::closeElement( 'div' );
+			$html .= Html::closeElement( 'div' );
+		}
+		return $html;
 	}
 }

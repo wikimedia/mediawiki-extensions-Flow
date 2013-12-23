@@ -100,7 +100,8 @@ echo Html::openElement( 'div', array(
 					$this->getContent( $root, 'wikitext' )
 				);
 			else:
-				echo Html::element( 'h2', array( 'class' => 'flow-realtitle' ), $title );
+				echo Html::element( 'h2', array( 'class' => 'flow-realtitle' ), $title ), $postView->createModifiedTipsyLink( $block );
+				echo $postView->createModifiedTipsyHtml( $block );
 			endif ?>
 		</div>
 
