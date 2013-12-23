@@ -26,6 +26,7 @@ $wgResourceModules += array(
 			'base/ext.flow.base.js',
 			'base/ui-functions.js',
 			'base/init.js',
+			'base/utils.js',
 		),
 		'dependencies' => array(
 			'mediawiki.ui',
@@ -68,6 +69,7 @@ $wgResourceModules += array(
 			'mediawiki.util',
 			'jquery.byteLimit',
 			'jquery.tipsy',
+			'jquery.scroll',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
@@ -159,6 +161,9 @@ $wgResourceModules += array(
 	),
 	'ext.flow.editors.none' => $flowResourceTemplate + array(
 		'scripts' => 'editor/editors/ext.flow.editors.none.js',
+		'dependencies' => array(
+			'ext.flow.base',
+		),
 	),
 	'ext.flow.editors.wikieditor' => $flowResourceTemplate + array(
 		'scripts' => 'editor/editors/ext.flow.editors.wikieditor.js',
@@ -173,3 +178,11 @@ $wgResourceModules += array(
 		)
 	),
 );
+
+$wgHooks['ResourceLoaderRegisterModules'][] = function( $resourceLoader ) use ( $flowResourceTemplate ) {
+	if ( $resourceLoader->getModule( 'jquery.scroll' ) === null ) {
+		$resourceLoader->register( 'jquery.scroll', $flowResourceTemplate + array(
+			'scripts' => 'jquery.scroll.js',
+		) );
+	}
+};
