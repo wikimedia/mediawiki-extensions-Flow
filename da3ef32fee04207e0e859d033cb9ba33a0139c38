@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_ac86d816",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2013-12-23T14:11:12Z",
+      "side": 1,
+      "message": "Please remove trailing whitespace.",
+      "revId": "da3ef32fee04207e0e859d033cb9ba33a0139c38",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
