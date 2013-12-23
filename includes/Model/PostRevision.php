@@ -41,7 +41,7 @@ class PostRevision extends AbstractRevision {
 		$obj->origUserText = $obj->userText = $topic->getUserText();
 		$obj->origCreateTime = wfTimestampNow();
 		$obj->replyToId = null; // not a reply to anything
-		$obj->prevRevId = null; // no parent revision
+		$obj->prevRevision = null; // no parent revision
 		$obj->changeType = 'new-post';
 		$obj->setContent( $content );
 		// A newly created post has no children and a depth of 0
