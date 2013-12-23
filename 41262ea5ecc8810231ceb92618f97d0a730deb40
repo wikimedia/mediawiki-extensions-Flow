@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "eeebdf60_3d8c33db",
+        "filename": "container.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-23T23:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eeebdf60_5dbdb715",
+      "revId": "41262ea5ecc8810231ceb92618f97d0a730deb40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eeebdf60_fdefeb80",
         "filename": "includes/Template.php",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "eeebdf60_9dfe9f34",
+        "filename": "includes/Template.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-23T23:30:37Z",
+      "side": 1,
+      "message": "I don\u0027t follow?  One template including another template is handled below with the partial method.  These data properties arn\u0027t accessed directly, but rather through the __get method, so from a template its just \n\n    \u003c?\u003d $this-\u003esomeVar-\u003eescaped() ?\u003e",
+      "parentUuid": "eeebdf60_fdefeb80",
+      "revId": "41262ea5ecc8810231ceb92618f97d0a730deb40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eeebdf60_1d7e0fe2",
         "filename": "includes/Template/ErrorHelper.php",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2013-12-23T23:16:20Z",
       "side": 1,
       "message": "You need the first opening \u003cli\u003e and the last closing \u003c/li\u003e as well.",
+      "revId": "41262ea5ecc8810231ceb92618f97d0a730deb40",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_5df81746",
+        "filename": "includes/Template/ErrorHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-23T23:30:37Z",
+      "side": 1,
+      "message": "doh, yea that was intended to be there :)",
+      "parentUuid": "eeebdf60_1d7e0fe2",
       "revId": "41262ea5ecc8810231ceb92618f97d0a730deb40",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
