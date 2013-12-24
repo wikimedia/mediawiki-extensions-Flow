@@ -127,6 +127,7 @@ class TopicBlock extends AbstractBlock {
 				return;
 			}
 
+			$this->submitted['content'] = trim( $this->submitted['content'] );
 			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
 
 			$this->setNotification(
