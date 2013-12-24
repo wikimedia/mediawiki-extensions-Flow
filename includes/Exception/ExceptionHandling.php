@@ -85,6 +85,14 @@ class FlowException extends MWException {
 	}
 
 	/**
+	 * The http status code for the exception, by defualt it is internal
+	 * server error
+	 */
+	public function getStatusCode() {
+		return 500;
+	}
+
+	/**
 	 * Error code list for this exception
 	 */
 	protected function getErrorCodeList() {
@@ -112,6 +120,13 @@ class InvalidInputException extends FlowException {
 			'invalid-workflow'
 		);
 	}
+
+	/**
+	 * Bad user request
+	 */
+	public function getStatusCode() {
+		return 400;
+	}
 }
 
 /**
@@ -119,7 +134,14 @@ class InvalidInputException extends FlowException {
  */
 class InvalidActionException extends FlowException {
 	protected function getErrorCodeList() {
-		return array ( 'invalid-action'	);
+		return array ( 'invalid-action' );
+	}
+
+	/**
+	 * Bad user request
+	 */
+	public function getStatusCode() {
+		return 400;
 	}
 }
 

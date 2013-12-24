@@ -148,6 +148,7 @@ class FlowHooks {
 			} catch ( Flow\Exception\FlowException $e ) {
 				$handling = new Flow\Exception\FlowExceptionHandling( $container['templating'], RequestContext::getMain() );
 				$handling->handle( $e );
+				$output->setStatusCode( $e->getStatusCode() );
 			}
 
 			return false;
