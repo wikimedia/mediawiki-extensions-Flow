@@ -387,6 +387,7 @@ class Templating {
 				} catch ( \Exception $e ) {
 					wfDebugLog( __CLASS__, __METHOD__ . ': Failed applying redlinks for rev_id = ' . $revision->getRevisionId()->getHex() );
 					\MWExceptionHandler::logException( $e );
+					throw $e;
 				}
 
 			}
@@ -433,9 +434,9 @@ class Templating {
 		 * provide the charset in $response, as either:
 		 * * <?xml encoding="utf-8" ?>
 		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
 		 */
-		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
-
+		$content = '<?xml encoding="utf-8" ?>' . $content;
 		$dom = ParsoidUtils::createDOM( $content );
 
 		// find links in DOM
@@ -453,6 +454,7 @@ class Templating {
 					$title = Title::newFromText( $parsoid['sa']['href'] );
 				}
 				if ( $title === null ) {
+					// @todo this should probably be redlinked as well
 					continue;
 				}
 				// gather existing link attributes
@@ -462,10 +464,10 @@ class Templating {
 				}
 
 				// let MW build link HTML based on Parsoid data
-				$linkHTML = Linker::link( $title, htmlspecialchars( $linkNode->nodeValue ), $attributes );
-
+				$innerHTML = $this->getInnerHtml( $dom, $linkNode );
+				$linkHTML = Linker::link( $title, $innerHTML, $attributes );
 				// create new DOM from this MW-built link
-				$linkDom = ParsoidUtils::createDOM( $linkHTML );
+				$linkDom = ParsoidUtils::createDOM( '<?xml encoding="utf-8">' . $linkHTML );
 
 				// import MW-built link node into content DOM
 				$replacementNode = $linkDom->getElementsByTagName( 'a' )->item( 0 );
@@ -476,7 +478,16 @@ class Templating {
 			}
 		}
 
-		return $dom->saveHTML();
+		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
+		return $this->getInnerHtml( $dom, $body );
+	}
+
+	protected function getInnerHtml( \DOMDocument $dom, \DOMNode $node ) {
+		$html = array();
+		foreach ( $node->childNodes as $child ) {
+			$html[] = $dom->saveHTML( $child );
+		}
+		return implode( '', $html );
 	}
 
 	protected function resolveSubpage( $text ) {

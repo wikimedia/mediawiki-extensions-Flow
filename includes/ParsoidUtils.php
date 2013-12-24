@@ -205,8 +205,10 @@ abstract class ParsoidUtils {
 		libxml_use_internal_errors( $useErrors );
 
 		if ( $errors ) {
+			var_dump( $content );
 			throw new WikitextException(
-				implode( "\n", array_map( function( $error ) { return $error->message; }, $errors ), 'process-wikitext' )
+				implode( "\n", array_map( function( $error ) { return $error->message; }, $errors ) ),
+				'process-wikitext'
 			);
 		}
 
