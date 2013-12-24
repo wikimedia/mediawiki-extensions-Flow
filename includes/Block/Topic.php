@@ -113,30 +113,40 @@ class TopicBlock extends AbstractBlock {
 	protected function validateEditTitle() {
 		if ( $this->workflow->isNew() ) {
 			$this->addError( 'content', wfMessage( 'flow-error-no-existing-workflow' ) );
-		} elseif ( !isset( $this->submitted['content'] ) || !is_string( $this->submitted['content'] ) || strlen( $this->submitted['content'] ) === 0 ) {
-			$this->addError( 'content', wfMessage( 'flow-error-missing-title' ) );
-		} elseif ( strlen( $this->submitted['content'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
-			$this->addError( 'content', wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
-		} else {
-			$topicTitle = $this->loadTopicTitle();
-			if ( !$topicTitle ) {
-				throw new InvalidInputException( 'No revision associated with workflow?', 'missing-revision' );
-			}
-			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
-				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-				return;
-			}
-
-			$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
-
-			$this->setNotification(
-				'flow-topic-renamed',
-				array(
-					'old-subject' => $topicTitle->getContent( 'wikitext' ),
-					'new-subject' => $this->newRevision->getContent( 'wikitext' ),
-				)
-			);
+			return;
 		}
+		if ( !isset( $this->submitted['content'] ) || !is_string( $this->submitted['content'] ) ) {
+			$this->addError( 'content', wfMessage( 'flow-error-missing-title' ) );
+			return;
+		}
+		$this->submitted['content'] = trim( $this->submitted['content'] );
+		$len = strlen( $this->submitted['content'] );
+		if ( $len === 0 ) {
+			$this->addError( 'content', wfMessage( 'flow-error-missing-title' ) );
+			return;
+		}
+		if ( $len > PostRevision::MAX_TOPIC_LENGTH ) {
+			$this->addError( 'content', wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
+			return;
+		}
+		$topicTitle = $this->loadTopicTitle();
+		if ( !$topicTitle ) {
+			throw new InvalidInputException( 'No revision associated with workflow?', 'missing-revision' );
+		}
+		if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			return;
+		}
+
+		$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
+
+		$this->setNotification(
+			'flow-topic-renamed',
+			array(
+				'old-subject' => $topicTitle->getContent( 'wikitext' ),
+				'new-subject' => $this->newRevision->getContent( 'wikitext' ),
+			)
+		);
 	}
 
 	protected function validateReply() {
@@ -350,7 +360,7 @@ class TopicBlock extends AbstractBlock {
 			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 		} else {
 			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) ); 	
+			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		}
 
 		$prefix = '';
