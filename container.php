@@ -43,9 +43,20 @@ $c['url_generator'] = $c->share( function( $c ) {
 		$c['occupation_controller']
 	);
 } );
+
+$c['link_batch'] = $c->share( function() {
+	return new LinkBatch;
+} );
+
+$c['redlinker'] = $c->share( function( $c ) {
+	global $wgTitle, $wgFlowParsoidTitle;
+	return new Flow\Redlinker( $wgFlowParsoidTitle ?: $wgTitle, $c['link_batch'] );
+} );
+
 $c['templating.namespaces'] = array(
 	'flow' => __DIR__ . '/templates',
 );
+
 $c['templating.global_variables'] = $c->share( function( $c ) {
 	global $wgFlowTokenSalt, $wgFlowMaxThreadingDepth;
 
@@ -55,10 +66,12 @@ $c['templating.global_variables'] = $c->share( function( $c ) {
 		'maxThreadingDepth' => $wgFlowMaxThreadingDepth,
 	);
 } );
+
 $c['templating'] = $c->share( function( $c ) {
 	return new Flow\Templating(
 		$c['url_generator'],
 		$c['output'],
+		$c['redlinker'],
 		$c['templating.namespaces'],
 		$c['templating.global_variables']
 	);
