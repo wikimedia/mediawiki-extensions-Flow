@@ -206,7 +206,8 @@ abstract class ParsoidUtils {
 
 		if ( $errors ) {
 			throw new WikitextException(
-				implode( "\n", array_map( function( $error ) { return $error->message; }, $errors ), 'process-wikitext' )
+				implode( "\n", array_map( function( $error ) { return $error->message; }, $errors ) ),
+				'process-wikitext'
 			);
 		}
 

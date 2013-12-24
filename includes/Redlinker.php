@@ -140,29 +140,32 @@ class Redlinker {
 
 	/**
 	 * Collect referenced Title's from html content and add to LinkBatch
-	 * @param string $content
+	 *
+	 * @param string $content html to check for titles
 	 */
 	public function collectLinks( $content ) {
+		if ( !$content ) {
+			return;
+		}
 		/*
 		 * Workaround because DOMDocument can't guess charset.
 		 * Content should be utf-8. Alternative "workarounds" would be to
 		 * provide the charset in $response, as either:
 		 * * <?xml encoding="utf-8" ?>
 		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
 		 */
-		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
+		$dom = ParsoidUtils::createDOM( '<?xml encoding="utf-8" ?>' . $content );
 
 		// find links in DOM
-		if ( $content ) {
-			$batch = $this->batch;
-			$callback = function( DOMNode $linkNode, array $parsoid ) use( $batch ) {
-				$title = Title::newFromText( $parsoid['sa']['href'] );
-				if ( $title !== null ) {
-					$batch->addObj( $title );
-				}
-			};
-			self::forEachLink( ParsoidUtils::createDOM( $content ), $callback );
-		}
+		$batch = $this->batch;
+		$callback = function( DOMNode $linkNode, array $parsoid ) use( $batch ) {
+			$title = Title::newFromText( $parsoid['sa']['href'] );
+			if ( $title !== null ) {
+				$batch->addObj( $title );
+			}
+		};
+		self::forEachLink( $dom, $callback );
 	}
 
 	/**
@@ -189,11 +192,10 @@ class Redlinker {
 		 * provide the charset in $response, as either:
 		 * * <?xml encoding="utf-8" ?>
 		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
 		 */
-		$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
-
+		$dom = ParsoidUtils::createDOM( '<?xml encoding="utf-8"?>' . $content );
 		$self = $this;
-		$dom = ParsoidUtils::createDOM( $content );
 		self::forEachLink( $dom, function( DOMNode $linkNode, array $parsoid ) use ( $self, $dom ) {
 			$title = $self->createRelativeTitle( $parsoid['sa']['href'] );
 			// Don't process invalid links
@@ -207,16 +209,17 @@ class Redlinker {
 				$attributes[$attribute->name] = $attribute->value;
 			}
 			// let MW build link HTML based on Parsoid data
-			$html = Linker::link( $title, htmlspecialchars( $linkNode->nodeValue ), $attributes );
+			$html = Linker::link( $title, Redlinker::getInnerHtml( $linkNode ), $attributes );
 			// create new DOM from this MW-built link
-			$replacementNode = ParsoidUtils::createDOM( $html )->getElementsByTagName( 'a' )->item( 0 );
+			$replacementNode = ParsoidUtils::createDOM( '<?xml encoding="utf-8"?>' . $html )->getElementsByTagName( 'a' )->item( 0 );
 			// import MW-built link node into content DOM
 			$replacementNode = $dom->importNode( $replacementNode, true );
 			// replace Parsoid link with MW-built link
 			$linkNode->parentNode->replaceChild( $replacementNode, $linkNode );
 		} );
 
-		return $dom->saveHTML();
+		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
+		return Redlinker::getInnerHtml( $body );
 	}
 
 	/**
@@ -240,6 +243,9 @@ class Redlinker {
 	 * Subpage links from parsoid don't contain any direct context, its applied via
 	 * a <base href="..."> tag, so here we apply a similar rule resolving against
 	 * $wgFlowParsoidTitle falling back to $wgTitle.
+	 *
+	 * @param string $text
+	 * @return Title|null
 	 */
 	public function createRelativeTitle( $text ) {
 		if ( $text && $text[0] === '/' ) {
@@ -268,6 +274,21 @@ class Redlinker {
 				$callback( $linkNode, $parsoid );
 			}
 		}
+	}
+	
+	/**
+	 * Helper method retrieves the html of the nodes children
+	 *
+	 * @param DOMNode $node
+	 * @return string html of the nodes children
+	 */
+	static public function getInnerHtml( DOMNode $node ) {
+		$html = array();
+		$dom = $node->ownerDocument;
+		foreach ( $node->childNodes as $child ) {
+			$html[] = $dom->saveHTML( $child );
+		}
+		return implode( '', $html );
 	}
 }
 
