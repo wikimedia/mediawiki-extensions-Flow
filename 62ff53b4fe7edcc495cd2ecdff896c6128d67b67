@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_d18bf01e",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-24T23:49:44Z",
+      "side": 1,
+      "message": "\"default\" , end sentence with a period.",
+      "revId": "62ff53b4fe7edcc495cd2ecdff896c6128d67b67",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_318d7c37",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-24T23:49:44Z",
+      "side": 1,
+      "message": "I think this should reuse MWException code. ExceptionHandler::getLogMessage() and MWException-\u003ereport() already do similar work and fetch localized messages, figure out whether to write to log, etc.",
+      "revId": "62ff53b4fe7edcc495cd2ecdff896c6128d67b67",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
