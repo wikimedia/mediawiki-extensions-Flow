@@ -253,23 +253,6 @@
 			$( this ).flow( 'setupPreview' );
 		} );
 
-		// Set up the scroll to new topic reply form
-		$container.find( '.flow-topic-comments .flow-reply-link' ).click(
-			function( e ) {
-				var $showElement = $( this ).closest( '.flow-topic-container' ).children( '.flow-post-container' ),
-					$replyContainer = $( '#flow-topic-reply-' + $( this ).data( 'topic-id' ) );
-
-				e.stopPropagation();
-				$replyContainer
-					.find( '.flow-topic-reply-content' )
-					.click()
-					.focus();
-				$showElement.slideDown( function() {
-					$replyContainer.scrollIntoView();
-				} );
-			}
-		);
-
 		// Set up folding
 		var $topicContainers = $container.is( '.flow-topic-container' ) ? $container : $container.find( '.flow-topic-container' );
 		$topicContainers
