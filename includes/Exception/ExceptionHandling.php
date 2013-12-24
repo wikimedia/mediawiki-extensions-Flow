@@ -95,7 +95,12 @@ class FlowException extends MWException {
 	 * Log the exception by defalut, child classes can overwrite this action
 	 */
 	public function handleError() {
-		wfDebugLog( get_class( $this ), $this->getCode() . ': ' . $this->getTraceAsString() );
+		wfDebugLog(
+			get_class( $this ),
+			'Exception code: ' . $this->getCode() . "\n" .
+				'Exception message: ' . $this->getMessage() . "\n" .
+				$this->getTraceAsString()
+		);
 	}
 }
 
