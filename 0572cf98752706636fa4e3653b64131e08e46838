@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_c0d31c60",
+        "filename": "includes/Redlinker.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-24T00:54:08Z",
+      "side": 1,
+      "message": "class namespace are imported, \u0027\\\u0027 is redundant",
+      "revId": "0572cf98752706636fa4e3653b64131e08e46838",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_a06ed891",
+        "filename": "includes/Redlinker.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-24T00:54:08Z",
+      "side": 1,
+      "message": "The only way to get linkbatch to work is to add postIds to identifiers through the register function, but the register function always applies the callback to all descendants.  We may only want to get the content of the root in some cases ( eg, preview, edit post ), traversing the tree for redlinks is not necessary. Maybe add a flag param for recursive or have two functions register() and registerRecursive()?",
+      "revId": "0572cf98752706636fa4e3653b64131e08e46838",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_40fcacb1",
+        "filename": "includes/Redlinker.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-24T00:54:08Z",
+      "side": 1,
+      "message": "Maybe define the function as a closure variable inside a private getter function?  In that case, it wouldn\u0027t get called externally.",
+      "revId": "0572cf98752706636fa4e3653b64131e08e46838",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_008c6488",
+        "filename": "includes/Templating.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2013-12-24T00:54:08Z",
+      "side": 1,
+      "message": "redlinks should be declared a class variable",
+      "revId": "0572cf98752706636fa4e3653b64131e08e46838",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
