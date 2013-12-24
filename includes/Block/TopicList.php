@@ -47,7 +47,7 @@ class TopicListBlock extends AbstractBlock {
 			$this->addError( 'topic', wfMessage( 'flow-error-missing-title' ) );
 		} else {
 			$this->submitted['topic'] = trim( $this->submitted['topic'] );
-			if ( strlen( $this->submitted['topic'] === 0 ) ) {
+			if ( strlen( $this->submitted['topic'] ) === 0 ) {
 				$this->addError( 'topic', wfMessage( 'flow-error-missing-title' ) );
 			} elseif ( strlen( $this->submitted['topic'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
 				$this->addError( 'topic', wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
@@ -84,7 +84,7 @@ class TopicListBlock extends AbstractBlock {
 			// if $wgFlowContentFormat is set to html the PostRevision::create
 			// call will convert the wikitext input into html via parsoid, and
 			// parsoid requires the page exist.
-			Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );	
+			Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
 		}
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 		$firstPost = null;
