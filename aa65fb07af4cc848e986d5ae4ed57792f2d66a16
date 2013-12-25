@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_71ee64b3",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-25T00:10:34Z",
+      "side": 1,
+      "message": "MWException sets the status code in the exception handler. Is it cleaner to do it there?  I don\u0027t know, though it seems you have to use the global $wgOut.",
+      "revId": "aa65fb07af4cc848e986d5ae4ed57792f2d66a16",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_b12aacd5",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-25T00:10:34Z",
+      "side": 1,
+      "message": "Everywhere, it\u0027s \"default\" and end sentence with \u0027.\u0027",
+      "revId": "aa65fb07af4cc848e986d5ae4ed57792f2d66a16",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
