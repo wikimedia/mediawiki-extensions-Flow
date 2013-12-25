@@ -1171,13 +1171,13 @@ $messages['de'] = array(
 	'flow-post-moderated-toggle-show' => '[Anzeigen]',
 	'flow-post-moderated-toggle-hide' => '[Ausblenden]',
 	'flow-hide-post-content' => 'Dieser Kommentar wurde {{GENDER:$1|versteckt}} von $2',
-	'flow-hide-title-content' => '{{GENDER:$1|Versteckt}} von $2', # Fuzzy
+	'flow-hide-title-content' => 'Dieses Thema wurde {{GENDER:$1|versteckt}} von $2',
 	'flow-hide-header-content' => '{{GENDER:$1|Versteckt}} von $2',
 	'flow-delete-post-content' => 'Dieser Kommentar wurde {{GENDER:$1|gelöscht}} von $2',
-	'flow-delete-title-content' => '{{GENDER:$1|Gelöscht}} von $2', # Fuzzy
+	'flow-delete-title-content' => 'Dieses Thema wurde {{GENDER:$1|gelöscht}} von $2',
 	'flow-delete-header-content' => '{{GENDER:$1|Gelöscht}} von $2',
 	'flow-suppress-post-content' => 'Dieser Kommentar wurde {{GENDER:$1|unterdrückt}} von $2',
-	'flow-suppress-title-content' => '{{GENDER:$1|Unterdrückt}} von $2', # Fuzzy
+	'flow-suppress-title-content' => 'Dieses Thema wurde {{GENDER:$1|unterdrückt}} von $2',
 	'flow-suppress-header-content' => '{{GENDER:$1|Unterdrückt}} von $2',
 	'flow-suppress-usertext' => '<em>Benutzername unterdrückt</em>',
 	'flow-post-actions' => 'Aktionen',
@@ -1194,7 +1194,6 @@ $messages['de'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Antworten}}',
 	'flow-reply-link' => '{{GENDER:$1|Antworten}}',
 	'flow-thank-link' => '{{GENDER:$1|Danken}}',
-	'flow-talk-link' => 'Mit {{GENDER:$1|$1}} diskutieren',
 	'flow-edit-post-submit' => 'Änderungen übertragen',
 	'flow-post-edited' => 'Beitrag {{GENDER:$1|bearbeitet}} von $1 $2',
 	'flow-post-action-view' => 'Permanentlink',
@@ -1279,7 +1278,7 @@ $messages['de'] = array(
 	'flow-history-pages-topic' => 'Erscheint auf dem [$1 Board „$2“]',
 	'flow-history-pages-post' => 'Erscheint auf [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 startete dieses Thema|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} und {{PLURAL:$2|ein anderer|andere}}|0=Noch keine Teilnehmer|2={{GENDER:$3|$3}} und {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} und {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Kommentar ($1)|Kommentare ($1)|0={{GENDER:$2|Sei der erste!}}}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|Ein Kommentar|$1 Kommentare|0=Sei {{GENDER:$2|der|die}} erste!}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Sei {{GENDER:$3|der|die}} erste!|{{PLURAL:$1|Ein Kommentar|$1 Kommentare}} von {{PLURAL:$2|einem Benutzer|$2 Benutzern}}}}',
 	'flow-comment-restored' => 'Kommentar wiederhergestellt',
 	'flow-comment-deleted' => 'Kommentar gelöscht',
@@ -1572,7 +1571,6 @@ $messages['fr'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Répondre}}',
 	'flow-reply-link' => '{{GENDER:$1|Répondre}}',
 	'flow-thank-link' => '{{GENDER:$1|Remercier}}',
-	'flow-talk-link' => 'Parler à {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'Soumettre les modifications',
 	'flow-post-edited' => 'Note {{GENDER:$1|modifiée}} par $1 $2',
 	'flow-post-action-view' => 'Lien permanent',
@@ -1879,13 +1877,13 @@ $messages['he'] = array(
 	'flow-post-moderated-toggle-show' => '[להציג]',
 	'flow-post-moderated-toggle-hide' => '[להסתיר]',
 	'flow-hide-post-content' => '$2 {{GENDER:$1|הסתיר|הסתירה}} את התגובה הזאת',
-	'flow-hide-title-content' => '$2 {{GENDER:$1|הסתיר|הסתירה}} את זה', # Fuzzy
+	'flow-hide-title-content' => '$2 {{GENDER:$1|הסתיר|הסתירה}} את הנושא הזה',
 	'flow-hide-header-content' => '$2 {{GENDER:$1|הסתיר|הסתירה}} את זה',
 	'flow-delete-post-content' => '$2 {{GENDER:$1|מחק|מחקה}} את התגובה הזאת',
-	'flow-delete-title-content' => '$2 {{GENDER:$1|מחק|מחקה}} את זה', # Fuzzy
+	'flow-delete-title-content' => '$2 {{GENDER:$1|מחק|מחקה}} את הנושא הזה',
 	'flow-delete-header-content' => '$2 {{GENDER:$1|מחק|מחקה}} את זה',
 	'flow-suppress-post-content' => '$2 {{GENDER:$1|העלים|העלימה}} את התגובה הזאת',
-	'flow-suppress-title-content' => '$2 {{GENDER:$1|העלים|העלימה}} את זה', # Fuzzy
+	'flow-suppress-title-content' => '$2 {{GENDER:$1|העלים|העלימה}} את הנושא הזה',
 	'flow-suppress-header-content' => '$2 {{GENDER:$1|העלים|העלימה}} את זה',
 	'flow-suppress-usertext' => '<strong>השם הועלם</strong>',
 	'flow-post-actions' => 'פעולות',
@@ -1902,7 +1900,6 @@ $messages['he'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|להשיב}}',
 	'flow-reply-link' => '{{GENDER:$1|השב|השיבי|להשיב}}',
 	'flow-thank-link' => '{{GENDER:$1|תודה}}',
-	'flow-talk-link' => 'לדבר עם $1',
 	'flow-edit-post-submit' => 'שליחת שינויים',
 	'flow-post-edited' => '$1 {{GENDER:$1|ערך|ערכה}} את הרשומה $2',
 	'flow-post-action-view' => 'קישור קבוע',
@@ -1988,7 +1985,7 @@ $1',
 	'flow-history-pages-topic' => 'מופיע ב[$1 לוח "$2"]',
 	'flow-history-pages-post' => 'מופיע ב[$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 {{GENDER:$3|התחיל|התחילה}} את הנושא הזה|$3, $4, $5 ועוד {{PLURAL:$2|אדם אחד|$2 אנשים}}|0=אין עדיין השתתפות|2=$3 ו{{GRAMMAR:תחילית|$4}}|3=$3, $4 ו{{GRAMMAR:תחילית|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|תגובה ($1)|תגובות ($1)|0={{GENDER:$2|כתוב|כתבי}} את התגובה הראשונה!}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|תגובה אחת|$1 תגובות|0={{GENDER:$2|כתוב|כתבי}} את התגובה הראשונה!}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|כתוב|כתבי}} את התגובה הראשונה!|{{PLURAL:$1|תגובה אחת|$1 תגובות}} של {{PLURAL:$2|משתמש אחד|$2 משתמשים}}}}',
 	'flow-comment-restored' => 'תגובה משוחזרת',
 	'flow-comment-deleted' => 'תגובה מחוקה',
@@ -2219,13 +2216,13 @@ $messages['it'] = array(
 	'flow-post-moderated-toggle-show' => '[Mostra]',
 	'flow-post-moderated-toggle-hide' => '[Nascondi]',
 	'flow-hide-post-content' => 'Questo commento è stato {{GENDER:$1|nascosto}} da $2',
-	'flow-hide-title-content' => '{{GENDER:$1|Nascosto}} da $2', # Fuzzy
+	'flow-hide-title-content' => 'Questa discussione è stata {{GENDER:$1|nascosta}} da $2',
 	'flow-hide-header-content' => '{{GENDER:$1|Nascosto}} da $2',
 	'flow-delete-post-content' => 'Questo commento è stato {{GENDER:$1|cancellato}} da $2',
-	'flow-delete-title-content' => '{{GENDER:$1|Cancellato}} da $2', # Fuzzy
+	'flow-delete-title-content' => 'Questa discussione è stata {{GENDER:$1|cancellata}} da $2',
 	'flow-delete-header-content' => '{{GENDER:$1|Cancellato}} da $2',
 	'flow-suppress-post-content' => 'Questo commento è stato {{GENDER:$1|soppresso}} da $2',
-	'flow-suppress-title-content' => '{{GENDER:$1|Soppresso}} da $2', # Fuzzy
+	'flow-suppress-title-content' => 'Questa discussione è stata {{GENDER:$1|soppressa}} da $2',
 	'flow-suppress-header-content' => '{{GENDER:$1|Soppresso}} da $2',
 	'flow-suppress-usertext' => '<em>Nome utente soppresso</em>',
 	'flow-post-actions' => 'Azioni',
@@ -2242,7 +2239,6 @@ $messages['it'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Rispondi}}',
 	'flow-reply-link' => '{{GENDER:$1|Rispondi}}',
 	'flow-thank-link' => '{{GENDER:$1|Ringrazia}}',
-	'flow-talk-link' => 'Scrivi a {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'Invia modifiche',
 	'flow-post-edited' => 'Messaggio {{GENDER:$1|modificato}} da $1 $2',
 	'flow-post-action-view' => 'Link permanente',
@@ -2327,7 +2323,7 @@ $messages['it'] = array(
 	'flow-history-pages-topic' => 'Apparso sulla [$1 bacheca "$2"]',
 	'flow-history-pages-post' => 'Apparso su [$1  $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 ha iniziato questa discussione|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} e {{PLURAL:$2|un altro|altri}}|0=Nessuno ha partecipato ancora|2={{GENDER:$3|$3}} e {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} e {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Commento ($1)|Commenti ($1)|0=Sii {{GENDER:$2|il primo|la prima}} a commentare!}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|$1 commento|$1 commenti|0=Sii {{GENDER:$2|il primo|la prima}} a commentare!}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Sii {{GENDER:$3|il primo|la prima}} a commentare!|$1 {{PLURAL:$1|commento|commenti}} di $2 {{PLURAL:$2|utente|utenti}}}}',
 	'flow-comment-restored' => 'Commento ripristinato',
 	'flow-comment-deleted' => 'Commento cancellato',
@@ -2431,10 +2427,10 @@ $messages['ja'] = array(
 	'flow-post-moderated-toggle-show' => '[表示]',
 	'flow-post-moderated-toggle-hide' => '[非表示]',
 	'flow-hide-post-content' => 'このコメントは $2 によって{{GENDER:$1|非表示にされました}}',
-	'flow-hide-title-content' => '$2 が{{GENDER:$1|非表示にしました}}', # Fuzzy
+	'flow-hide-title-content' => 'この話題は $2 によって{{GENDER:$1|非表示にされました}}',
 	'flow-hide-header-content' => '$2 が{{GENDER:$1|非表示にしました}}',
 	'flow-delete-post-content' => 'このコメントは $2 によって{{GENDER:$1|削除されました}}',
-	'flow-delete-title-content' => '$2 が{{GENDER:$1|削除しました}}', # Fuzzy
+	'flow-delete-title-content' => 'この話題は $2 によって{{GENDER:$1|削除されました}}',
 	'flow-delete-header-content' => '$2 が{{GENDER:$1|削除しました}}',
 	'flow-post-actions' => '操作',
 	'flow-topic-actions' => '操作',
@@ -2450,7 +2446,6 @@ $messages['ja'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|返信}}',
 	'flow-reply-link' => '{{GENDER:$1|返信}}',
 	'flow-thank-link' => '{{GENDER:$1|感謝}}',
-	'flow-talk-link' => '{{GENDER:$1|$1}} のトーク',
 	'flow-edit-post-submit' => '変更を保存',
 	'flow-post-edited' => '$1 が $2 に{{GENDER:$1|編集した}}投稿',
 	'flow-post-action-view' => '固定リンク',
@@ -2527,7 +2522,7 @@ $messages['ja'] = array(
 	'flow-history-day' => '今日',
 	'flow-history-week' => '過去 1 週間',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 がこの話題を開始|{{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}} と他 $2 {{PLURAL:$2|人}}|0=まだ誰も参加していません|2={{GENDER:$3|$3}} と {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|コメント ($1)|0=最初のコメントを{{GENDER:$2|書きましょう}}!}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|$1 件のコメント|0=最初のコメントを{{GENDER:$2|書きましょう}}!}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=最初のコメントを{{GENDER:$3|書きましょう}}!|$2 {{PLURAL:$2|人の利用者}}による $1 {{PLURAL:$1|件のコメント}}}}',
 	'flow-comment-restored' => 'コメントを復元',
 	'flow-comment-deleted' => 'コメントを削除',
@@ -2617,6 +2612,7 @@ $messages['jbo'] = array(
 );
 
 /** Korean (한국어)
+ * @author Clockoon
  * @author Daisy2002
  * @author Hym411
  * @author Yjs5497
@@ -2628,6 +2624,7 @@ $messages['ko'] = array(
 	'flow-header-empty' => '이 토론 문서에는 머릿말이 없습니다.',
 	'flow-post-moderated-toggle-show' => '[보기]',
 	'flow-post-moderated-toggle-hide' => '[숨김]',
+	'flow-delete-title-content' => '$2이(가) 이 문서를 {{GENDER:$1|제거했습니다}}',
 	'flow-post-actions' => '동작',
 	'flow-topic-actions' => '동작',
 	'flow-cancel' => '취소',
@@ -2640,7 +2637,6 @@ $messages['ko'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|답변}}',
 	'flow-reply-link' => '{{GENDER:$1|답변}}',
 	'flow-thank-link' => '{{GENDER:$1|감사합니다}}',
-	'flow-talk-link' => '$1에게 말하기',
 	'flow-edit-post-submit' => '변경된 내용을 제출합니다',
 	'flow-post-action-view' => '고유링크',
 	'flow-post-action-delete-post' => '삭제',
@@ -2662,12 +2658,13 @@ $messages['ko'] = array(
 	'flow-error-edit-restricted' => '이 문서의 편집을 허용하지 않습니다.',
 	'flow-error-external-multi' => '에러가 발생해 편집 저장에 실패하였습니다.<br />$1', # Fuzzy
 	'flow-error-missing-title' => '항목에 제목이 없습니다. 항목을 저장하려면 제목이 필요합니다.',
+	'flow-error-default' => '오류가 발생했습니다.',
 	'flow-rev-message-edit-title' => '주제 제목이 편집되었습니다', # Fuzzy
 	'flow-rev-message-edit-header' => '수정된 머리말', # Fuzzy
 	'flow-rev-message-hid-post' => '내용 숨겨짐', # Fuzzy
 	'flow-rev-message-deleted-post' => '삭제된 게시글', # Fuzzy
 	'flow-rev-message-restored-post' => '게시글 숨김 해제', # Fuzzy
-	'flow-topic-comments' => '{{PLURAL:$1|0=첫 댓글을 달아 보세요!|댓글 ($1개)}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|댓글 ($1개)|댓글 ($1개)|0=첫 댓글을 {{GENDER:$2|달아 보세요}}!}}',
 	'flow-notification-link-text-view-post' => '게시물 보기',
 	'flow-notification-reply-email-subject' => '$1이 당신의 글에 덧글을 달았습니다.',
 	'flow-notification-rename-email-subject' => '$1 이 당신의 주제를 바꾸었습니다.',
@@ -2681,7 +2678,7 @@ $messages['ko'] = array(
  */
 $messages['lb'] = array(
 	'flow-desc' => 'Workflow-Management-System',
-	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] op [[$3]] geläscht', # Fuzzy
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|huet}} eng [$4 Matddelung] op [[$3]] geläscht',
 	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|huet}} e(n) [$4 Thema] op [[$3]] geläscht',
 	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|huet}} e(n) [$4 Thema] op [[$3]] restauréiert',
 	'flow-edit-header-link' => 'Iwwerschrëft änneren',
@@ -2689,10 +2686,10 @@ $messages['lb'] = array(
 	'flow-post-moderated-toggle-show' => '[Weisen]',
 	'flow-post-moderated-toggle-hide' => '[Verstoppen]',
 	'flow-hide-post-content' => 'Dës Bemierkung gouf vum $2 {{GENDER:$1|verstoppt}}',
-	'flow-hide-title-content' => '{{GENDER:$1|Verstoppt}} vum $2', # Fuzzy
+	'flow-hide-title-content' => 'Dëst Thema gouf vum $2 {{GENDER:$1|verstoppt}}',
 	'flow-hide-header-content' => '{{GENDER:$1|Verstoppt}} vum $2',
 	'flow-delete-post-content' => 'Dës Bemierkung gouf vum $2 {{GENDER:$1|geläscht}}',
-	'flow-delete-title-content' => '{{GENDER:$1|Geläscht}} vum $2', # Fuzzy
+	'flow-delete-title-content' => 'Dëst Thema gouf vum $2 {{GENDER:$1|Geläscht}}',
 	'flow-delete-header-content' => '{{GENDER:$1|Geläscht}} vum $2',
 	'flow-post-actions' => 'Aktiounen',
 	'flow-topic-actions' => 'Aktiounen',
@@ -2708,7 +2705,6 @@ $messages['lb'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Äntwerten}}',
 	'flow-reply-link' => '{{GENDER:$1|Äntwerten}}',
 	'flow-thank-link' => '{{GENDER:$1|Merci soen}}',
-	'flow-talk-link' => 'Mam {{GENDER:$1|$1}} schwëtzen',
 	'flow-edit-post-submit' => 'Ännerunge späicheren',
 	'flow-post-action-view' => 'Permanentlink',
 	'flow-post-action-delete-post' => 'Läschen',
@@ -2731,6 +2727,7 @@ $messages['lb'] = array(
 	'flow-error-prev-revision-mismatch' => 'Dës Ännerung konnt net gespäichert ginn: méi eng rezent Ännerung gouf scho gespäichert.',
 	'flow-error-prev-revision-does-not-exist' => 'Déi vireg Versioun konnt net fonnt ginn.',
 	'flow-error-default' => 'Et ass e Feeler geschitt.',
+	'flow-error-invalid-title' => 'En net valabelen Säitentitel gouf uginn.',
 	'flow-error-insufficient-permission' => 'Net genuch Rechter fir op den Inhalt zouzegräifen.',
 	'flow-edit-header-submit' => 'Iwwerschrëft späicheren',
 	'flow-edit-title-submit' => 'Titel änneren',
@@ -2748,7 +2745,7 @@ $messages['lb'] = array(
 	'flow-history-last4' => 'Lescht 4 Stonnen',
 	'flow-history-day' => 'Haut',
 	'flow-history-week' => 'Lescht Woch',
-	'flow-topic-comments' => '{{PLURAL:$1|Bemierkung ($1)|Bemierkunge(n) ($1)|0=Sidd deen éischten {{GENDER:$2|deen éischten deen|déi éischt déi}} eng Bemierkung mécht!}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|Eng Bemierkung|$1 Bemierkungen|0=Sidd {{GENDER:$2|deen éischten deen|déi éischt déi}} eng Bemierkung mécht!}}',
 	'flow-comment-restored' => 'Restauréiert Bemierkung',
 	'flow-comment-deleted' => 'Geläscht Bemierkung',
 	'flow-comment-hidden' => 'Verstoppte Bemierkung',
@@ -2827,9 +2824,6 @@ $messages['mk'] = array(
 	'flow-header-empty' => 'Страницава засега нема заглавие.',
 	'flow-post-moderated-toggle-show' => '[Прикажи]',
 	'flow-post-moderated-toggle-hide' => '[Скриј]',
-	'flow-hide-content' => '{{GENDER:$1|Скриена}} од $1',
-	'flow-delete-content' => '{{GENDER:$1|Избришана}} од $1',
-	'flow-suppress-content' => '{{GENDER:$1|Притаена}} од $1',
 	'flow-suppress-usertext' => '<em>Корисничкото име е притаено</em>',
 	'flow-post-actions' => 'Дејства',
 	'flow-topic-actions' => 'Дејства',
@@ -2845,7 +2839,6 @@ $messages['mk'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Одговори}}',
 	'flow-reply-link' => '{{GENDER:$1|Одговори}}',
 	'flow-thank-link' => '{{GENDER:$1|Заблагодари се}}',
-	'flow-talk-link' => 'Разговарај со {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'Спроведи измени',
 	'flow-post-edited' => '$1 {{GENDER:$1|измени}} објава во $2',
 	'flow-post-action-view' => 'Постојана врска',
@@ -2915,8 +2908,8 @@ $messages['mk'] = array(
 	'flow-history-pages-topic' => 'Фигурира на [$1 таблата „$2“]',
 	'flow-history-pages-post' => 'Фигурира на [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|Темава ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} и {{PLURAL:$2|уште еден|$2 други}}|0=Досега никој не учествувал|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Коментар ($1)|Коментари ($1)|0=Бидете први со коментар!}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Бидете први со коментар!|$1 {{PLURAL:$1|коментар|коментари}} од {{PLURAL:$2|еден корисник|$2 корисници}}}}',
+	'flow-topic-comments' => '{{PLURAL:$1|$1 коментар|$1 коментари|0={{GENDER:$2|Бидете први}} со коментар!}}',
+	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|Бидете први со коментар!}}|$1 {{PLURAL:$1|коментар|коментари}} од {{PLURAL:$2|еден корисник|$2 корисници}}}}',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
 	'flow-comment-hidden' => 'Скриен коментар',
@@ -2939,8 +2932,8 @@ $messages['mk'] = array(
 	'flow-notification-reply-email-batch-bundle-body' => '$1 и уште {{PLURAL:$5|еден друг|$4 други}} {{GENDER:$1|ви одговорија}} на вашата објава во $2 на „$3“',
 	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|ве спомна}} на $2',
 	'flow-notification-mention-email-batch-body' => '$1 ве спомна во {{GENDER:$1|неговата|нејзината|неговата}} објава во „$2“ на „$3“',
-	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|ја измени}} вашата објава',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|ја измени}} вашата објава во $2 на „$3“',
+	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|измени}} објава',
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|измени}} објава во $2 на „$3“',
 	'flow-notification-edit-email-batch-bundle-body' => '$1 и {{PLURAL:$5|уште еден друг|уште $4 други}} {{GENDER:$1|ја изменија}} вашата објава во $2 на „$3“',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|ја преименуваше}} вашата тема',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|ја преименуваше}} вашата тема „$2“ во „$3“ на „$4“',
@@ -2956,34 +2949,34 @@ $messages['mk'] = array(
 	'flow-moderation-title-delete-post' => 'Да ја избришам објавата?',
 	'flow-moderation-title-hide-post' => 'Да ја скријам објавата?',
 	'flow-moderation-title-restore-post' => 'Да ја повратам објавата?',
-	'flow-moderation-intro-suppress-post' => 'Објаснете зошто ја притајувате објавава.',
-	'flow-moderation-intro-delete-post' => 'Објаснете зошто ја бришење објавава.',
-	'flow-moderation-intro-hide-post' => 'Објаснете зошто ја скривате објавава.',
-	'flow-moderation-intro-restore-post' => 'Објаснете зошто ја повраќате објавава.',
+	'flow-moderation-intro-suppress-post' => '{{GENDER:$3|Објаснете}} зошто ја притајувате објавава.',
+	'flow-moderation-intro-delete-post' => '{{GENDER:$3|Објаснете}} зошто ја бришење објавава.',
+	'flow-moderation-intro-hide-post' => '{{GENDER:$3|Објаснете}} зошто ја скривате објавава.',
+	'flow-moderation-intro-restore-post' => '{{GENDER:$3|Објаснете}} зошто ја повраќате објавава.',
 	'flow-moderation-confirm-suppress-post' => 'Притај',
 	'flow-moderation-confirm-delete-post' => 'Избриши',
 	'flow-moderation-confirm-hide-post' => 'Скриј',
 	'flow-moderation-confirm-restore-post' => 'Поврати',
-	'flow-moderation-confirmation-suppress-post' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за објавата.',
-	'flow-moderation-confirmation-delete-post' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за објавата.',
-	'flow-moderation-confirmation-hide-post' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за објавата.',
-	'flow-moderation-confirmation-restore-post' => 'Успешно ја повративте објавата.',
+	'flow-moderation-confirmation-suppress-post' => '{{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за објавата.',
+	'flow-moderation-confirmation-delete-post' => '{{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за објавата.',
+	'flow-moderation-confirmation-hide-post' => '{{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за објавата.',
+	'flow-moderation-confirmation-restore-post' => 'Успешно {{GENDER:$2|ја}} повративте објавата.',
 	'flow-moderation-title-suppress-topic' => 'Да ја притаам темата?',
 	'flow-moderation-title-delete-topic' => 'Да ја избришам темата?',
 	'flow-moderation-title-hide-topic' => 'Да ја скријам темата?',
 	'flow-moderation-title-restore-topic' => 'Да ја повратам темата?',
-	'flow-moderation-intro-suppress-topic' => 'Објаснете зошто ја притајувате темава.',
-	'flow-moderation-intro-delete-topic' => 'Објаснете зошто ја бришете темава.',
-	'flow-moderation-intro-hide-topic' => 'Објаснете зошто ја скривате темава.',
-	'flow-moderation-intro-restore-topic' => 'Објаснете зошто ја повраќате темава.',
+	'flow-moderation-intro-suppress-topic' => '{{GENDER:$3|Објаснете}} зошто ја притајувате темава.',
+	'flow-moderation-intro-delete-topic' => '{{GENDER:$3|Објаснете}} зошто ја бришете темава.',
+	'flow-moderation-intro-hide-topic' => '{{GENDER:$3|Објаснете}} зошто ја скривате темава.',
+	'flow-moderation-intro-restore-topic' => '{{GENDER:$3|Објаснете}} зошто ја повраќате темава.',
 	'flow-moderation-confirm-suppress-topic' => 'Притај',
 	'flow-moderation-confirm-delete-topic' => 'Избриши',
 	'flow-moderation-confirm-hide-topic' => 'Скриј',
 	'flow-moderation-confirm-restore-topic' => 'Поврати',
-	'flow-moderation-confirmation-suppress-topic' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за темата.',
-	'flow-moderation-confirmation-delete-topic' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за темата.',
-	'flow-moderation-confirmation-hide-topic' => 'Ви препорачуваме на $1 да {{GENDER:$1|му|ѝ}} дадете образложение и/или совет за темата.',
-	'flow-moderation-confirmation-restore-topic' => 'Успешно ја повративте темата.',
+	'flow-moderation-confirmation-suppress-topic' => '{{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за темата.',
+	'flow-moderation-confirmation-delete-topic' => '{{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за темата.',
+	'flow-moderation-confirmation-hide-topic' => '{{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за темата.',
+	'flow-moderation-confirmation-restore-topic' => '{{GENDER:$2|Успешно}} ја повративте темата.',
 	'flow-topic-permalink-warning' => 'Темата е започната на [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Темата е започната на [$2 таблата на {{GENDER:$1|$1}}]',
 	'flow-revision-permalink-warning-post' => 'Ова е постојана врска со една верзија на објавава.
@@ -2992,7 +2985,7 @@ $messages['mk'] = array(
 	'flow-revision-permalink-warning-post-first' => 'Ова е постојана врска до една верзија на објавава.
 Можете да ги погледате подоцнежните верзии во [$4 историјата на објавата].',
 	'flow-compare-revisions-revision-header' => 'Верзија на {{GENDER:$2|$2}} од $1',
-	'flow-compare-revisions-header-post' => 'На страницава се прикажани разликите помеѓу две верзии на објава на $3 во темата „[$5 $2]“ на [$4 $1].
+	'flow-compare-revisions-header-post' => 'На страницава се прикажани {{GENDER:$3|разликите}} помеѓу две верзии на објава на $3 во темата „[$5 $2]“ на [$4 $1].
 Можете да ги погледате другите верзии на објавата во [$6 нејзината историја].',
 	'flow-topic-collapsed-one-line' => 'Мал приказ',
 	'flow-topic-collapsed-full' => 'Расклопен приказ',
@@ -3266,7 +3259,6 @@ $messages['nl'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Reageren}}',
 	'flow-reply-link' => '{{GENDER:$1|Reageren}}',
 	'flow-thank-link' => '{{GENDER:$1|Bedanken}}',
-	'flow-talk-link' => 'In contact komen met {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'Wijzigingen opslaan',
 	'flow-post-edited' => 'Bericht $2 {{GENDER:$1|bewerkt}} door $1',
 	'flow-post-action-view' => 'Permanente koppeling',
@@ -3745,7 +3737,6 @@ $messages['sv'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Svara}}',
 	'flow-reply-link' => '{{GENDER:$1|Svara}}',
 	'flow-thank-link' => '{{GENDER:$1|Tacka}}',
-	'flow-talk-link' => 'Diskutera med {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'Skicka ändringar',
 	'flow-post-edited' => 'Meddela {{GENDER:$1|redigerad}} av $1 $2',
 	'flow-post-action-view' => 'Permanent länk',
@@ -3941,13 +3932,13 @@ $messages['uk'] = array(
 	'flow-post-moderated-toggle-show' => '[Показати]',
 	'flow-post-moderated-toggle-hide' => '[Сховати]',
 	'flow-hide-post-content' => 'Цей коментар {{GENDER:$1|приховав|приховала}} $2',
-	'flow-hide-title-content' => '{{GENDER:$1|Приховано}} $2', # Fuzzy
+	'flow-hide-title-content' => '$2 {{GENDER:$1|приховав|приховала}} цю тему',
 	'flow-hide-header-content' => '{{GENDER:$1|Приховано}} $2',
 	'flow-delete-post-content' => '$2 {{GENDER:$1|вилучив|вилучила}} цей коментар',
-	'flow-delete-title-content' => '{{GENDER:$1|Вилучено}} $2', # Fuzzy
+	'flow-delete-title-content' => '$2 {{GENDER:$1|вилучив|вилучила}} цю тему',
 	'flow-delete-header-content' => '{{GENDER:$1|Вилучено}} $2',
 	'flow-suppress-post-content' => '$2 {{GENDER:$1|прибрав|прибрала}} цей коментар',
-	'flow-suppress-title-content' => '{{GENDER:$1|Прибрано}} $2', # Fuzzy
+	'flow-suppress-title-content' => '$2 {{GENDER:$1|прибрав|прибрала}} цю тему',
 	'flow-suppress-header-content' => '{{GENDER:$1|Прибрано}} $2',
 	'flow-suppress-usertext' => "<em>Ім'я користувача приховано</em>",
 	'flow-post-actions' => 'Дії',
@@ -3964,7 +3955,6 @@ $messages['uk'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Відповісти}}',
 	'flow-reply-link' => '{{GENDER:$1|Відповісти}}',
 	'flow-thank-link' => '{{GENDER:$1|Подякувати}}',
-	'flow-talk-link' => 'Поговорити з {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'Подати зміни',
 	'flow-post-edited' => 'Допис {{GENDER:$1|відредагував|відредагувала}} $1 $2',
 	'flow-post-action-view' => 'Постійне посилання',
@@ -4049,7 +4039,7 @@ $messages['uk'] = array(
 	'flow-history-pages-topic' => 'З\'являється на [стіні $1  "$2"]',
 	'flow-history-pages-post' => "З'являється на [$1 $2]",
 	'flow-topic-participants' => '{{PLURAL:$1|$3 {{GENDER:$3|розпочав цю тему|розпочала цю тему}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} та {{PLURAL:$2|інший|інші|інших}}|0=Ще не має учасників|2={{GENDER:$3|$3}} та {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} та {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Коментар ($1)|Коментарі ($1)|Коментарів ($1)|0={{GENDER:$2|Залиште перший коментар!}}}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|$1 коментар|$1 коментарі|$1 коментарів|0={{GENDER:$2|Залиште перший коментар!}}}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|Залиште перший коментар!}}|$1 {{PLURAL:$1|коментар|коментарі|коментарів}} від $2 {{PLURAL:$2|користувача|користувачів}}}}',
 	'flow-comment-restored' => 'Відновлений коментар',
 	'flow-comment-deleted' => 'Видалений коментар',
@@ -4155,13 +4145,13 @@ $messages['vi'] = array(
 	'flow-post-moderated-toggle-show' => '[Xem]',
 	'flow-post-moderated-toggle-hide' => '[Ẩn]',
 	'flow-hide-post-content' => 'Bình luận này đã bị {{GENDER:$1}}ẩn bởi $2',
-	'flow-hide-title-content' => '{{GENDER:$1}}Ẩn bởi $2', # Fuzzy
+	'flow-hide-title-content' => 'Chủ đề này đã bị {{GENDER:$1}}ẩn bởi $2',
 	'flow-hide-header-content' => '{{GENDER:$1}}Ẩn bởi $2',
 	'flow-delete-post-content' => 'Bình luận này đã bị {{GENDER:$1}}xóa bởi $2',
-	'flow-delete-title-content' => '{{GENDER:$1}}Xóa bởi $2', # Fuzzy
+	'flow-delete-title-content' => 'Chủ đề này đã bị {{GENDER:$1}}xóa bởi $2',
 	'flow-delete-header-content' => '{{GENDER:$1}}Xóa bởi $2',
 	'flow-suppress-post-content' => 'Bình luận này đã bị {{GENDER:$1}}đàn áp bởi $2',
-	'flow-suppress-title-content' => '{{GENDER:$1}}Đàn áp bởi $2', # Fuzzy
+	'flow-suppress-title-content' => 'Chủ đề này đã bị {{GENDER:$1}}đàn áp bởi $2',
 	'flow-suppress-header-content' => '{{GENDER:$1}}Đàn áp bởi $2',
 	'flow-suppress-usertext' => '<em>Tên người dùng bị đàn áp</em>',
 	'flow-post-actions' => 'Tác vụ',
@@ -4178,7 +4168,6 @@ $messages['vi'] = array(
 	'flow-reply-submit' => '{{GENDER:$1}}Trả lời',
 	'flow-reply-link' => '{{GENDER:$1}}Trả lời',
 	'flow-thank-link' => '{{GENDER:$1}}Cảm ơn',
-	'flow-talk-link' => 'Nói chuyện với $1',
 	'flow-edit-post-submit' => 'Gửi thay đổi',
 	'flow-post-edited' => 'Bài đăng được sửa đổi bởi $1 $2',
 	'flow-post-action-view' => 'Liên kết thường trực',
@@ -4263,7 +4252,7 @@ $messages['vi'] = array(
 	'flow-history-pages-topic' => 'Xuất hiện trên [$1 bảng tin nhắn “$2”]',
 	'flow-history-pages-post' => 'Xuất hiện trên [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 đã bắt đầu chủ đề này|$3, $4, $5, và {{PLURAL:$2|một người|những người}} khác|0=Chưa có ai tham gia|2=$3 và $4|3=$3, $4, và $5}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Bình luận ($1)|0={{GENDER:$2}}Hãy là người đầu tiên bình luận!}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|$1 bình luận|0={{GENDER:$2}}Hãy là người đầu tiên bình luận!}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3}}Hãy là người đầu tiên bình luận!|$1 bình luận của $2 người dùng}}',
 	'flow-comment-restored' => 'Bình luận đã được phục hồi',
 	'flow-comment-deleted' => 'Bình luận đã bị xóa',
@@ -4443,7 +4432,6 @@ $messages['zh-hans'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|帖子回复}}',
 	'flow-reply-link' => '{{GENDER:$1|回复}}',
 	'flow-thank-link' => '{{GENDER:$1|感谢}}',
-	'flow-talk-link' => '讨论{{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => '提交更改',
 	'flow-post-edited' => '评论由$1 $2{{GENDER:$1|编辑}}',
 	'flow-post-action-view' => '永久链接',
