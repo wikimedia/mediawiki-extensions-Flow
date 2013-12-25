@@ -2,86 +2,55 @@
 
 namespace Flow\Exception;
 
+use MWExceptionHandler;
 use MWException;
-use IcontextSource;
-use Flow\Templating;
-
-/**
- * Handles all kinds of flow exceptions, the purpose is not to show exception trace
- * to end users.  It works by grouping flow exceptions into different categories,
- * then we can add different handling for the different exception types, we also
- * use the error code to present localized error message to users
- */
-class FlowExceptionHandling {
-	/**
-	 * @var Templating
-	 */
-	protected $templating;
-
-	/**
-	 * @var IContextSource
-	 */
-	protected $requestContext;
-
-	/**
-	 * @param Templating
-	 * @param IContextSource
-	 */
-	public function __construct( Templating $templating, IContextSource $requestContext ) {
-		$this->templating = $templating;
-		$this->requestContext = $requestContext;
-	}
-
-	/**
-	 * @param FlowException
-	 */
-	public function handle( FlowException $e ) {
-		// Handle any exception specific error
-		$e->handleError();
-		$this->showError( $e );
-	}
-
-	/**
-	 * @param FlowException
-	 */
-	public function showError( FlowException $e ) {
-		$this->requestContext->getOutput()->addModuleStyles(
-			array( 'mediawiki.ui', 'ext.flow.base' )
-		);
-		$this->requestContext->getOutput()->addHTML(
-			$this->templating->render(
-				'flow:flow-error.html.php',
-				array( 'message' => $e->getErrorMessage() )
-			)
-		);
-	}
-}
+use OutputPage;
 
 /**
  * Flow base exception
  */
 class FlowException extends MWException {
 
+	/**
+	 * Flow exception error code
+	 * @var string
+	 */
 	protected $code;
+
+	/**
+	 * The output object
+	 * @var OutputPage
+	 */
+	protected $output;
 
 	/**
 	 * @param string - The message from exception, used for debugging error
 	 * @param string - The error code used to display error message
 	 */
 	public function __construct( $message, $code = 'default' ) {
+		global $wgOut;
 		parent::__construct( $message );
 		$this->code = $code;
+		// Set output object to the global $wgOut object by default
+		$this->output = $wgOut;
 	}
 
 	/**
-	 * Get the error message to be displayed in user interface
+	 * Set the output object
 	 */
-	public function getErrorMessage() {
+	public function setOutput( OutputPage $output ) {
+		$this->output = $output;
+	}
+
+	/**
+	 * Get the message key for the localized error message
+	 */
+	public function getErrorCode() {
 		$list = $this->getErrorCodeList();
 		if ( !in_array( $this->code, $list ) ) {
 			$this->code = 'default';
 		}
-		return wfMessage( 'flow-error-' . $this->code )->escaped();
+		return 'flow-error-' . $this->code;
 	}
 
 	/**
@@ -92,10 +61,20 @@ class FlowException extends MWException {
 	}
 
 	/**
-	 * Log the exception by defalut, child classes can overwrite this action
+	 * Exception from API/commandline will be handled by MWException::report(),
+	 * Overwrite the HTML display only
 	 */
-	public function handleError() {
-		wfDebugLog( get_class( $this ), $this->getCode() . ': ' . $this->getTraceAsString() );
+	public function reportHTML() {
+		$this->output->setStatusCode( $this->getStatusCode() );
+		$this->output->showErrorPage( 'errorpagetitle', $this->getErrorCode() );
+		$this->output->output();
+	}
+
+	/**
+	 * Default status code is 500, which is server error
+	 */
+	public function getStatusCode() {
+		return 500;	
 	}
 }
 
@@ -112,6 +91,20 @@ class InvalidInputException extends FlowException {
 			'invalid-workflow'
 		);
 	}
+
+	/**
+	 * Bad request
+	 */
+	public function getStatusCode() {
+		return 400;	
+	}
+
+	/**
+	 * Do not log exception resulting from input error
+	 */
+	function isLoggable() {
+		return false;
+	}
 }
 
 /**
@@ -120,6 +113,20 @@ class InvalidInputException extends FlowException {
 class InvalidActionException extends FlowException {
 	protected function getErrorCodeList() {
 		return array ( 'invalid-action'	);
+	}
+
+	/**
+	 * Bad request
+	 */
+	public function getStatusCode() {
+		return 400;	
+	}
+
+	/**
+	 * Do not log exception resulting from input error
+	 */
+	function isLoggable() {
+		return false;
 	}
 }
 
