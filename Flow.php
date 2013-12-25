@@ -179,7 +179,6 @@ $wgGroupPermissions['sysop']['flow-edit-post'] = true;
 $wgGroupPermissions['oversight']['flow-suppress'] = true;
 
 // Exception
-$wgAutoloadClasses['Flow\Exception\FlowExceptionHandling'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\FlowException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\InvalidInputException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\InvalidActionException'] = $dir . 'includes/Exception/ExceptionHandling.php';
