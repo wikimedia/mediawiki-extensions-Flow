@@ -1,0 +1,47 @@
+
+.client-nojs .flow-container {
+
+	// Give the action menu an animated width
+	.flow-actions .flow-tipsy-flyout ul {
+		overflow-x: hidden;
+		max-width: 24px;
+		transition: max-width 0.1s;
+
+		&:hover {
+			max-width: 500px;
+		}
+	}
+
+	// position the topic and post flyouts as always visible
+	.flow-titlebar {
+		// the flyout is positioned on the edge of the padding
+		padding-right: 0;
+	}
+
+	.flow-tipsy-flyout {
+		position: inherit;
+		float: right;
+		top: auto;
+
+	}
+	.flow-post-container .flow-tipsy-flyout {
+		margin-top: -67px; // reposition to top of post
+	}
+
+	// shrink textarea's until they are focused
+	.flow-post-container,
+	.flow-new-topic-container {
+		textarea:empty:not(:focus) {
+			height: 34px;
+		}
+	}
+
+	// make room for the always visible flyout
+	.flow-element-container .flow-datestamp {
+		right: 34px;
+	}
+	.flow-post-content {
+		padding-right: 27px;
+	}
+
+}
