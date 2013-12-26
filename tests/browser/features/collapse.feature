@@ -9,7 +9,7 @@ Feature: Collapse views
     Then I should see in Flow topics Title of Flow Topic
       And I should not see in Flow topics Body of Flow Topic
       And I should not see in Flow topics started this topic
-      And I should not see in Flow topics Comment
+      And I should see in Flow topics by 1 user
 
   Scenario: Collapse view
     Given I am on Flow page
@@ -18,7 +18,7 @@ Feature: Collapse views
     Then I should see in Flow topics Title of Flow Topic
       And I should not see in Flow topics Body of Flow Topic
       And I should see in Flow topics started this topic
-      And I should see in Flow topics Comment
+      And I should not see in Flow topics by 1 user
 
   Scenario: Full view
     Given I am on Flow page
@@ -27,7 +27,8 @@ Feature: Collapse views
     Then I should see in Flow topics Title of Flow Topic
       And I should see in Flow topics Body of Flow Topic
       And I should see in Flow topics started this topic
-      And I should see in Flow topics Comment
+      And I should see in Flow topics comment
       And I should see in Flow topics Body of Flow Topic
+      And I should not see in Flow topics by 1 user
 
 
