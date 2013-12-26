@@ -1,0 +1,32 @@
+.client-nojs .flow-container {
+	// position tipsy window in upper right hand corner
+	.flow-tipsy {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	// flyout doesn't need to be pushed down below the icon; there's no JS, so
+	// no event handlers when clicking the flyout; so the flyout will always be
+	// displayed
+	.flow-tipsy-flyout {
+		position: inherit;
+		top: 0;
+	}
+
+	// shrink textarea's until they are focused
+	.flow-post-container,
+	.flow-new-topic-container {
+		textarea:empty:not(:focus) {
+			height: 34px;
+		}
+	}
+
+	// make room for the always visible flyout
+	.flow-element-container .flow-datestamp {
+		right: 50px;
+	}
+	.flow-post-content {
+		padding-right: 45px;
+	}
+}
