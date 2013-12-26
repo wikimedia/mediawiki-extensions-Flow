@@ -55,6 +55,7 @@ $wgResourceModules += array(
 			'discussion/styles/post.less',
 			'discussion/styles/collapse.less',
 			'discussion/styles/modified.less',
+			'discussion/styles/nojs.less',
 		),
 		'scripts' => array(
 			'discussion/ui.js',
