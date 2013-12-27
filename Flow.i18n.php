@@ -519,9 +519,11 @@ Parameters:
 	'flow-error-missing-header-content' => 'Error message when the header is submitted without content.
 {{Related|Flow-error-missing}}',
 	'flow-error-missing-prev-revision-identifier' => 'Error message when the identifier for the previous header revision is missing.',
-	'flow-error-prev-revision-mismatch' => 'Error message when the provided previous revision identifier does not match the last stored revision. Parameters:
-* $1: The submitted previous revision id
-* $2: The actual latest revision id',
+	'flow-error-prev-revision-mismatch' => 'Error message when the provided previous revision identifier does not match the last stored revision.
+
+Parameters:
+* $1 - the submitted previous revision ID
+* $2 - the actual latest revision ID',
 	'flow-error-prev-revision-does-not-exist' => 'Error message when the provided previous revision identifier could not be found.',
 	'flow-error-default' => 'General error message for flow.',
 	'flow-error-invalid-input' => 'Error message when invalid input is provided.',
@@ -699,7 +701,17 @@ Parameters:
 
 Parameters:
 * $1 - the number of comments on this topic, can be used for PLURAL
-* $2 - the name of the current user, can be used for GENDER',
+* $2 - the name of the current user, can be used for GENDER
+See also:
+* {{msg-mw|Flow-topic-meta-minimal}}',
+	'flow-topic-meta-minimal' => 'Message to display the amount of users and comments in a topic in the collapsed topic views.
+
+Parameters:
+* $1 - the number of comments in this topic, can be used for PLURAL
+* $2 - the number of users participating in this topic, can be used for PLURAL
+* $3 - the name of the current user, can be used for GENDER
+See also:
+* {{msg-mw|Flow-topic-comments}}',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
@@ -1027,8 +1039,8 @@ Parameters:
 See also:
 * {{msg-mw|Flow-revision-permalink-warning-post}}',
 	'flow-compare-revisions-revision-header' => 'Diff column header for a revision. Parameters:
-* $1: Date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC-2822 timestamp when hovered over.
-* $2: User who made this revision.',
+* $1 - date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC-2822 timestamp when hovered over.
+* $2 - user who made this revision',
 	'flow-compare-revisions-header-post' => 'Header for a page showing a "diff" between two revisions of a Flow post. Parameters:
 * $1: The title of the Board on which this post sits. Example: User talk:Andrew.
 * $2: The subject of the Topic in which this post sits.
@@ -1538,13 +1550,13 @@ $messages['fr'] = array(
 	'flow-post-moderated-toggle-show' => '[Afficher]',
 	'flow-post-moderated-toggle-hide' => '[Masquer]',
 	'flow-hide-post-content' => 'Ce commentaire a été {{GENDER:$1|masqué}} par $2',
-	'flow-hide-title-content' => '{{GENDER:$1|Masqué}} par $2', # Fuzzy
+	'flow-hide-title-content' => 'Le sujet a été {{GENDER:$1|masqué}} par $2',
 	'flow-hide-header-content' => '{{GENDER:$1|Masqué}} par $2',
 	'flow-delete-post-content' => 'Ce commentaire a été {{GENDER:$1|supprimé}} par $2',
-	'flow-delete-title-content' => '{{GENDER:$1|Supprimé}} par $2', # Fuzzy
+	'flow-delete-title-content' => 'Le sujet a été {{GENDER:$1|supprimé}} par $2',
 	'flow-delete-header-content' => '{{GENDER:$1|Supprimé}} par $2',
 	'flow-suppress-post-content' => 'Ce commentaire a été {{GENDER:$1|supprimé}} par $2',
-	'flow-suppress-title-content' => '{{GENDER:$1|Supprimé}} par $2', # Fuzzy
+	'flow-suppress-title-content' => 'Le sujet a été {GENDER:$1|supprimé}} par $2', # Fuzzy
 	'flow-suppress-header-content' => '{{GENDER:$1|Supprimé}} par $2',
 	'flow-suppress-usertext' => '<em>Nom d’utilisateur supprimé</em>',
 	'flow-post-actions' => 'Actions',
@@ -1645,7 +1657,7 @@ $messages['fr'] = array(
 	'flow-history-pages-topic' => 'Apparaît sur [$1 le tableau « $2 »]',
 	'flow-history-pages-post' => 'Apparaît sur [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 a démarré ce sujet|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} et {{PLURAL:$2|autre|autres}}|0=Encore aucune participation|2={{GENDER:$3|$3}} et {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} et {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Commenter ($1)|0={{GENDER:$2|Soyez le premier|Soyez la première}} à laisser un commentaire !}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|$1 commentaire|$1 commentaires|0={{GENDER:$2|Soyez le premier|Soyez la première}} à laisser un commentaire !}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Soyez {{GENDER:$3|le premier|la première}} à commenter !|$1 {{PLURAL:$1|commentaire|commentaires}} par $2 {{PLURAL:$2|utilisateur|utilisateurs}}}}',
 	'flow-comment-restored' => 'Commentaire rétabli',
 	'flow-comment-deleted' => 'Commentaire supprimé',
@@ -2482,7 +2494,7 @@ $messages['ja'] = array(
 	'flow-error-not-a-post' => '話題の題名は投稿としては保存できません。',
 	'flow-error-missing-header-content' => 'ヘッダーの本文がありません。ヘッダーを保存するには本文が必要です。',
 	'flow-error-missing-prev-revision-identifier' => '以前の版の ID がありません。',
-	'flow-error-prev-revision-mismatch' => '編集が保存できませんでした。より新しい変更が投稿されています。',
+	'flow-error-prev-revision-mismatch' => '編集内容を保存できませんでした。より新しい変更が既に投稿されました。',
 	'flow-error-prev-revision-does-not-exist' => '過去の版が見つかりませんでした。',
 	'flow-error-default' => 'エラーが発生しました。',
 	'flow-error-invalid-input' => 'Flow の本文の読み込みについて無効な値を指定しました。',
@@ -3760,10 +3772,10 @@ $messages['sv'] = array(
 	'flow-post-moderated-toggle-show' => '[Visa]',
 	'flow-post-moderated-toggle-hide' => '[Dölj]',
 	'flow-hide-post-content' => 'Denna kommentar {{GENDER:$1|doldes}} av $2',
-	'flow-hide-title-content' => '{{GENDER:$1|Dold}} av $2', # Fuzzy
+	'flow-hide-title-content' => 'Detta ämne {{GENDER:$1|doldes}} av $2',
 	'flow-hide-header-content' => '{{GENDER:$1|Dold}} av $2',
 	'flow-delete-post-content' => 'Denna kommentar var {{GENDER:$1|borttagen}} av $2',
-	'flow-delete-title-content' => '{{GENDER:$1|Raderades}} av $2', # Fuzzy
+	'flow-delete-title-content' => 'Detta ämne {{GENDER:$1|raderades}} av $2',
 	'flow-delete-header-content' => '{{GENDER:$1|Raderades}} av $2',
 	'flow-suppress-usertext' => '<em>Användarnamn dämpat</em>',
 	'flow-post-actions' => 'Åtgärder',
@@ -3849,7 +3861,7 @@ $messages['sv'] = array(
 	'flow-history-pages-topic' => 'Visas på [$1 "$2" board]',
 	'flow-history-pages-post' => 'Visas på [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 påbörjade detta ämne|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} och $2 {{PLURAL:$2|annan|andra}}|0=Inget deltagande ännu|2={{GENDER:$3|$3}} och {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} och {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Kommentera ($1)|Kommentarer ($1)|0=Bli den {{GENDER:$2|förste|första}} att kommentera!}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|$1 kommentar|$1 kommentarer |0=Bli den {{GENDER:$2|förste|första}} att kommentera!}}',
 	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|Var först med}} att kommentera!|$1 {{PLURAL:$1|kommentar|kommentarer}} av $2 {{PLURAL:$2|användare|användare}}}}',
 	'flow-comment-restored' => 'Återställd kommentar',
 	'flow-comment-deleted' => 'Raderad kommentar',
