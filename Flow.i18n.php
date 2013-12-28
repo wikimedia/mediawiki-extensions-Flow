@@ -704,14 +704,6 @@ Parameters:
 * $2 - the name of the current user, can be used for GENDER
 See also:
 * {{msg-mw|Flow-topic-meta-minimal}}',
-	'flow-topic-meta-minimal' => 'Message to display the amount of users and comments in a topic in the collapsed topic views.
-
-Parameters:
-* $1 - the number of comments in this topic, can be used for PLURAL
-* $2 - the number of users participating in this topic, can be used for PLURAL
-* $3 - the name of the current user, can be used for GENDER
-See also:
-* {{msg-mw|Flow-topic-comments}}',
 	'flow-comment-restored' => 'Used as revision comment when the post has been restored.
 
 See also:
@@ -799,16 +791,14 @@ Notification text for when a user is mentioned in another conversation. Paramete
 	'flow-notification-link-text-view-topic' => 'Link text in for the view topic button in a notification',
 	'flow-notification-reply-email-subject' => 'Email notification subject when a user receives a reply. Parameters:
 * $1 - username of the person who replied
-See also:
-* {{msg-mw|Flow-notification-reply-email-batch-body}}',
+{{Related|Flow-notification-email}}',
 	'flow-notification-reply-email-batch-body' => 'Email notification body when a user receives a reply, this message is used in both single email and email digest.
 
 Parameters:
 * $1 - username of the person who replied
 * $2 - title of the topic
 * $3 - title for the page that the Flow board is attached to
-See also:
-* {{msg-mw|Flow-notification-reply-email-subject}}',
+{{Related|Flow-notification-email}}',
 	'flow-notification-reply-email-batch-bundle-body' => 'Email notification body when a user receives reply from multiple users, this message is used in both single email and email digest.
 
 Parameters:
@@ -817,24 +807,27 @@ Parameters:
 * $3 - title for the page that the Flow board is attached to
 * $4 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
 * $5 - a number used for plural support
-See also:
-* {{msg-mw|Flow-notification-reply-bundle}}',
+{{Related|Flow-notification-email}}',
 	'flow-notification-mention-email-subject' => 'Email notification subject when a user is mentioned in a post.  Parameters:
-* $1 - Username of the person who mentions other users
-* $2 - Flow title text',
+* $1 - username of the person who mentions other users
+* $2 - flow title text
+{{Related|Flow-notification-email}}',
 	'flow-notification-mention-email-batch-body' => '{{doc-singularthey}}
 Email notification body when a user is mentioned in a post, this message is used in both single email and email digest.
 
 Parameters:
 * $1 - username of the person who mentions other users
 * $2 - title of the topic
-* $3 - title for the page that the Flow board is attached to',
+* $3 - title for the page that the Flow board is attached to
+{{Related|Flow-notification-email}}',
 	'flow-notification-edit-email-subject' => 'Subject line of notification email for post being edited. Parameters:
-* $1 - name of the user that edited the post',
+* $1 - name of the user that edited the post
+{{Related|Flow-notification-email}}',
 	'flow-notification-edit-email-batch-body' => 'Email notification for post being edited. Parameters:
 * $1 - name of the user that edited the post
 * $2 - name of the topic the edited post belongs to
-* $3 - title of the page the topic belongs to',
+* $3 - title of the page the topic belongs to
+{{Related|Flow-notification-email}}',
 	'flow-notification-edit-email-batch-bundle-body' => 'Email notification body when a user receives post edits from multiple users, this message is used in both single email and email digest.
 
 Parameters:
@@ -843,22 +836,25 @@ Parameters:
 * $3 - title for the page that the Flow board is attached to
 * $4 - the count of other action performers, could be number or {{msg-mw|Echo-notification-count}}. e.g. 7 others or 99+ others
 * $5 - a number used for plural support
-See also:
-* {{msg-mw|Flow-notification-edit-bundle}}',
+{{Related|Flow-notification-email}}',
 	'flow-notification-rename-email-subject' => 'Subject line of notification email for topic being renamed. Parameters:
-* $1 - name of the user that renamed the topic',
+* $1 - name of the user that renamed the topic
+{{Related|Flow-notification-email}}',
 	'flow-notification-rename-email-batch-body' => 'Email notification for topic being renamed. Parameters:
 * $1 - name of the user that renamed the topic
 * $2 - the original topic title
 * $3 - the new topic title
-* $4 - title of the page the topic belongs to',
+* $4 - title of the page the topic belongs to
+{{Related|Flow-notification-email}}',
 	'flow-notification-newtopic-email-subject' => 'Subject line of notification email for new topic creation. Parameters:
 * $1 - name of the user that created a new topic
-* $2 - title',
+* $2 - title
+{{Related|Flow-notification-email}}',
 	'flow-notification-newtopic-email-batch-body' => 'Email notification for new topic creation. Parameters:
 * $1 - name of the user that created a new topic
 * $2 - the title of the new topic
-* $3 - title of the page the topic belongs to',
+* $3 - title of the page the topic belongs to
+{{Related|Flow-notification-email}}',
 	'echo-category-title-flow-discussion' => 'This is a short title for notification category.  Parameters:
 * $1 - number of mentions, for PLURAL support
 
@@ -1281,7 +1277,6 @@ $messages['de'] = array(
 	'flow-history-pages-post' => 'Erscheint auf [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 startete dieses Thema|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} und {{PLURAL:$2|ein anderer|andere}}|0=Noch keine Teilnehmer|2={{GENDER:$3|$3}} und {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} und {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|Ein Kommentar|$1 Kommentare|0=Sei {{GENDER:$2|der|die}} erste!}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Sei {{GENDER:$3|der|die}} erste!|{{PLURAL:$1|Ein Kommentar|$1 Kommentare}} von {{PLURAL:$2|einem Benutzer|$2 Benutzern}}}}',
 	'flow-comment-restored' => 'Kommentar wiederhergestellt',
 	'flow-comment-deleted' => 'Kommentar gelöscht',
 	'flow-comment-hidden' => 'Versteckter Kommentar',
@@ -1658,7 +1653,6 @@ $messages['fr'] = array(
 	'flow-history-pages-post' => 'Apparaît sur [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 a démarré ce sujet|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} et {{PLURAL:$2|autre|autres}}|0=Encore aucune participation|2={{GENDER:$3|$3}} et {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} et {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|$1 commentaire|$1 commentaires|0={{GENDER:$2|Soyez le premier|Soyez la première}} à laisser un commentaire !}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Soyez {{GENDER:$3|le premier|la première}} à commenter !|$1 {{PLURAL:$1|commentaire|commentaires}} par $2 {{PLURAL:$2|utilisateur|utilisateurs}}}}',
 	'flow-comment-restored' => 'Commentaire rétabli',
 	'flow-comment-deleted' => 'Commentaire supprimé',
 	'flow-comment-hidden' => 'Commentaire masqué',
@@ -1859,6 +1853,7 @@ $messages['gu'] = array(
 
 /** Hebrew (עברית)
  * @author Amire80
+ * @author Guycn2
  * @author Orsa
  */
 $messages['he'] = array(
@@ -1988,7 +1983,6 @@ $1',
 	'flow-history-pages-post' => 'מופיע ב[$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 {{GENDER:$3|התחיל|התחילה}} את הנושא הזה|$3, $4, $5 ועוד {{PLURAL:$2|אדם אחד|$2 אנשים}}|0=אין עדיין השתתפות|2=$3 ו{{GRAMMAR:תחילית|$4}}|3=$3, $4 ו{{GRAMMAR:תחילית|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|תגובה אחת|$1 תגובות|0={{GENDER:$2|כתוב|כתבי}} את התגובה הראשונה!}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|כתוב|כתבי}} את התגובה הראשונה!|{{PLURAL:$1|תגובה אחת|$1 תגובות}} של {{PLURAL:$2|משתמש אחד|$2 משתמשים}}}}',
 	'flow-comment-restored' => 'תגובה משוחזרת',
 	'flow-comment-deleted' => 'תגובה מחוקה',
 	'flow-comment-hidden' => 'תגובה מוסתרת',
@@ -2019,7 +2013,7 @@ $1',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|יצר|יצרה}} נושא חדש בדף $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|יצר|יצרה}} נושא חדש עם הכותרת "$2" ב{{GRAMMAR:תחלילית|$3}}',
 	'echo-category-title-flow-discussion' => 'זרימה',
-	'echo-pref-tooltip-flow-discussion' => 'להודיע לי כשיש פעולות שקשורות אליי בזרימה.',
+	'echo-pref-tooltip-flow-discussion' => 'להודיע לי כשיש פעולות שקשורות אליי ב"זרימה".',
 	'flow-link-post' => 'רשומה',
 	'flow-link-topic' => 'נושא',
 	'flow-link-history' => 'היסטוריה',
@@ -2326,7 +2320,6 @@ $messages['it'] = array(
 	'flow-history-pages-post' => 'Apparso su [$1  $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 ha iniziato questa discussione|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} e {{PLURAL:$2|un altro|altri}}|0=Nessuno ha partecipato ancora|2={{GENDER:$3|$3}} e {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} e {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|$1 commento|$1 commenti|0=Sii {{GENDER:$2|il primo|la prima}} a commentare!}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Sii {{GENDER:$3|il primo|la prima}} a commentare!|$1 {{PLURAL:$1|commento|commenti}} di $2 {{PLURAL:$2|utente|utenti}}}}',
 	'flow-comment-restored' => 'Commento ripristinato',
 	'flow-comment-deleted' => 'Commento cancellato',
 	'flow-comment-hidden' => 'Commento nascosto',
@@ -2538,7 +2531,6 @@ $messages['ja'] = array(
 	'flow-history-pages-post' => '[$1 $2]に出現',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 がこの話題を開始|{{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}} と他 $2 {{PLURAL:$2|人}}|0=まだ誰も参加していません|2={{GENDER:$3|$3}} と {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|$1 件のコメント|0=最初のコメントを{{GENDER:$2|書きましょう}}!}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=最初のコメントを{{GENDER:$3|書きましょう}}!|$2 {{PLURAL:$2|人の利用者}}による $1 {{PLURAL:$1|件のコメント}}}}',
 	'flow-comment-restored' => 'コメントを復元',
 	'flow-comment-deleted' => 'コメントを削除',
 	'flow-comment-hidden' => 'コメントを非表示',
@@ -2642,6 +2634,9 @@ $messages['jbo'] = array(
  */
 $messages['ko'] = array(
 	'flow-desc' => '워크플로우 관리 시스템',
+	'flow-talk-taken-over' => '이 토론 문서는 [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal 플로우 판]에 의해 인계되었습니다.',
+	'log-name-flow' => '플로우 활동 기록',
+	'flow-user-moderated' => '중재된 사용자',
 	'flow-edit-header-link' => '머리말 고치기',
 	'flow-header-empty' => '이 토론 문서에는 머릿말이 없습니다.',
 	'flow-post-moderated-toggle-show' => '[보기]',
@@ -2954,7 +2949,6 @@ $messages['mk'] = array(
 	'flow-history-pages-post' => 'Фигурира на [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|Темава ја започна $3|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} и {{PLURAL:$2|уште еден|$2 други}}|0=Досега никој не учествувал|2={{GENDER:$3|$3}} и {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} и {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|$1 коментар|$1 коментари|0={{GENDER:$2|Бидете први}} со коментар!}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|Бидете први со коментар!}}|$1 {{PLURAL:$1|коментар|коментари}} од {{PLURAL:$2|еден корисник|$2 корисници}}}}',
 	'flow-comment-restored' => 'Повратен коментар',
 	'flow-comment-deleted' => 'Избришан коментар',
 	'flow-comment-hidden' => 'Скриен коментар',
@@ -3281,13 +3275,13 @@ $messages['nl'] = array(
 	'flow-post-moderated-toggle-show' => '[Weergeven]',
 	'flow-post-moderated-toggle-hide' => '[Verbergen]',
 	'flow-hide-post-content' => 'Deze opmerking is {{GENDER:$1|verborgen}} door $2',
-	'flow-hide-title-content' => '{{GENDER:$1|Verborgen}} door $2', # Fuzzy
+	'flow-hide-title-content' => 'Dit onderwerp is {{GENDER:$1|verborgen}} door $2',
 	'flow-hide-header-content' => '{{GENDER:$1|Verborgen}} door $2',
 	'flow-delete-post-content' => 'Deze opmerking is {{GENDER:$1|verwijderd}} door $2',
-	'flow-delete-title-content' => '{{GENDER:$1|Verwijderd}} door $2', # Fuzzy
+	'flow-delete-title-content' => 'Dit onderwerp is {{GENDER:$1|verwijderd}} door $2',
 	'flow-delete-header-content' => '{{GENDER:$1|Verwijderd}} door $2',
 	'flow-suppress-post-content' => 'Deze opmerking is {{GENDER:$1|onderdrukt}} door $2',
-	'flow-suppress-title-content' => '{{GENDER:$1|Onderdrukt}} door $2', # Fuzzy
+	'flow-suppress-title-content' => 'Dit onderwerp is {{GENDER:$1|onderdrukt}} door $2',
 	'flow-suppress-header-content' => '{{GENDER:$1|Onderdrukt}} door $2',
 	'flow-suppress-usertext' => '<em>Gebruikersnaam onderdrukt</em>',
 	'flow-post-actions' => 'Handelingen',
@@ -3381,8 +3375,7 @@ $messages['nl'] = array(
 	'flow-history-pages-topic' => 'Komt voor op het [$1 prikbord "$2"]',
 	'flow-history-pages-post' => 'Komt voor op [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 is dit onderwerp begonnen|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} en {{PLURAL:$2|een andere gebruiker|andere gebruikers}}|0=Nog geen deelnemers|2={{GENDER:$3|$3}} en {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} en {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|0={{GENDER:$2|Reageer}} als eerste!|Reactie|Reacties ($1)}}', # Fuzzy
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|Reageer}} als eerste!|$1 {{PLURAL:$1|reactie|reacties}} van $2 {{PLURAL:$2|gebruiker|gebruikers}}}}',
+	'flow-topic-comments' => '{{PLURAL:$1|0={{GENDER:$2|Reageer}} als eerste!|Eén reactie|$1 reacties}}',
 	'flow-comment-restored' => 'Teruggeplaatste reactie',
 	'flow-comment-deleted' => 'Verwijderde reactie',
 	'flow-comment-hidden' => 'Verborgen reactie',
@@ -3862,7 +3855,6 @@ $messages['sv'] = array(
 	'flow-history-pages-post' => 'Visas på [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 påbörjade detta ämne|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} och $2 {{PLURAL:$2|annan|andra}}|0=Inget deltagande ännu|2={{GENDER:$3|$3}} och {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} och {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|$1 kommentar|$1 kommentarer |0=Bli den {{GENDER:$2|förste|första}} att kommentera!}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|Var först med}} att kommentera!|$1 {{PLURAL:$1|kommentar|kommentarer}} av $2 {{PLURAL:$2|användare|användare}}}}',
 	'flow-comment-restored' => 'Återställd kommentar',
 	'flow-comment-deleted' => 'Raderad kommentar',
 	'flow-comment-hidden' => 'Dold kommentar',
@@ -4095,7 +4087,6 @@ $messages['uk'] = array(
 	'flow-history-pages-post' => "З'являється на [$1 $2]",
 	'flow-topic-participants' => '{{PLURAL:$1|$3 {{GENDER:$3|розпочав цю тему|розпочала цю тему}}|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} та {{PLURAL:$2|інший|інші|інших}}|0=Ще не має учасників|2={{GENDER:$3|$3}} та {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} та {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|$1 коментар|$1 коментарі|$1 коментарів|0={{GENDER:$2|Залиште перший коментар!}}}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3|Залиште перший коментар!}}|$1 {{PLURAL:$1|коментар|коментарі|коментарів}} від $2 {{PLURAL:$2|користувача|користувачів}}}}',
 	'flow-comment-restored' => 'Відновлений коментар',
 	'flow-comment-deleted' => 'Видалений коментар',
 	'flow-comment-hidden' => 'Прихований коментар',
@@ -4308,7 +4299,6 @@ $messages['vi'] = array(
 	'flow-history-pages-post' => 'Xuất hiện trên [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 đã bắt đầu chủ đề này|$3, $4, $5, và {{PLURAL:$2|một người|những người}} khác|0=Chưa có ai tham gia|2=$3 và $4|3=$3, $4, và $5}}',
 	'flow-topic-comments' => '{{PLURAL:$1|$1 bình luận|0={{GENDER:$2}}Hãy là người đầu tiên bình luận!}}',
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0={{GENDER:$3}}Hãy là người đầu tiên bình luận!|$1 bình luận của $2 người dùng}}',
 	'flow-comment-restored' => 'Bình luận đã được phục hồi',
 	'flow-comment-deleted' => 'Bình luận đã bị xóa',
 	'flow-comment-hidden' => 'Bình luận đã bị ẩn',
