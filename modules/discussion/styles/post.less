@@ -50,6 +50,13 @@
 		ul {
 			list-style-image: none;
 		}
+
+		// show [1], [2], ... for empty external links
+		counter-reset: flow-mwNumberedExternalLinkNode;
+		a[rel~="mw:ExtLink"]:empty:after {
+			content: "[" counter(flow-mwNumberedExternalLinkNode) "]";
+			counter-increment: flow-mwNumberedExternalLinkNode;
+		}
 	}
 
 	.flow-edit-post-link {
