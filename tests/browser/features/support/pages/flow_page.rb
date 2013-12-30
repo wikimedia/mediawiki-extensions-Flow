@@ -14,8 +14,9 @@ class FlowPage
   button(:change_post_save, class: "flow-edit-post-submit")
   button(:change_title_save, class: "flow-edit-title-submit")
   a(:contrib_link, text: "contribs")
-  a(:edit_post_icon, title: "Edit post")
-  a(:edit_title_icon, title: "Edit title")
+  # This does not work without passing @random_string to the page object
+  a(:edit_post_icon, title: "Edit post", href: /@random_string/)
+  a(:edit_title_icon, title: "Edit title", href:/@random_string/)
   div(:flow_body, class: "flow-container")
   list_item(:full_view, title: "Full view")
 
