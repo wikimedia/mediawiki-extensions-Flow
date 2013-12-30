@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_2a35ec42",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 487
+      },
+      "writtenOn": "2013-12-30T16:12:29Z",
+      "side": 1,
+      "message": "I think the way to go here is something like this:\n\ndef edit_title_icon_element(page_name)\n  @browser.a(title: \"Edit title\", href:/#{Regexp.escape(page_name)}/)\nend\n\nand then use it from the step:\n\non(FlowPage).edit_title_icon_element(@random_string).click",
+      "revId": "ca699960a6f3b6f771a2d4bfa0322721ea69d806",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
