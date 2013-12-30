@@ -13,11 +13,11 @@ When(/^I click the Edit title pencil icon$/) do
 end
 
 Then(/^I should be able to edit the post field with (.+)$/) do |edited_post|
-  on(FlowPage).post_edit_element.when_present.send_keys(edited_post + @random_string)
+  on(FlowPage).post_edit_element.when_present.send_keys(edited_post + @random_string + ENV['BROWSER_LABEL'])
 end
 
 Then(/^I should be able to edit the title field with (.+)$/) do |edited_title|
-  on(FlowPage).title_edit_element.when_present.send_keys(edited_title + @random_string)
+  on(FlowPage).title_edit_element.when_present.send_keys(edited_title + @random_string + ENV['BROWSER_LABEL'])
 end
 
 Then(/^I should be able to save the new post body$/) do
