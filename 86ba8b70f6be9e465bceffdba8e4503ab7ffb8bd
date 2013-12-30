@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_9e9c3a61",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2013-12-30T21:32:42Z",
+      "side": 1,
+      "message": "this will allow a 0 length title if it is all spaces.",
+      "revId": "86ba8b70f6be9e465bceffdba8e4503ab7ffb8bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
