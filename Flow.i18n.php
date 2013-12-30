@@ -1462,25 +1462,38 @@ $messages['es'] = array(
  * @author Amire80
  * @author Ebraminio
  * @author Omidh
+ * @author Reza1615
  */
 $messages['fa'] = array(
 	'flow-desc' => 'سامانهٔ مدیریت گردش کار',
 	'flow-post-moderated-toggle-show' => '[نمایش]',
 	'flow-post-moderated-toggle-hide' => '[پنهان کردن]',
+	'flow-post-actions' => 'اقدامات',
+	'flow-topic-actions' => 'اقدامات',
+	'flow-cancel' => 'لغو',
+	'flow-preview' => 'پیش‌نمایش',
+	'flow-newtopic-save' => 'اضافه‌کردن موضوع',
 	'flow-edit-post-submit' => 'ثبت تغییرات',
+	'flow-post-action-view' => 'پیوند پایدار',
 	'flow-post-action-delete-post' => 'حذف',
 	'flow-post-action-hide-post' => 'نهفتن',
 	'flow-post-action-edit-post' => 'ویرایش پست',
 	'flow-post-action-edit' => 'ویرایش',
+	'flow-topic-action-view' => 'پیوند پایدار',
+	'flow-topic-action-watchlist' => 'فهرست پی‌گیری‌ها',
+	'flow-topic-action-edit-title' => 'ویرایش عنوان',
+	'flow-error-other' => 'یک خطای غیرمنتظره رخ داد.',
 	'flow-error-default' => 'یک خطا رخ داده است.',
 	'flow-edit-title-submit' => 'تغییر عنوان',
 	'flow-history-last4' => '4 ساعت گذشته',
 	'flow-history-day' => 'امروز',
 	'flow-history-week' => 'هفتهٔ گذشته',
-	'flow-topic-comments' => '{{PLURAL:$1|نظر ($1)|نظرها ($1)|0=اولین شخصی باشید که نظر می‌گذارد!}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|نظر $1 |نظرها  $1 |0={{GENDER:$2|اولین}} شخصی باشید که نظر می‌گذارد!}}',
 	'flow-comment-deleted' => 'نظر حذف شده',
 	'flow-notification-link-text-view-post' => 'نمایش پست',
+	'flow-link-history' => 'تاریخچه',
 	'flow-moderation-confirm-delete-post' => 'حذف',
+	'flow-moderation-confirm-hide-post' => 'نهفتن',
 	'flow-moderation-confirm-restore-post' => 'بازیابی',
 	'flow-moderation-confirm-delete-topic' => 'حذف',
 	'flow-moderation-confirm-hide-topic' => 'نهفتن',
@@ -1551,7 +1564,7 @@ $messages['fr'] = array(
 	'flow-delete-title-content' => 'Le sujet a été {{GENDER:$1|supprimé}} par $2',
 	'flow-delete-header-content' => '{{GENDER:$1|Supprimé}} par $2',
 	'flow-suppress-post-content' => 'Ce commentaire a été {{GENDER:$1|supprimé}} par $2',
-	'flow-suppress-title-content' => 'Le sujet a été {GENDER:$1|supprimé}} par $2', # Fuzzy
+	'flow-suppress-title-content' => 'Le sujet a été {{GENDER:$1|supprimé}} par $2',
 	'flow-suppress-header-content' => '{{GENDER:$1|Supprimé}} par $2',
 	'flow-suppress-usertext' => '<em>Nom d’utilisateur supprimé</em>',
 	'flow-post-actions' => 'Actions',
@@ -2927,6 +2940,7 @@ $messages['mk'] = array(
 	'flow-error-missing-topic-title' => 'Не можев да го најдам насловот на темата во тековниот работен тек.',
 	'flow-error-fail-load-data' => 'Не успеав да ги вчитам побараните податоци.',
 	'flow-error-invalid-workflow' => 'Не успеав да го најдам бараниот работен тек.',
+	'flow-error-process-data' => 'Се појави грешка при обработката на податоците во вашето барање.',
 	'flow-error-process-wikitext' => 'Се појави грешка при обработката на претворањето на HTML/викитекстот.',
 	'flow-error-no-index' => 'Не успеав да најдам индекс за пребарување на податоците.',
 	'flow-edit-header-submit' => 'Зачувај заглавие',
