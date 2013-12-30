@@ -89,6 +89,12 @@ abstract class AbstractFormatter {
 	}
 
 	protected function buildActionLinks( Title $title, $action, UUID $workflowId, UUID $postId = null ) {
+		// BC for renamed actions
+		$alias = $this->actions->getValue( $action );
+		if ( is_string( $alias ) ) {
+			// All proper actions return arrays, but aliases return a string
+			$action = $alias;
+		}
 		$links = array();
 		switch( $action ) {
 			case 'reply':
