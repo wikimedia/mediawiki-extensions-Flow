@@ -7,6 +7,12 @@ class FlowPage
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
   page_url URL.url("Talk:Flow_QA")
 
+  if ENV['BROWSER_LABEL'] == "firefox"
+    topic_index = 1
+  else
+    topic_index = 0
+  end
+
   a(:actions_link, text: "Actions", index: 1)
   span(:author_link, class: "flow-creator")
   a(:block_user, title: /Special:Block/)
@@ -14,8 +20,8 @@ class FlowPage
   button(:change_post_save, class: "flow-edit-post-submit")
   button(:change_title_save, class: "flow-edit-title-submit")
   a(:contrib_link, text: "contribs")
-  a(:edit_post_icon, title: "Edit post")
-  a(:edit_title_icon, title: "Edit title")
+  a(:edit_post_icon, title: "Edit post", index: topic_index)
+  a(:edit_title_icon, title: "Edit title", index: topic_index)
   div(:flow_body, class: "flow-container")
   list_item(:full_view, title: "Full view")
 
@@ -36,6 +42,6 @@ class FlowPage
   a(:talk_link, text: "Talk")
   text_field(:title_edit, class: "mw-ui-input flow-edit-title-textbox")
   a(:topic_actions_link, text: "Actions", index: 0)
-  div(:topic_post, class: "flow-post-content")
-  div(:topic_title, class: "flow-topic-title")
+  div(:topic_post, class: "flow-post-content", index: topic_index)
+  div(:topic_title, class: "flow-topic-title", index: topic_index)
 end
