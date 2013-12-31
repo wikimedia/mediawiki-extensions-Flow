@@ -236,7 +236,7 @@ abstract class AbstractFormatter {
 	 * @param User $user
 	 * @return string
 	 */
-	public function getActionDescription( Workflow $workflow, AbstractBlock $block, AbstractRevision $revision, User $user ) {
+	public function getActionDescription( Workflow $workflow, $blockType, AbstractRevision $revision, User $user ) {
 		// Build description message, piggybacking on history i18n
 		$changeType = $revision->getChangeType();
 		$msg = $this->actions->getValue( $changeType, 'history', 'i18n-message' );
@@ -245,7 +245,8 @@ abstract class AbstractFormatter {
 			$revision,
 			$this->templating,
 			$user,
-			$block
+			$workflow->getId(),
+			$blockType
 		) )->parse();
 
 		return \Html::rawElement(
@@ -268,25 +269,6 @@ abstract class AbstractFormatter {
 		}
 
 		return ChangesList::showCharacterDifference( strlen( $previousContent ), strlen( $revision->getContentRaw() ) );
-	}
-
-	/**
-	 * @param Title $title
-	 * @param UUID $workflowId
-	 * @param string $name Block name (e.g. "topic", "header")
-	 * @return AbstractBlock|bool Requested block or false on failure
-	 */
-	protected function loadBlock( Title $title, UUID $workflowId, $name ) {
-		$loader = $this->workflowLoaderFactory
-			->createWorkflowLoader( $title, $workflowId );
-		$blocks = $loader->createBlocks();
-
-		if ( !isset( $blocks[$name] ) ) {
-			wfWarn( __METHOD__ . ': Could not load block ' . $name . ' for workflow ' . $workflowId->getHex() );
-			return false;
-		}
-
-		return $blocks[$name];
 	}
 
 	/**
