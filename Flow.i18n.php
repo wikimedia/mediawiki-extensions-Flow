@@ -66,6 +66,7 @@ $messages['en'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Reply}}',
 	'flow-reply-link' => '{{GENDER:$1|Reply}}',
 	'flow-thank-link' => '{{GENDER:$1|Thank}}',
+	'flow-post-interaction-separator' => '&#32;•&#32;', # only translate this message to other languages if you have to change it
 
 	'flow-edit-post-submit' => 'Submit changes',
 
@@ -425,6 +426,7 @@ Parameters:
 {{Identical|Reply}}',
 	'flow-thank-link' => 'Link text of the button that will (when clicked) thank the editor of the comment Parameters:
 * $1 - username, can be used for GENDER',
+	'flow-post-interaction-separator' => '{{optional}}',
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified. Parameters:
 * $1 - username that created the most recent revision of the post
