@@ -91,7 +91,7 @@ class HeaderBlock extends AbstractBlock {
 					// if $wgFlowContentFormat is set to html the Header::create
 					// call will convert the wikitext input into html via parsoid, and
 					// parsoid requires the page exist.
-					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );	
+					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
 				}
 
 				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
@@ -139,10 +139,11 @@ class HeaderBlock extends AbstractBlock {
 				'historyExists' => false,
 			);
 
-			$historyRecord = $this->loadBoardHistory();
-			if ( $historyRecord ) {
+			$history = $this->filterBoardHistory( $this->loadBoardHistory() );
+
+			if ( $history ) {
 				$tplVars['historyExists'] = true;
-				$tplVars['history'] = new History( $historyRecord );
+				$tplVars['history'] = new History( $history );
 				$tplVars['historyRenderer'] = new HistoryRenderer( $templating, $this );
 			}
 
@@ -158,6 +159,52 @@ class HeaderBlock extends AbstractBlock {
 				'user' => $this->user,
 			) );
 		}
+	}
+
+	protected function filterBoardHistory( array $history ) {
+		// get rid of history entries user doesn't have sufficient permissions for
+		$query = $needed = array();
+		foreach ( $history as $i => $revision ) {
+			switch( $revision->getRevisionType() ) {
+				case 'header':
+					// headers can't be moderated
+					break;
+				case 'post':
+					// comments should not be in board history
+					if ( $revision->isTopicTitle() ) {
+						$needed[$revision->getPostId()->getHex()] = $i;
+						$query[] = array( 'tree_rev_descendant_id' => $revision->getPostId() );
+					} else {
+						unset( $history[$i] );
+					}
+					break;
+			}
+		}
+
+		if ( !$needed ) {
+			return $history;
+		}
+
+		// check permissions against most recent revision
+		$found = $this->storage->findMulti(
+			'PostRevision',
+			$query,
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+		);
+		foreach ( $found as $newest ) {
+			$newest = reset( $newest );
+			$i = $needed[$newest->getPostId()-getHex()];
+			unset( $needed[$newest->getPostId()->getHex()] );
+			if ( !$this->permissions->isAllowed( $newest, 'board-history' ) ) {
+				unset( $history[$i] );
+			}
+		}
+		// not found
+		foreach ( $needed as $i ) {
+			unset( $history[$i] );
+		}
+
+		return $history;
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
