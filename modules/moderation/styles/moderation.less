@@ -1,18 +1,43 @@
 @import '../../base/styles/mixins/buttonicon.less';
 
 .flow-action-hide input {
-	.buttonIcon( '../../base/images/hidden' );
+	.buttonIcon( '../../base/images/hidden', '' );
 }
 
 .flow-action-delete input {
-	.buttonIcon( '../../base/images/deleted' );
+	.buttonIcon( '../../base/images/deleted', '' );
 }
 
 .flow-action-suppress input {
-	.buttonIcon( '../../base/images/suppressed' );
+	.buttonIcon( '../../base/images/suppressed', '' );
 }
 
 .flow-action-restore input {
 	// @todo: need icon
-	// .buttonIcon( '../../base/images/restored' );
+	// .buttonIcon( '../../base/images/restored', '' );
+}
+
+// @todo: need ltr & rtl icons
+.flow-action-post-history, .flow-action-topic-history {
+	a { 
+		.buttonIcon( '../../base/images/history', '' );
+	}
+}
+
+.ltr {
+	.flow-action-edit-title a {
+		.buttonIcon( '../../base/images/edit', '_ltr' );
+	}
+	.flow-action-permalink a {
+		.buttonIcon( '../../base/images/permalink', '_ltr' );
+	}
+}
+
+.rtl {
+	.flow-action-edit-title a {
+		.buttonIcon( '../../base/images/edit', '_rtl' );
+	}
+	.flow-action-permalink a {
+		.buttonIcon( '../../base/images/permalink', '_rtl' );
+	}
 }
