@@ -40,7 +40,7 @@
 		transition: opacity 0.2s;
 	}
 	// a necessary for specificity
-	&:hover a {
+	&:hover {
 		.flow-agotime {
 			opacity: 0;
 		}
@@ -71,4 +71,25 @@ span.flow-datestamp {
 	text-align: left;
 	font-size: 10px;
 	opacity: 0.6;
+}
+
+// Overwrite user link color
+.flow-container {
+	a {
+		&.mw-userlink {
+			color: @username-color;
+			&.new {
+				color: @username-redlink-color;
+			}
+		}
+	}
+	.mw-usertoollinks {
+		font-weight: normal;
+		a {
+			color: @username-color;
+			&.new {
+				color: @username-redlink-color;
+			}
+		}
+	}
 }
