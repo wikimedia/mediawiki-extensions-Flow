@@ -32,9 +32,14 @@ $messages['en'] = array(
 
 	'flow-edit-header-link' => 'Edit header',
 	'flow-header-empty' => 'This talk page currently has no header.',
-
 	'flow-post-moderated-toggle-show' => '[Show]',
 	'flow-post-moderated-toggle-hide' => '[Hide]',
+	'flow-post-moderated-toggle-hide-show' => '{{GENDER:$1|Show}} comment hidden by $2',
+	'flow-post-moderated-toggle-delete-show' => '{{GENDER:$1|Show}} comment deleted by $2',
+	'flow-post-moderated-toggle-suppress-show' => '{{GENDER:$1|Show}} comment suppressed by $2',
+	'flow-post-moderated-toggle-hide-hide' => '{{GENDER:$1|Hide}} comment hidden by $2',
+	'flow-post-moderated-toggle-delete-hide' => '{{GENDER:$1|Hide}} comment deleted by $2',
+	'flow-post-moderated-toggle-suppress-hide' => '{{GENDER:$1|Hide}} comment suppressed by $2',
 	'flow-hide-post-content' => 'This comment was {{GENDER:$1|hidden}} by $2',
 	'flow-hide-title-content' => 'This topic was {{GENDER:$1|hidden}} by $2',
 	'flow-hide-header-content' => '{{GENDER:$1|Hidden}} by $2',
@@ -66,12 +71,13 @@ $messages['en'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Reply}}',
 	'flow-reply-link' => '{{GENDER:$1|Reply}}',
 	'flow-thank-link' => '{{GENDER:$1|Thank}}',
+	'flow-post-interaction-separator' => '&#32;•&#32;', # only translate this message to other languages if you have to change it
 
 	'flow-edit-post-submit' => 'Submit changes',
 
 	'flow-post-edited' => 'Post {{GENDER:$1|edited}} by $1 $2',
 	'flow-post-action-view' => 'Permalink',
-	'flow-post-action-post-history' => 'Post history',
+	'flow-post-action-post-history' => 'History',
 	'flow-post-action-suppress-post' => 'Suppress',
 	'flow-post-action-delete-post' => 'Delete',
 	'flow-post-action-hide-post' => 'Hide',
@@ -82,7 +88,7 @@ $messages['en'] = array(
 	'flow-topic-action-view' => 'Permalink',
 	'flow-topic-action-watchlist' => 'Watchlist',
 	'flow-topic-action-edit-title' => 'Edit title',
-	'flow-topic-action-history' => 'Topic history',
+	'flow-topic-action-history' => 'History',
 	'flow-topic-action-hide-topic' => 'Hide topic',
 	'flow-topic-action-delete-topic' => 'Delete topic',
 	'flow-topic-action-suppress-topic' => 'Suppress topic',
@@ -328,6 +334,42 @@ Name of the Flow log filter on the [[Special:Log]] page.',
 	'flow-header-empty' => 'Used as a placeholder text for headers which have no content.',
 	'flow-post-moderated-toggle-show' => 'Text for link used to display a moderated post',
 	'flow-post-moderated-toggle-hide' => 'Text for link used to hide a moderated post',
+	'flow-post-moderated-toggle-hide-show' => 'Message to display instead of content when a hidden post has been hidden.
+
+Parameters:
+* $1 - username that hid the title, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-post-moderated-toggle-delete-show' => 'Message to display instead of content when a deleted post has been hidden.
+
+Parameters:
+* $1 - username that hid the title, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-post-moderated-toggle-suppress-show' => 'Message to display instead of content when a suppressed post has been hidden.
+
+Parameters:
+* $1 - username that hid the title, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-post-moderated-toggle-hide-hide' => 'Message to display instead of content when a hidden post has been hidden.
+
+Parameters:
+* $1 - username that hid the title, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-post-moderated-toggle-delete-show' => 'Message to display instead of content when a deleted post has been hidden.
+
+Parameters:
+* $1 - username that hid the title, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
+	'flow-post-moderated-toggle-suppress-show' => 'Message to display instead of content when a suppressed post has been hidden.
+
+Parameters:
+* $1 - username that hid the title, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
 	'flow-hide-post-content' => 'Message to display instead of content when the post has been hidden.
 
 Parameters:
@@ -427,6 +469,7 @@ Changes refers to diff between revisions.
 {{Identical|Reply}}',
 	'flow-thank-link' => 'Link text of the button that will (when clicked) thank the editor of the comment Parameters:
 * $1 - username, can be used for GENDER',
+	'flow-post-interaction-separator' => '{{optional}}',
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified. Parameters:
 * $1 - username that created the most recent revision of the post
