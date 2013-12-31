@@ -53,6 +53,23 @@
 					$( this ).data( 'flow-initialised-post', true );
 				}
 			} );
+
+			// live bind tipsy edit title link to real edit title link
+			// @Todo: is this just another ugly hack?
+			if ( !$( document ).data( 'flow-tipsy-edit-title' ) ) {
+				$( document )
+					.data( 'flow-tipsy-edit-title', true )
+					.on( 'click', '.tipsy .flow-edit-topic-link', function ( e ) {
+						e.preventDefault();
+						var $topic = $( '#flow-topic-' + $( this ).data( 'post-id' ) );
+
+						$topic.find( '.flow-edit-topic-link' ).click();
+						// close the tipsy
+						$topic.find( '.flow-tipsy-open' ).each( function() {
+							$( this ).removeClass( 'flow-tipsy-open' ).tipsy( 'hide' );
+						} );
+					} );
+			}
 		}
 	};
 
