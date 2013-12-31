@@ -7,6 +7,10 @@
 	.flow-post {
 		margin: 10px 0;
 		padding-left: 16px;
+
+		.flow-icon {
+			opacity: 0.5;
+		}
 	}
 
 	.flow-post-main {
@@ -67,15 +71,6 @@
 		}
 	}
 
-	.flow-edit-post-link {
-		margin-top: -43px !important; // default -30px + -13px to be pushed up (because of .flow-post-content bottom padding)
-
-		background-position: center;
-		background-size: 20px auto;
-		background-repeat: no-repeat;
-		.background-image-svg('../../base/images/edit_hover_ltr.svg', '../../base/images/edit_hover_ltr.png');
-	}
-
 	.flow-icon-permalink {
 		background-position: center;
 		background-size: 20px auto;
@@ -86,15 +81,12 @@
 	.flow-post-interaction {
 		padding-top: 13px;
 
-		// hide reply/thank buttons until post is hovered
-		opacity: 0;
-		transition: opacity 0.2s;
-
 		.mw-ui-button {
 			border: none;
 			padding: 0;
 			background: none;
 			color: #777;
+			font-weight: normal;
 
 			box-shadow: none;
 			-webkit-box-shadow: none;
@@ -102,14 +94,10 @@
 		}
 	}
 
-	.flow-element-container:hover .flow-post-interaction {
-		opacity: 1;
-	}
-
 	.flow-datestamp {
 		position: absolute;
 		right: 22px;
-		bottom: 0;
+		bottom: 5px;
 		margin: 0;
 
 		a {
@@ -128,6 +116,11 @@
 	}
 
 	.flow-tipsy-link {
+		position: absolute;
+		right: 22px;
+		top: 10px;
+		z-index: 99;
+
 		width: 20px;
 		height: 20px;
 		text-indent: -9999px;
@@ -135,7 +128,12 @@
 		background-position: center;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
-		.background-image-svg('../../base/images/flag_hover_ltr.svg', '../../base/images/flag_hover_ltr.png');
+		.background-image-svg('../../base/images/more_dots.svg', '../../base/images/more_dots.png');
+
+		opacity: 0.3;
+		&:hover {
+			opacity: 1;
+		}
 	}
 
 	// any non-first-level reply
@@ -257,6 +255,10 @@
 			&.flow-post-moderated-suppress {
 				.background-image-svg('../../base/images/suppressed_normal.svg', '../../base/images/suppressed_normal.png');
 			}
+
+			span.flow-post-moderated-view {
+				cursor: pointer;
+			}
 		}
 
 		&.flow-post-moderated-visible {
@@ -285,6 +287,10 @@
 			.flow-datestamp {
 				display: none;
 			}
+		}
+
+		.flow-post-moderated-show-message, .flow-post-moderated-hide-message {
+			display: none;
 		}
 	}
 

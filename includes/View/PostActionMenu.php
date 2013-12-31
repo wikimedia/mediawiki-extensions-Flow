@@ -160,6 +160,7 @@ class PostActionMenu {
 				'href' => $url,
 				'class' => $class,
 				'title' => strip_tags( $content ),
+				'data-post-id' => $this->post->getPostId()->getHex()
 			),
 			$content
 		);

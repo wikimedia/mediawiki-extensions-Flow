@@ -169,6 +169,13 @@ class Templating {
 				'block' => $block,
 				'post' => $post,
 				'postView' => $view,
+				'postActionMenu' => $actionMenu,
+				'moderatedByUser' => $this->usernames->get(
+					wfWikiId(),
+					$post->getModeratedByUserId(),
+					$post->getModeratedByUserIp()
+				),
+				'userLink' => $this->getUserLinks( $post)
 			),
 			$return
 		);

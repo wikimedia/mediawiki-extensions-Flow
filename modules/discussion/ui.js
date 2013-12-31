@@ -261,12 +261,10 @@
 				 * HTML inside this node, but not visually)
 				 */
 				var ignore = [
-					'.flow-edit-topic-link',
 					'.flow-edit-title-form',
 					'.flow-actions',
 					'.flow-icon-permalink',
 					'.flow-icon-watchlist',
-					'.flow-datestamp a',
 					'.flow-topic-comments-link'
 				];
 				if ( $( e.target ).closest( ignore.join( ',' ) ).length > 0 ) {
@@ -342,6 +340,29 @@
 				} );
 		}
 
+		$container.find( '.flow-post-content-allowed' ).each( function() {
+			var $parent = $( this ).parent( '.flow-post-moderated' ),
+				showText = $parent.find( '.flow-post-moderated-show-message' ).html(),
+				hideText = $parent.find( '.flow-post-moderated-hide-message' ).html();
+			$( this ).find( '.flow-post-moderated-view' )
+				.html( showText )
+				.click( function( e ) {
+					e.preventDefault();
+					var $post = $( this ).closest( '.flow-post-moderated' ),
+						$comment = $post.find( '.flow-post-main' );
+	
+					if ( $comment.is( ':visible' ) ) {
+						$comment.hide();
+						$post.removeClass( 'flow-post-moderated-visible' );
+						$( this ).html( showText );
+					} else {
+						$post.addClass( 'flow-post-moderated-visible' );
+						$comment.show();
+						$( this ).html( hideText );
+					}
+				} );
+		} );
+/*
 		// Moderated posts need click to display content
 		$( '<a href="#" class="flow-post-moderated-view"></a>' )
 			.after( ' ' )
@@ -364,7 +385,7 @@
 			} )
 			// only add toggle if user is allowed to view the content
 			.prependTo( $container.find( '.flow-post-content-allowed' ) );
-
+*/
 		var highlightPost = function( $elem ) {
 			if ( !$elem.length ) {
 				return;
