@@ -50,6 +50,40 @@ class Post {
 		return wfMessage( 'flow-reply-link', $this->creatorUserText )->escaped();
 	}
 
+	public function replyButton( $buttonClass ) {
+		if ( !$this->post->isModerated() && $this->actions->isAllowed( 'reply' ) ) {
+			return $this->actions->getButton(
+				'reply',
+				$this->replyLink(),
+				$buttonClass
+			);
+		} else {
+			return '';	
+		}
+	}
+
+	public function postInteractionLinks( $replyButtonClass, $editButtonClass ) {
+		$items = array();
+
+		$replyButton = $this->replyButton( $replyButtonClass );
+		if ( $replyButton ) {
+			$items[] = $replyButton;
+		}
+		$editButton = $this->editPostButton( $editButtonClass );
+		if ( $editButton ) {
+			$items[] = $editButton;
+		}
+
+		return implode(
+			\Html::element(
+				'span',
+				array( 'class' => 'mw-ui-button' ),
+				wfMessage( 'flow-post-interaction-separator' )->text()
+			),
+			$items
+		);
+	}
+
 	public function creator() {
 		return $this->creatorUserText;
 	}
@@ -73,7 +107,7 @@ class Post {
 		}
 		return $this->actions->getButton(
 			'edit-post',
-			wfMessage( 'flow-post-action-edit-post' )->escaped(),
+			wfMessage( 'flow-post-action-edit' )->escaped(),
 			$buttonClass
 		);
 	}
