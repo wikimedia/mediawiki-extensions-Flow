@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_7f55efc4",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-31T14:07:30Z",
+      "side": 1,
+      "message": "Since there\u0027s no longer a reason to use hex, I\u0027d make this method protected, to prevent accidental -\u003egetHex() in new code, since we\u0027re used to that for quite some time now.",
+      "revId": "22f19a16a80d34e8ebe377a06dd69fd2275270bf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_1f6a637e",
+        "filename": "tests/UUIDTest.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-31T14:07:30Z",
+      "side": 1,
+      "message": "I suggested to make getHex() protected; this call won\u0027t work anymore then",
+      "revId": "22f19a16a80d34e8ebe377a06dd69fd2275270bf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
