@@ -261,12 +261,10 @@
 				 * HTML inside this node, but not visually)
 				 */
 				var ignore = [
-					'.flow-edit-topic-link',
 					'.flow-edit-title-form',
 					'.flow-actions',
 					'.flow-icon-permalink',
 					'.flow-icon-watchlist',
-					'.flow-datestamp a',
 					'.flow-topic-comments-link'
 				];
 				if ( $( e.target ).closest( ignore.join( ',' ) ).length > 0 ) {
