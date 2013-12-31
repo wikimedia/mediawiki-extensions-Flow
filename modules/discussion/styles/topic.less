@@ -1,6 +1,8 @@
 @import 'settings/colors.less';
 @import 'mixins/collapse.less';
+@import 'mixins/moderation.less';
 @import 'mediawiki.mixins.less';
+@import '../../base/styles/settings/paths.less';
 
 .flow-topic-container {
 	padding-bottom: 20px;
@@ -68,15 +70,15 @@
 		}
 
 		&.flow-topic-moderated-hide .flow-topic-title {
-			.background-image-svg('../../base/images/hidden_normal.svg', '../../base/images/hidden_normal.png');
+			.flow-moderated-element-icon( "hidden" );
 		}
 
 		&.flow-topic-moderated-delete .flow-topic-title {
-			.background-image-svg('../../base/images/deleted_normal.svg', '../../base/images/deleted_normal.png');
+			.flow-moderated-element-icon( "deleted" );
 		}
 
 		&.flow-topic-moderated-suppress .flow-topic-title {
-			.background-image-svg('../../base/images/suppressed_normal.svg', '../../base/images/suppressed_normal.png');
+			.flow-moderated-element-icon( "suppressed" );
 		}
 	}
 
@@ -87,7 +89,7 @@
 		// override mw-ui-button style
 		text-align: left;
 		display: block;
-		padding: 15px 22px;
+		padding: 14px 22px;
 		font-weight: normal;
 		background: @topic-titlebar-background-color;
 		font-size: 16px;
@@ -148,7 +150,7 @@
 			background-position: center;
 			background-size: 32px auto;
 			background-repeat: no-repeat;
-			.background-image-svg('../../base/images/more_dots.svg', '../../base/images/more_dots.png');
+			.background-image-svg( ~"@{icon-path}more_dots_topic.svg", ~"@{icon-path}more_dots_topic.png" );
 
 			opacity: 0.3;
 			&:hover {
@@ -203,24 +205,24 @@
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
-			.background-image-svg('../../base/images/edit_hover_ltr.svg', '../../base/images/edit_hover_ltr.png');
+			.background-image-svg( ~"@{icon-path}edit_hover_ltr.svg", ~"@{icon-path}edit_hover_ltr.png" );
 		}
 
 		.flow-icon-permalink {
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
-			.background-image-svg('../../base/images/permalink_hover_ltr.svg', '../../base/images/permalink_hover_ltr.png');
+			.background-image-svg( ~"@{icon-path}permalink_hover_ltr.svg", ~"@{icon-path}permalink_hover_ltr.png" );
 		}
 
 		.flow-icon-watchlist {
 			background-position: center;
 			background-size: 20px auto;
 			background-repeat: no-repeat;
-			.background-image-svg('../../base/images/watchlist_hover.svg', '../../base/images/watchlist_hover.png');
+			.background-image-svg( ~"@{icon-path}watchlist_hover.svg", ~"@{icon-path}watchlist_hover.png" );
 
 			&.flow-icon-watchlist-active {
-				.background-image-svg('../../base/images/watchlist_active.svg', '../../base/images/watchlist_active.png');
+				.background-image-svg( ~"@{icon-path}watchlist_active.svg", ~"@{icon-path}watchlist_active.png" );
 			}
 		}
 	}
@@ -250,7 +252,7 @@
 		background-position: left 10px center;
 		background-size: 25px auto;
 		background-repeat: no-repeat;
-		.background-image-svg('../../base/images/createtopic_normal_ltr.svg', '../../base/images/createtopic_normal_ltr.png');
+		.background-image-svg( ~"@{icon-path}createtopic_normal_ltr.svg", ~"@{icon-path}createtopic_normal_ltr.png" );
 	}
 
 	.flow-post-form-controls {

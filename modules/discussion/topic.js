@@ -31,7 +31,14 @@
 		this.topic = topic;
 
 		// Overload "edit title" link.
-		this.topic.$container.find( '.flow-edit-topic-link' ).click( $.proxy( this.edit, this ) );
+		// Because the edit-link will be opened in a tipsy-window, we can't
+		// select it inside the container node - we'll hack around it by adding
+		// an topic-specific identifier to the link, and catch in via document.
+		// I'm doing .attr( 'data-topic' ) instead of .data( 'topic' ), because
+		// the latter is not persisted to the DOM, just in-memory (and can't be
+		// used in selector)
+		this.topic.$container.find( '.flow-edit-topic-link' ).attr( 'data-topic', this.topic.topicId );
+		$( document ).on( 'click', '.flow-edit-topic-link[data-topic="' + this.topic.topicId + '"]', $.proxy( this.edit, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -46,6 +53,13 @@
 	mw.flow.action.topic.edit.prototype.edit = function ( event ) {
 		// don't follow link that will lead to &action=edit-title
 		event.preventDefault();
+
+		// close tipsy
+		var $tipsyTrigger = this.topic.$container.find( '.flow-tipsy-open' );
+		$tipsyTrigger.each( function() {
+			$( this ).removeClass( 'flow-tipsy-open' );
+			$( this ).tipsy( 'hide' );
+		} );
 
 		/*
 		 * Fetch current revision data (content, revision id, ...) that
@@ -267,16 +281,14 @@
 	 */
 	mw.flow.action.topic.edit.prototype.destroyEditForm = function () {
 		var $editLink = $( '.flow-edit-topic-link', this.topic.$container ),
-			$titleBar = $( '.flow-topic-title', this.topic.$container ),
 			$realTitle = $( '.flow-realtitle', this.topic.$container ),
 			$modifiedTipsy = $( '.flow-content-modified-tipsy-link', this.topic.$container ),
-			$titleEditForm = $( 'form', this.topic.$container );
+			$titleEditForm = $( 'form.flow-edit-title-form', this.topic.$container );
 
 		if ( $titleEditForm.length === 0 ) {
 			return;
 		}
 
-		$titleBar.children( 'form' ).remove();
 		$realTitle.show();
 		$modifiedTipsy.show();
 		$editLink.show();
