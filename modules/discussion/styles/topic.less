@@ -1,6 +1,9 @@
 @import 'settings/colors.less';
 @import 'mixins/collapse.less';
+@import 'mixins/moderation.less';
 @import 'mediawiki.mixins.less';
+
+@icon-path: '../../base/images/';
 
 .flow-topic-container {
 	padding-bottom: 20px;
@@ -10,6 +13,14 @@
 		// for a total 30px gap. We want the gap to be only 20px when topic is
 		// collapsed, which is why we're adding the remaining 10px to last child.
 		padding-bottom: 10px;
+	}
+
+	.flow-titlebar {
+		h2 {
+			&.flow-realtitle {
+				display: inline;
+			}
+		}
 	}
 
 	&.flow-topic-moderated {
@@ -41,7 +52,7 @@
 			.flow-topic-children-container {
 				display: none;
 			}
-			.flow-realtitle {
+			.flow-realtitle, .flow-content-modified-tipsy-link {
 				display: none;
 			}
 		}
@@ -60,15 +71,15 @@
 		}
 
 		&.flow-topic-moderated-hide .flow-topic-title {
-			.background-image-svg('../../base/images/hidden_normal.svg', '../../base/images/hidden_normal.png');
+			.flow-moderated-element-icon( ~"@{icon-path}hidden" );
 		}
 
 		&.flow-topic-moderated-delete .flow-topic-title {
-			.background-image-svg('../../base/images/deleted_normal.svg', '../../base/images/deleted_normal.png');
+			.flow-moderated-element-icon( ~"@{icon-path}deleted" );
 		}
 
 		&.flow-topic-moderated-suppress .flow-topic-title {
-			.background-image-svg('../../base/images/suppressed_normal.svg', '../../base/images/suppressed_normal.png');
+			.flow-moderated-element-icon( ~"@{icon-path}suppressed" );
 		}
 	}
 
@@ -79,7 +90,7 @@
 		// override mw-ui-button style
 		text-align: left;
 		display: block;
-		padding: 15px 22px;
+		padding: 14px 22px;
 		font-weight: normal;
 		background: @topic-titlebar-background-color;
 		font-size: 16px;
@@ -121,7 +132,10 @@
 					color: #aaa;
 				}
 
-				display: inline;
+				&.flow-moderated-title {
+					font-size: 16px;
+					color: #aaa;
+				}
 			}
 
 			.flow-content-modified-tipsy-flyout {
@@ -142,7 +156,7 @@
 			background-position: center;
 			background-size: 32px auto;
 			background-repeat: no-repeat;
-			.background-image-svg('../../base/images/more_dots.svg', '../../base/images/more_dots.png');
+			.background-image-svg('../../base/images/more_dots_topic.svg', '../../base/images/more_dots_topic.png');
 
 			opacity: 0.3;
 			&:hover {
