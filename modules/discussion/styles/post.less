@@ -1,12 +1,19 @@
 @import 'settings/colors.less';
 @import 'mediawiki.mixins.less';
+@import 'mixins/moderation.less';
+
+@icon-path: '../../base/images/';
 
 .flow-post-container {
 	clear: both;
 
 	.flow-post {
-		margin: 10px 0;
+		margin: 12px 0;
 		padding-left: 16px;
+
+		.flow-icon {
+			opacity: 0.5;
+		}
 	}
 
 	.flow-post-main {
@@ -28,13 +35,6 @@
 				margin-left: -3px;
 				padding-left: 3px;
 				padding-right: 3px;
-			}
-
-			a {
-				color: @username-color;
-				&.new {
-					color: @username-redlink-color;
-				}
 			}
 		}
 	}
@@ -80,15 +80,8 @@
 		.flow-content-modified-tipsy-flyout {
 			display: none;
 		}
-	}
 
-	.flow-edit-post-link {
-		margin-top: -43px !important; // default -30px + -13px to be pushed up (because of .flow-post-content bottom padding)
-
-		background-position: center;
-		background-size: 20px auto;
-		background-repeat: no-repeat;
-		.background-image-svg('../../base/images/edit_hover_ltr.svg', '../../base/images/edit_hover_ltr.png');
+		padding-right: 22px;
 	}
 
 	.flow-icon-permalink {
@@ -99,17 +92,14 @@
 	}
 
 	.flow-post-interaction {
-		padding-top: 13px;
-
-		// hide reply/thank buttons until post is hovered
-		opacity: 0;
-		transition: opacity 0.2s;
+		padding-top: 11px;
 
 		.mw-ui-button {
 			border: none;
 			padding: 0;
 			background: none;
 			color: #777;
+			font-weight: normal;
 
 			box-shadow: none;
 			-webkit-box-shadow: none;
@@ -117,14 +107,10 @@
 		}
 	}
 
-	.flow-element-container:hover .flow-post-interaction {
-		opacity: 1;
-	}
-
 	.flow-datestamp {
 		position: absolute;
 		right: 22px;
-		bottom: 0;
+		bottom: 5px;
 		margin: 0;
 
 		a {
@@ -143,6 +129,11 @@
 	}
 
 	.flow-tipsy-link {
+		position: absolute;
+		right: 22px;
+		top: 10px;
+		z-index: 99;
+
 		width: 20px;
 		height: 20px;
 		text-indent: -9999px;
@@ -150,7 +141,23 @@
 		background-position: center;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
-		.background-image-svg('../../base/images/flag_hover_ltr.svg', '../../base/images/flag_hover_ltr.png');
+		.background-image-svg('../../base/images/more_dots.svg', '../../base/images/more_dots.png');
+
+		opacity: 0.3;
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	.flow-post-moderated {
+		.flow-tipsy-link {
+			display: none;
+		}
+		&.flow-post-moderated-visible {
+			.flow-tipsy-link {
+				display: block;
+			}
+		}
 	}
 
 	// any non-first-level reply
@@ -252,15 +259,19 @@
 			}
 
 			&.flow-post-moderated-hide {
-				.background-image-svg('../../base/images/hidden_normal.svg', '../../base/images/hidden_normal.png');
+				.flow-moderated-element-icon( ~"@{icon-path}hidden" );
 			}
 
 			&.flow-post-moderated-delete {
-				.background-image-svg('../../base/images/deleted_normal.svg', '../../base/images/deleted_normal.png');
+				.flow-moderated-element-icon( ~"@{icon-path}deleted" );
 			}
 
 			&.flow-post-moderated-suppress {
-				.background-image-svg('../../base/images/suppressed_normal.svg', '../../base/images/suppressed_normal.png');
+				.flow-moderated-element-icon( ~"@{icon-path}suppressed" );
+			}
+
+			span.flow-post-moderated-view {
+				cursor: pointer;
 			}
 		}
 
@@ -290,6 +301,10 @@
 			.flow-datestamp {
 				display: none;
 			}
+		}
+
+		.flow-post-moderated-show-message, .flow-post-moderated-hide-message {
+			display: none;
 		}
 	}
 
