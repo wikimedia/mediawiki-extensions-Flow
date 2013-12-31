@@ -1,16 +1,16 @@
 @import 'mediawiki.mixins.less';
 
 // Add icon to action buttons
-.buttonIcon(@icon-prefix) {
+.buttonIcon(@icon-prefix, @icon-dir) {
 	.buttonIconExplicit(
-		~"@{icon-prefix}_active.svg",
-		~"@{icon-prefix}_active.png",
-		~"@{icon-prefix}_hover.svg",
-		~"@{icon-prefix}_hover.png",
-		~"@{icon-prefix}_normal.svg",
-		~"@{icon-prefix}_normal.png",
-		~"@{icon-prefix}_onclick.svg",
-		~"@{icon-prefix}_onclick.png"
+		~"@{icon-prefix}_active@{icon-dir}.svg",
+		~"@{icon-prefix}_active@{icon-dir}.png",
+		~"@{icon-prefix}_hover@{icon-dir}.svg",
+		~"@{icon-prefix}_hover@{icon-dir}.png",
+		~"@{icon-prefix}_normal@{icon-dir}.svg",
+		~"@{icon-prefix}_normal@{icon-dir}.png",
+		~"@{icon-prefix}_onclick@{icon-dir}.svg",
+		~"@{icon-prefix}_onclick@{icon-dir}.png"
 	);
 }
 
@@ -28,7 +28,8 @@
 	@onclick-fallback-icon
 ) {
 	padding-left: 41px;
-
+	text-align: left;
+	
 	// !important to overwrite MW core's background image
 	.background-image-svg(@normal-icon, @normal-fallback-icon) !important;
 

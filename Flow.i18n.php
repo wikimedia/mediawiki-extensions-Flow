@@ -66,6 +66,7 @@ $messages['en'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Reply}}',
 	'flow-reply-link' => '{{GENDER:$1|Reply}}',
 	'flow-thank-link' => '{{GENDER:$1|Thank}}',
+	'flow-post-interaction-separator' => '&#32;•&#32;', # only translate this message to other languages if you have to change it
 
 	'flow-edit-post-submit' => 'Submit changes',
 
@@ -80,6 +81,7 @@ $messages['en'] = array(
 	'flow-post-action-restore-post' => 'Restore post',
 
 	'flow-topic-action-view' => 'Permalink',
+	'flow-topic-action-topic-history' => 'Topic history',
 	'flow-topic-action-watchlist' => 'Watchlist',
 	'flow-topic-action-edit-title' => 'Edit title',
 	'flow-topic-action-history' => 'Topic history',
@@ -427,6 +429,7 @@ Changes refers to diff between revisions.
 {{Identical|Reply}}',
 	'flow-thank-link' => 'Link text of the button that will (when clicked) thank the editor of the comment Parameters:
 * $1 - username, can be used for GENDER',
+	'flow-post-interaction-separator' => '{{optional}}',
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified. Parameters:
 * $1 - username that created the most recent revision of the post
@@ -455,6 +458,7 @@ Translate as label for the link or the Submit button.
 {{Identical|Restore post}}',
 	'flow-topic-action-view' => "Title text for topic's permalink icon.
 {{Identical|Permalink}}",
+	'flow-topic-action-topic-history' => 'Used as text for the link which is used to view topic-history of the topic.',
 	'flow-topic-action-watchlist' => "Title text for topic's watchlist icon.
 {{Identical|Watchlist}}",
 	'flow-topic-action-edit-title' => 'Used as title for the link which is used to edit the title.',
