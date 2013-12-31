@@ -23,7 +23,7 @@
 		transition: opacity 0.2s;
 	}
 	// a necessary for specificity
-	&:hover a {
+	&:hover {
 		.flow-agotime {
 			opacity: 0;
 		}
@@ -45,5 +45,20 @@ span.flow-datestamp {
 			right: 0;
 			bottom: 0;
 		}
+	}
+}
+
+// Overwrite user link color
+.flow-container {
+	a {
+		&.mw-userlink {
+			color: #3c68b1;
+		}
+	}
+	.mw-usertoollinks {
+		a {
+			color: #3c68b1;
+		}
+		font-weight: normal;
 	}
 }

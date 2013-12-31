@@ -1,0 +1,7 @@
+.flow-moderated-element-icon( @icon-path ) {
+	.background-image-svg( ~"@{icon-path}_normal.svg", ~"@{icon-path}_normal.png" );
+
+	&:hover {
+		.background-image-svg( ~"@{icon-path}_hover.svg", ~"@{icon-path}_hover.png" ) !important;
+	}
+}
