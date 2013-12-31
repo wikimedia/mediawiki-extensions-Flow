@@ -67,15 +67,6 @@
 		}
 	}
 
-	.flow-edit-post-link {
-		margin-top: -43px !important; // default -30px + -13px to be pushed up (because of .flow-post-content bottom padding)
-
-		background-position: center;
-		background-size: 20px auto;
-		background-repeat: no-repeat;
-		.background-image-svg('../../base/images/edit_hover_ltr.svg', '../../base/images/edit_hover_ltr.png');
-	}
-
 	.flow-icon-permalink {
 		background-position: center;
 		background-size: 20px auto;
@@ -86,15 +77,12 @@
 	.flow-post-interaction {
 		padding-top: 13px;
 
-		// hide reply/thank buttons until post is hovered
-		opacity: 0;
-		transition: opacity 0.2s;
-
 		.mw-ui-button {
 			border: none;
 			padding: 0;
 			background: none;
 			color: #777;
+			font-weight: normal;
 
 			box-shadow: none;
 			-webkit-box-shadow: none;
@@ -102,14 +90,10 @@
 		}
 	}
 
-	.flow-element-container:hover .flow-post-interaction {
-		opacity: 1;
-	}
-
 	.flow-datestamp {
 		position: absolute;
 		right: 22px;
-		bottom: 0;
+		top: 10px;
 		margin: 0;
 
 		a {

@@ -83,8 +83,6 @@ echo Html::openElement( 'div', array(
 				</span>
 			</div>
 
-			<?php echo $postView->editPostButton( 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' ); ?>
-
 			<div class="flow-post-content">
 				<?php echo $this->getContent( $post, 'html', $user ), $postView->createModifiedTipsyLink( $block ); ?>
 				<?php echo $postView->createModifiedTipsyHtml( $block ); ?>
@@ -123,11 +121,8 @@ echo Html::openElement( 'div', array(
 				), true );
 			?>
 			<div class="flow-post-interaction">
-				<?php if ( !$post->isModerated() && $postView->actions()->isAllowed( 'reply' ) ): ?>
-					<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo $postView->replyLink(); ?></span></a>
-				<?php endif ?>
+				<?php echo $postView->postInteractionLinks( 'flow-reply-link mw-ui-button', 'flow-edit-post-link mw-ui-button' ); ?>
 			</div>
-
 			<?php
 			echo Html::element(
 				'a',
