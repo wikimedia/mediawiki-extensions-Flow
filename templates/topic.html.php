@@ -109,8 +109,6 @@ echo Html::openElement( 'div', array(
 				);
 			endif ?>
 		</div>
-
-		<?php if ( $postActionMenu->isAllowedAny( 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic' ) ): ?>
 		<div class="flow-tipsy flow-actions">
 			<a class="flow-tipsy-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
 			<div class="flow-tipsy-flyout">
@@ -143,6 +141,27 @@ echo Html::openElement( 'div', array(
 							'mw-ui-button flow-restore-topic-link'
 						), '</li>';
 					} ?>
+					<?php if ( $postActionMenu->isAllowed( 'edit-title' ) ) {
+						echo '<li class="flow-action-edit-title">', $postActionMenu->getButton(
+							'edit-title',
+							wfMessage( 'flow-topic-action-edit-title' )->escaped(),
+							'mw-ui-button flow-edit-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $postActionMenu->isAllowed( 'view' ) ) {
+						echo '<li class="flow-action-permalink">', $postActionMenu->getButton(
+							'view',
+							wfMessage( 'flow-topic-action-view' )->escaped(),
+							'mw-ui-button flow-action-permalink-link'
+						), '</li>';
+					} ?>
+					<?php if ( $postActionMenu->isAllowed( 'topic-history' ) ) {
+						echo '<li class="flow-action-topic-history">', $postActionMenu->getButton(
+							'topic-history',
+							wfMessage( 'flow-topic-action-topic-history' )->escaped(),
+							'mw-ui-button flow-action-topic-history-link'
+						), '</li>';
+					} ?>
 <!--
 					<li class="flow-action-close">
 						<a href="#" class="mw-ui-button">@todo: Close topic</a>
@@ -152,10 +171,7 @@ echo Html::openElement( 'div', array(
 			</div>
 		</div>
 		<?php
-			endif;
-
 			echo $this->render( 'flow:timestamp.html.php', array(
-				'historicalLink' => $postActionMenu->actionUrl( 'topic-history' ),
 				'timestamp' => $topic->getLastModifiedObj(),
 			), true );
 		?>
@@ -201,18 +217,6 @@ echo Html::openElement( 'div', array(
 			<?php echo count( $root->getRecursiveResult( $indexParticipants ) ); ?>
 		</p>
 		<?php endif; ?>
-
-		<?php
-			echo Html::element(
-				'a',
-				array(
-					'class' => 'flow-icon-permalink flow-icon flow-icon-bottom-aligned',
-					'title' => wfMessage( 'flow-topic-action-view' )->text(),
-					'href' => $this->generateUrl( $topic ),
-				),
-				wfMessage( 'flow-topic-action-view' )->text()
-			);
-		?>
 	</div>
 </div>
 <?php

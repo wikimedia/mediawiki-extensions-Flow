@@ -12,6 +12,14 @@
 		padding-bottom: 10px;
 	}
 
+	.flow-titlebar {
+		h2 {
+			&.flow-realtitle {
+				display: inline;
+			}
+		}
+	}
+
 	&.flow-topic-moderated {
 		// Make space for moderation icon
 		.flow-element-container .flow-titlebar .flow-topic-title {
@@ -41,7 +49,7 @@
 			.flow-topic-children-container {
 				display: none;
 			}
-			.flow-realtitle {
+			.flow-realtitle, .flow-content-modified-tipsy-link {
 				display: none;
 			}
 		}
@@ -121,7 +129,10 @@
 					color: #aaa;
 				}
 
-				display: inline;
+				&.flow-moderated-title {
+					font-size: 16px;
+					color: #aaa;
+				}
 			}
 
 			.flow-content-modified-tipsy-flyout {
