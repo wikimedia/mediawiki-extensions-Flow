@@ -144,9 +144,9 @@ class FlowHooks {
 				}
 
 				$view->show( $loader, $action );
-			} catch ( Flow\Exception\FlowException $e ) {
-				$handling = new Flow\Exception\FlowExceptionHandling( $container['templating'], RequestContext::getMain() );
-				$handling->handle( $e );
+			} catch( Flow\Exception\FlowException $e ) {
+				$e->setOutput( $output );
+				throw $e;
 			}
 
 			return false;
