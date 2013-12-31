@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_9f0553c7",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-31T14:25:14Z",
+      "side": 1,
+      "message": "I think this comment \u0026 null-value are outdated (probably bad rebase): permission checks are already implemented for header too.\n\nCorrect value should be:\n\n    \u0027permissions\u0027 \u003d\u003e array(\n        Header::MODERATED_NONE \u003d\u003e \u0027\u0027,\n    ),",
+      "revId": "ef47ee7521b855530b3c1703f91af2225f67e509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_7f0ccff0",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-31T14:25:14Z",
+      "side": 1,
+      "message": "Same as above:\n\n    \u0027permissions\u0027 \u003d\u003e array(\n        Header::MODERATED_NONE \u003d\u003e \u0027\u0027,\n    ),",
+      "revId": "ef47ee7521b855530b3c1703f91af2225f67e509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_1ff143da",
+        "filename": "FlowActions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-31T14:25:14Z",
+      "side": 1,
+      "message": "Some parameter callback functions have been removed here, I assume in an incorrect rebase (because the i18n message params still go up to $5)",
+      "revId": "ef47ee7521b855530b3c1703f91af2225f67e509",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
