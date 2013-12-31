@@ -59,8 +59,24 @@
 		display: none;
 	}
 
+	.flow-tipsy {
+		width: 100%;
+	}
+
 	.flow-tipsy-flyout {
 		display: block;
+
+		// give the action menu an animated width
+		ul li .mw-ui-button {
+			transition: width 0.1s, text-indent 0.1s, padding-right 0.1s;
+		}
+
+		// unless when hovered, shorten buttons to only display the icon
+		&:not(:hover) ul li .mw-ui-button {
+			width: 0;
+			text-indent: -9999px;
+			padding-right: 4px;
+		}
 	}
 }
 
