@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_3fb40733",
+        "filename": "templates/block-errors.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-31T13:11:14Z",
+      "side": 1,
+      "message": "I\u0027m not sure this file is needed?\n\nedit-title.html.php uses ErrorHelper to output errors; and I don\u0027t see this file being used anywhere (unless the plan is to make ErrorHelper use this template file to render blocks, instead of building the output with HtmlString?)",
+      "revId": "86ed333d1c09f1896a85b3155b11e2edb1ebf744",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_7faa8fd2",
+        "filename": "templates/block-errors.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-31T13:11:14Z",
+      "side": 1,
+      "message": "While I\u0027m all in favor of using \u003c?\u003d instead of \u003c?php echo, it depends on short_open_tag being allowed prior to PHP5.4 (http://be1.php.net/ini.core#ini.short-open-tag)\n\nAs long as we still support PHP \u003c 5.4, I\u0027d use the more verbose version, which always works, regardless of short_open_tag\u0027s setting.",
+      "revId": "86ed333d1c09f1896a85b3155b11e2edb1ebf744",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
