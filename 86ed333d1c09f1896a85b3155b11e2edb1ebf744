@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "eeebdf60_ffbd7f17",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2013-12-31T13:12:21Z",
+      "side": 1,
+      "message": "Also, is there a reason $prefix is not longer prepended, and template is fetched from container instead of using $templating?",
+      "revId": "86ed333d1c09f1896a85b3155b11e2edb1ebf744",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eeebdf60_3fb40733",
         "filename": "templates/block-errors.html.php",
         "patchSetId": 2
