@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_d911bbfd",
+        "filename": "tests/browser/features/step_definitions/edit_existing_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2013-12-31T00:56:14Z",
+      "side": 1,
+      "message": "Fails for me because I don\u0027t define BROWSER_LABEL, so\n\n   can\u0027t convert nil into String (TypeError)\n\nFrom my 13th minute in Ruby, the workaround to make this a string is:\n\n    + ENV[\u0027BROWSER_LABEL\u0027].to_s\n    + ( ENV[\u0027BROWSER_LABEL\u0027] || \u0027\u0027 )\n\nbut it would be better to  use the computed browser_label since it defaults to Firefox.  Looking at lib/mediawiki/selenium/env.rb , it sets up browser_label, so browser_label[\"name\"] has what you want, but I don\u0027t know how to get it in scope in here, a dumb replacement gives\n\n    undefined local variable or method `browser_label\u0027",
+      "revId": "2131bfab283bd862e470418614039472389d5cea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
