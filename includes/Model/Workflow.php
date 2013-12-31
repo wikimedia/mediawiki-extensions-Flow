@@ -17,7 +17,7 @@ class Workflow {
 	protected $namespace;
 	protected $titleText;
 	protected $userId;
-	protected $userText;
+	protected $userIp;
 	// lock state is a list of state updates, the final state
 	// is the active state.
 	protected $lockState;
@@ -37,7 +37,12 @@ class Workflow {
 		$obj->namespace = (int) $row['workflow_namespace'];
 		$obj->titleText = $row['workflow_title_text'];
 		$obj->userId = $row['workflow_user_id'];
-		$obj->userText = $row['workflow_user_text'];
+		if ( array_key_exists( 'workflow_user_ip', $row ) ) {
+			$obj->userIp = $row['workflow_user_ip'];
+		// BC for workflow_user_text field
+		} elseif ( isset( $row['workflow_user_text'] ) && $obj->userId === 0 ) {
+			$obj->userIp = $row['workflow_user_text'];
+		}
 		$obj->lockState = $row['workflow_lock_state'];
 		$obj->definitionId = UUID::create( $row['workflow_definition_id'] );
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
@@ -52,7 +57,7 @@ class Workflow {
 			'workflow_namespace' => $obj->namespace,
 			'workflow_title_text' => $obj->titleText,
 			'workflow_user_id' => $obj->userId,
-			'workflow_user_text' => $obj->userText,
+			'workflow_user_ip' => $obj->userIp,
 			'workflow_lock_state' => $obj->lockState,
 			'workflow_definition_id' => $obj->definitionId->getBinary(),
 			'workflow_last_update_timestamp' => $obj->lastModified,
@@ -78,8 +83,7 @@ class Workflow {
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();
-		$obj->userId = $user->getId();
-		$obj->userText = $user->getName();
+		list( $obj->userId, $obj->userIp ) = AbstractRevision::userFields( $user );
 		$obj->lockState = 0;
 		$obj->definitionId = $definition->getId();
 		$obj->updateLastModified();
@@ -99,7 +103,7 @@ class Workflow {
 	public function isNew() { return (bool) $this->isNew; }
 	public function getDefinitionId() { return $this->definitionId; }
 	public function getUserId() { return $this->userId; }
-	public function getUserText() { return $this->userText; }
+	public function getUserIp() { return $this->userIp; }
 	public function getLastModified() { return $this->lastModified; }
 	public function getLastModifiedObj() { return new MWTimestamp( $this->lastModified ); }
 
