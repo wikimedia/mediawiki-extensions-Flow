@@ -14,6 +14,19 @@
 	);
 }
 
+.buttonIcon(@icon-prefix, @icon-dir) {
+	.buttonIconExplicit(
+		~"@{icon-prefix}_active_@{icon-dir}.svg",
+		~"@{icon-prefix}_active_@{icon-dir}.png",
+		~"@{icon-prefix}_hover_@{icon-dir}.svg",
+		~"@{icon-prefix}_hover_@{icon-dir}.png",
+		~"@{icon-prefix}_normal_@{icon-dir}.svg",
+		~"@{icon-prefix}_normal_@{icon-dir}.png",
+		~"@{icon-prefix}_onclick_@{icon-dir}.svg",
+		~"@{icon-prefix}_onclick_@{icon-dir}.png"
+	);
+}
+
 .buttonIconExplicit(
 	@active-icon,
 	@active-fallback-icon,
@@ -28,7 +41,8 @@
 	@onclick-fallback-icon
 ) {
 	padding-left: 41px;
-
+	text-align: left;
+	
 	// !important to overwrite MW core's background image
 	.background-image-svg(@normal-icon, @normal-fallback-icon) !important;
 

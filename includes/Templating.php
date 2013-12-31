@@ -169,6 +169,7 @@ class Templating {
 				'block' => $block,
 				'post' => $post,
 				'postView' => $view,
+				'postActionMenu' => $actionMenu,
 			),
 			$return
 		);

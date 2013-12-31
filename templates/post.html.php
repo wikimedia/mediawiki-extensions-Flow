@@ -76,6 +76,51 @@ echo Html::openElement( 'div', array(
 		endif;
 		?>
 
+		<div class="flow-tipsy flow-actions">
+			<a class="flow-tipsy-link" href="#" title="<?php echo wfMessage( 'flow-post-actions' )->escaped(); ?>"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
+			<div class="flow-tipsy-flyout">
+				<ul>
+					<?php
+					$hidePost = $postView->hidePostButton( 'flow-hide-post-link mw-ui-button' );
+					if ( $hidePost ) {
+						echo '<li class="flow-action-hide">' . $hidePost . '</li>';
+					}
+					$deletePost = $postView->deletePostButton( 'flow-delete-post-link mw-ui-button' );
+					if ( $deletePost ) {
+						echo '<li class="flow-action-delete">' . $deletePost . '</li>';
+					}
+					$suppressPost = $postView->suppressPostButton( 'flow-suppress-post-link mw-ui-button' );
+					if ( $suppressPost ) {
+						echo '<li class="flow-action-suppress">' . $suppressPost . '</li>';
+					}
+					// @todo restore button will probably be moved somewhere else, some day
+					$restorePost = $postView->restorePostButton( 'flow-restore-post-link mw-ui-button mw-ui-constructive' );
+					if ( $restorePost ) {
+						echo '<li class="flow-action-restore">' . $restorePost . '</li>';
+					}
+					// Permanent link
+					$viewButton = $postActionMenu->getButton(
+						'view',
+						wfMessage( 'flow-post-action-view' )->escaped(),
+						'mw-ui-button flow-action-permalink-link'
+					);
+					if ( $viewButton ) {
+						echo '<li class="flow-action-permalink">', $viewButton, '</li>';
+					}
+					// History link
+					$historyButton =  $postActionMenu->getButton(
+						'post-history',
+						wfMessage( 'flow-post-action-post-history' )->escaped(),
+						'mw-ui-button flow-action-post-history-link'
+					);
+					if ( $historyButton ) {
+						echo '<li class="flow-action-post-history">', $historyButton, '</li>';
+					}
+					?>
+				</ul>
+			</div>
+		</div>
+
 		<div class="flow-post-main">
 			<div class="flow-post-title">
 				<span class="flow-creator">
@@ -83,61 +128,17 @@ echo Html::openElement( 'div', array(
 				</span>
 			</div>
 
-			<?php echo $postView->editPostButton( 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' ); ?>
-
 			<div class="flow-post-content">
 				<?php echo $this->getContent( $post, 'html' ), $postView->createModifiedTipsyLink( $block ); ?>
 			</div>
-			<?php if ( $postView->actions()->isAllowedAny( 'hide-post', 'delete-post', 'suppress-post', 'restore-post' ) ): ?>
-				<div class="flow-tipsy flow-actions">
-					<a class="flow-tipsy-link flow-icon flow-icon-bottom-aligned" href="#" title="<?php echo wfMessage( 'flow-post-actions' )->escaped(); ?>" data-tipsy-gravity="e"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
-					<div class="flow-tipsy-flyout">
-						<ul>
-							<?php
-							if ( $hidePost = $postView->hidePostButton( 'flow-hide-post-link mw-ui-button' ) ) {
-								echo '<li class="flow-action-hide">' . $hidePost . '</li>';
-							}
-							if ( $deletePost = $postView->deletePostButton( 'flow-delete-post-link mw-ui-button' ) ) {
-								echo '<li class="flow-action-delete">' . $deletePost . '</li>';
-							}
-							if ( $suppressPost = $postView->suppressPostButton( 'flow-suppress-post-link mw-ui-button' ) ) {
-								echo '<li class="flow-action-suppress">' . $suppressPost . '</li>';
-							}
-							// @todo restore button will probably be moved somewhere else, some day
-							if ( $restorePost = $postView->restorePostButton( 'flow-restore-post-link mw-ui-button mw-ui-constructive' ) ) {
-								echo '<li class="flow-action-restore">' . $restorePost . '</li>';
-							}
-							?>
-						</ul>
-					</div>
-				</div>
 			<?php
-				endif;
-
-				$historyLink = $postView->postHistoryLink( $block->getName() );
-
 				echo $this->render( 'flow:timestamp.html.php', array(
-					'historicalLink' => $historyLink,
 					'timestamp' => $post->getPostId()->getTimestampObj(),
 				), true );
 			?>
 			<div class="flow-post-interaction">
-				<?php if ( !$post->isModerated() && $postView->actions()->isAllowed( 'reply' ) ): ?>
-					<a class="flow-reply-link mw-ui-button" href="#"><span><?php echo $postView->replyLink(); ?></span></a>
-				<?php endif ?>
+				<?php echo $postView->postInteractionLinks( 'flow-reply-link mw-ui-button', 'flow-edit-post-link mw-ui-button' ); ?>
 			</div>
-
-			<?php
-			echo Html::element(
-				'a',
-				array(
-					'class' => 'flow-icon-permalink flow-icon flow-icon-bottom-aligned',
-					'title' => wfMessage( 'flow-post-action-view' )->text(),
-					'href' => $this->generateUrl( $block->getWorkflowId() ) . '#flow-post-' . $post->getPostId()->getHex(),
-				),
-				wfMessage( 'flow-topic-action-view' )->text()
-			);
-			?>
 		</div>
 	</div>
 
