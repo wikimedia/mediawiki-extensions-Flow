@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_d3b3d4e6",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-01T23:15:19Z",
+      "side": 1,
+      "message": "I think it\u0027s actually easier (and less error prone) to use a data attribute to store initialised state. In particular, if a title is changed and then reloaded, you don\u0027t have to invalidate its entry in the list of initialised IDs.",
+      "revId": "cd0317ab60f7689e8eb059d5670180b6f91198e4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
