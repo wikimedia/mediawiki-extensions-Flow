@@ -2,6 +2,8 @@
 
 Feature: Edit existing title
 
+Assumes that the test Flow page has at least two topics (with posts).
+
   Background:
     Given I am logged in
 

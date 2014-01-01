@@ -7,6 +7,8 @@ class FlowPage
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
   page_url URL.url("Talk:Flow_QA")
 
+  # This hack makes Chrome edit the second topic on the page to avoid edit
+  # conflicts from simultaneous test runs (bug 59011).
   if ENV['BROWSER_LABEL'] == "chrome"
     topic_index = 1
   else
