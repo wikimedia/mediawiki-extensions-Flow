@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_73e768e0",
+        "filename": "Flow.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-01T23:56:56Z",
+      "side": 1,
+      "message": "Use $wgExtensionFunctions for this, like we do for Echo. Flow may be loaded before AbuseFilter.",
+      "revId": "a816b13734332acce0447cfa305ded0da66ee069",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_d3019472",
+        "filename": "includes/AbuseFilterUtils.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-01T23:56:56Z",
+      "side": 1,
+      "message": "This is a bit annoying, because we use different parsers for the HTML and Wikitext.\n\nYou might want to add a new type of lazy-load variable which roundtrips to parsoid if necessary.",
+      "revId": "a816b13734332acce0447cfa305ded0da66ee069",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
