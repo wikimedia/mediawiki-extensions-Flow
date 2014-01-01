@@ -4,11 +4,11 @@ Feature: Create new topic anonymous
 
   Scenario: Add new Flow topic
     Given I am on Flow page
-    When I create a Title of Flow Topic in Flow new topic
-      And I create a Body of Flow Topic into Flow body
+    When I create a Topic: <Déjà vu 北京 <tag & "OK" 'end' [[Main_Page|main]] {{SITENAME}}> in Flow new topic
+      And I create a Body: <Déjà vu 北京 <tag & "OK" 'end' [[Main_Page|main]] {{SITENAME}}> into Flow body
       And I click New topic save
-    Then the Flow page should contain Title of Flow Topic
-      And the Flow page should contain Body of Flow Topic
+    Then the Flow page should contain Topic: <Déjà vu 北京 <tag & "OK" 'end' [[Main_Page|main]] {{SITENAME}}>
+      And the Flow page should contain Body: <Déjà vu 北京 <tag & "OK" 'end' [[Main_Page|main]] {{SITENAME}}>
 
   Scenario: Anon does not see block or actions
     Given I am on Flow page
