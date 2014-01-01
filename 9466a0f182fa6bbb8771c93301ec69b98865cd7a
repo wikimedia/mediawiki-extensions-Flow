@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_8d3e4986",
+        "filename": "modules/discussion/styles/modified.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-01T06:00:04Z",
+      "side": 1,
+      "message": "Needs a comment:\n\n  /* without overflow:hidden, posts with more than 5 lines show a scrollbar. */",
+      "revId": "9466a0f182fa6bbb8771c93301ec69b98865cd7a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
