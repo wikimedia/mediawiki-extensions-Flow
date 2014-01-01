@@ -403,7 +403,9 @@ Parameters:
 	'flow-preview' => 'Used as action link text.
 {{Identical|Preview}}',
 	'flow-show-change' => 'Used as action link text.
-{{Identical|Show changes}}',
+
+Changes refers to diff between revisions.
+{{Identical|Show change}}',
 	'flow-last-modified-by' => 'Used as text to show who made the last content modification. Parameters:
 * $1 - username of the user who last made the content modification, can be used for GENDER support',
 	'flow-newtopic-title-placeholder' => 'Used as placeholder for the "Subject/Title for topic" textarea.
@@ -1138,8 +1140,11 @@ $messages['br'] = array(
  * @author Умар
  */
 $messages['ce'] = array(
+	'flow-post-moderated-toggle-hide' => '[Къайлаяккха]',
 	'flow-post-actions' => 'дийраш',
 	'flow-topic-actions' => 'Дийраш',
+	'flow-show-change' => 'Гайта хийцам',
+	'flow-last-modified-by' => 'ТӀехьара бина {{GENDER:$1|хийцам}} цу $1',
 	'flow-topic-action-history' => 'Теман истори',
 );
 
@@ -1188,6 +1193,8 @@ $messages['de'] = array(
 	'flow-topic-actions' => 'Aktionen',
 	'flow-cancel' => 'Abbrechen',
 	'flow-preview' => 'Vorschau',
+	'flow-show-change' => 'Änderungen anzeigen',
+	'flow-last-modified-by' => 'Zuletzt {{GENDER:$1|geändert}} von $1',
 	'flow-newtopic-title-placeholder' => 'Neues Thema',
 	'flow-newtopic-content-placeholder' => 'Gib hier Einzelheiten ein, wenn du möchtest.',
 	'flow-newtopic-header' => 'Ein neues Thema hinzufügen',
@@ -1577,6 +1584,8 @@ $messages['fr'] = array(
 	'flow-topic-actions' => 'Actions',
 	'flow-cancel' => 'Annuler',
 	'flow-preview' => 'Prévisualiser',
+	'flow-show-change' => 'Voir les modifications',
+	'flow-last-modified-by' => '{{GENDER:$1|Modifié}} en dernier par $1',
 	'flow-newtopic-title-placeholder' => 'Nouveau sujet',
 	'flow-newtopic-content-placeholder' => 'Ajouter des détails si vous le voulez',
 	'flow-newtopic-header' => 'Ajouter un nouveau sujet',
@@ -1906,6 +1915,8 @@ $messages['he'] = array(
 	'flow-topic-actions' => 'פעולות',
 	'flow-cancel' => 'ביטול',
 	'flow-preview' => 'תצוגה מקדימה',
+	'flow-show-change' => 'הצגת שינויים',
+	'flow-last-modified-by' => 'שוּנה לאחרונה על־ידי $1',
 	'flow-newtopic-title-placeholder' => 'כותרת חדשה',
 	'flow-newtopic-content-placeholder' => 'אפשר להוסיף כאן פרטים אם בא לך',
 	'flow-newtopic-header' => 'הוספת נושא חדש',
@@ -2456,6 +2467,8 @@ $messages['ja'] = array(
 	'flow-topic-actions' => '操作',
 	'flow-cancel' => 'キャンセル',
 	'flow-preview' => 'プレビュー',
+	'flow-show-change' => '差分を表示',
+	'flow-last-modified-by' => '最終{{GENDER:$1|更新}}者: $1',
 	'flow-newtopic-title-placeholder' => '新しい話題',
 	'flow-newtopic-content-placeholder' => '詳細情報を入力 (省略可能)',
 	'flow-newtopic-header' => '新しい話題の追加',
@@ -2731,6 +2744,8 @@ $messages['lb'] = array(
 	'flow-topic-actions' => 'Aktiounen',
 	'flow-cancel' => 'Ofbriechen',
 	'flow-preview' => 'Kucken ouni ze späicheren',
+	'flow-show-change' => 'Ännerunge weisen',
+	'flow-last-modified-by' => "Fir d'lescht {{GENDER:$1|geännert}} vum $1",
 	'flow-newtopic-title-placeholder' => 'Neit Thema',
 	'flow-newtopic-content-placeholder' => 'Setzt e puer Detailer derbäi, wann Dir wëllt',
 	'flow-newtopic-header' => 'En neit Thema derbäisetzen',
@@ -2804,6 +2819,7 @@ $messages['lb'] = array(
 	'flow-moderation-reason-placeholder' => 'Gitt Äre Grond hei an',
 	'flow-moderation-intro-delete-post' => '{{GENDER:$3|Erklärt}} w.e.g. firwat datt Dir dës Matdeelung läscht.',
 	'flow-moderation-intro-hide-post' => '{{GENDER:$3|Erklärt}} w.e.g. firwat datt Dir dës Matdeelung verstoppt.',
+	'flow-moderation-intro-restore-post' => '{{GENDER:$3|Erklärt}} w.e.g. firwat datt Dir dës Matdeelung restauréiert.',
 	'flow-moderation-confirm-delete-post' => 'Läschen',
 	'flow-moderation-confirm-hide-post' => 'Verstoppen',
 	'flow-moderation-confirm-restore-post' => 'Restauréieren',
@@ -2881,6 +2897,8 @@ $messages['mk'] = array(
 	'flow-topic-actions' => 'Дејства',
 	'flow-cancel' => 'Откажи',
 	'flow-preview' => 'Преглед',
+	'flow-show-change' => 'Прикажи промени',
+	'flow-last-modified-by' => 'Последно {{GENDER:$1|изменето}} од $1',
 	'flow-newtopic-title-placeholder' => 'Нова тема',
 	'flow-newtopic-content-placeholder' => 'Додајте подробности, ако сакате',
 	'flow-newtopic-header' => 'Додај нова тема',
@@ -3802,6 +3820,8 @@ $messages['sv'] = array(
 	'flow-topic-actions' => 'Åtgärder',
 	'flow-cancel' => 'Avbryt',
 	'flow-preview' => 'Förhandsgranska',
+	'flow-show-change' => 'Visa ändringar',
+	'flow-last-modified-by' => 'Senast {{GENDER:$1|ändrad}} av $1',
 	'flow-newtopic-title-placeholder' => 'Nytt ämne',
 	'flow-newtopic-content-placeholder' => 'Lägg till några detaljer om du vill',
 	'flow-newtopic-header' => 'Lägg till ett nytt ämne',
@@ -3855,6 +3875,8 @@ $messages['sv'] = array(
 	'flow-error-missing-prev-revision-identifier' => 'Tidigare omarbetningsidentifieraren saknas.',
 	'flow-error-prev-revision-mismatch' => 'Redigeringen kunde inte sparas: en senare förändring har redan lämnats in.',
 	'flow-error-prev-revision-does-not-exist' => 'Kunde inte hitta den tidigare omarbetningen.',
+	'flow-error-default' => 'Ett fel har uppstått.',
+	'flow-error-invalid-title' => 'Ogiltig sidtitel angavs.',
 	'flow-edit-header-submit' => 'Spara rubrik',
 	'flow-edit-title-submit' => 'Ändra titel',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|redigerade}} en [$3 kommentar]',
@@ -4019,6 +4041,8 @@ $messages['uk'] = array(
 	'flow-topic-actions' => 'Дії',
 	'flow-cancel' => 'Скасувати',
 	'flow-preview' => 'Попередній перегляд',
+	'flow-show-change' => 'Показати зміни',
+	'flow-last-modified-by' => 'Востаннє {{GENDER:$1|змінив|змінила}} $1',
 	'flow-newtopic-title-placeholder' => 'Нова тема',
 	'flow-newtopic-content-placeholder' => 'Додайте деякі деталі, якщо ви хочете',
 	'flow-newtopic-header' => 'Додати нову тему',
