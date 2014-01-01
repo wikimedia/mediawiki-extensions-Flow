@@ -20,6 +20,11 @@ use Flow\Exception\InvalidDataException;
 
 class Templating {
 	/**
+	 * @var UserNameBatch
+	 */
+	protected $usernames;
+
+	/**
 	 * @var UrlGenerator
 	 */
 	public $urlGenerator;
@@ -157,7 +162,8 @@ class Templating {
 			$this->globals['user'], // There is no guarantee of this existing
 			$root,
 			$actionMenu,
-			$this->urlGenerator
+			$this->urlGenerator,
+			$this->usernames
 		);
 		if ( !$actionMenu->isAllowed( 'view' ) ) {
 			return '';
