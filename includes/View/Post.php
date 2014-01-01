@@ -165,12 +165,18 @@ class Post {
 
 	public function createModifiedTipsyHtml( AbstractBlock $block ) {
 		$html = '';
-		if ( $this->post->getLastContentEditorName() ) {
+		if ( $this->post->getLastContentEditId() ) {
+			$name = $this->usernames->get(
+				wfWikiId(),
+				$this->post->getLastContentEditUserId(),
+				$this->post->getLastContentEditUserIp()
+			);
+
 			$html .= Html::openElement( 'div', array( 'class' => 'flow-content-modified-tipsy-flyout' ) );
 			$html .= Html::element(
 				'div',
 				array( 'class' => 'flow-last-modified-user' ),
-				wfMessage( 'flow-last-modified-by', $this->post->getLastContentEditorName() )->text()
+				wfMessage( 'flow-last-modified-by', $name )->text()
 			);
 			$html .= Html::openElement( 'div', array( 'class' => 'flow-show-change-link' ) );
 			$html .= Html::element( 'a', array( 'href' => $this->getLatestDiffLink( $block ) ), wfMessage( 'flow-show-change' )->text() );

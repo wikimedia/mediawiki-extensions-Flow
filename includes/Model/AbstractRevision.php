@@ -518,6 +518,14 @@ abstract class AbstractRevision {
 		return $this->lastEditId;
 	}
 
+	public function getLastContentEditUserId() {
+		return $this->lastEditUserId;
+	}
+
+	public function getLastContentEditUserIp() {
+		return $this->lastEditUserIp;
+	}
+
 	public function getModeratedByUserId() {
 		return $this->moderatedByUserId;
 	}
