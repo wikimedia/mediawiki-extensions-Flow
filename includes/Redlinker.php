@@ -219,7 +219,13 @@ class Redlinker {
 		} );
 
 		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
-		return Redlinker::getInnerHtml( $body );
+
+		if ( $body ) {
+			return Redlinker::getInnerHtml( $body );
+		} else {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
+			return '';
+		}
 	}
 
 	/**
@@ -275,18 +281,20 @@ class Redlinker {
 			}
 		}
 	}
-	
+
 	/**
 	 * Helper method retrieves the html of the nodes children
 	 *
 	 * @param DOMNode $node
 	 * @return string html of the nodes children
 	 */
-	static public function getInnerHtml( DOMNode $node ) {
+	static public function getInnerHtml( DOMNode $node = null ) {
 		$html = array();
-		$dom = $node->ownerDocument;
-		foreach ( $node->childNodes as $child ) {
-			$html[] = $dom->saveHTML( $child );
+		if ( $node ) {
+			$dom = $node->ownerDocument;
+			foreach ( $node->childNodes as $child ) {
+				$html[] = $dom->saveHTML( $child );
+			}
 		}
 		return implode( '', $html );
 	}
