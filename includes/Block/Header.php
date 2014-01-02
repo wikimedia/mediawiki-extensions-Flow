@@ -170,11 +170,11 @@ class HeaderBlock extends AbstractBlock {
 					// headers can't be moderated
 					break;
 				case 'post':
-					// comments should not be in board history
 					if ( $revision->isTopicTitle() ) {
 						$needed[$revision->getPostId()->getHex()] = $i;
 						$query[] = array( 'tree_rev_descendant_id' => $revision->getPostId() );
 					} else {
+						// comments should not be in board history
 						unset( $history[$i] );
 					}
 					break;
@@ -193,12 +193,18 @@ class HeaderBlock extends AbstractBlock {
 		);
 		foreach ( $found as $newest ) {
 			$newest = reset( $newest );
-			$i = $needed[$newest->getPostId()-getHex()];
-			unset( $needed[$newest->getPostId()->getHex()] );
-			if ( !$this->permissions->isAllowed( $newest, 'board-history' ) ) {
-				unset( $history[$i] );
+			$id = $newest->getPostId()->getHex();
+
+			if ( isset( $needed[$id] ) ) {
+				$i = $needed[$id];
+				unset( $needed[$id] );
+
+				if ( !$this->permissions->isAllowed( $newest, 'board-history' ) ) {
+					unset( $history[$i] );
+				}
 			}
 		}
+
 		// not found
 		foreach ( $needed as $i ) {
 			unset( $history[$i] );
