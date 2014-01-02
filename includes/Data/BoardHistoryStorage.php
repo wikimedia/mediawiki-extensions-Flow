@@ -128,10 +128,10 @@ class BoardHistoryIndex extends TopKIndex {
 	}
 
 	public function onAfterInsert( $object, array $new ) {
-		if ( $new['rev_type'] === 'header' ) {
+		if ( $object->getRevisionType() === 'header' ) {
 			$new['topic_list_id'] = $new['header_workflow_id'];
 			parent::onAfterInsert( $object, $new );
-		} elseif ( $new['rev_type'] === 'post' ) {
+		} elseif ( $object->getRevisionType() === 'post' ) {
 			$topicListId = $this->findTopicListIdForRootPost( $object );
 			if ( $topicListId ) {
 				$new['topic_list_id'] = $topicListId;
@@ -141,10 +141,10 @@ class BoardHistoryIndex extends TopKIndex {
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new ) {
-		if ( $new['rev_type'] === 'header' ) {
+		if ( $object->getRevisionType() === 'header' ) {
 			$new['topic_list_id'] = $old['topic_list_id'] = $new['header_workflow_id'];
 			parent::onAfterUpdate( $object, $old, $new );
-		} elseif ( $new['rev_type'] === 'post' ) {
+		} elseif ( $object->getRevisionType() === 'post' ) {
 			$topicListId = $this->findTopicListIdForRootPost( $object );
 			if ( $topicListId ) {
 				$new['topic_list_id'] = $old['topic_list_id'] = $topicListId;
@@ -154,10 +154,10 @@ class BoardHistoryIndex extends TopKIndex {
 	}
 
 	public function onAfterRemove( $object, array $old ) {
-		if ( $new['rev_type'] === 'header' ) {
+		if ( $object->getRevisionType() === 'header' ) {
 			$old['topic_list_id'] = $old['header_workflow_id'];
 			parent::onAfterRemove( $object, $old );
-		} elseif ( $new['rev_type'] === 'post' ) {
+		} elseif ( $object->getRevisionType() === 'post' ) {
 			$topicListId = $this->findTopicListIdForRootPost( $object );
 			if ( $topicListId ) {
 				$old['topic_list_id'] = $topicListId;
