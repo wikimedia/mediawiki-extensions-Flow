@@ -7,6 +7,7 @@ use Flow\RevisionActionPermissions;
 use Flow\Log\Logger;
 use Flow\Block\Block;
 use Flow\Templating;
+use Flow\Container;
 use \Message;
 
 /**
