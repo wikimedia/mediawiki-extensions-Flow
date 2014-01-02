@@ -20,7 +20,7 @@ $differenceEngine->setContent(
 
 $differenceEngine->showDiffStyle();
 
-$getRevisionHeader = function( $revision ) use ( $templating, $block ) {
+$getRevisionHeader = function( $revision ) use ( $templating, $block, $user ) {
 	$timestamp = $templating->render(
 		'flow:timestamp.html.php',
 		array(
