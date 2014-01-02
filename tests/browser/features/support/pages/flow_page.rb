@@ -46,4 +46,6 @@ class FlowPage
   a(:topic_actions_link, text: "Actions", index: 0)
   div(:topic_post, class: "flow-post-content", index: topic_index)
   div(:topic_title, class: "flow-topic-title", index: topic_index)
+  a(:unwatch, text: "Unwatch")
+  a(:watchlist_link, text: "Watchlist")
 end
