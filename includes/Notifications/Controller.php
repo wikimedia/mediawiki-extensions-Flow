@@ -393,6 +393,9 @@ class NotificationController {
 		$users = array();
 		$container = Container::getContainer();
 
+		$user = new User;
+		$actionPermissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
+
 		foreach ( $posts as $postId ) {
 			$post = $container['storage']->find(
 				'PostRevision',
@@ -408,7 +411,7 @@ class NotificationController {
 
 			$post = reset( $post );
 
-			if ( $post && $post->isAllowed() ) {
+			if ( $post && $actionPermissions->isAllowed( $post, 'view' ) ) {
 				$userid = $post->getCreatorId();
 				if ( $userid ) {
 					$users[$userid] = User::newFromId( $userid );
