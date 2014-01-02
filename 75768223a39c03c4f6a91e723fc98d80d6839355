@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_33f0c08d",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-02T01:01:36Z",
+      "side": 1,
+      "message": "I think it would be better to create $user in advance outside the loop, and perhaps actionPermissions could also be set up outside the loop?\n\n   $userActionPermissions \u003d new RevisionActionPermissions( Container::get( \u0027flow_actions\u0027 ),\n       new User);",
+      "revId": "75768223a39c03c4f6a91e723fc98d80d6839355",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
