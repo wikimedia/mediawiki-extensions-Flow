@@ -31,15 +31,24 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 			do {
 				$continue = call_user_func( $callback, $dbw, $continue );
 				$dbf->waitForSlaves();
-				echo ".";
 			} while ( $continue !== null );
 		};
 
-		$runUpdate( array( $this, 'updateWorkflow' ) );
-		$runUpdate( array( $this, 'updateTreeRevision' ) );
-		$runUpdate( array( $this, 'updateRevision' ) );
+		// run updates only if we have the required tables
+		if ( $dbw->fieldExists( 'flow_workflow', 'workflow_user_ip' ) ) {
+			$runUpdate( array( $this, 'updateWorkflow' ) );
+		}
+		if ( $dbw->fieldExists( 'flow_tree_revision', 'tree_orig_user_ip' ) ) {
+			$runUpdate( array( $this, 'updateTreeRevision' ) );
+		}
+		if (
+			$dbw->fieldExists( 'flow_revision', 'rev_user_ip' ) &&
+			$dbw->fieldExists( 'flow_revision', 'rev_mod_user_ip' ) &&
+			$dbw->fieldExists( 'flow_revision', 'rev_edit_user_ip' )
+		) {
+			$runUpdate( array( $this, 'updateRevision' ) );
+		}
 
-		echo "\n\nDone\n\n";
 		return true;
 	}
 
