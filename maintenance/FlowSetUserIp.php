@@ -113,18 +113,20 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 		$rows = $dbw->select(
 			/* table */'flow_revision',
 			/* select */array( 'rev_id', 'rev_user_id', 'rev_user_text', 'rev_mod_user_id', 'rev_mod_user_text', 'rev_edit_user_id', 'rev_edit_user_text' ),
-			/* conditions */ $dbw->makeList(
-				array(
-					'rev_user_id' => 0,
-					'rev_mod_user_id' => 0,
-					'rev_edit_user_id' => 0,
+			/* conditions */ array(
+				'rev_id > ' . $dbw->addQuotes( $continue ),
+				$dbw->makeList(
+					array(
+						'rev_user_id' => 0,
+						'rev_mod_user_id' => 0,
+						'rev_edit_user_id' => 0,
+					),
+					LIST_OR
 				),
-				LIST_OR
 			),
 			__METHOD__,
 			/* options */array( 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'rev_id' )
 		);
-
 
 		$continue = null;
 		foreach ( $rows as $row ) {
@@ -149,6 +151,8 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 				);
 			}
 		}
+
+		return $continue;
 	}
 
 	/**
