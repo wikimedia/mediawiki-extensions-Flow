@@ -58,6 +58,9 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowUpdateRecentChanges.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRecentChanges' );
 
+		require_once __DIR__.'/maintenance/FlowSetUserIp.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowSetUserIp' );
+
 		return true;
 	}
 
