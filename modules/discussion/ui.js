@@ -300,46 +300,47 @@
 		// live bind to document because tipsy will move the links outside $container
 		// only bind once! when node is replaced (e.g. after moderation), we don't
 		// want the event to be bound again, since document node won't have changed
-		$( document )
-			.one( 'click', classes.join( ', ' ), function( e ) {
-				var moderationType = $( this ).data( 'moderation-type' );
+		if ( !$( document ).data( 'moderation-bound' ) ) {
+			$( document )
+				.data( 'moderation-bound', true )
+				.on( 'click', classes.join( ', ' ), function( e ) {
+					var moderationType = $( this ).data( 'moderation-type' );
+					e.preventDefault();
 
-				e.preventDefault();
+					// while moderation is being loaded, hide buttons & show spinner
+					$( this ).closest( 'li' )
+						.fadeOut( 'fast', function() {
+							$( this ).injectSpinner( { 'size' : 'medium', 'id' : 'flow-moderation-loading' } );
+						} );
 
-				// while moderation is being loaded, hide buttons & show spinner
-				$( this ).closest( 'li' )
-					.fadeOut( 'fast', function() {
-						$( this ).injectSpinner( { 'size' : 'medium', 'id' : 'flow-moderation-loading' } );
+					mw.loader.using( ['ext.flow.moderation'], function() {
+						var $tipsyTrigger = $( '.flow-tipsy-open' );
+
+						$.removeSpinner( 'flow-moderation-loading' );
+
+						// close tipsy
+						$tipsyTrigger.each( function() {
+							$( this ).removeClass( 'flow-tipsy-open' );
+							$( this ).tipsy( 'hide' );
+						} );
+
+						/*
+						 * $tipsyTrigger is actually just the link that opens
+						 * the tipsy window, not the moderation button we just
+						 * clicked. For the purpose of showModerationDialog, it
+						 * should do just fine though; all it needs the element
+						 * for is to fetch parent post & topic nodes.
+						 *
+						 * @todo: we should refactor showModerationDialog some
+						 * day to not rely on a specific node being tossed in;
+						 * it's too vague what exactly it should be, and we
+						 * may not always be able to guarantee nodes' positions
+						 * withing the DOM (e.g. tipsy pulls them out)
+						 */
+						$tipsyTrigger.flow( 'showModerationDialog', moderationType );
 					} );
-
-				mw.loader.using( ['ext.flow.moderation'], function() {
-					$tipsyTrigger = $( '.flow-tipsy-open' );
-
-					$.removeSpinner( 'flow-moderation-loading' );
-
-					// close tipsy
-					$tipsyTrigger.each( function() {
-						$( this ).removeClass( 'flow-tipsy-open' );
-						$( this ).tipsy( 'hide' );
-					} );
-
-					/*
-					 * $tipsyTrigger is actually just the link that opens
-					 * the tipsy window, not the moderation button we just
-					 * clicked. For the purpose of showModerationDialog, it
-					 * should do just fine though; all it needs the element
-					 * for is to fetch parent post & topic nodes.
-					 *
-					 * @todo: we should refactor showModerationDialog some
-					 * day to not rely on a specific node being tossed in;
-					 * it's too vague what exactly it should be, and we
-					 * may not always be able to guarantee nodes' positions
-					 * withing the DOM (e.g. tipsy pulls them out)
-					 */
-					$tipsyTrigger.flow( 'showModerationDialog', moderationType );
 				} );
-			}
-		);
+		}
 
 		// Moderated posts need click to display content
 		$( '<a href="#" class="flow-post-moderated-view"></a>' )
