@@ -226,10 +226,9 @@ abstract class AbstractFormatter {
 	 * @param Workflow $workflow
 	 * @param AbstractBlock $block
 	 * @param AbstractRevision $revision
-	 * @param User $user
 	 * @return string
 	 */
-	public function getActionDescription( Workflow $workflow, $blockType, AbstractRevision $revision, User $user ) {
+	public function getActionDescription( Workflow $workflow, $blockType, AbstractRevision $revision ) {
 		// Build description message, piggybacking on history i18n
 		$changeType = $revision->getChangeType();
 		$msg = $this->actions->getValue( $changeType, 'history', 'i18n-message' );
@@ -237,7 +236,6 @@ abstract class AbstractFormatter {
 		$message = $this->buildMessage( $msg, (array) $params, array(
 			$revision,
 			$this->templating,
-			$user,
 			$workflow->getId(),
 			$blockType
 		) )->parse();

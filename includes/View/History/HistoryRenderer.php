@@ -139,8 +139,6 @@ class HistoryRenderer {
 	 * @return string
 	 */
 	protected function renderLine( HistoryRecord $record ) {
-		global $wgUser;
-
 		$children = '';
 		$historicalLink = null;
 		if ( $record instanceof HistoryBundle ) {
@@ -178,7 +176,6 @@ class HistoryRenderer {
 				// Arguments for the i18n messages' parameter callbacks.
 				$record->getData(),
 				$this->templating,
-				$wgUser,
 				$this->block->getWorkflowId(),
 				$this->block->getName()
 			),
