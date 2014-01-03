@@ -70,7 +70,8 @@
 							function( promise ) {
 								promise.done( function( output ) {
 										var confirmationMsg,
-											$newContainer = $( output.rendered );
+											$renderedReplacement = $( output.rendered ),
+											$newContainer;
 
 										// Messages used here:
 										// flow-moderation-confirmation-suppress-post
@@ -94,7 +95,15 @@
 												) )
 											);
 
-										$resultContainer.replaceWith( $newContainer );
+										if ( targetType === 'post' ) {
+											$newContainer = $renderedReplacement.find( '.flow-post' );
+											$postContainer.children( '.flow-post' )
+												.replaceWith( $newContainer );
+										} else if ( targetType === 'topic' ) {
+											$newContainer = $renderedReplacement;
+											$topicContainer.replaceWith( $newContainer );
+										}
+
 										$newContainer.trigger( 'flow_init' );
 									} )
 									.fail( function() {
