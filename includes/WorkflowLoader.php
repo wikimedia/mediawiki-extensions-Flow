@@ -195,21 +195,28 @@ class WorkflowLoader {
 
 	public function commit( Workflow $workflow, array $blocks ) {
 		$cache = $this->bufferedCache;
+		$dbw = $this->dbFactory->getDB( DB_MASTER );
 
 		try {
+			$dbw->begin();
 			$cache->begin();
 			$this->storage->getStorage( 'Workflow' )->put( $workflow );
 			$results = array();
 			foreach ( $blocks as $block ) {
 				$results[$block->getName()] = $block->commit();
 			}
-			// Delay writing to cache until after db transaction has commited.
-			$this->dbFactory->getDB( DB_MASTER )->onTransactionIdle( function() use( $cache ) {
-				$cache->commit();
-			} );
+			$dbw->commit();
 		} catch ( \Exception $e ) {
+			$dbw->rollback();
 			$cache->rollback();
 			throw $e;
+		}
+
+		try {
+			$cache->commit();	
+		} catch ( \Exception $e ) {
+			wfWarn( __METHOD__ . ': Commited to database but failed applying to cache' );
+			\MWExceptionHandler::logException( $e );
 		}
 
 		return $results;
