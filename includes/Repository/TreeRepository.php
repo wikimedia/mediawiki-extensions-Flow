@@ -2,6 +2,7 @@
 
 namespace Flow\Repository;
 
+use Flow\Data\BufferedCache;
 use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Model\UUID;
@@ -31,17 +32,29 @@ use Flow\Exception\DataModelException;
  * during a topic split
 */
 class TreeRepository {
+
+	/**
+	 * @var string
+	 */
 	protected $tableName = 'flow_tree_node';
+
+	/**
+	 * @var DbFactory
+	 */
+	protected $dbFactory;
+
+	/**
+	 * @var BufferedCache
+	 */
+	protected $cache;
 
 	/**
 	 * @param DbFactory $dbFactory Factory to source connection objects from
 	 * @param BagOStuff $cache
-	 * @param integer $cacheTime How long to cache data in memcache
 	 */
-	public function __construct( DbFactory $dbFactory, BagOStuff $cache, $cacheTime = 0 ) {
+	public function __construct( DbFactory $dbFactory, BufferedCache $cache ) {
 		$this->dbFactory = $dbFactory;
 		$this->cache = $cache;
-		$this->cacheTime = $cacheTime;
 	}
 
 	/**
@@ -58,16 +71,16 @@ class TreeRepository {
 		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant->getHex() );
 		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant->getHex() );
 		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
-		$this->cache->set( $subtreeKey, array( $descendant ), $this->cacheTime );
+		$this->cache->set( $subtreeKey, array( $descendant ) );
 		if ( $ancestor === null ) {
-			$this->cache->set( $parentKey, null, $this->cacheTime );
-			$this->cache->set( $pathKey, array( $descendant ), $this->cacheTime );
+			$this->cache->set( $parentKey, null );
+			$this->cache->set( $pathKey, array( $descendant ) );
 			$path = array( $descendant );
 		} else {
-			$this->cache->set( $parentKey, $ancestor, $this->cacheTime );
+			$this->cache->set( $parentKey, $ancestor );
 			$path = $this->findRootPath( $ancestor );
 			$path[] = $descendant;
-			$this->cache->set( $pathKey, $path, $this->cacheTime );
+			$this->cache->set( $pathKey, $path );
 		}
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
@@ -121,6 +134,7 @@ class TreeRepository {
 			);
 		}
 	}
+
 	public function findParent( UUID $descendant ) {
 		$map = $this->fetchParentMap( array( $descendant ) );
 		return isset( $map[$descendant->getHex()] ) ? $map[$descendant->getHex()] : null;
@@ -185,7 +199,7 @@ class TreeRepository {
 			ksort( $path );
 			$path = array_reverse( $path );
 
-			$this->cache->set( $cacheKeys[$descendantId], $path, $this->cacheTime );
+			$this->cache->set( $cacheKeys[$descendantId], $path );
 		}
 
 		return $paths + $cacheValues;
@@ -280,7 +294,7 @@ class TreeRepository {
 	 * @return array map from root id to its descendant list
 	 */
 	public function fetchSubtreeNodeList( array $roots ) {
-		$list = new MultiGetList( $this->cache, $this->cacheTime );
+		$list = new MultiGetList( $this->cache );
 		$res = $list->get(
 			array( 'tree', 'subtree' ),
 			$roots,
@@ -329,7 +343,7 @@ class TreeRepository {
 	 * nodes are not represented in the result set.
 	 */
 	protected function fetchParentMap( array $nodes ) {
-		$list = new MultiGetList( $this->cache, $this->cacheTime );
+		$list = new MultiGetList( $this->cache );
 		return $list->get(
 			array( 'tree', 'parent' ),
 			$nodes,
