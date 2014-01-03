@@ -66,14 +66,16 @@
 
 				var $formContainer,
 					username = '',
-					defaultContent = '';
+					defaultContent = '',
+					$textarea;
 
 				if ( $( this ).is( '.flow-topic-comments .flow-reply-link' ) ) {
 					// We're in the topic title
 					$formContainer = $( this ).closest( '.flow-topic-container' );
-
+					$textarea = $formContainer.find( '.flow-topic-reply-content' );
 				} else {
 					$formContainer = $( this ).closest( '.flow-post-container:not(.flow-post-max-depth)' ).find( '.flow-post-reply-container' );
+					$textarea = $formContainer.find( '.flow-reply-content' );
 					$( this ).closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
 
 					// Prefill reply textarea with link to User we're replying to
@@ -95,10 +97,11 @@
 							.show();
 					} );
 
-				$textarea = $formContainer.find( 'textarea' );
+				$textarea.focus();
 				$textarea
 					.removeClass( 'flow-reply-box-closed' );
 				mw.flow.editor.load( $textarea, defaultContent, 'wikitext' );
+				$formContainer.find( '.flow-post-form-controls' ).show();
 
 				// Scroll to the form
 				$formContainer.scrollIntoView( {
