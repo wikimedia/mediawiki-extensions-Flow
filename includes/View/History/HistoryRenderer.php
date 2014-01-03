@@ -21,6 +21,11 @@ class HistoryRenderer {
 	protected $block;
 
 	/**
+	 * @var array
+	 */
+	protected $workflows;
+
+	/**
 	 * @param History $history
 	 * @param Templating $templating
 	 * @param Block $block
@@ -28,6 +33,7 @@ class HistoryRenderer {
 	public function __construct( Templating $templating, Block $block ) {
 		$this->templating = $templating;
 		$this->block = $block;
+		$this->workflows = array();
 	}
 
 	/**
@@ -52,6 +58,8 @@ class HistoryRenderer {
 		if ( $history->numRows() === 0 ) {
 			return array();
 		}
+
+		$this->batchLoadWorkflow( $history );
 
 		// Get history for pre-determined timespans.
 		$timestampLast4 = new MWTimestamp( strtotime( '4 hours ago' ) );
@@ -103,6 +111,7 @@ class HistoryRenderer {
 		$bundles = array();
 		$output = '';
 
+		
 		foreach ( $history as $record ) {
 			// Build arrays, per type, of records to be bundled.
 			if ( $record->isBundled() ) {
@@ -135,6 +144,42 @@ class HistoryRenderer {
 	}
 
 	/**
+	 * @param History $history
+	 */
+	protected function batchLoadWorkflow( $history ) {
+		$workflows = $ids = $revs = array();
+		foreach ( $history as $record ) {
+			$revision = $record->getRevision();
+			// Topic/Post history
+			if ( $this->block->getName() === 'topic' ) {
+				$workflowId = $this->block->getWorkflowId();
+			// Board history
+			} else {
+				// Only topics in board history for now, which means it's always a workflowId 
+				if ( $revision->getRevisionType() === 'post' ) {
+					$workflowId = $revision->getPostId();
+				} else {
+					$workflowId = $revision->getWorkflowId();
+				}
+			}
+			$ids[$workflowId->getHex()] = $workflowId;
+			$revs[$workflowId->getHex()][] = $revision->getRevisionId()->getHex();
+		}
+
+		$res = \Flow\Container::get( 'storage.workflow' )->getMulti( $ids );
+
+		foreach ( $res as $workflow ) {
+			if ( isset( $ids[$workflow->getId()->getHex()] ) ) {
+				foreach ( $revs[$workflow->getId()->getHex()] as $revId ) {
+					$workflows[$revId] = $workflow;
+				}
+			}
+		}
+
+		$this->workflows = $workflows;
+	}
+
+	/**
 	 * @param HistoryRecord $record
 	 * @return string
 	 */
@@ -150,20 +195,8 @@ class HistoryRenderer {
 			}
 		} else {
 			$revision = $record->getRevision();
-			$workFlowId = null;
-
-			// Topic/Post history
-			if ( $this->block->getName() === 'topic' ) {
-				$workFlowId = $this->block->getWorkflowId();
-			// Board history
-			} else {
-				if ( $revision->getRevisionType() === 'post' ) {
-					$workFlowId = \Flow\Container::get( 'repository.tree' )->findRoot( $revision->getPostId() );
-				} else {
-					$workFlowId = $revision->getWorkflowId();
-				}
-			}
-			if ( $workFlowId ) {
+			if ( isset( $this->workflows[$revision->getRevisionId()->getHex()] ) ) {
+				$workFlowId = $this->workflows[$revision->getRevisionId()->getHex()];
 				$historicalLink = $this->templating->getUrlGenerator()->generateBlockUrl(
 					$workFlowId,
 					$revision,
