@@ -22,7 +22,7 @@ class Formatter extends AbstractFormatter {
 
 		// Fetch required data
 		$charDiff = $this->getCharDiff( $revision, $row->previous_revision );
-		$description = $this->getActionDescription( $workflow, $row->blocktype, $revision, $user );
+		$description = $this->getActionDescription( $workflow, $row->blocktype, $revision );
 		$dateFormats = $this->getDateFormats( $revision, $user, $lang );
 		$links = $this->buildActionLinks(
 			$title,

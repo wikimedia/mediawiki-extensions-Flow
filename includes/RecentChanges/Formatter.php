@@ -84,7 +84,7 @@ class Formatter extends AbstractFormatter {
 			. ' '
 			. $this->changeSeparator()
 			. ' '
-			. $this->getActionDescription( $workflow, $row->blocktype, $revision, $user );
+			. $this->getActionDescription( $workflow, $row->blocktype, $revision );
 	}
 
 	protected function changeSeparator() {
