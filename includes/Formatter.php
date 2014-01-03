@@ -38,11 +38,6 @@ abstract class AbstractFormatter {
 	protected $storage;
 
 	/**
-	 * @var WorkflowLoaderFactory
-	 */
-	protected $workflowLoaderFactory;
-
-	/**
 	 * @var FlowActions
 	 */
 	protected $actions;
@@ -74,15 +69,13 @@ abstract class AbstractFormatter {
 
 	/**
 	 * @param ManagerGroup $storage
-	 * @param WorkflowLoaderFactory $workflowLoaderFactory
 	 * @param FlowActions $actions
 	 * @param Templating $templating
 	 * @param Language $lang
 	 */
-	public function __construct( ManagerGroup $storage, WorkflowLoaderFactory $workflowLoaderFactory, FlowActions $actions, Templating $templating ) {
+	public function __construct( ManagerGroup $storage, FlowActions $actions, Templating $templating ) {
 		$this->actions = $actions;
 		$this->storage = $storage;
-		$this->workflowLoaderFactory = $workflowLoaderFactory;
 		$this->templating = $templating;
 
 		$this->urlGenerator = $this->templating->getUrlGenerator();
