@@ -426,7 +426,6 @@ $c['controller.notification'] = $c->share( function( $c ) {
 $c['recentchanges.formatter'] = $c->share( function( $c ) {
 	return new Flow\RecentChanges\Formatter(
 		$c['storage'],
-		$c['factory.loader.workflow'],
 		$c['flow_actions'],
 		$c['templating']
 	);
@@ -442,7 +441,6 @@ $c['contribitions.query'] = $c->share( function( $c ) {
 $c['contribitions.formatter'] = $c->share( function( $c ) {
 	return new Flow\Contributions\Formatter(
 		$c['storage'],
-		$c['factory.loader.workflow'],
 		$c['flow_actions'],
 		$c['templating']
 	);
