@@ -13,13 +13,13 @@ $formattedTimestamp = $this->render( 'flow:timestamp.html.php', array(
 
 $urlGenerator = $this->getUrlGenerator();
 
-if ( $revision->getPrevRevisionId() ) {
+if ( $revision->getLastContentEditId() ) {
 	$compareLink = $urlGenerator->generateUrl(
 		$block->getWorkflow(),
 		'compare-revisions',
 		array(
 			$block->getName().'[newRevision]' => $revision->getRevisionId()->getHex(),
-			$block->getName().'[oldRevision]' => $revision->getPrevRevisionId()->getHex()
+			$block->getName().'[oldRevision]' => $revision->getLastContentEditId()->getHex()
 		)
 	);
 } else {
