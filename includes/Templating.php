@@ -222,7 +222,7 @@ class Templating {
 					)
 				),
 			),
-			wfMessage( 'flow-paging-'.$direction )->parse()
+			wfMessage( 'flow-paging-'.$direction )->text()
 		);
 
 		$output = \Html::rawElement(
@@ -260,7 +260,7 @@ class Templating {
 	 * @param PostRevision $post
 	 * @param int[optional] $registered The identifier that was returned when
 	 * registering the callback via PostRevision::registerRecursive()
-	 * @return string
+	 * @return string Participant list (escaped HTML)
 	 */
 	public function printParticipants( PostRevision $post, $registered = null ) {
 		$participants = $post->getRecursiveResult( $registered );
@@ -277,7 +277,7 @@ class Templating {
 			$originalPoster ? $this->usernames->get( wfWikiId(), $originalPoster[0], $originalPoster[1] ) : '',
 			$mostRecentPoster ? $this->usernames->get( wfWikiId(), $mostRecentPoster[0], $mostRecentPoster[1] ) : '',
 			$secondMostRecentPoster ? $this->usernames->get( wfWikiId(), $secondMostRecentPoster[0], $secondMostRecentPoster[1] ) : ''
-		)->parse();
+		)->escaped();
 	}
 
 	/**
