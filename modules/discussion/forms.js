@@ -195,6 +195,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 				$titleBar = $topicContainer.find( '.flow-topic-title' ),
 				$titleEditForm = $( '<form />' ),
 				$realTitle = $titleBar.find( '.flow-realtitle' ),
+				$modifiedTipsy = $titleBar.find( '.flow-content-modified-tipsy-link' ),
 				workflowId = $topicContainer.data( 'topic-id' ),
 				pageName = $( this ).closest( '.flow-container' ).data( 'page-title' );
 
@@ -227,6 +228,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 				}
 
 				$realTitle.hide();
+				$modifiedTipsy.hide();
 
 				$titleEditForm
 					.addClass( 'flow-edit-title-form' )
@@ -253,6 +255,7 @@ $( document ).flow( 'registerInitFunction', function(e) {
 											.remove();
 										$realTitle
 											.show();
+										$modifiedTipsy.show();
 										$titleEditForm.remove();
 										$titleEditForm.flow( 'hidePreview' );
 									} )
