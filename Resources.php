@@ -9,7 +9,6 @@ $flowResourceTemplate = array(
 $wgResourceModules += array(
 	'ext.flow.base' => $flowResourceTemplate + array(
 		'styles' => array(
-			'base/styles/header.less',
 			'base/styles/container.less',
 			'base/styles/form.less',
 			'base/styles/actionbox.less',
