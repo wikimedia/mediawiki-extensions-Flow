@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_810284bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-04T12:49:55Z",
+      "side": 1,
+      "message": "Misleading , this only applies to the moderation notice text in a moderated topic\u0027s topic box. The box remains the same 60px tall.\n\nIs there a bug for this, or a Mingle card, or a mockup to refer to? I like it, but someone must have come up with it.",
+      "revId": "2c64f3147024e61ae1bfefd66ff3b5867f41c9d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_610540c4",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-04T12:49:55Z",
+      "side": 1,
+      "message": "Don\u0027t use em, every other font-size is in px.",
+      "revId": "2c64f3147024e61ae1bfefd66ff3b5867f41c9d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_01f674d4",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-04T12:49:55Z",
+      "side": 1,
+      "message": "Use LESS variables instead of random color choices. Add a @desaturated-topicbox-text: #999; somewhere.  Or reuse an existing color that\u0027s close enough, e.g. @primary-contrast-color.\n\n(There\u0027s so much random #6d6e70 #787879  #777 in the CSS, it\u0027s horrible.)",
+      "revId": "2c64f3147024e61ae1bfefd66ff3b5867f41c9d3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
