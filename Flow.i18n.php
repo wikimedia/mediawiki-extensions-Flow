@@ -1674,9 +1674,14 @@ $messages['fa'] = array(
 	'flow-moderation-confirmation-restore-topic' => '{{GENDER:$2|شما}} این موضوع را با موفقیت بازگردانی کرده‌اید.',
 	'flow-topic-permalink-warning' => 'این موضوع در [$2 $1] شروع شده‌ بود',
 	'flow-topic-permalink-warning-user-board' => "این موضوع در [$2 {{GENDER:$1|$1}}'sصفحهٔ] شروع شده بود",
+	'flow-revision-permalink-warning-post' => 'این یک لینک دائم برای یک تک نسخه از این پست است.
+این نسخه از $1 است.
+شما می توانید [$5 تفاوت‌ها از نسخهٔ قبلی] را مشاهده کنید، یا نسخه‌های دیگری را در [$4 صفحهٔ تاریخچهٔ پست] مشاهده کنید.',
 	'flow-revision-permalink-warning-post-first' => 'این یک لینک دائم برای اولین نسخهٔ این پست است.
 شما می‌توانید نسخه‌های بعدی را در [$4 صفحهٔ تاریخچهٔ پست] مشاهده کنید.',
 	'flow-compare-revisions-revision-header' => 'نسخه توسط {{GENDER:$2|$2}} از $1',
+	'flow-compare-revisions-header-post' => 'این صفحه {{GENDER:$3|تغییرات}} را بین دو نسخه از یک پست توسط $3 در موضوع "[$5 $2]" بر  [$4 $1] نمایش می‌دهد.
+شما می‌توانید نسخه‌های دیگری از این پست را در [$6 صفحهٔ تاریخچه] مشاهده کنید.',
 	'flow-topic-collapsed-one-line' => 'مشاهدهٔ کوچک',
 	'flow-topic-collapsed-full' => 'مشاهده با شکست روبه‌رو شده',
 	'flow-topic-complete' => 'مشاهدهٔ کامل',
@@ -4697,7 +4702,7 @@ $messages['zh-hans'] = array(
 	'flow-hide-title-content' => '此主题已被$2隐藏', # Fuzzy
 	'flow-delete-title-content' => '此主题已被$2删除', # Fuzzy
 	'flow-suppress-title-content' => '此主题已被$2压制', # Fuzzy
-	'flow-suppress-usertext' => "''用户名已压制''", # Fuzzy
+	'flow-suppress-usertext' => '<em>用户名已压制</em>',
 	'flow-post-actions' => '操作',
 	'flow-topic-actions' => '操作',
 	'flow-cancel' => '取消',
@@ -4705,7 +4710,7 @@ $messages['zh-hans'] = array(
 	'flow-show-change' => '显示差异',
 	'flow-last-modified-by' => '最后内容{{GENDER:$1|修订}}由$1完成',
 	'flow-newtopic-title-placeholder' => '新主题',
-	'flow-newtopic-content-placeholder' => '消息正文。祝好！', # Fuzzy
+	'flow-newtopic-content-placeholder' => '添加细节如果您愿意',
 	'flow-newtopic-header' => '添加新主题',
 	'flow-newtopic-save' => '添加主题',
 	'flow-newtopic-start-placeholder' => '开启一个新话题',
@@ -4751,13 +4756,13 @@ $messages['zh-hans'] = array(
 	'flow-rev-message-reply' => '$1{{GENDER:$2|添加了}}一个[$3 评论]。',
 	'flow-rev-message-create-header' => '$1已创建的页顶。', # Fuzzy
 	'flow-rev-message-edit-header' => '$1已编辑的页顶。', # Fuzzy
-	'flow-rev-message-deleted-post' => '$1删除了[$4 评论]', # Fuzzy
+	'flow-rev-message-deleted-post' => '$1{{GENDER:$2|删除}}了[$4 评论]（<em>$5</em>）。',
 	'flow-board-history' => '“$1”的历史',
 	'flow-topic-history' => '“$1”主题的历史',
 	'flow-history-last4' => '过去4个小时',
 	'flow-history-day' => '今天',
 	'flow-history-week' => '上周',
-	'flow-topic-comments' => '{{PLURAL:$1|评论 ($1个)|评论 ($1个)|0=第一个发表评论！}}', # Fuzzy
+	'flow-topic-comments' => '{{PLURAL:$1|$1个评论|0={{GENDER:$2|第一个}}发表评论！}}',
 	'flow-comment-restored' => '恢复的评论',
 	'flow-comment-deleted' => '已删除的评论',
 	'flow-comment-hidden' => '隐藏的评论',
@@ -4776,8 +4781,8 @@ $messages['zh-hans'] = array(
 	'flow-notification-rename-email-subject' => '$1重命名了您的主题',
 	'flow-notification-rename-email-batch-body' => '$1将您在“$4”的主题“$2”重命名为“$3”',
 	'flow-notification-newtopic-email-subject' => '$1在$2创建了新主题',
-	'echo-category-title-flow-discussion' => '$1个讨论', # Fuzzy
-	'echo-pref-tooltip-flow-discussion' => '在讨论版发生有关我的动作时通知我。', # Fuzzy
+	'echo-category-title-flow-discussion' => '流量',
+	'echo-pref-tooltip-flow-discussion' => '在讨论版发生有关我的动作时通知我。',
 	'flow-link-post' => '帖子',
 	'flow-link-topic' => '主题',
 	'flow-link-history' => '历史',
