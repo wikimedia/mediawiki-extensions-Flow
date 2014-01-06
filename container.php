@@ -59,10 +59,12 @@ $c['templating.namespaces'] = array(
 $c['templating.global_variables'] = $c->share( function( $c ) {
 	global $wgFlowTokenSalt, $wgFlowMaxThreadingDepth;
 
+	$user = $c['user'];
 	return array(
-		'user' => $c['user'],
-		'editToken' => $c['user']->getEditToken( $wgFlowTokenSalt ),
+		'user' => $user,
+		'editToken' => $user->getEditToken( $wgFlowTokenSalt ),
 		'maxThreadingDepth' => $wgFlowMaxThreadingDepth,
+		'permissions' => new Flow\RevisionActionPermissions( $c['flow_actions'], $user ),
 	);
 } );
 

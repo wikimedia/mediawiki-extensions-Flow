@@ -4,7 +4,7 @@ $pageTitle = $topic->getArticleTitle();
 $pageLink = $this->urlGenerator->buildUrl( $pageTitle, 'view' );
 $pageTitle = $pageTitle->getText();
 
-$title = $this->getContent( $root, 'wikitext', $user );
+$title = $this->getContent( $root, 'wikitext' );
 $title = wfMessage( 'flow-topic-history', $title )->escaped();
 $this->getOutput()->setHtmlTitle( $title );
 $this->getOutput()->setPageTitle( $title );
