@@ -129,8 +129,7 @@ class TreeRepository {
 		foreach ( $rootPath as $subtreeRoot ) {
 			$this->cache->merge(
 				wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex() ),
-				$callback,
-				$this->cacheTime
+				$callback
 			);
 		}
 	}
