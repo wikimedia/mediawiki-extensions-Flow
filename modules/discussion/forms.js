@@ -7,10 +7,6 @@
 		 */
 		init: function ( e ) {
 			var $container = $( e.target );
-			$container.find( 'form.flow-reply-form' ).flow( 'setupEmptyDisabler',
-				['.flow-reply-content'],
-				'.flow-reply-submit'
-			);
 
 			$( 'form.flow-newtopic-form' ).flow( 'setupEmptyDisabler',
 				[ '.flow-newtopic-title' ],
@@ -45,41 +41,6 @@
 								.prependTo( $( '.flow-topics' ) )
 								.trigger( 'flow_init' )
 								.slideDown();
-						} );
-				}
-			);
-
-			// Overload 'reply' handler
-			$container.flow( 'setupFormHandler',
-				'.flow-reply-submit',
-				mw.flow.api.reply,
-				function() {
-					var $form = $( this ).closest( '.flow-reply-form' ),
-						workflowId = $( this ).flow( 'getTopicWorkflowId' ),
-						replyToId = $form.find( 'input[name="topic[replyTo]"]' ).val(),
-						content = mw.flow.editor.getContent( $form.find( '.flow-reply-content' ) );
-
-					return [ workflowId, replyToId, content ];
-				},
-				function ( workflowId, replyTo, content ) {
-					return content;
-				},
-				function ( promise ) {
-					promise
-						.done( function ( output ) {
-							var $replyContainer = $( this )
-									.closest( '.flow-post-container' )
-									.children( '.flow-post-replies' ),
-								$newRegion = $( output.rendered )
-									.hide()
-									.appendTo( $replyContainer ),
-								$mainContainer = $('html,body');
-
-							$newRegion.trigger( 'flow_init' );
-
-							$newRegion.slideDown();
-
-							$newRegion.scrollIntoView();
 						} );
 				}
 			);
@@ -137,7 +98,7 @@
 				}
 			} );
 
-			// init title interaction
+			// init topic interaction
 			$( '.flow-topic-container' ).each( function () {
 				/*
 				 * Initialisation (registerInitFunction) is re-done after every
@@ -152,6 +113,49 @@
 					new mw.flow.discussion.topic( topicId );
 
 					$( this ).data( 'flow-initialised-topic', true );
+				}
+			} );
+		},
+
+		/**
+		 * Initialises a reply form:
+		 * * shows this form & hides others
+		 * * moves form into viewport
+		 * * loads editor
+		 * * focuses editor
+		 *
+		 * @param {jQuery} $form
+		 * @param {string} [defaultContent]
+		 */
+		loadReplyForm: function ( $form, defaultContent ) {
+			var $textarea = $form.find( 'textarea' );
+
+			// hide topic reply form
+			$form.closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
+
+			// show this form
+			$form
+				.show()
+				.find( '.flow-cancel-link' )
+
+				// when closed, display topic reply form again
+				.click( function( e ) {
+					e.preventDefault();
+					$( this )
+						.closest( '.flow-topic-container' )
+						.find( '.flow-topic-reply-container' )
+						.show();
+				} );
+
+			// load editor on this reply form
+			$textarea.removeClass( 'flow-reply-box-closed' );
+			mw.flow.editor.load( $textarea, defaultContent, 'wikitext' );
+
+			// scroll to the form
+			$form.scrollIntoView( {
+				complete: function () {
+					mw.flow.editor.focus( $textarea );
+					mw.flow.editor.moveCursorToEnd( $textarea );
 				}
 			} );
 		}
