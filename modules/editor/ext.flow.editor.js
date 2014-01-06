@@ -147,13 +147,13 @@
 		 * @return {string}
 		 */
 		getContent: function ( $node ) {
-			var content = mw.flow.editor.getRawContent( $node ), convetedContent = '';
+			var content = mw.flow.editor.getRawContent( $node ), convertedContent = '';
 			try {
-				convetedContent = mw.flow.parsoid.convert( mw.flow.editor.getFormat(), 'wikitext', content );
+				convertedContent = mw.flow.parsoid.convert( mw.flow.editor.getFormat(), 'wikitext', content );
 			} catch ( e ) {
 				$( '<div>' ).flow( 'showError', e.getErrorInfo() ).insertAfter( $node );
 			}
-			return convetedContent;
+			return convertedContent;
 		},
 
 		/**
