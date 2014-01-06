@@ -119,76 +119,22 @@
 				}
 			);
 
-			$container.find( '.flow-edit-post-link' ).click( function ( e ) {
-				e.preventDefault();
-				var $post = $( this ).closest( '.flow-post' ),
-					$contentContainer = $post.find( '.flow-post-content' ),
-					workflowId = $( this ).flow( 'getTopicWorkflowId' ),
-					pageName = $( this ).closest( '.flow-container' ).data( 'page-title' ),
-					postId = $post.closest( '.flow-post-container' ).data( 'post-id' );
+			// init post interaction
+			$container.find( '.flow-post' ).addBack( '.flow-post' ).each( function () {
+				/*
+				 * Initialisation (registerInitFunction) is re-done after every
+				 * change (e.g. adding a new topic), by .trigger( 'flow_init' )
+				 *
+				 * We're now creating JS objects by looping all DOM title nodes.
+				 * We don't want to create multiple objects when re-initializing
+				 * so let's mark initialised state in a data-attribute.
+				 */
+				if ( !$( this ).data( 'flow-initialised-post' ) ) {
+					var postId = $( this ).parent().data( 'post-id' );
+					new mw.flow.discussion.post( postId );
 
-				if ( $post.find( '.flow-edit-post-form' ).length ) {
-					return;
+					$( this ).data( 'flow-initialised-post', true );
 				}
-
-				mw.flow.api.readTopic(
-					pageName,
-					workflowId,
-					{
-						'topic' : {
-							'no-children' : true,
-							'postId' : postId,
-							'contentFormat' : mw.flow.editor.getFormat()
-						}
-					}
-				)
-				.done( function ( data ) {
-					if ( !data[0] || data[0]['post-id'] !== postId ) {
-						console.dir( data );
-						$( '<div/>' )
-							.addClass( 'flow-error' )
-							.text( mw.msg( 'flow-error-other' ) )
-							.hide()
-							.insertAfter( $contentContainer )
-							.slideDown();
-						return;
-					}
-
-					$contentContainer.flow( 'setupEditForm',
-						'post',
-						{
-							'content' : data[0].content['*'],
-							'format' : data[0].content.format
-						},
-						function( content ) {
-							return mw.flow.api.editPost( workflowId, postId, content, data[0]['revision-id'] );
-						}
-					).done( function ( output ) {
-							var $content = $( output.rendered );
-							$post.closest( 'flow-post' )
-								.replaceWith( $content.find( '.flow-post' ) );
-							$content.trigger( 'flow_init' );
-						} );
-
-					$post.addClass( 'flow-post-nocontrols' );
-
-					$contentContainer.siblings( 'form' )
-						.find( '.flow-cancel-link' )
-						.click( function(e) {
-							$post
-								.removeClass( 'flow-post-nocontrols' );
-						} );
-				} )
-				.fail( function () {
-					var $errorDiv = $( '<div/>' )
-						.addClass( 'flow-error' )
-						.hide();
-
-					$errorDiv.flow( 'showError', arguments );
-
-					$errorDiv.insertAfter( $contentContainer )
-						.slideDown();
-				} );
 			} );
 
 			// init title interaction
