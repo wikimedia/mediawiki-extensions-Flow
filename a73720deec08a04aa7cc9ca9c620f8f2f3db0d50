@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_985d4d4d",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-06T22:25:51Z",
+      "side": 1,
+      "message": "looks like only using $ids for this isset check?  It could be run against $revs directly i think",
+      "revId": "a73720deec08a04aa7cc9ca9c620f8f2f3db0d50",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_78584959",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-06T22:25:51Z",
+      "side": 1,
+      "message": "could just set $this-\u003eworkflows directly",
+      "revId": "a73720deec08a04aa7cc9ca9c620f8f2f3db0d50",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
