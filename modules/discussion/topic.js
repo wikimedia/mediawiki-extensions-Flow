@@ -136,12 +136,13 @@
 		 * Submit function for flow( 'setupFormHandler' ).
 		 *
 		 * @param {object} data this.prepareResult return value
+		 * @param {string} workflowId
 		 * @param {string} content
 		 * @return {jQuery.Deferred}
 		 */
-		submitFunction: function ( data, content ) {
+		submitFunction: function ( data, workflowId, content ) {
 			var deferred = mw.flow.api.changeTitle(
-				this.topic.workflowId,
+				workflowId,
 				content,
 				data.revision
 			);
@@ -171,7 +172,7 @@
 			var $titleEditForm = $( 'form', this.topic.$container ),
 				content = $titleEditForm.find( '.flow-edit-title-textbox' ).val();
 
-			return [ content ];
+			return [ this.topic.workflowId, content ];
 		},
 
 		/**
