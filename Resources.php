@@ -61,6 +61,7 @@ $wgResourceModules += array(
 			'discussion/ui.js',
 			'discussion/forms.js',
 			'discussion/title.js',
+			'discussion/post.js',
 			'discussion/paging.js',
 		),
 		'dependencies' => array(
