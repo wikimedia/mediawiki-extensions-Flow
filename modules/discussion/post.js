@@ -14,6 +14,9 @@
 
 		// init edit-post interaction
 		new mw.flow.discussion.post.edit( this );
+
+		// init reply interaction
+		new mw.flow.discussion.post.reply( this );
 	};
 
 	/**
@@ -162,7 +165,7 @@
 			);
 
 			deferred.done( this.render.bind( this ) );
-	//		deferred.fail( this.conflict.bind( this, deferred ) ); // @todo: not yet implemented
+//			deferred.fail( this.conflict.bind( this, deferred ) ); // @todo: not yet implemented
 
 			return deferred;
 		},
@@ -189,6 +192,154 @@
 		 */
 		showError: function ( error, errorData ) {
 			$( '.flow-post-content', this.post.$container ).flow( 'showError', arguments );
+		}
+	};
+
+	/**
+	 * Initialises topic reply interaction object.
+	 *
+	 * @param {object} post
+	 */
+	mw.flow.discussion.post.reply = function ( post ) {
+		this.post = post;
+
+		// Overload "reply" link.
+		this.post.$container.find( '.flow-reply-link' ).click( this.reply.bind( this ) );
+	};
+
+	/**
+	 * Fired when reply form is initialized.
+	 *
+	 * @param {Event} e
+	 */
+	mw.flow.discussion.post.reply.prototype = {
+		/**
+		 * Fired when reply-link is clicked.
+		 *
+		 * @param {Event} e
+		 */
+		reply: function ( e ) {
+			// don't follow link that will lead to &action=reply
+			e.preventDefault();
+
+			// find matching edit form at (max threading depth - 1)
+			this.$form = $( this.post.$container )
+				.closest( '.flow-post-container:not(.flow-post-max-depth)' )
+				.find( '.flow-post-reply-container' );
+
+			// quit if reply form is already open
+			if ( this.$form.is( ':visible' ) ) {
+				return;
+			}
+
+			// load the form
+			this.setupReplyForm();
+		},
+
+		/**
+		 * Builds the reply form.
+		 */
+		setupReplyForm: function () {
+			// fetch username/IP
+			var username = this.$form.closest( '.flow-post-container' ).data( 'creator-name' );
+
+			// if we have a real username, turn it into "[[User]]" (otherwise, just "127.0.0.1")
+			if ( !mw.util.isIPv4Address( username , true ) && !mw.util.isIPv6Address( username , true ) ) {
+				username = '[[' + mw.Title.newFromText( username, 2 ).getPrefixedText() + '|' + username + ']]';
+			}
+
+			// init form: load editor & scroll into view
+			mw.flow.discussion.loadReplyForm( this.$form, username + ': ' );
+
+			// setup disabler (disables submit button until content is entered)
+			this.$form.flow( 'setupEmptyDisabler',
+				['.flow-reply-content'],
+				'.flow-reply-submit'
+			);
+
+			// init form submission callbacks
+			this.$form.flow( 'setupFormHandler',
+				'.flow-reply-submit',
+				this.submitFunction.bind( this ),
+				this.loadParametersCallback.bind( this ),
+				this.validateCallback.bind( this ),
+				this.promiseCallback.bind( this )
+			);
+		},
+
+		/**
+		 * Submit function for flow( 'setupFormHandler' ).
+		 * Arguments passed to this function are the return value of
+		 * loadParametersCallback
+		 *
+		 * @param {string} workflowId
+		 * @param {string} replyToId
+		 * @param {string} content
+		 * @return {jQuery.Deferred}
+		 */
+		submitFunction: function ( workflowId, replyTo, content ) {
+			var deferred = mw.flow.api.reply(
+				workflowId,
+				replyTo,
+				content
+			);
+
+			deferred.done( this.render.bind( this ) );
+
+			return deferred;
+		},
+
+		/**
+		 * Called when submitFunction is resolved.
+		 *
+		 * @param {object} output
+		 */
+		render: function ( output ) {
+			$( output.rendered )
+				.hide()
+				.insertBefore( this.$form )
+				// the new post's node will need to have some events bound
+				.trigger( 'flow_init' )
+				.slideDown()
+				.scrollIntoView();
+		},
+
+		/**
+		 * Parameter supplier (to submitFunction) for flow( 'setupFormHandler' ).
+		 *
+		 * @return {array}
+		 */
+		loadParametersCallback: function () {
+			var replyToId = this.$form.find( 'input[name="topic[replyTo]"]' ).val(),
+				content = mw.flow.editor.getContent( this.$form.find( '.flow-reply-content' ) );
+
+			return [ this.post.workflowId, replyToId, content ];
+		},
+
+		/**
+		 * Validation (of loadParametersCallback return values) for flow( 'setupFormHandler' ).
+		 *
+		 * @return {bool}
+		 */
+		validateCallback: function ( content ) {
+			return content !== '';
+		},
+
+		/**
+		 * Because reply-forms may be re-used across posts (when max
+		 * threading depth has been reached), we have to make sure not
+		 * to bind more than 1 submission-handler to the same form.
+		 *
+		 * After submitting the new post, kill the events that were bound to
+		 * the submit button via flow( 'setupEmptyDisabler' ) and
+		 * flow( 'setupFormHandler' ).
+		 *
+		 * @param deferred
+		 */
+		promiseCallback: function ( deferred ) {
+			deferred.done( function () {
+				$( '.flow-reply-submit', this.$form ).off();
+			}.bind( this ) );
 		}
 	};
 } ( jQuery, mediaWiki ) );
