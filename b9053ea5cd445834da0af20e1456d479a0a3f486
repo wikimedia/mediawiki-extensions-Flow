@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_af8681aa",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "same error as other file, only the final message will be reported to user",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_8f817d94",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "same as above",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_2f4a7185",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "only shows last error",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_ef636908",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "only shows last error",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_cf5e6548",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "only shows last error",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_af5d614c",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "only shows last error",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_6fc5190d",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "addError uses the first parameter as an array key, so only the last abusefilter message would be reported.",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_4fc81525",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "same as above",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_0fa0cd3c",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "$firstPost isn\u0027t used in the closure",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_ef86c9bd",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "$firstPost isn\u0027t used in the closure",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_2f8951f0",
+        "filename": "includes/SpamFilter/Controller.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "the use statement is just a parser alias,  abuse filter being installed or not wont trigger any notices.",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_0f768dd5",
+        "filename": "includes/SpamFilter/Controller.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "enabled isn\u0027t (marked as) a static method",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eeebdf60_6f6999f5",
+        "filename": "includes/SpamFilter/Controller.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-07T18:05:17Z",
+      "side": 1,
+      "message": "The globals in setup are reasonable, but i would prefer to take these two via constructor.",
+      "revId": "b9053ea5cd445834da0af20e1456d479a0a3f486",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
