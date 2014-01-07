@@ -261,6 +261,11 @@ You can see other versions of this post at its [$6 history page].',
 	'flow-topic-collapsed-one-line' => 'Small view',
 	'flow-topic-collapsed-full' => 'Collapsed view',
 	'flow-topic-complete' => 'Full view',
+
+	// Terms of use
+	'flow-terms-of-use-new-topic' => 'By clicking add topic, you agree to our <a href="//wikimediafoundation.org/wiki/Terms_of_use">Terms of Use</a> and agree to irrevocably release your text under the <a href="//creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0 License</a> and <a href="//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License">GFDL</a>',
+	'flow-terms-of-use-reply' => 'By clicking reply, you agree to our <a href="//wikimediafoundation.org/wiki/Terms_of_use">Terms of Use</a> and agree to irrevocably release your text under the <a href="//creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0 License</a> and <a href="//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License">GFDL</a>',
+	'flow-terms-of-use-edit' => 'By saving changes, you agree to our <a href="//wikimediafoundation.org/wiki/Terms_of_use">Terms of Use</a> and agree to irrevocably release your text under the <a href="//creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0 License</a> and <a href="//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License">GFDL</a>',
 );
 
 /** Message documentation (Message documentation)
@@ -1058,6 +1063,9 @@ See also:
 	'flow-topic-collapsed-full' => 'Used as title for the icon which is used to show collapsed view of topics.',
 	'flow-topic-complete' => 'Used as title for the icon which is used to show full view of topics.
 {{Identical|Full view}}',
+	'flow-terms-of-use-new-topic' => 'Terms of use for adding a new topic',
+	'flow-terms-of-use-reply' => 'Terms of use for posting a reply',
+	'flow-terms-of-use-edit' => 'Terms of use for editing a header/topic/post',
 );
 
 /** Achinese (Acèh)
