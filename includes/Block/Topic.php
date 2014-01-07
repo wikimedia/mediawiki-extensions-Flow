@@ -288,6 +288,8 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function commit() {
+		// Hard-code all actions to fail during emergency
+		throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 		$this->workflow->updateLastModified();
 
 		switch( $this->action ) {
