@@ -66,7 +66,7 @@ class TopicListBlock extends AbstractBlock {
 		$status = Container::get( 'controller.spamfilter' )->validate( $this->topicPost, null, $this->workflow->getArticleTitle() );
 		if ( !$status->isOK() ) {
 			foreach ( $status->getErrorsArray() as $message ) {
-				$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+				$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
 			}
 			return;
 		}
@@ -76,7 +76,7 @@ class TopicListBlock extends AbstractBlock {
 			$status = Container::get( 'controller.spamfilter' )->validate( $this->firstPost, null, $this->workflow->getArticleTitle() );
 			if ( !$status->isOK() ) {
 				foreach ( $status->getErrorsArray() as $message ) {
-					$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+					$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
 				}
 				return;
 			}
