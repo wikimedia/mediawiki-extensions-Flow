@@ -177,7 +177,7 @@ class TopicBlock extends AbstractBlock {
 			$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
 
 			// run through AbuseFilter
-			$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, $post, $this->workflow->getArticleTitle() );
+			$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, null, $this->workflow->getArticleTitle() );
 			if ( !$status->isOK() ) {
 				foreach ( $status->getErrorsArray() as $message ) {
 					$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
