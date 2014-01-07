@@ -425,8 +425,14 @@ $c['controller.notification'] = $c->share( function( $c ) {
 	return new Flow\NotificationController;
 } );
 
+$c['controller.abusefilter'] = $c->share( function( $c ) {
+	return new Flow\SpamFilter\AbuseFilter;
+} );
+
 $c['controller.spamfilter'] = $c->share( function( $c ) {
-	return new Flow\SpamFilter\Controller;
+	return new Flow\SpamFilter\Controller(
+		$c['controller.abusefilter']
+	);
 } );
 
 $c['recentchanges.formatter'] = $c->share( function( $c ) {

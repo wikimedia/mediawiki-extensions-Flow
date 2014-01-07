@@ -46,7 +46,7 @@ class TopicListBlock extends AbstractBlock {
 
 	protected function validate() {
 		// hard-code fail during emergency
-		$this->addError( 'readonly', wfMessage( 'flow-error-other' ) );
+//		$this->addError( 'readonly', wfMessage( 'flow-error-other' ) );
 
 		// for now, new topic is considered a new post; perhaps some day topic creation should get it's own permissions?
 		if ( !$this->permissions->isAllowed( null, 'new-post' ) ) {
@@ -69,7 +69,7 @@ class TopicListBlock extends AbstractBlock {
 		$status = Container::get( 'controller.spamfilter' )->validate( $this->topicPost, null, $this->workflow->getArticleTitle() );
 		if ( !$status->isOK() ) {
 			foreach ( $status->getErrorsArray() as $message ) {
-				$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+				$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
 			}
 			return;
 		}
@@ -79,7 +79,7 @@ class TopicListBlock extends AbstractBlock {
 			$status = Container::get( 'controller.spamfilter' )->validate( $this->firstPost, null, $this->workflow->getArticleTitle() );
 			if ( !$status->isOK() ) {
 				foreach ( $status->getErrorsArray() as $message ) {
-					$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+					$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
 				}
 				return;
 			}

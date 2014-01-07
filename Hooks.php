@@ -20,7 +20,7 @@ class FlowHooks {
 		}
 
 		if ( $wgFlowAbuseFilterGroup ) {
-			Container::get( 'controller.spamfilter' )->setup(
+			Container::get( 'controller.abusefilter' )->setup(
 				$wgFlowAbuseFilterGroup,
 				array(
 					'threshold' => $wgFlowAbuseFilterEmergencyDisableThreshold,
@@ -355,7 +355,7 @@ class FlowHooks {
 	 * @param mixed &$result Result of the computation
 	 */
 	public static function onAbuseFilterComputeVariable( $method, AbuseFilterVariableHolder $vars, $parameters, &$result ) {
-		$spamfilter = Container::get( 'controller.spamfilter' );
+		$spamfilter = Container::get( 'controller.abusefilter' );
 
 		// fetch all lazy-load methods
 		$methods = $spamfilter->lazyLoadMethods();
