@@ -90,7 +90,7 @@ $messages['en'] = array(
 
 	'flow-error-http' => 'An error occurred while contacting the server.', // Needs real copy
 	'flow-error-other' => 'An unexpected error occurred.',
-	'flow-error-external' => 'An error occurred.<br /><small>The error message received was: $1</small>',
+	'flow-error-external' => 'An error occurred.<br />The error message received was: $1',
 	'flow-error-edit-restricted' => 'You are not allowed to edit this post.',
 	'flow-error-external-multi' => 'Errors were encountered.<br />$1',
 
