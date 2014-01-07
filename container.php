@@ -425,6 +425,11 @@ $c['controller.notification'] = $c->share( function( $c ) {
 	return new Flow\NotificationController;
 } );
 
+$c['controller.spamfilter'] = $c->share( function( $c ) {
+	global $wgFlowAbuseFilterGroup;
+	return new Flow\SpamFilter\Controller( $c['user'], $wgFlowAbuseFilterGroup );
+} );
+
 $c['recentchanges.formatter'] = $c->share( function( $c ) {
 	return new Flow\RecentChanges\Formatter(
 		$c['storage'],
