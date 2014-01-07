@@ -433,9 +433,14 @@ $c['controller.spamregex'] = $c->share( function( $c ) {
 	return new Flow\SpamFilter\SpamRegex;
 } );
 
+$c['controller.spamblacklist'] = $c->share( function( $c ) {
+	return new Flow\SpamFilter\SpamBlacklist;
+} );
+
 $c['controller.spamfilter'] = $c->share( function( $c ) {
 	return new Flow\SpamFilter\Controller(
 		$c['controller.spamregex'],
+		$c['controller.spamblacklist'],
 		$c['controller.abusefilter']
 	);
 } );
