@@ -32,6 +32,9 @@ echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken',
 	Html::openElement( 'div', array(
 		'class' => 'flow-edit-title-controls',
 	) ),
+	Html::rawElement( 'div', array(
+		'class' => 'flow-terms-of-use plainlinks'
+	),  wfMessage( 'flow-terms-of-use-reply' )->parse() ),
 		Html::element( 'input',
 			array(
 				'type' => 'submit',
@@ -39,6 +42,7 @@ echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken',
 				'class' => 'mw-ui-button mw-ui-constructive',
 			)
 		),
+	Html::element( 'div', array( 'class' => 'clear' ) ),
 	Html::closeElement( 'div' ),
 Html::closeElement( 'form' ),
 Html::closeElement( 'div' ),
