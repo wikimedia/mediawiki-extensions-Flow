@@ -70,16 +70,10 @@ class TopicBlock extends AbstractBlock {
 	protected function validate() {
 		switch( $this->action ) {
 		case 'edit-title':
-			// hard-code fail during emergency
-			$this->addError( 'readonly', wfMessage( 'flow-error-other' ) );
-
 			$this->validateEditTitle();
 			break;
 
 		case 'reply':
-			// hard-code fail during emergency
-			$this->addError( 'readonly', wfMessage( 'flow-error-other' ) );
-
 			$this->validateReply();
 			break;
 
@@ -108,9 +102,6 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		case 'edit-post':
-			// hard-code fail during emergency
-			$this->addError( 'readonly', wfMessage( 'flow-error-other' ) );
-
 			$this->validateEditPost();
 			break;
 
