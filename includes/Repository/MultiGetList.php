@@ -2,22 +2,19 @@
 
 namespace Flow\Repository;
 
-use Flow\Data\BufferedCache;
+use BagOStuff;
 use Flow\Model\UUID;
 use Flow\Exception\InvalidInputException;
 
 class MultiGetList {
 
 	/**
-	 * @var BufferedCache
+	 * @param BagOStuff $cache
+	 * @param integer $cacheTime
 	 */
-	protected $cache;
-
-	/**
-	 * @param BufferedCache $cache
-	 */
-	public function __construct( BufferedCache $cache ) {
+	public function __construct( BagOStuff $cache, $cacheTime ) {
 		$this->cache = $cache;
+		$this->cacheTime = $cacheTime;
 	}
 
 	public function get( $key, array $ids, $loadCallback ) {
@@ -75,7 +72,7 @@ class MultiGetList {
 			// If we failed contacting memcache a moment ago dont bother trying to
 			// push values either.
 			if ( $multiRes !== false ) {
-				$this->cache->set( $invCacheKeys[$id], $row );
+				$this->cache->set( $invCacheKeys[$id], $row, $this->cacheTime );
 			}
 			$result[$id] = $row;
 		}
