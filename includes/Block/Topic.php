@@ -154,7 +154,7 @@ class TopicBlock extends AbstractBlock {
 		$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, $topicTitle, $this->workflow->getArticleTitle() );
 		if ( !$status->isOK() ) {
 			foreach ( $status->getErrorsArray() as $message ) {
-				$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+				$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
 			}
 			return;
 		}
@@ -189,7 +189,7 @@ class TopicBlock extends AbstractBlock {
 			$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, $post, $this->workflow->getArticleTitle() );
 			if ( !$status->isOK() ) {
 				foreach ( $status->getErrorsArray() as $message ) {
-					$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+					$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
 				}
 				return;
 			}
@@ -291,7 +291,7 @@ class TopicBlock extends AbstractBlock {
 		$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, $post, $this->workflow->getArticleTitle() );
 		if ( !$status->isOK() ) {
 			foreach ( $status->getErrorsArray() as $message ) {
-				$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+				$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
 			}
 			return;
 		}
@@ -321,7 +321,7 @@ class TopicBlock extends AbstractBlock {
 		$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, $post, $this->workflow->getArticleTitle() );
 		if ( !$status->isOK() ) {
 			foreach ( $status->getErrorsArray() as $message ) {
-				$this->addError( 'abusefilter', wfMessage( array_shift( $message ), $message ) );
+				$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
 			}
 			return;
 		}

@@ -71,6 +71,8 @@ $wgAutoloadClasses['Flow\TalkpageManager'] = $dir . 'includes/TalkpageManager.ph
 $wgAutoloadClasses['Flow\NotificationFormatter'] = $dir . 'includes/Notifications/Formatter.php';
 $wgAutoloadClasses['Flow\NotificationController'] = $dir . 'includes/Notifications/Controller.php';
 $wgAutoloadClasses['Flow\SpamFilter\Controller'] = $dir . 'includes/SpamFilter/Controller.php';
+$wgAutoloadClasses['Flow\SpamFilter\SpamFilter'] = $dir . 'includes/SpamFilter/SpamFilter.php';
+$wgAutoloadClasses['Flow\SpamFilter\AbuseFilter'] = $dir . 'includes/SpamFilter/AbuseFilter.php';
 $wgAutoloadClasses['Flow\FlowActions'] = $dir . 'includes/FlowActions.php';
 $wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/RevisionActionPermissions.php';
 
