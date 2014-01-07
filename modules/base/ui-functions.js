@@ -358,8 +358,13 @@
 							$( '<li />' ).text( error )
 								.appendTo( $errorList );
 						} );
-
-						$errorDiv.html( mw.message( 'flow-error-external-multi', $errorList.html() ).text() );
+						$errorDiv.html(
+							mw.message(
+								'flow-error-external-multi',
+								// .html() returns inner html, so wrap another node around it
+								$( '<div>' ).append( $errorList ).html()
+							).text()
+						);
 					} else {
 						$errorDiv.html( mw.message( 'flow-error-other' ) );
 					}
