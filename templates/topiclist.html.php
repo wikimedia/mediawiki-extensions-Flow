@@ -30,11 +30,15 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 		'rows' => '10',
 	) );
 	echo Html::openElement( 'div', array( 'class' => 'flow-post-form-controls flow-newtopic-step2' ) );
+	echo Html::rawElement( 'div', array(
+		'class' => 'flow-terms-of-use'	
+	), wfMessage( 'flow-terms-of-use-new-topic' )->text() );
 	echo Html::element( 'input', array(
 		'type' => 'submit',
 		'class' => 'mw-ui-button mw-ui-constructive flow-newtopic-submit',
 		'value' => wfMessage( 'flow-newtopic-save' )->text(),
 	) );
+	echo Html::element( 'div', array( 'class' => 'clear' ) );
 	echo Html::closeElement( 'div' );
 	echo Html::closeElement( 'form' );
 	echo Html::closeElement( 'div' );

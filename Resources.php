@@ -35,6 +35,7 @@ $wgResourceModules += array(
 		),
 		'messages' => array(
 			'flow-preview',
+			'flow-terms-of-use-edit'
 		),
 	),
 	'ext.flow.header' => $flowResourceTemplate + array(

@@ -48,11 +48,15 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 				'rows' => '10',
 			) ) .
 			'<div class="flow-post-form-controls">' .
+				Html::rawElement( 'div', array(
+					'class' => 'flow-terms-of-use'
+				),  wfMessage( 'flow-terms-of-use-reply' )->text() ) .
 				Html::element( 'input', array(
 					'type' => 'submit',
 					'value' => wfMessage( 'flow-reply-submit', $this->getCreatorText( $root ) ),
 					'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
 				) ) .
+				Html::element( 'div', array( 'class' => 'clear' ) ) .
 			Html::closeElement( 'div' ) .
 		Html::closeElement( 'form' ) .
 	Html::closeElement( 'div' );

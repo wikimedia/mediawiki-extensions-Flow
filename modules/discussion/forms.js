@@ -241,6 +241,10 @@ $( document ).flow( 'registerInitFunction', function(e) {
 					.append(
 						$( '<div class="flow-edit-title-controls"></div>' )
 							.append(
+								$( '<div>' ).addClass( 'flow-terms-of-use' )
+								.html( mw.msg( 'flow-terms-of-use-edit' ) )
+							)
+							.append(
 								$( '<a/>' )
 									.addClass( 'flow-cancel-link' )
 									.addClass( 'mw-ui-button' )
@@ -265,6 +269,9 @@ $( document ).flow( 'registerInitFunction', function(e) {
 									.addClass( 'mw-ui-constructive' )
 									.attr( 'type', 'submit' )
 									.val( mw.msg( 'flow-edit-title-submit' ) )
+							)
+							.append(
+								$( '<div>' ).addClass( 'clear' )	
 							)
 					)
 					.appendTo( $titleBar )

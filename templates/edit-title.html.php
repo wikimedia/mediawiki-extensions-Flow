@@ -18,7 +18,6 @@ if ( $block->hasErrors() ) {
 	}
 	echo '</ul>';
 }
-
 echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken ) ),
 	Html::element(
 		'input',
@@ -32,6 +31,9 @@ echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken',
 	Html::openElement( 'div', array(
 		'class' => 'flow-edit-title-controls',
 	) ),
+	Html::rawElement( 'div', array(
+		'class' => 'flow-terms-of-use'
+	),  wfMessage( 'flow-terms-of-use-reply' )->text() ),
 		Html::element( 'input',
 			array(
 				'type' => 'submit',
@@ -39,6 +41,7 @@ echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken',
 				'class' => 'mw-ui-button mw-ui-constructive',
 			)
 		),
+	Html::element( 'div', array( 'class' => 'clear' ) ),
 	Html::closeElement( 'div' ),
 Html::closeElement( 'form' ),
 Html::closeElement( 'div' ),
