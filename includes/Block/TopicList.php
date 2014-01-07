@@ -60,6 +60,9 @@ class TopicListBlock extends AbstractBlock {
 	 * out to storage. Additionally generates notifications.
 	 */
 	public function commit() {
+		// Hard-code all actions to fail during emergency
+		throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+
 		if ( $this->action !== 'new-topic' ) {
 			throw new FailCommitException( 'Unknown commit action', 'fail-commit' );
 		}
