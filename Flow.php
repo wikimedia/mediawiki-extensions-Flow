@@ -73,6 +73,7 @@ $wgAutoloadClasses['Flow\NotificationController'] = $dir . 'includes/Notificatio
 $wgAutoloadClasses['Flow\SpamFilter\Controller'] = $dir . 'includes/SpamFilter/Controller.php';
 $wgAutoloadClasses['Flow\SpamFilter\SpamFilter'] = $dir . 'includes/SpamFilter/SpamFilter.php';
 $wgAutoloadClasses['Flow\SpamFilter\SpamRegex'] = $dir . 'includes/SpamFilter/SpamRegex.php';
+$wgAutoloadClasses['Flow\SpamFilter\SpamBlacklist'] = $dir . 'includes/SpamFilter/SpamBlacklist.php';
 $wgAutoloadClasses['Flow\SpamFilter\AbuseFilter'] = $dir . 'includes/SpamFilter/AbuseFilter.php';
 $wgAutoloadClasses['Flow\FlowActions'] = $dir . 'includes/FlowActions.php';
 $wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/RevisionActionPermissions.php';
