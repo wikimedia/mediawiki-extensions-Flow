@@ -42,11 +42,15 @@ echo Html::element( 'input', array(
 	Html::openElement( 'div', array(
 		'class' => 'flow-post-form-controls',
 	) ),
+		Html::rawElement( 'div', array(
+			'class' => 'flow-terms-of-use plainlinks',
+		), wfMessage( 'flow-terms-of-use-edit' )->parse() ),
 		Html::element( 'input', array(
 			'type' => 'submit',
 			'class' => 'mw-ui-button mw-ui-constructive',
 			'value' => wfMessage( 'flow-edit-post-submit' )->plain()
 		) ),
+		Html::element( 'div', array( 'class' => 'clear' ) ),
 	Html::closeElement( 'div' ),
 Html::closeElement( 'form' ),
 Html::closeElement( 'div' ),

@@ -113,6 +113,10 @@
 							.addClass( 'flow-'+type+'-form-controls' )
 							.addClass( 'flow-edit-'+type+'-controls' )
 							.append(
+								$( '<div>' ).addClass( 'flow-terms-of-use plainlinks' )
+								.html( mw.message( 'flow-terms-of-use-edit' ).parse() )
+							)
+							.append(
 								$( '<a/>' )
 									.text( mw.msg( 'flow-cancel' ) )
 									.addClass( 'flow-cancel-link' )
@@ -138,6 +142,9 @@
 									.addClass( 'mw-ui-constructive' )
 									.addClass( 'flow-edit-'+type+'-submit' )
 									.val( mw.msg( 'flow-edit-'+type+'-submit' ) )
+							)
+							.append(
+								$( '<div>' ).addClass( 'clear' )
 							)
 					)
 					.insertAfter( $contentContainer );
