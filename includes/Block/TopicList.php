@@ -45,9 +45,6 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	protected function validate() {
-		// hard-code fail during emergency
-		$this->addError( 'readonly', wfMessage( 'flow-error-other' ) );
-
 		// for now, new topic is considered a new post; perhaps some day topic creation should get it's own permissions?
 		if ( !$this->permissions->isAllowed( null, 'new-post' ) ) {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
