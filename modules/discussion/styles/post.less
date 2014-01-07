@@ -58,7 +58,9 @@
 			counter-increment: flow-mwNumberedExternalLinkNode;
 		}
 
-		p {
+		// Make the last paragraph of a post inline in case we put a
+		// "content-modified" icon after it.
+		p:last-of-type {
 			display: inline;
 		}
 
