@@ -74,6 +74,9 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		case 'reply':
+			// hard-code fail during emergency
+			$this->addError( 'readonly', wfMessage( 'flow-error-other' ) );
+
 			$this->validateReply();
 			break;
 
