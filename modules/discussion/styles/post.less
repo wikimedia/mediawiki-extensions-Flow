@@ -13,23 +13,14 @@
 		position: relative;
 	}
 
-	// must be outside .flow-post-title for specificity
-	.flow-creator .mw-usertoollinks {
-		opacity: 0;
-		transition: opacity 0.2s;
-	}
-
 	.flow-post-title {
 		padding-top: 10px;
 		padding-bottom: 8px;
 
+		// overwrite default 22px margin-bottom, because this element's height
+		// will affect the position of .flow-edit-post-link
 		.flow-creator {
-			font-weight: bold;
-			color: @post-title-color;
-
-			&:hover .mw-usertoollinks {
-				opacity: 1;
-			}
+			margin-bottom: 0;
 		}
 	}
 
@@ -171,16 +162,6 @@
 
 	.flow-post-reply-container {
 		padding: 10px 0 10px 22px;
-
-		.flow-creator {
-			font-weight: bold;
-			color: @post-title-color;
-			padding-bottom: 22px;
-		}
-	}
-
-	.flow-reply-form {
-		padding-top: 20px;
 	}
 
 	.flow-reply-form,

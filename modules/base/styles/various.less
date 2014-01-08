@@ -1,4 +1,5 @@
 @import 'mediawiki.mixins.less';
+@import '../../discussion/styles/settings/colors.less';
 
 .flow-loading-indicator {
 	width: 18px;
@@ -8,6 +9,22 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 	.background-image('../../../../../resources/mediawiki/mediawiki.feedback.spinner.gif');
+}
+
+.flow-creator {
+	font-weight: bold;
+	color: @post-title-color;
+	margin-bottom: 22px;
+	display: block;
+
+	.mw-usertoollinks {
+		opacity: 0;
+		transition: opacity 0.2s;
+	}
+
+	&:hover .mw-usertoollinks {
+		opacity: 1;
+	}
 }
 
 .flow-datestamp {

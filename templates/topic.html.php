@@ -19,14 +19,9 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 			'data-post-id' => $root->getPostId()->getHex(),
 			'id' => 'flow-topic-reply-' . $topic->getId()->getHex()
 		) ) .
-		'<span class="flow-creator">
-			<span class="flow-creator-simple" style="display: inline">' .
-				htmlentities( $user->getName() ) .
-			'</span>
-			<span class="flow-creator-full" style="display: none">' .
-				$this->userToolLinks( $user->getId(), $user->getName() ) .
-			'</span>
-		</span>' .
+		'<span class="flow-creator">' .
+			$this->userToolLinks( $user->getId(), $user->getName() ) .
+		'</span>' .
 		Html::openElement( 'form', array(
 			'method' => 'POST',
 			'action' => $this->generateUrl( $block->getWorkflow(), 'reply' ),
