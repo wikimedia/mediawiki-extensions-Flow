@@ -89,6 +89,12 @@
 					$pagingLinkDiv.next( '.flow-error' ).remove();
 					$pagingLinkDiv.replaceWith( $replaceContent );
 					$replaceContent.trigger( 'flow_init' );
+
+					// trigger a new scroll, to check if new data should not be
+					// fetched already (e.g. if all comments were deleted, this
+					// batch may have come up empty, in which case we need to
+					// load new data immediately, not wait for another scroll)
+					$( window ).trigger( 'scroll' );
 				} )
 				.fail( function () {
 					$( '<div/>' )
