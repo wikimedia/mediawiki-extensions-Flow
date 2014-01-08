@@ -148,22 +148,22 @@ class HistoryRenderer {
 			}
 		} else {
 			$revision = $record->getRevision();
-			$workFlowId = null;
+			$workflowId = null;
 
 			// Topic/Post history
 			if ( $this->block->getName() === 'topic' ) {
-				$workFlowId = $this->block->getWorkflowId();
+				$workflowId = $this->block->getWorkflowId();
 			// Board history
 			} else {
 				if ( $revision->getRevisionType() === 'post' ) {
-					$workFlowId = \Flow\Container::get( 'repository.tree' )->findRoot( $revision->getPostId() );
+					$workflowId = $revision->getRootPost()->getPostId();
 				} else {
-					$workFlowId = $revision->getWorkflowId();
+					$workflowId = $revision->getWorkflowId();
 				}
 			}
-			if ( $workFlowId ) {
+			if ( $workflowId ) {
 				$historicalLink = $this->templating->getUrlGenerator()->generateBlockUrl(
-					$workFlowId,
+					$workflowId,
 					$revision,
 					true
 				);
