@@ -200,6 +200,7 @@
 
 		$container.find( 'form.flow-newtopic-form' ).flow( 'setupPreview', { '.flow-newtopic-title': 'plain', 'textarea': 'parsed' } );
 		// Hide reply button until user initiates reply (hidden in JS because it needs to be there for non-JS users)
+		$container.find( '.flow-topic-reply-container .flow-creator' ).hide();
 		$container.find( '.flow-topic-reply-form .flow-post-form-controls' ).hide();
 		$container.find( '.flow-topic-reply-form textarea' )
 			// Override textarea height; doesn't need to be too large initially,
@@ -210,12 +211,14 @@
 			.css( 'resize', 'none' )
 			// Set up topic reply form
 			.click( function() {
-				var $textbox = $( this );
+				var $textbox = $( this ),
+					$formContainer = $( this ).closest( '.flow-topic-reply-container' );
+
 				mw.flow.editor.load( $textbox );
-				$form = $( this ).closest( '.flow-topic-reply-form' );
 
 				// display controls
-				$form.find( '.flow-post-form-controls' ).show();
+				$formContainer.find( '.flow-creator' ).show();
+				$formContainer.find( '.flow-post-form-controls' ).show();
 			} );
 
 		// Add cancel link to topic reply forms
@@ -227,12 +230,14 @@
 			.text( mw.msg( 'flow-cancel' ) )
 			.click( function ( e ) {
 				e.preventDefault();
-				$form = $( this ).closest( '.flow-topic-reply-form' );
-				$form.find( '.flow-post-form-controls' )
-					.hide();
+				var $formContainer = $( this ).closest( '.flow-topic-reply-container' );
 
-				mw.flow.editor.destroy( $form.find( 'textarea' ) );
-				$form.flow( 'hidePreview' );
+				$formContainer.find( '.flow-creator' ).hide();
+				$formContainer.find( '.flow-post-form-controls' ).hide();
+
+				mw.flow.editor.destroy( $formContainer.find( 'textarea' ) );
+
+				$formContainer.find( '.flow-topic-reply-form' ).flow( 'hidePreview' );
 			} )
 			.prependTo( $container.find( '.flow-topic-reply-form .flow-post-form-controls') );
 

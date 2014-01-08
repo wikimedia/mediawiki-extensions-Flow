@@ -98,17 +98,21 @@ $( document ).flow( 'registerInitFunction', function(e) {
 		function ( promise ) {
 			promise
 				.done( function ( output ) {
+					var $formContainer = $( this ).closest( '.flow-topic-reply-container' );
+
 					$( output.rendered )
 						.hide()
-						.insertBefore( $( this ).closest( '.flow-topic-reply-container' ) )
+						.insertBefore( $formContainer )
 						.trigger( 'flow_init' )
 						.slideDown();
+
 					// Reset the form
 					// @Todo - this works but doesn't seem right
-					var $form = $( this ).closest( '.flow-topic-reply-form' );
-					mw.flow.editor.destroy( $form.find( '.flow-topic-reply-content' ) );
-					mw.flow.editor.load( $form.find( '.flow-topic-reply-content' ) );
-					$form.find( '.flow-post-form-controls' ).hide();
+					mw.flow.editor.destroy( $formContainer.find( '.flow-topic-reply-content' ) );
+					mw.flow.editor.load( $formContainer.find( '.flow-topic-reply-content' ) );
+
+					$formContainer.find( '.flow-creator' ).hide();
+					$formContainer.find( '.flow-post-form-controls' ).hide();
 				} );
 		}
 	);
