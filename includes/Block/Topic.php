@@ -869,6 +869,7 @@ class TopicBlock extends AbstractBlock {
 			// looking for loadRootPost
 			$this->topicTitle->setChildren( array() );
 			$this->topicTitle->setDepth( 0 );
+			$this->topicTitle->setRootPost( $this->topicTitle );
 
 			if ( !$this->permissions->isAllowed( $this->topicTitle, 'view' ) ) {
 				$this->topicTitle = null;
@@ -931,6 +932,7 @@ class TopicBlock extends AbstractBlock {
 			// using the path to the root post, we can know the post's depth
 			$rootPath = $this->rootLoader->treeRepo->findRootPath( $postId );
 			$post->setDepth( count( $rootPath ) - 1 );
+			$post->setRootPost( $found['root'] );
 		}
 
 		if ( $this->permissions->isAllowed( $topicTitle, 'view' )
@@ -974,13 +976,16 @@ class TopicBlock extends AbstractBlock {
 		if ( !$found ) {
 			throw new InvalidInputException( 'Should have found revisions', 'missing-revision' );
 		}
-		// Because storage returns a new object for every query
-		// We need to find $post in the array and replace it
 		$revId = $post->getRevisionId();
+		$rootPost = $post->getRootPost();
 		foreach ( $found as $idx => $revision ) {
 			if ( $revId->equals( $revision->getRevisionId() ) ) {
+				// Because storage returns a new object for every query
+				// We need to find $post in the array and replace it
 				$found[$idx] = $post;
-				break;
+			} else {
+				// Root post needs to propogate from $post to found revisions
+				$revision->setRootPost( $rootPost );
 			}
 		}
 		return $found;

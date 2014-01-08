@@ -141,6 +141,10 @@ class RootPostLoader {
 		foreach ( $topicIds as $id ) {
 			$roots[$id->getHex()] = $posts[$id->getHex()];
 		}
+		// Attach every post in the tree to its root
+		foreach ( $roots as $hex => $post ) {
+			$post->setRootPost( $post );
+		}
 		return $roots;
 	}
 

@@ -20,6 +20,7 @@ class PostRevision extends AbstractRevision {
 	// Data that is loaded externally and set
 	protected $children;
 	protected $depth;
+	protected $rootPost;
 
 	/**
 	 * Variables callback functions & their results will be saved to.
@@ -47,6 +48,7 @@ class PostRevision extends AbstractRevision {
 		// A newly created post has no children and a depth of 0
 		$obj->setChildren( array() );
 		$obj->setDepth( 0 );
+		$obj->rootPost = $obj;
 
 		return $obj;
 	}
@@ -95,6 +97,7 @@ class PostRevision extends AbstractRevision {
 		$reply->changeType = $changeType;
 		$reply->setChildren( array() );
 		$reply->setDepth( $this->getDepth() + 1 );
+		$reply->rootPost = $this->rootPost;
 
 		return $reply;
 	}
@@ -132,6 +135,10 @@ class PostRevision extends AbstractRevision {
 
 	public function setChildren( array $children ) {
 		$this->children = $children;
+		if ( $this->rootPost ) {
+			// propogate root post into children
+			$this->setRootPost( $this->rootPost );
+		}
 	}
 
 	public function getChildren() {
@@ -150,6 +157,23 @@ class PostRevision extends AbstractRevision {
 			throw new DataModelException( 'Depth not loaded for post: ' . $this->postId->getHex(), 'process-data' );
 		}
 		return $this->depth;
+	}
+
+	public function setRootPost( PostRevision $root ) {
+		$this->rootPost = $root;
+		if ( $this->children ) {
+			// propogate root post into children
+			foreach ( $this->children as $child ) {
+				$child->setRootPost( $root );
+			}
+		}
+	}
+
+	public function getRootPost() {
+		if ( $this->rootPost === null ) {
+			throw new DataModelException( 'Depth not loaded for post: ' . $this->postId->getHex(), 'process-data' );
+		}
+		return $this->rootPost;
 	}
 
 	/**

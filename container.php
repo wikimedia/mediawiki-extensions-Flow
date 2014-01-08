@@ -311,7 +311,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 		// topic history -- to keep a history by topic we have to know what topic every post
 		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
-		new TopicHistoryIndex( $cache, $storage, $c['repository.tree'], 'flow_revision:topic',
+		new TopicHistoryIndex( $cache, $storage, 'flow_revision:topic',
 			array( 'topic_root_id' ),
 			array(
 				'limit' => 500,
