@@ -158,12 +158,8 @@ class PostRevisionRecentChanges extends RecentChanges {
 	}
 
 	public function onAfterInsert( $object, array $row ) {
-		// There might be a more efficient way to get this workflow id
-		$workflowId = $this->tree->findRoot( $object->getPostId() );
-		if ( !$workflowId ) {
-			wfWarn( __METHOD__ . ": could not locate root for post " . $object->getPostId()->getHex() );
-			return;
-		}
+		// The workflow id is the same as the root's post id
+		$workflowId = $object->getRootPost()->getPostId();
 		// These are likely already in the in-process cache
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 		if ( !$workflow ) {
@@ -187,23 +183,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 	}
 
 	protected function getTopicTitle( PostRevision $rev ) {
-		if ( $rev->isTopicTitle() ) {
-			return $rev->getContent( 'wikitext' );
-		}
-		$topicTitleId = $this->tree->findRoot( $rev->getPostId() );
-		if ( $topicTitleId === null ) {
-			return null;
-		}
-		$found = $this->storage->find(
-			'PostRevision',
-			array( 'tree_rev_descendant_id' => $topicTitleId ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-		);
-		if ( !$found ) {
-			return null;
-		}
-
-		$content = reset( $found )->getContent( 'wikitext' );
+		$content = $rev->getRootPost()->getContent( 'wikitext' );
 		if ( is_object( $content ) ) {
 			// moderated
 			return null;

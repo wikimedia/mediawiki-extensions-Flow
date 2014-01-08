@@ -23,9 +23,8 @@ class PostModerationLogger implements LifecycleHandler {
 		}
 
 		if ( $this->logger->canLog( $object, $object->getChangeType() ) ) {
-			// This is awful but it's all I can think of
-			$rootPost = $this->treeRepo->findRoot( $object->getPostId() );
-			$workflow = $this->storage->get( 'Workflow', $rootPost );
+			$rootPostId = $object->getRootPost()->getPostId();
+			$workflow = $this->storage->get( 'Workflow', $rootPostId );
 			$logParams = array();
 
 			if ( $object->isTopicTitle() ) {

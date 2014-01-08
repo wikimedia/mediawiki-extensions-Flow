@@ -196,9 +196,9 @@ class HistoryRenderer {
 		} else {
 			$revision = $record->getRevision();
 			if ( isset( $this->workflows[$revision->getRevisionId()->getHex()] ) ) {
-				$workFlowId = $this->workflows[$revision->getRevisionId()->getHex()];
+				$workflowId = $this->workflows[$revision->getRevisionId()->getHex()];
 				$historicalLink = $this->templating->getUrlGenerator()->generateBlockUrl(
-					$workFlowId,
+					$workflowId,
 					$revision,
 					true
 				);
