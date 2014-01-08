@@ -1494,7 +1494,7 @@ $messages['fa'] = array(
 	'flow-edit-header-link' => 'ویرایش سرفصل',
 	'flow-header-empty' => 'این صفحهٔ گفتگو در حال حاضر هیچ سرفصلی ندارد.',
 	'flow-post-moderated-toggle-show' => '[نمایش]',
-	'flow-post-moderated-toggle-hide' => '[پنهان کردن]',
+	'flow-post-moderated-toggle-hide' => '[پنهان‌کردن]',
 	'flow-hide-post-content' => 'این نظر توسط $2 ، {{GENDER:$1|hidden}} بود',
 	'flow-hide-title-content' => 'این موضوع توسط $2، {{GENDER:$1|hidden}} بود',
 	'flow-hide-header-content' => '{{GENDER:$1|Hidden}}  توسط $2',
@@ -2340,7 +2340,7 @@ $messages['ia'] = array(
 	'flow-error-edit-restricted' => 'Tu non es autorisate a modificar iste entrata.',
 	'flow-error-external-multi' => 'Errores ha occurrite.<br />$1',
 	'flow-error-missing-content' => 'Le message non ha contento. Contento es necessari pro salveguardar un message.',
-	'flow-error-missing-title' => 'Le topico non ha titulo. Le titulo es necessari pro salveguardar un nove topico.', # Fuzzy
+	'flow-error-missing-title' => 'Le topico non ha titulo. Le titulo es necessari pro salveguardar un topico.',
 	'flow-error-parsoid-failure' => 'Impossibile interpretar le contento a causa de un fallimento de Parsoid.',
 	'flow-error-missing-replyto' => 'Nulle parametro "replyTo" ha essite fornite. Iste parametro es necessari pro le action "responder".',
 	'flow-error-invalid-replyto' => 'Le parametro "replyTo" es invalide. Le entrata specificate non pote esser trovate.',
@@ -2354,22 +2354,22 @@ $messages['ia'] = array(
 	'flow-error-not-allowed' => 'Permissiones insufficiente pro exequer iste action',
 	'flow-edit-header-submit' => 'Salveguardar titulo',
 	'flow-edit-title-submit' => 'Cambiar titulo',
-	'flow-rev-message-edit-post' => '[[User:$1|$1]] {{GENDER:$1|modificava}} un [$2 commento]', # Fuzzy
-	'flow-rev-message-reply' => '[[User:$1|$1]] {{GENDER:$1|addeva}} un [$2 commento].', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|modificava}} un [$3 commento].',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|addeva}} un [$3 commento].',
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|commento|commentos}}</strong> ha essite addite.',
-	'flow-rev-message-new-post' => '[[User:$1|$1]] {{GENDER:$1|creava}} le topico [$2 $3].', # Fuzzy
-	'flow-rev-message-edit-title' => '[[User:$1|$1]] {{GENDER:$1|cambiava}} le titulo del topico de $4 in [$2 $3].', # Fuzzy
-	'flow-rev-message-create-header' => '[[User:$1|$1]] {{GENDER:$1|creava}} le titulo del tabuliero.', # Fuzzy
-	'flow-rev-message-edit-header' => '[[User:$1|$1]] {{GENDER:$1|modificava}} le titulo del tabuliero.', # Fuzzy
-	'flow-rev-message-hid-post' => '[[User:$1|$1]] {{GENDER:$1|celava}} un [$3 commento].', # Fuzzy
-	'flow-rev-message-deleted-post' => '[[User:$1|$1]] {{GENDER:$1|deleva}} un [$3 commento].', # Fuzzy
-	'flow-rev-message-suppressed-post' => '[[User:$1|$1]] {{GENDER:$1|supprimeva}} un [$3 commento].', # Fuzzy
-	'flow-rev-message-restored-post' => '[[User:$1|$1]] {{GENDER:$1|restaurava}} un [$3 commento].', # Fuzzy
-	'flow-rev-message-hid-topic' => '[[User:$1|$1]] {{GENDER:$1|celava}} le [$3 topico].', # Fuzzy
-	'flow-rev-message-deleted-topic' => '[[User:$1|$1]] {{GENDER:$1|deleva}} le [$3 topico].', # Fuzzy
-	'flow-rev-message-suppressed-topic' => '[[User:$1|$1]] {{GENDER:$1|supprimeva}} le [$3 topico].', # Fuzzy
-	'flow-rev-message-restored-topic' => '[[User:$1|$1]] {{GENDER:$1|restaurava}} le [$3 topico].', # Fuzzy
-	'flow-topic-history' => 'Historia de topicos', # Fuzzy
+	'flow-rev-message-new-post' => '$1 {{GENDER:$2|creava}} le topico [$3 $4].',
+	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|cambiava}} le titulo del topico de $5 in [$3 $4].',
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|creava}} le titulo del tabuliero.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|modificava}} le titulo del tabuliero.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|celava}} un [$4 commento] (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|deleva}} un [$4 commento] (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|supprimeva}} un [$4 commento] (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|restaurava}} un [$4 commento] (<em>$5</em>).',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|celava}} le [$4 topico] (<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|deleva}} le [$4 topico] (<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|supprimeva}} le [$4 topico] (<em>$5</em>).',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|restaurava}} le [$4 topico] (<em>$5</em>).',
+	'flow-topic-history' => 'Historia del topico "$1"',
 	'flow-comment-restored' => 'Commento restaurate',
 	'flow-comment-deleted' => 'Commento delite',
 	'flow-comment-hidden' => 'Commento celate',
@@ -2379,7 +2379,7 @@ $messages['ia'] = array(
 	'flow-last-modified' => 'Ultime modification circa $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|respondeva}} a tu [$5 message] in $2 super [[$3|$4]].',
 	'flow-notification-reply-bundle' => '$1 e $5 {{PLURAL:$6|altere|alteres}} {{GENDER:$1|respondeva}} a tu [$4 message] in $2 sur "$3".',
-	'flow-notification-edit' => '$1 {{GENDER:$1|modificava}} tu [$5 message] in $2 super [[$3|$4]].', # Fuzzy
+	'flow-notification-edit' => '$1 {{GENDER:$1|modificava}} un [$5 message] in $2 sur [[$3|$4]].',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|creava}} un [$5 nove topico] super [[$2|$3]]: $4.',
 	'flow-notification-rename' => '$1 {{GENDER:$1|cambiava}} le titulo de [$2 $3] a "$4" super [[$5|$6]].',
 	'flow-notification-link-text-view-post' => 'Vider message',
@@ -2387,8 +2387,8 @@ $messages['ia'] = array(
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|respondeva}} a tu message',
 	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|respondeva}} a tu message in $2 sur "$3"',
 	'flow-notification-reply-email-batch-bundle-body' => '$1 e $4 {{PLURAL:$5|altere|alteres}} {{GENDER:$1|respondeva}} a tu message in $2 sur "$3"',
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Discussion|Discussiones}}', # Fuzzy
-	'echo-pref-tooltip-flow-discussion' => 'Notificar me quando actiones concernente me occurre in le tabuliero de discussion.', # Fuzzy
+	'echo-category-title-flow-discussion' => 'Fluxo',
+	'echo-pref-tooltip-flow-discussion' => 'Notificar me quando actiones concernente me occurre in Fluxo.',
 );
 
 /** Italian (italiano)
@@ -3013,6 +3013,13 @@ $messages['lb'] = array(
 	'flow-moderation-confirmation-restore-topic' => '{{GENDER:$2|Dir}} hutt dëst Thema restauréiert.',
 	'flow-topic-permalink-warning' => 'Dëse Sujet gouf op [$2 $1] ugefaang',
 	'flow-compare-revisions-revision-header' => 'Versioun vum {{GENDER:$2|$2}} vum $1',
+);
+
+/** Lithuanian (lietuvių)
+ * @author Robotukas11
+ */
+$messages['lt'] = array(
+	'flow-error-external' => 'Įvyko klaida.<br>Gautas klaidos pranešimas: $1', # Fuzzy
 );
 
 /** Latvian (latviešu)
@@ -3826,6 +3833,7 @@ $messages['roa-tara'] = array(
 
 /** Russian (русский)
  * @author Ignatus
+ * @author Kaganer
  * @author Midnight Gambler
  * @author Okras
  */
@@ -3905,9 +3913,9 @@ $messages['ru'] = array(
 	'flow-moderation-title-delete-topic' => 'Удалить тему?',
 	'flow-moderation-title-hide-topic' => 'Скрыть тему?',
 	'flow-moderation-title-restore-topic' => 'Восстановить тему?',
-	'flow-moderation-intro-delete-topic' => 'Поясните причину удаления данной темы.', # Fuzzy
-	'flow-moderation-intro-hide-topic' => 'Поясните, почему вы хотите скрыть данную тему.', # Fuzzy
-	'flow-moderation-intro-restore-topic' => 'Поясните причину восстановления данной темы.', # Fuzzy
+	'flow-moderation-intro-delete-topic' => '{{GENDER:$3|Поясните}} причину удаления данной темы.',
+	'flow-moderation-intro-hide-topic' => '{{GENDER:$3|Поясните}}, почему вы хотите скрыть данную тему.',
+	'flow-moderation-intro-restore-topic' => '{{GENDER:$3|Поясните}} причину восстановления данной темы.',
 	'flow-topic-permalink-warning' => 'Эта тема была начата на [$2 $1]',
 );
 
@@ -4698,8 +4706,8 @@ $messages['zh-hans'] = array(
 	'flow-header-empty' => '此讨论页目前没有头部。',
 	'flow-post-moderated-toggle-show' => '[显示]',
 	'flow-post-moderated-toggle-hide' => '[隐藏]',
-	'flow-hide-title-content' => '此主题已被$2隐藏', # Fuzzy
-	'flow-delete-title-content' => '此主题已被$2删除', # Fuzzy
+	'flow-hide-title-content' => '此主题已被$2{{GENDER:$1|隐藏}}',
+	'flow-delete-title-content' => '此主题已被$2{{GENDER:$1|删除}}',
 	'flow-suppress-title-content' => '此主题已被$2{{GENDER:$1|压制}}',
 	'flow-suppress-usertext' => '<em>用户名已压制</em>',
 	'flow-post-actions' => '操作',
