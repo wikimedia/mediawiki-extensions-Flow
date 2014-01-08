@@ -482,56 +482,44 @@ class ObjectManager extends ObjectLocator {
 	}
 
 	protected function insert( $object ) {
-		try {
-			$row = $this->mapper->toStorageRow( $object );
-			$stored = $this->storage->insert( $row );
-			if ( !$stored ) {
-				throw new DataModelException( 'failed insert', 'process-data' );
-			}
-			// propogate auto-id's and such back into $object
-			$this->mapper->fromStorageRow( $stored, $object );
-			foreach ( $this->lifecycleHandlers as $handler ) {
-				$handler->onAfterInsert( $object, $stored );
-			}
-			$this->loaded[$object] = $stored;
-		} catch ( \MWException $e ) {
-			throw new DataPersistenceException( 'failed insert', 'process-data', $e );
+		$row = $this->mapper->toStorageRow( $object );
+		$stored = $this->storage->insert( $row );
+		if ( !$stored ) {
+			throw new DataModelException( 'failed insert', 'process-data' );
 		}
+		// propogate auto-id's and such back into $object
+		$this->mapper->fromStorageRow( $stored, $object );
+		foreach ( $this->lifecycleHandlers as $handler ) {
+			$handler->onAfterInsert( $object, $stored );
+		}
+		$this->loaded[$object] = $stored;
 	}
 
 	protected function update( $object ) {
-		try {
-			$old = $this->loaded[$object];
-			$new = $this->mapper->toStorageRow( $object );
-			if ( self::arrayEquals( $old, $new ) ) {
-				return;
-			}
-			foreach ( $new as $k => $x ) {
-				if ( $x !== null && !is_scalar( $x ) ) {
-					throw new DataModelException( "Expected mapper to return all scalars, but '$k' is " . gettype( $x ), 'process-data' );
-				}
-			}
-			$this->storage->update( $old, $new );
-			foreach ( $this->lifecycleHandlers as $handler ) {
-				$handler->onAfterUpdate( $object, $old, $new );
-			}
-			$this->loaded[$object] = $new;
-		} catch ( \MWException $e ) {
-			throw new DataPersistenceException( 'failed update', 'process-data', $e );
+		$old = $this->loaded[$object];
+		$new = $this->mapper->toStorageRow( $object );
+		if ( self::arrayEquals( $old, $new ) ) {
+			return;
 		}
+		foreach ( $new as $k => $x ) {
+			if ( $x !== null && !is_scalar( $x ) ) {
+				throw new DataModelException( "Expected mapper to return all scalars, but '$k' is " . gettype( $x ), 'process-data' );
+			}
+		}
+		$this->storage->update( $old, $new );
+		foreach ( $this->lifecycleHandlers as $handler ) {
+			$handler->onAfterUpdate( $object, $old, $new );
+		}
+		$this->loaded[$object] = $new;
 	}
 
 	public function remove( $object ) {
-		try {
-			$old = $this->loaded[$object];
-			$this->storage->remove( $old );
-			foreach ( $this->lifecycleHandlers as $handler ) {
-				$handler->onAfterRemove( $object, $old );
-			}
-			unset( $this->loaded[$object] );
-		} catch ( \MWException $e ) {
-			throw new DataPersistenceException( 'failed remove', 'process-data', $e );
+		$old = $this->loaded[$object];
+		$this->storage->remove( $old );
+		foreach ( $this->lifecycleHandlers as $handler ) {
+			$handler->onAfterRemove( $object, $old );
 		}
+		unset( $this->loaded[$object] );
 	}
 
 	public function clear() {
