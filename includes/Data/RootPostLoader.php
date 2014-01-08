@@ -9,7 +9,9 @@ use Flow\Exception\InvalidDataException;
 
 /**
  * I'm pretty sure this will generally work for any subtree, not just the topic
- * root.  The problem is once you allow any subtree you need to handle things like
+ * root.  The problem is once you allow any subtree you need to handle the
+ * depth and root post setters better, they make the assumption the root provided
+ * is actually a root.
  */
 class RootPostLoader {
 	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo ) {
@@ -140,6 +142,11 @@ class RootPostLoader {
 		$roots = array();
 		foreach ( $topicIds as $id ) {
 			$roots[$id->getHex()] = $posts[$id->getHex()];
+		}
+		// Attach every post in the tree to its root. This method
+		// recursivly applies it to all children as well.
+		foreach ( $roots as $hex => $post ) {
+			$post->setRootPost( $post );
 		}
 		return $roots;
 	}
