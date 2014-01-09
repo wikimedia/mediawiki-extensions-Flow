@@ -79,7 +79,7 @@
 		 * Fetches post info.
 		 *
 		 * @see includes/Block/Topic.php TopicBlock::renderAPI
-		 * @returns {jQuery.Deferred}
+		 * @return {jQuery.Deferred}
 		 */
 		read: function () {
 			return mw.flow.api.readTopic(
