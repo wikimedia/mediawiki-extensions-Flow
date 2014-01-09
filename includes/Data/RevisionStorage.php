@@ -18,9 +18,6 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_mod_user_text',
 		'rev_mod_timestamp',
 		'rev_mod_reason',
-		'tree_orig_user_text',
-		'rev_user_text',
-		'rev_edit_user_text',
 	);
 	protected $externalStores;
 
