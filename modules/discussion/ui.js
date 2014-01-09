@@ -49,64 +49,6 @@
 				}
 			} );
 
-		// Set up new topic form
-		$container.find( '.flow-newtopic-step2' ).hide();
-		$container.find( '.flow-newtopic-title' )
-			.addClass( 'flow-newtopic-start' )
-			.byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
-			.attr( 'placeholder', mw.msg( 'flow-newtopic-start-placeholder' ) )
-			.click( function () {
-				if ( !$( this ).hasClass( 'flow-newtopic-start' ) ) {
-					return;
-				}
-				$( '.flow-newtopic-step2' )
-					.show();
-				$( this )
-					.removeClass( 'flow-newtopic-start' )
-					.attr( 'placeholder', mw.msg( 'flow-newtopic-title-placeholder' ) );
-				$( '.flow-newtopic-submit' )
-					.prop( 'disabled', true );
-				$container.find( '.flow-new-topic-link' ).hide();
-
-				mw.flow.editor.load( $( '.flow-newtopic-content' ) );
-			} );
-
-		$container.find( '.flow-new-topic-link' ).click ( function( e ) {
-			e.preventDefault();
-			$container.find( '.flow-newtopic-title' ).trigger( 'click' ).focus();
-		} );
-
-		$( '<a />' )
-			.attr( 'href', '#' )
-			.addClass( 'flow-cancel-link' )
-			.addClass( 'mw-ui-button' )
-			.addClass( 'mw-ui-text' )
-			.text( mw.msg( 'flow-cancel' ) )
-			.click( function ( e ) {
-				e.preventDefault();
-				var $form = $( this ).closest( 'form.flow-newtopic-form' );
-
-				mw.flow.editor.destroy( $form.find( '.flow-newtopic-content' ) );
-
-				$( '.flow-newtopic-step2' )
-					.slideUp( 'fast', function () {
-						$form.find( '.flow-newtopic-title' )
-							.val( '' )
-							.attr( 'placeholder', mw.msg( 'flow-newtopic-start-placeholder' ) )
-							.addClass( 'flow-newtopic-start' );
-						$form.find( '.flow-newtopic-content' )
-							.val( '' );
-						$form.find( '.flow-error' )
-							.remove();
-					} );
-				$container.find( '.flow-new-topic-link' ).show();
-				$form.flow( 'hidePreview' );
-			} )
-			.after( ' ' )
-			.insertBefore( $container.find( '.flow-newtopic-form input[type=submit]' ) );
-
-		$container.find( 'form.flow-newtopic-form' ).flow( 'setupPreview', { '.flow-newtopic-title': 'plain', 'textarea': 'parsed' } );
-
 		// Set up folding
 		var $topicContainers = $container.is( '.flow-topic-container' ) ? $container : $container.find( '.flow-topic-container' );
 		$topicContainers

@@ -234,21 +234,31 @@
 .flow-new-topic-container {
 	.flow-newtopic-form {
 		padding-bottom: 0px;
+	}
 
-		.flow-newtopic-title {
-			font-weight: bold;
+	.flow-newtopic-title {
+		font-weight: bold;
 
-			padding-left: 45px;
+		padding-left: 45px;
 
-			background-position: left 10px center;
-			background-size: 25px auto;
-			background-repeat: no-repeat;
-			.background-image-svg('../../base/images/createtopic_normal_ltr.svg', '../../base/images/createtopic_normal_ltr.png');
-		}
+		background-position: left 10px center;
+		background-size: 25px auto;
+		background-repeat: no-repeat;
+		.background-image-svg('../../base/images/createtopic_normal_ltr.svg', '../../base/images/createtopic_normal_ltr.png');
+	}
 
-		.flow-post-form-controls {
-			margin-top: 5px;
-			text-align: right;
+	.flow-post-form-controls {
+		margin-top: 5px;
+		text-align: right;
+	}
+
+	.flow-newtopic-step2 {
+		display: none;
+	}
+
+	&.flow-form-active {
+		.flow-newtopic-step2 {
+			display: block;
 		}
 	}
 }

@@ -69,7 +69,7 @@
 		 * Fetches title info.
 		 *
 		 * @see includes/Block/Topic.php TopicBlock::renderAPI
-		 * @returns {jQuery.Deferred}
+		 * @return {jQuery.Deferred}
 		 */
 		read: function () {
 			return mw.flow.api.readTopic(
@@ -229,10 +229,8 @@
 					$( '<div class="flow-edit-title-controls"></div>' )
 						.append(
 							$( '<a/>' )
-								.addClass( 'flow-cancel-link' )
-								.addClass( 'mw-ui-button' )
-								.addClass( 'mw-ui-text' )
 								.attr( 'href', '#' )
+								.addClass( 'flow-cancel-link mw-ui-button mw-ui-text' )
 								.text( mw.msg( 'flow-cancel' ) )
 								.click( function ( e ) {
 									e.preventDefault();
@@ -358,6 +356,193 @@
 				.trigger( 'flow_init' )
 				.slideDown()
 				.scrollIntoView();
+		}
+	};
+
+	/**
+	 * Initialises new topic interaction object.
+	 */
+	mw.flow.discussion.topic.new = function () {
+		this.$form = $( '.flow-new-topic-container' );
+
+		// fetch workflow parameters
+		this.workflow = this.$form.flow( 'getWorkflowParameters' );
+
+		// Overload click in textarea, triggering full new topic form
+		this.$form.find( '.flow-newtopic-title' )
+			.attr( 'placeholder', mw.msg( 'flow-newtopic-start-placeholder' ) )
+			.click( this.new.bind( this ) );
+	};
+
+	/**
+	 * Fired when reply form is initialized.
+	 *
+	 * @param {Event} e
+	 */
+	mw.flow.discussion.topic.new.prototype = {
+		/**
+		 * Fired when textarea is clicked.
+		 *
+		 * @param {Event} e
+		 */
+		new: function ( e ) {
+			// don't follow link that will lead to &action=new-topic
+			e.preventDefault();
+
+			// don't re-bind if form is already active
+			if ( this.$form.hasClass( 'flow-form-active' ) ) {
+				return;
+			}
+
+			// mark form as active
+			this.$form.addClass( 'flow-form-active' );
+
+			// load the form
+			this.loadNewForm();
+		},
+
+		/**
+		 * Builds the new topic form.
+		 */
+		loadNewForm: function () {
+			this.$form.find( '.flow-newtopic-title' )
+				.byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
+				.attr( 'placeholder', mw.msg( 'flow-newtopic-title-placeholder' ) );
+
+			$( 'form.flow-newtopic-form' ).flow( 'setupEmptyDisabler',
+				[ '.flow-newtopic-title' ],
+				'.flow-newtopic-submit'
+			);
+
+			console.log(this.$form.find( '.flow-newtopic-content' ).is( ':visible' ));
+
+			mw.flow.editor.load( this.$form.find( '.flow-newtopic-content' ) );
+
+			// Overload 'new topic' handler.
+			this.$form.flow( 'setupFormHandler',
+				'.flow-newtopic-submit',
+				this.submitFunction.bind( this ),
+				this.loadParametersCallback.bind( this ),
+				this.validateCallback.bind( this ),
+				this.promiseCallback.bind( this )
+			);
+
+			// add cancel link
+			$( '<a />' )
+				.attr( 'href', '#' )
+				.addClass( 'flow-cancel-link mw-ui-button mw-ui-text' )
+				.text( mw.msg( 'flow-cancel' ) )
+				.click( function ( e ) {
+					e.preventDefault();
+					this.destroyForm();
+				}.bind( this ) )
+				.after( ' ' )
+				.insertBefore( this.$form.find( '.flow-newtopic-form input[type=submit]' ) );
+
+			// attach preview functionaly
+			this.$form.find( 'form' ).flow( 'setupPreview', {
+				'.flow-newtopic-title': 'plain',
+				textarea: 'parsed'
+			} );
+		},
+
+		/**
+		 * Destroys the JS magic & restores the form in its original state
+		 */
+		destroyForm: function () {
+			mw.flow.editor.destroy( this.$form.find( '.flow-newtopic-content' ) );
+
+			this.$form.find( '.flow-newtopic-step2' )
+				.slideUp( 'fast', function () {
+					// reset form in it's original blank state
+					this.$form.find( '.flow-newtopic-title' )
+						.val( '' )
+						.attr( 'placeholder', mw.msg( 'flow-newtopic-start-placeholder' ) );
+
+					this.$form.find( 'form' ).flow( 'hidePreview' );
+
+					/*
+					 * After submitting the new topic, kill the events that were bound to
+					 * the submit button via flow( 'setupEmptyDisabler' ) and
+					 * flow( 'setupFormHandler' ).
+					 * Otherwise, they'd be re-bound as soon as we trigger the form again.
+					 */
+					$( '.flow-newtopic-submit', this.$form ).off();
+
+					// cleanup what's been added via JS
+					this.$form.removeClass( 'flow-form-active' );
+					this.$form.find( '.flow-cancel-link, .flow-content-preview, .flow-preview-submit' ).remove();
+					this.$form.find( '.flow-error' ).remove();
+
+					// slideUp adds some inline CSS to keep the elements hidden,
+					// but we want it in it's original state (where CSS scoping
+					// :not(.flow-form-active) will make the form stay hidden)
+					this.$form.find( '.flow-newtopic-step2' ).css( 'display', '' );
+				}.bind( this ) );
+		},
+
+		/**
+		 * Submit function for flow( 'setupFormHandler' ).
+		 *
+		 * @param {string} title
+		 * @param {string} content
+		 * @return {jQuery.Deferred}
+		 */
+		submitFunction: function ( title, content ) {
+			var deferred = mw.flow.api.newTopic(
+				this.workflow,
+				title,
+				content
+			);
+
+			deferred.done( this.render.bind( this ) );
+
+			return deferred;
+		},
+
+		/**
+		 * Called when submitFunction is resolved.
+		 *
+		 * @param {object} output
+		 */
+		render: function ( output ) {
+			$( output.rendered )
+				.hide()
+				.prependTo( $( '.flow-topics' ) )
+				.trigger( 'flow_init' )
+				.slideDown()
+				.scrollIntoView();
+		},
+
+		/**
+		 * Feeds parameters to flow( 'setupFormHandler' ).
+		 *
+		 * @return {array} Array with params, to be fed to validateCallback &
+		 * submitFunction
+		 */
+		loadParametersCallback: function () {
+			var title = this.$form.find( '.flow-newtopic-title' ).val(),
+				content = mw.flow.editor.getContent( this.$form.find( '.flow-newtopic-content' ) );
+
+			return [title, content];
+		},
+
+		/**
+		 * Validates parameters for flow( 'setupFormHandler' ).
+		 *
+		 * @param {string} title
+		 * @param {string} content
+		 * @return {bool}
+		 */
+		validateCallback: function ( title, content ) {
+			return !!title;
+		},
+
+		/**
+		 * @param {jQuery.Deferred}
+		 */
+		promiseCallback: function ( deferred ) {
+			deferred.done( this.destroyForm.bind( this ) );
 		}
 	};
 } ( jQuery, mediaWiki ) );
