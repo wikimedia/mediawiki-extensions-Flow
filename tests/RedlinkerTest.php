@@ -10,21 +10,21 @@ class RedlinkerTest extends \MediaWikiTestCase {
 	static protected $postRow = array(
 		'rev_id' => null,
 		'rev_user_id' => null,
-		'rev_user_text' => null,
+		'rev_user_ip' => null,
 		'rev_parent_id' => null,
 		'rev_change_type' => null,
 		'rev_flags' => null,
 		'rev_content' => null,
 		'rev_mod_state' => null,
 		'rev_mod_user_id' => null,
-		'rev_mod_user_text' => null,
+		'rev_mod_user_ip' => null,
 		'rev_mod_timestamp' => null,
 		'tree_parent_id' => null,
 		'tree_rev_id' => null,
 		'tree_rev_descendant_id' => null,
 		'tree_orig_create_time' => null,
 		'tree_orig_user_id' => null,
-		'tree_orig_user_text' => null,
+		'tree_orig_user_ip' => null,
 	);
 
    static public function redLinkProvider() {
