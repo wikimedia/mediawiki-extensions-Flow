@@ -196,7 +196,7 @@
 	};
 
 	/**
-	 * Initialises topic reply interaction object.
+	 * Initialises post reply interaction object.
 	 *
 	 * @param {object} post
 	 */
@@ -233,13 +233,15 @@
 			}
 
 			// load the form
-			this.setupReplyForm();
+			this.loadReplyForm();
 		},
 
 		/**
 		 * Builds the reply form.
+		 *
+		 * @param {function} [loadFunction] callback to be executed when form is loaded
 		 */
-		setupReplyForm: function () {
+		loadReplyForm: function ( loadFunction ) {
 			// fetch username/IP
 			var username = this.$form.closest( '.flow-post-container' ).data( 'creator-name' );
 
@@ -248,39 +250,28 @@
 				username = '[[' + mw.Title.newFromText( username, 2 ).getPrefixedText() + '|' + username + ']]';
 			}
 
-			// init form: load editor & scroll into view
-			mw.flow.discussion.loadReplyForm( this.$form, username + ': ' );
-
-			// setup disabler (disables submit button until content is entered)
-			this.$form.flow( 'setupEmptyDisabler',
-				['.flow-reply-content'],
-				'.flow-reply-submit'
-			);
-
-			// init form submission callbacks
-			this.$form.flow( 'setupFormHandler',
-				'.flow-reply-submit',
+			this.$form.flow(
+				'loadReplyForm',
+				'post',
+				{
+					content: username + ': ',
+					format: 'wikitext'
+				},
 				this.submitFunction.bind( this ),
-				this.loadParametersCallback.bind( this ),
-				this.validateCallback.bind( this ),
-				this.promiseCallback.bind( this )
+				loadFunction
 			);
 		},
 
 		/**
 		 * Submit function for flow( 'setupFormHandler' ).
-		 * Arguments passed to this function are the return value of
-		 * loadParametersCallback
 		 *
-		 * @param {string} workflowId
-		 * @param {string} replyToId
 		 * @param {string} content
 		 * @return {jQuery.Deferred}
 		 */
-		submitFunction: function ( workflowId, replyTo, content ) {
+		submitFunction: function ( content ) {
 			var deferred = mw.flow.api.reply(
-				workflowId,
-				replyTo,
+				this.post.workflowId,
+				this.$form.find( 'input[name="topic[replyTo]"]' ).val(),
 				content
 			);
 
@@ -302,44 +293,6 @@
 				.trigger( 'flow_init' )
 				.slideDown()
 				.scrollIntoView();
-		},
-
-		/**
-		 * Parameter supplier (to submitFunction) for flow( 'setupFormHandler' ).
-		 *
-		 * @return {array}
-		 */
-		loadParametersCallback: function () {
-			var replyToId = this.$form.find( 'input[name="topic[replyTo]"]' ).val(),
-				content = mw.flow.editor.getContent( this.$form.find( '.flow-reply-content' ) );
-
-			return [ this.post.workflowId, replyToId, content ];
-		},
-
-		/**
-		 * Validation (of loadParametersCallback return values) for flow( 'setupFormHandler' ).
-		 *
-		 * @return {bool}
-		 */
-		validateCallback: function ( content ) {
-			return content !== '';
-		},
-
-		/**
-		 * Because reply-forms may be re-used across posts (when max
-		 * threading depth has been reached), we have to make sure not
-		 * to bind more than 1 submission-handler to the same form.
-		 *
-		 * After submitting the new post, kill the events that were bound to
-		 * the submit button via flow( 'setupEmptyDisabler' ) and
-		 * flow( 'setupFormHandler' ).
-		 *
-		 * @param deferred
-		 */
-		promiseCallback: function ( deferred ) {
-			deferred.done( function () {
-				$( '.flow-reply-submit', this.$form ).off();
-			}.bind( this ) );
 		}
 	};
 } ( jQuery, mediaWiki ) );
