@@ -14,7 +14,9 @@
 
 		this.actions = {
 			// init edit-title interaction
-			edit: new mw.flow.action.topic.edit( this )
+			edit: new mw.flow.action.topic.edit( this ),
+			// init reply interaction
+			reply: new mw.flow.action.topic.reply( this )
 		};
 	};
 
@@ -283,5 +285,85 @@
 		$titleEditForm
 			.remove()
 			.flow( 'hidePreview' );
+	};
+
+	/**
+	 * Initialises topic reply interaction object.
+	 *
+	 * @param {object} topic
+	 */
+	mw.flow.action.topic.reply = function ( topic ) {
+		this.topic = topic;
+		this.$form = this.topic.$container.find( '.flow-topic-reply-container' );
+
+		// Overload click in textarea, triggering full reply form
+		this.$form.find( '.flow-topic-reply-content' ).click( this.reply.bind( this ) );
+	};
+
+	// extend edit action from "shared functionality" mw.flow.action class
+	mw.flow.action.topic.reply.prototype = new mw.flow.action();
+	mw.flow.action.topic.reply.prototype.constructor = mw.flow.action.topic.reply;
+
+	/**
+	 * Fired when textarea is clicked.
+	 *
+	 * @param {Event} e
+	 */
+	mw.flow.action.topic.reply.prototype.reply = function ( e ) {
+		// don't follow link that will lead to &action=reply
+		e.preventDefault();
+
+		// load the form
+		this.loadReplyForm();
+	};
+
+	/**
+	 * Builds the reply form.
+	 *
+	 * @param {function} [loadFunction] callback to be executed when form is loaded
+	 */
+	mw.flow.action.topic.reply.prototype.loadReplyForm = function ( loadFunction ) {
+		this.$form.flow(
+			'loadReplyForm',
+			'topic',
+			{
+				content: '',
+				format: 'wikitext'
+			},
+			this.submitFunction.bind( this ),
+			loadFunction
+		);
+	};
+
+	/**
+	 * Submit function for flow( 'setupFormHandler' ).
+	 *
+	 * @param {string} content
+	 * @return {jQuery.Deferred}
+	 */
+	mw.flow.action.topic.reply.prototype.submitFunction = function ( content ) {
+		var deferred = mw.flow.api.reply(
+			this.topic.workflowId,
+			this.$form.data( 'post-id' ),
+			content
+		);
+
+		deferred.done( this.render.bind( this ) );
+
+		return deferred;
+	};
+
+	/**
+	 * Called when submitFunction is resolved.
+	 *
+	 * @param {object} output
+	 */
+	mw.flow.action.topic.reply.prototype.render = function ( output ) {
+		$( output.rendered )
+			.hide()
+			.insertBefore( this.$form )
+			.trigger( 'flow_init' )
+			.slideDown()
+			.scrollIntoView();
 	};
 } ( jQuery, mediaWiki ) );

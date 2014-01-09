@@ -191,10 +191,157 @@
 				 */
 				setTimeout( function( $postForm, initialContent, loadFunction ) {
 					var $textarea = $postForm.find( 'textarea' );
-					$textarea.focus();
 					mw.flow.editor.load( $textarea, initialContent.content, initialContent.format )
 						.done( loadFunction );
+
+					// scroll to the form
+					$postForm.scrollIntoView( {
+						complete: function () {
+							mw.flow.editor.focus( $textarea );
+							mw.flow.editor.moveCursorToEnd( $textarea );
+						}
+					} );
 				}.bind( this, $postForm, initialContent, loadFunction ), 0 );
+
+				return deferredObject.promise();
+			},
+
+			/**
+			 * Sets up a reply form.
+			 *
+			 * Unlike edit forms, reply forms already exit in HTML, we just have
+			 * to "activate" some JS magic.
+			 *
+			 * @param  {string} type                  The type of edit form (single word)
+			 * @param  {string|object} initialContent The content to pre-fill.
+			 * An object, with the keys 'content' and 'format'. Or a plain string of wikitext.
+			 * @param  {function} submitFunction      Function to call in order to submit the form.
+			 * One parameter, the content.
+			 * @param {function} loadFunction         Function to call once the form is loaded.
+			 * @return {Promise}                      A promise that will be resolved or rejected
+			 * when the form submission has returned.
+			 */
+			'loadReplyForm' : function( type, initialContent, submitFunction, loadFunction ) {
+				var $formContainer = $( this ),
+					$form = $formContainer.find( 'form' ),
+					$textarea = $formContainer.find( 'textarea' ),
+					deferredObject = $.Deferred();
+
+				if ( $formContainer.hasClass( 'flow-form-active' ) ) {
+					// This is a bit yucky, but should behave correctly in most cases
+					return deferredObject.promise();
+				}
+
+				// add class to identify this form as being active
+				$formContainer.addClass( 'flow-form-active' );
+
+				// hide topic reply form
+				$formContainer.closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
+
+				// show this form
+				$formContainer.show();
+
+				// add cancel link
+				$( '<a />' )
+					.attr( 'href', '#' )
+					.addClass( 'flow-cancel-link mw-ui-button mw-ui-text' )
+					.text( mw.msg( 'flow-cancel' ) )
+					.click( function ( e ) {
+						e.preventDefault();
+
+						mw.flow.editor.destroy( $textarea );
+						$form.flow( 'hidePreview' );
+
+						// when closed, display topic reply form again
+						$formContainer
+							.closest( '.flow-topic-container' )
+							.find( '.flow-topic-reply-container' )
+							.show();
+
+						/*
+						 * Because we're not entirely killing the forms, we have
+						 * to clean up after cancelling a form (e.g. reply-forms
+						 * may be re-used across posts - when max threading
+						 * depth has been reached)
+						 *
+						 * After submitting the reply, kill the events that were
+						 * bound to the submit button via setupEmptyDisabler and
+						 * setupFormHandler.
+						 */
+						$formContainer.find( '.flow-'+type+'-reply-submit' ).off();
+						$formContainer.removeClass( 'flow-form-active' );
+						$( this ).remove();
+						$formContainer.find( '.flow-content-preview, .flow-preview-submit' ).remove();
+					} )
+					.after( ' ' )
+					.prependTo( $formContainer.find( '.flow-post-form-controls') );
+
+				// setup preview
+				$form.flow( 'setupPreview' );
+
+				// setup submission callback
+				$formContainer.flow( 'setupFormHandler',
+					'.flow-'+type+'-reply-submit',
+					submitFunction,
+					function () {
+						var content = mw.flow.editor.getContent( $formContainer.find( '.flow-'+type+'-reply-content' ) );
+						return [ content ];
+					},
+					function ( content ) {
+						return content;
+					},
+					function ( promise ) {
+						promise
+							.done( function () {
+								deferredObject.resolve.apply( $formContainer, arguments );
+							} )
+							.fail( function() {
+								deferredObject.reject.apply( $formContainer, arguments );
+							} );
+					}
+				);
+
+				// setup disabler (disables submit button until content is entered)
+				$formContainer.flow( 'setupEmptyDisabler',
+					['.flow-'+type+'-reply-content'],
+					'.flow-'+type+'-reply-submit'
+				);
+
+				if ( typeof initialContent != 'object' ) {
+					initialContent = {
+						'content' : initialContent,
+						'format' : 'wikitext'
+					};
+				}
+
+				/*
+				 * Setting focus inside an event that grants focus (like
+				 * clicking the reply button), is tricky. This is a workaround.
+				 */
+				setTimeout( function( $formContainer, initialContent, loadFunction ) {
+					var $textarea = $formContainer.find( 'textarea' );
+
+					$textarea
+						.removeClass( 'flow-reply-box-closed' )
+						// Override textarea height; doesn't need to be too large initially,
+						// it'll auto-expand
+						.attr( 'rows', '6' )
+						// Textarea will auto-expand + textarea padding will cause the
+						// resize grabber to be positioned badly (in FF) so get rid of it
+						.css( 'resize', 'none' )
+						.focus();
+
+					mw.flow.editor.load( $textarea, initialContent.content, initialContent.format )
+						.done( loadFunction );
+
+					// scroll to the form
+					$formContainer.scrollIntoView( {
+						complete: function () {
+							mw.flow.editor.focus( $textarea );
+							mw.flow.editor.moveCursorToEnd( $textarea );
+						}
+					} );
+				}.bind( this, $formContainer, initialContent, loadFunction ), 0 );
 
 				return deferredObject.promise();
 			},
