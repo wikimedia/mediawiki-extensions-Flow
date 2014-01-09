@@ -19,6 +19,14 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_mod_timestamp',
 		'rev_mod_reason',
 	);
+
+	// Delete when these columns are dropped from production
+	static protected $obsoleteUpdateColumns = array (
+		'tree_orig_user_text',
+		'rev_user_text',
+		'rev_edit_user_text',
+	);
+
 	protected $externalStores;
 
 	abstract protected function joinTable();
@@ -282,6 +290,14 @@ abstract class RevisionStorage extends DbStorage {
 	// for suppressing?
 	public function update( array $old, array $new ) {
 		$changeSet = ObjectManager::calcUpdates( $old, $new );
+
+		foreach( static::$obsoleteUpdateColumns as $val ) {
+			// Need to use array_key_exists to check null value
+			if ( array_key_exists( $val, $changeSet ) ) {
+				unset( $changeSet[$val] );
+			}
+		}
+
 		$extra = array_diff( array_keys( $changeSet ), static::$allowedUpdateColumns );
 		if ( $extra ) {
 			throw new DataModelException( 'Update not allowed on: ' . implode( ', ', $extra ), 'process-data' );
@@ -406,6 +422,13 @@ class PostRevisionStorage extends RevisionStorage {
 		// no changes to be performed
 		if ( !$treeChanges ) {
 			return $changes;
+		}
+
+		foreach( static::$obsoleteUpdateColumns as $val ) {
+			// Need to use array_key_exists to check null value
+			if ( array_key_exists( $val, $treeChanges ) ) {
+				unset( $treeChanges[$val] );
+			}
 		}
 
 		$extra = array_diff( array_keys( $treeChanges ), static::$allowedUpdateColumns );
