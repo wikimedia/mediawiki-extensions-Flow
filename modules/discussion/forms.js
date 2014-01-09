@@ -13,11 +13,6 @@
 				'.flow-newtopic-submit'
 			);
 
-			$container.find( 'form.flow-topic-reply-form' ).flow( 'setupEmptyDisabler',
-				[ '.flow-topic-reply-content' ],
-				'.flow-topic-reply-submit'
-			);
-
 			// Overload 'new topic' handler.
 			$container.flow( 'setupFormHandler',
 				'.flow-newtopic-submit',
@@ -41,41 +36,6 @@
 								.prependTo( $( '.flow-topics' ) )
 								.trigger( 'flow_init' )
 								.slideDown();
-						} );
-				}
-			);
-
-			// Overload 'topic reply' handler
-			$container.flow( 'setupFormHandler',
-				'.flow-topic-reply-submit',
-				mw.flow.api.reply,
-				function() {
-					var $form = $( this ).closest( '.flow-topic-reply-form' ),
-						workflowId = $( this ).flow( 'getTopicWorkflowId' ),
-						replyToId = $( this )
-							.closest( '.flow-topic-reply-container' )
-							.data( 'post-id' ),
-						content = mw.flow.editor.getContent( $form.find( '.flow-topic-reply-content' ) );
-
-					return [ workflowId, replyToId, content ];
-				},
-				function ( workflowId, replyTo, content ) {
-					return content;
-				},
-				function ( promise ) {
-					promise
-						.done( function ( output ) {
-							$( output.rendered )
-								.hide()
-								.insertBefore( $( this ).closest( '.flow-topic-reply-container' ) )
-								.trigger( 'flow_init' )
-								.slideDown();
-							// Reset the form
-							// @Todo - this works but doesn't seem right
-							var $form = $( this ).closest( '.flow-topic-reply-form' );
-							mw.flow.editor.destroy( $form.find( '.flow-topic-reply-content' ) );
-							mw.flow.editor.load( $form.find( '.flow-topic-reply-content' ) );
-							$form.find( '.flow-post-form-controls' ).hide();
 						} );
 				}
 			);
@@ -113,49 +73,6 @@
 					new mw.flow.discussion.topic( topicId );
 
 					$( this ).data( 'flow-initialised-topic', true );
-				}
-			} );
-		},
-
-		/**
-		 * Loads a reply form:
-		 * * shows this form & hides others
-		 * * moves form into viewport
-		 * * loads editor
-		 * * focuses editor
-		 *
-		 * @param {jQuery} $form
-		 * @param {string} [defaultContent]
-		 */
-		loadReplyForm: function ( $form, defaultContent ) {
-			var $textarea = $form.find( 'textarea' );
-
-			// hide topic reply form
-			$form.closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
-
-			// show this form
-			$form
-				.show()
-				.find( '.flow-cancel-link' )
-
-				// when closed, display topic reply form again
-				.click( function( e ) {
-					e.preventDefault();
-					$( this )
-						.closest( '.flow-topic-container' )
-						.find( '.flow-topic-reply-container' )
-						.show();
-				} );
-
-			// load editor on this reply form
-			$textarea.removeClass( 'flow-reply-box-closed' );
-			mw.flow.editor.load( $textarea, defaultContent, 'wikitext' );
-
-			// scroll to the form
-			$form.scrollIntoView( {
-				complete: function () {
-					mw.flow.editor.focus( $textarea );
-					mw.flow.editor.moveCursorToEnd( $textarea );
 				}
 			} );
 		}

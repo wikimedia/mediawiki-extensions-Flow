@@ -14,6 +14,9 @@
 
 		// init edit-title interaction
 		new mw.flow.discussion.topic.edit( this );
+
+		// init reply interaction
+		new mw.flow.discussion.topic.reply( this );
 	};
 
 	/**
@@ -272,6 +275,89 @@
 			$titleEditForm
 				.remove()
 				.flow( 'hidePreview' );
+		}
+	};
+
+	/**
+	 * Initialises topic reply interaction object.
+	 *
+	 * @param {object} topic
+	 */
+	mw.flow.discussion.topic.reply = function ( topic ) {
+		this.topic = topic;
+		this.$form = this.topic.$container.find( '.flow-topic-reply-container' );
+
+		// Overload click in textarea, triggering full reply form
+		this.$form.find( '.flow-topic-reply-content' ).click( this.reply.bind( this ) );
+	};
+
+	/**
+	 * Fired when reply form is initialized.
+	 *
+	 * @param {Event} e
+	 */
+	mw.flow.discussion.topic.reply.prototype = {
+		/**
+		 * Fired when textarea is clicked.
+		 *
+		 * @param {Event} e
+		 */
+		reply: function ( e ) {
+			// don't follow link that will lead to &action=reply
+			e.preventDefault();
+
+			// load the form
+			this.loadReplyForm();
+		},
+
+		/**
+		 * Builds the reply form.
+		 *
+		 * @param {function} [loadFunction] callback to be executed when form is loaded
+		 */
+		loadReplyForm: function ( loadFunction ) {
+			this.$form.flow(
+				'loadReplyForm',
+				'topic',
+				{
+					content: '',
+					format: 'wikitext'
+				},
+				this.submitFunction.bind( this ),
+				loadFunction
+			);
+		},
+
+		/**
+		 * Submit function for flow( 'setupFormHandler' ).
+		 *
+		 * @param {string} content
+		 * @return {jQuery.Deferred}
+		 */
+		submitFunction: function ( content ) {
+			var deferred = mw.flow.api.reply(
+				this.topic.workflowId,
+				this.$form.data( 'post-id' ),
+				content
+			);
+
+			deferred.done( this.render.bind( this ) );
+
+			return deferred;
+		},
+
+		/**
+		 * Called when submitFunction is resolved.
+		 *
+		 * @param {object} output
+		 */
+		render: function ( output ) {
+			$( output.rendered )
+				.hide()
+				.insertBefore( this.$form )
+				.trigger( 'flow_init' )
+				.slideDown()
+				.scrollIntoView();
 		}
 	};
 } ( jQuery, mediaWiki ) );
