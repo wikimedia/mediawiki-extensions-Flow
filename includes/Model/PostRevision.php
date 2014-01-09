@@ -170,9 +170,12 @@ class PostRevision extends AbstractRevision {
 	}
 
 	public function getRootPost() {
-		if ( $this->rootPost === null ) {
-			throw new DataModelException( 'Depth not loaded for post: ' . $this->postId->getHex(), 'process-data' );
+		if ( $this->isTopicTitle() ) {
+			return $this;
+		} elseif ( $this->rootPost === null ) {
+			throw new DataModelException( 'Root not loaded for post: ' . $this->postId->getHex(), 'process-data' );
 		}
+
 		return $this->rootPost;
 	}
 

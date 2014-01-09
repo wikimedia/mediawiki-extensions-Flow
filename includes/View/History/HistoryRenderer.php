@@ -156,7 +156,7 @@ class HistoryRenderer {
 			// Board history
 			} else {
 				if ( $revision->getRevisionType() === 'post' ) {
-					$workFlowId = \Flow\Container::get( 'repository.tree' )->findRoot( $revision->getPostId() );
+					$workflowId = $revision->getRootPost()->getPostId();
 				} else {
 					$workFlowId = $revision->getWorkflowId();
 				}
