@@ -259,10 +259,19 @@
 
 	.flow-topic-reply-form {
 		margin-top: 22px;
+	}
 
+	.flow-post-form-controls {
+		margin-top: 5px;
+		text-align: right;
+		display: none;
+	}
+
+	// hide controls when form is inactive
+	// class is added via JS, so controls are always visible for non-JS
+	&.flow-form-active {
 		.flow-post-form-controls {
-			margin-top: 5px;
-			text-align: right;
+			display: block;
 		}
 	}
 
@@ -274,6 +283,7 @@
 	// will shrink the textarea, and the "submit" button will be missed.
 	&:not(:active) {
 		.flow-topic-reply-content:empty:not(:focus) {
+			// @todo: move up, in .flow-form-inactive
 			height: 34px;
 		}
 	}
