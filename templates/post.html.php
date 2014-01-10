@@ -24,7 +24,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 	if ( $block->getHexRepliedTo() === $post->getPostId()->getHex() ) {
 		$replyForm .= '<ul>';
 		foreach ( $block->getErrors() as $error ) {
-			$replyForm .= '<li>' . $block->getErrorMessage( $error )->escaped() . '</li>';
+			$replyForm .= '<li>' . $block->getErrorMessage( $error )->parse() . '</li>';
 		}
 		$replyForm .= '</ul>';
 	}
