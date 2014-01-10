@@ -11,7 +11,7 @@ if ( $block->hasErrors( 'content' ) ) {
 	echo Html::element(
 		'p',
 		array( 'id' => 'flow-header-error' ),
-		$block->getErrorMessage( 'content' )->text()
+		$block->getErrorMessage( 'content' )->parse()
 	);
 }
 
