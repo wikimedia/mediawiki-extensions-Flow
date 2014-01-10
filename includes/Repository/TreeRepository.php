@@ -137,7 +137,7 @@ class TreeRepository {
 		$missingValues = array();
 
 		foreach( $descendants as $descendant ) {
-			$cacheKeys[$descendant->getHex()] = wfForeignMemcKey( 'flow', 'tree', 'rootpath', $descendant->getHex() );
+			$cacheKeys[$descendant->getHex()] = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
 		}
 
 		$cacheResult = $this->cache->getMulti( array_values( $cacheKeys ) );
