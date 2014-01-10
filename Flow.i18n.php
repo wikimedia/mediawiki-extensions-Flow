@@ -1604,6 +1604,7 @@ $messages['fa'] = array(
 	'flow-history-week' => 'هفتهٔ گذشته',
 	'flow-history-pages-topic' => 'بر روی [$1 "$2" صفحه] به نظر رسیدن',
 	'flow-history-pages-post' => 'بر روی [$1 $2] به نظر رسیدن',
+	'flow-topic-participants' => '{{PLURAL:$1|$3 این موضوع شروع شده|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} و $2 {{PLURAL:$2|دیگر|دیگران}}|0=هنوز هیچ مشارکتی نیست|2={{GENDER:$3|$3}} و {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} و {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|نظر $1 |نظرها  $1 |0={{GENDER:$2|اولین}} شخصی باشید که نظر می‌گذارد!}}',
 	'flow-comment-restored' => 'بازگرداندن نظر',
 	'flow-comment-deleted' => 'نظر حذف شده',
@@ -2836,6 +2837,7 @@ $messages['jbo'] = array(
  * @author Daisy2002
  * @author Hym411
  * @author Jskang
+ * @author Priviet
  * @author Yjs5497
  * @author 아라
  */
@@ -2853,6 +2855,7 @@ $messages['ko'] = array(
 	'flow-topic-actions' => '동작',
 	'flow-cancel' => '취소',
 	'flow-preview' => '미리 보기',
+	'flow-show-change' => '차이 보기',
 	'flow-newtopic-title-placeholder' => '새 주제',
 	'flow-newtopic-header' => '새 항목 추가',
 	'flow-newtopic-save' => '새 항목',
@@ -2883,6 +2886,7 @@ $messages['ko'] = array(
 	'flow-error-external-multi' => '에러가 발생하였습니다.<br />$1',
 	'flow-error-missing-content' => '내용이 없습니다. 저장하려면 내용이 있어야 합니다.',
 	'flow-error-missing-title' => '항목에 제목이 없습니다. 항목을 저장하려면 제목이 필요합니다.',
+	'flow-error-not-a-post' => '주제 제목은 기여로 저장할 수 없습니다.',
 	'flow-error-default' => '오류가 발생했습니다.',
 	'flow-rev-message-edit-title' => '주제 제목이 편집되었습니다', # Fuzzy
 	'flow-rev-message-edit-header' => '수정된 머리말', # Fuzzy
@@ -3013,6 +3017,13 @@ $messages['lb'] = array(
 	'flow-moderation-confirmation-restore-topic' => '{{GENDER:$2|Dir}} hutt dëst Thema restauréiert.',
 	'flow-topic-permalink-warning' => 'Dëse Sujet gouf op [$2 $1] ugefaang',
 	'flow-compare-revisions-revision-header' => 'Versioun vum {{GENDER:$2|$2}} vum $1',
+);
+
+/** لوری (لوری)
+ * @author Mogoeilor
+ */
+$messages['lrc'] = array(
+	'flow-show-change' => 'آلشتيانه نشون بيئه',
 );
 
 /** Lithuanian (lietuvių)
@@ -3293,7 +3304,7 @@ $messages['ml'] = array(
  */
 $messages['mr'] = array(
 	'flow-newtopic-title-placeholder' => 'संदेशाचा विषय', # Fuzzy
-	'flow-error-external' => 'आपले उत्तर जतन करण्यात त्रूटी घडली.आपले उत्तर जतन झाले नाही.<br />मिळालेला त्रूटी संदेश असा होता: $1',
+	'flow-error-external' => 'आपले उत्तर जतन करण्यात त्रूटी घडली.<br />मिळालेला त्रूटी संदेश असा होता: $1',
 	'flow-error-external-multi' => 'आपले उत्तर जतन करण्यात त्रूटी आढळल्या.आपले उत्तर जतन झाले नाही.<br />$1', # Fuzzy
 	'flow-error-missing-title' => 'विषयास मथळा नाही.एखाद्या विषयास जतन करावयाचे तर मथळा हवा.',
 	'flow-error-prev-revision-mismatch' => 'आपले संपादन जतन करता आले नाही:त्यापेक्षा नविनतम बदल हा सादर करण्यात आला आहे.',
