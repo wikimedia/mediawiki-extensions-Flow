@@ -13,6 +13,7 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use User;
 use BagOStuff;
+use Flow\Container;
 
 class Query {
 	/**
@@ -323,7 +324,7 @@ class Query {
 	protected function getNewbieConditionInfo( ContribsPager $pager ) {
 		// unlike most of Flow, this one doesn't use wfForeignMemcKey; needs
 		// to be wiki-specific
-		$key = wfMemcKey( 'flow', '', 'maxUserId' );
+		$key = wfMemcKey( 'flow', '', 'maxUserId', Container::get( 'cache.version' ) );
 		$max = $this->cache->get( $key );
 		if ( $max === false ) {
 			// max user id not present in cache; fetch from db & save to cache for 1h

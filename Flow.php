@@ -312,6 +312,7 @@ $wgFlowUseMemcache = true;
 // of 3 days means Flow will attempt to keep in memcache all data models requested in
 // the last 3 days.
 $wgFlowCacheTime = 60 * 60 * 24 * 3;
+$wgFlowCacheVersion = '1.0';
 
 // Custom group name for AbuseFilter
 // Acceptable values:

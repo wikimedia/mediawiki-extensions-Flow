@@ -1185,7 +1185,7 @@ abstract class FeatureIndex implements Index {
 			}
 		}
 
-		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, implode( ':', $attributes ) );
+		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, implode( ':', $attributes ), Container::get( 'cache.version' ) );
 	}
 
 	/**
