@@ -55,9 +55,9 @@ class TreeRepository {
 	 * has what we need
 	 */
 	public function insert( UUID $descendant, UUID $ancestor = null ) {
-		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant->getHex() );
-		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant->getHex() );
-		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
+		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant->getHex(), Container::get( 'cache.version' ) );
+		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant->getHex(), Container::get( 'cache.version' ) );
+		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex(), Container::get( 'cache.version' ) );
 		$this->cache->set( $subtreeKey, array( $descendant ), $this->cacheTime );
 		if ( $ancestor === null ) {
 			$this->cache->set( $parentKey, null, $this->cacheTime );
@@ -115,7 +115,7 @@ class TreeRepository {
 		// This could be pretty slow if there is contention
 		foreach ( $rootPath as $subtreeRoot ) {
 			$this->cache->merge(
-				wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex() ),
+				wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex(), Container::get( 'cache.version' ) ),
 				$callback
 			);
 		}
@@ -137,7 +137,7 @@ class TreeRepository {
 		$missingValues = array();
 
 		foreach( $descendants as $descendant ) {
-			$cacheKeys[$descendant->getHex()] = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
+			$cacheKeys[$descendant->getHex()] = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex(), Container::get( 'cache.version' ) );
 		}
 
 		$cacheResult = $this->cache->getMulti( array_values( $cacheKeys ) );

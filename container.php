@@ -11,6 +11,7 @@ if ( $GLOBALS['wgFlowUseMemcache'] ) {
 } else {
 	$c['memcache'] = new \HashBagOStuff;
 }
+$c['cache.version'] = $GLOBALS['wgFlowCacheVersion'];
 
 
 // Flow config

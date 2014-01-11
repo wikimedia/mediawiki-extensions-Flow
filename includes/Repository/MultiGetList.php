@@ -28,7 +28,7 @@ class MultiGetList {
 			} else {
 				$cacheId = $id;
 			}
-			$cacheKeys[wfForeignMemcKey( 'flow', '', $key, $cacheId )] = $id;
+			$cacheKeys[wfForeignMemcKey( 'flow', '', $key, $cacheId, Container::get( 'cache.version' ) )] = $id;
 		}
 		return $this->getByKey( $cacheKeys, $loadCallback );
 	}
