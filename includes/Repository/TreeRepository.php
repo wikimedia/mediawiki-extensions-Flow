@@ -6,6 +6,7 @@ use Flow\Data\ObjectManager;
 use Flow\DbFactory;
 use Flow\Model\UUID;
 use BagOStuff;
+use Flow\Container;
 use Flow\Exception\DataModelException;
 
 /*
@@ -55,9 +56,9 @@ class TreeRepository {
 	 * has what we need
 	 */
 	public function insert( UUID $descendant, UUID $ancestor = null ) {
-		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant->getHex() );
-		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant->getHex() );
-		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
+		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant->getHex(), Container::get( 'cache.version' ) );
+		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant->getHex(), Container::get( 'cache.version' ) );
+		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex(), Container::get( 'cache.version' ) );
 		$this->cache->set( $subtreeKey, array( $descendant ), $this->cacheTime );
 		if ( $ancestor === null ) {
 			$this->cache->set( $parentKey, null, $this->cacheTime );
@@ -115,7 +116,7 @@ class TreeRepository {
 
 		// This could be pretty slow if there is contention
 		foreach ( $rootPath as $subtreeRoot ) {
-			$cacheKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex() );
+			$cacheKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex(), Container::get( 'cache.version' ) );
 			$success = $this->cache->merge( $cacheKey, $callback );
 
 			// if we failed to CAS new data, kill the cached value so it'll be
@@ -125,6 +126,7 @@ class TreeRepository {
 			}
 		}
 	}
+
 	public function findParent( UUID $descendant ) {
 		$map = $this->fetchParentMap( array( $descendant ) );
 		return isset( $map[$descendant->getHex()] ) ? $map[$descendant->getHex()] : null;
@@ -142,7 +144,7 @@ class TreeRepository {
 		$missingValues = array();
 
 		foreach( $descendants as $descendant ) {
-			$cacheKeys[$descendant->getHex()] = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex() );
+			$cacheKeys[$descendant->getHex()] = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex(), Container::get( 'cache.version' ) );
 		}
 
 		$cacheResult = $this->cache->getMulti( array_values( $cacheKeys ) );

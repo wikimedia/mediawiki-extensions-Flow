@@ -2,6 +2,7 @@
 
 namespace Flow\Tests;
 
+use Flow\Container;
 use Flow\Data\BufferedCache;
 use Flow\Data\UniqueFeatureIndex;
 use Flow\Data\TopKIndex;
@@ -34,12 +35,13 @@ class IndexTest extends \MediaWikiTestCase {
 		);
 
 		$db = FeatureIndex::cachedDbId();
-		$bag->set( "$db:unique:1", array( array( 'id' => 1, 'name' => 'foo', 'other' => 'ppp' ) ) );
-		$bag->set( "$db:unique:2", array( array( 'id' => 2, 'name' => 'foo', 'other' => 'qqq' ) ) );
-		$bag->set( "$db:unique:3", array( array( 'id' => 3, 'name' => 'baz', 'other' => 'lll' ) ) );
+		$v = Container::get( 'cache.version' );
+		$bag->set( "$db:unique:1:$v", array( array( 'id' => 1, 'name' => 'foo', 'other' => 'ppp' ) ) );
+		$bag->set( "$db:unique:2:$v", array( array( 'id' => 2, 'name' => 'foo', 'other' => 'qqq' ) ) );
+		$bag->set( "$db:unique:3:$v", array( array( 'id' => 3, 'name' => 'baz', 'other' => 'lll' ) ) );
 
-		$bag->set( "$db:secondary:foo", array( array( 'id' => 1 ), array( 'id' => 2 ) ) );
-		$bag->set( "$db:secondary:baz", array( array( 'id' => 3 ) ) );
+		$bag->set( "$db:secondary:foo:$v", array( array( 'id' => 1 ), array( 'id' => 2 ) ) );
+		$bag->set( "$db:secondary:baz:$v", array( array( 'id' => 3 ) ) );
 
 		$expect = array(
 			array( 'id' => 1, 'name' => 'foo', 'other' => 'ppp', ),
@@ -77,15 +79,16 @@ class IndexTest extends \MediaWikiTestCase {
 		// remember: unique index still stores an array of results to be consistent with other indexes
 		// even though, due to uniqueness, there is only one value per set of keys
 		$db = FeatureIndex::cachedDbId();
-		$bag->set( "$db:unique:1:9", array( array( 'id' => 1, 'ot' => 9, 'name' => 'foo' ) ) );
-		$bag->set( "$db:unique:1:8", array( array( 'id' => 1, 'ot' => 8, 'name' => 'foo' ) ) );
-		$bag->set( "$db:unique:3:7", array( array( 'id' => 3, 'ot' => 7, 'name' => 'baz' ) ) );
+		$v = Container::get( 'cache.version' );
+		$bag->set( "$db:unique:1:9:$v", array( array( 'id' => 1, 'ot' => 9, 'name' => 'foo' ) ) );
+		$bag->set( "$db:unique:1:8:$v", array( array( 'id' => 1, 'ot' => 8, 'name' => 'foo' ) ) );
+		$bag->set( "$db:unique:3:7:$v", array( array( 'id' => 3, 'ot' => 7, 'name' => 'baz' ) ) );
 
-		$bag->set( "$db:secondary:foo", array(
+		$bag->set( "$db:secondary:foo:$v", array(
 			array( 'id' => 1, 'ot' => 9 ),
 			array( 'id' => 1, 'ot' => 8 ),
 		) );
-		$bag->set( "$db:secondary:baz", array(
+		$bag->set( "$db:secondary:baz:$v", array(
 			array( 'id' => 3, 'ot' => 7 ),
 		) );
 
