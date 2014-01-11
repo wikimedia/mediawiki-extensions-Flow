@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cef0db4e_356fc2c2",
+        "filename": "includes/Data/RootPostLoader.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-11T12:08:52Z",
+      "side": 1,
+      "message": "like what?  Don\u0027t leave me hanging.",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cef0db4e_5553661a",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-11T12:08:52Z",
+      "side": 1,
+      "message": "Explain it. \"Root\" sounds like the Flow board or the topic, but it can\u0027t be because those aren\u0027t posts, so is it just the parent of a tangent in current implementation?",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cef0db4e_153ddeb8",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-11T12:08:52Z",
+      "side": 1,
+      "message": "Hard to read, instead \"Variables to which callback functions and their results will be saved.\"\nbut the comment doesn\u0027t really add much... at what point will they be saved?  (Take me, Jesus!)",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cef0db4e_b543d242",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-11T12:08:52Z",
+      "side": 1,
+      "message": "It\u0027s spelled \"propagate\" here and below :)  It\u0027s a proper sentence so capitalize and end with a period.",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cef0db4e_556a46b2",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-11T12:08:52Z",
+      "side": 1,
+      "message": "Likewise // Propagate root post into children.",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
