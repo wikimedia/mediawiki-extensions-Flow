@@ -863,11 +863,11 @@ Parameters:
 * $2 - the title of the new topic
 * $3 - title of the page the topic belongs to
 {{Related|Flow-notification-email}}',
-	'echo-category-title-flow-discussion' => 'This is a short title for notification category.  Parameters:
+	'echo-category-title-flow-discussion' => 'This is a short title for notification category. Parameters:
 * $1 - number of mentions, for PLURAL support
-
 {{Related|Echo-category-title}}',
-	'echo-pref-tooltip-flow-discussion' => 'This is a short description of the flow-discussion notification category.',
+	'echo-pref-tooltip-flow-discussion' => 'This is a short description of the flow-discussion notification category.
+{{Related|Echo-pref-tooltip}}',
 	'flow-link-post' => 'Text used when linking to a post from recentchanges.
 {{Identical|Post}}',
 	'flow-link-topic' => 'Text used when linking to a topic from recentchanges.
