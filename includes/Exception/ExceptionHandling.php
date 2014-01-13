@@ -61,13 +61,24 @@ class FlowException extends MWException {
 	}
 
 	/**
+	 * Overrides MWException getHTML, adding a more human-friendly error message
+	 *
+	 * @return string
+	 */
+	public function getHTML() {
+		$this->output->showErrorPage( 'errorpagetitle', $this->getErrorCode() );
+
+		return parent::getHTML();
+	}
+
+	/**
 	 * Exception from API/commandline will be handled by MWException::report(),
 	 * Overwrite the HTML display only
 	 */
 	public function reportHTML() {
 		$this->output->setStatusCode( $this->getStatusCode() );
-		$this->output->showErrorPage( 'errorpagetitle', $this->getErrorCode() );
-		$this->output->output();
+
+		parent::reportHTML();
 	}
 
 	/**
