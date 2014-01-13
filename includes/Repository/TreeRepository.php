@@ -327,7 +327,7 @@ class TreeRepository {
 	 * Fetch the id of the immediate parent node of all ids in $nodes.  Non-existant
 	 * nodes are not represented in the result set.
 	 */
-	protected function fetchParentMap( array $nodes ) {
+	public function fetchParentMap( array $nodes ) {
 		$list = new MultiGetList( $this->cache, $this->cacheTime );
 		return $list->get(
 			array( 'tree', 'parent' ),

@@ -3,6 +3,7 @@
 namespace Flow\Data;
 
 use Flow\Block\TopicBlock;
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Exception\InvalidDataException;
@@ -87,24 +88,50 @@ class RootPostLoader {
 				throw new InvalidDataException( 'Multiple results for id: ' . $post->getPostId()->getHex(), 'fail-load-data' );
 			}
 			$posts[$post->getPostId()->getHex()] = $post;
-			if ( $post->getReplyToId() ) {
-				$children[$post->getReplyToId()->getHex()][] = $post;
-			}
 		}
 		$prettyPostIds = array();
 		foreach ( $allPostIds as $id ) {
 			$prettyPostIds[] = $id->getHex();
 		}
+
 		$missing = array_diff( $prettyPostIds, array_keys( $posts ) );
 		if ( $missing ) {
-			// TODO: fake up a pseudo-post to hold the children? At this point in
-			// dev its probably a bug we want to see.
-			throw new InvalidDataException( 'Missing Posts: ' . json_encode( $missing ), 'fail-load-data' );
+			// convert string uuid's into UUID objects
+			$missingUUID = array_map( array( 'Flow\Model\UUID', 'create' ), $missing );
+
+			// we'll need to know parents to add stub post correctly in post hierarchy
+			$parents = $this->treeRepo->fetchParentMap( $missingUUID );
+			$missingParents = array_diff( $missing, array_keys( $parents ) );
+			if ( $missingParents ) {
+				// if we can't fetch a post's original position in the tree
+				// hierarchy, we can't create a stub post to display, so bail
+				throw new InvalidDataException( 'Missing Posts & parents: ' . json_encode( $missingParents ), 'fail-load-data' );
+			}
+
+			foreach ( $missingUUID as $postId ) {
+				$content = wfMessage( 'flow-stub-post-content' )->text();
+				$username = wfMessage( 'flow-system-usertext' )->text();
+				$user = \User::newFromName( $username );
+
+				// create a stub post instead of failing completely
+				$post = PostRevision::newFromId( $postId, $user, $content );
+				$post->setReplyToId( $parents[$postId->getHex()] );
+				$posts[$postId->getHex()] = $post;
+
+				wfWarn( 'Missing Posts: ' . json_encode( $missing ) );
+			}
 		}
 		// another helper to catch bugs in dev
 		$extra = array_diff( array_keys( $posts ), $prettyPostIds );
 		if ( $extra ) {
 			throw new InvalidDataException( 'Found unrequested posts: ' . json_encode( $extra ), 'fail-load-data' );
+		}
+
+		// populate array of children
+		foreach ( $posts as $post ) {
+			if ( $post->getReplyToId() ) {
+				$children[$post->getReplyToId()->getHex()][] = $post;
+			}
 		}
 		$extraParents = array_diff( array_keys( $children ), $prettyPostIds );
 		if ( $extraParents ) {

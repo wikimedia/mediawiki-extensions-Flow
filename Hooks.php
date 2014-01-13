@@ -269,6 +269,8 @@ class FlowHooks {
 			$names[] = "msg:flow-$permission-usertext";
 		}
 
+		$names[] = "msg:flow-system-usertext";
+
 		return true;
 	}
 
