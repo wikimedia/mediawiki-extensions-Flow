@@ -45,7 +45,7 @@ class MultiGetList {
 		} else {
 			foreach ( $multiRes as $key => $value ) {
 				if ( $cacheKeys[$key] instanceof UUID ) {
-					$idx = $cacheKeys[$key]->getBinary();
+					$idx = $cacheKeys[$key]->getHex();
 				} else {
 					$idx = $cacheKeys[$key];
 				}
@@ -69,7 +69,7 @@ class MultiGetList {
 			$invCacheKeys[$id] = $cacheKey;
 		}
 		foreach ( $res as $id => $row ) {
-			// If we failed contacting memcache a moment ago dont bother trying to
+			// If we failed contacting memcache a moment ago don't bother trying to
 			// push values either.
 			if ( $multiRes !== false ) {
 				$this->cache->set( $invCacheKeys[$id], $row, $this->cacheTime );
