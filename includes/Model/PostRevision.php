@@ -34,19 +34,49 @@ class PostRevision extends AbstractRevision {
 	// @param Workflow $topic
 	// @param string $content The title of the topic(they are revisionable as well)
 	static public function create( Workflow $topic, $content ) {
-		$obj = new self;
-		$obj->revId = UUID::create();
-		$obj->postId = $topic->getId();
-		$obj->origUserId = $obj->userId = $topic->getUserId();
-		$obj->origUserIp = $obj->userIp = $topic->getUserIp();
-		$obj->origCreateTime = wfTimestampNow();
-		$obj->replyToId = null; // not a reply to anything
-		$obj->prevRevision = null; // no parent revision
+		if ( $topic->getUserId() ) {
+			$user = User::newFromId( $topic->getUserId() );
+		} else {
+			$user = User::newFromName( $topic->getUserIp() );
+		}
+
+		$obj = static::newFromId( $topic->getId(), $user, $content );
+
 		$obj->changeType = 'new-post';
-		$obj->setContent( $content );
 		// A newly created post has no children and a depth of 0
 		$obj->setChildren( array() );
 		$obj->setDepth( 0 );
+
+		return $obj;
+	}
+
+	/**
+	 * DO NOT USE THIS METHOD!
+	 *
+	 * Seriously, you probably don't want to use this method. Although it's kind
+	 * of similar to Title::newFrom* or User::newFrom*, chances are slim to none
+	 * that this will do what you'd expect.
+	 * Unlike Title & User etc, a post is not something some object that can be
+	 * used in isolation: a post should always be retrieved via it's parents,
+	 * via a workflow, via a definition, ...
+	 * The only reason we have this method is so that, when failing to load a
+	 * post, we can create a stub object.
+	 *
+	 * @param UUID $uuid
+	 * @param User $user
+	 * @param string $content
+	 * @return PostRevision
+	 */
+	static public function newFromId( UUID $uuid, User $user, $content ) {
+		$obj = new self;
+		$obj->revId = UUID::create();
+		$obj->postId = $uuid;
+		$obj->origUserId = $obj->userId = $user->getId();
+		$obj->origUserIp = $obj->userIp = $user->getName();
+		$obj->origCreateTime = wfTimestampNow();
+		$obj->setReplyToId( null ); // not a reply to anything
+		$obj->prevRevision = null; // no parent revision
+		$obj->setContent( $content );
 
 		return $obj;
 	}
@@ -124,6 +154,10 @@ class PostRevision extends AbstractRevision {
 
 	public function isTopicTitle() {
 		return $this->replyToId === null;
+	}
+
+	public function setReplyToId( UUID $id = null ) {
+		$this->replyToId = $id;
 	}
 
 	public function getReplyToId() {
