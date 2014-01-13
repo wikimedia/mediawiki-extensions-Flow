@@ -93,7 +93,6 @@ class RootPostLoader {
 		foreach ( $allPostIds as $id ) {
 			$prettyPostIds[] = $id->getHex();
 		}
-
 		$missing = array_diff( $prettyPostIds, array_keys( $posts ) );
 		if ( $missing ) {
 			// convert string uuid's into UUID objects
