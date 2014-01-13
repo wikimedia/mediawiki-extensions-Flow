@@ -360,7 +360,7 @@ class TreeRepository {
 			$result[$descendant->getHex()] = UUID::create( $node->tree_ancestor_id );
 		}
 		foreach ( $nodes as $node ) {
-			if ( !isset( $result[$node] ) ) {
+			if ( !isset( $result[$node->getHex()] ) ) {
 				// $node is a root, it has no parent
 				$result[$node] = null;
 			}
