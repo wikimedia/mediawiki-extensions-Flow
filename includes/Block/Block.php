@@ -112,7 +112,7 @@ abstract class AbstractBlock implements Block {
 
 	/**
 	 * @param $type
-	 * @return Message
+	 * @return \Message
 	 */
 	public function getErrorMessage( $type ) {
 		return isset( $this->errors[$type]['message'] ) ? $this->errors[$type]['message'] : null;
@@ -128,7 +128,7 @@ abstract class AbstractBlock implements Block {
 
 	/**
 	 * @param string $type
-	 * @param Message $message
+	 * @param \Message $message
 	 * @param mixed[optional] $extra
 	 */
 	public function addError( $type, \Message $message, $extra = null ) {
