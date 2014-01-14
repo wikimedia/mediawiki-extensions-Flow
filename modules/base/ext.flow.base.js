@@ -3,6 +3,23 @@
 mw.flow = {
 
 	'api' : {
+
+		/**
+		 * Maps the Flow action to it's API prefix
+		 * @param {string} action
+		 * @returns {string}
+		 */
+		'mapPrefixes' : function( action ) {
+			return {
+				'edit-header': 'eh',
+				'edit-post': 'ep',
+				'edit-title': 'et',
+				'moderate-post': 'mp',
+				'moderate-topic': 'mt',
+				'new-topic': 'nt',
+				'reply': 'rep'
+			}[action];
+		},
 		/**
 		 * Execute a Flow action, fires API call.
 		 *
@@ -26,10 +43,14 @@ mw.flow = {
 				.done( function ( data ) {
 					var request = {
 						'action' : 'flow',
-						'flowaction' : action,
-						'params' : $.toJSON( options ),
+						'submodule' : action,
 						'token' : data.tokens.flowtoken
-					};
+					},
+						prefix = mw.flow.api.mapPrefixes( action );
+
+					$.each( options, function( name, val ) {
+						request[prefix + name] = val;
+					} );
 
 					request = $.extend( request, workflowParam );
 
@@ -151,6 +172,7 @@ mw.flow = {
 		},
 
 		/**
+		 * @param {string} blockName
 		 * @param {string} actionName
 		 * @param {object} parameterList
 		 * @param {function} promiseFilterCallback
@@ -170,18 +192,16 @@ mw.flow = {
 					paramIndex++;
 				} );
 
-				realParams[blockName] = requestParams;
-
 				mw.flow.api.executeAction(
 					workflowSpec,
 					actionName,
-					realParams,
+					requestParams,
 					true
 				).done( function ( data ) {
 					var output;
 
-					if ( data.flow[actionName].errors ) {
-						deferredObject.reject( 'block-errors', data.flow[actionName].errors );
+					if ( data.flow[actionName].status === 'error' ) {
+						deferredObject.reject( 'block-errors', data.flow[actionName].result );
 						return;
 					}
 
