@@ -112,12 +112,17 @@ class TreeRepository {
 			$value[$descendant->getHex()] = $descendant;
 			return $value;
 		};
+
 		// This could be pretty slow if there is contention
 		foreach ( $rootPath as $subtreeRoot ) {
-			$this->cache->merge(
-				wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex() ),
-				$callback
-			);
+			$cacheKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex() );
+			$success = $this->cache->merge( $cacheKey, $callback );
+
+			// if we failed to CAS new data, kill the cached value so it'll be
+			// re-fetched from DB
+			if ( !$success ) {
+				$this->cache->delete( $cacheKey );
+			}
 		}
 	}
 	public function findParent( UUID $descendant ) {

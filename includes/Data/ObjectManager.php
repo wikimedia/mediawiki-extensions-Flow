@@ -1290,8 +1290,9 @@ class TopKIndex extends FeatureIndex {
 		$self = $this;
 		// If this used redis instead of memcached, could it add to index in position
 		// without retry possibility? need a single number that will properly sort rows.
-		$this->cache->merge(
-			$this->cacheKey( $indexed ),
+		$cacheKey = $this->cacheKey( $indexed );
+		$success = $this->cache->merge(
+			$cacheKey,
 			function( BagOStuff $cache, $key, $value ) use( $self, $row ) {
 				if ( $value === false ) {
 					return false;
@@ -1305,18 +1306,25 @@ class TopKIndex extends FeatureIndex {
 				$retval = $self->sortIndex( $retval );
 				$retval = $self->limitIndexSize( $retval );
 				if ( $retval === $value ) {
-					// object didnt fit in index
+					// object didn't fit in index
 					return false;
 				} else {
 					return $retval;
 				}
 			}
 		);
+
+		// if we failed to CAS new data, kill the cached value so it'll be
+		// re-fetched from DB
+		if ( !$success ) {
+			$this->cache->delete( $cacheKey );
+		}
 	}
 
 	protected function removeFromIndex( array $indexed, array $row ) {
-		$this->cache->merge(
-			$this->cacheKey( $indexed ),
+		$cacheKey = $this->cacheKey( $indexed );
+		$success = $this->cache->merge(
+			$cacheKey,
 			function( BagOStuff $cache, $key, $value ) use( $row ) {
 				if ( $value === false ) {
 					return false;
@@ -1329,12 +1337,19 @@ class TopKIndex extends FeatureIndex {
 				return $value;
 			}
 		);
+
+		// if we failed to CAS new data, kill the cached value so it'll be
+		// re-fetched from DB
+		if ( !$success ) {
+			$this->cache->delete( $cacheKey );
+		}
 	}
 
 	protected function replaceInIndex( array $indexed, array $oldRow, array $newRow ) {
 		$self = $this;
-		$this->cache->merge(
-			$this->cacheKey( $indexed ),
+		$cacheKey = $this->cacheKey( $indexed );
+		$success = $this->cache->merge(
+			$cacheKey,
 			function( BagOStuff $cache, $key, $value ) use( $self, $oldRow, $newRow ) {
 				if ( $value === false ) {
 					return false;
@@ -1355,6 +1370,12 @@ class TopKIndex extends FeatureIndex {
 				}
 			}
 		);
+
+		// if we failed to CAS new data, kill the cached value so it'll be
+		// re-fetched from DB
+		if ( !$success ) {
+			$this->cache->delete( $cacheKey );
+		}
 	}
 
 	// INTERNAL: in 5.4 it can be protected
@@ -1690,7 +1711,14 @@ class BufferedCache {
 	 */
 	public function merge( $key, \Closure $callback, $attempts = 10 ) {
 		if ( $this->buffer === null ) {
-			$this->cache->merge( $key, $callback, $this->exptime, $attempts );
+			$success = $this->cache->merge( $key, $callback, $this->exptime, $attempts );
+
+			// if we failed to CAS new data, kill the cached value so it'll be
+			// re-fetched from DB
+			if ( !$success ) {
+				$this->cache->delete( $key );
+			}
+
 		} else {
 			$this->buffer[] = array(
 				'command' => __FUNCTION__,
