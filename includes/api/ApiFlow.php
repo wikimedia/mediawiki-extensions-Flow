@@ -7,99 +7,60 @@ class ApiFlow extends ApiBase {
 	/** @var Flow\Container $container */
 	protected $container;
 
+	/** @var \Flow\WorkflowLoader $loader */
+	protected $loader;
+
+	/** @var ApiModuleManager $modulemanager */
+	protected $modulemanager;
+
+	private $params;
+
+	static $modules = array(
+		'new-topic' => 'ApiFlowNewTopic',
+		'edit-header' => 'ApiFlowEditHeader',
+		'edit-post' => 'ApiFlowEditPost',
+		'reply' => 'ApiFlowReply',
+		'moderate-topic' => 'ApiFlowModerateTopic',
+		'moderate-post' => 'ApiFlowModeratePost',
+		'hide-post' => 'ApiFlowHidePost',
+		'delete-post' => 'ApiFlowDeletePost',
+		'suppress-post' => 'ApiFlowSuppressPost',
+		'restore-post' => 'ApiFlowRestorePost',
+		'edit-title' => 'ApiFlowEditTitle',
+	);
+
+	public static function getActionFromClass( $classname ) {
+		$flip = array_flip( self::$modules );
+		return $flip[$classname];
+	}
+
+	public function __construct( $main, $action ) {
+		parent::__construct( $main, $action );
+		$this->modulemanager = new ApiModuleManager( $this );
+		$this->modulemanager->addModules( self::$modules, 'submodule' );
+	}
+
+	public function getModuleManager() {
+		return $this->modulemanager;
+	}
+
 	public function execute() {
-		$this->container = Flow\Container::getContainer();
-		$params = $this->extractRequestParams();
-		$output = array();
-
-		if ( ! $params['workflow'] && ! $params['page'] ) {
-			$this->dieUsage( 'One of workflow or page parameters must be provided', 'badparams' );
-			return;
-		}
-
-		$id = UUID::create( $params['workflow'] );
-		$page = false;
-		if ( $params['page'] ) {
-			$page = Title::newFromText( $params['page'] );
-		}
-		$this->loader = $this->container['factory.loader.workflow']
-			->createWorkflowLoader( $page, $id );
-		$occupationController = $this->container['occupation_controller'];
-		$workflow = $this->loader->getWorkflow();
-		$article = new Article( $workflow->getArticleTitle(), 0 );
-
-		// @todo: this is a hack; see ParsoidUtils::convert
-		global $wgFlowParsoidTitle;
-		$wgFlowParsoidTitle = $workflow->getArticleTitle();
-
-		$isNew = $workflow->isNew();
-		// Is this making unnecesary db round trips?
-		if ( !$isNew ) {
-			$occupationController->ensureFlowRevision( $article );
-		}
-		$requestParams = json_decode( $params['params'], true );
-
-		if ( ! $requestParams ) {
-			$this->dieUsage( 'The params parameter must be a valid JSON string', 'badparams' );
-			return;
-		}
-
-		$request = new DerivativeRequest( $this->getRequest(), $requestParams, true );
-
-		$blocks = $this->loader->createBlocks();
-		$action = $params['flowaction'];
-		$user = $this->getUser();
-
-		foreach( $blocks as $block ) {
-			$block->init( $action, $user );
-		}
-
-		$blocksToCommit = $this->loader->handleSubmit( $action, $blocks, $user, $request );
-		if ( $blocksToCommit ) {
-			$commitResults = $this->loader->commit( $this->loader->getWorkflow(), $blocksToCommit );
-
-			$savedBlocks = array( '_element' => 'block' );
-
-			foreach( $blocksToCommit as $block ) {
-				$savedBlocks[] = $block->getName();
+		$this->params = $this->extractRequestParams();
+		$modules = array();
+		$this->instantiateModules( $modules, 'submodule' );
+		// This is some of the logic from ApiQuery::initModules
+		$wasPosted = $this->getRequest()->wasPosted();
+		/** @var $module ApiFlowBase */
+		foreach ( $modules as $moduleName => $module ) {
+			if ( !$wasPosted && $module->mustBePosted() ) {
+				$this->dieUsageMsg( array( 'mustbeposted', $moduleName ) );
 			}
-
-			$output[$action] = array(
-				'result' => array(),
-			);
-
-			$doRender = ( $params['render'] != false );
-
-			foreach( $commitResults as $key => $value ) {
-				$output[$action]['result'][$key] = $this->processCommitResult( $value, $doRender );
-			}
-			if ( $isNew && !$workflow->isNew() ) {
-				// Workflow was just created, ensure its underlying page is owned by flow
-				$occupationController->ensureFlowRevision( $article );
-			}
-		} else {
-			$output[$action] = array(
-				'result' => 'error',
-				'errors' => array(),
-			);
-
-			foreach( $blocks as $block ) {
-				if ( $block->hasErrors() ) {
-					$errors = $block->getErrors();
-					$nativeErrors = array();
-
-					foreach( $errors as $key ) {
-						$nativeErrors[$key]['message'] = $block->getErrorMessage( $key )->plain();
-						$nativeErrors[$key]['extra'] = $block->getErrorExtra( $key );
-					}
-
-					$output[$action]['errors'][$block->getName()] = $nativeErrors;
-				}
-			}
+			$module->profileIn();
+			$module->execute();
+			wfRunHooks( 'APIFlowAfterExecute', $module );
+			$module->profileOut();
 		}
 
-		$this->getResult()->addValue( null, $this->getModuleName(), $output );
-		return true;
 	}
 
 	protected function processCommitResult( $result, $render = true ) {
@@ -135,14 +96,39 @@ class ApiFlow extends ApiBase {
 		return $output;
 	}
 
+	/**
+	 * Create instances of all modules requested by the client
+	 * @fixme Copied from ApiQuery::instantiateModules, don't duplicate code
+	 * @param array $modules to append instantiated modules to
+	 * @param string $param Parameter name to read modules from
+	 */
+	private function instantiateModules( &$modules, $param ) {
+		if ( isset( $this->params[$param] ) ) {
+			foreach ( $this->params[$param] as $moduleName ) {
+				$instance = $this->modulemanager->getModule( $moduleName, $param );
+				if ( $instance === null ) {
+					ApiBase::dieDebug( __METHOD__, 'Error instantiating module' );
+				}
+				// Ignore duplicates. TODO 2.0: die()?
+				if ( !array_key_exists( $moduleName, $modules ) ) {
+					$modules[$moduleName] = $instance;
+				}
+			}
+		}
+	}
+
+	// @fixme need help generation code from ApiQuery
+
+
 	public function getDescription() {
 		 return 'Allows actions to be taken on Flow Workflows';
 	}
 
 	public function getAllowedParams() {
 		return array(
-			'flowaction' => array(
+			'submodule' => array(
 				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_TYPE => $this->modulemanager->getNames( 'submodules' ),
 			),
 			'workflow' => array(
 				ApiBase::PARAM_DFLT => null,
