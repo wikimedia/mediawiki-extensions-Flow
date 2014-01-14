@@ -25,7 +25,7 @@ mw.flow = {
 				)
 				.done( function ( data ) {
 					var request = {
-						'action' : 'flow',
+						'action' : 'flow-old',
 						'flowaction' : action,
 						'params' : $.toJSON( options ),
 						'token' : data.tokens.flowtoken
