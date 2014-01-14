@@ -7,99 +7,60 @@ class ApiFlow extends ApiBase {
 	/** @var Flow\Container $container */
 	protected $container;
 
+	/** @var \Flow\WorkflowLoader $loader */
+	protected $loader;
+
+	/** @var ApiModuleManager $modulemanager */
+	protected $modulemanager;
+
+	private $params;
+
+	static $modules = array(
+		'new-topic' => 'ApiFlowNewTopic',
+		'edit-header' => 'ApiFlowEditHeader',
+		'edit-post' => 'ApiFlowEditPost',
+		/*'reply' => 'ApiFlowReply',
+		'moderate-topic' => 'ApiFlowModerateTopic',
+		'moderate-post' => 'ApiFlowModeratePost',
+		'hide-post' => 'ApiFlowHidePost',
+		'delete-post' => 'ApiFlowDeletePost',
+		'suppress-post' => 'ApiFlowSuppressPost',
+		'restore-post' => 'ApiFlowRestorePost',
+		'edit-title' => 'ApiFlowEditTitle',*/
+	);
+
+	public static function getActionFromClass( $classname ) {
+		$flip = array_flip( self::$modules );
+		return $flip[$classname];
+	}
+
+	public function __construct( $main, $action ) {
+		parent::__construct( $main, $action );
+		$this->modulemanager = new ApiModuleManager( $this );
+		$this->modulemanager->addModules( self::$modules, 'submodule' );
+	}
+
+	public function getModuleManager() {
+		return $this->modulemanager;
+	}
+
 	public function execute() {
-		$this->container = Flow\Container::getContainer();
-		$params = $this->extractRequestParams();
-		$output = array();
+		$this->params = $this->extractRequestParams();
+		/** @var $module ApiFlowBase */
+		$module = $this->modulemanager->getModule($this->params['submodule'], 'submodule');
 
-		if ( ! $params['workflow'] && ! $params['page'] ) {
-			$this->dieUsage( 'One of workflow or page parameters must be provided', 'badparams' );
-			return;
+		$wasPosted = $this->getRequest()->wasPosted();
+		if ( !$wasPosted && $module->mustBePosted() ) {
+			$this->dieUsageMsg( array( 'mustbeposted', $this->params['submodule'] ) );
 		}
 
-		$id = UUID::create( $params['workflow'] );
-		$page = false;
-		if ( $params['page'] ) {
-			$page = Title::newFromText( $params['page'] );
-		}
-		$this->loader = $this->container['factory.loader.workflow']
-			->createWorkflowLoader( $page, $id );
-		$occupationController = $this->container['occupation_controller'];
-		$workflow = $this->loader->getWorkflow();
-		$article = new Article( $workflow->getArticleTitle(), 0 );
+		$module->extractRequestParams();
+		$module->profileIn();
+		$module->page = $this->getPage( $this->params ); // This feels hackish.
+		$module->execute();
+		wfRunHooks( 'APIFlowAfterExecute', array( $module ) );
+		$module->profileOut();
 
-		// @todo: this is a hack; see ParsoidUtils::convert
-		global $wgFlowParsoidTitle;
-		$wgFlowParsoidTitle = $workflow->getArticleTitle();
-
-		$isNew = $workflow->isNew();
-		// Is this making unnecesary db round trips?
-		if ( !$isNew ) {
-			$occupationController->ensureFlowRevision( $article );
-		}
-		$requestParams = json_decode( $params['params'], true );
-
-		if ( ! $requestParams ) {
-			$this->dieUsage( 'The params parameter must be a valid JSON string', 'badparams' );
-			return;
-		}
-
-		$request = new DerivativeRequest( $this->getRequest(), $requestParams, true );
-
-		$blocks = $this->loader->createBlocks();
-		$action = $params['flowaction'];
-		$user = $this->getUser();
-
-		foreach( $blocks as $block ) {
-			$block->init( $action, $user );
-		}
-
-		$blocksToCommit = $this->loader->handleSubmit( $action, $blocks, $user, $request );
-		if ( $blocksToCommit ) {
-			$commitResults = $this->loader->commit( $this->loader->getWorkflow(), $blocksToCommit );
-
-			$savedBlocks = array( '_element' => 'block' );
-
-			foreach( $blocksToCommit as $block ) {
-				$savedBlocks[] = $block->getName();
-			}
-
-			$output[$action] = array(
-				'result' => array(),
-			);
-
-			$doRender = ( $params['render'] != false );
-
-			foreach( $commitResults as $key => $value ) {
-				$output[$action]['result'][$key] = $this->processCommitResult( $value, $doRender );
-			}
-			if ( $isNew && !$workflow->isNew() ) {
-				// Workflow was just created, ensure its underlying page is owned by flow
-				$occupationController->ensureFlowRevision( $article );
-			}
-		} else {
-			$output[$action] = array(
-				'result' => 'error',
-				'errors' => array(),
-			);
-
-			foreach( $blocks as $block ) {
-				if ( $block->hasErrors() ) {
-					$errors = $block->getErrors();
-					$nativeErrors = array();
-
-					foreach( $errors as $key ) {
-						$nativeErrors[$key]['message'] = $block->getErrorMessage( $key )->plain();
-						$nativeErrors[$key]['extra'] = $block->getErrorExtra( $key );
-					}
-
-					$output[$action]['errors'][$block->getName()] = $nativeErrors;
-				}
-			}
-		}
-
-		$this->getResult()->addValue( null, $this->getModuleName(), $output );
-		return true;
 	}
 
 	protected function processCommitResult( $result, $render = true ) {
@@ -121,6 +82,27 @@ class ApiFlow extends ApiBase {
 		return $output;
 	}
 
+	/**
+	 * @param array $params
+	 * @return Title|bool false if no title provided
+	 */
+	protected function getPage( $params ) {
+		if ( isset( $params['page'] ) ) {
+			$page = Title::newFromText( $params['page'] );
+			if ( !$page ) {
+				$this->dieUsage( 'Invalid page provided', 'invalid-page' );
+			}
+		} else {
+			$page = false;
+		}
+
+		return $page;
+	}
+
+
+	/**
+	 * @todo figure out if this is still needed
+	 */
 	protected function doRerender( $blocks ) {
 		$templating = $this->container['templating'];
 
@@ -141,19 +123,13 @@ class ApiFlow extends ApiBase {
 
 	public function getAllowedParams() {
 		return array(
-			'flowaction' => array(
+			'submodule' => array(
 				ApiBase::PARAM_REQUIRED => true,
+				ApiBase::PARAM_TYPE => $this->modulemanager->getNames( 'submodule' ),
 			),
-			'workflow' => array(
-				ApiBase::PARAM_DFLT => null,
-			),
+			'workflow' => null,
 			'page' => null,
-			'params' => array(
-				ApiBase::PARAM_DFLT => '{}',
-			),
-			'token' => array(
-				ApiBase::PARAM_REQUIRED => true,
-			),
+			'token' => '',
 			'render' => array(
 				ApiBase::PARAM_DFLT => false,
 			),
@@ -163,12 +139,63 @@ class ApiFlow extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'action' => 'The action to take',
-			'workflow' => 'The Workflow to take an action on',
-			'params' => 'The parameters to pass',
+			'workflow' => 'The Workflow to take the action on',
+			'page' => 'The page to take the action on',
 			'token' => 'A token retrieved from api.php?action=tokens&type=flow',
 			'render' => 'Set this to something to include a block-specific rendering in the output',
 		);
 	}
+
+	/**
+	 * Override the parent to generate help messages for all available query modules.
+	 * @return string
+	 */
+	public function makeHelpMsg() {
+
+		// Use parent to make default message for the query module
+		$msg = parent::makeHelpMsg();
+
+		$querySeparator = str_repeat( '--- ', 12 );
+		$moduleSeparator = str_repeat( '*** ', 14 );
+		$msg .= "\n$querySeparator Flow: Submodules  $querySeparator\n\n";
+		$msg .= $this->makeHelpMsgHelper( 'submodule' );
+		/*
+		$msg .= "\n$querySeparator Query: List  $querySeparator\n\n";
+		$msg .= $this->makeHelpMsgHelper( 'list' );
+		$msg .= "\n$querySeparator Query: Meta  $querySeparator\n\n";
+		$msg .= $this->makeHelpMsgHelper( 'meta' );*/
+		$msg .= "\n\n$moduleSeparator Modules: continuation  $moduleSeparator\n\n";
+
+		return $msg;
+	}
+
+	/**
+	 * For all modules of a given group, generate help messages and join them together
+	 * @param string $group Module group
+	 * @return string
+	 */
+	private function makeHelpMsgHelper( $group ) {
+		$moduleDescriptions = array();
+
+		$moduleNames = $this->modulemanager->getNames( $group );
+		sort( $moduleNames );
+		foreach ( $moduleNames as $name ) {
+			/**
+			 * @var $module ApiQueryBase
+			 */
+			$module = $this->modulemanager->getModule( $name );
+
+			$msg = ApiMain::makeHelpMsgHeader( $module, $group );
+			$msg2 = $module->makeHelpMsg();
+			if ( $msg2 !== false ) {
+				$msg .= $msg2;
+			}
+			$moduleDescriptions[] = $msg;
+		}
+
+		return implode( "\n", $moduleDescriptions );
+	}
+
 
 	public function getExamples() {
 		// @todo: fill out an example
