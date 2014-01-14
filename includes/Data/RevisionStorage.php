@@ -182,7 +182,6 @@ abstract class RevisionStorage extends DbStorage {
 			throw new DataModelException( 'query failure', 'process-data' );
 		}
 
-		$result = array();
 		foreach ( $res as $row ) {
 			$row = (array) $row;
 			$duplicator->merge( $row, array( $row ) );
