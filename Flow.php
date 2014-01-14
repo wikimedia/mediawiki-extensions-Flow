@@ -156,9 +156,17 @@ $wgAutoloadClasses['Flow\Block\TopicView'] = $dir . 'includes/Block/Topic.php';
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
+$wgAutoloadClasses['ApiFlowBase'] = "$dir/includes/api/ApiFlowBase.php";
+$wgAutoloadClasses['ApiFlowNewTopic'] = "$dir/includes/api/ApiFlowNewTopic.php";
+$wgAutoloadClasses['ApiFlowEditHeader'] = "$dir/includes/api/ApiFlowEditHeader.php";
+$wgAutoloadClasses['ApiFlowEditPost'] = "$dir/includes/api/ApiFlowEditPost.php";
+
+$wgAutoloadClasses['ApiFlowOld'] = "$dir/includes/api/ApiFlowOld.php";
 $wgAPIListModules['flow'] = 'ApiQueryFlow';
 $wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
+$wgAPIModules['flow-old'] = 'ApiFlowOld';
 $wgAPIModules['flow'] = 'ApiFlow';
+
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
