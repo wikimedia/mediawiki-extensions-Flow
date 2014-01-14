@@ -1305,7 +1305,7 @@ class TopKIndex extends FeatureIndex {
 				$retval = $self->sortIndex( $retval );
 				$retval = $self->limitIndexSize( $retval );
 				if ( $retval === $value ) {
-					// object didnt fit in index
+					// object didn't fit in index
 					return false;
 				} else {
 					return $retval;
@@ -1686,14 +1686,42 @@ class BufferedCache {
 	/**
 	 * @param string $key
 	 * @param \Closure $callback
-	 * @param integer $attempts
+	 * @param int $attempts
 	 */
 	public function merge( $key, \Closure $callback, $attempts = 10 ) {
+		/**
+		 * Merge will CAS values, which could potentially fail (if, due to
+		 * concurrent writes, cache has changed since)
+		 * There will be multiple $attempts, but it may still fail.
+		 * To reliable update the data in cache, we'll have to delete the cache
+		 * if the CAS did not get through.
+		 *
+		 * Because we may be buffering the cache operation, I'll wrap both the
+		 * CAS (merge) and the fallback delete into a closure. It can either be
+		 * executed immediately (no buffer) or, if buffered, be committed via
+		 * call_user_func_array.
+		 *
+		 * @param string $key
+		 * @param \Closure $callback
+		 * @param int $exptime
+		 * @param int $attempts
+		 */
+		$cache = $this->cache;
+		$merge = function ( $key, \Closure $callback, $exptime, $attempts ) use( $cache ) {
+			$success = $cache->merge( $key, $callback, $exptime, $attempts );
+
+			// if we failed to CAS new data, kill the cached value so it'll be
+			// re-fetched from DB
+			if ( !$success ) {
+				$cache->delete( $key );
+			}
+		};
+
 		if ( $this->buffer === null ) {
-			$this->cache->merge( $key, $callback, $this->exptime, $attempts );
+			$merge( $key, $callback, $this->exptime, $attempts );
 		} else {
 			$this->buffer[] = array(
-				'command' => __FUNCTION__,
+				'command' => $merge,
 				'arguments' => array( $key, $callback, $this->exptime, $attempts ),
 			);
 		}
