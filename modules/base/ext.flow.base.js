@@ -17,7 +17,7 @@ mw.flow = {
 				deferredObject = $.Deferred();
 
 			api
-				.post(
+				.get(
 					{
 						'action' : 'tokens',
 						'type' : 'flow'
