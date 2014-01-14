@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_7ed9a882",
+        "filename": "includes/Template/ErrorHelper.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-14T16:12:51Z",
+      "side": 1,
+      "message": "Not sure we want error messages to (continue to) be escaped(), they can contain wikitext which need to be parse()\u0027d (and result in HTML)\n\nAlso see https://gerrit.wikimedia.org/r/#/c/106690/",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_9e334cc0",
+        "filename": "includes/Template/Escaper.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-14T16:12:51Z",
+      "side": 1,
+      "message": "Any reason this method \u0026 __escape (\u0026 Template::__raw) have leading underscores?",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
