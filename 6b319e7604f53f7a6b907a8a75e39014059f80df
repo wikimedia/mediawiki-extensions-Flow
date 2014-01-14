@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eeebdf60_adc20437",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-14T17:35:49Z",
+      "side": 1,
+      "message": "Perhaps add a check \u0026 an exception in the case $revision is not a topic title, just to be sure we don\u0027t get bitten by it in the future, should we some day display posts in there too?",
+      "revId": "6b319e7604f53f7a6b907a8a75e39014059f80df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_7e69a81c",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-14T17:35:49Z",
+      "side": 1,
+      "message": "I was puzzled why workflow ids were binary here (pretty much everywhere else, we as hex) - apparently needed for DB query (doesn\u0027t auto-convert hex uuid strings - which actually makes sense)\n\nI have a slight preference for passing UUID objects, though (which are auto-converted into binary when querying)",
+      "revId": "6b319e7604f53f7a6b907a8a75e39014059f80df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
