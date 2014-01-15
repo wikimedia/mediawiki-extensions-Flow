@@ -207,7 +207,7 @@
 				}
 
 				// Deactivate the current collapser
-				collapse_class = $this.siblings( '.active' ).removeClass( 'active' ).data( 'collapse-class' ) // return the current collapse class
+				collapse_class = $this.siblings( '.active' ).removeClass( 'active' ).data( 'collapse-class' ); // return the current collapse class
 
 				// Activate the current class
 				$this.addClass( 'active' );
