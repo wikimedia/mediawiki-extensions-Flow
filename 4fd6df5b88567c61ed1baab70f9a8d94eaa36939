@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_606fbec1",
+        "filename": "db_patches/patch-88bit_uuids.sql",
+        "patchSetId": 21
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-15T22:57:10Z",
+      "side": 1,
+      "message": "This outputs mysql warnings due to data truncation.  It doesn\u0027t seem to cause errors even in strict mode, I guess this should be fine.",
+      "revId": "4fd6df5b88567c61ed1baab70f9a8d94eaa36939",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
