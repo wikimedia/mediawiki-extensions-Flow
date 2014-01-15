@@ -170,10 +170,17 @@
 	 */
 	mw.flow.action.header.edit.prototype.render = function ( output ) {
 		this.header.$container
+			.find( '.flow-edit-header-form' )
+				.remove()
+				.end()
 			.find( '#flow-header-content' )
-			.empty()
-			.removeClass( 'flow-header-empty' )
-			.append( $( output.rendered ) );
+				.empty()
+				.removeClass( 'flow-header-empty' )
+				.append( $( output.rendered ) )
+				.show()
+				.end()
+			.find( '.flow-header-edit-link' )
+				.show();
 	};
 
 	/**

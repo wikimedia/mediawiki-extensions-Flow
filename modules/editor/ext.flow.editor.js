@@ -182,7 +182,7 @@
 		focus: function( $node ) {
 			var editor = mw.flow.editor.getEditor( $node );
 
-			if ( editor.focus ) {
+			if ( editor && editor.focus ) {
 				editor.focus();
 			} else {
 				$node.focus();
@@ -192,7 +192,7 @@
 		moveCursorToEnd : function( $node ) {
 			var editor = mw.flow.editor.getEditor( $node );
 
-			if ( editor.moveCursorToEnd ) {
+			if ( editor && editor.moveCursorToEnd ) {
 				return editor.moveCursorToEnd();
 			} else {
 				$node.selectRange( $node.val().length );
