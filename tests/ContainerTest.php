@@ -1,6 +1,8 @@
 <?php
 
-namespace Flow;
+namespace Flow\Tests;
+
+use Flow\Container;
 
 class ContainerTest extends \MediaWikiTestCase {
 

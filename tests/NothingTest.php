@@ -1,6 +1,8 @@
 <?php
 
-namespace Flow;
+namespace Flow\Tests;
+
+use Flow\Data\SortArrayByKeys;
 
 class FlowNothingTest extends \MediaWikiTestCase {
 
@@ -54,7 +56,7 @@ class FlowNothingTest extends \MediaWikiTestCase {
 	 * @dataProvider sortArrayByKeysProvider
 	 */
 	public function testSortArrayByKeys( $message, array $keys, array $array, array $sorted, $strict = true ) {
-		usort( $array, new Data\SortArrayByKeys( $keys, $strict ) );
+		usort( $array, new SortArrayByKeys( $keys, $strict ) );
 		$this->assertEquals( $sorted, $array );
 	}
 }

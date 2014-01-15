@@ -1,7 +1,10 @@
 <?php
 
-namespace Flow;
+namespace Flow\Tests;
 
+use Flow\RedLinker;
+use Flow\Model\UUID;
+use Flow\Model\PostRevision;
 use Title;
 
 class RedlinkerTest extends \MediaWikiTestCase {
@@ -82,8 +85,8 @@ class RedlinkerTest extends \MediaWikiTestCase {
 		), $saHref );
 
 		// We don't need a real id, just something reasonable.
-		$uid = Model\UUID::getComparisonUUID( null );
-		$post = Model\PostRevision::fromStorageRow( array(
+		$uid = UUID::getComparisonUUID( null );
+		$post = PostRevision::fromStorageRow( array(
 			'rev_id' => $uid,
 			'tree_rev_id' => $uid,
 			'tree_rev_descendant_id' => $uid,
