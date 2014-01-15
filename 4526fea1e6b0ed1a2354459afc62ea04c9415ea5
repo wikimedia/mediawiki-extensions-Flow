@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_ba05f37e",
+        "filename": "tests/SpamBlacklistTest.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-15T20:29:17Z",
+      "side": 1,
+      "message": "It\u0027s a bit weird that $oldRevision has a default value, but $expected doesn\u0027t, so you have to put a value for $oldRevision anyways.",
+      "revId": "4526fea1e6b0ed1a2354459afc62ea04c9415ea5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_fad37b03",
+        "filename": "tests/SpamBlacklistTest.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-15T20:29:17Z",
+      "side": 1,
+      "message": "You can use \n\n    $this-\u003esetMwGlobals( \u0027wgMemc\u0027, new \\HashBagOStuff() );\n\nwhich will automatically save the original and restore it once the test is done.",
+      "revId": "4526fea1e6b0ed1a2354459afc62ea04c9415ea5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
