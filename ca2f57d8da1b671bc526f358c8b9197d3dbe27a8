@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_a0dee612",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-15T23:46:24Z",
+      "side": 1,
+      "message": "actually, this probably needs some sort of note or @todo, because LinkBatch doesn\u0027t know how to operate on remote wiki\u0027s. but UserNameBatch explicitly works on multiple wiki\u0027s",
+      "revId": "ca2f57d8da1b671bc526f358c8b9197d3dbe27a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
