@@ -66,14 +66,14 @@ $( document ).flow( 'registerInitFunction', function(e) {
 							.children( '.flow-post-replies' ),
 						$newRegion = $( output.rendered )
 							.hide()
-							.appendTo( $replyContainer ),
-						$mainContainer = $('html,body');
+							.appendTo( $replyContainer );
 
 					$newRegion.trigger( 'flow_init' );
 
-					$newRegion.slideDown();
-
-					$newRegion.scrollIntoView();
+					$newRegion.slideDown( 'normal', function () {
+							$newRegion.conditionalScrollIntoView();
+						}
+					);
 				} );
 		}
 	);
@@ -144,7 +144,9 @@ $( document ).flow( 'registerInitFunction', function(e) {
 						.text( mw.msg( 'flow-error-other' ) )
 						.hide()
 						.insertAfter( $contentContainer )
-						.slideDown();
+						.slideDown( 'normal', function () {
+							$( this ).conditionalScrollIntoView();
+						});
 					return;
 				}
 
@@ -182,7 +184,9 @@ $( document ).flow( 'registerInitFunction', function(e) {
 				$errorDiv.flow( 'showError', arguments );
 
 				$errorDiv.insertAfter( $contentContainer )
-					.slideDown();
+					.slideDown( 'normal', function () {
+						$( this ).conditionalScrollIntoView();
+					});
 			} );
 	} );
 
@@ -222,7 +226,9 @@ $( document ).flow( 'registerInitFunction', function(e) {
 						.text( mw.msg( 'flow-error-other' ) )
 						.hide()
 						.insertAfter( $topicContainer )
-						.slideDown();
+						.slideDown( 'normal', function () {
+							$( this ).conditionalScrollIntoView();
+						});
 					return;
 				}
 

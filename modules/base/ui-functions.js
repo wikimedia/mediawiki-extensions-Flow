@@ -277,6 +277,9 @@
 							$button.show();
 
 							if ( $form ) {
+								// Remove previous error
+								$form.children( ':first' ).filter('.flow-preview-error' ).remove();
+								// Append new error
 								$form.append( $errorDiv );
 							}
 
@@ -336,7 +339,9 @@
 				$errorDiv
 					.addClass( 'flow-error errorbox' )
 					.hide()
-					.slideDown( 'fast' );
+					.slideDown( 'fast', function () {
+						$errorDiv.conditionalScrollIntoView();
+					} );
 
 				if ( errorArgs[0] === 'http' ) {
 					// HTTP error occurred
@@ -414,8 +419,8 @@
 
 			/**
 			 * Setup preview function
-			 * @param {Object Literal} The key specifies the content identifier in the form
-			 * and value is output format
+			 * The key specifies the content identifier in the form and value is output format
+			 * @param {object} contents
 			 */
 			'setupPreview': function( contents ) {
 				var $form = this, api = new mw.Api(),
@@ -435,12 +440,43 @@
 					.addClass( 'mw-ui-button flow-preview-submit' )
 					.click( function ( e ) {
 						e.preventDefault();
-						$previewContainer.empty();
+
+						var $spinner = $.createSpinner().insertAfter( this ),
+							wait_to_show = false,
+							deferreds = [];
+
+						$previewContainer.hide().empty();
+
+						/**
+						 * On XHR success
+						 * @param {object} data
+						 */
 						var success = function ( data ) {
+							// Load the content
 							$div.html( data['flow-parsoid-utils'].content );
-						}, failure = function ( code, data ) {
-							$( '<div>' ).flow( 'showError', arguments ).insertBefore( $form );
+
+							// Show the preview container and bring it into view
+							$previewContainer.show().conditionalScrollIntoView();
+
+							// Destroy the spinner
+							$spinner.remove();
+						},
+						/**
+						 * On XHR failure
+						 * @param {string} code
+						 * @param {string} data
+						 */
+						failure = function ( code, data ) {
+							// Remove previous error
+							$form.children( ':first' ).filter('.flow-preview-error' ).remove();
+
+							// Create new error and initialize it
+							$( '<div>' ).addClass('flow-preview-error').flow( 'showError', arguments ).prependTo( $form );
+
+							// Destroy the spinner
+							$spinner.remove();
 						};
+
 						for ( var identifier in contents ) {
 							var $div = $( '<div>' ).addClass( 'flow-preview-sub-container' );
 							$previewContainer.append( $div );
@@ -455,6 +491,9 @@
 									} )
 									.done( success )
 									.fail( failure );
+
+									// Don't show the preview until this request finishes
+									wait_to_show = true;
 								} else {
 									$div.text( $form.find( identifier ).val() );
 								}
@@ -462,7 +501,14 @@
 								$div.text( $form.find( identifier ).val() );
 							}
 						}
-						$previewContainer.show();
+
+						// If no XHR to be done, just show the field now.
+						if (!wait_to_show) {
+							// Show the preview container and bring it into view
+							$previewContainer.show().conditionalScrollIntoView();
+							// Destroy the spinner
+							$spinner.remove();
+						}
 					} ).insertAfter( $form.find( '.flow-cancel-link' ) );
 			},
 
