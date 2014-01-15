@@ -344,6 +344,10 @@ abstract class AbstractRevision {
 		return $this->revId;
 	}
 
+	public function setRevisionId( UUID $id ) {
+		$this->revId = $id;
+	}
+
 	/**
 	 * @return boolean
 	 */
