@@ -33,10 +33,6 @@ class SpamRegexTest extends PostRevisionTestCase {
 	 * @dataProvider spamProvider
 	 */
 	public function testSpam( PostRevision $newRevision, PostRevision $oldRevision = null, $expected ) {
-		if ( !$this->spamFilter->enabled() ) {
-			$this->markTestSkipped( 'SpamRegex not enabled' );
-		}
-
 		$title = Title::newFromText( 'UTPage' );
 
 		$status = $this->spamFilter->validate( $newRevision, $oldRevision, $title );
@@ -48,6 +44,9 @@ class SpamRegexTest extends PostRevisionTestCase {
 
 		// create spam filter
 		$this->spamFilter = new SpamRegex;
+		if ( !$this->spamFilter->enabled() ) {
+			$this->markTestSkipped( 'SpamRegex not enabled' );
+		}
 
 		// create a dummy filter
 		global $wgSpamRegex;
