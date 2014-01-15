@@ -136,6 +136,9 @@ $wgAutoloadClasses['Flow\Contributions\Query'] = $dir . 'includes/Contributions/
 $wgAutoloadClasses['Flow\Contributions\Formatter'] = $dir . 'includes/Contributions/Formatter.php';
 $wgAutoloadClasses['Flow\Data\UserNameListener'] = $dir . 'includes/Data/UserNameBatch.php';
 $wgAutoloadClasses['Flow\Data\UserNameBatch'] = $dir . 'includes/Data/UserNameBatch.php';
+$wgAutoloadClasses['Flow\Data\UserNameQuery'] = $dir . 'includes/Data/UserNameBatch.php';
+$wgAutoloadClasses['Flow\Data\OneStepUserNameQuery'] = $dir . 'includes/Data/UserNameBatch.php';
+$wgAutoloadClasses['Flow\Data\TwoStepUserNameQuery'] = $dir . 'includes/Data/UserNameBatch.php';
 
 // database interaction for singular models
 $wgAutoloadClasses['Flow\Data\RevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
