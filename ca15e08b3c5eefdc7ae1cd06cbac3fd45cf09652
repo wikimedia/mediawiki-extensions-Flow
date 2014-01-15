@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_7763063c",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-15T18:59:39Z",
+      "side": 1,
+      "message": "Its not clear why the rest of this is needed,  we must be converting some of the usernames into User objects elsewhere in the code?",
+      "revId": "ca15e08b3c5eefdc7ae1cd06cbac3fd45cf09652",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_778c2600",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-15T18:59:39Z",
+      "side": 1,
+      "message": "This doesn\u0027t appear to take the wiki the user is from into account.",
+      "revId": "ca15e08b3c5eefdc7ae1cd06cbac3fd45cf09652",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
