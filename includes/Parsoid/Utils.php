@@ -233,7 +233,8 @@ abstract class Utils {
 
 		if ( $errors ) {
 			throw new WikitextException(
-				implode( "\n", array_map( function( $error ) { return $error->message; }, $errors ) ),
+				implode( "\n", array_map( function( $error ) { return $error->message; }, $errors ) )
+				. "\n\nFrom source content:\n" . $content,
 				'process-wikitext'
 			);
 		}

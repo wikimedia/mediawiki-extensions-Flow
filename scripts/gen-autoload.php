@@ -141,6 +141,8 @@ function main() {
 	foreach ( glob( $base . '/*.php' ) as $file ) {
 		$generator->readFile( $file );
 	}
+	// read entire maint dir, move helper to includes?
+	$generator->readFile( $base . '/maintenance/MaintenanceDebugLogger.php' );
 
 	$generator->generateAutoload();
 
