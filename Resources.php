@@ -71,7 +71,7 @@ $wgResourceModules += array(
 			'mediawiki.util',
 			'jquery.byteLimit',
 			'jquery.tipsy',
-			'jquery.scroll',
+			'jquery.conditionalScroll',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
@@ -182,9 +182,9 @@ $wgResourceModules += array(
 );
 
 $wgHooks['ResourceLoaderRegisterModules'][] = function( $resourceLoader ) use ( $flowResourceTemplate ) {
-	if ( $resourceLoader->getModule( 'jquery.scroll' ) === null ) {
-		$resourceLoader->register( 'jquery.scroll', $flowResourceTemplate + array(
-			'scripts' => 'jquery.scroll.js',
+	if ( $resourceLoader->getModule( 'jquery.conditionalScroll' ) === null ) {
+		$resourceLoader->register( 'jquery.conditionalScroll', $flowResourceTemplate + array(
+			'scripts' => 'jquery.conditionalScroll.js',
 		) );
 	}
 };
