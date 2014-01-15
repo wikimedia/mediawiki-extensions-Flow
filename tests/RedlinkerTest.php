@@ -7,30 +7,8 @@ use Flow\Model\UUID;
 use Flow\Model\PostRevision;
 use Title;
 
-class RedlinkerTest extends \MediaWikiTestCase {
-
-	// Default values for PostRevision::newFromRow to work
-	static protected $postRow = array(
-		'rev_id' => null,
-		'rev_user_id' => null,
-		'rev_user_text' => null,
-		'rev_parent_id' => null,
-		'rev_change_type' => null,
-		'rev_flags' => null,
-		'rev_content' => null,
-		'rev_mod_state' => null,
-		'rev_mod_user_id' => null,
-		'rev_mod_user_text' => null,
-		'rev_mod_timestamp' => null,
-		'tree_parent_id' => null,
-		'tree_rev_id' => null,
-		'tree_rev_descendant_id' => null,
-		'tree_orig_create_time' => null,
-		'tree_orig_user_id' => null,
-		'tree_orig_user_text' => null,
-	);
-
-   static public function redLinkProvider() {
+class RedlinkerTest extends PostRevisionTestCase {
+	static public function redLinkProvider() {
 		return array(
 			array(
 				'Basic redlink application',
@@ -84,17 +62,13 @@ class RedlinkerTest extends \MediaWikiTestCase {
 			'data-parsoid' => json_encode( array( 'sa' => array( 'href' => $saHref ) ) ),
 		), $saHref );
 
-		// We don't need a real id, just something reasonable.
-		$uid = UUID::getComparisonUUID( null );
-		$post = PostRevision::fromStorageRow( array(
-			'rev_id' => $uid,
-			'tree_rev_id' => $uid,
-			'tree_rev_descendant_id' => $uid,
-			'tree_parent_id' => $uid,
+		$post = $this->generateObject( array(
+			// pretend not to be topic title (they're not parsed, so ignored)
+			'tree_parent_id' => UUID::create()->getBinary(),
+			// set content with link
 			'rev_content' => $anchor,
-			'rev_flags' => 'html',
-		) + self::$postRow );
-		$post->setChildren( array() );
+			'rev_flags' => 'html'
+		) );
 
 		$batch = $this->getMock( 'LinkBatch' );
 		$batch->expects( $this->once() )
