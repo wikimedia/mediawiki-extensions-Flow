@@ -1,0 +1,361 @@
+<?php
+
+namespace Flow\Import;
+
+use Flow\Data\ManagerGroup;
+use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
+use Flow\Model\TopicListEntry;
+use Flow\Model\UUID;
+use Flow\Model\Workflow;
+use Flow\WorkflowLoaderFactory;
+use MWCryptRand;
+use ReflectionProperty;
+use Title;
+use UIDGenerator;
+
+/**
+ * The import system uses a hierarchy of ImportOperations.
+ * Each ImportOperation can have a parent operation, from which
+ * much of its data is drawn. The hierarchy goes something like:
+ * Wiki -> Talkpage -> Topic -> (Post, Summary) -> Post
+ *
+ * The Importer class is an entry point that creates the correct ImportOperation
+ * classes and executes them. It's there to make the dependency injection less
+ * inconvenient for callers.
+ */
+class Importer {
+	/** @var ManagerGroup **/
+	protected $storage;
+	/** @var WorkflowLoaderFactory **/
+	protected $workflowLoaderFactory;
+
+	public function __construct(
+		ManagerGroup $storage,
+		WorkflowLoaderFactory $workflowLoaderFactory
+	) {
+		$this->storage = $storage;
+		$this->workflowLoaderFactory = $workflowLoaderFactory;
+	}
+
+	/**
+	 * Imports topics from a data source to a given page.
+	 *
+	 * @param IImportSource $source
+	 * @param Title $targetPage
+	 * @return TalkpageImportOperation
+	 */
+	public function import( IImportSource $source, Title $targetPage ) {
+		$operation = new TalkpageImportOperation( $source );
+		$operation->import( new PageImportState(
+			// @fixme this is more work than necessary for just the workflow
+			$this->workflowLoaderFactory
+				->createWorkflowLoader( $targetPage )
+				->getWorkflow(),
+			$this->storage
+		) );
+	}
+}
+
+/**
+ * Modified version of UIDGenerator generates historical timestamped
+ * uid's for use when importing older data.
+ *
+ * DO NOT USE for normal UID generation, this is likely to run into
+ * id collisions.
+ *
+ * The import process needs to identify collision failures reported by
+ * the database and re-try importing that item with another generated
+ * uid.
+ */
+class OldUIDGenerator extends UIDGenerator {
+	public static function oldTimestampedUID88( $timestamp, $base = 10 ) {
+		static $counter = false;
+		if ( $counter === false ) {
+			$counter = mt_rand( 0, 256 );
+		}
+
+		$time = array(
+			// seconds
+			wfTimestamp( TS_UNIX, $timestamp ),
+			// milliseconds
+			mt_rand( 0, 1000 )
+		);
+
+		// The UIDGenerator is implemented very specifically to have
+		// a single instance, we have to reuse that instance.
+		$gen = self::singleton();
+		self::rotateNodeId( $gen );
+		$binaryUUID = $gen->getTimestampedID88(
+			array( $time, ++$counter )
+		);
+
+		return wfBaseConvert( $binaryUUID, 2, $base );
+	}
+
+	/**
+	 * Rotate the nodeId to a random one. The stable node is best for
+	 * generating "now" uid's on a cluster of servers, but repeated
+	 * creation of historical uid's with one or a smaller number of
+	 * machines requires use of a random node id.
+	 */
+	protected static function rotateNodeId( UIDGenerator $gen ) {
+		// 4 bytes = 32 bits
+		$gen->nodeId32 = wfBaseConvert( MWCryptRand::generateHex( 8, true ), 16, 2, 32 );
+		// 6 bytes = 48 bits, used for 128bit uid's
+		//$gen->nodeId48 = wfBaseConvert( MWCryptRand::generateHex( 12, true ), 16, 2, 48 );
+	}
+}
+
+class PageImportState {
+	/**
+	 * @var Workflow
+	 */
+	public $boardWorkflow;
+
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
+
+	/**
+	 * @var ReflectionProperty
+	 */
+	protected $workflowIdProperty;
+
+	/**
+	 * @var ReflectionProperty[]
+	 */
+	protected $postIdProperties;
+
+	public function __construct(
+		Workflow $boardWorkflow,
+		ManagerGroup $storage
+	) {
+		$this->storage = $storage;
+		$this->boardWorkflow = $boardWorkflow;
+
+		// Get our workflow UUID property
+		$this->workflowIdProperty = new ReflectionProperty( 'Flow\\Model\\Workflow', 'id' );
+		$this->workflowIdProperty->setAccessible( true );
+
+		// Get our revision ID properties
+		foreach( array( 'postId', 'revId' ) as $propName ) {
+			$property = new ReflectionProperty( 'Flow\\Model\\PostRevision', $propName );
+			$property->setAccessible( true );
+			$this->postIdProperties[$propName] = $property;
+		}
+	}
+
+	/**
+	 * @param object $object
+	 * @param array $metadata
+	 */
+	public function put( $object, array $metadata ) {
+		$this->storage->put( $object, $metadata );
+	}
+
+	/**
+	 * Creates a UUID object representing a given timestamp.
+	 *
+	 * @param string $timestamp The timestamp to represent, in a wfTimestamp compatible format.
+	 * @return UUID
+	 */
+	public function getTimestampId( $timestamp ) {
+		return UUID::create( OldUIDGenerator::oldTimestampedUID88( $timestamp ) );
+	}
+
+
+	/**
+	 * Update the id of the workflow to match the provided timestamp
+	 *
+	 * @param Workflow $workflow
+	 * @param string $timestamp
+	 */
+	public function setWorkflowTimestamp( Workflow $workflow, $timestamp ) {
+		$uid = $this->getTimestampId( $timestamp );
+		$this->workflowIdProperty->setValue( $workflow, $uid );
+	}
+
+	/**
+	 * @var PostRevision $post
+	 * @var string $timestamp
+	 */
+	public function setPostTimestamp( PostRevision $post, $timestamp ) {
+		$uid = $this->getTimestampId( $timestamp );
+
+		if ( $post->isTopicTitle() ) {
+			// Only set the revId, postId was set from the owning workflow
+			$this->postIdProperties['revId']->setValue( $post, $uid );
+		} else {
+			foreach( $this->postIdProperties as $prop ) {
+				$prop->setValue( $post, $uid );
+			}
+		}
+	}
+}
+
+class TopicImportState {
+	/**
+	 * @var PageImportState
+	 */
+	public $parent;
+
+	/**
+	 * @var Workflow
+	 */
+	public $topicWorkflow;
+
+	/**
+	 * @var PostRevision
+	 */
+	public $topicTitle;
+
+	public function __construct(
+		PageImportState $parent,
+		Workflow $topicWorkflow,
+		PostRevision $topicTitle
+	) {
+		$this->parent = $parent;
+		$this->topicWorkflow = $topicWorkflow;
+		$this->topicTitle = $topicTitle;
+	}
+}
+
+class TalkpageImportOperation {
+	/**
+	 * @var IImportSource
+	 */
+	protected $importSource;
+
+	/**
+	 * @param IImportSource $source
+	 */
+	public function __construct( IImportSource $source ) {
+		$this->importSource = $source;
+	}
+
+	/**
+	 * @param PageImportState $state
+	 */
+	public function import( PageImportState $state ) {
+		// echo __METHOD__, ": Importing talkpage at ",
+		//	$state->boardWorkflow->getArticleTitle()->getPrefixedText(), "\n";
+
+		if ( $state->boardWorkflow->isNew() ) {
+			$state->put( $state->boardWorkflow, array() );
+		}
+
+		foreach( $this->importSource->getTopics() as $topic ) {
+			$this->importTopic( $state, $topic );
+		}
+	}
+
+	/**
+	 * @param PageImportState $pageState
+	 * @param IImportTopic $importTopic
+	 */
+	public function importTopic( PageImportState $pageState, IImportTopic $importTopic ) {
+		//echo "\n", __METHOD__, ": Importing topic: ", $importTopic->getText(), "\n";
+		$topicState = $this->createTopicState( $pageState, $importTopic );
+
+		$summary = $importTopic->getTopicSummary();
+		if ( $summary ) {
+			$this->importSummary( $topicState, $summary );
+		}
+
+		foreach ( $importTopic->getReplies() as $post ) {
+			$this->importPost( $topicState, $post, $topicState->topicTitle );
+		}
+	}
+
+	/**
+	 * @param PageImportState $state
+	 * @param IImportTopic $importTopic
+	 * @return TopicImportState
+	 */
+	protected function createTopicState( PageImportState $state, IImportTopic $importTopic ) {
+		$topicWorkflow = Workflow::create(
+			'topic',
+			$importTopic->getAuthor(),
+			$state->boardWorkflow->getArticleTitle()
+		);
+		$state->setWorkflowTimestamp(
+			$topicWorkflow,
+			$importTopic->getCreatedTimestamp()
+		);
+
+		$topicListEntry = TopicListEntry::create(
+			$state->boardWorkflow,
+			$topicWorkflow
+		);
+
+		$topicTitle = PostRevision::create(
+			$topicWorkflow,
+			$importTopic->getText()
+		);
+		$state->setPostTimestamp(
+			$topicTitle,
+			$importTopic->getCreatedTimestamp()
+		);
+
+		$topicMetadata = array(
+			'workflow' => $topicWorkflow,
+			'board-workflow' => $state->boardWorkflow,
+			'topic-title' => $topicTitle,
+		);
+
+		$state->put( $topicTitle, $topicMetadata );
+		$state->put( $topicListEntry, $topicMetadata );
+		$state->put( $topicWorkflow, $topicMetadata );
+
+		return new TopicImportState( $state, $topicWorkflow, $topicTitle );
+	}
+
+	public function importSummary( TopicImportState $state, IImportSummary $importSummary ) {
+		//echo __METHOD__, ": Importing summary\n";
+
+		$summary = PostSummary::create(
+			$state->topicWorkflow->getArticleTitle(),
+			$state->topicTitle,
+			$importSummary->getAuthor(),
+			$importSummary->getText(),
+			'create-topic-summary'
+		);
+
+		$metadata = array(
+			'workflow' => $state->topicWorkflow,
+		);
+		$state->parent->put( $summary, $metadata );
+	}
+
+	public function importPost(
+		TopicImportState $state,
+		IImportPost $post,
+		PostRevision $replyTo
+	) {
+		//echo __METHOD__, ": Importing post from ", $post->getAuthor()->getName(), "\n";
+		$replyPost = $replyTo->reply(
+			$state->topicWorkflow,
+			$post->getAuthor(),
+			$post->getText()
+		);
+		$state->parent->setPostTimestamp(
+			$replyPost,
+			$post->getCreatedTimestamp()
+		);
+
+		$metadata = array(
+			'workflow' => $state->topicWorkflow,
+			'board-workflow' => $state->parent->boardWorkflow,
+			'topic-title' => $state->topicTitle,
+			'reply-to' => $replyTo,
+		);
+
+		$state->parent->put( $replyPost, $metadata );
+
+		foreach ( $post->getReplies() as $subReply ) {
+			$this->importPost( $state, $subReply, $replyPost );
+		}
+	}
+}
