@@ -956,4 +956,11 @@ $c['reference.recorder'] = $c->share( function( $c ) {
 		);
 } );
 
+$c['importer'] = $c->share( function( $c ) {
+	return new Flow\Import\Importer(
+		$c['storage'],
+		$c['factory.loader.workflow']
+	);
+} );
+
 return $c;
