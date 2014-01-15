@@ -31,7 +31,7 @@
 		this.topic = topic;
 
 		// Overload "edit title" link.
-		this.topic.$container.find( '.flow-edit-topic-link' ).click( $.proxy( this.edit, this ) );
+		this.topic.$container.find( '.flow-edit-topic-link' ).on( 'click', $.proxy( this.edit, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -226,21 +226,20 @@
 		$titleEditForm
 			.addClass( 'flow-edit-title-form' )
 			.append(
-				$( '<input />' )
-					.addClass( 'mw-ui-input' )
-					.addClass( 'flow-edit-title-textbox' )
-					.attr( 'type', 'text' )
-					.byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
-					.val( data.content )
+				$( '<input />', {
+					'class': 'mw-ui-input flow-edit-title-textbox',
+					'type':  'text',
+					'value': data.content
+				} ).byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
 			)
 			.append(
-				$( '<div class="flow-edit-title-controls"></div>' )
+				$( '<div />', { 'class': 'flow-edit-title-controls' } )
 					.append(
 						$( '<a/>' )
 							.addClass( 'flow-cancel-link mw-ui-button mw-ui-quiet' )
 							.attr( 'href', '#' )
 							.text( mw.msg( 'flow-cancel' ) )
-							.click( $.proxy( function ( event ) {
+							.on( 'click.mw-flow-discussion', $.proxy( function ( event ) {
 								event.preventDefault();
 								this.destroyEditForm();
 							}, this ) )
@@ -295,7 +294,7 @@
 		this.$form = this.topic.$container.find( '.flow-topic-reply-container' );
 
 		// Overload click in textarea, triggering full reply form
-		this.$form.find( '.flow-topic-reply-content' ).click( $.proxy( this.reply, this ) );
+		this.$form.find( '.flow-topic-reply-content' ).on( 'click.mw-flow-discussion', $.proxy( this.reply, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -305,11 +304,11 @@
 	/**
 	 * Fired when textarea is clicked.
 	 *
-	 * @param {Event} e
+	 * @param {Event} event
 	 */
-	mw.flow.action.topic.reply.prototype.reply = function ( e ) {
+	mw.flow.action.topic.reply.prototype.reply = function ( event ) {
 		// don't follow link that will lead to &action=reply
-		e.preventDefault();
+		event.preventDefault();
 
 		// load the form
 		this.loadReplyForm();
@@ -361,8 +360,9 @@
 			.hide()
 			.insertBefore( this.$form )
 			.trigger( 'flow_init' )
-			.slideDown()
-			.scrollIntoView();
+			.slideDown( 'normal', function () {
+				$( this ).conditionalScrollIntoView();
+			} );
 	};
 
 	/**
@@ -377,7 +377,7 @@
 		// Overload click in textarea, triggering full new topic form
 		this.$form.find( '.flow-newtopic-title' )
 			.attr( 'placeholder', mw.msg( 'flow-newtopic-start-placeholder' ) )
-			.click( $.proxy( this.create, this ) );
+			.on( 'click.mw-flow-discussion', $.proxy( this.create, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -387,11 +387,11 @@
 	/**
 	 * Fired when textarea is clicked.
 	 *
-	 * @param {Event} e
+	 * @param {Event} event
 	 */
-	mw.flow.action.topic.create.prototype.create = function ( e ) {
+	mw.flow.action.topic.create.prototype.create = function ( event ) {
 		// don't follow link that will lead to &action=new-topic
-		e.preventDefault();
+		event.preventDefault();
 
 		// don't re-bind if form is already active
 		if ( this.$form.hasClass( 'flow-form-active' ) ) {
@@ -434,8 +434,8 @@
 			.attr( 'href', '#' )
 			.addClass( 'flow-cancel-link mw-ui-button mw-ui-quiet' )
 			.text( mw.msg( 'flow-cancel' ) )
-			.click( $.proxy( function ( e ) {
-				e.preventDefault();
+			.on( 'click.mw-flow-discussion', $.proxy( function ( event ) {
+				event.preventDefault();
 				this.destroyForm();
 			}, this ) )
 			.after( ' ' )
@@ -512,8 +512,9 @@
 			.hide()
 			.prependTo( $( '.flow-topics' ) )
 			.trigger( 'flow_init' )
-			.slideDown()
-			.scrollIntoView();
+			.slideDown( 'normal', function () {
+				$( this ).conditionalScrollIntoView();
+			} );
 	};
 
 	/**
