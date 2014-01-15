@@ -31,7 +31,7 @@
 		this.post = post;
 
 		// Overload "edit post" link.
-		this.post.$container.find( '.flow-edit-post-link' ).click( $.proxy( this.edit, this ) );
+		this.post.$container.find( '.flow-edit-post-link' ).on( 'click.mw-flow-discussion', $.proxy( this.edit, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -41,16 +41,19 @@
 	/**
 	 * Fired when edit-link is clicked.
 	 *
-	 * @param {Event} e
+	 * @param {Event} event
 	 */
-	mw.flow.action.post.edit.prototype.edit = function ( e ) {
+	mw.flow.action.post.edit.prototype.edit = function ( event ) {
 		// don't follow link that will lead to &action=edit-post
-		e.preventDefault();
+		event.preventDefault();
 
 		// quit if edit form is already open
 		if ( this.post.$container.find( '.flow-edit-post-form' ).length ) {
 			return;
 		}
+
+		// Remove old error messages
+		this.post.$container.find( '.flow-post-edit-error' ).remove();
 
 		/*
 		 * Fetch current revision data (content, revision id, ...) that
@@ -144,7 +147,7 @@
 		// hide post controls & edit link and re-reveal it if the cancel link
 		// - which is added by flow( 'setupEditForm' ) - is clicked.
 		$editLink.hide();
-		this.post.$container.find( '.flow-cancel-link' ).click( function () {
+		this.post.$container.find( '.flow-cancel-link' ).on( 'click.mw-flow-discussion', function () {
 			$editLink.show();
 			$container.removeClass( 'flow-post-nocontrols' );
 		} );
@@ -192,7 +195,10 @@
 	 * @param {object} errorData
 	 */
 	mw.flow.action.post.edit.prototype.showError = function ( error, errorData ) {
-		$( '.flow-post-content', this.post.$container ).flow( 'showError', arguments );
+		$( '.flow-post-content', this.post.$container )
+			.append(
+				$( '<div>', { 'class': 'flow-post-edit-error' } ).flow( 'showError', arguments )
+			);
 	};
 
 	/**
@@ -204,7 +210,7 @@
 		this.post = post;
 
 		// Overload "reply" link.
-		this.post.$container.find( '.flow-reply-link' ).click( $.proxy( this.reply, this ) );
+		this.post.$container.find( '.flow-reply-link' ).on( 'click.mw-flow-discussion', $.proxy( this.reply, this ) );
 	};
 
 	// extend reply action from "shared functionality" mw.flow.action class
@@ -214,11 +220,11 @@
 	/**
 	 * Fired when reply-link is clicked.
 	 *
-	 * @param {Event} e
+	 * @param {Event} event
 	 */
-	mw.flow.action.post.reply.prototype.reply = function ( e ) {
+	mw.flow.action.post.reply.prototype.reply = function ( event ) {
 		// don't follow link that will lead to &action=reply
-		e.preventDefault();
+		event.preventDefault();
 
 		// find matching edit form at (max threading depth - 1)
 		this.$form = $( this.post.$container )
@@ -227,6 +233,11 @@
 
 		// quit if reply form is already open
 		if ( this.$form.is( ':visible' ) ) {
+			// Scroll to form instead
+			this.$form.conditionalScrollIntoView().queue( function () {
+				mw.flow.editor.focus( $( this ).find( 'textarea' ) );
+				$( this ).dequeue();
+			} );
 			return;
 		}
 
@@ -291,7 +302,8 @@
 			.insertBefore( this.$form )
 			// the new post's node will need to have some events bound
 			.trigger( 'flow_init' )
-			.slideDown()
-			.scrollIntoView();
+			.slideDown( 'normal', function () {
+				$( this ).conditionalScrollIntoView();
+			} );
 	};
 } ( jQuery, mediaWiki ) );
