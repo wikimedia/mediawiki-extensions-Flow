@@ -133,11 +133,17 @@ class UserNameBatch {
 		unset( $this->queued[$wiki] );
 		if ( $res ) {
 			$found = array();
+			$lb = new LinkBatch();
 			foreach ( $res as $row ) {
 				$id = (int)$row->user_id;
 				$this->usernames[$wiki][$id] = $row->user_name;
 				$found[] = $id;
+				$cleanName = str_replace( ' ', '_', $row->user_name );
+				$lb->add( NS_USER, $cleanName );
+				$lb->add( NS_USER_TALK, $cleanName );
 			}
+			$lb->setCaller( __METHOD__ );
+			$lb->execute();
 			$missing = array_diff( $queued, $found );
 		} else {
 			$missing = $queued;
