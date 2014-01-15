@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_40803af9",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-15T23:42:08Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s quite confusing to locate the definition of $div, which is defined below. I wrote this part and I am already confused by it when I look at it now, :).  Probably move the $div creation inside the callback",
+      "parentUuid": "aef5673e_b74e2e71",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_d7fbf20f",
         "filename": "modules/base/ui-functions.js",
         "patchSetId": 2
@@ -100,6 +118,23 @@
       "side": 1,
       "message": "There\u0027s a comma right above it. var success \u003d ...,",
       "parentUuid": "aef5673e_d7fbf20f",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_e0a50e9c",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-15T23:42:08Z",
+      "side": 1,
+      "message": "This is potentially a set  of async ajax requests, we want to scrollTo/hide the spinner till all requests are done.  We can use JQuery\u0027s Deferred object along with when.apply().then() to handle this\n\nWe also want to disable the button when the request is in process?",
       "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
