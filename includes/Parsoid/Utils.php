@@ -35,7 +35,7 @@ abstract class Utils {
 		try {
 			// use VE API (which connects to Parsoid) if available...
 			$res = self::parsoid( $from, $to, $content, $title );
-		} catch ( NoParsoidException $e ) {
+		} catch ( XXXNoParsoidException $e ) {
 			// ... otherwise default to parser
 			$res = self::parser( $from, $to, $content, $title );
 		}
@@ -233,7 +233,8 @@ abstract class Utils {
 
 		if ( $errors ) {
 			throw new WikitextException(
-				implode( "\n", array_map( function( $error ) { return $error->message; }, $errors ) ),
+				implode( "\n", array_map( function( $error ) { return $error->message; }, $errors ) )
+				. "\n\nFrom source content:\n" . $content,
 				'process-wikitext'
 			);
 		}
