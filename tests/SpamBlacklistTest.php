@@ -52,10 +52,6 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 	 * @dataProvider spamProvider
 	 */
 	public function testSpam( PostRevision $newRevision, PostRevision $oldRevision = null, $expected ) {
-		if ( !$this->spamFilter->enabled() ) {
-			$this->markTestSkipped( 'SpamBlacklist not enabled' );
-		}
-
 		$title = Title::newFromText( 'UTPage' );
 
 		$status = $this->spamFilter->validate( $newRevision, $oldRevision, $title );
@@ -67,6 +63,9 @@ class SpamBlacklistTest extends PostRevisionTestCase {
 
 		// create spam filter
 		$this->spamFilter = new SpamBlacklist;
+		if ( !$this->spamFilter->enabled() ) {
+			$this->markTestSkipped( 'SpamBlacklist not enabled' );
+		}
 
 		// alter $wgMemc & write empty shared blacklist, to prevent an attempt
 		// to fetch spam blacklist over network
