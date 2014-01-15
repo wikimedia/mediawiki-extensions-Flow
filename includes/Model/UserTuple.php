@@ -4,6 +4,7 @@ namespace Flow\Model;
 
 use Flow\Exception\CrossWikiException;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidDataException;
 use User;
 
 class UserTuple {
@@ -12,6 +13,28 @@ class UserTuple {
 	public $ip;
 
 	public function __construct( $wiki, $id, $ip ) {
+		if ( !is_integer( $id ) ) {
+			if ( ctype_digit( $id ) ) {
+				$id = (int)$id;
+			} else {
+				throw new InvalidDataException( 'User id must be an integer' );
+			}
+		}
+		if ( $id < 0 ) {
+			throw new InvalidDataException( 'User id must be >= 0' );
+		}
+		if ( !$wiki ) {
+			throw new InvalidDataException( 'No wiki provided' );
+		}
+		if ( $id === 0 && strlen( $ip ) === 0 ) {
+			throw new InvalidDataException( 'User has no id and no ip' );
+		}
+		if ( $id !== 0 && $ip !== null ) {
+			throw new InvalidDataException( 'User has both id and ip' );
+		}
+		// @todo assert ip is ipv4 or ipv6, but do we really want
+		// that on every anon user we load from storage?
+
 		$this->wiki = $wiki;
 		$this->id = $id;
 		$this->ip = $ip;
