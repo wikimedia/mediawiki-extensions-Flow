@@ -1,0 +1,100 @@
+<?php
+
+namespace Flow\Tests;
+
+use Flow\SpamFilter\SpamBlacklist;
+use Flow\Model\PostRevision;
+use Title;
+
+class SpamBlacklistTest extends PostRevisionTestCase {
+	/**
+	 * @var SpamBlacklist
+	 */
+	protected $spamFilter;
+
+	/**
+	 * We'll change the test $wgMemc in setUp - this will hold the original
+	 * $wgMemc, to restore on tearDown.
+	 *
+	 * @return BagOStuff
+	 */
+	protected $originalCache;
+
+	public function spamProvider() {
+		return array(
+			array(
+				// default new topic title revision - no spam
+				$this->generateObject(),
+				null,
+				true
+			),
+			array(
+				// revision with spam
+				$this->generateObject( array( 'rev_content' => 'http://01bags.com', 'rev_flags' => 'html' ) ),
+				null,
+				false
+			),
+			array(
+				// revision with domain blacklisted as spam, but subdomain whitelisted
+				$this->generateObject( array( 'rev_content' => 'http://a5b.syte\.net', 'rev_flags' => 'html' ) ),
+				null,
+				true
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider spamProvider
+	 */
+	public function testSpam( PostRevision $newRevision, PostRevision $oldRevision = null, $expected ) {
+		if ( !$this->spamFilter->enabled() ) {
+			$this->markTestSkipped( 'SpamRegex not enabled' );
+		}
+
+		$title = Title::newFromText( 'UTPage' );
+
+		$status = $this->spamFilter->validate( $newRevision, $oldRevision, $title );
+		$this->assertEquals( $status->isOK(), $expected );
+	}
+
+	protected function setUp() {
+		parent::setUp();
+
+		// create spam filter
+		$this->spamFilter = new SpamBlacklist;
+
+		// alter $wgMemc & write empty shared blacklist, to prevent an attempt
+		// to fetch spam blacklist over network
+		global $wgMemc, $wgDBname;
+		$this->originalCache = $wgMemc;
+		$wgMemc = new \HashBagOStuff;
+		$wgMemc->set( "$wgDBname:spam_blacklist_regexes", array() );
+
+		/*
+		 * Examples taken from:
+		 *
+		 * @see http://meta.wikimedia.org/wiki/Spam_blacklist
+		 * @see http://en.wikipedia.org/wiki/MediaWiki:Spam-blacklist
+		 * @see http://en.wikipedia.org/wiki/MediaWiki:Spam-whitelist
+		 */
+		$blacklist = array( '\b01bags\.com\b', 'sytes\.net' );
+		$whitelist = array( 'a5b\.sytes\.net' );
+
+		// local spam lists are read from spam-blacklist & spam-whitelist
+		// messages, so change them for this test
+		$msgCache = \MessageCache::singleton();
+		$msgCache->enable();
+		$msgCache->replace( 'Spam-blacklist', implode( "\n", $blacklist ) );
+		$msgCache->replace( 'Spam-whitelist', implode( "\n", $whitelist ) );
+	}
+
+	protected function tearDown() {
+		global $wgMemc;
+		$wgMemc = $this->originalCache;
+
+		// we don't have to restore the original messages, disable() will make
+		// sure they're ignored
+		$msgCache = \MessageCache::singleton();
+		$msgCache->disable();
+	}
+}
