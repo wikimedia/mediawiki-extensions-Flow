@@ -77,7 +77,7 @@ mw.flow = {
 		 * @param {string} topicId
 		 * @param {string} blockName
 		 * @param {object} options API parameters
-		 * @return {Deferred}
+		 * @return {jQuery.Deferred}
 		 */
 		'readBlock' : function ( pageName, topicId, blockName, options ) {
 			var deferredObject = $.Deferred();
@@ -126,7 +126,7 @@ mw.flow = {
 		 * @param {string} pageName
 		 * @param {string} topicId
 		 * @param {object} options API parameters
-		 * @return {Deferred}
+		 * @return {jQuery.Deferred}
 		 */
 		'readTopic' : function ( pageName, topicId, options ) {
 			return mw.flow.api.readBlock( pageName, topicId, 'topic', options );
