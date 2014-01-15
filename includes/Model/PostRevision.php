@@ -201,6 +201,10 @@ class PostRevision extends AbstractRevision {
 		return $this->postId;
 	}
 
+	public function setPostId( UUID $id ) {
+		$this->postId = $id;
+	}
+
 	/**
 	 * @return UserTuple
 	 */
