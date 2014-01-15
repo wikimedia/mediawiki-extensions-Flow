@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_5a4387b6",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-15T20:39:14Z",
+      "side": 1,
+      "message": "We also need $this-\u003eoutput-\u003eoutput() here to show the pretty error page.\n\nI am not sure if we need to respect $wgShowExceptionDetails in here.  If we do, the page would print either the full exception stack trace or one red infobox with the text \u0027Fatal exception xxx\u0027.  I don\u0027t think we want to output this to the users.",
+      "revId": "487227dfc57a4f11a3c33e395673d076a198c01a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
