@@ -2,10 +2,10 @@
 	$.fn.extend( true, {
 		/**
 		 * @param {string} funcName Name of _flow method
-		 * @param {mixed} arguments Arguments to respective _flow method
+		 * @param {...mixed} [argv] Arguments to respective _flow method
 		 * @return {mixed}
 		 */
-		'flow' : function ( funcName /* [, argument[, argument[, ...]]] */) {
+		'flow' : function ( funcName, argv ) {
 			var args = Array.prototype.slice.call( arguments );
 			args.shift();
 
@@ -119,7 +119,7 @@
 									.addClass( 'mw-ui-button' )
 									.addClass( 'mw-ui-quiet' )
 									.attr( 'href', '#' )
-									.click( function ( e ) {
+									.on( 'click', function ( e ) {
 										e.preventDefault();
 										$postForm.slideUp( 'fast',
 											function () {
@@ -195,11 +195,9 @@
 						.done( loadFunction );
 
 					// scroll to the form
-					$postForm.scrollIntoView( {
-						complete: function () {
-							mw.flow.editor.focus( $textarea );
-							mw.flow.editor.moveCursorToEnd( $textarea );
-						}
+					$postForm.conditionalScrollIntoView().queue( function () {
+						mw.flow.editor.focus( $textarea );
+						mw.flow.editor.moveCursorToEnd( $textarea );
 					} );
 				}.bind( this, $postForm, initialContent, loadFunction ), 0 );
 
@@ -246,7 +244,7 @@
 					.attr( 'href', '#' )
 					.addClass( 'flow-cancel-link mw-ui-button mw-ui-quiet' )
 					.text( mw.msg( 'flow-cancel' ) )
-					.click( function ( e ) {
+					.on( 'click', function ( e ) {
 						e.preventDefault();
 
 						mw.flow.editor.destroy( $textarea );
@@ -335,11 +333,9 @@
 						.done( loadFunction );
 
 					// scroll to the form
-					$formContainer.scrollIntoView( {
-						complete: function () {
-							mw.flow.editor.focus( $textarea );
-							mw.flow.editor.moveCursorToEnd( $textarea );
-						}
+					$formContainer.conditionalScrollIntoView().queue( function () {
+						mw.flow.editor.focus( $textarea );
+						mw.flow.editor.moveCursorToEnd( $textarea );
 					} );
 				}.bind( this, $formContainer, initialContent, loadFunction ), 0 );
 
@@ -371,7 +367,7 @@
 				);
 
 				$container.find( submitSelector )
-					.click( function ( e ) {
+					.on( 'click', function ( e ) {
 						e.preventDefault();
 						handler.apply( e.target, [e] );
 					} );
@@ -424,6 +420,9 @@
 							$button.show();
 
 							if ( $form ) {
+								// Remove previous error
+								$form.children( ':first' ).filter('.flow-preview-error' ).remove();
+								// Append new error
 								$form.append( $errorDiv );
 							}
 
@@ -445,7 +444,9 @@
 				} else if ( $container.length ) {
 					return $container.data( 'workflow-id' );
 				} else {
-					console.dirxml( $element[0] );
+					if ( window.console && console.dirxml ) {
+						console.dirxml( $element[0] );
+					}
 					throw new Error( 'Unable to get a workflow ID' );
 				}
 			},
@@ -483,7 +484,9 @@
 				$errorDiv
 					.addClass( 'flow-error errorbox' )
 					.hide()
-					.slideDown( 'fast' );
+					.slideDown( 'fast', function () {
+						$errorDiv.conditionalScrollIntoView();
+					} );
 
 				if ( errorArgs[0] === 'http' ) {
 					// HTTP error occurred
@@ -525,8 +528,8 @@
 
 			/**
 			 * Setup tipsy function
-			 * @param {JQuery} the JQuery object that contains tipsy content
-			 * @param {string} the action listener that triggers the tipsy
+			 * @param {jQuery} $flyout the JQuery object that contains tipsy content
+			 * @param {string} action the action listener that triggers the tipsy
 			 */
 			'setupTipsy': function( $flyout, action ) {
 				var $element = this, tipsyCallback = function( e ) {
@@ -561,56 +564,125 @@
 
 			/**
 			 * Setup preview function
-			 * @param {Object Literal} The key specifies the content identifier in the form
-			 * and value is output format
+			 * The key specifies the content identifier in the form and value is output format
+			 * @param {object} contents
+			 * @todo Revamp this; these handlers should be assigned in base.js
 			 */
 			'setupPreview': function( contents ) {
-				var $form = this, api = new mw.Api(),
-					$previewContainer = $( '<div>' ).addClass( 'flow-content-preview' );
+				var $form = this,
+					api = new mw.Api(),
+					$previewContainer = $( '<div>', { 'class': 'flow-content-preview' } ),
+					$spinner = $();
 
 				// Default output format is parsed
 				if ( !contents ) {
 					contents = { 'textarea': 'parsed' };
 				}
 
-				$form.prepend( $previewContainer );
+				// Event handlers
+				/**
+				 * onclick handler for preview button
+				 * @param {Event} event
+				 */
+				var previewClick = function ( event ) {
+					event.preventDefault();
 
-				// Set up click handler for showing preview
-				$( '<input />' )
-					.attr( 'type', 'submit' )
-					.val( mw.msg( 'flow-preview' ) )
-					.addClass( 'mw-ui-button flow-preview-submit' )
-					.click( function ( e ) {
-						e.preventDefault();
-						$previewContainer.empty();
-						var success = function ( data ) {
-							$div.html( data['flow-parsoid-utils'].content );
-						}, failure = function ( code, data ) {
-							$( '<div>' ).flow( 'showError', arguments ).insertBefore( $form );
-						};
-						for ( var identifier in contents ) {
-							var $div = $( '<div>' ).addClass( 'flow-preview-sub-container' );
-							$previewContainer.append( $div );
-							if ( contents[identifier] === 'parsed' ) {
-								if ( mw.flow.editor.getFormat() !== 'html' ) {
-									api.post( {
-										action: 'flow-parsoid-utils',
-										from: mw.flow.editor.getFormat(),
-										to: 'html',
-										content: $form.find( identifier ).val(),
-										title: mw.config.get( 'wgPageName' )
-									} )
-									.done( success )
-									.fail( failure );
-								} else {
-									$div.text( $form.find( identifier ).val() );
-								}
+					var waitToShow = false,
+						$div;
+
+					// Hide and empty the old preview, if any
+					$previewContainer.hide().empty();
+					$spinner.remove();
+
+					// Make a spinner while we load this preview
+					$spinner = $.createSpinner().insertAfter( this );
+
+					// Iterate over each content type and parse them
+					for ( var identifier in contents ) {
+						$div = $( '<div>', { 'class': 'flow-preview-sub-container' } );
+						$previewContainer.append( $div );
+						if ( contents[identifier] === 'parsed' ) {
+							if ( mw.flow.editor.getFormat() !== 'html' ) {
+								// HTML needs to be sent to the back-end for results
+								api.post( {
+									action: 'flow-parsoid-utils',
+									from: mw.flow.editor.getFormat(),
+									to: 'html',
+									content: $form.find( identifier ).val(),
+									title: mw.config.get( 'wgPageName' )
+								} )
+									// On success
+									.done( previewDone.bind( $div ) )
+									// On failure
+									.fail( previewFail.bind( $div ) );
+
+								// Don't show the preview until this request finishes
+								waitToShow = true;
 							} else {
 								$div.text( $form.find( identifier ).val() );
 							}
+						} else {
+							$div.text( $form.find( identifier ).val() );
 						}
-						$previewContainer.show();
-					} ).insertAfter( $form.find( '.flow-cancel-link' ) );
+					}
+
+					// If no XHR to be done, just show the field now.
+					if ( !waitToShow ) {
+						// Show the preview container and bring it into view
+						$previewContainer.show().conditionalScrollIntoView();
+						// Destroy the spinner
+						$spinner.remove();
+					}
+				},
+
+				/**
+				 * Preview XHR success handler. Outputs the HTML content to the appropriate div.
+				 * this should be bound to $div
+				 * @param {object} data
+				 */
+				previewDone = function ( data ) {
+					// Load the content
+					$( this ).html( data['flow-parsoid-utils'].content );
+
+					// Show the preview container and bring it into view
+					$previewContainer.show().conditionalScrollIntoView();
+
+					// Destroy the spinner
+					$spinner.remove();
+				},
+
+				/**
+				 * Preview XHR failure handler. Outputs an error to the form.
+				 * this should be bound to $div
+				 * @param {string} code
+				 * @param {object} data
+				 */
+				previewFail = function ( code, data ) {
+					// Remove previous error
+					$form.children( ':first' ).filter( '.flow-preview-error' ).remove();
+
+					// Create new error and initialize it
+					$( '<div>', { 'class': 'flow-preview-error' } ).flow( 'showError', arguments ).prependTo( $form );
+
+					// Destroy the spinner
+					$spinner.remove();
+				};
+
+				// Now let's do stuff...
+				$form
+					// Kill old handlers
+					.off( 'click.FlowUI' )
+					// Bind the preview button click event onto the form
+					.on( 'click.FlowUI', '.flow-preview-submit', previewClick )
+					// And insert the preview container into this form
+					.prepend( $previewContainer );
+
+				// Create preview button and pop it in before the cancel button
+				$( '<input />', {
+					'type': 'submit',
+					'value': mw.msg( 'flow-preview' ),
+					'class': 'mw-ui-button flow-preview-submit'
+				} ).insertAfter( $form.find( '.flow-cancel-link' ) );
 			},
 
 			/**
