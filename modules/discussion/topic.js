@@ -31,14 +31,25 @@
 		this.topic = topic;
 
 		// Overload "edit title" link.
-		// Because the edit-link will be opened in a tipsy-window, we can't
-		// select it inside the container node - we'll hack around it by adding
-		// an topic-specific identifier to the link, and catch in via document.
-		// I'm doing .attr( 'data-topic' ) instead of .data( 'topic' ), because
-		// the latter is not persisted to the DOM, just in-memory (and can't be
-		// used in selector)
-		this.topic.$container.find( '.flow-edit-topic-link' ).attr( 'data-topic', this.topic.topicId );
-		$( document ).on( 'click', '.flow-edit-topic-link[data-topic="' + this.topic.topicId + '"]', $.proxy( this.edit, this ) );
+		// Bit of a hack here due to the requirement of proxying this to this.edit, and that tipsy only supports HTML,
+		// not passing along DOM nodes.
+		this.topic.$container
+			// Store this callback on the topic container itself
+			.data( 'edit-topic-callback', $.proxy( this.edit, this ) )
+			// Then store the topic-id on the link so we can refer back to the topic container's callback onclick
+			.find( '.flow-edit-topic-link' )
+				.attr( 'data-topic-id', this.topic.topicId );
+
+		$( document )
+			.off( 'click.mw-flow-discussion-edit-topic-link' )
+			.on(
+				'click.mw-flow-discussion-edit-topic-link',
+				'.flow-edit-topic-link',
+				function ( event ) {
+					// Find the topic container, get the stored callback, and then call it
+					return $( '#flow-topic-' + $( this ).data( 'topic-id') ).data( 'edit-topic-callback' ).apply( this, arguments );
+				}
+			);
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -240,15 +251,14 @@
 		$titleEditForm
 			.addClass( 'flow-edit-title-form' )
 			.append(
-				$( '<input />' )
-					.addClass( 'mw-ui-input' )
-					.addClass( 'flow-edit-title-textbox' )
-					.attr( 'type', 'text' )
-					.byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
-					.val( data.content )
+				$( '<input />', {
+					'class': 'mw-ui-input flow-edit-title-textbox',
+					'type':  'text',
+					'value': data.content
+				} ).byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
 			)
 			.append(
-				$( '<div class="flow-edit-title-controls"></div>' )
+				$( '<div />', { 'class': 'flow-edit-title-controls' } )
 					.append(
 						$( '<div>' ).addClass( 'flow-terms-of-use plainlinks' )
 						.html( mw.message( 'flow-terms-of-use-edit' ).parse() )
@@ -258,7 +268,7 @@
 							.addClass( 'flow-cancel-link mw-ui-button mw-ui-quiet' )
 							.attr( 'href', '#' )
 							.text( mw.msg( 'flow-cancel' ) )
-							.click( $.proxy( function ( event ) {
+							.on( 'click.mw-flow-discussion', $.proxy( function ( event ) {
 								event.preventDefault();
 								this.destroyEditForm();
 							}, this ) )
@@ -314,7 +324,7 @@
 		this.$form = this.topic.$container.find( '.flow-topic-reply-container' );
 
 		// Overload click in textarea, triggering full reply form
-		this.$form.find( '.flow-topic-reply-content' ).click( $.proxy( this.reply, this ) );
+		this.$form.find( '.flow-topic-reply-content' ).on( 'click.mw-flow-discussion', $.proxy( this.reply, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -324,11 +334,11 @@
 	/**
 	 * Fired when textarea is clicked.
 	 *
-	 * @param {Event} e
+	 * @param {Event} event
 	 */
-	mw.flow.action.topic.reply.prototype.reply = function ( e ) {
+	mw.flow.action.topic.reply.prototype.reply = function ( event ) {
 		// don't follow link that will lead to &action=reply
-		e.preventDefault();
+		event.preventDefault();
 
 		// load the form
 		this.loadReplyForm();
@@ -380,8 +390,9 @@
 			.hide()
 			.insertBefore( this.$form )
 			.trigger( 'flow_init' )
-			.slideDown()
-			.scrollIntoView();
+			.slideDown( 'normal', function () {
+				$( this ).conditionalScrollIntoView();
+			} );
 	};
 
 	/**
@@ -396,7 +407,7 @@
 		// Overload click in textarea, triggering full new topic form
 		this.$form.find( '.flow-newtopic-title' )
 			.attr( 'placeholder', mw.msg( 'flow-newtopic-start-placeholder' ) )
-			.click( $.proxy( this.create, this ) );
+			.on( 'click.mw-flow-discussion', $.proxy( this.create, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -406,11 +417,11 @@
 	/**
 	 * Fired when textarea is clicked.
 	 *
-	 * @param {Event} e
+	 * @param {Event} event
 	 */
-	mw.flow.action.topic.create.prototype.create = function ( e ) {
+	mw.flow.action.topic.create.prototype.create = function ( event ) {
 		// don't follow link that will lead to &action=new-topic
-		e.preventDefault();
+		event.preventDefault();
 
 		// don't re-bind if form is already active
 		if ( this.$form.hasClass( 'flow-form-active' ) ) {
@@ -453,8 +464,8 @@
 			.attr( 'href', '#' )
 			.addClass( 'flow-cancel-link mw-ui-button mw-ui-quiet' )
 			.text( mw.msg( 'flow-cancel' ) )
-			.click( $.proxy( function ( e ) {
-				e.preventDefault();
+			.on( 'click.mw-flow-discussion', $.proxy( function ( event ) {
+				event.preventDefault();
 				this.destroyForm();
 			}, this ) )
 			.after( ' ' )
@@ -531,8 +542,9 @@
 			.hide()
 			.prependTo( $( '.flow-topics' ) )
 			.trigger( 'flow_init' )
-			.slideDown()
-			.scrollIntoView();
+			.slideDown( 'normal', function () {
+				$( this ).conditionalScrollIntoView();
+			} );
 	};
 
 	/**
