@@ -1,6 +1,8 @@
 <?php
 
 use Flow\ParsoidUtils;
+use Flow\Exception\WikitextException;
+
 
 class ApiParsoidUtilsFlow extends ApiBase {
 
@@ -8,9 +10,15 @@ class ApiParsoidUtilsFlow extends ApiBase {
 		$params = $this->extractRequestParams();
 		$page = $this->getTitleOrPageId( $params );
 
+		try {
+			$content = ParsoidUtils::convert( $params['from'], $params['to'], $params['content'], $page->getTitle() );
+		} catch ( WikitextException $e ) {
+			$this->dieUsageMsg( $e->getErrorCode() );
+		}
+
 		$result = array(
 			'format' => $params['to'],
-			'content' => ParsoidUtils::convert( $params['from'], $params['to'], $params['content'], $page->getTitle() ),
+			'content' => $content,
 		);
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
