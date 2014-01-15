@@ -214,6 +214,10 @@ class PostRevision extends AbstractRevision {
 		return $this->postId;
 	}
 
+	public function setPostId( UUID $id ) {
+		$this->postId = $id;
+	}
+
 	/**
 	 * Get the user ID of the user who created this post.
 	 *

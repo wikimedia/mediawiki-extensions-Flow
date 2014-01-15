@@ -183,6 +183,18 @@ class Workflow {
 	public function getId() { return $this->id; }
 
 	/**
+	 * Used to change a Workflow's ID before it is saved.
+	 * @param UUID $id The ID to set.
+	 */
+	public function setId( $id ) {
+		if ( ! $this->isNew() ) {
+			throw new Flow\Exception\InvalidActionException( "Cannot change Workflow ID after saving it" );
+		}
+
+		$this->id = $id;
+	}
+
+	/**
 	 * Returns true if the workflow is new as of this request (regardless of
 	 * whether or not is it already saved yet - that's unknown).
 	 *

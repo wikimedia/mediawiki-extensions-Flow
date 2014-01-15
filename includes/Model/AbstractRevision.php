@@ -346,6 +346,10 @@ abstract class AbstractRevision {
 		return $this->revId;
 	}
 
+	public function setRevisionId( UUID $id ) {
+		$this->revId = $id;
+	}
+
 	/**
 	 * Is the user allowed to perform a certain action on this revision?
 	 *

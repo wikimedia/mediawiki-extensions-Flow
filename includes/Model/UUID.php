@@ -7,6 +7,7 @@ use Flow\Exception\InvalidInputException;
 use User;
 use Language;
 use MapCacheLRU;
+use MWCryptRand;
 use MWTimestamp;
 
 /**
@@ -124,7 +125,7 @@ class UUID {
 					// convert base 10 to base 16 and pad to HEX_LEN with 0's
 					$hexValue = wfBaseConvert( $input, 10, 16, self::HEX_LEN );
 				} else {
-					throw new InvalidInputException( 'Unknown input to UUID class', 'invalid-input' );
+					throw new InvalidInputException( 'Unknown input to UUID class: ' . strlen( $input ), 'invalid-input' );
 				}
 			}
 
@@ -267,18 +268,49 @@ class UUID {
 	 * @return UUID object.
 	 */
 	public static function getComparisonUUID( $ts ) {
-		// It should be comparable with UUIDs in binary mode.
-		// Easiest way to do this is to take the 46 MSBs of the UNIX timestamp * 1000
-		// and pad the remaining characters with zeroes.
+		// Invent a UUID to mangle
+		$uid = UUID::create();
+		$uidBase2 = wfBaseConvert( $uid->getHex(), 16, 2, self::BIN_LEN * 8 );
+
+		// Now get the appropriate timestamp
 		$millitime = wfTimestamp( TS_UNIX, $ts ) * 1000;
 		// base 10 -> base 2, taking 46 bits
-		$timestampBinary = wfBaseConvert( $millitime, 10, 2, 46 );
-		// pad out the 46 bits to binary len with 0's
-		$uuidBase2 = str_pad( $timestampBinary, self::BIN_LEN * 8, '0', STR_PAD_RIGHT );
-		// base 2 -> base 16
-		$uuidHex = wfBaseConvert( $uuidBase2, 2, 16, self::HEX_LEN );
+		$tsBase2 = wfBaseConvert( $millitime, 10, 2, 46 );
+		// Make sure it's exactly 46 bits.
+		$tsBase2 = str_pad( $tsBase2, 46, '0', STR_PAD_LEFT );
 
-		return self::create( $uuidHex );
+		// Doing something a little funky here.
+		// 10 bits is not enough entropy to prevent collisions on
+		// events with the same timestamp.
+		// So I'm cutting out about half the entropy in the node ID
+		// and replacing it with random data
+		
+		static $newNodeIdBits = 18;
+		static $oldNodeIdBits = 32;
+		static $randomDataBits = 24;
+		
+		$nodeId = substr( $uidBase2, -32 );
+		// Make sure all bits are equally significant
+		$nodeId = wfBaseConvert( md5( wfBaseConvert( $nodeId, 2, 16, ($oldNodeIdBits / 4) ) ), 16, 2, $oldNodeIdBits );
+		$nodeIdShortened = substr( $nodeId, 0, $newNodeIdBits );
+
+		// 24 bits of random data
+		$random = substr(
+			wfBaseConvert(
+				MWCryptRand::generateHex( $randomDataBits / 4 ),
+				16,
+				2,
+				$randomDataBits
+			),
+			0,
+			$randomDataBits
+		);
+
+		// Now build the UUID
+		$uidBase2 = $tsBase2 /* 46 bits */ . $random /* 24 bits */ . $nodeIdShortened /* 18 bits */;
+		$uidHex = wfBaseConvert( $uidBase2, 2, 16, self::HEX_LEN );
+
+		return self::create( $uidHex );
 	}
 
 	/**

@@ -317,6 +317,7 @@ abstract class RevisionStorage extends DbStorage {
 		);
 		if ( !$res ) {
 			// throw exception?
+			throw new \MWException( __METHOD__ . " failed" );
 			return false;
 		}
 
@@ -460,6 +461,7 @@ class PostRevisionStorage extends RevisionStorage {
 		}
 
 		if ( !$res ) {
+			throw new \MWException( __METHOD__ . " failed" );
 			return false;
 		}
 
@@ -537,6 +539,7 @@ class HeaderRevisionStorage extends RevisionStorage {
 			__METHOD__
 		);
 		if ( !$res ) {
+			throw new \MWException( __METHOD__ . " failed" );
 			return false;
 		}
 		return $row;
