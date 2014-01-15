@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_b4218cae",
+        "filename": "Resources.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-15T17:34:22Z",
+      "side": 1,
+      "message": "It\u0027s currently inside an if because Andrew was/is trying to get jquery.scroll into core, and once it is, it should not longer be loaded in here under that same name.\n\nUnless you\u0027ll be trying to get this one in core too, we can just register it like other modules.",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_140a7829",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-15T17:34:22Z",
+      "side": 1,
+      "message": "coding standards day camelCase (http://www.mediawiki.org/wiki/Manual:Coding_conventions \u0026 http://www.mediawiki.org/wiki/Manual:Coding_conventions/JavaScript)",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_b74e2e71",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-15T17:34:22Z",
+      "side": 1,
+      "message": "I\u0027m no fan of using variables from outside the function\u0027s scope - it\u0027s not obvious what $div, $previewContainer, $spinner etc are.\n\nThen again, I can live with it for now. It was like that already... :p",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_d7fbf20f",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-15T17:34:22Z",
+      "side": 1,
+      "message": "I can\u0027t find any \"var failure\" declaration",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_b7006e05",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-15T17:34:22Z",
+      "side": 1,
+      "message": "coding standards expect spaces around round brackets (I know... I hate it too)",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_579a42be",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-15T17:34:22Z",
+      "side": 1,
+      "message": "I\u0027m ok with the general approach here.\n\nI defenitely agree that we need to split this code into separate functions (I\u0027ve been doing that too) - I just don\u0027t agree that some (most) of this code still belongs here :p\n\nI hate how the code for dealing with replies is in both ui.js and forms.js. To make things worse, this reply-code is for both topic \u0026 post.\n\nI\u0027d prefer to have that code moved out of ui.js completely (example: https://gerrit.wikimedia.org/r/#/c/105699/4/modules/discussion/ui.js), to have all code related to 1 action in 1 place, rather than scattered across several files, inside multi-purpose functions.\n\nAll in all, I\u0027d prefer to have the (reply|newtopic|edit) code in here to be gone (see my refactor), then have the rest refactored like this.",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_3797be95",
+        "filename": "modules/jquery.conditionalScroll.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-15T17:34:22Z",
+      "side": 1,
+      "message": "camelCase :p",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
