@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_e064eeb0",
+        "filename": "tests/RedlinkerTest.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-15T23:18:59Z",
+      "side": 1,
+      "message": "Needs lower case Redlinker to match class name.  Php doesn\u0027t care, but the auto loader does.",
+      "revId": "a187db3ae11a93cddd093a3532424446034cee4d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
