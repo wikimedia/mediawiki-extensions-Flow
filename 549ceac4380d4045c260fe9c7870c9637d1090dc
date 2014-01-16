@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_c9b7ced2",
+        "filename": "includes/Data/RootPostLoader.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T23:37:00Z",
+      "side": 1,
+      "message": "Needs some comment that setRootPost is recursive.",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cef0db4e_5553661a",
         "filename": "includes/Model/PostRevision.php",
         "patchSetId": 2
@@ -36,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_49c3be3d",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T23:37:00Z",
+      "side": 1,
+      "message": "It\u0027s the top level post (topic title)",
+      "parentUuid": "cef0db4e_5553661a",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cef0db4e_153ddeb8",
         "filename": "includes/Model/PostRevision.php",
         "patchSetId": 2
@@ -47,6 +82,24 @@
       "writtenOn": "2014-01-11T12:08:52Z",
       "side": 1,
       "message": "Hard to read, instead \"Variables to which callback functions and their results will be saved.\"\nbut the comment doesn\u0027t really add much... at what point will they be saved?  (Take me, Jesus!)",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_09bdb6ad",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T23:37:00Z",
+      "side": 1,
+      "message": "This line wasn\u0027t added in this version, so it\u0027s not Erik\u0027s fault. You should submit your own patch if you want to change it.",
+      "parentUuid": "cef0db4e_153ddeb8",
       "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
