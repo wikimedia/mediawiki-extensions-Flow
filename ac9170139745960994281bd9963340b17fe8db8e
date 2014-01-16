@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_49ca9e4b",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T23:41:21Z",
+      "side": 1,
+      "message": "Should be merged into the upstream patch.",
+      "revId": "ac9170139745960994281bd9963340b17fe8db8e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
