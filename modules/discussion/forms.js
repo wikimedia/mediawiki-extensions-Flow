@@ -159,9 +159,8 @@ $( document ).flow( 'registerInitFunction', function(e) {
 						}
 					).done( function ( output ) {
 						var $content = $( output.rendered );
-						$post.closest( '.flow-post' )
-							.replaceWith( $content.find( '.flow-post' ) );
-						$content
+						$content.find( '.flow-post' )
+							.replaceAll( $post.closest( '.flow-post' ) )
 							.trigger( 'flow_init' );
 					} );
 
