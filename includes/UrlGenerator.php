@@ -9,6 +9,21 @@ use Title;
 use Flow\Exception\InvalidInputException;
 
 class UrlGenerator {
+	/**
+	 * @var OccupationController
+	 */
+	protected $occupationController;
+
+	/**
+	 * @var ObjectManager Workflow storage
+	 */
+	protected $storage;
+
+	/**
+	 * @var array Cached array of already loaded workflows
+	 */
+	protected $workflows = array();
+
 	public function __construct( ObjectManager $workflowStorage, OccupationController $occupationController ) {
 		$this->occupationController = $occupationController;
 		$this->storage = $workflowStorage;
@@ -87,7 +102,7 @@ class UrlGenerator {
 				if ( !$revision->isTopicTitle() ) {
 					$data['topic[postId]'] = $revision->getPostId()->getHex();
 				}
-		
+
 				if ( $specificRevision ) {
 					$data['topic[revId]'] = $revision->getRevisionId()->getHex();
 				}
@@ -109,11 +124,16 @@ class UrlGenerator {
 	 */
 	public function generateUrlData( $workflow, $action = 'view', array $query = array() ) {
 		if ( ! $workflow instanceof Workflow ) {
-			$workflowId = $workflow;
 			// Only way to know what title the workflow points at
-			$workflow = $this->storage->get( $workflowId );
-			if ( !$workflow ) {
-				throw new InvalidInputException( 'Invalid workflow: ' . $workflowId, 'invalid-workflow' );
+			$workflowId = $workflow;
+			if ( isset( $this->workflows[$workflowId->getHex()] ) ) {
+				$workflow = $this->workflows[$workflowId->getHex()];
+			} else {
+				$workflow = $this->storage->get( $workflowId );
+				if ( !$workflow ) {
+					throw new InvalidInputException( 'Invalid workflow: ' . $workflowId, 'invalid-workflow' );
+				}
+				$this->workflows[$workflowId->getHex()] = $workflow;
 			}
 		}
 
