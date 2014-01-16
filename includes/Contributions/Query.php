@@ -83,7 +83,7 @@ class Query {
 			if ( $uid ) {
 				$conditions['rev_user_id'] = $uid;
 			} else {
-				$conditions['rev_user_text'] = $target;
+				$conditions['rev_user_ip'] = $target;
 			}
 		}
 
