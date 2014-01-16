@@ -16,6 +16,24 @@
       "revId": "487227dfc57a4f11a3c33e395673d076a198c01a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_10a6fba7",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-16T18:07:22Z",
+      "side": 1,
+      "message": "Well - the thing with $this-\u003eoutput is quite awkward.\nThis one uses $this-\u003eoutput, but core exception handler uses $wgOut;\nThis actually works now because in our current use-case, $this-\u003eoutput \u003d\u003d $wgOut, but it isn\u0027t pretty :p\n\nI very much prefer to use $wgShowExceptionDetails. Having the stacktrace immediately on exception is quite easy to immediately pinpoint where the problem may lay. I don\u0027t think displaying the red infobox to the users is a big problem either, since that\u0027s what\u0027s done throughout core.",
+      "parentUuid": "aef5673e_5a4387b6",
+      "revId": "487227dfc57a4f11a3c33e395673d076a198c01a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
