@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_8b22e34e",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T01:34:11Z",
+      "side": 1,
+      "message": "Unrelated follow up fixes?",
+      "revId": "271428fc32cc3978c1aa8b4ab4fadd1cf4b9ff80",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
