@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_936fb5c0",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T20:27:44Z",
+      "side": 0,
+      "message": "Intended?",
+      "revId": "5258943e40a12a85d1991976b25ce091152beb19",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
