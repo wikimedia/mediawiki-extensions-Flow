@@ -176,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_eeea9872",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:42:08Z",
+      "side": 1,
+      "message": "You mean ( I know, I hate it too )",
+      "parentUuid": "aef5673e_b7006e05",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_579a42be",
         "filename": "modules/discussion/ui.js",
         "patchSetId": 2
@@ -222,6 +240,24 @@
       "writtenOn": "2014-01-15T17:34:22Z",
       "side": 1,
       "message": "camelCase :p",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_8ee9cc7d",
+        "filename": "modules/jquery.conditionalScroll.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:42:08Z",
+      "side": 1,
+      "message": "I\u0027ve done this in the past too, and been reined in (originally I wrote my own, now it\u0027s an adaptation of the OOUI one).\n\nCould we please not write Yet Another Scroll Function and find out exactly what\u0027s wrong with the existing one and fix those bugs. I\u0027ve spent a bit of time fixing bugs in that one, and I really don\u0027t want us to write, review and bugfix yet another one just because we\u0027ve found bugs.",
+      "parentUuid": "aef5673e_3797be95",
       "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
