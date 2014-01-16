@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_133045fb",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T21:30:32Z",
+      "side": 1,
+      "message": "I think I\u0027d prefer to see a factory object.",
+      "revId": "5e351d1120c7cd85bd0362e3d84528385379c55a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
