@@ -12,6 +12,9 @@ class Header extends AbstractRevision {
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
 		$obj->userId = $user->getId();
+		if ( !$user->getId() ) {
+			$obj->userIp = $user->getName();	
+		}
 		$obj->userText = $user->getName();
 		$obj->prevRevision = null; // no prior revision
 		$obj->setContent( $content );
