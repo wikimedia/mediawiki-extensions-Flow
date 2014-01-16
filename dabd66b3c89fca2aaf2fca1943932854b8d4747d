@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "aef5673e_a0c82626",
+        "filename": "includes/Template/ErrorHelper.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-16T00:59:03Z",
+      "side": 1,
+      "message": "Escaper doesn\u0027t implement hasErrors(), maybe move it first statement of the function block?",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_7ed9a882",
         "filename": "includes/Template/ErrorHelper.php",
         "patchSetId": 8
@@ -37,6 +54,23 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_40583a8c",
+        "filename": "includes/Template/Escaper.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-16T00:59:03Z",
+      "side": 1,
+      "message": "$prop?",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_9e334cc0",
         "filename": "includes/Template/Escaper.php",
         "patchSetId": 8
@@ -66,6 +100,57 @@
       "side": 1,
       "message": "I put the leading underscores in this object because its a wrapper, on the off chance the object being wrapped has raw or escape methods these wont override them.  Template::__raw gets the leading underscores to be consistent with the escaper.",
       "parentUuid": "aef5673e_9e334cc0",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_e0062e23",
+        "filename": "includes/Template/Escaper.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-16T00:59:03Z",
+      "side": 1,
+      "message": "I am a little bit confused by the purpose of this function.  It could return almost any types, that means the function caller has to detect the return type or look at the detail of this function in order to act on the result.",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_004d92e0",
+        "filename": "includes/Template/OutputString.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-16T00:59:03Z",
+      "side": 1,
+      "message": "__raw()?",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_ab75a794",
+        "filename": "includes/Template/OutputString.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-16T00:59:03Z",
+      "side": 1,
+      "message": "How about wikitext strings?",
       "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
