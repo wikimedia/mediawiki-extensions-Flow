@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_00247206",
+        "filename": "tests/AbuseFilterTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-16T00:01:42Z",
+      "side": 1,
+      "message": "I think we need @group Database annotation here since its writing to the database",
+      "revId": "5b50e636189d940a10e01c5f822f35c8385861d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
