@@ -252,7 +252,7 @@ $wgFlowDefaultWorkflow = 'discussion';
 
 // Limits for paging
 $wgFlowDefaultLimit = 10;
-$wgFlowMaxLimit = 50;
+$wgFlowMaxLimit = 100;
 
 // Echo notification subscription preference
 $wgDefaultUserOptions['echo-subscriptions-web-flow-discussion'] = true;
