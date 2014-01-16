@@ -84,6 +84,23 @@
       "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_335c694e",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-16T21:21:37Z",
+      "side": 1,
+      "message": "Exception references depth, should be about root post",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
