@@ -69,7 +69,7 @@ class AbuseFilter implements SpamFilter {
 	 * @return Status
 	 */
 	public function validate( AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
-		$vars = new \AbuseFilterVariableHolder;
+		$vars = \AbuseFilter::getEditVars( $title );
 		$vars->addHolders( \AbuseFilter::generateUserVars( $this->user ), \AbuseFilter::generateTitleVars( $title , 'ARTICLE' ) );
 		$vars->setVar( 'ACTION', $newRevision->getChangeType() );
 
