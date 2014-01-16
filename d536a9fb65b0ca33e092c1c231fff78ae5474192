@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_0ee81c0a",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "Assuming this function isn\u0027t finished yet.",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_6ef568c7",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "This naming is confusing. I expected it to accept a single associative array of parameters.\n\nMaybe call it setWorkflowParams() to be clear? or setWorkflowSpecification() or something.",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_0e137c06",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "I would sort of prefer to have this as a simple return \u0027X\u0027 for each individual module – and then to use that to set the keys in the array. I get the objective to reduce redundant definitions – but I feel as if this should be an attribute of the class, and not depend on some external item.",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_6eeb28dc",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "I don\u0027t get the point of this inprocess caching, it\u0027s already cached in Container::getContainer()",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_cec35460",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "Ditto. Not sure that in process caching is necessary.",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_6e9fa856",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "I don\u0027t like this very much, but it\u0027s my own fault, isn\u0027t it :-P",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_8ebd4cd4",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "This is going to create a Flow revision even for unoccupied articles as far as I can tell, unless that check is already done in the WorkflowLoader?",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_8e154c9f",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "Prefer to have count() explicitly.",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_2ed760f4",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "Why not just run this at the end instead of in two different circumstances throughout?",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_ae87f0db",
+        "filename": "includes/api/ApiFlowNewTopic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "I wonder if we could have a single ApiFlowAction class, and instantiate it with different params (block class, for example) and generate all of the other stuff?",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_0e213cf6",
+        "filename": "includes/api/ApiFlowNewTopic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-16T22:28:29Z",
+      "side": 1,
+      "message": "I prefer these definitions to be held within the block object, to keep it all together – they should be there anyway.",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
