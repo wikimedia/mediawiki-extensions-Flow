@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_84440d70",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-01-17T07:50:32Z",
+      "side": 1,
+      "message": "Can we use event instead of e? I\u0027m not sure what the consensus is around here on that. I think \"e\" makes it difficult to search for usages of that variable, and, in my opinion, e as a var name should only be used for errors in try-catch.",
+      "revId": "c4079fc15abbb08fc48f2a815b13544c119cc832",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_e43519f5",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-01-17T07:50:32Z",
+      "side": 1,
+      "message": "I\u0027m not a big fan of individually binding handlers on potentially hundreds of elements, when it could be done at the top level of the container.\n\nHowever, we can let this slide, that\u0027s more something I was focusing on in my refactors.",
+      "revId": "c4079fc15abbb08fc48f2a815b13544c119cc832",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
