@@ -151,7 +151,7 @@ class Post {
 	}
 
 	public function createModifiedTipsyLink( AbstractBlock $block ) {
-		if ( $this->post->getPrevRevisionId() ) {
+		if ( $this->post->getLastContentEditId() ) {
 			$link = Html::element(
 				'a',
 				array( 'class' => 'flow-content-modified-tipsy-link', 'href' => $this->getLatestDiffLink( $block ) ),
