@@ -6,6 +6,7 @@ use Flow\Redlinker;
 use Flow\Model\UUID;
 use Flow\Model\PostRevision;
 use Title;
+use FormatJson;
 
 class RedlinkerTest extends PostRevisionTestCase {
 	static public function redLinkProvider() {
@@ -59,7 +60,7 @@ class RedlinkerTest extends PostRevisionTestCase {
 		$saHref = 'Main_Page';
 		$anchor = \Html::element( 'a', array(
 			'rel' => 'mw:WikiLink',
-			'data-parsoid' => json_encode( array( 'sa' => array( 'href' => $saHref ) ) ),
+			'data-parsoid' => FormatJson::encode( array( 'sa' => array( 'href' => $saHref ) ) ),
 		), $saHref );
 
 		$post = $this->generateObject( array(
@@ -87,7 +88,7 @@ class RedlinkerTest extends PostRevisionTestCase {
 		$saHref = 'Main_Page';
 		$anchor = \Html::element( 'a', array(
 			'rel' => 'mw:WikiLink',
-			'data-parsoid' => json_encode( array( 'sa' => array( 'href' => $saHref ) ) ),
+			'data-parsoid' => FormatJson::encode( array( 'sa' => array( 'href' => $saHref ) ) ),
 		), $saHref );
 
 		$batch = $this->getMock( 'LinkBatch' );
