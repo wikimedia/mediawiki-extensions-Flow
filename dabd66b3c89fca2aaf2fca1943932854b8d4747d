@@ -19,6 +19,40 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_abc36760",
+        "filename": "includes/Template.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T00:17:24Z",
+      "side": 1,
+      "message": "Doesn\u0027t update the escaped value",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_8bb8a3e3",
+        "filename": "includes/Template.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T00:17:24Z",
+      "side": 1,
+      "message": "doesn\u0027t update the escaped value",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_a0c82626",
         "filename": "includes/Template/ErrorHelper.php",
         "patchSetId": 8
@@ -30,6 +64,24 @@
       "writtenOn": "2014-01-16T00:59:03Z",
       "side": 1,
       "message": "Escaper doesn\u0027t implement hasErrors(), maybe move it first statement of the function block?",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_6b59df00",
+        "filename": "includes/Template/ErrorHelper.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T00:17:24Z",
+      "side": 1,
+      "message": "It should still work, since Escaper will be wrapping a Block instance, but i will switch it around anyways makes more sense.",
+      "parentUuid": "aef5673e_a0c82626",
       "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -88,6 +140,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_e91612ac",
+        "filename": "includes/Template/Escaper.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T00:17:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_40583a8c",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_f3284134",
         "filename": "includes/Template/Escaper.php",
         "patchSetId": 8
@@ -99,6 +169,24 @@
       "writtenOn": "2014-01-16T20:27:44Z",
       "side": 1,
       "message": "Might be nice to have these call __get or __set somehow. I know it\u0027s only one line of code, but the duplication does irk me.",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_69fe8237",
+        "filename": "includes/Template/Escaper.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T00:17:24Z",
+      "side": 1,
+      "message": "I know its just a micro-optimization ... but php is notoriously slow when it comes to function calls.  For a couple lines i would swap it around, but for a single line I\u0027m willing to just have a test for this and let it be duplicated.",
+      "parentUuid": "aef5673e_f3284134",
       "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -140,6 +228,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_49fbbe44",
+        "filename": "includes/Template/Escaper.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T00:17:24Z",
+      "side": 1,
+      "message": "Added some phpdoc re: double underscores",
+      "parentUuid": "aef5673e_1eacdc31",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_e0062e23",
         "filename": "includes/Template/Escaper.php",
         "patchSetId": 8
@@ -175,6 +281,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_29f87a45",
+        "filename": "includes/Template/Escaper.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T00:17:24Z",
+      "side": 1,
+      "message": "I\u0027ve expanded the phpdoc for both this function and a class level doc comment.  Along with that I have updated this methods return signature.  Hopefully the combination of these things now better describes what is happening here.",
+      "parentUuid": "aef5673e_f32f21f2",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_004d92e0",
         "filename": "includes/Template/OutputString.php",
         "patchSetId": 8
@@ -192,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_69c68250",
+        "filename": "includes/Template/OutputString.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T00:17:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_004d92e0",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_ab75a794",
         "filename": "includes/Template/OutputString.php",
         "patchSetId": 8
@@ -203,6 +345,24 @@
       "writtenOn": "2014-01-16T00:59:03Z",
       "side": 1,
       "message": "How about wikitext strings?",
+      "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_e9b292e3",
+        "filename": "includes/Template/OutputString.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T00:17:24Z",
+      "side": 1,
+      "message": "i\u0027m not sure, tbh.  My thoughts are that parsing wikitext should be outside the scope of an OutputString, wikitext should be parsed externally and passed into an HtmlString.    I added the parse method explicitly so that you could pass an OutputString to anything expecting a Message and the code would still work, but perhaps thats unnecessary?",
+      "parentUuid": "aef5673e_ab75a794",
       "revId": "dabd66b3c89fca2aaf2fca1943932854b8d4747d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
