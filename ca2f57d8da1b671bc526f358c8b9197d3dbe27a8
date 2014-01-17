@@ -34,6 +34,23 @@
       "revId": "ca2f57d8da1b671bc526f358c8b9197d3dbe27a8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_dbf78ff1",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-17T13:23:05Z",
+      "side": 1,
+      "message": "Should probably use core functions where possible, instead of transforming dbkey/text version yourself.\n\n    $user \u003d User::newFromName( $row-\u003euser_name );\n    $lb-\u003eaddObj( $user-\u003egetUserPage() );\n    $lb-\u003eaddObj( $user-\u003egetTalkPage() );\n\nAt first sight, none of these actually fetches any data.",
+      "revId": "ca2f57d8da1b671bc526f358c8b9197d3dbe27a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
