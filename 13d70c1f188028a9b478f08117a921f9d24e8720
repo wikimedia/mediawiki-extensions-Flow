@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_24ff81a9",
+        "filename": "includes/Data/RootPostLoader.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T03:38:50Z",
+      "side": 1,
+      "message": "not worth blocking on,  since its a bit of a refactor, but we have sorta loaded this data already above with the call to fetchRelatedPostIds.",
+      "revId": "13d70c1f188028a9b478f08117a921f9d24e8720",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
