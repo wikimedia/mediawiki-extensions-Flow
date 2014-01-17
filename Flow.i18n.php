@@ -1200,6 +1200,7 @@ $messages['de'] = array(
 	'flow-preview' => 'Vorschau',
 	'flow-show-change' => 'Änderungen anzeigen',
 	'flow-last-modified-by' => 'Zuletzt {{GENDER:$1|geändert}} von $1',
+	'flow-stub-post-content' => "''Aufgrund eines technischen Fehlers konnte dieser Beitrag nicht abgerufen werden.''",
 	'flow-newtopic-title-placeholder' => 'Neues Thema',
 	'flow-newtopic-content-placeholder' => 'Gib hier Einzelheiten ein, wenn du möchtest.',
 	'flow-newtopic-header' => 'Ein neues Thema hinzufügen',
@@ -1835,6 +1836,7 @@ $messages['fr'] = array(
 	'flow-preview' => 'Prévisualiser',
 	'flow-show-change' => 'Voir les modifications',
 	'flow-last-modified-by' => '{{GENDER:$1|Modifié}} en dernier par $1',
+	'flow-stub-post-content' => '« En raison d’une erreur technique, ce message n’a pas pu être récupéré. »',
 	'flow-newtopic-title-placeholder' => 'Nouveau sujet',
 	'flow-newtopic-content-placeholder' => 'Ajouter des détails si vous le voulez',
 	'flow-newtopic-header' => 'Ajouter un nouveau sujet',
@@ -2504,6 +2506,7 @@ $messages['it'] = array(
 	'flow-preview' => 'Anteprima',
 	'flow-show-change' => 'Mostra modifiche',
 	'flow-last-modified-by' => 'Ultima {{GENDER:$1|modifica}} di $1',
+	'flow-stub-post-content' => "''A causa di un errore tecnico, questo messaggio non può essere recuperato.''",
 	'flow-newtopic-title-placeholder' => 'Nuova discussione',
 	'flow-newtopic-content-placeholder' => 'Aggiungi qualche dettaglio, se vuoi',
 	'flow-newtopic-header' => 'Aggiungi una nuova discussione',
@@ -2718,6 +2721,7 @@ $messages['ja'] = array(
 	'flow-preview' => 'プレビュー',
 	'flow-show-change' => '差分を表示',
 	'flow-last-modified-by' => '最終{{GENDER:$1|更新}}者: $1',
+	'flow-stub-post-content' => "''技術的な問題が発生したため、この投稿を取得できませんでした。''",
 	'flow-newtopic-title-placeholder' => '新しい話題',
 	'flow-newtopic-content-placeholder' => '詳細情報を入力 (省略可能)',
 	'flow-newtopic-header' => '新しい話題の追加',
@@ -3014,6 +3018,7 @@ $messages['ko'] = array(
 	'flow-history-week' => '지난 주',
 	'flow-history-pages-topic' => '[$1 "$2" 게시판]에 나타납니다',
 	'flow-history-pages-post' => '[$1 $2]에 나타납니다',
+	'flow-topic-participants' => '{{PLURAL:$1|$3 사용자가 이 주제를 시작했습니다.|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}}, 그 외 $2 {{PLURAL:$2|사용자}}|0=아직 참가하지 않음et|2={{GENDER:$3|$3}}와 {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}}}}',
 	'flow-topic-comments' => '{{PLURAL:$1|댓글 ($1개)|댓글 ($1개)|0=첫 댓글을 {{GENDER:$2|달아 보세요}}!}}',
 	'flow-comment-restored' => '복원된 덧글',
 	'flow-comment-deleted' => '삭제된 덧글',
@@ -3253,6 +3258,7 @@ $messages['mk'] = array(
 	'flow-preview' => 'Преглед',
 	'flow-show-change' => 'Прикажи промени',
 	'flow-last-modified-by' => 'Последно {{GENDER:$1|изменето}} од $1',
+	'flow-stub-post-content' => "''Објавата не може да се добие поради техничка грешка.''",
 	'flow-newtopic-title-placeholder' => 'Нова тема',
 	'flow-newtopic-content-placeholder' => 'Додајте подробности, ако сакате',
 	'flow-newtopic-header' => 'Додај нова тема',
@@ -3922,6 +3928,7 @@ $messages['oc'] = array(
 /** Polish (polski)
  * @author Chrumps
  * @author Rzuwig
+ * @author Vuh
  * @author Woytecr
  */
 $messages['pl'] = array(
@@ -3929,6 +3936,7 @@ $messages['pl'] = array(
 	'flow-post-moderated-toggle-hide' => '[Ukryj]',
 	'flow-cancel' => 'Anuluj',
 	'flow-preview' => 'Podgląd',
+	'flow-stub-post-content' => "''Ze względu na błąd techniczny, ten post nie mógł zostać przywrócony.''",
 	'flow-newtopic-title-placeholder' => 'Temat wiadomości', # Fuzzy
 	'flow-newtopic-header' => 'Dodaj nowy temat',
 	'flow-newtopic-save' => 'Dodaj temat',
@@ -4183,6 +4191,7 @@ $messages['sv'] = array(
 	'flow-preview' => 'Förhandsgranska',
 	'flow-show-change' => 'Visa ändringar',
 	'flow-last-modified-by' => 'Senast {{GENDER:$1|ändrad}} av $1',
+	'flow-stub-post-content' => '"På grund av ett tekniskt fel, kunde detta inlägg inte hämtas."',
 	'flow-newtopic-title-placeholder' => 'Nytt ämne',
 	'flow-newtopic-content-placeholder' => 'Lägg till några detaljer om du vill',
 	'flow-newtopic-header' => 'Lägg till ett nytt ämne',
@@ -4618,6 +4627,7 @@ $messages['vi'] = array(
 	'flow-preview' => 'Xem trước',
 	'flow-show-change' => 'Xem thay đổi',
 	'flow-last-modified-by' => 'Sửa đổi lần cuối cùng bởi $1',
+	'flow-stub-post-content' => "''Không thể lấy bài đăng này do một lỗi kỹ thuật.''",
 	'flow-newtopic-title-placeholder' => 'Chủ đề mới',
 	'flow-newtopic-content-placeholder' => 'Thêm những chi tiết theo ý bạn',
 	'flow-newtopic-header' => 'Thêm chủ đề mới',
