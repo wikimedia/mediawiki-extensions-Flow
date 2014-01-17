@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_e454f4cb",
+        "filename": "includes/Data/RootPostLoader.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T22:09:35Z",
+      "side": 1,
+      "message": "hmm, i suppose the various setDepth() and setRootPost() calls would need some review.  Funny thing is they didn\u0027t exist when i wrote this comment, but I had a feeling things would be added :)",
+      "parentUuid": "cef0db4e_356fc2c2",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_c9b7ced2",
         "filename": "includes/Data/RootPostLoader.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2014-01-16T23:37:00Z",
       "side": 1,
       "message": "Needs some comment that setRootPost is recursive.",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_c459f002",
+        "filename": "includes/Data/RootPostLoader.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T22:09:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_c9b7ced2",
       "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -64,6 +100,24 @@
       "writtenOn": "2014-01-16T23:37:00Z",
       "side": 1,
       "message": "It\u0027s the top level post (topic title)",
+      "parentUuid": "cef0db4e_5553661a",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_042eb83e",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T22:09:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "cef0db4e_5553661a",
       "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
@@ -141,6 +195,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_64ffc4a8",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T22:09:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cef0db4e_b543d242",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cef0db4e_556a46b2",
         "filename": "includes/Model/PostRevision.php",
         "patchSetId": 2
@@ -158,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_44fcc0b1",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T22:09:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cef0db4e_556a46b2",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_335c694e",
         "filename": "includes/Model/PostRevision.php",
         "patchSetId": 2
@@ -169,6 +259,24 @@
       "writtenOn": "2014-01-16T21:21:37Z",
       "side": 1,
       "message": "Exception references depth, should be about root post",
+      "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_2429bc36",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T22:09:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_335c694e",
       "revId": "549ceac4380d4045c260fe9c7870c9637d1090dc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
