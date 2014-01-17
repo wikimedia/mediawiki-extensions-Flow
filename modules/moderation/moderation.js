@@ -85,15 +85,8 @@
 										confirmationMsg = 'flow-moderation-confirmation-' +
 											moderationType + '-' + targetType;
 
-										$dialog.empty()
-											.dialog( 'option', 'buttons', null )
-											.append(
-												$( '<p/>' ).text( mw.msg(
-													confirmationMsg,
-													creatorName,
-													mw.user
-												) )
-											);
+										$dialog.dialog( 'close' )
+											.remove();
 
 										if ( targetType === 'post' ) {
 											$newContainer = $renderedReplacement.find( '.flow-post' );
@@ -105,6 +98,7 @@
 										}
 
 										$newContainer.trigger( 'flow_init' );
+										mw.notify( mw.msg( confirmationMsg, mw.user ) );
 									} )
 									.fail( function() {
 										var $errorDiv = $( '<div/>' ).flow( 'showError', arguments ),
