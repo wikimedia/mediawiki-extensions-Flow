@@ -33,6 +33,24 @@
       "revId": "6b319e7604f53f7a6b907a8a75e39014059f80df",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_de71bdde",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-17T18:11:17Z",
+      "side": 1,
+      "message": "i would prefer to pass the UUID objects as well, just makes it clearer with less magic happening",
+      "parentUuid": "aef5673e_7e69a81c",
+      "revId": "6b319e7604f53f7a6b907a8a75e39014059f80df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
