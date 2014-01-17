@@ -10,6 +10,7 @@ use DOMNode;
 use LinkBatch;
 use Linker;
 use Title;
+use FormatJson;
 
 /**
  * Parsoid ignores red links. With good reason: redlinks should only be
@@ -275,7 +276,7 @@ class Redlinker {
 		$links = array();
 		foreach ( $linkNodes as $linkNode ) {
 			$parsoid = $linkNode->getAttribute( 'data-parsoid' );
-			$parsoid = json_decode( $parsoid, true );
+			$parsoid = FormatJson::decode( $parsoid, true );
 			if ( isset( $parsoid['sa']['href'] ) ) {
 				$callback( $linkNode, $parsoid );
 			}

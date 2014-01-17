@@ -13,7 +13,7 @@ class ApiQueryFlow extends ApiQueryBase {
 		$this->container = Flow\Container::getContainer();
 		// Get the parameters
 		$params = $this->extractRequestParams();
-		$passedParams = json_decode( $params['params'], true );
+		$passedParams = FormatJson::decode( $params['params'], true );
 
 		$pageTitle = Title::newFromText( $params['page'] );
 		$id = $params['workflow'] ? UUID::create( $params['workflow'] ) : null;
