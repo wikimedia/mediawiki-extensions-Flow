@@ -21,6 +21,21 @@
 		// will affect the position of .flow-edit-post-link
 		.flow-creator {
 			margin-bottom: 0;
+
+			& > a {
+				// This makes the highlighting be slightly wider
+				// than the text without affecting the alignment.
+				margin-left: -0.2em;
+				padding-left: 0.2em;
+				padding-right: 0.2em;
+			}
+		}
+	}
+
+	.flow-post-own {
+		.flow-creator > a {
+			// @username-color at 20% transparency
+			background-color: rgba(60, 104, 177, 0.2);
 		}
 	}
 
