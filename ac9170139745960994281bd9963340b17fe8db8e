@@ -16,6 +16,23 @@
       "revId": "ac9170139745960994281bd9963340b17fe8db8e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_9b9a27bc",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-17T13:11:15Z",
+      "side": 1,
+      "message": "I agree with the change to lowercase F, but it should be changed for all occurrences of this var ;)",
+      "revId": "ac9170139745960994281bd9963340b17fe8db8e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
