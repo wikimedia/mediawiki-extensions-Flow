@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_84b1adde",
+        "filename": "includes/api/ApiParsoidUtilsFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-01-17T04:01:24Z",
+      "side": 1,
+      "message": "Don\u0027t use dieUsageMsg, it\u0027s dumb and one of these days I really should get around to deprecating it. It depends on a list of codes hard-coded into ApiBase::$messageMap, and chances are the code returned by $e-\u003egetErrorCode() isn\u0027t in that list. Just use $this-\u003edieUsage instead.",
+      "revId": "6333fddc9d87ac80e7df8ef7eaa216b3103e8af8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
