@@ -455,14 +455,14 @@ $c['recentchanges.formatter'] = $c->share( function( $c ) {
 	);
 } );
 
-$c['contribitions.query'] = $c->share( function( $c ) {
+$c['contributions.query'] = $c->share( function( $c ) {
 	return new Flow\Contributions\Query(
 		$c['storage'],
 		$c['memcache'],
 		$c['repository.tree']
 	);
 } );
-$c['contribitions.formatter'] = $c->share( function( $c ) {
+$c['contributions.formatter'] = $c->share( function( $c ) {
 	return new Flow\Contributions\Formatter(
 		$c['storage'],
 		$c['flow_actions'],

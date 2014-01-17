@@ -295,7 +295,7 @@ class FlowHooks {
 			return true;
 		}
 
-		$line = Container::get( 'contribitions.formatter' )->format( $pager, $row );
+		$line = Container::get( 'contributions.formatter' )->format( $pager, $row );
 
 		if ( $line === false ) {
 			return false;
@@ -334,7 +334,7 @@ class FlowHooks {
 			return true;
 		}
 
-		$results = Container::get( 'contribitions.query' )->getResults( $pager, $offset, $limit, $descending );
+		$results = Container::get( 'contributions.query' )->getResults( $pager, $offset, $limit, $descending );
 
 		if ( $results === false ) {
 			return false;
