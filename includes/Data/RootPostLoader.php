@@ -6,6 +6,7 @@ use Flow\Block\TopicBlock;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Exception\InvalidDataException;
+use FormatJson;
 
 /**
  * I'm pretty sure this will generally work for any subtree, not just the topic
@@ -99,16 +100,16 @@ class RootPostLoader {
 		if ( $missing ) {
 			// TODO: fake up a pseudo-post to hold the children? At this point in
 			// dev its probably a bug we want to see.
-			throw new InvalidDataException( 'Missing Posts: ' . json_encode( $missing ), 'fail-load-data' );
+			throw new InvalidDataException( 'Missing Posts: ' . FormatJson::encode( $missing ), 'fail-load-data' );
 		}
 		// another helper to catch bugs in dev
 		$extra = array_diff( array_keys( $posts ), $prettyPostIds );
 		if ( $extra ) {
-			throw new InvalidDataException( 'Found unrequested posts: ' . json_encode( $extra ), 'fail-load-data' );
+			throw new InvalidDataException( 'Found unrequested posts: ' . FormatJson::encode( $extra ), 'fail-load-data' );
 		}
 		$extraParents = array_diff( array_keys( $children ), $prettyPostIds );
 		if ( $extraParents ) {
-			throw new InvalidDataException( 'Found posts with unrequested parents: ' . json_encode( $extraParents ), 'fail-load-data' );
+			throw new InvalidDataException( 'Found posts with unrequested parents: ' . FormatJson::encode( $extraParents ), 'fail-load-data' );
 		}
 
 		foreach ( $posts as $postId => $post ) {

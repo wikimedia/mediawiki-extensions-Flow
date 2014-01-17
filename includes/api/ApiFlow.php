@@ -37,7 +37,7 @@ class ApiFlow extends ApiBase {
 		if ( !$isNew ) {
 			$occupationController->ensureFlowRevision( $article );
 		}
-		$requestParams = json_decode( $params['params'], true );
+		$requestParams = FormatJson::decode( $params['params'], true );
 
 		if ( ! $requestParams ) {
 			$this->dieUsage( 'The params parameter must be a valid JSON string', 'badparams' );

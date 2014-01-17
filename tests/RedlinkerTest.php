@@ -3,6 +3,7 @@
 namespace Flow;
 
 use Title;
+use FormatJson;
 
 class RedlinkerTest extends \MediaWikiTestCase {
 
@@ -78,7 +79,7 @@ class RedlinkerTest extends \MediaWikiTestCase {
 		$saHref = 'Main_Page';
 		$anchor = \Html::element( 'a', array(
 			'rel' => 'mw:WikiLink',
-			'data-parsoid' => json_encode( array( 'sa' => array( 'href' => $saHref ) ) ),
+			'data-parsoid' => FormatJson::encode( array( 'sa' => array( 'href' => $saHref ) ) ),
 		), $saHref );
 
 		// We don't need a real id, just something reasonable.
@@ -110,7 +111,7 @@ class RedlinkerTest extends \MediaWikiTestCase {
 		$saHref = 'Main_Page';
 		$anchor = \Html::element( 'a', array(
 			'rel' => 'mw:WikiLink',
-			'data-parsoid' => json_encode( array( 'sa' => array( 'href' => $saHref ) ) ),
+			'data-parsoid' => FormatJson::encode( array( 'sa' => array( 'href' => $saHref ) ) ),
 		), $saHref );
 
 		$batch = $this->getMock( 'LinkBatch' );
