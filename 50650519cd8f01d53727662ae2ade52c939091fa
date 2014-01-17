@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_a416f158",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-01-17T08:11:04Z",
+      "side": 1,
+      "message": "I don\u0027t really understand the point of doing addBack( \u0027.flow-post\u0027 ). This basically says:\nreturn $container, then\nreturn all .flow-post in $container, then\nreturn all .flow-post + $container if it is also .flow-post",
+      "revId": "50650519cd8f01d53727662ae2ade52c939091fa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
