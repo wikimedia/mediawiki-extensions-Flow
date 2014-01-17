@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_a49b911a",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-01-17T07:18:37Z",
+      "side": 1,
+      "message": "I\u0027m moving this stuff around now as an interim fix. It will be corrected in a subsequent overhaul of ui-functions.js. Amazingly, this code is actually broken: $div gets overwritten during the loop.",
+      "parentUuid": "aef5673e_40803af9",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_d7fbf20f",
         "filename": "modules/base/ui-functions.js",
         "patchSetId": 2
@@ -135,6 +153,24 @@
       "writtenOn": "2014-01-15T23:42:08Z",
       "side": 1,
       "message": "This is potentially a set  of async ajax requests, we want to scrollTo/hide the spinner till all requests are done.  We can use JQuery\u0027s Deferred object along with when.apply().then() to handle this\n\nWe also want to disable the button when the request is in process?",
+      "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_04a35d40",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-01-17T07:18:37Z",
+      "side": 1,
+      "message": "Yeah, this was essentially what I planned on doing -- you\u0027ll notice above my line \"deferreds \u003d []\" is still there without being used. Then, I decided this code was too far gone to bother with it at this point. This whole script needs an overhaul like ui.js.",
+      "parentUuid": "aef5673e_e0a50e9c",
       "revId": "97c0de245d5d14c491675c74af19a51c2a7099d7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
