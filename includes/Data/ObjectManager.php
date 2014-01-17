@@ -755,7 +755,7 @@ abstract class DbStorage implements WritableObjectStorage {
 			} elseif ( $key === 'OFFSET' ) {
 				// OFFSET is just an integer
 				if ( ! is_numeric( $value ) ) {
-					wfDebug( __METHOD__.": non-numeric offset $offset\n" );
+					wfDebug( __METHOD__.": non-numeric offset $value\n" );
 					return false;
 				}
 			} elseif ( $key === 'GROUP BY' ) {
