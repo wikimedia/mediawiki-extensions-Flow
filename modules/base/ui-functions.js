@@ -117,7 +117,7 @@
 									.text( mw.msg( 'flow-cancel' ) )
 									.addClass( 'flow-cancel-link' )
 									.addClass( 'mw-ui-button' )
-									.addClass( 'mw-ui-text' )
+									.addClass( 'mw-ui-quiet' )
 									.attr( 'href', '#' )
 									.click( function ( e ) {
 										e.preventDefault();

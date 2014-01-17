@@ -117,7 +117,7 @@
 			.attr( 'href', '#' )
 			.addClass( 'flow-cancel-link' )
 			.addClass( 'mw-ui-button' )
-			.addClass( 'mw-ui-text' )
+			.addClass( 'mw-ui-quiet' )
 			.text( mw.msg( 'flow-cancel' ) )
 			.click( function ( e ) {
 				e.preventDefault();
@@ -177,7 +177,7 @@
 			.attr( 'href', '#' )
 			.addClass( 'flow-cancel-link' )
 			.addClass( 'mw-ui-button' )
-			.addClass( 'mw-ui-text' )
+			.addClass( 'mw-ui-quiet' )
 			.text( mw.msg( 'flow-cancel' ) )
 			.click( function ( e ) {
 				e.preventDefault();
@@ -227,7 +227,7 @@
 			.attr( 'href', '#' )
 			.addClass( 'flow-cancel-link' )
 			.addClass( 'mw-ui-button' )
-			.addClass( 'mw-ui-text' )
+			.addClass( 'mw-ui-quiet' )
 			.text( mw.msg( 'flow-cancel' ) )
 			.click( function ( e ) {
 				e.preventDefault();
