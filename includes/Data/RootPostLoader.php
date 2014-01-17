@@ -7,6 +7,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Exception\InvalidDataException;
+use FormatJson;
 
 /**
  * I'm pretty sure this will generally work for any subtree, not just the topic
@@ -117,13 +118,13 @@ class RootPostLoader {
 				$post->setReplyToId( $parents[$postId->getHex()] );
 				$posts[$postId->getHex()] = $post;
 
-				wfWarn( 'Missing Posts: ' . json_encode( $missing ) );
+				wfWarn( 'Missing Posts: ' . FormatJson::encode( $missing ) );
 			}
 		}
 		// another helper to catch bugs in dev
 		$extra = array_diff( array_keys( $posts ), $prettyPostIds );
 		if ( $extra ) {
-			throw new InvalidDataException( 'Found unrequested posts: ' . json_encode( $extra ), 'fail-load-data' );
+			throw new InvalidDataException( 'Found unrequested posts: ' . FormatJson::encode( $extra ), 'fail-load-data' );
 		}
 
 		// populate array of children
@@ -134,7 +135,7 @@ class RootPostLoader {
 		}
 		$extraParents = array_diff( array_keys( $children ), $prettyPostIds );
 		if ( $extraParents ) {
-			throw new InvalidDataException( 'Found posts with unrequested parents: ' . json_encode( $extraParents ), 'fail-load-data' );
+			throw new InvalidDataException( 'Found posts with unrequested parents: ' . FormatJson::encode( $extraParents ), 'fail-load-data' );
 		}
 
 		foreach ( $posts as $postId => $post ) {

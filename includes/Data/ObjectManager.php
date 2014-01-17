@@ -6,6 +6,7 @@ use Flow\Container;
 use Flow\Model\UUID;
 use Flow\DbFactory;
 use BagOStuff;
+use FormatJson;
 use RuntimeException;
 use SplObjectStorage;
 use Flow\Exception\DataModelException;
@@ -406,7 +407,7 @@ class ObjectLocator implements ObjectStorage {
 			$count = count( $this->indexes );
 			throw new NoIndexException(
 				"No index (out of $count) available to answer query for " . implode( ", ", $keys ) .
-				' with options ' . json_encode( $options ), 'process-data', 'no-index'
+				' with options ' . FormatJson::encode( $options ), 'process-data', 'no-index'
 			);
 		}
 		return $current;
@@ -1039,7 +1040,7 @@ abstract class FeatureIndex implements Index {
 		$indexed = ObjectManager::splitFromRow( $new , $this->indexed );
 		// is un-indexable a bail-worthy occasion? Probably not but makes debugging easier
 		if ( !$indexed ) {
-			throw new DataModelException( 'Unindexable row: ' .json_encode( $new ), 'process-data' );
+			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $new ), 'process-data' );
 		}
 		$compacted = $this->rowCompactor->compactRow( $new );
 		// give implementing index option to create rather than append
@@ -1053,10 +1054,10 @@ abstract class FeatureIndex implements Index {
 		$oldIndexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		$newIndexed = ObjectManager::splitFromRow( $new, $this->indexed );
 		if ( !$oldIndexed ) {
-			throw new DataModelException( 'Unindexable row: ' .json_encode( $oldIndexed ), 'process-data' );
+			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $oldIndexed ), 'process-data' );
 		}
 		if ( !$newIndexed ) {
-			throw new DataModelException( 'Unindexable row: ' .json_encode( $newIndexed ), 'process-data' );
+			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $newIndexed ), 'process-data' );
 		}
 		$oldCompacted = $this->rowCompactor->compactRow( $old );
 		$newCompacted = $this->rowCompactor->compactRow( $new );
@@ -1077,7 +1078,7 @@ abstract class FeatureIndex implements Index {
 	public function onAfterRemove( $object, array $old ) {
 		$indexed = ObjectManager::splitFromRow( $old, $this->indexed );
 		if ( !$indexed ) {
-			throw new DataModelException( 'Unindexable row: ' .json_encode( $old ), 'process-data' );
+			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $old ), 'process-data' );
 		}
 		$this->removeFromIndex( $indexed, $old );
 	}
