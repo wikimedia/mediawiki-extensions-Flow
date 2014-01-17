@@ -22,7 +22,21 @@ class PostRevision extends AbstractRevision {
 	protected $depth;
 
 	/**
-	 * Variables callback functions & their results will be saved to.
+	 * Variables to which callback functions and their results will be saved.
+	 *
+	 * We have some functionality to defer recursive processing through the post
+	 * tree up until the moment we actually need to. This makes it possible to
+	 * register multiple callback functions that need to be run recursively, and
+	 * execute them all one once, so we only have to go recursive once.
+	 *
+	 * Callbacks & initial result value will be saved when calling
+	 * $this->registerRecursive(), final result will be saved after calling
+	 * $this->descendRecursive().
+	 * $this->getRecursiveResult() will return the result in $recursiveResults.
+	 *
+	 * @see PostRevision::registerRecursive()
+	 * @see PostRevision::getRecursiveResult()
+	 * @see PostRevision::descendRecursive()
 	 *
 	 * @var array
 	 */
