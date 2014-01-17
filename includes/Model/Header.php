@@ -15,7 +15,6 @@ class Header extends AbstractRevision {
 		if ( !$user->getId() ) {
 			$obj->userIp = $user->getName();
 		}
-		$obj->userText = $user->getName();
 		$obj->prevRevision = null; // no prior revision
 		$obj->setContent( $content );
 		$obj->changeType = $changeType;
