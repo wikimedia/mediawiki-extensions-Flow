@@ -16,6 +16,24 @@
       "revId": "50650519cd8f01d53727662ae2ade52c939091fa",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_df22dca1",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-17T08:27:06Z",
+      "side": 1,
+      "message": "Init is not only done when page is loaded.\n\nWhen re-rendering conten (yes, we should change that too, some day), we just replace all of the post HTML with the new one we\u0027re fed from the API. We then have to re-initialize the node too (re-bind stuff etc)\n\nhttps://gerrit.wikimedia.org/r/#/c/105674/7/modules/discussion/post.js - L181\n\nThere, flow_init is called on $container, which _is_ .flow-post node itself. Without .addBack, it wouldn\u0027t find the node and wouldn\u0027t initialise again.\n\nThat too, should probably change some day - we probably shouldn\u0027t just .trigger( \u0027flow_init\u0027 ) on any given DOM node and have it initialize whatever it finds inside :p",
+      "parentUuid": "aef5673e_a416f158",
+      "revId": "50650519cd8f01d53727662ae2ade52c939091fa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
