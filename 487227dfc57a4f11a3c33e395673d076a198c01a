@@ -34,6 +34,24 @@
       "revId": "487227dfc57a4f11a3c33e395673d076a198c01a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_6a30abe5",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-18T01:44:21Z",
+      "side": 1,
+      "message": "The use of $this-\u003eoutput is to avoid confusion of $wgOut in FakeRequest.  Flow page is rendered via onPerformAction which has its own output object, I think it\u0027s better to keep using the same output object via setOutput().\n\nI don\u0027t have a strong preference on the infobox, :).  I guess it\u0027s fine if core is using it.  Other than this, we still need output-\u003eoutput().  it shows a blank page with exception trace right now.",
+      "parentUuid": "aef5673e_10a6fba7",
+      "revId": "487227dfc57a4f11a3c33e395673d076a198c01a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
