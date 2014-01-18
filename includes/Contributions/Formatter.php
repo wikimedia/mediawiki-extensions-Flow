@@ -9,7 +9,7 @@ use Html;
 class Formatter extends AbstractFormatter {
 	/**
 	 * @param ContribsPager $pager
-	 * @param stdClass $row
+	 * @param \stdClass $row
 	 * @return string|bool HTML for contributions entry, or false on failure
 	 */
 	public function format( ContribsPager $pager, $row ) {

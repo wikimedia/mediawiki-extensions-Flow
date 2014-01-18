@@ -283,6 +283,9 @@ abstract class AbstractRevision {
 		return self::$perms[$state]['historical'];
 	}
 
+	/**
+	 * @return UUID
+	 */
 	public function getRevisionId() {
 		return $this->revId;
 	}

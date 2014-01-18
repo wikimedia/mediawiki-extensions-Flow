@@ -45,6 +45,7 @@ abstract class AbstractBlock implements Block {
 	protected $workflow;
 	protected $storage;
 
+	/** @var User $user */
 	protected $user;
 	protected $submitted;
 	protected $errors;

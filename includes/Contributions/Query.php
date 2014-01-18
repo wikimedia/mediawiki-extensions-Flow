@@ -57,7 +57,6 @@ class Query {
 	}
 
 	/**
-	 * @param $data array an array of results of all contribs queries, to be merged to form all contributions data
 	 * @param ContribsPager $pager Object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
@@ -196,7 +195,7 @@ class Query {
 	 * @param ContribsPager $pager
 	 * @param AbstractRevision $revision
 	 * @param string $blockType Block name (e.g. "topic", "header")
-	 * @return stdClass
+	 * @return \stdClass
 	 */
 	protected function buildResult( ContribsPager $pager, AbstractRevision $revision, $blockType ) {
 		$uuid = $revision->getRevisionId();
@@ -270,6 +269,7 @@ class Query {
 	 * Retrieves the root post for a given PostRevision
 	 * @param  PostRevision $revision The revision to retrieve the root post for.
 	 * @return PostRevision           PostRevision of the root post.
+	 * @throws \MWException
 	 */
 	protected function getRootPost( PostRevision $revision ) {
 		$rootPostId = $this->getRootPostId( $revision );
@@ -291,6 +291,7 @@ class Query {
 	 * Gets the root post ID for a given PostRevision
 	 * @param  PostRevision $revision The revision to get the root post ID for.
 	 * @return UUID                   The UUID for the root post.
+	 * @throws \MWException
 	 */
 	protected function getRootPostId( PostRevision $revision ) {
 		$postId = $revision->getPostId();
