@@ -190,6 +190,15 @@ class WorkflowLoader {
 			// All blocks returned null, nothing knows how to handle this action
 			throw new InvalidActionException( "No block accepted the '$action' action: " .  implode( ',', array_unique( $type ) ), 'invalid-action' );
 		}
+
+		// Check permissions before allowing any writes
+		if ( $user->isBlocked() ||
+			!$this->workflow->getArticleTitle()->userCan( 'edit', $user )
+		) {
+			reset( $interestedBlocks )->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			$success = false;
+		}
+
 		return $success ? $interestedBlocks : array();
 	}
 
