@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_84852d5d",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-19T00:37:49Z",
+      "side": 1,
+      "message": "I just need to remove the commented out stuff, but other than that it\u0027s done. It\u0027s basically a copy of the function in ApiQuery with a little bit changed.",
+      "parentUuid": "aef5673e_0ee81c0a",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_6ef568c7",
         "filename": "includes/api/ApiFlowBase.php",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2014-01-16T22:28:29Z",
       "side": 1,
       "message": "This naming is confusing. I expected it to accept a single associative array of parameters.\n\nMaybe call it setWorkflowParams() to be clear? or setWorkflowSpecification() or something.",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_50fc76b1",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-19T00:37:49Z",
+      "side": 1,
+      "message": "Going with setWorkflowParams",
+      "parentUuid": "aef5673e_6ef568c7",
       "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_3029f236",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-19T00:37:49Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "aef5673e_0e137c06",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_6eeb28dc",
         "filename": "includes/api/ApiFlowBase.php",
         "patchSetId": 4
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_102eee3e",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-19T00:37:49Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "aef5673e_6eeb28dc",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_cec35460",
         "filename": "includes/api/ApiFlowBase.php",
         "patchSetId": 4
@@ -81,6 +153,24 @@
       "writtenOn": "2014-01-16T22:28:29Z",
       "side": 1,
       "message": "Ditto. Not sure that in process caching is necessary.",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_f0226a4f",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-19T00:37:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_cec35460",
       "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +211,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_b01ce219",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-19T00:37:49Z",
+      "side": 1,
+      "message": "This is how it was done in the original ApiFlow module, and I\u0027m not really sure what it does (I just copied it). Should I remove it?",
+      "parentUuid": "aef5673e_8ebd4cd4",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_8e154c9f",
         "filename": "includes/api/ApiFlowBase.php",
         "patchSetId": 4
@@ -132,6 +240,24 @@
       "writtenOn": "2014-01-16T22:28:29Z",
       "side": 1,
       "message": "Prefer to have count() explicitly.",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_d027665e",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-19T00:37:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_8e154c9f",
       "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +281,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_9019de29",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-19T00:37:49Z",
+      "side": 1,
+      "message": "As above, I just copied this code from the original API module, I can move it to the end if that makes sense.",
+      "parentUuid": "aef5673e_2ed760f4",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_ae87f0db",
         "filename": "includes/api/ApiFlowNewTopic.php",
         "patchSetId": 4
@@ -172,6 +316,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_70165af8",
+        "filename": "includes/api/ApiFlowNewTopic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-19T00:37:49Z",
+      "side": 1,
+      "message": "We could, but I think it would just turn into a bunch of different switch statements and be messy. Is there a disadvantage to splitting it up into multiple classes?",
+      "parentUuid": "aef5673e_ae87f0db",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_0e213cf6",
         "filename": "includes/api/ApiFlowNewTopic.php",
         "patchSetId": 4
@@ -183,6 +345,24 @@
       "writtenOn": "2014-01-16T22:28:29Z",
       "side": 1,
       "message": "I prefer these definitions to be held within the block object, to keep it all together – they should be there anyway.",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_50135605",
+        "filename": "includes/api/ApiFlowNewTopic.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-19T00:37:49Z",
+      "side": 1,
+      "message": "I don\u0027t think they are explicitly defined there, but I can do that. Should the help text be there too?",
+      "parentUuid": "aef5673e_0e213cf6",
       "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
