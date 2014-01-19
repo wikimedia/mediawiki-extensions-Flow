@@ -299,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_70f53ab5",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-19T01:22:10Z",
+      "side": 1,
+      "message": "They are actually two different conditions,  the first only runs on a pre-existing workflow.   This one here only runs on a workflow that was non-existant when starting the request but now exists.\n\nIIRC the first one was for BC, so that already created workflow without the backing page would get them.  This second one should be creating the backing page when saving.",
+      "parentUuid": "aef5673e_2ed760f4",
+      "revId": "d536a9fb65b0ca33e092c1c231fff78ae5474192",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_ae87f0db",
         "filename": "includes/api/ApiFlowNewTopic.php",
         "patchSetId": 4
