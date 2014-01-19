@@ -1134,9 +1134,19 @@ $messages['bg'] = array(
  * @author Tauhid16
  */
 $messages['bn'] = array(
+	'flow-moderation-confirmation-suppress-post' => 'আপনার পোস্টটি সফলভাবে গোপন করা হয়েছে। 
+পোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।',
 	'flow-moderation-confirmation-delete-post' => 'আপনার পোস্টটি সফলভাবে মুছে ফেলা হয়েছে। 
 পোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।',
+	'flow-moderation-confirmation-hide-post' => 'আপনার পোস্টটি সফলভাবে লুকানো হয়েছে। 
+পোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।',
 	'flow-moderation-confirmation-restore-post' => 'আপনি সফলভাবে উপরের পোস্টটি পুনরুদ্ধার করেছেন।',
+	'flow-moderation-confirmation-suppress-topic' => 'আপনার পোস্টটি সফলভাবে গোপন করা হয়েছে। 
+পোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।',
+	'flow-moderation-confirmation-delete-topic' => 'আপনার পোস্টটি সফলভাবে মুছে ফেলা হয়েছে। 
+পোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।',
+	'flow-moderation-confirmation-hide-topic' => 'আপনার পোস্টটি সফলভাবে লুকানো হয়েছে। 
+পোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।',
 	'flow-moderation-confirmation-restore-topic' => 'আপনি সফলভাবে এই বিষয়টি পুনরুদ্ধার করছেন।',
 );
 
@@ -1426,6 +1436,7 @@ $messages['es'] = array(
 	'flow-header-empty' => 'Esta página de discusión no tiene cabecera actualmente.',
 	'flow-post-moderated-toggle-show' => '[Mostrar]',
 	'flow-post-moderated-toggle-hide' => '[Ocultar]',
+	'flow-suppress-post-content' => '$2 ha suprimido este comentario', # Fuzzy
 	'flow-suppress-usertext' => '<em>Nombre de usuario suprimido</em>',
 	'flow-post-actions' => 'Acciones',
 	'flow-topic-actions' => 'Acciones',
@@ -1514,6 +1525,7 @@ $messages['es'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Eliminar',
 	'flow-moderation-confirm-hide-topic' => 'Ocultar',
 	'flow-moderation-confirm-restore-topic' => 'Restaurar',
+	'flow-moderation-confirmation-restore-topic' => 'Has restaurado este tema correctamente.',
 );
 
 /** Persian (فارسی)
@@ -2337,10 +2349,11 @@ $1',
 	'flow-moderation-confirm-delete-post' => 'למחוק',
 	'flow-moderation-confirm-hide-post' => 'להסתיר',
 	'flow-moderation-confirm-restore-post' => 'לשחזר',
-	'flow-moderation-confirmation-suppress-post' => '{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.',
-	'flow-moderation-confirmation-delete-post' => '{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.',
-	'flow-moderation-confirmation-hide-post' => '{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.',
-	'flow-moderation-confirmation-restore-post' => '{{GENDER:$2|שחזרת}} בהצלחה את הרשומה הזאת.',
+	'flow-moderation-confirmation-suppress-post' => 'הרשומה הזאת הועלמה בהצלחה.
+{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.', # Fuzzy
+	'flow-moderation-confirmation-delete-post' => '{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.', # Fuzzy
+	'flow-moderation-confirmation-hide-post' => '{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.', # Fuzzy
+	'flow-moderation-confirmation-restore-post' => '{{GENDER:$2|שחזרת}} בהצלחה את הרשומה הזאת.', # Fuzzy
 	'flow-moderation-title-suppress-topic' => 'להעלים את הנושא?',
 	'flow-moderation-title-delete-topic' => 'למחוק את הנושא?',
 	'flow-moderation-title-hide-topic' => 'להסתיר את הנושא?',
@@ -2354,9 +2367,9 @@ $1',
 	'flow-moderation-confirm-hide-topic' => 'להסתיר',
 	'flow-moderation-confirm-restore-topic' => 'לשחזר',
 	'flow-moderation-confirmation-suppress-topic' => '{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הנושא הזה.',
-	'flow-moderation-confirmation-delete-topic' => '{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הנושא הזה.',
-	'flow-moderation-confirmation-hide-topic' => '{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הנושא הזה.',
-	'flow-moderation-confirmation-restore-topic' => '{{GENDER:$2|שחזרת}} בהצלחה את הרשומה הזאת.',
+	'flow-moderation-confirmation-delete-topic' => '{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הנושא הזה.', # Fuzzy
+	'flow-moderation-confirmation-hide-topic' => '{{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הנושא הזה.', # Fuzzy
+	'flow-moderation-confirmation-restore-topic' => '{{GENDER:$2|שחזרת}} בהצלחה את הרשומה הזאת.', # Fuzzy
 	'flow-topic-permalink-warning' => 'הנושא הזה התחיל בדף [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'הנושא הזה התחיל ב[$2 לוח של $1]',
 	'flow-revision-permalink-warning-post' => 'זהו קישור קבוע לגרסה פרטנית של הרשומה הזאת.
@@ -3260,7 +3273,7 @@ $messages['lb'] = array(
 	'flow-moderation-confirm-delete-post' => 'Läschen',
 	'flow-moderation-confirm-hide-post' => 'Verstoppen',
 	'flow-moderation-confirm-restore-post' => 'Restauréieren',
-	'flow-moderation-confirmation-restore-post' => '{{GENDER:$2|Dir}} hutt dës Matdeelung restauréiert.', # Fuzzy
+	'flow-moderation-confirmation-restore-post' => 'Dir hutt dës Matdeelung restauréiert.',
 	'flow-moderation-title-delete-topic' => 'Thema läschen?',
 	'flow-moderation-title-hide-topic' => 'Thema verstoppen?',
 	'flow-moderation-title-restore-topic' => 'Thema restauréieren?',
@@ -3271,7 +3284,7 @@ $messages['lb'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Läschen',
 	'flow-moderation-confirm-hide-topic' => 'Verstoppen',
 	'flow-moderation-confirm-restore-topic' => 'Restauréieren',
-	'flow-moderation-confirmation-restore-topic' => '{{GENDER:$2|Dir}} hutt dëst Thema restauréiert.', # Fuzzy
+	'flow-moderation-confirmation-restore-topic' => 'Dir hutt dëst Thema restauréiert.',
 	'flow-topic-permalink-warning' => 'Dëse Sujet gouf op [$2 $1] ugefaang',
 	'flow-compare-revisions-revision-header' => 'Versioun vum {{GENDER:$2|$2}} vum $1',
 );
@@ -3573,7 +3586,8 @@ $messages['mr'] = array(
  * @author Anakmalaysia
  */
 $messages['ms'] = array(
-	'flow-topic-meta-minimal' => '{{PLURAL:$1|0=Jadilah pengulas pertama!|$1 {{PLURAL:$1|komen}} oleh $2 {{PLURAL:$2|orang pengguna}}}}', # Fuzzy
+	'flow-moderation-confirmation-delete-topic' => 'Topik ini berjaya dihapuskan.
+Apa kata anda {{GENDER:$1|memaklum balas}} $1 mengenai topik ini?',
 	'flow-topic-collapsed-one-line' => 'Paparan kecil',
 	'flow-topic-collapsed-full' => 'Paparan terlipat',
 	'flow-topic-complete' => 'Paparan penuh',
@@ -5097,10 +5111,12 @@ $messages['zh-hans'] = array(
 
 /** Traditional Chinese (中文（繁體）‎)
  * @author Cwlin0416
+ * @author EagerLin
  * @author Liuxinyu970226
  */
 $messages['zh-hant'] = array(
 	'flow-suppress-post-content' => '此評論已被$2{{GENDER:$1|抑制}}',
+	'flow-stub-post-content' => "'''由於技術錯誤，這篇文章無法檢索。'''",
 	'flow-notification-reply' => '$1 {{GENDER:$1|已回覆}}您的 [$5 留言] 於 $2 的 "$4"。',
 	'flow-notification-reply-bundle' => '$1 與另外 $5 {{PLURAL:$6|個人|個人}}已{{GENDER:$1|回覆}}您的 [$4 留言] 於 $2 的 "$3"。',
 	'flow-notification-link-text-view-post' => '檢視留言',
@@ -5110,5 +5126,19 @@ $messages['zh-hant'] = array(
 	'flow-notification-reply-email-batch-bundle-body' => '$1 與另外 $4 {{PLURAL:$5|個人|個人}} {{GENDER:$1|已回覆}} 您的留言於 $2 的 "$3"',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|討論|討論}}', # Fuzzy
 	'echo-pref-tooltip-flow-discussion' => '通知我，當有與我相關的動作發生在討論版時', # Fuzzy
+	'flow-moderation-confirmation-suppress-post' => '該職位被成功地解除。
+考慮 {{GENDER:$1| 給}} $1 對這篇文章的回饋意見。',
+	'flow-moderation-confirmation-delete-post' => '主題已成功刪除。
+考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。',
+	'flow-moderation-confirmation-hide-post' => '主題已成功刪除。
+考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。',
+	'flow-moderation-confirmation-restore-post' => '您已成功還原上方的帖子。',
 	'flow-moderation-intro-delete-topic' => '請{{GENDER:$3|說明}}為何您要刪除此主題。',
+	'flow-moderation-confirmation-suppress-topic' => '主題已成功刪除。
+考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。',
+	'flow-moderation-confirmation-delete-topic' => '主題已成功刪除。
+考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。',
+	'flow-moderation-confirmation-hide-topic' => '主題已成功刪除。
+考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。',
+	'flow-moderation-confirmation-restore-topic' => '您已成功還原本主題。',
 );
