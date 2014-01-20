@@ -322,21 +322,6 @@
 	};
 
 	/**
-	 * Builds the reply form.
-	 *
-	 * @param {function} [loadFunction] callback to be executed when form is loaded
-	 */
-	mw.flow.action.post.reply.prototype.loadReplyForm = function ( loadFunction ) {
-		this.$form.flow(
-			'loadReplyForm',
-			this.object.type,
-			this.initialContent(),
-			$.proxy( this.submitFunction, this ),
-			loadFunction
-		);
-	};
-
-	/**
 	 * Submit function for flow( 'setupFormHandler' ).
 	 * Arguments passed to this function are the return value of
 	 * loadParametersCallback
