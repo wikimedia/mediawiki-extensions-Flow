@@ -65,7 +65,7 @@ echo Html::element( 'input', array(
 		)
 	),
 	Html::openElement( 'div', array(
-		'class' => 'flow-post-form-controls',
+		'class' => 'flow-form-controls',
 	) ),
 		Html::rawElement( 'div', array(
 			'class' => 'flow-terms-of-use plainlinks',

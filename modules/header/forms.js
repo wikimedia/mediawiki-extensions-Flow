@@ -8,6 +8,7 @@
 		this.$container = $( '#flow-header' );
 		this.workflowId = this.$container.flow( 'getTopicWorkflowId' );
 		this.pageName = this.$container.closest( '.flow-container' ).data( 'page-title' );
+		this.type = 'header';
 
 		this.actions = {
 			// init edit-header interaction
@@ -23,10 +24,10 @@
 	 * @param {object} header
 	 */
 	mw.flow.action.header.edit = function ( header ) {
-		this.header = header;
+		this.object = header;
 
 		// Overload "edit header" link.
-		this.header.$container.find( '.flow-header-edit-link' ).click( $.proxy( this.edit, this ) );
+		this.object.$container.find( '.flow-header-edit-link' ).click( $.proxy( this.edit, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -43,7 +44,7 @@
 		e.preventDefault();
 
 		// quit if edit form is already open
-		if ( this.header.$container.find( '.flow-edit-header-form' ).length ) {
+		if ( this.object.$container.find( '.flow-edit-header-form' ).length ) {
 			return;
 		}
 
@@ -79,8 +80,8 @@
 	 */
 	mw.flow.action.header.edit.prototype.read = function () {
 		return mw.flow.api.readHeader(
-			this.header.pageName,
-			this.header.workflowId,
+			this.object.pageName,
+			this.object.workflowId,
 			{
 				header: {
 					contentFormat: mw.flow.editor.getFormat()
@@ -120,23 +121,19 @@
 	 * @param {function} [loadFunction] callback to be executed when form is loaded
 	 */
 	mw.flow.action.header.edit.prototype.setupEditForm = function ( data, loadFunction ) {
-		var $editLink = this.header.$container.find( '.flow-header-edit-link' );
+		var $editLink = this.object.$container.find( '.flow-header-edit-link' );
 
-		this.header.$container.find( '#flow-header-content' ).flow(
-			'setupEditForm',
-			'header',
-			{
-				content: data.content,
-				format: data.format
-			},
-			$.proxy( this.submitFunction, this, data ),
+		// call parent setupEditForm function
+		mw.flow.action.prototype.setupEditForm.call(
+			this,
+			data,
 			loadFunction
 		);
 
 		// hide edit link and re-reveal it if the cancel link - which is
 		// added by flow( 'setupEditForm' ) - is clicked.
 		$editLink.hide();
-		this.header.$container.find( '.flow-cancel-link' ).click( function () {
+		this.object.$container.find( '.flow-cancel-link' ).click( function () {
 			$editLink.show();
 		} );
 	};
@@ -150,13 +147,14 @@
 	 */
 	mw.flow.action.header.edit.prototype.submitFunction = function ( data, content ) {
 		var deferred = mw.flow.api.editHeader( {
-				workflowId: this.header.workflowId,
-				page: this.header.pageName
+				workflowId: this.object.workflowId,
+				page: this.object.pageName
 			},
 			content,
 			data.revision
 		);
 
+		deferred.done( $.proxy( this.render, this ) );
 		deferred.fail( $.proxy( this.conflict, this, deferred, data ) );
 
 		return deferred;
@@ -168,7 +166,7 @@
 	 * @param {object} output
 	 */
 	mw.flow.action.header.edit.prototype.render = function ( output ) {
-		this.header.$container
+		this.object.$container
 			.find( '.flow-edit-header-form' )
 				.remove()
 				.end()
@@ -196,7 +194,7 @@
 			errorData.header && errorData.header.prev_revision &&
 			errorData.header.prev_revision.extra && errorData.header.prev_revision.extra.revision_id
 		) {
-			var $textarea = this.header.$container.find( 'textarea' );
+			var $textarea = this.object.$container.find( 'textarea' );
 
 			/*
 			 * Overwrite data revision & content.
@@ -223,7 +221,7 @@
 				 * the form has completed loading before doing these changes.
 				 */
 				var formLoaded = $.proxy( function () {
-					var $button = this.header.$container.find( '.flow-edit-header-submit' );
+					var $button = this.object.$container.find( '.flow-edit-submit' );
 					$button.val( mw.msg( 'flow-edit-header-submit-overwrite' ) );
 					this.tipsy( $button, errorData.header.prev_revision.message );
 
@@ -231,11 +229,11 @@
 					 * Trigger keyup in editor, to trick setupEmptyDisabler
 					 * into believing we've made a change & enable submit.
 					 */
-					this.header.$container.find( 'textarea' ).keyup();
+					this.object.$container.find( 'textarea' ).keyup();
 				}, this, data, error, errorData );
 
 				// kill form & error message & re-launch edit form
-				this.header.$container.find( 'form, flow-error' ).remove();
+				this.destroyEditForm();
 				this.setupEditForm( data, formLoaded );
 			}, this, data, error, errorData ) );
 		}
@@ -248,7 +246,7 @@
 	 * @param {object} errorData
 	 */
 	mw.flow.action.header.edit.prototype.showError = function ( error, errorData ) {
-		this.header.$container.flow( 'showError', arguments );
+		this.object.$container.flow( 'showError', arguments );
 	};
 
 	$( document ).flow( 'registerInitFunction', function () {
