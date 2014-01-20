@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_dd91ba53",
+        "filename": "Resources.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T15:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_3e8c29db",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_7ea99120",
         "filename": "includes/Block/Topic.php",
         "patchSetId": 15
@@ -30,6 +48,24 @@
       "writtenOn": "2014-01-17T18:25:28Z",
       "side": 1,
       "message": "Probably want to return here?",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_9d8b3220",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T15:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_7ea99120",
       "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_5d7daa16",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T15:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_5ea6cd51",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_5e85ad9e",
         "filename": "modules/base/ui-functions.js",
         "patchSetId": 15
@@ -64,6 +118,24 @@
       "writtenOn": "2014-01-17T18:25:28Z",
       "side": 1,
       "message": "Bit of a hack :p",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_3d7ae61f",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T15:03:17Z",
+      "side": 1,
+      "message": "Indeed. Moreover, don\u0027t think I even need this bit in the current codebase anymore, so I\u0027ll remove it.",
+      "parentUuid": "aef5673e_5e85ad9e",
       "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_9d9a1265",
+        "filename": "modules/discussion/post.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T15:03:17Z",
+      "side": 1,
+      "message": "getFormHandler has a promiseCallback, which is rejected when submitFunction fails.\na .fail() is bound in getFormHandler, which will add an error message.\n\nIn submitFunction (in this class), we\u0027re also adding a .fail(), which will execute this conflict code.\n\n.fail() callbacks are executed in the order they were added. The first one to be executed will be this one, the second one will be the one inside getFormHandler (that adds the error message)\n\nWe want getFormHandler\u0027s fail to be executed before this one is executed, so I\u0027m stacking another .fail() on the reject callback list - that way, we can remove the error message added by getFormHandler\u0027s default fail()\n\n\nTo achieve this, I could also bind render \u0026 conflict to the deferred returned by setupEditForm (which is resolved after the submitFunction deferred is resolved). I can\u0027t remember exactly why I decided to bind it to submitFunction\u0027s resolved instead - I assume it\u0027s because title uses setupFormHandler instead of setupEditForm wrapper, so I assume I wanted to keep things similar everywhere.\n\nI\u0027ll see if I can come up with another solution in a follow-up patch.",
+      "parentUuid": "aef5673e_5e5c8d4e",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_3e59c95d",
         "filename": "modules/discussion/topic.js",
         "patchSetId": 15
@@ -98,6 +188,24 @@
       "writtenOn": "2014-01-17T18:25:28Z",
       "side": 1,
       "message": "This is (almost?) identical to what\u0027s in the other file. We need to refactor this so that the shared code can be reused.",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_dd82dacc",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T15:03:17Z",
+      "side": 1,
+      "message": "I\u0027ve moved .tipsy into base/actions.js - while logic in conflict() is similar across all post/title/header, classes \u0026 variables all differ",
+      "parentUuid": "aef5673e_3e59c95d",
       "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_fd7d9ee5",
+        "filename": "modules/header/forms.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T15:03:17Z",
+      "side": 1,
+      "message": "I\u0027ve moved .tipsy into base/actions.js - while logic in conflict() is similar accross all post/title/header, classes \u0026 variables all differ",
+      "parentUuid": "aef5673e_1e360501",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_de3f7dd2",
         "filename": "templates/edit-header.html.php",
         "patchSetId": 15
@@ -132,6 +258,24 @@
       "writtenOn": "2014-01-17T18:25:28Z",
       "side": 1,
       "message": "Should be destructive if we\u0027re overwriting another change.\n\nI\u0027d like to avoid people just clicking through to overwrite other people\u0027s changes.",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_bd8716dc",
+        "filename": "templates/edit-header.html.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T15:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_de3f7dd2",
       "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_9d8c5201",
+        "filename": "templates/edit-post.html.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T15:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_be44b96f",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_7e2631cb",
         "filename": "templates/edit-title.html.php",
         "patchSetId": 15
@@ -166,6 +328,24 @@
       "writtenOn": "2014-01-17T18:25:28Z",
       "side": 1,
       "message": "Destructive.",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_7d718e0a",
+        "filename": "templates/edit-title.html.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T15:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef5673e_7e2631cb",
       "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
