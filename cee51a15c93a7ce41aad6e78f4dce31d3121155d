@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_f306efd0",
+        "filename": "modules/discussion/post.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T21:33:31Z",
+      "side": 1,
+      "message": "I broke edit conflicts in this patch. This line should now actually be this.destroyEditForm();\n\nWe\u0027re now adding a class to show/hide elements, but this line should make sure that class is removed again (destroyEditForm does) or the post is no longer visible.\n\nFix is in a follow-up patch: https://gerrit.wikimedia.org/r/#/c/108635/",
+      "revId": "cee51a15c93a7ce41aad6e78f4dce31d3121155d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
