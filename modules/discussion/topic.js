@@ -385,7 +385,7 @@
 		this.$form = this.object.$container.find( '.flow-topic-reply-container' );
 
 		// Overload focus in textarea, triggering full reply form
-		this.$form.find( '.flow-topic-reply-content' ).on( 'focus.mw-flow-discussion', $.proxy( this.reply, this ) );
+		this.$form.find( '.flow-reply-content' ).on( 'focus.mw-flow-discussion', $.proxy( this.reply, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -403,21 +403,6 @@
 
 		// load the form
 		this.loadReplyForm();
-	};
-
-	/**
-	 * Builds the reply form.
-	 *
-	 * @param {function} [loadFunction] callback to be executed when form is loaded
-	 */
-	mw.flow.action.topic.reply.prototype.loadReplyForm = function ( loadFunction ) {
-		this.$form.flow(
-			'loadReplyForm',
-			this.object.type,
-			this.initialContent(),
-			$.proxy( this.submitFunction, this ),
-			loadFunction
-		);
 	};
 
 	/**
@@ -482,12 +467,12 @@
 		event.preventDefault();
 
 		// don't re-bind if form is already active
-		if ( this.$form.hasClass( 'flow-form-active' ) ) {
+		if ( this.$form.hasClass( 'flow-new-form-active' ) ) {
 			return;
 		}
 
 		// mark form as active
-		this.$form.addClass( 'flow-form-active' );
+		this.$form.addClass( 'flow-new-form-active' );
 
 		// load the form
 		this.loadNewForm();
@@ -560,13 +545,13 @@
 				$( '.flow-newtopic-submit', this.$form ).off();
 
 				// cleanup what's been added via JS
-				this.$form.removeClass( 'flow-form-active' );
+				this.$form.removeClass( 'flow-new-form-active' );
 				this.$form.find( '.flow-cancel-link, .flow-content-preview, .flow-preview-submit' ).remove();
 				this.$form.find( '.flow-error' ).remove();
 
 				// slideUp adds some inline CSS to keep the elements hidden,
 				// but we want it in it's original state (where CSS scoping
-				// :not(.flow-form-active) will make the form stay hidden)
+				// :not(.flow-new-form-active) will make the form stay hidden)
 				this.$form.find( '.flow-newtopic-step2' ).css( 'display', '' );
 			}, this ) );
 	};
