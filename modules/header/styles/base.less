@@ -6,6 +6,25 @@
 	// this 25px padding will make it look more like a 30px gap
 	padding-bottom: 25px;
 
+	// when edit form is displayed, class .flow-edit-form-active will be added,
+	// so we can show/hide elements as needed
+	&:not(.flow-edit-form-active) {
+		#flow-header-content {
+			display: block;
+		}
+		.flow-edit-form {
+			display: none;
+		}
+	}
+	&.flow-edit-form-active {
+		#flow-header-content {
+			display: none;
+		}
+		.flow-edit-form {
+			display: block;
+		}
+	}
+
 	#flow-header-content {
 		font-weight: bold;
 		line-height: 25px;
@@ -39,7 +58,7 @@
 		transition: opacity 0.2s;
 	}
 
-	.flow-edit-header-controls{
+	.flow-edit-controls{
 		margin-top: 5px;
 		text-align: right;
 	}

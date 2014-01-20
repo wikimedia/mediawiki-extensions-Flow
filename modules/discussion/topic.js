@@ -11,6 +11,7 @@
 		this.$container = $( '#flow-topic-' + this.topicId );
 		this.workflowId = this.$container.data( 'topic-id' );
 		this.pageName = this.$container.closest( '.flow-container' ).data( 'page-title' );
+		this.type = 'topic';
 
 		this.actions = {
 			// init edit-title interaction
@@ -28,10 +29,10 @@
 	 * @param {object} topic
 	 */
 	mw.flow.action.topic.edit = function ( topic ) {
-		this.topic = topic;
+		this.object = topic;
 
 		// Overload "edit title" link.
-		this.topic.$container.find( '.flow-edit-topic-link' ).click( this.edit.bind( this ) );
+		this.object.$container.find( '.flow-edit-topic-link' ).click( this.edit.bind( this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -79,12 +80,12 @@
 	 */
 	mw.flow.action.topic.edit.prototype.read = function () {
 		return mw.flow.api.readTopic(
-			this.topic.pageName,
-			this.topic.workflowId,
+			this.object.pageName,
+			this.object.workflowId,
 			{
 				topic: {
 					'no-children': true,
-					postId: this.topic.workflowId, // fetch title post (not full topic)
+					postId: this.object.workflowId, // fetch title post (not full topic)
 					contentFormat: mw.flow.editor.getFormat()
 				}
 			}
@@ -110,7 +111,7 @@
 
 		return deferred.resolve( {
 			// content should already be (fake) wikitext, this is just failsafe
-			content: mw.flow.parsoid.convert( data[0].content.format, 'wikitext', data[0].content['*'], this.topic.pageName ),
+			content: mw.flow.parsoid.convert( data[0].content.format, 'wikitext', data[0].content['*'], this.object.pageName ),
 			format: 'wikitext',
 			revision: data[0]['revision-id']
 		} );
@@ -126,7 +127,7 @@
 		// create form html
 		this.createEditForm( data );
 
-		var $titleEditForm = $( 'form', this.topic.$container );
+		var $titleEditForm = $( 'form', this.object.$container );
 
 		$titleEditForm.flow( 'setupPreview', { '.flow-edit-title-textbox': 'plain' } );
 		$titleEditForm.flow( 'setupFormHandler',
@@ -169,7 +170,7 @@
 	 */
 	mw.flow.action.topic.edit.prototype.render = function ( output ) {
 		this.destroyEditForm();
-		$( '.flow-realtitle', this.topic.$container ).text( output.rendered );
+		$( '.flow-realtitle', this.object.$container ).text( output.rendered );
 	};
 
 	/**
@@ -186,7 +187,7 @@
 			errorData.topic && errorData.topic.prev_revision &&
 			errorData.topic.prev_revision.extra && errorData.topic.prev_revision.extra.revision_id
 		) {
-			var $input = this.topic.$container.find( 'input' );
+			var $input = this.object.$container.find( 'input' );
 
 			/*
 			 * Overwrite data revision & content.
@@ -213,7 +214,7 @@
 				 * the form has completed loading before doing these changes.
 				 */
 				var formLoaded = function () {
-					var $button = this.topic.$container.find( '.flow-edit-title-submit' );
+					var $button = this.object.$container.find( '.flow-edit-title-submit' );
 					$button.val( mw.msg( 'flow-edit-title-submit-overwrite' ) );
 					this.tipsy( $button, errorData.topic.prev_revision.message );
 
@@ -221,11 +222,11 @@
 					 * Trigger keyup in editor, to trick setupEmptyDisabler
 					 * into believing we've made a change & enable submit.
 					 */
-					this.topic.$container.find( 'input' ).keyup();
+					this.object.$container.find( 'input' ).keyup();
 				}.bind( this, data, error, errorData );
 
 				// kill form & error message & re-launch edit form
-				this.topic.$container.find( 'form, flow-error' ).remove();
+				this.object.$container.find( 'form, flow-error' ).remove();
 				this.setupEditForm( data, formLoaded );
 			}.bind( this, data, error, errorData ) );
 		}
@@ -237,10 +238,10 @@
 	 * @return {array}
 	 */
 	mw.flow.action.topic.edit.prototype.loadParametersCallback = function () {
-		var $titleEditForm = $( 'form', this.topic.$container ),
+		var $titleEditForm = $( 'form', this.object.$container ),
 			content = $titleEditForm.find( '.flow-edit-title-textbox' ).val();
 
-		return [ this.topic.workflowId, content ];
+		return [ this.object.workflowId, content ];
 	};
 
 	/**
@@ -260,7 +261,7 @@
 	 */
 	mw.flow.action.topic.edit.prototype.showError = function ( error, errorData ) {
 		this.destroyEditForm();
-		$( '.flow-topic-title', this.topic.$container ).flow( 'showError', arguments );
+		$( '.flow-topic-title', this.object.$container ).flow( 'showError', arguments );
 	};
 
 	/**
@@ -272,10 +273,10 @@
 		// destroy existing edit form (if any)
 		this.destroyEditForm();
 
-		var $editLink = $( '.flow-edit-topic-link', this.topic.$container ),
-			$titleBar = $( '.flow-topic-title', this.topic.$container ),
-			$realTitle = $( '.flow-realtitle', this.topic.$container ),
-			$modifiedTipsy = $( '.flow-content-modified-tipsy-link', this.topic.$container ),
+		var $editLink = $( '.flow-edit-topic-link', this.object.$container ),
+			$titleBar = $( '.flow-topic-title', this.object.$container ),
+			$realTitle = $( '.flow-realtitle', this.object.$container ),
+			$modifiedTipsy = $( '.flow-content-modified-tipsy-link', this.object.$container ),
 			$titleEditForm = $( '<form />' );
 
 		$realTitle.hide();
@@ -325,11 +326,11 @@
 	 * Removes the edit form & restores content.
 	 */
 	mw.flow.action.topic.edit.prototype.destroyEditForm = function () {
-		var $editLink = $( '.flow-edit-topic-link', this.topic.$container ),
-			$titleBar = $( '.flow-topic-title', this.topic.$container ),
-			$realTitle = $( '.flow-realtitle', this.topic.$container ),
-			$modifiedTipsy = $( '.flow-content-modified-tipsy-link', this.topic.$container ),
-			$titleEditForm = $( 'form', this.topic.$container );
+		var $editLink = $( '.flow-edit-topic-link', this.object.$container ),
+			$titleBar = $( '.flow-topic-title', this.object.$container ),
+			$realTitle = $( '.flow-realtitle', this.object.$container ),
+			$modifiedTipsy = $( '.flow-content-modified-tipsy-link', this.object.$container ),
+			$titleEditForm = $( 'form', this.object.$container );
 
 		if ( $titleEditForm.length === 0 ) {
 			return;
@@ -350,8 +351,8 @@
 	 * @param {object} topic
 	 */
 	mw.flow.action.topic.reply = function ( topic ) {
-		this.topic = topic;
-		this.$form = this.topic.$container.find( '.flow-topic-reply-container' );
+		this.object = topic;
+		this.$form = this.object.$container.find( '.flow-topic-reply-container' );
 
 		// Overload click in textarea, triggering full reply form
 		this.$form.find( '.flow-topic-reply-content' ).click( this.reply.bind( this ) );
@@ -382,11 +383,8 @@
 	mw.flow.action.topic.reply.prototype.loadReplyForm = function ( loadFunction ) {
 		this.$form.flow(
 			'loadReplyForm',
-			'topic',
-			{
-				content: '',
-				format: 'wikitext'
-			},
+			this.object.type,
+			this.initialContent(),
 			this.submitFunction.bind( this ),
 			loadFunction
 		);
@@ -400,7 +398,7 @@
 	 */
 	mw.flow.action.topic.reply.prototype.submitFunction = function ( content ) {
 		var deferred = mw.flow.api.reply(
-			this.topic.workflowId,
+			this.object.workflowId,
 			this.$form.data( 'post-id' ),
 			content
 		);
@@ -590,6 +588,7 @@
 
 	/**
 	 * Validates parameters for flow( 'setupFormHandler' ).
+	 * Parameters are supplied by this.loadParametersCallback.
 	 *
 	 * @param {string} title
 	 * @param {string} content
@@ -600,7 +599,7 @@
 	};
 
 	/**
-	 * @param {jQuery.Deferred}
+	 * @param {jQuery.Deferred} deferred
 	 */
 	mw.flow.action.topic.new.prototype.promiseCallback = function ( deferred ) {
 		deferred.done( this.destroyForm.bind( this ) );

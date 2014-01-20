@@ -29,7 +29,7 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 		'class' => 'flow-newtopic-step2 flow-newtopic-content mw-ui-input',
 		'rows' => '10',
 	) );
-	echo Html::openElement( 'div', array( 'class' => 'flow-post-form-controls flow-newtopic-step2' ) );
+	echo Html::openElement( 'div', array( 'class' => 'flow-form-controls flow-newtopic-step2' ) );
 	echo Html::element( 'input', array(
 		'type' => 'submit',
 		'class' => 'mw-ui-button mw-ui-constructive flow-newtopic-submit',

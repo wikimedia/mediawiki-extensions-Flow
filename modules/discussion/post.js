@@ -11,6 +11,7 @@
 		this.$container = $( '#flow-post-' + this.postId );
 		this.workflowId = this.$container.flow( 'getTopicWorkflowId' );
 		this.pageName = this.$container.closest( '.flow-container' ).data( 'page-title' );
+		this.type = 'post';
 
 		this.actions = {
 			// init edit-post interaction
@@ -28,10 +29,10 @@
 	 * @param {object} post
 	 */
 	mw.flow.action.post.edit = function ( post ) {
-		this.post = post;
+		this.object = post;
 
 		// Overload "edit post" link.
-		this.post.$container.find( '.flow-edit-post-link' ).click( this.edit.bind( this ) );
+		this.object.$container.find( '.flow-edit-post-link' ).click( this.edit.bind( this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -48,7 +49,7 @@
 		e.preventDefault();
 
 		// quit if edit form is already open
-		if ( this.post.$container.find( '.flow-edit-post-form' ).length ) {
+		if ( this.object.$container.find( '.flow-edit-post-form' ).length ) {
 			return;
 		}
 
@@ -84,12 +85,12 @@
 	 */
 	mw.flow.action.post.edit.prototype.read = function () {
 		return mw.flow.api.readTopic(
-			this.post.pageName,
-			this.post.workflowId,
+			this.object.pageName,
+			this.object.workflowId,
 			{
 				topic: {
 					'no-children': true,
-					postId: this.post.postId,
+					postId: this.object.postId,
 					contentFormat: mw.flow.editor.getFormat()
 				}
 			}
@@ -127,24 +128,20 @@
 	 * @param {function} [loadFunction] callback to be executed when form is loaded
 	 */
 	mw.flow.action.post.edit.prototype.setupEditForm = function ( data, loadFunction ) {
-		var $editLink = this.post.$container.find( '.flow-edit-post-link' ),
-			$container = this.post.$container.addClass( 'flow-post-nocontrols' );
+		var $editLink = this.object.$container.find( '.flow-edit-post-link' ),
+			$container = this.object.$container.addClass( 'flow-post-nocontrols' );
 
-		this.post.$container.find( '.flow-post-content' ).flow(
-			'setupEditForm',
-			'post',
-			{
-				content: data.content,
-				format: data.format
-			},
-			this.submitFunction.bind( this, data ),
+		// call parent setupEditForm function
+		mw.flow.action.prototype.setupEditForm.call(
+			this,
+			data,
 			loadFunction
 		);
 
 		// hide post controls & edit link and re-reveal it if the cancel link
 		// - which is added by flow( 'setupEditForm' ) - is clicked.
 		$editLink.hide();
-		this.post.$container.find( '.flow-cancel-link' ).click( function () {
+		this.object.$container.find( '.flow-cancel-link' ).click( function () {
 			$editLink.show();
 			$container.removeClass( 'flow-post-nocontrols' );
 		} );
@@ -159,8 +156,8 @@
 	 */
 	mw.flow.action.post.edit.prototype.submitFunction = function ( data, content ) {
 		var deferred = mw.flow.api.editPost(
-			this.post.workflowId,
-			this.post.postId,
+			this.object.workflowId,
+			this.object.postId,
 			content,
 			data.revision
 		);
@@ -179,7 +176,7 @@
 	mw.flow.action.post.edit.prototype.render = function ( output ) {
 		var $content = $( output.rendered );
 		$( '.flow-post', $content )
-			.replaceAll( this.post.$container )
+			.replaceAll( this.object.$container )
 			// replacing container node with new content will result in binds on old
 			// nodes being useless and we'll need to bind again to the new DOM
 			.trigger( 'flow_init' );
@@ -199,7 +196,7 @@
 			errorData.topic && errorData.topic.prev_revision &&
 			errorData.topic.prev_revision.extra && errorData.topic.prev_revision.extra.revision_id
 		) {
-			var $textarea = this.post.$container.find( 'textarea' );
+			var $textarea = this.object.$container.find( 'textarea' );
 
 			/*
 			 * Overwrite data revision & content.
@@ -226,7 +223,7 @@
 				 * the form has completed loading before doing these changes.
 				 */
 				var formLoaded = function () {
-					var $button = this.post.$container.find( '.flow-edit-post-submit' );
+					var $button = this.object.$container.find( '.flow-edit-submit' );
 					$button.val( mw.msg( 'flow-edit-post-submit-overwrite' ) );
 					this.tipsy( $button, errorData.topic.prev_revision.message );
 
@@ -234,11 +231,11 @@
 					 * Trigger keyup in editor, to trick setupEmptyDisabler
 					 * into believing we've made a change & enable submit.
 					 */
-					this.post.$container.find( 'textarea' ).keyup();
+					this.object.$container.find( 'textarea' ).keyup();
 				}.bind( this, data, error, errorData );
 
 				// kill form & error message & re-launch edit form
-				this.post.$container.find( 'form, .flow-error' ).remove();
+				this.object.$container.find( 'form, .flow-error' ).remove();
 				this.setupEditForm( data, formLoaded );
 			}.bind( this, data, error, errorData ) );
 		}
@@ -251,7 +248,7 @@
 	 * @param {object} errorData
 	 */
 	mw.flow.action.post.edit.prototype.showError = function ( error, errorData ) {
-		$( '.flow-post-content', this.post.$container ).flow( 'showError', arguments );
+		$( '.flow-post-content', this.object.$container ).flow( 'showError', arguments );
 	};
 
 	/**
@@ -260,10 +257,10 @@
 	 * @param {object} post
 	 */
 	mw.flow.action.post.reply = function ( post ) {
-		this.post = post;
+		this.object = post;
 
 		// Overload "reply" link.
-		this.post.$container.find( '.flow-reply-link' ).click( this.reply.bind( this ) );
+		this.object.$container.find( '.flow-reply-link' ).click( this.reply.bind( this ) );
 	};
 
 	// extend reply action from "shared functionality" mw.flow.action class
@@ -280,7 +277,7 @@
 		e.preventDefault();
 
 		// find matching edit form at (max threading depth - 1)
-		this.$form = $( this.post.$container )
+		this.$form = $( this.object.$container )
 			.closest( '.flow-post-container:not(.flow-post-max-depth)' )
 			.find( '.flow-post-reply-container' );
 
@@ -294,11 +291,11 @@
 	};
 
 	/**
-	 * Builds the reply form.
+	 * Returns the initial content, to be served to loadReplyForm.
 	 *
-	 * @param {function} [loadFunction] callback to be executed when form is loaded
+	 * @return {object}
 	 */
-	mw.flow.action.post.reply.prototype.loadReplyForm = function ( loadFunction ) {
+	mw.flow.action.post.reply.prototype.initialContent = function () {
 		// fetch username/IP
 		var username = this.$form.closest( '.flow-post-container' ).data( 'creator-name' );
 
@@ -307,13 +304,22 @@
 			username = '[[' + mw.Title.newFromText( username, 2 ).getPrefixedText() + '|' + username + ']]';
 		}
 
+		return {
+			content: username + ': ',
+			format: 'wikitext'
+		};
+	};
+
+	/**
+	 * Builds the reply form.
+	 *
+	 * @param {function} [loadFunction] callback to be executed when form is loaded
+	 */
+	mw.flow.action.post.reply.prototype.loadReplyForm = function ( loadFunction ) {
 		this.$form.flow(
 			'loadReplyForm',
-			'post',
-			{
-				content: username + ': ',
-				format: 'wikitext'
-			},
+			this.object.type,
+			this.initialContent(),
 			this.submitFunction.bind( this ),
 			loadFunction
 		);
@@ -329,7 +335,7 @@
 	 */
 	mw.flow.action.post.reply.prototype.submitFunction = function ( content ) {
 		var deferred = mw.flow.api.reply(
-			this.post.workflowId,
+			this.object.workflowId,
 			this.$form.find( 'input[name="topic[replyTo]"]' ).val(),
 			content
 		);

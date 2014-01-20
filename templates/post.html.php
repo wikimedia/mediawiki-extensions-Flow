@@ -44,7 +44,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		) ) .
 		// NOTE: cancel button will be added via JS, makes no sense in non-JS context
 
-		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ) .
+		Html::openElement( 'div', array( 'class' => 'flow-form-controls' ) ) .
 			Html::element( 'input', array(
 				'type' => 'submit',
 				'value' => $postView->replySubmit(),

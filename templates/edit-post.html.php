@@ -65,7 +65,7 @@ echo Html::element( 'input', array(
 		)
 	),
 	Html::openElement( 'div', array(
-		'class' => 'flow-post-form-controls',
+		'class' => 'flow-form-controls',
 	) ),
 		Html::element( 'input', array(
 			'type' => 'submit',

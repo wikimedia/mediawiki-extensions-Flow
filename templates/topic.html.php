@@ -42,7 +42,7 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 				'class' => 'mw-ui-input flow-topic-reply-content',
 				'rows' => '10',
 			) ) .
-			'<div class="flow-post-form-controls">' .
+			'<div class="flow-form-controls">' .
 				Html::element( 'input', array(
 					'type' => 'submit',
 					'value' => wfMessage( 'flow-reply-submit', $this->getCreatorText( $root ) ),
