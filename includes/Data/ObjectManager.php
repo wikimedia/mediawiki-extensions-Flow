@@ -407,7 +407,7 @@ class ObjectLocator implements ObjectStorage {
 			$count = count( $this->indexes );
 			throw new NoIndexException(
 				"No index (out of $count) available to answer query for " . implode( ", ", $keys ) .
-				' with options ' . FormatJson::encode( $options ), 'process-data', 'no-index'
+				' with options ' . FormatJson::encode( $options ), 'no-index'
 			);
 		}
 		return $current;
@@ -694,7 +694,7 @@ abstract class DbStorage implements WritableObjectStorage {
 				return true;
 			}
 
-			if ( ! preg_match( '/^' . $this->getFieldRegex() . '$/', $key ) ) {
+			if ( ! preg_match( '/^' . $this->getFieldRegexFragment() . '$/', $key ) ) {
 				return true;
 			}
 		}
@@ -756,7 +756,7 @@ abstract class DbStorage implements WritableObjectStorage {
 			} elseif ( $key === 'OFFSET' ) {
 				// OFFSET is just an integer
 				if ( ! is_numeric( $value ) ) {
-					wfDebug( __METHOD__.": non-numeric offset $offset\n" );
+					wfDebug( __METHOD__.": non-numeric offset $value\n" );
 					return false;
 				}
 			} elseif ( $key === 'GROUP BY' ) {
@@ -1495,7 +1495,7 @@ class ShallowCompactor implements Compactor {
 			$duplicator->merge( $first, $first );
 		}
 
-		return $duplicator->getResult( /* strict = */ true );
+		return $duplicator->getResult();
 	}
 }
 
