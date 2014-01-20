@@ -154,8 +154,7 @@
 
 		var $titleEditForm = $( 'form.flow-edit-title-form', this.object.$container );
 
-		$titleEditForm.flow( 'setupPreview', { '.flow-edit-title-textbox': 'plain' } );
-
+		$titleEditForm.flow( 'setupPreview', { '.flow-edit-content': 'plain' } );
 		$titleEditForm.flow( 'setupFormHandler',
 			'.flow-edit-submit',
 			$.proxy( this.submitFunction, this, data ),
@@ -184,7 +183,8 @@
 		);
 
 		deferred.done( $.proxy( this.render, this ) );
-		deferred.fail( $.proxy( this.conflict, this, deferred, data ) );
+		// allow hijacking the fail-stack to gracefully recover from errors
+		deferred = deferred.then( null, $.proxy( this.submitFail, this, deferred, data ) );
 
 		return deferred;
 	};
@@ -207,55 +207,29 @@
 	 * @param {string} error
 	 * @param {object} errorData
 	 */
-	mw.flow.action.topic.edit.prototype.conflict = function ( deferred, data, error, errorData ) {
+	mw.flow.action.topic.edit.prototype.submitFail = function ( deferred, data, error, errorData ) {
 		if (
+			// edit conflict
 			error === 'block-errors' &&
 			errorData.topic && errorData.topic.prev_revision &&
 			errorData.topic.prev_revision.extra && errorData.topic.prev_revision.extra.revision_id
 		) {
-			var $input = this.object.$container.find( 'input' );
+			var $input = this.object.$container.find( '.flow-edit-content' ),
+				buttonText = mw.msg( 'flow-edit-title-submit-overwrite' ),
+				tipsyText = errorData.topic.prev_revision.message;
 
 			/*
 			 * Overwrite data revision & content.
-			 * We'll use raw editor content & editor format to avoid having
-			 * to parse it.
 			 */
 			data.content = $input.val();
 			data.format = 'wikitext';
 			data.revision = errorData.topic.prev_revision.extra.revision_id;
 
-			/*
-			 * At this point, we're still in the deferred's reject callbacks.
-			 * Only after these are completed, is the spinner removed and the
-			 * error message added.
-			 * I'm adding another fail-callback, which will be executed after
-			 * the fail has been handled. Only then, we can properly clean up.
-			 */
-			deferred.fail( $.proxy( function ( errorData ) {
-				/*
-				 * Tipsy will be positioned at the element where it's bound
-				 * to, at the time it's asked to show. It won't reposition
-				 * if the element moves. Since we re-launch the form, there
-				 * may be some movement, so let's have this as callback when
-				 * the form has completed loading before doing these changes.
-				 */
-				var formLoaded = $.proxy( function () {
-					var $button = this.object.$container.find( '.flow-edit-submit' );
-					$button.val( mw.msg( 'flow-edit-title-submit-overwrite' ) );
-					this.tipsy( $button, errorData.topic.prev_revision.message );
-
-					/*
-					 * Trigger keyup in editor, to trick setupEmptyDisabler
-					 * into believing we've made a change & enable submit.
-					 */
-					this.object.$container.find( 'input' ).keyup();
-				}, this, errorData );
-
-				// kill form & error message & re-launch edit form
-				this.destroyEditForm();
-				this.setupEditForm( data, formLoaded );
-			}, this, data, error, errorData ) );
+			// return conflict's deferred
+			return this.conflict( data, buttonText, tipsyText );
 		}
+
+		return deferred;
 	};
 
 	/**
@@ -265,7 +239,7 @@
 	 */
 	mw.flow.action.topic.edit.prototype.loadParametersCallback = function () {
 		var $titleEditForm = $( 'form', this.object.$container ),
-			content = $titleEditForm.find( '.flow-edit-title-textbox' ).val();
+			content = $titleEditForm.find( '.flow-edit-content' ).val();
 
 		return [ this.object.workflowId, content ];
 	};
@@ -313,7 +287,7 @@
 			.addClass( 'flow-edit-title-form' )
 			.append(
 				$( '<input />', {
-					'class': 'mw-ui-input flow-edit-title-textbox',
+					'class': 'mw-ui-input flow-edit-content',
 					'type':  'text',
 					'value': data.content
 				} ).byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
@@ -337,9 +311,7 @@
 					.append( ' ' )
 					.append(
 						$( '<input />' )
-							.addClass( 'flow-edit-submit' )
-							.addClass( 'mw-ui-button' )
-							.addClass( 'mw-ui-constructive' )
+							.addClass( 'flow-edit-submit mw-ui-button mw-ui-constructive' )
 							.attr( 'type', 'submit' )
 							.val( mw.msg( 'flow-edit-title-submit' ) )
 					)
@@ -349,7 +321,7 @@
 			)
 			.appendTo( $titleBar );
 
-		$titleEditForm.find( '.flow-edit-title-textbox' )
+		$titleEditForm.find( '.flow-edit-content' )
 			.focus()
 			.select();
 	};
