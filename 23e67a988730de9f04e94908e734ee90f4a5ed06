@@ -177,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_93f563ca",
+        "filename": "modules/discussion/post.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T21:34:32Z",
+      "side": 1,
+      "message": "Alternative in follow-up patch: https://gerrit.wikimedia.org/r/#/c/108635/",
+      "parentUuid": "aef5673e_9d9a1265",
+      "revId": "23e67a988730de9f04e94908e734ee90f4a5ed06",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_3e59c95d",
         "filename": "modules/discussion/topic.js",
         "patchSetId": 15
