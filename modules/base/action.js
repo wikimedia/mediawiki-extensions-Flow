@@ -288,6 +288,54 @@
 	};
 
 	/**
+	 * When an edit conflict occurs, we want to display an error message, and
+	 * give the user the opportunity to overwrite the other content.
+	 * In order to do so, we have to kill & reload the form with the new data,
+	 * after which we can then make changes to the elements (add error msg,
+	 * change button text)
+	 *
+	 * This function returns a new (un-resolved/rejected) promise, which can be
+	 * fed to the original deferred's fail() callbacks, so they aren't called.
+	 *
+	 * @param {object} data Initialisation data for setupEditForm
+	 * @param {string} buttonText Text to display on submit button
+	 * @param {string} tipsyText Text to display on tipsy flyout
+	 * @return {jQuery.Deferred}
+	 */
+	mw.flow.action.prototype.conflict = function ( data, buttonText, tipsyText ) {
+		/*
+		 * Tipsy will be positioned at the element where it's bound to, at the
+		 * time it's asked to show. It won't reposition if the element moves.
+		 * Since we re-launch the form, there may be some movement, so let's
+		 * have this as callback when the form has completed loading before
+		 * doing these changes.
+		 */
+		var formLoaded = function () {
+			var $button = this.object.$container.find( '.flow-edit-submit' );
+			$button.val( buttonText );
+			this.tipsy( $button, tipsyText );
+
+			/*
+			 * Trigger keyup in editor, to trick setupEmptyDisabler
+			 * into believing we've made a change & enable submit.
+			 */
+			this.object.$container.find( '.flow-edit-content' ).keyup();
+		}.bind( this, data, buttonText, tipsyText );
+
+		// kill & re-launch edit form
+		this.destroyEditForm();
+		this.setupEditForm( data, formLoaded );
+
+		/*
+		 * Promise a new deferred, so that follow-up fail (or done)
+		 * callbacks are never executed. We don't want getFormHandler's
+		 * default callbacks to be executed: succeeding will replace new
+		 * content, failing displays an error message. Ee don't want either.
+		 */
+		return ( new $.Deferred() ).promise();
+	};
+
+	/**
 	 * Display an error if something when wrong.
 	 *
 	 * @param {string} error
