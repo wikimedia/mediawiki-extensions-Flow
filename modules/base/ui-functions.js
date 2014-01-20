@@ -79,147 +79,6 @@
 			},
 
 			/**
-			 * Sets up an edit form.
-			 * @param  {string} type                  The type of edit form (single word)
-			 * @param  {string|object} initialContent The content to pre-fill.
-			 * An object, with the keys 'content' and 'format'. Or a plain string of wikitext.
-			 * @param  {function} submitFunction      Function to call in order to submit the form.
-			 * One parameter, the content.
-			 * @param  {function} loadFunction        Function to call once the form is loaded.
-			 * @return {Promise}                      A promise that will be resolved or rejected
-			 * when the form submission has returned.
-			 */
-			'setupEditForm' : function( type, initialContent, submitFunction, loadFunction ) {
-				var $contentContainer = $( this ),
-					deferredObject = $.Deferred(),
-					$postForm;
-				if ( $contentContainer.siblings( '.flow-edit-'+type+'-form' ).length ) {
-					// This is a bit yucky, but should behave correctly in most cases
-					return deferredObject.promise();
-				}
-
-				$postForm = $('<form/>')
-					.addClass( 'flow-edit-'+type+'-form' )
-					.hide()
-					.insertAfter( $contentContainer );
-
-				$postForm
-					.append(
-						$( '<textarea />' )
-							.addClass( 'mw-ui-input' )
-							.addClass( 'flow-edit-'+type+'-content' )
-					)
-					.append(
-						$( '<div/>' )
-							.addClass( 'flow-'+type+'-form-controls' )
-							.addClass( 'flow-edit-'+type+'-controls' )
-							.append(
-								$( '<div>' ).addClass( 'flow-terms-of-use plainlinks' )
-								.html( mw.message( 'flow-terms-of-use-edit' ).parse() )
-							)
-							.append(
-								$( '<a/>' )
-									.text( mw.msg( 'flow-cancel' ) )
-									.addClass( 'flow-cancel-link' )
-									.addClass( 'mw-ui-button' )
-									.addClass( 'mw-ui-quiet' )
-									.attr( 'href', '#' )
-									.on( 'click.mw-flow-discussion', function ( e ) {
-										e.preventDefault();
-										$postForm.slideUp( 'fast',
-											function () {
-												$contentContainer.show();
-												$postForm.remove();
-											}
-										);
-										$postForm.flow( 'hidePreview' );
-									} )
-							)
-							.append( ' ' )
-							.append(
-								$( '<input />' )
-									.attr( 'type', 'submit' )
-									.addClass( 'mw-ui-button' )
-									.addClass( 'mw-ui-constructive' )
-									.addClass( 'flow-edit-'+type+'-submit' )
-									.val( mw.msg( 'flow-edit-'+type+'-submit' ) )
-							)
-							.append(
-								$( '<div>' ).addClass( 'clear' )
-							)
-					)
-					.insertAfter( $contentContainer );
-
-				$postForm.flow( 'setupPreview' );
-
-				$contentContainer.hide();
-				$contentContainer.siblings( '.flow-datestamp' ).hide();
-
-				$postForm.flow( 'setupFormHandler',
-					'.flow-edit-'+type+'-submit',
-					submitFunction,
-					function () {
-						var content = mw.flow.editor.getContent( $postForm.find( '.flow-edit-'+type+'-content' ) );
-						return [ content ];
-					},
-					function ( content ) {
-						return content;
-					},
-					function ( promise ) {
-						promise
-							.done( function () {
-								deferredObject.resolve.apply( $contentContainer, arguments );
-							} )
-							.fail( function() {
-								deferredObject.reject.apply( $contentContainer, arguments );
-							} );
-					}
-				);
-
-				$postForm.flow( 'setupEmptyDisabler',
-					[
-						'.flow-edit-'+type+'-content'
-					],
-					'.flow-edit-'+type+'-submit'
-				);
-
-				$contentContainer.hide();
-				$postForm.show();
-
-				if ( typeof initialContent !== 'object' ) {
-					initialContent = {
-						'content' : initialContent,
-						'format' : 'wikitext'
-					};
-				}
-
-				/*
-				 * Setting focus inside an event that grants focus (like
-				 * clicking the edit icon), is tricky. This is a workaround.
-				 */
-				setTimeout( $.proxy( function( $postForm, initialContent, loadFunction ) {
-					var $textarea = $postForm.find( 'textarea' );
-					mw.flow.editor
-						.load( $textarea, initialContent.content, initialContent.format )
-						.done(
-							// Run the callback function
-							loadFunction,
-							// Then scroll to the form (after callback to make sure we have the right height)
-							function () {
-								$postForm.conditionalScrollIntoView().queue( function () {
-									mw.flow.editor.focus( $textarea );
-									mw.flow.editor.moveCursorToEnd( $textarea );
-									$( this ).dequeue();
-								} );
-							}
-						);
-
-				}, this, $postForm, initialContent, loadFunction ), 0 );
-
-				return deferredObject.promise();
-			},
-
-			/**
 			 * Sets up a reply form.
 			 *
 			 * Unlike edit forms, reply forms already exit in HTML, we just have
@@ -287,7 +146,7 @@
 						$formContainer.find( '.flow-content-preview, .flow-preview-submit' ).remove();
 					} )
 					.after( ' ' )
-					.prependTo( $formContainer.find( '.flow-post-form-controls') );
+					.prependTo( $formContainer.find( '.flow-form-controls') );
 
 				// setup preview
 				$form.flow( 'setupPreview' );
@@ -695,6 +554,9 @@
 					'value': mw.msg( 'flow-preview' ),
 					'class': 'mw-ui-button flow-preview-submit'
 				} ).insertAfter( $form.find( '.flow-cancel-link' ) );
+
+				// allow chaining
+				return this;
 			},
 
 			/**
@@ -702,6 +564,9 @@
 			 */
 			'hidePreview': function() {
 				this.find( '.flow-content-preview' ).empty().hide();
+
+				// allow chaining
+				return this;
 			}
 		}
 	} );
