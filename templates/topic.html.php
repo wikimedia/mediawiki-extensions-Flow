@@ -39,7 +39,7 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 			) ) .
 			Html::textarea( $block->getName() . '_topic-reply-content', '', array(
 				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
-				'class' => 'mw-ui-input flow-topic-reply-content',
+				'class' => 'mw-ui-input flow-reply-content',
 				'rows' => '10',
 			) ) .
 			'<div class="flow-form-controls">' .
@@ -49,7 +49,7 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 				Html::element( 'input', array(
 					'type' => 'submit',
 					'value' => wfMessage( 'flow-reply-submit', $this->getCreatorText( $root ) ),
-					'class' => 'mw-ui-button mw-ui-constructive flow-topic-reply-submit',
+					'class' => 'mw-ui-button mw-ui-constructive flow-reply-submit',
 				) ) .
 				Html::element( 'div', array( 'class' => 'clear' ) ) .
 			Html::closeElement( 'div' ) .
