@@ -42,7 +42,7 @@ class FlowPage
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
   list_item(:small_view, title: "Small view")
   a(:talk_link, text: "Talk")
-  text_field(:title_edit, class: "mw-ui-input flow-edit-title-textbox")
+  text_field(:title_edit, class: "mw-ui-input flow-edit-content")
   a(:topic_actions_link, text: "Actions", index: actions_index)
   div(:topic_post, class: "flow-post-content", index: topic_index)
   div(:topic_title, class: "flow-topic-title", index: topic_index)

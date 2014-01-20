@@ -49,7 +49,7 @@ echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken',
 		'input',
 		array(
 			'name' => $block->getName() . '_content',
-			'class' => 'flow-edit-title-textbox mw-ui-input',
+			'class' => 'flow-edit-content mw-ui-input',
 			'value' => $this->getContent( $topicTitle, 'wikitext' ),
 		),
 		$this->getContent( $topicTitle, 'wikitext' )
