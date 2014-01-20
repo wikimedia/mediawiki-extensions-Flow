@@ -270,7 +270,7 @@
 		display: none;
 	}
 
-	&.flow-form-active {
+	&.flow-new-form-active {
 		.flow-newtopic-step2 {
 			display: block;
 		}
@@ -293,16 +293,16 @@
 
 	// hide controls when form is inactive
 	// class is added via JS, so controls are always visible for non-JS
-	&.flow-form-active {
+	&.flow-reply-form-active {
 		.flow-form-controls {
 			display: block;
 		}
 	}
 
-	&:not(.flow-form-active) {
-		// Make the "comment on topic" textarea look like the "start a new topic"
-		// input field.
-		.flow-topic-reply-content {
+	// Make the "comment on topic" textarea look like the "start a new topic"
+	// input field.
+	&:not(.flow-reply-form-active) {
+		.flow-reply-content {
 			height: 34px;
 		}
 
