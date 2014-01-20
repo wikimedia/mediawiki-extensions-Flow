@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_bd22764e",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-20T12:40:03Z",
+      "side": 1,
+      "message": "Instead of being moved to action.js, it will be made into flow( \u0027loadReplyForm\u0027 ) in ui-functions.js, to be similar to existing functionality.",
+      "revId": "d1ca9fa76c69847d40235f52719a83efd94299a2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
