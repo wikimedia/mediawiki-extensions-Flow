@@ -297,7 +297,7 @@
 	 */
 	mw.flow.action.post.reply.prototype.initialContent = function () {
 		// fetch username/IP
-		var username = this.$form.closest( '.flow-post-container' ).data( 'creator-name' );
+		var username = this.object.$container.closest( '.flow-post-container' ).data( 'creator-name' );
 
 		// if we have a real username, turn it into "[[User]]" (otherwise, just "127.0.0.1")
 		if ( !mw.util.isIPv4Address( username , true ) && !mw.util.isIPv6Address( username , true ) ) {
@@ -308,21 +308,6 @@
 			content: username + ': ',
 			format: 'wikitext'
 		};
-	};
-
-	/**
-	 * Builds the reply form.
-	 *
-	 * @param {function} [loadFunction] callback to be executed when form is loaded
-	 */
-	mw.flow.action.post.reply.prototype.loadReplyForm = function ( loadFunction ) {
-		this.$form.flow(
-			'loadReplyForm',
-			this.object.type,
-			this.initialContent(),
-			$.proxy( this.submitFunction, this ),
-			loadFunction
-		);
 	};
 
 	/**
