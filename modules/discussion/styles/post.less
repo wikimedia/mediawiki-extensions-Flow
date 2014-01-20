@@ -14,6 +14,27 @@
 		.flow-icon {
 			opacity: 0.5;
 		}
+
+		// when edit form is displayed, class .flow-edit-form-active will be added,
+		// so we can show/hide elements as needed
+		&:not(.flow-edit-form-active) {
+			.flow-post-content,
+			.flow-datestamp {
+				display: block;
+			}
+			.flow-edit-form {
+				display: none;
+			}
+		}
+		&.flow-edit-form-active {
+			.flow-post-content,
+			.flow-datestamp {
+				display: none;
+			}
+			.flow-edit-form {
+				display: block;
+			}
+		}
 	}
 
 	.flow-post-main {
@@ -203,8 +224,8 @@
 	}
 
 	.flow-reply-form,
-	.flow-edit-post-form {
-		.flow-post-form-controls {
+	.flow-edit-form {
+		.flow-form-controls {
 			margin-top: 5px;
 			text-align: right;
 		}
