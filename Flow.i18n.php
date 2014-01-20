@@ -1835,6 +1835,7 @@ $messages['fi'] = array(
 
 /** French (français)
  * @author Ayack
+ * @author Ebe123
  * @author Gomoko
  * @author Jean-Frédéric
  * @author Linedwell
@@ -2018,10 +2019,13 @@ $messages['fr'] = array(
 	'flow-moderation-confirm-delete-post' => 'Supprimer',
 	'flow-moderation-confirm-hide-post' => 'Masquer',
 	'flow-moderation-confirm-restore-post' => 'Rétablir',
-	'flow-moderation-confirmation-suppress-post' => '{{GENDER:$2|Penser}} à donner à $1 un avis sur cette note.', # Fuzzy
-	'flow-moderation-confirmation-delete-post' => '{{GENDER:$2|Penser}} à donner à $1 un avis sur cette note.', # Fuzzy
-	'flow-moderation-confirmation-hide-post' => '{{GENDER:$2|Penser}} à donner à $1 un avis sur cette note.', # Fuzzy
-	'flow-moderation-confirmation-restore-post' => '{{GENDER:$2|Vous}} avez bien restauré cette note.', # Fuzzy
+	'flow-moderation-confirmation-suppress-post' => 'Cette note à été suprimé avec succès.
+{{GENDER:$1|Pensez}} à donner à $1 un avis sur cette note.',
+	'flow-moderation-confirmation-delete-post' => 'Cette note a bien été supprimée.
+{{GENDER:$2|Pensez}} à donner à $1 un avis sur cette note.', # Fuzzy
+	'flow-moderation-confirmation-hide-post' => 'Cette note a bien été masquée.
+{{GENDER:$2|Pensez}} à donner à $1 un avis sur cette note.', # Fuzzy
+	'flow-moderation-confirmation-restore-post' => 'Vous avez bien restauré la note ci-dessus.',
 	'flow-moderation-title-suppress-topic' => 'Supprimer le sujet ?',
 	'flow-moderation-title-delete-topic' => 'Supprimer le sujet ?',
 	'flow-moderation-title-hide-topic' => 'Masquer le sujet ?',
@@ -2035,9 +2039,11 @@ $messages['fr'] = array(
 	'flow-moderation-confirm-hide-topic' => 'Masquer',
 	'flow-moderation-confirm-restore-topic' => 'Rétablir',
 	'flow-moderation-confirmation-suppress-topic' => '{{GENDER:$2|Penser}} à donner à $1 un avis sur ce sujet.',
-	'flow-moderation-confirmation-delete-topic' => '{{GENDER:$2|Penser}} à donner à $1 un avis sur ce sujet.', # Fuzzy
-	'flow-moderation-confirmation-hide-topic' => '{{GENDER:$2|Penser}} à donner à $1 un avis sur ce sujet.', # Fuzzy
-	'flow-moderation-confirmation-restore-topic' => '{{GENDER:$2|Vous}} avez bien rétabli ce sujet.', # Fuzzy
+	'flow-moderation-confirmation-delete-topic' => 'Le sujet a bien été supprimé.
+{{GENDER:$2|Pensez}} à donner à $1 un avis sur ce sujet.', # Fuzzy
+	'flow-moderation-confirmation-hide-topic' => 'Le sujet a bien été masqué.
+{{GENDER:$2|Pensez}} à donner à $1 un avis sur ce sujet.', # Fuzzy
+	'flow-moderation-confirmation-restore-topic' => 'Vous avez bien rétabli ce sujet.',
 	'flow-topic-permalink-warning' => 'Ce sujet a été démarré sur [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Ce sujet a été démarré sur le tableau de [$2 {{GENDER:$1|$1}}]',
 	'flow-revision-permalink-warning-post' => 'Voici un lien permanent vers une version unique de cette note.
@@ -2098,9 +2104,9 @@ $messages['gl'] = array(
 	'flow-topic-action-history' => 'Historial do fío',
 	'flow-error-http' => 'Produciuse un erro ao contactar co servidor. Non se gardou a súa mensaxe.', # Fuzzy
 	'flow-error-other' => 'Produciuse un erro inesperado. Non se gardou a súa mensaxe.', # Fuzzy
-	'flow-error-external' => 'Produciuse un erro ao gardar a súa mensaxe. Non se gardou a súa mensaxe.<br />A mensaxe de erro recibida foi: $1',
+	'flow-error-external' => 'Produciuse un erro.<br />A mensaxe de erro recibida foi: $1',
 	'flow-error-edit-restricted' => 'Non lle está permitido editar esta mensaxe.',
-	'flow-error-external-multi' => 'Producíronse erros ao gardar a súa mensaxe. Non se gardou a súa mensaxe.<br />$1', # Fuzzy
+	'flow-error-external-multi' => 'Producíronse varios erros.<br />$1',
 	'flow-error-missing-content' => 'A mensaxe non ten contido. O contido é obrigatorio para gardar unha nova mensaxe.', # Fuzzy
 	'flow-error-missing-title' => 'O fío non ten título. O título é obrigatorio para gardar un novo fío.', # Fuzzy
 	'flow-error-parsoid-failure' => 'Non é posible analizar o contido debido a un fallo do Parsoid.',
