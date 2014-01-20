@@ -28,6 +28,19 @@
 				display: block;
 			}
 		}
+
+		// when reply form is displayed, class .flow-edit-form-active will be added,
+		// so we can show/hide elements as needed
+		&:not(.flow-reply-form-active) {
+			.flow-reply-link {
+				display: inline;
+			}
+		}
+		&.flow-reply-form-active {
+			.flow-reply-link {
+				display: none;
+			}
+		}
 	}
 
 	.flow-post-main {
@@ -185,7 +198,7 @@
 		padding: 10px 0 10px 22px;
 		display: none;
 
-		&.flow-form-active {
+		&.flow-reply-form-active {
 			display: block;
 		}
 	}

@@ -316,11 +316,9 @@
 	 * @param {function} [loadFunction] callback to be executed when form is loaded
 	 */
 	mw.flow.action.post.reply.prototype.loadReplyForm = function ( loadFunction ) {
-		this.$form.flow(
-			'loadReplyForm',
-			this.object.type,
-			this.initialContent(),
-			this.submitFunction.bind( this ),
+		// call parent loadReplyForm function
+		mw.flow.action.prototype.loadReplyForm.call(
+			this,
 			loadFunction
 		);
 	};
