@@ -155,7 +155,8 @@
 		);
 
 		deferred.done( this.render.bind( this ) );
-		deferred.fail( this.conflict.bind( this, deferred, data ) );
+		// allow hijacking the fail-stack to gracefully recover from errors
+		deferred = deferred.then( null, this.conflict.bind( this, deferred, data ) );
 
 		return deferred;
 	};
@@ -179,6 +180,7 @@
 	 * @param {object} data Old (invalid) this.prepareResult return value
 	 * @param {string} error
 	 * @param {object} errorData
+	 * @return {jQuery.Deferred}
 	 */
 	mw.flow.action.header.edit.prototype.conflict = function ( deferred, data, error, errorData ) {
 		if (
@@ -198,37 +200,38 @@
 			data.revision = errorData.header.prev_revision.extra.revision_id;
 
 			/*
-			 * At this point, we're still in the deferred's reject callbacks.
-			 * Only after these are completed, is the spinner removed and the
-			 * error message added.
-			 * I'm adding another fail-callback, which will be executed after
-			 * the fail has been handled. Only then, we can properly clean up.
+			 * Tipsy will be positioned at the element where it's bound
+			 * to, at the time it's asked to show. It won't reposition
+			 * if the element moves. Since we re-launch the form, there
+			 * may be some movement, so let's have this as callback when
+			 * the form has completed loading before doing these changes.
 			 */
-			deferred.fail( function ( data, error, errorData ) {
+			var formLoaded = function () {
+				var $button = this.object.$container.find( '.flow-edit-header-submit' );
+				$button.val( mw.msg( 'flow-edit-header-submit-overwrite' ) );
+				this.tipsy( $button, errorData.header.prev_revision.message );
+
 				/*
-				 * Tipsy will be positioned at the element where it's bound
-				 * to, at the time it's asked to show. It won't reposition
-				 * if the element moves. Since we re-launch the form, there
-				 * may be some movement, so let's have this as callback when
-				 * the form has completed loading before doing these changes.
+				 * Trigger keyup in editor, to trick setupEmptyDisabler
+				 * into believing we've made a change & enable submit.
 				 */
-				var formLoaded = function () {
-					var $button = this.object.$container.find( '.flow-edit-header-submit' );
-					$button.val( mw.msg( 'flow-edit-header-submit-overwrite' ) );
-					this.tipsy( $button, errorData.header.prev_revision.message );
+				this.object.$container.find( 'textarea' ).keyup();
+			}.bind( this, data, error, errorData );
 
-					/*
-					 * Trigger keyup in editor, to trick setupEmptyDisabler
-					 * into believing we've made a change & enable submit.
-					 */
-					this.object.$container.find( 'textarea' ).keyup();
-				}.bind( this, data, error, errorData );
+			// kill form & error message & re-launch edit form
+			this.destroyEditForm();
+			this.setupEditForm( data, formLoaded );
 
-				// kill form & error message & re-launch edit form
-				this.object.$container.find( 'form, flow-error' ).remove();
-				this.setupEditForm( data, formLoaded );
-			}.bind( this, data, error, errorData ) );
+			/*
+			 * Promise a new deferred, so that follow-up fail (or done)
+			 * callbacks are never executed. We don't want getFormHandler's
+			 * default callbacks to be executed: succeeding will replace new
+			 * content, failing displays an error message. Ee don't want either.
+			 */
+			deferred = ( new $.Deferred() ).promise();
 		}
+
+		return deferred;
 	};
 
 	/**

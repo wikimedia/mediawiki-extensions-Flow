@@ -141,19 +141,15 @@
 					}
 
 					submitFunction.apply( this, params )
-						.done( function ( output ) {
+						.always( function () {
 							$spinner.remove();
 							$button.show();
-							$form.find( '.flow-cancel-link' )
-								.click();
-
+						} )
+						.done( function ( output ) {
 							deferredObject.resolve.apply( $button, arguments );
 						} )
 						.fail( function () {
 							var $errorDiv = $( '<div/>' ).flow( 'showError', arguments );
-
-							$spinner.remove();
-							$button.show();
 
 							if ( $form ) {
 								$form.append( $errorDiv );
