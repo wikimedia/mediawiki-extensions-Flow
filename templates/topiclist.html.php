@@ -29,7 +29,7 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 		'class' => 'flow-newtopic-step2 flow-newtopic-content mw-ui-input',
 		'rows' => '10',
 	) );
-	echo Html::openElement( 'div', array( 'class' => 'flow-post-form-controls flow-newtopic-step2' ) );
+	echo Html::openElement( 'div', array( 'class' => 'flow-form-controls flow-newtopic-step2' ) );
 	echo Html::rawElement( 'div', array(
 		'class' => 'flow-terms-of-use plainlinks',
 	), wfMessage( 'flow-terms-of-use-new-topic' )->parse() );

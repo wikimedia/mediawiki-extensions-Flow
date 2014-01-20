@@ -9,6 +9,24 @@
 	padding-bottom: 25px;
 
 	#flow-header-content {
+		display: block;
+	}
+	.flow-edit-form {
+		display: none;
+	}
+
+	// when edit form is displayed, class .flow-edit-form-active will be added,
+	// so we can show/hide elements as needed
+	&.flow-edit-form-active {
+		#flow-header-content {
+			display: none;
+		}
+		.flow-edit-form {
+			display: block;
+		}
+	}
+
+	#flow-header-content {
 		.wordbreak-all();
 
 		// Only apply these styles when empty or on plain-text content
@@ -46,7 +64,7 @@
 		transition: opacity 0.2s;
 	}
 
-	.flow-edit-header-controls{
+	.flow-edit-controls{
 		margin-top: 5px;
 		text-align: right;
 	}

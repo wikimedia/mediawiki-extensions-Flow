@@ -11,6 +11,7 @@
 		this.$container = $( '#flow-post-' + this.postId );
 		this.workflowId = this.$container.flow( 'getTopicWorkflowId' );
 		this.pageName = this.$container.closest( '.flow-container' ).data( 'page-title' );
+		this.type = 'post';
 
 		this.actions = {
 			// init edit-post interaction
@@ -28,10 +29,10 @@
 	 * @param {object} post
 	 */
 	mw.flow.action.post.edit = function ( post ) {
-		this.post = post;
+		this.object = post;
 
 		// Overload "edit post" link.
-		this.post.$container.find( '.flow-edit-post-link' ).on( 'click.mw-flow-discussion', $.proxy( this.edit, this ) );
+		this.object.$container.find( '.flow-edit-post-link' ).on( 'click.mw-flow-discussion', $.proxy( this.edit, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -48,12 +49,12 @@
 		event.preventDefault();
 
 		// quit if edit form is already open
-		if ( this.post.$container.find( '.flow-edit-post-form' ).length ) {
+		if ( this.object.$container.find( '.flow-edit-post-form' ).length ) {
 			return;
 		}
 
 		// Remove old error messages
-		this.post.$container.find( '.flow-post-edit-error' ).remove();
+		this.object.$container.find( '.flow-post-edit-error' ).remove();
 
 		/*
 		 * Fetch current revision data (content, revision id, ...) that
@@ -87,12 +88,12 @@
 	 */
 	mw.flow.action.post.edit.prototype.read = function () {
 		return mw.flow.api.readTopic(
-			this.post.pageName,
-			this.post.workflowId,
+			this.object.pageName,
+			this.object.workflowId,
 			{
 				topic: {
 					'no-children': true,
-					postId: this.post.postId,
+					postId: this.object.postId,
 					contentFormat: mw.flow.editor.getFormat()
 				}
 			}
@@ -130,24 +131,20 @@
 	 * @param {function} [loadFunction] callback to be executed when form is loaded
 	 */
 	mw.flow.action.post.edit.prototype.setupEditForm = function ( data, loadFunction ) {
-		var $editLink = this.post.$container.find( '.flow-edit-post-link' ),
-			$container = this.post.$container.addClass( 'flow-post-nocontrols' );
+		var $editLink = this.object.$container.find( '.flow-edit-post-link' ),
+			$container = this.object.$container.addClass( 'flow-post-nocontrols' );
 
-		this.post.$container.find( '.flow-post-content' ).flow(
-			'setupEditForm',
-			'post',
-			{
-				content: data.content,
-				format: data.format
-			},
-			$.proxy( this.submitFunction, this, data ),
+		// call parent setupEditForm function
+		mw.flow.action.prototype.setupEditForm.call(
+			this,
+			data,
 			loadFunction
 		);
 
 		// hide post controls & edit link and re-reveal it if the cancel link
 		// - which is added by flow( 'setupEditForm' ) - is clicked.
 		$editLink.hide();
-		this.post.$container.find( '.flow-cancel-link' ).on( 'click.mw-flow-discussion', function () {
+		this.object.$container.find( '.flow-cancel-link' ).on( 'click.mw-flow-discussion', function () {
 			$editLink.show();
 			$container.removeClass( 'flow-post-nocontrols' );
 		} );
@@ -162,8 +159,8 @@
 	 */
 	mw.flow.action.post.edit.prototype.submitFunction = function ( data, content ) {
 		var deferred = mw.flow.api.editPost(
-			this.post.workflowId,
-			this.post.postId,
+			this.object.workflowId,
+			this.object.postId,
 			content,
 			data.revision
 		);
@@ -182,7 +179,7 @@
 	mw.flow.action.post.edit.prototype.render = function ( output ) {
 		var $content = $( output.rendered );
 		$( '.flow-post', $content )
-			.replaceAll( this.post.$container )
+			.replaceAll( this.object.$container )
 			// replacing container node with new content will result in binds on old
 			// nodes being useless and we'll need to bind again to the new DOM
 			.trigger( 'flow_init' );
@@ -202,7 +199,7 @@
 			errorData.topic && errorData.topic.prev_revision &&
 			errorData.topic.prev_revision.extra && errorData.topic.prev_revision.extra.revision_id
 		) {
-			var $textarea = this.post.$container.find( 'textarea' );
+			var $textarea = this.object.$container.find( 'textarea' );
 
 			/*
 			 * Overwrite data revision & content.
@@ -220,7 +217,7 @@
 			 * I'm adding another fail-callback, which will be executed after
 			 * the fail has been handled. Only then, we can properly clean up.
 			 */
-			deferred.fail( $.proxy( function ( data, error, errorData ) {
+			deferred.fail( $.proxy( function ( errorData ) {
 				/*
 				 * Tipsy will be positioned at the element where it's bound
 				 * to, at the time it's asked to show. It won't reposition
@@ -229,7 +226,7 @@
 				 * the form has completed loading before doing these changes.
 				 */
 				var formLoaded = $.proxy( function () {
-					var $button = this.post.$container.find( '.flow-edit-post-submit' );
+					var $button = this.object.$container.find( '.flow-edit-submit' );
 					$button.val( mw.msg( 'flow-edit-post-submit-overwrite' ) );
 					this.tipsy( $button, errorData.topic.prev_revision.message );
 
@@ -237,11 +234,11 @@
 					 * Trigger keyup in editor, to trick setupEmptyDisabler
 					 * into believing we've made a change & enable submit.
 					 */
-					this.post.$container.find( 'textarea' ).keyup();
-				}, this, data, error, errorData );
+					this.object.$container.find( 'textarea' ).keyup();
+				}, this, errorData );
 
 				// kill form & error message & re-launch edit form
-				this.post.$container.find( 'form, .flow-error' ).remove();
+				this.destroyEditForm();
 				this.setupEditForm( data, formLoaded );
 			}, this, data, error, errorData ) );
 		}
@@ -254,7 +251,7 @@
 	 * @param {object} errorData
 	 */
 	mw.flow.action.post.edit.prototype.showError = function ( error, errorData ) {
-		$( '.flow-post-content', this.post.$container )
+		$( '.flow-post-content', this.object.$container )
 			.append(
 				$( '<div>', { 'class': 'flow-post-edit-error' } ).flow( 'showError', arguments )
 			);
@@ -266,10 +263,10 @@
 	 * @param {object} post
 	 */
 	mw.flow.action.post.reply = function ( post ) {
-		this.post = post;
+		this.object = post;
 
 		// Overload "reply" link.
-		this.post.$container.find( '.flow-reply-link' ).on( 'click.mw-flow-discussion', $.proxy( this.reply, this ) );
+		this.object.$container.find( '.flow-reply-link' ).on( 'click.mw-flow-discussion', $.proxy( this.reply, this ) );
 	};
 
 	// extend reply action from "shared functionality" mw.flow.action class
@@ -286,7 +283,7 @@
 		event.preventDefault();
 
 		// find matching edit form at (max threading depth - 1)
-		this.$form = $( this.post.$container )
+		this.$form = $( this.object.$container )
 			.closest( '.flow-post-container:not(.flow-post-max-depth)' )
 			.find( '.flow-post-reply-container' );
 
@@ -305,26 +302,35 @@
 	};
 
 	/**
-	 * Builds the reply form.
+	 * Returns the initial content, to be served to loadReplyForm.
 	 *
-	 * @param {function} [loadFunction] callback to be executed when form is loaded
+	 * @return {object}
 	 */
-	mw.flow.action.post.reply.prototype.loadReplyForm = function ( loadFunction ) {
+	mw.flow.action.post.reply.prototype.initialContent = function () {
 		// fetch username/IP
-		var username = this.post.$container.closest( '.flow-post-container' ).data( 'creator-name' );
+		var username = this.object.$container.closest( '.flow-post-container' ).data( 'creator-name' );
 
 		// if we have a real username, turn it into "[[User]]" (otherwise, just "127.0.0.1")
 		if ( !mw.util.isIPv4Address( username , true ) && !mw.util.isIPv6Address( username , true ) ) {
 			username = '[[' + mw.Title.newFromText( username, 2 ).getPrefixedText() + '|' + username + ']]';
 		}
 
+		return {
+			content: username + ': ',
+			format: 'wikitext'
+		};
+	};
+
+	/**
+	 * Builds the reply form.
+	 *
+	 * @param {function} [loadFunction] callback to be executed when form is loaded
+	 */
+	mw.flow.action.post.reply.prototype.loadReplyForm = function ( loadFunction ) {
 		this.$form.flow(
 			'loadReplyForm',
-			'post',
-			{
-				content: username + ': ',
-				format: 'wikitext'
-			},
+			this.object.type,
+			this.initialContent(),
 			$.proxy( this.submitFunction, this ),
 			loadFunction
 		);
@@ -340,7 +346,7 @@
 	 */
 	mw.flow.action.post.reply.prototype.submitFunction = function ( content ) {
 		var deferred = mw.flow.api.reply(
-			this.post.workflowId,
+			this.object.workflowId,
 			this.$form.find( 'input[name="topic_replyTo"]' ).val(),
 			content
 		);
