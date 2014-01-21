@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_8d13ff04",
+        "filename": "container.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T17:25:01Z",
+      "side": 1,
+      "message": "TwoStepUSernameQuery has an accidental capital S; should be TwoStepUsernameQuery",
+      "revId": "1a6b142285ac7f68b9fb99252f845688d2ed0a98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_0d9b6f6b",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T17:25:01Z",
+      "side": 1,
+      "message": "s/existance/existence/",
+      "revId": "1a6b142285ac7f68b9fb99252f845688d2ed0a98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_0db5afe0",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T17:25:01Z",
+      "side": 1,
+      "message": "typo: __construct",
+      "revId": "1a6b142285ac7f68b9fb99252f845688d2ed0a98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_5a5ff044",
+        "filename": "includes/DbFactory.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T17:25:01Z",
+      "side": 1,
+      "message": "This comment isn\u0027t going anywhere :p\n\nI assume it was trying to say what the next line is saying.",
+      "revId": "1a6b142285ac7f68b9fb99252f845688d2ed0a98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_edc60b4e",
+        "filename": "includes/DbFactory.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T17:25:01Z",
+      "side": 1,
+      "message": "typo: DB_MASTER",
+      "revId": "1a6b142285ac7f68b9fb99252f845688d2ed0a98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_7a62b407",
+        "filename": "includes/DbFactory.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T17:25:01Z",
+      "side": 1,
+      "message": "Typo: DB_MASTER",
+      "revId": "1a6b142285ac7f68b9fb99252f845688d2ed0a98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
