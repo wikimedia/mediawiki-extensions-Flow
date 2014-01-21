@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_8debff9f",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T17:34:14Z",
+      "side": 1,
+      "message": "We should probably use wikitext instead of HTML - easier for translators? (Siebrand?)\n\nThose will probably show up as external links then, but we can add \u003cspan class\u003d\"plainlinks\"\u003e\u003c/span\u003e around them in code.\n\nAlso: is this ok for 3rd party installs? They may not want to link to wikimediafoundation.org policy. I assume this is ok, since they can change messages in http://url/wiki/Mediawiki:flow-terms-of-use-new-topic",
+      "revId": "86be346112418daeaaf63fe098354b347bbc2d07",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
