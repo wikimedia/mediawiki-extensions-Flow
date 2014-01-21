@@ -33,6 +33,24 @@
       "revId": "25a7b8caea36df98f748e95aa8817cf0b79408e3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_d696344f",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-21T22:14:05Z",
+      "side": 1,
+      "message": "Looking through the history, this may have never had a type hint.  It looks like $action used to also be nullable, which is how we ended up with $user \u003d null.  It seems reasonable enough to typehint it.",
+      "parentUuid": "aef5673e_ed0f2b32",
+      "revId": "25a7b8caea36df98f748e95aa8817cf0b79408e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
