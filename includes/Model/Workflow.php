@@ -25,6 +25,8 @@ class Workflow {
 	protected $definitionId;
 	protected $lastModified;
 
+	const STATE_LOCKED = 'locked';
+
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			$obj = new self;
@@ -146,19 +148,18 @@ class Workflow {
 
 	public function lock( User $user ) {
 		$this->lockState[] = array(
+			'id' => UUID::create(),
 			'user' => $user->getId(),
 			'state' => self::STATE_LOCKED,
-			'timestamp' => wfTimestampNow(),
 		);
 	}
 
-	// meh, states need to be user definable
 	public function isLocked() {
 		if ( !$this->lockState ) {
 			return false;
 		}
 		$state = end( $this->lockState );
-		return $state['state'] === self::LOCKED;
+		return $state['state'] === self::STATE_LOCKED;
 	}
 }
 
