@@ -299,7 +299,7 @@ abstract class AbstractRevision {
 	 * @param string $action Action to check if allowed.
 	 * @return boolean True when the user is allowed to see the current revision
 	 */
-	protected function isAllowed( $user = null, $action ) {
+	protected function isAllowed( User $user = null, $action ) {
 		// if no user specified, assume anonymous user
 		if ( !$user instanceof User ) {
 			$user = new User;
