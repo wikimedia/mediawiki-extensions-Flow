@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_4d39779e",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T16:57:12Z",
+      "side": 1,
+      "message": "This can be added inside the above a, like:\n\n    a {\n        color: @username-color;\n        \n        \u0026.new {\n            color: @username-redlink-color;\n        }\n    }",
+      "revId": "0524b875a94de048cb1dc1fc2c94731c2ff3f4b1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
