@@ -5,6 +5,8 @@
  */
 namespace Flow\Data;
 
+use Flow\DbFactory;
+
 /**
  * Listen for loaded objects and pre-load their user id fields into
  * a batch username loader.
@@ -72,9 +74,12 @@ class UserNameBatch {
 	protected $usernames = array();
 
 	/**
+	 * @param DbFactory $dbFactory Provides access to database objects. Note that
+	 *   the LinkBatch will not use this dbFactory.
 	 * @param array $queued map from wikiid to list of userid's to request
 	 */
-	public function __construct( array $queued = array() ) {
+	public function __construct( UserNameQuery $query, array $queued = array() ) {
+		$this->query = $query;
 		foreach ( $queued as $wiki => $userIds ) {
 			$this->queued[$wiki] = array_map( 'intval', $userIds );
 		}
@@ -129,16 +134,16 @@ class UserNameBatch {
 		if ( isset( $this->usernames[$wiki] ) ) {
 			$queued = array_diff( $queued, array_keys( $this->usernames[$wiki] ) );
 		}
-		$res = $this->query( $wiki, $queued );
+		$res = $this->query->execute( $wiki, $queued );
 		unset( $this->queued[$wiki] );
 		if ( $res ) {
-			$found = array();
+			$usernames = array();
 			foreach ( $res as $row ) {
 				$id = (int)$row->user_id;
-				$this->usernames[$wiki][$id] = $row->user_name;
-				$found[] = $id;
+				$this->usernames[$wiki][$id] = $usernames[$id] = $row->user_name;
 			}
-			$missing = array_diff( $queued, $found );
+			$this->resolveUserPages( $wiki, $usernames );
+			$missing = array_diff( $queued, array_keys( $usernames ) );
 		} else {
 			$missing = $queued;
 		}
@@ -148,13 +153,54 @@ class UserNameBatch {
 	}
 
 	/**
+	 * Update in-process title existence cache with NS_USER and
+	 * NS_USER_TALK pages related to the provided usernames.
+	 *
+	 * @param string $wiki Wiki the users belong to
+	 * @param array $usernames List of user names
+	 */
+	protected function resolveUserPages( $wiki, array $usernames ) {
+		// LinkBatch currently only supports the current wiki
+		if ( $wiki !== wfWikiId() || !$usernames ) {
+			return;
+		}
+
+		$lb = new \LinkBatch();
+		foreach ( $usernames as $name ) {
+			$user = User::newFromName( $name );
+			if ( $user ) {
+				$lb->addObj( $user->getUserPage() );
+				$lb->addObj( $user->getTalkPage() );
+			}
+		}
+		$lb->setCaller( __METHOD__ );
+		$lb->execute();
+	}
+}
+
+interface UsernameQuery {
+	/**
+	 * @param string $wiki wiki id
+	 * @param array $userIds List of user ids to lookup
+	 * @return bool|ResultWrapper Containing objects with user_id and 
+	 *   user_name properies.
+	 */
+	function execute( $wiki, array $userIds );
+}
+
+class TwoStepUsernameQuery implements UsernameQuery {
+	public function __construct( DbFactory $dbFactory ) {
+		$this->dbFactory = $dbFactory;
+	}
+
+	/**
 	 * Look up usernames while respecting ipblocks with two queries
 	 *
 	 * @param string $wiki
 	 * @param array $userIds
 	 */
-	protected function query( $wiki, array $userIds ) {
-		$dbr = wfGetDB( DB_SLAVE, array(), $wiki );
+	public function execute( $wiki, array $userIds ) {
+		$dbr = $this->dbFactory->getWikiDB( DB_SLAVE, array(), $wiki );
 		$res = $dbr->select(
 			'ipblocks',
 			'ipb_user',
@@ -183,6 +229,12 @@ class UserNameBatch {
 			__METHOD__
 		);
 	}
+}
+
+class OneStepUsernameQuery implements UsernameQuery {
+	public function __construct( DbFactory $dbFactory ) {
+		$this->dbFactory = $dbFactory;
+	}
 
 	/**
 	 * Look up usernames while respecting ipblocks with one query.
@@ -191,8 +243,8 @@ class UserNameBatch {
 	 * @param string $wiki
 	 * @param array $userIds
 	 */
-	protected function querySingle( $wiki, array $userIds ) {
-		$dbr = wfGetDB( DB_SLAVE, array(), $wiki );
+	public function execute( $wiki, array $userIds ) {
+		$dbr = $this->dbFactory->getWikiDb( DB_SLAVE, array(), $wiki );
 		return $dbr->select(
 			/* table */ array( 'user', 'ipblocks' ),
 			/* select */ array( 'user_id', 'user_name' ),

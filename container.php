@@ -107,7 +107,7 @@ $c['memcache.buffered'] = $c->share( function( $c ) {
 } );
 // Batched username loader
 $c['repository.username'] = $c->share( function( $c ) {
-	return new Flow\Data\UserNameBatch;
+	return new Flow\Data\UserNameBatch( new Flow\Data\TwoStepUsernameQuery( $c['db.factory'] ) );
 } );
 // Per wiki workflow definitions (types of workflows)
 $c['storage.definition'] = $c->share( function( $c ) {
