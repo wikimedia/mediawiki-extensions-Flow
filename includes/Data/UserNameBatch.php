@@ -6,6 +6,7 @@
 namespace Flow\Data;
 
 use Flow\DbFactory;
+use User;
 
 /**
  * Listen for loaded objects and pre-load their user id fields into
@@ -182,7 +183,7 @@ interface UsernameQuery {
 	/**
 	 * @param string $wiki wiki id
 	 * @param array $userIds List of user ids to lookup
-	 * @return bool|ResultWrapper Containing objects with user_id and 
+	 * @return bool|ResultWrapper Containing objects with user_id and
 	 *   user_name properies.
 	 */
 	function execute( $wiki, array $userIds );
