@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_2dcf53b7",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T16:53:20Z",
+      "side": 1,
+      "message": "Unless there\u0027s a really good reason to use em, I\u0027d use px (all other CSS is px-based)",
+      "revId": "73b491fdd66c33da32586cf441a1e4a174a1015a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
