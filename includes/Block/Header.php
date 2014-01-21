@@ -29,6 +29,10 @@ class HeaderBlock extends AbstractBlock {
 
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
+
+		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
+
+		// Basic initialisation done -- now, load data if applicable
 		if ( $this->workflow->isNew() ) {
 			$this->needCreate = true;
 			return;
@@ -44,8 +48,6 @@ class HeaderBlock extends AbstractBlock {
 		if ( $found ) {
 			$this->header = reset( $found );
 		}
-
-		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 	}
 
 	protected function validate() {
