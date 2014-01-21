@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_2d063321",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T16:21:57Z",
+      "side": 1,
+      "message": "Also remove [optional] in here",
+      "revId": "25a7b8caea36df98f748e95aa8817cf0b79408e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_ed0f2b32",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-21T16:21:57Z",
+      "side": 1,
+      "message": "Can\u0027t immediately find if/why User typehint was removed, and I don\u0027t really see any reason for the typehint not to be there (albeit with the default \u003d null)\n\nFirst line of code checks for the argument to be an instance of User, so the only values that seem to make sense are User or null. If so, I\u0027d rather see it typehinted as \"User $user \u003d null\", rather than just \"$user\".",
+      "revId": "25a7b8caea36df98f748e95aa8817cf0b79408e3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
