@@ -98,7 +98,7 @@
 										}
 
 										$newContainer.trigger( 'flow_init' );
-										mw.notify( mw.msg( confirmationMsg, mw.user ) );
+										mw.notify( mw.msg( confirmationMsg, creatorName, mw.user ) );
 									} )
 									.fail( function() {
 										var $errorDiv = $( '<div/>' ).flow( 'showError', arguments ),

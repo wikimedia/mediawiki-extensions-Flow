@@ -227,11 +227,11 @@ $messages['en'] = array(
 	'flow-moderation-confirm-hide-post' => 'Hide',
 	'flow-moderation-confirm-restore-post' => 'Restore',
 	'flow-moderation-confirmation-suppress-post' => 'The post was successfully suppressed.
-Consider {{GENDER:$1|giving}} $1 feedback on this post.',
+{{GENDER:$2|Consider}} giving $1 feedback on this post.',
 	'flow-moderation-confirmation-delete-post' => 'The post was successfully deleted.
-Consider {{GENDER:$1|giving}} $1 feedback on this post.',
+{{GENDER:$2|Consider}} giving $1 feedback on this post.',
 	'flow-moderation-confirmation-hide-post' => 'The post was successfully hidden.
-Consider {{GENDER:$1|giving}} $1 feedback on this post.',
+{{GENDER:$2|Consider}} giving $1 feedback on this post.',
 	'flow-moderation-confirmation-restore-post' => 'You have successfully restored the above post.',
 	'flow-moderation-title-suppress-topic' => 'Suppress topic?',
 	'flow-moderation-title-delete-topic' => 'Delete topic?',
@@ -246,11 +246,11 @@ Consider {{GENDER:$1|giving}} $1 feedback on this post.',
 	'flow-moderation-confirm-hide-topic' => 'Hide',
 	'flow-moderation-confirm-restore-topic' => 'Restore',
 	'flow-moderation-confirmation-suppress-topic' => 'The topic was successfully suppressed.
-Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
+{{GENDER:$2|Consider}} giving $1 feedback on this topic.',
 	'flow-moderation-confirmation-delete-topic' => 'The topic was successfully deleted.
-Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
+{{GENDER:$2|Consider}} giving $1 feedback on this topic.',
 	'flow-moderation-confirmation-hide-topic' => 'The topic was successfully hidden.
-Consider {{GENDER:$1|giving}} $1 feedback on this topic.',
+{{GENDER:$2|Consider}} giving $1 feedback on this topic.',
 	'flow-moderation-confirmation-restore-topic' => 'You have successfully restored this topic.',
 
 	// Permalink related stuff
