@@ -5,15 +5,13 @@
 	 */
 	var getPagingLink = function ( data ) {
 		var direction = data.direction,
-			offset = data.offset,
-			limit = data.limit;
+			offset = data.offset;
 		
 		return $( '<div/>' )
 			.addClass( 'flow-paging' )
 			.addClass( 'flow-paging-'+direction )
 			.data( 'direction', direction )
 			.data( 'offset', offset )
-			.data( 'limit', limit )
 			.append(
 				$( '<a/>' )
 					.attr( 'href', '#' )
@@ -31,9 +29,18 @@
 			}
 			$pagingLinkDiv.addClass( 'flow-paging-loading' );
 
+			var pageSizes = mw.config.get( 'wgFlowPageSize' ),
+				limit = pageSizes.expanded,
+				$flowContainer = $( this ).closest( '.flow-container' );
+
+			if ( $flowContainer.hasClass( 'topic-collapsed-one-line' ) ) {
+				limit = pageSizes['collapsed-oneline'];
+			} else if ( $flowContainer.hasClass( 'topic-collapsed-full' ) ) {
+				limit = pageSizes['collapsed-full'];
+			}
+
 			var offset = $pagingLinkDiv.data( 'offset' ),
 				direction = $pagingLinkDiv.data( 'direction' ),
-				limit = $pagingLinkDiv.data( 'limit' ),
 				workflowId = $( this ).flow( 'getTopicWorkflowId' ),
 				pageName = $( this ).closest( '.flow-container' ).data( 'page-title' ),
 

@@ -238,7 +238,6 @@ class Templating {
 				'class' => 'flow-paging flow-paging-'.$direction,
 				'data-offset' => $offset,
 				'data-direction' => $direction,
-				'data-limit' => $limit,
 			),
 			$output
 		);
