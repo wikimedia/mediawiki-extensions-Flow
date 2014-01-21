@@ -375,4 +375,20 @@ class FlowHooks {
 		$result = $methods[$method]( $vars, $parameters );
 		return false;
 	}
+
+	/**
+	 * Abort notifications coming from RecentChange class, Flow has its
+	 * own notifications through Echo.
+	 *
+	 * @param User $editor
+	 * @param Title $title
+	 * @return bool false to abort email notification
+	 */
+	public static function onAbortEmailNotification( $editor, $title ) {
+		if ( Container::get( 'occupation_controller' )->isTalkpageOccupied( $title ) ) {
+			return false;
+		}
+
+		return true;
+	}
 }
