@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_8ef53aca",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-21T02:16:00Z",
+      "side": 1,
+      "message": "This works as-is locally, but I\u0027ll change it for consistency.",
+      "parentUuid": "aef5673e_2ee86e0a",
+      "revId": "9aad1faafaf63a2cdcf75375811d3008c13d4fa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_0ed5aa47",
         "filename": "maintenance/convertToText.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-01-21T02:01:45Z",
       "side": 1,
       "message": "\\Flow right?",
+      "revId": "9aad1faafaf63a2cdcf75375811d3008c13d4fa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_ee0606d1",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-21T02:16:00Z",
+      "side": 1,
+      "message": "Doesn\u0027t matter, because I\u0027m not in any namespace.",
+      "parentUuid": "aef5673e_0ed5aa47",
       "revId": "9aad1faafaf63a2cdcf75375811d3008c13d4fa3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,41 @@
     },
     {
       "key": {
+        "uuid": "aef5673e_ce0b42d8",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-21T02:16:00Z",
+      "side": 1,
+      "message": "Not really, doesn\u0027t matter either way because the class won\u0027t be loaded unless the script is being run.",
+      "parentUuid": "aef5673e_a43f11d3",
+      "revId": "9aad1faafaf63a2cdcf75375811d3008c13d4fa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_6ef2f6e0",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-21T02:16:00Z",
+      "side": 1,
+      "message": "oopsies",
+      "revId": "9aad1faafaf63a2cdcf75375811d3008c13d4fa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_0e5b6afe",
         "filename": "maintenance/convertToText.php",
         "patchSetId": 1
@@ -64,6 +135,24 @@
       "writtenOn": "2014-01-21T02:01:45Z",
       "side": 1,
       "message": "I don\u0027t think this will work for RTL languages...",
+      "revId": "9aad1faafaf63a2cdcf75375811d3008c13d4fa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_ae10fe04",
+        "filename": "maintenance/convertToText.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-21T02:16:00Z",
+      "side": 1,
+      "message": "I\u0027ll ask, but I\u0027m pretty sure it\u0027s fine. You don\u0027t need to reverse the order of things in RTL languages, the browser automatically displays the text left to right.\n\nMaybe there are different conventions for where to sign, though.",
+      "parentUuid": "aef5673e_0e5b6afe",
       "revId": "9aad1faafaf63a2cdcf75375811d3008c13d4fa3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
