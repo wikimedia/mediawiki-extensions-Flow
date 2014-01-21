@@ -7,6 +7,7 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
 use Language;
+use RecentChange;
 
 abstract class RecentChanges implements LifecycleHandler {
 
@@ -51,7 +52,6 @@ abstract class RecentChanges implements LifecycleHandler {
 	 * @param Workflow $workflow
 	 * @param $timestamp
 	 * @param array $changes
-	 * @return bool
 	 */
 	protected function insert( $action, $block, $revisionType, $revisionId, array $row, Workflow $workflow, $timestamp, array $changes ) {
 		if ( $timestamp instanceof UUID ) {
@@ -89,8 +89,8 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_cur_time' => $timestamp,
 		);
 
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->insert( 'recentchanges', $attribs, __METHOD__ );
+		$rc = RecentChange::newFromRow( (object)$attribs );
+		$rc->save();  // Insert into db and send to RC feeds
 	}
 }
 
