@@ -55,14 +55,32 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		Html::closeElement( 'div' );
 }
 
+$containerClass = 'flow-post-container';
+
+if ( $post->getDepth() >= $maxThreadingDepth ) {
+	$containerClass .= ' flow-post-max-depth';
+}
+
 echo Html::openElement( 'div', array(
-	'class' => 'flow-post-container ' . ( $post->getDepth() >= $maxThreadingDepth ? 'flow-post-max-depth' : '' ),
+	'class' => $containerClass,
 	'data-revision-id' => $post->getRevisionId()->getHex(),
 	'data-post-id' => $post->getPostId()->getHex(),
 	'data-creator-name' => $postView->creator(),
 ) );
+
+$postClass = 'flow-post flow-element-container';
+
+if ( $postView->creator() === $user->getName() ) {
+	$postClass .= ' flow-post-own';
+}
+
+if ( $post->isModerated() ) {
+	$postClass .= ' flow-post-moderated';
+} else {
+	$postClass .= ' flow-post-unmoderated';
+}
 ?>
-	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class='flow-post flow-element-container <?php echo $post->isModerated() ? 'flow-post-moderated' : 'flow-post-unmoderated' ?>' >
+	<div id="flow-post-<?php echo $post->getPostId()->getHex()?>" class='<?php echo $postClass; ?>' >
 		<?php
 		if ( $post->isModerated() ):
 			$moderationState = $post->getModerationState();
