@@ -2,7 +2,7 @@
 
 namespace Flow\View;
 
-use Flow\Data\UsernameBatch;
+use Flow\Data\UserNameBatch;
 use Flow\Model\PostRevision;
 use Flow\Block\AbstractBlock;
 use Flow\UrlGenerator;
@@ -24,7 +24,7 @@ class Post {
 	 * @param PostActionMenu $actions Action menus
 	 * @param UrlGenerator $urlGenerator Url generator object
 	 */
-	public function __construct( User $user, PostRevision $post, PostActionMenu $actions, UrlGenerator $urlGenerator, UsernameBatch $usernames ) {
+	public function __construct( User $user, PostRevision $post, PostActionMenu $actions, UrlGenerator $urlGenerator, UserNameBatch $usernames ) {
 		$this->user = $user;
 		$this->post = $post;
 		$this->actions = $actions;
