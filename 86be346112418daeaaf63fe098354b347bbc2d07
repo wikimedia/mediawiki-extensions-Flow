@@ -16,6 +16,24 @@
       "revId": "86be346112418daeaaf63fe098354b347bbc2d07",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_360c40f0",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-21T21:53:34Z",
+      "side": 1,
+      "message": "Hmm, I started with wikitext but then realized that the edit-topic form is built by Javascript.  We could add the parsed wikitext as hidden text on board level so it can be used by all topics, but this implementation seems a little bit weird.  Any other thoughts?",
+      "parentUuid": "aef5673e_8debff9f",
+      "revId": "86be346112418daeaaf63fe098354b347bbc2d07",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
