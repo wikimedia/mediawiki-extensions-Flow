@@ -138,10 +138,12 @@ class FlowHooks {
 	 * @return boolean True to continue processing as normal, False to abort.
 	 */
 	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
+		global $wgFlowCoreActionWhitelist;
 		$container = Container::getContainer();
 		$occupationController = $container['occupation_controller'];
+		$action = $request->getVal( 'action' );
 
-		if ( $occupationController->isTalkpageOccupied( $title ) ) {
+		if ( $occupationController->isTalkpageOccupied( $title ) && !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
 
 			$view = new Flow\View(
 				$container['templating'],
