@@ -1,7 +1,7 @@
 MW_INSTALL_PATH ?= ../..
 
 ee-flow:
-	ssh ee-flow.pmtpa.wmflabs 'cd /srv/mediawiki/extensions/Flow && make'
+	ssh ee-flow.pmtpa.wmflabs 'cd /srv/mediawiki/extensions/Flow && make master'
 
 master:
 	git fetch
