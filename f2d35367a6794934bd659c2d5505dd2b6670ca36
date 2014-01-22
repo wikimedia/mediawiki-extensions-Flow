@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_e7b3c44a",
+        "filename": "tests/browser/features/header.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-22T10:06:31Z",
+      "side": 1,
+      "message": "The only thing I know about Ruby is that there are less fights over indentation and everyone pretty much accepts 2 spaces per logical indentation",
+      "revId": "f2d35367a6794934bd659c2d5505dd2b6670ca36",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
