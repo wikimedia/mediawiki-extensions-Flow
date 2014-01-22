@@ -2,6 +2,10 @@ Given(/^I am on Flow page$/) do
   visit FlowPage
 end
 
+Given(/^I am on a new board$/) do
+  visit NewFlowPage
+end
+
 Given(/^I have created a Flow topic$/) do
   step "I am on Flow page"
   step "I create a Title of Flow Topic in Flow new topic"
