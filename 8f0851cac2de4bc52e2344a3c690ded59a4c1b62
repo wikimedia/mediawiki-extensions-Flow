@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_07590839",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-22T09:46:49Z",
+      "side": 1,
+      "message": "You should be able to do $wiki-\u003egetAction()",
+      "revId": "8f0851cac2de4bc52e2344a3c690ded59a4c1b62",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
