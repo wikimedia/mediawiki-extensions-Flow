@@ -181,6 +181,7 @@ $wgHooks['ResourceLoaderGetConfigVars'][] = 'FlowHooks::onResourceLoaderGetConfi
 $wgHooks['ContribsPager::reallyDoQuery'][] = 'FlowHooks::onContributionsQuery';
 $wgHooks['ContributionsLineEnding'][] = 'FlowHooks::onContributionsLineEnding';
 $wgHooks['AbuseFilter-computeVariable'][] = 'FlowHooks::onAbuseFilterComputeVariable';
+$wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
