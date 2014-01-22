@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aef5673e_bc0caf3e",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-01-22T01:16:54Z",
+      "side": 1,
+      "message": "If you want to stress the correct verb for GENDER, it should be deleted, not show. For the English string, it doesn\u0027t matter, though. (Also for the message below.)",
+      "revId": "9c6820df22f2d60f3afaf8a42856e6eb7b935208",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_a10a4c27",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 20
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-01-22T01:16:54Z",
+      "side": 1,
+      "message": "Please remove trailing whitespace.",
+      "revId": "9c6820df22f2d60f3afaf8a42856e6eb7b935208",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aef5673e_c10d5043",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-01-22T01:16:54Z",
+      "side": 1,
+      "message": "Remove this? Should a todo or explanation be added for why this code is commented out otherwise?",
+      "revId": "9c6820df22f2d60f3afaf8a42856e6eb7b935208",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
