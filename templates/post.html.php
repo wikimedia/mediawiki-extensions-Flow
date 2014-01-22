@@ -104,7 +104,7 @@ if ( $post->isModerated() ) {
 			<?php echo $postView->editPostButton( 'flow-edit-post-link flow-icon flow-icon-bottom-aligned' ); ?>
 
 			<div class="flow-post-content">
-				<?php echo $this->getContent( $post, 'html' ), $postView->createModifiedTipsyLink( $block ); ?>
+				<?php echo $this->getContent( $post, 'html' ), $postView->createModifiedTipsyLink( $block ), $postView->createModifiedTipsyHtml( $block ); ?>
 			</div>
 			<?php if ( $postView->actions()->isAllowedAny( 'hide-post', 'delete-post', 'suppress-post', 'restore-post' ) ): ?>
 				<div class="flow-tipsy flow-actions">
