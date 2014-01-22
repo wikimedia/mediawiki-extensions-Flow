@@ -46,4 +46,10 @@ class FlowPage
   a(:topic_actions_link, text: "Actions", index: 0)
   div(:topic_post, class: "flow-post-content", index: topic_index)
   div(:topic_title, class: "flow-topic-title", index: topic_index)
+
+  div(:header_content, id: "flow-header-content", index: 0)
+  a(:edit_header_link, title: "Edit header")
+  form(:edit_header_form, class: "flow-edit-header-form")
+  text_field(:edit_header_textbox, class: "flow-edit-header-content")
+  button(:edit_header_save, class: "flow-edit-header-submit")
 end
