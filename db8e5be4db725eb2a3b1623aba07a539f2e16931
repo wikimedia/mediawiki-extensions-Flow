@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8efa632e_043dbab8",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-01-22T21:56:36Z",
+      "side": 1,
+      "message": "I think the general naming style would be $moduleManager.\n\nAlso, is there any reason for this to be protected rather than private?",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_a42cc690",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-01-22T21:56:36Z",
+      "side": 1,
+      "message": "Access?",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_e443ee13",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-01-22T21:56:36Z",
+      "side": 1,
+      "message": "This really shouldn\u0027t be needed, and appears to be unused.",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_2442f613",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-01-22T21:56:36Z",
+      "side": 1,
+      "message": "Lines 50-53 should be unnecessary as long as $this-\u003emustBePosted() is true.\n\nOTOH, doesn\u0027t hurt to double check, either.",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_24d31663",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-01-22T21:56:36Z",
+      "side": 1,
+      "message": "Is there any need for this commented-out code",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_c4c11285",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-01-22T21:56:36Z",
+      "side": 1,
+      "message": "I expect you already know this, but this @todo should be done before this changeset is considered done.\n\nAlso, weird spacing.",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_8401cabb",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-01-22T21:56:36Z",
+      "side": 1,
+      "message": "Should use ApiResult\u0027s setIndexedTagName instead of hard-coding _element",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_6406bed3",
+        "filename": "includes/api/ApiFlowBase.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-01-22T21:56:36Z",
+      "side": 1,
+      "message": "\u0027result\u0027 should not be either a string or an array. Instead, have a \u0027status\u0027 that is always a string, or make \u0027result\u0027 be always a string and use some other key above.",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_2410b603",
+        "filename": "includes/api/ApiFlowOld.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-01-22T21:56:36Z",
+      "side": 1,
+      "message": "I hope this goes away entirely before this changeset is considered complete.",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
