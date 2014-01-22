@@ -184,6 +184,8 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onSkinTemplateNavigation( SkinTemplate &$template, &$links ) {
+		global $wgFlowCoreActionWhitelist;
+
 		$title = $template->getTitle();
 
 		$container = Container::getContainer();
@@ -201,13 +203,12 @@ class FlowHooks {
 				'href' => $title->getLocalURL( 'action=board-history' ),
 			) );
 
-			unset(
-				$links['actions']['protect'],
-				$links['actions']['unprotect'],
-				$links['actions']['delete'],
-				$links['actions']['move'],
-				$links['actions']['undelete']
-			);
+			// hide all ?action= links unless whitelisted
+			foreach ( $links['actions'] as $action => $data ) {
+				if ( !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
+					unset( $links['actions'][$action] );
+				}
+			}
 		}
 
 		return true;
