@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8efa632e_cdcb7574",
+        "filename": "Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-23T06:04:36Z",
+      "side": 1,
+      "message": "I\u0027m not able to do anything on ee-flow-extra unless I `sudo su vagrant` first.",
+      "revId": "af78cf5e05514dcf4a0676ecb5e9bf9f852d780c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
