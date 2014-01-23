@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "8efa632e_527144dc",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-01-23T01:57:25Z",
+      "side": 1,
+      "message": "I discussed this with Niklas. He recommends something different from what I thought. You should indeed use wiki text, and parse it.",
+      "parentUuid": "aef5673e_875bd825",
+      "revId": "86be346112418daeaaf63fe098354b347bbc2d07",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aef5673e_67a0d4f1",
         "filename": "templates/edit-header.html.php",
         "patchSetId": 2
