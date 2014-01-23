@@ -64,53 +64,17 @@
 			.click( function ( e ) {
 				e.preventDefault();
 
-				var $formContainer,
-					username = '',
-					defaultContent = '',
-					$textarea;
+				var $formContainer;
 
 				if ( $( this ).is( '.flow-topic-comments .flow-reply-link' ) ) {
 					// We're in the topic title
 					$formContainer = $( this ).closest( '.flow-topic-container' );
-					$textarea = $formContainer.find( '.flow-topic-reply-content' );
+					mw.flow.discussion.loadReplyForm( $formContainer, '' );
+
 				} else {
-					$formContainer = $( this ).closest( '.flow-post-container:not(.flow-post-max-depth)' ).find( '.flow-post-reply-container' );
-					$textarea = $formContainer.find( '.flow-reply-content' );
-					$( this ).closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
-
-					// Prefill reply textarea with link to User we're replying to
-					username = $( this ).closest( '.flow-post-container' ).data( 'creator-name' );
-					if ( !mw.util.isIPv4Address( username , true ) && !mw.util.isIPv6Address( username , true ) ) {
-						username = '[[' + mw.Title.newFromText( username, 2 ).getPrefixedText() + '|' + username + ']]';
-					}
-					defaultContent = username + ': ';
+					// post reply-form init has been moved to discussion/post.js
+					return;
 				}
-
-				$formContainer
-					.show()
-					.find( '.flow-cancel-link' )
-					.click( function( e ) {
-						e.preventDefault();
-						$( this )
-							.closest( '.flow-topic-container' )
-							.find( '.flow-topic-reply-container' )
-							.show();
-					} );
-
-				// Set the focus so the textarea's outerheight won't be set to 34px,
-				// the outerheight is the editor's min-height
-				$textarea
-					.focus()
-					.removeClass( 'flow-reply-box-closed' );
-				mw.flow.editor.load( $textarea, defaultContent, 'wikitext' );
-				$formContainer.find( '.flow-post-form-controls' ).show();
-
-				// Scroll to the form
-				$textarea.scrollIntoView( {
-					'complete' : function () {
-						mw.flow.editor.moveCursorToEnd( $textarea );
-					}
-				} );
 			} );
 
 		$( '<a />' )
