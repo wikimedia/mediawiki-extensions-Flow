@@ -39,7 +39,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		Html::textarea( $block->getName() . '[content]', '', array(
 			'placeholder' => $placeHolder,
 			'title' => $placeHolder,
-			'class' => 'flow-reply-content mw-ui-input',
+			'class' => 'flow-post-reply-content mw-ui-input',
 			'rows' => '10',
 		) ) .
 		// NOTE: cancel button will be added via JS, makes no sense in non-JS context
@@ -48,7 +48,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 			Html::element( 'input', array(
 				'type' => 'submit',
 				'value' => $postView->replySubmit(),
-				'class' => 'mw-ui-button mw-ui-constructive flow-reply-submit',
+				'class' => 'mw-ui-button mw-ui-constructive flow-post-reply-submit',
 			) ) .
 		Html::closeElement( 'div' ) .
 		Html::closeElement( 'form' ) .
