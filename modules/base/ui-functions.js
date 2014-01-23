@@ -244,7 +244,7 @@
 				// add cancel link
 				$( '<a />' )
 					.attr( 'href', '#' )
-					.addClass( 'flow-cancel-link mw-ui-button mw-ui-text' )
+					.addClass( 'flow-cancel-link mw-ui-button mw-ui-quiet' )
 					.text( mw.msg( 'flow-cancel' ) )
 					.click( function ( e ) {
 						e.preventDefault();
