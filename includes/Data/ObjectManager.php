@@ -1582,7 +1582,7 @@ class LocalBufferedCache extends BufferedCache {
 			}
 		} else {
 			$this->buffer[] = array(
-				'command' => __FUNCTION__,
+				'command' => array( $this->cache, __FUNCTION__ ),
 				'arguments' => array( $key, $value, $this->exptime ),
 			);
 			// speculative ... could cause a ton of bugs due to normal assumptions
