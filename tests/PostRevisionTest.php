@@ -20,6 +20,6 @@ class PostRevisionTest extends PostRevisionTestCase {
 		$roundtripRow = PostRevision::toStorageRow( $object );
 		unset( $roundtripRow['rev_content_url'] );
 
-		$this->assertEquals( $roundtripRow, $row );
+		$this->assertEquals( $row, $roundtripRow );
 	}
 }

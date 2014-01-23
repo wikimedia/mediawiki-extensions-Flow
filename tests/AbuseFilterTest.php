@@ -51,7 +51,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 		$title = Title::newFromText( 'UTPage' );
 
 		$status = $this->spamFilter->validate( $newRevision, $oldRevision, $title );
-		$this->assertEquals( $status->isOK(), $expected );
+		$this->assertEquals( $expected, $status->isOK() );
 	}
 
 	protected function setUp() {
