@@ -172,6 +172,7 @@
 		this.header.$container
 			.find( '#flow-header-content' )
 			.empty()
+			.removeClass( 'flow-header-empty' )
 			.append( $( output.rendered ) );
 	};
 

@@ -7,9 +7,12 @@
 	padding-bottom: 25px;
 
 	#flow-header-content {
-		font-weight: bold;
-		line-height: 25px;
-		color: @header-content-color;
+		// Only apply these styles if it's a plain text header
+		> p {
+			font-weight: bold;
+			line-height: 25px;
+			color: @header-content-color;
+		}
 
 		*:first-child {
 			margin-top: 0;
@@ -18,6 +21,13 @@
 		*:last-child {
 			margin-bottom: 0;
 		}
+	}
+
+	// Apply this styling only when the header is empty
+	#flow-header-content.flow-header-empty {
+		font-weight: bold;
+		line-height: 25px;
+		color: @header-content-color;
 	}
 
 	&:hover {
