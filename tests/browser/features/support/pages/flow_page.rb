@@ -1,5 +1,3 @@
-require "page-object"
-
 class FlowPage
   include PageObject
 
