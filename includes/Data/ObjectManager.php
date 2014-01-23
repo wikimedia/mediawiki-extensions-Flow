@@ -1648,7 +1648,7 @@ class BufferedCache {
 			$this->cache->add( $key, $value, $this->exptime );
 		} else {
 			$this->buffer[] = array(
-				'command' => __FUNCTION__,
+				'command' => array( $this->cache, __FUNCTION__ ),
 				'arguments' => array( $key, $value, $this->exptime ),
 			);
 		}
@@ -1663,7 +1663,7 @@ class BufferedCache {
 			$this->cache->set( $key, $value, $this->exptime );
 		} else {
 			$this->buffer[] = array(
-				'command' => __FUNCTION__,
+				'command' => array( $this->cache, __FUNCTION__ ),
 				'arguments' => array( $key, $value, $this->exptime ),
 			);
 		}
@@ -1678,7 +1678,7 @@ class BufferedCache {
 			$this->cache->delete( $key, $time );
 		} else {
 			$this->buffer[] = array(
-				'command' => __FUNCTION__,
+				'command' => array( $this->cache, __FUNCTION__ ),
 				'arguments' => compact( 'key', 'time' ),
 			);
 		}
@@ -1752,7 +1752,7 @@ class BufferedCache {
 		}
 		foreach ( $this->buffer as $row ) {
 			call_user_func_array(
-				array( $this->cache, $row['command'] ),
+				$row['command'],
 				$row['arguments']
 			);
 		}
