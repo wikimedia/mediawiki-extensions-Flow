@@ -23,7 +23,6 @@ class TopicListBlock extends AbstractBlock {
 
 	protected $treeRepo;
 	protected $supportedActions = array( 'new-topic' );
-	protected $suppressedActions = array( 'board-history' );
 	protected $topicWorkflow;
 	protected $topicListEntry;
 	protected $topicPost;
@@ -172,31 +171,28 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		// Don't render the topcilist block for some actions, eg: board-history
-		if ( !in_array( $this->action, $this->suppressedActions, true ) ) {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
-			if ( $this->workflow->isNew() ) {
-				$templating->render( "flow:topiclist.html.php", array(
-					'block' => $this,
-					'topics' => array(),
-					'user' => $this->user,
-					'page' => false,
-					'permissions' => $this->permissions,
-				) );
-			} else {
-				$findOptions = $this->getFindOptions( $options );
-				$page = $this->getPage( $findOptions );
-				$topics = $this->getTopics( $page );
+		$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
+		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
+		if ( $this->workflow->isNew() ) {
+			$templating->render( "flow:topiclist.html.php", array(
+				'block' => $this,
+				'topics' => array(),
+				'user' => $this->user,
+				'page' => false,
+				'permissions' => $this->permissions,
+			) );
+		} else {
+			$findOptions = $this->getFindOptions( $options );
+			$page = $this->getPage( $findOptions );
+			$topics = $this->getTopics( $page );
 
-				$templating->render( "flow:topiclist.html.php", array(
-					'block' => $this,
-					'topics' => $topics,
-					'user' => $this->user,
-					'page' => $page,
-					'permissions' => $this->permissions,
-				) );
-			}
+			$templating->render( "flow:topiclist.html.php", array(
+				'block' => $this,
+				'topics' => $topics,
+				'user' => $this->user,
+				'page' => $page,
+				'permissions' => $this->permissions,
+			) );
 		}
 	}
 

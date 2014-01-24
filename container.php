@@ -12,7 +12,7 @@ if ( $GLOBALS['wgFlowUseMemcache'] ) {
 	$c['memcache'] = new \HashBagOStuff;
 }
 $c['cache.version'] = $GLOBALS['wgFlowCacheVersion'];
-
+$c['definitions'] = $GLOBALS['wgFlowDefinitions'];
 
 // Flow config
 $c['flow_actions'] = $c->share( function( $c ) {

@@ -146,6 +146,7 @@ $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/Revi
 $wgAutoloadClasses['Flow\Data\HeaderRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 
 // The individual workflow pieces
+$wgAutoloadClasses['Flow\Block\BoardHistoryBlock'] = $dir . 'includes/Block/BoardHistory.php';
 $wgAutoloadClasses['Flow\Block\Block'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\AbstractBlock'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\BlockView'] = $dir . 'includes/Block/Block.php';
@@ -336,3 +337,30 @@ $wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.
 
 // Actions that must pass through to mediawiki on flow enabled pages
 $wgFlowCoreActionWhitelist = array( 'protect', 'unprotect' );
+
+// Flow definitions
+$wgFlowDefinitions = array(
+	'discussion' => array(
+		'blocks' => array(
+			'\Flow\Block\HeaderBlock',
+			'\Flow\Block\TopicListBlock',
+		),
+		'custom' => array (
+			'board-history' => array(
+				'blocks' => array(
+					'\Flow\Block\BoardHistoryBlock',
+				),
+			),
+			'header-view' => array(
+				'blocks' => array(
+					'\Flow\Block\HeaderBlock',
+				),
+			),
+		),
+	),
+	'topic' => array(
+		'blocks' => array(
+			'\Flow\Block\TopicBlock',
+		),
+	),
+);
