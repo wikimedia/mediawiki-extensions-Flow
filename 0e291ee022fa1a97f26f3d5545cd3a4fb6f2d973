@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8efa632e_efedfeb5",
+        "filename": "templates/compare-revisions.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-01-24T22:00:54Z",
+      "side": 1,
+      "message": "Do you want these links to be displayed as text (i.e. escaped), or should they be added literally? In the latter case, you need to add them as rawParams(), as the output mode for $headerMsg is parse() (per line 129).\n\nI see that the same pattern is used in line 86. If it works, I\u0027m mixing things up, but are you sure this works?",
+      "revId": "0e291ee022fa1a97f26f3d5545cd3a4fb6f2d973",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
