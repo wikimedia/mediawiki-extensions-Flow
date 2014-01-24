@@ -71,6 +71,23 @@
     },
     {
       "key": {
+        "uuid": "8efa632e_0a3a58c0",
+        "filename": "tests/PermissionsTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2014-01-24T23:49:03Z",
+      "side": 1,
+      "message": "For readability the setup and teardown should be at the top of the class rather than mixed amongst the tests.\nThey should be easy to spot",
+      "revId": "276c02b0d353b20d2a7d2b8554c9ddfa6470412c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8efa632e_6fcd6e34",
         "filename": "tests/PermissionsTest.php",
         "patchSetId": 3
@@ -82,6 +99,23 @@
       "writtenOn": "2014-01-24T22:27:54Z",
       "side": 1,
       "message": "This destroys the global state for any test that comes afterwords.",
+      "revId": "276c02b0d353b20d2a7d2b8554c9ddfa6470412c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_8a754895",
+        "filename": "tests/PermissionsTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2014-01-24T23:49:03Z",
+      "side": 1,
+      "message": "this should call parent::tearDown()",
       "revId": "276c02b0d353b20d2a7d2b8554c9ddfa6470412c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
