@@ -107,6 +107,12 @@ class UrlGenerator {
 					$data['topic[revId]'] = $revision->getRevisionId()->getHex();
 				}
 			break;
+			case 'header':
+				if ( $specificRevision ) {
+					$data['header[revId]'] = $revision->getRevisionId()->getHex();
+				}
+				$data['definition'] = 'header-view';
+			break;
 		}
 		return $this->generateUrl( $workflow, 'view', $data );
 	}
