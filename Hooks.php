@@ -200,7 +200,7 @@ class FlowHooks {
 			$links['views'] = array( array(
 				'class' => $selected ? 'selected' : '',
 				'text' => wfMessageFallback( "$skname-view-history", "history_short" )->text(),
-				'href' => $title->getLocalURL( 'action=board-history' ),
+				'href' => $title->getLocalURL( 'definition=board-history' ),
 			) );
 
 			// hide all ?action= links unless whitelisted

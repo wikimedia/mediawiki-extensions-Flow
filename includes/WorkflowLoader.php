@@ -136,35 +136,32 @@ class WorkflowLoader {
 		return $definition;
 	}
 
-	public function createBlocks( ) {
-		switch( $this->definition->getType() ) {
-		case 'discussion':
-			$blocks = array(
-				new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
-				new TopicListBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
-			);
-			break;
+	public function createBlocks() {
+		$definitions = Container::get( 'definitions' );
 
-		case 'topic':
-			$blocks = array(
-				new TopicBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
-			);
-			break;
+		if ( !isset( $definitions[$this->definition->getType()] ) ) {
+			throw new InvalidInputException( 'Definition ' . $this->definition->getType() . ' is not implemented', 'invalid-definition' );
+		}
+		// Flow database definition
+		$def = $definitions[$this->definition->getType()];
 
-		default:
-			throw new InvalidInputException( 'Not Implemented', 'invalid-definition' );
+		// Check if a valid custom definition is requested
+		$customDefinition = Container::get( 'request' )->getVal( 'definition', '' );
+		if ( isset( $def['custom'][$customDefinition] ) ) {
+			$def = $def['custom'][$customDefinition];
 		}
 
-		$return = array();
-		foreach ( $blocks as $block ) {
-			if ( !isset( $return[$block->getName()] ) ) {
-				$return[$block->getName()] = $block;
-			} else {
+		$blocks = array();
+		foreach ( $def['blocks'] as $blockName ) {
+			$block = new $blockName( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader );
+			if ( isset( $blocks[$block->getName()] ) ) {
 				throw new InvalidDataException( 'Multiple blocks with same name is not yet supported', 'fail-load-data' );
+			} else {
+				$blocks[$block->getName()] = $block;
 			}
 		}
 
-		return $return;
+		return $blocks;
 	}
 
 	public function handleSubmit( $action, array $blocks, $user, \WebRequest $request ) {

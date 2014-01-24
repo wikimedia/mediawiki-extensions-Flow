@@ -4,9 +4,11 @@ namespace Flow;
 
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
+use Flow\Block\HeaderBlock;
 use Flow\Data\UserNameBatch;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\Header;
 use Flow\View\PostActionMenu;
 use OutputPage;
 // These dont really belong here
@@ -193,6 +195,18 @@ class Templating {
 			'root' => $root,
 			'postActionMenu' => $actionMenu,
 			'postView' => $view
+		), $return );
+	}
+
+	public function renderHeader( Header $header, HeaderBlock $block, User $user, $template = '', $return = true ) {
+		if ( !$template ) {
+			$template = 'flow:header.html.php';
+		}
+		return $this->render( $template, array(
+			'block' => $block,
+			'workflow' => $block->getWorkflow(),
+			'header' => $header,
+			'user' => $user,
 		), $return );
 	}
 

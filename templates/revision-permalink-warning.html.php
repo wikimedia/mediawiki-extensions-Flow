@@ -13,14 +13,18 @@ $formattedTimestamp = $this->render( 'flow:timestamp.html.php', array(
 
 $urlGenerator = $this->getUrlGenerator();
 
-if ( $revision->getLastContentEditId() ) {
+if ( $revision->getPrevRevisionId() ) {
+	$params = array(
+		$block->getName().'[newRevision]' => $revision->getRevisionId()->getHex(),
+		$block->getName().'[oldRevision]' => $revision->getPrevRevisionId()->getHex()
+	);
+	if ( $revision->getRevisionType() === 'header' ) {
+		$params['definition'] = 'header-view';
+	}
 	$compareLink = $urlGenerator->generateUrl(
 		$block->getWorkflow(),
 		'compare-revisions',
-		array(
-			$block->getName().'[newRevision]' => $revision->getRevisionId()->getHex(),
-			$block->getName().'[oldRevision]' => $revision->getLastContentEditId()->getHex()
-		)
+		$params
 	);
 } else {
 	$compareLink = false;
@@ -50,7 +54,24 @@ switch( $revision->getRevisionType() ) {
 		}
 		break;
 	case 'header':
-		// @todo Implement
+		$historyLink = $urlGenerator->generateUrl(
+			$block->getWorkflow(),
+			'view',
+			array(
+				'definition' => 'board-history'
+			)
+		);
+
+		$msgKey = $compareLink ? 'flow-revision-permalink-warning-header' : 'flow-revision-permalink-warning-header-first';
+		$message = wfMessage( $msgKey )
+			->rawParams( $formattedTimestamp )
+			->params(
+				$historyLink
+			);
+
+		if ( $compareLink ) {
+			$message->params( $compareLink );
+		}
 		break;
 	default:
 		throw new \Flow\Exception\InvalidDataException( "Unknown revision type: " . $revision->getRevisionType(), 'fail-load-data' );
