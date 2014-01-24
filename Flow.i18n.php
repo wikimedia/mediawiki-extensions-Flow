@@ -1164,6 +1164,7 @@ $messages['br'] = array(
 	'flow-delete-header-content' => '{{GENDER:$1|Dilamet}} gant $2',
 	'flow-suppress-post-content' => 'An evezhiadenn-mañ a oa bet {{GENDER:$1|dilamet}} gant $2',
 	'flow-suppress-header-content' => '{{GENDER:$1|Dilamet}} gant $2',
+	'flow-suppress-usertext' => '<em>Anv implijer lamet</em>',
 	'flow-post-actions' => 'Oberoù',
 	'flow-topic-actions' => 'Oberoù',
 	'flow-cancel' => 'Nullañ',
@@ -1171,8 +1172,13 @@ $messages['br'] = array(
 	'flow-show-change' => "Diskouez ar c'hemmoù",
 	'flow-last-modified-by' => '{{GENDER:$1|kemmet}} da ziwezhañ gant $1',
 	'flow-newtopic-content-placeholder' => 'Ouzhpennañ munudoù ma karit',
+	'flow-reply-placeholder' => '{{GENDER:$1|Respont da}} to $1',
+	'flow-reply-submit' => '{{GENDER:$1|Respont}}',
+	'flow-reply-link' => '{{GENDER:$1|Respont}}',
+	'flow-thank-link' => '{{GENDER:$1|Trugarez}}',
 	'flow-edit-post-submit' => "Kas ar c'hemmoù",
 	'flow-post-edited' => 'Kemennadenn {{GENDER:$1|aozet}} gant $1 $2',
+	'flow-post-action-view' => 'Permalink',
 	'flow-post-action-post-history' => 'Istor ar gemennadenn',
 	'flow-post-action-suppress-post' => 'Lemel',
 	'flow-post-action-delete-post' => 'Dilemel',
@@ -1180,6 +1186,7 @@ $messages['br'] = array(
 	'flow-post-action-edit-post' => 'Aozañ ar gemennadenn',
 	'flow-post-action-edit' => 'Kemmañ',
 	'flow-post-action-restore-post' => 'Assevel ar gemennadenn',
+	'flow-topic-action-view' => 'Permalink',
 	'flow-topic-action-watchlist' => 'Roll evezhiañ',
 	'flow-topic-action-edit-title' => 'Kemmañ an titl',
 	'flow-error-other' => "Ur fazi dic'hortoz zo bet.",
@@ -1187,7 +1194,9 @@ $messages['br'] = array(
 	'flow-error-edit-restricted' => "N'oc'h ket aotreet da aozañ ar gemennadenn-mañ.",
 	'flow-error-external-multi' => 'Fazioù zo bet.<br />$1',
 	'flow-error-delete-failure' => "C'hwitet eo bet diverkadenn an elfenn-mañ",
+	'flow-error-hide-failure' => "N'eus ket bet gallet kuzhat an elfenn-mañ.",
 	'flow-error-default' => "C'hoarvezet ez eus ur fazi.",
+	'flow-edit-title-submit' => 'Cheñch an titl',
 	'flow-board-history' => 'Istor "$1"',
 	'flow-history-last4' => '4 eur diwezhañ',
 	'flow-history-day' => 'Hiziv',
@@ -1196,6 +1205,7 @@ $messages['br'] = array(
 	'flow-comment-deleted' => 'Evezhiadenn dilamet',
 	'flow-comment-hidden' => 'Evezhiadenn kuzhet',
 	'flow-comment-moderated' => 'Evezhiadenn habaskaet',
+	'flow-last-modified' => 'Kemm diwezhañ war-dro $1',
 	'flow-notification-link-text-view-post' => 'Gwelet ar gemennadenn',
 	'flow-notification-link-text-view-board' => 'Gwelet an daolenn',
 	'flow-notification-reply-email-subject' => "$1 {{GENDER:$1|en deus|he deus}} respontet d'ho kemennadenn",
@@ -1205,6 +1215,7 @@ $messages['br'] = array(
 	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|en deus|he deus}} aozet ur gemennadenn e-barzh $2 war "$3"',
 	'flow-link-post' => 'kemennadenn',
 	'flow-link-history' => 'istor',
+	'flow-moderation-title-suppress-post' => 'Lemel ar gemennadenn ?',
 	'flow-moderation-title-delete-post' => 'Dilemel ar gemennadenn ?',
 	'flow-moderation-title-hide-post' => 'Kuzhat ar gemennadenn ?',
 	'flow-moderation-title-restore-post' => 'Assevel ar gemennadenn ?',
@@ -1221,6 +1232,8 @@ $messages['br'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Diverkañ',
 	'flow-moderation-confirm-hide-topic' => 'Kuzhat',
 	'flow-moderation-confirm-restore-topic' => 'Assevel',
+	'flow-topic-collapsed-one-line' => 'Gwel bihan',
+	'flow-topic-complete' => 'Gwel klok',
 );
 
 /** Chechen (нохчийн)
@@ -1768,12 +1781,12 @@ $messages['fa'] = array(
 	'flow-moderation-confirm-delete-post' => 'حذف',
 	'flow-moderation-confirm-hide-post' => 'نهفتن',
 	'flow-moderation-confirm-restore-post' => 'بازیابی',
-	'flow-moderation-confirmation-suppress-post' => 'پست با موفقیت سرکوب شده بود.
-واکنش {{GENDER:$1|دادن}} $1 را در این پست در نظر بگیرید.', # Fuzzy
-	'flow-moderation-confirmation-delete-post' => 'پست با موفقیت حذف شده بود.
-واکنش {{GENDER:$1|دادن}} $1 را در این پست در نظر بگیرید.', # Fuzzy
-	'flow-moderation-confirmation-hide-post' => 'پست با موفقیت پنهان شده بود.
-واکنش {{GENDER:$1|دادن}} $1 را در این پست در نظر بگیرید.', # Fuzzy
+	'flow-moderation-confirmation-suppress-post' => 'پست با موفقیت سرکوب شده‌بود.
+{{GENDER:$2|در نظر بگیرید}} واکنش دادن $1 را در این پست.',
+	'flow-moderation-confirmation-delete-post' => 'پست با موفقیت حذف شده‌بود.
+{{GENDER:$2|در نظر بگیرید}} واکنش دادن $1 را در این پست.',
+	'flow-moderation-confirmation-hide-post' => 'پست با موفقیت پنهان شده‌بود.
+{{GENDER:$2|در نظر بگیرید}} واکنش دادن $1 را در این پست.',
 	'flow-moderation-confirmation-restore-post' => 'شما پست بالا را با موفقیت بازگردانده‌اید.',
 	'flow-moderation-title-suppress-topic' => 'موضوع سرکوب؟',
 	'flow-moderation-title-delete-topic' => 'موضوع حذف؟',
@@ -1787,11 +1800,12 @@ $messages['fa'] = array(
 	'flow-moderation-confirm-delete-topic' => 'حذف',
 	'flow-moderation-confirm-hide-topic' => 'نهفتن',
 	'flow-moderation-confirm-restore-topic' => 'بازیابی',
-	'flow-moderation-confirmation-suppress-topic' => '{{GENDER:$2|فرض کنید}} واکنش دادن $1 را در این موضوع.', # Fuzzy
-	'flow-moderation-confirmation-delete-topic' => 'موضوع با موفقیت حذف شده بود.
-واکنش {{GENDER:$1|دادن}} $1 را در این موضوع در نظر بگیرید.', # Fuzzy
-	'flow-moderation-confirmation-hide-topic' => 'موضوع با موفقیت پنهان شده بود.
-واکنش {{GENDER:$1|دادن}} $1 را در این موضوع در نظر بگیرید.', # Fuzzy
+	'flow-moderation-confirmation-suppress-topic' => 'موضوع با موفقیت سرکوب شده‌بود.
+{{GENDER:$2|در نظر بگیرید}} واکنش دادن $1 را در این موضوع.',
+	'flow-moderation-confirmation-delete-topic' => 'موضوع با موفقیت حذف شده‌بود.
+{{GENDER:$2|در نظر بگیرید}} واکنش دادن $1 را در این موضوع.',
+	'flow-moderation-confirmation-hide-topic' => 'موضوع با موفقیت پنهان شده‌بود.
+{{GENDER:$2|در نظر بگیرید}} واکنش دادن $1 را در این موضوع.',
 	'flow-moderation-confirmation-restore-topic' => 'شما این موضوع را با موفقیت بازگردانده‌اید.',
 	'flow-topic-permalink-warning' => 'این موضوع در [$2 $1] شروع شده‌ بود',
 	'flow-topic-permalink-warning-user-board' => "این موضوع در [$2 {{GENDER:$1|$1}}'sصفحهٔ] شروع شده بود",
@@ -2076,12 +2090,12 @@ $messages['fr'] = array(
 	'flow-moderation-confirm-delete-post' => 'Supprimer',
 	'flow-moderation-confirm-hide-post' => 'Masquer',
 	'flow-moderation-confirm-restore-post' => 'Rétablir',
-	'flow-moderation-confirmation-suppress-post' => 'Cette note à été suprimé avec succès.
-{{GENDER:$1|Pensez}} à donner à $1 un avis sur cette note.', # Fuzzy
+	'flow-moderation-confirmation-suppress-post' => 'Cette note à été supprimée avec succès.
+{{GENDER:$2|Pensez}} à donner à $1 un avis sur cette note.',
 	'flow-moderation-confirmation-delete-post' => 'Cette note a bien été supprimée.
-{{GENDER:$1|Pensez}} à donner à $1 un avis sur cette note.', # Fuzzy
+{{GENDER:$2|Pensez}} à donner à $1 un avis sur cette note.',
 	'flow-moderation-confirmation-hide-post' => 'Cette note a bien été masquée.
-{{GENDER:$1|Pensez}} à donner à $1 un avis sur cette note.', # Fuzzy
+{{GENDER:$2|Pensez}} à donner à $1 un avis sur cette note.',
 	'flow-moderation-confirmation-restore-post' => 'Vous avez bien restauré la note ci-dessus.',
 	'flow-moderation-title-suppress-topic' => 'Supprimer le sujet ?',
 	'flow-moderation-title-delete-topic' => 'Supprimer le sujet ?',
@@ -2095,11 +2109,12 @@ $messages['fr'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Supprimer',
 	'flow-moderation-confirm-hide-topic' => 'Masquer',
 	'flow-moderation-confirm-restore-topic' => 'Rétablir',
-	'flow-moderation-confirmation-suppress-topic' => '{{GENDER:$2|Penser}} à donner à $1 un avis sur ce sujet.', # Fuzzy
+	'flow-moderation-confirmation-suppress-topic' => 'Le sujet a bien été supprimé.
+{{GENDER:$2|Pensez}} à donner à $1 un avis sur ce sujet.',
 	'flow-moderation-confirmation-delete-topic' => 'Le sujet a bien été supprimé.
-{{GENDER:$1|Pensez}} à donner à $1 un avis sur ce sujet.', # Fuzzy
+{{GENDER:$2|Pensez}} à donner à $1 un avis sur ce sujet.',
 	'flow-moderation-confirmation-hide-topic' => 'Le sujet a bien été masqué.
-{{GENDER:$1|Pensez}} à donner à $1 un avis sur ce sujet.', # Fuzzy
+{{GENDER:$2|Pensez}} à donner à $1 un avis sur ce sujet.',
 	'flow-moderation-confirmation-restore-topic' => 'Vous avez bien rétabli ce sujet.',
 	'flow-topic-permalink-warning' => 'Ce sujet a été démarré sur [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Ce sujet a été démarré sur le tableau de [$2 {{GENDER:$1|$1}}]',
@@ -3198,9 +3213,9 @@ $messages['ko'] = array(
 	'flow-moderation-confirm-delete-post' => '삭제',
 	'flow-moderation-confirm-hide-post' => '표시 안함',
 	'flow-moderation-confirm-restore-post' => '복원',
-	'flow-moderation-confirmation-suppress-post' => '게시물 숨김에 성공하였습니다. 이 게시물에 대한 피드백을 $1 사용자에게 주는 것을 {{GENDER:$1|고려해주세요}}.', # Fuzzy
-	'flow-moderation-confirmation-delete-post' => '게시물 삭제에 성공하였습니다. 이 게시물에 대한 피드백을 $1 사용자에게  {{GENDER:$1|주는 것}}을 고려해주세요.', # Fuzzy
-	'flow-moderation-confirmation-hide-post' => '게시물을 표시 안 함으로 설정하는 데 성공하였습니다. 이 게시물에 대한 피드백을 $1 사용자에게 {{GENDER:$1|주는 것을}} 고려해주세요.', # Fuzzy
+	'flow-moderation-confirmation-suppress-post' => '게시물 숨김에 성공하였습니다. 이 게시물에 대한 피드백을 $1 사용자에게 주는 것을 {{GENDER:$2|고려해주세요}}.',
+	'flow-moderation-confirmation-delete-post' => '게시물 삭제에 성공하였습니다. 이 게시물에 대한 피드백을 $1 사용자에게  주는 것을 {{GENDER:$2|고려해주세요}}.',
+	'flow-moderation-confirmation-hide-post' => '게시물을 표시 안 함으로 설정하는 데 성공하였습니다. 이 게시물에 대한 피드백을 $1 사용자에게 주는 것을 {{GENDER:$2|고려해주세요}}.',
 	'flow-moderation-confirmation-restore-post' => '위의 게시물을 복원하는 데 성공했습니다.',
 	'flow-moderation-title-suppress-topic' => '주제를 숨기시겠습니까?',
 	'flow-moderation-title-delete-topic' => '주제를 삭제하시겠습니까?',
@@ -3214,9 +3229,9 @@ $messages['ko'] = array(
 	'flow-moderation-confirm-delete-topic' => '삭제',
 	'flow-moderation-confirm-hide-topic' => '숨기기',
 	'flow-moderation-confirm-restore-topic' => '복원',
-	'flow-moderation-confirmation-suppress-topic' => '주제 숨김에 성공했습니다. 이 게시물에 대한 피드백을 $1 사용자에게  {{GENDER:$1|주는 것을}} 고려해주세요.', # Fuzzy
-	'flow-moderation-confirmation-delete-topic' => '주제 삭제에 성공하였습니다. 이 게시물에 대한 피드백을 $1 사용자에게  {{GENDER:$1|주는 것}}을 고려해주세요.', # Fuzzy
-	'flow-moderation-confirmation-hide-topic' => '주제를 표시 안 함으로 설정하는 데 성공하였습니다. 이 게시물에 대한 피드백을 $1 사용자에게 {{GENDER:$1|주는 것을}} 고려해주세요.', # Fuzzy
+	'flow-moderation-confirmation-suppress-topic' => '주제 숨김에 성공했습니다. 이 게시물에 대한 피드백을 $1 사용자에게 주는 것을 {{GENDER:$2|고려해주세요}}.',
+	'flow-moderation-confirmation-delete-topic' => '주제 삭제에 성공하였습니다. 이 게시물에 대한 피드백을 $1 사용자에게 주는 것을 {{GENDER:$2|고려해주세요}}.',
+	'flow-moderation-confirmation-hide-topic' => '주제를 표시 안 함으로 설정하는 데 성공하였습니다. 이 게시물에 대한 피드백을 $1 사용자에게 주는 것을 {{GENDER:$2|고려해주세요}}.',
 	'flow-moderation-confirmation-restore-topic' => '위의 주제를 복원하는 데 성공했습니다.',
 	'flow-topic-permalink-warning' => '이 주제는 [$2 $1]에 시작됐습니다',
 	'flow-topic-permalink-warning-user-board' => '이 주제는 [$2 {{GENDER:$1|$1}}의 게시판]에서 시작됐습니다',
@@ -3569,9 +3584,9 @@ $messages['mk'] = array(
 	'flow-moderation-confirm-delete-post' => 'Избриши',
 	'flow-moderation-confirm-hide-post' => 'Скриј',
 	'flow-moderation-confirm-restore-post' => 'Поврати',
-	'flow-moderation-confirmation-suppress-post' => 'Објавата е успешно притаена. {{GENDER:$1|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за објавата.', # Fuzzy
-	'flow-moderation-confirmation-delete-post' => 'Објавата е успешно избришана. {{GENDER:$1|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за објавата.', # Fuzzy
-	'flow-moderation-confirmation-hide-post' => 'Објавата е успешно скриена. {{GENDER:$1|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за објавата.', # Fuzzy
+	'flow-moderation-confirmation-suppress-post' => 'Објавата е успешно притаена. {{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за објавата.',
+	'flow-moderation-confirmation-delete-post' => 'Објавата е успешно избришана. {{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за објавата.',
+	'flow-moderation-confirmation-hide-post' => 'Објавата е успешно скриена. {{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за објавата.',
 	'flow-moderation-confirmation-restore-post' => 'Успешно ја повративте објавата.',
 	'flow-moderation-title-suppress-topic' => 'Да ја притаам темата?',
 	'flow-moderation-title-delete-topic' => 'Да ја избришам темата?',
@@ -3585,9 +3600,9 @@ $messages['mk'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Избриши',
 	'flow-moderation-confirm-hide-topic' => 'Скриј',
 	'flow-moderation-confirm-restore-topic' => 'Поврати',
-	'flow-moderation-confirmation-suppress-topic' => '{{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за темата.', # Fuzzy
-	'flow-moderation-confirmation-delete-topic' => 'Темата е успешно избришана. {{GENDER:$1|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за темата.', # Fuzzy
-	'flow-moderation-confirmation-hide-topic' => 'Темата е успешно скриена. {{GENDER:$1|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за темата.', # Fuzzy
+	'flow-moderation-confirmation-suppress-topic' => 'Темата е успешно притаена. {{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за темата.',
+	'flow-moderation-confirmation-delete-topic' => 'Темата е успешно избришана. {{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за темата.',
+	'flow-moderation-confirmation-hide-topic' => 'Темата е успешно скриена. {{GENDER:$2|Ви препорачуваме}} на корисникот $1 да му дадете образложение и/или совет за темата.',
 	'flow-moderation-confirmation-restore-topic' => 'Успешно ја повративте темата.',
 	'flow-topic-permalink-warning' => 'Темата е започната на [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Темата е започната на [$2 таблата на {{GENDER:$1|$1}}]',
@@ -4739,11 +4754,12 @@ $messages['uk'] = array(
 	'flow-moderation-confirm-delete-post' => 'Видалити',
 	'flow-moderation-confirm-hide-post' => 'Приховати',
 	'flow-moderation-confirm-restore-post' => 'Відновити',
-	'flow-moderation-confirmation-suppress-post' => 'Розгляньте відгук {{GENDER:$2|наданий}} $1 на цей допис.', # Fuzzy
+	'flow-moderation-confirmation-suppress-post' => 'Допис успішно усунено.
+Розгляньте відгук {{GENDER:$2|наданий}} $1 на цей допис.',
 	'flow-moderation-confirmation-delete-post' => 'Цей допис успішно вилучено.
-Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цей допис.', # Fuzzy
+Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цей допис.',
 	'flow-moderation-confirmation-hide-post' => 'Цей допис успішно приховано.
-Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цей допис.', # Fuzzy
+Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цей допис.',
 	'flow-moderation-confirmation-restore-post' => 'Ви успішно відновили публікацію вище.',
 	'flow-moderation-title-suppress-topic' => 'Прибрати тему?',
 	'flow-moderation-title-delete-topic' => 'Видалити тему?',
@@ -4757,10 +4773,12 @@ $messages['uk'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Видалити',
 	'flow-moderation-confirm-hide-topic' => 'Приховати',
 	'flow-moderation-confirm-restore-topic' => 'Відновити',
-	'flow-moderation-confirmation-suppress-topic' => 'Розгляньте відгук {{GENDER:$2|наданий}} $1 на цю тему.', # Fuzzy
+	'flow-moderation-confirmation-suppress-topic' => 'Ця тема успішно усунена.
+Розгляньте відгук {{GENDER:$2|наданий}} $1 на цю тему.',
 	'flow-moderation-confirmation-delete-topic' => 'Тему успішно вилучено.
-Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цю тему.', # Fuzzy
-	'flow-moderation-confirmation-hide-topic' => 'Розгляньте відгук {{GENDER:$2|наданий}} $1 на цю тему.', # Fuzzy
+Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цю тему.',
+	'flow-moderation-confirmation-hide-topic' => 'Тема успішно прихована.
+Розгляньте відгук {{GENDER:$2|наданий}} $1 на цю тему.',
 	'flow-moderation-confirmation-restore-topic' => 'Ви успішно відновили цю тему.',
 	'flow-topic-permalink-warning' => 'Ця тема розпочата [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Ця тема розпочата на [$2 стіні {{GENDER:$1|$1}}]',
@@ -4958,9 +4976,9 @@ $messages['vi'] = array(
 	'flow-moderation-confirm-delete-post' => 'Xóa',
 	'flow-moderation-confirm-hide-post' => 'Ẩn',
 	'flow-moderation-confirm-restore-post' => 'Phục hồi',
-	'flow-moderation-confirmation-suppress-post' => 'Các bài đăng đã được đàn áp thành công. Xin hãy nghĩ đến {{GENDER:$1}}việc gửi phản hồi cho $1 về bài đăng này.', # Fuzzy
-	'flow-moderation-confirmation-delete-post' => 'Các bài đăng đã được xóa thành công. Xin hãy nghĩ đến {{GENDER:$1}}việc gửi phản hồi cho $1 về bài đăng này.', # Fuzzy
-	'flow-moderation-confirmation-hide-post' => 'Các bài đăng đã được ẩn thành công. Xin hãy nghĩ đến {{GENDER:$1}}việc gửi phản hồi cho $1 về bài đăng này.', # Fuzzy
+	'flow-moderation-confirmation-suppress-post' => 'Các bài đăng đã được đàn áp thành công. Xin hãy {{GENDER:$2}}nghĩ đến việc gửi phản hồi cho $1 về bài đăng này.',
+	'flow-moderation-confirmation-delete-post' => 'Các bài đăng đã được xóa thành công. Xin hãy {{GENDER:$2}}nghĩ đến việc gửi phản hồi cho $1 về bài đăng này.',
+	'flow-moderation-confirmation-hide-post' => 'Các bài đăng đã được ẩn thành công. Xin hãy {{GENDER:$2}}nghĩ đến việc gửi phản hồi cho $1 về bài đăng này.',
 	'flow-moderation-confirmation-restore-post' => 'Bạn đã phục hồi bài đăng ở trên thành công.',
 	'flow-moderation-title-suppress-topic' => 'Đàn áp chủ đề?',
 	'flow-moderation-title-delete-topic' => 'Xóa chủ đề?',
@@ -4974,9 +4992,9 @@ $messages['vi'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Xóa',
 	'flow-moderation-confirm-hide-topic' => 'Ẩn',
 	'flow-moderation-confirm-restore-topic' => 'Phục hồi',
-	'flow-moderation-confirmation-suppress-topic' => 'Các chủ đề đã được đàn áp thành công. Xin hãy nghĩ đến {{GENDER:$1}}việc gửi phản hồi cho $1 về chủ đề này.', # Fuzzy
-	'flow-moderation-confirmation-delete-topic' => 'Các chủ đề đã được xóa thành công. Xin hãy nghĩ đến {{GENDER:$1}}việc gửi phản hồi cho $1 về chủ đề này.', # Fuzzy
-	'flow-moderation-confirmation-hide-topic' => 'Các chủ đề đã được ẩn thành công. Xin hãy nghĩ đến {{GENDER:$1}}việc gửi phản hồi cho $1 về chủ đề này.', # Fuzzy
+	'flow-moderation-confirmation-suppress-topic' => 'Các chủ đề đã được đàn áp thành công. Xin hãy {{GENDER:$2}}nghĩ đến việc gửi phản hồi cho $1 về chủ đề này.',
+	'flow-moderation-confirmation-delete-topic' => 'Các chủ đề đã được xóa thành công. Xin hãy {{GENDER:$2}}nghĩ đến việc gửi phản hồi cho $1 về chủ đề này.',
+	'flow-moderation-confirmation-hide-topic' => 'Các chủ đề đã được ẩn thành công. Xin hãy {{GENDER:$2}}nghĩ đến việc gửi phản hồi cho $1 về chủ đề này.',
 	'flow-moderation-confirmation-restore-topic' => 'Bạn đã phục hồi chủ đề này thành công.',
 	'flow-topic-permalink-warning' => 'Chủ đề này được bắt đầu tại [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Chủ đề này được bắt đầu tại [$2 bảng tin nhắn của $1]',
@@ -5127,10 +5145,22 @@ $messages['zh-hans'] = array(
 	'flow-error-missing-prev-revision-identifier' => '上一修订的标识符缺失。',
 	'flow-error-prev-revision-mismatch' => '无法保存编辑：最近有更新的更改已被提交。',
 	'flow-error-prev-revision-does-not-exist' => '无法找到以前的版本。',
+	'flow-error-default' => '出现了一个错误',
+	'flow-error-invalid-title' => '指定了无效的页面标题。',
+	'flow-error-fail-load-history' => '未能加载历史内容。',
+	'flow-error-fail-commit' => '未能保存流内容。',
+	'flow-error-insufficient-permission' => '没有足够的权限访问内容。',
+	'flow-error-fail-load-data' => '未能加载所请求的数据。',
+	'flow-error-invalid-workflow' => '找不到请求的工作流。',
+	'flow-error-process-data' => '处理您的请求中的数据时出错。',
+	'flow-error-process-wikitext' => '处理 HTML/维基文本 转换时出错。',
+	'flow-error-no-index' => '未能找到索引来执行数据搜索。',
 	'flow-edit-header-submit' => '保存页顶',
 	'flow-edit-title-submit' => '更改标题',
 	'flow-rev-message-edit-post' => '$1{{GENDER:$2|编辑了}}一个[$3 评论]。',
 	'flow-rev-message-reply' => '$1{{GENDER:$2|添加了}}一个[$3 评论]。',
+	'flow-rev-message-reply-bundle' => '添加了<strong>$1 条评论</strong>。',
+	'flow-rev-message-new-post' => '$1 {{GENDER:$2|创建了}}主题 [$3  $4]。',
 	'flow-rev-message-create-header' => '$1{{GENDER:$2|创建了}}页顶。',
 	'flow-rev-message-edit-header' => '$1{{GENDER:$2|编辑了}}页顶。',
 	'flow-rev-message-deleted-post' => '$1{{GENDER:$2|删除}}了[$4 评论]（<em>$5</em>）。',
@@ -5172,6 +5202,7 @@ $messages['zh-hans'] = array(
 	'flow-moderation-confirm-delete-post' => '删除',
 	'flow-moderation-confirm-hide-post' => '隐藏',
 	'flow-moderation-confirm-restore-post' => '恢复',
+	'flow-moderation-confirmation-restore-post' => '您已成功还原上面的帖子。',
 	'flow-moderation-title-suppress-topic' => '抑制主题？',
 	'flow-moderation-title-delete-topic' => '删除主题?',
 	'flow-moderation-title-hide-topic' => '隐藏主题？',
@@ -5181,6 +5212,7 @@ $messages['zh-hans'] = array(
 	'flow-moderation-confirm-delete-topic' => '删除',
 	'flow-moderation-confirm-hide-topic' => '隐藏',
 	'flow-moderation-confirm-restore-topic' => '恢复',
+	'flow-moderation-confirmation-restore-topic' => '您已成功还原本主题。',
 	'flow-topic-permalink-warning' => '本主题已在[$2 $1]开启',
 	'flow-topic-permalink-warning-user-board' => '本主题已在[$2 $1的通告版]开启',
 	'flow-topic-collapsed-one-line' => '小型视图',
