@@ -131,9 +131,6 @@
 	 * @param {function} [loadFunction] callback to be executed when form is loaded
 	 */
 	mw.flow.action.post.edit.prototype.setupEditForm = function ( data, loadFunction ) {
-		var $editLink = this.object.$container.find( '.flow-edit-post-link' ),
-			$container = this.object.$container.addClass( 'flow-post-nocontrols' );
-
 		// call parent setupEditForm function
 		mw.flow.action.prototype.setupEditForm.call(
 			this,
@@ -141,13 +138,19 @@
 			loadFunction
 		);
 
-		// hide post controls & edit link and re-reveal it if the cancel link
-		// - which is added by flow( 'setupEditForm' ) - is clicked.
-		$editLink.hide();
-		this.object.$container.find( '.flow-cancel-link' ).on( 'click.mw-flow-discussion', function () {
-			$editLink.show();
-			$container.removeClass( 'flow-post-nocontrols' );
-		} );
+		this.object.$container.find( '.flow-edit-post-link' ).hide();
+		this.object.$container.addClass( 'flow-post-nocontrols' );
+	};
+
+	/**
+	 * Removes the edit form & restores content.
+	 */
+	mw.flow.action.post.edit.prototype.destroyEditForm = function () {
+		this.object.$container.find( '.flow-edit-post-link' ).show();
+		this.object.$container.removeClass( 'flow-post-nocontrols' );
+
+		// call parent destroyEditForm function
+		mw.flow.action.prototype.destroyEditForm.call( this );
 	};
 
 	/**
