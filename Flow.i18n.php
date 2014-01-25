@@ -280,6 +280,9 @@ You can see other versions of this post at its [$6 history page].',
 	'flow-terms-of-use-new-topic' => 'By clicking "{{int:flow-newtopic-save}}", you agree to the terms of use for this wiki.',
 	'flow-terms-of-use-reply' => 'By clicking "{{int:flow-reply-submit}}", you agree to the terms of use for this wiki.',
 	'flow-terms-of-use-edit' => 'By saving your changes, you agree to the terms of use for this wiki.',
+
+	// Anon warning
+	'flow-anon-warning' =>  'You are not logged in.',
 );
 
 /** Message documentation (Message documentation)
