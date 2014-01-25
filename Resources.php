@@ -83,6 +83,7 @@ $wgResourceModules += array(
 			'jquery.conditionalScroll',
 			'ext.flow.parsoid',
 			'mediawiki.jqueryMsg',
+			'mediawiki.user',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
@@ -101,6 +102,7 @@ $wgResourceModules += array(
 			'flow-post-moderated-toggle-show',
 			'flow-post-moderated-toggle-hide',
 			'flow-terms-of-use-edit',
+			'flow-anon-warning',
 		),
 		'position' => 'top',
 	),
