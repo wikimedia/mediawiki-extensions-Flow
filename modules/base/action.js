@@ -215,6 +215,11 @@
 				}
 			} );
 		}.bind( this, $form, loadFunction ), 0 );
+
+		// add anon warning if required
+		if ( mw.user.getId() === 0 ) {
+			this.showAnonWarning();
+		}
 	};
 
 	/**
@@ -302,13 +307,14 @@
 	 *
 	 * @param {jQuery} $element
 	 * @param {string} text
+	 * @param {Object} options Overrides
 	 */
-	mw.flow.action.prototype.tipsy = function ( $element, text ) {
+	mw.flow.action.prototype.tipsy = function ( $element, text, options ) {
 		$element
 			.click( function () {
 				$( this ).tipsy( 'hide' );
 			} )
-			.tipsy( {
+			.tipsy( $.extend( {
 				fade: true,
 				gravity: 'w',
 				html: true,
@@ -333,7 +339,35 @@
 					var $warning = $( '<div class="flow-tipsy-noflyout">' ).text( text );
 					return $( '<div>' ).append( $warning ).html();
 				}
-			} )
+			}, options ) )
 			.tipsy( 'show' );
+	};
+
+	/**
+	 * Shows a tooltip, dismissed by keyup in the form.
+	 */
+	mw.flow.action.prototype.showAnonWarning = function() {
+		var $el = this.$form.find( '.flow-creator > a' );
+
+		if ( ! $el.length ) {
+			$el = this.$form.find( 'textarea:first' );
+		}
+
+		this.tipsy(
+			$el,
+			mw.msg( 'flow-anon-warning' ),
+			{
+				className : 'flow-tipsy-warning flow-anon-warning'
+			}
+		);
+
+		this.$form.on( 'keyup', 'input, textarea', function(e) {
+			$el.tipsy( 'hide' );
+		} );
+
+		this.$form.find( '.flow-cancel-link' )
+			.click( function(e) {
+				$el.tipsy( 'hide' );
+			} );
 	};
 } ( jQuery, mediaWiki ) );

@@ -268,6 +268,10 @@ You can see other versions of this post at its [$6 history page].',
 	'flow-topic-collapsed-one-line' => 'Small view',
 	'flow-topic-collapsed-full' => 'Collapsed view',
 	'flow-topic-complete' => 'Full view',
+
+	// Anon warning
+	'flow-anon-warning' =>  "You are not logged in.
+Your IP address will be shown next to your contributions unless you log in or create an account.",
 );
 
 /** Message documentation (Message documentation)
@@ -1070,6 +1074,8 @@ See also:
 	'flow-topic-collapsed-full' => 'Used as title for the icon which is used to show collapsed view of topics.',
 	'flow-topic-complete' => 'Used as title for the icon which is used to show full view of topics.
 {{Identical|Full view}}',
+	'flow-anon-warning' => 'Shorter version of anoneditwarning.
+Shown in a tooltip that points to the user\'s IP address being displayed as the author of a post.',
 );
 
 /** Achinese (Acèh)

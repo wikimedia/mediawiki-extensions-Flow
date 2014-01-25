@@ -458,6 +458,11 @@
 
 		// load the form
 		this.loadNewForm();
+
+		// add anon warning if required
+		if ( mw.user.getId() === 0 ) {
+			this.showAnonWarning();
+		}
 	};
 
 	/**

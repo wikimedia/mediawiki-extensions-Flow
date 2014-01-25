@@ -79,6 +79,7 @@ $wgResourceModules += array(
 			'jquery.tipsy',
 			'jquery.scroll',
 			'ext.flow.parsoid',
+			'mediawiki.user',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
@@ -96,6 +97,7 @@ $wgResourceModules += array(
 			'flow-paging-rev',
 			'flow-post-moderated-toggle-show',
 			'flow-post-moderated-toggle-hide',
+			'flow-anon-warning',
 		),
 		'position' => 'top',
 	),
