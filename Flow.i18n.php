@@ -275,11 +275,13 @@ You can see other versions of this post at its [$6 history page].',
 	'flow-topic-collapsed-one-line' => 'Small view',
 	'flow-topic-collapsed-full' => 'Collapsed view',
 	'flow-topic-complete' => 'Full view',
-
 	// Terms of use
 	'flow-terms-of-use-new-topic' => 'By clicking add topic, you agree to our [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] and agree to irrevocably release your text under the [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
 	'flow-terms-of-use-reply' => 'By clicking reply, you agree to our [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] and agree to irrevocably release your text under the [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
 	'flow-terms-of-use-edit' => 'By saving changes, you agree to our [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] and agree to irrevocably release your text under the [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
+	// Anon warning
+	'flow-anon-warning' =>  "You are not logged in.
+Your IP address will be shown next to your contributions unless you log in or create an account.",
 );
 
 /** Message documentation (Message documentation)
@@ -1131,6 +1133,8 @@ This should be consistent with {{msg-mw|Flow-reply-submit}}.
 {{Related|Flow-terms-of-use}}',
 	'flow-terms-of-use-edit' => 'Terms of use for editing a header/topic/post.
 {{Related|Flow-terms-of-use}}',
+	'flow-anon-warning' => 'Shorter version of anoneditwarning.
+Shown in a tooltip that points to the user\'s IP address being displayed as the author of a post.',
 );
 
 /** Achinese (Acèh)
