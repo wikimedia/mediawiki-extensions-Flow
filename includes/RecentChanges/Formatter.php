@@ -4,12 +4,12 @@ namespace Flow\RecentChanges;
 
 use Flow\AbstractFormatter;
 use Flow\Model\UUID;
-use ChangesList;
+use IContextSource;
 use Html;
 use RecentChange;
 
 class Formatter extends AbstractFormatter {
-	public function format( ChangesList $cl, RecentChange $rc ) {
+	public function format( IContextSource $ctx, RecentChange $rc ) {
 		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
 		$changeData = $params['flow-workflow-change'];
 
@@ -19,8 +19,8 @@ class Formatter extends AbstractFormatter {
 		}
 
 		$title = $rc->getTitle();
-		$user = $cl->getUser();
-		$lang = $cl->getLanguage();
+		$user = $ctx->getUser();
+		$lang = $ctx->getLanguage();
 
 		/*
 		 * @todo:
@@ -63,7 +63,7 @@ class Formatter extends AbstractFormatter {
 		}
 		$linksContent = $lang->pipeList( $links );
 		if ( $linksContent ) {
-			$linksContent = wfMessage( 'parentheses' )->rawParams( $linksContent )->escaped()
+			$linksContent = $ctx->msg( 'parentheses' )->rawParams( $linksContent )->escaped()
 				. $this->changeSeparator();
 		}
 
@@ -79,7 +79,7 @@ class Formatter extends AbstractFormatter {
 
 		return $linksContent
 			. $workflowLink
-			. wfMessage( 'semicolon-separator' )->escaped()
+			. $ctx->msg( 'semicolon-separator' )->escaped()
 			. $formattedTime
 			. ' '
 			. $this->changeSeparator()

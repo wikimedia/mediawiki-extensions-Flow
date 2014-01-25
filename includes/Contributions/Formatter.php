@@ -3,21 +3,21 @@
 namespace Flow\Contributions;
 
 use Flow\AbstractFormatter;
-use ContribsPager;
+use IContextSource;
 use Html;
 
 class Formatter extends AbstractFormatter {
 	/**
-	 * @param ContribsPager $pager
+	 * @param IContextSource $ctx
 	 * @param \stdClass $row
 	 * @return string|bool HTML for contributions entry, or false on failure
 	 */
-	public function format( ContribsPager $pager, $row ) {
+	public function format( IContextSource $ctx, $row ) {
 		// Get all necessary objects
 		$workflow = $row->workflow;
 		$revision = $row->revision;
-		$lang = $pager->getLanguage();
-		$user = $pager->getUser();
+		$lang = $ctx->getLanguage();
+		$user = $ctx->getUser();
 		$title = $workflow->getArticleTitle();
 
 		// Fetch required data
@@ -66,7 +66,7 @@ class Formatter extends AbstractFormatter {
 		}
 		$linksContent = $lang->pipeList( $links );
 		if ( $linksContent ) {
-			$linksContent = wfMessage( 'parentheses' )->rawParams( $linksContent )->escaped();
+			$linksContent = $ctx->msg( 'parentheses' )->rawParams( $linksContent )->escaped();
 		}
 
 		// Put it all together
