@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8efa632e_2ac6344f",
+        "filename": "includes/Template.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-25T00:48:04Z",
+      "side": 1,
+      "message": "It seems to me that $escaped is redundant.  It encapsulates an array object but the properties of the array is eventually going through escaper::escape(), __get( $a ) could be just return escaper::__escape( $this-\u003edata[$a] );",
+      "revId": "11325aba2f3bf95968c6ec07e678ca86e1d40780",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_cf06c223",
+        "filename": "includes/Template.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-25T00:48:04Z",
+      "side": 1,
+      "message": "I don\u0027t think we want to leave $output as null",
+      "revId": "11325aba2f3bf95968c6ec07e678ca86e1d40780",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_6a055c13",
+        "filename": "includes/Template.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-25T00:48:04Z",
+      "side": 1,
+      "message": "This could be simplified as: return $this-\u003esetData( $data + $this-\u003edata );",
+      "revId": "11325aba2f3bf95968c6ec07e678ca86e1d40780",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_2acd1463",
+        "filename": "includes/Template/ErrorHelper.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-25T00:48:04Z",
+      "side": 1,
+      "message": "probably initialize $errors with array()",
+      "revId": "11325aba2f3bf95968c6ec07e678ca86e1d40780",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_0af13892",
+        "filename": "includes/Template/Escaper.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-01-25T00:48:04Z",
+      "side": 1,
+      "message": "If we accidentally assign a boolean/null value to a key in a object expecting a string, $template-\u003ekey-\u003eescape() would not work.  In this case, we probably should just throw an exception or have another type like emptyString() which will always return \u0027\u0027 for parse/escape/text.",
+      "revId": "11325aba2f3bf95968c6ec07e678ca86e1d40780",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
