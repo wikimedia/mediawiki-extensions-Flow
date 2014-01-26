@@ -1493,6 +1493,7 @@ $messages['el'] = array(
 
 /** Spanish (español)
  * @author Benfutbol10
+ * @author Carlitosag
  * @author Ciencia Al Poder
  * @author Fitoschido
  * @author Ihojose
@@ -1582,6 +1583,12 @@ $messages['es'] = array(
 	'flow-moderation-confirm-delete-post' => 'Eliminar',
 	'flow-moderation-confirm-hide-post' => 'Ocultar',
 	'flow-moderation-confirm-restore-post' => 'Restaurar',
+	'flow-moderation-confirmation-suppress-post' => 'La entrada fue suprimida con éxito.
+{{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
+	'flow-moderation-confirmation-delete-post' => 'La entrada fue eliminada con éxito.
+{{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
+	'flow-moderation-confirmation-hide-post' => 'La entrada fue ocultada con éxito.
+{{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
 	'flow-moderation-confirmation-restore-post' => '{{GENDER:$2|Has}} restaurado la publicación correctamente.', # Fuzzy
 	'flow-moderation-title-suppress-topic' => '¿Quieres suprimir el tema?',
 	'flow-moderation-title-delete-topic' => '¿Quieres eliminar el tema?',
@@ -1595,6 +1602,12 @@ $messages['es'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Eliminar',
 	'flow-moderation-confirm-hide-topic' => 'Ocultar',
 	'flow-moderation-confirm-restore-topic' => 'Restaurar',
+	'flow-moderation-confirmation-suppress-topic' => 'El tópico fue eliminado con éxito.
+{{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
+	'flow-moderation-confirmation-delete-topic' => 'El tópico fue eliminado con éxito.
+{{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
+	'flow-moderation-confirmation-hide-topic' => 'El tópico fue ocultado con éxito.
+{{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
 	'flow-moderation-confirmation-restore-topic' => 'Has restaurado este tema correctamente.',
 );
 
@@ -3274,6 +3287,7 @@ $messages['lb'] = array(
 	'flow-preview' => 'Kucken ouni ze späicheren',
 	'flow-show-change' => 'Ännerunge weisen',
 	'flow-last-modified-by' => "Fir d'lescht {{GENDER:$1|geännert}} vum $1",
+	'flow-stub-post-content' => '"Duerch en technesche Feeler konnt dës Matdeelung net ofgeruff ginn."',
 	'flow-newtopic-title-placeholder' => 'Neit Thema',
 	'flow-newtopic-content-placeholder' => 'Setzt e puer Detailer derbäi, wann Dir wëllt',
 	'flow-newtopic-header' => 'En neit Thema derbäisetzen',
