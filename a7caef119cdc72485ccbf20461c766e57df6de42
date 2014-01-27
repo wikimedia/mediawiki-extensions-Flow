@@ -33,6 +33,24 @@
       "revId": "a7caef119cdc72485ccbf20461c766e57df6de42",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_e1be2afa",
+        "filename": "modules/base/styles/actionbox.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-27T18:19:38Z",
+      "side": 1,
+      "message": "It\u0027s in em because the default is 15em. I don\u0027t think this is really a valid reason though :p",
+      "parentUuid": "8efa632e_0033540b",
+      "revId": "a7caef119cdc72485ccbf20461c766e57df6de42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
