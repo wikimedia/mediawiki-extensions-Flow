@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8efa632e_c1356ef5",
+        "filename": "modules/discussion/post.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-01-27T19:31:01Z",
+      "side": 1,
+      "message": "Would sort of like to see a specific check for the edit conflict error code.",
+      "revId": "1ac38f3d751f22a6be37f176cba328e0424f33bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
