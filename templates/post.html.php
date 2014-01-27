@@ -89,7 +89,7 @@ if ( $post->isModerated() ) {
 				'p',
 				array( 'class' => "flow-post-moderated-message flow-post-moderated-$moderationState flow-post-content-$allowed", ),
 				// Passing null user will return the 'moderated by Foo' content
-				$this->getContent( $post, 'html' )
+				$this->getModeratedContent( $post )
 			);
 		endif;
 		?>
