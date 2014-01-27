@@ -368,7 +368,7 @@
 	/**
 	 * Initialises new topic interaction object.
 	 */
-	mw.flow.action.topic.new = function () {
+	mw.flow.action.topic.create = function () {
 		this.$form = $( '.flow-new-topic-container' );
 
 		// fetch workflow parameters
@@ -377,19 +377,19 @@
 		// Overload click in textarea, triggering full new topic form
 		this.$form.find( '.flow-newtopic-title' )
 			.attr( 'placeholder', mw.msg( 'flow-newtopic-start-placeholder' ) )
-			.click( this.new.bind( this ) );
+			.click( this.create.bind( this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
-	mw.flow.action.topic.new.prototype = new mw.flow.action();
-	mw.flow.action.topic.new.prototype.constructor = mw.flow.action.topic.new;
+	mw.flow.action.topic.create.prototype = new mw.flow.action();
+	mw.flow.action.topic.create.prototype.constructor = mw.flow.action.topic.create;
 
 	/**
 	 * Fired when textarea is clicked.
 	 *
 	 * @param {Event} e
 	 */
-	mw.flow.action.topic.new.prototype.new = function ( e ) {
+	mw.flow.action.topic.create.prototype.create = function ( e ) {
 		// don't follow link that will lead to &action=new-topic
 		e.preventDefault();
 
@@ -408,7 +408,7 @@
 	/**
 	 * Builds the new topic form.
 	 */
-	mw.flow.action.topic.new.prototype.loadNewForm = function () {
+	mw.flow.action.topic.create.prototype.loadNewForm = function () {
 		this.$form.find( '.flow-newtopic-title' )
 			.byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
 			.attr( 'placeholder', mw.msg( 'flow-newtopic-title-placeholder' ) );
@@ -451,7 +451,7 @@
 	/**
 	 * Destroys the JS magic & restores the form in its original state
 	 */
-	mw.flow.action.topic.new.prototype.destroyForm = function () {
+	mw.flow.action.topic.create.prototype.destroyForm = function () {
 		mw.flow.editor.destroy( this.$form.find( '.flow-newtopic-content' ) );
 
 		this.$form.find( '.flow-newtopic-step2' )
@@ -490,7 +490,7 @@
 	 * @param {string} content
 	 * @return {jQuery.Deferred}
 	 */
-	mw.flow.action.topic.new.prototype.submitFunction = function ( title, content ) {
+	mw.flow.action.topic.create.prototype.submitFunction = function ( title, content ) {
 		var deferred = mw.flow.api.newTopic(
 			this.workflow,
 			title,
@@ -507,7 +507,7 @@
 	 *
 	 * @param {object} output
 	 */
-	mw.flow.action.topic.new.prototype.render = function ( output ) {
+	mw.flow.action.topic.create.prototype.render = function ( output ) {
 		$( output.rendered )
 			.hide()
 			.prependTo( $( '.flow-topics' ) )
@@ -522,7 +522,7 @@
 	 * @return {array} Array with params, to be fed to validateCallback &
 	 * submitFunction
 	 */
-	mw.flow.action.topic.new.prototype.loadParametersCallback = function () {
+	mw.flow.action.topic.create.prototype.loadParametersCallback = function () {
 		var title = this.$form.find( '.flow-newtopic-title' ).val(),
 			content = mw.flow.editor.getContent( this.$form.find( '.flow-newtopic-content' ) );
 
@@ -536,14 +536,14 @@
 	 * @param {string} content
 	 * @return {bool}
 	 */
-	mw.flow.action.topic.new.prototype.validateCallback = function ( title, content ) {
+	mw.flow.action.topic.create.prototype.validateCallback = function ( title, content ) {
 		return !!title;
 	};
 
 	/**
 	 * @param {jQuery.Deferred}
 	 */
-	mw.flow.action.topic.new.prototype.promiseCallback = function ( deferred ) {
+	mw.flow.action.topic.create.prototype.promiseCallback = function ( deferred ) {
 		deferred.done( this.destroyForm.bind( this ) );
 	};
 } ( jQuery, mediaWiki ) );
