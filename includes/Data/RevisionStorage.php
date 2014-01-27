@@ -512,11 +512,12 @@ class TopicHistoryIndex extends TopKIndex {
 
 	protected $treeRepository;
 
-	public function __construct( BufferedCache $cache, PostRevisionStorage $storage, $prefix, array $indexed, array $options = array() ) {
+	public function __construct( BufferedCache $cache, PostRevisionStorage $storage, TreeRepository $treeRepo, $prefix, array $indexed, array $options = array() ) {
 		if ( $indexed !== array( 'topic_root_id' ) ) {
 			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root_id: ' . print_r( $indexed, true ) );
 		}
 		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
+		$this->treeRepository = $treeRepo;
 	}
 
 	public function onAfterInsert( $object, array $new ) {
