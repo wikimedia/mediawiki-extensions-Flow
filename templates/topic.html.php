@@ -100,7 +100,7 @@ echo Html::openElement( 'div', array(
 				echo Html::rawElement(
 					'h2',
 					array( 'class' => 'flow-moderated-title' ),
-					$this->getModeratedContent( $root, 'wikitext' )
+					$this->getModeratedContent( $root )
 				);
 			endif ?>
 		</div>
