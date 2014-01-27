@@ -13,7 +13,7 @@
 
 			// init new title interaction
 			if ( $newTopic.length && !$newTopic.data( 'flow-initialised-new-topic' ) ) {
-				new mw.flow.action.topic.new();
+				new mw.flow.action.topic.create();
 
 				$newTopic.data( 'flow-initialised-new-topic', true );
 			}
