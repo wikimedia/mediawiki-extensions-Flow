@@ -59,9 +59,12 @@ abstract class AbstractRevision {
 	 */
 	protected $flags = array();
 
-	// An i18n message key indicating what kind of change this revision is
-	// primary use case is the a revision history list.
-	// TODO: i18n key may be too limiting, consider allowing custom revision comments
+	/**
+	 * Name of the action performed that generated this revision.
+	 *
+	 * @see FlowActions.php
+	 * @var string
+	 */
 	protected $changeType;
 	// UUID of the revision prior to this one, or null if this is first revision
 	protected $prevRevision;
