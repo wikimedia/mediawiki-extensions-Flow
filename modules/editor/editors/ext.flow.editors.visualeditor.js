@@ -18,7 +18,7 @@
 		} );
 
 		// load dependencies & init editor
-		mw.loader.using( this.getModules(), this.init.bind( this, content || '' ) );
+		mw.loader.using( this.getModules(), $.proxy( this.init, this, content || '' ) );
 	};
 
 	/**
@@ -67,13 +67,13 @@
 
 		// simulate a keyup event on the original node, so the validation code will
 		// pick up changes in the new node
-		$veNode.keyup( function () {
+		$veNode.keyup( $.proxy( function () {
 			this.$node.keyup();
-		}.bind( this ) );
+		}, this ) );
 
-		$.each( this.initCallbacks, function( k, callback ) {
+		$.each( this.initCallbacks, $.proxy( function( k, callback ) {
 			callback.apply( this );
-		}.bind( this ) );
+		}, this ) );
 	};
 
 	mw.flow.editors.visualeditor.prototype.destroy = function () {

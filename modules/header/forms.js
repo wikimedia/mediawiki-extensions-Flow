@@ -26,7 +26,7 @@
 		this.header = header;
 
 		// Overload "edit header" link.
-		this.header.$container.find( '.flow-header-edit-link' ).click( this.edit.bind( this ) );
+		this.header.$container.find( '.flow-header-edit-link' ).click( $.proxy( this.edit, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -58,17 +58,17 @@
 			 * returned data to how we want it in .done, or reject (which
 			 * will result in .fail being called) if the data is invalid.
 			 */
-			.then( this.prepareResult.bind( this ) )
+			.then( $.proxy( this.prepareResult, this ) )
 			/*
 			 * Once we have successfully fetched & verified the data, the
 			 * edit form can be built.
 			 */
-			.done( this.setupEditForm.bind( this ) )
+			.done( $.proxy( this.setupEditForm, this ) )
 			/*
 			 * If anything went wrong (either in original deferred object or
 			 * in the one returned by .then), show an error message.
 			 */
-			.fail( this.showError.bind( this ) );
+			.fail( $.proxy( this.showError, this ) );
 	};
 
 	/**
@@ -129,7 +129,7 @@
 				content: data.content,
 				format: data.format
 			},
-			this.submitFunction.bind( this, data ),
+			$.proxy( this.submitFunction, this, data ),
 			loadFunction
 		);
 
@@ -157,8 +157,8 @@
 			data.revision
 		);
 
-		deferred.done( this.render.bind( this ) );
-//		deferred.fail( this.conflict.bind( this, deferred ) ); // @todo: not yet implemented
+		deferred.done( $.proxy( this.render, this ) );
+//		deferred.fail( $.proxy( this.conflict, this, deferred ) ); // @todo: not yet implemented
 
 		return deferred;
 	};

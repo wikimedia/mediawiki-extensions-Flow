@@ -9,7 +9,7 @@
 		this.$node = $node;
 
 		// load dependencies & init editor
-		mw.loader.using( this.getModules(), this.init.bind( this, content || '' ) );
+		mw.loader.using( this.getModules(), $.proxy( this.init, this, content || '' ) );
 	};
 
 	/**

@@ -31,7 +31,7 @@
 		this.topic = topic;
 
 		// Overload "edit title" link.
-		this.topic.$container.find( '.flow-edit-topic-link' ).click( this.edit.bind( this ) );
+		this.topic.$container.find( '.flow-edit-topic-link' ).click( $.proxy( this.edit, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -58,17 +58,17 @@
 			 * returned data to how we want it in .done, or reject (which
 			 * will result in .fail being called) if the data is invalid.
 			 */
-			.then( this.prepareResult.bind( this ) )
+			.then( $.proxy( this.prepareResult, this ) )
 			/*
 			 * Once we have successfully fetched & verified the data, the
 			 * edit form can be built.
 			 */
-			.done( this.setupEditForm.bind( this ) )
+			.done( $.proxy( this.setupEditForm, this ) )
 			/*
 			 * If anything went wrong (either in original deferred object or
 			 * in the one returned by .then), show an error message.
 			 */
-			.fail( this.showError.bind( this ) );
+			.fail( $.proxy( this.showError, this ) );
 	};
 
 	/**
@@ -131,9 +131,9 @@
 		$titleEditForm.flow( 'setupPreview', { '.flow-edit-title-textbox': 'plain' } );
 		$titleEditForm.flow( 'setupFormHandler',
 			'.flow-edit-title-submit',
-			this.submitFunction.bind( this, data ),
-			this.loadParametersCallback.bind( this ),
-			this.validateCallback.bind(this )
+			$.proxy( this.submitFunction, this, data ),
+			$.proxy( this.loadParametersCallback, this ),
+			$.proxy( this.validateCallback, this )
 		);
 
 		if ( loadFunction instanceof Function ) {
@@ -156,8 +156,8 @@
 			data.revision
 		);
 
-		deferred.done( this.render.bind( this ) );
-//		deferred.fail( this.conflict.bind( this, deferred ) ); // @todo: not yet implemented
+		deferred.done( $.proxy( this.render, this ) );
+//		deferred.fail( $.proxy( this.conflict, this, deferred ) ); // @todo: not yet implemented
 
 		return deferred;
 	};
@@ -240,10 +240,10 @@
 							.addClass( 'flow-cancel-link mw-ui-button mw-ui-quiet' )
 							.attr( 'href', '#' )
 							.text( mw.msg( 'flow-cancel' ) )
-							.click( function ( event ) {
+							.click( $.proxy( function ( event ) {
 								event.preventDefault();
 								this.destroyEditForm();
-							}.bind( this ) )
+							}, this ) )
 					)
 					.append( ' ' )
 					.append(
@@ -295,7 +295,7 @@
 		this.$form = this.topic.$container.find( '.flow-topic-reply-container' );
 
 		// Overload click in textarea, triggering full reply form
-		this.$form.find( '.flow-topic-reply-content' ).click( this.reply.bind( this ) );
+		this.$form.find( '.flow-topic-reply-content' ).click( $.proxy( this.reply, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -328,7 +328,7 @@
 				content: '',
 				format: 'wikitext'
 			},
-			this.submitFunction.bind( this ),
+			$.proxy( this.submitFunction, this ),
 			loadFunction
 		);
 	};
@@ -346,7 +346,7 @@
 			content
 		);
 
-		deferred.done( this.render.bind( this ) );
+		deferred.done( $.proxy( this.render, this ) );
 
 		return deferred;
 	};
@@ -368,7 +368,7 @@
 	/**
 	 * Initialises new topic interaction object.
 	 */
-	mw.flow.action.topic.new = function () {
+	mw.flow.action.topic.create = function () {
 		this.$form = $( '.flow-new-topic-container' );
 
 		// fetch workflow parameters
@@ -377,19 +377,19 @@
 		// Overload click in textarea, triggering full new topic form
 		this.$form.find( '.flow-newtopic-title' )
 			.attr( 'placeholder', mw.msg( 'flow-newtopic-start-placeholder' ) )
-			.click( this.new.bind( this ) );
+			.click( $.proxy( this.create, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
-	mw.flow.action.topic.new.prototype = new mw.flow.action();
-	mw.flow.action.topic.new.prototype.constructor = mw.flow.action.topic.new;
+	mw.flow.action.topic.create.prototype = new mw.flow.action();
+	mw.flow.action.topic.create.prototype.constructor = mw.flow.action.topic.create;
 
 	/**
 	 * Fired when textarea is clicked.
 	 *
 	 * @param {Event} e
 	 */
-	mw.flow.action.topic.new.prototype.new = function ( e ) {
+	mw.flow.action.topic.create.prototype.create = function ( e ) {
 		// don't follow link that will lead to &action=new-topic
 		e.preventDefault();
 
@@ -408,7 +408,7 @@
 	/**
 	 * Builds the new topic form.
 	 */
-	mw.flow.action.topic.new.prototype.loadNewForm = function () {
+	mw.flow.action.topic.create.prototype.loadNewForm = function () {
 		this.$form.find( '.flow-newtopic-title' )
 			.byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
 			.attr( 'placeholder', mw.msg( 'flow-newtopic-title-placeholder' ) );
@@ -423,10 +423,10 @@
 		// Overload 'new topic' handler.
 		this.$form.flow( 'setupFormHandler',
 			'.flow-newtopic-submit',
-			this.submitFunction.bind( this ),
-			this.loadParametersCallback.bind( this ),
-			this.validateCallback.bind( this ),
-			this.promiseCallback.bind( this )
+			$.proxy( this.submitFunction, this ),
+			$.proxy( this.loadParametersCallback, this ),
+			$.proxy( this.validateCallback, this ),
+			$.proxy( this.promiseCallback, this )
 		);
 
 		// add cancel link
@@ -434,10 +434,10 @@
 			.attr( 'href', '#' )
 			.addClass( 'flow-cancel-link mw-ui-button mw-ui-quiet' )
 			.text( mw.msg( 'flow-cancel' ) )
-			.click( function ( e ) {
+			.click( $.proxy( function ( e ) {
 				e.preventDefault();
 				this.destroyForm();
-			}.bind( this ) )
+			}, this ) )
 			.after( ' ' )
 			.insertBefore( this.$form.find( '.flow-newtopic-form input[type=submit]' ) );
 
@@ -451,11 +451,11 @@
 	/**
 	 * Destroys the JS magic & restores the form in its original state
 	 */
-	mw.flow.action.topic.new.prototype.destroyForm = function () {
+	mw.flow.action.topic.create.prototype.destroyForm = function () {
 		mw.flow.editor.destroy( this.$form.find( '.flow-newtopic-content' ) );
 
 		this.$form.find( '.flow-newtopic-step2' )
-			.slideUp( 'fast', function () {
+			.slideUp( 'fast', $.proxy( function () {
 				// reset form in it's original blank state
 				this.$form.find( '.flow-newtopic-title' )
 					.val( '' )
@@ -480,7 +480,7 @@
 				// but we want it in it's original state (where CSS scoping
 				// :not(.flow-form-active) will make the form stay hidden)
 				this.$form.find( '.flow-newtopic-step2' ).css( 'display', '' );
-			}.bind( this ) );
+			}, this ) );
 	};
 
 	/**
@@ -490,14 +490,14 @@
 	 * @param {string} content
 	 * @return {jQuery.Deferred}
 	 */
-	mw.flow.action.topic.new.prototype.submitFunction = function ( title, content ) {
+	mw.flow.action.topic.create.prototype.submitFunction = function ( title, content ) {
 		var deferred = mw.flow.api.newTopic(
 			this.workflow,
 			title,
 			content
 		);
 
-		deferred.done( this.render.bind( this ) );
+		deferred.done( $.proxy( this.render, this ) );
 
 		return deferred;
 	};
@@ -507,7 +507,7 @@
 	 *
 	 * @param {object} output
 	 */
-	mw.flow.action.topic.new.prototype.render = function ( output ) {
+	mw.flow.action.topic.create.prototype.render = function ( output ) {
 		$( output.rendered )
 			.hide()
 			.prependTo( $( '.flow-topics' ) )
@@ -522,7 +522,7 @@
 	 * @return {array} Array with params, to be fed to validateCallback &
 	 * submitFunction
 	 */
-	mw.flow.action.topic.new.prototype.loadParametersCallback = function () {
+	mw.flow.action.topic.create.prototype.loadParametersCallback = function () {
 		var title = this.$form.find( '.flow-newtopic-title' ).val(),
 			content = mw.flow.editor.getContent( this.$form.find( '.flow-newtopic-content' ) );
 
@@ -536,14 +536,14 @@
 	 * @param {string} content
 	 * @return {bool}
 	 */
-	mw.flow.action.topic.new.prototype.validateCallback = function ( title, content ) {
+	mw.flow.action.topic.create.prototype.validateCallback = function ( title, content ) {
 		return !!title;
 	};
 
 	/**
 	 * @param {jQuery.Deferred}
 	 */
-	mw.flow.action.topic.new.prototype.promiseCallback = function ( deferred ) {
-		deferred.done( this.destroyForm.bind( this ) );
+	mw.flow.action.topic.create.prototype.promiseCallback = function ( deferred ) {
+		deferred.done( $.proxy( this.destroyForm, this ) );
 	};
 } ( jQuery, mediaWiki ) );

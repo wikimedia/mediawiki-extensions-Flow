@@ -31,7 +31,7 @@
 		this.post = post;
 
 		// Overload "edit post" link.
-		this.post.$container.find( '.flow-edit-post-link' ).click( this.edit.bind( this ) );
+		this.post.$container.find( '.flow-edit-post-link' ).click( $.proxy( this.edit, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -63,17 +63,17 @@
 			 * returned data to how we want it in .done, or reject (which
 			 * will result in .fail being called) if the data is invalid.
 			 */
-			.then( this.prepareResult.bind( this ) )
+			.then( $.proxy( this.prepareResult, this ) )
 			/*
 			 * Once we have successfully fetched & verified the data, the
 			 * edit form can be built.
 			 */
-			.done( this.setupEditForm.bind( this ) )
+			.done( $.proxy( this.setupEditForm, this ) )
 			/*
 			 * If anything went wrong (either in original deferred object or
 			 * in the one returned by .then), show an error message.
 			 */
-			.fail( this.showError.bind( this ) );
+			.fail( $.proxy( this.showError, this ) );
 	};
 
 	/**
@@ -137,7 +137,7 @@
 				content: data.content,
 				format: data.format
 			},
-			this.submitFunction.bind( this, data ),
+			$.proxy( this.submitFunction, this, data ),
 			loadFunction
 		);
 
@@ -165,8 +165,8 @@
 			data.revision
 		);
 
-		deferred.done( this.render.bind( this ) );
-//		deferred.fail( this.conflict.bind( this, deferred ) ); // @todo: not yet implemented
+		deferred.done( $.proxy( this.render, this ) );
+//		deferred.fail( $.proxy( this.conflict, this, deferred ) ); // @todo: not yet implemented
 
 		return deferred;
 	};
@@ -204,7 +204,7 @@
 		this.post = post;
 
 		// Overload "reply" link.
-		this.post.$container.find( '.flow-reply-link' ).click( this.reply.bind( this ) );
+		this.post.$container.find( '.flow-reply-link' ).click( $.proxy( this.reply, this ) );
 	};
 
 	// extend reply action from "shared functionality" mw.flow.action class
@@ -255,7 +255,7 @@
 				content: username + ': ',
 				format: 'wikitext'
 			},
-			this.submitFunction.bind( this ),
+			$.proxy( this.submitFunction, this ),
 			loadFunction
 		);
 	};
@@ -275,7 +275,7 @@
 			content
 		);
 
-		deferred.done( this.render.bind( this ) );
+		deferred.done( $.proxy( this.render, this ) );
 
 		return deferred;
 	};

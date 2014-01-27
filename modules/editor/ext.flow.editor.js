@@ -97,7 +97,7 @@
 				deferred.resolve();
 			},
 			deferred = $.Deferred(),
-			interval = setInterval( load.bind( this, $node, content, contentFormat ), 10 );
+			interval = setInterval( $.proxy( load, this, $node, content, contentFormat ), 10 );
 
 			return deferred.promise();
 		},

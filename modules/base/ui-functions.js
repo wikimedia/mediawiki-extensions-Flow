@@ -189,19 +189,25 @@
 				 * Setting focus inside an event that grants focus (like
 				 * clicking the edit icon), is tricky. This is a workaround.
 				 */
-				setTimeout( function( $postForm, initialContent, loadFunction ) {
-					var $textarea = $postForm.find( 'textarea' );
-					mw.flow.editor.load( $textarea, initialContent.content, initialContent.format )
-						.done( loadFunction );
+				setTimeout( $.proxy(
+					function( $postForm, initialContent, loadFunction ) {
+						var $textarea = $postForm.find( 'textarea' );
+						mw.flow.editor.load( $textarea, initialContent.content, initialContent.format )
+							.done( loadFunction );
 
-					// scroll to the form
-					$postForm.scrollIntoView( {
-						complete: function () {
-							mw.flow.editor.focus( $textarea );
-							mw.flow.editor.moveCursorToEnd( $textarea );
-						}
-					} );
-				}.bind( this, $postForm, initialContent, loadFunction ), 0 );
+						// scroll to the form
+						$postForm.scrollIntoView( {
+							complete: function () {
+								mw.flow.editor.focus( $textarea );
+								mw.flow.editor.moveCursorToEnd( $textarea );
+							}
+						} );
+					},
+					this,
+					$postForm,
+					initialContent,
+					loadFunction
+				), 0 );
 
 				return deferredObject.promise();
 			},
@@ -318,30 +324,36 @@
 				 * Setting focus inside an event that grants focus (like
 				 * clicking the reply button), is tricky. This is a workaround.
 				 */
-				setTimeout( function( $formContainer, initialContent, loadFunction ) {
-					var $textarea = $formContainer.find( 'textarea' );
+				setTimeout( $.proxy(
+					function( $formContainer, initialContent, loadFunction ) {
+						var $textarea = $formContainer.find( 'textarea' );
 
-					$textarea
-						.removeClass( 'flow-reply-box-closed' )
-						// Override textarea height; doesn't need to be too large initially,
-						// it'll auto-expand
-						.attr( 'rows', '6' )
-						// Textarea will auto-expand + textarea padding will cause the
-						// resize grabber to be positioned badly (in FF) so get rid of it
-						.css( 'resize', 'none' )
-						.focus();
+						$textarea
+							.removeClass( 'flow-reply-box-closed' )
+							// Override textarea height; doesn't need to be too large initially,
+							// it'll auto-expand
+							.attr( 'rows', '6' )
+							// Textarea will auto-expand + textarea padding will cause the
+							// resize grabber to be positioned badly (in FF) so get rid of it
+							.css( 'resize', 'none' )
+							.focus();
 
-					mw.flow.editor.load( $textarea, initialContent.content, initialContent.format )
-						.done( loadFunction );
+						mw.flow.editor.load( $textarea, initialContent.content, initialContent.format )
+							.done( loadFunction );
 
-					// scroll to the form
-					$formContainer.scrollIntoView( {
-						complete: function () {
-							mw.flow.editor.focus( $textarea );
-							mw.flow.editor.moveCursorToEnd( $textarea );
-						}
-					} );
-				}.bind( this, $formContainer, initialContent, loadFunction ), 0 );
+						// scroll to the form
+						$formContainer.scrollIntoView( {
+							complete: function () {
+								mw.flow.editor.focus( $textarea );
+								mw.flow.editor.moveCursorToEnd( $textarea );
+							}
+						} );
+					},
+					this,
+					$formContainer,
+					initialContent,
+					loadFunction
+				), 0 );
 
 				return deferredObject.promise();
 			},
