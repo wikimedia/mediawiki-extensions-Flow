@@ -7,9 +7,12 @@
 	padding-bottom: 25px;
 
 	#flow-header-content {
-		font-weight: bold;
-		line-height: 25px;
-		color: @header-content-color;
+		// Only apply these styles when empty or on plain-text content
+		&.flow-header-empty, > p {
+			font-weight: bold;
+			line-height: 25px;
+			color: @header-content-color;
+		}
 
 		*:first-child {
 			margin-top: 0;
