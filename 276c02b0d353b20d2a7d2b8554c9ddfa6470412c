@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8efa632e_bb2295a0",
+        "filename": "Flow.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-27T10:38:56Z",
+      "side": 1,
+      "message": "I disagree about hardcoding these in tests :p\nI think:\n\n* there\u0027ll be code duplication\n* the more tests use hardcoded defaults instead of real code/config, the less reliable they are in testing our code/config - if we make changes to the config in here, the tests should fail (and we should adjust them for whatever changes we wanted)",
+      "parentUuid": "8efa632e_0fd4aabd",
+      "revId": "276c02b0d353b20d2a7d2b8554c9ddfa6470412c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8efa632e_2fd766c6",
         "filename": "Flow.php",
         "patchSetId": 3
@@ -71,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8efa632e_9b27d9b1",
+        "filename": "tests/PermissionsTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-27T10:38:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8efa632e_2f58868b",
+      "revId": "276c02b0d353b20d2a7d2b8554c9ddfa6470412c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8efa632e_0a3a58c0",
         "filename": "tests/PermissionsTest.php",
         "patchSetId": 3
@@ -82,6 +118,24 @@
       "writtenOn": "2014-01-24T23:49:03Z",
       "side": 1,
       "message": "For readability the setup and teardown should be at the top of the class rather than mixed amongst the tests.\nThey should be easy to spot",
+      "revId": "276c02b0d353b20d2a7d2b8554c9ddfa6470412c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_7b6acdb2",
+        "filename": "tests/PermissionsTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-27T10:38:56Z",
+      "side": 1,
+      "message": "I actually prefer to have tests first, but I can live with either :p",
+      "parentUuid": "8efa632e_0a3a58c0",
       "revId": "276c02b0d353b20d2a7d2b8554c9ddfa6470412c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -105,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "8efa632e_fb46dd53",
+        "filename": "tests/PermissionsTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-27T10:38:56Z",
+      "side": 1,
+      "message": "I though setMwGlobals are restored on tearDown (well, they weren\u0027t in here because tearDown wasn\u0027t calling parent, which I\u0027ll do now)\n\nOther variables shouldn\u0027t be affected, since the variables declared in the require\u0027d file are scoped to this function, not global.",
+      "parentUuid": "8efa632e_6fcd6e34",
+      "revId": "276c02b0d353b20d2a7d2b8554c9ddfa6470412c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8efa632e_8a754895",
         "filename": "tests/PermissionsTest.php",
         "patchSetId": 3
@@ -116,6 +188,24 @@
       "writtenOn": "2014-01-24T23:49:03Z",
       "side": 1,
       "message": "this should call parent::tearDown()",
+      "revId": "276c02b0d353b20d2a7d2b8554c9ddfa6470412c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_7b1c0d6b",
+        "filename": "tests/PermissionsTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-27T10:38:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8efa632e_8a754895",
       "revId": "276c02b0d353b20d2a7d2b8554c9ddfa6470412c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
