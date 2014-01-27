@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8efa632e_7b052d13",
+        "filename": "modules/base/action.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-27T10:21:46Z",
+      "side": 1,
+      "message": "Clicking cancel is not necessarily the only way a form can be \"destroyed\" (e.g. in the case of edit conflicts, it\u0027s not triggered by clicking cancel)\n\nThis $el.tipsy( \u0027hide\u0027 ) should actually occur in this.destroyReplyForm() (which is the function now always called when the form is to be destroyed)\nI can\u0027t really think of a pretty way to get this code in there, though. Best I can think of is to create a array property \"destroyQueue\" in this object, and push callbacks in there, and execute all of these on destroy. Or maybe OOjs will have better ways to deal with it.\n\nFor now, I\u0027m happy enough with this, but perhaps add some @todo right here, so we know it\u0027s something we can improve.",
+      "revId": "a7caef119cdc72485ccbf20461c766e57df6de42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efa632e_0033540b",
+        "filename": "modules/base/styles/actionbox.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-27T10:21:46Z",
+      "side": 1,
+      "message": "I wouldn\u0027t mix em/px (unless this really needs to be em)",
+      "revId": "a7caef119cdc72485ccbf20461c766e57df6de42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
