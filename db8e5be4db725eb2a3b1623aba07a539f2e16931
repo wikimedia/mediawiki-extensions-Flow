@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ef7ef47_71c32062",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-28T17:41:02Z",
+      "side": 1,
+      "message": "Done, and made private since there is a public accessor.",
+      "parentUuid": "8efa632e_043dbab8",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8efa632e_a42cc690",
         "filename": "includes/api/ApiFlow.php",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2014-01-22T21:56:36Z",
       "side": 1,
       "message": "Access?",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_51b824e2",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-28T17:41:02Z",
+      "side": 1,
+      "message": "Set to private.",
+      "parentUuid": "8efa632e_a42cc690",
       "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6ef7ef47_31bd98d2",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-28T17:41:02Z",
+      "side": 1,
+      "message": "Yup, I was using it in an earlier version but not anymore. Killed.",
+      "parentUuid": "8efa632e_e443ee13",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8efa632e_2442f613",
         "filename": "includes/api/ApiFlow.php",
         "patchSetId": 5
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "6ef7ef47_f195f043",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-28T17:41:02Z",
+      "side": 1,
+      "message": "In the future I\u0027d like to move the list\u003dflow module which returns the machine readable parsed page into the action\u003dflow module, so that one would be fine with a GET request.",
+      "parentUuid": "8efa632e_2442f613",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8efa632e_24d31663",
         "filename": "includes/api/ApiFlow.php",
         "patchSetId": 5
@@ -81,6 +153,24 @@
       "writtenOn": "2014-01-22T21:56:36Z",
       "side": 1,
       "message": "Is there any need for this commented-out code",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_d1a2f4a3",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-28T17:41:02Z",
+      "side": 1,
+      "message": "Nope, just didn\u0027t remove it. Done now.",
+      "parentUuid": "8efa632e_24d31663",
       "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -149,6 +239,24 @@
       "writtenOn": "2014-01-22T21:56:36Z",
       "side": 1,
       "message": "I hope this goes away entirely before this changeset is considered complete.",
+      "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_5186e419",
+        "filename": "includes/api/ApiFlowOld.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-01-28T17:41:02Z",
+      "side": 1,
+      "message": "Yes, just keeping it around for reference right now and so jenkins-bot doesn\u0027t complain about failing tests. Will be deleted before this is merged.",
+      "parentUuid": "8efa632e_2410b603",
       "revId": "db8e5be4db725eb2a3b1623aba07a539f2e16931",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
