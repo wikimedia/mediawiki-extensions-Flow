@@ -482,4 +482,16 @@ class FlowHooks {
 
 		return true;
 	}
+
+	public static function onWhatLinksHereProps( $row, $title, $target, &$props ) {
+		Flow\Container::get( 'reference.clarifier' )->onWhatLinksHereProps( $row, $title, $target, $props );
+		return true;
+	}
+
+	public static function onLinksUpdateConstructed( $linksUpdate ) {
+		Flow\Container::get( 'reference.updater.links-tables' )
+			->mutateLinksUpdate( $linksUpdate );
+
+		return true;
+	}
 }
