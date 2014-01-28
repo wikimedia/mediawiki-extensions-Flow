@@ -7,7 +7,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use User;
 
-class PostRevisionTestCase extends \MediaWikiTestCase {
+class PostRevisionTestCase extends TestCase {
 	/**
 	 * PostRevision object, created from $this->generatePost()
 	 *
