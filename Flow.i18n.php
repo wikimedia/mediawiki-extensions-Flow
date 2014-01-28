@@ -285,6 +285,10 @@ You can see other versions of the header at its [$4 history page].',
 	'flow-terms-of-use-new-topic' => 'By clicking "{{int:flow-newtopic-save}}", you agree to the terms of use for this wiki.',
 	'flow-terms-of-use-reply' => 'By clicking "{{int:flow-reply-submit}}", you agree to the terms of use for this wiki.',
 	'flow-terms-of-use-edit' => 'By saving your changes, you agree to the terms of use for this wiki.',
+
+	// Reference "clarifications"
+	'flow-whatlinkshere-post' => 'from a [$1 post]',
+	'flow-whatlinkshere-header' => 'from the [$1 header]',
 );
 
 /** Message documentation (Message documentation)
@@ -1186,6 +1190,9 @@ This should be consistent with {{msg-mw|Flow-reply-submit}}.
 {{Related|Flow-terms-of-use}}',
 	'flow-terms-of-use-edit' => 'Terms of use for editing a header/topic/post.
 {{Related|Flow-terms-of-use}}',
+
+	'flow-whatlinkshere-post' => 'Displayed in parens on Special:WhatLinksHere for an entry that relates to a Flow post. $1 is a URL to the post',
+	'flow-whatlinkshere-header' => 'Displayed in parens on Special:WhatLinksHere for an entry that relates to a Flow Boardheader. $1 is a URL to the header',
 );
 
 /** Achinese (Acèh)

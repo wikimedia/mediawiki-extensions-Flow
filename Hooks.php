@@ -67,6 +67,7 @@ class FlowHooks {
 		$updater->modifyExtensionField( 'flow_revision', 'rev_change_type', "$dir/db_patches/patch-censor_to_suppress.sql" );
 		$updater->addExtensionField( 'flow_workflow', 'workflow_user_ip', "$dir/db_patches/patch-remove_usernames.sql" );
 		$updater->addExtensionField( 'flow_workflow', 'workflow_user_wiki', "$dir/db_patches/patch-add-wiki.sql" );
+		$updater->addExtensionTable( 'flow_ext_ref', "$dir/db_patches/patch-add-linkstables.sql" );
 
 		require_once __DIR__.'/maintenance/FlowInsertDefaultDefinitions.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowInsertDefaultDefinitions' );
@@ -479,6 +480,18 @@ class FlowHooks {
 		}
 
 		$rcRow['cuc_comment'] = $comment;
+
+		return true;
+	}
+
+	public static function onWhatLinksHereProps( $row, $title, $target, &$props ) {
+		Flow\Container::get( 'reference.clarifier' )->onWhatLinksHereProps( $row, $title, $target, $props );
+		return true;
+	}
+
+	public static function onLinksUpdateConstructed( $linksUpdate ) {
+		Flow\Container::get( 'reference.updater.links-tables' )
+			->mutateLinksUpdate( $linksUpdate );
 
 		return true;
 	}
