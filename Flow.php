@@ -82,6 +82,7 @@ $wgAutoloadClasses['Flow\SpamFilter\AbuseFilter'] = $dir . 'includes/SpamFilter/
 $wgAutoloadClasses['Flow\FlowActions'] = $dir . 'includes/FlowActions.php';
 $wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/RevisionActionPermissions.php';
 $wgAutoloadClasses['Flow\TermsOfUse'] = $dir . 'includes/TermsOfUse.php';
+$wgAutoloadClasses['Flow\ReferenceClarifier'] = $dir . 'includes/ReferenceClarifier.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
@@ -198,6 +199,14 @@ $wgAutoloadClasses['Flow\Block\TopicListBlock'] = $dir . 'includes/Block/TopicLi
 $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';
 $wgAutoloadClasses['Flow\Block\TopicSummaryBlock'] = $dir . 'includes/Block/TopicSummary.php';
 
+// Reference extraction and tracking
+$wgAutoloadClasses['Flow\LinksTableUpdater'] = $dir . 'includes/LinksTableUpdater.php';
+$wgAutoloadClasses['Flow\ReferenceExtractor'] = $dir . 'includes/ReferenceExtractor.php';
+$wgAutoloadClasses['Flow\Model\Reference'] = "$dir/includes/Model/Reference.php";
+$wgAutoloadClasses['Flow\Model\WikiReference'] = "$dir/includes/Model/Reference.php";
+$wgAutoloadClasses['Flow\Model\URLReference'] = "$dir/includes/Model/Reference.php";
+$wgAutoloadClasses['Flow\Data\ReferenceRecorder'] = "$dir/includes/Data/ReferenceRecorder.php";
+
 // phpunit helper
 $wgAutoloadClasses['Flow\Tests\FlowTestCase'] = $dir . 'tests/FlowTestCase.php';
 $wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/PostRevisionTestCase.php';
@@ -246,6 +255,8 @@ $wgHooks['MakeGlobalVariablesScript'][] = 'FlowHooks::onMakeGlobalVariablesScrip
 $wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';
 $wgHooks['SkinMinervaDefaultModules'][] = 'FlowHooks::onSkinMinervaDefaultModules';
 $wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
+$wgHooks['WhatLinksHereProps'][] = 'FlowHooks::onWhatLinksHereProps';
+$wgHooks['LinksUpdateConstructed'][] = 'FlowHooks::onLinksUpdateConstructed';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
