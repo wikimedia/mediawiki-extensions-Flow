@@ -3,7 +3,11 @@
 $c = new Flow\Container;
 
 // MediaWiki
-$c['user'] = $GLOBALS['wgUser'];
+if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
+	$c['user'] = new User;
+} else {
+	$c['user'] = isset( $GLOBALS['wgUser'] );
+}
 $c['output'] = $GLOBALS['wgOut'];
 $c['request'] = $GLOBALS['wgRequest'];
 if ( $GLOBALS['wgFlowUseMemcache'] ) {
