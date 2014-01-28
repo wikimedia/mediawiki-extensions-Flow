@@ -1,0 +1,10 @@
+/* flow.ui.Board */
+
+.flow-ui-post {
+	padding: 1em;
+	border: solid 1px blue;
+}
+
+.flow-ui-post:first-child {
+	display: none;
+}
