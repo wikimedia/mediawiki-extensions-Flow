@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_bd5bbf56",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-28T05:08:40Z",
+      "side": 0,
+      "message": "I filed https://github.com/jshint/jshint/issues/1497 that jshint doesn\u0027t warn about dot access to an object property that\u0027s a reserved word (which breaks in IE7 and 8).",
+      "revId": "1f717e41be04f22bae6206a4a9760475279b82ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
