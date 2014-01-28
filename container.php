@@ -258,6 +258,11 @@ $c['storage.header'] = $c->share( function( $c ) {
 				'rev_edit_user_id' => 'rev_edit_user_wiki'
 			)
 		),
+		new Flow\Data\ReferenceRecorder(
+			$c['reference.extractor'],
+			$c['reference.updater.links-tables'],
+			$c['storage']
+		),
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
@@ -347,6 +352,11 @@ $c['storage.post'] = $c->share( function( $c ) {
 			)
 		),
 		$c['collection.cache'],
+		new Flow\Data\ReferenceRecorder(
+			$c['reference.extractor'],
+			$c['reference.updater.links-tables'],
+			$c['storage']
+		),
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
@@ -405,6 +415,12 @@ $c['storage'] = $c->share( function( $c ) {
 			'Header' => 'storage.header',
 
 			'BoardHistoryEntry' => 'storage.board_history',
+
+			'Flow\\Model\\WikiReference' => 'storage.reference.wiki',
+			'WikiReference' => 'storage.reference.wiki',
+
+			'Flow\\Model\\URLReference' => 'storage.reference.url',
+			'URLReference' => 'storage.reference.url',
 		)
 	);
 } );
@@ -493,6 +509,202 @@ $c['logger'] = $c->share( function( $c ) {
 		$c['url_generator'],
 		$c['user']
 	);
+} );
+
+$c['reference.extractor'] = $c->share( function( $c ) {
+	$stripTitle = function( $title ) {
+		return preg_replace( '#^(\.{1,2}\/)+#', '', $title );
+	};
+
+	return new Flow\ReferenceExtractor(
+		array(
+			'//*[starts-with(@typeof, "mw:Image")]' =>
+				function( $element ) use ( $stripTitle ) {
+					$imgNode = $element->getElementsByTagName( 'img' )->item( 0 );
+					$imageLink = $imgNode->getAttribute( 'resource' );
+					return array(
+						'refType' => 'file',
+						'targetType' => 'wiki',
+						'target' => $stripTitle( $imageLink ),
+					);
+				},
+			'//a[@rel="mw:WikiLink"]' =>
+				function( $element ) use ( $stripTitle ) {
+					$linkTarget = $element->getAttribute( 'href' );
+					return array(
+						'refType' => 'link',
+						'targetType' => 'wiki',
+						'target' => $stripTitle( $linkTarget ),
+					);
+				},
+			'//a[@rel="mw:ExtLink"]' =>
+				function( $element ) {
+					$href = $element->getAttribute( 'href' );
+					return array(
+						'refType' => 'link',
+						'targetType' => 'url',
+						'target' => $href,
+					);
+				},
+			'//*[@typeof="mw:Transclusion"]' =>
+				function( $element ) {
+					$data = json_decode( $element->getAttribute( 'data-mw' ) );
+					$templateTarget = Title::newFromText( $data->parts[0]->template->target->wt, NS_TEMPLATE );
+					return array(
+						'refType' => 'template',
+						'targetType' => 'wiki',
+						'target' => $templateTarget->getPrefixedText(),
+					);;
+				},
+		)
+	);
+} );
+
+$c['storage.reference.wiki'] = $c->share( function( $c ) {
+	$mapper = Flow\Data\BasicObjectMapper::model( 'Flow\Model\WikiReference' );
+
+	$cache = $c['memcache.buffered'];
+
+	$storage = new BasicDbStorage(
+		// factory and table
+		$c['db.factory'], 'flow_wiki_ref',
+		// pk
+		array(
+			'ref_src_namespace',
+			'ref_src_title',
+			'ref_src_object_id',
+			'ref_type',
+			'ref_target_namespace', 'ref_target_title'
+		)
+	);
+
+	$indexes = array(
+		new TopKIndex(
+			$cache,
+			$storage,
+			'flow_ref:wiki:by-workflow',
+			array(
+				'ref_src_namespace',
+				'ref_src_title',
+				'ref_type',
+				'ref_target_namespace', 'ref_target_title',
+			),
+			array(
+				'order' => 'ASC',
+				'sort' => 'ref_src_object_id',
+			)
+		),
+		new TopKIndex(
+			$cache,
+			$storage,
+			'flow_ref:wiki:by-revision',
+			array(
+				'ref_src_namespace',
+				'ref_src_title',
+				'ref_src_object_id',
+				'ref_type',
+			),
+			array(
+				'order' => 'ASC',
+				'sort' => array( 'ref_target_namespace', 'ref_target_title' ),
+			)
+		),
+	);
+
+	$handlers = array();
+
+	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
+} );
+
+// TODO duplicated
+$c['storage.reference.url'] = $c->share( function( $c ) {
+	$mapper = Flow\Data\BasicObjectMapper::model( 'Flow\Model\URLReference' );
+
+	$cache = $c['memcache.buffered'];
+
+	$storage = new BasicDbStorage(
+		// factory and table
+		$c['db.factory'], 'flow_ext_ref',
+		// pk
+		array(
+			'ref_src_namespace',
+			'ref_src_title',
+			'ref_src_object_id',
+			'ref_type',
+			'ref_target'
+		)
+	);
+
+	$indexes = array(
+		new TopKIndex(
+			$cache,
+			$storage,
+			'flow_ref:url:by-workflow',
+			array(
+				'ref_src_namespace',
+				'ref_src_title',
+				'ref_type',
+				'ref_target',
+			),
+			array(
+				'order' => 'ASC',
+				'sort' => 'ref_src_object_id',
+			)
+		),
+		new TopKIndex(
+			$cache,
+			$storage,
+			'flow_ref:url:by-revision',
+			array(
+				'ref_src_namespace',
+				'ref_src_title',
+				'ref_src_object_id',
+				'ref_type',
+			),
+			array(
+				'order' => 'ASC',
+				'sort' => array( 'ref_target' ),
+			)
+		),
+	);
+
+	$handlers = array(); // TODO make a handler to insert into *links tables
+
+	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
+} );
+
+$c['reference.updater.links-tables'] = $c->share( function( $c ) {
+	return new Flow\LinksTableUpdater( $c['storage'], $c['reference.table_config'], wfGetLB() );
+} );
+
+$c['reference.table_config'] = array(
+	'pagelinks' => array(
+		'src_id' => 'pl_from',
+		'namespace' => 'pl_namespace',
+		'title' => 'pl_title',
+		'_indexes' => array( 'pl_from', 'pl_namespace', 'pl_title' ),
+	),
+	'imagelinks' => array(
+		'src_id' => 'il_from',
+		'title' => 'il_to',
+		'_indexes' => array( 'il_from', 'il_to' ),
+	),
+	'templatelinks' => array(
+		'src_id' => 'tl_from',
+		'namespace' => 'tl_namespace',
+		'title' => 'tl_title',
+		'_indexes' => array( 'tl_from', 'tl_namespace', 'tl_title' ),
+	),
+	'externallinks' => array(
+		'src_id' => 'el_from',
+		'url' => 'el_to',
+		'url_index' => 'el_index',
+		'_indexes' => array( 'el_from', 'el_to' ),
+	),
+);
+
+$c['reference.clarifier'] = $c->share( function( $c ) {
+	return new Flow\ReferenceClarifier( $c['storage'], $c['url_generator'] );
 } );
 
 return $c;
