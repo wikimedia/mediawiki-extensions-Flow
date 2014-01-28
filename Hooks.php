@@ -482,4 +482,8 @@ class FlowHooks {
 
 		return true;
 	}
+
+	public static function onWhatLinksHereProps( $row, $title, $target, &$props ) {
+		Flow\Container::get( 'reference.clarifier' )->onWhatLinksHereProps( $row, $title, $target, $props );
+	}
 }
