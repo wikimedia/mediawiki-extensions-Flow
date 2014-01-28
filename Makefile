@@ -38,3 +38,22 @@ master:
 
 vagrant-browsertests:
 	@vagrant ssh -- -X cd /srv/browsertests '&&' MEDIAWIKI_URL=http://localhost/wiki/ MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
+
+phplint:
+	@find ./ -type f -iname '*.php' | xargs -P 12 -L 1 php -l
+
+nodecheck:
+	@which npm > /dev/null && npm install \
+		|| (echo "You need to install Node.JS! See http://nodejs.org/" && false)
+
+jshint: nodecheck
+	@node_modules/.bin/jshint modules/* --config .jshintrc
+
+installhooks:
+	ln -sf ${PWD}/scripts/pre-commit .git/hooks/pre-commit
+
+lint: jshint phplint checkless
+
+checkless:
+	@php ../../maintenance/checkLess.php
+

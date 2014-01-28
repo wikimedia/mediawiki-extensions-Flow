@@ -3,3 +3,4 @@
 *.kate-swp
 .*.swp
 scripts/hhvm-wrapper.phar
+node_modules/
