@@ -14,7 +14,7 @@ use User;
  * @group Flow
  * @group Database
  */
-class PostRevisionTestCase extends \MediaWikiTestCase {
+class PostRevisionTestCase extends TestCase {
 	/**
 	 * @var PostRevision[]
 	 */

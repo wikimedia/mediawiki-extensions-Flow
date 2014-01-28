@@ -125,6 +125,7 @@ class FlowHooks {
 		$updater->addExtensionIndex( 'flow_revision', 'flow_revision_user', "$dir/db_patches/patch-revision_user_idx.sql" );
 		$updater->modifyExtensionField( 'flow_revision', 'rev_user_ip', "$dir/db_patches/patch-revision_user_ip.sql" );
 		$updater->addExtensionField( 'flow_revision', 'rev_type_id', "$dir/db_patches/patch-rev_type_id.sql" );
+		$updater->addExtensionTable( 'flow_ext_ref', "$dir/db_patches/patch-add-linkstables.sql" );
 
 		require_once __DIR__.'/maintenance/FlowInsertDefaultDefinitions.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowInsertDefaultDefinitions' );
@@ -140,6 +141,9 @@ class FlowHooks {
 
 		require_once __DIR__.'/maintenance/FlowUpdateRevisionTypeId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRevisionTypeId' );
+
+		require_once __DIR__.'/maintenance/FlowPopulateLinksTables.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowPopulateLinksTables' );
 
 		return true;
 	}
@@ -557,6 +561,21 @@ class FlowHooks {
 		}
 
 		$rcRow['cuc_comment'] = $comment;
+
+		return true;
+	}
+
+	public static function onWhatLinksHereProps( $row, $title, $target, &$props ) {
+		$newProps = Flow\Container::get( 'reference.clarifier' )->getWhatLinksHereProps( $row, $title, $target );
+
+		$props = array_merge( $props, $newProps );
+
+		return true;
+	}
+
+	public static function onLinksUpdateConstructed( $linksUpdate ) {
+		Flow\Container::get( 'reference.updater.links-tables' )
+			->mutateLinksUpdate( $linksUpdate );
 
 		return true;
 	}
