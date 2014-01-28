@@ -4,3 +4,4 @@
 .*.swp
 scripts/hhvm-wrapper.phar
 node_modules/
+\#*#
