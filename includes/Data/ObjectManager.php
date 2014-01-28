@@ -54,6 +54,12 @@ class ObjectManager extends ObjectLocator {
 		}
 	}
 
+	public function multiRemove( $objects ) {
+		foreach ( $objects as $obj ) {
+			$this->remove( $obj );
+		}
+	}
+
 	/**
 	 * merge an object loaded from outside the object manager for update.
 	 * without merge it will be an insert.
