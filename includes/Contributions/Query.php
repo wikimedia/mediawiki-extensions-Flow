@@ -11,6 +11,7 @@ use Flow\Data\RawSql;
 use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
+use Flow\Exception\FlowException;
 use User;
 use BagOStuff;
 use Flow\Container;
@@ -108,7 +109,12 @@ class Query {
 			$revisions = $this->findRevisions( $pager, $conditions, $limit, $revisionClass );
 			$this->loadMetadataBatch( $revisions );
 			foreach ( $revisions as $revision ) {
-				$result = $this->buildResult( $pager, $revision, $blockType );
+				try {
+					$result = $this->buildResult( $pager, $revision, $blockType );
+				} catch ( FlowException $e ) {
+					$result = false;
+					\MWExceptionHandler::logException( $e );
+				}
 				if ( $result ) {
 					$results[] = $result;
 				}
