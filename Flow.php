@@ -160,6 +160,14 @@ $wgAutoloadClasses['Flow\Block\HeaderBlock'] = $dir . 'includes/Block/Header.php
 $wgAutoloadClasses['Flow\Block\TopicListBlock'] = $dir . 'includes/Block/TopicList.php';
 $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';
 
+// Reference extraction and tracking
+$wgAutoloadClasses['Flow\LinksTableUpdater'] = $dir . 'includes/LinksTableUpdater.php';
+$wgAutoloadClasses['Flow\ReferenceExtractor'] = $dir . 'includes/ReferenceExtractor.php';
+$wgAutoloadClasses['Flow\Model\Reference'] = "$dir/includes/Model/Reference.php";
+$wgAutoloadClasses['Flow\Model\WikiReference'] = "$dir/includes/Model/Reference.php";
+$wgAutoloadClasses['Flow\Model\URLReference'] = "$dir/includes/Model/Reference.php";
+$wgAutoloadClasses['Flow\Data\ReferenceRecorder'] = "$dir/includes/Data/ReferenceRecorder.php";
+
 // phpunit helper
 $wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/PostRevisionTestCase.php';
 
