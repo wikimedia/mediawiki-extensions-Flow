@@ -572,4 +572,12 @@ class PostRevision extends AbstractRevision {
 	public function getCollection() {
 		return PostCollection::newFromRevision( $this );
 	}
+
+	public function getWorkflowId() {
+		return $this->getRootPost()->getPostId();
+	}
+
+	public function getObjectId() {
+		return $this->getPostId();
+	}
 }
