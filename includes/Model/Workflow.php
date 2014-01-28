@@ -5,8 +5,8 @@ namespace Flow\Model;
 use MWTimestamp;
 use Title;
 use User;
-use Flow\Exception\FlowException;
 use Flow\Exception\DataModelException;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 
 class Workflow {
