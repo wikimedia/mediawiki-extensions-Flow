@@ -5,10 +5,8 @@ use Flow\Model\Header;
 use Flow\Model\UUID;
 use Flow\RevisionActionPermissions;
 use Flow\Log\Logger;
-use Flow\Block\Block;
 use Flow\Templating;
 use Flow\Container;
-use \Message;
 
 /**
  * Flow actions: key => value map with key being the action name.
