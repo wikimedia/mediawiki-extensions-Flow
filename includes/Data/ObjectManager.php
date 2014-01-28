@@ -210,6 +210,28 @@ class ManagerGroup {
 		return $this->container[$this->classMap[$className]];
 	}
 
+
+
+	protected function multiMethod( $method, $objects ) {
+		$itemsByClass = array();
+
+		foreach( $objects as $object ) {
+			$itemsByClass[ get_class( $object ) ][] = $object;
+		}
+
+		foreach( $itemsByClass as $class => $myObjects ) {
+			$this->getStorage( $class )->$method( $myObjects );
+		}
+	}
+
+	public function multiPut( $objects ) {
+		$this->multiMethod( 'multiPut', $objects );
+	}
+
+	public function multiRemove( $objects ) {
+		$this->multiMethod( 'multiRemove', $objects );
+	}
+
 	public function put( $object ) {
 		$this->getStorage( get_class( $object ) )->put( $object );
 	}
@@ -701,12 +723,24 @@ class ObjectManager extends ObjectLocator {
 		return implode( '|', $offsetFields );
 	}
 
+	// @todo This is totally wrong
+	// We need a multiPut method on all
+	// forms of storage for which this is the default
+	// implementation, and then this can call that.
 	public function multiPut( array $objects ) {
-		throw new DataModelException( 'Not Implemented', 'process-data' );
+		foreach( $objects as $object ) {
+			$this->put( $object );
+		}
 	}
 
-	public function multiDelete( array $objects ) {
-		throw new DataModelException( 'Not Implemented', 'process-data' );
+	// @todo This is totally wrong
+	// We need a multiPut method on all
+	// forms of storage for which this is the default
+	// implementation, and then this can call that.
+	public function multiRemove( array $objects ) {
+		foreach( $objects as $object ) {
+			$this->remove( $object );
+		}
 	}
 }
 class PersistenceException extends \MWException {
@@ -955,6 +989,31 @@ class BasicDbStorage extends DbStorage {
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->delete( $this->table, $pk, __METHOD__ . " ({$this->table})" );
+		return $res && $dbw->affectedRows();
+	}
+
+	public function multiRemove( array $rows ) {
+		foreach( $rows as $row ) {
+			$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
+
+			if ( $pk === null ) {
+				$missing = array_diff( $this->primaryKey, array_keys( $row ) );
+				throw new DataPersistenceException( 'Row has null primary key: ' . implode( $missing ), 'process-data' );
+			}
+
+			$deleteItems[] = $pk;
+		}
+
+		if ( ! count( $deleteItems ) ) {
+			return false;
+		}
+
+		$dbw = $this->dbFactory->getDB( DB_MASTER );
+
+		$deleteItems = $this->preprocessSqlArray( $deleteItems );
+		$deleteItems = $dbw->makeList( $deleteItems, LIST_OR );
+
+		$res = $dbw->delete( $this->table, $deleteItems, __METHOD__ );
 		return $res && $dbw->affectedRows();
 	}
 
