@@ -556,4 +556,8 @@ abstract class AbstractRevision {
 	}
 
 	abstract public function getRevisionType();
+
+	abstract public function getWorkflowId();
+
+	abstract public function getObjectId();
 }
