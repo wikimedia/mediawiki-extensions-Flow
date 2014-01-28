@@ -35,3 +35,6 @@ master:
 	@echo 'exit( ( $$wgFlowCluster === false && $$wgFlowDefaultWikiDb === false) ? 0 : 1 )' | php ../../maintenance/eval.php && echo Apply DB updates \(if any\) && php $(MW_INSTALL_PATH)/maintenance/update.php  --quick | sed -n '/^[^.]/p' || echo DB updates must be applied manually.
 	@echo TODO Update Parsoid and restart it\? Other extensions\?
 	@echo Run some tests\!\!\!
+
+vagrant-browsertests:
+	@vagrant ssh -- -X cd /srv/browsertests '&&' MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
