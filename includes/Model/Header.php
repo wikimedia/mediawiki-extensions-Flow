@@ -56,4 +56,8 @@ class Header extends AbstractRevision {
 	public function getCollection() {
 		return HeaderCollection::newFromRevision( $this );
 	}
+
+	public function getObjectId() {
+		return $this->getWorkflowId();
+	}
 }
