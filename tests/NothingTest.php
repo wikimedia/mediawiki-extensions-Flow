@@ -4,6 +4,9 @@ namespace Flow\Tests;
 
 use Flow\Data\SortArrayByKeys;
 
+/**
+ * @group Flow
+ */
 class FlowNothingTest extends \MediaWikiTestCase {
 
 	public function sortArrayByKeysProvider() {

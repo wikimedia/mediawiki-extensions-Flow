@@ -6,6 +6,9 @@ use Flow\SpamFilter\SpamRegex;
 use Flow\Model\PostRevision;
 use Title;
 
+/**
+ * @group Flow
+ */
 class SpamRegexTest extends PostRevisionTestCase {
 	/**
 	 * @var SpamRegex

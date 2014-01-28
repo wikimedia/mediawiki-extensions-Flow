@@ -4,6 +4,9 @@ namespace Flow\Tests;
 
 use Flow\Model\PostRevision;
 
+/**
+ * @group Flow
+ */
 class PostRevisionTest extends PostRevisionTestCase {
 	/**
 	 * Tests that a PostRevision::fromStorageRow & ::toStorageRow roundtrip

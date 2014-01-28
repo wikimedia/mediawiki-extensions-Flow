@@ -8,6 +8,9 @@ use Flow\Model\PostRevision;
 use Title;
 use FormatJson;
 
+/**
+ * @group Flow
+ */
 class RedlinkerTest extends PostRevisionTestCase {
 	static public function redLinkProvider() {
 		return array(

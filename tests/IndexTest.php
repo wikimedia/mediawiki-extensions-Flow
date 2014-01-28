@@ -8,6 +8,9 @@ use Flow\Data\UniqueFeatureIndex;
 use Flow\Data\TopKIndex;
 use Flow\Data\FeatureIndex;
 
+/**
+ * @group Flow
+ */
 class IndexTest extends \MediaWikiTestCase {
 
 	public function testShallow() {

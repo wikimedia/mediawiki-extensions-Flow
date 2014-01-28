@@ -2,8 +2,10 @@
 
 namespace Flow\Tests;
 
+/**
+ * @group Flow
+ */
 class FormatterTest extends \MediaWikiTestCase {
-
 
 	protected function createFormatter( $class, $all = false ) {
 		$urls = $this->getMock( 'Flow\UrlGenerator' );
