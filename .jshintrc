@@ -15,7 +15,8 @@
 		"Handlebars":  true,
 		"initStorer":  true,
 		"OO":          true,
-		"moment":      true
+		"moment":      true,
+		"flow":        true
 	},
 	"browser":  true,  // document, navigator, etc.
 	"curly":    true,  // requres curly braces around loops and conditionals
@@ -27,6 +28,7 @@
 	"supernew": true,  // suppress warnings about "weird" object constructions
 	"trailing": true,  // disallow trailing whitespace
 	"undef" :   true,   // prohibits the use of undefined variables
-	"unused":   "vars"  // complain about unused variables but not arguments
+	"unused":   "vars",  // complain about unused variables but not arguments
 	// "white":    true  // enforce Crockford rules
+	"jquery":   true    // jquery globals: $, jQuery
 }

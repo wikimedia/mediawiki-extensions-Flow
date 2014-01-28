@@ -1,0 +1,6 @@
+/* flow.ui.Board */
+
+.flow-ui-board {
+	padding: 1em;
+	border: solid 1px green;
+}

@@ -1,0 +1,24 @@
+/*!
+ * Flow standalone demo
+ */
+
+body {
+	font-family: sans-serif;
+	line-height: 1.5em;
+	font-size: 0.8em;
+	background-color: white;
+}
+
+#page {
+	width: 960px;
+	margin: 1em auto;
+	background-color: white;
+	box-shadow: 0.125em 0 1em rgba(0,0,0,0.25);
+	border-radius: 0.75em;
+	padding: 1em 2em 2em 2em;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
