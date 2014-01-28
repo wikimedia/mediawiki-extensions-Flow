@@ -14,7 +14,7 @@ use User;
  * @group Flow
  * @group Database
  */
-class PostRevisionTestCase extends \MediaWikiTestCase {
+class PostRevisionTestCase extends TestCase {
 	/**
 	 * PostRevision object, created from $this->generatePost()
 	 *

@@ -700,4 +700,6 @@ abstract class AbstractRevision {
 	 * @return AbstractCollection
 	 */
 	abstract public function getCollection();
+
+	abstract public function getWorkflowId();
 }
