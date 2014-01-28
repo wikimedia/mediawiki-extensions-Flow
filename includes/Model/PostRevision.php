@@ -458,4 +458,8 @@ class PostRevision extends AbstractRevision {
 		}
 		return $user->getId() == $this->getCreatorId();
 	}
+
+	public function getWorkflowId() {
+		return $this->getRootPost()->getPostId();
+	}
 }
