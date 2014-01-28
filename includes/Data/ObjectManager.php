@@ -164,6 +164,10 @@ class ManagerGroup {
 		return $this->container[$this->classMap[$className]];
 	}
 
+	public function multiPut( $objects ) {
+		return $this->getStorage( get_class( reset( $objects ) ) )->multiPut( $objects );
+	}	
+
 	public function put( $object ) {
 		return $this->getStorage( get_class( $object ) )->put( $object );
 	}
@@ -598,7 +602,9 @@ class ObjectManager extends ObjectLocator {
 	}
 
 	public function multiPut( array $objects ) {
-		throw new DataModelException( 'Not Implemented', 'process-data' );
+		foreach( $objects as $object ) {
+			$this->put( $object );
+		}
 	}
 
 	public function multiDelete( array $objects ) {
