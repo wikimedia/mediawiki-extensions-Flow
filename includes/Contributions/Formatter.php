@@ -3,6 +3,7 @@
 namespace Flow\Contributions;
 
 use Flow\AbstractFormatter;
+use Flow\Exception\FlowException;
 use ContribsPager;
 use Html;
 
@@ -13,6 +14,15 @@ class Formatter extends AbstractFormatter {
 	 * @return string|bool HTML for contributions entry, or false on failure
 	 */
 	public function format( ContribsPager $pager, $row ) {
+		try {
+			return $this->formatReal( $pager, $row );
+		} catch ( FlowException $e ) {
+			\MWExceptionHandler::logException( $e );
+			return false;
+		}
+	}
+
+	protected function formatReal( ContribsPager $pager, $row ) {
 		// Get all necessary objects
 		$workflow = $row->workflow;
 		$revision = $row->revision;
