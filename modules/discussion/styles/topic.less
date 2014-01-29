@@ -297,11 +297,16 @@
 		}
 	}
 
-	// Make the "comment on topic" textarea look like the "start a new topic"
-	// input field.
 	&:not(.flow-form-active) {
+		// Make the "comment on topic" textarea look like the "start a new topic"
+		// input field.
 		.flow-topic-reply-content {
 			height: 34px;
+		}
+
+		// don't show username unless reply form is active
+		.flow-creator {
+			display: none;
 		}
 	}
 }
