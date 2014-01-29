@@ -54,7 +54,7 @@ class TopicListBlock extends AbstractBlock {
 			$this->submitted['topic'] = trim( $this->submitted['topic'] );
 			if ( strlen( $this->submitted['topic'] ) === 0 ) {
 				$this->addError( 'topic', wfMessage( 'flow-error-missing-title' ) );
-			} elseif ( strlen( $this->submitted['topic'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
+			} elseif ( mb_strlen( $this->submitted['topic'] ) > PostRevision::MAX_TOPIC_LENGTH ) {
 				$this->addError( 'topic', wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
 			}
 		}
