@@ -334,5 +334,5 @@ $wgFlowAbuseFilterEmergencyDisableThreshold = 0.10;
 $wgFlowAbuseFilterEmergencyDisableCount = 50;
 $wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.
 
-// Actions that must pass through to mediawiki on flow enabled pages
+// Actions that must pass through to MediaWiki on flow enabled pages
 $wgFlowCoreActionWhitelist = array( 'protect', 'unprotect' );
