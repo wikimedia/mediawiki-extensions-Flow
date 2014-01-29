@@ -18,9 +18,10 @@ use Flow\Container;
 use Flow\SpamFilter\Controller;
 use EchoEvent;
 use User;
-use Flow\Exception\InvalidInputException;
-use Flow\Exception\InvalidActionException;
 use Flow\Exception\FailCommitException;
+use Flow\Exception\InvalidActionException;
+use Flow\Exception\InvalidDataException;
+use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
 
 class TopicBlock extends AbstractBlock {
