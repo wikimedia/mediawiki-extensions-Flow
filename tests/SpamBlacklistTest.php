@@ -6,6 +6,9 @@ use Flow\SpamFilter\SpamBlacklist;
 use Flow\Model\PostRevision;
 use Title;
 
+/**
+ * @group Flow
+ */
 class SpamBlacklistTest extends PostRevisionTestCase {
 	/**
 	 * @var SpamBlacklist

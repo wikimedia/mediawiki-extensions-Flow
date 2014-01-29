@@ -4,6 +4,9 @@ namespace Flow\Tests;
 
 use Flow\Container;
 
+/**
+ * @group Flow
+ */
 class ContainerTest extends \MediaWikiTestCase {
 
 	public function testInstantiateAll() {

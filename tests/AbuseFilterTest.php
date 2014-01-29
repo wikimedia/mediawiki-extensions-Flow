@@ -9,6 +9,7 @@ use User;
 
 /**
  * @group Database
+ * @group Flow
  */
 class AbuseFilterTest extends PostRevisionTestCase {
 	/**

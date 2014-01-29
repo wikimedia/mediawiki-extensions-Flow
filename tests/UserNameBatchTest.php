@@ -7,6 +7,7 @@ use Flow\Data\UserNameQuery;
 
 /**
  * @group Database
+ * @group Flow
  */
 class UserNameBatchTest extends \MediaWikiTestCase {
 

@@ -82,7 +82,7 @@ class FlowHooks {
 	 * @return bool true in all cases
 	 */
 	static function getUnitTests( &$files ) {
-		$files += glob( __DIR__ . '/tests/*Test.php' );
+		$files = array_merge( $files, glob( __DIR__ . '/tests/*Test.php' ) );
 		return true;
 	}
 
