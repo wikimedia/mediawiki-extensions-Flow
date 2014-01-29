@@ -121,7 +121,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 		$this->submitted['content'] = trim( $this->submitted['content'] );
-		$len = strlen( $this->submitted['content'] );
+		$len = mb_strlen( $this->submitted['content'] );
 		if ( $len === 0 ) {
 			$this->addError( 'content', wfMessage( 'flow-error-missing-title' ) );
 			return;
