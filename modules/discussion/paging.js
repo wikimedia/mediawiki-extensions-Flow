@@ -22,36 +22,35 @@
 	$( document ).flow( 'registerInitFunction', function () {
 		$( this ).find( '.flow-paging a' ).click( function ( e ) {
 			e.preventDefault();
-			var $pagingLinkDiv = $( this ).closest( '.flow-paging' );
+			var $pagingLinkDiv = $( this ).closest( '.flow-paging' ),
+				pageSizes, $flowContainer, offset, direction, workflowId, pageName, request;
 
 			if( $pagingLinkDiv.hasClass( 'flow-paging-loading' ) ) {
 				return;
 			}
+
 			$pagingLinkDiv.addClass( 'flow-paging-loading' );
 
-			var pageSizes = mw.config.get( 'wgFlowPageSize' ),
-				limit = pageSizes.expanded,
-				$flowContainer = $( this ).closest( '.flow-container' );
+			pageSizes      = mw.config.get( 'wgFlowPageSize' );
+			$flowContainer = $( this ).closest( '.flow-container' );
+			offset         = $pagingLinkDiv.data( 'offset' );
+			direction      = $pagingLinkDiv.data( 'direction' );
+			workflowId     = $( this ).flow( 'getTopicWorkflowId' );
+			pageName       = $( this ).closest( '.flow-container' ).data( 'page-title' );
+			request = {
+				'topic_list' : {
+					'offset-dir' : direction,
+					'offset-id'  : offset,
+					'limit'      : pageSizes.expanded,
+					'render'     : true
+				}
+			};
 
 			if ( $flowContainer.hasClass( 'topic-collapsed-one-line' ) ) {
-				limit = pageSizes['collapsed-oneline'];
+				request.topic_list.limit = pageSizes['collapsed-oneline'];
 			} else if ( $flowContainer.hasClass( 'topic-collapsed-full' ) ) {
-				limit = pageSizes['collapsed-full'];
+				request.topic_list.limit = pageSizes['collapsed-full'];
 			}
-
-			var offset = $pagingLinkDiv.data( 'offset' ),
-				direction = $pagingLinkDiv.data( 'direction' ),
-				workflowId = $( this ).flow( 'getTopicWorkflowId' ),
-				pageName = $( this ).closest( '.flow-container' ).data( 'page-title' ),
-
-				request = {
-					'topic_list' : {
-						'offset-dir' : direction,
-						'offset-id' : offset,
-						'limit' : limit,
-						'render' : true
-					}
-				};
 
 			mw.flow.api.readTopicList( pageName, workflowId, request )
 				.done( function ( data ) {
@@ -60,7 +59,7 @@
 						$replaceContent;
 
 					$.each( data, function ( k, v ) {
-						if ( parseInt( k, 10 ) == k ) {
+						if ( parseInt( k, 10 ) === k ) {
 							topics.push( v );
 						}
 					} );

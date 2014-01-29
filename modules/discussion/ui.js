@@ -1,6 +1,9 @@
 ( function ( $, mw ) {
 	$( document ).flow( 'registerInitFunction', function ( e ) {
-		var $container = $( e.target );
+		var $container = $( e.target ),
+			$topicContainers = $container.is( '.flow-topic-container' ) ? $container : $container.find( '.flow-topic-container' ),
+			moderationTypes = [ 'hide', 'delete', 'suppress', 'restore' ],
+			classes = [];
 
 		/*
 		 * Set up tipsy to show the user who made last topic/post modification
@@ -12,6 +15,7 @@
 				'mouseover'
 			);
 		} );
+
 		/*
 		 * Set up tipsy.
 		 *
@@ -50,7 +54,6 @@
 			} );
 
 		// Set up folding
-		var $topicContainers = $container.is( '.flow-topic-container' ) ? $container : $container.find( '.flow-topic-container' );
 		$topicContainers
 			.on( "collapse", function() {
 				$( this ).addClass( 'flow-topic-closed' )
@@ -77,12 +80,13 @@
 					'.flow-icon-watchlist',
 					'.flow-datestamp a',
 					'.flow-topic-comments-link'
-				];
+				],
+					$topicContainer;
 				if ( $( e.target ).closest( ignore.join( ',' ) ).length > 0 ) {
 					return true;
 				}
 
-				var $topicContainer = $( this ).closest( '.flow-topic-container' );
+				$topicContainer = $( this ).closest( '.flow-topic-container' );
 				if ( $topicContainer.is( '.flow-topic-closed' ) ) {
 					$topicContainer.trigger( "expand" );
 				} else {
@@ -91,12 +95,11 @@
 			} );
 
 		// Moderation controls
-		var moderationTypes = [ 'hide', 'delete', 'suppress', 'restore' ],
-			classes = [];
 		$.each( moderationTypes, function( k, moderationType ) {
-			var classNames = ['.flow-'+moderationType+'-post-link', '.flow-'+moderationType+'-topic-link'];
+			var classNames = ['.flow-'+moderationType+'-post-link', '.flow-'+moderationType+'-topic-link'],
+				i;
 
-			for ( var i in classNames ) {
+			for ( i in classNames ) {
 				classes.push( classNames[i] );
 
 				// don't use .data() to set the type, because this is not the
@@ -174,7 +177,7 @@
 			// only add toggle if user is allowed to view the content
 			.prependTo( $container.find( '.flow-post-content-allowed' ) );
 
-		var highlightPost = function( $elem ) {
+		function highlightPost( $elem ) {
 			if ( !$elem.length ) {
 				return;
 			}
@@ -184,7 +187,7 @@
 				.closest( '.flow-post-container' )
 				.addClass( 'flow-post-highlighted' );
 			$elem.scrollIntoView();
-		};
+		}
 
 		if ( window.location.hash ) {
 			highlightPost( $( '.flow-post' + window.location.hash ) );
