@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_9c335cc0",
+        "filename": "modules/base/styles/various.less",
+        "patchSetId": 23
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-29T04:05:25Z",
+      "side": 1,
+      "message": "red bar of doom!!",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_5c3dd489",
+        "filename": "modules/discussion/styles/topic.less",
+        "patchSetId": 23
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-29T04:05:25Z",
+      "side": 1,
+      "message": "might as well use @icon-path here too",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_3c420814",
+        "filename": "templates/post.html.php",
+        "patchSetId": 23
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-29T04:05:25Z",
+      "side": 1,
+      "message": "while its fairly certain whats in moderation state, from the security review we need to either use Html class or explicitly escape $moderationState",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
