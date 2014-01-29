@@ -184,11 +184,18 @@ $wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 
 // User permissions
-$wgGroupPermissions['user']['flow-hide'] = true;
-$wgGroupPermissions['sysop']['flow-hide'] = true;
-$wgGroupPermissions['sysop']['flow-delete'] = true;
-$wgGroupPermissions['sysop']['flow-edit-post'] = true;
-$wgGroupPermissions['oversight']['flow-suppress'] = true;
+// Added to $wgFlowGroupPermissions instead of $wgGroupPermissions immediately,
+// to easily fetch Flow-specific permissions in tests/PermissionsTest.php.
+// If you wish to make local permission changes, add them to $wgGroupPermissions
+// directly - tests will fail otherwise, since they'll be based on a different
+// permissions config than what's assumed to test.
+$wgFlowGroupPermissions = array();
+$wgFlowGroupPermissions['user']['flow-hide'] = true;
+$wgFlowGroupPermissions['sysop']['flow-hide'] = true;
+$wgFlowGroupPermissions['sysop']['flow-delete'] = true;
+$wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
+$wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
+$wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
 
 // Exception
 $wgAutoloadClasses['Flow\Exception\FlowException'] = $dir . 'includes/Exception/ExceptionHandling.php';

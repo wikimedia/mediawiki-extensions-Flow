@@ -11,7 +11,7 @@ use Flow\Container;
 /**
  * Flow actions: key => value map with key being the action name.
  * The value consists of an array of these below keys (and appropriate values):
- * * performs-write: Must be boolean true for any action that writes to the wiki.
+ * * performs-writes: Must be boolean true for any action that writes to the wiki.
  *     actions with this set will additionally require the core 'edit' permission.
  * * log_type: the Special:Log filter to save actions to.
  * * permissions: array of permissions, where each key is the existing post
@@ -173,7 +173,7 @@ $wgFlowActions = array(
 			// Permissions required to perform action. The key is the moderation state
 			// of the post to perform the action against. The value is a string or array
 			// of user rights that can allow this action.
-			PostRevision::MODERATED_NONE => 'flow-hide',
+			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
 		'history' => array(
@@ -205,10 +205,10 @@ $wgFlowActions = array(
 	),
 
 	'hide-topic' => array(
-		'performs-write' => true,
+		'performs-writes' => true,
 		'log_type' => false,
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => 'flow-hide',
+			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
 		'history' => array(
@@ -238,8 +238,8 @@ $wgFlowActions = array(
 		'performs-writes' => true,
 		'log_type' => 'delete',
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => 'flow-delete',
-			PostRevision::MODERATED_HIDDEN => 'flow-delete',
+			PostRevision::MODERATED_NONE => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
 		'history' => array(
@@ -271,11 +271,11 @@ $wgFlowActions = array(
 	),
 
 	'delete-topic' => array(
-		'performs-write' => true,
+		'performs-writes' => true,
 		'log_type' => 'delete',
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => 'flow-delete',
-			PostRevision::MODERATED_HIDDEN => 'flow-delete',
+			PostRevision::MODERATED_NONE => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
 		'history' => array(
@@ -339,7 +339,7 @@ $wgFlowActions = array(
 	),
 
 	'suppress-topic' => array(
-		'performs-write' => true,
+		'performs-writes' => true,
 		'log_type' => 'suppress',
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => 'flow-suppress',
@@ -409,7 +409,7 @@ $wgFlowActions = array(
 	),
 
 	'restore-topic' => array(
-		'performs-write' => true,
+		'performs-writes' => true,
 		'log_type' => function( PostRevision $topicTitle, Logger $logger ) {
 			// Kind of log depends on the previous change type:
 			// * if topic was deleted, restore should go to deletion log
