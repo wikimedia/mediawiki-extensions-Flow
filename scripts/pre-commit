@@ -5,23 +5,61 @@
 # Code from https://gist.github.com/holysugar/1318698 , simpler than
 # http://stackoverflow.com/a/6262715/451712
 
-function error() {
+function whitespace_error() {
   echo "'$1' has trailing whitespace\n" >&2
 }
 
-# FIXME this reads the version of the file on-disk, which may not be the version
-# about to be committed if you made changes to it since `git add`.
-git diff --cached --name-only | (while read f; do
-  ERROR=0
-  if grep -n '[[:space:]]$' "$f" ; then
-    error $f
-    ERROR=1
-  fi
-done; exit $ERROR)
+function is_vagrant() {
+ 	DEST='.'
+	while [ "$(realpath $DEST)" != "/" ]; do
+		if [ -f $DEST/Vagrantfile ]; then
+			return 0;
+		fi
+		DEST="$DEST/.."
+	done
+	return 1
+}
 
-if [ $? -eq 0 -o "$IGNORE_WHITESPACE" ]; then
-  exit
-else
-  echo "if you know what you are doing, use 'IGNORE_WHITESPACE=1 git commit'"
-  exit 1
+function make() {
+	if is_vagrant; then
+		vagrant ssh -- cd /vagrant/mediawiki/extensions/Flow '&&' make $* || exit 1
+	else
+		/usr/bin/env make $* || exit 1
+	fi
+}
+
+if [ "$IGNORE_WHITESPACE" != "1" ]; then
+	# FIXME this reads the version of the file on-disk, which may not be the version
+	# about to be committed if you made changes to it since `git add`.
+	git diff --cached --name-only | (while read f; do
+	  ERROR=0
+	  if grep -n '[[:space:]]$' "$f" ; then
+		whitespace_error $f
+		ERROR=1
+	  fi
+	done; exit $ERROR)
+
+	if [ $? -ne 0 ];then
+	  echo "if you know what you are doing, use 'IGNORE_WHITESPACE=1 git commit'"
+	  exit 1
+	fi
 fi
+
+COMMANDS=""
+
+if git diff --name-only --cached | grep -P '\.less$'; then
+	COMMANDS="checkless $COMMANDS"
+fi
+
+if git diff --name-only --cached | grep -P '\.js$'; then
+	COMMANDS="jshint $COMMANDS"
+fi
+
+if git diff --name-only --cached | grep -P '\.php$'; then
+	COMMANDS="phplint $COMMANDS"
+fi
+
+if [ "$COMMANDS" != "" ]; then
+	make $COMMANDS || exit 1
+fi
+
