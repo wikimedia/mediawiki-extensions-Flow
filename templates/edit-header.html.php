@@ -41,12 +41,15 @@ echo Html::textarea(
 echo Html::openElement( 'div', array(
 	'class' => 'flow-edit-header-controls',
 ) );
-
+echo Html::rawElement( 'div', array(
+	'class' => 'flow-terms-of-use plainlinks',
+), wfMessage( 'flow-terms-of-use-new-topic' )->parse() );
 echo Html::element( 'input', array(
 	'type' => 'submit',
 	'class' => 'mw-ui-button mw-ui-constructive',
 	'value' => wfMessage( 'flow-edit-header-submit' )->plain(),
 ) );
+echo Html::element( 'div', array( 'class' => 'clear' ) );
 echo Html::closeElement( 'div' );
 echo Html::closeElement( 'form' );
 echo Html::closeElement( 'div' );
