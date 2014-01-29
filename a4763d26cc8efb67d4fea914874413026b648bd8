@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_9a911c55",
+        "filename": ".jshintrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:24:05Z",
+      "side": 1,
+      "message": "typo: arguments",
+      "revId": "a4763d26cc8efb67d4fea914874413026b648bd8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
