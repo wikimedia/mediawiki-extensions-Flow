@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use Flow\Exception\InvalidDataException;
 use Flow\View\History\History;
 use Flow\View\History\HistoryRenderer;
 use Flow\Data\ManagerGroup;
