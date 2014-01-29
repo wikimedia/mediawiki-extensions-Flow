@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_5ae9547a",
+        "filename": "container.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:54:33Z",
+      "side": 1,
+      "message": "Whoops - missed this: isset() will make $c[\u0027user\u0027] true.\n\nFixed in https://gerrit.wikimedia.org/r/#/c/110184/",
+      "revId": "eae9175c51f953c87cf81eb1132f3f3eb22b09ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
