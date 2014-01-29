@@ -6,7 +6,7 @@ $c = new Flow\Container;
 if ( defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 	$c['user'] = new User;
 } else {
-	$c['user'] = isset( $GLOBALS['wgUser'] );
+	$c['user'] = isset( $GLOBALS['wgUser'] ) ? $GLOBALS['wgUser'] : new User;
 }
 $c['output'] = $GLOBALS['wgOut'];
 $c['request'] = $GLOBALS['wgRequest'];
