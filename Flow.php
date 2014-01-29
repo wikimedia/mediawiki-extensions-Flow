@@ -148,12 +148,9 @@ $wgAutoloadClasses['Flow\Data\HeaderRevisionStorage'] = $dir . 'includes/Data/Re
 // The individual workflow pieces
 $wgAutoloadClasses['Flow\Block\Block'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\AbstractBlock'] = $dir . 'includes/Block/Block.php';
-$wgAutoloadClasses['Flow\Block\BlockView'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\HeaderBlock'] = $dir . 'includes/Block/Header.php';
 $wgAutoloadClasses['Flow\Block\TopicListBlock'] = $dir . 'includes/Block/TopicList.php';
-$wgAutoloadClasses['Flow\Block\TopicListView'] = $dir . 'includes/Block/TopicList.php';
 $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';
-$wgAutoloadClasses['Flow\Block\TopicView'] = $dir . 'includes/Block/Topic.php';
 
 // phpunit helper
 $wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/PostRevisionTestCase.php';
