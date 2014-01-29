@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "6ef7ef47_7f82c2ce",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 23
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:04:46Z",
+      "side": 1,
+      "message": "These 2 have become redundant with this patch",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_1f717e0b",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 23
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:04:46Z",
+      "side": 1,
+      "message": "Message has become redundant with this patch (I\u0027ll submit a follow-up patch which will change this one to \"edit\" and remove the next one, which will then be unused)",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_5f8706dd",
+        "filename": "includes/Templating.php",
+        "patchSetId": 23
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:04:46Z",
+      "side": 1,
+      "message": "Nitpick: missing space before closing round bracket",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_3f8c3aff",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 23
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:04:46Z",
+      "side": 1,
+      "message": "Html class is use\u0027d, so don\u0027t need to prefix it with \\",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_9c335cc0",
         "filename": "modules/base/styles/various.less",
         "patchSetId": 23
@@ -13,6 +81,74 @@
       "writtenOn": "2014-01-29T04:05:25Z",
       "side": 1,
       "message": "red bar of doom!!",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_ff6db22e",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 23
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:04:46Z",
+      "side": 1,
+      "message": "I would move this into topic.js",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_9a5fdce8",
+        "filename": "modules/discussion/forms.js",
+        "patchSetId": 23
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:04:46Z",
+      "side": 1,
+      "message": "Probably not related to this exact part in the code - have yet to look into where it comes from.\n\nAfter clicking \"edit post\" and either cancelling or submitting that, the moderation buttons are no longer in the junkdrawer (or whatever its name is now :p)\n\nUpdate: it\u0027s caused by edit-title\u0027s destroyForm function doing a $titleBar.children( \u0027form\u0027 ).remove(); (which was actually unneccessary), causing the moderation stuff (which are POST forms) to be removed too.",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_3a3688e5",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 23
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:04:46Z",
+      "side": 1,
+      "message": "This is repeated over multiple files; we should probably create a base settings file, define the path in there, then import that file?",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_1a33ccf4",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 23
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:04:46Z",
+      "side": 1,
+      "message": "Can use icon-path too (and a couple of others in this file)",
       "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -47,6 +183,23 @@
       "writtenOn": "2014-01-29T04:05:25Z",
       "side": 1,
       "message": "while its fairly certain whats in moderation state, from the security review we need to either use Html class or explicitly escape $moderationState",
+      "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_bafbb810",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 23
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-29T14:04:46Z",
+      "side": 1,
+      "message": "Now that we have both a.mw-ui-input \u0026 input.mw-ui-input in there, I noticed some differences between both:\n\n* input seems to get font-family: Lucida Grande (should be sans-serif)\n* firefox adds some special whitespace around text in input type\u003d\"submit\", resulting in the button texts not lining up correctly in FF\n* there also seems to be a difference in line-height (but not really visually apparent)",
       "revId": "29fd67cbacdbc4ce72829ea234721e5a9fcdb0e8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
