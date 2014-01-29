@@ -1,3 +1,4 @@
+
 ( function ( $, mw ) {
 	'use strict';
 
@@ -39,13 +40,13 @@
 	 * @param {string} [content='']
 	 */
 	mw.flow.editors.visualeditor.prototype.init = function ( content ) {
-		var $veNode;
+		var $veNode,
+			$focusedElement = $( ':focus' );
 
 		// add i18n messages to VE
 		window.ve.init.platform.addMessages( mw.messages.values );
 
 		$.removeSpinner( 'flow-editor-loading' );
-		var $focussedElement = $( ':focus' );
 
 		// init ve, save target object
 		this.target = new window.ve.init.sa.Target(
@@ -57,10 +58,10 @@
 		$veNode = this.target.surface.$element.find( '.ve-ce-documentNode' );
 
 		// focus VE instance if textarea had focus
-		if ( !$focussedElement.length || this.$node.is( $focussedElement ) ) {
+		if ( !$focusedElement.length || this.$node.is( $focusedElement ) ) {
 			this.focus();
 		} else {
-			$focussedElement.focus();
+			$focusedElement.focus();
 		}
 
 		$veNode.addClass( 'mw-ui-input' );

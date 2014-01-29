@@ -137,9 +137,10 @@ mw.flow = {
 		},
 
 		generateTopicAction: function( actionName, parameterList, promiseFilterCallback ) {
-			var params = $.makeArray( arguments );
+			var params = $.makeArray( arguments ),
+				innerAction;
 			params.unshift( 'topic' );
-			var innerAction = mw.flow.api.generateBlockAction.apply( this, params );
+			innerAction = mw.flow.api.generateBlockAction.apply( this, params );
 
 			return function( topicId ) {
 				var actionParams = $.makeArray( arguments );
@@ -161,14 +162,14 @@ mw.flow = {
 					requestParams = {},
 					paramIndex = 1,
 					requestArguments = arguments,
-					newDeferredObject;
+					newDeferredObject,
+					realParams = {};
 
 				$.each( parameterList, function ( key, value ) {
 					requestParams[value] = requestArguments[paramIndex];
 					paramIndex++;
 				} );
 
-				var realParams = {};
 				realParams[blockName] = requestParams;
 
 				mw.flow.api.executeAction(
@@ -298,15 +299,15 @@ mw.flow.exception = function( code, data ) {
 };
 
 mw.flow.exception.prototype.getCode = function() {
-	return this.code;	
+	return this.code;
 };
 
 mw.flow.exception.prototype.getData = function() {
-	return this.data;	
+	return this.data;
 };
 
 mw.flow.exception.prototype.getErrorInfo = function() {
-	return [this.code, this.data];	
+	return [this.code, this.data];
 };
 
 } )( jQuery, mediaWiki );

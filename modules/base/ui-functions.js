@@ -90,14 +90,15 @@
 			 * when the form submission has returned.
 			 */
 			'setupEditForm' : function( type, initialContent, submitFunction, loadFunction ) {
-				var $contentContainer = $(this);
-				var deferredObject = $.Deferred();
+				var $contentContainer = $( this ),
+					deferredObject = $.Deferred(),
+					$postForm;
 				if ( $contentContainer.siblings( '.flow-edit-'+type+'-form' ).length ) {
 					// This is a bit yucky, but should behave correctly in most cases
 					return deferredObject.promise();
 				}
 
-				var $postForm = $('<form/>')
+				$postForm = $('<form/>')
 					.addClass( 'flow-edit-'+type+'-form' )
 					.hide()
 					.insertAfter( $contentContainer );
@@ -178,7 +179,7 @@
 				$contentContainer.hide();
 				$postForm.show();
 
-				if ( typeof initialContent != 'object' ) {
+				if ( typeof initialContent !== 'object' ) {
 					initialContent = {
 						'content' : initialContent,
 						'format' : 'wikitext'
@@ -313,7 +314,7 @@
 					'.flow-'+type+'-reply-submit'
 				);
 
-				if ( typeof initialContent != 'object' ) {
+				if ( typeof initialContent !== 'object' ) {
 					initialContent = {
 						'content' : initialContent,
 						'format' : 'wikitext'
@@ -373,14 +374,14 @@
 				validateCallback,
 				promiseCallback
 			) {
-				var $container = $(this);
-				var handler = $( this ).flow(
-					'getFormHandler',
-					submitFunction,
-					loadParametersCallback,
-					validateCallback,
-					promiseCallback
-				);
+				var $container = $(this ),
+					handler = $( this ).flow(
+						'getFormHandler',
+						submitFunction,
+						loadParametersCallback,
+						validateCallback,
+						promiseCallback
+					);
 
 				$container.find( submitSelector )
 					.click( function ( e ) {
@@ -597,11 +598,14 @@
 						$previewContainer.empty();
 						var success = function ( data ) {
 							$div.html( data['flow-parsoid-utils'].content );
-						}, failure = function ( code, data ) {
+						},
+							failure = function ( code, data ) {
 							$( '<div>' ).flow( 'showError', arguments ).insertBefore( $form );
-						};
-						for ( var identifier in contents ) {
-							var $div = $( '<div>' ).addClass( 'flow-preview-sub-container' );
+						},
+							identifier, $div;
+
+						for ( identifier in contents ) {
+							$div = $( '<div>' ).addClass( 'flow-preview-sub-container' );
 							$previewContainer.append( $div );
 							if ( contents[identifier] === 'parsed' ) {
 								if ( mw.flow.editor.getFormat() !== 'html' ) {

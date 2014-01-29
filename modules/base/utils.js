@@ -8,9 +8,11 @@
 	 * @param  int end   End position in characters to select (optional)
 	 * @return jQuery    The jQuery object passed in, for chaining.
 	 */
-	$.fn.selectRange = function(start, end) {
-		if( !end ) end = start;
-		return this.each( function() {
+	$.fn.selectRange = function( start, end ) {
+		if ( !end ) {
+			end = start;
+		}
+		return this.each( function () {
 			if ( this.setSelectionRange ) {
 				this.focus();
 				this.setSelectionRange( start, end );

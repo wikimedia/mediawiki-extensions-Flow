@@ -75,7 +75,7 @@
 		 * Only animate height change if there actually is a change; we don't
 		 * want every keystroke firing a 50ms animation.
 		 */
-		if ( scrollHeight != $( this ).height() ) {
+		if ( scrollHeight !== $( this ).height() ) {
 			$( this ).animate( { height: scrollHeight + padding }, animationTime );
 		}
 	};
