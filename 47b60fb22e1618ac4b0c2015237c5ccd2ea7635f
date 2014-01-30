@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_ba33afbf",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-30T15:15:22Z",
+      "side": 1,
+      "message": "Probably needs to be $.proxy?",
+      "revId": "47b60fb22e1618ac4b0c2015237c5ccd2ea7635f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_9a06b3d0",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-30T15:15:22Z",
+      "side": 1,
+      "message": "Instead of this setting $div.text() \u0026 using waitToShow, might as well call previewDone right away:\n\n    previewDone.call( { \u0027flow-parsoid-utils\u0027: $form.find( identifier ).val() } );\n\nNext if-statement, which has some duplicated code, can be omitted then.",
+      "revId": "47b60fb22e1618ac4b0c2015237c5ccd2ea7635f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_7a86471a",
+        "filename": "modules/discussion/ui.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-30T15:15:22Z",
+      "side": 1,
+      "message": "Probably needs $.proxy?",
+      "revId": "47b60fb22e1618ac4b0c2015237c5ccd2ea7635f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
