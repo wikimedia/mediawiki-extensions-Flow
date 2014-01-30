@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_6ebd6dd1",
+        "filename": "modules/base/action.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-30T00:42:20Z",
+      "side": 1,
+      "message": "i have a patch to fix this in core, feel free to review :) \nhttps://gerrit.wikimedia.org/r/#/c/104650/",
+      "revId": "964ffef77185b05d2b2c4c66c81e5d0e79eaf1ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_4e8071f9",
+        "filename": "modules/discussion/post.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-30T00:42:20Z",
+      "side": 1,
+      "message": "$.proxy",
+      "revId": "964ffef77185b05d2b2c4c66c81e5d0e79eaf1ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_2e964550",
+        "filename": "modules/discussion/post.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-30T00:42:20Z",
+      "side": 1,
+      "message": "$.proxy",
+      "revId": "964ffef77185b05d2b2c4c66c81e5d0e79eaf1ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_8e867917",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-30T00:42:20Z",
+      "side": 1,
+      "message": "$.proxy",
+      "revId": "964ffef77185b05d2b2c4c66c81e5d0e79eaf1ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_8eaf9991",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-30T00:42:20Z",
+      "side": 1,
+      "message": "We are now supporting IE8, so we need to use $.proxy instead of Function.prototype.bind",
+      "revId": "964ffef77185b05d2b2c4c66c81e5d0e79eaf1ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_ce8c813d",
+        "filename": "modules/header/forms.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-30T00:42:20Z",
+      "side": 1,
+      "message": "$.proxy",
+      "revId": "964ffef77185b05d2b2c4c66c81e5d0e79eaf1ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_ee9f3d61",
+        "filename": "modules/header/forms.js",
+        "patchSetId": 20
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-01-30T00:42:20Z",
+      "side": 1,
+      "message": "$.proxy",
+      "revId": "964ffef77185b05d2b2c4c66c81e5d0e79eaf1ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
