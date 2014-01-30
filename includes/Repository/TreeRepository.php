@@ -46,6 +46,16 @@ class TreeRepository {
 	}
 
 	/**
+	 * A helper function to generate cache keys for tree repository
+	 * @param string $type
+	 * @param \Flow\Model\UUID $uuid
+	 * @return string
+	 */
+	protected function cacheKey( $type, UUID $uuid ) {
+		return wfForeignMemcKey( 'flow', '', 'tree', $type, $uuid->getHex(), Container::get( 'cache.version' ) );
+	}
+
+	/**
 	 * Insert a new tree node.  If ancestor === null then this node is a root.
 	 *
 	 * To also write this to cache we would have to read our own write, which
@@ -56,9 +66,9 @@ class TreeRepository {
 	 * has what we need
 	 */
 	public function insert( UUID $descendant, UUID $ancestor = null ) {
-		$subtreeKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $descendant->getHex(), Container::get( 'cache.version' ) );
-		$parentKey = wfForeignMemcKey( 'flow', '', 'tree', 'parent', $descendant->getHex(), Container::get( 'cache.version' ) );
-		$pathKey = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex(), Container::get( 'cache.version' ) );
+		$subtreeKey = $this->cacheKey( 'subtree', $descendant );
+		$parentKey = $this->cacheKey( 'parent', $descendant );
+		$pathKey = $this->cacheKey( 'rootpath', $descendant );
 		$this->cache->set( $subtreeKey, array( $descendant ), $this->cacheTime );
 		if ( $ancestor === null ) {
 			$this->cache->set( $parentKey, null, $this->cacheTime );
@@ -97,8 +107,8 @@ class TreeRepository {
 			);
 		}
 		if ( !$res ) {
-			$this->cache->del( $parentKey );
-			$this->cache->del( $pathKey );
+			$this->cache->delete( $parentKey );
+			$this->cache->delete( $pathKey );
 			throw new DataModelException( 'Failed inserting new tree node', 'process-data' );
 		}
 		$this->appendToSubtreeCache( $descendant, $path );
@@ -116,7 +126,7 @@ class TreeRepository {
 
 		// This could be pretty slow if there is contention
 		foreach ( $rootPath as $subtreeRoot ) {
-			$cacheKey = wfForeignMemcKey( 'flow', '', 'tree', 'subtree', $subtreeRoot->getHex(), Container::get( 'cache.version' ) );
+			$cacheKey = $this->cacheKey( 'subtree', $subtreeRoot );
 			$success = $this->cache->merge( $cacheKey, $callback );
 
 			// if we failed to CAS new data, kill the cached value so it'll be
@@ -144,7 +154,7 @@ class TreeRepository {
 		$missingValues = array();
 
 		foreach( $descendants as $descendant ) {
-			$cacheKeys[$descendant->getHex()] = wfForeignMemcKey( 'flow', '', 'tree', 'rootpath', $descendant->getHex(), Container::get( 'cache.version' ) );
+			$cacheKeys[$descendant->getHex()] = $this->cacheKey( 'rootpath', $descendant );
 		}
 
 		$cacheResult = $this->cache->getMulti( array_values( $cacheKeys ) );
