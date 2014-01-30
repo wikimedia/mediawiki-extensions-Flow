@@ -55,10 +55,14 @@ class TalkpageManager implements OccupationController {
 	 * @param Article $article
 	 */
 	public function ensureFlowRevision( \Article $article ) {
+		$title = $article->getTitle();
+		if ( !$this->isTalkpageOccupied( $title ) ) {
+			throw new InvalidInputException( 'Requested article is not Flow enabled', 'invalid-input' );
+		}
+
 		// comment to add to the Revision to indicate Flow taking over
 		$comment = '/* Taken over by Flow */';
 
-		$title = $article->getTitle();
 		$page = $article->getPage();
 		$revision = $page->getRevision();
 

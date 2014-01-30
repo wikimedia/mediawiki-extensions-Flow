@@ -26,7 +26,11 @@ class ApiFlow extends ApiBase {
 			->createWorkflowLoader( $page, $id );
 		$occupationController = $this->container['occupation_controller'];
 		$workflow = $this->loader->getWorkflow();
-		$article = new Article( $workflow->getArticleTitle(), 0 );
+		$title = $workflow->getArticleTitle();
+		$article = new Article( $title, 0 );
+		if ( !$occupationController->isTalkpageOccupied( $title ) ) {
+			$this->dieUsage( 'The requested article is not Flow enabled' );
+		}
 
 		// @todo: this is a hack; see ParsoidUtils::convert
 		global $wgFlowParsoidTitle;
