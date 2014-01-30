@@ -185,7 +185,8 @@ class Post {
 	}
 
 	public function createModifiedTipsyLink( AbstractBlock $block ) {
-		if ( $this->post->getLastContentEditId() ) {
+		// Show the tipsy only if there is content change
+		if ( !$this->post->isOriginalContent() ) {
 			$link = Html::element(
 				'a',
 				array( 'class' => 'flow-content-modified-tipsy-link', 'href' => $this->getLatestDiffLink( $block ) ),
@@ -199,7 +200,8 @@ class Post {
 
 	public function createModifiedTipsyHtml( AbstractBlock $block ) {
 		$html = '';
-		if ( $this->post->getLastContentEditId() ) {
+		// Show the tipsy only if there is content change
+		if ( !$this->post->isOriginalContent() ) {
 			$name = $this->usernames->get(
 				wfWikiId(),
 				$this->post->getLastContentEditUserId(),

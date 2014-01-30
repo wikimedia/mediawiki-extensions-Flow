@@ -159,7 +159,7 @@ if ( $post->isModerated() ) {
 			</div>
 
 			<div class="flow-post-content">
-				<?php echo $this->getContent( $post, 'html' ), $postView->createModifiedTipsyLink( $block ); ?>
+				<?php echo $this->getContent( $post, 'html' ), $postView->createModifiedTipsyLink( $block ), $postView->createModifiedTipsyHtml( $block ); ?>
 			</div>
 			<?php
 				echo $this->render( 'flow:timestamp.html.php', array(
