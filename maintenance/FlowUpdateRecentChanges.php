@@ -63,7 +63,9 @@ class FlowUpdateRecentChanges extends LoggedUpdateMaintenance {
 			$continue = $row->rc_id;
 
 			// build params
-			$params = @unserialize( $row->rc_params );
+			wfSuppressWarnings();
+			$params = unserialize( $row->rc_params );
+			wfRestoreWarnings();
 			if ( !$params ) {
 				$params = array();
 			}
