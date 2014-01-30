@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_85a9b4de",
+        "filename": "includes/Block/BoardHistory.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2014-01-30T16:33:42Z",
+      "side": 1,
+      "message": "Again to this phpdoc should probably be something like :\n@param Revision[] $history an array of flow revisions ( Header or PostRevision )",
+      "revId": "d282ebd2564b6aeae0900c31f42fa4b5b91d3172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_6585885a",
+        "filename": "tests/WorkflowLoaderTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2014-01-30T16:33:42Z",
+      "side": 1,
+      "message": "no need to have this override method here as it does nothing",
+      "revId": "d282ebd2564b6aeae0900c31f42fa4b5b91d3172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
