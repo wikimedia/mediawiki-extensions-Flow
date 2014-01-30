@@ -37,6 +37,15 @@ class Formatter extends AbstractFormatter {
 			return false;
 		}
 
+		/**
+		 * Check to make sure revision_type exists, this is to make sure corrupted
+		 * flow recent change data doesn't throw error on the page.
+		 * See bug 59106 for more detail
+		 */
+		if ( !$changeData['revision_type'] ) {
+			return false;
+		}
+
 		$revision = $this->loadRevision( UUID::create( $changeData['revision'] ), $changeData['revision_type'] );
 		if ( !$revision ) {
 			return false;
