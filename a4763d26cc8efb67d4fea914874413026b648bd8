@@ -16,6 +16,23 @@
       "revId": "a4763d26cc8efb67d4fea914874413026b648bd8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_1a4063a7",
+        "filename": "modules/discussion/paging.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-01-30T15:37:20Z",
+      "side": 1,
+      "message": "Looks like this broke infinite scroll :p (I didn\u0027t even know what exactly this line did)\n\nhttps://gerrit.wikimedia.org/r/#/c/110376/ fixes that",
+      "revId": "a4763d26cc8efb67d4fea914874413026b648bd8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
