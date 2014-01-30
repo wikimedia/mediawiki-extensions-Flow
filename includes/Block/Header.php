@@ -3,19 +3,11 @@
 namespace Flow\Block;
 
 use Flow\RevisionActionPermissions;
-use Flow\View\History\History;
-use Flow\View\History\HistoryRenderer;
 use Flow\Container;
-use Flow\DbFactory;
-use Flow\Data\ObjectManager;
-use Flow\Model\Workflow;
 use Flow\Model\Header;
-use Flow\Repository\HeaderRepository;
 use Flow\Templating;
-use User;
 use Flow\Model\UUID;
 use Flow\Exception\InvalidActionException;
-use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 
 class HeaderBlock extends AbstractBlock {
