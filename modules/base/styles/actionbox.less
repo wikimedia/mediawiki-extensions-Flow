@@ -66,16 +66,25 @@
 	.flow-tipsy-flyout {
 		display: block;
 
-		// give the action menu an animated width
-		ul li .mw-ui-button {
-			transition: width 0.1s, text-indent 0.1s, padding-right 0.1s;
-		}
-
-		// unless when hovered, shorten buttons to only display the icon
+		// unless hovered, shorten buttons to only display the icon
 		&:not(:hover) ul li .mw-ui-button {
 			width: 0;
 			text-indent: -9999px;
 			padding-right: 4px;
+		}
+
+		ul {
+			// Undo margin, from .mw-content-ltr ul, around action list
+			margin: 0;
+			padding: 0;
+
+			li .mw-ui-button {
+				// give the action menu an animated width
+				transition: width 0.1s, padding-right 0.1s;
+				// prevent height changes while animating
+				max-height: 30px;
+				overflow: hidden;
+			}
 		}
 	}
 }
