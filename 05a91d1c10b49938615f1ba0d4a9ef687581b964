@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_94a0c73f",
+        "filename": "includes/View/PostActionMenu.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-01-30T21:02:48Z",
+      "side": 1,
+      "message": "It\u0027s essential to have comments when a system is loosely coupled. Here where a back-end has to generate magic HTML that affects front-end.  (Presumably this is why the feature got lost in refactoring.) So,\n\n   // This URL fragment triggers highlightPost behavior in front-end JS.\n\nDoes it make sense to output this fragment for every action, like hide/suppress?\n\nPerformance: save $this-\u003epost-\u003egetPostId()-\u003egetHex() in a $postIdentifier (or whatever name we use for this soon-to-be alphadigit value), since it\u0027s now used twice.",
+      "revId": "05a91d1c10b49938615f1ba0d4a9ef687581b964",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
