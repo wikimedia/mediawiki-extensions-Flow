@@ -111,7 +111,9 @@ if ( $post->isModerated() ) {
 						$viewButton = $postActionMenu->getButton(
 							'view',
 							wfMessage( 'flow-post-action-view' )->escaped(),
-							'mw-ui-button flow-action-permalink-link'
+							'mw-ui-button flow-action-permalink-link',
+							// This URL fragment triggers highlightPost behavior in front-end JS.
+							'flow-post-' . $post->getPostId()->getHex()
 						);
 						if ( $viewButton ) {
 							echo '<li class="flow-action-permalink">', $viewButton, '</li>';
