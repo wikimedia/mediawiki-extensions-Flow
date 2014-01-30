@@ -59,7 +59,9 @@
 						$replaceContent;
 
 					$.each( data, function ( k, v ) {
-						if ( parseInt( k, 10 ) === k ) {
+						// all topics have a numeric key - other keys are
+						// irrelevant here
+						if ( !isNaN( k ) ) {
 							topics.push( v );
 						}
 					} );
