@@ -51,9 +51,10 @@ class PostActionMenu {
 	 * @param string $action
 	 * @param string $content Make sure $content is safe HTML!
 	 * @param string $class
+	 * @param string $fragment
 	 * @return string|bool Button HTML or false on failure
 	 */
-	public function getButton( $action, $content, $class ) {
+	public function getButton( $action, $content, $class, $fragment = '' ) {
 		if ( !$this->permissions->isAllowed( $this->post, $action ) ) {
 			return false;
 		}
@@ -61,7 +62,7 @@ class PostActionMenu {
 		if ( $this->getMethod( $action ) === 'POST' ) {
 			return $this->postAction( $action, $data, $content, $class );
 		} else {
-			return $this->getAction( $action, $data, $content, $class );
+			return $this->getAction( $action, $data, $content, $class, $fragment );
 		}
 	}
 
@@ -91,9 +92,10 @@ class PostActionMenu {
 	 * Includes permissions checking.
 	 * @param  string $action The action to get the URL for
 	 * @param  array  $data   Optional parameters to pass
+	 * @param  string $fragment The URL fragment
 	 * @return string         The URL for the given action
 	 */
-	public function actionUrl( $action, array $data = array() ) {
+	public function actionUrl( $action, array $data = array(), $fragment = '' ) {
 		if ( ! $this->isAllowed( $action ) ) {
 			return null;
 		}
@@ -101,7 +103,8 @@ class PostActionMenu {
 		return $this->urlGenerator->generateUrl(
 			$this->block->getWorkflowId(),
 			$action,
-			$data
+			$data,
+			$fragment
 		);
 	}
 
@@ -149,10 +152,11 @@ class PostActionMenu {
 	 * @param array $data
 	 * @param string $content Make sure $content is safe HTML!
 	 * @param string $class
+	 * @param string $fragment
 	 * @return string
 	 */
-	protected function getAction( $action, array $data, $content, $class ) {
-		$url = $this->actionUrl( $action, $data );
+	protected function getAction( $action, array $data, $content, $class, $fragment = '' ) {
+		$url = $this->actionUrl( $action, $data, $fragment );
 
 		return Html::rawElement(
 			'a',
