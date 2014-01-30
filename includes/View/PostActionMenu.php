@@ -152,7 +152,7 @@ class PostActionMenu {
 	 * @return string
 	 */
 	protected function getAction( $action, array $data, $content, $class ) {
-		$url = $this->actionUrl( $action, $data );
+		$url = $this->actionUrl( $action, $data ) . '#flow-post-' . $this->post->getPostId()->getHex();
 
 		return Html::rawElement(
 			'a',
