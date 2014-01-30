@@ -12,6 +12,18 @@
 	.flow-tipsy-flyout {
 		position: inherit;
 		top: 0;
+
+		ul {
+			// Core applies margin to all uls, but we dont want it in this case
+			margin: 0;
+		}
+
+		a {
+			// Unfortunatly the anchors are receiving gray from the titlebar's
+			// mw-ui-button.  Soon that will be removed, but until then undo it
+			background: #FFF;
+		}
+
 	}
 
 	// shrink textarea's until they are focused
