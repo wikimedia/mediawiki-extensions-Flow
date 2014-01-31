@@ -20,7 +20,7 @@ class FlowPage
   button(:change_post_save, class: "flow-edit-post-submit")
   button(:change_title_save, class: "flow-edit-title-submit")
   a(:contrib_link, text: "contribs")
-  a(:edit_post_icon, title: "Edit post", index: topic_index)
+  a(:edit_post, class: "flow-edit-post-link", index: topic_index)
   a(:edit_title_icon, title: "Edit title", index: topic_index)
   div(:flow_body, class: "flow-container")
   list_item(:full_view, title: "Full view")
