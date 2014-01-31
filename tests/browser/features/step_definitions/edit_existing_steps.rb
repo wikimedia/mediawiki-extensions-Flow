@@ -1,13 +1,12 @@
-When(/^I click the Edit post pencil icon$/) do
+When(/^I click Edit post$/) do
   on(FlowPage) do |page|
-    page.topic_post_element.when_present.hover
-    page.edit_post_icon_element.when_present.click
+    page.edit_post_element.when_present.click
   end
 end
 
-When(/^I click the Edit title pencil icon$/) do
+When(/^I click the Edit title action$/) do
   on(FlowPage) do |page|
-    page.topic_title_element.when_present.hover
+    page.topic_actions_link_element.when_present.click
     page.edit_title_icon_element.when_present.click
   end
 end

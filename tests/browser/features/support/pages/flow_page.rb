@@ -9,8 +9,10 @@ class FlowPage
   # conflicts from simultaneous test runs (bug 59011).
   if ENV['BROWSER_LABEL'] == "chrome"
     topic_index = 1
+    actions_index = 2
   else
     topic_index = 0
+    actions_index = 0
   end
 
   a(:actions_link, text: "Actions", index: 1)
@@ -20,8 +22,8 @@ class FlowPage
   button(:change_post_save, class: "flow-edit-post-submit")
   button(:change_title_save, class: "flow-edit-title-submit")
   a(:contrib_link, text: "contribs")
-  a(:edit_post_icon, title: "Edit post", index: topic_index)
-  a(:edit_title_icon, title: "Edit title", index: topic_index)
+  a(:edit_post, class: "flow-edit-post-link", index: topic_index)
+  a(:edit_title_icon, css: "div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-edit-title > a.mw-ui-button.flow-edit-topic-link")
   div(:flow_body, class: "flow-container")
   list_item(:full_view, title: "Full view")
 
@@ -41,7 +43,7 @@ class FlowPage
   list_item(:small_view, title: "Small view")
   a(:talk_link, text: "Talk")
   text_field(:title_edit, class: "mw-ui-input flow-edit-title-textbox")
-  a(:topic_actions_link, text: "Actions", index: 0)
+  a(:topic_actions_link, text: "Actions", index: actions_index)
   div(:topic_post, class: "flow-post-content", index: topic_index)
   div(:topic_title, class: "flow-topic-title", index: topic_index)
 end
