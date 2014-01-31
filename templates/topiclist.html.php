@@ -13,7 +13,7 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 		echo '<p>' . $block->getErrorMessage( 'topic' )->parse() . '</p>';
 	}
 	echo Html::input(
-		$block->getName() . '[topic]', '', 'text', array(
+		$block->getName() . '_topic', '', 'text', array(
 			'placeholder' => wfMessage( 'flow-newtopic-title-placeholder' )->text(),
 			'title' => wfMessage( 'flow-newtopic-title-placeholder' )->text(),
 			'class' => 'flow-newtopic-title mw-ui-input',
@@ -23,7 +23,7 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 	if ( $block->hasErrors( 'content' ) ) {
 		echo '<p>' . $block->getErrorMessage( 'content' )->parse() . '</p>';
 	}
-	echo Html::textarea( $block->getName() . '[content]', '', array(
+	echo Html::textarea( $block->getName() . '_content', '', array(
 		'placeholder' => wfMessage( 'flow-newtopic-content-placeholder' )->text(),
 		'title' => wfMessage( 'flow-newtopic-content-placeholder' )->text(),
 		'class' => 'flow-newtopic-step2 flow-newtopic-content mw-ui-input',

@@ -32,7 +32,7 @@ class ConvertToText extends Maintenance {
 				'list' => 'flow',
 				'flowpage' => $pageTitle->getPrefixedText(),
 				'flowparams' => FormatJson::encode( array(
-					'topic_list' => $pagerParams + array(
+					'topiclist' => $pagerParams + array(
 						'limit' => 1,
 						'contentFormat' => 'wikitext',
 					),
@@ -63,7 +63,7 @@ class ConvertToText extends Maintenance {
 			foreach( $flowData as $key => $block ) {
 				if ( is_numeric( $key ) && $block['block-name'] === 'header' ) {
 					$headerBlock = $block;
-				} elseif ( is_numeric( $key ) && $block['block-name'] === 'topic_list' ) {
+				} elseif ( is_numeric( $key ) && $block['block-name'] === 'topiclist' ) {
 					$topicListBlock = $block;
 				}
 			}

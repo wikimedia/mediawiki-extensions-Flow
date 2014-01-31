@@ -45,13 +45,13 @@ echo Html::element( 'input', array(
 if ( $header ) {
 	echo Html::element( 'input', array(
 		'type' => 'hidden',
-		'name' => $block->getName()."[prev_revision]",
+		'name' => $block->getName()."_prev_revision",
 		'value' => $revisionId
 	) );
 }
 
 echo Html::textarea(
-	$block->getName() . '[content]',
+	$block->getName() . '_content',
 	$header ? $this->getContent( $header, 'wikitext' ) : '',
 	array(
 		'class' => 'mw-ui-input',

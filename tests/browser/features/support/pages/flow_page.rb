@@ -37,7 +37,7 @@ class FlowPage
 
   text_area(:new_topic_body, class: "flow-newtopic-content")
   button(:new_topic_save, class: "flow-newtopic-submit")
-  text_field(:new_topic_title, name: "topic_list[topic]")
+  text_field(:new_topic_title, name: "topiclist_topic")
   text_field(:post_edit, class: "flow-edit-post-content flow-disabler")
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
   list_item(:small_view, title: "Small view")
