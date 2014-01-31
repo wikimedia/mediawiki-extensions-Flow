@@ -68,7 +68,7 @@ switch( $newRevision->getRevisionType() ) {
 				$block->getWorkflow(),
 				'view',
 				array(
-					$block->getName().'[postId]' => $newRevision->getPostId()->getHex()
+					$block->getName().'_postId' => $newRevision->getPostId()->getHex()
 				)
 			);
 
@@ -80,7 +80,7 @@ switch( $newRevision->getRevisionType() ) {
 				$block->getWorkflow(),
 				'post-history',
 				array(
-					$block->getName().'[postId]' => $newRevision->getPostId()->getHex()
+					$block->getName().'_postId' => $newRevision->getPostId()->getHex()
 				)
 			);
 		$headerMsg = wfMessage( 'flow-compare-revisions-header-post' )

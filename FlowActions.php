@@ -518,7 +518,7 @@ $wgFlowActions = array(
 					return $templating->getUserText( $revision );
 				},
 				function ( PostRevision $revision, Templating $templating, UUID $workflowId, $blockType ) {
-					$data = array( $blockType . '[postId]' => $revision->getPostId()->getHex() );
+					$data = array( $blockType . '_postId' => $revision->getPostId()->getHex() );
 					return $templating->getUrlGenerator()->generateUrl( $workflowId, 'view', $data, 'flow-post-' . $revision->getPostId()->getHex() );
 				},
 			),

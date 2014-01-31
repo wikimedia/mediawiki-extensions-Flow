@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Model\Workflow;
 use Html;
+use WebRequest;
 use IContextSource;
 
 class View {
@@ -68,8 +69,10 @@ class View {
 				'data-workflow-existence' => $workflow->isNew() ? 'new' : 'existing',
 			)
 		) );
+
+		$parameters = $loader->extractBlockParameters( $request, $blocks );
 		foreach ( $blocks as $block ) {
-			$block->render( $this->templating, $request->getArray( $block->getName(), array() ) );
+			$block->render( $this->templating, $parameters[$block->getName()] );
 		}
 		$this->output->addHTML( "</div>" );
 	}
