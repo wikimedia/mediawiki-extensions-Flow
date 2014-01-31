@@ -218,7 +218,7 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function getName() {
-		return 'topic_list';
+		return 'topiclist';
 	}
 
 	protected function getLimit( $options ) {

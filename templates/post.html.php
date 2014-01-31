@@ -33,10 +33,10 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 	$replyForm .=
 		Html::element( 'input', array(
 			'type' => 'hidden',
-			'name' => $block->getName() . '[replyTo]',
+			'name' => $block->getName() . '_replyTo',
 			'value' => $post->getPostId()->getHex(),
 		) ) .
-		Html::textarea( $block->getName() . '[content]', '', array(
+		Html::textarea( $block->getName() . '_content', '', array(
 			'placeholder' => $placeHolder,
 			'title' => $placeHolder,
 			'class' => 'flow-post-reply-content mw-ui-input',
