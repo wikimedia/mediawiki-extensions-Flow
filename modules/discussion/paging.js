@@ -38,7 +38,7 @@
 			workflowId     = $( this ).flow( 'getTopicWorkflowId' );
 			pageName       = $( this ).closest( '.flow-container' ).data( 'page-title' );
 			request = {
-				'topic_list' : {
+				'topiclist' : {
 					'offset-dir' : direction,
 					'offset-id'  : offset,
 					'limit'      : pageSizes.expanded,
@@ -47,9 +47,9 @@
 			};
 
 			if ( $flowContainer.hasClass( 'topic-collapsed-one-line' ) ) {
-				request.topic_list.limit = pageSizes['collapsed-oneline'];
+				request.topiclist.limit = pageSizes['collapsed-oneline'];
 			} else if ( $flowContainer.hasClass( 'topic-collapsed-full' ) ) {
-				request.topic_list.limit = pageSizes['collapsed-full'];
+				request.topiclist.limit = pageSizes['collapsed-full'];
 			}
 
 			mw.flow.api.readTopicList( pageName, workflowId, request )

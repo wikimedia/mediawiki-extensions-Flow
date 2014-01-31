@@ -171,8 +171,9 @@ class WorkflowLoader {
 		$success = true;
 		$interestedBlocks = array();
 
+		$params = $this->extractBlockParameters( $request, $blocks );
 		foreach ( $blocks as $block ) {
-			$data = $request->getArray( $block->getName(), array() );
+			$data = $params[$block->getName()];
 			$result = $block->onSubmit( $action, $user, $data );
 			if ( $result !== null ) {
 				$interestedBlocks[] = $block;
@@ -230,6 +231,36 @@ class WorkflowLoader {
 
 		return $results;
 	}
+
+	/**
+	 * Helper function extracts something
+	 *
+	 * @param \WebRequest $request
+	 * @param array $blocks
+	 * @return array
+	 */
+	static public function extractBlockParameters( \WebRequest $request, array $blocks ) {
+		$result = array();
+		// BC for old parameters enclosed in square brackets
+		foreach ( $blocks as $block ) {
+			$name = $block->getName();
+			$result[$name] = $request->getArray( $name, array() );
+		}
+		// BC for topic_list renamed to topiclist
+		if ( isset( $result['topiclist'] ) && !$result['topiclist'] ) {
+			$result['topiclist'] = $request->getArray( 'topic_list', array() );
+		}
+		// between urls only allowing [-_.] as unencoded special chars and
+		// php mangling all of those into '_', we have to split on '_'
+		foreach ( $request->getValues() as $name => $value ) {
+			if ( false !== strpos( $name, '_' ) ) {
+				list( $block, $var ) = explode( '_', $name, 2 );
+				$result[$block][$name] = $value;
+			}
+		}
+		return $result;
+	}
+
 
 }
 
