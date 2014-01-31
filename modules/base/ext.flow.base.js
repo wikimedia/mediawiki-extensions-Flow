@@ -119,7 +119,7 @@ mw.flow = {
 		 * @return {Deferred}
 		 */
 		'readTopicList' : function ( pageName, workflowId, options ) {
-			return mw.flow.api.readBlock( pageName, workflowId, 'topic_list', options );
+			return mw.flow.api.readBlock( pageName, workflowId, 'topiclist', options );
 		},
 
 		/**
@@ -217,7 +217,7 @@ mw.flow = {
 
 // Define some higher-level functions using mw.flow.api "primitives".
 mw.flow.api.newTopic = mw.flow.api.generateBlockAction(
-	'topic_list',
+	'topiclist',
 	'new-topic',
 	[
 		'topic',

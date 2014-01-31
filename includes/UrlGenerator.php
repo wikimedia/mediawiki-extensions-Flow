@@ -103,11 +103,11 @@ class UrlGenerator {
 		switch ( $revision->getRevisionType() ) {
 			case 'post':
 				if ( !$revision->isTopicTitle() ) {
-					$data['topic[postId]'] = $revision->getPostId()->getHex();
+					$data['topic_postId'] = $revision->getPostId()->getHex();
 				}
 
 				if ( $specificRevision ) {
-					$data['topic[revId]'] = $revision->getRevisionId()->getHex();
+					$data['topic_revId'] = $revision->getRevisionId()->getHex();
 				}
 			break;
 		}

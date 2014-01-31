@@ -230,9 +230,9 @@ class Templating {
 					$block->getWorkflowId(),
 					'view',
 					array(
-						$block->getName().'[offset-id]' => $offset,
-						$block->getName().'[offset-dir]' => $direction,
-						$block->getName().'[limit]' => $limit,
+						$block->getName().'_offset-id' => $offset,
+						$block->getName().'_offset-dir' => $direction,
+						$block->getName().'_limit' => $limit,
 					)
 				),
 			),
