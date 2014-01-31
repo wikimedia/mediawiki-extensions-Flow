@@ -330,7 +330,7 @@
 	mw.flow.action.post.reply.prototype.submitFunction = function ( content ) {
 		var deferred = mw.flow.api.reply(
 			this.post.workflowId,
-			this.$form.find( 'input[name="topic[replyTo]"]' ).val(),
+			this.$form.find( 'input[name="topic_replyTo"]' ).val(),
 			content
 		);
 

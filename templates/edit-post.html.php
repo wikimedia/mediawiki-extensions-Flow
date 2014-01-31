@@ -48,7 +48,7 @@ echo Html::element( 'input', array(
 	) ),
 	Html::element( 'input', array(
 		'type' => 'hidden',
-		'name' => $block->getName() . '[postId]',
+		'name' => $block->getName() . '_postId',
 		'value' => $post->getPostId()->getHex(),
 	) ),
 	Html::element( 'input', array(
@@ -57,7 +57,7 @@ echo Html::element( 'input', array(
 		'value' => $revisionId
 	) ),
 	Html::textarea(
-		$block->getName() . '[content]',
+		$block->getName() . '_content',
 		$this->getContent( $post, 'wikitext' ),
 		array(
 			'class' => 'mw-ui-input',
