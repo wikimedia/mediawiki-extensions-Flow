@@ -13,5 +13,4 @@ Feature: Create new topic anonymous
   Scenario: Anon does not see block or actions
     Given I am on Flow page
     When I see a flow creator element
-    Then I do not see an actions link
-      And I do not see a block user link
+    Then I do not see a block user link
