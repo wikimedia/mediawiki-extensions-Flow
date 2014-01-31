@@ -24,13 +24,13 @@ echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken',
 if ( $header ) {
 	echo Html::element( 'input', array(
 		'type' => 'hidden',
-		'name' => $block->getName()."[prev_revision]",
+		'name' => $block->getName()."_prev_revision",
 		'value' => $header->getRevisionId()->getHex(),
 	) );
 }
 
 echo Html::textarea(
-	$block->getName() . '[content]',
+	$block->getName() . '_content',
 	$header ? $this->getContent( $header, 'wikitext' ) : '',
 	array(
 		'class' => 'mw-ui-input',

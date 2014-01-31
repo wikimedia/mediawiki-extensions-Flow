@@ -115,7 +115,7 @@ class Post {
 	public function postHistoryLink( $blockName ) {
 		return $this->actions->actionUrl(
 			'post-history',
-			array( $blockName . '[postId]' => $this->post->getPostId()->getHex() )
+			array( $blockName . '_postId' => $this->post->getPostId()->getHex() )
 		);
 	}
 
@@ -177,8 +177,8 @@ class Post {
 			$block->getWorkflow(),
 			'compare-revisions',
 			array(
-				$block->getName().'[newRevision]' => $this->post->getRevisionId()->getHex(),
-				$block->getName().'[oldRevision]' => $this->post->getPrevRevisionId()->getHex()
+				$block->getName().'_newRevision' => $this->post->getRevisionId()->getHex(),
+				$block->getName().'_oldRevision' => $this->post->getPrevRevisionId()->getHex()
 			)
 		);
 		return $compareLink;

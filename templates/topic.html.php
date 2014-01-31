@@ -29,7 +29,7 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 		) ) .
 			Html::element( 'input', array(
 				'type' => 'hidden',
-				'name' => $block->getName() . '[replyTo]',
+				'name' => $block->getName() . '_replyTo',
 				'value' => $root->getPostId()->getHex(),
 			) ) .
 			Html::element( 'input', array(
@@ -37,7 +37,7 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 				'name' => 'wpEditToken',
 				'value' => $editToken,
 			) ) .
-			Html::textarea( $block->getName() . '[topic-reply-content]', '', array(
+			Html::textarea( $block->getName() . '_topic-reply-content', '', array(
 				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
 				'class' => 'mw-ui-input flow-topic-reply-content',
 				'rows' => '10',

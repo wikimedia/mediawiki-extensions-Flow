@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Model\Workflow;
 use Html;
+use WebRequest;
 use IContextSource;
 
 class View {
@@ -68,10 +69,34 @@ class View {
 				'data-workflow-existence' => $workflow->isNew() ? 'new' : 'existing',
 			)
 		) );
+
+		$parameters = $this->extractBlockParameters( $request, $blocks );
 		foreach ( $blocks as $block ) {
-			$block->render( $this->templating, $request->getArray( $block->getName(), array() ) );
+			$block->render( $this->templating, $parameters[$block->getName()] );
 		}
 		$this->output->addHTML( "</div>" );
+	}
+
+	protected function extractBlockParameters( WebRequest $request, array $blocks ) {
+		$result = array();
+		// BC for old parameters enclosed in square brackets
+		foreach ( $blocks as $block ) {
+			$name = $block->getName();
+			$result[$name] = $request->getArray( $name, array() );
+		}
+		// BC for topic_list renamed to topiclist
+		if ( isset( $result['topiclist'] ) && !$result['topiclist'] ) {
+			$result['topiclist'] = $request->getArray( 'topic_list', array() );
+		}
+		// between urls only allowing [-_.] as unencoded special chars and
+		// php mangling all of those into '_', we have to split on '_'
+		foreach ( $request->getValues() as $name => $value ) {
+			if ( false !== strpos( $name, '_' ) ) {
+				list( $block, $var ) = explode( '_', $name, 2 );
+				$result[$block][$name] = $value;
+			}
+		}
+		return $result;
 	}
 
 	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {
