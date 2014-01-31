@@ -179,13 +179,13 @@ $messages['en'] = array(
 	'flow-last-modified' => 'Last modified about $1',
 
 	// Notification message
-	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your [$5 post] in $2 on "$4".',
-	'flow-notification-reply-bundle' => '$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|replied}} to your [$4 post] in $2 on "$3".',
-	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} a [$5 post] in $2 on [[$3|$4]].',
-	'flow-notification-edit-bundle' => '$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|edited}} a [$4 post] in $2 on "$3".',
-	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a [$5 new topic] on [[$2|$3]]: $4.',
-	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of [$2 $3] to "$4" on [[$5|$6]].',
-	'flow-notification-mention' => '$1 {{GENDER:$1|mentioned}} you in {{GENDER:$1|his|her|their}} [$2 post] in "$3" on "$4".',
+	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your <span class="plainlinks">[$5 post]</span> in "$2" on "$4".',
+	'flow-notification-reply-bundle' => '$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|replied}} to your <span class="plainlinks">[$4 post]</span> in "$2" on "$3".',
+	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} a <span class="plainlinks">[$5 post]</span> in "$2" on [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|edited}} a <span class="plainlinks">[$4 post]</span> in "$2" on "$3".',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} a <span class="plainlinks">[$5 new topic]</span> on [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title of <span class="plainlinks">[$2 $3]</span> to "$4" on [[$5|$6]].',
+	'flow-notification-mention' => '$1 {{GENDER:$1|mentioned}} you in {{GENDER:$1|his|her|their}} <span class="plainlinks">[$2 post]</span> in "$3" on "$4".',
 
 	// Notification primary links and secondary links
 	'flow-notification-link-text-view-post' => 'View post',
@@ -194,16 +194,16 @@ $messages['en'] = array(
 
 	// Notification Email messages
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|replied}} to your post',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|replied}} to your post in $2 on "$3"',
-	'flow-notification-reply-email-batch-bundle-body' => '$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|replied}} to your post in $2 on "$3"',
-	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|mentioned}} you on $2',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|replied}} to your post in "$2" on "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|replied}} to your post in "$2" on "$3"',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|mentioned}} you on "$2"',
 	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|mentioned}} you in {{GENDER:$1|his|her|their}} post in "$2" on "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|edited}} a post',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|edited}} a post in $2 on "$3"',
-	'flow-notification-edit-email-batch-bundle-body' => '$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|edited}} a post in $2 on "$3"',
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|edited}} a post in "$2" on "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 and $4 {{PLURAL:$5|other|others}} {{GENDER:$1|edited}} a post in "$2" on "$3"',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|renamed}} your topic',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|renamed}} your topic "$2" to "$3" on "$4"',
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|created}} a new topic on $2',
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|created}} a new topic on "$2"',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|created}} a new topic with the title "$2" on $3',
 
 	// Notification preference
