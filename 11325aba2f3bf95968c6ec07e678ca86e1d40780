@@ -84,6 +84,24 @@
       "revId": "11325aba2f3bf95968c6ec07e678ca86e1d40780",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_a1801afa",
+        "filename": "includes/Template/Escaper.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-01T03:48:02Z",
+      "side": 1,
+      "message": "Its a hard decision here, on the one hand allowing boolean and null through allows\n\n    \u003c?php if ( $this-\u003efoo ): ?\u003e\n\nwhereas with a wrapper it has to be\n\n    \u003c?php if ( $this-\u003efoo-\u003e__raw() ): ?\u003e\n\nI suppose php not just erroring, but fatal erroring on $a \u003d true; $a-\u003emethod() means our best bet is to wrap everything.",
+      "parentUuid": "8efa632e_0af13892",
+      "revId": "11325aba2f3bf95968c6ec07e678ca86e1d40780",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
