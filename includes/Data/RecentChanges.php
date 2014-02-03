@@ -73,6 +73,7 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_new_len' => 0,
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
+			'rc_log_type' => null,
 			'rc_params' => serialize( array(
 				'flow-workflow-change' => array(
 					'action' => $action,
