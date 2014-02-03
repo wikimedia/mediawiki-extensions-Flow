@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "6ef7ef47_e0905348",
+        "filename": "includes/WorkflowLoader.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-03T19:11:32Z",
+      "side": 1,
+      "message": "I dunno, something about having a definition specified multiple times (the model loaded implicitly to $this-\u003edefinition along with $customDefinition) doesn\u0027t feel right.  What if instead we promoted actions to being a higher level construct?  The action provided could specify the list of blocks that perform the action.",
+      "revId": "d282ebd2564b6aeae0900c31f42fa4b5b91d3172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_6585885a",
         "filename": "tests/WorkflowLoaderTest.php",
         "patchSetId": 3
