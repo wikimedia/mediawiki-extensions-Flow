@@ -30,7 +30,7 @@ echo Html::rawElement(
 		'class' => $class,
 	),
 	$headerContent
-);
+), '<div class="ui-helper-clearfix"></div>';
 
 echo Html::element(
 	'a',

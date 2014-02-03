@@ -163,6 +163,7 @@ if ( $post->isModerated() ) {
 			<div class="flow-post-content">
 				<?php echo $this->getContent( $post, 'html' ), $postView->createModifiedTipsyLink( $block ), $postView->createModifiedTipsyHtml( $block ); ?>
 			</div>
+			<div class="ui-helper-clearfix"></div>
 			<?php
 				echo $this->render( 'flow:timestamp.html.php', array(
 					'timestamp' => $post->getPostId()->getTimestampObj(),
