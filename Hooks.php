@@ -133,8 +133,9 @@ class FlowHooks {
 	 * @param  Article $article
 	 * @param  Title $title
 	 * @param  User $user
-	 * @param  Request $request
+	 * @param  WebRequest $request
 	 * @param  MediaWiki $wiki
+	 * @throws Flow\Exception\FlowException
 	 * @return boolean True to continue processing as normal, False to abort.
 	 */
 	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
@@ -294,10 +295,10 @@ class FlowHooks {
 	/**
 	 * Intercept contribution entries and format those belonging to Flow
 	 *
-	 * @param ContribsPager $page Contributions object
-	 * @param string $ret The HTML line
+	 * @param ContribsPager $pager Contributions object
+	 * @param string &$ret The HTML line
 	 * @param stdClass $row The data for this line
-	 * @param array $classes the classes to add to the surrounding <li>
+	 * @param array &$classes the classes to add to the surrounding <li>
 	 * @return bool
 	 */
 	public static function onContributionsLineEnding( $pager, &$ret, $row, &$classes ) {
@@ -362,6 +363,7 @@ class FlowHooks {
 	 * @param AbuseFilterVariableHolder $vars
 	 * @param array $parameters Parameters with data to compute the value
 	 * @param mixed &$result Result of the computation
+	 * @return bool
 	 */
 	public static function onAbuseFilterComputeVariable( $method, AbuseFilterVariableHolder $vars, $parameters, &$result ) {
 		$spamfilter = Container::get( 'controller.abusefilter' );
