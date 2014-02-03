@@ -160,7 +160,7 @@ if ( $post->isModerated() ) {
 				</span>
 			</div>
 
-			<div class="flow-post-content">
+			<div class="flow-post-content ui-helper-clearfix">
 				<?php echo $this->getContent( $post, 'html' ), $postView->createModifiedTipsyLink( $block ), $postView->createModifiedTipsyHtml( $block ); ?>
 			</div>
 			<?php
