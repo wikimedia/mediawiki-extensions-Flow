@@ -135,10 +135,6 @@ class ApiFlow extends ApiBase {
 		return $output;
 	}
 
-	public function getDescription() {
-		 return 'Allows actions to be taken on Flow Workflows';
-	}
-
 	public function getAllowedParams() {
 		return array(
 			'flowaction' => array(
@@ -158,6 +154,11 @@ class ApiFlow extends ApiBase {
 				ApiBase::PARAM_DFLT => false,
 			),
 		);
+	}
+
+	public function getDescription() {
+		return 'Shim to perform actions against the internal Flow API.  This API is not suggested ' .
+			'for external use and will soon be superseded by an integrated mediawiki api.';
 	}
 
 	public function getParamDescription() {
