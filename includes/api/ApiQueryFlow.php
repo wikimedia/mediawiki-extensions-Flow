@@ -68,6 +68,12 @@ class ApiQueryFlow extends ApiQueryBase {
 		);
 	}
 
+	public function getDescription() {
+		return 'Shim to query to the internal Flow API.  This API is not suggested ' .
+			'for external use and will soon be superseded by an integrated mediawiki api.';
+	}
+
+
 	public function getParamDescription() {
 		return array(
 			'workflow' => 'Hex-encoded ID of the workflow to query',

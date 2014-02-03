@@ -160,6 +160,11 @@ class ApiFlow extends ApiBase {
 		);
 	}
 
+	public function getDescription() {
+		return 'Shim to connect to the internal Flow API.  This API is not suggested ' .
+			'for external use and will soon be superseded by an integrated mediawiki api.';
+	}
+
 	public function getParamDescription() {
 		return array(
 			'action' => 'The action to take',
