@@ -1185,6 +1185,10 @@ $messages['bg'] = array(
  * @author Tauhid16
  */
 $messages['bn'] = array(
+	'flow-post-moderated-toggle-delete-show' => '$2-এর {{GENDER:$1|অপসারিত}} মন্তব্যসমূহ দেখাও।',
+	'flow-post-moderated-toggle-suppress-hide' => '$2-এর {{GENDER:$1|গোপনকৃত}} মন্তব্যসমূহ লুকাও।',
+	'flow-post-action-post-history' => 'ইতিহাস',
+	'flow-post-action-edit-post' => 'সম্পাদনা',
 	'flow-moderation-confirmation-suppress-post' => 'আপনার পোস্টটি সফলভাবে গোপন করা হয়েছে। 
 পোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।', # Fuzzy
 	'flow-moderation-confirmation-delete-post' => 'আপনার পোস্টটি সফলভাবে মুছে ফেলা হয়েছে। 
@@ -1290,12 +1294,13 @@ $messages['br'] = array(
  * @author Умар
  */
 $messages['ce'] = array(
-	'flow-post-moderated-toggle-hide' => '[Къайлаяккха]',
 	'flow-post-actions' => 'дийраш',
 	'flow-topic-actions' => 'Дийраш',
 	'flow-show-change' => 'Гайта хийцам',
 	'flow-last-modified-by' => 'ТӀехьара бина {{GENDER:$1|хийцам}} цу $1',
-	'flow-topic-action-history' => 'Теман истори',
+	'flow-topic-action-history' => 'Теман истори', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 хан хааан {{GENDER:$1||жоп делла}} темехь «$2» «$3» чохь',
+	'flow-notification-mention-email-subject' => '$1 хьо {{GENDER:$1||хьахийна}} «$2» чохь',
 );
 
 /** Czech (čeština)
@@ -1456,7 +1461,7 @@ $messages['de'] = array(
 	'flow-history-pages-topic' => 'Erscheint auf dem [$1 Board „$2“]',
 	'flow-history-pages-post' => 'Erscheint auf [$1 $2]',
 	'flow-topic-participants' => '{{PLURAL:$1|$3 startete dieses Thema|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} und {{PLURAL:$2|ein anderer|andere}}|0=Noch keine Teilnehmer|2={{GENDER:$3|$3}} und {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} und {{GENDER:$5|$5}}}}',
-	'flow-topic-comments' => '{{PLURAL:$1|Ein Kommentar|$1 Kommentare|0=Sei {{GENDER:$2|der|die}} erste!}}',
+	'flow-topic-comments' => '{{PLURAL:$1|Ein Kommentar|$1 Kommentare|0=Sei {{GENDER:$2|der|die|der}} erste!}}',
 	'flow-comment-restored' => 'Kommentar wiederhergestellt',
 	'flow-comment-deleted' => 'Kommentar gelöscht',
 	'flow-comment-hidden' => 'Versteckter Kommentar',
@@ -1464,27 +1469,27 @@ $messages['de'] = array(
 	'flow-paging-rev' => 'Mehr aktuelle Themen',
 	'flow-paging-fwd' => 'Ältere Themen',
 	'flow-last-modified' => 'Zuletzt geändert $1',
-	'flow-notification-reply' => '$1 {{GENDER:$1|antwortete}} auf deinen [$5 Beitrag] in „$2“ auf [[$3|$4]].', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 und {{PLURAL:$6|ein anderer|$5 andere}} {{GENDER:$1|antworteten}} auf deinen [$4 Beitrag] in $2 auf „$3“.', # Fuzzy
-	'flow-notification-edit' => '$1 {{GENDER:$1|bearbeitete}} einen [$5 Beitrag] in „$2“ auf [[$3|$4]].', # Fuzzy
-	'flow-notification-edit-bundle' => '$1 und {{PLURAL:$6|ein anderer|$5 andere}} {{GENDER:$1|bearbeiteten}} einen [$4 Beitrag] in $2 auf „$3“.', # Fuzzy
-	'flow-notification-newtopic' => '$1  {{GENDER:$1|erstellte}} ein [$5 neues Thema] auf [[$2|$3]]: $4.', # Fuzzy
-	'flow-notification-rename' => '$1 {{GENDER:$1|änderte}} den Titel von [$2 $3] nach „$4“ auf [[$5|$6]]', # Fuzzy
-	'flow-notification-mention' => '$1 hat dich in {{GENDER:$1|seinem|ihrem|seinem}} [$2 Beitrag] in „$3“ auf Seite „$4“ erwähnt.', # Fuzzy
+	'flow-notification-reply' => '$1 {{GENDER:$1|antwortete}} auf deinen <span class="plainlinks">[$5 Beitrag]</span> in „$2“ auf „$4“.',
+	'flow-notification-reply-bundle' => '$1 und {{PLURAL:$6|ein anderer|$5 andere}} {{GENDER:$1|antworteten}} auf deinen <span class="plainlinks">[$4 Beitrag]</span> in „$2“ auf „$3“.',
+	'flow-notification-edit' => '$1 {{GENDER:$1|bearbeitete}} einen <span class="plainlinks">[$5 Beitrag]</span> in „$2“ auf [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 und {{PLURAL:$6|ein anderer|$5 andere}} {{GENDER:$1|bearbeiteten}} einen <span class="plainlinks">[$4 Beitrag]</span> in „$2“ auf „$3“.',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|erstellte}} ein <span class="plainlinks">[$5 neues Thema]</span> auf [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|änderte}} den Titel von <span class="plainlinks">[$2 $3]</span> nach „$4“ auf [[$5|$6]].',
+	'flow-notification-mention' => '$1 hat dich in {{GENDER:$1|seinem|ihrem|dem}} <span class="plainlinks">[$2 Beitrag]</span> in „$3“ auf Seite „$4“ erwähnt.',
 	'flow-notification-link-text-view-post' => 'Beitrag ansehen',
 	'flow-notification-link-text-view-board' => 'Board ansehen',
 	'flow-notification-link-text-view-topic' => 'Thema ansehen',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|antwortete}} auf deinen Beitrag',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|antwortete}} auf deinen Beitrag in $2 auf „$3“', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 und {{PLURAL:$5|ein anderer|$4 andere}} {{GENDER:$1|antworteten}} auf deinen Beitrag in $2 auf „$3“', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|erwähnte}} dich auf $2', # Fuzzy
-	'flow-notification-mention-email-batch-body' => '$1 hat dich in {{GENDER:$1|seinem|ihrem|seinem}} Beitrag in „$2“ auf der Seite „$3“ erwähnt',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|antwortete}} auf deinen Beitrag in „$2“ auf „$3“',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 und {{PLURAL:$5|ein anderer|$4 andere}} {{GENDER:$1|antworteten}} auf deinen Beitrag in „$2“ auf „$3“',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|erwähnte}} dich auf „$2“',
+	'flow-notification-mention-email-batch-body' => '$1 hat dich in {{GENDER:$1|seinem|ihrem|dem}} Beitrag in „$2“ auf der Seite „$3“ erwähnt',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|bearbeitete}} einen Beitrag',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|bearbeitete}} einen Beitrag in $2 auf der Seite „$3“', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 und {{PLURAL:$5|ein anderer|$4 andere}} {{GENDER:$1|bearbeiteten}} einen Beitrag in $2 auf der Seite „$3“', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|bearbeitete}} einen Beitrag in „$2“ auf der Seite „$3“',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 und {{PLURAL:$5|ein anderer|$4 andere}} {{GENDER:$1|bearbeiteten}} einen Beitrag in „$2“ auf der Seite „$3“',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|benannte}} dein Thema um',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|benannte}} dein Thema „$2“ in „$3“ auf der Seite „$4“ um',
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|erstellte}} ein neues Thema auf $2', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|erstellte}} ein neues Thema auf „$2“',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|erstellte}} ein neues Thema mit dem Titel „$2“ auf $3',
 	'echo-category-title-flow-discussion' => 'Flow',
 	'echo-pref-tooltip-flow-discussion' => 'Benachrichtige mich, wenn mich betreffende Aktionen in Flow stattfinden.',
@@ -1552,10 +1557,14 @@ Du kannst andere Versionen dieses Beitrags im [$6 Verlauf] ansehen.',
  * @author Astralnet
  * @author Evropi
  * @author Geraki
+ * @author Nikosguard
  */
 $messages['el'] = array(
+	'flow-post-moderated-toggle-delete-show' => 'Εμφάνιση σχολίου {{GENDER:$1|διαγραφή}} $2',
 	'flow-topic-actions' => 'Ενέργειες',
 	'flow-preview' => 'Προεπισκόπηση',
+	'flow-post-action-post-history' => 'Ιστορικό',
+	'flow-post-action-edit-post' => 'Επεξεργασία',
 	'flow-history-last4' => 'Τελευταίες 4 ώρες',
 	'flow-history-day' => 'Σήμερα',
 );
@@ -1831,27 +1840,27 @@ $messages['fa'] = array(
 	'flow-paging-rev' => 'موضوعات اخیر بیشتر',
 	'flow-paging-fwd' => 'موضوعات قدیمی‌تر',
 	'flow-last-modified' => 'آخرین تغییریافته دربارهٔ $1',
-	'flow-notification-reply' => '$1 {{GENDER:$1|پاسخ داده شد}} به شما [$5 پست] in $2 on "$4".', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 and $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|پاسخ داده شد}} به شما [$4 پست] in $2 on "$3".', # Fuzzy
-	'flow-notification-edit' => '$1 {{GENDER:$1|ویرایش شده}} یک [$5 پست] در $2 بر [[$3|$4]].', # Fuzzy
-	'flow-notification-edit-bundle' => '$1 and $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک [$4 پست] in $2 on "$3".', # Fuzzy
-	'flow-notification-newtopic' => '$1 {{GENDER:$1|ایجاد شد}} یک [$5 موضوع جدید] بر [[$2|$3]]: $4.', # Fuzzy
-	'flow-notification-rename' => '$1 {{GENDER:$1|تغییر داده شد}} عنوان [$2 $3] به "$4" بر [[$5|$6]].', # Fuzzy
-	'flow-notification-mention' => '$1 {{GENDER:$1|ذکر شد}} شما در {{GENDER:$1|او|او|آنها}} [$2 پست] in "$3" بر "$4".', # Fuzzy
+	'flow-notification-reply' => '$1 {{GENDER:$1|پاسخ داده شد}} به شما <span class="plainlinks">[$5 post]</span> در "$2" در "$4".',
+	'flow-notification-reply-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|پاسخ داده شده} به شما <span class="plainlinks">[$4 پست]</span> در "$2" در "$3".', # Fuzzy
+	'flow-notification-edit' => '$1 {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$5 post]</span> در "$2" در [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$4 post]</span> در "$2" در "$3".',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|ایجاد شده}} یک <span class="plainlinks">[$5 موضوع جدید]</span> در [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|تغیر یافته}} به عنوان <span class="plainlinks">[$2 $3]</span> به "$4" در [[$5|$6]].',
+	'flow-notification-mention' => '$1 {{GENDER:$1|ذکر شده}} شما در {{GENDER:$1|او|او|آنها}} <span class="plainlinks">[$2 post]</span> در "$3" در "$4".',
 	'flow-notification-link-text-view-post' => 'نمایش پست',
 	'flow-notification-link-text-view-board' => 'مشاهدهٔ صفحه',
 	'flow-notification-link-text-view-topic' => 'مشاهدهٔ موضوع',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|پاسخ داده}} به پست شما',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|پاسخ داده}} به پست شما در $2 بر "$3"', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 و $4 {{PLURAL:$5|دیگر|دیگران}} {{GENDER:$1|پاسخ داد}} به شما پست in $2 بر "$3"', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|ذکر شد}} شما در $2', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|پاسخ داده شده}} به پست شما در $2 در "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 و $4 {{PLURAL:$5|دیگر|دیگران}} {{GENDER:$1|پاسخ داده}} به پست شما  در "$2" در "$3"',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|ذکر شد}} شما در $2',
 	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|ذکر شد}} شما در {{GENDER:$1|او|او|آنها}} پست در "$2" بر "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|ویرایش شد}} یک پست',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|ویرایش شد}} یک پست در $2 بر "$3"', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 و $4 {{PLURAL:$5|دیگر|دیگران}} {{GENDER:$1|ویرایش شد}} یک پست در $2 بر "$3"', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|ویرایش شده}} یک پست در $2 در "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 و $4 {{PLURAL:$5|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک پست در $2 در "$3"',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|تغییر نام}}موضوع شما',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|تغییر نام داد}} موضوع شما "$2" بر "$3" بر "$4"',
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|ایجاد شد}} یک موضوع جدید بر $2', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|ایجاد شده}} یک موضوع جدید در $2',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|ایجاد شد}} یک موضوع جدید با عنوان "$2" بر $3',
 	'echo-category-title-flow-discussion' => 'جریان',
 	'echo-pref-tooltip-flow-discussion' => 'هنگامی که عملیات مربوط به من رخ می‌دهد، من را در جریان قرار بده.',
@@ -1910,6 +1919,9 @@ $messages['fa'] = array(
 	'flow-topic-collapsed-one-line' => 'مشاهدهٔ کوچک',
 	'flow-topic-collapsed-full' => 'مشاهده با شکست روبه‌رو شده',
 	'flow-topic-complete' => 'مشاهدهٔ کامل',
+	'flow-terms-of-use-new-topic' => 'با کلیک کردن افزودن عنوان، موافقت شما به [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] ما و موافقت به انتشار متن شما به طور تغییر‌ ناپذیر تحت [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] و [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
+	'flow-terms-of-use-reply' => 'با کلیک کردن پاسخ، موافقت شما به [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] ما و موافقت به انتشار متن شما به طور تغییر ناپذیر تحت [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] و [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
+	'flow-terms-of-use-edit' => 'با ذخیره کردن تغییرات، موافقت شما به [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] ما و موافقت به انتشار متن شما به طور تغییر ناپذیر تحت [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] و [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
 );
 
 /** Finnish (suomi)
@@ -2143,27 +2155,27 @@ $messages['fr'] = array(
 	'flow-paging-rev' => 'Sujets les plus récents',
 	'flow-paging-fwd' => 'Sujets plus anciens',
 	'flow-last-modified' => 'Dernière modification $1',
-	'flow-notification-reply' => '$1 {{GENDER:$1|a répondu}} à votre [$5 note] sur $2 en [[$3|$4]].', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 et $5 {{PLURAL:$6|autre|autres}} {{GENDER:$1|ont répondu}} à votre [$4 note] concernant $2 sur « $3 ».', # Fuzzy
-	'flow-notification-edit' => '$1 {{GENDER:$1|a modifié}} une [$5 note] sur $2 en [[$3|$4]].', # Fuzzy
-	'flow-notification-edit-bundle' => '$1 et $5 {{PLURAL:$6|autre|autres}} {{GENDER:$1|ont modifié}} une [$4 note] sur $2 en « $3 ».', # Fuzzy
-	'flow-notification-newtopic' => '$1 {{GENDER:$1|a créé}} un [$5 nouveau sujet] en [[$2|$3]] : $4.', # Fuzzy
-	'flow-notification-rename' => '$1 {{GENDER:$1|a modifié}} le titre de [$2 $3] en « $4 » sur [[$5|$6]].', # Fuzzy
-	'flow-notification-mention' => '$1 vous {{GENDER:$1|a mentionné|a mentionné|ont mentionné}} dans {{GENDER:$1|sa|sa|leur}} [$2 note] sur « $3 » en « $4 »', # Fuzzy
+	'flow-notification-reply' => '$1 {{GENDER:$1|a répondu}} à votre <span class="plainlinks">[$5 note]</span> sur « $2 » en « $4 ».',
+	'flow-notification-reply-bundle' => '$1 et $5 {{PLURAL:$6|autre|autres}} {{GENDER:$1|ont répondu}} à votre <span class="plainlinks">[$4 note]</span> concernant « $2 » sur « $3 ».',
+	'flow-notification-edit' => '$1 {{GENDER:$1|a modifié}} une <span class="plainlinks">[$5 note]</span> sur « $2 » en [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 et $5 {{PLURAL:$6|autre|autres}} {{GENDER:$1|ont modifié}} une <span class="plainlinks">[$4 note]</span> sur « $2 » en « $3 ».',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|a créé}} un <span class="plainlinks">[$5 nouveau sujet]</span> en [[$2|$3]] : $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|a modifié}} le titre de <span class="plainlinks">[$2 $3]</span> en « $4 » sur [[$5|$6]].',
+	'flow-notification-mention' => '$1 vous {{GENDER:$1|a mentionné|a mentionné|ont mentionné}} dans {{GENDER:$1|sa|sa|leur}} <span class="plainlinks">[$2 note]</span> sur « $3 » en « $4 »',
 	'flow-notification-link-text-view-post' => 'Afficher la note',
 	'flow-notification-link-text-view-board' => 'Afficher le tableau',
 	'flow-notification-link-text-view-topic' => 'Afficher le sujet',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|a répondu}} à votre note',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|a répondu}} a votre note concernant $2 sur « $3 »', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 et $4 {{PLURAL:$5|autre|autres}} {{GENDER:$1|ont répondu}} à votre note concernant $2 sur « $3 »', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 vous {{GENDER:$1|a mentionné}} en $2', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|a répondu}} a votre note concernant « $2 » sur « $3 »',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 et $4 {{PLURAL:$5|autre|autres}} {{GENDER:$1|ont répondu}} à votre note concernant « $2 » sur « $3 »',
+	'flow-notification-mention-email-subject' => '$1 vous {{GENDER:$1|a mentionné}} en « $2 »',
 	'flow-notification-mention-email-batch-body' => '$1 vous {{GENDER:$1|a mentionné}} dans {{GENDER:$1|sa}} note sur « $2 » en « $3 »',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|a modifié}} une note',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|a modifié}} une note sur $2 en « $3 »', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 et $4 {{PLURAL:$5|autre|autres}} {{GENDER:$1|ont modifié}} une note sur $2 en « $3 »', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|a modifié}} une note sur « $2 » en « $3 »',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 et $4 {{PLURAL:$5|autre|autres}} {{GENDER:$1|ont modifié}} une note sur « $2 » en « $3 »',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|a renommé}} votre sujet',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|a renommé}} votre sujet « $2 » en « $3 » sur « $4 »',
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|a créé}} un nouveau sujet sur $2', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|a créé}} un nouveau sujet sur « $2 »',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|a créé}} un nouveau sujet avec le titre « $2 » en $3',
 	'echo-category-title-flow-discussion' => 'Flux',
 	'echo-pref-tooltip-flow-discussion' => 'M’informer quand des actions me concernant ont lieu dans le flux.',
@@ -2222,6 +2234,9 @@ Vous pouvez voir d’autres versions de cette note dans sa [$6 page d’historiq
 	'flow-topic-collapsed-one-line' => 'Vue petite',
 	'flow-topic-collapsed-full' => 'Vue réduite',
 	'flow-topic-complete' => 'Vue complète',
+	'flow-terms-of-use-new-topic' => 'En cliquant sur ajouter un sujet, vous acceptez nos [//wikimediafoundation.org/wiki/Terms_of_use conditions d’utilisation] et acceptez de mettre à disposition irrévocablement votre texte sous les licences [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0] et [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
+	'flow-terms-of-use-reply' => 'En cliquant sur répondre, vous acceptez nos [//wikimediafoundation.org/wiki/Terms_of_use conditions d’utilisation] et acceptez de mettre à disposition irrévocablement votre texte sous les licences [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0] et [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
+	'flow-terms-of-use-edit' => 'En enregistrant les modifications, vous acceptez nos [//wikimediafoundation.org/wiki/Terms_of_use conditions d’utilisation] et acceptez de mettre à disposition irrévocablement votre texte sous les licences [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0] et [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
 );
 
 /** Western Frisian (Frysk)
@@ -2492,27 +2507,27 @@ $1',
 	'flow-paging-rev' => 'נושאים חדשים יותר',
 	'flow-paging-fwd' => 'נושאים ישנים יותר',
 	'flow-last-modified' => 'שוּנה לאחרונה $1',
-	'flow-notification-reply' => '$1 {{GENDER:$1|השיב|השיבה}} ל[$5 רשומה] שלך בנושא $2 בדף "$4".', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 {{PLURAL:$6|ועוד אדם אחד|ו־$5 אנשים}} השיבו ל[$4 רשומה] שלך בנושא $2 בדף "$3".', # Fuzzy
-	'flow-notification-edit' => '$1 {{GENDER:$1|ערך|ערכה}} [$5 רשומה] בנושא $2 בדף [[$3|$4]].', # Fuzzy
-	'flow-notification-edit-bundle' => '$1 {{PLURAL:$6|ועוד אדם אחד|ועוד $5 אנשים}} ערכו ל[$4 רשומה] שלך בנושא $2 בדף "$3".', # Fuzzy
-	'flow-notification-newtopic' => '$1 {{GENDER:$1|יצר|יצרה}} [$5 נושא חדש] בדף [[$2|$3]]&rlm;: $4.', # Fuzzy
-	'flow-notification-rename' => '$1 {{GENDER:$1|שינה|שינתה}} את הכותרת של [$2 $3] אל "$4" בדף [[$5|$6]].', # Fuzzy
-	'flow-notification-mention' => '$1 {{GENDER:$1|הזכיר|הזכירה}} אותך ב[$2 רשומה] {{GENDER:$1|שלו|שלה}} בנושא "$3" בדף "$4".', # Fuzzy
+	'flow-notification-reply' => '$1 {{GENDER:$1|השיב|השיבה}} ל<span class="plainlinks">[$5 רשומה]</span> שלך בנושא "$2" בדף "$4".',
+	'flow-notification-reply-bundle' => '$1 {{PLURAL:$6|ועוד אדם אחד|ו־$5 אנשים}} השיבו ל<span class="plainlinks">[$4 רשומה]</span> שלך בנושא "$2" בדף "$3".',
+	'flow-notification-edit' => '$1 {{GENDER:$1|ערך|ערכה}} <span class="plainlinks">[$5 רשומה]</span> בנושא "$2" בדף [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 {{PLURAL:$6|ועוד אדם אחד|ועוד $5 אנשים}} ערכו <span class="plainlinks">[$4 רשומה]</span> שלך בנושא "$2" בדף "$3".',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|יצר|יצרה}} <span class="plainlinks">[$5 נושא חדש]</span> בדף [[$2|$3]]&rlm;: $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|שינה|שינתה}} את הכותרת של <span class="plainlinks">[$2 $3]</span> אל "$4" בדף [[$5|$6]].',
+	'flow-notification-mention' => '$1 {{GENDER:$1|הזכיר|הזכירה}} אותך ב<span class="plainlinks">[$2 רשומה]</span> {{GENDER:$1|שלו|שלה}} בנושא "$3" בדף "$4".',
 	'flow-notification-link-text-view-post' => 'הצגת הרשומה',
 	'flow-notification-link-text-view-board' => 'הצגת הלוח',
 	'flow-notification-link-text-view-topic' => 'הצגת הנושא',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|השיב|השיבה}} לרשומה שלך',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|השיב|השיבה}} לרשומה שלך בנושא $2 בדף "$3".', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 {{PLURAL:$5|ועוד אדם אחד|ועוד $4 אנשים}} השיבו לרשומה שלך בנושא $2 בדף "$3"', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|הזכיר|הזכירה}} אותך ב{{GRAMMAR:תחילית|$2}}', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|השיב|השיבה}} לרשומה שלך בנושא "$2" בדף "$3".',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 {{PLURAL:$5|ועוד אדם אחד|ועוד $4 אנשים}} השיבו לרשומה שלך בנושא "$2" בדף "$3"',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|הזכיר|הזכירה}} אותך ברשומה "$2"',
 	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|הזכיר|הזכירה}} אותך ברשומה {{GENDER:$1|שלו|שלה}} בנושא "$2" בדף "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|ערך|ערכה}} רשומה',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|ערך|ערכה}} רשומה בנושא $2 בדף "$3"', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 {{PLURAL:$5|ועוד אדם אחד|ועוד $4 אנשים}} ערכו רשומה בנושא $2 בדף "$3"', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|ערך|ערכה}} רשומה בנושא "$2" בדף "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 {{PLURAL:$5|ועוד אדם אחד|ועוד $4 אנשים}} ערכו רשומה בנושא "$2" בדף "$3"',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|שינה|שינתה}} את השם של נושא שלך',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|שינה|שינתה}} את השם של הנושא שלך "$2" אל "$3" בדף "$4"',
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|יצר|יצרה}} נושא חדש בדף $2', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|יצר|יצרה}} נושא חדש בדף "$2"',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|יצר|יצרה}} נושא חדש עם הכותרת "$2" ב{{GRAMMAR:תחלילית|$3}}',
 	'echo-category-title-flow-discussion' => 'זרימה',
 	'echo-pref-tooltip-flow-discussion' => 'להודיע לי כשיש פעולות שקשורות אליי ב"זרימה".',
@@ -2724,7 +2739,7 @@ $messages['it'] = array(
 	'flow-post-moderated-toggle-delete-show' => 'Mostra commenti {{GENDER:$1|cancellati}} da $2',
 	'flow-post-moderated-toggle-suppress-show' => 'Mostra commenti {{GENDER:$1|soppressi}} da $2',
 	'flow-post-moderated-toggle-hide-hide' => 'Nascondi commenti {{GENDER:$1|nascosti}} da $2',
-	'flow-post-moderated-toggle-delete-hide' => 'Nascondi commento  {{GENDER:$1| eliminato}} da$2',
+	'flow-post-moderated-toggle-delete-hide' => 'Nascondi commento {{GENDER:$1|cancellato}} da $2',
 	'flow-post-moderated-toggle-suppress-hide' => 'Nascondi commenti {{GENDER:$1|soppressi}} da $2',
 	'flow-hide-post-content' => 'Questo commento è stato {{GENDER:$1|nascosto}} da $2',
 	'flow-hide-title-content' => 'Questa discussione è stata {{GENDER:$1|nascosta}} da $2',
@@ -2844,27 +2859,27 @@ $messages['it'] = array(
 	'flow-paging-rev' => 'Discussioni più recenti',
 	'flow-paging-fwd' => 'Vecchie discussioni',
 	'flow-last-modified' => 'Ultima modifica $1',
-	'flow-notification-reply' => '$1 {{GENDER:$1|ha risposto}} al tuo [$5 messaggio] in $2 su "$4".', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 e {{PLURAL:$6|un altro|altri $5}} utenti {{GENDER:$1|hanno risposto}} al tuo [$4 messaggio] in $2 su "$3".', # Fuzzy
-	'flow-notification-edit' => '$1 ha {{GENDER:$1|modificato}} un [$5 messaggio] in $2 su [[$3|$4]].', # Fuzzy
-	'flow-notification-edit-bundle' => '$1 e {{PLURAL:$6|un altro|altri $5}} utenti {{GENDER:$1|hanno modificato}} un [$4 messaggio] in $2 su "$3".', # Fuzzy
-	'flow-notification-newtopic' => '$1 ha {{GENDER:$1|creato}} una [$5 nuova discussione] su [[$2|$3]]: $4.', # Fuzzy
-	'flow-notification-rename' => '$1 ha {{GENDER:$1|cambiato}} il titolo di [$2 $3] in "$4" su [[$5|$6]]', # Fuzzy
-	'flow-notification-mention' => '$1 ti {{GENDER:$1|ha menzionato}} nel suo [$2 messaggio] in "$3" su "$4".', # Fuzzy
+	'flow-notification-reply' => '$1 {{GENDER:$1|ha risposto}} al tuo <span class="plainlinks">[$5 messaggio]</span> in "$2" su "$4".',
+	'flow-notification-reply-bundle' => '$1 e {{PLURAL:$6|un altro|altri $5}} utenti {{GENDER:$1|hanno risposto}} al tuo <span class="plainlinks">[$4 messaggio]</span> in "$2" su "$3".',
+	'flow-notification-edit' => '$1 ha {{GENDER:$1|modificato}} un <span class="plainlinks">[$5 messaggio]</span> in "$2" su [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 e {{PLURAL:$6|un altro|altri $5}} utenti {{GENDER:$1|hanno modificato}} un <span class="plainlinks">[$4 messaggio]</span> in "$2" su "$3".',
+	'flow-notification-newtopic' => '$1 ha {{GENDER:$1|creato}} una <span class="plainlinks">[$5 nuova discussione]</span> su [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 ha {{GENDER:$1|cambiato}} il titolo di <span class="plainlinks">[$2 $3]</span> in "$4" su [[$5|$6]]',
+	'flow-notification-mention' => '$1 ti {{GENDER:$1|ha menzionato}} nel suo <span class="plainlinks">[$2 messaggio]</span> in "$3" su "$4".',
 	'flow-notification-link-text-view-post' => 'Vedi messaggio',
 	'flow-notification-link-text-view-board' => 'Vedi bacheca',
 	'flow-notification-link-text-view-topic' => 'Vedi discussione',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|ha risposto}} al tuo messaggio',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|ha risposto}} al tuo messaggio in $2 su "$3"', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 e {{PLURAL:$5|un altro|altri $4}} {{GENDER:$1|hanno risposto}} al tuo messaggio in $2 su "$3"', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 ti {{GENDER:$1|ha menzionato}} su $2', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|ha risposto}} al tuo messaggio in "$2" su "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 e {{PLURAL:$5|un altro|altri $4}} {{GENDER:$1|hanno risposto}} al tuo messaggio in "$2" su "$3"',
+	'flow-notification-mention-email-subject' => '$1 ti {{GENDER:$1|ha menzionato}} su "$2"',
 	'flow-notification-mention-email-batch-body' => '$1 ti {{GENDER:$1|ha menzionato}} nel suo messaggio in "$2" su "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|ha modificato}} un messaggio',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|ha modificato}} un messaggio in $2 su "$3"', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 e {{PLURAL:$5|un altro|altri $4}} utenti {{GENDER:$1|hanno modificato}} un messaggio in $2 su "$3"', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|ha modificato}} un messaggio in "$2" su "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 e {{PLURAL:$5|un altro|altri $4}} utenti {{GENDER:$1|hanno modificato}} un messaggio in "$2" su "$3"',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|ha rinominato}} la tua discussione',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|ha rinominato}} la discussione "$2" in "$3" su "$4"',
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|ha creato}} una nuova discussione su $2', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|ha creato}} una nuova discussione su "$2"',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|ha creato}} una nuova discussione "$2" su $3',
 	'echo-category-title-flow-discussion' => 'Flusso',
 	'echo-pref-tooltip-flow-discussion' => 'Avvisami quando vengono eseguite azioni connesse a me nel flusso delle discussioni.',
@@ -3067,27 +3082,27 @@ $messages['ja'] = array(
 	'flow-paging-rev' => '最近の話題',
 	'flow-paging-fwd' => '古い話題',
 	'flow-last-modified' => '最終更新 $1',
-	'flow-notification-reply' => '$1 が「$4」の $2 でのあなたの[$5 投稿]に{{GENDER:$1|返信しました}}。', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 と他 $5 {{PLURAL:$6|人}}が「$3」の $2 でのあなたの[$4 投稿]に{{GENDER:$1|返信しました}}。', # Fuzzy
-	'flow-notification-edit' => '$1 が [[$3|$4]] の $2 での[$5 投稿]を{{GENDER:$1|編集しました}}。', # Fuzzy
-	'flow-notification-edit-bundle' => '$1 と他 $5 {{PLURAL:$6|人}}が「$3」の $2 での[$4 投稿]を{{GENDER:$1|編集しました}}。', # Fuzzy
-	'flow-notification-newtopic' => '$1 が [[$2|$3]] で[$5 新しい話題]を{{GENDER:$1|作成しました}}: $4', # Fuzzy
-	'flow-notification-rename' => '$1 が [[$5|$6]] で [$2 $3] のページ名を「$4」に{{GENDER:$1|変更しました}}。', # Fuzzy
-	'flow-notification-mention' => '$1 が「$4」の「$3」での{{GENDER:$1|自身の}}[$2 投稿]であなたに{{GENDER:$1|言及しました}}。', # Fuzzy
+	'flow-notification-reply' => '$1 が「$4」の「$2」でのあなたの<span class="plainlinks">[$5 投稿]</span>に{{GENDER:$1|返信しました}}。',
+	'flow-notification-reply-bundle' => '$1 と他 $5 {{PLURAL:$6|人}}が「$3」の「$2」でのあなたの<span class="plainlinks">[$4 投稿]</span>に{{GENDER:$1|返信しました}}。',
+	'flow-notification-edit' => '$1 が [[$3|$4]] の「$2」での<span class="plainlinks">[$5 投稿]</span>を{{GENDER:$1|編集しました}}。',
+	'flow-notification-edit-bundle' => '$1 と他 $5 {{PLURAL:$6|人}}が「$3」の「$2」での<span class="plainlinks">[$4 投稿]</span>を{{GENDER:$1|編集しました}}。',
+	'flow-notification-newtopic' => '$1 が [[$2|$3]] で<span class="plainlinks">[$5 新しい話題]</span>を{{GENDER:$1|作成しました}}: $4',
+	'flow-notification-rename' => '$1 が [[$5|$6]] で <span class="plainlinks">[$2 $3]</span> のページ名を「$4」に{{GENDER:$1|変更しました}}。',
+	'flow-notification-mention' => '$1 が「$4」の「$3」での{{GENDER:$1|自身の}}<span class="plainlinks">[$2 投稿]</span>であなたに{{GENDER:$1|言及しました}}。',
 	'flow-notification-link-text-view-post' => '投稿を閲覧',
 	'flow-notification-link-text-view-board' => '掲示板を閲覧',
 	'flow-notification-link-text-view-topic' => '話題を閲覧',
 	'flow-notification-reply-email-subject' => '$1 があなたの投稿に{{GENDER:$1|返信しました}}',
-	'flow-notification-reply-email-batch-body' => '$1 が「$3」の $2 でのあなたの投稿に{{GENDER:$1|返信しました}}', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 と他 $4 {{PLURAL:$5|人}}が「$3」の $2 でのあなたの投稿に{{PLURAL:$1|返信しました}}', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 が $2 であなたに{{GENDER:$1|言及しました}}', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 が「$3」の「$2」でのあなたの投稿に{{GENDER:$1|返信しました}}',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 と他 $4 {{PLURAL:$5|人}}が「$3」の「$2」でのあなたの投稿に{{PLURAL:$1|返信しました}}',
+	'flow-notification-mention-email-subject' => '$1 が「$2」であなたに{{GENDER:$1|言及しました}}',
 	'flow-notification-mention-email-batch-body' => '$1 が「$3」の「$2」での{{GENDER:$1|自身の}}投稿であなたに{{GENDER:$1|言及しました}}',
 	'flow-notification-edit-email-subject' => '$1 が投稿を{{GENDER:$1|編集しました}}',
-	'flow-notification-edit-email-batch-body' => '$1 が「$3」の $2 で投稿を{{GENDER:$1|編集しました}}', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 と他 $4 {{PLURAL:$5|人}}が「$3」の $2 での投稿を{{GENDER:$1|編集しました}}', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 が「$3」の「$2」で投稿を{{GENDER:$1|編集しました}}',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 と他 $4 {{PLURAL:$5|人}}が「$3」の「$2」での投稿を{{GENDER:$1|編集しました}}',
 	'flow-notification-rename-email-subject' => '$1 があなたの話題の{{GENDER:$1|題名を変更しました}}',
 	'flow-notification-rename-email-batch-body' => '$1 が「$4」のあなたの話題「$2」の題名を「$3」に{{GENDER:$1|変更しました}}',
-	'flow-notification-newtopic-email-subject' => '$1 が $2 に新しい話題を{{GENDER:$1|作成しました}}', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 が「$2」に新しい話題を{{GENDER:$1|作成しました}}',
 	'flow-notification-newtopic-email-batch-body' => '$1 が $3 で新しい話題「$2」を{{GENDER:$1|作成しました}}',
 	'echo-category-title-flow-discussion' => 'Flow',
 	'echo-pref-tooltip-flow-discussion' => 'Flow で私に関連する操作がなされたときに通知する。',
@@ -3182,6 +3197,12 @@ $messages['ko'] = array(
 	'flow-user-moderated' => '중재된 사용자',
 	'flow-edit-header-link' => '머리말 고치기',
 	'flow-header-empty' => '이 토론 문서에는 머릿말이 없습니다.',
+	'flow-post-moderated-toggle-hide-show' => '$2 사용자가 {{GENDER:$1|표시 안 함으로 설정한}} 댓글 보이기',
+	'flow-post-moderated-toggle-delete-show' => '$2 사용자가 {{GENDER:$1|삭제한}} 댓글 보이기',
+	'flow-post-moderated-toggle-suppress-show' => '$2 사용자가 {{GENDER:$1|숨긴}} 댓글 보이기',
+	'flow-post-moderated-toggle-hide-hide' => '$2 사용자가 {{GENDER:$1|표시 안 함으로 설정한}} 댓글 숨기기',
+	'flow-post-moderated-toggle-delete-hide' => '$2 사용자가 {{GENDER:$1|삭제한}} 댓글 숨기기',
+	'flow-post-moderated-toggle-suppress-hide' => '$2 사용자가 {{GENDER:$1|숨긴}} 댓글 숨기기',
 	'flow-hide-post-content' => '이 덧글은 $2 사용자가 {{GENDER:$1|표시 안 함으로 설정했습니다}}',
 	'flow-hide-title-content' => '이 주제는 $2 사용자가 {{GENDER:$1|표시 안 함으로 설정했습니다}}',
 	'flow-hide-header-content' => '$2 사용자가 {{GENDER:$1|표시 안 함으로 설정함}}',
@@ -3212,16 +3233,16 @@ $messages['ko'] = array(
 	'flow-edit-post-submit' => '변경된 내용을 제출합니다',
 	'flow-post-edited' => '$1 사용자가 $2에 게시물을 {{GENDER:$1|편집했습니다}}',
 	'flow-post-action-view' => '고유링크',
-	'flow-post-action-post-history' => '문서 역사', # Fuzzy
+	'flow-post-action-post-history' => '역사',
 	'flow-post-action-suppress-post' => '숨기기',
 	'flow-post-action-delete-post' => '삭제',
 	'flow-post-action-hide-post' => '숨기기',
-	'flow-post-action-edit-post' => '게시물 편집', # Fuzzy
+	'flow-post-action-edit-post' => '편집',
 	'flow-post-action-restore-post' => '문서 복구',
 	'flow-topic-action-view' => '고유링크',
 	'flow-topic-action-watchlist' => '주시문서 목록',
 	'flow-topic-action-edit-title' => '제목 편집',
-	'flow-topic-action-history' => '항목 역사', # Fuzzy
+	'flow-topic-action-history' => '역사',
 	'flow-topic-action-hide-topic' => '항목 숨기기',
 	'flow-topic-action-delete-topic' => '항목 삭제',
 	'flow-topic-action-suppress-topic' => '주제 숨겨놓기',
@@ -3300,27 +3321,27 @@ $messages['ko'] = array(
 	'flow-paging-rev' => '최근 주제 더보기',
 	'flow-paging-fwd' => '지난 주제',
 	'flow-last-modified' => '$1에 대한 마지막 수정',
-	'flow-notification-reply' => '$1 사용자가 "$4"의 $2 주제에 대한 [$5 게시물]에 {{GENDER:$1|답변을 남겼습니다}}.', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 사용자와 $5 {{PLURAL:$6|그 외 사용자}}가 당신이 "$3"에 남긴 [$4 게시물] $2에 {{GENDER:$1|답변을 남겼습니다}}.', # Fuzzy
-	'flow-notification-edit' => '$1 [[$3|$4]]에 남긴 [$5 게시물] $2을 {{GENDER:$1|편집했습니다}}.', # Fuzzy
-	'flow-notification-edit-bundle' => '$1 사용자와 $5 {{PLURAL:$6|그 외 사용자}}가 당신이 "$3"에 남긴 [$4 게시물] $2을 {{GENDER:$1|편집했습니다}}.', # Fuzzy
-	'flow-notification-newtopic' => '$1 사용자가 [[$2|$3]]의 [$5 새로운 주제]를 {{GENDER:$1|만들었습니다.}}:$4', # Fuzzy
-	'flow-notification-rename' => '$1 사용자가 [[$5|$6]]의 [$2 $3]의 제목을 "$4"으로 {{GENDER:$1|바꿨습니다}}.', # Fuzzy
-	'flow-notification-mention' => '$1 사용자가 "$4"의 "$3" {{GENDER:$1|}} [$2 게시물]에서 {{GENDER:$1|언급했습니다}}.', # Fuzzy
+	'flow-notification-reply' => '$1 사용자가 <span class="plainlinks">"$4"의 $2 주제에 대한 [$5 게시물]</span>에 {{GENDER:$1|답변을 남겼습니다}}.',
+	'flow-notification-reply-bundle' => '$1 사용자와 $5 {{PLURAL:$6|그 외 사용자}}가 당신이 "$3"에 남긴 <span class="plainlinks">[$4 게시물] $2</span>에 {{GENDER:$1|답변을 남겼습니다}}.',
+	'flow-notification-edit' => '$1 [[$3|$4]]에 남긴 <span class="plainlinks">[$5 게시물]</span> $2을 {{GENDER:$1|편집했습니다}}.',
+	'flow-notification-edit-bundle' => '$1 사용자와 $5 {{PLURAL:$6|그 외 사용자}}가 당신이 "$3"에 남긴 <span class="plainlinks">[$4 게시물]</span> $2을 {{GENDER:$1|편집했습니다}}.',
+	'flow-notification-newtopic' => '$1 사용자가 [[$2|$3]]의 <span class="plainlinks">[$5 새로운 주제]</span>를 {{GENDER:$1|만들었습니다.}}:$4',
+	'flow-notification-rename' => '$1 사용자가 [[$5|$6]]의 <span class="plainlinks">[$2 $3]</span>의 제목을 "$4"으로 {{GENDER:$1|바꿨습니다}}.',
+	'flow-notification-mention' => '$1 사용자가 "$4"의 "$3" {{GENDER:$1|}} <span class="plainlinks">[$2 게시물]</span>에서 {{GENDER:$1|언급했습니다}}.',
 	'flow-notification-link-text-view-post' => '게시물 보기',
 	'flow-notification-link-text-view-board' => '게시판 보기',
 	'flow-notification-link-text-view-topic' => '주제 보기',
 	'flow-notification-reply-email-subject' => '$1이 당신의 글에 덧글을 달았습니다.',
-	'flow-notification-reply-email-batch-body' => '$1 사용자가 $3에 있는 $2 주제의 당신의 게시물에 {{GENDER:$1|답변을 남겼습니다}}.', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 사용자와 $4 {{PLURAL:$5|그 외 사용자}}가 당신이 "$3"에 남긴 $2에 {{GENDER:$1|답변을 남겼습니다}}.', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 사용자가 $2에 당신을 {{GENDER:$1|언급했습니다}}.', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 사용자가 $3에 있는 "$2" 주제의 당신의 게시물에 {{GENDER:$1|답변을 남겼습니다}}.',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 사용자와 $4 {{PLURAL:$5|그 외 사용자}}가 당신이 "$3"에 남긴 "$2"에 {{GENDER:$1|답변을 남겼습니다}}.',
+	'flow-notification-mention-email-subject' => '$1 사용자가 "$2"에 당신을 {{GENDER:$1|언급했습니다}}.',
 	'flow-notification-mention-email-batch-body' => '$1 사용자가 "$3"에 있는 "$2"의 {{GENDER:$1|}} 게시물을 {{GENDER:$1|언급했습니다}}',
 	'flow-notification-edit-email-subject' => '$1 사용자가 게시물을 {{GENDER:$1|편집했습니다}}',
-	'flow-notification-edit-email-batch-body' => '$1 사용자가 "$3"에 있는 $2의 게시물을 {{GENDER:$1|편집했습니다}}', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 사용자와 $4 {{PLURAL:$5|그 외 사용자}}가 당신이 "$3"에 있는 $2 [$4 게시물]을 {{GENDER:$1|편집했습니다}}.', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 사용자가 "$3"에 있는 "$2"의 게시물을 {{GENDER:$1|편집했습니다}}',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 사용자와 $4 {{PLURAL:$5|그 외 사용자}}가 당신이 "$3"에 있는 "$2" [$4 게시물]을 {{GENDER:$1|편집했습니다}}.',
 	'flow-notification-rename-email-subject' => '$1 이 당신의 주제를 바꾸었습니다.',
 	'flow-notification-rename-email-batch-body' => '$1 사용자가 "$4"에 있는 당신의 "$2" 주제를  "$3"으로 {{GENDER:$1|이름을 바꿨습니다}}',
-	'flow-notification-newtopic-email-subject' => '$1 사용자가 $2의 새 주제를 {{GENDER:$1|만들었습니다}}', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 사용자가 "$2"의 새 주제를 {{GENDER:$1|만들었습니다}}',
 	'flow-notification-newtopic-email-batch-body' => '$1 사용자가 $3의 "$2" 문서와 새 주제를 {{GENDER:$1|만들었습니다}}',
 	'echo-category-title-flow-discussion' => '플로우',
 	'echo-pref-tooltip-flow-discussion' => '플로우에 나와 관련된 명령을 알림',
@@ -3374,6 +3395,9 @@ $messages['ko'] = array(
 	'flow-topic-collapsed-one-line' => '작게 보기',
 	'flow-topic-collapsed-full' => '접힌 보기',
 	'flow-topic-complete' => '전체 보기',
+	'flow-terms-of-use-new-topic' => '주제 추가를 클릭하면 [//wikimediafoundation.org/wiki/Terms_of_use/ko 이용 약관]에 동의하고 [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0 라이선스]와 [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]에 따라 텍스트를 공개하는 데 동의합니다.',
+	'flow-terms-of-use-reply' => '답변 버튼을 클릭하면 [//wikimediafoundation.org/wiki/Terms_of_use/ko 이용 약관]에 동의하고 [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0 라이선스]와 [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]에 따라 텍스트를 공개하는 데 동의합니다.',
+	'flow-terms-of-use-edit' => '바뀜 저장을 클릭하면 [//wikimediafoundation.org/wiki/Terms_of_use/ko 이용 약관]에 동의하고 [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0 라이선스]와 [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]에 따라 텍스트를 공개하는 데 동의합니다.',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -3462,13 +3486,13 @@ $messages['lb'] = array(
 	'flow-paging-rev' => 'Méi rezent Themen',
 	'flow-paging-fwd' => 'Méi al Themen',
 	'flow-last-modified' => "Fir d'lescht geännert ongeféier $1",
-	'flow-notification-newtopic' => '$1  {{GENDER:$1|huet}} een [$5 neit Thema] op [[$2|$3]]: $4 ugeluecht.', # Fuzzy
-	'flow-notification-rename' => '$1 {{GENDER:$1|huet}} den Titel vu(n) [$2 $3] op "$4" op [[$5|$6]] geännert.', # Fuzzy
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|huet}} een <span class="plainlinks">[$5 neit Thema]</span> op [[$2|$3]]: $4 ugeluecht.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|huet}} den Titel vu(n) span class="plainlinks">[$2 $3]</span> op "$4" op [[$5|$6]] geännert.',
 	'flow-notification-link-text-view-board' => 'Tableau weisen',
 	'flow-notification-link-text-view-topic' => 'Thema weisen',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|huet}} eng Matdeelung geännert',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|huet}} eng Matdeelung vu(n) $2 iwwer "$3" geännert', # Fuzzy
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|huet}} een neit Thema iwwer $2 ugeluecht', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|huet}} eng Matdeelung vu(n) "$2" iwwer "$3" geännert',
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|huet}} een neit Thema iwwer "$2" ugeluecht',
 	'echo-category-title-flow-discussion' => 'Flow',
 	'echo-pref-tooltip-flow-discussion' => 'Mech informéiere wann Aktiounen déi mech betreffen a geschéien.',
 	'flow-link-topic' => 'Thema',
@@ -3676,27 +3700,27 @@ $messages['mk'] = array(
 	'flow-paging-rev' => 'Најнови теми',
 	'flow-paging-fwd' => 'Постари теми',
 	'flow-last-modified' => 'Последна измена: $1',
-	'flow-notification-reply' => '$1 {{GENDER:$1|ви одговори}} на вашата [$5 порака] во $2 на [[$3|$4]].', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 и $5 уште {{PLURAL:$6|еден друг|$5 други}} {{GENDER:$1|ви одговорија}} на вашата [$4 објава] во $2 на „$3“.', # Fuzzy
-	'flow-notification-edit' => '$1 {{GENDER:$1|ви ја измени}} измени [$5 порака] во $2 на [[$3|$4]].', # Fuzzy
-	'flow-notification-edit-bundle' => '$1 и $5 {{PLURAL:$6|уште еден друг|уште $5 други}} {{GENDER:$1|изменија}} [$4 објава] во $2 на „$3“.', # Fuzzy
-	'flow-notification-newtopic' => '$1 {{GENDER:$1|создаде}} [$5 нова тема] во [[$2|$3]]: $4.', # Fuzzy
-	'flow-notification-rename' => '$1 го {{GENDER:$1|смени}} насловот на [$2 $3] во „$4“ на [[$5|$6]]', # Fuzzy
-	'flow-notification-mention' => '$1 ве спомна во {{GENDER:$1|неговата|нејзината|неговата}} [$2 објава] во „$3“ на „$4“', # Fuzzy
+	'flow-notification-reply' => '$1 {{GENDER:$1|ви одговори}} на вашата <span class="plainlinks">[$5 објава]</span> во „$2“ на „$4“.',
+	'flow-notification-reply-bundle' => '$1 и $5 уште {{PLURAL:$6|еден друг|$5 други}} {{GENDER:$1|ви одговорија}} на вашата <span class="plainlinks">[$4 објава]</span>  во „$2“ на „$3“.',
+	'flow-notification-edit' => '$1 {{GENDER:$1|ви ја измени}} измени <span class="plainlinks">[$5 објава]</span> во „$2“ на [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 и $5 {{PLURAL:$6|уште еден друг|уште $5 други}} {{GENDER:$1|изменија}} <span class="plainlinks">[$4 post]</span> во „$2“ на „$3“.',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|создаде}} <span class="plainlinks">[$5 нова тема]</span> во [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 го {{GENDER:$1|смени}} насловот на <span class="plainlinks">[$2 $3]</span> во „$4“ на [[$5|$6]]',
+	'flow-notification-mention' => '$1 ве спомна во {{GENDER:$1|неговата|нејзината|неговата}} <span class="plainlinks">[$2 објава]</span>  во „$3“ на „$4“',
 	'flow-notification-link-text-view-post' => 'Погл. објавата',
 	'flow-notification-link-text-view-board' => 'Погл. таблата',
 	'flow-notification-link-text-view-topic' => 'Погл. темата',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|ви одговори}} на објавата',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|ви одговори}} на вашата објава во $2 на „$3“', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 и уште {{PLURAL:$5|еден друг|$4 други}} {{GENDER:$1|ви одговорија}} на вашата објава во $2 на „$3“', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|ве спомна}} на $2', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|ви одговори}} на вашата објава во „$2“ на „$3“',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 и уште {{PLURAL:$5|еден друг|$4 други}} {{GENDER:$1|ви одговорија}} на вашата објава во „$2“ на „$3“',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|ве спомна}} на „$2“',
 	'flow-notification-mention-email-batch-body' => '$1 ве спомна во {{GENDER:$1|неговата|нејзината|неговата}} објава во „$2“ на „$3“',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|измени}} објава',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|измени}} објава во $2 на „$3“', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 и {{PLURAL:$5|уште еден друг|уште $4 други}} {{GENDER:$1|ја изменија}} вашата објава во $2 на „$3“', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|измени}} објава во „$2“ на „$3“',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 и {{PLURAL:$5|уште еден друг|уште $4 други}} {{GENDER:$1|ја изменија}} вашата објава во „$2“ на „$3“',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|ја преименуваше}} вашата тема',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|ја преименуваше}} вашата тема „$2“ во „$3“ на „$4“',
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|создаде}} нова тема на $2', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|создаде}} нова тема на „$2“',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|создаде}} нова тема со наслов „$2“ на $3',
 	'echo-category-title-flow-discussion' => 'Тек',
 	'echo-pref-tooltip-flow-discussion' => 'Извести ме кога во Тек ќе се случат дејства поврзани со мене.',
@@ -4408,8 +4432,8 @@ $messages['ru'] = array(
 	'flow-notification-link-text-view-post' => 'Посмотреть сообщение',
 	'flow-notification-link-text-view-topic' => 'Посмотреть тему',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|ответил|ответила}} на ваше сообщение',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|ответил|ответила}} на ваше сообщение в теме $2 в «$3»', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|упомянул|упомянула}} вас в $2', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 ответил{{GENDER:$1||а}} на ваше сообщение в теме «$2» в «$3»',
+	'flow-notification-mention-email-subject' => '$1 упомянул{{GENDER:$1||а}} вас в «$2»',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|отредактировал|отредактировала}} сообщение',
 	'flow-link-post' => 'сообщение',
 	'flow-link-topic' => 'тема',
@@ -4589,7 +4613,7 @@ $messages['sv'] = array(
 	'flow-error-fail-load-history' => 'Innehållet i historiken kunde inte läsas in.',
 	'flow-error-missing-revision' => 'Det gick inte att hitta en revision för att ladda flödesinnehållet.',
 	'flow-error-fail-commit' => 'Flödesinnehållet kunde inte sparas.',
-	'flow-error-insufficient-permission' => 'Otillräcklig behörighet att komma åt innehållet.',
+	'flow-error-insufficient-permission' => 'Otillräcklig behörighet för att komma åt innehållet.',
 	'flow-error-revision-comparison' => 'Diff-funktionen kan endast användas för två revideringar som hör till samma post.',
 	'flow-error-missing-topic-title' => 'Kunde inte hitta ämnesrubriken för det aktuella arbetsflödet.',
 	'flow-error-fail-load-data' => 'Det gick inte att läsa in de begärda uppgifterna.',
@@ -4769,6 +4793,8 @@ $messages['uk'] = array(
 	'flow-post-moderated-toggle-delete-show' => 'Показати коментар, який {{GENDER:$1|вилучив|вилучила}} $2',
 	'flow-post-moderated-toggle-suppress-show' => 'Показати коментар, який {{GENDER:$1|прибрав|прибрала}} $2',
 	'flow-post-moderated-toggle-hide-hide' => 'Приховати коментар, який {{GENDER:$1|приховав|приховала}}  $2',
+	'flow-post-moderated-toggle-delete-hide' => 'Приховати коментар, який {{GENDER:$1|вилучив|вилучила}}  $2',
+	'flow-post-moderated-toggle-suppress-hide' => 'Приховати коментар, який {{GENDER:$1|прибрав|прибрала}}  $2',
 	'flow-hide-post-content' => 'Цей коментар {{GENDER:$1|приховав|приховала}} $2',
 	'flow-hide-title-content' => '$2 {{GENDER:$1|приховав|приховала}} цю тему',
 	'flow-hide-header-content' => '{{GENDER:$1|Приховано}} $2',
@@ -4887,27 +4913,27 @@ $messages['uk'] = array(
 	'flow-paging-rev' => 'Новіші теми',
 	'flow-paging-fwd' => 'Старіші теми',
 	'flow-last-modified' => 'Остання зміна про $1',
-	'flow-notification-reply' => '$1  {{GENDER:$1|відповів|відповіла}} на ваше [повідомлення $5] у $2 на [[$3|$4]].', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 та $5 {{PLURAL:$6|інший|інші|інших}} {{GENDER:$1|відповіли}} на ваш [допис $4] у $2 на "$3".', # Fuzzy
-	'flow-notification-edit' => '$1  {{GENDER:$1|відредагував|відредагувала}}  [повідомлення $5] у $2 на [[$3|$4]].', # Fuzzy
-	'flow-notification-edit-bundle' => '$1 та $5 {{PLURAL:$6|інший|інші|інших}} {{GENDER:$1|відредагував|відредагувала}} [$4 допис] у $2 на "$3".', # Fuzzy
-	'flow-notification-newtopic' => '$1  {{GENDER:$1|створив|створила}} [нову тему $5] на [[$2|$3]]: $4.', # Fuzzy
-	'flow-notification-rename' => '$1  {{GENDER:$1|змінив|змінила}} назву [$2 $3] на "$4" у [[$5|$6]]', # Fuzzy
-	'flow-notification-mention' => '$1 {{GENDER:$1|згадав|згадала|згадали}} вас у {{GENDER:$1|своєму|своєму|своєму}} [$2 дописі] у "$3" на "$4"', # Fuzzy
+	'flow-notification-reply' => '$1  {{GENDER:$1|відповів|відповіла}} на ваше <span class="plainlinks">[повідомлення $5]</span> у "$2" на "$4".',
+	'flow-notification-reply-bundle' => '$1 та $5 {{PLURAL:$6|інший|інші|інших}} {{GENDER:$1|відповіли}} на ваш <span class="plainlinks">[допис $4]</span> у $2 на "$3".',
+	'flow-notification-edit' => '$1  {{GENDER:$1|відредагував|відредагувала}}  <span class="plainlinks">[повідомлення $5]</span> у $2 на [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 та $5 {{PLURAL:$6|інший|інші|інших}} {{GENDER:$1|відредагував|відредагувала}} <span class="plainlinks">[$4 допис]</span> у $2 на "$3".',
+	'flow-notification-newtopic' => '$1  {{GENDER:$1|створив|створила}} <span class="plainlinks">[нову тему $5]</span> на [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1  {{GENDER:$1|змінив|змінила}} назву <span class="plainlinks">[$2 $3]</span> на "$4" у [[$5|$6]]',
+	'flow-notification-mention' => '$1 {{GENDER:$1|згадав|згадала|згадали}} вас у {{GENDER:$1|своєму|своєму|своєму}}  <span class="plainlinks">[$2 дописі]</span> у "$3" на "$4"',
 	'flow-notification-link-text-view-post' => 'Переглянути допис',
 	'flow-notification-link-text-view-board' => 'Переглянути стіну',
 	'flow-notification-link-text-view-topic' => 'Перегляд теми',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|відповів|відповіла}} на ваш допис',
-	'flow-notification-reply-email-batch-body' => '$1  {{GENDER:$1|відповів|відповіла}} на ваш допис у $2 на $3.', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 та $4 {{PLURAL:$5|інший|інші|інших}} {{GENDER:$1|відповіли}} на ваш допис у $2 на "$3".', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|згадав|згадала}} вас на $2', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1  {{GENDER:$1|відповів|відповіла}} на ваш допис у "$2" на $3.',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 та $4 {{PLURAL:$5|інший|інші|інших}} {{GENDER:$1|відповіли}} на ваш допис у "$2" на "$3".',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|згадав|згадала}} вас на "$2"',
 	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|згадав|згадала|згадали}} вас у  {{GENDER:$1|своєму|своєму|своєму}} дописі у "$2" на "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|відредагував|відредагувала}} допис',
-	'flow-notification-edit-email-batch-body' => '$1  {{GENDER:$1|відредагував|відредагувала}} допис у $2 на „$3“', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 та $4 {{PLURAL:$5|інший|інші|інших}} {{GENDER:$1|відредагував|відредагувала}} допис у $2 на "$3".', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1  {{GENDER:$1|відредагував|відредагувала}} допис у "$2" на „$3“',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 та $4 {{PLURAL:$5|інший|інші|інших}} {{GENDER:$1|відредагував|відредагувала}} допис у "$2" на "$3"',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|перейменував|перейменувала}} вашу тему',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|перейменував|перейменувала}} вашу тему   з „$2“ на „$3“  у „$4“',
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|створив|створила}} нову тему на $2', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|створив|створила}} нову тему на "$2"',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|створив|створила}} нову тему під назвою "$2" на $3',
 	'echo-category-title-flow-discussion' => 'Потік',
 	'echo-pref-tooltip-flow-discussion' => "Повідомляти, коли відбуваються дії, пов'язані зі мною в потоці.",
@@ -4966,6 +4992,9 @@ $messages['uk'] = array(
 	'flow-topic-collapsed-one-line' => 'Малий вигляд',
 	'flow-topic-collapsed-full' => 'Згорнутий вигляд',
 	'flow-topic-complete' => 'Повний вигляд',
+	'flow-terms-of-use-new-topic' => 'Натиснувши кнопку "Додати тему", ви погоджуєтеся з нашими [//wikimediafoundation.org/wiki/Terms_of_use/uk умовами використання] та погоджуєтесь з поширенням вашого тексту під [//http://creativecommons.org/licenses/by-sa/3.0/deed.uk ліцензією CC BY-SA 3.0] та [//http://uk.wikipedia.org/wiki/Вікіпедія:Текст_GNU_Free_Documentation_License GFDL].',
+	'flow-terms-of-use-reply' => 'Натиснувши кнопку "Відповісти", ви погоджуєтеся з нашими [//wikimediafoundation.org/wiki/Terms_of_use/uk умовами використання] та погоджуєтесь з поширенням вашого тексту під [//http://creativecommons.org/licenses/by-sa/3.0/deed.uk ліцензією CC BY-SA 3.0] та [//http://uk.wikipedia.org/wiki/Вікіпедія:Текст_GNU_Free_Documentation_License GFDL].',
+	'flow-terms-of-use-edit' => 'Зберігаючи зміни, ви погоджуєтеся з нашими [//wikimediafoundation.org/wiki/Terms_of_use/uk умовами використання] та погоджуєтесь з поширенням вашого тексту під [//http://creativecommons.org/licenses/by-sa/3.0/deed.uk ліцензією CC BY-SA 3.0] та [//http://uk.wikipedia.org/wiki/Вікіпедія:Текст_GNU_Free_Documentation_License GFDL].',
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -5206,8 +5235,6 @@ $messages['yi'] = array(
 	'flow-user-moderated' => 'מאדערירטער באניצער',
 	'flow-edit-header-link' => 'רעדאקטירט קעפל',
 	'flow-header-empty' => 'דער דאזיקער שמועס־בלאט האט נישט קיין קעפל.',
-	'flow-post-moderated-toggle-show' => '[ווייזן]',
-	'flow-post-moderated-toggle-hide' => '[באהאלטן]',
 	'flow-post-actions' => 'אַקציעס',
 	'flow-topic-actions' => 'אַקציעס',
 	'flow-cancel' => 'אַנולירן',
@@ -5221,14 +5248,12 @@ $messages['yi'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|ענטפערן}}',
 	'flow-reply-link' => '{{GENDER:$1|ענטפערן}}',
 	'flow-thank-link' => '{{GENDER:$1|דאַנקען}}',
-	'flow-talk-link' => 'רעדן צו {{GENDER:$1|$1}}',
 	'flow-edit-post-submit' => 'איינגעבן ענדערונגען',
 	'flow-post-action-view' => 'פערמאנענטער לינק',
-	'flow-post-action-edit' => 'רעדאַקטירן',
 	'flow-topic-action-view' => 'פערמאנענטער לינק',
 	'flow-topic-action-watchlist' => 'אויפֿפאַסונג ליסטע',
 	'flow-topic-action-edit-title' => 'רעדאקטירן טיטל',
-	'flow-topic-action-history' => 'טעמע היסטאריע',
+	'flow-topic-action-history' => 'היסטאריע',
 	'flow-error-delete-failure' => 'אויסמעקן דעם אביעקט אדורכגעפאלן.',
 	'flow-error-hide-failure' => 'באהאלטן דעם אביעקט אדורכגעפאלן.',
 	'flow-error-restore-failure' => 'צוריקשטעלן דעם אביעקט אדורכגעפאלן.',
