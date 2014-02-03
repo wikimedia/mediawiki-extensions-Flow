@@ -17,6 +17,7 @@
 	"curly":    true,  // requres curly braces around loops and conditionals
 	"devel":    true,  // console, alert, etc.
 	"eqeqeq":   true,  // prohibits == and !=
+	"es3":      true,  // catch foo.new object keys
 	"forin":    false, // make for-in loops require hasOwnProperty check
 	"onevar":   true,  // only one var declaration per function
 	"supernew": true,  // suppress warnings about "weird" object constructions
