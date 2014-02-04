@@ -1506,7 +1506,19 @@ class ShallowCompactor implements Compactor {
 		return array_map( array( $this, 'compactRow' ), $rows );
 	}
 
-	public function expandCacheResult( array $cached, array $keyToQuery ) {
+	/**
+	 * @return UniqueFeatureIndex
+	 */
+	public function getShallow() {
+		return $this->shallow;
+	}
+
+	/**
+	 * @param array $cached
+	 * @param array $keyToQuery
+	 * @return ResultDuplicator
+	 */
+	public function getResultDuplicator( array $cached, array $keyToQuery ) {
 		$results = $this->inner->expandCacheResult( $cached, $keyToQuery );
 		// Allows us to flatten $results into a single $query array, then
 		// rebuild final return value in same structure and order as $results.
@@ -1517,7 +1529,18 @@ class ShallowCompactor implements Compactor {
 			}
 		}
 
-		$innerResult = $this->shallow->findMulti( $duplicator->getUniqueQueries() );
+		return $duplicator;
+	}
+
+	/**
+	 * @param array $cached
+	 * @param array $keyToQuery
+	 * @return array
+	 */
+	public function expandCacheResult( array $cached, array $keyToQuery ) {
+		$duplicator = $this->getResultDuplicator( $cached, $keyToQuery );
+		$queries = $duplicator->getUniqueQueries();
+		$innerResult = $this->shallow->findMulti( $queries );
 		foreach ( $innerResult as $rows ) {
 			// __construct guaranteed the shallow backing index is a unique, so $first is only result
 			$first = reset( $rows );
