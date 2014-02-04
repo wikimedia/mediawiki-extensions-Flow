@@ -92,6 +92,7 @@ abstract class AbstractFormatter {
 		switch( $action ) {
 			case 'reply':
 				$links[] = $this->topicLink( $title, $workflowId );
+				$links[] = $this->postLink( $title, $workflowId, $postId );
 				break;
 
 			case 'new-post': // fall through

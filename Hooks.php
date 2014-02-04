@@ -109,6 +109,20 @@ class FlowHooks {
 		return true;
 	}
 
+	public static function onSpecialCheckUserGetLinksFromRow( Language $lang, $row, &$links ) {
+		if ( $row->cuc_type != RC_FLOW ) {
+			return true;
+		}
+
+		$line = Container::get( 'checkuser.formatter' )->format( $lang, $row );
+		if ( $line === false ) {
+			return true;
+		}
+
+		$links = $line;
+		return false;
+	}
+
 	/**
 	 * Add token type "flow", to generate edit tokens for Flow via
 	 * api.php?action=tokens&type=flow
