@@ -390,6 +390,44 @@ class ObjectLocator implements ObjectStorage {
 		return $retval;
 	}
 
+	/**
+	 * Returns a boolean true/false if the get()-operation for the given
+	 * attributes has already been resolves and doesn't need to query any
+	 * outside cache/database.
+	 * Determining if a find() has not yet been resolved may be useful so that
+	 * additional data may be loaded at once.
+	 *
+	 * @param $id Id to get()
+	 * @return bool
+	 */
+	public function got( $id ) {
+		return $this->gotMulti( array( $id ) );
+	}
+
+	/**
+	 * Returns a boolean true/false if the getMulti()-operation for the given
+	 * attributes has already been resolves and doesn't need to query any
+	 * outside cache/database.
+	 * Determining if a find() has not yet been resolved may be useful so that
+	 * additional data may be loaded at once.
+	 *
+	 * @param $objectIds Ids to getMulti()
+	 * @return bool
+	 */
+	public function gotMulti( array $objectIds ) {
+		if ( !$objectIds ) {
+			return true;
+		}
+
+		$pk = $this->storage->getPrimaryKeyColumns();
+		$queries = array();
+		foreach ( $objectIds as $id ) {
+			$queries[] = array_combine( $pk, ObjectManager::makeArray( $id ) );
+		}
+
+		return $this->foundMulti( $queries );
+	}
+
 	protected function getOffsetLimit( $rows, $index, $options ) {
 		$limit = isset( $options['limit'] ) ? $options['limit'] : $index->getLimit();
 
