@@ -106,11 +106,11 @@ class BoardHistoryIndex extends TopKIndex {
 		parent::__construct( $cache, $storage, $prefix, $indexed, $options );
 	}
 
-	public function findMulti( array $queries ) {
+	public function findMulti( array $queries, array $options = array() ) {
 		if ( count( $queries ) > 1 ) {
 			throw new DataModelException( __METHOD__ . ' expects only one value in $queries', 'process-data' );
 		}
-		return parent::findMulti( $queries );
+		return parent::findMulti( $queries, $options );
 	}
 
 	public function backingStoreFindMulti( array $queries, array $idxToKey, array $retval = array() ) {
