@@ -1567,8 +1567,19 @@ class SortArrayByKeys {
 class LocalBufferedCache extends BufferedCache {
 	protected $internal = array();
 
+	/**
+	 * Returns true if the data is in own "storage" already, or false if it will
+	 * need to be fetched from external cache.
+	 *
+	 * @param string $key
+	 * @return bool
+	 */
+	public function has( $key ) {
+		return array_key_exists( $key, $this->internal );
+	}
+
 	public function get( $key ) {
-		if ( array_key_exists( $key, $this->internal ) ) {
+		if ( $this->has( $key ) ) {
 			return $this->internal[$key];
 		}
 		return $this->internal[$key] = parent::get( $key );
@@ -1577,7 +1588,7 @@ class LocalBufferedCache extends BufferedCache {
 	public function getMulti( array $keys ) {
 		$found = array();
 		foreach ( $keys as $idx => $key ) {
-			if ( array_key_exists( $key, $this->internal ) ) {
+			if ( $this->has( $key ) ) {
 				// BagOStuff::multiGet doesn't return the unfound keys
 				if ( $this->internal[$key] !== false ) {
 					$found[$key] = $this->internal[$key];
@@ -1616,7 +1627,7 @@ class LocalBufferedCache extends BufferedCache {
 			);
 			// speculative ... could cause a ton of bugs due to normal assumptions
 			// how to do this reasonably?
-			if ( !array_key_exists( $key, $this->internal ) || $this->internal[$key] === false ) {
+			if ( !$this->has( $key ) || $this->internal[$key] === false ) {
 				$this->internal[$key] = $value;
 			}
 		}
