@@ -227,11 +227,6 @@ $c['storage.header'] = $c->share( function( $c ) {
 			'flow_header:workflow', array( 'header_workflow_id' ),
 			array( 'limit' => 100 ) + $workflowIndexOptions
 		),
-		new TopKIndex(
-			$cache, $storage,
-			'flow_header:latest', array( 'header_workflow_id' ),
-			array( 'limit'  => 1 ) + $workflowIndexOptions
-		),
 	);
 
 	$handlers = array(
@@ -298,18 +293,6 @@ $c['storage.post'] = $c->share( function( $c ) {
 				'shallow' => $pk,
 				'create' => function( array $row ) {
 					// return true to create instead of merge index
-					return $row['rev_parent_id'] === null;
-				},
-		) ),
-		// most recent revision
-		new TopKIndex( $cache, $storage, 'flow_revision:latest_post',
-			array( 'tree_rev_descendant_id' ),
-			array(
-				'limit' => 1,
-				'sort' => 'rev_id',
-				'order' => 'DESC',
-				'shallow' => $pk,
-				'create' => function( array $row ) {
 					return $row['rev_parent_id'] === null;
 				},
 		) ),

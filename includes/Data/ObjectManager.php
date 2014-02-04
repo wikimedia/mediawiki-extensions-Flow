@@ -89,18 +89,20 @@ interface Index extends LifecycleHandler {
 	 * Find data models matching the provided equality condition.
 	 *
 	 * @param array $keys A map of k,v pairs to find via equality condition
+	 * @param array[optional] $options Options to use
 	 * @return array|false Cached subset of data model rows matching the
 	 *     equality conditions provided in $keys.
 	 */
-	function find( array $keys );
+	function find( array $keys, array $options = array() );
 
 	/**
 	 * Batch together multiple calls to self::find with minimal network round trips.
 	 *
 	 * @param array $queries An array of arrays in the form of $keys parameter of self::find
+	 * @param array[optional] $options Options to use
 	 * @return array|false Array of arrays in same order as $queries representing batched result set.
 	 */
-	function findMulti( array $queries );
+	function findMulti( array $queries, array $options = array() );
 
 	/**
 	 * @return integer Maximum number of items in a single index value
@@ -240,7 +242,7 @@ class ObjectLocator implements ObjectStorage {
 
 		try {
 			$index = $this->getIndexFor( $keys, $options );
-			$res = $index->findMulti( $queries );
+			$res = $index->findMulti( $queries, $options );
 		} catch ( NoIndexException $e ) {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ': ' . $e->getMessage() );
 			$res = $this->storage->findMulti( $queries, $this->convertToDbOptions( $options ) );
@@ -1087,12 +1089,12 @@ abstract class FeatureIndex implements Index {
 		// nothing to do
 	}
 
-	public function find( array $attributes ) {
-		$results = $this->findMulti( array( $attributes ) );
+	public function find( array $attributes, array $options = array() ) {
+		$results = $this->findMulti( array( $attributes ), $options );
 		return reset( $results );
 	}
 
-	public function findMulti( array $queries ) {
+	public function findMulti( array $queries, array $options = array() ) {
 		if ( !$queries ) {
 			return array();
 		}
@@ -1119,6 +1121,10 @@ abstract class FeatureIndex implements Index {
 
 		// Retrieve from cache
 		$cached = $this->cache->getMulti( array_keys( $keyToIdx ) );
+		foreach ( $cached as $i => $result ) {
+			$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
+			$cached[$i] = array_splice( $result, 0, $limit );
+		}
 		// expand partial results and merge into result set
 		foreach( $this->rowCompactor->expandCacheResult( $cached, $keyToQuery ) as $key => $rows ) {
 			foreach ( $keyToIdx[$key] as $idx ) {
@@ -1240,6 +1246,11 @@ class UniqueFeatureIndex extends FeatureIndex {
  * Holds the top k items with matching $indexed columns.  List is sorted and truncated to specified size.
  */
 class TopKIndex extends FeatureIndex {
+	/**
+	 * @var array
+	 */
+	protected $options = array();
+
 	public function __construct( BufferedCache $cache, ObjectStorage $storage, $prefix, array $indexed, array $options = array() ) {
 		if ( empty( $options['sort'] ) ) {
 			throw new InvalidInputException( 'TopKIndex must be sorted', 'invalid-input' );
