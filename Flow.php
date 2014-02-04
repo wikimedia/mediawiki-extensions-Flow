@@ -211,10 +211,12 @@ $wgAutoloadClasses['ApiFlowModeratePost'] = "$dir/includes/api/ApiFlowModeratePo
 $wgAutoloadClasses['ApiFlowModerateTopic'] = "$dir/includes/api/ApiFlowModerateTopic.php";
 $wgAutoloadClasses['ApiFlowNewTopic'] = "$dir/includes/api/ApiFlowNewTopic.php";
 $wgAutoloadClasses['ApiFlowReply'] = "$dir/includes/api/ApiFlowReply.php";
+$wgAutoloadClasses['ApiQueryPropFlowInfo'] = "$dir/includes/api/ApiQueryPropFlowInfo.php";
 
 $wgAPIListModules['flow'] = 'ApiQueryFlow';
 $wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
+$wgAPIPropModules['flowinfo'] = 'ApiQueryPropFlowInfo';
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
