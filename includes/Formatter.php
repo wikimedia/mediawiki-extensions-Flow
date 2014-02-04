@@ -81,6 +81,13 @@ abstract class AbstractFormatter {
 		$this->urlGenerator = $this->templating->getUrlGenerator();
 	}
 
+	/**
+	 * @param Title $title
+	 * @param string $action
+	 * @param UUID $workflowId
+	 * @param UUID|null $postId
+	 * @return array|false
+	 */
 	protected function buildActionLinks( Title $title, $action, UUID $workflowId, UUID $postId = null ) {
 		// BC for renamed actions
 		$alias = $this->actions->getValue( $action );
@@ -91,35 +98,36 @@ abstract class AbstractFormatter {
 		$links = array();
 		switch( $action ) {
 			case 'reply':
-				$links[] = $this->topicLink( $title, $workflowId );
+				$links['topic'] = $this->topicLink( $title, $workflowId );
+				$links['post'] = $this->postLink( $title, $workflowId, $postId );
 				break;
 
 			case 'new-post': // fall through
 			case 'edit-post':
-				$links[] = $this->topicLink( $title, $workflowId );
-				$links[] = $this->postLink( $title, $workflowId, $postId );
+				$links['topic'] = $this->topicLink( $title, $workflowId );
+				$links['post'] = $this->postLink( $title, $workflowId, $postId );
 				break;
 
 			case 'suppress-post':
 			case 'delete-post':
 			case 'hide-post':
 			case 'restore-post':
-				$links[] = $this->topicLink( $title, $workflowId );
-				$links[] = $this->postHistoryLink( $title, $workflowId, $postId );
+				$links['topic'] = $this->topicLink( $title, $workflowId );
+				$links['post-history'] = $this->postHistoryLink( $title, $workflowId, $postId );
 				break;
 
 			case 'suppress-topic':
 			case 'delete-topic':
 			case 'hide-topic':
 			case 'restore-topic':
-				$links[] = $this->topicLink( $title, $workflowId );
-				$links[] = $this->topicHistoryLink( $title, $workflowId );
+				$links['topic'] = $this->topicLink( $title, $workflowId );
+				$links['topic-history'] = $this->topicHistoryLink( $title, $workflowId );
 				break;
 
 			case 'edit-title':
-				$links[] = $this->topicLink( $title, $workflowId );
+				$links['topic'] = $this->topicLink( $title, $workflowId );
 				// This links to the history of the topic title
-				$links[] = $this->postHistoryLink( $title, $workflowId, $postId );
+				$links['title-history'] = $this->postHistoryLink( $title, $workflowId, $postId );
 				break;
 
 			case 'create-header': // fall through
