@@ -1569,7 +1569,7 @@ class LocalBufferedCache extends BufferedCache {
 
 	public function get( $key ) {
 		if ( array_key_exists( $key, $this->internal ) ) {
-			return $this->internal;
+			return $this->internal[$key];
 		}
 		return $this->internal[$key] = parent::get( $key );
 	}
