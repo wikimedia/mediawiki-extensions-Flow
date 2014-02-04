@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_29b97be6",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-02-04T23:33:24Z",
+      "side": 1,
+      "message": "Better:\n\nLibxml errors that aren\u0027t ignored will throw a WikitextException",
+      "revId": "7638f24300a29bc387aefc680b47cdc377db0b78",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_49c4c768",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-02-04T23:33:24Z",
+      "side": 1,
+      "message": "The variable name is pretty clear, so better:\n\nThe default for $ignoreErrorCodes is\n\n(Or if there\u0027s a standard for documenting the default value for $ignoreErorCodes, use it below.)",
+      "revId": "7638f24300a29bc387aefc680b47cdc377db0b78",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_29729be2",
+        "filename": "tests/ParsoidUtilsTest.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-02-04T23:33:24Z",
+      "side": 1,
+      "message": "I would add a comment to each line\n\n// createDom ignores this invalid HTML by default",
+      "revId": "7638f24300a29bc387aefc680b47cdc377db0b78",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
