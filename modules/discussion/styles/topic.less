@@ -3,6 +3,7 @@
 @import 'mixins/moderation.less';
 @import 'mediawiki.mixins.less';
 @import '../../base/styles/settings/paths.less';
+@import '../../base/styles/mixins/wordbreak.less';
 
 .flow-topic-container {
 	padding-bottom: 20px;
@@ -18,6 +19,7 @@
 		h2 {
 			&.flow-realtitle {
 				display: inline;
+				.wordbreak-all();
 			}
 		}
 	}

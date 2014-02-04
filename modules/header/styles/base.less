@@ -1,5 +1,7 @@
 @import 'settings/colors.less';
 @import 'mediawiki.mixins.less';
+@import '../../base/styles/mixins/wordbreak.less';
+
 
 #flow-header {
 	// should be about 30px total; taking the content line-height into account,
@@ -7,6 +9,8 @@
 	padding-bottom: 25px;
 
 	#flow-header-content {
+		.wordbreak-all();
+
 		// Only apply these styles when empty or on plain-text content
 		&.flow-header-empty, > p {
 			font-weight: bold;

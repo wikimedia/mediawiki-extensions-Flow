@@ -2,6 +2,7 @@
 @import 'mediawiki.mixins.less';
 @import 'mixins/moderation.less';
 @import '../../base/styles/settings/paths.less';
+@import '../../base/styles/mixins/wordbreak.less';
 
 .flow-post-container {
 	clear: both;
@@ -50,6 +51,9 @@
 		color: @post-content-color;
 		max-height: 2000px;
 		overflow: auto;
+		// force wordbreaks, don't allow extra long text to break out
+		// of the content box.
+		.wordbreak-all();
 
 		*:first-child {
 			margin-top: 0;
@@ -69,6 +73,7 @@
 			content: "[" counter(flow-mwNumberedExternalLinkNode) "]";
 			counter-increment: flow-mwNumberedExternalLinkNode;
 		}
+
 
 		// Make the last paragraph of a post inline in case we put a
 		// "content-modified" icon after it.
