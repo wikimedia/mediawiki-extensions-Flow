@@ -1298,9 +1298,12 @@ $messages['ce'] = array(
 	'flow-topic-actions' => 'Дийраш',
 	'flow-show-change' => 'Гайта хийцам',
 	'flow-last-modified-by' => 'ТӀехьара бина {{GENDER:$1|хийцам}} цу $1',
+	'flow-post-action-post-history' => 'Истори',
+	'flow-post-action-edit-post' => 'Тае',
 	'flow-topic-action-history' => 'Теман истори', # Fuzzy
 	'flow-notification-reply-email-batch-body' => '$1 хан хааан {{GENDER:$1||жоп делла}} темехь «$2» «$3» чохь',
 	'flow-notification-mention-email-subject' => '$1 хьо {{GENDER:$1||хьахийна}} «$2» чохь',
+	'flow-moderation-confirmation-restore-topic' => 'Ахьа кхиамца хӀара тема карлаяьккхина.',
 );
 
 /** Czech (čeština)
@@ -1841,7 +1844,7 @@ $messages['fa'] = array(
 	'flow-paging-fwd' => 'موضوعات قدیمی‌تر',
 	'flow-last-modified' => 'آخرین تغییریافته دربارهٔ $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|پاسخ داده شد}} به شما <span class="plainlinks">[$5 post]</span> در "$2" در "$4".',
-	'flow-notification-reply-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|پاسخ داده شده} به شما <span class="plainlinks">[$4 پست]</span> در "$2" در "$3".', # Fuzzy
+	'flow-notification-reply-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|پاسخ داده شد} به شما <span class="plainlinks">[$4 پست]</span> در "$2" در "$3".', # Fuzzy
 	'flow-notification-edit' => '$1 {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$5 post]</span> در "$2" در [[$3|$4]].',
 	'flow-notification-edit-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$4 post]</span> در "$2" در "$3".',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|ایجاد شده}} یک <span class="plainlinks">[$5 موضوع جدید]</span> در [[$2|$3]]: $4.',
