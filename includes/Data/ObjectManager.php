@@ -1099,23 +1099,18 @@ abstract class FeatureIndex implements Index {
 			return array();
 		}
 
-		// Build a map from cache key to its index in $queries
+		// get cache keys for all queries
+		$cacheKeys = $this->getCacheKeys( $queries );
+
 		$results = $keyToIdx = $keyToQuery = array();
-		foreach ( $queries as $idx => $query ) {
-			ksort( $query );
-			if ( array_keys( $query ) !== $this->indexedOrdered ) {
-				throw new DataModelException(
-					'Cannot answer query for columns: ' . implode( ', ', array_keys( $queries[$idx] ) ), 'process-data'
-				);
-			}
-			$key = $this->cacheKey( $query );
+		foreach ( $cacheKeys as $i => $key ) {
 			// allow for duplicate queries
-			$keyToIdx[$key][] = $idx;
-			$idxToKey[$idx] = $key;
+			$keyToIdx[$key][] = $i;
+
+			// These results will be merged into the query results, and as such need binary
+			// uuid's as would be received from storage
 			if ( !isset( $keyToQuery[$key] ) ) {
-				// These results will be merged into the query results, and as such need binary
-				// uuid's as would be received from storage
-				$keyToQuery[$key] = UUID::convertUUIDs( $query );
+				$keyToQuery[$key] = UUID::convertUUIDs( $queries[$i] );
 			}
 		}
 
@@ -1137,7 +1132,30 @@ abstract class FeatureIndex implements Index {
 			return $results;
 		}
 
-		return $this->backingStoreFindMulti( $queries, $idxToKey, $results );
+		return $this->backingStoreFindMulti( $queries, $cacheKeys, $results );
+	}
+
+	/**
+	 * Build a map from cache key to its index in $queries.
+	 *
+	 * @param array $queries
+	 * @return array Array of [query index => cache key]
+	 */
+	protected function getCacheKeys( $queries ) {
+		$idxToKey = array();
+
+		foreach ( $queries as $idx => $query ) {
+			ksort( $query );
+			if ( array_keys( $query ) !== $this->indexedOrdered ) {
+				throw new DataModelException(
+					'Cannot answer query for columns: ' . implode( ', ', array_keys( $queries[$idx] ) ), 'process-data'
+				);
+			}
+			$key = $this->cacheKey( $query );
+			$idxToKey[$idx] = $key;
+		}
+
+		return $idxToKey;
 	}
 
 	protected function backingStoreFindMulti( array $queries, array $idxToKey, array $results = array() ) {
