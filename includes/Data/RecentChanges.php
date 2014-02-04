@@ -59,6 +59,13 @@ abstract class RecentChanges implements LifecycleHandler {
 		}
 		$title = $workflow->getArticleTitle();
 
+		// Very hackish - allows CheckUser access to the basic information without rc_params
+		// must stay below 255 chars.
+		$comment = $action . ',' . $workflow->getId()->getHex();
+		if ( isset( $changes['post'] ) ) {
+			$comment .= ',' . $changes['post'];
+		}
+
 		$attribs = array(
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
@@ -84,7 +91,7 @@ abstract class RecentChanges implements LifecycleHandler {
 				) + $changes,
 			) ),
 			'rc_cur_id' => 0, // TODO: wtf do we do with uuid's?
-			'rc_comment' => '',
+			'rc_comment' => $comment,
 			'rc_timestamp' => $timestamp,
 			'rc_cur_time' => $timestamp,
 			'rc_deleted' => 0,

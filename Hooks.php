@@ -109,6 +109,22 @@ class FlowHooks {
 		return true;
 	}
 
+	public static function onSpecialCheckUserGetLinksFromRow( CheckUser $checkUser, $row, &$links ) {
+		if ( $row->cuc_type == RC_FLOW ) {
+			$replacement = Container::get( 'checkuser.formatter' )->format( $checkUser, $row );
+			if ( $replacement === null ) {
+				// some sort of failure, but this is a RC_FLOW so blank out hist/diff links
+				// which aren't correct
+				unset( $links['history'] );
+				unset( $links['diff'] );
+			} else {
+				$links = $replacement;
+			}
+		}
+
+		return true;
+	}
+
 	/**
 	 * Add token type "flow", to generate edit tokens for Flow via
 	 * api.php?action=tokens&type=flow
