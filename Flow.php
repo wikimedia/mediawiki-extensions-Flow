@@ -159,9 +159,12 @@ $wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/PostRevisi
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
-$wgAPIListModules['flow'] = 'ApiQueryFlow';
+$wgAutoloadClasses['ApiQueryPropFlow'] = "$dir/includes/api/ApiQueryPropFlow.php";
+
+//$wgAPIListModules['flow'] = 'ApiQueryFlow';
 $wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
+$wgAPIPropModules['flow'] = 'ApiQueryPropFlow';
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
