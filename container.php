@@ -103,7 +103,7 @@ use Flow\Data\ObjectLocator;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 
-// TODO: this is still pass-thru untill it gets hooked up to the begin/commit
+// TODO: this is still pass-thru until it gets hooked up to the begin/commit
 //       transaction.  Easiest will be to explicitly start/end the transaction
 //       in the entry point ?
 $c['memcache.buffered'] = $c->share( function( $c ) {

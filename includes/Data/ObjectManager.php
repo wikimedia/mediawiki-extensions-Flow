@@ -223,7 +223,7 @@ class ObjectLocator implements ObjectStorage {
 	}
 
 	/**
-	 * All queries must be against the same index. Results are equivilent to
+	 * All queries must be against the same index. Results are equivalent to
 	 * array_map, maintaining order and key relationship between input $queries
 	 * and $result.
 	 *
@@ -957,8 +957,8 @@ abstract class FeatureIndex implements Index {
 	protected $indexed;
 	protected $indexedOrdered;
 
-	// This exists in the Index interface and as such cant be abstract
-	// untill php 5.3.9, but some of our test machines are on 5.3.3
+	// This exists in the Index interface and as such can't be abstract
+	// until php 5.3.9, but some of our test machines are on 5.3.3
 	//abstract public function getLimit();
 	abstract public function queryOptions();
 	abstract public function limitIndexSize( array $values );
@@ -1117,7 +1117,7 @@ abstract class FeatureIndex implements Index {
 			}
 		}
 
-		// Retreive from cache
+		// Retrieve from cache
 		$cached = $this->cache->getMulti( array_keys( $keyToIdx ) );
 		// expand partial results and merge into result set
 		foreach( $this->rowCompactor->expandCacheResult( $cached, $keyToQuery ) as $key => $rows ) {
@@ -1126,7 +1126,7 @@ abstract class FeatureIndex implements Index {
 				unset( $queries[$idx] );
 			}
 		}
-		// dont need to query backing store
+		// don't need to query backing store
 		if ( count( $queries ) === 0 ) {
 			return $results;
 		}
@@ -1390,7 +1390,7 @@ class TopKIndex extends FeatureIndex {
 
 /**
  * Removes the feature fields from stored array since its duplicating the cache key values
- * Re-adds them when retreiving from cache.
+ * Re-adds them when retrieving from cache.
  */
 class FeatureCompactor implements Compactor {
 	public function __construct( array $indexedColumns ) {
@@ -1500,7 +1500,7 @@ class ShallowCompactor implements Compactor {
 }
 
 /**
- * Performs the equivilent of an SQL ORDER BY c1 ASC, c2 ASC...
+ * Performs the equivalent of an SQL ORDER BY c1 ASC, c2 ASC...
  * Always sorts in ascending order.  array_reverse to get all descending.
  * For varied asc/desc needs implementation changes.
  *
