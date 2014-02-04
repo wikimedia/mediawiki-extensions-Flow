@@ -87,6 +87,10 @@ $wgAutoloadClasses['Flow\Model\Header'] = $dir . 'includes/Model/Header.php';
 $wgAutoloadClasses['Flow\Model\TopicListEntry'] = $dir . 'includes/Model/TopicListEntry.php';
 $wgAutoloadClasses['Flow\Model\Workflow'] = $dir . 'includes/Model/Workflow.php';
 $wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
+$wgAutoloadClasses['Flow\Model\AbstractRevisionable'] = $dir . 'includes/Model/AbstractRevisionable.php';
+$wgAutoloadClasses['Flow\Model\LocalCacheAbstractRevisionable'] = $dir . 'includes/Model/LocalCacheAbstractRevisionable.php';
+$wgAutoloadClasses['Flow\Model\PostRevisionable'] = $dir . 'includes/Model/PostRevisionable.php';
+$wgAutoloadClasses['Flow\Model\HeaderRevisionable'] = $dir . 'includes/Model/HeaderRevisionable.php';
 
 // Helpers for templating
 $wgAutoloadClasses['Flow\View\PostActionMenu'] = "$dir/includes/View/PostActionMenu.php";
