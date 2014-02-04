@@ -556,4 +556,14 @@ abstract class AbstractRevision {
 	}
 
 	abstract public function getRevisionType();
+
+	/**
+	 * @return UUID
+	 */
+	abstract public function getCollectionId();
+
+	/**
+	 * @return AbstractCollection
+	 */
+	abstract public function getCollection();
 }

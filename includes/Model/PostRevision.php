@@ -59,7 +59,7 @@ class PostRevision extends AbstractRevision {
 	// Create a brand new root post for a brand new topic.  Creating replies to
 	// an existing post(incl topic root) should use self::reply.
 	// @param Workflow $topic
-	// @param string $content The title of the topic(they are revisionable as well)
+	// @param string $content The title of the topic(they are Collection as well)
 	static public function create( Workflow $topic, $content ) {
 		if ( $topic->getUserId() ) {
 			$user = User::newFromId( $topic->getUserId() );
@@ -457,5 +457,19 @@ class PostRevision extends AbstractRevision {
 			return false;
 		}
 		return $user->getId() == $this->getCreatorId();
+	}
+
+	/**
+	 * @return UUID
+	 */
+	public function getCollectionId() {
+		return $this->getPostId();
+	}
+
+	/**
+	 * @return PostCollection
+	 */
+	public function getCollection() {
+		return PostCollection::newFromRevision( $this );
 	}
 }
