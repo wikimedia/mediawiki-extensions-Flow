@@ -167,17 +167,20 @@ abstract class ParsoidUtils {
 	/**
 	 * Turns given $content string into a DOMDocument object.
 	 *
-	 * Some errors are forgivable (e.g. 801: there may be "invalid" HTML tags,
-	 * like figcaption), so these can be ignored. Other errors will cause a
-	 * warning.
+	 * Some libxml errors are forgivable, libxml errors that aren't
+	 * ignored will throw a WikitextException.
+	 *
+	 * The default error codes allowed are:
+	 * 	513 - allow multiple tags with same id
+	 * 	801 - allow unrecognized tags like figcaption
 	 *
 	 * @param string $content
 	 * @param array[optional] $ignoreErrorCodes
 	 * @return \DOMDocument
-	 * @throws \MWException
+	 * @throws WikitextException
 	 * @see http://www.xmlsoft.org/html/libxml-xmlerror.html
 	 */
-	public static function createDOM( $content, $ignoreErrorCodes = array( 801 ) ) {
+	public static function createDOM( $content, $ignoreErrorCodes = array( 513, 801 ) ) {
 		$dom = new \DOMDocument();
 
 		// Otherwise the parser may attempt to load the dtd from an external source.
