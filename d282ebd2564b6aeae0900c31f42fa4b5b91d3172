@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ef7ef47_120b9029",
+        "filename": "includes/Block/BoardHistory.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-02-04T11:18:03Z",
+      "side": 1,
+      "message": "That is:\n\n @param Revision[] $history An array of flow revisions ( Header or PostRevision )\n\n(capital A for An).",
+      "parentUuid": "6ef7ef47_85a9b4de",
+      "revId": "d282ebd2564b6aeae0900c31f42fa4b5b91d3172",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_e0905348",
         "filename": "includes/WorkflowLoader.php",
         "patchSetId": 3
