@@ -134,6 +134,7 @@ $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
 $wgAutoloadClasses['Flow\Log\PostModerationLogger'] = $dir . 'includes/Log/PostModerationLogger.php';
 $wgAutoloadClasses['Flow\Contributions\Query'] = $dir . 'includes/Contributions/Query.php';
 $wgAutoloadClasses['Flow\Contributions\Formatter'] = $dir . 'includes/Contributions/Formatter.php';
+$wgAutoloadClasses['Flow\CheckUser\Formatter'] = $dir . 'includes/CheckUser/Formatter.php';
 $wgAutoloadClasses['Flow\Data\UserNameListener'] = $dir . 'includes/Data/UserNameBatch.php';
 $wgAutoloadClasses['Flow\Data\UserNameBatch'] = $dir . 'includes/Data/UserNameBatch.php';
 $wgAutoloadClasses['Flow\Data\UserNameQuery'] = $dir . 'includes/Data/UserNameBatch.php';
@@ -179,6 +180,7 @@ $wgHooks['ContribsPager::reallyDoQuery'][] = 'FlowHooks::onContributionsQuery';
 $wgHooks['ContributionsLineEnding'][] = 'FlowHooks::onContributionsLineEnding';
 $wgHooks['AbuseFilter-computeVariable'][] = 'FlowHooks::onAbuseFilterComputeVariable';
 $wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
+$wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGetLinksFromRow';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';

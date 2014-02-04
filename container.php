@@ -452,6 +452,14 @@ $c['controller.spamfilter'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['checkuser.formatter'] = $c->share( function( $c ) {
+	return new Flow\CheckUser\Formatter(
+		$c['storage'],
+		$c['flow_actions'],
+		$c['templating']
+	);
+} );
+
 $c['recentchanges.formatter'] = $c->share( function( $c ) {
 	return new Flow\RecentChanges\Formatter(
 		$c['storage'],
