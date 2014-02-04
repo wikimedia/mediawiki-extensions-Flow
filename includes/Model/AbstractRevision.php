@@ -556,4 +556,9 @@ abstract class AbstractRevision {
 	}
 
 	abstract public function getRevisionType();
+
+	/**
+	 * @return UUID
+	 */
+	abstract public function getRevisionableId();
 }

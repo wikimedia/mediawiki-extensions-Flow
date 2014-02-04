@@ -458,4 +458,11 @@ class PostRevision extends AbstractRevision {
 		}
 		return $user->getId() == $this->getCreatorId();
 	}
+
+	/**
+	 * @return UUID
+	 */
+	public function getRevisionableId() {
+		return $this->getPostId();
+	}
 }

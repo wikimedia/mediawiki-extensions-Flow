@@ -50,4 +50,11 @@ class Header extends AbstractRevision {
 	public function needsModerateHistorical( $state ) {
 		return false;
 	}
+
+	/**
+	 * @return UUID
+	 */
+	public function getRevisionableId() {
+		return $this->getWorkflowId();
+	}
 }
