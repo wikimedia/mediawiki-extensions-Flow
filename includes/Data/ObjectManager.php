@@ -105,6 +105,32 @@ interface Index extends LifecycleHandler {
 	function findMulti( array $queries, array $options = array() );
 
 	/**
+	 * Returns a boolean true/false if the find()-operation for the given
+	 * attributes has already been resolves and doesn't need to query any
+	 * outside cache/database.
+	 * Determining if a find() has not yet been resolved may be useful so that
+	 * additional data may be loaded at once.
+	 *
+	 * @param array $attributes Attributes to find()
+	 * @param array[optional] $options Options to find()
+	 * @return bool
+	 */
+	public function found( array $attributes, array $options = array() );
+
+	/**
+	 * Returns a boolean true/false if the findMulti()-operation for the given
+	 * attributes has already been resolves and doesn't need to query any
+	 * outside cache/database.
+	 * Determining if a find() has not yet been resolved may be useful so that
+	 * additional data may be loaded at once.
+	 *
+	 * @param array $attributes Attributes to find()
+	 * @param array[optional] $options Options to find()
+	 * @return bool
+	 */
+	public function foundMulti( array $attributes, array $options = array() );
+
+	/**
 	 * @return integer Maximum number of items in a single index value
 	 */
 	function getLimit();
@@ -194,6 +220,14 @@ class ManagerGroup {
 	public function findMulti( /* ... */ ) {
 		return $this->call( __FUNCTION__, func_get_args() );
 	}
+
+	public function found( /* ... */ ) {
+		return $this->call( __FUNCTION__, func_get_args() );
+	}
+
+	public function foundMulti( /* ... */ ) {
+		return $this->call( __FUNCTION__, func_get_args() );
+	}
 }
 
 /**
@@ -273,6 +307,52 @@ class ObjectLocator implements ObjectStorage {
 			}
 		}
 		return $retval;
+	}
+
+	/**
+	 * Returns a boolean true/false if the find()-operation for the given
+	 * attributes has already been resolves and doesn't need to query any
+	 * outside cache/database.
+	 * Determining if a find() has not yet been resolved may be useful so that
+	 * additional data may be loaded at once.
+	 *
+	 * @param array $attributes Attributes to find()
+	 * @param array[optional] $options Options to find()
+	 * @return bool
+	 */
+	public function found( array $attributes, array $options = array() ) {
+		return $this->foundMulti( array( $attributes ), $options );
+	}
+
+	/**
+	 * Returns a boolean true/false if the findMulti()-operation for the given
+	 * attributes has already been resolves and doesn't need to query any
+	 * outside cache/database.
+	 * Determining if a find() has not yet been resolved may be useful so that
+	 * additional data may be loaded at once.
+	 *
+	 * @param array $queries Queries to findMulti()
+	 * @param array[optional] $options Options to findMulti()
+	 * @return bool
+	 */
+	public function foundMulti( array $queries, array $options = array() ) {
+		if ( !$queries ) {
+			return true;
+		}
+
+		$keys = array_keys( reset( $queries ) );
+		if ( isset( $options['sort'] ) && !is_array( $options['sort'] ) ) {
+			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
+		}
+
+		try {
+			$index = $this->getIndexFor( $keys, $options );
+			return $index->foundMulti( $queries, $options );
+		} catch ( NoIndexException $e ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ': ' . $e->getMessage() );
+		}
+
+		return false;
 	}
 
 	public function getPrimaryKeyColumns() {
@@ -1115,13 +1195,13 @@ abstract class FeatureIndex implements Index {
 		}
 
 		// Retrieve from cache
-		$cached = $this->cache->getMulti( array_keys( $keyToIdx ) );
+		$cached = $this->cache->getMulti( $cacheKeys );
 		foreach ( $cached as $i => $result ) {
 			$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
 			$cached[$i] = array_splice( $result, 0, $limit );
 		}
 		// expand partial results and merge into result set
-		foreach( $this->rowCompactor->expandCacheResult( $cached, $keyToQuery ) as $key => $rows ) {
+		foreach ( $this->rowCompactor->expandCacheResult( $cached, $keyToQuery ) as $key => $rows ) {
 			foreach ( $keyToIdx[$key] as $idx ) {
 				$results[$idx] = $rows;
 				unset( $queries[$idx] );
@@ -1136,6 +1216,82 @@ abstract class FeatureIndex implements Index {
 	}
 
 	/**
+	 * Returns a boolean true/false if the find()-operation for the given
+	 * attributes has already been resolves and doesn't need to query any
+	 * outside cache/database.
+	 * Determining if a find() has not yet been resolved may be useful so that
+	 * additional data may be loaded at once.
+	 *
+	 * @param array $attributes Attributes to find()
+	 * @param array[optional] $options Options to find()
+	 * @return bool
+	 */
+	public function found( array $attributes, array $options = array() ) {
+		return $this->foundMulti( array( $attributes ), $options );
+	}
+
+	/**
+	 * Returns a boolean true/false if the findMulti()-operation for the given
+	 * attributes has already been resolves and doesn't need to query any
+	 * outside cache/database.
+	 * Determining if a find() has not yet been resolved may be useful so that
+	 * additional data may be loaded at once.
+	 *
+	 * @param array $queries Queries to findMulti()
+	 * @param array[optional] $options Options to findMulti()
+	 * @return bool
+	 */
+	public function foundMulti( array $queries, array $options = array() ) {
+		if ( !$queries ) {
+			return true;
+		}
+
+		// get cache keys for all queries
+		$cacheKeys = $this->getCacheKeys( $queries );
+
+		// check if cache has a way of identifying what's stored locally
+		if ( !method_exists( $this->cache, 'has' ) ) {
+			return false;
+		}
+
+		// check if keys matching given queries are already known in local cache
+		foreach ( $cacheKeys as $key ) {
+			if ( !$this->cache->has( $key ) ) {
+				return false;
+			}
+		}
+
+		$keyToQuery = array();
+		foreach ( $cacheKeys as $i => $key ) {
+			// These results will be merged into the query results, and as such need binary
+			// uuid's as would be received from storage
+			if ( !isset( $keyToQuery[$key] ) ) {
+				$keyToQuery[$key] = UUID::convertUUIDs( $queries[$i] );
+			}
+		}
+
+		// retrieve from cache - this is cheap, it's is local storage
+		$cached = $this->cache->getMulti( $cacheKeys );
+		foreach ( $cached as $i => $result ) {
+			$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
+			$cached[$i] = array_splice( $result, 0, $limit );
+		}
+
+		// if we have a shallow compactor, the returned data are PKs of objects
+		// that need to be fetched too
+		if ( $this->rowCompactor instanceof ShallowCompactor ) {
+			// test of the keys to be expanded are already in local cache
+			$duplicator = $this->rowCompactor->getResultDuplicator( $cached, $keyToQuery );
+			$queries = $duplicator->getUniqueQueries();
+			if ( !$this->rowCompactor->getShallow()->foundMulti( $queries ) ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * Build a map from cache key to its index in $queries.
 	 *
 	 * @param array $queries
@@ -1143,7 +1299,6 @@ abstract class FeatureIndex implements Index {
 	 */
 	protected function getCacheKeys( $queries ) {
 		$idxToKey = array();
-
 		foreach ( $queries as $idx => $query ) {
 			ksort( $query );
 			if ( array_keys( $query ) !== $this->indexedOrdered ) {
