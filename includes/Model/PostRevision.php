@@ -15,6 +15,7 @@ class PostRevision extends AbstractRevision {
 	protected $origCreateTime;
 	protected $origUserId;
 	protected $origUserIp;
+	protected $origUserWiki;
 	protected $replyToId;
 
 	/**
@@ -102,6 +103,7 @@ class PostRevision extends AbstractRevision {
 		$obj->postId = $uuid;
 		$obj->origUserId = $obj->userId = $user->getId();
 		$obj->origUserIp = $obj->userIp = $user->getName();
+		$obj->origUserWiki = wfWikiId();
 		$obj->origCreateTime = wfTimestampNow();
 		$obj->setReplyToId( null ); // not a reply to anything
 		$obj->prevRevision = null; // no parent revision
@@ -126,6 +128,7 @@ class PostRevision extends AbstractRevision {
 		} elseif ( isset( $row['tree_orig_user_text'] ) && $obj->origUserId === 0 ) {
 			$obj->origUserIp = $row['tree_orig_user_text'];
 		}
+		$obj->origUserWiki = isset( $row['tree_orig_user_wiki'] ) ? $row['tree_orig_user_wiki'] : '';
 		return $obj;
 	}
 
@@ -138,6 +141,7 @@ class PostRevision extends AbstractRevision {
 			'tree_orig_create_time' => $rev->origCreateTime,
 			'tree_orig_user_id' => $rev->origUserId,
 			'tree_orig_user_ip' => $rev->origUserIp,
+			'tree_orig_user_wiki' => $rev->origUserWiki,
 		);
 	}
 
@@ -145,9 +149,10 @@ class PostRevision extends AbstractRevision {
 		$reply = new self;
 		// No great reason to create two uuid's,  a post and its first revision can share a uuid
 		$reply->revId = $reply->postId = UUID::create();
-		list( $reply->userId, $reply->userIp ) = self::userFields( $user );
+		list( $reply->userId, $reply->userIp, $reply->userWiki ) = self::userFields( $user );
 		$reply->origUserId = $reply->userId;
 		$reply->origUserIp = $reply->userIp;
+		$reply->origUserWiki = wfWikiId();
 		$reply->origCreateTime = wfTimestampNow();
 		$reply->replyToId = $this->postId;
 		$reply->setContent( $content );
@@ -170,6 +175,10 @@ class PostRevision extends AbstractRevision {
 	 */
 	public function getCreatorId() {
 		return $this->origUserId;
+	}
+
+	public function getCreatorWiki() {
+		return $this->origUserWiki;
 	}
 
 	/**
