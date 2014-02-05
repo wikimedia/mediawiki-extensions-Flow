@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_dd852c5c",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-02-05T23:20:58Z",
+      "side": 0,
+      "message": "I think this one is a much bigger problem, it\u0027s serialized user objects instead of user names.",
+      "revId": "29e7d73fa5e13921c054694d0edb8becf2eb88fa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
