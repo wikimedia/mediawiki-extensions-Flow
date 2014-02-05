@@ -22,6 +22,7 @@ CREATE TABLE /*_*/flow_workflow (
 	-- TODO: check what the new global user ids need for storage
 	workflow_user_id bigint unsigned not null,
 	workflow_user_ip varbinary(39) default null,
+	workflow_user_wiki varchar(32) binary not null,
 	-- TODO: is this usefull as a bitfield?  may be premature optimization, a string
 	-- or list of strings may be simpler and use only a little more space.
 	workflow_lock_state int unsigned not null,
@@ -34,12 +35,13 @@ CREATE INDEX /*i*/flow_workflow_lookup ON /*_*/flow_workflow (workflow_wiki, wor
 CREATE TABLE /*_*/flow_subscription (
   subscription_workflow_id int unsigned not null,
   subscription_user_id bigint unsigned not null,
+  subscription_user_wiki varchar(32) binary not null,
   subscription_create_timestamp varchar(14) binary not null,
   subscription_last_updated varchar(14) binary not null
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/flow_subscription_unique_user_workflow ON /*_*/flow_subscription (subscription_workflow_id, subscription_user_id);
-CREATE INDEX /*i*/flow_subscription_lookup ON /*_*/flow_subscription (subscription_user_id, subscription_last_updated, subscription_workflow_id);
+CREATE UNIQUE INDEX /*i*/flow_subscription_unique_user_workflow ON /*_*/flow_subscription (subscription_workflow_id, subscription_user_id, subscription_user_wiki );
+CREATE INDEX /*i*/flow_subscription_lookup ON /*_*/flow_subscription (subscription_user_id, subscription_user_wiki, subscription_last_updated, subscription_workflow_id);
 
 -- TopicList Tables
 CREATE TABLE /*_*/flow_topic_list (
@@ -61,6 +63,7 @@ CREATE TABLE /*_*/flow_tree_revision (
 	tree_orig_create_time varchar(12) binary not null,
 	tree_orig_user_id bigint unsigned not null,
 	tree_orig_user_ip varbinary(39) default null,
+	tree_orig_user_wiki varchar(32) binary not null,
 	-- denormalize post parent as well? Prevents an extra query when building
 	-- tree from closure table.  unnecessary?
 	tree_parent_id binary(11),
@@ -102,6 +105,7 @@ CREATE TABLE /*_*/flow_revision (
 	-- user id creating the revision
 	rev_user_id bigint unsigned not null,
 	rev_user_ip varbinary(39) default null,
+	rev_user_wiki varchar(32) binary not null,
 	-- rev_id of parent or null if no previous revision
 	rev_parent_id binary(11) null,
 	-- comma separated set of ascii flags.
@@ -116,6 +120,7 @@ CREATE TABLE /*_*/flow_revision (
 	-- moderated by who?
 	rev_mod_user_id bigint unsigned,
 	rev_mod_user_ip varbinary(39) default null,
+	rev_mod_user_wiki varchar(32) binary default null,
 	rev_mod_timestamp varchar(14) binary,
 	-- moderated why? (coming soon: how?, where? and what?)
 	rev_mod_reason varchar(255) binary,
@@ -124,6 +129,7 @@ CREATE TABLE /*_*/flow_revision (
 	rev_last_edit_id binary(11) null,
 	rev_edit_user_id bigint unsigned,
 	rev_edit_user_ip varbinary(39) default null,
+	rev_edit_user_wiki varchar(32) binary default null,
 
 	PRIMARY KEY (rev_id)
 ) /*$wgDBTableOptions*/;

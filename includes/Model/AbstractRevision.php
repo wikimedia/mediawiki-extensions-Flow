@@ -44,6 +44,11 @@ abstract class AbstractRevision {
 	protected $userIp;
 
 	/**
+	 * @var string|null The wiki of the user that created this revision
+	 */
+	protected $userWiki;
+
+	/**
 	 * Array of flags strictly related to the content. Flags are reset when
 	 * content changes.
 	 *
@@ -121,6 +126,11 @@ abstract class AbstractRevision {
 	protected $moderatedByUserIp;
 
 	/**
+	 * @var string|null The wiki of the user that moderated this revision
+	 */
+	protected $moderatedByUserWiki;
+
+	/**
 	 * @var string|null
 	 */
 	protected $moderatedReason;
@@ -140,6 +150,12 @@ abstract class AbstractRevision {
 	 *     only when $lastEditUserId = 0
 	 */
 	protected $lastEditUserIp;
+
+
+	/**
+	 * @var string|null The wiki of the user that most recently changed the content
+	 */
+	protected $lastEditUserWiki;
 
 	/**
 	 * @param string[] $row
@@ -162,6 +178,7 @@ abstract class AbstractRevision {
 		} elseif ( isset( $row['rev_user_text'] ) && $obj->userId === 0 ) {
 			$obj->userIp = $row['rev_user_text'];
 		}
+		$obj->userWiki = isset( $row['rev_user_wiki'] ) ? $row['rev_user_wiki'] : '';
 		$obj->prevRevision = UUID::create( $row['rev_parent_id'] );
 		$obj->changeType = $row['rev_change_type'];
 	 	$obj->flags = array_filter( explode( ',', $row['rev_flags'] ) );
@@ -178,6 +195,7 @@ abstract class AbstractRevision {
 		} elseif ( isset( $row['rev_mod_user_text'] ) && $obj->moderatedByUserId === 0 ) {
 			$obj->moderatedByUserIp = $row['rev_mod_user_text'];
 		}
+		$obj->moderatedByUserWiki = isset( $row['rev_mod_user_wiki'] ) ? $row['rev_mod_user_wiki'] : null;
 		$obj->moderationTimestamp = $row['rev_mod_timestamp'];
 		$obj->moderatedReason = isset( $row['rev_mod_reason'] ) ? $row['rev_mod_reason'] : null;
 
@@ -196,6 +214,7 @@ abstract class AbstractRevision {
 			$obj->lastEditUserIp = $row['rev_edit_user_text'];
 		}
 		$obj->lastEditUserIp = isset( $row['rev_edit_user_ip'] ) ? $row['rev_edit_user_ip'] : null;
+		$obj->lastEditUserWiki = isset( $row['rev_edit_user_wiki'] ) ? $row['rev_edit_user_wiki'] : null;
 
 		return $obj;
 	}
@@ -209,6 +228,7 @@ abstract class AbstractRevision {
 			'rev_id' => $obj->revId->getBinary(),
 			'rev_user_id' => $obj->userId,
 			'rev_user_ip' => $obj->userIp,
+			'rev_user_wiki' => $obj->userWiki,
 			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getBinary() : null,
 			'rev_change_type' => $obj->changeType,
 			'rev_type' => $obj->getRevisionType(),
@@ -220,12 +240,14 @@ abstract class AbstractRevision {
 			'rev_mod_state' => $obj->moderationState,
 			'rev_mod_user_id' => $obj->moderatedByUserId,
 			'rev_mod_user_ip' => $obj->moderatedByUserIp,
+			'rev_mod_user_wiki' => $obj->moderatedByUserWiki,
 			'rev_mod_timestamp' => $obj->moderationTimestamp,
 			'rev_mod_reason' => $obj->moderatedReason,
 
 			'rev_last_edit_id' => $obj->lastEditId ? $obj->lastEditId->getBinary() : null,
 			'rev_edit_user_id' => $obj->lastEditUserId,
 			'rev_edit_user_ip' => $obj->lastEditUserIp,
+			'rev_edit_user_wiki' => $obj->lastEditUserWiki,
 		);
 	}
 
@@ -244,7 +266,7 @@ abstract class AbstractRevision {
 		}
 		$obj = clone $this;
 		$obj->revId = UUID::create();
-		list( $obj->userId, $obj->userIp ) = self::userFields( $user );
+		list( $obj->userId, $obj->userIp, $obj->userWiki ) = self::userFields( $user );
 		$obj->prevRevision = $this->revId;
 		$obj->changeType = '';
 		return $obj;
@@ -291,14 +313,16 @@ abstract class AbstractRevision {
 		$obj->moderatedReason = $reason;
 		$obj->moderationState = $state;
 
-		list( $userId, $userIp ) = self::userFields( $user );
+		list( $userId, $userIp, $userWiki ) = self::userFields( $user );
 		if ( $state === self::MODERATED_NONE ) {
 			$obj->moderatedByUserId = null;
 			$obj->moderatedByUserIp = null;
+			$obj->moderatedByUserWiki = null;
 			$obj->moderationTimestamp = null;
 		} else {
 			$obj->moderatedByUserId = $userId;
 			$obj->moderatedByUserIp = $userIp;
+			$obj->moderatedByUserWiki = $userWiki;
 			$obj->moderationTimestamp = wfTimestampNow();
 		}
 
@@ -406,6 +430,10 @@ abstract class AbstractRevision {
 		return $this->userIp;
 	}
 
+	public function getUserWiki() {
+		return $this->userWiki;
+	}
+
 	/**
 	 * Should only be used for setting the initial content.  To set subsequent content
 	 * use self::setNextContent
@@ -460,7 +488,7 @@ abstract class AbstractRevision {
 			$this->content = null;
 			$this->setContent( $content );
 			$this->lastEditId = $this->getRevisionId();
-			list( $this->lastEditUserId, $this->lastEditUserIp ) = self::userFields( $user );
+			list( $this->lastEditUserId, $this->lastEditUserIp, $this->lastEditUserWiki ) = self::userFields( $user );
 		}
 	}
 
@@ -615,6 +643,13 @@ abstract class AbstractRevision {
 	}
 
 	/**
+	 * @return string|null
+	 */
+	public function getLastContentEditUserWiki() {
+		return $this->lastEditUserWiki;
+	}
+
+	/**
 	 * @return integer|null
 	 */
 	public function getModeratedByUserId() {
@@ -628,8 +663,12 @@ abstract class AbstractRevision {
 		return $this->moderatedByUserIp;
 	}
 
+	public function getModeratedByUserWiki() {
+		return $this->moderatedByUserWiki;
+	}
+
 	/**
-	 * Return a (userId, userIp) tuple for the given
+	 * Return a (userId, userIp, wikiId) tuple for the given
 	 * user object.  userIp is null for userId != 0
 	 *
 	 * @param User $user
@@ -639,11 +678,13 @@ abstract class AbstractRevision {
 		if ( $user->isAnon() ) {
 			$userId = 0;
 			$userIp = $user->getName();
+			$userWiki = wfWikiId();
 		} else {
 			$userId = $user->getId();
 			$userIp = null;
+			$userWiki = wfWikiId();
 		}
-		return array( $userId, $userIp );
+		return array( $userId, $userIp, $userWiki );
 	}
 
 	/**
