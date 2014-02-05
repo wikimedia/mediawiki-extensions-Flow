@@ -90,20 +90,20 @@ class NotificationController {
 				$replyToPost = $data['reply-to'];
 				$extraData += array(
 					'reply-to' => $replyToPost->getPostId(),
-					'content' => $revision->getContent(),
-					'topic-title' => $data['topic-title'],
+					'content' => $this->language->truncate( trim( $revision->getContent() ), 200 ),
+					'topic-title' => $this->language->truncate( trim( $data['topic-title'] ), 200 ),
 				);
 			break;
 			case 'flow-topic-renamed':
 				$extraData += array(
-					'old-subject' => $data['old-subject'],
-					'new-subject' => $data['new-subject'],
+					'old-subject' => $this->language->truncate( trim( $data['old-subject'] ), 200 ),
+					'new-subject' => $this->language->truncate( trim( $data['new-subject'] ), 200 ),
 				);
 			break;
 			case 'flow-post-edited':
 				$extraData += array(
-					'content' => $revision->getContent(),
-					'topic-title' => $data['topic-title'],
+					'content' => $this->language->truncate( trim( $revision->getContent() ), 200 ),
+					'topic-title' => $this->language->truncate( trim( $data['topic-title'] ), 200 ),
 				);
 			break;
 		}
@@ -164,8 +164,8 @@ class NotificationController {
 				'board-workflow' => $boardWorkflow->getId(),
 				'topic-workflow' => $topicWorkflow->getId(),
 				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
-				'topic-title' => $topicPost->getContent(),
-				'content' => $firstPost ? $firstPost->getContent() : null,
+				'topic-title' => $this->language->truncate( trim( $topicPost->getContent() ), 200 ),
+				'content' => $firstPost ? $this->language->truncate( trim( $firstPost->getContent() ), 200 ) : null,
 			)
 		) );
 
@@ -207,8 +207,8 @@ class NotificationController {
 				'type' => 'flow-mention',
 				'title' => $title,
 				'extra' => array(
-					'content' => $newRevision ? $newRevision->getContent() : null,
-					'topic-title' => $data['topic-title'],
+					'content' => $newRevision ? $this->language->truncate( trim( $newRevision->getContent() ), 200 ) : null,
+					'topic-title' => $this->language->truncate( trim( $data['topic-title'] ), 200 ),
 					'post-id' => $newRevision ? $newRevision->getPostId() : null,
 					'mentioned-users' => $mentionedUsers,
 					'topic-workflow' => $topicWorkflow->getId(),
