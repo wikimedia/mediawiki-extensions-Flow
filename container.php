@@ -428,8 +428,7 @@ $c['occupation_controller'] = $c->share( function( $c ) {
 } );
 
 $c['controller.notification'] = $c->share( function( $c ) {
-	global $wgContLang;
-	return new Flow\NotificationController( $wgContLang );
+	return new Flow\NotificationController;
 } );
 
 $c['controller.abusefilter'] = $c->share( function( $c ) {
