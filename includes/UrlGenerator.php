@@ -4,8 +4,10 @@ namespace Flow;
 
 use FlowHooks;
 use Flow\Data\ObjectManager;
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Title;
+use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 
 class UrlGenerator {
@@ -80,14 +82,14 @@ class UrlGenerator {
 	 * @param AbstractRevision $revision The revision to build the block
 	 * @param boolean $specificRevision whether to show specific revision
 	 */
-	public function generateBlockUrl( $workflow, $revision, $specificRevision = false ) {
+	public function generateBlockUrl( $workflow, AbstractRevision $revision, $specificRevision = false ) {
 		$data = array();
 		switch ( $revision->getRevisionType() ) {
 			case 'post':
 				if ( !$revision->isTopicTitle() ) {
 					$data['topic[postId]'] = $revision->getPostId()->getHex();
 				}
-		
+
 				if ( $specificRevision ) {
 					$data['topic[revId]'] = $revision->getRevisionId()->getHex();
 				}
@@ -105,16 +107,21 @@ class UrlGenerator {
 	 * @param  string $action The action to execute
 	 * @param  array  $query Associative array of query parameters
 	 * @return Array Two element array, first element is the title to link to,
+	 * @throws InvalidDataException
+	 * @throws InvalidInputException
 	 * second element is the query string
 	 */
 	public function generateUrlData( $workflow, $action = 'view', array $query = array() ) {
-		if ( ! $workflow instanceof Workflow ) {
+		if ( $workflow instanceof UUID ) {
 			$workflowId = $workflow;
 			// Only way to know what title the workflow points at
 			$workflow = $this->storage->get( $workflowId );
 			if ( !$workflow ) {
 				throw new InvalidInputException( 'Invalid workflow: ' . $workflowId, 'invalid-workflow' );
 			}
+		} elseif ( !$workflow instanceof Workflow ) {
+			// otherwise calling a method on $workflow will fatal error
+			throw new InvalidDataException( '$workflow is not UUID or Workflow instance' );
 		}
 
 		if ( $workflow->isNew() ) {
