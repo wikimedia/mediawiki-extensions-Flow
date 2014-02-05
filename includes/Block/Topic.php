@@ -151,13 +151,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		$this->setNotification(
-			'flow-topic-renamed',
-			array(
-				'old-subject' => $topicTitle->getContent( 'wikitext' ),
-				'new-subject' => $this->newRevision->getContent( 'wikitext' ),
-			)
-		);
+		$this->setNotification( 'flow-topic-renamed' );
 	}
 
 	protected function validateReply() {
@@ -186,13 +180,7 @@ class TopicBlock extends AbstractBlock {
 				return;
 			}
 
-			$this->setNotification(
-				'flow-post-reply',
-				array(
-					'reply-to' => $post,
-					'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
-				)
-			);
+			$this->setNotification( 'flow-post-reply', array( 'reply-to' => $post ) );
 		}
 	}
 
@@ -317,12 +305,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		$this->setNotification(
-			'flow-post-edited',
-			array(
-				'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
-			)
-		);
+		$this->setNotification( 'flow-post-edited' );
 	}
 
 	public function commit() {
@@ -341,6 +324,7 @@ class TopicBlock extends AbstractBlock {
 			if ( $this->newRevision === null ) {
 				throw new FailCommitException( 'Attempt to save null revision', 'fail-commit' );
 			}
+
 			$this->storage->put( $this->newRevision );
 			$this->storage->put( $this->workflow );
 			// These are moderated historical revisions of $this->newRevision
@@ -359,7 +343,6 @@ class TopicBlock extends AbstractBlock {
 				$newRevision->setChildren( array() );
 			}
 
-
 			// FIXME special case
 			if ( $this->action == 'edit-title' ) {
 				$renderFunction = function( $templating ) use ( $newRevision ) {
@@ -377,7 +360,11 @@ class TopicBlock extends AbstractBlock {
 
 			if ( is_array( $this->notification ) ) {
 				$this->notification['params']['revision'] = $this->newRevision;
-
+				// $this->topicTitle has already been loaded before in case
+				// we've just edited it, so when editing the title, this will
+				// be its previous revision (which is what we want - new
+				// revision is in ['params']['revision'])
+				$this->notification['params']['topic-title'] = $this->loadTopicTitle();
 				$this->notificationController->notifyPostChange( $this->notification['type'], $this->notification['params'] );
 			}
 
@@ -1005,7 +992,7 @@ class TopicBlock extends AbstractBlock {
 		return 'topic';
 	}
 
-	protected function setNotification( $notificationType, array $extraVars ) {
+	protected function setNotification( $notificationType, array $extraVars = array() ) {
 		$this->notification = array(
 				'type' => $notificationType,
 				'params' => $extraVars + array(
