@@ -9,14 +9,26 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use MWException;
 use User;
+use Language;
 
 class NotificationController {
+	/**
+	 * @var Language
+	 */
+	protected $language;
+
+	/**
+	 * @param Language $language
+	 */
+	public function __construct( Language $language ) {
+		$this->language = $language;
+	}
 
 	/**
 	 * Set up Echo notification for Flow extension
 	 */
 	public function setup() {
-		global $wgHooks, $wgLang,
+		global $wgHooks,
 			$wgEchoNotifications, $wgEchoNotificationIcons, $wgEchoNotificationCategories;
 
 		$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
