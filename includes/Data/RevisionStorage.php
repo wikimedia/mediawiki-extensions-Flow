@@ -16,6 +16,7 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_mod_state',
 		'rev_mod_user_id',
 		'rev_mod_user_ip',
+		'rev_mod_user_wiki',
 		'rev_mod_timestamp',
 		'rev_mod_reason',
 	);
@@ -29,11 +30,6 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_user_text',
 		'rev_edit_user_text',
 		'rev_mod_user_text',
-		// Delete in the patch that handles these new columns
-		'tree_orig_user_wiki',
-		'rev_user_wiki',
-		'rev_mod_user_wiki',
-		'rev_edit_user_wiki',
 	);
 
 	protected $externalStores;
