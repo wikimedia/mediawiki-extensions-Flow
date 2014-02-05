@@ -60,6 +60,9 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 			'rev_last_edit_id' => null,
 			'rev_edit_user_id' => null,
 			'rev_edit_user_ip' => null,
+			'rev_user_wiki' => wfWikiId(),
+			'rev_mod_user_wiki' => null,
+			'rev_edit_user_wiki' => null,
 
 			// flow_tree_revision
 			'tree_rev_descendant_id' => $uuidPost->getBinary(),
@@ -68,6 +71,7 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 			'tree_orig_user_id' => $userId,
 			'tree_orig_user_ip' => $userIp,
 			'tree_parent_id' => null,
+			'tree_orig_user_wiki' => wfWikiId(),
 		);
 	}
 
