@@ -53,7 +53,8 @@ class TalkpageManager implements OccupationController {
 	 * Also: Parsoid performs an API call to fetch page information, so we need
 	 * to make sure a page actually exists ;)
 	 *
-	 * @param Article $article
+	 * @param \Article $article
+	 * @throws InvalidInputException
 	 */
 	public function ensureFlowRevision( \Article $article ) {
 		$title = $article->getTitle();
