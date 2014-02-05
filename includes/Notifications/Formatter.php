@@ -5,6 +5,7 @@ namespace Flow;
 use Flow\Container;
 use Flow\UrlGenerator;
 use EchoBasicFormatter;
+use Flow\Exception\InvalidInputException;
 
 // could be renamed later if we have more formatters
 class NotificationFormatter extends EchoBasicFormatter {
@@ -86,7 +87,12 @@ class NotificationFormatter extends EchoBasicFormatter {
 				$post  = $event->getExtraParam( 'post-id' );
 				$flow  = $event->getExtraParam( 'topic-workflow' );
 				if ( $post && $flow && $title ) {
-					list( $target, $query ) = $urlGenerator->generateUrlData( $flow );
+					try {
+						list( $target, $query ) = $urlGenerator->generateUrlData( $flow );
+					} catch ( InvalidInputException $e ) {
+						// @FIXME can't throw an exception here bug 60906
+					}
+
 					// Take user to the post if there is only one target post,
 					// otherwise, take user to the topic view
 					if ( $this->bundleData['raw-data-count'] <= 1 ) {
@@ -102,8 +108,11 @@ class NotificationFormatter extends EchoBasicFormatter {
 			case 'flow-topic':
 				$topic = $event->getExtraParam( 'topic-workflow' );
 
-				list( $target, $query ) =
-					$urlGenerator->generateUrlData( $topic );
+				try {
+					list( $target, $query ) = $urlGenerator->generateUrlData( $topic );
+				} catch ( InvalidInputException $e ) {
+					// @FIXME can't throw an exception here bug 60906
+				}
 				break;
 			default:
 				return parent::getLinkParams( $event, $user, $destination );
