@@ -53,10 +53,10 @@ class NotificationController {
 
 	/**
 	 * Causes notifications to be fired for a Flow event.
-	 * @param  String $eventName The event that ocurred. Choice of:
-	 * * post-reply
-	 * * topic-renamed
-	 * * post-edited
+	 * @param  String $eventName The event that occurred. Choice of:
+	 * * flow-post-reply
+	 * * flow-topic-renamed
+	 * * flow-post-edited
 	 * @param  array  $data Associative array of parameters.
 	 * * user: The user who made the change. Always required.
 	 * * revision: The PostRevision created by the action. Always required.
