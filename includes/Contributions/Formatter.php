@@ -76,7 +76,7 @@ class Formatter extends AbstractFormatter {
 		}
 		$linksContent = $lang->pipeList( $links );
 		if ( $linksContent ) {
-			$linksContent = wfMessage( 'parentheses' )->rawParams( $linksContent )->escaped();
+			$linksContent = $pager->msg( 'parentheses' )->rawParams( $linksContent )->escaped();
 		}
 
 		// Put it all together
