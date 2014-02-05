@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_8224e108",
+        "filename": "includes/View.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-05T23:01:37Z",
+      "side": 1,
+      "message": "We\u0027ll also need this in WorkflowLoader",
+      "revId": "7fedbd3d16d13cd9e5201371847e70dcaedcd0d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_e2b4c5e6",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-05T23:01:37Z",
+      "side": 1,
+      "message": "Should be topiclist_topic",
+      "revId": "7fedbd3d16d13cd9e5201371847e70dcaedcd0d7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
