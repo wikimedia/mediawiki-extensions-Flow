@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "6ef7ef47_3801c608",
+        "filename": "includes/ParsoidUtils.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-05T01:37:22Z",
+      "side": 1,
+      "message": "Instead of throwing exceptions, we could just wfWarn.\nFor now, I\u0027d keep throwing exceptions \u0026 only change it when we keep getting lots of additional ignorable errors",
+      "revId": "7638f24300a29bc387aefc680b47cdc377db0b78",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_29729be2",
         "filename": "tests/ParsoidUtilsTest.php",
         "patchSetId": 2
