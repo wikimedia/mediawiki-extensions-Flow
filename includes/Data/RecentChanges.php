@@ -54,6 +54,12 @@ abstract class RecentChanges implements LifecycleHandler {
 	 * @param array $changes
 	 */
 	protected function insert( $action, $block, $revisionType, $revisionId, array $row, Workflow $workflow, $timestamp, array $changes ) {
+		if ( $action === 'suppress-topic' || $action === 'suppress-post' ) {
+			// @todo: should be move this into FlowActions.php somehow?
+			// Suppression log entries should not go to recentchanges (bug 60814)
+			return;
+		}
+
 		if ( $timestamp instanceof UUID ) {
 			$timestamp = $timestamp->getTimestamp();
 		}
