@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_9dde846f",
+        "filename": "modules/base/styles/actionbox.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-05T23:24:15Z",
+      "side": 1,
+      "message": "I would keep the text-indent transition: I don\u0027t like how, even for a fraction of a second, I see a little flash of text already.\n\nI assume this was removed because the 0.1s transition from -9999px to 0 caused the flyopen to be non-linear.\nI suggest to change the text-indent: -9999px to text-indent: 4px instead (which will push it just right out of what\u0027s visible)",
+      "revId": "fa0882e6737575550decacf13ab6f66dd4eb47bd",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
