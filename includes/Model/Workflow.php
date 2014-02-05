@@ -52,6 +52,11 @@ class Workflow {
 	protected $userIp;
 
 	/**
+	 * @var string
+	 */
+	protected $userWiki;
+
+	/**
 	 * lock state is a list of state updates, the final state
 	 * is the active state. It is unused and must be reviewed
 	 * before any use
@@ -97,6 +102,7 @@ class Workflow {
 		} elseif ( isset( $row['workflow_user_text'] ) && $obj->userId === 0 ) {
 			$obj->userIp = $row['workflow_user_text'];
 		}
+		$obj->userWiki = isset( $row['workflow_user_wiki'] ) ? $row['workflow_user_wiki'] : '';
 		$obj->lockState = $row['workflow_lock_state'];
 		$obj->definitionId = UUID::create( $row['workflow_definition_id'] );
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
@@ -116,6 +122,7 @@ class Workflow {
 			'workflow_title_text' => $obj->titleText,
 			'workflow_user_id' => $obj->userId,
 			'workflow_user_ip' => $obj->userIp,
+			'workflow_user_wiki' => $obj->userWiki,
 			'workflow_lock_state' => $obj->lockState,
 			'workflow_definition_id' => $obj->definitionId->getBinary(),
 			'workflow_last_update_timestamp' => $obj->lastModified,
@@ -148,7 +155,7 @@ class Workflow {
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();
-		list( $obj->userId, $obj->userIp ) = AbstractRevision::userFields( $user );
+		list( $obj->userId, $obj->userIp, $obj->userWiki ) = AbstractRevision::userFields( $user );
 		$obj->lockState = 0;
 		$obj->definitionId = $definition->getId();
 		$obj->updateLastModified();
@@ -194,6 +201,11 @@ class Workflow {
 	 * @return string|null
 	 */
 	public function getUserIp() { return $this->userIp; }
+
+	/**
+	 * @return string
+	 */
+	public function getUserWiki() { return $this->userWiki; }
 
 	/**
 	 * @return string

@@ -78,6 +78,7 @@ class WorkflowLoader {
 		if ( !$definition->getOption( 'unique' ) ) {
 			throw new InvalidDataException( 'Workflow is non-unique, can only fetch object by title + id', 'fail-load-data' );
 		}
+
 		$found = $storage->find( array(
 			'workflow_definition_id' => $definition->getId(),
 			'workflow_wiki' => $title->isLocal() ? wfWikiId() : $title->getTransWikiID(),
