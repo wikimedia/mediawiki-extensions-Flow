@@ -70,7 +70,7 @@ class TalkpageManager implements OccupationController {
 
 		// make sure a Flow revision has not yet been inserted
 		if ( $revision === null || $revision->getComment( Revision::RAW ) != $comment ) {
-			$message = wfMessage( 'flow-talk-taken-over' )->text();
+			$message = wfMessage( 'flow-talk-taken-over' )->inContentLanguage()->text();
 			$content = ContentHandler::makeContent( $message, $title );
 			$page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC );
 		}
