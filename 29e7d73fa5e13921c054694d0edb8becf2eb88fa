@@ -16,6 +16,24 @@
       "revId": "29e7d73fa5e13921c054694d0edb8becf2eb88fa",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_5d4ebc3d",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-05T23:28:48Z",
+      "side": 0,
+      "message": "It\u0027s an array of user ids: s:15:\"mentioned-users\";a:1:{i:1;i:1;}",
+      "parentUuid": "6ef7ef47_dd852c5c",
+      "revId": "29e7d73fa5e13921c054694d0edb8becf2eb88fa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
