@@ -22,6 +22,11 @@ $wgResourceModules += array(
 			'mediawiki.ui/styles/agora-override-buttons.less',
 			'mediawiki.ui/styles/agora-override-forms.less',
 		),
+		'skinStyles' => array(
+			'modern' => array(
+				'base/styles/header.modern.less',
+			),
+		),
 		'scripts' => array(
 			'base/ext.flow.base.js',
 			'base/ui-functions.js',
