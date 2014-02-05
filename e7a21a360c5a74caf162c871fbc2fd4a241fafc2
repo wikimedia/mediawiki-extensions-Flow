@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_b8971693",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-02-05T02:11:56Z",
+      "side": 1,
+      "message": "Needs updating with the new hook definition :)",
+      "revId": "e7a21a360c5a74caf162c871fbc2fd4a241fafc2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_78918e9b",
+        "filename": "includes/CheckUser/Formatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-02-05T02:11:56Z",
+      "side": 1,
+      "message": "I think you should pass the `CheckUser` instance from the hook so you can use CheckUser::msg()",
+      "revId": "e7a21a360c5a74caf162c871fbc2fd4a241fafc2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_f8fc7ed7",
+        "filename": "includes/CheckUser/Formatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-02-05T02:11:56Z",
+      "side": 1,
+      "message": "Title::makeTitle never returns false.",
+      "revId": "e7a21a360c5a74caf162c871fbc2fd4a241fafc2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_98eb3a09",
+        "filename": "includes/CheckUser/Formatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-02-05T02:11:56Z",
+      "side": 1,
+      "message": "$i is unused.",
+      "revId": "e7a21a360c5a74caf162c871fbc2fd4a241fafc2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
