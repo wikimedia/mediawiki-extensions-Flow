@@ -207,7 +207,6 @@ class TopicBlock extends AbstractBlock {
 				'flow-post-reply',
 				array(
 					'reply-to' => $post,
-					'content' => $this->submitted['content'],
 					'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
 				)
 			);
@@ -352,7 +351,6 @@ class TopicBlock extends AbstractBlock {
 		$this->setNotification(
 			'flow-post-edited',
 			array(
-				'content' => $this->submitted['content'],
 				'topic-title' => $this->loadTopicTitle()->getContent( 'wikitext' ),
 			)
 		);
