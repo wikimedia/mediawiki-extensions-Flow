@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_e4fe1a35",
+        "filename": "templates/header.html.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-05T01:03:35Z",
+      "side": 1,
+      "message": "I may be wrong, but I\u0027m pretty sure \"clearfix\" should be applied to the to-be-cleared element itself (not a follow-up node)\n\n(As opposed to dealing with it by adding a follow-up node with style\u003d\"clear:both\")\n\nAlso, unrelated: I noticed a couple of \"class\u003d\"clear\"\" occurrences in our templates. These .clear classes don\u0027t seem to have any CSS associated with them - I assume they were meant to clear the other content, but somehow forgot to add the CSS. We should clean those up too, some day :p",
+      "revId": "61170cf9e9a2ca51caec27cf5bc361be17c0788a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
