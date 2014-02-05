@@ -19,7 +19,7 @@ class View {
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
-		$this->output->addModuleStyles( array( 'mediawiki.ui', 'ext.flow.base' ) );
+		$this->output->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.base' ) );
 		$this->output->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
 
 		$workflow = $loader->getWorkflow();
