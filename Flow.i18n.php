@@ -2018,6 +2018,7 @@ $messages['fi'] = array(
  * @author Ltrlg
  * @author Sherbrooke
  * @author VIGNERON
+ * @author Verdy p
  */
 $messages['fr'] = array(
 	'flow-desc' => 'Système de gestion du flux de travail',
@@ -2067,6 +2068,7 @@ $messages['fr'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Répondre}}',
 	'flow-reply-link' => '{{GENDER:$1|Répondre}}',
 	'flow-thank-link' => '{{GENDER:$1|Remercier}}',
+	'flow-post-interaction-separator' => '&nbsp;•&#32;',
 	'flow-edit-post-submit' => 'Soumettre les modifications',
 	'flow-post-edited' => 'Note {{GENDER:$1|modifiée}} par $1 $2',
 	'flow-post-action-view' => 'Lien permanent',
@@ -4331,6 +4333,13 @@ $messages['pt'] = array(
 $messages['pt-br'] = array(
 	'flow-desc' => 'Sistema de Gerenciamento do Fluxo de Trabalho',
 	'flow-link-post' => 'publicar',
+);
+
+/** Quechua (Runa Simi)
+ * @author AlimanRuna
+ */
+$messages['qu'] = array(
+	'flow-last-modified' => 'Qhipaq hukchasqa $1 ñaqha',
 );
 
 /** tarandíne (tarandíne)
