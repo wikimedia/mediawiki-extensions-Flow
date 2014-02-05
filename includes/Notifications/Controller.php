@@ -73,6 +73,7 @@ class NotificationController {
 			return;
 		}
 
+		$events = array();
 		$title = $data['title'];
 		$user = $data['user'];
 
