@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_388c2689",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-02-05T02:16:26Z",
+      "side": 1,
+      "message": "This causes the RC feed comments to look like:\n\n\u003crc_\u003e\t [[Talk:Flow]] ! http://127.0.0.1:8080/w/index.php?diff\u003d0\u0026oldid\u003d0\u0026rcid\u003d184 * Admin * (+0) new-post,050fff074244488594b2080027630f57,050fff074244488594b2080027630f57\n\n:/",
+      "revId": "b1155a4e80a6d204cbc9eed9286e4a905332ddac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
