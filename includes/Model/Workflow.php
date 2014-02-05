@@ -19,6 +19,7 @@ class Workflow {
 	protected $titleText;
 	protected $userId;
 	protected $userIp;
+	protected $userWiki;
 	// lock state is a list of state updates, the final state
 	// is the active state.
 	protected $lockState;
@@ -46,6 +47,7 @@ class Workflow {
 		} elseif ( isset( $row['workflow_user_text'] ) && $obj->userId === 0 ) {
 			$obj->userIp = $row['workflow_user_text'];
 		}
+		$obj->userWiki = $row['workflow_user_wiki'];
 		$obj->lockState = $row['workflow_lock_state'];
 		$obj->definitionId = UUID::create( $row['workflow_definition_id'] );
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
@@ -61,6 +63,7 @@ class Workflow {
 			'workflow_title_text' => $obj->titleText,
 			'workflow_user_id' => $obj->userId,
 			'workflow_user_ip' => $obj->userIp,
+			'workflow_user_wiki' => $obj->userWiki,
 			'workflow_lock_state' => $obj->lockState,
 			'workflow_definition_id' => $obj->definitionId->getBinary(),
 			'workflow_last_update_timestamp' => $obj->lastModified,
@@ -107,6 +110,7 @@ class Workflow {
 	public function getDefinitionId() { return $this->definitionId; }
 	public function getUserId() { return $this->userId; }
 	public function getUserIp() { return $this->userIp; }
+	public function getUserWiki() { return $this->userWiki; }
 	public function getLastModified() { return $this->lastModified; }
 	public function getLastModifiedObj() { return new MWTimestamp( $this->lastModified ); }
 

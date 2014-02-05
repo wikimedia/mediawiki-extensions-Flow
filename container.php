@@ -151,8 +151,7 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 	$lifecycle = array(
 		new Flow\Data\UserNameListener(
 			$c['repository.username'],
-			array( 'workflow_user_id' ),
-			'workflow_wiki'
+			array( 'workflow_user_id' => 'workflow_user_wiki' )
 		),
 		// $c['storage.user_subs.user_index']
 	);
@@ -231,11 +230,11 @@ $c['storage.header'] = $c->share( function( $c ) {
 		$c['storage.board_history.index'],
 		new Flow\Data\UserNameListener(
 			$c['repository.username'],
-			array( 'rev_user_id', 'rev_mod_user_id', 'rev_edit_user_id' ),
-			null,
-			// @todo composite wiki id + user columns, for now this
-			// works as we only display content from this wiki
-			wfWikiId()
+			array(
+				'rev_user_id' => 'rev_user_wiki',
+				'rev_mod_user_id' => 'rev_mod_user_wiki',
+				'rev_edit_user_id' => 'rev_edit_user_wiki'
+			)
 		),
 	);
 
@@ -318,11 +317,12 @@ $c['storage.post'] = $c->share( function( $c ) {
 		$c['storage.board_history.index'],
 		new Flow\Data\UserNameListener(
 			$c['repository.username'],
-			array( 'rev_user_id', 'rev_mod_user_id', 'rev_edit_user_id', 'tree_orig_user_id' ),
-			null,
-			// @todo composite wiki id + user columns, for now this
-			// works as we only display content from this wiki
-			wfWikiId()
+			array(
+				'rev_user_id' => 'rev_user_wiki',
+				'rev_mod_user_id' => 'rev_mod_user_wiki',
+				'rev_edit_user_id' => 'rev_edit_user_wiki',
+				'tree_orig_user_id' => 'tree_orig_user_wiki'
+			)
 		),
 	);
 
