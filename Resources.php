@@ -9,7 +9,6 @@ $flowResourceTemplate = array(
 $wgResourceModules += array(
 	'ext.flow.base' => $flowResourceTemplate + array(
 		'styles' => array(
-			'base/styles/header.less',
 			'base/styles/container.less',
 			'base/styles/form.less',
 			'base/styles/actionbox.less',
@@ -21,6 +20,11 @@ $wgResourceModules += array(
 			 */
 			'mediawiki.ui/styles/agora-override-buttons.less',
 			'mediawiki.ui/styles/agora-override-forms.less',
+		),
+		'skinStyles' => array(
+			'vector' => array(
+				'base/styles/header.less',
+			),
 		),
 		'scripts' => array(
 			'base/ext.flow.base.js',
