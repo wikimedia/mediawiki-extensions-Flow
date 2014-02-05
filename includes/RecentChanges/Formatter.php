@@ -72,7 +72,7 @@ class Formatter extends AbstractFormatter {
 		}
 		$linksContent = $lang->pipeList( $links );
 		if ( $linksContent ) {
-			$linksContent = wfMessage( 'parentheses' )->rawParams( $linksContent )->escaped()
+			$linksContent = $cl->msg( 'parentheses' )->rawParams( $linksContent )->escaped()
 				. $this->changeSeparator();
 		}
 
@@ -88,7 +88,7 @@ class Formatter extends AbstractFormatter {
 
 		return $linksContent
 			. $workflowLink
-			. wfMessage( 'semicolon-separator' )->escaped()
+			. $cl->msg( 'semicolon-separator' )->escaped()
 			. $formattedTime
 			. ' '
 			. $this->changeSeparator()
