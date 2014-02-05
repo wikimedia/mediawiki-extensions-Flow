@@ -20,16 +20,14 @@ class UserNameListener implements LifecycleHandler {
 
 	/**
 	 * @param UserNameBatch $batch
-	 * @param array $keys A list of keys from storage that contain user ids
-	 * @param string|null $wikiKey A key from the storage row that contains the wiki id.
+	 * @param array $keys key - a list of keys from storage that contain user ids, value - the wiki for the user id lookup, default to $wiki if null
 	 * @param string|null $wiki The wikiid to use when $wikiKey is null. If both are null wfWikiId() is used
 	 */
-	public function __construct( UserNameBatch $batch, array $keys, $wikiKey = null, $wiki = null ) {
+	public function __construct( UserNameBatch $batch, array $keys, $wiki = null ) {
 		$this->batch = $batch;
 		$this->keys = $keys;
-		if ( $wikiKey !== null ) {
-			$this->wikiKey = $wikiKey;
-		} elseif ( $wiki === null ) {
+
+		if ( $wiki === null ) {
 			$this->wiki = wfWikiId();
 		} else {
 			$this->wiki = $wiki;
@@ -40,17 +38,23 @@ class UserNameListener implements LifecycleHandler {
 	 * Load any user ids in $row into the username batch
 	 */
 	public function onAfterLoad( $object, array $row ) {
-		if ( $this->wikiKey === null ) {
-			$wiki = $this->wiki;
-		} elseif( isset( $row[$this->wikiKey] ) ) {
-			$wiki = $row[$this->wikiKey];
-		} else {
-			wfDebugLog( __CLASS__, __METHOD__ . ": could not detect wiki with {$this->wikiKey}" );
-			return;
-		}
-		foreach ( $this->keys as $key ) {
-			if ( isset( $row[$key] ) && $row[$key] != 0 ) {
-				$this->batch->add( $wiki, $row[$key] );
+		foreach ( $this->keys as $userKey => $wikiKey ) {
+			// check if the user id key exists in the data array and 
+			// make sure it has a non-zero value
+			if ( isset( $row[$userKey] ) && $row[$userKey] != 0 ) {
+				// the wiki for the user id lookup is specified,
+				// check if it exists in the data array
+				if ( $wikiKey ) {
+					if ( !isset( $row[$wikiKey] ) ) {
+						wfDebugLog( __CLASS__, __METHOD__ . ": could not detect wiki with " . $wikiKey );
+						continue;
+					}
+					$wiki = $row[$wikiKey];
+				// no wiki lookup is specified, default to $this->wiki
+				} else {
+					$wiki = $this->wiki;
+				}
+				$this->batch->add( $wiki, $row[$userKey] );
 			}
 		}
 	}
