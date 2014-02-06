@@ -203,6 +203,10 @@ class NotificationController {
 		$events = array();
 
 		$mentionedUsers = $newRevision ? $this->getMentionedUsers( $newRevision, $title ) : array();
+		// Notify only a portion of the mentioned users.
+		// For starters, this could be a spam vector, but we also don't want to
+		// store too much data into event_extra params, so cap that data
+		$mentionedUsers = array_slice( $mentionedUsers, 0, 100, true );
 
 		if ( count( $mentionedUsers ) ) {
 			$events[] = EchoEvent::create( array(
