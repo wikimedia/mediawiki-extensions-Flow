@@ -32,7 +32,7 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 	echo Html::openElement( 'div', array( 'class' => 'flow-post-form-controls flow-newtopic-step2' ) );
 	echo Html::rawElement( 'div', array(
 		'class' => 'flow-terms-of-use plainlinks',
-	), wfMessage( 'flow-terms-of-use-new-topic' )->parse() );
+	), Flow\TermsOfUse::getAddTopicTerms() );
 	echo Html::element( 'input', array(
 		'type' => 'submit',
 		'class' => 'mw-ui-button mw-ui-constructive flow-newtopic-submit',

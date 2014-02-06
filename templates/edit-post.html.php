@@ -69,7 +69,7 @@ echo Html::element( 'input', array(
 	) ),
 		Html::rawElement( 'div', array(
 			'class' => 'flow-terms-of-use plainlinks',
-		), wfMessage( 'flow-terms-of-use-edit' )->parse() ),
+		), Flow\TermsOfUse::getEditTerms() ),
 		Html::element( 'input', array(
 			'type' => 'submit',
 			'class' => $submitClass,

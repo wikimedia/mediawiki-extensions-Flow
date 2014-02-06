@@ -275,9 +275,9 @@ You can see other versions of this post at its [$6 history page].',
 	'flow-topic-complete' => 'Full view',
 
 	// Terms of use
-	'flow-terms-of-use-new-topic' => 'By clicking add topic, you agree to our [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] and agree to irrevocably release your text under the [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
-	'flow-terms-of-use-reply' => 'By clicking reply, you agree to our [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] and agree to irrevocably release your text under the [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
-	'flow-terms-of-use-edit' => 'By saving changes, you agree to our [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] and agree to irrevocably release your text under the [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
+	'flow-terms-of-use-new-topic' => 'By clicking "{{int:flow-newtopic-save}}", you agree to the terms of use for this wiki.',
+	'flow-terms-of-use-reply' => 'By clicking "{{int:flow-reply-submit}}", you agree to the terms of use for this wiki.',
+	'flow-terms-of-use-edit' => 'By saving your changes, you agree to the terms of use for this wiki.',
 );
 
 /** Message documentation (Message documentation)

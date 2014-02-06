@@ -115,7 +115,7 @@
 							.addClass( 'flow-edit-'+type+'-controls' )
 							.append(
 								$( '<div>' ).addClass( 'flow-terms-of-use plainlinks' )
-								.html( mw.message( 'flow-terms-of-use-edit' ).parse() )
+								.html( mw.config.get( 'wgFlowTermsOfUseEdit' ) )
 							)
 							.append(
 								$( '<a/>' )
