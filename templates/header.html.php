@@ -27,7 +27,7 @@ echo Html::rawElement(
 	'div',
 	array(
 		'id' => 'flow-header-content',
-		'class' => $class,
+		'class' => "$class ui-helper-clearfix",
 	),
 	$headerContent
 );
