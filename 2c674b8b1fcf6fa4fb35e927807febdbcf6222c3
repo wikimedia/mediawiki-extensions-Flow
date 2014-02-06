@@ -16,6 +16,24 @@
       "revId": "2c674b8b1fcf6fa4fb35e927807febdbcf6222c3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_6a99a370",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-06T21:55:25Z",
+      "side": 1,
+      "message": "Yea, if you chek out the function it just passes the title through without doing anything to it, so not really worth even calling.",
+      "parentUuid": "6ef7ef47_ea75b32d",
+      "revId": "2c674b8b1fcf6fa4fb35e927807febdbcf6222c3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
