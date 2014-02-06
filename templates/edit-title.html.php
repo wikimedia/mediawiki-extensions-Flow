@@ -59,7 +59,7 @@ echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken',
 	) ),
 	Html::rawElement( 'div', array(
 		'class' => 'flow-terms-of-use plainlinks'
-	),  wfMessage( 'flow-terms-of-use-reply' )->parse() ),
+	),  Flow\TermsOfUse::getReplyTerms() ),
 		Html::element( 'input',
 			array(
 				'type' => 'submit',
