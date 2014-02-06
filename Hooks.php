@@ -154,7 +154,6 @@ class FlowHooks {
 
 			try {
 				$workflowId = $request->getVal( 'workflow' );
-				$action = $request->getVal( 'action', 'view' );
 
 				$loader = $container['factory.loader.workflow']
 					->createWorkflowLoader( $title, UUID::create( $workflowId ) );
@@ -162,6 +161,11 @@ class FlowHooks {
 				if ( !$loader->getWorkflow()->isNew() ) {
 					// Workflow currently exists, make sure a revision also exists
 					$occupationController->ensureFlowRevision( $article );
+				}
+
+				// DWIM: action=history should be equal to action=board-history
+				if ( $action === 'history' ) {
+					$action = 'board-history';
 				}
 
 				$view->show( $loader, $action );
