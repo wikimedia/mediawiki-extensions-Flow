@@ -63,7 +63,6 @@ $wgResourceModules += array(
 		),
 		'scripts' => array(
 			'discussion/ui.js',
-			'discussion/forms.js',
 			'discussion/topic.js',
 			'discussion/post.js',
 			'discussion/paging.js',
@@ -77,7 +76,7 @@ $wgResourceModules += array(
 			'mediawiki.util',
 			'jquery.byteLimit',
 			'jquery.tipsy',
-			'jquery.scroll',
+			'jquery.conditionalScroll',
 			'ext.flow.parsoid',
 			'mediawiki.jqueryMsg',
 		),
@@ -193,9 +192,9 @@ $wgResourceModules += array(
 );
 
 $wgHooks['ResourceLoaderRegisterModules'][] = function( $resourceLoader ) use ( $flowResourceTemplate ) {
-	if ( $resourceLoader->getModule( 'jquery.scroll' ) === null ) {
-		$resourceLoader->register( 'jquery.scroll', $flowResourceTemplate + array(
-			'scripts' => 'jquery.scroll.js',
+	if ( $resourceLoader->getModule( 'jquery.conditionalScroll' ) === null ) {
+		$resourceLoader->register( 'jquery.conditionalScroll', $flowResourceTemplate + array(
+			'scripts' => 'jquery.conditionalScroll.js',
 		) );
 	}
 };
