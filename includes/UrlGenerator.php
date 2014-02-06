@@ -6,6 +6,7 @@ use FlowHooks;
 use Flow\Data\ObjectManager;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\Model\AbstractRevision;
 use Title;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
