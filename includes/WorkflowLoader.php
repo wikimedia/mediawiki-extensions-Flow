@@ -255,7 +255,7 @@ class WorkflowLoader {
 		foreach ( $request->getValues() as $name => $value ) {
 			if ( false !== strpos( $name, '_' ) ) {
 				list( $block, $var ) = explode( '_', $name, 2 );
-				$result[$block][$name] = $value;
+				$result[$block][$var] = $value;
 			}
 		}
 		return $result;
