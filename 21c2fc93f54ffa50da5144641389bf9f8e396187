@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_02aa11d1",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-06T00:49:33Z",
+      "side": 1,
+      "message": "I\u0027m not particularly comfortable with pulling storage into a model class, but really this isn\u0027t a model class.  Not sure how to make the split obvious though.",
+      "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_c26e6993",
+        "filename": "includes/Model/HeaderRevisionable.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-06T00:49:33Z",
+      "side": 1,
+      "message": "While posts will only have a dozen revisions on the high end, the header could, over time, have hundreds or even thousands of revisions.  I\u0027m not sure getAllRevisions() is reasonable in that case.",
+      "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_c29ae9bc",
+        "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-06T00:49:33Z",
+      "side": 1,
+      "message": "getHex",
+      "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_a297dd92",
+        "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-06T00:49:33Z",
+      "side": 1,
+      "message": "getHex",
+      "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_22606d9f",
+        "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-06T00:49:33Z",
+      "side": 1,
+      "message": "typo: all",
+      "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
