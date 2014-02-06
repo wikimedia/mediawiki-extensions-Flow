@@ -300,7 +300,7 @@
 	 */
 	mw.flow.action.post.reply.prototype.loadReplyForm = function ( loadFunction ) {
 		// fetch username/IP
-		var username = this.$form.closest( '.flow-post-container' ).data( 'creator-name' );
+		var username = this.post.$container.closest( '.flow-post-container' ).data( 'creator-name' );
 
 		// if we have a real username, turn it into "[[User]]" (otherwise, just "127.0.0.1")
 		if ( !mw.util.isIPv4Address( username , true ) && !mw.util.isIPv6Address( username , true ) ) {
