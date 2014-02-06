@@ -268,7 +268,7 @@ $wgFlowMaxLimit = 100;
 
 // Echo notification subscription preference
 $wgDefaultUserOptions['echo-subscriptions-web-flow-discussion'] = true;
-$wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = true;
+$wgDefaultUserOptions['echo-subscriptions-email-flow-discussion'] = false;
 
 // Maximum number of users that can be mentioned in one comment
 $wgFlowMaxMentionCount = 100;
