@@ -194,10 +194,9 @@ class FlowHooks {
 
 		// if Flow is enabled on this talk page, overrule talk page red link
 		if ( $occupationController->isTalkpageOccupied( $title ) ) {
-			$skname = $template->skinname;
+			$skname = $template->getSkinName();
 
-			global $wgRequest;
-			$selected = $wgRequest->getVal( 'action' ) == 'board-history';
+			$selected = $template->getRequest()->getVal( 'action' ) == 'board-history';
 			$links['views'] = array( array(
 				'class' => $selected ? 'selected' : '',
 				'text' => wfMessageFallback( "$skname-view-history", "history_short" )->text(),
