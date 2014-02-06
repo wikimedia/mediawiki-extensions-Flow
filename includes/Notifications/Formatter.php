@@ -50,8 +50,12 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 			$message->params( $url );
 		} elseif ( $param == 'flow-title' ) {
-			list( $title ) = $this->getUrlGenerator()->buildUrlData( $event->getTitle() );
-			$formatted = $this->formatTitle( $title );
+			$title = $event->getTitle();
+			if ( $title ) {
+				$formatted = $this->formatTitle( $title );
+			} else {
+				$formatted = wfMessage( 'echo-no-title' )->text();
+			}
 			$message->params( $formatted );
 		} elseif ( $param == 'old-subject' ) {
 			$this->processParamEscaped( $message, trim( $extra['old-subject'] ) );
@@ -61,7 +65,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 			parent::processParam( $event, $param, $message, $user );
 		}
 	}
-	
+
 	/**
 	 * Helper function for getLink()
 	 *
