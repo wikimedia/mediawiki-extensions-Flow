@@ -179,6 +179,7 @@ $wgHooks['ContribsPager::reallyDoQuery'][] = 'FlowHooks::onContributionsQuery';
 $wgHooks['ContributionsLineEnding'][] = 'FlowHooks::onContributionsLineEnding';
 $wgHooks['AbuseFilter-computeVariable'][] = 'FlowHooks::onAbuseFilterComputeVariable';
 $wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
+$wgHooks['InfoAction'][] = 'FlowHooks::onInfoAction';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
@@ -339,4 +340,4 @@ $wgFlowAbuseFilterEmergencyDisableCount = 50;
 $wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.
 
 // Actions that must pass through to MediaWiki on flow enabled pages
-$wgFlowCoreActionWhitelist = array( 'protect', 'unprotect' );
+$wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect' );

@@ -396,4 +396,25 @@ class FlowHooks {
 
 		return true;
 	}
+
+	public static function onInfoAction( IContextSource $ctx, &$pageinfo ) {
+		if ( !Container::get( 'occupation_controller' )->isTalkpageOccupied( $ctx->getTitle() ) ) {
+			return true;
+		}
+
+		// All of the info in this section is wrong for Flow pages,
+		// so we'll just remove it.
+		unset( $pageinfo['header-edits'] );
+
+		// These keys are wrong on Flow pages, so we'll remove them
+		static $badMessageKeys = array( 'pageinfo-length', 'pageinfo-content-model' );
+
+		foreach ( $pageinfo['header-basic'] as $num => $val ) {
+			if ( $val[0] instanceof Message && in_array( $val[0]->getKey(), $badMessageKeys ) ) {
+				unset($pageinfo['header-basic'][$num]);
+			}
+		}
+
+		return true;
+	}
 }
