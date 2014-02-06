@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_ea75b32d",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-06T21:54:22Z",
+      "side": 1,
+      "message": "Is the $this-\u003egetUrlGenerator()-\u003ebuildUrlData() supposed to be gone now?",
+      "revId": "2c674b8b1fcf6fa4fb35e927807febdbcf6222c3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
