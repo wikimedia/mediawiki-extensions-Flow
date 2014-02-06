@@ -6,6 +6,7 @@ use Flow\Model\Workflow;
 use Html;
 use IContextSource;
 use ContextSource;
+use Xml;
 
 class View extends ContextSource {
 	function __construct(
@@ -43,11 +44,29 @@ class View extends ContextSource {
 			$block->init( $action, $user );
 		}
 
+		// Re-implement the former SimpleAntiSpam extension
+		$out->addHTML(
+			Xml::openElement( 'div', array( 'id' => 'antispam-container', 'style' => 'display: none;' ) )
+			. Html::rawElement( 'label', array( 'for' => 'wpAntiSpam' ), $this->msg( 'simpleantispam-label' )->parse() )
+			. Xml::element( 'input', array( 'type' => 'text', 'name' => 'wpAntispam', 'id' => 'wpAntispam', 'value' => '' ) )
+			. Xml::closeElement( 'div' )
+		);
+
 		if ( $request->wasPosted() ) {
 			global $wgFlowTokenSalt;
 			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
-				$error = '<div class="error">' . $this->msg( 'sessionfailure' ) . '</div>';
-				$out->addHTML( $error );
+				$this->error( $this->msg( 'sessionfailure' )->escaped() );
+			} elseif ( $spam = $request->getText( 'wpAntispam' ) !== '' ) {
+				wfDebugLog(
+					'SimpleAntiSpam',
+					$this->getUser()->getName() .
+					' editing "' .
+					$this->getTitle()->getPrefixedText() .
+					'" submitted bogus field "' .
+					$spam .
+					'"'
+				);
+				$this->error( $this->msg( 'spamprotectionmatch' )->params( $spam )->escaped() );
 			} else {
 				$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 				if ( $blocksToCommit ) {
@@ -72,6 +91,13 @@ class View extends ContextSource {
 			$block->render( $this->templating, $request->getArray( $block->getName(), array() ) );
 		}
 		$out->addHTML( "</div>" );
+	}
+
+	/**
+	 * @param string $msg HTML text to output
+	 */
+	protected function error( $msg ) {
+		$this->getOutput()->addHTML( '<div class="error">' . $msg . '</div>' );
 	}
 
 	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {
