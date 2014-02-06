@@ -396,4 +396,16 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * Make the terms of use for editing messages available in JavaScript
+	 *
+	 * @param array &$vars
+	 * @param OutputPage $out
+	 * @return bool
+	 */
+	public static function onMakeGlobalVariablesScript( array &$vars, OutputPage $out ) {
+		$vars['wgFlowTermsOfUseEdit'] = Flow\TermsOfUse::getEditTerms();
+		return true;
+	}
 }

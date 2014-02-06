@@ -97,7 +97,6 @@ $wgResourceModules += array(
 			'flow-paging-rev',
 			'flow-post-moderated-toggle-show',
 			'flow-post-moderated-toggle-hide',
-			'flow-terms-of-use-edit',
 		),
 		'position' => 'top',
 	),

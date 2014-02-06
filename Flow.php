@@ -77,6 +77,7 @@ $wgAutoloadClasses['Flow\SpamFilter\SpamBlacklist'] = $dir . 'includes/SpamFilte
 $wgAutoloadClasses['Flow\SpamFilter\AbuseFilter'] = $dir . 'includes/SpamFilter/AbuseFilter.php';
 $wgAutoloadClasses['Flow\FlowActions'] = $dir . 'includes/FlowActions.php';
 $wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/RevisionActionPermissions.php';
+$wgAutoloadClasses['Flow\TermsOfUse'] = $dir . 'includes/TermsOfUse.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
@@ -179,6 +180,7 @@ $wgHooks['ContribsPager::reallyDoQuery'][] = 'FlowHooks::onContributionsQuery';
 $wgHooks['ContributionsLineEnding'][] = 'FlowHooks::onContributionsLineEnding';
 $wgHooks['AbuseFilter-computeVariable'][] = 'FlowHooks::onAbuseFilterComputeVariable';
 $wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
+$wgHooks['MakeGlobalVariablesScript'][] = 'FlowHooks::onMakeGlobalVariablesScript';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';

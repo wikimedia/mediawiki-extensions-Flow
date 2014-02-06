@@ -46,7 +46,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ) .
 			Html::rawElement( 'div', array(
 				'class' => 'flow-terms-of-use plainlinks',
-			), wfMessage( 'flow-terms-of-use-reply' )->parse() ) .
+			), Flow\TermsOfUse::getReplyTerms() ) .
 			Html::element( 'input', array(
 				'type' => 'submit',
 				'value' => $postView->replySubmit(),
