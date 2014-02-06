@@ -283,6 +283,7 @@ You can see other versions of this post at its [$6 history page].',
 /** Message documentation (Message documentation)
  * @author Amire80
  * @author Beta16
+ * @author Lokal Profil
  * @author Raymond
  * @author Shirayuki
  * @author Siebrand
@@ -466,7 +467,9 @@ Changes refers to diff between revisions.
 {{Identical|New topic}}',
 	'flow-newtopic-content-placeholder' => 'Used as placeholder for the "Content" textarea.',
 	'flow-newtopic-header' => 'Unused at this time.',
-	'flow-newtopic-save' => 'Used as label for the Submit button.',
+	'flow-newtopic-save' => 'Used as label for the Submit button.
+
+This should be consistent with {{msg-mw|Flow-terms-of-use-new-topic}}.',
 	'flow-newtopic-start-placeholder' => 'Used as placeholder for the "Topic" textarea.',
 	'flow-reply-topic-placeholder' => 'Used as placeholder for the "reply to this topic" textarea. Parameters:
 * $1 - username of the logged in user, can be used for GENDER
@@ -475,6 +478,9 @@ Changes refers to diff between revisions.
 * $1 - username',
 	'flow-reply-submit' => 'Used as label for the Submit button. Parameters:
 * $1 - username, can be used for GENDER
+
+This should be consistent with {{msg-mw|Flow-terms-of-use-reply}}.
+
 {{Identical|Reply}}',
 	'flow-reply-link' => 'Text for the link that appears near the post and offers the user to reply to it. Clicking the link will display the reply editor. Parameters:
 * $1 - username, can be used for GENDER
@@ -3417,6 +3423,7 @@ $messages['lb'] = array(
 	'flow-edit-header-link' => 'Iwwerschrëft änneren',
 	'flow-header-empty' => 'Dës Diskussiounssäit huet elo keng Iwwerschrëft',
 	'flow-post-moderated-toggle-delete-show' => 'Bemierkung weisen {{GENDER:$1|geläscht}} vum $2',
+	'flow-post-moderated-toggle-hide-hide' => 'Bemierkung verstoppen {{GENDER:$1|verstoppt}} vum $2',
 	'flow-hide-post-content' => 'Dës Bemierkung gouf vum $2 {{GENDER:$1|verstoppt}}',
 	'flow-hide-title-content' => 'Dëst Thema gouf vum $2 {{GENDER:$1|verstoppt}}',
 	'flow-hide-header-content' => '{{GENDER:$1|Verstoppt}} vum $2',
@@ -3828,11 +3835,39 @@ $messages['mr'] = array(
  * @author Anakmalaysia
  */
 $messages['ms'] = array(
+	'flow-post-moderated-toggle-hide-show' => 'Paparkan komen yang {{GENDER:$1|disembunyikan}} oleh $2',
+	'flow-post-moderated-toggle-delete-show' => 'Paparkan komen yang {{GENDER:$1|dihapuskan}} oleh $2',
+	'flow-post-moderated-toggle-suppress-show' => 'Paparkan komen yang {{GENDER:$1|disekat}} oleh $2',
+	'flow-post-moderated-toggle-hide-hide' => 'Sembunyikan komen yang {{GENDER:$1|disembunyikan}} oleh $2',
+	'flow-post-moderated-toggle-delete-hide' => 'Sembunyikan komen yang {{GENDER:$1|dihapuskan}} oleh $2',
+	'flow-post-moderated-toggle-suppress-hide' => 'Sembunyikan komen yang {{GENDER:$1|disekat}} oleh $2',
+	'flow-stub-post-content' => "''Disebabkan ralat teknikal, kiriman ini tidak dapat diperoleh.''",
+	'flow-post-action-post-history' => 'Sejarah',
+	'flow-post-action-edit-post' => 'Sunting',
+	'flow-topic-action-history' => 'Sejarah',
+	'flow-notification-reply' => '$1 telah {{GENDER:$1|membalas}} <span class="plainlinks">[$5 kiriman]</span> anda di "$2" pada "$4".',
+	'flow-notification-reply-bundle' => '$1 dan $5 {{PLURAL:$6|orang lain}} telah {{GENDER:$1|membalas}} <span class="plainlinks">[$4 kiriman]</span> anda di "$2" pada "$3".',
+	'flow-notification-edit' => '$1 telah {{GENDER:$1|menyunting}} suatu <span class="plainlinks">[$5 kiriman]</span> di "$2" pada [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 dan $5 {{PLURAL:$6|orang lain}} telah {{GENDER:$1|menyunting}} sepucuk <span class="plainlinks">[$4 kiriman]</span> di "$2" pada "$3".',
+	'flow-notification-newtopic' => '$1 telah {{GENDER:$1|membuka}} <span class="plainlinks">[$5 topik baru]</span> pada [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 telah {{GENDER:$1|menukar}} tajuk <span class="plainlinks">[$2 $3]</span> kepada "$4" pada [[$5|$6]].',
+	'flow-notification-mention' => '$1 telah {{GENDER:$1|menyebut}} nama anda di <span class="plainlinks">[$2 kirimannya]</span> di "$3" pada "$4".',
+	'flow-notification-reply-email-batch-body' => '$1 telah {{GENDER:$1|membalas}} kiriman anda di "$2" pada "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 dan $4 {{PLURAL:$5|orang lain}} telah {{GENDER:$1|membalas}} kiriman anda di "$2" pada "$3"',
+	'flow-notification-mention-email-subject' => '$1 telah {{GENDER:$1|menyebut}} nama anda di "$2"',
+	'flow-notification-edit-email-batch-body' => '$1 telah {{GENDER:$1|menyunting}} suatu kiriman di "$2" pada "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 dan $4 {{PLURAL:$5|orang lain}} telah {{GENDER:$1|menyunting}} suatu kiriman di "$2" pada "$3"',
+	'flow-notification-newtopic-email-subject' => '$1 telah {{GENDER:$1|membuka}} topik baru di "$2"',
+	'flow-moderation-confirmation-restore-post' => 'Anda telah berjaya memulihkan kiriman di atas.',
 	'flow-moderation-confirmation-delete-topic' => 'Topik ini berjaya dihapuskan.
-Apa kata anda {{GENDER:$1|memaklum balas}} $1 mengenai topik ini?', # Fuzzy
+Apa kata anda {{GENDER:$2|memaklum balas}} $1 mengenai topik ini?',
+	'flow-moderation-confirmation-restore-topic' => 'Anda telah berjaya memulihkan topik ini.',
 	'flow-topic-collapsed-one-line' => 'Paparan kecil',
 	'flow-topic-collapsed-full' => 'Paparan terlipat',
 	'flow-topic-complete' => 'Paparan penuh',
+	'flow-terms-of-use-new-topic' => 'Dengan mengklik "Tambah topik", anda bersetuju dengan [//wikimediafoundation.org/wiki/Terms_of_use Syarat-Syarat Penggunaan] kami dan juga sudi mengeluarkan gambar anda dengan [//creativecommons.org/licenses/by-sa/3.0/ Lesen Creative Commons Attribution-ShareAlike 3.0] dan [//ms.wikipedia.org/wiki/Wikipedia:Teks_Lesen_Dokumentasi_Bebas_GNU GFDL].',
+	'flow-terms-of-use-reply' => 'Dengan mengklik "Balas", anda bersetuju dengan [//wikimediafoundation.org/wiki/Terms_of_use Syarat-Syarat Penggunaan] kami dan juga sudi mengeluarkan gambar anda dengan [//creativecommons.org/licenses/by-sa/3.0/ Lesen Creative Commons Attribution-ShareAlike 3.0] dan [//ms.wikipedia.org/wiki/Wikipedia:Teks_Lesen_Dokumentasi_Bebas_GNU GFDL].',
+	'flow-terms-of-use-edit' => 'Dengan menyimpan suntingan, anda bersetuju dengan [//wikimediafoundation.org/wiki/Terms_of_use Syarat-Syarat Penggunaan] kami dan juga sudi mengeluarkan gambar anda dengan [//creativecommons.org/licenses/by-sa/3.0/ Lesen Creative Commons Attribution-ShareAlike 3.0] dan [//ms.wikipedia.org/wiki/Wikipedia:Teks_Lesen_Dokumentasi_Bebas_GNU GFDL].',
 );
 
 /** Neapolitan (Napulitano)
@@ -4549,6 +4584,12 @@ $messages['sv'] = array(
 	'flow-user-moderated' => 'Modererad användare',
 	'flow-edit-header-link' => 'Redigera sidhuvud',
 	'flow-header-empty' => 'Denna diskussionssida har för närvarande ingen rubrik.',
+	'flow-post-moderated-toggle-hide-show' => 'Visa kommentar {{GENDER:$1|dold}} av $2',
+	'flow-post-moderated-toggle-delete-show' => 'Visa kommentar {{GENDER:$1|raderad}} av $2',
+	'flow-post-moderated-toggle-suppress-show' => 'Visa kommentar {{GENDER:$1|dämpad}} av $2',
+	'flow-post-moderated-toggle-hide-hide' => 'Dölj kommentar {{GENDER:$1|dold}} av $2',
+	'flow-post-moderated-toggle-delete-hide' => 'Dölj kommentar {{GENDER:$1|raderad}} av $2',
+	'flow-post-moderated-toggle-suppress-hide' => 'Dölj kommentar {{GENDER:$1|dämpad}} av $2',
 	'flow-hide-post-content' => 'Denna kommentar {{GENDER:$1|doldes}} av $2',
 	'flow-hide-title-content' => 'Detta ämne {{GENDER:$1|doldes}} av $2',
 	'flow-hide-header-content' => '{{GENDER:$1|Dold}} av $2',
@@ -4579,16 +4620,16 @@ $messages['sv'] = array(
 	'flow-edit-post-submit' => 'Skicka ändringar',
 	'flow-post-edited' => 'Inlägg {{GENDER:$1|redigerat}} av $1 $2',
 	'flow-post-action-view' => 'Permanent länk',
-	'flow-post-action-post-history' => 'Inläggshistorik', # Fuzzy
+	'flow-post-action-post-history' => 'Historik',
 	'flow-post-action-suppress-post' => 'Dämpa',
 	'flow-post-action-delete-post' => 'Radera',
 	'flow-post-action-hide-post' => 'Dölj',
-	'flow-post-action-edit-post' => 'Redigera inlägg', # Fuzzy
+	'flow-post-action-edit-post' => 'Redigera',
 	'flow-post-action-restore-post' => 'Återställ inlägg',
 	'flow-topic-action-view' => 'Permanent länk',
 	'flow-topic-action-watchlist' => 'Bevakningslista',
 	'flow-topic-action-edit-title' => 'Redigera rubrik',
-	'flow-topic-action-history' => 'Ämneshistorik', # Fuzzy
+	'flow-topic-action-history' => 'Historik',
 	'flow-topic-action-hide-topic' => 'Dölj ämne',
 	'flow-topic-action-delete-topic' => 'Radera ämne',
 	'flow-topic-action-suppress-topic' => 'Dämpa ämne',
@@ -4667,27 +4708,27 @@ $messages['sv'] = array(
 	'flow-paging-rev' => 'Nyare ämnen',
 	'flow-paging-fwd' => 'Äldre ämnen',
 	'flow-last-modified' => 'Ändrades senast om $1',
-	'flow-notification-reply' => '$1 {{GENDER:$1|svarade}} på ditt [$5 inlägg] om $2 på [[$3|$4]].', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 och $5 {{PLURAL:$6|annan|andra}} {{GENDER:$1|svarade}} på ditt [$4 inlägg] i $2 på "$3".', # Fuzzy
-	'flow-notification-edit' => '$1 {{GENDER:$1|redigerade}} ett [$5 inlägg] om $2 på [[$3|$4]].', # Fuzzy
-	'flow-notification-edit-bundle' => '$1 och $5 {{PLURAL:$6|annan|andra}} {{GENDER:$1|redigerade}} ett [$4  inlägg] i $2 på "$3".', # Fuzzy
-	'flow-notification-newtopic' => '$1 {{GENDER:$1|skapade}} ett [$5 nytt ämne] på [[$2|$3]]: $4.', # Fuzzy
-	'flow-notification-rename' => '$1 {{GENDER:$1|ändrade}} rubriken för [$2 $3] till "$4" på [[$5|$6]].', # Fuzzy
-	'flow-notification-mention' => '$1 {{GENDER:$1|nämnde}} dig i {{GENDER:$1|hans|hennes|sitt}} [$2 inlägg] i "$3" på "$4".', # Fuzzy
+	'flow-notification-reply' => '$1 {{GENDER:$1|svarade}} på ditt <span class="plainlinks">[$5 inlägg]</span> i "$2" på "$4".',
+	'flow-notification-reply-bundle' => '$1 och $5 {{PLURAL:$6|annan|andra}} {{GENDER:$1|svarade}} på ditt <span class="plainlinks">[$4 inlägg]</span> i "$2" på "$3".',
+	'flow-notification-edit' => '$1 {{GENDER:$1|redigerade}} ett <span class="plainlinks">[$5 inlägg]</span> i "$2" på [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 och $5 {{PLURAL:$6|annan|andra}} {{GENDER:$1|redigerade}} ett <span class="plainlinks">[$4 inlägg]</span> i "$2" på "$3".',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|skapade}} ett <span class="plainlinks">[$5 nytt ämne]</span> på [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|ändrade}} rubriken för <span class="plainlinks">[$2 $3]</span> till "$4" på [[$5|$6]].',
+	'flow-notification-mention' => '$1 {{GENDER:$1|nämnde}} dig i {{GENDER:$1|hans|hennes|sitt}} <span class="plainlinks">[$2 inlägg]</span> i "$3" på "$4".',
 	'flow-notification-link-text-view-post' => 'Visa inlägg',
 	'flow-notification-link-text-view-board' => 'Visa forum',
 	'flow-notification-link-text-view-topic' => 'Visa ämne',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|svarade}} på ditt inlägg',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|svarade}} på ditt inlägg i $2 på "$3"', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 och $4 {{PLURAL:$5|annan|andra}} {{GENDER:$1|svarade}} på ditt inlägg i $2 på "$3"', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|omnämnde}} dig på $2', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|svarade}} på ditt inlägg i "$2" på "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 och $4 {{PLURAL:$5|annan|andra}} {{GENDER:$1|svarade}} på ditt inlägg i "$2" på "$3"',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|omnämnde}} dig på "$2"',
 	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|omnämnde}} dig i {{GENDER:$1|hans|hennes|sitt}} inlägg i "$2" på "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|redigerade}} ett inlägg',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|redigerade}} ett inlägg i $2 på "$3"', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 och $4 {{PLURAL:$5|annan|andra}} {{GENDER:$1|redigerade}} ett inlägg i $2 på "$3"', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|redigerade}} ett inlägg i "$2" på "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 och $4 {{PLURAL:$5|annan|andra}} {{GENDER:$1|redigerade}} ett inlägg i "$2" på "$3"',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|byt namn på}} ditt ämne',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|byt namn på}} ditt ämne "$2" till "$3" på "$4"',
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|skapade}} ett nytt ämne på $2', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|skapade}} ett nytt ämne på "$2"',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|skapade}} ett ny ämne med titeln "$2" på $3',
 	'echo-category-title-flow-discussion' => 'Flöde',
 	'echo-pref-tooltip-flow-discussion' => 'Meddela mig när åtgärder som rör mig förekommer i flödet.',
@@ -4746,6 +4787,9 @@ Du kan se andra versioner av detta inlägg genom dess [$6 historiksida].',
 	'flow-topic-collapsed-one-line' => 'Liten vy',
 	'flow-topic-collapsed-full' => 'Komprimerad vy',
 	'flow-topic-complete' => 'Full vy',
+	'flow-terms-of-use-new-topic' => 'Genom att klicka Lägg till ämne godkänner du våra [//wikimediafoundation.org/wiki/Terms_of_use användarvillkor] och samtycker till att oåterkalleligen släppa din text under licenserna [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0] och [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL].',
+	'flow-terms-of-use-reply' => 'Genom att klicka Svara godkänner du våra [//wikimediafoundation.org/wiki/Terms_of_use användarvillkor] och samtycker till att oåterkalleligen släppa din text under licenserna [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0] och [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL].',
+	'flow-terms-of-use-edit' => 'Genom att spara ändringar godkänner du våra [//wikimediafoundation.org/wiki/Terms_of_use användarvillkor] och samtycker till att oåterkalleligen släppa din text under licenserna [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0] och [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL].',
 );
 
 /** Tagalog (Tagalog)
