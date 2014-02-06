@@ -149,7 +149,7 @@ class FlowHooks {
 			$view = new Flow\View(
 				$container['templating'],
 				$container['url_generator'],
-				RequestContext::getMain()
+				$output
 			);
 
 			try {
