@@ -45,7 +45,7 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 			'<div class="flow-form-controls">' .
 				Html::rawElement( 'div', array(
 					'class' => 'flow-terms-of-use plainlinks'
-				),  wfMessage( 'flow-terms-of-use-reply' )->parse() ) .
+				),  Flow\TermsOfUse::getReplyTerms() ) .
 				Html::element( 'input', array(
 					'type' => 'submit',
 					'value' => wfMessage( 'flow-reply-submit', $this->getCreatorText( $root ) ),

@@ -64,7 +64,7 @@ echo Html::openElement( 'div', array(
 ) );
 echo Html::rawElement( 'div', array(
 	'class' => 'flow-terms-of-use plainlinks',
-), wfMessage( 'flow-terms-of-use-new-topic' )->parse() );
+), Flow\TermsOfUse::getAddTopicTerms() );
 
 // submit button text will be different if there's a more recent change already
 $submitMessage = 'flow-edit-header-submit';

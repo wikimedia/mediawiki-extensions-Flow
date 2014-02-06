@@ -47,6 +47,9 @@
 			'<form class="flow-edit-form">' +
 				'<textarea class="mw-ui-input flow-edit-content"></textarea>' +
 				'<div class="flow-form-controls flow-edit-controls">' +
+					'<div class="flow-terms-of-use plainlinks">' +
+					mw.config.get( 'wgFlowTermsOfUseEdit' ) +
+					'</div>' +
 					// cancel link will be added here
 					'<input type="submit" class="mw-ui-button mw-ui-constructive flow-edit-submit" value="' + mw.msg( 'flow-edit-' + this.object.type + '-submit' ) + '">' +
 				'</div>' +
