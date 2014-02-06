@@ -81,7 +81,7 @@ class HeaderBlock extends AbstractBlock {
 				);
 			}
 
-			// this isnt really part of validate, but we want the error-rendering template to see the users edited header
+			// this isn't really part of validate, but we want the error-rendering template to see the users edited header
 			$oldHeader = $this->header;
 			$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
 
