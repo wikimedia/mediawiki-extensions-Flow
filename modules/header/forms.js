@@ -157,6 +157,7 @@
 			data.revision
 		);
 
+		deferred.done( $.proxy( this.render, this ) );
 		deferred.fail( $.proxy( this.conflict, this, deferred, data ) );
 
 		return deferred;
