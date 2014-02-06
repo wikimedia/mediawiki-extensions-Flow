@@ -79,6 +79,7 @@ class NotificationController {
 		$extraData = array();
 
 		$revision = $data['revision'];
+		$topicRevision = $data['topic-title'];
 		$topicWorkflow = $data['topic-workflow'];
 
 		$extraData['revision-id'] = $revision->getRevisionId();
@@ -91,19 +92,19 @@ class NotificationController {
 				$extraData += array(
 					'reply-to' => $replyToPost->getPostId(),
 					'content' => $revision->getContent(),
-					'topic-title' => $data['topic-title'],
+					'topic-title' => $topicRevision->getContent( 'wikitext' ),
 				);
 			break;
 			case 'flow-topic-renamed':
 				$extraData += array(
-					'old-subject' => $data['old-subject'],
-					'new-subject' => $data['new-subject'],
+					'old-subject' => $topicRevision->getContent( 'wikitext' ),
+					'new-subject' => $revision->getContent( 'wikitext' ),
 				);
 			break;
 			case 'flow-post-edited':
 				$extraData += array(
 					'content' => $revision->getContent(),
-					'topic-title' => $data['topic-title'],
+					'topic-title' => $topicRevision->getContent( 'wikitext' ),
 				);
 			break;
 		}
@@ -124,7 +125,7 @@ class NotificationController {
 					'user' => $user,
 					'post' => $revision,
 					'reply-to' => $replyToPost->getPostId(),
-					'topic-title' => $data['topic-title'],
+					'topic-title' => $topicRevision,
 					'topic-workflow' => $topicWorkflow,
 				) )
 			);
@@ -174,7 +175,7 @@ class NotificationController {
 				'title' => $boardWorkflow->getArticleTitle(),
 				'user' => $user,
 				'post' => $firstPost,
-				'topic-title' => $topicPost->getContent(),
+				'topic-title' => $topicPost,
 				'topic-workflow' => $topicWorkflow,
 			) )
 		);
@@ -195,6 +196,7 @@ class NotificationController {
 	protected function notifyNewPost( $data ) {
 		// Handle mentions.
 		$newRevision = $data['post'];
+		$topicRevision = $data['topic-title'];
 		$title = $data['title'];
 		$user = $data['user'];
 		$topicWorkflow = $data['topic-workflow'];
@@ -208,7 +210,7 @@ class NotificationController {
 				'title' => $title,
 				'extra' => array(
 					'content' => $newRevision ? $newRevision->getContent() : null,
-					'topic-title' => $data['topic-title'],
+					'topic-title' => $topicRevision->getContent( 'wikitext' ),
 					'post-id' => $newRevision ? $newRevision->getPostId() : null,
 					'mentioned-users' => $mentionedUsers,
 					'topic-workflow' => $topicWorkflow->getId(),
