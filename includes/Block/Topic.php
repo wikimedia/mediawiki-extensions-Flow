@@ -30,7 +30,6 @@ class TopicBlock extends AbstractBlock {
 	protected $topicTitle;
 	protected $rootLoader;
 	protected $newRevision;
-	protected $relatedRevisions = array();
 	protected $notification;
 	protected $requestedPost = array();
 
@@ -273,11 +272,7 @@ class TopicBlock extends AbstractBlock {
 
 		$reason = $this->submitted['reason'];
 
-		if ( $post->needsModerateHistorical( $newState ) ) {
-			$this->relatedRevisions = $this->loadHistorical( $post );
-		}
-
-		$this->newRevision = $post->moderate( $this->user, $newState, $action, $reason, $this->relatedRevisions );
+		$this->newRevision = $post->moderate( $this->user, $newState, $action, $reason );
 		if ( !$this->newRevision ) {
 			$this->addError( 'moderate', wfMessage( 'flow-error-not-allowed' ) );
 			return;
@@ -358,10 +353,6 @@ class TopicBlock extends AbstractBlock {
 
 			$this->storage->put( $this->newRevision );
 			$this->storage->put( $this->workflow );
-			// These are moderated historical revisions of $this->newRevision
-			foreach ( $this->relatedRevisions as $revision ) {
-				$this->storage->put( $revision );
-			}
 			$self = $this;
 			$newRevision = $this->newRevision;
 			$rootPost = $this->loadRootPost();

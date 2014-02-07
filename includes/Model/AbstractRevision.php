@@ -18,26 +18,15 @@ abstract class AbstractRevision {
 	const MODERATED_SUPPRESSED = 'suppress';
 
 	/**
-	 * Metadata relatied to moderation states from least restrictive
-	 * to most restrictive.
+	 * List of available permission levels.
+	 *
+	 * @var array
 	 **/
 	static public $perms = array(
-		self::MODERATED_NONE => array(
-			// Whether or not to apply transition to this moderation state to historical revisions
-			'historical' => true,
-		),
-		self::MODERATED_HIDDEN => array(
-			// Whether or not to apply transition to this moderation state to historical revisions
-			'historical' => false,
-		),
-		self::MODERATED_DELETED => array(
-			// Whether or not to apply transition to this moderation state to historical revisions
-			'historical' => true,
-		),
-		self::MODERATED_SUPPRESSED => array(
-			// Whether or not to apply transition to this moderation state to historical revisions
-			'historical' => true,
-		),
+		self::MODERATED_NONE,
+		self::MODERATED_HIDDEN,
+		self::MODERATED_DELETED,
+		self::MODERATED_SUPPRESSED,
 	);
 
 	protected $revId;
@@ -223,11 +212,7 @@ abstract class AbstractRevision {
 		return $obj;
 	}
 
-	/**
-	 * $historical revisions must be provided when self::needsModerateHistorical
-	 * returns true.
-	 */
-	public function moderate( User $user, $state, $changeType, $reason, array $historical = array() ) {
+	public function moderate( User $user, $state, $changeType, $reason ) {
 		if ( ! $this->isValidModerationState( $state ) ) {
 			wfWarn( __METHOD__ . ': Provided moderation state does not exist : ' . $state );
 			return null;
@@ -237,53 +222,31 @@ abstract class AbstractRevision {
 		if ( !$this->isAllowed( $user, $changeType ) ) {
 			return null;
 		}
-		if ( !$historical && $this->needsModerateHistorical( $state ) ) {
-			throw new InvalidInputException( 'Requested state change requires historical revisions, but they were not provided.', 'invalid-input' );
-		}
 
-		$historical[] = $obj = $this->newNullRevision( $user );
-		$historical[] = $this;
-
+		$obj = $this->newNullRevision( $user );
 		$obj->changeType = $changeType;
-
-		$timestamp = wfTimestampNow();
-		foreach ( $historical as $rev ) {
-			if ( !$rev->isAllowed( $user, $changeType ) ) {
-				continue;
-			}
-			$rev->moderationState = $state;
-			list( $userId, $userIp ) = self::userFields( $user );
-			if ( $state === self::MODERATED_NONE ) {
-				$rev->moderatedByUserId = null;
-				$rev->moderatedByUserIp = null;
-				$rev->moderationTimestamp = null;
-			} else {
-				$rev->moderatedByUserId = $userId;
-				$rev->moderatedByUserIp = $userIp;
-				$rev->moderationTimestamp = $timestamp;
-			}
-		}
 
 		// This is a bit hacky, but we store the restore reason
 		// in the "moderated reason" field. Hmmph.
 		$obj->moderatedReason = $reason;
+		$obj->moderationState = $state;
+
+		list( $userId, $userIp ) = self::userFields( $user );
+		if ( $state === self::MODERATED_NONE ) {
+			$obj->moderatedByUserId = null;
+			$obj->moderatedByUserIp = null;
+			$obj->moderationTimestamp = null;
+		} else {
+			$obj->moderatedByUserId = $userId;
+			$obj->moderatedByUserIp = $userIp;
+			$obj->moderationTimestamp = wfTimestampNow();
+		}
 
 		return $obj;
 	}
 
 	public function isValidModerationState( $state ) {
-		return isset( self::$perms[$state] );
-	}
-
-	public function needsModerateHistorical( $state ) {
-		if ( $this->isFirstRevision() ) {
-			return false;
-		}
-		if ( !isset( self::$perms[$state]['historical'] ) ) {
-			wfWarn( __METHOD__ . ": Moderation state does not exist : $state" );
-			return false;
-		}
-		return self::$perms[$state]['historical'];
+		return in_array( $state, self::$perms );
 	}
 
 	/**
