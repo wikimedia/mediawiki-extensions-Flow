@@ -67,11 +67,22 @@ class RevisionActionPermissions {
 			return false;
 		}
 
-		// check if user is allowed to perform action
-		return call_user_func_array(
+		// Check if user is allowed to perform action against this revision
+		$allowed = call_user_func_array(
 			array( $this->user, 'isAllowedAny' ),
 			(array) $permission
 		);
+
+		// Also check if the user would be allowed to perform this against
+		// against the most recent revision (unless it's already the most recent
+		// revision) - the last revision is the current state of a revision, so
+		// checking against a revision at one point in time alone isn't enough.
+		$last = $revision->getRevisionable()->getLastRevision();
+
+		// check if $revision is not already the most recent, to prevent
+		// infinite recursion in this method
+		$isLastRevision = $last->getRevisionId()->getHex() == $revision->getRevisionId()->getHex();
+		return $allowed && ( $isLastRevision || $this->isAllowed( $last, $action ) );
 	}
 
 	/**
