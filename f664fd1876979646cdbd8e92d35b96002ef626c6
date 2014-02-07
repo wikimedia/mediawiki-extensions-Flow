@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_6d9bf8c1",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "We should probably also add maintenance/FlowUpdateUserWiki.php here",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_6db41834",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "This @param no longer exists",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_4daf1cdf",
+        "filename": "includes/Data/UserNameBatch.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "typo: default",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_2d48505f",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "Should probably also include $userWiki:\n\n    $obj-\u003eorigUserWiki \u003d $obj-\u003euserWiki \u003d wfWikiId();",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_4d96fc98",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "Should probably be a LoggedUpdateMaintenance, which is run only once.\n\nBasically all it needs is to extend from LoggedUpdateMaintenance, rename execute() to doDBUpdates() (and return true) and an additional method:\n\n    /**\n     * Get the update key name to go in the update log table\n     *\n     * @return string\n     */\n    protected function getUpdateKey() {\n        return \u0027FlowUpdateUserWiki\u0027;\n    }",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_cdf1ecff",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "Should use $this-\u003esetBatchSize() in __construct, if you want to set a default batch size.\nThe difference is that it will recognize that a batchset can be set, and will allow a user to override it when running the script with option batch-size",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_ed870865",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "typo: tables",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_8dfbe4dd",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "When using $this-\u003esetBatchSize(), can then fetch batch size from $this-\u003emBatchSize",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_8dd2c45b",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "The \"w\" $dbw stands for \"write\", which implies master - change to $dbr",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_4dc4bc94",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "$dbr",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_2dc3b08d",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "$dbr",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_adcfc0b4",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "Updates are run on Flow database, wfWaitForSlaves will wait for slaved on core DB.\n\nShould probably pass Flow $dbw in here, and do $dbw-\u003ewaitForSlaves()",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_8d6e44c3",
+        "filename": "tests/PostRevisionTestCase.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "Not that it will make much of a difference, but I\u0027d use wfWikiId() here instead of just null (since having a null-value there is more of a transitional state now, we actually do want this value to always be filled)",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_6d6538dd",
+        "filename": "tests/PostRevisionTestCase.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T17:44:32Z",
+      "side": 1,
+      "message": "Same here",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
