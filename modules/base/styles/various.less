@@ -93,3 +93,15 @@ span.flow-datestamp {
 		}
 	}
 }
+
+// For some reason, when overflow:(auto|scroll) is applied to the element where
+// .ui-helper-clearfix is applied to, the :after's height:0 rule is "ignored"
+// (some space for the :after element is preserved and causes the element's
+// scrollbar to appear.
+// This is an addition to the clearfix to make sure that this content doesn't
+// cause any scrollbars to go off by the content added in this :after.
+.ui-helper-clearfix:after {
+	overflow: hidden;
+
+	// clearfix styles are in jquery.ui.core.css
+}
