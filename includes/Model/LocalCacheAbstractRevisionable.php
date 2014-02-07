@@ -2,6 +2,8 @@
 
 namespace Flow\Model;
 
+use Flow\Exception\InvalidDataException;
+
 /**
  * LocalBufferedCache saves all data that has been requested in an internal
  * cache (in memory, per request). This provides the opportunity of (trying to)
@@ -102,6 +104,9 @@ abstract class LocalCacheAbstractRevisionable extends AbstractRevisionable {
 		if ( $this->storage->found( $attributes, $options ) ) {
 			// if last revision is already known in local cache, fetch it
 			$revision = $this->storage->find( $attributes, $options );
+			if ( !$revision ) {
+				throw new InvalidDataException( 'Last revision for ' . $this->uuid . ' could not be found', 'invalid-revision-id' );
+			}
 			$revision = reset( $revision );
 			$this->revisions[$revision->getRevisionId()->getHex()] = $revision;
 			return $revision;
@@ -111,6 +116,9 @@ abstract class LocalCacheAbstractRevisionable extends AbstractRevisionable {
 			// it - saves roundtrips to cache/db
 			unset( $options['limit'] );
 			$this->revisions = $this->storage->find( $attributes, $options );
+			if ( !$this->revisions ) {
+				throw new InvalidDataException( 'Revisions for ' . $this->uuid . ' could not be found', 'invalid-revision-id' );
+			}
 			return end( $this->revisions );
 		}
 	}
