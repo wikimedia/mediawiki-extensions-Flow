@@ -43,9 +43,10 @@ class Formatter extends AbstractFormatter {
 		}
 
 		$result = array();
+		$ctx = $checkUser->getContext();
 		foreach ( $links as $key => $link ) {
-			// @todo these $text strings are using $wgLang instead of $checkUser->getLanguage()
-			list( $url, $text ) = $link;
+			list( $url, $message ) = $link;
+			$text = $message->setContext( $ctx )->text();
 			$result[$key] = $checkUser->msg( 'parentheses' )
 				->rawParams( Html::element(
 					'a',

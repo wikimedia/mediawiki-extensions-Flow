@@ -27,7 +27,8 @@ class Formatter extends AbstractFormatter {
 
 		$title = $rc->getTitle();
 		$user = $cl->getUser();
-		$lang = $cl->getLanguage();
+		$ctx = $cl->getContext();
+		$lang = $ctx->getLanguage();
 
 		/*
 		 * @todo:
@@ -71,7 +72,8 @@ class Formatter extends AbstractFormatter {
 
 		// Format links
 		foreach ( $links as &$link ) {
-			list( $url, $text ) = $link;
+			list( $url, $message ) = $link;
+			$text = $message->setContext( $ctx )->text();
 			$link = Html::element(
 				'a',
 				array(
