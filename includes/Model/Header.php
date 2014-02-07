@@ -49,4 +49,11 @@ class Header extends AbstractRevision {
 	public function getRevisionableId() {
 		return $this->getWorkflowId();
 	}
+
+	/**
+	 * @return HeaderRevisionable
+	 */
+	public function getRevisionable() {
+		return HeaderRevisionable::newFromRevision( $this );
+	}
 }

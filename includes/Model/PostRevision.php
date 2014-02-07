@@ -465,4 +465,11 @@ class PostRevision extends AbstractRevision {
 	public function getRevisionableId() {
 		return $this->getPostId();
 	}
+
+	/**
+	 * @return PostRevisionable
+	 */
+	public function getRevisionable() {
+		return PostRevisionable::newFromRevision( $this );
+	}
 }

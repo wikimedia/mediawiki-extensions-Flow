@@ -524,4 +524,9 @@ abstract class AbstractRevision {
 	 * @return UUID
 	 */
 	abstract public function getRevisionableId();
+
+	/**
+	 * @return AbstractRevisionable
+	 */
+	abstract public function getRevisionable();
 }
