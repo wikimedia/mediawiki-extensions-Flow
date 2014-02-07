@@ -34,6 +34,24 @@
       "revId": "b1155a4e80a6d204cbc9eed9286e4a905332ddac",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_617c29b5",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-02-07T02:20:24Z",
+      "side": 1,
+      "message": "Nah. the IRC feed is supposed to be for humans even though its now basically only used by bots. I was just pointing it out for the sake of pointing it out; it\u0027s fine with me.\n\nhttps://www.mediawiki.org/wiki/Requests_for_comment/Publishing_the_RecentChanges_feed is my eventual plan for enabling a JSON (or maybe XML) RC feed.",
+      "parentUuid": "6ef7ef47_c16bfdec",
+      "revId": "b1155a4e80a6d204cbc9eed9286e4a905332ddac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
