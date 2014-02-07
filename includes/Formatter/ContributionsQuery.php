@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\Contributions;
+namespace Flow\Formatter;
 
 use ContribsPager;
 use Flow\Model\AbstractRevision;
@@ -16,7 +16,7 @@ use User;
 use BagOStuff;
 use Flow\Container;
 
-class Query {
+class ContributionsQuery {
 	/**
 	 * @var ManagerGroup
 	 */

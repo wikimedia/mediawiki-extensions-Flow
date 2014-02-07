@@ -454,7 +454,7 @@ $c['controller.spamfilter'] = $c->share( function( $c ) {
 } );
 
 $c['checkuser.formatter'] = $c->share( function( $c ) {
-	return new Flow\CheckUser\Formatter(
+	return new Flow\Formatter\CheckUser(
 		$c['storage'],
 		$c['flow_actions'],
 		$c['templating']
@@ -462,7 +462,7 @@ $c['checkuser.formatter'] = $c->share( function( $c ) {
 } );
 
 $c['recentchanges.formatter'] = $c->share( function( $c ) {
-	return new Flow\RecentChanges\Formatter(
+	return new Flow\Formatter\RecentChanges(
 		$c['storage'],
 		$c['flow_actions'],
 		$c['templating']
@@ -470,14 +470,14 @@ $c['recentchanges.formatter'] = $c->share( function( $c ) {
 } );
 
 $c['contributions.query'] = $c->share( function( $c ) {
-	return new Flow\Contributions\Query(
+	return new Flow\Formatter\ContributionsQuery(
 		$c['storage'],
 		$c['memcache'],
 		$c['repository.tree']
 	);
 } );
 $c['contributions.formatter'] = $c->share( function( $c ) {
-	return new Flow\Contributions\Formatter(
+	return new Flow\Formatter\Contributions(
 		$c['storage'],
 		$c['flow_actions'],
 		$c['templating']

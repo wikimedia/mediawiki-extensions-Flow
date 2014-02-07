@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow;
+namespace Flow\Formatter;
 
 use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
