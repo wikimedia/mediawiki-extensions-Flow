@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_0da5949a",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-07T18:37:55Z",
+      "side": 1,
+      "message": "can call the method_exists just once outside the loop",
+      "revId": "22e378a997c54a77b8864562321675e9d7c22bca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_adad8082",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1277,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-07T18:37:55Z",
+      "side": 1,
+      "message": "typically would use instanceof ShallowCompactor here",
+      "revId": "22e378a997c54a77b8864562321675e9d7c22bca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_4d9b9c68",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 1279,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-07T18:37:55Z",
+      "side": 1,
+      "message": "getUniqueQueries is a method on the result duplicator, not the compactor\n\n    $this-\u003erowCompactor-\u003egetResultDuplicator( $cached, $keyToQuery )-\u003egetUniqueQueries();",
+      "revId": "22e378a997c54a77b8864562321675e9d7c22bca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
