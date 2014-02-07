@@ -16,6 +16,24 @@
       "revId": "b1155a4e80a6d204cbc9eed9286e4a905332ddac",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_c16bfdec",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-07T02:17:02Z",
+      "side": 1,
+      "message": "would this be better as json so its more readable by the bots?  does anyone else put json in the comment?",
+      "parentUuid": "6ef7ef47_388c2689",
+      "revId": "b1155a4e80a6d204cbc9eed9286e4a905332ddac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
