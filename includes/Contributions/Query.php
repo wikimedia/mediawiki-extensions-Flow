@@ -67,7 +67,7 @@ class Query {
 	 */
 	public function getResults( ContribsPager $pager, $offset, $limit, $descending ) {
 		$target = $pager->target;
-		$conditions = array();
+		$conditions = array( 'rev_user_wiki' => wfWikiId() );
 
 		// Work out user condition
 		if ( $pager->contribs == 'newbie' ) {
