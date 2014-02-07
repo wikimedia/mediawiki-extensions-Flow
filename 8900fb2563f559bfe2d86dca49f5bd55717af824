@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_12c81576",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-02-07T15:15:59Z",
+      "side": 1,
+      "message": "Typo.",
+      "revId": "8900fb2563f559bfe2d86dca49f5bd55717af824",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_f2a6c9bd",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-02-07T15:15:59Z",
+      "side": 1,
+      "message": "Rebase error?",
+      "revId": "8900fb2563f559bfe2d86dca49f5bd55717af824",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
