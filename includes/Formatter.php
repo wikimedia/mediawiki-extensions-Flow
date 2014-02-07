@@ -99,13 +99,17 @@ abstract class AbstractFormatter {
 		switch( $action ) {
 			case 'reply':
 				$links['topic'] = $this->topicLink( $title, $workflowId );
-				$links['post'] = $this->postLink( $title, $workflowId, $postId );
+				if ( $postId ) {
+					$links['post'] = $this->postLink( $title, $workflowId, $postId );
+				}
 				break;
 
 			case 'new-post': // fall through
 			case 'edit-post':
 				$links['topic'] = $this->topicLink( $title, $workflowId );
-				$links['post'] = $this->postLink( $title, $workflowId, $postId );
+				if ( $postId ) {
+					$links['post'] = $this->postLink( $title, $workflowId, $postId );
+				}
 				break;
 
 			case 'suppress-post':
@@ -113,7 +117,9 @@ abstract class AbstractFormatter {
 			case 'hide-post':
 			case 'restore-post':
 				$links['topic'] = $this->topicLink( $title, $workflowId );
-				$links['post-history'] = $this->postHistoryLink( $title, $workflowId, $postId );
+				if ( $postId ) {
+					$links['post-history'] = $this->postHistoryLink( $title, $workflowId, $postId );
+				}
 				break;
 
 			case 'suppress-topic':
@@ -127,7 +133,9 @@ abstract class AbstractFormatter {
 			case 'edit-title':
 				$links['topic'] = $this->topicLink( $title, $workflowId );
 				// This links to the history of the topic title
-				$links['title-history'] = $this->postHistoryLink( $title, $workflowId, $postId );
+				if ( $postId ) {
+					$links['title-history'] = $this->postHistoryLink( $title, $workflowId, $postId );
+				}
 				break;
 
 			case 'create-header': // fall through
@@ -171,7 +179,7 @@ abstract class AbstractFormatter {
 				'topic-history',
 				array( 'workflow' => $workflowId->getHex() )
 			),
-			wfMessage( 'flow-link-history' )->text()
+			wfMessage( 'flow-link-history' )
 		);
 	}
 
@@ -185,7 +193,7 @@ abstract class AbstractFormatter {
 					'topic' => array( 'postId' => $postId->getHex() ),
 				)
 			),
-			wfMessage( 'flow-link-history' )->text()
+			wfMessage( 'flow-link-history' )
 		);
 	}
 
@@ -196,7 +204,7 @@ abstract class AbstractFormatter {
 				'view',
 				array( 'workflow' => $workflowId->getHex() )
 			),
-			wfMessage( 'flow-link-topic' )->text()
+			wfMessage( 'flow-link-topic' )
 		);
 	}
 
@@ -210,7 +218,7 @@ abstract class AbstractFormatter {
 					'topic' => array( 'postId' => $postId->getHex() ),
 				)
 			),
-			wfMessage( 'flow-link-post' )->text()
+			wfMessage( 'flow-link-post' )
 		);
 	}
 
