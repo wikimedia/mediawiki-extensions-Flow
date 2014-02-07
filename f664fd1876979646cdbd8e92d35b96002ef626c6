@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ef7ef47_2daa906d",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-07T18:36:35Z",
+      "side": 1,
+      "message": "I was thinking about a logged maintenance script would not run again if there is an error during running. Obviously if there is an error it would not be logged, :)",
+      "parentUuid": "6ef7ef47_6d9bf8c1",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_6db41834",
         "filename": "includes/Data/UserNameBatch.php",
         "patchSetId": 8
@@ -200,6 +218,24 @@
       "writtenOn": "2014-02-07T17:44:32Z",
       "side": 1,
       "message": "Updates are run on Flow database, wfWaitForSlaves will wait for slaved on core DB.\n\nShould probably pass Flow $dbw in here, and do $dbw-\u003ewaitForSlaves()",
+      "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_6dc7784b",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-07T18:36:35Z",
+      "side": 1,
+      "message": "Yeah, forget  that it is in a different cluster, :(",
+      "parentUuid": "6ef7ef47_adcfc0b4",
       "revId": "f664fd1876979646cdbd8e92d35b96002ef626c6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
