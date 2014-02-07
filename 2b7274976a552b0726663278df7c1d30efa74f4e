@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_e38cb934",
+        "filename": "modules/base/action.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-07T22:18:04Z",
+      "side": 1,
+      "message": "This looks like a constructor?  Should it be capitalized?",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_c333fd5d",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-07T22:18:04Z",
+      "side": 1,
+      "message": "i think shahyar suggested we should move away from :not,  its unsupported in IE7/8",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_e31719a7",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-07T22:18:04Z",
+      "side": 1,
+      "message": "i think this is passing data, error, errorData to a function that does nothing with them?",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_a31111b3",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-07T22:18:04Z",
+      "side": 1,
+      "message": "wouldn\u0027t data, error and errorData already be a part of the functions scope implicitly?",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_6372e911",
+        "filename": "modules/header/styles/base.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-07T22:18:04Z",
+      "side": 1,
+      "message": "trying to move away from :not so we can support IE8",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
