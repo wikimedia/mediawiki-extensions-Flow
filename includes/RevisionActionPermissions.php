@@ -59,24 +59,12 @@ class RevisionActionPermissions {
 			return false;
 		}
 
-		// $revision may be null if the revision has yet to be created
-		$moderationState = AbstractRevision::MODERATED_NONE;
-		if ( $revision instanceof AbstractRevision ) {
-			$moderationState = $revision->getModerationState();
-		}
-		$permission = $this->actions->getValue( $action, 'permissions', $moderationState );
+		$permission = $this->getPermission( $revision, $action );
 
 		// If no permission is defined for this state, then the action is not allowed
 		// check if permission is set for this action
 		if ( $permission === null ) {
 			return false;
-		}
-
-		// Some permissions may be more complex to be defined as simple array
-		// values, in which case they're a Closure (which will accept
-		// AbstractRevision & FlowActionPermissions as arguments)
-		if ( $permission instanceof Closure ) {
-			$permission = $permission( $revision, $this );
 		}
 
 		// check if user is allowed to perform action
@@ -110,6 +98,32 @@ class RevisionActionPermissions {
 		}
 
 		return $allowed;
+	}
+
+	/**
+	 * Returns the permission specified in FlowActions for the given action
+	 * against the given revision's moderation state.
+	 *
+	 * @param AbstractRevision[optional] $revision
+	 * @param string $action
+	 * @return Closure|string
+	 */
+	public function getPermission( AbstractRevision $revision = null, $action ) {
+		// $revision may be null if the revision has yet to be created
+		$moderationState = AbstractRevision::MODERATED_NONE;
+		if ( $revision instanceof AbstractRevision ) {
+			$moderationState = $revision->getModerationState();
+		}
+		$permission = $this->actions->getValue( $action, 'permissions', $moderationState );
+
+		// Some permissions may be more complex to be defined as simple array
+		// values, in which case they're a Closure (which will accept
+		// AbstractRevision & FlowActionPermissions as arguments)
+		if ( $permission instanceof Closure ) {
+			$permission = $permission( $revision, $this );
+		}
+
+		return $permission;
 	}
 
 	/**
