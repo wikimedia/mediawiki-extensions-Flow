@@ -52,6 +52,24 @@
       "revId": "b1155a4e80a6d204cbc9eed9286e4a905332ddac",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_218621ad",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T02:22:16Z",
+      "side": 1,
+      "message": "I don\u0027t think a \"comment\" is supposed to be in any structured format, so I think we\u0027ll be fine here.\n\nAlthough it\u0027s kinda hacky, I\u0027m good with this patch for now.\n\nPerhaps we should start working on adding something less hacky in CU to deal with params, though:\n* Either save the associated RC id in CU tables (so we can fetch params from CU if needed)\n* Or just add some cu_params column\n\nIDK ^^",
+      "parentUuid": "6ef7ef47_c16bfdec",
+      "revId": "b1155a4e80a6d204cbc9eed9286e4a905332ddac",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
