@@ -60,7 +60,8 @@ class Formatter extends AbstractFormatter {
 
 		// Format links
 		foreach ( $links as &$link ) {
-			list( $url, $text ) = $link;
+			list( $url, $message ) = $link;
+			$text = $message->inLanguage( $lang )->text();
 			$link = Html::element(
 				'a',
 				array(
