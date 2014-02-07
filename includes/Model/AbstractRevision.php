@@ -519,4 +519,9 @@ abstract class AbstractRevision {
 	}
 
 	abstract public function getRevisionType();
+
+	/**
+	 * @return AbstractRevisionable
+	 */
+	abstract public function getRevisionable();
 }

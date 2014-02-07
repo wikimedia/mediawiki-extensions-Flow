@@ -458,4 +458,11 @@ class PostRevision extends AbstractRevision {
 		}
 		return $user->getId() == $this->getCreatorId();
 	}
+
+	/**
+	 * @return PostRevisionable
+	 */
+	public function getRevisionable() {
+		return PostRevisionable::newFromRevision( $this );
+	}
 }
