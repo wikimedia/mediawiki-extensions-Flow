@@ -2336,16 +2336,16 @@ $messages['gl'] = array(
 	'flow-notification-link-text-view-board' => 'Ver o taboleiro',
 	'flow-notification-link-text-view-topic' => 'Ver o fío',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|respondeu}} á súa mensaxe',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|respondeu}} á súa mensaxe de "$2" en "$3"', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 e {{PLURAL:$5|outra persoa|outras $4 persoas}} {{GENDER:$1|responderon}} á súa mensaxe de "$2" en "$3"', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|fíxolle unha mención}} en "$2"', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|respondeu}} á súa mensaxe de "$2" en "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 e {{PLURAL:$5|outra persoa|outras $4 persoas}} {{GENDER:$1|responderon}} á súa mensaxe de "$2" en "$3"',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|fíxolle unha mención}} en "$2"',
 	'flow-notification-mention-email-batch-body' => '$1 {{GENDER:$1|fíxolle unha mención}} na {{GENDER:$1|súa}} mensaxe de "$2" en "$3"',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|editou}} unha mensaxe',
-	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|editou}} unha mensaxe de "$2" en "$3"', # Fuzzy
-	'flow-notification-edit-email-batch-bundle-body' => '$1 e {{PLURAL:$5|outra persoa|outras $4 persoas}} {{GENDER:$1|editaron}} unha mensaxe de "$2" en "$3".', # Fuzzy
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|editou}} unha mensaxe de "$2" en "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 e {{PLURAL:$5|outra persoa|outras $4 persoas}} {{GENDER:$1|editaron}} unha mensaxe de "$2" en "$3".',
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|renomeou}} o seu fío',
 	'flow-notification-rename-email-batch-body' => '$1 {{GENDER:$1|renomeou}} o seu fío "$2" a "$3" en "$4"',
-	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|creou}} un novo fío en "$2"', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|creou}} un novo fío en "$2"',
 	'flow-notification-newtopic-email-batch-body' => '$1 {{GENDER:$1|creou}} un novo fío co título "$2" en "$3"',
 	'echo-category-title-flow-discussion' => '{{PLURAL:$1|Conversa|Conversas}}', # Fuzzy
 	'echo-pref-tooltip-flow-discussion' => 'Notificádeme cando sucedan accións relacionadas comigo no taboleiro de conversas.', # Fuzzy
@@ -4095,16 +4095,16 @@ $messages['nl'] = array(
 	'flow-edit-post-submit' => 'Wijzigingen opslaan',
 	'flow-post-edited' => 'Bericht $2 {{GENDER:$1|bewerkt}} door $1',
 	'flow-post-action-view' => 'Permanente koppeling',
-	'flow-post-action-post-history' => 'Berichtgeschiedenis', # Fuzzy
+	'flow-post-action-post-history' => 'Geschiedenis',
 	'flow-post-action-suppress-post' => 'Onderdrukken',
 	'flow-post-action-delete-post' => 'Verwijderen',
 	'flow-post-action-hide-post' => 'Verbergen',
-	'flow-post-action-edit-post' => 'Bericht bewerken', # Fuzzy
+	'flow-post-action-edit-post' => 'Bewerken',
 	'flow-post-action-restore-post' => 'Bericht terugplaatsen',
 	'flow-topic-action-view' => 'Permanente koppeling',
 	'flow-topic-action-watchlist' => 'Volglijst',
 	'flow-topic-action-edit-title' => 'Titel wijzigen',
-	'flow-topic-action-history' => 'Onderwerpgeschiedenis', # Fuzzy
+	'flow-topic-action-history' => 'Geschiedenis',
 	'flow-topic-action-hide-topic' => 'Onderwerp verbergen',
 	'flow-topic-action-delete-topic' => 'Onderwerp verwijderen',
 	'flow-topic-action-suppress-topic' => 'Onderwerp onderdrukken',
@@ -4356,9 +4356,12 @@ $messages['ps'] = array(
 
 /** Portuguese (português)
  * @author Helder.wiki
+ * @author Imperadeiro98
  */
 $messages['pt'] = array(
 	'flow-desc' => 'Sistema de Gerenciamento do Fluxo de Trabalho',
+	'flow-notification-edit-bundle' => '$1 e $5 {{PLURAL:$6|outro|outros}} {{GENDER:$1|editaram}} uma <span class="plainlinks">[$4 mensagem]</span> em "$2", em "$3".',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 e $4 {{PLURAL:$5|outro|outros}} {{GENDER:$1|responderam}} à sua mensagem em "$2", em "$3"',
 );
 
 /** Brazilian Portuguese (português do Brasil)
@@ -5508,6 +5511,7 @@ $messages['zh-hans'] = array(
  * @author Liuxinyu970226
  */
 $messages['zh-hant'] = array(
+	'flow-talk-taken-over' => '此討論頁已由[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow board]接管。',
 	'flow-hide-post-content' => '此評論已由$2{{GENDER:$1|隱藏}}',
 	'flow-delete-post-content' => '此評論已由$2{{GENDER:$1|刪除}}',
 	'flow-suppress-post-content' => '此評論已被$2{{GENDER:$1|抑制}}',
