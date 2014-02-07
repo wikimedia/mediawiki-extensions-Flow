@@ -60,7 +60,7 @@ class PostModerationLogger implements LifecycleHandler {
 
 		if ( ! $changeTypes ) {
 			$changeTypes = array();
-			foreach( AbstractRevision::$perms as $perm => $info ) {
+			foreach( AbstractRevision::$perms as $perm ) {
 				if ( $perm != '' ) {
 					$changeTypes[] = "{$perm}-topic";
 					$changeTypes[] = "{$perm}-post";
