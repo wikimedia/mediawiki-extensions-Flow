@@ -171,7 +171,7 @@ abstract class AbstractFormatter {
 				'topic-history',
 				array( 'workflow' => $workflowId->getHex() )
 			),
-			wfMessage( 'flow-link-history' )->text()
+			wfMessage( 'flow-link-history' )
 		);
 	}
 
@@ -185,7 +185,7 @@ abstract class AbstractFormatter {
 					'topic' => array( 'postId' => $postId->getHex() ),
 				)
 			),
-			wfMessage( 'flow-link-history' )->text()
+			wfMessage( 'flow-link-history' )
 		);
 	}
 
@@ -196,7 +196,7 @@ abstract class AbstractFormatter {
 				'view',
 				array( 'workflow' => $workflowId->getHex() )
 			),
-			wfMessage( 'flow-link-topic' )->text()
+			wfMessage( 'flow-link-topic' )
 		);
 	}
 
@@ -210,7 +210,7 @@ abstract class AbstractFormatter {
 					'topic' => array( 'postId' => $postId->getHex() ),
 				)
 			),
-			wfMessage( 'flow-link-post' )->text()
+			wfMessage( 'flow-link-post' )
 		);
 	}
 

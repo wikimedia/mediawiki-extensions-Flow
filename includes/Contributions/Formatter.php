@@ -44,12 +44,12 @@ class Formatter extends AbstractFormatter {
 		// Format timestamp: add link
 		$formattedTime = $dateFormats['timeAndDate'];
 		if ( $links ) {
-			list( $url, $text ) = $links[count( $links ) - 1];
+			list( $url, $message ) = $links[count( $links ) - 1];
 			$formattedTime = Html::element(
 				'a',
 				array(
 					'href' => $url,
-					'title' => $text
+					'title' => $message->inLanguage( $lang )->text(),
 				),
 				$formattedTime
 			);
@@ -64,7 +64,8 @@ class Formatter extends AbstractFormatter {
 
 		// Format links
 		foreach ( $links as &$link ) {
-			list( $url, $text ) = $link;
+			list( $url, $message ) = $link;
+			$text = $message->inLanguage( $lang )->text();
 			$link = Html::element(
 				'a',
 				array(

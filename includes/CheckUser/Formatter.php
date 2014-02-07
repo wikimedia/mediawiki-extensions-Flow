@@ -43,6 +43,7 @@ class Formatter extends AbstractFormatter {
 		}
 
 		$result = array();
+		$lang = $checkUser->getLanguage();
 		foreach ( $links as $key => $link ) {
 			// @todo these $text strings are using $wgLang instead of $checkUser->getLanguage()
 			list( $url, $text ) = $link;
@@ -53,7 +54,7 @@ class Formatter extends AbstractFormatter {
 						'href' => $url,
 						'title' => $text,
 					),
-					$text
+					$text->inLanguage( $lang )->text()
 				) );
 		}
 		$result['title'] = '. . ' . Linker::link( $title );
