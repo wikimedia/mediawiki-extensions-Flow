@@ -26,6 +26,7 @@ class Formatter extends AbstractFormatter {
 		// Get all necessary objects
 		$workflow = $row->workflow;
 		$revision = $row->revision;
+		$ctx = $pager->getContext();
 		$lang = $pager->getLanguage();
 		$user = $pager->getUser();
 		$title = $workflow->getArticleTitle();
@@ -44,12 +45,12 @@ class Formatter extends AbstractFormatter {
 		// Format timestamp: add link
 		$formattedTime = $dateFormats['timeAndDate'];
 		if ( $links ) {
-			list( $url, $text ) = $links[count( $links ) - 1];
+			list( $url, $message ) = end( $links );
 			$formattedTime = Html::element(
 				'a',
 				array(
 					'href' => $url,
-					'title' => $text
+					'title' => $message->setContext( $ctx )->text(),
 				),
 				$formattedTime
 			);
@@ -64,7 +65,8 @@ class Formatter extends AbstractFormatter {
 
 		// Format links
 		foreach ( $links as &$link ) {
-			list( $url, $text ) = $link;
+			list( $url, $message ) = $link;
+			$text = $message->setContext( $ctx )->text();
 			$link = Html::element(
 				'a',
 				array(
