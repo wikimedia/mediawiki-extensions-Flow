@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "6ef7ef47_2df610c3",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T18:14:57Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s something in between - didn\u0027t really belong in either Model or Data.\n\nEeny, meeny, miny, moe told me to put in in Model. On a more serious note: IDK where it belongs, suggestions? :)",
+      "parentUuid": "6ef7ef47_02aa11d1",
+      "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_c26e6993",
         "filename": "includes/Model/HeaderRevisionable.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2014-02-06T00:49:33Z",
       "side": 1,
       "message": "While posts will only have a dozen revisions on the high end, the header could, over time, have hundreds or even thousands of revisions.  I\u0027m not sure getAllRevisions() is reasonable in that case.",
+      "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_2dcdf088",
+        "filename": "includes/Model/HeaderRevisionable.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T18:14:57Z",
+      "side": 1,
+      "message": "LocalCacheAbstractRevisionable will only fetch all revision if explicitly requested, of if getFirstRevision() is called.\n\nRight now, I can\u0027t think of any place where we\u0027d need to do that, but wanted to have the functionality in anyway, in case we do (in which case I assume we\u0027d consider what implications that may have)",
+      "parentUuid": "6ef7ef47_c26e6993",
       "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "6ef7ef47_eda6e8bd",
+        "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T18:14:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ef7ef47_c29ae9bc",
+      "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_a297dd92",
         "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
         "patchSetId": 2
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "6ef7ef47_cda9ec8e",
+        "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T18:14:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ef7ef47_a297dd92",
+      "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_22606d9f",
         "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
         "patchSetId": 2
@@ -81,6 +153,24 @@
       "writtenOn": "2014-02-06T00:49:33Z",
       "side": 1,
       "message": "typo: all",
+      "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_adb0e0f1",
+        "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-07T18:14:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ef7ef47_22606d9f",
       "revId": "21c2fc93f54ffa50da5144641389bf9f8e396187",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
