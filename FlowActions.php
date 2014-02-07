@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Header;
 use Flow\Model\UUID;
@@ -475,11 +476,8 @@ $wgFlowActions = array(
 		'log_type' => false,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
-			PostRevision::MODERATED_HIDDEN => function( PostRevision $post, RevisionActionPermissions $permissions ) {
-					// visible for logged in users (or anyone with hide permission)
-					return $permissions->getUser()->isLoggedIn() ? '' : 'flow-hide';
-				},
-			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_HIDDEN => '',
+			PostRevision::MODERATED_DELETED => '',
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'GET',
@@ -490,10 +488,10 @@ $wgFlowActions = array(
 		'log_type' => false, // don't log views
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
-			PostRevision::MODERATED_HIDDEN => function( PostRevision $post, RevisionActionPermissions $permissions ) {
-					// visible for logged in users (or anyone with hide permission)
-					return $permissions->getUser()->isLoggedIn() ? '' : 'flow-hide';
-				},
+			PostRevision::MODERATED_HIDDEN => function( AbstractRevision $post, RevisionActionPermissions $permissions ) {
+				// visible for logged in users (or anyone with hide permission)
+				return $permissions->getUser()->isLoggedIn() ? '' : 'flow-hide';
+			},
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
