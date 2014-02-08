@@ -1578,6 +1578,15 @@ $messages['el'] = array(
 	'flow-history-day' => 'Σήμερα',
 );
 
+/** British English (British English)
+ * @author Shirayuki
+ */
+$messages['en-gb'] = array(
+	'flow-terms-of-use-new-topic' => 'By clicking add topic, you agree to our [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] and agree to irrevocably release your text under the [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Licence] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
+	'flow-terms-of-use-reply' => 'By clicking reply, you agree to our [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] and agree to irrevocably release your text under the [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Licence] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
+	'flow-terms-of-use-edit' => 'By saving changes, you agree to our [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] and agree to irrevocably release your text under the [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 Licence] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
+);
+
 /** Spanish (español)
  * @author Benfutbol10
  * @author Carlitosag
@@ -3502,6 +3511,7 @@ $messages['lb'] = array(
 	'flow-notification-rename' => '$1 {{GENDER:$1|huet}} den Titel vu(n) span class="plainlinks">[$2 $3]</span> op "$4" op [[$5|$6]] geännert.',
 	'flow-notification-link-text-view-board' => 'Tableau weisen',
 	'flow-notification-link-text-view-topic' => 'Thema weisen',
+	'flow-notification-mention-email-subject' => '$1 huet Iech op "$2" {{GENDER:$1|ernimmt}}',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|huet}} eng Matdeelung geännert',
 	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|huet}} eng Matdeelung vu(n) "$2" iwwer "$3" geännert',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|huet}} een neit Thema iwwer "$2" ugeluecht',
