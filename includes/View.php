@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use Flow\Exception\InvalidActionException;
 use Flow\Model\Workflow;
 use Html;
 use IContextSource;
@@ -70,8 +71,13 @@ class View extends ContextSource {
 		) );
 
 		$parameters = $loader->extractBlockParameters( $request, $blocks );
+
+		$rendered = false;
 		foreach ( $blocks as $block ) {
-			$block->render( $this->templating, $parameters[$block->getName()] );
+			$rendered |= $block->onRender( $action, $this->templating, $parameters[$block->getName()] );
+		}
+		if ( !$rendered ) {
+			throw new InvalidActionException( "Unrecognized get action: " . $action, 'invalid-action' );
 		}
 		$out->addHTML( "</div>" );
 		// Update newtalk and watchlist notification status on view action of any workflow
