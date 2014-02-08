@@ -10,12 +10,15 @@ use Flow\Model\Header;
 use Flow\Templating;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
+use Flow\Exception\InvalidInputException;
+use Flow\View\HeaderRevisionView;
 
 class HeaderBlock extends AbstractBlock {
 
 	protected $header;
 	protected $needCreate = false;
-	protected $supportedActions = array( 'edit-header' );
+	protected $supportedPostActions = array( 'edit-header' );
+	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'header-view' );
 
 	/**
 	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
@@ -135,35 +138,45 @@ class HeaderBlock extends AbstractBlock {
 		}
 	}
 
-	public function render( Templating $templating, array $options ) {
-		// Render board history view in header block, topiclist block will not be renderred
-		// when action = 'board-history'
-		if ( $this->action === 'board-history' ) {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
-			$tplVars = array(
-				'title' => wfMessage( 'flow-board-history', $this->workflow->getArticleTitle() )->escaped(),
-				'historyExists' => false,
-			);
+	public function render( Templating $templating, array $options, $return = false ) {
+		$templating->getOutput()->addModuleStyles( array( 'ext.flow.header' ) );
+		$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
 
-			$history = $this->loadBoardHistory();
-			if ( $history ) {
-				$tplVars['historyExists'] = true;
-				$tplVars['history'] = new History( $history );
-				$tplVars['historyRenderer'] = new HistoryRenderer( $templating, $this );
-			}
+		switch ( $this->action ) {
+			case 'compare-header-revisions':
+				if ( !isset( $options['newRevision'] ) ) {
+					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+				}
+				$revisionView = HeaderRevisionView::newFromId( $options['newRevision'], $templating, $this, $this->user );
+				if ( !$revisionView ) {
+					throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
+				}
 
-			$templating->render( "flow:board-history.html.php", $tplVars );
-		} else {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.header' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
-			$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
-			$templating->render( "flow:$templateName.html.php", array(
-				'block' => $this,
-				'workflow' => $this->workflow,
-				'header' => $this->header,
-				'user' => $this->user,
-			) );
+				if ( isset( $options['oldRevision'] ) ) {
+					return $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
+				} else {
+					return $revisionView->renderDiffViewAgainstPrevious( $return );
+				}
+			break;
+
+			case 'edit-header':
+				return $templating->renderHeader( $this->header, $this, $this->user, 'flow:edit-header.html.php', $return );
+			break;
+
+			default:
+				if ( isset( $options['revId'] ) ) {
+					$revisionView = HeaderRevisionView::newFromId( $options['revId'], $templating, $this, $this->user );
+					if ( !$revisionView ) {
+						throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
+					} else if ( !$this->permissions->isAllowed( $revisionView->getRevision(), 'view' ) ) {
+						$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
+						return null;
+					}
+					return $revisionView->renderSingleView( $return );
+				} else {
+					return $templating->renderHeader( $this->header, $this, $this->user, 'flow:header.html.php', $return );
+				}
+			break;
 		}
 	}
 
@@ -191,28 +204,6 @@ class HeaderBlock extends AbstractBlock {
 		);
 
 		return $output;
-	}
-
-	protected function loadBoardHistory() {
-		$history = $this->storage->find(
-			'BoardHistoryEntry',
-			array( 'topic_list_id' => $this->workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 300 )
-		);
-
-		if ( !$history ) {
-			throw new InvalidDataException( 'Unable to load topic list history for ' . $this->workflow->getId()->getAlphadecimal(), 'fail-load-history' );
-		}
-
-		// get rid of history entries user doesn't have sufficient permissions for
-		foreach ( $history as $i => $revision ) {
-			// only check against the specific revision, ignoring the most recent
-			if ( !$this->permissions->isRevisionAllowed( $revision, 'post-history' ) ) {
-				unset( $history[$i] );
-			}
-		}
-
-		return $history;
 	}
 
 	public function getName() {
