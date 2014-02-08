@@ -17,7 +17,6 @@ if ( $GLOBALS['wgFlowUseMemcache'] ) {
 }
 $c['cache.version'] = $GLOBALS['wgFlowCacheVersion'];
 
-
 // Flow config
 $c['flow_actions'] = $c->share( function( $c ) {
 	global $wgFlowActions;
