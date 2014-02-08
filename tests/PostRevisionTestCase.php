@@ -4,9 +4,15 @@ namespace Flow\Tests;
 
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\Workflow;
 use Flow\Model\UUID;
+use Flow\Container;
 use User;
 
+/**
+ * @group Flow
+ * @group Database
+ */
 class PostRevisionTestCase extends \MediaWikiTestCase {
 	/**
 	 * PostRevision object, created from $this->generatePost()
@@ -36,7 +42,7 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 	 * @return array
 	 */
 	protected function generateRow( array $row = array() ) {
-		$uuidPost = UUID::create();
+		$uuidPost = $this->createWorkflowForPost();
 		$uuidRevision = UUID::create();
 
 		$user = User::newFromName( 'UTSysop' );
@@ -69,6 +75,29 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 			'tree_orig_user_ip' => $userIp,
 			'tree_parent_id' => null,
 		);
+	}
+
+	/**
+	 * Populate a fake workflow in the unittest database
+	 */
+	protected function createWorkflowForPost() {
+		list( $userId, $userIp ) = PostRevision::userFields( User::newFromName( 'UTSysop' ) );
+
+		$row = array(
+			'workflow_id' => UUID::create()->getBinary(),
+			'workflow_wiki' => wfWikiId(),
+			'workflow_page_id' => 1,
+			'workflow_namespace' => NS_USER_TALK,
+			'workflow_title_text' => 'Test',
+			'workflow_user_id' => $userId,
+			'workflow_user_ip' => $userIp,
+			'workflow_lock_state' => 0,
+			'workflow_definition_id' => UUID::create()->getBinary(),
+			'workflow_last_update_timestamp' => wfTimestampNow(),
+		);
+		$workflow = Workflow::fromStorageRow( $row );
+		Container::get( 'storage' )->put( $workflow );
+		return $workflow->getId();
 	}
 
 	/**

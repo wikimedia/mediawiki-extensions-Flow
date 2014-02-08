@@ -4,6 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Model\PostCollection;
+use Flow\Data\RecentChanges as RecentChangesHandler;
 
 /**
  * @group Flow
@@ -28,6 +29,21 @@ class PostCollectionTest extends PostRevisionTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		// Reset the container
+		Container::reset();
+		// Recent changes logging is outside the scope of this test, and
+		// causes interaction issues
+		$c = Container::getContainer();
+		foreach ( array( 'header', 'post' ) as $kind ) {
+			$key = "storage.$kind.lifecycle-handlers";
+			$c[$key] = array_filter(
+				$c[$key],
+				function( $handler ) {
+					return !$handler instanceof RecentChangesHandler;
+				}
+			);
+		}
+
 		// generate a post with multiple revisions
 		$this->revisions[] = $revision = $this->generateObject( array(
 			'rev_content' => 'first revision',
@@ -47,7 +63,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 			'tree_rev_descendant_id' => $revision->getPostId()->getBinary(),
 		) );
 
-		$this->storage = Container::get( 'storage.post' );
+		$this->storage = $c['storage.post'];
 		foreach ( $this->revisions as $revision ) {
 			$this->storage->put( $revision );
 		}
@@ -59,6 +75,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 		foreach ( $this->revisions as $revision ) {
 			$this->storage->remove( $revision );
 		}
+		Container::reset();
 	}
 
 	public function testGetCollection() {
