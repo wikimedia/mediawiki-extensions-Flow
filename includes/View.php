@@ -72,7 +72,7 @@ class View extends ContextSource {
 
 		$parameters = $loader->extractBlockParameters( $request, $blocks );
 		foreach ( $blocks as $block ) {
-			$block->render( $this->templating, $parameters[$block->getName()] );
+			$block->onRender( $this->templating, $parameters[$block->getName()] );
 		}
 		$out->addHTML( "</div>" );
 	}

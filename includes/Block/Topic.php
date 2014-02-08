@@ -35,7 +35,7 @@ class TopicBlock extends AbstractBlock {
 
 	// POST actions, GET do not need to be listed
 	// unrecognized GET actions fallback to 'view'
-	protected $supportedActions = array(
+	protected $supportedPostActions = array(
 		// Standard editing
 		'edit-post', 'reply',
 		// Moderation
