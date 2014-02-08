@@ -100,6 +100,9 @@ $wgAutoloadClasses['Flow\View\History\HistoryRecord'] = "$dir/includes/View/Hist
 $wgAutoloadClasses['Flow\View\History\HistoryBundle'] = "$dir/includes/View/History/HistoryBundle.php";
 $wgAutoloadClasses['Flow\View\History\HistoryRenderer'] = "$dir/includes/View/History/HistoryRenderer.php";
 $wgAutoloadClasses['Flow\View\Post'] = "$dir/includes/View/Post.php";
+$wgAutoloadClasses['Flow\View\RevisionView'] = "$dir/includes/View/Revision.php";
+$wgAutoloadClasses['Flow\View\PostRevisionView'] = "$dir/includes/View/Revision.php";
+$wgAutoloadClasses['Flow\View\HeaderRevisionView'] = "$dir/includes/View/Revision.php";
 
 // Classes that deal with database interaction between database and the models
 $wgAutoloadClasses['Flow\Repository\TreeRepository'] = $dir . 'includes/Repository/TreeRepository.php';
@@ -160,6 +163,7 @@ $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/Revi
 $wgAutoloadClasses['Flow\Data\HeaderRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 
 // The individual workflow pieces
+$wgAutoloadClasses['Flow\Block\BoardHistoryBlock'] = $dir . 'includes/Block/BoardHistory.php';
 $wgAutoloadClasses['Flow\Block\Block'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\AbstractBlock'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\HeaderBlock'] = $dir . 'includes/Block/Header.php';

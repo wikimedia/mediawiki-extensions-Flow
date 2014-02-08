@@ -5,6 +5,7 @@ namespace Flow;
 use Flow\Block\HeaderBlock;
 use Flow\Block\TopicBlock;
 use Flow\Block\TopicListBlock;
+use Flow\Block\BoardHistoryBlock;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Data\BufferedCache;
@@ -133,23 +134,25 @@ class WorkflowLoader {
 		return $definition;
 	}
 
-	public function createBlocks( ) {
+	public function createBlocks() {
 		switch( $this->definition->getType() ) {
-		case 'discussion':
-			$blocks = array(
-				new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
-				new TopicListBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
-			);
-			break;
+			case 'discussion':
+				$blocks = array(
+					new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
+					new TopicListBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+					new BoardHistoryBlock( $this->workflow, $this->storage, $this->notificationController ),
+				);
+				break;
 
-		case 'topic':
-			$blocks = array(
-				new TopicBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
-			);
-			break;
+			case 'topic':
+				$blocks = array(
+					new TopicBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+				);
+				break;
 
-		default:
-			throw new InvalidInputException( 'Not Implemented', 'invalid-definition' );
+			default:
+				throw new InvalidInputException( 'Not Implemented', 'invalid-definition' );
+				break;
 		}
 
 		$return = array();

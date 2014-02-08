@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use Flow\Exception\InvalidActionException;
 use Flow\Model\Workflow;
 use Html;
 use IContextSource;
@@ -70,8 +71,16 @@ class View extends ContextSource {
 		) );
 
 		$parameters = $loader->extractBlockParameters( $request, $blocks );
+
+		$renderred = false;
 		foreach ( $blocks as $block ) {
-			$block->render( $this->templating, $parameters[$block->getName()] );
+			$result = $block->onRender( $action, $this->templating, $parameters[$block->getName()] );
+			if ( $result ) {
+				$renderred = true;
+			}
+		}
+		if ( !$renderred ) {
+			throw new InvalidActionException( "Unrecognized get action: " . $action, 'invalid-action' );
 		}
 		$out->addHTML( "</div>" );
 	}
