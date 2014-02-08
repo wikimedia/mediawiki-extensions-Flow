@@ -4,12 +4,14 @@ namespace Flow;
 
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
+use Flow\Block\HeaderBlock;
 use Flow\Data\UserNameBatch;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Header;
 use Flow\View\PostActionMenu;
 use OutputPage;
+use User;
 // These dont really belong here
 use Html;
 use Linker;
@@ -143,7 +145,7 @@ class Templating {
 		return $this->getUrlGenerator()->generateUrl( $workflow, $action, $query );
 	}
 
-	public function renderPost( PostRevision $post, Block $block, $return = true ) {
+	public function renderPost( PostRevision $post, TopicBlock $block, $return = true ) {
 		if ( $post->isTopicTitle() ) {
 			throw new InvalidDataException( 'Cannot render topic with ' . __METHOD__, 'fail-load-data' );
 		}
@@ -200,6 +202,18 @@ class Templating {
 			'root' => $root,
 			'postActionMenu' => $actionMenu,
 			'postView' => $view
+		), $return );
+	}
+
+	public function renderHeader( Header $header, HeaderBlock $block, User $user, $template = '', $return = true ) {
+		if ( !$template ) {
+			$template = 'flow:header.html.php';
+		}
+		return $this->render( $template, array(
+			'block' => $block,
+			'workflow' => $block->getWorkflow(),
+			'header' => $header,
+			'user' => $user,
 		), $return );
 	}
 
@@ -358,6 +372,10 @@ class Templating {
 				return wfMessage( 'flow-error-other' )->escaped();
 			}
 		}
+	}
+
+	public function getUsernames() {
+		return $this->usernames;
 	}
 
 	/**

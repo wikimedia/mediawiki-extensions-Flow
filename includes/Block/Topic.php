@@ -19,6 +19,7 @@ use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
+use Flow\View\PostRevisionView;
 
 class TopicBlock extends AbstractBlock {
 
@@ -52,9 +53,7 @@ class TopicBlock extends AbstractBlock {
 	 */
 	protected $requestedPost = array();
 
-	// POST actions, GET do not need to be listed
-	// unrecognized GET actions fallback to 'view'
-	protected $supportedActions = array(
+	protected $supportedPostActions = array(
 		// Standard editing
 		'edit-post', 'reply',
 		// Moderation
@@ -62,6 +61,10 @@ class TopicBlock extends AbstractBlock {
 		'moderate-post', 'hide-post', 'delete-post', 'suppress-post', 'restore-post',
 		// Other stuff
 		'edit-title',
+	);
+
+	protected $supportedGetActions = array(
+		'view', 'post-history', 'topic-history', 'edit-post', 'edit-title', 'compare-post-revisions',
 	);
 
 	/**
@@ -439,50 +442,21 @@ class TopicBlock extends AbstractBlock {
 				'topicTitle' => $this->newRevision ?: $topicTitle, // if already submitted, use submitted revision,
 			), $return );
 
-		case 'compare-revisions':
-			if ( ! isset( $options['oldRevision'] ) || ! isset( $options['newRevision'] ) ) {
-				throw new InvalidInputException( 'Two revisions must be specified to compare them', 'revision-comparison' );
+		case 'compare-post-revisions':
+			if ( !isset( $options['newRevision'] ) ) {
+				throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
 			}
 
-			$oldRevId = UUID::create( $options['oldRevision'] );
-			$newRevId = UUID::create( $options['newRevision'] );
-
-			/** @var PostRevision $oldRev */
-			/** @var PostRevision $newRev */
-			list( $oldRev, $newRev ) = $this->storage->getMulti(
-				'PostRevision',
-				array(
-					$oldRevId,
-					$newRevId
-				)
-			);
-
-			// In theory the backend will return things in increasing PK order
-			// (i.e. earlier revision first), but let's be sure.
-			if (
-				$oldRev->getRevisionId()->getTimestamp() >
-				$newRev->getRevisionId()->getTimestamp()
-			) {
-				$temp = $oldRev;
-				$oldRev = $newRev;
-				$newRev = $temp;
+			$revisionView = PostRevisionView::newFromId( $options['newRevision'], $templating, $this );
+			if ( !$revisionView ) {
+				throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
 			}
 
-			if ( ! $oldRev->getPostId()->equals( $newRev->getPostId() ) ) {
-				throw new InvalidInputException( 'Attempt to compare revisions of different posts', 'revision-comparison' );
+			if ( isset( $options['oldRevision'] ) ) {
+				return $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
+			} else {
+				return $revisionView->renderDiffViewAgainstPrevious( $return );
 			}
-
-			$templating->getOutput()->addModules( 'ext.flow.history' );
-
-			return $prefix . $templating->render(
-				'flow:compare-revisions.html.php',
-				array(
-					'block' => $this,
-					'user' => $this->user,
-					'oldRevision' => $oldRev,
-					'newRevision' => $newRev,
-				), $return
-			);
 			break;
 
 		default:
@@ -508,7 +482,14 @@ class TopicBlock extends AbstractBlock {
 			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
 				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
 			} elseif ( isset( $options['revId'] ) ) {
-				return $this->renderRevision( $templating, $options, $return );
+				$revisionView = PostRevisionView::newFromId( $options['revId'], $templating, $this );
+				if ( !$revisionView ) {
+					throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
+				} else if ( !$this->permissions->isAllowed( $revisionView->getRevision(), 'view' ) ) {
+					$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
+					return null;
+				}
+				return $revisionView->renderSingleView( $return );
 			} else {
 				return $prefix . $templating->renderTopic(
 					$root,
@@ -516,40 +497,6 @@ class TopicBlock extends AbstractBlock {
 					$return
 				);
 			}
-		}
-	}
-
-	protected function renderRevision( Templating $templating, array $options, $return = false ) {
-		$postRevision = $this->loadRequestedRevision( $options['revId'] );
-
-		if ( !$postRevision ) {
-			return '';
-		}
-
-		// @todo Do we perhaps want to show the children that did exist at the time of editing?
-		$postRevision->setChildren( array() );
-
-		$prefix = $templating->render(
-			'flow:revision-permalink-warning.html.php',
-			array(
-				'block' => $this,
-				'revision' => $postRevision,
-			),
-			$return
-		);
-
-		if ( $postRevision->isTopicTitle() ) {
-			return $prefix . $templating->renderTopic(
-				$postRevision,
-				$this,
-				$return
-			);
-		} else {
-			return $prefix . $templating->renderPost(
-				$postRevision,
-				$this,
-				$return
-			);
 		}
 	}
 
@@ -931,27 +878,6 @@ class TopicBlock extends AbstractBlock {
 
 		$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
 		return null;
-	}
-
-	protected function loadRequestedRevision( $revisionId ) {
-		if ( !$revisionId instanceof UUID ) {
-			$revisionId = UUID::create( $revisionId );
-		}
-
-		$found = $this->storage->get( 'PostRevision', $revisionId );
-
-		if ( !$found ) {
-			throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
-		} else if ( !$this->permissions->isAllowed( $found, 'view' ) ) {
-			$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
-			return null;
-		}
-
-		// using the path to the root post, we can know the post's depth
-		$rootPath = $this->rootLoader->treeRepo->findRootPath( $found->getPostId() );
-		$found->setDepth( count( $rootPath ) - 1 );
-
-		return $found;
 	}
 
 	protected function loadHistorical( PostRevision $post ) {
