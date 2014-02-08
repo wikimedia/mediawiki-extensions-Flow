@@ -219,8 +219,27 @@ $c['storage.board_history'] = $c->share( function( $c ) {
 } );
 
 // Arbitrary bit of revisioned wiki-text attached to a workflow
+$c['storage.header.lifecycle-handlers'] = $c->share( function( $c ) {
+	global $wgContLang;
+	return array(
+		new Flow\Data\HeaderRecentChanges(
+			$c['repository.username'],
+			$c['storage'],
+			$wgContLang
+		),
+		$c['storage.board_history.index'],
+		new Flow\Data\UserNameListener(
+			$c['repository.username'],
+			array(
+				'rev_user_id' => 'rev_user_wiki',
+				'rev_mod_user_id' => 'rev_mod_user_wiki',
+				'rev_edit_user_id' => 'rev_edit_user_wiki'
+			)
+		),
+	);
+} );
 $c['storage.header'] = $c->share( function( $c ) {
-	global $wgFlowExternalStore, $wgContLang;
+	global $wgFlowExternalStore;
 
 	$cache = $c['memcache.buffered'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Header' );
@@ -247,20 +266,7 @@ $c['storage.header'] = $c->share( function( $c ) {
 		),
 	);
 
-	$handlers = array(
-		new Flow\Data\HeaderRecentChanges( $c['repository.username'], $c['storage'], $wgContLang ),
-		$c['storage.board_history.index'],
-		new Flow\Data\UserNameListener(
-			$c['repository.username'],
-			array(
-				'rev_user_id' => 'rev_user_wiki',
-				'rev_mod_user_id' => 'rev_mod_user_wiki',
-				'rev_edit_user_id' => 'rev_edit_user_wiki'
-			)
-		),
-	);
-
-	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
+	return new ObjectManager( $mapper, $storage, $indexes, $c['storage.header.lifecycle-handlers'] );
 } );
 
 // List of topic workflows and their owning discussion workflow
@@ -292,8 +298,27 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 	return new ObjectManager( $mapper, $storage, $indexes );
 } );
 // Individual post within a topic workflow
+$c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
+	global $wgContLang;
+	return array(
+		new Flow\Log\PostModerationLogger( $c['logger'] ),
+		new Flow\Data\PostRevisionRecentChanges( $c['repository.username'], $c['storage'], $c['repository.tree'], $wgContLang ),
+		$c['storage.board_history.index'],
+		new Flow\Data\UserNameListener(
+			$c['repository.username'],
+			array(
+				'rev_user_id' => 'rev_user_wiki',
+				'rev_mod_user_id' => 'rev_mod_user_wiki',
+				'rev_edit_user_id' => 'rev_edit_user_wiki',
+				'tree_orig_user_id' => 'tree_orig_user_wiki'
+			)
+		),
+		$c['collection.cache'],
+	);
+} );
+
 $c['storage.post'] = $c->share( function( $c ) {
-	global $wgFlowExternalStore, $wgContLang;
+	global $wgFlowExternalStore;
 	$cache = $c['memcache.buffered'];
 	$treeRepo = $c['repository.tree'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\PostRevision' );
@@ -333,23 +358,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 		) ),
 	);
 
-	$handlers = array(
-		new Flow\Log\PostModerationLogger( $c['storage'], $c['repository.tree'], $c['logger'] ),
-		new Flow\Data\PostRevisionRecentChanges( $c['repository.username'], $c['storage'], $c['repository.tree'], $wgContLang ),
-		$c['storage.board_history.index'],
-		new Flow\Data\UserNameListener(
-			$c['repository.username'],
-			array(
-				'rev_user_id' => 'rev_user_wiki',
-				'rev_mod_user_id' => 'rev_mod_user_wiki',
-				'rev_edit_user_id' => 'rev_edit_user_wiki',
-				'tree_orig_user_id' => 'tree_orig_user_wiki'
-			)
-		),
-		$c['collection.cache'],
-	);
-
-	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
+	return new ObjectManager( $mapper, $storage, $indexes, $c['storage.post.lifecycle-handlers'] );
 } );
 // Storage implementation for user subscriptions, separate from storage.user_subs so it
 // can be used in storage.user_subs.user_index as well.

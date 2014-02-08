@@ -3,6 +3,8 @@
 namespace Flow;
 
 class Container extends \Pimple {
+	static private $container;
+
 	/**
 	 * Get a Flow Container
 	 * IMPORTANT: If you are using this function, consider if you can achieve
@@ -15,11 +17,18 @@ class Container extends \Pimple {
 	 * @return Container
 	 */
 	public static function getContainer() {
-		static $container;
-		if ( $container === null ) {
-			$container = include __DIR__ . '/../container.php';
+		if ( self::$container === null ) {
+			self::$container = include __DIR__ . '/../container.php';
 		}
-		return $container;
+		return self::$container;
+	}
+
+	/**
+	 * Reset the container, do not use during a normal request.  This is
+	 * only for unit tests that need a fresh container.
+	 */
+	public static function reset() {
+		self::$container = null;
 	}
 
 	/**

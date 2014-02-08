@@ -78,7 +78,6 @@ class PermissionsTest extends PostRevisionTestCase {
 
 	protected function tearDown() {
 		parent::tearDown();
-
 		$this->block->delete();
 	}
 

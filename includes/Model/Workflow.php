@@ -126,6 +126,8 @@ class Workflow {
 			'workflow_lock_state' => $obj->lockState,
 			'workflow_definition_id' => $obj->definitionId->getBinary(),
 			'workflow_last_update_timestamp' => $obj->lastModified,
+			// not used, but set it to empty string so it doesn't fail in strict mode
+			'workflow_name' => '',
 		);
 	}
 
