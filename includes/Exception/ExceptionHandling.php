@@ -82,9 +82,16 @@ class FlowException extends MWException {
 		 * trace (parent::getHTML) and then just return the combined HTML.
 		 */
 		$output = new OutputPage();
-		$output->showErrorPage( 'errorpagetitle', $this->getErrorCode() );
+		$output->showErrorPage( $this->getErrorPageTitle(), $this->getErrorCode() );
 		$output->addHTML( parent::getHTML() );
 		return $output->getHTML();
+	}
+
+	/**
+	 * Error page title
+	 */
+	protected function getErrorPageTitle() {
+		return 'errorpagetitle';
 	}
 
 	/**
@@ -151,6 +158,13 @@ class InvalidInputException extends FlowException {
 class InvalidActionException extends FlowException {
 	protected function getErrorCodeList() {
 		return array ( 'invalid-action'	);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function getErrorPageTitle() {
+		return 'nosuchaction';
 	}
 
 	/**

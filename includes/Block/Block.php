@@ -71,7 +71,19 @@ abstract class AbstractBlock implements Block {
 	protected $submitted;
 	protected $errors;
 	protected $action;
-	protected $supportedActions = array();
+
+	/**
+	 * A list of supported post actions
+	 * @var array
+	 */
+	protected $supportedPostActions = array();
+
+	/**
+	 * A list of supported get actions
+	 * @var array
+	 */
+	protected $supportedGetActions = array();
+
 	protected $notificationController;
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController ) {
@@ -94,7 +106,7 @@ abstract class AbstractBlock implements Block {
 	}
 
 	public function onSubmit( $action, User $user, array $data  ) {
-		if ( false === array_search( $action, $this->supportedActions ) ) {
+		if ( false === array_search( $action, $this->supportedPostActions ) ) {
 			return null;
 		}
 
@@ -104,6 +116,15 @@ abstract class AbstractBlock implements Block {
 		$this->validate();
 
 		return !$this->hasErrors();
+	}
+
+	public function onRender( $action, Templating $templating, array $options ) {
+		if ( !in_array( $action, $this->supportedGetActions ) ) {
+			return false;
+		}
+
+		$this->render( $templating, $options );
+		return true;
 	}
 
 	/**
@@ -175,7 +196,7 @@ abstract class AbstractBlock implements Block {
 	/**
 	 * Run through AbuseFilter and friends.
 	 * @todo Having to call spamFilter in each place that creates a revision
-	 *  is error-prone. 
+	 *  is error-prone.
 	 *
 	 * @param AbstractRevision|null $old null when $new is first revision
 	 * @param AbstractRevision $new
@@ -194,4 +215,7 @@ abstract class AbstractBlock implements Block {
 		return false;
 	}
 
+	public function getUser() {
+		return $this->user;
+	}
 }

@@ -4,12 +4,14 @@ namespace Flow;
 
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
+use Flow\Block\HeaderBlock;
 use Flow\Data\UserNameBatch;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Header;
 use Flow\View\PostActionMenu;
 use OutputPage;
+use User;
 // These dont really belong here
 use Html;
 use Linker;
@@ -203,6 +205,18 @@ class Templating {
 		), $return );
 	}
 
+	public function renderHeader( Header $header, HeaderBlock $block, User $user, $template = '', $return = true ) {
+		if ( !$template ) {
+			$template = 'flow:header.html.php';
+		}
+		return $this->render( $template, array(
+			'block' => $block,
+			'workflow' => $block->getWorkflow(),
+			'header' => $header,
+			'user' => $user,
+		), $return );
+	}
+
 	// An ideal world may pull this from the container, but for now this is fine.  This templating
 	// class has too many responsibilities to keep receiving all required objects in the constructor.
 	protected function createActionMenu( PostRevision $post, Block $block ) {
@@ -358,6 +372,10 @@ class Templating {
 				return wfMessage( 'flow-error-other' )->escaped();
 			}
 		}
+	}
+
+	public function getUsernames() {
+		return $this->usernames;
 	}
 
 	/**
