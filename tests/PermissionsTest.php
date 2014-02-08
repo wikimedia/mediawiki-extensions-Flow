@@ -71,12 +71,6 @@ class PermissionsTest extends PostRevisionTestCase {
 		$this->block->insert();
 	}
 
-	protected function tearDown() {
-		parent::tearDown();
-
-		$this->block->delete();
-	}
-
 	/**
 	 * Provides User, PostRevision (or null) & action to testPermissions, as
 	 * well as the expected result: whether or not a certain user should be
