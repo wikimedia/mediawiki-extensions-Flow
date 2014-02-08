@@ -161,8 +161,7 @@ class HeaderBlock extends AbstractBlock {
 				'historyExists' => false,
 			);
 
-			$history = $this->filterBoardHistory( $this->loadBoardHistory() );
-
+			$history = $this->loadBoardHistory();
 			if ( $history ) {
 				$tplVars['historyExists'] = true;
 				$tplVars['history'] = new History( $history );
@@ -181,58 +180,6 @@ class HeaderBlock extends AbstractBlock {
 				'user' => $this->user,
 			) );
 		}
-	}
-
-	protected function filterBoardHistory( array $history ) {
-		// get rid of history entries user doesn't have sufficient permissions for
-		$query = $needed = array();
-		foreach ( $history as $i => $revision ) {
-			switch( $revision->getRevisionType() ) {
-				case 'header':
-					// headers can't be moderated
-					break;
-				case 'post':
-					if ( $revision->isTopicTitle() ) {
-						$needed[$revision->getPostId()->getHex()] = $i;
-						$query[] = array( 'tree_rev_descendant_id' => $revision->getPostId() );
-					} else {
-						// comments should not be in board history
-						unset( $history[$i] );
-					}
-					break;
-			}
-		}
-
-		if ( !$needed ) {
-			return $history;
-		}
-
-		// check permissions against most recent revision
-		$found = $this->storage->findMulti(
-			'PostRevision',
-			$query,
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-		);
-		foreach ( $found as $newest ) {
-			$newest = reset( $newest );
-			$id = $newest->getPostId()->getHex();
-
-			if ( isset( $needed[$id] ) ) {
-				$i = $needed[$id];
-				unset( $needed[$id] );
-
-				if ( !$this->permissions->isAllowed( $newest, 'board-history' ) ) {
-					unset( $history[$i] );
-				}
-			}
-		}
-
-		// not found
-		foreach ( $needed as $i ) {
-			unset( $history[$i] );
-		}
-
-		return $history;
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
@@ -262,13 +209,22 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	protected function loadBoardHistory() {
-		$found = $this->storage->find(
+		$history = $this->storage->find(
 			'BoardHistoryEntry',
 			array( 'topic_list_id' => $this->workflow->getId() ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 300 )
 		);
+		if ( $history ) {
+			// get rid of history entries user doesn't have sufficient permissions for
+			foreach ( $history as $i => $revision ) {
+				// only check against the specific revision, ignoring the most recent
+				if ( !$this->permissions->isRevisionAllowed( $revision, 'post-history' ) ) {
+					unset( $history[$i] );
+				}
+			}
 
-		if ( $found === false ) {
+			return $history;
+		} else {
 			throw new InvalidDataException( 'Unable to load topic list history for ' . $this->workflow->getId()->getHex(), 'fail-load-history' );
 		}
 
