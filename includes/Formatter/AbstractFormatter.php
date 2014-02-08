@@ -291,17 +291,16 @@ abstract class AbstractFormatter {
 	 * back on the i18n messages also used for Flow history, as defined in
 	 * FlowActions.
 	 *
-	 * @param Workflow $workflow
+	 * @param UUID $workflowId
 	 * @param string $blockType
 	 * @param AbstractRevision $revision
 	 * @return string
 	 */
-	public function getActionDescription( Workflow $workflow, $blockType, AbstractRevision $revision ) {
+	public function getActionDescription( UUID $workflowId, $blockType, AbstractRevision $revision ) {
 		// Build description message, piggybacking on history i18n
 		$changeType = $revision->getChangeType();
 		$msg = $this->actions->getValue( $changeType, 'history', 'i18n-message' );
 		$params = $this->actions->getValue( $changeType, 'history', 'i18n-params' );
-		$workflowId = $workflow->getId();
 
 		foreach ( $params as &$param ) {
 			$param = $this->processParam( $param, $revision, $workflowId, $blockType );
