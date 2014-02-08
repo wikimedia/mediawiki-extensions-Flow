@@ -72,7 +72,7 @@ class View {
 
 		$parameters = $loader->extractBlockParameters( $request, $blocks );
 		foreach ( $blocks as $block ) {
-			$block->render( $this->templating, $parameters[$block->getName()] );
+			$block->onRender( $this->templating, $parameters[$block->getName()] );
 		}
 		$this->output->addHTML( "</div>" );
 	}
