@@ -23,20 +23,7 @@ class Formatter extends AbstractFormatter {
 		$ctx = $cl->getContext();
 		$lang = $ctx->getLanguage();
 
-		/*
-		 * @todo:
-		 * We should some day introduce a hook in core that allows us to hook
-		 * into the full resultset, so we can first loop all entries and pre-
-		 * load workflows & revisions all at once.
-		 *
-		 * Since that's not yet the case, multiple queries (up to $wgFeedLimit)
-		 * may occur. Assuming revisions (yes) and workflow (less likely) are
-		 * all different, there can be $wgFeedLimit * 2 queries to DB or cache.
-		 */
-		$workflow = $this->loadWorkflow( UUID::create( $changeData['workflow'] ) );
-		if ( !$workflow ) {
-			return false;
-		}
+		$workflowId = UUID::create( $changeData['workflow'] );
 
 		/**
 		 * Check to make sure revision_type exists, this is to make sure corrupted
@@ -47,6 +34,15 @@ class Formatter extends AbstractFormatter {
 			return false;
 		}
 
+		/*
+		 * @todo:
+		 * We should some day introduce a hook in core that allows us to hook
+		 * into the full resultset, so we can first loop all entries and pre-
+		 * load revisions all at once.
+		 *
+		 * Since that's not yet the case, multiple queries (up to $wgFeedLimit)
+		 * may occur. There can be $wgFeedLimit * 2 queries to DB or cache.
+		 */
 		$revision = $this->loadRevision( UUID::create( $changeData['revision'] ), $changeData['revision_type'] );
 		if ( !$revision ) {
 			return false;
@@ -55,7 +51,7 @@ class Formatter extends AbstractFormatter {
 		$links = (array) $this->buildActionLinks(
 			$title,
 			$revision->getChangeType(),
-			$workflow->getId(),
+			$workflowId,
 			method_exists( $revision, 'getPostId' ) ? $revision->getPostId() : null
 		);
 
@@ -81,7 +77,7 @@ class Formatter extends AbstractFormatter {
 		$dateFormats = $this->getDateFormats( $revision, $user, $lang );
 		$formattedTime = '<span class="mw-changeslist-date">' . $dateFormats['time'] . '</span>';
 
-		$workflowLink = $this->workflowLink( $title, $workflow->getId() );
+		$workflowLink = $this->workflowLink( $title, $workflowId );
 		$workflowLink = Html::element(
 			'a',
 			array( 'href' => $workflowLink[0] ),
@@ -95,7 +91,7 @@ class Formatter extends AbstractFormatter {
 			. ' '
 			. $this->changeSeparator()
 			. ' '
-			. $this->getActionDescription( $workflow, $changeData['block'], $revision );
+			. $this->getActionDescription( $workflowId, $changeData['block'], $revision );
 	}
 
 	protected function changeSeparator() {
