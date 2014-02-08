@@ -333,7 +333,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 	);
 
 	$handlers = array(
-		new Flow\Log\PostModerationLogger( $c['storage'], $c['repository.tree'], $c['logger'] ),
+		new Flow\Log\PostModerationLogger( $c['logger'] ),
 		new Flow\Data\PostRevisionRecentChanges( $c['repository.username'], $c['storage'], $c['repository.tree'], $wgContLang ),
 		$c['storage.board_history.index'],
 		new Flow\Data\UserNameListener(
