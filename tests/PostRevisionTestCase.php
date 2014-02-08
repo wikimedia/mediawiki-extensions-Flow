@@ -2,11 +2,18 @@
 
 namespace Flow\Tests;
 
+use Flow\Data\RecentChanges as RecentChangesHandler;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\Workflow;
 use Flow\Model\UUID;
+use Flow\Container;
 use User;
 
+/**
+ * @group Flow
+ * @group Database
+ */
 class PostRevisionTestCase extends \MediaWikiTestCase {
 	/**
 	 * PostRevision object, created from $this->generatePost()
@@ -15,13 +22,26 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 	 */
 	protected $revision;
 
+	protected $workflow;
+
 	/**
 	 * Creates a $this->revision object, for use in classes that extend this one.
 	 */
 	protected function setUp() {
 		parent::setUp();
-
+		Container::reset();
+		$this->generateWorkflowForPost();
 		$this->revision = $this->generateObject();
+	}
+
+	/**
+	 * Reset the container and with it any state
+	 */
+	protected function tearDown() {
+		parent::tearDown();
+		Container::get( 'storage.workflow' )->remove( $this->workflow );
+		// Needed because not all cases do the reset in setUp yet
+		Container::reset();
 	}
 
 	/**
@@ -36,7 +56,7 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 	 * @return array
 	 */
 	protected function generateRow( array $row = array() ) {
-		$uuidPost = UUID::create();
+		$this->generateWorkflowForPost();
 		$uuidRevision = UUID::create();
 
 		$user = User::newFromName( 'UTSysop' );
@@ -62,13 +82,40 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 			'rev_edit_user_ip' => null,
 
 			// flow_tree_revision
-			'tree_rev_descendant_id' => $uuidPost->getBinary(),
+			'tree_rev_descendant_id' => $this->workflow->getId()->getBinary(),
 			'tree_rev_id' => $uuidRevision->getBinary(),
 			'tree_orig_create_time' => wfTimestampNow(),
 			'tree_orig_user_id' => $userId,
 			'tree_orig_user_ip' => $userIp,
 			'tree_parent_id' => null,
 		);
+	}
+
+	/**
+	 * Populate a fake workflow in the unittest database
+	 */
+	protected function generateWorkflowForPost() {
+		if ( $this->workflow ) {
+			return;
+		}
+		list( $userId, $userIp ) = PostRevision::userFields( User::newFromName( 'UTSysop' ) );
+
+		$row = array(
+			'workflow_id' => UUID::create()->getBinary(),
+			'workflow_wiki' => wfWikiId(),
+			// The test workflow has no real associated page, this is
+			// just a random page number
+			'workflow_page_id' => 1,
+			'workflow_namespace' => NS_USER_TALK,
+			'workflow_title_text' => 'Test',
+			'workflow_user_id' => $userId,
+			'workflow_user_ip' => $userIp,
+			'workflow_lock_state' => 0,
+			'workflow_definition_id' => UUID::create()->getBinary(),
+			'workflow_last_update_timestamp' => wfTimestampNow(),
+		);
+		$this->workflow = Workflow::fromStorageRow( $row );
+		Container::get( 'storage' )->put( $this->workflow );
 	}
 
 	/**
@@ -91,5 +138,20 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 		$revision->setDepth( $depth );
 
 		return $revision;
+	}
+
+	protected function clearRecentChangesLifecycleHandlers() {
+		// Recent changes logging is outside the scope of this test, and
+		// causes interaction issues
+		$c = Container::getContainer();
+		foreach ( array( 'header', 'post' ) as $kind ) {
+			$key = "storage.$kind.lifecycle-handlers";
+			$c[$key] = array_filter(
+				$c[$key],
+				function( $handler ) {
+					return !$handler instanceof RecentChangesHandler;
+				}
+			);
+		}
 	}
 }

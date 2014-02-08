@@ -9,24 +9,13 @@ use Flow\Model\PostRevision;
 use Flow\Repository\TreeRepository;
 
 class PostModerationLogger implements LifecycleHandler {
-	/**
-	 * @var ManagerGroup
-	 */
-	protected $storage;
-
-	/**
-	 * @var TreeRepository
-	 */
-	protected $treeRepo;
 
 	/**
 	 * @var Logger
 	 */
 	protected $logger;
 
-	function __construct( ManagerGroup $storage, TreeRepository $treeRepo, Logger $logger ) {
-		$this->storage = $storage;
-		$this->treeRepo = $treeRepo;
+	function __construct( Logger $logger ) {
 		$this->logger = $logger;
 	}
 
@@ -60,18 +49,11 @@ class PostModerationLogger implements LifecycleHandler {
 		}
 
 		if ( $this->logger->canLog( $post, $post->getChangeType() ) ) {
-			$rootPostId = $post->getRootPost()->getPostId();
-			$workflow = $this->storage->get( 'Workflow', $rootPostId );
-			if ( !$workflow ) {
-				// unless in unit test, write to log
-				wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow " . $rootPostId->getAlphadecimal() );
-				return;
-			}
-
+			$workflowId = $post->getRootPost()->getPostId();
 			$logParams = array();
 
 			if ( $post->isTopicTitle() ) {
-				$logParams['topicId'] = $workflow->getId();
+				$logParams['topicId'] = $workflowId;
 			} else {
 				$logParams['postId'] = $post->getRevisionId();
 			}
@@ -80,7 +62,7 @@ class PostModerationLogger implements LifecycleHandler {
 				$post,
 				$post->getChangeType(),
 				$post->getModeratedReason(),
-				$workflow,
+				$workflowId,
 				$logParams
 			);
 		}
