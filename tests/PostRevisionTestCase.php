@@ -2,11 +2,18 @@
 
 namespace Flow\Tests;
 
+use Flow\Data\RecentChanges as RecentChangesHandler;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\Workflow;
 use Flow\Model\UUID;
+use Flow\Container;
 use User;
 
+/**
+ * @group Flow
+ * @group Database
+ */
 class PostRevisionTestCase extends \MediaWikiTestCase {
 	/**
 	 * PostRevision object, created from $this->generatePost()
@@ -20,8 +27,17 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 	 */
 	protected function setUp() {
 		parent::setUp();
-
+		Container::reset();
 		$this->revision = $this->generateObject();
+	}
+
+	/**
+	 * Reset the container and with it any state
+	 */
+	protected function tearDown() {
+		parent::tearDown();
+		// Needed because not all cases do the reset in setUp yet
+		Container::reset();
 	}
 
 	/**
@@ -36,7 +52,7 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 	 * @return array
 	 */
 	protected function generateRow( array $row = array() ) {
-		$uuidPost = UUID::create();
+		$uuidPost = $this->createWorkflowForPost();
 		$uuidRevision = UUID::create();
 
 		$user = User::newFromName( 'UTSysop' );
@@ -72,6 +88,29 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 	}
 
 	/**
+	 * Populate a fake workflow in the unittest database
+	 */
+	protected function createWorkflowForPost() {
+		list( $userId, $userIp ) = PostRevision::userFields( User::newFromName( 'UTSysop' ) );
+
+		$row = array(
+			'workflow_id' => UUID::create()->getBinary(),
+			'workflow_wiki' => wfWikiId(),
+			'workflow_page_id' => 1,
+			'workflow_namespace' => NS_USER_TALK,
+			'workflow_title_text' => 'Test',
+			'workflow_user_id' => $userId,
+			'workflow_user_ip' => $userIp,
+			'workflow_lock_state' => 0,
+			'workflow_definition_id' => UUID::create()->getBinary(),
+			'workflow_last_update_timestamp' => wfTimestampNow(),
+		);
+		$workflow = Workflow::fromStorageRow( $row );
+		Container::get( 'storage' )->put( $workflow );
+		return $workflow->getId();
+	}
+
+	/**
 	 * Returns a PostRevision object.
 	 *
 	 * You can pass in arguments to override default data.
@@ -91,5 +130,20 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 		$revision->setDepth( $depth );
 
 		return $revision;
+	}
+
+	protected function clearRecentChangesLifecycleHandlers() {
+		// Recent changes logging is outside the scope of this test, and
+		// causes interaction issues
+		$c = Container::getContainer();
+		foreach ( array( 'header', 'post' ) as $kind ) {
+			$key = "storage.$kind.lifecycle-handlers";
+			$c[$key] = array_filter(
+				$c[$key],
+				function( $handler ) {
+					return !$handler instanceof RecentChangesHandler;
+				}
+			);
+		}
 	}
 }

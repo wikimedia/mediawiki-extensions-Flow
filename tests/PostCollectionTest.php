@@ -28,6 +28,9 @@ class PostCollectionTest extends PostRevisionTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		// recent changes isn't fully setup here, just skip it
+		$this->clearRecentChangesLifecycleHandlers();
+
 		// generate a post with multiple revisions
 		$this->revisions[] = $revision = $this->generateObject( array(
 			'rev_content' => 'first revision',
