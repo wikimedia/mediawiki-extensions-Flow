@@ -417,43 +417,6 @@ class TopicBlock extends AbstractBlock {
 
 		case 'topic-history':
 			$history = $this->loadTopicHistory();
-
-			// get rid of history entries user doesn't have sufficient permissions for
-			$needed = $query = array();
-			foreach ( $history as $i => $revision ) {
-				$hex = $revision->getPostId()->getAlphadecimal();
-				if ( !isset( $needed[$hex] ) ) {
-					$query[] = array( 'tree_rev_descendant_id' => $revision->getPostId() );
-				}
-				$needed[$hex][] = $i;
-			}
-			$found = $this->storage->findMulti(
-				'PostRevision',
-				$query,
-				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-			);
-			foreach ( $found as $newest ) {
-				$newest = reset( $newest );
-				$hex = $newest->getPostId()->getAlphadecimal();
-				if ( !isset( $needed[$hex] ) ) {
-					wfWarn( __METHOD__ . ': Received unrequested postId : ' . $hex );
-					continue;
-				}
-				$indexes = $needed[$hex];
-				unset( $needed[$hex] );
-				if ( !$this->permissions->isAllowed( $newest, 'topic-history' ) ) {
-					foreach ( $indexes as $i ) {
-						unset( $history[$i] );
-					}
-				}
-			}
-			foreach ( $needed as $hex => $indexes ) {
-				wfWarn( __METHOD__ . ': Did not receive postId: ' . $hex );
-				foreach ( $indexes as $i ) {
-					unset( $history[$i] );
-				}
-			}
-
 			$root = $this->loadRootPost();
 			if ( !$root ) {
 				return;
@@ -609,17 +572,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		$history = array();
-		// don't show post history if user doesn't have permissions
-		// @todo: if some day, we have rev-delete, we'll need to also check for that in here
-		if ( $this->permissions->isAllowed( $post, 'post-history' ) ) {
-			// get rid of history entries user doesn't have sufficient permissions for
-			foreach ( $this->getHistory( $options['postId'] ) as $i => $post ) {
-				if ( $this->permissions->isAllowed( $post, 'post-history' ) ) {
-					$history[$i] = $post;
-				}
-			}
-		}
+		$history = $this->getHistory( $options['postId'] );
 
 		return $templating->render( "flow:post-history.html.php", array(
 			'block' => $this,
@@ -797,11 +750,24 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function getHistory( $postId ) {
-		return $this->storage->find(
+		$history = $this->storage->find(
 			'PostRevision',
 			array( 'tree_rev_descendant_id' => UUID::create( $postId ) ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 		);
+		if ( $history ) {
+			// get rid of history entries user doesn't have sufficient permissions for
+			foreach ( $history as $i => $revision ) {
+				// only check against the specific revision, ignoring the most recent
+				if ( !$this->permissions->isRevisionAllowed( $revision, 'post-history' ) ) {
+					unset( $history[$i] );
+				}
+			}
+
+			return $history;
+		} else {
+			throw new InvalidDataException( 'Unable to load post history for post ' . $postId, 'fail-load-history' );
+		}
 	}
 
 	protected function getHistoryBatch( $postIds ) {
@@ -889,13 +855,21 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function loadTopicHistory() {
-		$found = $this->storage->find(
+		$history = $this->storage->find(
 			'PostRevision',
 			array( 'topic_root_id' => $this->workflow->getId() ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 		);
-		if ( $found ) {
-			return $found;
+		if ( $history ) {
+			// get rid of history entries user doesn't have sufficient permissions for
+			foreach ( $history as $i => $revision ) {
+				// only check against the specific revision, ignoring the most recent
+				if ( !$this->permissions->isRevisionAllowed( $revision, 'topic-history' ) ) {
+					unset( $history[$i] );
+				}
+			}
+
+			return $history;
 		} else {
 			throw new InvalidDataException( 'Unable to load topic history for topic ' . $this->workflow->getId()->getAlphadecimal(), 'fail-load-history' );
 		}
