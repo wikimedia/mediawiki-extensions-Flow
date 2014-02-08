@@ -100,6 +100,7 @@ class UrlGenerator {
 	 */
 	public function generateBlockUrl( $workflow, AbstractRevision $revision, $specificRevision = false ) {
 		$data = array();
+		$action = 'view';
 		switch ( $revision->getRevisionType() ) {
 			case 'post':
 				if ( !$revision->isTopicTitle() ) {
@@ -110,8 +111,14 @@ class UrlGenerator {
 					$data['topic_revId'] = $revision->getRevisionId()->getAlphadecimal();
 				}
 			break;
+			case 'header':
+				if ( $specificRevision ) {
+					$data['header_revId'] = $revision->getRevisionId()->getAlphadecimal();
+				}
+				$action = 'header-view';
+			break;
 		}
-		return $this->generateUrl( $workflow, 'view', $data );
+		return $this->generateUrl( $workflow, $action, $data );
 	}
 
 	/**
