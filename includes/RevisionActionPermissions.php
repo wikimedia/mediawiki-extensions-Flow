@@ -53,25 +53,12 @@ class RevisionActionPermissions {
 	 * @return bool
 	 */
 	public function isAllowed( AbstractRevision $revision = null, $action ) {
-		// Users must have the core 'edit' permission to perform any write action in flow
-		$performsWrites = $this->actions->getValue( $action, 'performs-writes' );
-		if ( $performsWrites && ( !$this->user->isAllowed( 'edit' ) || $this->user->isBlocked() ) ) {
-			return false;
+		$allowed = $this->isRevisionAllowed( $revision, $action );
+
+		// if there was no revision object, it's pointless to find last revision
+		if ( !$revision instanceof AbstractRevision ) {
+			return $allowed;
 		}
-
-		$permission = $this->getPermission( $revision, $action );
-
-		// If no permission is defined for this state, then the action is not allowed
-		// check if permission is set for this action
-		if ( $permission === null ) {
-			return false;
-		}
-
-		// Check if user is allowed to perform action against this revision
-		$allowed = call_user_func_array(
-			array( $this->user, 'isAllowedAny' ),
-			(array) $permission
-		);
 
 		// Also check if the user would be allowed to perform this against
 		// against the most recent revision (unless it's already the most recent
@@ -79,10 +66,10 @@ class RevisionActionPermissions {
 		// checking against a revision at one point in time alone isn't enough.
 		$last = $revision->getRevisionable()->getLastRevision();
 
-		// check if $revision is not already the most recent, to prevent
-		// infinite recursion in this method
+		// check if $revision is not already the most recent, in which case the
+		// additional check is pointless
 		$isLastRevision = $last->getRevisionId()->getHex() == $revision->getRevisionId()->getHex();
-		return $allowed && ( $isLastRevision || $this->isAllowed( $last, $action ) );
+		return $allowed && ( $isLastRevision || $this->isRevisionAllowed( $last, $action ) );
 	}
 
 	/**
@@ -101,6 +88,65 @@ class RevisionActionPermissions {
 
 		foreach ( $actions as $action ) {
 			$allowed |= $this->isAllowed( $revision, $action );
+
+			// as soon as we've found one that is allowed, break
+			if ( $allowed ) {
+				break;
+			}
+		}
+
+		return $allowed;
+	}
+
+	/**
+	 * Check if a user is allowed to perform a certain action, only against 1
+	 * specific revision (whereas the default isAllowed() will check if the
+	 * given $action is allowed for both given and the most current revision)
+	 *
+	 * @param AbstractRevision[optional] $revision
+	 * @param string $action
+	 * @return bool
+	 */
+	public function isRevisionAllowed( AbstractRevision $revision = null, $action ) {
+		// Users must have the core 'edit' permission to perform any write action in flow
+		$performsWrites = $this->actions->getValue( $action, 'performs-writes' );
+		if ( $performsWrites && ( !$this->user->isAllowed( 'edit' ) || $this->user->isBlocked() ) ) {
+			return false;
+		}
+
+		$permission = $this->getPermission( $revision, $action );
+
+		// If no permission is defined for this state, then the action is not allowed
+		// check if permission is set for this action
+		if ( $permission === null ) {
+			return false;
+		}
+
+		// Check if user is allowed to perform action against this revision
+		return call_user_func_array(
+			array( $this->user, 'isAllowedAny' ),
+			(array) $permission
+		);
+	}
+
+	/**
+	 * Check if a user is allowed to perform certain actions, only against 1
+	 * specific revision (whereas the default isAllowed() will check if the
+	 * given $action is allowed for both given and the most current revision)
+	 *
+	 * @param AbstractRevision[optional] $revision
+	 * @param string $action
+	 * @param string[optional] $action2 Overloadable to check if either of the provided actions are allowed
+	 * @return bool
+	 */
+	public function isRevisionAllowedAny( AbstractRevision $revision = null, $action /* [, $action2 [, ... ]] */ ) {
+		$actions = func_get_args();
+		// Pull $revision out of the actions list
+		array_shift( $actions );
+		$allowed = false;
+
+		foreach ( $actions as $action ) {
+			$allowed |= $this->isRevisionAllowed( $revision, $action );
 
 			// as soon as we've found one that is allowed, break
 			if ( $allowed ) {
