@@ -50,7 +50,16 @@ abstract class AbstractBlock implements Block {
 	protected $submitted;
 	protected $errors;
 	protected $action;
-	protected $supportedActions = array();
+	protected $supportedPostActions = array();
+	/**
+	 * A list of supported get actions
+	 * @var array
+	 *
+	 * array( '*' ) - support all actions, unrecognized action defaults to 'view'
+	 * array( '*', 'foo' ) - support all actions except action 'foo', unrecognized action deaults to 'view'
+	 * array( 'foo' ) - support only action 'foo'
+	 */
+	protected $supportedGetActions = array( '*' );
 	protected $notificationController;
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController ) {
@@ -73,7 +82,7 @@ abstract class AbstractBlock implements Block {
 	}
 
 	public function onSubmit( $action, User $user, array $data  ) {
-		if ( false === array_search( $action, $this->supportedActions ) ) {
+		if ( false === array_search( $action, $this->supportedPostActions ) ) {
 			return null;
 		}
 
@@ -83,6 +92,19 @@ abstract class AbstractBlock implements Block {
 		$this->validate();
 
 		return !$this->errors;
+	}
+
+	public function onRender( Templating $templating, array $options ) {
+		if ( in_array( '*', $this->supportedGetActions ) ) {
+			if ( in_array( $this->action, $this->supportedGetActions ) ) {
+				return null;
+			}
+		} else {
+			if ( !in_array( $this->action, $this->supportedGetActions ) ) {
+				return null;
+			}
+		}
+		$this->render( $templating, $options );
 	}
 
 	/**

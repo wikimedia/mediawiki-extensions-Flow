@@ -94,7 +94,25 @@ switch( $newRevision->getRevisionType() ) {
 			);
 		break;
 	case 'header':
-		// @todo later
+		$boardLinkTitle = $block->getWorkflow()->getArticleTitle();
+		$boardLink = $templating->getUrlGenerator()
+			->buildUrl(
+				$boardLinkTitle,
+				'view'
+			);
+		$historyLink = $templating->getUrlGenerator()
+			->generateUrl(
+				$block->getWorkflow(),
+				'board-history'
+			);
+		$headerMsg = wfMessage( 'flow-compare-revisions-header-header' )
+			->params(
+				$block->getWorkflow()->getArticleTitle(),
+				$this->usernames->get( wfWikiId(), $newRevision->getUserId() ),
+				$boardLink,
+				$historyLink
+			);
+		break;
 	default:
 		throw new \Flow\Exception\InvalidDataException( "Unsupported revision type ".$newRevision->getRevisionType(), 'fail-load-data' );
 }

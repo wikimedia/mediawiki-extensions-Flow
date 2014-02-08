@@ -155,6 +155,7 @@ $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/Revi
 $wgAutoloadClasses['Flow\Data\HeaderRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 
 // The individual workflow pieces
+$wgAutoloadClasses['Flow\Block\BoardHistoryBlock'] = $dir . 'includes/Block/BoardHistory.php';
 $wgAutoloadClasses['Flow\Block\Block'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\AbstractBlock'] = $dir . 'includes/Block/Block.php';
 $wgAutoloadClasses['Flow\Block\HeaderBlock'] = $dir . 'includes/Block/Header.php';
