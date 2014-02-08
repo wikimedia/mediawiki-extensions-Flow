@@ -9,6 +9,7 @@ use Flow\UrlGenerator;
 use ManualLogEntry;
 use User;
 use Closure;
+use Flow\Model\UUID;
 
 class Logger {
 	/**
@@ -54,11 +55,11 @@ class Logger {
 	 * @param PostRevision $post
 	 * @param string $action The action we'll be logging
 	 * @param string $reason Comment, reason for the moderation
-	 * @param Workflow $workflow Workflow being worked on
+	 * @param UUID $workflowId Workflow being worked on
 	 * @param array $params Additional parameters to be saved
 	 * @return int The id of the newly inserted log entry
 	 */
-	public function log( PostRevision $post, $action, $reason, Workflow $workflow, $params = array() ) {
+	public function log( PostRevision $post, $action, $reason, UUID $workflowId, $params = array() ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( !$this->canLog( $post, $action ) ) {
@@ -69,7 +70,7 @@ class Logger {
 		$logType = $this->getLogType( $post, $action );
 
 		list( $title ) = $this->urlGenerator->generateUrlData(
-			$workflow,
+			$workflowId,
 			'view',
 			$params
 		);
