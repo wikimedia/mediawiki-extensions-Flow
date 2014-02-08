@@ -12,14 +12,19 @@ use Flow\Model\Workflow;
 use Flow\Model\Header;
 use Flow\Templating;
 use User;
+use Flow\Model\UUID;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
+use Flow\Exception\InvalidInputException;
+use Flow\View\RevisionView;
+use Flow\View\HeaderRevisionView;
 
 class HeaderBlock extends AbstractBlock {
 
 	protected $header;
 	protected $needCreate = false;
-	protected $supportedActions = array( 'edit-header' );
+	protected $supportedPostActions = array( 'edit-header' );
+	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'header-view' );
 
 	/**
 	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
@@ -149,89 +154,46 @@ class HeaderBlock extends AbstractBlock {
 		}
 	}
 
-	public function render( Templating $templating, array $options ) {
-		// Render board history view in header block, topiclist block will not be renderred
-		// when action = 'board-history'
-		if ( $this->action === 'board-history' ) {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
-			$tplVars = array(
-				'title' => wfMessage( 'flow-board-history', $this->workflow->getArticleTitle() )->escaped(),
-				'historyExists' => false,
-			);
+	public function render( Templating $templating, array $options, $return = false ) {
+		$templating->getOutput()->addModuleStyles( array( 'ext.flow.header' ) );
+		$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
 
-			$history = $this->filterBoardHistory( $this->loadBoardHistory() );
-
-			if ( $history ) {
-				$tplVars['historyExists'] = true;
-				$tplVars['history'] = new History( $history );
-				$tplVars['historyRenderer'] = new HistoryRenderer( $templating, $this );
-			}
-
-			$templating->render( "flow:board-history.html.php", $tplVars );
-		} else {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.header' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
-			$templateName = ( $this->action == 'edit-header' ) ? 'edit-header' : 'header';
-			$templating->render( "flow:$templateName.html.php", array(
-				'block' => $this,
-				'workflow' => $this->workflow,
-				'header' => $this->header,
-				'user' => $this->user,
-			) );
-		}
-	}
-
-	protected function filterBoardHistory( array $history ) {
-		// get rid of history entries user doesn't have sufficient permissions for
-		$query = $needed = array();
-		foreach ( $history as $i => $revision ) {
-			switch( $revision->getRevisionType() ) {
-				case 'header':
-					// headers can't be moderated
-					break;
-				case 'post':
-					if ( $revision->isTopicTitle() ) {
-						$needed[$revision->getPostId()->getAlphadecimal()] = $i;
-						$query[] = array( 'tree_rev_descendant_id' => $revision->getPostId() );
-					} else {
-						// comments should not be in board history
-						unset( $history[$i] );
-					}
-					break;
-			}
-		}
-
-		if ( !$needed ) {
-			return $history;
-		}
-
-		// check permissions against most recent revision
-		$found = $this->storage->findMulti(
-			'PostRevision',
-			$query,
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-		);
-		foreach ( $found as $newest ) {
-			$newest = reset( $newest );
-			$id = $newest->getPostId()->getAlphadecimal();
-
-			if ( isset( $needed[$id] ) ) {
-				$i = $needed[$id];
-				unset( $needed[$id] );
-
-				if ( !$this->permissions->isAllowed( $newest, 'board-history' ) ) {
-					unset( $history[$i] );
+		switch ( $this->action ) {
+			case 'compare-header-revisions':
+				if ( !isset( $options['newRevision'] ) ) {
+					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
 				}
-			}
-		}
+				$revisionView = HeaderRevisionView::newFromId( $options['newRevision'], $templating, $this );
+				if ( !$revisionView ) {
+					throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
+				}
 
-		// not found
-		foreach ( $needed as $i ) {
-			unset( $history[$i] );
-		}
+				if ( isset( $options['oldRevision'] ) ) {
+					return $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
+				} else {
+					return $revisionView->renderDiffViewAgainstPrevious( $return );
+				}
+			break;
 
-		return $history;
+			case 'edit-header':
+				return $templating->renderHeader( $this->header, $this, $this->user, 'flow:edit-header.html.php', $return );
+			break;
+
+			default:
+				if ( isset( $options['revId'] ) ) {
+					$revisionView = HeaderRevisionView::newFromId( $options['revId'], $templating, $this );
+					if ( !$revisionView ) {
+						throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
+					} else if ( !$this->permissions->isAllowed( $revisionView->getRevisionModel(), 'view' ) ) {
+						$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
+						return null;
+					}
+					return $revisionView->renderSingleView( $return );
+				} else {
+					return $templating->renderHeader( $this->header, $this, $this->user, 'flow:header.html.php', $return );
+				}
+			break;
+		}
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
@@ -258,20 +220,6 @@ class HeaderBlock extends AbstractBlock {
 		);
 
 		return $output;
-	}
-
-	protected function loadBoardHistory() {
-		$found = $this->storage->find(
-			'BoardHistoryEntry',
-			array( 'topic_list_id' => $this->workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 300 )
-		);
-
-		if ( $found === false ) {
-			throw new InvalidDataException( 'Unable to load topic list history for ' . $this->workflow->getId()->getAlphadecimal(), 'fail-load-history' );
-		}
-
-		return $found;
 	}
 
 	public function getName() {
