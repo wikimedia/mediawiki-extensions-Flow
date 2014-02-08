@@ -28,6 +28,9 @@ class PostCollectionTest extends PostRevisionTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		// recent changes isn't fully setup here, just skip it
+		$this->clearRecentChangesLifecycleHandlers();
+
 		// generate a post with multiple revisions
 		$this->revisions[] = $revision = $this->generateObject( array(
 			'rev_content' => 'first revision',
@@ -47,7 +50,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 			'tree_rev_descendant_id' => $revision->getPostId()->getBinary(),
 		) );
 
-		$this->storage = Container::get( 'storage.post' );
+		$this->storage = $c['storage.post'];
 		foreach ( $this->revisions as $revision ) {
 			$this->storage->put( $revision );
 		}
