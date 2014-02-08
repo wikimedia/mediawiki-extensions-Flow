@@ -176,7 +176,7 @@ class Post {
 	protected function getLatestDiffLink( AbstractBlock $block ) {
 		$compareLink = $this->urlGenerator->generateUrl(
 			$block->getWorkflow(),
-			'compare-revisions',
+			'compare-post-revisions',
 			array(
 				$block->getName().'_newRevision' => $this->post->getRevisionId()->getAlphadecimal(),
 				$block->getName().'_oldRevision' => $this->post->getPrevRevisionId()->getAlphadecimal()

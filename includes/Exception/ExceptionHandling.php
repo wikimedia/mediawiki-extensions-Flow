@@ -61,12 +61,19 @@ class FlowException extends MWException {
 	}
 
 	/**
+	 * Error page title
+	 */
+	protected function getErrorPageTitle() {
+		return 'errorpagetitle';
+	}
+
+	/**
 	 * Exception from API/commandline will be handled by MWException::report(),
 	 * Overwrite the HTML display only
 	 */
 	public function reportHTML() {
 		$this->output->setStatusCode( $this->getStatusCode() );
-		$this->output->showErrorPage( 'errorpagetitle', $this->getErrorCode() );
+		$this->output->showErrorPage( $this->getErrorPageTitle(), $this->getErrorCode() );
 		$this->output->output();
 	}
 
@@ -113,6 +120,13 @@ class InvalidInputException extends FlowException {
 class InvalidActionException extends FlowException {
 	protected function getErrorCodeList() {
 		return array ( 'invalid-action'	);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected function getErrorPageTitle() {
+		return 'nosuchaction';
 	}
 
 	/**
