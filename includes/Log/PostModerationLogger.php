@@ -9,9 +9,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Repository\TreeRepository;
 
 class PostModerationLogger implements LifecycleHandler {
-	function __construct( ManagerGroup $storage, TreeRepository $treeRepo, Logger $logger ) {
-		$this->storage = $storage;
-		$this->treeRepo = $treeRepo;
+	function __construct( Logger $logger ) {
 		$this->logger = $logger;
 	}
 
@@ -23,8 +21,7 @@ class PostModerationLogger implements LifecycleHandler {
 		}
 
 		if ( $this->logger->canLog( $object, $object->getChangeType() ) ) {
-			$rootPostId = $object->getRootPost()->getPostId();
-			$workflow = $this->storage->get( 'Workflow', $rootPostId );
+			$workflowId = $object->getRootPost()->getPostId();
 			$logParams = array();
 
 			if ( $object->isTopicTitle() ) {
@@ -37,7 +34,7 @@ class PostModerationLogger implements LifecycleHandler {
 				$object,
 				$object->getChangeType(),
 				$object->getModeratedReason(),
-				$workflow,
+				$workflowId,
 				$logParams
 			);
 		}
