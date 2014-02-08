@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_a6423e3d",
+        "filename": "includes/CheckUser/Formatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-02-08T00:44:12Z",
+      "side": 1,
+      "message": "$message-\u003esetContext( $checkUser-\u003egetContext() )-\u003etext()?",
+      "revId": "1ab968dfda919f851064998710416374dde88e70",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_26574e07",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-02-08T00:44:12Z",
+      "side": 1,
+      "message": "Why not $message-\u003esetContext( $cl )-\u003etext() ?",
+      "revId": "1ab968dfda919f851064998710416374dde88e70",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
