@@ -1296,6 +1296,27 @@ $messages['br'] = array(
 	'flow-topic-complete' => 'Gwel klok',
 );
 
+/** Bosnian (bosanski)
+ * @author DzWiki
+ */
+$messages['bs'] = array(
+	'flow-edit-header-link' => 'Uredi zaglavlje',
+	'flow-post-actions' => 'Akcije',
+	'flow-topic-actions' => 'Akcije',
+	'flow-cancel' => 'Otkaži',
+	'flow-show-change' => 'Prikaži izmjene',
+	'flow-newtopic-title-placeholder' => 'Nova tema',
+	'flow-newtopic-save' => 'Dodaj temu',
+	'flow-edit-post-submit' => 'Pošalji promjene',
+	'flow-post-action-post-history' => 'Historija',
+	'flow-post-action-delete-post' => 'Obriši',
+	'flow-post-action-hide-post' => 'Sakrij',
+	'flow-post-action-edit-post' => 'Uredi',
+	'flow-topic-action-edit-title' => 'Uredi naslov',
+	'flow-topic-action-history' => 'Historija',
+	'flow-history-day' => 'Danas',
+);
+
 /** Chechen (нохчийн)
  * @author Умар
  */
@@ -1606,13 +1627,14 @@ $messages['es'] = array(
 	'flow-post-moderated-toggle-delete-show' => 'Mostrar comentario {{GENDER:$1|deleted}} por $2',
 	'flow-post-moderated-toggle-suppress-show' => 'Mostrar comentario {{GENDER:$1|suppresed}} por $2',
 	'flow-post-moderated-toggle-hide-hide' => 'Ocultar comentario {{GENDER:$1|hidden}} por $2',
-	'flow-post-moderated-toggle-delete-hide' => 'Ocultar comentario {{GENDER:$1|deleted}} por $2',
+	'flow-post-moderated-toggle-delete-hide' => 'Ocultar comentario eliminado por $2', # Fuzzy
 	'flow-suppress-post-content' => '$2 ha suprimido este comentario', # Fuzzy
 	'flow-suppress-usertext' => '<em>Nombre de usuario suprimido</em>',
 	'flow-post-actions' => 'Acciones',
 	'flow-topic-actions' => 'Acciones',
 	'flow-cancel' => 'Cancelar',
 	'flow-preview' => 'Previsualizar',
+	'flow-show-change' => 'Mostrar cambios',
 	'flow-newtopic-title-placeholder' => 'Tema nuevo',
 	'flow-newtopic-content-placeholder' => 'Si quieres, añade detalles',
 	'flow-newtopic-header' => 'Añadir un nuevo tema',
@@ -1635,7 +1657,7 @@ $messages['es'] = array(
 	'flow-topic-action-view' => 'Enlace permanente',
 	'flow-topic-action-watchlist' => 'Lista de seguimiento',
 	'flow-topic-action-edit-title' => 'Editar título',
-	'flow-topic-action-history' => 'Historial del tema', # Fuzzy
+	'flow-topic-action-history' => 'Historial',
 	'flow-topic-action-hide-topic' => 'Ocultar el tema',
 	'flow-topic-action-delete-topic' => 'Eliminar el tema',
 	'flow-topic-action-suppress-topic' => 'Suprimir el tema',
@@ -1656,9 +1678,12 @@ $messages['es'] = array(
 	'flow-edit-title-submit' => 'Cambiar el título',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|editó}} un [$3 comentario].',
 	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|borró}} un [$4 comentario] (<em>$5</em>).',
+	'flow-board-history' => 'Historial de «$1»',
+	'flow-topic-history' => 'Historial del tema «$1»',
 	'flow-history-last4' => 'Últimas 4 horas',
 	'flow-history-day' => 'Hoy',
 	'flow-history-week' => 'Semana pasada',
+	'flow-history-pages-post' => 'Aparece en [$1 $2]',
 	'flow-comment-restored' => 'Comentario restaurado',
 	'flow-comment-deleted' => 'Comentario eliminado',
 	'flow-comment-hidden' => 'Comentario oculto',
@@ -1669,6 +1694,8 @@ $messages['es'] = array(
 	'flow-notification-reply' => '$1 respondió a tu [$5 publicación] de $2 en «$4».', # Fuzzy
 	'flow-notification-link-text-view-post' => 'Ver la entrada',
 	'flow-notification-link-text-view-topic' => 'Ver el tema',
+	'flow-link-topic' => 'tema',
+	'flow-link-history' => 'historial',
 	'flow-moderation-reason-placeholder' => 'Ingresa tu razón aquí',
 	'flow-moderation-title-suppress-post' => '¿Quieres suprimir la entrada?',
 	'flow-moderation-title-delete-post' => '¿Quieres eliminar la entrada?',
@@ -3885,6 +3912,8 @@ Apa kata anda {{GENDER:$2|memaklum balas}} $1 mengenai topik ini?',
  */
 $messages['nap'] = array(
 	'flow-show-change' => "Vere 'e cagnamiente",
+	'flow-post-action-post-history' => 'Cronologgia',
+	'flow-post-action-edit-post' => 'Càgna',
 );
 
 /** Norwegian Bokmål (norsk bokmål)
