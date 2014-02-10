@@ -10,6 +10,12 @@ class ApiQueryFlow extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgFlowMaintenanceMode;
+
+		if ( $wgFlowMaintenanceMode ) {
+			$this->dieUsage( 'Flow is currently in maintenance mode', 'maintenance' );
+		}
+
 		$this->container = Flow\Container::getContainer();
 		// Get the parameters
 		$params = $this->extractRequestParams();
