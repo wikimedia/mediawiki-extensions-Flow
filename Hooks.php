@@ -87,6 +87,8 @@ class FlowHooks {
 	}
 
 	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+		global $wgFlowMaintenanceMode;
+
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
 			$rcType = (int) $rc->getAttribute( 'rc_type' );
@@ -95,6 +97,11 @@ class FlowHooks {
 			}
 		} elseif ( $source !== Flow\Data\RecentChanges::SRC_FLOW ) {
 			return true;
+		}
+
+		if ( $wgFlowMaintenanceMode ) {
+			// render nothing for this line
+			return false;
 		}
 
 		$line = Container::get( 'recentchanges.formatter' )->format( $changesList, $rc );
@@ -138,13 +145,20 @@ class FlowHooks {
 	 * @return boolean True to continue processing as normal, False to abort.
 	 */
 	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
-		global $wgFlowCoreActionWhitelist;
+		global $wgFlowCoreActionWhitelist, $wgFlowMaintenanceMode;
 		$container = Container::getContainer();
 		$occupationController = $container['occupation_controller'];
 		$action = $wiki->getAction();
 
-		if ( $occupationController->isTalkpageOccupied( $title ) && !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
+		if ( !$occupationController->isTalkpageOccupied( $title ) || in_array( $action, $wgFlowCoreActionWhitelist ) ) {
+			return true;
+		}
 
+		if ( $wgFlowMaintenanceMode ) {
+			// @todo proper maint message, needs to be flow-error-other currently
+			// so we don't have to scap this when cherry-picking
+			$output->addHTML( wfMessage( 'flow-error-other' )->escaped() );
+		} else {
 			$view = new Flow\View(
 				$container['templating'],
 				$container['url_generator'],
@@ -168,11 +182,9 @@ class FlowHooks {
 				$e->setOutput( $output );
 				throw $e;
 			}
-
-			return false;
 		}
 
-		return true;
+		return false;
 	}
 
 	/**
@@ -328,7 +340,11 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
-		global $wgFlowOccupyNamespaces, $wgFlowOccupyPages;
+		global $wgFlowOccupyNamespaces, $wgFlowOccupyPages, $wgFlowMaintenanceMode;
+
+		if ( $wgFlowMaintenanceMode ) {
+			return true;
+		}
 
 		// Not searching within Flow namespace = ignore
 		// (but only if no individual pages are occupied)
