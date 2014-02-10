@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_a08d7938",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-10T23:21:55Z",
+      "side": 1,
+      "message": "Instead of cloning, it\u0027d be safer if this one did something like\n\n    return UUID::create( $input-\u003egetHex() );\n\nThat way, if a UUID object with old data is \"used\" in create, the back-compat code checking for input lengths would be fired ;)\n\nAfter discussing with Erik, we thought we should implement a __wakeup (and __sleep, for more compact serialization). The only way a UUID object may be \"outdated\" is when it\u0027s been unserialized (like in definition_options) - we should make a __sleep that pushes it through ::create for BC compat)",
+      "revId": "440ad05427141f65f0b09d4f73ab57b0916a1ac9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
