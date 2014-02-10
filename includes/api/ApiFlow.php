@@ -8,9 +8,15 @@ class ApiFlow extends ApiBase {
 	protected $container;
 
 	public function execute() {
+		global $wgFlowMaintenanceMode;
+
 		$this->container = Flow\Container::getContainer();
 		$params = $this->extractRequestParams();
 		$output = array();
+
+		if ( $wgFlowMaintenanceMode ) {
+			$this->dieUsage( 'Flow is currently in maintenance mode', 'maintenance' );
+		}
 
 		if ( ! $params['workflow'] && ! $params['page'] ) {
 			$this->dieUsage( 'One of workflow or page parameters must be provided', 'badparams' );

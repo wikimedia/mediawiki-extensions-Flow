@@ -87,6 +87,12 @@ class FlowHooks {
 	}
 
 	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+		global $wgFlowMaintenanceMode;
+
+		if ( $wgFlowMaintenanceMode ) {
+			return true;
+		}
+
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
 			$rcType = (int) $rc->getAttribute( 'rc_type' );
@@ -110,6 +116,12 @@ class FlowHooks {
 	}
 
 	public static function onSpecialCheckUserGetLinksFromRow( CheckUser $checkUser, $row, &$links ) {
+		global $wgFlowMaintenanceMode;
+
+		if ( $wgFlowMaintenanceMode ) {
+			return true;
+		}
+
 		if ( $row->cuc_type == RC_FLOW ) {
 			$replacement = Container::get( 'checkuser.formatter' )->format( $checkUser, $row );
 			if ( $replacement === null ) {
@@ -155,13 +167,20 @@ class FlowHooks {
 	 * @return boolean True to continue processing as normal, False to abort.
 	 */
 	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
-		global $wgFlowCoreActionWhitelist;
+		global $wgFlowCoreActionWhitelist, $wgFlowMaintenanceMode;
 		$container = Container::getContainer();
 		$occupationController = $container['occupation_controller'];
 		$action = $wiki->getAction();
 
-		if ( $occupationController->isTalkpageOccupied( $title ) && !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
+		if ( !$occupationController->isTalkpageOccupied( $title ) || in_array( $action, $wgFlowCoreActionWhitelist ) ) {
+			return true;
+		}
 
+		if ( $wgFlowMaintenanceMode ) {
+			// @todo proper maint message, needs to be flow-error-other currently
+			// so we don't have to scap this when cherry-picking
+			$output->addHTML( wfMessage( 'flow-error-other' )->escaped() );
+		} else {
 			$view = new Flow\View(
 				$container['templating'],
 				$container['url_generator'],
@@ -185,11 +204,9 @@ class FlowHooks {
 				$e->setOutput( $output );
 				throw $e;
 			}
-
-			return false;
 		}
 
-		return true;
+		return false;
 	}
 
 	/**
@@ -317,7 +334,12 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onContributionsLineEnding( $pager, &$ret, $row, &$classes ) {
-		if ( !isset( $row->flow_contribution ) || $row->flow_contribution !== 'flow' ) {
+		global $wgFlowMaintenanceMode;
+
+		if ( $wgFlowMaintenanceMode
+			|| !isset( $row->flow_contribution )
+			|| $row->flow_contribution !== 'flow' 
+		) {
 			return true;
 		}
 
@@ -344,7 +366,11 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
-		global $wgFlowOccupyNamespaces, $wgFlowOccupyPages;
+		global $wgFlowOccupyNamespaces, $wgFlowOccupyPages, $wgFlowMaintenanceMode;
+
+		if ( $wgFlowMaintenanceMode ) {
+			return true;
+		}
 
 		// Not searching within Flow namespace = ignore
 		// (but only if no individual pages are occupied)
@@ -381,9 +407,14 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onAbuseFilterComputeVariable( $method, AbuseFilterVariableHolder $vars, $parameters, &$result ) {
-		$spamfilter = Container::get( 'controller.abusefilter' );
+		global $wgFlowMaintenanceMode;
+
+		if ( $wgFlowMaintenanceMode ) {
+			return true;
+		}
 
 		// fetch all lazy-load methods
+		$spamfilter = Container::get( 'controller.abusefilter' );
 		$methods = $spamfilter->lazyLoadMethods();
 
 		// method isn't known here
