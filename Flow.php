@@ -352,3 +352,7 @@ $wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.
 
 // Actions that must pass through to MediaWiki on flow enabled pages
 $wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', 'watch' );
+
+// Display a "maintenance" message instead of a flow board on all pages
+$wgFlowMaintenanceMode = false;
+
