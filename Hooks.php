@@ -45,6 +45,8 @@ class FlowHooks {
 		if ( $updater->getDB()->getType() === 'sqlite' ) {
 			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id', "$dir/db_patches/patch-summary2header.sqlite.sql" );
 			$updater->modifyExtensionField( 'flow_revision', 'rev_comment', "$dir/db_patches/patch-rev_change_type.sqlite.sql" );
+			// sqlite ignores field types, this just substr's uuid's to 88 bits
+			$updater->modifyExtensionField( 'flow_definition', 'definition_id', "$dir/db_patches/patch-88bit_uuids.sqlite.sql" );
 		} else {
 			// sqlite doesn't support alter table change, it also considers all types the same so
 			// this patch doesn't matter to it.
@@ -53,6 +55,8 @@ class FlowHooks {
 			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id', "$dir/db_patches/patch-summary2header.sql" );
 			// rename rev_change_type -> rev_comment, alternate patch is above for sqlite
 			$updater->modifyExtensionField( 'flow_revision', 'rev_comment', "$dir/db_patches/patch-rev_change_type.sql" );
+			// convert 128 bit uuid's into 88bit
+			$updater->modifyExtensionField( 'flow_definition', 'definition_id', "$dir/db_patches/patch-88bit_uuids.sql" );
 		}
 
 		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_lookup', "$dir/db_patches/patch-workflow_lookup_idx.sql" );
@@ -87,6 +91,8 @@ class FlowHooks {
 	}
 
 	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
+		global $wgFlowMaintenanceMode;
+
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
 			$rcType = (int) $rc->getAttribute( 'rc_type' );
@@ -95,6 +101,11 @@ class FlowHooks {
 			}
 		} elseif ( $source !== Flow\Data\RecentChanges::SRC_FLOW ) {
 			return true;
+		}
+
+		if ( $wgFlowMaintenanceMode ) {
+			// dont print anything
+			return false;
 		}
 
 		$line = Container::get( 'recentchanges.formatter' )->format( $changesList, $rc );
@@ -139,13 +150,20 @@ class FlowHooks {
 	 * @return boolean True to continue processing as normal, False to abort.
 	 */
 	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
-		global $wgFlowCoreActionWhitelist;
+		global $wgFlowCoreActionWhitelist, $wgFlowMaintenanceMode;
 		$container = Container::getContainer();
 		$occupationController = $container['occupation_controller'];
 		$action = $wiki->getAction();
 
-		if ( $occupationController->isTalkpageOccupied( $title ) && !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
+		if ( !$occupationController->isTalkpageOccupied( $title ) || in_array( $action, $wgFlowCoreActionWhitelist ) ) {
+			return true;
+		}
 
+		if ( $wgFlowMaintenanceMode ) {
+			// @todo proper maint message, needs to be flow-error-other currently
+			// so we don't have to scap this when cherry-picking
+			$output->addHTML( wfMessage( 'flow-error-other' )->escaped() );
+		} else {
 			$view = new Flow\View(
 				$container['templating'],
 				$container['url_generator'],
@@ -169,11 +187,9 @@ class FlowHooks {
 				$e->setOutput( $output );
 				throw $e;
 			}
-
-			return false;
 		}
 
-		return true;
+		return false;
 	}
 
 	/**
@@ -329,7 +345,11 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
-		global $wgFlowOccupyNamespaces, $wgFlowOccupyPages;
+		global $wgFlowOccupyNamespaces, $wgFlowOccupyPages, $wgFlowMaintenanceMode;
+
+		if ( $wgFlowMaintenanceMode ) {
+			return true;
+		}
 
 		// Not searching within Flow namespace = ignore
 		// (but only if no individual pages are occupied)
@@ -366,9 +386,14 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onAbuseFilterComputeVariable( $method, AbuseFilterVariableHolder $vars, $parameters, &$result ) {
-		$spamfilter = Container::get( 'controller.abusefilter' );
+		global $wgFlowMaintenanceMode;
+
+		if ( $wgFlowMaintenanceMode ) {
+			return true;
+		}
 
 		// fetch all lazy-load methods
+		$spamfilter = Container::get( 'controller.abusefilter' );
 		$methods = $spamfilter->lazyLoadMethods();
 
 		// method isn't known here
