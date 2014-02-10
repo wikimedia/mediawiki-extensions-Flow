@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef7ef47_209ba9c2",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-10T22:40:23Z",
+      "side": 1,
+      "message": "Returning true will result in the line being rendered with core RC render-code, which will look pretty bad.\n\nWe should probably move this check down a bit (until after we\u0027ve checked if the $rc entry is Flow-related), then return false. That way, we just strip all Flow RC entries untli maintenance mode is back off (instead of displaying them badly formed)\n\nSame for other formatters.",
+      "revId": "b2c7bca904ca18982174933f413c8ac305feb617",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ef7ef47_60f891e2",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-10T22:40:23Z",
+      "side": 1,
+      "message": "I don\u0027t think (I may be wrong) that this hook fetches any Flow data, so we probably don\u0027t need this here.",
+      "revId": "b2c7bca904ca18982174933f413c8ac305feb617",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
