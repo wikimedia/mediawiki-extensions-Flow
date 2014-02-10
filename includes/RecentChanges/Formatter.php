@@ -51,6 +51,10 @@ class Formatter extends AbstractFormatter {
 			return false;
 		}
 
+		if ( !$this->getPermissions( $user )->isRevisionAllowed( $revision, 'recentchanges' ) ) {
+			return false;
+		}
+
 		$links = (array) $this->buildActionLinks(
 			$title,
 			$revision->getChangeType(),

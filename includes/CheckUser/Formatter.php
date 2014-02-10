@@ -21,6 +21,10 @@ class Formatter extends AbstractFormatter {
 			return null;
 		}
 
+		// @todo: this currently only implements CU links
+		// we'll probably want to add a hook to CheckUser that lets us blank out
+		// the entire line for entries that !isRevisionAllowed( <this-revision>, 'checkuser' )
+
 		$data = explode( ',', $row->cuc_comment );
 		$post = null;
 		switch( count( $data ) ) {

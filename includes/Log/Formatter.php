@@ -20,6 +20,12 @@ class Formatter extends \LogFormatter {
 		$skin = $this->plaintext ? null : $this->context->getSkin();
 		$params = $this->entry->getParameters();
 
+		// @todo: we should probably check if user isRevisionAllowed( <this-revision>, 'log' )
+		// unlike RC, Contributions, ... this one does not batch-load all Flow
+		// revisions & does not use the same Formatter, i18n message text, etc
+		// I assume this will change with https://trello.com/c/S10KfqBm/62-8-history-watchlist-rc-and-contribs-changes
+		// Then, we should also add in the isRevisionAllowed check!
+
 		// FIXME this is ugly. Why were we treating log parameters as
 		// URL GET parameters in the first place?
 		if ( isset( $params['postId'] ) ) {

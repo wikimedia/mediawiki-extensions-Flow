@@ -447,102 +447,6 @@ $wgFlowActions = array(
 		),
 	),
 
-	'post-history' => array(
-		'performs-writes' => false,
-		'log_type' => false,
-		'permissions' => array(
-			PostRevision::MODERATED_NONE => function( AbstractRevision $revision, RevisionActionPermissions $permissions ) {
-				// @todo: well, this does screw things up a bit because we're
-				// also checking against the most recent revision
-				// if that one was a restore, we still want all previous non-
-				// suppress-related stuff to show up...
-
-
-				// if a revision was the result of a restore-action, we have
-				// to look at the previous revision what the original moderation
-				// status was; permissions for the restore-actions visibility
-				// is the same as the moderation (e.g. if user can't see
-				// suppress actions, he can't see restores from suppress
-				if ( $revision->getChangeType() == 'restore-post' ) {
-					$revisionable = $revision->getRevisionable();
-					$previous = $revisionable->getPreviousRevision( $revision );
-
-					if ( $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
-						return '';
-					}
-
-					return $permissions->getPermission( $previous, 'topic-history' );
-				}
-
-				return '';
-			},
-			PostRevision::MODERATED_HIDDEN => '',
-			PostRevision::MODERATED_DELETED => '',
-			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
-		),
-		'button-method' => 'GET',
-	),
-
-	'topic-history' => array(
-		'performs-writes' => false,
-		'log_type' => false,
-		'permissions' => array(
-			PostRevision::MODERATED_NONE => function( AbstractRevision $revision, RevisionActionPermissions $permissions ) {
-				// if a revision was the result of a restore-action, we have
-				// to look at the previous revision what the original moderation
-				// status was; permissions for the restore-actions visibility
-				// is the same as the moderation (e.g. if user can't see
-				// suppress actions, he can't see restores from suppress
-				if ( $revision->getChangeType() == 'restore-post' ) {
-					$revisionable = $revision->getRevisionable();
-					$previous = $revisionable->getPreviousRevision( $revision );
-
-					if ( $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
-						return '';
-					}
-
-					return $permissions->getPermission( $previous, 'topic-history' );
-				}
-
-				return '';
-			},
-			PostRevision::MODERATED_HIDDEN => '',
-			PostRevision::MODERATED_DELETED => '',
-			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
-		),
-		'button-method' => 'GET',
-	),
-
-	'board-history' => array(
-		'performs-writes' => false,
-		'log_type' => false,
-		'permissions' => array(
-			PostRevision::MODERATED_NONE => function( AbstractRevision $revision, RevisionActionPermissions $permissions ) {
-				// if a revision was the result of a restore-action, we have
-				// to look at the previous revision what the original moderation
-				// status was; permissions for the restore-actions visibility
-				// is the same as the moderation (e.g. if user can't see
-				// suppress actions, he can't see restores from suppress
-				if ( $revision->getChangeType() == 'restore-post' ) {
-					$revisionable = $revision->getRevisionable();
-					$previous = $revisionable->getPreviousRevision( $revision );
-
-					if ( $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
-						return '';
-					}
-
-					return $permissions->getPermission( $previous, 'topic-history' );
-				}
-
-				return '';
-			},
-			PostRevision::MODERATED_HIDDEN => '',
-			PostRevision::MODERATED_DELETED => '',
-			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
-		),
-		'button-method' => 'GET',
-	),
-
 	'view' => array(
 		'performs-writes' => false,
 		'log_type' => false, // don't log views
@@ -592,6 +496,47 @@ $wgFlowActions = array(
 			),
 		),
 	),
+
+	'post-history' => array(
+		'performs-writes' => false,
+		'log_type' => false,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => function( AbstractRevision $revision, RevisionActionPermissions $permissions ) {
+				// if a revision was the result of a restore-action, we have
+				// to look at the previous revision what the original moderation
+				// status was; permissions for the restore-actions visibility
+				// is the same as the moderation (e.g. if user can't see
+				// suppress actions, he can't see restores from suppress
+				if ( $revision->getChangeType() == 'restore-post' ) {
+					$revisionable = $revision->getRevisionable();
+					$previous = $revisionable->getPreviousRevision( $revision );
+
+					if ( $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
+						return '';
+					}
+
+					return $permissions->getPermission( $previous, 'topic-history' );
+				}
+
+				return '';
+			},
+			PostRevision::MODERATED_HIDDEN => '',
+			PostRevision::MODERATED_DELETED => '',
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
+		),
+		'button-method' => 'GET',
+		'history' => array() // views don't generate history
+	),
+
+	// post/topic/board history have exact same config
+	'topic-history' => 'post-history',
+	'board-history' => 'post-history',
+
+	// log & all other formatters have same config as history
+	'log' => 'post-history',
+	'recentchanges' => 'post-history',
+	'contributions' => 'post-history',
+	'checkuser' => 'post-history',
 
 	/*
 	 * Backwards compatibility; these are old values that may have made their

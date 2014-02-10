@@ -30,6 +30,10 @@ class Formatter extends AbstractFormatter {
 		$user = $pager->getUser();
 		$title = $workflow->getArticleTitle();
 
+		if ( !$this->getPermissions( $user )->isRevisionAllowed( $revision, 'contributions' ) ) {
+			return false;
+		}
+
 		// Fetch required data
 		$charDiff = $this->getCharDiff( $revision, $row->previous_revision );
 		$description = $this->getActionDescription( $workflow, $row->blocktype, $revision );
