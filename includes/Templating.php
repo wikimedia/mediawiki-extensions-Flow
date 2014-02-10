@@ -308,7 +308,7 @@ class Templating {
 	 * @return string
 	 */
 	public function getUserText( AbstractRevision $revision ) {
-		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
+		if ( $this->permissions->isRevisionAllowed( $revision, 'view' ) ) {
 			return $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
 		} else {
 			$username = $this->usernames->get(
@@ -338,7 +338,7 @@ class Templating {
 	 * @return string                            HTML
 	 */
 	public function getUserLinks( AbstractRevision $revision ) {
-		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
+		if ( $this->permissions->isRevisionAllowed( $revision, 'view' ) ) {
 			$userid = $revision->getUserId();
 			$username = $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
 			return Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
@@ -375,7 +375,7 @@ class Templating {
 	 * @return string
 	 */
 	public function getCreatorText( PostRevision $revision ) {
-		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
+		if ( $this->permissions->isRevisionAllowed( $revision, 'view' ) ) {
 			return $this->usernames->get(
 				wfWikiId(),
 				$revision->getCreatorId(),
@@ -415,7 +415,7 @@ class Templating {
 	 * @return string HTML
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'html' ) {
-		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
+		if ( $this->permissions->isRevisionAllowed( $revision, 'view' ) ) {
 			$content = $revision->getContent( $format );
 
 			if ( $format === 'html' ) {
