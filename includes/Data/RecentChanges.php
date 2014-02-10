@@ -59,6 +59,7 @@ abstract class RecentChanges implements LifecycleHandler {
 		if ( $action === 'suppress-topic' || $action === 'suppress-post' ) {
 			// @todo: should be move this into FlowActions.php somehow?
 			// Suppression log entries should not go to recentchanges (bug 60814)
+			// @todo: does this still make sense in here? Formatter properly checks permissions now
 			return;
 		}
 

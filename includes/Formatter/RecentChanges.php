@@ -57,7 +57,9 @@ class RecentChanges extends AbstractFormatter {
 			return false;
 		}
 
-		if ( $this->hideRecord( $revision, $changeData ) ) {
+		if ( $this->hideRecord( $revision, $changeData )
+			|| !$this->getPermissions( $user )->isRevisionAllowed( $revision, 'recentchanges' ) 
+		) {
 			return false;
 		}
 

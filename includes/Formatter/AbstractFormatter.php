@@ -72,6 +72,11 @@ abstract class AbstractFormatter {
 	protected $revisions = array();
 
 	/**
+	 * @var array Array of [user id => RevisionActionPermissions object]
+	 */
+	protected $permissions = array();
+
+	/**
 	 * @param ManagerGroup $storage
 	 * @param FlowActions $actions
 	 * @param Templating $templating
@@ -83,6 +88,26 @@ abstract class AbstractFormatter {
 		$this->templating = $templating;
 
 		$this->urlGenerator = $this->templating->getUrlGenerator();
+	}
+
+	/**
+	 * @param User $user
+	 * @return RevisionActionPermissions
+	 */
+	protected function getPermissions( User $user ) {
+		if ( $user->getId() && isset( $this->permissions[$user->getId()] ) ) {
+			return $this->permissions[$user->getId()];
+		}
+
+		$permissions = new RevisionActionPermissions( $this->actions, $user );
+
+		// cache objects per user (will usually be only the person viewing
+		// whatever is using this formatter)
+		if ( $user->getId() ) {
+			$this->permissions[$user->getId()] = $permissions;
+		}
+
+		return $permissions;
 	}
 
 	/**
