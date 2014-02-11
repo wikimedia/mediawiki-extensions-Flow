@@ -16,6 +16,24 @@
       "revId": "f7bb2ccbd6139fb050526f0ba2cc9d071c16389d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_85d9c82e",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-11T17:12:54Z",
+      "side": 1,
+      "message": "Yeah; I\u0027m just not too keen on using inherited vars from a broader scope. Especially if it\u0027s not just in a 2-line script. Can get confusing.\n\nBut indeed, not needed here, just added for clarity :p",
+      "parentUuid": "4e04eb01_fc282998",
+      "revId": "f7bb2ccbd6139fb050526f0ba2cc9d071c16389d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
