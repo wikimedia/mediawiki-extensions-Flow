@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_5005bc12",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-11T18:11:33Z",
+      "side": 1,
+      "message": "I\u0027ll make getId (renamed to getIdFromRevision) static, don\u0027t need this workaround then",
+      "parentUuid": "4e04eb01_fc0f093a",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_9c06c522",
         "filename": "includes/Model/AbstractRevisionable.php",
         "patchSetId": 6
@@ -30,6 +48,41 @@
       "writtenOn": "2014-02-11T05:19:55Z",
       "side": 1,
       "message": "same as above",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_300a3025",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-11T18:11:33Z",
+      "side": 1,
+      "message": "I\u0027ll get rid of this method",
+      "parentUuid": "4e04eb01_9c06c522",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_65059c7c",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-11T18:11:33Z",
+      "side": 1,
+      "message": "Should be @return array",
       "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_45faa074",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-11T18:11:33Z",
+      "side": 1,
+      "message": "Because (I thought) $this-\u003egetAllRevisions() may return null, in which case array_shift/array_pop will complain.",
+      "parentUuid": "4e04eb01_5c215dab",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_7ffbeb11",
         "filename": "includes/Model/AbstractRevisionable.php",
         "patchSetId": 6
@@ -64,6 +135,24 @@
       "writtenOn": "2014-02-11T05:19:55Z",
       "side": 1,
       "message": "same cast question",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_25ff9464",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-11T18:11:33Z",
+      "side": 1,
+      "message": "To make sure null turns into array(), for array_pop",
+      "parentUuid": "4e04eb01_7ffbeb11",
       "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_e5c9ac56",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-11T18:11:33Z",
+      "side": 1,
+      "message": "Indeed.\n\nI\u0027d better just get rid of those, though - calls on Revisionable should not implicitly \"resolve\" to Revision.",
+      "parentUuid": "4e04eb01_9c2fe59c",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_bc32a104",
         "filename": "includes/Model/AbstractRevisionable.php",
         "patchSetId": 6
@@ -98,6 +205,24 @@
       "writtenOn": "2014-02-11T05:19:55Z",
       "side": 1,
       "message": "we don\u0027t have any (intentionally) direct read/write properties, so __get and __set are unnecessary",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_a5d3a404",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-11T18:11:33Z",
+      "side": 1,
+      "message": "Yep; I\u0027ll get rid of these magic functions.",
+      "parentUuid": "4e04eb01_bc32a104",
       "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -121,6 +246,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_a5ea849a",
+        "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-11T18:11:33Z",
+      "side": 1,
+      "message": "I assume you mean like:\n\n    $this-\u003erevisions[$previousId-\u003egetHex()] \u003d $revision;\n\nThat won\u0027t work correctly - that would add it as last element in the array; I want it to be added as first.\nI should add a comment to clarify.",
+      "parentUuid": "4e04eb01_df0b1f25",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_bf18537b",
         "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
         "patchSetId": 6
@@ -132,6 +275,24 @@
       "writtenOn": "2014-02-11T05:19:55Z",
       "side": 1,
       "message": "uuid\u0027s have an -\u003eequals( $uuid ) method",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_c5ed90b6",
+        "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-11T18:11:33Z",
+      "side": 1,
+      "message": "I only just discovered that yesterday :p",
+      "parentUuid": "4e04eb01_bf18537b",
       "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
