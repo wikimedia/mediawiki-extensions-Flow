@@ -140,7 +140,10 @@ class HeaderRecentChanges extends RecentChanges {
 		$workflowId = $object->getWorkflowId();
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 		if ( !$workflow ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow for header " . $object->getRevisionId()->getAlphadecimal() );
+			// unless in unit test, write to log
+			if ( !defined( 'MW_UNIT_TEST' ) ) {
+				wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow for header " . $object->getRevisionId()->getAlphadecimal() );
+			}
 			return;
 		}
 
@@ -186,7 +189,10 @@ class PostRevisionRecentChanges extends RecentChanges {
 		// These are likely already in the in-process cache
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 		if ( !$workflow ) {
-			wfWarn( __METHOD__ . ": could not locate workflow " . $workflowId->getAlphadecimal() );
+			// unless in unit test, write to log
+			if ( !defined( 'MW_UNIT_TEST' ) ) {
+				wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow " . $workflowId->getAlphadecimal() );
+			}
 			return;
 		}
 
