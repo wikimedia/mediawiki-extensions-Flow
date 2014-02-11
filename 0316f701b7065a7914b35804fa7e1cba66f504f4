@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_d05b0c56",
+        "filename": "includes/RevisionActionPermissions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-11T19:40:41Z",
+      "side": 1,
+      "message": "The method signature already guarantees $revision is an AbstractRevision",
+      "revId": "0316f701b7065a7914b35804fa7e1cba66f504f4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
