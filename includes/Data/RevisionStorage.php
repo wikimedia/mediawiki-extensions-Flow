@@ -332,7 +332,7 @@ abstract class RevisionStorage extends DbStorage {
 			array( 'rev_id' => $row['rev_id'] ),
 			__METHOD__
 		);
-		if ( !( $res && $res->numRows() ) ) {
+		if ( !$res ) {
 			return false;
 		}
 		return $this->removeRelated( $row );
