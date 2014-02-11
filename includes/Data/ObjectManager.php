@@ -1854,15 +1854,12 @@ class LocalBufferedCache extends BufferedCache {
 		$this->internal[$key] = $value;
 	}
 
-	/**
-	 * How to cache merge?  Wrap the callback, but it wont know about failure.
-	 *
-	 *
 	public function merge( $key, \Closure $callback, $attempts = 10 ) {
+		// data is being merged into this key, so invalidate the cached version
+		unset( $this->internal[$key] );
 
+		// @todo: we should figure out a way to properly implement this
 	}
-	 */
-
 }
 
 // wraps the write methods of memcache into a buffer which can be flushed
