@@ -1116,10 +1116,6 @@ abstract class FeatureIndex implements Index {
 
 		// Retrieve from cache
 		$cached = $this->cache->getMulti( array_keys( $keyToIdx ) );
-		foreach ( $cached as $i => $result ) {
-			$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
-			$cached[$i] = array_splice( $result, 0, $limit );
-		}
 		// expand partial results and merge into result set
 		foreach( $this->rowCompactor->expandCacheResult( $cached, $keyToQuery ) as $key => $rows ) {
 			foreach ( $keyToIdx[$key] as $idx ) {
