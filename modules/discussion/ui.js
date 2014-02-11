@@ -245,9 +245,6 @@
 			} );
 	} );
 
-	// Go!
-	$( document ).flow( 'registerInitFunction', mw.flow.discussion.init );
-
 	// Direct translation of wfBaseConvert.  Can't be done with parseInt and
 	// String.toString because javascript uses doubles for math, giving only
 	// 53 bits of precision.
