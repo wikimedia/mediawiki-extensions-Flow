@@ -20,12 +20,20 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_mod_reason',
 	);
 
-	// Delete when these columns are dropped from production
+	// This is to prevent 'Update not allowed on xxx error' when
+	// * obsolete columns have not been deleted
+	// * new columns are added, but code is not deployed yet
 	static protected $obsoleteUpdateColumns = array (
+		// Delete when these columns are dropped from production
 		'tree_orig_user_text',
 		'rev_user_text',
 		'rev_edit_user_text',
 		'rev_mod_user_text',
+		// Delete in the patch that handles these new columns
+		'tree_orig_user_wiki',
+		'rev_user_wiki',
+		'rev_mod_user_wiki',
+		'rev_edit_user_wiki',
 	);
 
 	protected $externalStores;
