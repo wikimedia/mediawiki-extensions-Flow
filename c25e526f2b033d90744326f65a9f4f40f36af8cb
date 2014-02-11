@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_fc0f093a",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-11T05:19:55Z",
+      "side": 1,
+      "message": "this, as noted, is a hack :P perhaps there should be an abstract method on AbstractRevision?",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_9c06c522",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-11T05:19:55Z",
+      "side": 1,
+      "message": "same as above",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_5c215dab",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-11T05:19:55Z",
+      "side": 1,
+      "message": "why (array) cast here?",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_7ffbeb11",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-11T05:19:55Z",
+      "side": 1,
+      "message": "same cast question",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_9c2fe59c",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-11T05:19:55Z",
+      "side": 1,
+      "message": "$arguments is an array, this either needs call_user_func_array or php5.6 for argument unpacking ;)",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_bc32a104",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-11T05:19:55Z",
+      "side": 1,
+      "message": "we don\u0027t have any (intentionally) direct read/write properties, so __get and __set are unnecessary",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_df0b1f25",
+        "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-11T05:19:55Z",
+      "side": 1,
+      "message": "only adding one item, prefer standard array syntax",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_bf18537b",
+        "filename": "includes/Model/LocalCacheAbstractRevisionable.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-11T05:19:55Z",
+      "side": 1,
+      "message": "uuid\u0027s have an -\u003eequals( $uuid ) method",
+      "revId": "c25e526f2b033d90744326f65a9f4f40f36af8cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
