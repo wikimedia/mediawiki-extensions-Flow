@@ -25,6 +25,14 @@ class PostModerationLogger implements LifecycleHandler {
 		if ( $this->logger->canLog( $object, $object->getChangeType() ) ) {
 			$rootPostId = $object->getRootPost()->getPostId();
 			$workflow = $this->storage->get( 'Workflow', $rootPostId );
+			if ( !$workflow ) {
+				// unless in unit test, write to log
+				if ( !defined( 'MW_UNIT_TEST' ) ) {
+					wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow " . $rootPostId->getAlphadecimal() );
+				}
+				return;
+			}
+
 			$logParams = array();
 
 			if ( $object->isTopicTitle() ) {

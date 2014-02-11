@@ -561,12 +561,18 @@ class ObjectLocator implements ObjectStorage {
 			if ( !$index->canAnswer( $keys, $options ) ) {
 				continue;
 			}
-			if ( !isset( $options['limit'] ) ) {
-				return $index;
-			}
-			// Find the smallest matching index
-			if ( $current === null || $index->getLimit() < $current->getLimit() ) {
+
+			// make sure at least some index is picked
+			if ( $current === null ) {
 				$current = $index;
+
+			// Find the smallest matching index
+			} else if ( isset( $options['limit'] ) ) {
+				$current = $index->getLimit() < $current->getLimit() ? $index : $current;
+
+			// if no limit specified, find biggest matching index
+			} else {
+				$current = $index->getLimit() > $current->getLimit() ? $index : $current;
 			}
 		}
 		if ( $current === null ) {
@@ -1480,12 +1486,12 @@ class UniqueFeatureIndex extends FeatureIndex {
 	}
 
 	public function queryOptions() {
-		return array( 'LIMIT' => 1 );
+		return array( 'LIMIT' => $this->getLimit() );
 	}
 
 	public function limitIndexSize( array $values ) {
-		if ( count( $values ) > 1 ) {
-			throw new DataModelException( 'Unique index should never have more than 1 value', 'process-data' );
+		if ( count( $values ) > $this->getLimit() ) {
+			throw new DataModelException( 'Unique index should never have more than ' . $this->getLimit() . ' value', 'process-data' );
 		}
 		return $values;
 	}
@@ -1906,6 +1912,8 @@ class LocalBufferedCache extends BufferedCache {
 	}
 
 	public function merge( $key, \Closure $callback, $attempts = 10 ) {
+		parent::merge( $key, $callback, $attempts );
+
 		// data is being merged into this key, so invalidate the cached version
 		unset( $this->internal[$key] );
 
