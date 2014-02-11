@@ -178,7 +178,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 		// These are likely already in the in-process cache
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
 		if ( !$workflow ) {
-			wfWarn( __METHOD__ . ": could not locate workflow " . $workflowId->getAlphadecimal() );
+//			wfWarn( __METHOD__ . ": could not locate workflow " . $workflowId->getAlphadecimal() ); // @todo: should not run in unittest
 			return;
 		}
 

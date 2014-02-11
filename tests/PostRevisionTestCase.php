@@ -51,7 +51,7 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 			'rev_flags' => 'html',
 			'rev_content' => 'test content',
 			'rev_change_type' => 'new-post',
-			'rev_mod_state' => null,
+			'rev_mod_state' => '',
 			'rev_mod_user_id' => null,
 			'rev_mod_user_ip' => null,
 			'rev_mod_timestamp' => null,
