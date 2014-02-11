@@ -2,6 +2,7 @@
 
 namespace Flow\Tests;
 
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use User;
@@ -51,7 +52,7 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 			'rev_flags' => 'html',
 			'rev_content' => 'test content',
 			'rev_change_type' => 'new-post',
-			'rev_mod_state' => null,
+			'rev_mod_state' => AbstractRevision::MODERATED_NONE,
 			'rev_mod_user_id' => null,
 			'rev_mod_user_ip' => null,
 			'rev_mod_timestamp' => null,

@@ -56,7 +56,7 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 			// fetch current oldest revision
 			$oldest = $this->getOldestLoaded();
 
-			// fetch that one's preceeding revision id
+			// fetch that one's preceding revision id
 			$previousId = $oldest->getPrevRevisionId();
 
 			// check if it's in local storage already
@@ -109,8 +109,7 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 		} else {
 			// otherwise, might as well fetch all previous revisions while we're at
 			// it - saves roundtrips to cache/db
-			unset( $options['limit'] );
-			$this->revisions = $this->getStorage()->find( $attributes, $options );
+			$this->getAllRevisions();
 			return reset( $this->revisions );
 		}
 	}
