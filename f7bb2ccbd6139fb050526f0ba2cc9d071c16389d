@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_fc282998",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-11T04:56:43Z",
+      "side": 1,
+      "message": "no need to pass $form and loadFunction, they inherit the scope implicitly",
+      "revId": "f7bb2ccbd6139fb050526f0ba2cc9d071c16389d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
