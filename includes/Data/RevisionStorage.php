@@ -457,7 +457,7 @@ class PostRevisionStorage extends RevisionStorage {
 	protected function removeRelated( array $row ) {
 		return $this->dbFactory->getDB( DB_MASTER )->delete(
 			$this->joinTable(),
-			array( $this-joinField() => $row['rev_id'] )
+			array( $this->joinField() => $row['rev_id'] )
 		);
 	}
 }
@@ -500,7 +500,7 @@ class HeaderRevisionStorage extends RevisionStorage {
 	protected function removeRelated( array $row ) {
 		return $this->dbFactory->getDB( DB_MASTER )->delete(
 			$this->joinTable(),
-			array( $this-joinField() => $row['rev_id'] )
+			array( $this->joinField() => $row['rev_id'] )
 		);
 	}
 }
