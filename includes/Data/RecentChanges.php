@@ -2,6 +2,7 @@
 
 namespace Flow\Data;
 
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
@@ -44,6 +45,7 @@ abstract class RecentChanges implements LifecycleHandler {
 	}
 
 	/**
+	 * @param AbstractRevision $rev The revision triggering this change row creation
 	 * @param string $action Action name (as defined in FlowActions)
 	 * @param string $block The block object's ->getName()
 	 * @param string $revisionType Classname of the Revision object
@@ -53,7 +55,7 @@ abstract class RecentChanges implements LifecycleHandler {
 	 * @param $timestamp
 	 * @param array $changes
 	 */
-	protected function insert( $action, $block, $revisionType, $revisionId, array $row, Workflow $workflow, $timestamp, array $changes ) {
+	protected function insert( AbstractRevision $rev, $action, $block, $revisionType, $revisionId, array $row, Workflow $workflow, $timestamp, array $changes ) {
 		if ( $action === 'suppress-topic' || $action === 'suppress-post' ) {
 			// @todo: should be move this into FlowActions.php somehow?
 			// Suppression log entries should not go to recentchanges (bug 60814)
@@ -72,18 +74,30 @@ abstract class RecentChanges implements LifecycleHandler {
 			$comment .= ',' . $changes['post'];
 		}
 
+		$oldLen = 0;
+		if ( !$rev->isFirstRevision() ) {
+			$prevRev = $rev->getRevisionable()
+					->getPreviousRevision( $rev );
+			if ( $prevRev ) {
+				// This almost certainly round trips through parsoid :(
+				$oldLen = mb_strlen( $prevRev->getContent( 'wikitext' ) );
+			} else {
+				wfDebugLog( __CLASS__, __METHOD__ . ': Expected previous revisions but couldn\'t locate one: ' . $rev->getPrevRevisionId()->getAlphadecimal() );
+			}
+		}
+
 		$attribs = array(
 			'rc_namespace' => $title->getNamespace(),
 			'rc_title' => $title->getDBkey(),
 			'rc_user' => $row['rev_user_id'],
 			'rc_user_text' => $this->usernames->get( wfWikiId(), $row['rev_user_id'], $row['rev_user_ip'] ),
 			'rc_type' => RC_FLOW,
-			'rc_source' => self::SRC_FLOW, // depends on core change in gerrit 85787
+			'rc_source' => self::SRC_FLOW,
 			'rc_minor' => 0,
 			'rc_bot' => 0, // TODO: is revision by bot
 			'rc_patrolled' => 0,
-			'rc_old_len' => 0,
-			'rc_new_len' => 0,
+			'rc_old_len' => $oldLen,
+			'rc_new_len' => mb_strlen( $rev->getContent( 'wikitext' ) ),
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
 			'rc_log_type' => null,
@@ -135,6 +149,7 @@ class HeaderRecentChanges extends RecentChanges {
 		}
 
 		$this->insert(
+			$object,
 			$object->getChangeType(),
 			'header',
 			'Header',
@@ -183,6 +198,7 @@ class PostRevisionRecentChanges extends RecentChanges {
 		}
 
 		$this->insert(
+			$object,
 			$object->getChangeType(),
 			'topic',
 			'PostRevision',
