@@ -62,17 +62,21 @@ class HistoryRenderer {
 		$this->batchLoadWorkflow( $history );
 
 		// Get history for pre-determined timespans.
+		$timestampFuture = new MWTimestamp( 1<<32 ); // end of unix epoch, to catch bugged future entries
 		$timestampLast4 = new MWTimestamp( strtotime( '4 hours ago' ) );
 		$timestampDay = new MWTimestamp( strtotime( date( 'Y-m-d' ) ) );
 		$timestampWeek = new MWTimestamp( strtotime( '1 week ago' ) );
 
 		$timespans = array();
-		$timespans[wfMessage( 'flow-history-last4' )->escaped()] = array( 'from' => $timestampLast4, 'to' => null );
+		$timespans[wfMessage( 'flow-history-last4' )->escaped()] = array( 'from' => $timestampLast4, 'to' => $timestampFuture );
 		// if now is within first 4 hours of the day, all histories would be included in '4 hours ago'
 		if ( $timestampDay < $timestampLast4 ) {
 			$timespans[wfMessage( 'flow-history-day' )->escaped()] = array( 'from' => $timestampDay, 'to' => $timestampLast4 );
 		}
-		$timespans[wfMessage( 'flow-history-week' )->escaped()] = array( 'from' => $timestampWeek, 'to' => $timestampDay );
+		$timespans[wfMessage( 'flow-history-week' )->escaped()] = array(
+			'from' => $timestampWeek,
+			'to' => min( $timestampLast4, $timestampDay )
+		);
 
 		// Find last timestamp.
 		$history->seek( $history->numRows() - 1 );
