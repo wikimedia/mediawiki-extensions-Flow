@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_9296a1f2",
+        "filename": "modules/base/ui-functions.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-12T23:59:36Z",
+      "side": 1,
+      "message": "Oops, some unwanted changes gets in",
+      "revId": "b828b165c84bdcb209ec973769abbeb0facf3a03",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
