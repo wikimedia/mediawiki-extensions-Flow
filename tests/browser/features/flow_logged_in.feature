@@ -11,6 +11,7 @@ definitions have to change.
 Background:
   Given I am logged in
 
+  @clean
   Scenario: Add new Flow topic
     Given I have created a Flow topic
       And the author link is visible
@@ -18,11 +19,13 @@ Background:
     When I hover over the author link
       Then links to talk and contrib should be visible
 
+  @clean
   Scenario: Block
     Given I am on Flow page
     When I hover over the author link
     Then I should see a Block User link
 
+  @clean
   Scenario: Actions
     Given I am on Flow page
     When I hover over the Actions link
@@ -31,6 +34,7 @@ Background:
       And I should see a Delete button
       And I should see a Suppress button
 
+  @clean
   Scenario: Topic Actions
     Given I am on Flow page
     When I click the Topic Actions link

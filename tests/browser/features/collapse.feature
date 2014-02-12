@@ -2,6 +2,7 @@
 
 Feature: Collapse views
 
+  @clean
   Scenario: Small view
     Given I am on Flow page
     When I click Small view
@@ -11,6 +12,7 @@ Feature: Collapse views
       And I should not see in Flow topics started this topic
       And I should not see in Flow topics comment
 
+  @clean
   Scenario: Collapse view
     Given I am on Flow page
     When I click Collapse view
@@ -20,6 +22,7 @@ Feature: Collapse views
       And I should see in Flow topics started this topic
       And I should see in Flow topics comment
 
+  @clean
   Scenario: Full view
     Given I am on Flow page
     When I click Full view

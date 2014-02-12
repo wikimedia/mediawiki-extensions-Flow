@@ -1,6 +1,7 @@
 @test2.wikipedia.org @en.wikipedia.beta.wmflabs.org
 Feature: Actions menu Permalink
 
+@clean
 Scenario: Actions menu Permalink
   Given I am on Flow page
     And I have created a Flow topic
