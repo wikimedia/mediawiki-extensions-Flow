@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_f2516566",
+        "filename": "includes/Model/AbstractRevisionable.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-12T23:53:39Z",
+      "side": 1,
+      "message": "AbstractRevision uses getPrevRevision(), to be consistent this should be Prev as well, or the other method should be getPreviousRevision()",
+      "revId": "078b300b8faaeacb65222ee87984c6eaf74a1500",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
