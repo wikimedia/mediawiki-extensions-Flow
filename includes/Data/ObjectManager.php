@@ -280,33 +280,17 @@ class ObjectLocator implements ObjectStorage {
 		} catch ( NoIndexException $e ) {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ': ' . $e->getMessage() );
 			$res = $this->storage->findMulti( $queries, $this->convertToDbOptions( $options ) );
-			$output = array();
-
-			foreach( $res as $index => $queryOutput ) {
-				$output[$index] = array_map( array( $this, 'load' ), $queryOutput );
-			}
-
-			return $output;
 		}
 
 		if ( $res === null ) {
 			return null;
 		}
 
-		$retval = array();
-		foreach ( $res as $i => $rows ) {
-			list( $startPos, $limit ) = $this->getOffsetLimit( $rows, $index, $options );
-			$keys = array_keys( $rows );
-			for(
-				$k = $startPos;
-				$k < $startPos + $limit && $k < count( $keys );
-				++$k
-			) {
-				$j = $keys[$k];
-				$retval[$i][$j] = $this->load( $rows[$j] );
-			}
+		$output = array();
+		foreach( $res as $index => $queryOutput ) {
+			$output[$index] = array_map( array( $this, 'load' ), $queryOutput );
 		}
-		return $retval;
+		return $output;
 	}
 
 	/**
@@ -426,67 +410,6 @@ class ObjectLocator implements ObjectStorage {
 		}
 
 		return $this->foundMulti( $queries );
-	}
-
-	protected function getOffsetLimit( $rows, $index, $options ) {
-		$limit = isset( $options['limit'] ) ? $options['limit'] : $index->getLimit();
-
-		if ( ! isset( $options['offset-key'] ) ) {
-			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
-			return array( $offset, $limit );
-		}
-
-		$offsetKey = $options['offset-key'];
-		if ( $offsetKey instanceof UUID ) {
-			$offsetKey = $offsetKey->getBinary();
-		}
-
-		$dir = 'fwd';
-		if (
-			isset( $options['offset-dir'] ) &&
-			$options['offset-dir'] === 'rev'
-		) {
-			$dir = 'rev';
-		}
-
-		$offset = $this->getOffsetFromKey( $rows, $offsetKey, $index );
-
-		if ( $dir === 'fwd' ) {
-			$startPos = $offset + 1;
-		} elseif ( $dir === 'rev' ) {
-			$startPos = $offset - $limit;
-
-			if ( $startPos < 0 ) {
-				if (
-					isset( $options['offset-elastic'] ) &&
-					$options['offset-elastic'] === false
-				) {
-					// If non-elastic, then reduce the number of items shown commeasurately
-					$limit += $startPos;
-				}
-				$startPos = 0;
-			}
-		}
-
-		return array( $startPos, $limit );
-	}
-
-	protected function getOffsetFromKey( $rows, $offsetKey, $index ) {
-		$offset = false;
-		for( $rowIndex = 0; $rowIndex < count( $rows ); ++$rowIndex ) {
-			$row = $rows[$rowIndex];
-			$comparisonValue = $index->compareRowToOffset( $row, $offsetKey );
-			if ( $comparisonValue <= 0 ) {
-				$offset = $rowIndex;
-				break;
-			}
-		}
-
-		if ( $offset === false ) {
-			throw new DataModelException( 'Unable to find specified offset in query results', 'process-data' );
-		}
-
-		return $offset;
 	}
 
 	public function clear() {
@@ -1132,7 +1055,68 @@ abstract class FeatureIndex implements Index {
 		return isset( $this->options['sort'] ) ? $this->options['sort'] : false;
 	}
 
-	public function compareRowToOffset( $row, $offset ) {
+	protected function getOffsetLimit( $rows, $options ) {
+		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
+
+		if ( !isset( $options['offset-key'] ) ) {
+			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
+			return array( $offset, $limit );
+		}
+
+		$offsetKey = $options['offset-key'];
+		if ( $offsetKey instanceof UUID ) {
+			$offsetKey = $offsetKey->getBinary();
+		}
+
+		$dir = 'fwd';
+		if (
+			isset( $options['offset-dir'] ) &&
+			$options['offset-dir'] === 'rev'
+		) {
+			$dir = 'rev';
+		}
+
+		$offset = $this->getOffsetFromKey( $rows, $offsetKey );
+
+		if ( $dir === 'fwd' ) {
+			$startPos = $offset + 1;
+		} elseif ( $dir === 'rev' ) {
+			$startPos = $offset - $limit;
+
+			if ( $startPos < 0 ) {
+				if (
+					isset( $options['offset-elastic'] ) &&
+					$options['offset-elastic'] === false
+				) {
+					// If non-elastic, then reduce the number of items shown commensurately
+					$limit += $startPos;
+				}
+				$startPos = 0;
+			}
+		}
+
+		return array( $startPos, $limit );
+	}
+
+	protected function getOffsetFromKey( $rows, $offsetKey ) {
+		$offset = false;
+		for( $rowIndex = 0; $rowIndex < count( $rows ); ++$rowIndex ) {
+			$row = $rows[$rowIndex];
+			$comparisonValue = $this->compareRowToOffset( $row, $offsetKey );
+			if ( $comparisonValue <= 0 ) {
+				$offset = $rowIndex;
+				break;
+			}
+		}
+
+		if ( $offset === false ) {
+			throw new DataModelException( 'Unable to find specified offset in query results', 'process-data' );
+		}
+
+		return $offset;
+	}
+
+	protected function compareRowToOffset( $row, $offset ) {
 		$sortFields = $this->getSort();
 		$splitOffset = explode( '|', $offset );
 		$fieldIndex = 0;
@@ -1232,12 +1216,18 @@ abstract class FeatureIndex implements Index {
 			}
 		}
 
-		// Retrieve from cache
+		// retrieve from cache
 		$cached = $this->cache->getMulti( $cacheKeys );
+
+		// get rid of unneeded entries before expanding them;
+		// basically, at this point, we only have a list of ids, which we need
+		// to expand (= fetch from cache) - don't want to do this for more than
+		// what is needed
 		foreach ( $cached as $i => $result ) {
-			$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
-			$cached[$i] = array_splice( $result, 0, $limit );
+			list( $offset, $limit ) = $this->getOffsetLimit( $result, $options );
+			$cached[$i] = array_slice( $result, $offset, $limit, true );
 		}
+
 		// expand partial results and merge into result set
 		foreach ( $this->rowCompactor->expandCacheResult( $cached, $keyToQuery ) as $key => $rows ) {
 			foreach ( $keyToIdx[$key] as $idx ) {
@@ -1245,11 +1235,11 @@ abstract class FeatureIndex implements Index {
 				unset( $queries[$idx] );
 			}
 		}
+
 		// don't need to query backing store
 		if ( count( $queries ) === 0 ) {
 			return $results;
 		}
-
 		return $this->backingStoreFindMulti( $queries, $cacheKeys, $results );
 	}
 
