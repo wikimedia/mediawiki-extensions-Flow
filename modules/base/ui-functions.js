@@ -643,7 +643,7 @@
 						}
 
 						// If no api request needs to be made, call previewDone instantly
-						previewDone.call( { 'flow-parsoid-utils': $form.find( identifier ).val() } );
+						previewDone.call( $div, { 'flow-parsoid-utils': { 'content': $form.find( identifier ).val() } } );
 					}
 				}
 
