@@ -7,6 +7,7 @@ Assumes that the test Flow page has at least two topics (with posts).
   Background:
     Given I am logged in
 
+  @clean
   Scenario: Edit an existing title
     Given I am on Flow page
     When I click the Edit title action
@@ -14,6 +15,7 @@ Assumes that the test Flow page has at least two topics (with posts).
       And I should be able to save the new title
       And the saved topic title should contain Title edited
 
+  @clean
   Scenario: Edit existing post
     Given I am on Flow page
     When I click Edit post
