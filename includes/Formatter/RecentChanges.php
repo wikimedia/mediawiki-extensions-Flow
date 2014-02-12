@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\RecentChanges;
+namespace Flow\Formatter;
 
 use Flow\AbstractFormatter;
 use Flow\Model\UUID;
@@ -8,7 +8,7 @@ use ChangesList;
 use Html;
 use RecentChange;
 
-class Formatter extends AbstractFormatter {
+class RecentChanges extends AbstractFormatter {
 	public function format( ChangesList $cl, RecentChange $rc ) {
 		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
 		$changeData = $params['flow-workflow-change'];

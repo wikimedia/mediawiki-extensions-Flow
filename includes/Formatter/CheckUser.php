@@ -1,22 +1,22 @@
 <?php
 
-namespace Flow\CheckUser;
+namespace Flow\Formatter;
 
-use CheckUser;
+use CheckUser as CheckUserSpecialPage;
 use Html;
 use Linker;
 use Title;
 use Flow\AbstractFormatter;
 use Flow\Model\UUID;
 
-class Formatter extends AbstractFormatter {
+class CheckUser extends AbstractFormatter {
 
 	/**
 	 * @param CheckUser $checkUser
 	 * @param object $row
 	 * @return array|null
 	 */
-	public function format( CheckUser $checkUser, $row ) {
+	public function format( CheckUserSpecialPage $checkUser, $row ) {
 		if ( $row->cuc_type != RC_FLOW || !$row->cuc_comment ) {
 			return null;
 		}

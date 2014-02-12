@@ -1,13 +1,13 @@
 <?php
 
-namespace Flow\Contributions;
+namespace Flow\Formatter;
 
 use Flow\AbstractFormatter;
 use Flow\Exception\FlowException;
 use ContribsPager;
 use Html;
 
-class Formatter extends AbstractFormatter {
+class Contributions extends AbstractFormatter {
 	/**
 	 * @param ContribsPager $pager
 	 * @param \stdClass $row
