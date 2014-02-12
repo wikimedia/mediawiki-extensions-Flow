@@ -96,9 +96,9 @@ $wgFlowActions = array(
 					return array( 'raw' => htmlspecialchars( $content ) );
 				},
 				function ( PostRevision $revision, Templating $templating, UUID $workflowId, $blockType ) {
-					$previousId = $revision->getPrevRevisionId();
-					if ( $previousId ) {
-						$previousRevision = Container::get( 'storage' )->get( get_class( $revision ), $previousId );
+					$post = $revision->getCollection();
+					$previousRevision = $post->getPrevRevision( $revision );
+					if ( $previousRevision ) {
 						// make sure topic title isn't parsed
 						$content = $templating->getContent( $previousRevision, 'wikitext' );
 						return array( 'raw' => htmlspecialchars( $content ) );
@@ -373,12 +373,18 @@ $wgFlowActions = array(
 
 	'restore-post' => array(
 		'performs-writes' => true,
-		'log_type' => function( PostRevision $post, Logger $logger ) {
-			// Kind of log depends on the previous change type:
-			// * if post was deleted, restore should go to deletion log
-			// * if post was suppressed, restore should go to suppression log
-			global $wgFlowActions;
-			return $wgFlowActions[$post->getModerationState() . '-post']['log_type'];
+		'log_type' => function( PostRevision $revision, Logger $logger ) {
+			$post = $revision->getCollection();
+			$previousRevision = $post->getPrevRevision( $revision );
+			if ( $previousRevision ) {
+				// Kind of log depends on the previous change type:
+				// * if post was deleted, restore should go to deletion log
+				// * if post was suppressed, restore should go to suppression log
+				global $wgFlowActions;
+				return $wgFlowActions[$previousRevision->getModerationState() . '-post']['log_type'];
+			}
+
+			return '';
 		},
 		'permissions' => array(
 			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
@@ -411,12 +417,18 @@ $wgFlowActions = array(
 
 	'restore-topic' => array(
 		'performs-writes' => true,
-		'log_type' => function( PostRevision $topicTitle, Logger $logger ) {
-			// Kind of log depends on the previous change type:
-			// * if topic was deleted, restore should go to deletion log
-			// * if topic was suppressed, restore should go to suppression log
-			global $wgFlowActions;
-			return $wgFlowActions[$topicTitle->getModerationState() . '-topic']['log_type'];
+		'log_type' => function( PostRevision $revision, Logger $logger ) {
+			$post = $revision->getCollection();
+			$previousRevision = $post->getPrevRevision( $revision );
+			if ( $previousRevision ) {
+				// Kind of log depends on the previous change type:
+				// * if post was deleted, restore should go to deletion log
+				// * if post was suppressed, restore should go to suppression log
+				global $wgFlowActions;
+				return $wgFlowActions[$previousRevision->getModerationState() . '-post']['log_type'];
+			}
+
+			return '';
 		},
 		'permissions' => array(
 			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
