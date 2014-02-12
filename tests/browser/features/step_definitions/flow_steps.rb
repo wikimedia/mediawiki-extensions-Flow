@@ -21,14 +21,15 @@ Given(/^the talk and contrib links are not visible$/) do
   end
 end
 
-When(/^I click Actions$/) do
-  on(FlowPage).actions_link_element.when_present.click
+When(/^I click the Post Actions link$/) do
+  on(FlowPage).post_actions_link_element.when_present.click
 end
 
 When(/^I click New topic save$/) do
   on(FlowPage).new_topic_save_element.when_present.click
 end
 
+# Same thing as action_menu_permalink_steps' "I click Actions menu for the Topic"
 When(/^I click the Topic Actions link$/) do
   on(FlowPage).topic_actions_link_element.when_present.click
 end
@@ -43,10 +44,6 @@ end
 
 When(/^I create a (.+) into Flow body$/) do |flow_body|
   on(FlowPage).new_topic_body_element.when_present.send_keys(flow_body + @random_string + @automated_test_marker)
-end
-
-When(/^I hover over the Actions link$/) do
-  visit(FlowPage).actions_link_element.hover
 end
 
 When(/^I hover over the author link$/) do

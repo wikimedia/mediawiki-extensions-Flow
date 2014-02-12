@@ -15,7 +15,6 @@ class FlowPage
     actions_index = 0
   end
 
-  a(:actions_link, text: "Actions", index: 1)
   a(:actions_link_permalink_3rd_comment, text: "Actions", index: 4)
   span(:author_link, class: "flow-creator")
   a(:block_user, title: /Special:Block/)
@@ -43,12 +42,21 @@ class FlowPage
   button(:new_topic_save, class: "flow-newtopic-submit")
   text_field(:new_topic_title, name: "topiclist_topic")
   a(:permalink, css: "div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-permalink > a.mw-ui-button.flow-action-permalink-link")
+
+  # Find Actions link within a particular class.
+  # With jQuery the selector is simply $( '.flow-post-container
+  # a:contains("Actions")' ) but in page-object, there are no good solutions.
+  # There's https://github.com/cheezy/page-object/wiki/Nested-Elements but it
+  # makes little sense.
+  # XPath CSS class handling copied from
+  # http://stackoverflow.com/questions/8808921/selecting-a-css-class-with-xpath
+  a(:post_actions_link, xpath: "//div[contains(concat(' ', normalize-space(@class), ' '), ' flow-post-container ')]//a[text()='Actions']", index: 1)
   text_field(:post_edit, class: "flow-edit-post-content flow-disabler")
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
   list_item(:small_view, title: "Small view")
   a(:talk_link, text: "Talk")
   text_field(:title_edit, class: "mw-ui-input flow-edit-title-textbox")
-  a(:topic_actions_link, text: "Actions", index: actions_index)
+  a(:topic_actions_link, xpath: "//div[contains(concat(' ', normalize-space(@class), ' '), ' flow-topic-container ')]//a[text()='Actions']", index: actions_index)
   div(:topic_post, class: "flow-post-content", index: topic_index)
   div(:topic_title, class: "flow-topic-title", index: topic_index)
 end

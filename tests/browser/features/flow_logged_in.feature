@@ -23,10 +23,9 @@ Background:
     When I hover over the author link
     Then I should see a Block User link
 
-  Scenario: Actions
+  Scenario: Post Actions
     Given I am on Flow page
-    When I hover over the Actions link
-      And I click Actions
+    When I click the Post Actions link
     Then I should see a Hide button
       And I should see a Delete button
       And I should see a Suppress button
