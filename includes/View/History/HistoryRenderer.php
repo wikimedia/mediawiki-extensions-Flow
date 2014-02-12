@@ -81,24 +81,26 @@ class HistoryRenderer {
 
 		// Start from last week, we've already fetched everything before that.
 		$previousTimestamp = $timestampWeek->getTimestamp( TS_UNIX );
-		while ( $previousTimestamp > $lastTimestamp ) {
+		do {
 			// First and last moments in that month.
-			$start = mktime( 0, 0, 0, date( 'n', $previousTimestamp ), 1, date( 'Y', $previousTimestamp ) );
-			$end = mktime( 23, 59, 59, date( 'n', $previousTimestamp ), date( 't', $previousTimestamp ), date( 'Y', $previousTimestamp ) );
+			$monthStart = mktime( 0, 0, 0, date( 'n', $previousTimestamp ), 1, date( 'Y', $previousTimestamp ) );
+			$monthEnd = mktime( 23, 59, 59, date( 'n', $previousTimestamp ), date( 't', $previousTimestamp ), date( 'Y', $previousTimestamp ) );
 
 			// Make sure there's no overlap between end time & what we have already (e.g. last week)
-			$start = new MWTimestamp( $start );
-			$end = new MWTimestamp( min( $end, $previousTimestamp ) );
+			$timespanStart = new MWTimestamp( $monthStart );
+			$timespanEnd = new MWTimestamp( min( $monthEnd, $previousTimestamp ) );
 
 			// Build message.
-			$text = $wgLang->sprintfDate( 'F Y', $end->getTimestamp( TS_MW ) );
+			$text = $wgLang->sprintfDate( 'F Y', $timespanStart->getTimestamp( TS_MW ) );
 
 			// Add month to list.
-			$timespans[$text] = array( 'from' => $start, 'to' => $end );
+			$timespans[$text] = array( 'from' => $timespanStart, 'to' => $timespanEnd );
 
 			// Now go back 1 month for the next.
-			$previousTimestamp = strtotime( '-1 month', $end->getTimestamp( TS_UNIX ) );
-		}
+			$previousTimestamp = strtotime( '-1 month', $monthEnd );
+
+			// keep going until we've reached the oldest timestamp.
+		} while ( $lastTimestamp < $monthStart );
 
 		return $timespans;
 	}
