@@ -1,8 +1,8 @@
 <?php
 
 use Flow\ParsoidUtils;
+use Flow\Redlinker;
 use Flow\Exception\WikitextException;
-
 
 class ApiParsoidUtilsFlow extends ApiBase {
 
@@ -21,6 +21,12 @@ class ApiParsoidUtilsFlow extends ApiBase {
 		} catch ( WikitextException $e ) {
 			$code = $e->getErrorCode();
 			$this->dieUsage( $this->msg( $code )->inContentLanguage()->useDatabase( false )->plain(), $code );
+		}
+
+		if ( $params['to'] === 'html' ) {
+			// convert redlinks
+			$redlinker = new Redlinker( $page->getTitle(), new LinkBatch );
+			$content = $redlinker->apply( $content );
 		}
 
 		$result = array(
