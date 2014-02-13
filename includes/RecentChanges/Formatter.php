@@ -2,6 +2,7 @@
 
 namespace Flow\RecentChanges;
 
+use Flow\Model\AbstractRevision;
 use Flow\AbstractFormatter;
 use Flow\Model\UUID;
 use ChangesList;
@@ -9,6 +10,12 @@ use Html;
 use RecentChange;
 
 class Formatter extends AbstractFormatter {
+
+	/**
+	 * Check if the most recent action for an entity has been displayed already
+	 */
+	protected $displayStatus = array();
+
 	public function format( ChangesList $cl, RecentChange $rc ) {
 		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
 		$changeData = $params['flow-workflow-change'];
@@ -48,6 +55,10 @@ class Formatter extends AbstractFormatter {
 
 		$revision = $this->loadRevision( UUID::create( $changeData['revision'] ), $changeData['revision_type'] );
 		if ( !$revision ) {
+			return false;
+		}
+
+		if ( $this->hideRecord( $revision, $changeData ) ) {
 			return false;
 		}
 
@@ -94,6 +105,40 @@ class Formatter extends AbstractFormatter {
 			. $this->changeSeparator()
 			. ' '
 			. $this->getActionDescription( $workflow, $changeData['block'], $revision );
+	}
+
+	/**
+	 * Determines if a flow record should be displayed in Special:Watchlist
+	 */
+	protected function hideRecord( AbstractRevision $revision, array $changeData ) {
+		// * Display the most recent new post, edit post, edit title for a topic
+		// * Display the most recent header edit
+		// * Display all new topic and moderation actions
+		switch ( $changeData['action'] ) {
+			case 'edit-header':
+				if ( isset( $this->displayStatus['header-' . $changeData['workflow']] ) ) {
+					return true;
+				}
+				$this->displayStatus['header-' . $changeData['workflow']] = true;
+			break;
+
+			case 'new-post':
+			case 'reply':
+			case 'edit-post':
+			case 'flow-edit-post':
+			case 'edit-title':
+				// A new topic
+				if ( !$revision->getReplyToId() && !$revision->getPrevRevisionId() ) {
+					return false;
+				}
+				if ( isset( $this->displayStatus['topic-' . $changeData['workflow']] ) ) {
+					return true;
+				}
+				$this->displayStatus['topic-' . $changeData['workflow']] = true;
+			break;
+		}
+
+		return false;
 	}
 
 	protected function changeSeparator() {
