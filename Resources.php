@@ -14,11 +14,12 @@ $wgResourceModules += array(
 			'base/styles/actionbox.less',
 			'base/styles/various.less',
 			'base/styles/preview.less',
-			/*
-			 * This is CSS that adds to/overrides Agora styles, meant to be
-			 * moved to mediawiki.ui at a later point
-			 */
+			// Override button sizes
 			'mediawiki.ui/styles/agora-override-buttons.less',
+			/*
+			 * XXX Override Agora input field styles in core 
+			 * until bug 62281 is addressed.
+			 */
 			'mediawiki.ui/styles/agora-override-forms.less',
 		),
 		'skinStyles' => array(
@@ -37,6 +38,7 @@ $wgResourceModules += array(
 			'mediawiki.util',
 			'mediawiki.jqueryMsg',
 			'mediawiki.ui',
+			'mediawiki.ui.button',
 			'mediawiki.api',
 			'jquery.json',
 			'jquery.tipsy',
