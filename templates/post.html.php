@@ -43,7 +43,7 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 			'rows' => '10',
 		) ) .
 		// NOTE: cancel button will be added via JS, makes no sense in non-JS context
-		Html::openElement( 'div', array( 'class' => 'flow-post-form-controls' ) ) .
+		Html::openElement( 'div', array( 'class' => 'flow-form-controls' ) ) .
 			Html::rawElement( 'div', array(
 				'class' => 'flow-terms-of-use plainlinks',
 			), wfMessage( 'flow-terms-of-use-reply' )->parse() ) .
