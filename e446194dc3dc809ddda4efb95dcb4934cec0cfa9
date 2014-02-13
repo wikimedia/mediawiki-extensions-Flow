@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_549a42be",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-13T18:26:39Z",
+      "side": 1,
+      "message": "RC docs say:\n\n *  rc_old_len      integer byte length of the text before the edit\n *  rc_new_len      the same after the edit\n\nSo should be strlen instead of mb_strlen (even though the latter would make more sense to me :) )",
+      "revId": "e446194dc3dc809ddda4efb95dcb4934cec0cfa9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
