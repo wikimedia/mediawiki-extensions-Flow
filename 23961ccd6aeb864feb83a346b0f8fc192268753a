@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_f4438e41",
+        "filename": "Flow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-13T18:21:28Z",
+      "side": 1,
+      "message": "Also move to Flow\\Formatter\\?",
+      "revId": "23961ccd6aeb864feb83a346b0f8fc192268753a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_d47092a5",
+        "filename": "Flow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-13T18:21:28Z",
+      "side": 1,
+      "message": "Even though it does not implement AbstractFormatter, it should probably also belong in Flow\\Formatter\\?",
+      "revId": "23961ccd6aeb864feb83a346b0f8fc192268753a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_145efa17",
+        "filename": "Flow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-13T18:21:28Z",
+      "side": 1,
+      "message": "This is is not about formatting per se. But it somewhat directly related. IDK - meh :p",
+      "revId": "23961ccd6aeb864feb83a346b0f8fc192268753a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
