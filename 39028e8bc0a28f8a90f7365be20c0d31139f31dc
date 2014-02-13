@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_e2f190c9",
+        "filename": "includes/RecentChanges/Formatter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T21:35:16Z",
+      "side": 1,
+      "message": "this might read better as \n\n    if ( $revision-\u003eisTopicTitle() \u0026\u0026 $revision-\u003eisFirstRevision() )",
+      "revId": "39028e8bc0a28f8a90f7365be20c0d31139f31dc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
