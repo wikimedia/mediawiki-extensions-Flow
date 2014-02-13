@@ -8,11 +8,13 @@ use Flow\Data\ManagerGroup;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
+use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
 use Flow\Templating;
 use Flow\UrlGenerator;
 use Language;
 use Html;
+use Message;
 use Title;
 use User;
 use ChangesList;
@@ -278,17 +280,16 @@ abstract class AbstractFormatter {
 		$changeType = $revision->getChangeType();
 		$msg = $this->actions->getValue( $changeType, 'history', 'i18n-message' );
 		$params = $this->actions->getValue( $changeType, 'history', 'i18n-params' );
-		$message = $this->buildMessage( $msg, (array) $params, array(
-			$revision,
-			$this->templating,
-			$workflow->getId(),
-			$blockType
-		) )->parse();
+		$workflowId = $workflow->getId();
+
+		foreach ( $params as &$param ) {
+			$param = $this->processParam( $param, $revision, $workflowId, $blockType );
+		}
 
 		return \Html::rawElement(
 			'span',
 			array( 'class' => 'plainlinks' ),
-			$message
+			wfMessage( $msg, $params )->parse()
 		);
 	}
 
@@ -338,31 +339,6 @@ abstract class AbstractFormatter {
 		}
 
 		return $results[$revisionId->getAlphadecimal()];
-	}
-
-	/**
-	 * Returns i18n message for $msg; piggybacking on History i18n.
-	 *
-	 * Complex parameters can be injected in the i18n messages. Anything in
-	 * $params will be call_user_func'ed, with these given $arguments.
-	 * Those results will be used as message parameters.
-	 *
-	 * Note: return array( 'raw' => $value ) or array( 'num' => $value ) for
-	 * raw or numeric parameter input.
-	 *
-	 * @param string $msg i18n key
-	 * @param array[optional] $params Callbacks for parameters
-	 * @param array[optional] $arguments Arguments for the callbacks
-	 * @return Message
-	 */
-	protected function buildMessage( $msg, array $params = array(), array $arguments = array() ) {
-		foreach ( $params as &$param ) {
-			if ( is_callable( $param ) ) {
-				$param = call_user_func_array( $param, $arguments );
-			}
-		}
-
-		return wfMessage( $msg, $params );
 	}
 
 	/**
@@ -431,5 +407,88 @@ abstract class AbstractFormatter {
 		$this->revisions += $results;
 
 		return $results;
+	}
+
+	/**
+	 * Mimic Echo parameter formatting
+	 *
+	 * @param string $param The requested i18n parameter
+	 * @param AbstractRevision $revision The revision to format
+	 * @param UUID $workflowId The UUID of the workflow $revision belongs tow
+	 * @param string $blockType The type of block $workflowId belongs to
+	 * @return mixed A valid parameter for a core Message instance
+	 */
+	protected function processParam( $param, AbstractRevision $revision, UUID $workflowId, $blockType ) {
+		switch ( $param ) {
+		case 'creator-text':
+			return $this->templating->getCreatorText( $revision );
+
+		case 'user-text':
+			return $this->templating->getUserText( $revision );
+
+		case 'user-links':
+			return Message::rawParam( $this->templating->getUserLinks( $revision ) );
+
+		case 'wikitext':
+			$content = $this->templating->getContent( $revision, 'wikitext' );
+			return Message::rawParam( htmlspecialchars( $content ) );
+
+		case 'prev-wikitext':
+			if ( $revision->isFirstRevision() ) {
+				return '';
+			}
+			$previousRevision = Container::get( 'storage' )->get(
+				get_class( $revision ),
+				$revision->getPrevRevisionId()
+			);
+			if ( !$previousRevision ) {
+				// wfDebugLog( __CLASS__, __FUNCTION__ . ': Something something' );
+				return '';
+			}
+			if ( !$this->templating->getActionPermissions()->isAllowed( $previousRevision, 'view' ) ) {
+				// @todo message about being unavailable?
+				return '';
+			}
+
+			$content = $this->templating->getContent( $previousRevision, 'wikitext' );
+			return Message::rawParam( htmlspecialchars( $content ) );
+
+		case 'workflow-url':
+			return $this->templating->getUrlGenerator()->generateUrl( $workflowId );
+
+		case 'post-url':
+			return $this->templating->getUrlGenerator()
+				->generateUrl(
+					$workflowId,
+					'view',
+					array(),
+					'flow-post-' . $revision->getPostId()->getAlphadecimal()
+				);
+
+		case 'moderated-reason':
+			// don-t parse wikitext in the moderation reason
+			return Message::rawParam( htmlspecialchars( $revision->getModeratedReason() ) );
+
+		case 'topic-of-post':
+			try {
+				$content = $this->templating->getContent( $revision->getRootPost(), 'wikitext' );
+			} catch ( DataModelException $e ) {
+				$found = Container::get( 'storage.post' )->find(
+					array( 'tree_rev_descendant_id' => $workflowId ),
+					array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+				);
+				if ( !$found ) {
+					wfWarn( __METHOD__ . ': No tree_rev_descendant_id matching ' . $workflowId->getAlphadecimal() );
+					return '';
+				}
+				$content = $this->templating->getContent( reset( $found ), 'wikitext' );
+			}
+			return Message::rawParam( htmlspecialchars( $content ) );
+
+		default:
+			wfWarn( __METHOD__ . ': Unknown formatter parameter: ' . $param );
+			return '';
+		}
+
 	}
 }
