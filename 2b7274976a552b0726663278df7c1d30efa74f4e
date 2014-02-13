@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_fd2ff183",
+        "filename": "modules/base/action.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:24:29Z",
+      "side": 1,
+      "message": "probably doesn\u0027t matter, but https://www.mediawiki.org/wiki/Manual:Coding_conventions/JavaScript has:\n\n    All variables and functions must use lowerCamelCase for their naming. For\n    functions, verb phrases are preferred (so getFoo() instead of foo()).\n\n    The only exception are constructors used with the new operator. Those names\n    must start with an uppercase letter (UpperCamelCase).\n\nJSHint will also complain, but not when defininig the function only when doing \u0027new something\u0027;",
+      "parentUuid": "4e04eb01_c27d74e6",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_c333fd5d",
         "filename": "modules/discussion/styles/post.less",
         "patchSetId": 3
