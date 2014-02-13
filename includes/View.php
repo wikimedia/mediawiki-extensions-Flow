@@ -6,8 +6,9 @@ use Flow\Model\Workflow;
 use Html;
 use WebRequest;
 use IContextSource;
+use ContextSource;
 
-class View {
+class View extends ContextSource {
 	function __construct(
 		Templating $templating,
 		UrlGenerator $urlGenerator,
@@ -15,41 +16,40 @@ class View {
 	) {
 		$this->templating = $templating;
 		$this->urlGenerator = $urlGenerator;
-		$this->context = $requestContext;
-		$this->output = $this->context->getOutput();
+		$this->setContext( $requestContext );
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
-		$this->output->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.base' ) );
-		$this->output->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
+		$out = $this->getOutput();
+		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.base' ) );
+		$out->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
 
 		$workflow = $loader->getWorkflow();
 
 		$title = $workflow->getArticleTitle();
-		$this->output->setPageTitle( $title->getPrefixedText() );
+		$out->setPageTitle( $title->getPrefixedText() );
 		// Temporary hack to make relative links work when the page is requested as /w/index.php?title=
 		// @todo this wont work when we eventually display posts from multiple source pages,
 		// @todo Patch core to either deprecate /w/index.php?title= and issue redirects, or
 		//   include the <base href="..."> directly from core
-		$this->output->prependHTML( Html::element( 'base', array(
+		$out->prependHTML( Html::element( 'base', array(
 			'href' => $title->getLocalURL()
 		) ) );
 
-		$request = $this->context->getRequest();
-		$user = $this->context->getUser();
+		$request = $this->getRequest();
+		$user = $this->getUser();
 
 		$blocks = $loader->createBlocks();
 		foreach ( $blocks as $block ) {
 			$block->init( $action, $user );
 		}
 
-		if ( $request->getMethod() === 'POST' ) {
+		if ( $request->wasPosted() ) {
 			global $wgFlowTokenSalt;
 			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
-				$error = '<div class="error">' . wfMessage( 'sessionfailure' ) . '</div>';
-				$this->output->addHTML( $error );
+				$error = '<div class="error">' . $this->msg( 'sessionfailure' ) . '</div>';
+				$out->addHTML( $error );
 			} else {
-				$request = $this->context->getRequest();
 				$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 				if ( $blocksToCommit ) {
 					$loader->commit( $workflow, $blocksToCommit );
@@ -61,7 +61,7 @@ class View {
 
 		$workflowId = $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal();
 		$title = $workflow->getArticleTitle();
-		$this->output->addHTML( Html::openElement( 'div',
+		$out->addHTML( Html::openElement( 'div',
 			array(
 				'class' => 'flow-container',
 				'data-workflow-id' => $workflowId,
@@ -74,11 +74,11 @@ class View {
 		foreach ( $blocks as $block ) {
 			$block->render( $this->templating, $parameters[$block->getName()] );
 		}
-		$this->output->addHTML( "</div>" );
+		$out->addHTML( "</div>" );
 	}
 
 	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {
 		$url = $this->urlGenerator->generateUrl( $workflow, $action, $query );
-		$this->output->redirect( $url );
+		$this->getOutput()->redirect( $url );
 	}
 }
