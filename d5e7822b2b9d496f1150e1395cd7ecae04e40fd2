@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_74a09e3e",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-13T20:05:38Z",
+      "side": 1,
+      "message": "This will ignore offset if no index is found though this exists before already.  Probably we should add some offset handling to convertToDbOptons()? Something like $this-\u003edbStorage-\u003egetPrimaryKeycolums() \u003e offset",
+      "revId": "d5e7822b2b9d496f1150e1395cd7ecae04e40fd2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
