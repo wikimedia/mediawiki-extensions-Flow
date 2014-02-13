@@ -77,7 +77,7 @@
 		this.object.$container.addClass( 'flow-edit-form-active' );
 
 		// bind click on cancel, which should destroy this form
-		$form.find( '.flow-cancel-link' ).on( 'click.mw-flow-discussion', $.proxy( function ( event ) {
+		$form.find( '.flow-cancel-link' ).on( 'click.mw-flow-discussion', $.proxy( function ( $form, event ) {
 			event.preventDefault();
 			$form.slideUp( 'fast', $.proxy( this.destroyEditForm, this ) );
 		}, this, $form ) );
@@ -132,6 +132,15 @@
 	 */
 	mw.flow.action.prototype.destroyEditForm = function () {
 		this.object.$container.removeClass( 'flow-edit-form-active' );
+
+		// remove any tipsies opened from within the form
+		this.object.$container.find( '.flow-edit-form .flow-tipsy-trigger' ).each( function () {
+			$( this ).removeClass( 'flow-tipsy-trigger' );
+			if ( $( this ).data( 'tipsy' ) ) {
+				$( this ).tipsy( 'hide' );
+			}
+		} );
+
 		this.object.$container.find( '.flow-edit-form' )
 			.flow( 'hidePreview' )
 			.remove();
@@ -164,10 +173,10 @@
 
 		// add cancel link
 		this.cancelLink()
-			.on( 'click.mw-flow-discussion', $.proxy( function ( event ) {
+			.on( 'click.mw-flow-discussion', $.proxy( function ( $form, event ) {
 				event.preventDefault();
 				$form.slideUp( 'fast', $.proxy( this.destroyReplyForm, this ) );
-			}, this ) )
+			}, this, $form ) )
 			.prependTo( $form.find( '.flow-form-controls' ) );
 
 		// setup preview
@@ -318,9 +327,13 @@
 		 * the form has completed loading before doing these changes.
 		 */
 		var formLoaded = $.proxy( function () {
-			var $button = this.object.$container.find( '.flow-edit-submit' );
+			var $button = this.object.$container.find( '.flow-edit-submit' ),
+				$tipsy;
 			$button.val( buttonText );
-			this.tipsy( $button, tipsyText );
+			$tipsy = this.tipsy( $button, tipsyText );
+			$tipsy.on( 'click.mw-flow-discussion', function () {
+				$button.tipsy( 'hide' );
+			} );
 
 			/*
 			 * Trigger keyup in editor, to trick setupEmptyDisabler
@@ -360,6 +373,7 @@
 	 */
 	mw.flow.action.prototype.tipsy = function ( $element, text ) {
 		$element
+			.addClass( 'flow-tipsy-trigger' )
 			.click( function () {
 				$( this ).tipsy( 'hide' );
 			} )
@@ -390,5 +404,8 @@
 				}
 			} )
 			.tipsy( 'show' );
+
+		// return tipsy flyout node
+		return $element.tipsy( 'tip' );
 	};
 } ( jQuery, mediaWiki ) );

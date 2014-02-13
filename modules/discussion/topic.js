@@ -339,6 +339,14 @@
 			return;
 		}
 
+		// remove any tipsies opened from within the form
+		$titleEditForm.find( '.flow-tipsy-trigger' ).each( function () {
+			$( this ).removeClass( 'flow-tipsy-trigger' );
+			if ( $( this ).data( 'tipsy' ) ) {
+				$( this ).tipsy( 'hide' );
+			}
+		} );
+
 		$realTitle.show();
 		$modifiedTipsy.show();
 		$editLink.show();
