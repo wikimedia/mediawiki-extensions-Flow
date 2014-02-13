@@ -14,12 +14,6 @@ $wgResourceModules += array(
 			'base/styles/actionbox.less',
 			'base/styles/various.less',
 			'base/styles/preview.less',
-			/*
-			 * This is CSS that adds to/overrides Agora styles, meant to be
-			 * moved to mediawiki.ui at a later point
-			 */
-			'mediawiki.ui/styles/agora-override-buttons.less',
-			'mediawiki.ui/styles/agora-override-forms.less',
 		),
 		'skinStyles' => array(
 			'vector' => array(
