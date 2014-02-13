@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_b4ef4682",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T20:04:42Z",
+      "side": 1,
+      "message": "this line isn\u0027t new, but it could probably move inside the else statement, its not used for the restore case",
+      "revId": "9e1d9172c99e5ff271e24269fec571e6a694103e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_94e44aa5",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T20:04:42Z",
+      "side": 1,
+      "message": "tuple has 3 fields now",
+      "revId": "9e1d9172c99e5ff271e24269fec571e6a694103e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_348216aa",
+        "filename": "tests/UserNameListenerTest.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T20:04:42Z",
+      "side": 1,
+      "message": "a bit nit picky, but R comes after C :P (alphabetical use statements) for the same depth",
+      "revId": "9e1d9172c99e5ff271e24269fec571e6a694103e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_5485a2b0",
+        "filename": "tests/UserNameListenerTest.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T20:04:42Z",
+      "side": 1,
+      "message": "closures don\u0027t need call_user_func, they can be invoked directly",
+      "revId": "9e1d9172c99e5ff271e24269fec571e6a694103e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
