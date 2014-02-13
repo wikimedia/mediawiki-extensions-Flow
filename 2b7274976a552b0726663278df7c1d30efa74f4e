@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_c27d74e6",
+        "filename": "modules/base/action.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-13T21:55:44Z",
+      "side": 1,
+      "message": "It is a constructor. It does not need to be capitalized as in \"it works without\"\n\nI have no idea if in JS-land, it\u0027s common to capitalize constructors - is it?",
+      "parentUuid": "6ef7ef47_e38cb934",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_c333fd5d",
         "filename": "modules/discussion/styles/post.less",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2014-02-07T22:18:04Z",
       "side": 1,
       "message": "i think shahyar suggested we should move away from :not,  its unsupported in IE7/8",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_a28268cb",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-13T21:55:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ef7ef47_c333fd5d",
       "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_226e582b",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-13T21:55:44Z",
+      "side": 1,
+      "message": "errorData is used, rest isn\u0027t",
+      "parentUuid": "6ef7ef47_e31719a7",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_a31111b3",
         "filename": "modules/discussion/topic.js",
         "patchSetId": 3
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_a269481f",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-13T21:55:44Z",
+      "side": 1,
+      "message": "most definitely, but I\u0027m not too big on functions using outside vars - they get moved around and stuff breaks unexpectedly. But I can go either way, it\u0027s just some silly personal preference.",
+      "parentUuid": "6ef7ef47_a31111b3",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_6372e911",
         "filename": "modules/header/styles/base.less",
         "patchSetId": 3
@@ -81,6 +153,24 @@
       "writtenOn": "2014-02-07T22:18:04Z",
       "side": 1,
       "message": "trying to move away from :not so we can support IE8",
+      "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_82876cdc",
+        "filename": "modules/header/styles/base.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-13T21:55:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ef7ef47_6372e911",
       "revId": "2b7274976a552b0726663278df7c1d30efa74f4e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
