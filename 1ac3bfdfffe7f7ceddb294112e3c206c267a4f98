@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_c2d9f42d",
+        "filename": "includes/Block/Block.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:04:15Z",
+      "side": 1,
+      "message": "we have a separate bug about how we respond to unknown actions, whereas core gives an error message for unknown actions.  Might be worthwhile to just roll that bugfix into this patch rather than implementing the \u0027*\u0027 option. (but i cant seem to find the bugzilla number ...)",
+      "revId": "1ac3bfdfffe7f7ceddb294112e3c206c267a4f98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_825e4c7a",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:04:15Z",
+      "side": 1,
+      "message": "i know we already do this on the other revision-compare for posts, but i was thinking we should instead probably \"guess\" if only one is provided?  e.g. if we have old but not new, compare it to the newest version.  If we have new but not old compare it against the immediatly previous version?  or something like that.  Maybe better to do when refactoring out the duplicated code",
+      "revId": "1ac3bfdfffe7f7ceddb294112e3c206c267a4f98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_6263403c",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:04:15Z",
+      "side": 1,
+      "message": "S filed a bug elsewhere that we dont need both these method calls, for the same (ext.flow.discussion) value",
+      "revId": "1ac3bfdfffe7f7ceddb294112e3c206c267a4f98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_82b2cc90",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:04:15Z",
+      "side": 1,
+      "message": "header_revId",
+      "revId": "1ac3bfdfffe7f7ceddb294112e3c206c267a4f98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_e2a2b03a",
+        "filename": "includes/WorkflowLoader.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:04:15Z",
+      "side": 1,
+      "message": "red bars of doom!!!",
+      "revId": "1ac3bfdfffe7f7ceddb294112e3c206c267a4f98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_c267b421",
+        "filename": "includes/WorkflowLoader.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:04:15Z",
+      "side": 1,
+      "message": "they\u0027re invading!!!\n\n    make installhooks\n\nfrom the Flow extensions dir will install a pre-commit hooks that checks for these",
+      "revId": "1ac3bfdfffe7f7ceddb294112e3c206c267a4f98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_227898be",
+        "filename": "templates/compare-revisions.html.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:04:15Z",
+      "side": 1,
+      "message": "$boardLinkTitle",
+      "revId": "1ac3bfdfffe7f7ceddb294112e3c206c267a4f98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_a2538842",
+        "filename": "templates/compare-revisions.html.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:04:15Z",
+      "side": 1,
+      "message": "needs the third IP parameter",
+      "revId": "1ac3bfdfffe7f7ceddb294112e3c206c267a4f98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_225f7846",
+        "filename": "tests/WorkflowLoaderTest.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:04:15Z",
+      "side": 1,
+      "message": "doom i tell you!!",
+      "revId": "1ac3bfdfffe7f7ceddb294112e3c206c267a4f98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
