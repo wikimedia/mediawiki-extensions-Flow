@@ -15,10 +15,9 @@ $wgResourceModules += array(
 			'base/styles/various.less',
 			'base/styles/preview.less',
 			/*
-			 * This is CSS that adds to/overrides Agora styles, meant to be
-			 * moved to mediawiki.ui at a later point
+			 * XXX Override Agora input field styles in core 
+			 * until bug 62281 is addressed.
 			 */
-			'mediawiki.ui/styles/agora-override-buttons.less',
 			'mediawiki.ui/styles/agora-override-forms.less',
 		),
 		'skinStyles' => array(
@@ -35,6 +34,7 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'mediawiki.ui',
+			'mediawiki.ui.button',
 			'mediawiki.api',
 			'jquery.json',
 			'jquery.tipsy',
