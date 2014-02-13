@@ -325,7 +325,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		}
 
-		$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'flow-edit-post' );
+		$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'edit-post' );
 
 		// run through AbuseFilter
 		$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, $post, $this->workflow->getArticleTitle() );
