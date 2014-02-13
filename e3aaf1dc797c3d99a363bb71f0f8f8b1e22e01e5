@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_ddf43553",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:50:32Z",
+      "side": 1,
+      "message": "users have complained about us comparing sizes of html, they expect it to be wikitext change size",
+      "revId": "e3aaf1dc797c3d99a363bb71f0f8f8b1e22e01e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_7de401a4",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:50:32Z",
+      "side": 1,
+      "message": "this is an int(10) field in db, uuid wont fit",
+      "revId": "e3aaf1dc797c3d99a363bb71f0f8f8b1e22e01e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_5de9457a",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:50:32Z",
+      "side": 1,
+      "message": "this is an int(10) field in db, uuid wont fit",
+      "revId": "e3aaf1dc797c3d99a363bb71f0f8f8b1e22e01e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_3dfe7936",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-13T22:50:32Z",
+      "side": 1,
+      "message": "this is an int(10) field in db, uuid wont fit",
+      "revId": "e3aaf1dc797c3d99a363bb71f0f8f8b1e22e01e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
