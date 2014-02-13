@@ -44,7 +44,7 @@ class Formatter extends AbstractFormatter {
 		// Format timestamp: add link
 		$formattedTime = $dateFormats['timeAndDate'];
 		if ( $links ) {
-			list( $url, $text ) = $links[count( $links ) - 1];
+			list( $url, $text ) = end( $links );
 			$formattedTime = Html::element(
 				'a',
 				array(
