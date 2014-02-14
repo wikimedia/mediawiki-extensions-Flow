@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_fd325105",
+        "filename": "Flow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-14T00:26:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e04eb01_f4438e41",
+      "revId": "23961ccd6aeb864feb83a346b0f8fc192268753a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_d47092a5",
         "filename": "Flow.php",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_dd2f959b",
+        "filename": "Flow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-14T00:26:41Z",
+      "side": 1,
+      "message": "I think Log implementing a completely independant interface, and pretty much being unrelated to the other Formatter implementations, is a reasonable reason to leave it in Flow\\Log\\",
+      "parentUuid": "4e04eb01_d47092a5",
+      "revId": "23961ccd6aeb864feb83a346b0f8fc192268753a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_145efa17",
         "filename": "Flow.php",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2014-02-13T18:21:28Z",
       "side": 1,
       "message": "This is is not about formatting per se. But it somewhat directly related. IDK - meh :p",
+      "revId": "23961ccd6aeb864feb83a346b0f8fc192268753a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_bd1cc97d",
+        "filename": "Flow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-14T00:26:41Z",
+      "side": 1,
+      "message": "yea i wasn\u0027t sure where to put it ... mediawiki core would potentially just throw it in the same file as the contributions formatter",
+      "parentUuid": "4e04eb01_145efa17",
       "revId": "23961ccd6aeb864feb83a346b0f8fc192268753a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
