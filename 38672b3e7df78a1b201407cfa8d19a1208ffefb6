@@ -16,6 +16,24 @@
       "revId": "38672b3e7df78a1b201407cfa8d19a1208ffefb6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_2eff5ea9",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-14T19:00:49Z",
+      "side": 1,
+      "message": "This will indeed need to go through Parsoid, but it\u0027s only done once, on submitting the post, then immediately written to RC table\n\nAnd if at some point we need to do this in other places too, we can just do the same - Revision will only convert data once (per request :p )\n\nDon\u0027t think there\u0027s any need to store content length, yet. If we want to change the on-the-fly diff calculation in contributions, then maybe :p",
+      "parentUuid": "4e04eb01_0e65c2aa",
+      "revId": "38672b3e7df78a1b201407cfa8d19a1208ffefb6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
