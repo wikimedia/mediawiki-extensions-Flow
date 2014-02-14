@@ -44,14 +44,6 @@ class Header extends AbstractRevision {
 	}
 
 	/**
-	 * Headers are more like wiki pages and as such are moderated
-	 * one revision at a time.
-	 */
-	public function needsModerateHistorical( $state ) {
-		return false;
-	}
-
-	/**
 	 * @return UUID
 	 */
 	public function getCollectionId() {
