@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_aeafee90",
+        "filename": "modules/base/action.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-14T19:29:29Z",
+      "side": 1,
+      "message": "the function doesn\u0027t receive any parameters",
+      "revId": "2746096eb9a1b772f2949f13682e67e521fd3403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
