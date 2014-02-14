@@ -1,12 +1,15 @@
 <?php
 
-namespace Flow;
+namespace Flow\Formatter;
 
-use Flow\Model\AbstractRevision;
-use Flow\Model\Workflow;
 use Flow\Block\AbstractBlock;
 use Flow\Data\ManagerGroup;
+use Flow\FlowActions;
+use Flow\Model\AbstractRevision;
+use Flow\Model\Workflow;
 use Flow\Model\UUID;
+use Flow\Templating;
+use Flow\UrlGenerator;
 use Language;
 use Html;
 use Title;

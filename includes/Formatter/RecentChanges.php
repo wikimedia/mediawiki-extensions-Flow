@@ -1,16 +1,14 @@
 <?php
 
-namespace Flow\RecentChanges;
+namespace Flow\Formatter;
 
 use Flow\Model\AbstractRevision;
-use Flow\AbstractFormatter;
 use Flow\Model\UUID;
 use ChangesList;
 use Html;
 use RecentChange;
 
-class Formatter extends AbstractFormatter {
-
+class RecentChanges extends AbstractFormatter {
 	/**
 	 * Check if the most recent action for an entity has been displayed already
 	 */
