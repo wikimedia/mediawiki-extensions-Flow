@@ -7,7 +7,7 @@ class ErrorHelper {
 	/**
 	 * Generic error output for block errors
 	 *
-	 * @param Block $block
+	 * @param \Flow\Block\Block $block
 	 * @return HtmlString
 	 */
 	public function block( $block ) {

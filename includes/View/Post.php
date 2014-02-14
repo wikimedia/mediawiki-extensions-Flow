@@ -9,6 +9,7 @@ use Flow\UrlGenerator;
 use Flow\Templating;
 use Linker;
 use Html;
+use Message;
 use User;
 
 class Post {
@@ -89,7 +90,7 @@ class Post {
 	}
 
 	public function userToolLinks( $userId, $userText ) {
-		if ( $userText instanceof MWMessage ) {
+		if ( $userText instanceof Message ) {
 			// username was moderated away, we dont know who this is
 			return '';
 		} else {

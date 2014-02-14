@@ -13,6 +13,7 @@ use OutputPage;
 use Html;
 use Linker;
 use LinkBatch;
+use Message;
 use MWTimestamp;
 use RequestContext;
 use User;
@@ -51,7 +52,7 @@ class Templating {
 	protected $globals;
 
 	/**
-	 * @var Redlinks
+	 * @var Redlinker
 	 */
 	protected $redlinks;
 
@@ -258,7 +259,7 @@ class Templating {
 			return $cache[$userId][$userText];
 		}
 
-		if ( $userText instanceof MWMessage ) {
+		if ( $userText instanceof Message ) {
 			// username was moderated away, we dont know who this is
 			$res = '';
 		} else {

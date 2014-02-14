@@ -112,7 +112,7 @@ class AbuseFilter implements SpamFilter {
 		return array(
 			/**
 			 * @param string $method: Method to generate the variable
-			 * @param AbuseFilterVariableHolder $vars
+			 * @param \AbuseFilterVariableHolder $vars
 			 * @param array $parameters Parameters with data to compute the value
 			 * @param mixed &$result Result of the computation
 			 */
