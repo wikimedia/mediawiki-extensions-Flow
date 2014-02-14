@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_0e65c2aa",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-14T18:54:35Z",
+      "side": 1,
+      "message": "getContentRaw doesn\u0027t take a type parameter. getContent almost certainly has to round trip through parsoid.  The other option would be to store a content length within the revisions i suppose.",
+      "revId": "38672b3e7df78a1b201407cfa8d19a1208ffefb6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
