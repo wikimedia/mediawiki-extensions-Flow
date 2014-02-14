@@ -7,7 +7,6 @@ use Flow\Model\UUID;
 use Flow\DbFactory;
 use BagOStuff;
 use FormatJson;
-use RuntimeException;
 use SplObjectStorage;
 use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidInputException;
@@ -56,6 +55,7 @@ interface ObjectStorage extends \IteratorAggregate {
 // cant use this interface because backing stores deal in rows, and OM deals in objects.
 interface WritableObjectStorage extends ObjectStorage {
 	/**
+	 * @param array $row
 	 * @return array The resulting $row including any auto-assigned ids or false on failure
 	 */
 	function insert( array $row );
@@ -76,7 +76,7 @@ interface ObjectMapper {
 	 * @param array $row assoc array representing the domain model
 	 * @param object|null $object The domain model to populate, creates when null
 	 * @return object The domain model populated with $row
-	 * @throws Exception When object is the wrong class for the mapper
+	 * @throws \Exception When object is the wrong class for the mapper
 	 */
 	function fromStorageRow( array $row, $object = null );
 }
@@ -141,11 +141,19 @@ interface Index extends LifecycleHandler {
 	 * the query stores it may contain the answers to various options, which will require
 	 * post-processing by the caller.
 	 *
+	 * @param array $keys
+	 * @param array $options
 	 * @return boolean Can the index locate a result for this keys and options pair
 	 */
 	function canAnswer( array $keys, array $options );
-}
 
+	/**
+	 * @param $row
+	 * @param $offset
+	 * @return mixed
+	 */
+	function compareRowToOffset( $row, $offset );
+}
 /**
  * Compact rows before writing to memcache, expand when receiving back
  * Still returns arrays, just removes unneccessary values
@@ -184,6 +192,11 @@ class ManagerGroup {
 		$this->classMap = $classMap;
 	}
 
+	/**
+	 * @param string $className
+	 * @return ObjectManager
+	 * @throws DataModelException
+	 */
 	public function getStorage( $className ) {
 		if ( !isset( $this->classMap[$className] ) ) {
 			throw new DataModelException( "Request for '$className' is not in classmap: " . implode( ', ', array_keys( $this->classMap ) ), 'process-data' );
@@ -193,7 +206,7 @@ class ManagerGroup {
 	}
 
 	public function put( $object ) {
-		return $this->getStorage( get_class( $object ) )->put( $object );
+		$this->getStorage( get_class( $object ) )->put( $object );
 	}
 
 	protected function call( $method, $args ) {
@@ -237,9 +250,24 @@ class ManagerGroup {
  * Error handling is all wrong, but simplifies prototyping.
  */
 class ObjectLocator implements ObjectStorage {
+	/*
+	 * @var ObjectMapper
+	 */
 	protected $mapper;
+
+	/**
+	 * @var ObjectStorage
+	 */
 	protected $storage;
+
+	/**
+	 * @var array<Index>
+	 */
 	protected $indexes;
+
+	/**
+	 * @var array<LifecycleHandler>
+	 */
 	protected $lifecycleHandlers;
 
 	public function __construct( ObjectMapper $mapper, ObjectStorage $storage, array $indexes = array(), array $lifecycleHandlers = array() ) {
@@ -263,6 +291,8 @@ class ObjectLocator implements ObjectStorage {
 	 * array_map, maintaining order and key relationship between input $queries
 	 * and $result.
 	 *
+	 * @param array $queries
+	 * @param array $options
 	 * @return array|null  null is query failure.  empty array is no result.  array is success
 	 */
 	public function findMulti( array $queries, array $options = array() ) {
@@ -397,7 +427,7 @@ class ObjectLocator implements ObjectStorage {
 	 * Determining if a find() has not yet been resolved may be useful so that
 	 * additional data may be loaded at once.
 	 *
-	 * @param $id Id to get()
+	 * @param string|integer $id Id to get()
 	 * @return bool
 	 */
 	public function got( $id ) {
@@ -411,7 +441,7 @@ class ObjectLocator implements ObjectStorage {
 	 * Determining if a find() has not yet been resolved may be useful so that
 	 * additional data may be loaded at once.
 	 *
-	 * @param $objectIds Ids to getMulti()
+	 * @param array $objectIds Ids to getMulti()
 	 * @return bool
 	 */
 	public function gotMulti( array $objectIds ) {
@@ -428,7 +458,13 @@ class ObjectLocator implements ObjectStorage {
 		return $this->foundMulti( $queries );
 	}
 
-	protected function getOffsetLimit( $rows, $index, $options ) {
+	/**
+	 * @param $rows
+	 * @param Index $index
+	 * @param array $options
+	 * @return array
+	 */
+	protected function getOffsetLimit( $rows, Index $index, array $options ) {
 		$limit = isset( $options['limit'] ) ? $options['limit'] : $index->getLimit();
 
 		if ( ! isset( $options['offset-key'] ) ) {
@@ -466,12 +502,15 @@ class ObjectLocator implements ObjectStorage {
 				}
 				$startPos = 0;
 			}
+		} else {
+			// bail?
+			$startPos = 0;
 		}
 
 		return array( $startPos, $limit );
 	}
 
-	protected function getOffsetFromKey( $rows, $offsetKey, $index ) {
+	protected function getOffsetFromKey( $rows, $offsetKey, Index $index ) {
 		$offset = false;
 		for( $rowIndex = 0; $rowIndex < count( $rows ); ++$rowIndex ) {
 			$row = $rows[$rowIndex];
@@ -508,10 +547,17 @@ class ObjectLocator implements ObjectStorage {
 		}
 	}
 
+	/**
+	 * @param array $keys
+	 * @param array $options
+	 * @return Index
+	 * @throws NoIndexException
+	 */
 	public function getIndexFor( array $keys, array $options = array() ) {
 		sort( $keys );
 		$current = null;
 		foreach ( $this->indexes as $index ) {
+			// @var Index $index
 			if ( !$index->canAnswer( $keys, $options ) ) {
 				continue;
 			}
@@ -545,7 +591,7 @@ class ObjectLocator implements ObjectStorage {
 	 * Convert index options to db equivalent options
 	 */
 	protected function convertToDbOptions( $options ) {
-		$dbOptions = $orderby = array();
+		$dbOptions = $orderBy = array();
 		$order = '';
 
 		if ( isset( $options['limit'] ) ) {
@@ -557,11 +603,11 @@ class ObjectLocator implements ObjectStorage {
 		}
 		if ( isset( $options['sort'] ) ) {
 			foreach ( $options['sort'] as $val ) {
-				$orderby[] = $val . $order;
+				$orderBy[] = $val . $order;
 			}
 		}
-		if ( $orderby ) {
-			$dbOptions['ORDER BY'] = $orderby;
+		if ( $orderBy ) {
+			$dbOptions['ORDER BY'] = $orderBy;
 		}
 
 		return $dbOptions;
@@ -772,8 +818,9 @@ abstract class DbStorage implements WritableObjectStorage {
 	 * 2. Checks for unarmoured raw SQL and errors out if it exists.
 	 * 3. Finds armoured raw SQL and expands it out.
 	 *
-	 * @param  array $data Query conditions for DatabaseBase::select
+	 * @param array $data Query conditions for DatabaseBase::select
 	 * @return array query conditions escaped for use
+	 * @throws DataModelException
 	 */
 	protected function preprocessSqlArray( array $data ) {
 		// Assuming that all databases have the same escaping settings.
@@ -800,8 +847,8 @@ abstract class DbStorage implements WritableObjectStorage {
 	 * for any numeric keys (= raw SQL), or field names with
 	 * potentially unsafe characters.
 	 *
-	 * @param  array   $row The row to check.
-	 * @return boolean      True if raw SQL is found
+	 * @param array $row The row to check.
+	 * @return boolean True if raw SQL is found
 	 */
 	protected function hasUnescapedSQL( array $row ) {
 		foreach( $row as $key => $value ) {
@@ -955,7 +1002,9 @@ class BasicDbStorage extends DbStorage {
 	}
 
 	/**
+	 * @param array $row
 	 * @return boolean success
+	 * @throws DataPersistenceException
 	 */
 	public function remove( array $row ) {
 		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
@@ -979,7 +1028,7 @@ class BasicDbStorage extends DbStorage {
 		$attributes = $this->preprocessSqlArray( $attributes );
 
 		if ( ! $this->validateOptions( $options ) ) {
-			throw new MWException( "Validation error in database options" );
+			throw new \MWException( "Validation error in database options" );
 		}
 
 		$res = $this->dbFactory->getDB( DB_MASTER )->select(
@@ -1017,7 +1066,7 @@ class BasicDbStorage extends DbStorage {
 		}
 		$conds = array();
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
-		foreach ( $queries as $key => &$query ) {
+		foreach ( $queries as &$query ) {
 			$query = UUID::convertUUIDs( $query );
 			$conds[] = $dbr->makeList( $query, LIST_AND );
 		}
@@ -1038,7 +1087,7 @@ class BasicDbStorage extends DbStorage {
 		}
 
 		$i = 0;
-		foreach ( $queries as $key => $val ) {
+		foreach ( $queries as $val ) {
 			$pk = ObjectManager::splitFromRow( $val, $this->primaryKey );
 			if ( isset( $temp[$pk] ) ) {
 				$result[$i++][] = $temp[$pk];
@@ -1076,6 +1125,7 @@ abstract class FeatureIndex implements Index {
 	protected $rowCompactor;
 	protected $indexed;
 	protected $indexedOrdered;
+	protected $options;
 
 	// This exists in the Index interface and as such can't be abstract
 	// until php 5.3.9, but some of our test machines are on 5.3.3
@@ -1128,6 +1178,9 @@ abstract class FeatureIndex implements Index {
 		return true;
 	}
 
+	/**
+	 * @return array|false
+	 */
 	public function getSort() {
 		return isset( $this->options['sort'] ) ? $this->options['sort'] : false;
 	}
@@ -1330,6 +1383,7 @@ abstract class FeatureIndex implements Index {
 	 *
 	 * @param array $queries
 	 * @return array Array of [query index => cache key]
+	 * @throws DataModelException
 	 */
 	protected function getCacheKeys( $queries ) {
 		$idxToKey = array();
@@ -1394,7 +1448,7 @@ abstract class FeatureIndex implements Index {
 			if ( $attr instanceof UUID ) {
 				$attributes[$key] = $attr->getAlphadecimal();
 			} elseif ( strlen( $attr ) === UUID::BIN_LEN && substr( $key, -3 ) === '_id' ) {
-				$uuid = new \Flow\Model\UUID( $attr );
+				$uuid = new UUID( $attr );
 				$attributes[$key] = $uuid->getAlphadecimal();
 			}
 		}
@@ -1647,6 +1701,7 @@ class FeatureCompactor implements Compactor {
 	 * @param array $cached Array of results from BagOStuff::multiGet each containg a list of rows
 	 * @param array $keyToQuery Map from key in $cached to the values used to generate that key
 	 * @return array The $cached array with the queried values merged in
+	 * @throws DataModelException
 	 */
 	public function expandCacheResult( array $cached, array $keyToQuery ) {
 		foreach ( $cached as $key => $rows ) {
@@ -1858,8 +1913,9 @@ class LocalBufferedCache extends BufferedCache {
 	}
 }
 
-// wraps the write methods of memcache into a buffer which can be flushed
-//
+/**
+ * Wraps the write methods of memcache into a buffer which can be flushed
+ */
 class BufferedCache {
 	protected $cache;
 	protected $buffer;
@@ -1876,6 +1932,7 @@ class BufferedCache {
 
 	/**
 	 * @param string $key The cache key to fetch
+	 * @return mixed
 	 */
 	public function get( $key ) {
 		return $this->cache->get( $key );
@@ -1883,6 +1940,7 @@ class BufferedCache {
 
 	/**
 	 * @param array $keys List of cache key strings to fetch
+	 * @return array
 	 */
 	public function getMulti( array $keys ) {
 		return $this->cache->getMulti( $keys );
@@ -1980,7 +2038,7 @@ class BufferedCache {
 	/**
 	 * Begin buffering cache commands
 	 *
-	 * @throws MWException When buffering is already enabled.
+	 * @throws \MWException When buffering is already enabled.
 	 */
 	public function begin() {
 		if ( $this->buffer === null ) {
@@ -1993,7 +2051,7 @@ class BufferedCache {
 	/**
 	 * Write out all buffered commands to the cache
 	 *
-	 * @throws MWException When no buffer has been enabled
+	 * @throws \MWException When no buffer has been enabled
 	 */
 	public function commit() {
 		if ( $this->buffer === null ) {
