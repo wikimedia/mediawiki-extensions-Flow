@@ -61,13 +61,52 @@ class FlowException extends MWException {
 	}
 
 	/**
+	 * Override parent method: we can use wfMessage here
+	 *
+	 * @return bool
+	 */
+	public function useMessageCache() {
+		return true;
+	}
+
+	/**
+	 * Overrides MWException getHTML, adding a more human-friendly error message
+	 *
+	 * @return string
+	 */
+	public function getHTML() {
+		/*
+		 * We'll want both a proper humanized error msg & the stacktrace the
+		 * parent exception handler generated.
+		 * We'll create a stub OutputPage object here, to use its showErrorPage
+		 * to add our own humanized error message. Then we'll append the stack-
+		 * trace (parent::getHTML) and then just return the combined HTML.
+		 */
+		$output = new OutputPage();
+		$output->showErrorPage( 'errorpagetitle', $this->getErrorCode() );
+		$output->addHTML( parent::getHTML() );
+		return $output->getHTML();
+	}
+
+	/**
 	 * Exception from API/commandline will be handled by MWException::report(),
 	 * Overwrite the HTML display only
 	 */
 	public function reportHTML() {
 		$this->output->setStatusCode( $this->getStatusCode() );
-		$this->output->showErrorPage( 'errorpagetitle', $this->getErrorCode() );
-		$this->output->output();
+
+		/*
+		 * Parent exception handler uses global $wgOut
+		 * We want to play nice and do inheritance and all, but that means we'll
+		 * have to cheat here and assign out $this->output to $wgOut in order
+		 * to have parent::reportHTML use the correct OutputPage object.
+		 * After that, restore original $wgOut.
+		 */
+		global $wgOut;
+		$wgOutBkp = $wgOut;
+		$wgOut = $this->output;
+		parent::reportHTML(); // this will do ->output() already
+		$wgOut = $wgOutBkp;
 	}
 
 	/**
