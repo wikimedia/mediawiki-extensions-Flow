@@ -2,8 +2,8 @@
 
 namespace Flow\Data;
 
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
-use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
 use Language;
@@ -44,25 +44,24 @@ abstract class RecentChanges implements LifecycleHandler {
 	}
 
 	/**
-	 * @param string $action Action name (as defined in FlowActions)
+	 * @param AbstractRevision $revision Revision object
 	 * @param string $block The block object's ->getName()
 	 * @param string $revisionType Classname of the Revision object
-	 * @param string $revisionId Revision id (in hex)
 	 * @param array $row Revision row
 	 * @param Workflow $workflow
-	 * @param $timestamp
 	 * @param array $changes
 	 */
-	protected function insert( $action, $block, $revisionType, $revisionId, array $row, Workflow $workflow, $timestamp, array $changes ) {
+	protected function insert( AbstractRevision $revision, $block, $revisionType, array $row, Workflow $workflow, array $changes ) {
+		$action = $revision->getChangeType();
+		$revisionId = $revision->getRevisionId()->getAlphadecimal();
+		$timestamp = $revision->getRevisionId()->getTimestamp();
+
 		if ( $action === 'suppress-topic' || $action === 'suppress-post' ) {
 			// @todo: should be move this into FlowActions.php somehow?
 			// Suppression log entries should not go to recentchanges (bug 60814)
 			return;
 		}
 
-		if ( $timestamp instanceof UUID ) {
-			$timestamp = $timestamp->getTimestamp();
-		}
 		$title = $workflow->getArticleTitle();
 
 		// Very hackish - allows CheckUser access to the basic information without rc_params
@@ -70,6 +69,16 @@ abstract class RecentChanges implements LifecycleHandler {
 		$comment = $action . ',' . $workflow->getId()->getAlphadecimal();
 		if ( isset( $changes['post'] ) ) {
 			$comment .= ',' . $changes['post'];
+		}
+
+		$collection = $revision->getCollection();
+
+		// get content of both this & the current revision
+		$content = $revision->getContent( 'wikitext' );
+		$previousContent = '';
+		$previousRevision = $collection->getPrevRevision( $revision );
+		if ( $previousRevision ) {
+			$previousContent = $previousRevision->getContent( 'wikitext' );
 		}
 
 		$attribs = array(
@@ -82,8 +91,8 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_minor' => 0,
 			'rc_bot' => 0, // TODO: is revision by bot
 			'rc_patrolled' => 0,
-			'rc_old_len' => 0,
-			'rc_new_len' => 0,
+			'rc_old_len' => strlen( $previousContent ),
+			'rc_new_len' => strlen( $content ),
 			'rc_this_oldid' => 0,
 			'rc_last_oldid' => 0,
 			'rc_log_type' => null,
@@ -97,7 +106,7 @@ abstract class RecentChanges implements LifecycleHandler {
 					'definition' => $workflow->getDefinitionId()->getAlphadecimal(),
 				) + $changes,
 			) ),
-			'rc_cur_id' => 0, // TODO: wtf do we do with uuid's?
+			'rc_cur_id' => 0,
 			'rc_comment' => $comment,
 			'rc_timestamp' => $timestamp,
 			'rc_cur_time' => $timestamp,
@@ -135,13 +144,11 @@ class HeaderRecentChanges extends RecentChanges {
 		}
 
 		$this->insert(
-			$object->getChangeType(),
+			$object,
 			'header',
 			'Header',
-			$object->getRevisionId()->getAlphadecimal(),
 			$row,
 			$workflow,
-			$object->getRevisionId(),
 			array(
 				'content' => $this->contLang->truncate( $object->getContent(), self::TRUNCATE_LENGTH ),
 			)
@@ -183,13 +190,11 @@ class PostRevisionRecentChanges extends RecentChanges {
 		}
 
 		$this->insert(
-			$object->getChangeType(),
+			$object,
 			'topic',
 			'PostRevision',
-			$object->getRevisionId()->getAlphadecimal(),
 			$row,
 			$workflow,
-			$object->getRevisionId(),
 			array(
 				'post' => $object->getPostId()->getAlphadecimal(),
 				'topic' => $this->getTopicTitle( $object ),
