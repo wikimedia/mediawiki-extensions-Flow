@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_8ed2f2d3",
+        "filename": "includes/RevisionActionPermissions.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-14T19:55:26Z",
+      "side": 1,
+      "message": "$revision \u003d\u003d\u003d null",
+      "revId": "8c4ea5d45ae8d06a8c39a2bb1775c1308aa76b48",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
