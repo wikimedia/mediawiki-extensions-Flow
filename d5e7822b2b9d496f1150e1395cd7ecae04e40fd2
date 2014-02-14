@@ -16,6 +16,24 @@
       "revId": "d5e7822b2b9d496f1150e1395cd7ecae04e40fd2",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_2219b827",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-14T00:44:43Z",
+      "side": 1,
+      "message": "I\u0027m not too concerned about that in here - it used to be like that already before this patch.\n\nI\u0027m pretty sure this code path is never actually run because everything we query for, has an index.\n\nBut yeah - we should fix that some day ;)",
+      "parentUuid": "4e04eb01_74a09e3e",
+      "revId": "d5e7822b2b9d496f1150e1395cd7ecae04e40fd2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
