@@ -164,7 +164,12 @@ abstract class AbstractCollection {
 	 * @return AbstractRevision|null null if there is no previous revision
 	 */
 	public function getPrevRevision( AbstractRevision $revision ) {
-		return $this->getRevision( $revision->getPrevRevisionId() );
+		$previousRevisionId = $revision->getPrevRevisionId();
+		if ( !$previousRevisionId ) {
+			return null;
+		}
+
+		return $this->getRevision( $previousRevisionId );
 	}
 
 	/**
