@@ -3,7 +3,6 @@
 namespace Flow\Block;
 
 use Flow\Model\Workflow;
-use Flow\Model\Post;
 use Flow\NotificationController;
 use Flow\Data\ManagerGroup;
 use Flow\Templating;

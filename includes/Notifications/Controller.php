@@ -251,7 +251,7 @@ class NotificationController {
 	 * owner of the talk page
 	 * @param  array $mentions Array of User objects
 	 * @param  PostRevision $post The Post that is being examined.
-	 * @param  Title $title The Title of the page that the comment is made on.
+	 * @param  \Title $title The Title of the page that the comment is made on.
 	 * @return array Array of user IDs
 	 */
 	protected function filterMentionedUsers( $mentions, PostRevision $post, $title ) {

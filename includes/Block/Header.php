@@ -10,7 +10,6 @@ use Flow\DbFactory;
 use Flow\Data\ObjectManager;
 use Flow\Model\Workflow;
 use Flow\Model\Header;
-use Flow\Repository\HeaderRepository;
 use Flow\Templating;
 use User;
 use Flow\Exception\InvalidActionException;

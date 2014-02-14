@@ -20,7 +20,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 			}
 		} elseif ( $param === 'commentText' ) {
 			/**
-			 * @var $wgLang Language
+			 * @var \Language $wgLang
 			 */
 			global $wgLang; // Message::language is protected :(
 
@@ -69,10 +69,10 @@ class NotificationFormatter extends EchoBasicFormatter {
 	/**
 	 * Helper function for getLink()
 	 *
-	 * @param EchoEvent $event
-	 * @param User $user The user receiving the notification
-	 * @param String $destination The destination type for the link
-	 * @return Array including target and query parameters
+	 * @param \EchoEvent $event
+	 * @param \User $user The user receiving the notification
+	 * @param string $destination The destination type for the link
+	 * @return array including target and query parameters
 	 */
 	protected function getLinkParams( $event, $user, $destination ) {
 		$target = null;

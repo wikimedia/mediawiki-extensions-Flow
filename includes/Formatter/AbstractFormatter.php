@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Block\AbstractBlock;
+use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
@@ -161,7 +162,7 @@ abstract class AbstractFormatter {
 	/**
 	 * @param AbstractRevision $revision
 	 * @param User $user
-	 * @param Lang $lang
+	 * @param Language $lang
 	 * @return array Contains [timeAndDate, date, time]
 	 */
 	protected function getDateFormats( AbstractRevision $revision, User $user, Language $lang ) {

@@ -4,6 +4,8 @@ namespace Flow\Model;
 
 use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidInputException;
+use User;
+use Language;
 
 class UUID {
 	// provided binary UUID
