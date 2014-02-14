@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_c92114ae",
+        "filename": "includes/Data/RecentChanges.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-14T21:30:16Z",
+      "side": 1,
+      "message": "i think this is still correct, suppression doesn\u0027t ever go into the rc table",
+      "revId": "0ef5aabeb0501a78522fc5b35984ab6ceb9ffa63",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
