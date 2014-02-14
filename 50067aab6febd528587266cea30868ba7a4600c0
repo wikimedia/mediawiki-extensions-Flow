@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_440de940",
+        "filename": "includes/Data/BoardHistoryStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-14T23:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e04eb01_24c09d2e",
+      "revId": "50067aab6febd528587266cea30868ba7a4600c0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_24ee5db2",
         "filename": "includes/Data/BoardHistoryStorage.php",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2014-02-14T22:52:12Z",
       "side": 1,
       "message": "i suppose the main concern here is that this is duplicated work,  backingStoreFindMulti should only be called from findMulti.  findMulti had to run the getCacheKeys method already.  It\u0027s not a big deal, but just feels inefficient.",
+      "revId": "50067aab6febd528587266cea30868ba7a4600c0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_6410e55b",
+        "filename": "includes/Data/BoardHistoryStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-14T23:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e04eb01_24ee5db2",
       "revId": "50067aab6febd528587266cea30868ba7a4600c0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_c4533942",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 1237,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-14T23:45:05Z",
+      "side": 1,
+      "message": "Yes. However, all $results (both from cache \u0026 from storage) should have the exact same indexes.\n\nE.g.\n\n    $queries[0] \u003d ...; // resolved from cache\n    $queries[1] \u003d ...; // not resolved from cache\n    $queries[2] \u003d ...; // resolved from cache\n    $queries[3] \u003d ...; // not resolved from cache\n\nShould (after cache run) result in:\n\n    $results[0] \u003d ...;\n    $results[2] \u003d ...;\n    \n    $queries[1] \u003d ...;\n    $queries[3] \u003d ...;\n\nThen after DB run in:\n\n    $results[0] \u003d ...;\n    $results[2] \u003d ...;\n    $results[1] \u003d ...;\n    $results[3] \u003d ...;\n\nWell, unless I\u0027m mistaken, somewhere... :p\nI should probably add some code to force the order of $results to be the same as the original $queries again.",
+      "parentUuid": "4e04eb01_c4c8d927",
+      "revId": "50067aab6febd528587266cea30868ba7a4600c0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_c48219cd",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2014-02-14T22:52:12Z",
       "side": 1,
       "message": "this comment isn\u0027t strictly true, TopKIndex is usually(but not required to be) a list of id\u0027s, UniqueIndex contains everything except the ids(which are a part of the cache key).\n\nThe result is probably still desired though :)",
+      "revId": "50067aab6febd528587266cea30868ba7a4600c0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_844d319e",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 1247,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-14T23:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e04eb01_c48219cd",
       "revId": "50067aab6febd528587266cea30868ba7a4600c0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_a416ed58",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-14T23:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e04eb01_04bda1ad",
+      "revId": "50067aab6febd528587266cea30868ba7a4600c0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_84ff7162",
         "filename": "includes/Data/RevisionStorage.php",
         "patchSetId": 5
@@ -98,6 +188,24 @@
       "writtenOn": "2014-02-14T22:52:12Z",
       "side": 1,
       "message": "i suppose the main concern here is that this is duplicated work,  backingStoreFindMulti should only be called from findMulti.  findMulti had to run the getCacheKeys method already.  It\u0027s not a big deal, but just feels inefficient.",
+      "revId": "50067aab6febd528587266cea30868ba7a4600c0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_841bf181",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-14T23:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e04eb01_84ff7162",
       "revId": "50067aab6febd528587266cea30868ba7a4600c0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
