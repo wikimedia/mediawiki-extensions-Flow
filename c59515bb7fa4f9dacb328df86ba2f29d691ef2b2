@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_2ef51eb6",
+        "filename": "includes/Data/MultiDimArray.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-14T19:06:52Z",
+      "side": 1,
+      "message": "How did this even work without? Completely unused code-path, I guess?",
+      "revId": "c59515bb7fa4f9dacb328df86ba2f29d691ef2b2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
