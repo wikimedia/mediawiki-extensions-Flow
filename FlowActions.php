@@ -464,8 +464,8 @@ $wgFlowActions = array(
 				// is the same as the moderation (e.g. if user can't see
 				// suppress actions, he can't see restores from suppress
 				if ( $revision->getChangeType() == 'restore-post' ) {
-					$revisionable = $revision->getRevisionable();
-					$previous = $revisionable->getPreviousRevision( $revision );
+					$collection = $revision->getCollection();
+					$previous = $collection->getPrevRevision( $revision );
 
 					if ( $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
 						return '';
@@ -494,8 +494,8 @@ $wgFlowActions = array(
 				// is the same as the moderation (e.g. if user can't see
 				// suppress actions, he can't see restores from suppress
 				if ( $revision->getChangeType() == 'restore-post' ) {
-					$revisionable = $revision->getRevisionable();
-					$previous = $revisionable->getPreviousRevision( $revision );
+					$collection = $revision->getCollection();
+					$previous = $collection->getPrevRevision( $revision );
 
 					if ( $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
 						return '';
@@ -524,8 +524,8 @@ $wgFlowActions = array(
 				// is the same as the moderation (e.g. if user can't see
 				// suppress actions, he can't see restores from suppress
 				if ( $revision->getChangeType() == 'restore-post' ) {
-					$revisionable = $revision->getRevisionable();
-					$previous = $revisionable->getPreviousRevision( $revision );
+					$collection = $revision->getCollection();
+					$previous = $collection->getPrevRevision( $revision );
 
 					if ( $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
 						return '';
