@@ -36,8 +36,11 @@ class Pager {
 
 		// Retrieve results
 		$results = $this->storage->find( $this->query, $options );
-
-		return $this->processPage( $direction, $offset, $pageLimit, $results );
+		if ( $results === null ) {
+			return new PagerPage( array(), array(), $this );
+		} else {
+			return $this->processPage( $direction, $offset, $pageLimit, $results );
+		}
 	}
 
 	public function getDefaultLimit() {
