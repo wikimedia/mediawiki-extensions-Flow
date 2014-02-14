@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_e49f55b8",
+        "filename": "includes/Collection/AbstractCollection.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-02-14T21:42:00Z",
+      "side": 1,
+      "message": "Works, but can getPrevRevisionId() return 0?  It\u0027s documented to return null if no previous revision.",
+      "revId": "07788f69cdb0cb31889d8cac8b85f94145747c17",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
