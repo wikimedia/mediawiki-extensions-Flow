@@ -56,9 +56,9 @@ class FormatterTest extends \MediaWikiTestCase {
 		}
 
 		// @fixme code smell, duplicating code from elsewhere in test
-		$comment = $action . ',' . $workflowId->getHex();
+		$comment = $action . ',' . $workflowId->getAlphadecimal();
 		if ( $postId ) {
-			$comment .= ',' . $postId->getHex();
+			$comment .= ',' . $postId->getAlphadecimal();
 		}
 
 		$row = (object) array(
@@ -78,7 +78,7 @@ class FormatterTest extends \MediaWikiTestCase {
 		// Code uses wfWarn as a louder wfDebugLog in error conditions.
 		// but phpunit considers a warning a fail.
 		wfSuppressWarnings();
-		$links = $this->createFormatter( 'Flow\CheckUser\Formatter' )->format( $checkUser, $row );
+		$links = $this->createFormatter( 'Flow\Formatter\CheckUser' )->format( $checkUser, $row );
 		wfRestoreWarnings();
 		$test( $this, $message, $links );
 	}
