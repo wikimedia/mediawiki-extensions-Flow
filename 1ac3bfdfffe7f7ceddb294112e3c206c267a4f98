@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_ce911a54",
+        "filename": "includes/Block/Block.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-14T19:08:06Z",
+      "side": 1,
+      "message": "Looks like it\u0027s bug https://bugzilla.wikimedia.org/show_bug.cgi?id\u003d60936",
+      "parentUuid": "4e04eb01_c2d9f42d",
+      "revId": "1ac3bfdfffe7f7ceddb294112e3c206c267a4f98",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_825e4c7a",
         "filename": "includes/Block/Header.php",
         "patchSetId": 5
