@@ -67,7 +67,7 @@ class NotificationController {
 	 */
 	public function notifyPostChange( $eventName, $data = array() ) {
 		if ( !class_exists( 'EchoEvent' ) ) {
-			return;
+			return array();
 		}
 
 		$title = $data['title'];
@@ -145,7 +145,7 @@ class NotificationController {
 	public function notifyNewTopic( $params ) {
 		if ( ! class_exists( 'EchoEvent' ) ) {
 			// Nothing to do here.
-			return;
+			return array();
 		}
 
 		$topicWorkflow = $params['topic-workflow'];
