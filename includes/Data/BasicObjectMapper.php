@@ -29,4 +29,8 @@ class BasicObjectMapper implements ObjectMapper {
 	public function fromStorageRow( array $row, $object = null ) {
 		return call_user_func( $this->fromStorageRow, $row, $object );
 	}
+
+	public function get( $pk ) {
+		return null;
+	}
 }
