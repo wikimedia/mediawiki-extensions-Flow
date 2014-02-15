@@ -96,15 +96,12 @@ class HistoryRecord {
 	 * to this method, be be passed along to the callback functions that
 	 * generate the final message parameters, per message.
 	 *
-	 * @param $callbackParam1[optional] Callback parameter
-	 * @param $callbackParam2[optional] Second callback parameter (this method
-	 * can be overloaded, all params will be passed along)
 	 * @return Message
 	 */
-	public function getMessage( $callbackParam1 = null /*[, $callbackParam2[, ...]] */ ) {
+	public function getMessageParams() {
 		$details = $this->getActionDetails( $this->getType() );
 		$params = isset( $details['i18n-params'] ) ? $details['i18n-params'] : array();
-		return $this->buildMessage( $details['i18n-message'], $params, func_get_args() );
+		return array( $details['i18n-message'], $params );
 	}
 
 	/**
@@ -113,28 +110,5 @@ class HistoryRecord {
 	public function isBundled() {
 		$details = $this->getActionDetails( $this->getType() );
 		return isset( $details['bundle'] );
-	}
-
-	/**
-	 * Returns i18n message for $msg.
-	 *
-	 * Complex parameters can be injected in the i18n messages. Anything in
-	 * $params will be call_user_func'ed, with these given $arguments.
-	 * Those results will be used as message parameters.
-	 *
-	 * Note: return array( 'raw' => $value ) or array( 'num' => $value ) for
-	 * raw or numeric parameter input.
-	 *
-	 * @param string $msg i18n key
-	 * @param array[optional] $params Callbacks for parameters
-	 * @param array[optional] $arguments Arguments for the callbacks
-	 * @return Message
-	 */
-	protected function buildMessage( $msg, array $params = array(), array $arguments = array() ) {
-		foreach ( $params as &$param ) {
-			$param = call_user_func_array( $param, $arguments );
-		}
-
-		return wfMessage( $msg, $params );
 	}
 }

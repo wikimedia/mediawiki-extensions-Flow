@@ -3,13 +3,14 @@
 namespace Flow\View\History;
 
 use Flow\Block\Block;
+use Flow\Formatter\AbstractFormatter;
 use Flow\Templating;
 use MWTimestamp;
 
 /**
  * HistoryRenderer will use Templating to render a given list of History.
  */
-class HistoryRenderer {
+class HistoryRenderer extends AbstractFormatter {
 	/**
 	 * @var Templating
 	 */
@@ -226,15 +227,21 @@ class HistoryRenderer {
 			}
 		}
 
-		return $this->templating->render( 'flow:history-line.html.php', array(
-			'class' => $record->getClass(),
-			'message' => $record->getMessage(
+		// build i18n message
+		list( $msg, $params ) = $record->getMessageParams();
+		foreach ( $params as &$param ) {
+			$param = $this->processParam(
 				// Arguments for the i18n messages' parameter callbacks.
+				$param,
 				$record->getData(),
-				$this->templating,
 				$this->block->getWorkflowId(),
 				$this->block->getName()
-			),
+			);
+		}
+
+		return $this->templating->render( 'flow:history-line.html.php', array(
+			'class' => $record->getClass(),
+			'message' => wfMessage( $msg, $params ),
 			'timestamp' => $record->getTimestamp(),
 			'children' => $children,
 			'historicalLink' => $historicalLink,
