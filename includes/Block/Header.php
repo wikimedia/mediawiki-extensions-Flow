@@ -226,7 +226,7 @@ class HeaderBlock extends AbstractBlock {
 			}
 		}
 
-		return $history;
+		return $found;
 	}
 
 	public function getName() {
