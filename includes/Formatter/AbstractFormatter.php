@@ -10,6 +10,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
+use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
 use Language;
