@@ -85,7 +85,7 @@ abstract class AbstractRevision {
 
 	/**
 	 * html content has been allowed by the xss check.  When we find the next xss
-	 * in the parser this hook allows preventing any disply of hostile html. True
+	 * in the parser this hook allows preventing any display of hostile html. True
 	 * means the content is allowed. False means not allowed. Null means unchecked
 	 * 
 	 * @var boolean
@@ -276,7 +276,7 @@ abstract class AbstractRevision {
 			return null;
 		}
 
-		// doublecheck if user has permissions for moderation action
+		// double check if user has permissions for moderation action
 		if ( !$this->isAllowed( $user, $changeType ) ) {
 			return null;
 		}
