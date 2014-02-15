@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_a4482d8d",
+        "filename": "tests/RevisionablePermissionsTest.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-15T00:19:25Z",
+      "side": 1,
+      "message": "RevisionCollectionPermissionsTest ?",
+      "revId": "aeca8112e5711e24add5c68bdf40269ebcd72b9f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
