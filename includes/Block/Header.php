@@ -49,7 +49,7 @@ class HeaderBlock extends AbstractBlock {
 		// @todo some sort of restriction along the lines of article protection
 		if ( !$this->user->isAllowed( 'edit' ) ) {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-			return false;
+			return;
 		}
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->addError( 'content', wfMessage( 'flow-error-missing-header-content' ) );

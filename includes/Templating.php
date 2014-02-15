@@ -106,6 +106,7 @@ class Templating {
 			return $content;
 		} else {
 			$this->output->addHTML( $content );
+			return '';
 		}
 	}
 
