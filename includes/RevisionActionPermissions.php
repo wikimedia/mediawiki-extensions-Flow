@@ -33,7 +33,7 @@ class RevisionActionPermissions {
 	/**
 	 * Get the name of all the actions the user is allowed to perform.
 	 *
-	 * @param AbstractRevision[optional] $revision The revision to check permissions against
+	 * @param AbstractRevision|null $revision The revision to check permissions against
 	 * @return array Array of action names that are allowed
 	 */
 	public function getAllowedActions( AbstractRevision $revision = null ) {
@@ -49,7 +49,7 @@ class RevisionActionPermissions {
 	/**
 	 * Check if a user is allowed to perform a certain action.
 	 *
-	 * @param AbstractRevision[optional] $revision
+	 * @param AbstractRevision|null $revision
 	 * @param string $action
 	 * @return bool
 	 */
@@ -82,9 +82,8 @@ class RevisionActionPermissions {
 	/**
 	 * Check if a user is allowed to perform certain actions.
 	 *
-	 * @param AbstractRevision[optional] $revision
-	 * @param string $action
-	 * @param string[optional] $action2 Overloadable to check if either of the provided actions are allowed
+	 * @param AbstractRevision|null $revision
+	 * @param string $action... Multiple parameters to check if either of the provided actions are allowed
 	 * @return bool
 	 */
 	public function isAllowedAny( AbstractRevision $revision = null, $action /* [, $action2 [, ... ]] */ ) {
@@ -110,7 +109,7 @@ class RevisionActionPermissions {
 	 * specific revision (whereas the default isAllowed() will check if the
 	 * given $action is allowed for both given and the most current revision)
 	 *
-	 * @param AbstractRevision[optional] $revision
+	 * @param AbstractRevision|null $revision
 	 * @param string $action
 	 * @return bool
 	 */
@@ -141,9 +140,8 @@ class RevisionActionPermissions {
 	 * specific revision (whereas the default isAllowed() will check if the
 	 * given $action is allowed for both given and the most current revision)
 	 *
-	 * @param AbstractRevision[optional] $revision
-	 * @param string $action
-	 * @param string[optional] $action2 Overloadable to check if either of the provided actions are allowed
+	 * @param AbstractRevision|null $revision
+	 * @param string $action... Multiple parameters to check if either of the provided actions are allowed
 	 * @return bool
 	 */
 	public function isRevisionAllowedAny( AbstractRevision $revision = null, $action /* [, $action2 [, ... ]] */ ) {
@@ -168,7 +166,7 @@ class RevisionActionPermissions {
 	 * Returns the permission specified in FlowActions for the given action
 	 * against the given revision's moderation state.
 	 *
-	 * @param AbstractRevision[optional] $revision
+	 * @param AbstractRevision|null $revision
 	 * @param string $action
 	 * @return Closure|string
 	 */

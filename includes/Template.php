@@ -66,12 +66,12 @@ use OutputPage;
 class Template {
 
 	/**
-	 * @var array Map from prefix to path
+	 * @var string[] Map from prefix to path
 	 */
 	protected $namespaces;
 
 	/**
-	 * @var array Map from name of helper to callable that returns it
+	 * @var callable[] Map from name of helper to callable that returns it
 	 */
 	protected $helpers;
 
@@ -130,9 +130,12 @@ class Template {
 	}
 
 	/**
-	 * @param string $name
-	 * @param array $args
+	 * Call a helper method 
+	 *
+	 * @param string $name Name of the helper
+	 * @param array $args Arguments to pass to the helper
 	 * @return mixed
+	 * @throws RuntimeException When an unknown helper is requested
 	 */
 	public function __call( $name, $args ) {
 		if ( !isset( $this->helpers[$name] ) ) {
@@ -170,8 +173,9 @@ class Template {
 	}
 
 	/**
-	 * @param string $file
-	 * @return string
+	 * @param string $file optionally prefixed with namespace
+	 * @return string full path to the requested file
+	 * @throws RuntimeException When prefixed namespace does not exist
 	 */
 	public function findFile( $file ) {
 		if ( false === strpos( $file, ':' ) ) {

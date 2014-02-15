@@ -18,7 +18,7 @@ abstract class AbstractRevision {
 	/**
 	 * List of available permission levels.
 	 *
-	 * @var array
+	 * @var string[]
 	 **/
 	static public $perms = array(
 		self::MODERATED_NONE,
@@ -46,7 +46,8 @@ abstract class AbstractRevision {
 	/**
 	 * Array of flags strictly related to the content. Flags are reset when
 	 * content changes.
-	 * @var array
+	 *
+	 * @var string[] 
 	 */
 	protected $flags = array();
 
@@ -79,7 +80,7 @@ abstract class AbstractRevision {
 	protected $decompressedContent;
 
 	/**
-	 * @var array Converted (wikitext|html) content, based off of $this->decompressedContent
+	 * @var string[] Converted (wikitext|html) content, based off of $this->decompressedContent
 	 */
 	protected $convertedContent = array();
 
@@ -141,13 +142,14 @@ abstract class AbstractRevision {
 	protected $lastEditUserIp;
 
 	/**
-	 * @param array $row
-	 * @param static|null $obj
-	 * @return static
+	 * @param string[] $row
+	 * @param AbstractRevision|null $obj
+	 * @return AbstractRevision
 	 * @throws DataModelException
 	 */
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
+			/** @var AbstractRevision $obj */
 			$obj = new static;
 		} elseif ( !$obj instanceof static ) {
 			throw new DataModelException( 'wrong object type', 'process-data' );
@@ -200,7 +202,7 @@ abstract class AbstractRevision {
 
 	/**
 	 * @param AbstractRevision $obj
-	 * @return array
+	 * @return string[]
 	 */
 	static public function toStorageRow( $obj ) {
 		return array(

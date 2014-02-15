@@ -33,11 +33,12 @@ class Header extends AbstractRevision {
 	}
 
 	/**
-	 * @param array $row
+	 * @param string[] $row
 	 * @param Header|null $obj
 	 * @return Header
 	 */
 	static public function fromStorageRow( array $row, $obj = null ) {
+		/** @var $obj Header */
 		$obj = parent::fromStorageRow( $row, $obj );
 		$obj->workflowId = UUID::create( $row['header_workflow_id'] );
 		return $obj;
@@ -45,7 +46,7 @@ class Header extends AbstractRevision {
 
 	/**
 	 * @param Header $obj
-	 * @return array
+	 * @return string[]
 	 */
 	static public function toStorageRow( $obj ) {
 		return parent::toStorageRow( $obj ) + array(

@@ -22,11 +22,34 @@ use Flow\Exception\PermissionException;
 
 class TopicBlock extends AbstractBlock {
 
+	/**
+	 * @var PostRevision|null
+	 */
 	protected $root;
+
+	/**
+	 * @var PostRevision|null
+	 */
 	protected $topicTitle;
+
+	/**
+	 * @var RootPostLoader|null
+	 */
 	protected $rootLoader;
+
+	/**
+	 * @var PostRevision|null
+	 */
 	protected $newRevision;
+
+	/**
+	 * @var array
+	 */
 	protected $notification;
+
+	/**
+	 * @var array
+	 */
 	protected $requestedPost = array();
 
 	// POST actions, GET do not need to be listed
@@ -363,15 +386,15 @@ class TopicBlock extends AbstractBlock {
 
 			// FIXME special case
 			if ( $this->action == 'edit-title' ) {
-				$renderFunction = function( $templating ) use ( $newRevision ) {
+				$renderFunction = function( Templating $templating ) use ( $newRevision ) {
 					return $templating->getContent( $newRevision, 'wikitext' );
 				};
 			} elseif ( $this->action === 'moderate-topic' ) {
-				$renderFunction = function( $templating ) use ( $self, $newRevision ) {
+				$renderFunction = function( Templating $templating ) use ( $self, $newRevision ) {
 					return $templating->renderTopic( $newRevision, $self );
 				};
 			} else {
-				$renderFunction = function( $templating ) use ( $self, $newRevision, $rootPost ) {
+				$renderFunction = function( Templating $templating ) use ( $self, $newRevision, $rootPost ) {
 					return $templating->renderPost( $newRevision, $self );
 				};
 			}
@@ -448,6 +471,8 @@ class TopicBlock extends AbstractBlock {
 			$oldRevId = UUID::create( $options['oldRevision'] );
 			$newRevId = UUID::create( $options['newRevision'] );
 
+			/** @var PostRevision $oldRev */
+			/** @var PostRevision $newRev */
 			list( $oldRev, $newRev ) = $this->storage->getMulti(
 				'PostRevision',
 				array(
@@ -577,7 +602,7 @@ class TopicBlock extends AbstractBlock {
 			'post' => $post,
 			'history' => new History( $history ),
 			'historyRenderer' => new HistoryRenderer( $templating, $this ),
-		) );
+		), $return );
 	}
 
 	protected function renderEditPost( Templating $templating, array $options, $return = false ) {
@@ -732,6 +757,7 @@ class TopicBlock extends AbstractBlock {
 		$output['post-id'] = $postId;
 
 		foreach( $history as $revision ) {
+			/** @var AbstractRevision $revision */
 			if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 				$output[] = array(
 					'revision-id' => $revision->getRevisionId()->getAlphadecimal(),
@@ -765,6 +791,10 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
+	/**
+	 * @param UUID[] $postIds
+	 * @return PostRevision[]
+	 */
 	protected function getHistoryBatch( $postIds ) {
 		$searchItems = array();
 
@@ -804,6 +834,9 @@ class TopicBlock extends AbstractBlock {
 		);
 	}
 
+	/**
+	 * @return PostRevision|null
+	 */
 	public function loadRootPost() {
 		if ( $this->root !== null ) {
 			return $this->root;
@@ -960,6 +993,7 @@ class TopicBlock extends AbstractBlock {
 		$revId = $post->getRevisionId();
 		$rootPost = $post->getRootPost();
 		foreach ( $found as $idx => $revision ) {
+			/** @var PostRevision $revision */
 			if ( $revId->equals( $revision->getRevisionId() ) ) {
 				// Because storage returns a new object for every query
 				// We need to find $post in the array and replace it

@@ -24,7 +24,7 @@ class RootPostLoader {
 	 * Retrieves a single post and the related topic title.
 	 *
 	 * @param UUID|string $postId The uid of the post being requested
-	 * @return array associative array with 'root' and 'post' keys. Array
+	 * @return PostRevision[] associative array with 'root' and 'post' keys. Array
 	 *   values may be null if not found.
 	 */
 	public function getWithRoot( $postId ) {
@@ -68,6 +68,11 @@ class RootPostLoader {
 		return reset( $result );
 	}
 
+	/**
+	 * @param UUID[] $topicIds
+	 * @return PostRevision[]
+	 * @throws \Flow\Exception\InvalidDataException
+	 */
 	public function getMulti( array $topicIds ) {
 		if ( !$topicIds ) {
 			return array();
@@ -83,6 +88,7 @@ class RootPostLoader {
 			'order' => 'DESC',
 			'limit' => 1,
 		) );
+		/** @var PostRevision[] $posts */
 		$posts = $children = array();
 		foreach ( $found as $indexResult ) {
 			$post = reset( $indexResult ); // limit => 1 means only 1 result per query
@@ -98,6 +104,7 @@ class RootPostLoader {
 		$missing = array_diff( $prettyPostIds, array_keys( $posts ) );
 		if ( $missing ) {
 			// convert string uuid's into UUID objects
+			/** @var UUID[] $missingUUID */
 			$missingUUID = array_map( array( 'Flow\Model\UUID', 'create' ), $missing );
 
 			// we'll need to know parents to add stub post correctly in post hierarchy
@@ -146,7 +153,7 @@ class RootPostLoader {
 			// link parents to their children
 			if ( isset( $children[$postId] ) ) {
 				// sort children with oldest items first
-				usort( $children[$postId], function( $a, $b ) {
+				usort( $children[$postId], function( PostRevision $a, PostRevision $b ) {
 					return $b->compareCreateTime( $a );
 				} );
 				$postChildren = $children[$postId];
@@ -165,6 +172,7 @@ class RootPostLoader {
 
 		// return only the requested posts, rest are available as children.
 		// Return in same order as requested
+		/** @var PostRevision[] $roots */
 		$roots = array();
 		foreach ( $topicIds as $id ) {
 			$roots[$id->getAlphadecimal()] = $posts[$id->getAlphadecimal()];
@@ -177,6 +185,10 @@ class RootPostLoader {
 		return $roots;
 	}
 
+	/**
+	 * @param UUID[] $postIds
+	 * @return UUID[] Map from alphadecimal id to UUID object
+	 */
 	protected function fetchRelatedPostIds( array $postIds ) {
 		// list of all posts descendant from the provided $postIds
 		$nodeList = $this->treeRepo->fetchSubtreeNodeList( $postIds );

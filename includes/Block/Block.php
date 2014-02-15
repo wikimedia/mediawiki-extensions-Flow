@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 use Flow\Data\ManagerGroup;
@@ -12,6 +13,10 @@ use User;
 interface Block {
 	/**
 	 * Perform validation of data model
+	 *
+	 * @param string $action
+	 * @param User $user
+	 * @param array $data
 	 * @return boolean True if data model is valid
 	 */
 	function onSubmit( $action, User $user, array $data );
@@ -24,12 +29,20 @@ interface Block {
 	/**
 	 * Load whatever is necessary for rendering an use $templating to
 	 * render it.
+	 *
+	 * @param Templating $templating
+	 * @param array $options
+	 * @return string
 	 */
 	function render( Templating $templating, array $options );
 
 	/**
 	 * Render the API output of this Block.
 	 * Templating is provided for convenience
+	 *
+	 * @param Templating $templating
+	 * @param array $options
+	 * @return array
 	 */
 	function renderAPI( Templating $templating, array $options );
 
@@ -37,6 +50,11 @@ interface Block {
 	 * @return string Unique name among all blocks on an object
 	 */
 	function getName();
+
+	/**
+	 * @return UUID
+	 */
+	function getWorkflowId();
 }
 
 abstract class AbstractBlock implements Block {

@@ -13,8 +13,9 @@ abstract class ParsoidUtils {
 	 * @param string $from Format of content to convert: html|wikitext
 	 * @param string $to Format to convert to: html|wikitext
 	 * @param string $content
-	 * @param Title[optional] $title Defaults to $wgTitle
+	 * @param Title|null $title Defaults to $wgTitle
 	 * @return string
+	 * @throws InvalidDataException When $title does not exist
 	 */
 	public static function convert( $from, $to, $content, Title $title = null ) {
 		if ( $from === $to || $content === '' ) {
@@ -65,6 +66,8 @@ abstract class ParsoidUtils {
 	 * @param string $content
 	 * @param Title $title
 	 * @return string
+	 * @throws NoParsoidException When parsoid configuration is not available
+	 * @throws WikitextException When conversion is unsupported
 	 */
 	protected static function parsoid( $from, $to, $content, Title $title ) {
 		list( $parsoidURL, $parsoidPrefix, $parsoidTimeout ) = self::parsoidConfig();
@@ -129,6 +132,7 @@ abstract class ParsoidUtils {
 	 * @param string $content
 	 * @param Title $title
 	 * @return string
+	 * @throws WikitextException When the conversion is unsupported
 	 */
 	protected static function parser( $from, $to, $content, Title $title ) {
 		if ( $from !== 'wikitext' && $to !== 'html' ) {

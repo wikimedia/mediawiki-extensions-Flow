@@ -254,7 +254,11 @@ class TreeRepository {
 
 	/**
 	 * Fetch a node and all its descendants.
+	 *
+	 * @param UUID $root
+	 * @param integer|null $maxDepth
 	 * @return array Multi-dimensional tree
+	 * @throws DataModelException When invalid data is received from self::fetchSubtreeNodeList
 	 */
 	public function fetchSubtreeIdentityMap( $root, $maxDepth = null ) {
 		$nodes = $this->fetchSubtreeNodeList( ObjectManager::makeArray( $root ) );
@@ -293,6 +297,8 @@ class TreeRepository {
 
 	/**
 	 * Return the id's of all nodes which are a descendant of provided roots
+	 *
+	 * @param UUID[] $roots
 	 * @return array map from root id to its descendant list
 	 */
 	public function fetchSubtreeNodeList( array $roots ) {

@@ -226,8 +226,10 @@ class NotificationController {
 
 	/**
 	 * Analyses a PostRevision to determine which users are mentioned.
-	 * @param  PostRevision $post The Post to analyse.
-	 * @return array Array of User objects.
+	 *
+	 * @param PostRevision $post The Post to analyse.
+	 * @param \Title $title
+	 * @return User[] Array of User objects.
 	 */
 	protected function getMentionedUsers( $post, $title ) {
 		// At the moment, it is not possible to get a list of mentioned users from HTML
@@ -314,6 +316,7 @@ class NotificationController {
 	 * Handler for EchoGetBundleRule hook, which defines the bundle rules for each notification
 	 * @param $event EchoEvent
 	 * @param $bundleString string Determines how the notification should be bundled
+	 * @return true
 	 */
 	public static function onEchoGetBundleRules( $event, &$bundleString ) {
 		switch ( $event->getType() ) {

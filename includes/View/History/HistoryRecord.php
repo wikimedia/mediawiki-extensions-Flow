@@ -44,6 +44,7 @@ class HistoryRecord {
 	 *
 	 * @param string $action
 	 * @return array|bool Array of action details or false if invalid
+	 * @throws InvalidActionException If the action does not exist
 	 */
 	protected function getActionDetails( $action ) {
 		$details = $this->getActions()->getValue( $action, 'history' );
