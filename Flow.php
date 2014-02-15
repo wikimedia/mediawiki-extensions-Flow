@@ -125,6 +125,7 @@ $wgAutoloadClasses['Flow\Data\DbStorage'] = $dir . 'includes/Data/ObjectManager.
 $wgAutoloadClasses['Flow\Data\BasicDbStorage'] = $dir . 'includes/Data/ObjectManager.php';
 $wgAutoloadClasses['Flow\Data\ObjectMapper'] = $dir . 'includes/Data/ObjectManager.php';
 $wgAutoloadClasses['Flow\Data\BasicObjectMapper'] = $dir . 'includes/Data/ObjectManager.php';
+$wgAutoloadClasses['Flow\Data\CachingObjectMapper'] = $dir . 'includes/Data/ObjectManager.php';
 $wgAutoloadClasses['Flow\Data\BufferedCache'] = $dir . 'includes/Data/ObjectManager.php';
 $wgAutoloadClasses['Flow\Data\LocalBufferedCache'] = $dir . 'includes/Data/ObjectManager.php';
 $wgAutoloadClasses['Flow\Data\SortArrayByKeys'] = $dir . 'includes/Data/ObjectManager.php';
