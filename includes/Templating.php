@@ -484,7 +484,11 @@ class Templating {
 	}
 
 	public function registerParsoidLinks( AbstractRevision $revision ) {
-		$this->redlinks->registerPost( $revision );
+		if ( $revision instanceof PostRevision ) {
+			$this->redlinks->registerPost( $revision );
+		} elseif ( $revision instanceof Header ) {
+			// @todo
+		}
 	}
 
 }

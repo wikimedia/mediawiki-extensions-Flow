@@ -224,7 +224,7 @@ class ContributionsQuery {
 		$fakeRow['workflow'] = $workflow;
 		$fakeRow['blocktype'] = $blockType;
 
-		if ( $blockType == 'topic' ) {
+		if ( $blockType == 'topic' && $revision instanceof PostRevision ) {
 			$fakeRow['root_post'] = $this->getRootPost( $revision );
 		}
 
