@@ -2,7 +2,6 @@
 
 namespace Flow\Data;
 
-use Flow\Block\TopicBlock;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;

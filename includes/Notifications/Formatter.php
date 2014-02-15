@@ -2,8 +2,6 @@
 
 namespace Flow;
 
-use Flow\Container;
-use Flow\UrlGenerator;
 use EchoBasicFormatter;
 
 // could be renamed later if we have more formatters

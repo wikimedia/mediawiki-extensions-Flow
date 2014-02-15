@@ -4,7 +4,6 @@ namespace Flow\Template;
 
 use ArrayAccess;
 use ArrayIterator;
-use ArrayObject;
 use IteratorAggregate;
 use Message;
 use Flow\Exception\RuntimeException;

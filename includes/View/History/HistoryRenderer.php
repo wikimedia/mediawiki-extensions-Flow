@@ -3,6 +3,7 @@
 namespace Flow\View\History;
 
 use Flow\Block\Block;
+use Flow\Container;
 use Flow\Formatter\AbstractFormatter;
 use Flow\Templating;
 use MWTimestamp;
@@ -191,7 +192,7 @@ class HistoryRenderer extends AbstractFormatter {
 			$uuids[] = $workflowId;
 		}
 
-		$res = \Flow\Container::get( 'storage.workflow' )->getMulti( $uuids );
+		$res = Container::get( 'storage.workflow' )->getMulti( $uuids );
 
 		foreach ( $res as $workflow ) {
 			$uuid = $workflow->getId()->getBinary();

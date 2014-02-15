@@ -12,11 +12,7 @@ use OutputPage;
 // These dont really belong here
 use Html;
 use Linker;
-use LinkBatch;
 use Message;
-use MWTimestamp;
-use RequestContext;
-use User;
 use Flow\Exception\InvalidDataException;
 
 class Templating {

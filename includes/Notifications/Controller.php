@@ -3,11 +3,8 @@
 namespace Flow;
 
 use EchoEvent;
-use Flow\Container;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use Flow\Model\Workflow;
-use MWException;
 use User;
 use Language;
 

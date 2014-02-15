@@ -22,7 +22,7 @@ class MultiGetList {
 		$key = implode( ':', (array) $key );
 		$cacheKeys = array();
 		foreach ( $ids as $id ) {
-			if ( $id instanceof \Flow\Model\UUID ) {
+			if ( $id instanceof UUID ) {
 				$cacheId = $id->getAlphadecimal();
 			} elseif ( !is_scalar( $id ) ) {
 				throw new InvalidInputException( 'Not scalar:' . gettype( $id ), 'invalid-input' );

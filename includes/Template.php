@@ -3,7 +3,6 @@
 namespace Flow;
 
 use Flow\Exception\RuntimeException;
-use Closure;
 use OutputPage;
 
 /**

@@ -6,7 +6,6 @@ use Flow\Data\UserNameBatch;
 use Flow\Model\PostRevision;
 use Flow\Block\AbstractBlock;
 use Flow\UrlGenerator;
-use Flow\Templating;
 use Linker;
 use Html;
 use Message;
