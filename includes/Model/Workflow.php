@@ -240,7 +240,7 @@ class Workflow {
 	 * @throws InvalidInputException
 	 */
 	public function matchesTitle( Title $title ) {
-		// Needs to be a non-strict comparrison
+		// Needs to be a non-strict comparison
 		if ( $title->getNamespace() != $this->namespace ) {
 			throw new InvalidInputException( 'namespace', 'invalid-input' );
 		}
