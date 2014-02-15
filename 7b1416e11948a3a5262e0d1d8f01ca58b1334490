@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_5ff5b2c6",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-15T00:19:44Z",
+      "side": 1,
+      "message": "$revision-\u003egetCollection()-\u003egetPrevRevision( $revision );",
+      "revId": "7b1416e11948a3a5262e0d1d8f01ca58b1334490",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
