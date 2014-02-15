@@ -2,7 +2,6 @@
 
 namespace Flow;
 
-use FlowHooks;
 use Flow\Data\ObjectManager;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;

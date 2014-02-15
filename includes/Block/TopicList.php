@@ -3,9 +3,7 @@
 namespace Flow\Block;
 
 use Flow\Container;
-use Flow\DbFactory;
 use Flow\Data\ManagerGroup;
-use Flow\Data\ObjectManager;
 use Flow\Data\Pager;
 use Flow\Data\RootPostLoader;
 use Flow\Model\PostRevision;
@@ -15,8 +13,6 @@ use Flow\Model\Workflow;
 use Flow\NotificationController;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
-use Flow\SpamFilter\Controller;
-use User;
 use Flow\Exception\FailCommitException;
 
 class TopicListBlock extends AbstractBlock {

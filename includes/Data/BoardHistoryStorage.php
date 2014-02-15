@@ -3,9 +3,6 @@
 namespace Flow\Data;
 
 use Flow\Model\UUID;
-use Flow\Model\PostRevision;
-use Flow\Model\Header;
-use Flow\DbFactory;
 use Flow\Container;
 use Flow\Exception\DataModelException;
 

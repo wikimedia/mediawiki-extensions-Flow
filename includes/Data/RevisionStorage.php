@@ -8,7 +8,6 @@ use Flow\Repository\TreeRepository;
 use DatabaseBase;
 use ExternalStore;
 use MWException;
-use User;
 use Flow\Exception\DataModelException;
 
 abstract class RevisionStorage extends DbStorage {

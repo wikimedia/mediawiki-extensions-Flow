@@ -2,7 +2,6 @@
 
 namespace Flow\Exception;
 
-use MWExceptionHandler;
 use MWException;
 use OutputPage;
 
