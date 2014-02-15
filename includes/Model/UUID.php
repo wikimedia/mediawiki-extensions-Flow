@@ -8,12 +8,32 @@ use User;
 use Language;
 
 class UUID {
-	// provided binary UUID
+	/**
+	 * Provided binary UUID
+	 *
+	 * @var string
+	 */
 	protected $binaryValue;
-	// alternate representations
+
+	/**
+	 * base16 representation
+	 *
+	 * @var string
+	 */
 	protected $hexValue;
+
+	/**
+	 * base36 representation
+	 *
+	 * @var string
+	 */
 	protected $alphadecimalValue;
 
+	/**
+	 * Timestamp uuid was created
+	 *
+	 * @var \MWTimestamp
+	 */
 	protected $timestamp;
 
 	// UUID length in hex, always padded
@@ -30,6 +50,10 @@ class UUID {
 	// 128 bit hex length
 	const OLD_HEX_LEN = 32;
 
+	/**
+	 * @param string $binaryValue
+	 * @throws InvalidInputException
+	 */
 	function __construct( $binaryValue ) {
 		if ( strlen( $binaryValue ) !== self::BIN_LEN ) {
 			throw new InvalidInputException( 'Expected ' . self::BIN_LEN . ' char binary string, got: ' . $binaryValue, 'invalid-input' );
@@ -46,6 +70,11 @@ class UUID {
 		$this->alphadecimalValue = null;
 	}
 
+	/**
+	 * @param mixed $input
+	 * @return UUID|null
+	 * @throws InvalidInputException
+	 */
 	static public function create( $input = false ) {
 		$binaryValue = null;
 		$hexValue = null;
@@ -97,10 +126,16 @@ class UUID {
 		return $uuid;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function __toString() {
 		return $this->getAlphadecimal();
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function getHex() {
 		if ( $this->hexValue === null ) {
 			$this->hexValue = str_pad( bin2hex( $this->binaryValue ), self::HEX_LEN, '0', STR_PAD_LEFT );
@@ -108,14 +143,23 @@ class UUID {
 		return $this->hexValue;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getBinary() {
 		return $this->binaryValue;
 	}
 
+	/**
+	 * @return string Numeric, but overflows php integer
+	 */
 	public function getNumber() {
 		return wfBaseConvert( $this->getHex(), 16, 10 );
 	}
 
+	/**
+	 * @return \MWTimestamp
+	 */
 	public function getTimestampObj() {
 		if ( $this->timestamp === null ) {
 			// First 6 bytes === 48 bits
@@ -135,11 +179,20 @@ class UUID {
 		return clone $this->timestamp;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTimestamp() {
 		$ts = $this->getTimestampObj();
 		return $ts ? $ts->getTimestamp( TS_MW ) : false;
 	}
 
+	/**
+	 * @param UUID|MWTimestamp|null $relativeTo
+	 * @param User|null $user
+	 * @param Language|null $lang
+	 * @return string|false
+	 */
 	public function getHumanTimestamp( $relativeTo = null, User $user = null, Language $lang = null ) {
 		if ( $relativeTo instanceof UUID ) {
 			$relativeTo = $relativeTo->getTimestampObj() ?: null;
@@ -148,6 +201,10 @@ class UUID {
 		return $ts ? $ts->getHumanTimestamp( $relativeTo, $user, $lang ) : false;
 	}
 
+	/**
+	 * @param array
+	 * @return array
+	 */
 	public static function convertUUIDs( $array ) {
 		foreach( ObjectManager::makeArray( $array ) as $key => $value ) {
 			if ( is_a( $value, 'Flow\Model\UUID' ) ) {
@@ -158,6 +215,10 @@ class UUID {
 		return $array;
 	}
 
+	/**
+	 * @param UUID $other
+	 * @return boolean
+	 */
 	public function equals( UUID $other ) {
 		return $other->getBinary() === $this->getBinary();
 	}

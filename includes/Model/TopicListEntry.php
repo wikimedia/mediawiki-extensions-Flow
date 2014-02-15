@@ -6,9 +6,22 @@ use Flow\Exception\DataModelException;
 
 // TODO: We shouldn't need this class
 class TopicListEntry {
+
+	/**
+	 * @var UUID
+	 */
 	protected $topicListId;
+
+	/**
+	 * @var UUID
+	 */
 	protected $topicId;
 
+	/**
+	 * @param Workflow $topicList
+	 * @param Workflow $topic
+	 * @return TopicListEntry
+	 */
 	static public function create( Workflow $topicList, Workflow $topic ) {
 		// die( var_dump( array(
 		// 	'topicList' => $topicList,
@@ -20,6 +33,12 @@ class TopicListEntry {
 		return $obj;
 	}
 
+	/**
+	 * @param array $row
+	 * @param TopicListEntry|null $obj
+	 * @return TopicListEntry
+	 * @throws DataModelException
+	 */
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			$obj = new self;
@@ -31,6 +50,10 @@ class TopicListEntry {
 		return $obj;
 	}
 
+	/**
+	 * @param TopicListEntry $obj
+	 * @return array
+	 */
 	static public function toStorageRow( TopicListEntry $obj ) {
 		return array(
 			'topic_list_id' => $obj->topicListId->getBinary(),
@@ -38,10 +61,16 @@ class TopicListEntry {
 		);
 	}
 
+	/**
+	 * @return UUID
+	 */
 	public function getId() {
 		return $this->topicId;
 	}
 
+	/**
+	 * @return UUID
+	 */
 	public function getListId() {
 		return $this->topicListId;
 	}
