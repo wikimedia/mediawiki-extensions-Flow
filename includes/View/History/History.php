@@ -13,7 +13,7 @@ use FakeResultWrapper;
  */
 class History extends FakeResultWrapper {
 	/**
-	 * @var array
+	 * @var HistoryRecord[]
 	 */
 	protected $records = array();
 
@@ -73,8 +73,8 @@ class History extends FakeResultWrapper {
 	/**
 	 * Returns a subset of History between 2 points in time.
 	 *
-	 * @param MWTimestamp[optional] $from
-	 * @param MWTimestamp[optional] $to
+	 * @param MWTimestamp|null $from
+	 * @param MWTimestamp|null $to
 	 * @return History
 	 */
 	public function getTimespan( MWTimestamp $from = null, MWTimestamp $to = null ) {

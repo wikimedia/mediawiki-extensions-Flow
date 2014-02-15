@@ -22,7 +22,7 @@ class UrlGenerator {
 	protected $storage;
 
 	/**
-	 * @var array Cached array of already loaded workflows
+	 * @var Workflow[] Cached array of already loaded workflows
 	 */
 	protected $workflows = array();
 
@@ -75,8 +75,7 @@ class UrlGenerator {
 	 * @param  string $action The action to execute
 	 * @param  array  $query Associative array of query parameters
 	 * @param  string $fragment URL hash fragment
-	 * @return Array Two element array, first element is the title to link to,
-	 * second element is the query string
+	 * @return string URL
 	 */
 	public function generateUrl( $workflow, $action = 'view', array $query = array(), $fragment = '' ) {
 		list( $linkTitle, $query ) = $this->generateUrlData( $workflow, $action, $query );
@@ -96,6 +95,7 @@ class UrlGenerator {
 	 * @param Workflow|UUID $workflow The Workflow to link to
 	 * @param AbstractRevision $revision The revision to build the block
 	 * @param boolean $specificRevision whether to show specific revision
+	 * @return string URL
 	 */
 	public function generateBlockUrl( $workflow, AbstractRevision $revision, $specificRevision = false ) {
 		$data = array();

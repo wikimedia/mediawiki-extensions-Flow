@@ -90,6 +90,7 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 	 * Returns the most recent revision.
 	 *
 	 * @return AbstractRevision
+	 * @throws InvalidDataException When no revision can be located
 	 */
 	public function getLastRevision() {
 		// if $revisions is not empty, it will always have the last revision,

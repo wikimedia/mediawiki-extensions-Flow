@@ -23,6 +23,7 @@ class Post {
 	 * @param PostRevision $post The revision object representing a post
 	 * @param PostActionMenu $actions Action menus
 	 * @param UrlGenerator $urlGenerator Url generator object
+	 * @param UserNameBatch $usernames
 	 */
 	public function __construct( User $user, PostRevision $post, PostActionMenu $actions, UrlGenerator $urlGenerator, UserNameBatch $usernames ) {
 		$this->user = $user;

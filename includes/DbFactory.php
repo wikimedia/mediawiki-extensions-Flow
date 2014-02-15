@@ -28,8 +28,8 @@ class DbFactory {
 	protected $cluster;
 
 	/**
-	 * @var string|bool[optional] $wiki Wiki ID, or false for the current wiki
-	 * @var string|bool[optional] $cluster External storage cluster, or false for core
+	 * @var string|boolean $wiki Wiki ID, or false for the current wiki
+	 * @var string|boolean $cluster External storage cluster, or false for core
 	 */
 	public function __construct( $wiki = false, $cluster = false ) {
 		$this->wiki = $wiki;
@@ -61,9 +61,9 @@ class DbFactory {
 	 * Mockable version of wfGetDB.
 	 *
 	 * @param integer $db index of the connection to get.  DB_MASTER|DB_SLAVE.
-	 * @param mixed $groups query groups. An array of group names that this query
+	 * @param array $groups query groups. An array of group names that this query
 	 *   belongs to.
-	 * @param string|false $wiki The wiki ID, or false for the current wiki
+	 * @param string|boolean $wiki The wiki ID, or false for the current wiki
 	 * @return \DatabaseBase
 	 */
 	public function getWikiDB( $db, $groups = array(), $wiki = false ) {
@@ -73,7 +73,7 @@ class DbFactory {
 	/**
 	 * Mockable version of wfGetLB.
 	 *
-	 * @param string $wiki wiki ID, or false for the current wiki
+	 * @param string|boolean $wiki wiki ID, or false for the current wiki
 	 * @return \LoadBalancer
 	 */
 	public function getWikiLB( $wiki = false ) {

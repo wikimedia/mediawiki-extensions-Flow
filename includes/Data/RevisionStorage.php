@@ -2,6 +2,7 @@
 
 namespace Flow\Data;
 
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\DbFactory;
 use Flow\Repository\TreeRepository;
@@ -526,16 +527,29 @@ class TopicHistoryIndex extends TopKIndex {
 		$this->treeRepository = $treeRepo;
 	}
 
+	/**
+	 * @param PostRevision $object
+	 * @param string[] $new
+	 */
 	public function onAfterInsert( $object, array $new ) {
 		$new['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
 		parent::onAfterInsert( $object, $new );
 	}
 
+	/**
+	 * @param PostRevision $object
+	 * @param string[] $old
+	 * @param string[] $new
+	 */
 	public function onAfterUpdate( $object, array $old, array $new ) {
 		$old['topic_root_id'] = $new['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
 		parent::onAfterUpdate( $object, $old, $new );
 	}
 
+	/**
+	 * @param PostRevision $object
+	 * @param string[] $old
+	 */
 	public function onAfterRemove( $object, array $old ) {
 		$old['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
 		parent::onAfterRemove( $object, $old );

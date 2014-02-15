@@ -9,7 +9,7 @@ use Status;
 interface SpamFilter {
 	/**
 	 * @param AbstractRevision $newRevision
-	 * @param AbstractRevision[optional] $oldRevision
+	 * @param AbstractRevision|null $oldRevision
 	 * @param Title $title
 	 * @return Status
 	 */

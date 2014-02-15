@@ -17,7 +17,8 @@ class TalkpageManager implements OccupationController {
 	protected $occupiedPages;
 
 	/**
-	 * @param boolean|array $occupiedPages See documentation for $wgFlowOccupyPages
+	 * @param array $occupiedNamespaces See documentation for $wgFlowOccupyNamespaces
+	 * @param array $occupiedPages See documentation for $wgFlowOccupyPages
 	 */
 	public function __construct( array $occupiedNamespaces, array $occupiedPages ) {
 		$this->occupiedNamespaces = $occupiedNamespaces;

@@ -33,17 +33,17 @@ class ContributionsQuery {
 	protected $treeRepo;
 
 	/**
-	 * @var array Associative array of hex post ID to root post's UUID object.
+	 * @var UUID[] Associative array of post ID to root post's UUID object.
 	 */
 	protected $rootPostIdCache = array();
 
 	/**
-	 * @var array Associative array of post ID to PostRevision object.
+	 * @var PostRevision[] Associative array of post ID to PostRevision object.
 	 */
 	protected $postCache = array();
 
 	/**
-	 * @var array Associative array of workflow ID to Workflow object.
+	 * @var Workflow[] Associative array of workflow ID to Workflow object.
 	 */
 	protected $workflowCache = array();
 

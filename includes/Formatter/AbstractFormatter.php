@@ -2,7 +2,6 @@
 
 namespace Flow\Formatter;
 
-use Flow\Block\AbstractBlock;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\FlowActions;
@@ -66,17 +65,17 @@ abstract class AbstractFormatter {
 	protected $lang;
 
 	/**
-	 * @var array Array of Workflow objects
+	 * @var Workflow[] Array of Workflow objects
 	 */
 	protected $workflows = array();
 
 	/**
-	 * @var array Array of AbstractRevision objects
+	 * @var AbstractRevision[] Array of AbstractRevision objects
 	 */
 	protected $revisions = array();
 
 	/**
-	 * @var array Array of [user id => RevisionActionPermissions object]
+	 * @var RevisionActionPermissions Array of [user id => RevisionActionPermissions object]
 	 */
 	protected $permissions = array();
 
@@ -84,7 +83,6 @@ abstract class AbstractFormatter {
 	 * @param ManagerGroup $storage
 	 * @param FlowActions $actions
 	 * @param Templating $templating
-	 * @param Language $lang
 	 */
 	public function __construct( ManagerGroup $storage, FlowActions $actions, Templating $templating ) {
 		$this->actions = $actions;
@@ -273,7 +271,7 @@ abstract class AbstractFormatter {
 	 * FlowActions.
 	 *
 	 * @param Workflow $workflow
-	 * @param AbstractBlock $block
+	 * @param string $blockType
 	 * @param AbstractRevision $revision
 	 * @return string
 	 */
@@ -297,7 +295,7 @@ abstract class AbstractFormatter {
 
 	/**
 	 * @param AbstractRevision $revision
-	 * @param AbstractRevision[optional] $previousRevision
+	 * @param AbstractRevision|null $previousRevision
 	 * @return string|bool Chardiff or false on failure
 	 */
 	protected function getCharDiff( AbstractRevision $revision, AbstractRevision $previousRevision = null ) {

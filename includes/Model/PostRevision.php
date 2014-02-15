@@ -37,7 +37,7 @@ class PostRevision extends AbstractRevision {
 	protected $replyToId;
 
 	/**
-	 * @var array|null Optionally loaded list of children for this post.
+	 * @var PostRevision[]|null Optionally loaded list of children for this post.
 	 */
 	protected $children;
 
@@ -140,7 +140,7 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
-	 * @var array $row
+	 * @var string[] $row
 	 * @var PostRevision|null $obj
 	 * @return PostRevision
 	 * @throws DataModelException
@@ -149,6 +149,7 @@ class PostRevision extends AbstractRevision {
 		if ( $row['rev_id'] !== $row['tree_rev_id'] ) {
 			throw new DataModelException( 'tree revision doesn\'t match provided revision', 'process-data' );
 		}
+		/** @var $obj PostRevision */
 		$obj = parent::fromStorageRow( $row, $obj );
 
 		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
@@ -166,7 +167,7 @@ class PostRevision extends AbstractRevision {
 
 	/**
 	 * @param PostRevision $rev
-	 * @return array
+	 * @return string[]
 	 */
 	static public function toStorageRow( $rev ) {
 		return parent::toStorageRow( $rev ) + array(

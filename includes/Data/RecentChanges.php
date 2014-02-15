@@ -3,6 +3,7 @@
 namespace Flow\Data;
 
 use Flow\Model\AbstractRevision;
+use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
@@ -136,6 +137,10 @@ class HeaderRecentChanges extends RecentChanges {
 		$this->contLang = $contLang;
 	}
 
+	/**
+	 * @param Header $object
+	 * @param string[] $row
+	 */
 	public function onAfterInsert( $object, array $row ) {
 		$workflowId = $object->getWorkflowId();
 		$workflow = $this->storage->get( 'Workflow', $workflowId );
@@ -181,6 +186,10 @@ class PostRevisionRecentChanges extends RecentChanges {
 		$this->contLang = $contLang;
 	}
 
+	/**
+	 * @param PostRevision $object
+	 * @param string[] $row
+	 */
 	public function onAfterInsert( $object, array $row ) {
 		// The workflow id is the same as the root's post id
 		$workflowId = $object->getRootPost()->getPostId();
