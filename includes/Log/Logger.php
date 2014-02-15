@@ -68,7 +68,7 @@ class Logger {
 
 		$logType = $this->getLogType( $post, $action );
 
-		list( $title, $query ) = $this->urlGenerator->generateUrlData(
+		list( $title ) = $this->urlGenerator->generateUrlData(
 			$workflow,
 			'view',
 			$params
