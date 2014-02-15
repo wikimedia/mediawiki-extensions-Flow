@@ -6,6 +6,7 @@ use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidInputException;
 use User;
 use Language;
+use MWTimestamp;
 
 class UUID {
 	/**
@@ -32,7 +33,7 @@ class UUID {
 	/**
 	 * Timestamp uuid was created
 	 *
-	 * @var \MWTimestamp
+	 * @var MWTimestamp
 	 */
 	protected $timestamp;
 
@@ -158,7 +159,8 @@ class UUID {
 	}
 
 	/**
-	 * @return \MWTimestamp
+	 * @return MWTimestamp
+	 * @throws \TimestampException
 	 */
 	public function getTimestampObj() {
 		if ( $this->timestamp === null ) {
@@ -170,10 +172,10 @@ class UUID {
 			$msTimestamp = wfBaseConvert( $bits_46, 2, 10 );
 
 			try {
-				$this->timestamp = new \MWTimestamp( intval( $msTimestamp / 1000 ) );
+				$this->timestamp = new MWTimestamp( intval( $msTimestamp / 1000 ) );
 			} catch ( \TimestampException $e ) {
 				wfDebugLog( __CLASS__, __FUNCTION__ . ": bogus time value: UUID=$hex; VALUE=$msTimestamp" );
-				return false;
+				throw $e;
 			}
 		}
 		return clone $this->timestamp;
@@ -192,13 +194,18 @@ class UUID {
 	 * @param User|null $user
 	 * @param Language|null $lang
 	 * @return string|false
+	 * @throws InvalidInputException
 	 */
 	public function getHumanTimestamp( $relativeTo = null, User $user = null, Language $lang = null ) {
 		if ( $relativeTo instanceof UUID ) {
-			$relativeTo = $relativeTo->getTimestampObj() ?: null;
+			$rel = $relativeTo->getTimestampObj();
+		} elseif ( $relativeTo instanceof MWTimestamp ) {
+			$rel = $relativeTo;
+		} else {
+			throw new InvalidInputException( 'Expected MWTimestamp or UUID, got ' . get_class( $relativeTo ), 'invalid-input' );
 		}
 		$ts = $this->getTimestampObj();
-		return $ts ? $ts->getHumanTimestamp( $relativeTo, $user, $lang ) : false;
+		return $ts ? $ts->getHumanTimestamp( $rel, $user, $lang ) : false;
 	}
 
 	/**
