@@ -27,6 +27,9 @@ abstract class AbstractRevision {
 		self::MODERATED_SUPPRESSED,
 	);
 
+	/**
+	 * @var UUID
+	 */
 	protected $revId;
 
 	/**
@@ -43,6 +46,7 @@ abstract class AbstractRevision {
 	/**
 	 * Array of flags strictly related to the content. Flags are reset when
 	 * content changes.
+	 * @var array
 	 */
 	protected $flags = array();
 
@@ -53,27 +57,54 @@ abstract class AbstractRevision {
 	 * @var string
 	 */
 	protected $changeType;
-	// UUID of the revision prior to this one, or null if this is first revision
+
+	/**
+	 * @var UUID|null The id of the revision prior to this one, or null if this is first revision
+	 */
 	protected $prevRevision;
 
-	// content
+	/**
+	 * @var string Raw content of revision
+	 */
 	protected $content;
-	// Only populated when external store is in use
+
+	/**
+	 * @var string|null Only populated when external store is in use
+	 */
 	protected $contentUrl;
-	// This is decompressed on-demand from $this->content in self::getContent()
+
+	/**
+	 * @var string|null This is decompressed on-demand from $this->content in self::getContent()
+	 */
 	protected $decompressedContent;
-	// Converted (wikitext|html) content, based off of $this->decompressedContent
+
+	/**
+	 * @var array Converted (wikitext|html) content, based off of $this->decompressedContent
+	 */
 	protected $convertedContent = array();
-	// html content has been allowed by the xss check.  When we find the next xss
-	// in the parser this hook allows preventing any disply of hostile html. True
-	// means the content is allowed. False means not allowed. Null means unchecked
+
+	/**
+	 * html content has been allowed by the xss check.  When we find the next xss
+	 * in the parser this hook allows preventing any disply of hostile html. True
+	 * means the content is allowed. False means not allowed. Null means unchecked
+	 *
+	 * @var boolean
+	 */
 	protected $xssCheck;
 
-	// moderation states for the revision.  This is technically denormalized data
-	// since it can be overwritten and does not provide a full history.
-	// The tricky part is updating moderation is a new revision for hide and
-	// delete, but adjusts an existing revision for full suppression.
+	/**
+	 * moderation states for the revision.  This is technically denormalized data
+	 * since it can be overwritten and does not provide a full history.
+	 * The tricky part is updating moderation is a new revision for hide and
+	 * delete, but adjusts an existing revision for full suppression.
+	 *
+	 * @var string
+	 */
 	protected $moderationState = self::MODERATED_NONE;
+
+	/**
+	 * @var string|null
+	 */
 	protected $moderationTimestamp;
 
 	/**
@@ -88,6 +119,9 @@ abstract class AbstractRevision {
 	 */
 	protected $moderatedByUserIp;
 
+	/**
+	 * @var string|null
+	 */
 	protected $moderatedReason;
 
 	/**
@@ -106,6 +140,12 @@ abstract class AbstractRevision {
 	 */
 	protected $lastEditUserIp;
 
+	/**
+	 * @param array $row
+	 * @param AbstractRevision|null $obj
+	 * @return AbstractRevision
+	 * @throws DataModelException
+	 */
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			$obj = new static;
@@ -158,6 +198,10 @@ abstract class AbstractRevision {
 		return $obj;
 	}
 
+	/**
+	 * @param AbstractRevision $obj
+	 * @return array
+	 */
 	static public function toStorageRow( $obj ) {
 		return array(
 			'rev_id' => $obj->revId->getBinary(),
@@ -187,6 +231,10 @@ abstract class AbstractRevision {
 	 * NOTE: No guarantee is made here regarding if $this is the newest revision.  Validation
 	 * must happen externally.  DB *will* throw an exception if this attempts to write to db
 	 * and it is not the most recent revision.
+	 *
+	 * @param User $user
+	 * @return AbstractRevision
+	 * @throws PermissionException
 	 */
 	public function newNullRevision( User $user ) {
 		if ( !$user->isAllowed( 'edit' ) ) {
@@ -202,6 +250,11 @@ abstract class AbstractRevision {
 
 	/**
 	 * Create the next revision with new content
+	 *
+	 * @param User $user
+	 * @param string $content
+	 * @param string $changeType
+	 * @return AbstractRevision
 	 */
 	public function newNextRevision( User $user, $content, $changeType ) {
 		$obj = $this->newNullRevision( $user );
@@ -210,6 +263,13 @@ abstract class AbstractRevision {
 		return $obj;
 	}
 
+	/**
+	 * @param User $user
+	 * @param string $state
+	 * @param string $changeType
+	 * @param string $reason
+	 * @return AbstractRevision
+	 */
 	public function moderate( User $user, $state, $changeType, $reason ) {
 		if ( ! $this->isValidModerationState( $state ) ) {
 			wfWarn( __METHOD__ . ': Provided moderation state does not exist : ' . $state );
@@ -243,6 +303,10 @@ abstract class AbstractRevision {
 		return $obj;
 	}
 
+	/**
+	 * @param string $state
+	 * @return boolean
+	 */
 	public function isValidModerationState( $state ) {
 		return in_array( $state, self::$perms );
 	}
@@ -259,7 +323,7 @@ abstract class AbstractRevision {
 	 *
 	 * Uses permissions defined in FlowActions.
 	 *
-	 * @param User[optional] $user The user requesting access.  When null assumes a user with no permissions.
+	 * @param User|null $user The user requesting access.  When null assumes a user with no permissions.
 	 * @param string $action Action to check if allowed.
 	 * @return boolean True when the user is allowed to see the current revision
 	 */
@@ -275,10 +339,16 @@ abstract class AbstractRevision {
 		return $permissions->isAllowed( $this, $action );
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function hasHiddenContent() {
 		return $this->moderationState === self::MODERATED_HIDDEN;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getContentRaw() {
 		if ( $this->decompressedContent === null ) {
 			$this->decompressedContent = \Revision::decompressRevisionText( $this->content, $this->flags );
@@ -375,6 +445,10 @@ abstract class AbstractRevision {
 
 	/**
 	 * Apply new content to a revision.
+	 *
+	 * @param User $user
+	 * @param string $content
+	 * @throws DataModelException
 	 */
 	protected function setNextContent( User $user, $content ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
@@ -394,6 +468,7 @@ abstract class AbstractRevision {
 	 * or unformatted content (i.e. one plaintext representation)
 	 * Note that this function may return different values for different
 	 * instances of the same class.
+	 *
 	 * @return boolean True for formatted, False for plaintext
 	 */
 	protected function isFormatted() {
@@ -412,6 +487,7 @@ abstract class AbstractRevision {
 	 * Usually, the default storage format, but if isFormatted() returns
 	 * false, then it will return 'wikitext'.
 	 * NOTE: The format of the current content is retrieved with getContentFormat
+	 *
 	 * @return string The name of the storage format.
 	 */
 	protected function getStorageFormat() {
@@ -419,34 +495,58 @@ abstract class AbstractRevision {
 		return $this->isFormatted() ? $wgFlowContentFormat : 'wikitext';
 	}
 
+	/**
+	 * @return UUID|null
+	 */
 	public function getPrevRevisionId() {
 		return $this->prevRevision;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getChangeType() {
 		return $this->changeType;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getModerationState() {
 		return $this->moderationState;
 	}
 
+	/**
+	 * @return string|null
+	 */
 	public function getModeratedReason() {
 		return $this->moderatedReason;
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function isModerated() {
 		return $this->moderationState !== self::MODERATED_NONE;
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function isHidden() {
 		return $this->moderationState === self::MODERATED_HIDDEN;
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function isSuppressed() {
 		return $this->moderationState === self::MODERATED_SUPPRESSED;
 	}
 
+	/**
+	 * @return string|null Timestamp in TS_MW format
+	 */
 	public function getModerationTimestamp() {
 		return $this->moderationTimestamp;
 	}
@@ -464,6 +564,10 @@ abstract class AbstractRevision {
 		return false;
 	}
 
+	/**
+	 * @param string|array $flags
+	 * @return boolean
+	 */
 	public function isFlaggedAll( $flags ) {
 		foreach ( (array) $flags as $flag ) {
 			if ( false === array_search( $flag, $this->flags ) ) {
@@ -473,30 +577,51 @@ abstract class AbstractRevision {
 		return true;
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function isFirstRevision() {
 		return $this->prevRevision === null;
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function isOriginalContent() {
 		return $this->lastEditId === null;
 	}
 
+	/**
+	 * @return UUID
+	 */
 	public function getLastContentEditId() {
 		return $this->lastEditId;
 	}
 
+	/**
+	 * @return integer
+	 */
 	public function getLastContentEditUserId() {
 		return $this->lastEditUserId;
 	}
 
+	/**
+	 * @return string|null
+	 */
 	public function getLastContentEditUserIp() {
 		return $this->lastEditUserIp;
 	}
 
+	/**
+	 * @return integer|null
+	 */
 	public function getModeratedByUserId() {
 		return $this->moderatedByUserId;
 	}
 
+	/**
+	 * @return string|null
+	 */
 	public function getModeratedByUserIp() {
 		return $this->moderatedByUserIp;
 	}
@@ -504,6 +629,9 @@ abstract class AbstractRevision {
 	/**
 	 * Return a (userId, userIp) tuple for the given
 	 * user object.  userIp is null for userId != 0
+	 *
+	 * @param User $user
+	 * @return array
 	 */
 	static public function userFields( $user ) {
 		if ( $user->isAnon() ) {
@@ -516,6 +644,9 @@ abstract class AbstractRevision {
 		return array( $userId, $userIp );
 	}
 
+	/**
+	 * @return string
+	 */
 	abstract public function getRevisionType();
 
 	/**

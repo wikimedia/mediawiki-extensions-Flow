@@ -10,23 +10,74 @@ use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 
 class Workflow {
+
+	/**
+	 * @var UUID
+	 */
 	protected $id;
-	// @var boolean false before writing to storage
+
+	/**
+	 * @var boolean false before writing to storage
+	 */
 	protected $isNew;
+
+	/**
+	 * @var string
+	 */
 	protected $wiki;
+
+	/**
+	 * @var integer
+	 */
 	protected $pageId;
+
+	/**
+	 * @var integer
+	 */
 	protected $namespace;
+
+	/**
+	 * @var string
+	 */
 	protected $titleText;
+
+	/**
+	 * @var integer
+	 */
 	protected $userId;
+
+	/**
+	 * @var string|null
+	 */
 	protected $userIp;
-	// lock state is a list of state updates, the final state
-	// is the active state.
+
+	/**
+	 * lock state is a list of state updates, the final state
+	 * is the active state. It is unused and must be reviewed
+	 * before any use
+	 *
+	 * @var array
+	 */
 	protected $lockState;
+
+	/**
+	 * @var UUID
+	 */
 	protected $definitionId;
+
+	/**
+	 * @var string
+	 */
 	protected $lastModified;
 
 	const STATE_LOCKED = 'locked';
 
+	/**
+	 * @param array $row
+	 * @param Workflow|null $obj
+	 * @return Workflow
+	 * @throws DataModelException
+	 */
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $obj === null ) {
 			$obj = new self;
@@ -52,6 +103,10 @@ class Workflow {
 		return $obj;
 	}
 
+	/**
+	 * @param Workflow $obj
+	 * @return array
+	 */
 	static public function toStorageRow( Workflow $obj ) {
 		return array(
 			'workflow_id' => $obj->id->getBinary(),
@@ -67,6 +122,13 @@ class Workflow {
 		);
 	}
 
+	/**
+	 * @param Definition $definition
+	 * @param User $user
+	 * @param Title $title
+	 * @return Workflow
+	 * @throws DataModelException
+	 */
 	static public function create( Definition $definition, User $user, Title $title ) {
 		if ( $title->isLocal() ) {
 			$wiki = wfWikiId();
@@ -94,6 +156,10 @@ class Workflow {
 		return $obj;
 	}
 
+	/**
+	 * @return Title
+	 * @throws FlowException
+	 */
 	public function getArticleTitle() {
 		if ( $this->wiki !== wfWikiId() ) {
 			throw new FlowException( 'Interwiki to ' . $this->wiki . ' not implemented ', 'default' );
@@ -101,25 +167,60 @@ class Workflow {
 		return Title::makeTitleSafe( $this->namespace, $this->titleText );
 	}
 
+	/**
+	 * @return UUID
+	 */
 	public function getId() { return $this->id; }
-	// new as of this request, unknown if it is saved yet
+
+	/**
+	 * Returns true if the workflow is new as of this request (regardless of
+	 * whether or not is it already saved yet - that's unknown).
+	 *
+	 * @return boolean
+	 */
 	public function isNew() { return (bool) $this->isNew; }
+
+	/**
+	 * @return UUID
+	 */
 	public function getDefinitionId() { return $this->definitionId; }
+
+	/**
+	 * @return integer
+	 */
 	public function getUserId() { return $this->userId; }
+
+	/**
+	 * @return string|null
+	 */
 	public function getUserIp() { return $this->userIp; }
+
+	/**
+	 * @return string
+	 */
 	public function getLastModified() { return $this->lastModified; }
+
+	/**
+	 * @return \MWTimestamp
+	 */
 	public function getLastModifiedObj() { return new MWTimestamp( $this->lastModified ); }
 
 	public function updateLastModified() {
 		$this->lastModified = wfTimestampNow();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getNamespaceName() {
 		global $wgContLang;
 
 		return $wgContLang->getNsText( $this->namespace );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTitleFullText() {
 		$ns = $this->getNamespaceName();
 		if ( $ns ) {
@@ -129,8 +230,15 @@ class Workflow {
 		}
 	}
 
-	// these are exceptions currently to make debugging easier
-	// it should return false later on to allow wider use.
+	/**
+	 * these are exceptions currently to make debugging easier
+	 * it should return false later on to allow wider use.
+	 *
+	 * @param Title $title
+	 * @return boolean
+	 * @throws InvalidInputException
+	 * @throws InvalidInputException
+	 */
 	public function matchesTitle( Title $title ) {
 		// Needs to be a non-strict comparrison
 		if ( $title->getNamespace() != $this->namespace ) {
@@ -146,6 +254,11 @@ class Workflow {
 		}
 	}
 
+	/**
+	 * Unused, review before use
+	 *
+	 * @param User $user
+	 */
 	public function lock( User $user ) {
 		$this->lockState[] = array(
 			'id' => UUID::create(),
@@ -154,6 +267,9 @@ class Workflow {
 		);
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function isLocked() {
 		if ( !$this->lockState ) {
 			return false;

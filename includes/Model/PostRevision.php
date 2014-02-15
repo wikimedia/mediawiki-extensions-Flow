@@ -8,12 +8,32 @@ use Flow\Exception\DataModelException;
 class PostRevision extends AbstractRevision {
 	const MAX_TOPIC_LENGTH = 260;
 
+	/**
+	 * @var UUID
+	 */
 	protected $postId;
 
-	// denormalized data that must not change between revisions of same post
+	// The rest of the properties are denormalized data that 
+	// must not change between revisions of same post
+
+	/**
+	 * @var string
+	 */
 	protected $origCreateTime;
+
+	/**
+	 * @var integer
+	 */
 	protected $origUserId;
+
+	/**
+	 * @var string|null
+	 */
 	protected $origUserIp;
+
+	/**
+	 * @var UUID|null
+	 */
 	protected $replyToId;
 
 	/**
@@ -53,12 +73,22 @@ class PostRevision extends AbstractRevision {
 	 * @var array
 	 */
 	protected $recursiveCallbacks = array();
+
+	/**
+	 * @see PostRevision::$recursiveCallbacks
+	 *
+	 * @var array
+	 */
 	protected $recursiveResults = array();
 
-	// Create a brand new root post for a brand new topic.  Creating replies to
-	// an existing post(incl topic root) should use self::reply.
-	// @param Workflow $topic
-	// @param string $content The title of the topic(they are Collection as well)
+	/**
+	 * Create a brand new root post for a brand new topic.  Creating replies to
+	 * an existing post(incl topic root) should use self::reply.
+	 *
+	 * @param Workflow $topic
+	 * @param string $content The title of the topic(they are Collection as well)
+	 * @return PostRevision
+	 */
 	static public function create( Workflow $topic, $content ) {
 		if ( $topic->getUserId() ) {
 			$user = User::newFromId( $topic->getUserId() );
@@ -109,6 +139,12 @@ class PostRevision extends AbstractRevision {
 		return $obj;
 	}
 
+	/**
+	 * @var array $row
+	 * @var PostRevision|null $obj
+	 * @return PostRevision
+	 * @throws DataModelException
+	 */
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( $row['rev_id'] !== $row['tree_rev_id'] ) {
 			throw new DataModelException( 'tree revision doesn\'t match provided revision', 'process-data' );
@@ -128,6 +164,10 @@ class PostRevision extends AbstractRevision {
 		return $obj;
 	}
 
+	/**
+	 * @param PostRevision $rev
+	 * @return array
+	 */
 	static public function toStorageRow( $rev ) {
 		return parent::toStorageRow( $rev ) + array(
 			'tree_parent_id' => $rev->replyToId ? $rev->replyToId->getBinary() : null,
@@ -140,6 +180,12 @@ class PostRevision extends AbstractRevision {
 		);
 	}
 
+	/**
+	 * @param User $user
+	 * @param string $content
+	 * @param string[optional] $changeType
+	 * @return PostRevision
+	 */
 	public function reply( User $user, $content, $changeType = 'reply' ) {
 		$reply = new self;
 		// No great reason to create two uuid's,  a post and its first revision can share a uuid
@@ -158,6 +204,9 @@ class PostRevision extends AbstractRevision {
 		return $reply;
 	}
 
+	/**
+	 * @return UUID
+	 */
 	public function getPostId() {
 		return $this->postId;
 	}
@@ -165,7 +214,7 @@ class PostRevision extends AbstractRevision {
 	/**
 	 * Get the user ID of the user who created this post.
 	 *
-	 * @return int The user ID
+	 * @return integer The user ID
 	 */
 	public function getCreatorId() {
 		return $this->origUserId;
@@ -181,18 +230,30 @@ class PostRevision extends AbstractRevision {
 		return $this->origUserIp;
 	}
 
+	/**
+	 * @return boolean
+	 */
 	public function isTopicTitle() {
 		return $this->replyToId === null;
 	}
 
+	/**
+	 * @param UUID|null $id
+	 */
 	public function setReplyToId( UUID $id = null ) {
 		$this->replyToId = $id;
 	}
 
+	/**
+	 * @return UUID|null Id of the parent post, or null if this is the root
+	 */
 	public function getReplyToId() {
 		return $this->replyToId;
 	}
 
+	/**
+	 * @param array<PostRevision>
+	 */
 	public function setChildren( array $children ) {
 		$this->children = $children;
 		if ( $this->rootPost ) {
@@ -201,6 +262,10 @@ class PostRevision extends AbstractRevision {
 		}
 	}
 
+	/**
+	 * @return array<PostRevision>
+	 * @throws DataModelException
+	 */
 	public function getChildren() {
 		if ( $this->children === null ) {
 			throw new DataModelException( 'Children not loaded for post: ' . $this->postId->getAlphadecimal(), 'process-data' );
@@ -208,10 +273,17 @@ class PostRevision extends AbstractRevision {
 		return $this->children;
 	}
 
+	/**
+	 * @param integer $depth
+	 */
 	public function setDepth( $depth ) {
 		$this->depth = (int)$depth;
 	}
 
+	/**
+	 * @return integer
+	 * @throws DataModelException
+	 */
 	public function getDepth() {
 		if ( $this->depth === null ) {
 			throw new DataModelException( 'Depth not loaded for post: ' . $this->postId->getAlphadecimal(), 'process-data' );
@@ -219,6 +291,9 @@ class PostRevision extends AbstractRevision {
 		return $this->depth;
 	}
 
+	/**
+	 * @param PostRevision $root
+	 */
 	public function setRootPost( PostRevision $root ) {
 		$this->rootPost = $root;
 		if ( $this->children ) {
@@ -229,6 +304,10 @@ class PostRevision extends AbstractRevision {
 		}
 	}
 
+	/**
+	 * @return PostRevision
+	 * @throws DataModelException
+	 */
 	public function getRootPost() {
 		if ( $this->isTopicTitle() ) {
 			return $this;
@@ -258,6 +337,7 @@ class PostRevision extends AbstractRevision {
 	 * time of iteration). They must respond with [ $result, $continue ],
 	 * where $result is the result after that post's iteration & $continue a
 	 * boolean value indicating if the iteration still needs to continue
+	 *
 	 * @param mixed $init The initial $result value to be fed to the callback
 	 * @param string[optional] $label Can be used to make the identifier
 	 * slightly more descriptive (just simple integers can be quite opaque when
@@ -435,11 +515,16 @@ class PostRevision extends AbstractRevision {
 		return strcmp( $rev->postId->getNumber(), $this->postId->getNumber() );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getRevisionType() {
 		return 'post';
 	}
 
-	// Posts are unformatted if they are title posts, formatted otherwise.
+	/**
+	 * @return boolean Posts are unformatted if they are title posts, formatted otherwise.
+	 */
 	public function isFormatted() {
 		if ( !is_null( $this->replyToId ) ) {
 			return true;
@@ -448,7 +533,11 @@ class PostRevision extends AbstractRevision {
 		}
 	}
 
-	public function isCreator( $user ) {
+	/**
+	 * @param User $user
+	 * @return boolean
+	 */
+	public function isCreator( User $user ) {
 		if ( $user->isAnon() ) {
 			return false;
 		}
