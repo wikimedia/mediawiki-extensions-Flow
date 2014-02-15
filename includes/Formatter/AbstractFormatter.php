@@ -7,6 +7,7 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Exception\DataModelException;
 use Flow\Model\UUID;
@@ -422,7 +423,11 @@ abstract class AbstractFormatter {
 	protected function processParam( $param, AbstractRevision $revision, UUID $workflowId, $blockType ) {
 		switch ( $param ) {
 		case 'creator-text':
-			return $this->templating->getCreatorText( $revision );
+			if ( $revision instanceof PostRevision ) {
+				return $this->templating->getCreatorText( $revision );
+			} else {
+				return '';
+			}
 
 		case 'user-text':
 			return $this->templating->getUserText( $revision );
