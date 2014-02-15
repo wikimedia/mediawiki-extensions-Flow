@@ -5,46 +5,38 @@ namespace Flow\Log;
 use Flow\Data\LifecycleHandler;
 use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
 use Flow\Repository\TreeRepository;
 
 class PostModerationLogger implements LifecycleHandler {
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
+
+	/**
+	 * @var TreeRepository
+	 */
+	protected $treeRepo;
+
+	/**
+	 * @var Logger
+	 */
+	protected $logger;
+
 	function __construct( ManagerGroup $storage, TreeRepository $treeRepo, Logger $logger ) {
 		$this->storage = $storage;
 		$this->treeRepo = $treeRepo;
 		$this->logger = $logger;
 	}
 
+	/**
+	 * @param PostRevision $object
+	 * @param array $row
+	 */
 	function onAfterInsert( $object, array $row ) {
-		$moderationChangeTypes = self::getModerationChangeTypes();
-		if ( ! in_array( $object->getChangeType(), $moderationChangeTypes ) ) {
-			// Do nothing for non-moderation actions
-			return;
-		}
-
-		if ( $this->logger->canLog( $object, $object->getChangeType() ) ) {
-			$rootPostId = $object->getRootPost()->getPostId();
-			$workflow = $this->storage->get( 'Workflow', $rootPostId );
-			if ( !$workflow ) {
-				// unless in unit test, write to log
-				wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow " . $rootPostId->getAlphadecimal() );
-				return;
-			}
-
-			$logParams = array();
-
-			if ( $object->isTopicTitle() ) {
-				$logParams['topicId'] = $workflow->getId();
-			} else {
-				$logParams['postId'] = $object->getRevisionId();
-			}
-
-			$this->logger->log(
-				$object,
-				$object->getChangeType(),
-				$object->getModeratedReason(),
-				$workflow,
-				$logParams
-			);
+		if ( $object instanceof PostRevision ) {
+			$this->log( $object );
 		}
 	}
 
@@ -58,6 +50,40 @@ class PostModerationLogger implements LifecycleHandler {
 
 	function onAfterRemove( $object, array $old ) {
 		// Move along
+	}
+
+	protected function log( PostRevision $post ) {
+		$moderationChangeTypes = self::getModerationChangeTypes();
+		if ( ! in_array( $post->getChangeType(), $moderationChangeTypes ) ) {
+			// Do nothing for non-moderation actions
+			return;
+		}
+
+		if ( $this->logger->canLog( $post, $post->getChangeType() ) ) {
+			$rootPostId = $post->getRootPost()->getPostId();
+			$workflow = $this->storage->get( 'Workflow', $rootPostId );
+			if ( !$workflow ) {
+				// unless in unit test, write to log
+				wfDebugLog( __CLASS__, __FUNCTION__ . ": could not locate workflow " . $rootPostId->getAlphadecimal() );
+				return;
+			}
+
+			$logParams = array();
+
+			if ( $post->isTopicTitle() ) {
+				$logParams['topicId'] = $workflow->getId();
+			} else {
+				$logParams['postId'] = $post->getRevisionId();
+			}
+
+			$this->logger->log(
+				$post,
+				$post->getChangeType(),
+				$post->getModeratedReason(),
+				$workflow,
+				$logParams
+			);
+		}
 	}
 
 	protected static function getModerationChangeTypes() {

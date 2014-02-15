@@ -7,6 +7,7 @@ use Flow\Block\TopicBlock;
 use Flow\Data\UserNameBatch;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\Header;
 use Flow\View\PostActionMenu;
 use OutputPage;
 // These dont really belong here
@@ -484,7 +485,11 @@ class Templating {
 	}
 
 	public function registerParsoidLinks( AbstractRevision $revision ) {
-		$this->redlinks->registerPost( $revision );
+		if ( $revision instanceof PostRevision ) {
+			$this->redlinks->registerPost( $revision );
+		} elseif ( $revision instanceof Header ) {
+			// @todo
+		}
 	}
 
 }
