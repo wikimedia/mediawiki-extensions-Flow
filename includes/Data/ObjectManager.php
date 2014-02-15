@@ -719,6 +719,11 @@ class PersistenceException extends \MWException {
  * );
  */
 class BasicObjectMapper implements ObjectMapper {
+
+	protected $toStorageRow;
+
+	protected $fromStorageRow;
+
 	public function __construct( $toStorageRow, $fromStorageRow ) {
 		$this->toStorageRow = $toStorageRow;
 		$this->fromStorageRow = $fromStorageRow;
@@ -731,10 +736,97 @@ class BasicObjectMapper implements ObjectMapper {
 	public function toStorageRow( $object ) {
 		return call_user_func( $this->toStorageRow, $object );
 	}
+
 	public function fromStorageRow( array $row, $object = null ) {
-		return call_user_func( $this->fromStorageRow, $row, $object );
+		return call_user_func( $this->fromStorageRow, $object );
 	}
 }
+
+class CachingObjectMapper implements ObjectMapper {
+
+	protected $toStorageRow;
+
+	protected $fromStorageRow;
+
+	protected $loaded;
+
+	public function __construct( $toStorageRow, $fromStorageRow, array $primaryKey ) {
+		$this->toStorageRow = $toStorageRow;
+		$this->fromStorageRow = $fromStorageRow;
+		ksort( $primaryKey );
+		$this->primaryKey = $primaryKey;
+		$this->clear();
+	}
+
+	static public function model( $className, array $primaryKey ) {
+		return new self(
+			array( $className, 'toStorageRow' ),
+			array( $className, 'fromStorageRow' ),
+			$primaryKey
+		);
+	}
+
+	public function toStorageRow( $object ) {
+		$row = call_user_func( $this->toStorageRow, $object );
+		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
+		if ( $pk === null ) {
+			// new object may not have pk yet, calling code
+			// should call self::fromStorageRow with $object to load
+			// db assigned pk and store obj in $this->loaded
+		} elseif ( !isset( $this->loaded[$pk] ) ) {
+			// first time this id has been seen
+			$this->loaded[$pk] = $object;
+		} elseif ( $this->loaded[$pk] !== $object ) {
+			// loaded object of this id is not same object
+			$class = get_class( $object );
+			$id = json_encode( $pk );
+			throw new \InvalidArgumentException( "Duplicate '$class' objects for id $id" );
+		}
+		return $row;
+	}
+
+	public function fromStorageRow( array $row, $object = null ) {
+		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
+		if ( $pk === null ) {
+			throw new \InvalidArgumentException( 'Storage row has no pk' );
+		} elseif ( !isset( $this->loaded[$pk] ) ) {
+			// unserialize the object
+			return $this->loaded[$pk] = call_user_func( $this->fromStorageRow, $row, $object );
+		} elseif ( $object === null ) {
+			// provide previously loaded object
+			return $this->loaded[$pk];
+		} elseif ( $object !== $this->loaded[$pk] ) {
+			// loaded object of this id is not same object
+			$class = get_class( $object );
+			$id = json_encode( $pk );
+			throw new \InvalidArgumentException( "Duplicate '$class' objects for id $id" );
+		} else {
+			// object was provided, load $row into $object
+			// we already know $this->loaded[$pk] === $object
+			return call_user_func( $this->fromStorageRow, $row, $object );
+		}
+	}
+
+	/**
+	 * @param array|string $pk
+	 * @return object
+	 * @throws \InvalidArgumentException
+	 * @throws \OutOfBoundsException
+	 */
+	public function get( $pk ) {
+		$pk = (array)$pk;
+		ksort( $pk );
+		if ( array_keys( $pk ) !== $this->primaryKey ) {
+			throw new \InvalidArgumentException;
+		}
+		return $this->loaded[$pk];
+	}
+
+	public function clear() {
+		$this->loaded = new MultiDimArray;
+	}
+}
+
 
 /**
  * Base class for all WritableObjectStorage implementers

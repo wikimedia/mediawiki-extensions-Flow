@@ -108,6 +108,7 @@ $c['templating'] = $c->share( function( $c ) {
 use Flow\Data\BufferedCache;
 use Flow\Data\LocalBufferedCache;
 use Flow\Data\BasicObjectMapper;
+use Flow\Data\CachingObjectMapper;
 use Flow\Data\BasicDbStorage;
 use Flow\Data\PostRevisionStorage;
 use Flow\Data\HeaderRevisionStorage;
@@ -135,16 +136,17 @@ $c['collection.cache'] = $c->share( function( $c ) {
 } );
 // Per wiki workflow definitions (types of workflows)
 $c['storage.definition'] = $c->share( function( $c ) {
+	$primaryKey = array( 'definition_id' );
 	$cache = $c['memcache.buffered'];
-	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Definition' );
+	$mapper = CachingObjectMapper::model( 'Flow\\Model\\Definition', $primaryKey );
 	$storage = new BasicDbStorage(
 		// factory and table
 		$c['db.factory'], 'flow_definition',
 		// pk
-		array( 'definition_id' )
+		$primaryKey
 	);
 	$indexes = array(
-		new UniqueFeatureIndex( $cache, $storage, 'flow_definition:pk', array( 'definition_id' ) ),
+		new UniqueFeatureIndex( $cache, $storage, 'flow_definition:pk', $primaryKey ),
 		new UniqueFeatureIndex( $cache, $storage, 'flow_definition:name', array( 'definition_wiki', 'definition_name' ) ),
 	);
 
@@ -152,15 +154,16 @@ $c['storage.definition'] = $c->share( function( $c ) {
 } );
 // Individual workflow instances
 $c['storage.workflow'] = $c->share( function( $c ) {
+	$primaryKey = array( 'workflow_id' );
 	$cache = $c['memcache.buffered'];
-	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Workflow' );
+	$mapper = CachingObjectMapper::model( 'Flow\\Model\\Workflow', $primaryKey );
 	$storage = new BasicDbStorage(
 		// factory and table
 		$c['db.factory'], 'flow_workflow',
 		// pk
-		array( 'workflow_id' )
+		$primaryKey
 	);
-	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_workflow:pk', array( 'workflow_id' ) );
+	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_workflow:pk', $primaryKey );
 	$indexes = array(
 		$pk,
 		// This is actually a unique index, but it wants the shallow functionality.
@@ -198,14 +201,20 @@ $c['storage.board_history.index'] = $c->share( function( $c ) {
 $c['storage.board_history'] = $c->share( function( $c ) {
 	$cache = $c['memcache.buffered'];
 	$mapper = new BasicObjectMapper(
-		function( $rev ) {
-			return $rev->toStorageRow( $rev );
+		function( $rev ) use( $c ) {
+			if ( $rev instanceof PostRevision ) {
+				return $c['storage.post.mapper']->toStorageRow( $rev );
+			} elseif ( $rev instanceof Header ) {
+				return $c['storage.header.mapper']->toStorageRow( $rev );
+			} else {
+				throw new \Flow\Exception\InvalidDataException( 'Invalid class for board history entry: ' . get_class( $rev ), 'fail-load-data' );
+			}
 		},
-		function( array $row, $obj = null ) {
+		function( array $row, $obj = null ) use( $c ) {
 			if ( $row['rev_type'] === 'header' ) {
-				return Header::fromStorageRow( $row, $obj );
+				return $c['storage.header.mapper']->fromStorageRow( $row, $obj );
 			} elseif ( $row['rev_type'] === 'post' ) {
-				return PostRevision::fromStorageRow( $row, $obj );
+				return $c['storage.post.mapper']->fromStorageRow( $row, $obj );
 			} else {
 				throw new \Flow\Exception\InvalidDataException( 'Invalid rev_type for board history entry: ' . $row['rev_type'], 'fail-load-data' );
 			}
@@ -238,11 +247,13 @@ $c['storage.header.lifecycle-handlers'] = $c->share( function( $c ) {
 		),
 	);
 } );
+$c['storage.header.mapper'] = $c->share( function( $c ) {
+	return CachingObjectMapper::model( 'Flow\\Model\\Header', array( 'rev_id' ) );
+} );
 $c['storage.header'] = $c->share( function( $c ) {
 	global $wgFlowExternalStore;
 
 	$cache = $c['memcache.buffered'];
-	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Header' );
 	$storage = new HeaderRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
 
 	$pk = new UniqueFeatureIndex(
@@ -266,7 +277,7 @@ $c['storage.header'] = $c->share( function( $c ) {
 		),
 	);
 
-	return new ObjectManager( $mapper, $storage, $indexes, $c['storage.header.lifecycle-handlers'] );
+	return new ObjectManager( $c['storage.header.mapper'], $storage, $indexes, $c['storage.header.lifecycle-handlers'] );
 } );
 
 // List of topic workflows and their owning discussion workflow
@@ -275,13 +286,14 @@ $c['storage.header'] = $c->share( function( $c ) {
 // Would also need object mapper adjustments to return array
 // of two objects.
 $c['storage.topic_list'] = $c->share( function( $c ) {
+	$primaryKey = array( 'topic_list_id', 'topic_id' );
 	$cache = $c['memcache.buffered'];
-	$mapper = BasicObjectMapper::model( 'Flow\\Model\\TopicListEntry' );
+	$mapper = CachingObjectMapper::model( 'Flow\\Model\\TopicListEntry', $primaryKey );
 	$storage = new BasicDbStorage(
 		// factory and table
 		$c['db.factory'], 'flow_topic_list',
 		// pk
-		array( 'topic_list_id', 'topic_id' )
+		$primaryKey
 	);
 	$indexes = array(
 		new TopKIndex(
@@ -316,12 +328,13 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		$c['collection.cache'],
 	);
 } );
-
+$c['storage.post.mapper'] = $c->share( function( $c ) {
+	return CachingObjectMapper::model( 'Flow\\Model\\PostRevision', array( 'rev_id' ) );
+} );
 $c['storage.post'] = $c->share( function( $c ) {
 	global $wgFlowExternalStore;
 	$cache = $c['memcache.buffered'];
 	$treeRepo = $c['repository.tree'];
-	$mapper = BasicObjectMapper::model( 'Flow\\Model\\PostRevision' );
 	$storage = new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $treeRepo );
 	$pk = new UniqueFeatureIndex( $cache, $storage, 'flow_revision:v4:pk', array( 'rev_id' ) );
 	$indexes = array(
@@ -358,7 +371,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 		) ),
 	);
 
-	return new ObjectManager( $mapper, $storage, $indexes, $c['storage.post.lifecycle-handlers'] );
+	return new ObjectManager( $c['storage.post.mapper'], $storage, $indexes, $c['storage.post.lifecycle-handlers'] );
 } );
 // Storage implementation for user subscriptions, separate from storage.user_subs so it
 // can be used in storage.user_subs.user_index as well.
