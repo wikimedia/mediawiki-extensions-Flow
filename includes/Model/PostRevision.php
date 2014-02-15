@@ -388,7 +388,7 @@ class PostRevision extends AbstractRevision {
 	 */
 	protected function descendRecursive( array $callbacks, array $results, $maxDepth = 10 ) {
 		if ( $maxDepth <= 0 ) {
-			return;
+			return array( $callbacks, $results );
 		}
 
 		$continue = false;
