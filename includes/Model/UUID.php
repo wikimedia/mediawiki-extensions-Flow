@@ -214,7 +214,7 @@ class UUID {
 	 */
 	public static function convertUUIDs( $array ) {
 		foreach( ObjectManager::makeArray( $array ) as $key => $value ) {
-			if ( is_a( $value, 'Flow\Model\UUID' ) ) {
+			if ( $value instanceof UUID ) {
 				$array[$key] = $value->getBinary();
 			}
 		}

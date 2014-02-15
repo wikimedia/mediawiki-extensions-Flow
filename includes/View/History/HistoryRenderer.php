@@ -178,7 +178,7 @@ class HistoryRenderer extends AbstractFormatter {
 			// Board history
 			} else {
 				// Only topics in board history for now, which means it's always a workflowId
-				if ( $revision->getRevisionType() === 'post' ) {
+				if ( $revision instanceof PostRevision ) {
 					if ( !$revision->isTopicTitle() ) {
 						wfWarn( __METHOD__ . ': Non-topic post gets queried in board history: ' . $revision->getRevisionId() );
 						continue;
