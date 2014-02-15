@@ -79,6 +79,14 @@ interface ObjectMapper {
 	 * @throws \Exception When object is the wrong class for the mapper
 	 */
 	function fromStorageRow( array $row, $object = null );
+
+	/**
+	 * Check internal cache for previously unserialized objects
+	 *
+	 * @param array|string $pk
+	 * @return object|null
+	 */
+	function get( $pk );
 }
 
 /**
@@ -309,6 +317,7 @@ class ObjectLocator implements ObjectStorage {
 		if ( !$queries ) {
 			return array();
 		}
+
 		$keys = array_keys( reset( $queries ) );
 		if ( isset( $options['sort'] ) && !is_array( $options['sort'] ) ) {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
@@ -399,22 +408,36 @@ class ObjectLocator implements ObjectStorage {
 		if ( !$objectIds ) {
 			return array();
 		}
-		$pk = $this->storage->getPrimaryKeyColumns();
+		$primaryKey = $this->storage->getPrimaryKeyColumns();
 		$queries = array();
 		foreach ( $objectIds as $id ) {
-			$queries[] = array_combine( $pk, ObjectManager::makeArray( $id ) );
+			// check internal cache
+			$query = array_combine( $primaryKey, ObjectManager::makeArray( $id ) );
+			$obj = $this->mapper->get( $query );
+			if ( $obj === null ) {
+				$queries[] = $query;
+			} else {
+				$retval[] = $obj;
+			}
 		}
-		// primary key is unique, but indexes still return their results as array
-		// to be consistent. undo that for a flat result array
-		$res = $this->findMulti( $queries );
-		if ( !$res ) {
+
+		if ( $queries ) {
+			$res = $this->findMulti( $queries );
+			if ( $res ) {
+				foreach ( $res as $row ) {
+					// primary key is unique, but indexes still return their results as array
+					// to be consistent. undo that for a flat result array
+					$retval[] = reset( $row );
+				}
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		if ( $retval ) {
+			return $retval;
+		} else {
 			return null;
 		}
-		$retval = array();
-		foreach ( $res as $row ) {
-			$retval[] = reset( $row );
-		}
-		return $retval;
 	}
 
 	/**
@@ -450,7 +473,14 @@ class ObjectLocator implements ObjectStorage {
 		$pk = $this->storage->getPrimaryKeyColumns();
 		$queries = array();
 		foreach ( $objectIds as $id ) {
-			$queries[] = array_combine( $pk, ObjectManager::makeArray( $id ) );
+			$query = array_combine( $pk, ObjectManager::makeArray( $id ) );
+			if ( !$this->mapper->get( $query ) ) {
+				$queries[] = $query;
+			}
+		}
+
+		if ( $queries && $this->mapper instanceof CachingObjectMapper ) {
+			return false;
 		}
 
 		$res = $this->foundMulti( $queries );
@@ -740,6 +770,10 @@ class BasicObjectMapper implements ObjectMapper {
 	public function fromStorageRow( array $row, $object = null ) {
 		return call_user_func( $this->fromStorageRow, $object );
 	}
+
+	public function get( $pk ) {
+		return null;
+	}
 }
 
 class CachingObjectMapper implements ObjectMapper {
@@ -814,12 +848,16 @@ class CachingObjectMapper implements ObjectMapper {
 	 * @throws \OutOfBoundsException
 	 */
 	public function get( $pk ) {
-		$pk = (array)$pk;
+		$pk = UUID::convertUUIDs( $pk );
 		ksort( $pk );
 		if ( array_keys( $pk ) !== $this->primaryKey ) {
 			throw new \InvalidArgumentException;
 		}
-		return $this->loaded[$pk];
+		try {
+			return $this->loaded[$pk];
+		} catch ( \OutOfBoundsException $e ) {
+			return null;
+		}
 	}
 
 	public function clear() {
