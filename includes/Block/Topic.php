@@ -415,7 +415,7 @@ class TopicBlock extends AbstractBlock {
 			$history = $this->loadTopicHistory();
 			$root = $this->loadRootPost();
 			if ( !$root ) {
-				return;
+				return '';
 			}
 
 			return $prefix . $templating->render( "flow:topic-history.html.php", array(
@@ -487,7 +487,7 @@ class TopicBlock extends AbstractBlock {
 		default:
 			$root = $this->loadRootPost();
 			if ( !$root ) {
-				return;
+				return '';
 			}
 
 			if ( !isset( $options['topiclist-block'] ) ) {
@@ -522,7 +522,7 @@ class TopicBlock extends AbstractBlock {
 		$postRevision = $this->loadRequestedRevision( $options['revId'] );
 
 		if ( !$postRevision ) {
-			return;
+			return '';
 		}
 
 		// @todo Do we perhaps want to show the children that did exist at the time of editing?
@@ -555,17 +555,17 @@ class TopicBlock extends AbstractBlock {
 	protected function renderPostHistory( Templating $templating, array $options, $return = false ) {
 		if ( !isset( $options['postId'] ) ) {
 			$this->addError( 'post', wfMessage( 'flow-error-missing-postId' ) );
-			return;
+			return '';
 		}
 		$post = $this->loadRequestedPost( $options['postId'] );
 		if ( !$post ) {
-			return;
+			return '';
 		}
 
 		$topicTitle = $this->loadTopicTitle(); // pre-loaded by loadRequestedPost
 		if ( !$this->permissions->isAllowed( $topicTitle, 'view' ) ) {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-			return;
+			return '';
 		}
 
 		$history = $this->getHistory( $options['postId'] );
@@ -586,7 +586,7 @@ class TopicBlock extends AbstractBlock {
 		}
 		$post = $this->loadRequestedPost( $options['postId'] );
 		if ( !$post ) {
-			return;
+			return '';
 		}
 		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {
 			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
@@ -602,7 +602,7 @@ class TopicBlock extends AbstractBlock {
 		if ( isset( $options['postId'] ) ) {
 			$rootPost = $this->loadRootPost();
 			if ( !$rootPost ) {
-				return;
+				return array();
 			}
 
 			$indexDescendant = $rootPost->registerDescendant( $options['postId'] );
@@ -633,7 +633,7 @@ class TopicBlock extends AbstractBlock {
 		$topic = $this->workflow;
 		$rootPost = $this->loadRootPost();
 		if ( !$rootPost ) {
-			return;
+			return array();
 		}
 
 		$output = array(
@@ -817,6 +817,8 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
+
+		return null;
 	}
 
 	// Loads only the title, as opposed to loadRootPost which gets the entire tree of posts.
@@ -889,20 +891,20 @@ class TopicBlock extends AbstractBlock {
 			// Since there is no root loader the full tree is already loaded
 			$topicTitle = $root = $this->loadRootPost();
 			if ( !$topicTitle ) {
-				return;
+				return null;
 			}
 			$post = $root->getRecursiveResult( $root->registerDescendant( $postId ) );
 			if ( !$post ) {
 				// The requested postId is not a member of the current workflow
 				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
-				return;
+				return null;
 			}
 		} else {
 			// Load the post and its root
 			$found = $this->rootLoader->getWithRoot( $postId );
 			if ( !$found['post'] || !$found['root'] || !$found['root']->getPostId()->equals( $this->workflow->getId() ) ) {
 				$this->addError( 'post', wfMessage( 'flow-error-invalid-postId', $postId->getAlphadecimal() ) );
-				return;
+				return null;
 			}
 			$this->topicTitle = $topicTitle = $found['root'];
 			$post = $found['post'];
@@ -919,6 +921,7 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
+		return null;
 	}
 
 	protected function loadRequestedRevision( $revisionId ) {

@@ -198,6 +198,7 @@ class Template {
 		$output = $this->renderInternal( $this->findFile( $name ) );
 		if ( $returnString === false ) {
 			$this->output->addHTML( $output );
+			return '';
 		} else {
 			return $output;
 		}
