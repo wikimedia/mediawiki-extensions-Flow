@@ -66,6 +66,7 @@ class ObjectLocator {
 		if ( !$queries ) {
 			return array();
 		}
+
 		$keys = array_keys( reset( $queries ) );
 		if ( isset( $options['sort'] ) && !is_array( $options['sort'] ) ) {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
@@ -156,21 +157,30 @@ class ObjectLocator {
 		if ( !$objectIds ) {
 			return array();
 		}
-		$pk = $this->storage->getPrimaryKeyColumns();
+		$primaryKey = $this->storage->getPrimaryKeyColumns();
 		$queries = array();
+		$retval = null;
 		foreach ( $objectIds as $id ) {
-			$queries[] = array_combine( $pk, ObjectManager::makeArray( $id ) );
+			//check internal cache
+			$query = array_combine( $primaryKey, ObjectManager::makeArray( $id ) );
+			$obj = $this->mapper->get( $query );
+			if ( $obj === null ) {
+				$queries[] = $query;
+			} else {
+				$retval[] = $obj;
+			}
 		}
-		// primary key is unique, but indexes still return their results as array
-		// to be consistent. undo that for a flat result array
-		$res = $this->findMulti( $queries );
-		if ( !$res ) {
-			return null;
+		if ( $queries ) {
+			$res = $this->findMulti( $queries );
+			if ( $res ) {
+				foreach ( $res as $row ) {
+					// primary key is unique, but indexes still return their results as array
+					// to be consistent. undo that for a flat result array
+					$retval[] = reset( $row );
+				}
+			}
 		}
-		$retval = array();
-		foreach ( $res as $row ) {
-			$retval[] = reset( $row );
-		}
+		
 		return $retval;
 	}
 
@@ -204,14 +214,20 @@ class ObjectLocator {
 			return true;
 		}
 
-		$pk = $this->storage->getPrimaryKeyColumns();
+		$primaryKey = $this->storage->getPrimaryKeyColumns();
 		$queries = array();
 		foreach ( $objectIds as $id ) {
-			$queries[] = array_combine( $pk, ObjectManager::makeArray( $id ) );
+			$query = array_combine( $primaryKey, ObjectManager::makeArray( $id ) );
+			if ( !$this->mapper->get( $query ) ) {
+				$queries[] = $query;
+			}
 		}
 
-		$res = $this->foundMulti( $queries );
-		return $res;
+		if ( $queries && $this->mapper instanceof CachingObjectMapper ) {
+			return false;
+		}
+
+		return $this->foundMulti( $queries );
 	}
 
 	public function clear() {

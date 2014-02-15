@@ -25,4 +25,12 @@ interface ObjectMapper {
 	 * @throws \Exception When object is the wrong class for the mapper
 	 */
 	function fromStorageRow( array $row, $object = null );
+
+	/**
+	 * Check internal cache for previously unserialized objects
+	 *
+	 * @param array|string $primaryKey
+	 * @return object|null
+	 */
+	function get( $primaryKey );
 }

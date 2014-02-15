@@ -2,6 +2,8 @@
 
 namespace Flow\Data;
 
+use Flow\Model\UUID;
+
 class CachingObjectMapper implements ObjectMapper {
 	protected $toStorageRow;
 
@@ -68,17 +70,20 @@ class CachingObjectMapper implements ObjectMapper {
 
 	/**
 	 * @param array|string $pk
-	 * @return object
+	 * @return object|null
 	 * @throws \InvalidArgumentException
-	 * @throws \OutOfBoundsException
 	 */
-	public function get( $pk ) {
-		$pk = (array)$pk;
-		ksort( $pk );
-		if ( array_keys( $pk ) !== $this->primaryKey ) {
+	public function get( $primaryKey ) {
+		$primaryKey = UUID::convertUUIDs( $primaryKey );
+		ksort( $primaryKey );
+		if ( array_keys( $primaryKey ) !== $this->primaryKey ) {
 			throw new \InvalidArgumentException;
 		}
-		return $this->loaded[$pk];
+		try {
+			return $this->loaded[$primaryKey];
+		} catch ( \OutOfBoundsException $e ) {
+			return null;
+		}
 	}
 
 	public function clear() {
