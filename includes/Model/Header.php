@@ -5,8 +5,19 @@ namespace Flow\Model;
 use User;
 
 class Header extends AbstractRevision {
+
+	/**
+	 * @var UUID
+	 */
 	protected $workflowId;
 
+	/**
+	 * @param Workflow $workflow
+	 * @param User $user
+	 * @param string $content
+	 * @param string $changeType
+	 * @return Header
+	 */
 	static public function create( Workflow $workflow, User $user, $content, $changeType = 'flow-create-header' ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
@@ -21,12 +32,21 @@ class Header extends AbstractRevision {
 		return $obj;
 	}
 
+	/**
+	 * @param array $row
+	 * @param Header|null $obj
+	 * @return Header
+	 */
 	static public function fromStorageRow( array $row, $obj = null ) {
 		$obj = parent::fromStorageRow( $row, $obj );
 		$obj->workflowId = UUID::create( $row['header_workflow_id'] );
 		return $obj;
 	}
 
+	/**
+	 * @param Header $obj
+	 * @return array
+	 */
 	static public function toStorageRow( $obj ) {
 		return parent::toStorageRow( $obj ) + array(
 			'rev_type' => 'header',
@@ -35,10 +55,16 @@ class Header extends AbstractRevision {
 		);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getRevisionType() {
 		return 'header';
 	}
 
+	/**
+	 * @return UUID
+	 */
 	public function getWorkflowId() {
 		return $this->workflowId;
 	}
