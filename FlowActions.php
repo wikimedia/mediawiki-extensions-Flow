@@ -23,7 +23,7 @@ use Flow\Container;
  * * history: all history-related information:
  *   * i18n-message: the i18n message key for this change type
  *   * i18n-params: array of i18n parameters for the provided message (see
- *     HistoryRecord::buildMessage phpdoc for more details)
+ *     AbstractFormatter::processParam phpdoc for more details)
  *   * class: classname to be added to the list-item for this changetype
  *   * bundle: array with, again, all of the above information if multiple types
  *     should be bundled (then the bundle i18n & class will be used to generate
