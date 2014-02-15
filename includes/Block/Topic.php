@@ -634,7 +634,6 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function renderTopicAPI( Templating $templating, array $options ) {
-		$output = array();
 		$topic = $this->workflow;
 		$rootPost = $this->loadRootPost();
 		if ( !$rootPost ) {

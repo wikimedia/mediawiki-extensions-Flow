@@ -117,7 +117,6 @@ abstract class RevisionStorage extends DbStorage {
 		//
 
 		$queriedKeys = array_keys( reset( $queries ) );
-		$joinField = $this->joinField();
 		if ( $options['LIMIT'] === 1 &&
 			!isset( $options['OFFSET'] ) &&
 			count( $queriedKeys ) === 1 &&
@@ -553,7 +552,7 @@ class TopicHistoryIndex extends TopKIndex {
 		// horrible performance
 
 		$roots = array();
-		foreach ( $queries as $idx => $features ) {
+		foreach ( $queries as $features ) {
 			$roots[] = UUID::create( $features['topic_root_id'] );
 		}
 		$nodeList = $this->treeRepository->fetchSubtreeNodeList( $roots );
