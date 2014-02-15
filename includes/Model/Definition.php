@@ -6,13 +6,38 @@ use Flow\Exception\DataModelException;
 use Flow\Exception\InvalidDataException;
 
 class Definition {
-
+	/**
+	 * @var UUID
+	 */
 	protected $id;
+
+	/**
+	 * @var string
+	 */
 	protected $type;
+
+	/**
+	 * @var string
+	 */
 	protected $wiki;
+
+	/**
+	 * @var string
+	 */
 	protected $name;
+
+	/**
+	 * @var array
+	 */
 	protected $options = array();
 
+	/**
+	 * @param array $row
+	 * @param object|null $obj
+	 * @return Definition
+	 * @throws InvalidDataException
+	 * @throws DataModelException
+	 */
 	static public function fromStorageRow( array $row, $obj = null ) {
 		if ( !$row['definition_wiki'] ) {
 			throw new InvalidDataException( "No definition_wiki", 'fail-load-data' );
@@ -30,6 +55,10 @@ class Definition {
 		return $obj;
 	}
 
+	/**
+	 * @param Definition $obj
+	 * @return array
+	 */
 	static public function toStorageRow( Definition $obj ) {
 		return array(
 			'definition_id' => $obj->id->getBinary(),
@@ -40,6 +69,12 @@ class Definition {
 		);
 	}
 
+	/**
+	 * @param string $name
+	 * @param string $type
+	 * @param array $options
+	 * @return Definition
+	 */
 	static public function create( $name, $type, array $options = array() ) {
 		$obj = new self;
 		$obj->id = UUID::create();
@@ -50,15 +85,53 @@ class Definition {
 		return $obj;
 	}
 
-	public function getId() { return $this->id; }
-	public function getWiki() { return $this->wiki; }
-	public function getName() { return $this->name; }
-	public function getType() { return $this->type; }
-	public function getOptions() { return $this->options; }
+	/**
+	 * @return UUID
+	 */
+	public function getId() {
+		return $this->id;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getWiki() {
+		return $this->wiki;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getType() {
+		return $this->type;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getOptions() {
+		return $this->options;
+	}
+
+	/**
+	 * @return mixed
+	 */
 	public function getOption( $key, $default = null ) {
 		return array_key_exists( $key, $this->options ) ? $this->options[$key] : $default;
 	}
 
+	/**
+	 * @param \User $user
+	 * @param \Title $title
+	 * @return Workflow
+	 */
 	public function createWorkflow( \User $user, \Title $title ) {
 		return Workflow::create( $this, $user, $title );
 	}
