@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_ce5fdae7",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-15T01:54:40Z",
+      "side": 1,
+      "message": "s/multiPut/multiDelete/",
+      "revId": "d5efc81df75adad24024a2e4e0470a89b815dee7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_ae548eca",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 1222,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-15T01:54:40Z",
+      "side": 1,
+      "message": "probably shouldn\u0027t just die",
+      "revId": "d5efc81df75adad24024a2e4e0470a89b815dee7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_5fac9232",
+        "filename": "includes/Model/Header.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-15T01:54:40Z",
+      "side": 1,
+      "message": "This is exactly what getCollectionId() is about now too",
+      "revId": "d5efc81df75adad24024a2e4e0470a89b815dee7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_3fa9c621",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-15T01:54:40Z",
+      "side": 1,
+      "message": "This is exactly what getCollectionId() is about now too",
+      "revId": "d5efc81df75adad24024a2e4e0470a89b815dee7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
