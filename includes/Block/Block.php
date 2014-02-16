@@ -6,6 +6,8 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 use Flow\Data\ManagerGroup;
+use Flow\Exception\DataModelException;
+use Flow\SpamFilter\Controller as SpamFilterController;
 use Flow\Templating;
 use User;
 
@@ -99,7 +101,7 @@ abstract class AbstractBlock implements Block {
 
 		$this->validate();
 
-		return !$this->errors;
+		return !$this->hasErrors();
 	}
 
 	/**
@@ -167,4 +169,27 @@ abstract class AbstractBlock implements Block {
 	public function getStorage() {
 		return $this->storage;
 	}
+
+	/**
+	 * Run through AbuseFilter and friends.
+	 * @todo Having to call spamFilter in each place that creates a revision
+	 *  is error-prone. 
+	 *
+	 * @param AbstractRevision|null $old null when $new is first revision
+	 * @param AbstractRevision $new
+	 * @return boolean
+	 */
+	protected function checkSpamFilters( AbstractRevision $old = null, AbstractRevision $new ) {
+		/** @var SpamFilterController $spamFilter */
+		$spamFilter = Container::get( 'controller.spamfilter' );
+		$status = $spamFilter->validate( $new, $old, $this->workflow->getArticleTitle() );
+		if ( $status->isOK() ) {
+			return true;
+		}
+		foreach ( $status->getErrorsArray() as $message ) {
+			$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
+		}
+		return false;
+	}
+
 }
