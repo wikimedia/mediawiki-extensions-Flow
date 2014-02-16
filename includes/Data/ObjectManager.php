@@ -136,6 +136,11 @@ interface Index extends LifecycleHandler {
 	function getLimit();
 
 	/**
+	 * @return string Sorting order, either 'ASC' or 'DESC'
+	 */
+	function getSort();
+
+	/**
 	 * Query options are not supported at the query level, the index always
 	 * returns the same value for the same key/value combination.  Depending on what
 	 * the query stores it may contain the answers to various options, which will require
