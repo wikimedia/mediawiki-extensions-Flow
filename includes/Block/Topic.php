@@ -175,13 +175,7 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
-
-		// run through AbuseFilter
-		$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, $topicTitle, $this->workflow->getArticleTitle() );
-		if ( !$status->isOK() ) {
-			foreach ( $status->getErrorsArray() as $message ) {
-				$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
-			}
+		if ( !$this->checkSpamFilters( $topicTitle, $this->newRevision ) ) {
 			return;
 		}
 
@@ -205,13 +199,7 @@ class TopicBlock extends AbstractBlock {
 			return;
 		} else {
 			$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
-
-			// run through AbuseFilter
-			$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, null, $this->workflow->getArticleTitle() );
-			if ( !$status->isOK() ) {
-				foreach ( $status->getErrorsArray() as $message ) {
-					$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
-				}
+			if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
 				return;
 			}
 
@@ -296,13 +284,7 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'moderate', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
-
-		// run through AbuseFilter
-		$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, $post, $this->workflow->getArticleTitle() );
-		if ( !$status->isOK() ) {
-			foreach ( $status->getErrorsArray() as $message ) {
-				$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
-			}
+		if ( !$this->checkSpamFilters( $post, $this->newRevision ) ) {
 			return;
 		}
 	}
@@ -340,13 +322,7 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$this->newRevision = $post->newNextRevision( $this->user, $this->submitted['content'], 'edit-post' );
-
-		// run through AbuseFilter
-		$status = Container::get( 'controller.spamfilter' )->validate( $this->newRevision, $post, $this->workflow->getArticleTitle() );
-		if ( !$status->isOK() ) {
-			foreach ( $status->getErrorsArray() as $message ) {
-				$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
-			}
+		if ( !$this->checkSpamFilters( $post, $this->newRevision ) ) {
 			return;
 		}
 

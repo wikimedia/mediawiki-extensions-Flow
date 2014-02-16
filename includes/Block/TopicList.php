@@ -59,24 +59,11 @@ class TopicListBlock extends AbstractBlock {
 		// creates Workflow, Revision & TopicListEntry objects to be inserted into storage
 		list( $this->topicWorkflow, $this->topicListEntry, $this->topicPost, $this->firstPost ) = $this->create();
 
-		// run through AbuseFilter
-		$status = Container::get( 'controller.spamfilter' )->validate( $this->topicPost, null, $this->workflow->getArticleTitle() );
-		if ( !$status->isOK() ) {
-			foreach ( $status->getErrorsArray() as $message ) {
-				$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
-			}
+		if ( !$this->checkSpamFilter( null, $this->topicPost ) ) {
 			return;
 		}
-
-		if ( $this->firstPost ) {
-			// run through AbuseFilter
-			$status = Container::get( 'controller.spamfilter' )->validate( $this->firstPost, null, $this->workflow->getArticleTitle() );
-			if ( !$status->isOK() ) {
-				foreach ( $status->getErrorsArray() as $message ) {
-					$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
-				}
-				return;
-			}
+		if ( $this->firstPost && !$this->checkSpamFilter( null, $this->firstPost ) ) {
+			return;
 		}
 	}
 

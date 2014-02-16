@@ -80,12 +80,7 @@ class HeaderBlock extends AbstractBlock {
 			$oldHeader = $this->header;
 			$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
 
-			// run through AbuseFilter
-			$status = Container::get( 'controller.spamfilter' )->validate( $this->header, $oldHeader, $this->workflow->getArticleTitle() );
-			if ( !$status->isOK() ) {
-				foreach ( $status->getErrorsArray() as $message ) {
-					$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
-				}
+			if ( !$this->checkSpamFilters( $oldHeader, $this->header ) ) {
 				return;
 			}
 
@@ -106,12 +101,7 @@ class HeaderBlock extends AbstractBlock {
 
 				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
 
-				// run through AbuseFilter
-				$status = Container::get( 'controller.spamfilter' )->validate( $this->header, null, $this->workflow->getArticleTitle() );
-				if ( !$status->isOK() ) {
-					foreach ( $status->getErrorsArray() as $message ) {
-						$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
-					}
+				if ( !$this->checkSpamFilters( null, $this->header ) ) {
 					return;
 				}
 			} else {
