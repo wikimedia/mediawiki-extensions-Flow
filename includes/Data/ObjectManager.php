@@ -1906,6 +1906,7 @@ class LocalBufferedCache extends BufferedCache {
 	}
 
 	public function merge( $key, \Closure $callback, $attempts = 10 ) {
+		parent::merge( $key, $callback, $attempts );
 		// data is being merged into this key, so invalidate the cached version
 		unset( $this->internal[$key] );
 
