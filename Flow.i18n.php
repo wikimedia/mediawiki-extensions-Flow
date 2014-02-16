@@ -471,7 +471,9 @@ Changes refers to diff between revisions.
 	'flow-newtopic-header' => 'Unused at this time.',
 	'flow-newtopic-save' => 'Used as label for the Submit button.
 
-This should be consistent with {{msg-mw|Flow-terms-of-use-new-topic}}.',
+Also used in:
+* {{msg-mw|Flow-terms-of-use-new-topic}}
+* {{msg-mw|Wikimedia-flow-terms-of-use-new-topic}}',
 	'flow-newtopic-start-placeholder' => 'Used as placeholder for the "Topic" textarea.',
 	'flow-reply-topic-placeholder' => 'Used as placeholder for the "reply to this topic" textarea. Parameters:
 * $1 - username of the logged in user, can be used for GENDER
@@ -480,9 +482,9 @@ This should be consistent with {{msg-mw|Flow-terms-of-use-new-topic}}.',
 * $1 - username',
 	'flow-reply-submit' => 'Used as label for the Submit button. Parameters:
 * $1 - username, can be used for GENDER
-
-This should be consistent with {{msg-mw|Flow-terms-of-use-reply}}.
-
+Also used in:
+* {{msg-mw|Flow-terms-of-use-reply}}
+* {{msg-mw|Wikimedia-flow-terms-of-use-reply}}
 {{Identical|Reply}}',
 	'flow-reply-link' => 'Text for the link that appears near the post and offers the user to reply to it. Clicking the link will display the reply editor. Parameters:
 * $1 - username, can be used for GENDER
@@ -1437,9 +1439,6 @@ $messages['cs'] = array(
 	'flow-post-action-edit-post' => 'Editovat',
 	'flow-topic-action-edit-title' => 'Upravit název',
 	'flow-topic-action-history' => 'Historie',
-	'flow-terms-of-use-new-topic' => 'Klepnutím na přidání tématu souhlasíte s našimi [//wikimediafoundation.org/wiki/Terms_of_Use/cs Podmínkami užití] a souhlasíte s neodvolatelným zveřejněním svého textu za podmínek licencí [//creativecommons.org/licenses/by-sa/3.0/deed.cs CC-BY-SA 3.0] a [//cs.wikipedia.org/wiki/Wikipedie:GNU_Free_Documentation_License GFDL].',
-	'flow-terms-of-use-reply' => 'Klepnutím na odpověď souhlasíte s našimi [//wikimediafoundation.org/wiki/Terms_of_Use/cs Podmínkami užití] a souhlasíte s neodvolatelným zveřejněním svého textu za podmínek licencí [//creativecommons.org/licenses/by-sa/3.0/deed.cs CC-BY-SA 3.0] a [//cs.wikipedia.org/wiki/Wikipedie:GNU_Free_Documentation_License GFDL].',
-	'flow-terms-of-use-edit' => 'Uložením změn souhlasíte s našimi [//wikimediafoundation.org/wiki/Terms_of_Use/cs Podmínkami užití] a souhlasíte s neodvolatelným zveřejněním svého textu za podmínek licencí [//creativecommons.org/licenses/by-sa/3.0/deed.cs CC-BY-SA 3.0] a [//cs.wikipedia.org/wiki/Wikipedie:GNU_Free_Documentation_License GFDL].',
 );
 
 /** German (Deutsch)
@@ -1667,9 +1666,9 @@ Du kannst andere Versionen dieses Beitrags im [$6 Verlauf] ansehen.',
 	'flow-topic-collapsed-one-line' => 'Kleine Ansicht',
 	'flow-topic-collapsed-full' => 'Zusammengeklappte Ansicht',
 	'flow-topic-complete' => 'Volle Ansicht',
-	'flow-terms-of-use-new-topic' => 'Mit dem Hinzufügen des Themas stimmst du unseren [//wikimediafoundation.org/wiki/Terms_of_Use/de Nutzungsbedingungen] und unwiderruflich der Veröffentlichung deines Textes unter der [//creativecommons.org/licenses/by-sa/3.0/deed.de CC-BY-SA-3.0-Lizenz] sowie der [//de.wikipedia.org/wiki/Wikipedia:GNU_Free_Documentation_License GFDL] zu.',
-	'flow-terms-of-use-reply' => 'Mit dem Antworten stimmst du unseren [//wikimediafoundation.org/wiki/Terms_of_Use/de Nutzungsbedingungen] und unwiderruflich der Veröffentlichung deines Textes unter der [//creativecommons.org/licenses/by-sa/3.0/deed.de CC-BY-SA-3.0-Lizenz] sowie der [//de.wikipedia.org/wiki/Wikipedia:GNU_Free_Documentation_License GFDL] zu.',
-	'flow-terms-of-use-edit' => 'Mit dem Speichern von Änderungen stimmst du unseren [//wikimediafoundation.org/wiki/Terms_of_Use/de Nutzungsbedingungen] und unwiderruflich der Veröffentlichung deines Textes unter der [//creativecommons.org/licenses/by-sa/3.0/deed.de CC-BY-SA-3.0-Lizenz] sowie der [//de.wikipedia.org/wiki/Wikipedia:GNU_Free_Documentation_License GFDL] zu.',
+	'flow-terms-of-use-new-topic' => 'Mit dem Klicken auf „{{int:flow-newtopic-save}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
+	'flow-terms-of-use-reply' => 'Mit dem Klicken auf „{{int:flow-reply-submit}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
+	'flow-terms-of-use-edit' => 'Mit dem Speichern deiner Änderungen stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
 );
 
 /** Greek (Ελληνικά)
@@ -1824,8 +1823,6 @@ $messages['es'] = array(
 	'flow-moderation-confirmation-hide-topic' => 'El tópico fue ocultado con éxito.
 {{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
 	'flow-moderation-confirmation-restore-topic' => 'Has restaurado este tema correctamente.',
-	'flow-terms-of-use-reply' => "Al pulsar 'respoder', usted acepta los Términos de uso y Condiciones [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] y acepta, además, en forma irrevocable, a someter su texto bajo los términos de la Licencia de documentación gratuita [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]",
-	'flow-terms-of-use-edit' => 'Al guardar los cambios, usted acepta los Términos de uso y Condiciones [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] y acepta, además, en forma irrevocable, a someter su texto bajo los términos de la Licencia de documentación gratuita [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] and [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
 );
 
 /** Persian (فارسی)
@@ -1839,10 +1836,10 @@ $messages['fa'] = array(
 	'flow-desc' => 'سامانهٔ مدیریت گردش کار',
 	'flow-talk-taken-over' => 'این صفحهٔ گفتگو توسط یک [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow board] تصاحب شده‌است.',
 	'log-name-flow' => 'جریان داشتن فعالیت سیاهه',
-	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|حذف}} یک  [$4 پست] on [[$3]]',
-	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|بازگردانده شده}} a [$4 پست] on [[$3]]',
-	'logentry-suppress-flow-suppress-post' => '$1 {{GENDER:$2|سرکوب شده}} a [$4 پست] on [[$3]]',
-	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|حذف شده}} a [$4 پست] on [[$3]]',
+	'logentry-delete-flow-delete-post' => '$1 یک [$4 پست] را در [[$3]] {{GENDER:$2|حذف کرد}}',
+	'logentry-delete-flow-restore-post' => '$1 یک [$4 ارسال] را در [[$3]] {{GENDER:$2|بازیابی کرد}}',
+	'logentry-suppress-flow-suppress-post' => '$1 یک [$4 پست] را در [[$3]] {{GENDER:$2|سرکوب شده}}',
+	'logentry-suppress-flow-restore-post' => '$1 یک [$4 پست] را در [[$3]] {{GENDER:$2|حذف کرد}}',
 	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|حذف شده}} یک [$4 tموضوع] در [[$3]]',
 	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|بازگردانده شده}} یک [$4 موضوع] در [[$3]]',
 	'logentry-suppress-flow-suppress-topic' => '$1 {{GENDER:$2|سرکوب شده}} یک [$4 topic] در [[$3]]',
@@ -1908,7 +1905,7 @@ $messages['fa'] = array(
 	'flow-error-missing-title' => 'موضوع هیچ عنوانی ندارد. عنوان نیازمند به ذخیرهٔ یک موضوع است.',
 	'flow-error-parsoid-failure' => 'به علت یک پارسوئید ناموفق، قادر به تجزیهٔ محتوا نیست.',
 	'flow-error-missing-replyto' => 'هیچ "پاسخی به" پارامتر عرضه نشد. این پارامتر نیازمند عمل "پاسخ" است.',
-	'flow-error-invalid-replyto' => '"پاسخ" پارامتر نامعتبر بود. پست تعیین شده نتوانست پیدا شود.',
+	'flow-error-invalid-replyto' => '«پاسخ» پارامتر نامعتبر بود. پست تعیین‌شده نتوانست پیدا شود.',
 	'flow-error-delete-failure' => 'حذف کردن این مورد ناموفق بود.',
 	'flow-error-hide-failure' => 'پنهان کردن این مورد ناموفق بود.',
 	'flow-error-missing-postId' => 'هیچ "شناسهٔ پستی" پارامتری عرضه نشد. این پارامتر نیازمند به کنترل یک پست است.',
@@ -1922,7 +1919,7 @@ $messages['fa'] = array(
 	'flow-error-not-a-post' => 'عنوان موضوع نمی‌تواند به عنوان یک پست ذخیره شود.',
 	'flow-error-missing-header-content' => 'سرفصل هیچ محتوایی ندارد. محتوا نیازمند به ذخیزهٔ یک سرفصل است.',
 	'flow-error-missing-prev-revision-identifier' => 'معرف بررسی قبلی از گم شده‌است.',
-	'flow-error-prev-revision-mismatch' => 'ویرایش نتوانست ذخیره شود: یک تغییر اخیر بیشتر در حال حاضر ارائه شده‌است.', # Fuzzy
+	'flow-error-prev-revision-mismatch' => 'چند ثانیه پیش کاربر دیگری این پست را ویرایش کرده‌است. آیا مطمئن هستید که می‌خواهید تغییر اخیر را بازنویسی کنید؟',
 	'flow-error-prev-revision-does-not-exist' => 'بررسی قبلی نتوانست پیدا شود.',
 	'flow-error-default' => 'یک خطا رخ داده است.',
 	'flow-error-invalid-input' => 'ارزش نامعتبر برای بارگذاری جریان محتوا، ارائه شده.',
@@ -1940,8 +1937,11 @@ $messages['fa'] = array(
 	'flow-error-process-wikitext' => 'خطایی هنگام پردازش تبدیل اچ‌تی‌‌ام‌ال/متن‌ویکی رخ داده‌است.',
 	'flow-error-no-index' => 'عدم موفقیت در پیدا کردن یک شاخص برای انجام جستجوی اطلاعات.',
 	'flow-edit-header-submit' => 'ذخیرهٔ سرفصل',
+	'flow-edit-header-submit-overwrite' => 'بازنویسی سرصفحه',
 	'flow-edit-title-submit' => 'تغییر عنوان',
+	'flow-edit-title-submit-overwrite' => 'بازنویسی عنوان',
 	'flow-edit-post-submit' => 'ثبت تغییرات',
+	'flow-edit-post-submit-overwrite' => 'بازنویسی تغییرات',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|ویرایش شد}} یک [$3 نظر].',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|اضافه شد}} یک [$3 نظر].',
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|نظر|نظرها}}</strong> {{PLURAL:$1|بود|بودند}} اضافه شد.',
@@ -1975,7 +1975,7 @@ $messages['fa'] = array(
 	'flow-paging-fwd' => 'موضوعات قدیمی‌تر',
 	'flow-last-modified' => 'آخرین تغییریافته دربارهٔ $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|پاسخ داده شد}} به شما <span class="plainlinks">[$5 post]</span> در "$2" در "$4".',
-	'flow-notification-reply-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|پاسخ داده شد} به شما <span class="plainlinks">[$4 پست]</span> در "$2" در "$3".', # Fuzzy
+	'flow-notification-reply-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|پاسخ داده} به شما <span class="plainlinks">[$4 post]</span> در "$2" در "$3".', # Fuzzy
 	'flow-notification-edit' => '$1 {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$5 post]</span> در "$2" در [[$3|$4]].',
 	'flow-notification-edit-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$4 post]</span> در "$2" در "$3".',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|ایجاد شده}} یک <span class="plainlinks">[$5 موضوع جدید]</span> در [[$2|$3]]: $4.',
@@ -2004,7 +2004,7 @@ $messages['fa'] = array(
 	'flow-moderation-reason-placeholder' => 'دلیل خود را اینجا وارد کنید',
 	'flow-moderation-title-suppress-post' => 'سرکوب ارسال؟',
 	'flow-moderation-title-delete-post' => 'حذف ارسال؟',
-	'flow-moderation-title-hide-post' => 'پنهان کردن پست؟',
+	'flow-moderation-title-hide-post' => 'پنهان‌کردن پست؟',
 	'flow-moderation-title-restore-post' => 'بازگرداندن ارسال؟',
 	'flow-moderation-intro-suppress-post' => 'لطفاً {{GENDER:$3|توضیح دهید}} که چرا شما این پست را سرکوب می‌کنید.',
 	'flow-moderation-intro-delete-post' => 'لطفاً {{GENDER:$3|توضیح دهید}} که چرا این پست را حذف می‌کنید.',
@@ -2053,9 +2053,9 @@ $messages['fa'] = array(
 	'flow-topic-collapsed-one-line' => 'مشاهدهٔ کوچک',
 	'flow-topic-collapsed-full' => 'مشاهده با شکست روبه‌رو شده',
 	'flow-topic-complete' => 'مشاهدهٔ کامل',
-	'flow-terms-of-use-new-topic' => 'با کلیک کردن افزودن عنوان، موافقت شما به [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] ما و موافقت به انتشار متن شما به طور تغییر‌ ناپذیر تحت [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] و [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
-	'flow-terms-of-use-reply' => 'با کلیک کردن پاسخ، موافقت شما به [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] ما و موافقت به انتشار متن شما به طور تغییر ناپذیر تحت [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] و [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
-	'flow-terms-of-use-edit' => 'با ذخیره کردن تغییرات، موافقت شما به [//wikimediafoundation.org/wiki/Terms_of_use Terms of Use] ما و موافقت به انتشار متن شما به طور تغییر ناپذیر تحت [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0 License] و [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
+	'flow-terms-of-use-new-topic' => 'با کلیک کردن "{{int:flow-newtopic-save}}"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
+	'flow-terms-of-use-reply' => 'با کلیک کردن "{{int:flow-reply-submit}}"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
+	'flow-terms-of-use-edit' => 'با ذخیرهٔ تغییرات شما،  شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
 );
 
 /** Finnish (suomi)
@@ -2067,11 +2067,12 @@ $messages['fi'] = array(
 	'log-name-flow' => 'Flow-tapahtumaloki',
 	'flow-edit-header-link' => 'Muokkaa otsikkoa',
 	'flow-header-empty' => 'Tällä keskustelusivulla ei ole tällä hetkellä otsikkoa.',
-	'flow-post-moderated-toggle-show' => '[Näytä]',
-	'flow-post-moderated-toggle-hide' => '[Piilota]',
 	'flow-hide-post-content' => '$2 on {{GENDER:$1|piilottanut}} tämän kommentin.',
 	'flow-hide-title-content' => '$2 on {{GENDER:$1|piilottanut}} tämän aiheen.',
 	'flow-hide-header-content' => '{{GENDER:$1|Piilottanut}} $2',
+	'flow-delete-header-content' => '{{GENDER:$1|Poistanut}} $2',
+	'flow-suppress-header-content' => '{{GENDER:$1|Häivyttänyt}} $2',
+	'flow-suppress-usertext' => '<em>Käyttäjänimi häivytetty</em>',
 	'flow-post-actions' => 'Toiminnot',
 	'flow-topic-actions' => 'Toiminnot',
 	'flow-cancel' => 'Peru',
@@ -2086,18 +2087,17 @@ $messages['fi'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Vastaa}}',
 	'flow-reply-link' => '{{GENDER:$1|Vastaa}}',
 	'flow-thank-link' => '{{GENDER:$1|Kiitä}}',
-	'flow-edit-post-submit' => 'Lähetä muutokset',
 	'flow-post-action-view' => 'Ikilinkki',
+	'flow-post-action-post-history' => 'Historia',
 	'flow-post-action-suppress-post' => 'Häivytä',
 	'flow-post-action-delete-post' => 'Poista',
 	'flow-post-action-hide-post' => 'Piilota',
-	'flow-post-action-edit-post' => 'Muokkaa viestiä',
-	'flow-post-action-edit' => 'Muokkaa',
+	'flow-post-action-edit-post' => 'Muokkaa',
 	'flow-post-action-restore-post' => 'Palauta viesti',
 	'flow-topic-action-view' => 'Ikilinkki',
 	'flow-topic-action-watchlist' => 'Tarkkailulista',
 	'flow-topic-action-edit-title' => 'Muokkaa otsikkoa',
-	'flow-topic-action-history' => 'Aiheen historia',
+	'flow-topic-action-history' => 'Historia',
 	'flow-topic-action-hide-topic' => 'Piilota aihe',
 	'flow-topic-action-delete-topic' => 'Poista aihe',
 	'flow-topic-action-suppress-topic' => 'Häivytä aihe',
@@ -2108,9 +2108,14 @@ $messages['fi'] = array(
 	'flow-error-edit-restricted' => 'Sinulla ei ole lupaa muokata tätä viestiä.',
 	'flow-error-not-allowed' => 'Käyttöoikeutesi eivät riitä tämän toiminnon suorittamiseen',
 	'flow-edit-title-submit' => 'Muuta otsikkoa',
+	'flow-edit-post-submit' => 'Lähetä muutokset',
 	'flow-history-last4' => 'Viimeiset 4 tuntia',
 	'flow-history-day' => 'Tänään',
 	'flow-history-week' => 'Viimeinen viikko',
+	'flow-comment-restored' => 'Palautettu kommentti',
+	'flow-comment-deleted' => 'Poistettu kommentti',
+	'flow-comment-hidden' => 'Piilotettu kommentti',
+	'flow-comment-moderated' => 'Moderoitu kommentti',
 	'flow-paging-fwd' => 'Vanhemmat aiheet',
 	'flow-notification-link-text-view-post' => 'Näytä viesti',
 	'flow-notification-link-text-view-topic' => 'Näytä aihe',
@@ -2126,7 +2131,7 @@ $messages['fi'] = array(
 	'flow-moderation-confirm-delete-post' => 'Poista',
 	'flow-moderation-confirm-hide-post' => 'Piilota',
 	'flow-moderation-confirm-restore-post' => 'Palauta',
-	'flow-moderation-confirmation-restore-post' => 'Viesti on palautettu.', # Fuzzy
+	'flow-moderation-confirmation-restore-post' => 'Olet onnistuneesti palauttanut yllä olevan viestin.',
 	'flow-moderation-title-suppress-topic' => 'Häivytä aihe?',
 	'flow-moderation-title-delete-topic' => 'Poista aihe?',
 	'flow-moderation-title-hide-topic' => 'Piilota aihe?',
@@ -2373,9 +2378,6 @@ Vous pouvez voir d’autres versions de cette note dans sa [$6 page d’historiq
 	'flow-topic-collapsed-one-line' => 'Vue petite',
 	'flow-topic-collapsed-full' => 'Vue réduite',
 	'flow-topic-complete' => 'Vue complète',
-	'flow-terms-of-use-new-topic' => 'En cliquant sur ajouter un sujet, vous acceptez nos [//wikimediafoundation.org/wiki/Terms_of_use conditions d’utilisation] et acceptez de mettre à disposition irrévocablement votre texte sous les licences [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0] et [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
-	'flow-terms-of-use-reply' => 'En cliquant sur répondre, vous acceptez nos [//wikimediafoundation.org/wiki/Terms_of_use conditions d’utilisation] et acceptez de mettre à disposition irrévocablement votre texte sous les licences [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0] et [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
-	'flow-terms-of-use-edit' => 'En enregistrant les modifications, vous acceptez nos [//wikimediafoundation.org/wiki/Terms_of_use conditions d’utilisation] et acceptez de mettre à disposition irrévocablement votre texte sous les licences [//creativecommons.org/licenses/by-sa/3.0 CC BY-SA 3.0] et [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]',
 );
 
 /** Western Frisian (Frysk)
@@ -2405,7 +2407,6 @@ $messages['gl'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Responder}}',
 	'flow-reply-link' => '{{GENDER:$1|Responder}}',
 	'flow-thank-link' => '{{GENDER:$1|Agradecer}}',
-	'flow-edit-post-submit' => 'Enviar os cambios',
 	'flow-post-edited' => 'Mensaxe {{GENDER:$1|editada}} por $1 $2',
 	'flow-post-action-view' => 'Ligazón permanente',
 	'flow-post-action-post-history' => 'Historial',
@@ -2435,6 +2436,7 @@ $messages['gl'] = array(
 	'flow-error-restore-failure' => 'Houbo un erro ao restaurar este elemento.',
 	'flow-edit-header-submit' => 'Gardar a cabeceira',
 	'flow-edit-title-submit' => 'Cambiar o título',
+	'flow-edit-post-submit' => 'Enviar os cambios',
 	'flow-rev-message-edit-post' => 'Editouse o contido da mensaxe', # Fuzzy
 	'flow-rev-message-reply' => 'Publicouse unha nova resposta', # Fuzzy
 	'flow-rev-message-new-post' => 'Creouse un fío', # Fuzzy
@@ -2488,9 +2490,6 @@ $messages['gl'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Borrar',
 	'flow-moderation-confirm-hide-topic' => 'Agochar',
 	'flow-moderation-confirm-restore-topic' => 'Restaurar',
-	'flow-terms-of-use-new-topic' => 'Ao premer no botón "Engadir un fío", acepta os nosos [//wikimediafoundation.org/wiki/Terms_of_Use/gl termos de uso] e acepta liberar o seu texto baixo a [//creativecommons.org/licenses/by-sa/3.0/deed.gl licenza CC BY-SA 3.0] e a [//gl.wikipedia.org/wiki/Wikipedia:Texto_da_Licenza_de_documentación_libre_de_GNU licenza GFDL].',
-	'flow-terms-of-use-reply' => 'Ao premer no botón "Responder", acepta os nosos [//wikimediafoundation.org/wiki/Terms_of_Use/gl termos de uso] e acepta liberar o seu texto baixo a [//creativecommons.org/licenses/by-sa/3.0/deed.gl licenza CC BY-SA 3.0] e a [//gl.wikipedia.org/wiki/Wikipedia:Texto_da_Licenza_de_documentación_libre_de_GNU licenza GFDL].',
-	'flow-terms-of-use-edit' => 'Ao gardar os cambios, acepta os nosos [//wikimediafoundation.org/wiki/Terms_of_Use/gl termos de uso] e acepta liberar o seu texto baixo a [//creativecommons.org/licenses/by-sa/3.0/deed.gl licenza CC BY-SA 3.0] e a [//gl.wikipedia.org/wiki/Wikipedia:Texto_da_Licenza_de_documentación_libre_de_GNU licenza GFDL].',
 );
 
 /** Gujarati (ગુજરાતી)
@@ -3083,9 +3082,6 @@ Puoi vedere le altre versioni nella [$6 cronologia della pagina].',
 	'flow-topic-collapsed-one-line' => 'Vista piccola',
 	'flow-topic-collapsed-full' => 'Vista compatta',
 	'flow-topic-complete' => 'Vista completa',
-	'flow-terms-of-use-new-topic' => "Aggiungendo la discussione, accetti le nostre [//wikimediafoundation.org/wiki/Terms_of_use/it condizioni d'uso] e accetti di rilasciare il tuo testo in base alle licenze [//creativecommons.org/licenses/by-sa/3.0/deed.it CC-BY-SA 3.0] e [//it.wikipedia.org/wiki/Wikipedia:Testo_della_GNU_Free_Documentation_License GDFL].",
-	'flow-terms-of-use-reply' => "Rispondendo, accetti le nostre [//wikimediafoundation.org/wiki/Terms_of_use/it condizioni d'uso] e accetti di rilasciare il tuo testo in base alle licenze [//creativecommons.org/licenses/by-sa/3.0/deed.it CC-BY-SA 3.0] e [//it.wikipedia.org/wiki/Wikipedia:Testo_della_GNU_Free_Documentation_License GDFL].",
-	'flow-terms-of-use-edit' => "Salvando le modifiche, accetti le nostre [//wikimediafoundation.org/wiki/Terms_of_use/it condizioni d'uso] e accetti di rilasciare il tuo testo in base alle licenze [//creativecommons.org/licenses/by-sa/3.0/deed.it CC-BY-SA 3.0] e [//it.wikipedia.org/wiki/Wikipedia:Testo_della_GNU_Free_Documentation_License GDFL].",
 );
 
 /** Japanese (日本語)
@@ -3138,7 +3134,6 @@ $messages['ja'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|返信}}',
 	'flow-reply-link' => '{{GENDER:$1|返信}}',
 	'flow-thank-link' => '{{GENDER:$1|感謝}}',
-	'flow-edit-post-submit' => '変更を保存',
 	'flow-post-edited' => '$1 が $2 に{{GENDER:$1|編集した}}投稿',
 	'flow-post-action-view' => '固定リンク',
 	'flow-post-action-post-history' => '履歴',
@@ -3149,7 +3144,7 @@ $messages['ja'] = array(
 	'flow-post-action-restore-post' => '投稿を復元',
 	'flow-topic-action-view' => '固定リンク',
 	'flow-topic-action-watchlist' => 'ウォッチリスト',
-	'flow-topic-action-edit-title' => 'タイトルを編集',
+	'flow-topic-action-edit-title' => '題名を編集',
 	'flow-topic-action-history' => '履歴',
 	'flow-topic-action-hide-topic' => '話題を非表示にする',
 	'flow-topic-action-delete-topic' => '話題を削除',
@@ -3177,7 +3172,7 @@ $messages['ja'] = array(
 	'flow-error-not-a-post' => '話題の題名は投稿としては保存できません。',
 	'flow-error-missing-header-content' => 'ヘッダーの本文がありません。ヘッダーを保存するには本文が必要です。',
 	'flow-error-missing-prev-revision-identifier' => '以前の版の ID がありません。',
-	'flow-error-prev-revision-mismatch' => '編集内容を保存できませんでした。より新しい変更が既に投稿されました。',
+	'flow-error-prev-revision-mismatch' => '編集内容を保存できませんでした。より新しい変更が既に投稿されました。', # Fuzzy
 	'flow-error-prev-revision-does-not-exist' => '過去の版が見つかりませんでした。',
 	'flow-error-default' => 'エラーが発生しました。',
 	'flow-error-invalid-input' => 'Flow の本文の読み込みについて無効な値を指定しました。',
@@ -3188,14 +3183,18 @@ $messages['ja'] = array(
 	'flow-error-fail-commit' => 'Flow の本文を保存できませんでした。',
 	'flow-error-insufficient-permission' => 'その内容にアクセスするのに十分な権限がありません。',
 	'flow-error-revision-comparison' => '差分の操作は、2 つの版が同一の投稿に属する場合のみ実行できます。',
-	'flow-error-missing-topic-title' => '現在のワークフローについて話題のタイトルが見つかりませんでした。',
+	'flow-error-missing-topic-title' => '現在のワークフローについて話題の題名が見つかりませんでした。',
 	'flow-error-fail-load-data' => '要求したデータを読み込めませんでした。',
 	'flow-error-invalid-workflow' => '要求したワークフローが見つかりませんでした。',
 	'flow-error-process-data' => '要求されたデータを処理する際にエラーが発生しました。',
 	'flow-error-process-wikitext' => 'HTML/ウィキテキスト変換を処理する際にエラーが発生しました。',
 	'flow-error-no-index' => 'データ検索を実行するためのインデックスが見つかりませんでした。',
 	'flow-edit-header-submit' => 'ヘッダーを保存',
+	'flow-edit-header-submit-overwrite' => 'ヘッダーを上書き',
 	'flow-edit-title-submit' => '題名を変更',
+	'flow-edit-title-submit-overwrite' => '題名を上書き',
+	'flow-edit-post-submit' => '変更を保存',
+	'flow-edit-post-submit-overwrite' => '変更を上書き',
 	'flow-rev-message-edit-post' => '$1 が[$3 コメント]を{{GENDER:$2|編集}}',
 	'flow-rev-message-reply' => '$1 が[$3 コメント]を{{GENDER:$2|追加}}',
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|件のコメント}}</strong>が追加{{PLURAL:$1|されました}}。',
@@ -3294,9 +3293,9 @@ $messages['ja'] = array(
 	'flow-topic-collapsed-one-line' => '縮小表示',
 	'flow-topic-collapsed-full' => '折りたたみ表示',
 	'flow-topic-complete' => '全体表示',
-	'flow-terms-of-use-new-topic' => '話題を追加をクリックすると、あなたは[//wikimediafoundation.org/wiki/Terms_of_use/ja 利用規約]に同意し、この文章を [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0 ライセンス]および [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL] で撤回できない形で公開することに同意したと見なされます',
-	'flow-terms-of-use-reply' => '返信をクリックすると、あなたは[//wikimediafoundation.org/wiki/Terms_of_use/ja 利用規約]に同意し、この文章を [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0 ライセンス]および [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL] で撤回できない形で公開することに同意したと見なされます',
-	'flow-terms-of-use-edit' => '変更内容を保存すると、あなたは[//wikimediafoundation.org/wiki/Terms_of_use/ja 利用規約]に同意し、この文章を [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0 ライセンス]および [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL] で撤回できない形で公開することに同意したと見なされます',
+	'flow-terms-of-use-new-topic' => '「{{int:flow-newtopic-save}}」をクリックすると、このウィキの利用規約に同意したと見なされます。',
+	'flow-terms-of-use-reply' => '「{{int:flow-reply-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。',
+	'flow-terms-of-use-edit' => '変更内容を保存すると、このウィキの利用規約に同意したと見なされます。',
 );
 
 /** Lojban (Lojban)
@@ -3543,9 +3542,6 @@ $messages['ko'] = array(
 	'flow-topic-collapsed-one-line' => '작게 보기',
 	'flow-topic-collapsed-full' => '접힌 보기',
 	'flow-topic-complete' => '전체 보기',
-	'flow-terms-of-use-new-topic' => '주제 추가를 클릭하면 [//wikimediafoundation.org/wiki/Terms_of_use/ko 이용 약관]에 동의하고 [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0 라이선스]와 [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]에 따라 텍스트를 공개하는 데 동의합니다.',
-	'flow-terms-of-use-reply' => '답변 버튼을 클릭하면 [//wikimediafoundation.org/wiki/Terms_of_use/ko 이용 약관]에 동의하고 [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0 라이선스]와 [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]에 따라 텍스트를 공개하는 데 동의합니다.',
-	'flow-terms-of-use-edit' => '바뀜 저장을 클릭하면 [//wikimediafoundation.org/wiki/Terms_of_use/ko 이용 약관]에 동의하고 [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0 라이선스]와 [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]에 따라 텍스트를 공개하는 데 동의합니다.',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -3671,6 +3667,7 @@ $messages['lb'] = array(
 	'flow-moderation-confirmation-restore-topic' => 'Dir hutt dëst Thema restauréiert.',
 	'flow-topic-permalink-warning' => 'Dëse Sujet gouf op [$2 $1] ugefaang',
 	'flow-compare-revisions-revision-header' => 'Versioun vum {{GENDER:$2|$2}} vum $1',
+	'flow-terms-of-use-edit' => "Duerch Späichere vun Ären Ännerunge sidd Dir mat de Konditioune fir d'Benotze vun dëser Wiki d'Accord.",
 );
 
 /** لوری (لوری)
@@ -3929,9 +3926,9 @@ $messages['mk'] = array(
 	'flow-topic-collapsed-one-line' => 'Мал приказ',
 	'flow-topic-collapsed-full' => 'Расклопен приказ',
 	'flow-topic-complete' => 'Целосен приказ',
-	'flow-terms-of-use-new-topic' => 'Стискајќи на копчето за додавање тема, се согласувате со нашите [//wikimediafoundation.org/wiki/Terms_of_use/mk?uselang=mk Услови на употреба] и неотповикливо се сложувате вашиот текст да се објавува под лиценците [//creativecommons.org/licenses/by-sa/3.0/deed.mk CC BY-SA 3.0] и [//mk.wikipedia.org/wiki/Википедија:ГНУ-ова_лиценца_за_слободна_документација ГЛСД].',
-	'flow-terms-of-use-reply' => 'Стискајќи на копчето за давање одговор, се согласувате со нашите [//wikimediafoundation.org/wiki/Terms_of_use/mk?uselang=mk Услови на употреба] и неотповикливо се сложувате вашиот текст да се објавува под лиценците [//creativecommons.org/licenses/by-sa/3.0/deed.mk CC BY-SA 3.0] и [//mk.wikipedia.org/wiki/Википедија:ГНУ-ова_лиценца_за_слободна_документација ГЛСД].',
-	'flow-terms-of-use-edit' => 'Зачувувајќи ги промените, се согласувате со нашите [//wikimediafoundation.org/wiki/Terms_of_use/mk?uselang=mk Услови на употреба] и неотповикливо се сложувате вашиот текст да се објавува под лиценците [//creativecommons.org/licenses/by-sa/3.0/deed.mk CC BY-SA 3.0] и [//mk.wikipedia.org/wiki/Википедија:ГНУ-ова_лиценца_за_слободна_документација ГЛСД].',
+	'flow-terms-of-use-new-topic' => 'Стискајќи на „{{int:flow-newtopic-save}}“, се согласувате со условите на употреба на ова вики.',
+	'flow-terms-of-use-reply' => 'Стискајќи на „{{int:flow-reply-submit}}“, се согласувате со условите на употреба на ова вики.',
+	'flow-terms-of-use-edit' => 'Зачувувајќи ги промените, се согласувате со условите на употреба на ова вики.',
 );
 
 /** Malayalam (മലയാളം)
@@ -4010,9 +4007,6 @@ Apa kata anda {{GENDER:$2|memaklum balas}} $1 mengenai topik ini?',
 	'flow-topic-collapsed-one-line' => 'Paparan kecil',
 	'flow-topic-collapsed-full' => 'Paparan terlipat',
 	'flow-topic-complete' => 'Paparan penuh',
-	'flow-terms-of-use-new-topic' => 'Dengan mengklik "Tambah topik", anda bersetuju dengan [//wikimediafoundation.org/wiki/Terms_of_use Syarat-Syarat Penggunaan] kami dan juga sudi mengeluarkan gambar anda dengan [//creativecommons.org/licenses/by-sa/3.0/ Lesen Creative Commons Attribution-ShareAlike 3.0] dan [//ms.wikipedia.org/wiki/Wikipedia:Teks_Lesen_Dokumentasi_Bebas_GNU GFDL].',
-	'flow-terms-of-use-reply' => 'Dengan mengklik "Balas", anda bersetuju dengan [//wikimediafoundation.org/wiki/Terms_of_use Syarat-Syarat Penggunaan] kami dan juga sudi mengeluarkan gambar anda dengan [//creativecommons.org/licenses/by-sa/3.0/ Lesen Creative Commons Attribution-ShareAlike 3.0] dan [//ms.wikipedia.org/wiki/Wikipedia:Teks_Lesen_Dokumentasi_Bebas_GNU GFDL].',
-	'flow-terms-of-use-edit' => 'Dengan menyimpan suntingan, anda bersetuju dengan [//wikimediafoundation.org/wiki/Terms_of_use Syarat-Syarat Penggunaan] kami dan juga sudi mengeluarkan gambar anda dengan [//creativecommons.org/licenses/by-sa/3.0/ Lesen Creative Commons Attribution-ShareAlike 3.0] dan [//ms.wikipedia.org/wiki/Wikipedia:Teks_Lesen_Dokumentasi_Bebas_GNU GFDL].',
 );
 
 /** Neapolitan (Napulitano)
@@ -5207,9 +5201,7 @@ $messages['uk'] = array(
 	'flow-topic-collapsed-one-line' => 'Малий вигляд',
 	'flow-topic-collapsed-full' => 'Згорнутий вигляд',
 	'flow-topic-complete' => 'Повний вигляд',
-	'flow-terms-of-use-new-topic' => 'Натиснувши кнопку "Додати тему", ви погоджуєтеся з нашими [//wikimediafoundation.org/wiki/Terms_of_use/uk умовами використання] та погоджуєтесь з поширенням вашого тексту під [//http://creativecommons.org/licenses/by-sa/3.0/deed.uk ліцензією CC BY-SA 3.0] та [//http://uk.wikipedia.org/wiki/Вікіпедія:Текст_GNU_Free_Documentation_License GFDL].',
-	'flow-terms-of-use-reply' => 'Натиснувши кнопку "Відповісти", ви погоджуєтеся з нашими [//wikimediafoundation.org/wiki/Terms_of_use/uk умовами використання] та погоджуєтесь з поширенням вашого тексту під [//http://creativecommons.org/licenses/by-sa/3.0/deed.uk ліцензією CC BY-SA 3.0] та [//http://uk.wikipedia.org/wiki/Вікіпедія:Текст_GNU_Free_Documentation_License GFDL].',
-	'flow-terms-of-use-edit' => 'Зберігаючи зміни, ви погоджуєтеся з нашими [//wikimediafoundation.org/wiki/Terms_of_use/uk умовами використання] та погоджуєтесь з поширенням вашого тексту під [//http://creativecommons.org/licenses/by-sa/3.0/deed.uk ліцензією CC BY-SA 3.0] та [//http://uk.wikipedia.org/wiki/Вікіпедія:Текст_GNU_Free_Documentation_License GFDL].',
+	'flow-terms-of-use-edit' => 'Зберігаючи зміни, ви погоджуєтесь з умовами використання для цього вікі.',
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -5265,7 +5257,6 @@ $messages['vi'] = array(
 	'flow-reply-submit' => '{{GENDER:$1}}Trả lời',
 	'flow-reply-link' => '{{GENDER:$1}}Trả lời',
 	'flow-thank-link' => '{{GENDER:$1}}Cảm ơn',
-	'flow-edit-post-submit' => 'Gửi thay đổi',
 	'flow-post-edited' => 'Bài đăng được sửa đổi bởi $1 $2',
 	'flow-post-action-view' => 'Liên kết thường trực',
 	'flow-post-action-post-history' => 'Lịch sử',
@@ -5305,7 +5296,7 @@ $messages['vi'] = array(
 	'flow-error-not-a-post' => 'Không thể lưu tên chủ đề thành nội dung của bài đăng.',
 	'flow-error-missing-header-content' => 'Đầu đề không có nội dung. Đầu đề phải có nội dung để lưu.',
 	'flow-error-missing-prev-revision-identifier' => 'Thiếu định danh phiên bản trước.',
-	'flow-error-prev-revision-mismatch' => 'Không thể lưu sửa đổi vì một thay đổi mới hơn đã được gửi.',
+	'flow-error-prev-revision-mismatch' => 'Không thể lưu sửa đổi vì một thay đổi mới hơn đã được gửi.', # Fuzzy
 	'flow-error-prev-revision-does-not-exist' => 'Không tìm thấy phiên bản trước.',
 	'flow-error-default' => 'Đã xuất hiện lỗi.',
 	'flow-error-invalid-input' => 'Đã cung cấp một giá trị không hợp lệ khi tải nội dung luồng.',
@@ -5324,6 +5315,7 @@ $messages['vi'] = array(
 	'flow-error-no-index' => 'Không tìm thấy chỉ mục để tìm kiếm dữ liệu.',
 	'flow-edit-header-submit' => 'Lưu đầu đề',
 	'flow-edit-title-submit' => 'Thay đổi tiêu đề',
+	'flow-edit-post-submit' => 'Gửi thay đổi',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2}}đã sửa đổi một [$3 bình luận].',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2}}đã thêm một [$3 bình luận].',
 	'flow-rev-message-reply-bundle' => '<strong>$1 bình luận</strong> được thêm vào.',
@@ -5429,9 +5421,6 @@ Bạn có thể xem các phiên bản khác của bài đăng này tại [$6 tra
 	'flow-topic-collapsed-one-line' => 'Xem danh sách nhỏ',
 	'flow-topic-collapsed-full' => 'Xem thu gọn',
 	'flow-topic-complete' => 'Xem đầy đủ',
-	'flow-terms-of-use-new-topic' => 'Với việc bấm “Thêm chủ đề”, bạn chấp nhận [//wikimediafoundation.org/wiki/Terms_of_Use/vi?uselang=vi các Điều khoản Sử dụng] của chúng tôi và đồng ý phát hành, một cách không thể hủy bỏ, văn bản của bạn theo [//creativecommons.org/licenses/by-sa/3.0/deed.vi Giấy phép CC Ghi công–Chia sẻ tương tự 3.0] và [//vi.wikipedia.org/wiki/Wikipedia:Nguyên_văn_Giấy_phép_Tài_liệu_Tự_do_GNU GFDL].',
-	'flow-terms-of-use-reply' => 'Với việc bấm “Trả lời”, bạn chấp nhận [//wikimediafoundation.org/wiki/Terms_of_Use/vi?uselang=vi các Điều khoản Sử dụng] của chúng tôi và đồng ý phát hành, một cách không thể hủy bỏ, văn bản của bạn theo [//creativecommons.org/licenses/by-sa/3.0/deed.vi Giấy phép CC Ghi công–Chia sẻ tương tự 3.0] và [//vi.wikipedia.org/wiki/Wikipedia:Nguyên_văn_Giấy_phép_Tài_liệu_Tự_do_GNU GFDL].',
-	'flow-terms-of-use-edit' => 'Với việc lưu các thay đổi, bạn chấp nhận [//wikimediafoundation.org/wiki/Terms_of_Use/vi?uselang=vi các Điều khoản Sử dụng] của chúng tôi và đồng ý phát hành, một cách không thể hủy bỏ, văn bản của bạn theo [//creativecommons.org/licenses/by-sa/3.0/deed.vi Giấy phép CC Ghi công–Chia sẻ tương tự 3.0] và [//vi.wikipedia.org/wiki/Wikipedia:Nguyên_văn_Giấy_phép_Tài_liệu_Tự_do_GNU GFDL].',
 );
 
 /** Volapük (Volapük)
@@ -5580,7 +5569,7 @@ $messages['zh-hans'] = array(
 	'flow-error-not-a-post' => '主题标题不能保存为一个帖子。',
 	'flow-error-missing-header-content' => '标头没有内容。必须有内容才能保存标题。',
 	'flow-error-missing-prev-revision-identifier' => '上一修订的标识符缺失。',
-	'flow-error-prev-revision-mismatch' => '无法保存编辑：最近有更新的更改已被提交。', # Fuzzy
+	'flow-error-prev-revision-mismatch' => '另一位用户已于几秒钟前编辑了此帖子。您确信继续重写最近更新？',
 	'flow-error-prev-revision-does-not-exist' => '无法找到以前的版本。',
 	'flow-error-default' => '出现了一个错误',
 	'flow-error-invalid-input' => '正在加载的flow内容被提供了无效的值。',
