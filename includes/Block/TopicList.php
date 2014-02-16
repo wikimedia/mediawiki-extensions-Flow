@@ -24,6 +24,7 @@ class TopicListBlock extends AbstractBlock {
 	protected $topicListEntry;
 	protected $topicPost;
 	protected $firstPost;
+	protected $permissions;
 
 	public function __construct(
 		Workflow $workflow,
@@ -115,6 +116,7 @@ class TopicListBlock extends AbstractBlock {
 		}
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 
+		$firstPost = null;
 		if ( !empty( $this->submitted['content'] ) ) {
 			$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
 			$topicPost->setChildren( array( $firstPost ) );
@@ -282,7 +284,7 @@ class TopicListBlock extends AbstractBlock {
 			return array();
 		}
 
-		$topics = array();
+		$topicIds = array();
 		// @var $entry TopicListEntry
 		foreach( $found as $entry ) {
 			$topicIds[] = $entry->getId();
@@ -299,6 +301,7 @@ class TopicListBlock extends AbstractBlock {
 				unset( $roots[$idx] );
 			}
 		}
+		$topics = array();
 		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
 			$hexId = $workflow->getId()->getAlphadecimal();
 			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
