@@ -31,7 +31,10 @@ class NotificationController {
 		$wgHooks['EchoGetDefaultNotifiedUsers'][] = 'Flow\NotificationController::getDefaultNotifiedUsers';
 		$wgHooks['EchoGetBundleRules'][] = 'Flow\NotificationController::onEchoGetBundleRules';
 
-		// Load notification definitions from file.
+		/**
+		 * Load notification definitions from file.
+		 * @var $notifications array[]
+		 */
 		require( __DIR__ . "/Notifications.php" );
 		$wgEchoNotifications += $notifications;
 
@@ -83,14 +86,24 @@ class NotificationController {
 		$extraData['post-id'] = $revision->getPostId();
 		$extraData['topic-workflow'] = $topicWorkflow->getId();
 
+		$newPost = null;
 		switch( $eventName ) {
 			case 'flow-post-reply':
-				$replyToPost = $data['reply-to'];
+				$replyToPostId = $data['reply-to']->getPostId();
 				$extraData += array(
-					'reply-to' => $replyToPost->getPostId(),
+					'reply-to' => $replyToPostId,
 					'content' => $this->language->truncate( trim( $revision->getContent() ), 200 ),
 					'topic-title' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
 				);
+				$newPost = array(
+					'title' => $title,
+					'user' => $user,
+					'post' => $revision,
+					'reply-to' => $replyToPostId,
+					'topic-title' => $topicRevision,
+					'topic-workflow' => $topicWorkflow,
+				);
+
 			break;
 			case 'flow-topic-renamed':
 				$extraData += array(
@@ -115,17 +128,8 @@ class NotificationController {
 			) ),
 		);
 
-		if ( $eventName == 'flow-post-reply' ) {
-			$events = array_merge( $events,
-				$this->notifyNewPost( array(
-					'title' => $title,
-					'user' => $user,
-					'post' => $revision,
-					'reply-to' => $replyToPost->getPostId(),
-					'topic-title' => $topicRevision,
-					'topic-workflow' => $topicWorkflow,
-				) )
-			);
+		if ( $newPost ) {
+			$events = array_merge( $events, $this->notifyNewPost( $newPost ) );
 		}
 
 		return $events;
