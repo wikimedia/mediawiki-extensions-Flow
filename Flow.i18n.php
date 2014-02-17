@@ -2378,6 +2378,9 @@ Vous pouvez voir d’autres versions de cette note dans sa [$6 page d’historiq
 	'flow-topic-collapsed-one-line' => 'Vue petite',
 	'flow-topic-collapsed-full' => 'Vue réduite',
 	'flow-topic-complete' => 'Vue complète',
+	'flow-terms-of-use-new-topic' => 'En cliquant sur « {{int:flow-newtopic-save}} », vous acceptez les conditions d’utilisation de ce wiki.',
+	'flow-terms-of-use-reply' => 'En cliquant sur « {{int:flow-reply-submit}} », vous acceptez les conditions d’utilisation de ce wiki.',
+	'flow-terms-of-use-edit' => 'En enregistrant vos modifications, vous acceptez les conditions d’utilisation de ce wiki.',
 );
 
 /** Western Frisian (Frysk)
@@ -3542,6 +3545,9 @@ $messages['ko'] = array(
 	'flow-topic-collapsed-one-line' => '작게 보기',
 	'flow-topic-collapsed-full' => '접힌 보기',
 	'flow-topic-complete' => '전체 보기',
+	'flow-terms-of-use-new-topic' => '"{{int:flow-newtopic-save}}"을 클릭하면 이 위키의 이용 약관에 동의한 것이 됩니다.',
+	'flow-terms-of-use-reply' => '"{{int:flow-newtopic-save}}"을 클릭하면 이 위키의 이용 약관에 동의한 것이 됩니다.',
+	'flow-terms-of-use-edit' => '바뀐 내용을 저장하면 이 위키의 이용 약관에 동의한 것이 됩니다.',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -4454,6 +4460,7 @@ $messages['oc'] = array(
 
 /** Polish (polski)
  * @author Chrumps
+ * @author Pio387
  * @author Rzuwig
  * @author Vuh
  * @author Woytecr
@@ -4484,6 +4491,7 @@ $messages['pl'] = array(
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|zmienił|zmieniła}} nazwę twojego tematu',
 	'flow-link-topic' => 'temat',
 	'flow-link-history' => 'historia',
+	'flow-terms-of-use-new-topic' => 'Klikając na "{{int:flow-newtopic-save}}", zgadzasz się na zasady użytkowania tej wiki.',
 );
 
 /** Pashto (پښتو)
@@ -5690,7 +5698,7 @@ $messages['zh-hant'] = array(
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|已回覆}}您的留言',
 	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|已回覆}}您的留言於 $2 的 "$3"', # Fuzzy
 	'flow-notification-reply-email-batch-bundle-body' => '$1 與另外 $4 {{PLURAL:$5|個人|個人}} {{GENDER:$1|已回覆}} 您的留言於 $2 的 "$3"', # Fuzzy
-	'echo-category-title-flow-discussion' => '{{PLURAL:$1|討論|討論}}', # Fuzzy
+	'echo-category-title-flow-discussion' => '流量',
 	'echo-pref-tooltip-flow-discussion' => '通知我，當有與我相關的動作發生在討論版時', # Fuzzy
 	'flow-moderation-confirmation-suppress-post' => '該職位被成功地解除。
 考慮 {{GENDER:$1| 給}} $1 對這篇文章的回饋意見。', # Fuzzy
