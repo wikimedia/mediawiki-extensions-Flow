@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_b6e61112",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T23:42:50Z",
+      "side": 1,
+      "message": "I\u0027ll lose the \"hex\" in the comment, it\u0027s no longer accurate",
+      "revId": "ed66e78b8a82b92b5946825433329ce4727d8108",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_d6af5d90",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T23:42:50Z",
+      "side": 1,
+      "message": "Is this ok? I think @param/@return expect datatypes, not specific values\n\nAlso noticed some false\u0027s in other places got replaced by the database (bool); so I guess this should be @return bool too",
+      "revId": "ed66e78b8a82b92b5946825433329ce4727d8108",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
