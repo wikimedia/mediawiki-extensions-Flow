@@ -12,19 +12,14 @@ use Flow\Exception\InvalidActionException;
  */
 class HistoryBundle extends HistoryRecord {
 	/**
-	 * @var History
-	 */
-	protected $data;
-
-	/**
-	 * @param History $bundle
+	 * @param AbstractRevision[] $revisions
 	 */
 	public function __construct( array $revisions ) {
 		$this->data = $revisions;
 	}
 
 	/**
-	 * @return array
+	 * @return AbstractRevision[]
 	 */
 	public function getData() {
 		return parent::getData();
@@ -40,6 +35,7 @@ class HistoryBundle extends HistoryRecord {
 	/**
 	 * @param string $action
 	 * @return array Array of action details
+	 * @throws InvalidActionException When the action does not exist
 	 */
 	protected function getActionDetails( $action ) {
 		$details = $this->getActions()->getValue( $action, 'history', 'bundle' );

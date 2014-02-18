@@ -9,14 +9,15 @@ use Status;
 
 class Controller {
 	/**
-	 * @var array Array of SpamFilter objects
+	 * @var SpamFilter[] Array of SpamFilter objects
 	 */
 	protected $spamfilters = array();
 
 	/**
 	 * Accepts multiple spamfilters.
 	 *
-	 * @param SpamFilter $spamfilter
+	 * @param SpamFilter $spamfilter...
+	 * @throws FlowException When provided arguments are not an instance of SpamFilter
 	 */
 	public function __construct( SpamFilter $spamfilter /* [, SpamFilter $spamfilter2 [, ...]] */ ) {
 		$this->spamfilters = func_get_args();
@@ -31,7 +32,7 @@ class Controller {
 
 	/**
 	 * @param AbstractRevision $newRevision
-	 * @param AbstractRevision[optional] $oldRevision
+	 * @param AbstractRevision|null $oldRevision
 	 * @param Title $title
 	 * @return Status
 	 */

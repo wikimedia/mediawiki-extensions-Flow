@@ -5,6 +5,8 @@ namespace Flow\View\History;
 use Flow\Block\Block;
 use Flow\Container;
 use Flow\Formatter\AbstractFormatter;
+use Flow\Model\PostRevision;
+use Flow\Model\Workflow;
 use Flow\Templating;
 use MWTimestamp;
 
@@ -23,7 +25,7 @@ class HistoryRenderer extends AbstractFormatter {
 	protected $block;
 
 	/**
-	 * @var array
+	 * @var Workflow[]
 	 */
 	protected $workflows;
 
@@ -34,7 +36,6 @@ class HistoryRenderer extends AbstractFormatter {
 	protected $now;
 
 	/**
-	 * @param History $history
 	 * @param Templating $templating
 	 * @param Block $block
 	 * @param integer|null $now The unix timestamp which is used as base for the
@@ -135,6 +136,7 @@ class HistoryRenderer extends AbstractFormatter {
 		$output = '';
 
 		foreach ( $history as $record ) {
+			/** @var HistoryRecord $record */
 			// Build arrays, per type, of records to be bundled.
 			if ( $record->isBundled() ) {
 				$bundles[$record->getType()][] = $record->getRevision();
@@ -142,6 +144,7 @@ class HistoryRenderer extends AbstractFormatter {
 		}
 
 		foreach ( $history as $record ) {
+			/** @var HistoryRecord $record */
 			$class = $record->getType();
 
 			// This record is part of an already-rendered bundle.
@@ -171,6 +174,7 @@ class HistoryRenderer extends AbstractFormatter {
 	protected function batchLoadWorkflow( $history ) {
 		$revs = $uuids = array();
 		foreach ( $history as $record ) {
+			/** @var HistoryRecord $record */
 			$revision = $record->getRevision();
 			// Topic/Post history
 			if ( $this->block->getName() === 'topic' ) {
@@ -195,6 +199,7 @@ class HistoryRenderer extends AbstractFormatter {
 		$res = Container::get( 'storage.workflow' )->getMulti( $uuids );
 
 		foreach ( $res as $workflow ) {
+			/** @var Workflow $workflow */
 			$uuid = $workflow->getId()->getBinary();
 			if ( isset( $revs[$uuid] ) ) {
 				foreach ( $revs[$uuid] as $revId ) {

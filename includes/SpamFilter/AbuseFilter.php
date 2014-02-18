@@ -30,8 +30,7 @@ class AbuseFilter implements SpamFilter {
 	/**
 	 * Set up AbuseFilter for Flow extension
 	 *
-	 * @param string $group AbuseFilter group name
-	 * @param array[optional] $emergencyDisable AbuseFilter emergency disable values
+	 * @param array $emergencyDisable optional AbuseFilter emergency disable values
 	 */
 	public function setup( array $emergencyDisable = array() ) {
 		global
@@ -64,7 +63,7 @@ class AbuseFilter implements SpamFilter {
 
 	/**
 	 * @param AbstractRevision $newRevision
-	 * @param AbstractRevision[optional] $oldRevision
+	 * @param AbstractRevision|null $oldRevision
 	 * @param Title $title
 	 * @return Status
 	 */

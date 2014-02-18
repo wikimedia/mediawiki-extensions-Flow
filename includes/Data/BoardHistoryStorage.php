@@ -2,12 +2,18 @@
 
 namespace Flow\Data;
 
+use Flow\DbFactory;
+use Flow\Model\Header;
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Container;
 use Flow\Exception\DataModelException;
 
 class BoardHistoryStorage extends DbStorage {
 
+	/**
+	 * @var DbFactory
+	 */
 	protected $dbFactory;
 
 	function find( array $attributes, array $options = array() ) {
@@ -124,6 +130,10 @@ class BoardHistoryIndex extends TopKIndex {
 		return $retval;
 	}
 
+	/**
+	 * @param Header|PostRevision $object
+	 * @param string[] $new
+	 */
 	public function onAfterInsert( $object, array $new ) {
 		if ( $object->getRevisionType() === 'header' ) {
 			$new['topic_list_id'] = $new['header_workflow_id'];
@@ -137,6 +147,11 @@ class BoardHistoryIndex extends TopKIndex {
 		}
 	}
 
+	/**
+	 * @param Header|PostRevision $object
+	 * @param string[] $old
+	 * @param string[] $new
+	 */
 	public function onAfterUpdate( $object, array $old, array $new ) {
 		if ( $object->getRevisionType() === 'header' ) {
 			$new['topic_list_id'] = $old['topic_list_id'] = $new['header_workflow_id'];
@@ -150,6 +165,10 @@ class BoardHistoryIndex extends TopKIndex {
 		}
 	}
 
+	/**
+	 * @param Header|PostRevision $object
+	 * @param string[] $old
+	 */
 	public function onAfterRemove( $object, array $old ) {
 		if ( $object->getRevisionType() === 'header' ) {
 			$old['topic_list_id'] = $old['header_workflow_id'];
@@ -165,6 +184,9 @@ class BoardHistoryIndex extends TopKIndex {
 
 	/**
 	 * Find a topic list id for a root post
+	 *
+	 * @param PostRevision $object
+	 * @return string|boolean False when object is not root post or topic is not found
 	 */
 	protected function findTopicListIdForRootPost( $object ) {
 		if ( !$object->isTopicTitle() ) {

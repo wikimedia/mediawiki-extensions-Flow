@@ -21,7 +21,7 @@ abstract class AbstractCollection {
 	/**
 	 * Array of revisions for this object.
 	 *
-	 * @var array
+	 * @var AbstractRevision[]
 	 */
 	protected $revisions = array();
 
@@ -51,7 +51,7 @@ abstract class AbstractCollection {
 	 * @see AbstractCollection::newFromRevision
 	 * @see AbstractCollection::newFromRevisionId
 	 *
-	 * @param AbstractRevision[optional] $revision
+	 * @param UUID $uuid
 	 */
 	protected function __construct( UUID $uuid ) {
 		$this->uuid = $uuid ;
@@ -99,6 +99,7 @@ abstract class AbstractCollection {
 	 * Returns all revisions.
 	 *
 	 * @return array Array of AbstractRevision
+	 * @throws InvalidDataException When no revisions can be found
 	 */
 	public function getAllRevisions() {
 		if ( !$this->revisions ) {

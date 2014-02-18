@@ -58,12 +58,12 @@ class Redlinker {
 	protected $batch;
 
 	/**
-	 * @var array
+	 * @var PostRevision[] Map from recursion identifier to related revision
 	 */
 	protected $identifiers = array();
 
 	/**
-	 * @var array Array of registered post Ids
+	 * @var boolean[] Array of registered post Ids in the key, always boolean true value
 	 */
 	protected $registered = array();
 
@@ -266,7 +266,7 @@ class Redlinker {
 	 * Helper method executes a callback on every anchor that contains
 	 * an ['sa']['href'] value in data-parsoid
 	 *
-	 * @param string $content Html
+	 * @param DOMDocument $dom
 	 * @param Closure $callback Receives (DOMNode, array)
 	 */
 	static public function forEachLink( DOMDocument $dom, Closure $callback ) {

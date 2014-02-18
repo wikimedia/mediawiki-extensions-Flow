@@ -261,12 +261,12 @@ class ObjectLocator implements ObjectStorage {
 	protected $storage;
 
 	/**
-	 * @var array<Index>
+	 * @var Index[]
 	 */
 	protected $indexes;
 
 	/**
-	 * @var array<LifecycleHandler>
+	 * @var LifecycleHandler[]
 	 */
 	protected $lifecycleHandlers;
 

@@ -38,8 +38,7 @@ class Templating {
 	protected $permissions;
 
 	/**
-	 * @var array Array of PostRevision::registerRecursive return values
-	 * @see Templating::registerParsoidLinks
+	 * @var string[]
 	 */
 	protected $namespaces;
 
@@ -54,9 +53,11 @@ class Templating {
 	protected $redlinks;
 
 	/**
+	 * @param UserNameBatch $usernames
 	 * @param UrlGenerator $urlGenerator
 	 * @param OutputPage $output
-	 * @param array $namespaces
+	 * @param Redlinker $redlinks
+	 * @param string[] $namespaces
 	 * @param array $globals
 	 */
 	public function __construct( UserNameBatch $usernames, UrlGenerator $urlGenerator, OutputPage $output, Redlinker $redlinks, array $namespaces = array(), array $globals = array() ) {

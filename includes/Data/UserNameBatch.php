@@ -65,18 +65,17 @@ class UserNameListener implements LifecycleHandler {
  */
 class UserNameBatch {
 	/**
-	 * @var array map from wikiid to list of userid's to request
+	 * @var array[] map from wikiid to list of userid's to request
 	 */
 	protected $queued = array();
 
 	/**
-	 * @var array 2-d map from wiki id and user id to display username or false
+	 * @var array[] 2-d map from wiki id and user id to display username or false
 	 */
 	protected $usernames = array();
 
 	/**
-	 * @param DbFactory $dbFactory Provides access to database objects. Note that
-	 *   the LinkBatch will not use this dbFactory.
+	 * @param UserNameQuery $query
 	 * @param array $queued map from wikiid to list of userid's to request
 	 */
 	public function __construct( UserNameQuery $query, array $queued = array() ) {
@@ -105,8 +104,8 @@ class UserNameBatch {
 	 *
 	 * @param string $wiki
 	 * @param integer $userId
-	 * @param string|false $userIp
-	 * @return string|false false if username is not found or display is suppressed
+	 * @param string|boolean $userIp
+	 * @return string|boolean false if username is not found or display is suppressed
 	 * @todo Return something better for not found / suppressed, but what? Making
 	 *   return type string|Message would suck.
 	 */
@@ -183,7 +182,7 @@ interface UsernameQuery {
 	/**
 	 * @param string $wiki wiki id
 	 * @param array $userIds List of user ids to lookup
-	 * @return bool|\ResultWrapper Containing objects with user_id and
+	 * @return \ResultWrapper|bool Containing objects with user_id and
 	 *   user_name properies.
 	 */
 	function execute( $wiki, array $userIds );
@@ -199,6 +198,7 @@ class TwoStepUsernameQuery implements UsernameQuery {
 	 *
 	 * @param string $wiki
 	 * @param array $userIds
+	 * @return \ResultWrapper|bool
 	 */
 	public function execute( $wiki, array $userIds ) {
 		$dbr = $this->dbFactory->getWikiDB( DB_SLAVE, array(), $wiki );
@@ -243,6 +243,7 @@ class OneStepUsernameQuery implements UsernameQuery {
 	 *
 	 * @param string $wiki
 	 * @param array $userIds
+	 * @return \ResultWrapper|null
 	 */
 	public function execute( $wiki, array $userIds ) {
 		$dbr = $this->dbFactory->getWikiDb( DB_SLAVE, array(), $wiki );

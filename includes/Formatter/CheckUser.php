@@ -11,7 +11,7 @@ use Flow\Model\UUID;
 class CheckUser extends AbstractFormatter {
 
 	/**
-	 * @param CheckUser $checkUser
+	 * @param CheckUserSpecialPage $checkUser
 	 * @param object $row
 	 * @return array|null
 	 */
