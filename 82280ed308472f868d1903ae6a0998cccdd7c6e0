@@ -1,0 +1,259 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_40ff07a8",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure my IDE uses @var to deal with autocompletion, etc. I prefer it to know about all possible return values, so I know when to check for nulls/false/failures\n\n    @var UUID|null",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_20fcfbb0",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "@var string|null",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_0029ff35",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "@var string|null",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_c022f74f",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "@var boolean|null",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_e0c3b35f",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "Is \"static\" ok here? I thought it was just datatypes (so AbstractRevision)\n\nIf static is fine, we should probably use that instead of AbstractRevision for a couple of the below methods too",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_40cca78c",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "@return UUID|null",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_20c99b7b",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "Perhaps add that it\u0027s in TS_MW format",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_60968351",
+        "filename": "includes/Model/Definition.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "IDK if phpDoc understands this too, but the default phpDoc syntax is /** */, AFAIK",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_a09a4b64",
+        "filename": "includes/Model/Definition.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "/** */",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_20bd1bae",
+        "filename": "includes/Model/Header.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "This one\u0027s [optional]",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_c0e437a6",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "This one\u0027s [optional]",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_20f51b4d",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "If topic title, it has not UUID, so UUID|null",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_9b990083",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "Probably want typehint too",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_1b8cd031",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "@var string|false\n\nAlso add that it\u0027s TS_MW format",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_dbfae872",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T21:38:30Z",
+      "side": 1,
+      "message": "@var int (although when we load it from DB, we don\u0027t properly cast it to int; but initially it should be int)",
+      "revId": "82280ed308472f868d1903ae6a0998cccdd7c6e0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
