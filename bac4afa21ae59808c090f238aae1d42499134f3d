@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_d61cfd6c",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T22:07:17Z",
+      "side": 1,
+      "message": "this if-else no longer makes sense; getTimestampObj() never returns anything by a timestamp anymore",
+      "revId": "bac4afa21ae59808c090f238aae1d42499134f3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
