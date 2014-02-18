@@ -151,7 +151,7 @@
 		// create form html
 		this.createEditForm( data );
 
-		var $titleEditForm = $( 'form', this.topic.$container );
+		var $titleEditForm = $( 'form.flow-edit-title-form', this.topic.$container );
 
 		$titleEditForm.flow( 'setupPreview', { '.flow-edit-title-textbox': 'plain' } );
 		$titleEditForm.flow( 'setupFormHandler',
