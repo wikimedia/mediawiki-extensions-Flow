@@ -341,8 +341,6 @@ class NotificationController {
 	 * @return true
 	 */
 	public static function getDefaultNotifiedUsers( EchoEvent $event, &$users ) {
-		$container = Container::getContainer();
-		$storage = $container['storage'];
 		$extra = $event->getExtra();
 		switch ( $event->getType() ) {
 		case 'flow-mention':

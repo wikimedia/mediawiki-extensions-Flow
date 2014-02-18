@@ -285,11 +285,8 @@ class PostRevision extends AbstractRevision {
 	 * @return mixed
 	 */
 	public function getRecursiveResult( $registered ) {
-		list( $callbacks, $results ) = $this->descendRecursive(
-			$this->recursiveCallbacks,
-			$this->recursiveResults
-		);
-		$this->recursiveResults = $results;
+		$results = $this->descendRecursive( $this->recursiveCallbacks, $this->recursiveResults );
+		$this->recursiveResults = end( $results );
 
 		// Once all callbacks have run, null the callbacks to make sure they won't run again
 		$this->recursiveCallbacks = array_fill( 0, count( $this->recursiveResults ), null );

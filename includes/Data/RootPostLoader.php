@@ -172,7 +172,7 @@ class RootPostLoader {
 		}
 		// Attach every post in the tree to its root. setRootPost
 		// recursivly applies it to all children as well.
-		foreach ( $roots as $hex => $post ) {
+		foreach ( $roots as $post ) {
 			$post->setRootPost( $post );
 		}
 		return $roots;

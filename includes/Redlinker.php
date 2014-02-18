@@ -273,7 +273,6 @@ class Redlinker {
 		$xpath = new \DOMXPath( $dom );
 		$linkNodes = $xpath->query( '//a[@rel="mw:WikiLink"][@data-parsoid]' );
 
-		$links = array();
 		foreach ( $linkNodes as $linkNode ) {
 			$parsoid = $linkNode->getAttribute( 'data-parsoid' );
 			$parsoid = FormatJson::decode( $parsoid, true );
