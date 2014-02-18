@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_80b3cf4b",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T19:02:32Z",
+      "side": 1,
+      "message": "Regular return value in this method, is array; not string",
+      "revId": "b67139f3399ff69dba5c660ff64c167b9e171c43",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_a0aecbe2",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T19:02:32Z",
+      "side": 1,
+      "message": "Regular return value in this method, is array; not string",
+      "revId": "b67139f3399ff69dba5c660ff64c167b9e171c43",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_dd530042",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-18T19:02:32Z",
+      "side": 1,
+      "message": "Great; I\u0027m pretty sure this actually fixes a potential to-be-discovered bug.\n\nAfter going recursive (and reaching max depth) \u0026 getting back to parent (on not max depth), it quits early if no more $callbacks are returned)",
+      "revId": "b67139f3399ff69dba5c660ff64c167b9e171c43",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
