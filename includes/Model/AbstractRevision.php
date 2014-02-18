@@ -4,12 +4,10 @@ namespace Flow\Model;
 
 use Flow\Container;
 use Flow\RevisionActionPermissions;
-use MWTimestamp;
 use User;
 use Flow\ParsoidUtils;
 use Flow\Exception\DataModelException;
 use Flow\Exception\PermissionException;
-use Flow\Exception\InvalidInputException;
 
 abstract class AbstractRevision {
 	const MODERATED_NONE = '';

@@ -3,7 +3,6 @@
 namespace Flow\Model;
 
 use User;
-use MWTimestamp;
 use Flow\Exception\DataModelException;
 
 class PostRevision extends AbstractRevision {

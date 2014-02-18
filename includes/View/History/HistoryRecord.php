@@ -5,7 +5,6 @@ namespace Flow\View\History;
 use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
-use MWException;
 use MWTimestamp;
 use Message;
 use Flow\Exception\InvalidActionException;

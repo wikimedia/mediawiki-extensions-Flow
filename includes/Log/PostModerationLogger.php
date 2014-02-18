@@ -4,7 +4,6 @@ namespace Flow\Log;
 
 use Flow\Data\LifecycleHandler;
 use Flow\Data\ManagerGroup;
-use Flow\Log\Logger;
 use Flow\Model\AbstractRevision;
 use Flow\Repository\TreeRepository;
 

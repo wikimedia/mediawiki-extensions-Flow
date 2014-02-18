@@ -3,7 +3,6 @@
 namespace Flow;
 
 use Title;
-use WikiPage;
 use Revision;
 use ContentHandler;
 use Flow\Exception\InvalidInputException;

@@ -4,7 +4,6 @@ namespace Flow;
 
 use Flow\Model\Workflow;
 use Html;
-use WebRequest;
 use IContextSource;
 use ContextSource;
 
