@@ -441,10 +441,7 @@ abstract class AbstractFormatter {
 			if ( $revision->isFirstRevision() ) {
 				return '';
 			}
-			$previousRevision = Container::get( 'storage' )->get(
-				get_class( $revision ),
-				$revision->getPrevRevisionId()
-			);
+			$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
 			if ( !$previousRevision ) {
 				// wfDebugLog( __CLASS__, __FUNCTION__ . ': Something something' );
 				return '';
