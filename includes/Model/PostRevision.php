@@ -527,11 +527,7 @@ class PostRevision extends AbstractRevision {
 	 * @return boolean Posts are unformatted if they are title posts, formatted otherwise.
 	 */
 	public function isFormatted() {
-		if ( !is_null( $this->replyToId ) ) {
-			return true;
-		} else {
-			return false;
-		}
+		return !$this->isTopicTitle();
 	}
 
 	/**
