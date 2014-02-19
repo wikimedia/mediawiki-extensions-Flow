@@ -20,12 +20,6 @@ Background:
       Then links to talk and contrib should be visible
 
   @clean
-  Scenario: Block
-    Given I am on Flow page
-    When I hover over the author link
-    Then I should see a Block User link
-
-  @clean
   Scenario: Post Actions
     Given I am on Flow page
     When I click the Post Actions link
