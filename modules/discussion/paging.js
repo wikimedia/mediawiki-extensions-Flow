@@ -76,7 +76,13 @@
 					}
 
 					$.each( topics, function ( k, topic ) {
-						$output.append( topic.rendered );
+						// See bug 61097, Catch any random javascript error from
+						// parsoid so they don't break and stop the page
+						try {
+							$output.append( topic.rendered );
+						} catch( e ) {
+							// nothing to do, just silently ignore the external error
+						}
 					} );
 
 					if ( $( '.topic-collapsed-one-line, .topic-collapsed-full' ).length > 0 ) {
