@@ -16,6 +16,24 @@
       "revId": "a1380dc12e4184f08a615a8c6762bd8c8cf92afb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_b1bdfbd3",
+        "filename": "includes/Block/Block.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-19T00:21:57Z",
+      "side": 1,
+      "message": "these are all valid reasons. It ended up like this because I couldn\u0027t think of a great way to handle it directly and was a bit worried once i realized this has to be called in 8 different places or we let spam through.  I suppose it could be a property on the revision itself but I wasn\u0027t sure how that would work, any ideas?",
+      "parentUuid": "4e04eb01_7119b326",
+      "revId": "a1380dc12e4184f08a615a8c6762bd8c8cf92afb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
