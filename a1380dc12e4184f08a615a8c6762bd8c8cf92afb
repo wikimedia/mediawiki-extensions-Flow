@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_7119b326",
+        "filename": "includes/Block/Block.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-19T00:15:01Z",
+      "side": 1,
+      "message": "I wouldn\u0027t add this if:\n\n* It makes perfect sense to not run spam checks on certain revisions (e.g. moderate)\n* It is not 100% reliably; some need multiple spamchecks (submitting new topic needs check on topic title + post)",
+      "revId": "a1380dc12e4184f08a615a8c6762bd8c8cf92afb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
