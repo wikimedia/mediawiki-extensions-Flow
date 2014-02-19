@@ -18,7 +18,7 @@ class Header extends AbstractRevision {
 	 * @param string[optional] $changeType
 	 * @return Header
 	 */
-	static public function create( Workflow $workflow, User $user, $content, $changeType = 'flow-create-header' ) {
+	static public function create( Workflow $workflow, User $user, $content, $changeType = 'create-header' ) {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
