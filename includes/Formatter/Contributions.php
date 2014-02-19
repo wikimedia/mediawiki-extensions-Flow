@@ -79,16 +79,37 @@ class Contributions extends AbstractFormatter {
 				$text
 			);
 		}
+
 		$linksContent = $lang->pipeList( $links );
 		if ( $linksContent ) {
 			$linksContent = $pager->msg( 'parentheses' )->rawParams( $linksContent )->escaped();
 		}
+
+		$diffLink = '';
+		if ( in_array( $revision->getChangeType(), array( 'edit-post', 'edit-header', 'edit-title' ) ) ) {
+			list( $href, $msg ) = $this->revisionDiffLink(
+				$title,
+				$workflow->getId(),
+				$revision->getRevisionId(),
+				$revision->getPrevRevisionId()
+			);
+			$diffLink = wfMessage( 'parentheses' )
+				->rawParams( Html::rawElement(
+					'a',
+					array( 'href' => $href ),
+					$msg->escaped()
+				) )
+				->escaped();
+		}
+
 
 		// Put it all together
 		return
 			$formattedTime . ' ' .
 			$linksContent . ' . . ' .
 			$charDiff . ' . . ' .
-			$description;
+			$description
+			. ' '
+			. $diffLink;
 	}
 }
