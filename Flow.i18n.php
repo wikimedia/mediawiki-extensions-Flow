@@ -1673,6 +1673,7 @@ Du kannst andere Versionen dieses Beitrags im [$6 Verlauf] ansehen.',
 	'flow-terms-of-use-new-topic' => 'Mit dem Klicken auf „{{int:flow-newtopic-save}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
 	'flow-terms-of-use-reply' => 'Mit dem Klicken auf „{{int:flow-reply-submit}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
 	'flow-terms-of-use-edit' => 'Mit dem Speichern deiner Änderungen stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
+	'flow-anon-warning' => 'Du bist nicht angemeldet.',
 );
 
 /** Greek (Ελληνικά)
@@ -1705,6 +1706,7 @@ $messages['en-gb'] = array(
  * @author Carlitosag
  * @author Ciencia Al Poder
  * @author Csbotero
+ * @author Epicfaace
  * @author Fitoschido
  * @author Ihojose
  * @author Ovruni
@@ -1766,7 +1768,9 @@ $messages['es'] = array(
 	'flow-error-default' => 'Se ha producido un error.',
 	'flow-error-invalid-title' => 'Se proporcionó un título de página no válido.',
 	'flow-edit-header-submit' => 'Guardar cabecera',
+	'flow-edit-header-submit-overwrite' => 'Sobrescribir encabezado',
 	'flow-edit-title-submit' => 'Cambiar el título',
+	'flow-edit-title-submit-overwrite' => 'Sobrescribir título',
 	'flow-edit-post-submit' => 'Enviar cambios',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|editó}} un [$3 comentario].',
 	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|borró}} un [$4 comentario] (<em>$5</em>).',
@@ -1979,7 +1983,7 @@ $messages['fa'] = array(
 	'flow-paging-fwd' => 'موضوعات قدیمی‌تر',
 	'flow-last-modified' => 'آخرین تغییریافته دربارهٔ $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|پاسخ داده شد}} به شما <span class="plainlinks">[$5 post]</span> در "$2" در "$4".',
-	'flow-notification-reply-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|پاسخ داده} به شما <span class="plainlinks">[$4 post]</span> در "$2" در "$3".', # Fuzzy
+	'flow-notification-reply-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|پاسخ داد} به شما <span class="plainlinks">[$4 post]</span> در "$2" در "$3".', # Fuzzy
 	'flow-notification-edit' => '$1 {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$5 post]</span> در "$2" در [[$3|$4]].',
 	'flow-notification-edit-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$4 post]</span> در "$2" در "$3".',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|ایجاد شده}} یک <span class="plainlinks">[$5 موضوع جدید]</span> در [[$2|$3]]: $4.',
@@ -2060,6 +2064,7 @@ $messages['fa'] = array(
 	'flow-terms-of-use-new-topic' => 'با کلیک کردن "{{int:flow-newtopic-save}}"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
 	'flow-terms-of-use-reply' => 'با کلیک کردن "{{int:flow-reply-submit}}"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
 	'flow-terms-of-use-edit' => 'با ذخیرهٔ تغییرات شما،  شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
+	'flow-anon-warning' => 'شما وارد نشده‌ايد.',
 );
 
 /** Finnish (suomi)
@@ -2385,6 +2390,7 @@ Vous pouvez voir d’autres versions de cette note dans sa [$6 page d’historiq
 	'flow-terms-of-use-new-topic' => 'En cliquant sur « {{int:flow-newtopic-save}} », vous acceptez les conditions d’utilisation de ce wiki.',
 	'flow-terms-of-use-reply' => 'En cliquant sur « {{int:flow-reply-submit}} », vous acceptez les conditions d’utilisation de ce wiki.',
 	'flow-terms-of-use-edit' => 'En enregistrant vos modifications, vous acceptez les conditions d’utilisation de ce wiki.',
+	'flow-anon-warning' => 'Vous n’êtes pas connecté.',
 );
 
 /** Western Frisian (Frysk)
@@ -3303,6 +3309,7 @@ $messages['ja'] = array(
 	'flow-terms-of-use-new-topic' => '「{{int:flow-newtopic-save}}」をクリックすると、このウィキの利用規約に同意したと見なされます。',
 	'flow-terms-of-use-reply' => '「{{int:flow-reply-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。',
 	'flow-terms-of-use-edit' => '変更内容を保存すると、このウィキの利用規約に同意したと見なされます。',
+	'flow-anon-warning' => 'ログインしていません。',
 );
 
 /** Lojban (Lojban)
@@ -3565,6 +3572,7 @@ $messages['lb'] = array(
 	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|huet}} e(n) [$4 Thema] op [[$3]] restauréiert',
 	'flow-edit-header-link' => 'Iwwerschrëft änneren',
 	'flow-header-empty' => 'Dës Diskussiounssäit huet elo keng Iwwerschrëft',
+	'flow-post-moderated-toggle-hide-show' => 'Bemierkung weisen déi {{GENDER:$1|vum|vun der}} $2 verstoppt gouf',
 	'flow-post-moderated-toggle-delete-show' => 'Bemierkung weisen {{GENDER:$1|geläscht}} vum $2',
 	'flow-post-moderated-toggle-hide-hide' => 'Bemierkung verstoppen {{GENDER:$1|verstoppt}} vum $2',
 	'flow-hide-post-content' => 'Dës Bemierkung gouf vum $2 {{GENDER:$1|verstoppt}}',
@@ -3678,6 +3686,7 @@ $messages['lb'] = array(
 	'flow-topic-permalink-warning' => 'Dëse Sujet gouf op [$2 $1] ugefaang',
 	'flow-compare-revisions-revision-header' => 'Versioun vum {{GENDER:$2|$2}} vum $1',
 	'flow-terms-of-use-edit' => "Duerch Späichere vun Ären Ännerunge sidd Dir mat de Konditioune fir d'Benotze vun dëser Wiki d'Accord.",
+	'flow-anon-warning' => 'Dir sidd net ageloggt.',
 );
 
 /** لوری (لوری)
@@ -3939,6 +3948,7 @@ $messages['mk'] = array(
 	'flow-terms-of-use-new-topic' => 'Стискајќи на „{{int:flow-newtopic-save}}“, се согласувате со условите на употреба на ова вики.',
 	'flow-terms-of-use-reply' => 'Стискајќи на „{{int:flow-reply-submit}}“, се согласувате со условите на употреба на ова вики.',
 	'flow-terms-of-use-edit' => 'Зачувувајќи ги промените, се согласувате со условите на употреба на ова вики.',
+	'flow-anon-warning' => 'Не сте најавени.',
 );
 
 /** Malayalam (മലയാളം)
@@ -3979,8 +3989,16 @@ $messages['mr'] = array(
 	'flow-error-external' => 'आपले उत्तर जतन करण्यात त्रूटी घडली.<br />मिळालेला त्रूटी संदेश असा होता: $1',
 	'flow-error-external-multi' => 'आपले उत्तर जतन करण्यात त्रूटी आढळल्या.आपले उत्तर जतन झाले नाही.<br />$1', # Fuzzy
 	'flow-error-missing-title' => 'विषयास मथळा नाही.एखाद्या विषयास जतन करावयाचे तर मथळा हवा.',
-	'flow-error-prev-revision-mismatch' => 'आपले संपादन जतन करता आले नाही:त्यापेक्षा नविनतम बदल हा सादर करण्यात आला आहे.',
+	'flow-error-prev-revision-mismatch' => 'काही सेकंदांपूर्वी दुसऱ्या सदस्याने हे टपालन संपादन केले आहे.अलीकडील बदलांवर आपणास उपरीलेखन(ओव्हरराईट) करावयाचे हे नक्की काय?',
 	'flow-error-prev-revision-does-not-exist' => 'मागील आवृत्ती शोधता आली नाही.',
+	'flow-edit-header-submit-overwrite' => 'शीर्षाचे उपरीलेखन करा',
+	'flow-edit-title-submit-overwrite' => 'शीर्षकाचे उपरीलेखन करा',
+	'flow-edit-post-submit-overwrite' => 'बदलांवर उपरीलेखन करा',
+	'flow-notification-mention-email-subject' => '$1 ने "$2"वर आपला {{GENDER:$1|उल्लेख केला}}',
+	'flow-terms-of-use-new-topic' => '"{{int:flow-newtopic-save}}" टिचकण्याने,आपण या विकिच्या वापरण्याच्या अटी मान्य करीत आहात.',
+	'flow-terms-of-use-reply' => '"{{int:flow-reply-submit}}" टिचकण्याने, आपण या विकिच्या \'वापरण्याच्या अटी\' मान्य करीत आहात.',
+	'flow-terms-of-use-edit' => "आपले बदल 'जतन करण्याने',आपण या विकिच्या 'वापरण्याच्या अटी' मान्य करीत आहात.",
+	'flow-anon-warning' => 'आपण सनोंद प्रवेशित नाहीत.',
 );
 
 /** Malay (Bahasa Melayu)
@@ -4734,31 +4752,31 @@ $messages['sv'] = array(
 	'log-name-flow' => 'Flödesaktivitetslogg',
 	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|raderade}} ett [$4 inlägg] på [[$3]]',
 	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|återställde}} ett [$4 inlägg] på [[$3]]',
-	'logentry-suppress-flow-suppress-post' => '$1 {{GENDER:$2|dämpade}} ett [$4 inlägg] på [[$3]]',
+	'logentry-suppress-flow-suppress-post' => '$1 {{GENDER:$2|censurerade}} ett [$4 inlägg] på [[$3]]',
 	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|raderade}} ett [$4 inlägg] på [[$3]]',
 	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|raderade}} ett [$4 ämne] på [[$3]]',
 	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|återställde}} ett [$4 ämne] på [[$3]]',
-	'logentry-suppress-flow-suppress-topic' => '$1 {{GENDER:$2|dämpade}} ett [$4 ämne] på [[$3]]',
+	'logentry-suppress-flow-suppress-topic' => '$1 {{GENDER:$2|censurerade}} ett [$4 ämne] på [[$3]]',
 	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|raderade}} ett [$4 ämne] på [[$3]]',
 	'flow-user-moderated' => 'Modererad användare',
-	'flow-edit-header-link' => 'Redigera rubrik',
-	'flow-header-empty' => 'Denna diskussionssida har för närvarande ingen rubrik.',
+	'flow-edit-header-link' => 'Redigera sidhuvud',
+	'flow-header-empty' => 'Denna diskussionssida har för närvarande inget sidhuvud.',
 	'flow-post-moderated-toggle-hide-show' => 'Visa kommentar {{GENDER:$1|dold}} av $2',
 	'flow-post-moderated-toggle-delete-show' => 'Visa kommentar {{GENDER:$1|raderad}} av $2',
-	'flow-post-moderated-toggle-suppress-show' => 'Visa kommentar {{GENDER:$1|dämpad}} av $2',
+	'flow-post-moderated-toggle-suppress-show' => 'Visa kommentar {{GENDER:$1|censurerad}} av $2',
 	'flow-post-moderated-toggle-hide-hide' => 'Dölj kommentar {{GENDER:$1|dold}} av $2',
 	'flow-post-moderated-toggle-delete-hide' => 'Dölj kommentar {{GENDER:$1|raderad}} av $2',
-	'flow-post-moderated-toggle-suppress-hide' => 'Dölj kommentar {{GENDER:$1|dämpad}} av $2',
+	'flow-post-moderated-toggle-suppress-hide' => 'Dölj kommentar {{GENDER:$1|censurerad}} av $2',
 	'flow-hide-post-content' => 'Denna kommentar {{GENDER:$1|doldes}} av $2',
 	'flow-hide-title-content' => 'Detta ämne {{GENDER:$1|doldes}} av $2',
 	'flow-hide-header-content' => '{{GENDER:$1|Dold}} av $2',
 	'flow-delete-post-content' => 'Denna kommentar {{GENDER:$1|raderades}} av $2',
 	'flow-delete-title-content' => 'Detta ämne {{GENDER:$1|raderades}} av $2',
 	'flow-delete-header-content' => '{{GENDER:$1|Raderades}} av $2',
-	'flow-suppress-post-content' => 'Denna kommentar {{GENDER:$1|dämpades}} av $2',
-	'flow-suppress-title-content' => 'Detta ämne {{GENDER:$1|dämpades}} av $2',
-	'flow-suppress-header-content' => '{{GENDER:$1|Dämpades}} av $2',
-	'flow-suppress-usertext' => '<em>Användarnamn dämpat</em>',
+	'flow-suppress-post-content' => 'Denna kommentar {{GENDER:$1|censurerades}} av $2',
+	'flow-suppress-title-content' => 'Detta ämne {{GENDER:$1|censurerades}} av $2',
+	'flow-suppress-header-content' => '{{GENDER:$1|Censurerades}} av $2',
+	'flow-suppress-usertext' => '<em>Användarnamn censurerat</em>',
 	'flow-post-actions' => 'Åtgärder',
 	'flow-topic-actions' => 'Åtgärder',
 	'flow-cancel' => 'Avbryt',
@@ -4779,7 +4797,7 @@ $messages['sv'] = array(
 	'flow-post-edited' => 'Inlägg {{GENDER:$1|redigerat}} av $1 $2',
 	'flow-post-action-view' => 'Permanent länk',
 	'flow-post-action-post-history' => 'Historik',
-	'flow-post-action-suppress-post' => 'Dämpa',
+	'flow-post-action-suppress-post' => 'Censurera',
 	'flow-post-action-delete-post' => 'Radera',
 	'flow-post-action-hide-post' => 'Dölj',
 	'flow-post-action-edit-post' => 'Redigera',
@@ -4790,7 +4808,7 @@ $messages['sv'] = array(
 	'flow-topic-action-history' => 'Historik',
 	'flow-topic-action-hide-topic' => 'Dölj ämne',
 	'flow-topic-action-delete-topic' => 'Radera ämne',
-	'flow-topic-action-suppress-topic' => 'Dämpa ämne',
+	'flow-topic-action-suppress-topic' => 'Censurera ämne',
 	'flow-topic-action-restore-topic' => 'Återställ ämne',
 	'flow-error-http' => 'Ett fel uppstod när servern kontaktades.',
 	'flow-error-other' => 'Ett oväntat fel uppstod.',
@@ -4840,18 +4858,18 @@ $messages['sv'] = array(
 	'flow-edit-post-submit-overwrite' => 'Skriver över ändringar',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|redigerade}} en [$3 kommentar]',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|lade till}} en [$3 kommentar].',
-	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|kommentar|kommentarer}}</strong> var {{PLURAL:$1|tillagd|tillagda}} .',
+	'flow-rev-message-reply-bundle' => '<strong>{{PLURAL:$1|En kommentar|$1 kommentarer}}</strong> har {{PLURAL:$1|lagts till}}.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|skapade}} ämnet [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|ändrade}} ämnesrubriken till [$3 $4] från $5.',
 	'flow-rev-message-create-header' => '$1 {{GENDER:$2|skapade}} forumets sidhuvud.',
-	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|redigerade}} rubriken.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|redigerade}} forumets sidhuvud.',
 	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|dolde}} en [$4 kommentar] (<em>$5</em>).',
 	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|raderade}} en [$4 kommentar] (<em>$5</em>).',
-	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|dämpade}} en [$4 kommentar] (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|censurerade}} en [$4 kommentar] (<em>$5</em>).',
 	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|återställde}} en [$4 kommentar] (<em>$5</em>).',
 	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|dolde}} [$4 ämnet] (<em>$5</em>).',
 	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|tog bort}} [$4 ämnet] (<em>$5</em>).',
-	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|dämpade}} [$4 ämnet] (<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|censurerade}} [$4 ämnet] (<em>$5</em>).',
 	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|återställde}} [$4 ämnet] (<em>$5</em>).',
 	'flow-board-history' => '"$1" historik',
 	'flow-topic-history' => 'Ämneshistorik för "$1"',
@@ -4869,7 +4887,7 @@ $messages['sv'] = array(
 	'flow-comment-moderated' => 'Modererad kommentar',
 	'flow-paging-rev' => 'Nyare ämnen',
 	'flow-paging-fwd' => 'Äldre ämnen',
-	'flow-last-modified' => 'Ändrades senast om $1',
+	'flow-last-modified' => 'Senast ändrad $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|svarade}} på ditt <span class="plainlinks">[$5 inlägg]</span> i "$2" på "$4".',
 	'flow-notification-reply-bundle' => '$1 och $5 {{PLURAL:$6|annan|andra}} {{GENDER:$1|svarade}} på ditt <span class="plainlinks">[$4 inlägg]</span> i "$2" på "$3".',
 	'flow-notification-edit' => '$1 {{GENDER:$1|redigerade}} ett <span class="plainlinks">[$5 inlägg]</span> i "$2" på [[$3|$4]].',
@@ -4898,38 +4916,38 @@ $messages['sv'] = array(
 	'flow-link-topic' => 'ämne',
 	'flow-link-history' => 'historik',
 	'flow-moderation-reason-placeholder' => 'Ange din orsak här',
-	'flow-moderation-title-suppress-post' => 'Dämpa inlägget?',
+	'flow-moderation-title-suppress-post' => 'Censurera inlägget?',
 	'flow-moderation-title-delete-post' => 'Radera inlägget?',
 	'flow-moderation-title-hide-post' => 'Dölj inlägget?',
 	'flow-moderation-title-restore-post' => 'Återställ inlägget?',
-	'flow-moderation-intro-suppress-post' => 'Var god {{GENDER:$3|förklara}} varför du dämpar detta inlägg.',
+	'flow-moderation-intro-suppress-post' => 'Var god {{GENDER:$3|förklara}} varför du censurerar detta inlägg.',
 	'flow-moderation-intro-delete-post' => 'Var god {{GENDER:$3|förklara}} varför du raderar detta inlägg.',
 	'flow-moderation-intro-hide-post' => 'Var god {{GENDER:$3|förklara}} varför du döljer detta inlägg.',
 	'flow-moderation-intro-restore-post' => 'Var god {{GENDER:$3|förklara}} varför du återställer detta inlägg.',
-	'flow-moderation-confirm-suppress-post' => 'Dämpa',
+	'flow-moderation-confirm-suppress-post' => 'Censurera',
 	'flow-moderation-confirm-delete-post' => 'Radera',
 	'flow-moderation-confirm-hide-post' => 'Dölj',
 	'flow-moderation-confirm-restore-post' => 'Återställ',
-	'flow-moderation-confirmation-suppress-post' => 'Inlägget dämpades framgångsrikt.
+	'flow-moderation-confirmation-suppress-post' => 'Inlägget censurerades framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta inlägg.',
 	'flow-moderation-confirmation-delete-post' => 'Inlägget raderades framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta inlägg.',
 	'flow-moderation-confirmation-hide-post' => 'Inlägget doldes framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta inlägg.',
 	'flow-moderation-confirmation-restore-post' => 'Du har återställt ovanstående inlägg.',
-	'flow-moderation-title-suppress-topic' => 'Dämpa ämnet?',
+	'flow-moderation-title-suppress-topic' => 'Censurera ämnet?',
 	'flow-moderation-title-delete-topic' => 'Radera ämnet?',
 	'flow-moderation-title-hide-topic' => 'Dölja ämnet?',
 	'flow-moderation-title-restore-topic' => 'Återställa ämnet?',
-	'flow-moderation-intro-suppress-topic' => 'Var god {{GENDER:$3|förklara}} varför du dämpar detta ämne.',
+	'flow-moderation-intro-suppress-topic' => 'Var god {{GENDER:$3|förklara}} varför du censurerar detta ämne.',
 	'flow-moderation-intro-delete-topic' => 'Var god {{GENDER:$3|förklara}} varför du raderar detta ämne.',
 	'flow-moderation-intro-hide-topic' => 'Var god {{GENDER:$3|förklara}} varför du döljer detta ämne.',
 	'flow-moderation-intro-restore-topic' => 'Var god {{GENDER:$3|förklara}} varför du återställer detta ämne.',
-	'flow-moderation-confirm-suppress-topic' => 'Dämpa',
+	'flow-moderation-confirm-suppress-topic' => 'Censurera',
 	'flow-moderation-confirm-delete-topic' => 'Ta bort',
 	'flow-moderation-confirm-hide-topic' => 'Dölj',
 	'flow-moderation-confirm-restore-topic' => 'Återställ',
-	'flow-moderation-confirmation-suppress-topic' => 'Ämnet dämpades framgångsrikt.
+	'flow-moderation-confirmation-suppress-topic' => 'Ämnet censurerades framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta ämne.',
 	'flow-moderation-confirmation-delete-topic' => 'Ämnet raderades framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta ämne.',
@@ -4949,9 +4967,9 @@ Du kan se andra versioner av detta inlägg genom dess [$6 historiksida].',
 	'flow-topic-collapsed-one-line' => 'Liten vy',
 	'flow-topic-collapsed-full' => 'Komprimerad vy',
 	'flow-topic-complete' => 'Full vy',
-	'flow-terms-of-use-new-topic' => 'Genom att klicka Lägg till ämne godkänner du våra [//wikimediafoundation.org/wiki/Terms_of_use användarvillkor] och samtycker till att oåterkalleligen släppa din text under licenserna [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0] och [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL].',
-	'flow-terms-of-use-reply' => 'Genom att klicka Svara godkänner du våra [//wikimediafoundation.org/wiki/Terms_of_use användarvillkor] och samtycker till att oåterkalleligen släppa din text under licenserna [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0] och [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL].',
-	'flow-terms-of-use-edit' => 'Genom att spara ändringar godkänner du våra [//wikimediafoundation.org/wiki/Terms_of_use användarvillkor] och samtycker till att oåterkalleligen släppa din text under licenserna [//creativecommons.org/licenses/by-sa/3.0/ CC BY-SA 3.0] och [//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL].',
+	'flow-terms-of-use-new-topic' => 'Genom att klicka på "{{int:flow-newtopic-save}}" godkänner du användarvillkoren för denna wiki.',
+	'flow-terms-of-use-reply' => 'Genom att klicka på "{{int:flow-reply-submit}}" godkänner du användarvillkoren för denna wiki.',
+	'flow-terms-of-use-edit' => 'Genom att spara dina ändringar godkänner du användarvillkoren för denna wiki.',
 );
 
 /** Tagalog (Tagalog)
@@ -4969,12 +4987,14 @@ $messages['tl'] = array(
 
 /** Turkish (Türkçe)
  * @author Rapsar
+ * @author Rhinestorm
  */
 $messages['tr'] = array(
 	'flow-notification-mention' => '$1, "$4" sayfasındaki "$3" başlığındaki [$2 değişikliğinde] sizden {{GENDER:$1|bahsetti}}', # Fuzzy
-	'flow-notification-mention-email-subject' => '$1, $2 sayfasında sizden {{GENDER:$1|bahsetti}}',
+	'flow-notification-mention-email-subject' => '$1, $2 sayfasında sizden {{GENDER:$1|bahsetti}}', # Fuzzy
 	'flow-notification-mention-email-batch-body' => '$1, "$3" sayfasındaki "$2" başlığında sizden {{GENDER:$1|bahsetti}}', # Fuzzy
 	'flow-link-history' => 'geçmiş',
+	'flow-anon-warning' => 'Oturum açmadınız.',
 );
 
 /** Uyghur (Arabic script) (ئۇيغۇرچە)
@@ -5517,10 +5537,11 @@ $messages['zh-hans'] = array(
 	'flow-user-moderated' => '版主用户',
 	'flow-edit-header-link' => '编辑页顶',
 	'flow-header-empty' => '此讨论页目前没有头部。',
-	'flow-post-moderated-toggle-hide-show' => '显示由$2隐藏的留言', # Fuzzy
+	'flow-post-moderated-toggle-hide-show' => '显示由$2{{GENDER:$1|隐藏}}的留言',
 	'flow-post-moderated-toggle-delete-show' => '显示由$2{{GENDER:$1|删除}}的留言',
+	'flow-post-moderated-toggle-suppress-show' => '显示由$2{{GENDER:$1|抑制}}的留言',
 	'flow-post-moderated-toggle-hide-hide' => '隐藏由$2{{GENDER:$1|隐藏}}的留言',
-	'flow-post-moderated-toggle-delete-hide' => '隐藏由$2删除的留言', # Fuzzy
+	'flow-post-moderated-toggle-delete-hide' => '隐藏由$2{{GENDER:$1|删除}}的留言',
 	'flow-post-moderated-toggle-suppress-hide' => '隐藏由$2{{GENDER:$1|抑制}}的留言',
 	'flow-hide-post-content' => '此评论已由$2{{GENDER:$1|隐藏}}',
 	'flow-hide-title-content' => '此主题已被$2{{GENDER:$1|隐藏}}',
@@ -5567,6 +5588,7 @@ $messages['zh-hans'] = array(
 	'flow-topic-action-restore-topic' => '恢复主题',
 	'flow-error-http' => '与服务器联系时出错。',
 	'flow-error-other' => '出现意外的错误。',
+	'flow-error-external' => '出现一个错误。<br />收到的错误信息：$1',
 	'flow-error-edit-restricted' => '您无权编辑此帖子。',
 	'flow-error-external-multi' => '遇到错误。<br />$1',
 	'flow-error-missing-content' => '帖子无内容。只能保存有内容的帖子。',
@@ -5596,8 +5618,11 @@ $messages['zh-hans'] = array(
 	'flow-error-process-wikitext' => '处理 HTML/维基文本 转换时出错。',
 	'flow-error-no-index' => '未能找到索引来执行数据搜索。',
 	'flow-edit-header-submit' => '保存页顶',
+	'flow-edit-header-submit-overwrite' => '覆写页顶',
 	'flow-edit-title-submit' => '更改标题',
+	'flow-edit-title-submit-overwrite' => '覆写标题',
 	'flow-edit-post-submit' => '提交更改',
+	'flow-edit-post-submit-overwrite' => '覆写更改',
 	'flow-rev-message-edit-post' => '$1{{GENDER:$2|编辑了}}一个[$3 评论]。',
 	'flow-rev-message-reply' => '$1{{GENDER:$2|添加了}}一个[$3 评论]。',
 	'flow-rev-message-reply-bundle' => '添加了<strong>$1 条评论</strong>。',
@@ -5619,6 +5644,7 @@ $messages['zh-hans'] = array(
 	'flow-history-last4' => '过去4个小时',
 	'flow-history-day' => '今天',
 	'flow-history-week' => '上周',
+	'flow-history-pages-post' => '出现在[$1 $2]',
 	'flow-topic-comments' => '{{PLURAL:$1|$1个评论|0={{GENDER:$2|第一个}}发表评论！}}',
 	'flow-comment-restored' => '恢复的评论',
 	'flow-comment-deleted' => '已删除的评论',
@@ -5628,19 +5654,20 @@ $messages['zh-hans'] = array(
 	'flow-paging-fwd' => '更早的话题',
 	'flow-notification-reply-bundle' => '$1和$5个{{PLURAL:$6|其他}}用户答复了您在“$3”内“$2”的<span class="plainlinks">[$4 评论]</span>。',
 	'flow-notification-edit' => '$1编辑了一个在[[$3|$4]]内“$2”的<span class="plainlinks">[$5 评论]</span>。',
-	'flow-notification-newtopic' => '$1在[[$2|$3]]{{GENDER:$1|创建了}}一个[$5 新话题]：$4。', # Fuzzy
-	'flow-notification-rename' => '[$2 $3]的标题已被$1在[[$5|$6]]{{GENDER:$1|更改}}为“$4”。', # Fuzzy
+	'flow-notification-newtopic' => '$1在[[$2|$3]]{{GENDER:$1|创建了}}一个<span class="plainlinks">[$5 新话题]</span>：$4。',
+	'flow-notification-rename' => '<span class="plainlinks">[$2 $3]</span>的标题已被$1在[[$5|$6]]{{GENDER:$1|更改}}为“$4”。',
+	'flow-notification-mention' => '$1于“$4”在{{GENDER:$1|他|她|他们}}的“$3”的<span class="plainlinks">[$2 帖子]</span>中提到了您。',
 	'flow-notification-link-text-view-post' => '浏览帖子',
 	'flow-notification-link-text-view-board' => '查看讨论版',
 	'flow-notification-link-text-view-topic' => '查看主题',
 	'flow-notification-reply-email-subject' => '$1回复了您的帖子',
-	'flow-notification-reply-email-batch-body' => '$1回复了您在$3的帖子$2', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1回复了您在“$3”的帖子“$2”',
 	'flow-notification-mention-email-subject' => '$1在“$2”提及了您',
 	'flow-notification-edit-email-subject' => '$1编辑了一个帖子',
 	'flow-notification-edit-email-batch-body' => '$1编辑了“$3”上主题“$2”中的一个帖子',
 	'flow-notification-rename-email-subject' => '$1重命名了您的主题',
 	'flow-notification-rename-email-batch-body' => '$1将您在“$4”的主题“$2”重命名为“$3”',
-	'flow-notification-newtopic-email-subject' => '$1在$2创建了新主题', # Fuzzy
+	'flow-notification-newtopic-email-subject' => '$1在“$2”创建了新主题',
 	'echo-category-title-flow-discussion' => '流量',
 	'echo-pref-tooltip-flow-discussion' => '在讨论版发生有关我的动作时通知我。',
 	'flow-link-post' => '帖子',
