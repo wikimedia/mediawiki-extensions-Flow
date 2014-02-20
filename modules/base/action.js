@@ -146,7 +146,6 @@
 
 		this.object.$container.find( '.flow-edit-form' )
 			.flow( 'hidePreview' )
-			.trigger( 'flow-form-destroyed' )
 			.remove();
 	};
 
@@ -235,11 +234,6 @@
 					}
 				);
 		}, this, $form, loadFunction ), 0 );
-
-		// add anon warning if required
-		if ( mw.user.getId() === 0 ) {
-			this.showAnonWarning();
-		}
 	};
 
 	/**
@@ -268,7 +262,6 @@
 		 * submit button via setupEmptyDisabler and setupFormHandler.
 		 */
 		$form.find( '.flow-reply-submit' ).off();
-		$form.trigger( 'flow-form-destroyed' );
 		$form.find( '.flow-cancel-link, .flow-content-preview, .flow-preview-submit, .flow-error' ).remove();
 
 		// when hidden via slideUp, some inline CSS is added to keep the
@@ -380,15 +373,14 @@
 	 *
 	 * @param {jQuery} $element
 	 * @param {string} text
-	 * @param {Object} options Overrides
 	 */
-	mw.flow.action.prototype.tipsy = function ( $element, text, options ) {
+	mw.flow.action.prototype.tipsy = function ( $element, text ) {
 		$element
 			.addClass( 'flow-tipsy-trigger' )
 			.click( function () {
 				$( this ).tipsy( 'hide' );
 			} )
-			.tipsy( $.extend( {
+			.tipsy( {
 				fade: true,
 				gravity: 'w',
 				html: true,
@@ -413,38 +405,10 @@
 					var $warning = $( '<div class="flow-tipsy-noflyout">' ).text( text );
 					return $( '<div>' ).append( $warning ).html();
 				}
-			}, options ) )
+			} )
 			.tipsy( 'show' );
 
 		// return tipsy flyout node
 		return $element.tipsy( 'tip' );
-	};
-
-	/**
-	 * Shows a tooltip, dismissed by keyup in the form.
-	 */
-	mw.flow.action.prototype.showAnonWarning = function() {
-		var $el = this.$form.find( '.flow-creator > a' );
-
-		if ( ! $el.length ) {
-			$el = this.$form.find( 'textarea:first' );
-		}
-
-		this.tipsy(
-			$el,
-			mw.msg( 'flow-anon-warning' ),
-			{
-				className : 'flow-tipsy-warning flow-anon-warning'
-			}
-		);
-
-		this.$form.on( 'keyup', 'input, textarea', function(e) {
-			$el.tipsy( 'hide' );
-		} );
-
-		this.$form
-			.on( 'flow-form-destroyed', '*', function(e) {
-				$el.tipsy( 'hide' );
-			} );
 	};
 } ( jQuery, mediaWiki ) );
