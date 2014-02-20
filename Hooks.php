@@ -103,7 +103,9 @@ class FlowHooks {
 		}
 
 		try {
-			$line = Container::get( 'recentchanges.formatter' )->format( $changesList, $rc );
+			$formatter = Container::get( 'recentchanges.formatter' );
+			$watchlist = $formatter->isWatchlist();
+			$line = $formatter->format( $changesList, $rc, $watchlist );
 		} catch ( FlowException $e ) {
 			wfWarn( __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
 			\MWExceptionHandler::logException( $e );
