@@ -1669,7 +1669,6 @@ Du kannst andere Versionen dieses Beitrags im [$6 Verlauf] ansehen.',
 	'flow-terms-of-use-new-topic' => 'Mit dem Klicken auf „{{int:flow-newtopic-save}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
 	'flow-terms-of-use-reply' => 'Mit dem Klicken auf „{{int:flow-reply-submit}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
 	'flow-terms-of-use-edit' => 'Mit dem Speichern deiner Änderungen stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
-	'flow-anon-warning' => 'Du bist nicht angemeldet.',
 );
 
 /** Greek (Ελληνικά)
@@ -1979,7 +1978,7 @@ $messages['fa'] = array(
 	'flow-paging-fwd' => 'موضوعات قدیمی‌تر',
 	'flow-last-modified' => 'آخرین تغییریافته دربارهٔ $1',
 	'flow-notification-reply' => '$1 {{GENDER:$1|پاسخ داده شد}} به شما <span class="plainlinks">[$5 post]</span> در "$2" در "$4".',
-	'flow-notification-reply-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|پاسخ داد} به شما <span class="plainlinks">[$4 post]</span> در "$2" در "$3".', # Fuzzy
+	'flow-notification-reply-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$4 post]</span> در "$2" در "$3".',
 	'flow-notification-edit' => '$1 {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$5 post]</span> در "$2" در [[$3|$4]].',
 	'flow-notification-edit-bundle' => '$1 و $5 {{PLURAL:$6|دیگر|دیگران}} {{GENDER:$1|ویرایش شده}} یک <span class="plainlinks">[$4 post]</span> در "$2" در "$3".',
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|ایجاد شده}} یک <span class="plainlinks">[$5 موضوع جدید]</span> در [[$2|$3]]: $4.',
@@ -2060,7 +2059,6 @@ $messages['fa'] = array(
 	'flow-terms-of-use-new-topic' => 'با کلیک کردن "{{int:flow-newtopic-save}}"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
 	'flow-terms-of-use-reply' => 'با کلیک کردن "{{int:flow-reply-submit}}"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
 	'flow-terms-of-use-edit' => 'با ذخیرهٔ تغییرات شما،  شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
-	'flow-anon-warning' => 'شما وارد نشده‌ايد.',
 );
 
 /** Finnish (suomi)
@@ -2386,7 +2384,6 @@ Vous pouvez voir d’autres versions de cette note dans sa [$6 page d’historiq
 	'flow-terms-of-use-new-topic' => 'En cliquant sur « {{int:flow-newtopic-save}} », vous acceptez les conditions d’utilisation de ce wiki.',
 	'flow-terms-of-use-reply' => 'En cliquant sur « {{int:flow-reply-submit}} », vous acceptez les conditions d’utilisation de ce wiki.',
 	'flow-terms-of-use-edit' => 'En enregistrant vos modifications, vous acceptez les conditions d’utilisation de ce wiki.',
-	'flow-anon-warning' => 'Vous n’êtes pas connecté.',
 );
 
 /** Western Frisian (Frysk)
@@ -3091,6 +3088,9 @@ Puoi vedere le altre versioni nella [$6 cronologia della pagina].',
 	'flow-topic-collapsed-one-line' => 'Vista piccola',
 	'flow-topic-collapsed-full' => 'Vista compatta',
 	'flow-topic-complete' => 'Vista completa',
+	'flow-terms-of-use-new-topic' => 'Cliccando su "{{int:flow-newtopic-save}}", accetti le condizioni d\'uso per questo wiki.',
+	'flow-terms-of-use-reply' => 'Cliccando su "{{int:flow-reply-submit}}", accetti le condizioni d\'uso per questo wiki.',
+	'flow-terms-of-use-edit' => "Salvando le modifiche, accetti le condizioni d'uso per questo wiki.",
 );
 
 /** Japanese (日本語)
@@ -3305,7 +3305,6 @@ $messages['ja'] = array(
 	'flow-terms-of-use-new-topic' => '「{{int:flow-newtopic-save}}」をクリックすると、このウィキの利用規約に同意したと見なされます。',
 	'flow-terms-of-use-reply' => '「{{int:flow-reply-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。',
 	'flow-terms-of-use-edit' => '変更内容を保存すると、このウィキの利用規約に同意したと見なされます。',
-	'flow-anon-warning' => 'ログインしていません。',
 );
 
 /** Lojban (Lojban)
@@ -3615,7 +3614,7 @@ $messages['lb'] = array(
 	'flow-error-not-allowed' => 'Net genuch Rechter fir dës Aktioun ze maachen',
 	'flow-error-not-a-post' => 'Den Titel vum Thema kann net als Matdeelung gespäichert ginn.',
 	'flow-error-missing-header-content' => "D'Iwwerschrëft huet keen Inhalt. Den Inhalt ass obligatoresch fir eng Iwwerschrëft ze späicheren.",
-	'flow-error-prev-revision-mismatch' => 'Dës Ännerung konnt net gespäichert ginn: méi eng rezent Ännerung gouf scho gespäichert.', # Fuzzy
+	'flow-error-prev-revision-mismatch' => 'En anere Benotzer huet dës Matdeelung virun e puer Sekonne geännert. Sidd Dir sécher datt Dir déi rezent Ännerung iwwerschreiwe wëllt?',
 	'flow-error-prev-revision-does-not-exist' => 'Déi vireg Versioun konnt net fonnt ginn.',
 	'flow-error-default' => 'Et ass e Feeler geschitt.',
 	'flow-error-invalid-title' => 'En net valabelen Säitentitel gouf uginn.',
@@ -3682,7 +3681,6 @@ $messages['lb'] = array(
 	'flow-topic-permalink-warning' => 'Dëse Sujet gouf op [$2 $1] ugefaang',
 	'flow-compare-revisions-revision-header' => 'Versioun vum {{GENDER:$2|$2}} vum $1',
 	'flow-terms-of-use-edit' => "Duerch Späichere vun Ären Ännerunge sidd Dir mat de Konditioune fir d'Benotze vun dëser Wiki d'Accord.",
-	'flow-anon-warning' => 'Dir sidd net ageloggt.',
 );
 
 /** لوری (لوری)
@@ -3944,7 +3942,6 @@ $messages['mk'] = array(
 	'flow-terms-of-use-new-topic' => 'Стискајќи на „{{int:flow-newtopic-save}}“, се согласувате со условите на употреба на ова вики.',
 	'flow-terms-of-use-reply' => 'Стискајќи на „{{int:flow-reply-submit}}“, се согласувате со условите на употреба на ова вики.',
 	'flow-terms-of-use-edit' => 'Зачувувајќи ги промените, се согласувате со условите на употреба на ова вики.',
-	'flow-anon-warning' => 'Не сте најавени.',
 );
 
 /** Malayalam (മലയാളം)
@@ -3982,6 +3979,9 @@ $messages['ml'] = array(
  */
 $messages['mr'] = array(
 	'flow-newtopic-title-placeholder' => 'संदेशाचा विषय', # Fuzzy
+	'flow-post-action-post-history' => 'इतिहास',
+	'flow-post-action-edit-post' => 'संपादन',
+	'flow-topic-action-history' => 'इतिहास',
 	'flow-error-external' => 'आपले उत्तर जतन करण्यात त्रूटी घडली.<br />मिळालेला त्रूटी संदेश असा होता: $1',
 	'flow-error-external-multi' => 'आपले उत्तर जतन करण्यात त्रूटी आढळल्या.आपले उत्तर जतन झाले नाही.<br />$1', # Fuzzy
 	'flow-error-missing-title' => 'विषयास मथळा नाही.एखाद्या विषयास जतन करावयाचे तर मथळा हवा.',
@@ -3991,10 +3991,10 @@ $messages['mr'] = array(
 	'flow-edit-title-submit-overwrite' => 'शीर्षकाचे उपरीलेखन करा',
 	'flow-edit-post-submit-overwrite' => 'बदलांवर उपरीलेखन करा',
 	'flow-notification-mention-email-subject' => '$1 ने "$2"वर आपला {{GENDER:$1|उल्लेख केला}}',
+	'flow-notification-newtopic-email-subject' => '$1 ने "$2" वर एक नविन विषय {{GENDER:$1|तयार केला}}',
 	'flow-terms-of-use-new-topic' => '"{{int:flow-newtopic-save}}" टिचकण्याने,आपण या विकिच्या वापरण्याच्या अटी मान्य करीत आहात.',
 	'flow-terms-of-use-reply' => '"{{int:flow-reply-submit}}" टिचकण्याने, आपण या विकिच्या \'वापरण्याच्या अटी\' मान्य करीत आहात.',
 	'flow-terms-of-use-edit' => "आपले बदल 'जतन करण्याने',आपण या विकिच्या 'वापरण्याच्या अटी' मान्य करीत आहात.",
-	'flow-anon-warning' => 'आपण सनोंद प्रवेशित नाहीत.',
 );
 
 /** Malay (Bahasa Melayu)
@@ -4688,6 +4688,41 @@ $messages['scn'] = array(
 	'flow-thank-link' => '{{GENDER:$1|Arringràzzia}}',
 );
 
+/** Scots (Scots)
+ * @author John Reid
+ */
+$messages['sco'] = array(
+	'flow-post-moderated-toggle-hide-show' => 'Show comment {{GENDER:$1|hidden}} bi $2',
+	'flow-post-moderated-toggle-delete-show' => 'Show comment {{GENDER:$1|deleted}} bi $2',
+	'flow-post-moderated-toggle-suppress-show' => 'Show comment {{GENDER:$1|suppressed}} bi $2',
+	'flow-post-moderated-toggle-hide-hide' => 'Hide comment {{GENDER:$1|hidden}} bi $2',
+	'flow-post-moderated-toggle-delete-hide' => 'Hide comment {{GENDER:$1|deleted}} bi $2',
+	'flow-post-moderated-toggle-suppress-hide' => 'Hide comment {{GENDER:$1|suppressed}} bi $2',
+	'flow-post-action-post-history' => 'Histerie',
+	'flow-post-action-edit-post' => 'Edit',
+	'flow-topic-action-history' => 'Histerie',
+	'flow-error-prev-revision-mismatch' => "Anither uiser jyst edited this post ae few seiconts back. Ar ye sair ye wan tae o'erwrite the recent chynge?",
+	'flow-edit-header-submit-overwrite' => "O'erwrite header",
+	'flow-edit-title-submit-overwrite' => "O'erwrite title",
+	'flow-edit-post-submit-overwrite' => "O'erwrite chynges",
+	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} til yer <span class="plainlinks">[$5 post]</span> in "$2" on "$4".',
+	'flow-notification-reply-bundle' => '$1 an $5 {{PLURAL:$6|other|others}} {{GENDER:$1|replied}} til yer <span class="plainlinks">[$4 post]</span> in "$2" on "$3".',
+	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} ae <span class="plainlinks">[$5 post]</span> in "$2" on [[$3|$4]].',
+	'flow-notification-edit-bundle' => '$1 an $5 {{PLURAL:$6|other|others}} {{GENDER:$1|edited}} ae <span class="plainlinks">[$4 post]</span> in "$2" on "$3".',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|created}} ae <span class="plainlinks">[$5 new topic]</span> on [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|changed}} the title o <span class="plainlinks">[$2 $3]</span> til "$4" on [[$5|$6]].',
+	'flow-notification-mention' => '$1 {{GENDER:$1|mentioned}} ye in {{GENDER:$1|his|her|their}} <span class="plainlinks">[$2 post]</span> in "$3" on "$4".',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|replied}} til yer post in "$2" on "$3"',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 an $4 {{PLURAL:$5|other|others}} {{GENDER:$1|replied}} til yer post in "$2" on "$3"',
+	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|mentioned}} ye on "$2"',
+	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|edited}} ae post in "$2" on "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 an $4 {{PLURAL:$5|other|others}} {{GENDER:$1|edited}} ae post in "$2" on "$3"',
+	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|created}} ae new topic on "$2"',
+	'flow-terms-of-use-new-topic' => 'Bi clapin on "{{int:flow-newtopic-save}}", ye\'r agreein til the terms o uiss fer this wiki.',
+	'flow-terms-of-use-reply' => 'Bi clapin on "{{int:flow-reply-submit}}", ye\'r agreein til the terms o uiss fer this wiki.',
+	'flow-terms-of-use-edit' => "Bi savin yer chynges, ye'r agreein til the terms o uiss fer this wiki.",
+);
+
 /** Slovenian (slovenščina)
  * @author Dbc334
  * @author Eleassar
@@ -4968,6 +5003,21 @@ Du kan se andra versioner av detta inlägg genom dess [$6 historiksida].',
 	'flow-terms-of-use-edit' => 'Genom att spara dina ändringar godkänner du användarvillkoren för denna wiki.',
 );
 
+/** Telugu (తెలుగు)
+ * @author Ravichandra
+ */
+$messages['te'] = array(
+	'flow-post-action-post-history' => 'చరిత్ర',
+	'flow-post-action-edit-post' => 'సవరించు',
+	'flow-topic-action-history' => 'చరిత్ర',
+	'flow-edit-header-submit-overwrite' => 'శీర్షికను తిరగరాయి',
+	'flow-edit-title-submit-overwrite' => 'పేరును తిరగరాయి',
+	'flow-edit-post-submit-overwrite' => 'మార్పులను తిరగరాయి',
+	'flow-terms-of-use-new-topic' => '"{{int:flow-newtopic-save}}" నొక్కడం ద్వారా, మీరు ఈ వికీ విధివిధానాలకు కట్టుబడుతున్నారు.',
+	'flow-terms-of-use-reply' => '"{{int:flow-reply-submit}}" నొక్కడం ద్వారా, మీరు ఈ వికీ విధివిధానాలకు కట్టుబడుతున్నారు.',
+	'flow-terms-of-use-edit' => 'మీ మార్పులను భద్రపరచడం ద్వారా, మీరు ఈ వికీ విధివిధానాలకు కట్టుబడుతున్నారు.',
+);
+
 /** Tagalog (Tagalog)
  * @author Jewel457
  */
@@ -5095,7 +5145,7 @@ $messages['uk'] = array(
 	'flow-error-not-a-post' => 'Назву теми не можна зберегти як допис.',
 	'flow-error-missing-header-content' => 'Заголовок не має ніякого вмісту. Необхідний вміст, щоб зберегти заголовок.',
 	'flow-error-missing-prev-revision-identifier' => 'Ідентифікатор попередньої ревізії відсутній.',
-	'flow-error-prev-revision-mismatch' => 'Не вдалося зберегти редагування: пізніші зміни вже представлені.', # Fuzzy
+	'flow-error-prev-revision-mismatch' => 'Цей допис інший користувач щойно відредагував кілька секунд тому. Ви справді бажаєте переписати нещодавні зміни?',
 	'flow-error-prev-revision-does-not-exist' => 'Не вдалося знайти попередню ревізію.',
 	'flow-error-default' => 'Сталася помилка.',
 	'flow-error-invalid-input' => 'Неприпустиме значення було надано для завантаження потоку даних.',
@@ -5229,6 +5279,8 @@ $messages['uk'] = array(
 	'flow-topic-collapsed-one-line' => 'Малий вигляд',
 	'flow-topic-collapsed-full' => 'Згорнутий вигляд',
 	'flow-topic-complete' => 'Повний вигляд',
+	'flow-terms-of-use-new-topic' => 'Натиснувши на кнопку "{{int:flow-newtopic-save}}", ви погоджуєтеся з умовами використання даного вікі.',
+	'flow-terms-of-use-reply' => 'Натиснувши кнопку "{{int:flow-reply-submit}}", ви погоджуєтеся з умовами використання для цього вікі.',
 	'flow-terms-of-use-edit' => 'Зберігаючи зміни, ви погоджуєтесь з умовами використання для цього вікі.',
 );
 
@@ -5699,6 +5751,7 @@ $messages['zh-hans'] = array(
 	'flow-topic-collapsed-one-line' => '小型视图',
 	'flow-topic-collapsed-full' => '折叠视图',
 	'flow-topic-complete' => '完整视图',
+	'flow-terms-of-use-edit' => '通过保存您的更改，您同意此wiki的使用条款。',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
@@ -5718,6 +5771,7 @@ $messages['zh-hant'] = array(
 	'flow-suppress-title-content' => '此主題已由$2{{GENDER:$1|抑制}}',
 	'flow-suppress-header-content' => '由$2{{GENDER:$1|抑制}}',
 	'flow-stub-post-content' => "'''由於技術錯誤，這篇文章無法檢索。'''",
+	'flow-error-prev-revision-mismatch' => '另一用戶於幾秒鐘前編輯此帖子。您確信覆寫新近變更？',
 	'flow-notification-reply' => '$1 {{GENDER:$1|已回覆}}您的 [$5 留言] 於 $2 的 "$4"。', # Fuzzy
 	'flow-notification-reply-bundle' => '$1 與另外 $5 {{PLURAL:$6|個人|個人}}已{{GENDER:$1|回覆}}您的 [$4 留言] 於 $2 的 "$3"。', # Fuzzy
 	'flow-notification-link-text-view-post' => '檢視留言',
@@ -5742,4 +5796,5 @@ $messages['zh-hant'] = array(
 	'flow-moderation-confirmation-hide-topic' => '主題已成功刪除。
 考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。', # Fuzzy
 	'flow-moderation-confirmation-restore-topic' => '您已成功還原本主題。',
+	'flow-terms-of-use-edit' => '通過保存您的更改，您同意ciwiki之使用條款。',
 );
