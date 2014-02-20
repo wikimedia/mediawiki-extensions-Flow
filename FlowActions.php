@@ -359,9 +359,7 @@ $wgFlowActions = array(
 			'bundle' => array(
 				'i18n-message' => 'flow-rev-message-reply-bundle',
 				'i18n-params' => array(
-					function ( array $revisions, Templating $templating, UUID $workflowId, $blockType ) {
-						return array( 'num' => count( $revisions ) );
-					}
+					'bundle-count'
 				),
 				'class' => 'flow-history-bundle',
 			),

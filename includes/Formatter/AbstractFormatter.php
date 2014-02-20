@@ -413,12 +413,12 @@ abstract class AbstractFormatter {
 	 * Mimic Echo parameter formatting
 	 *
 	 * @param string $param The requested i18n parameter
-	 * @param AbstractRevision $revision The revision to format
+	 * @param AbstractRevision|array $revision The revision to format or an array of revisions
 	 * @param UUID $workflowId The UUID of the workflow $revision belongs tow
 	 * @param string $blockType The type of block $workflowId belongs to
 	 * @return mixed A valid parameter for a core Message instance
 	 */
-	protected function processParam( $param, AbstractRevision $revision, UUID $workflowId, $blockType ) {
+	protected function processParam( $param, /* AbstractRevision|array */ $revision, UUID $workflowId, $blockType ) {
 		switch ( $param ) {
 		case 'creator-text':
 			if ( $revision instanceof PostRevision ) {
@@ -486,10 +486,12 @@ abstract class AbstractFormatter {
 			}
 			return Message::rawParam( htmlspecialchars( $content ) );
 
+		case 'bundle-count':
+			return array( 'num' => count( $revision ) );
+
 		default:
 			wfWarn( __METHOD__ . ': Unknown formatter parameter: ' . $param );
 			return '';
 		}
-
 	}
 }
