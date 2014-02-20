@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_ef4dd49c",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-20T18:23:46Z",
+      "side": 1,
+      "message": "I would prefer to not pass the $classes to format():\n\n    $formatter \u003d Container::get( \u0027recentchanges.formatter\u0027 );\n    $watchlist \u003d $formatter-\u003eisWatchlist();\n    $line \u003d $formatter-\u003eformat( $changesList, $rc, $watchlist );",
+      "revId": "84b82be4beb44c245d84693045445657ae47a51f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
