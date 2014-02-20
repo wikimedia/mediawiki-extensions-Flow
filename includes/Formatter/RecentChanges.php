@@ -14,7 +14,7 @@ class RecentChanges extends AbstractFormatter {
 	 */
 	protected $displayStatus = array();
 
-	public function format( ChangesList $cl, RecentChange $rc ) {
+	public function format( ChangesList $cl, RecentChange $rc, array $classes ) {
 		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
 		$changeData = $params['flow-workflow-change'];
 
@@ -57,9 +57,12 @@ class RecentChanges extends AbstractFormatter {
 			return false;
 		}
 
-		if ( $this->hideRecord( $revision, $changeData )
-			|| !$this->getPermissions( $user )->isRevisionAllowed( $revision, 'recentchanges' ) 
-		) {
+		// Only show most recent items for watchlist
+		if ( $this->isWatchList( $classes ) && $this->hideRecord( $revision, $changeData ) ) {
+			return false;
+		}
+
+		if ( !$this->getPermissions( $user )->isRevisionAllowed( $revision, 'recentchanges' ) ) {
 			return false;
 		}
 
@@ -146,6 +149,17 @@ class RecentChanges extends AbstractFormatter {
 			break;
 		}
 
+		return false;
+	}
+
+	// This is a temporary fix.  We will add a param to core hook
+	// to determine if this is watchlist page
+	protected function isWatchList( array $classes ) {
+		foreach ( $classes as $class ) {
+			if ( substr( $class, 0, 10 ) === 'watchlist-' ) {
+				return true;
+			}
+		}
 		return false;
 	}
 
