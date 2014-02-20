@@ -282,7 +282,7 @@ You can see other versions of this post at its [$6 history page].',
 	'flow-terms-of-use-edit' => 'By saving your changes, you agree to the terms of use for this wiki.',
 
 	// Anon warning
-	'flow-anon-warning' => 'You are not logged in.',
+	'flow-anon-warning' =>  'You are not logged in.',
 );
 
 /** Message documentation (Message documentation)
@@ -1132,7 +1132,6 @@ This should be consistent with {{msg-mw|Flow-reply-submit}}.
 {{Related|Flow-terms-of-use}}',
 	'flow-terms-of-use-edit' => 'Terms of use for editing a header/topic/post.
 {{Related|Flow-terms-of-use}}',
-	'flow-anon-warning' => 'Warning message to be displayed when anonymous user starts writing a new topic or reply.',
 );
 
 /** Achinese (Acèh)
