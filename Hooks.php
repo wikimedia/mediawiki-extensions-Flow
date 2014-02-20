@@ -101,8 +101,15 @@ class FlowHooks {
 			return true;
 		}
 
-		$line = Container::get( 'recentchanges.formatter' )->format( $changesList, $rc );
-
+		try {
+			$formatter = Container::get( 'recentchanges.formatter' );
+			$watchlist = $formatter->isWatchlist( $classes );
+			$line = $formatter->format( $changesList, $rc, $watchlist );
+		} catch ( FlowException $e ) {
+			wfWarn( __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
+			\MWExceptionHandler::logException( $e );
+			return false;
+		}
 		if ( $line === false ) {
 			return false;
 		}

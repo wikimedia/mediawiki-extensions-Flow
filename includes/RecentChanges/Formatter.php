@@ -16,7 +16,13 @@ class Formatter extends AbstractFormatter {
 	 */
 	protected $displayStatus = array();
 
-	public function format( ChangesList $cl, RecentChange $rc ) {
+	/**
+	 * @param ChangesList $cl
+	 * @param RecentChange $rc
+	 * @param bool $watchlist
+	 * @return string|bool Output line, or false on failure
+	 */
+	public function format( ChangesList $cl, RecentChange $rc, $watchlist = false ) {
 		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
 		$changeData = $params['flow-workflow-change'];
 
@@ -58,7 +64,7 @@ class Formatter extends AbstractFormatter {
 			return false;
 		}
 
-		if ( $this->hideRecord( $revision, $changeData ) ) {
+		if ( $watchlist && $this->hideRecord( $revision, $changeData ) ) {
 			return false;
 		}
 
@@ -144,6 +150,19 @@ class Formatter extends AbstractFormatter {
 			break;
 		}
 
+		return false;
+	}
+
+	// @todo:
+	// This is a temporary fix.
+	// We will add a param to core hook to determine if this is watchlist page
+	// Or add a method to the ChangesList to test for its $watchlist property
+	public function isWatchList( array $classes ) {
+		foreach ( $classes as $class ) {
+			if ( substr( $class, 0, 10 ) === 'watchlist-' ) {
+				return true;
+			}
+		}
 		return false;
 	}
 
