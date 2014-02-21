@@ -27,6 +27,7 @@ class CheckUser extends AbstractFormatter {
 		$data = explode( ',', $row->cuc_comment );
 		$post = null;
 		switch( count( $data ) ) {
+			/** @noinspection PhpMissingBreakStatementInspection */
 			case 3:
 				$post = UUID::create( $data[2] );
 				// fall-through to 2 parameter case
