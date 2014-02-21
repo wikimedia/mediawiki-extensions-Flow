@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_e8570328",
+        "filename": "includes/Block/BoardHistory.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "this should never be called, perhaps throw an exception?",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_bd013b73",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "unused",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_280ccb44",
+        "filename": "includes/Templating.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "if php had named parameter passing we could have put this in the function signature :( oh well.",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_080b4f2e",
+        "filename": "includes/View.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "$rendered (only one r)",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_a3ffdcfb",
+        "filename": "includes/View.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "Not a big deal, but can cut the following three lines by using |\u003d\n\n    $result |\u003d $block-\u003e....",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_5de7d7df",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "unused",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_ddd2c700",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "unused",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_3da08b8c",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "This should probably be the Block interface instead of AbstractBlock ?",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_bd301b54",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "\\Flow\\View\\Revision (needs a prepended \\ )",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_9d81dfca",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "should type hint the parameter",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_fd7a231e",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "@throws InvalidInputException",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_1df02f8d",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "$this-\u003erevision",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_dd75272e",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-21T23:21:59Z",
+      "side": 1,
+      "message": "$this-\u003erevision is an AbstractRevision but renderHeader only accepts Header (subclass).  To get static guarantee\u0027s here it would be easiest to have an abstract getRevision method in the base class, use that instead of $this-\u003erevision within the base class, and then within the extending classes have $this-\u003erevision properly annotated as the extended class and use it directly.",
+      "revId": "44d31306d6a90a2bb988e7c1723d4ad5f9d29f25",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
