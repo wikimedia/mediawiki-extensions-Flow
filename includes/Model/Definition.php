@@ -121,6 +121,8 @@ class Definition {
 	}
 
 	/**
+	 * @param string $key
+	 * @param mixed $default
 	 * @return mixed
 	 */
 	public function getOption( $key, $default = null ) {

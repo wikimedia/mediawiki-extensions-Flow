@@ -5,6 +5,10 @@
 # Code from https://gist.github.com/holysugar/1318698 , simpler than
 # http://stackoverflow.com/a/6262715/451712
 
+function realpath() {
+	php -r "echo realpath('$1'), \"\\n\";"
+}
+
 function whitespace_error() {
   echo "'$1' has trailing whitespace\n" >&2
 }
