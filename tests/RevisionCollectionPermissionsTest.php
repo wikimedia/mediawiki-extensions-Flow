@@ -147,13 +147,24 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 				array( 'restore-post' => true ),
 				array( 'suppress-post' => true ),
 			) ),
+
+			// bug 61715
+			array( $this->confirmedUser(), 'topic-history', array(
+				array( 'new-post' => false ),
+				array( 'suppress-post' => false ),
+			) ),
+			array( $this->confirmedUser(), 'topic-history', array(
+				array( 'new-post' => true ),
+				array( 'suppress-post' => false ),
+				array( 'restore-post' => false ),
+			) ),
 		);
 	}
 
 	/**
 	 * @dataProvider permissionsProvider
 	 */
-	public function testPermissions( User $user, $action, $actions ) {
+	public function testPermissions( User $user, $permisisonAction, $actions ) {
 		$permissions = new RevisionActionPermissions( $this->actions, $user );
 
 		// we'll have to process this in 2 steps: first do all of the actions,
@@ -171,8 +182,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$revision = array_shift( $revisions );
 			$this->assertEquals(
 				$expected,
-				$permissions->isAllowed( $revision, 'view' ),
-				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not' ) . ' be allowed to view revision ' . key( $action )
+				$permissions->isAllowed( $revision, $permisisonAction ),
+				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) . 'be allowed action ' . $permisisonAction . ' on revision ' . key( $action )
 			);
 		}
 	}
