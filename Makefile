@@ -57,6 +57,9 @@ qunit:
 vagrant-browsertests:
 	@vagrant ssh -- -X cd /srv/browsertests '&&' MEDIAWIKI_URL=http://localhost/wiki/ MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
 
+check-i18n:
+	@php scripts/check-i18n.php
+
 ###
 # Static analysis
 ###
