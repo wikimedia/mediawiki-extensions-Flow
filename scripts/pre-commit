@@ -5,32 +5,12 @@
 # Code from https://gist.github.com/holysugar/1318698 , simpler than
 # http://stackoverflow.com/a/6262715/451712
 
-function realpath() {
-	php -r "echo realpath('$1'), \"\\n\";"
-}
-
-function whitespace_error() {
-  echo "'$1' has trailing whitespace\n" >&2
-}
-
-function is_vagrant() {
- 	DEST='.'
-	while [ "$(realpath $DEST)" != "/" ]; do
-		if [ -f $DEST/Vagrantfile ]; then
-			return 0;
-		fi
-		DEST="$DEST/.."
-	done
-	return 1
-}
-
-function make() {
-	if is_vagrant; then
-		vagrant ssh -- cd /vagrant/mediawiki/extensions/Flow '&&' make $* || exit 1
-	else
-		/usr/bin/env make $* || exit 1
-	fi
-}
+# Work out location of Flow/scripts/ directory
+dir=$(dirname $(php -r "echo realpath('$0'), \"\\n\";"))
+# Move to the project root
+cd $(dirname $dir)
+# Source the shared shell functions
+. $dir/hooks-shared.sh
 
 if [ "$IGNORE_WHITESPACE" != "1" ]; then
 	# FIXME this reads the version of the file on-disk, which may not be the version
@@ -38,7 +18,7 @@ if [ "$IGNORE_WHITESPACE" != "1" ]; then
 	git diff --cached --name-only | (while read f; do
 	  ERROR=0
 	  if grep -n '[[:space:]]$' "$f" ; then
-		whitespace_error $f
+  		echo "'$f' has trailing whitespace\n" >&2
 		ERROR=1
 	  fi
 	done; exit $ERROR)
@@ -51,15 +31,15 @@ fi
 
 COMMANDS=""
 
-if git diff --name-only --cached | grep -P '\.less$'; then
+if file_changed_in_commit '\.less$'; then
 	COMMANDS="checkless $COMMANDS"
 fi
 
-if git diff --name-only --cached | grep -P '\.js$'; then
+if file_changed_in_commit '\.js$'; then
 	COMMANDS="jshint $COMMANDS"
 fi
 
-if git diff --name-only --cached | grep -P '\.php$'; then
+if file_changed_in_commit '\.php$'; then
 	COMMANDS="phplint $COMMANDS"
 fi
 
