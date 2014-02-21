@@ -7,7 +7,7 @@ class FlowPage
 
   # This hack makes Chrome edit the second topic on the page to avoid edit
   # conflicts from simultaneous test runs (bug 59011).
-  if ENV['BROWSER_LABEL'] == "chrome"
+  if ENV['BROWSER'] == "chrome"
     topic_index = 1
     actions_index = 2
   else
