@@ -8,7 +8,18 @@ use User;
 use Language;
 use MWTimestamp;
 
+/**
+ * Immutable class modeling timestamped UUID's from
+ * the core UIDGenerator.
+ *
+ * @todo probably should be UID since these dont match the UUID standard
+ */
 class UUID {
+	/**
+	 * @var UUID[] Keyed by UUID binary value.  
+	 */
+	protected static $cache;
+
 	/**
 	 * Provided binary UUID
 	 *
@@ -120,7 +131,12 @@ class UUID {
 			$binaryValue = pack( 'H*', $hexValue );
 		}
 
-		$uuid = new self( $binaryValue );
+		// uuid's are immutable
+		if ( isset( self::$cache[$binaryValue] ) ) {
+			return self::$cache[$binaryValue];
+		}
+
+		$uuid = self::$cache[$binaryValue] = new self( $binaryValue );
 		$uuid->hexValue = $hexValue;
 		$uuid->alphadecimalValue = $alphadecimalValue;
 
