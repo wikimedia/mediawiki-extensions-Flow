@@ -253,6 +253,27 @@ abstract class AbstractFormatter {
 		);
 	}
 
+	/**
+	 * @param Title $title
+	 * @param UUID $workflowId
+	 * @param UUID $oldId
+	 * @param UUID $newId
+	 */
+	public function revisionDiffLink( Title $title, UUID $workflowId, UUID $oldId, UUID $newId ) {
+		return array(
+			$this->urlGenerator->buildUrl(
+				$title,
+				'compare-revisions',
+				array(
+					'workflow' => $workflowId->getAlphadecimal(),
+					'topic_oldRevision' => $oldId->getAlphadecimal(),
+					'topic_newRevision' => $newId->getAlphadecimal(),
+				)
+			),
+			wfMessage( 'diff' )
+		);
+	}
+
 	protected function workflowLink( Title $title, UUID $workflowId ) {
 		list( $linkTitle, $query ) = $this->urlGenerator->buildUrlData(
 			$title,

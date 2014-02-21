@@ -6,6 +6,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use ChangesList;
 use Html;
+use Linker;
 use RecentChange;
 
 class RecentChanges extends AbstractFormatter {
@@ -72,49 +73,45 @@ class RecentChanges extends AbstractFormatter {
 			return false;
 		}
 
-		$links = (array) $this->buildActionLinks(
-			$title,
-			$revision->getChangeType(),
-			$workflow->getId(),
-			method_exists( $revision, 'getPostId' ) ? $revision->getPostId() : null
-		);
-
-		// Format links
-		foreach ( $links as &$link ) {
-			list( $url, $message ) = $link;
-			$text = $message->setContext( $ctx )->text();
-			$link = Html::element(
-				'a',
-				array(
-					'href' => $url,
-					'title' => $text
-				),
-				$text
-			);
-		}
-		$linksContent = $lang->pipeList( $links );
-		if ( $linksContent ) {
-			$linksContent = $cl->msg( 'parentheses' )->rawParams( $linksContent )->escaped()
-				. $this->changeSeparator();
-		}
-
 		$dateFormats = $this->getDateFormats( $revision, $user, $lang );
-		$formattedTime = '<span class="mw-changeslist-date">' . $dateFormats['time'] . '</span>';
-
 		$workflowLink = $this->workflowLink( $title, $workflow->getId() );
-		$workflowLink = Html::element(
+		$workflowLink = Html::rawElement(
 			'a',
 			array( 'href' => $workflowLink[0] ),
-			$workflowLink[1]
+			'<span class="mw-changeslist-date">' . $dateFormats['time'] . '</span>'
 		);
 
-		return $linksContent
-			. $workflowLink
+		$diffLink = '';
+		// @todo de-duplicate this, repeated in the Contributions formatter
+		if ( in_array( $changeData['action'], array( 'edit-post', 'edit-header', 'edit-title' ) ) ) {
+			list( $href, $msg ) = $this->revisionDiffLink(
+				$title,
+				$workflow->getId(),
+				$revision->getRevisionId(),
+				$revision->getPrevRevisionId()
+			);
+			$diffLink = wfMessage( 'parentheses' )
+				->rawParams( Html::rawElement(
+					'a',
+					array( 'href' => $href ),
+					$msg->escaped()
+				) )
+				->escaped();
+		}
+
+		return $diffLink
+			. ' '
+			. Linker::link( $title )
 			. $cl->msg( 'semicolon-separator' )->escaped()
-			. $formattedTime
 			. ' '
+			. $workflowLink
 			. $this->changeSeparator()
-			. ' '
+			. ChangesList::showCharacterDifference(
+				$rc->getAttribute( 'rc_old_len' ),
+				$rc->getAttribute( 'rc_new_len' ),
+				$cl
+			  )
+			. $this->changeSeparator()
 			. $this->getActionDescription( $workflow, $changeData['block'], $revision );
 	}
 

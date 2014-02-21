@@ -141,24 +141,24 @@ $messages['en'] = array(
 	'flow-edit-post-submit' => 'Submit changes',
 	'flow-edit-post-submit-overwrite' => 'Overwrite changes',
 
-	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|edited}} a [$3 comment].',
-	'flow-rev-message-reply' => '$1 {{GENDER:$2|added}} a [$3 comment].',
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|edited}} a [$3 comment] on $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|commented}}] on $4.',
 	'flow-rev-message-reply-bundle' => "<strong>$1 {{PLURAL:$1|comment|comments}}</strong> {{PLURAL:$1|was|were}} added.",
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|created}} the topic [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|changed}} the topic title from $5 to [$3 $4].',
 
-	'flow-rev-message-create-header' => "$1 {{GENDER:$2|created}} the board header.",
-	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|edited}} the board header.",
+	'flow-rev-message-create-header' => "$1 {{GENDER:$2|created}} the header.",
+	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|edited}} the header.",
 
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|hid}} a [$4 comment] (<em>$5</em>).',
-	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|deleted}} a [$4 comment] (<em>$5</em>).',
-	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|suppressed}} a [$4 comment] (<em>$5</em>).',
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|restored}} a [$4 comment] (<em>$5</em>).',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|hid}} a [$4 comment] on $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|deleted}} a [$4 comment] on $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|suppressed}} a [$4 comment] on $6 (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|restored}} a [$4 comment] on $6 (<em>$5</em>).',
 
-	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|hid}} the [$4 topic] (<em>$5</em>).',
-	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|deleted}} the [$4 topic] (<em>$5</em>).',
-	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|suppressed}} the [$4 topic] (<em>$5</em>).',
-	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|restored}} the [$4 topic] (<em>$5</em>).',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|hid}} the [$4 topic] $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|deleted}} the [$4 topic] $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|suppressed}} the [$4 topic] $6 (<em>$5</em>).',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|restored}} the [$4 topic] $6 (<em>$5</em>).',
 
 	'flow-board-history' => '"$1" history',
 	'flow-topic-history' => '"$1" topic history',
@@ -617,6 +617,7 @@ Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who edited the post. Can be used for GENDER
 * $3 - the URL of the post
+* $4 -  the name of the topic that the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-reply' => 'Used as a revision comment when a new reply has been posted.
 
@@ -624,6 +625,7 @@ Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who replied. Can be used for GENDER
 * $3 - the URL of the post
+* $4 - the name of the topic that was commented on
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-reply-bundle' => "When multiple replies have been posted, they're bundled. This is the message to describe that multiple replies were posted.
 
@@ -667,6 +669,7 @@ Parameters:
 * $3 - (Optional) username of the user who had posted the comment. Can be used for GENDER
 * $4 - permalink to the comment
 * $5 - Reason, from the moderating user, for moderating this post
+* $6 - Name of the topic the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-deleted-post' => 'Used as revision comment when a post has been deleted.
 
@@ -676,6 +679,7 @@ Parameters:
 * $3 - (Optional) username of the user who had posted the comment. Can be used for GENDER
 * $4 - permalink to the comment
 * $5 - Reason, from the moderating user, for moderating this post
+* $6 - Name of the topic the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-suppressed-post' => 'Used as revision comment when a post has been suppressed.
 
@@ -685,6 +689,7 @@ Parameters:
 * $3 - (Optional) username of the user who had posted the comment. Can be used for GENDER
 * $4 - permalink to the comment
 * $5 - Reason, from the moderating user, for moderating this post
+* $6 - Name of the topic the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-restored-post' => 'Used as revision comment when a post has been restored (un-hidden).
 
@@ -694,6 +699,7 @@ Parameters:
 * $3 - (Optional) username of the user who had posted the comment. Can be used for GENDER
 * $4 - permalink to the comment
 * $5 - Reason, from the moderating user, for moderating this post
+* $6 - Name of the topic the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-hid-topic' => 'Used as revision comment when a topic has been hidden.
 
@@ -703,6 +709,7 @@ Parameters:
 * $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER
 * $4 - permalink to the topic
 * $5 - Reason, from the moderating user, for moderating this topic
+* $6 - Name of the topic the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-deleted-topic' => 'Used as revision comment when a topic has been deleted.
 
@@ -712,6 +719,7 @@ Parameters:
 * $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER
 * $4 - permalink to the topic
 * $5 - Reason, from the moderating user, for moderating this topic
+* $6 - Name of the topic the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-suppressed-topic' => 'Used as revision comment when a topic has been suppressed.
 
@@ -721,6 +729,7 @@ Parameters:
 * $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER
 * $4 - permalink to the topic
 * $5 - Reason, from the moderating user, for moderating this topic
+* $6 - Name of the topic the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-restored-topic' => 'Used as revision comment when a topic has been restored (un-hidden).
 
@@ -730,6 +739,7 @@ Parameters:
 * $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER
 * $4 - permalink to the topic
 * $5 - Reason, from the moderating user, for moderating this topic
+* $6 - Name of the topic the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-board-history' => 'Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the "Board history" page.
 
