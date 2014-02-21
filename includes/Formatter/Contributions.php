@@ -30,7 +30,7 @@ class Contributions extends AbstractFormatter {
 		$user = $pager->getUser();
 		$title = $workflow->getArticleTitle();
 
-		if ( !$this->getPermissions( $user )->isRevisionAllowed( $revision, 'contributions' ) ) {
+		if ( !$this->getPermissions( $user )->isAllowed( $revision, 'contributions' ) ) {
 			return false;
 		}
 

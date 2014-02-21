@@ -371,14 +371,47 @@ $wgFlowActions = array(
 		'log_type' => false,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => function( AbstractRevision $revision, RevisionActionPermissions $permissions ) {
-				// if a revision was the result of a restore-action, we have
-				// to look at the previous revision what the original moderation
-				// status was; permissions for the restore-actions visibility
-				// is the same as the moderation (e.g. if user can't see
-				// suppress actions, he can't see restores from suppress
+				static $previousCollectionId;
+
+				/*
+				 * To check permissions, both the current revision (revision-
+				 * specific moderation state)& the last revision (global
+				 * collection moderation state) will always be checked.
+				 * This one has special checks to make sure "restore" actions
+				 * are hidden when the user has no permissions to see the
+				 * moderation state they were restored from.
+				 * We don't want that test to happen; otherwise, when a post
+				 * has just been restored in the most recent revisions, that
+				 * would result in none of the previous revisions being
+				 * available (because a user would need permissions for the the
+				 * state the last revision was restored from)
+				 */
+				$collection = $revision->getCollection();
+				if ( $previousCollectionId && $collection->getId()->equals( $previousCollectionId ) ) {
+					// doublecheck that this run is indeed against the most
+					// recent revision, to get the global collection state
+					try {
+						$lastRevision = $collection->getLastRevision();
+						if ( $revision->getRevisionId()->equals( $lastRevision->getRevisionId() ) ) {
+							$previousCollectionId = null;
+							return '';
+						}
+					} catch ( Exception $e ) {
+						// nothing to do here; if fetching last revision failed,
+						// we're just not testing any stored revision; that's ok
+					}
+				}
+				$previousCollectionId = $collection->getId();
+
+				/*
+				 * If a revision was the result of a restore-action, we have
+				 * to look at the previous revision what the original moderation
+				 * status was; permissions for the restore-actions visibility
+				 * is the same as the moderation (e.g. if user can't see
+				 * suppress actions, he can't see restores from suppress.
+				 */
 				if ( $revision->getChangeType() == 'restore-post' ) {
-					$revisionable = $revision->getCollection();
-					$previous = $revisionable->getPrevRevision( $revision );
+					$previous = $collection->getPrevRevision( $revision );
 
 					if ( $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
 						return '';

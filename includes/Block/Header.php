@@ -206,8 +206,10 @@ class HeaderBlock extends AbstractBlock {
 
 		// get rid of history entries user doesn't have sufficient permissions for
 		foreach ( $history as $i => $revision ) {
+			/** @var PostRevision|Header $revision */
+
 			// only check against the specific revision, ignoring the most recent
-			if ( !$this->permissions->isRevisionAllowed( $revision, 'post-history' ) ) {
+			if ( !$this->permissions->isAllowed( $revision, 'post-history' ) ) {
 				unset( $history[$i] );
 			}
 		}
