@@ -26,6 +26,7 @@ update-labs: ee-flow ee-flow-extra ee-flow-big
 ###
 installhooks:
 	ln -sf ${PWD}/scripts/pre-commit .git/hooks/pre-commit
+	ln -sf ${PWD}/scripts/pre-review .git/hooks/pre-review
 
 ###
 # Lints
