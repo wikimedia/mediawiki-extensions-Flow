@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_fd5103de",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-21T21:21:35Z",
+      "side": 1,
+      "message": "Probably set a limit to the cache size and pop least accessed one when full.  This may create memory problem when a maintenance is running against big set of data",
+      "revId": "c4ed7739b91753fdaf86d09e9665a1a24d81fbc0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
