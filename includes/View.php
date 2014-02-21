@@ -74,6 +74,12 @@ class View extends ContextSource {
 			$block->render( $this->templating, $parameters[$block->getName()] );
 		}
 		$out->addHTML( "</div>" );
+		// Update newtalk and watchlist notification status on view action of any workflow
+		// since the normal page view that resets notification status is not accessiable
+		// anymore due to Flow occupation
+		if ( $action === 'view' ) {
+			$user->clearNotification( $title );
+		}
 	}
 
 	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {
