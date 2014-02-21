@@ -73,7 +73,7 @@ class RevisionActionPermissions {
 			$isLastRevision = $last->getRevisionId()->equals( $revision->getRevisionId() );
 			return $allowed && ( $isLastRevision || $this->isAllowed( $last, $action ) );
 
-			// If data is not in storage, just return that revision's status
+		// If data is not in storage, just return that revision's status
 		} catch ( InvalidDataException $e ) {
 			return $allowed;
 		}

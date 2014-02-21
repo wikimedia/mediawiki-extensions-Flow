@@ -869,6 +869,8 @@ class TopicBlock extends AbstractBlock {
 		if ( $history ) {
 			// get rid of history entries user doesn't have sufficient permissions for
 			foreach ( $history as $i => $revision ) {
+				/** @var PostRevision $revision */
+
 				// only check against the specific revision, ignoring the most recent
 				if ( !$this->permissions->isRevisionAllowed( $revision, 'topic-history' ) ) {
 					unset( $history[$i] );
