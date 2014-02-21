@@ -126,6 +126,12 @@
 
 					$( this ).data( 'flow-initialised-topic', true );
 				}
+
+				$( this ).find( '.flow-titlebar' )
+					// Remove old event handlers
+					.off( '.mw-flow-discussion' )
+					// On topic titlebar click, trigger collapse/expand event
+					.on( 'click.mw-flow-discussion', mw.flow.action.ui.titlebarClick );
 			} );
 
 			// init post interaction
@@ -146,13 +152,10 @@
 				}
 			} );
 
-			this.$container
-				// Remove old event handlers
+			this.$container.find( '.topic-collapser li' )
 				.off( '.mw-flow-discussion' )
-				// On topic titlebar click, trigger collapse/expand event
-				.on( 'click.mw-flow-discussion', '.flow-titlebar', mw.flow.action.ui.titlebarClick )
 				// On topic collapser click, choose a different collapsing level
-				.on( 'click.mw-flow-discussion', '.topic-collapser li', mw.flow.action.ui.topicCollapserClick );
+				.on( 'click.mw-flow-discussion', mw.flow.action.ui.topicCollapserClick );
 		},
 
 		/**
