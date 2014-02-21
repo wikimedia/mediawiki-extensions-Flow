@@ -6,9 +6,29 @@ use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidInputException;
 use User;
 use Language;
+use MapCacheLRU;
 use MWTimestamp;
 
+/**
+ * Immutable class modeling timestamped UUID's from
+ * the core UIDGenerator.
+ *
+ * @todo probably should be UID since these dont match the UUID standard
+ */
 class UUID {
+	/**
+	 * UUID::create maintains a cache to avoid expensive conversions between
+	 * binary and alphadecimal. On a batch operation this can become a memory
+	 * leak if not bounded. After hitting this many UUID's prune the cache
+	 * with an LRU algo.
+	 */
+	const CACHE_MAX = 1000;
+
+	/**
+	 * @var MapCacheLRU Maps from binary uuid string to UUID object
+	 */
+	protected static $cache;
+
 	/**
 	 * Provided binary UUID
 	 *
@@ -120,9 +140,18 @@ class UUID {
 			$binaryValue = pack( 'H*', $hexValue );
 		}
 
+		// uuid's are immutable
+		if ( self::$cache === null ) {
+			self::$cache = new MapCacheLRU( self::CACHE_MAX );
+		}
+		if ( self::$cache->has( $binaryValue ) ) {
+			return self::$cache->get( $binaryValue );
+		}
+
 		$uuid = new self( $binaryValue );
 		$uuid->hexValue = $hexValue;
 		$uuid->alphadecimalValue = $alphadecimalValue;
+		self::$cache->set( $binaryValue, $uuid );
 
 		return $uuid;
 	}

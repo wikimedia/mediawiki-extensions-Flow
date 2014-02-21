@@ -1459,8 +1459,7 @@ abstract class FeatureIndex implements Index {
 			if ( $attr instanceof UUID ) {
 				$attributes[$key] = $attr->getAlphadecimal();
 			} elseif ( strlen( $attr ) === UUID::BIN_LEN && substr( $key, -3 ) === '_id' ) {
-				$uuid = new UUID( $attr );
-				$attributes[$key] = $uuid->getAlphadecimal();
+				$attributes[$key] = UUID::create( $attr )->getAlphadecimal();
 			}
 		}
 
