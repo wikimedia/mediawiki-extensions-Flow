@@ -57,7 +57,8 @@ class RevisionActionPermissions {
 		$allowed = $this->isRevisionAllowed( $revision, $action );
 
 		// if there was no revision object, it's pointless to find last revision
-		if ( $revision === null ) {
+		// if we already fail, no need in checking most recent revision status
+		if ( $revision === null || !$allowed ) {
 			return $allowed;
 		}
 
@@ -67,7 +68,8 @@ class RevisionActionPermissions {
 			// current state of an object, so checking against a revision at one
 			// point in time alone isn't enough.
 			$last = $revision->getCollection()->getLastRevision();
-			return $allowed && $this->isRevisionAllowed( $last, $action );
+			$isLastRevision = $last->getRevisionId()->equals( $revision->getRevisionId() );
+			return $allowed && ( $isLastRevision || $this->isRevisionAllowed( $last, $action ) );
 
 		// If data is not in storage, just return that revision's status
 		} catch ( InvalidDataException $e ) {
