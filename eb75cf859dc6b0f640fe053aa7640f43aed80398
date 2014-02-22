@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_c3366800",
+        "filename": "includes/api/ApiQueryPropFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-02-22T06:50:11Z",
+      "side": 1,
+      "message": "Does the prefix matter when this doesn\u0027t have any parameters?",
+      "parentUuid": "6ef7ef47_f121399b",
+      "revId": "eb75cf859dc6b0f640fe053aa7640f43aed80398",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_116b85b6",
         "filename": "includes/api/ApiQueryPropFlow.php",
         "patchSetId": 1
@@ -30,6 +48,23 @@
       "writtenOn": "2014-02-05T18:20:05Z",
       "side": 1,
       "message": "You should probably use $this-\u003eaddPageSubItems(), since it exists.",
+      "revId": "eb75cf859dc6b0f640fe053aa7640f43aed80398",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_e3572428",
+        "filename": "includes/api/ApiQueryPropFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-02-22T06:50:11Z",
+      "side": 1,
+      "message": "In the bug Brad suggested \u0027enabled\u0027 \u003d true ,\nbut legoktm says \u0027enabled\u0027 \u003d \u0027\u0027 is the convention. I added the latter to https://www.mediawiki.org/wiki/API:Extensions#Returning_results",
       "revId": "eb75cf859dc6b0f640fe053aa7640f43aed80398",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
