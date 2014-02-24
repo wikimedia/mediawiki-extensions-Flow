@@ -60,11 +60,6 @@ abstract class AbstractFormatter {
 	protected $urlGenerator;
 
 	/**
-	 * @var Language
-	 */
-	protected $lang;
-
-	/**
 	 * @var Workflow[] Array of Workflow objects
 	 */
 	protected $workflows = array();
@@ -453,6 +448,18 @@ abstract class AbstractFormatter {
 
 		case 'user-links':
 			return Message::rawParam( $this->templating->getUserLinks( $revision ) );
+
+		case 'summary':
+			global $wgLang;
+			/*
+			 * Fetch in HTML; unparsed wikitext in summary is pointless.
+			 * Larger-scale wikis will likely also store content in html, so no
+			 * Parsoid roundtrip is needed then (and if it *is*, it'll already
+			 * be needed to render Flow discussions, so this is manageable)
+			 */
+			$content = $this->templating->getContent( $revision, 'html' );
+			$content = strip_tags( $content );
+			return $wgLang->truncate( trim( $content ), 140 );
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
