@@ -163,7 +163,7 @@ class TreeRepository {
 			if ( isset( $cacheResult[$cacheKeys[$descendant->getAlphadecimal()]] ) ) {
 				$cacheValues[$descendant->getAlphadecimal()] = $cacheResult[$cacheKeys[$descendant->getAlphadecimal()]];
 			} else {
-				// This doubles as a way to convert binary UUIDs to hex
+				// This doubles as a way to convert binary UUIDs to alphanumeric
 				$missingValues[$descendant->getBinary()] = $descendant->getAlphadecimal();
 			}
 		}

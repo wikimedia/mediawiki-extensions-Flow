@@ -2,6 +2,8 @@
 
 namespace Flow\Model;
 
+use Flow\Container;
+
 class PostCollection extends LocalCacheAbstractCollection {
 	public function getRevisionClass() {
 		return 'Flow\\Model\\PostRevision';
@@ -11,7 +13,19 @@ class PostCollection extends LocalCacheAbstractCollection {
 		return 'tree_rev_descendant_id';
 	}
 
-	protected static function getIdFromRevision( AbstractRevision $revision ) {
-		return $revision->getPostId();
+	public function getWorkflowId() {
+		return $this->getRoot()->getId();
+	}
+
+	/**
+	 * Returns the topic title collection this post is associated with.
+	 *
+	 * @return PostCollection
+	 */
+	public function getRoot() {
+		/** @var \Flow\Repository\TreeRepository $treeRepo */
+		$treeRepo = Container::get( 'repository.tree' );
+		$uuid = $treeRepo->findRoot( $this->getId() );
+		return static::newFromId( $uuid );
 	}
 }
