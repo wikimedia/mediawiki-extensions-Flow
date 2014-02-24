@@ -142,7 +142,7 @@ $messages['en'] = array(
 	'flow-edit-post-submit-overwrite' => 'Overwrite changes',
 
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|edited}} a [$3 comment] on $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|commented}}] on $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|commented}}] on $4 (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => "<strong>$1 {{PLURAL:$1|comment|comments}}</strong> {{PLURAL:$1|was|were}} added.",
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|created}} the topic [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|changed}} the topic title from $5 to [$3 $4].',
@@ -631,6 +631,7 @@ Parameters:
 * $2 - username of the user who replied. Can be used for GENDER
 * $3 - the URL of the post
 * $4 - the name of the topic that was commented on
+* $5 - truncated summary of the reply content
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-reply-bundle' => "When multiple replies have been posted, they're bundled. This is the message to describe that multiple replies were posted.
 
