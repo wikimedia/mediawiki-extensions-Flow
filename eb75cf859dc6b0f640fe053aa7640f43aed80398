@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_efa6e2bd",
+        "filename": "includes/api/ApiQueryPropFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-02-24T16:09:12Z",
+      "side": 1,
+      "message": "Empty string is, unfortunately, currently the convention thanks to XML format being the original format. It would be nice to change that someday.",
+      "parentUuid": "4e04eb01_e3572428",
+      "revId": "eb75cf859dc6b0f640fe053aa7640f43aed80398",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef7ef47_11aa65d1",
         "filename": "includes/api/ApiQueryPropFlow.php",
         "patchSetId": 1
