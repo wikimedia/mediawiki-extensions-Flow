@@ -14,7 +14,7 @@ abstract class AbstractCollection {
 	protected $uuid;
 
 	/**
-	 * @var \Flow\Data\ObjectManager
+	 * @var \Flow\Data\ObjectManager[]
 	 */
 	protected $storage;
 
@@ -43,6 +43,13 @@ abstract class AbstractCollection {
 	 * @return string
 	 */
 	abstract public function getIdColumn();
+
+	/**
+	 * Returns the id of the workflow this collection is associated with.
+	 *
+	 * @return UUID
+	 */
+	abstract public function getWorkflowId();
 
 	/**
 	 * Use the static methods to load an object from a given revision.
@@ -85,14 +92,19 @@ abstract class AbstractCollection {
 	}
 
 	/**
+	 * @param $class[optional] Storage class - defaults to getRevisionClass()
 	 * @return \Flow\Data\ObjectManager
 	 */
-	public function getStorage() {
-		if ( !$this->storage ) {
-			$this->storage = Container::get( 'storage' )->getStorage( $this->getRevisionClass() );
+	public function getStorage( $class = null ) {
+		if ( !$class ) {
+			$class = $this->getRevisionClass();
 		}
 
-		return $this->storage;
+		if ( !$this->storage[$class] ) {
+			$this->storage[$class] = Container::get( 'storage' )->getStorage( $class );
+		}
+
+		return $this->storage[$class];
 	}
 
 	/**
@@ -193,5 +205,32 @@ abstract class AbstractCollection {
 		}
 
 		return $this->getRevision( UUID::create( $ids[$next] ) );
+	}
+
+	/**
+	 * Returns the Title object this revision is associated with.
+	 *
+	 * @return Title
+	 */
+	public function getTitle() {
+		return $this->getWorkflow()->getArticleTitle();
+	}
+
+	/**
+	 * Returns the workflow object this collection is associated with.
+	 *
+	 * @return Workflow
+	 * @throws InvalidDataException
+	 */
+	public function getWorkflow() {
+		$uuid = $this->getWorkflowId();
+
+		/** @var Workflow $workflow */
+		$workflow = $this->getStorage( 'Flow\\Model\\Workflow' )->get( $uuid );
+		if ( !$workflow ) {
+			throw new InvalidDataException( 'Invalid workflow: ' . $uuid->getAlphadecimal(), 'invalid-workflow' );
+		}
+
+		return $workflow;
 	}
 }

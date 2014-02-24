@@ -386,7 +386,13 @@ abstract class AbstractRevision {
 			return $raw;
 		}
 		if ( !isset( $this->convertedContent[$format] ) ) {
-			$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $raw );
+			if ( $sourceFormat === $format ) {
+				$this->convertedContent[$format] = $raw;
+			} else {
+				$collection = $this->getCollection();
+				$title = $collection->getTitle();
+				$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $raw, $title );
+			}
 		}
 
 		return $this->convertedContent[$format];
@@ -430,10 +436,13 @@ abstract class AbstractRevision {
 		// convert content to desired storage format
 		$storageFormat = $this->getStorageFormat();
 		if ( $this->isFormatted() && $storageFormat !== $inputFormat ) {
+			$collection = $this->getCollection();
+			$title = $collection->getTitle();
 			$this->convertedContent[$storageFormat] = ParsoidUtils::convert(
 				$inputFormat,
 				$storageFormat,
-				$content
+				$content,
+				$title
 			);
 		}
 

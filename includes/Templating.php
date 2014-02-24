@@ -425,7 +425,6 @@ class Templating {
 					wfDebugLog( __CLASS__, __METHOD__ . ': Failed applying redlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
 					\MWExceptionHandler::logException( $e );
 				}
-
 			}
 
 			return $content;

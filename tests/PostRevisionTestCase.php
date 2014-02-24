@@ -2,6 +2,7 @@
 
 namespace Flow\Tests;
 
+use Flow\Container;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
@@ -9,19 +10,28 @@ use User;
 
 class PostRevisionTestCase extends \MediaWikiTestCase {
 	/**
-	 * PostRevision object, created from $this->generatePost()
-	 *
-	 * @var PostRevision
+	 * @var array Array of PostRevision objects
 	 */
-	protected $revision;
+	protected $revisions = array();
+
+	protected function tearDown() {
+		parent::tearDown();
+
+		foreach ( $this->revisions as $revision ) {
+			try {
+				$this->getStorage()->remove( $revision );
+			} catch ( \MWException $e ) {
+				// ignore - lifecyclehandlers may cause issues with tests, where
+				// not all related stuff is loaded
+			}
+		}
+	}
 
 	/**
-	 * Creates a $this->revision object, for use in classes that extend this one.
+	 * @return ObjectManager
 	 */
-	protected function setUp() {
-		parent::setUp();
-
-		$this->revision = $this->generateObject();
+	protected function getStorage() {
+		return Container::get( 'storage.post' );
 	}
 
 	/**
@@ -91,5 +101,19 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 		$revision->setDepth( $depth );
 
 		return $revision;
+	}
+
+	/**
+	 * Saves a PostRevision to storage.
+	 * Be sure to add the required tables to $tablesUsed and add @group Database
+	 * to the class' phpDoc.
+	 *
+	 * @param PostRevision $revision
+	 */
+	protected function store( PostRevision $revision ) {
+		$this->getStorage()->put( $revision );
+
+		// save for removal at end of tests
+		$this->revisions[] = $revision;
 	}
 }
