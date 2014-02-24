@@ -37,13 +37,15 @@ end
 When(/^I create a (.+) in Flow new topic$/) do |flow_title|
   @automated_test_marker = " browsertest edit"
   on(FlowPage) do |page|
+    topic_string = flow_title + @random_string + @automated_test_marker
     page.new_topic_title_element.when_present.click
-    page.new_topic_title_element.when_present.send_keys(flow_title + @random_string + @automated_test_marker)
+    page.new_topic_title_element.when_present.send_keys(topic_string)
   end
 end
 
 When(/^I create a (.+) into Flow body$/) do |flow_body|
-  on(FlowPage).new_topic_body_element.when_present.send_keys(flow_body + @random_string + @automated_test_marker)
+  body_string = flow_body + @random_string + @automated_test_marker
+  on(FlowPage).new_topic_body_element.when_present.send_keys(body_string)
 end
 
 When(/^I hover over the author link$/) do
