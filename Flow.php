@@ -297,7 +297,7 @@ $wgFlowOccupyPages = array();
 $wgFlowOccupyNamespaces = array();
 
 // Max threading depth
-$wgFlowMaxThreadingDepth = 2;
+$wgFlowMaxThreadingDepth = 3;
 
 // A list of editors to use, in priority order
 $wgFlowEditorList = array( 'none' );  // EXPERIMENTAL prepend 'visualeditor'
