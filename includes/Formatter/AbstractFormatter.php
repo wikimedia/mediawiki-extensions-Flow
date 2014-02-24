@@ -60,11 +60,6 @@ abstract class AbstractFormatter {
 	protected $urlGenerator;
 
 	/**
-	 * @var Language
-	 */
-	protected $lang;
-
-	/**
 	 * @var Workflow[] Array of Workflow objects
 	 */
 	protected $workflows = array();
@@ -453,6 +448,12 @@ abstract class AbstractFormatter {
 
 		case 'user-links':
 			return Message::rawParam( $this->templating->getUserLinks( $revision ) );
+
+		case 'summary':
+			// @todo: do I want this in wikitext? I don't want roundtrips to Parsoid!
+			global $wgLang;
+			$content = $this->templating->getContent( $revision, 'wikitext' );
+			return Message::rawParam( htmlspecialchars( $wgLang->truncate( trim( $content ), 140 ) ) );
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );

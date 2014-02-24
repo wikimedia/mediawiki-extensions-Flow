@@ -362,6 +362,7 @@ $wgFlowActions = array(
 				'user-text',
 				'workflow-url',
 				'topic-of-post',
+				'summary',
 			),
 			'class' => 'flow-history-reply',
 			'bundle' => array(
