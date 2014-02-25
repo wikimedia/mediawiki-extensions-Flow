@@ -185,7 +185,8 @@ $c['storage.board_history.backing'] = $c->share( function( $c ) {
 } );
 
 $c['storage.board_history.index'] = $c->share( function( $c ) {
-	return new BoardHistoryIndex( $c['memcache.buffered'], $c['storage.board_history.backing'], 'flow_revision:topic_list_history',
+	return new BoardHistoryIndex( $c['memcache.buffered'], $c['storage.board_history.backing'],
+		'flow_revision:vXxXxX:topic_list_history',
 		array( 'topic_list_id' ),
 		array(
 			'limit' => 500,
@@ -483,7 +484,19 @@ $c['contributions.formatter'] = $c->share( function( $c ) {
 		$c['templating']
 	);
 } );
-
+$c['board-history.query'] = $c->share( function( $c ) {
+	return new Flow\Formatter\BoardHistoryQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
+$c['board-history.formatter'] = $c->share( function( $c ) {
+	return new Flow\Formatter\BoardHistory(
+		$c['storage'],
+		$c['flow_actions'],
+		$c['templating']
+	);
+} );
 $c['logger'] = $c->share( function( $c ) {
 	return new Flow\Log\Logger(
 		$c['flow_actions'],
