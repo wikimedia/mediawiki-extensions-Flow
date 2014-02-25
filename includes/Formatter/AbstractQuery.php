@@ -144,6 +144,7 @@ abstract class AbstractQuery {
 	 * @param string $indexField The field used for pagination
 	 * @param FormatterRow|null Row to populate
 	 * @return FormatterRow
+	 * @throws FlowException
 	 */
 	protected function buildResult( AbstractRevision $revision, $indexField, FormatterRow $row = null ) {
 		$uuid = $revision->getRevisionId();
