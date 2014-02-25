@@ -42,6 +42,11 @@ abstract class RevisionStorage extends DbStorage {
 	abstract protected function updateRelated( array $changes, array $old );
 	abstract protected function removeRelated( array $row );
 
+	/**
+	 * @param DbFactory $dbFactory
+	 * @param array|false List of externel store servers available for insert
+	 *  or false to disable. See $wgFlowExternalStore.
+	 */
 	public function __construct( DbFactory $dbFactory, $externalStore ) {
 		parent::__construct( $dbFactory );
 		$this->externalStore = $externalStore;
@@ -101,29 +106,61 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	protected function findMultiInternal( array $queries, array $options = array() ) {
+		$queriedKeys = array_keys( reset( $queries ) );
 		// The findMulti doesn't map well to SQL, basically we are asking to answer a bunch
 		// of queries. We can optimize those into a single query in a few select instances:
-		// Either
-		//   All queries are feature queries for a unique value
-		// OR
-		//   queries have limit 1
-		//   queries have no offset
-		//   queries are sorted by the join field(which is time sorted)
-		//   query keys are all in the related table and not the revision table
-		//
+		if ( isset( $options['LIMIT'] ) && $options['LIMIT'] == 1 ) {
+			// Find by primary key
+			if ( $options == array( 'LIMIT' => 1 ) &&
+				$queriedKeys === array( 'rev_id' )
+			) {
+				return $this->findRevId( $queries );
+			}
 
-		$queriedKeys = array_keys( reset( $queries ) );
-		if ( $options['LIMIT'] === 1 &&
-			!isset( $options['OFFSET'] ) &&
-			count( $queriedKeys ) === 1 &&
-			in_array( reset( $queriedKeys ), array( 'rev_id', $this->joinField(), $this->relatedPk() ) ) &&
-			isset( $options['ORDER BY'] ) && count( $options['ORDER BY'] ) === 1 &&
-			in_array( reset( $options['ORDER BY'] ), array( 'rev_id DESC', "{$this->joinField()} DESC" ) )
-		) {
-			return $this->findMostRecent( $queries );
+			// Find most recent revision of a number of posts
+			if ( !isset( $options['OFFSET'] ) &&
+				in_array( $queriedKeys, array(
+					array( $this->joinField() ),
+					array( $this->relatedPk() ),
+				) ) &&
+				isset( $options['ORDER BY'] ) &&
+				$options['ORDER BY'] === array( 'rev_id DESC' )
+			) {
+				return $this->findMostRecent( $queries );
+			}
 		}
 
-		return $this->fallbackFindMulti( $queries, $options );
+		// Fetch a list of revisions for each post
+		// @todo this is slow and inefficient.  Mildly better solution would be if
+		// the index can ask directly for just the list of rev_id instead of whole rows,
+		// but would still have the need to run a bunch of queries serially.
+		if ( count( $options ) === 2 &&
+			isset( $options['LIMIT'], $options['ORDER BY'] ) &&
+			$options['ORDER BY'] === array( 'rev_id DESC' )
+		) {
+			return $this->fallbackFindMulti( $queries, $options );
+		// unoptimizable query
+		} else {
+			wfDebugLog( __CLASS__, __FUNCTION__
+				. ': Unoptimizable query for keys: '
+				. implode( ',', array_keys( $queriedKeys ) )
+				. ' with options '
+				. \FormatJson::encode( $options )
+			);
+			return $this->fallbackFindMulti( $queries, $options );
+		}
+	}
+
+	protected function findRevId( array $queries ) {
+		$duplicator = new ResultDuplicator( array( 'rev_id' ), 1 );
+		$pks = array();
+		foreach ( $queries as $idx => $query ) {
+			$id = $query['rev_id'];
+			$duplicator->add( UUID::convertUUIDs( $query ), $idx );
+			$pks[$id] = $id;
+		}
+
+		return $this->findRevIdReal( $duplicator, $pks );
 	}
 
 	protected function findMostRecent( array $queries ) {
@@ -169,17 +206,21 @@ abstract class RevisionStorage extends DbStorage {
 		// Due to the grouping and max, we cant reliably get a full
 		// columns info in the above query, forcing the join below
 		// rather than just querying flow_revision.
+		return $this->findRevIdReal( $duplicator, $revisionIds );
+	}
 
+	protected function findRevIdReal( ResultDuplicator $duplicator, array $revisionIds ) {
 		//  SELECT * from flow_tree_revision
 		//	  JOIN flow_revision ON tree_rev_id = rev_id
 		//   WHERE tree_rev_id IN (...)
+		$dbr = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbr->select(
 			array( 'flow_revision', 'rev' => $this->joinTable() ),
 			'*',
 			array( 'rev_id' => $revisionIds ),
 			__METHOD__,
 			array(),
-			array( 'rev' => array( 'JOIN', "rev_id = $joinField" ) )
+			array( 'rev' => array( 'JOIN', 'rev_id = ' . $this->joinField() ) )
 		);
 		if ( !$res ) {
 			// TODO: dont fail, but dont end up caching bad result either
@@ -187,7 +228,7 @@ abstract class RevisionStorage extends DbStorage {
 		}
 
 		foreach ( $res as $row ) {
-			$row = (array) $row;
+			$row = (array)$row;
 			$duplicator->merge( $row, array( $row ) );
 		}
 
