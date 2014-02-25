@@ -1426,6 +1426,12 @@ $messages['ce'] = array(
 	'flow-post-action-post-history' => 'Истори',
 	'flow-post-action-edit-post' => 'Тае',
 	'flow-topic-action-history' => 'Теман истори', # Fuzzy
+	'flow-edit-header-submit-overwrite' => 'Юха дӀаязбе корта',
+	'flow-edit-title-submit-overwrite' => 'Юха дӀаязъе цӀе',
+	'flow-edit-post-submit-overwrite' => 'Юха дӀаязде хийцамаш',
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|тадина}} [$3  къамел] темехь $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|къамел диттина}}] темухь $4.',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2||дӀадяьккхина}} [$4 къамел] темехь $6(<em>$5</em>).',
 	'flow-notification-reply-email-batch-body' => '$1 хан хааан {{GENDER:$1||жоп делла}} темехь «$2» «$3» чохь',
 	'flow-notification-mention-email-subject' => '$1 хьо {{GENDER:$1||хьахийна}} «$2» чохь',
 	'flow-moderation-confirmation-restore-topic' => 'Ахьа кхиамца хӀара тема карлаяьккхина.',
@@ -2507,6 +2513,9 @@ $messages['gl'] = array(
 	'flow-moderation-confirm-delete-topic' => 'Borrar',
 	'flow-moderation-confirm-hide-topic' => 'Agochar',
 	'flow-moderation-confirm-restore-topic' => 'Restaurar',
+	'flow-terms-of-use-new-topic' => 'Ao premer no botón "{{int:flow-newtopic-save}}", acepta os termos de uso deste wiki.',
+	'flow-terms-of-use-reply' => 'Ao premer no botón "{{int:flow-reply-submit}}", acepta os termos de uso deste wiki.',
+	'flow-terms-of-use-edit' => 'Ao gardar os seus cambios, acepta os termos de uso deste wiki.',
 );
 
 /** Gujarati (ગુજરાતી)
@@ -2647,8 +2656,8 @@ $1',
 	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|שחזר|שחזרה}} [$4 תגובה] בנושא $6‏ (<em>$5</em>).',
 	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|הסתיר|הסתירה}} את [$4 הנושא] $6‏ (<em>$5</em>).',
 	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|מחק|מחקה}} את [$4 הנושא] $6‏ (<em>$5</em>).',
-	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|העלים|העלימה}} את [$4 הנושא] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|שחזר|שחזרה}} את [$4 הנושא] (<em>$5</em>).', # Fuzzy
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|העלים|העלימה}} את [$4 הנושא] $6‏ (<em>$5</em>).',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|שחזר|שחזרה}} את [$4 הנושא] $6‏ (<em>$5</em>).',
 	'flow-board-history' => 'ההיסטוריה של "$1"',
 	'flow-topic-history' => 'היסטוריית הנושא "$1"',
 	'flow-post-history' => 'ההיסטוריה של "תגובה מאת $2"',
@@ -2746,9 +2755,9 @@ $1',
 	'flow-topic-collapsed-one-line' => 'תצוגה מוקטנת',
 	'flow-topic-collapsed-full' => 'תצוגה מקופלת',
 	'flow-topic-complete' => 'תצוגה מלאה',
-	'flow-terms-of-use-new-topic' => 'לחיצה על "הוספת נושא" מהווה את הסכמתך ל[//wikimediafoundation.org/wiki/Terms_of_use תנאי השימוש] שלנו ואת הסכמתך הבלתי־חוזרת לפרסם את הטקסט שלך לפי תנאי [//creativecommons.org/licenses/by-sa/3.0 רישיון CC BY-SA 3.0] ו־[//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]', # Fuzzy
-	'flow-terms-of-use-reply' => 'שליחת תשובה מהווה את הסכמתך ל[//wikimediafoundation.org/wiki/Terms_of_use תנאי השימוש] שלנו ואת הסכמתך הבלתי־חוזרת לפרסם את הטקסט שלך לפי תנאי [//creativecommons.org/licenses/by-sa/3.0 רישיון CC BY-SA 3.0] ו־[//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]', # Fuzzy
-	'flow-terms-of-use-edit' => 'שמירת השינויים מהווה את הסכמתך ל[//wikimediafoundation.org/wiki/Terms_of_use תנאי השימוש] שלנו ואת הסכמתך הבלתי־חוזרת לפרסם את הטקסט שלך לפי תנאי [//creativecommons.org/licenses/by-sa/3.0 רישיון CC BY-SA 3.0] ו־[//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License GFDL]', # Fuzzy
+	'flow-terms-of-use-new-topic' => 'לחיצה על "{{int:flow-newtopic-save}}" מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.',
+	'flow-terms-of-use-reply' => 'לחיצה על "{{int:flow-reply-submit}}" מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.',
+	'flow-terms-of-use-edit' => 'שמירת השינויים מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.',
 );
 
 /** Croatian (hrvatski)
