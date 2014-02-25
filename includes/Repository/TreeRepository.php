@@ -228,8 +228,9 @@ class TreeRepository {
 		$roots = array();
 
 		foreach( $descendants as $descendant ) {
-			if ( isset( $paths[$descendant->getAlphadecimal()] ) ) {
-				$roots[$descendant->getAlphadecimal()] = $paths[$descendant->getAlphadecimal()][0];
+			$alpha = $descendant->getAlphadecimal();
+			if ( isset( $paths[$alpha] ) ) {
+				$roots[$alpha] = $paths[$alpha][0];
 			}
 		}
 
