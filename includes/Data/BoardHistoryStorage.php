@@ -57,9 +57,13 @@ class BoardHistoryStorage extends DbStorage {
 		$queries = $this->preprocessSqlArray( reset( $queries ) );
 
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
-			array( 'flow_topic_list', 'flow_tree_revision', 'flow_revision' ),
+			array( 'flow_topic_list', 'flow_tree_node', 'flow_tree_revision', 'flow_revision' ),
 			array( '*' ),
-			array( 'tree_rev_id = rev_id', 'tree_rev_descendant_id = topic_id' ) + $queries,
+			array(
+				'topic_id = tree_ancestor_id',
+				'tree_descendant_id = tree_rev_descendant_id',
+				'tree_rev_id = rev_id',
+			) + $queries,
 			__METHOD__,
 			$options
 		);

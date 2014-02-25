@@ -526,6 +526,18 @@ $c['formatter.contributions'] = $c->share( function( $c ) {
 		$c['templating']
 	);
 } );
+$c['board-history.query'] = $c->share( function( $c ) {
+	return new Flow\Formatter\BoardHistoryQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
+$c['board-history.formatter'] = $c->share( function( $c ) {
+	return new Flow\Formatter\BoardHistory(
+		$c['permissions'],
+		$c['templating']
+	);
+} );
 $c['logger'] = $c->share( function( $c ) {
 	return new Flow\Log\Logger(
 		$c['flow_actions'],
