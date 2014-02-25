@@ -25,12 +25,11 @@ class BoardHistoryStorage extends DbStorage {
 		if ( count( $queries ) > 1 ) {
 			throw new DataModelException( __METHOD__ . ' expects only one value in $queries', 'process-data' );
 		}
-		return RevisionStorage::mergeExternalContent(
-			 array(
-			 	 $this->findHeaderHistory( $queries, $options ) +
-			 	 $this->findTopicListHistory( $queries, $options )
-			 )
-		);
+		$merged = $this->findHeaderHistory( $queries, $options ) +
+			$this->findTopicListHistory( $queries, $options );
+		// newest items at the begining of the list
+		krsort( $merged );
+		return RevisionStorage::mergeExternalContent( array( $merged ) );
 	}
 
 	function findHeaderHistory( array $queries, array $options = array() ) {
