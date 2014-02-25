@@ -2,20 +2,24 @@
 
 namespace Flow\Formatter;
 
-use CheckUser as CheckUserSpecialPage;
+use Flow\Model\UUID;
+use Flow\RevisionActionPermissions;
+use Flow\Templating;
 use Html;
+use IContextSource;
 use Linker;
 use Title;
-use Flow\Model\UUID;
 
-class CheckUser extends AbstractFormatter {
+class CheckUser {
 
 	/**
-	 * @param CheckUserSpecialPage $checkUser
+	 * Create an array of links to be used when formatting the row in checkuser
+	 *
 	 * @param object $row
+	 * @param IContextSource $ctx
 	 * @return array|null
 	 */
-	public function format( CheckUserSpecialPage $checkUser, $row ) {
+	public function format( $row, IContextSource $ctx ) {
 		if ( $row->cuc_type != RC_FLOW || !$row->cuc_comment ) {
 			return null;
 		}
@@ -23,6 +27,8 @@ class CheckUser extends AbstractFormatter {
 		// @todo: this currently only implements CU links
 		// we'll probably want to add a hook to CheckUser that lets us blank out
 		// the entire line for entries that !isAllowed( <this-revision>, 'checkuser' )
+		// @todo: we probably want to get the action description (generated revision comment)
+		// into checkuser sooner or later as well.
 
 		$data = explode( ',', $row->cuc_comment );
 		$post = null;
@@ -40,24 +46,17 @@ class CheckUser extends AbstractFormatter {
 		}
 
 		$title = Title::makeTitle( $row->cuc_namespace, $row->cuc_title );
-		$links = $this->buildActionLinks( $title, $action, $workflow, $post );
+		$links = $this->serializer->buildActionLinks( $title, $action, $workflow, null, $post );
 		if ( $links === false ) {
+			wfWarn( 'NO LINKS' );
 			return null;
 		}
 
 		$result = array();
 		foreach ( $links as $key => $link ) {
-			// @todo these $text strings are using $wgLang instead of $checkUser->getLanguage()
-			list( $url, $text ) = $link;
-			$result[$key] = $checkUser->msg( 'parentheses' )
-				->rawParams( Html::element(
-					'a',
-					array(
-						'href' => $url,
-						'title' => $text,
-					),
-					$text
-				) );
+			$result[$key] = $ctx->msg( 'parentheses' )
+				// @todo these text strings are using $wgLang instead of $ctx->getLanguage()
+				->rawParams( $this->apiLinkToAnchor( $link ) );
 		}
 		$result['title'] = '. . ' . Linker::link( $title );
 
