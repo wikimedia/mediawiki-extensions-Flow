@@ -117,17 +117,57 @@ abstract class RevisionStorage extends DbStorage {
 		//
 
 		$queriedKeys = array_keys( reset( $queries ) );
-		if ( $options['LIMIT'] === 1 &&
-			!isset( $options['OFFSET'] ) &&
-			count( $queriedKeys ) === 1 &&
-			in_array( reset( $queriedKeys ), array( 'rev_id', $this->joinField(), $this->relatedPk() ) ) &&
-			isset( $options['ORDER BY'] ) && count( $options['ORDER BY'] ) === 1 &&
+
+		if ( isset( $options['LIMIT'] ) && $options['LIMIT'] == 1 ) {
+			// Find by primary key
+			if ( count( $options ) === 1 &&
+				count( $queriedKeys ) === 1 &&
+				reset( $queriedKeys ) === 'rev_id'
+			) {
+				return $this->findRevId( $queries );
+			}
+
+			// Find most recent revision of a number of posts
+			if ( !isset( $options['OFFSET'] ) &&
+				count( $queriedKeys ) === 1 &&
+				in_array( reset( $queriedKeys ), array( 'rev_id', $this->joinField(), $this->relatedPk() ) ) &&
+				isset( $options['ORDER BY'] ) && count( $options['ORDER BY'] ) === 1 &&
+				in_array( reset( $options['ORDER BY'] ), array( 'rev_id DESC', "{$this->joinField()} DESC" ) )
+			) {
+				return $this->findMostRecent( $queries );
+			}
+		// Fetch a list of revisions for each post
+		// @todo this is probably slow, and inefficient.  Mildly better solution would be if
+		// the index can ask directly for just the list of rev_id instead of whole objects,
+		// but would still have the need to run a bunch of queries serially.
+		} elseif ( count( $options ) === 2 &&
+			isset( $options['LIMIT'], $options['ORDER BY'] ) &&
+			count( $options['ORDER BY'] ) === 1 &&
 			in_array( reset( $options['ORDER BY'] ), array( 'rev_id DESC', "{$this->joinField()} DESC" ) )
 		) {
-			return $this->findMostRecent( $queries );
+			return $this->fallbackFindMulti( $queries, $options );
+		// unexpected unoptimizable query
+		} else {
+			wfDebugLog( __CLASS__, __FUNCTION__
+				. ': Unoptimizable query for keys: '
+				. implode( ',', array_keys( $queriedKeys ) )
+				. ' with options '
+				. \FormatJson::encode( $options )
+			);
+			return $this->fallbackFindMulti( $queries, $options );
+		}
+	}
+
+	protected function findRevId( array $queries ) {
+		$duplicator = new ResultDuplicator( array( 'rev_id' ), 1 );
+		$pks = array();
+		foreach ( $queries as $idx => $query ) {
+			$id = $query['rev_id'];
+			$duplicator->add( UUID::convertUUIDs( $query ), $idx );
+			$pks[$id] = $id;
 		}
 
-		return $this->fallbackFindMulti( $queries, $options );
+		return $this->findRevIdInternal( $duplicator, $pks );
 	}
 
 	protected function findMostRecent( array $queries ) {
@@ -170,6 +210,10 @@ abstract class RevisionStorage extends DbStorage {
 			$revisionIds[] = $row->$joinField;
 		}
 
+		return $this->findRevIdInternal( $duplicator, $revisionIds );
+	}
+
+	protected function findRevIdInternal( ResultDuplicator $duplicator, array $revisionIds ) {
 		// Due to the grouping and max, we cant reliably get a full
 		// columns info in the above query, forcing the join below
 		// rather than just querying flow_revision.
@@ -191,8 +235,7 @@ abstract class RevisionStorage extends DbStorage {
 		}
 
 		foreach ( $res as $row ) {
-			$row = (array) $row;
-			$duplicator->merge( $row, array( $row ) );
+			$duplicator->merge( $row, array( (array)$row ) );
 		}
 
 		return $duplicator->getResult();
