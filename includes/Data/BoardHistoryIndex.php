@@ -41,11 +41,11 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param string[] $new
 	 */
 	public function onAfterInsert( $object, array $new ) {
-		if ( $object->getRevisionType() === 'header' ) {
+		if ( $object instanceof Header ) {
 			$new['topic_list_id'] = $new['header_workflow_id'];
 			parent::onAfterInsert( $object, $new );
-		} elseif ( $object->getRevisionType() === 'post' ) {
-			$topicListId = $this->findTopicListIdForRootPost( $object );
+		} elseif ( $object instanceof PostRevision ) {
+			$topicListId = $this->findTopicListId( $object );
 			if ( $topicListId ) {
 				$new['topic_list_id'] = $topicListId;
 				parent::onAfterInsert( $object, $new );
@@ -59,11 +59,11 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param string[] $new
 	 */
 	public function onAfterUpdate( $object, array $old, array $new ) {
-		if ( $object->getRevisionType() === 'header' ) {
+		if ( $object instanceof Header ) {
 			$new['topic_list_id'] = $old['topic_list_id'] = $new['header_workflow_id'];
 			parent::onAfterUpdate( $object, $old, $new );
-		} elseif ( $object->getRevisionType() === 'post' ) {
-			$topicListId = $this->findTopicListIdForRootPost( $object );
+		} elseif ( $object instanceof PostRevision ) {
+			$topicListId = $this->findTopicListId( $object );
 			if ( $topicListId ) {
 				$new['topic_list_id'] = $old['topic_list_id'] = $topicListId;
 				parent::onAfterUpdate( $object, $old, $new );
@@ -76,11 +76,11 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param string[] $old
 	 */
 	public function onAfterRemove( $object, array $old ) {
-		if ( $object->getRevisionType() === 'header' ) {
+		if ( $object instanceof Header ) {
 			$old['topic_list_id'] = $old['header_workflow_id'];
 			parent::onAfterRemove( $object, $old );
-		} elseif ( $object->getRevisionType() === 'post' ) {
-			$topicListId = $this->findTopicListIdForRootPost( $object );
+		} elseif ( $object instanceof PostRevision ) {
+			$topicListId = $this->findTopicListId( $object );
 			if ( $topicListId ) {
 				$old['topic_list_id'] = $topicListId;
 				parent::onAfterRemove( $object, $old );
@@ -94,20 +94,14 @@ class BoardHistoryIndex extends TopKIndex {
 	 * @param PostRevision $object
 	 * @return string|boolean False when object is not root post or topic is not found
 	 */
-	protected function findTopicListIdForRootPost( $object ) {
-		if ( !$object->isTopicTitle() ) {
-			return false;
-		}
-
-		/** @var ManagerGroup $storage */
-		$storage = Container::get( 'storage' );
-		/** @var TopicListEntry[] $found */
-		$found = $storage->find(
+	protected function findTopicListId( $object ) {
+		$found = Container::get( 'storage' )->find(
 			'TopicListEntry',
-			array( 'topic_id' => $object->getPostId() )
+			array( 'topic_id' => $object->getRootPost()->getPostId() )
 		);
 
 		if ( $found ) {
+			/** @var TopicListEntry $var */
 			$topicListEntry = reset( $found );
 			return $topicListEntry->getListId()->getBinary();
 		} else {
