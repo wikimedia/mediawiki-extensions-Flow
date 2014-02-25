@@ -151,10 +151,8 @@
 				.off( '.mw-flow-discussion' )
 				// On topic titlebar click, trigger collapse/expand event
 				.on( 'click.mw-flow-discussion', '.flow-titlebar', mw.flow.action.ui.titlebarClick )
-				// On permalink click, go to topic or post and highlight it
-				.on( 'click.mw-flow-discussion', '.flow-icon-permalink', mw.flow.action.ui.permalinkClick)
 				// On topic collapser click, choose a different collapsing level
-				.on( 'click.mw-flow-discussion', '.topic-collapser li', mw.flow.action.ui.topicCollapserClick);
+				.on( 'click.mw-flow-discussion', '.topic-collapser li', mw.flow.action.ui.topicCollapserClick );
 		},
 
 		/**
@@ -301,7 +299,6 @@
 			var ignore = [
 				'.flow-edit-title-form',
 				'.flow-actions',
-				'.flow-icon-permalink',
 				'.flow-icon-watchlist',
 				'.flow-topic-comments-link'
 			].join( ',' ),
@@ -320,16 +317,6 @@
 				// Otherwise, collapse
 				mw.flow.discussion.topicCollapse( $topicContainerChildren );
 			}
-		},
-
-		/**
-		 * onclick handler for permalink anchors; triggers highlightElement on the target post or topic.
-		 * @param {Event} event
-		 */
-		permalinkClick: function ( event ) {
-			event.preventDefault();
-
-			mw.flow.discussion.highlightElement( $( this.hash ), 0 );
 		}
 	};
 
