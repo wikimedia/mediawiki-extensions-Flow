@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_2f75e3c8",
+        "filename": "includes/Block/Block.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-25T14:41:21Z",
+      "side": 1,
+      "message": "Not a fan of this; $this-\u003euser not always exists in this class (not until -\u003einit is called).\n\nI don\u0027t really like this pattern of using classes as pass-throughs for data that they\u0027re not certain to have.\n\nIt looks like this method is only called from RevisionView. Where PostRevisionView gets created (Topic.php), we could initiate PostRevision with the appropriate user object, like:\n\n    PostRevisionView::newFromId( ..., $this-\u003euser );\n\ninstead of relying on Block::getUser to actually already have had that user object initialised.\n\nFor an example of why I don\u0027t like this coding patterns, see my note on Topic.php, regarding the getDepth() error - it\u0027s can be dangerous when altering seemingly unrelated code ;)",
+      "revId": "9587a2ba73b3c68c33d5738d15e1eb228e86823e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_4f170f57",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-25T14:41:21Z",
+      "side": 1,
+      "message": "This one may fail: post.html.php will call PostRevision::getDepth, which will throw an error (because $depth is not set there)\n\n$depth was being set in TopicBlock::loadRequestedPost.\nEasiest solution I can think of would be to add a PostRevisionView::newFromRevision() method, that will accept the return value from TopicBlock::loadRequestedPost.\n\nIn the longer term, we should probably try to get rid of getDepth inside PostRevision (as it is used now), move that \"depth\" (and children) stuff to PostCollection, and make sure PostCollection knows how to fetch it efficiently, without it needing to be injected.",
+      "revId": "9587a2ba73b3c68c33d5738d15e1eb228e86823e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_0f2a278f",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-25T14:41:21Z",
+      "side": 1,
+      "message": "Nitpick: I would only accept UUID \u0026 type-hint",
+      "revId": "9587a2ba73b3c68c33d5738d15e1eb228e86823e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_af2e939e",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-25T14:41:21Z",
+      "side": 1,
+      "message": "I\u0027d suggest to use *RevisionCollection instead\n\n* It would be easier to implement (don\u0027t need to pass along $storage, don\u0027t need to define $mapper\n* May be easier to control \u0026 improve how data is fetched (e.g. batchload in advance), if not everything has an own implementation\n\nE.g.\n\n    public static function mewFromId( UUID $postId, UUID $revId, ... ) {\n        $collection \u003d PostCollection::newFromId( $postId );\n        $revision \u003d $collection-\u003egetRevision( $revId );\n        ...\n    }",
+      "revId": "9587a2ba73b3c68c33d5738d15e1eb228e86823e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
