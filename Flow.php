@@ -140,6 +140,7 @@ $wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
 $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
 $wgAutoloadClasses['Flow\Log\PostModerationLogger'] = $dir . 'includes/Log/PostModerationLogger.php';
 $wgAutoloadClasses['Flow\Formatter\AbstractFormatter'] = $dir . 'includes/Formatter/AbstractFormatter.php';
+$wgAutoloadClasses['Flow\Formatter\AbstractQuery'] = $dir . 'includes/Formatter/AbstractQuery.php';
 $wgAutoloadClasses['Flow\Formatter\CheckUser'] = $dir . 'includes/Formatter/CheckUser.php';
 $wgAutoloadClasses['Flow\Formatter\ContributionsQuery'] = $dir . 'includes/Formatter/ContributionsQuery.php';
 $wgAutoloadClasses['Flow\Formatter\Contributions'] = $dir . 'includes/Formatter/Contributions.php';
