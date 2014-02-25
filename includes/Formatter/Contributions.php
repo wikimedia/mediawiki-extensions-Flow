@@ -17,6 +17,7 @@ class Contributions extends AbstractFormatter {
 			return $this->formatReal( $pager, $row );
 		} catch ( FlowException $e ) {
 			\MWExceptionHandler::logException( $e );
+			die( 'failed exception' );
 			return false;
 		}
 	}
@@ -31,6 +32,7 @@ class Contributions extends AbstractFormatter {
 		$title = $workflow->getArticleTitle();
 
 		if ( !$this->getPermissions( $user )->isAllowed( $revision, 'contributions' ) ) {
+			die( 'not allowed' );
 			return false;
 		}
 
