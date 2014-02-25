@@ -2,11 +2,7 @@
 
 namespace Flow\Block;
 
-use Flow\Model\Header;
-use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
-use Flow\View\History\History;
-use Flow\View\History\HistoryRenderer;
 use Flow\Container;
 use Flow\Templating;
 use Flow\Exception\DataModelException;
@@ -40,60 +36,55 @@ class BoardHistoryBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
-		$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
-		$tplVars = array(
-			'title' => wfMessage( 'flow-board-history', $this->workflow->getArticleTitle() )->escaped(),
-			'historyExists' => false,
-		);
+		$output = $templating->getOutput();
+		$output->addModuleStyles( array( 'ext.flow.history' ) );
+		$output->addModules( array( 'ext.flow.history' ) );
 
+		$title = wfMessage( 'flow-board-history', $this->workflow->getArticleTitle() )->escaped();
+		$output->setHtmlTitle( $title );
+		$output->setPageTitle( $title );
+
+
+		// @todo To turn this into a reasonable json api we need the query
+		// results to be more directly serializable.
+		$lines = array();
 		$history = $this->loadBoardHistory();
-
-		if ( $history ) {
-			$tplVars['historyExists'] = true;
-			$tplVars['history'] = new History( $history );
-			$tplVars['historyRenderer'] = new HistoryRenderer( $templating, $this );
-		}
-
-		$templating->render( "flow:board-history.html.php", $tplVars );
-	}
-
-	public function renderAPI( Templating $templating, array $options ) {
-		$output = array(
-			'type' => 'board-history',
-			'*' =>  $this->loadBoardHistory(),
-		);
-
-		$output = array(
-			'_element' => 'board-history',
-			0 => $output,
-		);
-
-		return $output;
-	}
-
-	protected function loadBoardHistory() {
-		$history = $this->storage->find(
-			'BoardHistoryEntry',
-			array( 'topic_list_id' => $this->workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 300 )
-		);
-
-		if ( !$history ) {
-			return array();
-		}
-
-		// get rid of history entries user doesn't have sufficient permissions for
-		foreach ( $history as $i => $revision ) {
-			/** @var PostRevision|Header $revision */
-
-			// only check against the specific revision, ignoring the most recent
-			if ( !$this->permissions->isAllowed( $revision, 'post-history' ) ) {
-				unset( $history[$i] );
+		$formatter = Container::get( 'board-history.formatter' );
+		$ctx = \RequestContext::getMain();
+		foreach ( $history as $row ) {
+			$res = $formatter->format( $row, $ctx );
+			if ( $res !== false ) {
+				$lines[] = $res;
 			}
 		}
 
-		return $history;
+		$templating->render( "flow:board-history.html.php", array(
+			'lines' => $lines,
+			'historyExists' => count( $lines ) > 0
+		) );
+	}
+
+	public function renderAPI( Templating $templating, array $options ) {
+		$history = $this->loadBoardHistory();
+		$formatter = Container::get( 'formatter.revision' );
+		$ctx = \RequestContext::getMain();
+
+		$result = array();
+		foreach ( $history as $row ) {
+			$result[] = $formatter->formatApi( $row, $ctx );
+		}
+
+		return array(
+			'_element' => 'board-history',
+			0 => array(
+				'type' => 'board-history',
+				'*' => $result,
+			),
+		);
+	}
+
+	protected function loadBoardHistory() {
+		return Container::get( 'board-history.query' )->getResults( $this->workflow );
 	}
 
 	public function getName() {
