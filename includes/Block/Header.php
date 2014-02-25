@@ -2,11 +2,12 @@
 
 namespace Flow\Block;
 
+use Flow\Container;
+use Flow\Model\Header;
+use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
 use Flow\View\History\History;
 use Flow\View\History\HistoryRenderer;
-use Flow\Container;
-use Flow\Model\Header;
 use Flow\Templating;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
@@ -207,7 +208,6 @@ class HeaderBlock extends AbstractBlock {
 		// get rid of history entries user doesn't have sufficient permissions for
 		foreach ( $history as $i => $revision ) {
 			/** @var PostRevision|Header $revision */
-
 			// only check against the specific revision, ignoring the most recent
 			if ( !$this->permissions->isAllowed( $revision, 'post-history' ) ) {
 				unset( $history[$i] );
