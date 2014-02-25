@@ -105,6 +105,7 @@ $wgResourceModules += array(
 	),
 	'ext.flow.history' => $flowResourceTemplate + array(
 		'styles' => array(
+			'history/styles/board-history.less', // @todo should be independant?
 			'history/styles/history.less',
 			'history/styles/diff.less',
 		),
