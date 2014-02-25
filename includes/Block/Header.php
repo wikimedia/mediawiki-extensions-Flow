@@ -4,13 +4,9 @@ namespace Flow\Block;
 
 use Flow\Container;
 use Flow\Model\Header;
-use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
-use Flow\View\History\History;
-use Flow\View\History\HistoryRenderer;
 use Flow\Templating;
 use Flow\Exception\InvalidActionException;
-use Flow\Exception\InvalidDataException;
 
 class HeaderBlock extends AbstractBlock {
 
@@ -142,19 +138,26 @@ class HeaderBlock extends AbstractBlock {
 		if ( $this->action === 'board-history' ) {
 			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
 			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
-			$tplVars = array(
-				'title' => wfMessage( 'flow-board-history', $this->workflow->getArticleTitle() )->escaped(),
-				'historyExists' => false,
-			);
+			$title = $this->workflow->getArticleTitle();
 
-			$history = $this->loadBoardHistory();
-			if ( $history ) {
-				$tplVars['historyExists'] = true;
-				$tplVars['history'] = new History( $history );
-				$tplVars['historyRenderer'] = new HistoryRenderer( $templating, $this );
+			$lines = array();
+			$history = Container::get( 'board-history.query' )->getResults( $this->workflow );
+			$renderer = Container::get( 'board-history.formatter' );
+			// @todo is this the right context?
+			$ctx = \RequestContext::getMain();
+			foreach ( $history as $row ) {
+				$res = $renderer->format( $row, $ctx );
+				if ( $res !== false ) {
+					// formatter implementations always return safe html
+					$lines[] = $res;
+				}
 			}
 
-			$templating->render( "flow:board-history.html.php", $tplVars );
+			$templating->render( "flow:board-history.html.php", array(
+				'title' => wfMessage( 'flow-board-history', $title )->escaped(),
+				'lines' => $lines,
+				'historyExists' => count( $history ) > 0,
+			) );
 		} else {
 			$templating->getOutput()->addModuleStyles( array( 'ext.flow.header' ) );
 			$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
@@ -192,30 +195,6 @@ class HeaderBlock extends AbstractBlock {
 		);
 
 		return $output;
-	}
-
-	protected function loadBoardHistory() {
-		$history = $this->storage->find(
-			'BoardHistoryEntry',
-			array( 'topic_list_id' => $this->workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 300 )
-		);
-
-		if ( !$history ) {
-			throw new InvalidDataException( 'Unable to load topic list history for ' . $this->workflow->getId()->getAlphadecimal(), 'fail-load-history' );
-		}
-
-		// get rid of history entries user doesn't have sufficient permissions for
-		foreach ( $history as $i => $revision ) {
-			/** @var PostRevision|Header $revision */
-
-			// only check against the specific revision, ignoring the most recent
-			if ( !$this->permissions->isAllowed( $revision, 'post-history' ) ) {
-				unset( $history[$i] );
-			}
-		}
-
-		return $history;
 	}
 
 	public function getName() {
