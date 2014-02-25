@@ -555,7 +555,7 @@ class TopicHistoryIndex extends TopKIndex {
 		parent::onAfterRemove( $object, $old );
 	}
 
-	public function backingStoreFindMulti( array $queries, array $idxToKey, array $retval = array() ) {
+	protected function backingStoreFindMulti( array $queries, array $cacheKeys ) {
 		// all queries are for roots( guaranteed by constructor), so anything that falls
 		// through and has to be queried from storage will actually need to be doing a
 		// special condition either joining against flow_tree_node or first collecting the
@@ -582,19 +582,23 @@ class TopicHistoryIndex extends TopKIndex {
 			);
 		}
 
-		$res = $this->storage->findMulti( $descendantQueries, $this->queryOptions() );
+		$options = $this->queryOptions();
+		$res = $this->storage->findMulti( $descendantQueries, $options );
 		if  ( !$res ) {
 			return false;
 		}
+
+		$results = array();
+
 		foreach ( $res as $idx => $rows ) {
-			$retval[$idx] = $rows;
-			$this->cache->add( $idxToKey[$idx], $this->rowCompactor->compactRows( $rows ) );
+			$results[$idx] = $rows;
+			$this->cache->add( $cacheKeys[$idx], $this->rowCompactor->compactRows( $rows ) );
 			unset( $queries[$idx] );
 		}
 		if ( $queries ) {
 			// Log something about not finding everything?
 		}
-		return $retval;
+		return $results;
 	}
 }
 /**

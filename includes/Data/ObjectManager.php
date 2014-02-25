@@ -315,33 +315,17 @@ class ObjectLocator implements ObjectStorage {
 		} catch ( NoIndexException $e ) {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ': ' . $e->getMessage() );
 			$res = $this->storage->findMulti( $queries, $this->convertToDbOptions( $options ) );
-			$output = array();
-
-			foreach( $res as $index => $queryOutput ) {
-				$output[$index] = array_map( array( $this, 'load' ), $queryOutput );
-			}
-
-			return $output;
 		}
 
 		if ( $res === null ) {
 			return null;
 		}
 
-		$retval = array();
-		foreach ( $res as $i => $rows ) {
-			list( $startPos, $limit ) = $this->getOffsetLimit( $rows, $index, $options );
-			$keys = array_keys( $rows );
-			for(
-				$k = $startPos;
-				$k < $startPos + $limit && $k < count( $keys );
-				++$k
-			) {
-				$j = $keys[$k];
-				$retval[$i][$j] = $this->load( $rows[$j] );
-			}
+		$output = array();
+		foreach( $res as $index => $queryOutput ) {
+			$output[$index] = array_map( array( $this, 'load' ), $queryOutput );
 		}
-		return $retval;
+		return $output;
 	}
 
 	/**
@@ -461,76 +445,6 @@ class ObjectLocator implements ObjectStorage {
 		}
 
 		return $this->foundMulti( $queries );
-	}
-
-	/**
-	 * @param $rows
-	 * @param Index $index
-	 * @param array $options
-	 * @return array
-	 */
-	protected function getOffsetLimit( $rows, Index $index, array $options ) {
-		$limit = isset( $options['limit'] ) ? $options['limit'] : $index->getLimit();
-
-		if ( ! isset( $options['offset-key'] ) ) {
-			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
-			return array( $offset, $limit );
-		}
-
-		$offsetKey = $options['offset-key'];
-		if ( $offsetKey instanceof UUID ) {
-			$offsetKey = $offsetKey->getBinary();
-		}
-
-		$dir = 'fwd';
-		if (
-			isset( $options['offset-dir'] ) &&
-			$options['offset-dir'] === 'rev'
-		) {
-			$dir = 'rev';
-		}
-
-		$offset = $this->getOffsetFromKey( $rows, $offsetKey, $index );
-
-		if ( $dir === 'fwd' ) {
-			$startPos = $offset + 1;
-		} elseif ( $dir === 'rev' ) {
-			$startPos = $offset - $limit;
-
-			if ( $startPos < 0 ) {
-				if (
-					isset( $options['offset-elastic'] ) &&
-					$options['offset-elastic'] === false
-				) {
-					// If non-elastic, then reduce the number of items shown commeasurately
-					$limit += $startPos;
-				}
-				$startPos = 0;
-			}
-		} else {
-			// bail?
-			$startPos = 0;
-		}
-
-		return array( $startPos, $limit );
-	}
-
-	protected function getOffsetFromKey( $rows, $offsetKey, Index $index ) {
-		$offset = false;
-		for( $rowIndex = 0; $rowIndex < count( $rows ); ++$rowIndex ) {
-			$row = $rows[$rowIndex];
-			$comparisonValue = $index->compareRowToOffset( $row, $offsetKey );
-			if ( $comparisonValue <= 0 ) {
-				$offset = $rowIndex;
-				break;
-			}
-		}
-
-		if ( $offset === false ) {
-			throw new DataModelException( 'Unable to find specified offset in query results', 'process-data' );
-		}
-
-		return $offset;
 	}
 
 	public function clear() {
@@ -1196,6 +1110,84 @@ abstract class FeatureIndex implements Index {
 		return isset( $this->options['sort'] ) ? $this->options['sort'] : false;
 	}
 
+	/**
+	 * @param array $rows
+	 * @param array $options
+	 * @return array [offset, limit]
+	 */
+	protected function getOffsetLimit( $rows, $options ) {
+		$limit = isset( $options['limit'] ) ? $options['limit'] : $this->getLimit();
+
+		if ( !isset( $options['offset-key'] ) ) {
+			$offset = isset( $options['offset'] ) ? $options['offset'] : 0;
+			return array( $offset, $limit );
+		}
+
+		$offsetKey = $options['offset-key'];
+		if ( $offsetKey instanceof UUID ) {
+			$offsetKey = $offsetKey->getBinary();
+		}
+
+		$dir = 'fwd';
+		if (
+			isset( $options['offset-dir'] ) &&
+			$options['offset-dir'] === 'rev'
+		) {
+			$dir = 'rev';
+		}
+
+		$offset = $this->getOffsetFromKey( $rows, $offsetKey );
+
+		if ( $dir === 'fwd' ) {
+			$startPos = $offset + 1;
+		} elseif ( $dir === 'rev' ) {
+			$startPos = $offset - $limit;
+
+			if ( $startPos < 0 ) {
+				if (
+					isset( $options['offset-elastic'] ) &&
+					$options['offset-elastic'] === false
+				) {
+					// If non-elastic, then reduce the number of items shown commensurately
+					$limit += $startPos;
+				}
+				$startPos = 0;
+			}
+		}
+
+		return array( $startPos, $limit );
+	}
+
+	/**
+	 * @param array $rows
+	 * @param $offsetKey
+	 * @return int
+	 * @throws DataModelException
+	 */
+	protected function getOffsetFromKey( $rows, $offsetKey ) {
+		$offset = false;
+		for( $rowIndex = 0; $rowIndex < count( $rows ); ++$rowIndex ) {
+			$row = $rows[$rowIndex];
+			$comparisonValue = $this->compareRowToOffset( $row, $offsetKey );
+			if ( $comparisonValue <= 0 ) {
+				$offset = $rowIndex;
+				break;
+			}
+		}
+
+		if ( $offset === false ) {
+			throw new DataModelException( 'Unable to find specified offset in query results', 'process-data' );
+		}
+
+		return $offset;
+	}
+
+	/**
+	 * @param $row
+	 * @param $offset
+	 * @return int
+	 * @throws DataModelException
+	 */
 	public function compareRowToOffset( $row, $offset ) {
 		$sortFields = $this->getSort();
 		$splitOffset = explode( '|', $offset );
@@ -1284,11 +1276,8 @@ abstract class FeatureIndex implements Index {
 		// get cache keys for all queries
 		$cacheKeys = $this->getCacheKeys( $queries );
 
-		$results = $keyToIdx = $keyToQuery = array();
+		$results = $keyToQuery = array();
 		foreach ( $cacheKeys as $i => $key ) {
-			// allow for duplicate queries
-			$keyToIdx[$key][] = $i;
-
 			// These results will be merged into the query results, and as such need binary
 			// uuid's as would be received from storage
 			if ( !isset( $keyToQuery[$key] ) ) {
@@ -1296,21 +1285,65 @@ abstract class FeatureIndex implements Index {
 			}
 		}
 
-		// Retrieve from cache
-		$cached = $this->cache->getMulti( $cacheKeys );
-		// expand partial results and merge into result set
-		foreach ( $this->rowCompactor->expandCacheResult( $cached, $keyToQuery ) as $key => $rows ) {
-			foreach ( $keyToIdx[$key] as $idx ) {
-				$results[$idx] = $rows;
-				unset( $queries[$idx] );
+		// retrieve from cache (only query duplicate queries once)
+		$cached = $this->cache->getMulti( array_unique( $cacheKeys ) );
+		$cached = $this->filterResults( $cached, $options );
+		$cached = $this->rowCompactor->expandCacheResult( $cached, $keyToQuery );
+
+		foreach ( $cached as $key => $result ) {
+			$indexes = array_keys( $cacheKeys, $key );
+			foreach ( $indexes as $i ) {
+				// write to complete results array (where the index of the
+				// result matches the index of the given queries)
+				$results[$i] = $result;
+
+				// filter out queries that have been resolved from cache
+				unset( $queries[$i] );
 			}
 		}
-		// don't need to query backing store
-		if ( count( $queries ) === 0 ) {
-			return $results;
+
+		// whatever hasn't been found in cache - fetch it from storage
+		if ( $queries ) {
+			$remaining = $this->backingStoreFindMulti( $queries, $cacheKeys );
+			$remaining = $this->filterResults( $remaining, $options );
+
+			// keys are exactly the same as they were in $queries, so we can +
+			// the result arrays without worrying about overwriting stuff that
+			// has the same key
+			$results += $remaining;
 		}
 
-		return $this->backingStoreFindMulti( $queries, $cacheKeys, $results );
+		// now make sure $results are in the same order $queries was (use
+		// $cacheKeys for references, because $queries has been cleaned out)
+		$ordered = array();
+		foreach ( $cacheKeys as $i => $key ) {
+			if ( isset( $results[$i] ) ) {
+				$ordered[$i] = $results[$i];
+			}
+		}
+
+		return $ordered;
+	}
+
+	/**
+	 * Get rid of unneeded, according to the given $options.
+	 *
+	 * This is used to strip entries before expanding them;
+	 * basically, at that point, we may only have a list of ids, which we need
+	 * to expand (= fetch from cache) - don't want to do this for more than
+	 * what is needed
+	 *
+	 * @param array $results
+	 * @param array[optional] $options
+	 * @return array
+	 */
+	protected function filterResults( array $results, array $options = array() ) {
+		foreach ( $results as $i => $result ) {
+			list( $offset, $limit ) = $this->getOffsetLimit( $result, $options );
+			$results[$i] = array_slice( $result, $offset, $limit, true );
+		}
+
+		return $results;
 	}
 
 	/**
@@ -1412,23 +1445,26 @@ abstract class FeatureIndex implements Index {
 		return $idxToKey;
 	}
 
-	protected function backingStoreFindMulti( array $queries, array $idxToKey, array $results = array() ) {
+	protected function backingStoreFindMulti( array $queries, array $cacheKeys ) {
 		// query backing store
-		$stored = $this->storage->findMulti( $queries, $this->queryOptions() );
+		$options = $this->queryOptions();
+		$stored = $this->storage->findMulti( $queries, $options );
+		$results = array();
+
 		// map store results to cache key
 		foreach ( $stored as $idx => $rows ) {
 			if ( !$rows ) {
 				// Nothing found,  should we cache failures as well as success?
 				continue;
 			}
-			foreach( $rows as $row ) {
+			foreach ( $rows as $row ) {
 				foreach ( $row as $k => $foo ) {
 					if ( $foo !== null && !is_scalar( $foo ) ) {
 						throw new DataModelException( "Received non-scalar row value for '$k' from: " . get_class( $this->storage ), 'process-data' );
 					}
 				}
 			}
-			$this->cache->add( $idxToKey[$idx], $this->rowCompactor->compactRows( $rows ) );
+			$this->cache->add( $cacheKeys[$idx], $this->rowCompactor->compactRows( $rows ) );
 			$results[$idx] = $rows;
 			unset( $queries[$idx] );
 		}

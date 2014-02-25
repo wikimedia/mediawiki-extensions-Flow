@@ -116,18 +116,16 @@ class BoardHistoryIndex extends TopKIndex {
 		return parent::findMulti( $queries, $options );
 	}
 
-	public function backingStoreFindMulti( array $queries, array $idxToKey, array $retval = array() ) {
-		$res = $this->storage->findMulti( $queries, $this->queryOptions() );
+	public function backingStoreFindMulti( array $queries, array $cacheKeys ) {
+		$options = $this->queryOptions();
+		$res = $this->storage->findMulti( $queries, $options );
 		if  ( !$res ) {
 			return false;
 		}
 
 		$res = reset( $res );
-
-		$this->cache->add( current( $idxToKey ), $this->rowCompactor->compactRows( $res ) );
-		$retval[] = $res;
-
-		return $retval;
+		$this->cache->add( current( $cacheKeys ), $this->rowCompactor->compactRows( $res ) );
+		return array( $res );
 	}
 
 	/**
