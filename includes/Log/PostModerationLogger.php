@@ -3,10 +3,8 @@
 namespace Flow\Log;
 
 use Flow\Data\LifecycleHandler;
-use Flow\Data\ManagerGroup;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
-use Flow\Repository\TreeRepository;
 
 class PostModerationLogger implements LifecycleHandler {
 	/**

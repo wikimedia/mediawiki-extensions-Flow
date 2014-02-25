@@ -4,7 +4,6 @@ namespace Flow\Log;
 
 use Flow\FlowActions;
 use Flow\Model\PostRevision;
-use Flow\Model\Workflow;
 use Flow\UrlGenerator;
 use ManualLogEntry;
 use User;
