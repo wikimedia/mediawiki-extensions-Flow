@@ -69,7 +69,7 @@ class RecentChanges extends AbstractFormatter {
 			return false;
 		}
 
-		if ( !$this->getPermissions( $user )->isRevisionAllowed( $revision, 'recentchanges' ) ) {
+		if ( !$this->getPermissions( $user )->isAllowed( $revision, 'recentchanges' ) ) {
 			return false;
 		}
 
