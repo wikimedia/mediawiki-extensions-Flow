@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_3b964143",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-25T22:14:01Z",
+      "side": 1,
+      "message": "That would probably be the better way to do it, yes :)",
+      "parentUuid": "4e04eb01_358890eb",
+      "revId": "9587a2ba73b3c68c33d5738d15e1eb228e86823e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_0f2a278f",
         "filename": "includes/View/Revision.php",
         "patchSetId": 16
@@ -100,6 +118,24 @@
       "side": 1,
       "message": "PostCollection can be created from either postId or postRevision object.  With only revId provided, It needs to query the storage to get postId.  Maybe add newFromRevisionId to Collection?",
       "parentUuid": "4e04eb01_af2e939e",
+      "revId": "9587a2ba73b3c68c33d5738d15e1eb228e86823e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_fb99f980",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-25T22:14:01Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure postId is also known to Topic.php ($options[\u0027postId\u0027]), so it could be passed to this function.\n\nnewFromRevisionId could be added to Collection and while I\u0027m not really against adding it, I would avoid adding it unless we really need it because it means we\u0027ll be fetching data in different ways and it may be harder to optimize.\n\nE.g. PostCollection will try to fetch 1 specific revision (if already known in local cache) or fetch multiple revisions at once if it has to fallback to doing a network roundtrip, which would lead to both diff revisions being fetched at once, instead of doing 2 separate cache/db requests.",
+      "parentUuid": "4e04eb01_75c4d811",
       "revId": "9587a2ba73b3c68c33d5738d15e1eb228e86823e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
