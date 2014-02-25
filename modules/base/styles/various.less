@@ -76,25 +76,9 @@ span.flow-datestamp {
 	opacity: 0.6;
 }
 
-// Overwrite user link color
-.flow-container {
-	a {
-		&.mw-userlink {
-			color: @username-color;
-			&.new {
-				color: @username-redlink-color;
-			}
-		}
-	}
-	.mw-usertoollinks {
-		font-weight: normal;
-		a {
-			color: @username-color;
-			&.new {
-				color: @username-redlink-color;
-			}
-		}
-	}
+// additional user links should never be bolded
+.flow-container .mw-usertoollinks {
+	font-weight: normal;
 }
 
 // For some reason, when overflow:(auto|scroll) is applied to the element where
