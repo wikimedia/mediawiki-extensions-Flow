@@ -25,7 +25,7 @@ abstract class AbstractQuery {
 	/**
 	 * @var TreeRepository
 	 */
-	protected $treeRepo;
+	protected $treeRepository;
 
 	/**
 	 * @var UUID[] Associative array of post ID to root post's UUID object.
@@ -44,11 +44,11 @@ abstract class AbstractQuery {
 
 	/**
 	 * @param ManagerGroup $storage
-	 * @param TreeRepository $treeRepo
+	 * @param TreeRepository $treeRepository
 	 */
-	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo ) {
+	public function __construct( ManagerGroup $storage, TreeRepository $treeRepository ) {
 		$this->storage = $storage;
-		$this->treeRepo = $treeRepo;
+		$this->treeRepository = $treeRepository;
 	}
 
 	protected function loadMetadataBatch( $results ) {
@@ -73,7 +73,7 @@ abstract class AbstractQuery {
 		}
 
 		// map from post Id to the related root post id
-		$rootPostIds = array_filter( $this->treeRepo->findRoots( $postIds ) );
+		$rootPostIds = array_filter( $this->treeRepository->findRoots( $postIds ) );
 
 		$rootPostRequests = array();
 		foreach( $rootPostIds as $postId ) {
@@ -120,11 +120,10 @@ abstract class AbstractQuery {
 
 	/*
 	 * @param AbstractRevision $revision
-	 * @param string $blockType Block name (e.g. "topic", "header")
 	 * @param string $indexField The field used for pagination
 	 * @return \stdClass
 	 */
-	protected function buildResult( AbstractRevision $revision, $blockType, $indexField ) {
+	protected function buildResult( AbstractRevision $revision, $indexField ) {
 		$uuid = $revision->getRevisionId();
 		$timestamp = $uuid->getTimestamp();
 		$fakeRow = array();
@@ -142,7 +141,6 @@ abstract class AbstractQuery {
 		$fakeRow['revision'] = $revision;
 		$fakeRow['previous_revision'] = $this->getPreviousRevision( $revision );
 		$fakeRow['workflow'] = $workflow;
-		$fakeRow['blocktype'] = $blockType;
 
 		if ( $revision instanceof PostRevision ) {
 			$fakeRow['root_post'] = $this->getRootPost( $revision );
@@ -164,7 +162,6 @@ abstract class AbstractQuery {
 	protected function getWorkflow( AbstractRevision $revision ) {
 		if ( $revision instanceof PostRevision ) {
 			$rootPostId = $this->getRootPostId( $revision );
-
 			return $this->getWorkflowById( $rootPostId );
 		} elseif ( $revision instanceof Header ) {
 			return $this->getWorkflowById( $revision->getWorkflowId() );

@@ -78,7 +78,7 @@ class ContributionsQuery extends AbstractQuery {
 			$this->loadMetadataBatch( $revisions );
 			foreach ( $revisions as $revision ) {
 				try {
-					$result = $this->buildResult( $revision, $blockType, $pager->getIndexField() );
+					$result = $this->buildResult( $revision, $pager->getIndexField() );
 					$result->flow_contribution = 'flow';
 				} catch ( FlowException $e ) {
 					$result = false;

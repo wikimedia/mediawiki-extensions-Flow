@@ -77,6 +77,10 @@ $c['redlinker'] = $c->share( function( $c ) {
 	return new Flow\Redlinker( $wgFlowParsoidTitle ?: $wgTitle, $c['link_batch'] );
 } );
 
+$c['permissions'] = $c->share( function( $c ) {
+	return new Flow\RevisionActionPermissions( $c['flow_actions'], $c['user'] );
+} );
+
 $c['templating.namespaces'] = array(
 	'flow' => __DIR__ . '/templates',
 );
@@ -89,7 +93,7 @@ $c['templating.global_variables'] = $c->share( function( $c ) {
 		'user' => $user,
 		'editToken' => $user->getEditToken( $wgFlowTokenSalt ),
 		'maxThreadingDepth' => $wgFlowMaxThreadingDepth,
-		'permissions' => new Flow\RevisionActionPermissions( $c['flow_actions'], $user ),
+		'permissions' => $c['permissions'],
 	);
 } );
 
@@ -186,7 +190,8 @@ $c['storage.board_history.backing'] = $c->share( function( $c ) {
 } );
 
 $c['storage.board_history.index'] = $c->share( function( $c ) {
-	return new BoardHistoryIndex( $c['memcache.buffered'], $c['storage.board_history.backing'], 'flow_revision:topic_list_history',
+	return new BoardHistoryIndex( $c['memcache.buffered'], $c['storage.board_history.backing'],
+		'flow_revision:vXxXxX:topic_list_history',
 		array( 'topic_list_id' ),
 		array(
 			'limit' => 500,
@@ -458,16 +463,20 @@ $c['controller.spamfilter'] = $c->share( function( $c ) {
 
 $c['checkuser.formatter'] = $c->share( function( $c ) {
 	return new Flow\Formatter\CheckUser(
-		$c['storage'],
-		$c['flow_actions'],
+		$c['permissions'],
 		$c['templating']
 	);
 } );
 
+$c['recentchanges.query'] = $c->share( function( $c ) {
+	return new Flow\Formatter\RecentChangesQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
 $c['recentchanges.formatter'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RecentChanges(
-		$c['storage'],
-		$c['flow_actions'],
+		$c['permissions'],
 		$c['templating']
 	);
 } );
@@ -481,12 +490,22 @@ $c['contributions.query'] = $c->share( function( $c ) {
 } );
 $c['contributions.formatter'] = $c->share( function( $c ) {
 	return new Flow\Formatter\Contributions(
-		$c['storage'],
-		$c['flow_actions'],
+		$c['permissions'],
 		$c['templating']
 	);
 } );
-
+$c['board-history.query'] = $c->share( function( $c ) {
+	return new Flow\Formatter\BoardHistoryQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
+$c['board-history.formatter'] = $c->share( function( $c ) {
+	return new Flow\Formatter\BoardHistory(
+		$c['permissions'],
+		$c['templating']
+	);
+} );
 $c['logger'] = $c->share( function( $c ) {
 	return new Flow\Log\Logger(
 		$c['flow_actions'],
