@@ -266,7 +266,7 @@
 		// find matching edit form at (max threading depth - 1)
 		this.$form = $( this.object.$container )
 			.closest( '.flow-post-container:not(.flow-post-max-depth)' )
-			.find( '.flow-post-reply-container' );
+			.find( '.flow-post-reply-container:last' );
 
 		// quit if reply form is already open
 		if ( this.$form.is( ':visible' ) ) {
