@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_358890eb",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-25T19:39:18Z",
+      "side": 1,
+      "message": "Would it be easier just use treeRepo-\u003efindRootPath() to get the depth inside PostRevisionView::newFromId()?  loadRequestedPost accepts post_id, that will require querying the storage for post_id from rev_id in the block.",
+      "parentUuid": "4e04eb01_4f170f57",
+      "revId": "9587a2ba73b3c68c33d5738d15e1eb228e86823e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_0f2a278f",
         "filename": "includes/View/Revision.php",
         "patchSetId": 16
@@ -64,6 +82,24 @@
       "writtenOn": "2014-02-25T14:41:21Z",
       "side": 1,
       "message": "I\u0027d suggest to use *RevisionCollection instead\n\n* It would be easier to implement (don\u0027t need to pass along $storage, don\u0027t need to define $mapper\n* May be easier to control \u0026 improve how data is fetched (e.g. batchload in advance), if not everything has an own implementation\n\nE.g.\n\n    public static function mewFromId( UUID $postId, UUID $revId, ... ) {\n        $collection \u003d PostCollection::newFromId( $postId );\n        $revision \u003d $collection-\u003egetRevision( $revId );\n        ...\n    }",
+      "revId": "9587a2ba73b3c68c33d5738d15e1eb228e86823e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_75c4d811",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-25T19:39:18Z",
+      "side": 1,
+      "message": "PostCollection can be created from either postId or postRevision object.  With only revId provided, It needs to query the storage to get postId.  Maybe add newFromRevisionId to Collection?",
+      "parentUuid": "4e04eb01_af2e939e",
       "revId": "9587a2ba73b3c68c33d5738d15e1eb228e86823e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
