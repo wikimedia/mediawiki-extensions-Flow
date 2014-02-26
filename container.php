@@ -131,23 +131,6 @@ $c['memcache.buffered'] = $c->share( function( $c ) {
 $c['repository.username'] = $c->share( function( $c ) {
 	return new Flow\Data\UserNameBatch( new Flow\Data\TwoStepUsernameQuery( $c['db.factory'] ) );
 } );
-// Per wiki workflow definitions (types of workflows)
-$c['storage.definition'] = $c->share( function( $c ) {
-	$cache = $c['memcache.buffered'];
-	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Definition' );
-	$storage = new BasicDbStorage(
-		// factory and table
-		$c['db.factory'], 'flow_definition',
-		// pk
-		array( 'definition_id' )
-	);
-	$indexes = array(
-		new UniqueFeatureIndex( $cache, $storage, 'flow_definition:pk', array( 'definition_id' ) ),
-		new UniqueFeatureIndex( $cache, $storage, 'flow_definition:name', array( 'definition_wiki', 'definition_name' ) ),
-	);
-
-	return new ObjectManager( $mapper, $storage, $indexes );
-} );
 // Individual workflow instances
 $c['storage.workflow'] = $c->share( function( $c ) {
 	$cache = $c['memcache.buffered'];
@@ -164,7 +147,7 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 		// This is actually a unique index, but it wants the shallow functionality.
 		new TopKIndex(
 			$cache, $storage, 'flow_workflow:title',
-			array( 'workflow_wiki', 'workflow_namespace', 'workflow_title_text', 'workflow_definition_id' ),
+			array( 'workflow_wiki', 'workflow_namespace', 'workflow_title_text'),
 			array( 'shallow' => $pk, 'limit' => 1, 'sort' => 'workflow_id' )
 		),
 	);
@@ -386,9 +369,6 @@ $c['storage'] = $c->share( function( $c ) {
 	return new \Flow\Data\ManagerGroup(
 		$c,
 		array(
-			'Flow\\Model\\Definition' => 'storage.definition',
-			'Definition' => 'storage.definition',
-
 			'Flow\\Model\\Workflow' => 'storage.workflow',
 			'Workflow' => 'storage.workflow',
 
