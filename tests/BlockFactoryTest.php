@@ -3,8 +3,7 @@
 namespace Flow\Tests;
 
 use Flow\BlockFactory;
-use Flow\Container;
-use ReflectionClass;
+use Flow\NotificationController;
 
 /**
  * @group Flow
@@ -21,11 +20,11 @@ class BlockFactoryTest extends FlowTestCase {
 	/**
 	 * @dataProvider provideDataCreateBlocks
 	 */
-	public function testCreateBlocks( $definitionType, $expectedResults ) {
+	public function testCreateBlocks( $workflowType, $expectedResults ) {
 		$factory = $this->createBlockFactory();
-		list( $definition, $workflow ) = $this->mockWorkflow( $definitionType );
+		$workflow = $this->mockWorkflow( $workflowType );
 
-		$blocks = $factory->createBlocks( $definition, $workflow );
+		$blocks = $factory->createBlocks( $workflow );
 		$this->assertEquals( count( $blocks ), count( $expectedResults ) );
 
 		$results = array();
@@ -40,9 +39,9 @@ class BlockFactoryTest extends FlowTestCase {
 	 */
 	public function testCreateBlocksWithInvalidInputException() {
 		$factory = $this->createBlockFactory();
-		list( $definition, $workflow ) = $this->mockWorkflow( 'a-bad-database-flow-definition' );
+		$workflow = $this->mockWorkflow( 'a-bad-database-flow-workflow' );
 		// Trigger InvalidInputException
-		$factory->createBlocks( $definition, $workflow );
+		$factory->createBlocks( $workflow );
 	}
 
 	protected function createBlockFactory() {
@@ -54,7 +53,7 @@ class BlockFactoryTest extends FlowTestCase {
 
 		// phpunit mocker fails to generate the correct method definition for
 		// NotificationController::getDefaultNotifiedUsers, just use the real one
-		$notificationController = new \Flow\NotificationController( $wgLang );
+		$notificationController = new NotificationController( $wgLang );
 
 		$rootPostLoader = $this->getMockBuilder( '\Flow\Data\RootPostLoader' )
 			->disableOriginalConstructor()
@@ -64,17 +63,13 @@ class BlockFactoryTest extends FlowTestCase {
 	}
 
 	protected function mockWorkflow( $type ) {
-		$definition = $this->getMockBuilder( '\Flow\Model\Definition' )
-			->disableOriginalConstructor()
-			->getMock();
-		$definition->expects( $this->any() )
-			->method( 'getType' )
-			->will( $this->returnValue( $type ) );
-
 		$workflow = $this->getMockBuilder( '\Flow\Model\Workflow' )
 			->disableOriginalConstructor()
 			->getMock();
+		$workflow->expects( $this->any() )
+			->method( 'getType' )
+			->will( $this->returnValue( $type ) );
 
-		return array( $definition, $workflow );
+		return $workflow;
 	}
 }
