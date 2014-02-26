@@ -8,7 +8,6 @@ use Flow\Block\TopicBlock;
 use Flow\Block\TopicListBlock;
 use Flow\Block\TopicSummaryBlock;
 use Flow\Block\BoardHistoryBlock;
-use Flow\Model\Definition;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Data\BufferedCache;
@@ -21,16 +20,20 @@ use Flow\Exception\InvalidActionException;
 use WebRequest;
 
 class WorkflowLoader {
-	protected $dbFactory, $bufferedCache;
+	/**
+	 * @var DbFactory
+	 */
+	protected $dbFactory;
+
+	/**
+	 * @var BufferedCache
+	 */
+	protected $bufferedCache;
+
 	/**
 	 * @var Workflow
 	 */
 	protected $workflow;
-
-	/**
-	 * @var Definition
-	 */
-	protected $definition;
 
 	/**
 	 * @var ManagerGroup
@@ -47,15 +50,9 @@ class WorkflowLoader {
 	 */
 	protected $notificationController;
 
-	/**
-	 * @var string
-	 */
-	protected $definitionRequest;
-
 	public function __construct(
 			$pageTitle,
 			/*UUID or NULL*/ $workflowId,
-			$definitionRequest,
 			DbFactory $dbFactory,
 			BufferedCache $bufferedCache,
 			ManagerGroup $storage,
@@ -76,26 +73,17 @@ class WorkflowLoader {
 		$this->rootPostLoader = $rootPostLoader;
 		$this->notificationController = $notificationController;
 
-		$this->definitionRequest = $definitionRequest;
-
-		$workflow = null;
-
 		if ( $workflowId !== null ) {
-			list( $workflow, $definition ) = $this->loadWorkflowById( $pageTitle, $workflowId );
+			$workflow = $this->loadWorkflowById( $pageTitle, $workflowId );
 		} else {
-			list( $workflow, $definition ) = $this->loadWorkflow( $pageTitle );
+			$workflow = $this->loadWorkflow( $pageTitle );
 		}
 
-		if ( ! $workflow || ! $definition ) {
-			throw new InvalidDataException( 'Unable to load workflow and definition', 'fail-load-data' );
+		if ( ! $workflow ) {
+			throw new InvalidDataException( 'Unable to load workflow', 'fail-load-data' );
 		}
 
 		$this->workflow = $workflow;
-		$this->definition = $definition;
-	}
-
-	public function getDefinition() {
-		return $this->definition;
 	}
 
 	/**
@@ -105,17 +93,16 @@ class WorkflowLoader {
 		return $this->workflow;
 	}
 
+	/**
+	 * @param \Title $title
+	 * @return Workflow
+	 */
 	protected function loadWorkflow( \Title $title ) {
-		global $wgUser;
+		global $wgUser, $wgFlowDefaultWorkflow;
 		$storage = $this->storage->getStorage( 'Workflow');
 
-		$definition = $this->loadDefinition();
-		if ( !$definition->getOption( 'unique' ) ) {
-			throw new InvalidDataException( 'Workflow is non-unique, can only fetch object by title + id', 'fail-load-data' );
-		}
-
 		$found = $storage->find( array(
-			'workflow_definition_id' => $definition->getId(),
+			'workflow_type' => $wgFlowDefaultWorkflow,
 			'workflow_wiki' => $title->isLocal() ? wfWikiId() : $title->getTransWikiID(),
 			'workflow_namespace' => $title->getNamespace(),
 			'workflow_title_text' => $title->getDBkey(),
@@ -123,12 +110,18 @@ class WorkflowLoader {
 		if ( $found ) {
 			$workflow = reset( $found );
 		} else {
-			$workflow = Workflow::create( $definition, $wgUser, $title );
+			$workflow = Workflow::create( $wgFlowDefaultWorkflow, $wgUser, $title );
 		}
 
-		return array( $workflow, $definition );
+		return $workflow;
 	}
 
+	/**
+	 * @param Title|false $title
+	 * @param UUID $workflowId
+	 * @return Workflow
+	 * @throws InvalidInputException
+	 */
 	protected function loadWorkflowById( /* Title or false */ $title, $workflowId ) {
 		$workflow = $this->storage->getStorage( 'Workflow' )->get( $workflowId );
 		if ( !$workflow ) {
@@ -137,46 +130,17 @@ class WorkflowLoader {
 		if ( $title !== false && !$workflow->matchesTitle( $title ) ) {
 			throw new InvalidInputException( 'Flow workflow is for different page', 'invalid-input' );
 		}
-		$definition = $this->storage->getStorage( 'Definition' )->get( $workflow->getDefinitionId() );
-		if ( !$definition ) {
-			throw new InvalidInputException( 'Flow workflow references unknown definition id: ' . $workflow->getDefinitionId()->getAlphadecimal(), 'invalid-input' );
-		}
 
-		return array( $workflow, $definition );
-	}
-
-	protected function loadDefinition() {
-		global $wgFlowDefaultWorkflow;
-
-		$repo = $this->storage->getStorage( 'Definition' );
-		$id = $this->definitionRequest;
-		if ( $id instanceof UUID ) {
-			$definition = $repo->get( $id );
-			if ( $definition === null ) {
-				throw new InvalidInputException( "Unknown flow id '$id' requested", 'invalid-input' );
-			}
-		} else {
-			$workflowName = $id ? $id : $wgFlowDefaultWorkflow;
-			$found = $repo->find( array(
-				'definition_name' => strtolower( $workflowName ),
-				'definition_wiki' => wfWikiId(),
-			) );
-			if ( $found ) {
-				$definition = reset( $found );
-			} else {
-				throw new InvalidInputException( "Unknown flow type '$workflowName' requested", 'invalid-input' );
-			}
-		}
-		return $definition;
+		return $workflow;
 	}
 
 	/**
 	 * @return AbstractBlock[]
-	 * @throws InvalidInputException When the definition type is unrecognized
+	 * @throws InvalidInputException When the workflow type is unrecognized
 	 * @throws InvalidDataException When multiple blocks share the same name
 	 */
 	public function createBlocks() {
-		switch( $this->definition->getType() ) {
+		switch( $this->workflow->getType() ) {
 			case 'discussion':
 				$blocks = array(
 					new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
@@ -193,18 +157,17 @@ class WorkflowLoader {
 				break;
 
 			default:
-				throw new InvalidInputException( 'Not Implemented', 'invalid-definition' );
+				throw new InvalidInputException( 'Not Implemented: ' . $this->workflow->getType(), 'invalid-definition' );
 				break;
 		}
 
 		$return = array();
 		/** @var AbstractBlock[] $blocks */
 		foreach ( $blocks as $block ) {
-			if ( !isset( $return[$block->getName()] ) ) {
-				$return[$block->getName()] = $block;
-			} else {
+			if ( isset( $return[$block->getName()] ) ) {
 				throw new InvalidDataException( 'Multiple blocks with same name is not yet supported', 'fail-load-data' );
 			}
+			$return[$block->getName()] = $block;
 		}
 
 		return $return;
@@ -333,11 +296,10 @@ class WorkflowLoaderFactory {
 		$this->notificationController = $notificationController;
 	}
 
-	public function createWorkflowLoader( $pageTitle, $workflowId = null, $definitionRequest = false ) {
+	public function createWorkflowLoader( $pageTitle, $workflowId = null ) {
 		return new WorkflowLoader(
 			$pageTitle,
 			$workflowId,
-			$definitionRequest,
 			$this->dbFactory,
 			$this->bufferedCache,
 			$this->storage,

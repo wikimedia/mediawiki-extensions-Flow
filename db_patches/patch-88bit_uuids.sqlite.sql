@@ -1,13 +1,9 @@
-UPDATE /*_*/flow_definition
-	SET definition_id = substr( definition_id, 1, 11 );
-
-UPDATE /*_*/flow_workflow
-	SET workflow_id = substr( workflow_id, 1, 11 ),
-			workflow_definition_id = substr( workflow_definition_id, 1, 11 );
-
 UPDATE /*_*/flow_topic_list
 	SET topic_list_id = substr( topic_list_id, 1, 11 ),
 			topic_id = substr( topic_id, 1, 11 );
+
+UPDATE /*_*/flow_workflow
+   SET workflow_id = substr( workflow_id, 1, 11 );
 
 UPDATE /*_*/flow_tree_revision
 	SET tree_rev_descendant_id = substr( tree_rev_descendant_id, 1, 11 ),
