@@ -3,7 +3,6 @@
 namespace Flow;
 
 use Flow\Block\AbstractBlock;
-use Flow\Model\Definition;
 use Flow\Model\Workflow;
 use WebRequest;
 
@@ -12,11 +11,6 @@ class WorkflowLoader {
 	 * @var Workflow
 	 */
 	protected $workflow;
-
-	/**
-	 * @var Definition
-	 */
-	protected $definition;
 
 	/**
 	 * @var BlockFactory
@@ -29,28 +23,18 @@ class WorkflowLoader {
 	protected $submissionHandler;
 
 	/**
-	 * @param Definition $definition
 	 * @param Workflow $workflow
 	 * @param BlockFactory $blockFactory
 	 * @param SubmissionHandler $submissionHandler
 	 */
 	public function __construct(
-			Definition $definition,
 			Workflow $workflow,
 			BlockFactory $blockFactory,
 			SubmissionHandler $submissionHandler
 	) {
 		$this->blockFactory = $blockFactory;
 		$this->submissionHandler = $submissionHandler;
-		$this->definition = $definition;
 		$this->workflow = $workflow;
-	}
-
-	/**
-	 * @return Definition
-	 */
-	public function getDefinition() {
-		return $this->definition;
 	}
 
 	/**
@@ -64,7 +48,7 @@ class WorkflowLoader {
 	 * @return AbstractBlock[]
 	 */
 	public function createBlocks() {
-		return $this->blockFactory->createBlocks( $this->definition, $this->workflow );
+		return $this->blockFactory->createBlocks( $this->workflow );
 	}
 
 	public function handleSubmit( $action, array $blocks, $user, WebRequest $request ) {

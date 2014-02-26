@@ -74,12 +74,7 @@ class LinksTableTest extends PostRevisionTestCase {
 
 		if ( ! $workflow ) {
 			global $wgFlowDefaultWorkflow;
-			$definition = Container::get( 'storage' )->find( 'Definition', array(
-				'definition_name' => strtolower( $wgFlowDefaultWorkflow ),
-				'definition_wiki' => wfWikiId(),
-			) );
-
-			$workflow = Workflow::create( reset( $definition ), self::getTestUser(), $testTitle );
+			$workflow = Workflow::create( $wgFlowDefaultWorkflow, self::getTestUser(), $testTitle );
 		}
 
 		return $workflow;
