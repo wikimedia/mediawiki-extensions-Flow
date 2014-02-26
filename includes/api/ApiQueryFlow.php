@@ -10,7 +10,7 @@ use Flow\Model\UUID;
  * @deprecated
  */
 class ApiQueryFlow extends ApiQueryBase {
-	protected $loader, $workflow, $definition, $container;
+	protected $loader, $workflow, $container;
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'flow' );

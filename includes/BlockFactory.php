@@ -8,7 +8,6 @@ use Flow\Block\TopicBlock;
 use Flow\Block\TopicListBlock;
 use Flow\Block\TopicSummaryBlock;
 use Flow\Block\BoardHistoryBlock;
-use Flow\Model\Definition;
 use Flow\Model\Workflow;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
@@ -28,14 +27,13 @@ class BlockFactory {
 	}
 
 	/**
-	 * @param Definition $definition
 	 * @param Workflow $workflow
 	 * @return AbstractBlock[]
-	 * @throws InvalidInputException When the definition type is unrecognized
+	 * @throws InvalidInputException When the workflow type is unrecognized
 	 * @throws InvalidDataException When multiple blocks share the same name
 	 */
-	public function createBlocks( Definition $definition, Workflow $workflow ) {
-		switch( $definition->getType() ) {
+	public function createBlocks( Workflow $workflow ) {
+		switch( $workflow->getType() ) {
 			case 'discussion':
 				$blocks = array(
 					new HeaderBlock( $workflow, $this->storage, $this->notificationController ),
@@ -59,11 +57,10 @@ class BlockFactory {
 		$return = array();
 		/** @var AbstractBlock[] $blocks */
 		foreach ( $blocks as $block ) {
-			if ( !isset( $return[$block->getName()] ) ) {
-				$return[$block->getName()] = $block;
-			} else {
+			if ( isset( $return[$block->getName()] ) ) {
 				throw new InvalidDataException( 'Multiple blocks with same name is not yet supported', 'fail-load-data' );
 			}
+			$return[$block->getName()] = $block;
 		}
 
 		return $return;
