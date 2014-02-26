@@ -75,6 +75,10 @@ class Post {
 			$items[] = $editButton;
 		}
 
+		$classes = array( 'active' => 'mw-ui-button', 'inactive' => 'mw-ui-button mw-ui-disabled' );
+		wfRunHooks( 'FlowAddPostInteractionLinks',
+			array( $this->post, &$items, $classes ) );
+
 		return implode(
 			Html::element(
 				'span',
