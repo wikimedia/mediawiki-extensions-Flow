@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_6311bfb0",
+        "filename": "tests/PostRevisionTestCase.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-26T14:51:16Z",
+      "side": 1,
+      "message": "Nitpick: page_id 1 will usually always be Main_Page, not an arbitraty User_talk:Test page.\n\nDoesn\u0027t really matter here now, though; maybe just add some comment that the test workflows have no real page associated with them?",
+      "revId": "40d8550dc024d67f5dd38dcce92f0ae7f4742998",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_831a8bce",
+        "filename": "tests/PostRevisionTestCase.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-26T14:51:16Z",
+      "side": 1,
+      "message": "Should probably also save these somewhere and storage-\u003edelete() them on teardown",
+      "revId": "40d8550dc024d67f5dd38dcce92f0ae7f4742998",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
