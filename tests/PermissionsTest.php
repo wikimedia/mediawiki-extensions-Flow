@@ -16,6 +16,11 @@ use Block;
  */
 class PermissionsTest extends PostRevisionTestCase {
 	/**
+	 * @var array
+	 */
+	protected $tablesUsed = array( 'user', 'user_groups', 'ipblocks' );
+
+	/**
 	 * @var FlowActions
 	 */
 	protected $actions;
