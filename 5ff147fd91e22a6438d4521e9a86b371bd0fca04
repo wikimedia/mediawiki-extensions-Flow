@@ -16,6 +16,24 @@
       "revId": "5ff147fd91e22a6438d4521e9a86b371bd0fca04",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_06fa0940",
+        "filename": "tests/PermissionsTest.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-26T18:27:20Z",
+      "side": 0,
+      "message": "Oops, I must have removed it accidentally during the rebase \u0026 testing the unit test failure",
+      "parentUuid": "4e04eb01_23a0578c",
+      "revId": "5ff147fd91e22a6438d4521e9a86b371bd0fca04",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
