@@ -12,6 +12,11 @@ use Flow\Exception\InvalidInputException;
 class Workflow {
 
 	/**
+	 * @var string[]
+	 */
+	static private $allowedTypes = array( 'discussion', 'topic' );
+
+	/**
 	 * @var UUID
 	 */
 	protected $id;
@@ -71,11 +76,6 @@ class Workflow {
 	protected $lockState;
 
 	/**
-	 * @var UUID
-	 */
-	protected $definitionId;
-
-	/**
 	 * @var string
 	 */
 	protected $lastModified;
@@ -96,7 +96,7 @@ class Workflow {
 		}
 		$obj->id = UUID::create( $row['workflow_id'] );
 		$obj->isNew = false;
-		$obj->type = isset( $row['workflow_type'] ) ? $row['workflow_type'] : '';
+		$obj->type = $row['workflow_type'];
 		$obj->wiki = $row['workflow_wiki'];
 		$obj->pageId = $row['workflow_page_id'];
 		$obj->namespace = (int) $row['workflow_namespace'];
@@ -110,7 +110,6 @@ class Workflow {
 		}
 		$obj->userWiki = isset( $row['workflow_user_wiki'] ) ? $row['workflow_user_wiki'] : '';
 		$obj->lockState = $row['workflow_lock_state'];
-		$obj->definitionId = UUID::create( $row['workflow_definition_id'] );
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
 		return $obj;
 	}
@@ -131,7 +130,6 @@ class Workflow {
 			'workflow_user_ip' => $obj->userIp,
 			'workflow_user_wiki' => $obj->userWiki,
 			'workflow_lock_state' => $obj->lockState,
-			'workflow_definition_id' => $obj->definitionId->getAlphadecimal(),
 			'workflow_last_update_timestamp' => $obj->lastModified,
 			// not used, but set it to empty string so it doesn't fail in strict mode
 			'workflow_name' => '',
@@ -139,20 +137,20 @@ class Workflow {
 	}
 
 	/**
-	 * @param Definition $definition
 	 * @param User $user
 	 * @param Title $title
 	 * @return Workflow
 	 * @throws DataModelException
 	 */
-	static public function create( Definition $definition, User $user, Title $title ) {
+	static public function create( $type, User $user, Title $title ) {
+		// temporary limitation until we implement something more concrete
+		if ( !in_array( $type, self::$allowedTypes ) ) {
+			throw new DataModelException( 'Invalid workflow type provided: ' . $type, 'process-data' );
+		}
 		if ( $title->isLocal() ) {
 			$wiki = wfWikiId();
 		} else {
 			$wiki = $title->getTransWikiID();
-		}
-		if ( $definition->getWiki() !== $wiki ) {
-			throw new DataModelException( 'Title and Definition are from separate wikis', 'process-data' );
 		}
 
 		$obj = new self;
@@ -160,14 +158,13 @@ class Workflow {
 		// simpler in prototype to give everything an id up front?
 		$obj->id = UUID::create();
 		$obj->isNew = true; // has not been persisted
-		$obj->wiki = $definition->getWiki();
-		$obj->type = $definition->getType();
+		$obj->type = $type;
+		$obj->wiki = $wiki;
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();
 		list( $obj->userId, $obj->userIp, $obj->userWiki ) = AbstractRevision::userFields( $user );
 		$obj->lockState = 0;
-		$obj->definitionId = $definition->getId();
 		$obj->updateLastModified();
 
 		return $obj;
@@ -201,11 +198,6 @@ class Workflow {
 	 * @return boolean
 	 */
 	public function isNew() { return (bool) $this->isNew; }
-
-	/**
-	 * @return UUID
-	 */
-	public function getDefinitionId() { return $this->definitionId; }
 
 	/**
 	 * @return integer

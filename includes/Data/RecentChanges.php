@@ -100,7 +100,6 @@ abstract class RecentChanges implements LifecycleHandler {
 					'revision_type' => $revisionType,
 					'revision' => $revisionId,
 					'workflow' => $workflow->getId()->getAlphadecimal(),
-					'definition' => $workflow->getDefinitionId()->getAlphadecimal(),
 					'prev_revision' => $revision->isFirstRevision()
 						? null
 						: $revision->getPrevRevisionId()->getAlphadecimal()

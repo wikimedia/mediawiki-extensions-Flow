@@ -1,9 +1,5 @@
-ALTER TABLE /*_*/flow_definition
-	CHANGE definition_id definition_id binary(11) not null;
-
 ALTER TABLE /*_*/flow_workflow
-	CHANGE workflow_id workflow_id binary(11) not null,
-	CHANGE workflow_definition_id workflow_definition_id binary(11) not null;
+	CHANGE workflow_id workflow_id binary(11) not null;
 
 ALTER TABLE /*_*/flow_topic_list
 	CHANGE topic_list_id topic_list_id binary(11) not null,

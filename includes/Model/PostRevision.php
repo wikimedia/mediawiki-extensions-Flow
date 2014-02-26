@@ -117,7 +117,7 @@ class PostRevision extends AbstractRevision {
 	 * that this will do what you'd expect.
 	 * Unlike Title & User etc, a post is not something some object that can be
 	 * used in isolation: a post should always be retrieved via it's parents,
-	 * via a workflow, via a definition, ...
+	 * via a workflow, ...
 	 * The only reason we have this method is so that, when failing to load a
 	 * post, we can create a stub object.
 	 *
