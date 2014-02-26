@@ -1133,7 +1133,7 @@ See also:
 This message will only be shown for the first revision.
 
 Parameters:
-* $1 - date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC2822 timestamp when hovered over.
+* $1 - (Unused) date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC2822 timestamp when hovered over.
 * $2 - URL to the history page
 See also:
 * {{msg-mw|Flow-revision-permalink-warning-header}}',
@@ -1296,7 +1296,32 @@ $messages['ast'] = array(
 	'flow-error-no-existing-workflow' => 'Esti fluxu de trabayu inda nun esiste.',
 	'flow-error-not-a-post' => 'El títulu del asuntu nun pue guardase como mensaxe.',
 	'flow-error-missing-header-content' => 'La testera nun tien conteníu. El conteníu ye obligatoriu pa guardar una testera.',
+	'flow-error-missing-prev-revision-identifier' => "Falta l'identificador de revisión anterior.",
+	'flow-error-prev-revision-mismatch' => "Otru usuariu acaba d'editar esti mensaxe hai dellos segundos. ¿Ta seguru de que quier sobreescribir esi cambiu?",
+	'flow-error-prev-revision-does-not-exist' => 'Nun pudo alcontrase la revisión anterior.',
+	'flow-error-default' => 'Hebo un error.',
+	'flow-error-invalid-input' => 'Dióse un valor inválidu pa cargar el conteníu de fluxu.',
+	'flow-error-invalid-title' => 'Dióse un títulu de páxina inválidu.',
+	'flow-error-fail-load-history' => 'Falló la carga del conteníu del historial.',
 	'flow-edit-post-submit' => 'Unviar los cambios',
+);
+
+/** Bikol Central (Bikol Central)
+ * @author Geopoet
+ */
+$messages['bcl'] = array(
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|pinagliwat}} an sarong [$3 komentaryo] kan $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|pinagkomentaryohan}}] on $4.',
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|pinagmukna}} an kapamayuhan.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|pinagliwat}} an kapamayuhan.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|itinago}} an sarong [$4 komentaryo] kan $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|pinagpura}} an sarong [$4 komentaryo] kan $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|pinag-untok}} an sarong [$4 komentaryo] kan $6 (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|pinagbalikwat}} an sarong [$4 komentaryo] kan $6 (<em>$5</em>).',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|itinago}} an [$4 na tema] $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|pinagpura}} an [$4 na tema] $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|pinag-untok}} an [$4 na tema] $6 (<em>$5</em>).',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|pinagbalikwat}} an [$4 na tema] $6 (<em>$5</em>).',
 );
 
 /** Bulgarian (български)
@@ -1582,7 +1607,6 @@ $messages['de'] = array(
 	'flow-error-default' => 'Es ist ein Fehler aufgetreten.',
 	'flow-error-invalid-input' => 'Für das Laden des Flow-Inhalts wurde ein ungültiger Wert angegeben.',
 	'flow-error-invalid-title' => 'Es wurde ein ungültiger Seitentitel angegeben.',
-	'flow-error-invalid-action' => 'Es wurde eine ungültige Flow-Aktion angegeben.',
 	'flow-error-fail-load-history' => 'Der Inhalt des Verlaufs konnte nicht geladen werden.',
 	'flow-error-missing-revision' => 'Zum Laden des Flow-Inhalts konnte keine Version gefunden werden.',
 	'flow-error-fail-commit' => 'Der Flow-Inhalt konnte nicht gespeichert werden.',
@@ -1705,9 +1729,15 @@ Diese Version ist vom $1.
 Du kannst die [$5 Unterschiede von der vorherigen Version] oder andere Versionen im [$4 Verlauf] ansehen.',
 	'flow-revision-permalink-warning-post-first' => 'Dies ist ein Permanentlink zur ersten Version dieses Beitrags.
 Du kannst spätere Versionen im [$4 Verlauf] ansehen.',
+	'flow-revision-permalink-warning-header' => 'Dies ist ein Permanentlink zu einer einzelnen Version der Überschrift.
+Diese Version ist von $1. Du kannst die [$3 Unterschiede von der vorherigen Version] oder andere Versionen im [$2 Verlauf des Boards] ansehen.',
+	'flow-revision-permalink-warning-header-first' => 'Dies ist ein Permanentlink zur ersten Version der Überschrift.
+Du kannst neuere Versionen im [$2 Verlauf des Boards] ansehen.',
 	'flow-compare-revisions-revision-header' => 'Version von {{GENDER:$2|$2}} vom $1',
 	'flow-compare-revisions-header-post' => 'Diese Seite zeigt die {{GENDER:$3|Änderungen}} zwischen zwei Versionen eines Beitrags von $3 im Thema „[$5 $2]“ auf [$4 $1] an.
 Du kannst andere Versionen dieses Beitrags im [$6 Verlauf] ansehen.',
+	'flow-compare-revisions-header-header' => 'Diese Seite zeigt die {{GENDER:$2|Änderungen}} zwischen zwei Versionen der Überschrift von [$3 $1] an.
+Du kannst andere Versionen der Überschrift in ihrem [$4 Verlauf] einsehen.',
 	'flow-topic-collapsed-one-line' => 'Kleine Ansicht',
 	'flow-topic-collapsed-full' => 'Zusammengeklappte Ansicht',
 	'flow-topic-complete' => 'Volle Ansicht',
@@ -1972,7 +2002,6 @@ $messages['fa'] = array(
 	'flow-error-default' => 'یک خطا رخ داده است.',
 	'flow-error-invalid-input' => 'ارزش نامعتبر برای بارگذاری جریان محتوا، ارائه شده.',
 	'flow-error-invalid-title' => 'عنوان صفحهٔ نامعتبر ارائه شده.',
-	'flow-error-invalid-action' => 'جریان عمل نامعتبر ارائه شده.',
 	'flow-error-fail-load-history' => 'عدم موفقیت بارگذاری محتوای سابقه.',
 	'flow-error-missing-revision' => 'بررسی برای بارگذاری محتوای جریان، نتوانست پیدا شود.',
 	'flow-error-fail-commit' => 'عدم موفقیت ذخیرهٔ محتوای جریان.',
@@ -2298,7 +2327,6 @@ $messages['fr'] = array(
 	'flow-error-default' => 'Une erreur s’est produite.',
 	'flow-error-invalid-input' => 'Une valeur non valide a été fournie lors du chargement du contenu du flux.',
 	'flow-error-invalid-title' => 'Un titre de page non valide a été fourni.',
-	'flow-error-invalid-action' => 'Une action de flux non valide a été fournie.',
 	'flow-error-fail-load-history' => 'Échec au chargement du contenu de l’historique.',
 	'flow-error-missing-revision' => 'Impossible de trouver une révision pour charger le contenu du flux.',
 	'flow-error-fail-commit' => 'Échec à l’enregistrement du contenu du flux.',
@@ -2421,9 +2449,15 @@ Cette version date de $1.
 Vous pouvez voir les [$5 différences depuis la version précédente], ou afficher d’autres versions sur la [$4 page d’historique de la note].',
 	'flow-revision-permalink-warning-post-first' => 'Voici un lien permanent vers la première version de cette note.
 Vous pouvez afficher des versions ultérieures depuis la [$4 page d’historique de la note].',
+	'flow-revision-permalink-warning-header' => 'Voici un lien permanent vers une version unique de l’entête.
+Cette version date de $1. Vous pouvez voir les [$3 différences avec la version précédente], ou afficher les autres versions sur la [$2 page du tableau historique].',
+	'flow-revision-permalink-warning-header-first' => 'Voici un lien permanent vers la première version de l’entête.
+Vous pouvez afficher les versions ultérieures sur la [$2 page du tableau historique].',
 	'flow-compare-revisions-revision-header' => 'Version par {{GENDER:$2|$2}} du $1',
 	'flow-compare-revisions-header-post' => 'Cette page affiche les {{GENDER:$3|modifications}} entre deux versions d’une note par $3 dans le sujet « [$5 $2] » sur [$4 $1].
 Vous pouvez voir d’autres versions de cette note dans sa [$6 page d’historique].',
+	'flow-compare-revisions-header-header' => 'Cette page affiche les {{GENDER:$2|modifications}} entre deux versions de l’entête sur [$3 $1].
+Vous pouvez voir les autres versions de l’entête sur sa [$4 page d’historique].',
 	'flow-topic-collapsed-one-line' => 'Vue petite',
 	'flow-topic-collapsed-full' => 'Vue réduite',
 	'flow-topic-complete' => 'Vue complète',
@@ -2654,7 +2688,6 @@ $1',
 	'flow-error-default' => 'אירעה שגיאה.',
 	'flow-error-invalid-input' => 'ערך בלתי־תקין ניתן ניתן לטעינת תוכן זרימה.',
 	'flow-error-invalid-title' => 'ניתנה כותרת דף בלתי־תקינה.',
-	'flow-error-invalid-action' => 'ניתנה פעולת זרימה בלתי־תקינה.',
 	'flow-error-fail-load-history' => 'טעינת תוכן ההיסטוריה נכשלה.',
 	'flow-error-missing-revision' => 'לא נמצאה גרסה שממנה ייטען תוכן הזרימה.',
 	'flow-error-fail-commit' => 'שמירת תוכן הזרימה נכשלה.',
@@ -2787,6 +2820,14 @@ $1',
 	'flow-terms-of-use-new-topic' => 'לחיצה על "{{int:flow-newtopic-save}}" מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.',
 	'flow-terms-of-use-reply' => 'לחיצה על "{{int:flow-reply-submit}}" מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.',
 	'flow-terms-of-use-edit' => 'שמירת השינויים מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.',
+);
+
+/** Hindi (हिन्दी)
+ * @author Vivek Rai
+ */
+$messages['hi'] = array(
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|हटाया हुआ}} एक [ $4  टिप्पणी] पर  $6  (<em> $5 </em>)।',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|हटाया हुआ}} [ $4  विषय]  $6  (<em> $5 </em>)।',
 );
 
 /** Croatian (hrvatski)
@@ -3009,7 +3050,6 @@ $messages['it'] = array(
 	'flow-error-default' => 'Si è verificato un errore.',
 	'flow-error-invalid-input' => 'È stato fornito un valore non valido per il caricamento dei contenuti del flusso.',
 	'flow-error-invalid-title' => 'È stato fornito un titolo di pagina non valido.',
-	'flow-error-invalid-action' => "È stato fornita un'azione dei flussi non valida.",
 	'flow-error-fail-load-history' => 'Impossibile caricare la cronologia.',
 	'flow-error-missing-revision' => 'Non è possibile trovare una versione per il caricamento dei contenuti del flusso.',
 	'flow-error-fail-commit' => 'Impossibile salvare il contenuto del flusso.',
@@ -3236,7 +3276,6 @@ $messages['ja'] = array(
 	'flow-error-default' => 'エラーが発生しました。',
 	'flow-error-invalid-input' => 'Flow の本文の読み込みについて無効な値を指定しました。',
 	'flow-error-invalid-title' => '無効なページ名を指定しました。',
-	'flow-error-invalid-action' => '無効な Flow 操作を指定しました。',
 	'flow-error-fail-load-history' => '履歴の内容を読み込めませんでした。',
 	'flow-error-missing-revision' => 'Flow の本文を読み込むための版が見つかりませんでした。',
 	'flow-error-fail-commit' => 'Flow の本文を保存できませんでした。',
@@ -3477,7 +3516,6 @@ $messages['ko'] = array(
 	'flow-error-default' => '오류가 발생했습니다.',
 	'flow-error-invalid-input' => '유효하지 않은 값은 플로우 콘텐츠를 불러오기 위해 입력됩니다.',
 	'flow-error-invalid-title' => '유효하지 않은 문서 제목을 입력했습니다.',
-	'flow-error-invalid-action' => '유효하지 않은 플로우 명령을 입력했습니다.',
 	'flow-error-fail-load-history' => '역사 내용을 불러오는 데 실패했습니다.',
 	'flow-error-missing-revision' => '플로우 내용을 불러오기 위한 판을 찾는 데 실패하였습니다.',
 	'flow-error-fail-commit' => '플로우 내용을 저장하는 데 실패하였습니다.',
@@ -3495,21 +3533,21 @@ $messages['ko'] = array(
 	'flow-edit-title-submit-overwrite' => '제목 덮어쓰기',
 	'flow-edit-post-submit' => '변경된 내용을 제출합니다',
 	'flow-edit-post-submit-overwrite' => '바뀜 덮어쓰기',
-	'flow-rev-message-edit-post' => '$1 사용자가 [$3 덧글]을 {{GENDER:$2|편집하였습니다}} .', # Fuzzy
-	'flow-rev-message-reply' => '$1 사용자가 [$3 덧글]을 {{GENDER:$2|추가하였습니다}}.', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 사용자가 $4의 [$3 덧글]을 {{GENDER:$2|편집하였습니다}} .',
+	'flow-rev-message-reply' => '$1 사용자가 $4에 [$3 {{GENDER:$2|댓글을 남겼습니다}}].',
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|개의 덧글}}</strong>이 추가{{PLURAL:$1|되었습니다}}.',
 	'flow-rev-message-new-post' => '$1 사용자가 [$3 $4] 주제를  {{GENDER:$2|만들었습니다}}.',
 	'flow-rev-message-edit-title' => ' $1 사용자가 $5에서 [$3 $4]으로(로) 주제의 제목을 {{GENDER:$2|바꾸었습니다}}.',
-	'flow-rev-message-create-header' => '$1 사용자가 게시판 머리글을 {{GENDER:$2|만들었습니다}}.', # Fuzzy
-	'flow-rev-message-edit-header' => '$1 사용자가 게시판 머릿글을 {{GENDER:$2|편집하였습니다}}.', # Fuzzy
-	'flow-rev-message-hid-post' => '$1 사용자가 [$4 덧글]을 {{GENDER:$2|표시 안 함으로 설정하였습니다}}(<em>$5</em>).', # Fuzzy
-	'flow-rev-message-deleted-post' => '$1 사용자가 [$4 덧글]을 {{GENDER:$2|삭제하였습니다}}(<em>$5</em>).', # Fuzzy
-	'flow-rev-message-suppressed-post' => '$1 사용자가 [$4 덧글]을 {{GENDER:$2|숨겼습니다}}(<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-post' => '$1 사용자가 [$4 덧글]을 {{GENDER:$2|복원하였습니다}}(<em>$5</em>).', # Fuzzy
-	'flow-rev-message-hid-topic' => '$1 사용자가  [$4 이 주제]를 {{GENDER:$2|표시 안 함으로 설정하였습니다}}(<em>$5</em>).', # Fuzzy
-	'flow-rev-message-deleted-topic' => '$1 사용자가 [$4 주제]를 {{GENDER:$2|삭제하였습니다}}(<em>$5</em>).', # Fuzzy
-	'flow-rev-message-suppressed-topic' => '$1 사용자가 [$4 주제]를 {{GENDER:$2|숨겼습니다}}(<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-topic' => '$1 사용자가가 [$4 주제]를 {{GENDER:$2|복원하였습니다}}(<em>$5</em>).', # Fuzzy
+	'flow-rev-message-create-header' => '$1 사용자가 머릿글을 {{GENDER:$2|만들었습니다}}.',
+	'flow-rev-message-edit-header' => '$1 사용자가 머릿글을 {{GENDER:$2|편집하였습니다}}.',
+	'flow-rev-message-hid-post' => '$1 사용자가 $6의 [$4 덧글]을 {{GENDER:$2|표시 안 함으로 설정하였습니다}}(<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 사용자가 [$4 덧글]을 $6에서 {{GENDER:$2|삭제하였습니다}}(<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 사용자가 $6의 [$4 덧글]을 {{GENDER:$2|숨겼습니다}}(<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 사용자가 $6의 [$4 덧글]을 {{GENDER:$2|복원하였습니다}}(<em>$5</em>).',
+	'flow-rev-message-hid-topic' => '$1 사용자가 $6의 [$4 이 주제]를 {{GENDER:$2|표시 안 함으로 설정하였습니다}}(<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 사용자가 $6의 [$4 주제]를 {{GENDER:$2|삭제하였습니다}}(<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => '$1 사용자가 $6의 [$4 주제]를 {{GENDER:$2|숨겼습니다}}(<em>$5</em>).',
+	'flow-rev-message-restored-topic' => '$1 사용자가가 $6의 [$4 주제]를 {{GENDER:$2|복원하였습니다}}(<em>$5</em>).',
 	'flow-board-history' => '"$1" 역사',
 	'flow-topic-history' => '"$1" 주제 역사',
 	'flow-post-history' => '"{{GENDER:$2|$2}}가 쓴 덧글"의 역사',
@@ -3873,7 +3911,6 @@ $messages['mk'] = array(
 	'flow-error-default' => 'Се појави грешка.',
 	'flow-error-invalid-input' => 'Укажана е неважечка вредност за вчитување на содржините на текот.',
 	'flow-error-invalid-title' => 'Укажан е неважечки наслов на страницата.',
-	'flow-error-invalid-action' => 'Укажано е неважечко дејство за текот.',
 	'flow-error-fail-load-history' => 'Не успеав да ја вчитам содржината на историјата.',
 	'flow-error-missing-revision' => 'Не можев да ја пронајдам ревизијата од која би ја вчитал содржината на текот.',
 	'flow-error-fail-commit' => 'Не успеав да ја зачувам содржината на текот.',
@@ -3986,13 +4023,19 @@ $messages['mk'] = array(
 	'flow-topic-permalink-warning' => 'Темата е започната на [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Темата е започната на [$2 таблата на {{GENDER:$1|$1}}]',
 	'flow-revision-permalink-warning-post' => 'Ова е постојана врска со една верзија на објавава.
-Оваа верзиај е од $1.
+Оваа верзија е од $1.
 Можете да ги погледате [$5 разликите од претходната верзија], или пак другите верзии во [$4 историјата на објавата].',
 	'flow-revision-permalink-warning-post-first' => 'Ова е постојана врска до една верзија на објавава.
 Можете да ги погледате подоцнежните верзии во [$4 историјата на објавата].',
+	'flow-revision-permalink-warning-header' => 'Ова е постојана врска до една верзија на заглавието.
+Оваа верзиаја е од $1. Можете да ги погледате [$3 разликите од претходната верзија], или пак другите верзии во [$2 историјата].',
+	'flow-revision-permalink-warning-header-first' => 'Ова е постојана врска до првата верзија на заглавието.
+Можете да ги погледате подоцнежните верзии во [$2 историјата].',
 	'flow-compare-revisions-revision-header' => 'Верзија на {{GENDER:$2|$2}} од $1',
 	'flow-compare-revisions-header-post' => 'На страницава се прикажани {{GENDER:$3|разликите}} помеѓу две верзии на објава на $3 во темата „[$5 $2]“ на [$4 $1].
 Можете да ги погледате другите верзии на објавата во [$6 нејзината историја].',
+	'flow-compare-revisions-header-header' => 'На страницава се прикажани {{GENDER:$2|промените}} помеѓу две верзии на заглавието на [$3 $1].
+Другите верзии на заглавието можете да ги видите во [$4 неговата историја].',
 	'flow-topic-collapsed-one-line' => 'Мал приказ',
 	'flow-topic-collapsed-full' => 'Расклопен приказ',
 	'flow-topic-complete' => 'Целосен приказ',
@@ -4361,7 +4404,6 @@ $messages['nl'] = array(
 	'flow-error-default' => 'Er is een fout opgetreden.',
 	'flow-error-invalid-input' => 'Er is een ongeldige waarde opgegeven voor het laden van inhoud van Flow.',
 	'flow-error-invalid-title' => 'Er is een ongeldige paginanaam opgegeven.',
-	'flow-error-invalid-action' => 'Er is een ongeldige handeling voor Flow opgegeven.',
 	'flow-error-fail-load-history' => 'Het laden de geschiedenis is mislukt.',
 	'flow-error-missing-revision' => 'Er is geen versie gevonden om inhoud van Flow van te downloaden.',
 	'flow-error-fail-commit' => 'Het opslaan van de inhoud van Flow is mislukt.',
@@ -4372,7 +4414,7 @@ $messages['nl'] = array(
 	'flow-edit-title-submit-overwrite' => 'Titel overschrijven',
 	'flow-edit-post-submit' => 'Wijzigingen opslaan',
 	'flow-edit-post-submit-overwrite' => 'Wijzigingen overschrijven',
-	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|heeft}} een [$3 reactie] bewerkt.', # Fuzzy
+	'flow-rev-message-edit-post' => '[$1|$2] heeft een [$3 reactie] op $4 bewerkt.',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|heeft}} een [$3 reactie] toegevoegd.', # Fuzzy
 	'flow-rev-message-reply-bundle' => 'Er {{PLURAL:$1|is|zijn}} <strong>$1 {{PLURAL:$1|reactie|reacties}}</strong> toegevoegd.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|heeft}} het onderwerp [$3 $4] aangemaakt.',
@@ -4797,6 +4839,18 @@ $messages['sco'] = array(
 	'flow-edit-header-submit-overwrite' => "O'erwrite header",
 	'flow-edit-title-submit-overwrite' => "O'erwrite title",
 	'flow-edit-post-submit-overwrite' => "O'erwrite chynges",
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|eidited}} ae [$3 comment] oan $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|commented}}] oan $4.',
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|makit}} the heider.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|eidited}} the heider.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|hid}} ae [$4 comment] oan $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|delytit}} ae [$4 comment] oan $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => "$1 {{GENDER:$2|suppress't}} ae [$4 comment] oan $6 (<em>$5</em>).",
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|restored}} ae [$4 comment] oan $6 (<em>$5</em>).',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|hid}} the [$4 topic] $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|delytit}} the [$4 topic] $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => "$1 {{GENDER:$2|suppress't}} the [$4 topic] $6 (<em>$5</em>).",
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|restored}} the [$4 topic] $6 (<em>$5</em>).',
 	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} til yer <span class="plainlinks">[$5 post]</span> in "$2" on "$4".',
 	'flow-notification-reply-bundle' => '$1 an $5 {{PLURAL:$6|other|others}} {{GENDER:$1|replied}} til yer <span class="plainlinks">[$4 post]</span> in "$2" on "$3".',
 	'flow-notification-edit' => '$1 {{GENDER:$1|edited}} ae <span class="plainlinks">[$5 post]</span> in "$2" on [[$3|$4]].',
@@ -4810,6 +4864,12 @@ $messages['sco'] = array(
 	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|edited}} ae post in "$2" on "$3"',
 	'flow-notification-edit-email-batch-bundle-body' => '$1 an $4 {{PLURAL:$5|other|others}} {{GENDER:$1|edited}} ae post in "$2" on "$3"',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|created}} ae new topic on "$2"',
+	'flow-revision-permalink-warning-header' => 'This is ae permanent link til ae single version o the heider.
+This version is fae $1.  Ye can see the [$3 differences fae the preevioos version], or view ither versions oan the [$2 buird histerie page].',
+	'flow-revision-permalink-warning-header-first' => 'This is ae permanent link til the irstwhile version o the heider.
+Ye can view later versions oan the [$2 buird histerie page].',
+	'flow-compare-revisions-header-header' => 'This page shaws the {{GENDER:$2|chynges}} atween twa versions o the heider oan [$3 $1].
+Ye can see ither versions o the heider at its [$4 histerie page].',
 	'flow-terms-of-use-new-topic' => 'Bi clapin on "{{int:flow-newtopic-save}}", ye\'r agreein til the terms o uiss fer this wiki.',
 	'flow-terms-of-use-reply' => 'Bi clapin on "{{int:flow-reply-submit}}", ye\'r agreein til the terms o uiss fer this wiki.',
 	'flow-terms-of-use-edit' => "Bi savin yer chynges, ye'r agreein til the terms o uiss fer this wiki.",
@@ -4849,6 +4909,7 @@ $messages['sl'] = array(
 
 /** Serbian (Cyrillic script) (српски (ћирилица)‎)
  * @author Milicevic01
+ * @author Rancher
  */
 $messages['sr-ec'] = array(
 	'flow-edit-header-link' => 'Уреди заглавље',
@@ -4867,6 +4928,9 @@ $messages['sr-ec'] = array(
 	'flow-edit-post-submit' => 'Сачувај',
 	'flow-history-day' => 'Данас',
 	'flow-link-topic' => 'тема',
+	'flow-terms-of-use-new-topic' => 'Кликом на „{{int:flow-newtopic-save}}“, прихватате услове коришћења на овом викију.',
+	'flow-terms-of-use-reply' => 'Кликом на „{{int:flow-reply-submit}}“, прихватате услове коришћења на овом викију.',
+	'flow-terms-of-use-edit' => 'Чувањем измена, прихватате услове коришћења на овом викију.',
 );
 
 /** Serbian (Latin script) (srpski (latinica)‎)
@@ -4975,7 +5039,6 @@ $messages['sv'] = array(
 	'flow-error-default' => 'Ett fel har uppstått.',
 	'flow-error-invalid-input' => 'Ett ogiltigt värde angavs för att läsa in flödesinnehållet.',
 	'flow-error-invalid-title' => 'Ogiltig sidrubrik angavs.',
-	'flow-error-invalid-action' => 'En ogiltigt flödesåtgärd angavs.',
 	'flow-error-fail-load-history' => 'Innehållet i historiken kunde inte läsas in.',
 	'flow-error-missing-revision' => 'Det gick inte att hitta en revision för att ladda flödesinnehållet.',
 	'flow-error-fail-commit' => 'Flödesinnehållet kunde inte sparas.',
@@ -5256,7 +5319,6 @@ $messages['uk'] = array(
 	'flow-error-default' => 'Сталася помилка.',
 	'flow-error-invalid-input' => 'Неприпустиме значення було надано для завантаження потоку даних.',
 	'flow-error-invalid-title' => 'Надана невірна сторінка заголовку.',
-	'flow-error-invalid-action' => 'Невірна дія щодо потоку була надана.',
 	'flow-error-fail-load-history' => 'Не вдалося завантажити зміст історії.',
 	'flow-error-missing-revision' => 'Не вдалося знайти редакцію для завантаження вмісту потоку.',
 	'flow-error-fail-commit' => 'Не вдалося зберегти вміст потоку.',
@@ -5487,7 +5549,6 @@ $messages['vi'] = array(
 	'flow-error-default' => 'Đã xuất hiện lỗi.',
 	'flow-error-invalid-input' => 'Đã cung cấp một giá trị không hợp lệ khi tải nội dung luồng.',
 	'flow-error-invalid-title' => 'Đã cung cấp tên trang không hợp lệ.',
-	'flow-error-invalid-action' => 'Đã cung cấp tác vụ luồng không hợp lệ.',
 	'flow-error-fail-load-history' => 'Thất bại khi tải nội dung lịch sử.',
 	'flow-error-missing-revision' => 'Không tìm thấy phiên bản để tải nội dung luồng.',
 	'flow-error-fail-commit' => 'Thất bại khi lưu nội dung luồng.',
@@ -5768,7 +5829,6 @@ $messages['zh-hans'] = array(
 	'flow-error-default' => '出现了一个错误',
 	'flow-error-invalid-input' => '正在加载的flow内容被提供了无效的值。',
 	'flow-error-invalid-title' => '指定了无效的页面标题。',
-	'flow-error-invalid-action' => '提供了无效的flow动作',
 	'flow-error-fail-load-history' => '未能加载历史内容。',
 	'flow-error-fail-commit' => '未能保存流内容。',
 	'flow-error-insufficient-permission' => '没有足够的权限访问内容。',
