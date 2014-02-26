@@ -37,14 +37,14 @@ CREATE TABLE /*_*/flow_revision (
     PRIMARY KEY (rev_id)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO flow_revision
+INSERT INTO /*_*/flow_revision
 	(rev_id, rev_type, rev_user_id, rev_user_text, rev_parent_id, rev_flags, rev_content, rev_change_type, rev_mod_state, rev_mod_user_id, rev_mod_user_text, rev_mod_timestamp, rev_last_edit_id, rev_edit_user_id, rev_edit_user_text )
 SELECT
 	rev_id, rev_type, rev_user_id, rev_user_text, rev_parent_id, rev_flags, rev_content, rev_comment, rev_mod_state, rev_mod_user_id, rev_mod_user_text, rev_mod_timestamp, rev_last_edit_id, rev_edit_user_id, rev_edit_user_text
 FROM
 	/*_*/temp_flow_revision_change_type;
 
-DROP TABLE temp_flow_revision_change_type;
+DROP TABLE /*_*/temp_flow_revision_change_type;
 
 CREATE UNIQUE INDEX /*i*/flow_revision_unique_parent ON
     /*_*/flow_revision (rev_parent_id);
