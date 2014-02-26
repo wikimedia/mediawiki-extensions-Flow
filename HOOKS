@@ -1,0 +1,21 @@
+Documentation for Flow's own hooks (incomplete):
+
+== FlowAddPostInteractionLinks ==
+
+Called when a post is rendered, allow other extensions to add interaction links to the post besides
+'Edit' and other links.
+
+Params:
+ * $rev   Flow PostRevision object that the links belong to
+ * $links array of interaction links to be displayed, caller should append the link element
+          to the array
+
+
+== FlowAddModules ==
+
+Allow other extension to add modules that are relevant to Flow.
+
+Params:
+
+ * $output OutputPage object 
+
