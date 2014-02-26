@@ -73,17 +73,8 @@ end
 
 Then(/^the Flow page should contain (.+)$/) do |flow_topic|
   on(FlowPage) do |page|
-    page.wait_until(20) do	# 10 seconds wasn't enough on ee-flow...
-      # TODO Also match the regexp '[2-9] seconds ago' in case of delays.
-      # TODO This should look in the particular topic that was added, not
-      # blindly look for text.
-      # It could note the ID of the first div with id 'flow-topic-<UUID>'
-      # before submitting the new topic post,
-      # then afterwards find the flow-topic-<UUID> div *preceding* that and search in there.
-      # Or after submit it could look for the Title of Flow Topic, find the
-      # flow-topic-container containing that and search in there.
-      page.text.include? "1 second ago" or page.text.include? "just now"
-    end
+    page.small_spinner_element.when_present
+    page.small_spinner_element.when_not_present(20)
     page.flow_body.should match(flow_topic + @random_string + @automated_test_marker)
   end
 end
