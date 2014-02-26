@@ -50,6 +50,24 @@
       "revId": "f9a0ea681a4c857492315a1ff7abb564d4a6cb8b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_90a3effc",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-02-26T06:55:54Z",
+      "side": 1,
+      "message": "this is used to pass the relevant CSS classes to the other modules that wish to add interaction links to flow, so they can apply the correct style with proper abstraction.\n\nWould the concern here be about documentation or about the design? (I\u0027m not sure about the best way to manage the css style, as the returned content of links is HTML strings and seems harder to manipulate after creation.",
+      "parentUuid": "4e04eb01_8d2cfc46",
+      "revId": "f9a0ea681a4c857492315a1ff7abb564d4a6cb8b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
