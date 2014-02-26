@@ -89,6 +89,7 @@ $wgAutoloadClasses['Flow\Model\TopicListEntry'] = $dir . 'includes/Model/TopicLi
 $wgAutoloadClasses['Flow\Model\Workflow'] = $dir . 'includes/Model/Workflow.php';
 $wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
 $wgAutoloadClasses['Flow\Model\AbstractCollection'] = $dir . 'includes/Collection/AbstractCollection.php';
+$wgAutoloadClasses['Flow\Model\CollectionCache'] = $dir . 'includes/Collection/CollectionCache.php';
 $wgAutoloadClasses['Flow\Model\LocalCacheAbstractCollection'] = $dir . 'includes/Collection/LocalCacheAbstractCollection.php';
 $wgAutoloadClasses['Flow\Model\PostCollection'] = $dir . 'includes/Collection/PostCollection.php';
 $wgAutoloadClasses['Flow\Model\HeaderCollection'] = $dir . 'includes/Collection/HeaderCollection.php';
