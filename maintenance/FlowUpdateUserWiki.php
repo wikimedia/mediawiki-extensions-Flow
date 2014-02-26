@@ -48,11 +48,10 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		while ( $count == $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(
-				array( 'flow_workflow', 'flow_definition' ),
-				array( 'workflow_wiki', 'workflow_id', 'definition_type' ),
+				array( 'flow_workflow' ),
+				array( 'workflow_wiki', 'workflow_id', 'workflow_type' ),
 				array(
 					'workflow_id > ' . $dbr->addQuotes( $id ),
-					'workflow_definition_id = definition_id'
 				),
 				__METHOD__,
 				array( 'ORDER BY' => 'workflow_id ASC', 'LIMIT' => $this->mBatchSize )
@@ -66,7 +65,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					if ( $workflow ) {
 						// definition type 'topic' is always under a 'discussion' and they
 						// will be handled while processing 'discussion'
-						if ( $row->definition_type == 'discussion' ) {
+						if ( $row->workflow_type == 'discussion' ) {
 							$this->updateHeader( $workflow, $row->workflow_wiki );
 							$this->updateTopicList( $workflow, $row->workflow_wiki );
 						}
