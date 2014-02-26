@@ -47,7 +47,7 @@ class FlowHooks {
 			$updater->modifyExtensionField( 'flow_summary_revision', 'summary_workflow_id', "$dir/db_patches/patch-summary2header.sqlite.sql" );
 			$updater->modifyExtensionField( 'flow_revision', 'rev_comment', "$dir/db_patches/patch-rev_change_type.sqlite.sql" );
 			// sqlite ignores field types, this just substr's uuid's to 88 bits
-			$updater->modifyExtensionField( 'flow_definition', 'definition_id', "$dir/db_patches/patch-88bit_uuids.sqlite.sql" );
+			$updater->modifyExtensionField( 'flow_workflow', 'workflow_id', "$dir/db_patches/patch-88bit_uuids.sqlite.sql" );
 		} else {
 			// sqlite doesn't support alter table change, it also considers all types the same so
 			// this patch doesn't matter to it.
@@ -57,7 +57,7 @@ class FlowHooks {
 			// rename rev_change_type -> rev_comment, alternate patch is above for sqlite
 			$updater->modifyExtensionField( 'flow_revision', 'rev_comment', "$dir/db_patches/patch-rev_change_type.sql" );
 			// convert 128 bit uuid's into 88bit
-			$updater->modifyExtensionField( 'flow_definition', 'definition_id', "$dir/db_patches/patch-88bit_uuids.sql" );
+			$updater->modifyExtensionField( 'flow_workflow', 'workflow_id', "$dir/db_patches/patch-88bit_uuids.sql" );
 		}
 
 		$updater->addExtensionIndex( 'flow_workflow', 'flow_workflow_lookup', "$dir/db_patches/patch-workflow_lookup_idx.sql" );
@@ -66,9 +66,10 @@ class FlowHooks {
 		$updater->modifyExtensionField( 'recentchanges', 'rc_source', "$dir/db_patches/patch-rc_source.sql" );
 		$updater->modifyExtensionField( 'flow_revision', 'rev_change_type', "$dir/db_patches/patch-censor_to_suppress.sql" );
 		$updater->addExtensionField( 'flow_workflow', 'workflow_user_ip', "$dir/db_patches/patch-remove_usernames.sql" );
-
-		require_once __DIR__.'/maintenance/FlowInsertDefaultDefinitions.php';
-		$updater->addPostDatabaseUpdateMaintenance( 'FlowInsertDefaultDefinitions' );
+		if ( $updater->tableExists( 'flow_definition' ) ) {
+			$updater->addExtensionField( 'flow_workflow', 'workflow_type', "$dir/db_patches/patch-add_workflow_type.sql" );
+			$updater->dropExtensionTable( 'flow_definition', false );
+		}
 
 		require_once __DIR__.'/maintenance/FlowUpdateRecentChanges.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRecentChanges' );
