@@ -17,8 +17,8 @@ class WorkflowLoaderTest extends FlowTestCase {
 	/**
 	 * @dataProvider provideDataCreateBlocks
 	 */
-	public function testCreateBlocks( $definitionType, $expectedResults ) {
-		$workflowLoader = $this->mockWorkflowLoader( $definitionType );
+	public function testCreateBlocks( $workflowType, $expectedResults ) {
+		$workflowLoader = $this->mockWorkflowLoader( $workflowType );
 		$blocks = $workflowLoader->createBlocks();
 		$this->assertEquals( count( $blocks ), count( $expectedResults ) );
 
@@ -34,7 +34,7 @@ class WorkflowLoaderTest extends FlowTestCase {
 	 */
 	public function testCreateBlocksWithInvalidInputException() {
 		// Trigger InvalidInputException
-		$workflowLoader = $this->mockWorkflowLoader( 'a-bad-database-flow-definition' );
+		$workflowLoader = $this->mockWorkflowLoader( 'a-bad-database-flow-workflow' );
 		$workflowLoader->createBlocks();
 	}
 
@@ -43,16 +43,12 @@ class WorkflowLoaderTest extends FlowTestCase {
 	 * against the database
 	 */
 	protected function mockWorkflowLoader( $type ) {
-		$definition = $this->getMockBuilder( '\Flow\Model\Definition' )
-			->disableOriginalConstructor()
-			->getMock();
-		$definition->expects( $this->any() )
-			->method( 'getType' )
-			->will( $this->returnValue( $type ) );
-
 		$workflow = $this->getMockBuilder( '\Flow\Model\Workflow' )
 			->disableOriginalConstructor()
 			->getMock();
+		$workflow->expects( $this->any() )
+			->method( 'getType' )
+			->will( $this->returnValue( $type ) );
 
 		$methods = array_diff( get_class_methods( '\Flow\WorkflowLoader' ), array( 'createBlocks' ) );
 		$loader = $this->getMockBuilder( '\Flow\WorkflowLoader' )
@@ -61,10 +57,6 @@ class WorkflowLoaderTest extends FlowTestCase {
 			->getMock();
 
 		$reflection = new ReflectionClass( $loader );
-
-		$property = $reflection->getProperty( 'definition' );
-		$property->setAccessible( true );
-		$property->setValue( $loader, $definition );
 
 		$property = $reflection->getProperty( 'workflow' );
 		$property->setAccessible( true );

@@ -165,12 +165,7 @@ class UrlGenerator {
 			throw new InvalidDataException( '$workflow is not UUID or Workflow instance' );
 		}
 
-		if ( $workflow->isNew() ) {
-			$query['definition'] = $workflow->getDefinitionId()->getAlphadecimal();
-		} else {
-			// TODO: workflow parameter is only necessary if the definition is non-unique.  Likely need to pass
-			// ManagerGroup into this class rather than the workflow ObjectManager so we can fetch definition as
-			// needed.
+		if ( !$workflow->isNew() ) {
 			$query['workflow'] = $workflow->getId()->getAlphadecimal();
 		}
 
