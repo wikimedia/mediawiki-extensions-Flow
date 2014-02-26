@@ -54,11 +54,13 @@ class RevisionActionPermissions {
 	 * @return bool
 	 */
 	public function isAllowed( AbstractRevision $revision = null, $action ) {
+		wfProfileIn( __METHOD__ );
 		$allowed = $this->isRevisionAllowed( $revision, $action );
 
 		// if there was no revision object, it's pointless to find last revision
 		// if we already fail, no need in checking most recent revision status
 		if ( $revision === null || !$allowed ) {
+			wfProfileOut( __METHOD__ );
 			return $allowed;
 		}
 
@@ -69,10 +71,12 @@ class RevisionActionPermissions {
 			// point in time alone isn't enough.
 			$last = $revision->getCollection()->getLastRevision();
 			$isLastRevision = $last->getRevisionId()->equals( $revision->getRevisionId() );
+			wfProfileOut( __METHOD__ );
 			return $allowed && ( $isLastRevision || $this->isRevisionAllowed( $last, $action ) );
 
 		// If data is not in storage, just return that revision's status
 		} catch ( InvalidDataException $e ) {
+			wfProfileOut( __METHOD__ );
 			return $allowed;
 		}
 	}
