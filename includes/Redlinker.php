@@ -184,7 +184,7 @@ class Redlinker {
 		if ( !$content ) {
 			return '';
 		}
-
+		wfProfileIn( __METHOD__ );
 		$this->resolveLinkStatus();
 
 		/*
@@ -222,11 +222,13 @@ class Redlinker {
 		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
 
 		if ( $body ) {
-			return Redlinker::getInnerHtml( $body );
+			$res = Redlinker::getInnerHtml( $body );
 		} else {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
-			return '';
+			$res = '';
 		}
+		wfProfileOut( __METHOD__ );
+		return $res;
 	}
 
 	/**

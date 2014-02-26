@@ -55,27 +55,26 @@ class RevisionActionPermissions {
 	 * @return bool
 	 */
 	public function isAllowed( AbstractRevision $revision = null, $action ) {
+		wfProfileIn( __METHOD__ );
 		$allowed = $this->isRevisionAllowed( $revision, $action );
 
 		// if there was no revision object, it's pointless to find last revision
 		// if we already fail, no need in checking most recent revision status
-		if ( $revision === null || !$allowed ) {
-			return $allowed;
+		if ( $allowed && $revision !== null  ) {
+			try {
+				// Also check if the user would be allowed to perform this against
+				// against the most recent revision - the last revision is the
+				// current state of an object, so checking against a revision at one
+				// point in time alone isn't enough.
+				$last = Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
+				$isLastRevision = $last->getRevisionId()->equals( $revision->getRevisionId() );
+				$allowed = $isLastRevision || $this->isRevisionAllowed( $last, $action );
+			} catch ( InvalidDataException $e ) {
+				// If data is not in storage, just return that revision's status
+			}
 		}
-
-		try {
-			// Also check if the user would be allowed to perform this against
-			// against the most recent revision - the last revision is the
-			// current state of an object, so checking against a revision at one
-			// point in time alone isn't enough.
-			$last = Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
-			$isLastRevision = $last->getRevisionId()->equals( $revision->getRevisionId() );
-			return $allowed && ( $isLastRevision || $this->isRevisionAllowed( $last, $action ) );
-
-		// If data is not in storage, just return that revision's status
-		} catch ( InvalidDataException $e ) {
-			return $allowed;
-		}
+		wfProfileOut( __METHOD__ );
+		return $allowed;
 	}
 
 	/**

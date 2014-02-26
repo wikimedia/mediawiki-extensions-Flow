@@ -22,6 +22,7 @@ abstract class ParsoidUtils {
 			return $content;
 		}
 
+		wfProfileIn( __METHOD__ );
 		if ( !$title instanceof Title ) {
 			global $wgTitle, $wgFlowParsoidTitle;
 			/*
@@ -44,16 +45,19 @@ abstract class ParsoidUtils {
 
 		// Parsoid will fail if title does not exist
 		if ( !$title->exists() ) {
+			wfProfileOut( __METHOD__ );
 			throw new InvalidDataException( 'Title "' . $title->getPrefixedDBkey() . '" does not exist.', 'invalid-title' );
 		}
 
 		try {
 			// use VE API (which connects to Parsoid) if available...
-			return self::parsoid( $from, $to, $content, $title );
+			$res = self::parsoid( $from, $to, $content, $title );
 		} catch ( NoParsoidException $e ) {
 			// ... otherwise default to parser
-			return self::parser( $from, $to, $content, $title );
+			$res = self::parser( $from, $to, $content, $title );
 		}
+		wfProfileOut( __METHOD__ );
+		return $res;
 	}
 
 	/**
