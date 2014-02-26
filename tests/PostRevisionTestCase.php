@@ -128,6 +128,7 @@ class PostRevisionTestCase extends FlowTestCase {
 
 		$row = array(
 			'workflow_id' => UUID::create()->getBinary(),
+			'workflow_type' => 'topic',
 			'workflow_wiki' => wfWikiId(),
 			// The test workflow has no real associated page, this is
 			// just a random page number
@@ -137,7 +138,6 @@ class PostRevisionTestCase extends FlowTestCase {
 			'workflow_user_id' => $userId,
 			'workflow_user_ip' => $userIp,
 			'workflow_lock_state' => 0,
-			'workflow_definition_id' => UUID::create()->getBinary(),
 			'workflow_last_update_timestamp' => wfTimestampNow(),
 		);
 		$this->workflow = Workflow::fromStorageRow( $row );

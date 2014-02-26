@@ -1,16 +1,6 @@
 -- Database schema for Flow
 -- This file contains only the unsharded global data
 
-CREATE TABLE /*_*/flow_definition (
-	definition_id binary(11) NOT NULL,
-	definition_wiki varchar(32) binary NOT NULL,
-	definition_name varchar(32) binary NOT NULL,
-	definition_type varchar(32) binary NOT NULL,
-	definition_options BLOB NULL, -- should instead be revisioned blob
-	PRIMARY KEY (definition_id)
-) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX /*i*/flow_definition_unique_name ON /*_*/flow_definition (definition_wiki, definition_name);
-
 CREATE TABLE /*_*/flow_workflow (
 	workflow_id binary(11) not null,
 	workflow_wiki varchar(16) binary not null,
@@ -26,12 +16,11 @@ CREATE TABLE /*_*/flow_workflow (
 	-- TODO: is this usefull as a bitfield?  may be premature optimization, a string
 	-- or list of strings may be simpler and use only a little more space.
 	workflow_lock_state int unsigned not null,
-	workflow_definition_id binary(11) not null,
 	workflow_type varbinary(16) not null,
 	PRIMARY KEY (workflow_id)
 ) /*$wgDBTableOptions*/;
 
-CREATE INDEX /*i*/flow_workflow_lookup ON /*_*/flow_workflow (workflow_wiki, workflow_namespace, workflow_title_text, workflow_definition_id);
+CREATE INDEX /*i*/flow_workflow_lookup ON /*_*/flow_workflow (workflow_wiki, workflow_namespace, workflow_title_text);
 
 CREATE TABLE /*_*/flow_subscription (
   subscription_workflow_id int unsigned not null,

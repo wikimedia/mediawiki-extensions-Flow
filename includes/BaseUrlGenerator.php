@@ -107,9 +107,7 @@ abstract class BaseUrlGenerator {
 	 */
 	public function generateUrlData( $workflow, $action = 'view', array $query = array() ) {
 		$workflow = $this->resolveWorkflow( $workflow );
-		if ( $workflow->isNew() ) {
-			$query['definition'] = $workflow->getDefinitionId()->getAlphadecimal();
-		} else {
+		if ( !$workflow->isNew() ) {
 			// TODO: workflow parameter is only necessary if the definition is non-unique.  Likely need to pass
 			// ManagerGroup into this class rather than the workflow ObjectManager so we can fetch definition as
 			// needed.
