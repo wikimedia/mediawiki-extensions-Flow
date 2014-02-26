@@ -1,10 +1,6 @@
 
-UPDATE flow_definition
-   SET definition_id = substr( definition_id, 1, 11 );
-
 UPDATE flow_workflow
-   SET workflow_id = substr( workflow_id, 1, 11 ),
-       workflow_definition_id = substr( workflow_definition_id, 1, 11 );
+   SET workflow_id = substr( workflow_id, 1, 11 );
 
 UPDATE flow_topic_list
    SET topic_list_id = substr( topic_list_id, 1, 11 ),
