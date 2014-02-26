@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_21c96fae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1406
+      },
+      "writtenOn": "2014-02-26T19:31:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e04eb01_ed16e0f5",
+      "revId": "f9a0ea681a4c857492315a1ff7abb564d4a6cb8b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_4d26f464",
         "filename": "includes/View.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-02-26T01:55:26Z",
       "side": 1,
       "message": "\u0027FlowAddModules\u0027 or something? Registering modules means something different in resourceloader terminology.",
+      "revId": "f9a0ea681a4c857492315a1ff7abb564d4a6cb8b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_61cf77b6",
+        "filename": "includes/View.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1406
+      },
+      "writtenOn": "2014-02-26T19:31:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e04eb01_4d26f464",
       "revId": "f9a0ea681a4c857492315a1ff7abb564d4a6cb8b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
