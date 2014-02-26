@@ -3,7 +3,6 @@
 namespace Flow\Data;
 
 use Article;
-use Flow\Model\Definition;
 use Flow\Model\Workflow;
 use Flow\OccupationController;
 
@@ -11,16 +10,16 @@ class OccupationListener implements LifecycleHandler {
 	/** @var OccupationController **/
 	protected $occupationController;
 
-	/** @var UUID **/
-	protected $definitionId;
+	/** @var string **/
+	protected $defaultType;
 
 	/**
 	 * @param OccupationController $occupationController The OccupationController to occupy the page with.
-	 * @param Definition           $definitionId         The definition to look for.
+	 * @param string               $defaultType          The workflow type to look for
 	 */
-	public function __construct( OccupationController $occupationController, Definition $definition ) {
+	public function __construct( OccupationController $occupationController, $defaultType ) {
 		$this->occupationController = $occupationController;
-		$this->definitionId = $definition->getId();
+		$this->defaultType = $defaultType;
 	}
 
 	public function onAfterLoad( $object, array $old ) {
@@ -32,7 +31,7 @@ class OccupationListener implements LifecycleHandler {
 	}
 
 	protected function ensureOccupation( Workflow $workflow ) {
-		if ( $this->definitionId->equals( $workflow->getDefinitionId() ) ) {
+		if ( $workflow->getType() === $this->defaultType ) {
 			$article = new Article( $workflow->getArticleTitle() );
 
 			$this->occupationController->ensureFlowRevision( $article, $workflow );
