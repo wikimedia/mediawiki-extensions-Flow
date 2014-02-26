@@ -125,7 +125,6 @@ class InvalidInputException extends FlowException {
 			'invalid-input',
 			'missing-revision',
 			'revision-comparison',
-			'invalid-definition',
 			'invalid-workflow'
 		);
 	}
