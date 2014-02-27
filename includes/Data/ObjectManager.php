@@ -282,6 +282,10 @@ class ObjectLocator implements ObjectStorage {
 		$this->lifecycleHandlers = array_merge( $indexes, $lifecycleHandlers );
 	}
 
+	public function getMapper() {
+		return $this->mapper;
+	}
+
 	public function find( array $attributes, array $options = array() ) {
 		$result = $this->findMulti( array( $attributes ), $options );
 		return $result ? reset( $result ) : null;

@@ -472,7 +472,8 @@ $c['contributions.query'] = $c->share( function( $c ) {
 	return new Flow\Formatter\ContributionsQuery(
 		$c['storage'],
 		$c['memcache'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['db.factory']
 	);
 } );
 $c['contributions.formatter'] = $c->share( function( $c ) {
