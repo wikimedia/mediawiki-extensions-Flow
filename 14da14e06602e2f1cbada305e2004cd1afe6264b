@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_f86e95c3",
+        "filename": "container.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T00:33:09Z",
+      "side": 1,
+      "message": "how about reference.extractor, to use the same prefix as reference.updater.* ?",
+      "revId": "14da14e06602e2f1cbada305e2004cd1afe6264b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_f8ad75e8",
+        "filename": "container.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T00:33:09Z",
+      "side": 1,
+      "message": "i feel like this should be elsewhere, since its a good bit of code thats not just configuration but also functionality (the closures).\n\nPerhaps Flow\\ReferenceExtractor::somethingsomething() could return new object, \nand that method sets up this default configuration?",
+      "revId": "14da14e06602e2f1cbada305e2004cd1afe6264b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_98be7112",
+        "filename": "container.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T00:33:09Z",
+      "side": 1,
+      "message": "might as well give the second one its own line like the others",
+      "revId": "14da14e06602e2f1cbada305e2004cd1afe6264b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_18826154",
+        "filename": "container.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T00:33:09Z",
+      "side": 1,
+      "message": "just set this to an array directly instead of the closure, the closure and $c-\u003eshare() are only needed for things we want to delay initialization on for either performance or load order reasons.",
+      "revId": "14da14e06602e2f1cbada305e2004cd1afe6264b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_f8e57507",
+        "filename": "includes/LinksTableUpdater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T00:33:09Z",
+      "side": 1,
+      "message": "needs @param for the rest of the parameters",
+      "revId": "14da14e06602e2f1cbada305e2004cd1afe6264b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_58d9095b",
+        "filename": "includes/LinksTableUpdater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T00:33:09Z",
+      "side": 1,
+      "message": "type hint objects",
+      "revId": "14da14e06602e2f1cbada305e2004cd1afe6264b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_7dfe2c37",
+        "filename": "includes/Model/Reference.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T00:33:09Z",
+      "side": 1,
+      "message": "URLReference",
+      "revId": "14da14e06602e2f1cbada305e2004cd1afe6264b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
