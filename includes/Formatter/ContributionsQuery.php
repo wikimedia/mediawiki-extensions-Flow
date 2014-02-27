@@ -3,6 +3,8 @@
 namespace Flow\Formatter;
 
 use ContribsPager;
+use Flow\Data\RevisionStorage;
+use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Header;
@@ -33,6 +35,11 @@ class ContributionsQuery {
 	protected $treeRepo;
 
 	/**
+	 * @var DBFactory
+	 */
+	protected $dbFactory;
+
+	/**
 	 * @var UUID[] Associative array of post ID to root post's UUID object.
 	 */
 	protected $rootPostIdCache = array();
@@ -51,11 +58,13 @@ class ContributionsQuery {
 	 * @param ManagerGroup $storage
 	 * @param BagOStuff $cache
 	 * @param TreeRepository $treeRepo
+	 * @param DBFactory $dbFactory
 	 */
-	public function __construct( ManagerGroup $storage, BagOStuff $cache, TreeRepository $treeRepo ) {
+	public function __construct( ManagerGroup $storage, BagOStuff $cache, TreeRepository $treeRepo, DbFactory $dbFactory ) {
 		$this->storage = $storage;
 		$this->cache = $cache;
 		$this->treeRepo = $treeRepo;
+		$this->dbFactory = $dbFactory;
 	}
 
 	/**
@@ -66,37 +75,8 @@ class ContributionsQuery {
 	 * @return string|bool false on failure
 	 */
 	public function getResults( ContribsPager $pager, $offset, $limit, $descending ) {
-		$target = $pager->target;
-		$conditions = array( 'rev_user_wiki' => wfWikiId() );
-
-		// Work out user condition
-		if ( $pager->contribs == 'newbie' ) {
-			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
-
-			$conditions[] = new RawSql( 'rev_user_id > '. (int) $minUserId );
-			if ( $excludeUserIds ) {
-				// better safe than sorry - make sure everything's an int
-				$excludeUserIds = array_map( 'intval', $excludeUserIds );
-				$conditions[] = new RawSql( 'rev_user_id NOT IN (' . implode( ',', $excludeUserIds ) .')' );
-			}
-		} else {
-			$uid = User::idFromName( $target );
-			if ( $uid ) {
-				$conditions['rev_user_id'] = $uid;
-			} else {
-				$conditions['rev_user_ip'] = $target;
-			}
-		}
-
-		// Make offset parameter.
-		if ( $offset ) {
-			$offsetUUID = UUID::getComparisonUUID( $offset );
-			$direction = $descending ? '>' : '<';
-			$offsetCondition = function( $db ) use ( $direction, $offsetUUID ) {
-				return "rev_id $direction " . $db->addQuotes( $offsetUUID->getBinary() );
-			};
-			$conditions[] = new RawSql( $offsetCondition );
-		}
+		// build DB query conditions
+		$conditions = $this->buildConditions( $pager, $offset, $descending );
 
 		$types = array(
 			// revision class => block type
@@ -106,7 +86,15 @@ class ContributionsQuery {
 
 		$results = array();
 		foreach ( $types as $revisionClass => $blockType ) {
-			$revisions = $this->findRevisions( $pager, $conditions, $limit, $revisionClass );
+			// query DB for requested revisions
+			$rows = $this->queryRevisions( $conditions, $limit, $revisionClass );
+			if ( !$rows ) {
+				continue;
+			}
+
+			// turn DB data into revision objects
+			$revisions = $this->loadRevisions( $rows, $revisionClass );
+
 			$this->loadMetadataBatch( $revisions );
 			foreach ( $revisions as $revision ) {
 				try {
@@ -186,16 +174,150 @@ class ContributionsQuery {
 	}
 
 	/**
-	 * @param ContribsPager $pager
+	 * @param ContribsPager $pager Object hooked into
+	 * @param string $offset Index offset, inclusive
+	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @return array Query conditions
+	 */
+	protected function buildConditions( ContribsPager $pager, $offset, $descending ) {
+		$conditions = array( 'rev_user_wiki' => wfWikiId() );
+
+		// Work out user condition
+		if ( $pager->contribs == 'newbie' ) {
+			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
+
+			$conditions[] = 'rev_user_id > '. (int) $minUserId;
+			if ( $excludeUserIds ) {
+				// better safe than sorry - make sure everything's an int
+				$excludeUserIds = array_map( 'intval', $excludeUserIds );
+				$conditions[] = 'rev_user_id NOT IN (' . implode( ',', $excludeUserIds ) .')';
+			}
+		} else {
+			$uid = User::idFromName( $pager->target );
+			if ( $uid ) {
+				$conditions['rev_user_id'] = $uid;
+			} else {
+				$conditions['rev_user_ip'] = $pager->target;
+			}
+		}
+
+		// Make offset parameter.
+		if ( $offset ) {
+			$dbr = $this->dbFactory->getDB( DB_SLAVE );
+			$offsetUUID = UUID::getComparisonUUID( $offset );
+			$direction = $descending ? '>' : '<';
+			$conditions[] = "rev_id $direction " . $dbr->addQuotes( $offsetUUID->getBinary() );
+		}
+
+		// Find only within requested wiki/namespace
+		$conditions['workflow_wiki'] = wfWikiId();
+		if ( $pager->namespace !== '' ) {
+			$conditions['workflow_namespace'] = $pager->namespace;
+		}
+
+		return $conditions;
+	}
+
+	/**
 	 * @param array $conditions
 	 * @param int $limit
 	 * @param string $revisionClass Storage type (e.g. "PostRevision", "Header")
-	 * @return mixed
+	 * @return ResultWrapper|boolean false on failure
+	 * @throws \MWException
 	 */
-	protected function findRevisions( ContribsPager $pager, $conditions, $limit, $revisionClass ) {
-		return $this->storage->find( $revisionClass, $conditions, array(
-			'LIMIT' => $limit,
-		) );
+	protected function queryRevisions( $conditions, $limit, $revisionClass ) {
+		$dbr = $this->dbFactory->getDB( DB_SLAVE );
+
+		switch ( $revisionClass ) {
+			case 'PostRevision':
+				return $dbr->select(
+					array(
+						'flow_revision', // revisions to find
+						'flow_tree_revision', // resolve to post id
+						'flow_tree_node', // resolve to root post (topic title)
+						'flow_workflow', // resolve to workflow, to test if in correct wiki/namespace
+					),
+					array( '*' ),
+					$conditions,
+					__METHOD__,
+					array(
+						'LIMIT' => $limit,
+						'ORDER BY' => 'rev_id DESC',
+					),
+					array(
+						'flow_tree_revision' => array(
+							'INNER JOIN',
+							array( 'tree_rev_id = rev_id' )
+						),
+						'flow_tree_node' => array(
+							'INNER JOIN',
+							array(
+								'tree_descendant_id = tree_rev_descendant_id',
+								// the one with max tree_depth will be root,
+								// which will have the matching workflow id
+							)
+						),
+						'flow_workflow' => array(
+							'INNER JOIN',
+							array( 'workflow_id = tree_ancestor_id' )
+						),
+					)
+				);
+				break;
+
+			case 'Header':
+				return $dbr->select(
+					array( 'flow_revision', 'flow_header_revision', 'flow_workflow' ),
+					array( '*' ),
+					$conditions,
+					__METHOD__,
+					array(
+						'LIMIT' => $limit,
+						'ORDER BY' => 'rev_id DESC',
+					),
+					array(
+						'flow_header_revision' => array(
+							'INNER JOIN',
+							array( 'header_rev_id = rev_id' )
+						),
+						'flow_workflow' => array(
+							'INNER JOIN',
+							array( 'workflow_id = header_workflow_id' )
+						),
+					)
+				);
+				break;
+
+			default:
+				throw new \MWException( 'Unsupported revision type ' . $revisionClass );
+				break;
+		}
+	}
+
+	/**
+	 * Turns DB data into revision objects.
+	 *
+	 * @param \ResultWrapper $rows
+	 * @param string $revisionClass Class of revision object to build: PostRevision|Header
+	 * @return array
+	 */
+	protected function loadRevisions( \ResultWrapper $rows, $revisionClass ) {
+		$revisions = array();
+		foreach ( $rows as $row ) {
+			$revisions[UUID::create( $row->rev_id )->getAlphadecimal()] = (array) $row;
+		}
+
+		// get content in external storage
+		$revisions = RevisionStorage::mergeExternalContent( array( $revisions ) );
+		$revisions = reset( $revisions );
+
+		// we have all required data to build revision
+		$mapper = $this->storage->getStorage( $revisionClass )->getMapper();
+		$revisions = array_map( array( $mapper, 'fromStorageRow' ), $revisions );
+
+		// @todo: we may already be able to build workflowCache (and rootPostIdCache) from this DB data
+
+		return $revisions;
 	}
 
 	/**
