@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_ed65b1de",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T22:43:57Z",
+      "side": 1,
+      "message": "This probably still needs Message::rawParam( htmlspecialchars( ) ) to prevent parsing the content as wikitext?",
+      "revId": "cd6ef243f81a13e0dec828e9eb5f3c357d779707",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
