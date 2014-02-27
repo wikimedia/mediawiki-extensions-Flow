@@ -16,6 +16,6 @@ SELECT
 FROM
 	/*_*/flow_summary_revision;
 
-DROP TABLE flow_summary_revision;
+DROP TABLE /*_*/flow_summary_revision;
 
 UPDATE /*_*/flow_revision SET rev_type='header' WHERE rev_type='summary';
