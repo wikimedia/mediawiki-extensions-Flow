@@ -253,6 +253,7 @@ abstract class AbstractFormatter {
 	 * @param UUID $workflowId
 	 * @param UUID $oldId
 	 * @param UUID $newId
+	 * @return array Two element array with string url and Message object
 	 */
 	public function revisionDiffLink( Title $title, UUID $workflowId, UUID $oldId, UUID $newId ) {
 		return array(

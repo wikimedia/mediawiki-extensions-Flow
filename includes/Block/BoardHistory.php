@@ -2,6 +2,8 @@
 
 namespace Flow\Block;
 
+use Flow\Model\Header;
+use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
 use Flow\View\History\History;
 use Flow\View\History\HistoryRenderer;
