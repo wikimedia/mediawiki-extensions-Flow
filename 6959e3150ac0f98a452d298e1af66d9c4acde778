@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_b87c8d1c",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T00:36:04Z",
+      "side": 1,
+      "message": "s/sized/size/",
+      "revId": "6959e3150ac0f98a452d298e1af66d9c4acde778",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_987b1123",
+        "filename": "flow.sql",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T00:36:04Z",
+      "side": 1,
+      "message": "sean had suggested that, going forward, we should prefer varbinary(N) over varchar(N) binary because varbinary has stronger guarantees. As long as we are changing might as well do that too.",
+      "revId": "6959e3150ac0f98a452d298e1af66d9c4acde778",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
