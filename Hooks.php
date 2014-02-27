@@ -358,18 +358,26 @@ class FlowHooks {
 	public static function onContributionsQuery( &$data, $pager, $offset, $limit, $descending ) {
 		global $wgFlowOccupyNamespaces, $wgFlowOccupyPages;
 
-		// Not searching within Flow namespace = ignore
-		// (but only if no individual pages are occupied)
-		if ( $pager->namespace != '' &&
-			!in_array( $pager->namespace, $wgFlowOccupyNamespaces ) &&
-			!count( $wgFlowOccupyPages )
-		) {
-			return true;
-		}
-
 		// Flow has nothing to do with the tag filter, so ignore tag searches
 		if ( $pager->tagFilter != false ) {
 			return true;
+		}
+
+		// Ignore when looking in a specific namespace where there is no Flow
+		if ( $pager->namespace != '' ) {
+			// Flow enabled on entire namespace(s)
+			$namespaces = $wgFlowOccupyNamespaces;
+
+			// Flow enabled on specific pages - get those namespaces
+			foreach ( $wgFlowOccupyPages as $page ) {
+				$title = Title::newFromText( $page );
+				$namespaces[] = $title->getNamespace();
+			}
+
+			$namespaces = array_unique( $namespaces );
+			if ( !in_array( $pager->namespace, $namespaces ) ) {
+				return true;
+			}
 		}
 
 		$results = Container::get( 'contributions.query' )->getResults( $pager, $offset, $limit, $descending );
