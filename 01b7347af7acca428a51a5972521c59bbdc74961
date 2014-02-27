@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_a75fc812",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-27T19:00:01Z",
+      "side": 1,
+      "message": "Need to use strict comparison here, main namespace is integer 0",
+      "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_478b6472",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-27T19:00:01Z",
+      "side": 1,
+      "message": "Probably just use namespace as key",
+      "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_47a48404",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-27T19:00:01Z",
+      "side": 1,
+      "message": "This doesn\u0027t solve the issue completely.  Eg, If Flow is enabled on namespace A and B, querying namespace A would pull pages from namespace B as well, but this is a much better improvement than what we have now",
+      "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
