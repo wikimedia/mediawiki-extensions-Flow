@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_bb9b6767",
+        "filename": "includes/Collection/AbstractCollection.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T19:56:28Z",
+      "side": 1,
+      "message": "store the workflow rather than re-fetching each call",
+      "revId": "5644dcbdaee5103b93e44e5ed04234a35f444d74",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_1baedb7d",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T19:56:28Z",
+      "side": 1,
+      "message": "i suppose its just being picky, but i would prefer $this-\u003egetCollection()-\u003egetTitle() over single use variables, its just as readable.",
+      "revId": "5644dcbdaee5103b93e44e5ed04234a35f444d74",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_dba0738f",
+        "filename": "includes/Repository/TreeRepository.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T19:56:28Z",
+      "side": 1,
+      "message": "this should probably be a separate bugfix patch",
+      "revId": "5644dcbdaee5103b93e44e5ed04234a35f444d74",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
