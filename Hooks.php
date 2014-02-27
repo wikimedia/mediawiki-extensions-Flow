@@ -3,31 +3,81 @@
 use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use Flow\Notification\NotificationController;
+use Flow\OccupationController;
+use Flow\SpamFilter\AbuseFilter;
+use Flow\TalkpageManager;
 
 class FlowHooks {
+	/**
+	 * @var OccupationController Initialized during extension intialization
+	 */
+	protected static $occupationController;
+
+	/**
+	 * @var AbuseFilter Initialized during extension initialization
+	 */
+	protected static $abuseFilter;
+
+	/**
+	 * Initialized during extension initialization rather than
+	 * in container so that non-flow pages don't  load the container.
+	 *
+	 * @return OccupationController
+	 */
+	public static function getOccupationController() {
+		if ( self::$occupationController === null ) {
+			self::$occupationController = new TalkpageManager(
+				$wgFlowOccupyNamespaces,
+				$wgFlowOccupyPages
+			);
+		}
+		return self::$occupationController;
+	}
+
+	/**
+	 * Initialized during extension initialization rather than
+	 * in container so that non-flow pages don't  load the container.
+	 *
+	 * @return AbuseFilter|null when disabled
+	 */
+	public static function getAbuseFilter() {
+		if ( self::$abuseFilter === null ) {
+			self::$abuseFilter = new AbuseFilter( $wgUser, $wgFlowAbuseFilterGroup );
+			self::$abuseFilter->setup( array(
+				'threshold' => $wgFlowAbuseFilterEmergencyDisableThreshold,
+				'count' => $wgFlowAbuseFilterEmergencyDisableCount,
+				'age' => $wgFlowAbuseFilterEmergencyDisableAge,
+			) );
+		}
+		return self::$abuseFilter;
+	}
+
 	/**
 	 * Initialize Flow extension with necessary data, this function is invoked
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
-		global $wgEchoNotifications,
+		global $wgUser,
+			$wgEchoNotifications,
 			$wgFlowAbuseFilterGroup,
 			$wgFlowAbuseFilterEmergencyDisableThreshold,
 			$wgFlowAbuseFilterEmergencyDisableCount,
-			$wgFlowAbuseFilterEmergencyDisableAge;
+			$wgFlowAbuseFilterEmergencyDisableAge,
+			$wgFlowOccupyNamespaces,
+			$wgFlowOccupyPages;
 
+		// needed to determine if a page is occupied by flow
+		self::getOccupationController();
+
+		// necessary to render flow notifications
 		if ( isset( $wgEchoNotifications ) ) {
-			Container::get( 'controller.notification' )->setup();
+			NotificationController::setup();
 		}
 
+		// necessary to provide flow options in abuse filter on-wiki pages
 		if ( $wgFlowAbuseFilterGroup ) {
-			Container::get( 'controller.abusefilter' )->setup(
-				array(
-					'threshold' => $wgFlowAbuseFilterEmergencyDisableThreshold,
-					'count' => $wgFlowAbuseFilterEmergencyDisableCount,
-					'age' => $wgFlowAbuseFilterEmergencyDisableAge,
-				)
-			);
+			self::getAbuseFilter();
 		}
 	}
 
@@ -168,12 +218,10 @@ class FlowHooks {
 	 */
 	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
 		global $wgFlowCoreActionWhitelist;
-		$container = Container::getContainer();
-		$occupationController = $container['occupation_controller'];
 		$action = $wiki->getAction();
 
-		if ( $occupationController->isTalkpageOccupied( $title ) && !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
-
+		if ( self::$occupationController->isTalkpageOccupied( $title ) && !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
+			$container = Container::getContainer();
 			$view = new Flow\View(
 				$container['templating'],
 				$container['url_generator'],
@@ -189,7 +237,7 @@ class FlowHooks {
 
 				if ( !$loader->getWorkflow()->isNew() ) {
 					// Workflow currently exists, make sure a revision also exists
-					$occupationController->ensureFlowRevision( $article );
+					self::$occupationController->ensureFlowRevision( $article );
 				}
 
 				$view->show( $loader, $action );
@@ -217,11 +265,8 @@ class FlowHooks {
 
 		$title = $template->getTitle();
 
-		$container = Container::getContainer();
-		$occupationController = $container['occupation_controller'];
-
 		// if Flow is enabled on this talk page, overrule talk page red link
-		if ( $occupationController->isTalkpageOccupied( $title ) ) {
+		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
 			$skname = $template->getSkinName();
 
 			$selected = $template->getRequest()->getVal( 'action' ) == 'board-history';
@@ -393,10 +438,8 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onAbuseFilterComputeVariable( $method, AbuseFilterVariableHolder $vars, $parameters, &$result ) {
-		$spamfilter = Container::get( 'controller.abusefilter' );
-
 		// fetch all lazy-load methods
-		$methods = $spamfilter->lazyLoadMethods();
+		$methods = self::$abuseFilter->lazyLoadMethods();
 
 		// method isn't known here
 		if ( !isset( $methods[$method] ) ) {
@@ -417,7 +460,7 @@ class FlowHooks {
 	 * @return bool false to abort email notification
 	 */
 	public static function onAbortEmailNotification( $editor, $title ) {
-		if ( Container::get( 'occupation_controller' )->isTalkpageOccupied( $title ) ) {
+		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
 			return false;
 		}
 
@@ -425,7 +468,7 @@ class FlowHooks {
 	}
 
 	public static function onInfoAction( IContextSource $ctx, &$pageinfo ) {
-		if ( !Container::get( 'occupation_controller' )->isTalkpageOccupied( $ctx->getTitle() ) ) {
+		if ( !self::$occupationController->isTalkpageOccupied( $ctx->getTitle() ) ) {
 			return true;
 		}
 
