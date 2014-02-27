@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_58db4925",
+        "filename": "tests/PermissionsTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-27T00:41:09Z",
+      "side": 1,
+      "message": "Not quite sure how this field is used, looks like all core unittests appends to it other than overwriting",
+      "revId": "fa707a61bb6662d61cdc49d9ab9a36d37985912e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
