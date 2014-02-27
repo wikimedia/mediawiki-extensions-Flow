@@ -97,11 +97,54 @@ class UUID {
 	 * @throws InvalidInputException
 	 */
 	static public function create( $input = false ) {
-		$binaryValue = null;
-		$hexValue = null;
-		$alphadecimalValue = null;
+		// Most calls to UUID::create are binary strings, check string first
+		if ( is_string( $input ) || is_int( $input) || $input === false ) {
+			$binaryValue = null;
+			$hexValue = null;
+			$alphadecimalValue = null;
 
-		if ( is_object( $input ) ) {
+			if ( $input === false ) {
+				// new uuid in base 16 and pad to HEX_LEN with 0's
+				$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
+			} else {
+				$len = strlen( $input );
+				if ( $len === self::BIN_LEN ) {
+					$binaryValue = $input;
+				} elseif ( $len >= self::MIN_ALPHADECIMAL_LEN && $len <= self::ALPHADECIMAL_LEN && ctype_alnum( $input ) ) {
+					$alphadecimalValue = $input;
+					// convert base 36 to base 16 and pad to HEX_LEN with 0's
+					$hexValue = wfBaseConvert( $input, 36, 16, self::HEX_LEN );
+				} elseif ( $len === self::HEX_LEN && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
+					$hexValue = $input;
+				} elseif ( $len === self::OLD_BIN_LEN ) {
+					$binaryValue = substr( $input, 0, self::BIN_LEN );
+				} elseif ( $len === self::OLD_HEX_LEN ) {
+					$hexValue = substr( $input, 0, self::HEX_LEN );
+				} elseif ( is_numeric( $input ) ) {
+					// convert base 10 to base 16 and pad to HEX_LEN with 0's
+					$hexValue = wfBaseConvert( $input, 10, 16, self::HEX_LEN );
+				} else {
+					throw new InvalidInputException( 'Unknown input to UUID class', 'invalid-input' );
+				}
+			}
+
+			if ( $binaryValue === null && $hexValue !== null ) {
+				$binaryValue = pack( 'H*', $hexValue );
+			}
+
+			// uuid's are immutable
+			if ( self::$cache === null ) {
+				self::$cache = new MapCacheLRU( self::CACHE_MAX );
+			}
+			$uuid = self::$cache->get( $binaryValue );
+			if ( $uuid === null ) {
+				$uuid = new self( $binaryValue );
+				$uuid->hexValue = $hexValue;
+				$uuid->alphadecimalValue = $alphadecimalValue;
+				self::$cache->set( $binaryValue, $uuid );
+			}
+			return $uuid;
+		} else if ( is_object( $input ) ) {
 			if ( $input instanceof UUID ) {
 				return clone $input;
 			} else {
@@ -109,51 +152,9 @@ class UUID {
 			}
 		} elseif ( $input === null ) {
 			return null;
-		}
-
-		$len = strlen( $input );
-		if ( $input === false ) {
-			// new uuid in base 16 and pad to HEX_LEN with 0's
-			$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
-		} elseif ( !is_string( $input ) && !is_int( $input ) ) {
-			throw new InvalidInputException( 'Unknown input type to UUID class: ' . gettype( $input ), 'invalid-input' );
-		} elseif ( $len === self::BIN_LEN ) {
-			$binaryValue = $input;
-		} elseif ( $len >= self::MIN_ALPHADECIMAL_LEN && $len <= self::ALPHADECIMAL_LEN && ctype_alnum( $input ) ) {
-			$alphadecimalValue = $input;
-			// convert base 36 to base 16 and pad to HEX_LEN with 0's
-			$hexValue = wfBaseConvert( $input, 36, 16, self::HEX_LEN );
-		} elseif ( $len === self::HEX_LEN && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
-			$hexValue = $input;
-		} elseif ( $len === self::OLD_BIN_LEN ) {
-			$binaryValue = substr( $input, 0, self::BIN_LEN );
-		} elseif ( $len === self::OLD_HEX_LEN ) {
-			$hexValue = substr( $input, 0, self::HEX_LEN );
-		} elseif ( is_numeric( $input ) ) {
-			// convert base 10 to base 16 and pad to HEX_LEN with 0's
-			$hexValue = wfBaseConvert( $input, 10, 16, self::HEX_LEN );
 		} else {
-			throw new InvalidInputException( 'Unknown input to UUID class', 'invalid-input' );
+			throw new InvalidInputException( 'Unknown input type to UUID class: ' . gettype( $input ), 'invalid-input' );
 		}
-
-		if ( $binaryValue === null && $hexValue !== null ) {
-			$binaryValue = pack( 'H*', $hexValue );
-		}
-
-		// uuid's are immutable
-		if ( self::$cache === null ) {
-			self::$cache = new MapCacheLRU( self::CACHE_MAX );
-		}
-		if ( self::$cache->has( $binaryValue ) ) {
-			return self::$cache->get( $binaryValue );
-		}
-
-		$uuid = new self( $binaryValue );
-		$uuid->hexValue = $hexValue;
-		$uuid->alphadecimalValue = $alphadecimalValue;
-		self::$cache->set( $binaryValue, $uuid );
-
-		return $uuid;
 	}
 
 	/**
