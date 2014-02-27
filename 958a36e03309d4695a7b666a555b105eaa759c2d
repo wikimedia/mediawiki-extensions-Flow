@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_473a44e5",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T20:51:14Z",
+      "side": 1,
+      "message": "since we are optimizing as a hot path, should avoid doing the same work in has and get,  \n\n    $uuid \u003d self::$cache-\u003eget( $binaryValue );\n    if ( $uuid \u003d\u003d\u003d null ) {\n        ...\n    }",
+      "revId": "958a36e03309d4695a7b666a555b105eaa759c2d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
