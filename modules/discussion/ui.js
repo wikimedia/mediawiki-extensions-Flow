@@ -354,7 +354,7 @@
 				kind = 'topic';
 				uid = window.location.hash.substr( '#flow-topic-'.length );
 			}
-			if ( uid.length === 32 ) {
+			if ( uid && uid.length === 32 ) {
 				// converts 128 bit hex uuid to 88 bit base 36 by truncating the right
 				// side of the uuid.
 				window.location.hash = '#flow-' + kind + '-' + baseConvert( uid.substr( 0, 22 ), 16, 36 );
