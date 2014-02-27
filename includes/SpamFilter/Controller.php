@@ -20,7 +20,7 @@ class Controller {
 	 * @throws FlowException When provided arguments are not an instance of SpamFilter
 	 */
 	public function __construct( SpamFilter $spamfilter /* [, SpamFilter $spamfilter2 [, ...]] */ ) {
-		$this->spamfilters = func_get_args();
+		$this->spamfilters = array_filter( func_get_args() );
 
 		// validate data
 		foreach ( $this->spamfilters as $spamfilter ) {
