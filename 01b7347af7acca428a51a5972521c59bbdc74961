@@ -50,6 +50,24 @@
       "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_5200c003",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T20:53:25Z",
+      "side": 1,
+      "message": "contributions already hits the database, ContributionsQuery just needs to be updated to take the namespace into account(and possibly a new db index).  No need to also index this in memcache",
+      "parentUuid": "4e04eb01_47a48404",
+      "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
