@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_47536443",
+        "filename": "includes/Collection/CollectionCache.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-27T20:45:20Z",
+      "side": 1,
+      "message": "could pass the AbstractRevision directly",
+      "revId": "046bb65bf0c64d6d712c2bd31ef899c460ada569",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
