@@ -141,6 +141,5 @@ class HistoryTest extends PostRevisionTestCase {
 			'tree_rev_id' =>  $revId->getBinary(),
 			'tree_rev_descendant_id' => $postId->getBinary(),
 		), array(), 1 );
-
 	}
 }
