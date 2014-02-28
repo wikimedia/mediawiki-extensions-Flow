@@ -25,8 +25,8 @@ class ApiParsoidUtilsFlow extends ApiBase {
 
 		if ( $params['to'] === 'html' ) {
 			// convert redlinks
-			$redlinker = new Redlinker( $page->getTitle(), new LinkBatch );
-			$content = $redlinker->apply( $content );
+			$redlinker = new Redlinker( new LinkBatch );
+			$content = $redlinker->apply( $content, $page->getTitle() );
 		}
 
 		$result = array(
