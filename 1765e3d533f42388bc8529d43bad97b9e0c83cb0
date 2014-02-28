@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_8e1740f2",
+        "filename": "includes/Collection/PostCollection.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-28T19:30:20Z",
+      "side": 1,
+      "message": "perhaps its just worrying about small inefficiencys, but this is creating a new collection object, asking for its constructor parameter, and then throwing away the collection object.",
+      "revId": "1765e3d533f42388bc8529d43bad97b9e0c83cb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
