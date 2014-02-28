@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_2eaa6c82",
+        "filename": "includes/Collection/AbstractCollection.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-02-28T19:30:29Z",
+      "side": 1,
+      "message": "The buffered cache does hold them in memory, i suppose the worry is that rewcently me and benny have been poking at the profiling information and the storage section is taking up a larger and larger part of the cpu time churning through the same code multiple times.  We should probably optimize both ends by asking for less data we already have and by using less cycles to return that previously loaded data.",
+      "parentUuid": "4e04eb01_b5a00b8e",
+      "revId": "5644dcbdaee5103b93e44e5ed04234a35f444d74",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_1baedb7d",
         "filename": "includes/Model/AbstractRevision.php",
         "patchSetId": 2
