@@ -16,6 +16,7 @@ class PostCollectionTest extends PostRevisionTestCase {
 	protected $tablesUsed = array( 'flow_revision', 'flow_tree_revision' );
 
 	protected function setUp() {
+		Container::reset();
 		parent::setUp();
 
 		// recent changes isn't fully setup here, just skip it
