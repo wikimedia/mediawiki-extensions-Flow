@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_18537644",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-28T16:10:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e04eb01_a75fc812",
+      "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_478b6472",
         "filename": "Hooks.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-02-27T19:00:01Z",
       "side": 1,
       "message": "Probably just use namespace as key",
+      "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_38507236",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-28T16:10:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e04eb01_478b6472",
       "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -64,6 +100,42 @@
       "writtenOn": "2014-02-27T20:53:25Z",
       "side": 1,
       "message": "contributions already hits the database, ContributionsQuery just needs to be updated to take the namespace into account(and possibly a new db index).  No need to also index this in memcache",
+      "parentUuid": "4e04eb01_47a48404",
+      "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_985e6647",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-28T16:10:28Z",
+      "side": 1,
+      "message": "There\u0027s flow_workflow_lookup idx already, on workflow_wiki + workflow_namespace + 2 more, that we can leverage",
+      "parentUuid": "4e04eb01_5200c003",
+      "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_156c5f04",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-02-28T16:10:28Z",
+      "side": 1,
+      "message": "Wow, I really didn\u0027t think this one through :)\n\nHow wrong was I to assume it was this easy. Submitted follow-up patch that will immediately query DB instead of wrapping it through Flow\u0027s storage functions.\n\nDon\u0027t really see any other way to get to workflow data, which is the only way to know what namespace a revision is attached to.\n\nLet me know if you guys have other bright ideas!",
       "parentUuid": "4e04eb01_47a48404",
       "revId": "01b7347af7acca428a51a5972521c59bbdc74961",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
