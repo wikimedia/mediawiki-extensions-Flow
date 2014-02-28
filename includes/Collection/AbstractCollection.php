@@ -17,9 +17,9 @@ abstract class AbstractCollection {
 	protected $uuid;
 
 	/**
-	 * @var \Flow\Data\ObjectManager
+	 * @var \Flow\Data\ObjectManager[]
 	 */
-	protected $storage;
+	protected $storage = array();
 
 	/**
 	 * Array of revisions for this object.
@@ -27,6 +27,11 @@ abstract class AbstractCollection {
 	 * @var AbstractRevision[]
 	 */
 	protected $revisions = array();
+
+	/**
+	 * @var Workflow
+	 */
+	protected $workflow;
 
 	/**
 	 * Returns the revision class name for this specific object (e.g. Header,
@@ -46,6 +51,13 @@ abstract class AbstractCollection {
 	 * @return string
 	 */
 	abstract public function getIdColumn();
+
+	/**
+	 * Returns the id of the workflow this collection is associated with.
+	 *
+	 * @return UUID
+	 */
+	abstract public function getWorkflowId();
 
 	/**
 	 * Use the static methods to load an object from a given revision.
@@ -88,14 +100,19 @@ abstract class AbstractCollection {
 	}
 
 	/**
+	 * @param string|null $class Storage class - defaults to getRevisionClass()
 	 * @return ObjectManager
 	 */
-	public function getStorage() {
-		if ( !$this->storage ) {
-			$this->storage = Container::get( 'storage' )->getStorage( $this->getRevisionClass() );
+	public function getStorage( $class = null ) {
+		if ( !$class ) {
+			$class = $this->getRevisionClass();
 		}
 
-		return $this->storage;
+		if ( !$this->storage[$class] ) {
+			$this->storage[$class] = Container::get( 'storage' )->getStorage( $class );
+		}
+
+		return $this->storage[$class];
 	}
 
 	/**
@@ -196,5 +213,33 @@ abstract class AbstractCollection {
 		}
 
 		return $this->getRevision( UUID::create( $ids[$next] ) );
+	}
+
+	/**
+	 * Returns the Title object this revision is associated with.
+	 *
+	 * @return Title
+	 */
+	public function getTitle() {
+		return $this->getWorkflow()->getArticleTitle();
+	}
+
+	/**
+	 * Returns the workflow object this collection is associated with.
+	 *
+	 * @return Workflow
+	 * @throws InvalidDataException
+	 */
+	public function getWorkflow() {
+		if ( !$this->workflow ) {
+			$uuid = $this->getWorkflowId();
+
+			$this->workflow = $this->getStorage( 'Flow\\Model\\Workflow' )->get( $uuid );
+			if ( !$this->workflow ) {
+				throw new InvalidDataException( 'Invalid workflow: ' . $uuid->getAlphadecimal(), 'invalid-workflow' );
+			}
+		}
+
+		return $this->workflow;
 	}
 }

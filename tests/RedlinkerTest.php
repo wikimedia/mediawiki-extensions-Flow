@@ -12,6 +12,7 @@ use FormatJson;
  * @group Flow
  */
 class RedlinkerTest extends PostRevisionTestCase {
+
 	static public function redLinkProvider() {
 		return array(
 			array(
