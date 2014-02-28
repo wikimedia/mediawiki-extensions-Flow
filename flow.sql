@@ -138,6 +138,10 @@ CREATE TABLE /*_*/flow_revision (
 CREATE UNIQUE INDEX /*i*/flow_revision_unique_parent ON
 	/*_*/flow_revision (rev_parent_id);
 
+-- Special:Contributions can do queries based on user id/ip
+CREATE INDEX /*i*/flow_revision_user ON
+	/*_*/flow_revision (rev_user_id, rev_user_ip, rev_user_wiki);
+
 -- Closure table implementation of tree storage in sql
 -- We may be able to go simpler than this
 CREATE TABLE /*_*/flow_tree_node (
