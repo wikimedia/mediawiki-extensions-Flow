@@ -438,7 +438,7 @@ class Templating {
 			if ( $format === 'html' ) {
 				// Parsoid doesn't render redlinks
 				try {
-					$content = $this->redlinks->apply( $content );
+					$content = $this->redlinks->apply( $content, $revision->getCollection()->getTitle() );
 				} catch ( \Exception $e ) {
 					wfDebugLog( __CLASS__, __METHOD__ . ': Failed applying redlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
 					\MWExceptionHandler::logException( $e );

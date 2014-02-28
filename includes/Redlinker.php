@@ -46,12 +46,6 @@ use FormatJson;
  *	$content = $redlinker->apply( $foo->getContent() );
  */
 class Redlinker {
-
-	/**
-	 * @var Title To resolve relative links against
-	 */
-	protected $title;
-
 	/**
 	 * @var LinkBatch
 	 */
@@ -79,11 +73,9 @@ class Redlinker {
 	protected $callback;
 
 	/**
-	 * @param Title $title To resolve relative links against
 	 * @param LinkBatch $batch
 	 */
-	public function __construct( Title $title, LinkBatch $batch ) {
-		$this->title = $title;
+	public function __construct( LinkBatch $batch ) {
 		$this->batch = $batch;
 		$this->processed = new ArrayObject;
 	}
@@ -178,9 +170,10 @@ class Redlinker {
 	 * It will then substitute original link HTML for the one Linker generated.
 	 *
 	 * @param string $content
+	 * @param Title $title Title to resolve relative links against
 	 * @return string
 	 */
-	public function apply( $content ) {
+	public function apply( $content, Title $title ) {
 		if ( !$content ) {
 			return '';
 		}
@@ -197,8 +190,8 @@ class Redlinker {
 		 */
 		$dom = ParsoidUtils::createDOM( '<?xml encoding="utf-8"?>' . $content );
 		$self = $this;
-		self::forEachLink( $dom, function( DOMNode $linkNode, array $parsoid ) use ( $self, $dom ) {
-			$title = $self->createRelativeTitle( $parsoid['sa']['href'] );
+		self::forEachLink( $dom, function( DOMNode $linkNode, array $parsoid ) use ( $self, $dom, $title ) {
+			$title = $self->createRelativeTitle( $parsoid['sa']['href'], $title );
 			// Don't process invalid links
 			if ( $title === null ) {
 				return;
@@ -247,16 +240,17 @@ class Redlinker {
 	}
 
 	/**
-	 * Subpage links from parsoid don't contain any direct context, its applied via
+	 * Subpage links from Parsoid don't contain any direct context, its applied via
 	 * a <base href="..."> tag, so here we apply a similar rule resolving against
-	 * $wgFlowParsoidTitle falling back to $wgTitle.
+	 * $title.
 	 *
 	 * @param string $text
+	 * @param Title $title Title to resolve relative links against
 	 * @return Title|null
 	 */
-	public function createRelativeTitle( $text ) {
+	public function createRelativeTitle( $text, Title $title ) {
 		if ( $text && $text[0] === '/' ) {
-			return Title::newFromText( $this->title->getDBkey() . $text, $this->title->getNamespace() );
+			return Title::newFromText( $title->getDBkey() . $text, $title->getNamespace() );
 		} else {
 			return Title::newFromText( $text );
 		}

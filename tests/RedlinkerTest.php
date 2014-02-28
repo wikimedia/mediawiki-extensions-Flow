@@ -60,8 +60,8 @@ class RedlinkerTest extends PostRevisionTestCase {
 	 * @dataProvider redLinkProvider
 	 */
 	public function testApplysRedLinks( $message, $anchor, $expect ) {
-		$redlink = new Redlinker( Title::newMainPage(), $this->getMock( 'LinkBatch' ) );
-		$result = $redlink->apply( $anchor );
+		$redlink = new Redlinker( $this->getMock( 'LinkBatch' ) );
+		$result = $redlink->apply( $anchor, Title::newMainPage() );
 		$this->assertContains( $expect, $result, $message );
 	}
 
@@ -91,7 +91,7 @@ class RedlinkerTest extends PostRevisionTestCase {
 				$this->matches( $saHref )
 			) );
 
-		$redlinker = new Redlinker( Title::newMainPage(), $batch );
+		$redlinker = new Redlinker( $batch );
 		$redlinker->registerPost( $post );
 		$redlinker->resolveLinkStatus();
 	}
@@ -111,7 +111,7 @@ class RedlinkerTest extends PostRevisionTestCase {
 				$this->matches( $saHref )
 			) );
 
-		$redlinker = new Redlinker( Title::newMainPage(), $batch );
+		$redlinker = new Redlinker( $batch );
 		$redlinker->collectLinks( $anchor );
 	}
 }
