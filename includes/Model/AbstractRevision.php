@@ -313,13 +313,13 @@ abstract class AbstractRevision {
 		$obj->moderatedReason = $reason;
 		$obj->moderationState = $state;
 
-		list( $userId, $userIp, $userWiki ) = self::userFields( $user );
 		if ( $state === self::MODERATED_NONE ) {
 			$obj->moderatedByUserId = null;
 			$obj->moderatedByUserIp = null;
 			$obj->moderatedByUserWiki = null;
 			$obj->moderationTimestamp = null;
 		} else {
+			list( $userId, $userIp, $userWiki ) = self::userFields( $user );
 			$obj->moderatedByUserId = $userId;
 			$obj->moderatedByUserIp = $userIp;
 			$obj->moderatedByUserWiki = $userWiki;
@@ -439,7 +439,7 @@ abstract class AbstractRevision {
 	 * use self::setNextContent
 	 *
 	 * @param string $content Content in wikitext format
-	 * @throws \MWException
+	 * @throws DataModelException
 	 */
 	protected function setContent( $content ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
@@ -678,13 +678,11 @@ abstract class AbstractRevision {
 		if ( $user->isAnon() ) {
 			$userId = 0;
 			$userIp = $user->getName();
-			$userWiki = wfWikiId();
 		} else {
 			$userId = $user->getId();
 			$userIp = null;
-			$userWiki = wfWikiId();
 		}
-		return array( $userId, $userIp, $userWiki );
+		return array( $userId, $userIp, wfWikiId() );
 	}
 
 	/**
