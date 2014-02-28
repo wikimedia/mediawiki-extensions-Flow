@@ -181,8 +181,6 @@ class ContributionsQuery {
 	 * @return array Query conditions
 	 */
 	protected function buildConditions( ContribsPager $pager, $offset, $descending ) {
-		$conditions = array( 'rev_user_wiki' => wfWikiId() );
-
 		// Work out user condition
 		if ( $pager->contribs == 'newbie' ) {
 			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
@@ -192,13 +190,19 @@ class ContributionsQuery {
 				// better safe than sorry - make sure everything's an int
 				$excludeUserIds = array_map( 'intval', $excludeUserIds );
 				$conditions[] = 'rev_user_id NOT IN (' . implode( ',', $excludeUserIds ) .')';
+				$conditions['rev_user_ip'] = null;
+				$conditions['rev_user_wiki'] = wfWikiID();
 			}
 		} else {
 			$uid = User::idFromName( $pager->target );
 			if ( $uid ) {
 				$conditions['rev_user_id'] = $uid;
+				$conditions['rev_user_ip'] = null;
+				$conditions['rev_user_wiki'] = wfWikiID();
 			} else {
+				$conditions['rev_user_id'] = 0;
 				$conditions['rev_user_ip'] = $pager->target;
+				$conditions['rev_user_wiki'] = wfWikiID();
 			}
 		}
 
