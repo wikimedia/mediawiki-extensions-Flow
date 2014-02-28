@@ -64,7 +64,6 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 			// flow_tree_revision
 			'tree_rev_descendant_id' => $uuidPost->getBinary(),
 			'tree_rev_id' => $uuidRevision->getBinary(),
-			'tree_orig_create_time' => wfTimestampNow(),
 			'tree_orig_user_id' => $userId,
 			'tree_orig_user_ip' => $userIp,
 			'tree_parent_id' => null,
