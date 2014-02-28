@@ -10,8 +10,14 @@ use FormatJson;
 
 /**
  * @group Flow
+ * @group Database
  */
 class RedlinkerTest extends PostRevisionTestCase {
+	/**
+	 * @var array
+	 */
+	protected $tablesUsed = array( 'flow_revision', 'flow_tree_revision', 'flow_tree_node' );
+
 	static public function redLinkProvider() {
 		return array(
 			array(
@@ -66,13 +72,16 @@ class RedlinkerTest extends PostRevisionTestCase {
 			'data-parsoid' => FormatJson::encode( array( 'sa' => array( 'href' => $saHref ) ) ),
 		), $saHref );
 
+		$title = $this->generateObject();
 		$post = $this->generateObject( array(
 			// pretend not to be topic title (they're not parsed, so ignored)
-			'tree_parent_id' => UUID::create()->getBinary(),
+			'tree_parent_id' => $title->getPostId()->getBinary(),
 			// set content with link
 			'rev_content' => $anchor,
 			'rev_flags' => 'html'
 		) );
+		$this->store( $title );
+		$this->store( $post );
 
 		$batch = $this->getMock( 'LinkBatch' );
 		$batch->expects( $this->once() )
