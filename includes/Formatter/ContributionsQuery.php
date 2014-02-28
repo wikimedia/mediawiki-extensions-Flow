@@ -195,6 +195,7 @@ class ContributionsQuery {
 			if ( $uid ) {
 				$conditions['rev_user_id'] = $uid;
 			} else {
+				$conditions['rev_user_id'] = 0;
 				$conditions['rev_user_ip'] = $pager->target;
 			}
 		}
