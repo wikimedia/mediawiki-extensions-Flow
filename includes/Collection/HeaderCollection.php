@@ -13,7 +13,7 @@ class HeaderCollection extends LocalCacheAbstractCollection {
 		return 'header_workflow_id';
 	}
 
-	protected static function getIdFromRevision( AbstractRevision $revision ) {
-		return $revision->getWorkflowId();
+	public function getWorkflowId() {
+		return $this->getId();
 	}
 }

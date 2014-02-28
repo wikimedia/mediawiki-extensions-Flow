@@ -308,6 +308,7 @@ class PostRevision extends AbstractRevision {
 
 	/**
 	 * @param PostRevision $root
+	 * @deprecated Use PostCollection::getRoot instead
 	 */
 	public function setRootPost( PostRevision $root ) {
 		$this->rootPost = $root;
@@ -322,12 +323,15 @@ class PostRevision extends AbstractRevision {
 	/**
 	 * @return PostRevision
 	 * @throws DataModelException
+	 * @deprecated Use PostCollection::getRoot instead
 	 */
 	public function getRootPost() {
 		if ( $this->isTopicTitle() ) {
 			return $this;
 		} elseif ( $this->rootPost === null ) {
-			throw new DataModelException( 'Root not loaded for post: ' . $this->postId->getAlphadecimal(), 'process-data' );
+			$collection = $this->getCollection();
+			$root = $collection->getRoot();
+			return $root->getLastRevision();
 		}
 		return $this->rootPost;
 	}

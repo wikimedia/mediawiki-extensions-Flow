@@ -13,35 +13,16 @@ abstract class ParsoidUtils {
 	 * @param string $from Format of content to convert: html|wikitext
 	 * @param string $to Format to convert to: html|wikitext
 	 * @param string $content
-	 * @param Title|null $title Defaults to $wgTitle
+	 * @param Title $title
 	 * @return string
 	 * @throws InvalidDataException When $title does not exist
 	 */
-	public static function convert( $from, $to, $content, Title $title = null ) {
+	public static function convert( $from, $to, $content, Title $title ) {
 		if ( $from === $to || $content === '' ) {
 			return $content;
 		}
 
 		$section = new \ProfileSection( __METHOD__ );
-		if ( !$title instanceof Title ) {
-			global $wgTitle, $wgFlowParsoidTitle;
-			/*
-			 * $wgFlowParsoidTitle is an ugly hack. As long as posts only appear on 1
-			 * page, we can just omit $title parameter & fallback to $wgTitle.
-			 * For API calls, however, $wgTitle will not contain the Title
-			 * object for the page we're submitting Flow changes. That's where
-			 * $wgFlowParsoidTitle comes in to play, which will be set from API to
-			 * container the correct Title object.
-			 *
-			 * We should definitely think about a nicer way to pass the correct
-			 * title to this method, from wherever it is being called from.
-			 */
-			if ( $wgFlowParsoidTitle ) {
-				$title = $wgFlowParsoidTitle;
-			} else {
-				$title = $wgTitle;
-			}
-		}
 
 		// Parsoid will fail if title does not exist
 		if ( !$title->exists() ) {
