@@ -91,21 +91,57 @@ class TreeRepository {
 			),
 			__METHOD__
 		);
+
 		if ( $res && $ancestor !== null ) {
-			$res = $dbw->insertSelect(
-				$this->tableName,
-				$this->tableName,
-				array(
-					'tree_descendant_id' => $dbw->addQuotes( $descendant->getBinary() ),
-					'tree_ancestor_id' => 'tree_ancestor_id',
-					'tree_depth' => 'tree_depth + 1',
-				),
-				array(
-					'tree_descendant_id' => $ancestor->getBinary(),
-				),
-				__METHOD__
-			);
+			try {
+				$res = $dbw->insertSelect(
+					$this->tableName,
+					$this->tableName,
+					array(
+						'tree_descendant_id' => $dbw->addQuotes( $descendant->getBinary() ),
+						'tree_ancestor_id' => 'tree_ancestor_id',
+						'tree_depth' => 'tree_depth + 1',
+					),
+					array(
+						'tree_descendant_id' => $ancestor->getBinary(),
+					),
+					__METHOD__
+				);
+			} catch( \DBQueryError $e ) {
+				/*
+				 * insertSelect won't work on temporary tables (as used for MW
+				 * unit tests), because it refers to the same table twice, in
+				 * one query.
+				 * In this case, we'll do a separate select & insert.
+				 *
+				 * @see https://dev.mysql.com/doc/refman/5.0/en/temporary-table-problems.html
+				 * @see http://dba.stackexchange.com/questions/45270/mysql-error-1137-hy000-at-line-9-cant-reopen-table-temp-table
+				 */
+				if ( $dbw->lastErrno() === 1137 ) {
+					// @todo: needs to be done for ALL depths, not just one
+					$rows = $dbw->select(
+						$this->tableName,
+						array( 'tree_depth' ),
+						array( 'tree_descendant_id' => $ancestor->getBinary() ),
+						__METHOD__
+					);
+
+					$res = true;
+					foreach ( $rows as $row ) {
+						$res &= $dbw->insert(
+							$this->tableName,
+							array(
+								'tree_descendant_id' => $descendant->getBinary(),
+								'tree_ancestor_id' => $ancestor->getBinary(),
+								'tree_depth' => $row->tree_depth + 1,
+							),
+							__METHOD__
+						);
+					}
+				}
+			}
 		}
+
 		if ( !$res ) {
 			$this->cache->delete( $parentKey );
 			$this->cache->delete( $pathKey );
@@ -163,7 +199,7 @@ class TreeRepository {
 			if ( isset( $cacheResult[$cacheKeys[$descendant->getAlphadecimal()]] ) ) {
 				$cacheValues[$descendant->getAlphadecimal()] = $cacheResult[$cacheKeys[$descendant->getAlphadecimal()]];
 			} else {
-				// This doubles as a way to convert binary UUIDs to hex
+				// This doubles as a way to convert binary UUIDs to alphanumeric
 				$missingValues[$descendant->getBinary()] = $descendant->getAlphadecimal();
 			}
 		}
@@ -244,11 +280,11 @@ class TreeRepository {
 		// To simplify caching we will work through the root path instead
 		// of caching our own value
 		$path = $this->findRootPath( $descendant );
-		$root = array_shift( $path );
-
-		if ( ! $root ) {
+		if ( !$path ) {
 			throw new DataModelException( $descendant->getAlphadecimal().' has no root post. Probably is a root post.', 'process-data' );
 		}
+
+		$root = array_shift( $path );
 
 		return $root;
 	}
