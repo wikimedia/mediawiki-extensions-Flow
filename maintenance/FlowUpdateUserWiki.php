@@ -96,7 +96,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 		}
 
-		$this->output( "processing workflow: " . $wf->getId()->getHex() . ' in ' . __METHOD__ . "\n" );
+		$this->output( "processing workflow: " . $wf->getId()->getAlphadecimal() . ' in ' . __METHOD__ . "\n" );
 		$this->checkForSlave();
 	}
 
@@ -249,7 +249,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			}
 		}
 
-		$this->output( "processing $type: " . $revision->getRevisionId()->getHex() . ' in ' . __METHOD__ . "\n" );
+		$this->output( "processing $type: " . $revision->getRevisionId()->getAlphadecimal() . ' in ' . __METHOD__ . "\n" );
 		$this->checkForSlave();
 	}
 
