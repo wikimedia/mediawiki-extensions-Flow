@@ -2,6 +2,7 @@
 
 namespace Flow\Tests;
 
+use Flow\Container;
 use Flow\Data\RecentChanges as RecentChangesHandler;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
@@ -16,17 +17,12 @@ use User;
  */
 class PostRevisionTestCase extends \MediaWikiTestCase {
 	/**
-	 * PostRevision object, created from $this->generatePost()
-	 *
-	 * @var PostRevision
+	 * @var array Array of PostRevision objects
 	 */
-	protected $revision;
+	protected $revisions = array();
 
 	protected $workflow;
 
-	/**
-	 * Creates a $this->revision object, for use in classes that extend this one.
-	 */
 	protected function setUp() {
 		parent::setUp();
 		Container::reset();
@@ -39,9 +35,27 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 	 */
 	protected function tearDown() {
 		parent::tearDown();
+
+		foreach ( $this->revisions as $revision ) {
+			try {
+				$this->getStorage()->remove( $revision );
+			} catch ( \MWException $e ) {
+				// ignore - lifecyclehandlers may cause issues with tests, where
+				// not all related stuff is loaded
+			}
+		}
+
 		Container::get( 'storage.workflow' )->remove( $this->workflow );
+
 		// Needed because not all cases do the reset in setUp yet
 		Container::reset();
+	}
+
+	/**
+	 * @return ObjectManager
+	 */
+	protected function getStorage() {
+		return Container::get( 'storage.post' );
 	}
 
 	/**
@@ -142,6 +156,20 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 		$revision->setDepth( $depth );
 
 		return $revision;
+	}
+
+	/**
+	 * Saves a PostRevision to storage.
+	 * Be sure to add the required tables to $tablesUsed and add @group Database
+	 * to the class' phpDoc.
+	 *
+	 * @param PostRevision $revision
+	 */
+	protected function store( PostRevision $revision ) {
+		$this->getStorage()->put( $revision );
+
+		// save for removal at end of tests
+		$this->revisions[] = $revision;
 	}
 
 	protected function clearRecentChangesLifecycleHandlers() {
