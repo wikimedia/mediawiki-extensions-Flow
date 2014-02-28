@@ -73,8 +73,7 @@ $c['link_batch'] = $c->share( function() {
 } );
 
 $c['redlinker'] = $c->share( function( $c ) {
-	global $wgTitle, $wgFlowParsoidTitle;
-	return new Flow\Redlinker( $wgFlowParsoidTitle ?: $wgTitle, $c['link_batch'] );
+	return new Flow\Redlinker( $c['link_batch'] );
 } );
 
 $c['templating.namespaces'] = array(
