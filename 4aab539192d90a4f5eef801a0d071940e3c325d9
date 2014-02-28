@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_89cdfa8a",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-02-28T22:51:33Z",
+      "side": 1,
+      "message": "updateHistory() is redundant for the script, because there is only one header for a workflow, flow_header_revision is already a history list.\n\nI am writing a follow-up patch to fix this",
+      "revId": "4aab539192d90a4f5eef801a0d071940e3c325d9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
