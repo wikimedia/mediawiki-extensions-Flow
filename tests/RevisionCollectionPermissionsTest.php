@@ -21,16 +21,6 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 	protected $tablesUsed = array( 'flow_revision', 'flow_tree_revision' );
 
 	/**
-	 * @var array Array of PostRevision objects
-	 */
-	protected $revisions = array();
-
-	/**
-	 * @var ObjectManager
-	 */
-	protected $storage;
-
-	/**
 	 * @var FlowActions
 	 */
 	protected $actions;
@@ -88,16 +78,6 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		$blockedUser = $this->blockedUser();
 		$this->block = new Block( $blockedUser->getName(), $blockedUser->getID() );
 		$this->block->insert();
-
-		$this->storage = Container::get( 'storage.post' );
-	}
-
-	protected function tearDown() {
-		parent::tearDown();
-
-		foreach ( $this->revisions as $revision ) {
-			$this->storage->remove( $revision );
-		}
 	}
 
 	/**
@@ -289,8 +269,9 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 				break;
 		}
 
-		$this->revisions[] = $revision = $this->generateObject( $overrides );
-		$this->storage->put( $revision );
+		$revision = $this->generateObject( $overrides );
+		$this->store( $revision );
+
 		return $revision;
 	}
 }
