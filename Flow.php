@@ -93,6 +93,21 @@ $wgAutoloadClasses['Flow\Model\LocalCacheAbstractCollection'] = $dir . 'includes
 $wgAutoloadClasses['Flow\Model\PostCollection'] = $dir . 'includes/Collection/PostCollection.php';
 $wgAutoloadClasses['Flow\Model\HeaderCollection'] = $dir . 'includes/Collection/HeaderCollection.php';
 
+// Classes that model a revisionable topic within a DOMDocument
+$wgAutoloadClasses['Flow\Model\XmlTopic'] = $dir . 'includes/Model/XmlTopic.php';
+$wgAutoloadClasses['Flow\Model\TitleNode'] = $dir . 'includes/Model/RevisionedNode.php';
+$wgAutoloadClasses['Flow\Model\PostNode'] = $dir . 'includes/Model/RevisionedNode.php';
+$wgAutoloadClasses['Flow\Model\UserTuple'] = $dir . 'includes/Model/RevisionedNode.php';
+$wgAutoloadClasses['Flow\Model\LazyUuidCollection'] = $dir . 'includes/Model/RevisionedNode.php';
+
+// Transactions against the revisionable topic
+$wgAutoloadClasses['Flow\Model\XmlTopicTransaction'] = $dir . 'includes/Model/XmlTransactions.php';
+$wgAutoloadClasses['Flow\Model\XmlTopicCreateTitle'] = $dir . 'includes/Model/XmlTransactions.php';
+$wgAutoloadClasses['Flow\Model\XmlTopicEditTitle'] = $dir . 'includes/Model/XmlTransactions.php';
+$wgAutoloadClasses['Flow\Model\XmlTopicEditPost'] = $dir . 'includes/Model/XmlTransactions.php';
+$wgAutoloadClasses['Flow\Model\XmlTopicCreateReply'] = $dir . 'includes/Model/XmlTransactions.php';
+$wgAutoloadClasses['Flow\Model\XmlTopicNestedReply'] = $dir . 'includes/Model/XmlTransactions.php';
+
 // Helpers for templating
 $wgAutoloadClasses['Flow\View\PostActionMenu'] = "$dir/includes/View/PostActionMenu.php";
 $wgAutoloadClasses['Flow\View\History\History'] = "$dir/includes/View/History/History.php";
