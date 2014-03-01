@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_aaf665d2",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-01T03:28:40Z",
+      "side": 1,
+      "message": "yes, will do that",
+      "parentUuid": "4e04eb01_6212cb02",
+      "revId": "7a28beb57129ed0b0f3d41be24a4c7df70d251fb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_a7efc8ac",
         "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "side": 1,
       "message": "this was using the same style as the \u0027normal\u0027 so they were indistinguishable.  Should be fine changing it here, although this entire file will be going away sooner or later with agora css coming from core",
       "parentUuid": "4e04eb01_a7efc8ac",
+      "revId": "7a28beb57129ed0b0f3d41be24a4c7df70d251fb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_8a43a914",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-01T03:28:40Z",
+      "side": 1,
+      "message": "yes, I understand that from spage. This was changed to make the disabled mute button have a different color than active ones.",
+      "parentUuid": "4e04eb01_cdd315d6",
       "revId": "7a28beb57129ed0b0f3d41be24a4c7df70d251fb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
