@@ -19,7 +19,7 @@ require_once( "$IP/maintenance/Maintenance.php" );
 class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 	/**
-	 * Use to track the number of updated count
+	 * Used to track the number of current updated count
 	 */
 	private $updatedCount = 0;
 
@@ -73,7 +73,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 						$this->updateWorkflow( $workflow, $row->workflow_wiki );
 					}
 				}
-				$this->output( "processed $count records in " . __METHOD__ . "\n" );
 			} else {
 				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
@@ -96,7 +95,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 		}
 
-		$this->output( "processing workflow: " . $wf->getId()->getAlphadecimal() . ' in ' . __METHOD__ . "\n" );
 		$this->checkForSlave();
 	}
 
@@ -127,7 +125,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					$id = $row->rev_id;
 					$revision = Container::get( 'storage.header' )->get( UUID::create( $row->rev_id ) );
 					if ( $revision ) {
-						$this->updateHistory( $revision, $wiki );
 						$this->updateRevision( $revision, $wiki );
 					}
 				}
@@ -135,7 +132,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 
-			$this->output( "processed $count records in " . __METHOD__ . "\n" );
 		}
 	}
 
@@ -170,11 +166,9 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 						$this->updatePost( $post, $wiki );
 					}
 				}
-				$this->output( "processed $index topics in " . __METHOD__ . "\n" );
 			} else {
 				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
-			$this->output( "processed $count records in " . __METHOD__ . "\n" );
 		}
 	}
 
@@ -192,14 +186,9 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 	/**
 	 * Update history revision
 	 */
-	private function updateHistory( $post, $wiki ) {
+	private function updateHistory( PostRevision $post, $wiki ) {
 		if ( $post->getPrevRevisionId() ) {
-			$parent = null;
-			if ( $post->getRevisionType() === 'header' ) {
-				$parent = Container::get( 'storage.header' )->get( UUID::create( $post->getPrevRevisionId() ) );
-			} elseif ( $post->getRevisionType() === 'post' ) {
-				$parent = Container::get( 'storage.post' )->get( UUID::create( $post->getPrevRevisionId() ) );
-			}
+			$parent = Container::get( 'storage.post' )->get( UUID::create( $post->getPrevRevisionId() ) );
 			if ( $parent ) {
 				$this->updateRevision( $parent, $wiki );
 				$this->updateHistory( $parent, $wiki );
@@ -232,6 +221,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		if ( !$res ) {
 			throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 		}
+		$this->checkForSlave();
 
 		if ( $type === 'post' ) {
 			$res = $dbw->update(
@@ -247,10 +237,9 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			if ( !$res ) {
 				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
+			$this->checkForSlave();
 		}
 
-		$this->output( "processing $type: " . $revision->getRevisionId()->getAlphadecimal() . ' in ' . __METHOD__ . "\n" );
-		$this->checkForSlave();
 	}
 
 	private function checkForSlave() {
