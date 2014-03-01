@@ -123,6 +123,12 @@ class FlowPage
   a(:edit_post) do |page|
     page.post_meta_actions_element.link_element(title: "Edit")
   end
+  a(:thank_button) do |page|
+    page.post_meta_actions_element.link_element(css: ".mw-thanks-flow-thank-link", index: 0)
+  end
+  span(:thanked_button) do |page|
+    page.post_meta_actions_element.span_element(css: ".mw-thanks-flow-thanked", index: 0)
+  end
 
   ### First post of first topic actions menu
   a(:post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 0)
