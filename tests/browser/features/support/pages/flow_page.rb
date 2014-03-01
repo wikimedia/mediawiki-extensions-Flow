@@ -29,6 +29,7 @@ class FlowPage
   div(:flow_body, class: "flow-container")
   list_item(:full_view, title: "Full view")
   div(:highlighted_comment, class: "flow-post-highlighted")
+  div(:new_post, class: "flow-post-main", index: 0)
 
   # Buttons in a fly-out menu.
   button(:delete_button,         css: "div.tipsy-inner input.flow-delete-post-link")
@@ -65,4 +66,7 @@ class FlowPage
   a(:topic_actions_link, xpath: "//div[contains(concat(' ', normalize-space(@class), ' '), ' flow-topic-container ')]//a[text()='Actions']", index: actions_index)
   div(:topic_post, class: "flow-post-content", index: topic_index)
   div(:topic_title, class: "flow-topic-title", index: topic_index)
+
+  a(:thank_button, class: "mw-thanks-flow-thank-link", index: 0)
+  span(:thanked_button, class: "mw-thanks-flow-thanked")
 end
