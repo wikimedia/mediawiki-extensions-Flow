@@ -19,9 +19,14 @@ require_once( "$IP/maintenance/Maintenance.php" );
 class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 
 	/**
-	 * Use to track the number of updated count
+	 * Used to track the number of current updated count
 	 */
 	private $updatedCount = 0;
+
+	/**
+	 * Used to track the number of total updated count
+	 */
+	private $totalCount = 0;
 
 	public function __construct() {
 		parent::__construct();
@@ -79,6 +84,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			}
 		}
 
+		$this->output( "Records updated: " . $this->totalCount . "\n" );
 		return true;
 	}
 
@@ -127,7 +133,6 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 					$id = $row->rev_id;
 					$revision = Container::get( 'storage.header' )->get( UUID::create( $row->rev_id ) );
 					if ( $revision ) {
-						$this->updateHistory( $revision, $wiki );
 						$this->updateRevision( $revision, $wiki );
 					}
 				}
@@ -232,6 +237,7 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		if ( !$res ) {
 			throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 		}
+		$this->checkForSlave();
 
 		if ( $type === 'post' ) {
 			$res = $dbw->update(
@@ -247,16 +253,17 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 			if ( !$res ) {
 				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
+			$this->checkForSlave();
 		}
 
 		$this->output( "processing $type: " . $revision->getRevisionId()->getAlphadecimal() . ' in ' . __METHOD__ . "\n" );
-		$this->checkForSlave();
 	}
 
 	private function checkForSlave() {
 		global $wgFlowCluster;
 
 		$this->updatedCount++;
+		$this->totalCount++;
 		if ( $this->updatedCount > $this->mBatchSize ) {
 			wfWaitForSlaves( false, false, $wgFlowCluster );
 			$this->updatedCount = 0;
