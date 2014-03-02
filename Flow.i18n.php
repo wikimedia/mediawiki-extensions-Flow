@@ -1105,7 +1105,8 @@ Parameters:
 * $4 - URL to the history page
 * $5 - URL to the diff from the previous revision to this one
 See also:
-* {{msg-mw|Flow-revision-permalink-warning-post-first}}',
+* {{msg-mw|Flow-revision-permalink-warning-post-first}}
+* {{msg-mw|Flow-revision-permalink-warning-header}}',
 	'flow-revision-permalink-warning-post-first' => 'Header displayed at the top of a page when somebody is viewing a single-revision permalink of a post.
 
 This message will only be shown for the first revision.
@@ -1118,7 +1119,8 @@ Parameters:
 * $3 - title of the topic that this post appears in
 * $4 - URL to the history page
 See also:
-* {{msg-mw|Flow-revision-permalink-warning-post}}',
+* {{msg-mw|Flow-revision-permalink-warning-post}}
+* {{msg-mw|Flow-revision-permalink-warning-header-first}}',
 	'flow-revision-permalink-warning-header' => 'Header displayed at the top of a page when somebody is viewing a single-revision permalink of board header.
 
 This message will not appear for the first revision, which has its own message ({{msg-mw|Flow-revision-permalink-warning-header-first}}).
@@ -1128,7 +1130,8 @@ Parameters:
 * $2 - URL to the history page
 * $3 - URL to the diff from the previous revision to this one
 See also:
-* {{msg-mw|Flow-revision-permalink-warning-header-first}}',
+* {{msg-mw|Flow-revision-permalink-warning-header-first}}
+* {{msg-mw|Flow-revision-permalink-warning-post}}',
 	'flow-revision-permalink-warning-header-first' => 'Header displayed at the top of a page when somebody is viewing a single-revision permalink of board header.
 
 This message will only be shown for the first revision.
@@ -1137,22 +1140,27 @@ Parameters:
 * $1 - (Unused) date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC2822 timestamp when hovered over.
 * $2 - URL to the history page
 See also:
-* {{msg-mw|Flow-revision-permalink-warning-header}}',
+* {{msg-mw|Flow-revision-permalink-warning-header}}
+* {{msg-mw|Flow-revision-permalink-warning-post-first}}',
 	'flow-compare-revisions-revision-header' => 'Diff column header for a revision. Parameters:
 * $1 - date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC-2822 timestamp when hovered over.
 * $2 - user who made this revision',
 	'flow-compare-revisions-header-post' => 'Header for a page showing a "diff" between two revisions of a Flow post. Parameters:
-* $1: The title of the Board on which this post sits. Example: User talk:Andrew.
-* $2: The subject of the Topic in which this post sits.
-* $3: The username of the author of the post.
-* $4: URL to the Board, with the fragment set to the post in question.
-* $5: URL to the Topic, with the fragment set to the post in question.
-* $5: URL to the history page for this post.',
+* $1 - the title of the Board on which this post sits. Example: User talk:Andrew
+* $2 - the subject of the Topic in which this post sits
+* $3 - the username of the author of the post
+* $4 - URL to the Board, with the fragment set to the post in question
+* $5 - URL to the Topic, with the fragment set to the post in question
+* $6 - URL to the history page for this post
+See also:
+* {{msg-mw|Flow-compare-revisions-header-header}}',
 	'flow-compare-revisions-header-header' => 'Header for a page showing a "diff" between two revisions of a Flow board header. Parameters:
-* $1: The title of the Board on which this header sits. Example: User talk:Andrew.
-* $2: The username of the author of the header.
-* $3: URL to the Board, with the fragment set to the post in question.
-* $4: URL to the history page for this post.',
+* $1 - the title of the Board on which this header sits. Example: User talk:Andrew
+* $2 - the username of the author of the header
+* $3 - URL to the Board, with the fragment set to the post in question
+* $4 - URL to the history page for this post
+See also:
+* {{msg-mw|Flow-compare-revisions-header-post}}',
 	'flow-topic-collapsed-one-line' => 'Used as title for the icon which is used to show small view of topics.
 
 "Small view" is also called "Collapsed one line view".',
@@ -1304,7 +1312,53 @@ $messages['ast'] = array(
 	'flow-error-invalid-input' => 'Dióse un valor inválidu pa cargar el conteníu de fluxu.',
 	'flow-error-invalid-title' => 'Dióse un títulu de páxina inválidu.',
 	'flow-error-fail-load-history' => 'Falló la carga del conteníu del historial.',
+	'flow-error-missing-revision' => 'Nun pudo alcontrase una revisión pa cargar conteníu de fluxu.',
+	'flow-error-fail-commit' => "Nun pudo guardase'l conteníu del fluxu.",
+	'flow-error-insufficient-permission' => 'Nun tien permisu bastante pa tener accesu al conteníu.',
+	'flow-error-revision-comparison' => 'La operación diff sólo pue facese ente dos revisiones del mesmu mensaxe.',
+	'flow-error-missing-topic-title' => "Nun pue alcontrase'l títulu del asuntu del fluxu de trabayu actual.",
+	'flow-error-fail-load-data' => 'Nun pudieron cargase los datos solicitaos.',
+	'flow-error-invalid-workflow' => "Nun pudo alcontrase'l fluxu de trabayu solicitáu.",
+	'flow-error-process-data' => 'Hebo un error al procesar los datos de la solicitú.',
+	'flow-error-process-wikitext' => 'Hebo un error al procesar la conversión HTML/testu wiki.',
+	'flow-error-no-index' => "Nun s'alcontró un índiz pa facer la gueta de datos.",
+	'flow-edit-header-submit' => 'Guardar testera',
+	'flow-edit-header-submit-overwrite' => 'Sobreescribir testera',
+	'flow-edit-title-submit' => 'Camudar el títulu',
+	'flow-edit-title-submit-overwrite' => 'Sobreescribir el títulu',
 	'flow-edit-post-submit' => 'Unviar los cambios',
+	'flow-edit-post-submit-overwrite' => 'Sobreescribir los cambios',
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|editó}} un [$3 comentariu] sobro $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|comentó}}] sobro $4.', # Fuzzy
+	'flow-rev-message-reply-bundle' => '{{PLURAL:$1|Amestóse|Amestáronse}} <strong>$1 {{PLURAL:$1|comentariu|comentarios}}</strong>.',
+	'flow-rev-message-new-post' => "$1 {{GENDER:$2|creó}} l'asuntu [$3 $4].",
+	'flow-rev-message-edit-title' => "$1 {{GENDER:$2|camudó}}'l títulu del asuntu de $5 a [$3 $4].",
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|creó}} la testera.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|editó}} la testera.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|tapeció}} un [$4 comentariu] sobro $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|desanició}} un [$4 comentariu] sobro $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|suprimió}} un [$4 comentariu] sobro $6 (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|restauró}} un [$4 comentariu] sobro $6 (<em>$5</em>).',
+	'flow-rev-message-hid-topic' => "$1 {{GENDER:$2|tapeció}} l'[$4 asuntu] $6 (<em>$5</em>).",
+	'flow-rev-message-deleted-topic' => "$1 {{GENDER:$2|desanició}} l'[$4 asuntu] $6 (<em>$5</em>).",
+	'flow-rev-message-suppressed-topic' => "$1 {{GENDER:$2|suprimió}} l'[$4 asuntu] $6 (<em>$5</em>).",
+	'flow-rev-message-restored-topic' => "$1 {{GENDER:$2|restauró}} l'[$4 asuntu] $6 (<em>$5</em>).",
+	'flow-board-history' => 'Historial de «$1»',
+	'flow-topic-history' => 'Historial del asuntu «$1»',
+	'flow-post-history' => 'Historial del mensaxe "Comentariu de {{GENDER:$2|$2}}"',
+	'flow-history-last4' => 'Últimes 4 hores',
+	'flow-history-day' => 'Güei',
+	'flow-history-week' => 'Cabera selmana',
+	'flow-history-pages-topic' => 'Apaez nel [$1 tableru «$2»]',
+	'flow-history-pages-post' => 'Apaez en [$1 $2]',
+	'flow-topic-participants' => '{{PLURAL:$1|$3 abrió esti filu|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} y {{PLURAL:$2|otru|otros $2}}|0=Inda naide participó|2={{GENDER:$3|$3}} y {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} y {{GENDER:$5|$5}}}}',
+	'flow-topic-comments' => '{{PLURAL:$1|$1 comentariu|$1 comentarios|0=¡Comenta tú {{GENDER:$2|el primeru|la primera}}!}}',
+	'flow-comment-restored' => 'Comentariu restauráu',
+	'flow-comment-deleted' => 'Comentariu desaniciáu',
+	'flow-comment-hidden' => 'Comentariu tapecíu',
+	'flow-comment-moderated' => 'Comentariu moderáu',
+	'flow-paging-rev' => 'Más asuntos de recién',
+	'flow-paging-fwd' => 'Asuntos más antiguos',
 );
 
 /** Bikol Central (Bikol Central)
@@ -1312,7 +1366,7 @@ $messages['ast'] = array(
  */
 $messages['bcl'] = array(
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|pinagliwat}} an sarong [$3 komentaryo] kan $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|pinagkomentaryohan}}] on $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|pinagkomentaryohan}}] on $4.', # Fuzzy
 	'flow-rev-message-create-header' => '$1 {{GENDER:$2|pinagmukna}} an kapamayuhan.',
 	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|pinagliwat}} an kapamayuhan.',
 	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|itinago}} an sarong [$4 komentaryo] kan $6 (<em>$5</em>).',
@@ -1327,17 +1381,22 @@ $messages['bcl'] = array(
 
 /** Bulgarian (български)
  * @author DCLXVI
+ * @author Mitzev
  */
 $messages['bg'] = array(
-	'flow-post-moderated-toggle-show' => '[Показване]',
-	'flow-post-moderated-toggle-hide' => '[Скриване]',
 	'flow-cancel' => 'Отказване',
 	'flow-newtopic-header' => 'Добавяне на нова тема',
 	'flow-newtopic-save' => 'Добавяне на тема',
 	'flow-newtopic-start-placeholder' => 'Започване на нова тема',
-	'flow-post-action-edit' => 'Редактиране',
 	'flow-topic-action-watchlist' => 'Списък за наблюдение',
+	'flow-rev-message-reply' => '$1[$3 {{Пол:$2|коментар}}] за $4 (<em>$5</em>).',
 	'flow-link-history' => 'история',
+	'flow-revision-permalink-warning-header' => 'Това е постоянна връзка към една версия на заглавката.
+Тази версия е от  $1 .  Можете да видите [ $3  разлики от предишната версия], или да видите други версии на [ $2  история страницата].',
+	'flow-revision-permalink-warning-header-first' => 'Това е постоянна връзка към първата версия на заглавката.
+Можете да видите по-нови версии на [ $2  история страницата].',
+	'flow-compare-revisions-header-header' => 'Тази страница показва  {{GENDER:$2| промени}} между две версии на заглавието на [ $3  $1 ].
+Можете да видите други версии на горния му [ $4  история страница].',
 );
 
 /** Bengali (বাংলা)
@@ -1485,7 +1544,7 @@ $messages['ce'] = array(
 	'flow-edit-title-submit-overwrite' => 'Юха дӀаязъе цӀе',
 	'flow-edit-post-submit-overwrite' => 'Юха дӀаязде хийцамаш',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|тадина}} [$3  къамел] темехь $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|къамел диттина}}] темухь $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|къамел диттина}}] темухь $4.', # Fuzzy
 	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2||дӀадяьккхина}} [$4 къамел] темехь $6(<em>$5</em>).',
 	'flow-notification-reply-email-batch-body' => '$1 хан хааан {{GENDER:$1||жоп делла}} темехь «$2» «$3» чохь',
 	'flow-notification-mention-email-subject' => '$1 хьо {{GENDER:$1||хьахийна}} «$2» чохь',
@@ -1626,7 +1685,7 @@ $messages['de'] = array(
 	'flow-edit-post-submit' => 'Änderungen übertragen',
 	'flow-edit-post-submit-overwrite' => 'Änderungen überschreiben',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|bearbeitete}} einen [$3 Kommentar] auf $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|kommentierte}}] auf $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|kommentierte}}] auf $4 (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => '{{PLURAL:$1|<strong>Ein Kommentar</strong> wurde|<strong>$1 Kommentare</strong> wurden}} hinzugefügt.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|erstellte}} das Thema [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|änderte}} den Thementitel von $5 zu [$3 $4].',
@@ -1775,6 +1834,7 @@ $messages['en-gb'] = array(
 /** Spanish (español)
  * @author Benfutbol10
  * @author Carlitosag
+ * @author Carlosz22
  * @author Ciencia Al Poder
  * @author Csbotero
  * @author Epicfaace
@@ -1789,6 +1849,7 @@ $messages['es'] = array(
 	'flow-user-moderated' => 'Usuario moderado',
 	'flow-edit-header-link' => 'Editar cabecera',
 	'flow-header-empty' => 'Esta página de discusión no tiene cabecera actualmente.',
+	'flow-post-moderated-toggle-hide-show' => 'Mostrar comentarios {{GENDER:$1|hidden}} por $2',
 	'flow-post-moderated-toggle-delete-show' => 'Mostrar comentario {{GENDER:$1|deleted}} por $2',
 	'flow-post-moderated-toggle-suppress-show' => 'Mostrar comentario {{GENDER:$1|suppresed}} por $2',
 	'flow-post-moderated-toggle-hide-hide' => 'Ocultar comentario {{GENDER:$1|hidden}} por $2',
@@ -2021,7 +2082,7 @@ $messages['fa'] = array(
 	'flow-edit-post-submit' => 'ثبت تغییرات',
 	'flow-edit-post-submit-overwrite' => 'بازنویسی تغییرات',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|ویرایش شد}} یک [$3 نظر] در $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|نطر داده}}] در $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|نطر داده}}] در $4 (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|نظر|نظرها}}</strong> {{PLURAL:$1|بود|بودند}} اضافه شد.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|ایجاد شد}} موضوع [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|تغییر یافت}} عنوان موضوع از $5 به [$3 $4].',
@@ -2125,9 +2186,15 @@ $messages['fa'] = array(
 شما می توانید [$5 تفاوت‌ها از نسخهٔ قبلی] را مشاهده کنید، یا نسخه‌های دیگری را در [$4 صفحهٔ تاریخچهٔ پست] مشاهده کنید.',
 	'flow-revision-permalink-warning-post-first' => 'این یک لینک دائم برای اولین نسخهٔ این پست است.
 شما می‌توانید نسخه‌های بعدی را در [$4 صفحهٔ تاریخچهٔ پست] مشاهده کنید.',
+	'flow-revision-permalink-warning-header' => 'این یک لینک دائمی برای یک نسخهٔ تک سرفصل است.
+این نسخه از $1 است. شما می‌توانید [$3 تفاوت‌ها را از نسخهٔ قبلی] مشاهده کنید, یا نسخه های دیگر را در [$2 تابلو  صفحهٔ تاریخچه] مشاهده کنید.',
+	'flow-revision-permalink-warning-header-first' => 'این یک لینک دائمی برای یک نسخهٔ تک سرفصل است.
+شما می‌توانید نسخه‌های بعدی را در [$2 تابلو  صفحهٔ تاریخچه] مشاهده کنید.',
 	'flow-compare-revisions-revision-header' => 'نسخه توسط {{GENDER:$2|$2}} از $1',
 	'flow-compare-revisions-header-post' => 'این صفحه {{GENDER:$3|تغییرات}} را بین دو نسخه از یک پست توسط $3 در موضوع "[$5 $2]" بر  [$4 $1] نمایش می‌دهد.
 شما می‌توانید نسخه‌های دیگری از این پست را در [$6 صفحهٔ تاریخچه] مشاهده کنید.',
+	'flow-compare-revisions-header-header' => 'این صفحه {{GENDER:$2|تغییرات}} بین دو نسخهٔ سرفصل را در [$3 $1] نشان می‌دهد.
+شما می‌توانید نسخه‌های دیگر سرفصل را در این [$4 صفحهٔ تاریخچه] مشاهده کنید.',
 	'flow-topic-collapsed-one-line' => 'مشاهدهٔ کوچک',
 	'flow-topic-collapsed-full' => 'مشاهده با شکست روبه‌رو شده',
 	'flow-topic-complete' => 'مشاهدهٔ کامل',
@@ -2346,7 +2413,7 @@ $messages['fr'] = array(
 	'flow-edit-post-submit' => 'Soumettre les modifications',
 	'flow-edit-post-submit-overwrite' => 'Écraser les modifications',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|a modifié}} un [$3 commentaire] sur $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|a ajouté}} un commentaire] sur $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|a ajouté}} un commentaire] sur $4.', # Fuzzy
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|commentaire|commentaires}}</strong> {{PLURAL:$1|a été ajouté|ont été ajoutés}}.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|a créé}} le sujet [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|a changé}} le titre du sujet de [$3 $4], précédemment $5.',
@@ -2707,7 +2774,7 @@ $1',
 	'flow-edit-post-submit' => 'שליחת שינויים',
 	'flow-edit-post-submit-overwrite' => 'דריסת השינויים',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|ערך|ערכה}} [$3 תגובה] לנושא $4.',
-	'flow-rev-message-reply' => '$1 {{GENDER:$2|הוסיף|הוסיפה}} [$3 תגובה] לנושא $4.',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|הוסיף|הוסיפה}} [$3 תגובה] לנושא $4.', # Fuzzy
 	'flow-rev-message-reply-bundle' => '{{PLURAL:$1|נוספה <strong>תגובה אחת</strong>|נוספו <strong>$1 תגובות</strong>}}',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|יצר|יצרה}} את הנושא [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|שינה|שינתה}} את כותרת הנושא מ{{GRAMMAR:תחילית|$5}} אל [$3 $4].',
@@ -2957,6 +3024,7 @@ $messages['ia'] = array(
  * @author Amire80
  * @author Beta16
  * @author Gianfranco
+ * @author Maria victoria
  * @author Rosh
  */
 $messages['it'] = array(
@@ -3068,21 +3136,21 @@ $messages['it'] = array(
 	'flow-edit-title-submit-overwrite' => 'Sovrascrivi titolo',
 	'flow-edit-post-submit' => 'Invia modifiche',
 	'flow-edit-post-submit-overwrite' => 'Sovrascrivi modifiche',
-	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|ha modificato}} un [$3 commento].', # Fuzzy
-	'flow-rev-message-reply' => '$1 {{GENDER:$2|ha aggiunto}} un [$3 commento].', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|modificato}} un [$3 commento] su $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|ha commentato}}] su $4.', # Fuzzy
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|commento|commenti}}</strong> {{PLURAL:$1|è stato aggiunto|sono stati aggiunti}}.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|ha creato}} la discussione [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|ha modificato}} il titolo della discussione in [$3 $4] da $5.',
-	'flow-rev-message-create-header' => "$1 {{GENDER:$2|ha creato}} l'intestazione della bacheca.", # Fuzzy
-	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|ha modificato}} l'intestazione della scheda.", # Fuzzy
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|ha nascosto}} un [$4 commento] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 commento] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|ha soppresso}} un [$4 commento] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|ha ripristinato}} un [$4 commento] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|ha nascosto}} la [$4 discussione] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|ha cancellato}} la [$4 discussione] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|ha soppresso}} la [$4 discussione] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|ha ripristinato}} la [$4 discussione] (<em>$5</em>).', # Fuzzy
+	'flow-rev-message-create-header' => "$1 {{GENDER:$2|creato}} l'intestazione.",
+	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|modificato}} l'intestazione.",
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|nascosto}} un [$4 commento] su $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|eliminato}} un [ $4  commento] su  $6  (<em> $5 </em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|soppresso}} un [ $4  commento] su  $6  (<em> $5 </em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|ripristinato}} un [$4 commento] su $6 (<em>$5</em>).',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|ha nascosto}} la [$4 discussione] $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|eliminato}} il [ $4  argomento]  $6  (<em> $5 </em>).',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|soppresso}} il [ $4  argomento]  $6  (<em> $5 </em>).',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|ha ripristinato}} la [$4 discussione] $6 (<em>$5</em>).',
 	'flow-board-history' => 'Cronologia di "$1"',
 	'flow-topic-history' => 'Cronologia della discussione "$1"',
 	'flow-post-history' => 'Cronologia del commento di {{GENDER:$2|$2}}',
@@ -3173,9 +3241,16 @@ Questa versione è del $1.
 Puoi vedere le [$5 differenze dalla versione precedente] o le altre versioni nella [$4 cronologia della pagina].',
 	'flow-revision-permalink-warning-post-first' => 'Questo è un collegamento permanente alla prima versione di questo messaggio.
 Puoi vedere le versioni successive nella [$4 cronologia della pagina].',
+	'flow-revision-permalink-warning-header' => "Questo è un collegamento permanente ad una singola versione dell'intestazione.
+Questa versione è del $1.
+Puoi vedere le [$3 differenze dalla versione precedente] o le altre versioni nella [$2 cronologia della pagina].",
+	'flow-revision-permalink-warning-header-first' => "Questo è un collegamento permanente alla prima versione dell'intestazione.
+Puoi vedere le ultime versioni nella [$2 cronologia della pagina].",
 	'flow-compare-revisions-revision-header' => 'Versione di {{GENDER:$2|$2}} del $1',
 	'flow-compare-revisions-header-post' => 'Questa pagina mostra le {{GENDER:$3|modifiche}} tra due versioni del messaggio di $3, nella discussione "[$5 $2]" su [$4 $1].
 Puoi vedere le altre versioni nella [$6 cronologia della pagina].',
+	'flow-compare-revisions-header-header' => "Questa pagina mostra le {{GENDER:$2|modifiche}} tra due versioni dell'intestazione su [$3 $1].
+Puoi vedere le altre versioni nella [$4 cronologia della pagina].",
 	'flow-topic-collapsed-one-line' => 'Vista piccola',
 	'flow-topic-collapsed-full' => 'Vista compatta',
 	'flow-topic-complete' => 'Vista completa',
@@ -3295,7 +3370,7 @@ $messages['ja'] = array(
 	'flow-edit-post-submit' => '変更を保存',
 	'flow-edit-post-submit-overwrite' => '変更を上書き',
 	'flow-rev-message-edit-post' => '$1 が $4 の[$3 コメント]を{{GENDER:$2|編集}}',
-	'flow-rev-message-reply' => '$1 が $4 に[$3 {{GENDER:$2|コメントを追加}}]',
+	'flow-rev-message-reply' => '$1 が $4 に[$3 {{GENDER:$2|コメントを追加}}]', # Fuzzy
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|件のコメント}}</strong>が追加{{PLURAL:$1|されました}}。',
 	'flow-rev-message-new-post' => '$1 が話題 [$3 $4] を{{GENDER:$2|作成}}',
 	'flow-rev-message-edit-title' => '$1 が話題の題名を $5 から [$3 $4] に{{GENDER:$2|変更}}',
@@ -3386,9 +3461,15 @@ $messages['ja'] = array(
 [$5 以前の版との差分]や、[$4 投稿の履歴ページ]でその他の版を閲覧することもできます。',
 	'flow-revision-permalink-warning-post-first' => 'これはこの投稿の初版への固定リンクです。
 [$4 投稿の履歴ページ]で以降の版を閲覧できます。',
+	'flow-revision-permalink-warning-header' => 'これはヘッダーの特定の版への固定リンクです。
+この版は $1 時点のものです。[$3 以前の版との差分]や、[$2 掲示板の履歴ページ]でその他の版を閲覧することもできます。',
+	'flow-revision-permalink-warning-header-first' => 'これはヘッダーの初版への固定リンクです。
+[$2 掲示板の履歴ページ]で以降の版を閲覧できます。',
 	'flow-compare-revisions-revision-header' => '$1における {{GENDER:$2|$2}} による版',
 	'flow-compare-revisions-header-post' => 'このページでは、[$4 $1] の話題「[$5 $2]」での $3 の投稿の 2 つの版の{{GENDER:$3|差分}}を表示しています。
 この投稿の[$6 履歴ページ]でその他の版を閲覧できます。',
+	'flow-compare-revisions-header-header' => 'このページでは、[$3 $1] のヘッダーの 2 つの版の{{GENDER:$2|差分}}を表示しています。
+このヘッダーの[$4 履歴ページ]でその他の版を閲覧できます。',
 	'flow-topic-collapsed-one-line' => '縮小表示',
 	'flow-topic-collapsed-full' => '折りたたみ表示',
 	'flow-topic-complete' => '全体表示',
@@ -3535,7 +3616,7 @@ $messages['ko'] = array(
 	'flow-edit-post-submit' => '변경된 내용을 제출합니다',
 	'flow-edit-post-submit-overwrite' => '바뀜 덮어쓰기',
 	'flow-rev-message-edit-post' => '$1 사용자가 $4의 [$3 덧글]을 {{GENDER:$2|편집하였습니다}} .',
-	'flow-rev-message-reply' => '$1 사용자가 $4에 [$3 {{GENDER:$2|댓글을 남겼습니다}}].',
+	'flow-rev-message-reply' => '$1 사용자가 $4에 [$3 {{GENDER:$2|댓글을 남겼습니다}}].', # Fuzzy
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|개의 덧글}}</strong>이 추가{{PLURAL:$1|되었습니다}}.',
 	'flow-rev-message-new-post' => '$1 사용자가 [$3 $4] 주제를  {{GENDER:$2|만들었습니다}}.',
 	'flow-rev-message-edit-title' => ' $1 사용자가 $5에서 [$3 $4]으로(로) 주제의 제목을 {{GENDER:$2|바꾸었습니다}}.',
@@ -3717,16 +3798,16 @@ $messages['lb'] = array(
 	'flow-edit-post-submit' => 'Ännerunge späicheren',
 	'flow-edit-post-submit-overwrite' => 'Ännerungen iwwerschreiwen',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|huet}} eng [$3 Bemierkung] iwwer $4 geännert.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|huet}} eng Bemierkung] iwwer $4 derbäigesat.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|huet}} eng Bemierkung] iwwer $4 derbäigesat.', # Fuzzy
 	'flow-rev-message-reply-bundle' => '<strong>{{PLURAL:$1|Eng Bemierkung gouf|$1 Bemierkunge goufen}} derbäigesat</strong>.',
 	'flow-rev-message-new-post' => "$1 {{GENDER:$2|huet}} d'Thema [$3 $4] ugeluecht.",
 	'flow-rev-message-create-header' => "$1 {{GENDER:$2|huet}} d'Iwwerschrëft ugeluecht.",
 	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|huet}} d'Iwwerschrëft geännert.",
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] (<em>$5</em>) verstoppt.', # Fuzzy
-	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] (<em>$5</em>) geläscht.', # Fuzzy
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] (<em>$5</em>) restauréiert.', # Fuzzy
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] iwwer $6 (<em>$5</em>) verstoppt.',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] iwwer $6 (<em>$5</em>) geläscht.',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] iwwer $6 (<em>$5</em>) restauréiert.',
 	'flow-rev-message-deleted-topic' => "$1 {{GENDER:$2|huet}} d'[Thema $4] $6 (<em>$5</em>) geläscht.",
-	'flow-rev-message-restored-topic' => "$1 {{GENDER:$2|huet}} d'[Thema $4] (<em>$5</em>) restauréiert.", # Fuzzy
+	'flow-rev-message-restored-topic' => "$1 {{GENDER:$2|huet}} d'[Thema $4] $6 (<em>$5</em>) restauréiert.",
 	'flow-board-history' => 'Versioune vun "$1"',
 	'flow-topic-history' => 'Versioune vum Thema "$1"',
 	'flow-history-last4' => 'Lescht 4 Stonnen',
@@ -3814,6 +3895,13 @@ $messages['lv'] = array(
 	'flow-rev-message-suppressed-post' => 'Cenzēts ieraksts', # Fuzzy
 	'flow-link-topic' => 'tēma',
 	'flow-link-history' => 'vēsture',
+);
+
+/** Malagasy (Malagasy)
+ * @author Jagwar
+ */
+$messages['mg'] = array(
+	'flow-edit-post-submit-overwrite' => 'Hanitsaka ny fiovana',
 );
 
 /** Macedonian (македонски)
@@ -3930,7 +4018,7 @@ $messages['mk'] = array(
 	'flow-edit-post-submit' => 'Спроведи измени',
 	'flow-edit-post-submit-overwrite' => 'Презапиши врз промените',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|измени}} [$3 коментар] на $4.',
-	'flow-rev-message-reply' => '$1 {{GENDER:$2|доидаде}} [$3 коментар] на $4.',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|доидаде}} [$3 коментар] на $4.', # Fuzzy
 	'flow-rev-message-reply-bundle' => '{{PLURAL:$1|Додаден|Додадени}} <strong>{{PLURAL:$1|еден коментар|$1 коментари}}</strong>.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|ја создаде}} темата [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|го смени}} насловот на темата од $5 во [$3 $4].',
@@ -4335,6 +4423,12 @@ $messages['nl'] = array(
 	'flow-user-moderated' => 'Gemodereerde gebruiker',
 	'flow-edit-header-link' => 'Koptekst bewerken',
 	'flow-header-empty' => 'Deze overlegpagina heeft momenteel geen koptekst.',
+	'flow-post-moderated-toggle-hide-show' => 'Toon commentaar {{GENDER:$1|verborgen}} door $2',
+	'flow-post-moderated-toggle-delete-show' => 'Toon commentaar {{GENDER:$1|verwijderd}} door $2',
+	'flow-post-moderated-toggle-suppress-show' => 'Toon commentaar {{GENDER:$1|onderdrukt}} door $2',
+	'flow-post-moderated-toggle-hide-hide' => 'Verberg commentaar {{GENDER:$1|verborgen}} door $2',
+	'flow-post-moderated-toggle-delete-hide' => 'Verberg commentaar {{GENDER:$1|verwijderd}} door $2',
+	'flow-post-moderated-toggle-suppress-hide' => 'Verberg commentaar {{GENDER:$1|onderdrukt}} door $2',
 	'flow-hide-post-content' => 'Deze opmerking is {{GENDER:$1|verborgen}} door $2',
 	'flow-hide-title-content' => 'Dit onderwerp is {{GENDER:$1|verborgen}} door $2',
 	'flow-hide-header-content' => '{{GENDER:$1|Verborgen}} door $2',
@@ -4351,6 +4445,7 @@ $messages['nl'] = array(
 	'flow-preview' => 'Voorvertoning',
 	'flow-show-change' => 'Laat wijzigingen zien',
 	'flow-last-modified-by' => 'Laatst {{GENDER:$1|bewerkt}} door $1',
+	'flow-stub-post-content' => "''Als gevolg van een technische fout kon dit bericht niet worden opgehaald.''",
 	'flow-newtopic-title-placeholder' => 'Nieuw onderwerp',
 	'flow-newtopic-content-placeholder' => 'Voeg nog wat details toe als u dat wilt',
 	'flow-newtopic-header' => 'Nieuw onderwerp toevoegen',
@@ -4409,8 +4504,15 @@ $messages['nl'] = array(
 	'flow-error-missing-revision' => 'Er is geen versie gevonden om inhoud van Flow van te downloaden.',
 	'flow-error-fail-commit' => 'Het opslaan van de inhoud van Flow is mislukt.',
 	'flow-error-insufficient-permission' => 'Onvoldoende rechten om de inhoud te kunnen bekijken.',
+	'flow-error-revision-comparison' => 'Diff bewerking kan alleen worden uitgevoerd voor twee revisies van dezelfde post.',
+	'flow-error-missing-topic-title' => 'Kan de onderwerptitel voor de huidige werkstroom niet vinden.',
 	'flow-error-fail-load-data' => 'Fout bij het laden van de gevraagde gegevens.',
+	'flow-error-invalid-workflow' => 'Kan de gevraagde werkstroom niet vinden.',
+	'flow-error-process-data' => 'Er is een fout opgetreden tijdens het verwerken van de gegevens in uw aanvraag.',
+	'flow-error-process-wikitext' => 'Er is een fout opgetreden tijdens het verwerken van HTML/wikitext conversie.',
+	'flow-error-no-index' => 'Geen index voor het uitvoeren van het zoeken van gegevens.',
 	'flow-edit-header-submit' => 'Koptekst opslaan',
+	'flow-edit-header-submit-overwrite' => 'Overschrijven van koptekst',
 	'flow-edit-title-submit' => 'Onderwerp wijzigen',
 	'flow-edit-title-submit-overwrite' => 'Titel overschrijven',
 	'flow-edit-post-submit' => 'Wijzigingen opslaan',
@@ -4420,8 +4522,8 @@ $messages['nl'] = array(
 	'flow-rev-message-reply-bundle' => 'Er {{PLURAL:$1|is|zijn}} <strong>$1 {{PLURAL:$1|reactie|reacties}}</strong> toegevoegd.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|heeft}} het onderwerp [$3 $4] aangemaakt.',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|heeft}} het onderwerp gewijzigd van $5 naar [$3 $4].',
-	'flow-rev-message-create-header' => '$1 {{GENDER:$2|heeft}} prikbordaanhef aangemaakt.', # Fuzzy
-	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|heeft}} de prikbordaanhef bewerkt.', # Fuzzy
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|heeft}} de kop aangemaakt.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|heeft}} de kop bewerkt.',
 	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] verborgen (<em>$5</em>).', # Fuzzy
 	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] verwijderd (<em>$5</em>).', # Fuzzy
 	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] onderdrukt (<em>$5</em>).', # Fuzzy
@@ -4589,6 +4691,7 @@ $messages['oc'] = array(
 
 /** Polish (polski)
  * @author Chrumps
+ * @author Jacenty359
  * @author Pio387
  * @author Rzuwig
  * @author Vuh
@@ -4608,10 +4711,21 @@ $messages['pl'] = array(
 	'flow-post-action-edit-post' => 'Edytuj',
 	'flow-topic-action-edit-title' => 'Edytuj tytuł',
 	'flow-topic-action-history' => 'Historia',
+	'flow-error-prev-revision-mismatch' => 'Inny użytkownik kilka sekund temu edytował ten post. Na pewno chcesz nadpisać jego zmiany?',
 	'flow-error-default' => 'Wystąpił błąd.',
 	'flow-edit-header-submit' => 'Zapisz nagłówek',
+	'flow-edit-header-submit-overwrite' => 'Nadpisz nagłówek',
 	'flow-edit-title-submit' => 'Zmień tytuł',
+	'flow-edit-title-submit-overwrite' => 'Nadpisz tytuł',
 	'flow-edit-post-submit' => 'Zapisz zmiany',
+	'flow-edit-post-submit-overwrite' => 'Nadpisz zmiany',
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|edytowano}} [$3 komentarz] $4',
+	'flow-rev-message-reply' => '$1 [$4 {{GENDER:$2|skomentowano}}] $4 (<em>$5</em>).', # Fuzzy
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|stworzono}} nagłówek',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|edytowano}} nagłówek.',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|usunięto}} [$4 komentarz] $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|usunięto}} [$4 temat] $6 (<em>$5</em>).',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|przywrócono}} [$4 temat] $6 (<em>$5</em>).',
 	'flow-history-last4' => 'Ostatnie 4 godziny',
 	'flow-history-day' => 'Dzisiaj',
 	'flow-history-week' => 'Ostatni tydzień',
@@ -4620,6 +4734,11 @@ $messages['pl'] = array(
 	'flow-notification-rename-email-subject' => '$1 {{GENDER:$1|zmienił|zmieniła}} nazwę twojego tematu',
 	'flow-link-topic' => 'temat',
 	'flow-link-history' => 'historia',
+	'flow-revision-permalink-warning-header' => 'To jest link do pojedynczej wersji nagłówka.
+Ta wersja jest z $1. Możesz zobaczyć [$3 różnice od poprzedniej wersji] lub zobaczyć inne wersje na [$2 stronie historii].',
+	'flow-revision-permalink-warning-header-first' => 'To jest link do pierwszej wersji nagłówka.
+Możesz zobaczyć późniejsze wersje na [$2 stronie historii].',
+	'flow-compare-revisions-header-header' => 'Ta strona pokazuje {{GENDER:$2|zmiany}} pomiędzy dwiema wersjami nagłówka w [$3 $1]. Możesz również zobaczyć inne wersje na [$4 stronie historii].',
 	'flow-terms-of-use-new-topic' => 'Klikając na "{{int:flow-newtopic-save}}", zgadzasz się na zasady użytkowania tej wiki.',
 	'flow-terms-of-use-reply' => 'Klikając na "{{int:flow-reply-submit}}", zgadzasz się na warunki użytkowania tej wiki.',
 	'flow-terms-of-use-edit' => 'Zapisując zmiany, zgadzasz się na warunki użytkowania tej wiki.',
@@ -4768,7 +4887,7 @@ $messages['ru'] = array(
 	'flow-edit-post-submit' => 'Подтвердить изменения',
 	'flow-edit-post-submit-overwrite' => 'Перезаписать изменения',
 	'flow-rev-message-edit-post' => '$1 отредактировал{{GENDER:$2||а}} [$3  комментарий] в теме $4.',
-	'flow-rev-message-reply' => '$1 [$3 прокомментировал{{GENDER:$2||а}} ] тему $4.',
+	'flow-rev-message-reply' => '$1 [$3 прокомментировал{{GENDER:$2||а}} ] тему $4 (<em>$5</em>).',
 	'flow-rev-message-new-post' => '$1 создал{{GENDER:$2||а}} тему [$3 $4].',
 	'flow-rev-message-deleted-post' => '$1 удалил{{GENDER:$2||а}} [$4 комментарий] в теме $6(<em>$5</em>).',
 	'flow-topic-history' => 'История темы «$1»',
@@ -4828,11 +4947,11 @@ $messages['scn'] = array(
  */
 $messages['sco'] = array(
 	'flow-post-moderated-toggle-hide-show' => 'Show comment {{GENDER:$1|hidden}} bi $2',
-	'flow-post-moderated-toggle-delete-show' => 'Show comment {{GENDER:$1|deleted}} bi $2',
+	'flow-post-moderated-toggle-delete-show' => 'Shaw comment {{GENDER:$1|delytit}} bi $2',
 	'flow-post-moderated-toggle-suppress-show' => 'Show comment {{GENDER:$1|suppressed}} bi $2',
-	'flow-post-moderated-toggle-hide-hide' => 'Hide comment {{GENDER:$1|hidden}} bi $2',
-	'flow-post-moderated-toggle-delete-hide' => 'Hide comment {{GENDER:$1|deleted}} bi $2',
-	'flow-post-moderated-toggle-suppress-hide' => 'Hide comment {{GENDER:$1|suppressed}} bi $2',
+	'flow-post-moderated-toggle-hide-hide' => 'Skauk comment {{GENDER:$1|hidden}} bi $2',
+	'flow-post-moderated-toggle-delete-hide' => 'Skauk comment {{GENDER:$1|delytit}} bi $2',
+	'flow-post-moderated-toggle-suppress-hide' => 'Skauk comment {{GENDER:$1|suppressed}} bi $2',
 	'flow-post-action-post-history' => 'Histerie',
 	'flow-post-action-edit-post' => 'Edit',
 	'flow-topic-action-history' => 'Histerie',
@@ -4841,7 +4960,7 @@ $messages['sco'] = array(
 	'flow-edit-title-submit-overwrite' => "O'erwrite title",
 	'flow-edit-post-submit-overwrite' => "O'erwrite chynges",
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|eidited}} ae [$3 comment] oan $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|commented}}] oan $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|commented}}] oan $4.', # Fuzzy
 	'flow-rev-message-create-header' => '$1 {{GENDER:$2|makit}} the heider.',
 	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|eidited}} the heider.',
 	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|hid}} ae [$4 comment] oan $6 (<em>$5</em>).',
@@ -4872,8 +4991,19 @@ Ye can view later versions oan the [$2 buird histerie page].',
 	'flow-compare-revisions-header-header' => 'This page shaws the {{GENDER:$2|chynges}} atween twa versions o the heider oan [$3 $1].
 Ye can see ither versions o the heider at its [$4 histerie page].',
 	'flow-terms-of-use-new-topic' => 'Bi clapin on "{{int:flow-newtopic-save}}", ye\'r agreein til the terms o uiss fer this wiki.',
-	'flow-terms-of-use-reply' => 'Bi clapin on "{{int:flow-reply-submit}}", ye\'r agreein til the terms o uiss fer this wiki.',
+	'flow-terms-of-use-reply' => 'Bi clapin oan "{{int:flow-reply-submit}}", ye\'r agreein til the terms o uiss fer this wiki.',
 	'flow-terms-of-use-edit' => "Bi savin yer chynges, ye'r agreein til the terms o uiss fer this wiki.",
+);
+
+/** Sinhala (සිංහල)
+ * @author Sahan.ssw
+ */
+$messages['si'] = array(
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|අදහස් දැක්වුවා}}] $4 පිළිබඳව.', # Fuzzy
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|ඉවත් කර ඇත.}}  [$4 මාතෘකාව] $6 (<em>$5</em>).',
+	'flow-terms-of-use-new-topic' => '"{{int:flow-newtopic-save}}"ක්ලික් කිරීමෙන්, මෙම විකිය භාවිතාකිරීමට ඇති නීතිවලට ඔබ එකඟ වේ.',
+	'flow-terms-of-use-reply' => '"{{int:flow-reply-submit}}"click කිරීමෙන්, මෙම විකිය භාවිතාකිරීමට ඇති නීතිවලට ඔබ එකඟ වේ.',
+	'flow-terms-of-use-edit' => 'ඔබගේ වෙනස්කම් සුරැකීමෙන්,ඔබ විකිය භාවිතා කිරීමට ඇති කොන්දේසි වලට එකඟ වේ.',
 );
 
 /** Slovenian (slovenščina)
@@ -5058,7 +5188,7 @@ $messages['sv'] = array(
 	'flow-edit-post-submit' => 'Skicka ändringar',
 	'flow-edit-post-submit-overwrite' => 'Skriver över ändringar',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|redigerade}} en [$3 kommentar] på $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|kommenterade}}] på $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|kommenterade}}] på $4.', # Fuzzy
 	'flow-rev-message-reply-bundle' => '<strong>{{PLURAL:$1|En kommentar|$1 kommentarer}}</strong> har {{PLURAL:$1|lagts till}}.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|skapade}} ämnet [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|ändrade}} ämnesrubriken till [$3 $4] från $5.',
@@ -5174,6 +5304,7 @@ Du kan se andra versioner av detta inlägg genom dess [$6 historiksida].',
 );
 
 /** Telugu (తెలుగు)
+ * @author Chaduvari
  * @author Ravichandra
  */
 $messages['te'] = array(
@@ -5184,8 +5315,8 @@ $messages['te'] = array(
 	'flow-edit-title-submit-overwrite' => 'పేరును తిరగరాయి',
 	'flow-edit-post-submit-overwrite' => 'మార్పులను తిరగరాయి',
 	'flow-terms-of-use-new-topic' => '"{{int:flow-newtopic-save}}" నొక్కడం ద్వారా, మీరు ఈ వికీ విధివిధానాలకు కట్టుబడుతున్నారు.',
-	'flow-terms-of-use-reply' => '"{{int:flow-reply-submit}}" నొక్కడం ద్వారా, మీరు ఈ వికీ విధివిధానాలకు కట్టుబడుతున్నారు.',
-	'flow-terms-of-use-edit' => 'మీ మార్పులను భద్రపరచడం ద్వారా, మీరు ఈ వికీ విధివిధానాలకు కట్టుబడుతున్నారు.',
+	'flow-terms-of-use-reply' => '"{{int:flow-reply-submit}}" నొక్కడం ద్వారా, మీరు ఈ వికీ విధివిధానాలను అంగీకరిస్తున్నట్లు.',
+	'flow-terms-of-use-edit' => 'మీ మార్పులను భద్రపరచడం ద్వారా, మీరు ఈ వికీ విధివిధానాలను అంగీకరిస్తున్నట్లు.',
 );
 
 /** Tagalog (Tagalog)
@@ -5337,21 +5468,21 @@ $messages['uk'] = array(
 	'flow-edit-title-submit-overwrite' => 'Переписати назву',
 	'flow-edit-post-submit' => 'Подати зміни',
 	'flow-edit-post-submit-overwrite' => 'Переписати зміни',
-	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|відредагував|відредагувала}} [коментар $3]', # Fuzzy
-	'flow-rev-message-reply' => '$1 {{GENDER:$2|додав|додала}} [коментар $3].', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|відредагував|відредагувала}} [коментар $3] у темі $4',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|додав|додала}} [коментар $3] у тему $4.', # Fuzzy
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|коментар|коментарі|коментарів}} </strong> {{PLURAL:$1|1=був доданий|були додані}}.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|створив|створила}} тему [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|відредагував|відредагувала}} назву теми на [$3 $4] із $5.',
-	'flow-rev-message-create-header' => '$1 {{GENDER:$2|створив|створила}} заголовок стіни.', # Fuzzy
-	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|змінив|змінила}} заголовок стіни.', # Fuzzy
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|приховав|приховала}} [коментар $4](<em>$5</em>).', # Fuzzy
-	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|видалив|видалила}} [коментар $4] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|подавив|подавила}} [коментар $4] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|відновив|відновила}} [коментар $4] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|приховав|приховала}} [тему $4] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|вилучив|вилучила}} [тему $4] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|прибрав|прибрала}} [тему $4] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|відновив|відновила}} [тему $4] (<em>$5</em>).', # Fuzzy
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|створив|створила}} заголовок.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|змінив|змінила}} заголовок.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|приховав|приховала}} [коментар $4] у темі $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|видалив|видалила}} [коментар $4] у темі $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|подавив|подавила}} [коментар $4] у темі $6 (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|відновив|відновила}} [коментар $4] у темі $6 (<em>$5</em>).',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|приховав|приховала}} [тему $4] у темі $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|вилучив|вилучила}} [тему $4]  $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|прибрав|прибрала}} [тему $4]  $6  (<em>$5</em>).',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|відновив|відновила}} [тему $4]  $6 (<em>$5</em>).',
 	'flow-board-history' => 'Історія "$1"',
 	'flow-topic-history' => 'Історія теми "$1"',
 	'flow-post-history' => 'Коментарі від історії дописів {{GENDER:$2|$2}}',
@@ -5442,9 +5573,16 @@ $messages['uk'] = array(
 Ви можете подивитися [відмінності від попередньої версії $5] або переглянути інші версії на [сторінці історії допису $4].',
 	'flow-revision-permalink-warning-post-first' => 'Це постійне посилання на першу версію цього допису.
 Ви можете переглядати пізніші версії на [сторінці історії допису $4].',
+	'flow-revision-permalink-warning-header' => 'Це постійне посилання на окрему версію заголовку.
+Дана версія за $1.
+Ви можете подивитися [$3 відмінності від попередньої версії] або переглянути інші версії на [$2 сторінці стіни історії].',
+	'flow-revision-permalink-warning-header-first' => 'Це постійне посилання на першу версію цього заголовку.
+Ви можете переглядати пізніші версії на [$2 сторінці історії стіни].',
 	'flow-compare-revisions-revision-header' => 'Версія від {{GENDER:$2|$2}} за $1',
 	'flow-compare-revisions-header-post' => 'Ця сторінка відображає зміни між двома версіями допису від $3 у розділі "[$5 $2]" на [$4 $1].
 Ви можете побачити інші версії цього допису на його [сторінці історії $6].',
+	'flow-compare-revisions-header-header' => 'На цій сторінці відображаються {{GENDER:$2|зміни}} між двома версіями заголовку на [$3  $1].
+Ви можете побачити інші версії заголовку на його [$4  сторінці історії].',
 	'flow-topic-collapsed-one-line' => 'Малий вигляд',
 	'flow-topic-collapsed-full' => 'Згорнутий вигляд',
 	'flow-topic-complete' => 'Повний вигляд',
@@ -5568,7 +5706,7 @@ $messages['vi'] = array(
 	'flow-edit-post-submit' => 'Gửi thay đổi',
 	'flow-edit-post-submit-overwrite' => 'Ghi đè thay đổi',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2}}đã sửa đổi một [$3 bình luận] về $4.',
-	'flow-rev-message-reply' => '$1 {{GENDER:$2}}đã [$3 bình luận] về $4.',
+	'flow-rev-message-reply' => '$1 {{GENDER:$2}}đã [$3 bình luận] về $4.', # Fuzzy
 	'flow-rev-message-reply-bundle' => '<strong>$1 bình luận</strong> được thêm vào.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2}}đã tạo chủ đề [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2}}đã đổi tiêu đề của chủ đề từ $5 thành [$3 $4].',
@@ -5706,7 +5844,6 @@ $messages['yi'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|ענטפערן}}',
 	'flow-reply-link' => '{{GENDER:$1|ענטפערן}}',
 	'flow-thank-link' => '{{GENDER:$1|דאַנקען}}',
-	'flow-edit-post-submit' => 'איינגעבן ענדערונגען',
 	'flow-post-action-view' => 'פערמאנענטער לינק',
 	'flow-topic-action-view' => 'פערמאנענטער לינק',
 	'flow-topic-action-watchlist' => 'אויפֿפאַסונג ליסטע',
@@ -5717,12 +5854,14 @@ $messages['yi'] = array(
 	'flow-error-restore-failure' => 'צוריקשטעלן דעם אביעקט אדורכגעפאלן.',
 	'flow-edit-header-submit' => 'אויפהיטן קעפל.',
 	'flow-edit-title-submit' => 'ענדערן טיטל',
+	'flow-edit-post-submit' => 'איינגעבן ענדערונגען',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|האט געשאפן}} די טעמע [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|האט געענדערט}} דעם טעמע טיטל צו [$3 $4] פון $5.',
-	'flow-rev-message-create-header' => '$1  {{GENDER:$2|האט באשאפן}} דאס טאוול קעפל.',
-	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|האט רעדאקטירט}} דאס טאוול קעפל.',
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|האט באהאלטן}} א [$4 הערה] (<em>$5</em>).',
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|האט צוריקגעשטעלט}} א [$4 הערה] (<em>$5</em>).',
+	'flow-rev-message-create-header' => '$1  {{GENDER:$2|האט באשאפן}} דאס טאוול קעפל.', # Fuzzy
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|האט רעדאקטירט}} דאס טאוול קעפל.', # Fuzzy
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|האט באהאלטן}} א [$4 הערה] (<em>$5</em>).', # Fuzzy
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|האט באהאלטן}} א [$4 הערה] (<em>$5</em>).', # Fuzzy
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|האט צוריקגעשטעלט}} א [$4 הערה] (<em>$5</em>).', # Fuzzy
 	'flow-topic-history' => '"$1" טעמע היסטאריע',
 	'flow-comment-restored' => 'צוריקגעשטעלט הערה',
 	'flow-comment-deleted' => 'אויסגעמעקט הערה',
@@ -5741,6 +5880,7 @@ $messages['yi'] = array(
  * @author Liuxinyu970226
  * @author Mys 721tx
  * @author Qiyue2001
+ * @author Stieizc
  * @author TianyinLee
  * @author Yfdyh000
  */
@@ -5845,7 +5985,7 @@ $messages['zh-hans'] = array(
 	'flow-edit-post-submit' => '提交更改',
 	'flow-edit-post-submit-overwrite' => '覆写更改',
 	'flow-rev-message-edit-post' => '$1在$4{{GENDER:$2|编辑了}}一个[$3 评论]。',
-	'flow-rev-message-reply' => '$1在$4{{GENDER:$2|添加了}}一个[$3 评论]。',
+	'flow-rev-message-reply' => '$1在$4{{GENDER:$2|添加了}}一个[$3 评论]。', # Fuzzy
 	'flow-rev-message-reply-bundle' => '添加了<strong>$1 条评论</strong>。',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|创建了}}主题 [$3  $4]。',
 	'flow-rev-message-edit-title' => '$1将主题名字从$5{{GENDER:$2|改为}}[$3 $4]。',
@@ -5922,6 +6062,8 @@ $messages['zh-hans'] = array(
 	'flow-moderation-confirmation-restore-topic' => '您已成功还原本主题。',
 	'flow-topic-permalink-warning' => '本主题已在[$2 $1]开启',
 	'flow-topic-permalink-warning-user-board' => '本主题已在[$2 $1的通告版]开启',
+	'flow-revision-permalink-warning-header' => '这是一个指向某个版本的标题的永久链接。
+版本号从$1中提取。您可以在这里（$3）看到与上一个版本的不同，或者在历史记录（$2）中查看其他版本。',
 	'flow-compare-revisions-revision-header' => '版本由{{GENDER:$2|$2}}从$1生成',
 	'flow-topic-collapsed-one-line' => '小型视图',
 	'flow-topic-collapsed-full' => '折叠视图',
