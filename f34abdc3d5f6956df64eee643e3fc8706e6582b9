@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_c73abf32",
+        "filename": "includes/Data/ReferenceRecorder.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-03T23:34:28Z",
+      "side": 1,
+      "message": "Right, there\u0027s just no programmatic interface to \"get all pages this topic appears on yet\" – when that exists we\u0027ll change this over.",
+      "parentUuid": "4e04eb01_f12699b4",
+      "revId": "f34abdc3d5f6956df64eee643e3fc8706e6582b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_51ec2d20",
         "filename": "includes/LinksTableUpdater.php",
         "patchSetId": 11
@@ -81,6 +99,24 @@
       "writtenOn": "2014-03-03T20:23:27Z",
       "side": 1,
       "message": "It looks like this class is updating the links tables directly? Which is probably going to confuse anything that uses the LinksUpdateConstructed, LinksUpdate, LinksUpdateAfterInsert, or LinksUpdateComplete hooks. Like GlobalUsage, for example.",
+      "revId": "f34abdc3d5f6956df64eee643e3fc8706e6582b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_a73d732b",
+        "filename": "includes/LinksTableUpdater.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-03T23:34:28Z",
+      "side": 1,
+      "message": "Right, I sent an email related to this yesterday, will FWD to you.",
+      "parentUuid": "4e04eb01_51ec2d20",
       "revId": "f34abdc3d5f6956df64eee643e3fc8706e6582b9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
