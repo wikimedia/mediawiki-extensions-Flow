@@ -159,11 +159,14 @@
 		background-position: center;
 		background-size: 20px auto;
 		background-repeat: no-repeat;
-		.background-image-svg( ~"@{icon-path}more_dots.svg", ~"@{icon-path}more_dots.png" );
+		.background-image-svg( ~"@{icon-path}ellipsis_gray.svg", ~"@{icon-path}ellipsis_gray.png" );
 
-		opacity: 0.3;
 		&:hover {
-			opacity: 1;
+			.background-image-svg( ~"@{icon-path}ellipsis_lightgray.svg", ~"@{icon-path}ellipsis_lightgray.png" );
+		}
+
+		&:active {
+			.background-image-svg( ~"@{icon-path}ellipsis_darkgray.svg", ~"@{icon-path}ellipsis_darkgray.png" );
 		}
 	}
 

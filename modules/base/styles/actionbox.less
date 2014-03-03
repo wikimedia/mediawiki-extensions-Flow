@@ -23,31 +23,12 @@
 		li {
 			margin: 0;
 
-			// override formatting of buttons used in li's
-			.mw-ui-button {
-				// buttons in li should take up full width
-				display: block;
-				width: 100%;
-				// .mw-ui-button can be input element; padding would
-				// increase length in default box-sizing: content-box
-				box-sizing: border-box;
-				-moz-box-sizing: border-box;
-
-				border-radius: 0;
-				border-left: none;
-				border-right: none;
-				border-bottom: none;
-
-				&:hover {
-					border-radius: 0;
-					border-left: none;
-					border-right: none;
-					border-bottom: none;
-				}
-			}
-
-			&:first-of-type .mw-ui-button {
-				border-top: none;
+			hr {
+				// cross-browser color-change of the hr dividing line
+				// @see http://stackoverflow.com/questions/6382023/changing-the-color-of-a-hr-element
+				background-color: @flyout-border-color;
+				border-color: @flyout-border-color;
+				color: @flyout-border-color;
 			}
 		}
 	}
