@@ -99,60 +99,82 @@ echo Html::openElement( 'div', array(
 			<a class="flow-tipsy-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
 			<div class="flow-tipsy-flyout">
 				<ul>
+					<?php if ( $postActionMenu->isAllowed( 'edit-title' ) ) {
+						echo '<li class="flow-action-edit-title">', $postActionMenu->getButton(
+							'edit-title',
+							wfMessage( 'flow-topic-action-edit-title' )->escaped(),
+							'mw-ui-button mw-ui-quiet flow-edit-topic-link'
+						), '</li>';
+					} ?>
 					<?php if ( $postActionMenu->isAllowed( 'view' ) ) {
 						echo '<li class="flow-action-permalink">', $postActionMenu->getButton(
 							'view',
 							wfMessage( 'flow-topic-action-view' )->escaped(),
-							'mw-ui-button flow-action-permalink-link'
-						), '</li>';
-					} ?>
-					<?php if ( $postActionMenu->isAllowed( 'hide-topic' ) ) {
-						echo '<li class="flow-action-hide">', $postActionMenu->getButton(
-							'hide-topic',
-							wfMessage( 'flow-topic-action-hide-topic' )->escaped(),
-							'mw-ui-button flow-hide-topic-link'
+							'mw-ui-button mw-ui-quiet flow-action-permalink-link'
 						), '</li>';
 					} ?>
 					<?php if ( $postActionMenu->isAllowed( 'topic-history' ) ) {
 						echo '<li class="flow-action-topic-history">', $postActionMenu->getButton(
 							'topic-history',
 							wfMessage( 'flow-topic-action-history' )->escaped(),
-							'mw-ui-button flow-action-topic-history-link'
+							'mw-ui-button mw-ui-quiet flow-action-topic-history-link'
+						), '</li>';
+					} ?>
+<!--
+					<li class="flow-action-summarize">
+						<a href="#" class="mw-ui-button">@todo: Summarize</a>
+					</li>
+-->
+<!--
+					<li class="flow-action-close">
+						<a href="#" class="mw-ui-button">@todo: Close</a>
+					</li>
+-->
+
+					<li><hr /></li>
+
+					<?php if ( $postActionMenu->isAllowed( 'hide-topic' ) ) {
+						echo '<li class="flow-action-hide">', $postActionMenu->getButton(
+							'hide-topic',
+							wfMessage( 'flow-topic-action-hide-topic' )->escaped(),
+							'mw-ui-button mw-ui-quiet flow-hide-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $root->getModerationState() === \Flow\Model\AbstractRevision::MODERATED_HIDDEN && $postActionMenu->isAllowed( 'restore-topic' ) ) {
+						echo '<li class="flow-action-unhide">', $postActionMenu->getButton(
+							'restore-topic',
+							wfMessage( 'flow-topic-action-unhide-topic' )->escaped(),
+							'mw-ui-button mw-ui-quiet flow-unhide-topic-link'
 						), '</li>';
 					} ?>
 					<?php if ( $postActionMenu->isAllowed( 'delete-topic' ) ) {
 						echo '<li class="flow-action-delete">', $postActionMenu->getButton(
 							'delete-topic',
 							wfMessage( 'flow-topic-action-delete-topic' )->escaped(),
-							'mw-ui-button flow-delete-topic-link'
+							'mw-ui-button mw-ui-quiet flow-delete-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $root->getModerationState() === \Flow\Model\AbstractRevision::MODERATED_DELETED && $postActionMenu->isAllowed( 'restore-topic' ) ) {
+						echo '<li class="flow-action-undelete">', $postActionMenu->getButton(
+							'restore-topic',
+							wfMessage( 'flow-topic-action-undelete-topic' )->escaped(),
+							'mw-ui-button mw-ui-quiet flow-undelete-topic-link'
 						), '</li>';
 					} ?>
 					<?php if ( $postActionMenu->isAllowed( 'suppress-topic' ) ) {
 						echo '<li class="flow-action-suppress">', $postActionMenu->getButton(
 							'suppress-topic',
 							wfMessage( 'flow-topic-action-suppress-topic' )->escaped(),
-							'mw-ui-button flow-suppress-topic-link'
+							'mw-ui-button mw-ui-quiet flow-suppress-topic-link'
 						), '</li>';
 					} ?>
-					<?php if ( $postActionMenu->isAllowed( 'restore-topic' ) ) {
-						echo '<li class="flow-action-restore">', $postActionMenu->getButton(
+					<?php if ( $root->getModerationState() === \Flow\Model\AbstractRevision::MODERATED_SUPPRESSED && $postActionMenu->isAllowed( 'restore-topic' ) ) {
+						echo '<li class="flow-action-unsuppress">', $postActionMenu->getButton(
 							'restore-topic',
-							wfMessage( 'flow-topic-action-restore-topic' )->escaped(),
-							'mw-ui-button flow-restore-topic-link'
+							wfMessage( 'flow-topic-action-unsuppress-topic' )->escaped(),
+							'mw-ui-button mw-ui-quiet flow-unsuppress-topic-link'
 						), '</li>';
 					} ?>
-					<?php if ( $postActionMenu->isAllowed( 'edit-title' ) ) {
-						echo '<li class="flow-action-edit-title">', $postActionMenu->getButton(
-							'edit-title',
-							wfMessage( 'flow-topic-action-edit-title' )->escaped(),
-							'mw-ui-button flow-edit-topic-link'
-						), '</li>';
-					} ?>
-<!--
-					<li class="flow-action-close">
-						<a href="#" class="mw-ui-button">@todo: Close topic</a>
-					</li>
--->
 				</ul>
 			</div>
 		</div>

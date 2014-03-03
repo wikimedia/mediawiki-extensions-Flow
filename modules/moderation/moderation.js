@@ -8,7 +8,7 @@
 	 *
 	 * @param {string} moderationType for messages and moderatePost API call. 'restore', 'hide', .. etc.
 	 */
-	$.fn._flow.showModerationDialog = function( moderationType ) {
+	$.fn._flow.showModerationDialog = function( moderationType, moderationAction ) {
 		var $postContainer = $( this ).closest( '.flow-post-container' ),
 			$topicContainer = $( this ).closest( '.flow-topic-container' ),
 			subject = $topicContainer.find( '.flow-realtitle' ).text(),
@@ -35,11 +35,15 @@
 				// flow-moderation-title-suppress-post
 				// flow-moderation-title-delete-post
 				// flow-moderation-title-hide-post
-				// flow-moderation-title-restore-post
+				// flow-moderation-title-unsuppress-post
+				// flow-moderation-title-undelete-post
+				// flow-moderation-title-unhide-post
 				// flow-moderation-title-suppress-topic
 				// flow-moderation-title-delete-topic
 				// flow-moderation-title-hide-topic
-				// flow-moderation-title-restore-topic
+				// flow-moderation-title-unsuppress-topic
+				// flow-moderation-title-undelete-topic
+				// flow-moderation-title-unhide-topic
 				'title' : mw.msg( 'flow-moderation-title-' + moderationType + '-' + targetType ),
 				'modal' : true,
 				'buttons' : [
@@ -48,11 +52,15 @@
 						// flow-moderation-confirm-suppress-post
 						// flow-moderation-confirm-delete-post
 						// flow-moderation-confirm-hide-post
-						// flow-moderation-confirm-restore-post
+						// flow-moderation-confirm-unsuppress-post
+						// flow-moderation-confirm-undelete-post
+						// flow-moderation-confirm-unhide-post
 						// flow-moderation-confirm-suppress-topic
 						// flow-moderation-confirm-delete-topic
 						// flow-moderation-confirm-hide-topic
-						// flow-moderation-confirm-restore-topic
+						// flow-moderation-confirm-unsuppress-topic
+						// flow-moderation-confirm-undelete-topic
+						// flow-moderation-confirm-unhide-topic
 						'text' : mw.msg( 'flow-moderation-confirm-' + moderationType + '-' + targetType ),
 						'click' : $(this).flow( 'getFormHandler',
 							apiCallback,
@@ -62,7 +70,8 @@
 								if ( $postContainer.length > 0 ) {
 									res.push( $postContainer.data( 'post-id' ) );
 								}
-								res.push( moderationType, $form.find( '#flow-moderation-reason' ).val() );
+
+								res.push( moderationAction, $form.find( '#flow-moderation-reason' ).val() );
 
 								return res;
 							},
@@ -77,11 +86,15 @@
 										// flow-moderation-confirmation-suppress-post
 										// flow-moderation-confirmation-delete-post
 										// flow-moderation-confirmation-hide-post
-										// flow-moderation-confirmation-restore-post
+										// flow-moderation-confirmation-unsuppress-post
+										// flow-moderation-confirmation-undelete-post
+										// flow-moderation-confirmation-unhide-post
 										// flow-moderation-confirmation-suppress-topic
 										// flow-moderation-confirmation-delete-topic
 										// flow-moderation-confirmation-hide-topic
-										// flow-moderation-confirmation-restore-topic
+										// flow-moderation-confirmation-unsuppress-topic
+										// flow-moderation-confirmation-undelete-topic
+										// flow-moderation-confirmation-unhide-topic
 										confirmationMsg = 'flow-moderation-confirmation-' +
 											moderationType + '-' + targetType;
 

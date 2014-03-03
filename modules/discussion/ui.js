@@ -164,22 +164,34 @@
 		 */
 		setupModeration: function () {
 			// Moderation controls
-			var moderationTypes = [ 'hide', 'delete', 'suppress', 'restore' ],
+			var moderationTypes = {
+					// key: used for class & i18n messages - value: action name
+					'hide': 'hide',
+					'delete': 'delete',
+					'suppress': 'suppress',
+					// all of these are just 'restore' action
+					'unhide': 'restore',
+					'undelete': 'restore',
+					'unsuppress': 'restore'
+				},
 				classes = [],
-				i, j, classNames;
-			for ( i = moderationTypes.length; i--; ) {
+				i, type, classNames;
+
+			for ( type in moderationTypes ) {
 				classNames = [
-					'.flow-' + moderationTypes[i] + '-post-link',
-					'.flow-' + moderationTypes[i] + '-topic-link'
+					'.flow-' + type + '-post-link',
+					'.flow-' + type + '-topic-link'
 				];
 
-				for ( j = classNames.length; j--; ) {
-					classes.push( classNames[j] );
+				for ( i = classNames.length; i--; ) {
+					classes.push( classNames[i] );
 
 					// don't use .data() to set the type, because this is not the
 					// exact node that will be clicked on: tipsy will clone the node,
 					// outside of $container
-					this.$container.find( classNames[j] ).attr( 'data-moderation-type', moderationTypes[i] );
+					this.$container.find( classNames[i] )
+						.attr( 'data-moderation-type', type )
+						.attr( 'data-moderation-action', moderationTypes[type] );
 				}
 			}
 
@@ -190,7 +202,8 @@
 				$( document )
 					.data( 'moderation-bound', true )
 					.on( 'click', classes.join( ', ' ), function ( event ) {
-						var moderationType = $( this ).data( 'moderation-type' );
+						var moderationType = $( this ).data( 'moderation-type' ),
+							moderationAction = $( this ).data( 'moderation-action' );
 						event.preventDefault();
 
 						// while moderation is being loaded, hide buttons & show spinner
@@ -223,7 +236,7 @@
 							 * may not always be able to guarantee nodes' positions
 							 * withing the DOM (e.g. tipsy pulls them out)
 							 */
-							$tipsyTrigger.flow( 'showModerationDialog', moderationType );
+							$tipsyTrigger.flow( 'showModerationDialog', moderationType, moderationAction );
 						} );
 					} );
 			}
