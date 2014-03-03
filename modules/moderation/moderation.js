@@ -35,11 +35,15 @@
 				// flow-moderation-title-suppress-post
 				// flow-moderation-title-delete-post
 				// flow-moderation-title-hide-post
-				// flow-moderation-title-restore-post
+				// flow-moderation-title-unsuppress-post
+				// flow-moderation-title-undelete-post
+				// flow-moderation-title-unhide-post
 				// flow-moderation-title-suppress-topic
 				// flow-moderation-title-delete-topic
 				// flow-moderation-title-hide-topic
-				// flow-moderation-title-restore-topic
+				// flow-moderation-title-unsuppress-topic
+				// flow-moderation-title-undelete-topic
+				// flow-moderation-title-unhide-topic
 				'title' : mw.msg( 'flow-moderation-title-' + moderationType + '-' + targetType ),
 				'modal' : true,
 				'buttons' : [

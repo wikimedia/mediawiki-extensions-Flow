@@ -81,7 +81,9 @@ $messages['en'] = array(
 	'flow-post-action-delete-post' => 'Delete',
 	'flow-post-action-hide-post' => 'Hide',
 	'flow-post-action-edit-post' => 'Edit',
-	'flow-post-action-restore-post' => 'Restore post',
+	'flow-post-action-unsuppress-post' => 'Unsuppress',
+	'flow-post-action-undelete-post' => 'Undelete',
+	'flow-post-action-unhide-post' => 'Unhide',
 
 	'flow-topic-action-view' => 'Permalink',
 	'flow-topic-action-watchlist' => 'Watchlist',
@@ -90,7 +92,9 @@ $messages['en'] = array(
 	'flow-topic-action-hide-topic' => 'Hide topic',
 	'flow-topic-action-delete-topic' => 'Delete topic',
 	'flow-topic-action-suppress-topic' => 'Suppress topic',
-	'flow-topic-action-restore-topic' => 'Restore topic',
+	'flow-topic-action-unhide-topic' => 'Unhide topic',
+	'flow-topic-action-undelete-topic' => 'Undelete topic',
+	'flow-topic-action-unsuppress-topic' => 'Unsuppress topic',
 
 	'flow-error-http' => 'An error occurred while contacting the server.', // Needs real copy
 	'flow-error-other' => 'An unexpected error occurred.',
@@ -504,21 +508,24 @@ Also used in:
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.
 {{Identical|History}}',
-	'flow-post-action-suppress-post' => 'Used as a label for  the submit button in the suppression form.
-{{Related|Flow-action}}
-{{Identical|Suppress}}',
-	'flow-post-action-delete-post' => 'Used as a label for the submit button in the deletion form.
-{{Related|Flow-action}}
-{{Identical|Delete}}',
-	'flow-post-action-hide-post' => 'Used as label for the Submit button.
+	'flow-post-action-hide-post' => 'Used as a link in a dropdown menu to hide a post.
 {{Related|Flow-action}}
 {{Identical|Hide}}',
+	'flow-post-action-delete-post' => 'Used as a link in a dropdown menu to delete a post.
+{{Related|Flow-action}}
+{{Identical|Delete}}',
+	'flow-post-action-suppress-post' => 'Used as a link in a dropdown menu to suppress a post.
+{{Related|Flow-action}}
+{{Identical|Suppress}}',
 	'flow-post-action-edit-post' => 'Used as text for the link which is used to edit the post.
 {{Related|Flow-action}}
 {{Identical|Edit}}',
-	'flow-post-action-restore-post' => 'Used as label for the Submit button.
-{{Related|Flow-action}}
-{{Identical|Restore post}}',
+	'flow-post-action-unhide-post' => 'Used as a link in a dropdown menu to unhide a post.
+{{Related|Flow-action}}',
+	'flow-post-action-undelete-post' => 'Used as a link in a dropdown menu to undelete a post.
+{{Related|Flow-action}}',
+	'flow-post-action-unsuppress-post' => 'Used as a link in a dropdown menu to unsuppress a post.
+{{Related|Flow-action}}',
 	'flow-topic-action-view' => "Title text for topic's permalink icon.
 {{Identical|Permalink}}",
 	'flow-topic-action-watchlist' => "Title text for topic's watchlist icon.
@@ -532,9 +539,12 @@ Also used in:
 {{Related|Flow-action}}',
 	'flow-topic-action-suppress-topic' => 'Used as a link in a dropdown menu to suppress a topic.
 {{Related|Flow-action}}',
-	'flow-topic-action-restore-topic' => 'Used as a link in a dropdown menu to clear existing moderation.
-{{Related|Flow-action}}
-{{Identical|Restore topic}}',
+	'flow-topic-action-unhide-topic' => 'Used as a link in a dropdown menu to unhide a topic.
+{{Related|Flow-action}}',
+	'flow-topic-action-undelete-topic' => 'Used as a link in a dropdown menu to undelete a topic.
+{{Related|Flow-action}}',
+	'flow-topic-action-unsuppress-topic' => 'Used as a link in a dropdown menu to unsuppress a topic.
+{{Related|Flow-action}}',
 	'flow-error-http' => 'Used as error message on HTTP error.',
 	'flow-error-other' => 'Used as generic error message.',
 	'flow-error-external' => 'Uses as error message. Parameters:
