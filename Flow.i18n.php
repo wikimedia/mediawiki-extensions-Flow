@@ -2413,7 +2413,7 @@ $messages['fr'] = array(
 	'flow-edit-post-submit' => 'Soumettre les modifications',
 	'flow-edit-post-submit-overwrite' => 'Écraser les modifications',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|a modifié}} un [$3 commentaire] sur $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|a ajouté}} un commentaire] sur $4.', # Fuzzy
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|a ajouté}} un commentaire] sur $4 (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|commentaire|commentaires}}</strong> {{PLURAL:$1|a été ajouté|ont été ajoutés}}.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|a créé}} le sujet [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|a changé}} le titre du sujet de [$3 $4], précédemment $5.',
@@ -3136,20 +3136,20 @@ $messages['it'] = array(
 	'flow-edit-title-submit-overwrite' => 'Sovrascrivi titolo',
 	'flow-edit-post-submit' => 'Invia modifiche',
 	'flow-edit-post-submit-overwrite' => 'Sovrascrivi modifiche',
-	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|modificato}} un [$3 commento] su $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|ha commentato}}] su $4.', # Fuzzy
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|ha modificato}} un [$3 commento] su $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|ha commentato}}] su $4 (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|commento|commenti}}</strong> {{PLURAL:$1|è stato aggiunto|sono stati aggiunti}}.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|ha creato}} la discussione [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|ha modificato}} il titolo della discussione in [$3 $4] da $5.',
-	'flow-rev-message-create-header' => "$1 {{GENDER:$2|creato}} l'intestazione.",
-	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|modificato}} l'intestazione.",
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|nascosto}} un [$4 commento] su $6 (<em>$5</em>).',
-	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|eliminato}} un [ $4  commento] su  $6  (<em> $5 </em>).',
-	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|soppresso}} un [ $4  commento] su  $6  (<em> $5 </em>).',
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|ripristinato}} un [$4 commento] su $6 (<em>$5</em>).',
+	'flow-rev-message-create-header' => "$1 {{GENDER:$2|ha creato}} l'intestazione.",
+	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|ha modificato}} l'intestazione.",
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|ha nascosto}} un [$4 commento] su $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|ha cancellato}} un [$4 commento] su $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|ha soppresso}} un [$4 commento] su $6 (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|ha ripristinato}} un [$4 commento] su $6 (<em>$5</em>).',
 	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|ha nascosto}} la [$4 discussione] $6 (<em>$5</em>).',
-	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|eliminato}} il [ $4  argomento]  $6  (<em> $5 </em>).',
-	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|soppresso}} il [ $4  argomento]  $6  (<em> $5 </em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|ha cancellato}} la [$4 discussione] $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|ha soppresso}} la [$4 discussione] $6 (<em>$5</em>).',
 	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|ha ripristinato}} la [$4 discussione] $6 (<em>$5</em>).',
 	'flow-board-history' => 'Cronologia di "$1"',
 	'flow-topic-history' => 'Cronologia della discussione "$1"',
@@ -3245,7 +3245,7 @@ Puoi vedere le versioni successive nella [$4 cronologia della pagina].',
 Questa versione è del $1.
 Puoi vedere le [$3 differenze dalla versione precedente] o le altre versioni nella [$2 cronologia della pagina].",
 	'flow-revision-permalink-warning-header-first' => "Questo è un collegamento permanente alla prima versione dell'intestazione.
-Puoi vedere le ultime versioni nella [$2 cronologia della pagina].",
+Puoi vedere le versioni successive nella [$2 cronologia della pagina].",
 	'flow-compare-revisions-revision-header' => 'Versione di {{GENDER:$2|$2}} del $1',
 	'flow-compare-revisions-header-post' => 'Questa pagina mostra le {{GENDER:$3|modifiche}} tra due versioni del messaggio di $3, nella discussione "[$5 $2]" su [$4 $1].
 Puoi vedere le altre versioni nella [$6 cronologia della pagina].',
@@ -3370,7 +3370,7 @@ $messages['ja'] = array(
 	'flow-edit-post-submit' => '変更を保存',
 	'flow-edit-post-submit-overwrite' => '変更を上書き',
 	'flow-rev-message-edit-post' => '$1 が $4 の[$3 コメント]を{{GENDER:$2|編集}}',
-	'flow-rev-message-reply' => '$1 が $4 に[$3 {{GENDER:$2|コメントを追加}}]', # Fuzzy
+	'flow-rev-message-reply' => '$1 が $4 に[$3 {{GENDER:$2|コメントを追加}}] (<em>$5</em>)',
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|件のコメント}}</strong>が追加{{PLURAL:$1|されました}}。',
 	'flow-rev-message-new-post' => '$1 が話題 [$3 $4] を{{GENDER:$2|作成}}',
 	'flow-rev-message-edit-title' => '$1 が話題の題名を $5 から [$3 $4] に{{GENDER:$2|変更}}',
@@ -4018,7 +4018,7 @@ $messages['mk'] = array(
 	'flow-edit-post-submit' => 'Спроведи измени',
 	'flow-edit-post-submit-overwrite' => 'Презапиши врз промените',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|измени}} [$3 коментар] на $4.',
-	'flow-rev-message-reply' => '$1 {{GENDER:$2|доидаде}} [$3 коментар] на $4.', # Fuzzy
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|доидаде}} [$3 коментар] на $4 (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => '{{PLURAL:$1|Додаден|Додадени}} <strong>{{PLURAL:$1|еден коментар|$1 коментари}}</strong>.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|ја создаде}} темата [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|го смени}} насловот на темата од $5 во [$3 $4].',
@@ -5016,16 +5016,16 @@ $messages['sl'] = array(
 	'flow-error-invalid-replyto' => 'Parameter »odgovori« je bil neveljaven. Navedene objave ni bilo mogoče najti.',
 	'flow-error-missing-postId' => 'Podan ni bil noben parameter »postId«. Ta parameter je za upravljanje z objavo obvezen.',
 	'flow-error-invalid-postId' => 'Parameter »postId« ni veljaven. Navedene objave ($1) ni bilo mogoče najti.',
-	'flow-notification-reply' => '$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo [$5 objavo] v razdelku $2 na strani »$4«.', # Fuzzy
-	'flow-notification-reply-bundle' => '$1 in $5 {{PLURAL:$6|drug|druga|drugi|drugih}} {{GENDER:$1|je odgovoril|je odgovorila|so odgovorili}} na vašo [$4 objavo] v razdelku $2 na strani »$3«.', # Fuzzy
-	'flow-notification-edit' => '$1 {{GENDER:$1|je urejal|je urejala}} [$5 objavo] v razdelku $2 na [[$3|$4]].', # Fuzzy
-	'flow-notification-newtopic' => '$1 {{GENDER:$1|je ustvaril|je ustvarila}} [$5 novo temo] na [[$2|$3]]: $4.', # Fuzzy
-	'flow-notification-rename' => '$1 {{GENDER:$1|je spremenil|je spremenila}} naslov [$2 $3] v »$4« na [[$5|$6]].', # Fuzzy
+	'flow-notification-reply' => '$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo <span class="plainlinks">[$5 objavo]</span> v razdelku »$2« na strani »$4«.',
+	'flow-notification-reply-bundle' => '$1 in $5 {{PLURAL:$6|drug|druga|drugi|drugih}} {{GENDER:$1|je odgovoril|je odgovorila|so odgovorili}} na vašo <span class="plainlinks">[$4 objavo]</span> v razdelku »$2« na strani »$3«.',
+	'flow-notification-edit' => '$1 {{GENDER:$1|je urejal|je urejala}} <span class="plainlinks">[$5 objavo]</span> v razdelku »$2« na [[$3|$4]].',
+	'flow-notification-newtopic' => '$1 {{GENDER:$1|je ustvaril|je ustvarila}} <span class="plainlinks">[$5 novo temo]</span> na [[$2|$3]]: $4.',
+	'flow-notification-rename' => '$1 {{GENDER:$1|je spremenil|je spremenila}} naslov <span class="plainlinks">[$2 $3]</span> v »$4« na [[$5|$6]].',
 	'flow-notification-link-text-view-post' => 'Ogled objave',
 	'flow-notification-link-text-view-board' => 'Ogled deske',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo objavo',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo objavo v razdelku $2 na strani »$3«', # Fuzzy
-	'flow-notification-reply-email-batch-bundle-body' => '$1 in $4 {{PLURAL:$5|drugi|druga|drugi|drugih}} {{PLURAL:$5|sta {{GENDER:$1|odgovorila}}|so odgovorili}} na vašo objavo v razdelku $2 na strani »$3«', # Fuzzy
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo objavo v razdelku »$2« na strani »$3«',
+	'flow-notification-reply-email-batch-bundle-body' => '$1 in $4 {{PLURAL:$5|drugi|druga|drugi|drugih}} {{PLURAL:$5|sta {{GENDER:$1|odgovorila}}|so odgovorili}} na vašo objavo v razdelku »$2« na strani »$3«',
 	'echo-category-title-flow-discussion' => 'Tok',
 	'echo-pref-tooltip-flow-discussion' => 'Obvesti me, ko se v Toku pojavijo dejanja v zvezi z mano.',
 	'flow-link-post' => 'objava',
