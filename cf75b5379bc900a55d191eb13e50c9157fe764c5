@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_74d397d7",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-03T21:50:48Z",
+      "side": 1,
+      "message": "This part is confusing, can\u0027t we get ErrorPageError to do the work for us \"for free\"? :)",
+      "revId": "cf75b5379bc900a55d191eb13e50c9157fe764c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
