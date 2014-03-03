@@ -8,9 +8,7 @@
 		~"@{icon-prefix}_hover.svg",
 		~"@{icon-prefix}_hover.png",
 		~"@{icon-prefix}_normal.svg",
-		~"@{icon-prefix}_normal.png",
-		~"@{icon-prefix}_onclick.svg",
-		~"@{icon-prefix}_onclick.png"
+		~"@{icon-prefix}_normal.png"
 	);
 }
 
@@ -21,9 +19,7 @@
 		~"@{icon-prefix}_hover_@{icon-dir}.svg",
 		~"@{icon-prefix}_hover_@{icon-dir}.png",
 		~"@{icon-prefix}_normal_@{icon-dir}.svg",
-		~"@{icon-prefix}_normal_@{icon-dir}.png",
-		~"@{icon-prefix}_onclick_@{icon-dir}.svg",
-		~"@{icon-prefix}_onclick_@{icon-dir}.png"
+		~"@{icon-prefix}_normal_@{icon-dir}.png"
 	);
 }
 
@@ -35,10 +31,7 @@
 	@hover-fallback-icon,
 
 	@normal-icon,
-	@normal-fallback-icon,
-
-	@onclick-icon,
-	@onclick-fallback-icon
+	@normal-fallback-icon
 ) {
 	padding-left: 41px;
 	text-align: left;
@@ -57,4 +50,9 @@
 	background-position: left 16px center !important;
 	background-size: 14px auto !important;
 	background-repeat: no-repeat !important;
+
+	// Chrome has a weird rendering issue where the SVG icon flashes between
+	// hover (in between switching from normal to hover img, it seems to display
+	// a very tiny version of that icon) - this fixes that issue, somehow :)
+	transition: background-size 0.1s;
 }

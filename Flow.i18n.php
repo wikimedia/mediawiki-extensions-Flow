@@ -81,7 +81,9 @@ $messages['en'] = array(
 	'flow-post-action-delete-post' => 'Delete',
 	'flow-post-action-hide-post' => 'Hide',
 	'flow-post-action-edit-post' => 'Edit',
-	'flow-post-action-restore-post' => 'Restore post',
+	'flow-post-action-unsuppress-post' => 'Unsuppress',
+	'flow-post-action-undelete-post' => 'Undelete',
+	'flow-post-action-unhide-post' => 'Unhide',
 
 	'flow-topic-action-view' => 'Permalink',
 	'flow-topic-action-watchlist' => 'Watchlist',
@@ -90,7 +92,9 @@ $messages['en'] = array(
 	'flow-topic-action-hide-topic' => 'Hide topic',
 	'flow-topic-action-delete-topic' => 'Delete topic',
 	'flow-topic-action-suppress-topic' => 'Suppress topic',
-	'flow-topic-action-restore-topic' => 'Restore topic',
+	'flow-topic-action-unhide-topic' => 'Unhide topic',
+	'flow-topic-action-undelete-topic' => 'Undelete topic',
+	'flow-topic-action-unsuppress-topic' => 'Unsuppress topic',
 
 	'flow-error-http' => 'An error occurred while contacting the server.', // Needs real copy
 	'flow-error-other' => 'An unexpected error occurred.',
@@ -222,41 +226,57 @@ $messages['en'] = array(
 	'flow-moderation-title-suppress-post' => 'Suppress post?',
 	'flow-moderation-title-delete-post' => 'Delete post?',
 	'flow-moderation-title-hide-post' => 'Hide post?',
-	'flow-moderation-title-restore-post' => 'Restore post?',
+	'flow-moderation-title-unsuppress-post' => 'Unsuppress post?',
+	'flow-moderation-title-undelete-post' => 'Undelete post?',
+	'flow-moderation-title-unhide-post' => 'Unhide post?',
 	'flow-moderation-intro-suppress-post' => "Please {{GENDER:$3|explain}} why you're suppressing this post.",
 	'flow-moderation-intro-delete-post' => "Please {{GENDER:$3|explain}} why you're deleting this post.",
 	'flow-moderation-intro-hide-post' => "Please {{GENDER:$3|explain}} why you're hiding this post.",
-	'flow-moderation-intro-restore-post' => "Please {{GENDER:$3|explain}} why you're restoring this post.",
+	'flow-moderation-intro-unsuppress-post' => "Please {{GENDER:$3|explain}} why you're unsuppressing this post.",
+	'flow-moderation-intro-undelete-post' => "Please {{GENDER:$3|explain}} why you're undeleting this post.",
+	'flow-moderation-intro-unhide-post' => "Please {{GENDER:$3|explain}} why you're unhiding this post.",
 	'flow-moderation-confirm-suppress-post' => 'Suppress',
 	'flow-moderation-confirm-delete-post' => 'Delete',
 	'flow-moderation-confirm-hide-post' => 'Hide',
-	'flow-moderation-confirm-restore-post' => 'Restore',
+	'flow-moderation-confirm-unsuppress-post' => 'Unsuppress',
+	'flow-moderation-confirm-undelete-post' => 'Undelete',
+	'flow-moderation-confirm-unhide-post' => 'Unhide',
+	'flow-moderation-confirm-suppress-topic' => 'Suppress',
+	'flow-moderation-confirm-delete-topic' => 'Delete',
+	'flow-moderation-confirm-hide-topic' => 'Hide',
+	'flow-moderation-confirm-unsuppress-topic' => 'Unsuppress',
+	'flow-moderation-confirm-undelete-topic' => 'Undelete',
+	'flow-moderation-confirm-unhide-topic' => 'Unhide',
 	'flow-moderation-confirmation-suppress-post' => 'The post was successfully suppressed.
 {{GENDER:$2|Consider}} giving $1 feedback on this post.',
 	'flow-moderation-confirmation-delete-post' => 'The post was successfully deleted.
 {{GENDER:$2|Consider}} giving $1 feedback on this post.',
 	'flow-moderation-confirmation-hide-post' => 'The post was successfully hidden.
 {{GENDER:$2|Consider}} giving $1 feedback on this post.',
-	'flow-moderation-confirmation-restore-post' => 'You have successfully restored the above post.',
-	'flow-moderation-title-suppress-topic' => 'Suppress topic?',
-	'flow-moderation-title-delete-topic' => 'Delete topic?',
-	'flow-moderation-title-hide-topic' => 'Hide topic?',
-	'flow-moderation-title-restore-topic' => 'Restore topic?',
-	'flow-moderation-intro-suppress-topic' => "Please {{GENDER:$3|explain}} why you're suppressing this topic.",
-	'flow-moderation-intro-delete-topic' => "Please {{GENDER:$3|explain}} why you're deleting this topic.",
-	'flow-moderation-intro-hide-topic' => "Please {{GENDER:$3|explain}} why you're hiding this topic.",
-	'flow-moderation-intro-restore-topic' => "Please {{GENDER:$3|explain}} why you're restoring this topic.",
-	'flow-moderation-confirm-suppress-topic' => 'Suppress',
-	'flow-moderation-confirm-delete-topic' => 'Delete',
-	'flow-moderation-confirm-hide-topic' => 'Hide',
-	'flow-moderation-confirm-restore-topic' => 'Restore',
+	'flow-moderation-confirmation-unsuppress-post' => 'You have successfully unsuppressed the above post.',
+	'flow-moderation-confirmation-undelete-post' => 'You have successfully undeleted the above post.',
+	'flow-moderation-confirmation-unhide-post' => 'You have successfully unhidden the above post.',
 	'flow-moderation-confirmation-suppress-topic' => 'The topic was successfully suppressed.
 {{GENDER:$2|Consider}} giving $1 feedback on this topic.',
 	'flow-moderation-confirmation-delete-topic' => 'The topic was successfully deleted.
 {{GENDER:$2|Consider}} giving $1 feedback on this topic.',
 	'flow-moderation-confirmation-hide-topic' => 'The topic was successfully hidden.
 {{GENDER:$2|Consider}} giving $1 feedback on this topic.',
-	'flow-moderation-confirmation-restore-topic' => 'You have successfully restored this topic.',
+	'flow-moderation-confirmation-unsuppress-topic' => 'You have successfully unsuppressed this topic.',
+	'flow-moderation-confirmation-undelete-topic' => 'You have successfully undeleted this topic.',
+	'flow-moderation-confirmation-unhide-topic' => 'You have successfully unhidden this topic.',
+	'flow-moderation-title-suppress-topic' => 'Suppress topic?',
+	'flow-moderation-title-delete-topic' => 'Delete topic?',
+	'flow-moderation-title-hide-topic' => 'Hide topic?',
+	'flow-moderation-title-unsuppress-topic' => 'Unsuppress topic?',
+	'flow-moderation-title-undelete-topic' => 'Undelete topic?',
+	'flow-moderation-title-unhide-topic' => 'Unhide topic?',
+	'flow-moderation-intro-suppress-topic' => "Please {{GENDER:$3|explain}} why you're suppressing this topic.",
+	'flow-moderation-intro-delete-topic' => "Please {{GENDER:$3|explain}} why you're deleting this topic.",
+	'flow-moderation-intro-hide-topic' => "Please {{GENDER:$3|explain}} why you're hiding this topic.",
+	'flow-moderation-intro-unsuppress-topic' => "Please {{GENDER:$3|explain}} why you're unsuppressing this topic.",
+	'flow-moderation-intro-undelete-topic' => "Please {{GENDER:$3|explain}} why you're undeleting this topic.",
+	'flow-moderation-intro-unhide-topic' => "Please {{GENDER:$3|explain}} why you're unhiding this topic.",
 
 	// Permalink related stuff
 	'flow-topic-permalink-warning' => 'This topic was started on [$2 $1]',
@@ -509,23 +529,26 @@ Also used in:
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.
 {{Identical|History}}',
-	'flow-post-action-suppress-post' => 'Used as a label for  the submit button in the suppression form.
+	'flow-post-action-hide-post' => 'Used as a link in a dropdown menu to hide a post.
+{{Related|Flow-action}}
+{{Identical|Hide}}',
+	'flow-post-action-delete-post' => 'Used as a link in a dropdown menu to delete a post.
+{{Related|Flow-action}}
+{{Identical|Delete}}',
+	'flow-post-action-suppress-post' => 'Used as a link in a dropdown menu to suppress a post.
 {{Related|Flow-action}}
 {{Identical|Suppress}}
 
 For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].',
-	'flow-post-action-delete-post' => 'Used as a label for the submit button in the deletion form.
-{{Related|Flow-action}}
-{{Identical|Delete}}',
-	'flow-post-action-hide-post' => 'Used as label for the Submit button.
-{{Related|Flow-action}}
-{{Identical|Hide}}',
 	'flow-post-action-edit-post' => 'Used as text for the link which is used to edit the post.
 {{Related|Flow-action}}
 {{Identical|Edit}}',
-	'flow-post-action-restore-post' => 'Used as label for the Submit button.
-{{Related|Flow-action}}
-{{Identical|Restore post}}',
+	'flow-post-action-unhide-post' => 'Used as a link in a dropdown menu to unhide a post.
+{{Related|Flow-action}}',
+	'flow-post-action-undelete-post' => 'Used as a link in a dropdown menu to undelete a post.
+{{Related|Flow-action}}',
+	'flow-post-action-unsuppress-post' => 'Used as a link in a dropdown menu to unsuppress a post.
+{{Related|Flow-action}}',
 	'flow-topic-action-view' => "Title text for topic's permalink icon.
 {{Identical|Permalink}}",
 	'flow-topic-action-watchlist' => "Title text for topic's watchlist icon.
@@ -541,9 +564,12 @@ For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-
 {{Related|Flow-action}}
 
 For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].',
-	'flow-topic-action-restore-topic' => 'Used as a link in a dropdown menu to clear existing moderation.
-{{Related|Flow-action}}
-{{Identical|Restore topic}}',
+	'flow-topic-action-unhide-topic' => 'Used as a link in a dropdown menu to unhide a topic.
+{{Related|Flow-action}}',
+	'flow-topic-action-undelete-topic' => 'Used as a link in a dropdown menu to undelete a topic.
+{{Related|Flow-action}}',
+	'flow-topic-action-unsuppress-topic' => 'Used as a link in a dropdown menu to unsuppress a topic.
+{{Related|Flow-action}}',
 	'flow-error-http' => 'Used as error message on HTTP error.',
 	'flow-error-other' => 'Used as generic error message.',
 	'flow-error-external' => 'Uses as error message. Parameters:

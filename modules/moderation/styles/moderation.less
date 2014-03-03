@@ -2,19 +2,41 @@
 
 .flow-action-hide input {
 	.buttonIcon( '../../base/images/hidden' );
+
+	// override default text color (needs specific scope & !important)
+	&.mw-ui-button.mw-ui-quiet {
+		color: #FDB515 !important;
+	}
 }
 
 .flow-action-delete input {
 	.buttonIcon( '../../base/images/deleted' );
+
+	// override default text color (needs specific scope & !important)
+	&.mw-ui-button.mw-ui-quiet {
+		color: #F15F22 !important;
+	}
 }
 
 .flow-action-suppress input {
 	.buttonIcon( '../../base/images/suppressed' );
+
+	// override default text color (needs specific scope & !important)
+	&.mw-ui-button.mw-ui-quiet {
+		color: #CF2329 !important;
+	}
 }
 
-.flow-action-restore input {
-	// @todo: need icon
-	// .buttonIcon( '../../base/images/restored' );
+.flow-action-unhide input {
+	.buttonIcon( '../../base/images/unhidden' );
+}
+
+.flow-action-undelete input {
+	.buttonIcon( '../../base/images/undeleted' );
+}
+
+.flow-action-unsuppress input {
+	.buttonIcon( '../../base/images/unsuppressed' );
 }
 
 // @todo: need ltr & rtl icons
