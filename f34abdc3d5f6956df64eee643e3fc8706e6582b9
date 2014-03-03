@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_3f4e0dc5",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-03-03T20:23:27Z",
+      "side": 1,
+      "message": "Is \"Boardheader\" intended, or should it be something like \"board header\"?",
+      "revId": "f34abdc3d5f6956df64eee643e3fc8706e6582b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_1fba316d",
+        "filename": "container.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-03-03T20:23:27Z",
+      "side": 1,
+      "message": "Does this work with any type of file, not just images (e.g. what if someone embeds an audio file)?",
+      "revId": "f34abdc3d5f6956df64eee643e3fc8706e6582b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_3f060d24",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-03-03T20:23:27Z",
+      "side": 1,
+      "message": "s/multiPut/multiRemove/ here?",
+      "revId": "f34abdc3d5f6956df64eee643e3fc8706e6582b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_f12699b4",
+        "filename": "includes/Data/ReferenceRecorder.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-03-03T20:23:27Z",
+      "side": 1,
+      "message": "It was said in the meeting that Flow posts can wind up on multiple different pages, but this seems to be assuming there\u0027s just a single page? Or is that being handled in a caller to this somehow?",
+      "revId": "f34abdc3d5f6956df64eee643e3fc8706e6582b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_51ec2d20",
+        "filename": "includes/LinksTableUpdater.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-03-03T20:23:27Z",
+      "side": 1,
+      "message": "It looks like this class is updating the links tables directly? Which is probably going to confuse anything that uses the LinksUpdateConstructed, LinksUpdate, LinksUpdateAfterInsert, or LinksUpdateComplete hooks. Like GlobalUsage, for example.",
+      "revId": "f34abdc3d5f6956df64eee643e3fc8706e6582b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_b1413110",
+        "filename": "includes/ReferenceClarifier.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-03-03T20:23:27Z",
+      "side": 1,
+      "message": "The i18n people would probably like a comment near here with the full names of the possible messages that could get used here.",
+      "revId": "f34abdc3d5f6956df64eee643e3fc8706e6582b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
