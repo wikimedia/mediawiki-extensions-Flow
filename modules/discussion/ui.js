@@ -57,6 +57,30 @@
 		},
 
 		/**
+		 * Scrolls to $anchor.href's hash target element (a div),
+		 * and then focus onto the textarea within it.
+		 * @param {jQuery} $anchor
+		 */
+		followFormAnchor: function ( $anchor ) {
+			var target = $anchor.attr( 'href' ),
+				index = target.indexOf('#'),
+				$target;
+
+			// Does this href contain a hash?
+			if ( index > -1 ) {
+				$target = this.$container.find( target.substr(index) );
+				// Does this element exist within our container?
+				if ( $target.length ) {
+					// Great, scroll to it and then focus.
+					$target.conditionalScrollIntoView().queue( function () {
+						mw.flow.editor.focus( $( this ).find( 'textarea' ) );
+						$( this ).dequeue();
+					} );
+				}
+			}
+		},
+
+		/**
 		 * Initializes Tipsy on Flow
 		 */
 		setupTipsy: function () {
@@ -302,12 +326,19 @@
 			var ignore = [
 				'.flow-edit-title-form',
 				'.flow-actions',
-				'.flow-icon-watchlist',
-				'.flow-topic-comments-link'
+				'.flow-icon-watchlist'
 			].join( ',' ),
-				$topicContainer, $topicContainerChildren;
+				$topicContainer, $topicContainerChildren,
+				$target = $( event.target );
 
-			if ( $( event.target ).is( ignore ) || $( event.target ).closest( ignore ).length ) {
+			// If the clicked element is the comment count link, go to the form and focus it
+			if ( $target.is( '.flow-topic-comments-link' ) ) {
+				event.preventDefault();
+				mw.flow.discussion.followFormAnchor( $target );
+				return;
+			}
+
+			if ( $target.is( ignore ) || $target.closest( ignore ).length ) {
 				return;
 			}
 
