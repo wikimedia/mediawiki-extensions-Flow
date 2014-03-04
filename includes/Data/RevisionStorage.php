@@ -21,15 +21,17 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_mod_reason',
 	);
 
-	// This is to prevent 'Update not allowed on xxx error' when
-	// * obsolete columns have not been deleted
-	// * new columns are added, but code is not deployed yet
+	// This is to prevent 'Update not allowed on xxx' error during moderation when
+	// * old cache is not purged and still holds obsolete deleted column
+	// * old cache is not purged and doesn't have the newly added column
+	// @Todo - This may not be necessary anymore since we don't update historical
+	// revisions ( flow_revision ) during moderation
 	static protected $obsoleteUpdateColumns = array (
-		// Delete when these columns are dropped from production
 		'tree_orig_user_text',
 		'rev_user_text',
 		'rev_edit_user_text',
 		'rev_mod_user_text',
+		'rev_type_id'
 	);
 
 	protected $externalStore;
