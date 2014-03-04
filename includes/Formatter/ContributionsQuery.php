@@ -113,7 +113,9 @@ class ContributionsQuery {
 					$result = $this->buildResult( $pager, $revision, $blockType );
 				} catch ( FlowException $e ) {
 					$result = false;
-					\MWExceptionHandler::logException( $e );
+					// Comment out for now since we expect some flow exceptions, when gerrit 111952 is
+					// merged, then we will turn this back on so we can catch unexpected exceptions.
+					//\MWExceptionHandler::logException( $e );
 				}
 				if ( $result ) {
 					$results[] = $result;
