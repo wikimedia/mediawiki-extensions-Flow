@@ -205,7 +205,7 @@ class Templating {
 		), $return );
 	}
 
-	public function renderHeader( Header $header, HeaderBlock $block, User $user, $template = '', $return = true ) {
+	public function renderHeader( Header $header = null, HeaderBlock $block, User $user, $template = '', $return = true ) {
 		if ( !$template ) {
 			$template = 'flow:header.html.php';
 		}
