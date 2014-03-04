@@ -170,4 +170,8 @@ class UrlGenerator {
 
 		return $this->buildUrlData( $workflow->getArticleTitle(), $action, $query );
 	}
+
+	public function withWorkflow( Workflow $workflow ) {
+		$this->workflows[$workflow->getId()->getAlphadecimal()] = $workflow;
+	}
 }
