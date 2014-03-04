@@ -52,6 +52,7 @@ class Header extends AbstractRevision {
 	static public function toStorageRow( $obj ) {
 		return parent::toStorageRow( $obj ) + array(
 			'rev_type' => 'header',
+			'rev_type_id' => $obj->workflowId->getBinary(),
 			'header_rev_id' => $obj->revId->getBinary(),
 			'header_workflow_id' => $obj->workflowId->getBinary(),
 		);

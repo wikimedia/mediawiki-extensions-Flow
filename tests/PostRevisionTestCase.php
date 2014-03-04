@@ -66,6 +66,7 @@ class PostRevisionTestCase extends \MediaWikiTestCase {
 			// flow_revision
 			'rev_id' => $uuidRevision->getBinary(),
 			'rev_type' => 'post',
+			'rev_type_id' => $uuidPost->getBinary(),
 			'rev_user_id' => $userId,
 			'rev_user_ip' => $userIp,
 			'rev_parent_id' => null,
