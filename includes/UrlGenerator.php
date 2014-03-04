@@ -157,9 +157,13 @@ class UrlGenerator {
 			// TODO: workflow parameter is only necessary if the definition is non-unique.  Likely need to pass
 			// ManagerGroup into this class rather than the workflow ObjectManager so we can fetch definition as
 			// needed.
-			$query['workflow'] = $workflow->getId()->getAlphadecimal();
+			$query['workflow'] = $alpha;
 		}
 
 		return $this->buildUrlData( $workflow->getArticleTitle(), $action, $query );
+	}
+
+	public function withWorkflow( Workflow $workflow ) {
+		$this->workflows[$workflow->getId()->getAlphadecimal()] = $workflow;
 	}
 }
