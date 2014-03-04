@@ -262,7 +262,7 @@ abstract class AbstractRevision {
 	 */
 	public function newNullRevision( User $user ) {
 		if ( !$user->isAllowed( 'edit' ) ) {
-			throw new PermissionException( 'User does not have core edit permission', 'insufficient-permission' );
+			throw new PermissionException( 'edit' );
 		}
 		$obj = clone $this;
 		$obj->revId = UUID::create();

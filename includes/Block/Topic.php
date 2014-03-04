@@ -537,7 +537,8 @@ class TopicBlock extends AbstractBlock {
 			return '';
 		}
 		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {
-			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+			// @todo: actually not this simple, if users are allowed to edit their own posts.
+			throw new PermissionException( 'flow-edit-post' );
 		}
 		return $templating->render( "flow:edit-post.html.php", array(
 			'block' => $this,
@@ -565,12 +566,14 @@ class TopicBlock extends AbstractBlock {
 
 			$res = $this->renderPostAPI( $templating, $post, $options );
 			if ( $res === null ) {
+				// @todo: How do we know the problem is insufficient permission?
 				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 			}
 			return array( $res );
 		} else {
 			$output = $this->renderTopicAPI( $templating, $options );
 			if ( $output === null ) {
+				// @todo: How do we know the problem is insufficient permission?
 				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 			}
 			return $output;

@@ -3,6 +3,8 @@
 namespace Flow\Exception;
 
 use MWException;
+use ErrorPageError;
+use PermissionsError;
 use OutputPage;
 
 /**
@@ -126,60 +128,38 @@ class FlowException extends MWException {
 /**
  * Category: invalid input exception
  */
-class InvalidInputException extends FlowException {
-	protected function getErrorCodeList() {
-		return array (
-			'invalid-input',
-			'missing-revision',
-			'revision-comparison',
-			'invalid-definition',
-			'invalid-workflow'
-		);
+class InvalidInputException extends ErrorPageError {
+	function __construct( $debugText, $flowKey ) {
+		parent::__construct( 'flow-error-' . $flowKey, 'flow-invalidinput-errortext' );
+		// @todo: Log the $flowKey and $debugText with the HTTP Referer to a Flow
+		//        log so we can find callers of Flow supplying bad input params.
 	}
 
 	/**
-	 * Bad request
+	 * Just like BadTitleError in core. Core should call getStatusCode and use that.
 	 */
-	public function getStatusCode() {
-		return 400;
+	function report() {
+		global $wgOut;
+
+		$wgOut->setStatusCode( 400 );
+		parent::report();
 	}
 
-	/**
-	 * Do not log exception resulting from input error
-	 */
-	function isLoggable() {
-		return false;
-	}
 }
 
 /**
  * Category: invalid action exception
  */
-class InvalidActionException extends FlowException {
-	protected function getErrorCodeList() {
-		return array ( 'invalid-action'	);
+class InvalidActionException extends ErrorPageError {
+	function __construct( $debugText, $flowKey ) {
+		// @todo: Remove $flowKey from throw new InvalidActionException, since
+		//        it is always invalid-action.
+		parent::__construct( 'nosuchaction', 'flow-error-invalid-action' );
+		// @todo: Log the $debugText with the HTTP Referer to a Flow log so we
+		//        can find callers of Flow supplying bad action params.
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	protected function getErrorPageTitle() {
-		return 'nosuchaction';
-	}
-
-	/**
-	 * Bad request
-	 */
-	public function getStatusCode() {
-		return 400;
-	}
-
-	/**
-	 * Do not log exception resulting from input error
-	 */
-	function isLoggable() {
-		return false;
-	}
+	// @todo: Should this return status 400? Bad action param to a regular wiki page doesn't...
 }
 
 /**
@@ -193,11 +173,9 @@ class FailCommitException extends FlowException {
 
 /**
  * Category: permission related exception
+ * In the throw, specify the Flow permission, e.g. 'flow-edit-post', or the core permission, e.g. 'edit'
  */
-class PermissionException extends FlowException {
-	protected function getErrorCodeList() {
-		return array ( 'insufficient-permission' );
-	}
+class PermissionException extends PermissionsError {
 }
 
 /**

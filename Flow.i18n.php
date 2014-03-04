@@ -81,6 +81,7 @@ $messages['en'] = array(
 	'flow-post-action-delete-post' => 'Delete',
 	'flow-post-action-hide-post' => 'Hide',
 	'flow-post-action-edit-post' => 'Edit',
+	'action-flow-edit-post' => 'edit a post',
 	'flow-post-action-restore-post' => 'Restore post',
 
 	'flow-topic-action-view' => 'Permalink',
@@ -92,6 +93,9 @@ $messages['en'] = array(
 	'flow-topic-action-suppress-topic' => 'Suppress topic',
 	'flow-topic-action-restore-topic' => 'Restore topic',
 
+	'flow-invalidinput-errortext' => 'Invalid input to Flow.
+You might have mistyped the URL, or followed an incorrect link.
+This might also indicate a bug in the software used by {{SITENAME}}.',
 	'flow-error-http' => 'An error occurred while contacting the server.', // Needs real copy
 	'flow-error-other' => 'An unexpected error occurred.',
 	'flow-error-external' => 'An error occurred.<br />The error message received was: $1',
@@ -179,6 +183,9 @@ $messages['en'] = array(
 	'flow-paging-rev' => 'More recent topics',
 	'flow-paging-fwd' => 'Older topics',
 	'flow-last-modified' => 'Last modified about $1',
+
+	// Associated actions - in the sentence "You do not have permission to X"
+	'action-flow-edit-post' => 'edit a post',
 
 	// Notification message
 	'flow-notification-reply' => '$1 {{GENDER:$1|replied}} to your <span class="plainlinks">[$5 post]</span> in "$2" on "$4".',
@@ -535,6 +542,7 @@ Also used in:
 	'flow-topic-action-restore-topic' => 'Used as a link in a dropdown menu to clear existing moderation.
 {{Related|Flow-action}}
 {{Identical|Restore topic}}',
+	'flow-invalidinput-errortext' => 'Error page text for invalid Flow input',
 	'flow-error-http' => 'Used as error message on HTTP error.',
 	'flow-error-other' => 'Used as generic error message.',
 	'flow-error-external' => 'Uses as error message. Parameters:
