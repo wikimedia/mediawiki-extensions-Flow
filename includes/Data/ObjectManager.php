@@ -301,9 +301,8 @@ class ObjectLocator implements ObjectStorage {
 	 * @return array|null  null is query failure.  empty array is no result.  array is success
 	 */
 	public function findMulti( array $queries, array $options = array() ) {
-		wfProfileIn( __METHOD__ );
+		$section = new \ProfileSection( __METHOD__ );
 		if ( !$queries ) {
-			wfProfileOut( __METHOD__ );
 			return array();
 		}
 		$keys = array_keys( reset( $queries ) );
@@ -320,7 +319,6 @@ class ObjectLocator implements ObjectStorage {
 		}
 
 		if ( $res === null ) {
-			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
@@ -328,7 +326,6 @@ class ObjectLocator implements ObjectStorage {
 		foreach( $res as $index => $queryOutput ) {
 			$output[$index] = array_map( array( $this, 'load' ), $queryOutput );
 		}
-		wfProfileOut( __METHOD__ );
 		return $output;
 	}
 
@@ -359,9 +356,8 @@ class ObjectLocator implements ObjectStorage {
 	 * @return bool
 	 */
 	public function foundMulti( array $queries, array $options = array() ) {
-		wfProfileIn( __METHOD__ );
+		$section = new \ProfileSection( __METHOD__ );
 		if ( !$queries ) {
-			wfProfileOut( __METHOD__ );
 			return true;
 		}
 
@@ -373,13 +369,11 @@ class ObjectLocator implements ObjectStorage {
 		try {
 			$index = $this->getIndexFor( $keys, $options );
 			$res = $index->foundMulti( $queries, $options );
-			wfProfileOut( __METHOD__ );
 			return $res;
 		} catch ( NoIndexException $e ) {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ': ' . $e->getMessage() );
 		}
 
-		wfProfileOut( __METHOD__ );
 		return false;
 	}
 
@@ -397,9 +391,8 @@ class ObjectLocator implements ObjectStorage {
 	// Be careful with regards to order on composite primary keys,
 	// must be in same order as provided to the storage implementation.
 	public function getMulti( array $objectIds ) {
-		wfProfileIn( __METHOD__ );
+		$section = new \ProfileSection( __METHOD__ );
 		if ( !$objectIds ) {
-			wfProfileOut( __METHOD__ );
 			return array();
 		}
 		$pk = $this->storage->getPrimaryKeyColumns();
@@ -411,14 +404,12 @@ class ObjectLocator implements ObjectStorage {
 		// to be consistent. undo that for a flat result array
 		$res = $this->findMulti( $queries );
 		if ( !$res ) {
-			wfProfileOut( __METHOD__ );
 			return null;
 		}
 		$retval = array();
 		foreach ( $res as $row ) {
 			$retval[] = reset( $row );
 		}
-		wfProfileOut( __METHOD__ );
 		return $retval;
 	}
 
@@ -447,9 +438,8 @@ class ObjectLocator implements ObjectStorage {
 	 * @return bool
 	 */
 	public function gotMulti( array $objectIds ) {
-		wfProfileIn( __METHOD__ );
+		$section = new \ProfileSection( __METHOD__ );
 		if ( !$objectIds ) {
-			wfProfileOut( __METHOD__ );
 			return true;
 		}
 
@@ -460,7 +450,6 @@ class ObjectLocator implements ObjectStorage {
 		}
 
 		$res = $this->foundMulti( $queries );
-		wfProfileOut( __METHOD__ );
 		return $res;
 	}
 
@@ -591,11 +580,10 @@ class ObjectManager extends ObjectLocator {
 	}
 
 	protected function insert( $object ) {
-		wfProfileIn( __METHOD__ . '-' . get_class( $object ) );
+		$section = new \ProfileSection( __METHOD__ );
 		$row = $this->mapper->toStorageRow( $object );
 		$stored = $this->storage->insert( $row );
 		if ( !$stored ) {
-			wfProfileOut( __METHOD__ . '-' . get_class( $object ) );
 			throw new DataModelException( 'failed insert', 'process-data' );
 		}
 		// propogate auto-id's and such back into $object
@@ -604,20 +592,17 @@ class ObjectManager extends ObjectLocator {
 			$handler->onAfterInsert( $object, $stored );
 		}
 		$this->loaded[$object] = $stored;
-		wfProfileOut( __METHOD__ . '-' . get_class( $object ) );
 	}
 
 	protected function update( $object ) {
-		wfProfileIn( __METHOD__ . '-' . get_class( $object ) );
+		$section = new \ProfileSection( __METHOD__ );
 		$old = $this->loaded[$object];
 		$new = $this->mapper->toStorageRow( $object );
 		if ( self::arrayEquals( $old, $new ) ) {
-			wfProfileOut( __METHOD__ . '-' . get_class( $object ) );
 			return;
 		}
 		foreach ( $new as $k => $x ) {
 			if ( $x !== null && !is_scalar( $x ) ) {
-				wfProfileOut( __METHOD__ . '-' . get_class( $object ) );
 				throw new DataModelException( "Expected mapper to return all scalars, but '$k' is " . gettype( $x ), 'process-data' );
 			}
 		}
@@ -626,18 +611,16 @@ class ObjectManager extends ObjectLocator {
 			$handler->onAfterUpdate( $object, $old, $new );
 		}
 		$this->loaded[$object] = $new;
-		wfProfileOut( __METHOD__ . '-' . get_class( $object ) );
 	}
 
 	public function remove( $object ) {
-		wfProfileIn( __METHOD__ . '-' . get_class( $object ) );
+		$section = new \ProfileSection( __METHOD__ );
 		$old = $this->loaded[$object];
 		$this->storage->remove( $old );
 		foreach ( $this->lifecycleHandlers as $handler ) {
 			$handler->onAfterRemove( $object, $old );
 		}
 		unset( $this->loaded[$object] );
-		wfProfileOut( __METHOD__ . '-' . get_class( $object ) );
 	}
 
 	public function clear() {

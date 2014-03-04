@@ -60,10 +60,9 @@ class Logger {
 	 * @return int The id of the newly inserted log entry
 	 */
 	public function log( PostRevision $post, $action, $reason, UUID $workflowId, $params = array() ) {
-		wfProfileIn( __METHOD__ );
+		$section = new \ProfileSection( __METHOD__ );
 
 		if ( !$this->canLog( $post, $action ) ) {
-			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
@@ -83,7 +82,6 @@ class Logger {
 		$logEntry->setComment( $reason );
 		$logId = $logEntry->insert();
 
-		wfProfileOut( __METHOD__ );
 		return $logId;
 	}
 

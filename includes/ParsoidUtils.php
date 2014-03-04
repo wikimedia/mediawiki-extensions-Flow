@@ -22,7 +22,7 @@ abstract class ParsoidUtils {
 			return $content;
 		}
 
-		wfProfileIn( __METHOD__ );
+		$section = new \SectionProfile( __METHOD__ );
 		if ( !$title instanceof Title ) {
 			global $wgTitle, $wgFlowParsoidTitle;
 			/*
@@ -45,7 +45,6 @@ abstract class ParsoidUtils {
 
 		// Parsoid will fail if title does not exist
 		if ( !$title->exists() ) {
-			wfProfileOut( __METHOD__ );
 			throw new InvalidDataException( 'Title "' . $title->getPrefixedDBkey() . '" does not exist.', 'invalid-title' );
 		}
 
@@ -56,7 +55,6 @@ abstract class ParsoidUtils {
 			// ... otherwise default to parser
 			$res = self::parser( $from, $to, $content, $title );
 		}
-		wfProfileOut( __METHOD__ );
 		return $res;
 	}
 
