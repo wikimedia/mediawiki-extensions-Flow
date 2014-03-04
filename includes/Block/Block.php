@@ -106,9 +106,8 @@ abstract class AbstractBlock implements Block {
 	}
 
 	public function onSubmit( $action, User $user, array $data  ) {
-		wfProfileIn( __METHOD__ );
+		$section = new \ProfileSection( __METHOD__ );
 		if ( false === array_search( $action, $this->supportedPostActions ) ) {
-			wfProfileOut( __METHOD__ );
 			return null;
 		}
 
@@ -116,20 +115,17 @@ abstract class AbstractBlock implements Block {
 		$this->submitted = $data;
 
 		$this->validate();
-		wfProfileOut( __METHOD__ );
 
 		return !$this->hasErrors();
 	}
 
 	public function onRender( $action, Templating $templating, array $options ) {
-		wfProfileIn( __METHOD__ );
+		$section = new \ProfileSection( __METHOD__ );
 		if ( !in_array( $action, $this->supportedGetActions ) ) {
-			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
 		$this->render( $templating, $options );
-		wfProfileOut( __METHOD__ );
 		return true;
 	}
 

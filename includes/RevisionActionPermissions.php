@@ -55,7 +55,7 @@ class RevisionActionPermissions {
 	 * @return bool
 	 */
 	public function isAllowed( AbstractRevision $revision = null, $action ) {
-		wfProfileIn( __METHOD__ );
+		$section = new \ProfileSection( __METHOD__ );
 		$allowed = $this->isRevisionAllowed( $revision, $action );
 
 		// if there was no revision object, it's pointless to find last revision
@@ -73,7 +73,6 @@ class RevisionActionPermissions {
 				// If data is not in storage, just return that revision's status
 			}
 		}
-		wfProfileOut( __METHOD__ );
 		return $allowed;
 	}
 

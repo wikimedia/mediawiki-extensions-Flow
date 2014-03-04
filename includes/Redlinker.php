@@ -184,7 +184,7 @@ class Redlinker {
 		if ( !$content ) {
 			return '';
 		}
-		wfProfileIn( __METHOD__ );
+		$section = new \ProfileSection( __METHOD__ );
 		$this->resolveLinkStatus();
 
 		/*
@@ -227,7 +227,6 @@ class Redlinker {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
 			$res = '';
 		}
-		wfProfileOut( __METHOD__ );
 		return $res;
 	}
 
