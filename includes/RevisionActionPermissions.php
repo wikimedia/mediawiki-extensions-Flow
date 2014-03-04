@@ -165,4 +165,11 @@ class RevisionActionPermissions {
 	public function getUser() {
 		return $this->user;
 	}
+
+	/**
+	 * @return FlowActions
+	 */
+	public function getActions() {
+		return $this->actions;
+	}
 }
