@@ -234,6 +234,7 @@ abstract class AbstractRevision {
 			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getBinary() : null,
 			'rev_change_type' => $obj->changeType,
 			'rev_type' => $obj->getRevisionType(),
+			'rev_type_id' => $obj->getCollectionId()->getBinary(),
 
 			'rev_content' => $obj->content,
 			'rev_content_url' => $obj->contentUrl,
