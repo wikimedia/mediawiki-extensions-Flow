@@ -101,6 +101,8 @@ CREATE TABLE /*_*/flow_revision (
 	rev_id binary(11) not null,
 	-- What kind of revision is this: tree/header/etc.
 	rev_type varchar(16) binary not null,
+	-- The id of the revision_type, post_id/workflow_id/etc
+	rev_type_id binary(11) not null default '',
 	-- user id creating the revision
 	rev_user_id bigint unsigned not null,
 	rev_user_ip varbinary(39) default null,
@@ -136,6 +138,8 @@ CREATE TABLE /*_*/flow_revision (
 -- Prevents inconsistency, but perhaps will hurt inserts?
 CREATE UNIQUE INDEX /*i*/flow_revision_unique_parent ON
 	/*_*/flow_revision (rev_parent_id);
+-- Primary key is automatically appended to all secondary index in InnoDB
+CREATE INDEX /*i*/flow_revision_type_id ON /*_*/flow_revision (rev_type_id, rev_type);
 
 -- Closure table implementation of tree storage in sql
 -- We may be able to go simpler than this
