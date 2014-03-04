@@ -83,6 +83,9 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowUpdateUserWiki.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateUserWiki' );
 
+		require_once __DIR__.'/maintenance/FlowUpdateRevisionTypeId.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRevisionTypeId' );
+
 		return true;
 	}
 
