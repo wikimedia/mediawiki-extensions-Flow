@@ -181,6 +181,7 @@ class PostRevision extends AbstractRevision {
 		return parent::toStorageRow( $rev ) + array(
 			'tree_parent_id' => $rev->replyToId ? $rev->replyToId->getBinary() : null,
 			'tree_rev_descendant_id' => $rev->postId->getBinary(),
+			'rev_type_id' => $rev->postId->getBinary(),
 			'tree_rev_id' => $rev->revId->getBinary(),
 			// rest of tree_ is denormalized data about first post revision
 			'tree_orig_create_time' => $rev->origCreateTime,
