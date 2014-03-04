@@ -67,7 +67,8 @@ class FlowHooks {
 		$updater->modifyExtensionField( 'flow_revision', 'rev_change_type', "$dir/db_patches/patch-censor_to_suppress.sql" );
 		$updater->addExtensionField( 'flow_workflow', 'workflow_user_ip', "$dir/db_patches/patch-remove_usernames.sql" );
 		$updater->addExtensionField( 'flow_workflow', 'workflow_user_wiki', "$dir/db_patches/patch-add-wiki.sql" );
-
+		$updater->addExtensionField( 'flow_revision', 'rev_type_id', "$dir/db_patches/patch-rev_type_id.sql" );
+		
 		require_once __DIR__.'/maintenance/FlowInsertDefaultDefinitions.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowInsertDefaultDefinitions' );
 
