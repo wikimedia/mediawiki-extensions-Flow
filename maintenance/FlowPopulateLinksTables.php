@@ -43,17 +43,17 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 			$count = 0;
 			$res = $dbr->select(
 				array( 'flow_header_revision' ),
-				array( 'header_rev_id' ),
-				array( 'header_rev_id > ' . $dbr->addQuotes( $id ) ),
+				array( 'rev_type_id' ),
+				array( 'rev_type' => 'header', 'rev_type_id > ' . $dbr->addQuotes( $id ) ),
 				__METHOD__,
-				array( 'ORDER BY' => 'header_rev_id ASC', 'LIMIT' => $this->mBatchSize )
+				array( 'ORDER BY' => 'rev_type_id ASC', 'LIMIT' => $this->mBatchSize )
 			);
 			if ( !$res ) {
 				throw new \MWException( 'SQL error in maintenance script ' . __METHOD__ );
 			}
 			foreach ( $res as $row ) {
 				$count++;
-				$id = $row->header_rev_id;
+				$id = $row->rev_type_id;
 				$uuid = UUID::create( $id );
 				$alpha = $uuid->getAlphadecimal();
 				$header = $storage->get( $uuid );

@@ -73,16 +73,6 @@ CREATE TABLE /*_*/flow_tree_revision (
 CREATE INDEX /*i*/flow_tree_descendant_rev_id
 	ON /*_*/flow_tree_revision ( tree_rev_descendant_id, tree_rev_id );
 
--- Header Content
--- Instead of header, should this be more generic 'revisioned scratchpad'
--- or something?  Main limit in current setup can only associate one header per
--- workflow
-CREATE TABLE /*_*/flow_header_revision (
-	header_workflow_id binary(11) not null,
-	header_rev_id binary(11) not null,
-	PRIMARY KEY ( header_workflow_id, header_rev_id )
-) /*$wgDBTableOptions*/;
-
 -- Content
 -- This is completely unoptimized right now, just a quick get-it-done for
 -- the prototype

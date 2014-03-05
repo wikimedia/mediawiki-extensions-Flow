@@ -14,10 +14,6 @@ ALTER TABLE /*_*/flow_tree_revision
 	CHANGE tree_rev_id tree_rev_id binary(11) not null,
 	CHANGE tree_parent_id tree_parent_id binary(11) default null;
 
-ALTER TABLE /*_*/flow_header_revision
-	CHANGE header_workflow_id header_workflow_id binary(11) not null,
-	CHANGE header_rev_id header_rev_id binary(11) not null;
-
 ALTER TABLE /*_*/flow_revision
 	CHANGE rev_id rev_id binary(11) not null,
 	CHANGE rev_parent_id rev_parent_id binary(11) default null,
