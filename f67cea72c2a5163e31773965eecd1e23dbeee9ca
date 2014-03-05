@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_1b80f78c",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T17:34:05Z",
+      "side": 1,
+      "message": "What is $classes used for? Can\u0027t see it anywhere else in this code.\n\nI assume for convenience in what\u0027s calling the hook, but since these mw-ui-* classes are not flow-specific (and the flow-specific Agora overrides are meant to be removed, once Agora is fully implemented in core), this hook\u0027s caller can probably just add whatever classes they want \u0026 we don\u0027t need to pass this array along.",
+      "revId": "f67cea72c2a5163e31773965eecd1e23dbeee9ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_1bf3576a",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T17:34:05Z",
+      "side": 1,
+      "message": "Where does this color come from?",
+      "revId": "f67cea72c2a5163e31773965eecd1e23dbeee9ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_3b8df3d8",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T17:34:05Z",
+      "side": 1,
+      "message": "Move this to modules/mediawiki.ui/styles/mixins/buttons.less, to the \t\u0026:disabled, \u0026.mw-ui-disabled definition there",
+      "revId": "f67cea72c2a5163e31773965eecd1e23dbeee9ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
