@@ -2,15 +2,22 @@
 
 namespace Flow\Data;
 
-use Flow\Model\UUID;
-use Flow\DbFactory;
 use DatabaseBase;
 use ExternalStore;
-use MWException;
+use Flow\DbFactory;
 use Flow\Exception\DataModelException;
+use Flow\Model\PostRevision;
+use Flow\Model\UUID;
+use Flow\Repository\TreeRepository;
+use MWException;
 
 abstract class RevisionStorage extends DbStorage {
-	static protected $allowedUpdateColumns = array(
+
+	/**
+	 * The revision columns allowed to be updated
+	 * @var array
+	 */
+	protected static $allowedUpdateColumns = array(
 		'rev_mod_state',
 		'rev_mod_user_id',
 		'rev_mod_user_ip',
@@ -24,7 +31,7 @@ abstract class RevisionStorage extends DbStorage {
 	// * old cache is not purged and doesn't have the newly added column
 	// @Todo - This may not be necessary anymore since we don't update historical
 	// revisions ( flow_revision ) during moderation
-	static protected $obsoleteUpdateColumns = array (
+	protected static $obsoleteUpdateColumns = array (
 		'tree_orig_user_text',
 		'rev_user_text',
 		'rev_edit_user_text',
@@ -34,13 +41,55 @@ abstract class RevisionStorage extends DbStorage {
 
 	protected $externalStore;
 
-	abstract protected function joinTable();
-	abstract protected function relatedPk();
-	abstract protected function joinField();
+	/**
+	 * Get the table to join for the revision storage, empty string for none
+	 * @return string
+	 */
+	protected function joinTable() {
+		return '';
+	}
 
-	abstract protected function insertRelated( array $row );
-	abstract protected function updateRelated( array $changes, array $old );
-	abstract protected function removeRelated( array $row );
+	/**
+	 * Get the column to join with flow_revision.rev_id, empty string for none
+	 * @return string
+	 */
+	protected function joinField() {
+		return '';
+	}
+
+	/**
+	 * Insert to joinTable() upon revision insert
+	 * @param array $row
+	 * @return array
+	 */
+	protected function insertRelated( array $row ) {
+		return $row;
+	}
+
+	/**
+	 * Update to joinTable() upon revision update
+	 * @param array $changes
+	 * @param array $old
+	 * @return array
+	 */
+	protected function updateRelated( array $changes, array $old ) {
+		return $changes;
+	}
+
+	/**
+	 * Remove from joinTable upone revision delete
+	 * @param array $row
+	 * @return bool
+	 */
+	protected function removeRelated( array $row ) {
+		return true;
+	}
+
+	/**
+	 * The revision type
+	 * @return string
+	 */
+	abstract protected function getRevType();
 
 	/**
 	 * @param DbFactory $dbFactory
@@ -69,13 +118,18 @@ abstract class RevisionStorage extends DbStorage {
 			throw new MWException( "Validation error in database options" );
 		}
 
+		// Add rev_type if rev_type_id exists in query condition
+		$attributes = $this->addRevTypeToQuery( $attributes );
+
+		$tables = array( 'rev' => 'flow_revision' );
+		$joins = array();
+		if ( $this->joinTable() ) {
+			$tables[] = $this->joinTable();
+			$joins = array( 'rev' => array( 'JOIN', $this->joinField() . ' = rev_id' ) );
+		}
+
 		$res = $dbr->select(
-			array( $this->joinTable(), 'rev' => 'flow_revision' ),
-			'*',
-			$this->preprocessSqlArray( $attributes ),
-			__METHOD__,
-			$options,
-			array( 'rev' => array( 'JOIN', $this->joinField() . ' = rev_id' ) )
+			$tables, '*', $this->preprocessSqlArray( $attributes ), __METHOD__, $options, $joins
 		);
 		if ( !$res ) {
 			return null;
@@ -85,6 +139,13 @@ abstract class RevisionStorage extends DbStorage {
 			$retval[UUID::create( $row->rev_id )->getAlphadecimal()] = (array) $row;
 		}
 		return $retval;
+	}
+
+	protected function addRevTypeToQuery( $query ) {
+		if ( isset( $query['rev_type_id'] ) ) {
+			$query['rev_type'] = $this->getRevType();
+		}
+		return $query;
 	}
 
 	public function findMulti( array $queries, array $options = array() ) {
@@ -119,10 +180,7 @@ abstract class RevisionStorage extends DbStorage {
 
 			// Find most recent revision of a number of posts
 			if ( !isset( $options['OFFSET'] ) &&
-				in_array( $queriedKeys, array(
-					array( $this->joinField() ),
-					array( $this->relatedPk() ),
-				) ) &&
+				$queriedKeys == array( 'rev_type_id' ) &&
 				isset( $options['ORDER BY'] ) &&
 				$options['ORDER BY'] === array( 'rev_id DESC' )
 			) {
@@ -165,34 +223,22 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	protected function findMostRecent( array $queries ) {
-		// SELECT MAX(tree_rev_id) AS tree_rev_id
-		//   FROM flow_tree_revision
-		//  WHERE tree_rev_descendant_id IN (...)
-		//  GROUP BY tree_rev_descendant_id
-		//
-		//  Could we instead use this?
-		//
-		//  SELECT rev.*
-		//	FROM flow_tree_revision rev
-		//	JOIN ( SELECT MAX(tree_rev_id) as tree_rev_id
-		//			 FROM flow_tree_revision
-		//			WHERE tree_rev_descendant_id IN (...)
-		//			GROUP BY tree_rev_descendant_id
-		//		 ) max ON max.tree_rev_id = rev.tree_rev_id
-		//
-		$duplicator = new ResultDuplicator( array_keys( reset( $queries ) ), 1 );
-		$joinField = $this->joinField();
+		// SELECT MAX( rev_id ) AS rev_id
+		// FROM flow_tree_revision
+		// WHERE rev_type= 'post' AND rev_type_id IN (...)
+		// GROUP BY rev_type_id
+		$duplicator = new ResultDuplicator( array( 'rev_type_id' ), 1 );
 		foreach ( $queries as $idx => $query ) {
 			$duplicator->add( UUID::convertUUIDs( $query ), $idx );
 		}
 
 		$dbr = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbr->select(
-			$this->joinTable(),
-			array( $joinField => "MAX( {$this->joinField()} )" ),
-			$this->preprocessSqlArray( $this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ) ),
+			array( 'flow_revision' ),
+			array( 'rev_id' => "MAX( 'rev_id' )" ),
+			array( 'rev_type' => $this->getRevType() ) + $this->preprocessSqlArray( $this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ) ),
 			__METHOD__,
-			array( 'GROUP BY' => $this->relatedPk() )
+			array( 'GROUP BY' => 'rev_type_id' )
 		);
 		if ( !$res ) {
 			// TODO: dont fail, but dont end up caching bad result either
@@ -201,7 +247,7 @@ abstract class RevisionStorage extends DbStorage {
 
 		$revisionIds = array();
 		foreach ( $res as $row ) {
-			$revisionIds[] = $row->$joinField;
+			$revisionIds[] = $row->rev_id;
 		}
 
 		// Due to the grouping and max, we cant reliably get a full
@@ -212,17 +258,25 @@ abstract class RevisionStorage extends DbStorage {
 
 	protected function findRevIdReal( ResultDuplicator $duplicator, array $revisionIds ) {
 		if ( $revisionIds ) {
-			//  SELECT * from flow_tree_revision
-			//	  JOIN flow_revision ON tree_rev_id = rev_id
-			//   WHERE tree_rev_id IN (...)
+			//  SELECT * from flow_revision
+			//	  JOIN flow_tree_revision ON tree_rev_id = rev_id
+			//   WHERE rev_id IN (...)
 			$dbr = $this->dbFactory->getDB( DB_MASTER );
+
+			$tables = array( 'flow_revision' );
+			$joins  = array();
+			if ( $this->joinTable() ) {
+				$tables['rev'] = $this->joinTable();
+				$joins = array( 'rev' => array( 'JOIN', "rev_id = " . $this->joinField() ) );
+			}
+
 			$res = $dbr->select(
-				array( 'flow_revision', 'rev' => $this->joinTable() ),
+				$tables,
 				'*',
 				array( 'rev_id' => $revisionIds ),
 				__METHOD__,
 				array(),
-				array( 'rev' => array( 'JOIN', 'rev_id = ' . $this->joinField() ) )
+				$joins
 			);
 			if ( !$res ) {
 				// TODO: dont fail, but dont end up caching bad result either
@@ -405,7 +459,7 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	public function getIterator() {
-		throw new DataModelException( 'Not Implemented', 'process-data' );
+		throw new DataModelException( __CLASS__ . '::' . __METHOD__ . ' is not implemented', 'process-data' );
 	}
 
 	/**

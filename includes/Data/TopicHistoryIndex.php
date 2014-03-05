@@ -75,7 +75,7 @@ class TopicHistoryIndex extends TopKIndex {
 			$topicRootId = $features['topic_root_id'];
 			$nodes = $nodeList[$topicRootId->getAlphadecimal()];
 			$descendantQueries[$idx] = array(
-				'tree_rev_descendant_id' => UUID::convertUUIDs( $nodes ),
+				'rev_type_id' => UUID::convertUUIDs( $nodes ),
 			);
 		}
 

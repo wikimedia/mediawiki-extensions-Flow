@@ -702,7 +702,7 @@ class TopicBlock extends AbstractBlock {
 	protected function getHistory( $postId ) {
 		$history = $this->storage->find(
 			'PostRevision',
-			array( 'tree_rev_descendant_id' => UUID::create( $postId ) ),
+			array( 'rev_type_id' => UUID::create( $postId ) ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 		);
 		if ( $history ) {
@@ -733,7 +733,7 @@ class TopicBlock extends AbstractBlock {
 		foreach( $postIds as $postId ) {
 			$uuid = UUID::create( $postId );
 			$searchItems[$uuid->getAlphadecimal()] = array(
-				'tree_rev_descendant_id' => $uuid,
+				'rev_type_id' => $uuid,
 			);
 		}
 
@@ -793,7 +793,7 @@ class TopicBlock extends AbstractBlock {
 		if ( $this->topicTitle === null ) {
 			$found = $this->storage->find(
 				'PostRevision',
-				array( 'tree_rev_descendant_id' => $this->workflow->getId() ),
+				array( 'rev_type_id' => $this->workflow->getId() ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 			);
 			if ( !$found ) {
@@ -897,7 +897,7 @@ class TopicBlock extends AbstractBlock {
 
 		$found = $this->storage->find(
 			'PostRevision',
-			array( 'tree_rev_descendant_id' => $post->getPostId() )
+			array( 'rev_type_id' => $post->getPostId() )
 		);
 		if ( !$found ) {
 			throw new InvalidInputException( 'Should have found revisions', 'missing-revision' );
