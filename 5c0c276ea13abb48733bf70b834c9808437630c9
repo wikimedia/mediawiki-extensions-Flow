@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_dbf4cff0",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T16:42:14Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure a string \u00271\u0027 would also work, so we should take that into account here too",
+      "revId": "5c0c276ea13abb48733bf70b834c9808437630c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_fbc0ab56",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T16:42:14Z",
+      "side": 1,
+      "message": "Reads should be done against DB_SLAVE (I just noticed that in findInternal \u0026 findMostRecent too - submitted another patch to fix that)",
+      "revId": "5c0c276ea13abb48733bf70b834c9808437630c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_dbde0f44",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T16:42:14Z",
+      "side": 1,
+      "message": "Actually, this query is already in findMostRecent too, so we probably want to pull it out of there, into a separate function, and have both functions call that one for the query.",
+      "revId": "5c0c276ea13abb48733bf70b834c9808437630c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_3b14d3ec",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T16:42:14Z",
+      "side": 1,
+      "message": "$joinField \u003d rev_id is unneccessary here; you have that in $join_conds already",
+      "revId": "5c0c276ea13abb48733bf70b834c9808437630c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_7b1edb12",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T16:42:14Z",
+      "side": 1,
+      "message": "This is currently 5th parameter to select ($options); it should be the 6th ($join_conds)",
+      "revId": "5c0c276ea13abb48733bf70b834c9808437630c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_3bfdf3ae",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T16:42:14Z",
+      "side": 1,
+      "message": "That\u0027s probably not the exception you want? :)",
+      "revId": "5c0c276ea13abb48733bf70b834c9808437630c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
