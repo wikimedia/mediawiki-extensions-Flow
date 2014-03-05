@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow\Model;
+namespace Flow\Collection;
 
 use Flow\Model\AbstractRevision;
 use MapCacheLRU;
@@ -18,7 +18,7 @@ class CollectionCache {
 	/**
 	 * The last revision for a collection
 	 *
-	 * @var \MapCacheLRU
+	 * @var MapCacheLRU
 	 */
 	protected $lastRevCache;
 

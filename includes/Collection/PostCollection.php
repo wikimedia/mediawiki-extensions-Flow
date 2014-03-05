@@ -1,6 +1,8 @@
 <?php
 
-namespace Flow\Model;
+namespace Flow\Collection;
+
+use Flow\Model\AbstractRevision;
 
 class PostCollection extends LocalCacheAbstractCollection {
 	public function getRevisionClass() {

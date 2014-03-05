@@ -1,8 +1,10 @@
 <?php
 
-namespace Flow\Model;
+namespace Flow\Collection;
 
 use Flow\Exception\InvalidDataException;
+use Flow\Model\AbstractRevision;
+use Flow\Model\UUID;
 
 /**
  * LocalBufferedCache saves all data that has been requested in an internal

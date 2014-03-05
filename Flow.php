@@ -88,11 +88,11 @@ $wgAutoloadClasses['Flow\Model\Header'] = $dir . 'includes/Model/Header.php';
 $wgAutoloadClasses['Flow\Model\TopicListEntry'] = $dir . 'includes/Model/TopicListEntry.php';
 $wgAutoloadClasses['Flow\Model\Workflow'] = $dir . 'includes/Model/Workflow.php';
 $wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
-$wgAutoloadClasses['Flow\Model\AbstractCollection'] = $dir . 'includes/Collection/AbstractCollection.php';
-$wgAutoloadClasses['Flow\Model\CollectionCache'] = $dir . 'includes/Collection/CollectionCache.php';
-$wgAutoloadClasses['Flow\Model\LocalCacheAbstractCollection'] = $dir . 'includes/Collection/LocalCacheAbstractCollection.php';
-$wgAutoloadClasses['Flow\Model\PostCollection'] = $dir . 'includes/Collection/PostCollection.php';
-$wgAutoloadClasses['Flow\Model\HeaderCollection'] = $dir . 'includes/Collection/HeaderCollection.php';
+$wgAutoloadClasses['Flow\Collection\AbstractCollection'] = $dir . 'includes/Collection/AbstractCollection.php';
+$wgAutoloadClasses['Flow\Collection\CollectionCache'] = $dir . 'includes/Collection/CollectionCache.php';
+$wgAutoloadClasses['Flow\Collection\LocalCacheAbstractCollection'] = $dir . 'includes/Collection/LocalCacheAbstractCollection.php';
+$wgAutoloadClasses['Flow\Collection\PostCollection'] = $dir . 'includes/Collection/PostCollection.php';
+$wgAutoloadClasses['Flow\Collection\HeaderCollection'] = $dir . 'includes/Collection/HeaderCollection.php';
 
 // Helpers for templating
 $wgAutoloadClasses['Flow\View\PostActionMenu'] = "$dir/includes/View/PostActionMenu.php";
