@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_9b89a729",
+        "filename": "db_patches/patch-add_workflow_type.sql",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T17:14:26Z",
+      "side": 1,
+      "message": "Typically, any kind of juggling with DB data that may be intensive should be done in maintenance scripts, where the updates can be batched.\n\nBut I\u0027m ok with this, since I doubt there\u0027s any Flow setup that has an large amount of data yet. Definitely no WMF site.\n\nHaving the more efficient query in comments here seems rather lazy though; seperate patched would probably be better ;)",
+      "revId": "967e299d72115629e534af5f99f507ca0cfdbcbe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_7ba13b90",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T17:14:26Z",
+      "side": 1,
+      "message": "typo: until",
+      "revId": "967e299d72115629e534af5f99f507ca0cfdbcbe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_1bd23701",
+        "filename": "includes/WorkflowLoader.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T17:14:26Z",
+      "side": 1,
+      "message": "I\u0027m probably overlooking something, but:\n\nIt used to be possible to load other workflow types. loadDefenition() had this:\n\n    $id \u003d $this-\u003edefinitionRequest;\n    $workflowName \u003d $id ? $id : $wgFlowDefaultWorkflow;\n\n$definitionRequest would come from WorkflowLoaderFactory::createWorkflowLoader()\u0027s 3rd argument, which in current code seems never used -\u003e defaults to false -\u003e always results in $wgFlowDefaultWorkflow.\n\nSo while in practice this will not change anything (AFAICT); would it make sense to make it possible for other workflow types to be loaded - for future purposes ^^?",
+      "revId": "967e299d72115629e534af5f99f507ca0cfdbcbe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
