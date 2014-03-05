@@ -138,6 +138,8 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowUpdateRevisionTypeId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRevisionTypeId' );
 
+		$updater->dropExtensionTable( 'flow_header_revision', "$dir/db_patches/patch-drop_header_revision.sql" );
+
 		return true;
 	}
 
