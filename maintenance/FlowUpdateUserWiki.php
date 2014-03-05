@@ -45,37 +45,42 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		$count = $this->mBatchSize;
 		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
 
-		while ( $count == $this->mBatchSize ) {
-			$count = 0;
-			$res = $dbr->select(
-				array( 'flow_workflow', 'flow_definition' ),
-				array( 'workflow_wiki', 'workflow_id', 'definition_type' ),
-				array(
-					'workflow_id > ' . $dbr->addQuotes( $id ),
-					'workflow_definition_id = definition_id'
-				),
-				__METHOD__,
-				array( 'ORDER BY' => 'workflow_id ASC', 'LIMIT' => $this->mBatchSize )
-			);
-			if ( $res ) {
-				foreach ( $res as $row ) {
-					$count++;
-					$id = $row->workflow_id;
-					$uuid = UUID::create( $row->workflow_id );
-					$workflow = Container::get( 'storage.workflow' )->get( $uuid );
-					if ( $workflow ) {
-						// definition type 'topic' is always under a 'discussion' and they
-						// will be handled while processing 'discussion'
-						if ( $row->definition_type == 'discussion' ) {
-							$this->updateHeader( $workflow, $row->workflow_wiki );
-							$this->updateTopicList( $workflow, $row->workflow_wiki );
+		// If table flow_header_revision does not exist, that means the wiki
+		// has run the data migration before or the wiki starts from scratch,
+		// there is no point to run the script againt invalid tables
+		if ( $dbr->tableExists( 'flow_header_revision', __METHOD__ ) ) {
+			while ( $count == $this->mBatchSize ) {
+				$count = 0;
+				$res = $dbr->select(
+					array( 'flow_workflow', 'flow_definition' ),
+					array( 'workflow_wiki', 'workflow_id', 'definition_type' ),
+					array(
+						'workflow_id > ' . $dbr->addQuotes( $id ),
+						'workflow_definition_id = definition_id'
+					),
+					__METHOD__,
+					array( 'ORDER BY' => 'workflow_id ASC', 'LIMIT' => $this->mBatchSize )
+				);
+				if ( $res ) {
+					foreach ( $res as $row ) {
+						$count++;
+						$id = $row->workflow_id;
+						$uuid = UUID::create( $row->workflow_id );
+						$workflow = Container::get( 'storage.workflow' )->get( $uuid );
+						if ( $workflow ) {
+							// definition type 'topic' is always under a 'discussion' and they
+							// will be handled while processing 'discussion'
+							if ( $row->definition_type == 'discussion' ) {
+								$this->updateHeader( $workflow, $row->workflow_wiki );
+								$this->updateTopicList( $workflow, $row->workflow_wiki );
+							}
+							$this->updateWorkflow( $workflow, $row->workflow_wiki );
 						}
-						$this->updateWorkflow( $workflow, $row->workflow_wiki );
 					}
+					$this->output( "processed $count records in " . __METHOD__ . "\n" );
+				} else {
+					throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 				}
-				$this->output( "processed $count records in " . __METHOD__ . "\n" );
-			} else {
-				throw new \MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 			}
 		}
 
