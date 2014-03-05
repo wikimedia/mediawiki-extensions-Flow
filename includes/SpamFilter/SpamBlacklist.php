@@ -16,6 +16,10 @@ class SpamBlacklist implements SpamFilter {
 	 */
 	public function validate( AbstractRevision $newRevision, AbstractRevision $oldRevision = null, Title $title ) {
 		$spamObj = BaseBlacklist::getInstance( 'spam' );
+		if ( !$spamObj instanceof \SpamBlacklist ) {
+			wfWarn( __METHOD__ . ': Expected a SpamBlacklist instance but instead received: ' . get_class( $spamObj ) );
+			return Status::newFatal( 'something' );
+		}
 		$links = $this->getLinks( $newRevision, $title );
 		$matches = $spamObj->filter( $links, $title );
 

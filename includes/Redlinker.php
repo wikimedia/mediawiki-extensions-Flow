@@ -6,6 +6,7 @@ use Flow\Model\PostRevision;
 use ArrayObject;
 use Closure;
 use DOMDocument;
+use DOMElement;
 use DOMNode;
 use LinkBatch;
 use Linker;
@@ -269,17 +270,22 @@ class Redlinker {
 	 * an ['sa']['href'] value in data-parsoid
 	 *
 	 * @param DOMDocument $dom
-	 * @param Closure $callback Receives (DOMNode, array)
+	 * @param Closure $callback Receives (DOMElement, array)
 	 */
 	static public function forEachLink( DOMDocument $dom, Closure $callback ) {
 		$xpath = new \DOMXPath( $dom );
 		$linkNodes = $xpath->query( '//a[@rel="mw:WikiLink"][@data-parsoid]' );
 
 		foreach ( $linkNodes as $linkNode ) {
-			$parsoid = $linkNode->getAttribute( 'data-parsoid' );
-			$parsoid = FormatJson::decode( $parsoid, true );
-			if ( isset( $parsoid['sa']['href'] ) ) {
-				$callback( $linkNode, $parsoid );
+			// $linkNodes can contain any DOMNode, not just DOMElement's
+			if ( $linkNode instanceof DOMElement ) {
+				$parsoid = $linkNode->getAttribute( 'data-parsoid' );
+				$parsoid = FormatJson::decode( $parsoid, true );
+				if ( isset( $parsoid['sa']['href'] ) ) {
+					$callback( $linkNode, $parsoid );
+				}
+			} else {
+				wfDebugLog( __CLASS__, __FUNCTION__ . ': Expected DOMElement but received: ' . get_class( $linkNode ) );
 			}
 		}
 	}

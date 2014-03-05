@@ -2,11 +2,14 @@
 
 namespace Flow;
 
-use EchoEvent;
+use Flow\Data\ManagerGroup;
+use Flow\Exception\FlowException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use User;
+use Flow\Model\Workflow;
+use EchoEvent;
 use Language;
+use User;
 
 class NotificationController {
 	/**
@@ -67,6 +70,7 @@ class NotificationController {
 	 * * old-subject: The old subject of a Topic. Required for topic renames.
 	 * * new-subject: The new subject of a Topic. Required for topic renames.
 	 * @return array Array of created EchoEvent objects.
+	 * @throws FlowException When $data contains unexpected types/values
 	 */
 	public function notifyPostChange( $eventName, $data = array() ) {
 		if ( !class_exists( 'EchoEvent' ) ) {
@@ -79,8 +83,17 @@ class NotificationController {
 		$extraData = array();
 
 		$revision = $data['revision'];
+		if ( !$revision instanceof PostRevision ) {
+			throw new FlowException( 'Expected PostRevision but received ' . get_class( $revision ) );
+		}
 		$topicRevision = $data['topic-title'];
+		if ( !$topicRevision instanceof PostRevision ) {
+			throw new FlowException( 'Expected PostRevision but received ' . get_class( $topicRevision ) );
+		}
 		$topicWorkflow = $data['topic-workflow'];
+		if ( !$topicWorkflow instanceof Workflow ) {
+			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
+		}
 
 		$extraData['revision-id'] = $revision->getRevisionId();
 		$extraData['post-id'] = $revision->getPostId();
@@ -89,7 +102,11 @@ class NotificationController {
 		$newPost = null;
 		switch( $eventName ) {
 			case 'flow-post-reply':
-				$replyToPostId = $data['reply-to']->getPostId();
+				$replyTo = $data['reply-to'];
+				if ( !$replyTo instanceof PostRevision ) {
+					throw new FlowException( 'Expected PostRevision but received ' . get_class( $replyTo ) );
+				}
+				$replyToPostId = $replyTo->getPostId();
 				$extraData += array(
 					'reply-to' => $replyToPostId,
 					'content' => $this->language->truncate( trim( $revision->getContent() ), 200 ),
@@ -145,6 +162,7 @@ class NotificationController {
 	 * * first-post: PostRevision object for the first post, or null when no first post.
 	 * * user: The User who created the topic.
 	 * @return array Array of created EchoEvent objects.
+	 * @throws FlowException When $params contains unexpected types/values
 	 */
 	public function notifyNewTopic( $params ) {
 		if ( ! class_exists( 'EchoEvent' ) ) {
@@ -153,11 +171,22 @@ class NotificationController {
 		}
 
 		$topicWorkflow = $params['topic-workflow'];
+		if ( !$topicWorkflow instanceof Workflow ) {
+			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
+		}
 		$topicPost = $params['title-post'];
+		if ( !$topicPost instanceof PostRevision ) {
+			throw new FlowException( 'Expected PostRevision but received ' . get_class( $topicPost ) );
+		}
 		$firstPost = $params['first-post'];
+		if ( !$firstPost instanceof PostRevision ) {
+			throw new FlowException( 'Expected PostRevision but received ' . get_class( $firstPost ) );
+		}
 		$user = $params['user'];
 		$boardWorkflow = $params['board-workflow'];
-
+		if ( !$boardWorkflow instanceof Workflow ) {
+			throw new FlowException( 'Expected Workflow but received ' . get_class( $boardWorkflow ) );
+		}
 		$events[] = EchoEvent::create( array(
 			'type' => 'flow-new-topic',
 			'agent' => $user,
@@ -193,14 +222,27 @@ class NotificationController {
 	 * * post: The Post that was created.
 	 * * topic-title: The title for the Topic.
 	 * @return array Array of created EchoEvent objects.
+	 * @throws FlowException When $data contains unexpected types/values
 	 */
 	protected function notifyNewPost( $data ) {
 		// Handle mentions.
 		$newRevision = $data['post'];
+		if ( $newRevision !== null && !$newRevision instanceof PostRevision ) {
+			throw new FlowException( 'Expected PostRevision but received ' . get_class( $newRevision ) );
+		}
 		$topicRevision = $data['topic-title'];
+		if ( !$topicRevision instanceof PostRevision ) {
+			throw new FlowException( 'Expected PostRevision but received ' . get_class( $topicRevision ) );
+		}
 		$title = $data['title'];
+		if ( !$title instanceof \Title ) {
+			throw new FlowException( 'Expected Title but received ' . get_class( $title ) );
+		}
 		$user = $data['user'];
 		$topicWorkflow = $data['topic-workflow'];
+		if ( !$topicWorkflow instanceof Workflow ) {
+			throw new FlowException( 'Expected Workflow but received ' . get_class( $topicWorkflow ) );
+		}
 		$events = array();
 
 		$mentionedUsers = $newRevision ? $this->getMentionedUsers( $newRevision, $title ) : array();
@@ -208,6 +250,10 @@ class NotificationController {
 		// For starters, this could be a spam vector, but we also don't want to
 		// store too much data into event_extra params, so cap that data
 		$mentionedUsers = array_slice( $mentionedUsers, 0, 100, true );
+
+		if ( !$topicRevision instanceof PostRevision ) {
+			throw new FlowException( 'Expected PostRevision but received: ' . get_class( $topicRevision ) );
+		}
 
 		if ( count( $mentionedUsers ) ) {
 			$events[] = EchoEvent::create( array(
@@ -252,7 +298,7 @@ class NotificationController {
 	 *
 	 * Removes duplicates, anonymous users, self-mentions, and mentions of the
 	 * owner of the talk page
-	 * @param  array $mentions Array of User objects
+	 * @param  User[] $mentions Array of User objects
 	 * @param  PostRevision $post The Post that is being examined.
 	 * @param  \Title $title The Title of the page that the comment is made on.
 	 * @return array Array of user IDs
@@ -329,7 +375,7 @@ class NotificationController {
 			case 'flow-post-edited':
 				$extra = $event->getExtra();
 				$topic = $extra['topic-workflow'];
-				if ( $topic ) {
+				if ( $topic instanceof UUID ) {
 					$bundleString = $event->getType() . '-' . $topic->getAlphadecimal();
 				}
 			break;
@@ -355,11 +401,15 @@ class NotificationController {
 			// already from the same flow event
 			$ids = array();
 			$topic = $extra['topic-workflow'];
-			if ( $topic ) {
+			if ( $topic instanceof UUID ) {
 				$ids[$topic->getAlphadecimal()] = $topic;
 			}
 			if ( isset( $extra['reply-to'] ) ) {
-				$ids[$extra['reply-to']->getAlphadecimal()] = $extra['reply-to'];
+				if ( $extra['reply-to'] instanceof UUID ) {
+					$ids[$extra['reply-to']->getAlphadecimal()] = $extra['reply-to'];
+				} else {
+					wfDebugLog( __CLASS__, __FUNCTION__ . ': Expected UUID but received ' . get_class( $extra['reply-to'] ) );
+				}
 			}
 			$notifiedUsers = self::getCreatorsFromPostIDs( $ids );
 
@@ -389,11 +439,15 @@ class NotificationController {
 			} else {
 				$postId = $extra['post-id'];
 			}
+			if ( !$postId instanceof UUID ) {
+				wfDebugLog( __CLASS__, __FUNCTION__ . ': Non-UUID value provided' );
+				break;
+			}
 
 			$ids = array( $postId );
 			$topic = $extra['topic-workflow'];
 
-			if ( $topic && $topic->getBinary() != $postId->getBinary() ) {
+			if ( $topic instanceof UUID && $topic->getBinary() != $postId->getBinary() ) {
 				$ids[] = $topic;
 			}
 			$users += self::getCreatorsFromPostIDs( $ids );
@@ -411,13 +465,14 @@ class NotificationController {
 	 */
 	protected static function getCreatorsFromPostIDs( array $posts ) {
 		$users = array();
-		$container = Container::getContainer();
+		/** @var ManagerGroup $storage */
+		$storage = Container::get( 'storage' );
 
 		$user = new User;
 		$actionPermissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 
 		foreach ( $posts as $postId ) {
-			$post = $container['storage']->find(
+			$post = $storage->find(
 				'PostRevision',
 				array(
 					'tree_rev_descendant_id' => UUID::create( $postId )
