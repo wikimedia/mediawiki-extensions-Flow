@@ -287,9 +287,6 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'moderate', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
-		if ( !$this->checkSpamFilters( $post, $this->newRevision ) ) {
-			return;
-		}
 	}
 
 	protected function validateEditPost() {
