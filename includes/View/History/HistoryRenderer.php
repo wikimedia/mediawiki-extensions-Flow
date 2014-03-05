@@ -4,7 +4,10 @@ namespace Flow\View\History;
 
 use Flow\Block\Block;
 use Flow\Container;
+use Flow\Data\ObjectManager;
+use Flow\Exception\FlowException;
 use Flow\Formatter\AbstractFormatter;
+use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Templating;
@@ -69,6 +72,7 @@ class HistoryRenderer extends AbstractFormatter {
 	 * @return array The keys of this array are properly escaped for output as
 	 *     raw html, the values are an associative array containing 'from' and
 	 *     'to' keys mapping to MWTimestamp objects.
+	 * @throws FlowException
 	 */
 	public function getTimespans( History $history ) {
 		global $wgLang;
@@ -85,6 +89,7 @@ class HistoryRenderer extends AbstractFormatter {
 		$timestampDay = new MWTimestamp( strtotime( date( 'Y-m-d', $this->now ) ) );
 		$timestampWeek = new MWTimestamp( strtotime( '1 week ago', $this->now ) );
 
+		/** @var MWTimestamp[][] $timespans */
 		$timespans = array();
 		$timespans[wfMessage( 'flow-history-last4' )->escaped()] = array( 'from' => $timestampLast4, 'to' => $timestampFuture );
 		// if now is within first 4 hours of the day, all histories would be included in '4 hours ago'
@@ -98,8 +103,9 @@ class HistoryRenderer extends AbstractFormatter {
 
 		// Find last timestamp.
 		$history->seek( $history->numRows() - 1 );
-		$lastTimestamp = $history->next()->getTimestamp();
-		$lastTimestamp = $lastTimestamp->getTimestamp( TS_UNIX );
+		/** @var HistoryRecord $next */
+		$next = $history->next();
+		$lastTimestamp = $next->getTimestamp()->getTimestamp( TS_UNIX );
 
 		// Start from last week, we've already fetched everything before that.
 		$month = $timestampWeek->getTimestamp( TS_UNIX );
@@ -111,8 +117,10 @@ class HistoryRenderer extends AbstractFormatter {
 
 			// Make sure there's no overlap between end time & what we have already (e.g. last week)
 			$previous = end( $timespans );
+			/** @var MWTimestamp $previousFrom */
+			$previousFrom = $previous['from'];
 			$start = new MWTimestamp( $start );
-			$end = new MWTimestamp( min( $end, $previous['from']->getTimestamp( TS_UNIX ) ) );
+			$end = new MWTimestamp( min( $end, $previousFrom->getTimestamp( TS_UNIX ) ) );
 
 			// Build message.
 			$text = $wgLang->sprintfDate( 'F Y', $end->getTimestamp( TS_MW ) );
@@ -170,6 +178,7 @@ class HistoryRenderer extends AbstractFormatter {
 
 	/**
 	 * @param History $history
+	 * @throws FlowException
 	 */
 	protected function batchLoadWorkflow( $history ) {
 		$revs = $uuids = array();
@@ -188,18 +197,22 @@ class HistoryRenderer extends AbstractFormatter {
 						continue;
 					}
 					$workflowId = $revision->getPostId();
-				} else {
+				} elseif ( $revision instanceof Header ) {
 					$workflowId = $revision->getWorkflowId();
+				} else {
+					throw new FlowException( 'Expected Header or PostRevision but received ' . get_class( $revision ) );
 				}
 			}
 			$revs[$workflowId->getBinary()][] = $revision->getRevisionId()->getAlphadecimal();
 			$uuids[] = $workflowId;
 		}
 
-		$res = Container::get( 'storage.workflow' )->getMulti( $uuids );
+		/** @var ObjectManager $storage */
+		$storage = Container::get( 'storage.workflow' );
+		/** @var Workflow[] $res */
+		$res = $storage->getMulti( $uuids );
 
 		foreach ( $res as $workflow ) {
-			/** @var Workflow $workflow */
 			$uuid = $workflow->getId()->getBinary();
 			if ( isset( $revs[$uuid] ) ) {
 				foreach ( $revs[$uuid] as $revId ) {

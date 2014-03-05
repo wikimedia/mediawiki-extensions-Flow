@@ -116,8 +116,15 @@ class AbuseFilter implements SpamFilter {
 			 * @param mixed &$result Result of the computation
 			 */
 			'FlowRevisionContent' => function ( \AbuseFilterVariableHolder $vars, $parameters ) {
+					if ( !isset( $parameters['revision'] ) ) {
+						return '';
+					}
 					$revision = $parameters['revision'];
-					return $revision ? $revision->getContent( 'wikitext' ) : '';
+					if ( $revision instanceof AbstractRevision ) {
+						return $revision->getContent( 'wikitext' );
+					} else {
+						return '';
+					}
 				}
 		);
 	}

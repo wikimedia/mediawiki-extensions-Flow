@@ -12,7 +12,10 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
+use Flow\Repository\TreeRepository;
 use Flow\Templating;
+use Message;
+use Title;
 use User;
 
 /**
@@ -70,20 +73,14 @@ abstract class RevisionView implements RevisionCreatorHack {
 	 * @param AbstractRevision $revision The revision to diff against
 	 * @return boolean
 	 */
-	public function isComparableTo( $revision ) {
-		if ( get_class( $this->getRevision() ) === get_class( $revision ) ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	abstract public function isComparableTo( AbstractRevision $revision );
 
 	/**
 	 * Get the page header of revision diff view
 	 *
 	 * @param AbstractRevision $newRevision
 	 * @param AbstractRevision $oldRevision
-	 * @return string
+	 * @return Message
 	 */
 	abstract public function getDiffViewHeader( $newRevision, $oldRevision );
 
@@ -301,7 +298,9 @@ class HeaderRevisionView extends RevisionView {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @param UUID|string $revId
+	 * @param ManagerGroup $storage
+	 * @return Header|null
 	 */
 	public static function createRevision( $revId, ManagerGroup $storage ) {
 		if ( !$revId instanceof UUID ) {
@@ -351,8 +350,8 @@ class HeaderRevisionView extends RevisionView {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function isComparableTo( $revision ) {
-		if ( parent::isComparableTo( $revision ) ) {
+	public function isComparableTo( AbstractRevision $revision ) {
+		if ( $revision instanceof Header ) {
 			return $this->revision->getWorkflowId()->equals( $revision->getWorkflowId() );
 		} else {
 			return false;
@@ -360,7 +359,9 @@ class HeaderRevisionView extends RevisionView {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @param Header $newRevision
+	 * @param Header $oldRevision
+	 * @return Message
 	 */
 	public function getDiffViewHeader( $newRevision, $oldRevision ) {
 		$boardLinkTitle = $this->block->getWorkflow()->getArticleTitle();
@@ -457,7 +458,9 @@ class PostRevisionView extends RevisionView {
 		$revision = self::createRevision( $revId, $block->getStorage() );
 
 		if ( $revision ) {
-			$rootPath = Container::get( 'repository.tree' )->findRootPath( $revision->getPostId() );
+			/** @var TreeRepository $treeRepo */
+			$treeRepo = Container::get( 'repository.tree' );
+			$rootPath = $treeRepo->findRootPath( $revision->getPostId() );
 			$revision->setDepth( count( $rootPath ) - 1 );
 			return new self( $revision, $templating, $block, $user );
 		} else {
@@ -466,7 +469,9 @@ class PostRevisionView extends RevisionView {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @param UUID|string $revId
+	 * @param ManagerGroup $storage
+	 * @return PostRevision|null
 	 */
 	public static function createRevision( $revId, ManagerGroup $storage ) {
 		if ( !$revId instanceof UUID ) {
@@ -526,8 +531,8 @@ class PostRevisionView extends RevisionView {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function isComparableTo( $revision ) {
-		if ( parent::isComparableTo( $revision ) ) {
+	public function isComparableTo( AbstractRevision $revision ) {
+		if ( $revision instanceof PostRevision ) {
 			return $this->revision->getPostId()->equals( $revision->getPostId() );
 		} else {
 			return false;
@@ -535,7 +540,9 @@ class PostRevisionView extends RevisionView {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @param PostRevision $newRevision
+	 * @param PostRevision $oldRevision
+	 * @return Message
 	 */
 	public function getDiffViewHeader( $newRevision, $oldRevision ) {
 		$postFragment = '#flow-post-' . $newRevision->getPostId()->getAlphadecimal();
@@ -546,6 +553,8 @@ class PostRevisionView extends RevisionView {
 				$boardLinkTitle,
 				'view'
 			);
+		/** @var Title $topicLinkTitle */
+		/** @var string $topicLinkQuery */
 		list( $topicLinkTitle, $topicLinkQuery ) = $this->templating->getUrlGenerator()
 			->generateUrlData(
 				$this->block->getWorkflow(),

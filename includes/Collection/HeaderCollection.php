@@ -3,6 +3,8 @@
 namespace Flow\Collection;
 
 use Flow\Model\AbstractRevision;
+use Flow\Model\Header;
+use Flow\Exception\FlowException;
 
 class HeaderCollection extends LocalCacheAbstractCollection {
 	public function getRevisionClass() {
@@ -14,6 +16,10 @@ class HeaderCollection extends LocalCacheAbstractCollection {
 	}
 
 	protected static function getIdFromRevision( AbstractRevision $revision ) {
-		return $revision->getWorkflowId();
+		if ( $revision instanceof Header ) {
+			return $revision->getWorkflowId();
+		} else {
+			throw new FlowException( 'Expected Header but received ' . get_class( $revision ) );
+		}
 	}
 }

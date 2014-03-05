@@ -3,6 +3,7 @@
 namespace Flow\Collection;
 
 use Flow\Container;
+use Flow\Data\ManagerGroup;
 use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
@@ -92,7 +93,9 @@ abstract class AbstractCollection {
 	 */
 	public function getStorage() {
 		if ( !$this->storage ) {
-			$this->storage = Container::get( 'storage' )->getStorage( $this->getRevisionClass() );
+			/** @var ManagerGroup $storage */
+			$storage = Container::get( 'storage' );
+			$this->storage = $storage->getStorage( $this->getRevisionClass() );
 		}
 
 		return $this->storage;
@@ -106,6 +109,7 @@ abstract class AbstractCollection {
 	 */
 	public function getAllRevisions() {
 		if ( !$this->revisions ) {
+			/** @var AbstractRevision[] $revisions */
 			$revisions = $this->getStorage()->find(
 				array( $this->getIdColumn() => $this->uuid ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC' )

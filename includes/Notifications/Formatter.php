@@ -2,7 +2,10 @@
 
 namespace Flow;
 
+use Flow\Exception\FlowException;
+use Flow\Model\UUID;
 use EchoBasicFormatter;
+use Title;
 
 // could be renamed later if we have more formatters
 class NotificationFormatter extends EchoBasicFormatter {
@@ -33,6 +36,10 @@ class NotificationFormatter extends EchoBasicFormatter {
 			}
 		} elseif ( $param === 'post-permalink' ) {
 			$postId = $extra['post-id'];
+			if ( !$postId instanceof UUID ) {
+				throw new FlowException( 'Expected UUID but received ' . get_class( $postId ) );
+			}
+			/** @var Title $title */
 			list( $title, $query ) = $this->getUrlGenerator()->generateUrlData(
 				$extra['topic-workflow'],
 				'view'
@@ -71,6 +78,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 	 * @param \User $user The user receiving the notification
 	 * @param string $destination The destination type for the link
 	 * @return array including target and query parameters
+	 * @throws FlowException
 	 */
 	protected function getLinkParams( $event, $user, $destination ) {
 		$target = null;
@@ -79,15 +87,18 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 		// Unfortunately this is not a Flow code path, so we have to reach
 		//  into global state.
-		$container = Container::getContainer();
-		$urlGenerator = $container['url_generator'];
+		$urlGenerator = $this->getUrlGenerator();
 
 		// Set up link parameters based on the destination (or pass to parent)
 		switch ( $destination ) {
 			case 'flow-post':
 				$post  = $event->getExtraParam( 'post-id' );
+				if ( !$post instanceof UUID ) {
+					throw new FlowException( 'Expected UUID but received ' . get_class( $post ) );
+				}
 				$flow  = $event->getExtraParam( 'topic-workflow' );
 				if ( $post && $flow && $title ) {
+					/** @var Title $target */
 					list( $target, $query ) = $urlGenerator->generateUrlData( $flow );
 					// Take user to the post if there is only one target post,
 					// otherwise, take user to the topic view
@@ -114,6 +125,9 @@ class NotificationFormatter extends EchoBasicFormatter {
 		return array( $target, $query );
 	}
 
+	/**
+	 * @return UrlGenerator
+	 */
 	protected function getUrlGenerator() {
 		if ( ! $this->urlGenerator ) {
 			$container = Container::getContainer();

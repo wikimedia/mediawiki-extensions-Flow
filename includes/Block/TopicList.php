@@ -5,25 +5,53 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager;
+use Flow\Data\PagerPage;
 use Flow\Data\RootPostLoader;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
+use Flow\OccupationController;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Exception\FailCommitException;
 
 class TopicListBlock extends AbstractBlock {
 
-	protected $treeRepo;
+	/**
+	 * @var array
+	 */
 	protected $supportedPostActions = array( 'new-topic' );
+
+	/**
+	 * @var array
+	 */
 	protected $supportedGetActions = array( 'view' );
+
+	/**
+	 * @var Workflow|null
+	 */
 	protected $topicWorkflow;
+
+	/**
+	 * @var TopicListEntry|null
+	 */
 	protected $topicListEntry;
+
+	/**
+	 * @var PostRevision|null
+	 */
 	protected $topicPost;
+
+	/**
+	 * @var PostRevision|null
+	 */
 	protected $firstPost;
+
+	/**
+	 * @var RevisionActionPermissions
+	 */
 	protected $permissions;
 
 	public function __construct(
@@ -99,7 +127,9 @@ class TopicListBlock extends AbstractBlock {
 			// if $wgFlowContentFormat is set to html the PostRevision::create
 			// call will convert the wikitext input into html via parsoid, and
 			// parsoid requires the page exist.
-			Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
+			/** @var OccupationController $occupationController */
+			$occupationController = Container::get( 'occupation_controller' );
+			$occupationController->ensureFlowRevision( new \Article( $title, 0 ) );
 		}
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 
@@ -145,7 +175,7 @@ class TopicListBlock extends AbstractBlock {
 		$output = array(
 			'created-topic-id' => $this->topicWorkflow->getId(),
 			'created-post-id' => $this->firstPost ? $this->firstPost->getRevisionId() : null,
-			'render-function' => function( $templating )
+			'render-function' => function( Templating $templating )
 					use ( $topicWorkflow, $topicPost, $storage, $notificationController )
 			{
 				$block = new TopicBlock( $topicWorkflow, $storage, $notificationController, $topicPost );
@@ -203,7 +233,7 @@ class TopicListBlock extends AbstractBlock {
 		return 'topiclist';
 	}
 
-	protected function getLimit( $options ) {
+	protected function getLimit( array $options ) {
 		global $wgFlowDefaultLimit, $wgFlowMaxLimit;
 		$limit = $wgFlowDefaultLimit;
 		if ( isset( $options['limit'] ) ) {
@@ -216,7 +246,7 @@ class TopicListBlock extends AbstractBlock {
 		return $limit;
 	}
 
-	protected function getFindOptions( $requestOptions ) {
+	protected function getFindOptions( array $requestOptions ) {
 		$findOptions = array();
 
 		// Compute offset/limit
@@ -250,8 +280,10 @@ class TopicListBlock extends AbstractBlock {
 	 *
 	 * One possible solution would be to filter the query at the storage level.
 	 *
+	 * @param array $findOptions
+	 * @return PagerPage
 	 */
-	protected function getPage( $findOptions ) {
+	protected function getPage( array $findOptions ) {
 		$pager = new Pager(
 			$this->storage->getStorage( 'TopicListEntry' ),
 			array( 'topic_list_id' => $this->workflow->getId() ),
@@ -261,15 +293,20 @@ class TopicListBlock extends AbstractBlock {
 		return $pager->getPage();
 	}
 
-	protected function getTopics( $page ) {
+	/**
+	 * @param PagerPage $page
+	 * @return TopicBlock[]
+	 */
+	protected function getTopics( PagerPage $page ) {
+		/** @var TopicListEntry[] $found */
 		$found = $page->getResults();
 
 		if ( ! count( $found ) ) {
 			return array();
 		}
 
+		/** @var UUID[] $topicIds */
 		$topicIds = array();
-		// @var $entry TopicListEntry
 		foreach( $found as $entry ) {
 			$topicIds[] = $entry->getId();
 		}
@@ -287,9 +324,10 @@ class TopicListBlock extends AbstractBlock {
 		}
 		$topics = array();
 		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
+			/** @var Workflow $workflow */
 			$hexId = $workflow->getId()->getAlphadecimal();
-			$topics[$hexId] = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
-			$topics[$hexId]->init( $this->action, $this->user );
+			$topics[$hexId] = $block = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
+			$block->init( $this->action, $this->user );
 		}
 
 		return $topics;

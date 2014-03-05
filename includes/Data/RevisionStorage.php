@@ -572,7 +572,9 @@ class TopicHistoryIndex extends TopKIndex {
 
 		$descendantQueries = array();
 		foreach ( $queries as $idx => $features ) {
-			$nodes = $nodeList[$features['topic_root_id']->getAlphadecimal()];
+			/** @var UUID $topicRootId */
+			$topicRootId = $features['topic_root_id'];
+			$nodes = $nodeList[$topicRootId->getAlphadecimal()];
 			$descendantQueries[$idx] = array(
 				'tree_rev_descendant_id' => UUID::convertUUIDs( $nodes ),
 			);

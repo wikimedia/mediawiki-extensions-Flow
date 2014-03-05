@@ -3,22 +3,38 @@
 namespace Flow\Block;
 
 use Flow\Container;
-use Flow\Model\Header;
-use Flow\RevisionActionPermissions;
-use Flow\Templating;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
+use Flow\Model\Header;
+use Flow\OccupationController;
+use Flow\RevisionActionPermissions;
+use Flow\Templating;
 use Flow\View\HeaderRevisionView;
 
 class HeaderBlock extends AbstractBlock {
 
+	/**
+	 * @var Header|null
+	 */
 	protected $header;
+
+	/**
+	 * @var boolean
+	 */
 	protected $needCreate = false;
+
+	/**
+	 * @var string[]
+	 */
 	protected $supportedPostActions = array( 'edit-header' );
+
+	/**
+	 * @var string[]
+	 */
 	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'header-view' );
 
 	/**
-	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
+	 * @var RevisionActionPermissions Allows or denies actions to be performed
 	 */
 	protected $permissions;
 
@@ -96,7 +112,9 @@ class HeaderBlock extends AbstractBlock {
 					// if $wgFlowContentFormat is set to html the Header::create
 					// call will convert the wikitext input into html via parsoid, and
 					// parsoid requires the page exist.
-					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
+					/** @var OccupationController $occupationController */
+					$occupationController = Container::get( 'occupation_controller' );
+					$occupationController->ensureFlowRevision( new \Article( $title, 0 ) );
 				}
 
 				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
@@ -125,7 +143,7 @@ class HeaderBlock extends AbstractBlock {
 
 				return array(
 					'new-revision-id' => $this->header->getRevisionId(),
-					'render-function' => function( $templating ) use ( $header ) {
+					'render-function' => function( Templating $templating ) use ( $header ) {
 						return $templating->getContent( $header, 'html' );
 					},
 				);

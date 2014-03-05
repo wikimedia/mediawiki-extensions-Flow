@@ -2,7 +2,9 @@
 
 namespace Flow\Collection;
 
+use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
 
 class PostCollection extends LocalCacheAbstractCollection {
 	public function getRevisionClass() {
@@ -14,6 +16,10 @@ class PostCollection extends LocalCacheAbstractCollection {
 	}
 
 	protected static function getIdFromRevision( AbstractRevision $revision ) {
-		return $revision->getPostId();
+		if ( $revision instanceof PostRevision ) {
+			return $revision->getPostId();
+		} else {
+			throw new FlowException( 'Expected PostRevision but received ' . get_class( $revision ) );
+		}
 	}
 }
