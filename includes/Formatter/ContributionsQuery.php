@@ -150,7 +150,7 @@ class ContributionsQuery {
 		$rootPostIds = array_filter( $this->treeRepo->findRoots( $postIds ) );
 		$rootPostRequests = array();
 		foreach( $rootPostIds as $postId ) {
-			$rootPostRequests[] = array( 'tree_rev_descendant_id' => $postId );
+			$rootPostRequests[] = array( 'rev_type', 'rev_type_id' => $postId );
 		}
 
 		$rootPostResult = $this->storage->findMulti(
