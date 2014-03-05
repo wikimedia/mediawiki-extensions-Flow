@@ -45,7 +45,7 @@ abstract class AbstractCollection {
 	 *
 	 * @return string
 	 */
-	abstract public function getIdColumn();
+	 abstract public function getIdColumn();
 
 	/**
 	 * Use the static methods to load an object from a given revision.
