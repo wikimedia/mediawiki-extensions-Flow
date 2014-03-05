@@ -107,7 +107,7 @@ abstract class AbstractCollection {
 	public function getAllRevisions() {
 		if ( !$this->revisions ) {
 			$revisions = $this->getStorage()->find(
-				array( $this->getIdColumn() => $this->uuid ),
+				array( 'rev_type_id' => $this->uuid ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC' )
 			);
 
