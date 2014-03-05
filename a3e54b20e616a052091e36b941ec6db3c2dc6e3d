@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_bbe22396",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T17:24:52Z",
+      "side": 1,
+      "message": "Move the code in initFlowExtension() in here ? (same for occupationcontroller) - just makes initFlowExtions a bit cleaner, and when calling this, it\u0027s more immediately obvious what self::$abuseFilter is.",
+      "revId": "a3e54b20e616a052091e36b941ec6db3c2dc6e3d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
