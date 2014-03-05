@@ -63,13 +63,18 @@ check-i18n:
 ###
 # Static analysis
 ###
-install-analyze:
+install-analyze-hhvm:
 	wget -O scripts/hhvm-wrapper.phar https://phar.phpunit.de/hhvm-wrapper.phar
 	@which hhvm >/dev/null || which ${HHVM_HOME} >/dev/null || (echo Could not locate hhvm && false)
 
-analyze:
+analyze-hhvm:
 	@test -f scripts/hhvm-wrapper.phar || (echo Run \`make install-analyze\` first && false)
 	php scripts/hhvm-wrapper.phar analyze ${ANALYZE} ${ANALYZE_EXTRA}
+
+analyze-phpstorm:
+	@scripts/analyze-phpstorm.sh
+
+analyze: analyze-hhvm analyze-phpstorm
 
 ###
 # Update this repository

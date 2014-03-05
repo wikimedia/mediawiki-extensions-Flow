@@ -6,7 +6,6 @@ use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
 use Flow\Data\ManagerGroup;
-use Flow\Exception\DataModelException;
 use Flow\SpamFilter\Controller as SpamFilterController;
 use Flow\Templating;
 use Flow\Model\AbstractRevision;
