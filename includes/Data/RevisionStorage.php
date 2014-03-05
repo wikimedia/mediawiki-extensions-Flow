@@ -2,17 +2,22 @@
 
 namespace Flow\Data;
 
-use Flow\Model\PostRevision;
-use Flow\Model\UUID;
-use Flow\DbFactory;
-use Flow\Repository\TreeRepository;
 use DatabaseBase;
 use ExternalStore;
-use MWException;
+use Flow\DbFactory;
 use Flow\Exception\DataModelException;
+use Flow\Model\PostRevision;
+use Flow\Model\UUID;
+use Flow\Repository\TreeRepository;
+use MWException;
 
 abstract class RevisionStorage extends DbStorage {
-	static protected $allowedUpdateColumns = array(
+
+	/**
+	 * The columns allowed to update
+	 * @var array
+	 */
+	protected static $allowedUpdateColumns = array(
 		'rev_mod_state',
 		'rev_mod_user_id',
 		'rev_mod_user_ip',
@@ -21,26 +26,78 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_mod_reason',
 	);
 
-	// This is to prevent 'Update not allowed on xxx error' when
-	// * obsolete columns have not been deleted
-	// * new columns are added, but code is not deployed yet
-	static protected $obsoleteUpdateColumns = array (
-		// Delete when these columns are dropped from production
+	/** 
+	 * This is to prevent 'Update not allowed on xxx error' when
+	 * (a) obsolete columns have not been removed
+	 * (b) new columns are added, but code is not deployed yet
+	 */ 
+	protected static $obsoleteUpdateColumns = array (
+		// Obsolete columns
 		'tree_orig_user_text',
 		'rev_user_text',
 		'rev_edit_user_text',
 		'rev_mod_user_text',
 	);
 
-	protected $externalStores;
+	protected $externalStore;
 
-	abstract protected function joinTable();
-	abstract protected function relatedPk();
-	abstract protected function joinField();
+	/**
+	 * Get the table to join for the revision storage, empty string for none 
+	 * @return string
+	 */
+	protected function joinTable() {
+		return '';
+	}
 
-	abstract protected function insertRelated( array $row );
-	abstract protected function updateRelated( array $changes, array $old );
-	abstract protected function removeRelated( array $row );
+	/**
+	 * Get the primary key of the join table, empty string for none
+	 * @return string
+	 */
+	protected function relatedPk() {
+		return '';
+	}
+
+	/**
+	 * Get the column to join with flow_revision.rev_id, empty string for none
+	 * @return string
+	 */
+	protected function joinField() {
+		return '';
+	}
+
+	/**
+	 * Insert to the joinTable() upon revision insert
+	 * @param array $row
+	 * @return array $row
+	 */
+	protected function insertRelated( array $row ) {
+		return $row;
+	}
+
+	/**
+	 * Update to the joinTable() upon revision update
+	 * @param array $changes
+	 * @param array $old
+	 * @return array $changes
+	 */
+	protected function updateRelated( array $changes, array $old ) {
+		return $changes;	
+	}
+
+	/**
+	 * Remove from joinTable upone revision delete
+	 * @param array $row
+	 * @return bool|ResultWrapper
+	 */
+	protected function removeRelated( array $row ) {
+		return true;
+	}
+
+	/**
+	 * Get the revision type
+	 * @return string
+	 */
+	protected abstract function getRevisionType();
 
 	public function __construct( DbFactory $dbFactory, $externalStore ) {
 		parent::__construct( $dbFactory );
@@ -64,13 +121,15 @@ abstract class RevisionStorage extends DbStorage {
 			throw new MWException( "Validation error in database options" );
 		}
 
+		$tables = array( 'rev' => 'flow_revision' );
+		$joins = array();
+		if ( $this->joinTable() ) {
+			$tables[] = $this->joinTable();
+			$joins = array( 'rev' => array( 'JOIN', $this->joinField() . ' = rev_id' ) );
+		}
+		
 		$res = $dbr->select(
-			array( $this->joinTable(), 'rev' => 'flow_revision' ),
-			'*',
-			$this->preprocessSqlArray( $attributes ),
-			__METHOD__,
-			$options,
-			array( 'rev' => array( 'JOIN', $this->joinField() . ' = rev_id' ) )
+			$tables, '*', $this->preprocessSqlArray( $attributes ), __METHOD__, $options, $joins
 		);
 		if ( !$res ) {
 			return null;
@@ -111,12 +170,12 @@ abstract class RevisionStorage extends DbStorage {
 		//   queries are sorted by the join field(which is time sorted)
 		//   query keys are all in the related table and not the revision table
 		//
-
 		$queriedKeys = array_keys( reset( $queries ) );
 		if ( $options['LIMIT'] === 1 &&
 			!isset( $options['OFFSET'] ) &&
 			count( $queriedKeys ) === 1 &&
-			in_array( reset( $queriedKeys ), array( 'rev_id', $this->joinField(), $this->relatedPk() ) ) &&
+			in_array( 'rev_type', $queriedKeys ) &&
+			in_array( 'rev_type_id', $queriedKeys ) &&
 			isset( $options['ORDER BY'] ) && count( $options['ORDER BY'] ) === 1 &&
 			in_array( reset( $options['ORDER BY'] ), array( 'rev_id DESC', "{$this->joinField()} DESC" ) )
 		) {
@@ -127,34 +186,18 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	protected function findMostRecent( array $queries ) {
-		// SELECT MAX(tree_rev_id) AS tree_rev_id
-		//   FROM flow_tree_revision
-		//  WHERE tree_rev_descendant_id IN (...)
-		//  GROUP BY tree_rev_descendant_id
-		//
-		//  Could we instead use this?
-		//
-		//  SELECT rev.*
-		//	FROM flow_tree_revision rev
-		//	JOIN ( SELECT MAX(tree_rev_id) as tree_rev_id
-		//			 FROM flow_tree_revision
-		//			WHERE tree_rev_descendant_id IN (...)
-		//			GROUP BY tree_rev_descendant_id
-		//		 ) max ON max.tree_rev_id = rev.tree_rev_id
-		//
 		$duplicator = new ResultDuplicator( array_keys( reset( $queries ) ), 1 );
-		$joinField = $this->joinField();
 		foreach ( $queries as $idx => $query ) {
 			$duplicator->add( UUID::convertUUIDs( $query ), $idx );
 		}
 
 		$dbr = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbr->select(
-			$this->joinTable(),
-			array( $joinField => "MAX( {$this->joinField()} )" ),
-			$this->preprocessSqlArray( $this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ) ),
+			array( 'flow_revision' ),
+			array( 'rev_id' => "MAX( 'rev_id' )" ),
+			array( 'rev_type' => $this->getRevisionType() ) + $this->preprocessSqlArray( $this->buildCompositeInCondition( $dbr, $duplicator->getUniqueQueries() ) ),
 			__METHOD__,
-			array( 'GROUP BY' => $this->relatedPk() )
+			array( 'GROUP BY' => 'rev_type, rev_type_id' )
 		);
 		if ( !$res ) {
 			// TODO: dont fail, but dont end up caching bad result either
@@ -163,23 +206,22 @@ abstract class RevisionStorage extends DbStorage {
 
 		$revisionIds = array();
 		foreach ( $res as $row ) {
-			$revisionIds[] = $row->$joinField;
+			$revisionIds[] = $row->rev_id;
 		}
 
-		// Due to the grouping and max, we cant reliably get a full
-		// columns info in the above query, forcing the join below
-		// rather than just querying flow_revision.
-
-		//  SELECT * from flow_tree_revision
-		//	  JOIN flow_revision ON tree_rev_id = rev_id
-		//   WHERE tree_rev_id IN (...)
+		$tables = array( 'flow_revision' );
+		$joins  = array();
+		if ( $this->joinTable() ) {
+			$tables['rev'] = $this->joinTable();
+			$joins = array( 'rev' => array( 'JOIN', "rev_id = $joinField" ) ); 
+		}
 		$res = $dbr->select(
-			array( 'flow_revision', 'rev' => $this->joinTable() ),
+			$tables,
 			'*',
 			array( 'rev_id' => $revisionIds ),
 			__METHOD__,
 			array(),
-			array( 'rev' => array( 'JOIN', "rev_id = $joinField" ) )
+			$joins
 		);
 		if ( !$res ) {
 			// TODO: dont fail, but dont end up caching bad result either
@@ -349,7 +391,7 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	public function getIterator() {
-		throw new DataModelException( 'Not Implemented', 'process-data' );
+		throw new DataModelException( __CLASS__ . '::' . __METHOD__ . ' is not implemented', 'process-data' );
 	}
 
 	/**
@@ -389,6 +431,10 @@ class PostRevisionStorage extends RevisionStorage {
 
 	protected function joinField() {
 		return 'tree_rev_id';
+	}
+
+	protected function getRevisionType() {
+		return 'post';
 	}
 
 	protected function insertRelated( array $row ) {
@@ -466,45 +512,8 @@ class PostRevisionStorage extends RevisionStorage {
 }
 
 class HeaderRevisionStorage extends RevisionStorage {
-
-	protected function joinTable() {
-		return 'flow_header_revision';
-	}
-
-	protected function relatedPk() {
-		return 'header_workflow_id';
-	}
-
-	protected function joinField() {
-		return 'header_rev_id';
-	}
-
-	protected function insertRelated( array $row ) {
-		$header = $this->splitUpdate( $row, 'header' );
-		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
-			$this->joinTable(),
-			$this->preprocessSqlArray( $header ),
-			__METHOD__
-		);
-		if ( !$res ) {
-			return false;
-		}
-		return $row;
-	}
-
-	// There is changable data in the header half, it just points to the correct workflow
-	protected function updateRelated( array $changes, array $old ) {
-		$headerChanges = $this->splitUpdate( $changes, 'header' );
-		if ( $headerChanges ) {
-			throw new DataModelException( 'No update allowed', 'process-data' );
-		}
-	}
-
-	protected function removeRelated( array $row ) {
-		return $this->dbFactory->getDB( DB_MASTER )->delete(
-			$this->joinTable(),
-			array( $this->joinField() => $row['rev_id'] )
-		);
+	protected function getRevisionType() {
+		return 'header';
 	}
 }
 
@@ -574,7 +583,7 @@ class TopicHistoryIndex extends TopKIndex {
 		foreach ( $queries as $idx => $features ) {
 			$nodes = $nodeList[$features['topic_root_id']->getAlphadecimal()];
 			$descendantQueries[$idx] = array(
-				'tree_rev_descendant_id' => UUID::convertUUIDs( $nodes ),
+				'rev_type' => 'post', 'rev_type_id' => UUID::convertUUIDs( $nodes ),
 			);
 		}
 
