@@ -92,7 +92,7 @@ abstract class AbstractQuery {
 
 		$rootPostRequests = array();
 		foreach( $rootPostIds as $postId ) {
-			$rootPostRequests[] = array( 'tree_rev_descendant_id' => $postId );
+			$rootPostRequests[] = array( 'rev_type_id' => $postId );
 		}
 
 		$rootPostResult = $this->storage->findMulti(

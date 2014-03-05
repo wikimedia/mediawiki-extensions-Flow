@@ -15,10 +15,6 @@ class PostCollection extends LocalCacheAbstractCollection {
 		return 'Flow\\Model\\PostRevision';
 	}
 
-	public function getIdColumn() {
-		return 'tree_rev_descendant_id';
-	}
-
 	public function getWorkflowId() {
 		// the root post (topic title) has the same id as the workflow
 		if ( !$this->rootId ) {
