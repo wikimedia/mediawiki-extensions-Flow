@@ -686,7 +686,12 @@ class ObjectManager extends ObjectLocator {
 		return $split;
 	}
 
-	public function serializeOffset( $object, $sortFields ) {
+	/**
+	 * @param object $object
+	 * @param array $sortFields
+	 * @return string
+	 */
+	public function serializeOffset( $object, array $sortFields ) {
 		$offsetFields = array();
 		$row = $this->mapper->toStorageRow( $object );
 		foreach( $sortFields as $field ) {

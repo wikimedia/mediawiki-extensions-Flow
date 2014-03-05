@@ -181,8 +181,8 @@ class TreeRepository {
 	/**
 	 * Given a list of nodes, find the path from each node to the root of its tree.
 	 * the root must be the first element of the array, $node must be the last element.
-	 * @param $descendants array Array of UUID objects to find the root paths for.
-	 * @return array Associative array, key is the post ID in hex, value is the path as an array.
+	 * @param UUID[] $descendants Array of UUID objects to find the root paths for.
+	 * @return UUID[][] Associative array, key is the post ID in hex, value is the path as an array.
 	 */
 	public function findRootPaths( array $descendants ) {
 		$cacheKeys = array();
@@ -256,8 +256,8 @@ class TreeRepository {
 
 	/**
 	 * Finds the root posts of a list of posts.
-	 * @param  array  $descendants Array of PostRevision objects to find roots for.
-	 * @return array Associative array of post ID (as hex) to UUID object representing its root.
+	 * @param  UUID[]  $descendants Array of PostRevision objects to find roots for.
+	 * @return UUID[] Associative array of post ID (as hex) to UUID object representing its root.
 	 */
 	public function findRoots( array $descendants ) {
 		$paths = $this->findRootPaths( $descendants );
@@ -396,6 +396,11 @@ class TreeRepository {
 		);
 	}
 
+	/**
+	 * @param UUID[] $nodes
+	 * @return UUID[]
+	 * @throws \Flow\Exception\DataModelException
+	 */
 	public function fetchParentMapFromDb( array $nodes ) {
 		// Find out who the parent is for those nodes
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
@@ -422,7 +427,7 @@ class TreeRepository {
 		foreach ( $nodes as $node ) {
 			if ( !isset( $result[$node->getAlphadecimal()] ) ) {
 				// $node is a root, it has no parent
-				$result[$node] = null;
+				$result[$node->getAlphadecimal()] = null;
 			}
 		}
 

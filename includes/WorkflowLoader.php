@@ -2,10 +2,12 @@
 
 namespace Flow;
 
+use Flow\Block\AbstractBlock;
 use Flow\Block\HeaderBlock;
 use Flow\Block\TopicBlock;
 use Flow\Block\TopicListBlock;
 use Flow\Block\BoardHistoryBlock;
+use Flow\Model\Definition;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Data\BufferedCache;
@@ -15,10 +17,39 @@ use Flow\Exception\InvalidInputException;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidActionException;
+use WebRequest;
 
 class WorkflowLoader {
 	protected $dbFactory, $bufferedCache;
-	protected $workflow, $definition, $storage, $rootPostLoader, $notificationController, $definitionRequest;
+	/**
+	 * @var Workflow
+	 */
+	protected $workflow;
+
+	/**
+	 * @var Definition
+	 */
+	protected $definition;
+
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
+
+	/**
+	 * @var RootPostLoader
+	 */
+	protected $rootPostLoader;
+
+	/**
+	 * @var NotificationController
+	 */
+	protected $notificationController;
+
+	/**
+	 * @var string
+	 */
+	protected $definitionRequest;
 
 	public function __construct(
 			$pageTitle,
@@ -66,6 +97,9 @@ class WorkflowLoader {
 		return $this->definition;
 	}
 
+	/**
+	 * @return Workflow
+	 */
 	public function getWorkflow() {
 		return $this->workflow;
 	}
@@ -135,6 +169,11 @@ class WorkflowLoader {
 		return $definition;
 	}
 
+	/**
+	 * @return AbstractBlock[]
+	 * @throws InvalidInputException When the definition type is unrecognized
+	 * @throws InvalidDataException When multiple blocks share the same name
+	 */
 	public function createBlocks() {
 		switch( $this->definition->getType() ) {
 			case 'discussion':
@@ -157,6 +196,7 @@ class WorkflowLoader {
 		}
 
 		$return = array();
+		/** @var AbstractBlock[] $blocks */
 		foreach ( $blocks as $block ) {
 			if ( !isset( $return[$block->getName()] ) ) {
 				$return[$block->getName()] = $block;
@@ -168,7 +208,16 @@ class WorkflowLoader {
 		return $return;
 	}
 
-	public function handleSubmit( $action, array $blocks, $user, \WebRequest $request ) {
+	/**
+	 * @param string $action
+	 * @param AbstractBlock[] $blocks
+	 * @param \User $user
+	 * @param WebRequest $request
+	 * @return AbstractBlock[]
+	 * @throws InvalidActionException
+	 * @throws InvalidDataException
+	 */
+	public function handleSubmit( $action, array $blocks, $user, WebRequest $request ) {
 		$success = true;
 		$interestedBlocks = array();
 
@@ -204,6 +253,12 @@ class WorkflowLoader {
 		return $success ? $interestedBlocks : array();
 	}
 
+	/**
+	 * @param Workflow $workflow
+	 * @param AbstractBlock[] $blocks
+	 * @return array
+	 * @throws \Exception
+	 */
 	public function commit( Workflow $workflow, array $blocks ) {
 		$cache = $this->bufferedCache;
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
@@ -236,11 +291,11 @@ class WorkflowLoader {
 	/**
 	 * Helper function extracts something
 	 *
-	 * @param \WebRequest $request
-	 * @param array $blocks
+	 * @param WebRequest $request
+	 * @param AbstractBlock[] $blocks
 	 * @return array
 	 */
-	public function extractBlockParameters( \WebRequest $request, array $blocks ) {
+	public function extractBlockParameters( WebRequest $request, array $blocks ) {
 		$result = array();
 		// BC for old parameters enclosed in square brackets
 		foreach ( $blocks as $block ) {
