@@ -58,7 +58,7 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	protected function findInternal( array $attributes, array $options = array() ) {
-		$dbr = $this->dbFactory->getDB( DB_MASTER );
+		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 
 		if ( ! $this->validateOptions( $options ) ) {
 			throw new MWException( "Validation error in database options" );
@@ -148,7 +148,7 @@ abstract class RevisionStorage extends DbStorage {
 			$duplicator->add( UUID::convertUUIDs( $query ), $idx );
 		}
 
-		$dbr = $this->dbFactory->getDB( DB_MASTER );
+		$dbr = $this->dbFactory->getDB( DB_SLAVE );
 		$res = $dbr->select(
 			$this->joinTable(),
 			array( $joinField => "MAX( {$this->joinField()} )" ),
