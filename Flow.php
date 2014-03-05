@@ -101,6 +101,7 @@ $wgAutoloadClasses['Flow\View\History\HistoryRecord'] = "$dir/includes/View/Hist
 $wgAutoloadClasses['Flow\View\History\HistoryBundle'] = "$dir/includes/View/History/HistoryBundle.php";
 $wgAutoloadClasses['Flow\View\History\HistoryRenderer'] = "$dir/includes/View/History/HistoryRenderer.php";
 $wgAutoloadClasses['Flow\View\Post'] = "$dir/includes/View/Post.php";
+$wgAutoloadClasses['Flow\View\RevisionCreatable'] = "$dir/includes/View/Revision.php";
 $wgAutoloadClasses['Flow\View\RevisionView'] = "$dir/includes/View/Revision.php";
 $wgAutoloadClasses['Flow\View\PostRevisionView'] = "$dir/includes/View/Revision.php";
 $wgAutoloadClasses['Flow\View\HeaderRevisionView'] = "$dir/includes/View/Revision.php";
