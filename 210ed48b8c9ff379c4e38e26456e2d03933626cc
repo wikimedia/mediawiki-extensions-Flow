@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_b25248dc",
+        "filename": "db_patches/patch-revision_user_idx.sql",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-05T00:22:19Z",
+      "side": 1,
+      "message": "Should add rev_user_wiki to the index as well",
+      "revId": "210ed48b8c9ff379c4e38e26456e2d03933626cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_92574ccd",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-05T00:22:19Z",
+      "side": 1,
+      "message": "Probably add $conditions[\u0027rev_user_ip\u0027] \u003d NULL; in here",
+      "revId": "210ed48b8c9ff379c4e38e26456e2d03933626cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
