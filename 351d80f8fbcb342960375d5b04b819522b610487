@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_e6293286",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T17:41:33Z",
+      "side": 1,
+      "message": "Not sure about outputting. It\u0027s run on update.php (only once), so it will likely only get lost in update.php output anyway (and make that output even more verbose). I\u0027m fine with having it in here though, if other update.php-run maintenance scripts do that too.",
+      "revId": "351d80f8fbcb342960375d5b04b819522b610487",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_4617c64a",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T17:41:33Z",
+      "side": 1,
+      "message": "Can probably remove this too, then?",
+      "revId": "351d80f8fbcb342960375d5b04b819522b610487",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
