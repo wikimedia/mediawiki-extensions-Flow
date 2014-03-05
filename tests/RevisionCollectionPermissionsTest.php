@@ -252,6 +252,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		if ( $parent ) {
 			$overrides['rev_parent_id'] = $parent->getRevisionId()->getBinary();
 			$overrides['tree_rev_descendant_id'] = $parent->getPostId()->getBinary();
+			$overrides['rev_type_id'] = $parent->getPostId()->getBinary();
 		}
 
 		switch ( $action ) {

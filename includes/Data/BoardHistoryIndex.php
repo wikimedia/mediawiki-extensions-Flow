@@ -42,7 +42,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 */
 	public function onAfterInsert( $object, array $new ) {
 		if ( $object instanceof Header ) {
-			$new['topic_list_id'] = $new['header_workflow_id'];
+			$new['topic_list_id'] = $new['rev_type_id'];
 			parent::onAfterInsert( $object, $new );
 		} elseif ( $object instanceof PostRevision ) {
 			$topicListId = $this->findTopicListId( $object );
@@ -60,7 +60,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 */
 	public function onAfterUpdate( $object, array $old, array $new ) {
 		if ( $object instanceof Header ) {
-			$new['topic_list_id'] = $old['topic_list_id'] = $new['header_workflow_id'];
+			$new['topic_list_id'] = $old['topic_list_id'] = $new['rev_type_id'];
 			parent::onAfterUpdate( $object, $old, $new );
 		} elseif ( $object instanceof PostRevision ) {
 			$topicListId = $this->findTopicListId( $object );
@@ -77,7 +77,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 */
 	public function onAfterRemove( $object, array $old ) {
 		if ( $object instanceof Header ) {
-			$old['topic_list_id'] = $old['header_workflow_id'];
+			$old['topic_list_id'] = $old['rev_type_id'];
 			parent::onAfterRemove( $object, $old );
 		} elseif ( $object instanceof PostRevision ) {
 			$topicListId = $this->findTopicListId( $object );
