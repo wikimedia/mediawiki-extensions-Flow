@@ -2,14 +2,16 @@
 
 namespace Flow;
 
-use Title;
-use Revision;
-use ContentHandler;
 use Flow\Exception\InvalidInputException;
+use Article;
+use ContentHandler;
+use Revision;
+use Title;
 
 // I got the feeling NinetyNinePercentController was a bit much.
 interface OccupationController {
 	public function isTalkpageOccupied( $title );
+	public function ensureFlowRevision( Article $title );
 }
 
 class TalkpageManager implements OccupationController {
@@ -56,7 +58,7 @@ class TalkpageManager implements OccupationController {
 	 * @param \Article $article
 	 * @throws InvalidInputException
 	 */
-	public function ensureFlowRevision( \Article $article ) {
+	public function ensureFlowRevision( Article $article ) {
 		$title = $article->getTitle();
 		if ( !$this->isTalkpageOccupied( $title ) ) {
 			throw new InvalidInputException( 'Requested article is not Flow enabled', 'invalid-input' );

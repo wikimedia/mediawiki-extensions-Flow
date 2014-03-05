@@ -3,22 +3,38 @@
 namespace Flow\Block;
 
 use Flow\Container;
-use Flow\Model\Header;
-use Flow\RevisionActionPermissions;
-use Flow\Templating;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
+use Flow\Model\Header;
+use Flow\OccupationController;
+use Flow\RevisionActionPermissions;
+use Flow\Templating;
 use Flow\View\HeaderRevisionView;
 
 class HeaderBlock extends AbstractBlock {
 
+	/**
+	 * @var Header|null
+	 */
 	protected $header;
+
+	/**
+	 * @var boolean
+	 */
 	protected $needCreate = false;
+
+	/**
+	 * @var string[]
+	 */
 	protected $supportedPostActions = array( 'edit-header' );
+
+	/**
+	 * @var string[]
+	 */
 	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'header-view' );
 
 	/**
-	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
+	 * @var RevisionActionPermissions Allows or denies actions to be performed
 	 */
 	protected $permissions;
 
@@ -135,7 +151,7 @@ class HeaderBlock extends AbstractBlock {
 
 				return array(
 					'new-revision-id' => $this->header->getRevisionId(),
-					'render-function' => function( $templating ) use ( $header ) {
+					'render-function' => function( Templating $templating ) use ( $header ) {
 						return $templating->getContent( $header, 'html' );
 					},
 				);

@@ -6,9 +6,12 @@ use Flow\Data\ObjectManager;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Model\AbstractRevision;
+use Flow\Model\Header;
+use Flow\Model\PostRevision;
 use Title;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
+use Flow\Exception\FlowException;
 
 class UrlGenerator {
 	/**
@@ -41,6 +44,8 @@ class UrlGenerator {
 	 * @return String URL
 	 */
 	public function buildUrl( $title, $action = 'view', array $query = array() ) {
+		/** @var Title $linkTitle */
+		/** @var string $query */
 		list( $linkTitle, $query ) = $this->buildUrlData( $title, $action, $query );
 
 		return $linkTitle->getFullUrl( $query );
@@ -78,6 +83,8 @@ class UrlGenerator {
 	 * @return string URL
 	 */
 	public function generateUrl( $workflow, $action = 'view', array $query = array(), $fragment = '' ) {
+		/** @var Title $linkTitle */
+		/** @var string $query */
 		list( $linkTitle, $query ) = $this->generateUrlData( $workflow, $action, $query );
 
 		$title = clone $linkTitle;
@@ -96,27 +103,28 @@ class UrlGenerator {
 	 * @param AbstractRevision $revision The revision to build the block
 	 * @param boolean $specificRevision whether to show specific revision
 	 * @return string URL
+	 * @throws FlowException When the type of $revision is unrecognized
 	 */
 	public function generateBlockUrl( $workflow, AbstractRevision $revision, $specificRevision = false ) {
 		$data = array();
 		$action = 'view';
-		switch ( $revision->getRevisionType() ) {
-			case 'post':
-				if ( !$revision->isTopicTitle() ) {
-					$data['topic_postId'] = $revision->getPostId()->getAlphadecimal();
-				}
+		if ( $revision instanceof PostRevision ) {
+			if ( !$revision->isTopicTitle() ) {
+				$data['topic_postId'] = $revision->getPostId()->getAlphadecimal();
+			}
 
-				if ( $specificRevision ) {
-					$data['topic_revId'] = $revision->getRevisionId()->getAlphadecimal();
-				}
-			break;
-			case 'header':
-				if ( $specificRevision ) {
-					$data['header_revId'] = $revision->getRevisionId()->getAlphadecimal();
-				}
-				$action = 'header-view';
-			break;
+			if ( $specificRevision ) {
+				$data['topic_revId'] = $revision->getRevisionId()->getAlphadecimal();
+			}
+		} elseif ( $revision instanceof Header ) {
+			if ( $specificRevision ) {
+				$data['header_revId'] = $revision->getRevisionId()->getAlphadecimal();
+			}
+			$action = 'header-view';
+		} else {
+			throw new FlowException( 'Unknown revision type:' . get_class( $revision ) );
 		}
+
 		return $this->generateUrl( $workflow, $action, $data );
 	}
 

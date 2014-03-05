@@ -5,7 +5,19 @@ namespace Flow\Data;
 use Flow\Exception\InvalidInputException;
 
 class Pager {
-	protected $storage, $index;
+	/**
+	 * @var ObjectManager
+	 */
+	protected $storage;
+
+	/**
+	 * @var Index
+	 */
+	protected $index;
+
+	/**
+	 * @var integer
+	 */
 	protected $defaultLimit = 5;
 
 	public function __construct( ObjectManager $storage, array $query, array $options ) {
@@ -19,6 +31,9 @@ class Pager {
 		$this->options = $options;
 	}
 
+	/**
+	 * @return PagerPage
+	 */
 	public function getPage() {
 		$direction = $this->getDirection( $this->options );
 		$offset = $this->getOffset( $this->options );
@@ -43,22 +58,43 @@ class Pager {
 		}
 	}
 
+	/**
+	 * @return integer
+	 */
 	public function getDefaultLimit() {
 		return $this->defaultLimit;
 	}
 
+	/**
+	 * @param integer $newLimit
+	 */
 	public function setDefaultLimit( $newLimit ) {
 		$this->defaultLimit = $newLimit;
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function getDefaultDirection() {
 		return 'fwd';
 	}
 
+	/**
+	 * @param string $dir
+	 * @return boolean
+	 */
 	protected function validateDirection( $dir ) {
 		return in_array( $dir, array( 'fwd', 'rev' ), true );
 	}
 
+	/**
+	 * @param string $direction
+	 * @param integer $offset
+	 * @param integer $pageLimit
+	 * @param array $results
+	 * @return PagerPage
+	 * @throws InvalidInputException
+	 */
 	protected function processPage( $direction, $offset, $pageLimit, $results ) {
 		$pagingLinks = array();
 
@@ -106,6 +142,12 @@ class Pager {
 		return new PagerPage( $results, $pagingLinks, $this );
 	}
 
+	/**
+	 * @param string $direction
+	 * @param object $object
+	 * @param integer $pageLimit
+	 * @return array
+	 */
 	protected function makePagingLink( $direction, $object, $pageLimit ) {
 		$offset = $this->storage->serializeOffset( $object, $this->sort );
 		return array(
@@ -115,6 +157,10 @@ class Pager {
 		);
 	}
 
+	/**
+	 * @param array $options
+	 * @return string
+	 */
 	protected function getDirection( $options ) {
 		$direction = 'fwd';
 		if ( isset( $options['pager-dir'] ) ) {
@@ -126,10 +172,17 @@ class Pager {
 		return $direction;
 	}
 
+	/**
+	 * @return integer
+	 */
 	protected function getMaxLimit() {
 		return 500;
 	}
 
+	/**
+	 * @param array $options
+	 * @return integer
+	 */
 	protected function getLimit( $options ) {
 		if ( isset( $options['pager-limit'] ) ) {
 			$requestedLimit = intval( $options['pager-limit'] );
@@ -142,6 +195,10 @@ class Pager {
 		return $this->getDefaultLimit();
 	}
 
+	/**
+	 * @param array $options
+	 * @return string
+	 */
 	protected function getOffset( $options ) {
 		if ( isset( $options['pager-offset'] ) ) {
 			return $options['pager-offset'];

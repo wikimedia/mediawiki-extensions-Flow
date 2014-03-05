@@ -45,10 +45,9 @@ class MultiGetList {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure querying memcache' );
 		} else {
 			foreach ( $multiRes as $key => $value ) {
-				if ( $cacheKeys[$key] instanceof UUID ) {
-					$idx = $cacheKeys[$key]->getAlphadecimal();
-				} else {
-					$idx = $cacheKeys[$key];
+				$idx = $cacheKeys[$key];
+				if ( $idx instanceof UUID ) {
+					$idx = $idx->getAlphadecimal();
 				}
 				$result[$idx] = $value;
 				unset( $cacheKeys[$key] );

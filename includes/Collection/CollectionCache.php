@@ -48,13 +48,20 @@ class CollectionCache {
 	public function onAfterLoad( $object, array $row ) {}
 
 	public function onAfterInsert( $object, array $new ) {
-		$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
-	}
-	public function onAfterUpdate( $object, array $old, array $new ) {
-		$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
-	}
-	public function onAfterRemove( $object, array $old ) {
-		$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
+		if ( $object instanceof AbstractRevision ) {
+			$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
+		}
 	}
 
+	public function onAfterUpdate( $object, array $old, array $new ) {
+		if ( $object instanceof AbstractRevision ) {
+			$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
+		}
+	}
+
+	public function onAfterRemove( $object, array $old ) {
+		if ( $object instanceof AbstractRevision ) {
+			$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
+		}
+	}
 }

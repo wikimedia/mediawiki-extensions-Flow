@@ -2,6 +2,7 @@
 
 namespace Flow;
 
+use Flow\Collection\CollectionCache;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
 use Closure;
@@ -65,7 +66,9 @@ class RevisionActionPermissions {
 				// against the most recent revision - the last revision is the
 				// current state of an object, so checking against a revision at one
 				// point in time alone isn't enough.
-				$last = Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
+				/** @var CollectionCache $cache */
+				$cache = Container::get( 'collection.cache' );
+				$last = $cache->getLastRevisionFor( $revision );
 				$isLastRevision = $last->getRevisionId()->equals( $revision->getRevisionId() );
 				$allowed = $isLastRevision || $this->isRevisionAllowed( $last, $action );
 			} catch ( InvalidDataException $e ) {

@@ -268,7 +268,7 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
-	 * @param array<PostRevision>
+	 * @param PostRevision[] $children
 	 */
 	public function setChildren( array $children ) {
 		$this->children = $children;
@@ -279,7 +279,7 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
-	 * @return array<PostRevision>
+	 * @return PostRevision[]
 	 * @throws DataModelException
 	 */
 	public function getChildren() {

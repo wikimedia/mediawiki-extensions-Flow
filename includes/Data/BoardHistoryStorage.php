@@ -5,6 +5,7 @@ namespace Flow\Data;
 use Flow\DbFactory;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
+use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Container;
 use Flow\Exception\DataModelException;
@@ -191,12 +192,15 @@ class BoardHistoryIndex extends TopKIndex {
 			return false;
 		}
 
-		$topicListEntry = Container::get( 'storage' )->find(
+		/** @var ManagerGroup $storage */
+		$storage = Container::get( 'storage' );
+		/** @var TopicListEntry[] $found */
+		$found = $storage->find(
 			'TopicListEntry',
 			array( 'topic_id' => $object->getPostId() )
 		);
 
-		if ( $topicListEntry ) {
+		if ( $found ) {
 			$topicListEntry = reset( $topicListEntry );
 			return $topicListEntry->getListId()->getBinary();
 		} else {

@@ -232,7 +232,14 @@ class Templating {
 		);
 	}
 
-	public function getPagingLink( $block, $direction, $offset, $limit ) {
+	/**
+	 * @param Block $block
+	 * @param string $direction
+	 * @param string $offset
+	 * @param integer $limit
+	 * @return string Html
+	 */
+	public function getPagingLink( Block $block, $direction, $offset, $limit ) {
 		$output = '';
 
 		// Use the message/class flow-paging-fwd or flow-paging-rev
@@ -456,7 +463,7 @@ class Templating {
 			// get revision type to make more precise message
 			$state = $revision->getModerationState();
 			$type = $revision->getRevisionType();
-			if ( $type == 'post' && $revision->isTopicTitle() ) {
+			if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
 				$type = 'title';
 			}
 
@@ -486,7 +493,7 @@ class Templating {
 
 		// get revision type to make more precise message
 		$type = $revision->getRevisionType();
-		if ( $type == 'post' && $revision->isTopicTitle() ) {
+		if ( $revision instanceof PostRevision && $revision->isTopicTitle() ) {
 			$type = 'title';
 		}
 
