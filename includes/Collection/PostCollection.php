@@ -9,10 +9,6 @@ class PostCollection extends LocalCacheAbstractCollection {
 		return 'Flow\\Model\\PostRevision';
 	}
 
-	public function getIdColumn() {
-		return 'tree_rev_descendant_id';
-	}
-
 	protected static function getIdFromRevision( AbstractRevision $revision ) {
 		return $revision->getPostId();
 	}
