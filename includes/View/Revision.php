@@ -2,6 +2,7 @@
 
 namespace Flow\View;
 
+use Flow\Block\AbstractBlock;
 use Flow\Block\HeaderBlock;
 use Flow\Block\TopicBlock;
 use Flow\Container;
@@ -15,24 +16,39 @@ use Flow\Templating;
 use User;
 
 /**
+ * Static methods can't be abstract, but an abstract class extending an interface
+ * can have unimplemented but required functions. As such this interface is basically
+ * a hack so that RevisionView can guarantee static::createRevision() is always a defined
+ * in child classes.
+ */
+interface RevisionCreatorHack {
+	/**
+	 * @param UUID|string $revId
+	 * @param ManagerGroup $storage
+	 * @return AbstractRevision|null
+	 */
+	static function createRevision( $revId, ManagerGroup $storage );
+}
+
+/**
  * Abstract revision view
  */
-abstract class RevisionView {
+abstract class RevisionView implements RevisionCreatorHack {
 
 	/**
-	 * @var \Flow\Templating
+	 * @var Templating
 	 */
 	protected $templating;
 
 	/**
 	 * The current session user viewing the revision
 	 *
-	 * @var \User
+	 * @var User
 	 */
 	protected $user;
 
 	/**
-	 * @param \Flow\Templating $templating
+	 * @param Templating $templating
 	 * @param User $user
 	 */
 	public function __construct( Templating $templating, User $user ) {
@@ -41,21 +57,8 @@ abstract class RevisionView {
 	}
 
 	/**
-	 * Create a revision model instance from a revision id
-	 * @param string|\Flow\Model\UUID $revId
-	 * @param \Flow\Data\ManagerGroup $storage
-	 * @return \Flow\Model\Header|\Flow\Model\PostRevision|null
-	 */
-	protected static function createRevision( $revId, ManagerGroup $storage ) {
-		if ( !$revId instanceof UUID ) {
-			$revId = UUID::create( $revId );
-		}
-
-		return $storage->get( static::$mapper, $revId );
-	}
-
-	/**
 	 * Render a single revision view
+	 *
 	 * @param boolean $return whether return as string or render inline
 	 * @return string
 	 */
@@ -63,7 +66,8 @@ abstract class RevisionView {
 
 	/**
 	 * Check if the current revision model is comparable to the provided revision
-	 * @param \Flow\Model\AbstractRevision $revision The revision to diff against
+	 *
+	 * @param AbstractRevision $revision The revision to diff against
 	 * @return boolean
 	 */
 	public function isComparableTo( $revision ) {
@@ -76,40 +80,46 @@ abstract class RevisionView {
 
 	/**
 	 * Get the page header of revision diff view
-	 * @param \Flow\Model\AbstractRevision $newRevision
-	 * @param \Flow\Model\AbstractRevision $oldRevision
+	 *
+	 * @param AbstractRevision $newRevision
+	 * @param AbstractRevision $oldRevision
 	 * @return string
 	 */
 	abstract public function getDiffViewHeader( $newRevision, $oldRevision );
 
 	/**
 	 * Get the revision diff type
+	 *
 	 * @return string
 	 */
 	abstract public function getDiffType();
 
 	/**
 	 * Get the page header of revision single view
+	 *
 	 * @return string
 	 */
 	abstract public function getSingleViewHeader();
 
 	/**
 	 * Getter method for revision model
-	 * @return \Flow\Model\AbstractRevision
+	 *
+	 * @return AbstractRevision
 	 */
 	abstract public function getRevision();
 
 	/**
 	 * Getter method for block object
-	 * @return \Flow\Model\AbstractBlock
+	 *
+	 * @return AbstractBlock
 	 *
 	 */
 	abstract public function getBlock();
 
 	/**
 	 * Generate revision diff view title for DifferenceEngine
-	 * @param \Flow\Model\AbstractRevision $revision
+	 *
+	 * @param AbstractRevision $revision
 	 * @return string
 	 */
 	protected function generateDiffViewTitle( AbstractRevision $revision ) {
@@ -138,9 +148,10 @@ abstract class RevisionView {
 
 	/**
 	 * Render diff view against a specific revision
-	 * @param \Flow\Model\AbstractRevision|string $revId The revision id to diff against
+	 *
+	 * @param AbstractRevision|string $revId The revision id to diff against
 	 * @param boolean $return whether return as string or render inline
-	 * @throws \Flow\Exception\InvalidInputException
+	 * @throws InvalidInputException
 	 * @return string
 	 */
 	public function renderDiffViewAgainst( $revId, $return = false ) {
@@ -150,10 +161,7 @@ abstract class RevisionView {
 
 		$block = $this->getBlock();
 
-		$revision = $block->getStorage()->get(
-			static::$mapper,
-			$revId
-		);
+		$revision = static::createRevision( $revId, $block->getStorage() );
 
 		if ( !$revision ) {
 			throw new InvalidInputException( 'Attempt to compare against null revision', 'revision-comparison' );
@@ -205,6 +213,7 @@ abstract class RevisionView {
 
 	/**
 	 * Render diff view against previous revision
+	 *
 	 * @param boolean $return whether return as string or render inline
 	 * @return string|false
 	 */
@@ -219,6 +228,7 @@ abstract class RevisionView {
 
 	/**
 	 * Get the diff link against previous revision
+	 *
 	 * @return string|boolean
 	 */
 	public function getDiffLinkAgainstPrevious() {
@@ -248,26 +258,21 @@ abstract class RevisionView {
 class HeaderRevisionView extends RevisionView {
 
 	/**
-	 * The data mapper name for header revision
-	 * @var string
-	 */
-	protected static $mapper = 'Header';
-
-	/**
-	 * @var \Flow\Model\Header
+	 * @var Header
 	 */
 	protected $revision;
 
 	/**
 	 * The block the revision view being rendered in
-	 * @var \Flow\Block\HeaderBlock
+	 *
+	 * @var HeaderBlock
 	 */
 	protected $block;
 
 	/**
-	 * @param \Flow\Model\Header
-	 * @param \Flow\Templating $templating
-	 * @param \Flow\Block\HeaderBlock $block
+	 * @param Header $revision
+	 * @param Templating $templating
+	 * @param HeaderBlock $block
 	 * @param User $user
 	 */
 	public function __construct( Header $revision, Templating $templating, HeaderBlock $block, User $user ) {
@@ -278,11 +283,12 @@ class HeaderRevisionView extends RevisionView {
 
 	/**
 	 * Create a revision view instance from a revision id
-	 * @param string|\Flow\Model\UUID $revId
-	 * @param \Flow\Templating $templating
-	 * @param \Flow\Block\HeaderBlock $block
+	 *
+	 * @param string|UUID $revId
+	 * @param Templating $templating
+	 * @param HeaderBlock $block
 	 * @param User $user
-	 * @return \Flow\View\HeaderRevisionView|false
+	 * @return HeaderRevisionView|false
 	 */
 	public static function newFromId( $revId, Templating $templating, HeaderBlock $block, User $user ) {
 		$revision = self::createRevision( $revId, $block->getStorage() );
@@ -292,6 +298,17 @@ class HeaderRevisionView extends RevisionView {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function createRevision( $revId, ManagerGroup $storage ) {
+		if ( !$revId instanceof UUID ) {
+			$revId = UUID::create( $revId );
+		}
+
+		return $storage->get( 'Header', $revId );
 	}
 
 	/**
@@ -404,26 +421,21 @@ class HeaderRevisionView extends RevisionView {
 class PostRevisionView extends RevisionView {
 
 	/**
-	 * The data mapper name for post revision
-	 * @var string
-	 */
-	protected static $mapper = 'PostRevision';
-
-	/**
-	 * @var \Flow\Model\PostRevision
+	 * @var PostRevision
 	 */
 	protected $revision;
 
 	/**
 	 * The block the revision view being rendered in
-	 * @var \Flow\Block\TopicBlock
+	 *
+	 * @var TopicBlock
 	 */
 	protected $block;
 
 	/**
-	 * @param \Flow\Model\PostRevision
-	 * @param \Flow\Templating $templating
-	 * @param \Flow\Block\TopicBlock $block
+	 * @param PostRevision $revision
+	 * @param Templating $templating
+	 * @param TopicBlock $block
 	 * @param User $user
 	 */
 	public function __construct( PostRevision $revision, Templating $templating, TopicBlock $block, User $user ) {
@@ -434,11 +446,12 @@ class PostRevisionView extends RevisionView {
 
 	/**
 	 * Create a revision view instance from a revision id
-	 * @param string|\Flow\Model\UUID $revId
-	 * @param \Flow\Templating $templating
-	 * @param \Flow\Block\TopicBlock $block
+	 *
+	 * @param string|UUID $revId
+	 * @param Templating $templating
+	 * @param TopicBlock $block
 	 * @param User $user
-	 * @return \Flow\View\PostRevisionView|false
+	 * @return PostRevisionView|false
 	 */
 	public static function newFromId( $revId, Templating $templating, TopicBlock $block, User $user ) {
 		$revision = self::createRevision( $revId, $block->getStorage() );
@@ -451,6 +464,19 @@ class PostRevisionView extends RevisionView {
 			return false;
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public static function createRevision( $revId, ManagerGroup $storage ) {
+		if ( !$revId instanceof UUID ) {
+			$revId = UUID::create( $revId );
+		}
+
+		return $storage->get( 'PostRevision', $revId );
+	}
+
+	/**
 
 	/**
 	 * {@inheritDoc}
