@@ -33,6 +33,24 @@
       "revId": "210ed48b8c9ff379c4e38e26456e2d03933626cc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_86e38e31",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T17:52:51Z",
+      "side": 1,
+      "message": "Indexes don\u0027t have to match fully; they\u0027re read left-to-right.\n\nSince left starts with rev_user_id \u0026 whatever comes next makes no difference, adding rev_user_ip won\u0027t change how the index is being used to find the results.\n\nUnless I\u0027m missing something else?",
+      "parentUuid": "4e04eb01_92574ccd",
+      "revId": "210ed48b8c9ff379c4e38e26456e2d03933626cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
