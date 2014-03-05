@@ -99,7 +99,7 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 			return reset( $this->revisions );
 		}
 
-		$attributes = array( $this->getIdColumn() => $this->uuid );
+		$attributes = array( 'rev_type' => $this->getRevisionType(), 'rev_type_id' => $this->uuid );
 		$options = array( 'sort' => 'rev_id', 'limit' => 1, 'order' => 'DESC' );
 
 		if ( $this->getStorage()->found( $attributes, $options ) ) {

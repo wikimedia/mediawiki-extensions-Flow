@@ -84,6 +84,10 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowUpdateRevisionTypeId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRevisionTypeId' );
 
+		// The maintenance script above involves flow_header_revision schema change
+		// put it here so update.php will run smoothly
+		$updater->dropTable( 'flow_header_revision' );
+
 		return true;
 	}
 
