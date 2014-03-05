@@ -28,37 +28,42 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 		$count = $this->mBatchSize;
 		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
 
-		while ( $count == $this->mBatchSize ) {
-			$count = 0;
-			$res = $dbr->select(
-				array( 'flow_revision', 'flow_tree_revision', 'flow_header_revision' ),
-				array( 'rev_id', 'rev_type', 'tree_rev_descendant_id', 'header_workflow_id' ),
-				array( 'rev_id > ' . $dbr->addQuotes( $revId ) ),
-				__METHOD__,
-				array( 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $this->mBatchSize ),
-				array(
-					'flow_tree_revision' => array( 'LEFT JOIN', 'rev_id=tree_rev_id' ),
-					'flow_header_revision' => array( 'LEFT JOIN', 'rev_id=header_rev_id' )
-				)
-			);
-
-			if ( $res ) {
-				foreach ( $res as $row ) {
-					$count++;
-					$revId = $row->rev_id;
-					switch ( $row->rev_type ) {
-						case 'header':
-							$this->updateRevision( $row->rev_id, $row->header_workflow_id );
-						break;
-						case 'post':
-							$this->updateRevision( $row->rev_id, $row->tree_rev_descendant_id );
-						break;
+		// If table flow_header_revision does not exist, that means the wiki
+		// has run the data migration before or the wiki starts from scratch,
+		// there is no point to run the script againt invalid tables
+		if ( $dbr->tableExists( 'flow_header_revision', __METHOD__ ) ) {
+			while ( $count == $this->mBatchSize ) {
+				$count = 0;
+				$res = $dbr->select(
+					array( 'flow_revision', 'flow_tree_revision', 'flow_header_revision' ),
+					array( 'rev_id', 'rev_type', 'tree_rev_descendant_id', 'header_workflow_id' ),
+					array( 'rev_id > ' . $dbr->addQuotes( $revId ) ),
+					__METHOD__,
+					array( 'ORDER BY' => 'rev_id ASC', 'LIMIT' => $this->mBatchSize ),
+					array(
+						'flow_tree_revision' => array( 'LEFT JOIN', 'rev_id=tree_rev_id' ),
+						'flow_header_revision' => array( 'LEFT JOIN', 'rev_id=header_rev_id' )
+					)
+				);
+	
+				if ( $res ) {
+					foreach ( $res as $row ) {
+						$count++;
+						$revId = $row->rev_id;
+						switch ( $row->rev_type ) {
+							case 'header':
+								$this->updateRevision( $row->rev_id, $row->header_workflow_id );
+							break;
+							case 'post':
+								$this->updateRevision( $row->rev_id, $row->tree_rev_descendant_id );
+							break;
+						}
 					}
+				} else {
+					throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
 				}
-			} else {
-				throw new MWException( 'SQL error in maintenance script ' . __CLASS__ . '::' . __METHOD__ );
+				wfWaitForSlaves( false, false, $wgFlowCluster );
 			}
-			wfWaitForSlaves( false, false, $wgFlowCluster );
 		}
 
 		return true;
