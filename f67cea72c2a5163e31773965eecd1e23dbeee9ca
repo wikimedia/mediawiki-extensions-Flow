@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_26f39a6a",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-05T18:56:13Z",
+      "side": 1,
+      "message": "The idea was that we want Flow to have some control over the css of the links, so I supplied these css classes (hook\u0027s caller can add additional css as they please, without knowing what\u0027s required by flow), and possibly some flow-specific classes that can be added in the future (?)\n\nRe: flow-specific Agora overrides: \nI still haven\u0027t fully understood what\u0027s going to happen with those, so ... I\u0027ve come up with this version. I\u0027m not sure what is the right thing to do right now. Should I just add these mw-ui* classes in the caller, and remove this part of the hook parameter?",
+      "parentUuid": "4e04eb01_1b80f78c",
+      "revId": "f67cea72c2a5163e31773965eecd1e23dbeee9ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_1bf3576a",
         "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_268a7ac0",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-05T18:56:13Z",
+      "side": 1,
+      "message": "the disabled element was using the same color as the active one. The color was picked based on the screenshot from the trello card https://trello.com/c/BJgrJCyX/59-thank-user \nbut I didn\u0027t have a specific color so I picked this one arbitrarily. Is there some color I should use instead?",
+      "parentUuid": "4e04eb01_1bf3576a",
+      "revId": "f67cea72c2a5163e31773965eecd1e23dbeee9ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_3b8df3d8",
         "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2014-03-05T17:34:05Z",
       "side": 1,
       "message": "Move this to modules/mediawiki.ui/styles/mixins/buttons.less, to the \t\u0026:disabled, \u0026.mw-ui-disabled definition there",
+      "revId": "f67cea72c2a5163e31773965eecd1e23dbeee9ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_e655b227",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-05T18:56:13Z",
+      "side": 1,
+      "message": "Understood! Thanks!",
+      "parentUuid": "4e04eb01_3b8df3d8",
       "revId": "f67cea72c2a5163e31773965eecd1e23dbeee9ca",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
