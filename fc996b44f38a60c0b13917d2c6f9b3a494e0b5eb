@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_a019d28a",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T15:43:50Z",
+      "side": 1,
+      "message": "Nitpick:\n\nWhy split up into $idx \u003d\u003e $pk if $idx isn\u0027t used?\n\nI\u0027m also no fan of $pk as a name: does it hold the primary key column name, of the value for the primary key? I preferred $id better (although the primary key value may not be an *id* per se)",
+      "revId": "fc996b44f38a60c0b13917d2c6f9b3a494e0b5eb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_1b42373f",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T15:43:50Z",
+      "side": 1,
+      "message": "$idx not used here either",
+      "revId": "fc996b44f38a60c0b13917d2c6f9b3a494e0b5eb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
