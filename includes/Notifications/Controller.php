@@ -475,7 +475,7 @@ class NotificationController {
 			$post = $storage->find(
 				'PostRevision',
 				array(
-					'tree_rev_descendant_id' => UUID::create( $postId )
+					'rev_type_id' => UUID::create( $postId )
 				),
 				array(
 					'sort' => 'rev_id',

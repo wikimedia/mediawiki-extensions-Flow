@@ -186,7 +186,7 @@ class ContributionsQuery extends AbstractQuery {
 
 			case 'Header':
 				return $dbr->select(
-					array( 'flow_revision', 'flow_header_revision', 'flow_workflow' ),
+					array( 'flow_revision', 'flow_workflow' ),
 					array( '*' ),
 					$conditions,
 					__METHOD__,
@@ -195,13 +195,9 @@ class ContributionsQuery extends AbstractQuery {
 						'ORDER BY' => 'rev_id DESC',
 					),
 					array(
-						'flow_header_revision' => array(
-							'INNER JOIN',
-							array( 'header_rev_id = rev_id' )
-						),
 						'flow_workflow' => array(
 							'INNER JOIN',
-							array( 'workflow_id = header_workflow_id' )
+							array( 'workflow_id = rev_type_id' , 'rev_type' => 'header' )
 						),
 					)
 				);
