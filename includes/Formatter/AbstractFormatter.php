@@ -503,11 +503,11 @@ abstract class AbstractFormatter {
 				$content = $this->templating->getContent( $revision->getRootPost(), 'wikitext' );
 			} catch ( DataModelException $e ) {
 				$found = Container::get( 'storage.post' )->find(
-					array( 'tree_rev_descendant_id' => $workflowId ),
+					array( 'rev_type_id' => $workflowId ),
 					array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 				);
 				if ( !$found ) {
-					wfWarn( __METHOD__ . ': No tree_rev_descendant_id matching ' . $workflowId->getAlphadecimal() );
+					wfWarn( __METHOD__ . ': No id for rev_type: post matching ' . $workflowId->getAlphadecimal() );
 					return '';
 				}
 				$content = $this->templating->getContent( reset( $found ), 'wikitext' );

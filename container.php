@@ -261,7 +261,7 @@ $c['storage.header'] = $c->share( function( $c ) {
 		$pk,
 		new TopKIndex(
 			$cache, $storage,
-			'flow_header:workflow', array( 'header_workflow_id' ),
+			'flow_header:workflow', array( 'rev_type_id' ),
 			array( 'limit' => 100 ) + $workflowIndexOptions
 		),
 	);
@@ -328,7 +328,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 		$pk,
 		// revision history
 		new TopKIndex( $cache, $storage, 'flow_revision:descendant',
-			array( 'tree_rev_descendant_id' ),
+			array( 'rev_type_id' ),
 			array(
 				'limit' => 100,
 				'sort' => 'rev_id',
