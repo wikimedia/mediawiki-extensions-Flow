@@ -9,10 +9,6 @@ class HeaderCollection extends LocalCacheAbstractCollection {
 		return 'Flow\\Model\\Header';
 	}
 
-	public function getIdColumn() {
-		return 'header_workflow_id';
-	}
-
 	protected static function getIdFromRevision( AbstractRevision $revision ) {
 		return $revision->getWorkflowId();
 	}
