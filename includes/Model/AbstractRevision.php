@@ -2,12 +2,13 @@
 
 namespace Flow\Model;
 
+use Flow\Collection\AbstractCollection;
 use Flow\Container;
-use Flow\RevisionActionPermissions;
-use User;
-use Flow\ParsoidUtils;
 use Flow\Exception\DataModelException;
 use Flow\Exception\PermissionException;
+use Flow\ParsoidUtils;
+use Flow\RevisionActionPermissions;
+use User;
 
 abstract class AbstractRevision {
 	const MODERATED_NONE = '';

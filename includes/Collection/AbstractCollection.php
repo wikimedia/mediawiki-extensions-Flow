@@ -1,9 +1,12 @@
 <?php
 
-namespace Flow\Model;
+namespace Flow\Collection;
 
 use Flow\Container;
+use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidDataException;
+use Flow\Model\AbstractRevision;
+use Flow\Model\UUID;
 
 abstract class AbstractCollection {
 	/**
@@ -85,7 +88,7 @@ abstract class AbstractCollection {
 	}
 
 	/**
-	 * @return \Flow\Data\ObjectManager
+	 * @return ObjectManager
 	 */
 	public function getStorage() {
 		if ( !$this->storage ) {
