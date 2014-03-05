@@ -2,6 +2,91 @@
   "comments": [
     {
       "key": {
+        "uuid": "4e04eb01_a7bc53d6",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-05T02:11:14Z",
+      "side": 1,
+      "message": "I think this is invalid doxygen format. Don\u0027t use passive voice, mention that this isn\u0027t a message key, and say where it shows up (I think it\u0027s in the log message).",
+      "revId": "cf75b5379bc900a55d191eb13e50c9157fe764c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_47cd8f87",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-05T02:11:14Z",
+      "side": 1,
+      "message": "I would name this $flowErrorKey or something. It\u0027s not the int $code that a PHP exception takes, so naming it code is quite confusing.  Say \"The flow error key\", which prepended with \u0027flow-error-\u0027 is the message key.",
+      "revId": "cf75b5379bc900a55d191eb13e50c9157fe764c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_471a2f74",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-05T02:11:14Z",
+      "side": 1,
+      "message": "I think it would be better to inherit from ErrorPageError, whose constructor takes a title, msg, and params.  This doesn\u0027t handle showing the $message for additional debugging, but it could be the in the $params for the constructor, which would then get localized.",
+      "revId": "cf75b5379bc900a55d191eb13e50c9157fe764c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_c71d1f68",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-05T02:11:14Z",
+      "side": 1,
+      "message": "If the parent were ErrorPageError, then you could just\n\n    parent::__construct(  \u0027errorpagetitle\u0027, \u0027flow-error\u0027, array( $message ) );\n\nand declare victory?  Or even make Flow exceptions pass the full \u0027flow-error-edit-restricted\u0027 message key; I find it confusing that the message key gets magically expanded.",
+      "revId": "cf75b5379bc900a55d191eb13e50c9157fe764c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_e705bbc5",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-05T02:11:14Z",
+      "side": 1,
+      "message": "But is this ever going to happen?  If a Flow exception isn\u0027t in the list, let\u0027s just print \u003cflow-error-oops-my-typo\u003e and it\u0027ll remind us to fix it.",
+      "revId": "cf75b5379bc900a55d191eb13e50c9157fe764c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_74d397d7",
         "filename": "includes/Exception/ExceptionHandling.php",
         "patchSetId": 1
@@ -13,6 +98,40 @@
       "writtenOn": "2014-03-03T21:50:48Z",
       "side": 1,
       "message": "This part is confusing, can\u0027t we get ErrorPageError to do the work for us \"for free\"? :)",
+      "revId": "cf75b5379bc900a55d191eb13e50c9157fe764c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_27e7233d",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-05T02:11:14Z",
+      "side": 1,
+      "message": "All this has to do is extend ErrorPageError in core and\n\n    function __construct( $title, $msg, $params \u003d array() ) {\n        parent::__construct( \u0027nosuchaction\u0027, \u0027flow-error-invalid-action\u0027 );\n    }\n\nMaybe all Flow errors could be handled the same way.",
+      "revId": "cf75b5379bc900a55d191eb13e50c9157fe764c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_87e2772c",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-05T02:11:14Z",
+      "side": 1,
+      "message": "Should extend PermissionsError in core so users get a \"Permission error\" Page with the needed right and how to fix it instead of getting a generic Error.  Although, for the action flow-edit-post, because users are allowed by default to edit their own posts, reporting \"The action you have requested is limited to users in the group: Administrator\" is misleading.",
       "revId": "cf75b5379bc900a55d191eb13e50c9157fe764c5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
