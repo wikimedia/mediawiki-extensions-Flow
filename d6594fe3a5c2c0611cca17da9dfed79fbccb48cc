@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_003886ea",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T14:55:05Z",
+      "side": 1,
+      "message": "I would have to check all usages af fromStorageRow, but this could potentially be dangerous.\n\n2 objects may be entirely the same, but just be 2 separately instantiated objects. In that case, they won\u0027t be \u003d\u003d\u003d, but probably *are* ok to go ahead (and not throw an exception)?",
+      "revId": "d6594fe3a5c2c0611cca17da9dfed79fbccb48cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_c03dfedb",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-05T14:55:05Z",
+      "side": 1,
+      "message": "I probably overlooked it, but I can\u0027t see this method being called anywhere?",
+      "revId": "d6594fe3a5c2c0611cca17da9dfed79fbccb48cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
