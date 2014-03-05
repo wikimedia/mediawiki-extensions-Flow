@@ -37,15 +37,11 @@ abstract class AbstractCollection {
 	abstract public function getRevisionClass();
 
 	/**
-	 * Returns the DB column that holds the revision hierarchy, where all
-	 * revisions are mapped to a shared object id.
-	 * E.g. a post can have multiple revisions, all of which have their own id;
-	 * but they're identifiable as revisions of the same post because they share
-	 * a common postId (in tree_rev_descendant_id)
+	 * Returns the revision type
 	 *
 	 * @return string
 	 */
-	abstract public function getIdColumn();
+	abstract public function getRevisionType();
 
 	/**
 	 * Use the static methods to load an object from a given revision.
@@ -107,7 +103,7 @@ abstract class AbstractCollection {
 	public function getAllRevisions() {
 		if ( !$this->revisions ) {
 			$revisions = $this->getStorage()->find(
-				array( $this->getIdColumn() => $this->uuid ),
+				array( 'rev_type' => $this->getRevisionType(), 'rev_type_id' => $this->uuid ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC' )
 			);
 

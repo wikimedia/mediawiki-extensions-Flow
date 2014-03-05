@@ -75,7 +75,7 @@ CREATE UNIQUE INDEX /*i*/flow_tree_descendant_id_revisions
 
 -- Header Content
 -- Instead of header, should this be more generic 'revisioned scratchpad'
--- or something?  Main limit in current setup can only associate one header per
+-- or something? Main limit in current setup can only associate one header per
 -- workflow
 CREATE TABLE /*_*/flow_header_revision (
 	header_workflow_id binary(11) not null,

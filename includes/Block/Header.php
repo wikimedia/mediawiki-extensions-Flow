@@ -36,7 +36,7 @@ class HeaderBlock extends AbstractBlock {
 		// Get the latest revision attached to this workflow
 		$found = $this->storage->find(
 			'Header',
-			array( 'header_workflow_id' => $this->workflow->getId() ),
+			array( 'rev_type' => 'header', 'rev_type_id' => $this->workflow->getId() ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);
 
