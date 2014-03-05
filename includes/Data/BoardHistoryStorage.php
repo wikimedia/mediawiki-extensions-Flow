@@ -40,9 +40,9 @@ class BoardHistoryStorage extends DbStorage {
 		$queries = $this->preprocessSqlArray( reset( $queries ) );
 
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
-			array( 'flow_header_revision', 'flow_revision' ),
+			array( 'flow_revision' ),
 			array( '*' ),
-			array( 'header_rev_id = rev_id' ) + UUID::convertUUIDs( array( 'header_workflow_id' => $queries['topic_list_id'] ) ),
+			array( 'rev_type' => 'header' ) + UUID::convertUUIDs( array( 'rev_type_id' => $queries['topic_list_id'] ) ),
 			__METHOD__,
 			$options
 		);
@@ -134,7 +134,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 */
 	public function onAfterInsert( $object, array $new ) {
 		if ( $object->getRevisionType() === 'header' ) {
-			$new['topic_list_id'] = $new['header_workflow_id'];
+			$new['topic_list_id'] = $new['rev_type_id'];
 			parent::onAfterInsert( $object, $new );
 		} elseif ( $object->getRevisionType() === 'post' ) {
 			$topicListId = $this->findTopicListIdForRootPost( $object );
@@ -152,7 +152,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 */
 	public function onAfterUpdate( $object, array $old, array $new ) {
 		if ( $object->getRevisionType() === 'header' ) {
-			$new['topic_list_id'] = $old['topic_list_id'] = $new['header_workflow_id'];
+			$new['topic_list_id'] = $old['topic_list_id'] = $new['rev_type_id'];
 			parent::onAfterUpdate( $object, $old, $new );
 		} elseif ( $object->getRevisionType() === 'post' ) {
 			$topicListId = $this->findTopicListIdForRootPost( $object );
@@ -169,7 +169,7 @@ class BoardHistoryIndex extends TopKIndex {
 	 */
 	public function onAfterRemove( $object, array $old ) {
 		if ( $object->getRevisionType() === 'header' ) {
-			$old['topic_list_id'] = $old['header_workflow_id'];
+			$old['topic_list_id'] = $old['rev_type_id'];
 			parent::onAfterRemove( $object, $old );
 		} elseif ( $object->getRevisionType() === 'post' ) {
 			$topicListId = $this->findTopicListIdForRootPost( $object );
