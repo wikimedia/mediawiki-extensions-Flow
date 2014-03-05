@@ -140,6 +140,7 @@ class HistoryTest extends PostRevisionTestCase {
 			'rev_id' => $revId->getBinary(),
 			'tree_rev_id' =>  $revId->getBinary(),
 			'tree_rev_descendant_id' => $postId->getBinary(),
+			'rev_type_id' => $postId->getBinary(),
 		), array(), 1 );
 
 	}
