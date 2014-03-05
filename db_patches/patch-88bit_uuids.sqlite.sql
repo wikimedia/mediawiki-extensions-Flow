@@ -14,10 +14,6 @@ UPDATE /*_*/flow_tree_revision
 			tree_rev_id = substr( tree_rev_id, 1, 11 ),
 			tree_parent_id = substr( tree_parent_id, 1, 11 );
 
-UPDATE /*_*/flow_header_revision
-	SET header_workflow_id = substr( header_workflow_id, 1, 11 ),
-			header_rev_id = substr( header_rev_id, 1, 11 );
-
 UPDATE /*_*/flow_revision
 	SET rev_id = substr( rev_id, 1, 11 ),
 			rev_parent_id = substr( rev_parent_id, 1, 11 ),
