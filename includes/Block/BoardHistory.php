@@ -52,7 +52,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		if ( $history ) {
 			$tplVars['historyExists'] = true;
 			$tplVars['history'] = new History( $history );
-			$tplVars['historyRenderer'] = new HistoryRenderer( $templating, $this );
+			$tplVars['historyRenderer'] = new HistoryRenderer( $this->permissions, $templating, $this );
 		}
 
 		$templating->render( "flow:board-history.html.php", $tplVars );
