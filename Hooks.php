@@ -459,4 +459,27 @@ class FlowHooks {
 		$vars['wgFlowTermsOfUseEdit'] = Flow\TermsOfUse::getEditTerms();
 		return true;
 	}
+
+	/**
+	 *
+	 * @param RecentChange $rc
+	 * @param array &$rcRow
+	 * @return bool
+	 */
+	public static function onCheckUserInsertForRecentChange( RecentChange $rc, array &$rcRow ) {
+		if ( $rc->getAttribute( 'rc_source' ) !== Flow\Data\RecentChanges::SRC_FLOW ) {
+			return true;
+		}
+
+		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
+		$change = $params['flow-workflow-change'];
+		$comment = $change['action'] . ',' .  $change['workflow'];
+		if ( isset( $change['post'] ) ) {
+			$comment .= ',' . $change['post'];
+		}
+
+		$rcRow['cuc_comment'] = $comment;
+
+		return true;
+	}
 }

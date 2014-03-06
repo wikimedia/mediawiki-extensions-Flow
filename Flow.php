@@ -201,6 +201,7 @@ $wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
 $wgHooks['InfoAction'][] = 'FlowHooks::onInfoAction';
 $wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGetLinksFromRow';
 $wgHooks['MakeGlobalVariablesScript'][] = 'FlowHooks::onMakeGlobalVariablesScript';
+$wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
