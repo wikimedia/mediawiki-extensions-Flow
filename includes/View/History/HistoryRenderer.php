@@ -6,7 +6,7 @@ use Flow\Block\Block;
 use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
-use Flow\Formatter\AbstractFormatter;
+use Flow\Formatter\RevisionFormatter;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
@@ -16,7 +16,7 @@ use MWTimestamp;
 /**
  * HistoryRenderer will use Templating to render a given list of History.
  */
-class HistoryRenderer extends AbstractFormatter {
+class HistoryRenderer extends RevisionFormatter {
 	/**
 	 * @var Templating
 	 */
@@ -248,13 +248,14 @@ class HistoryRenderer extends AbstractFormatter {
 
 		// build i18n message
 		list( $msg, $params ) = $record->getMessageParams();
+		$ctx = \RequestContext::getMain();
 		foreach ( $params as &$param ) {
 			$param = $this->processParam(
 				// Arguments for the i18n messages' parameter callbacks.
 				$param,
 				$record->getData(),
 				$this->block->getWorkflowId(),
-				$this->block->getName()
+				$ctx
 			);
 		}
 
