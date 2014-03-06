@@ -5741,7 +5741,7 @@ $messages['vi'] = array(
 	'flow-edit-post-submit' => 'Gửi thay đổi',
 	'flow-edit-post-submit-overwrite' => 'Ghi đè thay đổi',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2}}đã sửa đổi một [$3 bình luận] về $4.',
-	'flow-rev-message-reply' => '$1 {{GENDER:$2}}đã [$3 bình luận] về $4.', # Fuzzy
+	'flow-rev-message-reply' => '$1 {{GENDER:$2}}đã [$3 bình luận] về $4 (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => '<strong>$1 bình luận</strong> được thêm vào.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2}}đã tạo chủ đề [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2}}đã đổi tiêu đề của chủ đề từ $5 thành [$3 $4].',
@@ -5839,9 +5839,15 @@ Phiên bản này được lưu vào $1.
 Bạn có thể xem [$5 khác biệt với bản trước], hoặc xem các phiên bản khác tại [$4 trang lịch sử bài đăng].',
 	'flow-revision-permalink-warning-post-first' => 'Đây là liên kết thường trực đến phiên bản đầu tiên của bài đăng này.
 Bạn có thể xem các phiên bản sau tại [$4 trang lịch sử bài đăng].',
+	'flow-revision-permalink-warning-header' => 'Đây là liên kết thường trực đến một phiên bản riêng của đầu đề này.
+Phiên bản này được lưu vào $1. Bạn có thể xem [$3 khác biệt với bản trước], hoặc xem các phiên bản khác tại [$2 trang lịch sử bảng tin].',
+	'flow-revision-permalink-warning-header-first' => 'Đây là liên kết thường trực đến phiên bản đầu tiên của đầu đề này.
+Bạn có thể xem các phiên bản sau tại [$2 trang lịch sử bảng tin].',
 	'flow-compare-revisions-revision-header' => 'Phiên bản của $2 vào $1',
 	'flow-compare-revisions-header-post' => 'Trang này có các khác biệt giữa hai phiên bản của một bài đăng của $3 trong chủ đề “[$5 $2]” tại [$4 $1].
 Bạn có thể xem các phiên bản khác của bài đăng này tại [$6 trang lịch sử] của nó.',
+	'flow-compare-revisions-header-header' => '{{GENDER:$2}}Trang này có các khác biệt giữa hai phiên bản của một đầu đề trên [$3 $1].
+Bạn có thể xem các phiên bản khác của đầu đề này tại [$4 trang lịch sử] của nó.',
 	'flow-topic-collapsed-one-line' => 'Xem danh sách nhỏ',
 	'flow-topic-collapsed-full' => 'Xem thu gọn',
 	'flow-topic-complete' => 'Xem đầy đủ',
@@ -6020,7 +6026,7 @@ $messages['zh-hans'] = array(
 	'flow-edit-post-submit' => '提交更改',
 	'flow-edit-post-submit-overwrite' => '覆写更改',
 	'flow-rev-message-edit-post' => '$1在$4{{GENDER:$2|编辑了}}一个[$3 评论]。',
-	'flow-rev-message-reply' => '$1在$4{{GENDER:$2|添加了}}一个[$3 评论]。', # Fuzzy
+	'flow-rev-message-reply' => '$1在$4[$3 {{GENDER:$2|发表了评论}}]（<em>$5</em>）。',
 	'flow-rev-message-reply-bundle' => '添加了<strong>$1 条评论</strong>。',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|创建了}}主题 [$3  $4]。',
 	'flow-rev-message-edit-title' => '$1将主题名字从$5{{GENDER:$2|改为}}[$3 $4]。',
@@ -6032,8 +6038,8 @@ $messages['zh-hans'] = array(
 	'flow-rev-message-restored-post' => '$1在$6{{GENDER:$2|恢复}}了一个[$4 评论]（<em>$5</em>）。',
 	'flow-rev-message-hid-topic' => '$1在$6{{GENDER:$2|隐藏}}了一个[$4 主题]（<em>$5</em>）。',
 	'flow-rev-message-deleted-topic' => '$1在$6{{GENDER:$2|删除}}了一个[$4 主题]（<em>$5</em>）。',
-	'flow-rev-message-suppressed-topic' => '$1{{GENDER:$2|抑制}}了一个[$4 主题]（<em>$5</em>）。', # Fuzzy
-	'flow-rev-message-restored-topic' => '$1{{GENDER:$2|恢复}}了一个[$4 主题]（<em>$5</em>）。', # Fuzzy
+	'flow-rev-message-suppressed-topic' => '$1{{GENDER:$2|抑制}}了[$4 主题]$6（<em>$5</em>）。',
+	'flow-rev-message-restored-topic' => '$1{{GENDER:$2|恢复}}了[$4 主题]$6（<em>$5</em>）。',
 	'flow-board-history' => '“$1”的历史',
 	'flow-topic-history' => '“$1”主题的历史',
 	'flow-post-history' => '“评论由{{GENDER:$2|$2}}做出”帖子历史',
