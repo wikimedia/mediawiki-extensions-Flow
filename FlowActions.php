@@ -20,6 +20,8 @@ use Flow\Container;
  *   state and value is the action required to execute the action.
  * * button-method: used in PostActionMenu, to generate GET (a) or POST (form)
  *   links for the action.
+ * * propeties: set of properties to generate and return in api responses
+ * * links: the set of links to generate and return in api responses
  * * history: all history-related information:
  *   * i18n-message: the i18n message key for this change type
  *   * i18n-params: array of i18n parameters for the provided message (see
@@ -37,6 +39,7 @@ $wgFlowActions = array(
 			Header::MODERATED_NONE => '',
 		),
 		'button-method' => 'POST',
+		'links' => array( 'board-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-header',
 			'i18n-params' => array(
@@ -54,6 +57,7 @@ $wgFlowActions = array(
 			Header::MODERATED_NONE => '',
 		),
 		'button-method' => 'POST',
+		'links' => array( 'board-history', 'diff-header' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-header',
 			'i18n-params' => array(
@@ -71,12 +75,13 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 		),
 		'button-method' => 'GET',
+		'links' => array( 'topic', 'topic-history', 'diff-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-title',
 			'i18n-params' => array(
 				'user-links',
 				'user-text',
-				'post-url',
+				'workflow-url',
 				'wikitext',
 				'prev-wikitext',
 			),
@@ -93,6 +98,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 		),
 		'button-method' => 'POST',
+		'links' => array( 'topic-history', 'topic', 'post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-new-post',
 			'i18n-params' => array(
@@ -115,6 +121,7 @@ $wgFlowActions = array(
 				}
 		),
 		'button-method' => 'GET',
+		'links' => array( 'post-history', 'topic', 'post', 'diff-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-post',
 			'i18n-params' => array(
@@ -137,6 +144,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
+		'links' => array( 'topic', 'post-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-post',
 			'i18n-params' => array(
@@ -158,6 +166,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
+		'links' => array( 'topic', 'post', 'post-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-topic',
 			'i18n-params' => array(
@@ -180,6 +189,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
+		'links' => array( 'topic', 'post-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-post',
 			'i18n-params' => array(
@@ -202,6 +212,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
+		'links' => array( 'topic', 'topic-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-topic',
 			'i18n-params' => array(
@@ -225,6 +236,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
+		'links' => array( 'topic', 'topic-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-suppressed-post',
 			'i18n-params' => array(
@@ -248,6 +260,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
+		'links' => array( 'topic', 'topic-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-suppressed-topic',
 			'i18n-params' => array(
@@ -283,6 +296,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
+		'links' => array( 'topic', 'post-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-restored-post',
 			'i18n-params' => array(
@@ -318,6 +332,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
+		'links' => array( 'topic', 'topic-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-restored-topic',
 			'i18n-params' => array(
@@ -345,6 +360,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'GET',
+		'links' => array(), // @todo
 		'history' => array() // views don't generate history
 	),
 
@@ -355,12 +371,13 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 		),
 		'button-method' => 'GET',
+		'links' => array( 'topic-history', 'topic', 'post', 'diff-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-reply',
 			'i18n-params' => array(
 				'user-links',
 				'user-text',
-				'workflow-url',
+				'post-url',
 				'topic-of-post',
 				'summary',
 			),

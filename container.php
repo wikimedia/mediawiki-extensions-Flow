@@ -77,6 +77,10 @@ $c['redlinker'] = $c->share( function( $c ) {
 	return new Flow\Redlinker( $wgFlowParsoidTitle ?: $wgTitle, $c['link_batch'] );
 } );
 
+$c['permissions'] = $c->share( function( $c ) {
+	return new Flow\RevisionActionPermissions( $c['flow_actions'], $c['user'] );
+} );
+
 $c['templating.namespaces'] = array(
 	'flow' => __DIR__ . '/templates',
 );
@@ -89,7 +93,7 @@ $c['templating.global_variables'] = $c->share( function( $c ) {
 		'user' => $user,
 		'editToken' => $user->getEditToken( $wgFlowTokenSalt ),
 		'maxThreadingDepth' => $wgFlowMaxThreadingDepth,
-		'permissions' => new Flow\RevisionActionPermissions( $c['flow_actions'], $user ),
+		'permissions' => $c['permissions'],
 	);
 } );
 
@@ -456,37 +460,40 @@ $c['controller.spamfilter'] = $c->share( function( $c ) {
 	);
 } );
 
-$c['checkuser.formatter'] = $c->share( function( $c ) {
+$c['formatter.checkuser'] = $c->share( function( $c ) {
 	return new Flow\Formatter\CheckUser(
-		$c['storage'],
-		$c['flow_actions'],
+		$c['permissions'],
 		$c['templating']
 	);
 } );
 
-$c['recentchanges.formatter'] = $c->share( function( $c ) {
+$c['query.recentchanges'] = $c->share( function( $c ) {
+	return new Flow\Formatter\RecentChangesQuery(
+		$c['storage'],
+		$c['repository.tree'],
+		$c['flow_actions']
+	);
+} );
+$c['formatter.recentchanges'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RecentChanges(
-		$c['storage'],
-		$c['flow_actions'],
+		$c['permissions'],
 		$c['templating']
 	);
 } );
 
-$c['contributions.query'] = $c->share( function( $c ) {
+$c['query.contributions'] = $c->share( function( $c ) {
 	return new Flow\Formatter\ContributionsQuery(
 		$c['storage'],
 		$c['repository.tree'],
 		$c['memcache']
 	);
 } );
-$c['contributions.formatter'] = $c->share( function( $c ) {
+$c['formatter.contributions'] = $c->share( function( $c ) {
 	return new Flow\Formatter\Contributions(
-		$c['storage'],
-		$c['flow_actions'],
+		$c['permissions'],
 		$c['templating']
 	);
 } );
-
 $c['logger'] = $c->share( function( $c ) {
 	return new Flow\Log\Logger(
 		$c['flow_actions'],
