@@ -6,17 +6,18 @@ use Flow\Block\Block;
 use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
-use Flow\Formatter\AbstractFormatter;
+use Flow\Formatter\RevisionFormatter;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
+use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use MWTimestamp;
 
 /**
  * HistoryRenderer will use Templating to render a given list of History.
  */
-class HistoryRenderer extends AbstractFormatter {
+class HistoryRenderer extends RevisionFormatter {
 	/**
 	 * @var Templating
 	 */
@@ -39,12 +40,13 @@ class HistoryRenderer extends AbstractFormatter {
 	protected $now;
 
 	/**
+	 * @param RevisionActionPermissions $permissions
 	 * @param Templating $templating
 	 * @param Block $block
 	 * @param integer|null $now The unix timestamp which is used as base for the
 	 * 		calculation of relative dates.
 	 */
-	public function __construct( Templating $templating, Block $block, $now = null ) {
+	public function __construct( RevisionActionPermissions $permissions, Templating $templating, Block $block, $now = null ) {
 		$this->templating = $templating;
 		$this->block = $block;
 		$this->workflows = array();
@@ -55,6 +57,8 @@ class HistoryRenderer extends AbstractFormatter {
 		} else {
 			$this->now = $now;
 		}
+
+		parent::__construct( $permissions, $templating );
 	}
 
 	/**
@@ -248,13 +252,14 @@ class HistoryRenderer extends AbstractFormatter {
 
 		// build i18n message
 		list( $msg, $params ) = $record->getMessageParams();
+		$ctx = \RequestContext::getMain();
 		foreach ( $params as &$param ) {
 			$param = $this->processParam(
 				// Arguments for the i18n messages' parameter callbacks.
 				$param,
 				$record->getData(),
 				$this->block->getWorkflowId(),
-				$this->block->getName()
+				$ctx
 			);
 		}
 
