@@ -6,7 +6,6 @@ use Flow\Block\Block;
 use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\Exception\FlowException;
-use Flow\Formatter\AbstractFormatter;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
@@ -16,7 +15,7 @@ use MWTimestamp;
 /**
  * HistoryRenderer will use Templating to render a given list of History.
  */
-class HistoryRenderer extends AbstractFormatter {
+class HistoryRenderer extends OldAbstractFormatter {
 	/**
 	 * @var Templating
 	 */
