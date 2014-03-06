@@ -69,6 +69,24 @@
       "revId": "210ed48b8c9ff379c4e38e26456e2d03933626cc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_1e1e9bc4",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-06T18:47:10Z",
+      "side": 1,
+      "message": "Yep, you\u0027re most definitely right - I had not considered the order by (and it\u0027s even part of the where condition, in offset-cases)",
+      "parentUuid": "4e04eb01_4c7924f1",
+      "revId": "210ed48b8c9ff379c4e38e26456e2d03933626cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
