@@ -2,23 +2,11 @@
 
 namespace Flow\Formatter;
 
-use Flow\Container;
-use Flow\Data\ManagerGroup;
-use Flow\FlowActions;
-use Flow\Model\AbstractRevision;
-use Flow\Model\PostRevision;
-use Flow\Model\Workflow;
-use Flow\Exception\DataModelException;
-use Flow\Model\UUID;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
-use Flow\UrlGenerator;
-use Language;
 use Html;
+use IContextSource;
 use Message;
-use Title;
-use User;
-use ChangesList;
 
 /**
  * This is a "utility" class that might come in useful to generate
@@ -40,488 +28,175 @@ use ChangesList;
  */
 abstract class AbstractFormatter {
 	/**
-	 * @var ManagerGroup
+	 * @var RevisionActionPermissions
 	 */
-	protected $storage;
+	protected $permissions;
 
 	/**
-	 * @var FlowActions
+	 * @var RevisionFormatter
 	 */
-	protected $actions;
+	protected $serializer;
 
-	/**
-	 * @var Templating
-	 */
-	protected $templating;
-
-	/**
-	 * @var UrlGenerator;
-	 */
-	protected $urlGenerator;
-
-	/**
-	 * @var Workflow[] Array of Workflow objects
-	 */
-	protected $workflows = array();
-
-	/**
-	 * @var AbstractRevision[] Array of AbstractRevision objects
-	 */
-	protected $revisions = array();
-
-	/**
-	 * @var RevisionActionPermissions Array of [user id => RevisionActionPermissions object]
-	 */
-	protected $permissions = array();
-
-	/**
-	 * @param ManagerGroup $storage
-	 * @param FlowActions $actions
-	 * @param Templating $templating
-	 */
-	public function __construct( ManagerGroup $storage, FlowActions $actions, Templating $templating ) {
-		$this->actions = $actions;
-		$this->storage = $storage;
-		$this->templating = $templating;
-
-		$this->urlGenerator = $this->templating->getUrlGenerator();
+	public function __construct( RevisionActionPermissions $permissions, Templating $templating ) {
+		$this->permissions = $permissions;
+		$this->serializer = new RevisionFormatter( $permissions, $templating );
 	}
 
 	/**
-	 * @param User $user
-	 * @return RevisionActionPermissions
+	 * @param array &$data Uses reference to unset used links from $data['links']
+	 * @param string $key Date format to use
+	 * @return string HTML
 	 */
-	protected function getPermissions( User $user ) {
-		if ( $user->getId() && isset( $this->permissions[$user->getId()] ) ) {
-			return $this->permissions[$user->getId()];
+	protected function formatTimestamp( array &$data, $key = 'timeAndDate' ) {
+		// Format timestamp: add link
+		$formattedTime = $data['dateFormats'][$key];
+
+		if ( isset( $data['links']['topic'] ) ) {
+			$formattedTime = $this->apiLinkToAnchor( $data['links']['topic'], $formattedTime );
+			// dont re-use link in $linksContent
+			unset( $data['links']['topic'] );
+		} elseif ( $data['links'] ) {
+			$formattedTime = $this->apiLinkToAnchor( end( $data['links'] ), $formattedTime );
 		}
 
-		$permissions = new RevisionActionPermissions( $this->actions, $user );
-
-		// cache objects per user (will usually be only the person viewing
-		// whatever is using this formatter)
-		if ( $user->getId() ) {
-			$this->permissions[$user->getId()] = $permissions;
+		$class = array( 'mw-changeslist-date' );
+		if ( $data['isModerated'] ) {
+			$class[] = 'history-deleted';
 		}
 
-		return $permissions;
+		return Html::rawElement( 'span', array( 'class' => $class ), $formattedTime );
 	}
 
 	/**
-	 * @param Title $title
-	 * @param string $action
-	 * @param UUID $workflowId
-	 * @param UUID|null $postId
-	 * @return array|false
+	 * Generate HTML for "(foo | bar | baz)"  based on the links provided by
+	 * RevisionFormatter.
+	 *
+	 * @param array[] $links
+	 * @param IContextSource $ctx
+	 * @param string[] $request List of link names to be allowed in result output
+	 * @return string Html valid for user output
 	 */
-	protected function buildActionLinks( Title $title, $action, UUID $workflowId, UUID $postId = null ) {
-		// BC for renamed actions
-		$alias = $this->actions->getValue( $action );
-		if ( is_string( $alias ) ) {
-			// All proper actions return arrays, but aliases return a string
-			$action = $alias;
+	protected function formatLinksAsPipeList( array $links, IContextSource $ctx, array $request = null ) {
+		if ( $request === null ) {
+			$request = array_keys( $links );
+		} elseif ( !$request ) {
+			// empty array was passed
+			return array();
 		}
+		$have = array_combine( $request, $request );
+
+		$formatted = array();
+		foreach ( $links as $key => $link ) {
+			if ( isset( $have[$key] ) ) {
+				if ( is_array( $link ) ) {
+					$formatted[] = $this->apiLinkToAnchor( $link );
+				} elseif( $link instanceof Message ) {
+					$formatted[] = $link->escaped();
+				} else {
+					// plain text
+					$formatted[] = htmlspecialchars( $have[$key] );
+				}
+			}
+		}
+
+		if ( $formatted ) {
+			$content = $ctx->getLanguage()->pipeList( $formatted );
+			if ( $content ) {
+				return $ctx->msg( 'parentheses' )->rawParams( $content )->escaped();
+			}
+		}
+
+		return '';
+	}
+
+	/**
+	 * Generate HTML for "(diff | hist)".  This will always contain both
+	 * elements, they will be linked if the result from RevisionFormatter
+	 * contains relevant links.
+	 *
+	 * @param array[][] Associative array containing (url, message) tuples
+	 * @param IContextSource $ctx
+	 * @return string Html valid for user output
+	 */
+	protected function formatDiffHistPipeList( array $input, IContextSource $ctx ) {
 		$links = array();
-		switch( $action ) {
-			case 'reply':
-				$links['topic'] = $this->topicLink( $title, $workflowId );
-				if ( $postId ) {
-					$links['post'] = $this->postLink( $title, $workflowId, $postId );
-				}
-				break;
-
-			case 'new-post': // fall through
-			case 'edit-post':
-				$links['topic'] = $this->topicLink( $title, $workflowId );
-				if ( $postId ) {
-					$links['post'] = $this->postLink( $title, $workflowId, $postId );
-				}
-				break;
-
-			case 'suppress-post':
-			case 'delete-post':
-			case 'hide-post':
-			case 'restore-post':
-				$links['topic'] = $this->topicLink( $title, $workflowId );
-				if ( $postId ) {
-					$links['post-history'] = $this->postHistoryLink( $title, $workflowId, $postId );
-				}
-				break;
-
-			case 'suppress-topic':
-			case 'delete-topic':
-			case 'hide-topic':
-			case 'restore-topic':
-				$links['topic'] = $this->topicLink( $title, $workflowId );
-				$links['topic-history'] = $this->topicHistoryLink( $title, $workflowId );
-				break;
-
-			case 'edit-title':
-				$links['topic'] = $this->topicLink( $title, $workflowId );
-				// This links to the history of the topic title
-				if ( $postId ) {
-					$links['title-history'] = $this->postHistoryLink( $title, $workflowId, $postId );
-				}
-				break;
-
-			case 'create-header': // fall through
-			case 'edit-header':
-				//$links[] = $this->workflowLink( $title, $workflowId );
-				break;
-
-			case null:
-				wfWarn( __METHOD__ . ': Flow change has null change type' );
-				return false;
-
-			default:
-				wfWarn( __METHOD__ . ': Unknown Flow action: ' . $action );
-				return false;
+		if ( isset( $input['diff'] ) ) {
+			$links[] = $input['diff'];
+		} else {
+			// plain text with no link
+			$links[] = $ctx->msg( 'diff' );
 		}
 
-		return $links;
+		if ( isset( $input['post-history'] ) ) {
+			$links[] = $input['post-history'];
+		} elseif ( isset( $input['topic-history'] ) ) {
+			$links[] = $input['topic-history'];
+		} elseif ( isset( $input['board-history'] ) ) {
+			$links[] = $input['board-history'];
+		} else {
+			// plain text with no link
+			$links[] = $ctx->msg( 'hist' );
+		}
+
+		return $this->formatLinksAsPipeList( $links, $ctx );
 	}
 
 	/**
-	 * @param AbstractRevision $revision
-	 * @param User $user
-	 * @param Language $lang
-	 * @return array Contains [timeAndDate, date, time]
+	 * @return string Html valid for user output
 	 */
-	protected function getDateFormats( AbstractRevision $revision, User $user, Language $lang ) {
-		// date & time
-		$timestamp = $revision->getRevisionId()->getTimestampObj()->getTimestamp( TS_MW );
-		$dateFormats = array();
-		$dateFormats['timeAndDate'] = $lang->userTimeAndDate( $timestamp, $user );
-		$dateFormats['date'] = $lang->userDate( $timestamp, $user );
-		$dateFormats['time'] = $lang->userTime( $timestamp, $user );
-
-		return $dateFormats;
-	}
-
-	public function topicHistoryLink( Title $title, UUID $workflowId ) {
-		return array(
-			$this->urlGenerator->buildUrl(
-				$title,
-				'topic-history',
-				array( 'workflow' => $workflowId->getAlphadecimal() )
-			),
-			wfMessage( 'flow-link-history' )
-		);
-	}
-
-	public function postHistoryLink( Title $title, UUID $workflowId, UUID $postId ) {
-		return array(
-			$this->urlGenerator->buildUrl(
-				$title,
-				'post-history',
-				array(
-					'workflow' => $workflowId->getAlphadecimal(),
-					'topic' => array( 'postId' => $postId->getAlphadecimal() ),
-				)
-			),
-			wfMessage( 'flow-link-history' )
-		);
-	}
-
-	public function topicLink( Title $title, UUID $workflowId ) {
-		return array(
-			$this->urlGenerator->buildUrl(
-				$title,
-				'view',
-				array( 'workflow' => $workflowId->getAlphadecimal() )
-			),
-			wfMessage( 'flow-link-topic' )
-		);
-	}
-
-	public function postLink( Title $title, UUID $workflowId, UUID $postId ) {
-		return array(
-			$this->urlGenerator->buildUrl(
-				$title,
-				'view',
-				array(
-					'workflow' => $workflowId->getAlphadecimal(),
-					'topic' => array( 'postId' => $postId->getAlphadecimal() ),
-				)
-			),
-			wfMessage( 'flow-link-post' )
-		);
+	protected function changeSeparator() {
+		return ' <span class="mw-changeslist-separator">. .</span> ';
 	}
 
 	/**
-	 * @param Title $title
-	 * @param UUID $workflowId
-	 * @param UUID $oldId
-	 * @param UUID $newId
-	 * @param string $revisionType
-	 * @param string $blockName
-	 * @return array Two element array with string url and Message object
-	 */
-	public function revisionDiffLink( Title $title, UUID $workflowId, UUID $oldId, UUID $newId, $revisionType, $blockName ) {
-		return array(
-			$this->urlGenerator->buildUrl(
-				$title,
-				'compare-' . $revisionType . '-revisions',
-				array(
-					'workflow' => $workflowId->getAlphadecimal(),
-					$blockName . '_oldRevision' => $oldId->getAlphadecimal(),
-					$blockName . '_newRevision' => $newId->getAlphadecimal(),
-				)
-			),
-			wfMessage( 'diff' )
-		);
-	}
-
-	protected function workflowLink( Title $title, UUID $workflowId ) {
-		list( $linkTitle, $query ) = $this->urlGenerator->buildUrlData(
-			$title,
-			'view'
-		);
-
-		return array(
-			$linkTitle->getFullUrl( $query ),
-			$linkTitle->getPrefixedText()
-		);
-	}
-
-	/**
-	 * Build textual description for Flow's Contributions entries. These piggy-
-	 * back on the i18n messages also used for Flow history, as defined in
-	 * FlowActions.
+	 * Generate an HTML revision description.
 	 *
-	 * @param UUID $workflowId
-	 * @param string $blockType
-	 * @param AbstractRevision $revision
-	 * @return string
+	 * @param array $data
+	 * @param IContextSource $ctx
+	 * @return string Html valid for user output
 	 */
-	public function getActionDescription( UUID $workflowId, $blockType, AbstractRevision $revision ) {
+	protected function formatDescription( array $data, IContextSource $ctx ) {
 		// Build description message, piggybacking on history i18n
-		$changeType = $revision->getChangeType();
-		$msg = $this->actions->getValue( $changeType, 'history', 'i18n-message' );
-		$params = $this->actions->getValue( $changeType, 'history', 'i18n-params' );
+		$changeType = $data['changeType'];
+		$actions = $this->permissions->getActions();
+		$msg = $actions->getValue( $changeType, 'history', 'i18n-message' );
+		$source = $actions->getValue( $changeType, 'history', 'i18n-params' );
 
-		foreach ( $params as &$param ) {
-			$param = $this->processParam( $param, $revision, $workflowId, $blockType );
-		}
-
-		return \Html::rawElement(
-			'span',
-			array( 'class' => 'plainlinks' ),
-			wfMessage( $msg, $params )->parse()
-		);
-	}
-
-	/**
-	 * @param AbstractRevision $revision
-	 * @param AbstractRevision|null $previousRevision
-	 * @return string|bool Chardiff or false on failure
-	 */
-	protected function getCharDiff( AbstractRevision $revision, AbstractRevision $previousRevision = null ) {
-		$previousContent = '';
-
-		if ( $previousRevision ) {
-			$previousContent = $previousRevision->getContentRaw();
-		}
-
-		return ChangesList::showCharacterDifference( strlen( $previousContent ), strlen( $revision->getContentRaw() ) );
-	}
-
-	/**
-	 * Load 1 specific workflow.
-	 *
-	 * @param UUID $workflowId
-	 * @return Workflow|bool Requested workflow or false on failure
-	 */
-	protected function loadWorkflow( UUID $workflowId ) {
-		$results = $this->loadWorkflows( array( $workflowId ) );
-		if ( !isset( $results[$workflowId->getAlphadecimal()] ) ) {
-			wfWarn( __METHOD__ . ': Could not load workflow ' . $workflowId->getAlphadecimal() );
-			return false;
-		}
-
-		return $results[$workflowId->getAlphadecimal()];
-	}
-
-	/**
-	 * Load 1 specific revision.
-	 *
-	 * @param UUID $revisionId
-	 * @param string $revisionType Type of revision to load (e.g. Header, PostRevision)
-	 * @return AbstractRevision|bool Requested revision or false on failure
-	 */
-	protected function loadRevision( UUID $revisionId, $revisionType ) {
-		$results = $this->loadRevisions( array( $revisionType => array( $revisionId ) ) );
-		if ( !isset( $results[$revisionId->getAlphadecimal()] ) ) {
-			wfWarn( __METHOD__ . ': Could not load workflow ' . $revisionId->getAlphadecimal() );
-			return false;
-		}
-
-		return $results[$revisionId->getAlphadecimal()];
-	}
-
-	/**
-	 * Batch-loads multiple workflows at once (and cached results in object)
-	 *
-	 * @param array $workflowIds
-	 * @return array
-	 */
-	public function loadWorkflows( array $workflowIds ) {
-		$results = array();
-
-		// make sure all ids are UUID objects
-		$workflowIds = array_map( array( 'Flow\Model\UUID', 'create' ), $workflowIds );
-
-		foreach ( $workflowIds as $i => $workflowId ) {
-			// don't query for workflows already in cache
-			if ( isset( $this->workflows[$workflowId->getAlphadecimal()] ) ) {
-				$results[$workflowId->getAlphadecimal()] = $this->workflows[$workflowId->getAlphadecimal()];
-				unset( $workflowIds[$i] );
-			}
-		}
-
-		// fetch missing workflows
-		$workflows = (array) $this->storage->getMulti( 'Workflow', $workflowIds );
-		foreach ( $workflows as $workflow ) {
-			$results[$workflow->getId()->getAlphadecimal()] = $workflow;
-		}
-
-		// cache in object
-		$this->workflows += $results;
-
-		return $results;
-	}
-
-	/**
-	 * Batch-loads multiple revisions at once (and cached results in object)
-	 *
-	 * @param array $revisionIds Multi-dimensional array of revisions to fetch,
-	 * where the revision class (e.g. Header, PostRevision) is the key, and an
-	 * array of revision ids (UUID objects) is the value
-	 * @return array
-	 */
-	public function loadRevisions( array $revisionIds ) {
-		$results = array();
-
-		foreach ( $revisionIds as $class => $ids ) {
-			// make sure all ids are UUID objects
-			$ids = array_map( array( 'Flow\Model\UUID', 'create' ), $ids );
-
-			foreach ( $ids as $i => $id ) {
-				// don't query for revisions already in cache
-				if ( isset( $this->revisions[$id->getAlphadecimal()] ) ) {
-					$results[$id->getAlphadecimal()] = $this->revisions[$id->getAlphadecimal()];
-					unset( $ids[$i] );
-				}
-			}
-
-			// fetch missing revisions
-			$revisions = (array) $this->storage->getMulti( $class, $ids );
-			foreach ( $revisions as $revision ) {
-				$results[$revision->getRevisionId()->getAlphadecimal()] = $revision;
-			}
-		}
-
-		// cache in object
-		$this->revisions += $results;
-
-		return $results;
-	}
-
-	/**
-	 * Mimic Echo parameter formatting
-	 *
-	 * @param string $param The requested i18n parameter
-	 * @param AbstractRevision|array $revision The revision to format or an array of revisions
-	 * @param UUID $workflowId The UUID of the workflow $revision belongs tow
-	 * @param string $blockType The type of block $workflowId belongs to
-	 * @return mixed A valid parameter for a core Message instance
-	 */
-	protected function processParam( $param, /* AbstractRevision|array */ $revision, UUID $workflowId, $blockType ) {
-		switch ( $param ) {
-		case 'creator-text':
-			if ( $revision instanceof PostRevision ) {
-				return $this->templating->getCreatorText( $revision );
+		$params = array();
+		foreach ( $source as $param ) {
+			if ( false && substr( $param, -4 ) === '-url' ) {
+				// source from links attribute
+				$params[] = $data['links'][substr( $param, 0, -4 )];
 			} else {
-				return '';
+				// source from properties attribute
+				$params[] = $data['properties'][$param];
 			}
-
-		case 'user-text':
-			return $this->templating->getUserText( $revision );
-
-		case 'user-links':
-			return Message::rawParam( $this->templating->getUserLinks( $revision ) );
-
-		case 'summary':
-			global $wgLang;
-			/*
-			 * Fetch in HTML; unparsed wikitext in summary is pointless.
-			 * Larger-scale wikis will likely also store content in html, so no
-			 * Parsoid roundtrip is needed then (and if it *is*, it'll already
-			 * be needed to render Flow discussions, so this is manageable)
-			 */
-			$content = $this->templating->getContent( $revision, 'html' );
-			$content = strip_tags( $content );
-			return Message::rawParam( htmlspecialchars( $wgLang->truncate( trim( $content ), 140 ) ) );
-
-		case 'wikitext':
-			$content = $this->templating->getContent( $revision, 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
-
-		case 'prev-wikitext':
-			if ( $revision->isFirstRevision() ) {
-				return '';
-			}
-			$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
-			if ( !$previousRevision ) {
-				// wfDebugLog( 'Flow', __METHOD__ . ': Something something' );
-				return '';
-			}
-			if ( !$this->templating->getActionPermissions()->isAllowed( $previousRevision, 'view' ) ) {
-				// @todo message about being unavailable?
-				return '';
-			}
-
-			$content = $this->templating->getContent( $previousRevision, 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
-
-		case 'workflow-url':
-			return $this->templating->getUrlGenerator()->generateUrl( $workflowId );
-
-		case 'post-url':
-			return $this->templating->getUrlGenerator()
-				->generateUrl(
-					$workflowId,
-					'view',
-					array(),
-					'flow-post-' . $revision->getPostId()->getAlphadecimal()
-				);
-
-		case 'moderated-reason':
-			// don-t parse wikitext in the moderation reason
-			return Message::rawParam( htmlspecialchars( $revision->getModeratedReason() ) );
-
-		case 'topic-of-post':
-			try {
-				$content = $this->templating->getContent( $revision->getRootPost(), 'wikitext' );
-			} catch ( DataModelException $e ) {
-				$found = Container::get( 'storage.post' )->find(
-					array( 'tree_rev_descendant_id' => $workflowId ),
-					array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-				);
-				if ( !$found ) {
-					wfWarn( __METHOD__ . ': No tree_rev_descendant_id matching ' . $workflowId->getAlphadecimal() );
-					return '';
-				}
-				$content = $this->templating->getContent( reset( $found ), 'wikitext' );
-			}
-			return Message::rawParam( htmlspecialchars( $content ) );
-
-		case 'bundle-count':
-			return array( 'num' => count( $revision ) );
-
-		default:
-			wfWarn( __METHOD__ . ': Unknown formatter parameter: ' . $param );
-			return '';
 		}
+
+		return '<span class="plainlinks">' . $ctx->msg( $msg, $params )->parse() . '</span>';
+	}
+
+	/**
+	 * Convert a (url,message) tuple from RevisionFormatter into an
+	 * html anchor element.
+	 *
+	 * @param array $link
+	 * @param string|null $content Optional link content
+	 * @return string Html valid for user output
+	 */
+	protected function apiLinkToAnchor( array $link, $content = null ) {
+		/** @var Message $msg */
+		list( $href, $msg ) = $link;
+		$text = $msg->text();
+
+		return Html::element(
+			'a',
+			array(
+				'href' => $href,
+				'title' => $text,
+			),
+			$content === null ? $text : $content
+		);
 	}
 }
+
