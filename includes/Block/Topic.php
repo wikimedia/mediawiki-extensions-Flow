@@ -430,7 +430,7 @@ class TopicBlock extends AbstractBlock {
 				'topic' => $this->workflow,
 				'root' => $root,
 				'history' => new History( $history ),
-				'historyRenderer' => new HistoryRenderer( $templating, $this ),
+				'historyRenderer' => new HistoryRenderer( $this->permissions, $templating, $this ),
 			), $return );
 
 		case 'edit-post':
@@ -529,7 +529,7 @@ class TopicBlock extends AbstractBlock {
 			'topicTitle' => $this->loadTopicTitle(), // pre-loaded by loadRequestedPost
 			'post' => $post,
 			'history' => new History( $history ),
-			'historyRenderer' => new HistoryRenderer( $templating, $this ),
+			'historyRenderer' => new HistoryRenderer( $this->permissions, $templating, $this ),
 		), $return );
 	}
 
