@@ -4,7 +4,6 @@ namespace Flow\View\History;
 
 use Flow\Block\Block;
 use Flow\Container;
-use Flow\Formatter\AbstractFormatter;
 use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
 use Flow\Templating;
@@ -13,7 +12,7 @@ use MWTimestamp;
 /**
  * HistoryRenderer will use Templating to render a given list of History.
  */
-class HistoryRenderer extends AbstractFormatter {
+class HistoryRenderer extends OldAbstractFormatter {
 	/**
 	 * @var Templating
 	 */

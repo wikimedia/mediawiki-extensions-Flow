@@ -10,6 +10,7 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use BagOStuff;
 use ContribsPager;
+use DatabaseBase;
 use User;
 
 class ContributionsQuery extends AbstractQuery {
@@ -29,7 +30,7 @@ class ContributionsQuery extends AbstractQuery {
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
-	 * @return string|bool false on failure
+	 * @return FormatterRow[]
 	 */
 	public function getResults( ContribsPager $pager, $offset, $limit, $descending ) {
 		$target = $pager->target;
@@ -39,7 +40,7 @@ class ContributionsQuery extends AbstractQuery {
 		if ( $pager->contribs == 'newbie' ) {
 			list( $minUserId, $excludeUserIds ) = $this->getNewbieConditionInfo( $pager );
 
-			$conditions[] = new RawSql( 'rev_user_id > '. (int) $minUserId );
+			$conditions[] = new RawSql( 'rev_user_id > '. (int)$minUserId );
 			if ( $excludeUserIds ) {
 				// better safe than sorry - make sure everything's an int
 				$excludeUserIds = array_map( 'intval', $excludeUserIds );
@@ -58,7 +59,7 @@ class ContributionsQuery extends AbstractQuery {
 		if ( $offset ) {
 			$offsetUUID = UUID::getComparisonUUID( $offset );
 			$direction = $descending ? '>' : '<';
-			$offsetCondition = function( $db ) use ( $direction, $offsetUUID ) {
+			$offsetCondition = function( DatabaseBase $db ) use ( $direction, $offsetUUID ) {
 				return "rev_id $direction " . $db->addQuotes( $offsetUUID->getBinary() );
 			};
 			$conditions[] = new RawSql( $offsetCondition );
@@ -78,8 +79,9 @@ class ContributionsQuery extends AbstractQuery {
 			$this->loadMetadataBatch( $revisions );
 			foreach ( $revisions as $revision ) {
 				try {
-					$result = $this->buildResult( $revision, $blockType, $pager->getIndexField() );
-					$result->flow_contribution = 'flow';
+					$result = new ContributionsRow;
+					$this->buildResult( $revision, $pager->getIndexField(), $result );
+					$results[] = $result;
 				} catch ( FlowException $e ) {
 					$result = false;
 					// Comment out for now since we expect some flow exceptions, when gerrit 111952 is
@@ -140,4 +142,8 @@ class ContributionsQuery extends AbstractQuery {
 
 		return array( $minUserId, $excludeUserIds );
 	}
+}
+
+class ContributionsRow extends FormatterRow {
+	public $rev_timestamp;
 }
