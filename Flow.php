@@ -101,6 +101,7 @@ $wgAutoloadClasses['Flow\View\History\History'] = "$dir/includes/View/History/Hi
 $wgAutoloadClasses['Flow\View\History\HistoryRecord'] = "$dir/includes/View/History/HistoryRecord.php";
 $wgAutoloadClasses['Flow\View\History\HistoryBundle'] = "$dir/includes/View/History/HistoryBundle.php";
 $wgAutoloadClasses['Flow\View\History\HistoryRenderer'] = "$dir/includes/View/History/HistoryRenderer.php";
+$wgAutoloadClasses['Flow\View\History\OldAbstractFormatter'] = "$dir/includes/View/History/OldAbstractFormatter.php";
 $wgAutoloadClasses['Flow\View\Post'] = "$dir/includes/View/Post.php";
 $wgAutoloadClasses['Flow\View\RevisionCreatable'] = "$dir/includes/View/Revision.php";
 $wgAutoloadClasses['Flow\View\RevisionView'] = "$dir/includes/View/Revision.php";
@@ -141,12 +142,22 @@ $wgAutoloadClasses['Flow\Data\RawSql'] = $dir . 'includes/Data/ObjectManager.php
 $wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
 $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
 $wgAutoloadClasses['Flow\Log\PostModerationLogger'] = $dir . 'includes/Log/PostModerationLogger.php';
+
+// Collect data and format revisions into html
 $wgAutoloadClasses['Flow\Formatter\AbstractFormatter'] = $dir . 'includes/Formatter/AbstractFormatter.php';
 $wgAutoloadClasses['Flow\Formatter\AbstractQuery'] = $dir . 'includes/Formatter/AbstractQuery.php';
+$wgAutoloadClasses['Flow\Formatter\FormatterRow'] = $dir . 'includes/Formatter/AbstractQuery.php';
 $wgAutoloadClasses['Flow\Formatter\CheckUser'] = $dir . 'includes/Formatter/CheckUser.php';
-$wgAutoloadClasses['Flow\Formatter\ContributionsQuery'] = $dir . 'includes/Formatter/ContributionsQuery.php';
 $wgAutoloadClasses['Flow\Formatter\Contributions'] = $dir . 'includes/Formatter/Contributions.php';
+$wgAutoloadClasses['Flow\Formatter\ContributionsQuery'] = $dir . 'includes/Formatter/ContributionsQuery.php';
 $wgAutoloadClasses['Flow\Formatter\RecentChanges'] = $dir . 'includes/Formatter/RecentChanges.php';
+$wgAutoloadClasses['Flow\Formatter\RecentChangesQuery'] = $dir . 'includes/Formatter/RecentChangesQuery.php';
+$wgAutoloadClasses['Flow\Formatter\RecentChangesRow'] = $dir . 'includes/Formatter/RecentChangesQuery.php';
+
+// Convert model instances into array of user-visible data
+$wgAutoloadClasses['Flow\Formatter\RevisionFormatter'] = $dir . 'includes/Formatter/RevisionFormatter.php';
+
+// On demand username loading from home wiki
 $wgAutoloadClasses['Flow\Data\UserNameListener'] = $dir . 'includes/Data/UserNameBatch.php';
 $wgAutoloadClasses['Flow\Data\UserNameBatch'] = $dir . 'includes/Data/UserNameBatch.php';
 $wgAutoloadClasses['Flow\Data\UserNameQuery'] = $dir . 'includes/Data/UserNameBatch.php';
@@ -192,6 +203,7 @@ $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 $wgHooks['ApiTokensGetTokenTypes'][] = 'FlowHooks::onApiTokensGetTokenTypes';
 $wgHooks['MediaWikiPerformAction'][] = 'FlowHooks::onPerformAction';
 $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
+$wgHooks['ChangesListBegin'][] = 'FlowHooks::onChangesListBegin';
 $wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavigation';
 $wgHooks['Article::MissingArticleConditions'][] = 'FlowHooks::onMissingArticleConditions';
 $wgHooks['SpecialWatchlistGetNonRevisionTypes'][] = 'FlowHooks::onSpecialWatchlistGetNonRevisionTypes';
