@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_6463d0a7",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-06T21:41:22Z",
+      "side": 1,
+      "message": "We may want to do some more test in here to test against db replication delay.  If we still have code that tries to retrieve newly inserted data in the same request from another code block.  With LocalBufferCache and db delay, this will return invalid data",
+      "parentUuid": "4e04eb01_fbc0ab56",
+      "revId": "5c0c276ea13abb48733bf70b834c9808437630c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_dbde0f44",
         "filename": "includes/Data/RevisionStorage.php",
         "patchSetId": 1
