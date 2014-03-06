@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_028523d4",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-06T12:39:59Z",
+      "side": 1,
+      "message": "On the Agora overrides: Flow is one of the first projects to start having the new Agora styles. Now they\u0027re being integrated into core, but that was not yet the case when we started building Flow. So, based on the mockups, we\u0027ve started writing our own CSS for those buttons \u0026 forms. Once Agora gets more complete in core, our own CSS will become obsolete and should/will be removed.\n\nAs for these classes: since we\u0027re neither strictly enforcing the use of specific classes (the caller could still ignore $classes and do what they please) and are not even using them ourselved after the hook, I would indeed just move them to the caller.",
+      "parentUuid": "4e04eb01_26f39a6a",
+      "revId": "f67cea72c2a5163e31773965eecd1e23dbeee9ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_1bf3576a",
         "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "the disabled element was using the same color as the active one. The color was picked based on the screenshot from the trello card https://trello.com/c/BJgrJCyX/59-thank-user \nbut I didn\u0027t have a specific color so I picked this one arbitrarily. Is there some color I should use instead?",
       "parentUuid": "4e04eb01_1bf3576a",
+      "revId": "f67cea72c2a5163e31773965eecd1e23dbeee9ca",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_a22c2ff3",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-06T12:39:59Z",
+      "side": 1,
+      "message": "I don\u0027t know if that or something else is the desired color. Judging from the screenshot there, it looks like this is indeed the one we want!\n\nI was just curious where it came from; we\u0027ve had some inconsistencies with what was defined in published Agora specs, and what we\u0027ve picked from screenshots, where we didn\u0027t know exactly which color was desired.\n\nPerhaps add a comment with a link to the screenshot, so we know where this choice came from :)",
+      "parentUuid": "4e04eb01_268a7ac0",
       "revId": "f67cea72c2a5163e31773965eecd1e23dbeee9ca",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
