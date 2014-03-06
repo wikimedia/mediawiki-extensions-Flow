@@ -246,6 +246,10 @@ abstract class RevisionStorage extends DbStorage {
 	 */
 	public static function mergeExternalContent( array $cacheResult ) {
 		foreach ( $cacheResult as &$source ) {
+			if ( $source === null ) {
+				// unanswered queries return null
+				continue;
+			}
 			foreach ( $source as &$row ) {
 				$flags = explode( ',', $row['rev_flags'] );
 				if ( in_array( 'external', $flags ) ) {
@@ -691,6 +695,9 @@ class Merger {
 		}
 		$ids = array();
 		foreach ( $multiSource as $source ) {
+			if ( $source === null ) {
+				continue;
+			}
 			foreach ( $source as $row ) {
 				$id = $row[$fromKey];
 				if ( $id !== null ) {
@@ -706,6 +713,9 @@ class Merger {
 			return false;
 		}
 		foreach ( $multiSource as $i => $source ) {
+			if ( $source === null ) {
+				continue;
+			}
 			foreach ( $source as $j => $row ) {
 				$id = $row[$fromKey];
 				if ( $id === null ) {
