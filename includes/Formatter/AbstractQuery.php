@@ -2,12 +2,13 @@
 
 namespace Flow\Formatter;
 
-use Flow\Model\AbstractRevision;
-use Flow\Model\PostRevision;
-use Flow\Model\Header;
-use Flow\Model\Workflow;
 use Flow\Data\ManagerGroup;
+use Flow\Exception\FlowException;
+use Flow\Model\AbstractRevision;
+use Flow\Model\Header;
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
+use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
 
 /**
@@ -25,7 +26,7 @@ abstract class AbstractQuery {
 	/**
 	 * @var TreeRepository
 	 */
-	protected $treeRepo;
+	protected $treeRepository;
 
 	/**
 	 * @var UUID[] Associative array of post ID to root post's UUID object.
@@ -38,17 +39,22 @@ abstract class AbstractQuery {
 	protected $postCache = array();
 
 	/**
+	 * @var AbstractRevision[] Associative array of revision ID to AbstractRevision object
+	 */
+	protected $revisionCache = array();
+
+	/**
 	 * @var Workflow[] Associative array of workflow ID to Workflow object.
 	 */
 	protected $workflowCache = array();
 
 	/**
 	 * @param ManagerGroup $storage
-	 * @param TreeRepository $treeRepo
+	 * @param TreeRepository $treeRepository
 	 */
-	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo ) {
+	public function __construct( ManagerGroup $storage, TreeRepository $treeRepository ) {
 		$this->storage = $storage;
-		$this->treeRepo = $treeRepo;
+		$this->treeRepository = $treeRepository;
 	}
 
 	/**
@@ -61,6 +67,7 @@ abstract class AbstractQuery {
 		// Batch load data related to a list of revisions
 		$postIds = array();
 		$workflowIds = array();
+		$revisions = array();
 		$previousRevisionIds = array();
 		foreach( $results as $result ) {
 			if ( $result instanceof PostRevision ) {
@@ -71,15 +78,17 @@ abstract class AbstractQuery {
 				} else {
 					$postIds[] = $result->getPostId();
 				}
+				$this->postCache[$result->getPostId()->getAlphadecimal()] = $result;
 			} elseif ( $result instanceof Header ) {
 				$workflowIds[] = $result->getWorkflowId();
 			}
 
+			$revisions[$result->getRevisionId()->getAlphadecimal()] = $result;
 			$previousRevisionIds[get_class( $result )][] = $result->getPrevRevisionId();
 		}
 
 		// map from post Id to the related root post id
-		$rootPostIds = array_filter( $this->treeRepo->findRoots( $postIds ) );
+		$rootPostIds = array_filter( $this->treeRepository->findRoots( $postIds ) );
 
 		$rootPostRequests = array();
 		foreach( $rootPostIds as $postId ) {
@@ -101,6 +110,7 @@ abstract class AbstractQuery {
 			foreach ( $rootPostResult as $found ) {
 				$root = reset( $found );
 				$rootPosts[$root->getPostId()->getAlphadecimal()] = $root;
+				$revisions[$root->getRevisionId()->getAlphadecimal()] = $root;
 			}
 		}
 
@@ -110,16 +120,18 @@ abstract class AbstractQuery {
 		$workflows = $this->storage->getMulti( 'Workflow', array_merge( $rootPostIds, $workflowIds ) );
 
 		// preload all previous revisions
-		$previousRevisions = array();
 		foreach ( $previousRevisionIds as $revisionType => $ids ) {
 			// get rid of null-values (for original revisions, without previous revision)
 			$ids = array_filter( $ids );
-			foreach ( $this->storage->getMulti( $revisionType, $ids ) as $rev ) {
-				$previousRevisions[$rev->getRevisionId()->getAlphadecimal()] = $rev;
+			/** @var AbstractRevision[] $found */
+			$found = $this->storage->getMulti( $revisionType, $ids );
+			foreach ( $found as $rev ) {
+				$revisions[$rev->getRevisionId()->getAlphadecimal()] = $rev;
 			}
 		}
 
-		$this->postCache = array_merge( $this->postCache, $rootPosts, $previousRevisions, $results );
+		$this->revisionCache = array_merge( $this->revisionCache, $revisions );
+		$this->postCache = array_merge( $this->postCache, $rootPosts );
 		$this->rootPostIdCache = array_merge( $this->rootPostIdCache, $rootPostIds );
 		$this->workflowCache = array_merge( $this->workflowCache, $workflows );
 	}
@@ -129,40 +141,36 @@ abstract class AbstractQuery {
 	 * for rendering a revision.
 	 *
 	 * @param AbstractRevision $revision
-	 * @param string $blockType Block name (e.g. "topic", "header")
 	 * @param string $indexField The field used for pagination
-	 * @return \stdClass
+	 * @param FormatterRow|null Row to populate
+	 * @return FormatterRow
+	 * @throws FlowException
 	 */
-	protected function buildResult( AbstractRevision $revision, $blockType, $indexField ) {
+	protected function buildResult( AbstractRevision $revision, $indexField, FormatterRow $row = null ) {
 		$uuid = $revision->getRevisionId();
 		$timestamp = $uuid->getTimestamp();
-		$fakeRow = array();
 
 		$workflow = $this->getWorkflow( $revision );
 		if ( !$workflow ) {
-			wfWarn( __METHOD__ . ": could not locate workflow for revision " . $revision->getRevisionId()->getAlphadecimal() );
-			return false;
+			throw new FlowException( "could not locate workflow for revision " . $revision->getRevisionId()->getAlphadecimal() );
 		}
 
-		// other contributions entries
-		$fakeRow[$indexField] = $timestamp; // used for navbar
-		$fakeRow['page_namespace'] = $workflow->getArticleTitle()->getNamespace();
-		$fakeRow['page_title'] = $workflow->getArticleTitle()->getDBkey();
-		$fakeRow['revision'] = $revision;
-		$fakeRow['previous_revision'] = $this->getPreviousRevision( $revision );
-		$fakeRow['workflow'] = $workflow;
-		$fakeRow['blocktype'] = $blockType;
+		$row = $row ?: new FormatterRow;
+		$row->revision = $revision;
+		$row->previousRevision = $this->getPreviousRevision( $revision );
+		$row->workflow = $workflow;
+		// some core classes that process this row before our formatter
+		// require a specific field to handle pagination
+		if ( property_exists( $row, $indexField ) ) {
+			$row->$indexField = $timestamp;
+		}
 
 		if ( $revision instanceof PostRevision ) {
-			$fakeRow['root_post'] = $this->getRootPost( $revision );
-			if ( $fakeRow['root_post'] === null ) {
-				wfWarn( __METHOD__ . ': no root post loaded for ' . $revision->getRevisionId()->getAlphadecimal() );
-			} else {
-				$revision->setRootPost( $fakeRow['root_post'] );
-			}
+			$row->rootPost = $this->getRootPost( $revision );
+			$revision->setRootPost( $row->rootPost );
 		}
 
-		return (object) $fakeRow;
+		return $row;
 	}
 
 	/**
@@ -173,7 +181,6 @@ abstract class AbstractQuery {
 	protected function getWorkflow( AbstractRevision $revision ) {
 		if ( $revision instanceof PostRevision ) {
 			$rootPostId = $this->getRootPostId( $revision );
-
 			return $this->getWorkflowById( $rootPostId );
 		} elseif ( $revision instanceof Header ) {
 			return $this->getWorkflowById( $revision->getWorkflowId() );
@@ -195,12 +202,12 @@ abstract class AbstractQuery {
 			return null;
 		}
 
-		if ( !isset( $this->postCache[$previousRevisionId->getAlphadecimal()] ) ) {
-			$this->postCache[$previousRevisionId->getAlphadecimal()] =
+		if ( !isset( $this->revisionCache[$previousRevisionId->getAlphadecimal()] ) ) {
+			$this->revisionCache[$previousRevisionId->getAlphadecimal()] =
 				$this->storage->get( 'PostRevision', $previousRevisionId );
 		}
 
-		return $this->postCache[$previousRevisionId->getAlphadecimal()];
+		return $this->revisionCache[$previousRevisionId->getAlphadecimal()];
 	}
 
 	/**
@@ -253,10 +260,39 @@ abstract class AbstractQuery {
 	 * @return Workflow           The Workflow.
 	 */
 	protected function getWorkflowById( UUID $workflowId ) {
-		if ( isset( $this->workflowCache[$workflowId->getAlphadecimal()] ) ) {
-			return $this->workflowCache[$workflowId->getAlphadecimal()];
+		$alpha = $workflowId->getAlphadecimal();
+		if ( isset( $this->workflowCache[$alpha] ) ) {
+			return $this->workflowCache[$alpha];
 		} else {
-			return $this->workflowCache[$workflowId->getAlphadecimal()] = $this->storage->get( 'Workflow', $workflowId );
+			return $this->workflowCache[$alpha] = $this->storage->get( 'Workflow', $workflowId );
 		}
+	}
+}
+
+/**
+ * Helper class represents a row of data from AbstractQuery
+ */
+class FormatterRow {
+	/** @var AbstractRevision */
+	public $revision;
+	/** @var AbstractRevision|null */
+	public $previousRevision;
+	/** @var Workflow */
+	public $workflow;
+	/** @var string */
+	public $indexFieldName;
+	/** @var string */
+	public $indexFieldValue;
+	/** @var PostRevision|null */
+	public $rootPost;
+
+	// protect against typos
+	public function __get( $attribute ) {
+		throw new \MWException( "Accessing non-existent parameter: $attribute" );
+	}
+
+	// protect against typos
+	public function __set( $attribute, $value ) {
+		throw new \MWException( "Accessing non-existent parameter: $attribute" );
 	}
 }
