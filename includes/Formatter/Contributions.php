@@ -3,117 +3,56 @@
 namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
-use ContribsPager;
-use Html;
+use Flow\Model\PostRevision;
+use ChangesList;
+use IContextSource;
 
 class Contributions extends AbstractFormatter {
+
 	/**
-	 * @param ContribsPager $pager
-	 * @param \stdClass $row
+	 * @param FormatterRow $row With properties workflow, revision, previous_revision
+	 * @param IContextSource $ctx
 	 * @return string|bool HTML for contributions entry, or false on failure
 	 */
-	public function format( ContribsPager $pager, $row ) {
+	public function format( FormatterRow $row, IContextSource $ctx ) {
 		try {
-			return $this->formatReal( $pager, $row );
+			// @todo check root post?
+			if ( !$this->permissions->isAllowed( $row->revision, 'contributions' ) ) {
+				return false;
+			}
+			if ( $row->revision instanceof PostRevision &&
+				!$this->permissions->isAllowed( $row->rootPost, 'contributions' ) ) {
+				return false;
+			}
+			return $this->formatHtml( $row, $ctx );
 		} catch ( FlowException $e ) {
 			\MWExceptionHandler::logException( $e );
-			die( 'failed exception' );
 			return false;
 		}
 	}
 
-	protected function formatReal( ContribsPager $pager, $row ) {
-		// Get all necessary objects
-		$workflow = $row->workflow;
-		$revision = $row->revision;
-		$ctx = $pager->getContext();
-		$lang = $pager->getLanguage();
-		$user = $pager->getUser();
-		$title = $workflow->getArticleTitle();
+	/**
+	 * @param FormatterRow $row
+	 * @param IContextSource $ctx
+	 * @return string
+	 */
+	protected function formatHtml( FormatterRow $row, IContextSource $ctx ) {
+		$data = $this->serializer->formatApi( $row, $ctx );
 
-		if ( !$this->getPermissions( $user )->isAllowed( $revision, 'contributions' ) ) {
-			die( 'not allowed' );
-			return false;
-		}
-
-		// Fetch required data
-		$charDiff = $this->getCharDiff( $revision, $row->previous_revision );
-		$description = $this->getActionDescription( $workflow->getId(), $row->blocktype, $revision );
-		$dateFormats = $this->getDateFormats( $revision, $user, $lang );
-		$links = $this->buildActionLinks(
-			$title,
-			$revision->getChangeType(),
-			$workflow->getId(),
-			method_exists( $revision, 'getPostId' ) ? $revision->getPostId() : null
+		$charDiff = ChangesList::showCharacterDifference(
+			$data['size']['old'],
+			$data['size']['new']
 		);
 
-		// Format timestamp: add link
-		$formattedTime = $dateFormats['timeAndDate'];
-		if ( $links ) {
-			list( $url, $message ) = end( $links );
-			$formattedTime = Html::element(
-				'a',
-				array(
-					'href' => $url,
-					'title' => $message->setContext( $ctx )->text(),
-				),
-				$formattedTime
-			);
-		} else {
-			$links = array();
-		}
-
-		// If feedback should be hidden, a special class should be added
-		if ( $revision->isModerated() ) {
-			$formattedTime = '<span class="history-deleted">' . $formattedTime . '</span>';
-		}
-
-		// Format links
-		foreach ( $links as &$link ) {
-			list( $url, $message ) = $link;
-			$text = $message->setContext( $ctx )->text();
-			$link = Html::element(
-				'a',
-				array(
-					'href' => $url,
-					'title' => $text
-				),
-				$text
-			);
-		}
-
-		$linksContent = $lang->pipeList( $links );
-		if ( $linksContent ) {
-			$linksContent = $pager->msg( 'parentheses' )->rawParams( $linksContent )->escaped();
-		}
-
-		$diffLink = '';
-		if ( in_array( $revision->getChangeType(), array( 'edit-post', 'edit-header', 'edit-title' ) ) ) {
-			list( $href, $msg ) = $this->revisionDiffLink(
-				$title,
-				$workflow->getId(),
-				$revision->getRevisionId(),
-				$revision->getPrevRevisionId(),
-				$revision->getRevisionType(),
-				$row->blocktype
-			);
-			$diffLink = wfMessage( 'parentheses' )
-				->rawParams( Html::rawElement(
-					'a',
-					array( 'href' => $href ),
-					$msg->escaped()
-				) )
-				->escaped();
-		}
-
+		$separator = $this->changeSeparator();
 
 		// Put it all together
 		return
-			$formattedTime . ' ' .
-			$linksContent . ' . . ' .
-			$charDiff . ' . . ' .
-			$description
-			. ' '
-			. $diffLink;
+			$this->formatTimestamp( $data ) . ' ' .
+			$this->formatDiffHistPipeList( $data['links'], $ctx ) .
+			$separator .
+			$charDiff .
+			$separator .
+			$this->formatDescription( $data, $ctx );
 	}
 }
