@@ -51,6 +51,24 @@
       "revId": "210ed48b8c9ff379c4e38e26456e2d03933626cc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_4c7924f1",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-06T01:38:08Z",
+      "side": 1,
+      "message": "Innodb automatically appends primary key to secondary index, the index would be like ( rev_user_id, rev_user_ip, rev_id ).  Since we have something like \"order by rev_id desc limit 100\" in the query.  This would help retrieving the sorted result without a filesort",
+      "parentUuid": "4e04eb01_86e38e31",
+      "revId": "210ed48b8c9ff379c4e38e26456e2d03933626cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
