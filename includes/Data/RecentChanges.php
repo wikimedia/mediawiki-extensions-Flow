@@ -68,7 +68,12 @@ abstract class RecentChanges implements LifecycleHandler {
 
 		// Very hackish - allows CheckUser access to the basic information without rc_params
 		// must stay below 255 chars.
-		$comment = $action . ',' . $workflow->getId()->getAlphadecimal();
+		$comment = implode( ',', array(
+			'v1', // serialization version prefix
+			$action,
+			$workflow->getId()->getAlphadecimal(),
+			$revisionId
+		) );
 		if ( isset( $changes['post'] ) ) {
 			$comment .= ',' . $changes['post'];
 		}

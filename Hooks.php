@@ -95,6 +95,14 @@ class FlowHooks {
 		return true;
 	}
 
+	public static function onChangesListBegin( \ChangesList $changesList, $rows ) {
+		try {
+			Container::get( 'recentchanges.query' )->loadMetadataBatch( $rows );
+		} catch ( FlowException $e ) {
+			\MWExceptionHandler::logException( $e );
+		}
+	}
+
 	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
 		$source = $rc->getAttribute( 'rc_source' );
 		if ( $source === null ) {
@@ -107,11 +115,16 @@ class FlowHooks {
 		}
 
 		try {
-			$formatter = Container::get( 'recentchanges.formatter' );
-			$watchlist = $formatter->isWatchlist( $classes );
-			$line = $formatter->format( $changesList, $rc, $watchlist );
+			$query = Container::get( 'recentchanges.query' );
+			$isWatchlist = $query->isWatchlist( $classes );
+			// @todo: create hook to allow batch-loading this data
+			$row = $query->getResult( $changesList, $rc, $isWatchlist );
+			if ( $row === false ) {
+				return false;
+			}
+			$line = Container::get( 'recentchanges.formatter' )->format( $row, $changesList );
 		} catch ( FlowException $e ) {
-			wfWarn( __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
+			wfDebugLog( __CLASS__, __FUNCTION__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
 			\MWExceptionHandler::logException( $e );
 			return false;
 		}
@@ -127,7 +140,7 @@ class FlowHooks {
 
 	public static function onSpecialCheckUserGetLinksFromRow( CheckUser $checkUser, $row, &$links ) {
 		if ( $row->cuc_type == RC_FLOW ) {
-			$replacement = Container::get( 'checkuser.formatter' )->format( $checkUser, $row );
+			$replacement = Container::get( 'checkuser.formatter' )->format( $row, $checkUser->getContext() );
 			if ( $replacement === null ) {
 				// some sort of failure, but this is a RC_FLOW so blank out hist/diff links
 				// which aren't correct
@@ -333,11 +346,11 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onContributionsLineEnding( $pager, &$ret, $row, &$classes ) {
-		if ( !isset( $row->flow_contribution ) || $row->flow_contribution !== 'flow' ) {
+		if ( !$row instanceof Flow\Formatter\FormatterRow ) {
 			return true;
 		}
 
-		$line = Container::get( 'contributions.formatter' )->format( $pager, $row );
+		$line = Container::get( 'contributions.formatter' )->format( $row, $pager );
 
 		if ( $line === false ) {
 			return false;
