@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use BagOStuff;
 use ContribsPager;
+use DatabaseBase;
 use Flow\Container;
 use Flow\Data\RevisionStorage;
 use Flow\DbFactory;
@@ -48,7 +49,7 @@ class ContributionsQuery extends AbstractQuery {
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
-	 * @return string|bool false on failure
+	 * @return FormatterRow[]
 	 */
 	public function getResults( ContribsPager $pager, $offset, $limit, $descending ) {
 		// build DB query conditions
@@ -74,13 +75,16 @@ class ContributionsQuery extends AbstractQuery {
 			$this->loadMetadataBatch( $revisions );
 			foreach ( $revisions as $revision ) {
 				try {
-					$result = $this->buildResult( $revision, $blockType, 'rev_timestamp' );
+					$result = new ContributionsRow;
+					$this->buildResult( $revision, $pager->getIndexField(), $result );
+					$results[] = $result;
 				} catch ( FlowException $e ) {
 					$result = false;
+					// Comment out for now since we expect some flow exceptions, when gerrit 111952 is
+					// merged, then we will turn this back on so we can catch unexpected exceptions.
 					\MWExceptionHandler::logException( $e );
 				}
 				if ( $result ) {
-					$result->flow_contribution = 'flow';
 					$results[] = $result;
 				}
 			}
@@ -281,4 +285,8 @@ class ContributionsQuery extends AbstractQuery {
 
 		return array( $minUserId, $excludeUserIds );
 	}
+}
+
+class ContributionsRow extends FormatterRow {
+	public $rev_timestamp;
 }
