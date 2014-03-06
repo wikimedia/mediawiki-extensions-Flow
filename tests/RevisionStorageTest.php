@@ -87,6 +87,39 @@ class RevisionStorageTest extends \MediaWikiTestCase {
 		$storage->findMulti( $queries, $options );
 	}
 
+	public function testPartialResult() {
+		$treeRepo = $this->getMockBuilder( 'Flow\Repository\TreeRepository' )
+			->disableOriginalConstructor()
+			->getMock();
+		$factory = $this->mockDbFactory();
+		$factory->getDB( null )->expects( $this->once() )
+			->method( 'select' )
+			->will( $this->returnValue( array(
+				(object)array( 'rev_id' => 42, 'rev_flags' => '' )
+			) ) );
+
+		$storage = new PostRevisionStorage( $factory, false, $treeRepo );
+
+		$res = $storage->findMulti(
+			array(
+				array( 'rev_id' => 12 ),
+				array( 'rev_id' => 42 ),
+				array( 'rev_id' => 17 ),
+			),
+			array( 'LIMIT' => 1 )
+		);
+
+		$this->assertSame(
+			array(
+				null,
+				array( array( 'rev_id' => 42, 'rev_flags' => '', 'rev_content_url' => null ) ),
+				null,
+			),
+			$res,
+	 		'Unfound items must be represented with null in the result array'
+		);
+	}
+
 	protected function mockDbFactory() {
 		$dbw = $this->getMockBuilder( 'DatabaseMysql' )
 			->disableOriginalConstructor()
