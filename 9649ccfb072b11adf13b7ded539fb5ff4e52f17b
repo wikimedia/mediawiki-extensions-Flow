@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_028e4382",
+        "filename": "maintenance/FlowUpdateRevisionTypeId.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-06T10:23:53Z",
+      "side": 1,
+      "message": "Not sure we want to output a line for every processed revision (or at all)",
+      "revId": "9649ccfb072b11adf13b7ded539fb5ff4e52f17b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
