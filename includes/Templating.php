@@ -339,6 +339,7 @@ class Templating {
 		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 			return $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
 		} else {
+			$revision = $this->getModeratedRevision( $revision );
 			$username = $this->usernames->get(
 				wfWikiId(),
 				$revision->getModeratedByUserId(),
@@ -371,6 +372,7 @@ class Templating {
 			$username = $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
 			return Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
 		} else {
+			$revision = $this->getModeratedRevision( $revision );
 			$state = $revision->getModerationState();
 			$username = $this->usernames->get(
 				wfWikiId(),
@@ -414,6 +416,7 @@ class Templating {
 				$revision->getCreatorIp()
 			);
 		} else {
+			$revision = $this->getModeratedRevision( $revision );
 			$state = $revision->getModerationState();
 			$username = $this->usernames->get(
 				wfWikiId(),
@@ -463,6 +466,7 @@ class Templating {
 
 			return $content;
 		} else {
+			$revision = $this->getModeratedRevision( $revision );
 			$username = $this->usernames->get(
 				wfWikiId(),
 				$revision->getModeratedByUserId(),
@@ -494,6 +498,7 @@ class Templating {
 		if ( $state === $revision::MODERATED_NONE ) {
 			return '';
 		}
+		$revision = $this->getModeratedRevision( $revision );
 		$username = $this->usernames->get(
 			wfWikiId(),
 			$revision->getModeratedByUserId(),
@@ -527,4 +532,11 @@ class Templating {
 		}
 	}
 
+	protected function getModeratedRevision( AbstractRevision $revision ) {
+		if ( $revision->isModerated() ) {
+			return $revision;
+		} else {
+			return Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
+		}
+	}
 }
