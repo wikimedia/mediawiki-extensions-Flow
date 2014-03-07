@@ -85,6 +85,8 @@ $wgAutoloadClasses['Flow\Model\Metadata'] = $dir . 'includes/Model/Metadata.php'
 $wgAutoloadClasses['Flow\Model\AbstractRevision'] = $dir . 'includes/Model/AbstractRevision.php';
 $wgAutoloadClasses['Flow\Model\PostRevision'] = $dir . 'includes/Model/PostRevision.php';
 $wgAutoloadClasses['Flow\Model\Header'] = $dir . 'includes/Model/Header.php';
+$wgAutoloadClasses['Flow\Model\AbstractSummary'] = $dir . 'includes/Model/Summary.php';
+$wgAutoloadClasses['Flow\Model\PostSummary'] = $dir . 'includes/Model/Summary.php';
 $wgAutoloadClasses['Flow\Model\TopicListEntry'] = $dir . 'includes/Model/TopicListEntry.php';
 $wgAutoloadClasses['Flow\Model\Workflow'] = $dir . 'includes/Model/Workflow.php';
 $wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
@@ -93,6 +95,7 @@ $wgAutoloadClasses['Flow\Collection\CollectionCache'] = $dir . 'includes/Collect
 $wgAutoloadClasses['Flow\Collection\LocalCacheAbstractCollection'] = $dir . 'includes/Collection/LocalCacheAbstractCollection.php';
 $wgAutoloadClasses['Flow\Collection\PostCollection'] = $dir . 'includes/Collection/PostCollection.php';
 $wgAutoloadClasses['Flow\Collection\HeaderCollection'] = $dir . 'includes/Collection/HeaderCollection.php';
+$wgAutoloadClasses['Flow\Collection\PostSummaryCollection'] = $dir . 'includes/Collection/SummaryCollection.php';
 
 // Helpers for templating
 $wgAutoloadClasses['Flow\View\PostActionMenu'] = "$dir/includes/View/PostActionMenu.php";
@@ -162,6 +165,7 @@ $wgAutoloadClasses['Flow\Template\ErrorHelper'] = $dir . 'includes/Template/Erro
 $wgAutoloadClasses['Flow\Data\RevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 $wgAutoloadClasses['Flow\Data\HeaderRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
+$wgAutoloadClasses['Flow\Data\PostSummaryRevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 
 // The individual workflow pieces
 $wgAutoloadClasses['Flow\Block\BoardHistoryBlock'] = $dir . 'includes/Block/BoardHistory.php';

@@ -570,6 +570,12 @@ class HeaderRevisionStorage extends RevisionStorage {
 	}
 }
 
+class PostSummaryRevisionStorage extends RevisionStorage {
+	protected function getRevType() {
+		return 'post-summary';
+	}
+}
+
 /**
  * Slight tweak to the TopKIndex uses additional info from TreeRepository to build the cache
  */
