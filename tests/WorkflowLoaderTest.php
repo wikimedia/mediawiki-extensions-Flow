@@ -10,7 +10,7 @@ class WorkflowLoaderTest extends \MediaWikiTestCase {
 	public function provideDataCreateBlocks() {
 		return array (
 			array( 'discussion', array( 'Flow\Block\HeaderBlock', 'Flow\Block\TopicListBlock', 'Flow\Block\BoardHistoryBlock' ) ),
-			array( 'topic', array( 'Flow\Block\TopicBlock' ) ),
+			array( 'topic', array( 'Flow\Block\TopicBlock', 'Flow\Block\TopicSummaryBlock' ) ),
 		);
 	}
 

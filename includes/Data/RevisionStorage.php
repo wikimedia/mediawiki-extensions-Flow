@@ -73,7 +73,7 @@ abstract class RevisionStorage extends DbStorage {
 	 * @return array $changes
 	 */
 	protected function updateRelated( array $changes, array $old ) {
-		return $changes;	
+		return $changes;
 	}
 
 	/**
