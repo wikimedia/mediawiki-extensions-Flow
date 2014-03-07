@@ -532,6 +532,16 @@ class HeaderRevisionStorage extends RevisionStorage {
 	}
 }
 
+class SummaryRevisionStorage extends RevisionStorage {
+	protected function getRevType() {
+		return 'summary';
+	}
+
+	protected function getRevTypeIdSearchKey() {
+		return 'summary_target_id';
+	}
+}
+
 /**
  * Slight tweak to the TopKIndex uses additional info from TreeRepository to build the cache
  */

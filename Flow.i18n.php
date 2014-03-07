@@ -99,6 +99,7 @@ $messages['en'] = array(
 	'flow-error-external-multi' => 'Errors were encountered.<br />$1',
 
 	'flow-error-missing-content' => 'Post has no content. Content is required to save a post.',
+	'flow-error-missing-summary' => 'Summary has no content. Content is required to save a summary.',
 	'flow-error-missing-title' => 'Topic has no title. Title is required to save a topic.',
 	'flow-error-parsoid-failure' => 'Unable to parse content due to a Parsoid failure.',
 	'flow-error-missing-replyto' => 'No "replyTo" parameter was supplied. This parameter is required for the "reply" action.',
@@ -547,6 +548,8 @@ See also:
 See also:
 * {{msg-mw|Flow-error-external}}',
 	'flow-error-missing-content' => 'Used as error message.
+{{Related|Flow-error-missing}}',
+	'flow-error-missing-summary' => 'Used as error message.
 {{Related|Flow-error-missing}}',
 	'flow-error-missing-title' => 'Used as error message.
 {{Related|Flow-error-missing}}',
