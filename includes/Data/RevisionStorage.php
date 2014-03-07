@@ -481,3 +481,9 @@ abstract class RevisionStorage extends DbStorage {
 		return $rev;
 	}
 }
+
+class PostSummaryRevisionStorage extends RevisionStorage {
+	protected function getRevType() {
+		return 'post-summary';
+	}
+}
