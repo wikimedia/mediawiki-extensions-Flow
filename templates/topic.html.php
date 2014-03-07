@@ -94,7 +94,7 @@ echo Html::openElement( 'div', array(
 				);
 			endif ?>
 		</div>
-		<?php if ( $postActionMenu->isAllowedAny( 'view', 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic', 'edit-title', 'topic-history' ) ): ?>
+		<?php if ( $postActionMenu->isAllowedAny( 'history', 'view', 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic', 'edit-title' ) ): ?>
 		<div class="flow-tipsy flow-actions">
 			<a class="flow-tipsy-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
 			<div class="flow-tipsy-flyout">
@@ -113,9 +113,9 @@ echo Html::openElement( 'div', array(
 							'mw-ui-button mw-ui-quiet flow-action-permalink-link'
 						), '</li>';
 					} ?>
-					<?php if ( $postActionMenu->isAllowed( 'topic-history' ) ) {
+					<?php if ( $postActionMenu->isAllowed( 'history' ) ) {
 						echo '<li class="flow-action-topic-history">', $postActionMenu->getButton(
-							'topic-history',
+							'history',
 							wfMessage( 'flow-topic-action-history' )->escaped(),
 							'mw-ui-button mw-ui-quiet flow-action-topic-history-link'
 						), '</li>';

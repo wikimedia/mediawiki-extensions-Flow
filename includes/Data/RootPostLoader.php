@@ -53,7 +53,7 @@ class RootPostLoader {
 			} elseif( $rootId->equals( $post->getPostId() ) ) {
 				$res['root'] = $post;
 			} else {
-				die( 'Unmatched: ' . $post->getPostId()->getAlphadecimal() );
+				throw new InvalidDataException( 'Unmatched: ' . $post->getPostId()->getAlphadecimal() );
 			}
 		}
 		// The above doesn't catch this condition

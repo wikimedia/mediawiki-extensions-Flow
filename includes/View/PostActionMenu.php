@@ -58,7 +58,11 @@ class PostActionMenu {
 		if ( !$this->permissions->isAllowed( $this->post, $action ) ) {
 			return false;
 		}
-		$data = array( $this->block->getName() . '_postId' => $this->post->getPostId()->getAlphadecimal() );
+		if ( $this->post->isTopicTitle() ) {
+			$data = array();
+		} else {
+			$data = array( $this->block->getName() . '_postId' => $this->post->getPostId()->getAlphadecimal() );
+		}
 		if ( $this->getMethod( $action ) === 'POST' ) {
 			return $this->postAction( $action, $data, $content, $class );
 		} else {

@@ -418,7 +418,7 @@ $wgFlowActions = array(
 		),
 	),
 
-	'post-history' => array(
+	'history' => array(
 		'performs-writes' => false,
 		'log_type' => false,
 		'rc_insert' => false, // won't even be called, actually; only for writes
@@ -463,14 +463,14 @@ $wgFlowActions = array(
 				 * is the same as the moderation (e.g. if user can't see
 				 * suppress actions, he can't see restores from suppress.
 				 */
-				if ( $revision->getChangeType() == 'restore-post' ) {
+				if ( strpos( $revision->getChangeType(), 'restore-' ) === 0 ) {
 					$previous = $collection->getPrevRevision( $revision );
 
 					if ( $previous === null || $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
 						return '';
 					}
 
-					return $permissions->getPermission( $previous, 'topic-history' );
+					return $permissions->getPermission( $previous, 'history' );
 				}
 
 				return '';
@@ -483,15 +483,11 @@ $wgFlowActions = array(
 		'history' => array() // views don't generate history
 	),
 
-	// post/topic/board history have exact same config
-	'topic-history' => 'post-history',
-	'board-history' => 'post-history',
-
 	// log & all other formatters have same config as history
-	'log' => 'post-history',
-	'recentchanges' => 'post-history',
-	'contributions' => 'post-history',
-	'checkuser' => 'post-history',
+	'log' => 'history',
+	'recentchanges' => 'history',
+	'contributions' => 'history',
+	'checkuser' => 'history',
 
 	/*
 	 * Backwards compatibility; these are old values that may have made their
@@ -527,4 +523,10 @@ $wgFlowActions = array(
 	 */
 	'censor-post' => 'suppress-post',
 	'censor-topic' => 'suppress-topic',
+	/*
+	 * Backwards compatibility for old (separated) history actions
+	 */
+	'post-history' => 'history',
+	'topic-history' => 'history',
+	'board-history' => 'history',
 );
