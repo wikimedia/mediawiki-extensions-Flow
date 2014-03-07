@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_724f0e3a",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-07T02:29:55Z",
+      "side": 1,
+      "message": "Maybe just log the error",
+      "revId": "5637f568dec084a3cfd51364de37e0f6826ff338",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_128e8a82",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-07T02:29:55Z",
+      "side": 1,
+      "message": "It seems unnecessary to use alphadecimal as key, it could be just $row-\u003erev_id?",
+      "revId": "5637f568dec084a3cfd51364de37e0f6826ff338",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
