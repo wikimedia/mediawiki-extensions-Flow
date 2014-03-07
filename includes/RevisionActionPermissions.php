@@ -5,7 +5,6 @@ namespace Flow;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
 use Closure;
-use Flow\Container;
 use User;
 
 /**

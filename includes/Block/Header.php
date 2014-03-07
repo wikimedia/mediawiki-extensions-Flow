@@ -5,11 +5,8 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
-use Flow\View\History\History;
-use Flow\View\History\HistoryRenderer;
 use Flow\Templating;
 use Flow\Exception\InvalidActionException;
-use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\View\HeaderRevisionView;
 

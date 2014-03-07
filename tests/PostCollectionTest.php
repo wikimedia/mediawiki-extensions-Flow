@@ -3,7 +3,7 @@
 namespace Flow\Tests;
 
 use Flow\Container;
-use Flow\Model\PostCollection;
+use Flow\Collection\PostCollection;
 
 /**
  * @group Flow

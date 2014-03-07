@@ -131,7 +131,7 @@ $c['repository.username'] = $c->share( function( $c ) {
 	return new Flow\Data\UserNameBatch( new Flow\Data\TwoStepUsernameQuery( $c['db.factory'] ) );
 } );
 $c['collection.cache'] = $c->share( function( $c ) {
-	return new Flow\Model\CollectionCache();
+	return new Flow\Collection\CollectionCache();
 } );
 // Per wiki workflow definitions (types of workflows)
 $c['storage.definition'] = $c->share( function( $c ) {

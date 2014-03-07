@@ -2,6 +2,7 @@
 
 namespace Flow\Model;
 
+use Flow\Collection\HeaderCollection;
 use User;
 
 class Header extends AbstractRevision {

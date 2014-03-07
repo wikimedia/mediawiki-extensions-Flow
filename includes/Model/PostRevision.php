@@ -4,6 +4,7 @@ namespace Flow\Model;
 
 use User;
 use Flow\Exception\DataModelException;
+use Flow\Collection\PostCollection;
 
 class PostRevision extends AbstractRevision {
 	const MAX_TOPIC_LENGTH = 260;
@@ -13,7 +14,7 @@ class PostRevision extends AbstractRevision {
 	 */
 	protected $postId;
 
-	// The rest of the properties are denormalized data that 
+	// The rest of the properties are denormalized data that
 	// must not change between revisions of same post
 
 	/**
