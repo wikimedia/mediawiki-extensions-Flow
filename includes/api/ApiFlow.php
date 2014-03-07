@@ -12,6 +12,7 @@ class ApiFlow extends ApiBase {
 		'new-topic' => 'ApiFlowNewTopic',
 		'edit-header' => 'ApiFlowEditHeader',
 		'edit-post' => 'ApiFlowEditPost',
+		'edit-topic-summary' => 'ApiFlowEditTopicSummary',
 		'reply' => 'ApiFlowReply',
 		'moderate-post' => 'ApiFlowModeratePost',
 		'moderate-topic' => 'ApiFlowModerateTopic',

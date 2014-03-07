@@ -2,23 +2,23 @@
 
 namespace Flow\Block;
 
-use Flow\View\History\History;
-use Flow\View\History\HistoryRenderer;
+use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
-use Flow\Model\UUID;
-use Flow\Model\Workflow;
-use Flow\Model\AbstractRevision;
-use Flow\Model\PostRevision;
-use Flow\NotificationController;
-use Flow\RevisionActionPermissions;
-use Flow\Templating;
-use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
+use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
+use Flow\Model\UUID;
+use Flow\Model\Workflow;
+use Flow\NotificationController;
+use Flow\RevisionActionPermissions;
+use Flow\Templating;
+use Flow\View\History\History;
+use Flow\View\History\HistoryRenderer;
 use Flow\View\PostRevisionView;
 
 class TopicBlock extends AbstractBlock {
