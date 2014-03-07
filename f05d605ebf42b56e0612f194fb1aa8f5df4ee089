@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_0509a32e",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-07T19:38:56Z",
+      "side": 1,
+      "message": "passed by reference?",
+      "revId": "f05d605ebf42b56e0612f194fb1aa8f5df4ee089",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_652507a9",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-07T19:38:56Z",
+      "side": 1,
+      "message": "use $wgLang-\u003ecommaList()",
+      "revId": "f05d605ebf42b56e0612f194fb1aa8f5df4ee089",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
