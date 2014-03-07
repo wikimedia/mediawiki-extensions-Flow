@@ -99,6 +99,7 @@ $messages['en'] = array(
 	'flow-error-external-multi' => 'Errors were encountered.<br />$1',
 
 	'flow-error-missing-content' => 'Post has no content. Content is required to save a post.',
+	'flow-error-missing-summary' => 'Summary has no content. Content is required to save a summary.',
 	'flow-error-missing-title' => 'Topic has no title. Title is required to save a topic.',
 	'flow-error-parsoid-failure' => 'Unable to parse content due to a Parsoid failure.',
 	'flow-error-missing-replyto' => 'No "replyTo" parameter was supplied. This parameter is required for the "reply" action.',
@@ -149,6 +150,9 @@ $messages['en'] = array(
 
 	'flow-rev-message-create-header' => "$1 {{GENDER:$2|created}} the header.",
 	'flow-rev-message-edit-header' => "$1 {{GENDER:$2|edited}} the header.",
+
+	'flow-rev-message-create-topic-summary' => "$1 {{GENDER:$2|created}} topic summary on $3.",
+	'flow-rev-message-edit-topic-summary' => "$1 {{GENDER:$2|edited}} topic summary on $3.",
 
 	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|hid}} a [$4 comment] on $6 (<em>$5</em>).',
 	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|deleted}} a [$4 comment] on $6 (<em>$5</em>).',
@@ -557,6 +561,8 @@ See also:
 * {{msg-mw|Flow-error-external}}',
 	'flow-error-missing-content' => 'Used as error message.
 {{Related|Flow-error-missing}}',
+	'flow-error-missing-summary' => 'Used as error message.
+{{Related|Flow-error-missing}}',
 	'flow-error-missing-title' => 'Used as error message.
 {{Related|Flow-error-missing}}',
 	'flow-error-parsoid-failure' => 'Used as error message.
@@ -676,6 +682,20 @@ Parameters:
 * $1 - user link and tool links for the user.
 * $2 - username of the user who edited the header. Can be used for GENDER
 {{Related|Flow-rev-message}}',
+	'flow-rev-message-create-topic-summary' => "Used as revision comment when a topic summary has been created.
+
+Parameters:
+* $1 - user link and tool links for the user.
+* $2 - username of the user who created the topic summary. Can be used for GENDER
+* $3 - the topic this summary belongs to
+{{Related|Flow-rev-message}}",
+	'flow-rev-message-edit-topic-summary' => "Used as revision comment when a topic summary has been edited.
+
+Parameters:
+* $1 - user link and tool links for the user.
+* $2 - username of the user who edited the topic summary. Can be used for GENDER
+* $3 - the topic this summary belongs to
+{{Related|Flow-rev-message}}",
 	'flow-rev-message-hid-post' => 'Used as revision comment when a post has been hidden.
 
 Parameters:
