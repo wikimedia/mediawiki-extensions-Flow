@@ -323,21 +323,24 @@ class Templating {
 	public function getUserText( AbstractRevision $revision ) {
 		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 			return $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
+		}
+
+		if ( !$revision->isModerated() ) {
+			$revision = Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
+		}
+		$username = $this->usernames->get(
+			wfWikiId(),
+			$revision->getModeratedByUserId(),
+			$revision->getModeratedByUserIp()
+		);
+		$state = $revision->getModerationState();
+		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
+		$message = wfMessage( "flow-$state-usertext", $username );
+		if ( $message->exists() ) {
+			return $message->text();
 		} else {
-			$username = $this->usernames->get(
-				wfWikiId(),
-				$revision->getModeratedByUserId(),
-				$revision->getModeratedByUserIp()
-			);
-			$state = $revision->getModerationState();
-			// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
-			$message = wfMessage( "flow-$state-usertext", $username );
-			if ( $message->exists() ) {
-				return $message->text();
-			} else {
-				wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-				return wfMessage( 'flow-error-other' )->text();
-			}
+			wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
+			return wfMessage( 'flow-error-other' )->text();
 		}
 	}
 
@@ -355,22 +358,28 @@ class Templating {
 			$userid = $revision->getUserId();
 			$username = $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
 			return Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
-		} else {
-			$state = $revision->getModerationState();
-			$username = $this->usernames->get(
-				wfWikiId(),
-				$revision->getModeratedByUserId(),
-				$revision->getModeratedByUserIp()
-			);
+		}
 
-			// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
-			$message = wfMessage( "flow-$state-usertext", $username );
-			if ( $message->exists() ) {
-				return $message->escaped();
-			} else {
-				wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-				return wfMessage( 'flow-error-other' )->escaped();
-			}
+		// unmoderated but invisible...This is a historical entry the user cant see
+		// because the most recent version is moderated
+		if( !$revision->isModerated() ) {
+			$revision = Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
+		}
+
+		$state = $revision->getModerationState();
+		$username = $this->usernames->get(
+			wfWikiId(),
+			$revision->getModeratedByUserId(),
+			$revision->getModeratedByUserIp()
+		);
+
+		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
+		$message = wfMessage( "flow-$state-usertext", $username );
+		if ( $message->exists() ) {
+			return $message->escaped();
+		} else {
+			wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
+			return wfMessage( 'flow-error-other' )->escaped();
 		}
 	}
 
@@ -398,22 +407,26 @@ class Templating {
 				$revision->getCreatorId(),
 				$revision->getCreatorIp()
 			);
-		} else {
-			$state = $revision->getModerationState();
-			$username = $this->usernames->get(
-				wfWikiId(),
-				$revision->getModeratedByUserId(),
-				$revision->getModeratedByUserIp()
-			);
-			// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
-			$message = wfMessage( "flow-$state-usertext", $username );
+		}
 
-			if ( $message->exists() ) {
-				return $message->text();
-			} else {
-				wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-				return wfMessage( 'flow-error-other' )->text();
-			}
+		if ( !$revision->isModerated() ) {
+			$revision = Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
+		}
+
+		$state = $revision->getModerationState();
+		$username = $this->usernames->get(
+			wfWikiId(),
+			$revision->getModeratedByUserId(),
+			$revision->getModeratedByUserIp()
+		);
+		// Messages: flow-hide-usertext, flow-delete-usertext, flow-suppress-usertext
+		$message = wfMessage( "flow-$state-usertext", $username );
+
+		if ( $message->exists() ) {
+			return $message->text();
+		} else {
+			wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
+			return wfMessage( 'flow-error-other' )->text();
 		}
 	}
 
@@ -447,30 +460,33 @@ class Templating {
 			}
 
 			return $content;
+		}
+
+		if ( !$revision->isModerated() ) {
+			$revision = Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
+		}
+		$username = $this->usernames->get(
+			wfWikiId(),
+			$revision->getModeratedByUserId(),
+			$revision->getModeratedByUserIp()
+		);
+
+		// get revision type to make more precise message
+		$state = $revision->getModerationState();
+		$type = $revision->getRevisionType();
+		if ( $type == 'post' && $revision->isTopicTitle() ) {
+			$type = 'title';
+		}
+
+		// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
+		//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
+		$message = wfMessage( "flow-$state-$type-content", $username, $this->getUserLinks( $revision ) );
+		if ( $message->exists() ) {
+			return $message->escaped();
 		} else {
-			$username = $this->usernames->get(
-				wfWikiId(),
-				$revision->getModeratedByUserId(),
-				$revision->getModeratedByUserIp()
-			);
+			wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
 
-			// get revision type to make more precise message
-			$state = $revision->getModerationState();
-			$type = $revision->getRevisionType();
-			if ( $type == 'post' && $revision->isTopicTitle() ) {
-				$type = 'title';
-			}
-
-			// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
-			//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
-			$message = wfMessage( "flow-$state-$type-content", $username, $this->getUserLinks( $revision ) );
-			if ( $message->exists() ) {
-				return $message->escaped();
-			} else {
-				wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-
-				return wfMessage( 'flow-error-other' )->escaped();
-			}
+			return wfMessage( 'flow-error-other' )->escaped();
 		}
 	}
 
