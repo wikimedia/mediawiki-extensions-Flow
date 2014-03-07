@@ -56,59 +56,69 @@ class HeaderBlock extends AbstractBlock {
 		}
 
 		if ( $this->header ) {
-			if ( !$this->permissions->isAllowed( $this->header, 'edit-header' ) ) {
-				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-				return;
-			}
-
-			if ( empty( $this->submitted['prev_revision'] ) ) {
-				$this->addError( 'prev_revision', wfMessage( 'flow-error-missing-prev-revision-identifier' ) );
-			} elseif ( $this->header->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
-				// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
-				// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
-				// parent we and the submitter think is the latest, our insert will fail.
-				// TODO: Catch whatever exception happens there, make sure the most recent revision is the one in the cache before
-				// handing user back to specific dialog indicating race condition
-				$this->addError(
-					'prev_revision',
-					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getAlphadecimal() ),
-					array( 'revision_id' => $this->header->getRevisionId()->getAlphadecimal() ) // save current revision ID
-				);
-			}
-
-			// this isn't really part of validate, but we want the error-rendering template to see the users edited header
-			$oldHeader = $this->header;
-			$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
-
-			if ( !$this->checkSpamFilters( $oldHeader, $this->header ) ) {
-				return;
-			}
-
+			$this->validateNextRevision();
 		} else {
-			if ( !$this->permissions->isAllowed( null, 'create-header' ) ) {
-				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-				return;
-			}
+			// simpler case
+			$this->validateFirstRevision();
+		}
+	}
 
-			if ( empty( $this->submitted['prev_revision'] ) ) {
-				$title = $this->workflow->getArticleTitle();
-				if ( !$title->exists() ) {
-					// if $wgFlowContentFormat is set to html the Header::create
-					// call will convert the wikitext input into html via parsoid, and
-					// parsoid requires the page exist.
-					Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
-				}
+	protected function validateNextRevision() {
+		if ( !$this->permissions->isAllowed( $this->header, 'edit-header' ) ) {
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			return;
+		}
 
-				$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
+		if ( empty( $this->submitted['prev_revision'] ) ) {
+			$this->addError( 'prev_revision', wfMessage( 'flow-error-missing-prev-revision-identifier' ) );
+		} elseif ( $this->header->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
+			// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
+			// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
+			// parent we and the submitter think is the latest, our insert will fail.
+			// TODO: Catch whatever exception happens there, make sure the most recent revision is the one in the cache before
+			// handing user back to specific dialog indicating race condition
+			$this->addError(
+				'prev_revision',
+				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $this->header->getRevisionId()->getAlphadecimal() ),
+				array( 'revision_id' => $this->header->getRevisionId()->getAlphadecimal() ) // save current revision ID
+			);
+		}
 
-				if ( !$this->checkSpamFilters( null, $this->header ) ) {
-					return;
-				}
-			} else {
-				// User submitted a previous revision, but we couldn't find one.  This is likely
-				// an internal error and not a user error, consider better handling
-				$this->addError( 'prev_revision', wfMessage( 'flow-error-prev-revision-does-not-exist' ) );
-			}
+		// this isn't really part of validate, but we want the error-rendering template to see the users edited header
+		$oldHeader = $this->header;
+		$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
+
+		if ( !$this->checkSpamFilters( $oldHeader, $this->header ) ) {
+			return;
+		}
+
+	}
+
+	protected function validateFirstRevision() {
+		if ( !$this->permissions->isAllowed( null, 'create-header' ) ) {
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			return;
+		}
+		if ( isset( $this->submitted['prev_revision'] ) ) {
+			// User submitted a previous revision, but we couldn't find one.  This is likely
+			// an internal error and not a user error, consider better handling
+			// is this even worth checking?
+			$this->addError( 'prev_revision', wfMessage( 'flow-error-prev-revision-does-not-exist' ) );
+			return;
+		}
+
+		$title = $this->workflow->getArticleTitle();
+		if ( !$title->exists() ) {
+			// if $wgFlowContentFormat is set to html the Header::create
+			// call will convert the wikitext input into html via parsoid, and
+			// parsoid requires the page exist.
+			Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
+		}
+
+		$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
+
+		if ( !$this->checkSpamFilters( null, $this->header ) ) {
+			return;
 		}
 	}
 

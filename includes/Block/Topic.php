@@ -151,30 +151,31 @@ class TopicBlock extends AbstractBlock {
 		if ( $len > PostRevision::MAX_TOPIC_LENGTH ) {
 			$this->addError( 'content', wfMessage( 'flow-error-title-too-long', PostRevision::MAX_TOPIC_LENGTH ) );
 			return;
-		} elseif ( empty( $this->submitted['prev_revision'] ) ) {
+		}
+		if ( empty( $this->submitted['prev_revision'] ) ) {
 			$this->addError( 'prev_revision', wfMessage( 'flow-error-missing-prev-revision-identifier' ) );
 			return;
-		} else {
-			$topicTitle = $this->loadTopicTitle();
-			if ( !$topicTitle ) {
-				throw new InvalidInputException( 'No revision associated with workflow?', 'missing-revision' );
-			}
-			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
-				$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-				return;
-			} elseif ( $topicTitle->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
-				// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
-				// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
-				// parent we and the submitter think is the latest, our insert will fail.
-				// TODO: Catch whatever exception happens there, make sure the most recent revision is the one in the cache before
-				// handing user back to specific dialog indicating race condition
-				$this->addError(
-					'prev_revision',
-					wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $topicTitle->getRevisionId()->getAlphadecimal() ),
-					array( 'revision_id' => $topicTitle->getRevisionId()->getAlphadecimal() ) // save current revision ID
-				);
-				return;
-			}
+		}
+		$topicTitle = $this->loadTopicTitle();
+		if ( !$topicTitle ) {
+			throw new InvalidInputException( 'No revision associated with workflow?', 'missing-revision' );
+		}
+		if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
+			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+			return;
+		}
+		if ( $topicTitle->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
+			// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
+			// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
+			// parent we and the submitter think is the latest, our insert will fail.
+			// TODO: Catch whatever exception happens there, make sure the most recent revision is the one in the cache before
+			// handing user back to specific dialog indicating race condition
+			$this->addError(
+				'prev_revision',
+				wfMessage( 'flow-error-prev-revision-mismatch' )->params( $this->submitted['prev_revision'], $topicTitle->getRevisionId()->getAlphadecimal() ),
+				array( 'revision_id' => $topicTitle->getRevisionId()->getAlphadecimal() ) // save current revision ID
+			);
+			return;
 		}
 
 		$this->newRevision = $topicTitle->newNextRevision( $this->user, $this->submitted['content'], 'edit-title' );
@@ -189,7 +190,8 @@ class TopicBlock extends AbstractBlock {
 		if ( empty( $this->submitted['content'] ) ) {
 			$this->addError( 'content', wfMessage( 'flow-error-missing-content' ) );
 			return;
-		} elseif ( !isset( $this->submitted['replyTo'] ) ) {
+		}
+		if ( !isset( $this->submitted['replyTo'] ) ) {
 			$this->addError( 'replyTo', wfMessage( 'flow-error-missing-replyto' ) );
 			return;
 		}
@@ -197,17 +199,17 @@ class TopicBlock extends AbstractBlock {
 		$post = $this->loadRequestedPost( $this->submitted['replyTo'] );
 		if ( !$post ) {
 			return; // loadRequestedPost adds its own errors
-		} elseif ( !$this->permissions->isAllowed( $post, 'reply' ) ) {
+		}
+		if ( !$this->permissions->isAllowed( $post, 'reply' ) ) {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
-		} else {
-			$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
-			if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
-				return;
-			}
-
-			$this->setNotification( 'flow-post-reply', array( 'reply-to' => $post ) );
 		}
+		$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
+		if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
+			return;
+		}
+
+		$this->setNotification( 'flow-post-reply', array( 'reply-to' => $post ) );
 	}
 
 	protected function validateModerateTopic( $moderationState = null ) {
@@ -270,11 +272,11 @@ class TopicBlock extends AbstractBlock {
 		if ( ! $post->isValidModerationState( $newState ) ) {
 			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-state' ) );
 			return;
-		} elseif ( !$this->permissions->isAllowed( $post, $action ) ) {
+		}
+		if ( !$this->permissions->isAllowed( $post, $action ) ) {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
-
 		if ( empty( $this->submitted['reason'] ) ) {
 			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
 			return;
@@ -293,10 +295,12 @@ class TopicBlock extends AbstractBlock {
 		if ( empty( $this->submitted['postId'] ) ) {
 			$this->addError( 'post', wfMessage( 'flow-error-missing-postId' ) );
 			return;
-		} elseif ( empty( $this->submitted['content'] ) ) {
+		}
+		if ( empty( $this->submitted['content'] ) ) {
 			$this->addError( 'content', wfMessage( 'flow-error-missing-content' ) );
 			return;
-		} elseif ( empty( $this->submitted['prev_revision'] ) ) {
+		}
+		if ( empty( $this->submitted['prev_revision'] ) ) {
 			$this->addError( 'prev_revision', wfMessage( 'flow-error-missing-prev-revision-identifier' ) );
 			return;
 		}
@@ -307,7 +311,8 @@ class TopicBlock extends AbstractBlock {
 		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
-		} elseif ( $post->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
+		}
+		if ( $post->getRevisionId()->getAlphadecimal() !== $this->submitted['prev_revision'] ) {
 			// This is a reasonably effective way to ensure prev revision matches, but for guarantees against race
 			// conditions there also exists a unique index on rev_prev_revision in mysql, meaning if someone else inserts against the
 			// parent we and the submitter think is the latest, our insert will fail.
