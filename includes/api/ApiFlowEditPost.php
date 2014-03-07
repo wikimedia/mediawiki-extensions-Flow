@@ -10,8 +10,8 @@ class ApiFlowEditPost extends ApiFlowBase {
 		return 'edit-post';
 	}
 
-	protected function getBlockName() {
-		return 'topic';
+	protected function getBlockNames() {
+		return array( 'topic' );
 	}
 
 	public function getAllowedParams() {
