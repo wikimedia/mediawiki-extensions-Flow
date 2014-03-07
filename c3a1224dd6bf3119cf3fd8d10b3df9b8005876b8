@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_c53cdbbd",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-07T19:46:37Z",
+      "side": 1,
+      "message": "Probably name it RevisionCreatable?  It\u0027s weird to name a property with \u0027hack\u0027, :),  the interface also needs to be put in $wgAutoload",
+      "revId": "c3a1224dd6bf3119cf3fd8d10b3df9b8005876b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

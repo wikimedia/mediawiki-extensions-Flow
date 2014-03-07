@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_4551eb10",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-07T19:46:37Z",
+      "side": 0,
+      "message": "Yeah, this should be in the subclass instead.  The return type is used as subtypes of AbstractRevision in subclasses",
+      "revId": "a7dc0114d1d30c8ff6d4959ae6b78d701aec7895",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
