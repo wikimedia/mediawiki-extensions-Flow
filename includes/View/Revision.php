@@ -373,7 +373,7 @@ class HeaderRevisionView extends RevisionView {
 		$historyLink = $this->templating->getUrlGenerator()
 			->generateUrl(
 				$this->block->getWorkflow(),
-				'board-history'
+				'history'
 			);
 		$headerMsg = wfMessage( 'flow-compare-revisions-header-header' )
 			->params(
@@ -398,7 +398,7 @@ class HeaderRevisionView extends RevisionView {
 	public function getSingleViewHeader() {
 		$historyLink = $this->templating->getUrlGenerator()->generateUrl(
 			$this->block->getWorkflow(),
-			'board-history'
+			'history'
 		);
 		$compareLink = $this->getDiffLinkAgainstPrevious( $this->block );
 
@@ -570,7 +570,7 @@ class PostRevisionView extends RevisionView {
 		$historyLink = $this->templating->getUrlGenerator()
 			->generateUrl(
 				$this->block->getWorkflow(),
-				'post-history',
+				'history',
 				array(
 					$this->block->getName().'_postId' => $newRevision->getPostId()->getAlphadecimal()
 				)
@@ -600,7 +600,7 @@ class PostRevisionView extends RevisionView {
 	public function getSingleViewHeader() {
 		$historyLink = $this->templating->getUrlGenerator()->generateUrl(
 			$this->block->getWorkflow(),
-			'post-history',
+			'history',
 			array(
 				$this->block->getName().'_postId' => $this->revision->getPostId()->getAlphadecimal(),
 			)
