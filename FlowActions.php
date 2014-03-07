@@ -64,6 +64,42 @@ $wgFlowActions = array(
 		),
 	),
 
+	'create-topic-summary' => array(
+		'performs-writes' => true,
+		'log_type' => false,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
+		'button-method' => 'POST',
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-create-topic-summary',
+			'i18n-params' => array(
+				'user-links',
+				'user-text',
+				'topic-of-post',
+			),
+			'class' => 'flow-history-create-topic-summary',
+		),
+	),
+
+	'edit-topic-summary' => array(
+		'performs-writes' => true,
+		'log_type' => false,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
+		'button-method' => 'POST',
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-edit-topic-summary',
+			'i18n-params' => array(
+				'user-links',
+				'user-text',
+				'topic-of-post',
+			),
+			'class' => 'flow-history-edit-topic-summary',
+		),
+	),
+
 	'edit-title' => array(
 		'performs-writes' => true,
 		'log_type' => false,
