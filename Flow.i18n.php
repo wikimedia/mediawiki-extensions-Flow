@@ -2284,6 +2284,7 @@ $messages['fi'] = array(
 	'flow-error-external' => 'On tapahtunut virhe.<br />Vastaanotettu virheilmoitus: $1',
 	'flow-error-edit-restricted' => 'Sinulla ei ole lupaa muokata tätä viestiä.',
 	'flow-error-not-allowed' => 'Käyttöoikeutesi eivät riitä tämän toiminnon suorittamiseen',
+	'flow-error-default' => 'Tapahtui virhe.',
 	'flow-edit-title-submit' => 'Muuta otsikkoa',
 	'flow-edit-post-submit' => 'Lähetä muutokset',
 	'flow-history-last4' => 'Viimeiset 4 tuntia',
@@ -2805,7 +2806,7 @@ $1',
 	'flow-edit-post-submit' => 'שליחת שינויים',
 	'flow-edit-post-submit-overwrite' => 'דריסת השינויים',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|ערך|ערכה}} [$3 תגובה] לנושא $4.',
-	'flow-rev-message-reply' => '$1 {{GENDER:$2|הוסיף|הוסיפה}} [$3 תגובה] לנושא $4.', # Fuzzy
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|הוסיף|הוסיפה}} תגובה] לנושא $4 (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => '{{PLURAL:$1|נוספה <strong>תגובה אחת</strong>|נוספו <strong>$1 תגובות</strong>}}',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|יצר|יצרה}} את הנושא [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|שינה|שינתה}} את כותרת הנושא מ{{GRAMMAR:תחילית|$5}} אל [$3 $4].',
@@ -2909,6 +2910,10 @@ $1',
 באפשרותך לראות את [$5 השינויים מהגרסה הקודמת] או להציג גרסאות אחרות ב[$4 דף ההיסטוריה של הרשומה].',
 	'flow-revision-permalink-warning-post-first' => 'זהו קישור קבוע לגרסה הראשונה של הרשומה.
 אפשר להציג גרסאות מאוחרות יותר ב[$4 דף ההיסטוריה של הרשומה].',
+	'flow-revision-permalink-warning-header' => 'זהו קישור קבוע לגרסה בודדה של התיאור.
+הגרסה מתאריך $1. באפשרותך לראות את [$3 ההבדלים מהגרסה הקודמת] או גרסאות אחרות מ[$2 דף ההיסטוריה של הלוח].',
+	'flow-revision-permalink-warning-header-first' => 'זהו קישור קבוע לגרסה הראשונה של התיאור.
+אפשר לראות מאוחרות יותר ב[$2 דף ההיסטוריה של הלוח].',
 	'flow-compare-revisions-revision-header' => 'גרסה מאת $2 מ{{GRAMMAR:תחילית|$1}}',
 	'flow-compare-revisions-header-post' => 'הדף הזה מציג את ההבדלים בין שתי גרסאות של רשומה מאת $3 בנושא "[$5 $2]" בלוח [$4 $1].
 
@@ -3526,6 +3531,18 @@ $messages['jbo'] = array(
 	'echo-category-title-flow-discussion' => 'lo flecu',
 	'flow-link-topic' => 'lo se casnu',
 	'flow-link-history' => 'lo citri',
+);
+
+/** Georgian (ქართული)
+ * @author David1010
+ */
+$messages['ka'] = array(
+	'flow-moderation-confirm-delete-post' => 'წაშლა',
+	'flow-moderation-confirm-hide-post' => 'დამალვა',
+	'flow-moderation-confirm-restore-post' => 'აღდგენა',
+	'flow-moderation-confirm-delete-topic' => 'წაშლა',
+	'flow-moderation-confirm-hide-topic' => 'დამალვა',
+	'flow-moderation-confirm-restore-topic' => 'აღდგენა',
 );
 
 /** Korean (한국어)
@@ -4822,23 +4839,42 @@ $messages['qu'] = array(
  */
 $messages['roa-tara'] = array(
 	'flow-desc' => 'Sisteme de Gestione de le Flusse de fatìe',
+	'logentry-delete-flow-delete-post' => "$1 {{GENDER:$2|scangellate}} 'nu [$4 messàgge] 'u [[$3]]",
+	'logentry-delete-flow-restore-post' => "$1 {{GENDER:$2|repristinate}} 'nu [$4 messàgge] 'u [[$3]]",
+	'logentry-suppress-flow-suppress-post' => "$1 {{GENDER:$2|luate}} 'nu [$4 messàgge] 'u [[$3]]",
+	'logentry-suppress-flow-restore-post' => "$1 {{GENDER:$2|scangellate}} 'nu [$4 messàgge] 'u [[$3]]",
+	'logentry-delete-flow-delete-topic' => "$1 {{GENDER:$2|scangellate}} 'nu [$4 argomende] 'u [[$3]]",
+	'logentry-delete-flow-restore-topic' => "$1 {{GENDER:$2|repristinate}} 'nu [$4 argomende] 'u [[$3]]",
+	'logentry-suppress-flow-suppress-topic' => "$1 {{GENDER:$2|luate}} 'nu [$4 argomende] 'u [[$3]]",
+	'logentry-suppress-flow-restore-topic' => "$1 {{GENDER:$2|scangellate}} 'nu [$4 argomende] 'u [[$3]]",
+	'flow-user-moderated' => 'Utende moderate',
+	'flow-edit-header-link' => "Cange 'a testate",
 	'flow-post-moderated-toggle-delete-show' => "Fà 'ndrucà 'u commende {{GENDER:$1|scangellate}} da $2",
 	'flow-post-moderated-toggle-hide-hide' => "Scunne 'u commende {{GENDER:$1|scunnute}} da $2",
 	'flow-post-moderated-toggle-suppress-hide' => "Scunne 'u commende {{GENDER:$1|scangellate}} da $2",
 	'flow-post-actions' => 'Aziune',
 	'flow-topic-actions' => 'Aziune',
 	'flow-cancel' => 'Annulle',
+	'flow-preview' => 'Andeprime',
+	'flow-show-change' => 'Fa vedè le cangiaminde',
+	'flow-last-modified-by' => 'Urteme {{GENDER:$1|cangiate}} da $1',
 	'flow-newtopic-title-placeholder' => 'Argomende nuève',
-	'flow-newtopic-content-placeholder' => 'Messàgge de teste. Si belle!', # Fuzzy
+	'flow-newtopic-content-placeholder' => 'Aggiunge quacche dettaglie ce vuè',
 	'flow-newtopic-header' => "Aggiunge 'n'argomende nuève",
 	'flow-newtopic-save' => "Aggiunge 'n'argomende",
-	'flow-newtopic-start-placeholder' => "Cazze aqquà pe accumenzà 'nu 'ngazzamende nuève. Sì belle!", # Fuzzy
-	'flow-reply-placeholder' => 'Cazze pe responnere a $1. Sì belle!', # Fuzzy
-	'flow-reply-submit' => "Manne 'na resposte", # Fuzzy
+	'flow-newtopic-start-placeholder' => "Accuminze 'nu 'ngazzamende nuève.",
+	'flow-reply-topic-placeholder' => '{{GENDER:$1|Commende}} \'u "$2"',
+	'flow-reply-placeholder' => '{{GENDER:$1|Respunne}} a $1.',
+	'flow-reply-submit' => '{{GENDER:$1|Respunne}}',
+	'flow-reply-link' => '{{GENDER:$1|Respunne}}',
+	'flow-thank-link' => '{{GENDER:$1|Ringrazie}}',
 	'flow-post-action-post-history' => 'Cunde',
-	'flow-post-action-delete-post' => "Scangìlle 'u messàgge", # Fuzzy
+	'flow-post-action-delete-post' => 'Scangìlle',
+	'flow-post-action-hide-post' => 'Scunne',
 	'flow-post-action-edit-post' => 'Cange',
 	'flow-post-action-restore-post' => "Repristine 'u messàgge",
+	'flow-topic-action-view' => 'Collegamende permanende',
+	'flow-topic-action-watchlist' => 'Pàggene condrollate',
 	'flow-topic-action-edit-title' => "Cange 'u titole",
 	'flow-topic-action-history' => 'Cunde',
 	'flow-error-http' => "Ha assute 'n'errore condattanne 'u server. 'U messàgge tune non g'ha state reggistrate.", # Fuzzy
@@ -5223,7 +5259,7 @@ $messages['sv'] = array(
 	'flow-edit-post-submit' => 'Skicka ändringar',
 	'flow-edit-post-submit-overwrite' => 'Skriver över ändringar',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|redigerade}} en [$3 kommentar] på $4.',
-	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|kommenterade}}] på $4.', # Fuzzy
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|kommenterade}}] på $4 (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => '<strong>{{PLURAL:$1|En kommentar|$1 kommentarer}}</strong> har {{PLURAL:$1|lagts till}}.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|skapade}} ämnet [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|ändrade}} ämnesrubriken till [$3 $4] från $5.',
@@ -5327,9 +5363,15 @@ Denna version är från $1.
 Du kan se [$5 skillnader från föregående version], eller visa andra versioner på [$4 inläggets historiksida].',
 	'flow-revision-permalink-warning-post-first' => 'Detta är en permanent länk till den första versionen av det här inlägget.
 Du kan visa senare versioner på [$4 inläggets historiksida].',
+	'flow-revision-permalink-warning-header' => 'Detta är en permanent länk till en enskild version av sidhuvudet.
+Denna version är från $1. Du kan se [$3 skillnaderna mot tidigare versioner] eller se andra versioner på [$2 forumets historiksida].',
+	'flow-revision-permalink-warning-header-first' => 'Detta är en permanent länk till den första versionen av sidhuvudet.
+Du kan se senare versioner på [$2 forumets historiksida].',
 	'flow-compare-revisions-revision-header' => 'Version av {{GENDER:$2|$2}} från $1',
 	'flow-compare-revisions-header-post' => 'Denna sida visar {{GENDER:$3|förändringar}} mellan två versioner av ett inlägg av $3 i ämnet "[$5 $2]" på [$4 $1].
 Du kan se andra versioner av detta inlägg genom dess [$6 historiksida].',
+	'flow-compare-revisions-header-header' => 'Denna sida visar {{GENDER:$2|förändringarna}} mellan två sidor av sidhuvudet på [$3 $1].
+Du kan se andra versioner av sidhuvudet på dess [$4 historiksida].',
 	'flow-topic-collapsed-one-line' => 'Liten vy',
 	'flow-topic-collapsed-full' => 'Komprimerad vy',
 	'flow-topic-complete' => 'Full vy',
@@ -5898,11 +5940,11 @@ $messages['yi'] = array(
 	'flow-edit-post-submit' => 'איינגעבן ענדערונגען',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|האט געשאפן}} די טעמע [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|האט געענדערט}} דעם טעמע טיטל צו [$3 $4] פון $5.',
-	'flow-rev-message-create-header' => '$1  {{GENDER:$2|האט באשאפן}} דאס טאוול קעפל.', # Fuzzy
-	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|האט רעדאקטירט}} דאס טאוול קעפל.', # Fuzzy
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|האט באהאלטן}} א [$4 הערה] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|האט באהאלטן}} א [$4 הערה] (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|האט צוריקגעשטעלט}} א [$4 הערה] (<em>$5</em>).', # Fuzzy
+	'flow-rev-message-create-header' => '$1  {{GENDER:$2|האט באשאפן}} דאס קעפל.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|האט רעדאקטירט}} דאס קעפל.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|האט באהאלטן}} א [$4 הערה] אויף $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|האט באהאלטן}} א [$4 הערה] וועגן $6 (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|האט צוריקגעשטעלט}} א [$4 הערה] וועגן $6 (<em>$5</em>).',
 	'flow-topic-history' => '"$1" טעמע היסטאריע',
 	'flow-comment-restored' => 'צוריקגעשטעלט הערה',
 	'flow-comment-deleted' => 'אויסגעמעקט הערה',
