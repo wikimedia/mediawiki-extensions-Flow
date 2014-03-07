@@ -2,23 +2,24 @@
 
 namespace Flow\Block;
 
-use Flow\View\History\History;
-use Flow\View\History\HistoryRenderer;
+use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
-use Flow\Model\UUID;
-use Flow\Model\Workflow;
-use Flow\Model\AbstractRevision;
-use Flow\Model\PostRevision;
-use Flow\NotificationController;
-use Flow\RevisionActionPermissions;
-use Flow\Templating;
-use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
+use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
+use Flow\Model\TopicSummary;
+use Flow\Model\UUID;
+use Flow\Model\Workflow;
+use Flow\NotificationController;
+use Flow\RevisionActionPermissions;
+use Flow\Templating;
+use Flow\View\History\History;
+use Flow\View\History\HistoryRenderer;
 use Flow\View\PostRevisionView;
 
 class TopicBlock extends AbstractBlock {
@@ -32,6 +33,11 @@ class TopicBlock extends AbstractBlock {
 	 * @var PostRevision|null
 	 */
 	protected $topicTitle;
+
+	/**
+	 * @var Summary|null
+	 */
+	protected $topicSummary;
 
 	/**
 	 * @var RootPostLoader|null
@@ -60,7 +66,7 @@ class TopicBlock extends AbstractBlock {
 		'moderate-topic',
 		'moderate-post', 'hide-post', 'delete-post', 'suppress-post', 'restore-post',
 		// Other stuff
-		'edit-title',
+		'edit-title', 'edit-topic-summary',
 	);
 
 	protected $supportedGetActions = array(
@@ -127,10 +133,47 @@ class TopicBlock extends AbstractBlock {
 		case 'edit-post':
 			$this->validateEditPost();
 			break;
-
+		case 'edit-topic-summary':
+			$this->validateEditSummary();
+			break;
 		default:
 			throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
+	}
+
+	protected function validateEditSummary() {
+		if ( $this->workflow->isNew() ) {
+			$this->addError( 'summary', wfMessage( 'flow-error-no-existing-workflow' ) );
+			return;
+		}
+		if ( !isset( $this->submitted['summary'] ) || !is_string( $this->submitted['summary'] ) ) {
+			$this->addError( 'content', wfMessage( 'flow-error-missing-summary' ) );
+			return;
+		}
+
+		$topicTitle = $this->loadTopicTitle();
+		if ( !$topicTitle ) {
+			throw new InvalidInputException( 'No revision associated with workflow?', 'missing-revision' );
+		}
+
+		$summary = $this->storage->find(
+			'TopicSummary',
+			array( 'rev_type_id' => $topicTitle->getPostId() ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+		);
+
+		if ( !$summary ) {
+			$this->topicSummary = TopicSummary::create( $this->workflow, $this->user, $this->submitted['summary'], 'create-topic-summary' );
+		} else {
+			$summary = reset( $summary );
+			$this->topicSummary = $summary->newNextRevision( $this->user, $this->submitted['summary'], 'edit-topic-summary' );
+		}
+
+		// Set up and check permission later
+		//if ( !$this->permissions->isAllowed( $this->topicSummary, 'edit-summary' ) ) {
+		//	$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
+		//	return;
+		//}
 	}
 
 	protected function validateEditTitle() {
@@ -394,7 +437,19 @@ class TopicBlock extends AbstractBlock {
 				'new-revision-id' => $this->newRevision->getRevisionId(),
 				'render-function' => $renderFunction,
 			);
+		case 'edit-topic-summary':
+			if ( !$this->topicSummary ) {
+				throw new FailCommitException( 'Attempt to save null summary', 'fail-commit' );
+			}
 
+			$this->storage->put( $this->topicSummary );
+			$newRevision = $this->topicSummary;
+			return array(
+				'new-revision-id' => $this->topicSummary->getRevisionId(),
+				'render-function' => function( Templating $templating ) use ( $newRevision ) {
+					return $templating->getContent( $newRevision, 'wikitext' );
+				}
+			);
 		default:
 			throw new InvalidActionException( "Unknown commit action: {$this->action}", 'invalid-action' );
 		}
