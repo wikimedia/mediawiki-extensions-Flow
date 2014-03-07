@@ -115,7 +115,7 @@ class Post {
 
 	public function postHistoryLink( $blockName ) {
 		return $this->actions->actionUrl(
-			'post-history',
+			'history',
 			array( $blockName . '_postId' => $this->post->getPostId()->getAlphadecimal() )
 		);
 	}

@@ -64,7 +64,7 @@ class TopicBlock extends AbstractBlock {
 	);
 
 	protected $supportedGetActions = array(
-		'view', 'post-history', 'topic-history', 'edit-post', 'edit-title', 'compare-post-revisions',
+		'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions',
 	);
 
 	/**
@@ -396,7 +396,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options, $return = false ) {
-		if ( in_array( $this->action, array( 'post-history', 'topic-history' ) ) ) {
+		if ( $this->action === 'history' ) {
 			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
 			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 		} else {
@@ -407,10 +407,11 @@ class TopicBlock extends AbstractBlock {
 		$prefix = '';
 
 		switch( $this->action ) {
-		case 'post-history':
-			return $prefix . $this->renderPostHistory( $templating, $options, $return );
+		case 'history':
+			if ( isset( $options['postId'] ) ) {
+				return $prefix . $this->renderPostHistory( $templating, $options, $return );
+			}
 
-		case 'topic-history':
 			$history = $this->loadTopicHistory();
 			$root = $this->loadRootPost();
 			if ( !$root ) {
@@ -702,7 +703,7 @@ class TopicBlock extends AbstractBlock {
 				/** @var PostRevision $revision */
 
 				// only check against the specific revision, ignoring the most recent
-				if ( !$this->permissions->isAllowed( $revision, 'post-history' ) ) {
+				if ( !$this->permissions->isAllowed( $revision, 'history' ) ) {
 					unset( $history[$i] );
 				}
 			}
@@ -818,7 +819,7 @@ class TopicBlock extends AbstractBlock {
 				/** @var PostRevision $revision */
 
 				// only check against the specific revision, ignoring the most recent
-				if ( !$this->permissions->isAllowed( $revision, 'topic-history' ) ) {
+				if ( !$this->permissions->isAllowed( $revision, 'history' ) ) {
 					unset( $history[$i] );
 				}
 			}

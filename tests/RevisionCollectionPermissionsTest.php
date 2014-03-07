@@ -149,11 +149,11 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			) ),
 
 			// bug 61715
-			array( $this->confirmedUser(), 'topic-history', array(
+			array( $this->confirmedUser(), 'history', array(
 				array( 'new-post' => false ),
 				array( 'suppress-post' => false ),
 			) ),
-			array( $this->confirmedUser(), 'topic-history', array(
+			array( $this->confirmedUser(), 'history', array(
 				array( 'new-post' => true ),
 				array( 'suppress-post' => false ),
 				array( 'restore-post' => false ),
