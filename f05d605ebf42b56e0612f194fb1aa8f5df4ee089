@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_e538f7d1",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-07T19:43:40Z",
+      "side": 1,
+      "message": "oops yes it should",
+      "parentUuid": "4e04eb01_0509a32e",
+      "revId": "f05d605ebf42b56e0612f194fb1aa8f5df4ee089",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_652507a9",
         "filename": "Hooks.php",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-03-07T19:38:56Z",
       "side": 1,
       "message": "use $wgLang-\u003ecommaList()",
+      "revId": "f05d605ebf42b56e0612f194fb1aa8f5df4ee089",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_654ce77a",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-07T19:43:40Z",
+      "side": 1,
+      "message": "my worry is it needs to be computer parsable back into pieces, the comma-separator message it gets delimited with could be anything.  This isn\u0027t intended to be displayed so should be ok.",
+      "parentUuid": "4e04eb01_652507a9",
       "revId": "f05d605ebf42b56e0612f194fb1aa8f5df4ee089",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
