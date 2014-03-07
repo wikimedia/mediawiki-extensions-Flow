@@ -94,7 +94,7 @@ echo Html::openElement( 'div', array(
 				);
 			endif ?>
 		</div>
-		<?php if ( $postActionMenu->isAllowedAny( 'view', 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic', 'edit-title', 'topic-history' ) ): ?>
+		<?php if ( $postActionMenu->isAllowedAny( 'history', 'view', 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic', 'edit-title' ) ): ?>
 		<div class="flow-tipsy flow-actions">
 			<a class="flow-tipsy-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
 			<div class="flow-tipsy-flyout">

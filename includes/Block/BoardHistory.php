@@ -19,7 +19,7 @@ class BoardHistoryBlock extends AbstractBlock {
 	 */
 	protected $permissions;
 
-	protected $supportedGetActions = array( 'board-history' );
+	protected $supportedGetActions = array( 'history' );
 
 	public function init( $action, $user ) {
 		parent::init( $action, $user );

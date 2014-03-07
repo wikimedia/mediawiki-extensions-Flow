@@ -418,7 +418,7 @@ $wgFlowActions = array(
 		),
 	),
 
-	'post-history' => array(
+	'history' => array(
 		'performs-writes' => false,
 		'log_type' => false,
 		'rc_insert' => false, // won't even be called, actually; only for writes
@@ -470,7 +470,7 @@ $wgFlowActions = array(
 						return '';
 					}
 
-					return $permissions->getPermission( $previous, 'topic-history' );
+					return $permissions->getPermission( $previous, 'history' );
 				}
 
 				return '';
@@ -483,15 +483,16 @@ $wgFlowActions = array(
 		'history' => array() // views don't generate history
 	),
 
-	// post/topic/board history have exact same config
-	'topic-history' => 'post-history',
-	'board-history' => 'post-history',
 
+	// deprecated values
 	// log & all other formatters have same config as history
-	'log' => 'post-history',
-	'recentchanges' => 'post-history',
-	'contributions' => 'post-history',
-	'checkuser' => 'post-history',
+	'post-history' => 'history',
+	'topic-history' => 'history',
+	'board-history' => 'history',
+	'log' => 'history',
+	'recentchanges' => 'history',
+	'contributions' => 'history',
+	'checkuser' => 'history',
 
 	/*
 	 * Backwards compatibility; these are old values that may have made their
