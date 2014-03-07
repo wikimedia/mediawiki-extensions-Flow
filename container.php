@@ -263,6 +263,49 @@ $c['storage.header'] = $c->share( function( $c ) {
 	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
 } );
 
+// Arbitrary bit of revisioned wiki-text attached to a workflow
+$c['storage.summary'] = $c->share( function( $c ) {
+	global $wgFlowExternalStore, $wgContLang;
+
+	$cache = $c['memcache.buffered'];
+	$mapper = BasicObjectMapper::model( 'Flow\\Model\\Summary' );
+	$storage = new SummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
+
+	$pk = new UniqueFeatureIndex(
+		$cache, $storage,
+		'flow_summary:v2:pk', array( 'rev_id' )
+	);
+	$workflowIndexOptions = array(
+		'sort' => 'rev_id',
+		'order' => 'DESC',
+		'shallow' => $pk,
+		'create' => function( array $row ) {
+			return $row['rev_parent_id'] === null;
+		},
+	);
+	$indexes = array(
+		$pk,
+		new TopKIndex(
+			$cache, $storage,
+			'flow_summary:workflow', array( 'rev_type', 'rev_type_id' ),
+			array( 'limit' => 100 ) + $workflowIndexOptions
+		),
+	);
+
+	$handlers = array(
+		new Flow\Data\UserNameListener(
+			$c['repository.username'],
+			array(
+				'rev_user_id' => 'rev_user_wiki',
+				'rev_mod_user_id' => 'rev_mod_user_wiki',
+				'rev_edit_user_id' => 'rev_edit_user_wiki'
+			)
+		),
+	);
+
+	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
+} );
+
 // List of topic workflows and their owning discussion workflow
 // TODO: This could use similar to ShallowCompactor to
 // get the objects directly instead of just returning ids.

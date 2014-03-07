@@ -2,23 +2,24 @@
 
 namespace Flow\Block;
 
-use Flow\View\History\History;
-use Flow\View\History\HistoryRenderer;
+use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
-use Flow\Model\UUID;
-use Flow\Model\Workflow;
-use Flow\Model\AbstractRevision;
-use Flow\Model\PostRevision;
-use Flow\NotificationController;
-use Flow\RevisionActionPermissions;
-use Flow\Templating;
-use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
+use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
+use Flow\Model\Summary;
+use Flow\Model\UUID;
+use Flow\Model\Workflow;
+use Flow\NotificationController;
+use Flow\RevisionActionPermissions;
+use Flow\Templating;
+use Flow\View\History\History;
+use Flow\View\History\HistoryRenderer;
 use Flow\View\PostRevisionView;
 
 class TopicBlock extends AbstractBlock {
@@ -32,6 +33,11 @@ class TopicBlock extends AbstractBlock {
 	 * @var PostRevision|null
 	 */
 	protected $topicTitle;
+
+	/**
+	 * @var Summary|null
+	 */
+	protected $topicSummary;
 
 	/**
 	 * @var RootPostLoader|null
@@ -60,7 +66,7 @@ class TopicBlock extends AbstractBlock {
 		'moderate-topic',
 		'moderate-post', 'hide-post', 'delete-post', 'suppress-post', 'restore-post',
 		// Other stuff
-		'edit-title',
+		'edit-title', 'edit-topic-summary',
 	);
 
 	protected $supportedGetActions = array(
@@ -130,6 +136,27 @@ class TopicBlock extends AbstractBlock {
 
 		default:
 			throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
+		}
+	}
+
+	protected function validateEditSummary() {
+		if ( $this->workflow->isNew() ) {
+			$this->addError( 'content', wfMessage( 'flow-error-no-existing-workflow' ) );
+			return;
+		}
+		if ( !isset( $this->submitted['content'] ) || !is_string( $this->submitted['content'] ) ) {
+			$this->addError( 'content', wfMessage( 'flow-error-missing-summary' ) );
+			return;
+		}
+		$summary = $this->storage->find(
+			'SummaryRevision',
+			array( 'rev_type' => 'summary', 'rev_type_id' => $this->workflow->getId() ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+		);
+		if ( !$summary ) {
+			$this->topicSummary = Summary::create( $this->workflow, $this->user, $this->submitted['content'], 'create-topic-summary' );
+		} else {
+			$this->topicSummary = $summary->newNextRevision( $this->user, $this->submitted['content'], 'edit-topic-summary' )
 		}
 	}
 

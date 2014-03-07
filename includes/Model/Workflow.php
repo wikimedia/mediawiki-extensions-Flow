@@ -8,8 +8,9 @@ use User;
 use Flow\Exception\DataModelException;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
+use Flow\Model\Summarizable
 
-class Workflow {
+class Workflow implements Summarizable {
 
 	/**
 	 * @var UUID
