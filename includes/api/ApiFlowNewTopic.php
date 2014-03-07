@@ -8,10 +8,10 @@ class ApiFlowNewTopic extends ApiFlowBase {
 
 	/**
 	 * Taken from ext.flow.base.js
-	 * @return string
+	 * @return array
 	 */
-	protected function getBlockName() {
-		return 'topiclist';
+	protected function getBlockNames() {
+		return array( 'topiclist' );
 	}
 
 	protected function getAction() {

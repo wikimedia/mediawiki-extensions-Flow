@@ -8,10 +8,10 @@ class ApiFlowEditTitle extends ApiFlowBase {
 
 	/**
 	 * Taken from ext.flow.base.js
-	 * @return string
+	 * @return array
 	 */
-	protected function getBlockName() {
-		return 'topic';
+	protected function getBlockNames() {
+		return array( 'topic' );
 	}
 
 	protected function getAction() {

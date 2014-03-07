@@ -6,6 +6,7 @@ use Flow\Block\AbstractBlock;
 use Flow\Block\HeaderBlock;
 use Flow\Block\TopicBlock;
 use Flow\Block\TopicListBlock;
+use Flow\Block\TopicSummaryBlock;
 use Flow\Block\BoardHistoryBlock;
 use Flow\Model\Definition;
 use Flow\Model\UUID;
@@ -187,6 +188,7 @@ class WorkflowLoader {
 			case 'topic':
 				$blocks = array(
 					new TopicBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+					new TopicSummaryBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
 				);
 				break;
 
