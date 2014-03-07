@@ -14,6 +14,7 @@ mw.flow = {
 				'edit-header': 'eh',
 				'edit-post': 'ep',
 				'edit-title': 'et',
+				'edit-topic-summary': 'ets',
 				'moderate-post': 'mp',
 				'moderate-topic': 'mt',
 				'new-topic': 'nt',
