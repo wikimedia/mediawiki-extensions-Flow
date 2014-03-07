@@ -117,9 +117,7 @@ class PermissionsTest extends PostRevisionTestCase {
 			array( $this->blockedUser(), $this->topic(), 'suppress-topic', false ),
 			array( $this->blockedUser(), $this->post(), 'restore-post', false ),
 			array( $this->blockedUser(), $this->topic(), 'restore-topic', false ),
-			array( $this->blockedUser(), $this->post(), 'post-history', true ),
-			array( $this->blockedUser(), $this->topic(), 'topic-history', true ),
-			array( $this->blockedUser(), $this->topic(), 'board-history', true ),
+			array( $this->blockedUser(), $this->post(), 'history', true ),
 			array( $this->blockedUser(), $this->post(), 'view', true ),
 			array( $this->blockedUser(), $this->post(), 'reply', false ),
 
@@ -137,9 +135,7 @@ class PermissionsTest extends PostRevisionTestCase {
 			array( $this->anonUser(), $this->topic(), 'suppress-topic', false ),
 			array( $this->anonUser(), $this->post(), 'restore-post', false ),
 			array( $this->anonUser(), $this->topic(), 'restore-topic', false ),
-			array( $this->anonUser(), $this->post(), 'post-history', true ),
-			array( $this->anonUser(), $this->topic(), 'topic-history', true ),
-			array( $this->anonUser(), $this->topic(), 'board-history', true ),
+			array( $this->anonUser(), $this->post(), 'history', true ),
 			array( $this->anonUser(), $this->post(), 'view', true ),
 			array( $this->anonUser(), $this->post(), 'reply', true ),
 
@@ -157,9 +153,7 @@ class PermissionsTest extends PostRevisionTestCase {
 			array( $this->unconfirmedUser(), $this->topic(), 'suppress-topic', false ),
 			array( $this->unconfirmedUser(), $this->post(), 'restore-post', false ), // $this->post is not hidden
 			array( $this->unconfirmedUser(), $this->topic(), 'restore-topic', false ), // $this->topic is not hidden
-			array( $this->unconfirmedUser(), $this->post(), 'post-history', true ),
-			array( $this->unconfirmedUser(), $this->topic(), 'topic-history', true ),
-			array( $this->unconfirmedUser(), $this->topic(), 'board-history', true ),
+			array( $this->unconfirmedUser(), $this->post(), 'history', true ),
 			array( $this->unconfirmedUser(), $this->post(), 'view', true ),
 			array( $this->unconfirmedUser(), $this->post(), 'reply', true ),
 
@@ -187,9 +181,7 @@ class PermissionsTest extends PostRevisionTestCase {
 			array( $this->confirmedUser(), $this->topic(), 'suppress-topic', false ),
 			array( $this->confirmedUser(), $this->post(), 'restore-post', false ), // $this->post is not hidden
 			array( $this->confirmedUser(), $this->topic(), 'restore-topic', false ), // $this->topic is not hidden
-			array( $this->confirmedUser(), $this->post(), 'post-history', true ),
-			array( $this->confirmedUser(), $this->topic(), 'topic-history', true ),
-			array( $this->confirmedUser(), $this->topic(), 'board-history', true ),
+			array( $this->confirmedUser(), $this->post(), 'history', true ),
 			array( $this->confirmedUser(), $this->post(), 'view', true ),
 			array( $this->confirmedUser(), $this->post(), 'reply', true ),
 			array( $this->confirmedUser(), $this->hiddenPost(), 'restore-post', true ),
@@ -213,9 +205,7 @@ class PermissionsTest extends PostRevisionTestCase {
 			array( $this->sysopUser(), $this->topic(), 'suppress-topic', false ),
 			array( $this->sysopUser(), $this->post(), 'restore-post', false ), // $this->post is not hidden
 			array( $this->sysopUser(), $this->topic(), 'restore-topic', false ), // $this->topic is not hidden
-			array( $this->sysopUser(), $this->post(), 'post-history', true ),
-			array( $this->sysopUser(), $this->topic(), 'topic-history', true ),
-			array( $this->sysopUser(), $this->topic(), 'board-history', true ),
+			array( $this->sysopUser(), $this->topic(), 'history', true ),
 			array( $this->sysopUser(), $this->post(), 'view', true ),
 			array( $this->sysopUser(), $this->post(), 'reply', true ),
 			array( $this->sysopUser(), $this->hiddenPost(), 'restore-post', true ),
@@ -239,9 +229,7 @@ class PermissionsTest extends PostRevisionTestCase {
 			array( $this->oversightUser(), $this->topic(), 'suppress-topic', true ),
 			array( $this->oversightUser(), $this->post(), 'restore-post', false ), // $this->post is not hidden
 			array( $this->oversightUser(), $this->topic(), 'restore-topic', false ), // $this->topic is not hidden
-			array( $this->oversightUser(), $this->post(), 'post-history', true ),
-			array( $this->oversightUser(), $this->topic(), 'topic-history', true ),
-			array( $this->oversightUser(), $this->topic(), 'board-history', true ),
+			array( $this->oversightUser(), $this->post(), 'history', true ),
 			array( $this->oversightUser(), $this->post(), 'view', true ),
 			array( $this->oversightUser(), $this->post(), 'reply', true ),
 			array( $this->oversightUser(), $this->hiddenPost(), 'restore-post', true ),

@@ -101,7 +101,7 @@ if ( $post->isModerated() ) {
 		<?php
 		endif;
 
-		if ( $postView->actions()->isAllowedAny( 'hide-post', 'delete-post', 'suppress-post', 'restore-post', 'view', 'post-history' ) ): ?>
+		if ( $postView->actions()->isAllowedAny( 'history', 'hide-post', 'delete-post', 'suppress-post', 'restore-post', 'view' ) ): ?>
 			<div class="flow-tipsy flow-actions">
 				<a class="flow-tipsy-link" href="#" title="<?php echo wfMessage( 'flow-post-actions' )->escaped(); ?>"><?php echo wfMessage( 'flow-post-actions' )->escaped(); ?></a>
 				<div class="flow-tipsy-flyout">
@@ -125,7 +125,7 @@ if ( $post->isModerated() ) {
 						// History link
 						if ( $post->getPrevRevisionId() ) {
 							$historyButton =  $postActionMenu->getButton(
-								'post-history',
+								'history',
 								wfMessage( 'flow-post-action-post-history' )->escaped(),
 								'mw-ui-button flow-action-post-history-link'
 							);
