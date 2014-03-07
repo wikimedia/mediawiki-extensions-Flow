@@ -8,8 +8,9 @@ use User;
 use Flow\Exception\DataModelException;
 use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
+use Flow\Model\Summarizable;
 
-class Workflow {
+class Workflow implements Summarizable {
 
 	/**
 	 * @var UUID
@@ -180,6 +181,11 @@ class Workflow {
 	 * @return UUID
 	 */
 	public function getId() { return $this->id; }
+
+	/**
+	 * @return UUID
+	 */
+	public function getSummaryTargetId() { return $this->getId(); }
 
 	/**
 	 * Returns true if the workflow is new as of this request (regardless of
