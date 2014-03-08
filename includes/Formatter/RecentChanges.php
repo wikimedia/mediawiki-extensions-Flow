@@ -82,7 +82,7 @@ class RecentChanges extends AbstractFormatter {
 		if ( in_array( $changeData['action'], array( 'edit-post', 'edit-header', 'edit-title' ) ) ) {
 			list( $href, $msg ) = $this->revisionDiffLink(
 				$title,
-				$workflow->getId(),
+				$workflowId,
 				$revision->getRevisionId(),
 				$revision->getPrevRevisionId()
 			);
