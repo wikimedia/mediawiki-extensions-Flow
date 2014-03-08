@@ -22,7 +22,7 @@ abstract class ParsoidUtils {
 			return $content;
 		}
 
-		$section = new \SectionProfile( __METHOD__ );
+		$section = new \ProfileSection( __METHOD__ );
 		if ( !$title instanceof Title ) {
 			global $wgTitle, $wgFlowParsoidTitle;
 			/*
