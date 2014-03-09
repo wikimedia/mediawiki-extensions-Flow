@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_d840430c",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-03-09T12:25:17Z",
+      "side": 1,
+      "message": "Duplicate array key with line 84. Missing qqq.",
+      "revId": "62059158166aecffc4a4abc7c5e0da6a9a8f565c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_b849f737",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-03-09T12:25:17Z",
+      "side": 1,
+      "message": "nit picking: No need for colon after @todo.",
+      "revId": "62059158166aecffc4a4abc7c5e0da6a9a8f565c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
