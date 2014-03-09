@@ -290,6 +290,7 @@ You can see other versions of the header at its [$4 history page].',
 /** Message documentation (Message documentation)
  * @author Amire80
  * @author Beta16
+ * @author Lloffiwr
  * @author Lokal Profil
  * @author Raymond
  * @author Shirayuki
@@ -437,7 +438,9 @@ Parameters:
 Parameters:
 * $1 - username that suppressed the post, can be used for GENDER
 * $2 - user link and tool links for the user.
-{{Related|Flow-content}}',
+{{Related|Flow-content}}
+
+For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].',
 	'flow-suppress-title-content' => 'Message to display instead of content when the title has been suppressed.
 
 Parameters:
@@ -449,7 +452,9 @@ Parameters:
 Parameters:
 * $1 - username that suppressed the header, can be used for GENDER
 * $2 - user link and tool links for the user.
-{{Related|Flow-content}}',
+{{Related|Flow-content}}
+
+For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].',
 	'flow-suppress-usertext' => 'Used as username if the post was suppressed.
 
 Parameters:
@@ -506,7 +511,9 @@ Also used in:
 {{Identical|History}}',
 	'flow-post-action-suppress-post' => 'Used as a label for  the submit button in the suppression form.
 {{Related|Flow-action}}
-{{Identical|Suppress}}',
+{{Identical|Suppress}}
+
+For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].',
 	'flow-post-action-delete-post' => 'Used as a label for the submit button in the deletion form.
 {{Related|Flow-action}}
 {{Identical|Delete}}',
@@ -531,7 +538,9 @@ Also used in:
 	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.
 {{Related|Flow-action}}',
 	'flow-topic-action-suppress-topic' => 'Used as a link in a dropdown menu to suppress a topic.
-{{Related|Flow-action}}',
+{{Related|Flow-action}}
+
+For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].',
 	'flow-topic-action-restore-topic' => 'Used as a link in a dropdown menu to clear existing moderation.
 {{Related|Flow-action}}
 {{Identical|Restore topic}}',
@@ -2237,6 +2246,7 @@ $messages['fa'] = array(
 /** Finnish (suomi)
  * @author Elseweyr
  * @author Nike
+ * @author Pxos
  * @author Stryn
  */
 $messages['fi'] = array(
@@ -2252,7 +2262,7 @@ $messages['fi'] = array(
 	'flow-suppress-usertext' => '<em>Käyttäjänimi häivytetty</em>',
 	'flow-post-actions' => 'Toiminnot',
 	'flow-topic-actions' => 'Toiminnot',
-	'flow-cancel' => 'Peru',
+	'flow-cancel' => 'Peruuta',
 	'flow-preview' => 'Esikatselu',
 	'flow-show-change' => 'Näytä muutokset',
 	'flow-newtopic-title-placeholder' => 'Uusi aihe',
@@ -2918,6 +2928,7 @@ $1',
 	'flow-compare-revisions-header-post' => 'הדף הזה מציג את ההבדלים בין שתי גרסאות של רשומה מאת $3 בנושא "[$5 $2]" בלוח [$4 $1].
 
 באפשרותך לראות גרסאות אחרות של הרשומה הזאת ב[$6 דף ההיסטוריה] שלו.',
+	'flow-compare-revisions-header-header' => 'הדף הזה מציג את {{GENDER:$2|ההבדלים}} בין שתי גרסאות של התיאור של [$3 $1]. אפשר לראות גרסאות אחרות של התיאור ב[$4 דף ההיסטוריה].',
 	'flow-topic-collapsed-one-line' => 'תצוגה מוקטנת',
 	'flow-topic-collapsed-full' => 'תצוגה מקופלת',
 	'flow-topic-complete' => 'תצוגה מלאה',
@@ -4811,9 +4822,22 @@ $messages['ps'] = array(
 /** Portuguese (português)
  * @author Helder.wiki
  * @author Imperadeiro98
+ * @author SandroHc
  */
 $messages['pt'] = array(
 	'flow-desc' => 'Sistema de Gerenciamento do Fluxo de Trabalho',
+	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|editou}} o [$3 comentário] em $4.',
+	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|comentou}}] em $4 (<em>$5</em>).',
+	'flow-rev-message-create-header' => '$1 {{GENDER:$2|criou}} o cabeçalho.',
+	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|editou}} o cabeçalho.',
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|ocultou}} o [$4 comentário] em $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|eliminou}} um [$4 comentário] em $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|suprimiu}} o [$4 comentário] em $6 (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|restaurou}} o [$4 comentário] em $6 (<em>$5</em>).',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|ocultou}} o [$4 tópico] $6 (<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|eliminou}} o [$4 tópico] $6 (<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|suprimiu}} o [$4 tópico] $6 (<em>$5</em>).',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|restaurou}} o [$4 tópico] $6 (<em>$5</em>).',
 	'flow-notification-edit-bundle' => '$1 e $5 {{PLURAL:$6|outro|outros}} {{GENDER:$1|editaram}} uma <span class="plainlinks">[$4 mensagem]</span> em "$2", em "$3".',
 	'flow-notification-reply-email-batch-bundle-body' => '$1 e $4 {{PLURAL:$5|outro|outros}} {{GENDER:$1|responderam}} à sua mensagem em "$2", em "$3"',
 );
@@ -5546,7 +5570,7 @@ $messages['uk'] = array(
 	'flow-edit-post-submit' => 'Подати зміни',
 	'flow-edit-post-submit-overwrite' => 'Переписати зміни',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|відредагував|відредагувала}} [коментар $3] у темі $4',
-	'flow-rev-message-reply' => '$1 {{GENDER:$2|додав|додала}} [коментар $3] у тему $4.', # Fuzzy
+	'flow-rev-message-reply' => '$1 [$3 прокоментува{{GENDER:$2|в|ла}} ] тему $4 (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => '<strong>$1 {{PLURAL:$1|коментар|коментарі|коментарів}} </strong> {{PLURAL:$1|1=був доданий|були додані}}.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|створив|створила}} тему [$3 $4].',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|відредагував|відредагувала}} назву теми на [$3 $4] із $5.',
