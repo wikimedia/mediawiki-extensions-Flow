@@ -19,6 +19,41 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_fa6522de",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-10T23:23:24Z",
+      "side": 1,
+      "message": "We should probably come up with some level of guidelines for when something is an exception, and when its an error we should just log.  I suppose complicating that is that in some cases we catch and log the errors.\n\nIn this case my thinking is that this is a fairly rare and should only happen when adding new revision types.  Its a rare enough occurrence that i would prefer it to blow up visibly rather than just logging a message.",
+      "parentUuid": "4e04eb01_724f0e3a",
+      "revId": "5637f568dec084a3cfd51364de37e0f6826ff338",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_77500b37",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-10T23:23:24Z",
+      "side": 1,
+      "message": "Should probably be\n\n    @return AbstractRevision[] Indexed by alphadecimal revision uuid\n\n(or however its indexed)",
+      "revId": "5637f568dec084a3cfd51364de37e0f6826ff338",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_128e8a82",
         "filename": "includes/Formatter/ContributionsQuery.php",
         "patchSetId": 3
