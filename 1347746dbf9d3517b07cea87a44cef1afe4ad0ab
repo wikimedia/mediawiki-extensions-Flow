@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_2aa1ff90",
+        "filename": "db_patches/patch-rev_type_id.sql",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-10T20:09:57Z",
+      "side": 1,
+      "message": "Which queries will we be executing against this index?  I\u0027m basically wondering if we are sure this is the order we want.  This allows slicing by rev_type_id without a type which is probably preferable?",
+      "revId": "1347746dbf9d3517b07cea87a44cef1afe4ad0ab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_8ab933c9",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-10T20:09:57Z",
+      "side": 1,
+      "message": "We will be moving to a revdeleted style system soon so the moderation fields on revisions will still be updated, just only by specific choice of a user not automagically.",
+      "revId": "1347746dbf9d3517b07cea87a44cef1afe4ad0ab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_0ac52340",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-10T20:09:57Z",
+      "side": 1,
+      "message": "I\u0027m thinking that instead of putting this in the child classes, AbstractRevision should use:\n\n    \u0027rev_type_id\u0027 \u003d\u003e $rev-\u003egetCollectionId()-\u003egetBinary()",
+      "revId": "1347746dbf9d3517b07cea87a44cef1afe4ad0ab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
