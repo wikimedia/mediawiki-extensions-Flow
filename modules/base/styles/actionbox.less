@@ -93,6 +93,8 @@
 	.tipsy-inner {
 		padding: 0;
 		border: 1px solid @flyout-border-color;
+		max-width: 400px;
+		border-radius: 1.5px;
 	}
 
 	.flow-tipsy-flyout {
@@ -103,7 +105,7 @@
 	}
 
 	.flow-tipsy-noflyout {
-		padding: 10px 22px;
+		padding: 10px;
 	}
 
 	// overwrite tipsy arrow
@@ -214,6 +216,19 @@
 
 		.tipsy-arrow {
 			.arrow(@arrow-size, @arrow-border-size, @destructive-low-base, @destructive-low-base);
+		}
+	}
+
+	&.flow-anon-warning {
+		.tipsy-inner {
+			background-color: @warning;
+			box-shadow: 0 3px @warning-border;
+			border: none;
+			color: #fff;
+		}
+
+		.tipsy-arrow {
+			.arrow(@arrow-size, @arrow-border-size, @warning, @warning-border)
 		}
 	}
 }
