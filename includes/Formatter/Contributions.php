@@ -16,9 +16,7 @@ class Contributions extends AbstractFormatter {
 		try {
 			return $this->formatReal( $pager, $row );
 		} catch ( FlowException $e ) {
-			// Comment out for now since we expect some flow exceptions, when gerrit 111952 is
-			// merged, then we will turn this back on so we can catch unexpected exceptions.
-			//\MWExceptionHandler::logException( $e );
+			\MWExceptionHandler::logException( $e );
 			return false;
 		}
 	}
