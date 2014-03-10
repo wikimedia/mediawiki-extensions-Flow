@@ -471,7 +471,7 @@ abstract class AbstractFormatter {
 			}
 			$previousRevision = $revision->getCollection()->getPrevRevision( $revision );
 			if ( !$previousRevision ) {
-				// wfDebugLog( __CLASS__, __FUNCTION__ . ': Something something' );
+				// wfDebugLog( 'Flow', __METHOD__ . ': Something something' );
 				return '';
 			}
 			if ( !$this->templating->getActionPermissions()->isAllowed( $previousRevision, 'view' ) ) {

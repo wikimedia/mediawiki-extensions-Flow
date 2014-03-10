@@ -42,7 +42,7 @@ class MultiGetList {
 		$multiRes = $this->cache->getMulti( array_keys( $cacheKeys ) );
 		if ( $multiRes === false ) {
 			// Falls through to query only backend
-			wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure querying memcache' );
+			wfDebugLog( 'Flow', __METHOD__ . ': Failure querying memcache' );
 		} else {
 			foreach ( $multiRes as $key => $value ) {
 				if ( $cacheKeys[$key] instanceof UUID ) {

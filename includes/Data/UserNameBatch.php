@@ -39,14 +39,14 @@ class UserNameListener implements LifecycleHandler {
 	 */
 	public function onAfterLoad( $object, array $row ) {
 		foreach ( $this->keys as $userKey => $wikiKey ) {
-			// check if the user id key exists in the data array and 
+			// check if the user id key exists in the data array and
 			// make sure it has a non-zero value
 			if ( isset( $row[$userKey] ) && $row[$userKey] != 0 ) {
 				// the wiki for the user id lookup is specified,
 				// check if it exists in the data array
 				if ( $wikiKey ) {
 					if ( !isset( $row[$wikiKey] ) ) {
-						wfDebugLog( __CLASS__, __METHOD__ . ": could not detect wiki with " . $wikiKey );
+						wfDebugLog( 'Flow', __METHOD__ . ": could not detect wiki with " . $wikiKey );
 						continue;
 					}
 					$wiki = $row[$wikiKey];
