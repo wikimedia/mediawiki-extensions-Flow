@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_24edb6ee",
+        "filename": "container.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-03-10T16:46:56Z",
+      "side": 1,
+      "message": "Does this work with any type of file, not just images (e.g. what if someone embeds an audio file)?",
+      "revId": "7fa902549785d1cdf4004cfb4dfd6555150d2403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_c4ef32e3",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-03-10T16:46:56Z",
+      "side": 1,
+      "message": "s/multiPut/multiRemove/ here?",
+      "revId": "7fa902549785d1cdf4004cfb4dfd6555150d2403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
