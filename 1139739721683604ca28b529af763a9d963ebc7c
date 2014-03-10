@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_0a0f633b",
+        "filename": "includes/Model/Summary.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-10T21:00:16Z",
+      "side": 1,
+      "message": "Probably make this an AbstractSummary, concrete child like TopicSummary will have revision_type as \u0027topic-summary\u0027.  We share uuid for different entities in some cases.  If we have a summary for both entities, with same rev_type: summary, it\u0027s not easy to query one of them",
+      "revId": "1139739721683604ca28b529af763a9d963ebc7c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
