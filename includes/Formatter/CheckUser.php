@@ -36,7 +36,7 @@ class CheckUser extends AbstractFormatter {
 				$action = $data[0];
 				break;
 			default:
-				wfDebugLog( __CLASS__, __FUNCTION__ . ': Invalid number of parameters received from cuc_comment.  Expected 2 or 3 but received ' . count( $data ) );
+				wfDebugLog( 'Flow', __METHOD__ . ': Invalid number of parameters received from cuc_comment.  Expected 2 or 3 but received ' . count( $data ) );
 				return null;
 		}
 

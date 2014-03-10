@@ -314,7 +314,7 @@ class ObjectLocator implements ObjectStorage {
 			$index = $this->getIndexFor( $keys, $options );
 			$res = $index->findMulti( $queries, $options );
 		} catch ( NoIndexException $e ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ': ' . $e->getMessage() );
+			wfDebugLog( 'Flow', __METHOD__ . ': ' . $e->getMessage() );
 			$res = $this->storage->findMulti( $queries, $this->convertToDbOptions( $options ) );
 		}
 
@@ -371,7 +371,7 @@ class ObjectLocator implements ObjectStorage {
 			$res = $index->foundMulti( $queries, $options );
 			return $res;
 		} catch ( NoIndexException $e ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ': ' . $e->getMessage() );
+			wfDebugLog( 'Flow', __METHOD__ . ': ' . $e->getMessage() );
 		}
 
 		return false;
@@ -980,7 +980,7 @@ class BasicDbStorage extends DbStorage {
 		foreach ( $res as $row ) {
 			$result[] = (array) $row;
 		}
-		// wfDebugLog( __CLASS__, __METHOD__ . ': ' . print_r( $result, true ) );
+		// wfDebugLog( 'Flow', __METHOD__ . ': ' . print_r( $result, true ) );
 		return $result;
 	}
 
@@ -1922,7 +1922,7 @@ class LocalBufferedCache extends BufferedCache {
 			$flipped = array_flip( $keys );
 			$res = parent::getMulti( $keys );
 			if ( $res === false ) {
-				wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure requesting data from memcache : ' . implode( ',', $keys ) );
+				wfDebugLog( 'Flow', __METHOD__ . ': Failure requesting data from memcache : ' . implode( ',', $keys ) );
 				return $found;
 			}
 			foreach ( $res as $key => $value ) {

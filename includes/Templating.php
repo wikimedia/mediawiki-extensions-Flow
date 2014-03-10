@@ -440,7 +440,7 @@ class Templating {
 				try {
 					$content = $this->redlinks->apply( $content );
 				} catch ( \Exception $e ) {
-					wfDebugLog( __CLASS__, __METHOD__ . ': Failed applying redlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
+					wfDebugLog( 'Flow', __METHOD__ . ': Failed applying redlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
 					\MWExceptionHandler::logException( $e );
 				}
 

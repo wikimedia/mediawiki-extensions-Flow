@@ -346,7 +346,7 @@ class TreeRepository {
 			array( $this, 'fetchSubtreeNodeListFromDb' )
 		);
 		if ( $res === false ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure fetching node list from cache' );
+			wfDebugLog( 'Flow', __METHOD__ . ': Failure fetching node list from cache' );
 			return false;
 		}
 		// $idx is a binary UUID
@@ -367,7 +367,7 @@ class TreeRepository {
 			__METHOD__
 		);
 		if ( $res === false ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ': Failure fetching node list from database' );
+			wfDebugLog( 'Flow', __METHOD__ . ': Failure fetching node list from database' );
 			return false;
 		}
 		if ( !$res ) {
