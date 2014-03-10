@@ -305,6 +305,9 @@ You can see other versions of the header at its [$4 history page].',
 	'flow-terms-of-use-new-topic' => 'By clicking "{{int:flow-newtopic-save}}", you agree to the terms of use for this wiki.',
 	'flow-terms-of-use-reply' => 'By clicking "{{int:flow-reply-submit}}", you agree to the terms of use for this wiki.',
 	'flow-terms-of-use-edit' => 'By saving your changes, you agree to the terms of use for this wiki.',
+
+	// Anon warning
+	'flow-anon-warning' => 'You are not logged in. To receive attribution with your name instead of your IP address, you can [$1 log in] or [$2 create an account].',
 );
 
 /** Message documentation (Message documentation)
@@ -1180,6 +1183,9 @@ This should be consistent with {{msg-mw|Flow-reply-submit}}.
 {{Related|Flow-terms-of-use}}',
 	'flow-terms-of-use-edit' => 'Terms of use for editing a header/topic/post.
 {{Related|Flow-terms-of-use}}',
+	'flow-anon-warning' => 'Warning message to be displayed when anonymous user starts writing a new topic or reply.
+* $1 is a URL to log in.
+* $2 is a URL to register an account.',
 );
 
 /** Achinese (Acèh)

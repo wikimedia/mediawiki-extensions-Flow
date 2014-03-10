@@ -456,6 +456,11 @@
 
 		// load the form
 		this.loadNewForm();
+
+		// add anon warning if required
+		if ( mw.user.isAnon() ) {
+			this.showAnonWarning( this.$form.find( '.flow-newtopic-title' ), 's' );
+		}
 	};
 
 	/**
@@ -514,7 +519,9 @@
 					.val( '' )
 					.attr( 'placeholder', mw.msg( 'flow-newtopic-start-placeholder' ) );
 
-				this.$form.find( 'form' ).flow( 'hidePreview' );
+				this.$form.find( 'form' )
+					.flow( 'hidePreview' )
+					.trigger( 'flow-form-destroyed' );
 
 				/*
 				 * After submitting the new topic, kill the events that were bound to
