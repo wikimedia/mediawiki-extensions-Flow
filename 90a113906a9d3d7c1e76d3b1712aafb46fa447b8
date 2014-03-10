@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_ea21d7f7",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-10T20:41:08Z",
+      "side": 1,
+      "message": "grouping by rev_type is redundant since the where clause does equality on rev_type",
+      "revId": "90a113906a9d3d7c1e76d3b1712aafb46fa447b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_ca4cdbcd",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-10T20:41:08Z",
+      "side": 1,
+      "message": "If we are removing the table it feels hackish to leave header_workflow_id and other header_* fields in the code",
+      "revId": "90a113906a9d3d7c1e76d3b1712aafb46fa447b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
