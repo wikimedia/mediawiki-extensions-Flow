@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_17e787a8",
+        "filename": "maintenance/FlowUpdateRevisionTypeId.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-10T22:30:38Z",
+      "side": 1,
+      "message": "rather than adding to the entire functions indent level, make this an if ( !... ) and return early",
+      "revId": "eb714c9d7b82dfe8790ae33d9236771be881264f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_f7ff7b2f",
+        "filename": "maintenance/FlowUpdateUserWiki.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-10T22:30:38Z",
+      "side": 1,
+      "message": "same concern about indentation level",
+      "revId": "eb714c9d7b82dfe8790ae33d9236771be881264f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
