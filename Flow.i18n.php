@@ -5077,7 +5077,7 @@ $messages['sco'] = array(
 	'flow-notification-reply-email-batch-bundle-body' => '$1 an $4 {{PLURAL:$5|ither|ithers}} {{GENDER:$1|replied}} til yer post in "$2" oan "$3"',
 	'flow-notification-mention-email-subject' => '$1 {{GENDER:$1|mentioned}} ye oan "$2"',
 	'flow-notification-edit-email-batch-body' => '$1 {{GENDER:$1|edited}} ae post in "$2" on "$3"',
-	'flow-notification-edit-email-batch-bundle-body' => '$1 an $4 {{PLURAL:$5|other|others}} {{GENDER:$1|edited}} ae post in "$2" on "$3"',
+	'flow-notification-edit-email-batch-bundle-body' => '$1 n $4 {{PLURAL:$5|ither|ithers}} {{GENDER:$1|eeditit}} ae post in "$2" oan "$3"',
 	'flow-notification-newtopic-email-subject' => '$1 {{GENDER:$1|created}} ae new topic on "$2"',
 	'flow-revision-permalink-warning-header' => 'This is ae permanent link til ae single version o the heider.
 This version is fae $1.  Ye can see the [$3 differences fae the preevioos version], or view ither versions oan the [$2 buird histerie page].',
