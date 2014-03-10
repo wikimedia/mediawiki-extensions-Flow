@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e04eb01_a4a1c6f6",
+        "filename": "tests/browser/features/thank.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-10T16:11:07Z",
+      "side": 1,
+      "message": "Are these the tags that I would have?",
+      "revId": "db5e47b8b0b985e3b90d0f14fb4d4eda4807f14a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_c458522b",
+        "filename": "tests/browser/features/thank.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-10T16:11:07Z",
+      "side": 1,
+      "message": "One of the issues is that it\u0027s hard to set the precondition for the page to always have a thank button.\n\nThe button appears for other registered users\u0027 post.\n\nIn order to actually guarantee the precondition, it would need to have another user making a post. This would require another local ENV[\u0027MEDIAWIKI_USER2\u0027] being set, which is not part of the standard setup I believe.",
+      "revId": "db5e47b8b0b985e3b90d0f14fb4d4eda4807f14a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
