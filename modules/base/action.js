@@ -146,6 +146,7 @@
 
 		this.object.$container.find( '.flow-edit-form' )
 			.flow( 'hidePreview' )
+			.trigger( 'flow-form-destroyed' )
 			.remove();
 	};
 
@@ -234,6 +235,11 @@
 					}
 				);
 		}, this, $form, loadFunction ), 0 );
+
+		// add anon warning if required
+		if ( mw.user.isAnon() ) {
+			this.showAnonWarning( $form.find( '.flow-creator > a' ) );
+		}
 	};
 
 	/**
@@ -262,6 +268,7 @@
 		 * submit button via setupEmptyDisabler and setupFormHandler.
 		 */
 		$form.find( '.flow-reply-submit' ).off();
+		$form.trigger( 'flow-form-destroyed' );
 		$form.find( '.flow-cancel-link, .flow-content-preview, .flow-preview-submit, .flow-error' ).remove();
 
 		// when hidden via slideUp, some inline CSS is added to keep the
@@ -372,15 +379,15 @@
 	 * Adds tipsy to an element, with the given text.
 	 *
 	 * @param {jQuery} $element
-	 * @param {string} text
+	 * @param {string|jQuery} text or jQuery object containing content
+	 * @param {Object} options Overrides
 	 */
-	mw.flow.action.prototype.tipsy = function ( $element, text ) {
+	mw.flow.action.prototype.tipsy = function ( $element, text, options ) {
+		var $form = this.$form;
+
 		$element
 			.addClass( 'flow-tipsy-trigger' )
-			.click( function () {
-				$( this ).tipsy( 'hide' );
-			} )
-			.tipsy( {
+			.tipsy( $.extend( {
 				fade: true,
 				gravity: 'w',
 				html: true,
@@ -402,13 +409,76 @@
 
 					// .html() only returns inner html, so attach the node to a new
 					// parent & grab the full html there
-					var $warning = $( '<div class="flow-tipsy-noflyout">' ).text( text );
+					var $warning = $( '<div class="flow-tipsy-noflyout">' );
+					if ( typeof text === 'object' ) {
+						$warning.append( text );
+					} else {
+						$warning.text( text );
+					}
 					return $( '<div>' ).append( $warning ).html();
 				}
-			} )
+			}, options ) )
 			.tipsy( 'show' );
+
+		setTimeout( function() {
+			$form.on( 'keyup', 'input, textarea', function(e) {
+				$element.tipsy( 'hide' );
+			} );
+		}, 1500 );
 
 		// return tipsy flyout node
 		return $element.tipsy( 'tip' );
+	};
+
+	/**
+	 * Shows a tooltip, dismissed by keyup in the form.
+	 * @param {jQuery} $el The element to display the warning on.
+	 */
+	mw.flow.action.prototype.showAnonWarning = function( $el, gravity ) {
+		var msg,
+			loginLink,
+			registerLink,
+			returnTo = mw.config.get( 'wgPageName' ),
+			jumpElement,
+			$form = this.$form;
+
+		gravity = gravity || 'w';
+
+		if ( !( $el && $el.length ) ) {
+			$el = $form.find( '.flow-creator > a' );
+		}
+
+		if ( ! $el.length ) {
+			$el = $form.find( 'textarea:first' );
+		}
+
+		if ( this.object && this.object.postId ) {
+			returnTo += '#flow-post-' + this.object.postId;
+		} else {
+			jumpElement = $form.closest( '[id]' );
+
+			if ( jumpElement.length && jumpElement.attr( 'id' ) !== 'mw-content-text' ) {
+				returnTo += '#' + jumpElement.attr( 'id' );
+			}
+		}
+
+		loginLink = mw.util.getUrl( 'Special:UserLogin', { 'returnto' : returnTo } );
+		registerLink = mw.util.getUrl( 'Special:UserLogin/signup', { 'returnto' : returnTo } );
+
+		msg = mw.message( 'flow-anon-warning', loginLink, registerLink ).parse();
+
+		this.tipsy(
+			$el,
+			$( '<div/>' ).html( msg ).contents(),
+			{
+				'className' : 'flow-tipsy-warning flow-anon-warning',
+				'gravity' : gravity
+			}
+		);
+
+		$form
+			.on( 'flow-form-destroyed', '*', function(e) {
+				$el.tipsy( 'hide' );
+			} );
 	};
 } ( jQuery, mediaWiki ) );

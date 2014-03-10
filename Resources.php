@@ -34,6 +34,8 @@ $wgResourceModules += array(
 			'base/action.js',
 		),
 		'dependencies' => array(
+			'mediawiki.util',
+			'mediawiki.jqueryMsg',
 			'mediawiki.ui',
 			'mediawiki.api',
 			'jquery.json',
@@ -83,6 +85,7 @@ $wgResourceModules += array(
 			'jquery.conditionalScroll',
 			'ext.flow.parsoid',
 			'mediawiki.jqueryMsg',
+			'mediawiki.user',
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
@@ -100,6 +103,7 @@ $wgResourceModules += array(
 			'flow-paging-rev',
 			'flow-post-moderated-toggle-show',
 			'flow-post-moderated-toggle-hide',
+			'flow-anon-warning',
 		),
 		'position' => 'top',
 	),
