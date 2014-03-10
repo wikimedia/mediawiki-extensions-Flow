@@ -81,7 +81,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		);
 
 		if ( !$history ) {
-			throw new InvalidDataException( 'Unable to load topic list history for ' . $this->workflow->getId()->getAlphadecimal(), 'fail-load-history' );
+			return array();
 		}
 
 		// get rid of history entries user doesn't have sufficient permissions for
