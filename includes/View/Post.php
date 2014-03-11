@@ -81,7 +81,7 @@ class Post {
 		return implode(
 			Html::element(
 				'span',
-				array( 'class' => 'mw-ui-button' ),
+				array( 'class' => 'flow-post-interaction-separator' ),
 				wfMessage( 'flow-post-interaction-separator' )->text()
 			),
 			$items
