@@ -15,16 +15,6 @@ class PostCollectionTest extends PostRevisionTestCase {
 	 */
 	protected $tablesUsed = array( 'flow_revision', 'flow_tree_revision' );
 
-	/**
-	 * @var array Array of PostRevision objects
-	 */
-	protected $revisions = array();
-
-	/**
-	 * @var ObjectManager
-	 */
-	protected $storage;
-
 	protected function setUp() {
 		parent::setUp();
 
@@ -32,36 +22,26 @@ class PostCollectionTest extends PostRevisionTestCase {
 		$this->clearRecentChangesLifecycleHandlers();
 
 		// generate a post with multiple revisions
-		$this->revisions[] = $revision = $this->generateObject( array(
+		$revision = $this->generateObject( array(
 			'rev_content' => 'first revision',
 		) );
+		$this->store( $revision );
 
-		$this->revisions[] = $revision = $this->generateObject( array(
+		$revision = $this->generateObject( array(
 			'rev_content' => 'second revision',
 			'rev_change_type' => 'edit-post',
 			'rev_parent_id' => $revision->getRevisionId()->getBinary(),
 			'tree_rev_descendant_id' => $revision->getPostId()->getBinary(),
 		) );
+		$this->store( $revision );
 
-		$this->revisions[] = $revision = $this->generateObject( array(
+		$revision = $this->generateObject( array(
 			'rev_content' => 'third revision',
 			'rev_change_type' => 'edit-post',
 			'rev_parent_id' => $revision->getRevisionId()->getBinary(),
 			'tree_rev_descendant_id' => $revision->getPostId()->getBinary(),
 		) );
-
-		$this->storage = Container::get( 'storage.post' );
-		foreach ( $this->revisions as $revision ) {
-			$this->storage->put( $revision );
-		}
-	}
-
-	protected function tearDown() {
-		parent::tearDown();
-
-		foreach ( $this->revisions as $revision ) {
-			$this->storage->remove( $revision );
-		}
+		$this->store( $revision );
 	}
 
 	public function testGetCollection() {

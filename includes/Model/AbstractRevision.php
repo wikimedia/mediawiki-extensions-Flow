@@ -411,7 +411,16 @@ abstract class AbstractRevision {
 			return $raw;
 		}
 		if ( !isset( $this->convertedContent[$format] ) ) {
-			$this->convertedContent[$format] = ParsoidUtils::convert( $sourceFormat, $format, $raw );
+			if ( $sourceFormat === $format ) {
+				$this->convertedContent[$format] = $raw;
+			} else {
+				$this->convertedContent[$format] = ParsoidUtils::convert(
+					$sourceFormat,
+					$format,
+					$raw,
+					$this->getCollection()->getTitle()
+				);
+			}
 		}
 
 		return $this->convertedContent[$format];
@@ -462,7 +471,8 @@ abstract class AbstractRevision {
 			$this->convertedContent[$storageFormat] = ParsoidUtils::convert(
 				$inputFormat,
 				$storageFormat,
-				$content
+				$content,
+				$this->getCollection()->getTitle()
 			);
 		}
 
