@@ -2,9 +2,8 @@
 
 namespace Flow\Collection;
 
-use Flow\Model\AbstractRevision;
-
 use Flow\Container;
+use Flow\Model\UUID;
 
 class PostCollection extends LocalCacheAbstractCollection {
 	/**

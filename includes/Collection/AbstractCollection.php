@@ -7,6 +7,8 @@ use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidDataException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
+use Flow\Model\Workflow;
+use Title;
 
 abstract class AbstractCollection {
 	/**

@@ -2,8 +2,6 @@
 
 namespace Flow\Collection;
 
-use Flow\Model\AbstractRevision;
-
 class HeaderCollection extends LocalCacheAbstractCollection {
 	public function getRevisionClass() {
 		return 'Flow\\Model\\Header';

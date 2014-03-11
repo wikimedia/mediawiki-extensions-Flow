@@ -191,12 +191,13 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
+	 * @param Workflow $workflow
 	 * @param User $user
 	 * @param string $content
 	 * @param string[optional] $changeType
 	 * @return PostRevision
 	 */
-	public function reply( User $user, $content, $changeType = 'reply' ) {
+	public function reply( Workflow $workflow, User $user, $content, $changeType = 'reply' ) {
 		$reply = new self;
 		// No great reason to create two uuid's,  a post and its first revision can share a uuid
 		$reply->revId = $reply->postId = UUID::create();
@@ -206,7 +207,7 @@ class PostRevision extends AbstractRevision {
 		$reply->origUserWiki = wfWikiId();
 		$reply->origCreateTime = wfTimestampNow();
 		$reply->replyToId = $this->postId;
-		$reply->setContent( $content );
+		$reply->setContent( $content, $workflow->getArticleTitle() );
 		$reply->changeType = $changeType;
 		$reply->setChildren( array() );
 		$reply->setDepth( $this->getDepth() + 1 );

@@ -110,7 +110,7 @@ class TopicListBlock extends AbstractBlock {
 
 		$firstPost = null;
 		if ( !empty( $this->submitted['content'] ) ) {
-			$firstPost = $topicPost->reply( $this->user, $this->submitted['content'] );
+			$firstPost = $topicPost->reply( $topicWorkflow, $this->user, $this->submitted['content'] );
 			$topicPost->setChildren( array( $firstPost ) );
 		}
 

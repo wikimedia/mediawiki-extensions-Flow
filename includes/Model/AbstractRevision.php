@@ -8,6 +8,7 @@ use Flow\Exception\DataModelException;
 use Flow\Exception\PermissionException;
 use Flow\ParsoidUtils;
 use Flow\RevisionActionPermissions;
+use Title;
 use User;
 
 abstract class AbstractRevision {
@@ -449,9 +450,10 @@ abstract class AbstractRevision {
 	 * use self::setNextContent
 	 *
 	 * @param string $content Content in wikitext format
+	 * @param Title|null $title When null the related workflow will be lazy-loaded to locate the title
 	 * @throws DataModelException
 	 */
-	protected function setContent( $content ) {
+	protected function setContent( $content, Title $title = null ) {
 		if ( $this->moderationState !== self::MODERATED_NONE ) {
 			throw new DataModelException( 'TODO: Cannot change content of restricted revision', 'process-data' );
 		}
@@ -472,7 +474,7 @@ abstract class AbstractRevision {
 				$inputFormat,
 				$storageFormat,
 				$content,
-				$this->getCollection()->getTitle()
+				$title ?: $this->getCollection()->getTitle()
 			);
 		}
 
