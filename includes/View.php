@@ -24,6 +24,9 @@ class View extends ContextSource {
 		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.base' ) );
 		$out->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
 
+		// Allow other extensions to add modules
+		wfRunHooks( 'FlowAddModules', array( $out ) );
+
 		$workflow = $loader->getWorkflow();
 
 		$title = $workflow->getArticleTitle();

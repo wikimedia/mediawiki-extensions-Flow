@@ -75,6 +75,9 @@ class Post {
 			$items[] = $editButton;
 		}
 
+		wfRunHooks( 'FlowAddPostInteractionLinks',
+			array( $this->post, $this->user, &$items ) );
+
 		return implode(
 			Html::element(
 				'span',
