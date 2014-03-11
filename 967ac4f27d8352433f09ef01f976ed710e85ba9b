@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e0177f3_61dc724c",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-03-11T13:35:40Z",
+      "side": 1,
+      "message": "There\u0027s a double space between sentences. Should be single (or even a simple line break).",
+      "revId": "967ac4f27d8352433f09ef01f976ed710e85ba9b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
