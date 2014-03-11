@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "2e0177f3_c19346a5",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-11T13:18:09Z",
+      "side": 1,
+      "message": "It\u0027s called by findMultiInternal, which in turn is called by findMulti \u0026 find.\n\nIf I\u0027m not mistaken, empty DB results are not cached, so replication lag will not persist in cache. That\u0027s good :)\n\nThere may, however, be cases where data was just updated, and a lagged DB query *will* return a result, but it\u0027s just not the most recent.\n\nServing lagged data to users is ok, as long as we respect chronology: if a user saw something when content was answered by server 1, the following request should not be served by lagged server 2 that does not yet have that content. That logic is in core (ChronologyProtector) and has been fixed to work with external DBs already (https://gerrit.wikimedia.org/r/#/c/58691/): users should always be served by a DB at least as recent as their previous request.\n\nAFAICT, there\u0027s 1 more case we may need to take into account: same-request queries. If a user writes something to the database, and we query the DB for that data, it should be returned, regardless of the state the slaves are in. In AFTv5, I\u0027ve fixed that by checking the $db param in getDB(): if it\u0027s DB_MASTER, assumed is that a user is writing to master, and all his following getDB( DB_SLAVE ) calls in this request will be turned into DB_MASTER calls, to make sure his data is accurate (see https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FArticleFeedbackv5/60ea34d65207b5b71a6a617ff0a2129326ac9442/data%2FDataModelBackend.LBFactory.php#L36)\n\nI\u0027d be fine with leaving it DB_MASTER for now, because we still have that latter issue to deal with. I\u0027ve filed https://bugzilla.wikimedia.org/show_bug.cgi?id\u003d62528 to address this problem separately.",
+      "parentUuid": "4e04eb01_6463d0a7",
+      "revId": "5c0c276ea13abb48733bf70b834c9808437630c9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_dbde0f44",
         "filename": "includes/Data/RevisionStorage.php",
         "patchSetId": 1
