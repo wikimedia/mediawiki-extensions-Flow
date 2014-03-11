@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e0177f3_81d77e28",
+        "filename": "HOOKS",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-11T13:40:45Z",
+      "side": 1,
+      "message": "I\u0027ll rename the file to hooks.txt and change the formatting to be more in line with core hooks.txt (\u0026 several other extensions)",
+      "revId": "3507aaf7a8cc5652b3c3cbcbd82a57f4cbdf8674",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e0177f3_21bd4ad2",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-11T13:40:45Z",
+      "side": 1,
+      "message": "I\u0027ll also add $this-\u003euser in here, as 2nd argument: it looks like one that could potentially be useful to people subscribing to this hook \u0026 I\u0027d rather have it in there from the start, than only add it in when needed and this hook is already in use ;)\n\nMake sure you update your code that hooks in here",
+      "revId": "3507aaf7a8cc5652b3c3cbcbd82a57f4cbdf8674",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
