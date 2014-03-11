@@ -259,7 +259,7 @@ abstract class AbstractFormatter {
 		return array(
 			$this->urlGenerator->buildUrl(
 				$title,
-				'compare-revisions',
+				'compare-post-revisions',
 				array(
 					'workflow' => $workflowId->getAlphadecimal(),
 					'topic_oldRevision' => $oldId->getAlphadecimal(),
