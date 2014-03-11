@@ -32,7 +32,7 @@ abstract class RevisionStorage extends DbStorage {
 		'rev_mod_user_text',
 	);
 
-	protected $externalStores;
+	protected $externalStore;
 
 	abstract protected function joinTable();
 	abstract protected function relatedPk();
