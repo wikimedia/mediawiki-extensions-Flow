@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e0177f3_a14dda41",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-11T13:20:28Z",
+      "side": 1,
+      "message": "Let\u0027s restore this to DB_MASTER for now. It\u0027s wrong, but until we\u0027ve thoroughly checked \u0026 addressed this issue, this is safest.\n\nI\u0027ve filed a seperate bug to address this.",
+      "revId": "6f88137fd1da7fb4d2757ec11c9760e98b13c873",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
