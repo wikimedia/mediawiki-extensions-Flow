@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e0177f3_50481a8c",
+        "filename": "includes/Collection/AbstractCollection.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-11T23:02:34Z",
+      "side": 1,
+      "message": "@param string|null $class",
+      "revId": "b9478f11bb4acc1884e3db0fca1283f9beb7ee80",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e0177f3_703af6e5",
+        "filename": "tests/PostRevisionTestCase.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-11T23:02:34Z",
+      "side": 1,
+      "message": "@var PostRevision[]",
+      "revId": "b9478f11bb4acc1884e3db0fca1283f9beb7ee80",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
