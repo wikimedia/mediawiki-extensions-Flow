@@ -29,7 +29,7 @@ class Header extends AbstractRevision {
 		}
 		$obj->userWiki = wfWikiId();
 		$obj->prevRevision = null; // no prior revision
-		$obj->setContent( $content );
+		$obj->setContent( $content, $workflow->getArticleTitle() );
 		$obj->changeType = $changeType;
 		return $obj;
 	}

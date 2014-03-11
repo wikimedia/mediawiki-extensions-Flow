@@ -204,7 +204,7 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
-		$this->newRevision = $post->reply( $this->user, $this->submitted['content'] );
+		$this->newRevision = $post->reply( $this->workflow, $this->user, $this->submitted['content'] );
 		if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
 			return;
 		}
