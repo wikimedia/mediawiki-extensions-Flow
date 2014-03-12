@@ -89,6 +89,7 @@ $messages['en'] = array(
 	'flow-topic-action-history' => 'History',
 	'flow-topic-action-hide-topic' => 'Hide topic',
 	'flow-topic-action-delete-topic' => 'Delete topic',
+	'flow-topic-action-close-topic' => 'Close topic',
 	'flow-topic-action-suppress-topic' => 'Suppress topic',
 	'flow-topic-action-restore-topic' => 'Restore topic',
 
@@ -111,6 +112,7 @@ $messages['en'] = array(
 	'flow-error-restore-failure' => 'Restoration of this item failed.',
 	'flow-error-invalid-moderation-state' => 'An invalid value was provided for moderationState.',
 	'flow-error-invalid-moderation-reason' => 'Please provide a reason for the moderation.',
+	'flow-error-invalid-summary' => 'Please provide a summary.',
 	'flow-error-not-allowed' => 'Insufficient permissions to execute this action.',
 	'flow-error-title-too-long' => 'Topic titles are restricted to $1 {{PLURAL:$1|byte|bytes}}.',
 	'flow-error-no-existing-workflow' => 'This workflow does not yet exist.',
@@ -162,6 +164,7 @@ $messages['en'] = array(
 	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|hid}} the [$4 topic] $6 (<em>$5</em>).',
 	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|deleted}} the [$4 topic] $6 (<em>$5</em>).',
 	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|suppressed}} the [$4 topic] $6 (<em>$5</em>).',
+	'flow-rev-message-closed-topic' => '$1 {{GENDER:$2|closed}} the [$4 topic] $6 (<em>$5</em>).',
 	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|restored}} the [$4 topic] $6 (<em>$5</em>).',
 
 	'flow-board-history' => '"$1" history',
@@ -541,6 +544,8 @@ For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-
 {{Related|Flow-action}}',
 	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.
 {{Related|Flow-action}}',
+	'flow-topic-action-close-topic' => 'Used as a link in a dropdown menu to close a topic.
+{{Related|Flow-action}}',
 	'flow-topic-action-suppress-topic' => 'Used as a link in a dropdown menu to suppress a topic.
 {{Related|Flow-action}}
 
@@ -598,6 +603,7 @@ Usually indicates a code bug, so technical terminology is okay.
 
 Valid values for moderationState are: (none), hidden, deleted, suppressed',
 	'flow-error-invalid-moderation-reason' => 'Used as error message when no reason is given for the moderation of a post.',
+	'flow-error-invalid-summary' => 'Used as error message when no summary is given for actions like closing/reopenning a topic',
 	'flow-error-not-allowed' => 'Error message when the user has insufficient permissions to execute this action',
 	'flow-error-title-too-long' => 'Used as error message when a user submits a topic title that is too long to save.
 
@@ -757,6 +763,16 @@ Parameters:
 * $6 - Name of the topic the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-suppressed-topic' => 'Used as revision comment when a topic has been suppressed.
+
+Parameters:
+* $1 - user link and tool links for the user.
+* $2 - username of the user who moderated the topic. Can be used for GENDER
+* $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER
+* $4 - permalink to the topic
+* $5 - Reason, from the moderating user, for moderating this topic
+* $6 - Name of the topic the post belongs to
+{{Related|Flow-rev-message}}',
+	'flow-rev-message-closed-topic' => 'Used as revision comment when a topic has been closed.
 
 Parameters:
 * $1 - user link and tool links for the user.
