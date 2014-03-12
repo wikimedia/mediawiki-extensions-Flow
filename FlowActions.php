@@ -262,6 +262,30 @@ $wgFlowActions = array(
 		),
 	),
 
+	'close-topic' => array(
+		'performs-writes' => true,
+		'log_type' => 'close',
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => 'flow-close',
+			PostRevision::MODERATED_HIDDEN => 'flow-close',
+			PostRevision::MODERATED_DELETED => 'flow-close',
+			PostRevision::MODERATED_CLOSED => 'flow-close',
+		),
+		'button-method' => 'POST',
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-closed-topic',
+			'i18n-params' => array(
+				'user-links',
+				'user-text',
+				'creator-text',
+				'workflow-url',
+				'moderated-reason',
+				'topic-of-post',
+			),
+			'class' => 'flow-history-closed-topic',
+		),
+	),
+
 	'restore-post' => array(
 		'performs-writes' => true,
 		'log_type' => function( PostRevision $revision, Logger $logger ) {
@@ -313,9 +337,10 @@ $wgFlowActions = array(
 			return '';
 		},
 		'permissions' => array(
-			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
-			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
-			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
+			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress', 'flow-close' ),
+			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress', 'flow-close' ),
+			PostRevision::MODERATED_SUPPRESSED => array( 'flow-suppress', 'flow-close' ),
+			PostRevision::MODERATED_CLOSED => array( 'flow-close' ),
 		),
 		'button-method' => 'POST',
 		'history' => array(
