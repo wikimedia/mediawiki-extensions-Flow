@@ -91,6 +91,7 @@ $messages['en'] = array(
 	'flow-topic-action-history' => 'History',
 	'flow-topic-action-hide-topic' => 'Hide topic',
 	'flow-topic-action-delete-topic' => 'Delete topic',
+	'flow-topic-action-close-topic' => 'Close topic',
 	'flow-topic-action-suppress-topic' => 'Suppress topic',
 	'flow-topic-action-unhide-topic' => 'Unhide topic',
 	'flow-topic-action-undelete-topic' => 'Undelete topic',
@@ -166,6 +167,7 @@ $messages['en'] = array(
 	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|hid}} the [$4 topic] $6 (<em>$5</em>).',
 	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|deleted}} the [$4 topic] $6 (<em>$5</em>).',
 	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|suppressed}} the [$4 topic] $6 (<em>$5</em>).',
+	'flow-rev-message-closed-topic' => '$1 {{GENDER:$2|closed}} the [$4 topic] $6 (<em>$5</em>).',
 	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|restored}} the [$4 topic] $6 (<em>$5</em>).',
 
 	'flow-board-history' => '"$1" history',
@@ -564,6 +566,8 @@ For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-
 {{Related|Flow-action}}',
 	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.
 {{Related|Flow-action}}',
+	'flow-topic-action-close-topic' => 'Used as a link in a dropdown menu to close a topic.
+{{Related|Flow-action}}',
 	'flow-topic-action-suppress-topic' => 'Used as a link in a dropdown menu to suppress a topic.
 {{Related|Flow-action}}
 
@@ -783,6 +787,16 @@ Parameters:
 * $6 - Name of the topic the post belongs to
 {{Related|Flow-rev-message}}',
 	'flow-rev-message-suppressed-topic' => 'Used as revision comment when a topic has been suppressed.
+
+Parameters:
+* $1 - user link and tool links for the user.
+* $2 - username of the user who moderated the topic. Can be used for GENDER
+* $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER
+* $4 - permalink to the topic
+* $5 - Reason, from the moderating user, for moderating this topic
+* $6 - Name of the topic the post belongs to
+{{Related|Flow-rev-message}}',
+	'flow-rev-message-closed-topic' => 'Used as revision comment when a topic has been closed.
 
 Parameters:
 * $1 - user link and tool links for the user.

@@ -5,6 +5,7 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidDataException;
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Templating;
@@ -30,9 +31,14 @@ class TopicSummaryBlock extends AbstractBlock {
 	protected $nextRevision;
 
 	/**
+	 * @var PostRevision|null
+	 */
+	protected $topicTitle;
+
+	/**
 	 * Supported Post actions
 	 */
-	protected $supportedPostActions = array( 'edit-topic-summary' );
+	protected $supportedPostActions = array( 'edit-topic-summary', 'moderate-topic' );
 
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
@@ -55,7 +61,30 @@ class TopicSummaryBlock extends AbstractBlock {
 			case 'edit-topic-summary':
 				$this->validateTopicSummary();
 			break;
+			case 'moderate-topic':
+				if ( $this->isClosingTopicRelated() ) {
+					$this->validateTopicSummary();
+				}
+			break;
 		}
+	}
+
+	/**
+	 * Check if this is closing/reopening a topic
+	 */
+	protected function isClosingTopicRelated() {
+		$state = isset( $this->submitted['moderationState'] ) ? $this->submitted['moderationState'] : '';
+		if ( $state == AbstractRevision::MODERATED_CLOSED ) {
+			return true;
+		}
+		$root = $this->findTopicTitle();
+		if (
+			$root->getModerationState() == AbstractRevision::MODERATED_CLOSED &&
+			$state == AbstractRevision::MODERATED_NONE )
+		{
+			return true;
+		}
+		return false;
 	}
 
 	protected function validateTopicSummary() {
@@ -108,6 +137,9 @@ class TopicSummaryBlock extends AbstractBlock {
 	}
 
 	protected function findTopicTitle() {
+		if ( $this->topicTitle ) {
+			return $this->topicTitle;
+		}
 		$found = $this->storage->find(
 			'PostRevision',
 			array( 'rev_type_id' => $this->workflow->getId() ),
@@ -116,7 +148,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		if ( !$found ) {
 			throw new InvalidDataException( 'Every workflow must have an associated topic title', 'missing-topic-title' );
 		}
-		return reset( $found );
+		return $this->topicTitle = reset( $found );
 	}
 
 	protected function saveTopicSummary() {
@@ -138,6 +170,11 @@ class TopicSummaryBlock extends AbstractBlock {
 		switch( $this->action ) {
 			case 'edit-topic-summary':
 				return $this->saveTopicSummary();
+			break;
+			case 'moderate-topic':
+				if ( $this->isClosingTopicRelated() ) {
+					$this->saveTopicSummary();
+				}
 			break;
 		}
 	}

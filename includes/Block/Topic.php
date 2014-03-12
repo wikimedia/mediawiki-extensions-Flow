@@ -276,9 +276,18 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
+
 		if ( empty( $this->submitted['reason'] ) ) {
-			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
-			return;
+			// If a summary is provided instead, parse the content and truncate it
+			if ( !empty( $this->submitted['summary'] ) ) {
+				$this->submitted['reason'] = $wgLang->truncate(
+					strip_tags( \Flow\ParsoidUtils::convert( 'wikitext', 'html', $this->submitted['summary'] ) ),
+					255
+				);
+			} else {
+				$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
+				return;
+			}
 		}
 
 		$reason = $this->submitted['reason'];
