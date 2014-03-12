@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e0177f3_64391b3e",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-12T00:36:28Z",
+      "side": 1,
+      "message": "maybe pass $workflow here as well",
+      "revId": "eddcfaaa61439b29fecdfa1b823b57c9c88e20a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
