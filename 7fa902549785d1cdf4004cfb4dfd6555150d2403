@@ -70,6 +70,57 @@
     },
     {
       "key": {
+        "uuid": "2e0177f3_93bd8766",
+        "filename": "includes/LinksTableUpdater.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-12T18:59:56Z",
+      "side": 1,
+      "message": "This can return null",
+      "revId": "7fa902549785d1cdf4004cfb4dfd6555150d2403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e0177f3_93c34761",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-12T18:59:56Z",
+      "side": 1,
+      "message": "matthias has recently added some code to use getCollection()-\u003egetWorkflowId() insead.",
+      "revId": "7fa902549785d1cdf4004cfb4dfd6555150d2403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e0177f3_33d2332d",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-12T18:59:56Z",
+      "side": 1,
+      "message": "this is the same as getCollectionId()",
+      "revId": "7fa902549785d1cdf4004cfb4dfd6555150d2403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e0177f3_b3ed2325",
         "filename": "includes/ReferenceExtractor.php",
         "patchSetId": 16
