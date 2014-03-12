@@ -2,6 +2,7 @@
 
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
 use Flow\Log\Logger;
@@ -72,7 +73,11 @@ $wgFlowActions = array(
 		'log_type' => false,
 		'rc_insert' => true,
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => '',
+			PostSummary::MODERATED_NONE => '',
+			PostSummary::MODERATED_CLOSED => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
 		'button-method' => 'GET',
 		'links' => array(),
@@ -92,7 +97,11 @@ $wgFlowActions = array(
 		'log_type' => false,
 		'rc_insert' => true,
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => '',
+			PostSummary::MODERATED_NONE => '',
+			PostSummary::MODERATED_CLOSED => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostSummary::MODERATED_SUPPRESSED => array( 'flow-suppress' ),
 		),
 		'button-method' => 'GET',
 		'links' => array(),
@@ -323,6 +332,30 @@ $wgFlowActions = array(
 		),
 	),
 
+	'close-topic' => array(
+		'performs-writes' => true,
+		'log_type' => 'close',
+		'rc_insert' => true,
+		'permissions' => array(
+			// Only non-moderated topic can be closed
+			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
+		),
+		'button-method' => 'GET',
+		'links' => array(),
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-closed-topic',
+			'i18n-params' => array(
+				'user-links',
+				'user-text',
+				'creator-text',
+				'workflow-url',
+				'moderated-reason',
+				'topic-of-post',
+			),
+			'class' => 'flow-history-closed-topic',
+		),
+	),
+
 	'restore-post' => array(
 		'performs-writes' => true,
 		'log_type' => function( PostRevision $revision, Logger $logger ) {
@@ -403,6 +436,7 @@ $wgFlowActions = array(
 				return true;
 			},
 		'permissions' => array(
+			PostRevision::MODERATED_CLOSED => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
@@ -434,9 +468,10 @@ $wgFlowActions = array(
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => function( AbstractRevision $post, RevisionActionPermissions $permissions ) {
-				// visible for logged in users (or anyone with hide permission)
-				return $permissions->getUser()->isLoggedIn() ? '' : 'flow-hide';
+				// visible for logged in users (or anyone with hide/close permission)
+				return $permissions->getUser()->isLoggedIn() ? '' : array( 'flow-hide' );
 			},
+			PostRevision::MODERATED_CLOSED => '',
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),

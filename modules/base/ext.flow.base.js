@@ -11,6 +11,7 @@ mw.flow = {
 		 */
 		'mapPrefixes' : function( action ) {
 			return {
+				'close-open-topic': 'cot',
 				'edit-header': 'eh',
 				'edit-post': 'ep',
 				'edit-title': 'et',
