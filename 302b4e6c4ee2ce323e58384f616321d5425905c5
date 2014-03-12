@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "2e0177f3_8490a747",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-12T00:41:54Z",
+      "side": 1,
+      "message": "File a bug for any issue with merged code, since it\u0027s visible on beta labs and on ee-flow.",
+      "revId": "302b4e6c4ee2ce323e58384f616321d5425905c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_05d634c7",
         "filename": "modules/discussion/styles/post.less",
         "patchSetId": 1
@@ -13,6 +30,58 @@
       "writtenOn": "2014-03-10T21:31:59Z",
       "side": 1,
       "message": "this #898989 color is used in a number of places for text, probably worthwhile to give it a name.",
+      "revId": "302b4e6c4ee2ce323e58384f616321d5425905c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e0177f3_64e11bfb",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-12T00:41:54Z",
+      "side": 1,
+      "message": "It\u0027s @colorGrayDark, but that\u0027s not currently public outside mediawiki.ui unless you hack $wgResourceLoaderLESSImportPaths.  gerrit 117105 adds a bunch of @color definitions, and some day mediawiki.ui and Flow will be able to reference a common @colorGray8.",
+      "parentUuid": "4e04eb01_05d634c7",
+      "revId": "302b4e6c4ee2ce323e58384f616321d5425905c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e0177f3_a48cc33b",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-12T00:41:54Z",
+      "side": 1,
+      "message": "I think a lot of these overrides won\u0027t be needed once the buttons separating this use mw-ui-quiet.",
+      "revId": "302b4e6c4ee2ce323e58384f616321d5425905c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e0177f3_8491c754",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-12T00:41:54Z",
+      "side": 1,
+      "message": "Since the separator string has spaces in it, I don\u0027t think this should be necessary.",
       "revId": "302b4e6c4ee2ce323e58384f616321d5425905c5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
