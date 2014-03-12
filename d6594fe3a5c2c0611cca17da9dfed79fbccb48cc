@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2e0177f3_24d793c6",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-12T01:00:48Z",
+      "side": 1,
+      "message": "Part of the guarantee i was hoping to provide with this patch is that anytime you are working with revision X its the same revision X regardless of how you got it, otherwise performing rendering along with moderation in the same request(api rendering html) we may have situations where the moderation is applied in one spot but the row from storage is loaded into an object in another spot.\n\nI\u0027m mostly certain this wont cause any issues, the only place that uses fromStorageRow/toStorageRow outside of tests is the object manager.",
+      "parentUuid": "4e04eb01_003886ea",
+      "revId": "d6594fe3a5c2c0611cca17da9dfed79fbccb48cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_c03dfedb",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 2
