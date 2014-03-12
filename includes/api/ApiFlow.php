@@ -17,6 +17,7 @@ class ApiFlow extends ApiBase {
 		'moderate-post' => 'ApiFlowModeratePost',
 		'moderate-topic' => 'ApiFlowModerateTopic',
 		'edit-title' => 'ApiFlowEditTitle',
+		'close-open-topic' => 'ApiFlowCloseOpenTopic',
 	);
 
 	public function __construct( $main, $action ) {

@@ -15,6 +15,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
+use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\View\History\History;
@@ -58,6 +59,8 @@ class TopicBlock extends AbstractBlock {
 		'edit-post', 'reply',
 		// Moderation
 		'moderate-topic',
+		// Close or open topic
+		'close-open-topic',
 		'moderate-post', 'hide-post', 'delete-post', 'suppress-post', 'restore-post',
 		// Other stuff
 		'edit-title',
@@ -101,6 +104,7 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		case 'moderate-topic':
+		case 'close-open-topic':
 			$this->validateModerateTopic();
 			break;
 
@@ -277,9 +281,19 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
+
 		if ( empty( $this->submitted['reason'] ) ) {
-			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
-			return;
+			// If a summary is provided instead, parse the content and truncate it
+			if ( !empty( $this->submitted['summary'] ) ) {
+				global $wgLang;
+				$this->submitted['reason'] = $wgLang->truncate(
+					strip_tags( Utils::convert( 'wikitext', 'html', $this->submitted['summary'], $this->workflow->getArticleTitle() ) ),
+					255
+				);
+			} else {
+				$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
+				return;
+			}
 		}
 
 		$reason = $this->submitted['reason'];
@@ -340,6 +354,7 @@ class TopicBlock extends AbstractBlock {
 		switch( $this->action ) {
 		case 'reply':
 		case 'moderate-topic':
+		case 'close-open-topic':
 		case 'hide-post':
 		case 'delete-post':
 		case 'suppress-post':
@@ -370,7 +385,7 @@ class TopicBlock extends AbstractBlock {
 				$renderFunction = function( Templating $templating ) use ( $newRevision ) {
 					return $templating->getContent( $newRevision, 'wikitext' );
 				};
-			} elseif ( $this->action === 'moderate-topic' ) {
+			} elseif ( $this->action === 'moderate-topic' || $this->action === 'close-open-topic' ) {
 				$renderFunction = function( Templating $templating ) use ( $self, $newRevision ) {
 					return $templating->renderTopic( $newRevision, $self );
 				};
