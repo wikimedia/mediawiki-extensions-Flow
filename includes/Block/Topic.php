@@ -15,6 +15,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
+use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\View\History\History;
@@ -276,9 +277,19 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
+
 		if ( empty( $this->submitted['reason'] ) ) {
-			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
-			return;
+			// If a summary is provided instead, parse the content and truncate it
+			if ( !empty( $this->submitted['summary'] ) ) {
+				global $wgLang;
+				$this->submitted['reason'] = $wgLang->truncate(
+					strip_tags( Utils::convert( 'wikitext', 'html', $this->submitted['summary'], $this->workflow->getArticleTitle() ) ),
+					255
+				);
+			} else {
+				$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
+				return;
+			}
 		}
 
 		$reason = $this->submitted['reason'];
