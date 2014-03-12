@@ -324,6 +324,10 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
+		// Check if this is closing/reopening a topic
+		if ( $post->isTopicTitle() ) { 
+			$this->validateCloseTopicRelated( $post, $newState );
+		}
 		if ( empty( $this->submitted['reason'] ) ) {
 			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
 			return;
@@ -336,6 +340,29 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'moderate', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
+	}
+
+	/**
+	 * This seems a little bit hacky!  close/reopen are post moderation state but they
+	 * require a summary rather than a 255 characters reason.
+	 */
+	protected function validateCloseTopicRelated( PostRevision $post, $moderationState ) {
+		global $wgLang;
+
+		// Not closing a topic for restoring a closed topic
+		if ( $moderationState !== 'close' && $post->getModerationState() !== 'close' ) {
+			return;
+		}
+
+		if ( empty( $this->submitted['summary'] ) ) {
+			$this->addError( 'summary', wfMessage( 'flow-error-invalid-summary' ) );
+			return;
+		}
+
+		$this->submitted['reason'] = $wgLang->truncate(
+			strip_tags( \Flow\ParsoidUtils::convert( 'wikitext', 'html', $this->submitted['summary'] ) ), 255
+		);
+		$this->validateEditTopicSummary();
 	}
 
 	protected function validateEditPost() {
@@ -418,6 +445,10 @@ class TopicBlock extends AbstractBlock {
 					return $templating->getContent( $newRevision, 'wikitext' );
 				};
 			} elseif ( $this->action === 'moderate-topic' ) {
+				// If topicSummary exists, save it
+				if ( $this->topicSummary ) {
+					$this->saveTopicSummary();
+				}
 				$renderFunction = function( Templating $templating ) use ( $self, $newRevision ) {
 					return $templating->renderTopic( $newRevision, $self );
 				};
