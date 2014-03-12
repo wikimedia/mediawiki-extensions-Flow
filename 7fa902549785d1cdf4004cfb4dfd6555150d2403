@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "2e0177f3_78e3f8d4",
+        "filename": "Hooks.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-12T17:29:08Z",
+      "side": 1,
+      "message": "needs patches to create the new tables",
+      "revId": "7fa902549785d1cdf4004cfb4dfd6555150d2403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_24edb6ee",
         "filename": "container.php",
         "patchSetId": 16
