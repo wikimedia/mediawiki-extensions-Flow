@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "2e0177f3_13b0573d",
+        "filename": "container.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-12T18:17:56Z",
+      "side": 1,
+      "message": "this can return null",
+      "revId": "7fa902549785d1cdf4004cfb4dfd6555150d2403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_c4ef32e3",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 16
@@ -47,6 +64,23 @@
       "writtenOn": "2014-03-10T16:46:56Z",
       "side": 1,
       "message": "s/multiPut/multiRemove/ here?",
+      "revId": "7fa902549785d1cdf4004cfb4dfd6555150d2403",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e0177f3_b3ed2325",
+        "filename": "includes/ReferenceExtractor.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-12T18:17:56Z",
+      "side": 1,
+      "message": "this can return null, which WikiReference doesn\u0027t accept.  In my case it was null because \u0027User%20talk:Foo\u0027 was passed in but it only accepts \u0027User talk:Foo\u0027. probably should urldecode as we extract from the document?",
       "revId": "7fa902549785d1cdf4004cfb4dfd6555150d2403",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
