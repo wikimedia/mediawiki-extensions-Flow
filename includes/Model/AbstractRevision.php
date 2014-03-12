@@ -15,6 +15,7 @@ abstract class AbstractRevision {
 	const MODERATED_HIDDEN = 'hide';
 	const MODERATED_DELETED = 'delete';
 	const MODERATED_SUPPRESSED = 'suppress';
+	const MODERATED_CLOSED = 'close';
 
 	/**
 	 * List of available permission levels.
@@ -26,6 +27,7 @@ abstract class AbstractRevision {
 		self::MODERATED_HIDDEN,
 		self::MODERATED_DELETED,
 		self::MODERATED_SUPPRESSED,
+		self::MODERATED_CLOSED,
 	);
 
 	/**

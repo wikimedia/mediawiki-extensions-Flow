@@ -219,9 +219,11 @@ $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 $wgFlowGroupPermissions = array();
 $wgFlowGroupPermissions['user']['flow-hide'] = true;
 $wgFlowGroupPermissions['sysop']['flow-hide'] = true;
+$wgFlowGroupPermissions['sysop']['flow-close'] = true;
 $wgFlowGroupPermissions['sysop']['flow-delete'] = true;
 $wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
 $wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
+$wgFlowGroupPermissions['oversight']['flow-close'] = true;
 $wgGroupPermissions = array_merge_recursive( $wgGroupPermissions, $wgFlowGroupPermissions );
 
 // Exception
