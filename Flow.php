@@ -221,7 +221,9 @@ $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 // permissions config than what's assumed to test.
 $wgFlowGroupPermissions = array();
 $wgFlowGroupPermissions['user']['flow-hide'] = true;
+$wgFlowGroupPermissions['user']['flow-close'] = true;
 $wgFlowGroupPermissions['sysop']['flow-hide'] = true;
+$wgFlowGroupPermissions['sysop']['flow-close'] = true;
 $wgFlowGroupPermissions['sysop']['flow-delete'] = true;
 $wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
 $wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
