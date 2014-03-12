@@ -68,9 +68,14 @@
 
 			// Does this href contain a hash?
 			if ( index > -1 ) {
-				$target = this.$container.find( target.substr(index) );
+				$target = this.$container.find( target.substr( index ) );
+
 				// Does this element exist within our container?
 				if ( $target.length ) {
+					// ensure the topic is expanded, needs the speed=0
+					// otherwise focus and expand animations combine oddly
+					this.topicExpand( $target.closest( '.flow-topic-children-container' ), 0 );
+
 					// Great, scroll to it and then focus.
 					$target.conditionalScrollIntoView().queue( function () {
 						mw.flow.editor.focus( $( this ).find( 'textarea' ) );
