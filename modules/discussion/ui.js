@@ -68,9 +68,13 @@
 
 			// Does this href contain a hash?
 			if ( index > -1 ) {
-				$target = this.$container.find( target.substr(index) );
+				$target = this.$container.find( target.substr( index ) );
+
 				// Does this element exist within our container?
 				if ( $target.length ) {
+					// show whatever we're scrolling to
+					$target.parents( ':hidden' ).show();
+
 					// Great, scroll to it and then focus.
 					$target.conditionalScrollIntoView().queue( function () {
 						mw.flow.editor.focus( $( this ).find( 'textarea' ) );
