@@ -204,7 +204,7 @@ class UUID {
 			try {
 				$this->timestamp = new MWTimestamp( intval( $msTimestamp / 1000 ) );
 			} catch ( \TimestampException $e ) {
-				wfDebugLog( __CLASS__, __FUNCTION__ . ": bogus time value: UUID=$hex; VALUE=$msTimestamp" );
+				wfDebugLog( 'Flow', __METHOD__ . ": bogus time value: UUID=$hex; VALUE=$msTimestamp" );
 				throw $e;
 			}
 		}

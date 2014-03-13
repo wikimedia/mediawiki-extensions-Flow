@@ -225,7 +225,7 @@ class Redlinker {
 		if ( $body ) {
 			$res = Redlinker::getInnerHtml( $body );
 		} else {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
+			wfDebugLog( 'Flow', __METHOD__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
 			$res = '';
 		}
 		return $res;

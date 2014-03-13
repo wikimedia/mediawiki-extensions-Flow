@@ -87,7 +87,7 @@ class HtmlString extends OutputString {
 	 * @return string Bare enclosed string
 	 */
 	public function text() {
-		wfDebugLog( __CLASS__, ( $this->source ?: __FUNCTION__ ) . 'Potential double escape' );
+		wfDebugLog( 'Flow', __METHOD__ . " :{$this->source}: Potential double escape" );
 		return $this->string;
 	}
 
