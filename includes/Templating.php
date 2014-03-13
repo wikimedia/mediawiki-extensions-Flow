@@ -9,6 +9,7 @@ use Flow\Data\UserNameBatch;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Header;
+use Flow\Parsoid\BadImageRemover;
 use Flow\Parsoid\Redlinker;
 use Flow\View\PostActionMenu;
 use OutputPage;
@@ -56,6 +57,11 @@ class Templating {
 	protected $redlinks;
 
 	/**
+	 * @var BadImageRemover
+	 */
+	protected $badImages;
+
+	/**
 	 * @param UserNameBatch $usernames
 	 * @param UrlGenerator $urlGenerator
 	 * @param OutputPage $output
@@ -63,7 +69,7 @@ class Templating {
 	 * @param string[] $namespaces
 	 * @param array $globals
 	 */
-	public function __construct( UserNameBatch $usernames, UrlGenerator $urlGenerator, OutputPage $output, Redlinker $redlinks, array $namespaces = array(), array $globals = array() ) {
+	public function __construct( UserNameBatch $usernames, UrlGenerator $urlGenerator, OutputPage $output, Redlinker $redlinks, BadImageRemover $badImages, array $namespaces = array(), array $globals = array() ) {
 		$this->usernames = $usernames;
 		$this->urlGenerator = $urlGenerator;
 		$this->output = $output;
@@ -72,6 +78,7 @@ class Templating {
 		}
 		$this->globals = $globals;
 		$this->redlinks = $redlinks;
+		$this->badImages = $badImages;
 		// meh ... but the constructor is already huge
 		$this->permissions = $globals['permissions'];
 	}
@@ -437,9 +444,10 @@ class Templating {
 			$content = $revision->getContent( $format );
 
 			if ( $format === 'html' ) {
-				// Parsoid doesn't render redlinks
+				// Parsoid doesn't render redlinks & doesn't strip bad images
 				try {
 					$content = $this->redlinks->apply( $content );
+					$content = $this->badImages->apply( $content, $revision->getCollection()->getTitle() );
 				} catch ( \Exception $e ) {
 					wfDebugLog( __CLASS__, __METHOD__ . ': Failed applying redlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
 					\MWExceptionHandler::logException( $e );
