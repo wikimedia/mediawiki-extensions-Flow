@@ -1,14 +1,6 @@
-/* Overwrites MW's header */
-h1, .firstHeading, #firstHeading {
-	font-family: Georgia;
-	font-weight: bold;
-	font-size: 30px;
-	color: #1E1E1E;
-	border: none;
-	margin-bottom: 22px;
-}
-
-h2 {
+// more specificity than typography refresh to override for Flow h2's
+div#content .flow-container h2 {
+	font-family: sans-serif;
 	font-weight: bold;
 	font-size: 23px;
 	color: #231f20;
