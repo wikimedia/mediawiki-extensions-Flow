@@ -18,11 +18,6 @@ class PostRevision extends AbstractRevision {
 	// must not change between revisions of same post
 
 	/**
-	 * @var string
-	 */
-	protected $origCreateTime;
-
-	/**
 	 * @var integer
 	 */
 	protected $origUserId;
@@ -138,7 +133,6 @@ class PostRevision extends AbstractRevision {
 		$obj->origUserId = $obj->userId = $user->getId();
 		$obj->origUserIp = $obj->userIp = $user->getName();
 		$obj->origUserWiki = $obj->userWiki = wfWikiId();
-		$obj->origCreateTime = wfTimestampNow();
 		$obj->setReplyToId( null ); // not a reply to anything
 		$obj->prevRevision = null; // no parent revision
 		$obj->setContent( $content );
@@ -161,7 +155,6 @@ class PostRevision extends AbstractRevision {
 
 		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
 		$obj->postId = UUID::create( $row['tree_rev_descendant_id'] );
-		$obj->origCreateTime = $row['tree_orig_create_time'];
 		$obj->origUserId = $row['tree_orig_user_id'];
 		if ( isset( $row['tree_orig_user_ip'] ) ) {
 			$obj->origUserIp = $row['tree_orig_user_ip'];
@@ -183,7 +176,6 @@ class PostRevision extends AbstractRevision {
 			'tree_rev_descendant_id' => $rev->postId->getBinary(),
 			'tree_rev_id' => $rev->revId->getBinary(),
 			// rest of tree_ is denormalized data about first post revision
-			'tree_orig_create_time' => $rev->origCreateTime,
 			'tree_orig_user_id' => $rev->origUserId,
 			'tree_orig_user_ip' => $rev->origUserIp,
 			'tree_orig_user_wiki' => $rev->origUserWiki,
@@ -205,7 +197,6 @@ class PostRevision extends AbstractRevision {
 		$reply->origUserId = $reply->userId;
 		$reply->origUserIp = $reply->userIp;
 		$reply->origUserWiki = wfWikiId();
-		$reply->origCreateTime = wfTimestampNow();
 		$reply->replyToId = $this->postId;
 		$reply->setContent( $content, $workflow->getArticleTitle() );
 		$reply->changeType = $changeType;

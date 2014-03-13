@@ -59,8 +59,7 @@ CREATE TABLE /*_*/flow_tree_revision (
 	tree_rev_descendant_id binary(11) not null,
 	-- fk to flow_revision
 	tree_rev_id binary(11) not null,
-	-- denormalized so we dont need to keep finding the first revision of a post
-	tree_orig_create_time varchar(12) binary not null,
+	-- denormalized so we don't need to keep finding the first revision of a post
 	tree_orig_user_id bigint unsigned not null,
 	tree_orig_user_ip varbinary(39) default null,
 	tree_orig_user_wiki varchar(32) binary not null,
