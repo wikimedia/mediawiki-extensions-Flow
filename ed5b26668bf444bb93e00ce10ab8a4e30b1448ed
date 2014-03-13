@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_dc3fa11f",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-13T22:23:41Z",
+      "side": 1,
+      "message": "prefer mw.user.isAnon()",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_9c2009f4",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-13T22:23:41Z",
+      "side": 1,
+      "message": "When creating a new topic, there\u0027s no .flow-creator. So the tipsy appears cramped to the right of the textarea, below where you\u0027re typing. Instead IMO it should appear above the first input field where you enter the new topic title.\n\nThere will be similar issues when we showAnonWarning() on editing the Flow board header and a topic title. Maybe showAnonWarning() should take an optional object where callers can specify the selector within the $form and an optional tipsy direction.",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_5c903146",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-13T22:23:41Z",
+      "side": 1,
+      "message": "This should be a function (and in PHP too), maybe getItemURLInBoard() ?\n\nReturning to Talk:Sandbox#flow-post-\u003cuuid\u003e won\u0027t work if you\u0027ve loaded more topics and this is the 23rd. We need a URL that shows a board starting at a given post\u0027s topic, see https://bugzilla.wikimedia.org/show_bug.cgi?id\u003d58251",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_9fea3b9b",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-13T22:23:41Z",
+      "side": 1,
+      "message": "This doesn\u0027t work to returnto creating a new topic, because the closest id is the entire page content (id\u003d\"mw-content-text\"). If the Flow board\u0027s header is long it means you\u0027re far from the Start a new topic form.  There\u0027s only one such form on a board, so the easy fix is to give it an id\u003d\"flow-new-topic\" in templates/topiclist.html.php.\n\nI think this code will work when we showAnonWarning() on editing the Flow board header and a topic title.",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_1c63d93c",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-13T22:23:41Z",
+      "side": 1,
+      "message": "Special:CreateAccount redirects, and when it does it loses query parameters (though it keeps returnto) that Flow may need.  Use Special:UserLogin/signup instead.\n\nOn other languages both will redirect to, e.g. Spécial:Connexion/signup.  I don\u0027t know if we want to make this URL a message; I think not, I don\u0027t see other \"create an account\" links in JS working this way.",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_bc798d2c",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-13T22:23:41Z",
+      "side": 1,
+      "message": "If I click in an input field and immediately type \"U R rong dumass\", the tipsy vanishes before I kan read its contents. I think there needs to be a delay here (but not if I Cancel editing).",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_9cea499b",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-13T22:23:41Z",
+      "side": 1,
+      "message": "use mw.user.isAnon()",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
