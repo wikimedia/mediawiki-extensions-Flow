@@ -18,7 +18,7 @@ class ApiQueryFlow extends ApiQueryBase {
 		$pageTitle = Title::newFromText( $params['page'] );
 		$id = $params['workflow'] ? UUID::create( $params['workflow'] ) : null;
 
-		// @todo: this is a hack; see ParsoidUtils::convert
+		// @todo: this is a hack; see Parsoid\Utils::convert
 		global $wgFlowParsoidTitle;
 		$wgFlowParsoidTitle = $pageTitle;
 

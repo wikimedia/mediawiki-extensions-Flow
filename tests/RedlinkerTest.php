@@ -2,7 +2,7 @@
 
 namespace Flow\Tests;
 
-use Flow\Redlinker;
+use Flow\Parsoid\Redlinker;
 use Flow\Model\UUID;
 use Flow\Model\PostRevision;
 use Title;
