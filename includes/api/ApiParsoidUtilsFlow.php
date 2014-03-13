@@ -1,7 +1,8 @@
 <?php
 
-use Flow\Parsoid\Utils;
+use Flow\Parsoid\BadImageRemover;
 use Flow\Parsoid\Redlinker;
+use Flow\Parsoid\Utils;
 use Flow\Exception\WikitextException;
 
 class ApiParsoidUtilsFlow extends ApiBase {
@@ -11,7 +12,7 @@ class ApiParsoidUtilsFlow extends ApiBase {
 		$page = $this->getTitleOrPageId( $params );
 
 		if ( !$page->exists() ) {
-			// ParsoidUtils::convert checks for this, but we can provide
+			// Parsoid\Utils::convert checks for this, but we can provide
 			// a nicer error here
 			$this->dieUsage( 'Page does not exist', 'invalid-title' );
 		}
@@ -27,6 +28,10 @@ class ApiParsoidUtilsFlow extends ApiBase {
 			// convert redlinks
 			$redlinker = new Redlinker( $page->getTitle(), new LinkBatch );
 			$content = $redlinker->apply( $content );
+
+			// remove disallowed images
+			$badImageRemover = new BadImageRemover();
+			$content = $badImageRemover->apply( $content, $page->getTitle() );
 		}
 
 		$result = array(
