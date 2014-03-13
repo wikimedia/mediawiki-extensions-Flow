@@ -9,8 +9,7 @@ use Flow\Data\UserNameBatch;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Header;
-use Flow\Parsoid\BadImageRemover;
-use Flow\Parsoid\Redlinker;
+use Flow\Parsoid\Controller as ContentFixer;
 use Flow\View\PostActionMenu;
 use OutputPage;
 use User;
@@ -52,24 +51,19 @@ class Templating {
 	protected $globals;
 
 	/**
-	 * @var Redlinker
+	 * @var ContentFixer
 	 */
-	protected $redlinks;
-
-	/**
-	 * @var BadImageRemover
-	 */
-	protected $badImages;
+	protected $contentFixer;
 
 	/**
 	 * @param UserNameBatch $usernames
 	 * @param UrlGenerator $urlGenerator
 	 * @param OutputPage $output
-	 * @param Redlinker $redlinks
+	 * @param ContentFixer $contentFixer
 	 * @param string[] $namespaces
 	 * @param array $globals
 	 */
-	public function __construct( UserNameBatch $usernames, UrlGenerator $urlGenerator, OutputPage $output, Redlinker $redlinks, BadImageRemover $badImages, array $namespaces = array(), array $globals = array() ) {
+	public function __construct( UserNameBatch $usernames, UrlGenerator $urlGenerator, OutputPage $output, ContentFixer $contentFixer, array $namespaces = array(), array $globals = array() ) {
 		$this->usernames = $usernames;
 		$this->urlGenerator = $urlGenerator;
 		$this->output = $output;
@@ -77,8 +71,7 @@ class Templating {
 			$this->addNamespace( $ns, $path );
 		}
 		$this->globals = $globals;
-		$this->redlinks = $redlinks;
-		$this->badImages = $badImages;
+		$this->contentFixer = $contentFixer;
 		// meh ... but the constructor is already huge
 		$this->permissions = $globals['permissions'];
 	}
@@ -453,10 +446,9 @@ class Templating {
 			if ( $format === 'html' ) {
 				// Parsoid doesn't render redlinks & doesn't strip bad images
 				try {
-					$content = $this->redlinks->apply( $content );
-					$content = $this->badImages->apply( $content, $revision->getCollection()->getTitle() );
+					$content = $this->contentFixer->getContent( $revision );
 				} catch ( \Exception $e ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': Failed applying redlinks for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
+					wfDebugLog( 'Flow', __METHOD__ . ': Failed fix content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
 					\MWExceptionHandler::logException( $e );
 				}
 			}
@@ -519,12 +511,11 @@ class Templating {
 		}
 	}
 
-	public function registerParsoidLinks( AbstractRevision $revision ) {
+	public function registerParsoidLinks( PostRevision $revision ) {
 		if ( $revision instanceof PostRevision ) {
-			$this->redlinks->registerPost( $revision );
+			$this->contentFixer->registerRecursive( $revision );
 		} elseif ( $revision instanceof Header ) {
 			// @todo
 		}
 	}
-
 }
