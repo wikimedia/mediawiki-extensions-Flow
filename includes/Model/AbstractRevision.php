@@ -6,7 +6,7 @@ use Flow\Collection\AbstractCollection;
 use Flow\Container;
 use Flow\Exception\DataModelException;
 use Flow\Exception\PermissionException;
-use Flow\ParsoidUtils;
+use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Title;
 use User;
@@ -415,7 +415,7 @@ abstract class AbstractRevision {
 			if ( $sourceFormat === $format ) {
 				$this->convertedContent[$format] = $raw;
 			} else {
-				$this->convertedContent[$format] = ParsoidUtils::convert(
+				$this->convertedContent[$format] = Utils::convert(
 					$sourceFormat,
 					$format,
 					$raw,
@@ -470,7 +470,7 @@ abstract class AbstractRevision {
 		// convert content to desired storage format
 		$storageFormat = $this->getStorageFormat();
 		if ( $this->isFormatted() && $storageFormat !== $inputFormat ) {
-			$this->convertedContent[$storageFormat] = ParsoidUtils::convert(
+			$this->convertedContent[$storageFormat] = Utils::convert(
 				$inputFormat,
 				$storageFormat,
 				$content,

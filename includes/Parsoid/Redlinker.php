@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow;
+namespace Flow\Parsoid;
 
 use Flow\Model\PostRevision;
 use ArrayObject;
@@ -156,7 +156,7 @@ class Redlinker {
 		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
 		 */
-		$dom = ParsoidUtils::createDOM( '<?xml encoding="utf-8" ?>' . $content );
+		$dom = Utils::createDOM( '<?xml encoding="utf-8" ?>' . $content );
 
 		// find links in DOM
 		$batch = $this->batch;
@@ -195,7 +195,7 @@ class Redlinker {
 		 * * <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		 * * mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' );
 		 */
-		$dom = ParsoidUtils::createDOM( '<?xml encoding="utf-8"?>' . $content );
+		$dom = Utils::createDOM( '<?xml encoding="utf-8"?>' . $content );
 		$self = $this;
 		self::forEachLink( $dom, function( DOMNode $linkNode, array $parsoid ) use ( $self, $dom ) {
 			$title = $self->createRelativeTitle( $parsoid['sa']['href'] );
@@ -212,7 +212,7 @@ class Redlinker {
 			// let MW build link HTML based on Parsoid data
 			$html = Linker::link( $title, Redlinker::getInnerHtml( $linkNode ), $attributes );
 			// create new DOM from this MW-built link
-			$replacementNode = ParsoidUtils::createDOM( '<?xml encoding="utf-8"?>' . $html )->getElementsByTagName( 'a' )->item( 0 );
+			$replacementNode = Utils::createDOM( '<?xml encoding="utf-8"?>' . $html )->getElementsByTagName( 'a' )->item( 0 );
 			// import MW-built link node into content DOM
 			$replacementNode = $dom->importNode( $replacementNode, true );
 			// replace Parsoid link with MW-built link
@@ -222,7 +222,7 @@ class Redlinker {
 		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
 
 		if ( $body ) {
-			$res = Redlinker::getInnerHtml( $body );
+			$res = self::getInnerHtml( $body );
 		} else {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
 			$res = '';
