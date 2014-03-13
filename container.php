@@ -73,12 +73,18 @@ $c['link_batch'] = $c->share( function() {
 } );
 
 $c['redlinker'] = $c->share( function( $c ) {
-	global $wgTitle, $wgFlowParsoidTitle;
-	return new Flow\Parsoid\Redlinker( $wgFlowParsoidTitle ?: $wgTitle, $c['link_batch'] );
+	return new Flow\Parsoid\Redlinker( $c['link_batch'] );
 } );
 
 $c['bad_image_remover'] = $c->share( function( $c ) {
 	return new Flow\Parsoid\BadImageRemover();
+} );
+
+$c['content_fixer'] = $c->share( function( $c ) {
+	return new Flow\Parsoid\Controller(
+		$c['redlinker'],
+		$c['bad_image_remover']
+	);
 } );
 
 $c['templating.namespaces'] = array(
@@ -102,8 +108,7 @@ $c['templating'] = $c->share( function( $c ) {
 		$c['repository.username'],
 		$c['url_generator'],
 		$c['output'],
-		$c['redlinker'],
-		$c['bad_image_remover'],
+		$c['content_fixer'],
 		$c['templating.namespaces'],
 		$c['templating.global_variables']
 	);

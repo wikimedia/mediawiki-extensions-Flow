@@ -5,6 +5,7 @@ namespace Flow\Parsoid;
 use Closure;
 use DOMDocument;
 use DOMNode;
+use Flow\Model\PostRevision;
 use Title;
 use FormatJson;
 
@@ -21,7 +22,7 @@ use FormatJson;
  *	// Before outputting content
  *	$content = $badImageRemover->apply( $foo->getContent(), $title );
  */
-class BadImageRemover {
+class BadImageRemover implements ContentFixer {
 	/**
 	 * Receives an html string. It find all images and run them through
 	 * wfIsBadImage() to determine if the image can be shown.
@@ -99,5 +100,25 @@ class BadImageRemover {
 			}
 		}
 		return implode( '', $html );
+	}
+
+	/**
+	 * Recursing doesn't make sense here, nothing to batch-load.
+	 *
+	 * @param PostRevision $post
+	 * @param array $result
+	 * @return array Return array in the format of [result, continue]
+	 */
+	public function recursive( PostRevision $post, $result ) {
+		return array( array(), false );
+	}
+
+	/**
+	 * Recursing doesn't make sense here, nothing to batch-load.
+	 *
+	 * @param array $result
+	 */
+	public function resolve( $result ) {
+		// nothing to do
 	}
 }
