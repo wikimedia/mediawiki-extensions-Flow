@@ -62,6 +62,7 @@ $wgAutoloadClasses['Flow\DbFactory'] = $dir . 'includes/DbFactory.php';
 $wgAutoloadClasses['Flow\Templating'] = $dir . 'includes/Templating.php';
 $wgAutoloadClasses['Flow\Parsoid\Utils'] = $dir . 'includes/Parsoid/Utils.php';
 $wgAutoloadClasses['Flow\Parsoid\Redlinker'] = $dir . 'includes/Parsoid/Redlinker.php';
+$wgAutoloadClasses['Flow\Parsoid\BadImageRemover'] = $dir . 'includes/Parsoid/BadImageRemover.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\View'] = $dir . 'includes/View.php';
 $wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
