@@ -2,7 +2,7 @@
 
 namespace Flow\Tests;
 
-use Flow\ParsoidUtils;
+use Flow\Parsoid\Utils;
 
 /**
  * @group Flow
@@ -26,6 +26,6 @@ class ParsoidUtilsTest extends \MediaWikiTestCase {
 	 * @dataProvider createDomProvider
 	 */
 	public function testCreateDomErrorModes( $message, $content ) {
-		$this->assertInstanceOf( 'DOMDocument', ParsoidUtils::createDOM( $content ), $message );
+		$this->assertInstanceOf( 'DOMDocument', Utils::createDOM( $content ), $message );
 	}
 }

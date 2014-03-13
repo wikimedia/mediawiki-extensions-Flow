@@ -1,12 +1,12 @@
 <?php
 
-namespace Flow;
+namespace Flow\Parsoid;
 
 use Title;
 use Flow\Exception\WikitextException;
 use Flow\Exception\InvalidDataException;
 
-abstract class ParsoidUtils {
+abstract class Utils {
 	/**
 	 * Convert from/to wikitext/html.
 	 *
