@@ -19,13 +19,8 @@ class ApiParsoidUtilsFlow extends ApiBase {
 		}
 
 		if ( $params['to'] === 'html' ) {
-			// convert redlinks
-			$redlinker = new Redlinker( $page->getTitle(), new LinkBatch );
-			$content = $redlinker->apply( $content );
-
-			// remove disallowed images
-			$badImageRemover = new BadImageRemover();
-			$content = $badImageRemover->apply( $content, $page->getTitle() );
+			$contentFixer = \Flow\Container::get( 'content_fixer' );
+			$content = $contentFixer->apply( $content, $page->getTitle() );
 		}
 
 		$result = array(
