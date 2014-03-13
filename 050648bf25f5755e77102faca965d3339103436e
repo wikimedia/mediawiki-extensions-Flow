@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_9fa23b3a",
+        "filename": "maintenance/FlowUpdateRevisionTypeId.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-13T22:34:21Z",
+      "side": 1,
+      "message": "__DIR__",
+      "revId": "050648bf25f5755e77102faca965d3339103436e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_1f762bd6",
+        "filename": "maintenance/FlowUpdateRevisionTypeId.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-13T22:34:21Z",
+      "side": 1,
+      "message": "$dbFactory-\u003ewaitForSlaves()",
+      "revId": "050648bf25f5755e77102faca965d3339103436e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
