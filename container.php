@@ -77,6 +77,10 @@ $c['redlinker'] = $c->share( function( $c ) {
 	return new Flow\Parsoid\Redlinker( $wgFlowParsoidTitle ?: $wgTitle, $c['link_batch'] );
 } );
 
+$c['bad_image_remover'] = $c->share( function( $c ) {
+	return new Flow\Parsoid\BadImageRemover();
+} );
+
 $c['templating.namespaces'] = array(
 	'flow' => __DIR__ . '/templates',
 );
@@ -99,6 +103,7 @@ $c['templating'] = $c->share( function( $c ) {
 		$c['url_generator'],
 		$c['output'],
 		$c['redlinker'],
+		$c['bad_image_remover'],
 		$c['templating.namespaces'],
 		$c['templating.global_variables']
 	);
