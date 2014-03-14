@@ -201,7 +201,7 @@ class BoardHistoryIndex extends TopKIndex {
 		);
 
 		if ( $found ) {
-			$topicListEntry = reset( $topicListEntry );
+			$topicListEntry = reset( $found );
 			return $topicListEntry->getListId()->getBinary();
 		} else {
 			return false;
