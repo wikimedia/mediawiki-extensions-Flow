@@ -9,10 +9,11 @@ use Flow\Data\UserNameBatch;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Header;
+use Flow\Parsoid\Redlinker;
 use Flow\View\PostActionMenu;
 use OutputPage;
 use User;
-// These dont really belong here
+// These don't really belong here
 use Html;
 use Linker;
 use Message;

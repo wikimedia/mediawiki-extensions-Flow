@@ -28,7 +28,7 @@ class ApiFlow extends ApiBase {
 		$workflow = $this->loader->getWorkflow();
 		$article = new Article( $workflow->getArticleTitle(), 0 );
 
-		// @todo: this is a hack; see ParsoidUtils::convert
+		// @todo: this is a hack; see Parsoid\Utils::convert
 		global $wgFlowParsoidTitle;
 		$wgFlowParsoidTitle = $workflow->getArticleTitle();
 
