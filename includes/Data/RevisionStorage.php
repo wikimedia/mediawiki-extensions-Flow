@@ -155,8 +155,9 @@ abstract class RevisionStorage extends DbStorage {
 		$duplicator = new ResultDuplicator( array( 'rev_id' ), 1 );
 		$pks = array();
 		foreach ( $queries as $idx => $query ) {
+			$query = UUID::convertUUIDs( $query );
 			$id = $query['rev_id'];
-			$duplicator->add( UUID::convertUUIDs( $query ), $idx );
+			$duplicator->add( $query, $idx );
 			$pks[$id] = $id;
 		}
 
@@ -210,26 +211,28 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	protected function findRevIdReal( ResultDuplicator $duplicator, array $revisionIds ) {
-		//  SELECT * from flow_tree_revision
-		//	  JOIN flow_revision ON tree_rev_id = rev_id
-		//   WHERE tree_rev_id IN (...)
-		$dbr = $this->dbFactory->getDB( DB_MASTER );
-		$res = $dbr->select(
-			array( 'flow_revision', 'rev' => $this->joinTable() ),
-			'*',
-			array( 'rev_id' => $revisionIds ),
-			__METHOD__,
-			array(),
-			array( 'rev' => array( 'JOIN', 'rev_id = ' . $this->joinField() ) )
-		);
-		if ( !$res ) {
-			// TODO: dont fail, but dont end up caching bad result either
-			throw new DataModelException( 'query failure', 'process-data' );
-		}
+		if ( $revisionIds ) {
+			//  SELECT * from flow_tree_revision
+			//	  JOIN flow_revision ON tree_rev_id = rev_id
+			//   WHERE tree_rev_id IN (...)
+			$dbr = $this->dbFactory->getDB( DB_MASTER );
+			$res = $dbr->select(
+				array( 'flow_revision', 'rev' => $this->joinTable() ),
+				'*',
+				array( 'rev_id' => $revisionIds ),
+				__METHOD__,
+				array(),
+				array( 'rev' => array( 'JOIN', 'rev_id = ' . $this->joinField() ) )
+			);
+			if ( !$res ) {
+				// TODO: dont fail, but dont end up caching bad result either
+				throw new DataModelException( 'query failure', 'process-data' );
+			}
 
-		foreach ( $res as $row ) {
-			$row = (array)$row;
-			$duplicator->merge( $row, array( $row ) );
+			foreach ( $res as $row ) {
+				$row = (array)$row;
+				$duplicator->merge( $row, array( $row ) );
+			}
 		}
 
 		return $duplicator->getResult();
