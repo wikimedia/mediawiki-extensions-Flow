@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_73d9e082",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-14T13:28:30Z",
+      "side": 1,
+      "message": "$id is a UUID object; will throw warning \"Illegal offset type\" and not be added to $pks.\n\nFix is in https://gerrit.wikimedia.org/r/#/c/118694/",
+      "revId": "81ffbd1f70796bfa119be5431b1fe07672421b63",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
