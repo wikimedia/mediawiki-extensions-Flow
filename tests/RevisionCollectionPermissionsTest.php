@@ -82,6 +82,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 		$blockedUser = $this->blockedUser();
 		$this->block = new Block( $blockedUser->getName(), $blockedUser->getID() );
 		$this->block->insert();
+		// ensure that block made it into the database
+		wfGetDB( DB_MASTER )->commit( __METHOD__, 'flush' );
 	}
 
 	/**
@@ -167,7 +169,7 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 			$this->assertEquals(
 				$expected,
 				$permissions->isAllowed( $revision, $permisisonAction ),
-				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) . 'be allowed action ' . $permisisonAction . ' on revision ' . key( $action )
+				'User ' . $user->getName() . ' should ' . ( $expected ? '' : 'not ' ) . 'be allowed action ' . $permisisonAction . ' on revision ' . key( $action ) . ' : ' . json_encode( $revision::toStorageRow( $revision ) )
 			);
 		}
 	}
