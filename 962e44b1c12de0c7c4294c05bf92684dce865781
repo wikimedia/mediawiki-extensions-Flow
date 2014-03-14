@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_8dd7b128",
+        "filename": "includes/Templating.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-14T01:16:11Z",
+      "side": 1,
+      "message": "put this inside a helper function?",
+      "revId": "962e44b1c12de0c7c4294c05bf92684dce865781",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
