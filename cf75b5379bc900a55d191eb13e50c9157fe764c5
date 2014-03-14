@@ -87,6 +87,23 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_6df21d05",
+        "filename": "includes/Exception/ExceptionHandling.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-14T00:57:34Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to fix the problem, now the error message and error trace get displayed twice.  It\u0027s executing like this:\n\n$output-\u003eaddHTML( $output-\u003eaddHTML()-\u003egetHTML() );\n\nAssigning $this-\u003eoutput to $wgOut in reportHTML() seems a little bit awkward below, maybe we don\u0027t need $this-\u003eoutput.  I am revisiting this to see what can be done in a better way",
+      "revId": "cf75b5379bc900a55d191eb13e50c9157fe764c5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_74d397d7",
         "filename": "includes/Exception/ExceptionHandling.php",
         "patchSetId": 1
