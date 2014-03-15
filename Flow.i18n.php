@@ -2265,7 +2265,7 @@ $messages['fi'] = array(
 	'flow-suppress-usertext' => '<em>Käyttäjänimi häivytetty</em>',
 	'flow-post-actions' => 'Toiminnot',
 	'flow-topic-actions' => 'Toiminnot',
-	'flow-cancel' => 'Peruuta',
+	'flow-cancel' => 'Peru',
 	'flow-preview' => 'Esikatselu',
 	'flow-show-change' => 'Näytä muutokset',
 	'flow-newtopic-title-placeholder' => 'Uusi aihe',
@@ -2343,6 +2343,7 @@ $messages['fi'] = array(
  * @author Jean-Frédéric
  * @author Linedwell
  * @author Ltrlg
+ * @author Rmunn
  * @author Sherbrooke
  * @author VIGNERON
  * @author Verdy p
@@ -2500,7 +2501,7 @@ $messages['fr'] = array(
 	'flow-notification-link-text-view-board' => 'Afficher le tableau',
 	'flow-notification-link-text-view-topic' => 'Afficher le sujet',
 	'flow-notification-reply-email-subject' => '$1 {{GENDER:$1|a répondu}} à votre note',
-	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|a répondu}} a votre note concernant « $2 » sur « $3 »',
+	'flow-notification-reply-email-batch-body' => '$1 {{GENDER:$1|a répondu}} à votre note concernant « $2 » sur « $3 »',
 	'flow-notification-reply-email-batch-bundle-body' => '$1 et $4 {{PLURAL:$5|autre|autres}} {{GENDER:$1|ont répondu}} à votre note concernant « $2 » sur « $3 »',
 	'flow-notification-mention-email-subject' => '$1 vous {{GENDER:$1|a mentionné}} en « $2 »',
 	'flow-notification-mention-email-batch-body' => '$1 vous {{GENDER:$1|a mentionné}} dans {{GENDER:$1|sa}} note sur « $2 » en « $3 »',
@@ -2723,12 +2724,12 @@ $messages['he'] = array(
 	'flow-user-moderated' => 'משתמש מפוקח',
 	'flow-edit-header-link' => 'עריכת התיאור',
 	'flow-header-empty' => 'לדף השיחה הזה אין כרגע תיאור.',
-	'flow-post-moderated-toggle-hide-show' => 'הצגת ההערה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|הסתיר|הסתירה}}',
-	'flow-post-moderated-toggle-delete-show' => 'הצגת ההערה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|מחק|מחקה}}',
-	'flow-post-moderated-toggle-suppress-show' => 'הצגת ההערה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|העלים|העלימה}}',
-	'flow-post-moderated-toggle-hide-hide' => 'הסתרת ההערה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|הסתיר|הסתירה}}',
-	'flow-post-moderated-toggle-delete-hide' => 'הסתרת ההערה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|מחק|מחקה}}',
-	'flow-post-moderated-toggle-suppress-hide' => 'הסתרת ההערה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|העלים|העלימה}}',
+	'flow-post-moderated-toggle-hide-show' => 'הצגת התגובה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|הסתיר|הסתירה}}',
+	'flow-post-moderated-toggle-delete-show' => 'הצגת התגובה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|מחק|מחקה}}',
+	'flow-post-moderated-toggle-suppress-show' => 'הצגת התגובה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|העלים|העלימה}}',
+	'flow-post-moderated-toggle-hide-hide' => 'הסתרת התגובה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|הסתיר|הסתירה}}',
+	'flow-post-moderated-toggle-delete-hide' => 'הסתרת התגובה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|מחק|מחקה}}',
+	'flow-post-moderated-toggle-suppress-hide' => 'הסתרת התגובה ש{{GRAMMAR:תחילית|$2}} {{GENDER:$1|העלים|העלימה}}',
 	'flow-hide-post-content' => '$2 {{GENDER:$1|הסתיר|הסתירה}} את התגובה הזאת',
 	'flow-hide-title-content' => '$2 {{GENDER:$1|הסתיר|הסתירה}} את הנושא הזה',
 	'flow-hide-header-content' => '$2 {{GENDER:$1|הסתיר|הסתירה}} את זה',
@@ -2835,7 +2836,7 @@ $1',
 	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|שחזר|שחזרה}} את [$4 הנושא] $6‏ (<em>$5</em>).',
 	'flow-board-history' => 'ההיסטוריה של "$1"',
 	'flow-topic-history' => 'היסטוריית הנושא "$1"',
-	'flow-post-history' => 'ההיסטוריה של "תגובה מאת $2"',
+	'flow-post-history' => 'היסטוריית הרשומה של "תגובה מאת $2"',
 	'flow-history-last4' => '4 השעות האחרונות',
 	'flow-history-day' => 'היום',
 	'flow-history-week' => 'בשבוע שעבר',
@@ -3551,6 +3552,7 @@ $messages['jbo'] = array(
  * @author David1010
  */
 $messages['ka'] = array(
+	'flow-post-action-hide-post' => 'დამალვა',
 	'flow-moderation-confirm-delete-post' => 'წაშლა',
 	'flow-moderation-confirm-hide-post' => 'დამალვა',
 	'flow-moderation-confirm-restore-post' => 'აღდგენა',
@@ -4584,20 +4586,20 @@ $messages['nl'] = array(
 	'flow-edit-post-submit' => 'Wijzigingen opslaan',
 	'flow-edit-post-submit-overwrite' => 'Wijzigingen overschrijven',
 	'flow-rev-message-edit-post' => '[$1|$2] {{GENDER:$2|heeft}} een [$3 reactie] bewerkt op $4.',
-	'flow-rev-message-reply' => '$1 {{GENDER:$2|heeft}} een [$3 reactie] toegevoegd.', # Fuzzy
+	'flow-rev-message-reply' => '$1 {{GENDER:$2|heeft}} een [$3 reactie] op $4 toegevoegd (<em>$5</em>).',
 	'flow-rev-message-reply-bundle' => 'Er {{PLURAL:$1|is|zijn}} <strong>$1 {{PLURAL:$1|reactie|reacties}}</strong> toegevoegd.',
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|heeft}} het onderwerp [$3 $4] aangemaakt.',
 	'flow-rev-message-edit-title' => '$1 {{GENDER:$2|heeft}} het onderwerp gewijzigd van $5 naar [$3 $4].',
 	'flow-rev-message-create-header' => '$1 {{GENDER:$2|heeft}} de kop aangemaakt.',
 	'flow-rev-message-edit-header' => '$1 {{GENDER:$2|heeft}} de kop bewerkt.',
-	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] verborgen (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] verwijderd (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] onderdrukt (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] teruggeplaatst (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|heeft}} een [$4 onderwerp] verborgen (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|heeft}} een [$4 onderwerp] verwijderd (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|heeft}} een [$4 onderwerp] onderdrukt (<em>$5</em>).', # Fuzzy
-	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|heeft}} een [$4 onderwerp] teruggeplaatst (<em>$5</em>).', # Fuzzy
+	'flow-rev-message-hid-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] op $6 verborgen (<em>$5</em>).',
+	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] op $6 verwijderd (<em>$5</em>).',
+	'flow-rev-message-suppressed-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] op $6 onderdrukt (<em>$5</em>).',
+	'flow-rev-message-restored-post' => '$1 {{GENDER:$2|heeft}} een [$4 reactie] op $6 teruggeplaatst (<em>$5</em>).',
+	'flow-rev-message-hid-topic' => '$1 {{GENDER:$2|heeft}} het [$4 onderwerp] $6 verborgen (<em>$5</em>).',
+	'flow-rev-message-deleted-topic' => '$1 {{GENDER:$2|heeft}} het [$4 onderwerp] $6 verwijderd (<em>$5</em>).',
+	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|heeft}} het [$4 onderwerp] $6 onderdrukt (<em>$5</em>).',
+	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|heeft}} het [$4 onderwerp] $6 teruggeplaatst (<em>$5</em>).',
 	'flow-board-history' => 'Geschiedenis van "$1"',
 	'flow-topic-history' => 'Onderwerpgeschiedenis van "$1"',
 	'flow-post-history' => 'Berichtgeschiedenis van "Reactie van {{GENDER:$2|$2}}"',
@@ -4704,16 +4706,52 @@ U kunt de andere versie van dit bericht bekijken op de [$6 geschiedenispagina].'
  */
 $messages['oc'] = array(
 	'flow-desc' => 'Sistèma de gestion del flux de trabalh',
+	'flow-talk-taken-over' => "Aquesta pagina de discussion es estada remplaçada per un [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal ''Flow board''].",
+	'log-name-flow' => 'Jornal de flux d’activitat',
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|a suprimit}} una [$4 nòta] sus [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|a restablit}} una [$4 nòta] sus [[$3]]',
+	'logentry-suppress-flow-suppress-post' => '$1 {{GENDER:$2|a suprimit}} una [$4 nòta] sus [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|a suprimit}} una [$4 nòta] sus [[$3]]',
+	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|a suprimit}} un [$4 subjècte] sus [[$3]]',
+	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|a restablit}} un [$4 subjècte] sus [[$3]]',
+	'logentry-suppress-flow-suppress-topic' => '$1 {{GENDER:$2|a suprimit}} un [$4 subjècte] sus [[$3]]',
+	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|a suprimit}} un [$4 subjècte] sus [[$3]]',
+	'flow-user-moderated' => 'Utilizaire moderat',
+	'flow-edit-header-link' => 'Modificar l’entèsta',
+	'flow-header-empty' => 'Aquesta pagina de discussion a pas d’entèsta pel moment.',
+	'flow-post-moderated-toggle-hide-show' => 'Afichar lo comentari {{GENDER:$1|amagat}} per $2',
+	'flow-post-moderated-toggle-delete-show' => 'Afichar lo comentari {{GENDER:$1|suprimit}} per $2',
+	'flow-post-moderated-toggle-suppress-show' => 'Afichar lo comentari {{GENDER:$1|suprimit}} per $2',
+	'flow-post-moderated-toggle-hide-hide' => 'Amagar lo comentari {{GENDER:$1|amagat}} per $2',
+	'flow-post-moderated-toggle-delete-hide' => 'Amagar lo comentari {{GENDER:$1|suprimit}} per $2',
+	'flow-post-moderated-toggle-suppress-hide' => 'Amagar lo comentari {{GENDER:$1|suprimit}} per $2',
+	'flow-hide-post-content' => 'Aqueste comentari es estat {{GENDER:$1|amagat}} per $2',
+	'flow-hide-title-content' => 'Lo subjècte es estat {{GENDER:$1|amagat}} per $2',
+	'flow-hide-header-content' => '{{GENDER:$1|Amagat}} per $2',
+	'flow-delete-post-content' => 'Aqueste comentari es estat {{GENDER:$1|suprimit}} per $2',
+	'flow-delete-title-content' => 'Lo subjècte es estat {{GENDER:$1|suprimit}} per $2',
+	'flow-delete-header-content' => '{{GENDER:$1|Suprimit}} per $2',
+	'flow-suppress-post-content' => 'Aqueste comentari es estat {{GENDER:$1|suprimit}} per $2',
+	'flow-suppress-title-content' => 'Lo subjècte es estat {{GENDER:$1|suprimit}} per $2',
+	'flow-suppress-header-content' => '{{GENDER:$1|Suprimit}} per $2',
+	'flow-suppress-usertext' => '<em>Nom d’utilizaire suprimit</em>',
 	'flow-post-actions' => 'Accions',
 	'flow-topic-actions' => 'Accions',
 	'flow-cancel' => 'Anullar',
+	'flow-preview' => 'Previsualizar',
+	'flow-show-change' => 'Veire los cambiaments',
+	'flow-last-modified-by' => '{{GENDER:$1|Modificat}} en darrièr per $1',
 	'flow-newtopic-title-placeholder' => 'Subjècte novèl',
 	'flow-newtopic-content-placeholder' => 'Apondre de detalhs se o volètz',
 	'flow-newtopic-header' => 'Apondre un subjècte novèl',
 	'flow-newtopic-save' => 'Apondre un subjècte',
 	'flow-newtopic-start-placeholder' => 'Començar un subjècte novèl',
+	'flow-reply-topic-placeholder' => '{{GENDER:$1|Comentar}} « $2 »',
 	'flow-reply-placeholder' => '{{GENDER:$1|Respondre}} a $1',
 	'flow-reply-submit' => '{{GENDER:$1|Respondre}}',
+	'flow-reply-link' => '{{GENDER:$1|Respondre}}',
+	'flow-thank-link' => '{{GENDER:$1|Mercejar}}',
+	'flow-post-edited' => 'Nòta {{GENDER:$1|modificada}} per $1 $2',
 	'flow-post-action-view' => 'Ligam permanent',
 	'flow-post-action-post-history' => 'Istoric',
 	'flow-post-action-suppress-post' => 'Suprimir',
@@ -4721,14 +4759,21 @@ $messages['oc'] = array(
 	'flow-post-action-hide-post' => 'Amagar',
 	'flow-post-action-edit-post' => 'Modificar',
 	'flow-post-action-restore-post' => 'Restablir lo messatge',
+	'flow-topic-action-view' => 'Ligam permanent',
+	'flow-topic-action-watchlist' => 'Lista de seguiment',
 	'flow-topic-action-edit-title' => 'Modificar lo títol',
 	'flow-topic-action-history' => 'Istoric',
+	'flow-topic-action-hide-topic' => 'Amagar lo subjècte',
+	'flow-topic-action-delete-topic' => 'Suprimir lo subjècte',
+	'flow-topic-action-suppress-topic' => 'Suprimir lo subjècte',
+	'flow-topic-action-restore-topic' => 'Restablir lo subjècte',
 	'flow-error-http' => "Una error s'es producha en comunicant amb lo servidor.",
 	'flow-error-other' => "Una error imprevista s'es producha.",
 	'flow-error-external' => "Una error s'es producha.<br />Lo messatge d'error recebut èra :$1",
+	'flow-error-edit-restricted' => 'Sètz pas autorizat(ada) a modificar aquesta nòta',
 	'flow-error-external-multi' => "D'errors se son produchas.<br /> $1",
-	'flow-error-missing-content' => 'Lo messatge a pas cap de contengut. Es requesit per enregistrar un messatge novèl.', # Fuzzy
-	'flow-error-missing-title' => 'Lo subjècte a pas cap de títol. Es requesit per enregistrar un subjècte novèl.', # Fuzzy
+	'flow-error-missing-content' => 'Lo messatge a pas cap de contengut. Un contengut es obligatòri per enregistrar un messatge.',
+	'flow-error-missing-title' => 'Lo subjècte a pas cap de títol. Un títol es obligatòri per enregistrar un subjècte.',
 	'flow-error-parsoid-failure' => "Impossible d'analisar lo contengut a causa d'una pana de Parsoid.",
 	'flow-error-missing-replyto' => "Cap de paramètre « replyTo » es pas estat provesit. Aqueste paramètre es requesit per l'accion « respondre ».",
 	'flow-error-invalid-replyto' => 'Lo paramètre « replyTo » èra pas valid. Lo messatge especificat es pas estat trobat.',
@@ -4741,6 +4786,7 @@ $messages['oc'] = array(
 	'flow-edit-post-submit' => 'Sometre las modificacions',
 	'flow-rev-message-reply' => '$1 {{GENDER:$2|a apondut}} un [$3 comentari].', # Fuzzy
 	'flow-rev-message-new-post' => '$1 {{GENDER:$2|a creat}} lo subjècte [$3 $4].',
+	'flow-board-history' => 'Istoric de « $1 »',
 	'flow-topic-history' => 'Istoric del subjècte « $1 »',
 	'flow-comment-restored' => 'Comentari restablit',
 	'flow-comment-deleted' => 'Comentari suprimit',
@@ -4752,6 +4798,18 @@ $messages['oc'] = array(
 	'flow-notification-edit' => '$1 {{GENDER:$1|a modificat}} una [$5 nòta] sus $2 en [[$3|$4]].', # Fuzzy
 	'flow-notification-newtopic' => '$1 {{GENDER:$1|a creat}} un [$5 subjècte novèl] en [[$2|$3]] : $4.', # Fuzzy
 	'flow-notification-rename' => '$1 {{GENDER:$1|a modificat}} lo títol de [$2 $3] en « $4 » sus [[$5|$6]].', # Fuzzy
+	'echo-category-title-flow-discussion' => 'Flux',
+	'flow-link-post' => 'nòta',
+	'flow-link-topic' => 'subjècte',
+	'flow-link-history' => 'istoric',
+	'flow-moderation-confirm-suppress-post' => 'Suprimir',
+	'flow-moderation-confirm-delete-post' => 'Suprimir',
+	'flow-moderation-confirm-hide-post' => 'Amagar',
+	'flow-moderation-confirm-restore-post' => 'Restablir',
+	'flow-moderation-confirm-suppress-topic' => 'Suprimir',
+	'flow-moderation-confirm-delete-topic' => 'Suprimir',
+	'flow-moderation-confirm-hide-topic' => 'Amagar',
+	'flow-moderation-confirm-restore-topic' => 'Restablir',
 );
 
 /** Polish (polski)
@@ -4825,9 +4883,10 @@ $messages['ps'] = array(
  * @author Helder.wiki
  * @author Imperadeiro98
  * @author SandroHc
+ * @author Vitorvicentevalente
  */
 $messages['pt'] = array(
-	'flow-desc' => 'Sistema de Gerenciamento do Fluxo de Trabalho',
+	'flow-desc' => 'Sistema de gerência do fluxo de trabalho',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|editou}} o [$3 comentário] em $4.',
 	'flow-rev-message-reply' => '$1 [$3 {{GENDER:$2|comentou}}] em $4 (<em>$5</em>).',
 	'flow-rev-message-create-header' => '$1 {{GENDER:$2|criou}} o cabeçalho.',
