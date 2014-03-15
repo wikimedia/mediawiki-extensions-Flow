@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_b82070f3",
+        "filename": "includes/Data/BoardHistoryStorage.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-15T00:16:41Z",
+      "side": 1,
+      "message": "Is this necessary?  Board history index is sorted by rev_id in descending order already",
+      "revId": "f3ac43df8fd9efa937e348461545f04d07f37a0a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
