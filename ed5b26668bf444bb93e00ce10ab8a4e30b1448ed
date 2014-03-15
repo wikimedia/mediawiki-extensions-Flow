@@ -87,6 +87,57 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_9bfb6611",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-15T02:19:10Z",
+      "side": 1,
+      "message": "It\u0027s confusing that there\u0027s already a setupTipsy() function in modules/base/ui-functions.js with different defaults and behavior including \"close other tipsy that may be open\" (but not this one).\nIf this can\u0027t reuse that, please comment why.",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_b87750fd",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-15T02:19:10Z",
+      "side": 1,
+      "message": "This seems roundabout: create a jQuery object, set its html to msg, then create a new jQuery object holding the contents; and then tipsy\u0027s own show() \u003e getTitle() basically repeats the whole operation.  Why not just pass msg to the tipsy element?  If there\u0027s a reason to do it this way, please comment.",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_f826e810",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-15T02:19:10Z",
+      "side": 1,
+      "message": "in Firefox and Chromium, the moment this completes the page gets a few thousand pixels taller. I figured out it\u0027s the gravity \u0027w\u0027\nThis is a bug with actionbox.less, I filed bug 62689.",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_bc798d2c",
         "filename": "modules/base/action.js",
         "patchSetId": 4
