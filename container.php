@@ -223,6 +223,7 @@ $c['storage.header.lifecycle-handlers'] = $c->share( function( $c ) {
 	global $wgContLang;
 	return array(
 		new Flow\Data\HeaderRecentChanges(
+			$c['flow_actions'],
 			$c['repository.username'],
 			$c['storage'],
 			$wgContLang
@@ -302,7 +303,7 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 	global $wgContLang;
 	return array(
 		new Flow\Log\PostModerationLogger( $c['logger'] ),
-		new Flow\Data\PostRevisionRecentChanges( $c['repository.username'], $c['storage'], $c['repository.tree'], $wgContLang ),
+		new Flow\Data\PostRevisionRecentChanges( $c['flow_actions'], $c['repository.username'], $c['storage'], $c['repository.tree'], $wgContLang ),
 		$c['storage.board_history.index'],
 		new Flow\Data\UserNameListener(
 			$c['repository.username'],
