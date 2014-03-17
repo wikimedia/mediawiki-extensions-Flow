@@ -179,7 +179,7 @@ class NotificationController {
 			throw new FlowException( 'Expected PostRevision but received ' . get_class( $topicPost ) );
 		}
 		$firstPost = $params['first-post'];
-		if ( !$firstPost instanceof PostRevision ) {
+		if ( $firstPost !== null && !$firstPost instanceof PostRevision ) {
 			throw new FlowException( 'Expected PostRevision but received ' . get_class( $firstPost ) );
 		}
 		$user = $params['user'];
