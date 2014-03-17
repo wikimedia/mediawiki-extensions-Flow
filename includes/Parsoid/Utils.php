@@ -24,11 +24,6 @@ abstract class Utils {
 
 		$section = new \ProfileSection( __METHOD__ );
 
-		// Parsoid will fail if title does not exist
-		if ( !$title->exists() ) {
-			throw new InvalidDataException( 'Title "' . $title->getPrefixedDBkey() . '" does not exist.', 'invalid-title' );
-		}
-
 		try {
 			// use VE API (which connects to Parsoid) if available...
 			$res = self::parsoid( $from, $to, $content, $title );

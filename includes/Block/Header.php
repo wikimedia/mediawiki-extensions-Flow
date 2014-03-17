@@ -6,7 +6,6 @@ use Flow\Container;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
 use Flow\Model\Header;
-use Flow\OccupationController;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\View\HeaderRevisionView;
@@ -121,14 +120,6 @@ class HeaderBlock extends AbstractBlock {
 			// is this even worth checking?
 			$this->addError( 'prev_revision', wfMessage( 'flow-error-prev-revision-does-not-exist' ) );
 			return;
-		}
-
-		$title = $this->workflow->getArticleTitle();
-		if ( !$title->exists() ) {
-			// if $wgFlowContentFormat is set to html the Header::create
-			// call will convert the wikitext input into html via parsoid, and
-			// parsoid requires the page exist.
-			Container::get( 'occupation_controller' )->ensureFlowRevision( new \Article( $title, 0 ) );
 		}
 
 		$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );

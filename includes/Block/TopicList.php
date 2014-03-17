@@ -12,7 +12,6 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
-use Flow\OccupationController;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Exception\FailCommitException;
@@ -127,15 +126,6 @@ class TopicListBlock extends AbstractBlock {
 		$title = $this->workflow->getArticleTitle();
 		$topicWorkflow = Workflow::create( $topicDef, $this->user, $title );
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
-
-		if ( !$title->exists() ) {
-			// if $wgFlowContentFormat is set to html the PostRevision::create
-			// call will convert the wikitext input into html via parsoid, and
-			// parsoid requires the page exist.
-			/** @var OccupationController $occupationController */
-			$occupationController = Container::get( 'occupation_controller' );
-			$occupationController->ensureFlowRevision( new \Article( $title, 0 ) );
-		}
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 
 		$firstPost = null;
