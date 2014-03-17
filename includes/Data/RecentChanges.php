@@ -3,11 +3,7 @@
 namespace Flow\Data;
 
 use Flow\Model\AbstractRevision;
-use Flow\Model\Header;
-use Flow\Model\PostRevision;
 use Flow\Model\Workflow;
-use Flow\Repository\TreeRepository;
-use Language;
 use RecentChange;
 
 abstract class RecentChanges implements LifecycleHandler {
@@ -109,110 +105,5 @@ abstract class RecentChanges implements LifecycleHandler {
 
 		$rc = RecentChange::newFromRow( (object)$attribs );
 		$rc->save();  // Insert into db and send to RC feeds
-	}
-}
-
-class HeaderRecentChanges extends RecentChanges {
-	/**
-	 * @var ManagerGroup
-	 */
-	protected $storage;
-
-	/**
-	 * @var Language Content Language
-	 */
-	protected $contLang;
-
-	public function __construct( UserNameBatch $usernames, ManagerGroup $storage, Language $contLang ) {
-		parent::__construct( $usernames );
-		$this->storage = $storage;
-		$this->contLang = $contLang;
-	}
-
-	/**
-	 * @param Header $object
-	 * @param string[] $row
-	 */
-	public function onAfterInsert( $object, array $row ) {
-		$workflowId = $object->getWorkflowId();
-		$workflow = $this->storage->get( 'Workflow', $workflowId );
-		if ( !$workflow ) {
-			// unless in unit test, write to log
-			wfDebugLog( 'Flow', __METHOD__ . ": could not locate workflow for header " . $object->getRevisionId()->getAlphadecimal() );
-			return;
-		}
-
-		$this->insert(
-			$object,
-			'header',
-			'Header',
-			$row,
-			$workflow,
-			array(
-				'content' => $this->contLang->truncate( $object->getContent(), self::TRUNCATE_LENGTH ),
-			)
-		);
-	}
-}
-
-class PostRevisionRecentChanges extends RecentChanges {
-	/**
-	 * @var ManagerGroup
-	 */
-	protected $storage;
-
-	/**
-	 * @var TreeRepository
-	 */
-	protected $tree;
-
-	/**
-	 * @var Language
-	 */
-	protected $contLang;
-
-	public function __construct( UserNameBatch $usernames, ManagerGroup $storage, TreeRepository $tree, Language $contLang ) {
-		parent::__construct( $usernames );
-		$this->storage = $storage;
-		$this->tree = $tree;
-		$this->contLang = $contLang;
-	}
-
-	/**
-	 * @param PostRevision $object
-	 * @param string[] $row
-	 */
-	public function onAfterInsert( $object, array $row ) {
-		// The workflow id is the same as the root's post id
-		$workflowId = $object->getRootPost()->getPostId();
-		// These are likely already in the in-process cache
-		$workflow = $this->storage->get( 'Workflow', $workflowId );
-		if ( !$workflow ) {
-			// unless in unit test, write to log
-			wfDebugLog( 'Flow', __METHOD__ . ": could not locate workflow " . $workflowId->getAlphadecimal() );
-			return;
-		}
-
-		$this->insert(
-			$object,
-			'topic',
-			'PostRevision',
-			$row,
-			$workflow,
-			array(
-				'post' => $object->getPostId()->getAlphadecimal(),
-				'topic' => $this->getTopicTitle( $object ),
-			)
-		);
-	}
-
-	protected function getTopicTitle( PostRevision $rev ) {
-		$content = $rev->getRootPost()->getContent( 'wikitext' );
-		if ( is_object( $content ) ) {
-			// moderated
-			return null;
-		}
-
-		return $this->contLang->truncate( $content, self::TRUNCATE_LENGTH );
 	}
 }
