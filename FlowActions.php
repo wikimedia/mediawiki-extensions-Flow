@@ -147,7 +147,7 @@ $wgFlowActions = array(
 				'moderated-reason',
 				'topic-of-post',
 			),
-			'class' => 'flow-history-hid-post',
+			'class' => 'flow-history-hide-post',
 		),
 	),
 
@@ -168,7 +168,7 @@ $wgFlowActions = array(
 				'moderated-reason',
 				'topic-of-post',
 			),
-			'class' => 'flow-history-hid-topic',
+			'class' => 'flow-history-hide-topic',
 		),
 	),
 
@@ -190,7 +190,7 @@ $wgFlowActions = array(
 				'moderated-reason',
 				'topic-of-post',
 			),
-			'class' => 'flow-history-deleted-post',
+			'class' => 'flow-history-delete-post',
 		),
 	),
 
@@ -212,7 +212,7 @@ $wgFlowActions = array(
 				'moderated-reason',
 				'topic-of-post',
 			),
-			'class' => 'flow-history-deleted-topic',
+			'class' => 'flow-history-delete-topic',
 		),
 	),
 
@@ -235,7 +235,7 @@ $wgFlowActions = array(
 				'moderated-reason',
 				'topic-of-post',
 			),
-			'class' => 'flow-history-suppressed-post',
+			'class' => 'flow-history-suppress-post',
 		),
 	),
 
@@ -258,7 +258,7 @@ $wgFlowActions = array(
 				'moderated-reason',
 				'topic-of-post',
 			),
-			'class' => 'flow-history-suppressed-topic',
+			'class' => 'flow-history-suppress-topic',
 		),
 	),
 
@@ -293,7 +293,11 @@ $wgFlowActions = array(
 				'moderated-reason',
 				'topic-of-post',
 			),
-			'class' => 'flow-history-restored-post',
+			'class' => function( PostRevision $revision ) {
+				$previous = $revision->getCollection()->getPrevRevision( $revision );
+				$state = $previous->getModerationState();
+				return "flow-history-un$state-post";
+			}
 		),
 	),
 
@@ -328,7 +332,11 @@ $wgFlowActions = array(
 				'moderated-reason',
 				'topic-of-post',
 			),
-			'class' => 'flow-history-restored-topic',
+			'class' => function( PostRevision $revision ) {
+				$previous = $revision->getCollection()->getPrevRevision( $revision );
+				$state = $previous->getModerationState();
+				return "flow-history-un$state-topic";
+			}
 		),
 	),
 

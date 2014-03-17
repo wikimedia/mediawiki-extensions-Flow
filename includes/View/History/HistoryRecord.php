@@ -88,6 +88,11 @@ class HistoryRecord {
 	 */
 	public function getClass() {
 		$details = $this->getActionDetails( $this->getType() );
+
+		if ( $details['class'] instanceof \Closure ) {
+			$details['class'] = $details['class']( $this->getData() );
+		}
+
 		return $details['class'];
 	}
 

@@ -120,6 +120,7 @@ class Workflow {
 			'workflow_page_id' => $obj->pageId,
 			'workflow_namespace' => $obj->namespace,
 			'workflow_title_text' => $obj->titleText,
+			'workflow_name' => '', // @todo: temp - remove before commit; should be fixed in separate patch
 			'workflow_user_id' => $obj->userId,
 			'workflow_user_ip' => $obj->userIp,
 			'workflow_user_wiki' => $obj->userWiki,

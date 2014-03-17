@@ -3,6 +3,7 @@
 namespace Flow\View;
 
 use Flow\Data\UserNameBatch;
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Block\AbstractBlock;
 use Flow\UrlGenerator;
@@ -134,6 +135,21 @@ class Post {
 		);
 	}
 
+	public function unhidePostButton( $buttonClass ) {
+		if (
+			$this->post->getModerationState() !== AbstractRevision::MODERATED_HIDDEN ||
+			!$this->actions->isAllowed( 'restore-post' )
+		) {
+			return '';
+		}
+
+		return $this->actions->getButton(
+			'restore-post',
+			wfMessage( 'flow-post-action-unhide-post' )->escaped(),
+			$buttonClass
+		);
+	}
+
 	public function deletePostButton( $buttonClass ) {
 		if ( !$this->actions->isAllowed( 'delete-post' ) ) {
 			return '';
@@ -141,6 +157,20 @@ class Post {
 		return $this->actions->getButton(
 			'delete-post',
 			wfMessage( 'flow-post-action-delete-post' )->escaped(),
+			$buttonClass
+		);
+	}
+
+	public function undeletePostButton( $buttonClass ) {
+		if (
+			$this->post->getModerationState() !== AbstractRevision::MODERATED_DELETED ||
+			!$this->actions->isAllowed( 'restore-post' )
+		) {
+			return '';
+		}
+		return $this->actions->getButton(
+			'restore-post',
+			wfMessage( 'flow-post-action-undelete-post' )->escaped(),
 			$buttonClass
 		);
 	}
@@ -156,13 +186,16 @@ class Post {
 		);
 	}
 
-	public function restorePostButton( $buttonClass ) {
-		if ( !$this->actions->isAllowed( 'restore-post' ) ) {
+	public function unsuppressPostButton( $buttonClass ) {
+		if (
+			$this->post->getModerationState() !== AbstractRevision::MODERATED_SUPPRESSED ||
+			!$this->actions->isAllowed( 'restore-post' )
+		) {
 			return '';
 		}
 		return $this->actions->getButton(
 			'restore-post',
-			wfMessage( 'flow-post-action-restore-post' )->escaped(),
+			wfMessage( 'flow-post-action-unsuppress-post' )->escaped(),
 			$buttonClass
 		);
 	}

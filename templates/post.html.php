@@ -111,40 +111,52 @@ if ( $post->isModerated() ) {
 						$viewButton = $postActionMenu->getButton(
 							'view',
 							wfMessage( 'flow-post-action-view' )->escaped(),
-							'mw-ui-button flow-action-permalink-link',
+							'mw-ui-button mw-ui-quiet flow-action-permalink-link',
 							// This URL fragment triggers highlightPost behavior in front-end JS.
 							'flow-post-' . $post->getPostId()->getAlphadecimal()
 						);
 						if ( $viewButton ) {
 							echo '<li class="flow-action-permalink">', $viewButton, '</li>';
 						}
-						$hidePost = $postView->hidePostButton( 'flow-hide-post-link mw-ui-button' );
-						if ( $hidePost ) {
-							echo '<li class="flow-action-hide">' . $hidePost . '</li>';
-						}
 						// History link
 						if ( $post->getPrevRevisionId() ) {
 							$historyButton =  $postActionMenu->getButton(
 								'post-history',
 								wfMessage( 'flow-post-action-post-history' )->escaped(),
-								'mw-ui-button flow-action-post-history-link'
+								'mw-ui-button mw-ui-quiet flow-action-post-history-link'
 							);
 							if ( $historyButton ) {
 								echo '<li class="flow-action-post-history">', $historyButton, '</li>';
 							}
 						}
-						$deletePost = $postView->deletePostButton( 'flow-delete-post-link mw-ui-button' );
+
+						$hidePost = $postView->hidePostButton( 'flow-hide-post-link mw-ui-button mw-ui-quiet' );
+						$unhidePost = $postView->unhidePostButton( 'flow-unhide-post-link mw-ui-button mw-ui-quiet' );
+						$deletePost = $postView->deletePostButton( 'flow-delete-post-link mw-ui-button mw-ui-quiet' );
+						$undeletePost = $postView->undeletePostButton( 'flow-undelete-post-link mw-ui-button mw-ui-quiet' );
+						$suppressPost = $postView->suppressPostButton( 'flow-suppress-post-link mw-ui-button mw-ui-quiet' );
+						$unsuppressPost = $postView->unsuppressPostButton( 'flow-unsuppress-post-link mw-ui-button mw-ui-quiet' );
+
+						if ( $hidePost || $unhidePost || $deletePost || $undeletePost || $suppressPost || $unsuppressPost ) {
+							echo '<li><hr /></li>';
+						}
+						if ( $hidePost ) {
+							echo '<li class="flow-action-hide">' . $hidePost . '</li>';
+						}
+						if ( $unhidePost ) {
+							echo '<li class="flow-action-unhide">' . $unhidePost . '</li>';
+						}
 						if ( $deletePost ) {
 							echo '<li class="flow-action-delete">' . $deletePost . '</li>';
 						}
-						$suppressPost = $postView->suppressPostButton( 'flow-suppress-post-link mw-ui-button' );
+						if ( $undeletePost ) {
+							echo '<li class="flow-action-undelete">' . $undeletePost . '</li>';
+						}
 						if ( $suppressPost ) {
 							echo '<li class="flow-action-suppress">' . $suppressPost . '</li>';
 						}
-						// @todo restore button will probably be moved somewhere else, some day
-						$restorePost = $postView->restorePostButton( 'flow-restore-post-link mw-ui-button mw-ui-constructive' );
-						if ( $restorePost ) {
-							echo '<li class="flow-action-restore">' . $restorePost . '</li>';
+						if ( $unsuppressPost ) {
+							echo '<li class="flow-action-unsuppress">' . $unsuppressPost . '</li>';
 						}
 						?>
 					</ul>
