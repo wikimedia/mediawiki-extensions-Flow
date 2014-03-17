@@ -134,7 +134,7 @@ $c['memcache.buffered'] = $c->share( function( $c ) {
 } );
 // Batched username loader
 $c['repository.username'] = $c->share( function( $c ) {
-	return new Flow\Data\UserNameBatch( new Flow\Data\TwoStepUsernameQuery( $c['db.factory'] ) );
+	return new Flow\Data\UserNameBatch( new Flow\Data\TwoStepUserNameQuery( $c['db.factory'] ) );
 } );
 $c['collection.cache'] = $c->share( function( $c ) {
 	return new Flow\Collection\CollectionCache();
