@@ -422,7 +422,7 @@ $wgFlowActions = array(
 				if ( $revision->getChangeType() == 'restore-post' ) {
 					$previous = $collection->getPrevRevision( $revision );
 
-					if ( $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
+					if ( $previous === null || $previous->getModerationState() === AbstractRevision::MODERATED_NONE ) {
 						return '';
 					}
 

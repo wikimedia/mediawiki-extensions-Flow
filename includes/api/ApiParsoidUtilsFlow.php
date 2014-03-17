@@ -10,12 +10,6 @@ class ApiParsoidUtilsFlow extends ApiBase {
 		$params = $this->extractRequestParams();
 		$page = $this->getTitleOrPageId( $params );
 
-		if ( !$page->exists() ) {
-			// ParsoidUtils::convert checks for this, but we can provide
-			// a nicer error here
-			$this->dieUsage( 'Page does not exist', 'invalid-title' );
-		}
-
 		try {
 			$content = Utils::convert( $params['from'], $params['to'], $params['content'], $page->getTitle() );
 		} catch ( WikitextException $e ) {
