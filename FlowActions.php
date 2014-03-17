@@ -325,10 +325,10 @@ $wgFlowActions = array(
 			$previousRevision = $post->getPrevRevision( $revision );
 			if ( $previousRevision ) {
 				// Kind of log depends on the previous change type:
-				// * if post was deleted, restore should go to deletion log
-				// * if post was suppressed, restore should go to suppression log
+				// * if topic was deleted, restore should go to deletion log
+				// * if topic was suppressed, restore should go to suppression log
 				global $wgFlowActions;
-				return $wgFlowActions[$previousRevision->getModerationState() . '-post']['log_type'];
+				return $wgFlowActions[$previousRevision->getModerationState() . '-topic']['log_type'];
 			}
 
 			return '';
