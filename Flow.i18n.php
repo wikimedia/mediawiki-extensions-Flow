@@ -529,25 +529,25 @@ Also used in:
 {{Identical|Permalink}}',
 	'flow-post-action-post-history' => 'Used as text for the link which is used to view post-history of the topic.
 {{Identical|History}}',
-	'flow-post-action-hide-post' => 'Used as a link in a dropdown menu to hide a post.
-{{Related|Flow-action}}
-{{Identical|Hide}}',
-	'flow-post-action-delete-post' => 'Used as a link in a dropdown menu to delete a post.
-{{Related|Flow-action}}
-{{Identical|Delete}}',
 	'flow-post-action-suppress-post' => 'Used as a link in a dropdown menu to suppress a post.
 {{Related|Flow-action}}
 {{Identical|Suppress}}
 
 For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].',
+	'flow-post-action-delete-post' => 'Used as a link in a dropdown menu to delete a post.
+{{Related|Flow-action}}
+{{Identical|Delete}}',
+	'flow-post-action-hide-post' => 'Used as a link in a dropdown menu to hide a post.
+{{Related|Flow-action}}
+{{Identical|Hide}}',
 	'flow-post-action-edit-post' => 'Used as text for the link which is used to edit the post.
 {{Related|Flow-action}}
 {{Identical|Edit}}',
-	'flow-post-action-unhide-post' => 'Used as a link in a dropdown menu to unhide a post.
+	'flow-post-action-unsuppress-post' => 'Used as a link in a dropdown menu to unsuppress a post.
 {{Related|Flow-action}}',
 	'flow-post-action-undelete-post' => 'Used as a link in a dropdown menu to undelete a post.
 {{Related|Flow-action}}',
-	'flow-post-action-unsuppress-post' => 'Used as a link in a dropdown menu to unsuppress a post.
+	'flow-post-action-unhide-post' => 'Used as a link in a dropdown menu to unhide a post.
 {{Related|Flow-action}}',
 	'flow-topic-action-view' => "Title text for topic's permalink icon.
 {{Identical|Permalink}}",
@@ -995,9 +995,6 @@ Parameters:
 	'flow-moderation-title-hide-post' => 'Title for the moderation confirmation dialog when a post is being hidden.
 {{Related|Flow-moderation-title}}
 {{Identical|Hide post}}',
-	'flow-moderation-title-restore-post' => 'Title for the moderation confirmation dialog when a post is being restored.
-{{Related|Flow-moderation-title}}
-{{Identical|Restore post}}',
 	'flow-moderation-intro-suppress-post' => 'Intro for the moderation confirmation dialog when a post is being suppressed. Parameters:
 * $1 - (Unused) The user whose post is being moderated.
 * $2 - (Unused) The subject.
@@ -1013,11 +1010,6 @@ Parameters:
 * $2 - (Unused) The subject.
 * $3 - the user who is moderating the post. GENDER supported.
 {{Related|Flow-moderation-intro}}',
-	'flow-moderation-intro-restore-post' => 'Intro for the restore confirmation dialog. Parameters:
-* $1 - (Unused) The user whose post is being moderated.
-* $2 - (Unused) The subject.
-* $3 - the user who is moderating the post. GENDER supported.
-{{Related|Flow-moderation-intro}}',
 	'flow-moderation-confirm-suppress-post' => 'Label for a button that will confirm suppression of a post.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Suppress}}',
@@ -1027,9 +1019,15 @@ Parameters:
 	'flow-moderation-confirm-hide-post' => 'Label for a button that will confirm hiding of a post.
 {{Related|Flow-moderation-confirm}}
 {{Identical|Hide}}',
-	'flow-moderation-confirm-restore-post' => 'Label for a button that will confirm restoring of a post.
+	'flow-moderation-confirm-suppress-topic' => 'Label for a button that will confirm suppression of a topic.
 {{Related|Flow-moderation-confirm}}
-{{Identical|Restore}}',
+{{Identical|Suppress}}',
+	'flow-moderation-confirm-delete-topic' => 'Label for a button that will confirm deletion of a topic.
+{{Related|Flow-moderation-confirm}}
+{{Identical|Delete}}',
+	'flow-moderation-confirm-hide-topic' => 'Label for a button that will confirm hiding of a topic.
+{{Related|Flow-moderation-confirm}}
+{{Identical|Hide}}',
 	'flow-moderation-confirmation-suppress-post' => 'Message displayed after a successful suppression of a post. Parameters:
 * $1 - the user whose post is being moderated
 * $2 - the username, for GENDER support
@@ -1045,54 +1043,6 @@ Parameters:
 * $2 - the username, for GENDER support
 * $3 - (Unused) the current user, for GENDER support
 {{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-confirmation-restore-post' => 'Message displayed after a successful restoring of a post. Parameters:
-* $1 - (Unused) the user whose post is being moderated
-* $2 - (Unused) the username, for GENDER support
-* $3 - (Unused) the current user, for GENDER support
-{{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-title-suppress-topic' => 'Title for the moderation confirmation dialog when a topic is being suppressed.
-{{Related|Flow-moderation-title}}',
-	'flow-moderation-title-delete-topic' => 'Title for the moderation confirmation dialog when a topic is being deleted.
-{{Related|Flow-moderation-title}}
-{{Identical|Delete topic}}',
-	'flow-moderation-title-hide-topic' => 'Title for the moderation confirmation dialog when a topic is being hidden.
-{{Related|Flow-moderation-title}}
-{{Identical|Hide topic}}',
-	'flow-moderation-title-restore-topic' => 'Title for the moderation confirmation dialog when a topic is being restored.
-{{Related|Flow-moderation-title}}
-{{Identical|Restore topic}}',
-	'flow-moderation-intro-suppress-topic' => 'Intro for the moderation confirmation dialog when a topic is being suppressed. Parameters:
-* $1 - (Unused) The user whose post is being moderated.
-* $2 - (Unused) The subject.
-* $3 - the user who is moderating the post. GENDER supported.
-{{Related|Flow-moderation-intro}}',
-	'flow-moderation-intro-delete-topic' => 'Intro for the moderation confirmation dialog when a topic is being deleted. Parameters:
-* $1 - (Unused) The user whose post is being moderated.
-* $2 - (Unused) The subject.
-* $3 - the user who is moderating the post. GENDER supported.
-{{Related|Flow-moderation-intro}}',
-	'flow-moderation-intro-hide-topic' => 'Intro for the moderation confirmation dialog when a topic is being hidden. Parameters:
-* $1 - (Unused) The user whose post is being moderated.
-* $2 - (Unused) The subject.
-* $3 - the user who is moderating the post. GENDER supported.
-{{Related|Flow-moderation-intro}}',
-	'flow-moderation-intro-restore-topic' => 'Intro for the restore confirmation dialog. Parameters:
-* $1 - (Unused) The user whose post is being moderated.
-* $2 - (Unused) The subject.
-* $3 - the user who is moderating the post. GENDER supported.
-{{Related|Flow-moderation-intro}}',
-	'flow-moderation-confirm-suppress-topic' => 'Label for a button that will confirm suppression of a topic.
-{{Related|Flow-moderation-confirm}}
-{{Identical|Suppress}}',
-	'flow-moderation-confirm-delete-topic' => 'Label for a button that will confirm deletion of a topic.
-{{Related|Flow-moderation-confirm}}
-{{Identical|Delete}}',
-	'flow-moderation-confirm-hide-topic' => 'Label for a button that will confirm hiding of a topic.
-{{Related|Flow-moderation-confirm}}
-{{Identical|Hide}}',
-	'flow-moderation-confirm-restore-topic' => 'Label for a button that will confirm restoring of a topic.
-{{Related|Flow-moderation-confirm}}
-{{Identical|Restore}}',
 	'flow-moderation-confirmation-suppress-topic' => 'Message displayed after a successful suppression of a topic. Parameters:
 * $1 - the user whose post is being moderated
 * $2 - the username, for GENDER support
@@ -1108,11 +1058,29 @@ Parameters:
 * $2 - the username, for GENDER support
 * $3 - (Unused) the current user, can be used for GENDER
 {{Related|Flow-moderation-confirmation}}',
-	'flow-moderation-confirmation-restore-topic' => 'Message displayed after a successful restoring of a topic.
-* $1 - (Unused) the user whose post is being moderated
-* $2 - (Unused) the username, for GENDER support
-* $3 - (Unused) the current user, for GENDER support
-{{Related|Flow-moderation-confirmation}}',
+	'flow-moderation-title-suppress-topic' => 'Title for the moderation confirmation dialog when a topic is being suppressed.
+{{Related|Flow-moderation-title}}',
+	'flow-moderation-title-delete-topic' => 'Title for the moderation confirmation dialog when a topic is being deleted.
+{{Related|Flow-moderation-title}}
+{{Identical|Delete topic}}',
+	'flow-moderation-title-hide-topic' => 'Title for the moderation confirmation dialog when a topic is being hidden.
+{{Related|Flow-moderation-title}}
+{{Identical|Hide topic}}',
+	'flow-moderation-intro-suppress-topic' => 'Intro for the moderation confirmation dialog when a topic is being suppressed. Parameters:
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
+{{Related|Flow-moderation-intro}}',
+	'flow-moderation-intro-delete-topic' => 'Intro for the moderation confirmation dialog when a topic is being deleted. Parameters:
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
+{{Related|Flow-moderation-intro}}',
+	'flow-moderation-intro-hide-topic' => 'Intro for the moderation confirmation dialog when a topic is being hidden. Parameters:
+* $1 - (Unused) The user whose post is being moderated.
+* $2 - (Unused) The subject.
+* $3 - the user who is moderating the post. GENDER supported.
+{{Related|Flow-moderation-intro}}',
 	'flow-topic-permalink-warning' => 'Displayed at the top of a page when a person has clicked on a permanent link to a topic.
 
 Parameters:
@@ -1617,7 +1585,6 @@ $messages['ce'] = array(
 	'flow-rev-message-suppressed-topic' => '$1 {{GENDER:$2|дӀаяьккхина}} тема [$4 topic] $6 (<em>$5</em>).',
 	'flow-notification-reply-email-batch-body' => '$1 хан хааан {{GENDER:$1||жоп делла}} темехь «$2» «$3» чохь',
 	'flow-notification-mention-email-subject' => '$1 хьо {{GENDER:$1||хьахийна}} «$2» чохь',
-	'flow-moderation-confirmation-restore-topic' => 'Ахьа кхиамца хӀара тема карлаяьккхина.',
 );
 
 /** Czech (čeština)
@@ -2309,7 +2276,6 @@ $messages['fi'] = array(
 	'flow-post-action-delete-post' => 'Poista',
 	'flow-post-action-hide-post' => 'Piilota',
 	'flow-post-action-edit-post' => 'Muokkaa',
-	'flow-post-action-restore-post' => 'Palauta viesti',
 	'flow-topic-action-view' => 'Ikilinkki',
 	'flow-topic-action-watchlist' => 'Tarkkailulista',
 	'flow-topic-action-edit-title' => 'Muokkaa otsikkoa',
@@ -2317,7 +2283,6 @@ $messages['fi'] = array(
 	'flow-topic-action-hide-topic' => 'Piilota aihe',
 	'flow-topic-action-delete-topic' => 'Poista aihe',
 	'flow-topic-action-suppress-topic' => 'Häivytä aihe',
-	'flow-topic-action-restore-topic' => 'Palauta aihe',
 	'flow-error-http' => 'Virhe muodostettaessa yhteyttä palvelimeen.',
 	'flow-error-other' => 'Tuntematon virhe tapahtui.',
 	'flow-error-external' => 'On tapahtunut virhe.<br />Vastaanotettu virheilmoitus: $1',
@@ -2336,6 +2301,7 @@ $messages['fi'] = array(
 	'flow-paging-fwd' => 'Vanhemmat aiheet',
 	'flow-notification-link-text-view-post' => 'Näytä viesti',
 	'flow-notification-link-text-view-topic' => 'Näytä aihe',
+	'echo-pref-tooltip-flow-discussion' => 'Ilmoita minulle, kun minuun liittyvää toimintaa tapahtuu Flowissa.',
 	'flow-link-post' => 'viesti',
 	'flow-link-topic' => 'aihe',
 	'flow-link-history' => 'historia',
@@ -2343,20 +2309,15 @@ $messages['fi'] = array(
 	'flow-moderation-title-suppress-post' => 'Viestin sensurointi',
 	'flow-moderation-title-delete-post' => 'Viestin poisto',
 	'flow-moderation-title-hide-post' => 'Viestin piilotus',
-	'flow-moderation-title-restore-post' => 'Viestin palauttaminen',
 	'flow-moderation-confirm-suppress-post' => 'Häivytä',
 	'flow-moderation-confirm-delete-post' => 'Poista',
 	'flow-moderation-confirm-hide-post' => 'Piilota',
-	'flow-moderation-confirm-restore-post' => 'Palauta',
-	'flow-moderation-confirmation-restore-post' => 'Olet onnistuneesti palauttanut yllä olevan viestin.',
-	'flow-moderation-title-suppress-topic' => 'Häivytä aihe?',
-	'flow-moderation-title-delete-topic' => 'Poista aihe?',
-	'flow-moderation-title-hide-topic' => 'Piilota aihe?',
-	'flow-moderation-title-restore-topic' => 'Palauta aihe?',
 	'flow-moderation-confirm-suppress-topic' => 'Häivytä',
 	'flow-moderation-confirm-delete-topic' => 'Poista',
 	'flow-moderation-confirm-hide-topic' => 'Piilota',
-	'flow-moderation-confirm-restore-topic' => 'Palauta',
+	'flow-moderation-title-suppress-topic' => 'Häivytä aihe?',
+	'flow-moderation-title-delete-topic' => 'Poista aihe?',
+	'flow-moderation-title-hide-topic' => 'Piilota aihe?',
 	'flow-topic-collapsed-one-line' => 'Pieni näkymä',
 	'flow-topic-collapsed-full' => 'Suurennettu näkymä',
 	'flow-topic-complete' => 'Koko näkymä',
@@ -2430,7 +2391,6 @@ $messages['fr'] = array(
 	'flow-post-action-delete-post' => 'Supprimer',
 	'flow-post-action-hide-post' => 'Masquer',
 	'flow-post-action-edit-post' => 'Modifier',
-	'flow-post-action-restore-post' => 'Restaurer le message',
 	'flow-topic-action-view' => 'Lien permanent',
 	'flow-topic-action-watchlist' => 'Liste de surveillance',
 	'flow-topic-action-edit-title' => 'Modifier le titre',
@@ -2438,7 +2398,6 @@ $messages['fr'] = array(
 	'flow-topic-action-hide-topic' => 'Masquer le sujet',
 	'flow-topic-action-delete-topic' => 'Supprimer le sujet',
 	'flow-topic-action-suppress-topic' => 'Supprimer le sujet',
-	'flow-topic-action-restore-topic' => 'Rétablir le sujet',
 	'flow-error-http' => 'Une erreur s’est produite en communiquant avec le serveur.',
 	'flow-error-other' => 'Une erreur inattendue s’est produite.',
 	'flow-error-external' => 'Une erreur s’est produite.<br />Le message d’erreur reçu était : $1',
@@ -2547,41 +2506,33 @@ $messages['fr'] = array(
 	'flow-moderation-title-suppress-post' => 'Censurer la note ?',
 	'flow-moderation-title-delete-post' => 'Supprimer la note ?',
 	'flow-moderation-title-hide-post' => 'Masquer la note ?',
-	'flow-moderation-title-restore-post' => 'Restaurer la note ?',
 	'flow-moderation-intro-suppress-post' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous censurez cette note.',
 	'flow-moderation-intro-delete-post' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous supprimez cette note.',
 	'flow-moderation-intro-hide-post' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous cachez cette note.',
-	'flow-moderation-intro-restore-post' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous restaurez cette note.',
 	'flow-moderation-confirm-suppress-post' => 'Supprimer',
 	'flow-moderation-confirm-delete-post' => 'Supprimer',
 	'flow-moderation-confirm-hide-post' => 'Masquer',
-	'flow-moderation-confirm-restore-post' => 'Rétablir',
+	'flow-moderation-confirm-suppress-topic' => 'Supprimer',
+	'flow-moderation-confirm-delete-topic' => 'Supprimer',
+	'flow-moderation-confirm-hide-topic' => 'Masquer',
 	'flow-moderation-confirmation-suppress-post' => 'Cette note à été supprimée avec succès.
 {{GENDER:$2|Pensez}} à donner à $1 un avis sur cette note.',
 	'flow-moderation-confirmation-delete-post' => 'Cette note a bien été supprimée.
 {{GENDER:$2|Pensez}} à donner à $1 un avis sur cette note.',
 	'flow-moderation-confirmation-hide-post' => 'Cette note a bien été masquée.
 {{GENDER:$2|Pensez}} à donner à $1 un avis sur cette note.',
-	'flow-moderation-confirmation-restore-post' => 'Vous avez bien restauré la note ci-dessus.',
-	'flow-moderation-title-suppress-topic' => 'Supprimer le sujet ?',
-	'flow-moderation-title-delete-topic' => 'Supprimer le sujet ?',
-	'flow-moderation-title-hide-topic' => 'Masquer le sujet ?',
-	'flow-moderation-title-restore-topic' => 'Rétablir le sujet ?',
-	'flow-moderation-intro-suppress-topic' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous supprimez ce sujet.',
-	'flow-moderation-intro-delete-topic' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous supprimez ce sujet.',
-	'flow-moderation-intro-hide-topic' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous masquez ce sujet.',
-	'flow-moderation-intro-restore-topic' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous rétablissez ce sujet.',
-	'flow-moderation-confirm-suppress-topic' => 'Supprimer',
-	'flow-moderation-confirm-delete-topic' => 'Supprimer',
-	'flow-moderation-confirm-hide-topic' => 'Masquer',
-	'flow-moderation-confirm-restore-topic' => 'Rétablir',
 	'flow-moderation-confirmation-suppress-topic' => 'Le sujet a bien été supprimé.
 {{GENDER:$2|Pensez}} à donner à $1 un avis sur ce sujet.',
 	'flow-moderation-confirmation-delete-topic' => 'Le sujet a bien été supprimé.
 {{GENDER:$2|Pensez}} à donner à $1 un avis sur ce sujet.',
 	'flow-moderation-confirmation-hide-topic' => 'Le sujet a bien été masqué.
 {{GENDER:$2|Pensez}} à donner à $1 un avis sur ce sujet.',
-	'flow-moderation-confirmation-restore-topic' => 'Vous avez bien rétabli ce sujet.',
+	'flow-moderation-title-suppress-topic' => 'Supprimer le sujet ?',
+	'flow-moderation-title-delete-topic' => 'Supprimer le sujet ?',
+	'flow-moderation-title-hide-topic' => 'Masquer le sujet ?',
+	'flow-moderation-intro-suppress-topic' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous supprimez ce sujet.',
+	'flow-moderation-intro-delete-topic' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous supprimez ce sujet.',
+	'flow-moderation-intro-hide-topic' => 'Veuillez {{GENDER:$3|expliquer}} pourquoi vous masquez ce sujet.',
 	'flow-topic-permalink-warning' => 'Ce sujet a été démarré sur [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Ce sujet a été démarré sur le tableau de [$2 {{GENDER:$1|$1}}]',
 	'flow-revision-permalink-warning-post' => 'Voici un lien permanent vers une version unique de cette note.
@@ -2790,7 +2741,6 @@ $messages['he'] = array(
 	'flow-post-action-delete-post' => 'למחוק',
 	'flow-post-action-hide-post' => 'להסתיר',
 	'flow-post-action-edit-post' => 'עריכה',
-	'flow-post-action-restore-post' => 'לשחזר את הרשומה',
 	'flow-topic-action-view' => 'קישור קבוע',
 	'flow-topic-action-watchlist' => 'רשימת מעקב',
 	'flow-topic-action-edit-title' => 'עריכת כותרת',
@@ -2798,7 +2748,6 @@ $messages['he'] = array(
 	'flow-topic-action-hide-topic' => 'להסתיר נושא',
 	'flow-topic-action-delete-topic' => 'למחוק נושא',
 	'flow-topic-action-suppress-topic' => 'להעלים נושא',
-	'flow-topic-action-restore-topic' => 'לשחזר נושא',
 	'flow-error-http' => 'אירעה שגיאה בעת יצירת קשר עם השרת.',
 	'flow-error-other' => 'אירעה שגיאה בלתי־צפויה.',
 	'flow-error-external' => 'אירעה שגיאה.<br />התקבלה הודעת השגיאה הבאה: $1',
@@ -2908,41 +2857,33 @@ $1',
 	'flow-moderation-title-suppress-post' => 'להעלים את הרשומה?',
 	'flow-moderation-title-delete-post' => 'למחוק את הרשומה?',
 	'flow-moderation-title-hide-post' => 'להסתיר את הרשומה?',
-	'flow-moderation-title-restore-post' => 'לשחזר את הרשומה?',
 	'flow-moderation-intro-suppress-post' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה מעלים|את מעלימה}} את הרשומה הזאת.',
 	'flow-moderation-intro-delete-post' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה מוחק|את מוחקת}} את הרשומה הזאת.',
 	'flow-moderation-intro-hide-post' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה מסתיר|את מסתירה}} את הרשומה הזאת.',
-	'flow-moderation-intro-restore-post' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה משחזר|את משחזרת}} את הרשומה הזאת.',
 	'flow-moderation-confirm-suppress-post' => 'להעלים',
 	'flow-moderation-confirm-delete-post' => 'למחוק',
 	'flow-moderation-confirm-hide-post' => 'להסתיר',
-	'flow-moderation-confirm-restore-post' => 'לשחזר',
+	'flow-moderation-confirm-suppress-topic' => 'להעלים',
+	'flow-moderation-confirm-delete-topic' => 'למחוק',
+	'flow-moderation-confirm-hide-topic' => 'להסתיר',
 	'flow-moderation-confirmation-suppress-post' => 'הרשומה הזאת הועלמה בהצלחה.
 אנא {{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.',
 	'flow-moderation-confirmation-delete-post' => 'הרשומה נמחקה בהצלחה.
 אנא {{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.',
 	'flow-moderation-confirmation-hide-post' => 'הרשמה הועלמה בהצלחה.
 אנא {{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הרשומה הזאת.',
-	'flow-moderation-confirmation-restore-post' => 'שחזרת בהצלחה את הרשומה הזאת.',
-	'flow-moderation-title-suppress-topic' => 'להעלים את הנושא?',
-	'flow-moderation-title-delete-topic' => 'למחוק את הנושא?',
-	'flow-moderation-title-hide-topic' => 'להסתיר את הנושא?',
-	'flow-moderation-title-restore-topic' => 'לשחזר את הנושא?',
-	'flow-moderation-intro-suppress-topic' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה מעלים|את מעלימה}} את הנושא הזה.',
-	'flow-moderation-intro-delete-topic' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה מוחק|את מוחקת}} את הרשומה הזאת.',
-	'flow-moderation-intro-hide-topic' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה מסתיר|את מסתירה}} את הנושא הזה.',
-	'flow-moderation-intro-restore-topic' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה משחזר|את משחזרת}} את הנושא הזה.',
-	'flow-moderation-confirm-suppress-topic' => 'להעלים',
-	'flow-moderation-confirm-delete-topic' => 'למחוק',
-	'flow-moderation-confirm-hide-topic' => 'להסתיר',
-	'flow-moderation-confirm-restore-topic' => 'לשחזר',
 	'flow-moderation-confirmation-suppress-topic' => 'הנושא הזה הועלם בהצלחה.
 אנא {{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הנושא הזה.',
 	'flow-moderation-confirmation-delete-topic' => 'הנושא הזה נמחק בהצלחה.
 אנא {{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הנושא הזה.',
 	'flow-moderation-confirmation-hide-topic' => 'הנושא הזה הוסתר בהצלחה.
 אנא {{GENDER:$2|שקול|שקלי}} לתת ל{{GRAMMAR:תחילית|$1}} משוב על הנושא הזה.',
-	'flow-moderation-confirmation-restore-topic' => 'שחזרת בהצלחה את הרשומה הזאת.',
+	'flow-moderation-title-suppress-topic' => 'להעלים את הנושא?',
+	'flow-moderation-title-delete-topic' => 'למחוק את הנושא?',
+	'flow-moderation-title-hide-topic' => 'להסתיר את הנושא?',
+	'flow-moderation-intro-suppress-topic' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה מעלים|את מעלימה}} את הנושא הזה.',
+	'flow-moderation-intro-delete-topic' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה מוחק|את מוחקת}} את הרשומה הזאת.',
+	'flow-moderation-intro-hide-topic' => '{{GENDER:$3|הסבר|הסבירי}} בבקשה למה {{GENDER:$3|אתה מסתיר|את מסתירה}} את הנושא הזה.',
 	'flow-topic-permalink-warning' => 'הנושא הזה התחיל בדף [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'הנושא הזה התחיל ב[$2 לוח של $1]',
 	'flow-revision-permalink-warning-post' => 'זהו קישור קבוע לגרסה פרטנית של הרשומה הזאת.
@@ -3581,10 +3522,8 @@ $messages['ka'] = array(
 	'flow-post-action-hide-post' => 'დამალვა',
 	'flow-moderation-confirm-delete-post' => 'წაშლა',
 	'flow-moderation-confirm-hide-post' => 'დამალვა',
-	'flow-moderation-confirm-restore-post' => 'აღდგენა',
 	'flow-moderation-confirm-delete-topic' => 'წაშლა',
 	'flow-moderation-confirm-hide-topic' => 'დამალვა',
-	'flow-moderation-confirm-restore-topic' => 'აღდგენა',
 );
 
 /** Korean (한국어)
@@ -4557,7 +4496,6 @@ $messages['nl'] = array(
 	'flow-post-action-delete-post' => 'Verwijderen',
 	'flow-post-action-hide-post' => 'Verbergen',
 	'flow-post-action-edit-post' => 'Bewerken',
-	'flow-post-action-restore-post' => 'Bericht terugplaatsen',
 	'flow-topic-action-view' => 'Permanente koppeling',
 	'flow-topic-action-watchlist' => 'Volglijst',
 	'flow-topic-action-edit-title' => 'Titel wijzigen',
@@ -4565,7 +4503,6 @@ $messages['nl'] = array(
 	'flow-topic-action-hide-topic' => 'Onderwerp verbergen',
 	'flow-topic-action-delete-topic' => 'Onderwerp verwijderen',
 	'flow-topic-action-suppress-topic' => 'Onderwerp onderdrukken',
-	'flow-topic-action-restore-topic' => 'Onderwerp terugplaatsen',
 	'flow-error-http' => 'Er is een fout opgetreden in het contact met de server.',
 	'flow-error-other' => 'Er is een onverwachte fout opgetreden.',
 	'flow-error-external' => 'Er is een fout opgetreden.<br />De foutmelding is: $1',
@@ -4674,41 +4611,33 @@ $messages['nl'] = array(
 	'flow-moderation-title-suppress-post' => 'Bericht onderdrukken?',
 	'flow-moderation-title-delete-post' => 'Bericht verwijderen?',
 	'flow-moderation-title-hide-post' => 'Bericht verbergen?',
-	'flow-moderation-title-restore-post' => 'Bericht terugplaatsen?',
 	'flow-moderation-intro-suppress-post' => '{{GENDER:$3|Geef}} een reden op waarom u dit bericht onderdrukt.',
 	'flow-moderation-intro-delete-post' => '{{GENDER:$3|Geef}} een reden op waarom u dit bericht verwijdert.',
 	'flow-moderation-intro-hide-post' => '{{GENDER:$3|Geef}} een reden op waarom u dit bericht verbergt.',
-	'flow-moderation-intro-restore-post' => '{{GENDER:$3|Geef}} een reden op waarom u dit bericht terugplaatst.',
 	'flow-moderation-confirm-suppress-post' => 'Onderdrukken',
 	'flow-moderation-confirm-delete-post' => 'Verwijderen',
 	'flow-moderation-confirm-hide-post' => 'Verbergen',
-	'flow-moderation-confirm-restore-post' => 'Terugplaatsen',
+	'flow-moderation-confirm-suppress-topic' => 'Onderdrukken',
+	'flow-moderation-confirm-delete-topic' => 'Verwijderen',
+	'flow-moderation-confirm-hide-topic' => 'Verbergen',
 	'flow-moderation-confirmation-suppress-post' => 'Het bericht is succesvol onderdrukt.
 {{GENDER:$2|Overweeg}} $1 terugkoppeling te geven over dit bericht.',
 	'flow-moderation-confirmation-delete-post' => 'Het bericht is succesvol verwijderd.
 {{GENDER:$2|Overweeg}} {{GENDER:$1|$1}} terugkoppeling te geven over dit bericht.',
 	'flow-moderation-confirmation-hide-post' => 'Het bericht is succesvol verborgen.
 {{GENDER:$2|Overweeg}} {{GENDER:$1|$1}} terugkoppeling te geven over dit bericht.',
-	'flow-moderation-confirmation-restore-post' => 'U hebt bovenstaand bericht teruggeplaatst.',
-	'flow-moderation-title-suppress-topic' => 'Onderwerp onderdrukken?',
-	'flow-moderation-title-delete-topic' => 'Onderwerp verwijderen?',
-	'flow-moderation-title-hide-topic' => 'Onderwerp verbergen?',
-	'flow-moderation-title-restore-topic' => 'Onderwerp terugplaatsen?',
-	'flow-moderation-intro-suppress-topic' => '{{GENDER:$3|Leg}} uit waarom u dit onderwerp onderdrukt.',
-	'flow-moderation-intro-delete-topic' => '{{GENDER:$3|Leg}} uit waarom u dit onderwerp verwijdert.',
-	'flow-moderation-intro-hide-topic' => '{{GENDER:$3|Leg}} uit waarom u dit onderwerp verbergt.',
-	'flow-moderation-intro-restore-topic' => '{{GENDER:$3|Leg}} uit waarom u dit onderwerp terugplaatst.',
-	'flow-moderation-confirm-suppress-topic' => 'Onderdrukken',
-	'flow-moderation-confirm-delete-topic' => 'Verwijderen',
-	'flow-moderation-confirm-hide-topic' => 'Verbergen',
-	'flow-moderation-confirm-restore-topic' => 'Terugplaatsen',
 	'flow-moderation-confirmation-suppress-topic' => 'Het onderwerp is succesvol onderdrukt.
 {{GENDER:$2|Overweeg}} {{GENDER:$1|$1}} terugkoppeling te geven over dit onderwerp.',
 	'flow-moderation-confirmation-delete-topic' => 'Het onderwerp is succesvol verwijderd.
 {{GENDER:$2|Overweeg}} {{GENDER:$1|$1}} terugkoppeling te geven over dit onderwerp.',
 	'flow-moderation-confirmation-hide-topic' => 'Het onderwerp is succesvol verborgen.
 {{GENDER:$2|Overweeg}} {{GENDER:$1|$1}} terugkoppeling te geven over dit onderwerp.',
-	'flow-moderation-confirmation-restore-topic' => 'U hebt dit bericht teruggeplaatst.',
+	'flow-moderation-title-suppress-topic' => 'Onderwerp onderdrukken?',
+	'flow-moderation-title-delete-topic' => 'Onderwerp verwijderen?',
+	'flow-moderation-title-hide-topic' => 'Onderwerp verbergen?',
+	'flow-moderation-intro-suppress-topic' => '{{GENDER:$3|Leg}} uit waarom u dit onderwerp onderdrukt.',
+	'flow-moderation-intro-delete-topic' => '{{GENDER:$3|Leg}} uit waarom u dit onderwerp verwijdert.',
+	'flow-moderation-intro-hide-topic' => '{{GENDER:$3|Leg}} uit waarom u dit onderwerp verbergt.',
 	'flow-topic-permalink-warning' => 'Dit onderwerp is gestart op [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Dit onderwerp is gestart op het [$2 prikbord van {{GENDER:$1|$1}}]',
 	'flow-revision-permalink-warning-post' => 'Dit is een permanente koppeling naar een enkele versie van dit bericht.
@@ -4784,7 +4713,6 @@ $messages['oc'] = array(
 	'flow-post-action-delete-post' => 'Suprimir',
 	'flow-post-action-hide-post' => 'Amagar',
 	'flow-post-action-edit-post' => 'Modificar',
-	'flow-post-action-restore-post' => 'Restablir lo messatge',
 	'flow-topic-action-view' => 'Ligam permanent',
 	'flow-topic-action-watchlist' => 'Lista de seguiment',
 	'flow-topic-action-edit-title' => 'Modificar lo títol',
@@ -4792,7 +4720,6 @@ $messages['oc'] = array(
 	'flow-topic-action-hide-topic' => 'Amagar lo subjècte',
 	'flow-topic-action-delete-topic' => 'Suprimir lo subjècte',
 	'flow-topic-action-suppress-topic' => 'Suprimir lo subjècte',
-	'flow-topic-action-restore-topic' => 'Restablir lo subjècte',
 	'flow-error-http' => "Una error s'es producha en comunicant amb lo servidor.",
 	'flow-error-other' => "Una error imprevista s'es producha.",
 	'flow-error-external' => "Una error s'es producha.<br />Lo messatge d'error recebut èra :$1",
@@ -4831,11 +4758,9 @@ $messages['oc'] = array(
 	'flow-moderation-confirm-suppress-post' => 'Suprimir',
 	'flow-moderation-confirm-delete-post' => 'Suprimir',
 	'flow-moderation-confirm-hide-post' => 'Amagar',
-	'flow-moderation-confirm-restore-post' => 'Restablir',
 	'flow-moderation-confirm-suppress-topic' => 'Suprimir',
 	'flow-moderation-confirm-delete-topic' => 'Suprimir',
 	'flow-moderation-confirm-hide-topic' => 'Amagar',
-	'flow-moderation-confirm-restore-topic' => 'Restablir',
 );
 
 /** Polish (polski)
@@ -5230,6 +5155,7 @@ $messages['sr-ec'] = array(
 	'flow-topic-actions' => 'Радње',
 	'flow-cancel' => 'Откажи',
 	'flow-preview' => 'Претпреглед',
+	'flow-last-modified-by' => 'Последњу измену је {{GENDER:$1|начинио|начинила}} $1',
 	'flow-newtopic-title-placeholder' => 'Нова тема',
 	'flow-newtopic-save' => 'Додај тему',
 	'flow-post-action-post-history' => 'Историја',
@@ -5546,6 +5472,7 @@ $messages['ug-arab'] = array(
 /** Ukrainian (українська)
  * @author Andriykopanytsia
  * @author Ата
+ * @author Максим Підліснюк
  */
 $messages['uk'] = array(
 	'flow-desc' => 'Система управління робочими процесами',
@@ -5602,7 +5529,6 @@ $messages['uk'] = array(
 	'flow-post-action-delete-post' => 'Видалити',
 	'flow-post-action-hide-post' => 'Приховати',
 	'flow-post-action-edit-post' => 'Редагувати',
-	'flow-post-action-restore-post' => 'Відновити публікацію',
 	'flow-topic-action-view' => 'Постійне посилання',
 	'flow-topic-action-watchlist' => 'Список спостереження',
 	'flow-topic-action-edit-title' => 'Змінити заголовок',
@@ -5610,7 +5536,6 @@ $messages['uk'] = array(
 	'flow-topic-action-hide-topic' => 'Приховати тему',
 	'flow-topic-action-delete-topic' => 'Видалити тему',
 	'flow-topic-action-suppress-topic' => 'Прибрати тему',
-	'flow-topic-action-restore-topic' => 'Відновити тему',
 	'flow-error-http' => 'Сталася помилка при зверненні до сервера.',
 	'flow-error-other' => 'Трапилася неочікувана помилка.',
 	'flow-error-external' => 'Сталася помилка.<br />Отримане повідомлення було:$1',
@@ -5719,41 +5644,37 @@ $messages['uk'] = array(
 	'flow-moderation-title-suppress-post' => 'Прибрати допис?',
 	'flow-moderation-title-delete-post' => 'Видалити допис?',
 	'flow-moderation-title-hide-post' => 'Приховати допис?',
-	'flow-moderation-title-restore-post' => 'Відновити допис?',
+	'flow-moderation-title-undelete-post' => 'Відновити допис?',
 	'flow-moderation-intro-suppress-post' => 'Будь ласка, {{GENDER:$3|поясніть}}, чому ви прибрали цей допис.',
 	'flow-moderation-intro-delete-post' => 'Будь ласка, {{GENDER:$3|поясніть,}} чому ви хочете видалити цей допис.',
 	'flow-moderation-intro-hide-post' => 'Будь ласка, {{GENDER:$3|поясніть,}} чому ви приховуєте цей допис.',
-	'flow-moderation-intro-restore-post' => 'Будь ласка, {{GENDER:$3|поясніть,}} чому ви відновлюєте цей допис.',
 	'flow-moderation-confirm-suppress-post' => 'Прибрати',
 	'flow-moderation-confirm-delete-post' => 'Видалити',
 	'flow-moderation-confirm-hide-post' => 'Приховати',
-	'flow-moderation-confirm-restore-post' => 'Відновити',
+	'flow-moderation-confirm-undelete-post' => 'Відновити',
+	'flow-moderation-confirm-suppress-topic' => 'Прибрати',
+	'flow-moderation-confirm-delete-topic' => 'Видалити',
+	'flow-moderation-confirm-hide-topic' => 'Приховати',
+	'flow-moderation-confirm-undelete-topic' => 'Відновити',
 	'flow-moderation-confirmation-suppress-post' => 'Допис успішно усунено.
 Розгляньте відгук {{GENDER:$2|наданий}} $1 на цей допис.',
 	'flow-moderation-confirmation-delete-post' => 'Цей допис успішно вилучено.
 Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цей допис.',
 	'flow-moderation-confirmation-hide-post' => 'Цей допис успішно приховано.
 Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цей допис.',
-	'flow-moderation-confirmation-restore-post' => 'Ви успішно відновили публікацію вище.',
-	'flow-moderation-title-suppress-topic' => 'Прибрати тему?',
-	'flow-moderation-title-delete-topic' => 'Видалити тему?',
-	'flow-moderation-title-hide-topic' => 'Приховати тему?',
-	'flow-moderation-title-restore-topic' => 'Відновити тему?',
-	'flow-moderation-intro-suppress-topic' => 'Будь ласка, {{GENDER:$3|поясніть,}} чому ви прибрали цю тему.',
-	'flow-moderation-intro-delete-topic' => 'Будь ласка, {{GENDER:$3|поясніть,}} чому ви вилучаєте цю тему.',
-	'flow-moderation-intro-hide-topic' => 'Будь ласка, {{GENDER:$3|поясніть}}, чому ви приховуєте цю тему.',
-	'flow-moderation-intro-restore-topic' => 'Будь ласка, {{GENDER:$3|поясніть,}} чому ви відновлюєте цю тему.',
-	'flow-moderation-confirm-suppress-topic' => 'Прибрати',
-	'flow-moderation-confirm-delete-topic' => 'Видалити',
-	'flow-moderation-confirm-hide-topic' => 'Приховати',
-	'flow-moderation-confirm-restore-topic' => 'Відновити',
 	'flow-moderation-confirmation-suppress-topic' => 'Ця тема успішно усунена.
 Розгляньте відгук {{GENDER:$2|наданий}} $1 на цю тему.',
 	'flow-moderation-confirmation-delete-topic' => 'Тему успішно вилучено.
 Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цю тему.',
 	'flow-moderation-confirmation-hide-topic' => 'Тема успішно прихована.
 Розгляньте відгук {{GENDER:$2|наданий}} $1 на цю тему.',
-	'flow-moderation-confirmation-restore-topic' => 'Ви успішно відновили цю тему.',
+	'flow-moderation-title-suppress-topic' => 'Прибрати тему?',
+	'flow-moderation-title-delete-topic' => 'Видалити тему?',
+	'flow-moderation-title-hide-topic' => 'Приховати тему?',
+	'flow-moderation-title-unhide-topic' => 'Приховати тему?',
+	'flow-moderation-intro-suppress-topic' => 'Будь ласка, {{GENDER:$3|поясніть,}} чому ви прибрали цю тему.',
+	'flow-moderation-intro-delete-topic' => 'Будь ласка, {{GENDER:$3|поясніть,}} чому ви вилучаєте цю тему.',
+	'flow-moderation-intro-hide-topic' => 'Будь ласка, {{GENDER:$3|поясніть}}, чому ви приховуєте цю тему.',
 	'flow-topic-permalink-warning' => 'Ця тема розпочата [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Ця тема розпочата на [$2 стіні {{GENDER:$1|$1}}]',
 	'flow-revision-permalink-warning-post' => 'Це постійне посилання на окрему версію цього допису.
