@@ -2,7 +2,9 @@
 
 namespace Flow\Formatter;
 
+use BagOStuff;
 use ContribsPager;
+use Flow\Container;
 use Flow\Data\RevisionStorage;
 use Flow\DbFactory;
 use Flow\Model\AbstractRevision;
@@ -14,9 +16,8 @@ use Flow\Data\ManagerGroup;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Exception\FlowException;
+use ResultWrapper;
 use User;
-use BagOStuff;
-use Flow\Container;
 
 class ContributionsQuery {
 	/**
@@ -297,11 +298,11 @@ class ContributionsQuery {
 	/**
 	 * Turns DB data into revision objects.
 	 *
-	 * @param \ResultWrapper $rows
+	 * @param ResultWrapper $rows
 	 * @param string $revisionClass Class of revision object to build: PostRevision|Header
 	 * @return array
 	 */
-	protected function loadRevisions( \ResultWrapper $rows, $revisionClass ) {
+	protected function loadRevisions( ResultWrapper $rows, $revisionClass ) {
 		$revisions = array();
 		foreach ( $rows as $row ) {
 			$revisions[UUID::create( $row->rev_id )->getAlphadecimal()] = (array) $row;
