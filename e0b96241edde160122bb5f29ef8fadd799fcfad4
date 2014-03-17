@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_30a91022",
+        "filename": "includes/Parsoid/BadImageRemover.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-17T19:54:29Z",
+      "side": 1,
+      "message": "To provide work-alike functionality to the core parser we should instead use\n\n    $linkNode-\u003eremoveAttribute( \u0027src\u0027 );\n\nI double checked with parsoid team, everything will still round trip properly here if we remove the attribute.\n\nIf we want to prevent the display of the broken tag we could also add a css class to it and target with a specific rule.",
+      "revId": "e0b96241edde160122bb5f29ef8fadd799fcfad4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
