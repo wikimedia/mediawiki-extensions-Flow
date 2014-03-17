@@ -738,8 +738,6 @@ class ObjectManager extends ObjectLocator {
 		throw new DataModelException( 'Not Implemented', 'process-data' );
 	}
 }
-class PersistenceException extends \MWException {
-}
 
 /**
  * $userMapper = new BasicObjectMapper(
