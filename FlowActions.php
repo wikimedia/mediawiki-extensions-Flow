@@ -3,12 +3,9 @@
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\Header;
-use Flow\Model\UUID;
 use Flow\RevisionActionPermissions;
-use Flow\Exception\DataModelException;
 use Flow\Log\Logger;
-use Flow\Templating;
-use Flow\Container;
+use Flow\Data\RecentChanges;
 
 /**
  * Flow actions: key => value map with key being the action name.
@@ -16,6 +13,7 @@ use Flow\Container;
  * * performs-writes: Must be boolean true for any action that writes to the wiki.
  *     actions with this set will additionally require the core 'edit' permission.
  * * log_type: the Special:Log filter to save actions to.
+ * * rc_insert: whether or not to insert the write action into RC table.
  * * permissions: array of permissions, where each key is the existing post
  *   state and value is the action required to execute the action.
  * * button-method: used in PostActionMenu, to generate GET (a) or POST (form)
@@ -33,6 +31,7 @@ $wgFlowActions = array(
 	'create-header' => array(
 		'performs-writes' => true,
 		'log_type' => false,
+		'rc_insert' => true,
 		'permissions' => array(
 			Header::MODERATED_NONE => '',
 		),
@@ -50,6 +49,7 @@ $wgFlowActions = array(
 	'edit-header' => array(
 		'performs-writes' => true,
 		'log_type' => false,
+		'rc_insert' => true,
 		'permissions' => array(
 			Header::MODERATED_NONE => '',
 		),
@@ -67,6 +67,7 @@ $wgFlowActions = array(
 	'edit-title' => array(
 		'performs-writes' => true,
 		'log_type' => false,
+		'rc_insert' => true,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),
@@ -89,6 +90,7 @@ $wgFlowActions = array(
 	'new-post' => array(
 		'performs-writes' => true,
 		'log_type' => false,
+		'rc_insert' => true,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),
@@ -108,6 +110,7 @@ $wgFlowActions = array(
 	'edit-post' => array(
 		'performs-writes' => true,
 		'log_type' => false,
+		'rc_insert' => true,
 		'permissions' => array(
 			// no permissions needed for own posts
 			PostRevision::MODERATED_NONE => function( PostRevision $post, RevisionActionPermissions $permissions ) {
@@ -130,6 +133,7 @@ $wgFlowActions = array(
 	'hide-post' => array(
 		'performs-writes' => true,
 		'log_type' => false,
+		'rc_insert' => true,
 		'permissions' => array(
 			// Permissions required to perform action. The key is the moderation state
 			// of the post to perform the action against. The value is a string or array
@@ -154,6 +158,7 @@ $wgFlowActions = array(
 	'hide-topic' => array(
 		'performs-writes' => true,
 		'log_type' => false,
+		'rc_insert' => true,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 		),
@@ -175,6 +180,7 @@ $wgFlowActions = array(
 	'delete-post' => array(
 		'performs-writes' => true,
 		'log_type' => 'delete',
+		'rc_insert' => true,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
@@ -197,6 +203,7 @@ $wgFlowActions = array(
 	'delete-topic' => array(
 		'performs-writes' => true,
 		'log_type' => 'delete',
+		'rc_insert' => true,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
@@ -219,6 +226,7 @@ $wgFlowActions = array(
 	'suppress-post' => array(
 		'performs-writes' => true,
 		'log_type' => 'suppress',
+		'rc_insert' => false,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => 'flow-suppress',
 			PostRevision::MODERATED_HIDDEN => 'flow-suppress',
@@ -242,6 +250,7 @@ $wgFlowActions = array(
 	'suppress-topic' => array(
 		'performs-writes' => true,
 		'log_type' => 'suppress',
+		'rc_insert' => false,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => 'flow-suppress',
 			PostRevision::MODERATED_HIDDEN => 'flow-suppress',
@@ -276,6 +285,18 @@ $wgFlowActions = array(
 			}
 
 			return '';
+		},
+		'rc_insert' => function( PostRevision $revision, RecentChanges $recentChanges ) {
+			$post = $revision->getCollection();
+			$previousRevision = $post->getPrevRevision( $revision );
+			if ( $previousRevision ) {
+				// * if post was hidden/deleted, restore can go to RC
+				// * if post was suppressed, restore can not go to RC
+				global $wgFlowActions;
+				return $wgFlowActions[$previousRevision->getModerationState() . '-post']['rc_insert'];
+			}
+
+			return true;
 		},
 		'permissions' => array(
 			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
@@ -316,6 +337,18 @@ $wgFlowActions = array(
 
 			return '';
 		},
+		'rc_insert' => function( PostRevision $revision, RecentChanges $recentChanges ) {
+				$post = $revision->getCollection();
+				$previousRevision = $post->getPrevRevision( $revision );
+				if ( $previousRevision ) {
+					// * if topic was hidden/deleted, restore can go to RC
+					// * if topic was suppressed, restore can not go to RC
+					global $wgFlowActions;
+					return $wgFlowActions[$previousRevision->getModerationState() . '-topic']['rc_insert'];
+				}
+
+				return true;
+			},
 		'permissions' => array(
 			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
@@ -343,6 +376,7 @@ $wgFlowActions = array(
 	'view' => array(
 		'performs-writes' => false,
 		'log_type' => false, // don't log views
+		'rc_insert' => false, // won't even be called, actually; only for writes
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => function( AbstractRevision $post, RevisionActionPermissions $permissions ) {
@@ -359,6 +393,7 @@ $wgFlowActions = array(
 	'reply' => array(
 		'performs-writes' => true,
 		'log_type' => false,
+		'rc_insert' => true,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 		),
@@ -386,6 +421,7 @@ $wgFlowActions = array(
 	'post-history' => array(
 		'performs-writes' => false,
 		'log_type' => false,
+		'rc_insert' => false, // won't even be called, actually; only for writes
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => function( AbstractRevision $revision, RevisionActionPermissions $permissions ) {
 				static $previousCollectionId;

@@ -2,6 +2,7 @@
 
 namespace Flow\Data;
 
+use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -9,6 +10,7 @@ use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
 use Language;
 use RecentChange;
+use Closure;
 
 abstract class RecentChanges implements LifecycleHandler {
 
@@ -20,14 +22,21 @@ abstract class RecentChanges implements LifecycleHandler {
 	const TRUNCATE_LENGTH = 164;
 
 	/**
+	 * @var FlowActions
+	 */
+	protected $actions;
+
+	/**
 	 * @var UserNameBatch
 	 */
 	protected $usernames;
 
 	/**
+	 * @param FlowActions $actions
 	 * @param UserNameBatch $usernames
 	 */
-	public function __construct( UserNameBatch $usernames ) {
+	public function __construct( FlowActions $actions, UserNameBatch $usernames ) {
+		$this->actions = $actions;
 		$this->usernames = $usernames;
 	}
 
@@ -57,10 +66,7 @@ abstract class RecentChanges implements LifecycleHandler {
 		$revisionId = $revision->getRevisionId()->getAlphadecimal();
 		$timestamp = $revision->getRevisionId()->getTimestamp();
 
-		if ( $action === 'suppress-topic' || $action === 'suppress-post' ) {
-			// @todo: should be move this into FlowActions.php somehow?
-			// Suppression log entries should not go to recentchanges (bug 60814)
-			// @todo: does this still make sense in here? Formatter properly checks permissions now
+		if ( !$this->isAllowed( $revision, $action ) ) {
 			return;
 		}
 
@@ -110,6 +116,20 @@ abstract class RecentChanges implements LifecycleHandler {
 		$rc = RecentChange::newFromRow( (object)$attribs );
 		$rc->save();  // Insert into db and send to RC feeds
 	}
+
+	/**
+	 * @param AbstractRevision $revision
+	 * @param string $action
+	 * @return bool
+	 */
+	public function isAllowed( AbstractRevision $revision, $action ) {
+		$allowed = $this->actions->getValue( $action, 'rc_insert' );
+		if ( $allowed instanceof Closure ) {
+			$allowed = $allowed( $revision, $this );
+		}
+
+		return (bool) $allowed;
+	}
 }
 
 class HeaderRecentChanges extends RecentChanges {
@@ -123,8 +143,8 @@ class HeaderRecentChanges extends RecentChanges {
 	 */
 	protected $contLang;
 
-	public function __construct( UserNameBatch $usernames, ManagerGroup $storage, Language $contLang ) {
-		parent::__construct( $usernames );
+	public function __construct( FlowActions $actions, UserNameBatch $usernames, ManagerGroup $storage, Language $contLang ) {
+		parent::__construct( $actions, $usernames );
 		$this->storage = $storage;
 		$this->contLang = $contLang;
 	}
@@ -171,8 +191,8 @@ class PostRevisionRecentChanges extends RecentChanges {
 	 */
 	protected $contLang;
 
-	public function __construct( UserNameBatch $usernames, ManagerGroup $storage, TreeRepository $tree, Language $contLang ) {
-		parent::__construct( $usernames );
+	public function __construct( FlowActions $actions, UserNameBatch $usernames, ManagerGroup $storage, TreeRepository $tree, Language $contLang ) {
+		parent::__construct( $actions, $usernames );
 		$this->storage = $storage;
 		$this->tree = $tree;
 		$this->contLang = $contLang;
