@@ -4,6 +4,7 @@ Feature: Actions menu Permalink
 @clean
 Scenario: Actions menu Permalink
   Given I am on Flow page
+    And page has no ResourceLoader errors
     And I have created a Flow topic
   When I click Actions menu for the Topic
     And I click Permalink from the Actions menu
