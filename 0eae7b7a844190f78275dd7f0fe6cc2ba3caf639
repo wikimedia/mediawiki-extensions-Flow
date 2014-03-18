@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_dc4d4b41",
+        "filename": "Flow.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-03-18T07:37:42Z",
+      "side": 1,
+      "message": "If \u0027user\u0027 has this permission, sysop automatically has it, no? (*, user, sysop, bureaucrat adheres to this logic, AFAIK.)",
+      "revId": "0eae7b7a844190f78275dd7f0fe6cc2ba3caf639",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
