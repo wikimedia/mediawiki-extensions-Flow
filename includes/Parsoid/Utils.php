@@ -199,6 +199,27 @@ abstract class Utils {
 
 		return $dom;
 	}
+
+	/**
+	 * Return modules required to render the content.
+	 *
+	 * @return array
+	 *		array[0] string|NULL RL module to add with addModuleStyles (CSS).
+	 *		array[1] string|NULL RL module to add with addModules (JavaScript).
+	 */
+	public static function getModules() {
+		$ret = array(
+			'styleModule',
+			NULL
+		);
+		list( $parsoidURL ) = self::parsoidConfig();
+		if ( isset( $parsoidURL ) && $parsoidURL ) {
+			return array( 'ext.parsoid.styles', NULL );
+		} else {
+			return array( NULL, NULL );
+		}
+		return $ret;
+	}
 }
 
 class NoParsoidException extends \MWException {}
