@@ -212,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_d0bd2f65",
+        "filename": "modules/base/action.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-18T13:20:05Z",
+      "side": 1,
+      "message": "There\u0027s some differences in ui-functions.js\u0027s setupTipsy() and action.js\u0027s tipsy() functions.\n\nThe former is used for the junkdrawer menus, the latter for edit conflict warnings (and this here).\n\nThe former was not originally \"abstracted out\" into its own method. Now that both are properly singled out, we could probably have one call the other.\n\nBoth have a somewhat different setup though: the one for the junkdrawer menus is built from the HTML already rendered on the page (but hidden up to that point), the latter is created from a message built in JS. There\u0027s also some differences on when they should show/hide, and probably some other more subtle differences.\n\nWhile it would probably be possible to have one call the other to actually show the tipsy, I\u0027d personally prefer to keep both seperated: there\u0027s enough differences between how both of those cases need to work, and making one call the other would probably result in more confusing code (with a lot of if-this-then-that stuff) - the only thing both really share is a call to core\u0027s tipsy().\n\nHowever, we should probably think of renaming those functions, I can see the confusion in having multiple tipsy-named function.",
+      "parentUuid": "ee14bf34_c11c447f",
+      "revId": "ed5b26668bf444bb93e00ce10ab8a4e30b1448ed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_b87750fd",
         "filename": "modules/base/action.js",
         "patchSetId": 4
