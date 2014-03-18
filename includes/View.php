@@ -21,10 +21,15 @@ class View extends ContextSource {
 
 	public function show( WorkflowLoader $loader, $action ) {
 		$out = $this->getOutput();
-		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.base' ) );
-		$out->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
+		// XXX This may not be the best place to do it. If the content
+		// we're rendering is stored as getContentFormat() === 'html' then we want Parsoid CSS.
+wfDebugLog( 'Flow', __METHOD__ . ': requesting  \Flow\Parsoid\Utils::getModules()');
+		list( $parsoidStyleModule, $parsoidModule ) = \Flow\Parsoid\Utils::getModules();
 
-		// Allow other extensions to add modules
+		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.base', $parsoidStyleModule ) );
+		$out->addModules( array( 'ext.flow.base', 'ext.flow.editor', $parsoidModule ) );
+
+		// Allow other extensions to add modules.
 		wfRunHooks( 'FlowAddModules', array( $out ) );
 
 		$workflow = $loader->getWorkflow();
