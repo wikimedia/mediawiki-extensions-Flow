@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_5ce6db14",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-03-18T08:26:22Z",
+      "side": 1,
+      "message": "This is unreachable code (also a few times below).",
+      "revId": "9e020882f7f5efc8652cb2baf2f3aa2c338fd1d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_3ceb27dd",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-03-18T08:26:22Z",
+      "side": 1,
+      "message": "Please remove trailing whitespace.",
+      "revId": "9e020882f7f5efc8652cb2baf2f3aa2c338fd1d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_1ce863dc",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-03-18T08:26:22Z",
+      "side": 1,
+      "message": "Trailing whitespace.",
+      "revId": "9e020882f7f5efc8652cb2baf2f3aa2c338fd1d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
