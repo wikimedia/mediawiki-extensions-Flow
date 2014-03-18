@@ -91,7 +91,9 @@ class Contributions extends AbstractFormatter {
 				$title,
 				$workflow->getId(),
 				$revision->getRevisionId(),
-				$revision->getPrevRevisionId()
+				$revision->getPrevRevisionId(),
+				$revision->getRevisionType(),
+				$row->blocktype
 			);
 			$diffLink = wfMessage( 'parentheses' )
 				->rawParams( Html::rawElement(
