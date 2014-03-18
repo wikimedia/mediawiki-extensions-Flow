@@ -297,11 +297,13 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	public function insert( array $row ) {
-		// Check if we need to insert new content
-		if ( $this->externalStore && !isset( $row['rev_content_url'] ) ) {
-			$row = $this->insertExternalStore( $row );
-		}
 		$rev = $this->splitUpdate( $row, 'rev' );
+
+		// Check if we need to insert new content
+		if ( $this->externalStore && !isset( $rev['rev_content_url'] ) ) {
+			$rev = $this->insertExternalStore( $rev );
+		}
+
 		// If a content url is available store that in the db
 		// instead of real content.
 		if ( isset( $rev['rev_content_url'] ) ) {
@@ -357,6 +359,18 @@ abstract class RevisionStorage extends DbStorage {
 		}
 
 		$rev = $this->splitUpdate( $changeSet, 'rev' );
+
+		// Check if we need to insert new content
+		if ( $this->externalStore && !isset( $rev['rev_content_url'] ) ) {
+			$rev = $this->insertExternalStore( $rev );
+		}
+
+		// If a content url is available store that in the db
+		// instead of real content.
+		if ( isset( $rev['rev_content_url'] ) ) {
+			$rev['rev_content'] = $rev['rev_content_url'];
+		}
+		unset( $rev['rev_content_url'] );
 
 		if ( $rev ) {
 			$dbw = $this->dbFactory->getDB( DB_MASTER );
