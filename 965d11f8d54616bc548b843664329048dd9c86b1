@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_01947c8c",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-18T00:01:05Z",
+      "side": 1,
+      "message": "Instead of stacking summary inside Topic block, maybe create a separate topicSummary block which saves topic summary on action like \u0027edit-topic-summary\u0027 and \u0027close/hide\u0027 topic.  This would also allow querying summary content from the API easily.",
+      "revId": "965d11f8d54616bc548b843664329048dd9c86b1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
