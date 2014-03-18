@@ -227,6 +227,7 @@ $wgHooks['InfoAction'][] = 'FlowHooks::onInfoAction';
 $wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGetLinksFromRow';
 $wgHooks['MakeGlobalVariablesScript'][] = 'FlowHooks::onMakeGlobalVariablesScript';
 $wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';
+$wgHooks['FlowAddModules'][] = 'Flow\Parsoid\Utils::onFlowAddModules';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
