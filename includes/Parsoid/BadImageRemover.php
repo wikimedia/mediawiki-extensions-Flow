@@ -9,8 +9,8 @@ use Title;
 use FormatJson;
 
 /**
- * Parsoid ignores bad_image_list. With good reason: redlinks should only be
- * applied when rendering the content, not when it's created. This
+ * Parsoid ignores bad_image_list. With good reason: bad images should only be
+ * removed when rendering the content, not when it's created. This
  * class updates HTML content from Parsoid by deleting inappropriate images, as
  * defined by wfIsBadImage().
  *
