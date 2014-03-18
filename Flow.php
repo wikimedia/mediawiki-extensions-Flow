@@ -246,6 +246,7 @@ $wgHooks['MakeGlobalVariablesScript'][] = 'FlowHooks::onMakeGlobalVariablesScrip
 $wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';
 $wgHooks['SkinMinervaDefaultModules'][] = 'FlowHooks::onSkinMinervaDefaultModules';
 $wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
+$wgHooks['FlowAddModules'][] = 'Flow\Parsoid\Utils::onFlowAddModules';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
