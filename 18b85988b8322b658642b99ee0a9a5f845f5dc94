@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_30e10b98",
+        "filename": "modules/base/action.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-18T13:20:13Z",
+      "side": 0,
+      "message": "Any reason why the tipsy should no longer be closed when clicked? (or did that code got moved somewhere else and am I just missing it?)",
+      "revId": "18b85988b8322b658642b99ee0a9a5f845f5dc94",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
