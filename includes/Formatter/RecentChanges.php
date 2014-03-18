@@ -84,7 +84,9 @@ class RecentChanges extends AbstractFormatter {
 				$title,
 				$workflowId,
 				$revision->getRevisionId(),
-				$revision->getPrevRevisionId()
+				$revision->getPrevRevisionId(),
+				$revision->getRevisionType(),
+				$changeData['block']
 			);
 			$diffLink = wfMessage( 'parentheses' )
 				->rawParams( Html::rawElement(
