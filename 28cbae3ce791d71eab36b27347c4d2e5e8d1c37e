@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_06fc8db0",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-18T16:59:27Z",
+      "side": 1,
+      "message": "A new topic can be submitted without first post, in which case this one will be null and cause an exception.\n\nFixed in https://gerrit.wikimedia.org/r/#/c/119307/",
+      "revId": "28cbae3ce791d71eab36b27347c4d2e5e8d1c37e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
