@@ -420,6 +420,17 @@ abstract class RevisionStorage extends DbStorage {
 		}
 		return $rev;
 	}
+
+	/**
+	 * When retrieving revisions from DB, self::mergeExternalContent will be
+	 * called to fetch the content. This could fail, resulting in the content
+	 * being a 'false' value.
+	 *
+	 * {@inheritDoc}
+	 */
+	public function validate( array $row ) {
+		return $row['rev_content'] !== false;
+	}
 }
 
 class PostRevisionStorage extends RevisionStorage {

@@ -27,7 +27,7 @@ interface LifecycleHandler {
 	function onAfterRemove( $object, array $old );
 }
 
-// Some denormalized data doesnt accept writes, it merely triggers cache updates
+// Some denormalized data doesn't accept writes, it merely triggers cache updates
 // when something else does the write. Indexes are the primary use case.
 // IteratorAggregate rather than traversable to simplify nested implementations
 interface ObjectStorage extends \IteratorAggregate {
@@ -48,6 +48,18 @@ interface ObjectStorage extends \IteratorAggregate {
 	// Clear any information stored about loaded objects
 	// This interface is used by the frontend (ObjectLocator) and the backend (BasicDbStorage, etc)
 	//function clear();
+
+	/**
+	 * Returns a boolean true/false to indicate if the result of a particular
+	 * query is valid & can be cached.
+	 * In some cases, the retrieved data should not be cached. E.g. revisions
+	 * with external content: revision data may be loaded, but the content could
+	 * not be fetched from external storage. That shouldn't persist in cache.
+	 *
+	 * @param array $row
+	 * @return bool
+	 */
+	function validate( array $row );
 }
 
 // Backing stores, typically in SQL
@@ -547,6 +559,13 @@ class ObjectLocator implements ObjectStorage {
 
 		return $dbOptions;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function validate( array $row ) {
+		return $this->storage->validate( $row );
+	}
 }
 
 /**
@@ -880,6 +899,13 @@ abstract class DbStorage implements WritableObjectStorage {
 		}
 
 		// Everything passes
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	function validate( array $row ) {
 		return true;
 	}
 }
@@ -1467,6 +1493,7 @@ abstract class FeatureIndex implements Index {
 		// query backing store
 		$options = $this->queryOptions();
 		$stored = $this->storage->findMulti( $queries, $options );
+
 		$results = array();
 
 		// map store results to cache key
@@ -1482,9 +1509,14 @@ abstract class FeatureIndex implements Index {
 					}
 				}
 			}
-			$this->cache->add( $cacheKeys[$idx], $this->rowCompactor->compactRows( $rows ) );
+
 			$results[$idx] = $rows;
 			unset( $queries[$idx] );
+
+			// don't cache invalid objects
+			if ( $this->storage->validate( $row ) ) {
+				$this->cache->add( $cacheKeys[$idx], $this->rowCompactor->compactRows( $rows ) );
+			}
 		}
 
 		if ( count( $queries ) !== 0 ) {

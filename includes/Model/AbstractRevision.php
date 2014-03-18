@@ -394,6 +394,13 @@ abstract class AbstractRevision {
 	 * @return string
 	 */
 	public function getContent( $format = 'html' ) {
+		// if ExternalStore is out, it may happen that content is not properly
+		// retrieved, in which case we'll still want to go ahead, but display
+		// a placeholder message.
+		if ( $this->content === false ) {
+			return wfMessage( 'flow-stub-text-content' )->parse();
+		}
+
 		if ( $this->xssCheck === false ) {
 			return '';
 		}
@@ -409,7 +416,7 @@ abstract class AbstractRevision {
 		}
 
 		if ( !$this->isFormatted() ) {
-			return $raw;
+			return htmlspecialchars( $raw );
 		}
 		if ( !isset( $this->convertedContent[$format] ) ) {
 			if ( $sourceFormat === $format ) {

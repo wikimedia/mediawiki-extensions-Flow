@@ -79,7 +79,7 @@ echo Html::openElement( 'div', array(
 	<div class="flow-titlebar mw-ui-button">
 		<div class="flow-topic-title">
 			<?php
-				echo Html::element( 'h2',
+				echo Html::rawElement( 'h2',
 					array( 'class' => 'flow-realtitle' ),
 					$title
 				), $postView->createModifiedTipsyLink( $block );

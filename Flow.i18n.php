@@ -58,6 +58,7 @@ $messages['en'] = array(
 	'flow-last-modified-by' => 'Last {{GENDER:$1|modified}} by $1',
 
 	'flow-system-usertext' => '{{SITENAME}}',
+	'flow-stub-text-content' => "''Due to a technical error, this content could not be retrieved.''",
 	'flow-stub-post-content' => "''Due to a technical error, this post could not be retrieved.''",
 
 	'flow-newtopic-title-placeholder' => 'New topic',
@@ -494,7 +495,8 @@ Changes refers to diff between revisions.
 	'flow-last-modified-by' => 'Used as text to show who made the last content modification. Parameters:
 * $1 - username of the user who last made the content modification, can be used for GENDER support',
 	'flow-system-usertext' => "Stub username to be displayed when a post's information could not be loaded due to technical issues.",
-	'flow-stub-post-content' => 'Stub post content to be displayed when the real post could not be loaded due to technical issues.',
+	'flow-stub-text-content' => 'Stub content to be displayed when the real content could not be loaded due to technical issues.',
+	'flow-stub-post-content' => 'Stub post content to be displayed when the full post data could not be loaded due to technical issues.',
 	'flow-newtopic-title-placeholder' => 'Used as placeholder for the "Subject/Title for topic" textarea.
 {{Identical|New topic}}',
 	'flow-newtopic-content-placeholder' => 'Used as placeholder for the "Content" textarea.',
