@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_55f588b4",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T13:57:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee14bf34_42acc884",
+      "revId": "e39d37c6a7822263ccf58226176be5222e2e4744",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_edaf4ddd",
         "filename": "includes/Data/ObjectManager.php",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2014-03-14T00:31:38Z",
       "side": 1,
       "message": "If the concern is revision change doesn\u0027t get carried along execution in the same request.  Maybe we can make the object a singleton instance on primary key level?",
+      "revId": "e39d37c6a7822263ccf58226176be5222e2e4744",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_756e4c2c",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T13:57:15Z",
+      "side": 1,
+      "message": "I\u0027ll merge this one for now; we can pursue that idea in a seperate patch",
+      "parentUuid": "ee14bf34_edaf4ddd",
       "revId": "e39d37c6a7822263ccf58226176be5222e2e4744",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
