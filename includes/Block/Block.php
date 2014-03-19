@@ -100,13 +100,13 @@ abstract class AbstractBlock implements Block {
 	//abstract public function commit();
 
 	public function init( $action, $user ) {
-		$this->action = $action;
+		$this->action = $this->getActionName( $action );
 		$this->user = $user;
 	}
 
 	public function onSubmit( $action, User $user, array $data  ) {
 		$section = new \ProfileSection( __METHOD__ );
-		if ( false === array_search( $action, $this->supportedPostActions ) ) {
+		if ( false === array_search( $this->getActionName( $action ), $this->supportedPostActions ) ) {
 			return null;
 		}
 
@@ -120,7 +120,7 @@ abstract class AbstractBlock implements Block {
 
 	public function onRender( $action, Templating $templating, array $options ) {
 		$section = new \ProfileSection( __METHOD__ );
-		if ( !in_array( $action, $this->supportedGetActions ) ) {
+		if ( !in_array( $this->getActionName( $action ), $this->supportedGetActions ) ) {
 			return false;
 		}
 
@@ -192,6 +192,24 @@ abstract class AbstractBlock implements Block {
 
 	public function getStorage() {
 		return $this->storage;
+	}
+
+	/**
+	 * Given a certain action name, this returns the valid action name. This is
+	 * meant for BC compatibility with renamed actions.
+	 *
+	 * @param string $action
+	 * @return string
+	 */
+	public function getActionName( $action ) {
+		// BC for renamed actions
+		$alias = Container::get( 'flow_actions' )->getValue( $action );
+		if ( is_string( $alias ) ) {
+			// All proper actions return arrays, but aliases return a string
+			$action = $alias;
+		}
+
+		return $action;
 	}
 
 	/**
