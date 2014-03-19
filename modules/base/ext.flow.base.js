@@ -136,6 +136,10 @@ mw.flow = {
 			return mw.flow.api.readBlock( pageName, workflowId, 'header', options );
 		},
 
+		'readTopicSummary': function( pageName, topicId, options ) {
+			return mw.flow.api.readBlock( pageName, topicId, 'topicsummary', options );
+		},
+
 		generateTopicAction: function( actionName, parameterList, promiseFilterCallback ) {
 			var params = $.makeArray( arguments ),
 				innerAction;
@@ -155,7 +159,7 @@ mw.flow = {
 		 * @param {object} parameterList
 		 * @param {function} promiseFilterCallback
 		 * @return {function}
-		 */
+		 *
 		'generateBlockAction' : function ( blockName, actionName, parameterList, promiseFilterCallback ) {
 			return function ( workflowSpec ) {
 				var deferredObject = $.Deferred(),
@@ -195,6 +199,108 @@ mw.flow = {
 						return;
 					}
 					output = data.flow[actionName].result[blockName];
+
+					deferredObject.resolve( output, data );
+				} )
+				.fail( function () {
+					deferredObject.reject.apply( this, arguments );
+				} );
+
+				if ( promiseFilterCallback ) {
+					newDeferredObject = promiseFilterCallback( deferredObject.promise() );
+					if ( newDeferredObject ) {
+						deferredObject = newDeferredObject;
+					}
+				}
+
+				return deferredObject.promise();
+			};
+		}, */
+
+		/**
+		 * @Todo - The code is handling multiblocks as a special case, it should be improved in a
+		 * way that they are treated the same, a single block is a 'multiblocks' with one block
+		 *
+		 * @param {string|object} blockName string for single block or object for multi blocks
+		 * @param {string} actionName
+		 * @param {object} parameterList
+		 * @param {function} promiseFilterCallback
+		 * @return {function}
+		 */
+		'generateBlockAction' : function ( blockName, actionName, parameterList, promiseFilterCallback ) {
+			var multiBlocks = true;
+			if ( typeof blockName === 'string' ) {
+				multiBlocks = false;
+			}
+			return function ( workflowSpec ) {
+				var deferredObject = $.Deferred(),
+					requestParams = {},
+					paramIndex = 1,
+					requestArguments = arguments,
+					newDeferredObject,
+					realParams = {};
+
+				if ( multiBlocks ) {
+					$.each( parameterList, function ( paramListKey, paramListValue ) {
+						requestParams = {};
+						$.each( paramListValue, function ( paramKey, paramValue ) {
+							// Ignore null values
+							if ( requestArguments[paramIndex][paramKey] !== null ) {
+								requestParams[paramValue] = requestArguments[paramIndex][paramKey];
+							}
+						} );
+						paramIndex++;
+						realParams[blockName[paramListKey]] = requestParams;
+					} );
+				} else {
+					$.each( parameterList, function ( key, value ) {
+						// Ignore null values
+						if ( requestArguments[paramIndex] !== null ) {
+							requestParams[value] = requestArguments[paramIndex];
+						}
+						paramIndex++;
+					} );
+					realParams[blockName] = requestParams;
+				}
+
+				mw.flow.api.executeAction(
+					workflowSpec,
+					actionName,
+					realParams,
+					true
+				).done( function ( data ) {
+					var output, success = true;
+
+					if ( data.flow[actionName].errors ) {
+						deferredObject.reject( 'block-errors', data.flow[actionName].errors );
+						return;
+					}
+					if ( multiBlocks ) {
+						output = {};
+						$.each( blockName, function ( key, value ) {
+							if ( !data.flow[actionName].result[value] ) {
+								success = false;
+							} else {
+								output[value] = data.flow[actionName].result[value];
+							}
+						} );
+					} else {
+						if ( !data.flow[actionName].result[blockName] ) {
+							success = false;
+						} else {
+							output = data.flow[actionName].result[blockName];
+						}
+					}
+
+					if (
+						!data.flow ||
+						!data.flow[actionName] ||
+						!data.flow[actionName].result ||
+						!success
+					) {
+						deferredObject.reject( 'invalid-result', 'Unable to find appropriate section in result' );
+						return;
+					}
 
 					deferredObject.resolve( output, data );
 				} )
@@ -268,6 +374,25 @@ mw.flow.api.editHeader = mw.flow.api.generateBlockAction(
 	[
 		'content',
 		'prev_revision'
+	]
+);
+
+mw.flow.api.editTopicSummary = mw.flow.api.generateBlockAction(
+	'topicsummary',
+	'edit-topic-summary',
+	[
+		'summary',
+		'prev_revision'
+	]
+);
+
+mw.flow.api.closeReopenTopic = mw.flow.api.generateBlockAction(
+	[ 'topicsummary', 'topic' ],
+	'moderate-topic',
+	[
+		// Maybe move them out of block namespace
+		[ 'summary', 'moderationState', 'prev_revision' ],
+		[ 'summary', 'moderationState', 'prev_revision' ]
 	]
 );
 
