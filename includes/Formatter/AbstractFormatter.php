@@ -253,17 +253,19 @@ abstract class AbstractFormatter {
 	 * @param UUID $workflowId
 	 * @param UUID $oldId
 	 * @param UUID $newId
+	 * @param string $revisionType
+	 * @param string $blockName
 	 * @return array Two element array with string url and Message object
 	 */
-	public function revisionDiffLink( Title $title, UUID $workflowId, UUID $oldId, UUID $newId ) {
+	public function revisionDiffLink( Title $title, UUID $workflowId, UUID $oldId, UUID $newId, $revisionType, $blockName ) {
 		return array(
 			$this->urlGenerator->buildUrl(
 				$title,
-				'compare-post-revisions',
+				'compare-' . $revisionType . '-revisions',
 				array(
 					'workflow' => $workflowId->getAlphadecimal(),
-					'topic_oldRevision' => $oldId->getAlphadecimal(),
-					'topic_newRevision' => $newId->getAlphadecimal(),
+					$blockName . '_oldRevision' => $oldId->getAlphadecimal(),
+					$blockName . '_newRevision' => $newId->getAlphadecimal(),
 				)
 			),
 			wfMessage( 'diff' )
