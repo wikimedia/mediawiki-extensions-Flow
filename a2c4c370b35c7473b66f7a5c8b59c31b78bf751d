@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_5585889e",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T14:15:44Z",
+      "side": 1,
+      "message": "typo: equivalent",
+      "revId": "a2c4c370b35c7473b66f7a5c8b59c31b78bf751d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
