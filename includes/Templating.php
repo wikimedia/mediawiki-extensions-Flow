@@ -197,10 +197,22 @@ class Templating {
 			return '';
 		}
 
+		// @Todo - it seems weird to put the summary look up inside a templating class
+		$found = Container::get( 'storage' )->find(
+			'PostSummary',
+			array( 'rev_type_id' => $root->getPostId() ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+		);
+		$summary = null;
+		if ( $found ) {
+			$summary = reset( $found );
+		}
+
 		return $this->render( "flow:topic.html.php", array(
 			'block' => $block,
 			'topic' => $block->getWorkflow(),
 			'root' => $root,
+			'summary' => $summary,
 			'postActionMenu' => $actionMenu,
 			'postView' => $view
 		), $return );
@@ -509,6 +521,7 @@ class Templating {
 
 		// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
 		//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
+		//           flow-close-title-content
 		$message = wfMessage( "flow-$state-$type-content", $username )->rawParams( $this->getUserLinks( $revision ) );
 
 		if ( $message->exists() ) {
