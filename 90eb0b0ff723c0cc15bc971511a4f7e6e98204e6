@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_1802a5be",
+        "filename": "includes/Formatter/Contributions.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T14:52:51Z",
+      "side": 1,
+      "message": "Why die? if format returns false, it will just skip that line in contributions; seems better than dieing altogether?",
+      "revId": "90eb0b0ff723c0cc15bc971511a4f7e6e98204e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_f806d1d0",
+        "filename": "includes/Formatter/Contributions.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T14:52:51Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "90eb0b0ff723c0cc15bc971511a4f7e6e98204e6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
