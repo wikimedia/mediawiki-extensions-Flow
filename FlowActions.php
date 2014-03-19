@@ -87,6 +87,7 @@ $wgFlowActions = array(
 		'log_type' => false,
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_CLOSED => '',
 		),
 		'button-method' => 'GET',
 		'history' => array(
@@ -191,7 +192,7 @@ $wgFlowActions = array(
 		'performs-writes' => true,
 		'log_type' => false,
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
 		'history' => array(
@@ -302,12 +303,9 @@ $wgFlowActions = array(
 		'performs-writes' => true,
 		'log_type' => 'close',
 		'permissions' => array(
-			PostRevision::MODERATED_NONE => 'flow-close',
-			PostRevision::MODERATED_HIDDEN => 'flow-close',
-			PostRevision::MODERATED_DELETED => 'flow-close',
-			PostRevision::MODERATED_CLOSED => 'flow-close',
+			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
 		),
-		'button-method' => 'POST',
+		'button-method' => 'GET',
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-closed-topic',
 			'i18n-params' => array(
@@ -374,7 +372,8 @@ $wgFlowActions = array(
 			return '';
 		},
 		'permissions' => array(
-			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_CLOSED => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
@@ -399,8 +398,12 @@ $wgFlowActions = array(
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
 			PostRevision::MODERATED_HIDDEN => function( AbstractRevision $post, RevisionActionPermissions $permissions ) {
-				// visible for logged in users (or anyone with hide permission)
-				return $permissions->getUser()->isLoggedIn() ? '' : 'flow-hide';
+				// visible for logged in users (or anyone with hide/close permission)
+				return $permissions->getUser()->isLoggedIn() ? '' : array( 'flow-hide', 'flow-close');
+			},
+			PostRevision::MODERATED_CLOSED => function( AbstractRevision $post, RevisionActionPermissions $permissions ) {
+				// visible for logged in users (or anyone with hide/close permission)
+				return $permissions->getUser()->isLoggedIn() ? '' : array( 'flow-hide', 'flow-close' );
 			},
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
