@@ -280,8 +280,9 @@ class TopicBlock extends AbstractBlock {
 		if ( empty( $this->submitted['reason'] ) ) {
 			// If a summary is provided instead, parse the content and truncate it
 			if ( !empty( $this->submitted['summary'] ) ) {
+				global $wgLang;
 				$this->submitted['reason'] = $wgLang->truncate(
-					strip_tags( \Flow\ParsoidUtils::convert( 'wikitext', 'html', $this->submitted['summary'] ) ),
+					strip_tags( \Flow\ParsoidUtils::convert( 'wikitext', 'html', $this->submitted['summary'], $post->getCollection()->getTitle() ) ),
 					255
 				);
 			} else {

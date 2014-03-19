@@ -40,6 +40,7 @@ $messages['en'] = array(
 	'flow-post-moderated-toggle-suppress-hide' => 'Hide comment {{GENDER:$1|suppressed}} by $2',
 	'flow-hide-post-content' => 'This comment was {{GENDER:$1|hidden}} by $2',
 	'flow-hide-title-content' => 'This topic was {{GENDER:$1|hidden}} by $2',
+	'flow-close-title-content' => 'This topic was {{GENDER:$1|closed}} by $2',
 	'flow-hide-header-content' => '{{GENDER:$1|Hidden}} by $2',
 	'flow-hide-usertext' => '$1',
 	'flow-delete-post-content' => 'This comment was {{GENDER:$1|deleted}} by $2',
@@ -72,6 +73,7 @@ $messages['en'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Reply}}',
 	'flow-reply-link' => '{{GENDER:$1|Reply}}',
 	'flow-thank-link' => '{{GENDER:$1|Thank}}',
+	'flow-close-link' => '{{GENDER:$1|Close}}',
 	'flow-post-interaction-separator' => '&#32;•&#32;', # only translate this message to other languages if you have to change it
 
 	'flow-post-edited' => 'Post {{GENDER:$1|edited}} by $1 $2',
@@ -92,6 +94,8 @@ $messages['en'] = array(
 	'flow-topic-action-hide-topic' => 'Hide topic',
 	'flow-topic-action-delete-topic' => 'Delete topic',
 	'flow-topic-action-close-topic' => 'Close topic',
+	'flow-topic-action-reopen-topic' => 'Reopen topic',
+	'flow-topic-action-summarize-topic' => 'Summarize',
 	'flow-topic-action-suppress-topic' => 'Suppress topic',
 	'flow-topic-action-unhide-topic' => 'Unhide topic',
 	'flow-topic-action-undelete-topic' => 'Undelete topic',
@@ -142,6 +146,12 @@ $messages['en'] = array(
 
 	'flow-edit-header-submit' => 'Save header',
 	'flow-edit-header-submit-overwrite' => 'Overwrite header',
+	'flow-summarize-topic-submit' => 'Summarize',
+	'flow-summarize-topic-submit-overwrite' => 'Overwrite summary',
+	'flow-close-topic-submit' => 'Close topic',
+	'flow-close-topic-submit-overwrite' => 'Overwrite topic closing summary',
+	'flow-reopen-topic-submit' => 'Restore topic',
+	'flow-reopen-topic-submit-overwrite' => 'Overwrite topic restoring summary',
 	'flow-edit-title-submit' => 'Change title',
 	'flow-edit-title-submit-overwrite' => 'Overwrite title',
 	'flow-edit-post-submit' => 'Submit changes',
@@ -311,6 +321,9 @@ You can see other versions of the header at its [$4 history page].',
 	'flow-terms-of-use-new-topic' => 'By clicking "{{int:flow-newtopic-save}}", you agree to the terms of use for this wiki.',
 	'flow-terms-of-use-reply' => 'By clicking "{{int:flow-reply-submit}}", you agree to the terms of use for this wiki.',
 	'flow-terms-of-use-edit' => 'By saving your changes, you agree to the terms of use for this wiki.',
+	'flow-terms-of-use-summarize' => 'By clicking "{{int:flow-summarize-topic-submit}}", you agree to the terms of use for this wiki.',
+	'flow-terms-of-use-close-topic' => 'By clicking "{{int:flow-close-topic-submit}}", you agree to the terms of use for this wiki.',
+	'flow-terms-of-use-restore-topic' => 'By clicking "{{int:flow-reopen-topic-submit}}", you agree to the terms of use for this wiki.',
 );
 
 /** Message documentation (Message documentation)
@@ -427,6 +440,12 @@ Parameters:
 * $1 - username that hid the title, can be used for GENDER
 * $2 - user link and tool links for the user.
 {{Related|Flow-content}}',
+	'flow-close-title-content' => 'Message to display instead of content when the title has been closed.
+
+Parameters:
+* $1 - username that closed the title, can be used for GENDER
+* $2 - user link and tool links for the user.
+{{Related|Flow-content}}',
 	'flow-hide-header-content' => 'Message to display instead of content when the header has been hidden.
 
 Parameters:
@@ -527,6 +546,9 @@ Also used in:
 {{Identical|Reply}}',
 	'flow-thank-link' => 'Link text of the button that will (when clicked) thank the editor of the comment Parameters:
 * $1 - username, can be used for GENDER',
+	'flow-close-link' => 'Text for the link for closing topic/post.  Parameters:
+* $1 - username, can be used for GENDER
+{{Identical|Close}}',
 	'flow-post-interaction-separator' => '{{optional}}',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified. Parameters:
 * $1 - username that created the most recent revision of the post
@@ -567,6 +589,10 @@ For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-
 	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.
 {{Related|Flow-action}}',
 	'flow-topic-action-close-topic' => 'Used as a link in a dropdown menu to close a topic.
+{{Related|Flow-action}}',
+	'flow-topic-action-reopen-topic' => 'Used as a link in a dropdown menu to reopen a topic.
+{{Related|Flow-action}}',
+	'flow-topic-action-summarize-topic' => 'Used as a link in a dropdown menu to summarize a topic.
 {{Related|Flow-action}}',
 	'flow-topic-action-suppress-topic' => 'Used as a link in a dropdown menu to suppress a topic.
 {{Related|Flow-action}}
@@ -657,6 +683,12 @@ Parameters:
 	'flow-error-no-index' => 'Error message when failing to find an index to perform data search.',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-header-submit-overwrite' => 'Used as label for the Submit button, when submitting will overwrite a more recent change.',
+	'flow-summarize-topic-submit' => 'Used as label for the Summarize button.',
+	'flow-summarize-topic-submit-overwrite' => 'Used as label for the Summarize button, when submitting will overwrite a more recent summary.',
+	'flow-close-topic-submit' => 'Used as label for the Close topic button.',
+	'flow-close-topic-submit-overwrite' => 'Used as label for the Close topic button, when submitting will overwrite a more recent summary.',
+	'flow-reopen-topic-submit' => 'Used as label for the Restore topic button.',
+	'flow-reopen-topic-submit-overwrite' => 'Used as label for the Restore topic button, when submitting will overwrite a more recent summary.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit-overwrite' => 'Used as label for the Submit button, when submitting will overwrite a more recent change.',
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
@@ -1213,6 +1245,12 @@ This should be consistent with {{msg-mw|Flow-newtopic-save}}.
 This should be consistent with {{msg-mw|Flow-reply-submit}}.
 {{Related|Flow-terms-of-use}}',
 	'flow-terms-of-use-edit' => 'Terms of use for editing a header/topic/post.
+{{Related|Flow-terms-of-use}}',
+	'flow-terms-of-use-summarize' => 'Terms of use for summarizing a header/topic/post.
+{{Related|Flow-terms-of-use}}',
+	'flow-terms-of-use-close-topic' => 'Terms of use for closing a topic.
+{{Related|Flow-terms-of-use}}',
+	'flow-terms-of-use-restore-topic' => 'Terms of use for restoring a topic.
 {{Related|Flow-terms-of-use}}',
 );
 

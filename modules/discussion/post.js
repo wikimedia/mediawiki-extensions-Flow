@@ -7,10 +7,10 @@
 	 * @param {string} postId
 	 */
 	mw.flow.discussion.post = function ( postId ) {
+		var $container = $( '#flow-post-' + postId );
 		this.postId = postId;
-		this.$container = $( '#flow-post-' + this.postId );
-		this.workflowId = this.$container.flow( 'getTopicWorkflowId' );
-		this.pageName = this.$container.closest( '.flow-container' ).data( 'page-title' );
+		this.workflowId = $container.flow( 'getTopicWorkflowId' );
+		this.pageName = $container.closest( '.flow-container' ).data( 'page-title' );
 		this.type = 'post';
 
 		this.actions = {
@@ -30,9 +30,11 @@
 	 */
 	mw.flow.action.post.edit = function ( post ) {
 		this.object = post;
+		this.action = 'edit';
+		this.$container = $( '#flow-post-' + this.object.postId );
 
 		// Overload "edit post" link.
-		this.object.$container.find( '.flow-edit-post-link' ).on( 'click.mw-flow-discussion', $.proxy( this.edit, this ) );
+		this.$container.find( '.flow-edit-post-link' ).on( 'click.mw-flow-discussion', $.proxy( this.edit, this ) );
 	};
 
 	// extend edit action from "shared functionality" mw.flow.action class
@@ -49,12 +51,12 @@
 		event.preventDefault();
 
 		// quit if edit form is already open
-		if ( this.object.$container.find( '.flow-edit-post-form' ).length ) {
+		if ( this.$container.find( '.flow-edit-post-form' ).length ) {
 			return;
 		}
 
 		// Remove old error messages
-		this.object.$container.find( '.flow-post-edit-error' ).remove();
+		this.$container.find( '.flow-post-edit-error' ).remove();
 
 		/*
 		 * Fetch current revision data (content, revision id, ...) that
@@ -138,16 +140,16 @@
 			loadFunction
 		);
 
-		this.object.$container.find( '.flow-edit-post-link' ).hide();
-		this.object.$container.addClass( 'flow-post-nocontrols' );
+		this.$container.find( '.flow-edit-post-link' ).hide();
+		this.$container.addClass( 'flow-post-nocontrols' );
 	};
 
 	/**
 	 * Removes the edit form & restores content.
 	 */
 	mw.flow.action.post.edit.prototype.destroyEditForm = function () {
-		this.object.$container.find( '.flow-edit-post-link' ).show();
-		this.object.$container.removeClass( 'flow-post-nocontrols' );
+		this.$container.find( '.flow-edit-post-link' ).show();
+		this.$container.removeClass( 'flow-post-nocontrols' );
 
 		// call parent destroyEditForm function
 		mw.flow.action.prototype.destroyEditForm.call( this );
@@ -183,7 +185,7 @@
 	mw.flow.action.post.edit.prototype.render = function ( output ) {
 		var $content = $( output.rendered );
 		$( '.flow-post', $content )
-			.replaceAll( this.object.$container )
+			.replaceAll( this.$container )
 			// replacing container node with new content will result in binds on old
 			// nodes being useless and we'll need to bind again to the new DOM
 			.trigger( 'flow_init' );
@@ -205,7 +207,7 @@
 			errorData.topic && errorData.topic.prev_revision &&
 			errorData.topic.prev_revision.extra && errorData.topic.prev_revision.extra.revision_id
 		) {
-			var $textarea = this.object.$container.find( '.flow-edit-content' ),
+			var $textarea = this.$container.find( '.flow-edit-content' ),
 				buttonText = mw.msg( 'flow-edit-post-submit-overwrite' ),
 				tipsyText = errorData.topic.prev_revision.message;
 
@@ -232,7 +234,7 @@
 	 * @param {object} errorData
 	 */
 	mw.flow.action.post.edit.prototype.showError = function ( error, errorData ) {
-		$( '.flow-post-content', this.object.$container )
+		$( '.flow-post-content', this.$container )
 			.append(
 				$( '<div>', { 'class': 'flow-post-edit-error' } ).flow( 'showError', arguments )
 			);
@@ -244,10 +246,12 @@
 	 * @param {object} post
 	 */
 	mw.flow.action.post.reply = function ( post ) {
+		this.action = 'reply';
 		this.object = post;
+		this.$container = $( '#flow-post-' + this.object.postId );
 
 		// Overload "reply" link.
-		this.object.$container.find( '.flow-reply-link' ).on( 'click.mw-flow-discussion', $.proxy( this.reply, this ) );
+		this.$container.find( '.flow-reply-link' ).on( 'click.mw-flow-discussion', $.proxy( this.reply, this ) );
 	};
 
 	// extend reply action from "shared functionality" mw.flow.action class
@@ -264,7 +268,7 @@
 		event.preventDefault();
 
 		// find matching edit form at (max threading depth - 1)
-		this.$form = $( this.object.$container )
+		this.$form = $( this.$container )
 			.closest( '.flow-post-container:not(.flow-post-max-depth)' )
 			.find( '.flow-post-reply-container:last' );
 
@@ -289,7 +293,7 @@
 	 */
 	mw.flow.action.post.reply.prototype.initialContent = function () {
 		// fetch username/IP
-		var username = this.object.$container.closest( '.flow-post-container' ).data( 'creator-name' );
+		var username = this.$container.closest( '.flow-post-container' ).data( 'creator-name' );
 
 		// if we have a real username, turn it into "[[User]]" (otherwise, just "127.0.0.1")
 		if ( !mw.util.isIPv4Address( username , true ) && !mw.util.isIPv6Address( username , true ) ) {
