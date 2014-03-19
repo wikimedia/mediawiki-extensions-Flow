@@ -70,7 +70,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Check if this is closing/reopening a topic
+	 * Check if this is closing/restoring a topic
 	 */
 	protected function isClosingTopicRelated() {
 		$state = isset( $this->submitted['moderationState'] ) ? $this->submitted['moderationState'] : '';

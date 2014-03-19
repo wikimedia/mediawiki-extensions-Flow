@@ -281,6 +281,7 @@ class TopicBlock extends AbstractBlock {
 		if ( empty( $this->submitted['reason'] ) ) {
 			// If a summary is provided instead, parse the content and truncate it
 			if ( !empty( $this->submitted['summary'] ) ) {
+				global $wgLang;
 				$this->submitted['reason'] = $wgLang->truncate(
 					strip_tags( Utils::convert( 'wikitext', 'html', $this->submitted['summary'], $this->workflow->getArticleTitle() ) ),
 					255

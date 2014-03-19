@@ -136,6 +136,10 @@ mw.flow = {
 			return mw.flow.api.readBlock( pageName, workflowId, 'header', options );
 		},
 
+		'readTopicSummary': function( pageName, topicId, options ) {
+			return mw.flow.api.readBlock( pageName, topicId, 'topicsummary', options );
+		},
+
 		generateTopicAction: function( actionName, parameterList, promiseFilterCallback ) {
 			var params = $.makeArray( arguments ),
 				innerAction;
@@ -151,6 +155,9 @@ mw.flow = {
 		},
 
 		/**
+		 * Generate a single block action
+		 *
+		 * @param {string} blockName
 		 * @param {string} actionName
 		 * @param {object} parameterList
 		 * @param {function} promiseFilterCallback
@@ -166,10 +173,12 @@ mw.flow = {
 					realParams = {};
 
 				$.each( parameterList, function ( key, value ) {
-					requestParams[value] = requestArguments[paramIndex];
+					// Ignore null values
+					if ( requestArguments[paramIndex] !== null ) {
+						requestParams[value] = requestArguments[paramIndex];
+					}
 					paramIndex++;
 				} );
-
 				realParams[blockName] = requestParams;
 
 				mw.flow.api.executeAction(
@@ -195,6 +204,84 @@ mw.flow = {
 						return;
 					}
 					output = data.flow[actionName].result[blockName];
+
+					deferredObject.resolve( output, data );
+				} )
+				.fail( function () {
+					deferredObject.reject.apply( this, arguments );
+				} );
+
+				if ( promiseFilterCallback ) {
+					newDeferredObject = promiseFilterCallback( deferredObject.promise() );
+					if ( newDeferredObject ) {
+						deferredObject = newDeferredObject;
+					}
+				}
+
+				return deferredObject.promise();
+			};
+		},
+
+		/**
+		 * Generate a multi-blocks action
+		 *
+		 * @param {object} blockName
+		 * @param {string} actionName
+		 * @param {object} parameterList
+		 * @param {function} promiseFilterCallback
+		 * @return {function}
+		 */
+		'generateBlocksAction' : function ( blockName, actionName, parameterList, promiseFilterCallback ) {
+			return function ( workflowSpec ) {
+				var deferredObject = $.Deferred(),
+					requestParams = {},
+					paramIndex = 1,
+					requestArguments = arguments,
+					newDeferredObject,
+					realParams = {};
+
+				$.each( parameterList, function ( paramListKey, paramListValue ) {
+					requestParams = {};
+					$.each( paramListValue, function ( paramKey, paramValue ) {
+						// Ignore null values
+						if ( requestArguments[paramIndex][paramKey] !== null ) {
+							requestParams[paramValue] = requestArguments[paramIndex][paramKey];
+						}
+					} );
+					paramIndex++;
+					realParams[blockName[paramListKey]] = requestParams;
+				} );
+
+				mw.flow.api.executeAction(
+					workflowSpec,
+					actionName,
+					realParams,
+					true
+				).done( function ( data ) {
+					var output = {}, success = true;
+
+					if ( data.flow[actionName].errors ) {
+						deferredObject.reject( 'block-errors', data.flow[actionName].errors );
+						return;
+					}
+					$.each( blockName, function ( key, value ) {
+						if ( !data.flow[actionName].result[value] ) {
+							success = false;
+							return false;
+						} else {
+							output[value] = data.flow[actionName].result[value];
+						}
+					} );
+
+					if (
+						!data.flow ||
+						!data.flow[actionName] ||
+						!data.flow[actionName].result ||
+						!success
+					) {
+						deferredObject.reject( 'invalid-result', 'Unable to find appropriate section in result' );
+						return;
+					}
 
 					deferredObject.resolve( output, data );
 				} )
@@ -268,6 +355,26 @@ mw.flow.api.editHeader = mw.flow.api.generateBlockAction(
 	[
 		'content',
 		'prev_revision'
+	]
+);
+
+mw.flow.api.editTopicSummary = mw.flow.api.generateBlockAction(
+	'topicsummary',
+	'edit-topic-summary',
+	[
+		'summary',
+		'prev_revision'
+	]
+);
+
+mw.flow.api.closeReopenTopic = mw.flow.api.generateBlocksAction(
+	[ 'topicsummary', 'topic' ],
+	'moderate-topic',
+	[
+		// data for topicsummary block
+		[ 'summary', 'moderationState', 'prev_revision' ],
+		// data for topic block
+		[ 'summary', 'moderationState', 'prev_revision' ]
 	]
 );
 
