@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_3807a921",
+        "filename": "FlowActions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T16:46:19Z",
+      "side": 1,
+      "message": "(it was wrong before, since topic also just used this one)\n\nThis should also check for restore-topic",
+      "revId": "fe5555517699c1d57eeed65d2a8f345dece42b14",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_1b23bfa7",
+        "filename": "FlowActions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T16:46:19Z",
+      "side": 1,
+      "message": "There 3 are a bit pointless: those actions are not stored anywhere, they\u0027re just get params to links.\n\nWhen processing the GET request, the action will not be recognized (since it\u0027s no longer in Topic.php\u0027s $supportedGetActions) and fail.\n\nI will still leave this in though, and prepare another patch where Block.php checks this list to correct for legacy values, so we have BC support for bookmarked links or whatever.\n\nEdit: patch at https://gerrit.wikimedia.org/r/#/c/119501/",
+      "revId": "fe5555517699c1d57eeed65d2a8f345dece42b14",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_bb21739c",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T16:46:19Z",
+      "side": 1,
+      "message": "This will break BC (if we had it) - perhaps also compare rootpost id to this post id; if it matches, we should show topic history, if not, post history?",
+      "revId": "fe5555517699c1d57eeed65d2a8f345dece42b14",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_9b3d8fbb",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T16:46:19Z",
+      "side": 1,
+      "message": "should be \u0027history\u0027",
+      "revId": "fe5555517699c1d57eeed65d2a8f345dece42b14",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_1b4a9f5f",
+        "filename": "templates/topic.html.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T16:46:19Z",
+      "side": 1,
+      "message": "should be \u0027history\u0027",
+      "revId": "fe5555517699c1d57eeed65d2a8f345dece42b14",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
