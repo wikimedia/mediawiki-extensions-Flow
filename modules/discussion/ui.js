@@ -147,6 +147,7 @@
 				if ( !$( this ).data( 'flow-initialised-topic' ) ) {
 					var topicId = $( this ).data( 'topic-id' );
 					new mw.flow.discussion.topic( topicId );
+					new mw.flow.discussion.topic.summary( topicId );
 
 					$( this ).data( 'flow-initialised-topic', true );
 				}

@@ -136,6 +136,10 @@ mw.flow = {
 			return mw.flow.api.readBlock( pageName, workflowId, 'header', options );
 		},
 
+		'readTopicSummary': function( pageName, topicId, options ) {
+			return mw.flow.api.readBlock( pageName, topicId, 'topicsummary', options );
+		},
+
 		generateTopicAction: function( actionName, parameterList, promiseFilterCallback ) {
 			var params = $.makeArray( arguments ),
 				innerAction;
@@ -268,6 +272,14 @@ mw.flow.api.editHeader = mw.flow.api.generateBlockAction(
 	[
 		'content',
 		'prev_revision'
+	]
+);
+
+mw.flow.api.editTopicSummary = mw.flow.api.generateBlockAction(
+	'topicsummary',
+	'edit-topic-summary',
+	[
+		'summary'
 	]
 );
 
