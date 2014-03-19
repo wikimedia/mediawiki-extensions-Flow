@@ -110,7 +110,6 @@ $c['templating'] = $c->share( function( $c ) {
 } );
 
 // New Storage Impl
-use Flow\Data\BufferedCache;
 use Flow\Data\LocalBufferedCache;
 use Flow\Data\BasicObjectMapper;
 use Flow\Data\CachingObjectMapper;
@@ -122,7 +121,6 @@ use Flow\Data\TopKIndex;
 use Flow\Data\TopicHistoryIndex;
 use Flow\Data\BoardHistoryStorage;
 use Flow\Data\BoardHistoryIndex;
-use Flow\Data\ObjectMapper;
 use Flow\Data\ObjectManager;
 use Flow\Data\ObjectLocator;
 use Flow\Model\Header;
