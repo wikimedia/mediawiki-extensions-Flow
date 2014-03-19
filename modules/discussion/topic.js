@@ -21,7 +21,250 @@
 		};
 	};
 
+	/**
+	 * Initialises topic summary object.
+	 *
+	 * @param {string} topicId
+	 */
+	mw.flow.discussion.topic.summary = function( topicId ) {
+		var $topicContainer = $( '#flow-topic-' + topicId );
+		this.topicId = topicId;
+		this.$container = $( '.flow-element-container :first', $topicContainer );
+		this.workflowId = $topicContainer.data( 'topic-id' );
+		this.pageName = $topicContainer.closest( '.flow-container' ).data( 'page-title' );
+		this.type = 'topicsummary';
+
+		this.actions = {
+			summarize: new mw.flow.action.topic.summarize( this )
+		};
+	};
+
 	mw.flow.action.topic = {};
+
+	/**
+	 * Initialises topic summarizing interaction object.
+	 *
+	 * @param {object} summary
+	 */
+	mw.flow.action.topic.summarize = function( summary ) {
+		this.object = summary;
+
+		// Overload "summarize" link in topic action menu.
+		this.object.$container
+			// Store this callback on the topic container itself
+			.data( 'summarize-topic-callback', $.proxy( this.edit, this ) )
+			// Then store the topic-id on the link so we can refer back to the topic container's callback onclick
+			.find( '.flow-summarize-topic-link' )
+				.attr( 'data-topic-id', this.object.topicId );
+
+		$( document )
+			.off( 'click.mw-flow-discussion-summarize-topic-link' )
+			.on(
+				'click.mw-flow-discussion-summarize-topic-link',
+				'.flow-summarize-topic-link',
+				function ( event ) {
+					// Find the topic container, get the stored callback, and then call it
+					return $( '.flow-element-container :first', $( '#flow-topic-' + $( this ).data( 'topic-id') ) )
+						.data( 'summarize-topic-callback' )
+						.apply( this, arguments );
+				}
+			);
+	};
+
+	// Extend summarize action from "shared functionality" mw.flow.action class
+	mw.flow.action.topic.summarize.prototype = new mw.flow.action();
+	mw.flow.action.topic.summarize.prototype.constructor = mw.flow.action.topic.summarize;
+
+	/**
+	 * Fired when summarize is clicked.
+	 *
+	 * @param {Event} e
+	 */
+	mw.flow.action.topic.summarize.prototype.edit = function ( e ) {
+		// don't follow link that will lead to &action=edit-topic-summary
+		e.preventDefault();
+
+		// close tipsy
+		var $tipsyTrigger = this.object.$container.find( '.flow-tipsy-open' );
+		$tipsyTrigger.each( function() {
+			$( this ).removeClass( 'flow-tipsy-open' );
+			$( this ).tipsy( 'hide' );
+		} );
+
+		/*
+		 * Fetch current revision data (content, revision id, ...) that
+		 * we'll need to initialise the edit form.
+		 */
+		this.read()
+			/*
+			 * This is a .then: then callbacks can return a value, which is
+			 * then passed to .done or .fail. This allows us to format the
+			 * returned data to how we want it in .done, or reject (which
+			 * will result in .fail being called) if the data is invalid.
+			 */
+			.then( $.proxy( this.prepareResult, this ) )
+			/*
+			 * Once we have successfully fetched & verified the data, the
+			 * edit form can be built.
+			 */
+			.done( $.proxy( this.setupEditForm, this ) )
+			/*
+			 * If anything went wrong (either in original deferred object or
+			 * in the one returned by .then), show an error message.
+			 */
+			.fail( $.proxy( this.showError, this ) );
+	};
+
+	/**
+	 * Fetches summary info.
+	 *
+	 * @see includes/Block/TopicSummary.php TopicSummaryBlock::renderAPI
+	 * @return {jQuery.Deferred}
+	 */
+	mw.flow.action.topic.summarize.prototype.read = function () {
+		return mw.flow.api.readTopicSummary(
+			this.object.pageName,
+			this.object.workflowId,
+			{
+				topicsummary: {
+					contentFormat: mw.flow.editor.getFormat()
+				}
+			}
+		);
+	};
+
+	/**
+	 * Processes the result of this.read & the returned deferred
+	 * will be passed to setupEditForm.
+	 *
+	 * if invalid data is encountered, the (new) deferred will be rejected,
+	 * resulting in any fail() bound to be executed.
+	 *
+	 * @param {object} data
+	 * @return {jQuery.Deferred}
+	 */
+	mw.flow.action.topic.summarize.prototype.prepareResult = function ( data ) {
+		var deferred = $.Deferred();
+
+		if ( !data[0] ) {
+			return deferred.reject( '', {} );
+		}
+
+		return deferred.resolve( {
+			content: data[0]['*'],
+			format: data[0].format,
+			revision: data[0]['topicsummary-id']
+		} );
+	};
+
+	/**
+	 * Builds the edit form.
+	 *
+	 * @param {object} data this.prepareResult return value
+	 * @param {function} [loadFunction] callback to be executed when form is loaded
+	 */
+	mw.flow.action.topic.summarize.prototype.setupEditForm = function ( data, loadFunction ) {
+		// call parent setupEditForm function
+		mw.flow.action.prototype.setupEditForm.call(
+			this,
+			data,
+			loadFunction
+		);
+		this.object.$container.find( '.flow-topic-summary' ).hide();
+	};
+
+	/**
+	 * Removes the edit form & restores content.
+	 */
+	mw.flow.action.topic.summarize.prototype.destroyEditForm = function () {
+		this.object.$container.find( '.flow-topic-summary' ).show();
+
+		// call parent destroyEditForm function
+		mw.flow.action.prototype.destroyEditForm.call( this );
+	};
+
+	/**
+	 * Submit function for flow( 'setupEditForm' ).
+	 *
+	 * @param {object} data this.prepareResult return value
+	 * @param {string} content
+	 * @return {jQuery.Deferred}
+	 */
+	mw.flow.action.topic.summarize.prototype.submitFunction = function ( data, content ) {
+		var deferred = mw.flow.api.editTopicSummary( {
+				workflow: this.object.workflowId,
+				page: this.object.pageName
+			},
+			content
+		);
+
+		deferred.done( $.proxy( this.render, this ) );
+		deferred = deferred.then( null, $.proxy( this.submitFail, this, deferred, data ) );
+
+		return deferred;
+	};
+
+	/**
+	 * Called when submitFunction is resolved.
+	 *
+	 * @param {object} output
+	 */
+	mw.flow.action.topic.summarize.prototype.render = function ( output ) {
+		this.object.$container
+			.find( '.flow-edit-form' )
+				.remove()
+				.end()
+			.find( '.flow-topic-summary' )
+				.html ( output.rendered )
+				.show()
+				.end();
+	};
+
+	/**
+	 * Called when submitFunction failed.
+	 *
+	 * @param {jQuery.Deferred} deferred
+	 * @param {object} data Old (invalid) this.prepareResult return value
+	 * @param {string} error
+	 * @param {object} errorData
+	 * @return {jQuery.Deferred}
+	 */
+	mw.flow.action.topic.summarize.prototype.submitFail = function ( deferred, data, error, errorData ) {
+		if (
+			// edit conflict
+			error === 'block-errors' &&
+			errorData.topicsummary && errorData.topicsummary.prev_revision &&
+			errorData.topicsummary.prev_revision.extra && errorData.topicsummary.prev_revision.extra.revision_id
+		) {
+			var $textarea = this.object.$container.find( '.flow-edit-content' ),
+				buttonText = mw.msg( 'flow-edit-topicsummary-submit-overwrite' ),
+				tipsyText = errorData.header.prev_revision.message;
+
+			/*
+			 * Overwrite data revision & content.
+			 * We'll use raw editor content & editor format to avoid having
+			 * to parse it.
+			 */
+			data.content = mw.flow.editor.getRawContent( $textarea );
+			data.format = mw.flow.editor.getFormat( $textarea );
+			data.revision = errorData.topicsummary.prev_revision.extra.revision_id;
+
+			// return conflict's deferred
+			return this.conflict( data, buttonText, tipsyText );
+		}
+
+		return deferred;
+	};
+
+	/**
+	 * Display an error if something when wrong.
+	 *
+	 * @param {string} error
+	 * @param {object} errorData
+	 */
+	mw.flow.action.topic.summarize.prototype.showError = function ( error, errorData ) {
+		$( '.flow-topic-summary', this.object.$container ).flow( 'showError', arguments );
+	};
 
 	/**
 	 * Initialises topic edit-title interaction object.

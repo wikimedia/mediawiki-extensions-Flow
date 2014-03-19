@@ -40,6 +40,7 @@
 	 * @param {Event} e
 	 */
 	mw.flow.action.header.edit.prototype.edit = function ( e ) {
+
 		// don't follow link that will lead to &action=edit-header
 		e.preventDefault();
 

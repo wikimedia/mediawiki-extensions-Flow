@@ -307,7 +307,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => 'flow-close',
 			PostRevision::MODERATED_CLOSED => 'flow-close',
 		),
-		'button-method' => 'POST',
+		'button-method' => 'GET',
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-closed-topic',
 			'i18n-params' => array(
@@ -390,6 +390,42 @@ $wgFlowActions = array(
 				'topic-of-post',
 			),
 			'class' => 'flow-history-restored-topic',
+		),
+	),
+
+	'reopen-topic' => array(
+		'performs-writes' => true,
+		'log_type' => function( PostRevision $revision, Logger $logger ) {
+			$post = $revision->getCollection();
+			$previousRevision = $post->getPrevRevision( $revision );
+			if ( $previousRevision ) {
+				// Kind of log depends on the previous change type:
+				// * if post was deleted, restore should go to deletion log
+				// * if post was suppressed, restore should go to suppression log
+				global $wgFlowActions;
+				return $wgFlowActions[$previousRevision->getModerationState() . '-post']['log_type'];
+			}
+
+			return '';
+		},
+		'permissions' => array(
+			PostRevision::MODERATED_HIDDEN => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
+			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
+			PostRevision::MODERATED_CLOSED => 'flow-close',
+		),
+		'button-method' => 'POST',
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-reopened-topic',
+			'i18n-params' => array(
+				'user-links',
+				'user-text',
+				'creator-text',
+				'workflow-url',
+				'moderated-reason',
+				'topic-of-post',
+			),
+			'class' => 'flow-history-reopened-topic',
 		),
 	),
 

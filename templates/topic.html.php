@@ -94,7 +94,7 @@ echo Html::openElement( 'div', array(
 				);
 			endif ?>
 		</div>
-		<?php if ( $postActionMenu->isAllowedAny( 'view', 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic', 'edit-title', 'topic-history' ) ): ?>
+		<?php if ( $postActionMenu->isAllowedAny( 'view', 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic', 'edit-title', 'topic-history', '' ) ): ?>
 		<div class="flow-tipsy flow-actions">
 			<a class="flow-tipsy-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
 			<div class="flow-tipsy-flyout">
@@ -146,6 +146,20 @@ echo Html::openElement( 'div', array(
 							'edit-title',
 							wfMessage( 'flow-topic-action-edit-title' )->escaped(),
 							'mw-ui-button flow-edit-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $postActionMenu->isAllowed( 'close-topic' ) ) {
+						echo '<li class="flow-action-close">', $postActionMenu->getButton(
+							'close-topic',
+							wfMessage( 'flow-topic-action-close-topic' )->escaped(),
+							'mw-ui-button flow-close-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $postActionMenu->isAllowed( 'edit-topic-summary' ) ) {
+						echo '<li class="flow-action-summarize">', $postActionMenu->getButton(
+							'edit-topic-summary',
+							wfMessage( 'flow-topic-action-summarize-topic' )->escaped(),
+							'mw-ui-button flow-summarize-topic-link'
 						), '</li>';
 					} ?>
 <!--
@@ -205,6 +219,13 @@ echo Html::openElement( 'div', array(
 			<?php echo count( $root->getRecursiveResult( $indexParticipants ) ); ?>
 		</p>
 		<?php endif; ?>
+	</div>
+	<div class="flow-topic-summary">
+		<?php
+			if ( $summary ) {
+				echo $this->getContent( $summary, 'html' );
+			}
+		?>
 	</div>
 </div>
 <?php

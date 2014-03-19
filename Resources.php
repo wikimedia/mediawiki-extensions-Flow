@@ -100,6 +100,8 @@ $wgResourceModules += array(
 			'flow-paging-rev',
 			'flow-post-moderated-toggle-show',
 			'flow-post-moderated-toggle-hide',
+			'flow-edit-topicsummary-submit',
+			'flow-edit-topicsummary-submit-overwrite',
 		),
 		'position' => 'top',
 	),

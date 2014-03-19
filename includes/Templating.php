@@ -196,10 +196,22 @@ class Templating {
 			return '';
 		}
 
+		// @Todo - it seems weird to put the summary look up inside a templating class
+		$found = Container::get( 'storage' )->find(
+			'PostSummary',
+			array( 'rev_type_id' => $root->getPostId() ),
+			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+		);
+		$summary = null;
+		if ( $found ) {
+			$summary = reset( $found );
+		}
+
 		return $this->render( "flow:topic.html.php", array(
 			'block' => $block,
 			'topic' => $block->getWorkflow(),
 			'root' => $root,
+			'summary' => $summary,
 			'postActionMenu' => $actionMenu,
 			'postView' => $view
 		), $return );

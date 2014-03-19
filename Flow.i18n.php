@@ -72,6 +72,7 @@ $messages['en'] = array(
 	'flow-reply-submit' => '{{GENDER:$1|Reply}}',
 	'flow-reply-link' => '{{GENDER:$1|Reply}}',
 	'flow-thank-link' => '{{GENDER:$1|Thank}}',
+	'flow-close-link' => '{{GENDER:$1|Close}}',
 	'flow-post-interaction-separator' => '&#32;•&#32;', # only translate this message to other languages if you have to change it
 
 	'flow-post-edited' => 'Post {{GENDER:$1|edited}} by $1 $2',
@@ -90,6 +91,7 @@ $messages['en'] = array(
 	'flow-topic-action-hide-topic' => 'Hide topic',
 	'flow-topic-action-delete-topic' => 'Delete topic',
 	'flow-topic-action-close-topic' => 'Close topic',
+	'flow-topic-action-summarize-topic' => 'Summarize',
 	'flow-topic-action-suppress-topic' => 'Suppress topic',
 	'flow-topic-action-restore-topic' => 'Restore topic',
 
@@ -139,6 +141,8 @@ $messages['en'] = array(
 
 	'flow-edit-header-submit' => 'Save header',
 	'flow-edit-header-submit-overwrite' => 'Overwrite header',
+	'flow-edit-topicsummary-submit' => 'Summarize',
+	'flow-edit-topicsummary-submit-overwrite' => 'Summarize',
 	'flow-edit-title-submit' => 'Change title',
 	'flow-edit-title-submit-overwrite' => 'Overwrite title',
 	'flow-edit-post-submit' => 'Submit changes',
@@ -508,6 +512,9 @@ Also used in:
 {{Identical|Reply}}',
 	'flow-thank-link' => 'Link text of the button that will (when clicked) thank the editor of the comment Parameters:
 * $1 - username, can be used for GENDER',
+	'flow-close-link' => 'Text for the link for closing topic/post.  Parameters:
+* $1 - username, can be used for GENDER
+{{Identical|Close}}',
 	'flow-post-interaction-separator' => '{{optional}}',
 	'flow-post-edited' => 'Text displayed to notify the user a post has been modified. Parameters:
 * $1 - username that created the most recent revision of the post
@@ -545,6 +552,8 @@ For meaning of "suppress" see [[Thread:Support/About MediaWiki:Flow-post-action-
 	'flow-topic-action-delete-topic' => 'Used as a link in a dropdown menu to delete a topic.
 {{Related|Flow-action}}',
 	'flow-topic-action-close-topic' => 'Used as a link in a dropdown menu to close a topic.
+{{Related|Flow-action}}',
+	'flow-topic-action-summarize-topic' => 'Used as a link in a dropdown menu to summarize a topic.
 {{Related|Flow-action}}',
 	'flow-topic-action-suppress-topic' => 'Used as a link in a dropdown menu to suppress a topic.
 {{Related|Flow-action}}
@@ -633,6 +642,8 @@ Parameters:
 	'flow-error-no-index' => 'Error message when failing to find an index to perform data search.',
 	'flow-edit-header-submit' => 'Used as label for the Submit button.',
 	'flow-edit-header-submit-overwrite' => 'Used as label for the Submit button, when submitting will overwrite a more recent change.',
+	'flow-edit-topicsummary-submit' => 'Used as label for the Summarize button.',
+	'flow-edit-topicsummary-submit-overwrite' => 'Used as label for the Summarize button, when submitting will overwrite a more recent summary.',
 	'flow-edit-title-submit' => 'Used as label for the Submit button.',
 	'flow-edit-title-submit-overwrite' => 'Used as label for the Submit button, when submitting will overwrite a more recent change.',
 	'flow-edit-post-submit' => 'Used as label for the Submit button.',
