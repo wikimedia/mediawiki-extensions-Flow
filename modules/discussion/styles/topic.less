@@ -24,6 +24,17 @@
 		}
 	}
 
+	.flow-topic-summary {
+		line-height: 18px;
+
+		>p {
+			font-size: 14px;
+			font-weight: normal;
+			font-style: italic;
+			color: #231F20;
+		}
+	}
+
 	&.flow-topic-moderated {
 		// Make space for moderation icon
 		.flow-element-container .flow-titlebar .flow-topic-title {
@@ -56,6 +67,14 @@
 			.flow-realtitle, .flow-content-modified-tipsy-link {
 				display: none;
 			}
+			.flow-topic-summary {
+				>p {
+					width: 100%;
+					white-space:nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+			}
 		}
 
 		.flow-moderated-title {
@@ -81,6 +100,10 @@
 
 		&.flow-topic-moderated-suppress .flow-topic-title {
 			.flow-moderated-element-icon( "suppressed" );
+		}
+
+		&.flow-topic-moderated-close .flow-topic-title {
+			.flow-moderated-element-icon( "closed" );
 		}
 	}
 
@@ -201,7 +224,7 @@
 
 			position: absolute;
 			right: 22px;
-			bottom: 16px;
+			top: 40px;
 
 			a {
 				color: inherit;
@@ -238,6 +261,17 @@
 		}
 
 		.flow-edit-title-controls {
+			margin-top: 5px;
+			text-align: right;
+		}
+	}
+
+	.flow-edit-form {
+		.flow-edit-content {
+			width: 100%;
+		}
+
+		.flow-form-controls {
 			margin-top: 5px;
 			text-align: right;
 		}
@@ -323,5 +357,14 @@
 	a {
 		color: #777 !important;
 		font-weight: bold;
+	}
+}
+
+// Don't show summary when users choose small view
+.flow-container {
+	&.topic-collapsed-one-line {
+		.flow-topic-summary {
+			display: none;
+		}
 	}
 }

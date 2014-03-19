@@ -299,16 +299,17 @@
 			/**
 			 * Setup preview function
 			 * The key specifies the content identifier in the form and value is output format
-			 * @param {object} contents
+			 * @param {object|null} contents
+			 * @param string the div css
 			 * @todo Revamp this; these handlers should be assigned in base.js
 			 */
-			'setupPreview': function( contents ) {
+			'setupPreview': function( contents, css ) {
 				var $form = this,
 					api = new mw.Api(),
 					$previewContainer = $( '<div>', { 'class': 'flow-content-preview' } ),
 					$spinner = $();
 
-				// Default output format is parsed
+				// Default output format is parsed, the text identifier is textarea
 				if ( !contents ) {
 					contents = { 'textarea': 'parsed' };
 				}
@@ -333,6 +334,10 @@
 					// Iterate over each content type and parse them
 					for ( identifier in contents ) {
 						$div = $( '<div>', { 'class': 'flow-preview-sub-container' } );
+						// Add additional css styling
+						if ( css ) {
+							$div.addClass( css );
+						}
 						$previewContainer.append( $div );
 						if ( contents[identifier] === 'parsed' ) {
 							if ( mw.flow.editor.getFormat() !== 'html' ) {

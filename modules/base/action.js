@@ -38,6 +38,43 @@
 	};
 
 	/**
+	 * Get the terms of use for this for edit form
+	 *
+	 * @return {string}
+	 */
+	mw.flow.action.prototype.getTerms = function() {
+		return mw.config.get( 'wgFlowTermsOfUseEdit' );
+	};
+
+	/**
+	 * Get the action name of the current action
+	 *
+	 * @return {string}
+	 */
+	mw.flow.action.prototype.getAction = function() {
+		throw 'mw.flow.action concrete subclasses must implement getAction()!';
+	};
+
+	/**
+	 * Get the form placeholder text, default is none
+	 *
+	 * @return {string}
+	 */
+	mw.flow.action.prototype.getEditFormPlaceHolder = function() {
+		return '';
+	};
+
+	/**
+	 * Get additional div class for the container previewing this content, 
+	 * for example, topic summary has a different display, default is none
+	 *
+	 * @return {string}
+	 */
+	mw.flow.action.prototype.getPreviewCSS = function() {
+		return '';
+	};
+
+	/**
 	 * HTML of the edit form (well, jQuery node with the html of the edit form)
 	 *
 	 * @returns {jQuery}
@@ -48,13 +85,17 @@
 				'<textarea class="mw-ui-input flow-edit-content"></textarea>' +
 				'<div class="flow-form-controls flow-edit-controls">' +
 					'<div class="flow-terms-of-use plainlinks">' +
-					mw.config.get( 'wgFlowTermsOfUseEdit' ) +
+					this.getTerms() +
 					'</div>' +
 					// cancel link will be added here
-					'<input type="submit" class="mw-ui-button mw-ui-constructive flow-edit-submit" value="' + mw.msg( 'flow-edit-' + this.object.type + '-submit' ) + '">' +
+					'<input type="submit" class="mw-ui-button mw-ui-constructive flow-edit-submit" value="' + mw.msg( 'flow-' + this.getAction() + '-' + this.object.type + '-submit' ) + '">' +
 				'</div>' +
 			'</form>'
-		);
+		), placeholder = this.getEditFormPlaceHolder();
+
+		if ( placeholder ) {
+			$( '.flow-edit-content', $form ).attr( 'placeholder', placeholder );
+		}
 
 		this.cancelLink().prependTo( $form.find( '.flow-form-controls' ) );
 
@@ -68,16 +109,17 @@
 	 * @param {function} [loadFunction] callback to be executed when form is loaded
 	 */
 	mw.flow.action.prototype.setupEditForm = function ( data, loadFunction ) {
-		if ( this.object.$container.hasClass( 'flow-edit-form-active' ) ) {
+		if ( this.$container.hasClass( 'flow-edit-form-active' ) ) {
 			return;
 		}
 
 		// build form DOM & attach to content
 		var $form = this.editForm();
-		$form.appendTo( this.object.$container );
+
+		$form.appendTo( this.$container );
 
 		// add class to identify this form as being active
-		this.object.$container.addClass( 'flow-edit-form-active' );
+		this.$container.addClass( 'flow-edit-form-active' );
 
 		// bind click on cancel, which should destroy this form
 		$form.find( '.flow-cancel-link' ).on( 'click.mw-flow-discussion', $.proxy( function ( $form, event ) {
@@ -86,7 +128,7 @@
 		}, this, $form ) );
 
 		// setup preview
-		$form.flow( 'setupPreview' );
+		$form.flow( 'setupPreview', null, this.getPreviewCSS() );
 
 		// setup submission callback
 		$form.flow( 'setupFormHandler',
@@ -134,17 +176,17 @@
 	 * Removes the edit form & restores content.
 	 */
 	mw.flow.action.prototype.destroyEditForm = function () {
-		this.object.$container.removeClass( 'flow-edit-form-active' );
+		this.$container.removeClass( 'flow-edit-form-active' );
 
 		// remove any tipsies opened from within the form
-		this.object.$container.find( '.flow-edit-form .flow-tipsy-trigger' ).each( function () {
+		this.$container.find( '.flow-edit-form .flow-tipsy-trigger' ).each( function () {
 			$( this ).removeClass( 'flow-tipsy-trigger' );
 			if ( $( this ).data( 'tipsy' ) ) {
 				$( this ).tipsy( 'hide' );
 			}
 		} );
 
-		this.object.$container.find( '.flow-edit-form' )
+		this.$container.find( '.flow-edit-form' )
 			.flow( 'hidePreview' )
 			.trigger( 'flow-form-destroyed' )
 			.remove();
@@ -159,19 +201,19 @@
 	 * @param {function} [loadFunction] callback to be executed when form is loaded
 	 */
 	mw.flow.action.prototype.loadReplyForm = function ( loadFunction ) {
-		if ( this.object.$container.hasClass( 'flow-reply-form-active' ) ) {
+		if ( this.$container.hasClass( 'flow-reply-form-active' ) ) {
 			return;
 		}
 
 		var $form = this.$form.find( 'form' );
 
 		// add class to identify this form as being active
-		this.object.$container.addClass( 'flow-reply-form-active' );
+		this.$container.addClass( 'flow-reply-form-active' );
 		this.$form.addClass( 'flow-reply-form-active' );
 
 		// hide topic reply form
 		// can't do this in CSS, since selectors traveling upwards don't really exist ;)
-		this.object.$container.closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
+		this.$container.closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).hide();
 		// make sure to show this form, though
 		this.$form.show();
 
@@ -249,7 +291,7 @@
 		var $form = this.$form.find( 'form' ),
 			$textarea = $form.find( 'textarea' );
 
-		this.object.$container.removeClass( 'flow-reply-form-active' );
+		this.$container.removeClass( 'flow-reply-form-active' );
 		this.$form.removeClass( 'flow-reply-form-active' );
 
 		mw.flow.editor.destroy( $textarea );
@@ -257,7 +299,7 @@
 
 		// when closed, display topic reply form again
 		// can't do this in CSS, since selectors traveling upwards don't really exist ;)
-		this.object.$container.closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).show();
+		this.$container.closest( '.flow-topic-container' ).find( '.flow-topic-reply-container' ).show();
 
 		/*
 		 * Because we're not entirely killing the forms, we have to clean up
@@ -337,7 +379,7 @@
 		 * the form has completed loading before doing these changes.
 		 */
 		var formLoaded = $.proxy( function ( buttonText, tipsyText ) {
-			var $button = this.object.$container.find( '.flow-edit-submit' ),
+			var $button = this.$container.find( '.flow-edit-submit' ),
 				$tipsy;
 			$button.val( buttonText );
 			$tipsy = this.tipsy( $button, tipsyText );
@@ -349,7 +391,7 @@
 			 * Trigger keyup in editor, to trick setupEmptyDisabler
 			 * into believing we've made a change & enable submit.
 			 */
-			this.object.$container.find( '.flow-edit-content' ).keyup();
+			this.$container.find( '.flow-edit-content' ).keyup();
 		}, this, buttonText, tipsyText );
 
 		// kill & re-launch edit form
@@ -372,7 +414,7 @@
 	 * @param {object} errorData
 	 */
 	mw.flow.action.prototype.showError = function ( error, errorData ) {
-		$( this.object.$container ).flow( 'showError', arguments );
+		$( this.$container ).flow( 'showError', arguments );
 	};
 
 	/**
