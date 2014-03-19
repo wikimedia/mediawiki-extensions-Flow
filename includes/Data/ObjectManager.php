@@ -40,7 +40,7 @@ interface ObjectStorage {
 	function find( array $attributes, array $options = array() );
 
 	/**
-	 * Perform the equivilent of array_map against self::find for multiple
+	 * Perform the equivalent of array_map against self::find for multiple
 	 * equality queries with the minimum of network round trips.
 	 *
 	 * @param array $queries list of queries to perform
