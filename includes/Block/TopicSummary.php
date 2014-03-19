@@ -70,7 +70,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Check if this is closing/reopening a topic
+	 * Check if this is closing/restoring a topic
 	 */
 	protected function isClosingTopicRelated() {
 		$state = isset( $this->submitted['moderationState'] ) ? $this->submitted['moderationState'] : '';
@@ -161,7 +161,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		return array(
 			'new-revision-id' => $this->nextRevision->getRevisionId(),
 			'render-function' => function( Templating $templating ) use ( $newRevision ) {
-				return $templating->getContent( $newRevision, 'wikitext' );
+				return $templating->getContent( $newRevision, 'html' );
 			}
 		);
 	}
