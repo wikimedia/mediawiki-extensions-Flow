@@ -178,12 +178,13 @@ class TopicSummaryBlock extends AbstractBlock {
 			$contentFormat = 'wikitext';
 		}
 
+		$output['format'] = $contentFormat;
 		if ( $this->topicSummary !== null ) {
 			$output['*'] = $templating->getContent( $this->topicSummary, $contentFormat );
-			$output['format'] = $contentFormat;
 			$output['topicsummary-id'] = $this->topicSummary->getRevisionId()->getAlphadecimal();
 		} else {
-			$output['missing'] = 'missing';
+			$output['*'] = '';
+			$output['topicsummary-id'] = '';
 		}
 
 		return array(
