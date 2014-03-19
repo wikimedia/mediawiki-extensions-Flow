@@ -25,7 +25,6 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 	}
 	echo Html::textarea( $block->getName() . '_content', '', array(
 		'placeholder' => wfMessage( 'flow-newtopic-content-placeholder' )->text(),
-		'title' => wfMessage( 'flow-newtopic-content-placeholder' )->text(),
 		'class' => 'flow-newtopic-step2 flow-newtopic-content mw-ui-input',
 		'rows' => '10',
 	) );
