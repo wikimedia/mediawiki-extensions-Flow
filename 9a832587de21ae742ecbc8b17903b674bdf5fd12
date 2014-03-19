@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_18298536",
+        "filename": "includes/Data/BoardHistoryStorage.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-19T15:00:03Z",
+      "side": 1,
+      "message": "since both find*History functions return an array in [ id \u003d\u003e revision ] format, you could just do a krsort() on the array, instead of defining an own function that will sort on that exact same (id) value",
+      "revId": "9a832587de21ae742ecbc8b17903b674bdf5fd12",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
