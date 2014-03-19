@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e04eb01_4c1484ed",
+        "filename": "db_patches/patch-add_workflow_type.sql",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-19T17:58:02Z",
+      "side": 1,
+      "message": "I split it into two patches for mysql/sqlite, being lazy with respect to the maintenance script though :P",
+      "parentUuid": "4e04eb01_9b89a729",
+      "revId": "967e299d72115629e534af5f99f507ca0cfdbcbe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e04eb01_7ba13b90",
         "filename": "includes/Model/Workflow.php",
         "patchSetId": 7
@@ -47,6 +65,24 @@
       "writtenOn": "2014-03-05T17:14:26Z",
       "side": 1,
       "message": "I\u0027m probably overlooking something, but:\n\nIt used to be possible to load other workflow types. loadDefenition() had this:\n\n    $id \u003d $this-\u003edefinitionRequest;\n    $workflowName \u003d $id ? $id : $wgFlowDefaultWorkflow;\n\n$definitionRequest would come from WorkflowLoaderFactory::createWorkflowLoader()\u0027s 3rd argument, which in current code seems never used -\u003e defaults to false -\u003e always results in $wgFlowDefaultWorkflow.\n\nSo while in practice this will not change anything (AFAICT); would it make sense to make it possible for other workflow types to be loaded - for future purposes ^^?",
+      "revId": "967e299d72115629e534af5f99f507ca0cfdbcbe",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e04eb01_6c1bc020",
+        "filename": "includes/WorkflowLoader.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-19T17:58:02Z",
+      "side": 1,
+      "message": "Your not overlooking anything, I removed it without any mention :)\n\nMy initial thought here is basically same as the patch overall, removing dead/useless code.  With our current state of only discussions/topic, and topic requiring a workflow id, i\u0027d rather leave this out.  We can re-add it fairly easily down the road once we have a use case.",
+      "parentUuid": "4e04eb01_1bd23701",
       "revId": "967e299d72115629e534af5f99f507ca0cfdbcbe",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
