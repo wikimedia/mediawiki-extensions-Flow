@@ -591,6 +591,13 @@ abstract class AbstractRevision {
 	}
 
 	/**
+	 * @return boolean
+	 */
+	public function isClosed() {
+		return $this->moderationState === self::MODERATED_CLOSED;
+	}
+
+	/**
 	 * @return string|null Timestamp in TS_MW format
 	 */
 	public function getModerationTimestamp() {

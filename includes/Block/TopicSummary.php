@@ -70,7 +70,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Check if this is closing/reopening a topic
+	 * Check if this is closing/restoring a topic
 	 */
 	protected function isClosingTopicRelated() {
 		$state = isset( $this->submitted['moderationState'] ) ? $this->submitted['moderationState'] : '';
@@ -80,7 +80,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		$root = $this->findTopicTitle();
 		if (
 			$root->getModerationState() == AbstractRevision::MODERATED_CLOSED &&
-			$state == AbstractRevision::MODERATED_NONE )
+			$state == 'restore' )
 		{
 			return true;
 		}
@@ -178,12 +178,13 @@ class TopicSummaryBlock extends AbstractBlock {
 			$contentFormat = 'wikitext';
 		}
 
+		$output['format'] = $contentFormat;
 		if ( $this->topicSummary !== null ) {
 			$output['*'] = $templating->getContent( $this->topicSummary, $contentFormat );
-			$output['format'] = $contentFormat;
 			$output['topicsummary-id'] = $this->topicSummary->getRevisionId()->getAlphadecimal();
 		} else {
-			$output['missing'] = 'missing';
+			$output['*'] = '';
+			$output['topicsummary-id'] = '';
 		}
 
 		return array(
