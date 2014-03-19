@@ -3,7 +3,7 @@
 namespace Flow\Data;
 
 /**
- * Bare minimum WritableObjectStorage implementation does
+ * Bare minimum ObjectStorage implementation does
  * nothing.  Query results must be passed in the constructor.
  *
  * Usage:

@@ -13,13 +13,10 @@ use Flow\Exception\InvalidInputException;
 use Flow\Exception\DataPersistenceException;
 use Flow\Exception\NoIndexException;
 
-// Perhaps rethink lifecycle interface.  Simpler.
-// Indexes need access to the cache and the backend storage.
-// It seems likely different Indexes could use different caches (redis/memcache)
-// - But we want to be able to replace that cache with a buffered cache that flushes
-//   on db commit.
-// - Perhaps one buffered cache could wrap both redis and memcache? seems odd though
-
+/**
+ * Listeners that receive notifications about the lifecycle of
+ * a domain model.
+ */
 interface LifecycleHandler {
 	function onAfterLoad( $object, array $old );
 	function onAfterInsert( $object, array $new );
@@ -27,45 +24,72 @@ interface LifecycleHandler {
 	function onAfterRemove( $object, array $old );
 }
 
-// Some denormalized data doesnt accept writes, it merely triggers cache updates
-// when something else does the write. Indexes are the primary use case.
-// IteratorAggregate rather than traversable to simplify nested implementations
-interface ObjectStorage extends \IteratorAggregate {
-	function find( array $attributes, array $options = array() );
+/**
+ * Interface representing backend data stores.  Typically they
+ * will be implemented in SQL with the DbStorage base class.
+ */
+interface ObjectStorage {
+
 	/**
-	 * The BagOStuff interface returns with keys matching the key, unfortunately
-	 * we deal with composite keys which makes that awkward. Instead all findMulti
-	 * implementations must return their result as if it was array_map( array( $obj, 'find' ), $queries ).
-	 * This is necessary so result sets stay ordered
+	 * Perform a single equality query.
 	 *
+	 * @param array $attributes Map of attributes the model must contain
+	 * @param array $options Query options such as ORDER BY and LIMIT.
+	 * @return array
+	 */
+	function find( array $attributes, array $options = array() );
+
+	/**
+	 * Perform the equivilent of array_map against self::find for multiple
+	 * equality queries with the minimum of network round trips.
 	 *
 	 * @param array $queries list of queries to perform
 	 * @param array $options Options to use for all queries
 	 * @return array
 	 */
 	function findMulti( array $queries, array $options = array() );
-	function getPrimaryKeyColumns();
-	// Clear any information stored about loaded objects
-	// This interface is used by the frontend (ObjectLocator) and the backend (BasicDbStorage, etc)
-	//function clear();
-}
 
-// Backing stores, typically in SQL
-// Note that while ObjectLocator implements the above ObjectStorage interface, ObjectManger
-// cant use this interface because backing stores deal in rows, and OM deals in objects.
-interface WritableObjectStorage extends ObjectStorage {
 	/**
-	 * @param array $row
-	 * @return array The resulting $row including any auto-assigned ids or false on failure
+	 * @return array The list of columns that together uniquely identify a row
+	 */
+	function getPrimaryKeyColumns();
+
+	/**
+	 * Insert the specified row into the data store.
+	 *
+	 * @param array $row Map of columns to values
+	 * @return array|false The resulting $row including any auto-assigned ids or false on failure
 	 */
 	function insert( array $row );
+
+	/**
+	 * Perform all changes necessary to turn $old into $new in the data store.
+	 *
+	 * @param array $old Map of columns to values that was initially loaded.
+	 * @param array $new Map of columns to values that the row should become.
+	 * @return boolean true when the row is successfully updated
+	 */
 	function update( array $old, array $new );
+
+	/**
+	 * Remove the specified row from the data store.
+	 *
+	 * @param array $row Map of columns to values.  Must contain the primary key columns.
+	 * @return boolean true when the row is successfully removed
+	 */
 	function remove( array $row );
 }
 
+/**
+ * Interface for converting back and forth between a database row and
+ * a domain model.
+ */
 interface ObjectMapper {
 	/**
 	 * Convert $object from the domain model to its db row
+	 *
+	 * @param object $object
+	 * @return array
 	 */
 	function toStorageRow( $object );
 
@@ -159,9 +183,10 @@ interface Index extends LifecycleHandler {
 	 */
 	function compareRowToOffset( $row, $offset );
 }
+
 /**
- * Compact rows before writing to memcache, expand when receiving back
- * Still returns arrays, just removes unneccessary values
+ * Compact rows before writing to cache, expand when receiving back
+ * Still returns arrays, just removes unneccessary values.
  */
 interface Compactor {
 	/**
@@ -185,7 +210,6 @@ interface Compactor {
 	 */
 	public function expandCacheResult( array $cached, array $keyToQuery );
 }
-
 
 /**
  * A little glue code to allow passing around and manipulating multiple
@@ -254,7 +278,7 @@ class ManagerGroup {
  * update events.
  * Error handling is all wrong, but simplifies prototyping.
  */
-class ObjectLocator implements ObjectStorage {
+class ObjectLocator {
 	/*
 	 * @var ObjectMapper
 	 */
@@ -556,7 +580,7 @@ class ObjectManager extends ObjectLocator {
 	// @var SplObjectStorage $loaded If the object exists then an 'update' is issued, otherwise 'insert'
 	protected $loaded;
 
-	public function __construct( ObjectMapper $mapper, WritableObjectStorage $storage, array $indexes = array(), array $lifecycleHandlers = array() ) {
+	public function __construct( ObjectMapper $mapper, ObjectStorage $storage, array $indexes = array(), array $lifecycleHandlers = array() ) {
 		parent::__construct( $mapper, $storage, $indexes, $lifecycleHandlers );
 
 		// This needs to be SplObjectStorage rather than using spl_object_hash for keys
@@ -834,13 +858,13 @@ class CachingObjectMapper implements ObjectMapper {
 
 
 /**
- * Base class for all WritableObjectStorage implementers
+ * Base class for all ObjectStorage implementers
  * which use a database as the backing store.
  *
  * Includes some utility methods for database management and
  * SQL security.
  */
-abstract class DbStorage implements WritableObjectStorage {
+abstract class DbStorage implements ObjectStorage {
 	protected $dbFactory;
 
 	public function __construct( DbFactory $dbFactory ) {
