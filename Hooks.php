@@ -47,7 +47,6 @@ class FlowHooks {
 	public static function getAbuseFilter() {
 		if ( self::$abuseFilter === null ) {
 			global $wgUser,
-				$wgEchoNotifications,
 				$wgFlowAbuseFilterGroup,
 				$wgFlowAbuseFilterEmergencyDisableThreshold,
 				$wgFlowAbuseFilterEmergencyDisableCount,
@@ -77,6 +76,7 @@ class FlowHooks {
 		}
 
 		// necessary to provide flow options in abuse filter on-wiki pages
+		global $wgFlowAbuseFilterGroup;
 		if ( $wgFlowAbuseFilterGroup ) {
 			self::getAbuseFilter();
 		}
