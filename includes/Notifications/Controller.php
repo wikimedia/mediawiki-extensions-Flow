@@ -27,7 +27,7 @@ class NotificationController {
 	/**
 	 * Set up Echo notification for Flow extension
 	 */
-	public function setup() {
+	public static function setup() {
 		global $wgHooks,
 			$wgEchoNotifications, $wgEchoNotificationIcons, $wgEchoNotificationCategories;
 

@@ -453,20 +453,20 @@ $c['factory.loader.workflow'] = $c->share( function( $c ) {
 	);
 } );
 
-$c['occupation_controller'] = $c->share( function( $c ) {
-	global $wgFlowOccupyPages, $wgFlowOccupyNamespaces;
-	return new Flow\TalkpageManager( $wgFlowOccupyNamespaces, $wgFlowOccupyPages );
-} );
+// Initialized in FlowHooks to faciliate only loading the flow container
+// when flow is specifically requested to run. Extension initialization
+// must always happen before calling flow code.
+$c['occupation_controller'] = FlowHooks::getOccupationController();
 
 $c['controller.notification'] = $c->share( function( $c ) {
 	global $wgContLang;
 	return new Flow\NotificationController( $wgContLang );
 } );
 
-$c['controller.abusefilter'] = $c->share( function( $c ) {
-	global $wgFlowAbuseFilterGroup;
-	return new Flow\SpamFilter\AbuseFilter( $c['user'], $wgFlowAbuseFilterGroup );
-} );
+// Initialized in FlowHooks to faciliate only loading the flow container
+// when flow is specifically requested to run. Extension initialization
+// must always happen before calling flow code.
+$c['controller.abusefilter'] = FlowHooks::getAbuseFilter();
 
 $c['controller.spamregex'] = $c->share( function( $c ) {
 	return new Flow\SpamFilter\SpamRegex;
