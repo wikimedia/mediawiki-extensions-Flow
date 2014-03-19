@@ -94,7 +94,7 @@ echo Html::openElement( 'div', array(
 				);
 			endif ?>
 		</div>
-		<?php if ( $postActionMenu->isAllowedAny( 'history', 'view', 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic', 'edit-title' ) ): ?>
+		<?php if ( $postActionMenu->isAllowedAny( 'history', 'view', 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic', 'edit-title', 'close-topic', 'edit-topic-summary' ) ): ?>
 		<div class="flow-tipsy flow-actions">
 			<a class="flow-tipsy-link" href="#"><?php echo wfMessage( 'flow-topic-actions' )->escaped(); ?></a>
 			<div class="flow-tipsy-flyout">
@@ -120,18 +120,15 @@ echo Html::openElement( 'div', array(
 							'mw-ui-button mw-ui-quiet flow-action-topic-history-link'
 						), '</li>';
 					} ?>
-<!--
-					<li class="flow-action-summarize">
-						<a href="#" class="mw-ui-button">@todo: Summarize</a>
-					</li>
--->
-<!--
-					<li class="flow-action-close">
-						<a href="#" class="mw-ui-button">@todo: Close</a>
-					</li>
--->
-
-					<?php if ( $postActionMenu->isAllowedAny( 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic' ) ) { ?>
+					<?php if ( $postActionMenu->isAllowed( 'edit-topic-summary' ) ) {
+						$summaryLink = $summary ? 'flow-topic-action-resummarize-topic' : 'flow-topic-action-summarize-topic';
+						echo '<li class="flow-action-summarize">', $postActionMenu->getButton(
+							'edit-topic-summary',
+							wfMessage( $summaryLink )->escaped(),
+							'mw-ui-button mw-ui-quiet flow-summarize-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $postActionMenu->isAllowedAny( 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic', 'close-topic' ) ) { ?>
 						<li><hr /></li>
 					<?php } ?>
 
@@ -175,6 +172,20 @@ echo Html::openElement( 'div', array(
 							'restore-topic',
 							wfMessage( 'flow-topic-action-unsuppress-topic' )->escaped(),
 							'mw-ui-button mw-ui-quiet flow-unsuppress-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $postActionMenu->isAllowed( 'close-topic' ) ) {
+						echo '<li class="flow-action-close">', $postActionMenu->getButton(
+							'close-topic',
+							wfMessage( 'flow-topic-action-close-topic' )->escaped(),
+							'mw-ui-button mw-ui-quiet flow-close-topic-link'
+						), '</li>';
+					} ?>
+					<?php if ( $root->getModerationState() === \Flow\Model\AbstractRevision::MODERATED_CLOSED && $postActionMenu->isAllowed( 'restore-topic' ) ) {
+						echo '<li class="flow-action-reopen">', $postActionMenu->getButton(
+							'restore-topic',
+							wfMessage( 'flow-topic-action-reopen-topic' )->escaped(),
+							'mw-ui-button mw-ui-quiet flow-reopen-topic-link'
 						), '</li>';
 					} ?>
 				</ul>
@@ -229,6 +240,15 @@ echo Html::openElement( 'div', array(
 			<?php echo count( $root->getRecursiveResult( $indexParticipants ) ); ?>
 		</p>
 		<?php endif; ?>
+		<?php
+		if ( $summary ) {
+		?>
+			<div class="flow-topic-summary">
+				<?php echo $this->getContent( $summary, 'html' ); ?>
+			</div>
+		<?php
+		}
+		?>
 	</div>
 </div>
 <?php
