@@ -53,8 +53,9 @@ class Controller {
 	}
 
 	/**
-	 * @param string $content
+	 * @param string $content Html
 	 * @param Title $title
+	 * @return string Html
 	 */
 	public function apply( $content, Title $title ) {
 		// resolve all registered recursive callbacks

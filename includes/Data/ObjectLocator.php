@@ -62,6 +62,7 @@ class ObjectLocator {
 	 * @return array|null  null is query failure.  empty array is no result.  array is success
 	 */
 	public function findMulti( array $queries, array $options = array() ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 		if ( !$queries ) {
 			return array();
@@ -117,6 +118,7 @@ class ObjectLocator {
 	 * @return bool
 	 */
 	public function foundMulti( array $queries, array $options = array() ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 		if ( !$queries ) {
 			return true;
@@ -152,6 +154,7 @@ class ObjectLocator {
 	// Be careful with regards to order on composite primary keys,
 	// must be in same order as provided to the storage implementation.
 	public function getMulti( array $objectIds ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 		if ( !$objectIds ) {
 			return array();
@@ -199,6 +202,7 @@ class ObjectLocator {
 	 * @return bool
 	 */
 	public function gotMulti( array $objectIds ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 		if ( !$objectIds ) {
 			return true;
