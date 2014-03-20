@@ -9,7 +9,6 @@ use Flow\View\History\History;
 use Flow\View\History\HistoryRenderer;
 use Flow\Container;
 use Flow\Templating;
-use Flow\Exception\InvalidDataException;
 use Flow\Exception\DataModelException;
 
 class BoardHistoryBlock extends AbstractBlock {
