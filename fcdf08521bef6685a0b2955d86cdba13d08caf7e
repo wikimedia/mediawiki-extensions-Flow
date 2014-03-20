@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_ed75e493",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-20T17:29:15Z",
+      "side": 1,
+      "message": "should probably be a function shared between insert and update?",
+      "revId": "fcdf08521bef6685a0b2955d86cdba13d08caf7e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
