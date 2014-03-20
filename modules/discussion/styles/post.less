@@ -1,4 +1,5 @@
 @import 'settings/colors.less';
+@import 'settings/typography.less';
 @import 'mediawiki.mixins.less';
 @import 'mixins/moderation.less';
 @import '../../base/styles/settings/paths.less';
@@ -111,23 +112,32 @@
 
 	.flow-post-interaction {
 		padding-top: 11px;
+		font-size: @post-interaction-font-size;
+		color: @post-interaction-color;
 
-		.mw-ui-button {
+		// The quiet buttons are rendered into inline text by resetting most of the
+		// .mw-ui-button box and shadow styling.
+		.mw-ui-quiet {
 			border: none;
 			padding: 0;
 			background: none;
-			color: #777;
 			font-weight: normal;
 
 			box-shadow: none;
 			-webkit-box-shadow: none;
 			-moz-box-shadow: none;
+
+			// Buttons are implemented with anchor tags instead of button tags,
+			// so they cannot be disabled with the :disabled property.
+			// A css class is needed for proper styling of 'disabled' state.
+			&.mw-ui-disabled {
+				cursor: default;
+				color: @post-interaction-disabled-color;
+			}
 		}
 	}
 
 	.flow-post-interaction-separator {
-		color: #898989;
-		font-size: 14px;
 		display: inline-block;
 		margin-left: 8px;
 		margin-right: 8px;
