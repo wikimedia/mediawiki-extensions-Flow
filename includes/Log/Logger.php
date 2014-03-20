@@ -4,7 +4,6 @@ namespace Flow\Log;
 
 use Flow\FlowActions;
 use Flow\Model\PostRevision;
-use Flow\Model\Workflow;
 use Flow\UrlGenerator;
 use ManualLogEntry;
 use User;
@@ -60,6 +59,7 @@ class Logger {
 	 * @return int The id of the newly inserted log entry
 	 */
 	public function log( PostRevision $post, $action, $reason, UUID $workflowId, $params = array() ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 
 		if ( !$this->canLog( $post, $action ) ) {

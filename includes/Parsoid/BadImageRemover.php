@@ -35,6 +35,7 @@ class BadImageRemover implements ContentFixer {
 		if ( !$content ) {
 			return '';
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 
 		/*

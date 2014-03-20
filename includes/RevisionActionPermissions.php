@@ -55,7 +55,8 @@ class RevisionActionPermissions {
 	 * @return bool
 	 */
 	public function isAllowed( AbstractRevision $revision = null, $action ) {
-		$section = new \ProfileSection( __METHOD__ );
+        /** @noinspection PhpUnusedLocalVariableInspection */
+        $section = new \ProfileSection( __METHOD__ );
 		$allowed = $this->isRevisionAllowed( $revision, $action );
 
 		// if there was no revision object, it's pointless to find last revision

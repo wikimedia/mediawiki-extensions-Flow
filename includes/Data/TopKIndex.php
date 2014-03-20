@@ -136,7 +136,8 @@ class TopKIndex extends FeatureIndex {
 	public function sortIndex( array $values ) {
 		// I dont think this is a valid way to sort a 128bit integer string
 		$callback = new SortArrayByKeys( $this->options['sort'], true );
-		usort( $values, $callback );
+        /** @noinspection PhpParamsInspection */
+        usort( $values, $callback );
 		if ( $this->options['order'] === 'DESC' ) {
 			$values = array_reverse( $values );
 		}

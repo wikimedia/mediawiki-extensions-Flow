@@ -26,6 +26,7 @@ class RootPostLoader {
 	 * @param UUID|string $postId The uid of the post being requested
 	 * @return PostRevision[] associative array with 'root' and 'post' keys. Array
 	 *   values may be null if not found.
+	 * @throws InvalidDataException
 	 */
 	public function getWithRoot( $postId ) {
 		$postId = UUID::create( $postId );
