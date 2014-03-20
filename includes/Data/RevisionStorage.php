@@ -295,17 +295,8 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	public function insert( array $row ) {
-		// Check if we need to insert new content
-		if ( $this->externalStore && !isset( $row['rev_content_url'] ) ) {
-			$row = $this->insertExternalStore( $row );
-		}
 		$rev = $this->splitUpdate( $row, 'rev' );
-		// If a content url is available store that in the db
-		// instead of real content.
-		if ( isset( $rev['rev_content_url'] ) ) {
-			$rev['rev_content'] = $rev['rev_content_url'];
-		}
-		unset( $rev['rev_content_url'] );
+		$rev = $this->processExternalStore( $rev );
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
@@ -319,6 +310,22 @@ abstract class RevisionStorage extends DbStorage {
 		}
 
 		return $this->insertRelated( $row );
+	}
+
+	protected function processExternalStore( array $row ) {
+		// Check if we need to insert new content
+		if ( $this->externalStore && !isset( $row['rev_content_url'] ) ) {
+			$row = $this->insertExternalStore( $row );
+		}
+
+		// If a content url is available store that in the db
+		// instead of real content.
+		if ( isset( $row['rev_content_url'] ) ) {
+			$row['rev_content'] = $row['rev_content_url'];
+		}
+		unset( $row['rev_content_url'] );
+
+		return $row;
 	}
 
 	protected function insertExternalStore( array $row ) {
@@ -355,6 +362,7 @@ abstract class RevisionStorage extends DbStorage {
 		}
 
 		$rev = $this->splitUpdate( $changeSet, 'rev' );
+		$rev = $this->processExternalStore( $rev );
 
 		if ( $rev ) {
 			$dbw = $this->dbFactory->getDB( DB_MASTER );
