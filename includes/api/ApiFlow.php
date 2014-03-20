@@ -28,10 +28,6 @@ class ApiFlow extends ApiBase {
 		$workflow = $this->loader->getWorkflow();
 		$article = new Article( $workflow->getArticleTitle(), 0 );
 
-		// @todo: this is a hack; see Parsoid\Utils::convert
-		global $wgFlowParsoidTitle;
-		$wgFlowParsoidTitle = $workflow->getArticleTitle();
-
 		$isNew = $workflow->isNew();
 		// Is this making unnecesary db round trips?
 		if ( !$isNew ) {
