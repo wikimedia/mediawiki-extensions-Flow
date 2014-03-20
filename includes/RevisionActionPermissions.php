@@ -55,6 +55,7 @@ class RevisionActionPermissions {
 	 * @return bool
 	 */
 	public function isAllowed( AbstractRevision $revision = null, $action ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 		$allowed = $this->isRevisionAllowed( $revision, $action );
 
