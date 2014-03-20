@@ -180,7 +180,7 @@ if ( $post->isModerated() ) {
 				), true );
 			?>
 			<div class="flow-post-interaction">
-				<?php echo $postView->postInteractionLinks( 'flow-reply-link mw-ui-button', 'flow-edit-post-link mw-ui-button' ); ?>
+				<?php echo $postView->postInteractionLinks( 'flow-reply-link mw-ui-button mw-ui-quiet mw-ui-progressive', 'flow-edit-post-link mw-ui-button mw-ui-quiet mw-ui-progressive' ); ?>
 			</div>
 		</div>
 	</div>
