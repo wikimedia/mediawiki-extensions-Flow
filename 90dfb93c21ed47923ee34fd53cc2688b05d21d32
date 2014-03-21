@@ -16,6 +16,24 @@
       "revId": "90dfb93c21ed47923ee34fd53cc2688b05d21d32",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_661d7278",
+        "filename": "templates/timestamp.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-21T00:14:30Z",
+      "side": 1,
+      "message": "still learning it, so understanding might be wrong:\n\nwould \n$ctx \u003d $this-\u003egetOutput()-\u003egetContext();\ngive the correct context? Thanks!",
+      "parentUuid": "ee14bf34_e6fe2235",
+      "revId": "90dfb93c21ed47923ee34fd53cc2688b05d21d32",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
