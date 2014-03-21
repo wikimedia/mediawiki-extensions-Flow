@@ -1219,6 +1219,14 @@ $messages['ar'] = array(
 	'flow-topic-permalink-warning' => 'بدأ هذا الموضوع في [$2  $1]',
 );
 
+/** Assamese (অসমীয়া)
+ * @author Bishnu Saikia
+ */
+$messages['as'] = array(
+	'flow-moderation-confirm-unhide-post' => 'দেখুৱাওক',
+	'flow-moderation-confirm-unhide-topic' => 'দেখুৱাওক',
+);
+
 /** Asturian (asturianu)
  * @author Xuacu
  */
@@ -1393,6 +1401,15 @@ $messages['ast'] = array(
 	'flow-terms-of-use-new-topic' => 'Al calcar "{{int:flow-newtopic-save}}", aceuta les condiciones d\'usu d\'esta wiki.',
 	'flow-terms-of-use-reply' => 'Al calcar "{{int:flow-reply-submit}}", aceuta les condiciones d\'usu d\'esta wiki.',
 	'flow-terms-of-use-edit' => "Al guardar los cambios, aceuta les condiciones d'usu d'esta wiki.",
+);
+
+/** Azerbaijani (azərbaycanca)
+ * @author Wertuose
+ */
+$messages['az'] = array(
+	'flow-post-action-undelete-post' => 'Bərpa et',
+	'flow-moderation-confirm-undelete-post' => 'Bərpa et',
+	'flow-moderation-confirm-undelete-topic' => 'Bərpa et',
 );
 
 /** Bikol Central (Bikol Central)
@@ -1939,6 +1956,14 @@ $messages['en-gb'] = array(
 $messages['es'] = array(
 	'flow-desc' => 'Sistema de gestión de flujo de trabajo',
 	'log-name-flow' => 'Registro de actividad de flujo',
+	'logentry-delete-flow-delete-post' => '$1 {{GENDER:$2|borró}} una [$4 publicación] en [[$3]]',
+	'logentry-delete-flow-restore-post' => '$1 {{GENDER:$2|restauró}} una [$4 publicación] en [[$3]]',
+	'logentry-suppress-flow-suppress-post' => '$1 {{GENDER:$2|suprimió}} una [$4 publicación] en [[$3]]',
+	'logentry-suppress-flow-restore-post' => '$1 {{GENDER:$2|borró}} una [$4 publicación] en [[$3]]',
+	'logentry-delete-flow-delete-topic' => '$1 {{GENDER:$2|borró}} un [$4 tema] en [[$3]]',
+	'logentry-delete-flow-restore-topic' => '$1 {{GENDER:$2|restauró}} un [$4 tema] en [[$3]]',
+	'logentry-suppress-flow-suppress-topic' => '$1 {{GENDER:$2|suprimió}} un [$4 tema] en [[$3]]',
+	'logentry-suppress-flow-restore-topic' => '$1 {{GENDER:$2|borró}} un [$4 tema] en [[$3]]',
 	'flow-user-moderated' => 'Usuario moderado',
 	'flow-edit-header-link' => 'Editar cabecera',
 	'flow-header-empty' => 'Esta página de discusión no tiene cabecera actualmente.',
@@ -1947,6 +1972,8 @@ $messages['es'] = array(
 	'flow-post-moderated-toggle-suppress-show' => 'Mostrar comentario {{GENDER:$1|suppresed}} por $2',
 	'flow-post-moderated-toggle-hide-hide' => 'Ocultar comentario {{GENDER:$1|hidden}} por $2',
 	'flow-post-moderated-toggle-delete-hide' => 'Ocultar comentario eliminado por $2', # Fuzzy
+	'flow-hide-header-content' => 'Ocultado por $2', # Fuzzy
+	'flow-delete-header-content' => 'Eliminado por $2', # Fuzzy
 	'flow-suppress-post-content' => '$2 ha suprimido este comentario', # Fuzzy
 	'flow-suppress-usertext' => '<em>Nombre de usuario suprimido</em>',
 	'flow-post-actions' => 'Acciones',
@@ -1954,6 +1981,7 @@ $messages['es'] = array(
 	'flow-cancel' => 'Cancelar',
 	'flow-preview' => 'Previsualizar',
 	'flow-show-change' => 'Mostrar cambios',
+	'flow-stub-post-content' => "''No se pudo recuperar esta publicación a causa de un error técnico.''",
 	'flow-newtopic-title-placeholder' => 'Tema nuevo',
 	'flow-newtopic-content-placeholder' => 'Si quieres, añade detalles',
 	'flow-newtopic-header' => 'Añadir un nuevo tema',
@@ -1971,7 +1999,6 @@ $messages['es'] = array(
 	'flow-post-action-delete-post' => 'Eliminar',
 	'flow-post-action-hide-post' => 'Ocultar',
 	'flow-post-action-edit-post' => 'Editar',
-	'flow-post-action-restore-post' => 'Restaurar mensaje',
 	'flow-topic-action-view' => 'Enlace permanente',
 	'flow-topic-action-watchlist' => 'Lista de seguimiento',
 	'flow-topic-action-edit-title' => 'Editar título',
@@ -1979,7 +2006,6 @@ $messages['es'] = array(
 	'flow-topic-action-hide-topic' => 'Ocultar el tema',
 	'flow-topic-action-delete-topic' => 'Eliminar el tema',
 	'flow-topic-action-suppress-topic' => 'Suprimir el tema',
-	'flow-topic-action-restore-topic' => 'Restaurar el tema',
 	'flow-error-http' => 'Ha ocurrido un error mientras se contactaba al servidor.',
 	'flow-error-other' => 'Ha ocurrido un error inesperado.',
 	'flow-error-external' => 'Se ha producido un error.<br />El mensaje de error recibido es: $1',
@@ -1997,6 +2023,7 @@ $messages['es'] = array(
 	'flow-edit-title-submit' => 'Cambiar el título',
 	'flow-edit-title-submit-overwrite' => 'Sobrescribir título',
 	'flow-edit-post-submit' => 'Enviar cambios',
+	'flow-edit-post-submit-overwrite' => 'Sobrescribir cambios',
 	'flow-rev-message-edit-post' => '$1 {{GENDER:$2|editó}} un [$3 comentario].', # Fuzzy
 	'flow-rev-message-deleted-post' => '$1 {{GENDER:$2|borró}} un [$4 comentario] (<em>$5</em>).', # Fuzzy
 	'flow-board-history' => 'Historial de «$1»',
@@ -2021,41 +2048,33 @@ $messages['es'] = array(
 	'flow-moderation-title-suppress-post' => '¿Quieres suprimir la entrada?',
 	'flow-moderation-title-delete-post' => '¿Quieres eliminar la entrada?',
 	'flow-moderation-title-hide-post' => '¿Quieres ocultar la entrada?',
-	'flow-moderation-title-restore-post' => '¿Quieres restaurar la entrada?',
 	'flow-moderation-intro-suppress-post' => 'Por favor, {{GENDER:$3|explica}} por qué vas a suprimir esta publicación.',
 	'flow-moderation-intro-delete-post' => 'Por favor, {{GENDER:$3|explica}} por qué vas a eliminar esta publicación.',
 	'flow-moderation-intro-hide-post' => 'Por favor, {{GENDER:$3|explica}} por qué vas a ocultar esta publicación.',
-	'flow-moderation-intro-restore-post' => 'Por favor, {{GENDER:$3|explica}} por qué vas a restaurar esta publicación.',
 	'flow-moderation-confirm-suppress-post' => 'Suprimir',
 	'flow-moderation-confirm-delete-post' => 'Eliminar',
 	'flow-moderation-confirm-hide-post' => 'Ocultar',
-	'flow-moderation-confirm-restore-post' => 'Restaurar',
+	'flow-moderation-confirm-suppress-topic' => 'Suprimir',
+	'flow-moderation-confirm-delete-topic' => 'Eliminar',
+	'flow-moderation-confirm-hide-topic' => 'Ocultar',
 	'flow-moderation-confirmation-suppress-post' => 'La entrada fue suprimida con éxito.
 {{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
 	'flow-moderation-confirmation-delete-post' => 'La entrada fue eliminada con éxito.
 {{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
 	'flow-moderation-confirmation-hide-post' => 'La entrada fue ocultada con éxito.
 {{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
-	'flow-moderation-confirmation-restore-post' => 'Has restaurado la publicación anterior con éxito.',
-	'flow-moderation-title-suppress-topic' => '¿Quieres suprimir el tema?',
-	'flow-moderation-title-delete-topic' => '¿Quieres eliminar el tema?',
-	'flow-moderation-title-hide-topic' => '¿Quieres ocultar el tema?',
-	'flow-moderation-title-restore-topic' => '¿Quieres restaurar el tema?',
-	'flow-moderation-intro-suppress-topic' => 'Por favor, {{GENDER:$3|explica}} por qué vas a suprimir este tema.',
-	'flow-moderation-intro-delete-topic' => 'Por favor, {{GENDER:$3|explica}} por qué vas a eliminar este tema.',
-	'flow-moderation-intro-hide-topic' => 'Por favor, {{GENDER:$3|explica}} por qué vas a ocultar este tema.',
-	'flow-moderation-intro-restore-topic' => 'Explica por qué quieres restaurar el tema.', # Fuzzy
-	'flow-moderation-confirm-suppress-topic' => 'Suprimir',
-	'flow-moderation-confirm-delete-topic' => 'Eliminar',
-	'flow-moderation-confirm-hide-topic' => 'Ocultar',
-	'flow-moderation-confirm-restore-topic' => 'Restaurar',
 	'flow-moderation-confirmation-suppress-topic' => 'El tópico fue eliminado con éxito.
 {{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
 	'flow-moderation-confirmation-delete-topic' => 'El tópico fue eliminado con éxito.
 {{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
 	'flow-moderation-confirmation-hide-topic' => 'El tópico fue ocultado con éxito.
 {{GENDER:$2|Considera}} entregar un comentario $1 sobre esta entrada.',
-	'flow-moderation-confirmation-restore-topic' => 'Has restaurado este tema correctamente.',
+	'flow-moderation-title-suppress-topic' => '¿Quieres suprimir el tema?',
+	'flow-moderation-title-delete-topic' => '¿Quieres eliminar el tema?',
+	'flow-moderation-title-hide-topic' => '¿Quieres ocultar el tema?',
+	'flow-moderation-intro-suppress-topic' => 'Por favor, {{GENDER:$3|explica}} por qué vas a suprimir este tema.',
+	'flow-moderation-intro-delete-topic' => 'Por favor, {{GENDER:$3|explica}} por qué vas a eliminar este tema.',
+	'flow-moderation-intro-hide-topic' => 'Por favor, {{GENDER:$3|explica}} por qué vas a ocultar este tema.',
 );
 
 /** Persian (فارسی)
@@ -4393,15 +4412,23 @@ $messages['ml'] = array(
 	'flow-error-missing-content' => 'കുറിപ്പിൽ ഉള്ളടക്കമൊന്നുമില്ല. കുറിപ്പ് സേവ് ചെയ്യാനായി ഉള്ളടക്കം വേണം.',
 	'flow-error-missing-title' => 'വിഷയത്തിനു തലക്കെട്ട് നൽകിയിട്ടില്ല. വിഷയം സേവ് ചെയ്യുന്നതിനായി തലക്കെട്ട് നൽകിയിരിക്കണം.',
 	'flow-error-parsoid-failure' => 'പാഴ്സോയ്ഡ് പരാജയപ്പെട്ടതിനാൽ ഉള്ളടക്കം പാഴ്സ് ചെയ്യാനായില്ല.',
+	'flow-error-delete-failure' => 'ഈ ഇനം മായ്ക്കൽ പരാജയപ്പെട്ടു.',
+	'flow-error-hide-failure' => 'ഈ ഇനം മറയ്ക്കൽ പരാജയപ്പെട്ടു.',
 	'flow-error-prev-revision-does-not-exist' => 'പഴയ നാൾപ്പതിപ്പ് കണ്ടെത്താനായില്ല.',
 	'flow-error-default' => 'ഒരു പിഴവുണ്ടായി.',
+	'flow-edit-header-submit' => 'ശീർഷകം സേവ് ചെയ്യുക',
+	'flow-edit-header-submit-overwrite' => 'ശീർഷകം മാറ്റിയെഴുതുക',
+	'flow-edit-title-submit' => 'തലക്കെട്ട് മാറ്റുക',
+	'flow-edit-title-submit-overwrite' => 'തലക്കെട്ട് മാറ്റിയെഴുതുക',
 	'flow-edit-post-submit' => 'മാറ്റങ്ങൾ സമർപ്പിക്കുക',
+	'flow-edit-post-submit-overwrite' => 'മാറ്റങ്ങൾ മാറ്റിയെഴുതുക',
 	'flow-board-history' => '"$1" എന്നതിന്റെ നാൾവഴി',
 	'flow-topic-history' => '"$1" എന്ന വിഷയത്തിന്റെ നാൾവഴി',
 	'flow-post-history' => 'കുറിപ്പിന്റെ നാൾവഴിയിൽ "{{GENDER:$2|$2}} ഇട്ട കുറിപ്പ്"',
 	'flow-history-last4' => 'അവസാനത്തെ 4 മണിക്കൂറുകൾ',
 	'flow-history-day' => 'ഇന്ന്',
 	'flow-history-week' => 'കഴിഞ്ഞയാഴ്ച്ച',
+	'flow-history-pages-post' => '[$1 $2] എന്നതിൽ പ്രത്യക്ഷപ്പെടുന്നു',
 	'flow-comment-restored' => 'പുനഃസ്ഥാപിച്ച അഭിപ്രായം',
 	'flow-comment-deleted' => 'മായ്ച്ച അഭിപ്രായം',
 	'flow-comment-hidden' => 'മറയ്ക്കപ്പെട്ട അഭിപ്രായം',
@@ -4412,6 +4439,7 @@ $messages['ml'] = array(
 	'flow-notification-link-text-view-post' => 'കുറിപ്പ് കാണുക',
 	'flow-notification-link-text-view-board' => 'ബോർഡ് കാണുക',
 	'flow-notification-link-text-view-topic' => 'വിഷയം കാണുക',
+	'flow-notification-mention-email-subject' => '"$2" എന്നതിൽ $1 താങ്കളെ {{GENDER:$1|പരാമർശിച്ചിരിക്കുന്നു}}',
 	'echo-category-title-flow-discussion' => 'ഫ്ലോ',
 	'flow-link-post' => 'കുറിപ്പ്',
 	'flow-link-topic' => 'വിഷയം',
@@ -4435,9 +4463,15 @@ $messages['ml'] = array(
 	'flow-moderation-confirm-unsuppress-topic' => 'ഒതുക്കൽ ഒഴിവാക്കുക',
 	'flow-moderation-confirm-undelete-topic' => 'പുനഃസ്ഥാപിക്കുക',
 	'flow-moderation-confirm-unhide-topic' => 'മറയ്ക്കൽ ഒഴിവാക്കുക',
+	'flow-moderation-confirmation-unsuppress-topic' => 'ഈ വിഷയം ഒതുക്കിയിരുന്നത് താങ്കൾ വിജയകരമായി ഒഴിവാക്കി.',
+	'flow-moderation-confirmation-undelete-topic' => 'ഈ വിഷയം താങ്കൾ വിജയകരമായി പുനഃസ്ഥാപിച്ചിരിക്കുന്നു.',
+	'flow-moderation-confirmation-unhide-topic' => 'ഈ വിഷയം മറച്ചിരുന്നത് താങ്കൾ വിജയകരമായി ഒഴിവാക്കി.',
 	'flow-moderation-title-suppress-topic' => 'വിഷയം ഒതുക്കണോ?',
 	'flow-moderation-title-delete-topic' => 'വിഷയം മായ്ക്കണോ?',
 	'flow-moderation-title-hide-topic' => 'വിഷയം മറയ്ക്കണോ?',
+	'flow-moderation-title-unsuppress-topic' => 'വിഷയം ഒതുക്കിയത് ഒഴിവാക്കണോ?',
+	'flow-moderation-title-undelete-topic' => 'വിഷയം പുനഃസ്ഥാപിക്കണോ?',
+	'flow-moderation-title-unhide-topic' => 'വിഷയം മറച്ചത് ഒഴിവാക്കണോ?',
 	'flow-moderation-intro-suppress-topic' => 'എന്തുകൊണ്ടാണ് ഈ വിഷയം ഒതുക്കേണ്ടതെന്ന്  {{GENDER:$3|വിശദീകരിക്കുക}}.',
 	'flow-moderation-intro-delete-topic' => 'എന്തുകൊണ്ടാണ് ഈ വിഷയം മായ്ക്കുന്നതെന്ന്  {{GENDER:$3|വിശദീകരിക്കുക}}.',
 	'flow-moderation-intro-hide-topic' => 'എന്തുകൊണ്ടാണ് ഈ വിഷയം മറയ്ക്കുന്നതെന്ന്  {{GENDER:$3|വിശദീകരിക്കുക}}.',
@@ -4445,6 +4479,7 @@ $messages['ml'] = array(
 	'flow-moderation-intro-undelete-topic' => 'എന്തുകൊണ്ടാണ് ഈ വിഷയം പുനഃസ്ഥാപിക്കേണ്ടതെന്ന് ദയവായി {{GENDER:$3|വിശദീകരിക്കുക}}.',
 	'flow-moderation-intro-unhide-topic' => 'എന്തുകൊണ്ടാണ് ഈ വിഷയത്തിന്റെ  മറയ്ക്കൽ ഒഴിവാക്കേണ്ടതെന്ന് ദയവായി {{GENDER:$3|വിശദീകരിക്കുക}}.',
 	'flow-topic-permalink-warning' => 'ഈ വിഷയം തുടങ്ങിയത് [$2 $1] എന്നതിൽ ആണ്',
+	'flow-compare-revisions-revision-header' => '{{GENDER:$2|$2}}, $1-നു ചെയ്ത പതിപ്പ്',
 	'flow-topic-collapsed-one-line' => 'ചെറിയ ദൃശ്യരൂപം',
 	'flow-topic-collapsed-full' => 'ചുരുക്കിയ ദൃശ്യരൂപം',
 	'flow-topic-complete' => 'പൂർണ്ണരൂപം',
@@ -4930,11 +4965,16 @@ $messages['nl'] = array(
 	'flow-revision-permalink-warning-post' => 'Dit is een permanente koppeling naar een enkele versie van dit bericht.
 Deze versie is van $1.
 U kunt de [$5 verschillen ten opzichte van de vorige versie] bekijken, of andere versies bekijken op de [$4 geschiedenispagina van het bericht].',
-	'flow-revision-permalink-warning-post-first' => 'Dit is een permanente kopeeling naar de eerste versie van dit bericht.
+	'flow-revision-permalink-warning-post-first' => 'Dit is een permanente koppeling naar de eerste versie van dit bericht.
 U kunt nieuwere versies bekijken op de [$4 geschiedenispagina van dit bericht].',
+	'flow-revision-permalink-warning-header' => 'Dit is een permanente koppeling naar een enkele versie van de koptekst. Deze versie is van $1. U kunt de [$3 verschillen ten opzichte van de vorige versie] bekijken, of andere versies bekijken op de [$2 geschiedenispagina van het board].',
+	'flow-revision-permalink-warning-header-first' => 'Dit is een permanente koppeling naar de eerste versie van deze kop.
+U kunt nieuwere versies bekijken op de [$2 geschiedenispagina van dit board].',
 	'flow-compare-revisions-revision-header' => 'Version van $1 door {{GENDER:$2|$2}}',
 	'flow-compare-revisions-header-post' => 'Op deze pagina worden de verschillen tussen twee versies weergegeven van een bericht van {{GENDER:$3|$3}} in het onderwerp "[$5 $2]" op [$4 $1].
 U kunt de andere versie van dit bericht bekijken op de [$6 geschiedenispagina].',
+	'flow-compare-revisions-header-header' => 'Op deze pagina worden de verschillen tussen twee versies weergegeven van de kop op [$3 $1].
+U kunt de andere versie van de kop bekijken op de [$4 geschiedenispagina].', # Fuzzy
 	'flow-topic-collapsed-one-line' => 'Kleine weergave',
 	'flow-topic-collapsed-full' => 'Ingeklapte weergave',
 	'flow-topic-complete' => 'Volledige weergave',
