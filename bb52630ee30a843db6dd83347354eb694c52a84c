@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_ec9a81bc",
+        "filename": "includes/Data/TopKIndex.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T05:35:12Z",
+      "side": 1,
+      "message": "Indentation broken",
+      "revId": "bb52630ee30a843db6dd83347354eb694c52a84c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_ac94898e",
+        "filename": "includes/RevisionActionPermissions.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T05:35:12Z",
+      "side": 1,
+      "message": "Indentation borked again",
+      "revId": "bb52630ee30a843db6dd83347354eb694c52a84c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
