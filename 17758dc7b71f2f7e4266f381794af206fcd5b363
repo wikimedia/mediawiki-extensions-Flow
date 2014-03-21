@@ -70,6 +70,24 @@
       "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_58a6c7bf",
+        "filename": "tests/RevisionCollectionPermissionsTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T16:57:07Z",
+      "side": 1,
+      "message": "$wgFlowGroupPermissions contains the global configuration as modified by the local wiki.  This test will not pass if the local wiki has any custom flow group permissions configuration with your changes.",
+      "parentUuid": "ee14bf34_38c43368",
+      "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
