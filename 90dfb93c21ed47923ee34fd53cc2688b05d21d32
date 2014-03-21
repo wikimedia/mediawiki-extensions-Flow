@@ -34,6 +34,24 @@
       "revId": "90dfb93c21ed47923ee34fd53cc2688b05d21d32",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_29ad0b81",
+        "filename": "templates/timestamp.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T01:57:09Z",
+      "side": 1,
+      "message": "the user variable already exists in this context. the language object is not exposed so the one below is ok.",
+      "parentUuid": "ee14bf34_661d7278",
+      "revId": "90dfb93c21ed47923ee34fd53cc2688b05d21d32",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
