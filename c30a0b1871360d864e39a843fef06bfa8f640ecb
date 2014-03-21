@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_cc97bd92",
+        "filename": "includes/Data/CachingObjectMapper.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:36:58Z",
+      "side": 1,
+      "message": "your right, this should just be\n\n    @param array $primaryKey",
+      "parentUuid": "ee14bf34_2c1d1967",
+      "revId": "c30a0b1871360d864e39a843fef06bfa8f640ecb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_0c22559f",
         "filename": "includes/Data/CachingObjectMapper.php",
         "patchSetId": 5
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_0c86d567",
+        "filename": "includes/Data/CachingObjectMapper.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:36:58Z",
+      "side": 1,
+      "message": "In the constructor it calls \n\n    $this-\u003eclear();\n\nwhich runs\n\n    $this-\u003eloaded \u003d new MultiDimArray\n\nwhich allows for just this use case.",
+      "parentUuid": "ee14bf34_ec3601e4",
+      "revId": "c30a0b1871360d864e39a843fef06bfa8f640ecb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_cc333df2",
         "filename": "includes/Data/ObjectLocator.php",
         "patchSetId": 5
@@ -64,6 +100,24 @@
       "writtenOn": "2014-03-21T05:26:33Z",
       "side": 1,
       "message": "RED BAR OF DOOM!!!1",
+      "revId": "c30a0b1871360d864e39a843fef06bfa8f640ecb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_ece1612a",
+        "filename": "includes/Data/ObjectLocator.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:36:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee14bf34_cc333df2",
       "revId": "c30a0b1871360d864e39a843fef06bfa8f640ecb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
