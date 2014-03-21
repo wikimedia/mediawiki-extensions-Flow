@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_c90d6f43",
+        "filename": "FlowActions.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:31:36Z",
+      "side": 1,
+      "message": "no this is ok for now",
+      "parentUuid": "ee14bf34_69654341",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_295f4b79",
         "filename": "includes/Formatter/AbstractFormatter.php",
         "patchSetId": 8
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_2c063921",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:31:36Z",
+      "side": 1,
+      "message": "there are places in mediawiki that show a pipe list that always has two items, although only one might be a link.  For example Special:Contributions and Special:RecentChanges always shows (diff | hist) for revisions. When creating a page only hist is a link.  Perhaps this method could be named better, or just doc updated?",
+      "parentUuid": "ee14bf34_295f4b79",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_09648741",
         "filename": "includes/Formatter/AbstractFormatter.php",
         "patchSetId": 8
@@ -47,6 +83,24 @@
       "writtenOn": "2014-03-21T04:48:46Z",
       "side": 1,
       "message": "What\u0027s the point of that? :/",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_ac192980",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:31:36Z",
+      "side": 1,
+      "message": "See comment above, thats how mediawiki has these lists :(",
+      "parentUuid": "ee14bf34_09648741",
       "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -172,6 +226,24 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_ac3009e6",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:31:36Z",
+      "side": 1,
+      "message": "actually the fix has been deployed, looks like i failed to remove the comment when rebasing over that fix.",
+      "parentUuid": "ee14bf34_49beff61",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_29b3cb97",
         "filename": "includes/Formatter/RecentChanges.php",
         "patchSetId": 8
@@ -183,6 +255,24 @@
       "writtenOn": "2014-03-21T04:48:46Z",
       "side": 1,
       "message": "Not sure what\u0027s going on here, but it looks wrong.",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_8c2d458e",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:31:36Z",
+      "side": 1,
+      "message": "basically to have access to a post revision you also have to have access to its root post, or do you mean at a higher level of where this code belongs?",
+      "parentUuid": "ee14bf34_29b3cb97",
       "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -206,6 +296,24 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_2c54f900",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:31:36Z",
+      "side": 1,
+      "message": "it already had that name :P  but i\u0027ll rename it",
+      "parentUuid": "ee14bf34_09b80770",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_e9acb334",
         "filename": "includes/Formatter/RevisionFormatter.php",
         "patchSetId": 8
@@ -223,6 +331,24 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_8c44254c",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:31:36Z",
+      "side": 1,
+      "message": "no, the revision id should be different.  A root post will have the same postId as its workflowId but not all revisions.",
+      "parentUuid": "ee14bf34_e9acb334",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_c9a9ef22",
         "filename": "includes/Formatter/RevisionFormatter.php",
         "patchSetId": 8
@@ -234,6 +360,24 @@
       "writtenOn": "2014-03-21T04:48:46Z",
       "side": 1,
       "message": "Can we make sure this stuff is preloaded?",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_4ca5edff",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:31:36Z",
+      "side": 1,
+      "message": "hmm, i think the reason i didn\u0027t was that it wasn\u0027t immediatly obvious which revisions would need their previous revision loaded, but will look back into it.",
+      "parentUuid": "ee14bf34_c9a9ef22",
       "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -302,6 +446,24 @@
       "writtenOn": "2014-03-21T04:48:46Z",
       "side": 1,
       "message": "Is this just a copy of AbstractFormatter before this rev?",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_acbda918",
+        "filename": "includes/View/History/OldAbstractFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T05:31:36Z",
+      "side": 1,
+      "message": "yes, i didn\u0027t want to port over the stuff in View\\History\\* yet so this is a temporary hack. The history implemented here is still used in per-post histories.",
+      "parentUuid": "ee14bf34_0977e7d2",
       "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
