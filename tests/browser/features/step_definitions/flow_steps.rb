@@ -88,10 +88,6 @@ Then(/^the Flow page should contain (.+)$/) do |flow_topic|
   end
 end
 
-Then(/^I should see a Block User link$/) do
-  on(FlowPage).block_user_element.should be_visible
-end
-
 Then(/^I should see a Delete button$/) do
   on(FlowPage).delete_button_element.should be_visible
 end
