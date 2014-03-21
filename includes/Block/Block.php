@@ -105,6 +105,7 @@ abstract class AbstractBlock implements Block {
 	}
 
 	public function onSubmit( $action, User $user, array $data  ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 		if ( false === array_search( $this->getActionName( $action ), $this->supportedPostActions ) ) {
 			return null;
@@ -119,6 +120,7 @@ abstract class AbstractBlock implements Block {
 	}
 
 	public function onRender( $action, Templating $templating, array $options ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 		if ( !in_array( $this->getActionName( $action ), $this->supportedGetActions ) ) {
 			return false;
