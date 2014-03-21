@@ -40,26 +40,6 @@ $c['repository.tree'] = $c->share( function( $c ) {
 } );
 
 // Templating
-
-// array of closures to delay instantiation until use of
-// individual helpers.
-$c['template.helpers'] = array(
-	// Backward Compatability for old templating helper methods
-	'bc' => function() use ( $c ) { return $c['templating']; },
-	// Consistent rendering of error messages
-	'errors' => function() { return new Flow\Template\ErrorHelper; },
-);
-
-// not shared, new template every time
-$c['template'] = function( $c ) {
-	return new Flow\Template(
-		$c['templating.namespaces'],
-		$c['template.helpers'],
-		$c['templating.global_variables'],
-		$c['output']
-	);
-};
-
 // (this implementation is mostly useless actually)
 $c['url_generator'] = $c->share( function( $c ) {
 	return new Flow\UrlGenerator(

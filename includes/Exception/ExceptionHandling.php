@@ -249,9 +249,3 @@ class NoIndexException extends FlowException {
 		return array ( 'no-index' );
 	}
 }
-
-class RuntimeException extends FlowException {
-	protected function getErrorCodeList() {
-		return array( 'other' );
-	}
-}
