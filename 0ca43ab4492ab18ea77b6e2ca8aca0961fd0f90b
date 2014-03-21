@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_77de3ee0",
+        "filename": "Flow.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-21T11:23:09Z",
+      "side": 1,
+      "message": "In Hooks.php, the method seems to be called onOldChangesListBegin instead of onChangesListBegin",
+      "revId": "0ca43ab4492ab18ea77b6e2ca8aca0961fd0f90b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_575b3afd",
+        "filename": "FlowActions.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-21T11:23:09Z",
+      "side": 1,
+      "message": "Typo: properties.\n\nBut it looks like this has become \"links\"",
+      "revId": "0ca43ab4492ab18ea77b6e2ca8aca0961fd0f90b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_17cee231",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-21T11:23:09Z",
+      "side": 1,
+      "message": "There params are incompatible with AbstractQuery::loadMetadataBatch.\n\n$isWatchlist isn\u0027t used in this method",
+      "revId": "0ca43ab4492ab18ea77b6e2ca8aca0961fd0f90b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
