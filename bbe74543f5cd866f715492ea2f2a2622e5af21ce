@@ -1,0 +1,327 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_69654341",
+        "filename": "FlowActions.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "Does this block merging?",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_295f4b79",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "Is this really for links or is it actually there for remarks or so?",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_09648741",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "What\u0027s the point of that? :/",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_e958338e",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "@todo",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_c9556f54",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "Some short descriptions would be handy in the doc block to understand what these functions do. I had to think a lot before I could understand the point of this function.",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_69c42312",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "existent* :)",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_29ce2b32",
+        "filename": "includes/Formatter/CheckUser.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "Might wanna change this ;-)",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_09d367da",
+        "filename": "includes/Formatter/CheckUser.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "I suspect you want to use -\u003einLanguage() or so.",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_a9e11b99",
+        "filename": "includes/Formatter/Contributions.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "@todo",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_49beff61",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "Should actually comment this out",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_29b3cb97",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "Not sure what\u0027s going on here, but it looks wrong.",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_09b80770",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "I don\u0027t like function names that start with verbs unless they actually verb something. But maybe that\u0027s just a pet peeve :p",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_e9acb334",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "Shouldn\u0027t the two above be identical?",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_c9a9ef22",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "Can we make sure this stuff is preloaded?",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_6968a3f2",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": ":))",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_496ddf00",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "@todo",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_2972abe2",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": ":)",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_0977e7d2",
+        "filename": "includes/View/History/OldAbstractFormatter.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "Is this just a copy of AbstractFormatter before this rev?",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_694f8398",
+        "filename": "tests/FormatterTest.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T04:48:46Z",
+      "side": 1,
+      "message": "How bad does it smell? :)",
+      "revId": "bbe74543f5cd866f715492ea2f2a2622e5af21ce",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
