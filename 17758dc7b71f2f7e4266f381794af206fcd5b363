@@ -34,6 +34,24 @@
       "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_78650baa",
+        "filename": "tests/RevisionCollectionPermissionsTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-21T16:42:56Z",
+      "side": 1,
+      "message": "the code does not do the same as before.  If you cant comprehend what the code does or read the comments and understand why then don\u0027t change it",
+      "parentUuid": "ee14bf34_785bcb26",
+      "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
