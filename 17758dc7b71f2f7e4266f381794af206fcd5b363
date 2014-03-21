@@ -52,6 +52,24 @@
       "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_38c43368",
+        "filename": "tests/RevisionCollectionPermissionsTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2014-03-21T16:53:13Z",
+      "side": 1,
+      "message": "Before the code...\n- first creates an empty array.\n- then loads the default settings which are already loaded\n- Then merges wgGroupPermissions (which is an empty array..) with $wgFlowGroupPermissions leaving wgGroupPermissions equal to wgFlowGroupPermissions\n- Then it sets wgGroupPermissions  to this array which is equal to wgFlowGroupPermissions \n\nWhy on earth is it even doing require \"$IP/includes/DefaultSettings.php\"...",
+      "parentUuid": "ee14bf34_78650baa",
+      "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
