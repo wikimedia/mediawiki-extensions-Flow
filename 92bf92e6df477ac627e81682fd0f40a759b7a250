@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_170ca2ef",
+        "filename": "includes/Data/CachingObjectMapper.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-21T09:54:58Z",
+      "side": 1,
+      "message": "The var is called $primaryKey now.",
+      "revId": "92bf92e6df477ac627e81682fd0f40a759b7a250",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_f7100e06",
+        "filename": "includes/Data/CachingObjectMapper.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-21T09:54:58Z",
+      "side": 1,
+      "message": "Add typehint",
+      "revId": "92bf92e6df477ac627e81682fd0f40a759b7a250",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
