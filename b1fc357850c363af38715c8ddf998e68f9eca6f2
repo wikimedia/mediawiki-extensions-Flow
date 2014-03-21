@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_8921b7f8",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T02:58:17Z",
+      "side": 1,
+      "message": "Could use an array type hint",
+      "revId": "b1fc357850c363af38715c8ddf998e68f9eca6f2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_a9247b08",
+        "filename": "includes/Formatter/Contributions.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-21T02:58:17Z",
+      "side": 1,
+      "message": "DIIIEEEE",
+      "revId": "b1fc357850c363af38715c8ddf998e68f9eca6f2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
