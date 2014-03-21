@@ -16,6 +16,24 @@
       "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_785bcb26",
+        "filename": "tests/RevisionCollectionPermissionsTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2014-03-21T16:10:10Z",
+      "side": 1,
+      "message": "Well the code does the same as it did before.\nAs for the comment we could just remove it as its overly confusing",
+      "parentUuid": "ee14bf34_86ebe69f",
+      "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
