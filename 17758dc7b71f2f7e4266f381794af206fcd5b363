@@ -88,6 +88,24 @@
       "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_b643afb5",
+        "filename": "tests/RevisionCollectionPermissionsTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2014-03-22T18:24:20Z",
+      "side": 1,
+      "message": "Then really each permission should be set when testing that permission,\nrather than the current load everything approach :/",
+      "parentUuid": "ee14bf34_58a6c7bf",
+      "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
