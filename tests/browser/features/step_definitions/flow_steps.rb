@@ -73,18 +73,9 @@ end
 
 Then(/^the Flow page should contain (.+)$/) do |flow_topic|
   on(FlowPage) do |page|
-    $postTimestamp = Regexp.new( /just now|[0-9] seconds? ago/ )
-    page.wait_until(20) do	# 10 seconds wasn't enough on ee-flow.
-      # TODO This should look in the particular topic that was added, not
-      # blindly look for text on a shared page. (See "Anti-pattern four:
-      # checking the entire page contains some text somewhere" in
-      # http://watirmelon.com/2012/04/01/five-page-object-anti-patterns/ .) It
-      # could note the ID of the first div with id 'flow-topic-<UUID>' before
-      # submitting the new topic post, then afterwards find the
-      # flow-topic-<UUID> div *preceding* that and search in there.  Or after
-      # submit it could look for the Title of Flow Topic, find the
-      # flow-topic-container containing that and search in there.
-      page.text =~ $postTimestamp
+    page.wait_until(20) do
+      page.preview_button_element.visible? != true
+      page.cancel_button_element.visible? != true
     end
     page.flow_body.should match(flow_topic + @random_string + @automated_test_marker)
   end

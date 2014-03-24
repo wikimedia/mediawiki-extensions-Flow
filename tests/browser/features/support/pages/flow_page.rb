@@ -18,6 +18,7 @@ class FlowPage
   a(:actions_link_permalink_3rd_comment, text: "Actions", index: 4)
   span(:author_link, class: "flow-creator")
   a(:block_user, title: /Special:Block/)
+  a(:cancel_button, text: "Cancel")
   list_item(:collapsed_view, title: "Collapsed view")
   button(:change_post_save, css: "form.flow-edit-form .flow-edit-submit")
   button(:change_title_save, css: "form.flow-edit-title-form .flow-edit-submit")
@@ -55,6 +56,7 @@ class FlowPage
   # NOT YET: text_area(:post_edit, css: "form.flow-edit-form .flow-edit-content")
   # so instead awful xpath:
   text_area(:post_edit, xpath: "//form[@class='flow-edit-form']//textarea")
+  button(:preview_button, class: "mw-ui-button flow-preview-submit")
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
   list_item(:small_view, title: "Small view")
   a(:talk_link, text: "Talk")
