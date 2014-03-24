@@ -44,7 +44,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = array( 'topic-summary-view' );
+	protected $supportedGetActions = array( 'topic-summary-view', 'edit-topic-summary' );
 
 	/**
 	 * @param string
@@ -231,11 +231,22 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @param array
 	 * @throws InvalidActionException
 	 */
-	public function render( Templating $templating, array $options ) {
+	public function render( Templating $templating, array $options, $return = false ) {
+		$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion' ) );
+		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		switch( $this->action ) {
 			case 'topic-summary-view':
 				// @Todo - This will be implemented in diff view patch, having a placeholder in
 				// here will allow us to query data from api via renderAPI()
+			break;
+
+			case 'edit-topic-summary':
+				return $templating->render( 'flow:edit-topic-summary.html.php', array(
+					'block' => $this,
+					'workflow' => $this->getWorkflow(),
+					'topicSummary' => $this->topicSummary,
+					'user' => $this->user,
+				), $return );
 			break;
 
 			default:
