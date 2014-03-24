@@ -50,6 +50,40 @@
       "revId": "0ca43ab4492ab18ea77b6e2ca8aca0961fd0f90b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_36c9d655",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-24T16:55:38Z",
+      "side": 1,
+      "message": "The only thing HistoryRenderer was extending AbstractFormatter for, was so it can call processParam() - it needed this when the params stuff was refactored to keywords instead of closures.\n\nInstead of keeping OldAbstractFormatter around just for that 1 function (that is now in RevisionFormatter), we can simply make it use AbstractFormatter too, and call processParams on the RevisionFormatter serializer.",
+      "revId": "0ca43ab4492ab18ea77b6e2ca8aca0961fd0f90b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_f6d23e00",
+        "filename": "includes/View/History/OldAbstractFormatter.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-24T16:55:38Z",
+      "side": 1,
+      "message": "Kill this file - see comment in HistoryRenderer.php",
+      "revId": "0ca43ab4492ab18ea77b6e2ca8aca0961fd0f90b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
