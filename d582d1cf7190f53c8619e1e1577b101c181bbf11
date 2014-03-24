@@ -70,6 +70,23 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_963e6286",
+        "filename": "modules/base/ext.flow.base.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-24T16:42:49Z",
+      "side": 1,
+      "message": "Perhaps split this up into 2 seperate functions, 1 for multi, 1 for single block?",
+      "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_3039decb",
         "filename": "modules/base/images/closed_active.svg",
         "patchSetId": 10
@@ -132,6 +149,108 @@
       "writtenOn": "2014-03-24T14:05:11Z",
       "side": 1,
       "message": "Same remark; perhaps change to:\n\n    this.$container \u003d object.$container;",
+      "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_96b9c2e8",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-24T16:42:49Z",
+      "side": 1,
+      "message": "This can probably be done in the shared constructor, which is called by all implementing actions (see coment below about how to call parent)",
+      "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_16f6d2c2",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-24T16:42:49Z",
+      "side": 1,
+      "message": "Looks like the only difference between close/summarize/reopen is this.action. The other 3 are exactly the same for all 3 actions.\n\nThese 3 other lines can just be moved to summarizebase constructor, then these 3 can just call parent (not entirely certain this work the same for constructors, but I guess so)\n\n    mw.flow.action.topic.summarizebase \u003d function( topic ) {\n        this.object \u003d topic;\n        this.$container \u003d $( \u0027.flow-element-container:first\u0027, $( \u0027#flow-topic-\u0027 + this.object.topicId ) );\n    \n        this.initialize(); // ... or just have all code in initialize() in here too ;)\n    };\n    \n    mw.flow.action.topic.close \u003d function( topic ) {\n        this.action \u003d \u0027close\u0027;\n\n        // call parent constructor\n        mw.flow.action.topic.summarizebase.call( this, topic );\n    };",
+      "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_96aae2cf",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-24T16:42:49Z",
+      "side": 1,
+      "message": "Same remark: this.$container \u003d object.$container; ?",
+      "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_b6a9668f",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-24T16:42:49Z",
+      "side": 1,
+      "message": "Same remark: this.$container \u003d object.$container; ?",
+      "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_569a0a76",
+        "filename": "modules/discussion/topic.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-24T16:42:49Z",
+      "side": 1,
+      "message": "Same remark: this.$container \u003d object.$container; ?",
+      "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_f6591e2e",
+        "filename": "modules/header/forms.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-24T16:42:49Z",
+      "side": 1,
+      "message": "Same remark; this.$container \u003d object.$container; ?",
       "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
