@@ -82,16 +82,25 @@ class FlowException extends MWException {
 		 * trace (parent::getHTML) and then just return the combined HTML.
 		 */
 		$output = new OutputPage();
-		$output->showErrorPage( $this->getErrorPageTitle(), $this->getErrorCode() );
+		$output->showErrorPage( $this->getPageTitle(), $this->getErrorCode() );
 		$output->addHTML( parent::getHTML() );
 		return $output->getHTML();
 	}
 
 	/**
+	 * Overwrite parent msg method for the convenience of a default fallback
+	 * @param string $key
+	 */
+	public function msg( $key ) {
+		global $wgSitename;
+		return parent::msg( $key, "$1 - $wgSitename", parent::msg( 'internalerror', 'Internal error' ) );
+	}
+
+	/**
 	 * Error page title
 	 */
-	protected function getErrorPageTitle() {
-		return 'errorpagetitle';
+	public function getPageTitle() {
+		return $this->msg( 'errorpagetitle' );
 	}
 
 	/**
@@ -163,8 +172,8 @@ class InvalidActionException extends FlowException {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected function getErrorPageTitle() {
-		return 'nosuchaction';
+	public function getPageTitle() {
+		return $this->msg( 'nosuchaction' );
 	}
 
 	/**
