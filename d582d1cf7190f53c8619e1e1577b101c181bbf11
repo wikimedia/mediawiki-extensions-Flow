@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee14bf34_8a207297",
+        "filename": "includes/Templating.php",
+        "patchSetId": 10
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-24T18:33:17Z",
+      "side": 1,
+      "message": "A post must have a revision, but a post summary is like a board header, it\u0027s not necessary to have a revision, it may have empty summary just like a board may have an empty header.  collection-\u003egetLastRevision() will throw an exception in this case.  We can catch the exception in here.",
+      "parentUuid": "ee14bf34_70b076d8",
+      "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee14bf34_f0a486a0",
         "filename": "includes/TermsOfUse.php",
         "patchSetId": 10
@@ -64,6 +82,24 @@
       "writtenOn": "2014-03-24T14:05:11Z",
       "side": 1,
       "message": "I would suggest a getAction() method, that has a default implementation in base.js like this:\n\n    mw.flow.action.prototype.getAction() \u003d function() {\n        if ( this.action ) {\n            return this.action;\n        }\n\n        throw \u0027Action not yet implemented\u0027;\n    }\n\n...\n\nThen again, some base.js code also uses some properties that it just assumes to be there (like this.object) but may not be. It\u0027s a shame we can\u0027t have abstract classes or interfaces here ^^",
+      "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_caff8afb",
+        "filename": "modules/base/action.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-24T18:33:17Z",
+      "side": 1,
+      "message": "That\u0027s a good idea, :)",
+      "parentUuid": "ee14bf34_b0396ef1",
       "revId": "d582d1cf7190f53c8619e1e1577b101c181bbf11",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
