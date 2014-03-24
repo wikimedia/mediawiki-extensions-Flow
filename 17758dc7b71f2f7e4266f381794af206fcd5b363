@@ -106,6 +106,24 @@
       "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_f0148646",
+        "filename": "tests/RevisionCollectionPermissionsTest.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-24T11:27:58Z",
+      "side": 1,
+      "message": "The original code loads DefaultSettings.php to get the default $wgGroupPermissions (as defined in DefaultSettings.php)\n\nThis is done because different wikis can have different $wgGroupPermissions in their LocalSettings.php (or via CommonSettings.php for WMF wikis). Loading those from DefaultSettings.php instead always guarantees that these tests will perform under the same circumstances, regardless of the wiki\u0027s custom permissions config.\n\nThen, $wgFlowGroupPermissions are added to the default $wgGroupPermissions, to make sure we have our Flow-specific permissions loaded as well. This too is from Flow source file, not any local config (unless a local config makes changes to $wgFlowGroupPermissions, which should not just be altered, as stated in the comments in Flow.php - $wgGroupPermissions should be changed instead)\n\nLoading DefaultSettings.php will not change much: all variables in there will just be loaded in the scope of this function (so loading it doesn\u0027t do any harm). From there, we\u0027ll get a fresh copy of $wgGroupPermissions, add Flow\u0027s permissions, and set it as a global for this test.\n\nI think it should stay like it is, or this test becomes unreliable with different $wgGroupPermissions configs per wiki.",
+      "parentUuid": "ee14bf34_b643afb5",
+      "revId": "17758dc7b71f2f7e4266f381794af206fcd5b363",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
