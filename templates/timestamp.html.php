@@ -2,13 +2,16 @@
 if ( ! isset( $tag ) ) {
 	$tag = 'p';
 }
+$lang = RequestContext::getMain()->getLanguage();
 
 $agoTime = $timestamp->getHumanTimestamp();
-$utcTime = $timestamp->getTimestamp( TS_RFC2822 );
+
+$timestamp->offsetForUser($user);
+$absoluteTime = $lang->userTimeAndDate($timestamp, $user);
 
 $html =
 	Html::element( 'span', array( 'class' => 'flow-agotime' ), $agoTime ) . "\n" .
-	Html::element( 'span', array( 'class' => 'flow-utctime' ), $utcTime ) . "\n";
+	Html::element( 'span', array( 'class' => 'flow-abstime' ), $absoluteTime ) . "\n";
 
 if ( isset( $historicalLink ) ) {
 	$html = Html::rawElement( 'a', array( 'href' => $historicalLink ), $html );
