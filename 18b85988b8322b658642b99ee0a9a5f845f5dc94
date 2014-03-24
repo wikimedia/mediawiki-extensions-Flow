@@ -16,6 +16,24 @@
       "revId": "18b85988b8322b658642b99ee0a9a5f845f5dc94",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee14bf34_c381b5c9",
+        "filename": "modules/base/action.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-03-24T23:58:25Z",
+      "side": 0,
+      "message": "The tipsy isn\u0027t closed when clicked, it\u0027s closed when the \u0027trigger\u0027 (which in this case is whatever the tipsy is attached to) is clicked. This seems to happen immediately on showing the tipsy, so the tipsy appears and then disappears.",
+      "parentUuid": "ee14bf34_30e10b98",
+      "revId": "18b85988b8322b658642b99ee0a9a5f845f5dc94",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
