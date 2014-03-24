@@ -40,6 +40,11 @@ class TopicSummaryBlock extends AbstractBlock {
 	 */
 	protected $supportedPostActions = array( 'edit-topic-summary', 'moderate-topic' );
 
+	/**
+	 * Supported Get actions
+	 */
+	protected $supportedGetActions = array( 'edit-topic-summary' );
+
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
 		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
@@ -179,12 +184,18 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 	}
 
-	/**
-	 * @Todo - Add edit-topic-summary get action for no js support in UI patch
-	 */
-	public function render( Templating $templating, array $options ) {
-
-	}
+	public function render( Templating $templating, array $options, $return = false ) {
+		switch ( $this->action ) {
+			case 'edit-topic-summary':
+				return $templating->render( 'flow:edit-topic-summary.html.php', array(
+					'block' => $this,
+					'workflow' => $this->getWorkflow(),
+					'topicSummary' => $this->topicSummary,
+					'user' => $user,
+				), $return );
+				break;
+		}
+        }
 
 	public function renderAPI( Templating $templating, array $options ) {
 		$output = array( 'type' => 'topicsummary' );
