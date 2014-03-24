@@ -1430,6 +1430,13 @@ $messages['bcl'] = array(
 	'flow-rev-message-restored-topic' => '$1 {{GENDER:$2|pinagbalikwat}} an [$4 na tema] $6 (<em>$5</em>).',
 );
 
+/** Belarusian (беларуская)
+ * @author Дзяніс Тутэйшы
+ */
+$messages['be'] = array(
+	'flow-post-action-hide-post' => 'Схаваць',
+);
+
 /** Bulgarian (български)
  * @author DCLXVI
  * @author Mitzev
@@ -4973,8 +4980,8 @@ U kunt nieuwere versies bekijken op de [$2 geschiedenispagina van dit board].',
 	'flow-compare-revisions-revision-header' => 'Version van $1 door {{GENDER:$2|$2}}',
 	'flow-compare-revisions-header-post' => 'Op deze pagina worden de verschillen tussen twee versies weergegeven van een bericht van {{GENDER:$3|$3}} in het onderwerp "[$5 $2]" op [$4 $1].
 U kunt de andere versie van dit bericht bekijken op de [$6 geschiedenispagina].',
-	'flow-compare-revisions-header-header' => 'Op deze pagina worden de verschillen tussen twee versies weergegeven van de kop op [$3 $1].
-U kunt de andere versie van de kop bekijken op de [$4 geschiedenispagina].', # Fuzzy
+	'flow-compare-revisions-header-header' => 'Op deze pagina worden de {{GENDER:$2|verschillen}} tussen twee versies weergegeven van de kop op [$3 $1].
+U kunt de andere versie van de kop bekijken op de [$4 geschiedenispagina].',
 	'flow-topic-collapsed-one-line' => 'Kleine weergave',
 	'flow-topic-collapsed-full' => 'Ingeklapte weergave',
 	'flow-topic-complete' => 'Volledige weergave',
@@ -5293,18 +5300,17 @@ $messages['ru'] = array(
 	'flow-post-action-delete-post' => 'Удалить',
 	'flow-post-action-hide-post' => 'Скрыть',
 	'flow-post-action-edit-post' => 'Редактировать',
-	'flow-post-action-restore-post' => 'Восстановить сообщение',
 	'flow-topic-action-view' => 'Постоянная ссылка',
 	'flow-topic-action-watchlist' => 'Список наблюдения',
 	'flow-topic-action-edit-title' => 'Редактировать заголовок',
 	'flow-topic-action-history' => 'История',
 	'flow-topic-action-hide-topic' => 'Скрыть тему',
 	'flow-topic-action-delete-topic' => 'Удалить тему',
-	'flow-topic-action-restore-topic' => 'Восстановить тему',
 	'flow-error-http' => 'Произошла ошибка при обращении к серверу.',
 	'flow-error-other' => 'Произошла непредвиденная ошибка.',
 	'flow-error-external' => 'Произошла ошибка.<br />Было получено следующее сообщение об ошибке: $1',
 	'flow-error-edit-restricted' => 'Вам не разрешено редактировать это сообщение.',
+	'flow-error-external-multi' => 'Были обнаружены ошибки.<br />$1',
 	'flow-error-missing-content' => 'Сообщение не имеет содержимого. Для сохранения сообщения требуется содержимое.',
 	'flow-error-missing-title' => 'Тема не имеет заголовка. Заголовок необходим для сохранения темы.',
 	'flow-error-parsoid-failure' => 'Не удаётся выполнить разбор содержимого из-за сбоя Parsoid.',
@@ -5312,6 +5318,8 @@ $messages['ru'] = array(
 	'flow-error-hide-failure' => 'Не удалось скрыть этот элемент.',
 	'flow-error-restore-failure' => 'Не удалось восстановить этот элемент.',
 	'flow-error-not-allowed' => 'Недостаточно прав для выполнения этого действия',
+	'flow-error-not-a-post' => 'Название темы не может быть сохранено как сообщение.',
+	'flow-error-missing-header-content' => 'Заголовок не имеет содержимого. Для того, чтобы сохранить заголовок, требуется содержимое.',
 	'flow-error-default' => 'Произошла ошибка.',
 	'flow-error-fail-load-data' => 'Не удалось загрузить запрошенные данные.',
 	'flow-edit-header-submit' => 'Сохранить заголовок',
@@ -5323,6 +5331,8 @@ $messages['ru'] = array(
 	'flow-rev-message-edit-post' => '$1 отредактировал{{GENDER:$2||а}} [$3  комментарий] в теме $4.',
 	'flow-rev-message-reply' => '$1 [$3 прокомментировал{{GENDER:$2||а}} ] тему $4 (<em>$5</em>).',
 	'flow-rev-message-new-post' => '$1 создал{{GENDER:$2||а}} тему [$3 $4].',
+	'flow-rev-message-create-header' => '$1 создал{{GENDER:$2||а}} заголовок.',
+	'flow-rev-message-edit-header' => '$1 отредактировал{{GENDER:$2||а}} заголовок.',
 	'flow-rev-message-deleted-post' => '$1 удалил{{GENDER:$2||а}} [$4 комментарий] в теме $6(<em>$5</em>).',
 	'flow-topic-history' => 'История темы «$1»',
 	'flow-history-last4' => 'За последние 4 часа',
@@ -5347,26 +5357,24 @@ $messages['ru'] = array(
 	'flow-moderation-reason-placeholder' => 'Введите причину здесь',
 	'flow-moderation-title-delete-post' => 'Удалить сообщение?',
 	'flow-moderation-title-hide-post' => 'Скрыть сообщение?',
-	'flow-moderation-title-restore-post' => 'Восстановить сообщение?',
 	'flow-moderation-confirm-delete-post' => 'Удалить',
 	'flow-moderation-confirm-hide-post' => 'Скрыть',
-	'flow-moderation-confirm-restore-post' => 'Восстановить',
-	'flow-moderation-title-delete-topic' => 'Удалить тему?',
-	'flow-moderation-title-hide-topic' => 'Скрыть тему?',
-	'flow-moderation-title-restore-topic' => 'Восстановить тему?',
-	'flow-moderation-intro-delete-topic' => '{{GENDER:$3|Поясните}} причину удаления данной темы.',
-	'flow-moderation-intro-hide-topic' => '{{GENDER:$3|Поясните}}, почему вы хотите скрыть данную тему.',
-	'flow-moderation-intro-restore-topic' => '{{GENDER:$3|Поясните}} причину восстановления данной темы.',
 	'flow-moderation-confirm-delete-topic' => 'Удалить',
 	'flow-moderation-confirm-hide-topic' => 'Скрыть',
-	'flow-moderation-confirm-restore-topic' => 'Восстановить',
-	'flow-moderation-confirmation-restore-topic' => 'Вы успешно обновили эту тему.',
+	'flow-moderation-title-delete-topic' => 'Удалить тему?',
+	'flow-moderation-title-hide-topic' => 'Скрыть тему?',
+	'flow-moderation-intro-delete-topic' => '{{GENDER:$3|Поясните}} причину удаления данной темы.',
+	'flow-moderation-intro-hide-topic' => '{{GENDER:$3|Поясните}}, почему вы хотите скрыть данную тему.',
 	'flow-topic-permalink-warning' => 'Эта тема была начата на [$2 $1]',
+	'flow-compare-revisions-revision-header' => 'Версия {{GENDER:$2|участника|участницы}} $2 от $1',
 	'flow-compare-revisions-header-post' => 'На этой странице показаны {{GENDER:$3|изменения}} между двумя версиями сообщения от участника $3 в теме «[$5 $2]» раздела [$4 $1].
 Вы можете посмотреть другие версии на этого сообщения на его [$6 странице история].',
 	'flow-topic-collapsed-one-line' => 'Компактный вид',
 	'flow-topic-collapsed-full' => 'Свёрнутый вид',
 	'flow-topic-complete' => 'Полный вид',
+	'flow-terms-of-use-new-topic' => 'Нажимая «{{int:flow-newtopic-save}}», вы соглашаетесь с условиями использования этого вики-проекта.',
+	'flow-terms-of-use-reply' => 'Нажимая «{{int:flow-reply-submit}}», вы соглашаетесь с условиями использования этого вики-проекта.',
+	'flow-terms-of-use-edit' => 'Сохраняя изменения, вы соглашаетесь с условиями использования этого вики-проекта.',
 );
 
 /** Sicilian (sicilianu)
@@ -6019,11 +6027,13 @@ $messages['uk'] = array(
 	'flow-moderation-confirm-suppress-post' => 'Прибрати',
 	'flow-moderation-confirm-delete-post' => 'Видалити',
 	'flow-moderation-confirm-hide-post' => 'Приховати',
+	'flow-moderation-confirm-unsuppress-post' => 'Висвітити',
 	'flow-moderation-confirm-undelete-post' => 'Відновити',
 	'flow-moderation-confirm-unhide-post' => 'Відобразити',
 	'flow-moderation-confirm-suppress-topic' => 'Прибрати',
 	'flow-moderation-confirm-delete-topic' => 'Видалити',
 	'flow-moderation-confirm-hide-topic' => 'Приховати',
+	'flow-moderation-confirm-unsuppress-topic' => 'Висвітити',
 	'flow-moderation-confirm-undelete-topic' => 'Відновити',
 	'flow-moderation-confirm-unhide-topic' => 'Відобразити',
 	'flow-moderation-confirmation-suppress-post' => 'Допис успішно усунено.
