@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce09bb20_1bff5f64",
+        "filename": "Hooks.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-25T23:23:38Z",
+      "side": 1,
+      "message": "Should be logged in \u0027Flow\u0027 group",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce09bb20_1eb18ddc",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-25T23:23:38Z",
+      "side": 1,
+      "message": "Maybe document all the possible keys along with types of the array?",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce09bb20_1e274d61",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-25T23:23:38Z",
+      "side": 1,
+      "message": "Use \u0027history\u0027 as the key for all types in buildActionLinks()?",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce09bb20_de6af57d",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-25T23:23:38Z",
+      "side": 1,
+      "message": "Argument type mismatch, the core patch is passing a resultWrapper to the hook",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
