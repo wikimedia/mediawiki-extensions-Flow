@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_9523eea5",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-25T18:44:35Z",
+      "side": 1,
+      "message": "This shouldn\u0027t throw an exception.\n\nIn Special:Contributions, this one is triggered.\n\nPager::getBody() will loop all contribs results and call ContribsPager::formatRow() to format every object. That one will do:\n\n    $rev \u003d new Revision( $row );\n\nWhich in turn will check a lot of core rev_* properties that it assumes will be there.\n\nWe should probably change this exception to a warning, since ContribsPager::formatRow() will do a wfSuppressWarnings() right before attempting to create a revision object.",
+      "revId": "57a33d4fbd1392509d1dbb70398950f2155fec47",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
