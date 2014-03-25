@@ -1927,6 +1927,7 @@ Du kannst andere Versionen der Überschrift in ihrem [$4 Verlauf] einsehen.',
 	'flow-terms-of-use-new-topic' => 'Mit dem Klicken auf „{{int:flow-newtopic-save}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
 	'flow-terms-of-use-reply' => 'Mit dem Klicken auf „{{int:flow-reply-submit}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
 	'flow-terms-of-use-edit' => 'Mit dem Speichern deiner Änderungen stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
+	'flow-anon-warning' => 'Du bist nicht angemeldet.', # Fuzzy
 );
 
 /** Greek (Ελληνικά)
@@ -2316,6 +2317,7 @@ $messages['fa'] = array(
 	'flow-terms-of-use-new-topic' => 'با کلیک کردن "{{int:flow-newtopic-save}}"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
 	'flow-terms-of-use-reply' => 'با کلیک کردن "{{int:flow-reply-submit}}"، شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
 	'flow-terms-of-use-edit' => 'با ذخیرهٔ تغییرات شما،  شما با شرایط استفاده برای این ویکی موافقت می‌کنید.',
+	'flow-anon-warning' => 'شما وارد نشده‌ايد.', # Fuzzy
 );
 
 /** Finnish (suomi)
@@ -2670,6 +2672,7 @@ Vous pouvez voir les autres versions de l’entête sur sa [$4 page d’historiq
 	'flow-terms-of-use-new-topic' => 'En cliquant sur « {{int:flow-newtopic-save}} », vous acceptez les conditions d’utilisation de ce wiki.',
 	'flow-terms-of-use-reply' => 'En cliquant sur « {{int:flow-reply-submit}} », vous acceptez les conditions d’utilisation de ce wiki.',
 	'flow-terms-of-use-edit' => 'En enregistrant vos modifications, vous acceptez les conditions d’utilisation de ce wiki.',
+	'flow-anon-warning' => 'Vous n’êtes pas connecté.', # Fuzzy
 );
 
 /** Western Frisian (Frysk)
@@ -4050,6 +4053,7 @@ $messages['lb'] = array(
 	'flow-terms-of-use-new-topic' => 'Wann Dir op "{{int:flow-newtopic-save}}" klickt, da sidd Dir mat de Benotzungsbedingunge vun dëser Wiki d\'accord.',
 	'flow-terms-of-use-reply' => 'Wann Dir op "{{int:flow-reply-submit}}" klickt, da sidd Dir mat de Benotzungsbedingunge vun dëser Wiki d\'accord.',
 	'flow-terms-of-use-edit' => "Duerch Späichere vun Ären Ännerunge sidd Dir mat de Konditioune fir d'Benotze vun dëser Wiki d'Accord.",
+	'flow-anon-warning' => 'Dir sidd net ageloggt.', # Fuzzy
 );
 
 /** لوری (لوری)
@@ -4343,6 +4347,7 @@ $messages['mk'] = array(
 	'flow-terms-of-use-new-topic' => 'Стискајќи на „{{int:flow-newtopic-save}}“, се согласувате со условите на употреба на ова вики.',
 	'flow-terms-of-use-reply' => 'Стискајќи на „{{int:flow-reply-submit}}“, се согласувате со условите на употреба на ова вики.',
 	'flow-terms-of-use-edit' => 'Зачувувајќи ги промените, се согласувате со условите на употреба на ова вики.',
+	'flow-anon-warning' => 'Не сте најавени.', # Fuzzy
 );
 
 /** Malayalam (മലയാളം)
@@ -5471,6 +5476,7 @@ Ye can see ither versions o the heider at its [$4 histerie page].',
 	'flow-terms-of-use-new-topic' => 'Bi clapin on "{{int:flow-newtopic-save}}", ye\'r agreein til the terms o uiss fer this wiki.',
 	'flow-terms-of-use-reply' => 'Bi clapin oan "{{int:flow-reply-submit}}", ye\'r agreein til the terms o uiss fer this wiki.',
 	'flow-terms-of-use-edit' => "Bi savin yer chynges, ye'r agreein til the terms o uiss fer this wiki.",
+	'flow-anon-warning' => "Ye'r no loggit in.", # Fuzzy
 );
 
 /** Sinhala (සිංහල)
