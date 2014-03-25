@@ -18,17 +18,8 @@ class HeaderRevisionStorage extends RevisionStorage {
 		return 'header_rev_id';
 	}
 
-	protected function insertRelated( array $row ) {
-		$header = $this->splitUpdate( $row, 'header' );
-		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
-			$this->joinTable(),
-			$this->preprocessSqlArray( $header ),
-			__METHOD__
-		);
-		if ( !$res ) {
-			return false;
-		}
-		return $row;
+	protected function getRelatedName() {
+		return 'header';
 	}
 
 	// There is changable data in the header half, it just points to the correct workflow
