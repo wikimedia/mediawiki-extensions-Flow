@@ -6,6 +6,7 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 		'method' => 'POST',
 		'action' => $this->generateUrl( $block->getWorkflow(), 'new-topic' ),
 		'class' => 'flow-newtopic-form',
+		'id' => 'flow-newtopic-form',
 	) );
 	echo Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
 
