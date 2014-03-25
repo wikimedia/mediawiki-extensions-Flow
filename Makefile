@@ -14,12 +14,13 @@ ANALYZE_EXTRA=../../includes/GlobalFunctions.php ../../includes/Defines.php ../.
 # Labs maintenance
 ###
 ee-flow:
-	ssh ee-flow.pmtpa.wmflabs 'cd /srv/mediawiki/extensions/Flow && make master'
+	ssh ee-flow.eqiad.wmflabs 'cd /srv/mediawiki/extensions/Flow && make master'
 ee-flow-extra:
-	ssh ee-flow-extra.pmtpa.wmflabs 'cd /vagrant/mediawiki/extensions/Flow && make master'
-ee-flow-big:
-	ssh ee-flow-big.pmtpa.wmflabs 'cd /srv/mediawiki/extensions/Flow && make master'
-update-labs: ee-flow ee-flow-extra ee-flow-big
+	ssh ee-flow-extra.eqiad.wmflabs 'cd /vagrant/mediawiki/extensions/Flow && make master'
+# Used to be ee-flow-big, not so big any more
+ee-flow-extra2:
+	ssh ee-flow-extra2.eqiad.wmflabs 'cd /srv/mediawiki/extensions/Flow && make master'
+update-labs: ee-flow ee-flow-extra ee-flow-extra2
 
 ###
 # Meta stuff
