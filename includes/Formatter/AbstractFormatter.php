@@ -216,7 +216,7 @@ abstract class AbstractFormatter {
 				'post-history',
 				array(
 					'workflow' => $workflowId->getAlphadecimal(),
-					'topic' => array( 'postId' => $postId->getAlphadecimal() ),
+					'topic_postId' => $postId->getAlphadecimal(),
 				)
 			),
 			wfMessage( 'flow-link-history' )
@@ -241,7 +241,7 @@ abstract class AbstractFormatter {
 				'view',
 				array(
 					'workflow' => $workflowId->getAlphadecimal(),
-					'topic' => array( 'postId' => $postId->getAlphadecimal() ),
+					'topic_postId' => $postId->getAlphadecimal(),
 				)
 			),
 			wfMessage( 'flow-link-post' )
