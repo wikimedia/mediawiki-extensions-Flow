@@ -38,7 +38,7 @@ abstract class RevisionStorage extends DbStorage {
 	abstract protected function relatedPk();
 	abstract protected function joinField();
 
-	abstract protected function insertRelated( array $row );
+	abstract protected function getRelatedName();
 	abstract protected function updateRelated( array $changes, array $old );
 	abstract protected function removeRelated( array $row );
 
@@ -294,14 +294,23 @@ abstract class RevisionStorage extends DbStorage {
 		}
 	}
 
-	public function insert( array $row ) {
-		$rev = $this->splitUpdate( $row, 'rev' );
-		$rev = $this->processExternalStore( $rev );
+	public function insert( array $rows ) {
+		if ( ! is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
+		}
+
+		// Holds the subset of the row to go into the revision table
+		$revisions = array();
+
+		foreach( $rows as $key => $row ) {
+			$rows[$key] = $this->processExternalStore( $row );
+			$revisions[$key] = $this->splitUpdate( $rows[$key], 'rev' );
+		}
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
 			'flow_revision',
-			$this->preprocessSqlArray( $rev ),
+			$this->preprocessNestedSqlArray( $revisions ),
 			__METHOD__
 		);
 		if ( !$res ) {
@@ -309,7 +318,34 @@ abstract class RevisionStorage extends DbStorage {
 			return false;
 		}
 
-		return $this->insertRelated( $row );
+		$related = $this->insertRelated( $rows );
+
+		return $related;
+	}
+
+
+	protected function insertRelated( array $rows ) {
+		if ( ! is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
+		}
+
+		$relatedRows = array();
+
+		foreach( $rows as $key => $row ) {
+			$relatedRows[$key] = $this->splitUpdate( $row, $this->getRelatedName() );
+		}
+
+		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
+			$this->joinTable(),
+			$this->preprocessNestedSqlArray( $relatedRows ),
+			__METHOD__
+		);
+
+		if ( !$res ) {
+			return false;
+		}
+
+		return $rows;
 	}
 
 	protected function processExternalStore( array $row ) {

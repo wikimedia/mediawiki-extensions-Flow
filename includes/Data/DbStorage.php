@@ -21,6 +21,23 @@ abstract class DbStorage implements ObjectStorage {
 	}
 
 	/**
+	 * Runs preprocessSqlArray on each element of an array.
+	 *
+	 * @param  array  $outer The array to check
+	 * @return array         Preprocessed SQL array.
+	 * @throws DataModelException
+	 */
+	protected function preprocessNestedSqlArray( array $outer ) {
+		foreach ( $outer as $i => $data ) {
+			if ( ! is_array( $data) ) {
+				throw new DataModelException( "Unexpected non-array in nested SQL array" );
+			}
+			$outer[$i] = $this->preprocessSqlArray( $data );
+		 }
+	     return $outer;
+	 }
+
+	/**
 	 * At the moment, does three things:
 	 * 1. Finds UUID objects and returns their database representation.
 	 * 2. Checks for unarmoured raw SQL and errors out if it exists.
