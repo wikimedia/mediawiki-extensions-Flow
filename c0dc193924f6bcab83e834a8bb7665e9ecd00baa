@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_9292e4fe",
+        "filename": "includes/View/History/HistoryRenderer.php",
+        "patchSetId": 15
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-25T18:26:18Z",
+      "side": 1,
+      "message": "This will fail because some params do a $permissions-\u003eisAllowed, and $permissions does not exist in this object.",
+      "revId": "c0dc193924f6bcab83e834a8bb7665e9ecd00baa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
