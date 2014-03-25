@@ -3,7 +3,7 @@
 use Flow\Container;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
-use Flow\Notification\NotificationController;
+use Flow\NotificationController;
 use Flow\OccupationController;
 use Flow\SpamFilter\AbuseFilter;
 use Flow\TalkpageManager;
@@ -71,7 +71,7 @@ class FlowHooks {
 		self::getOccupationController();
 
 		// necessary to render flow notifications
-		if ( isset( $wgEchoNotifications ) ) {
+		if ( class_exists( 'EchoNotifier' ) ) {
 			NotificationController::setup();
 		}
 
