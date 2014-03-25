@@ -294,22 +294,35 @@ abstract class RevisionStorage extends DbStorage {
 		}
 	}
 
-	public function insert( array $row ) {
-		$rev = $this->splitUpdate( $row, 'rev' );
-		$rev = $this->processExternalStore( $rev );
+	public function insert( array $rows ) {
+		if ( ! is_array( reset( $rows ) ) ) {
+			$rows = array( $rows );
+		}
+
+		$revisions = array();
+
+		foreach( $rows as $key => $row ) {
+			$revision = $this->splitUpdate( $row, 'rev' );
+			$revisions[$key] = $this->processExternalStore( $revision );
+		}
 
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
 			'flow_revision',
-			$this->preprocessSqlArray( $rev ),
+			$this->preprocessSqlArray( $revisions ),
 			__METHOD__
 		);
 		if ( !$res ) {
 			// throw exception?
 			return false;
 		}
+		$related = array();
 
-		return $this->insertRelated( $row );
+		foreach( $rows as $k => $row ) {
+			$related[$k] = $this->insertRelated( $row );
+		}
+
+		return $related;
 	}
 
 	protected function processExternalStore( array $row ) {

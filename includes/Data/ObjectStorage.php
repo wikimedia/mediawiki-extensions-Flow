@@ -38,7 +38,7 @@ interface ObjectStorage {
 	 * @param array $row Map of columns to values
 	 * @return array|false The resulting $row including any auto-assigned ids or false on failure
 	 */
-	function insert( array $row );
+	function insert( array $rows );
 
 	/**
 	 * Perform all changes necessary to turn $old into $new in the data store.
