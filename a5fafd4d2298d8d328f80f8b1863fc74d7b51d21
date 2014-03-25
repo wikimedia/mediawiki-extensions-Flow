@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee14bf34_5ed33cd7",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-25T01:14:04Z",
+      "side": 1,
+      "message": "unnecessary url parameter",
+      "revId": "a5fafd4d2298d8d328f80f8b1863fc74d7b51d21",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
