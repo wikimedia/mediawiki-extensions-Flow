@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ae0e4726_57912c51",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-26T13:14:30Z",
+      "side": 1,
+      "message": "Something like:\n\n    /**\n     * @see RevisionFormatter::buildActionLinks\n     * @see RevisionFormatter::getDateFormats\n     *\n     * @param array \u0026$data Uses reference to unset used links from $data[\u0027links\u0027]\n     * Expects an array with keys \u0027dateFormats\u0027 and \u0027links\u0027. The former should\n     * be an array having the key $key being tossed in here; the latter an array\n     * of links in the [href, msg] format.\n     * @param string $key Date format to use - any of the keys in the array\n     * returned by RevisionFormatter::getDateFormats\n     * @return string HTML\n     */",
+      "parentUuid": "ce09bb20_1eb18ddc",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce09bb20_1e274d61",
         "filename": "includes/Formatter/AbstractFormatter.php",
         "patchSetId": 19
@@ -47,6 +65,23 @@
       "writtenOn": "2014-03-25T23:23:38Z",
       "side": 1,
       "message": "Use \u0027history\u0027 as the key for all types in buildActionLinks()?",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_b779a82c",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-26T13:14:30Z",
+      "side": 1,
+      "message": "this one\u0027s forcefully ignored with the false \u0026\u0026\n\nIs there any reason it should not be removed from the code altogether?",
       "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -81,6 +116,24 @@
       "writtenOn": "2014-03-26T01:18:29Z",
       "side": 1,
       "message": "If the action is invalid, this should throw an exception instead of returning null.  Most of the function caller is assuming array as the return type, returning null will break anyway.",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_d7ce5c86",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-26T13:14:30Z",
+      "side": 1,
+      "message": "Also, phpDoc says array|false; this could return null",
+      "parentUuid": "ce09bb20_41f728f3",
       "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
