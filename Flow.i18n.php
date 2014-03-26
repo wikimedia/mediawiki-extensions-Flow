@@ -302,6 +302,11 @@ This version is from $1.
 You can see the [$5 differences from the previous version], or view other versions on the [$4 post history page].',
 	'flow-revision-permalink-warning-post-first' => 'This is a permanent link to the first version of this post.
 You can view later versions on the [$4 post history page].',
+	'flow-revision-permalink-warning-postsummary' => 'This is a permanent link to a single version of the summary for this post.
+This version is from $1.
+You can see the [$5 differences from the previous version], or view other versions on the [$4 post history page].',
+	'flow-revision-permalink-warning-postsummary-first' => 'This is a permanent link to the first version of this post summary.
+You can view later versions on the [$4 post history page].',
 	'flow-revision-permalink-warning-header' => 'This is a permanent link to a single version of the header.
 This version is from $1.  You can see the [$3 differences from the previous version], or view other versions on the [$2 board history page].',
 	'flow-revision-permalink-warning-header-first' => 'This is a permanent link to the first version of the header.
@@ -309,6 +314,8 @@ You can view later versions on the [$2 board history page].',
 	'flow-compare-revisions-revision-header' => 'Version by {{GENDER:$2|$2}} from $1',
 	'flow-compare-revisions-header-post' => 'This page shows the {{GENDER:$3|changes}} between two versions of a post by $3 in the topic "[$5 $2]" on [$4 $1].
 You can see other versions of this post at its [$6 history page].',
+	'flow-compare-revisions-header-postsummary' => 'This page shows the {{GENDER:$3|changes}} between two versions of a post summary in the post "[$4 $2]" on [$3 $1].
+You can see other versions of this post at its [$5 history page].',
 	'flow-compare-revisions-header-header' => 'This page shows the {{GENDER:$2|changes}} between two versions of the header on [$3 $1].
 You can see other versions of the header at its [$4 history page].',
 
@@ -1190,6 +1197,33 @@ Parameters:
 See also:
 * {{msg-mw|Flow-revision-permalink-warning-post}}
 * {{msg-mw|Flow-revision-permalink-warning-header-first}}',
+	'flow-revision-permalink-warning-postsummary' => 'Header displayed at the top of a page when somebody is viewing a single-revision permalink of summary for a post.
+
+This message will not appear for the first revision, which has its own message ({{msg-mw|Flow-revision-permalink-warning-postsummary-first}}).
+
+Parameters:
+* $1 - date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC2822 timestamp when hovered over.
+* $2 - title of the Flow Board that the post appears on. Example: User talk:Andrew
+* $3 - title of the topic that this post appears in
+* $4 - URL to the history page
+* $5 - URL to the diff from the previous revision to this one
+See also:
+* {{msg-mw|Flow-revision-permalink-warning-postsummary-first}}
+* {{msg-mw|Flow-revision-permalink-warning-header}}',
+	'flow-revision-permalink-warning-postsummary-first' => 'Header displayed at the top of a page when somebody is viewing a single-revision permalink of a post summary.
+
+This message will only be shown for the first revision.
+
+Note that the "topic permalink warning" (see {{msg-mw|Flow-topic-permalink-warning}}) will also be displayed.
+
+Parameters:
+* $1 - date and timestamp, formatted as most are in Flow. That is, a human-readable timestamp that changes into an RFC2822 timestamp when hovered over.
+* $2 - title of the Flow Board that the post appears on. Example: User talk:Andrew
+* $3 - title of the topic that this post appears in
+* $4 - URL to the history page
+See also:
+* {{msg-mw|Flow-revision-permalink-warning-post}}
+* {{msg-mw|Flow-revision-permalink-warning-header-first}}',
 	'flow-revision-permalink-warning-header' => 'Header displayed at the top of a page when somebody is viewing a single-revision permalink of board header.
 
 This message will not appear for the first revision, which has its own message ({{msg-mw|Flow-revision-permalink-warning-header-first}}).
@@ -1221,6 +1255,14 @@ See also:
 * $4 - URL to the Board, with the fragment set to the post in question
 * $5 - URL to the Topic, with the fragment set to the post in question
 * $6 - URL to the history page for this post
+See also:
+* {{msg-mw|Flow-compare-revisions-header-header}}',
+	'flow-compare-revisions-header-postsummary' => 'Header for a page showing a "diff" between two revisions of a Flow post summary. Parameters:
+* $1 - the title of the Board on which this post sits. Example: User talk:Andrew
+* $2 - the subject of the Topic in which this post sits
+* $3 - URL to the Board, with the fragment set to the post in question
+* $4 - URL to the Topic, with the fragment set to the post in question
+* $5 - URL to the history page for this post
 See also:
 * {{msg-mw|Flow-compare-revisions-header-header}}',
 	'flow-compare-revisions-header-header' => 'Header for a page showing a "diff" between two revisions of a Flow board header. Parameters:
