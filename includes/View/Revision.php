@@ -73,7 +73,13 @@ abstract class RevisionView implements RevisionCreatable {
 	 * @param AbstractRevision $revision The revision to diff against
 	 * @return boolean
 	 */
-	abstract public function isComparableTo( AbstractRevision $revision );
+	public function isComparableTo( AbstractRevision $revision ) {
+		if ( $this->getRevision()->getRevisionType() == $revision->getRevisionType() ) {
+			return $this->getRevision()->getCollectionId()->equals( $revision->getCollectionId() );
+		} else {
+			return false;
+		}
+	}
 
 	/**
 	 * Get the page header of revision diff view
@@ -348,17 +354,6 @@ class HeaderRevisionView extends RevisionView {
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	public function isComparableTo( AbstractRevision $revision ) {
-		if ( $revision instanceof Header ) {
-			return $this->revision->getWorkflowId()->equals( $revision->getWorkflowId() );
-		} else {
-			return false;
-		}
-	}
-
-	/**
 	 * @param Header $newRevision
 	 * @param Header $oldRevision
 	 * @return Message
@@ -525,17 +520,6 @@ class PostRevisionView extends RevisionView {
 				$this->block,
 				$return
 			);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function isComparableTo( AbstractRevision $revision ) {
-		if ( $revision instanceof PostRevision ) {
-			return $this->revision->getPostId()->equals( $revision->getPostId() );
-		} else {
-			return false;
 		}
 	}
 
