@@ -408,7 +408,7 @@ class NotificationController {
 				if ( $extra['reply-to'] instanceof UUID ) {
 					$ids[$extra['reply-to']->getAlphadecimal()] = $extra['reply-to'];
 				} else {
-					wfDebugLog( __CLASS__, __FUNCTION__ . ': Expected UUID but received ' . get_class( $extra['reply-to'] ) );
+					wfDebugLog( 'Flow', __METHOD__ . ': Expected UUID but received ' . get_class( $extra['reply-to'] ) );
 				}
 			}
 			$notifiedUsers = self::getCreatorsFromPostIDs( $ids );
@@ -440,7 +440,7 @@ class NotificationController {
 				$postId = $extra['post-id'];
 			}
 			if ( !$postId instanceof UUID ) {
-				wfDebugLog( __CLASS__, __FUNCTION__ . ': Non-UUID value provided' );
+				wfDebugLog( 'Flow', __METHOD__ . ': Non-UUID value provided' );
 				break;
 			}
 

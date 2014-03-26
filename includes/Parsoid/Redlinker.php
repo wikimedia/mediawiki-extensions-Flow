@@ -223,7 +223,7 @@ class Redlinker implements ContentFixer {
 					$callback( $linkNode, $parsoid );
 				}
 			} else {
-				wfDebugLog( __CLASS__, __FUNCTION__ . ': Expected DOMElement but received: ' . get_class( $linkNode ) );
+				wfDebugLog( 'Flow', __METHOD__ . ': Expected DOMElement but received: ' . get_class( $linkNode ) );
 			}
 		}
 	}
