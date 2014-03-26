@@ -112,6 +112,7 @@ $wgAutoloadClasses['Flow\View\RevisionCreatable'] = "$dir/includes/View/Revision
 $wgAutoloadClasses['Flow\View\RevisionView'] = "$dir/includes/View/Revision.php";
 $wgAutoloadClasses['Flow\View\PostRevisionView'] = "$dir/includes/View/Revision.php";
 $wgAutoloadClasses['Flow\View\HeaderRevisionView'] = "$dir/includes/View/Revision.php";
+$wgAutoloadClasses['Flow\View\PostSummaryRevisionView'] = "$dir/includes/View/Revision.php";
 
 // Classes that deal with database interaction between database and the models
 $wgAutoloadClasses['Flow\Repository\TreeRepository'] = $dir . 'includes/Repository/TreeRepository.php';
