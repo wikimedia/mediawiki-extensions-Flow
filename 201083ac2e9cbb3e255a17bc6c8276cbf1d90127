@@ -67,6 +67,23 @@
       "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce09bb20_41f728f3",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-26T01:18:29Z",
+      "side": 1,
+      "message": "If the action is invalid, this should throw an exception instead of returning null.  Most of the function caller is assuming array as the return type, returning null will break anyway.",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
