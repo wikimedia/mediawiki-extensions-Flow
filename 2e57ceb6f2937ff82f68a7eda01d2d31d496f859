@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce09bb20_1e4d0d9c",
+        "filename": "includes/Data/BoardHistoryIndex.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-26T01:06:32Z",
+      "side": 1,
+      "message": "$topicListEntry \u003d reset( $topicListEntry );",
+      "revId": "2e57ceb6f2937ff82f68a7eda01d2d31d496f859",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce09bb20_81866069",
+        "filename": "includes/Formatter/BoardHistory.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-26T01:06:32Z",
+      "side": 1,
+      "message": "$row-\u003erootPost",
+      "revId": "2e57ceb6f2937ff82f68a7eda01d2d31d496f859",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
