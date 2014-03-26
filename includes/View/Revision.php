@@ -5,6 +5,7 @@ namespace Flow\View;
 use Flow\Block\AbstractBlock;
 use Flow\Block\HeaderBlock;
 use Flow\Block\TopicBlock;
+use Flow\Block\TopicSummaryBlock;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidInputException;
@@ -12,6 +13,7 @@ use Flow\Exception\PermissionException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Templating;
@@ -606,6 +608,191 @@ class PostRevisionView extends RevisionView {
 			->params(
 				$this->block->getWorkflow()->getArticleTitle(),
 				$this->templating->getContent( $this->block->loadTopicTitle(), 'wikitext' ),
+				$historyLink
+			);
+
+		if ( $compareLink ) {
+			$message->params( $compareLink );
+		}
+		return $message;
+	}
+}
+
+/**
+ * PostSummary revision view
+ *
+ * @Todo - This is supposed to support post summary in general but assuming topic
+ * for now. When topicsummary block support a post summary, corresponding changes
+ * should be made in here as well
+ */
+class PostSummaryRevisionView extends RevisionView {
+
+	/**
+	 * @var PostSummary
+	 */
+	protected $revision;
+
+	/**
+	 * The block the revision view being rendered in
+	 *
+	 * @var TopicSummaryBlock
+	 */
+	protected $block;
+
+	/**
+	 * @param PostSummary $revision
+	 * @param Templating $templating
+	 * @param HeaderBlock $block
+	 * @param User $user
+	 */
+	public function __construct( PostSummary $revision, Templating $templating, TopicSummaryBlock $block, User $user ) {
+		parent::__construct( $templating, $user );
+		$this->revision = $revision;
+		$this->block = $block;
+	}
+
+	/**
+	 * Create a revision view instance from a revision id
+	 *
+	 * @param string|UUID $revId
+	 * @param Templating $templating
+	 * @param HeaderBlock $block
+	 * @param User $user
+	 * @return PostSummaryRevisionView|false
+	 */
+	public static function newFromId( $revId, Templating $templating, TopicSummaryBlock $block, User $user ) {
+		$revision = self::createRevision( $revId, $block->getStorage() );
+
+		if ( $revision ) {
+			return new self( $revision, $templating, $block, $user );
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @param UUID|string $revId
+	 * @param ManagerGroup $storage
+	 * @return PostSummary|null
+	 */
+	public static function createRevision( $revId, ManagerGroup $storage ) {
+		if ( !$revId instanceof UUID ) {
+			$revId = UUID::create( $revId );
+		}
+
+		return $storage->get( 'PostSummary', $revId );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getRevision() {
+		return $this->revision;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getBlock() {
+		return $this->block;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function renderSingleView( $return = false ) {
+		$prefix = $this->templating->render(
+			'flow:revision-permalink-warning.html.php',
+			array(
+				'block' => $this->block,
+				'revision' => $this->revision,
+				'message' => $this->getSingleViewHeader()
+			),
+			$return
+		);
+
+		return $prefix . $this->templating->render(
+			'flow:postsummary.html.php',
+			array(
+				'revision' => $this->revision,
+				'block' => $this->block,
+				'user' => $this->user
+			),
+			$return
+		);
+	}
+
+	/**
+	 * @param PostSummary $newRevision
+	 * @param PostSummary $oldRevision
+	 * @return Message
+	 */
+	public function getDiffViewHeader( $newRevision, $oldRevision ) {
+		$boardLinkTitle = clone $this->block->getWorkflow()->getArticleTitle();
+		$boardLink = $this->templating->getUrlGenerator()
+			->buildUrl(
+				$boardLinkTitle,
+				'view'
+			);
+		/** @var Title $topicLinkTitle */
+		/** @var string $topicLinkQuery */
+		list( $topicLinkTitle, $topicLinkQuery ) = $this->templating->getUrlGenerator()
+			->generateUrlData(
+				$this->block->getWorkflow(),
+				'view',
+				array(
+					$this->block->getName().'_postId' => $newRevision->getSummaryTargetId()->getAlphadecimal()
+				)
+			);
+
+		$topicLinkTitle = clone $topicLinkTitle;
+
+		$historyLink = $this->templating->getUrlGenerator()
+			->generateUrl(
+				$this->block->getWorkflow(),
+				'history',
+				array(
+					$this->block->getName().'_postId' => $newRevision->getSummaryTargetId()->getAlphadecimal()
+				)
+			);
+		$headerMsg = wfMessage( 'flow-compare-revisions-header-postsummary' )
+			->params(
+				$this->block->getWorkflow()->getArticleTitle(),
+				$this->templating->getContent( $this->block->findTopicTitle(), 'wikitext' ),
+				$boardLink,
+				$topicLinkTitle->getFullUrl( $topicLinkQuery ),
+				$historyLink
+			);
+		return $headerMsg;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getDiffType() {
+		return 'compare-postsummary-revisions';
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getSingleViewHeader() {
+		$historyLink = $this->templating->getUrlGenerator()->generateUrl(
+			$this->block->getWorkflow(),
+			'history',
+			array(
+				$this->block->getName().'_postId' => $this->revision->getSummaryTargetId()->getAlphadecimal(),
+			)
+		);
+
+		$compareLink = $this->getDiffLinkAgainstPrevious();
+
+		$msgKey = $compareLink ? 'flow-revision-permalink-warning-postsummary' : 'flow-revision-permalink-warning-postsummary-first';
+		$message = wfMessage( $msgKey )
+			->params( $this->revision->getRevisionId()->getTimestampObj()->getHumanTimestamp() )
+			->params(
+				$this->block->getWorkflow()->getArticleTitle(),
+				$this->templating->getContent( $this->block->findTopicTitle(), 'wikitext' ),
 				$historyLink
 			);
 
