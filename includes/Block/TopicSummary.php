@@ -136,7 +136,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 	}
 
-	protected function findTopicTitle() {
+	public function findTopicTitle() {
 		if ( $this->topicTitle ) {
 			return $this->topicTitle;
 		}
@@ -179,11 +179,12 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 	}
 
-	/**
-	 * @Todo - Add edit-topic-summary get action for no js support in UI patch
-	 */
 	public function render( Templating $templating, array $options ) {
-
+		switch( $this->action ) {
+			case 'compare-postsummary-revision':
+				
+			break;
+		}
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
