@@ -1927,7 +1927,7 @@ Du kannst andere Versionen der Überschrift in ihrem [$4 Verlauf] einsehen.',
 	'flow-terms-of-use-new-topic' => 'Mit dem Klicken auf „{{int:flow-newtopic-save}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
 	'flow-terms-of-use-reply' => 'Mit dem Klicken auf „{{int:flow-reply-submit}}“ stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
 	'flow-terms-of-use-edit' => 'Mit dem Speichern deiner Änderungen stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.',
-	'flow-anon-warning' => 'Du bist nicht angemeldet.', # Fuzzy
+	'flow-anon-warning' => 'Du bist nicht angemeldet. Um eine Zuordnung mit deinem Namen anstatt deiner IP-Adresse zu erhalten, kannst du dich [$1 anmelden] oder [$2 ein Benutzerkonto erstellen].',
 );
 
 /** Greek (Ελληνικά)
@@ -2672,7 +2672,7 @@ Vous pouvez voir les autres versions de l’entête sur sa [$4 page d’historiq
 	'flow-terms-of-use-new-topic' => 'En cliquant sur « {{int:flow-newtopic-save}} », vous acceptez les conditions d’utilisation de ce wiki.',
 	'flow-terms-of-use-reply' => 'En cliquant sur « {{int:flow-reply-submit}} », vous acceptez les conditions d’utilisation de ce wiki.',
 	'flow-terms-of-use-edit' => 'En enregistrant vos modifications, vous acceptez les conditions d’utilisation de ce wiki.',
-	'flow-anon-warning' => 'Vous n’êtes pas connecté.', # Fuzzy
+	'flow-anon-warning' => 'Vous n’êtes pas connecté. Pour recevoir une attribution avec votre nom plutôt que votre adresse IP, vous pouvez [$1 vous connecter] ou [$2 créer un compte].',
 );
 
 /** Western Frisian (Frysk)
@@ -3054,6 +3054,7 @@ $1',
 	'flow-terms-of-use-new-topic' => 'לחיצה על "{{int:flow-newtopic-save}}" מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.',
 	'flow-terms-of-use-reply' => 'לחיצה על "{{int:flow-reply-submit}}" מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.',
 	'flow-terms-of-use-edit' => 'שמירת השינויים מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.',
+	'flow-anon-warning' => 'לא נכנסת לחשבון. כדי לקבל ייחוס עם שמך ולא עם כתובת ה־IP שלך, אפשר [$1 להיכנס] או [$2 ליצור חשבון].',
 );
 
 /** Hindi (हिन्दी)
@@ -3443,6 +3444,7 @@ Puoi vedere le altre versioni nella [$4 cronologia della pagina].",
 	'flow-terms-of-use-new-topic' => 'Cliccando su "{{int:flow-newtopic-save}}", accetti le condizioni d\'uso per questo wiki.',
 	'flow-terms-of-use-reply' => 'Cliccando su "{{int:flow-reply-submit}}", accetti le condizioni d\'uso per questo wiki.',
 	'flow-terms-of-use-edit' => "Salvando le modifiche, accetti le condizioni d'uso per questo wiki.",
+	'flow-anon-warning' => "Non hai effettuato l'accesso. Per ricevere l'attribuzione con il tuo nome, anziché con l'indirizzo IP, puoi [$1 accedere] o [$2 creare un'utenza].",
 );
 
 /** Japanese (日本語)
@@ -4347,7 +4349,7 @@ $messages['mk'] = array(
 	'flow-terms-of-use-new-topic' => 'Стискајќи на „{{int:flow-newtopic-save}}“, се согласувате со условите на употреба на ова вики.',
 	'flow-terms-of-use-reply' => 'Стискајќи на „{{int:flow-reply-submit}}“, се согласувате со условите на употреба на ова вики.',
 	'flow-terms-of-use-edit' => 'Зачувувајќи ги промените, се согласувате со условите на употреба на ова вики.',
-	'flow-anon-warning' => 'Не сте најавени.', # Fuzzy
+	'flow-anon-warning' => 'Не сте најавени. За да бидете наведени како уредник по име наместо по IP-адреса, [$1 најавете се] или [$2 направете сметка].',
 );
 
 /** Malayalam (മലയാളം)
@@ -5295,6 +5297,7 @@ $messages['ru'] = array(
 	'flow-cancel' => 'Отменить',
 	'flow-preview' => 'Предпросмотр',
 	'flow-show-change' => 'Показать изменения',
+	'flow-last-modified-by' => 'Последний раз {{GENDER:$1|изменено}} участником $1',
 	'flow-newtopic-title-placeholder' => 'Новая тема',
 	'flow-newtopic-content-placeholder' => 'Добавьте, если хотите, какие-нибудь подробности',
 	'flow-newtopic-header' => 'Добавить новую тему',
@@ -5332,6 +5335,7 @@ $messages['ru'] = array(
 	'flow-error-not-a-post' => 'Название темы не может быть сохранено как сообщение.',
 	'flow-error-missing-header-content' => 'Заголовок не имеет содержимого. Для того, чтобы сохранить заголовок, требуется содержимое.',
 	'flow-error-default' => 'Произошла ошибка.',
+	'flow-error-insufficient-permission' => 'Недостаточно прав для доступа к содержимому.',
 	'flow-error-fail-load-data' => 'Не удалось загрузить запрошенные данные.',
 	'flow-edit-header-submit' => 'Сохранить заголовок',
 	'flow-edit-header-submit-overwrite' => 'Перезаписать заголовок',
@@ -5362,6 +5366,9 @@ $messages['ru'] = array(
 	'flow-notification-mention-email-subject' => '$1 упомянул{{GENDER:$1||а}} вас в «$2»',
 	'flow-notification-edit-email-subject' => '$1 {{GENDER:$1|отредактировал|отредактировала}} сообщение',
 	'flow-notification-edit-email-batch-body' => '$1 отредактировал{{GENDER:$2||а}} сообщение в теме «$2» на странице «$3»',
+	'flow-notification-rename-email-subject' => '$1 переименовал{{GENDER:$1||а}} вашу тему',
+	'flow-notification-rename-email-batch-body' => '$1 переименовал{{GENDER:$1||а}} вашу тему с «$2» на «$3» на «$4»',
+	'flow-notification-newtopic-email-batch-body' => '$1 создал{{GENDER:$1||а}} новую тему с названием «$2» на $3',
 	'flow-link-post' => 'сообщение',
 	'flow-link-topic' => 'тема',
 	'flow-link-history' => 'история',
@@ -5469,14 +5476,14 @@ $messages['sco'] = array(
 	'flow-moderation-intro-unhide-topic' => "Please {{GENDER:$3|explain}} why ye'r onskaukin this topíc.",
 	'flow-revision-permalink-warning-header' => 'This is ae permanent link til ae single version o the heider.
 This version is fae $1.  Ye can see the [$3 differences fae the preevioos version], or view ither versions oan the [$2 buird histerie page].',
-	'flow-revision-permalink-warning-header-first' => 'This is ae permanent link til the irstwhile version o the heider.
-Ye can view later versions oan the [$2 buird histerie page].',
+	'flow-revision-permalink-warning-header-first' => 'This is ae permanant airtin til the firstwhile version o the heider.
+Ye can see later versions oan the [$2 buird histerie page].',
 	'flow-compare-revisions-header-header' => 'This page shaws the {{GENDER:$2|chynges}} atween twa versions o the heider oan [$3 $1].
 Ye can see ither versions o the heider at its [$4 histerie page].',
 	'flow-terms-of-use-new-topic' => 'Bi clapin on "{{int:flow-newtopic-save}}", ye\'r agreein til the terms o uiss fer this wiki.',
 	'flow-terms-of-use-reply' => 'Bi clapin oan "{{int:flow-reply-submit}}", ye\'r agreein til the terms o uiss fer this wiki.',
 	'flow-terms-of-use-edit' => "Bi savin yer chynges, ye'r agreein til the terms o uiss fer this wiki.",
-	'flow-anon-warning' => "Ye'r no loggit in.", # Fuzzy
+	'flow-anon-warning' => "Ye'r na loggi in. Tae receeve attreebution wi yer name in steid o yer IP address, ye can [$1 log in] or [$2 cræft aen accoont].",
 );
 
 /** Sinhala (සිංහල)
@@ -5618,7 +5625,6 @@ $messages['sv'] = array(
 	'flow-post-action-delete-post' => 'Radera',
 	'flow-post-action-hide-post' => 'Dölj',
 	'flow-post-action-edit-post' => 'Redigera',
-	'flow-post-action-restore-post' => 'Återställ inlägg',
 	'flow-topic-action-view' => 'Permanent länk',
 	'flow-topic-action-watchlist' => 'Bevakningslista',
 	'flow-topic-action-edit-title' => 'Redigera rubrik',
@@ -5626,7 +5632,6 @@ $messages['sv'] = array(
 	'flow-topic-action-hide-topic' => 'Dölj ämne',
 	'flow-topic-action-delete-topic' => 'Radera ämne',
 	'flow-topic-action-suppress-topic' => 'Censurera ämne',
-	'flow-topic-action-restore-topic' => 'Återställ ämne',
 	'flow-error-http' => 'Ett fel uppstod när servern kontaktades.',
 	'flow-error-other' => 'Ett oväntat fel uppstod.',
 	'flow-error-external' => 'Ett fel uppstod.<br />Felmeddelandet var: $1',
@@ -5735,41 +5740,33 @@ $messages['sv'] = array(
 	'flow-moderation-title-suppress-post' => 'Censurera inlägget?',
 	'flow-moderation-title-delete-post' => 'Radera inlägget?',
 	'flow-moderation-title-hide-post' => 'Dölj inlägget?',
-	'flow-moderation-title-restore-post' => 'Återställ inlägget?',
 	'flow-moderation-intro-suppress-post' => 'Var god {{GENDER:$3|förklara}} varför du censurerar detta inlägg.',
 	'flow-moderation-intro-delete-post' => 'Var god {{GENDER:$3|förklara}} varför du raderar detta inlägg.',
 	'flow-moderation-intro-hide-post' => 'Var god {{GENDER:$3|förklara}} varför du döljer detta inlägg.',
-	'flow-moderation-intro-restore-post' => 'Var god {{GENDER:$3|förklara}} varför du återställer detta inlägg.',
 	'flow-moderation-confirm-suppress-post' => 'Censurera',
 	'flow-moderation-confirm-delete-post' => 'Radera',
 	'flow-moderation-confirm-hide-post' => 'Dölj',
-	'flow-moderation-confirm-restore-post' => 'Återställ',
+	'flow-moderation-confirm-suppress-topic' => 'Censurera',
+	'flow-moderation-confirm-delete-topic' => 'Ta bort',
+	'flow-moderation-confirm-hide-topic' => 'Dölj',
 	'flow-moderation-confirmation-suppress-post' => 'Inlägget censurerades framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta inlägg.',
 	'flow-moderation-confirmation-delete-post' => 'Inlägget raderades framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta inlägg.',
 	'flow-moderation-confirmation-hide-post' => 'Inlägget doldes framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta inlägg.',
-	'flow-moderation-confirmation-restore-post' => 'Du har återställt ovanstående inlägg.',
-	'flow-moderation-title-suppress-topic' => 'Censurera ämnet?',
-	'flow-moderation-title-delete-topic' => 'Radera ämnet?',
-	'flow-moderation-title-hide-topic' => 'Dölja ämnet?',
-	'flow-moderation-title-restore-topic' => 'Återställa ämnet?',
-	'flow-moderation-intro-suppress-topic' => 'Var god {{GENDER:$3|förklara}} varför du censurerar detta ämne.',
-	'flow-moderation-intro-delete-topic' => 'Var god {{GENDER:$3|förklara}} varför du raderar detta ämne.',
-	'flow-moderation-intro-hide-topic' => 'Var god {{GENDER:$3|förklara}} varför du döljer detta ämne.',
-	'flow-moderation-intro-restore-topic' => 'Var god {{GENDER:$3|förklara}} varför du återställer detta ämne.',
-	'flow-moderation-confirm-suppress-topic' => 'Censurera',
-	'flow-moderation-confirm-delete-topic' => 'Ta bort',
-	'flow-moderation-confirm-hide-topic' => 'Dölj',
-	'flow-moderation-confirm-restore-topic' => 'Återställ',
 	'flow-moderation-confirmation-suppress-topic' => 'Ämnet censurerades framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta ämne.',
 	'flow-moderation-confirmation-delete-topic' => 'Ämnet raderades framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta ämne.',
 	'flow-moderation-confirmation-hide-topic' => 'Ämnet doldes framgångsrikt.
 {{GENDER:$2|Överväg}} att ge feedback åt $1 gällande detta ämne.',
-	'flow-moderation-confirmation-restore-topic' => 'Du har återställt detta ämne.',
+	'flow-moderation-title-suppress-topic' => 'Censurera ämnet?',
+	'flow-moderation-title-delete-topic' => 'Radera ämnet?',
+	'flow-moderation-title-hide-topic' => 'Dölja ämnet?',
+	'flow-moderation-intro-suppress-topic' => 'Var god {{GENDER:$3|förklara}} varför du censurerar detta ämne.',
+	'flow-moderation-intro-delete-topic' => 'Var god {{GENDER:$3|förklara}} varför du raderar detta ämne.',
+	'flow-moderation-intro-hide-topic' => 'Var god {{GENDER:$3|förklara}} varför du döljer detta ämne.',
 	'flow-topic-permalink-warning' => 'Detta ämne påbörjades den [$2 $1]',
 	'flow-topic-permalink-warning-user-board' => 'Detta ämne startades på [$2 {{GENDER:$1|$1}}s forum]',
 	'flow-revision-permalink-warning-post' => 'Detta är en permanent länk till en enda version av det här inlägget.
@@ -5792,6 +5789,7 @@ Du kan se andra versioner av sidhuvudet på dess [$4 historiksida].',
 	'flow-terms-of-use-new-topic' => 'Genom att klicka på "{{int:flow-newtopic-save}}" godkänner du användarvillkoren för denna wiki.',
 	'flow-terms-of-use-reply' => 'Genom att klicka på "{{int:flow-reply-submit}}" godkänner du användarvillkoren för denna wiki.',
 	'flow-terms-of-use-edit' => 'Genom att spara dina ändringar godkänner du användarvillkoren för denna wiki.',
+	'flow-anon-warning' => 'Du är inte inloggad. För att få erkännande med ditt namn istället för din IP-adress kan du [$1 logga in] eller [$2 skapa ett konto].',
 );
 
 /** Telugu (తెలుగు)
@@ -6054,6 +6052,7 @@ $messages['uk'] = array(
 Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цей допис.',
 	'flow-moderation-confirmation-hide-post' => 'Цей допис успішно приховано.
 Розгляньте відгук, {{GENDER:$2|наданий}} $1, на цей допис.',
+	'flow-moderation-confirmation-undelete-post' => 'Ви успішно відновили публікацію вище.',
 	'flow-moderation-confirmation-suppress-topic' => 'Ця тема успішно усунена.
 Розгляньте відгук {{GENDER:$2|наданий}} $1 на цю тему.',
 	'flow-moderation-confirmation-delete-topic' => 'Тему успішно вилучено.
