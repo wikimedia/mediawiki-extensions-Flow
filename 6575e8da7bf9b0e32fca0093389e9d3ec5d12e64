@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ae0e4726_cc792b2c",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-26T22:49:02Z",
+      "side": 1,
+      "message": "It just means the documentation is defined in parent method",
+      "parentUuid": "ae0e4726_0bc6ed4e",
+      "revId": "6575e8da7bf9b0e32fca0093389e9d3ec5d12e64",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae0e4726_cbbfd5a6",
         "filename": "templates/postsummary.html.php",
         "patchSetId": 1
