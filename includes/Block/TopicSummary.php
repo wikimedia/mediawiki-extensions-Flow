@@ -6,10 +6,12 @@ use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
+use Flow\Exception\InvalidInputException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Templating;
+use Flow\View\PostSummaryRevisionView;
 use Flow\RevisionActionPermissions;
 
 class TopicSummaryBlock extends AbstractBlock {
@@ -40,6 +42,11 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * Supported Post actions
 	 */
 	protected $supportedPostActions = array( 'edit-topic-summary', 'close-open-topic' );
+
+	/**
+	 * Supported Get actions
+	 */
+	protected $supportedGetActions = array( 'compare-postsummary-revisions', 'revision-view' );
 
 	/**
 	 * @param string
@@ -165,7 +172,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @throws InvalidDataException
 	 * @return PostRevision
 	 */
-	protected function findTopicTitle() {
+	public function findTopicTitle() {
 		if ( $this->topicTitle ) {
 			return $this->topicTitle;
 		}
@@ -220,11 +227,56 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 	}
 
-	/**
-	 * @Todo - Add edit-topic-summary for no js support and compare-summary-revisions
-	 */
-	public function render( Templating $templating, array $options ) {
+	public function render( Templating $templating, array $options, $return = false ) {
+		$output = $templating->getOutput();
+		$output->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
+		$output->addModules( array( 'ext.flow.discussion' ) );
+		$title = $templating->getContent( $this->findTopicTitle(), 'wikitext' );
+		$output->setHtmlTitle( $title );
+		$output->setPageTitle( $title );
 
+		$prefix = $templating->render(
+			'flow:topic-permalink-warning.html.php',
+			array(
+				'block' => $this,
+			),
+			$return
+		);
+
+		switch( $this->action ) {
+			case 'compare-postsummary-revisions':
+				if ( !isset( $options['newRevision'] ) ) {
+					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+				}
+				$revisionView = PostSummaryRevisionView::newFromId( $options['newRevision'], $templating, $this, $this->user );
+				if ( !$revisionView ) {
+					throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
+				}
+
+				if ( isset( $options['oldRevision'] ) ) {
+					return $prefix . $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
+				} else {
+					return $prefix . $revisionView->renderDiffViewAgainstPrevious( $return );
+				}
+			break;
+
+			case 'revision-view':
+				$revisionView = null;
+				if ( isset( $options['revId'] ) ) {
+					$revisionView = PostSummaryRevisionView::newFromId( $options['revId'], $templating, $this, $this->user );
+				}
+				if ( !$revisionView ) {
+					throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
+				} else if ( !$this->permissions->isAllowed( $revisionView->getRevision(), 'view' ) ) {
+					$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
+					return null;
+				}
+				return $prefix . $revisionView->renderSingleView( $return );
+			break;
+
+			default:
+				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
+		}
 	}
 
 	/**
