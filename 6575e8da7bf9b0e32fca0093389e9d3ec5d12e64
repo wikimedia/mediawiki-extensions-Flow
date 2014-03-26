@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_8bb2fde2",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-03-26T19:02:41Z",
+      "side": 1,
+      "message": "Trailing whitespace.",
+      "revId": "6575e8da7bf9b0e32fca0093389e9d3ec5d12e64",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_0bc6ed4e",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-03-26T19:02:41Z",
+      "side": 1,
+      "message": "Haven\u0027t seen this before. What does it do/mean?",
+      "revId": "6575e8da7bf9b0e32fca0093389e9d3ec5d12e64",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_cbbfd5a6",
+        "filename": "templates/postsummary.html.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-03-26T19:02:41Z",
+      "side": 1,
+      "message": "No i18n?",
+      "revId": "6575e8da7bf9b0e32fca0093389e9d3ec5d12e64",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
