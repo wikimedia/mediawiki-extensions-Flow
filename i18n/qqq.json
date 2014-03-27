@@ -227,5 +227,12 @@
     "flow-terms-of-use-new-topic": "Terms of use for adding a new topic.\n\nThis should be consistent with {{msg-mw|Flow-newtopic-save}}.\n{{Related|Flow-terms-of-use}}",
     "flow-terms-of-use-reply": "Terms of use for posting a reply.\n\nThis should be consistent with {{msg-mw|Flow-reply-submit}}.\n{{Related|Flow-terms-of-use}}",
     "flow-terms-of-use-edit": "Terms of use for editing a header/topic/post.\n{{Related|Flow-terms-of-use}}",
-    "flow-anon-warning": "Warning message to be displayed when anonymous user starts writing a new topic or reply.\n* $1 is a URL to log in.\n* $2 is a URL to register an account."
+    "flow-anon-warning": "Warning message to be displayed when anonymous user starts writing a new topic or reply.\n* $1 is a URL to log in.\n* $2 is a URL to register an account.",
+    "flow": "Name of the extension; used as the title of the special page",
+    "flow-special-desc": "Description at the top of the redirector special page",
+    "flow-special-type": "Label for the type (Workflow or PostRevision) dropdown on the redirector special page",
+    "flow-special-type-post": "Label for PostRevision in the type dropdown",
+    "flow-special-type-workflow": "Label for Workflow in the type dropdown",
+    "flow-special-uuid": "Label for the UUID field on the redirector special page",
+    "flow-special-invalid-uuid": "Error message shown on the redirector special page if the specified type / UUID combination is invalid"
 }
