@@ -1,0 +1,24 @@
+{
+    "@metadata": {
+        "authors": [
+            "Rachmat.Wahidi"
+        ]
+    },
+    "flow-hide-content": "{{GENDER:$1|Geupeusom}} lé $1",
+    "flow-delete-content": "{{GENDER:$1|Geusampôh}} lé $1",
+    "flow-topic-action-hide-topic": "Peusom topik",
+    "flow-topic-action-delete-topic": "Sampôh topik",
+    "flow-topic-action-restore-topic": "Peuriwang topik",
+    "flow-rev-message-hid-topic": "[[Ureuëng Nguy:$1|$1]] {{GENDER:$1|geupeusom}} [topic $3].",
+    "flow-rev-message-deleted-topic": "[[Ureuëng Nguy:$1|$1]] {{GENDER:$1|sampôh}} [kumènta $3].",
+    "flow-rev-message-restored-topic": "[[Ureuëng Nguy:$1|$1]] {{GENDER:$1|peuriwang}} [topik $3].",
+    "flow-moderation-title-delete-topic": "Sampôh topik?",
+    "flow-moderation-title-hide-topic": "Peusom topik?",
+    "flow-moderation-title-restore-topic": "Peuriwang topik?",
+    "flow-moderation-intro-delete-topic": "Tulông peutrang pakön droeneuh neuneuk sampôh topik nyoe.",
+    "flow-moderation-intro-hide-topic": "Neutulông peutrang pakön peusom topik nyoe.",
+    "flow-moderation-confirm-delete-topic": "Sampôh",
+    "flow-moderation-confirm-hide-topic": "Peusom",
+    "flow-moderation-confirm-restore-topic": "Peuriwang",
+    "flow-moderation-confirmation-restore-topic": "Droeneuh ka lheuh neupeuriwang topik nyoe."
+}

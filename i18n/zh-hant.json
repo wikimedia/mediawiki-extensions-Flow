@@ -1,0 +1,42 @@
+{
+    "@metadata": {
+        "authors": [
+            "Cwlin0416",
+            "EagerLin",
+            "Liuxinyu970226"
+        ]
+    },
+    "flow-talk-taken-over": "此討論頁已由[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow board]接管。",
+    "flow-hide-post-content": "此評論已由$2{{GENDER:$1|隱藏}}",
+    "flow-hide-title-content": "此主題已由$2{{GENDER:$1|隱藏}}",
+    "flow-hide-header-content": "由$2{{GENDER:$1|隱藏}}",
+    "flow-delete-post-content": "此評論已由$2{{GENDER:$1|刪除}}",
+    "flow-delete-title-content": "此主題已由$2{{GENDER:$1|刪除}}",
+    "flow-delete-header-content": "由$2{{GENDER:$1|刪除}}",
+    "flow-suppress-post-content": "此評論已被$2{{GENDER:$1|抑制}}",
+    "flow-suppress-title-content": "此主題已由$2{{GENDER:$1|抑制}}",
+    "flow-suppress-header-content": "由$2{{GENDER:$1|抑制}}",
+    "flow-stub-post-content": "'''由於技術錯誤，這篇文章無法檢索。'''",
+    "flow-error-prev-revision-mismatch": "另一用戶於幾秒鐘前編輯此帖子。您確信覆寫新近變更？",
+    "flow-notification-reply": "$1 {{GENDER:$1|已回覆}}您的 [$5 留言] 於 $2 的 \"$4\"。",
+    "flow-notification-reply-bundle": "$1 與另外 $5 {{PLURAL:$6|個人|個人}}已{{GENDER:$1|回覆}}您的 [$4 留言] 於 $2 的 \"$3\"。",
+    "flow-notification-link-text-view-post": "檢視留言",
+    "flow-notification-link-text-view-board": "檢視討論版",
+    "flow-notification-reply-email-subject": "$1 {{GENDER:$1|已回覆}}您的留言",
+    "flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|已回覆}}您的留言於 $2 的 \"$3\"",
+    "flow-notification-reply-email-batch-bundle-body": "$1 與另外 $4 {{PLURAL:$5|個人|個人}} {{GENDER:$1|已回覆}} 您的留言於 $2 的 \"$3\"",
+    "echo-category-title-flow-discussion": "流量",
+    "echo-pref-tooltip-flow-discussion": "通知我，當有與我相關的動作發生在討論版時",
+    "flow-moderation-confirmation-suppress-post": "該職位被成功地解除。\n考慮 {{GENDER:$1| 給}} $1 對這篇文章的回饋意見。",
+    "flow-moderation-confirmation-delete-post": "主題已成功刪除。\n考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。",
+    "flow-moderation-confirmation-hide-post": "主題已成功刪除。\n考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。",
+    "flow-moderation-confirmation-restore-post": "您已成功還原上方的帖子。",
+    "flow-moderation-intro-delete-topic": "請{{GENDER:$3|說明}}為何您要刪除此主題。",
+    "flow-moderation-confirmation-suppress-topic": "主題已成功刪除。\n考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。",
+    "flow-moderation-confirmation-delete-topic": "主題已成功刪除。\n考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。",
+    "flow-moderation-confirmation-hide-topic": "主題已成功刪除。\n考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。",
+    "flow-moderation-confirmation-restore-topic": "您已成功還原本主題。",
+    "flow-terms-of-use-new-topic": "通過點擊「{{int:flow-newtopic-save}}」，您同意此wiki之使用條款。",
+    "flow-terms-of-use-reply": "通過點擊「{{int:flow-reply-submit}}」，您同意此wiki之使用條款。",
+    "flow-terms-of-use-edit": "通過保存您的更改，您同意此wiki之使用條款。"
+}

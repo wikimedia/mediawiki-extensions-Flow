@@ -1,0 +1,12 @@
+{
+    "@metadata": {
+        "authors": [
+            "M hamlet",
+            "Vadgt"
+        ]
+    },
+    "flow-preview": "Նախադիտել",
+    "flow-reply-placeholder": "Սեղմեք {{GENDER:$1|պատասխանել}} $1-ում: Կլինի լա՜վ",
+    "flow-notification-edit": "$1՝ {{GENDER:$1|խմբագրեց}} ձեր [$5 գրառում(ներ)ը] $2-ում [[$3|$4]]ի վրա:",
+    "flow-notification-rename": "$1՝ {{GENDER:$1|փոխեց}} վերնագրիրը [$2 $3]-ի \"$4\"-ում [[$5|$6]]-ի վրա:"
+}

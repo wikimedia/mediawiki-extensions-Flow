@@ -1,0 +1,24 @@
+{
+    "@metadata": {
+        "authors": [
+            "Papuass"
+        ]
+    },
+    "flow-edit-header-link": "Labot galveni",
+    "flow-post-moderated-toggle-show": "[Parādīt]",
+    "flow-post-moderated-toggle-hide": "[Paslēpt]",
+    "flow-newtopic-start-placeholder": "Sākt jaunu tēmu",
+    "flow-reply-submit": "{{GENDER:$1|Atbildēt}}",
+    "flow-reply-link": "{{GENDER:$1|Atbildēt}}",
+    "flow-thank-link": "{{GENDER:$1|Pateikties}}",
+    "flow-talk-link": "Diskutēt ar {{GENDER:$1|$1}}",
+    "flow-topic-action-view": "Pastāvīgā saite",
+    "flow-edit-header-submit": "Saglabāt galveni",
+    "flow-rev-message-edit-post": "Labot ieraksta saturu",
+    "flow-rev-message-create-header": "Izveidoja galveni",
+    "flow-rev-message-edit-header": "Izmainīja galveni",
+    "flow-rev-message-deleted-post": "Dzēsts ieraksts",
+    "flow-rev-message-suppressed-post": "Cenzēts ieraksts",
+    "flow-link-topic": "tēma",
+    "flow-link-history": "vēsture"
+}

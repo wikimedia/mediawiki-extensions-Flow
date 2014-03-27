@@ -1,0 +1,17 @@
+{
+    "@metadata": {
+        "authors": [
+            "Astralnet",
+            "Evropi",
+            "Geraki",
+            "Nikosguard"
+        ]
+    },
+    "flow-post-moderated-toggle-delete-show": "Εμφάνιση σχολίου {{GENDER:$1|διαγραφή}} $2",
+    "flow-topic-actions": "Ενέργειες",
+    "flow-preview": "Προεπισκόπηση",
+    "flow-post-action-post-history": "Ιστορικό",
+    "flow-post-action-edit-post": "Επεξεργασία",
+    "flow-history-last4": "Τελευταίες 4 ώρες",
+    "flow-history-day": "Σήμερα"
+}

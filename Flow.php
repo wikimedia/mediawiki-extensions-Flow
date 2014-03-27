@@ -47,6 +47,7 @@ define( 'RC_FLOW', 142 ); // soon to be obsolete, random number chosen
 $dir = __DIR__ . '/';
 require $dir . 'Resources.php';
 
+$wgMessagesDirs['Flow'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
 
 $wgAutoloadClasses['FlowInsertDefaultDefinitions'] = $dir . 'maintenance/FlowInsertDefaultDefinitions.php';

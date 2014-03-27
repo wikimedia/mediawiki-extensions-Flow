@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Rapsar",
+            "Rhinestorm"
+        ]
+    },
+    "flow-notification-mention": "$1, \"$4\" sayfasındaki \"$3\" başlığındaki [$2 değişikliğinde] sizden {{GENDER:$1|bahsetti}}",
+    "flow-notification-mention-email-subject": "$1, $2 sayfasında sizden {{GENDER:$1|bahsetti}}",
+    "flow-notification-mention-email-batch-body": "$1, \"$3\" sayfasındaki \"$2\" başlığında sizden {{GENDER:$1|bahsetti}}",
+    "flow-link-history": "geçmiş",
+    "flow-anon-warning": "Oturum açmadınız."
+}

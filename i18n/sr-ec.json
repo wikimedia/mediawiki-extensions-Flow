@@ -1,0 +1,28 @@
+{
+    "@metadata": {
+        "authors": [
+            "Milicevic01",
+            "Rancher"
+        ]
+    },
+    "flow-edit-header-link": "Уреди заглавље",
+    "flow-post-actions": "Радње",
+    "flow-topic-actions": "Радње",
+    "flow-cancel": "Откажи",
+    "flow-preview": "Претпреглед",
+    "flow-last-modified-by": "Последњу измену је {{GENDER:$1|начинио|начинила}} $1",
+    "flow-newtopic-title-placeholder": "Нова тема",
+    "flow-newtopic-save": "Додај тему",
+    "flow-post-action-post-history": "Историја",
+    "flow-post-action-delete-post": "Обриши",
+    "flow-post-action-hide-post": "Сакриј",
+    "flow-post-action-edit-post": "Уреди",
+    "flow-topic-action-edit-title": "Уреди наслов",
+    "flow-topic-action-history": "Историја",
+    "flow-edit-post-submit": "Сачувај",
+    "flow-history-day": "Данас",
+    "flow-link-topic": "тема",
+    "flow-terms-of-use-new-topic": "Кликом на „{{int:flow-newtopic-save}}“, прихватате услове коришћења на овом викију.",
+    "flow-terms-of-use-reply": "Кликом на „{{int:flow-reply-submit}}“, прихватате услове коришћења на овом викију.",
+    "flow-terms-of-use-edit": "Чувањем измена, прихватате услове коришћења на овом викију."
+}

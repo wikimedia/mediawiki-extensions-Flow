@@ -1,0 +1,8 @@
+{
+    "@metadata": {
+        "authors": [
+            "MaGa"
+        ]
+    },
+    "flow-notification-mention-email-subject": "$1 {{GENDER:$1|Vas je spomenuo|Vas je spomenula}} na projektu $2"
+}
