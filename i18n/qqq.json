@@ -270,5 +270,12 @@
 	"flow-terms-of-use-reopen-topic": "Terms of use for restoring a topic.\n\nRefers to {{msg-mw|Flow-reopen-topic-submit}}.\n{{Related|Flow-terms-of-use}}",
 	"flow-anon-warning": "Warning message to be displayed when anonymous user starts writing a new topic or reply.\n* $1 is a URL to log in.\n* $2 is a URL to register an account.",
 	"flow-whatlinkshere-post": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Flow post.\n\nParameters:\n* $1 - a URL to the post\nSee also:\n* {{msg-mw|Flow-whatlinkshere-header}}",
-	"flow-whatlinkshere-header": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Flow Board header.\n\nParameters:\n* $1 - a URL to the header\nSee also:\n* {{msg-mw|Flow-whatlinkshere-post}}"
+	"flow-whatlinkshere-header": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Flow Board header.\n\nParameters:\n* $1 - a URL to the header\nSee also:\n* {{msg-mw|Flow-whatlinkshere-post}}",
+	"flow": "Name of the extension; used as the title of the special page",
+	"flow-special-desc": "Description at the top of the redirector special page",
+	"flow-special-type": "Label for the type (Workflow or PostRevision) dropdown on the redirector special page",
+	"flow-special-type-post": "Label for PostRevision in the type dropdown",
+	"flow-special-type-workflow": "Label for Workflow in the type dropdown",
+	"flow-special-uuid": "Label for the UUID field on the redirector special page",
+	"flow-special-invalid-uuid": "Error message shown on the redirector special page if the specified type / UUID combination is invalid"
 }
