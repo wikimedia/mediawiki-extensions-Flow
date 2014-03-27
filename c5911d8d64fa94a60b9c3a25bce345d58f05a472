@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_4caf5b92",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-27T01:17:51Z",
+      "side": 1,
+      "message": "Add a comment about how this turns mw-ui-button within the div into inline regular text",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_8091b754",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-27T01:17:51Z",
+      "side": 1,
+      "message": "This is doing too much. Should the container force its contents to look a certain way, or should people supplying actions cooperate to supply buttons styled the right way?  Hmmm.\n\nIf someone in the hook supplies a mw-ui-button, then it should look like a button. If they want it to look less like a button, they should specify mw-ui-quiet, or mw-ui-light, or whatever.",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_6c91ff51",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-27T01:17:51Z",
+      "side": 1,
+      "message": "I think even mw-ui-button should be set smaller. Right now the button from Thanks looks larger because it isn\u0027t setting mw-ui-quiet. (it should also set mw-ui-constructive and mw-ui-quiet in both PHP and js).\n\nI think this font setting should be even higher up: everything in flow-post-interaction can be 14px, which makes the separator styling really simple. You might still need an override here due to over-specification.\n\nEveryone else used magic numbers, but you can do better. Use LESS, \n\n   // @todo Should be based off @interactionFontSize (e.g. also .flow-datestamp)\n  @flow-post-interaction-size: 14px;",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_ec7cef1d",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-27T01:17:51Z",
+      "side": 1,
+      "message": "Comment why you need to do this here.",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_c0c8cf79",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-27T01:17:51Z",
+      "side": 1,
+      "message": "I don\u0027t like magic variables everywhere.\nUnfortunately mediawiki.ui LESS files in core don\u0027t define the disabled/placeholder color yet, but there\u0027s already a @import \u0027settings/colors.less\u0027 in this file, so put an @post-disabled-color definition there.",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_408b9f20",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-27T01:17:51Z",
+      "side": 1,
+      "message": "might not needed if flow-post-ietration sets color for its contents. If someone supplies \"Be polite!\" with a link to an etiquette policy in response to FlowAddPostInteractionLinks hook, what font should it be?",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_6086a31a",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-27T01:17:51Z",
+      "side": 1,
+      "message": "not needed if flow-post-interation sets font-size for its contents.",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_60958335",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-03-27T01:17:51Z",
+      "side": 1,
+      "message": "The separator dot is already surrounded by \u0026nbsp;. This and padding is only needed because the Reply * Edit * Thank buttons are display: inline-block. Reset that and you don\u0027t need all this stuff. Although, if someone does supply a [DO IT] button, the separator still needs to separate. Hmm.",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
