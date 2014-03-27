@@ -234,6 +234,12 @@ $wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
 $wgAPIPropModules['flowinfo'] = 'ApiQueryPropFlowInfo';
 
+// Special:Flow
+$wgAutoloadClasses['Flow\SpecialFlow'] = $dir . 'SpecialFlow.php';
+$wgExtensionMessagesFiles['FlowAlias'] = $dir . 'Flow.alias.php';
+$wgSpecialPages['Flow'] = 'Flow\SpecialFlow';
+$wgSpecialPageGroups['Flow'] = 'redirects';
+
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
 //$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
