@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_394d829c",
+        "filename": "SpecialFlow.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 106
+      },
+      "writtenOn": "2014-03-27T13:19:05Z",
+      "side": 1,
+      "message": "I think the convention here is to put the comment directly above the definition of the var?\nI dont think I have ever seen anyone group them link this before",
+      "revId": "bd902d0c213f02fbace01a9b59fc91240a8cd5b3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
