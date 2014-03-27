@@ -308,6 +308,15 @@ You can see other versions of the header at its [$4 history page].',
 
 	// Anon warning
 	'flow-anon-warning' => 'You are not logged in. To receive attribution with your name instead of your IP address, you can [$1 log in] or [$2 create an account].',
+
+	// Special:Flow
+	'flow' => 'Flow',
+	'flow-special-desc' => 'This special page redirects to a Flow workflow or a Flow post given a UUID.',
+	'flow-special-type' => 'Type',
+	'flow-special-type-post' => 'Post',
+	'flow-special-type-workflow' => 'Workflow',
+	'flow-special-uuid' => 'UUID',
+	'flow-special-invalid-uuid' => 'Could not find content matching the type and the UUID.',
 );
 
 /** Message documentation (Message documentation)
@@ -1186,6 +1195,13 @@ This should be consistent with {{msg-mw|Flow-reply-submit}}.
 	'flow-anon-warning' => 'Warning message to be displayed when anonymous user starts writing a new topic or reply.
 * $1 is a URL to log in.
 * $2 is a URL to register an account.',
+	'flow' => 'Name of the extension; used as the title of the special page',
+	'flow-special-desc' => 'Description at the top of the redirector special page',
+	'flow-special-type' => 'Label for the type (Workflow or PostRevision) dropdown on the redirector special page',
+	'flow-special-type-post' => 'Label for PostRevision in the type dropdown',
+	'flow-special-type-workflow' => 'Label for Workflow in the type dropdown',
+	'flow-special-uuid' => 'Label for the UUID field on the redirector special page',
+	'flow-special-invalid-uuid' => 'Error message shown on the redirector special page if the specified type / UUID combination is invalid',
 );
 
 /** Achinese (Acèh)
