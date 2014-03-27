@@ -501,19 +501,7 @@ abstract class AbstractFormatter {
 			return Message::rawParam( htmlspecialchars( $revision->getModeratedReason() ) );
 
 		case 'topic-of-post':
-			try {
-				$content = $this->templating->getContent( $revision->getRootPost(), 'wikitext' );
-			} catch ( DataModelException $e ) {
-				$found = Container::get( 'storage.post' )->find(
-					array( 'tree_rev_descendant_id' => $workflowId ),
-					array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-				);
-				if ( !$found ) {
-					wfWarn( __METHOD__ . ': No tree_rev_descendant_id matching ' . $workflowId->getAlphadecimal() );
-					return '';
-				}
-				$content = $this->templating->getContent( reset( $found ), 'wikitext' );
-			}
+			$content = $this->templating->getContent( $revision->getRootPost(), 'wikitext' );
 			return Message::rawParam( htmlspecialchars( $content ) );
 
 		case 'bundle-count':
