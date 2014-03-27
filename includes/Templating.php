@@ -329,7 +329,9 @@ class Templating {
 	 * @return string
 	 */
 	public function getUserText( AbstractRevision $revision ) {
-		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
+		// if this specific revision is moderated, its usertext can always be
+		// displayed, since it will be the moderator user
+		if ( $revision->isModerated() || $this->permissions->isAllowed( $revision, 'view' ) ) {
 			return $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
 		} else {
 			$revision = $this->getModeratedRevision( $revision );
@@ -360,7 +362,9 @@ class Templating {
 	 * @return string                            HTML
 	 */
 	public function getUserLinks( AbstractRevision $revision ) {
-		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
+		// if this specific revision is moderated, its usertext can always be
+		// displayed, since it will be the moderator user
+		if ( $revision->isModerated() || $this->permissions->isAllowed( $revision, 'view' ) ) {
 			$userid = $revision->getUserId();
 			$username = $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
 			return Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
