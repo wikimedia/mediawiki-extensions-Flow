@@ -501,8 +501,21 @@ abstract class AbstractFormatter {
 			return Message::rawParam( htmlspecialchars( $revision->getModeratedReason() ) );
 
 		case 'topic-of-post':
-			$content = $this->templating->getContent( $revision->getRootPost(), 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
+			$root = $revision->getRootPost();
+			$content = $this->templating->getContent( $root, 'wikitext' );
+
+			/*
+			 * If a user is not allowed to view the content, a message will
+			 * displayed instead (which may contain html - links to the user).
+			 * If a user can see the content, make sure it doesn't contain
+			 * malicious html-like content.
+			 */
+			global $wgUser;
+			if ( $this->getPermissions( $wgUser )->isAllowed( $root, 'view' ) ) {
+				$content = htmlspecialchars( $content );
+			}
+
+			return Message::rawParam( $content );
 
 		case 'bundle-count':
 			return array( 'num' => count( $revision ) );
