@@ -12,11 +12,15 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 	$replyForm .= '<span class="flow-creator">' .
 		$this->userToolLinks( $user->getId(), $user->getName() ) .
 		'</span>';
-
+	$workflow = $block->getWorkflow();
 	$replyForm .= Html::openElement( 'form', array(
 			'method' => 'POST',
 			// root post id is same as topic workflow id
-			'action' => $this->generateUrl( $block->getWorkflowId(), 'reply' ),
+			'action' => $this->urlGenerator->replyPostLink(
+				$workflow->getArticleTitle(),
+				$workflow->getId(),
+				$post->getPostId()
+			)->getFullUrl(),
 			'class' => 'flow-reply-form flow-element-container',
 		) );
 	$replyForm .= Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $editToken) );
@@ -31,11 +35,6 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 
 	$placeHolder = $postView->replyPlaceholder();
 	$replyForm .=
-		Html::element( 'input', array(
-			'type' => 'hidden',
-			'name' => $block->getName() . '_replyTo',
-			'value' => $post->getPostId()->getAlphadecimal(),
-		) ) .
 		Html::textarea( $block->getName() . '_content', '', array(
 			'placeholder' => $placeHolder,
 			'class' => 'flow-reply-content mw-ui-input',

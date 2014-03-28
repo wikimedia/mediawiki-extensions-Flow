@@ -2,176 +2,334 @@
 
 namespace Flow;
 
-use Flow\Data\ObjectManager;
+use Flow\Data\PagerPage;
 use Flow\Model\UUID;
-use Flow\Model\Workflow;
-use Flow\Model\AbstractRevision;
-use Flow\Model\Header;
-use Flow\Model\PostRevision;
 use Title;
-use Flow\Exception\InvalidDataException;
-use Flow\Exception\InvalidInputException;
-use Flow\Exception\FlowException;
 
-class UrlGenerator {
-	/**
-	 * @var OccupationController
-	 */
-	protected $occupationController;
+class UrlGenerator extends BaseUrlGenerator {
 
 	/**
-	 * @var ObjectManager Workflow storage
-	 */
-	protected $storage;
-
-	/**
-	 * @var Workflow[] Cached array of already loaded workflows
-	 */
-	protected $workflows = array();
-
-	public function __construct( ObjectManager $workflowStorage, OccupationController $occupationController ) {
-		$this->occupationController = $occupationController;
-		$this->storage = $workflowStorage;
-	}
-
-	/**
-	 * Builds a URL for a given title and action, with a query string.
-	 * @todo We should probably have more descriptive names than
-	 * generateUrl and buildUrl
-	 * @param  Title $title Title of the Flow Board to link to.
-	 * @param  string $action Action to execute
-	 * @param  array $query Associative array of query parameters
-	 * @return String URL
-	 */
-	public function buildUrl( $title, $action = 'view', array $query = array() ) {
-		/** @var Title $linkTitle */
-		/** @var string $query */
-		list( $linkTitle, $query ) = $this->buildUrlData( $title, $action, $query );
-
-		return $linkTitle->getFullUrl( $query );
-	}
-
-	/**
-	 * Builds a URL for a given title and action, with a query string.
-	 * @todo We should probably have more descriptive names than
-	 * generateUrl and buildUrl
-	 * @param  Title $title Title of the Flow Board to link to.
-	 * @param  string $action Action to execute
-	 * @param  array $query Associative array of query parameters
-	 * @return array Two element array, first element is the title to link to
-	 * and the second element is the query string to use.
-	 */
-	public function buildUrlData( $title, $action = 'view', array $query = array() ) {
-		if ( $action === 'view' ) {
-			// view is implicit
-			unset( $query['action'] );
-		} else {
-			$query['action'] = $action;
-		}
-		return array( $title, $query );
-	}
-
-	/**
-	 * Builds a URL to link to a given Workflow
+	 * Reverse pagination on a topic list.
 	 *
-	 * @todo We should probably have more descriptive names than
-	 * generateUrl and buildUrl
-	 * @param  Workflow|UUID $workflow The Workflow to link to
-	 * @param  string $action The action to execute
-	 * @param  array  $query Associative array of query parameters
-	 * @param  string $fragment URL hash fragment
-	 * @return string URL
+	 * @var Title|null $title Page the workflow is on, resolved from workflowId when null
+	 * @var UUID $workflowId The topic list being paginated
+	 * @var PagerPage $page Pagination information
+	 * @var string $direction 'fwd' or 'rev'
+	 * @return Anchor|null
 	 */
-	public function generateUrl( $workflow, $action = 'view', array $query = array(), $fragment = '' ) {
-		/** @var Title $linkTitle */
-		/** @var string $query */
-		list( $linkTitle, $query ) = $this->generateUrlData( $workflow, $action, $query );
-
-		$title = clone $linkTitle;
-
-		if ( $fragment ) {
-			$title->setFragment( '#' . $fragment );
+	public function paginateTopicsLink( Title $title = null, UUID $workflowId, PagerPage $page, $direction ) {
+		$linkData = $page->getPagingLink( $direction );
+		if ( !$linkData ) {
+			return null;
 		}
-
-		return $title->getFullUrl( $query );
+		return new Anchor(
+			wfMessage( "flow-paging-$direction" ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'topiclist_offset-id' => $linkData['offset'],
+				'topiclist_offset-dir' => $direction,
+				'topiclist_limit' => $linkData['limit'],
+			)
+		);
 	}
 
 	/**
-	 * Generate a block viewing url based on a revision
+	 * Link to create new topic on a topiclist.
 	 *
-	 * @param Workflow|UUID $workflow The Workflow to link to
-	 * @param AbstractRevision $revision The revision to build the block
-	 * @param boolean $specificRevision whether to show specific revision
-	 * @return string URL
-	 * @throws FlowException When the type of $revision is unrecognized
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
 	 */
-	public function generateBlockUrl( $workflow, AbstractRevision $revision, $specificRevision = false ) {
-		$data = array();
-		$action = 'view';
-		if ( $revision instanceof PostRevision ) {
-			if ( !$revision->isTopicTitle() ) {
-				$data['topic_postId'] = $revision->getPostId()->getAlphadecimal();
-			}
-
-			if ( $specificRevision ) {
-				$data['topic_revId'] = $revision->getRevisionId()->getAlphadecimal();
-			}
-		} elseif ( $revision instanceof Header ) {
-			if ( $specificRevision ) {
-				$data['header_revId'] = $revision->getRevisionId()->getAlphadecimal();
-			}
-			$action = 'header-view';
-		} else {
-			throw new FlowException( 'Unknown revision type:' . get_class( $revision ) );
-		}
-
-		return $this->generateUrl( $workflow, $action, $data );
+	public function newTopicLink( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-new' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'workflow' => $workflowId->getAlphadecimal(),
+				'action' => 'new-topic',
+			)
+		);
 	}
 
 	/**
-	 * Returns the title/query string to link to a given Workflow
+	 * Reply to an individual post in a topic workflow.
 	 *
-	 * @todo We should probably have more descriptive names than
-	 * generateUrl and buildUrl
-	 * @param  Workflow|UUID $workflow The Workflow to link to
-	 * @param  string $action The action to execute
-	 * @param  array  $query Associative array of query parameters
-	 * @return Array Two element array, first element is the title to link to,
-	 * @throws InvalidDataException
-	 * @throws InvalidInputException
-	 * second element is the query string
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @return Anchor
 	 */
-	public function generateUrlData( $workflow, $action = 'view', array $query = array() ) {
-		if ( $workflow instanceof UUID ) {
-			// Only way to know what title the workflow points at
-			$workflowId = $workflow;
-			if ( isset( $this->workflows[$workflowId->getAlphadecimal()] ) ) {
-				$workflow = $this->workflows[$workflowId->getAlphadecimal()];
-			} else {
-				$workflow = $this->storage->get( $workflowId );
-				if ( !$workflow ) {
-					throw new InvalidInputException( 'Invalid workflow: ' . $workflowId, 'invalid-workflow' );
-				}
-				$this->workflows[$workflowId->getAlphadecimal()] = $workflow;
-			}
-		} elseif ( !$workflow instanceof Workflow ) {
-			// otherwise calling a method on $workflow will fatal error
-			throw new InvalidDataException( '$workflow is not UUID or Workflow instance' );
-		}
-
-		if ( $workflow->isNew() ) {
-			$query['definition'] = $workflow->getDefinitionId()->getAlphadecimal();
-		} else {
-			// TODO: workflow parameter is only necessary if the definition is non-unique.  Likely need to pass
-			// ManagerGroup into this class rather than the workflow ObjectManager so we can fetch definition as
-			// needed.
-			$query['workflow'] = $workflow->getId()->getAlphadecimal();
-		}
-
-		return $this->buildUrlData( $workflow->getArticleTitle(), $action, $query );
+	public function replyPostLink( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-reply' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'topic_replyTo' => $postId->getAlphadecimal(),
+				'action' => 'reply',
+			)
+		);
 	}
 
-	public function withWorkflow( Workflow $workflow ) {
-		$this->workflows[$workflow->getId()->getAlphadecimal()] = $workflow;
+	/**.
+	 * Edit the header at the specified workflow.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function editHeaderLink( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-edit-header' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'workflow' => $workflowId->getAlphadecimal(),
+				'action' => 'edit-header',
+			)
+		);
+	}
+
+	/**
+	 * Edit the title of a topic workflow.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function editTitleLink( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-edit-title' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'workflow' => $workflowId->getAlphadecimal(),
+				'action' => 'edit-title',
+			)
+		);
+	}
+
+	/**
+	 * View a specific revision of a header workflow.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $revId
+	 * @return Anchor
+	 */
+	public function headerRevisionLink( Title $title = null, UUID $workflowId, UUID $revId ) {
+		return new Anchor(
+			wfMessage( 'flow-link-header-revision' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'workflow' => $workflowId->getAlphadecimal(),
+				'header_revId' => $revId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * View a specific revision of a topic title
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $revId
+	 * @return Anchor
+	 */
+	public function topicRevisionLink( Title $title = null, UUID $workflowId, UUID $revId ) {
+		return new Anchor(
+			wfMessage( 'flow-link-topic-revision' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_revId' => $revId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * View a specific revision of a post within a topic workflow.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @param UUID $revId
+	 * @return Anchor
+	 */
+	public function postRevisionLink( Title $title = null, UUID $workflowId, UUID $postId, UUID $revId ) {
+		return new Anchor(
+			wfMessage( 'flow-link-post-revision' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+				'topic_revId' => $revId->getAlphadecimal(),
+			),
+			// necessary?
+			'#flow-post-' . $postId->getAlphadecimal()
+		);
+	}
+
+	/**
+	 * View the topic at the specified workflow.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function topicLink( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-link-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array( 'workflow' => $workflowId->getAlphadecimal() )
+		);
+	}
+
+	/**
+	 * View a topic scrolled down to the provided post at the
+	 * specified workflow.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @return Anchor
+	 */
+	public function postLink( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-link-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array( 'workflow' => $workflowId->getAlphadecimal() ),
+			'#flow-post-' . $postId->getAlphadecimal()
+		);
+	}
+
+	/**
+	 * Show the history of a specific post within a topic workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @return Anchor
+	 */
+	public function postHistoryLink( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'hist' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'history',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Show the history of a workflow.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function workflowHistoryLink( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'hist' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'workflow' => $workflowId->getAlphadecimal(),
+				'action' => 'history',
+			)
+		);
+	}
+
+	/**
+	 * Show the history of a flow board.
+	 *
+	 * @param Title $title
+	 * @return Anchor
+	 */
+	public function boardHistoryLink( Title $title ) {
+		return new Anchor(
+			wfMessage( 'hist' ),
+			$title,
+			array( 'action' => 'history' )
+		);
+	}
+
+	/**
+	 * Show the differences between two revisions of a header
+	 *
+	 * When $oldRevId is null shows the differences between $revId and the revision
+	 * immediatly prior.  If $oldRevId is provided shows the differences between
+	 * $oldRevId and $revId.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $revId
+	 * @param UUID|null $oldRevId
+	 * @return Anchor
+	 */
+	public function diffHeaderLink( Title $title = null, UUID $workflowId, UUID $revId, UUID $oldRevId = null ) {
+		return new Anchor(
+			wfMessage( 'diff' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'compare-header-revisions',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'header_newRevision' => $revId->getAlphadecimal(),
+			) + ( $oldRevId === null ? array() : array(
+				'header_oldRevision' => $oldRevId->getAlphadecimal(),
+			) )
+		);
+	}
+
+	/**
+	 * Show the differences between two revisions of a post.
+	 *
+	 * When $oldRevId is null shows the differences between $revId and the revision
+	 * immediatly prior.  If $oldRevId is provided shows the differences between
+	 * $oldRevId and $revId.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $revId
+	 * @param UUID|null $oldRevId
+	 * @return Anchor
+	 */
+	public function diffPostLink( Title $title = null, UUID $workflowId, UUID $revId, UUID $oldRevId = null ) {
+		return new Anchor(
+			wfMessage( 'diff' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'compare-post-revisions',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'post_newRevision' => $revId->getAlphadecimal(),
+			) + ( $oldRevId === null ? array() : array(
+				'post_oldRevision' => $oldRevId->getAlphadecimal(),
+			) )
+		);
+	}
+
+	/**
+	 * View the specified workflow.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function workflowLink( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-something' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array( 'workflow' => $workflowId->getAlphadecimal() )
+		);
+	}
+
+	/**
+	 * View the flow board at the specified title
+	 *
+	 * Makes the assumption the title is flow-enabled.
+	 *
+	 * @param Title $title
+	 * @return Anchor
+	 */
+	public function boardLink( Title $title ) {
+		return new Anchor( $title->getPrefixedText(), $title );
 	}
 }
