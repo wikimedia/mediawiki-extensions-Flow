@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_a653a119",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-28T22:18:37Z",
+      "side": 1,
+      "message": "This change fixes the escaping issue.  Unrelated to this change, the wording on suppressed change is quite confusing: User A commented on This topic was suppressed by User B.  Maybe we should change the formatting to \u0027suppressed topic\u0027, like User A commented on \"suppressed topic\" or put a quote around \"This topic was suppressed by User B\"",
+      "revId": "67cf34007163d0c62d8880001c62f4e187948562",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
