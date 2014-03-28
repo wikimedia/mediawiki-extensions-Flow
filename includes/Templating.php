@@ -142,7 +142,11 @@ class Templating {
 		return $this->urlGenerator;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
+		wfDeprecated( __METHOD__, '1.23' );
 		return $this->getUrlGenerator()->generateUrl( $workflow, $action, $query );
 	}
 
