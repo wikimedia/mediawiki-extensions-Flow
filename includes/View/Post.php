@@ -210,15 +210,13 @@ class Post {
 	}
 
 	protected function getLatestDiffLink( AbstractBlock $block ) {
-		$compareLink = $this->urlGenerator->generateUrl(
-			$block->getWorkflow(),
-			'compare-post-revisions',
-			array(
-				$block->getName().'_newRevision' => $this->post->getRevisionId()->getAlphadecimal(),
-				$block->getName().'_oldRevision' => $this->post->getPrevRevisionId()->getAlphadecimal()
-			)
-		);
-		return $compareLink;
+		$workflow = $block->getWorkflow();
+
+		return $this->urlGenerator->diffPostLink(
+			$workflow->getArticleTitle(),
+			$workflow->getId(),
+			$this->post->getRevisionId()
+		)->getFullUrl();
 	}
 
 	public function createModifiedTipsyLink( AbstractBlock $block ) {

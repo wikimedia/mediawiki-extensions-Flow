@@ -245,7 +245,6 @@ class FlowHooks {
 			$container = Container::getContainer();
 			$view = new Flow\View(
 				$container['templating'],
-				$container['url_generator'],
 				$output
 			);
 

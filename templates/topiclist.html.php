@@ -1,10 +1,14 @@
 <?php
 
 if ( $permissions->isAllowed( null, 'new-post' ) ) {
+	$workflow = $block->getWorkflow();
 	echo Html::openElement( 'div', array( 'class' => 'flow-new-topic-container flow-element-container' ) );
 	echo Html::openElement( 'form', array(
 		'method' => 'POST',
-		'action' => $this->generateUrl( $block->getWorkflow(), 'new-topic' ),
+		'action' => $this->urlGenerator->newTopicLink(
+			$workflow->getArticleTitle(),
+			$workflow->getId()
+		)->getFullUrl(),
 		'class' => 'flow-newtopic-form',
 		'id' => 'flow-newtopic-form',
 	) );
@@ -44,9 +48,11 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 	echo Html::closeElement( 'div' );
 }
 
-if ( $page && $page->getPagingLink( 'rev' ) ) {
+if ( $page ) {
 	$linkData = $page->getPagingLink( 'rev' );
-	echo $this->getPagingLink( $block, 'rev', $linkData['offset'], $linkData['limit'] );
+	if ( $linkData ) {
+		echo $this->getPagingLink( $block, 'rev', $linkData['offset'], $linkData['limit'] );
+	}
 }
 
 // @todo hide for non-js users, or support them?

@@ -68,11 +68,15 @@ class Logger {
 
 		$logType = $this->getLogType( $post, $action );
 
-		list( $title ) = $this->urlGenerator->generateUrlData(
-			$workflowId,
-			'view',
-			$params
-		);
+		// reasonably likely this is already loaded in-process and just returns that object
+		$workflow = \Flow\Container::get( 'storage.workflow' )->get( $workflowId );
+		if ( $workflow ) {
+			$title = $workflow->getArticleTitle();
+		} else {
+			// We dont want to fail logging due to this, so repoint it at Main_Page which
+			// will probably be noticed, also log it below once we know the logId
+			$title = Title::newMainPage();
+		}
 
 		// insert logging entry
 		$logEntry = new ManualLogEntry( $logType, "flow-$action" );
@@ -81,6 +85,10 @@ class Logger {
 		$logEntry->setParameters( $params );
 		$logEntry->setComment( $reason );
 		$logId = $logEntry->insert();
+
+		if ( $title === null ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Could not map workflowId to workflow object for ' . $workflowId->getAlphadecimal() . " log entry $logId defaulted to Main_Page");
+		}
 
 		return $logId;
 	}

@@ -1,7 +1,9 @@
 <?php
 
 $titleText = $this->getContent( $topicTitle, 'wikitext' );
-$topicLink = $this->generateUrl( $topic );
+$topicLink = $this->urlGenerator
+	->topicLink( $topic->getArticleTitle(), $topic->getId() )
+	->getFullUrl();
 
 $creator = $post->getCreatorIp();
 if ( $creator === null ) {
