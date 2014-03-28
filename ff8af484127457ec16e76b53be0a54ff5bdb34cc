@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_586f07c1",
+        "filename": "includes/Data/HeaderRevisionStorage.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-28T12:05:25Z",
+      "side": 1,
+      "message": "No longer need this one",
+      "revId": "ff8af484127457ec16e76b53be0a54ff5bdb34cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_d8431742",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-28T12:05:25Z",
+      "side": 1,
+      "message": "don\u0027t need the $row here; just @return array",
+      "revId": "ff8af484127457ec16e76b53be0a54ff5bdb34cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_b87063a4",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-28T12:05:25Z",
+      "side": 1,
+      "message": "Don\u0027t need the $changes here, just @return array",
+      "revId": "ff8af484127457ec16e76b53be0a54ff5bdb34cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_d82c3792",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-28T12:05:25Z",
+      "side": 1,
+      "message": "redundant trailing whitespace",
+      "revId": "ff8af484127457ec16e76b53be0a54ff5bdb34cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_183aafc0",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-28T12:05:25Z",
+      "side": 1,
+      "message": "Pretty sure this should only return bool.\n\nDatabaseBase::delete has @return bool|ResultWrapper, so I guess this is where that comes from. And I guess that comes from ::delete calling ::query, which can return both bool (for write queries) or ResultWrapper (for read queries)\n\nWe will never query for data, only write, so we should only ever return bool.",
+      "revId": "ff8af484127457ec16e76b53be0a54ff5bdb34cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
