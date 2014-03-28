@@ -10,6 +10,8 @@ $indexDescendantCount = $root->registerDescendantCount();
 $indexParticipants = $root->registerParticipants();
 $this->registerParsoidLinks( $root );
 
+$postActionMenu->batchLoadAllowedActions( array( 'history', 'view', 'hide-topic', 'delete-topic', 'suppress-topic', 'restore-topic', 'edit-title', 'reply' ) );
+
 // topic reply box.
 $topicReplyBox = '';
 if ( $postActionMenu->isAllowed( 'reply' ) ) {
