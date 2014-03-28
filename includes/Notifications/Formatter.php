@@ -40,21 +40,20 @@ class NotificationFormatter extends EchoBasicFormatter {
 			if ( !$postId instanceof UUID ) {
 				throw new FlowException( 'Expected UUID but received ' . get_class( $postId ) );
 			}
-			/** @var Title $title */
-			list( $title, $query ) = $this->getUrlGenerator()->generateUrlData(
-				$extra['topic-workflow'],
-				'view'
-			);
 			// Take user to the post if there is only one target post,
 			// otherwise, take user to the topic view
+			$urlGenerator = $this->getUrlGenerator();
+			$title = $event->getTitle();
+			$workflowId = $extra['topic-workflow'];
 			if ( $this->bundleData['raw-data-count'] <= 1 ) {
-				$title->setFragment( '#flow-post-' . $postId->getAlphadecimal() );
+				$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
+			} else {
+				$anchor = $urlGenerator->workflowLink( $title, $workflowId );
 			}
-			$message->params( $title->getFullUrl( $query ) );
+			$message->params( $anchor->getFullUrl() );
 		} elseif ( $param === 'topic-permalink' ) {
-			$url = $this->getUrlGenerator()->generateUrl( $extra['topic-workflow'] );
-
-			$message->params( $url );
+			$anchor = $this->getUrlGenerator()->workflowLink( $extra['topic-workflow'] );
+			$message->params( $anchor->getFullUrl() );
 		} elseif ( $param == 'flow-title' ) {
 			$title = $event->getTitle();
 			if ( $title ) {
@@ -82,8 +81,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 	 * @throws FlowException
 	 */
 	protected function getLinkParams( $event, $user, $destination ) {
-		$target = null;
-		$query  = array();
+		$anchor = null;
 		$title  = $event->getTitle();
 
 		// Unfortunately this is not a Flow code path, so we have to reach
@@ -93,37 +91,44 @@ class NotificationFormatter extends EchoBasicFormatter {
 		// Set up link parameters based on the destination (or pass to parent)
 		switch ( $destination ) {
 			case 'flow-post':
-				$post  = $event->getExtraParam( 'post-id' );
-				if ( !$post instanceof UUID ) {
+				$postId = $event->getExtraParam( 'post-id' );
+				if ( !$postId instanceof UUID ) {
 					throw new FlowException( 'Expected UUID but received ' . get_class( $post ) );
 				}
-				$flow  = $event->getExtraParam( 'topic-workflow' );
-				if ( $post && $flow && $title ) {
-					/** @var Title $target */
-					list( $target, $query ) = $urlGenerator->generateUrlData( $flow );
+				$workflowId = $event->getExtraParam( 'topic-workflow' );
+				if ( $postId && $workflowId && $title ) {
 					// Take user to the post if there is only one target post,
 					// otherwise, take user to the topic view
 					if ( $this->bundleData['raw-data-count'] <= 1 ) {
-						$target->setFragment( '#flow-post-' . $post->getAlphadecimal() );
+						$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
+					} else {
+						$anchor = $urlGenerator->workflowLink( $title, $workflowId );
 					}
 				}
 				break;
+
 			case 'flow-board':
 				if ( $title ) {
-					list( $target, $query ) = $urlGenerator->buildUrlData( $title );
+					$anchor = $urlGenerator->boardLink( $title );
 				}
 				break;
-			case 'flow-topic':
-				$topic = $event->getExtraParam( 'topic-workflow' );
 
-				list( $target, $query ) =
-					$urlGenerator->generateUrlData( $topic );
+			case 'flow-topic':
+				$workflowId = $event->getExtraParam( 'topic-workflow' );
+				if ( $title && $workflowId ) {
+					$anchor = $urlGenerator->workflowLink( $title, $workflowId );
+				}
 				break;
+
 			default:
 				return parent::getLinkParams( $event, $user, $destination );
 		}
 
-		return array( $target, $query );
+		if ( $anchor ) {
+			return array( $anchor->title, $anchor->query );
+		} else {
+			return array( null, array() );
+		}
 	}
 
 	/**

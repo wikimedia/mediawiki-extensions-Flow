@@ -4,6 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Model\UUID;
+use Flow\UrlGenerator;
 
 /**
  * @group Flow
@@ -109,9 +110,13 @@ class FormatterTest extends \MediaWikiTestCase {
 		$templating = $this->getMockBuilder( 'Flow\Templating' )
 			->disableOriginalConstructor()
 			->getMock();
-		$urlGenerator = $this->getMockBuilder( 'Flow\UrlGenerator' )
+		$workflowStorage = $this->getMockBuilder( 'Flow\Data\ObjectManager' )
 			->disableOriginalConstructor()
 			->getMock();
+		$occupier = $this->getMockBuilder( 'Flow\OccupationController' )
+			->disableOriginalConstructor()
+			->getMock();
+		$urlGenerator = new UrlGenerator( $workflowStorage, $occupier );
 		$templating->expects( $this->any() )
 			->method( 'getUrlGenerator' )
 			->will( $this->returnValue( $urlGenerator ) );

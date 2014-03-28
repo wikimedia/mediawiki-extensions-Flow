@@ -5,10 +5,12 @@ namespace Flow\Formatter;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
 use Flow\FlowActions;
+use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use ChangesList;
 use RecentChange;
+use ResultWrapper;
 
 class RecentChangesQuery extends AbstractQuery {
 
