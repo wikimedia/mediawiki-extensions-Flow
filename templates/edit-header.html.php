@@ -25,7 +25,10 @@ echo Html::openElement( 'div', array(
 ) );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
-	'action' => $this->generateUrl( $workflow, 'edit-header' ),
+	'action' => $this->urlGenerator->editHeaderLink(
+		$workflow->getArticleTitle(),
+		$workflow->getId()
+	)->getFullUrl(),
 	'class' => 'flow-header-form',
 ) );
 if ( $block->hasErrors() ) {

@@ -2,6 +2,7 @@
 
 namespace Flow\Formatter;
 
+use Flow\Anchor;
 use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\Exception\DataModelException;
@@ -125,7 +126,7 @@ class RevisionFormatter {
 	 * @param UUID $workflowId
 	 * @param UUID $revId
 	 * @param UUID|null $postId
-	 * @return array|false
+	 * @return Anchor[]|null
 	 */
 	public function buildActionLinks( Title $title, $action, UUID $workflowId, UUID $revId, UUID $postId = null ) {
 		$linkTypes = $this->permissions->getActions()->getValue( $action, 'links' );
@@ -137,14 +138,7 @@ class RevisionFormatter {
 		foreach ( $linkTypes as $type ) {
 			switch( $type ) {
 			case 'topic':
-				$links['topic'] = array(
-					$this->urlGenerator->buildUrl(
-						$title,
-						'view',
-						array( 'workflow' => $workflowId->getAlphadecimal() )
-					),
-					wfMessage( 'flow-link-topic' )
-				);
+				$links['topic'] = $this->urlGenerator->topicLink( $title, $workflowId );
 				break;
 
 			case 'post':
@@ -152,51 +146,23 @@ class RevisionFormatter {
 					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post link' );
 					break;
 				}
-				$links['post'] = array(
-					$this->urlGenerator->buildUrl(
-						$title,
-						'view',
-						array(
-							'workflow' => $workflowId->getAlphadecimal(),
-						)
-					) . '#post-' . $postId->getAlphadecimal(),
-					wfMessage( 'flow-link-post' )
-				);
+				$links['post'] = $this->urlGenerator->postLink( $title, $workflowId, $postId );
 				break;
 
 			case 'post-history':
-				$links['post-history'] = array(
-					$this->urlGenerator->buildUrl(
-						$title,
-						'history',
-						array(
-							'workflow' => $workflowId->getAlphadecimal(),
-							'topic_postId' => $postId->getAlphadecimal(),
-						)
-					),
-					wfMessage( 'hist' )
-				);
+				if ( !$postId ) {
+					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post-history link' );
+					break;
+				}
+				$links['post-history'] = $this->urlGenerator->postHistoryLink( $title, $workflowId, $postId );
 				break;
 
 			case 'topic-history':
-				$links['topic-history'] = array(
-					$this->urlGenerator->buildUrl(
-						$title,
-						'history',
-						array( 'workflow' => $workflowId->getAlphadecimal() )
-					),
-					wfMessage( 'hist' )
-				);
+				$links['topic-history'] = $this->urlGenerator->workflowHistoryLink( $title, $workflowId );
 				break;
 
 			case 'board-history':
-				$links['board-history'] = array(
-					$this->urlGenerator->buildUrl(
-						$title,
-						'history'
-					),
-					wfMessage( 'hist' )
-				);
+				$links['board-history'] = $this->urlGenerator->boardHistoryLink( $title );
 				break;
 
 			case 'diff-header':
@@ -204,17 +170,7 @@ class RevisionFormatter {
 					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render diff link' );
 					break;
 				}
-				$links['diff'] = array(
-					$this->urlGenerator->buildUrl(
-						$title,
-						'compare-header-revisions',
-						array(
-							'workflow' => $workflowId->getAlphadecimal(),
-							'header_newRevision' => $revId->getAlphadecimal(),
-						)
-					),
-					wfMessage( 'diff' )
-				);
+				$links['diff'] = $this->urlGenerator->diffHeaderLink( $title, $workflowId, $revId );
 				break;
 
 			case 'diff-post':
@@ -222,29 +178,11 @@ class RevisionFormatter {
 					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render diff link' );
 					break;
 				}
-				$links['diff'] = array(
-					$this->urlGenerator->buildUrl(
-						$title,
-						'compare-post-revisions',
-						array(
-							'workflow' => $workflowId->getAlphadecimal(),
-							'topic_newRevision' => $revId->getAlphadecimal(),
-						)
-					),
-					wfMessage( 'diff' )
-				);
+				$links['diff'] = $this->urlGenerator->diffPostLink( $title, $workflowId, $revId );
 				break;
 
 			case 'workflow':
-				/** @var Title $linkTitle */
-				list( $linkTitle, $query ) = $this->urlGenerator->buildUrlData(
-					$title,
-					'view'
-				);
-				$links['workflow'] = array(
-					$linkTitle->getFullUrl( $query ),
-					$linkTitle->getPrefixedText() // @todo this isn't wfMessage object
-				);
+				$links['workflow'] = $this->urlGenerator->workflowLink( $title );
 				break;
 
 			default:
@@ -252,6 +190,7 @@ class RevisionFormatter {
 				break;
 			}
 		}
+
 
 		return $links;
 	}
@@ -335,19 +274,17 @@ class RevisionFormatter {
 			return Message::rawParam( htmlspecialchars( $content ) );
 
 		case 'workflow-url':
-			return $this->templating->getUrlGenerator()->generateUrl( $workflowId );
+			return $this->urlGenerator
+				->workflowLink( null, $workflowId )
+				->getFullUrl();
 
 		case 'post-url':
 			if ( !$revision instanceof PostRevision ) {
 				throw new FlowException( 'Expected PostRevision but received' . get_class( $revision ) );
 			}
-			return $this->templating->getUrlGenerator()
-				->generateUrl(
-					$workflowId,
-					'view',
-					array(),
-					'flow-post-' . $revision->getPostId()->getAlphadecimal()
-				);
+			return $this->urlGenerator
+				->postLink( null, $workflowId, $revision->getPostId() )
+				->getFullUrl();
 
 		case 'moderated-reason':
 			// don-t parse wikitext in the moderation reason

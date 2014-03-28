@@ -28,8 +28,8 @@ echo Html::openElement( 'div', array(
 ) );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
-	// root post shares its uuid with the workflow
-	'action' => $this->generateUrl( $topicTitle->getPostId(), 'edit-title' ),
+	// $topicTitle->getPostId() is the same as the workflow id
+	'action' => $this->urlGenerator->editTitleLink( null, $topicTitle->getPostId() )->getFullUrl(),
 ) );
 if ( $block->hasErrors() ) {
 	echo '<ul>';
