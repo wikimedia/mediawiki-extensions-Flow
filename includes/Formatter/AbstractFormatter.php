@@ -2,6 +2,7 @@
 
 namespace Flow\Formatter;
 
+use Flow\Anchor;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Html;
@@ -59,11 +60,11 @@ abstract class AbstractFormatter {
 		$formattedTime = $data['dateFormats'][$key];
 
 		if ( isset( $data['links']['topic'] ) ) {
-			$formattedTime = $this->apiLinkToAnchor( $data['links']['topic'], $formattedTime );
+			$formattedTime = $this->anchorToHtml( $data['links']['topic'], $formattedTime );
 			// dont re-use link in $linksContent
 			unset( $data['links']['topic'] );
 		} elseif ( $data['links'] ) {
-			$formattedTime = $this->apiLinkToAnchor( end( $data['links'] ), $formattedTime );
+			$formattedTime = $this->anchorToHtml( end( $data['links'] ), $formattedTime );
 		}
 
 		$class = array( 'mw-changeslist-date' );
@@ -83,7 +84,7 @@ abstract class AbstractFormatter {
 	 * @param string[] $request List of link names to be allowed in result output
 	 * @return string Html valid for user output
 	 */
-	protected function formatLinksAsPipeList( array $links, IContextSource $ctx, array $request = null ) {
+	protected function formatAnchorsAsPipeList( array $links, IContextSource $ctx, array $request = null ) {
 		if ( $request === null ) {
 			$request = array_keys( $links );
 		} elseif ( !$request ) {
@@ -96,7 +97,7 @@ abstract class AbstractFormatter {
 		foreach ( $links as $key => $link ) {
 			if ( isset( $have[$key] ) ) {
 				if ( is_array( $link ) ) {
-					$formatted[] = $this->apiLinkToAnchor( $link );
+					$formatted[] = $this->anchorToHtml( $link );
 				} elseif( $link instanceof Message ) {
 					$formatted[] = $link->escaped();
 				} else {
@@ -145,7 +146,7 @@ abstract class AbstractFormatter {
 			$links[] = $ctx->msg( 'hist' );
 		}
 
-		return $this->formatLinksAsPipeList( $links, $ctx );
+		return $this->formatAnchorsAsPipeList( $links, $ctx );
 	}
 
 	/**
@@ -171,8 +172,12 @@ abstract class AbstractFormatter {
 
 		$params = array();
 		foreach ( $source as $param ) {
-			// source from properties attribute
-			$params[] = $data['properties'][$param];
+			if ( isset( $data['properties'][$param] ) ) {
+				$params[] = $data['properties'][$param];
+			} else {
+				wfDebugLog( 'Flow', __METHOD__ . ": Missing expected parameter $param for change type $changeType" );
+				$params[] = '';
+			}
 		}
 
 		return '<span class="plainlinks">' . $ctx->msg( $msg, $params )->parse() . '</span>';
@@ -186,15 +191,14 @@ abstract class AbstractFormatter {
 	 * @param string|null $content Optional link content
 	 * @return string Html valid for user output
 	 */
-	protected function apiLinkToAnchor( array $link, $content = null ) {
+	protected function anchorToHtml( Anchor $anchor, $content = null ) {
 		/** @var Message $msg */
-		list( $href, $msg ) = $link;
-		$text = $msg->text();
+		$text = $anchor->message->text();
 
 		return Html::element(
 			'a',
 			array(
-				'href' => $href,
+				'href' => $anchor->getFullUrl(),
 				'title' => $text,
 			),
 			$content === null ? $text : $content
