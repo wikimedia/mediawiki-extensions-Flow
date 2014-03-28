@@ -53,7 +53,8 @@ class CheckUser extends AbstractFormatter {
 
 		$title = Title::makeTitle( $row->cuc_namespace, $row->cuc_title );
 		$links = $this->serializer->buildActionLinks( $title, $action, $workflow, $revision, $post );
-		if ( $links === null ) {
+
+		if ( count( $links ) === 0 ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': No links were generated for revision ' . $revision->getAlphadecimal() );
 			return null;
 		}
@@ -62,7 +63,7 @@ class CheckUser extends AbstractFormatter {
 		foreach ( $links as $key => $link ) {
 			$result[$key] = $ctx->msg( 'parentheses' )
 				// @todo these text strings are using $wgLang instead of $ctx->getLanguage()
-				->rawParams( $this->apiLinkToAnchor( $link ) );
+				->rawParams( $this->anchorToHtml( $link ) );
 		}
 		$result['title'] = '. . ' . Linker::link( $title );
 
