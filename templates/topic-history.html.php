@@ -1,7 +1,7 @@
 <?php
 
 $pageTitle = $topic->getArticleTitle();
-$pageLink = $this->urlGenerator->buildUrl( $pageTitle, 'view' );
+$pageLink = $this->urlGenerator->boardLink( $pageTitle )->getFullUrl();
 $pageTitle = $pageTitle->getText();
 
 $title = $this->getContent( $root, 'wikitext' );
