@@ -2,6 +2,7 @@
 
 namespace Flow\Formatter;
 
+use Flow\Anchor;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Html;
@@ -43,47 +44,56 @@ abstract class AbstractFormatter {
 	}
 
 	/**
-	 * @see RevisionFormatter::buildActionLinks
-	 * @see RevisionFormatter::getDateFormats
-	 *
-	 * @param array &$data Uses reference to unset used links from $data['links']
-	 *  Expects an array with keys 'dateFormats' and 'links'. The former should
-	 *  be an array having the key $key being tossed in here; the latter an array
-	 *  of links in the [href, msg] format.
-	 * @param string $key Date format to use - any of the keys in the array
-	 *  returned by RevisionFormatter::getDateFormats
-	 * @return string HTML
-	 */
+     * @see RevisionFormatter::buildActionLinks
+     * @see RevisionFormatter::getDateFormats
+     *
+     * @param array &$data Uses reference to unset used links from $data['links']
+     *  Expects an array with keys 'dateFormats' 'isModerated' and 'links'. The
+	 *  former should be an array having the key $key being tossed in here; the
+	 *  latter an array of Anchor objects. The central is a boolean.
+     * @param string $key Date format to use - any of the keys in the array
+     *  returned by RevisionFormatter::getDateFormats
+     * @return string HTML
+     */
 	protected function formatTimestamp( array &$data, $key = 'timeAndDate' ) {
 		// Format timestamp: add link
-		$formattedTime = $data['dateFormats'][$key];
-
-		if ( isset( $data['links']['topic'] ) ) {
-			$formattedTime = $this->apiLinkToAnchor( $data['links']['topic'], $formattedTime );
-			// dont re-use link in $linksContent
-			unset( $data['links']['topic'] );
-		} elseif ( $data['links'] ) {
-			$formattedTime = $this->apiLinkToAnchor( end( $data['links'] ), $formattedTime );
-		}
 
 		$class = array( 'mw-changeslist-date' );
 		if ( $data['isModerated'] ) {
 			$class[] = 'history-deleted';
 		}
 
-		return Html::rawElement( 'span', array( 'class' => $class ), $formattedTime );
+		$anchor = null;
+		$formattedTime = $data['dateFormats'][$key];
+		if ( isset( $data['links']['topic'] ) ) {
+			$anchor = $data['links']['topic'];
+			// dont re-use link in $linksContent
+			unset( $data['links']['topic'] );
+		} elseif ( $data['links'] ) {
+			$anchor = end( $data['links'] );
+		}
+
+		if ( $anchor instanceof Anchor ) {
+			return Html::rawElement(
+				'span',
+				array( 'class' => $class ),
+				$anchor->toHtml( $formattedTime )
+			);
+		} else {
+			return Html::element( 'span', array( 'class' => $class ), $formattedTime );
+		}
 	}
 
 	/**
 	 * Generate HTML for "(foo | bar | baz)"  based on the links provided by
 	 * RevisionFormatter.
 	 *
-	 * @param array[] $links
+	 * @param array $links Contains any combination of Anchor|Message|string
 	 * @param IContextSource $ctx
 	 * @param string[] $request List of link names to be allowed in result output
 	 * @return string Html valid for user output
 	 */
-	protected function formatLinksAsPipeList( array $links, IContextSource $ctx, array $request = null ) {
+	protected function formatAnchorsAsPipeList( array $links, IContextSource $ctx, array $request = null ) {
 		if ( $request === null ) {
 			$request = array_keys( $links );
 		} elseif ( !$request ) {
@@ -95,13 +105,13 @@ abstract class AbstractFormatter {
 		$formatted = array();
 		foreach ( $links as $key => $link ) {
 			if ( isset( $have[$key] ) ) {
-				if ( is_array( $link ) ) {
-					$formatted[] = $this->apiLinkToAnchor( $link );
+				if ( $link instanceof Anchor ) {
+					$formatted[] = $this->anchorToHtml( $link );
 				} elseif( $link instanceof Message ) {
 					$formatted[] = $link->escaped();
 				} else {
 					// plain text
-					$formatted[] = htmlspecialchars( $have[$key] );
+					$formatted[] = htmlspecialchars( $key );
 				}
 			}
 		}
@@ -145,7 +155,7 @@ abstract class AbstractFormatter {
 			$links[] = $ctx->msg( 'hist' );
 		}
 
-		return $this->formatLinksAsPipeList( $links, $ctx );
+		return $this->formatAnchorsAsPipeList( $links, $ctx );
 	}
 
 	/**
@@ -171,8 +181,12 @@ abstract class AbstractFormatter {
 
 		$params = array();
 		foreach ( $source as $param ) {
-			// source from properties attribute
-			$params[] = $data['properties'][$param];
+			if ( isset( $data['properties'][$param] ) ) {
+				$params[] = $data['properties'][$param];
+			} else {
+				wfDebugLog( 'Flow', __METHOD__ . ": Missing expected parameter $param for change type $changeType" );
+				$params[] = '';
+			}
 		}
 
 		return '<span class="plainlinks">' . $ctx->msg( $msg, $params )->parse() . '</span>';
@@ -182,19 +196,18 @@ abstract class AbstractFormatter {
 	 * Convert a (url,message) tuple from RevisionFormatter into an
 	 * html anchor element.
 	 *
-	 * @param array $link
-	 * @param string|null $content Optional link content
+	 * @param Anchor $anchor
+	 * @param string|null $content Optional link text content
 	 * @return string Html valid for user output
 	 */
-	protected function apiLinkToAnchor( array $link, $content = null ) {
+	protected function anchorToHtml( Anchor $anchor, $content = null ) {
 		/** @var Message $msg */
-		list( $href, $msg ) = $link;
-		$text = $msg->text();
+		$text = $anchor->message->text();
 
 		return Html::element(
 			'a',
 			array(
-				'href' => $href,
+				'href' => $anchor->getFullUrl(),
 				'title' => $text,
 			),
 			$content === null ? $text : $content

@@ -13,6 +13,7 @@ $this->registerParsoidLinks( $root );
 // topic reply box.
 $topicReplyBox = '';
 if ( $postActionMenu->isAllowed( 'reply' ) ) {
+	$workflow = $block->getWorkflow();
 	// Topic reply box
 	$topicReplyBox = Html::openElement( 'div', array(
 			'class' => 'flow-topic-reply-container flow-post-container flow-element-container',
@@ -24,14 +25,13 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 		'</span>' .
 		Html::openElement( 'form', array(
 			'method' => 'POST',
-			'action' => $this->generateUrl( $block->getWorkflow(), 'reply' ),
+			'action' => $this->urlGenerator->replyPostLink(
+				$workflow->getArticleTitle(),
+				$workflow->getId(),
+				$root->getPostId()
+			)->getFullUrl(),
 			'class' => 'flow-topic-reply-form',
 		) ) .
-			Html::element( 'input', array(
-				'type' => 'hidden',
-				'name' => $block->getName() . '_replyTo',
-				'value' => $root->getPostId()->getAlphadecimal(),
-			) ) .
 			Html::element( 'input', array(
 				'type' => 'hidden',
 				'name' => 'wpEditToken',
