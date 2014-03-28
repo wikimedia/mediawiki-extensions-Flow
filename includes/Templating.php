@@ -5,6 +5,7 @@ namespace Flow;
 use Flow\Block\Block;
 use Flow\Block\TopicBlock;
 use Flow\Block\HeaderBlock;
+use Flow\Data\PagerPage;
 use Flow\Data\UserNameBatch;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
@@ -142,10 +143,6 @@ class Templating {
 		return $this->urlGenerator;
 	}
 
-	public function generateUrl( $workflow, $action = 'view', array $query = array() ) {
-		return $this->getUrlGenerator()->generateUrl( $workflow, $action, $query );
-	}
-
 	public function renderPost( PostRevision $post, TopicBlock $block, $return = true ) {
 		if ( $post->isTopicTitle() ) {
 			throw new InvalidDataException( 'Cannot render topic with ' . __METHOD__, 'fail-load-data' );
@@ -252,35 +249,33 @@ class Templating {
 	 * @param integer $limit
 	 * @return string Html
 	 */
-	public function getPagingLink( Block $block, $direction, $offset, $limit ) {
-		$output = '';
+	public function buildPagingLinkHtml( Block $block, PagerPage $page, $direction ) {
+		$workflow = $block->getWorkflow();
+		$link = $this->urlGenerator->paginateTopicsLink(
+			$workflow->getArticleTitle(),
+			$workflow->getId(),
+			$page,
+			$direction
+		);
+		if ( !$link ) {
+			return '';
+		}
 
+		$linkData = $page->getPagingLink( $direction );
 		// Use the message/class flow-paging-fwd or flow-paging-rev
 		//  depending on direction
-		$output .= \Html::element(
-			'a',
-			array(
-				'href' => $this->generateUrl(
-					$block->getWorkflowId(),
-					'view',
-					array(
-						$block->getName().'_offset-id' => $offset,
-						$block->getName().'_offset-dir' => $direction,
-						$block->getName().'_limit' => $limit,
-					)
-				),
-			),
-			wfMessage( 'flow-paging-'.$direction )->text()
-		);
-
 		$output = \Html::rawElement(
 			'div',
 			array(
 				'class' => 'flow-paging flow-paging-'.$direction,
-				'data-offset' => $offset,
+				'data-offset' => $linkData['offset'],
 				'data-direction' => $direction,
 			),
-			$output
+			\Html::element(
+				'a',
+				array( 'href' => $link->getFullURL() ),
+				wfMessage( 'flow-paging-'.$direction )->text()
+			)
 		);
 
 		return $output;

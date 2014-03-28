@@ -666,7 +666,6 @@ $c['formatter.revision'] = $c->share( function( $c ) {
 $c['logger'] = $c->share( function( $c ) {
 	return new Flow\Log\Logger(
 		$c['flow_actions'],
-		$c['url_generator'],
 		$c['user']
 	);
 } );

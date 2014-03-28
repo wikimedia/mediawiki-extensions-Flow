@@ -30,7 +30,7 @@ class CheckUser extends AbstractFormatter {
 		}
 
 		return array(
-			'links' => $this->formatLinksAsPipeList( $links, $ctx ),
+			'links' => $this->formatAnchorsAsPipeList( $links, $ctx ),
 			'title' => '. . ' . Linker::link( $title ),
 		);
 	}

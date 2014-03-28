@@ -11,6 +11,7 @@ use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
+use ResultWrapper;
 
 /**
  * Base class that collects the data necessary to utilize AbstractFormatter
