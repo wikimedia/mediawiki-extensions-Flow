@@ -64,9 +64,9 @@ class PostActionMenu {
 			$data = array( $this->block->getName() . '_postId' => $this->post->getPostId()->getAlphadecimal() );
 		}
 		if ( $this->getMethod( $action ) === 'POST' ) {
-			return $this->postAction( $action, $data, $content, $class );
+			return $this->buildPostActionHtml( $action, $data, $content, $class );
 		} else {
-			return $this->getAction( $action, $data, $content, $class, $fragment );
+			return $this->buildGetActionHtml( $action, $data, $content, $class, $fragment );
 		}
 	}
 
@@ -121,11 +121,11 @@ class PostActionMenu {
 	 * @param string $class
 	 * @return string
 	 */
-	protected function postAction( $action, array $data, $content, $class ) {
+	protected function buildPostActionHtml( $action, array $data, $content, $class ) {
 		$output = array(
 			Html::openElement( 'form', array(
 				'method' => 'POST',
-				'action' => $this->actionUrl(  $action )
+				'action' => $this->actionUrl( $action )
 			) ),
 			Html::element( 'input', array( 'type' => 'hidden', 'name' => 'wpEditToken', 'value' => $this->editToken ) )
 		);
@@ -159,7 +159,7 @@ class PostActionMenu {
 	 * @param string $fragment
 	 * @return string
 	 */
-	protected function getAction( $action, array $data, $content, $class, $fragment = '' ) {
+	protected function buildGetActionHtml( $action, array $data, $content, $class, $fragment = '' ) {
 		$url = $this->actionUrl( $action, $data, $fragment );
 
 		return Html::rawElement(

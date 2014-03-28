@@ -13,10 +13,30 @@ use Message;
 use User;
 
 class Post {
+
+	/**
+	 * @var User
+	 */
 	protected $user;
+
+	/**
+	 * @var PostRevision
+	 */
 	protected $post;
+
+	/**
+	 * @var PostActionMenu
+	 */
 	protected $actions;
+
+	/**
+	 * @var string
+	 */
 	protected $creatorUserText;
+
+	/**
+	 * @var UrlGenerator
+	 */
 	protected $urlGenerator;
 
 	/**
@@ -117,13 +137,6 @@ class Post {
 		);
 	}
 
-	public function postHistoryLink( $blockName ) {
-		return $this->actions->actionUrl(
-			'history',
-			array( $blockName . '_postId' => $this->post->getPostId()->getAlphadecimal() )
-		);
-	}
-
 	public function hidePostButton( $buttonClass ) {
 		if ( !$this->actions->isAllowed( 'hide-post' ) ) {
 			return '';
@@ -210,15 +223,13 @@ class Post {
 	}
 
 	protected function getLatestDiffLink( AbstractBlock $block ) {
-		$compareLink = $this->urlGenerator->generateUrl(
-			$block->getWorkflow(),
-			'compare-post-revisions',
-			array(
-				$block->getName().'_newRevision' => $this->post->getRevisionId()->getAlphadecimal(),
-				$block->getName().'_oldRevision' => $this->post->getPrevRevisionId()->getAlphadecimal()
-			)
-		);
-		return $compareLink;
+		$workflow = $block->getWorkflow();
+
+		return $this->urlGenerator->diffPostLink(
+			$workflow->getArticleTitle(),
+			$workflow->getId(),
+			$this->post->getRevisionId()
+		)->getFullUrl();
 	}
 
 	public function createModifiedTipsyLink( AbstractBlock $block ) {
