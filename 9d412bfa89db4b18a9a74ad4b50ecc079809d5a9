@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_8642dd11",
+        "filename": "includes/Data/BasicDbStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "prefer a space between the description and the annotations, it makes it easier to scan.  I don\u0027t know that its required anywhere, but the examples in the coding conventions also do it that way:\n\n    https://www.mediawiki.org/wiki/Manual:Coding_conventions/PHP#Comments_and_documentation",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_86109d05",
+        "filename": "includes/Data/BasicDbStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "array|false, although tbh i dont like that much.  Someday should consider changing these to Status objects, or exceptions, or something.",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_a654c1ca",
+        "filename": "includes/Data/BasicDbStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "idem spacing",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_c60695d1",
+        "filename": "includes/Data/BasicDbStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "This looks to return a boolean? Also needs @throws DataPersistenceException",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_261671f7",
+        "filename": "includes/Data/DbStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "i was thinking about this, and it worries me a little bit that this function now works recursively.  For processing an array of rows could we just foreach?\n\n   protected function preprocessNestedSqlArray( array $outer ) {\n        foreach ( $outer as $i \u003d\u003e $data ) {\n            $outer[$i] \u003d $this-\u003epreprocessSqlArray( $data );\n        }\n        return $outer;\n    }",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_26f551b6",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "count is superfluous, and still results in type coersion",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_06f24dcd",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "idem superfluous",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_46cf2583",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "prefer to count outside the loop, even though its O(1).  alternatively foreach might be more idiomatic",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_66990980",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "prefer to leave the comment about what this does, it felt non-obvious that this was going to change $object rather than return something like in other use cases. We don\u0027t use auto-ids, the main thing updated is the external store url for revisions.",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_c691f553",
+        "filename": "includes/Data/ObjectManager.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "probably don\u0027t need profile here and in the calling method.  Not sure which one we should keep, the outer one probably but there could be use in always timing a single update.",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_868bfd1f",
+        "filename": "includes/Data/ObjectStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "document as multi-dimensional now",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_06bdadad",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "document as BC or that it accepts both ways in the interface.",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_c6de9514",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T23:00:46Z",
+      "side": 1,
+      "message": "the insertRelated method should just take $rows so it can also batch together the inserts.",
+      "revId": "9d412bfa89db4b18a9a74ad4b50ecc079809d5a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
