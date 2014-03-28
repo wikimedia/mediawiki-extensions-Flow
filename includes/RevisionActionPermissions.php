@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Collection\CollectionCache;
 use Flow\Exception\InvalidDataException;
+use Flow\Exception\InvalidInputException;
 use Flow\Model\AbstractRevision;
 use Closure;
 use User;
@@ -133,6 +134,28 @@ class RevisionActionPermissions {
 			array( $this->user, 'isAllowedAny' ),
 			(array) $permission
 		);
+	}
+
+	/**
+	 * Get all the allowed actions of a revision for user
+	 * @param AbstractRevision|null $revision
+	 * @param array $actions
+	 * @return array
+	 */
+	public function getRevisionAllowedActions( AbstractRevision $revision = null, array $actions ) {
+		$allowedActions = array();
+
+		foreach ( $actions as $action ) {
+			if ( $this->actions->getValue( $action ) ) {
+				$permission = $this->getPermission( $revision, $action );
+				$allowedActions[$action] = call_user_func_array(
+					array( $this->user, 'isAllowedAny' ),
+					(array) $permission );
+			} else {
+				throw new InvalidInputException( 'Invalid action: ' . $action, 'invalid-input' );
+			}
+		}
+		return $allowedActions;
 	}
 
 	/**
