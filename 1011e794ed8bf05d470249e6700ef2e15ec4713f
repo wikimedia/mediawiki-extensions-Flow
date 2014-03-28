@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_9d96b1f2",
+        "filename": "db_patches/patch-rev_type_id.sql",
+        "patchSetId": 15
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-28T11:16:24Z",
+      "side": 1,
+      "message": "Is there a particular reason for this index being on rev_type_id first, rev_type second?\n\nI would assume we will never query for rev_type_id without querying for rev_type too, but it could be imaginable for us to only query for rev_type. In that case, it\u0027d probably be better to have rev_type first.",
+      "revId": "1011e794ed8bf05d470249e6700ef2e15ec4713f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
