@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ae0e4726_cb00de06",
+        "filename": "Hooks.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T21:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce09bb20_1bff5f64",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce09bb20_1eb18ddc",
         "filename": "includes/Formatter/AbstractFormatter.php",
         "patchSetId": 19
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "ae0e4726_aba92ade",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T21:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae0e4726_57912c51",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce09bb20_1e274d61",
         "filename": "includes/Formatter/AbstractFormatter.php",
         "patchSetId": 19
@@ -65,6 +101,24 @@
       "writtenOn": "2014-03-25T23:23:38Z",
       "side": 1,
       "message": "Use \u0027history\u0027 as the key for all types in buildActionLinks()?",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_eb7042a5",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T21:57:23Z",
+      "side": 1,
+      "message": "i suppose my concern here is outputing something that might have post-history and topic-history set, or topic-history and board-history.  I\u0027m not sure if thats a legitimate concern though.",
+      "parentUuid": "ce09bb20_1e274d61",
       "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -88,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "ae0e4726_cbf7d555",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T21:57:23Z",
+      "side": 1,
+      "message": "this should be removed, the original idea was that since we are already generating urls in the $data[\u0027links\u0027] we shouldn\u0027t also have urls in $data[\u0027properties\u0027], but it gets messy so for this first implementation only using the properties key",
+      "parentUuid": "ae0e4726_b779a82c",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce09bb20_de6af57d",
         "filename": "includes/Formatter/RecentChangesQuery.php",
         "patchSetId": 19
@@ -99,6 +171,24 @@
       "writtenOn": "2014-03-25T23:23:38Z",
       "side": 1,
       "message": "Argument type mismatch, the core patch is passing a resultWrapper to the hook",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_ab536a19",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T21:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce09bb20_de6af57d",
       "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -134,6 +224,24 @@
       "side": 1,
       "message": "Also, phpDoc says array|false; this could return null",
       "parentUuid": "ce09bb20_41f728f3",
+      "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_4b0cce3d",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 19
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-03-28T21:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae0e4726_d7ce5c86",
       "revId": "201083ac2e9cbb3e255a17bc6c8276cbf1d90127",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
