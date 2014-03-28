@@ -491,7 +491,7 @@ class Templating {
 
 	public function getModeratedContent( AbstractRevision $revision ) {
 		$state = $revision->getModerationState();
-		if ( $state === $revision::MODERATED_NONE ) {
+		if ( !$revision->isModerated() ) {
 			return '';
 		}
 		$revision = $this->getModeratedRevision( $revision );
