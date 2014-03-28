@@ -11,9 +11,7 @@
     "flow-moderation-confirmation-suppress-post": "আপনার পোস্টটি সফলভাবে গোপন করা হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
     "flow-moderation-confirmation-delete-post": "আপনার পোস্টটি সফলভাবে মুছে ফেলা হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
     "flow-moderation-confirmation-hide-post": "আপনার পোস্টটি সফলভাবে লুকানো হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
-    "flow-moderation-confirmation-restore-post": "আপনি সফলভাবে উপরের পোস্টটি পুনরুদ্ধার করেছেন।",
     "flow-moderation-confirmation-suppress-topic": "আপনার পোস্টটি সফলভাবে গোপন করা হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
     "flow-moderation-confirmation-delete-topic": "আপনার পোস্টটি সফলভাবে মুছে ফেলা হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
-    "flow-moderation-confirmation-hide-topic": "আপনার পোস্টটি সফলভাবে লুকানো হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।",
-    "flow-moderation-confirmation-restore-topic": "আপনি সফলভাবে এই বিষয়টি পুনরুদ্ধার করছেন।"
+    "flow-moderation-confirmation-hide-topic": "আপনার পোস্টটি সফলভাবে লুকানো হয়েছে। \nপোস্টটির উপর প্রতিক্রিয়া {{GENDER:$1|প্রকাশের}} $1 মাধ্যমে বিবেচনা করুন।"
 }

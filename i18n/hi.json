@@ -4,6 +4,6 @@
             "Vivek Rai"
         ]
     },
-    "flow-rev-message-deleted-post": "$1 {{GENDER:$2|हटाया हुआ}} एक [ $4  टिप्पणी] पर  $6  (<em> $5 </em>)।",
-    "flow-rev-message-deleted-topic": "$1 {{GENDER:$2|हटाया हुआ}} [ $4  विषय]  $6  (<em> $5 </em>)।"
+    "flow-rev-message-deleted-post": "$1 {{GENDER:$2|हटाया हुआ}} एक [ $4  टिप्पणी] पर  $6  (\u003Cem\u003E $5 \u003C/em\u003E)।",
+    "flow-rev-message-deleted-topic": "$1 {{GENDER:$2|हटाया हुआ}} [ $4  विषय]  $6  (\u003Cem\u003E $5 \u003C/em\u003E)।"
 }

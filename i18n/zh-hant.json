@@ -30,12 +30,10 @@
     "flow-moderation-confirmation-suppress-post": "該職位被成功地解除。\n考慮 {{GENDER:$1| 給}} $1 對這篇文章的回饋意見。",
     "flow-moderation-confirmation-delete-post": "主題已成功刪除。\n考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。",
     "flow-moderation-confirmation-hide-post": "主題已成功刪除。\n考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。",
-    "flow-moderation-confirmation-restore-post": "您已成功還原上方的帖子。",
-    "flow-moderation-intro-delete-topic": "請{{GENDER:$3|說明}}為何您要刪除此主題。",
     "flow-moderation-confirmation-suppress-topic": "主題已成功刪除。\n考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。",
     "flow-moderation-confirmation-delete-topic": "主題已成功刪除。\n考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。",
     "flow-moderation-confirmation-hide-topic": "主題已成功刪除。\n考慮 {{GENDER:$1| 給}} $1 對此主題的回饋意見。",
-    "flow-moderation-confirmation-restore-topic": "您已成功還原本主題。",
+    "flow-moderation-intro-delete-topic": "請{{GENDER:$3|說明}}為何您要刪除此主題。",
     "flow-terms-of-use-new-topic": "通過點擊「{{int:flow-newtopic-save}}」，您同意此wiki之使用條款。",
     "flow-terms-of-use-reply": "通過點擊「{{int:flow-reply-submit}}」，您同意此wiki之使用條款。",
     "flow-terms-of-use-edit": "通過保存您的更改，您同意此wiki之使用條款。"

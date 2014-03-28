@@ -10,11 +10,11 @@
     "flow-error-invalid-replyto": "Parameter »odgovori« je bil neveljaven. Navedene objave ni bilo mogoče najti.",
     "flow-error-missing-postId": "Podan ni bil noben parameter »postId«. Ta parameter je za upravljanje z objavo obvezen.",
     "flow-error-invalid-postId": "Parameter »postId« ni veljaven. Navedene objave ($1) ni bilo mogoče najti.",
-    "flow-notification-reply": "$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo <span class=\"plainlinks\">[$5 objavo]</span> v razdelku »$2« na strani »$4«.",
-    "flow-notification-reply-bundle": "$1 in $5 {{PLURAL:$6|drug|druga|drugi|drugih}} {{GENDER:$1|je odgovoril|je odgovorila|so odgovorili}} na vašo <span class=\"plainlinks\">[$4 objavo]</span> v razdelku »$2« na strani »$3«.",
-    "flow-notification-edit": "$1 {{GENDER:$1|je urejal|je urejala}} <span class=\"plainlinks\">[$5 objavo]</span> v razdelku »$2« na [[$3|$4]].",
-    "flow-notification-newtopic": "$1 {{GENDER:$1|je ustvaril|je ustvarila}} <span class=\"plainlinks\">[$5 novo temo]</span> na [[$2|$3]]: $4.",
-    "flow-notification-rename": "$1 {{GENDER:$1|je spremenil|je spremenila}} naslov <span class=\"plainlinks\">[$2 $3]</span> v »$4« na [[$5|$6]].",
+    "flow-notification-reply": "$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo \u003Cspan class=\"plainlinks\"\u003E[$5 objavo]\u003C/span\u003E v razdelku »$2« na strani »$4«.",
+    "flow-notification-reply-bundle": "$1 in $5 {{PLURAL:$6|drug|druga|drugi|drugih}} {{GENDER:$1|je odgovoril|je odgovorila|so odgovorili}} na vašo \u003Cspan class=\"plainlinks\"\u003E[$4 objavo]\u003C/span\u003E v razdelku »$2« na strani »$3«.",
+    "flow-notification-edit": "$1 {{GENDER:$1|je urejal|je urejala}} \u003Cspan class=\"plainlinks\"\u003E[$5 objavo]\u003C/span\u003E v razdelku »$2« na [[$3|$4]].",
+    "flow-notification-newtopic": "$1 {{GENDER:$1|je ustvaril|je ustvarila}} \u003Cspan class=\"plainlinks\"\u003E[$5 novo temo]\u003C/span\u003E na [[$2|$3]]: $4.",
+    "flow-notification-rename": "$1 {{GENDER:$1|je spremenil|je spremenila}} naslov \u003Cspan class=\"plainlinks\"\u003E[$2 $3]\u003C/span\u003E v »$4« na [[$5|$6]].",
     "flow-notification-link-text-view-post": "Ogled objave",
     "flow-notification-link-text-view-board": "Ogled deske",
     "flow-notification-reply-email-subject": "$1 {{GENDER:$1|je odgovoril|je odgovorila}} na vašo objavo",
@@ -28,6 +28,5 @@
     "flow-moderation-reason-placeholder": "Tukaj vnesite svoj razlog",
     "flow-moderation-title-suppress-post": "Cenzoriraj objavo",
     "flow-moderation-title-delete-post": "Izbriši objavo",
-    "flow-moderation-title-hide-post": "Skrij objavo",
-    "flow-moderation-title-restore-post": "Obnovi objavo"
+    "flow-moderation-title-hide-post": "Skrij objavo"
 }
