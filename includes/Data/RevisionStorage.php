@@ -141,7 +141,7 @@ abstract class RevisionStorage extends DbStorage {
 			return $this->fallbackFindMulti( $queries, $options );
 		// unoptimizable query
 		} else {
-			wfDebugLog( __CLASS__, __FUNCTION__
+			wfDebugLog( 'Flow', __METHOD__
 				. ': Unoptimizable query for keys: '
 				. implode( ',', array_keys( $queriedKeys ) )
 				. ' with options '

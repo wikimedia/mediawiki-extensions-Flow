@@ -60,7 +60,7 @@ class BadImageRemover implements ContentFixer {
 		if ( $body ) {
 			$res = self::getInnerHtml( $body );
 		} else {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
+			wfDebugLog( 'Flow', __METHOD__ . ' : Source content ' . md5( $content ) . ' resulted in no body' );
 			$res = '';
 		}
 		return $res;
