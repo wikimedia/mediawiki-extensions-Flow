@@ -1,6 +1,8 @@
 <?php
 
 $replyForm = '';
+
+$postActionMenu->batchLoadAllowedActions( array( 'history', 'hide-post', 'delete-post', 'suppress-post', 'restore-post', 'view', 'reply' ) );
 /*
  * Only display reply form if:
  * * new reply depth will be no more than maxThreadingDepth

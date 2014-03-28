@@ -17,6 +17,7 @@ class PostActionMenu {
 	protected $block;
 	protected $editToken;
 	protected $post;
+	protected $allowedActions;
 
 	/**
 	 * @param UrlGenerator $urlGenerator
@@ -33,6 +34,7 @@ class PostActionMenu {
 		$this->block = $block;
 		$this->post = $post;
 		$this->editToken = $editToken;
+		$this->allowedActions = array();
 	}
 
 	/**
@@ -75,7 +77,11 @@ class PostActionMenu {
 	 * @return bool
 	 */
 	public function isAllowed( $action ) {
-		return $this->permissions->isAllowed( $this->post, $action );
+		if ( isset( $this->allowedActions[$action] ) ) {
+			return $this->allowedActions[$action];
+		} else {
+			return $this->allowedActions[$action] = $this->permissions->isAllowed( $this->post, $action );
+		}
 	}
 
 	/**
@@ -86,9 +92,27 @@ class PostActionMenu {
 	 */
 	public function isAllowedAny( $action /* [, $action2 [, ... ]] */ ) {
 		$arguments = func_get_args();
-		array_unshift( $arguments, $this->post );
 
-		return call_user_func_array( array( $this->permissions, 'isAllowedAny' ), $arguments );
+		foreach ( $arguments as $key => $action ) {
+			if ( isset( $this->allowedActions[$action] ) ) {
+				if ( $this->allowedActions[$action] ) {
+					return true;
+				} else {
+					unset( $arguments[$key] );	
+				}
+			}
+		}
+		if ( $arguments ) {
+			array_unshift( $arguments, $this->post );
+			return call_user_func_array( array( $this->permissions, 'isAllowedAny' ), $arguments );
+		} else {
+			return false;	
+		}
+		
+	}
+
+	public function batchLoadAllowedActions( array $actions ) {
+		$this->allowedActions = $this->permissions->getRevisionAllowedActions( $this->post, $actions );
 	}
 
 	/**
