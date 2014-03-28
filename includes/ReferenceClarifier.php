@@ -47,12 +47,15 @@ class ReferenceClarifier {
 
 	protected function getObjectLink( UUID $workflow, $objectType, UUID $objectId ) {
 		if ( $objectType === 'post' ) {
-			$fragment = 'flow-post-' . $objectId->getAlphadecimal();
+			$anchor = $this->urlGenerator->postLink( null, $workflow, $objectId );
 		} elseif ( $objectType === 'header' ) {
-			$fragment = 'flow-header-content';
+			$anchor = $this->urlGenerator->workflowLink( null, $workflow );
+		} else {
+			wfDebugLog( 'Flow', __METHOD__ . ": Unknown \$objectType: $objectType" );
+			$anchor = $this->urlGenerator->workflowLink( null, $workflow );
 		}
 
-		return $this->urlGenerator->generateUrl( $workflow, 'view', array(), $fragment );
+		return $anchor->getFullURL();
 	}
 
 	protected function loadReferencesForPage( Title $from ) {

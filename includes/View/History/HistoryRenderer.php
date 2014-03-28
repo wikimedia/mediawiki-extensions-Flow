@@ -241,12 +241,24 @@ class HistoryRenderer extends RevisionFormatter {
 		} else {
 			$revision = $record->getRevision();
 			if ( isset( $this->workflows[$revision->getRevisionId()->getAlphadecimal()] ) ) {
-				$workflowId = $this->workflows[$revision->getRevisionId()->getAlphadecimal()];
-				$historicalLink = $this->templating->getUrlGenerator()->generateBlockUrl(
-					$workflowId,
-					$revision,
-					true
-				);
+				$workflow = $this->workflows[$revision->getRevisionId()->getAlphadecimal()];
+				if ( $revision instanceof PostRevision ) {
+					$historicalLink = $this->templating->getUrlGenerator()
+						->postRevisionLink(
+							$workflow->getArticleTitle(),
+							$workflow->getId(),
+							$revision->getPostId(),
+							$revision->getRevisionId()
+						)
+						->getFullUrl();
+				} else {
+					$historicalLink = $this->templating->getUrlGenerator()
+						->workflowHistoryLink(
+							$workflow->getArticleTitle(),
+							$workflow->getId()
+						)
+						->getFullUrl();
+				}
 			}
 		}
 
