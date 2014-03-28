@@ -49,7 +49,7 @@ class BoardHistory extends AbstractFormatter {
 
 		$formattedTimestamp = $this->formatTimestamp( $data );
 
-		return $this->formatLinksAsPipeList( $links, $ctx ) . ' '
+		return $this->formatAnchorsAsPipeList( $data['links'], $ctx ) . ' '
 			. $formattedTimestamp
 			. $separator
 			. $this->formatDescription( $data, $ctx )

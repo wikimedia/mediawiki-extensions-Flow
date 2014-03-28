@@ -11,11 +11,9 @@ use ContextSource;
 class View extends ContextSource {
 	function __construct(
 		Templating $templating,
-		UrlGenerator $urlGenerator,
 		IContextSource $requestContext
 	) {
 		$this->templating = $templating;
-		$this->urlGenerator = $urlGenerator;
 		$this->setContext( $requestContext );
 	}
 
@@ -56,7 +54,7 @@ class View extends ContextSource {
 				$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 				if ( $blocksToCommit ) {
 					$loader->commit( $workflow, $blocksToCommit );
-					$this->redirect( $workflow, 'view' );
+					$this->redirect( $workflow );
 					return;
 				}
 			}
@@ -91,8 +89,11 @@ class View extends ContextSource {
 		}
 	}
 
-	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {
-		$url = $this->urlGenerator->generateUrl( $workflow, $action, $query );
-		$this->getOutput()->redirect( $url );
+	protected function redirect( Workflow $workflow ) {
+		$link = $this->templating->getUrlGenerator()->workflowLink(
+			$workflow->getArticleTitle(),
+			$workflow->getId()
+		);
+		$this->getOutput()->redirect( $link->getFullURL() );
 	}
 }
