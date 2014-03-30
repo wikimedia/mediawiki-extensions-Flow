@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ae0e4726_39132b07",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-30T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae0e4726_4caf5b92",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae0e4726_8091b754",
         "filename": "modules/discussion/styles/post.less",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-03-27T01:17:51Z",
       "side": 1,
       "message": "This is doing too much. Should the container force its contents to look a certain way, or should people supplying actions cooperate to supply buttons styled the right way?  Hmmm.\n\nIf someone in the hook supplies a mw-ui-button, then it should look like a button. If they want it to look less like a button, they should specify mw-ui-quiet, or mw-ui-light, or whatever.",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_f92db342",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-30T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae0e4726_8091b754",
       "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ae0e4726_d922ef4f",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-30T13:29:14Z",
+      "side": 1,
+      "message": "Done, though i\u0027m not sure about the @todo comment, can\u0027t seem to find the referenced definitions/class\n\nThank\u0027s patch is at gerrit change 119814",
+      "parentUuid": "ae0e4726_6c91ff51",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae0e4726_ec7cef1d",
         "filename": "modules/discussion/styles/post.less",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2014-03-27T01:17:51Z",
       "side": 1,
       "message": "Comment why you need to do this here.",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_b9273b5f",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-30T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae0e4726_ec7cef1d",
       "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "ae0e4726_991c771a",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-30T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae0e4726_c0c8cf79",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae0e4726_408b9f20",
         "filename": "modules/discussion/styles/post.less",
         "patchSetId": 1
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "ae0e4726_7919a326",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-30T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae0e4726_408b9f20",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae0e4726_6086a31a",
         "filename": "modules/discussion/styles/post.less",
         "patchSetId": 1
@@ -115,6 +223,24 @@
       "writtenOn": "2014-03-27T01:17:51Z",
       "side": 1,
       "message": "not needed if flow-post-interation sets font-size for its contents.",
+      "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_5916dff7",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-03-30T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae0e4726_6086a31a",
       "revId": "c5911d8d64fa94a60b9c3a25bce345d58f05a472",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
