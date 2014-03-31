@@ -84,7 +84,7 @@ class RevisionFormatter {
 			'content' => $this->templating->getContent( $row->revision ),
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),
-			'isModerated' => $row->revision->isModerated(),
+			'isModerated' => $this->templating->getModeratedRevision( $row->revision )->isModerated(),
 			'links' => $this->buildActionLinks(
 				$row->workflow->getArticleTitle(),
 				$row->revision->getChangeType(),

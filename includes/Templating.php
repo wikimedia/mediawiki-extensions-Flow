@@ -528,7 +528,7 @@ class Templating {
 		}
 	}
 
-	protected function getModeratedRevision( AbstractRevision $revision ) {
+	public function getModeratedRevision( AbstractRevision $revision ) {
 		if ( $revision->isModerated() ) {
 			return $revision;
 		} else {
