@@ -16,6 +16,24 @@
       "revId": "d704de6bfa7f79e1e869f54477791388128ff482",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_a68b8f1f",
+        "filename": "Hooks.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-31T21:45:38Z",
+      "side": 1,
+      "message": "Done! The only problem I can think of is that the maintenance script is logged.  If a 3rd party wiki has run it before it wouldn\u0027t get run again, then the table wouldn\u0027t get dropped, but I think this should be fine given this is more minor and we don\u0027t have much 3rd party users.",
+      "parentUuid": "ae0e4726_780bebd9",
+      "revId": "d704de6bfa7f79e1e869f54477791388128ff482",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
