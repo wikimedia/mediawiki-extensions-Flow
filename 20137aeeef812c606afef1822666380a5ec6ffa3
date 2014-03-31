@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_d2008106",
+        "filename": "includes/Formatter/ContributionsQuery.php",
+        "patchSetId": 23
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-31T14:27:38Z",
+      "side": 1,
+      "message": "This, along with L80, caused double entries in contributions.\n\nFixed in https://gerrit.wikimedia.org/r/122417",
+      "revId": "20137aeeef812c606afef1822666380a5ec6ffa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
