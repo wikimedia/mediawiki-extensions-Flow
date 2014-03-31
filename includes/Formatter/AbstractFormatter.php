@@ -37,9 +37,9 @@ abstract class AbstractFormatter {
 	 */
 	protected $serializer;
 
-	public function __construct( RevisionActionPermissions $permissions, Templating $templating ) {
+	public function __construct( RevisionActionPermissions $permissions, RevisionFormatter $serializer ) {
 		$this->permissions = $permissions;
-		$this->serializer = new RevisionFormatter( $permissions, $templating );
+		$this->serializer = $serializer;
 	}
 
 	/**

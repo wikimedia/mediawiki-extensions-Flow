@@ -365,21 +365,6 @@ class TopicBlock extends AbstractBlock {
 				$newRevision->setChildren( array() );
 			}
 
-			// FIXME special case
-			if ( $this->action == 'edit-title' ) {
-				$renderFunction = function( Templating $templating ) use ( $newRevision ) {
-					return $templating->getContent( $newRevision, 'wikitext' );
-				};
-			} elseif ( $this->action === 'moderate-topic' ) {
-				$renderFunction = function( Templating $templating ) use ( $self, $newRevision ) {
-					return $templating->renderTopic( $newRevision, $self );
-				};
-			} else {
-				$renderFunction = function( Templating $templating ) use ( $self, $newRevision, $rootPost ) {
-					return $templating->renderPost( $newRevision, $self );
-				};
-			}
-
 			if ( is_array( $this->notification ) ) {
 				$this->notification['params']['revision'] = $this->newRevision;
 				// $this->topicTitle has already been loaded before in case
@@ -392,7 +377,6 @@ class TopicBlock extends AbstractBlock {
 
 			return array(
 				'new-revision-id' => $this->newRevision->getRevisionId(),
-				'render-function' => $renderFunction,
 			);
 
 		default:
@@ -589,12 +573,6 @@ class TopicBlock extends AbstractBlock {
 			return array();
 		}
 
-		$output = array(
-			'_element' => 'post',
-			'title' => $templating->getContent( $rootPost, 'wikitext' ),
-			'topic-id' => $topic->getId()->getAlphadecimal(),
-		);
-
 		if ( isset( $options['showhistoryfor'] ) ) {
 			$output['history'] = array();
 
@@ -613,18 +591,26 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		if ( isset( $options['render'] ) ) {
-			$output['rendered'] = $templating->renderTopic( $rootPost, $this, true );
+		$stack = new \SplStack;
+		$stack->push( $rootPost );
+		$result = array();
+		while( !$stack->isEmpty() ) {
+			$post = $stack->pop();
+			foreach ( $post->getChildren() as $child ) {
+				$stack->push( $child );
+			}
+			$result[$child->getRevisionId()->getAlphadecimal()] = $serialize->formatApi(
+			);
 		}
-
+		$result = array( $rootPost->getRevisionId()->getAlphadecimal() => $output );
 		foreach( $rootPost->getChildren() as $child ) {
 			$res = $this->renderPostAPI( $templating, $child, $options );
 			if ( $res !== null ) {
-				$output[] = $res;
+				$result = array_merge( $result, $res );
 			}
 		}
 
-		return $output;
+		return $result;
 	}
 
 	protected function renderPostAPI( Templating $templating, PostRevision $post, array $options ) {
@@ -657,11 +643,11 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		if ( ! isset( $options['no-children'] ) ) {
-			$children = array( '_element' => 'post' );
 
 			foreach( $post->getChildren() as $child ) {
 				$res = $this->renderPostAPI( $templating, $child, $options );
 				if ( $res !== null ) {
+
 					$children[] = $res;
 				}
 			}

@@ -125,6 +125,12 @@ class FormatterTest extends FlowTestCase {
 			->method( 'getUrlGenerator' )
 			->will( $this->returnValue( $urlGenerator ) );
 
-		return new $class( $permissions, $templating );
+		$usernames = $this->getMockBuilder( 'Flow\Data\UsernameBatch' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$serializer = new \Flow\Formatter\RevisionFormatter( $permissions, $templating, $usernames );
+
+		return new $class( $permissions, $serializer );
 	}
 }
