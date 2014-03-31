@@ -70,14 +70,10 @@ class ContributionsQuery extends AbstractQuery {
 			foreach ( $revisions as $revision ) {
 				try {
 					$result = new ContributionsRow;
-					$this->buildResult( $revision, $pager->getIndexField(), $result );
+					$result = $this->buildResult( $revision, $pager->getIndexField(), $result );
 					$results[] = $result;
 				} catch ( FlowException $e ) {
-					$result = false;
 					\MWExceptionHandler::logException( $e );
-				}
-				if ( $result ) {
-					$results[] = $result;
 				}
 			}
 		}
