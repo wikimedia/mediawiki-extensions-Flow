@@ -16,6 +16,24 @@
       "revId": "1011e794ed8bf05d470249e6700ef2e15ec4713f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_f516cfab",
+        "filename": "db_patches/patch-rev_type_id.sql",
+        "patchSetId": 15
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-03-31T18:21:18Z",
+      "side": 1,
+      "message": "I changed it from ( rev_type, rev_type_id ) to ( rev_type_id, rev_type ) in patch 4.  I can\u0027t recall why I changed it, :(, I will change it back now, rev_type_id should be always accessed along with rev_type",
+      "parentUuid": "ae0e4726_9d96b1f2",
+      "revId": "1011e794ed8bf05d470249e6700ef2e15ec4713f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
