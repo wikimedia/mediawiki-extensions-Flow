@@ -72,7 +72,7 @@
     "flow-moderation-intro-unsuppress-topic": "Please {{GENDER:$3|explain}} why ye'r onsuppressin this topíc.",
     "flow-moderation-intro-undelete-topic": "Please {{GENDER:$3|explain}} why ye'r ondelytin this topíc.",
     "flow-moderation-intro-unhide-topic": "Please {{GENDER:$3|explain}} why ye'r onskaukin this topíc.",
-    "flow-revision-permalink-warning-header": "This is ae permanent link til ae single version o the heider.\nThis version is fae $1.  Ye can see the [$3 differences fae the preevioos version], or view ither versions oan the [$2 buird histerie page].",
+    "flow-revision-permalink-warning-header": "This is ae permenant airtin til ae single version o the heider.\nThis version is fae $1.  Ye can see the [$3 differances fae the afore-gaun version], or see ither versions oan the [$2 buird histerie page].",
     "flow-revision-permalink-warning-header-first": "This is ae permanant airtin til the firstwhile version o the heider.\nYe can see later versions oan the [$2 buird histerie page].",
     "flow-compare-revisions-header-header": "This page shaws the {{GENDER:$2|chynges}} atween twa versions o the heider oan [$3 $1].\nYe can see ither versions o the heider at its [$4 histerie page].",
     "flow-terms-of-use-new-topic": "Bi clapin on \"{{int:flow-newtopic-save}}\", ye'r agreein til the terms o uiss fer this wiki.",
