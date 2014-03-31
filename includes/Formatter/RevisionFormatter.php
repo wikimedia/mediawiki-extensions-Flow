@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use Flow\Container;
 use Flow\Data\ObjectManager;
+use Flow\Data\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
@@ -11,6 +12,7 @@ use Flow\Model\UUID;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
+use GenderCache;
 use IContextSource;
 use Message;
 use Title;
@@ -54,10 +56,16 @@ class RevisionFormatter {
 	 * @param RevisionActionPermissions $permissions
 	 * @param Templating $templating
 	 */
-	public function __construct( RevisionActionPermissions $permissions, Templating $templating ) {
+	public function __construct(
+		RevisionActionPermissions $permissions,
+		Templating $templating,
+		UserNameBatch $usernames
+	) {
 		$this->permissions = $permissions;
 		$this->templating = $templating;
 		$this->urlGenerator = $this->templating->getUrlGenerator();
+		$this->usernames = $usernames;
+		$this->genderCache = GenderCache::singleton();
 	}
 
 	/**
@@ -74,17 +82,27 @@ class RevisionFormatter {
 			return false;
 		}
 
-		$this->urlGenerator->withWorkflow( $row->workflow );
+		$isContentAllowed = $this->permissions->isAllowed( $row->revision, 'view' );
+		$isHistoryAllowed = $isContentAllowed ?: $this->permissions->isAllowed( $row->revision, 'history' );
 
+		if ( !$isHistoryAllowed ) {
+			return array();
+		}
+
+		$this->urlGenerator->withWorkflow( $row->workflow );
 		$res = array(
-			'workflowId' => $row->workflow->getId(),
+			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
 			'revisionId' => $row->revision->getRevisionId()->getAlphadecimal(),
 			'timestamp' => $row->revision->getRevisionId()->getTimestampObj()->getTimestamp( TS_MW ),
 			'changeType' => $row->revision->getChangeType(),
-			'content' => $this->templating->getContent( $row->revision ),
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),
 			'isModerated' => $this->templating->getModeratedRevision( $row->revision )->isModerated(),
+			'author' => $this->serializeUser(
+				$row->revision->getUserWiki(),
+				$row->revision->getUserId(),
+				$row->revision->getUserIp()
+			),
 			'links' => $this->buildActionLinks(
 				$row->workflow->getArticleTitle(),
 				$row->revision->getChangeType(),
@@ -92,11 +110,58 @@ class RevisionFormatter {
 				$row->revision->getRevisionId(),
 				method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId() : null
 			),
-			'size' => array(
-				'old' => strlen( $row->previousRevision ? $row->previousRevision->getContentRaw() : '' ),
-				'new' => strlen( $row->revision->getContentRaw() ),
-			),
 		);
+
+		$prevRevId = $row->revision->getPrevRevisionId();
+		$res['previousRevisionId'] = $prevRevId ? $prevRevId->getAlphadecimal() : null;
+
+		if ( $res['isModerated'] ) {
+			$res['moderator'] = $this->serializeUser(
+				$row->revision->getModeratedByUserWiki(),
+				$row->revision->getModeratedByUserId(),
+				$row->revision->getModeratedByUserIp()
+			);
+		}
+
+		if ( $isContentAllowed ) {
+			$contentFormat = ( $row->revision instanceof PostRevision && $row->revision->isTopicTitle() )
+				? 'wikitext'
+				: 'html';
+
+			$res += array(
+				'content' => $this->templating->getContent( $row->revision, $contentFormat ),
+				'contentFormat' => $contentFormat,
+				'size' => array(
+					'old' => null,
+					'new' => strlen( $row->revision->getContentRaw() ),
+				),
+			);
+			if ( $row->previousRevision
+				&& $this->permissions->isAllowed( $row->previousRevision, 'view' )
+			) {
+				$res['size']['old'] = strlen( $row->previousRevision->getContentRaw() );
+			}
+		}
+
+		if ( $row->revision instanceof PostRevision ) {
+			$replyTo = $row->revision->getReplyToId();
+			$res['replyToId'] = $replyTo ? $replyTo->getAlphadecimal() : null;
+			$res['postId'] = $row->revision->getPostId()->getAlphadecimal();
+		}
+
+		return $res;
+	}
+
+	public function serializeUser( $userWiki, $userId, $userIp ) {
+		$res = array(
+			'name' => $this->usernames->get( $userWiki, $userId, $userIp ),
+			'wiki' => $userWiki,
+			'gender' => 'unknown',
+		);
+		// Only works for the local wiki
+		if ( wfWikiId() === $userWiki ) {
+			$res['gender'] = $this->genderCache->getGenderOf( $res['name'], __METHOD__ );
+		}
 
 		return $res;
 	}

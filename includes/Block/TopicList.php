@@ -170,12 +170,6 @@ class TopicListBlock extends AbstractBlock {
 		$output = array(
 			'created-topic-id' => $this->topicWorkflow->getId(),
 			'created-post-id' => $this->firstPost ? $this->firstPost->getRevisionId() : null,
-			'render-function' => function( Templating $templating )
-					use ( $topicWorkflow, $topicPost, $storage, $notificationController )
-			{
-				$block = new TopicBlock( $topicWorkflow, $storage, $notificationController, $topicPost );
-				return $templating->renderTopic( $topicPost, $block, true );
-			},
 		);
 
 		return $output;
@@ -208,20 +202,84 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
-		$output = array( '_element' => 'topic' );
-		if ( ! $this->workflow->isNew() ) {
-			$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
-			$page = $this->getPage( $findOptions );
-			$topics = $this->getTopics( $page );
+		if ( $this->workflow->isNew() ) {
+			return array();
+		}
+		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
+		$page = $this->getPage( $findOptions );
 
-			foreach( $topics as $topic ) {
-				$output[] = $topic->renderAPI( $templating, $options );
+		$ctx = \RequestContext::getMain();
+		$found = Container::get( 'query.topiclist' )->getResults( $page );
+		$serializer = Container::get( 'formatter.revision' );
+		$revisions = $posts = $replies = array();
+		foreach( $found as $formatterRow ) {
+			$serialized = $serializer->formatApi( $formatterRow, $ctx );
+			if ( !$serialized ) {
+				continue;
 			}
-
-			$output['paging'] = $page->getPagingLinks();
+			$revisions[$serialized['revisionId']] = $serialized;
+			$posts[$serialized['postId']][] = $serialized['revisionId'];
+			$replies[$serialized['replyToId']][] = $serialized['postId'];
 		}
 
-		return $output;
+		foreach ( $revisions as $i => $serialized ) {
+			$alpha = $serialized['postId'];
+			$revisions[$i]['replies'] = isset( $replies[$alpha] ) ? $replies[$alpha] : array();
+		}
+
+		$list = array();
+		foreach ( $page->getResults() as $topicListEntry ) {
+			$list[] = $alpha = $topicListEntry->getId()->getAlphadecimal();
+			$workflowIds[] = $topicListEntry->getId();
+		}
+
+		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
+		// re-index workflows by their workflow id
+		if ( $workflows ) {
+			$workflows = array_combine(
+				array_map( function( $x ) { return $x->getId()->getAlphadecimal(); }, $workflows ),
+				$workflows
+			);
+		}
+
+		foreach ( $list as $alpha ) {
+			// Metadata that requires everything to be serialied first
+			$metadata = $this->generateTopicMetadata( $posts, $revisions, $workflows, $alpha );
+			foreach ( $posts[$alpha] as $revId ) {
+				$revisions[$revId] += $metadata;
+			}
+		}
+
+		return array(
+			'type' => $this->getName(),
+			'roots' => $list,
+			'posts' => $posts,
+			'revisions' => $revisions,
+		);
+	}
+
+	protected function generateTopicMetadata( array $posts, array $revisions, array $workflows, $alpha ) {
+		$replies = -1;
+		$authors = array();
+		$stack = new \SplStack;
+		$stack->push( $revisions[$posts[$alpha][0]] );
+		do {
+			$data = $stack->pop();
+			$replies++;
+			$authors[] = $data['author']['wiki'] . "\t" . $data['author']['name'];
+			foreach ( $data['replies'] as $postId ) {
+				$stack->push( $revisions[$posts[$postId][0]] );
+			}
+		} while( !$stack->isEmpty() );
+
+		$workflow = isset( $workflows[$alpha] ) ? $workflows[$alpha] : null;
+
+		return array(
+			'reply_count' => $replies,
+			'author_count' => count( array_unique( $authors ) ),
+			// ms timestamp
+			'last_updated' => $workflow ? $workflow->getLastModifiedObj()->getTimestamp() * 1000 : null,
+		);
 	}
 
 	public function getName() {

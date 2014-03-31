@@ -5,6 +5,7 @@ namespace Flow\Block;
 use Flow\Container;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
+use Flow\Formatter\FormatterRow;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
@@ -142,9 +143,6 @@ class HeaderBlock extends AbstractBlock {
 
 				return array(
 					'new-revision-id' => $this->header->getRevisionId(),
-					'render-function' => function( Templating $templating ) use ( $header ) {
-						return $templating->getContent( $header, 'html' );
-					},
 				);
 
 			default:
@@ -195,27 +193,23 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
-		$output = array();
-		$output['type'] = 'header';
+		$output = array( 'type' => $this->getName() );
 
-		$contentFormat = 'wikitext';
-
-		if ( isset( $options['contentFormat'] ) ) {
-			$contentFormat = $options['contentFormat'];
-		}
-
-		if ( $this->header !== null ) {
-			$output['*'] = $templating->getContent( $this->header, $contentFormat );
-			$output['format'] = $contentFormat;
-			$output['header-id'] = $this->header->getRevisionId()->getAlphadecimal();
-		} else {
+		if ( $this->header === null ) {
 			$output['missing'] = 'missing';
-		}
+		} else {
+			$contentFormat = 'wikitext';
+			if ( isset( $options['contentFormat'] ) ) {
+				$contentFormat = $options['contentFormat'];
+			}
 
-		$output = array(
-			'_element' => 'header',
-			0 => $output,
-		);
+			$ctx = \RequestContext::getMain();
+			$row = new FormatterRow;
+			$row->workflow = $this->workflow;
+			$row->revision = $this->header;
+
+			$output['revision'] = Container::get( 'formatter.revision' )->formatApi( $row, $ctx );
+		}
 
 		return $output;
 	}

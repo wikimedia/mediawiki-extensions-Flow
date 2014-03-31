@@ -478,6 +478,13 @@ $c['formatter.checkuser'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['query.topiclist'] = $c->share( function( $c ) {
+	return new Flow\Formatter\TopicListQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
+
 $c['query.recentchanges'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RecentChangesQuery(
 		$c['storage'],
@@ -521,7 +528,8 @@ $c['board-history.formatter'] = $c->share( function( $c ) {
 $c['formatter.revision'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RevisionFormatter(
 		$c['permissions'],
-		$c['templating']
+		$c['templating'],
+		$c['repository.username']
 	);
 } );
 $c['logger'] = $c->share( function( $c ) {
