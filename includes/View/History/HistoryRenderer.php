@@ -5,6 +5,7 @@ namespace Flow\View\History;
 use Flow\Block\Block;
 use Flow\Container;
 use Flow\Data\ObjectManager;
+use Flow\Data\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Formatter\RevisionFormatter;
 use Flow\Model\Header;
@@ -46,7 +47,7 @@ class HistoryRenderer extends RevisionFormatter {
 	 * @param integer|null $now The unix timestamp which is used as base for the
 	 * 		calculation of relative dates.
 	 */
-	public function __construct( RevisionActionPermissions $permissions, Templating $templating, Block $block, $now = null ) {
+	public function __construct( RevisionActionPermissions $permissions, Templating $templating, UserNameBatch $usernames, Block $block, $now = null ) {
 		$this->templating = $templating;
 		$this->block = $block;
 		$this->workflows = array();
@@ -58,7 +59,7 @@ class HistoryRenderer extends RevisionFormatter {
 			$this->now = $now;
 		}
 
-		parent::__construct( $permissions, $templating );
+		parent::__construct( $permissions, $templating, $usernames );
 	}
 
 	/**

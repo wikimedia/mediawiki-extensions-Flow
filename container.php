@@ -530,7 +530,14 @@ $c['query.checkuser'] = $c->share( function( $c ) {
 $c['formatter.checkuser'] = $c->share( function( $c ) {
 	return new Flow\Formatter\CheckUser(
 		$c['permissions'],
-		$c['templating']
+		$c['formatter.revision']
+	);
+} );
+
+$c['query.topiclist'] = $c->share( function( $c ) {
+	return new Flow\Formatter\TopicListQuery(
+		$c['storage'],
+		$c['repository.tree']
 	);
 } );
 
@@ -544,7 +551,7 @@ $c['query.recentchanges'] = $c->share( function( $c ) {
 $c['formatter.recentchanges'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RecentChanges(
 		$c['permissions'],
-		$c['templating']
+		$c['formatter.revision']
 	);
 } );
 
@@ -559,7 +566,7 @@ $c['query.contributions'] = $c->share( function( $c ) {
 $c['formatter.contributions'] = $c->share( function( $c ) {
 	return new Flow\Formatter\Contributions(
 		$c['permissions'],
-		$c['templating']
+		$c['formatter.revision']
 	);
 } );
 $c['board-history.query'] = $c->share( function( $c ) {
@@ -571,13 +578,14 @@ $c['board-history.query'] = $c->share( function( $c ) {
 $c['board-history.formatter'] = $c->share( function( $c ) {
 	return new Flow\Formatter\BoardHistory(
 		$c['permissions'],
-		$c['templating']
+		$c['formatter.revision']
 	);
 } );
 $c['formatter.revision'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RevisionFormatter(
 		$c['permissions'],
-		$c['templating']
+		$c['templating'],
+		$c['repository.username']
 	);
 } );
 $c['logger'] = $c->share( function( $c ) {
