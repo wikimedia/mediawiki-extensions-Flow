@@ -518,6 +518,12 @@ $c['board-history.formatter'] = $c->share( function( $c ) {
 		$c['templating']
 	);
 } );
+$c['formatter.revision'] = $c->share( function( $c ) {
+	return new Flow\Formatter\RevisionFormatter(
+		$c['permissions'],
+		$c['templating']
+	);
+} );
 $c['logger'] = $c->share( function( $c ) {
 	return new Flow\Log\Logger(
 		$c['flow_actions'],
