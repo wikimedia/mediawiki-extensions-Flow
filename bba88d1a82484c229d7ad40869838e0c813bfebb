@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_df1bead2",
+        "filename": "includes/RevisionActionPermissions.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-31T14:00:33Z",
+      "side": 1,
+      "message": "Should call $this-\u003eisAllowedAny, not $this-\u003euser-\u003eisAllowedAny.\n\n$this-\u003eisAllowedAny will call $this-\u003eisAllowed, which will also check against the most recent revision.\n\nWe could improve isAllowedAny to only fetch the most recent revision once (although that revision should be cached in collection.cache already)",
+      "revId": "bba88d1a82484c229d7ad40869838e0c813bfebb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
