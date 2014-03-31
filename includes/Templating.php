@@ -478,7 +478,7 @@ class Templating {
 
 			// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
 			//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
-			$message = wfMessage( "flow-$state-$type-content", $username, $this->getUserLinks( $revision ) );
+			$message = wfMessage( "flow-$state-$type-content", $username )->rawParams( $this->getUserLinks( $revision ) );
 			if ( $message->exists() ) {
 				return $message->escaped();
 			} else {
