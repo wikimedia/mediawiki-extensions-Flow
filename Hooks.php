@@ -149,7 +149,11 @@ class FlowHooks {
 		return true;
 	}
 
-	public static function onOldChangesListBegin( \ChangesList $changesList, $rows ) {
+	public static function onChangesListInitRows( \ChangesList $changesList, $rows ) {
+		if ( !$changesList instanceof \OldChangesList ) {
+			// We currently only handle the OldChangesList
+			return;
+		}
 		try {
 			Container::get( 'query.recentchanges' )->loadMetadataBatch( $rows );
 		} catch ( FlowException $e ) {
