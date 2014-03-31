@@ -188,17 +188,10 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	protected function processCommitResult( $result, $render = true ) {
-		$container = $this->getContainer();
-		$templating = $container['templating'];
 		$output = array();
 		foreach( $result as $key => $value ) {
 			if ( $value instanceof UUID ) {
 				$output[$key] = $value->getAlphadecimal();
-			} elseif ( $key === 'render-function' ) {
-				if ( $render ) {
-					$function = $value;
-					$output['rendered'] = $function( $templating );
-				}
 			} else {
 				$output[$key] = $value;
 			}

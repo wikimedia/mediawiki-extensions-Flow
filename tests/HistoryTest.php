@@ -117,7 +117,7 @@ class HistoryTest extends PostRevisionTestCase {
 		$history = new History\History( $records );
 		// We need a slightly tweaked version of HistoryRenderer that doesn't talk to storage
 		$rend = $this->getMockBuilder( 'Flow\View\History\HistoryRenderer' )
-			->setConstructorArgs( array( Container::get( 'permissions' ), Container::get( 'templating' ), $block, $now ) )
+			->setConstructorArgs( array( Container::get( 'permissions' ), Container::get( 'templating' ), Container::get( 'repository.username' ), $block, $now ) )
 			->setMethods( array( 'batchLoadWorkflow' ) )
 			->getMock();
 
