@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_28ebd378",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-31T10:39:08Z",
+      "side": 1,
+      "message": "Variable not prefixed with @",
+      "revId": "012daa9bb363b55bf5bf97bf0288305c09bbf1b5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_88fbff43",
+        "filename": "modules/discussion/styles/post.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-31T10:39:08Z",
+      "side": 1,
+      "message": "Don\u0027t need this one if the above font-size is properly calling the variable (missing @)",
+      "revId": "012daa9bb363b55bf5bf97bf0288305c09bbf1b5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
