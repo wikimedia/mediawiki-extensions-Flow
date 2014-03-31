@@ -16,6 +16,24 @@
       "revId": "67cf34007163d0c62d8880001c62f4e187948562",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_08012f08",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-03-31T09:39:59Z",
+      "side": 1,
+      "message": "I agree. I\u0027ve pushed this to a seperate patch: https://gerrit.wikimedia.org/r/#/c/122340/\n\nI only put quotes around it; didn\u0027t want to go creating different messages depending on moderation status. Plus, un-moderated topics can be confusing too, if not quoted",
+      "parentUuid": "ae0e4726_a653a119",
+      "revId": "67cf34007163d0c62d8880001c62f4e187948562",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
