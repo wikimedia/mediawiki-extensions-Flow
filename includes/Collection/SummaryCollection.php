@@ -26,4 +26,12 @@ class PostSummaryCollection extends LocalCacheAbstractCollection {
 		return $this->rootId;
 	}
 
+	/**
+	 * Get the post collection for this summary
+	 * @return PostCollection
+	 */
+	public function getPost() {
+		return PostCollection::newFromId( $this->uuid );
+	}
+
 }
