@@ -471,6 +471,13 @@ $c['controller.spamfilter'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['formatter.irclineurl'] = $c->share( function( $c ) {
+	return new Flow\Formatter\IRCLineUrlFormatter(
+		$c['permissions'],
+		$c['templating']
+	);
+} );
+
 $c['formatter.checkuser'] = $c->share( function( $c ) {
 	return new Flow\Formatter\CheckUser(
 		$c['permissions'],
