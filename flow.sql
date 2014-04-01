@@ -27,6 +27,7 @@ CREATE TABLE /*_*/flow_workflow (
 	-- or list of strings may be simpler and use only a little more space.
 	workflow_lock_state int unsigned not null,
 	workflow_definition_id binary(11) not null,
+	workflow_type varbinary(16) not null,
 	PRIMARY KEY (workflow_id)
 ) /*$wgDBTableOptions*/;
 

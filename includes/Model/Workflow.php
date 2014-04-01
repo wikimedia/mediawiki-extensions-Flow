@@ -22,6 +22,11 @@ class Workflow {
 	protected $isNew;
 
 	/**
+	 * @var string e.g. topic, discussion, etc.
+	 */
+	protected $type;
+
+	/**
 	 * @var string
 	 */
 	protected $wiki;
@@ -91,6 +96,7 @@ class Workflow {
 		}
 		$obj->id = UUID::create( $row['workflow_id'] );
 		$obj->isNew = false;
+		$obj->type = isset( $row['workflow_type'] ) ? $row['workflow_type'] : '';
 		$obj->wiki = $row['workflow_wiki'];
 		$obj->pageId = $row['workflow_page_id'];
 		$obj->namespace = (int) $row['workflow_namespace'];
@@ -116,6 +122,7 @@ class Workflow {
 	static public function toStorageRow( Workflow $obj ) {
 		return array(
 			'workflow_id' => $obj->id->getBinary(),
+			'workflow_type' => $obj->type,
 			'workflow_wiki' => $obj->wiki,
 			'workflow_page_id' => $obj->pageId,
 			'workflow_namespace' => $obj->namespace,
@@ -154,6 +161,7 @@ class Workflow {
 		$obj->id = UUID::create();
 		$obj->isNew = true; // has not been persisted
 		$obj->wiki = $definition->getWiki();
+		$obj->type = $definition->getType();
 		$obj->pageId = $title->getArticleID();
 		$obj->namespace = $title->getNamespace();
 		$obj->titleText = $title->getDBkey();
@@ -180,6 +188,11 @@ class Workflow {
 	 * @return UUID
 	 */
 	public function getId() { return $this->id; }
+
+	/**
+	 * @return string
+	 */
+	public function getType() { return $this->type; }
 
 	/**
 	 * Returns true if the workflow is new as of this request (regardless of
