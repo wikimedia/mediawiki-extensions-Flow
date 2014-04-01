@@ -106,6 +106,7 @@ use Flow\Data\BasicDbStorage;
 use Flow\Data\PostRevisionStorage;
 use Flow\Data\HeaderRevisionStorage;
 use Flow\Data\PostSummaryRevisionStorage;
+use Flow\Data\TopicHistoryStorage;
 use Flow\Data\UniqueFeatureIndex;
 use Flow\Data\TopKIndex;
 use Flow\Data\TopicHistoryIndex;
@@ -115,6 +116,7 @@ use Flow\Data\ObjectManager;
 use Flow\Data\ObjectLocator;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 
 $c['memcache.buffered'] = $c->share( function( $c ) {
 	global $wgFlowCacheTime;
@@ -199,6 +201,8 @@ $c['storage.board_history'] = $c->share( function( $c ) {
 				return $c['storage.post.mapper']->toStorageRow( $rev );
 			} elseif ( $rev instanceof Header ) {
 				return $c['storage.header.mapper']->toStorageRow( $rev );
+			} elseif ( $rev instanceof PostSummary ) {
+				return $c['storage.post.summary.mapper']->toStorageRow( $rev );
 			} else {
 				throw new \Flow\Exception\InvalidDataException( 'Invalid class for board history entry: ' . get_class( $rev ), 'fail-load-data' );
 			}
@@ -208,6 +212,8 @@ $c['storage.board_history'] = $c->share( function( $c ) {
 				return $c['storage.header.mapper']->fromStorageRow( $row, $obj );
 			} elseif ( $row['rev_type'] === 'post' ) {
 				return $c['storage.post.mapper']->fromStorageRow( $row, $obj );
+			} elseif ( $row['rev_type'] === 'post-summary' ) {
+				return $c['storage.post.summary.mapper']->fromStorageRow( $row, $obj );
 			} else {
 				throw new \Flow\Exception\InvalidDataException( 'Invalid rev_type for board history entry: ' . $row['rev_type'], 'fail-load-data' );
 			}
@@ -279,7 +285,16 @@ $c['storage.post.summary.mapper'] = $c->share( function( $c ) {
 } );
 
 $c['storage.post.summary.lifecycle-handlers'] = $c->share( function( $c ) {
+	global $wgContLang;
+
 	return array(
+		$c['storage.board_history.index'],
+		new Flow\Data\PostSummaryRecentChanges(
+			$c['flow_actions'],
+			$c['repository.username'],
+			$c['storage'],
+			$wgContLang
+		),
 		new Flow\Data\UserNameListener(
 			$c['repository.username'],
 			array(
@@ -288,6 +303,10 @@ $c['storage.post.summary.lifecycle-handlers'] = $c->share( function( $c ) {
 				'rev_edit_user_id' => 'rev_edit_user_wiki'
 			)
 		),
+		// topic history -- to keep a history by topic we have to know what topic every post
+		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
+		// using TreeRepository for extra information and stuffing it into topic_root while indexing
+		$c['storage.topic_history.index'],
 	);
 } );
 
@@ -298,7 +317,7 @@ $c['storage.post.summary'] = $c->share( function( $c ) {
 	$storage = new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
 	$pk = new UniqueFeatureIndex(
 		$cache, $storage,
-		'flow_topic_summary:v2:pk', array( 'rev_id' )
+		'flow_post_summary:v2:pk', array( 'rev_id' )
 	);
 	$workflowIndexOptions = array(
 		'sort' => 'rev_id',
@@ -312,7 +331,7 @@ $c['storage.post.summary'] = $c->share( function( $c ) {
 		$pk,
 		new TopKIndex(
 			$cache, $storage,
-			'flow_topic_summary:workflow', array( 'rev_type_id' ),
+			'flow_post_summary:workflow', array( 'rev_type_id' ),
 			array( 'limit' => 100 ) + $workflowIndexOptions
 		),
 	);
@@ -366,11 +385,16 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 			)
 		),
 		$c['collection.cache'],
+		// topic history -- to keep a history by topic we have to know what topic every post
+		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
+		// using TreeRepository for extra information and stuffing it into topic_root while indexing
+		$c['storage.topic_history.index'],
 	);
 } );
 $c['storage.post.mapper'] = $c->share( function( $c ) {
 	return CachingObjectMapper::model( 'Flow\\Model\\PostRevision', array( 'rev_id' ) );
 } );
+
 $c['storage.post'] = $c->share( function( $c ) {
 	global $wgFlowExternalStore;
 	$cache = $c['memcache.buffered'];
@@ -392,27 +416,68 @@ $c['storage.post'] = $c->share( function( $c ) {
 					return $row['rev_parent_id'] === null;
 				},
 		) ),
-		// topic history -- to keep a history by topic we have to know what topic every post
-		// belongs to, not just its parent. TopicHistoryIndex is a slight tweak to TopKIndex
-		// using TreeRepository for extra information and stuffing it into topic_root while indexing
-		new TopicHistoryIndex( $cache, $storage, $c['repository.tree'], 'flow_revision:topic',
-			array( 'topic_root_id' ),
-			array(
-				'limit' => 500,
-				'sort' => 'rev_id',
-				'order' => 'DESC',
-				'shallow' => $pk,
-				'create' => function( array $row ) {
-					// if the post has no parent and the revision has no parent
-					// then this is a brand new topic title
-					return $row['tree_parent_id'] === null
-						&& $row['rev_parent_id'] === null;
-				},
-		) ),
 	);
 
 	return new ObjectManager( $c['storage.post.mapper'], $storage, $indexes, $c['storage.post.lifecycle-handlers'] );
 } );
+
+$c['storage.topic_history.index'] = $c->share( function( $c ) {
+	$cache = $c['memcache.buffered'];
+	$pk = new UniqueFeatureIndex( $cache, $c['storage.topic_history.backing'], 'flow_revision:v4:pk', array( 'rev_id' ) );
+	return new TopicHistoryIndex( $cache, $c['storage.topic_history.backing'], $c['repository.tree'], 'flow_revision:topic',
+		array( 'topic_root_id' ),
+		array(
+			'limit' => 500,
+			'sort' => 'rev_id',
+			'order' => 'DESC',
+			'shallow' => $pk,
+			'create' => function( array $row ) {
+				// if the post has no parent and the revision has no parent
+				// then this is a brand new topic title
+				return $row['tree_parent_id'] === null
+					&& $row['rev_parent_id'] === null;
+			},
+	) );
+} );
+
+$c['storage.topic_history.backing'] = $c->share( function( $c ) {
+	global $wgFlowExternalStore;
+	return new TopicHistoryStorage(
+		new PostRevisionStorage( $c['db.factory'], $wgFlowExternalStore, $c['repository.tree'] ),
+		new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore )
+	);
+} );
+
+$c['storage.topic_history'] = $c->share( function( $c ) {
+	$cache = $c['memcache.buffered'];
+	$mapper = new BasicObjectMapper(
+		function( $rev ) use( $c ) {
+			if ( $rev instanceof PostRevision ) {
+				return $c['storage.post.mapper']->toStorageRow( $rev );
+			} elseif ( $rev instanceof PostSummary ) {
+				return $c['storage.post.summary.mapper']->toStorageRow( $rev );
+			} else {
+				throw new \Flow\Exception\InvalidDataException( 'Invalid class for board history entry: ' . get_class( $rev ), 'fail-load-data' );
+			}
+		},
+		function( array $row, $obj = null ) use( $c ) {
+			if ( $row['rev_type'] === 'post' ) {
+				return $c['storage.post.mapper']->fromStorageRow( $row, $obj );
+			} elseif ( $row['rev_type'] === 'post-summary' ) {
+				return $c['storage.post.summary.mapper']->fromStorageRow( $row, $obj );
+			} else {
+				throw new \Flow\Exception\InvalidDataException( 'Invalid rev_type for board history entry: ' . $row['rev_type'], 'fail-load-data' );
+			}
+		}
+	);
+
+	$indexes = array(
+		$c['storage.topic_history.index'],
+	);
+	return new ObjectLocator( $mapper, $c['storage.topic_history.backing'], $indexes );
+} );
+
+
 // Storage implementation for user subscriptions, separate from storage.user_subs so it
 // can be used in storage.user_subs.user_index as well.
 $c['storage.user_subs.backing'] = $c->share( function( $c ) {
@@ -470,6 +535,8 @@ $c['storage'] = $c->share( function( $c ) {
 			'Header' => 'storage.header',
 
 			'BoardHistoryEntry' => 'storage.board_history',
+
+			'TopicHistoryEntry' => 'storage.topic_history',
 		)
 	);
 } );
