@@ -109,7 +109,7 @@ class NotificationController {
 				$replyToPostId = $replyTo->getPostId();
 				$extraData += array(
 					'reply-to' => $replyToPostId,
-					'content' => $this->language->truncate( trim( $revision->getContent() ), 200 ),
+					'content' => $this->language->truncate( trim( strip_tags( $revision->getContent() ) ), 200 ),
 					'topic-title' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
 				);
 				$newPost = array(
@@ -130,7 +130,7 @@ class NotificationController {
 			break;
 			case 'flow-post-edited':
 				$extraData += array(
-					'content' => $this->language->truncate( trim( $revision->getContent() ), 200 ),
+					'content' => $this->language->truncate( trim( strip_tags( $revision->getContent() ) ), 200 ),
 					'topic-title' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
 				);
 			break;
@@ -195,8 +195,8 @@ class NotificationController {
 				'board-workflow' => $boardWorkflow->getId(),
 				'topic-workflow' => $topicWorkflow->getId(),
 				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
-				'topic-title' => $this->language->truncate( trim( $topicPost->getContent() ), 200 ),
-				'content' => $firstPost ? $this->language->truncate( trim( $firstPost->getContent() ), 200 ) : null,
+				'topic-title' => $this->language->truncate( trim( strip_tags( $topicPost->getContent() ) ), 200 ),
+				'content' => $firstPost ? $this->language->truncate( trim( strip_tags( $firstPost->getContent() ) ), 200 ) : null,
 			)
 		) );
 
@@ -260,7 +260,7 @@ class NotificationController {
 				'type' => 'flow-mention',
 				'title' => $title,
 				'extra' => array(
-					'content' => $newRevision ? $this->language->truncate( trim( $newRevision->getContent() ), 200 ) : null,
+					'content' => $newRevision ? $this->language->truncate( trim( strip_tags( $newRevision->getContent() ) ), 200 ) : null,
 					'topic-title' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
 					'post-id' => $newRevision ? $newRevision->getPostId() : null,
 					'mentioned-users' => $mentionedUsers,

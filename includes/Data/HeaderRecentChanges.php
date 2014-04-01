@@ -43,7 +43,7 @@ class HeaderRecentChanges extends RecentChanges {
 			$row,
 			$workflow,
 			array(
-				'content' => $this->contLang->truncate( $object->getContent(), self::TRUNCATE_LENGTH ),
+				'content' => $this->contLang->truncate( trim( strip_tags( $object->getContent() ) ) , self::TRUNCATE_LENGTH ),
 			)
 		);
 	}

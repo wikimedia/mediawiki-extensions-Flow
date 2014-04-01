@@ -27,6 +27,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 			if ( isset( $extra['content'] ) && $extra['content'] ) {
 				$content = $extra['content'];
+				$content = strip_tags( $content );
 				$content = trim( $content );
 				$content = $wgLang->truncate( $content, 200 );
 
