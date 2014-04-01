@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_b10dfd43",
+        "filename": "Resources.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-01T20:33:36Z",
+      "side": 1,
+      "message": "red bar of doom",
+      "revId": "3a382e69aeef4723745e229fccfc301de6a9feb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_71076520",
+        "filename": "modules/mediawiki.ui/styles/agora-override-buttons.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-01T20:33:36Z",
+      "side": 1,
+      "message": "more doom",
+      "revId": "3a382e69aeef4723745e229fccfc301de6a9feb0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
