@@ -854,14 +854,14 @@ class TopicBlock extends AbstractBlock {
 
 	protected function loadTopicHistory() {
 		$history = $this->storage->find(
-			'PostRevision',
+			'TopicHistoryEntry',
 			array( 'topic_root_id' => $this->workflow->getId() ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 		);
 		if ( $history ) {
 			// get rid of history entries user doesn't have sufficient permissions for
 			foreach ( $history as $i => $revision ) {
-				/** @var PostRevision $revision */
+				/** @var PostRevision|PostSummary $revision */
 
 				// only check against the specific revision, ignoring the most recent
 				if ( !$this->permissions->isAllowed( $revision, 'history' ) ) {
