@@ -4,6 +4,7 @@ namespace Flow\Data;
 
 use Flow\Container;
 use Flow\Model\Header;
+use Flow\Model\PostSummary;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Exception\DataModelException;
@@ -44,7 +45,7 @@ class BoardHistoryIndex extends TopKIndex {
 		if ( $object instanceof Header ) {
 			$new['topic_list_id'] = $new['rev_type_id'];
 			parent::onAfterInsert( $object, $new );
-		} elseif ( $object instanceof PostRevision ) {
+		} elseif ( $object instanceof PostRevision || $object instanceof PostSummary ) {
 			$topicListId = $this->findTopicListId( $object );
 			if ( $topicListId ) {
 				$new['topic_list_id'] = $topicListId;
@@ -62,7 +63,7 @@ class BoardHistoryIndex extends TopKIndex {
 		if ( $object instanceof Header ) {
 			$new['topic_list_id'] = $old['topic_list_id'] = $new['rev_type_id'];
 			parent::onAfterUpdate( $object, $old, $new );
-		} elseif ( $object instanceof PostRevision ) {
+		} elseif ( $object instanceof PostRevision || $object instanceof PostSummary ) {
 			$topicListId = $this->findTopicListId( $object );
 			if ( $topicListId ) {
 				$new['topic_list_id'] = $old['topic_list_id'] = $topicListId;
@@ -79,7 +80,7 @@ class BoardHistoryIndex extends TopKIndex {
 		if ( $object instanceof Header ) {
 			$old['topic_list_id'] = $old['rev_type_id'];
 			parent::onAfterRemove( $object, $old );
-		} elseif ( $object instanceof PostRevision ) {
+		} elseif ( $object instanceof PostRevision || $object instanceof PostSummary ) {
 			$topicListId = $this->findTopicListId( $object );
 			if ( $topicListId ) {
 				$old['topic_list_id'] = $topicListId;

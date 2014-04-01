@@ -115,6 +115,7 @@ use Flow\Data\ObjectManager;
 use Flow\Data\ObjectLocator;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 
 $c['memcache.buffered'] = $c->share( function( $c ) {
 	global $wgFlowCacheTime;
@@ -199,6 +200,8 @@ $c['storage.board_history'] = $c->share( function( $c ) {
 				return $c['storage.post.mapper']->toStorageRow( $rev );
 			} elseif ( $rev instanceof Header ) {
 				return $c['storage.header.mapper']->toStorageRow( $rev );
+			} elseif ( $rev instanceof PostSummary ) {
+				return $c['storage.post.summary.mapper']->toStorageRow( $rev );
 			} else {
 				throw new \Flow\Exception\InvalidDataException( 'Invalid class for board history entry: ' . get_class( $rev ), 'fail-load-data' );
 			}
@@ -208,6 +211,8 @@ $c['storage.board_history'] = $c->share( function( $c ) {
 				return $c['storage.header.mapper']->fromStorageRow( $row, $obj );
 			} elseif ( $row['rev_type'] === 'post' ) {
 				return $c['storage.post.mapper']->fromStorageRow( $row, $obj );
+			} elseif ( $row['rev_type'] === 'post-summary' ) {
+				return $c['storage.post.summary.mapper']->fromStorageRow( $row, $obj );
 			} else {
 				throw new \Flow\Exception\InvalidDataException( 'Invalid rev_type for board history entry: ' . $row['rev_type'], 'fail-load-data' );
 			}
@@ -274,16 +279,33 @@ $c['storage.header'] = $c->share( function( $c ) {
 	return new ObjectManager( $c['storage.header.mapper'], $storage, $indexes, $c['storage.header.lifecycle-handlers'] );
 } );
 
+$c['storage.post.summary.mapper'] = $c->share( function( $c ) {
+	return CachingObjectMapper::model( 'Flow\\Model\\PostSummary', array( 'rev_id' ) );
+} );
+
+$c['storage.post.summary.lifecycle-handlers'] = $c->share( function( $c ) {
+	return array(
+		$c['storage.board_history.index'],
+		new Flow\Data\UserNameListener(
+			$c['repository.username'],
+			array(
+				'rev_user_id' => 'rev_user_wiki',
+				'rev_mod_user_id' => 'rev_mod_user_wiki',
+				'rev_edit_user_id' => 'rev_edit_user_wiki'
+			)
+		),
+	);
+} );
+
 $c['storage.post.summary'] = $c->share( function( $c ) {
-	global $wgFlowExternalStore, $wgContLang;
+	global $wgFlowExternalStore;
 
 	$cache = $c['memcache.buffered'];
-	$mapper = BasicObjectMapper::model( 'Flow\\Model\\PostSummary' );
 	$storage = new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
 
 	$pk = new UniqueFeatureIndex(
 		$cache, $storage,
-		'flow_topic_summary:v2:pk', array( 'rev_id' )
+		'flow_post_summary:v2:pk', array( 'rev_id' )
 	);
 	$workflowIndexOptions = array(
 		'sort' => 'rev_id',
@@ -297,23 +319,12 @@ $c['storage.post.summary'] = $c->share( function( $c ) {
 		$pk,
 		new TopKIndex(
 			$cache, $storage,
-			'flow_topic_summary:workflow', array( 'rev_type_id' ),
+			'flow_post_summary:workflow', array( 'rev_type_id' ),
 			array( 'limit' => 100 ) + $workflowIndexOptions
 		),
 	);
 
-	$handlers = array(
-		new Flow\Data\UserNameListener(
-			$c['repository.username'],
-			array(
-				'rev_user_id' => 'rev_user_wiki',
-				'rev_mod_user_id' => 'rev_mod_user_wiki',
-				'rev_edit_user_id' => 'rev_edit_user_wiki'
-			)
-		),
-	);
-
-	return new ObjectManager( $mapper, $storage, $indexes, $handlers );
+	return new ObjectManager( $c['storage.post.summary.mapper'], $storage, $indexes, $c['storage.post.summary.lifecycle-handlers'] );
 } );
 
 // List of topic workflows and their owning discussion workflow
