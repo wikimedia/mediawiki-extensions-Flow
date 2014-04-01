@@ -76,7 +76,7 @@
     "flow-rev-message-new-post": "$1 {{GENDER:$2|huet}} d'Thema [$3 $4] ugeluecht.",
     "flow-rev-message-create-header": "$1 {{GENDER:$2|huet}} d'Iwwerschrëft ugeluecht.",
     "flow-rev-message-edit-header": "$1 {{GENDER:$2|huet}} d'Iwwerschrëft geännert.",
-    "flow-rev-message-hid-post": "$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] iwwer $6 (<em>$5</em>) verstoppt.",
+    "flow-rev-message-hid-post": "$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] iwwer ''$6'' (<em>$5</em>) verstoppt.",
     "flow-rev-message-deleted-post": "$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] iwwer $6 (<em>$5</em>) geläscht.",
     "flow-rev-message-restored-post": "$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] iwwer $6 (<em>$5</em>) restauréiert.",
     "flow-rev-message-deleted-topic": "$1 {{GENDER:$2|huet}} d'[Thema $4] $6 (<em>$5</em>) geläscht.",
