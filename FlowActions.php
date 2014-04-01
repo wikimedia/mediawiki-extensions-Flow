@@ -74,13 +74,13 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 		),
 		'button-method' => 'GET',
-		'links' => array(),
+		'links' => array( 'topic', 'topic-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-topic-summary',
 			'i18n-params' => array(
 				'user-links',
 				'user-text',
-				'topic-of-post',
+				'post-of-summary',
 			),
 			'class' => 'flow-history-create-topic-summary',
 		),
@@ -94,13 +94,13 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_CLOSED => '',
 		),
 		'button-method' => 'GET',
-		'links' => array(),
+		'links' => array( 'topic', 'topic-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-topic-summary',
 			'i18n-params' => array(
 				'user-links',
 				'user-text',
-				'topic-of-post',
+				'post-of-summary',
 			),
 			'class' => 'flow-history-edit-topic-summary',
 		),
@@ -329,7 +329,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-close', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'GET',
-		'links' => array(),
+		'links' => array( 'topic', 'topic-history' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-closed-topic',
 			'i18n-params' => array(
@@ -559,6 +559,7 @@ $wgFlowActions = array(
 				return '';
 			},
 			PostRevision::MODERATED_HIDDEN => '',
+			PostRevision::MODERATED_CLOSED => '',
 			PostRevision::MODERATED_DELETED => '',
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
