@@ -15,7 +15,7 @@ class BoardHistory extends AbstractFormatter {
 	 * @return string|false HTML string representing $row
 	 */
 	public function format( $row, IContextSource $ctx ) {
-		try {
+		//try {
 			if ( !$this->permissions->isAllowed( $row->revision, 'history' ) ) {
 				return false;
 			}
@@ -24,10 +24,10 @@ class BoardHistory extends AbstractFormatter {
 				return false;
 			}
 			return $this->formatHtml( $row, $ctx );
-		} catch ( FlowException $e ) {
-			\MWExceptionHandler::logException( $e );
-			return false;
-		}
+		//} catch ( FlowException $e ) {
+		//	\MWExceptionHandler::logException( $e );
+		//	return false;
+		//}
 	}
 
 	protected function formatHtml( $row, IContextSource $ctx ) {
