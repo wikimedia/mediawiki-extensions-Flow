@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_9aa6934f",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 24
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-01T19:23:31Z",
+      "side": 1,
+      "message": "i don\u0027t think it can get called, but should probably throw in a default case that triggers an exception",
+      "revId": "ccf5f8af8f6f6374da2f4360bcaff1d68fe9000e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_7aa3bf3f",
+        "filename": "includes/Model/Header.php",
+        "patchSetId": 24
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-01T19:23:31Z",
+      "side": 1,
+      "message": "this sounds like its worth investigating, although doesn\u0027t have to happen in this patch",
+      "revId": "ccf5f8af8f6f6374da2f4360bcaff1d68fe9000e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

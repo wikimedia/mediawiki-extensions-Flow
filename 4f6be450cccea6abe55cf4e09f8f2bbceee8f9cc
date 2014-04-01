@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_3abe6761",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 24
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-01T19:23:31Z",
+      "side": 0,
+      "message": "to stay consistent with above conditions should maintain blank line",
+      "revId": "4f6be450cccea6abe55cf4e09f8f2bbceee8f9cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_fab7cf7f",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 24
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-01T19:23:31Z",
+      "side": 0,
+      "message": "idem, consistency",
+      "revId": "4f6be450cccea6abe55cf4e09f8f2bbceee8f9cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
