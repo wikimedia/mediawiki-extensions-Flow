@@ -554,4 +554,55 @@ class FlowHooks {
 
 		return true;
 	}
+
+	public static function onIRCLineURL( &$url, &$query, RecentChange $rc ) {
+		if ( $rc->getAttribute( 'rc_source' ) !== Flow\Data\RecentChanges::SRC_FLOW ) {
+			return true;
+		}
+
+		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
+		if ( !isset( $params['flow-workflow-change']  ) ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': No flow-workflow-change attribute in rc ' . $rc->getAttribute( 'rc_id' ) );
+			return true;
+		}
+
+		$change = $params['flow-workflow-change'];
+		if ( !isset( $change['action'], $change['workflow'], $change['revision'] ) ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Malformed rc ' . $rc->getAttribute( 'rc_id' ) );
+			return true;
+		}
+
+		$links = Container::get( 'formatter.revision' )
+			->buildActionLinks(
+				$rc->getTitle(),
+				$change['action'],
+				UUID::create( $change['workflow'] ),
+				UUID::create( $change['revision'] ),
+				isset( $change['post'] ) ? UUID::create( $change['post'] ) : null
+			);
+
+		// Listed in order of preference
+		$accept = array(
+			'diff',
+			'post-history', 'topic-history', 'board-history',
+			'post', 'topic',
+			'workflow'
+		);
+
+		foreach ( $accept as $key ) {
+			if ( isset( $links[$key] ) ) {
+				// As of 4-1-2014 IRCColourfulRCFeedFormatter just does
+				//     $url .= $query;
+				// so its safe to build a full link and blank the query.
+				$url = $links[$key][0];
+				$query = '';
+
+				return true;
+			}
+		}
+
+		wfDebugLog( 'Flow', __METHOD__ . ': No url generated for action ' . $change['action'] . ' on revision ' . $change['revision'] );
+
+		return true;
+	}
 }
