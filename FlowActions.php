@@ -413,7 +413,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 		),
 		'button-method' => 'GET',
-		'links' => array( 'topic-history', 'topic', 'post', 'diff-post' ),
+		'links' => array( 'topic-history', 'topic', 'post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-reply',
 			'i18n-params' => array(
