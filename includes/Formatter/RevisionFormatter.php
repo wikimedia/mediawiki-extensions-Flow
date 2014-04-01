@@ -274,7 +274,6 @@ class RevisionFormatter {
 							array(
 								'workflow' => $workflowId->getAlphadecimal(),
 								'header_newRevision' => $revId->getAlphadecimal(),
-								'header_oldRevision' => $row->revision->getPrevRevisionId()->getAlphadecimal(),
 							)
 						),
 						wfMessage( 'diff' )
@@ -302,11 +301,11 @@ class RevisionFormatter {
 					$links['diff-cur'] = array(
 						$this->urlGenerator->buildUrl(
 							$title,
-							'compare-post-revisions',
+							'compare-header-revisions',
 							array(
 								'workflow' => $workflowId->getAlphadecimal(),
-								'topic_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
-								'topic_oldRevision' => $revId->getAlphadecimal(),
+								'header_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
+								'header_oldRevision' => $revId->getAlphadecimal(),
 							)
 						),
 						wfMessage( 'cur' )
@@ -331,7 +330,6 @@ class RevisionFormatter {
 							array(
 								'workflow' => $workflowId->getAlphadecimal(),
 								'topic_newRevision' => $revId->getAlphadecimal(),
-								'topic_oldRevision' => $row->revision->getPrevRevisionId()->getAlphadecimal(),
 							)
 						),
 						wfMessage( 'diff' )
