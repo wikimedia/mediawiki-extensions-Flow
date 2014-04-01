@@ -144,6 +144,7 @@ $wgAutoloadClasses['Flow\Data\Pager'] = $dir . 'includes/Data/Pager.php';
 $wgAutoloadClasses['Flow\Data\PagerPage'] = $dir . 'includes/Data/PagerPage.php';
 $wgAutoloadClasses['Flow\Data\RecentChanges'] = $dir . 'includes/Data/RecentChanges.php';
 $wgAutoloadClasses['Flow\Data\PostRevisionRecentChanges'] = $dir . 'includes/Data/PostRevisionRecentChanges.php';
+$wgAutoloadClasses['Flow\Data\PostSummaryRecentChanges'] = $dir . 'includes/Data/PostSummaryRecentChanges.php';
 $wgAutoloadClasses['Flow\Data\HeaderRecentChanges'] = $dir . 'includes/Data/HeaderRecentChanges.php';
 $wgAutoloadClasses['Flow\Data\Compactor'] = $dir . 'includes/Data/Compactor.php';
 $wgAutoloadClasses['Flow\Data\FeatureCompactor'] = $dir . 'includes/Data/FeatureCompactor.php';

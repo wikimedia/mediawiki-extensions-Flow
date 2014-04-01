@@ -53,6 +53,7 @@ class ContributionsQuery extends AbstractQuery {
 			// revision class => block type
 			'PostRevision' => 'topic',
 			'Header' => 'header',
+			'PostSummary' => 'topicsummary'
 		);
 
 		$results = array();
@@ -191,6 +192,33 @@ class ContributionsQuery extends AbstractQuery {
 						'flow_workflow' => array(
 							'INNER JOIN',
 							array( 'workflow_id = rev_type_id' , 'rev_type' => 'header' )
+						),
+					)
+				);
+				break;
+
+			case 'PostSummary':
+				return $dbr->select(
+					array( 'flow_revision', 'flow_workflow', 'flow_tree_node' ),
+					array( '*' ),
+					$conditions,
+					__METHOD__,
+					array(
+						'LIMIT' => $limit,
+						'ORDER BY' => 'rev_id DESC',
+					),
+					array(
+						'flow_workflow' => array(
+							'INNER JOIN',
+							array( 'workflow_id = rev_type_id' , 'rev_type' => 'post-summary' )
+						),
+						'flow_tree_node' => array(
+							'INNER JOIN',
+							array(
+								'tree_descendant_id = rev_type_id',
+								// the one with max tree_depth will be root,
+								// which will have the matching workflow id
+							)
 						),
 					)
 				);
