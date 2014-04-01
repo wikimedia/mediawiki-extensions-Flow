@@ -130,9 +130,12 @@ class PostRevision extends AbstractRevision {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->postId = $uuid;
-		$obj->origUserId = $obj->userId = $user->getId();
-		$obj->origUserIp = $obj->userIp = $user->getName();
-		$obj->origUserWiki = $obj->userWiki = wfWikiId();
+
+		list( $userId, $userIp, $userWiki ) = self::userFields( $user );
+		$obj->origUserId = $obj->userId = $userId;
+		$obj->origUserIp = $obj->userIp = $userIp;
+		$obj->origUserWiki = $obj->userWiki = $userWiki;
+
 		$obj->setReplyToId( null ); // not a reply to anything
 		$obj->prevRevision = null; // no parent revision
 		$obj->setContent( $content );
