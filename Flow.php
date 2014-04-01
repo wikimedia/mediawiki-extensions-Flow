@@ -168,6 +168,7 @@ $wgAutoloadClasses['Flow\Formatter\BoardHistoryQuery'] = $dir . 'includes/Format
 $wgAutoloadClasses['Flow\Formatter\RecentChanges'] = $dir . 'includes/Formatter/RecentChanges.php';
 $wgAutoloadClasses['Flow\Formatter\RecentChangesQuery'] = $dir . 'includes/Formatter/RecentChangesQuery.php';
 $wgAutoloadClasses['Flow\Formatter\RecentChangesRow'] = $dir . 'includes/Formatter/RecentChangesQuery.php';
+$wgAutoloadClasses['Flow\Formatter\IRCLineUrlFormatter'] = $dir . 'includes/Formatter/IRCLineUrlFormatter.php';
 
 // Convert model instances into array of user-visible data
 $wgAutoloadClasses['Flow\Formatter\RevisionFormatter'] = $dir . 'includes/Formatter/RevisionFormatter.php';
@@ -241,6 +242,7 @@ $wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGe
 $wgHooks['MakeGlobalVariablesScript'][] = 'FlowHooks::onMakeGlobalVariablesScript';
 $wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';
 $wgHooks['SkinMinervaDefaultModules'][] = 'FlowHooks::onSkinMinervaDefaultModules';
+$wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
