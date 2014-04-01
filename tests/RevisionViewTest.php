@@ -100,6 +100,12 @@ class RevisionViewTest extends \MediaWikiTestCase {
 		$revision = $this->getMockBuilder( '\Flow\Model\\' . $revType )
 			->disableOriginalConstructor()
 			->getMock();
+		$revision->expects( $this->any() )
+			->method( 'getCollectionId' )
+			->will( $this->returnValue( UUID::create( md5( 'same collection id' ) ) ) );
+		$revision->expects( $this->any() )
+			->method( 'getRevisionType' )
+			->will( $this->returnValue( $revType ) );
 		if ( $revType === 'PostRevision' ) {
 			$revision->expects( $this->any() )
 				->method( 'getPostId' )
