@@ -162,6 +162,65 @@ class RevisionFormatter {
 				);
 				break;
 
+			case 'header-revision':
+				if ( !$revId ) {
+					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render revision link' );
+					break;
+				}
+
+				$links['header-revision'] = array(
+					$this->urlGenerator->buildUrl(
+						$title,
+						'view',
+						array(
+							'workflow' => $workflowId->getAlphadecimal(),
+							'header_revId' => $revId->getAlphadecimal(),
+						)
+					),
+					wfMessage( 'flow-link-header-revision' )
+				);
+				break;
+
+			case 'topic-revision':
+				if ( !$revId ) {
+					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render revision link' );
+					break;
+				}
+
+				$links['topic-revision'] = array(
+					$this->urlGenerator->buildUrl(
+						$title,
+						'view',
+						array(
+							'workflow' => $workflowId->getAlphadecimal(),
+							'topic_postId' => $postId->getAlphadecimal(),
+							'topic_revId' => $revId->getAlphadecimal(),
+						)
+					),
+					wfMessage( 'flow-link-topic-revision' )
+				);
+				break;
+
+			case 'post-revision':
+				if ( !$revId ) {
+					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render revision link' );
+					break;
+				}
+
+				$links['post-revision'] = array(
+					$this->urlGenerator->buildUrl(
+						$title,
+						'view',
+						array(
+							'workflow' => $workflowId->getAlphadecimal(),
+							'topic_postId' => $postId->getAlphadecimal(),
+							'topic_revId' => $revId->getAlphadecimal(),
+						)
+					),
+					wfMessage( 'flow-link-post-revision' )
+				);
+				break;
+
 			case 'post-history':
 				$links['post-history'] = array(
 					$this->urlGenerator->buildUrl(
