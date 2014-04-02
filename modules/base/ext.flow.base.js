@@ -77,7 +77,7 @@ mw.flow = {
 		 * @param {string} pageName
 		 * @param {string} workflowId
 		 * @param {object} options API parameters
-		 * @return {Deferred}
+		 * @return {jQuery.Promise}
 		 */
 		'read' : function ( pageName, workflowId, options ) {
 			var api = new mw.Api();
