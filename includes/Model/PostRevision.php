@@ -326,7 +326,9 @@ class PostRevision extends AbstractRevision {
 		} elseif ( $this->rootPost === null ) {
 			$collection = $this->getCollection();
 			$root = $collection->getRoot();
-			return $root->getLastRevision();
+			/** @var CollectionCache $cache */
+			$cache = \Flow\Container::get( 'collection.cache' );
+			return $cache->getLastRevisionFor( $root );
 		}
 		return $this->rootPost;
 	}
