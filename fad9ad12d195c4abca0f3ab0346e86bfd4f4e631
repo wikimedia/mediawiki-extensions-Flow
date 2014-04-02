@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_c8a0bbf3",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-02T17:27:29Z",
+      "side": 1,
+      "message": "I have been trying to turn this into more of a data pipeline\n\nAbstractRevision array -\u003e FormatterRow array -\u003e API result -\u003e HTML\n\nWith all the data loading happening during the construction of the FormatterRows.  Accessing the current and previous revisions should be pre-loaded into the FormatterRow instance.  This method doesn\u0027t currently take a FormatterRow, but perhaps it should?",
+      "revId": "fad9ad12d195c4abca0f3ab0346e86bfd4f4e631",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
