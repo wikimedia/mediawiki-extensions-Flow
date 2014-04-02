@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_e5c72a66",
+        "filename": "container.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-02T16:58:19Z",
+      "side": 1,
+      "message": "the patch prior to this added a new field and populated it with data.  To get the cache reset at the point we want to use the new data i think we should update this(and header) to a new cache key version?",
+      "revId": "4f6be450cccea6abe55cf4e09f8f2bbceee8f9cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
