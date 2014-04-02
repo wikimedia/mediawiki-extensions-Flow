@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_05257e03",
+        "filename": "includes/api/ApiQueryFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-02T17:07:25Z",
+      "side": 1,
+      "message": "not a big deal, but prefer to annotate $blocks as AbstractBlock[]",
+      "revId": "c1f8f623d7b61551f977826d9ec472a123404c43",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
