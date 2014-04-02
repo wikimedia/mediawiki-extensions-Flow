@@ -23,8 +23,9 @@ class ApiQueryFlow extends ApiQueryBase {
 
 		$blocks = $this->loader->createBlocks();
 		$blockOutput = array();
+		/** @var \Flow\Block\AbstractBlock $block */
 		foreach( $blocks as $block ) {
-			$block->init( $params['action'], $this->getUser() );
+			$block->init( 'view', $this->getUser() );
 
 			$blockParams = array();
 			if ( isset( $passedParams[$block->getName()] ) ) {
@@ -55,9 +56,6 @@ class ApiQueryFlow extends ApiQueryBase {
 			'page' => array(
 				ApiBase::PARAM_REQUIRED => true,
 			),
-			'action' => array(
-				ApiBase::PARAM_DFLT => 'view',
-			),
 			'params' => array(
 				ApiBase::PARAM_DFLT => '{}',
 			),
@@ -74,7 +72,6 @@ class ApiQueryFlow extends ApiQueryBase {
 		return array(
 			'workflow' => 'Hex-encoded ID of the workflow to query',
 			'page' => 'Title of the page to query',
-			'action' => 'The view-type action to take',
 			'params' => 'View parameters to pass to each block, indexed by block name',
 		);
 	}
