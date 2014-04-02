@@ -58,7 +58,7 @@ abstract class AbstractFormatter {
 	 *  have the same kind of links available)
 	 * @return string HTML
 	 */
-	protected function formatTimestamp( array $data, $key = 'timeAndDate', $linkKeys = array( 'topic', 'board' ) ) {
+	protected function formatTimestamp( array $data, $key = 'timeAndDate', $linkKeys = array( 'header-revision', 'topic-revision', 'post-revision' ) ) {
 		// Format timestamp: add link
 		$formattedTime = $data['dateFormats'][$key];
 
