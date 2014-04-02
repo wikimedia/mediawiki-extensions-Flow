@@ -186,6 +186,7 @@
     "echo-pref-tooltip-flow-discussion": "This is a short description of the flow-discussion notification category.\n{{Related|Echo-pref-tooltip}}",
     "flow-link-post": "Text used when linking to a post from recentchanges.\n{{Identical|Post}}",
     "flow-link-topic": "Text used when linking to a topic from recentchanges.\n{{Identical|Topic}}",
+    "flow-link-board": "Text used when linking to a board from recentchanges.",
     "flow-link-history": "Text used when linking to history of a post/topic from recentchanges.\n{{Identical|History}}",
     "flow-moderation-reason-placeholder": "Placeholder text for the textbox that holds the reason field on moderation confirmation dialogs.",
     "flow-moderation-title-suppress-post": "Title for the moderation confirmation dialog when a post is being suppressed.\n{{Related|Flow-moderation-title}}",

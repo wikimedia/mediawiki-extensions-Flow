@@ -138,6 +138,13 @@ class RevisionFormatter {
 		$links = array();
 		foreach ( $linkTypes as $type ) {
 			switch( $type ) {
+			case 'board':
+				$links['board'] = array(
+					$this->urlGenerator->buildUrl( $title, 'view' ),
+					wfMessage( 'flow-link-board' )
+				);
+				break;
+
 			case 'topic':
 				$links['topic'] = array(
 					$this->urlGenerator->buildUrl(
