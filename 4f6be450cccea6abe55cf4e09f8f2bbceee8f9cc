@@ -16,6 +16,24 @@
       "revId": "4f6be450cccea6abe55cf4e09f8f2bbceee8f9cc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_d3306c55",
+        "filename": "container.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-02T19:13:05Z",
+      "side": 1,
+      "message": "I was thinking about purging the cache right after running the maintenance script just like what we did for user_wiki last time.  Maybe it\u0027s too expensive to purge all cache?",
+      "parentUuid": "ae0e4726_e5c72a66",
+      "revId": "4f6be450cccea6abe55cf4e09f8f2bbceee8f9cc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
