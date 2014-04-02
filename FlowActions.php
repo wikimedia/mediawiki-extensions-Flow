@@ -37,7 +37,7 @@ $wgFlowActions = array(
 			Header::MODERATED_NONE => '',
 		),
 		'button-method' => 'POST',
-		'links' => array( 'board-history' ),
+		'links' => array( 'board-history', 'workflow' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-header',
 			'i18n-params' => array(
@@ -56,7 +56,7 @@ $wgFlowActions = array(
 			Header::MODERATED_NONE => '',
 		),
 		'button-method' => 'POST',
-		'links' => array( 'board-history', 'diff-header' ),
+		'links' => array( 'board-history', 'diff-header', 'workflow' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-header',
 			'i18n-params' => array(

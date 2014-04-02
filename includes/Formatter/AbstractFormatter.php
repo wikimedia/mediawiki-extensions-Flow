@@ -46,24 +46,28 @@ abstract class AbstractFormatter {
 	 * @see RevisionFormatter::buildActionLinks
 	 * @see RevisionFormatter::getDateFormats
 	 *
-	 * @param array &$data Uses reference to unset used links from $data['links']
-	 *  Expects an array with keys 'dateFormats' and 'links'. The former should
-	 *  be an array having the key $key being tossed in here; the latter an array
-	 *  of links in the [href, msg] format.
+	 * @param array $data Expects an array with keys 'dateFormats' and 'links'.
+	 *  The former should be an array having the key $key being tossed in here;
+	 *  the latter an array of links in the [key => [href, msg]] format, where
+	 *  'key' corresponds with a $linksKeys value
 	 * @param string $key Date format to use - any of the keys in the array
 	 *  returned by RevisionFormatter::getDateFormats
+	 * @param string[] $linkKeys Link key(s) to use as link for the timestamp;
+	 *  the first available key will be used (but accepts an array of multiple
+	 *  keys for when different kinds of data are tossed in, which may not all
+	 *  have the same kind of links available)
 	 * @return string HTML
 	 */
-	protected function formatTimestamp( array &$data, $key = 'timeAndDate' ) {
+	protected function formatTimestamp( array $data, $key = 'timeAndDate', $linkKeys = array( 'topic', 'workflow' ) ) {
 		// Format timestamp: add link
 		$formattedTime = $data['dateFormats'][$key];
 
-		if ( isset( $data['links']['topic'] ) ) {
-			$formattedTime = $this->apiLinkToAnchor( $data['links']['topic'], $formattedTime );
-			// dont re-use link in $linksContent
-			unset( $data['links']['topic'] );
-		} elseif ( $data['links'] ) {
-			$formattedTime = $this->apiLinkToAnchor( end( $data['links'] ), $formattedTime );
+		// Find the first available link to attach to the timestamp
+		foreach ( $linkKeys as $linkKey ) {
+			if ( isset( $data['links'][$linkKey] ) ) {
+				$formattedTime = $this->apiLinkToAnchor( $data['links'][$linkKey], $formattedTime );
+				break;
+			}
 		}
 
 		$class = array( 'mw-changeslist-date' );
