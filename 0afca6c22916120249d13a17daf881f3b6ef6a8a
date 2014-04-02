@@ -16,6 +16,24 @@
       "revId": "0afca6c22916120249d13a17daf881f3b6ef6a8a",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae0e4726_bf713fa9",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-02T13:29:10Z",
+      "side": 1,
+      "message": "For now, I\u0027ve just returned $content.\n\nAs for the type of content: you had somewhat of a solution in the recently abandoned templating refactor, IIRC. I would indeed hold off for now, until the new templating is getting ready.\n\nI doubt Status object would be a great solution there, but we indeed need at least some more consistency about where what data is and isn\u0027t escaped.\n\nWe should not really be escaping anything until it hits templating. But since there\u0027s so many different \"outputs\" (our templating, integrations with other extensions, ...), it might indeed be nice to figure out how to easily identify if content is escaped or not.",
+      "parentUuid": "ae0e4726_9f520569",
+      "revId": "0afca6c22916120249d13a17daf881f3b6ef6a8a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
