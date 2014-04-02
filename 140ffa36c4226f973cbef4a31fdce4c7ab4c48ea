@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae0e4726_5f4c639f",
+        "filename": "i18n/en.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-04-02T14:29:29Z",
+      "side": 1,
+      "message": "Please remove trailing whitespace.",
+      "revId": "140ffa36c4226f973cbef4a31fdce4c7ab4c48ea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
