@@ -334,7 +334,7 @@ class RevisionFormatter {
 				);
 				$links['workflow'] = array(
 					$linkTitle->getFullUrl( $query ),
-					$linkTitle->getPrefixedText() // @todo this isn't wfMessage object
+					wfMessage( 'flow-link-board', $linkTitle->getPrefixedText() )
 				);
 				break;
 

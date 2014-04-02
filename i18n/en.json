@@ -184,6 +184,7 @@
     "echo-pref-tooltip-flow-discussion": "Notify me when actions related to me occur in Flow.",
     "flow-link-post": "post",
     "flow-link-topic": "topic",
+    "flow-link-board": "$1",
     "flow-link-history": "history",
     "flow-moderation-reason-placeholder": "Enter your reason here",
     "flow-moderation-title-suppress-post": "Suppress post?",
