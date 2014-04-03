@@ -139,7 +139,7 @@ class UUID {
 			}
 
 			if ( $binaryValue === null && $hexValue !== null ) {
-				$binaryValue = pack( 'H*', $hexValue );
+				$binaryValue = hex2bin( $hexValue );
 			}
 
 			// uuid's are immutable
