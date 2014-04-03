@@ -82,6 +82,16 @@ class UUID {
 		$this->binaryValue = $binaryValue;
 	}
 
+	/**
+	 * Binary value is all we need to construct a UUID object; saving anything
+	 * more is just wasted storage/bandwidth.
+	 *
+	 * @return array
+	 */
+	public function __sleep() {
+		return array( 'binaryValue' );
+	}
+
 	public function __wakeup() {
 		if ( strlen( $this->binaryValue ) === self::BIN_LEN ) {
 			return;
