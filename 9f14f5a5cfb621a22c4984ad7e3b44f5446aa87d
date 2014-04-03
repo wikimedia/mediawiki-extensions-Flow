@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_d318ab7c",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-03T21:11:15Z",
+      "side": 1,
+      "message": "This method has lost the internal caching, which is to prevent duplicated conversions between binary and alphadecimal.\n\nWhat if instead of all the \n\n    new static( $input, static::INPUT_*)\n\nyou set a \n\n    $type \u003d static::INPUT_*;\n\nThen later you can do\n\n    $key \u003d \"$type-$input\";\n    $uuid \u003d self::$cache-\u003eget( $key );\n    if ( $uuid \u003d\u003d\u003d null ) {\n         $uuid \u003d new static( $input, $type );\n        $self:$cache-\u003eset( $key, $uuid );\n    }\n    return $uuid;\n\nperforming a conversion should also populate the cache.  The main worry here is there are parts of the code that create and throw away uuid\u0027s in short order, that uuid will end up being recreated later and we shouldn\u0027t re-do the conversion.",
+      "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_531c9b6a",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-03T21:11:15Z",
+      "side": 1,
+      "message": "should throw an exception or something at the end here so we maintain the @return string guarantee (as is it could, in theory, return null).",
+      "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_133623e5",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-03T21:11:15Z",
+      "side": 1,
+      "message": "not sure it really matters, but hex value\u0027s are only used for BC reasons.alphadecimal could come first",
+      "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_b3152f43",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-03T21:11:15Z",
+      "side": 1,
+      "message": "idem, throw exception",
+      "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_f33287ee",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-03T21:11:15Z",
+      "side": 1,
+      "message": "idem, binary before hex",
+      "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_33211f9b",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-03T21:11:15Z",
+      "side": 1,
+      "message": "idem, throw exception",
+      "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
