@@ -135,7 +135,7 @@ abstract class AbstractCollection {
 			);
 
 			if ( !$revisions ) {
-				throw new InvalidDataException( 'Revisions for ' . $this->uuid . ' could not be found', 'invalid-revision-id' );
+				throw new InvalidDataException( 'Revisions for ' . $this->uuid->getAlphadecimal() . ' could not be found', 'invalid-revision-id' );
 			}
 
 			foreach ( $revisions as $revision ) {
