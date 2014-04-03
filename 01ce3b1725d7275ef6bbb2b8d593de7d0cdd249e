@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_401b9f82",
+        "filename": "includes/Data/RootPostLoader.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-03T20:54:01Z",
+      "side": 1,
+      "message": "This wont work, you actually need\n\n    ksort( $children[$postId] );\n\nBut above we have\n\n    $children[$post-\u003egetReplyToId()-\u003egetAlphadecimal()][] \u003d $post;\n\nSo the second dimension of $children has a plain incrementing numerical index, It would need to change to\n\n    $children[$post-\u003egetReplyToId()-\u003egetAlphadecimal()][$post-\u003egetPostId()-\u003egetAlphadecimal()] \u003d $post;",
+      "revId": "01ce3b1725d7275ef6bbb2b8d593de7d0cdd249e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
