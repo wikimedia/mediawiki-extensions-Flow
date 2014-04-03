@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_d3bf8ba6",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-03T22:17:18Z",
+      "side": 1,
+      "message": "The idea behind this patch is that there should be almost no conversions anymore. The only place where binary ids are used is DB. So only when writing new data to cache should a conversion to binary (from hex) be done, and when read from DB will we convert from binary to alphanumeric.\n\nIf we serialize to alphanumeric, all data in cache will be numeric. That\u0027s how we use it throughout our code too. So a regular page request would (in theory, unless I missed something) read a UUID from cache in alphanumeric format, be used in the code in alphanumeric format, and never need conversion.\n\nSince pretty much the only conversions is when writing to/reading from DB, that conversion should not be done more than once per id per request, so the caching should not be needed.",
+      "parentUuid": "8e23439c_d318ab7c",
+      "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_531c9b6a",
         "filename": "includes/Model/UUID.php",
         "patchSetId": 2
@@ -47,6 +65,24 @@
       "writtenOn": "2014-04-03T21:11:15Z",
       "side": 1,
       "message": "not sure it really matters, but hex value\u0027s are only used for BC reasons.alphadecimal could come first",
+      "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_b3bc0fb3",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-03T22:17:18Z",
+      "side": 1,
+      "message": "getHex is still called from the method to get timestamp from UUID. It\u0027s checked before alphanumeric, because it\u0027s less expensive to convert (but indeed, used much less frequently, so I\u0027d be fine with swapping that)",
+      "parentUuid": "8e23439c_133623e5",
       "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
