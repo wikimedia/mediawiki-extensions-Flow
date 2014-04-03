@@ -139,7 +139,7 @@ class RootPostLoader {
 		// populate array of children
 		foreach ( $posts as $post ) {
 			if ( $post->getReplyToId() ) {
-				$children[$post->getReplyToId()->getAlphadecimal()][] = $post;
+				$children[$post->getReplyToId()->getAlphadecimal()][$post->getPostId()->getAlphadecimal()] = $post;
 			}
 		}
 		$extraParents = array_diff( array_keys( $children ), $prettyPostIds );
@@ -154,9 +154,7 @@ class RootPostLoader {
 			// link parents to their children
 			if ( isset( $children[$postId] ) ) {
 				// sort children with oldest items first
-				usort( $children[$postId], function( PostRevision $a, PostRevision $b ) {
-					return $b->compareCreateTime( $a );
-				} );
+				ksort( $children[$postId] );
 				$postChildren = $children[$postId];
 			}
 

@@ -521,15 +521,6 @@ class PostRevision extends AbstractRevision {
 	}
 
 	/**
-	 * Returns 1 if $this is newer than $rev, -1 is $rev is newer than
-	 * $this, and 0 if created at same moment.
-	 * TODO: better name.  This is if the POST is newer, not the revision.
-	 */
-	public function compareCreateTime( PostRevision $rev ) {
-		return strcmp( $rev->postId->getNumber(), $this->postId->getNumber() );
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getRevisionType() {
