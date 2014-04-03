@@ -154,9 +154,7 @@ class RootPostLoader {
 			// link parents to their children
 			if ( isset( $children[$postId] ) ) {
 				// sort children with oldest items first
-				usort( $children[$postId], function( PostRevision $a, PostRevision $b ) {
-					return $b->compareCreateTime( $a );
-				} );
+				ksort( $children );
 				$postChildren = $children[$postId];
 			}
 

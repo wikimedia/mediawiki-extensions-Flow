@@ -182,13 +182,6 @@ class UUID {
 	}
 
 	/**
-	 * @return string Numeric, but overflows php integer
-	 */
-	public function getNumber() {
-		return wfBaseConvert( $this->getHex(), 16, 10 );
-	}
-
-	/**
 	 * @return MWTimestamp
 	 * @throws \TimestampException
 	 */
