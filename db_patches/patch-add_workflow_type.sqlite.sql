@@ -8,5 +8,3 @@ UPDATE /*_*/flow_workflow
    SET workflow_type = ( SELECT definition_type
                            FROM /*_*/flow_definition
                           WHERE workflow_definition_id = definition_id );
-
-ALTER TABLE /*_*/flow_workflow DROP workflow_definition_id;
