@@ -6,7 +6,6 @@ use Flow\Data\ObjectManager;
 use Flow\Exception\InvalidInputException;
 use User;
 use Language;
-use MapCacheLRU;
 use MWTimestamp;
 
 /**
@@ -17,17 +16,9 @@ use MWTimestamp;
  */
 class UUID {
 	/**
-	 * UUID::create maintains a cache to avoid expensive conversions between
-	 * binary and alphadecimal. On a batch operation this can become a memory
-	 * leak if not bounded. After hitting this many UUID's prune the cache
-	 * with an LRU algo.
+	 * @var UUID[][][]
 	 */
-	const CACHE_MAX = 1000;
-
-	/**
-	 * @var MapCacheLRU Maps from binary uuid string to UUID object
-	 */
-	protected static $cache;
+	private static $instances;
 
 	/**
 	 * Provided binary UUID
@@ -57,14 +48,24 @@ class UUID {
 	 */
 	protected $timestamp;
 
+	/**
+	 * Acceptable input values for constructor.
+	 * Values are the property names the input data will be saved to.
+	 *
+	 * @var string
+	 */
+	const INPUT_BIN = 'binaryValue',
+		INPUT_HEX = 'hexValue',
+		INPUT_ALNUM = 'alphadecimalValue';
+
 	// UUID length in hex, always padded
 	const HEX_LEN = 22;
 	// UUID length in binary, always padded
 	const BIN_LEN = 11;
 	// UUID length in base36, with padding
-	const ALPHADECIMAL_LEN = 19;
+	const ALNUM_LEN = 19;
 	// unpadded base36 input string
-	const MIN_ALPHADECIMAL_LEN = 16;
+	const MIN_ALNUM_LEN = 16;
 
 	// 126 bit binary length
 	const OLD_BIN_LEN = 16;
@@ -72,36 +73,56 @@ class UUID {
 	const OLD_HEX_LEN = 32;
 
 	/**
-	 * @param string $binaryValue
+	 * Constructs a UUID object based on either the binary, hex or alphanumeric
+	 * representation.
+	 *
+	 * @param string $value UUID value
+	 * @param string $format UUID format (static::INPUT_BIN, static::input_HEX
+	 *  or static::input_ALNUM)
 	 * @throws InvalidInputException
 	 */
-	function __construct( $binaryValue ) {
-		if ( strlen( $binaryValue ) !== self::BIN_LEN ) {
-			throw new InvalidInputException( 'Expected ' . self::BIN_LEN . ' char binary string, got: ' . $binaryValue, 'invalid-input' );
+	protected function __construct( $value, $format ) {
+		if ( !in_array( $format, array( static::INPUT_BIN, static::INPUT_HEX, static::INPUT_ALNUM ) ) ) {
+			throw new InvalidInputException( 'Invalid UUID input format: ' . $format, 'invalid-input' );
 		}
-		$this->binaryValue = $binaryValue;
+
+		// doublecheck validity of inputs, based on pre-determined lengths
+		$len = strlen( $value );
+		if ( $format === static::INPUT_BIN && $len !== self::BIN_LEN ) {
+			throw new InvalidInputException( 'Expected ' . self::BIN_LEN . ' char binary string, got: ' . $value, 'invalid-input' );
+		} elseif ( $format === static::INPUT_HEX && $len !== self::HEX_LEN ) {
+			throw new InvalidInputException( 'Expected ' . self::HEX_LEN . ' char hex string, got: ' . $value, 'invalid-input' );
+		} elseif ( $format === static::INPUT_ALNUM && ( $len < self::MIN_ALNUM_LEN || $len > self::ALNUM_LEN || !ctype_alnum( $value ) ) ) {
+			throw new InvalidInputException( 'Expected ' . self::MIN_ALNUM_LEN . ' to ' . self::ALNUM_LEN . ' char alphanumeric string, got: ' . $value, 'invalid-input' );
+		}
+
+		self::$instances[$format][$value] = $this;
+		$this->{$format} = $value;
 	}
 
 	/**
-	 * Binary value is all we need to construct a UUID object; saving anything
-	 * more is just wasted storage/bandwidth.
+	 * Alphanumeric value is all we need to construct a UUID object; saving
+	 * anything more is just wasted storage/bandwidth.
 	 *
 	 * @return array
 	 */
 	public function __sleep() {
-		return array( 'binaryValue' );
+		// ensure alphadecimal is populated
+		$this->getAlphadecimal();
+		return array( 'alphadecimalValue' );
 	}
 
 	public function __wakeup() {
-		if ( strlen( $this->binaryValue ) === self::BIN_LEN ) {
-			return;
+		if ( $this->binaryValue ) {
+			// some B/C code
+			$this->binaryValue = substr( $this->binaryValue, 0, self::BIN_LEN );
 		}
-		$this->binaryValue = substr( $this->binaryValue, 0, self::BIN_LEN );
-		$this->hexValue = null;
-		$this->alphadecimalValue = null;
 	}
 
 	/**
+	 * Returns a UUID objects based on given input. Will automatically try to
+	 * determine the input format of the given $input or fail with an exception.
+	 *
 	 * @param mixed $input
 	 * @return UUID|null
 	 * @throws InvalidInputException
@@ -109,54 +130,44 @@ class UUID {
 	static public function create( $input = false ) {
 		// Most calls to UUID::create are binary strings, check string first
 		if ( is_string( $input ) || is_int( $input) || $input === false ) {
-			$binaryValue = null;
-			$hexValue = null;
-			$alphadecimalValue = null;
-
 			if ( $input === false ) {
 				// new uuid in base 16 and pad to HEX_LEN with 0's
 				$hexValue = str_pad( \UIDGenerator::newTimestampedUID88( 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
+				return new static( $hexValue, static::INPUT_HEX );
 			} else {
 				$len = strlen( $input );
 				if ( $len === self::BIN_LEN ) {
-					$binaryValue = $input;
-				} elseif ( $len >= self::MIN_ALPHADECIMAL_LEN && $len <= self::ALPHADECIMAL_LEN && ctype_alnum( $input ) ) {
-					$alphadecimalValue = $input;
-					// convert base 36 to base 16 and pad to HEX_LEN with 0's
-					$hexValue = wfBaseConvert( $input, 36, 16, self::HEX_LEN );
+					$value = $input;
+					$type = static::INPUT_BIN;
+				} elseif ( $len >= self::MIN_ALNUM_LEN && $len <= self::ALNUM_LEN && ctype_alnum( $input ) ) {
+					$value = $input;
+					$type = static::INPUT_ALNUM;
 				} elseif ( $len === self::HEX_LEN && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
-					$hexValue = $input;
+					$value = $input;
+					$type = static::INPUT_HEX;
 				} elseif ( $len === self::OLD_BIN_LEN ) {
-					$binaryValue = substr( $input, 0, self::BIN_LEN );
+					$value = substr( $input, 0, self::BIN_LEN );
+					$type = static::INPUT_BIN;
 				} elseif ( $len === self::OLD_HEX_LEN ) {
-					$hexValue = substr( $input, 0, self::HEX_LEN );
+					$value = substr( $input, 0, self::HEX_LEN );
+					$type = static::INPUT_HEX;
 				} elseif ( is_numeric( $input ) ) {
 					// convert base 10 to base 16 and pad to HEX_LEN with 0's
-					$hexValue = wfBaseConvert( $input, 10, 16, self::HEX_LEN );
+					$value = wfBaseConvert( $input, 10, 16, self::HEX_LEN );
+					$type = static::INPUT_HEX;
 				} else {
 					throw new InvalidInputException( 'Unknown input to UUID class', 'invalid-input' );
 				}
-			}
 
-			if ( $binaryValue === null && $hexValue !== null ) {
-				$binaryValue = pack( 'H*', $hexValue );
+				if ( isset( self::$instances[$type][$value] ) ) {
+					return self::$instances[$type][$value];
+				} else {
+					return new static( $value, $type );
+				}
 			}
-
-			// uuid's are immutable
-			if ( self::$cache === null ) {
-				self::$cache = new MapCacheLRU( self::CACHE_MAX );
-			}
-			$uuid = self::$cache->get( $binaryValue );
-			if ( $uuid === null ) {
-				$uuid = new self( $binaryValue );
-				$uuid->hexValue = $hexValue;
-				$uuid->alphadecimalValue = $alphadecimalValue;
-				self::$cache->set( $binaryValue, $uuid );
-			}
-			return $uuid;
 		} else if ( is_object( $input ) ) {
 			if ( $input instanceof UUID ) {
-				return clone $input;
+				return $input;
 			} else {
 				throw new InvalidInputException( 'Unknown input of type ' . get_class( $input ), 'invalid-input' );
 			}
@@ -179,18 +190,50 @@ class UUID {
 	/**
 	 * @return string
 	 */
-	protected function getHex() {
-		if ( $this->hexValue === null ) {
-			$this->hexValue = str_pad( bin2hex( $this->binaryValue ), self::HEX_LEN, '0', STR_PAD_LEFT );
+	public function getBinary() {
+		if ( $this->binaryValue !== null ) {
+			return $this->binaryValue;
+		} elseif ( $this->hexValue !== null ) {
+			$this->binaryValue = static::hex2bin( $this->hexValue );
+		} elseif ( $this->alphadecimalValue !== null ) {
+			$this->hexValue = static::alnum2hex( $this->alphadecimalValue );
+			self::$instances[self::INPUT_HEX][$this->hexValue] = $this;
+			$this->binaryValue = static::hex2bin( $this->hexValue );
 		}
-		return $this->hexValue;
+		self::$instances[self::INPUT_BIN][$this->binaryValue] = $this;
+		return $this->binaryValue;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getBinary() {
-		return $this->binaryValue;
+	protected function getHex() {
+		if ( $this->hexValue !== null ) {
+			return $this->hexValue;
+		} elseif ( $this->binaryValue !== null ) {
+			$this->hexValue = static::bin2hex( $this->binaryValue );
+		} elseif ( $this->alphadecimalValue !== null ) {
+			$this->hexValue = static::alnum2hex( $this->alphadecimalValue );
+		}
+		self::$instances[self::INPUT_HEX][$this->hexValue] = $this;
+		return $this->hexValue;
+	}
+
+	/**
+	 * @return string base 36 representation
+	 */
+	public function getAlphadecimal() {
+		if ( $this->alphadecimalValue !== null ) {
+			return $this->alphadecimalValue;
+		} elseif ( $this->hexValue !== null ) {
+			$this->alphadecimalValue = static::hex2alnum( $this->hexValue );
+		} elseif ( $this->binaryValue !== null ) {
+			$this->hexValue = static::bin2hex( $this->binaryValue );
+			self::$instances[self::INPUT_HEX][$this->hexValue] = $this;
+			$this->alphadecimalValue = static::hex2alnum( $this->hexValue );
+		}
+		self::$instances[self::INPUT_ALNUM][$this->alphadecimalValue] = $this;
+		return $this->alphadecimalValue;
 	}
 
 	/**
@@ -247,10 +290,25 @@ class UUID {
 	 * @param array
 	 * @return array
 	 */
-	public static function convertUUIDs( $array ) {
+	public static function convertUUIDs( $array, $format = 'binary' ) {
 		foreach( ObjectManager::makeArray( $array ) as $key => $value ) {
 			if ( $value instanceof UUID ) {
-				$array[$key] = $value->getBinary();
+				if ( $format === 'binary' ) {
+					$array[$key] = $value->getBinary();
+				} elseif ( $format === 'alphadecimal' ) {
+					$array[$key] = $value->getAlphadecimal();
+				}
+			} elseif ( is_string( $value ) && substr( $key, -3 ) === '_id' ) {
+				$len = strlen( $value );
+				if ( $format === 'alphadecimal' && $len === self::BIN_LEN ) {
+					$array[$key] = UUID::create( $value )->getAlphadecimal();
+				} elseif ( $format === 'binary' && (
+					( $len >= self::MIN_ALNUM_LEN && $len <= self::ALNUM_LEN )
+					||
+					$len === self::HEX_LEN
+				) ) {
+					$array[$key] = UUID::create( $value )->getBinary();
+				}
 			}
 		}
 
@@ -262,7 +320,7 @@ class UUID {
 	 * @return boolean
 	 */
 	public function equals( UUID $other ) {
-		return $other->getBinary() === $this->getBinary();
+		return $other->getAlphadecimal() === $this->getAlphadecimal();
 	}
 
 	/**
@@ -287,12 +345,42 @@ class UUID {
 	}
 
 	/**
-	 * @return string base 36 representation
+	 * Converts binary UUID to HEX.
+	 *
+	 * @param string $binary Binary string (not a string of 1s & 0s)
+	 * @return string
 	 */
-	public function getAlphadecimal() {
-		if ( $this->alphadecimalValue === null ) {
-			$this->alphadecimalValue = wfBaseConvert( $this->getHex(), 16, 36 );
-		}
-		return $this->alphadecimalValue;
+	public static function bin2hex( $binary ) {
+		return str_pad( bin2hex( $binary ), self::HEX_LEN, '0', STR_PAD_LEFT );
+	}
+
+	/**
+	 * Converts alphanumeric UUID to HEX.
+	 *
+	 * @param string $alnum
+	 * @return string
+	 */
+	public static function alnum2hex( $alnum ) {
+		return str_pad( wfBaseConvert( $alnum, 36, 16 ), self::HEX_LEN, '0', STR_PAD_LEFT );
+	}
+
+	/**
+	 * Convert HEX UUID to binary string.
+	 *
+	 * @param string $hex
+	 * @return string Binary string (not a string of 1s & 0s)
+	 */
+	public static function hex2bin( $hex ) {
+		return pack( 'H*', $hex );
+	}
+
+	/**
+	 * Converts HEX UUID to alphanumeric.
+	 *
+	 * @param string $hex
+	 * @return string
+	 */
+	public static function hex2alnum( $hex ) {
+		return wfBaseConvert( $hex, 16, 36 );
 	}
 }
