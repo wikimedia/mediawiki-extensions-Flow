@@ -21,6 +21,25 @@ Given(/^the talk and contrib links are not visible$/) do
   end
 end
 
+Given(/^I have created a topic and note the content$/) do
+  @random_string2 = Random.new.rand.to_s
+  step "I am on Flow page"
+  step "I create a Special " + @random_string2 + " in Flow new topic"
+  step "I create a Body of Flow Topic into Flow body"
+  step "I click New topic save"
+  step "the Flow page should contain " + @random_string2
+end
+
+Given(/^I have created (.+) topics$/) do |count|
+  step "I am on Flow page"
+  count.to_i.times do
+    step "I create a Title of Flow Topic in Flow new topic"
+    step "I create a Body of Flow Topic into Flow body"
+    step "I click New topic save"
+    step "the Flow page should contain Title of Flow Topic"
+  end
+end
+
 When(/^I click the Post Actions link$/) do
   on(FlowPage).post_actions_link_element.when_present.click
 end
@@ -54,6 +73,14 @@ end
 
 When(/^I see a flow creator element$/) do
   on(FlowPage).author_link_element.should be_visible
+end
+
+When(/^I scroll down to the bottom of the page$/) do
+  on(FlowPage).flow_body_element.send_keys :end
+end
+
+When(/^I refresh the page$/) do
+  on(FlowPage).refresh
 end
 
 Then(/^I do not see an actions link$/) do
@@ -103,4 +130,44 @@ end
 
 Then(/^I should see a Suppress topic button$/) do
   on(FlowPage).topic_suppress_button_element.when_present.should be_visible
+end
+
+Then(/^I can keep scrolling down to see older topics$/) do
+  step "I can keep scrolling down -1 times to see older topics"
+end
+
+Then(/^I can keep scrolling down (.+) times to see older topics$/) do |count|
+  # This step keeps scrolling down until no more old topics can be loaded,
+  # or if desired number of 'next page' has been hit.
+  # It asserts that after each loading, more topics are displayed.
+  on(FlowPage) do |page|
+    topic_count = page.div_elements(class: 'flow-topic-container').size
+    count = count.to_i
+    # infinite scrolling
+    while page.next_page_element.exists? and count != 0
+      step "I scroll down to the bottom of the page"
+      step "older topics are loaded in 10 seconds"
+
+      # there should be more topics loaded...
+      if topic_count >= page.div_elements(class: 'flow-topic-container').size
+        raise "New topics are not loaded"
+      else
+        topic_count = page.div_elements(class: 'flow-topic-container').size
+        count -= 1
+      end
+    end
+  end
+end
+
+Then (/^older topics are loaded in (.+) seconds$/) do |seconds|
+  on(FlowPage).loading_next_page_element.when_present # need sometime for next page to start loading
+  on(FlowPage).loading_next_page_element.when_not_present seconds.to_i
+end
+
+Then(/^I do not see the first topic$/) do
+  on(FlowPage).flow_body.should_not match(@random_string2)
+end
+
+Then(/^I see the first topic$/) do
+  on(FlowPage).flow_body.should match(@random_string2)
 end
