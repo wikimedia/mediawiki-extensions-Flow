@@ -4,6 +4,10 @@
 .collapseButtonIcon(@icon-prefix; @dir: '') {
 	.background-image-svg( ~"@{icon-prefix}_normal@{dir}.svg", ~"@{icon-prefix}_normal@{dir}.png" );
 
+	&:hover {
+		.background-image-svg( ~"@{icon-prefix}_hover@{dir}.svg", ~"@{icon-prefix}_hover@{dir}.png" );
+	}
+
 	&.active {
 		.background-image-svg( ~"@{icon-prefix}_selected@{dir}.svg", ~"@{icon-prefix}_selected@{dir}.png" );
 	}
