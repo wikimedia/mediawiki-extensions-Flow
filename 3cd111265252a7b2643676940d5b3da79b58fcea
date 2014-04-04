@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_2a0cf93c",
+        "filename": "includes/Data/BasicDbStorage.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-04T21:36:28Z",
+      "side": 1,
+      "message": "\u0027in the database\u0027 is the end of a sentence, but here also the begining?  Was this line supposed to be removed?",
+      "revId": "3cd111265252a7b2643676940d5b3da79b58fcea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_6a58b135",
+        "filename": "includes/Data/ObjectStorage.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-04T21:36:28Z",
+      "side": 1,
+      "message": "this comment is still wrong, \n\ne.g. map of columns to values:\n\n    array( \u0027foo\u0027 \u003d\u003e \u0027bar\u0027, \u0027baz\u0027 \u003d\u003e \u0027bang\u0027 )\n\nlist of maps of columns to values(please dont this as the name though :)\n\n    array(\n        array( \u0027foo\u0027 \u003d\u003e \u0027bar\u0027, \u0027baz\u0027 \u003d\u003e \u0027bang\u0027 )\n        array( \u0027batman\u0027 \u003d\u003e \u0027robin\u0027, \u0027apple\u0027 \u003d\u003e \u0027orange\u0027 )\n    )\n\nThe hard part about documenting this is based on the implementation you support both ways.",
+      "revId": "3cd111265252a7b2643676940d5b3da79b58fcea",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
