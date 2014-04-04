@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_aa38099c",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-04T22:50:27Z",
+      "side": 1,
+      "message": "Looks like boardhistory is still using formatLinksAsPipeList",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_ea128100",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-04T22:50:27Z",
+      "side": 1,
+      "message": "This method is redundant.  We could just add \u0027action\u0027 to $query if it\u0027s not \u0027view\u0027 in the various caller",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_aa900947",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-04T22:50:27Z",
+      "side": 1,
+      "message": "I am a little bit worried that this would turn into a big class as we have more other links for new features.   This is essentially a set of actions with different parameters ( workflow, postId etc ), maybe we could break this class into sets of block level generator class with a set of action to parameter mappings?",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_6a59d100",
+        "filename": "includes/View.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-04T22:50:27Z",
+      "side": 1,
+      "message": "$this-\u003etemplating-\u003egetUrlGenerator()?",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
