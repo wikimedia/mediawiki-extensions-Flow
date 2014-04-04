@@ -67,4 +67,6 @@ class FlowPage
   a(:topic_actions_link, xpath: "//div[contains(concat(' ', normalize-space(@class), ' '), ' flow-topic-container ')]//a[text()='Actions']", index: actions_index)
   div(:topic_post, class: "flow-post-content", index: topic_index)
   div(:topic_title, class: "flow-topic-title", index: topic_index)
+  div(:next_page, class: "flow-paging-fwd")
+  div(:loading_next_page, class: "flow-paging-loading")
 end
