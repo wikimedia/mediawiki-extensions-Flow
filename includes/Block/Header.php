@@ -114,7 +114,7 @@ class HeaderBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
-		if ( isset( $this->submitted['prev_revision'] ) ) {
+		if ( isset( $this->submitted['prev_revision'] ) && $this->submitted['prev_revision'] ) {
 			// User submitted a previous revision, but we couldn't find one.  This is likely
 			// an internal error and not a user error, consider better handling
 			// is this even worth checking?
