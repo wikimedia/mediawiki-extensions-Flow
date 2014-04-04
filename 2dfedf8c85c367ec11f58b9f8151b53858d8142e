@@ -16,6 +16,23 @@
       "revId": "2dfedf8c85c367ec11f58b9f8151b53858d8142e",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_22c8a3a9",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-04T18:59:40Z",
+      "side": 1,
+      "message": "this looks to be essentially the same as case \u0027workflow\u0027 but with a different i18n message, not sure how this should be done but duplicating seems odd. It also feels like \u0027workflow\u0027 is mis-named.",
+      "revId": "2dfedf8c85c367ec11f58b9f8151b53858d8142e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
