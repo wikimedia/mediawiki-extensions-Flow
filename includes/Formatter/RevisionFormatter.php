@@ -357,8 +357,20 @@ class RevisionFormatter {
 			if ( !$revision instanceof PostRevision ) {
 				throw new FlowException( 'Expected PostRevision but received ' . get_class( $revision ) );
 			}
-			$content = $this->templating->getContent( $revision->getRootPost(), 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
+			$root = $revision->getRootPost();
+			$content = $this->templating->getContent( $root, 'wikitext' );
+
+			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
+				/*
+				 * If a user is not allowed to view the content, a message will
+				 * be displayed instead (which may contain html - links to the
+				 * user). That HTML should not be escaped.
+				 */
+				return Message::rawParam( $content );
+			}
+
+			// normal msg param, will be escaped
+			return $content;
 
 		case 'bundle-count':
 			return Message::numParam( count( $revision ) );
