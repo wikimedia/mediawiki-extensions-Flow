@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_cafb4510",
+        "filename": "includes/Formatter/BoardHistoryQuery.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-04T21:23:27Z",
+      "side": 1,
+      "message": "i\u0027m unsure about this one, a board that exists should always have history(it exists because at least one write action was performed).  If the board doesn\u0027t have history we would know because $workflow-\u003eisNew() returns true.  I\u0027m thinking that if its a new workflow we just shouldn\u0027t run the query to start with?",
+      "revId": "d1688c008d1f11e2d2cdd70ae40c11543897f38d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
