@@ -35,7 +35,7 @@ class CollectionCache {
 	 * @return AbstractRevision the last revision
 	 */
 	public function getLastRevisionFor( AbstractRevision $revision ) {
-		$key = $revision->getCollectionId()->getBinary();
+		$key = $revision->getCollectionId()->getAlphadecimal();
 		$lastRevision = $this->lastRevCache->get( $key );
 		if ( $lastRevision === null ) {
 			$lastRevision = $revision->getCollection()->getLastRevision();
@@ -49,19 +49,19 @@ class CollectionCache {
 
 	public function onAfterInsert( $object, array $new ) {
 		if ( $object instanceof AbstractRevision ) {
-			$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
+			$this->lastRevCache->clear( $object->getCollectionId()->getAlphadecimal() );
 		}
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new ) {
 		if ( $object instanceof AbstractRevision ) {
-			$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
+			$this->lastRevCache->clear( $object->getCollectionId()->getAlphadecimal() );
 		}
 	}
 
 	public function onAfterRemove( $object, array $old ) {
 		if ( $object instanceof AbstractRevision ) {
-			$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
+			$this->lastRevCache->clear( $object->getCollectionId()->getAlphadecimal() );
 		}
 	}
 }
