@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_510a5325",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-04-04T04:51:29Z",
+      "side": 1,
+      "message": "2014-01-04 is better, I read this as 4th of January 2014.\n\nBetter: reference a commit instead.",
+      "revId": "1b0fdb38ab5cbe13fcbc6585d29f142d5305559d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
