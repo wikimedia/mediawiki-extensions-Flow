@@ -16,6 +16,24 @@
       "revId": "d1688c008d1f11e2d2cdd70ae40c11543897f38d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_caea2573",
+        "filename": "includes/Formatter/BoardHistoryQuery.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-04-04T23:35:13Z",
+      "side": 1,
+      "message": "Well, what would you think of if ( $workflow-\u003eisNew() \u0026\u0026 ! $history ) at the top instead?",
+      "parentUuid": "8e23439c_cafb4510",
+      "revId": "d1688c008d1f11e2d2cdd70ae40c11543897f38d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
