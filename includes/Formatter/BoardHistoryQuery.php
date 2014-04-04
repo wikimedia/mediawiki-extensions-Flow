@@ -17,7 +17,7 @@ class BoardHistoryQuery extends AbstractQuery {
 		);
 
 		if ( !$history ) {
-			throw new InvalidDataException( 'Unable to load topic list history for ' . $workflow->getId()->getAlphadecimal(), 'fail-load-history' );
+			return array();
 		}
 
 		// pre-load our workflow
