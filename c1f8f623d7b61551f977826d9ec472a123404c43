@@ -16,6 +16,24 @@
       "revId": "c1f8f623d7b61551f977826d9ec472a123404c43",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_2ade3971",
+        "filename": "includes/api/ApiQueryFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-04T21:52:10Z",
+      "side": 1,
+      "message": "Actually on closer look, this annotation should be autodetected. The right annotation to make is on $this-\u003eloader,\n\n    /**\n     * @var WorkflowLoader\n     */\n    protected $loader;\n\nBest would be to annotate all your instance variables",
+      "parentUuid": "ae0e4726_05257e03",
+      "revId": "c1f8f623d7b61551f977826d9ec472a123404c43",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
