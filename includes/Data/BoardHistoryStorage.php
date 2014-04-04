@@ -2,16 +2,10 @@
 
 namespace Flow\Data;
 
-use Flow\DbFactory;
 use Flow\Model\UUID;
 use Flow\Exception\DataModelException;
 
 class BoardHistoryStorage extends DbStorage {
-
-	/**
-	 * @var DbFactory
-	 */
-	protected $dbFactory;
 
 	function find( array $attributes, array $options = array() ) {
 		$multi = $this->findMulti( $attributes, $options );
