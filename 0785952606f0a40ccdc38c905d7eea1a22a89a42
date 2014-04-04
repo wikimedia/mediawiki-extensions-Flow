@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_8790a947",
+        "filename": "tests/browser/features/paging.feature",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-04-04T15:50:07Z",
+      "side": 1,
+      "message": "This part is very broad and isn\u0027t neatly divided into smaller parts, as it\u0027s not possible to have loops here.\n\nHowever if only loading once is sufficient, then this part can be further breakdown to be more detailed, like proposed in https://bugzilla.wikimedia.org/show_bug.cgi?id\u003d61340",
+      "revId": "0785952606f0a40ccdc38c905d7eea1a22a89a42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
