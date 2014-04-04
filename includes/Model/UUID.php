@@ -248,7 +248,8 @@ class UUID {
 	 * @return array
 	 */
 	public static function convertUUIDs( $array ) {
-		foreach( ObjectManager::makeArray( $array ) as $key => $value ) {
+		$array = ObjectManager::makeArray( $array );
+		foreach( $array as $key => $value ) {
 			if ( $value instanceof UUID ) {
 				$array[$key] = $value->getBinary();
 			}
