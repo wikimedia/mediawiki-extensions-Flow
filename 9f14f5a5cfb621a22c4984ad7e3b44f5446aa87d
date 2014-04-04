@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_62afbb92",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-04T19:18:46Z",
+      "side": 1,
+      "message": "I suppose my main worry is places like FeatureIndex::cacheKey which has the line\n\n    $attributes[$key] \u003d UUID::create( $attr )-\u003egetAlphadecimal();\n\nThere might be other cases, but this particular one has shown up in profiling a few times.  The caching layer returns database rows which contain the binary uuid representation.  When generating cache keys (say from a TopKIndex returning a list of binary uuids to be re-queried in the UniqueIndex) it does the binary -\u003e alphadecimal conversion, and then we will likely do the same conversion in the output layer.\n\nI\u0027ll re-profile this new code and see how its doing, but my gut feeling is it is still necessary.  The other answer might be do adjust the caching layer to store UUID objects, or the alphadecimal representation.",
+      "parentUuid": "8e23439c_d3bf8ba6",
+      "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_531c9b6a",
         "filename": "includes/Model/UUID.php",
         "patchSetId": 2
