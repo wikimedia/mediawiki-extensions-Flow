@@ -44,6 +44,11 @@ class BoardHistoryBlock extends AbstractBlock {
 		$output->setHtmlTitle( $title );
 		$output->setPageTitle( $title );
 
+		if ( $this->workflow->isNew() ) {
+			$output->addWikiMsg( 'flow-board-history-empty' );
+			return;
+		}
+
 		// @todo To turn this into a reasonable json api we need the query
 		// results to be more directly serializable.
 		$lines = array();
@@ -64,6 +69,16 @@ class BoardHistoryBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
+		if ( $this->workflow->isNew() ) {
+			return array(
+				'_element' => 'board-history',
+				0 => array(
+					'type' => 'board-history',
+					'empty' => '',
+				),
+			);
+		}
+
 		$history = $this->loadBoardHistory();
 		$formatter = Container::get( 'formatter.revision' );
 		$ctx = \RequestContext::getMain();

@@ -142,6 +142,7 @@
     "flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|suppressed}} the [$4 topic] \"$6\" (<em>$5</em>).",
     "flow-rev-message-restored-topic": "$1 {{GENDER:$2|restored}} the [$4 topic] \"$6\" (<em>$5</em>).",
     "flow-board-history": "\"$1\" history",
+    "flow-board-history-empty" : "This board currently has no history.",
     "flow-topic-history": "\"$1\" topic history",
     "flow-post-history": "\"Comment by {{GENDER:$2|$2}}\" post history",
     "flow-history-last4": "Last 4 hours",
