@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Data\ManagerGroup;
+use Flow\Data\RecentChanges;
 use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Model\UUID;
@@ -30,12 +31,15 @@ class RecentChangesQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param AbstractRevision[]|ResultWrapper $rows
+	 * @param stdClass[] List of recentchange database rows
 	 * @param bool $isWatchlist
 	 */
 	public function loadMetadataBatch( $rows, $isWatchlist = false ) {
 		$needed = array();
 		foreach ( $rows as $row ) {
+			if ( !isset( $row->rc_source ) || $row->rc_source !== RecentChanges::SRC_FLOW ) {
+				continue;
+			}
 			if ( !isset( $row->rc_params ) ) {
 				wfDebugLog( 'Flow', __METHOD__ . ': Bad row without rc_params passed in $rows' );
 				continue;
