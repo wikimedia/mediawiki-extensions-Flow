@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_ca3345bf",
+        "filename": "Flow.alias.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-05T01:09:44Z",
+      "side": 1,
+      "message": "I believe the @author goes with the file comment, rather than the specific arrays.  A nice well-formated example is at\n\n    https://github.com/wikimedia/mediawiki-extensions-CategoryTree/blob/master/CategoryTree.alias.php",
+      "revId": "865382b834c386238d6a597fdbedffec83abc15c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_4a10555b",
+        "filename": "SpecialFlow.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-05T01:09:44Z",
+      "side": 1,
+      "message": "As a virtual form this is max 300px wide, that seems to be causing problems with the display of some error messages (chrome 33 / linux) http://i.imgur.com/1vb0nVu.png\n\nIts a rather edge case, invalid type input, but should still probably display well",
+      "revId": "865382b834c386238d6a597fdbedffec83abc15c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_8d056716",
+        "filename": "SpecialFlow.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-05T01:09:44Z",
+      "side": 1,
+      "message": "If you base this patch on https://gerrit.wikimedia.org/r/#/c/121855/ the rest of this method becomes\n\n    if ( !$rootId ) {\n        return null;\n    }\n    return Container::get( \u0027url_generator\u0027 )-\u003epostLink(\n        null,\n        $rootId,\n        $postId\n    )-\u003egetFullURL()",
+      "revId": "865382b834c386238d6a597fdbedffec83abc15c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_2d33f3f4",
+        "filename": "SpecialFlow.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-05T01:09:44Z",
+      "side": 1,
+      "message": "similar to above\n\n    return Container::get( \u0027url_generator\u0027 )-\u003eworkflowLink( null, UUID::create( $this-\u003euuid ) );\n\nthis will throw a FlowException if the provided uuid is not a valid workflow, similar to UUID::create",
+      "revId": "865382b834c386238d6a597fdbedffec83abc15c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
