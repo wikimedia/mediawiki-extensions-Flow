@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_6d27ab60",
+        "filename": "includes/api/ApiFlowEditHeader.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-04-05T06:36:40Z",
+      "side": 0,
+      "message": "Just set \u0027prev_revision\u0027 \u003d\u003e null, rather than an empty array.",
+      "revId": "b76e00e14a7e20bedacee48906f90406c97854d4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
