@@ -54,7 +54,7 @@ class ObjectManager extends ObjectLocator {
 		if ( !$stored ) {
 			throw new DataModelException( 'failed insert', 'process-data' );
 		}
-		// propogate auto-id's and such back into $object
+		// propagate auto-id's and such back into $object
 		$this->mapper->fromStorageRow( $stored, $object );
 		foreach ( $this->lifecycleHandlers as $handler ) {
 			$handler->onAfterInsert( $object, $stored );
@@ -70,7 +70,7 @@ class ObjectManager extends ObjectLocator {
 			return;
 		}
 		foreach ( $new as $k => $x ) {
-			if ( $x !== null && !is_scalar( $x ) ) {
+			if ( $x !== null && !is_scalar( $x ) && !$x instanceof UUID ) {
 				throw new DataModelException( "Expected mapper to return all scalars, but '$k' is " . gettype( $x ), 'process-data' );
 			}
 		}
@@ -158,13 +158,9 @@ class ObjectManager extends ObjectLocator {
 	public function serializeOffset( $object, array $sortFields ) {
 		$offsetFields = array();
 		$row = $this->mapper->toStorageRow( $object );
+		$row = UUID::convertUUIDsAlphadecimal( $row );
 		foreach( $sortFields as $field ) {
-			$value = $row[$field];
-
-			if ( strlen( $value ) === UUID::BIN_LEN && substr( $field, -3 ) === '_id' ) {
-				$value = UUID::create( $value )->getAlphadecimal();
-			}
-			$offsetFields[] = $value;
+			$offsetFields[] = $row[$field];
 		}
 
 		return implode( '|', $offsetFields );

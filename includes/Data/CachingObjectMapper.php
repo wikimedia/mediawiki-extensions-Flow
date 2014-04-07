@@ -30,6 +30,7 @@ class CachingObjectMapper implements ObjectMapper {
 	public function toStorageRow( $object ) {
 		$row = call_user_func( $this->toStorageRow, $object );
 		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
+		$pk = UUID::convertUUIDsAlphadecimal( $pk );
 		if ( $pk === null ) {
 			// new object may not have pk yet, calling code
 			// should call self::fromStorageRow with $object to load
@@ -48,6 +49,7 @@ class CachingObjectMapper implements ObjectMapper {
 
 	public function fromStorageRow( array $row, $object = null ) {
 		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
+		$pk = UUID::convertUUIDsAlphadecimal( $pk );
 		if ( $pk === null ) {
 			throw new \InvalidArgumentException( 'Storage row has no pk' );
 		} elseif ( !isset( $this->loaded[$pk] ) ) {

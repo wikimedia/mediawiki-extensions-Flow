@@ -3,6 +3,7 @@
 namespace Flow\Data;
 
 use Flow\Exception\DataModelException;
+use Flow\Model\UUID;
 
 /**
  * Removes the feature fields from stored array since its duplicating the cache key values
@@ -18,6 +19,7 @@ class FeatureCompactor implements Compactor {
 	 * the duplicated data.
 	 */
 	public function compactRow( array $row ) {
+		$row = UUID::convertUUIDsAlphadecimal( $row );
 		foreach ( $this->indexed as $key ) {
 			unset( $row[$key] );
 		}

@@ -93,7 +93,7 @@ abstract class FeatureIndex implements Index {
 
 		$offsetKey = $options['offset-key'];
 		if ( $offsetKey instanceof UUID ) {
-			$offsetKey = $offsetKey->getBinary();
+			$offsetKey = $offsetKey->getBinary(); // @todo: alphadecimal, I think?
 		}
 
 		$dir = 'fwd';
@@ -251,7 +251,7 @@ abstract class FeatureIndex implements Index {
 			// These results will be merged into the query results, and as such need binary
 			// uuid's as would be received from storage
 			if ( !isset( $keyToQuery[$key] ) ) {
-				$keyToQuery[$key] = UUID::convertUUIDs( $queries[$i] );
+				$keyToQuery[$key] = UUID::convertUUIDsAlphadecimal( $queries[$i] );
 			}
 		}
 
@@ -367,7 +367,7 @@ abstract class FeatureIndex implements Index {
 			// These results will be merged into the query results, and as such need binary
 			// uuid's as would be received from storage
 			if ( !isset( $keyToQuery[$key] ) ) {
-				$keyToQuery[$key] = UUID::convertUUIDs( $queries[$i] );
+				$keyToQuery[$key] = UUID::convertUUIDsAlphadecimal( $queries[$i] );
 			}
 		}
 

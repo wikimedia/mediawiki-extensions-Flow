@@ -260,14 +260,36 @@ class UUID {
 	}
 
 	/**
-	 * @param array
-	 * @return array
+	 * @deprecated Directly call convertUUIDsBinary instead
 	 */
 	public static function convertUUIDs( $array ) {
+		return static::convertUUIDsBinary( $array );
+	}
+
+	/**
+	 * @param array $array
+	 * @return array
+	 */
+	public static function convertUUIDsBinary( $array ) {
 		$array = ObjectManager::makeArray( $array );
 		foreach( $array as $key => $value ) {
 			if ( $value instanceof UUID ) {
 				$array[$key] = $value->getBinary();
+			}
+		}
+
+		return $array;
+	}
+
+	/**
+	 * @param array $array
+	 * @return array
+	 */
+	public static function convertUUIDsAlphadecimal( $array ) {
+		$array = ObjectManager::makeArray( $array );
+		foreach( $array as $key => $value ) {
+			if ( $value instanceof UUID ) {
+				$array[$key] = $value->getAlphadecimal();
 			}
 		}
 
