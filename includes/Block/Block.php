@@ -104,10 +104,32 @@ abstract class AbstractBlock implements Block {
 		$this->user = $user;
 	}
 
-	public function onSubmit( $action, User $user, array $data  ) {
+	/**
+	 * Returns true of the block can submit the requested action, or false
+	 * otherwise.
+	 *
+	 * @param string $action
+	 * @return bool
+	 */
+	public function canSubmit( $action ) {
+		return in_array( $this->getActionName( $action ), $this->supportedPostActions );
+	}
+
+	/**
+	 * Returns true of the block can render the requested action, or false
+	 * otherwise.
+	 *
+	 * @param string $action
+	 * @return bool
+	 */
+	public function canRender( $action ) {
+		return in_array( $this->getActionName( $action ), $this->supportedGetActions );
+	}
+
+	public function onSubmit( $action, User $user, array $data ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
-		if ( false === array_search( $this->getActionName( $action ), $this->supportedPostActions ) ) {
+		if ( !$this->canSubmit( $action ) ) {
 			return null;
 		}
 
@@ -122,7 +144,7 @@ abstract class AbstractBlock implements Block {
 	public function onRender( $action, Templating $templating, array $options ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
-		if ( !in_array( $this->getActionName( $action ), $this->supportedGetActions ) ) {
+		if ( !$this->canRender( $action ) ) {
 			return false;
 		}
 
