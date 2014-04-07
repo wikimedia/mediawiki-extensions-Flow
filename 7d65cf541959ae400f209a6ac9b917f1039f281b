@@ -34,6 +34,24 @@
       "revId": "7d65cf541959ae400f209a6ac9b917f1039f281b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_10472352",
+        "filename": "includes/api/ApiQueryFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-07T17:54:21Z",
+      "side": 0,
+      "message": "Each block supports multiple get actions.  For example, topic block supports renderPost, renderTopic or renderDiffView.  Having an action in the API would allow us to distinguish these different actions and take further actions.  Secondly, a workflow may load multiple blocks, we depend on the action parameter whether to execute a block, we don\u0027t want to load in the API boardhistory data when only header data is desired, ( this is currently a bug being worked on ).",
+      "parentUuid": "8e23439c_2d19b327",
+      "revId": "7d65cf541959ae400f209a6ac9b917f1039f281b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
