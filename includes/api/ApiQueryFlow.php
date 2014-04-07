@@ -32,12 +32,15 @@ class ApiQueryFlow extends ApiQueryBase {
 			}
 
 			$templating = $this->container['templating'];
-			$thisBlock = $block->renderAPI( $templating, $blockParams ) +
-				array(
-					'block-name' => $block->getName()
-				);
 
-			$blockOutput[] = $thisBlock;
+			if ( $block->canRender( $params['action'] ) ) {
+				$thisBlock = $block->renderAPI( $templating, $blockParams ) +
+					array(
+						'block-name' => $block->getName()
+					);
+
+				$blockOutput[] = $thisBlock;
+			}
 		}
 
 		$result = array(
