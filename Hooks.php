@@ -383,14 +383,14 @@ class FlowHooks {
 	}
 
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
-		global $wgFlowEditorList, $wgFlowDefaultLimit;
+		global $wgFlowEditorList, $wgFlowDefaultLimit, $wgFlowMaxLimit;
 
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
 		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
 		$vars['wgFlowPageSize'] = array(
 			'expanded' => $wgFlowDefaultLimit,
-			'collapsed-full' => $wgFlowDefaultLimit * 2,
-			'collapsed-oneline' => $wgFlowDefaultLimit * 3,
+			'collapsed-full' => min( $wgFlowDefaultLimit * 2, $wgFlowMaxLimit ),
+			'collapsed-oneline' => min( $wgFlowDefaultLimit * 3, $wgFlowMaxLimit ),
 		);
 
 		return true;
