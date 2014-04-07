@@ -77,9 +77,10 @@ mw.flow = {
 		 * @param {string} pageName
 		 * @param {string} workflowId
 		 * @param {object} options API parameters
+		 * @param {string} flowAction
 		 * @return {jQuery.Promise}
 		 */
-		'read' : function ( pageName, workflowId, options ) {
+		'read' : function ( pageName, workflowId, options, flowAction ) {
 			var api = new mw.Api();
 
 			return api.get(
@@ -88,6 +89,7 @@ mw.flow = {
 					'list' : 'flow',
 					'flowpage' : pageName,
 					'flowworkflow' : workflowId,
+					'flowaction' : flowAction,
 					'flowparams' : $.toJSON( options )
 				}
 			);
@@ -100,10 +102,13 @@ mw.flow = {
 		 * @param {object} options API parameters
 		 * @return {jQuery.Deferred}
 		 */
-		'readBlock' : function ( pageName, topicId, blockName, options ) {
+		'readBlock' : function ( pageName, topicId, blockName, options, flowAction ) {
 			var deferredObject = $.Deferred();
+			if ( !flowAction ) {
+				flowAction = 'view';
+			}
 
-			mw.flow.api.read( pageName, topicId, options )
+			mw.flow.api.read( pageName, topicId, options, flowAction )
 				.done( function ( output ) {
 					// Immediate failure modes
 					if (
