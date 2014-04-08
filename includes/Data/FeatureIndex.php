@@ -246,53 +246,73 @@ abstract class FeatureIndex implements Index {
 		// get cache keys for all queries
 		$cacheKeys = $this->getCacheKeys( $queries );
 
-		$results = $keyToQuery = array();
-		foreach ( $cacheKeys as $i => $key ) {
-			// These results will be merged into the query results, and as such need binary
-			// uuid's as would be received from storage
-			if ( !isset( $keyToQuery[$key] ) ) {
-				$keyToQuery[$key] = UUID::convertUUIDs( $queries[$i] );
-			}
-		}
-
 		// retrieve from cache (only query duplicate queries once)
-		$cached = $this->cache->getMulti( array_unique( $cacheKeys ) );
-		$cached = $this->filterResults( $cached, $options );
-		$cached = $this->rowCompactor->expandCacheResult( $cached, $keyToQuery );
+		// $fromCache will be an array containing compacted results as value and
+		// cache keys as key
+		$fromCache = $this->cache->getMulti( array_unique( $cacheKeys ) );
 
-		foreach ( $cached as $key => $result ) {
-			$indexes = array_keys( $cacheKeys, $key );
-			foreach ( $indexes as $i ) {
-				// write to complete results array (where the index of the
-				// result matches the index of the given queries)
-				$results[$i] = $result;
+		// figure out what queries were resolved in cache
+		// $keysFromCache will be an array where values are cache keys and keys
+		// are the same index as their corresponding $queries
+		$keysFromCache = array_intersect( $cacheKeys, array_keys( $fromCache ) );
 
-				// filter out queries that have been resolved from cache
-				unset( $queries[$i] );
-			}
+		// filter out all queries that have been resolved from cache and fetch
+		// them from storage
+		// $fromStorage will be an array containing (expanded) results as value
+		// and indexes matching $query as key
+		$storageQueries = array_diff_key( $queries, $keysFromCache );
+		$fromStorage = array();
+		if ( $storageQueries ) {
+			$fromStorage = $this->backingStoreFindMulti( $storageQueries, $cacheKeys );
 		}
 
-		// whatever hasn't been found in cache - fetch it from storage
-		if ( $queries ) {
-			$remaining = $this->backingStoreFindMulti( $queries, $cacheKeys );
-			$remaining = $this->filterResults( $remaining, $options );
+		$results = $fromStorage;
 
-			// keys are exactly the same as they were in $queries, so we can +
-			// the result arrays without worrying about overwriting stuff that
-			// has the same key
-			$results += $remaining;
+		// $queries may have had duplicates that we've ignored to minimize
+		// cache requests - now re-duplicate values from cache & match the
+		// results against their respective original keys in $queries
+		foreach ( $keysFromCache as $index => $cacheKey ) {
+			$results[$index] = $fromCache[$cacheKey];
 		}
 
-		// now make sure $results are in the same order $queries was (use
-		// $cacheKeys for references, because $queries has been cleaned out)
-		$ordered = array();
-		foreach ( $cacheKeys as $i => $key ) {
-			if ( isset( $results[$i] ) ) {
-				$ordered[$i] = $results[$i];
-			}
+		// now that we have all data, both from cache & backing storage, filter
+		// out all data we don't need
+		$results = $this->filterResults( $results, $options );
+
+		// if we have no data from cache, there's nothing left - quit early
+		if ( !$fromCache ) {
+			return $results;
 		}
 
-		return $ordered;
+		// because we may have combined data from 2 different sources, chances
+		// are the order of the data is no longer in sync with the order
+		// $queries were in - fix that by replacing $queries values with
+		// the corresponding $results value
+		// note that there may be missing results, hence the intersect ;)
+		$order = array_intersect_key( $queries, $results );
+		$results = array_replace( $order, $results );
+
+		foreach ( $keysFromCache as $index => $key ) {
+			// all redundant data has been stripped, now expand all cache values
+			// (we're only doing this now to avoid expanding redundant data)
+			$fromCache[$key] = $results[$index];
+
+			// to expand rows, we'll need the $query info mapped to the cache
+			// key instead of the $query index
+			$keyToQuery[$key] = $queries[$index];
+		}
+
+		// once expanded, these will be merged back in the resultset and as such
+		// need binary UUIDs, as they would also be received from storage
+		$keyToQuery = array_map( 'Flow\\Model\\UUID::convertUUIDs', $keyToQuery );
+		$fromCache = $this->rowCompactor->expandCacheResult( $fromCache, $keyToQuery );
+
+		// replace the cache stubs in $results with the expanded data
+		foreach ( $keysFromCache as $index => $cacheKey ) {
+			$results[$index] = $fromCache[$cacheKey];
+		}
+
+		return $results;
 	}
 
 	/**
