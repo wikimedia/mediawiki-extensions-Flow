@@ -108,7 +108,7 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 			// if last revision is already known in local cache, fetch it
 			$revision = $this->getStorage()->find( $attributes, $options );
 			if ( !$revision ) {
-				throw new InvalidDataException( 'Last revision for ' . $this->uuid . ' could not be found', 'invalid-revision-id' );
+				throw new InvalidDataException( 'Last revision for ' . $this->uuid->getAlphadecimal() . ' could not be found', 'invalid-revision-id' );
 			}
 			$revision = reset( $revision );
 			$this->revisions[$revision->getRevisionId()->getAlphadecimal()] = $revision;

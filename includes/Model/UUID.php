@@ -171,6 +171,8 @@ class UUID {
 	 * @return string
 	 */
 	public function __toString() {
+		wfWarn( __METHOD__ . ': UUID __toString auto-converted to alphaDecimal; please do manually.' );
+
 		return $this->getAlphadecimal();
 	}
 
