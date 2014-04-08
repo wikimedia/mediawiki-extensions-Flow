@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_579c675f",
+        "filename": "includes/Data/BasicDbStorage.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-08T17:59:29Z",
+      "side": 1,
+      "message": "ResutDuplicator, which is the other thing returning these, sets unfound values to null.",
+      "revId": "a2ccfce33ef3aeefd938aefdda2752e72eab90da",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
