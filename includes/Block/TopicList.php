@@ -233,9 +233,8 @@ class TopicListBlock extends AbstractBlock {
 		$limit = $wgFlowDefaultLimit;
 		if ( isset( $options['limit'] ) ) {
 			$requestedLimit = intval( $options['limit'] );
-			if ( $requestedLimit > 0 && $requestedLimit < $wgFlowMaxLimit ) {
-				$limit = $requestedLimit;
-			}
+			$limit = min( $requestedLimit, $wgFlowMaxLimit );
+			$limit = max( 0, $limit );
 		}
 
 		return $limit;
