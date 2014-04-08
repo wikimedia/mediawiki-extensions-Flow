@@ -103,6 +103,8 @@ use Flow\Data\LocalBufferedCache;
 use Flow\Data\BasicObjectMapper;
 use Flow\Data\CachingObjectMapper;
 use Flow\Data\BasicDbStorage;
+use Flow\Data\TopicListStorage;
+use Flow\Data\TopicListLastUpdatedStorage;
 use Flow\Data\PostRevisionStorage;
 use Flow\Data\HeaderRevisionStorage;
 use Flow\Data\UniqueFeatureIndex;
@@ -170,6 +172,7 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 			$c['repository.username'],
 			array( 'workflow_user_id' => 'workflow_user_wiki' )
 		),
+		new Flow\Data\WorkflowTopicListListener()
 		// $c['storage.user_subs.user_index']
 	);
 
@@ -273,6 +276,24 @@ $c['storage.header'] = $c->share( function( $c ) {
 	return new ObjectManager( $c['storage.header.mapper'], $storage, $indexes, $c['storage.header.lifecycle-handlers'] );
 } );
 
+$c['topic_list.last_updated.index'] = $c->share( function( $c ) {
+	$primaryKey = array( 'topic_list_id', 'topic_id' );
+	$cache = $c['memcache.buffered'];
+	return new TopKIndex(
+		$cache, new TopicListLastUpdatedStorage(
+			// factory and table
+			$c['db.factory'], 'flow_topic_list',
+			// pk
+			$primaryKey
+		),
+		'flow_topic_list_last_updated:list', array( 'topic_list_id' ),
+		array(
+			'sort' => 'workflow_last_update_timestamp',
+			'order' => 'desc'
+		)
+	);
+} );
+
 // List of topic workflows and their owning discussion workflow
 // TODO: This could use similar to ShallowCompactor to
 // get the objects directly instead of just returning ids.
@@ -282,7 +303,7 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 	$primaryKey = array( 'topic_list_id', 'topic_id' );
 	$cache = $c['memcache.buffered'];
 	$mapper = CachingObjectMapper::model( 'Flow\\Model\\TopicListEntry', $primaryKey );
-	$storage = new BasicDbStorage(
+	$storage = new TopicListStorage(
 		// factory and table
 		$c['db.factory'], 'flow_topic_list',
 		// pk
@@ -293,6 +314,19 @@ $c['storage.topic_list'] = $c->share( function( $c ) {
 			$cache, $storage,
 			'flow_topic_list:list', array( 'topic_list_id' ),
 			array( 'sort' => 'topic_id' )
+		),
+		new TopKIndex(
+			$cache, new TopicListLastUpdatedStorage(
+				// factory and table
+				$c['db.factory'], 'flow_topic_list',
+				// pk
+				$primaryKey
+			),
+			'flow_topic_list_last_updated:list', array( 'topic_list_id' ),
+			array(
+				'sort' => 'workflow_last_update_timestamp',
+				'order' => 'desc'
+			)
 		),
 		new UniqueFeatureIndex(
 			$cache, $storage,
