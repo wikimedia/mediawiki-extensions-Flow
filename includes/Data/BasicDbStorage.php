@@ -147,16 +147,19 @@ class BasicDbStorage extends DbStorage {
 			return $result;
 		}
 
+		// create temp array with pk value (usually uuid) as key and full db row
+		// as value
 		$temp = new MultiDimArray();
 		foreach ( $res as $val ) {
 			$temp[ObjectManager::splitFromRow( $val, $this->primaryKey )] = $val;
 		}
 
-		$i = 0;
-		foreach ( $queries as $val ) {
+		// build return value by mapping the database rows to the matching array
+		// index in $queries
+		foreach ( $queries as $i => $val ) {
 			$pk = ObjectManager::splitFromRow( $val, $this->primaryKey );
 			if ( isset( $temp[$pk] ) ) {
-				$result[$i++][] = $temp[$pk];
+				$result[$i][] = $temp[$pk];
 			}
 		}
 
