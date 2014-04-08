@@ -50,7 +50,7 @@ class TopicHistoryIndex extends TopKIndex {
 		parent::onAfterRemove( $object, $old );
 	}
 
-	protected function backingStoreFindMulti( array $queries, array $cacheKeys ) {
+	protected function backingStoreFindMulti( array $queries ) {
 		// all queries are for roots( guaranteed by constructor), so anything that falls
 		// through and has to be queried from storage will actually need to be doing a
 		// special condition either joining against flow_tree_node or first collecting the
@@ -82,14 +82,13 @@ class TopicHistoryIndex extends TopKIndex {
 		$options = $this->queryOptions();
 		$res = $this->storage->findMulti( $descendantQueries, $options );
 		if  ( !$res ) {
-			return false;
+			return array();
 		}
 
 		$results = array();
 
 		foreach ( $res as $idx => $rows ) {
 			$results[$idx] = $rows;
-			$this->cache->add( $cacheKeys[$idx], $this->rowCompactor->compactRows( $rows ) );
 			unset( $queries[$idx] );
 		}
 		if ( $queries ) {

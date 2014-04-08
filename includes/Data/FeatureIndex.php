@@ -258,7 +258,12 @@ abstract class FeatureIndex implements Index {
 		$storageQueries = array_diff_key( $queries, $keysFromCache );
 		$fromStorage = array();
 		if ( $storageQueries ) {
-			$fromStorage = $this->backingStoreFindMulti( $storageQueries, $cacheKeys );
+			$fromStorage = $this->backingStoreFindMulti( $storageQueries );
+
+			// store the data we've just retrieved to cache
+			foreach ( $fromStorage as $index => $rows ) {
+				$this->cache->add( $cacheKeys[$index], $this->rowCompactor->compactRows( $rows ) );
+			}
 		}
 
 		$results = $fromStorage;
@@ -430,7 +435,7 @@ abstract class FeatureIndex implements Index {
 		return $idxToKey;
 	}
 
-	protected function backingStoreFindMulti( array $queries, array $cacheKeys ) {
+	protected function backingStoreFindMulti( array $queries ) {
 		// query backing store
 		$options = $this->queryOptions();
 		$stored = $this->storage->findMulti( $queries, $options );
@@ -449,7 +454,6 @@ abstract class FeatureIndex implements Index {
 					}
 				}
 			}
-			$this->cache->add( $cacheKeys[$idx], $this->rowCompactor->compactRows( $rows ) );
 			$results[$idx] = $rows;
 			unset( $queries[$idx] );
 		}
