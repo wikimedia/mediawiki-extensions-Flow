@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_3aa312aa",
+        "filename": "includes/Data/FeatureIndex.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-08T20:05:58Z",
+      "side": 1,
+      "message": "is the intersect here necessary?  array_keys( $fromCache ) can only contain values from $cacheKeys",
+      "revId": "b3773e25715b513a1f04f228c06a5cb6bd729987",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_1abdf6ad",
+        "filename": "includes/Data/FeatureIndex.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-08T20:05:58Z",
+      "side": 1,
+      "message": "might as well do this inside the loop that creates it?",
+      "revId": "b3773e25715b513a1f04f228c06a5cb6bd729987",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
