@@ -10,7 +10,8 @@
             "Stieizc",
             "TianyinLee",
             "Yfdyh000",
-            "Xiaomingyan"
+            "Xiaomingyan",
+            "乌拉跨氪"
         ]
     },
     "flow-desc": "工作流管理系统",
@@ -139,7 +140,7 @@
     "flow-history-week": "上周",
     "flow-history-pages-topic": "现身于[$1 “$2”董事会]",
     "flow-history-pages-post": "出现在[$1 $2]",
-    "flow-topic-participants": "{{PLURAL:$1|$3启动了此主题|{{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}}和$2位其他用户|0=尚无人参与|2={{GENDER:$3|$3}}和{{GENDER:$4|$4}}|3={{GENDER:$3|$3}}、{{GENDER:$4|$4}}和{{GENDER:$5|$5}}}}",
+    "flow-topic-participants": "{{PLURAL:$1|$3发起了此话题|{{GENDER:$3|$3}}、{{GENDER:$4|$4}}、{{GENDER:$5|$5}}和其他$2位用户|0=尚无人参与|2={{GENDER:$3|$3}}和{{GENDER:$4|$4}}|3={{GENDER:$3|$3}}、{{GENDER:$4|$4}}和{{GENDER:$5|$5}}}}",
     "flow-topic-comments": "{{PLURAL:$1|$1个评论|0={{GENDER:$2|第一个}}发表评论！}}",
     "flow-comment-restored": "还原的评论",
     "flow-comment-deleted": "删除的评论",
