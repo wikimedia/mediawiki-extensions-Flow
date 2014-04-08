@@ -24,16 +24,14 @@ class BoardHistoryIndex extends TopKIndex {
 		return parent::findMulti( $queries, $options );
 	}
 
-	public function backingStoreFindMulti( array $queries, array $cacheKeys ) {
+	public function backingStoreFindMulti( array $queries ) {
 		$options = $this->queryOptions();
 		$res = $this->storage->findMulti( $queries, $options );
 		if  ( !$res ) {
-			return false;
+			return array();
 		}
 
-		$res = reset( $res );
-		$this->cache->add( current( $cacheKeys ), $this->rowCompactor->compactRows( $res ) );
-		return array( $res );
+		return $res;
 	}
 
 	/**
