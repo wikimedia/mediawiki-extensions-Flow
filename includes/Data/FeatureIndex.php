@@ -267,7 +267,17 @@ abstract class FeatureIndex implements Index {
 
 			// store the data we've just retrieved to cache
 			foreach ( $fromStorage as $index => $rows ) {
-				$this->cache->add( $cacheKeys[$index], $this->rowCompactor->compactRows( $rows ) );
+				$compacted = $this->rowCompactor->compactRows( $rows );
+				$callback = function( \BagOStuff $cache, $key, $value ) use ( $compacted ) {
+					if ( $value !== false ) {
+						// somehow, the data was already cached in the meantime
+						return false;
+					}
+
+					return $compacted;
+				};
+
+				$this->cache->merge( $cacheKeys[$index], $callback );
 			}
 		}
 
