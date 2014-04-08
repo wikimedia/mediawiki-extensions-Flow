@@ -447,7 +447,7 @@ class NotificationController {
 			$ids = array( $postId );
 			$topic = $extra['topic-workflow'];
 
-			if ( $topic instanceof UUID && $topic->getBinary() != $postId->getBinary() ) {
+			if ( $topic instanceof UUID && !$topic->equals( $postId ) ) {
 				$ids[] = $topic;
 			}
 			$users += self::getCreatorsFromPostIDs( $ids );
