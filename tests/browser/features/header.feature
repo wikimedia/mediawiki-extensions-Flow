@@ -1,4 +1,4 @@
-@test2.wikipedia.org @en.wikipedia.beta.wmflabs.org @ee-prototype.wmflabs.org @login @wip
+@ee-prototype.wmflabs.org @login @wip
 
 Feature: Headers
 
