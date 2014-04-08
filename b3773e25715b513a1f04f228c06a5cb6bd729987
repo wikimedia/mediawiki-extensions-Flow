@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_b0586136",
+        "filename": "includes/Data/FeatureIndex.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-08T20:32:23Z",
+      "side": 1,
+      "message": "$cacheKeys will have all cache keys; $keysFromCache will exclude those that have not been resolved via cache, thus saving a couple of elements to be looped over a couple of times.\n\nYou could argue that the most common case is likely that all keys are found in cache, in which case the intersect is just a waste of cpu, but we need some way to check (see line below) if there are unresolved queries left, and this would probably still qualify as the cheapest solution.",
+      "parentUuid": "8e23439c_3aa312aa",
+      "revId": "b3773e25715b513a1f04f228c06a5cb6bd729987",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_1abdf6ad",
         "filename": "includes/Data/FeatureIndex.php",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2014-04-08T20:05:58Z",
       "side": 1,
       "message": "might as well do this inside the loop that creates it?",
+      "revId": "b3773e25715b513a1f04f228c06a5cb6bd729987",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_f075b993",
+        "filename": "includes/Data/FeatureIndex.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-08T20:32:23Z",
+      "side": 1,
+      "message": "Indeed. I originally tried avoiding that loop and ripped it out, but found myself needing that loop anyway :p",
+      "parentUuid": "8e23439c_1abdf6ad",
       "revId": "b3773e25715b513a1f04f228c06a5cb6bd729987",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
