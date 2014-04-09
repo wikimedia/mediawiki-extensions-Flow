@@ -159,7 +159,7 @@ mw.flow = {
 		},
 
 		'readHeader' : function( pageName, workflowId, options ) {
-			return mw.flow.api.readBlock( pageName, workflowId, 'header', options );
+			return mw.flow.api.readBlock( pageName, workflowId, 'header', options, 'header-view' );
 		},
 
 		generateTopicAction: function( actionName, parameterList, promiseFilterCallback ) {
