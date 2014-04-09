@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_aee11d99",
+        "filename": "FlowActions.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T16:31:26Z",
+      "side": 1,
+      "message": "Just because the default config makes it so that the exact same group of people have permissions to close \u0026 hide, does not mean that people that have close permissions should also be able to hide.\n\nBy that, I mean that I can imagine smaller wikis with less moderation levels, where noone would have permissions to hide (e.g. only use delete \u0026 suppress), yet want to enable people to close topics. If we allow people with flow-close permissions to also hide, that won\u0027t be possible.\n\nI would not even consider closing a topic a \"moderation event\" and would not apply any of the moderation permissions here.",
+      "revId": "bbd321b1b8a3d0ff53a09156c834ab9d0067cdd9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_8ede61dd",
+        "filename": "FlowActions.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T16:31:26Z",
+      "side": 1,
+      "message": "Probably needs \u0027rc_insert\u0027",
+      "revId": "bbd321b1b8a3d0ff53a09156c834ab9d0067cdd9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_2ee50da0",
+        "filename": "FlowActions.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T16:31:26Z",
+      "side": 1,
+      "message": "I don\u0027t think posts can be closed, so we don\u0027t need this?",
+      "revId": "bbd321b1b8a3d0ff53a09156c834ab9d0067cdd9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_0eea5170",
+        "filename": "FlowActions.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T16:31:26Z",
+      "side": 1,
+      "message": "Also see earlier remark.\n\nI would probably not consider \"closing\" a \"moderation event\": people can close a topic, then hide it. At that point, the topic is no longer closed \u0026 people with hide permissions can still see it \u0026 comment again. If the topic is later unhidden, it is still not closed anymore.\n\nPersonally, I think this is unexpected, but perhaps my view is wrong :)",
+      "revId": "bbd321b1b8a3d0ff53a09156c834ab9d0067cdd9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_eed715c3",
+        "filename": "FlowActions.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T16:31:26Z",
+      "side": 1,
+      "message": "Should closed topics not be viewable to everyone anymore? I\u0027d think they\u0027re only meant to stop people from adding comments, not \"hide\" the discussion altogether? (I may be wrong)",
+      "revId": "bbd321b1b8a3d0ff53a09156c834ab9d0067cdd9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_aef8fd46",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T16:31:26Z",
+      "side": 1,
+      "message": "also trim()",
+      "revId": "bbd321b1b8a3d0ff53a09156c834ab9d0067cdd9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
