@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_c2554854",
+        "filename": "FlowActions.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-09T21:09:10Z",
+      "side": 1,
+      "message": "I added them in the history/contribs patch, I will pull them in here, :)",
+      "parentUuid": "8e23439c_8e44214c",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_6e71c5a6",
         "filename": "FlowActions.php",
         "patchSetId": 25
@@ -104,6 +122,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_62c43412",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-09T21:09:10Z",
+      "side": 1,
+      "message": "nextRevision is used in write APIs while renderAPI() is used in read APIs, I don\u0027t think they would run into each other",
+      "parentUuid": "8e23439c_aef59db7",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_0ebed1ce",
         "filename": "includes/Model/Summary.php",
         "patchSetId": 25
@@ -149,6 +185,24 @@
       "writtenOn": "2014-04-09T15:44:37Z",
       "side": 1,
       "message": "I think PARAM_REQUIRED will make it impossible to submit empty summaries (which I think were allowed, to be able to remove/undo a summary)",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_229cfc11",
+        "filename": "includes/api/ApiFlowEditTopicSummary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-09T21:09:10Z",
+      "side": 1,
+      "message": "I thought PARAM_REQUIRED only means the parameter must present in the API, it could still have an empty value?",
+      "parentUuid": "8e23439c_2e874d16",
       "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
