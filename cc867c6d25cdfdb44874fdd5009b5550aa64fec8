@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_8e44214c",
+        "filename": "FlowActions.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T15:44:37Z",
+      "side": 1,
+      "message": "Missing \u0027rc_insert\u0027\n\nIf omitted, it\u0027ll default to false, but I assume we want this stuff in RC?",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_6e71c5a6",
+        "filename": "FlowActions.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T15:44:37Z",
+      "side": 1,
+      "message": "Missing \u0027rc_insert\u0027\n\nIf omitted, it\u0027ll default to false, but I assume we want this stuff in RC?",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_0e437118",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T15:44:37Z",
+      "side": 1,
+      "message": "Use collection instead of manually fetching from storage?",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_2e550dc6",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T15:44:37Z",
+      "side": 1,
+      "message": "Use collection instead of manually fetching from storage?",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_ae16bdf4",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T15:44:37Z",
+      "side": 1,
+      "message": "If the format is not specified, it\u0027s probably because it doesn\u0027t matter to the API caller.\n\nIn that case, we don\u0027t want to waste energy converting \u003cstorage format\u003e to wikitext, so I\u0027d use RevisionObject-\u003egetContentFormat().",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_aef59db7",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T15:44:37Z",
+      "side": 1,
+      "message": "I may be mistaken here.\n\n$this-\u003etopicSummary will be loaded when this class is initialized. It\u0027ll contain the current revision. When an edit is done, that edit will be in $this-\u003enextRevision. Then -\u003erenderAPI() will be called to output the change, which will use $this-\u003etopicSummary, which will render the previous version\u0027s content?",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_0ebed1ce",
+        "filename": "includes/Model/Summary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T15:44:37Z",
+      "side": 1,
+      "message": "Perhaps split into 2 separate files?",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_8ec9c17d",
+        "filename": "includes/Model/Summary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T15:44:37Z",
+      "side": 1,
+      "message": "Use built-in self::userFields( $user )?",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_2e874d16",
+        "filename": "includes/api/ApiFlowEditTopicSummary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-09T15:44:37Z",
+      "side": 1,
+      "message": "I think PARAM_REQUIRED will make it impossible to submit empty summaries (which I think were allowed, to be able to remove/undo a summary)",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
