@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_bce837de",
+        "filename": "FlowActions.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-09T22:34:20Z",
+      "side": 1,
+      "message": "You are right about close \u0026 hide.  The problem is that we don\u0027t want to add another field just for \u0027close\u0027, which would also needs another field to track user_id/user_ip/user_wiki.  \u0027hide\u0027 is actually not a moderation state either, it\u0027s just a status.  My understanding is that we will eventually revamp moderation/status for better support in rev delete, I don\u0027t think it\u0027s a good idea to do all the refactoring in here.\n\nTo avoid this problem before we have multi-status support.  We would only allow users to close a topic if the topic is not hidden/deleted/suppressed and no action is allowed when a topic is closed.",
+      "parentUuid": "8e23439c_0eea5170",
+      "revId": "bbd321b1b8a3d0ff53a09156c834ab9d0067cdd9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_eed715c3",
         "filename": "FlowActions.php",
         "patchSetId": 18
@@ -81,6 +99,24 @@
       "writtenOn": "2014-04-09T16:31:26Z",
       "side": 1,
       "message": "Should closed topics not be viewable to everyone anymore? I\u0027d think they\u0027re only meant to stop people from adding comments, not \"hide\" the discussion altogether? (I may be wrong)",
+      "revId": "bbd321b1b8a3d0ff53a09156c834ab9d0067cdd9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_9df575b8",
+        "filename": "FlowActions.php",
+        "patchSetId": 18
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-09T22:34:20Z",
+      "side": 1,
+      "message": "You are right, I have misunderstood \u0027close\u0027, :)",
+      "parentUuid": "8e23439c_eed715c3",
       "revId": "bbd321b1b8a3d0ff53a09156c834ab9d0067cdd9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
