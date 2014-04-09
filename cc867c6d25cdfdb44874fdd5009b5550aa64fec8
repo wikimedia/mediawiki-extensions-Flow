@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_423b78e8",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-09T21:25:17Z",
+      "side": 1,
+      "message": "Hmm, Collection::getLastRevision() would throw an exception if there is no revision yet.  My other concern is that it would load all previous revisions as well while only the last one is needed in here.",
+      "parentUuid": "8e23439c_0e437118",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_2e550dc6",
         "filename": "includes/Block/TopicSummary.php",
         "patchSetId": 25
