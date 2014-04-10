@@ -171,7 +171,17 @@ abstract class AbstractCollection {
 	 */
 	public function getFirstRevision() {
 		$revisions = $this->getAllRevisions();
-		return array_pop( $revisions );
+
+		$revision = null;
+		foreach ( $revisions as $revision ) {
+			// do nothing, I just want to get to the last $revision
+		}
+
+		if ( $revision === null ) {
+			throw new InvalidDataException( 'No revisions found for ' . $this->uuid->getAlphadecimal(), 'invalid-workflow' );
+		}
+
+		return $revision;
 	}
 
 	/**
@@ -181,7 +191,11 @@ abstract class AbstractCollection {
 	 */
 	public function getLastRevision() {
 		$revisions = $this->getAllRevisions();
-		return array_shift( $revisions );
+		foreach ( $revisions as $revision ) {
+			return $revision;
+		}
+
+		throw new InvalidDataException( 'No revisions found for ' . $this->uuid->getAlphadecimal(), 'invalid-workflow' );
 	}
 
 	/**

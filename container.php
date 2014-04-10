@@ -126,6 +126,9 @@ $c['repository.username'] = $c->share( function( $c ) {
 $c['collection.cache'] = $c->share( function( $c ) {
 	return new Flow\Collection\CollectionCache();
 } );
+$c['collection.batchloader'] = $c->share( function( $c ) {
+	return new Flow\Collection\Batchloader();
+} );
 // Per wiki workflow definitions (types of workflows)
 $c['storage.definition'] = $c->share( function( $c ) {
 	$primaryKey = array( 'definition_id' );

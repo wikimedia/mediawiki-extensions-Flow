@@ -2,7 +2,7 @@
 
 namespace Flow\Collection;
 
-class HeaderCollection extends LocalCacheAbstractCollection {
+class HeaderCollection extends DelayedAbstractCollection {
 	public function getRevisionClass() {
 		return 'Flow\\Model\\Header';
 	}

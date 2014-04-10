@@ -5,7 +5,7 @@ namespace Flow\Collection;
 use Flow\Container;
 use Flow\Model\UUID;
 
-class PostCollection extends LocalCacheAbstractCollection {
+class PostCollection extends DelayedAbstractCollection {
 	/**
 	 * @var UUID
 	 */

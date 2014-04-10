@@ -39,7 +39,7 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 	 * @return AbstractRevision|null null if there is no such revision
 	 */
 	public function getRevision( UUID $uuid ) {
-		// check if fetching last already res
+		// check if the requested revision is already known
 		if ( isset( $this->revisions[$uuid->getAlphadecimal() ] ) ) {
 			return $this->revisions[$uuid->getAlphadecimal() ];
 		}
@@ -143,7 +143,6 @@ abstract class LocalCacheAbstractCollection extends AbstractCollection {
 
 		return $this->getRevision( UUID::create( $ids[$next] ) );
 	}
-
 
 	/**
 	 * Returns true if all revisions have been loaded into $this->revisions.

@@ -95,6 +95,10 @@ $wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
 $wgAutoloadClasses['Flow\Collection\AbstractCollection'] = $dir . 'includes/Collection/AbstractCollection.php';
 $wgAutoloadClasses['Flow\Collection\CollectionCache'] = $dir . 'includes/Collection/CollectionCache.php';
 $wgAutoloadClasses['Flow\Collection\LocalCacheAbstractCollection'] = $dir . 'includes/Collection/LocalCacheAbstractCollection.php';
+$wgAutoloadClasses['Flow\Collection\DelayedAbstractCollection'] = $dir . 'includes/Collection/DelayedAbstractCollection.php';
+$wgAutoloadClasses['Flow\Collection\Batchloader'] = $dir . 'includes/Collection/Batchloader.php';
+$wgAutoloadClasses['Flow\Collection\RevisionStub'] = $dir . 'includes/Collection/RevisionStub.php';
+$wgAutoloadClasses['Flow\Collection\RevisionArrayStub'] = $dir . 'includes/Collection/RevisionArrayStub.php';
 $wgAutoloadClasses['Flow\Collection\PostCollection'] = $dir . 'includes/Collection/PostCollection.php';
 $wgAutoloadClasses['Flow\Collection\HeaderCollection'] = $dir . 'includes/Collection/HeaderCollection.php';
 

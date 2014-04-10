@@ -128,6 +128,9 @@ class RevisionFormatter {
 	 * @throws FlowException
 	 */
 	public function buildActionLinks( Title $title, $action, UUID $workflowId, UUID $revId, UUID $postId = null ) {
+		// @todo: take FormatterRow $row?
+
+
 		$linkTypes = $this->permissions->getActions()->getValue( $action, 'links' );
 		if ( $linkTypes === null ) {
 			throw new FlowException( "No links defined for action: $action" );

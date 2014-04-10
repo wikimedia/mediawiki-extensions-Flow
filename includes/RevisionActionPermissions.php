@@ -139,11 +139,11 @@ class RevisionActionPermissions {
 	 * Returns the permission specified in FlowActions for the given action
 	 * against the given revision's moderation state.
 	 *
-	 * @param AbstractRevision|null $revision
+	 * @param AbstractRevision|RevisionStub|null $revision
 	 * @param string $action
 	 * @return Closure|string
 	 */
-	public function getPermission( AbstractRevision $revision = null, $action ) {
+	public function getPermission( $revision = null, $action ) {
 		// $revision may be null if the revision has yet to be created
 		$moderationState = AbstractRevision::MODERATED_NONE;
 		if ( $revision !== null ) {
