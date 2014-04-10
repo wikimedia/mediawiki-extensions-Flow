@@ -43,7 +43,7 @@ abstract class AbstractFormatter {
 	}
 
 	/**
-	 * @see RevisionFormatter::buildActionLinks
+	 * @see RevisionFormatter::buildLinks
 	 * @see RevisionFormatter::getDateFormats
 	 *
 	 * @param array $data Expects an array with keys 'dateFormats' and 'links'.

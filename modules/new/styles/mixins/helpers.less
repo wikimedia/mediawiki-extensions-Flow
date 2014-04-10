@@ -5,16 +5,22 @@
 	-moz-box-sizing:    @value;
 	-webkit-box-sizing: @value;
 }
-.boxShadow( @value; ... ) {
+.box-shadow( @value ) {
 	-webkit-box-shadow: @value; // Android 2.3+, iOS 4.0.2-4.2, Safari 3-4
 	box-shadow:         @value; // Chrome 6+, Firefox 4+, IE 9+, iOS 5+, Opera 10.50+
 }
-.transition ( @value; ... ) {
+.transition ( @value ) {
 	-webkit-backface-visibility: hidden; // fixes Chrome 1px movement bug
 	-webkit-transition:          @value;
 	-moz-transition:             @value;
 	-ms-transition:              @value;
 	-o-transition:               @value;
 	transition:                  @value;
+}
+
+// Misc to be removed
+#bodyContent {
+	// typography refresh
+	font-size: .875em;
 }
 

@@ -203,8 +203,15 @@ class TopicListBlock extends AbstractBlock {
 
 	public function renderAPI( Templating $templating, array $options ) {
 		if ( $this->workflow->isNew() ) {
-			return array();
+			return array(
+				'type' => $this->getName(),
+				'roots' => array(),
+				'posts' => array(),
+				'revisions' => array(),
+				'links' => array(),
+			);
 		}
+
 		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
 		$page = $this->getPage( $findOptions );
 
@@ -255,6 +262,18 @@ class TopicListBlock extends AbstractBlock {
 			'roots' => $list,
 			'posts' => $posts,
 			'revisions' => $revisions,
+			'links' => array(
+				'search' => array(
+					'url' => '',
+					'title' => '',
+				),
+				'pagination' => array(
+					'load_more' => array(
+						'url' => '',
+						'title' => '',
+					),
+				),
+			),
 		);
 	}
 

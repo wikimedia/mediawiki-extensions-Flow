@@ -719,6 +719,10 @@ $libstr
             return "reset(\$cx['scopes'])";
         }
 
+        if ( $var[0] === 'this' ) {
+            return "\$in";
+        }
+
         // Handle double quoted string
         if (preg_match('/^"(.*)"$/', $var[0], $matched)) {
             return "'{$matched[1]}'";

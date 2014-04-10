@@ -220,24 +220,39 @@ $wgResourceModules += array(
 	),
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
 		'styles' => array(
+			'new/styles/mw-ui-flow.less',
 			'new/styles/layout.less',
-			'new/styles/forms.less',
 			'new/styles/interactive.less',
+			'new/styles/forms.less',
+		),
+	),
+	'ext.flow.new.handlebars' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'new/flow-handlebars.js',
+		),
+		'dependencies' => array(
+			'ext.flow.vendor.handlebars',
+		),
+	),
+	'ext.flow.new.history' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'new/flow-history.js',
 		),
 	),
 	'ext.flow.new' => $flowResourceTemplate + array(
 		'scripts' => array(
+			'new/mw-ui.enhance.js',
 			'new/flow-components.js',
-			'new/flow-handlebars.js',
-			'new/flow-history.js',
-			'new/flow-init-page.js',
+			// flow-component must come before actual components
+			'new/components/flow-board.js',
 			'new/flow.js',
 		),
 		'dependencies' => array(
-			'ext.flow.vendor.handlebars',
+			'ext.flow.new.handlebars',
+			'ext.flow.new.history',
 			'ext.flow.vendor.storer',
+			'ext.flow.vendor.jquery.ba-throttle-debounce',
 			'mediawiki.jqueryMsg',
-			'jquery.tipsy',
 			'jquery.json',
 			'jquery.conditionalScroll',
 		),
@@ -247,6 +262,9 @@ $wgResourceModules += array(
 	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => 'new/vendor/Storer.js',
+	),
+	'ext.flow.vendor.jquery.ba-throttle-debounce' => $flowResourceTemplate + array(
+		'scripts' => 'new/vendor/jquery.ba-throttle-debounce.js',
 	),
 );
 

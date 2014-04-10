@@ -272,7 +272,8 @@ class FlowHooks {
 			$view = new Flow\View(
 				$container['templating'],
 				$container['url_generator'],
-				$output
+				$output,
+				$container['lightncandy']
 			);
 
 			try {
