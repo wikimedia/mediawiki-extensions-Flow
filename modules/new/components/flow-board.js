@@ -77,15 +77,14 @@
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.activateForm = function ( event ) {
-			var $el, $form,
-				href = $( this ).prop( 'href' ),
+			var href = $( this ).prop( 'href' ),
 				hash = href.match( /#.+$/ ),
 				$target = hash ? $( hash ) : false;
 
 			// If this element is leading to another element on the page, find it.
 			if ( $target && $target.length ) {
-				$el = $( hash[0] );
-				$form = $el.closest( 'form' );
+				var $el = $( hash[0] ),
+					$form = $el.closest( 'form' );
 
 				if ( $el.length && $form.length ) {
 					// Is this a hidden form or invisible field? Make it visible.
@@ -136,7 +135,7 @@
 				$form[0].reset();
 
 				// Trigger for flow-actions-disabler
-				$form.find( 'textarea, :text' ).trigger( 'keyup' );
+				$form.find( 'textarea, :text' ).trigger( 'keyup' )
 
 				// Hide the form
 				FlowBoardComponent.UI.Forms.hideForm( $form );
@@ -392,9 +391,9 @@
 				// Find this form's inputs
 				$this.find( 'textarea' ).filter( '[data-flow-expandable]').each( function () {
 					// @todo Should this be done via TemplateEngine? Maybe don't modify elements within a template?
-					var $this = $( this ),
+					var $this = $( this );
 					// If any of these textareas are expandable, compress them at start via pseudo-cloning into inputs.
-						attributes = $this.prop( 'attributes' ),
+					var attributes = $this.prop( 'attributes' ),
 						$input = $( '<input/>' );
 					$.each( attributes, function () {
 						$input.attr( this.name, this.value );

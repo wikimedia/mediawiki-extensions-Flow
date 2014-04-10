@@ -100,7 +100,10 @@ class RevisionFormatter {
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),
 			'isModerated' => $this->templating->getModeratedRevision( $row->revision )->isModerated(),
+			// These are read urls
 			'links' => $this->buildActionLinks( $row ),
+			// These are write urls
+			'actions' => array(),
 			'size' => array(
 				'old' => strlen( $row->previousRevision ? $row->previousRevision->getContentRaw() : '' ),
 				'new' => strlen( $row->revision->getContentRaw() ),
@@ -152,15 +155,49 @@ class RevisionFormatter {
 		return $res;
 	}
 
+	/**
+	 * @param array $user Contains `name`, `wiki`, and `gender` keys
+	 */
+	public function serializeUserLinks( $user ) {
+		$links = array(
+			"contribs" => array(
+				'url' => '',
+				'title' => '',
+			),
+			"talk" => array(
+				'url' => '',
+				'title' => '',
+			),
+		);
+		// is this right permissions? typically this would
+		// be sourced from Linker::userToolLinks, but that
+		// only undertands html strings.
+		if ( $this->permissions->getUser()->isAllowed( 'block' ) ) {
+			// only is the user has blocking rights
+			$links += array(
+				"block" => array(
+					'url' => '',
+					'link' => '',
+				),
+			);
+		}
+
+		return $links;
+	}
+
 	public function serializeUser( $userWiki, $userId, $userIp ) {
 		$res = array(
 			'name' => $this->usernames->get( $userWiki, $userId, $userIp ),
 			'wiki' => $userWiki,
 			'gender' => 'unknown',
+			'links' => array(),
 		);
 		// Only works for the local wiki
 		if ( wfWikiId() === $userWiki ) {
 			$res['gender'] = $this->genderCache->getGenderOf( $res['name'], __METHOD__ );
+		}
+		if ( $res['name'] ) {
+			$res['links'] = $this->serializeUserLinks( $res );
 		}
 
 		return $res;
@@ -471,6 +508,11 @@ class RevisionFormatter {
 	public function buildProperties( UUID $workflowId, AbstractRevision $revision, IContextSource $ctx ) {
 		$changeType = $revision->getChangeType();
 		$params = $this->permissions->getActions()->getValue( $changeType, 'history', 'i18n-params' );
+		if ( !$params ) {
+			// should we have a sigil for i18n with no parameters?
+			wfDebugLog( 'Flow', __METHOD__ . ": No i18n params for changeTyp4 $changeType on " . $revision->getRevisionId()->getAlphadecimal() );
+			return array();
+		}
 
 		$res = array();
 		foreach ( $params as $param ) {
