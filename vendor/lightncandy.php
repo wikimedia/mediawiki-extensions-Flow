@@ -1384,7 +1384,7 @@ $libstr
         if ($context['flags']['jsobj'] || $context['flags']['jstrue']) {
             return $context['ops']['seperator'] . self::getFuncName($context, $raw ? 'raw' : $context['ops']['enc']) . "($v, \$cx){$context['ops']['seperator']}";
         } else {
-            return $raw ? "{$context['ops']['seperator']}$v{$context['ops']['seperator']}" : "{$context['ops']['seperator']}htmlentities($v, ENT_QUOTES, 'UTF-8'){$context['ops']['seperator']}";
+            return $raw ? "{$context['ops']['seperator']}$v{$context['ops']['seperator']}" : "{$context['ops']['seperator']}LCRun2::enc($v, \$cx){$context['ops']['seperator']}";
         }
     }
 
@@ -1565,7 +1565,9 @@ class LCRun2 {
      * @expect 'a&#039;b' when input 'a\'b', Array()
      */
     public static function enc($var, $cx) {
-        return htmlentities(self::raw($var, $cx), ENT_QUOTES, 'UTF-8');
+        return $var instanceof LCSafeString 
+            ?  $var->string 
+            : htmlentities(self::raw($var, $cx), ENT_QUOTES, 'UTF-8');
     }
 
     /**
@@ -1581,7 +1583,9 @@ class LCRun2 {
      * @expect 'a&#x27;b' when input 'a\'b', Array()
      */
     public static function encq($var, $cx) {
-        return preg_replace('/&#039;/', '&#x27;', htmlentities(self::raw($var, $cx), ENT_QUOTES, 'UTF-8'));
+        return $var instanceof LCSafeString
+            ? $var->string
+            : preg_replace('/&#039;/', '&#x27;', htmlentities(self::raw($var, $cx), ENT_QUOTES, 'UTF-8'));
     }
 
     /**
@@ -1713,6 +1717,9 @@ class LCRun2 {
         }
 
         $r = call_user_func_array($cx['helpers'][$ch], $named ? Array($args) : $args);
+        if ( $r instanceof LCSafeString ) {
+            return $r->string;
+        }
         switch ($op) {
             case 'enc': 
                 return htmlentities($r, ENT_QUOTES, 'UTF-8');
@@ -1749,6 +1756,13 @@ class LCRun2 {
         $ret = $cb($cx, $r);
         array_pop($cx['scopes']);
         return $ret;
+    }
+}
+
+class LCSafeString {
+    public $string;
+    public function __construct( $string ) {
+        $this->string = $string;
     }
 }
 ?>
