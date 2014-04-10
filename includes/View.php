@@ -9,14 +9,31 @@ use IContextSource;
 use ContextSource;
 
 class View extends ContextSource {
+	/**
+	 * @var Templating $templating
+	 */
+	protected $templating;
+
+	/**
+	 * @var UrlGenerator $urlGenerator
+	 */
+	protected $urlGenerator;
+
+	/**
+	 * @var TemplateHelper $lightncandy
+	 */
+	protected $lightncandy;
+
 	function __construct(
 		Templating $templating,
 		UrlGenerator $urlGenerator,
-		IContextSource $requestContext
+		IContextSource $requestContext,
+		TemplateHelper $lightncandy
 	) {
 		$this->templating = $templating;
 		$this->urlGenerator = $urlGenerator;
 		$this->setContext( $requestContext );
+		$this->lightncandy = $lightncandy;
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
@@ -62,33 +79,26 @@ class View extends ContextSource {
 			}
 		}
 
-		$workflowId = $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal();
-		$title = $workflow->getArticleTitle();
-		$out->addHTML( Html::openElement( 'div',
-			array(
-				'class' => 'flow-container',
-				'data-workflow-id' => $workflowId,
-				'data-page-title' => $title->getPrefixedText(),
-				'data-workflow-existence' => $workflow->isNew() ? 'new' : 'existing',
-			)
-		) );
+		// @todo This and API should use same code
+		$apiResponse = array(
+			'workflow' => $workflow->getId()->getAlphadecimal(),
+			'blocks' => array(),
+		);
 
 		$parameters = $loader->extractBlockParameters( $request, $blocks );
-
-		$rendered = false;
 		foreach ( $blocks as $block ) {
-			$rendered |= $block->onRender( $action, $this->templating, $parameters[$block->getName()] );
+			if ( $block->canRender( $action ) ) {
+				$apiResponse['blocks'][] = $block->renderAPI( $this->templating, $parameters[$block->getName()] );
+			}
 		}
-		if ( !$rendered ) {
-			throw new InvalidActionException( "Unrecognized get action: " . $action, 'invalid-action' );
-		}
-		$out->addHTML( "</div>" );
-		// Update newtalk and watchlist notification status on view action of any workflow
-		// since the normal page view that resets notification status is not accessiable
-		// anymore due to Flow occupation
-		if ( $action === 'view' ) {
-			$user->clearNotification( $title );
-		}
+
+		// Temporary asset hack
+		$out->addModules( 'ext.flow.new' );
+
+		// Render with lightncandy. The exact template to render
+		// will likely need to vary, but not yet.
+		$template = $this->lightncandy->getTemplate( 'flow_board' );
+		$out->addHTML( $template( $apiResponse ) );
 	}
 
 	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {

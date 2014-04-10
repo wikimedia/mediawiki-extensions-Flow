@@ -25,7 +25,8 @@
 						</div>
 
 						{{#eachPost @root replies}}
-							{{> flow_post this}
+							<!-- eachPost topic -->
+							{{post @root this}}
 						{{/eachPost}}
 
 						{{> flow_reply_form this}}
