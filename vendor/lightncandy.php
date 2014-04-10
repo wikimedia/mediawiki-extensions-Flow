@@ -1718,6 +1718,9 @@ class LCRun2 {
         }
 
         $r = call_user_func_array($cx['helpers'][$ch], $named ? Array($args) : $args);
+        if ( $r instanceof LCSafeString ) {
+            return $r->string;
+        }
         switch ($op) {
             case 'enc': 
                 return htmlentities($r, ENT_QUOTES, 'UTF-8');
@@ -1754,6 +1757,13 @@ class LCRun2 {
         $ret = $cb($cx, $r);
         array_pop($cx['scopes']);
         return $ret;
+    }
+}
+
+class LCSafeString {
+    public $string;
+    public function __construct( $string ) {
+        $this->string = $string;
     }
 }
 ?>
