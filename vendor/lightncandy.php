@@ -715,6 +715,10 @@ $libstr
             return "\$cx['sp_vars']['key']";
         }
 
+        if ( $var[0] === '@root' ) {
+            return "reset(\$cx['scopes'])";
+        }
+
         if ($var[0] === 'this') {
             return "\$in";
         }
