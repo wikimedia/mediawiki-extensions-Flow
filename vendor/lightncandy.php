@@ -54,7 +54,7 @@ class LightnCandy {
     const FLAG_HANDLEBARSJS = 4088; // FLAG_JS + FLAG_HANDLEBARS
 
     // RegExps
-    const PARTIAL_SEARCH = '/\\{\\{>[ \\t]*(.+?)[ \\t]*\\}\\}/s';
+    const PARTIAL_SEARCH = '/\\{\\{>[ \\t]*([^ }]+?)(?: ([^ }]+))?[ \\t]*\\}\\}/s';
     const TOKEN_SEARCH = '/(\s*)(\\{{2,3})(~?)([\\^#\\/!]?)(.+?)(~?)(\\}{2,3})(\s*)/s';
     const VARNAME_SEARCH = '/(\\[[^\\]]+\\]|[^\\[\\]\\.]+)/';
     const EXTENDED_COMMENT_SEARCH = '/{{!--.*?--}}/s';
@@ -296,7 +296,12 @@ $libstr
      */
     public static function expandPartial($template, &$context) {
         $template = preg_replace_callback(self::PARTIAL_SEARCH, function ($matches) use (&$context) {
-            return LightnCandy::expandPartial(LightnCandy::readPartial($matches[1], $context), $context);
+            $expanded = LightnCandy::expandPartial(LightnCandy::readPartial($matches[1], $context), $context);
+            if ( isset( $matches[2] ) && $matches[2] !== 'this' ) {
+                return '{{with ' . $matches[2] . '}}' . $expanded . '{{/with}}';
+            } else {
+                return $expanded;
+            }
         }, $template);
         return $template;
     }
