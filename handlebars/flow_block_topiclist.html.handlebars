@@ -1,0 +1,12 @@
+					{{> flow_board_navigation this}}
+
+					<div class="flow-board">
+						{{> flow_topic_navigation this}}
+						{{> flow_newtopic_form this}}
+
+						<div class="flow-topics">
+							{{#eachPost this roots}}
+								{{> flow_topic this }}
+							{{/eachPost}}
+						</div>
+					</div>
