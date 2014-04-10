@@ -1,0 +1,651 @@
+@import 'settings/colors.less';
+@import 'mixins/helpers.less';
+
+.mw-ui-buttonspacer {
+	padding: .25em .5em;
+}
+
+.mw-ui-field {
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+	min-height: 0;
+}
+
+.mw-ui-input:focus {
+	border-color: @colorGrayDark;
+}
+.mw-ui-field .mw-ui-input {
+	margin: 0;
+}
+
+.mw-ui-field-icon {
+	display: none;
+}
+
+.mw-ui-uls-icon:before {
+	//.glyphicon-globe
+	content: "\e135";
+	opacity: 0.66;
+}
+
+
+/*
+== MediaWiki UI Text Field Validation ==
+
+=== Guidelines ===
+
+
+=== Notes ===
+Does not support IE7 nor IE8.
+ */
+/*.mw-ui-validated */.mw-ui-field:not(.ie8WillIgnoreThis) {
+	.mw-ui-field-icon {
+		.boxSizing( border-box );
+		white-space: nowrap;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 2em;
+		height: 100%;
+		text-align: center;
+		pointer-events: none;
+	}
+
+	.mw-ui-field-icon:before {
+		.boxSizing( border-box );
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		margin-top: -.6em;
+		width: 2em;
+		color: @colorGrayLight;
+		font-size: 1em;
+		line-height: 1em;
+		text-align: center;
+		pointer-events: none;
+		//.glyphicon
+		font-family: 'Glyphicons Halflings';
+		-webkit-font-smoothing: antialiased;
+	}
+
+	.mw-ui-validation-icon {
+		border-radius: 0 2px 2px 0;
+		border: 1px solid @colorGrayDark;
+		border-width: 1px 1px 1px 0;
+	}
+	.mw-ui-validation-icon:before {
+		color: #fff;
+	}
+
+	.mw-ui-input {
+		// Hide the ULS icon because these elements have HTML5 controls
+		&[type='date'], &[type='number'], &[type='search'], &[type='time'] {
+			~ .mw-ui-uls-icon {
+				visibility: hidden;
+			}
+		}
+
+		&:valid {
+			&[required], &[min], &[max], &[pattern],
+			&[type='color'], &[type='date'], &[type='email'], &[type='number'],
+			&[type='url'], &[type='range'], &[type='time'] {
+				border-right-width: 2em;
+
+				~ .mw-ui-validation-icon {
+					display: block;
+				}
+			}
+			~ .mw-ui-validation-icon {
+				background: #00B08A;
+				background: rgba(0, 176, 138, .85);
+			}
+			~ .mw-ui-validation-icon:before {
+				//.glyphicon-ok
+				content: "\e013";
+			}
+
+			// Support up to two icons side by side
+			+ .mw-ui-validation-icon + .mw-ui-uls-icon {
+				right: 2em;
+			}
+			&[type='date'] {
+				+ .mw-ui-validation-icon + .mw-ui-uls-icon {
+					right: 4em;
+				}
+			}
+			&[type='number'], &[type='time'] {
+				+ .mw-ui-validation-icon + .mw-ui-uls-icon {
+					right: 3em;
+				}
+			}
+		}
+
+		&:invalid {
+			&[required], &[min], &[max], &[pattern],
+			&[type='color'], &[type='date'], &[type='email'], &[type='number'],
+			&[type='url'], &[type='range'], &[type='time'] {
+				border-right-width: 2em;
+
+				~ .mw-ui-validation-icon {
+					display: block;
+				}
+			}
+			~ .mw-ui-validation-icon {
+				background: #D31300;
+				background: rgba(211, 19, 0, .85);
+			}
+			~ .mw-ui-validation-icon:before {
+				//.glyphicon-remove
+				content: "\e014";
+			}
+
+			// Support up to two icons side by side
+			+ .mw-ui-validation-icon + .mw-ui-uls-icon {
+				right: 2em;
+			}
+		}
+
+		&:focus {
+			~ .mw-ui-uls-icon {
+				display: block;
+			}
+		}
+	}
+}
+
+
+/*
+== MediaWiki UI Radio and Checkbox ==
+
+=== Guidelines ===
+
+
+=== Notes ===
+Does not support IE7 nor IE8.
+ */
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) {
+	cursor: pointer;
+
+	.mw-ui-radio:before,
+	.mw-ui-checkbox:before {
+		display: inline-block;
+		vertical-align: text-bottom;
+		font-family: 'Glyphicons Halflings';
+		-webkit-font-smoothing: antialiased;
+		color: @colorTextLight;
+		font-size: inherit;
+		line-height: inherit;
+	}
+
+	input[type='radio'],
+	input[type='checkbox'] {
+		display: none;
+	}
+
+	input[type='radio'] {
+		+ .mw-ui-radio:before {
+			//.glyphicon-dashboard
+			content: "\e141";
+		}
+		&:checked + .mw-ui-radio:before {
+			//.glyphicon-record
+			text-shadow: none;
+			content: "\e165";
+		}
+	}
+	input[type='checkbox'] {
+		+ .mw-ui-checkbox:before {
+			//.glyphicon-unchecked
+			content: "\e157";
+		}
+		&:checked + .mw-ui-checkbox:before {
+			//.glyphicon-check
+			content: "\e067";
+		}
+	}
+}
+
+/*
+== MediaWiki UI Tooltips ==
+
+=== Guidelines ===
+Requires the following markup at minimum: <span class="mw-ui-tooltip">CONTENT<span class="mw-ui-tooltip-triangle"></span></span>
+An additional class should be added relating the triangle to the direction of the content: mw-ui-tooltip-DIRECTION, where direction is one of up, down, left, or right.
+Adding to this could be an extra class: mw-ui-tooltip-inverted, which moves the tooltip and triangle to the opposing side. This used when the tooltip would go off the right of the viewport, and instead aligns to the right of the viewport.
+Finally, a context class can be given to assign it a color (eg. mw-ui-progressive).
+
+This is intended to be used with JavaScript, but does not have to be. With JS, you can directly bind the element to given X-Y coords for an element.
+ */
+.mw-ui-tooltip {
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	padding: .5em;
+	background: @colorOffWhite;
+	color: @colorText;
+	white-space: nowrap;
+	border-radius: 3px;
+	text-shadow: 0px 1px 0 rgba(0,0,0,.25);
+	.boxShadow( 0 2px 0 0 @colorGrayLight );;
+
+	.mw-ui-tooltip-triangle {
+		position: absolute;
+		overflow: hidden;
+		pointer-events: none;
+
+		&:after {
+			content: "";
+			position: absolute;
+			z-index: 1;
+			width: 1em;
+			height: 1em;
+			background: @colorOffWhite;
+			transform: rotate(45deg);
+			-webkit-transform: rotate(45deg);
+		}
+	}
+
+	// mw-ui-tooltip helpers to cleanly set triangle location
+	.mwUITooltipLocation( horizontal, @location ) {
+		width: 2em;
+		height: 1em;
+		left: 50%;
+		@{location}: -1em;
+		margin-left: -1em;
+	}
+	.mwUITooltipLocation( vertical, @location ) {
+		width: 1em;
+		height: 2em;
+		@{location}: -1em;
+		top: 50%;
+		margin-top: -1em;
+	}
+
+	// triangle on top
+	&.mw-ui-tooltip-up .mw-ui-tooltip-triangle {
+		.mwUITooltipLocation( horizontal, top );
+
+		&:after {
+			top: .5em;
+			left: .5em;
+		}
+	}
+
+	// triangle on bottom
+	&.mw-ui-tooltip-down .mw-ui-tooltip-triangle {
+		.mwUITooltipLocation( horizontal, bottom );
+
+		&:after {
+			top: -.5em;
+			left: .5em;
+			.boxShadow( 0 -2px 0 2px @colorGrayLight );;
+		}
+	}
+
+	// triangle at left
+	&.mw-ui-tooltip-left .mw-ui-tooltip-triangle {
+		.mwUITooltipLocation( vertical, left );
+
+		&:after {
+			margin-top: -1px;
+			top: .5em;
+			right: -.5em;
+			.boxShadow( 2px 0 0 2px @colorGrayLight );;
+		}
+	}
+
+	// triangle at right
+	&.mw-ui-tooltip-right .mw-ui-tooltip-triangle {
+		.mwUITooltipLocation( vertical, right );
+
+		&:after {
+			margin-top: -1px;
+			top: .5em;
+			left: -.5em;
+			.boxShadow( 0 2px 0 2px @colorGrayLight );;
+		}
+	}
+
+	.mwUITooltipColor( @backgroundColor ) {
+		background: @backgroundColor;
+		.boxShadow( 0 2px 0 0 darken( @backgroundColor, @colorDarkenPercentage ) );;
+		color: @colorWhite;
+
+		.mw-ui-tooltip-triangle:after {
+			background: @backgroundColor;
+		}
+		&.mw-ui-tooltip-down .mw-ui-tooltip-triangle:after {
+			.boxShadow( 0 -2px 0 2px darken( @backgroundColor, @colorDarkenPercentage ) );;
+		}
+		&.mw-ui-tooltip-left .mw-ui-tooltip-triangle:after {
+			.boxShadow( 2px 0 0 2px darken( @backgroundColor, @colorDarkenPercentage ) );;
+		}
+		&.mw-ui-tooltip-right .mw-ui-tooltip-triangle:after {
+			.boxShadow( 0 2px 0 2px darken( @backgroundColor, @colorDarkenPercentage ) );;
+		}
+	}
+
+	// Don't apply these classes on IE6
+	&[class] {
+		&.mw-ui-progressive {
+			.mwUITooltipColor( @colorProgressive );
+		}
+		&.mw-ui-constructive {
+			.mwUITooltipColor( @colorConstructive );
+		}
+		&.mw-ui-destructive {
+			.mwUITooltipColor( @colorDestructive );
+		}
+		&.mw-ui-regressive {
+			.mwUITooltipColor( @colorRegressive );
+		}
+	}
+}
+
+
+/*
+== MediaWiki UI Anchor Context ==
+Allows you to give text a context as to the type of action it is indicating.
+
+=== Guidelines ===
+The anchor context is only applied on A tags. These classes cannot be applied for styling purposes on other elements,
+except when used in combination with .mw-ui-button.
+*/
+// Helpers
+.flowUIAnchor( @mainColor ) {
+	// Make all context classes take the main color in IE6
+	.selectIE6Only& {
+		&:link, &:visited, &:hover, &:focus, &:active {
+			color: @mainColor;
+		}
+	}
+
+	// Hover state
+	&:hover {
+		color: lighten( @mainColor, @colorLightenPercentage );
+	}
+	// Focus and active states
+	&:focus, &:active {
+		color: darken( @mainColor, @colorDarkenPercentage );
+		outline: none; // outline fix
+	}
+
+	// Omit IE6 from all other rules
+	a&[class] {
+		color: @mainColor;
+
+		&.flow-ui-quiet {
+			color: @colorTextLight;
+			text-decoration: none;
+
+			&:hover {
+				color: @mainColor;
+			}
+			&:focus, &:active {
+				color: darken( @mainColor, @colorDarkenPercentage );
+			}
+		}
+	}
+}
+
+// Selectors
+.flow-ui-progressive {
+	.flowUIAnchor( @colorProgressive );
+}
+.flow-ui-regressive {
+	.flowUIAnchor( @colorRegressive );
+}
+.flow-ui-constructive {
+	.flowUIAnchor( @colorConstructive );
+}
+.flow-ui-destructive {
+	.flowUIAnchor( @colorDestructive );
+}
+
+
+/*
+== MediaWiki UI Buttons ==
+
+=== Guidelines ===
+# .mw-ui-button can only be used on A and BUTTON tags.
+# .mw-ui-progressive, .mw-ui-regressive, .mw-ui-constructive, and .mw-ui-destructive can be applied alone on A, but can be applied in tandem with .mw-ui-button.
+## The class order is important: base type (mw-ui-button) must come first, mode (mw-ui-quiet, mw-ui-sleeper) second, visual type (mw-ui-thin), and context (mw-ui-progressive) comes last.
+# A .mw-ui-quiet button may NEVER be the first or only button in a form.
+## It would be left- or right-aligned next to whitespace, and the extra ghost padding in these buttons will make that look awkward.
+## The first button in a form should always be the affirmative action (eg. Submit). This is for accessibility purposes.
+
+=== Notes ===
+# IE6 does not apply any .mw-ui-button styles at all on BUTTON.
+# IE6 only applies the base .mw-ui-CONTEXT color on A, and doesn't care if you are combining it (ie. .mw-ui-destructive.mw-ui-quiet = always red text).
+ */
+// Helpers
+// Individual Button Contexts
+.flowUIButtonContext( @contextualColor ) {
+	@borderColor: mix( @contextualColor, #000, 75% );
+	@raisedColor: mix( @contextualColor, #fff, 92% );
+	@depressedColor: darken( @contextualColor, 8% );
+	@quietDepressedColor: darken( @contextualColor, 25% );
+
+	.flowUIButtonNormalMode() {
+		background: @contextualColor;
+		color: @colorWhite;
+		text-shadow: 0 1px rgba(0, 0, 0, .1);
+
+		&[disabled],
+		&[disabled]:hover,
+		&[disabled]:focus {
+			background: @colorGrayLight;
+			color: @colorWhite;
+			text-shadow: none;
+			.boxShadow( none );
+		}
+
+		&:hover,
+		&:focus {
+			background: @raisedColor;
+			text-shadow: 0 1px rgba(0, 0, 0, .33);
+		}
+
+		&:hover {
+			// Shadow under outer, 3D raising inner, edge shading inner
+			.boxShadow( 0 1px 0 0 rgba(0, 0, 0, .15), inset 0 -4px 0 0 @borderColor, inset 0 -1px 1px 0 rgba(0, 0, 0, .05) );
+		}
+
+		&:focus {
+			// 3D raising inner, edge shading inner
+			.boxShadow( inset 0 -4px 0 0 @borderColor, inset 0 -1px 1px 0 rgba(0, 0, 0, .05), inset 0 0 0 1px @borderColor );
+		}
+
+		&:active {
+			background: @depressedColor;
+			// Slight 3D raising inner, deep edge shading inner
+			.boxShadow( inset 0 -2px 0 0 @depressedColor, inset 0 2px 0 0 rgba(0, 0, 0, .25) );
+		}
+	}
+
+	// Default mode (fully colored)
+	&:not(.flow-ui-quiet) {
+		.flowUIButtonNormalMode();
+	}
+	.lte-ie8 & { // IE7 & IE8 do not support :not() selector
+		.flowUIButtonNormalMode();
+	}
+
+	// Quiet mode (transparent bg, no border; text color on activity)
+	.lte-ie8 &.flow-ui-quiet,
+	&.flow-ui-quiet {
+		background: transparent;
+		color: @colorTextLight;
+
+		&:hover {
+			color: @contextualColor;
+		}
+
+		&:active {
+			color: @depressedColor;
+		}
+
+		&:focus {
+			color: @quietDepressedColor;
+		}
+	}
+
+	// Sleeper mode (transparent bg, no border; bg on activity)
+	&.flow-ui-sleeper {
+		background: transparent;
+		background: ~"@{colorGrayLightest}\9"; //IE7-IE8 hack; they don't have box-shadow
+		color: mix( @contextualColor, @colorTextLight, 20%);
+		text-shadow: none;
+		.boxShadow( inset 0 0 0 1px @colorGrayLighter );
+
+		&:hover,
+		&:focus {
+			color: @colorWhite;
+		}
+	}
+}
+
+// Default button styles
+.flowUIButtonDefault() {
+	background: @colorGrayLightest;
+	color: @colorTextLight;
+
+	.flowUIButtonNormalMode() {
+		&:hover {
+			.boxShadow( 0 1px 0 0 rgba(0, 0, 0, .15), inset 0 -3px 0 0 @colorGrayLighter, inset 0 -1px 1px 0 rgba(0, 0, 0, .05) );
+			color: @colorText;
+		}
+		&:focus {
+			.boxShadow( inset 0 -3px 0 0 @colorGrayLight, inset 0 -1px 1px 0 rgba(0, 0, 0, .05) );
+		}
+	}
+
+	// Default mode (fully colored)
+	&:not(.flow-ui-quiet) {
+		.flowUIButtonNormalMode();
+	}
+	.lte-ie8 & { // IE7 & IE8 do not support :not() selector
+		.flowUIButtonNormalMode();
+	}
+
+	// Quiet mode (transparent bg, no border; text color on activity)
+	.lte-ie8 &.flow-ui-quiet,
+	&.flow-ui-quiet {
+		background: transparent;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: @colorText;
+		}
+	}
+
+	// Sleeper mode (transparent bg, no border; bg on activity)
+	.lte-ie8 &.flow-ui-sleeper,
+	&.flow-ui-sleeper {
+		background: transparent;
+		// Fake border around
+		.boxShadow( inset 0 0 0 1px @colorGrayLighter );
+
+		&:hover {
+			background: @colorOffWhite;
+			// Fake border around, shadow under outer, 3D raising inner, edge shading inner
+			.boxShadow( inset 0 0 0 1px @colorGrayLighter, 0 1px 0 0 rgba(0, 0, 0, .15), inset 0 -4px 0 0 @colorGrayLighter, inset 0 -1px 1px 0 rgba(0, 0, 0, .05) );
+		}
+	}
+}
+
+// Selectors
+.flow-ui-buttonspacer {
+	display: inline-block;
+	padding: .25em .5em;
+	vertical-align: inherit;
+}
+.flow-ui-button {
+	// Allow these only on A and BUTTON, and not in IE6
+	a&[class],
+	button&[class] {
+		// Container layout
+		display: inline-block;
+		padding: .5em 1em;
+		margin: 0;
+		vertical-align: middle;
+
+		// IE6/IE7 hack
+		// http://stackoverflow.com/a/5838575/365238
+		*display: inline;
+		zoom: 1;
+
+		// Typography
+		font-size: 1em;
+		font-weight: bold;
+		line-height: inherit;
+		text-decoration: none;
+
+		// Design
+		border: 0px solid transparent;
+		border-radius: 3px;
+		cursor: pointer;
+
+		// Animation
+		.transition( box-shadow .1s linear, background-color .1s linear, opacity .5s linear );
+
+		// Disabled state (cursor fix)
+		&:disabled {
+			cursor: default;
+		}
+		// Focus/active state (outline fix)
+		&:focus, &:active {
+			outline: none;
+		}
+
+		/*
+		 * Button modes (continued in .flowUIButtonContext())
+		 */
+
+		// Thin mode (reduced visual weight)
+		&.flow-ui-thin {
+			padding: .25em .5em;
+			font-weight: inherit;
+			vertical-align: inherit;
+		}
+
+		/*
+		 * Default button styles
+		 */
+
+		.flowUIButtonDefault();
+
+		/*
+		 * Contextual classes
+		 */
+
+		// Progressive context
+		&.flow-ui-progressive {
+			.flowUIButtonContext( @colorProgressive );
+		}
+
+		// Regressive context
+		&.flow-ui-regressive {
+			.flowUIButtonContext( @colorRegressive );
+		}
+
+		// Constructive context
+		&.flow-ui-constructive {
+			.flowUIButtonContext( @colorConstructive );
+		}
+
+		// Destructive context
+		&.flow-ui-destructive {
+			.flowUIButtonContext( @colorDestructive );
+		}
+	}
+}
+
+// Alternate-hover effect for buttons: when a sibling button is hovered/focused,
+// all other buttons get faded out to reduce focus on them
+.flow-ui-button-althover {
+	opacity: .8;
+}
