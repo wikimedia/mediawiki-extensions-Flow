@@ -7,6 +7,15 @@ $flowResourceTemplate = array(
 );
 
 $wgResourceModules += array(
+	'ext.flow.new' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/flow.css',
+		),
+		'scrits' => array(
+			'new/flow-components.js',
+			'new/flow-init-page.js',
+		),
+	),
 	'ext.flow.base' => $flowResourceTemplate + array(
 		'styles' => array(
 			'base/styles/container.less',
@@ -225,16 +234,28 @@ $wgResourceModules += array(
 			'new/styles/interactive.less',
 		),
 	),
+	'ext.flow.new.handlebars' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'new/flow-handlebars.js',
+		),
+		'dependencies' => array(
+			'ext.flow.vendor.handlebars',
+		),
+	),
+	'ext.flow.new.history' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'new/flow-history.js',
+		),
+	),
 	'ext.flow.new' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'new/flow-components.js',
-			'new/flow-handlebars.js',
-			'new/flow-history.js',
 			'new/flow-init-page.js',
 			'new/flow.js',
 		),
 		'dependencies' => array(
-			'ext.flow.vendor.handlebars',
+			'ext.flow.new.handlebars',
+			'ext.flow.new.history',
 			'ext.flow.vendor.storer',
 			'mediawiki.jqueryMsg',
 			'jquery.tipsy',
