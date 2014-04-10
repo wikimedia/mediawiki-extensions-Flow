@@ -202,6 +202,8 @@ class HeaderBlock extends AbstractBlock {
 			$row = new FormatterRow;
 			$row->workflow = $this->workflow;
 			$row->revision = $this->header;
+			// @todo not always true
+			$row->currentRevision = $this->header;
 
 			$output['revision'] = Container::get( 'formatter.revision' )->formatApi( $row, $ctx );
 		}
