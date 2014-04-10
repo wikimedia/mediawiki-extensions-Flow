@@ -43,7 +43,7 @@ abstract class AbstractFormatter {
 	}
 
 	/**
-	 * @see RevisionFormatter::buildActionLinks
+	 * @see RevisionFormatter::buildLinks
 	 * @see RevisionFormatter::getDateFormats
 	 *
 	 * @param array $data Expects an array with keys 'dateFormats' and 'links'.
@@ -235,15 +235,11 @@ abstract class AbstractFormatter {
 	 * @return string Html valid for user output
 	 */
 	protected function apiLinkToAnchor( array $link, $content = null ) {
-		/** @var Message $msg */
-		list( $href, $msg ) = $link;
-		$text = $msg->text();
-
 		return Html::element(
 			'a',
 			array(
-				'href' => $href,
-				'title' => $text,
+				'href' => $link['url'],
+				'title' => $link['title']->text(),
 			),
 			$content === null ? $text : $content
 		);

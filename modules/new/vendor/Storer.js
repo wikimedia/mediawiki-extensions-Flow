@@ -62,7 +62,10 @@
  *                 {String} [default_path='']   default path for cookies
  * @return {Object} cookieStorage, localStorage, memoryStorage, sessionStorage
  */
-function initStorer(callback, params) {
+
+mediaWiki.flow = mediaWiki.flow || {};
+mediaWiki.flow.vendor = mediaWiki.flow.vendor || {};
+mediaWiki.flow.vendor.initStorer = function (callback, params) {
 	var _TESTID      = '__SG__',
 		top          = window,
 		PREFIX       = (params = params || {}).prefix || '',
@@ -1025,4 +1028,4 @@ function initStorer(callback, params) {
 	_callbackNow && callback && callback(_returnable);
 
 	return _returnable;
-}
+};

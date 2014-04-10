@@ -19,13 +19,13 @@
 	textarea {
 		.boxSizing(border-box);
 		width: 100%;
-		padding: .3em .3em .3em .6em;
+		padding: .8em .3em .8em 1.3em;
 		color: inherit;
 		font-family: inherit;
 		font-size: inherit;
 		line-height: inherit;
 		// Transition for box-shadow @winter
-		.transition(border linear .2s, box-shadow linear .2s);
+		.transition(~"border linear .2s, box-shadow linear .2s");
 
 		// Placeholder text styling must be set individually for each browser @winter
 		&::-webkit-input-placeholder { // webkit

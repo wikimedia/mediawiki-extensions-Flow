@@ -100,7 +100,10 @@ class RevisionFormatter {
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),
 			'isModerated' => $this->templating->getModeratedRevision( $row->revision )->isModerated(),
-			'links' => $this->buildActionLinks( $row ),
+			// These are read urls
+			'links' => $this->buildLinks( $row ),
+			// These are write urls
+			'actions' => $this->buildActions( $row ),
 			'size' => array(
 				'old' => strlen( $row->previousRevision ? $row->previousRevision->getContentRaw() : '' ),
 				'new' => strlen( $row->revision->getContentRaw() ),
@@ -152,15 +155,49 @@ class RevisionFormatter {
 		return $res;
 	}
 
+	/**
+	 * @param array $user Contains `name`, `wiki`, and `gender` keys
+	 */
+	public function serializeUserLinks( $user ) {
+		$links = array(
+			"contribs" => array(
+				'url' => '',
+				'title' => '',
+			),
+			"talk" => array(
+				'url' => '',
+				'title' => '',
+			),
+		);
+		// is this right permissions? typically this would
+		// be sourced from Linker::userToolLinks, but that
+		// only undertands html strings.
+		if ( $this->permissions->getUser()->isAllowed( 'block' ) ) {
+			// only is the user has blocking rights
+			$links += array(
+				"block" => array(
+					'url' => '',
+					'link' => '',
+				),
+			);
+		}
+
+		return $links;
+	}
+
 	public function serializeUser( $userWiki, $userId, $userIp ) {
 		$res = array(
 			'name' => $this->usernames->get( $userWiki, $userId, $userIp ),
 			'wiki' => $userWiki,
 			'gender' => 'unknown',
+			'links' => array(),
 		);
 		// Only works for the local wiki
 		if ( wfWikiId() === $userWiki ) {
 			$res['gender'] = $this->genderCache->getGenderOf( $res['name'], __METHOD__ );
+		}
+		if ( $res['name'] ) {
+			$res['links'] = $this->serializeUserLinks( $res );
 		}
 
 		return $res;
@@ -186,9 +223,161 @@ class RevisionFormatter {
 	/**
 	 * @param FormatterRow $row
 	 * @return array
+	 */
+	public function buildActions( FormatterRow $row ) {
+		$title = $row->workflow->getArticleTitle();
+		$action = $row->revision->getChangeType();
+		$workflowId = $row->workflow->getId();
+		$revId = $row->revision->getRevisionId();
+		$postId = method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId() : null;
+		$actionTypes = $this->permissions->getActions()->getValue( $action, 'actions' );
+		if ( $actionTypes === null ) {
+			throw new FlowException( "No actions defined for action: $action" );
+		}
+
+		// actions primarily vary by revision type...
+		
+		$links = array();
+		foreach ( $actionTypes as $type ) {
+			switch( $type ) {
+			case 'edit-header':
+				$links['edit'] = array(
+					'url' => $this->urlGenerator->buildUrl(
+						$title,
+						'edit',
+						array( 
+							'workflow' => $workflowId->getAlphadecimal() ,
+							'header_revId' => $revId->getAlphadecimal(),
+						)
+					),
+					'title' => wfMessage( 'flow-header-action-edit-header' )
+				);
+
+			case 'edit-post':
+				if ( !$postId ) {
+					// wfDebugLog( 'Flow', __METHOD__ . ' something something' );
+					continue;
+				}
+				$links['edit'] = array(
+					'url' => $this->urlGenerator->buildUrl(
+						$title,
+						'edit',
+						array( 
+							'workflow' => $workflowId->getAlphadecimal() ,
+							'topic_postId' => $postId->getAlphadecimal(),
+							'topic_revId' => $revId->getAlphadecimal(),
+						)
+					),
+					'title' => wfMessage( 'flow-post-action-edit-post' )
+				);
+				break;
+
+			case 'lock':
+				// @todo
+				break;
+
+			case 'hide-topic':
+				$links['hide'] = array(
+						'url' => $this->urlGenerator->buildUrl(
+							$title,
+							'hide-topic',
+							array( 'workflow' => $workflowId->getAlphadecimal() )
+						),
+						'title' => wfMessage( 'flow-topic-action-hide-topic' )
+				);
+				break;
+
+			case 'hide-post':
+				if ( !$postId ) {
+					throw new FlowException( 'hide-post called without $postId' );
+					break;
+				}
+				$links['hide'] = array(
+						'url' => $this->urlGenerator->buildUrl(
+							$title,
+							'hide-post',
+							array( 
+								'workflow' => $workflowId->getAlphadecimal(),
+								'topic_postId' => $postId->getAlphadecimal(),
+							)
+						),
+						'title' => wfMessage( 'flow-post-action-hide-post' )
+				);
+				break;
+
+			case 'delete-topic':
+				$links['delete'] = array(
+						'url' => $this->urlGenerator->buildUrl(
+							$title,
+							'delete-topic',
+							array( 'workflow' => $workflowId->getAlphadecimal() )
+						),
+						'title' => wfMessage( 'flow-topic-action-delete-topic' )
+				);
+				break;
+
+			case 'delete-post':
+				if ( !$postId ) {
+					throw new FlowException( 'delete-post called without $postId' );
+					break;
+				}
+				$links['delete'] = array(
+						'url' => $this->urlGenerator->buildUrl(
+							$title,
+							'delete-post',
+							array( 
+								'workflow' => $workflowId->getAlphadecimal(),
+								'topic_postId' => $postId->getAlphadecimal(),
+							)
+						),
+						'title' => wfMessage( 'flow-post-action-delete-post' )
+				);
+				break;
+
+			case 'suppress-topic':
+				$links['suppress'] = array(
+						'url' => $this->urlGenerator->buildUrl(
+							$title,
+							'suppress-topic',
+							array( 'workflow' => $workflowId->getAlphadecimal() )
+						),
+						'title' => wfMessage( 'flow-topic-action-suppress-topic' )
+				);
+				break;
+
+			case 'suppress-post':
+				if ( !$postId ) {
+					throw new FlowException( 'suppress-post called without $postId' );
+					break;
+				}
+				$links['suppress'] = array(
+						'url' => $this->urlGenerator->buildUrl(
+							$title,
+							'suppress-post',
+							array( 
+								'workflow' => $workflowId->getAlphadecimal(),
+								'topic_postId' => $postId->getAlphadecimal(),
+							)
+						),
+						'title' => wfMessage( 'flow-post-action-suppress-post' )
+				);
+				break;
+
+			default:
+				wfDebugLog( 'Flow', __METHOD__ . ': unkown action link type: ' . $type );
+				break;
+			}
+		}
+		
+		return $links;
+	}
+
+	/**
+	 * @param FormatterRow $row
+	 * @return array
 	 * @throws FlowException
 	 */
-	public function buildActionLinks( FormatterRow $row ) {
+	public function buildLinks( FormatterRow $row ) {
 		$title = $row->workflow->getArticleTitle();
 		$action = $row->revision->getChangeType();
 		$workflowId = $row->workflow->getId();
@@ -205,12 +394,12 @@ class RevisionFormatter {
 			switch( $type ) {
 			case 'topic':
 				$links['topic'] = array(
-					$this->urlGenerator->buildUrl(
+					'url' => $this->urlGenerator->buildUrl(
 						$title,
 						'view',
 						array( 'workflow' => $workflowId->getAlphadecimal() )
 					),
-					wfMessage( 'flow-link-topic' )
+					'title' => wfMessage( 'flow-link-topic' )
 				);
 				break;
 
@@ -220,20 +409,20 @@ class RevisionFormatter {
 					break;
 				}
 				$links['post'] = array(
-					$this->urlGenerator->buildUrl(
+					'url' => $this->urlGenerator->buildUrl(
 						$title,
 						'view',
 						array(
 							'workflow' => $workflowId->getAlphadecimal(),
 						)
 					) . '#post-' . $postId->getAlphadecimal(),
-					wfMessage( 'flow-link-post' )
+					'title' => wfMessage( 'flow-link-post' )
 				);
 				break;
 
 			case 'header-revision':
 				$links['header-revision'] = array(
-					$this->urlGenerator->buildUrl(
+					'url' => $this->urlGenerator->buildUrl(
 						$title,
 						'view',
 						array(
@@ -241,7 +430,7 @@ class RevisionFormatter {
 							'header_revId' => $revId->getAlphadecimal(),
 						)
 					),
-					wfMessage( 'flow-link-header-revision' )
+					'title' => wfMessage( 'flow-link-header-revision' )
 				);
 				break;
 
@@ -252,7 +441,7 @@ class RevisionFormatter {
 				}
 
 				$links['topic-revision'] = array(
-					$this->urlGenerator->buildUrl(
+					'url' => $this->urlGenerator->buildUrl(
 						$title,
 						'view',
 						array(
@@ -261,7 +450,7 @@ class RevisionFormatter {
 							'topic_revId' => $revId->getAlphadecimal(),
 						)
 					),
-					wfMessage( 'flow-link-topic-revision' )
+					'title' => wfMessage( 'flow-link-topic-revision' )
 				);
 				break;
 
@@ -272,7 +461,7 @@ class RevisionFormatter {
 				}
 
 				$links['post-revision'] = array(
-					$this->urlGenerator->buildUrl(
+					'url' => $this->urlGenerator->buildUrl(
 						$title,
 						'view',
 						array(
@@ -281,7 +470,7 @@ class RevisionFormatter {
 							'topic_revId' => $revId->getAlphadecimal(),
 						)
 					),
-					wfMessage( 'flow-link-post-revision' )
+					'title' => wfMessage( 'flow-link-post-revision' )
 				);
 				break;
 
@@ -292,7 +481,7 @@ class RevisionFormatter {
 				}
 
 				$links['post-history'] = array(
-					$this->urlGenerator->buildUrl(
+					'url' => $this->urlGenerator->buildUrl(
 						$title,
 						'history',
 						array(
@@ -300,28 +489,28 @@ class RevisionFormatter {
 							'topic_postId' => $postId->getAlphadecimal(),
 						)
 					),
-					wfMessage( 'hist' )
+					'title' => wfMessage( 'hist' )
 				);
 				break;
 
 			case 'topic-history':
 				$links['topic-history'] = array(
-					$this->urlGenerator->buildUrl(
+					'url' => $this->urlGenerator->buildUrl(
 						$title,
 						'history',
 						array( 'workflow' => $workflowId->getAlphadecimal() )
 					),
-					wfMessage( 'hist' )
+					'title' => wfMessage( 'hist' )
 				);
 				break;
 
 			case 'board-history':
 				$links['board-history'] = array(
-					$this->urlGenerator->buildUrl(
+					'url' => $this->urlGenerator->buildUrl(
 						$title,
 						'history'
 					),
-					wfMessage( 'hist' )
+					'title' => wfMessage( 'hist' )
 				);
 				break;
 
@@ -336,7 +525,7 @@ class RevisionFormatter {
 				 */
 				if ( $row->revision->getPrevRevisionId() !== null ) {
 					$links['diff'] = array(
-						$this->urlGenerator->buildUrl(
+						'url' => $this->urlGenerator->buildUrl(
 							$title,
 							'compare-header-revisions',
 							array(
@@ -345,7 +534,7 @@ class RevisionFormatter {
 								'header_oldRevision' => $row->revision->getPrevRevisionId()->getAlphadecimal(),
 							)
 						),
-						wfMessage( 'diff' )
+						'title' => wfMessage( 'diff' )
 					);
 
 					/*
@@ -355,7 +544,7 @@ class RevisionFormatter {
 					 * E.g.: Special:Contributions has "diff" ($links['diff']),
 					 * ?action=history has "prev" ($links['prev']).
 					 */
-					$links['diff-prev'] = array( $links['diff'][0], wfMessage( 'last' ) );
+					$links['diff-prev'] = array( $links['diff']['url'], wfMessage( 'last' ) );
 				}
 
 				/*
@@ -368,7 +557,7 @@ class RevisionFormatter {
 				$cur = $row->currentRevision;
 				if ( !$revId->equals( $cur->getRevisionId() ) ) {
 					$links['diff-cur'] = array(
-						$this->urlGenerator->buildUrl(
+						'url' => $this->urlGenerator->buildUrl(
 							$title,
 							'compare-post-revisions',
 							array(
@@ -377,7 +566,7 @@ class RevisionFormatter {
 								'topic_oldRevision' => $revId->getAlphadecimal(),
 							)
 						),
-						wfMessage( 'cur' )
+						'title' => wfMessage( 'cur' )
 					);
 				}
 				break;
@@ -393,7 +582,7 @@ class RevisionFormatter {
 				 */
 				if ( $row->revision->getPrevRevisionId() !== null ) {
 					$links['diff'] = array(
-						$this->urlGenerator->buildUrl(
+						'url' => $this->urlGenerator->buildUrl(
 							$title,
 							'compare-post-revisions',
 							array(
@@ -402,7 +591,7 @@ class RevisionFormatter {
 								'topic_oldRevision' => $row->revision->getPrevRevisionId()->getAlphadecimal(),
 							)
 						),
-						wfMessage( 'diff' )
+						'title' => wfMessage( 'diff' )
 					);
 
 					/*
@@ -412,7 +601,7 @@ class RevisionFormatter {
 					 * E.g.: Special:Contributions has "diff" ($links['diff']),
 					 * ?action=history has "prev" ($links['prev']).
 					 */
-					$links['diff-prev'] = array( $links['diff'][0], wfMessage( 'last' ) );
+					$links['diff-prev'] = array( $links['diff']['url'], wfMessage( 'last' ) );
 				}
 
 				/*
@@ -425,7 +614,7 @@ class RevisionFormatter {
 				$cur = $row->currentRevision;
 				if ( !$revId->equals( $cur->getRevisionId() ) ) {
 					$links['diff-cur'] = array(
-						$this->urlGenerator->buildUrl(
+						'url' => $this->urlGenerator->buildUrl(
 							$title,
 							'compare-post-revisions',
 							array(
@@ -434,7 +623,7 @@ class RevisionFormatter {
 								'topic_oldRevision' => $revId->getAlphadecimal(),
 							)
 						),
-						wfMessage( 'cur' )
+						'title' => wfMessage( 'cur' )
 					);
 				}
 				break;
@@ -446,8 +635,8 @@ class RevisionFormatter {
 					'view'
 				);
 				$links['workflow'] = array(
-					$linkTitle->getFullUrl( $query ),
-					wfMessage( 'flow-link-board', $linkTitle->getPrefixedText() )
+					'url' => $linkTitle->getFullUrl( $query ),
+					'title' => wfMessage( 'flow-link-board', $linkTitle->getPrefixedText() )
 				);
 				break;
 
@@ -471,6 +660,11 @@ class RevisionFormatter {
 	public function buildProperties( UUID $workflowId, AbstractRevision $revision, IContextSource $ctx ) {
 		$changeType = $revision->getChangeType();
 		$params = $this->permissions->getActions()->getValue( $changeType, 'history', 'i18n-params' );
+		if ( !$params ) {
+			// should we have a sigil for i18n with no parameters?
+			wfDebugLog( 'Flow', __METHOD__ . ": No i18n params for changeTyp4 $changeType on " . $revision->getRevisionId()->getAlphadecimal() );
+			return array();
+		}
 
 		$res = array();
 		foreach ( $params as $param ) {

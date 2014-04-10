@@ -23,7 +23,7 @@ class CheckUser extends AbstractFormatter {
 		// into checkuser sooner or later as well.
 
 		$title = $row->workflow->getArticleTitle();
-		$links = $this->serializer->buildActionLinks( $row );
+		$links = $this->serializer->buildLinks( $row );
 		if ( $links === null ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': No links were generated for revision ' . $row->revision->getAlphadecimal() );
 			return null;
