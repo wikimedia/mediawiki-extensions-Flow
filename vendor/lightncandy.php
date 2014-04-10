@@ -57,6 +57,7 @@ class LightnCandy {
     const PARTIAL_SEARCH = '/\\{\\{>[ \\t]*([^ }]+?)(?: ([^ }]+))?[ \\t]*\\}\\}/s';
     const TOKEN_SEARCH = '/(\s*)(\\{{2,3})(~?)([\\^#\\/!]?)(.+?)(~?)(\\}{2,3})(\s*)/s';
     const VARNAME_SEARCH = '/(\\[[^\\]]+\\]|[^\\[\\]\\.]+)/';
+    const EXTENDED_COMMENT_SEARCH = '/{{!--.*--}}/s';
 
     // Positions of matched token
     const POS_LSPACE = 1;
@@ -89,6 +90,9 @@ class LightnCandy {
         if (self::handleError($context)) {
             return false;
         }
+
+        // Strip out extended comments
+        $template = preg_replace( self::EXTENDED_COMMENT_SEARCH, '', $template );
 
         // Do first time scan to find out used feature, detect template error.
         if (preg_match_all(self::TOKEN_SEARCH, $template, $tokens, PREG_SET_ORDER) > 0) {
@@ -709,6 +713,10 @@ $libstr
 
         if ($var[0] === '@key') {
             return "\$cx['sp_vars']['key']";
+        }
+
+        if ($var[0] === 'this') {
+            return "\$in";
         }
 
         // Handle double quoted string
