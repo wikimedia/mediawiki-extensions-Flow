@@ -1740,13 +1740,12 @@ class LCRun2 {
             $args[$i] = self::raw($v, $cx);
         }
 
-        $r = call_user_func($cx['blockhelpers'][$ch], $in, $args);
-        if (is_null($r)) {
-            return '';
-        }
-
         $cx['scopes'][] = $in;
-        $ret = $cb($cx, $r);
+        $ret = call_user_func($cx['blockhelpers'][$ch], $in, $args, array(
+            'cx' => $cx,
+            'inverse' => function() { return ''; }, // no-op untill we figure out the else statement
+            'fn' => $cb,
+        ) );
         array_pop($cx['scopes']);
         return $ret;
     }
