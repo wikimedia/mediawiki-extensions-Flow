@@ -56,8 +56,12 @@ $wgAutoloadClasses['FlowInsertDefaultDefinitions'] = $dir . 'maintenance/FlowIns
 // note: SRP would say a 'FlowHooks' class should not exist
 $wgAutoloadClasses['FlowHooks'] = $dir . 'Hooks.php';
 
-// Various helper classes
+// Various vendor classes
 $wgAutoloadClasses['Pimple'] = $dir . 'vendor/Pimple.php';
+$wgAutoloadClasses['LightnCandy'] = $dir . 'vendor/lightncandy.php';
+$wgAutoloadClasses['LCRun2'] = $dir . 'vendor/lightncandy.php';
+
+// Various helper classes
 $wgAutoloadClasses['Flow\Container'] = $dir . 'includes/Container.php';
 $wgAutoloadClasses['Flow\DbFactory'] = $dir . 'includes/DbFactory.php';
 $wgAutoloadClasses['Flow\Templating'] = $dir . 'includes/Templating.php';
