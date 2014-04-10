@@ -7,6 +7,15 @@ $flowResourceTemplate = array(
 );
 
 $wgResourceModules += array(
+	'ext.flow.new' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/flow.css',
+		),
+		'scrits' => array(
+			'new/flow-components.js',
+			'new/flow-init-page.js',
+		),
+	),
 	'ext.flow.base' => $flowResourceTemplate + array(
 		'styles' => array(
 			'base/styles/container.less',
