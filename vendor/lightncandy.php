@@ -706,6 +706,10 @@ $libstr
             return "\$cx['sp_vars']['key']";
         }
 
+        if ( $var[0] === '@root' ) {
+            return "reset(\$cx['scopes'])";
+        }
+
         // Handle double quoted string
         if (preg_match('/^"(.*)"$/', $var[0], $matched)) {
             return "'{$matched[1]}'";
