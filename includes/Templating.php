@@ -482,7 +482,7 @@ class Templating {
 			if ( $message->exists() ) {
 				return $message->escaped();
 			} else {
-				wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
+				//wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
 
 				return wfMessage( 'flow-error-other' )->escaped();
 			}

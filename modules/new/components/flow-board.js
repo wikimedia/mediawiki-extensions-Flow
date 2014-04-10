@@ -2,7 +2,7 @@
  * Contains the FlowBoardComponent and related functionality.
  */
 
-( function ( $ ) {
+( function ( $, mw ) {
 	/**
 	 * Constructor class for instantiating a new Flow board. Returns a FlowBoardComponent object.
 	 * Accepts one or more container elements in $container. If multiple, returns an array of FlowBoardComponents.
@@ -590,4 +590,4 @@
 				.addClass( 'flow-board-collapsed-' + newState );
 		};
 	}() );
-}( jQuery ) );
+}( jQuery, mediaWiki ) );
