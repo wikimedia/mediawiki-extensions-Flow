@@ -30,19 +30,20 @@ class TopicListQuery extends AbstractQuery {
 		}
 
 		$this->loadMetadataBatch( $posts );
-		$resutls = array();
+		$results = array();
 		foreach ( $posts as $post ) {
 			try {
 				$row = new TopicListRow;
-				$results[] = $result = $this->buildResult( $post, null, $row );
-				$replyToId = $result->revision->getReplyToId();
+				$results[] = $this->buildResult( $post, null, $row );
+				$replyToId = $row->revision->getReplyToId();
 				$replyToId = $replyToId ? $replyToId->getAlphadecimal() : null;
-				$postId = $result->revision->getPostId()->getAlphadecimal();
+				$postId = $row->revision->getPostId()->getAlphadecimal();
 				$replies[$replyToId] = $postId;
 			} catch ( FlowException $e ) {
 				\MWExceptionHandler::logException( $e );
 			}
 		}
+
 		foreach ( $results as $result ) {
 			$alpha = $result->revision->getPostId()->getAlphadecimal();
 			$result->replies = isset( $replies[$alpha] ) ? $replies[$alpha] : array();

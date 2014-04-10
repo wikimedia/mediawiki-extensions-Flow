@@ -65,6 +65,7 @@ $wgAutoloadClasses['LCRun2'] = $dir . 'vendor/lightncandy.php';
 $wgAutoloadClasses['Flow\Container'] = $dir . 'includes/Container.php';
 $wgAutoloadClasses['Flow\DbFactory'] = $dir . 'includes/DbFactory.php';
 $wgAutoloadClasses['Flow\Templating'] = $dir . 'includes/Templating.php';
+$wgAutoloadClasses['Flow\TemplateHelper'] = $dir . 'includes/TemplateHelper.php';
 $wgAutoloadClasses['Flow\Parsoid\Utils'] = $dir . 'includes/Parsoid/Utils.php';
 $wgAutoloadClasses['Flow\Parsoid\Controller'] = $dir . 'includes/Parsoid/Controller.php';
 $wgAutoloadClasses['Flow\Parsoid\ContentFixer'] = $dir . 'includes/Parsoid/ContentFixer.php';
@@ -404,3 +405,7 @@ $wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.
 
 // Actions that must pass through to MediaWiki on flow enabled pages
 $wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', 'watch' );
+
+// Directory to store compiled templates. Set to false to require pre-compilation
+$wgFlowTemplateTempDir = __DIR__ . '/handlebars';
+
