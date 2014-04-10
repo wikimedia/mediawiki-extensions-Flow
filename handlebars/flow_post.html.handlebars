@@ -1,3 +1,4 @@
+				{{#with revision}}
 					<div class="flow-post">
 						{{#with author}}
 							<span class="flow-author"><a href="{{urls.author_contribs}}" title="{{urls.author_contribs_title}}" class="mw-userlink">{{name}}</a> <span class="mw-usertoollinks">(<a href="{{urls.author_talk}}" class="new" title="{{urls.author_talk_title}}">{{l10n "Talk"}}</a> | <a href="{{urls.author_block}}" title="{{urls.author_block_title}}">{{l10n "block"}}</a>)</span></span>
@@ -27,7 +28,9 @@
 							</ul>
 						</div>
 
-						{{#eachPost @root replies}}
-							{{> flow_post this}}
+						{{#eachPost ../rootBlock replies}}
+							<!-- eachPost nested replies -->
+							{{post ../../rootBlock this}}
 						{{/eachPost}}
 					</div>
+				{{/with}}
