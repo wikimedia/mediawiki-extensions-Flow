@@ -1,0 +1,2420 @@
+#bodyContent {
+  font-size: .875em;
+}
+.mw-ui-buttonspacer {
+  padding: .25em .5em;
+}
+.mw-ui-field {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  min-height: 0;
+}
+.mw-ui-input:focus {
+  border-color: #898989;
+}
+.mw-ui-field .mw-ui-input {
+  margin: 0;
+}
+.mw-ui-field-icon {
+  display: none;
+}
+.mw-ui-uls-icon:before {
+  content: "\e135";
+  opacity: 0.66;
+}
+/*
+== MediaWiki UI Text Field Validation ==
+
+=== Guidelines ===
+
+
+=== Notes ===
+Does not support IE7 nor IE8.
+ */
+/*.mw-ui-validated */
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-field-icon {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2em;
+  height: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-field-icon:before {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -0.6em;
+  width: 2em;
+  color: #cccccc;
+  font-size: 1em;
+  line-height: 1em;
+  text-align: center;
+  pointer-events: none;
+  font-family: 'Glyphicons Halflings';
+  -webkit-font-smoothing: antialiased;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-validation-icon {
+  border-radius: 0 2px 2px 0;
+  border: 1px solid #898989;
+  border-width: 1px 1px 1px 0;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-validation-icon:before {
+  color: #fff;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input[type='date'] ~ .mw-ui-uls-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input[type='number'] ~ .mw-ui-uls-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input[type='search'] ~ .mw-ui-uls-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input[type='time'] ~ .mw-ui-uls-icon {
+  visibility: hidden;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[required],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[min],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[max],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[pattern],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='color'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='date'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='email'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='number'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='url'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='range'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='time'] {
+  border-right-width: 2em;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[required] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[min] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[max] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[pattern] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='color'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='date'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='email'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='number'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='url'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='range'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='time'] ~ .mw-ui-validation-icon {
+  display: block;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid ~ .mw-ui-validation-icon {
+  background: #00B08A;
+  background: rgba(0, 176, 138, 0.85);
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid ~ .mw-ui-validation-icon:before {
+  content: "\e013";
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid + .mw-ui-validation-icon + .mw-ui-uls-icon {
+  right: 2em;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='date'] + .mw-ui-validation-icon + .mw-ui-uls-icon {
+  right: 4em;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='number'] + .mw-ui-validation-icon + .mw-ui-uls-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:valid[type='time'] + .mw-ui-validation-icon + .mw-ui-uls-icon {
+  right: 3em;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[required],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[min],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[max],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[pattern],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='color'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='date'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='email'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='number'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='url'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='range'],
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='time'] {
+  border-right-width: 2em;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[required] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[min] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[max] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[pattern] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='color'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='date'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='email'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='number'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='url'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='range'] ~ .mw-ui-validation-icon,
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid[type='time'] ~ .mw-ui-validation-icon {
+  display: block;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid ~ .mw-ui-validation-icon {
+  background: #D31300;
+  background: rgba(211, 19, 0, 0.85);
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid ~ .mw-ui-validation-icon:before {
+  content: "\e014";
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:invalid + .mw-ui-validation-icon + .mw-ui-uls-icon {
+  right: 2em;
+}
+.mw-ui-field:not(.ie8WillIgnoreThis) .mw-ui-input:focus ~ .mw-ui-uls-icon {
+  display: block;
+}
+/*
+== MediaWiki UI Radio and Checkbox ==
+
+=== Guidelines ===
+
+
+=== Notes ===
+Does not support IE7 nor IE8.
+ */
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) {
+  cursor: pointer;
+}
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) .mw-ui-radio:before,
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) .mw-ui-checkbox:before {
+  display: inline-block;
+  vertical-align: text-bottom;
+  font-family: 'Glyphicons Halflings';
+  -webkit-font-smoothing: antialiased;
+  color: #777777;
+  font-size: inherit;
+  line-height: inherit;
+}
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) input[type='radio'],
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) input[type='checkbox'] {
+  display: none;
+}
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) input[type='radio'] + .mw-ui-radio:before {
+  content: "\e141";
+}
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) input[type='radio']:checked + .mw-ui-radio:before {
+  text-shadow: none;
+  content: "\e165";
+}
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) input[type='checkbox'] + .mw-ui-checkbox:before {
+  content: "\e157";
+}
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) input[type='checkbox']:checked + .mw-ui-checkbox:before {
+  content: "\e067";
+}
+/*
+== MediaWiki UI Tooltips ==
+
+=== Guidelines ===
+Requires the following markup at minimum: <span class="mw-ui-tooltip">CONTENT<span class="mw-ui-tooltip-triangle"></span></span>
+An additional class should be added relating the triangle to the direction of the content: mw-ui-tooltip-DIRECTION, where direction is one of up, down, left, or right.
+Adding to this could be an extra class: mw-ui-tooltip-inverted, which moves the tooltip and triangle to the opposing side. This used when the tooltip would go off the right of the viewport, and instead aligns to the right of the viewport.
+Finally, a context class can be given to assign it a color (eg. mw-ui-progressive).
+
+This is intended to be used with JavaScript, but does not have to be. With JS, you can directly bind the element to given X-Y coords for an element.
+ */
+.mw-ui-tooltip {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  padding: .5em;
+  background: #fafafa;
+  color: #252525;
+  white-space: nowrap;
+  border-radius: 3px;
+  text-shadow: 0px 1px 0 rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 2px 0 0 #cccccc;
+  box-shadow: 0 2px 0 0 #cccccc;
+}
+.mw-ui-tooltip .mw-ui-tooltip-triangle {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+}
+.mw-ui-tooltip .mw-ui-tooltip-triangle:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 1em;
+  height: 1em;
+  background: #fafafa;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.mw-ui-tooltip.mw-ui-tooltip-up .mw-ui-tooltip-triangle {
+  width: 2em;
+  height: 1em;
+  left: 50%;
+  top: -1em;
+  margin-left: -1em;
+}
+.mw-ui-tooltip.mw-ui-tooltip-up .mw-ui-tooltip-triangle:after {
+  top: .5em;
+  left: .5em;
+}
+.mw-ui-tooltip.mw-ui-tooltip-down .mw-ui-tooltip-triangle {
+  width: 2em;
+  height: 1em;
+  left: 50%;
+  bottom: -1em;
+  margin-left: -1em;
+}
+.mw-ui-tooltip.mw-ui-tooltip-down .mw-ui-tooltip-triangle:after {
+  top: -0.5em;
+  left: .5em;
+  -webkit-box-shadow: 0 -2px 0 2px #cccccc;
+  box-shadow: 0 -2px 0 2px #cccccc;
+}
+.mw-ui-tooltip.mw-ui-tooltip-left .mw-ui-tooltip-triangle {
+  width: 1em;
+  height: 2em;
+  left: -1em;
+  top: 50%;
+  margin-top: -1em;
+}
+.mw-ui-tooltip.mw-ui-tooltip-left .mw-ui-tooltip-triangle:after {
+  margin-top: -1px;
+  top: .5em;
+  right: -0.5em;
+  -webkit-box-shadow: 2px 0 0 2px #cccccc;
+  box-shadow: 2px 0 0 2px #cccccc;
+}
+.mw-ui-tooltip.mw-ui-tooltip-right .mw-ui-tooltip-triangle {
+  width: 1em;
+  height: 2em;
+  right: -1em;
+  top: 50%;
+  margin-top: -1em;
+}
+.mw-ui-tooltip.mw-ui-tooltip-right .mw-ui-tooltip-triangle:after {
+  margin-top: -1px;
+  top: .5em;
+  left: -0.5em;
+  -webkit-box-shadow: 0 2px 0 2px #cccccc;
+  box-shadow: 0 2px 0 2px #cccccc;
+}
+.mw-ui-tooltip[class].mw-ui-progressive {
+  background: #347bff;
+  -webkit-box-shadow: 0 2px 0 0 #0053ee;
+  box-shadow: 0 2px 0 0 #0053ee;
+  color: #ffffff;
+}
+.mw-ui-tooltip[class].mw-ui-progressive .mw-ui-tooltip-triangle:after {
+  background: #347bff;
+}
+.mw-ui-tooltip[class].mw-ui-progressive.mw-ui-tooltip-down .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 0 -2px 0 2px #0053ee;
+  box-shadow: 0 -2px 0 2px #0053ee;
+}
+.mw-ui-tooltip[class].mw-ui-progressive.mw-ui-tooltip-left .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 2px 0 0 2px #0053ee;
+  box-shadow: 2px 0 0 2px #0053ee;
+}
+.mw-ui-tooltip[class].mw-ui-progressive.mw-ui-tooltip-right .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 0 2px 0 2px #0053ee;
+  box-shadow: 0 2px 0 2px #0053ee;
+}
+.mw-ui-tooltip[class].mw-ui-constructive {
+  background: #00af89;
+  -webkit-box-shadow: 0 2px 0 0 #006a53;
+  box-shadow: 0 2px 0 0 #006a53;
+  color: #ffffff;
+}
+.mw-ui-tooltip[class].mw-ui-constructive .mw-ui-tooltip-triangle:after {
+  background: #00af89;
+}
+.mw-ui-tooltip[class].mw-ui-constructive.mw-ui-tooltip-down .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 0 -2px 0 2px #006a53;
+  box-shadow: 0 -2px 0 2px #006a53;
+}
+.mw-ui-tooltip[class].mw-ui-constructive.mw-ui-tooltip-left .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 2px 0 0 2px #006a53;
+  box-shadow: 2px 0 0 2px #006a53;
+}
+.mw-ui-tooltip[class].mw-ui-constructive.mw-ui-tooltip-right .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 0 2px 0 2px #006a53;
+  box-shadow: 0 2px 0 2px #006a53;
+}
+.mw-ui-tooltip[class].mw-ui-destructive {
+  background: #d11d13;
+  -webkit-box-shadow: 0 2px 0 0 #92140d;
+  box-shadow: 0 2px 0 0 #92140d;
+  color: #ffffff;
+}
+.mw-ui-tooltip[class].mw-ui-destructive .mw-ui-tooltip-triangle:after {
+  background: #d11d13;
+}
+.mw-ui-tooltip[class].mw-ui-destructive.mw-ui-tooltip-down .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 0 -2px 0 2px #92140d;
+  box-shadow: 0 -2px 0 2px #92140d;
+}
+.mw-ui-tooltip[class].mw-ui-destructive.mw-ui-tooltip-left .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 2px 0 0 2px #92140d;
+  box-shadow: 2px 0 0 2px #92140d;
+}
+.mw-ui-tooltip[class].mw-ui-destructive.mw-ui-tooltip-right .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 0 2px 0 2px #92140d;
+  box-shadow: 0 2px 0 2px #92140d;
+}
+.mw-ui-tooltip[class].mw-ui-regressive {
+  background: #ff7e1e;
+  -webkit-box-shadow: 0 2px 0 0 #d85c00;
+  box-shadow: 0 2px 0 0 #d85c00;
+  color: #ffffff;
+}
+.mw-ui-tooltip[class].mw-ui-regressive .mw-ui-tooltip-triangle:after {
+  background: #ff7e1e;
+}
+.mw-ui-tooltip[class].mw-ui-regressive.mw-ui-tooltip-down .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 0 -2px 0 2px #d85c00;
+  box-shadow: 0 -2px 0 2px #d85c00;
+}
+.mw-ui-tooltip[class].mw-ui-regressive.mw-ui-tooltip-left .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 2px 0 0 2px #d85c00;
+  box-shadow: 2px 0 0 2px #d85c00;
+}
+.mw-ui-tooltip[class].mw-ui-regressive.mw-ui-tooltip-right .mw-ui-tooltip-triangle:after {
+  -webkit-box-shadow: 0 2px 0 2px #d85c00;
+  box-shadow: 0 2px 0 2px #d85c00;
+}
+/*
+== MediaWiki UI Anchor Context ==
+Allows you to give text a context as to the type of action it is indicating.
+
+=== Guidelines ===
+The anchor context is only applied on A tags. These classes cannot be applied for styling purposes on other elements,
+except when used in combination with .mw-ui-button.
+*/
+.selectIE6Only.flow-ui-progressive:link,
+.selectIE6Only.flow-ui-progressive:visited,
+.selectIE6Only.flow-ui-progressive:hover,
+.selectIE6Only.flow-ui-progressive:focus,
+.selectIE6Only.flow-ui-progressive:active {
+  color: #347bff;
+}
+.flow-ui-progressive:hover {
+  color: #79a8ff;
+}
+.flow-ui-progressive:focus,
+.flow-ui-progressive:active {
+  color: #0053ee;
+  outline: none;
+}
+a.flow-ui-progressive[class] {
+  color: #347bff;
+}
+a.flow-ui-progressive[class].flow-ui-quiet {
+  color: #777777;
+  text-decoration: none;
+}
+a.flow-ui-progressive[class].flow-ui-quiet:hover {
+  color: #347bff;
+}
+a.flow-ui-progressive[class].flow-ui-quiet:focus,
+a.flow-ui-progressive[class].flow-ui-quiet:active {
+  color: #0053ee;
+}
+.selectIE6Only.flow-ui-regressive:link,
+.selectIE6Only.flow-ui-regressive:visited,
+.selectIE6Only.flow-ui-regressive:hover,
+.selectIE6Only.flow-ui-regressive:focus,
+.selectIE6Only.flow-ui-regressive:active {
+  color: #ff7e1e;
+}
+.flow-ui-regressive:hover {
+  color: #ffa563;
+}
+.flow-ui-regressive:focus,
+.flow-ui-regressive:active {
+  color: #d85c00;
+  outline: none;
+}
+a.flow-ui-regressive[class] {
+  color: #ff7e1e;
+}
+a.flow-ui-regressive[class].flow-ui-quiet {
+  color: #777777;
+  text-decoration: none;
+}
+a.flow-ui-regressive[class].flow-ui-quiet:hover {
+  color: #ff7e1e;
+}
+a.flow-ui-regressive[class].flow-ui-quiet:focus,
+a.flow-ui-regressive[class].flow-ui-quiet:active {
+  color: #d85c00;
+}
+.selectIE6Only.flow-ui-constructive:link,
+.selectIE6Only.flow-ui-constructive:visited,
+.selectIE6Only.flow-ui-constructive:hover,
+.selectIE6Only.flow-ui-constructive:focus,
+.selectIE6Only.flow-ui-constructive:active {
+  color: #00af89;
+}
+.flow-ui-constructive:hover {
+  color: #00f4bf;
+}
+.flow-ui-constructive:focus,
+.flow-ui-constructive:active {
+  color: #006a53;
+  outline: none;
+}
+a.flow-ui-constructive[class] {
+  color: #00af89;
+}
+a.flow-ui-constructive[class].flow-ui-quiet {
+  color: #777777;
+  text-decoration: none;
+}
+a.flow-ui-constructive[class].flow-ui-quiet:hover {
+  color: #00af89;
+}
+a.flow-ui-constructive[class].flow-ui-quiet:focus,
+a.flow-ui-constructive[class].flow-ui-quiet:active {
+  color: #006a53;
+}
+.selectIE6Only.flow-ui-destructive:link,
+.selectIE6Only.flow-ui-destructive:visited,
+.selectIE6Only.flow-ui-destructive:hover,
+.selectIE6Only.flow-ui-destructive:focus,
+.selectIE6Only.flow-ui-destructive:active {
+  color: #d11d13;
+}
+.flow-ui-destructive:hover {
+  color: #ed453c;
+}
+.flow-ui-destructive:focus,
+.flow-ui-destructive:active {
+  color: #92140d;
+  outline: none;
+}
+a.flow-ui-destructive[class] {
+  color: #d11d13;
+}
+a.flow-ui-destructive[class].flow-ui-quiet {
+  color: #777777;
+  text-decoration: none;
+}
+a.flow-ui-destructive[class].flow-ui-quiet:hover {
+  color: #d11d13;
+}
+a.flow-ui-destructive[class].flow-ui-quiet:focus,
+a.flow-ui-destructive[class].flow-ui-quiet:active {
+  color: #92140d;
+}
+/*
+== MediaWiki UI Buttons ==
+
+=== Guidelines ===
+# .mw-ui-button can only be used on A and BUTTON tags.
+# .mw-ui-progressive, .mw-ui-regressive, .mw-ui-constructive, and .mw-ui-destructive can be applied alone on A, but can be applied in tandem with .mw-ui-button.
+## The class order is important: base type (mw-ui-button) must come first, mode (mw-ui-quiet, mw-ui-sleeper) second, visual type (mw-ui-thin), and context (mw-ui-progressive) comes last.
+# A .mw-ui-quiet button may NEVER be the first or only button in a form.
+## It would be left- or right-aligned next to whitespace, and the extra ghost padding in these buttons will make that look awkward.
+## The first button in a form should always be the affirmative action (eg. Submit). This is for accessibility purposes.
+
+=== Notes ===
+# IE6 does not apply any .mw-ui-button styles at all on BUTTON.
+# IE6 only applies the base .mw-ui-CONTEXT color on A, and doesn't care if you are combining it (ie. .mw-ui-destructive.mw-ui-quiet = always red text).
+ */
+.flow-ui-buttonspacer {
+  display: inline-block;
+  padding: .25em .5em;
+  vertical-align: inherit;
+}
+a.flow-ui-button[class],
+button.flow-ui-button[class] {
+  display: inline-block;
+  padding: .5em 1em;
+  margin: 0;
+  vertical-align: middle;
+  *display: inline;
+  zoom: 1;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: inherit;
+  text-decoration: none;
+  border: 0px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: box-shadow 0.1s linear, background-color 0.1s linear, opacity 0.5s linear;
+  -moz-transition: box-shadow 0.1s linear, background-color 0.1s linear, opacity 0.5s linear;
+  -ms-transition: box-shadow 0.1s linear, background-color 0.1s linear, opacity 0.5s linear;
+  -o-transition: box-shadow 0.1s linear, background-color 0.1s linear, opacity 0.5s linear;
+  transition: box-shadow 0.1s linear, background-color 0.1s linear, opacity 0.5s linear;
+  /*
+		 * Button modes (continued in .flowUIButtonContext())
+		 */
+  /*
+		 * Default button styles
+		 */
+  background: #eeeeee;
+  color: #777777;
+  /*
+		 * Contextual classes
+		 */
+}
+a.flow-ui-button[class]:disabled,
+button.flow-ui-button[class]:disabled {
+  cursor: default;
+}
+a.flow-ui-button[class]:focus,
+button.flow-ui-button[class]:focus,
+a.flow-ui-button[class]:active,
+button.flow-ui-button[class]:active {
+  outline: none;
+}
+a.flow-ui-button[class].flow-ui-thin,
+button.flow-ui-button[class].flow-ui-thin {
+  padding: .25em .5em;
+  font-weight: inherit;
+  vertical-align: inherit;
+}
+a.flow-ui-button[class]:not(.flow-ui-quiet):hover,
+button.flow-ui-button[class]:not(.flow-ui-quiet):hover {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -3px 0 0 #dddddd, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -3px 0 0 #dddddd, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  color: #252525;
+}
+a.flow-ui-button[class]:not(.flow-ui-quiet):focus,
+button.flow-ui-button[class]:not(.flow-ui-quiet):focus {
+  -webkit-box-shadow: inset 0 -3px 0 0 #cccccc, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 -3px 0 0 #cccccc, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.lte-ie8 a.flow-ui-button[class]:hover,
+.lte-ie8 button.flow-ui-button[class]:hover {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -3px 0 0 #dddddd, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -3px 0 0 #dddddd, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  color: #252525;
+}
+.lte-ie8 a.flow-ui-button[class]:focus,
+.lte-ie8 button.flow-ui-button[class]:focus {
+  -webkit-box-shadow: inset 0 -3px 0 0 #cccccc, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 -3px 0 0 #cccccc, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-quiet,
+.lte-ie8 button.flow-ui-button[class].flow-ui-quiet,
+a.flow-ui-button[class].flow-ui-quiet,
+button.flow-ui-button[class].flow-ui-quiet {
+  background: transparent;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-quiet:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-quiet:hover,
+a.flow-ui-button[class].flow-ui-quiet:hover,
+button.flow-ui-button[class].flow-ui-quiet:hover,
+.lte-ie8 a.flow-ui-button[class].flow-ui-quiet:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-quiet:focus,
+a.flow-ui-button[class].flow-ui-quiet:focus,
+button.flow-ui-button[class].flow-ui-quiet:focus,
+.lte-ie8 a.flow-ui-button[class].flow-ui-quiet:active,
+.lte-ie8 button.flow-ui-button[class].flow-ui-quiet:active,
+a.flow-ui-button[class].flow-ui-quiet:active,
+button.flow-ui-button[class].flow-ui-quiet:active {
+  color: #252525;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-sleeper,
+.lte-ie8 button.flow-ui-button[class].flow-ui-sleeper,
+a.flow-ui-button[class].flow-ui-sleeper,
+button.flow-ui-button[class].flow-ui-sleeper {
+  background: transparent;
+  -webkit-box-shadow: inset 0 0 0 1px #dddddd;
+  box-shadow: inset 0 0 0 1px #dddddd;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-sleeper:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-sleeper:hover,
+a.flow-ui-button[class].flow-ui-sleeper:hover,
+button.flow-ui-button[class].flow-ui-sleeper:hover {
+  background: #fafafa;
+  -webkit-box-shadow: inset 0 0 0 1px #dddddd, 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #dddddd, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 0 1px #dddddd, 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #dddddd, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+a.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet),
+button.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet) {
+  background: #347bff;
+  color: #ffffff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+a.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet)[disabled],
+button.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet)[disabled],
+a.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet)[disabled]:hover,
+button.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet)[disabled]:hover,
+a.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet)[disabled]:focus,
+button.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet)[disabled]:focus {
+  background: #cccccc;
+  color: #ffffff;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+a.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet):hover,
+button.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet):hover,
+a.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet):focus,
+button.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet):focus {
+  background: #4486ff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.33);
+}
+a.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet):hover,
+button.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet):hover {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #275cbf, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #275cbf, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+a.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet):focus,
+button.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet):focus {
+  -webkit-box-shadow: inset 0 -4px 0 0 #275cbf, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #275cbf;
+  box-shadow: inset 0 -4px 0 0 #275cbf, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #275cbf;
+}
+a.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet):active,
+button.flow-ui-button[class].flow-ui-progressive:not(.flow-ui-quiet):active {
+  background: #0b60ff;
+  -webkit-box-shadow: inset 0 -2px 0 0 #0b60ff, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 -2px 0 0 #0b60ff, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive {
+  background: #347bff;
+  color: #ffffff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive[disabled],
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive[disabled],
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive[disabled]:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive[disabled]:hover,
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive[disabled]:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive[disabled]:focus {
+  background: #cccccc;
+  color: #ffffff;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive:hover,
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive:focus {
+  background: #4486ff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.33);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive:hover {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #275cbf, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #275cbf, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive:focus {
+  -webkit-box-shadow: inset 0 -4px 0 0 #275cbf, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #275cbf;
+  box-shadow: inset 0 -4px 0 0 #275cbf, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #275cbf;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive:active,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive:active {
+  background: #0b60ff;
+  -webkit-box-shadow: inset 0 -2px 0 0 #0b60ff, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 -2px 0 0 #0b60ff, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet,
+a.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet,
+button.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet {
+  background: transparent;
+  color: #777777;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:hover,
+a.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:hover,
+button.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:hover {
+  color: #347bff;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:active,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:active,
+a.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:active,
+button.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:active {
+  color: #0b60ff;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:focus,
+a.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:focus,
+button.flow-ui-button[class].flow-ui-progressive.flow-ui-quiet:focus {
+  color: #003fb3;
+}
+a.flow-ui-button[class].flow-ui-progressive.flow-ui-sleeper,
+button.flow-ui-button[class].flow-ui-progressive.flow-ui-sleeper {
+  background: transparent;
+  background: #eeeeee\9;
+  color: #6a7892;
+  text-shadow: none;
+  -webkit-box-shadow: inset 0 0 0 1px #dddddd;
+  box-shadow: inset 0 0 0 1px #dddddd;
+}
+a.flow-ui-button[class].flow-ui-progressive.flow-ui-sleeper:hover,
+button.flow-ui-button[class].flow-ui-progressive.flow-ui-sleeper:hover,
+a.flow-ui-button[class].flow-ui-progressive.flow-ui-sleeper:focus,
+button.flow-ui-button[class].flow-ui-progressive.flow-ui-sleeper:focus {
+  color: #ffffff;
+}
+a.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet),
+button.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet) {
+  background: #ff7e1e;
+  color: #ffffff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+a.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet)[disabled],
+button.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet)[disabled],
+a.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet)[disabled]:hover,
+button.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet)[disabled]:hover,
+a.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet)[disabled]:focus,
+button.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet)[disabled]:focus {
+  background: #cccccc;
+  color: #ffffff;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+a.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet):hover,
+button.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet):hover,
+a.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet):focus,
+button.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet):focus {
+  background: #ff8830;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.33);
+}
+a.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet):hover,
+button.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet):hover {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #bf5f17, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #bf5f17, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+a.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet):focus,
+button.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet):focus {
+  -webkit-box-shadow: inset 0 -4px 0 0 #bf5f17, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #bf5f17;
+  box-shadow: inset 0 -4px 0 0 #bf5f17, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #bf5f17;
+}
+a.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet):active,
+button.flow-ui-button[class].flow-ui-regressive:not(.flow-ui-quiet):active {
+  background: #f46800;
+  -webkit-box-shadow: inset 0 -2px 0 0 #f46800, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 -2px 0 0 #f46800, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive {
+  background: #ff7e1e;
+  color: #ffffff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive[disabled],
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive[disabled],
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive[disabled]:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive[disabled]:hover,
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive[disabled]:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive[disabled]:focus {
+  background: #cccccc;
+  color: #ffffff;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive:hover,
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive:focus {
+  background: #ff8830;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.33);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive:hover {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #bf5f17, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #bf5f17, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive:focus {
+  -webkit-box-shadow: inset 0 -4px 0 0 #bf5f17, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #bf5f17;
+  box-shadow: inset 0 -4px 0 0 #bf5f17, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #bf5f17;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive:active,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive:active {
+  background: #f46800;
+  -webkit-box-shadow: inset 0 -2px 0 0 #f46800, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 -2px 0 0 #f46800, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet,
+a.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet,
+button.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet {
+  background: transparent;
+  color: #777777;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:hover,
+a.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:hover,
+button.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:hover {
+  color: #ff7e1e;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:active,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:active,
+a.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:active,
+button.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:active {
+  color: #f46800;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:focus,
+a.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:focus,
+button.flow-ui-button[class].flow-ui-regressive.flow-ui-quiet:focus {
+  color: #9e4300;
+}
+a.flow-ui-button[class].flow-ui-regressive.flow-ui-sleeper,
+button.flow-ui-button[class].flow-ui-regressive.flow-ui-sleeper {
+  background: transparent;
+  background: #eeeeee\9;
+  color: #927865;
+  text-shadow: none;
+  -webkit-box-shadow: inset 0 0 0 1px #dddddd;
+  box-shadow: inset 0 0 0 1px #dddddd;
+}
+a.flow-ui-button[class].flow-ui-regressive.flow-ui-sleeper:hover,
+button.flow-ui-button[class].flow-ui-regressive.flow-ui-sleeper:hover,
+a.flow-ui-button[class].flow-ui-regressive.flow-ui-sleeper:focus,
+button.flow-ui-button[class].flow-ui-regressive.flow-ui-sleeper:focus {
+  color: #ffffff;
+}
+a.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet),
+button.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet) {
+  background: #00af89;
+  color: #ffffff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+a.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet)[disabled],
+button.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet)[disabled],
+a.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet)[disabled]:hover,
+button.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet)[disabled]:hover,
+a.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet)[disabled]:focus,
+button.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet)[disabled]:focus {
+  background: #cccccc;
+  color: #ffffff;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+a.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet):hover,
+button.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet):hover,
+a.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet):focus,
+button.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet):focus {
+  background: #14b592;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.33);
+}
+a.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet):hover,
+button.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet):hover {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #008367, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #008367, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+a.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet):focus,
+button.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet):focus {
+  -webkit-box-shadow: inset 0 -4px 0 0 #008367, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #008367;
+  box-shadow: inset 0 -4px 0 0 #008367, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #008367;
+}
+a.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet):active,
+button.flow-ui-button[class].flow-ui-constructive:not(.flow-ui-quiet):active {
+  background: #008669;
+  -webkit-box-shadow: inset 0 -2px 0 0 #008669, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 -2px 0 0 #008669, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive {
+  background: #00af89;
+  color: #ffffff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive[disabled],
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive[disabled],
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive[disabled]:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive[disabled]:hover,
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive[disabled]:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive[disabled]:focus {
+  background: #cccccc;
+  color: #ffffff;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive:hover,
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive:focus {
+  background: #14b592;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.33);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive:hover {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #008367, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #008367, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive:focus {
+  -webkit-box-shadow: inset 0 -4px 0 0 #008367, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #008367;
+  box-shadow: inset 0 -4px 0 0 #008367, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #008367;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive:active,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive:active {
+  background: #008669;
+  -webkit-box-shadow: inset 0 -2px 0 0 #008669, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 -2px 0 0 #008669, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet,
+a.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet,
+button.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet {
+  background: transparent;
+  color: #777777;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:hover,
+a.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:hover,
+button.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:hover {
+  color: #00af89;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:active,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:active,
+a.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:active,
+button.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:active {
+  color: #008669;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:focus,
+a.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:focus,
+button.flow-ui-button[class].flow-ui-constructive.flow-ui-quiet:focus {
+  color: #003025;
+}
+a.flow-ui-button[class].flow-ui-constructive.flow-ui-sleeper,
+button.flow-ui-button[class].flow-ui-constructive.flow-ui-sleeper {
+  background: transparent;
+  background: #eeeeee\9;
+  color: #5f827b;
+  text-shadow: none;
+  -webkit-box-shadow: inset 0 0 0 1px #dddddd;
+  box-shadow: inset 0 0 0 1px #dddddd;
+}
+a.flow-ui-button[class].flow-ui-constructive.flow-ui-sleeper:hover,
+button.flow-ui-button[class].flow-ui-constructive.flow-ui-sleeper:hover,
+a.flow-ui-button[class].flow-ui-constructive.flow-ui-sleeper:focus,
+button.flow-ui-button[class].flow-ui-constructive.flow-ui-sleeper:focus {
+  color: #ffffff;
+}
+a.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet),
+button.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet) {
+  background: #d11d13;
+  color: #ffffff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+a.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet)[disabled],
+button.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet)[disabled],
+a.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet)[disabled]:hover,
+button.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet)[disabled]:hover,
+a.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet)[disabled]:focus,
+button.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet)[disabled]:focus {
+  background: #cccccc;
+  color: #ffffff;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+a.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet):hover,
+button.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet):hover,
+a.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet):focus,
+button.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet):focus {
+  background: #d52f26;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.33);
+}
+a.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet):hover,
+button.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet):hover {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #9d160e, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #9d160e, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+a.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet):focus,
+button.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet):focus {
+  -webkit-box-shadow: inset 0 -4px 0 0 #9d160e, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #9d160e;
+  box-shadow: inset 0 -4px 0 0 #9d160e, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #9d160e;
+}
+a.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet):active,
+button.flow-ui-button[class].flow-ui-destructive:not(.flow-ui-quiet):active {
+  background: #ac1810;
+  -webkit-box-shadow: inset 0 -2px 0 0 #ac1810, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 -2px 0 0 #ac1810, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive {
+  background: #d11d13;
+  color: #ffffff;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive[disabled],
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive[disabled],
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive[disabled]:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive[disabled]:hover,
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive[disabled]:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive[disabled]:focus {
+  background: #cccccc;
+  color: #ffffff;
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive:hover,
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive:focus {
+  background: #d52f26;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.33);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive:hover {
+  -webkit-box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #9d160e, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.15), inset 0 -4px 0 0 #9d160e, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive:focus {
+  -webkit-box-shadow: inset 0 -4px 0 0 #9d160e, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #9d160e;
+  box-shadow: inset 0 -4px 0 0 #9d160e, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px #9d160e;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive:active,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive:active {
+  background: #ac1810;
+  -webkit-box-shadow: inset 0 -2px 0 0 #ac1810, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 -2px 0 0 #ac1810, inset 0 2px 0 0 rgba(0, 0, 0, 0.25);
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet,
+a.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet,
+button.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet {
+  background: transparent;
+  color: #777777;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:hover,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:hover,
+a.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:hover,
+button.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:hover {
+  color: #d11d13;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:active,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:active,
+a.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:active,
+button.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:active {
+  color: #ac1810;
+}
+.lte-ie8 a.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:focus,
+.lte-ie8 button.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:focus,
+a.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:focus,
+button.flow-ui-button[class].flow-ui-destructive.flow-ui-quiet:focus {
+  color: #5c0d08;
+}
+a.flow-ui-button[class].flow-ui-destructive.flow-ui-sleeper,
+button.flow-ui-button[class].flow-ui-destructive.flow-ui-sleeper {
+  background: transparent;
+  background: #eeeeee\9;
+  color: #896563;
+  text-shadow: none;
+  -webkit-box-shadow: inset 0 0 0 1px #dddddd;
+  box-shadow: inset 0 0 0 1px #dddddd;
+}
+a.flow-ui-button[class].flow-ui-destructive.flow-ui-sleeper:hover,
+button.flow-ui-button[class].flow-ui-destructive.flow-ui-sleeper:hover,
+a.flow-ui-button[class].flow-ui-destructive.flow-ui-sleeper:focus,
+button.flow-ui-button[class].flow-ui-destructive.flow-ui-sleeper:focus {
+  color: #ffffff;
+}
+.flow-ui-button-althover {
+  opacity: .8;
+}
+.flow-newtopic-form,
+.flow-topics-bar {
+  padding-top: 1.5em;
+}
+.flow-board-header,
+.flow-board {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  padding-right: 200px;
+  width: 100%;
+  max-width: 915px;
+  font-size: 1em;
+  line-height: 1.4em;
+}
+.flow-board-header-nav {
+  position: relative;
+  text-align: right;
+}
+.flow-board-header-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: .33;
+}
+.flow-board-header-icon:hover,
+.flow-board-header-icon:focus {
+  opacity: 1;
+}
+.flow-board-navigation {
+  clear: both;
+  max-width: 715px;
+  margin-left: 200px;
+  padding-top: .5em;
+  position: relative;
+  left: -200px;
+  font-size: 1.15em;
+}
+.flow-board-navigation div {
+  overflow: hidden;
+  border-bottom: 1px solid #cccccc;
+}
+.flow-board-navigation a {
+  display: inline-block;
+}
+.flow-board-navigation a:link,
+.flow-board-navigation a:visited {
+  display: inline-block;
+  padding: 0.25em .75em;
+  color: #777777;
+}
+.flow-board-navigation a:hover,
+.flow-board-navigation a:focus {
+  color: #000;
+  text-decoration: none;
+}
+.flow-board-navigation a.flow-board-navigator-right {
+  float: right;
+}
+.flow-board-navigation a.flow-board-navigator-cap {
+  border-right: 1px solid #cccccc;
+}
+.flow-board-navigation a.flow-board-navigator-active {
+  font-weight: bold;
+}
+.flow-board-navigation a.flow-board-navigator-first {
+  padding-left: 0;
+}
+.flow-board-navigation a.flow-board-navigator-last {
+  position: absolute;
+  bottom: 1px;
+  right: -2.5em;
+  width: 1.1em;
+  border-bottom: 1px solid #cccccc;
+}
+ul.flow-topic-navigation {
+  float: right;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin: 0 -200px 0 0;
+  width: 185px;
+  border-radius: 3px;
+  font-size: .875em;
+  line-height: 1.1em;
+}
+ul.flow-topic-navigation h5 {
+  color: #252525;
+}
+ul.flow-topic-navigation li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+ul.flow-topic-navigation li.flow-topic-navigator-wrap {
+  margin: 0.25em 0;
+  border: 1px solid #cccccc;
+}
+ul.flow-topic-navigation-fixed {
+  position: fixed;
+  top: 0;
+  margin-right: 0;
+}
+.flow-topic-navigator {
+  display: block;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+  padding: 0.5em 1em;
+  background: #eeeeee;
+  font-style: italic;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: background-color 0.5s linear;
+  -moz-transition: background-color 0.5s linear;
+  -ms-transition: background-color 0.5s linear;
+  -o-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
+  border-left: .5em solid transparent;
+}
+.flow-topic-navigator:link,
+.flow-topic-navigator:visited {
+  color: #777777;
+}
+.flow-topic-navigator-read {
+  background: #cccccc;
+}
+.flow-topic-navigator-active {
+  border-left-color: darkred;
+}
+.flow-topic-navigator-meta {
+  display: block;
+  font-style: normal;
+  font-size: 0.85em;
+}
+.flow-topic-navigation-footer {
+  color: #777777;
+  font-style: italic;
+  text-align: center;
+}
+.flow-topic {
+  padding: 1.5em 0;
+}
+.flow-topic-titlebar {
+  position: relative;
+  padding: 1em 1.5em;
+  background: #eeeeee;
+  border-radius: 3px;
+}
+h2.flow-topic-title {
+  padding: 0;
+  border-bottom: none;
+  margin-bottom: 0.33em;
+  font-size: 1.75em;
+  overflow: visible;
+}
+.flow-topic-meta {
+  padding-top: .33em;
+  color: #898989;
+}
+.flow-menu {
+  clear: both;
+}
+.flow-post {
+  position: relative;
+  margin: 1em 0 0 1.5em;
+  padding: 0;
+  color: #252525;
+}
+.flow-post .flow-post {
+  margin-left: 0;
+  padding-left: 1em;
+  border-left: 1px dotted #dddddd;
+}
+.flow-post .flow-author {
+  display: block;
+  color: #252525;
+}
+.flow-post .flow-author .mw-userlink {
+  font-weight: bold;
+}
+.flow-post .flow-author .mw-usertoollinks {
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -ms-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
+.flow-post .flow-author:hover .mw-usertoollinks {
+  opacity: 1;
+}
+.flow-post-meta {
+  color: #898989;
+  font-size: .875em;
+  text-align: right;
+}
+.flow-post-meta-actions {
+  float: left;
+}
+.flow-post-meta-actions a,
+.flow-post-meta-actions a:visited {
+  color: #777777;
+}
+.flow-post-meta-actions a:hover,
+.flow-post-meta-actions a:focus {
+  text-decoration: underline;
+}
+@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+  .flow-board-navigation {
+    position: static;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    min-width: 14em;
+  }
+  .flow-board-navigation a:link,
+  .flow-board-navigation a:visited {
+    padding: 0.2em 0.3em;
+  }
+  .flow-board-navigation a.flow-board-navigator-last {
+    float: right;
+    position: static;
+  }
+  ul.flow-topic-navigation {
+    display: none;
+  }
+  .flow-board-header,
+  .flow-board {
+    padding-right: 0;
+    max-width: 100%;
+    font-size: .875em;
+    line-height: 1.2em;
+  }
+  .flow-topic-titlebar {
+    padding: .5em .75em;
+  }
+  .flow-topic-meta {
+    font-size: .875em;
+  }
+  .flow-post {
+    margin: .5em 0 0 .75em;
+    padding: 0 .5em 0 0;
+  }
+  .flow-post .flow-author {
+    font-size: .875em;
+    line-height: 1.2em;
+  }
+  .flow-post .flow-post {
+    padding: 0 .5em;
+    border-left-width: 1px;
+  }
+  .flow-post-meta {
+    font-size: .875em;
+  }
+  /* not important stuff -- only here for mediawiki on mobile in test version */
+  #mw-page-base,
+  #mw-head-base {
+    display: none;
+  }
+  div#content {
+    margin-left: 0;
+  }
+}
+@media (min-width: 700px) and (max-width: 980px) and (min-device-width: 700px) {
+  .flow-board-navigation {
+    margin-left: 170px;
+    left: -170px;
+    font-size: 1em;
+  }
+  ul.flow-topic-navigation {
+    margin: 0 -170px 0 0;
+    width: 160px;
+  }
+  .flow-board-header,
+  .flow-board {
+    padding-right: 170px;
+    font-size: .875em;
+    line-height: 1.2em;
+  }
+}
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+@font-face {
+  font-family: 'Wikicons';
+  src: url('../fonts/Wikicons.eot');
+  src: url('../fonts/Wikicons.eot?#iefix') format('embedded-opentype'), url('../fonts/Wikicons.woff') format('woff'), url('../fonts/Wikicons.ttf') format('truetype'), url('../fonts/Wikicons.svg#84004e915ca614f58de23ef0213abb81') format('svg');
+}
+.flow-menu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.flow-menu ul {
+  margin: 0;
+  padding: 0;
+  font-size: 0.75em;
+}
+.flow-menu li {
+  display: inline;
+  margin: 0;
+  list-style: none;
+}
+.flow-menu .flow-menu-js-drop {
+  display: none;
+}
+.client-js div > .flow-menu {
+  top: 0;
+  bottom: auto;
+  display: block;
+  border: none;
+}
+.client-js div > .flow-menu:hover,
+.client-js div > .flow-menu.focus {
+  z-index: 2;
+}
+.client-js div > .flow-menu:hover ul,
+.client-js div > .flow-menu.focus ul {
+  display: block;
+}
+.client-js div > .flow-menu:hover .flow-menu-js-drop a,
+.client-js div > .flow-menu.focus .flow-menu-js-drop a {
+  border-color: transparent;
+  background: transparent;
+  background: rgba(0, 0, 0, 0.05);
+}
+.client-js div > .flow-menu:hover .flow-menu-js-drop a .caret,
+.client-js div > .flow-menu.focus .flow-menu-js-drop a .caret {
+  border-top-color: #000;
+}
+.client-js div > .flow-menu ul {
+  display: none;
+  font-size: 1em;
+  box-shadow: 0 1px 2px #cccccc;
+  background: #fff;
+  border-radius: 2px;
+}
+.client-js div > .flow-menu li {
+  display: block;
+}
+.client-js div > .flow-menu .flow-menu-js-drop {
+  display: block;
+  text-align: right;
+  text-indent: 0;
+  cursor: pointer;
+}
+.client-js div > .flow-menu .flow-menu-js-drop a {
+  display: inline-block;
+  padding: 0 .5em;
+  background: #fafafa;
+  background: rgba(250, 250, 250, 0.75);
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  border-width: 0;
+  color: #777777;
+}
+.client-js div.flow-post > .flow-menu .flow-menu-js-drop a {
+  border-color: #eeeeee;
+  border-width: 1px;
+}
+.flow-timestamp {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  display: inline-block;
+  text-align: left;
+}
+.flow-timestamp-ago,
+.flow-timestamp-now {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  display: block;
+  position: relative;
+  line-height: 1em;
+}
+.flow-timestamp-ago {
+  margin-top: -1em;
+  line-height: 1em;
+}
+.client-nojs .flow-timestamp .flow-timestamp-now {
+  display: none;
+}
+.client-nojs .flow-timestamp .flow-timestamp-ago {
+  display: block;
+}
+.client-js .flow-timestamp .flow-timestamp-now {
+  display: none;
+}
+.client-js .flow-timestamp .flow-timestamp-ago {
+  display: block;
+}
+.client-js .flow-timestamp:hover .flow-timestamp-now {
+  display: block;
+}
+.client-js .flow-timestamp:hover .flow-timestamp-ago {
+  display: none;
+}
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border-top: 4px solid #000000;
+  border-right: 4px solid transparent;
+  border-bottom: 0 dotted;
+  border-left: 4px solid transparent;
+  content: "";
+}
+.glyphicon {
+  position: relative;
+  top: 2px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+}
+.glyphicon-asterisk:before {
+  content: "\2a";
+}
+.glyphicon-plus:before {
+  content: "\2b";
+}
+.glyphicon-euro:before {
+  content: "\20ac";
+}
+.glyphicon-minus:before {
+  content: "\e002212";
+}
+.glyphicon-cloud:before {
+  content: "\e002601";
+}
+.glyphicon-envelope:before {
+  content: "\e002709";
+}
+.glyphicon-pencil:before {
+  content: "\270f";
+}
+.glyphicon-glass:before {
+  content: "\e001";
+}
+.glyphicon-music:before {
+  content: "\e002";
+}
+.glyphicon-search:before {
+  content: "\e003";
+}
+.glyphicon-heart:before {
+  content: "\e005";
+}
+.glyphicon-star:before {
+  content: "\e006";
+}
+.glyphicon-star-empty:before {
+  content: "\e007";
+}
+.glyphicon-user:before {
+  content: "\e008";
+}
+.glyphicon-film:before {
+  content: "\e009";
+}
+.glyphicon-th-large:before {
+  content: "\e010";
+}
+.glyphicon-th:before {
+  content: "\e011";
+}
+.glyphicon-th-list:before {
+  content: "\e012";
+}
+.glyphicon-ok:before {
+  content: "\e013";
+}
+.glyphicon-remove:before {
+  content: "\e014";
+}
+.glyphicon-zoom-in:before {
+  content: "\e015";
+}
+.glyphicon-zoom-out:before {
+  content: "\e016";
+}
+.glyphicon-off:before {
+  content: "\e017";
+}
+.glyphicon-signal:before {
+  content: "\e018";
+}
+.glyphicon-cog:before {
+  content: "\e019";
+}
+.glyphicon-trash:before {
+  content: "\e020";
+}
+.glyphicon-home:before {
+  content: "\e021";
+}
+.glyphicon-file:before {
+  content: "\e022";
+}
+.glyphicon-time:before {
+  content: "\e023";
+}
+.glyphicon-road:before {
+  content: "\e024";
+}
+.glyphicon-download-alt:before {
+  content: "\e025";
+}
+.glyphicon-download:before {
+  content: "\e026";
+}
+.glyphicon-upload:before {
+  content: "\e027";
+}
+.glyphicon-inbox:before {
+  content: "\e028";
+}
+.glyphicon-play-circle:before {
+  content: "\e029";
+}
+.glyphicon-repeat:before {
+  content: "\e030";
+}
+.glyphicon-refresh:before {
+  content: "\e031";
+}
+.glyphicon-list-alt:before {
+  content: "\e032";
+}
+.glyphicon-flag:before {
+  content: "\e034";
+}
+.glyphicon-headphones:before {
+  content: "\e035";
+}
+.glyphicon-volume-off:before {
+  content: "\e036";
+}
+.glyphicon-volume-down:before {
+  content: "\e037";
+}
+.glyphicon-volume-up:before {
+  content: "\e038";
+}
+.glyphicon-qrcode:before {
+  content: "\e039";
+}
+.glyphicon-barcode:before {
+  content: "\e040";
+}
+.glyphicon-tag:before {
+  content: "\e041";
+}
+.glyphicon-tags:before {
+  content: "\e042";
+}
+.glyphicon-book:before {
+  content: "\e043";
+}
+.glyphicon-print:before {
+  content: "\e045";
+}
+.glyphicon-font:before {
+  content: "\e047";
+}
+.glyphicon-bold:before {
+  content: "\e048";
+}
+.glyphicon-italic:before {
+  content: "\e049";
+}
+.glyphicon-text-height:before {
+  content: "\e050";
+}
+.glyphicon-text-width:before {
+  content: "\e051";
+}
+.glyphicon-align-left:before {
+  content: "\e052";
+}
+.glyphicon-align-center:before {
+  content: "\e053";
+}
+.glyphicon-align-right:before {
+  content: "\e054";
+}
+.glyphicon-align-justify:before {
+  content: "\e055";
+}
+.glyphicon-list:before {
+  content: "\e056";
+}
+.glyphicon-indent-left:before {
+  content: "\e057";
+}
+.glyphicon-indent-right:before {
+  content: "\e058";
+}
+.glyphicon-facetime-video:before {
+  content: "\e059";
+}
+.glyphicon-picture:before {
+  content: "\e060";
+}
+.glyphicon-map-marker:before {
+  content: "\e062";
+}
+.glyphicon-adjust:before {
+  content: "\e063";
+}
+.glyphicon-tint:before {
+  content: "\e064";
+}
+.glyphicon-edit:before {
+  content: "\e065";
+}
+.glyphicon-share:before {
+  content: "\e066";
+}
+.glyphicon-check:before {
+  content: "\e067";
+}
+.glyphicon-move:before {
+  content: "\e068";
+}
+.glyphicon-step-backward:before {
+  content: "\e069";
+}
+.glyphicon-fast-backward:before {
+  content: "\e070";
+}
+.glyphicon-backward:before {
+  content: "\e071";
+}
+.glyphicon-play:before {
+  content: "\e072";
+}
+.glyphicon-pause:before {
+  content: "\e073";
+}
+.glyphicon-stop:before {
+  content: "\e074";
+}
+.glyphicon-forward:before {
+  content: "\e075";
+}
+.glyphicon-fast-forward:before {
+  content: "\e076";
+}
+.glyphicon-step-forward:before {
+  content: "\e077";
+}
+.glyphicon-eject:before {
+  content: "\e078";
+}
+.glyphicon-chevron-left:before {
+  content: "\e079";
+}
+.glyphicon-chevron-right:before {
+  content: "\e080";
+}
+.glyphicon-plus-sign:before {
+  content: "\e081";
+}
+.glyphicon-minus-sign:before {
+  content: "\e082";
+}
+.glyphicon-remove-sign:before {
+  content: "\e083";
+}
+.glyphicon-ok-sign:before {
+  content: "\e084";
+}
+.glyphicon-question-sign:before {
+  content: "\e085";
+}
+.glyphicon-info-sign:before {
+  content: "\e086";
+}
+.glyphicon-screenshot:before {
+  content: "\e087";
+}
+.glyphicon-remove-circle:before {
+  content: "\e088";
+}
+.glyphicon-ok-circle:before {
+  content: "\e089";
+}
+.glyphicon-ban-circle:before {
+  content: "\e090";
+}
+.glyphicon-arrow-left:before {
+  content: "\e091";
+}
+.glyphicon-arrow-right:before {
+  content: "\e092";
+}
+.glyphicon-arrow-up:before {
+  content: "\e093";
+}
+.glyphicon-arrow-down:before {
+  content: "\e094";
+}
+.glyphicon-share-alt:before {
+  content: "\e095";
+}
+.glyphicon-resize-full:before {
+  content: "\e096";
+}
+.glyphicon-resize-small:before {
+  content: "\e097";
+}
+.glyphicon-exclamation-sign:before {
+  content: "\e101";
+}
+.glyphicon-gift:before {
+  content: "\e102";
+}
+.glyphicon-leaf:before {
+  content: "\e103";
+}
+.glyphicon-eye-open:before {
+  content: "\e105";
+}
+.glyphicon-eye-close:before {
+  content: "\e106";
+}
+.glyphicon-warning-sign:before {
+  content: "\e107";
+}
+.glyphicon-plane:before {
+  content: "\e108";
+}
+.glyphicon-random:before {
+  content: "\e110";
+}
+.glyphicon-comment:before {
+  content: "\e111";
+}
+.glyphicon-magnet:before {
+  content: "\e112";
+}
+.glyphicon-chevron-up:before {
+  content: "\e113";
+}
+.glyphicon-chevron-down:before {
+  content: "\e114";
+}
+.glyphicon-retweet:before {
+  content: "\e115";
+}
+.glyphicon-shopping-cart:before {
+  content: "\e116";
+}
+.glyphicon-folder-close:before {
+  content: "\e117";
+}
+.glyphicon-folder-open:before {
+  content: "\e118";
+}
+.glyphicon-resize-vertical:before {
+  content: "\e119";
+}
+.glyphicon-resize-horizontal:before {
+  content: "\e120";
+}
+.glyphicon-hdd:before {
+  content: "\e121";
+}
+.glyphicon-bullhorn:before {
+  content: "\e122";
+}
+.glyphicon-certificate:before {
+  content: "\e124";
+}
+.glyphicon-thumbs-up:before {
+  content: "\e125";
+}
+.glyphicon-thumbs-down:before {
+  content: "\e126";
+}
+.glyphicon-hand-right:before {
+  content: "\e127";
+}
+.glyphicon-hand-left:before {
+  content: "\e128";
+}
+.glyphicon-hand-up:before {
+  content: "\e129";
+}
+.glyphicon-hand-down:before {
+  content: "\e130";
+}
+.glyphicon-circle-arrow-right:before {
+  content: "\e131";
+}
+.glyphicon-circle-arrow-left:before {
+  content: "\e132";
+}
+.glyphicon-circle-arrow-up:before {
+  content: "\e133";
+}
+.glyphicon-circle-arrow-down:before {
+  content: "\e134";
+}
+.glyphicon-globe:before {
+  content: "\e135";
+}
+.glyphicon-tasks:before {
+  content: "\e137";
+}
+.glyphicon-filter:before {
+  content: "\e138";
+}
+.glyphicon-fullscreen:before {
+  content: "\e140";
+}
+.glyphicon-dashboard:before {
+  content: "\e141";
+}
+.glyphicon-heart-empty:before {
+  content: "\e143";
+}
+.glyphicon-link:before {
+  content: "\e144";
+}
+.glyphicon-phone:before {
+  content: "\e145";
+}
+.glyphicon-usd:before {
+  content: "\e148";
+}
+.glyphicon-gbp:before {
+  content: "\e149";
+}
+.glyphicon-sort:before {
+  content: "\e150";
+}
+.glyphicon-sort-by-alphabet:before {
+  content: "\e151";
+}
+.glyphicon-sort-by-alphabet-alt:before {
+  content: "\e152";
+}
+.glyphicon-sort-by-order:before {
+  content: "\e153";
+}
+.glyphicon-sort-by-order-alt:before {
+  content: "\e154";
+}
+.glyphicon-sort-by-attributes:before {
+  content: "\e155";
+}
+.glyphicon-sort-by-attributes-alt:before {
+  content: "\e156";
+}
+.glyphicon-unchecked:before {
+  content: "\e157";
+}
+.glyphicon-expand:before {
+  content: "\e158";
+}
+.glyphicon-collapse-down:before {
+  content: "\e159";
+}
+.glyphicon-collapse-up:before {
+  content: "\e160";
+}
+.glyphicon-log-in:before {
+  content: "\e161";
+}
+.glyphicon-flash:before {
+  content: "\e162";
+}
+.glyphicon-log-out:before {
+  content: "\e163";
+}
+.glyphicon-new-window:before {
+  content: "\e164";
+}
+.glyphicon-record:before {
+  content: "\e165";
+}
+.glyphicon-save:before {
+  content: "\e166";
+}
+.glyphicon-open:before {
+  content: "\e167";
+}
+.glyphicon-saved:before {
+  content: "\e168";
+}
+.glyphicon-import:before {
+  content: "\e169";
+}
+.glyphicon-export:before {
+  content: "\e170";
+}
+.glyphicon-send:before {
+  content: "\e171";
+}
+.glyphicon-floppy-disk:before {
+  content: "\e172";
+}
+.glyphicon-floppy-saved:before {
+  content: "\e173";
+}
+.glyphicon-floppy-remove:before {
+  content: "\e174";
+}
+.glyphicon-floppy-save:before {
+  content: "\e175";
+}
+.glyphicon-floppy-open:before {
+  content: "\e176";
+}
+.glyphicon-credit-card:before {
+  content: "\e177";
+}
+.glyphicon-transfer:before {
+  content: "\e178";
+}
+.glyphicon-cutlery:before {
+  content: "\e179";
+}
+.glyphicon-header:before {
+  content: "\e180";
+}
+.glyphicon-compressed:before {
+  content: "\e181";
+}
+.glyphicon-earphone:before {
+  content: "\e182";
+}
+.glyphicon-phone-alt:before {
+  content: "\e183";
+}
+.glyphicon-tower:before {
+  content: "\e184";
+}
+.glyphicon-stats:before {
+  content: "\e185";
+}
+.glyphicon-sd-video:before {
+  content: "\e186";
+}
+.glyphicon-hd-video:before {
+  content: "\e187";
+}
+.glyphicon-subtitles:before {
+  content: "\e188";
+}
+.glyphicon-sound-stereo:before {
+  content: "\e189";
+}
+.glyphicon-sound-dolby:before {
+  content: "\e190";
+}
+.glyphicon-sound-5-1:before {
+  content: "\e191";
+}
+.glyphicon-sound-6-1:before {
+  content: "\e192";
+}
+.glyphicon-sound-7-1:before {
+  content: "\e193";
+}
+.glyphicon-copyright-mark:before {
+  content: "\e194";
+}
+.glyphicon-registration-mark:before {
+  content: "\e195";
+}
+.glyphicon-cloud-download:before {
+  content: "\e197";
+}
+.glyphicon-cloud-upload:before {
+  content: "\e198";
+}
+.glyphicon-tree-conifer:before {
+  content: "\e199";
+}
+.glyphicon-tree-deciduous:before {
+  content: "\e200";
+}
+.glyphicon-briefcase:before {
+  content: "\1f4bc";
+}
+.glyphicon-calendar:before {
+  content: "\1f4c5";
+}
+.glyphicon-pushpin:before {
+  content: "\1f4cc";
+}
+.glyphicon-paperclip:before {
+  content: "\1f4ce";
+}
+.glyphicon-camera:before {
+  content: "\1f4f7";
+}
+.glyphicon-lock:before {
+  content: "\1f512";
+}
+.glyphicon-bell:before {
+  content: "\1f514";
+}
+.glyphicon-bookmark:before {
+  content: "\1f516";
+}
+.glyphicon-fire:before {
+  content: "\1f525";
+}
+.glyphicon-bowrench:before {
+  content: "\1f527";
+}
+.wikicon {
+  display: inline-block;
+  margin: 0 -0.2em;
+  font-family: 'Wikicons';
+  -webkit-font-smoothing: antialiased;
+  font-size: 2em;
+  font-style: normal;
+  font-weight: normal;
+  line-height: inherit;
+  overflow: visible;
+  vertical-align: text-bottom;
+}
+.wikicon-magnifying-glass:before {
+  content: "\41";
+}
+.wikicon-arrow-left:before {
+  content: "\42";
+}
+.wikicon-tick:before {
+  content: "\43";
+}
+.wikicon-x:before {
+  content: "\44";
+}
+.wikicon-x-circle:before {
+  content: "\45";
+}
+.wikicon-translate:before {
+  content: "\46";
+}
+.wikicon-move:before {
+  content: "\47";
+}
+.wikicon-puzzle:before {
+  content: "\48";
+}
+.wikicon-envelope:before {
+  content: "\49";
+}
+.wikicon-dice:before {
+  content: "\4a";
+}
+.wikicon-bookmark:before {
+  content: "\4b";
+}
+.wikicon-article:before {
+  content: "\4c";
+}
+.wikicon-pin:before {
+  content: "\4d";
+}
+.wikicon-gear:before {
+  content: "\4e";
+}
+.wikicon-ellipsis:before {
+  content: "\4f";
+}
+.wikicon-printer:before {
+  content: "\50";
+}
+.wikicon-lock:before {
+  content: "\51";
+}
+.wikicon-clock:before {
+  content: "\52";
+}
+.wikicon-unstar:before {
+  content: "\53";
+}
+.wikicon-star:before {
+  content: "\54";
+}
+.wikicon-wikitrail:before {
+  content: "\55";
+}
+.wikicon-eye:before {
+  content: "\56";
+}
+.wikicon-eye-lid:before {
+  content: "\57";
+}
+.wikicon-funnel:before {
+  content: "\58";
+}
+.wikicon-expanded:before {
+  content: "\59";
+}
+.wikicon-toc:before {
+  content: "\5a";
+}
+.wikicon-compact:before {
+  content: "\5b";
+}
+.wikicon-flag:before {
+  content: "\5c";
+}
+.wikicon-flag-slash:before {
+  content: "\5d";
+}
+.wikicon-trash:before {
+  content: "\5e";
+}
+.wikicon-trash-slash:before {
+  content: "\5f";
+}
+.wikicon-block:before {
+  content: "\60";
+}
+.wikicon-block-slash:before {
+  content: "\61";
+}
+.wikicon-stop:before {
+  content: "\62";
+}
+.wikicon-play:before {
+  content: "\63";
+}
+.wikicon-pencil:before {
+  content: "\64";
+}
+.wikicon-pencil-lock:before {
+  content: "\65";
+}
+.wikicon-pencil-revert:before {
+  content: "\66";
+}
+.wikicon-speech-bubble:before {
+  content: "\67";
+}
+.wikicon-speech-bubbles:before {
+  content: "\68";
+}
+.wikicon-speech-bubble-add:before {
+  content: "\69";
+}
+.wikicon-speech-bubble-smile:before {
+  content: "\6a";
+}
+.wikicon-user-smile:before {
+  content: "\6b";
+}
+.wikicon-user-sleep:before {
+  content: "\6c";
+}
+.wikicon-quotes:before {
+  content: "\6d";
+}
+.wikicon-quotes-add:before {
+  content: "\6e";
+}
+.wikicon-image-add:before {
+  content: "\6f";
+}
+.wikicon-image:before {
+  content: "\70";
+}
+.wikicon-image-lock:before {
+  content: "\71";
+}
+.wikicon-folder:before {
+  content: "\72";
+}
+.wikicon-image-placeholder:before {
+  content: "\73";
+}
+.wikicon-folder-placeholder:before {
+  content: "\74";
+}
+@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+  ul.flow-menu {
+    position: static;
+  }
+}
+.flow-board .mw-ui-fieldtype-text,
+.flow-board .mw-ui-fieldtag-textarea {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 100%;
+}
+.flow-board .mw-ui-input,
+.flow-board textarea {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  width: 100%;
+  padding: .3em .3em .3em .6em;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+.flow-board .mw-ui-input::-webkit-input-placeholder,
+.flow-board textarea::-webkit-input-placeholder {
+  font-style: italic;
+  font-weight: normal;
+}
+.flow-board .mw-ui-input::-moz-placeholder,
+.flow-board textarea::-moz-placeholder {
+  font-style: italic;
+  font-weight: normal;
+}
+.flow-board .mw-ui-input:-moz-placeholder,
+.flow-board textarea:-moz-placeholder {
+  font-style: italic;
+  font-weight: normal;
+}
+.flow-board .mw-ui-input:-ms-input-placeholder,
+.flow-board textarea:-ms-input-placeholder {
+  font-style: italic;
+  font-weight: normal;
+}
+.flow-board textarea {
+  min-height: 8em;
+}
+.flow-board .mw-ui-input:focus,
+.flow-board textarea:focus {
+  box-shadow: inset .45em 0 0 #5088f7;
+  -moz-box-shadow: inset .45em 0 0 #5088f7;
+  -webkit-box-shadow: inset .45em 0 0 #5088f7;
+}
+.flow-newtopic-form input.mw-ui-input {
+  font-weight: bold;
+}
+.flow-newtopic-form .mw-ui-input,
+.flow-newtopic-form textarea {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.flow-newtopic-form textarea {
+  border-top-width: 0;
+}
+.flow-reply-form {
+  margin-top: 1em;
+  margin-left: .9em;
+}
+.flow-form-actions {
+  position: relative;
+  margin-top: .25em;
+}
+.flow-form-actions button.flow-ui-button {
+  float: right;
+  margin-left: .25em;
+}
+.flow-terms-of-use {
+  display: table-cell;
+  height: 3.6em;
+  vertical-align: middle;
+  color: #777777;
+  font-size: .65em;
+  line-height: 1em;
+}
+@media (max-width: 600px) and (min-device-width: 700px), (max-device-width: 700px) {
+  .flow-form-actions {
+    font-size: 0.75em;
+  }
+  .flow-form-actions .flow-ui-button {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin-left: 0;
+    width: 100%;
+    float: none;
+  }
+  .flow-form-actions .flow-terms-of-use {
+    display: block;
+    height: auto;
+    font-size: 7px;
+    text-align: center;
+  }
+}
