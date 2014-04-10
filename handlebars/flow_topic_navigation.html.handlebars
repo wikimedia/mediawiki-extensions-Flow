@@ -1,10 +1,15 @@
 					<ul class="flow-topic-navigation">
-						<li class="flow-topic-navigation-heading"><h5>{{l10n "Topics_n" topics.length}}</h5></li>
+						<li class="flow-topic-navigation-heading"><h5>{{l10n "Topics_n" this}}</h5></li>
 						{{#eachPost this roots}}
-								<li class="flow-topic-navigator-wrap"><a href="#flow-topic-{{id}}" class="flow-topic-navigator">{{math @index "+" 1}}. {{html content}} <span class="flow-topic-navigator-meta">{{#if update_time}}{{timestamp update_time "active_ago"}}{{else}}{{timestamp start_time "started_ago"}}{{/if}}</span></a></li>
+								<li class="flow-topic-navigator-wrap"><a href="#flow-topic-{{id}}" class="flow-topic-navigator">{{math @index "+" 1}}. {{content}} <span class="flow-topic-navigator-meta">{{#if update_time}}{{timestamp update_time "active_ago"}}{{else}}{{timestamp start_time "started_ago"}}{{/if}}</span></a></li>
 						{{/eachPost}}
 						<li class="flow-topic-navigation-footer">
 							{{l10n "topic_count_sidebar" this}}
-							<a href="{{urls.pagination.load_more}}" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="wikicon wikicon-article"></span> {{l10n "Load_More"}}</a>
+							{{#if links.pagination}}
+								<a href="{{links.pagination.load_more.url}}" title="{{links.pagination.load_more.title}}" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="WikiFont WikiFont-article"></span> {{l10n "Load_More"}}</a>
+							{{else}}
+								<!-- @todo make disabled class do something? -->
+								<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin disabled"><span class="WikiFont WikiFont-article"></span> {{l10n "Load_More"}}</a>
+							{{/if}}
 						</li>
 					</ul>
