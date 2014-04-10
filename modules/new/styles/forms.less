@@ -1,0 +1,121 @@
+@import 'settings/colors.less';
+@import 'mixins/helpers.less';
+
+// Placeholder text styling helper
+.field-placeholder-styling() {
+	font-style: italic;
+	font-weight: normal;
+}
+
+.flow-board {
+	// Make all text fields 100% wide by default
+	.mw-ui-fieldtype-text,
+	.mw-ui-fieldtag-textarea {
+		.boxSizing(border-box);
+		width: 100%;
+	}
+
+	.mw-ui-input,
+	textarea {
+		.boxSizing(border-box);
+		width: 100%;
+		padding: .3em .3em .3em .6em;
+		color: inherit;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		// Transition for box-shadow @winter
+		.transition(border linear .2s, box-shadow linear .2s);
+
+		// Placeholder text styling must be set individually for each browser @winter
+		&::-webkit-input-placeholder { // webkit
+			.field-placeholder-styling;
+		}
+		&::-moz-placeholder { // FF 4-18
+			.field-placeholder-styling;
+		}
+		&:-moz-placeholder { // FF >= 19
+			.field-placeholder-styling;
+		}
+		&:-ms-input-placeholder { // IE >= 10
+			.field-placeholder-styling;
+		}
+	}
+
+	textarea {
+		min-height: 8em;
+	}
+
+	// Add blue box-shadow on focus @winter
+	.mw-ui-input:focus,
+	textarea:focus {
+		box-shadow: inset .45em 0 0 #5088f7;
+		-moz-box-shadow: inset .45em 0 0 #5088f7;
+		-webkit-box-shadow: inset .45em 0 0 #5088f7;
+	}
+}
+
+// Make the new topic input mimic new topic text
+.flow-newtopic-form input.mw-ui-input {
+	font-weight: bold;
+}
+
+// Attach these two inputs together to make them seem like one congruous input
+.flow-newtopic-form {
+	.mw-ui-input,
+	textarea {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	textarea {
+		border-top-width: 0;
+	}
+}
+
+// Align reply textarea to make it mimic comment text styling
+.flow-reply-form {
+	margin-top: 1em;
+	margin-left: .9em;
+}
+
+// Form button actions should be right-affixed
+.flow-form-actions {
+	position: relative;
+	margin-top: .25em;
+
+	button.flow-ui-button {
+		float: right;
+		margin-left: .25em;
+	}
+}
+
+// TOU should be tiny and grey, within flow-form-actions
+.flow-terms-of-use {
+	display: table-cell;
+	height: 3.6em;
+	vertical-align: middle;
+	color: @colorTextLight;
+	font-size: .65em;
+	line-height: 1em;
+}
+
+// MEDIA QUERIES
+@media (max-width: 600px) and (min-device-width: 700px), (max-device-width: 700px) {
+	.flow-form-actions {
+		font-size: 0.75em;
+
+		.flow-ui-button {
+			.boxSizing(border-box);
+			margin-left: 0;
+			width: 100%;
+			float: none;
+		}
+
+		.flow-terms-of-use {
+			display: block;
+			height: auto;
+			font-size: 7px;
+			text-align: center;
+		}
+	}
+}
