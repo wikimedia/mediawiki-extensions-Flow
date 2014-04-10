@@ -257,5 +257,21 @@
     "flow-terms-of-use-new-topic": "By clicking \"{{int:flow-newtopic-save}}\", you agree to the terms of use for this wiki.",
     "flow-terms-of-use-reply": "By clicking \"{{int:flow-reply-submit}}\", you agree to the terms of use for this wiki.",
     "flow-terms-of-use-edit": "By saving your changes, you agree to the terms of use for this wiki.",
-    "flow-anon-warning": "You are not logged in. To receive attribution with your name instead of your IP address, you can [$1 log in] or [$2 create an account]."
+    "flow-anon-warning": "You are not logged in. To receive attribution with your name instead of your IP address, you can [$1 log in] or [$2 create an account].",
+
+	"flow-topic-participants-second-try": "$1 started this topic{{PLURAL:$2|0=|1=, with 1 other participant|, with $2 other participants}}",
+	"flow-topic-count-sidebar": "Showing $1 of $2 topics attached to this page",
+	"flow-topic-count": "Topics ($1)",
+	"flow-topic-reply-to-author-name": "Reply to $1",
+	"flow-topic-comment-count": "$1 {{PLURAL:$1|comment|comments}}",
+	"flow-active-ago": "Active $1",
+	"flow-started-ago": "Started $1",
+	"flow-edited-ago": "Edited $1",
+	"flow-load-more": "Load More",
+	"flow-add-topic": "Add Topic ",
+	"flow-newest-topics": "Newest topics",
+	"flow-sorting-tooltip": "You are currently reading the newest topics first. Click for more sorting options.",
+	"flow-toggle-small-topics": "Toggle small topics view",
+	"flow-toggle-topics": "Toggle topics only view",
+	"flow-toggle-topics-posts": "Toggle topics and posts view"
 }

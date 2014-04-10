@@ -20,6 +20,10 @@
 	line-height: 1.4em;
 }
 
+.flow-board-header {
+	word-break: break-word;
+}
+
 // Top board header
 .flow-board-header-nav {
 	position: relative;
@@ -57,7 +61,6 @@
 		display: inline-block;
 
 		&:link, &:visited {
-			display: inline-block;
 			padding: 0.25em .75em;
 			color: @colorTextLight;
 		}
@@ -72,6 +75,8 @@
 		// Adds a spacer
 		&.flow-board-navigator-cap {
 			border-right: 1px solid @colorGrayLight;
+			padding-bottom: 0.5em;
+			margin-top: 1em;
 		}
 		// The active menu item
 		&.flow-board-navigator-active {
@@ -79,20 +84,24 @@
 		}
 		&.flow-board-navigator-first {
 			padding-left: 0;
+			margin-top: 1em;
 		}
 		&.flow-board-navigator-last {
 			position: absolute;
-			bottom: 1px;
+			bottom: 0;
 			right: -2.5em;
 			width: 1.1em;
 			border-bottom: 1px solid @colorGrayLight;
+			padding-bottom: 0.5em;
 		}
 	}
 }
 
 
 // Right-aligned topic navigation container
-ul.flow-topic-navigation {
+// requires additional specificity to override
+// .mw-content-ltr ul
+.flow-board ul.flow-topic-navigation {
 	float: right;
 	.boxSizing( border-box );
 	margin: 0 -200px 0 0;
@@ -114,11 +123,14 @@ ul.flow-topic-navigation {
 		&.flow-topic-navigator-wrap {
 			margin: 0.25em 0;
 			border: 1px solid @colorGrayLight;
+			word-wrap: break-word;
 		}
 	}
 }
 // &.flow-topic-navigation:
-ul.flow-topic-navigation-fixed {
+// needs extra specificity to override 
+// .flow-board ul.flow-topic-navigation
+div#bodyContent ul.flow-topic-navigation-fixed {
 	position: fixed;
 	top: 0;
 	margin-right: 0;
@@ -135,6 +147,7 @@ ul.flow-topic-navigation-fixed {
 	font-style: italic;
 	.transition( background-color .5s linear );
 	border-left: .5em solid transparent;
+	word-wrap: break-word;
 
 	&:link,
 	&:visited{
@@ -181,11 +194,17 @@ ul.flow-topic-navigation-fixed {
 }
 
 // Topic title itself
-h2.flow-topic-title {
+// Needs additional specificity to override `div#content h2`
+div#bodyContent h2.flow-topic-title {
 	padding: 0;
 	border-bottom: none;
-	margin-bottom: 0.33em;
-	font-size: 1.75em;
+	margin: 0 0 0.4em 0;
+	line-height: 0.7;
+	font-family: sans-serif;
+	font-size: 2em;
+	font-weight: bold;
+	word-break: break-word;
+	word-wrap: break-word;
 	overflow: visible;
 }
 
@@ -200,6 +219,33 @@ h2.flow-topic-title {
 	clear: both;
 }
 
+// Reply count (only visible in compact mode)
+.flow-reply-count {
+	display: none;
+	position: absolute;
+	top: 50%;
+	right: 1.5em;
+	margin-top: -.5em;
+	color: @colorGrayLighter;
+	font-size: 2em;
+	opacity: .5;
+
+	.flow-reply-count-number {
+		.boxSizing( border-box );
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		padding-left: .25em;
+		width: 100%;
+		color: @colorTextLight;
+		font-size: .5em;
+		line-height: 2.25em;
+		font-weight: bold;
+		text-align: center;
+	}
+}
+
 
 // Comments
 .flow-post {
@@ -207,18 +253,28 @@ h2.flow-topic-title {
 	margin: 1em 0 0 1.5em;
 	padding: 0;
 	color: @colorText;
+	word-wrap: break-word;
 
 	// Nested comments (replies)
 	.flow-post {
 		margin-left: 0;
-		padding-left: 1em;
+		padding-left: 2em;
 		border-left: 1px dotted @colorGrayLighter;
+	}
+
+	// Content of comments
+	.flow-post-content {
+		// protect from content breaking out of its box
+		word-break: break-word;
+		overflow: auto;
+		max-height: 2000px;
 	}
 
 	// Author link in post
 	.flow-author {
-		display: block;
+		display: inline-block;
 		color: @colorText;
+		word-wrap: break-word;
 
 		.mw-userlink {
 			font-weight: bold;
@@ -232,6 +288,11 @@ h2.flow-topic-title {
 			opacity: 1;
 		}
 	}
+
+	// Content
+	.flow-post-content * {
+		overflow-x: auto;
+	}
 }
 
 // Comment metadata
@@ -244,15 +305,6 @@ h2.flow-topic-title {
 
 .flow-post-meta-actions {
 	float: left;
-
-	a {
-		&, &:visited {
-			color: @colorTextLight;
-		}
-		&:hover, &:focus {
-			text-decoration: underline;
-		}
-	}
 }
 
 
@@ -326,7 +378,9 @@ h2.flow-topic-title {
 		font-size: 1em;
 	}
 
-	ul.flow-topic-navigation {
+	// requires additional specificity to override
+	// .mw-content-ltr ul
+	.flow-board ul.flow-topic-navigation {
 		margin: 0 -170px 0 0;
 		width: 160px;
 	}

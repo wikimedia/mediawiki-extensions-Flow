@@ -2,7 +2,7 @@
  * Implements basic Flow UI JavaScript functionality.
  */
 
-( function ( $ ) {
+( function ( $, mw, initStorer ) {
 	var _componentRegistry = {};
 
 	window.mw = window.mw || {}; // mw-less testing
@@ -154,4 +154,4 @@
 
 		return this.constructor._instanceRegistry[ this.constructor._instanceRegistryById[ id ] ] || false;
 	};
-}( jQuery ) );
+}( jQuery, mediaWiki, mediaWiki.flow.vendor.initStorer ) );
