@@ -71,6 +71,10 @@ $c['permissions'] = $c->share( function( $c ) {
 	return new Flow\RevisionActionPermissions( $c['flow_actions'], $c['user'] );
 } );
 
+$c['lightncandy'] = $c->share( function( $c ) {
+	global $wgFlowTemplateTempDir;
+	return new Flow\TemplateHelper( __DIR__ . '/handlebars', $wgFlowTemplateTempDir );
+} );
 $c['templating.namespaces'] = array(
 	'flow' => __DIR__ . '/templates',
 );

@@ -9,14 +9,31 @@ use IContextSource;
 use ContextSource;
 
 class View extends ContextSource {
+	/**
+	 * @var Templating $templating
+	 */
+	protected $templating;
+
+	/**
+	 * @var UrlGenerator $urlGenerator
+	 */
+	protected $urlGenerator;
+
+	/**
+	 * @var TemplateHelper $lightncandy
+	 */
+	protected $lightncandy;
+
 	function __construct(
 		Templating $templating,
 		UrlGenerator $urlGenerator,
-		IContextSource $requestContext
+		IContextSource $requestContext,
+		TemplateHelper $lightncandy
 	) {
 		$this->templating = $templating;
 		$this->urlGenerator = $urlGenerator;
 		$this->setContext( $requestContext );
+		$this->lightncandy = $lightncandy;
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
@@ -62,6 +79,26 @@ class View extends ContextSource {
 			}
 		}
 
+		$parameters = $loader->extractBlockParameters( $request, $blocks );
+
+		foreach ( $blocks as $block ) {
+			if ( $block->canRender( $action ) ) {
+				$result[] = $block->renderAPI( $this->templating, $parameters[$block->getName()] );
+			}
+		}
+
+		// Temporary asset hack
+		$out->addModules( 'ext.flow.new' );
+
+		// Render with lightncandy
+		$template = $this->lightncandy->getTemplate( 'flow_board' );
+		$out->addHTML( $template( array( 
+			'workflow' => $workflow->getId()->getAlphadecimal(),
+			'blocks' => $result,
+		) ) );
+		return;
+
+
 		$workflowId = $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal();
 		$title = $workflow->getArticleTitle();
 		$out->addHTML( Html::openElement( 'div',
@@ -72,8 +109,6 @@ class View extends ContextSource {
 				'data-workflow-existence' => $workflow->isNew() ? 'new' : 'existing',
 			)
 		) );
-
-		$parameters = $loader->extractBlockParameters( $request, $blocks );
 
 		$rendered = false;
 		foreach ( $blocks as $block ) {
