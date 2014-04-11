@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8e23439c_325e8049",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-11T09:44:50Z",
+      "side": 1,
+      "message": "Should be tabs",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_aa38099c",
         "filename": "includes/Formatter/AbstractFormatter.php",
         "patchSetId": 6
@@ -70,6 +87,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_cda0cdf3",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-11T09:44:50Z",
+      "side": 1,
+      "message": "Looks like it\u0027s in phpdoc only, so likely not breaking anything; I assume some analysis was complaining about not knowing the phpdoc ResultWrapper",
+      "parentUuid": "8e23439c_f2d24800",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_d2018c72",
         "filename": "includes/Notifications/Formatter.php",
         "patchSetId": 6
@@ -104,6 +139,23 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_4de27d2f",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-11T09:44:50Z",
+      "side": 1,
+      "message": "Split up classes into separate files",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_aa900947",
         "filename": "includes/UrlGenerator.php",
         "patchSetId": 6
@@ -115,6 +167,24 @@
       "writtenOn": "2014-04-04T22:50:27Z",
       "side": 1,
       "message": "I am a little bit worried that this would turn into a big class as we have more other links for new features.   This is essentially a set of actions with different parameters ( workflow, postId etc ), maybe we could break this class into sets of block level generator class with a set of action to parameter mappings?",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_8df895e3",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-11T09:44:50Z",
+      "side": 1,
+      "message": "+1 to what Benny said",
+      "parentUuid": "8e23439c_aa900947",
       "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
