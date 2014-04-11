@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_2d6061cb",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-11T09:27:42Z",
+      "side": 1,
+      "message": "getLastPostRevisionFor doesn\u0027t exist? getLastRevisionFor?",
+      "revId": "9823e6e0e273a071d2dd7685cb5da9d3a4e9d3d8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
