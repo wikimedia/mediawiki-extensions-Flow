@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8e23439c_92fb1477",
+        "filename": "includes/Parsoid/Utils.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-04-11T05:47:24Z",
+      "side": 1,
+      "message": "Minor point: This isn\u0027t C, so standard PHP style is to use lowercase \u0027null\u0027.",
+      "revId": "a9a25f897c03d3af5455e210a371ccf1cae3828b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_e68bbf70",
         "filename": "includes/View.php",
         "patchSetId": 3
@@ -13,6 +30,24 @@
       "writtenOn": "2014-04-09T02:39:02Z",
       "side": 1,
       "message": "Maybe Flow\u0027s Parsoid module should respond to its own hook here instead of calling \\Flow\\Parsoid\\Utils::getModules().",
+      "revId": "a9a25f897c03d3af5455e210a371ccf1cae3828b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_72fe3868",
+        "filename": "includes/View.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-04-11T05:47:24Z",
+      "side": 1,
+      "message": "Yeah, I think this is a simpler and more readable style than having this call a function.",
+      "parentUuid": "8e23439c_e68bbf70",
       "revId": "a9a25f897c03d3af5455e210a371ccf1cae3828b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
