@@ -126,7 +126,7 @@ class TopKIndex extends FeatureIndex {
 					// new item didnt fit in index and old item wasnt found in index
 					return false;
 				} else {
-					return $value;
+					return $retval;
 				}
 			}
 		);
