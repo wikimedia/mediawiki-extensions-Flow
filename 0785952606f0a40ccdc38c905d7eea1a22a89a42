@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8e23439c_472a5c90",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-11T01:07:48Z",
+      "side": 1,
+      "message": "\"navigation\" typo",
+      "revId": "0785952606f0a40ccdc38c905d7eea1a22a89a42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_8790a947",
         "filename": "tests/browser/features/paging.feature",
         "patchSetId": 2
@@ -13,6 +30,23 @@
       "writtenOn": "2014-04-04T15:50:07Z",
       "side": 1,
       "message": "This part is very broad and isn\u0027t neatly divided into smaller parts, as it\u0027s not possible to have loops here.\n\nHowever if only loading once is sufficient, then this part can be further breakdown to be more detailed, like proposed in https://bugzilla.wikimedia.org/show_bug.cgi?id\u003d61340",
+      "revId": "0785952606f0a40ccdc38c905d7eea1a22a89a42",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_070b442e",
+        "filename": "tests/browser/features/paging.feature",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-11T01:07:48Z",
+      "side": 1,
+      "message": "Is there a way to check if there are already 11 topics and if so somehow ensure scrolling brings the 11th into view?  Creating 11 topics takes time and if it fails once the entire test fails. Moreover, we run multiple browser tests against the same Flow_QA page, so it\u0027s possible two browsers would be adding their own topics at the same time. It seems you\u0027d have to call the API first to see if there are 11 visible topics, if not add 11 - (number visible), then call the API again to ask for the first 11 visible topics, then scroll down and see if the 11th is visible.  Still prone to interference.",
       "revId": "0785952606f0a40ccdc38c905d7eea1a22a89a42",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
