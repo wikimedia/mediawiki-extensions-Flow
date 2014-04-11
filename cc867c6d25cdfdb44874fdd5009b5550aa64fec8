@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_727518c8",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-11T08:21:01Z",
+      "side": 1,
+      "message": "That exception could easily be caught.\n\nBut yeah, it kinda sucks that collection overfetches data for some use-cases :p\n\nI\u0027ve been working on something yesterday that may improve how collection fetches data: https://gerrit.wikimedia.org/r/#/c/125228/",
+      "parentUuid": "8e23439c_423b78e8",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_2e550dc6",
         "filename": "includes/Block/TopicSummary.php",
         "patchSetId": 25
@@ -152,6 +170,24 @@
       "side": 1,
       "message": "nextRevision is used in write APIs while renderAPI() is used in read APIs, I don\u0027t think they would run into each other",
       "parentUuid": "8e23439c_aef59db7",
+      "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_a826aac7",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-11T08:21:01Z",
+      "side": 1,
+      "message": "I thought write APIs would also call render, to output the new data. I was wrong, that\u0027s done on L163 :)",
+      "parentUuid": "8e23439c_62c43412",
       "revId": "cc867c6d25cdfdb44874fdd5009b5550aa64fec8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
