@@ -19,6 +19,74 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_32c9e055",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-04-11T05:45:35Z",
+      "side": 1,
+      "message": "Not necessary anymore.",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_12d82421",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-04-11T05:45:35Z",
+      "side": 1,
+      "message": "Was this broken before?",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_f2d24800",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-04-11T05:45:35Z",
+      "side": 1,
+      "message": "Likewise, was this broken before?",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_d2018c72",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-04-11T05:45:35Z",
+      "side": 1,
+      "message": "Doubled up :)",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_ea128100",
         "filename": "includes/UrlGenerator.php",
         "patchSetId": 6
