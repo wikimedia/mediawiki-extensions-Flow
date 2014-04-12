@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_1ee26a9c",
+        "filename": "SpecialFlow.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1406
+      },
+      "writtenOn": "2014-04-12T02:29:13Z",
+      "side": 1,
+      "message": "I copied the approach in Special:Redirect. I think 404 makes sense in this context, since the redirect target doesn\u0027t exist.",
+      "parentUuid": "8e23439c_dec4f213",
+      "revId": "bf7e5ce93364d8c0a19e7d635485f245954f14f6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_bec7f614",
         "filename": "SpecialFlow.php",
         "patchSetId": 11
@@ -30,6 +48,24 @@
       "writtenOn": "2014-04-12T02:17:41Z",
       "side": 1,
       "message": "This is already defined in FormSpecialPage, so you don\u0027t need it here.",
+      "revId": "bf7e5ce93364d8c0a19e7d635485f245954f14f6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_1ef94a4a",
+        "filename": "SpecialFlow.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1406
+      },
+      "writtenOn": "2014-04-12T02:29:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e23439c_bec7f614",
       "revId": "bf7e5ce93364d8c0a19e7d635485f245954f14f6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
