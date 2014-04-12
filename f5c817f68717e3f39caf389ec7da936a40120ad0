@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_3bc9b855",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e23439c_325e8049",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_aa38099c",
         "filename": "includes/Formatter/AbstractFormatter.php",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2014-04-04T22:50:27Z",
       "side": 1,
       "message": "Looks like boardhistory is still using formatLinksAsPipeList",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_7bfe1068",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e23439c_aa38099c",
       "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_3b3f7822",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "Actually the whole function is unnecessary now, its replaced with Anchor::toHtml",
+      "parentUuid": "8e23439c_32c9e055",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_12d82421",
         "filename": "includes/Formatter/AbstractQuery.php",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2014-04-11T05:45:35Z",
       "side": 1,
       "message": "Was this broken before?",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_fb48e0d0",
+        "filename": "includes/Formatter/AbstractQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "only kinda, i suppose it could be in a separate patch but its so small to be trivial. \n\nThis is used in an annotation, which the analyze-phpstorm make command will complain about not finding a matching class for.  I suppose that also means autocomplete fails in phpstorm and possibly other ide\u0027s that use code analysis.",
+      "parentUuid": "8e23439c_12d82421",
       "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -105,6 +177,41 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_bb1a68ce",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "yes, i happened to be using the analysis for this larger change and these additional warnings came in.  The code itself is fine these are just for phpdoc\u0027s",
+      "parentUuid": "8e23439c_cda0cdf3",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_4df50fc7",
+        "filename": "includes/Log/Logger.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "urlGenerator is no longer used in this class",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_d2018c72",
         "filename": "includes/Notifications/Formatter.php",
         "patchSetId": 6
@@ -122,6 +229,41 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_fb058017",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e23439c_d2018c72",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_2df2d3df",
+        "filename": "includes/Notifications/Formatter.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "would it make sense to return the new Anchor object here?",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_ea128100",
         "filename": "includes/UrlGenerator.php",
         "patchSetId": 6
@@ -133,6 +275,24 @@
       "writtenOn": "2014-04-04T22:50:27Z",
       "side": 1,
       "message": "This method is redundant.  We could just add \u0027action\u0027 to $query if it\u0027s not \u0027view\u0027 in the various caller",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_fb80e08f",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "everything was using it, but indeed it is redundant.  I\u0027ve dropped the method and adjusted the rest of the code.",
+      "parentUuid": "8e23439c_ea128100",
       "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -191,6 +351,41 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_bec2565b",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "I\u0027ve poked at this a little, but i\u0027m really not sure how to capture the variance here with an array of mappings.  \n\nThe diff links have optional parameters,\nThe third parameter varies between revId and postId\nThe post link needs to concatenate a string with the postId for the fragment\nThe board link uses $title-\u003egetPrefixedText() rather than an i18n message\n\nWe could invent a DSL for this, something like\n\n    \u0027post\u0027 \u003d\u003e array(\n        \u0027message\u0027 \u003d\u003e \u0027flow-link-post\u0027,\n        \u0027params\u0027 \u003d\u003e array( \u0027title\u0027, \u0027workflow\u0027, \u0027postId\u0027 ),\n        \u0027query\u0027 \u003d\u003e array( \u0027workflow\u0027 \u003d\u003e \u0027$workflow\u0027 ),\n        \u0027fragment\u0027 \u003d\u003e array( \u0027flow-post-\u0027, \u0027$postId\u0027 ),\n    ),\n    \u0027diff-post\u0027 \u003d\u003e array(\n        \u0027message\u0027 \u003d\u003e \u0027diff\u0027,\n        \u0027params\u0027 \u003d\u003e array( \u0027title\u0027, \u0027workflow\u0027, \u0027revId\u0027, \u0027?oldRevId\u0027 ),\n        \u0027query\u0027 \u003d\u003e array(\n            \u0027action\u0027 \u003d\u003e \u0027compare-post-revisions\u0027,\n            \u0027workflow\u0027 \u003d\u003e \u0027$workflow\u0027,\n            \u0027post_newRevision\u0027 \u003d\u003e \u0027$revId\u0027,\n            \u0027post_oldRevision\u0027 \u003d\u003e \u0027$oldRevId\u0027,\n        ),  \n    )\n\ncould accept arbitrary parameters, determine some optional (the ? prefix), and then inject those named parameters into the query(when first char is $), The fragment could be concatenated by replacing values prefixed $ and imploding.  But i think this is getting more complex than necessary, most of these functions are now:\n\n    public function postLink( Title $title \u003d null, UUID $workflowId, UUID $postId ) {\n        return new Anchor(\n            wfMessage( \u0027flow-link-post\u0027 ),\n            $this-\u003eresolveTitle( $title, $workflowId ),\n            array( \u0027workflow\u0027 \u003d\u003e $workflowId-\u003egetAlphadecimal() ),\n            \u0027#flow-post-\u0027 . $postId-\u003egetAlphadecimal()\n        );\n    }\n\nJust a single return new Anchor statement, but with varied parameters and handling of those parameters.  This is almost the same length as the array definition but with more power. I suppose the array definition is portable though, the generator could be duplicated in js, but we are moving towards a model where the api provides the exact urls already.\n\nI\u0027m open to suggestions, but I\u0027m not seeing a better way yet.",
+      "parentUuid": "8e23439c_aa900947",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_0dff17a9",
+        "filename": "includes/View.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "this could probably be a one line constructor now",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_6a59d100",
         "filename": "includes/View.php",
         "patchSetId": 6
@@ -202,6 +397,24 @@
       "writtenOn": "2014-04-04T22:50:27Z",
       "side": 1,
       "message": "$this-\u003etemplating-\u003egetUrlGenerator()?",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_1b0b9c2e",
+        "filename": "includes/View.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-12T00:22:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e23439c_6a59d100",
       "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
