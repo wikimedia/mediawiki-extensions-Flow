@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_dec4f213",
+        "filename": "SpecialFlow.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-04-12T02:17:41Z",
+      "side": 1,
+      "message": "Why 404? Do other redirect special pages do this?",
+      "revId": "bf7e5ce93364d8c0a19e7d635485f245954f14f6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_bec7f614",
+        "filename": "SpecialFlow.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-04-12T02:17:41Z",
+      "side": 1,
+      "message": "This is already defined in FormSpecialPage, so you don\u0027t need it here.",
+      "revId": "bf7e5ce93364d8c0a19e7d635485f245954f14f6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
