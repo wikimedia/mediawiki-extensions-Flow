@@ -208,7 +208,7 @@ class HeaderBlock extends AbstractBlock {
 			$output['format'] = $contentFormat;
 			$output['header-id'] = $this->header->getRevisionId()->getAlphadecimal();
 		} else {
-			$output['missing'] = 'missing';
+			$output['missing'] = '';
 		}
 
 		$output = array(
