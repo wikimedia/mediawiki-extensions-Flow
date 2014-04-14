@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_758174c7",
+        "filename": "includes/Block/BoardHistory.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-14T18:59:11Z",
+      "side": 1,
+      "message": "Should keep the API result consistent, \u0027*\u0027 \u003d\u003e \u0027\u0027",
+      "revId": "53cb8a362bbda9060b2717dede6cd1105dc0e16a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_f56c6433",
+        "filename": "includes/Block/Header.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-14T18:59:11Z",
+      "side": 1,
+      "message": "!empty( $this-\u003esubmitted[\u0027prev_revision\u0027] )",
+      "revId": "53cb8a362bbda9060b2717dede6cd1105dc0e16a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_15724010",
+        "filename": "includes/Formatter/BoardHistoryQuery.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-14T18:59:11Z",
+      "side": 1,
+      "message": "Since we only fetch boardhistory result if workflow is not new and exists.   Maybe we should keep the exception?",
+      "revId": "53cb8a362bbda9060b2717dede6cd1105dc0e16a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_358bfce9",
+        "filename": "includes/api/ApiFlowEditHeader.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-14T18:59:11Z",
+      "side": 1,
+      "message": "\u0027prev_revision\u0027 \u003d\u003e null",
+      "revId": "53cb8a362bbda9060b2717dede6cd1105dc0e16a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
