@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_3bb08df0",
+        "filename": "includes/Model/UUID.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-14T20:41:13Z",
+      "side": 1,
+      "message": "I\u0027ve just put together https://gerrit.wikimedia.org/r/#/c/125767/ which will serialize the uuid objects directly into memcache and convert them to binary before passing into database layer.",
+      "parentUuid": "8e23439c_fa2c8891",
+      "revId": "9f14f5a5cfb621a22c4984ad7e3b44f5446aa87d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_531c9b6a",
         "filename": "includes/Model/UUID.php",
         "patchSetId": 2
