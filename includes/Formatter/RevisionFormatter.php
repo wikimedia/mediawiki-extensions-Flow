@@ -85,13 +85,7 @@ class RevisionFormatter {
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),
 			'isModerated' => $this->templating->getModeratedRevision( $row->revision )->isModerated(),
-			'links' => $this->buildActionLinks(
-				$row->workflow->getArticleTitle(),
-				$row->revision->getChangeType(),
-				$row->workflow->getId(),
-				$row->revision->getRevisionId(),
-				method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId() : null
-			),
+			'links' => $this->buildActionLinks( $row ),
 			'size' => array(
 				'old' => strlen( $row->previousRevision ? $row->previousRevision->getContentRaw() : '' ),
 				'new' => strlen( $row->revision->getContentRaw() ),
@@ -119,15 +113,17 @@ class RevisionFormatter {
 	}
 
 	/**
-	 * @param Title $title
-	 * @param string $action
-	 * @param UUID $workflowId
-	 * @param UUID $revId
-	 * @param UUID|null $postId
+	 * @param FormatterRow $row
 	 * @return array
 	 * @throws FlowException
 	 */
-	public function buildActionLinks( Title $title, $action, UUID $workflowId, UUID $revId, UUID $postId = null ) {
+	public function buildActionLinks( FormatterRow $row ) {
+		$title = $row->workflow->getArticleTitle();
+		$action = $row->revision->getChangeType();
+		$workflowId = $row->workflow->getId();
+		$revId = $row->revision->getRevisionId();
+		$postId = method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId() : null;
+
 		$linkTypes = $this->permissions->getActions()->getValue( $action, 'links' );
 		if ( $linkTypes === null ) {
 			throw new FlowException( "No links defined for action: $action" );
