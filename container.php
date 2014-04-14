@@ -471,6 +471,12 @@ $c['controller.spamfilter'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['query.checkuser'] = $c->share( function( $c ) {
+	return new Flow\Formatter\CheckUserQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
 $c['formatter.checkuser'] = $c->share( function( $c ) {
 	return new Flow\Formatter\CheckUser(
 		$c['permissions'],
