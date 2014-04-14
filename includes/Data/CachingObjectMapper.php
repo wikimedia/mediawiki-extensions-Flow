@@ -29,7 +29,10 @@ class CachingObjectMapper implements ObjectMapper {
 
 	public function toStorageRow( $object ) {
 		$row = call_user_func( $this->toStorageRow, $object );
-		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
+		$pk = UUID::convertUUIDs(
+			ObjectManager::splitFromRow( $row, $this->primaryKey ),
+			'alphadecimal'
+		);
 		if ( $pk === null ) {
 			// new object may not have pk yet, calling code
 			// should call self::fromStorageRow with $object to load
@@ -47,7 +50,10 @@ class CachingObjectMapper implements ObjectMapper {
 	}
 
 	public function fromStorageRow( array $row, $object = null ) {
-		$pk = ObjectManager::splitFromRow( $row, $this->primaryKey );
+		$pk = UUID::convertUUIDs(
+			ObjectManager::splitFromRow( $row, $this->primaryKey ),
+			'alphadecimal'
+		);
 		if ( $pk === null ) {
 			throw new \InvalidArgumentException( 'Storage row has no pk' );
 		} elseif ( !isset( $this->loaded[$pk] ) ) {
@@ -74,10 +80,14 @@ class CachingObjectMapper implements ObjectMapper {
 	 * @throws \InvalidArgumentException
 	 */
 	public function get( array $primaryKey ) {
-		$primaryKey = UUID::convertUUIDs( $primaryKey );
+		$primaryKey = UUID::convertUUIDs( $primaryKey, 'alphadecimal' );
 		ksort( $primaryKey );
 		if ( array_keys( $primaryKey ) !== $this->primaryKey ) {
-			throw new \InvalidArgumentException;
+			throw new \InvalidArgumentException( sprintf(
+				'Request of %s does not match primary key columns of %s',
+				json_encode( array_keys( $primaryKey ) ),
+				json_encode( $this->primaryKey )
+			) );
 		}
 		try {
 			return $this->loaded[$primaryKey];

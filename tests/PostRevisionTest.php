@@ -3,6 +3,7 @@
 namespace Flow\Tests;
 
 use Flow\Model\PostRevision;
+use Flow\Model\UUID;
 
 /**
  * @group Flow
@@ -23,6 +24,9 @@ class PostRevisionTest extends PostRevisionTestCase {
 		$roundtripRow = PostRevision::toStorageRow( $object );
 		unset( $roundtripRow['rev_content_url'] );
 
+		// Due to our desire to store alphadecimal values in cache and binary values on
+		// disk we need to perform uuid conversion before comparing
+		$roundtripRow = UUID::convertUUIDs( $roundtripRow, 'binary' );
 		$this->assertEquals( $row, $roundtripRow );
 	}
 }

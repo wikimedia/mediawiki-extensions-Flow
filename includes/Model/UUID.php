@@ -247,10 +247,19 @@ class UUID {
 	 * @param array
 	 * @return array
 	 */
-	public static function convertUUIDs( $array ) {
+	public static function convertUUIDs( $array, $format = 'binary' ) {
 		foreach( ObjectManager::makeArray( $array ) as $key => $value ) {
 			if ( $value instanceof UUID ) {
-				$array[$key] = $value->getBinary();
+				switch( $format ) {
+				case 'binary':
+					$array[$key] = $value->getBinary();
+					break;
+				case 'alphadecimal':
+					$array[$key] = $value->getAlphadecimal();
+					break;
+				default:
+					throw new FlowException( "UUID format must be either 'binary' or 'alphadecimal'" );
+				}
 			}
 		}
 

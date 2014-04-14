@@ -388,7 +388,7 @@ abstract class RevisionStorage extends DbStorage {
 	public function remove( array $row ) {
 		$res = $this->dbFactory->getDB( DB_MASTER )->delete(
 			'flow_revision',
-			array( 'rev_id' => $row['rev_id'] ),
+			$this->preprocessSqlArray( array( 'rev_id' => $row['rev_id'] ) ),
 			__METHOD__
 		);
 		if ( !$res ) {

@@ -118,4 +118,13 @@ class FormatterTest extends \MediaWikiTestCase {
 
 		return new $class( $permissions, $templating );
 	}
+
+	protected function dataToString( $data ) {
+		foreach ( $data as $key => $value ) {
+			if ( $value instanceof UUID ) {
+				$data[$key] = "UUID: " . $value->getAlphadecimal();
+			}
+		}
+		return parent::dataToString( $data );
+	}
 }
