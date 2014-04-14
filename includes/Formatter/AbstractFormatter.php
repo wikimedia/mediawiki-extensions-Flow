@@ -117,35 +117,79 @@ abstract class AbstractFormatter {
 	}
 
 	/**
-	 * Generate HTML for "(diff | hist)".  This will always contain both
-	 * elements, they will be linked if the result from RevisionFormatter
-	 * contains relevant links.
+	 * Gets the "diff" link; linking to the diff against the previous revision,
+	 * in a format that can be wrapped in an array and passed to
+	 * formatLinksAsPipeList.
 	 *
 	 * @param array[][] Associative array containing (url, message) tuples
 	 * @param IContextSource $ctx
-	 * @return string Html valid for user output
+	 * @return array|Message
 	 */
-	protected function formatDiffHistPipeList( array $input, IContextSource $ctx ) {
-		$links = array();
-		if ( isset( $input['diff'] ) ) {
-			$links[] = $input['diff'];
-		} else {
+	protected function getDiffLink( array $input, IContextSource $ctx ) {
+		if ( !isset( $input['diff'] ) ) {
 			// plain text with no link
-			$links[] = $ctx->msg( 'diff' );
+			return $ctx->msg( 'diff' );
 		}
 
+		return $input['diff'];
+	}
+
+	/**
+	 * Gets the "prev" link; linking to the diff against the previous revision,
+	 * in a format that can be wrapped in an array and passed to
+	 * formatLinksAsPipeList.
+	 *
+	 * @param array[][] Associative array containing (url, message) tuples
+	 * @param IContextSource $ctx
+	 * @return array|Message
+	 */
+	protected function getDiffPrevLink( array $input, IContextSource $ctx ) {
+		if ( !isset( $input['diff-prev'] ) ) {
+			// plain text with no link
+			return $ctx->msg( 'last' );
+		}
+
+		return $input['diff-prev'];
+	}
+
+	/**
+	 * Gets the "cur" link; linking to the diff against the current revision,
+	 * in a format that can be wrapped in an array and passed to
+	 * formatLinksAsPipeList.
+	 *
+	 * @param array[][] Associative array containing (url, message) tuples
+	 * @param IContextSource $ctx
+	 * @return array|Message
+	 */
+	protected function getDiffCurLink( array $input, IContextSource $ctx ) {
+		if ( !isset( $input['diff-cur'] ) ) {
+			// plain text with no link
+			return $ctx->msg( 'cur' );
+		}
+
+		return $input['diff-cur'];
+	}
+
+	/**
+	 * Gets the "hist" link; linking to the history of a certain element, in a
+	 * format that can be wrapped in an array and passed to
+	 * formatLinksAsPipeList.
+	 *
+	 * @param array[][] Associative array containing (url, message) tuples
+	 * @param IContextSource $ctx
+	 * @return array|Message
+	 */
+	protected function getHistLink( array $input, IContextSource $ctx ) {
 		if ( isset( $input['post-history'] ) ) {
-			$links[] = $input['post-history'];
+			return $input['post-history'];
 		} elseif ( isset( $input['topic-history'] ) ) {
-			$links[] = $input['topic-history'];
+			return $input['topic-history'];
 		} elseif ( isset( $input['board-history'] ) ) {
-			$links[] = $input['board-history'];
+			return $input['board-history'];
 		} else {
 			// plain text with no link
-			$links[] = $ctx->msg( 'hist' );
+			return $ctx->msg( 'hist' );
 		}
-
-		return $this->formatLinksAsPipeList( $links, $ctx );
 	}
 
 	/**
