@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_5b8109c7",
+        "filename": "includes/Collection/CollectionCache.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-14T21:11:44Z",
+      "side": 1,
+      "message": "we are in the progress of converting such that we uuid\u0027s from cache will be alphadecimal, as such the performance(and debugging readability) will be better with getAlphadecimal() here",
+      "revId": "f6bcc6dc90e3957bd7f1902b7491fc4239471699",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
