@@ -75,6 +75,7 @@ class RootPostLoader {
 	 * @throws \Flow\Exception\InvalidDataException
 	 */
 	public function getMulti( array $topicIds ) {
+
 		if ( !$topicIds ) {
 			return array();
 		}

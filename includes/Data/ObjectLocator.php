@@ -4,6 +4,7 @@ namespace Flow\Data;
 
 use FormatJson;
 use Flow\Exception\NoIndexException;
+use Flow\Model\UUID;
 
 /**
  * Denormalized indexes that are query-only.  The indexes used here must
@@ -68,6 +69,10 @@ class ObjectLocator {
 			return array();
 		}
 
+		foreach ( $queries as $key => $value ) {
+			$queries[$key] = UUID::convertUUIDs( $value );
+		}
+
 		$keys = array_keys( reset( $queries ) );
 		if ( isset( $options['sort'] ) && !is_array( $options['sort'] ) ) {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
@@ -89,6 +94,8 @@ class ObjectLocator {
 		foreach( $res as $index => $queryOutput ) {
 			$output[$index] = array_map( array( $this, 'load' ), $queryOutput );
 		}
+
+
 		return $output;
 	}
 
@@ -130,6 +137,10 @@ class ObjectLocator {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
 		}
 
+		foreach( $queries as $key => $value ) {
+			$queries[$key] = UUID::convertUUIDs( $value );
+		}
+
 		try {
 			$index = $this->getIndexFor( $keys, $options );
 			$res = $index->foundMulti( $queries, $options );
@@ -160,6 +171,7 @@ class ObjectLocator {
 		if ( !$objectIds ) {
 			return array();
 		}
+		$objectIds = UUID::convertUUIDs( $objectIds, 'alphadecimal' );
 		$primaryKey = $this->storage->getPrimaryKeyColumns();
 		$queries = array();
 		$retval = null;
@@ -222,6 +234,7 @@ class ObjectLocator {
 		$queries = array();
 		foreach ( $objectIds as $id ) {
 			$query = array_combine( $primaryKey, ObjectManager::makeArray( $id ) );
+			$query = UUID::convertUUIDs( $query, 'alphadecimal' );
 			if ( !$this->mapper->get( $query ) ) {
 				$queries[] = $query;
 			}

@@ -51,6 +51,7 @@ class Pager {
 
 		// Retrieve results
 		$results = $this->storage->find( $this->query, $options );
+
 		if ( $results === null ) {
 			return new PagerPage( array(), array(), $this );
 		} else {

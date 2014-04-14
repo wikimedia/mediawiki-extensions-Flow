@@ -3,6 +3,7 @@
 namespace Flow\Data;
 
 use Flow\Exception\DataModelException;
+use Flow\Model\UUID;
 
 /**
  * Removes the feature fields from stored array since its duplicating the cache key values
@@ -21,11 +22,14 @@ class FeatureCompactor implements Compactor {
 		foreach ( $this->indexed as $key ) {
 			unset( $row[$key] );
 		}
+
+		// debugging checks
 		foreach ( $row as $foo ) {
 			if ( $foo !== null && !is_scalar( $foo ) ) {
 				throw new DataModelException( 'Attempted to compact row containing objects, must be scalar values: ' . print_r( $foo, true ), 'process-data' );
 			}
 		}
+
 		return $row;
 	}
 

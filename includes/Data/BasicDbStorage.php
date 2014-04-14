@@ -26,14 +26,13 @@ class BasicDbStorage extends DbStorage {
 
 	// Does not support auto-increment id yet
 	public function insert( array $row ) {
-		// Only allow the row to include key/value pairs.
-		// No raw SQL.
-		$row = $this->preprocessSqlArray( $row );
 
 		// insert returns boolean true/false
 		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->table,
-			$row,
+			// Only allow the row to include key/value pairs.
+			// No raw SQL.
+			$this->preprocessSqlArray( $row ),
 			__METHOD__ . " ({$this->table})"
 		);
 		if ( $res ) {
@@ -91,7 +90,6 @@ class BasicDbStorage extends DbStorage {
 	 *                     success.
 	 */
 	public function find( array $attributes, array $options = array() ) {
-		$attributes = $this->preprocessSqlArray( $attributes );
 
 		if ( ! $this->validateOptions( $options ) ) {
 			throw new \MWException( "Validation error in database options" );
@@ -100,7 +98,7 @@ class BasicDbStorage extends DbStorage {
 		$res = $this->dbFactory->getDB( DB_MASTER )->select(
 			$this->table,
 			'*',
-			$attributes,
+			$this->preprocessSqlArray( $attributes ),
 			__METHOD__ . " ({$this->table})",
 			$options
 		);
@@ -110,7 +108,7 @@ class BasicDbStorage extends DbStorage {
 
 		$result = array();
 		foreach ( $res as $row ) {
-			$result[] = (array) $row;
+			$result[] = (array) UUID::convertUUIDs( $row, 'alphadecimal' );
 		}
 		// wfDebugLog( 'Flow', __METHOD__ . ': ' . print_r( $result, true ) );
 		return $result;
@@ -132,9 +130,8 @@ class BasicDbStorage extends DbStorage {
 		}
 		$conds = array();
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
-		foreach ( $queries as &$query ) {
-			$query = UUID::convertUUIDs( $query );
-			$conds[] = $dbr->makeList( $query, LIST_AND );
+		foreach ( $queries as $query ) {
+			$conds[] = $dbr->makeList( $this->preprocessSqlArray( $query ), LIST_AND );
 		}
 		unset( $query );
 

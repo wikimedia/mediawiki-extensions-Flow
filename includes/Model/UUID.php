@@ -58,9 +58,9 @@ class UUID {
 	// UUID length in binary, always padded
 	const BIN_LEN = 11;
 	// UUID length in base36, with padding
-	const ALPHADECIMAL_LEN = 19;
+	const ALNUM_LEN = 19;
 	// unpadded base36 input string
-	const MIN_ALPHADECIMAL_LEN = 16;
+	const MIN_ALNUM_LEN = 16;
 
 	// 126 bit binary length
 	const OLD_BIN_LEN = 16;
@@ -87,8 +87,8 @@ class UUID {
 			throw new InvalidInputException( 'Expected ' . self::BIN_LEN . ' char binary string, got: ' . $value, 'invalid-input' );
 		} elseif ( $format === static::INPUT_HEX && $len !== self::HEX_LEN ) {
 			throw new InvalidInputException( 'Expected ' . self::HEX_LEN . ' char hex string, got: ' . $value, 'invalid-input' );
-		} elseif ( $format === static::INPUT_ALNUM && ( $len < self::MIN_ALPHADECIMAL_LEN || $len > self::ALPHADECIMAL_LEN || !ctype_alnum( $value ) ) ) {
-			throw new InvalidInputException( 'Expected ' . self::MIN_ALPHADECIMAL_LEN . ' to ' . self::ALPHADECIMAL_LEN . ' char alphanumeric string, got: ' . $value, 'invalid-input' );
+		} elseif ( $format === static::INPUT_ALNUM && ( $len < self::MIN_ALNUM_LEN || $len > self::ALNUM_LEN || !ctype_alnum( $value ) ) ) {
+			throw new InvalidInputException( 'Expected ' . self::MIN_ALNUM_LEN . ' to ' . self::ALNUM_LEN . ' char alphanumeric string, got: ' . $value, 'invalid-input' );
 		}
 
 		$this->{$format} = $value;
@@ -101,12 +101,14 @@ class UUID {
 	 * @return array
 	 */
 	public function __sleep() {
+		// ensure alphadecimal is populated
+		$this->getAlphadecimal();
 		return array( 'alphadecimalValue' );
 	}
 
 	public function __wakeup() {
 		if ( $this->binaryValue ) {
-			// some B/C code
+			// some B/C code for old 128bit uuids
 			$this->binaryValue = substr( $this->binaryValue, 0, self::BIN_LEN );
 		}
 	}
@@ -130,7 +132,7 @@ class UUID {
 				$len = strlen( $input );
 				if ( $len === self::BIN_LEN ) {
 					return new static( $input, static::INPUT_BIN );
-				} elseif ( $len >= self::MIN_ALPHADECIMAL_LEN && $len <= self::ALPHADECIMAL_LEN && ctype_alnum( $input ) ) {
+				} elseif ( $len >= self::MIN_ALNUM_LEN && $len <= self::ALNUM_LEN && ctype_alnum( $input ) ) {
 					return new static( $input, static::INPUT_ALNUM );
 				} elseif ( $len === self::HEX_LEN && preg_match( '/^[a-fA-F0-9]+$/', $input ) ) {
 					return new static( $input, static::INPUT_HEX );
@@ -265,10 +267,25 @@ class UUID {
 	 * @param array
 	 * @return array
 	 */
-	public static function convertUUIDs( $array ) {
+	public static function convertUUIDs( $array, $format = 'binary' ) {
 		foreach( ObjectManager::makeArray( $array ) as $key => $value ) {
 			if ( $value instanceof UUID ) {
-				$array[$key] = $value->getBinary();
+				if ( $format === 'binary' ) {
+					$array[$key] = $value->getBinary();
+				} elseif ( $format === 'alphadecimal' ) {
+					$array[$key] = $value->getAlphadecimal();
+				}
+			} elseif ( is_string( $value ) && substr( $key, -3 ) === '_id' ) {
+				$len = strlen( $value );
+				if ( $format === 'alphadecimal' && $len === self::BIN_LEN ) {
+					$array[$key] = UUID::create( $value )->getAlphadecimal();
+				} elseif ( $format === 'binary' && (
+					( $len >= self::MIN_ALNUM_LEN && $len <= self::ALNUM_LEN )
+					||
+					$len === self::HEX_LEN
+				) ) {
+					$array[$key] = UUID::create( $value )->getBinary();
+				}
 			}
 		}
 
