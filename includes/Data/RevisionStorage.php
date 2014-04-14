@@ -136,7 +136,8 @@ abstract class RevisionStorage extends DbStorage {
 		}
 		$retval = array();
 		foreach ( $res as $row ) {
-			$retval[UUID::create( $row->rev_id )->getAlphadecimal()] = (array) $row;
+			$row = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
+			$retval[$row['rev_id']] = $row;
 		}
 		return $retval;
 	}
@@ -159,6 +160,7 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
+		echo __METHOD__, "\n";
 		$result = array();
 		foreach ( $queries as $key => $attributes ) {
 			$result[$key] = $this->findInternal( $attributes, $options );
@@ -210,26 +212,27 @@ abstract class RevisionStorage extends DbStorage {
 	}
 
 	protected function findRevId( array $queries ) {
+		echo __METHOD__, "\n";
 		$duplicator = new ResultDuplicator( array( 'rev_id' ), 1 );
 		$pks = array();
 		foreach ( $queries as $idx => $query ) {
-			$query = UUID::convertUUIDs( $query );
-			$id = $query['rev_id'];
 			$duplicator->add( $query, $idx );
-			$pks[$id] = $id;
+			$id = $query['rev_id'];
+			$pks[$id] = UUID::create( $id )->getBinary();
 		}
 
 		return $this->findRevIdReal( $duplicator, $pks );
 	}
 
 	protected function findMostRecent( array $queries ) {
+		echo __METHOD__, "\n";
 		// SELECT MAX( rev_id ) AS rev_id
 		// FROM flow_tree_revision
 		// WHERE rev_type= 'post' AND rev_type_id IN (...)
 		// GROUP BY rev_type_id
 		$duplicator = new ResultDuplicator( array( 'rev_type_id' ), 1 );
 		foreach ( $queries as $idx => $query ) {
-			$duplicator->add( UUID::convertUUIDs( $query ), $idx );
+			$duplicator->add( $query, $idx );
 		}
 
 		$dbr = $this->dbFactory->getDB( DB_MASTER );
@@ -256,6 +259,11 @@ abstract class RevisionStorage extends DbStorage {
 		return $this->findRevIdReal( $duplicator, $revisionIds );
 	}
 
+	/**
+	 * @param ResultDuplicator $duplicator
+	 * @param array $revisionIds Binary strings representing revision uuid's
+	 * @return array
+	 */
 	protected function findRevIdReal( ResultDuplicator $duplicator, array $revisionIds ) {
 		if ( $revisionIds ) {
 			//  SELECT * from flow_revision
@@ -284,12 +292,14 @@ abstract class RevisionStorage extends DbStorage {
 			}
 
 			foreach ( $res as $row ) {
-				$row = (array)$row;
+				$row = UUID::convertUUIDs( (array)$row, 'alphadecimal' );
 				$duplicator->merge( $row, array( $row ) );
 			}
 		}
 
-		return $duplicator->getResult();
+		$res = $duplicator->getResult();
+		var_dump( $res );
+		return $res;
 	}
 
 	/**
@@ -442,7 +452,7 @@ abstract class RevisionStorage extends DbStorage {
 	public function remove( array $row ) {
 		$res = $this->dbFactory->getDB( DB_MASTER )->delete(
 			'flow_revision',
-			array( 'rev_id' => $row['rev_id'] ),
+			$this->preprocessSqlArray( array( 'rev_id' => $row['rev_id'] ) ),
 			__METHOD__
 		);
 		if ( !$res ) {

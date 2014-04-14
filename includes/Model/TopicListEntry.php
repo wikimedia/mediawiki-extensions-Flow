@@ -23,10 +23,6 @@ class TopicListEntry {
 	 * @return TopicListEntry
 	 */
 	static public function create( Workflow $topicList, Workflow $topic ) {
-		// die( var_dump( array(
-		// 	'topicList' => $topicList,
-		// 	'topic' => $topic,
-		// )));
 		$obj = new self;
 		$obj->topicListId = $topicList->getId();
 		$obj->topicId = $topic->getId();
@@ -56,8 +52,8 @@ class TopicListEntry {
 	 */
 	static public function toStorageRow( TopicListEntry $obj ) {
 		return array(
-			'topic_list_id' => $obj->topicListId->getBinary(),
-			'topic_id' => $obj->topicId->getBinary(),
+			'topic_list_id' => $obj->topicListId->getAlphadecimal(),
+			'topic_id' => $obj->topicId->getAlphadecimal(),
 		);
 	}
 
