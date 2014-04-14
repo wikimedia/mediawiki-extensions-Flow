@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_db3879c9",
+        "filename": "includes/Formatter/BoardHistoryQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-14T20:16:54Z",
+      "side": 1,
+      "message": "this condition should still trigger the error",
+      "revId": "8370ac760482800cc0c620d20001483209ad3f41",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
