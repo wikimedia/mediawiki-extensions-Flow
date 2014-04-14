@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_d57ba8e9",
+        "filename": "includes/Model/PostSummary.php",
+        "patchSetId": 28
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-14T19:07:25Z",
+      "side": 1,
+      "message": "red bar of doom!!!",
+      "revId": "35b476f83a9dae3da487103c3ab8d1841c898337",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_f5d224d2",
+        "filename": "includes/api/ApiFlowEditTopicSummary.php",
+        "patchSetId": 28
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-14T19:07:25Z",
+      "side": 1,
+      "message": "afaict in ApiBase::getParameterFromSettings (line 1074):\n\n    if ( $required \u0026\u0026 $value \u003d\u003d\u003d \u0027\u0027 ) {\n        $this-\u003edieUsageMsg( \u0027missingparam\u0027, $paramName )\n    )\n\nmeans if we want to accept the blank string we can\u0027t use PARAM_REQUIRED",
+      "revId": "35b476f83a9dae3da487103c3ab8d1841c898337",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
