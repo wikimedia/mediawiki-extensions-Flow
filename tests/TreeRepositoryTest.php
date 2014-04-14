@@ -6,7 +6,7 @@ use Flow\Container;
 use Flow\Model\UUID;
 use ReflectionClass;
 
-class TreeRepositoryTest extends \MediaWikiTestCase {
+class TreeRepositoryTest extends FlowTestCase {
 
 	protected $ancestor;
 	protected $descendant;

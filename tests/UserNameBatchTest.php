@@ -9,7 +9,7 @@ use Flow\Data\UserNameQuery;
  * @group Database
  * @group Flow
  */
-class UserNameBatchTest extends \MediaWikiTestCase {
+class UserNameBatchTest extends FlowTestCase {
 
 	public function testAllowsAddingNames() {
 		$batch = new UserNameBatch( $this->createUncalledQuery() );

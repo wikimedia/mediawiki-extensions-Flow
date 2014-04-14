@@ -7,7 +7,7 @@ use Flow\Data\SortArrayByKeys;
 /**
  * @group Flow
  */
-class FlowNothingTest extends \MediaWikiTestCase {
+class FlowNothingTest extends FlowTestCase {
 
 	public function sortArrayByKeysProvider() {
 		return array(

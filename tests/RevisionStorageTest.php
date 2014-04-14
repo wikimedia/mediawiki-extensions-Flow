@@ -5,7 +5,7 @@ namespace Flow\Tests;
 use Flow\Data\PostRevisionStorage;
 use Flow\Data\ObjectManager;
 
-class RevisionStorageTest extends \MediaWikiTestCase {
+class RevisionStorageTest extends FlowTestCase {
 
 	public static function issuesQueryCountProvider() {
 		return array(
