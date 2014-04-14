@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_bb7a5d1d",
+        "filename": "container.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-14T21:07:20Z",
+      "side": 1,
+      "message": "should this just be\n\n    $c[\u0027topic_list.last_updated.index\u0027]",
+      "revId": "396618c7f2874f34284e0551d0209103cbcd1ace",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_fb80d5fa",
+        "filename": "includes/Data/WorkflowTopicListListener.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-14T21:07:20Z",
+      "side": 1,
+      "message": "rather than fetching from container should accept the topic list ObjectManger and the appropriate index in the constructor",
+      "revId": "396618c7f2874f34284e0551d0209103cbcd1ace",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
