@@ -551,7 +551,7 @@ class FlowHooks {
 
 		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
 		$change = $params['flow-workflow-change'];
-		$comment = $change['action'] . ',' .  $change['workflow'];
+		$comment = 'v1,' . $change['action'] . ',' .  $change['workflow'] . ',' . $change['revision'];
 		if ( isset( $change['post'] ) ) {
 			$comment .= ',' . $change['post'];
 		}
