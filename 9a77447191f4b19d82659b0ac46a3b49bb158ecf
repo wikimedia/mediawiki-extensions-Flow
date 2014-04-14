@@ -16,6 +16,24 @@
       "revId": "9a77447191f4b19d82659b0ac46a3b49bb158ecf",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_7204ea80",
+        "filename": "Hooks.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-14T17:37:01Z",
+      "side": 1,
+      "message": "You\u0027re right, I should just remove that return false; (the $replacament is default null already)",
+      "parentUuid": "8e23439c_d2ccde8e",
+      "revId": "9a77447191f4b19d82659b0ac46a3b49bb158ecf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
