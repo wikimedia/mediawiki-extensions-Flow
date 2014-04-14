@@ -460,7 +460,9 @@ $wgFlowActions = array(
 					// doublecheck that this run is indeed against the most
 					// recent revision, to get the global collection state
 					try {
-						$lastRevision = $collection->getLastRevision();
+						/** @var CollectionCache $cache */
+						$cache = \Flow\Container::get( 'collection.cache' );
+						$lastRevision = $cache->getLastRevisionFor( $revision );
 						if ( $revision->getRevisionId()->equals( $lastRevision->getRevisionId() ) ) {
 							$previousCollectionId = null;
 							return '';
