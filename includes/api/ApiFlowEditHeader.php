@@ -21,7 +21,6 @@ class ApiFlowEditHeader extends ApiFlowBase {
 	public function getAllowedParams() {
 		return array(
 			'prev_revision' => array(
-				ApiBase::PARAM_REQUIRED => true,
 			),
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,
