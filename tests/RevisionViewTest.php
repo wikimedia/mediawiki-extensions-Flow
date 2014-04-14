@@ -7,7 +7,7 @@ use Flow\View\HeaderRevisionView;
 use Flow\View\PostRevisionView;
 use ReflectionClass;
 
-class RevisionViewTest extends \MediaWikiTestCase {
+class RevisionViewTest extends FlowTestCase {
 
 	protected $user;
 

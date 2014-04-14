@@ -7,7 +7,7 @@ use Flow\Container;
 /**
  * @group Flow
  */
-class ContainerTest extends \MediaWikiTestCase {
+class ContainerTest extends FlowTestCase {
 
 	public function testInstantiateAll() {
 		$this->setMwGlobals( 'wgTitle', \Title::newMainPage() );
