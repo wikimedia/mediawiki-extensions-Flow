@@ -335,6 +335,27 @@ class FlowHooks {
 	}
 
 	/**
+	 * Interact with the mobile skin's default modules on Flow enabled pages
+	 *
+	 * @param SkinTemplate $skin
+	 * @param array $modules
+	 * @return bool
+	 */
+	public static function onSkinMinervaDefaultModules( Skin $skin, Array &$modules ) {
+		// Disable toggling on occupied talk pages in mobile
+		if ( self::$occupationController->isTalkpageOccupied( $skin->getTitle() ) ) {
+			$modules['toggling'] = array();
+		}
+		// Turn off default mobile talk overlay for these pages
+		if ( self::$occupationController->isTalkpageOccupied( $skin->getTitle()->getTalkPage() ) ) {
+			// TODO: Insert lightweight JavaScript that opens flow via ajax
+			$modules['talk'] = array();
+		}
+
+		return true;
+	}
+
+	/**
 	 * When a (talk) page does not exist, one of the checks being performed is
 	 * to see if the page had once existed but was removed. In doing so, the
 	 * deletion & move log is checked.
