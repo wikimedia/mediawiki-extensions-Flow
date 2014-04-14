@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_865bc4fc",
+        "filename": "Hooks.php",
+        "patchSetId": 33
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-14T22:39:04Z",
+      "side": 1,
+      "message": "Fails, should call getWhatLinksHereProps()",
+      "revId": "7f4ebe464ba3acc6981461367d537e45e24facae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_663788ac",
+        "filename": "includes/ReferenceClarifier.php",
+        "patchSetId": 33
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-14T22:39:04Z",
+      "side": 1,
+      "message": "FWIW when I visit Special:WhatLinksHere/, I get a warning\n\nWarning: Invalid argument supplied for foreach() in /home/spage/projects/core/extensions/Flow/includes/ReferenceClarifier.php on line 23\n\nafter the warning from line 36 below.",
+      "revId": "7f4ebe464ba3acc6981461367d537e45e24facae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_0648d430",
+        "filename": "includes/ReferenceClarifier.php",
+        "patchSetId": 33
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-14T22:39:04Z",
+      "side": 1,
+      "message": "FWIW when I visit Special:WhatLinksHere/SomePage, I get a warning\n\nNotice: Undefined index: title:SomePage in /home/spage/projects/core/extensions/Flow/includes/ReferenceClarifier.php on line 36",
+      "revId": "7f4ebe464ba3acc6981461367d537e45e24facae",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
