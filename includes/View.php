@@ -21,7 +21,7 @@ class View extends ContextSource {
 
 	public function show( WorkflowLoader $loader, $action ) {
 		$out = $this->getOutput();
-		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.base' ) );
+		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.base.styles' ) );
 		$out->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
 
 		// Allow other extensions to add modules

@@ -182,7 +182,13 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
+		$templating->getOutput()->addModuleStyles(
+			array(
+				'ext.flow.base.styles',
+				'ext.flow.discussion.styles',
+				'ext.flow.moderation.styles',
+			)
+		);
 		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		if ( $this->workflow->isNew() ) {
 			$templating->render( "flow:topiclist.html.php", array(

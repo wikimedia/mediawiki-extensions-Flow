@@ -7,7 +7,7 @@ $flowResourceTemplate = array(
 );
 
 $wgResourceModules += array(
-	'ext.flow.base' => $flowResourceTemplate + array(
+	'ext.flow.base.styles' => $flowResourceTemplate + array(
 		'styles' => array(
 			'base/styles/container.less',
 			'base/styles/form.less',
@@ -27,6 +27,8 @@ $wgResourceModules += array(
 				'base/styles/header.less',
 			),
 		),
+	),
+	'ext.flow.base' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'base/ext.flow.base.js',
 			'base/ui-functions.js',
@@ -61,7 +63,7 @@ $wgResourceModules += array(
 			'flow-edit-header-submit-overwrite',
 		),
 	),
-	'ext.flow.discussion' => $flowResourceTemplate + array(
+	'ext.flow.discussion.styles' => $flowResourceTemplate + array(
 		'styles' => array(
 			'discussion/styles/topic.less',
 			'discussion/styles/post.less',
@@ -69,6 +71,8 @@ $wgResourceModules += array(
 			'discussion/styles/modified.less',
 			'discussion/styles/nojs.less',
 		),
+	),
+	'ext.flow.discussion' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'discussion/ui.js',
 			'discussion/topic.js',
@@ -117,8 +121,10 @@ $wgResourceModules += array(
 		),
 		'scripts' => 'history/history.js',
 	),
-	'ext.flow.moderation' => $flowResourceTemplate + array(
+	'ext.flow.moderation.styles' => $flowResourceTemplate + array(
 		'styles' => 'moderation/styles/moderation.less',
+	),
+	'ext.flow.moderation' => $flowResourceTemplate + array(
 		'scripts' => 'moderation/moderation.js',
 		'messages' => array(
 			'flow-moderation-reason-placeholder',
