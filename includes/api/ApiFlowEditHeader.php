@@ -8,10 +8,10 @@ class ApiFlowEditHeader extends ApiFlowBase {
 
 	/**
 	 * Taken from ext.flow.base.js
-	 * @return string
+	 * @return array
 	 */
-	protected function getBlockName() {
-		return 'header';
+	protected function getBlockNames() {
+		return array( 'header' );
 	}
 
 	protected function getAction() {
