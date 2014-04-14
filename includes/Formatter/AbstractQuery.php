@@ -95,7 +95,7 @@ abstract class AbstractQuery {
 			$previousRevisionIds[get_class( $result )][] = $result->getPrevRevisionId();
 
 			$collection = $result->getCollection();
-			$collectionIds[get_class( $result )][$collection->getIdColumn()][] = $collection->getId();
+			$collectionIds[get_class( $result )][] = $collection->getId();
 		}
 
 		// map from post Id to the related root post id
@@ -144,10 +144,8 @@ abstract class AbstractQuery {
 		// preload all current versions
 		foreach ( $collectionIds as $revisionType => $ids ) {
 			$queries = array();
-			foreach ( $ids as $column => $uuids ) {
-				foreach ( $uuids as $uuid ) {
-					$queries[] = array( $column => $uuid );
-				}
+			foreach ( $ids as $uuid ) {
+				$queries[] = array( 'rev_type_id' => $uuid );
 			}
 
 			/** @var AbstractRevision[] $found */
