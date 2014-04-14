@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_ef5ff312",
+        "filename": "Hooks.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-14T14:14:13Z",
+      "side": 1,
+      "message": "I\u0027ve filed https://bugzilla.wikimedia.org/show_bug.cgi?id\u003d63900 to add a hook to CheckUser (similar to what we\u0027ve done with RecentChanges) so we could load this all at once",
+      "revId": "a8b4b16993245af8cb45736f5ef0e8fc363f0c5c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
