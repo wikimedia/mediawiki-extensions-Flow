@@ -157,6 +157,7 @@ $wgAutoloadClasses['Flow\Formatter\FormatterRow'] = $dir . 'includes/Formatter/A
 $wgAutoloadClasses['Flow\Formatter\CheckUser'] = $dir . 'includes/Formatter/CheckUser.php';
 $wgAutoloadClasses['Flow\Formatter\Contributions'] = $dir . 'includes/Formatter/Contributions.php';
 $wgAutoloadClasses['Flow\Formatter\ContributionsQuery'] = $dir . 'includes/Formatter/ContributionsQuery.php';
+$wgAutoloadClasses['Flow\Formatter\ContributionsRow'] = $dir . 'includes/Formatter/ContributionsQuery.php';
 $wgAutoloadClasses['Flow\Formatter\BoardHistory'] = $dir . 'includes/Formatter/BoardHistory.php';
 $wgAutoloadClasses['Flow\Formatter\BoardHistoryQuery'] = $dir . 'includes/Formatter/BoardHistoryQuery.php';
 $wgAutoloadClasses['Flow\Formatter\RecentChanges'] = $dir . 'includes/Formatter/RecentChanges.php';
