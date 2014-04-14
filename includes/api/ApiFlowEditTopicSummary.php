@@ -17,7 +17,9 @@ class ApiFlowEditTopicSummary extends ApiFlowBase {
 	public function getAllowedParams() {
 		return array(
 			'prev_revision' => null,
-			'summary' => null,
+			'summary' => array(
+				ApiBase::PARAM_REQUIRED => true,
+			),
 		);
 	}
 
