@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_c11646f6",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-15T01:16:02Z",
+      "side": 1,
+      "message": "View.php would be the appropriate place i suppose, soon these Block implementations will only have renderApi. The new system replaces the current one starting at View.php",
+      "parentUuid": "8e23439c_413eb688",
+      "revId": "acd210ace199fec500cd26b3e3269fb68924527f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_61741297",
         "filename": "includes/Block/TopicList.php",
         "patchSetId": 1
