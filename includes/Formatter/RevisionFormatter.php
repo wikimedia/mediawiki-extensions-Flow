@@ -163,11 +163,6 @@ class RevisionFormatter {
 				break;
 
 			case 'header-revision':
-				if ( !$revId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render revision link' );
-					break;
-				}
-
 				$links['header-revision'] = array(
 					$this->urlGenerator->buildUrl(
 						$title,
@@ -182,8 +177,8 @@ class RevisionFormatter {
 				break;
 
 			case 'topic-revision':
-				if ( !$revId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render revision link' );
+				if ( !$postId ) {
+					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render revision link' );
 					break;
 				}
 
@@ -202,8 +197,8 @@ class RevisionFormatter {
 				break;
 
 			case 'post-revision':
-				if ( !$revId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render revision link' );
+				if ( !$postId ) {
+					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render revision link' );
 					break;
 				}
 
@@ -222,6 +217,11 @@ class RevisionFormatter {
 				break;
 
 			case 'post-history':
+				if ( !$postId ) {
+					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render history link' );
+					break;
+				}
+
 				$links['post-history'] = array(
 					$this->urlGenerator->buildUrl(
 						$title,
@@ -257,11 +257,6 @@ class RevisionFormatter {
 				break;
 
 			case 'diff-header':
-				if ( !$revId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render diff link' );
-					break;
-				}
-
 				/*
 				 * To diff against previous revision, we don't really need that
 				 * revision id; if no particular diff id is specified, it will
@@ -319,16 +314,6 @@ class RevisionFormatter {
 				break;
 
 			case 'diff-post':
-				if ( !$postId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render diff links' );
-					break;
-				}
-
-				if ( !$revId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render diff links' );
-					break;
-				}
-
 				/*
 				 * To diff against previous revision, we don't really need that
 				 * revision id; if no particular diff id is specified, it will
