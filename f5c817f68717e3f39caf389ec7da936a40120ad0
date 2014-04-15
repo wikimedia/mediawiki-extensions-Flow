@@ -369,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_221e1264",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-15T22:37:51Z",
+      "side": 1,
+      "message": "I was thinking about Flow blocks.  Each block defines a set of valid actions to which we can add a set of required parameters.  Base on the parameters, we can do things like generic data validation and url construction.\n\nThis would obviously require a lot of more changes and time to investigate if doable.  I am okay with merging this patch since it\u0027s better than what we have now.",
+      "parentUuid": "8e23439c_bec2565b",
+      "revId": "f5c817f68717e3f39caf389ec7da936a40120ad0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_0dff17a9",
         "filename": "includes/View.php",
         "patchSetId": 6
