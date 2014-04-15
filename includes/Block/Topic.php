@@ -596,7 +596,7 @@ class TopicBlock extends AbstractBlock {
 		);
 
 		if ( isset( $options['showhistoryfor'] ) ) {
-			$options['history'] = array();
+			$output['history'] = array();
 
 			$historyBatch = $this->getHistoryBatch( (array)$options['showhistoryfor'] );
 
@@ -604,11 +604,11 @@ class TopicBlock extends AbstractBlock {
 				/** @var PostRevision[] $historyGroup */
 				foreach( $historyGroup as $historyEntry ) {
 					$postId = $historyEntry->getPostId()->getAlphadecimal();
-					if ( ! isset( $options['history'][$postId] ) ) {
-						$options['history'][$postId] = array();
+					if ( ! isset( $output['history'][$postId] ) ) {
+						$output['history'][$postId] = array();
 					}
 
-					$options['history'][$postId][] = $historyEntry;
+					$output['history'][$postId][] = $historyEntry;
 				}
 			}
 		}
