@@ -29,11 +29,9 @@ class CheckUser extends AbstractFormatter {
 			return null;
 		}
 
-		$result = array();
-
-		$result['links'] = $this->formatLinksAsPipeList( $links, $ctx );
-		$result['title'] = '. . ' . Linker::link( $title );
-
-		return $result;
+		return array(
+			'links' => $this->formatLinksAsPipeList( $links, $ctx ),
+			'title' => '. . ' . Linker::link( $title ),
+		);
 	}
 }
