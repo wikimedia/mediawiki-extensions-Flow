@@ -9,8 +9,18 @@ class ApiQueryFlow extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'flow' );
 	}
 
+	/**
+	 * @return \Flow\Container
+	 */
+	private function getContainer() {
+		if ( !$this->container ) {
+			$this->container = Flow\Container::getContainer();
+		}
+		return $this->container;
+	}
+
 	public function execute() {
-		$this->container = Flow\Container::getContainer();
+		$container = $this->getContainer();
 		// Get the parameters
 		$params = $this->extractRequestParams();
 		$passedParams = FormatJson::decode( $params['params'], true );
@@ -18,7 +28,7 @@ class ApiQueryFlow extends ApiQueryBase {
 		$pageTitle = Title::newFromText( $params['page'] );
 		$id = $params['workflow'] ? UUID::create( $params['workflow'] ) : null;
 
-		$this->loader = $this->container['factory.loader.workflow']
+		$this->loader = $container['factory.loader.workflow']
 			->createWorkflowLoader( $pageTitle, $id );
 
 		$blocks = $this->loader->createBlocks();
@@ -31,7 +41,7 @@ class ApiQueryFlow extends ApiQueryBase {
 				$blockParams = $passedParams[$block->getName()];
 			}
 
-			$templating = $this->container['templating'];
+			$templating = $container['templating'];
 
 			if ( $block->canRender( $params['action'] ) ) {
 				$thisBlock = $block->renderAPI( $templating, $blockParams ) +
@@ -60,11 +70,26 @@ class ApiQueryFlow extends ApiQueryBase {
 			),
 			'action' => array(
 				ApiBase::PARAM_DFLT => 'view',
+				ApiBase::PARAM_TYPE => $this->getReadOnlyFlowActions(),
 			),
 			'params' => array(
 				ApiBase::PARAM_DFLT => '{}',
 			),
 		);
+	}
+
+	private function getReadOnlyFlowActions() {
+		$container = $this->getContainer();
+		/** @var \Flow\FlowActions $flowActions */
+		$flowActions = $container['flow_actions'];
+		$readOnly = array();
+		foreach( $flowActions->getActions() as $action ) {
+			if ( !$flowActions->getValue( $action, 'performs-writes' ) ) {
+				$readOnly[] = $action;
+			}
+		}
+
+		return $readOnly;
 	}
 
 	public function getDescription() {
