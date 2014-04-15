@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_130b7527",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-04-15T06:27:57Z",
+      "side": 1,
+      "message": "Actually collapse is needed currently. It looks ugly without it. There could be refactoring possible here but let\u0027s deal with that later.",
+      "parentUuid": "8e23439c_21417a0e",
+      "revId": "acd210ace199fec500cd26b3e3269fb68924527f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_01379ee1",
         "filename": "includes/Block/TopicList.php",
         "patchSetId": 1
