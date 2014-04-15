@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_0148be30",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-04-15T01:01:47Z",
+      "side": 1,
+      "message": "resolve later...?",
+      "parentUuid": "8e23439c_4617ec56",
+      "revId": "acd210ace199fec500cd26b3e3269fb68924527f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_6620a8a8",
         "filename": "Resources.php",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_21417a0e",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-04-15T01:01:47Z",
+      "side": 1,
+      "message": "k",
+      "parentUuid": "8e23439c_6620a8a8",
+      "revId": "acd210ace199fec500cd26b3e3269fb68924527f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_01379ee1",
         "filename": "includes/Block/TopicList.php",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2014-04-15T00:10:51Z",
       "side": 1,
       "message": "View.php is doing addModuleStyles( \u0027ext.flow.base\u0027... ), perhaps it should be the one doing addModuleStyles( \u0027ext.flow.base.styles.\u0027 ).",
+      "revId": "acd210ace199fec500cd26b3e3269fb68924527f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_413eb688",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-04-15T01:01:47Z",
+      "side": 1,
+      "message": "Can I suggest you have a base class so this code is shared? parent::render",
+      "parentUuid": "8e23439c_01379ee1",
       "revId": "acd210ace199fec500cd26b3e3269fb68924527f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
