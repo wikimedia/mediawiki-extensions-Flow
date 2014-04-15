@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_4617ec56",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-15T00:10:51Z",
+      "side": 1,
+      "message": "Most of the tipsy styling in this only applies if you have JavaScript and so could be in ext.flow.base (for JavaScript). However, it also has some .client-nojs styling in it. Probably not worth splitting up to save 190 lines (before compression) in no_JS CSS load, but worth keeping in mind.",
+      "revId": "acd210ace199fec500cd26b3e3269fb68924527f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_6620a8a8",
+        "filename": "Resources.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-15T00:10:51Z",
+      "side": 1,
+      "message": "Move to \u0027ext.flow.discussion\u0027 styles with a comment \"Only needed if JavaScript is available\"",
+      "revId": "acd210ace199fec500cd26b3e3269fb68924527f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_01379ee1",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-15T00:10:51Z",
+      "side": 1,
+      "message": "View.php is doing addModuleStyles( \u0027ext.flow.base\u0027... ), perhaps it should be the one doing addModuleStyles( \u0027ext.flow.base.styles.\u0027 ).",
+      "revId": "acd210ace199fec500cd26b3e3269fb68924527f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_61741297",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-15T00:10:51Z",
+      "side": 1,
+      "message": "includes/Block/Topic.php is doing both addModuleStyles(\u0027ext.flow.discussion\u0027 ) and addModules( \u0027ext.flow.discussion.\u0027 ), it needs similar update otherwise  viewing an individual topic (click [...] choose Permalink) without JavaScript looks terrible.  It seems Topic.php isn\u0027t called when viewing a Flow board, only TopicList.php",
+      "revId": "acd210ace199fec500cd26b3e3269fb68924527f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
