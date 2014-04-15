@@ -60,11 +60,24 @@ class ApiQueryFlow extends ApiQueryBase {
 			),
 			'action' => array(
 				ApiBase::PARAM_DFLT => 'view',
+				ApiBase::PARAM_TYPE => $this->getReadOnlyFlowActions(),
 			),
 			'params' => array(
 				ApiBase::PARAM_DFLT => '{}',
 			),
 		);
+	}
+
+	private function getReadOnlyFlowActions() {
+		global $wgFlowActions;
+		$readOnly = array();
+		foreach( $wgFlowActions as $action => $info ) {
+			if ( $info['performs-writes'] === false ) {
+				$readOnly[] = $action;
+			}
+		}
+
+		return $readOnly;
 	}
 
 	public function getDescription() {
