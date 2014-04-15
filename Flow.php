@@ -195,6 +195,7 @@ $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';
 $wgAutoloadClasses['Flow\Block\TopicSummaryBlock'] = $dir . 'includes/Block/TopicSummary.php';
 
 // phpunit helper
+$wgAutoloadClasses['Flow\Tests\FlowTestCase'] = $dir . 'tests/FlowTestCase.php';
 $wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/PostRevisionTestCase.php';
 
 // API modules

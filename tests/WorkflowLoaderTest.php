@@ -5,7 +5,7 @@ namespace Flow\Tests;
 use Flow\Container;
 use ReflectionClass;
 
-class WorkflowLoaderTest extends \MediaWikiTestCase {
+class WorkflowLoaderTest extends FlowTestCase {
 
 	public function provideDataCreateBlocks() {
 		return array (

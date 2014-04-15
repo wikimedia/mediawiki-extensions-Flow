@@ -8,7 +8,7 @@ use Flow\Model\UUID;
 /**
  * @group Flow
  */
-class FormatterTest extends \MediaWikiTestCase {
+class FormatterTest extends FlowTestCase {
 
 	static public function checkUserProvider() {
 		$topicId = UUID::create();

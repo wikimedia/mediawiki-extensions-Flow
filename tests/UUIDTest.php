@@ -1,10 +1,10 @@
 <?php
 
-namespace Flow;
+namespace Flow\Tests;
 
 use Flow\Model\UUID;
 
-class UUIDTest extends \MediaWikiTestCase {
+class UUIDTest extends FlowTestCase {
 
 	static public function uuidConversionProvider() {
 		// sample uuid from UIDGenerator::newTimestampedUID128()
