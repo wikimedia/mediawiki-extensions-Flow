@@ -76,12 +76,12 @@ $c['templating.namespaces'] = array(
 );
 
 $c['templating.global_variables'] = $c->share( function( $c ) {
-	global $wgFlowTokenSalt, $wgFlowMaxThreadingDepth;
+	global $wgFlowMaxThreadingDepth;
 
 	$user = $c['user'];
 	return array(
 		'user' => $user,
-		'editToken' => $user->getEditToken( $wgFlowTokenSalt ),
+		'editToken' => $user->getEditToken(),
 		'maxThreadingDepth' => $wgFlowMaxThreadingDepth,
 		'permissions' => $c['permissions'],
 	);

@@ -124,7 +124,7 @@ class ApiFlow extends ApiBase {
 			'submodule' => 'The Flow submodule to invoke',
 			'workflow' => 'The Workflow to take the action on',
 			'page' => 'The page to take the action on',
-			'token' => 'A token retrieved from api.php?action=tokens&type=flow',
+			'token' => 'An edit token',
 			'render' => 'Set this to something to include a block-specific rendering in the output',
 		);
 	}
@@ -195,7 +195,6 @@ class ApiFlow extends ApiBase {
 	}
 
 	public function getTokenSalt() {
-		global $wgFlowTokenSalt;
-		return $wgFlowTokenSalt;
+		return '';
 	}
 }
