@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_ffe54ca0",
+        "filename": "includes/api/ApiQueryFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-04-16T17:35:50Z",
+      "side": 1,
+      "message": "Yes. There is some other JS code and a maintenance script that was originally checking for the _element key, and I didn\u0027t want to refactor those, so I instead renamed the key to \"element\", and made them look for that instead.",
+      "parentUuid": "8e23439c_965ac820",
+      "revId": "6186cadbaf3edc5a1932bc2cb4bea08e782f7afb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_76884c76",
         "filename": "includes/api/ApiQueryFlow.php",
         "patchSetId": 1
