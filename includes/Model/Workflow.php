@@ -121,7 +121,7 @@ class Workflow {
 	 */
 	static public function toStorageRow( Workflow $obj ) {
 		return array(
-			'workflow_id' => $obj->id->getBinary(),
+			'workflow_id' => $obj->id->getAlphadecimal(),
 			'workflow_type' => $obj->type,
 			'workflow_wiki' => $obj->wiki,
 			'workflow_page_id' => $obj->pageId,
@@ -131,7 +131,7 @@ class Workflow {
 			'workflow_user_ip' => $obj->userIp,
 			'workflow_user_wiki' => $obj->userWiki,
 			'workflow_lock_state' => $obj->lockState,
-			'workflow_definition_id' => $obj->definitionId->getBinary(),
+			'workflow_definition_id' => $obj->definitionId->getAlphadecimal(),
 			'workflow_last_update_timestamp' => $obj->lastModified,
 			// not used, but set it to empty string so it doesn't fail in strict mode
 			'workflow_name' => '',
