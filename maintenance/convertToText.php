@@ -53,7 +53,7 @@ class ConvertToText extends Maintenance {
 
 			$flowData = $apiResponse['query']['flow'];
 
-			if( $flowData["_element"] !== "block" ) {
+			if( $flowData["element"] !== "block" ) {
 				throw new MWException( "No block data in API response" );
 			}
 
