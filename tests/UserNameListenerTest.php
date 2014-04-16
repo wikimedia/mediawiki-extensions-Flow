@@ -12,7 +12,7 @@ use Flow\Data\UserNameListener;
  * @group Database
  * @group Flow
  */
-class UserNameListenerTest extends \MediaWikiTestCase {
+class UserNameListenerTest extends FlowTestCase {
 
 	public function onAfterLoadDataProvider() {
 		return array (

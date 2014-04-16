@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "David1010"
-        ]
-    },
-    "flow-post-action-hide-post": "დამალვა",
-    "flow-moderation-confirm-delete-post": "წაშლა",
-    "flow-moderation-confirm-hide-post": "დამალვა",
-    "flow-moderation-confirm-delete-topic": "წაშლა",
-    "flow-moderation-confirm-hide-topic": "დამალვა"
+	"@metadata": {
+		"authors": [
+			"David1010"
+		]
+	},
+	"flow-post-action-hide-post": "დამალვა",
+	"flow-moderation-confirm-delete-post": "წაშლა",
+	"flow-moderation-confirm-hide-post": "დამალვა",
+	"flow-moderation-confirm-delete-topic": "წაშლა",
+	"flow-moderation-confirm-hide-topic": "დამალვა"
 }

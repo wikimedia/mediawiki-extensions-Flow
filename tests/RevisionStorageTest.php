@@ -5,7 +5,7 @@ namespace Flow\Tests;
 use Flow\Data\PostRevisionStorage;
 use Flow\Data\ObjectManager;
 
-class RevisionStorageTest extends \MediaWikiTestCase {
+class RevisionStorageTest extends FlowTestCase {
 
 	public static function issuesQueryCountProvider() {
 		return array(
@@ -43,10 +43,10 @@ class RevisionStorageTest extends \MediaWikiTestCase {
 				2,
 				// queries
 				array(
-					array( 'tree_rev_descendant_id' => 19 ),
-					array( 'tree_rev_descendant_id' => 22 ),
-					array( 'tree_rev_descendant_id' => 4 ),
-					array( 'tree_rev_descendant_id' => 44 ),
+					array( 'rev_type_id' => 19 ),
+					array( 'rev_type_id' => 22 ),
+					array( 'rev_type_id' => 4 ),
+					array( 'rev_type_id' => 44 ),
 				),
 				// query options
 				array( 'LIMIT' => 1, 'ORDER BY' => array( 'rev_id DESC' ) ),

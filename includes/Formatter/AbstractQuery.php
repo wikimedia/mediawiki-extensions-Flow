@@ -49,6 +49,13 @@ abstract class AbstractQuery {
 	protected $workflowCache = array();
 
 	/**
+	 * Array of collection ids mapping to their most recent revision ids.
+	 *
+	 * @var array
+	 */
+	protected $currentRevisionsCache = array();
+
+	/**
 	 * @param ManagerGroup $storage
 	 * @param TreeRepository $treeRepository
 	 */
@@ -69,6 +76,7 @@ abstract class AbstractQuery {
 		$workflowIds = array();
 		$revisions = array();
 		$previousRevisionIds = array();
+		$collectionIds = array();
 		foreach( $results as $result ) {
 			if ( $result instanceof PostRevision ) {
 				// If top-level, then just get the workflow.
@@ -85,6 +93,9 @@ abstract class AbstractQuery {
 
 			$revisions[$result->getRevisionId()->getAlphadecimal()] = $result;
 			$previousRevisionIds[get_class( $result )][] = $result->getPrevRevisionId();
+
+			$collection = $result->getCollection();
+			$collectionIds[get_class( $result )][] = $collection->getId();
 		}
 
 		// map from post Id to the related root post id
@@ -92,7 +103,7 @@ abstract class AbstractQuery {
 
 		$rootPostRequests = array();
 		foreach( $rootPostIds as $postId ) {
-			$rootPostRequests[] = array( 'tree_rev_descendant_id' => $postId );
+			$rootPostRequests[] = array( 'rev_type_id' => $postId );
 		}
 
 		$rootPostResult = $this->storage->findMulti(
@@ -130,6 +141,26 @@ abstract class AbstractQuery {
 			}
 		}
 
+		// preload all current versions
+		foreach ( $collectionIds as $revisionType => $ids ) {
+			$queries = array();
+			foreach ( $ids as $uuid ) {
+				$queries[] = array( 'rev_type_id' => $uuid );
+			}
+
+			/** @var AbstractRevision[] $found */
+			$found = $this->storage->findMulti( $revisionType,
+				$queries,
+				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			);
+
+			foreach ( $found as $rev ) {
+				$rev = reset( $rev );
+				$this->currentRevisionsCache[$rev->getCollectionId()->getAlphadecimal()] = $rev->getRevisionId();
+				$revisions[$rev->getRevisionId()->getAlphadecimal()] = $rev;
+			}
+		}
+
 		$this->revisionCache = array_merge( $this->revisionCache, $revisions );
 		$this->postCache = array_merge( $this->postCache, $rootPosts );
 		$this->rootPostIdCache = array_merge( $this->rootPostIdCache, $rootPostIds );
@@ -158,6 +189,7 @@ abstract class AbstractQuery {
 		$row = $row ?: new FormatterRow;
 		$row->revision = $revision;
 		$row->previousRevision = $this->getPreviousRevision( $revision );
+		$row->currentRevision = $this->getCurrentRevision( $revision );
 		$row->workflow = $workflow;
 		// some core classes that process this row before our formatter
 		// require a specific field to handle pagination
@@ -208,6 +240,24 @@ abstract class AbstractQuery {
 		}
 
 		return $this->revisionCache[$previousRevisionId->getAlphadecimal()];
+	}
+
+	/**
+	 * Retrieves the current revision for a given AbstractRevision
+	 * @param  AbstractRevision $revision The revision to retrieve the current revision for.
+	 * @return AbstractRevision|null      AbstractRevision of the current revision.
+	 */
+	protected function getCurrentRevision( AbstractRevision $revision ) {
+		$collectionId = $revision->getCollectionId();
+		if ( !isset( $this->currentRevisionsCache[$collectionId->getAlphadecimal()] ) ) {
+			$currentRevision = $revision->getCollection()->getLastRevision();
+
+			$this->currentRevisionsCache[$collectionId->getAlphadecimal()] = $currentRevision->getRevisionId();
+			$this->revisionCache[$currentRevision->getRevisionId()->getAlphadecimal()] = $currentRevision;
+		}
+
+		$currentRevisionId = $this->currentRevisionsCache[$collectionId->getAlphadecimal()];
+		return $this->revisionCache[$currentRevisionId->getAlphaDecimal()];
 	}
 
 	/**
@@ -277,6 +327,8 @@ class FormatterRow {
 	public $revision;
 	/** @var AbstractRevision|null */
 	public $previousRevision;
+	/** @var AbstractRevision */
+	public $currentRevision;
 	/** @var Workflow */
 	public $workflow;
 	/** @var string */

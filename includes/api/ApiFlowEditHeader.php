@@ -8,10 +8,10 @@ class ApiFlowEditHeader extends ApiFlowBase {
 
 	/**
 	 * Taken from ext.flow.base.js
-	 * @return string
+	 * @return array
 	 */
-	protected function getBlockName() {
-		return 'header';
+	protected function getBlockNames() {
+		return array( 'header' );
 	}
 
 	protected function getAction() {
@@ -21,7 +21,6 @@ class ApiFlowEditHeader extends ApiFlowBase {
 	public function getAllowedParams() {
 		return array(
 			'prev_revision' => array(
-				ApiBase::PARAM_REQUIRED => true,
 			),
 			'content' => array(
 				ApiBase::PARAM_REQUIRED => true,

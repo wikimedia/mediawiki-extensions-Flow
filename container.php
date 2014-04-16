@@ -105,6 +105,7 @@ use Flow\Data\CachingObjectMapper;
 use Flow\Data\BasicDbStorage;
 use Flow\Data\PostRevisionStorage;
 use Flow\Data\HeaderRevisionStorage;
+use Flow\Data\PostSummaryRevisionStorage;
 use Flow\Data\UniqueFeatureIndex;
 use Flow\Data\TopKIndex;
 use Flow\Data\TopicHistoryIndex;
@@ -265,12 +266,58 @@ $c['storage.header'] = $c->share( function( $c ) {
 		$pk,
 		new TopKIndex(
 			$cache, $storage,
-			'flow_header:workflow', array( 'header_workflow_id' ),
+			'flow_header:workflow', array( 'rev_type_id' ),
 			array( 'limit' => 100 ) + $workflowIndexOptions
 		),
 	);
 
 	return new ObjectManager( $c['storage.header.mapper'], $storage, $indexes, $c['storage.header.lifecycle-handlers'] );
+} );
+
+$c['storage.post.summary.mapper'] = $c->share( function( $c ) {
+	return CachingObjectMapper::model( 'Flow\\Model\\PostSummary', array( 'rev_id' ) );
+} );
+
+$c['storage.post.summary.lifecycle-handlers'] = $c->share( function( $c ) {
+	return array(
+		new Flow\Data\UserNameListener(
+			$c['repository.username'],
+			array(
+				'rev_user_id' => 'rev_user_wiki',
+				'rev_mod_user_id' => 'rev_mod_user_wiki',
+				'rev_edit_user_id' => 'rev_edit_user_wiki'
+			)
+		),
+	);
+} );
+
+$c['storage.post.summary'] = $c->share( function( $c ) {
+	global $wgFlowExternalStore;
+
+	$cache = $c['memcache.buffered'];
+	$storage = new PostSummaryRevisionStorage( $c['db.factory'], $wgFlowExternalStore );
+	$pk = new UniqueFeatureIndex(
+		$cache, $storage,
+		'flow_topic_summary:v2:pk', array( 'rev_id' )
+	);
+	$workflowIndexOptions = array(
+		'sort' => 'rev_id',
+		'order' => 'DESC',
+		'shallow' => $pk,
+		'create' => function( array $row ) {
+			return $row['rev_parent_id'] === null;
+		},
+	);
+	$indexes = array(
+		$pk,
+		new TopKIndex(
+			$cache, $storage,
+			'flow_topic_summary:workflow', array( 'rev_type_id' ),
+			array( 'limit' => 100 ) + $workflowIndexOptions
+		),
+	);
+
+	return new ObjectManager( $c['storage.post.summary.mapper'], $storage, $indexes, $c['storage.post.summary.lifecycle-handlers'] );
 } );
 
 // List of topic workflows and their owning discussion workflow
@@ -334,7 +381,7 @@ $c['storage.post'] = $c->share( function( $c ) {
 		$pk,
 		// revision history
 		new TopKIndex( $cache, $storage, 'flow_revision:descendant',
-			array( 'tree_rev_descendant_id' ),
+			array( 'rev_type_id' ),
 			array(
 				'limit' => 100,
 				'sort' => 'rev_id',
@@ -413,6 +460,9 @@ $c['storage'] = $c->share( function( $c ) {
 			'Flow\\Model\\PostRevision' => 'storage.post',
 			'PostRevision' => 'storage.post',
 
+			'Flow\\Model\\PostSummary' => 'storage.post.summary',
+			'PostSummary' => 'storage.post.summary',
+
 			'Flow\\Model\\TopicListEntry' => 'storage.topic_list',
 			'TopicListEntry' => 'storage.topic_list',
 
@@ -471,6 +521,12 @@ $c['controller.spamfilter'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['query.checkuser'] = $c->share( function( $c ) {
+	return new Flow\Formatter\CheckUserQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
 $c['formatter.checkuser'] = $c->share( function( $c ) {
 	return new Flow\Formatter\CheckUser(
 		$c['permissions'],

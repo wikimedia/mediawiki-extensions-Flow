@@ -35,7 +35,7 @@ class CollectionCache {
 	 * @return AbstractRevision the last revision
 	 */
 	public function getLastRevisionFor( AbstractRevision $revision ) {
-		$key = $revision->getCollectionId()->getBinary();
+		$key = $this->getLastRevCacheKey( $revision );
 		$lastRevision = $this->lastRevCache->get( $key );
 		if ( $lastRevision === null ) {
 			$lastRevision = $revision->getCollection()->getLastRevision();
@@ -45,23 +45,33 @@ class CollectionCache {
 		return $lastRevision;
 	}
 
+	/**
+	 * Cache key for last revision
+	 *
+	 * @param AbstractRevision
+	 * @return string
+	 */
+	protected function getLastRevCacheKey( AbstractRevision $revision ) {
+		return $revision->getCollectionId()->getAlphadecimal() . '-' . $revision->getRevisionType() . '-last-rev';
+	}
+
 	public function onAfterLoad( $object, array $row ) {}
 
 	public function onAfterInsert( $object, array $new ) {
 		if ( $object instanceof AbstractRevision ) {
-			$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
+			$this->lastRevCache->clear( $this->getLastRevCacheKey( $object ) );
 		}
 	}
 
 	public function onAfterUpdate( $object, array $old, array $new ) {
 		if ( $object instanceof AbstractRevision ) {
-			$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
+			$this->lastRevCache->clear( $this->getLastRevCacheKey( $object ) );
 		}
 	}
 
 	public function onAfterRemove( $object, array $old ) {
 		if ( $object instanceof AbstractRevision ) {
-			$this->lastRevCache->clear( $object->getCollectionId()->getBinary() );
+			$this->lastRevCache->clear( $this->getLastRevCacheKey( $object ) );
 		}
 	}
 }

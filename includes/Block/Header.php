@@ -51,7 +51,7 @@ class HeaderBlock extends AbstractBlock {
 		// Get the latest revision attached to this workflow
 		$found = $this->storage->find(
 			'Header',
-			array( 'header_workflow_id' => $this->workflow->getId() ),
+			array( 'rev_type_id' => $this->workflow->getId() ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);
 
@@ -114,7 +114,7 @@ class HeaderBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
-		if ( isset( $this->submitted['prev_revision'] ) ) {
+		if ( isset( $this->submitted['prev_revision'] ) && $this->submitted['prev_revision'] ) {
 			// User submitted a previous revision, but we couldn't find one.  This is likely
 			// an internal error and not a user error, consider better handling
 			// is this even worth checking?
@@ -198,18 +198,17 @@ class HeaderBlock extends AbstractBlock {
 		$output = array();
 		$output['type'] = 'header';
 
-		$contentFormat = 'wikitext';
-
-		if ( isset( $options['contentFormat'] ) ) {
-			$contentFormat = $options['contentFormat'];
-		}
-
 		if ( $this->header !== null ) {
+			if ( isset( $options['contentFormat'] ) ) {
+				$contentFormat = $options['contentFormat'];
+			} else {
+				$contentFormat = $this->header->getContentFormat();
+			}
 			$output['*'] = $templating->getContent( $this->header, $contentFormat );
 			$output['format'] = $contentFormat;
 			$output['header-id'] = $this->header->getRevisionId()->getAlphadecimal();
 		} else {
-			$output['missing'] = 'missing';
+			$output['missing'] = '';
 		}
 
 		$output = array(

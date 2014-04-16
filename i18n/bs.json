@@ -1,22 +1,22 @@
 {
-    "@metadata": {
-        "authors": [
-            "DzWiki"
-        ]
-    },
-    "flow-edit-header-link": "Uredi zaglavlje",
-    "flow-post-actions": "Akcije",
-    "flow-topic-actions": "Akcije",
-    "flow-cancel": "Otkaži",
-    "flow-show-change": "Prikaži izmjene",
-    "flow-newtopic-title-placeholder": "Nova tema",
-    "flow-newtopic-save": "Dodaj temu",
-    "flow-post-action-post-history": "Historija",
-    "flow-post-action-delete-post": "Obriši",
-    "flow-post-action-hide-post": "Sakrij",
-    "flow-post-action-edit-post": "Uredi",
-    "flow-topic-action-edit-title": "Uredi naslov",
-    "flow-topic-action-history": "Historija",
-    "flow-edit-post-submit": "Pošalji promjene",
-    "flow-history-day": "Danas"
+	"@metadata": {
+		"authors": [
+			"DzWiki"
+		]
+	},
+	"flow-edit-header-link": "Uredi zaglavlje",
+	"flow-post-actions": "Akcije",
+	"flow-topic-actions": "Akcije",
+	"flow-cancel": "Otkaži",
+	"flow-show-change": "Prikaži izmjene",
+	"flow-newtopic-title-placeholder": "Nova tema",
+	"flow-newtopic-save": "Dodaj temu",
+	"flow-post-action-post-history": "Historija",
+	"flow-post-action-delete-post": "Obriši",
+	"flow-post-action-hide-post": "Sakrij",
+	"flow-post-action-edit-post": "Uredi",
+	"flow-topic-action-edit-title": "Uredi naslov",
+	"flow-topic-action-history": "Historija",
+	"flow-edit-post-submit": "Pošalji promjene",
+	"flow-history-day": "Danas"
 }

@@ -7,7 +7,7 @@ use Flow\Parsoid\Utils;
 /**
  * @group Flow
  */
-class ParsoidUtilsTest extends \MediaWikiTestCase {
+class ParsoidUtilsTest extends FlowTestCase {
 
 	static public function createDomProvider() {
 		return array(

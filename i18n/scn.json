@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Gmelfi"
-        ]
-    },
-    "flow-thank-link": "{{GENDER:$1|Arringràzzia}}"
+	"@metadata": {
+		"authors": [
+			"Gmelfi"
+		]
+	},
+	"flow-thank-link": "{{GENDER:$1|Arringràzzia}}"
 }

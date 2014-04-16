@@ -157,7 +157,7 @@ class PostRevision extends AbstractRevision {
 		$obj = parent::fromStorageRow( $row, $obj );
 
 		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
-		$obj->postId = UUID::create( $row['tree_rev_descendant_id'] );
+		$obj->postId = UUID::create( $row['rev_type_id'] );
 		$obj->origUserId = $row['tree_orig_user_id'];
 		if ( isset( $row['tree_orig_user_ip'] ) ) {
 			$obj->origUserIp = $row['tree_orig_user_ip'];
@@ -326,7 +326,9 @@ class PostRevision extends AbstractRevision {
 		} elseif ( $this->rootPost === null ) {
 			$collection = $this->getCollection();
 			$root = $collection->getRoot();
-			return $root->getLastRevision();
+			/** @var CollectionCache $cache */
+			$cache = \Flow\Container::get( 'collection.cache' );
+			return $cache->getLastRevisionFor( $root );
 		}
 		return $this->rootPost;
 	}

@@ -30,9 +30,9 @@ class BoardHistoryStorage extends DbStorage {
 		$queries = $this->preprocessSqlArray( reset( $queries ) );
 
 		$res = $this->dbFactory->getDB( DB_SLAVE )->select(
-			array( 'flow_header_revision', 'flow_revision' ),
+			array( 'flow_revision' ),
 			array( '*' ),
-			array( 'header_rev_id = rev_id' ) + UUID::convertUUIDs( array( 'header_workflow_id' => $queries['topic_list_id'] ) ),
+			array( 'rev_type' => 'header' ) + UUID::convertUUIDs( array( 'rev_type_id' => $queries['topic_list_id'] ) ),
 			__METHOD__,
 			$options
 		);

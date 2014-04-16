@@ -2,23 +2,23 @@
 
 namespace Flow\Block;
 
-use Flow\View\History\History;
-use Flow\View\History\HistoryRenderer;
+use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
-use Flow\Model\UUID;
-use Flow\Model\Workflow;
-use Flow\Model\AbstractRevision;
-use Flow\Model\PostRevision;
-use Flow\NotificationController;
-use Flow\RevisionActionPermissions;
-use Flow\Templating;
-use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
+use Flow\Model\AbstractRevision;
+use Flow\Model\PostRevision;
+use Flow\Model\UUID;
+use Flow\Model\Workflow;
+use Flow\NotificationController;
+use Flow\RevisionActionPermissions;
+use Flow\Templating;
+use Flow\View\History\History;
+use Flow\View\History\HistoryRenderer;
 use Flow\View\PostRevisionView;
 
 class TopicBlock extends AbstractBlock {
@@ -596,7 +596,7 @@ class TopicBlock extends AbstractBlock {
 		);
 
 		if ( isset( $options['showhistoryfor'] ) ) {
-			$options['history'] = array();
+			$output['history'] = array();
 
 			$historyBatch = $this->getHistoryBatch( (array)$options['showhistoryfor'] );
 
@@ -604,11 +604,11 @@ class TopicBlock extends AbstractBlock {
 				/** @var PostRevision[] $historyGroup */
 				foreach( $historyGroup as $historyEntry ) {
 					$postId = $historyEntry->getPostId()->getAlphadecimal();
-					if ( ! isset( $options['history'][$postId] ) ) {
-						$options['history'][$postId] = array();
+					if ( ! isset( $output['history'][$postId] ) ) {
+						$output['history'][$postId] = array();
 					}
 
-					$options['history'][$postId][] = $historyEntry;
+					$output['history'][$postId][] = $historyEntry;
 				}
 			}
 		}
@@ -702,7 +702,7 @@ class TopicBlock extends AbstractBlock {
 	protected function getHistory( $postId ) {
 		$history = $this->storage->find(
 			'PostRevision',
-			array( 'tree_rev_descendant_id' => UUID::create( $postId ) ),
+			array( 'rev_type_id' => UUID::create( $postId ) ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 		);
 		if ( $history ) {
@@ -733,7 +733,7 @@ class TopicBlock extends AbstractBlock {
 		foreach( $postIds as $postId ) {
 			$uuid = UUID::create( $postId );
 			$searchItems[$uuid->getAlphadecimal()] = array(
-				'tree_rev_descendant_id' => $uuid,
+				'rev_type_id' => $uuid,
 			);
 		}
 
@@ -793,7 +793,7 @@ class TopicBlock extends AbstractBlock {
 		if ( $this->topicTitle === null ) {
 			$found = $this->storage->find(
 				'PostRevision',
-				array( 'tree_rev_descendant_id' => $this->workflow->getId() ),
+				array( 'rev_type_id' => $this->workflow->getId() ),
 				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 			);
 			if ( !$found ) {
@@ -897,7 +897,7 @@ class TopicBlock extends AbstractBlock {
 
 		$found = $this->storage->find(
 			'PostRevision',
-			array( 'tree_rev_descendant_id' => $post->getPostId() )
+			array( 'rev_type_id' => $post->getPostId() )
 		);
 		if ( !$found ) {
 			throw new InvalidInputException( 'Should have found revisions', 'missing-revision' );

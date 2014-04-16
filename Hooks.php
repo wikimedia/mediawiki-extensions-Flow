@@ -204,16 +204,31 @@ class FlowHooks {
 	}
 
 	public static function onSpecialCheckUserGetLinksFromRow( CheckUser $checkUser, $row, &$links ) {
-		if ( $row->cuc_type == RC_FLOW ) {
-			$replacement = Container::get( 'formatter.checkuser' )->format( $row, $checkUser->getContext() );
-			if ( $replacement === null ) {
-				// some sort of failure, but this is a RC_FLOW so blank out hist/diff links
-				// which aren't correct
-				unset( $links['history'] );
-				unset( $links['diff'] );
-			} else {
-				$links = $replacement;
+		if ( !$row->cuc_type == RC_FLOW ) {
+			return true;
+		}
+
+		$replacement = null;
+		try {
+			$query = Container::get( 'query.checkuser' );
+			// @todo: create hook to allow batch-loading this data, instead of doing piecemeal like this
+			$query->loadMetadataBatch( array( $row ) );
+			$row = $query->getResult( $checkUser, $row );
+			if ( $row !== false ) {
+				$replacement = Container::get( 'formatter.checkuser' )->format( $row, $checkUser->getContext() );
 			}
+		} catch ( FlowException $e ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . $row->cuc_id . ' ' . $e );
+			\MWExceptionHandler::logException( $e );
+		}
+
+		if ( $replacement === null ) {
+			// some sort of failure, but this is a RC_FLOW so blank out hist/diff links
+			// which aren't correct
+			unset( $links['history'] );
+			unset( $links['diff'] );
+		} else {
+			$links = $replacement;
 		}
 
 		return true;
@@ -539,7 +554,6 @@ class FlowHooks {
 	}
 
 	/**
-	 *
 	 * @param RecentChange $rc
 	 * @param array &$rcRow
 	 * @return bool
@@ -551,7 +565,12 @@ class FlowHooks {
 
 		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
 		$change = $params['flow-workflow-change'];
-		$comment = $change['action'] . ',' .  $change['workflow'];
+
+		// don't forget to increase the version number when data format changes
+		$comment = \Flow\Formatter\CheckUserQuery::VERSION_PREFIX;
+		$comment .= ',' . $change['action'];
+		$comment .= ',' . $change['workflow'];
+		$comment .= ',' . $change['revision'];
 		if ( isset( $change['post'] ) ) {
 			$comment .= ',' . $change['post'];
 		}
