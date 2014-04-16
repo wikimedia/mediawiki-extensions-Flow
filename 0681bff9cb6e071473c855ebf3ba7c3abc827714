@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_851290ff",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-16T00:57:51Z",
+      "side": 1,
+      "message": "Make \u0027ext.flow.base.styles\u0027 a dependency of \u0027ext.flow.discussion.styles\u0027?  \u0027ext.flow.base.styles\u0027 would be loaded twice because \u0027ext.flow.discussion.styles\u0027 is a dependency of \u0027ext.flow.discussion\u0027",
+      "revId": "0681bff9cb6e071473c855ebf3ba7c3abc827714",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_45dc784b",
+        "filename": "includes/View.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-16T00:57:51Z",
+      "side": 1,
+      "message": "Unrelated to this patch, ext.flow.base is already a dependency of ext.flow.edit",
+      "revId": "0681bff9cb6e071473c855ebf3ba7c3abc827714",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
