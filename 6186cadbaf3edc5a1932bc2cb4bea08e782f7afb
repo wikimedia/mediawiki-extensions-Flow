@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_965ac820",
+        "filename": "includes/api/ApiQueryFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-04-16T14:22:12Z",
+      "side": 1,
+      "message": "Are you intending for the result to have an \"element\" item with value \"block\"? If so this is fine.",
+      "revId": "6186cadbaf3edc5a1932bc2cb4bea08e782f7afb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_76884c76",
+        "filename": "includes/api/ApiQueryFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 221
+      },
+      "writtenOn": "2014-04-16T14:22:12Z",
+      "side": 1,
+      "message": "(pre-existing issue) I note that the result in JSON format will be something like {\"workflow-id\":\"XXX\",\"0\":{...},\"1\":{...}}. There\u0027s nothing necessarily *wrong* with that, but it\u0027s a bit strange to have the object with mixed string and numeric keys where having a subelement with an actual array would be more expected.",
+      "revId": "6186cadbaf3edc5a1932bc2cb4bea08e782f7afb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
