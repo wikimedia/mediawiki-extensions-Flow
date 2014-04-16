@@ -113,7 +113,7 @@ class ConvertToText extends Maintenance {
 	}
 
 	public function processPostCollection( $collection, $indentLevel = 0 ) {
-		if ( $collection["_element"] !== "post" ) {
+		if ( $collection["element"] !== "post" ) {
 			throw new MWException( "Attempt to process post collection on non-list-of-posts" );
 		}
 

@@ -34,7 +34,7 @@ class ApiQueryFlow extends ApiQueryBase {
 			$templating = $this->container['templating'];
 
 			if ( $block->canRender( $params['action'] ) ) {
-				$thisBlock = $block->renderAPI( $templating, $blockParams ) +
+				$thisBlock = $block->renderAPI( $templating, $this->getResult(), $blockParams ) +
 					array(
 						'block-name' => $block->getName()
 					);
