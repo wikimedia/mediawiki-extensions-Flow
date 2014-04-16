@@ -1,10 +1,10 @@
 {
-    "@metadata": {
-        "authors": [
-            "Wertuose"
-        ]
-    },
-    "flow-post-action-undelete-post": "Bərpa et",
-    "flow-moderation-confirm-undelete-post": "Bərpa et",
-    "flow-moderation-confirm-undelete-topic": "Bərpa et"
+	"@metadata": {
+		"authors": [
+			"Wertuose"
+		]
+	},
+	"flow-post-action-undelete-post": "Bərpa et",
+	"flow-moderation-confirm-undelete-post": "Bərpa et",
+	"flow-moderation-confirm-undelete-topic": "Bərpa et"
 }

@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Robotukas11"
-        ]
-    },
-    "flow-error-external": "Įvyko klaida.\u003Cbr\u003EGautas klaidos pranešimas: $1"
+	"@metadata": {
+		"authors": [
+			"Robotukas11"
+		]
+	},
+	"flow-error-external": "Įvyko klaida.<br>Gautas klaidos pranešimas: $1"
 }
