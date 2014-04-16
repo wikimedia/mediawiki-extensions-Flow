@@ -34,8 +34,8 @@ class RootPostLoader {
 		$found = $this->storage->findMulti(
 			'PostRevision',
 			array(
-				array( 'rev_type_id' => $postId->getBinary() ),
-				array( 'rev_type_id' => $rootId->getBinary() ),
+				array( 'rev_type_id' => $postId ),
+				array( 'rev_type_id' => $rootId ),
 			),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);

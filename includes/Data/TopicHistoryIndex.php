@@ -27,7 +27,7 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param string[] $new
 	 */
 	public function onAfterInsert( $object, array $new ) {
-		$new['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
+		$new['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
 		parent::onAfterInsert( $object, $new );
 	}
 
@@ -37,7 +37,7 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param string[] $new
 	 */
 	public function onAfterUpdate( $object, array $old, array $new ) {
-		$old['topic_root_id'] = $new['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
+		$old['topic_root_id'] = $new['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
 		parent::onAfterUpdate( $object, $old, $new );
 	}
 
@@ -46,7 +46,7 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param string[] $old
 	 */
 	public function onAfterRemove( $object, array $old ) {
-		$old['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
+		$old['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
 		parent::onAfterRemove( $object, $old );
 	}
 

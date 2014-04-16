@@ -175,9 +175,9 @@ class PostRevision extends AbstractRevision {
 	 */
 	static public function toStorageRow( $rev ) {
 		return parent::toStorageRow( $rev ) + array(
-			'tree_parent_id' => $rev->replyToId ? $rev->replyToId->getBinary() : null,
-			'tree_rev_descendant_id' => $rev->postId->getBinary(),
-			'tree_rev_id' => $rev->revId->getBinary(),
+			'tree_parent_id' => $rev->replyToId ? $rev->replyToId->getAlphadecimal() : null,
+			'tree_rev_descendant_id' => $rev->postId->getAlphadecimal(),
+			'tree_rev_id' => $rev->revId->getAlphadecimal(),
 			// rest of tree_ is denormalized data about first post revision
 			'tree_orig_user_id' => $rev->origUserId,
 			'tree_orig_user_ip' => $rev->origUserIp,
