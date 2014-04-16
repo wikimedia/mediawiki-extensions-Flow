@@ -190,8 +190,14 @@ class ObjectManager extends ObjectLocator {
 		foreach( $sortFields as $field ) {
 			$value = $row[$field];
 
-			if ( strlen( $value ) === UUID::BIN_LEN && substr( $field, -3 ) === '_id' ) {
-				$value = UUID::create( $value )->getAlphadecimal();
+			if ( is_string( $value )
+				&& strlen( $value ) === UUID::BIN_LEN
+				&& substr( $field, -3 ) === '_id'
+			) {
+				$value = UUID::create( $value );
+			}
+			if ( $value instanceof UUID ) {
+				$value = $value->getAlphadecimal();
 			}
 			$offsetFields[] = $value;
 		}
