@@ -61,7 +61,7 @@ class Definition {
 	 */
 	static public function toStorageRow( Definition $obj ) {
 		return array(
-			'definition_id' => $obj->id->getBinary(),
+			'definition_id' => $obj->id->getAlphadecimal(),
 			'definition_type' => $obj->type,
 			'definition_wiki' => $obj->wiki,
 			'definition_name' => $obj->name,

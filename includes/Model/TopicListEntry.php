@@ -56,8 +56,8 @@ class TopicListEntry {
 	 */
 	static public function toStorageRow( TopicListEntry $obj ) {
 		return array(
-			'topic_list_id' => $obj->topicListId->getBinary(),
-			'topic_id' => $obj->topicId->getBinary(),
+			'topic_list_id' => $obj->topicListId->getAlphadecimal(),
+			'topic_id' => $obj->topicId->getAlphadecimal(),
 		);
 	}
 
