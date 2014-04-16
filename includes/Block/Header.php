@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\Container;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
@@ -194,7 +195,7 @@ class HeaderBlock extends AbstractBlock {
 		}
 	}
 
-	public function renderAPI( Templating $templating, array $options ) {
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
 		$output = array();
 		$output['type'] = 'header';
 
@@ -212,9 +213,9 @@ class HeaderBlock extends AbstractBlock {
 		}
 
 		$output = array(
-			'_element' => 'header',
 			0 => $output,
 		);
+		$result->setIndexedTagName( $output, 'header' );
 
 		return $output;
 	}
