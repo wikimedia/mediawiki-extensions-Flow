@@ -94,16 +94,11 @@ class Post {
 	}
 
 	public function userToolLinks( $userId, $userText ) {
-		if ( $userText instanceof Message ) {
-			// username was moderated away, we dont know who this is
-			return '';
-		} else {
-			return Linker::userLink( $userId, $userText ) . Linker::userToolLinks( $userId, $userText );
-		}
+		return $this->templating->userToolLinks( $userId, $userText );
 	}
 
 	public function creatorToolLinks() {
-		return $this->userToolLinks( $this->post->getCreatorId(), $this->creatorUserText );
+		return $this->templating->userToolLinks( $this->post->getCreatorId(), $this->creatorUserText );
 	}
 
 	public function editPostButton( $buttonClass ) {

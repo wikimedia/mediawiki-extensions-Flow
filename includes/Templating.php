@@ -276,7 +276,7 @@ class Templating {
 
 	public function userToolLinks( $userId, $userText ) {
 		static $cache = array();
-		if ( isset( $cache[$userId][$userText] ) ) {
+		if ( !is_object( $userText ) && isset( $cache[$userId][$userText] ) ) {
 			return $cache[$userId][$userText];
 		}
 
@@ -367,7 +367,7 @@ class Templating {
 		if ( $revision->isModerated() || $this->permissions->isAllowed( $revision, 'view' ) ) {
 			$userid = $revision->getUserId();
 			$username = $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
-			return Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
+			return $this->userToolLinks( $userid, $username );
 		} else {
 			$revision = $this->getModeratedRevision( $revision );
 			$state = $revision->getModerationState();
