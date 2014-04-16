@@ -40,10 +40,16 @@ class BoardHistory extends AbstractFormatter {
 
 		$separator = $this->changeSeparator();
 
-		// timestamp needs to render before links list to not duplicate the link
+		$links = array();
+		$links[] = $this->getDiffCurLink( $data['links'], $ctx );
+		$links[] = $this->getDiffPrevLink( $data['links'], $ctx );
+		if ( isset( $data['links']['topic'] ) ) {
+			$links[] = $data['links']['topic'];
+		}
+
 		$formattedTimestamp = $this->formatTimestamp( $data );
 
-		return $this->formatLinksAsPipeList( $data['links'], $ctx ) . ' '
+		return $this->formatLinksAsPipeList( $links, $ctx ) . ' '
 			. $formattedTimestamp
 			. $separator
 			. $this->formatDescription( $data, $ctx )

@@ -37,7 +37,7 @@ $wgFlowActions = array(
 			Header::MODERATED_NONE => '',
 		),
 		'button-method' => 'POST',
-		'links' => array( 'board-history' ),
+		'links' => array( 'board-history', 'workflow', 'header-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-header',
 			'i18n-params' => array(
@@ -56,7 +56,7 @@ $wgFlowActions = array(
 			Header::MODERATED_NONE => '',
 		),
 		'button-method' => 'POST',
-		'links' => array( 'board-history', 'diff-header' ),
+		'links' => array( 'board-history', 'diff-header', 'workflow', 'header-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-header',
 			'i18n-params' => array(
@@ -64,6 +64,46 @@ $wgFlowActions = array(
 				'user-text',
 			),
 			'class' => 'flow-history-edit-header',
+		),
+	),
+
+	'create-topic-summary' => array(
+		'performs-writes' => true,
+		'log_type' => false,
+		'rc_insert' => true,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
+		'button-method' => 'GET',
+		'links' => array(),
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-create-topic-summary',
+			'i18n-params' => array(
+				'user-links',
+				'user-text',
+				'topic-of-post',
+			),
+			'class' => 'flow-history-create-topic-summary',
+		),
+	),
+
+	'edit-topic-summary' => array(
+		'performs-writes' => true,
+		'log_type' => false,
+		'rc_insert' => true,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+		),
+		'button-method' => 'GET',
+		'links' => array(),
+		'history' => array(
+			'i18n-message' => 'flow-rev-message-edit-topic-summary',
+			'i18n-params' => array(
+				'user-links',
+				'user-text',
+				'topic-of-post',
+			),
+			'class' => 'flow-history-edit-topic-summary',
 		),
 	),
 
@@ -75,7 +115,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 		),
 		'button-method' => 'GET',
-		'links' => array( 'topic', 'topic-history', 'diff-post' ),
+		'links' => array( 'topic', 'topic-history', 'diff-post', 'topic-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-title',
 			'i18n-params' => array(
@@ -99,7 +139,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 		),
 		'button-method' => 'POST',
-		'links' => array( 'topic-history', 'topic', 'post' ),
+		'links' => array( 'topic-history', 'topic', 'post', 'topic-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-new-post',
 			'i18n-params' => array(
@@ -123,7 +163,7 @@ $wgFlowActions = array(
 				}
 		),
 		'button-method' => 'GET',
-		'links' => array( 'post-history', 'topic', 'post', 'diff-post' ),
+		'links' => array( 'post-history', 'topic', 'post', 'diff-post', 'post-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-post',
 			'i18n-params' => array(
@@ -147,7 +187,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
-		'links' => array( 'topic', 'post-history' ),
+		'links' => array( 'topic', 'post-history', 'post-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-post',
 			'i18n-params' => array(
@@ -170,7 +210,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => array( 'flow-hide', 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
-		'links' => array( 'topic', 'post', 'post-history' ),
+		'links' => array( 'topic', 'post', 'post-history', 'topic-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-topic',
 			'i18n-params' => array(
@@ -194,7 +234,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
-		'links' => array( 'topic', 'post-history' ),
+		'links' => array( 'topic', 'post-history', 'post-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-post',
 			'i18n-params' => array(
@@ -218,7 +258,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_HIDDEN => array( 'flow-delete', 'flow-suppress' ),
 		),
 		'button-method' => 'POST',
-		'links' => array( 'topic', 'topic-history' ),
+		'links' => array( 'topic', 'topic-history', 'topic-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-topic',
 			'i18n-params' => array(
@@ -243,7 +283,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
-		'links' => array( 'topic', 'topic-history' ),
+		'links' => array( 'topic', 'topic-history', 'post-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-suppressed-post',
 			'i18n-params' => array(
@@ -268,7 +308,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_DELETED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
-		'links' => array( 'topic', 'topic-history' ),
+		'links' => array( 'topic', 'topic-history', 'topic-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-suppressed-topic',
 			'i18n-params' => array(
@@ -316,7 +356,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
-		'links' => array( 'topic', 'post-history' ),
+		'links' => array( 'topic', 'post-history', 'post-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-restored-post',
 			'i18n-params' => array(
@@ -368,7 +408,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'POST',
-		'links' => array( 'topic', 'topic-history' ),
+		'links' => array( 'topic', 'topic-history', 'topic-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-restored-topic',
 			'i18n-params' => array(
@@ -413,7 +453,7 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_NONE => '',
 		),
 		'button-method' => 'GET',
-		'links' => array( 'topic-history', 'topic', 'post' ),
+		'links' => array( 'topic-history', 'topic', 'post', 'post-revision' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-reply',
 			'i18n-params' => array(
@@ -460,7 +500,9 @@ $wgFlowActions = array(
 					// doublecheck that this run is indeed against the most
 					// recent revision, to get the global collection state
 					try {
-						$lastRevision = $collection->getLastRevision();
+						/** @var CollectionCache $cache */
+						$cache = \Flow\Container::get( 'collection.cache' );
+						$lastRevision = $cache->getLastRevisionFor( $revision );
 						if ( $revision->getRevisionId()->equals( $lastRevision->getRevisionId() ) ) {
 							$previousCollectionId = null;
 							return '';

@@ -5,12 +5,12 @@ namespace Flow\Tests;
 use Flow\Container;
 use ReflectionClass;
 
-class WorkflowLoaderTest extends \MediaWikiTestCase {
+class WorkflowLoaderTest extends FlowTestCase {
 
 	public function provideDataCreateBlocks() {
 		return array (
 			array( 'discussion', array( 'Flow\Block\HeaderBlock', 'Flow\Block\TopicListBlock', 'Flow\Block\BoardHistoryBlock' ) ),
-			array( 'topic', array( 'Flow\Block\TopicBlock' ) ),
+			array( 'topic', array( 'Flow\Block\TopicBlock', 'Flow\Block\TopicSummaryBlock' ) ),
 		);
 	}
 

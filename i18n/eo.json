@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Happy5214"
+		]
+	},
+	"flow-post-actions": "Agoj",
+	"flow-topic-actions": "Agoj",
+	"flow-cancel": "Nuligi",
+	"flow-post-action-view": "Konstanta ligilo",
+	"flow-post-action-post-history": "Historio",
+	"flow-post-action-delete-post": "Forigi",
+	"flow-post-action-hide-post": "Kaŝi",
+	"flow-post-action-edit-post": "Redakti",
+	"flow-post-action-undelete-post": "Malforigi",
+	"flow-topic-action-watchlist": "Atentaro",
+	"flow-topic-action-history": "Historio",
+	"flow-board-history": "\"$1\" historio",
+	"flow-history-day": "Hodiaŭ",
+	"flow-history-week": "Lasta semajno",
+	"flow-link-history": "historio",
+	"flow-moderation-confirm-delete-post": "Forigi",
+	"flow-moderation-confirm-hide-post": "Kaŝi",
+	"flow-moderation-confirm-delete-topic": "Forigi",
+	"flow-moderation-confirm-hide-topic": "Kaŝi"
+}

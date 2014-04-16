@@ -11,7 +11,7 @@ use Flow\Data\FeatureIndex;
 /**
  * @group Flow
  */
-class IndexTest extends \MediaWikiTestCase {
+class IndexTest extends FlowTestCase {
 
 	public function testShallow() {
 		global $wgFlowCacheTime;

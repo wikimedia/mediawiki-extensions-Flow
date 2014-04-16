@@ -1,10 +1,10 @@
 {
-    "@metadata": {
-        "authors": [
-            "Chelin"
-        ]
-    },
-    "flow-show-change": "Vere 'e cagnamiente",
-    "flow-post-action-post-history": "Cronologgia",
-    "flow-post-action-edit-post": "Càgna"
+	"@metadata": {
+		"authors": [
+			"Chelin"
+		]
+	},
+	"flow-show-change": "Vere 'e cagnamiente",
+	"flow-post-action-post-history": "Cronologgia",
+	"flow-post-action-edit-post": "Càgna"
 }

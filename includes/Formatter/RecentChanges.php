@@ -33,7 +33,11 @@ class RecentChanges extends AbstractFormatter {
 		// The ' . . ' text between elements
 		$separator = $this->changeSeparator();
 
-		return $this->formatDiffHistPipeList( $data['links'], $ctx ) .
+		$links = array();
+		$links[] = $this->getDiffLink( $data['links'], $ctx );
+		$links[] = $this->getHistLink( $data['links'], $ctx );
+
+		return $this->formatLinksAsPipeList( $links, $ctx ) .
 			' ' .
 			Linker::link( $row->workflow->getArticleTitle() ) .
 			$ctx->msg( 'semicolon-separator' )->escaped() .

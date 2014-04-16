@@ -6,8 +6,8 @@ class ApiFlowModeratePost extends ApiFlowBase {
 		parent::__construct( $api, $modName, 'mp' );
 	}
 
-	protected function getBlockName() {
-		return 'topic';
+	protected function getBlockNames() {
+		return array( 'topic' );
 	}
 
 	protected function getAction() {

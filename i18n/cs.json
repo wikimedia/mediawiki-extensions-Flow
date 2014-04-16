@@ -1,21 +1,21 @@
 {
-    "@metadata": {
-        "authors": [
-            "Michaelbrabec",
-            "Mormegil",
-            "Paxt"
-        ]
-    },
-    "flow-post-moderated-toggle-hide-show": "Ukázat komentář {{GENDER:$1|skrytý}} od $2",
-    "flow-post-moderated-toggle-delete-show": "Ukázat komentář {{GENDER:$1|odstraněný}} od $2",
-    "flow-post-moderated-toggle-suppress-show": "Ukázat komentář {{GENDER:$1|odstraněný}} od $2",
-    "flow-post-moderated-toggle-hide-hide": "Skrýt komentář {{GENDER:$1|skrytý}} od $2",
-    "flow-post-moderated-toggle-delete-hide": "Skrýt komentář {{GENDER:$1|odstraněný}} od $2",
-    "flow-post-moderated-toggle-suppress-hide": "Skrýt komentář {{GENDER:$1|potlačený}} od $2",
-    "flow-cancel": "Storno",
-    "flow-newtopic-title-placeholder": "Nové téma",
-    "flow-post-action-post-history": "Historie",
-    "flow-post-action-edit-post": "Editovat",
-    "flow-topic-action-edit-title": "Upravit název",
-    "flow-topic-action-history": "Historie"
+	"@metadata": {
+		"authors": [
+			"Michaelbrabec",
+			"Mormegil",
+			"Paxt"
+		]
+	},
+	"flow-post-moderated-toggle-hide-show": "Ukázat komentář {{GENDER:$1|skrytý}} od $2",
+	"flow-post-moderated-toggle-delete-show": "Ukázat komentář {{GENDER:$1|odstraněný}} od $2",
+	"flow-post-moderated-toggle-suppress-show": "Ukázat komentář {{GENDER:$1|odstraněný}} od $2",
+	"flow-post-moderated-toggle-hide-hide": "Skrýt komentář {{GENDER:$1|skrytý}} od $2",
+	"flow-post-moderated-toggle-delete-hide": "Skrýt komentář {{GENDER:$1|odstraněný}} od $2",
+	"flow-post-moderated-toggle-suppress-hide": "Skrýt komentář {{GENDER:$1|potlačený}} od $2",
+	"flow-cancel": "Storno",
+	"flow-newtopic-title-placeholder": "Nové téma",
+	"flow-post-action-post-history": "Historie",
+	"flow-post-action-edit-post": "Editovat",
+	"flow-topic-action-edit-title": "Upravit název",
+	"flow-topic-action-history": "Historie"
 }

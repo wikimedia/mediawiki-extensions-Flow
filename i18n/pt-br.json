@@ -1,10 +1,10 @@
 {
-    "@metadata": {
-        "authors": [
-            "Helder.wiki",
-            "Tuliouel"
-        ]
-    },
-    "flow-desc": "Sistema de Gerenciamento do Fluxo de Trabalho",
-    "flow-link-post": "publicar"
+	"@metadata": {
+		"authors": [
+			"Helder.wiki",
+			"Tuliouel"
+		]
+	},
+	"flow-desc": "Sistema de Gerenciamento do Fluxo de Trabalho",
+	"flow-link-post": "publicar"
 }

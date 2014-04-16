@@ -3,30 +3,27 @@
 namespace Flow\Tests;
 
 use Flow\Container;
+use Flow\Formatter\FormatterRow;
 use Flow\Model\UUID;
+use Title;
 
 /**
  * @group Flow
  */
-class FormatterTest extends \MediaWikiTestCase {
+class FormatterTest extends FlowTestCase {
 
 	static public function checkUserProvider() {
 		$topicId = UUID::create();
 		$revId = UUID::create();
 		$postId = UUID::create();
 
-		$expectNull = function( $test, $message, $links ) {
-			$test->assertNull( $links, $message );
-		};
-
 		return array(
 			array(
 				'With only a topicId reply should not fail',
 				// result must contain
-				function( $test, $message, $links ) {
-					$test->assertNotNull( $links );
-					$test->assertArrayHasKey( 'topic', $links, $message );
-					$test->assertArrayNotHasKey( 'post', $links, $message );
+				function( $test, $message, $result ) {
+					$test->assertNotNull( $result );
+					$test->assertArrayHasKey( 'links', $result, $message );
 				},
 				// cuc_comment parameters
 				'reply', $topicId, $revId, null
@@ -34,18 +31,11 @@ class FormatterTest extends \MediaWikiTestCase {
 
 			array(
 				'With topicId and postId should not fail',
-				function( $test, $message, $links ) {
-					$test->assertNotNull( $links );
-					$test->assertArrayHasKey( 'topic', $links, $message );
-					$test->assertArrayHasKey( 'post', $links, $message );
+				function( $test, $message, $result ) {
+					$test->assertNotNull( $result );
+					$test->assertArrayHasKey( 'links', $result, $message );
 				},
-				'reply', $topicId, $postId, $revId,
-			),
-
-			array(
-				'an unknown action will fail gracefully',
-				$expectNull,
-				'fiddle', $topicId, $postId, $revId,
+				'reply', $topicId, $revId, $postId,
 			),
 		);
 	}
@@ -61,23 +51,11 @@ class FormatterTest extends \MediaWikiTestCase {
 			return;
 		}
 
-		// @fixme code smell, duplicating code from elsewhere in test
-		$comment = implode( ',', array(
-			'v1', // serialization version
-			$action,
-			$workflowId->getAlphadecimal(),
-			$revId->getAlphadecimal(),
-		) );
-		if ( $postId ) {
-			$comment .= ',' . $postId->getAlphadecimal();
-		}
-
-		$row = (object) array(
-			'cuc_type' => RC_FLOW,
-			'cuc_comment' => $comment,
-			'cuc_namespace' => NS_USER_TALK,
-			'cuc_title' => 'Test',
-		);
+		$title = Title::newFromText( 'Test', NS_USER_TALK );
+		$row = new FormatterRow;
+		$row->workflow = $this->mockWorkflow( $workflowId, $title );
+		$row->revision = $this->mockRevision( $action, $revId, $postId );
+		$row->currentRevision = $row->revision;
 
 		$ctx = $this->getMock( 'IContextSource' );
 		$ctx->expects( $this->any() )
@@ -93,6 +71,37 @@ class FormatterTest extends \MediaWikiTestCase {
 		$links = $this->createFormatter( 'Flow\Formatter\CheckUser' )->format( $row, $ctx );
 		wfRestoreWarnings();
 		$test( $this, $message, $links );
+	}
+
+	protected function mockWorkflow( UUID $workflowId, Title $title ) {
+		$workflow = $this->getMock( 'Flow\\Model\\Workflow' );
+		$workflow->expects( $this->any() )
+			->method( 'getId' )
+			->will( $this->returnValue( $workflowId ) );
+		$workflow->expects( $this->any() )
+			->method( 'getArticleTitle' )
+			->will( $this->returnValue( $title ) );
+		return $workflow;
+	}
+
+	protected function mockRevision( $changeType, UUID $revId, UUID $postId = null ) {
+		if ( $postId ) {
+			$revision = $this->getMock( 'Flow\\Model\\PostRevision' );
+		} else {
+			$revision = $this->getMock( 'Flow\\Model\\Header' );
+		}
+		$revision->expects( $this->any() )
+			->method( 'getChangeType' )
+			->will( $this->returnValue( $changeType ) );
+		$revision->expects( $this->any() )
+			->method( 'getRevisionId' )
+			->will( $this->returnValue( $revId ) );
+		if ( $postId ) {
+			$revision->expects( $this->any() )
+				->method( 'getPostId' )
+				->will( $this->returnValue( $postId ) );
+		}
+		return $revision;
 	}
 
 	protected function createFormatter( $class ) {

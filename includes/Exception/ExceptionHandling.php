@@ -4,6 +4,7 @@ namespace Flow\Exception;
 
 use MWException;
 use OutputPage;
+use RequestContext;
 
 /**
  * Flow base exception
@@ -81,7 +82,8 @@ class FlowException extends MWException {
 		 * to add our own humanized error message. Then we'll append the stack-
 		 * trace (parent::getHTML) and then just return the combined HTML.
 		 */
-		$output = new OutputPage();
+		$rc = new RequestContext();
+		$output = $rc->getOutput();
 		$output->showErrorPage( $this->getPageTitle(), $this->getErrorCode() );
 		$output->addHTML( parent::getHTML() );
 		return $output->getHTML();

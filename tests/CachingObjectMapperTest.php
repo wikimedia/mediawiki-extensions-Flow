@@ -4,7 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Data\CachingObjectMapper;
 
-class CachingObjectManagerTest extends \MediaWikiTestCase {
+class CachingObjectManagerTest extends FlowTestCase {
 
 	public function testReturnsSameObject() {
 		$mapper = $this->createMapper();

@@ -32,15 +32,21 @@ fi
 COMMANDS=""
 
 if file_changed_in_commit '\.less$'; then
-	COMMANDS="checkless $COMMANDS"
+	if [ "$IGNORE_CHECKLESS" != "1" ]; then
+		COMMANDS="checkless $COMMANDS"
+	fi
 fi
 
 if file_changed_in_commit '\.js$'; then
-	COMMANDS="jshint $COMMANDS"
+	if [ "$IGNORE_JSHINT" != "1" ]; then
+		COMMANDS="jshint $COMMANDS"
+	fi
 fi
 
 if file_changed_in_commit '\.php$'; then
-	COMMANDS="phplint $COMMANDS"
+	if [ "$IGNORE_PHPLINT" != "1" ]; then
+		COMMANDS="phplint $COMMANDS"
+	fi
 fi
 
 if [ "$COMMANDS" != "" ]; then

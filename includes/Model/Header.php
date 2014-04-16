@@ -5,6 +5,11 @@ namespace Flow\Model;
 use Flow\Collection\HeaderCollection;
 use User;
 
+/**
+ * @Todo - Header is just a summary to the discussion workflow, it could be just
+ * migrated to Summary revision with rev_change_type: create-header-summary,
+ * edit-header-summary
+ */
 class Header extends AbstractRevision {
 
 	/**
@@ -23,11 +28,7 @@ class Header extends AbstractRevision {
 		$obj = new self;
 		$obj->revId = UUID::create();
 		$obj->workflowId = $workflow->getId();
-		$obj->userId = $user->getId();
-		if ( !$user->getId() ) {
-			$obj->userIp = $user->getName();
-		}
-		$obj->userWiki = wfWikiId();
+		list( $obj->userId, $obj->userIp, $obj->userWiki ) = self::userFields( $user );
 		$obj->prevRevision = null; // no prior revision
 		$obj->setContent( $content, $workflow->getArticleTitle() );
 		$obj->changeType = $changeType;
@@ -42,19 +43,8 @@ class Header extends AbstractRevision {
 	static public function fromStorageRow( array $row, $obj = null ) {
 		/** @var $obj Header */
 		$obj = parent::fromStorageRow( $row, $obj );
-		$obj->workflowId = UUID::create( $row['header_workflow_id'] );
+		$obj->workflowId = UUID::create( $row['rev_type_id'] );
 		return $obj;
-	}
-
-	/**
-	 * @param Header $obj
-	 * @return string[]
-	 */
-	static public function toStorageRow( $obj ) {
-		return parent::toStorageRow( $obj ) + array(
-			'header_rev_id' => $obj->revId->getBinary(),
-			'header_workflow_id' => $obj->workflowId->getBinary(),
-		);
 	}
 
 	/**

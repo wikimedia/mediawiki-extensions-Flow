@@ -7,10 +7,10 @@ class ApiFlowReply extends ApiFlowBase {
 	}
 
 	/**
-	 * @return string
+	 * @return array
 	 */
-	protected function getBlockName() {
-		return 'topic';
+	protected function getBlockNames() {
+		return array( 'topic' );
 	}
 
 	protected function getAction() {

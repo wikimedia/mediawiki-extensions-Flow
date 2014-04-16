@@ -45,10 +45,14 @@ class Contributions extends AbstractFormatter {
 
 		$separator = $this->changeSeparator();
 
+		$links = array();
+		$links[] = $this->getDiffLink( $data['links'], $ctx );
+		$links[] = $this->getHistLink( $data['links'], $ctx );
+
 		// Put it all together
 		return
 			$this->formatTimestamp( $data ) . ' ' .
-			$this->formatDiffHistPipeList( $data['links'], $ctx ) .
+			$this->formatLinksAsPipeList( $links, $ctx ) .
 			$separator .
 			$charDiff .
 			$separator .

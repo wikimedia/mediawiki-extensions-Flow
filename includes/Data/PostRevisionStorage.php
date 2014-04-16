@@ -18,12 +18,12 @@ class PostRevisionStorage extends RevisionStorage {
 		return 'flow_tree_revision';
 	}
 
-	protected function relatedPk() {
-		return 'tree_rev_descendant_id';
-	}
-
 	protected function joinField() {
 		return 'tree_rev_id';
+	}
+
+	protected function getRevType() {
+		return 'post';
 	}
 
 	protected function insertRelated( array $row ) {

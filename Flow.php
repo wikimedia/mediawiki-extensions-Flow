@@ -93,6 +93,8 @@ $wgAutoloadClasses['Flow\Model\Metadata'] = $dir . 'includes/Model/Metadata.php'
 $wgAutoloadClasses['Flow\Model\AbstractRevision'] = $dir . 'includes/Model/AbstractRevision.php';
 $wgAutoloadClasses['Flow\Model\PostRevision'] = $dir . 'includes/Model/PostRevision.php';
 $wgAutoloadClasses['Flow\Model\Header'] = $dir . 'includes/Model/Header.php';
+$wgAutoloadClasses['Flow\Model\AbstractSummary'] = $dir . 'includes/Model/AbstractSummary.php';
+$wgAutoloadClasses['Flow\Model\PostSummary'] = $dir . 'includes/Model/PostSummary.php';
 $wgAutoloadClasses['Flow\Model\TopicListEntry'] = $dir . 'includes/Model/TopicListEntry.php';
 $wgAutoloadClasses['Flow\Model\Workflow'] = $dir . 'includes/Model/Workflow.php';
 $wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
@@ -101,6 +103,7 @@ $wgAutoloadClasses['Flow\Collection\CollectionCache'] = $dir . 'includes/Collect
 $wgAutoloadClasses['Flow\Collection\LocalCacheAbstractCollection'] = $dir . 'includes/Collection/LocalCacheAbstractCollection.php';
 $wgAutoloadClasses['Flow\Collection\PostCollection'] = $dir . 'includes/Collection/PostCollection.php';
 $wgAutoloadClasses['Flow\Collection\HeaderCollection'] = $dir . 'includes/Collection/HeaderCollection.php';
+$wgAutoloadClasses['Flow\Collection\PostSummaryCollection'] = $dir . 'includes/Collection/PostSummaryCollection.php';
 
 // Helpers for templating
 $wgAutoloadClasses['Flow\View\PostActionMenu'] = "$dir/includes/View/PostActionMenu.php";
@@ -159,8 +162,11 @@ $wgAutoloadClasses['Flow\Formatter\AbstractFormatter'] = $dir . 'includes/Format
 $wgAutoloadClasses['Flow\Formatter\AbstractQuery'] = $dir . 'includes/Formatter/AbstractQuery.php';
 $wgAutoloadClasses['Flow\Formatter\FormatterRow'] = $dir . 'includes/Formatter/AbstractQuery.php';
 $wgAutoloadClasses['Flow\Formatter\CheckUser'] = $dir . 'includes/Formatter/CheckUser.php';
+$wgAutoloadClasses['Flow\Formatter\CheckUserQuery'] = $dir . 'includes/Formatter/CheckUserQuery.php';
+$wgAutoloadClasses['Flow\Formatter\CheckUserRow'] = $dir . 'includes/Formatter/CheckUserQuery.php';
 $wgAutoloadClasses['Flow\Formatter\Contributions'] = $dir . 'includes/Formatter/Contributions.php';
 $wgAutoloadClasses['Flow\Formatter\ContributionsQuery'] = $dir . 'includes/Formatter/ContributionsQuery.php';
+$wgAutoloadClasses['Flow\Formatter\ContributionsRow'] = $dir . 'includes/Formatter/ContributionsQuery.php';
 $wgAutoloadClasses['Flow\Formatter\BoardHistory'] = $dir . 'includes/Formatter/BoardHistory.php';
 $wgAutoloadClasses['Flow\Formatter\BoardHistoryQuery'] = $dir . 'includes/Formatter/BoardHistoryQuery.php';
 $wgAutoloadClasses['Flow\Formatter\RecentChanges'] = $dir . 'includes/Formatter/RecentChanges.php';
@@ -181,6 +187,7 @@ $wgAutoloadClasses['Flow\Data\TwoStepUserNameQuery'] = $dir . 'includes/Data/Two
 $wgAutoloadClasses['Flow\Data\RevisionStorage'] = $dir . 'includes/Data/RevisionStorage.php';
 $wgAutoloadClasses['Flow\Data\PostRevisionStorage'] = $dir . 'includes/Data/PostRevisionStorage.php';
 $wgAutoloadClasses['Flow\Data\HeaderRevisionStorage'] = $dir . 'includes/Data/HeaderRevisionStorage.php';
+$wgAutoloadClasses['Flow\Data\PostSummaryRevisionStorage'] = $dir . 'includes/Data/PostSummaryRevisionStorage.php';
 
 // The individual workflow pieces
 $wgAutoloadClasses['Flow\Block\BoardHistoryBlock'] = $dir . 'includes/Block/BoardHistory.php';
@@ -189,8 +196,10 @@ $wgAutoloadClasses['Flow\Block\AbstractBlock'] = $dir . 'includes/Block/Block.ph
 $wgAutoloadClasses['Flow\Block\HeaderBlock'] = $dir . 'includes/Block/Header.php';
 $wgAutoloadClasses['Flow\Block\TopicListBlock'] = $dir . 'includes/Block/TopicList.php';
 $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';
+$wgAutoloadClasses['Flow\Block\TopicSummaryBlock'] = $dir . 'includes/Block/TopicSummary.php';
 
 // phpunit helper
+$wgAutoloadClasses['Flow\Tests\FlowTestCase'] = $dir . 'tests/FlowTestCase.php';
 $wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/PostRevisionTestCase.php';
 
 // API modules
@@ -201,6 +210,7 @@ $wgAutoloadClasses['ApiFlowBase'] = "$dir/includes/api/ApiFlowBase.php";
 $wgAutoloadClasses['ApiFlowEditHeader'] = "$dir/includes/api/ApiFlowEditHeader.php";
 $wgAutoloadClasses['ApiFlowEditPost'] = "$dir/includes/api/ApiFlowEditPost.php";
 $wgAutoloadClasses['ApiFlowEditTitle'] = "$dir/includes/api/ApiFlowEditTitle.php";
+$wgAutoloadClasses['ApiFlowEditTopicSummary'] = "$dir/includes/api/ApiFlowEditTopicSummary.php";
 $wgAutoloadClasses['ApiFlowModeratePost'] = "$dir/includes/api/ApiFlowModeratePost.php";
 $wgAutoloadClasses['ApiFlowModerateTopic'] = "$dir/includes/api/ApiFlowModerateTopic.php";
 $wgAutoloadClasses['ApiFlowNewTopic'] = "$dir/includes/api/ApiFlowNewTopic.php";

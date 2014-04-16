@@ -34,8 +34,8 @@ class RootPostLoader {
 		$found = $this->storage->findMulti(
 			'PostRevision',
 			array(
-				array( 'tree_rev_descendant_id' => $postId->getBinary() ),
-				array( 'tree_rev_descendant_id' => $rootId->getBinary() ),
+				array( 'rev_type_id' => $postId->getBinary() ),
+				array( 'rev_type_id' => $rootId->getBinary() ),
 			),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
 		);
@@ -82,7 +82,7 @@ class RootPostLoader {
 		$allPostIds =  $this->fetchRelatedPostIds( $topicIds );
 		$queries = array();
 		foreach ( $allPostIds as $postId ) {
-			$queries[] = array( 'tree_rev_descendant_id' => $postId );
+			$queries[] = array( 'rev_type_id' => $postId );
 		}
 		$found = $this->storage->findMulti( 'PostRevision', $queries, array(
 			'sort' => 'rev_id',
