@@ -199,12 +199,13 @@ class UUID {
 	 */
 	public function getTimestampObj() {
 		if ( $this->timestamp === null ) {
-			// First 6 bytes === 48 bits
-			$hex = $this->getHex();
-			$timePortion = substr( $hex, 0, 12 );
-			$bits_48 = wfBaseConvert( $timePortion, 16, 2, 48 );
-			$bits_46 = substr( $bits_48, 0, 46 );
-			$msTimestamp = wfBaseConvert( $bits_46, 2, 10 );
+			if ( $this->alphadecimalValue ) {
+				$bits = wfBaseConvert( $this->alphadecimalValue, 36, 2, 88 );
+			} else {
+				// First 6 bytes === 48 bits
+				$bits = wfBaseConvert( $this->getHex(), 16, 2, 88 );
+			}
+			$msTimestamp = wfBaseConvert( substr( $bits, 0, 46 ), 2, 10 );
 
 			try {
 				$this->timestamp = new MWTimestamp( intval( $msTimestamp / 1000 ) );
