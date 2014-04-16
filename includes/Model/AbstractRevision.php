@@ -229,14 +229,14 @@ abstract class AbstractRevision {
 	 */
 	static public function toStorageRow( $obj ) {
 		return array(
-			'rev_id' => $obj->revId->getBinary(),
+			'rev_id' => $obj->revId->getAlphadecimal(),
 			'rev_user_id' => $obj->userId,
 			'rev_user_ip' => $obj->userIp,
 			'rev_user_wiki' => $obj->userWiki,
-			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getBinary() : null,
+			'rev_parent_id' => $obj->prevRevision ? $obj->prevRevision->getAlphadecimal() : null,
 			'rev_change_type' => $obj->changeType,
 			'rev_type' => $obj->getRevisionType(),
-			'rev_type_id' => $obj->getCollectionId()->getBinary(),
+			'rev_type_id' => $obj->getCollectionId()->getAlphadecimal(),
 
 			'rev_content' => $obj->content,
 			'rev_content_url' => $obj->contentUrl,
@@ -249,7 +249,7 @@ abstract class AbstractRevision {
 			'rev_mod_timestamp' => $obj->moderationTimestamp,
 			'rev_mod_reason' => $obj->moderatedReason,
 
-			'rev_last_edit_id' => $obj->lastEditId ? $obj->lastEditId->getBinary() : null,
+			'rev_last_edit_id' => $obj->lastEditId ? $obj->lastEditId->getAlphadecimal() : null,
 			'rev_edit_user_id' => $obj->lastEditUserId,
 			'rev_edit_user_ip' => $obj->lastEditUserIp,
 			'rev_edit_user_wiki' => $obj->lastEditUserWiki,
