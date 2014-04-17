@@ -52,6 +52,16 @@ abstract class AbstractCollection {
 	abstract public function getWorkflowId();
 
 	/**
+	 * Returns the updater object capable of building a document from the given
+	 * revision, to index the content in ElasticSearch.
+	 *
+	 * @return \Flow\Search\RevisionUpdater|false False if not indexable
+	 */
+	public function getUpdater() {
+		return false;
+	}
+
+	/**
 	 * Use the static methods to load an object from a given revision.
 	 *
 	 * @see AbstractCollection::newFromId
