@@ -779,6 +779,7 @@ $c['query.board-history'] = $c->share( function( $c ) {
 		$c['repository.tree']
 	);
 } );
+
 // The RevisionFormatter holds internal state like
 // contentType of output and if it should include history
 // properties.  To prevent different code using the formatter
@@ -807,6 +808,20 @@ $c['formatter.topic'] = $c->share( function( $c ) {
 		$c['formatter.revision']
 	);
 } );
+$c['query.search'] = $c->share( function( $c ) {
+	return new Flow\Formatter\SearchQuery(
+		$c['storage'],
+		$c['repository.tree'],
+		new \Flow\Search\SearchEngine()
+	);
+} );
+$c['searchindex.updaters'] = $c->share( function( $c ) {
+	return array(
+		new \Flow\Search\TopicUpdater( $c['db.factory'], $c['loader.root_post'] ),
+		new \Flow\Search\HeaderUpdater( $c['db.factory'] )
+	);
+} );
+
 $c['logger'] = $c->share( function( $c ) {
 	return new Flow\Log\Logger(
 		$c['flow_actions'],
