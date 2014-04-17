@@ -507,7 +507,7 @@ abstract class AbstractRevision {
 	 *
 	 * @return boolean True for formatted, False for plaintext
 	 */
-	protected function isFormatted() {
+	public function isFormatted() {
 		return true;
 	}
 
