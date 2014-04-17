@@ -1,0 +1,8 @@
+
+					<div class="flow-board-navigation">
+						<a href="{{url 'board.search'}}" class="flow-board-navigator-last"><span class="wikicon wikicon-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a>
+						<div>
+							{{progressiveEnhancement type="insertion" id="flow-board-collapsers" template="{{> flow_board_collapsers_subcomponent}}"}}
+							<a href="{{url 'board.topics'}}" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" title="{{l10n 'You are currently reading the newest topics first. Click for more sorting options.'}}">{{l10n "Newest_topics"}}</a>
+						</div>
+					</div>

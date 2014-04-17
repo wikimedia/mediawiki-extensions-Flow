@@ -11,7 +11,9 @@
 		"deepEqual":   true,
 		"ok":          true,
 		"sinon":       true,
-		"ve":          true
+		"ve":          true,
+		"Handlebars":  true,
+		"initStorer":  true
 	},
 	"browser":  true,  // document, navigator, etc.
 	"curly":    true,  // requres curly braces around loops and conditionals

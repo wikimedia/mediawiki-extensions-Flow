@@ -218,6 +218,36 @@ $wgResourceModules += array(
 			'ext.flow.base',
 		)
 	),
+	'ext.flow.new.styles' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/layout.less',
+			'new/styles/forms.less',
+			'new/styles/interactive.less',
+		),
+	),
+	'ext.flow.new' => $flowResourceTemplate + array(
+		'scripts' => array(
+			'new/flow-components.js',
+			'new/flow-handlebars.js',
+			'new/flow-history.js',
+			'new/flow-init-page.js',
+			'new/flow.js',
+		),
+		'dependencies' => array(
+			'ext.flow.vendor.handlebars',
+			'ext.flow.vendor.storer',
+			'mediawiki.jqueryMsg',
+			'jquery.tipsy',
+			'jquery.json',
+			'jquery.conditionalScroll',
+		),
+	),
+	'ext.flow.vendor.handlebars' => $flowResourceTemplate + array(
+		'scripts' => 'new/vendor/handlebars-v2.0.0-alpha.2.js',
+	),
+	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
+		'scripts' => 'new/vendor/Storer.js',
+	),
 );
 
 $wgHooks['ResourceLoaderRegisterModules'][] = function( $resourceLoader ) use ( $flowResourceTemplate ) {
