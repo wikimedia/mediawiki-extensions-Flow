@@ -194,12 +194,22 @@ $wgAutoloadClasses['Flow\Block\TopicListBlock'] = $dir . 'includes/Block/TopicLi
 $wgAutoloadClasses['Flow\Block\TopicBlock'] = $dir . 'includes/Block/Topic.php';
 $wgAutoloadClasses['Flow\Block\TopicSummaryBlock'] = $dir . 'includes/Block/TopicSummary.php';
 
+// elasticsearch integration
+$wgAutoloadClasses['Flow\Search\Connection'] = $dir . 'includes/Search/Connection.php';
+$wgAutoloadClasses['Flow\Search\HeaderUpdater'] = $dir . 'includes/Search/HeaderUpdater.php';
+$wgAutoloadClasses['Flow\Search\RevisionUpdater'] = $dir . 'includes/Search/RevisionUpdater.php';
+$wgAutoloadClasses['Flow\Search\SearchEngine'] = $dir . 'includes/Search/SearchEngine.php';
+$wgAutoloadClasses['Flow\Search\Searcher'] = $dir . 'includes/Search/Searcher.php';
+$wgAutoloadClasses['Flow\Search\TopicUpdater'] = $dir . 'includes/Search/TopicUpdater.php';
+$wgAutoloadClasses['Flow\Search\Updater'] = $dir . 'includes/Search/Updater.php';
+
 // phpunit helper
 $wgAutoloadClasses['Flow\Tests\FlowTestCase'] = $dir . 'tests/FlowTestCase.php';
 $wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/PostRevisionTestCase.php';
 
 // API modules
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
+$wgAutoloadClasses['ApiSearchFlow'] = "$dir/includes/api/ApiSearchFlow.php";
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
 $wgAutoloadClasses['ApiFlowBase'] = "$dir/includes/api/ApiFlowBase.php";
@@ -213,6 +223,7 @@ $wgAutoloadClasses['ApiFlowNewTopic'] = "$dir/includes/api/ApiFlowNewTopic.php";
 $wgAutoloadClasses['ApiFlowReply'] = "$dir/includes/api/ApiFlowReply.php";
 
 $wgAPIListModules['flow'] = 'ApiQueryFlow';
+$wgAPIModules['flow-search'] = 'ApiSearchFlow';
 $wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
 
