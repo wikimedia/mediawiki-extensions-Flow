@@ -200,6 +200,7 @@ $wgAutoloadClasses['Flow\Formatter\HeaderViewQuery'] = $dir . 'includes/Formatte
 $wgAutoloadClasses['Flow\Formatter\PostViewQuery'] = $dir . 'includes/Formatter/RevisionViewQuery.php';
 $wgAutoloadClasses['Flow\Formatter\PostSummaryViewQuery'] = $dir . 'includes/Formatter/RevisionViewQuery.php';
 $wgAutoloadClasses['Flow\Formatter\RevisionViewRow'] = $dir . 'includes/Formatter/RevisionViewRow.php';
+$wgAutoloadClasses['Flow\Formatter\SearchQuery'] = $dir . 'includes/Formatter/SearchQuery.php';
 
 // Convert model instances into array of user-visible data
 $wgAutoloadClasses['Flow\Formatter\RevisionFormatter'] = $dir . 'includes/Formatter/RevisionFormatter.php';
@@ -271,12 +272,21 @@ $wgAutoloadClasses['Flow\Actions\EditTopicSummaryAction'] = $dir . 'includes/Act
 $wgAutoloadClasses['Flow\Actions\ModerateTopicAction'] = $dir . 'includes/Actions/ModerateTopicAction.php';
 $wgAutoloadClasses['Flow\Actions\ModeratePostAction'] = $dir . 'includes/Actions/ModeratePostAction.php';
 
+// elasticsearch integration
+$wgAutoloadClasses['Flow\Search\Connection'] = $dir . 'includes/Search/Connection.php';
+$wgAutoloadClasses['Flow\Search\Updater'] = $dir . 'includes/Search/Updater.php';
+$wgAutoloadClasses['Flow\Search\HeaderUpdater'] = $dir . 'includes/Search/HeaderUpdater.php';
+$wgAutoloadClasses['Flow\Search\SearchEngine'] = $dir . 'includes/Search/SearchEngine.php';
+$wgAutoloadClasses['Flow\Search\Searcher'] = $dir . 'includes/Search/Searcher.php';
+$wgAutoloadClasses['Flow\Search\TopicUpdater'] = $dir . 'includes/Search/TopicUpdater.php';
+
 // phpunit helper
 $wgAutoloadClasses['Flow\Tests\FlowTestCase'] = $dir . 'tests/phpunit/FlowTestCase.php';
 $wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/phpunit/PostRevisionTestCase.php';
 
 // API modules
 $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
+$wgAutoloadClasses['ApiSearchFlow'] = "$dir/includes/api/ApiSearchFlow.php";
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
 $wgAutoloadClasses['ApiFlowBase'] = "$dir/includes/api/ApiFlowBase.php";
@@ -299,6 +309,7 @@ $wgAutoloadClasses['ApiFlowViewTopicSummary'] = "$dir/includes/api/ApiFlowViewTo
 $wgAutoloadClasses['ApiQueryPropFlowInfo'] = "$dir/includes/api/ApiQueryPropFlowInfo.php";
 
 $wgAPIListModules['flow'] = 'ApiQueryFlow';
+$wgAPIModules['flow-search'] = 'ApiSearchFlow';
 $wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
 $wgAPIPropModules['flowinfo'] = 'ApiQueryPropFlowInfo';
@@ -514,6 +525,14 @@ $wgFlowCacheTime = 60 * 60 * 24 * 3;
 // Flow can be a cross-wiki database accessed by wikis running different versions of the
 // Flow code; WMF sometimes overrides this globally in wmf-config/CommonSettings.php
 $wgFlowCacheVersion = '4.5';
+
+// ElasticSearch servers
+$wgFlowSearchServers = array( 'localhost' );
+
+// How many times to attempt connecting to a given server
+// If you're behind LVS and everything looks like one server,
+// you may want to reattempt 2 or 3 times.
+$wgFlowSearchConnectionAttempts = 1;
 
 // Custom group name for AbuseFilter
 // Acceptable values:
