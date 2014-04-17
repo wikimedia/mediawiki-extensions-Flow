@@ -779,6 +779,14 @@ $c['query.board-history'] = $c->share( function( $c ) {
 		$c['repository.tree']
 	);
 } );
+$c['query.search'] = $c->share( function( $c ) {
+	return new Flow\Formatter\SearchQuery(
+		$c['storage'],
+		$c['repository.tree'],
+		new \Flow\Search\SearchEngine()
+	);
+} );
+
 // The RevisionFormatter holds internal state like
 // contentType of output and if it should include history
 // properties.  To prevent different code using the formatter
