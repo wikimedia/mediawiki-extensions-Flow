@@ -34,4 +34,9 @@ class PostCollection extends LocalCacheAbstractCollection {
 	public function getRoot() {
 		return static::newFromId( $this->getWorkflowId() );
 	}
+
+	public function getUpdater() {
+		// @todo: not new, but from Container
+		return new \Flow\Search\TopicUpdater();
+	}
 }
