@@ -405,7 +405,7 @@ class TopicBlock extends AbstractBlock {
 			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
 			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
 		} else {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion.styles', 'ext.flow.moderation.styles' ) );
 			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
 		}
 
