@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_8b596892",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-18T20:00:39Z",
+      "side": 1,
+      "message": "Should be Bug: 61579 , that format triggers the Bugzilla \"Patch to review\" automation.",
+      "revId": "221bc42df950749c804a3706c4576856f3d76ed0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
