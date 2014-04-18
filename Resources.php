@@ -8,6 +8,7 @@ $flowResourceTemplate = array(
 
 $wgResourceModules += array(
 	'ext.flow.base.styles' => $flowResourceTemplate + array(
+		'targets' => array( 'desktop', 'mobile' ),
 		'styles' => array(
 			'base/styles/container.less',
 			'base/styles/form.less',
@@ -23,6 +24,9 @@ $wgResourceModules += array(
 			'mediawiki.ui/styles/agora-override-forms.less',
 		),
 		'skinStyles' => array(
+			'minerva' => array(
+				'base/styles/minerva.less',
+			),
 			'vector' => array(
 				'base/styles/header.less',
 			),
@@ -64,6 +68,7 @@ $wgResourceModules += array(
 		),
 	),
 	'ext.flow.discussion.styles' => $flowResourceTemplate + array(
+		'targets' => array( 'desktop', 'mobile' ),
 		'styles' => array(
 			'discussion/styles/topic.less',
 			'discussion/styles/post.less',
