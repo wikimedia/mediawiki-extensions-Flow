@@ -1,3 +1,9 @@
+Given( /has an editable post/ )do
+  on(FlowPage) do |page|
+    pending unless page.edit_post_element.exists?
+  end
+end
+
 When(/^I click Edit post$/) do
   on(FlowPage) do |page|
     page.edit_post_element.when_present.click

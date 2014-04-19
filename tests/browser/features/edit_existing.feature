@@ -18,6 +18,7 @@ Assumes that the test Flow page has at least two topics (with posts).
   @clean
   Scenario: Edit existing post
     Given I am on Flow page
+      And it has an editable post
     When I click Edit post
     Then I should be able to edit the post field with Post edited
       And I should be able to save the new post
