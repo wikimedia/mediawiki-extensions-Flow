@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_06bd4afd",
+        "filename": "tests/browser/features/edit_existing.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 665
+      },
+      "writtenOn": "2014-04-19T08:35:41Z",
+      "side": 1,
+      "message": "This also assumes that the title is editable, would fail similar to the scenario below if the topic has been hidden.",
+      "revId": "cd0c110b3945e04d7d6219dc8fe0f05b7b753d41",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
