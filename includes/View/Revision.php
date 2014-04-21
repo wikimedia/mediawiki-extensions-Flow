@@ -561,8 +561,10 @@ class PostRevisionView extends RevisionView {
 			);
 		$headerMsg = wfMessage( 'flow-compare-revisions-header-post' )
 			->params(
-				$this->block->getWorkflow()->getArticleTitle(),
-				$this->templating->getContent( $this->block->loadTopicTitle(), 'wikitext' ),
+				$this->block->getWorkflow()->getArticleTitle()
+			)->rawParams(
+				$this->templating->getContent( $this->block->loadTopicTitle(), 'wikitext' )
+			)->params(
 				$this->templating->getUsernames()->get( wfWikiId(), $newRevision->getCreatorId() ),
 				$boardLink,
 				$topicLinkTitle->getFullUrl( $topicLinkQuery ),
@@ -596,8 +598,10 @@ class PostRevisionView extends RevisionView {
 		$message = wfMessage( $msgKey )
 			->params( $this->revision->getRevisionId()->getTimestampObj()->getHumanTimestamp() )
 			->params(
-				$this->block->getWorkflow()->getArticleTitle(),
-				$this->templating->getContent( $this->block->loadTopicTitle(), 'wikitext' ),
+				$this->block->getWorkflow()->getArticleTitle()
+			)->rawParams(
+				$this->templating->getContent( $this->block->loadTopicTitle(), 'wikitext' )
+			)->params(
 				$historyLink
 			);
 
