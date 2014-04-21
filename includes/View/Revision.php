@@ -8,6 +8,7 @@ use Flow\Block\TopicBlock;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidInputException;
+use Flow\Exception\PermissionException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
@@ -187,8 +188,15 @@ abstract class RevisionView implements RevisionCreatable {
 			$newRev = $revision;
 		}
 
-		$oldContent = $this->templating->getContent( $oldRev, 'wikitext' );
-		$newContent = $this->templating->getContent( $newRev, 'wikitext' );
+		// Pass in permission as parameter?
+		$permission = Container::get( 'permissions' );
+		// Todo - Check the permission before invoking this function?
+		if ( !$permission->isAllowed( $oldRev, 'view' ) || !$permission->isAllowed( $newRev, 'view' ) ) {
+			throw new PermissionException( 'Insufficient permission to compare revisions', 'insufficient-permission' );
+		}
+
+		$oldContent = $oldRev->getContent( 'wikitext' );
+		$newContent = $newRev->getContent( 'wikitext' );
 
 		$differenceEngine = new \DifferenceEngine();
 
