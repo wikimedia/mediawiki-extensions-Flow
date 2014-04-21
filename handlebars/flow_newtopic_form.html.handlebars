@@ -1,6 +1,10 @@
-					<form class="flow-newtopic-form" data-flow-initial-state="collapsed">
-						<input class="mw-ui-input" type="text" placeholder="{{l10n "Start_a_new_topic"}}"/>
-						<textarea class="mw-ui-input flow-form-collapsible" placeholder="{{l10n "topic_details_placeholder"}}"></textarea>
+				{{#if actions.newtopic}}
+					<form action="{{actions.newtopic.url}}" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
+						<!-- @todo form errors -->
+						<input type="hidden" name="topiclist_replyTo" value="{{ workflowId }}" />
+						<input type="hidden" name="wpEditToken" value="{{ @root.editToken }}" />
+						<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="{{l10n "Start_a_new_topic"}}"/>
+						<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="{{l10n "topic_details_placeholder"}}"></textarea>
 
 						<div class="flow-form-actions flow-form-collapsible">
 							<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "Add_Topic"}}</button>
@@ -10,3 +14,4 @@
 							<small class="flow-terms-of-use plainlinks">{{l10n "topic_TOU"}}</small>
 						</div>
 					</form>
+				{{/if}}

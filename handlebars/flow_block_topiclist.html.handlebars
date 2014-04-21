@@ -1,13 +1,13 @@
-					{{> flow_board_navigation this}}
+					{{> flow_board_navigation}}
 
 					<div class="flow-board">
-						{{> flow_topic_navigation this}}
-						{{> flow_newtopic_form this}}
+						{{> flow_topic_navigation}}
+						{{> flow_newtopic_form}}
 
 						<div class="flow-topics">
 							{{#eachPost this roots}}
 								<!-- eachPost topiclist -->
-								{{> flow_topic this }}
+								{{> flow_topic}}
 							{{/eachPost}}
 						</div>
 					</div>

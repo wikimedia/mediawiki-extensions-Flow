@@ -257,4 +257,9 @@ abstract class AbstractBlock implements Block {
 		}
 		return false;
 	}
+
+	public function getEditToken() {
+		global $wgFlowTokenSalt, $wgRequest;
+		return $this->user->getEditToken( $wgFlowTokenSalt );
+	}
 }

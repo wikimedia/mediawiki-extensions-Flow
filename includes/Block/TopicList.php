@@ -202,14 +202,18 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
+		$result = array(
+			'workflowId' => $this->workflow->getId()->getAlphadecimal(),
+			'type' => $this->getName(),
+			'roots' => array(),
+			'posts' => array(),
+			'revisions' => array(),
+			'links' => array(),
+			'actions' => $this->buildApiActions(),
+			'editToken' => $this->getEditToken(),
+		);
 		if ( $this->workflow->isNew() ) {
-			return array(
-				'type' => $this->getName(),
-				'roots' => array(),
-				'posts' => array(),
-				'revisions' => array(),
-				'links' => array(),
-			);
+			return $result;
 		}
 
 		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
@@ -217,6 +221,9 @@ class TopicListBlock extends AbstractBlock {
 
 		$ctx = \RequestContext::getMain();
 		$found = Container::get( 'query.topiclist' )->getResults( $page );
+
+		// @todo everything past here into a TopicListFormatter instance?
+
 		$serializer = Container::get( 'formatter.revision' );
 		$revisions = $posts = $replies = array();
 		foreach( $found as $formatterRow ) {
@@ -258,7 +265,6 @@ class TopicListBlock extends AbstractBlock {
 		}
 
 		return array(
-			'type' => $this->getName(),
 			'roots' => $list,
 			'posts' => $posts,
 			'revisions' => $revisions,
@@ -273,6 +279,22 @@ class TopicListBlock extends AbstractBlock {
 						'title' => '',
 					),
 				),
+			),
+		) + $result;
+	}
+	
+	protected function buildApiActions() {
+		$urlGenerator = Container::get( 'url_generator' );
+		return array(
+			'newtopic' => array(
+				'url' => $urlGenerator->buildUrl(
+					$this->workflow->getArticleTitle(),
+					'new-topic', // ???
+					array(
+						'workflow' => $this->workflow->getId()->getAlphadecimal(),
+					)
+				),
+				'title' => wfMessage( 'flow-newtopic-start-placeholder' ),
 			),
 		);
 	}

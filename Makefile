@@ -79,6 +79,12 @@ analyze-phpstorm:
 analyze: analyze-hhvm analyze-phpstorm
 
 ###
+# Compile lightncandy templates
+###
+compile-lightncandy:
+	make -C handlebars all
+
+###
 # Update this repository
 ###
 master:

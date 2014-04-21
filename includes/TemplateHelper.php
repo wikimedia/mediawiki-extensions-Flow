@@ -20,12 +20,16 @@ class TemplateHelper {
 		$this->tempDir = $tempDir;
 	}
 
+	public function getTemplateFilename( $templateName ) {
+		return "{$this->templateDir}/{$templateName}.html.handlebars";
+	}
+
 	public function getTemplate( $templateName ) {
 		if ( isset( $this->renderers[$templateName] ) ) {
 			return $this->renderers[$templateName];
 		}
 
-		$template = "{$this->templateDir}/{$templateName}.html.handlebars";
+		$template = $this->getTemplateFilename( $templateName );
 		$compiled = "$template.php";
 
 		if ( !file_exists( $compiled ) ) {
@@ -39,6 +43,8 @@ class TemplateHelper {
 					'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
 						| LightnCandy::FLAG_EXTHELPER
 						| LightnCandy::FLAG_WITH
+						| LightnCandy::FLAG_THIS
+						| LightnCandy::FLAG_SPVARS
 						| LightnCandy::FLAG_PARENT,
 					'basedir' => array( $this->templateDir ),
 					'fileext' => array( '.html.handlebars' ),
@@ -240,7 +246,7 @@ class TemplateHelper {
 		}
 
 		if ( $message ) {
-			return self::html( $message->escaped() );
+			return $message->text();
 		} else {
 			wfDebugLog( 'Flow', __METHOD__ . ": No translation for $str" );
 			return "<$str>";
@@ -276,7 +282,8 @@ class TemplateHelper {
 		$secondsAgo = time() - $timestamp;
 
 		if ( $secondsAgo < 2419200 ) {
-			$timeAgo = self::html( wfMessage( $str, $ts->getHumanTimestamp() )->escaped() );
+			$ts = new \MWTimestamp( $timestamp );
+			$timeAgo = wfMessage( $str, $ts->getHumanTimestamp() )->text();
 			if ( $timeAgoOnly === true ) {
 				return $timeAgo;
 			}
@@ -299,7 +306,7 @@ class TemplateHelper {
 	}
 
 	static public function html( $string ) {
-		return new LCSafeString( $string );
+		return array( $string, 'raw' );
 	}
 
 	static public function block( $block ) {

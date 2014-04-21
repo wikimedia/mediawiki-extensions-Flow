@@ -193,7 +193,10 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
-		$output = array( 'type' => $this->getName() );
+		$output = array( 
+			'type' => $this->getName(),
+			'editToken' => $this->getEditToken(),
+		);
 
 		if ( $this->header === null ) {
 			$output['missing'] = 'missing';
