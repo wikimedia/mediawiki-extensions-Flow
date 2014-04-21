@@ -450,7 +450,12 @@ class RevisionFormatter {
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
+			// Escape the content if user is allowed to view the content otherwise
+			// the content would be safe to display since it's moderated
+			if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
+				$content = htmlspecialchars( $content );
+			}
+			return Message::rawParam( $content );
 
 		// This is potentially two networked round trips, much too expensive for
 		// the rendering loop
