@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_db84c7da",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-21T18:09:21Z",
+      "side": 1,
+      "message": "The Templating::getContent method says it only returns html,  could we instead adjust it so that it really is outputting only html and we dont need htmlspecialchars here?",
+      "revId": "b69e819d48d21d791e2a3d0c8bb1368f3abbe2a8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
