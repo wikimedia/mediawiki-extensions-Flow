@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_0319b1db",
+        "filename": "includes/api/ApiQueryPropFlowInfo.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-21T22:31:21Z",
+      "side": 1,
+      "message": "Maybe\n\nGet basic Flow information about page(s) including whether Flow is enabled on them.",
+      "revId": "90b76f04a8186b6fb308a83c09681a0627ba2764",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_839b8178",
+        "filename": "includes/api/ApiQueryPropFlowInfo.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-21T22:31:21Z",
+      "side": 1,
+      "message": "Talk:Sandbox is better, or even Talk:Sandbox|Main_Page|Talk:Foo to show querying the same three pages as in the wiki page.",
+      "revId": "90b76f04a8186b6fb308a83c09681a0627ba2764",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_e3bfd55a",
+        "filename": "includes/api/ApiQueryPropFlowInfo.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-21T22:31:21Z",
+      "side": 1,
+      "message": "I updated the page, should be\nhttps://www.mediawiki.org/wiki/Extension:Flow/API#action.3Dquery.26prop.3Dflowinfo",
+      "revId": "90b76f04a8186b6fb308a83c09681a0627ba2764",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
