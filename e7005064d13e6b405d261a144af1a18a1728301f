@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_2d05be16",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-21T20:06:16Z",
+      "side": 1,
+      "message": "Use rawParams() once https://gerrit.wikimedia.org/r/#/c/127666/ is merged",
+      "revId": "e7005064d13e6b405d261a144af1a18a1728301f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_f002fd0b",
+        "filename": "includes/View/Revision.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-21T20:06:16Z",
+      "side": 1,
+      "message": "Use rawParams() once https://gerrit.wikimedia.org/r/#/c/127666/ is merged",
+      "revId": "e7005064d13e6b405d261a144af1a18a1728301f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
