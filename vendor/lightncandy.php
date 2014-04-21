@@ -9,7 +9,6 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Origin: https://github.com/zordius/lightncandy 
-Retrieved: April 9, 2014 from commit a6b4a20d34f0f04cf053a469485bc792e71ebb52
 */
 
 /**
@@ -42,19 +41,20 @@ class LightnCandy {
     const FLAG_ADVARNAME = 512;
     const FLAG_SPACECTL = 1024;
     const FLAG_NAMEDARG = 2048;
+    const FLAG_SPVARS = 4096;
 
     // PHP performance flags
-    const FLAG_EXTHELPER = 4096;
-    const FLAG_ECHO = 8192;
+    const FLAG_EXTHELPER = 8192;
+    const FLAG_ECHO = 16384;
 
     // alias flags
-    const FLAG_BESTPERFORMANCE = 8192; // FLAG_ECHO
+    const FLAG_BESTPERFORMANCE = 16384; // FLAG_ECHO
     const FLAG_JS = 24; // FLAG_JSTRUE + FLAG_JSOBJECT
-    const FLAG_HANDLEBARS = 4064; // FLAG_THIS + FLAG_WITH + FLAG_PARENT + FLAG_JSQUOTE + FLAG_ADVARNAME + FLAG_SPACECTL + FLAG_NAMEDARG
-    const FLAG_HANDLEBARSJS = 4088; // FLAG_JS + FLAG_HANDLEBARS
+    const FLAG_HANDLEBARS = 8160; // FLAG_THIS + FLAG_WITH + FLAG_PARENT + FLAG_JSQUOTE + FLAG_ADVARNAME + FLAG_SPACECTL + FLAG_NAMEDARG + FLAG_SPVARS
+    const FLAG_HANDLEBARSJS = 8184; // FLAG_JS + FLAG_HANDLEBARS
 
     // RegExps
-    const PARTIAL_SEARCH = '/\\{\\{>[ \\t]*([^ }]+?)(?: ([^ }]+))?[ \\t]*\\}\\}/s';
+    const PARTIAL_SEARCH = '/\\{\\{>[ \\t]*(.+?)[ \\t]*\\}\\}/s';
     const TOKEN_SEARCH = '/(\s*)(\\{{2,3})(~?)([\\^#\\/!]?)(.+?)(~?)(\\}{2,3})(\s*)/s';
     const VARNAME_SEARCH = '/(\\[[^\\]]+\\]|[^\\[\\]\\.]+)/';
     const EXTENDED_COMMENT_SEARCH = '/{{!--.*?--}}/s';
@@ -91,7 +91,7 @@ class LightnCandy {
             return false;
         }
 
-        // Strip out extended comments
+        // Strip extended comments
         $template = preg_replace( self::EXTENDED_COMMENT_SEARCH, '', $template );
 
         // Do first time scan to find out used feature, detect template error.
@@ -131,6 +131,7 @@ class LightnCandy {
     protected static function composePHPRender($context, $code) {
         $flagJStrue = self::getBoolStr($context['flags']['jstrue']);
         $flagJSObj = self::getBoolStr($context['flags']['jsobj']);
+        $flagSPVar = self::getBoolStr($context['flags']['spvar']);
 
         $libstr = self::exportLCRun($context);
         $helpers = self::exportHelper($context);
@@ -142,10 +143,12 @@ class LightnCandy {
         'flags' => Array(
             'jstrue' => $flagJStrue,
             'jsobj' => $flagJSObj,
+            'spvar' => $flagSPVar,
         ),
         'helpers' => $helpers,
         'blockhelpers' => $bhelpers,
         'scopes' => Array(\$in),
+        'sp_vars' => Array(),
         'path' => Array(),
 $libstr
     );
@@ -184,13 +187,13 @@ $libstr
                 'echo' => $flags & self::FLAG_ECHO,
                 'advar' => $flags & self::FLAG_ADVARNAME,
                 'namev' => $flags & self::FLAG_NAMEDARG,
+                'spvar' => $flags & self::FLAG_SPVARS,
                 'exhlp' => $flags & self::FLAG_EXTHELPER,
             ),
             'level' => 0,
             'stack' => Array(),
             'error' => Array(),
             'vars' => Array(),
-            'sp_vars' => Array(),
             'jsonSchema' => Array(
                 '$schema' => 'http://json-schema.org/draft-03/schema',
                 'description' => 'Template Json Schema'
@@ -296,12 +299,7 @@ $libstr
      */
     public static function expandPartial($template, &$context) {
         $template = preg_replace_callback(self::PARTIAL_SEARCH, function ($matches) use (&$context) {
-            $expanded = LightnCandy::expandPartial(LightnCandy::readPartial($matches[1], $context), $context);
-            if ( isset( $matches[2] ) && $matches[2] !== 'this' ) {
-                return '{{with ' . $matches[2] . '}}' . $expanded . '{{/with}}';
-            } else {
-                return $expanded;
-            }
+            return LightnCandy::expandPartial(LightnCandy::readPartial($matches[1], $context), $context);
         }, $template);
         return $template;
     }
@@ -421,7 +419,7 @@ $libstr
      *
      * @param string $tname   helper table name
      *
-     * @param array  $context current scaning context
+     * @param array  $context current compile context
      *
      * @return string
      * @codeCoverageIgnore
@@ -445,7 +443,7 @@ $libstr
     /**
      * Internal method used by compile(). Export required standalone functions.
      *
-     * @param array $context current scaning context
+     * @param array $context current compile context
      *
      * @return string
      * @codeCoverageIgnore
@@ -678,13 +676,17 @@ $libstr
      * Internal method used by compile().
      *
      * @param array $vn variable name array.
+     * @param array $context current compile context
      *
      * @return string variable names
+     *
+     * @expect 'Array($in)' when input Array(null), Array('flags'=>Array('spvar'=>true))
+     * @expect 'Array($in,$in)' when input Array(null, null), Array('flags'=>Array('spvar'=>true))
      */
-    protected static function getVariableNames($vn) {
+    protected static function getVariableNames($vn, $context) {
         $ret = Array();
         foreach ($vn as $i => $v) {
-            $ret[] = (is_string($i) ? "'$i'=>" : '') . self::getVariableName($v);
+            $ret[] = (is_string($i) ? "'$i'=>" : '') . self::getVariableName($v, $context);
         }
         return 'Array(' . implode(',', $ret) . ')';
     }
@@ -693,34 +695,33 @@ $libstr
      * Internal method used by compile().
      *
      * @param array $var variable name.
+     * @param array $context current compile context
      *
      * @return array variable names
      *
-     * @expect '$in' when input Array(null), Array()
-     * @expect '$cx[\'sp_vars\'][\'index\']' when input Array('@index'), Array()
-     * @expect '$cx[\'sp_vars\'][\'key\']' when input Array('@key'), Array()
-     * @expect '\'a\'' when input Array('"a"'), Array(), Array()
-     * @expect '((is_array($in) && isset($in[\'a\'])) ? $in[\'a\'] : null)' when input Array('a'), Array()
-     * @expect '((is_array($cx[\'scopes\'][count($cx[\'scopes\'])-1]) && isset($cx[\'scopes\'][count($cx[\'scopes\'])-1][\'a\'])) ? $cx[\'scopes\'][count($cx[\'scopes\'])-1][\'a\'] : null)' when input Array(1,'a'), Array()
-     * @expect '((is_array($cx[\'scopes\'][count($cx[\'scopes\'])-3]) && isset($cx[\'scopes\'][count($cx[\'scopes\'])-3][\'a\'])) ? $cx[\'scopes\'][count($cx[\'scopes\'])-3][\'a\'] : null)' when input Array(3,'a'), Array()
+     * @expect '$in' when input Array(null), Array('flags'=>Array('spvar'=>true))
+     * @expect '((is_array($in) && isset($in[\'@index\'])) ? $in[\'@index\'] : null)' when input Array('@index'), Array('flags'=>Array('spvar'=>false))
+     * @expect '$cx[\'sp_vars\'][\'index\']' when input Array('@index'), Array('flags'=>Array('spvar'=>true))
+     * @expect '$cx[\'sp_vars\'][\'key\']' when input Array('@key'), Array('flags'=>Array('spvar'=>true))
+     * @expect '$cx[\'sp_vars\'][\'first\']' when input Array('@first'), Array('flags'=>Array('spvar'=>true))
+     * @expect '$cx[\'sp_vars\'][\'last\']' when input Array('@last'), Array('flags'=>Array('spvar'=>true))
+     * @expect '$cx[\'scopes\'][0]' when input Array('@root'), Array('flags'=>Array('spvar'=>true))
+     * @expect '\'a\'' when input Array('"a"'), Array(), Array('flags'=>Array('spvar'=>true))
+     * @expect '((is_array($in) && isset($in[\'a\'])) ? $in[\'a\'] : null)' when input Array('a'), Array('flags'=>Array('spvar'=>true))
+     * @expect '((is_array($cx[\'scopes\'][count($cx[\'scopes\'])-1]) && isset($cx[\'scopes\'][count($cx[\'scopes\'])-1][\'a\'])) ? $cx[\'scopes\'][count($cx[\'scopes\'])-1][\'a\'] : null)' when input Array(1,'a'), Array('flags'=>Array('spvar'=>true))
+     * @expect '((is_array($cx[\'scopes\'][count($cx[\'scopes\'])-3]) && isset($cx[\'scopes\'][count($cx[\'scopes\'])-3][\'a\'])) ? $cx[\'scopes\'][count($cx[\'scopes\'])-3][\'a\'] : null)' when input Array(3,'a'), Array('flags'=>Array('spvar'=>true))
      */
-    protected static function getVariableName($var) {
+    protected static function getVariableName($var, $context) {
         $levels = 0;
 
-        if ($var[0] === '@index') {
-            return "\$cx['sp_vars']['index']";
-        }
-
-        if ($var[0] === '@key') {
-            return "\$cx['sp_vars']['key']";
-        }
-
-        if ( $var[0] === '@root' ) {
-            return "reset(\$cx['scopes'])";
-        }
-
-        if ( $var[0] === 'this' ) {
-            return "\$in";
+        if ($context['flags']['spvar']) {
+            switch ($var[0]) {
+            case '@index':
+            case '@first':
+            case '@last':
+            case '@key':
+                return "\$cx['sp_vars']['" . substr($var[0], 1) . "']";
+            }
         }
 
         // Handle double quoted string
@@ -739,7 +740,13 @@ $libstr
             $base = "\$cx['scopes'][count(\$cx['scopes'])-$levels]";
         }
 
-        if (is_null($var[0])) {
+        // Handle @root
+        if ($context['flags']['spvar'] && ($var[0] === '@root')) {
+            array_shift($var);
+            $base = '$cx[\'scopes\'][0]';
+        }
+
+        if ((count($var) == 0) || is_null($var[0])) {
             return $base;
         }
 
@@ -1006,7 +1013,7 @@ $libstr
      * Internal method used by scanFeatures(). Validate start and and.
      *
      * @param string[] $token detected handlebars {{ }} token
-     * @param array $context current scaning context
+     * @param array $context current compile context
      * @param boolean $raw the token is started with {{{ or not
      *
      * @return boolean|null Return true when invalid
@@ -1031,7 +1038,7 @@ $libstr
      * Internal method used by compile(). Collect handlebars usage information, detect template error.
      *
      * @param string[] $token detected handlebars {{ }} token
-     * @param array $context current scaning context
+     * @param array $context current compile context
      * @param array $vars parsed arguments list
      *
      * @return mixed Return true when invalid or detected
@@ -1094,7 +1101,7 @@ $libstr
      * Internal method used by compile(). Collect handlebars usage information, detect template error.
      *
      * @param string[] $token detected handlebars {{ }} token
-     * @param array $context current scaning context
+     * @param array $context current compile context
      *
      * @codeCoverageIgnore
      */
@@ -1141,7 +1148,7 @@ $libstr
      * Internal method used by compile(). Show error message when named arguments appear without custom helper.
      *
      * @param array $token detected handlebars {{ }} token
-     * @param array $context current scaning context
+     * @param array $context current compile context
      * @param boolean $named is named arguments
      *
      */
@@ -1155,7 +1162,7 @@ $libstr
      * Internal method used by compile(). Return compiled PHP code partial for a handlebars token.
      *
      * @param array $token detected handlebars {{ }} token
-     * @param array $context current scaning context
+     * @param array $context current compile context
      *
      * @return string Return compiled code segment for the token
      *
@@ -1195,7 +1202,7 @@ $libstr
      * Internal method used by compile(). Return compiled PHP code partial for a handlebars section token.
      *
      * @param array $token detected handlebars {{ }} token
-     * @param array $context current scaning context
+     * @param array $context current compile context
      * @param array $vars parsed arguments list
      * @param boolean $named is named arguments or not
      *
@@ -1206,7 +1213,7 @@ $libstr
     protected static function compileSection(&$token, &$context, $vars, $named) {
         switch ($token[self::POS_OP]) {
         case '^':
-            $v = self::getVariableName($vars[0]);
+            $v = self::getVariableName($vars[0], $context);
             $context['stack'][] = self::getArrayCode($vars[0]);
             $context['stack'][] = '^';
             self::noNamedArguments($token, $context, $named);
@@ -1228,7 +1235,7 @@ $libstr
     /**
      * Internal method used by compile(). Return compiled PHP code partial for a handlebars block custom helper begin token.
      *
-     * @param array $context current scaning context
+     * @param array $context current compile context
      * @param array $vars parsed arguments list
      *
      * @return string Return compiled code segment for the token
@@ -1244,7 +1251,7 @@ $libstr
         $context['stack'][] = '#';
         $ch = array_shift($vars);
         self::addUsageCount($context, 'blockhelpers', $ch[0]);
-        $v = self::getVariableNames($vars);
+        $v = self::getVariableNames($vars, $context);
         return $context['ops']['seperator'] . self::getFuncName($context, 'bch') . "('$ch[0]', $v, \$cx, \$in, function(\$cx, \$in) {{$context['ops']['f_start']}";
     }
 
@@ -1252,7 +1259,7 @@ $libstr
      * Internal method used by compile(). Return compiled PHP code partial for a handlebars block end token.
      *
      * @param array $token detected handlebars {{ }} token
-     * @param array $context current scaning context
+     * @param array $context current compile context
      * @param array $vars parsed arguments list
      *
      * @return string Return compiled code segment for the token
@@ -1303,7 +1310,7 @@ $libstr
     /**
      * Internal method used by compile(). Return compiled PHP code partial for a handlebars block begin token.
      *
-     * @param array $context current scaning context
+     * @param array $context current compile context
      * @param array $vars parsed arguments list
      *
      * @return string Return compiled code segment for the token
@@ -1312,7 +1319,7 @@ $libstr
      */
     protected static function compileBlockBegin(&$context, $vars) {
         $each = 'false';
-        $v = isset($vars[1]) ? self::getVariableName($vars[1]) : null;
+        $v = isset($vars[1]) ? self::getVariableName($vars[1], $context) : null;
         switch ($vars[0][0]) {
         case 'if':
             $context['stack'][] = 'if';
@@ -1336,7 +1343,7 @@ $libstr
             }
         }
 
-        $v = self::getVariableName($vars[0]);
+        $v = self::getVariableName($vars[0], $context);
         $context['vars'][] = $vars[0];
         $context['stack'][] = self::getArrayCode($vars[0]);
         $context['stack'][] = '#';
@@ -1346,7 +1353,7 @@ $libstr
     /**
      * Internal method used by compile(). Return compiled PHP code partial for a handlebars custom helper token.
      *
-     * @param array $context current scaning context
+     * @param array $context current compile context
      * @param array $vars parsed arguments list
      * @param boolean $raw is this {{{ token or not
      * @param boolean $named is named arguments or not
@@ -1363,14 +1370,14 @@ $libstr
             foreach ($vars as $var) {
                 self::addJsonSchema($context, $var);
             }
-            return $context['ops']['seperator'] . self::getFuncName($context, 'ch') . "('$ch[0]', " . self::getVariableNames($vars) . ", '$fn', \$cx" . ($named ? ', true' : '') . "){$context['ops']['seperator']}";
+            return $context['ops']['seperator'] . self::getFuncName($context, 'ch') . "('$ch[0]', " . self::getVariableNames($vars, $context) . ", '$fn', \$cx" . ($named ? ', true' : '') . "){$context['ops']['seperator']}";
         }
     }
 
    /**
      * Internal method used by compile(). Return compiled PHP code partial for a handlebars else token.
      *
-     * @param array $context current scaning context
+     * @param array $context current compile context
      * @param array $vars parsed arguments list
      *
      * @return string|null Return compiled code segment for the token when the token is else
@@ -1378,16 +1385,25 @@ $libstr
      * @codeCoverageIgnore
      */
     protected static function compileElse(&$context, &$vars) {
-        if ($vars[0][0] ==='else') {
-            $context['stack'][] = ':';
-            return $context['usedFeature']['parent'] ? "{$context['ops']['f_end']}}, function(\$cx, \$in) {{$context['ops']['f_start']}" : "{$context['ops']['cnd_else']}";
+        if ($vars[0][0] === 'else') {
+            switch ($context['stack'][count($context['stack']) - 1]) {
+            case 'if':
+            case 'unless':
+                $context['stack'][] = ':';
+                return $context['usedFeature']['parent'] ? "{$context['ops']['f_end']}}, function(\$cx, \$in) {{$context['ops']['f_start']}" : "{$context['ops']['cnd_else']}";
+            case 'each':
+            case '#':
+                return "{$context['ops']['f_end']}}, function(\$cx, \$in) {{$context['ops']['f_start']}";
+            default:
+                $context['error'][] = '{{else}} only valid in if, unless, each, and #section context';
+            }
         }
     }
 
    /**
      * Internal method used by compile(). Return compiled PHP code partial for a handlebars variable token.
      *
-     * @param array $context current scaning context
+     * @param array $context current compile context
      * @param array $vars parsed arguments list
      * @param boolean $raw is this {{{ token or not
      *
@@ -1397,11 +1413,11 @@ $libstr
      */
     protected static function compileVariable(&$context, &$vars, $raw) {
         self::addJsonSchema($context, $vars[0]);
-        $v = self::getVariableName($vars[0]);
+        $v = self::getVariableName($vars[0], $context);
         if ($context['flags']['jsobj'] || $context['flags']['jstrue']) {
             return $context['ops']['seperator'] . self::getFuncName($context, $raw ? 'raw' : $context['ops']['enc']) . "($v, \$cx){$context['ops']['seperator']}";
         } else {
-            return $raw ? "{$context['ops']['seperator']}$v{$context['ops']['seperator']}" : "{$context['ops']['seperator']}LCRun2::enc($v, \$cx){$context['ops']['seperator']}";
+            return $raw ? "{$context['ops']['seperator']}$v{$context['ops']['seperator']}" : "{$context['ops']['seperator']}htmlentities($v, ENT_QUOTES, 'UTF-8'){$context['ops']['seperator']}";
         }
     }
 
@@ -1582,9 +1598,7 @@ class LCRun2 {
      * @expect 'a&#039;b' when input 'a\'b', Array()
      */
     public static function enc($var, $cx) {
-        return $var instanceof LCSafeString 
-            ?  $var->string 
-            : htmlentities(self::raw($var, $cx), ENT_QUOTES, 'UTF-8');
+        return htmlentities(self::raw($var, $cx), ENT_QUOTES, 'UTF-8');
     }
 
     /**
@@ -1600,9 +1614,7 @@ class LCRun2 {
      * @expect 'a&#x27;b' when input 'a\'b', Array()
      */
     public static function encq($var, $cx) {
-        return $var instanceof LCSafeString
-            ? $var->string
-            : preg_replace('/&#039;/', '&#x27;', htmlentities(self::raw($var, $cx), ENT_QUOTES, 'UTF-8'));
+        return preg_replace('/&#039;/', '&#x27;', htmlentities(self::raw($var, $cx), ENT_QUOTES, 'UTF-8'));
     }
 
     /**
@@ -1628,40 +1640,81 @@ class LCRun2 {
      * @expect '1' when input 1, Array(), 1, false, function ($c, $i) {return print_r($i, true);}
      * @expect '0' when input 0, Array(), 0, false, function ($c, $i) {return print_r($i, true);}
      * @expect '{"b":"c"}' when input Array('b'=>'c'), Array(), Array('b' => 'c'), false, function ($c, $i) {return json_encode($i);}
+     * @expect 'inv' when input Array(), Array(), 0, true, function ($c, $i) {return 'cb';}, function ($c, $i) {return 'inv';}
+     * @expect 'inv' when input Array(), Array(), 0, false, function ($c, $i) {return 'cb';}, function ($c, $i) {return 'inv';}
+     * @expect 'inv' when input false, Array(), 0, true, function ($c, $i) {return 'cb';}, function ($c, $i) {return 'inv';}
+     * @expect 'inv' when input false, Array(), 0, false, function ($c, $i) {return 'cb';}, function ($c, $i) {return 'inv';}
+     * @expect 'inv' when input '', Array(), 0, true, function ($c, $i) {return 'cb';}, function ($c, $i) {return 'inv';}
+     * @expect 'cb' when input '', Array(), 0, false, function ($c, $i) {return 'cb';}, function ($c, $i) {return 'inv';}
+     * @expect 'inv' when input 0, Array(), 0, true, function ($c, $i) {return 'cb';}, function ($c, $i) {return 'inv';}
+     * @expect 'cb' when input 0, Array(), 0, false, function ($c, $i) {return 'cb';}, function ($c, $i) {return 'inv';}
+     * @expect 'inv' when input new stdClass, Array(), 0, true, function ($c, $i) {return 'cb';}, function ($c, $i) {return 'inv';}
+     * @expect 'cb' when input new stdClass, Array(), 0, false, function ($c, $i) {return 'cb';}, function ($c, $i) {return 'inv';}
      */
-    public static function sec($v, &$cx, $in, $each, $cb) {
+    public static function sec($v, &$cx, $in, $each, $cb, $inv = null) {
         $isary = is_array($v);
         $loop = $each;
+        $keys = null;
+
+        if ($isary && $inv !== null && count($v) === 0) {
+            $cx['scopes'][] = $in;
+            $ret = $inv($cx, $v);
+            array_pop($cx['scopes']);
+            return $ret;
+        }
         if (!$loop && $isary) {
-            $loop = (count(array_diff_key($v, array_keys(array_keys($v)))) == 0);
+            $keys = array_keys($v);
+            $loop = (count(array_diff_key($v, array_keys($keys))) == 0);
+            $is_obj = !$loop;
         }
         if ($loop && $isary) {
             if ($each) {
-                $is_obj = count(array_diff_key($v, array_keys(array_keys($v)))) > 0;
+                if ($keys == null) {
+                    $keys = array_keys($v);
+                    $is_obj = (count(array_diff_key($v, array_keys($keys))) > 0);
+                }
             } else {
                 $is_obj = false;
             }
             $ret = Array();
             $cx['scopes'][] = $in;
             $i = 0;
+            if ($cx['flags']['spvar']) {
+                $last = count($keys) - 1;
+            }
             foreach ($v as $index => $raw) {
-                if ($is_obj) {
-                    $cx['sp_vars']['key'] = $index;
-                    $cx['sp_vars']['index'] = $i;
-                    $i++;
-                } else {
-                    $cx['sp_vars']['index'] = $index;
+                if ($cx['flags']['spvar']) {
+                    $cx['sp_vars']['first'] = ($i === 0);
+                    if ($is_obj) {
+                        $cx['sp_vars']['key'] = $index;
+                        $cx['sp_vars']['index'] = $i;
+                    } else {
+                        $cx['sp_vars']['last'] = ($i == $last);
+                        $cx['sp_vars']['index'] = $index;
+                    }
+                $i++;
                 }
                 $ret[] = $cb($cx, $raw);
             }
-            if ($is_obj) {
-                unset($cx['sp_vars']['key']);
+            if ($cx['flags']['spvar']) {
+                if ($is_obj) {
+                    unset($cx['sp_vars']['key']);
+                } else {
+                    unset($cx['sp_vars']['last']);
+                }
+                unset($cx['sp_vars']['index']);
+                unset($cx['sp_vars']['first']);
             }
-            unset($cx['sp_vars']['index']);
             array_pop($cx['scopes']);
             return join('', $ret);
         }
         if ($each) {
+            if ($inv !== null) {
+                $cx['scopes'][] = $in;
+                $ret = $inv($cx, $v);
+                array_pop($cx['scopes']);
+                return $ret;
+            }
             return '';
         }
         if ($isary) {
@@ -1681,6 +1734,13 @@ class LCRun2 {
 
         if (!is_null($v) && ($v !== false)) {
             return $cb($cx, $v);
+        }
+
+        if ($inv !== null) {
+            $cx['scopes'][] = $in;
+            $ret = $inv($cx, $v);
+            array_pop($cx['scopes']);
+            return $ret;
         }
 
         return '';
@@ -1720,12 +1780,17 @@ class LCRun2 {
      * @param array $cx render time context
      * @param boolean $named input arguments are named
      *
-     * @return string The rendered string of the token
+     * @return mixed The rendered string of the token, or Array with the rendered string and encode_flag
      *
      * @expect '=-=' when input 'a', Array('-'), 'raw', Array('helpers' => Array('a' => function ($i) {return "=$i=";}))
      * @expect '=&amp;=' when input 'a', Array('&'), 'enc', Array('helpers' => Array('a' => function ($i) {return "=$i=";}))
      * @expect '=&#x27;=' when input 'a', Array('\''), 'encq', Array('helpers' => Array('a' => function ($i) {return "=$i=";}))
      * @expect '=b=' when input 'a', Array('a' => 'b'), 'raw', Array('helpers' => Array('a' => function ($i) {return "={$i['a']}=";})), true
+     * @expect '=&=' when input 'a', Array('&'), 'raw', Array('helpers' => Array('a' => function ($i) {return Array("=$i=");}))
+     * @expect '=&amp;=' when input 'a', Array('&'), 'enc', Array('helpers' => Array('a' => function ($i) {return Array("=$i=");}))
+     * @expect '=&=' when input 'a', Array('&'), 'raw', Array('helpers' => Array('a' => function ($i) {return Array("=$i=");}))
+     * @expect '=&amp;&#039;&quot;=' when input 'a', Array('&\'"'), 'raw', Array('helpers' => Array('a' => function ($i) {return Array("=$i=", 'enc');}))
+     * @expect '=&amp;&#x27;&quot;=' when input 'a', Array('&\'"'), 'raw', Array('helpers' => Array('a' => function ($i) {return Array("=$i=", 'encq');}))
      */
     public static function ch($ch, $vars, $op, &$cx, $named = false) {
         $args = Array();
@@ -1734,14 +1799,24 @@ class LCRun2 {
         }
 
         $r = call_user_func_array($cx['helpers'][$ch], $named ? Array($args) : $args);
-        if ( $r instanceof LCSafeString ) {
-            return $r->string;
+
+        if (is_array($r)) {
+            if (isset($r[1])) {
+                if ($r[1]) {
+                    $op = $r[1];
+                } else {
+                    return $r;
+                }
+            }
+            $r = $r[0];
         }
+
         switch ($op) {
             case 'enc': 
                 return htmlentities($r, ENT_QUOTES, 'UTF-8');
             case 'encq':
                 return preg_replace('/&#039;/', '&#x27;', htmlentities($r, ENT_QUOTES, 'UTF-8'));
+            case 'raw':
             default:
                 return $r;
         }
@@ -1764,19 +1839,15 @@ class LCRun2 {
             $args[$i] = self::raw($v, $cx);
         }
 
-        $ret = call_user_func($cx['blockhelpers'][$ch], $in, $args, array(
-            'cx' => $cx,
-            'inverse' => function() { return ''; }, // no-op untill we figure out the else statement
-            'fn' => $cb,
-        ) );
-        return $ret;
-    }
-}
+        $r = call_user_func($cx['blockhelpers'][$ch], $in, $args);
+        if (is_null($r)) {
+            return '';
+        }
 
-class LCSafeString {
-    public $string;
-    public function __construct( $string ) {
-        $this->string = $string;
+        $cx['scopes'][] = $in;
+        $ret = $cb($cx, $r);
+        array_pop($cx['scopes']);
+        return $ret;
     }
 }
 ?>
