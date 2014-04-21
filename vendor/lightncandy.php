@@ -1839,15 +1839,11 @@ class LCRun2 {
             $args[$i] = self::raw($v, $cx);
         }
 
-        $r = call_user_func($cx['blockhelpers'][$ch], $in, $args);
-        if (is_null($r)) {
-            return '';
-        }
-
-        $cx['scopes'][] = $in;
-        $ret = $cb($cx, $r);
-        array_pop($cx['scopes']);
-        return $ret;
+        return call_user_func($cx['blockhelpers'][$ch], $in, $args, array(
+			'cx' => $cx,
+			'inverse' => function() { return ''; }, // no-op, @todo implement else
+			'fn' => $cb,
+		) );
     }
 }
 ?>
