@@ -30,10 +30,27 @@ class ObjectManager extends ObjectLocator {
 	}
 
 	public function put( $object ) {
-		if ( isset( $this->loaded[$object] ) ) {
-			$this->update( $object );
-		} else {
-			$this->insert( $object );
+		$this->multiPut( array( $object ) );
+	}
+
+	public function multiPut( array $objects ) {
+		$updateObjects = array();
+		$insertObjects = array();
+
+		foreach( $objects as $object ) {
+			if ( isset( $this->loaded[$object] ) ) {
+				$updateObjects[] = $object;
+			} else {
+				$insertObjects[] = $object;
+			}
+		}
+
+		if ( count( $updateObjects ) ) {
+			$this->update( $updateObjects );
+		}
+
+		if ( count( $insertObjects ) ) {
+			$this->insert( $insertObjects );
 		}
 	}
 
@@ -47,32 +64,44 @@ class ObjectManager extends ObjectLocator {
 		}
 	}
 
-	protected function insert( $object ) {
+	protected function insert( array $objects ) {
 		$section = new \ProfileSection( __METHOD__ );
-		$row = $this->mapper->toStorageRow( $object );
-		$stored = $this->storage->insert( $row );
-		if ( !$stored ) {
+		$rows = array_map( array( $this->mapper, 'toStorageRow' ), $objects );
+		$storedRows = $this->storage->insert( $rows );
+		if ( !$storedRows ) {
 			throw new DataModelException( 'failed insert', 'process-data' );
 		}
-		// propogate auto-id's and such back into $object
-		$this->mapper->fromStorageRow( $stored, $object );
-		foreach ( $this->lifecycleHandlers as $handler ) {
-			$handler->onAfterInsert( $object, $stored );
+
+		$numObjects = count( $objects );
+		for( $i = 0; $i < $numObjects; ++$i ) {
+			$object = $objects[$i];
+			$stored = $storedRows[$i];
+
+			// Propagate stuff that was added to the row by storage back
+			// into the object. Currently intended for storage URLs etc,
+			// but may in the future also bring in auto-ids and so on.
+			$this->mapper->fromStorageRow( $stored, $object );
+
+			foreach ( $this->lifecycleHandlers as $handler ) {
+				$handler->onAfterInsert( $object, $stored );
+			}
+
+			$this->loaded[$object] = $stored;
 		}
-		$this->loaded[$object] = $stored;
 	}
 
-	protected function update( $object ) {
+	protected function update( array $objects ) {
 		$section = new \ProfileSection( __METHOD__ );
+		foreach( $objects as $object ) {
+			$this->updateSingle( $object );
+		}
+	}
+
+	protected function updateSingle( $object ) {
 		$old = $this->loaded[$object];
 		$new = $this->mapper->toStorageRow( $object );
 		if ( self::arrayEquals( $old, $new ) ) {
 			return;
-		}
-		foreach ( $new as $k => $x ) {
-			if ( $x !== null && !is_scalar( $x ) ) {
-				throw new DataModelException( "Expected mapper to return all scalars, but '$k' is " . gettype( $x ), 'process-data' );
-			}
 		}
 		$this->storage->update( $old, $new );
 		foreach ( $this->lifecycleHandlers as $handler ) {
@@ -168,10 +197,6 @@ class ObjectManager extends ObjectLocator {
 		}
 
 		return implode( '|', $offsetFields );
-	}
-
-	public function multiPut( array $objects ) {
-		throw new DataModelException( 'Not Implemented', 'process-data' );
 	}
 
 	public function multiDelete( array $objects ) {

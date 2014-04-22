@@ -32,6 +32,27 @@ class ManagerGroup {
 		$this->getStorage( get_class( $object ) )->put( $object );
 	}
 
+
+	protected function multiMethod( $method, $objects ) {
+		$itemsByClass = array();
+
+		foreach( $objects as $object ) {
+			$itemsByClass[ get_class( $object ) ][] = $object;
+		}
+
+		foreach( $itemsByClass as $class => $myObjects ) {
+			$this->getStorage( $class )->$method( $myObjects );
+		}
+	}
+
+	public function multiPut( $objects ) {
+		$this->multiMethod( 'multiPut', $objects );
+	}
+
+	public function multiRemove( $objects ) {
+		$this->multiMethod( 'multiRemove', $objects );
+	}
+
 	protected function call( $method, $args ) {
 		$className = array_shift( $args );
 
