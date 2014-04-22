@@ -16,6 +16,24 @@
       "revId": "3da5ad9747f27b2ddc704804dc0820c8ada9fd16",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_400429c9",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-22T21:35:36Z",
+      "side": 1,
+      "message": "good point!",
+      "parentUuid": "8e23439c_4fb57cca",
+      "revId": "3da5ad9747f27b2ddc704804dc0820c8ada9fd16",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
