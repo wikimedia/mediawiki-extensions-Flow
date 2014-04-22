@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_4fb57cca",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-04-22T17:42:00Z",
+      "side": 1,
+      "message": "Hm.. Not new in this commit, but usage of strip_tags is a bit suspicious. Using it to reduce something to plain text isn\u0027t great, but a quick approach that could work for the time being. However, then, if it\u0027s only text, why would you then not escape it and treat it as if it\u0027s safe html below? Clearly it isn\u0027t. And if it really is html, then obviously arbitrarily truncating it is going to break something.",
+      "revId": "3da5ad9747f27b2ddc704804dc0820c8ada9fd16",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
