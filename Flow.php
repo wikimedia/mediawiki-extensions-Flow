@@ -203,6 +203,7 @@ $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
 $wgAutoloadClasses['ApiFlowBase'] = "$dir/includes/api/ApiFlowBase.php";
+$wgAutoloadClasses['ApiFlowCloseOpenTopic'] = "$dir/includes/api/ApiFlowCloseOpenTopic.php";
 $wgAutoloadClasses['ApiFlowEditHeader'] = "$dir/includes/api/ApiFlowEditHeader.php";
 $wgAutoloadClasses['ApiFlowEditPost'] = "$dir/includes/api/ApiFlowEditPost.php";
 $wgAutoloadClasses['ApiFlowEditTitle'] = "$dir/includes/api/ApiFlowEditTitle.php";
@@ -252,7 +253,9 @@ $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 // permissions config than what's assumed to test.
 $wgFlowGroupPermissions = array();
 $wgFlowGroupPermissions['user']['flow-hide'] = true;
+$wgFlowGroupPermissions['user']['flow-close'] = true;
 $wgFlowGroupPermissions['sysop']['flow-hide'] = true;
+$wgFlowGroupPermissions['sysop']['flow-close'] = true;
 $wgFlowGroupPermissions['sysop']['flow-delete'] = true;
 $wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
 $wgFlowGroupPermissions['oversight']['flow-suppress'] = true;
