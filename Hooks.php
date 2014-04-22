@@ -574,7 +574,12 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onMakeGlobalVariablesScript( array &$vars, OutputPage $out ) {
-		$vars['wgFlowTermsOfUseEdit'] = Flow\TermsOfUse::getEditTerms();
+		$vars += array(
+			'wgFlowTermsOfUseEdit' => Flow\TermsOfUse::getEditTerms(),
+			'wgFlowTermsOfUseSummarize' => Flow\TermsOfUse::getSummarizeTerms(),
+			'wgFlowTermsOfUseCloseTopic' => Flow\TermsOfUse::getCloseTopicTerms(),
+			'wgFlowTermsOfUseReopenTopic' => Flow\TermsOfUse::getReopenTopicTerms()
+		);
 		return true;
 	}
 
