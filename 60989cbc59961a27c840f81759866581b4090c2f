@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8e23439c_2ad10b58",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 13
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-22T23:06:08Z",
+      "side": 1,
+      "message": "Need to update this if patch 121855 gets merged before this one, buildUrl() is removed in that patch",
+      "revId": "60989cbc59961a27c840f81759866581b4090c2f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_5017714a",
         "filename": "includes/Formatter/RevisionFormatter.php",
         "patchSetId": 13
