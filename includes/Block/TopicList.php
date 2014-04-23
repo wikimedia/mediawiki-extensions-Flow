@@ -176,29 +176,7 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
-		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
-		if ( $this->workflow->isNew() ) {
-			$templating->render( "flow:topiclist.html.php", array(
-				'block' => $this,
-				'topics' => array(),
-				'user' => $this->user,
-				'page' => false,
-				'permissions' => $this->permissions,
-			) );
-		} else {
-			$findOptions = $this->getFindOptions( $options );
-			$page = $this->getPage( $findOptions );
-			$topics = $this->getTopics( $page );
-
-			$templating->render( "flow:topiclist.html.php", array(
-				'block' => $this,
-				'topics' => $topics,
-				'user' => $this->user,
-				'page' => $page,
-				'permissions' => $this->permissions,
-			) );
-		}
+		throw new FlowException( 'deprecated' );
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
@@ -282,7 +260,7 @@ class TopicListBlock extends AbstractBlock {
 			),
 		) + $result;
 	}
-	
+
 	protected function buildApiActions() {
 		$urlGenerator = Container::get( 'url_generator' );
 		return array(
@@ -385,46 +363,5 @@ class TopicListBlock extends AbstractBlock {
 
 		return $pager->getPage();
 	}
-
-	/**
-	 * @param PagerPage $page
-	 * @return TopicBlock[]
-	 */
-	protected function getTopics( PagerPage $page ) {
-		/** @var TopicListEntry[] $found */
-		$found = $page->getResults();
-
-		if ( ! count( $found ) ) {
-			return array();
-		}
-
-		/** @var UUID[] $topicIds */
-		$topicIds = array();
-		foreach( $found as $entry ) {
-			$topicIds[] = $entry->getId();
-		}
-		$roots = $this->rootLoader->getMulti( $topicIds );
-		foreach ( $topicIds as $idx => $topicId ) {
-			if ( !$this->permissions->isAllowed( $roots[$topicId->getAlphadecimal()], 'view' ) ) {
-				unset( $roots[$topicId->getAlphadecimal()] );
-				unset( $topicIds[$idx] );
-			}
-		}
-		foreach ( $roots as $idx => $topicTitle ) {
-			if ( !$this->permissions->isAllowed( $topicTitle, 'view' ) ) {
-				unset( $roots[$idx] );
-			}
-		}
-		$topics = array();
-		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
-			/** @var Workflow $workflow */
-			$hexId = $workflow->getId()->getAlphadecimal();
-			$topics[$hexId] = $block = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
-			$block->init( $this->action, $this->user );
-		}
-
-		return $topics;
-	}
-
 }
 

@@ -71,10 +71,9 @@ class BoardHistoryBlock extends AbstractBlock {
 	public function renderAPI( Templating $templating, array $options ) {
 		if ( $this->workflow->isNew() ) {
 			return array(
-				'_element' => 'board-history',
-				0 => array(
-					'type' => 'board-history',
-					'empty' => '',
+				'type' => $this->getName(),
+				'revisions' => array(),
+				'links' => array(
 				),
 			);
 		}
@@ -83,16 +82,16 @@ class BoardHistoryBlock extends AbstractBlock {
 		$formatter = Container::get( 'formatter.revision' );
 		$ctx = \RequestContext::getMain();
 
-		$result = array();
+		$posts = $revisions = array();
 		foreach ( $history as $row ) {
-			$result[] = $formatter->formatApi( $row, $ctx );
+			$serialized = $formatter->formatApi( $row, $ctx );
+			$revisions[$serialized['revisionId']] = $serialized;
 		}
 
 		return array(
-			'_element' => 'board-history',
-			0 => array(
-				'type' => 'board-history',
-				'*' => $result,
+			'type' => $this->getName(),
+			'revisions' => $revisions,
+			'links' => array(
 			),
 		);
 	}

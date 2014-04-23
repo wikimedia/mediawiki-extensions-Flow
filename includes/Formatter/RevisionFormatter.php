@@ -236,7 +236,7 @@ class RevisionFormatter {
 		}
 
 		// actions primarily vary by revision type...
-		
+
 		$links = array();
 		foreach ( $actionTypes as $type ) {
 			switch( $type ) {
@@ -245,7 +245,7 @@ class RevisionFormatter {
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
 						'edit',
-						array( 
+						array(
 							'workflow' => $workflowId->getAlphadecimal() ,
 							'header_revId' => $revId->getAlphadecimal(),
 						)
@@ -262,7 +262,7 @@ class RevisionFormatter {
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
 						'edit',
-						array( 
+						array(
 							'workflow' => $workflowId->getAlphadecimal() ,
 							'topic_postId' => $postId->getAlphadecimal(),
 							'topic_revId' => $revId->getAlphadecimal(),
@@ -296,7 +296,7 @@ class RevisionFormatter {
 						'url' => $this->urlGenerator->buildUrl(
 							$title,
 							'hide-post',
-							array( 
+							array(
 								'workflow' => $workflowId->getAlphadecimal(),
 								'topic_postId' => $postId->getAlphadecimal(),
 							)
@@ -325,7 +325,7 @@ class RevisionFormatter {
 						'url' => $this->urlGenerator->buildUrl(
 							$title,
 							'delete-post',
-							array( 
+							array(
 								'workflow' => $workflowId->getAlphadecimal(),
 								'topic_postId' => $postId->getAlphadecimal(),
 							)
@@ -354,7 +354,7 @@ class RevisionFormatter {
 						'url' => $this->urlGenerator->buildUrl(
 							$title,
 							'suppress-post',
-							array( 
+							array(
 								'workflow' => $workflowId->getAlphadecimal(),
 								'topic_postId' => $postId->getAlphadecimal(),
 							)
@@ -368,7 +368,7 @@ class RevisionFormatter {
 				break;
 			}
 		}
-		
+
 		return $links;
 	}
 
@@ -659,14 +659,15 @@ class RevisionFormatter {
 	 */
 	public function buildProperties( UUID $workflowId, AbstractRevision $revision, IContextSource $ctx ) {
 		$changeType = $revision->getChangeType();
-		$params = $this->permissions->getActions()->getValue( $changeType, 'history', 'i18n-params' );
+		$actions = $this->permissions->getActions();
+		$params = $actions->getValue( $changeType, 'history', 'i18n-params' );
 		if ( !$params ) {
 			// should we have a sigil for i18n with no parameters?
 			wfDebugLog( 'Flow', __METHOD__ . ": No i18n params for changeTyp4 $changeType on " . $revision->getRevisionId()->getAlphadecimal() );
 			return array();
 		}
 
-		$res = array();
+		$res = array( '_key' => $actions->getValue( $changeType, 'history', 'i18n-message' ) );
 		foreach ( $params as $param ) {
 			$res[$param] = $this->processParam( $param, $revision, $workflowId, $ctx );
 		}

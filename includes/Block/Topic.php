@@ -384,109 +384,8 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	public function render( Templating $templating, array $options, $return = false ) {
-		if ( $this->action === 'history' ) {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
-		} else {
-			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion', 'ext.flow.moderation' ) );
-			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
-		}
-
-		$prefix = '';
-
-		switch( $this->action ) {
-		case 'history':
-			$root = $this->loadRootPost();
-			if ( !$root ) {
-				return '';
-			}
-
-			// BC: old history links used to also have postId for topic history
-			if ( isset( $options['postId'] ) && !$root->getPostId()->equals( UUID::create( $options['postId'] ) ) ) {
-				return $prefix . $this->renderPostHistory( $templating, $options, $return );
-			}
-
-			$history = $this->loadTopicHistory();
-
-			return $prefix . $templating->render( "flow:topic-history.html.php", array(
-				'block' => $this,
-				'topic' => $this->workflow,
-				'root' => $root,
-				'history' => new History( $history ),
-				'historyRenderer' => new HistoryRenderer( $this->permissions, $templating, Container::get( 'repository.username' ), $this ),
-			), $return );
-
-		case 'edit-post':
-			return $prefix . $this->renderEditPost( $templating, $options, $return );
-
-		case 'edit-title':
-			$topicTitle = $this->loadTopicTitle();
-			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
-				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
-			}
-			return $prefix . $templating->render( "flow:edit-title.html.php", array(
-				'block' => $this,
-				'topic' => $this->workflow,
-				'topicTitle' => $this->newRevision ?: $topicTitle, // if already submitted, use submitted revision,
-			), $return );
-
-		case 'compare-post-revisions':
-			if ( !isset( $options['newRevision'] ) ) {
-				throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
-			}
-
-			$revisionView = PostRevisionView::newFromId( $options['newRevision'], $templating, $this, $this->user );
-			if ( !$revisionView ) {
-				throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
-			}
-
-			if ( isset( $options['oldRevision'] ) ) {
-				return $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
-			} else {
-				return $revisionView->renderDiffViewAgainstPrevious( $return );
-			}
-			break;
-
-		default:
-			$root = $this->loadRootPost();
-			if ( !$root ) {
-				return '';
-			}
-
-			if ( !isset( $options['topiclist-block'] ) ) {
-				$title = $templating->getContent( $root, 'wikitext' );
-				$templating->getOutput()->setHtmlTitle( $title );
-				$templating->getOutput()->setPageTitle( $title );
-
-				$prefix = $templating->render(
-					'flow:topic-permalink-warning.html.php',
-					array(
-						'block' => $this,
-					),
-					$return
-				);
-			}
-
-			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
-				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
-			} elseif ( isset( $options['revId'] ) ) {
-				$revisionView = PostRevisionView::newFromId( $options['revId'], $templating, $this, $this->user );
-				if ( !$revisionView ) {
-					throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
-				} else if ( !$this->permissions->isAllowed( $revisionView->getRevision(), 'view' ) ) {
-					$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
-					return null;
-				}
-				return $revisionView->renderSingleView( $return );
-			} else {
-				return $prefix . $templating->renderTopic(
-					$root,
-					$this,
-					$return
-				);
-			}
-		}
+	public function render( Templating $templating, array $options ) {
+		throw new FlowException( 'deprecated' );
 	}
 
 	protected function renderPostHistory( Templating $templating, array $options, $return = false ) {
@@ -591,6 +490,7 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
+		$serializer = Container::get( 'formatter.revision' );
 		$stack = new \SplStack;
 		$stack->push( $rootPost );
 		$result = array();
@@ -599,9 +499,10 @@ class TopicBlock extends AbstractBlock {
 			foreach ( $post->getChildren() as $child ) {
 				$stack->push( $child );
 			}
-			$result[$child->getRevisionId()->getAlphadecimal()] = $serialize->formatApi(
+			$result[$child->getRevisionId()->getAlphadecimal()] = $serializer->formatApi(
 			);
 		}
+
 		$result = array( $rootPost->getRevisionId()->getAlphadecimal() => $output );
 		foreach( $rootPost->getChildren() as $child ) {
 			$res = $this->renderPostAPI( $templating, $child, $options );

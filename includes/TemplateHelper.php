@@ -4,8 +4,8 @@ namespace Flow;
 
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use HTML;
 use LightnCandy;
-use LCSafeString;
 
 class TemplateHelper {
 
@@ -60,9 +60,13 @@ class TemplateHelper {
 						'math' => 'Flow\TemplateHelper::math',
 						'post' => 'Flow\TemplateHelper::post',
 						'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
+						'historyTimestamp' => 'Flow\TemplateHelper::historyTimestamp',
+						'historyDescription' => 'Flow\TemplateHelper::historyDescription',
+						'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
 					),
 					'blockhelpers' => array(
 						'eachPost' => 'Flow\TemplateHelper::eachPost',
+						'pipelist' => 'Flow\TemplateHelper::pipelist',
 					),
 				)
 			);
@@ -169,7 +173,7 @@ class TemplateHelper {
 
 		case 'started_with_participants':
 			$topicPost = $args[0];
-			$message = wfMessage( 
+			$message = wfMessage(
 				'flow-topic-participants-second-try',
 				$topicPost['author']['name'],
 				$topicPost['author_count'] - 1
@@ -248,8 +252,7 @@ class TemplateHelper {
 		if ( $message ) {
 			return $message->text();
 		} else {
-			wfDebugLog( 'Flow', __METHOD__ . ": No translation for $str" );
-			return "<$str>";
+			return wfMessage( $str )->text();
 		}
 	}
 
@@ -316,6 +319,24 @@ class TemplateHelper {
 		) );
 	}
 
+	static public function pipelist( $context, $arguments, $options ) {
+		global $wgLang;
+
+		if ( count( $arguments ) !== 1 ) {
+			throw new FlowException( 'Expected exactly 1 argument' );
+		}
+		$fn = $options['fn'];
+		$ret = array();
+		foreach ( $arguments[0] as $item ) {
+			$cx['scopes'][] = $item;
+			$ret[] = call_user_func( $fn, $options['cx'], $item );
+			array_pop( $cx['scopes'] );
+		}
+
+		// Block helpers must always return safe content
+		return wfMessage( 'parentheses' )->rawParams( $wgLang->pipelist( $ret ) )->escaped();
+	}
+
 	/**
 	 * @param array $context The 'this' value of the calling context
 	 * @param array $arguments Arguments passed into the helper
@@ -361,7 +382,7 @@ class TemplateHelper {
 		switch( $op ) {
 		case '+':
 			return $lvalue + $rvalue;
-		
+
 		case '-':
 			return $lvalue - $rvalue;
 
@@ -385,5 +406,61 @@ class TemplateHelper {
 			'revision' => $revision,
 			'rootBlock' => $rootBlock,
 		) ) );
+	}
+
+	static public function historyTimestamp( array $revision, $key = 'timeAndDate' ) {
+		$formattedTime = $revision['dateFormats']['timeAndDate'];
+		$linkKeys = array( 'header-revision', 'topic-revision', 'post-revision' );
+		$raw = false;
+		foreach ( $linkKeys as $linkKey ) {
+			if ( isset( $revision['links'][$linkKey] ) ) {
+				$link = $revision['links'][$linkKey];
+				$formattedTime = Html::element(
+					'a',
+					array(
+						'href' => $link['url'],
+						'title' => $link['title'],
+					),
+					$formattedTime
+				);
+				$raw = true;
+				break;
+			}
+		}
+
+		if ( $raw === false ) {
+			$formattedTime = htmlspecialchars( $formattedTime, ENT_QUOTES );
+		}
+
+		$class = array( 'mw-changeslist-date' );
+		if ( $revision['isModerated'] ) {
+			$class[] = 'history-deleted';
+		}
+
+		return self::html( Html::rawElement( 'span', array( 'class' => $class ), $formattedTime ) );
+	}
+
+	static public function historyDescription( array $revision ) {
+		$changeType = $revision['changeType'];
+		$i18nKey = $revision['properties']['_key'];
+		unset( $revision['properties']['_key'] );
+
+		// a variety of the i18n history messages contain wikitext and require ->parse()
+		return self::html( wfMessage( $i18nKey, $revision['properties'] )->parse() );
+	}
+
+	static public function showCharacterDifference( $old, $new ) {
+		return self::html( \ChangesList::showCharacterDifference( $old, $new ) );
+	}
+
+	static public function apiLinkToAnchor( array $link, $content = null ) {
+		return Html::element(
+			'a',
+			array(
+				'href' => $link['url'],
+				'title' => $link['title'],
+			),
+			$content === null ? $text : $content
+		);
 	}
 }

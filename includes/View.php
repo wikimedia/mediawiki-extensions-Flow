@@ -93,6 +93,11 @@ class View extends ContextSource {
 			}
 		}
 
+		/**
+		header( 'Content-Type: application/json; content=utf-8' );
+		die( json_encode( $apiResponse ) );
+		**/
+
 		// Render with lightncandy. The exact template to render
 		// will likely need to vary, but not yet.
 		$template = $this->lightncandy->getTemplate( 'flow_board' );
