@@ -268,7 +268,7 @@
     "flow-revision-permalink-warning-header-first": "This is a permanent link to the first version of the header.\nYou can view later versions on the [$2 board history page].",
     "flow-compare-revisions-revision-header": "Version by {{GENDER:$2|$2}} from $1",
     "flow-compare-revisions-header-post": "This page shows the {{GENDER:$3|changes}} between two versions of a post by $3 in the topic \"[$5 $2]\" on [$4 $1].\nYou can see other versions of this post at its [$6 history page].",
-    "flow-compare-revisions-header-postsummary": "This page shows the {{GENDER:$3|changes}} between two versions of a post summary in the post \"[$4 $2]\" on [$3 $1].\nYou can see other versions of this post at its [$5 history page].",
+    "flow-compare-revisions-header-postsummary": "This page shows the changes between two versions of a post summary in the post \"[$4 $2]\" on [$3 $1].\nYou can see other versions of this post at its [$5 history page].",
     "flow-compare-revisions-header-header": "This page shows the {{GENDER:$2|changes}} between two versions of the header on [$3 $1].\nYou can see other versions of the header at its [$4 history page].",
     "flow-topic-collapsed-one-line": "Small view",
     "flow-topic-collapsed-full": "Collapsed view",
