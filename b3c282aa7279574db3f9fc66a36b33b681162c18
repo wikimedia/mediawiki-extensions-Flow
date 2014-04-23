@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_ed620dd4",
+        "filename": "includes/api/ApiQueryFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-23T02:32:11Z",
+      "side": 1,
+      "message": "You also need to test for before accessing its value, I get PHP Warning:  Illegal string offset \u0027performs-writes\u0027. But sometimes $info is just the name of another action, e.g. \u0027\u0027flow-edit-title\u0027 or \u0027history\u0027.\n\nI _think_ this should be accessing the FlowActions object, something like\n\n    $flowActions \u003d Flow\\Container::get( \u0027flow_actions\u0027 );\n    $allActions \u003d $flowActions-\u003egetActions();\n\n    foreach ( $allActions as $action ) {\n        if ( !$flowActions-\u003egetValue( $action, \u0027performs-writes\u0027 ) ) {\n\nthat gives me\nview history log recentchanges contributions checkuser post-history topic-history board-history\n\notherwise I only get view history",
+      "revId": "b3c282aa7279574db3f9fc66a36b33b681162c18",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
