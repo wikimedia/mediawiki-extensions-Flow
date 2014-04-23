@@ -189,7 +189,7 @@
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.topicCollapserToggle = function ( event ) {
-			if ( !$( event.target ).closest( 'a, button, input, textarea, select' ).length ) {
+			if ( !$( event.target ).closest( 'a, button, input, textarea, select, ul, ol' ).length ) {
 				$( this ).closest( '.flow-topic' ).toggleClass( 'flow-topic-collapsed-invert' );
 				event.preventDefault();
 				this.blur();
