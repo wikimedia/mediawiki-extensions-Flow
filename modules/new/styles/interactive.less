@@ -2,9 +2,9 @@
 @import 'mixins/helpers.less';
 
 @font-face {
-  font-family: 'WikiFont-Regular';
-  src: url('../fonts/WikiFont.eot');
-  src: url('../fonts/WikiFont.eot?#iefix') format('embedded-opentype'), url('../fonts/WikiFont.woff') format('woff'), url('../fonts/WikiFont.ttf')  format('truetype'), url('../fonts/WikiFont.svg#b618f6c47120d6564c09540516f52967') format('svg');
+  font-family: 'Wikicon-Regular';
+  src: url('../fonts/wikifont.eot');
+  src: url('../fonts/wikifont.eot?#iefix') format('embedded-opentype'), url('../fonts/wikifont.woff') format('woff'), url('../fonts/wikifont.ttf')  format('truetype'), url('../fonts/wikifont.svg#b618f6c47120d6564c09540516f52967') format('svg');
 }
 
 .flow-menu {
@@ -66,6 +66,7 @@
 
 	li {
 		display: block;
+		cursor: default;
 	}
 
 	.flow-menu-js-drop {
@@ -216,38 +217,17 @@
 
 // Show that the topic titlebar is clickable
 .flow-topic-titlebar {
-	cursor: pointer;
 	outline: none;
+
+	// ...but only in JS mode
+	.client-js & {
+		cursor: pointer;
+	}
 
 	// Render a shadow
 	&:hover,
 	&:focus {
 		.box-shadow( ~"inset 0 -1px 0px 1px @{colorGrayLighter}, 0 1px 1px @{colorGrayLightest}" );
-
-		&:after {
-			display: inline-block;
-			font-family: 'WikiFont-Regular';
-			position: absolute;
-			font-size: 1em;
-			bottom: 0;
-			right: .5em;
-			color: @colorTextLight;
-
-			// Set icon
-			content: "\e040"; // compact
-			.flow-topic-collapsed-invert & {
-				content: "\e042"; // expanded
-			}
-			// Concept is inverted with compact styles
-			.flow-board-collapsed-compact &,
-			.flow-board-collapsed-topics & {
-				content: "\e042"; // expanded
-			}
-			.flow-board-collapsed-compact .flow-topic-collapsed-invert &,
-			.flow-board-collapsed-topics .flow-topic-collapsed-invert & {
-				content: "\e040"; // compact
-			}
-		}
 	}
 
 	// Fade out the posts to show they will disappear
@@ -257,10 +237,10 @@
 }
 
 // Wikicons (glyphs)
-.WikiFont {
+.wikicon {
 	display: inline-block;
 	height: .8em;
-	font-family: 'WikiFont-Regular';
+	font-family: 'Wikicon-Regular';
 	-webkit-font-smoothing: antialiased;
 	font-size: 1.8em;
 	font-style: normal;
@@ -269,95 +249,95 @@
 	overflow: visible;
 	vertical-align: text-bottom;
 }
-.WikiFont:before {
+.wikicon:before {
 	//margin-left: -.25em;
 }
 
 /* UI ELEMENTS e000-023
 */
-.WikiFont-magnifying-glass:before {
+.wikicon-magnifying-glass:before {
   content: "\e000";
 }
-.WikiFont-arrow-left:before {
+.wikicon-arrow-left:before {
   content: "\e001";
 }
-.WikiFont-tick:before {
+.wikicon-tick:before {
   content: "\e002";
 }
-.WikiFont-x:before {
+.wikicon-x:before {
   content: "\e003";
 }
-.WikiFont-x-circle:before {
+.wikicon-x-circle:before {
   content: "\e004";
 }
-.WikiFont-unstar:before {
+.wikicon-unstar:before {
   content: "\e005";
 }
-.WikiFont-star:before {
+.wikicon-star:before {
   content: "\e006";
 }
-.WikiFont-sun:before {
+.wikicon-sun:before {
   content: "\e007";
 }
-.WikiFont-star-circle:before {
+.wikicon-star-circle:before {
   content: "\e008";
 }
-.WikiFont-funnel:before {
+.wikicon-funnel:before {
   content: "\e009";
 }
-.WikiFont-eye:before {
+.wikicon-eye:before {
   content: "\e010";
 }
-.WikiFont-eye-lid:before {
+.wikicon-eye-lid:before {
   content: "\e011";
 }
-.WikiFont-bookmark:before {
+.wikicon-bookmark:before {
   content: "\e012";
 }
-.WikiFont-printer:before {
+.wikicon-printer:before {
   content: "\e013";
 }
-.WikiFont-puzzle:before {
+.wikicon-puzzle:before {
   content: "\e014";
 }
-.WikiFont-clock:before {
+.wikicon-clock:before {
   content: "\e015";
 }
-.WikiFont-dice:before {
+.wikicon-dice:before {
   content: "\e016";
 }
-.WikiFont-move:before {
+.wikicon-move:before {
   content: "\e017";
 }
-.WikiFont-gear:before {
+.wikicon-gear:before {
   content: "\e018";
 }
-.WikiFont-ellipsis:before {
+.wikicon-ellipsis:before {
   content: "\e019";
 }
-.WikiFont-envelope:before {
+.wikicon-envelope:before {
   content: "\e020";
 }
-.WikiFont-pin:before {
+.wikicon-pin:before {
   content: "\e021";
 }
-.WikiFont-caret:before {
+.wikicon-caret:before {
   content: "\e022";
 }
-.WikiFont-download:before {
+.wikicon-download:before {
   content: "\e023";
 }
 
 
 /* STRIPES e040-043
 */
-.WikiFont-stripe-compact:before {
+.wikicon-stripe-compact:before {
   content: "\e040";
 }
-.WikiFont-stripe-toc:before {
+.wikicon-stripe-toc:before {
   content: "\e041";
 }
-.WikiFont-stripe-expanded:before {
+.wikicon-stripe-expanded:before {
   content: "\e042";
 }
 
@@ -365,127 +345,127 @@
 /* WIKIPEDIA LOGO e400
 */
 
-.WikiFont-w:before {
+.wikicon-w:before {
   content: "\e400";
 }
 
 
 /* UI MODERATION ELEMENTS e500-508
 */
-.WikiFont-article:before {
+.wikicon-article:before {
   content: "\e100";
 }
-.WikiFont-article-check:before {
+.wikicon-article-check:before {
   content: "\e101";
 }
-.WikiFont-article-search:before {
+.wikicon-article-search:before {
   content: "\e102";
 }
 
-.WikiFont-trash:before {
+.wikicon-trash:before {
   content: "\e500";
 }
-.WikiFont-trash-slash:before {
+.wikicon-trash-slash:before {
   content: "\e501";
 }
-.WikiFont-block:before {
+.wikicon-block:before {
   content: "\e502";
 }
-.WikiFont-block-slash:before {
+.wikicon-block-slash:before {
   content: "\e503";
 }
-.WikiFont-flag:before {
+.wikicon-flag:before {
   content: "\e504";
 }
-.WikiFont-flag-slash:before {
+.wikicon-flag-slash:before {
   content: "\e505";
 }
-.WikiFont-play:before {
+.wikicon-play:before {
   content: "\e506";
 }
-.WikiFont-stop:before {
+.wikicon-stop:before {
   content: "\e507";
 }
-.WikiFont-lock:before {
+.wikicon-lock:before {
   content: "\e508";
 }
 
 /* USER e600-602
 */
-.WikiFont-user-bust:before {
+.wikicon-user-bust:before {
   content: "\e600";
 }
-.WikiFont-user-smile:before {
+.wikicon-user-smile:before {
   content: "\e601";
 }
-.WikiFont-user-sleep:before {
+.wikicon-user-sleep:before {
   content: "\e602";
 }
 
 /* TRANSLATION e700
 */
-.WikiFont-translate:before {
+.wikicon-translate:before {
   content: "\e700";
 }
 
 /* CONTRIBUTION e800-845
 */
-.WikiFont-pencil:before {
+.wikicon-pencil:before {
   content: "\e800";
 }
-.WikiFont-pencil-revert:before {
+.wikicon-pencil-revert:before {
   content: "\e801";
 }
-.WikiFont-pencil-lock:before {
+.wikicon-pencil-lock:before {
   content: "\e802";
 }
 
-.WikiFont-speech-bubble:before {
+.wikicon-speech-bubble:before {
   content: "\e810";
 }
-.WikiFont-speech-bubbles:before {
+.wikicon-speech-bubbles:before {
   content: "\e811";
 }
-.WikiFont-speech-bubble-add:before {
+.wikicon-speech-bubble-add:before {
   content: "\e812";
 }
-.WikiFont-speech-bubble-smile:before {
+.wikicon-speech-bubble-smile:before {
   content: "\e813";
 }
 
-.WikiFont-link:before {
+.wikicon-link:before {
   content: "\e820";
 }
 
-.WikiFont-quotes:before {
+.wikicon-quotes:before {
   content: "\e830";
 }
-.WikiFont-quotes-add:before {
+.wikicon-quotes-add:before {
   content: "\e831";
 }
 
-.WikiFont-image:before {
+.wikicon-image:before {
   content: "\e840";
 }
-.WikiFont-image-lock:before {
+.wikicon-image-lock:before {
   content: "\e841";
 }
-.WikiFont-image-add:before {
+.wikicon-image-add:before {
   content: "\e842";
 }
-.WikiFont-image-main-placeholder:before {
+.wikicon-image-main-placeholder:before {
   content: "\e843";
 }
-.WikiFont-folder:before {
+.wikicon-folder:before {
   content: "\e844";
 }
-.WikiFont-folder-main-placeholder:before {
+.wikicon-folder-main-placeholder:before {
   content: "\e845";
 }
 
 /* WIKI-X e900
 */
-.WikiFont-wikitrail:before {
+.wikicon-wikitrail:before {
   content: "\e900";
 }
 
