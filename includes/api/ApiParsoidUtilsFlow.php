@@ -1,7 +1,5 @@
 <?php
 
-use Flow\Parsoid\BadImageRemover;
-use Flow\Parsoid\Redlinker;
 use Flow\Parsoid\Utils;
 use Flow\Exception\WikitextException;
 
