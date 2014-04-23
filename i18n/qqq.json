@@ -136,7 +136,7 @@
 	"flow-edit-header-submit-overwrite": "Used as label for the Submit button, when submitting will overwrite a more recent change.",
 	"flow-summarize-topic-submit": "Used as label for the Summarize button.",
 	"flow-summarize-topic-submit-overwrite": "Used as label for the Summarize button, when submitting will overwrite a more recent summary.",
-	"flow-close-topic-submit":  "Used as label for the Close topic button.",
+	"flow-close-topic-submit": "Used as label for the Close topic button.",
 	"flow-close-topic-submit-overwrite": "Used as label for the Close topic button, when submitting will overwrite a more recent summary.",
 	"flow-reopen-topic-submit": "Used as label for the Restore topic button.",
 	"flow-reopen-topic-submit-overwrite": "Used as label for the Restore topic button, when submitting will overwrite a more recent summary.",
