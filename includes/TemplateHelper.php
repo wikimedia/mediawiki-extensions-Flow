@@ -76,7 +76,11 @@ class TemplateHelper {
 			file_put_contents( $compiled, $code );
 		}
 
-		return $this->renderers[$templateName] = include $compiled;
+		$renderer = include $compiled;
+		return $this->renderers[$templateName] = function( $args, array $scopes = array() ) use ( $templateName, $renderer ) {
+			$section = new \ProfileSection( __CLASS__ . " $templateName" );
+			return $renderer( $args, $scopes );
+		};
 	}
 
 	static public function processTemplate( $templateName, $args, array $scopes = array() ) {
@@ -93,52 +97,52 @@ class TemplateHelper {
 
 		switch( $str ) {
 		case 'Start_a_new_topic':
-			$message = wfMessage( 'flow-newtopic-start-placeholder' );
+			$str = 'flow-newtopic-start-placeholder';
 			break;
 
 		case 'Sorting_tooltip':
-			$message = wfMessage( 'flow-sorting-tooltip' );
+			$str = 'flow-sorting-tooltip';
 			break;
 
 		case 'Toggle_small_topics':
-			$message = wfMessage( 'flow-toggle-small-topics' );
+			$str = 'flow-toggle-small-topics';
 			break;
 
 		case 'Toggle_topics_only':
-			$message = wfMessage( 'flow-toggle-topics' );
+			$str = 'flow-toggle-topics';
 			break;
 
 		case 'Toggle_topics_and_posts':
-			$message = wfMessage( 'flow-toggle-topics-posts' );
+			$str = 'flow-toggle-topics-posts';
 			break;
 
 		case 'topic_details_placeholder':
-			$message = wfMessage( 'flow-newtopic-content-placeholder' );
+			$str = 'flow-newtopic-content-placeholder';
 			break;
 
 		case 'Newest_topics':
-			$message = wfMessage( 'flow-newest-topics' );
+			$str = 'flow-newest-topics';
 			break;
 
 		case 'Add_Topic':
-			$message = wfMessage( 'flow-add-topic' );
+			$str = 'flow-add-topic';
 			break;
 
 		case 'Load_More':
-			$message = wfMessage( 'flow-load-more' );
+			$str = 'flow-load-more';
 			break;
 
 		case 'block':
-			$message = wfMessage( 'blocklink' );
+			$str = 'blocklink';
 			break;
 
 		case 'Talk':
-			$message = wfMessage( 'talkpagelinktext' );
+			$str = 'talkpagelinktext';
 			break;
 
 		case 'Edit':
 		case 'edit':
-			$message = wfMessage( 'flow-post-action-edit-post' );
+			$str = 'flow-post-action-edit-post';
 			break;
 
 		case 'Reply':
@@ -147,23 +151,23 @@ class TemplateHelper {
 			break;
 
 		case 'Cancel':
-			$message = wfMessage( 'flow-cancel' );
+			$str = 'flow-cancel';
 			break;
 
 		case 'Preview':
-			$message = wfMessage( 'flow-preview' );
+			$str = 'flow-preview';
 			break;
 
 		case 'Hide':
-			$message = wfMessage( 'flow-post-action-hide-post' );
+			$str = 'flow-post-action-hide-post';
 			break;
 
 		case 'Delete':
-			$message = wfMessage( 'flow-post-action-delete-post' );
+			$str = 'flow-post-action-delete-post';
 			break;
 
 		case 'Suppress':
-			$message = wfMessage( 'flow-post-action-suppress-post' );
+			$str = 'flow-post-action-suppress-post';
 			break;
 
 		case 'Topics_n':
@@ -206,11 +210,11 @@ class TemplateHelper {
 			break;
 
 		case 'topic_TOU':
-			$message = wfMessage( 'flow-terms-of-use-new-topic' );
+			$str = 'flow-terms-of-use-new-topic';
 			break;
 
 		case 'reply_TOU':
-			$message = wfMessage( 'flow-terms-of-use-reply' );
+			$str = 'flow-terms-of-use-reply';
 			break;
 
 		case '_time':
@@ -252,7 +256,11 @@ class TemplateHelper {
 		if ( $message ) {
 			return $message->text();
 		} else {
-			return wfMessage( $str )->text();
+			static $cache;
+			if ( !isset( $cache[$str] ) ) {
+				$cache[$str] = wfMessage( $str )->text();
+			}
+			return $cache[$str];
 		}
 	}
 
@@ -409,9 +417,9 @@ class TemplateHelper {
 	}
 
 	static public function historyTimestamp( array $revision, $key = 'timeAndDate' ) {
+		$raw = false;
 		$formattedTime = $revision['dateFormats']['timeAndDate'];
 		$linkKeys = array( 'header-revision', 'topic-revision', 'post-revision' );
-		$raw = false;
 		foreach ( $linkKeys as $linkKey ) {
 			if ( isset( $revision['links'][$linkKey] ) ) {
 				$link = $revision['links'][$linkKey];
@@ -429,7 +437,7 @@ class TemplateHelper {
 		}
 
 		if ( $raw === false ) {
-			$formattedTime = htmlspecialchars( $formattedTime, ENT_QUOTES );
+			$formattedTime = htmlspecialchars( $formattedTime );
 		}
 
 		$class = array( 'mw-changeslist-date' );
@@ -437,7 +445,11 @@ class TemplateHelper {
 			$class[] = 'history-deleted';
 		}
 
-		return self::html( Html::rawElement( 'span', array( 'class' => $class ), $formattedTime ) );
+		return self::html( 
+			'<span class="plainlinks">'
+			. Html::rawElement( 'span', array( 'class' => $class ), $formattedTime )
+			. '</span>'
+		);
 	}
 
 	static public function historyDescription( array $revision ) {
@@ -451,16 +463,5 @@ class TemplateHelper {
 
 	static public function showCharacterDifference( $old, $new ) {
 		return self::html( \ChangesList::showCharacterDifference( $old, $new ) );
-	}
-
-	static public function apiLinkToAnchor( array $link, $content = null ) {
-		return Html::element(
-			'a',
-			array(
-				'href' => $link['url'],
-				'title' => $link['title'],
-			),
-			$content === null ? $text : $content
-		);
 	}
 }

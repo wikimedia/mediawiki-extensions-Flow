@@ -3,27 +3,27 @@
 		{{#each revisions}}
 			<li>
 				(
-				 	{{#if links.diff-cur}}
+				 	{{~#if links.diff-cur~}}
 						<a href="{{links.diff-cur.url}}" title="{{links.diff-cur.title}}">
-							{{links.diff-cur.title}}
+							{{~links.diff-cur.title~}}
 						</a>
-					{{else}}
+					{{~else~}}
 						{{l10n "cur"}}
 					{{/if}}
 					{{l10n "pipe-separator"}}
 					{{#if links.diff-prev}}
 						<a href="{{links.diff-prev.url}}" title="{{links.diff-prev.title}}">
-							{{links.diff-prev.title}}
+							{{~links.diff-prev.title~}}
 						</a>
-					{{else}}
+					{{~else~}}
 						{{l10n "last"}}
-					{{/if}}
-					{{#if links.topic}}
+					{{~/if~}}
+					{{~#if links.topic}}
 						{{l10n "pipe-separator"}}
 						<a href="{{links.topic.url}}" title="{{links.topic.title}}">
-							{{links.topic.title}}
+							{{~links.topic.title~}}
 						</a>
-					{{/if}}
+					{{~/if~}}
 				)
 
 				{{historyTimestamp this}}

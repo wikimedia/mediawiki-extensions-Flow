@@ -80,6 +80,7 @@ class BoardHistoryBlock extends AbstractBlock {
 
 		$history = $this->loadBoardHistory();
 		$formatter = Container::get( 'formatter.revision' );
+		$formatter->setIncludeHistoryProperties( true );
 		$ctx = \RequestContext::getMain();
 
 		$posts = $revisions = array();
@@ -97,7 +98,7 @@ class BoardHistoryBlock extends AbstractBlock {
 	}
 
 	protected function loadBoardHistory() {
-		return Container::get( 'board-history.query' )->getResults( $this->workflow );
+		return Container::get( 'query.board-history' )->getResults( $this->workflow );
 	}
 
 	public function getName() {

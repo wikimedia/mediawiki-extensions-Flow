@@ -235,11 +235,12 @@ abstract class AbstractFormatter {
 	 * @return string Html valid for user output
 	 */
 	protected function apiLinkToAnchor( array $link, $content = null ) {
+		$text = $link['title']->text();
 		return Html::element(
 			'a',
 			array(
 				'href' => $link['url'],
-				'title' => $link['title']->text(),
+				'title' => $text,
 			),
 			$content === null ? $text : $content
 		);

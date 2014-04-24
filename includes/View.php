@@ -37,6 +37,8 @@ class View extends ContextSource {
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
+		wfProfileIn( __CLASS__ . '-init' );
+
 		$out = $this->getOutput();
 		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.new.styles' ) );
 		$out->addModules( array( 'ext.flow.new' ) );
@@ -63,8 +65,10 @@ class View extends ContextSource {
 		foreach ( $blocks as $block ) {
 			$block->init( $action, $user );
 		}
+		wfProfileOut( __CLASS__ . '-init' );
 
 		if ( $request->wasPosted() ) {
+			wfProfileIn( __CLASS__ . '-submit' );
 			global $wgFlowTokenSalt;
 			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
 				$error = '<div class="error">' . $this->msg( 'sessionfailure' ) . '</div>';
@@ -74,11 +78,14 @@ class View extends ContextSource {
 				if ( $blocksToCommit ) {
 					$loader->commit( $workflow, $blocksToCommit );
 					$this->redirect( $workflow, 'view' );
+					wfProfileOut( __CLASS__ . '-submit' );
 					return;
 				}
 			}
+			wfProfileOut( __CLASS__ . '-submit' );
 		}
 
+		wfProfileIn( __CLASS__ . '-serialize' );
 		// @todo This and API should use same code
 		$apiResponse = array(
 			'workflow' => $workflow->getId()->getAlphadecimal(),
@@ -92,15 +99,26 @@ class View extends ContextSource {
 			}
 		}
 
+		array_walk_recursive( $apiResponse, function( &$value ) {
+			if ( $value instanceof \Message ) {
+				$value = $value->text();
+			}
+		} );
+		wfProfileOut( __CLASS__ . '-serialize' );
+
 		/**
 		header( 'Content-Type: application/json; content=utf-8' );
-		die( json_encode( $apiResponse ) );
+		$data = json_encode( $apiResponse );
+		//return;
+		die( $data );
 		**/
 
 		// Render with lightncandy. The exact template to render
 		// will likely need to vary, but not yet.
+		wfProfileIn( __CLASS__ . '-render' );
 		$template = $this->lightncandy->getTemplate( 'flow_board' );
 		$out->addHTML( $template( $apiResponse ) );
+		wfProfileOut( __CLASS__ . '-render' );
 	}
 
 	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {
