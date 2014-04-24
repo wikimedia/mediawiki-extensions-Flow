@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidActionException;
 use Flow\Model\UUID;
 use Flow\NotificationController;
 use Flow\OccupationController;
@@ -288,6 +289,8 @@ class FlowHooks {
 				}
 
 				$view->show( $loader, $action );
+			} catch( InvalidActionException $e ) {
+				$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 			} catch( Flow\Exception\FlowException $e ) {
 				$e->setOutput( $output );
 				throw $e;
