@@ -258,62 +258,14 @@ class RevisionFormatter {
 				break;
 
 			case 'diff-header':
-				/*
-				 * To diff against previous revision, we don't really need that
-				 * revision id; if no particular diff id is specified, it will
-				 * assume a diff against previous revision. However, we do want
-				 * to make sure that a previous revision actually exists to diff
-				 * against. This could result in a network request (fetching the
-				 * current revision), but it's likely being loaded anyways.
-				 */
-				if ( $row->revision->getPrevRevisionId() !== null ) {
-					$links['diff'] = array(
-						$this->urlGenerator->buildUrl(
-							$title,
-							'compare-header-revisions',
-							array(
-								'workflow' => $workflowId->getAlphadecimal(),
-								'header_newRevision' => $revId->getAlphadecimal(),
-							)
-						),
-						wfMessage( 'diff' )
-					);
-
-					/*
-					 * Different formatters have different terminology for the link
-					 * that diffs a certain revision to the previous revision.
-					 *
-					 * E.g.: Special:Contributions has "diff" ($links['diff']),
-					 * ?action=history has "prev" ($links['prev']).
-					 */
-					$links['diff-prev'] = array( $links['diff'][0], wfMessage( 'last' ) );
-				}
-
-				/*
-				 * To diff against the current revision, we need to know the id
-				 * of this last revision. This could be an additional network
-				 * request, though anything using formatter likely already needs
-				 * to request the most current revision (e.g. to check
-				 * permissions) so we should be able to get it from local cache.
-				 */
-				$cur = $row->currentRevision;
-				if ( !$revId->equals( $cur->getRevisionId() ) ) {
-					$links['diff-cur'] = array(
-						$this->urlGenerator->buildUrl(
-							$title,
-							'compare-header-revisions',
-							array(
-								'workflow' => $workflowId->getAlphadecimal(),
-								'header_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
-								'header_oldRevision' => $revId->getAlphadecimal(),
-							)
-						),
-						wfMessage( 'cur' )
-					);
-				}
-				break;
-
+				$blockName = 'header';
+				$diffLink = 'header';
 			case 'diff-post':
+				$blockName = 'topic';
+				$diffLink = 'post';
+			case 'diff-post-summary':
+				$blockName = 'topicsummary';
+				$diffLink = 'postsummary';
 				/*
 				 * To diff against previous revision, we don't really need that
 				 * revision id; if no particular diff id is specified, it will
@@ -326,10 +278,10 @@ class RevisionFormatter {
 					$links['diff'] = array(
 						$this->urlGenerator->buildUrl(
 							$title,
-							'compare-post-revisions',
+							'compare-' . $diffLink . '-revisions',
 							array(
 								'workflow' => $workflowId->getAlphadecimal(),
-								'topic_newRevision' => $revId->getAlphadecimal(),
+								$blockName . '_newRevision' => $revId->getAlphadecimal(),
 							)
 						),
 						wfMessage( 'diff' )
@@ -357,34 +309,16 @@ class RevisionFormatter {
 					$links['diff-cur'] = array(
 						$this->urlGenerator->buildUrl(
 							$title,
-							'compare-post-revisions',
+							'compare-' . $diffLink . '-revisions',
 							array(
 								'workflow' => $workflowId->getAlphadecimal(),
-								'topic_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
-								'topic_oldRevision' => $revId->getAlphadecimal(),
+								$blockName . '_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
+								$blockName . '_oldRevision' => $revId->getAlphadecimal(),
 							)
 						),
 						wfMessage( 'cur' )
 					);
 				}
-				break;
-
-			case 'diff-post-summary':
-				if ( !$revId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render diff link' );
-					break;
-				}
-				$links['diff'] = array(
-					$this->urlGenerator->buildUrl(
-						$title,
-						'compare-postsummary-revisions',
-						array(
-							'workflow' => $workflowId->getAlphadecimal(),
-							'topicsummary_newRevision' => $revId->getAlphadecimal(),
-						)
-					),
-					wfMessage( 'diff' )
-				);
 				break;
 
 			case 'workflow':
