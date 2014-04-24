@@ -406,7 +406,8 @@ class FlowHooks {
 	/**
 	 * Make sure no user can register a flow-*-usertext username, to avoid
 	 * confusion with a real user when we print e.g. "Suppressed" instead of a
-	 * username.
+	 * username. Additionally reserve the username used to add a revision on
+	 * taking over a page.
 	 *
 	 * @param array $names
 	 * @return bool
@@ -417,7 +418,8 @@ class FlowHooks {
 			$names[] = "msg:flow-$permission-usertext";
 		}
 
-		$names[] = "msg:flow-system-usertext";
+		$names[] = 'msg:flow-system-usertext';
+		$names[] = 'Flow talk page manager';
 
 		return true;
 	}
