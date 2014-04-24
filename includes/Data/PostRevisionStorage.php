@@ -26,41 +26,29 @@ class PostRevisionStorage extends RevisionStorage {
 		return 'post';
 	}
 
-	protected function insertRelated( array $rows ) {
-		if ( ! is_array( reset( $rows ) ) ) {
-			$rows = array( $rows );
-		}
-
-		$trees = array();
-		foreach( $rows as $key => $row ) {
-			$trees[$key] = $this->splitUpdate( $row, 'tree' );
-		}
-
+	protected function insertRelated( array $row ) {
+		$tree = $this->splitUpdate( $row, 'tree' );
 		$dbw = $this->dbFactory->getDB( DB_MASTER );
 		$res = $dbw->insert(
 			$this->joinTable(),
-			$this->preprocessNestedSqlArray( $trees ),
+			$this->preprocessSqlArray( $tree ),
 			__METHOD__
 		);
 
 		// If this is a brand new root revision it needs to be added to the tree
 		// If it has a rev_parent_id then its already a part of the tree
-		if ( $res ) {
-			foreach( $rows as $row ) {
-				if ( $row['rev_parent_id'] === null ) {
-					$res = $res && $this->treeRepo->insert(
-						UUID::create( $row['tree_rev_descendant_id'] ),
-						UUID::create( $row['tree_parent_id'] )
-					);
-				}
-			}
+		if ( $res && $row['rev_parent_id'] === null ) {
+			$res = (bool) $this->treeRepo->insert(
+				UUID::create( $tree['tree_rev_descendant_id'] ),
+				UUID::create( $tree['tree_parent_id'] )
+			);
 		}
 
 		if ( !$res ) {
 			return false;
 		}
 
-		return $rows;
+		return $row;
 	}
 
 	// Topic split will primarily be done through the TreeRepository directly,  but
