@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_c71a851b",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-04-24T04:25:43Z",
+      "side": 1,
+      "message": "I think you should localize this.",
+      "revId": "05022d06cd79c95a074dba3dca04e2300ee699db",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
