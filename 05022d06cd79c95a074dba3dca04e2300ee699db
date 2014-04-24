@@ -16,6 +16,24 @@
       "revId": "05022d06cd79c95a074dba3dca04e2300ee699db",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_07e4fd08",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1406
+      },
+      "writtenOn": "2014-04-24T04:36:12Z",
+      "side": 1,
+      "message": "Due to bug 51837, we should not reserve the localised usernames. However, this means that anyone who knows how the code works can deliberately register the localised username, forcing the reserved English fallback (assuming that\u0027s what we rely on) to be used anyway.\n\nGiven that the username is only visible a) if a Flow board was subsequently turned into a regular page or b) through the API, I don\u0027t think the extra complexity is warranted.",
+      "parentUuid": "8e23439c_c71a851b",
+      "revId": "05022d06cd79c95a074dba3dca04e2300ee699db",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
