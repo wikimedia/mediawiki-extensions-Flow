@@ -16,6 +16,23 @@
       "revId": "dcf9b2fb9522d1eb80a94117710050ea2759e3c7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_1bf6955a",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-24T22:55:18Z",
+      "side": 1,
+      "message": "$rows should stay intact.  This is setting \u0027rev_content_url\u0027 to \u0027rev_content\u0027 in cache",
+      "revId": "dcf9b2fb9522d1eb80a94117710050ea2759e3c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
