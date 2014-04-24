@@ -3,6 +3,7 @@
 namespace Flow\Data;
 
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use MWException;
@@ -14,7 +15,7 @@ class TopicHistoryIndex extends TopKIndex {
 
 	protected $treeRepository;
 
-	public function __construct( BufferedCache $cache, PostRevisionStorage $storage, TreeRepository $treeRepo, $prefix, array $indexed, array $options = array() ) {
+	public function __construct( BufferedCache $cache, TopicHistoryStorage $storage, TreeRepository $treeRepo, $prefix, array $indexed, array $options = array() ) {
 		if ( $indexed !== array( 'topic_root_id' ) ) {
 			throw new \MWException( __CLASS__ . ' is hardcoded to only index topic_root_id: ' . print_r( $indexed, true ) );
 		}
@@ -27,8 +28,13 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param string[] $new
 	 */
 	public function onAfterInsert( $object, array $new ) {
-		$new['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
-		parent::onAfterInsert( $object, $new );
+		if ( $object instanceof PostRevision ) {
+			$new['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
+			parent::onAfterInsert( $object, $new );
+		} elseif ( $object instanceof PostSummary ) {
+			$new['topic_root_id'] = $object->getCollection()->getWorkflowId()->getBinary();
+			parent::onAfterInsert( $object, $new );
+		}
 	}
 
 	/**
@@ -37,8 +43,13 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param string[] $new
 	 */
 	public function onAfterUpdate( $object, array $old, array $new ) {
-		$old['topic_root_id'] = $new['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
-		parent::onAfterUpdate( $object, $old, $new );
+		if ( $object instanceof PostRevision ) {
+			$old['topic_root_id'] = $new['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
+			parent::onAfterUpdate( $object, $old, $new );
+		} elseif ( $object instanceof PostSummary ) {
+			$old['topic_root_id'] = $new['topic_root_id'] = $object->getCollection()->getWorkflowId()->getBinary();
+			parent::onAfterUpdate( $object, $old, $new );
+		}
 	}
 
 	/**
@@ -46,8 +57,13 @@ class TopicHistoryIndex extends TopKIndex {
 	 * @param string[] $old
 	 */
 	public function onAfterRemove( $object, array $old ) {
-		$old['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
-		parent::onAfterRemove( $object, $old );
+		if ( $object instanceof PostRevision ) {
+			$old['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
+			parent::onAfterRemove( $object, $old );
+		} elseif ( $object instanceof PostSummary ) {
+			$old['topic_root_id'] = $object->getCollection()->getWorkflowId()->getBinary();
+			parent::onAfterRemove( $object, $old );
+		}
 	}
 
 	protected function backingStoreFindMulti( array $queries ) {

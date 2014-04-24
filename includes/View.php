@@ -41,7 +41,6 @@ class View extends ContextSource {
 		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.new.styles' ) );
 		$out->addModules( array( 'ext.flow.new' ) );
 
-
 		// Allow other extensions to add modules
 		wfRunHooks( 'FlowAddModules', array( $out ) );
 

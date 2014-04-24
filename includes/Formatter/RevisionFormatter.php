@@ -10,6 +10,7 @@ use Flow\Data\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
@@ -628,6 +629,24 @@ class RevisionFormatter {
 				}
 				break;
 
+			case 'diff-post-summary':
+				if ( !$revId ) {
+					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render diff link' );
+					break;
+				}
+				$links['diff'] = array(
+					$this->urlGenerator->buildUrl(
+						$title,
+						'compare-postsummary-revisions',
+						array(
+							'workflow' => $workflowId->getAlphadecimal(),
+							'topicsummary_newRevision' => $revId->getAlphadecimal(),
+						)
+					),
+					wfMessage( 'diff' )
+				);
+				break;
+
 			case 'workflow':
 				/** @var Title $linkTitle */
 				list( $linkTitle, $query ) = $this->urlGenerator->buildUrlData(
@@ -771,6 +790,20 @@ class RevisionFormatter {
 			// normal msg param, will be escaped
 			return $content;
 
+		case 'post-of-summary':
+			if ( !$revision instanceof PostSummary ) {
+				throw new FlowException( 'Expected PostSummary but received ' . get_class( $revision ) );
+			}
+			$post = $revision->getCollection()->getPost()->getLastRevision();
+			if ( $post->isTopicTitle() ) {
+				$content = $this->templating->getContent( $post, 'wikitext' );
+				if ( $this->permissions->isAllowed( $post, 'view' ) ) {
+					$content = htmlspecialchars( $content );
+				}
+			} else {
+				$content = $this->templating->getContent( $post, 'html' );
+			}
+			return Message::rawParam( $content );
 		case 'bundle-count':
 			return Message::numParam( count( $revision ) );
 

@@ -7,7 +7,8 @@ $flowResourceTemplate = array(
 );
 
 $wgResourceModules += array(
-	'ext.flow.base' => $flowResourceTemplate + array(
+	'ext.flow.base.styles' => $flowResourceTemplate + array(
+		'targets' => array( 'desktop', 'mobile' ),
 		'styles' => array(
 			'base/styles/container.less',
 			'base/styles/form.less',
@@ -23,10 +24,15 @@ $wgResourceModules += array(
 			'mediawiki.ui/styles/agora-override-forms.less',
 		),
 		'skinStyles' => array(
+			'minerva' => array(
+				'base/styles/minerva.less',
+			),
 			'vector' => array(
 				'base/styles/header.less',
 			),
 		),
+	),
+	'ext.flow.base' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'base/ext.flow.base.js',
 			'base/ui-functions.js',
@@ -61,7 +67,8 @@ $wgResourceModules += array(
 			'flow-edit-header-submit-overwrite',
 		),
 	),
-	'ext.flow.discussion' => $flowResourceTemplate + array(
+	'ext.flow.discussion.styles' => $flowResourceTemplate + array(
+		'targets' => array( 'desktop', 'mobile' ),
 		'styles' => array(
 			'discussion/styles/topic.less',
 			'discussion/styles/post.less',
@@ -69,6 +76,8 @@ $wgResourceModules += array(
 			'discussion/styles/modified.less',
 			'discussion/styles/nojs.less',
 		),
+	),
+	'ext.flow.discussion' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'discussion/ui.js',
 			'discussion/topic.js',
@@ -91,6 +100,7 @@ $wgResourceModules += array(
 		),
 		'messages' => array(
 			'flow-newtopic-start-placeholder',
+			'flow-summarize-topic-placeholder',
 			'flow-newtopic-title-placeholder',
 			'flow-cancel',
 			'flow-error-http',
@@ -106,6 +116,13 @@ $wgResourceModules += array(
 			'flow-post-moderated-toggle-show',
 			'flow-post-moderated-toggle-hide',
 			'flow-anon-warning',
+			'flow-summarize-topic-submit',
+			'flow-summarize-topic-submit-overwrite',
+			'flow-close-topic-submit',
+			'flow-close-topic-submit-overwrite',
+			'flow-reopen-topic-submit',
+			'flow-reopen-topic-submit-overwrite',
+			'flow-topic-action-resummarize-topic',
 		),
 		'position' => 'top',
 	),
@@ -117,8 +134,10 @@ $wgResourceModules += array(
 		),
 		'scripts' => 'history/history.js',
 	),
-	'ext.flow.moderation' => $flowResourceTemplate + array(
+	'ext.flow.moderation.styles' => $flowResourceTemplate + array(
 		'styles' => 'moderation/styles/moderation.less',
+	),
+	'ext.flow.moderation' => $flowResourceTemplate + array(
 		'scripts' => 'moderation/moderation.js',
 		'messages' => array(
 			'flow-moderation-reason-placeholder',

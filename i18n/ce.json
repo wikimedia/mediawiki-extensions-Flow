@@ -8,6 +8,7 @@
 	"flow-topic-actions": "Дийраш",
 	"flow-show-change": "Гайта хийцам",
 	"flow-last-modified-by": "ТӀехьара бина {{GENDER:$1|хийцам}} цу $1",
+	"flow-close-link": "{{GENDER:$1|бот}}",
 	"flow-post-action-post-history": "Истори",
 	"flow-post-action-edit-post": "Тае",
 	"flow-topic-action-history": "Теман истори",

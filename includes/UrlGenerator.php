@@ -8,6 +8,7 @@ use Flow\Model\Workflow;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Title;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
@@ -121,6 +122,11 @@ class UrlGenerator {
 				$data['header_revId'] = $revision->getRevisionId()->getAlphadecimal();
 			}
 			$action = 'header-view';
+		} elseif ( $revision instanceof PostSummary ) {
+			if ( $specificRevision ) {
+				$data['postsummary_revId'] = $revision->getRevisionId()->getAlphadecimal();
+			}
+			$action = 'topic-summary-view';
 		} else {
 			throw new FlowException( 'Unknown revision type:' . get_class( $revision ) );
 		}

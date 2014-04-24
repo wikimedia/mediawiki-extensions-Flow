@@ -6,7 +6,8 @@
 			"Pio387",
 			"Rzuwig",
 			"Vuh",
-			"Woytecr"
+			"Woytecr",
+			"Alan ffm"
 		]
 	},
 	"flow-cancel": "Anuluj",
@@ -22,10 +23,15 @@
 	"flow-post-action-edit-post": "Edytuj",
 	"flow-topic-action-edit-title": "Edytuj tytuł",
 	"flow-topic-action-history": "Historia",
+	"flow-topic-action-close-topic": "Zamknij temat",
+	"flow-topic-action-summarize-topic": "Podsumuj",
+	"flow-topic-action-resummarize-topic": "Opis zmian",
 	"flow-error-prev-revision-mismatch": "Inny użytkownik kilka sekund temu edytował ten post. Na pewno chcesz nadpisać jego zmiany?",
 	"flow-error-default": "Wystąpił błąd.",
 	"flow-edit-header-submit": "Zapisz nagłówek",
 	"flow-edit-header-submit-overwrite": "Nadpisz nagłówek",
+	"flow-summarize-topic-submit": "Podsumuj",
+	"flow-close-topic-submit": "Zamknij temat",
 	"flow-edit-title-submit": "Zmień tytuł",
 	"flow-edit-title-submit-overwrite": "Nadpisz tytuł",
 	"flow-edit-post-submit": "Zapisz zmiany",
@@ -50,5 +56,6 @@
 	"flow-compare-revisions-header-header": "Ta strona pokazuje {{GENDER:$2|zmiany}} pomiędzy dwiema wersjami nagłówka w [$3 $1]. Możesz również zobaczyć inne wersje na [$4 stronie historii].",
 	"flow-terms-of-use-new-topic": "Klikając na \"{{int:flow-newtopic-save}}\", zgadzasz się na zasady użytkowania tej wiki.",
 	"flow-terms-of-use-reply": "Klikając na \"{{int:flow-reply-submit}}\", zgadzasz się na warunki użytkowania tej wiki.",
-	"flow-terms-of-use-edit": "Zapisując zmiany, zgadzasz się na warunki użytkowania tej wiki."
+	"flow-terms-of-use-edit": "Zapisując zmiany, zgadzasz się na warunki użytkowania tej wiki.",
+	"flow-terms-of-use-summarize": "Klikając na \"{{int:flow-summarize-topic-submit}}\", zgadzasz się na zasady użytkowania tej wiki."
 }

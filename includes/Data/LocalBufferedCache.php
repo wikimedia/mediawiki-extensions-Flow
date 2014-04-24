@@ -5,7 +5,20 @@ namespace Flow\Data;
 // Untested method of handling duplicate requests for the same data
 // Preserves any BagOStuff semantics like BufferedCache does
 class LocalBufferedCache extends BufferedCache {
+
+	/**
+	 * Local cache
+	 *
+	 * @var array
+	 */
 	protected $internal = array();
+
+	/**
+	 * List of update to localCache upon cache commit
+	 *
+	 * @var \Closure[]
+	 */
+	protected $bufferUpdate = array();
 
 	/**
 	 * Returns true if the data is in own "storage" already, or false if it will
@@ -55,6 +68,8 @@ class LocalBufferedCache extends BufferedCache {
 		return $found;
 	}
 
+	// @Todo - Use bufferUpdate[] to update local cache if buffer cache is enabled,
+	// need to make sure that no code relies on the new dangling local cache value
 	public function add( $key, $value ) {
 		if ( $this->buffer === null ) {
 			if ( $this->cache->add( $key, $value, $this->exptime ) ) {
@@ -73,6 +88,8 @@ class LocalBufferedCache extends BufferedCache {
 		}
 	}
 
+	// @Todo - Use bufferUpdate[] to update local cache if buffer cache is enabled,
+	// need to make sure that no code relies on the new dangling local cache value
 	public function set( $key, $value ) {
 		parent::set( $key, $value );
 		$this->internal[$key] = $value;
@@ -82,8 +99,22 @@ class LocalBufferedCache extends BufferedCache {
 		parent::merge( $key, $callback, $attempts );
 
 		// data is being merged into this key, so invalidate the cached version
-		unset( $this->internal[$key] );
+		if ( $this->buffer === null ) {
+			unset( $this->internal[$key] );
+		} else {
+			$internal =& $this->internal;
+			$this->bufferUpdate[] = function() use ( $key, &$internal ) {
+				unset( $internal[$key] );
+			};
+		}
+	}
 
-		// @todo: we should figure out a way to properly implement this
+	public function commit() {
+		parent::commit();
+
+		foreach ( $this->bufferUpdate as $closure ) {
+			call_user_func( $closure );
+		}
+		$this->bufferUpdate = array();
 	}
 }

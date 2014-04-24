@@ -15,6 +15,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
+use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\View\History\History;
@@ -58,6 +59,8 @@ class TopicBlock extends AbstractBlock {
 		'edit-post', 'reply',
 		// Moderation
 		'moderate-topic',
+		// Close or open topic
+		'close-open-topic',
 		'moderate-post', 'hide-post', 'delete-post', 'suppress-post', 'restore-post',
 		// Other stuff
 		'edit-title',
@@ -91,6 +94,20 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function validate() {
+		// If the topic is closed, the only allowed action is to reopen it
+		$topicTitle = $this->loadTopicTitle();
+		if ( $topicTitle ) {
+			if (
+				$topicTitle->isClosed()
+				&& (
+					$this->action !== 'close-open-topic'
+					|| $this->submitted['moderationState'] !== 'restore'
+				)
+			) {
+				$this->addError( 'moderate', wfMessage( 'flow-error-topic-is-closed' ) );
+			}
+		}
+
 		switch( $this->action ) {
 		case 'edit-title':
 			$this->validateEditTitle();
@@ -101,6 +118,7 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		case 'moderate-topic':
+		case 'close-open-topic':
 			$this->validateModerateTopic();
 			break;
 
@@ -240,6 +258,11 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function doModerate( PostRevision $post, $moderationState = null ) {
+		if ( $this->submitted['moderationState'] === 'close' && $post->isModerated() ) {
+			$this->addError( 'moderate', wfMessage( 'flow-error-close-moderated-post' ) );
+			return;
+		}
+
 		// Moderation state supplied in request parameters rather than the action
 		if ( $moderationState === null ) {
 			$moderationState = $this->submitted['moderationState'];
@@ -277,9 +300,22 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
+
 		if ( empty( $this->submitted['reason'] ) ) {
-			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
-			return;
+			// If a summary is provided instead, parse the content and truncate it
+			if ( !empty( $this->submitted['summary'] ) ) {
+				global $wgLang;
+				$this->submitted['reason'] = $wgLang->truncate(
+					trim(
+						strip_tags( Utils::convert( 'wikitext', 'html', $this->submitted['summary'], $this->workflow->getArticleTitle() ) )
+					),
+					255
+				);
+			}
+			if ( empty( $this->submitted['reason'] ) ) {
+				$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
+				return;
+			}
 		}
 
 		$reason = $this->submitted['reason'];
@@ -340,6 +376,7 @@ class TopicBlock extends AbstractBlock {
 		switch( $this->action ) {
 		case 'reply':
 		case 'moderate-topic':
+		case 'close-open-topic':
 		case 'hide-post':
 		case 'delete-post':
 		case 'suppress-post':
@@ -704,14 +741,14 @@ class TopicBlock extends AbstractBlock {
 
 	protected function loadTopicHistory() {
 		$history = $this->storage->find(
-			'PostRevision',
+			'TopicHistoryEntry',
 			array( 'topic_root_id' => $this->workflow->getId() ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 		);
 		if ( $history ) {
 			// get rid of history entries user doesn't have sufficient permissions for
 			foreach ( $history as $i => $revision ) {
-				/** @var PostRevision $revision */
+				/** @var PostRevision|PostSummary $revision */
 
 				// only check against the specific revision, ignoring the most recent
 				if ( !$this->permissions->isAllowed( $revision, 'history' ) ) {
