@@ -261,6 +261,23 @@ class RevisionFormatter {
 		$links = array();
 		foreach ( $actionTypes as $type ) {
 			switch( $type ) {
+			case 'reply':
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+				$links['reply'] = array(
+					'url' => $this->urlGenerator->buildUrl(
+						$title,
+						'reply',
+						array(
+							'workflow' => $workflowId,
+							'topic_postId' => $postId,
+						)
+					),
+					'title' => $this->msg( 'flow-post-action-reply' ),
+				);
+				break;
+
 			case 'edit-header':
 				$links['edit'] = array(
 					'url' => $this->urlGenerator->buildUrl(
@@ -273,11 +290,12 @@ class RevisionFormatter {
 					),
 					'title' => $this->msg( 'flow-header-action-edit-header' )
 				);
+				break;
 
+			case 'edit-topic': // fall-through
 			case 'edit-post':
 				if ( !$postId ) {
-					// wfDebugLog( 'Flow', __METHOD__ . ' something something' );
-					continue;
+					throw new FlowException( "$type called without \$postId" );
 				}
 				$links['edit'] = array(
 					'url' => $this->urlGenerator->buildUrl(
@@ -310,8 +328,7 @@ class RevisionFormatter {
 
 			case 'hide-post':
 				if ( !$postId ) {
-					throw new FlowException( 'hide-post called without $postId' );
-					break;
+					throw new FlowException( "$type called without \$postId" );
 				}
 				$links['hide'] = array(
 						'url' => $this->urlGenerator->buildUrl(
@@ -339,8 +356,7 @@ class RevisionFormatter {
 
 			case 'delete-post':
 				if ( !$postId ) {
-					throw new FlowException( 'delete-post called without $postId' );
-					break;
+					throw new FlowException( "$type called without \$postId" );
 				}
 				$links['delete'] = array(
 						'url' => $this->urlGenerator->buildUrl(
@@ -368,8 +384,7 @@ class RevisionFormatter {
 
 			case 'suppress-post':
 				if ( !$postId ) {
-					throw new FlowException( 'suppress-post called without $postId' );
-					break;
+					throw new FlowException( "$type called without \$postId" );
 				}
 				$links['suppress'] = array(
 						'url' => $this->urlGenerator->buildUrl(
