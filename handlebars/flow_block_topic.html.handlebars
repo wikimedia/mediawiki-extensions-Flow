@@ -1,5 +1,8 @@
-					<div class="flow_board">
-						<div class="flow-topics">
-							@todo
-						</div>
-					</div>
+<div class="flow-board">
+	<div class="flow-topics">
+		{{!-- There is only one topic, but we use same api response structure --}}
+		{{#eachPost this roots}}
+			{{> flow_topic}}
+		{{/eachPost}}
+	</div>
+</div>

@@ -1,18 +1,18 @@
 
-					<div class="flow-board-navigation">
-						{{#if links.search}}
-							<a href="{{links.search.url}}" title="{{links.search.title}}" class="flow-board-navigator-last"><span class="WikiFont WikiFont-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a>
-						{{else}}
-							<!-- @todo make disabled class do something? -->
-							<a href="#" class="flow-board-navigator-last disabled"><span class="WikiFont WikiFont-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a>
-						{{/if}}
-						<div>
-							{{!-- Causes problems, havn't debugged 
-								{{progressiveEnhancement type="insertion" id="flow-board-collapsers" template="flow_board_collapsers_subcomponent"}}
-							--}}
-							{{> flow_board_collapsers_subcomponent}}
+<div class="flow-board-navigation">
+	{{#if links.search}}
+		<a href="{{links.search.url}}" title="{{links.search.title}}" class="flow-board-navigator-last"><span class="WikiFont WikiFont-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a>
+	{{else}}
+		<!-- @todo make disabled class do something? -->
+		<a href="#" class="flow-board-navigator-last disabled"><span class="WikiFont WikiFont-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a>
+	{{/if}}
+	<div>
+		{{!-- Causes problems, havn't debugged 
+			{{progressiveEnhancement type="insertion" id="flow-board-collapsers" template="flow_board_collapsers_subcomponent"}}
+		--}}
+		{{> flow_board_collapsers_subcomponent}}
 
-							{{!-- Click for sorting options, not sure what this url should be --}}
-							<a href="{{links.unknown}}" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" title="{{l10n "Sorting_tooltip"}}">{{l10n "Newest_topics"}}</a>
-						</div>
-					</div>
+		{{!-- Click for sorting options, not sure what this url should be --}}
+		<a href="{{links.unknown}}" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" title="{{l10n "Sorting_tooltip"}}">{{l10n "Newest_topics"}}</a>
+	</div>
+</div>

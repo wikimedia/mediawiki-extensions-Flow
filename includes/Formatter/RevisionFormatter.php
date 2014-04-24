@@ -641,7 +641,10 @@ class RevisionFormatter {
 					 * E.g.: Special:Contributions has "diff" ($links['diff']),
 					 * ?action=history has "prev" ($links['prev']).
 					 */
-					$links['diff-prev'] = array( $links['diff']['url'], $this->msg( 'last' ) );
+					$links['diff-prev'] = array(
+						'url' => $links['diff']['url'],
+						'title' => $this->msg( 'last' )
+					);
 				}
 
 				/*

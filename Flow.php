@@ -182,6 +182,7 @@ $wgAutoloadClasses['Flow\Formatter\TopicListQuery'] = $dir . 'includes/Formatter
 // Convert model instances into array of user-visible data
 $wgAutoloadClasses['Flow\Formatter\RevisionFormatter'] = $dir . 'includes/Formatter/RevisionFormatter.php';
 $wgAutoloadClasses['Flow\Formatter\TopicListFormatter'] = $dir . 'includes/Formatter/TopicListFormatter.php';
+$wgAutoloadClasses['Flow\Formatter\TopicFormatter'] = $dir . 'includes/Formatter/TopicFormatter.php';
 
 // On demand username loading from home wiki
 $wgAutoloadClasses['Flow\Data\UserNameListener'] = $dir . 'includes/Data/UserNameListener.php';

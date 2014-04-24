@@ -1,26 +1,26 @@
-					<ul class="flow-topic-navigation">
-						<li class="flow-topic-navigation-heading"><h5>{{l10n "Topics_n" this}}</h5></li>
-						{{#eachPost this roots}}
-							<li class="flow-topic-navigator-wrap">
-								<a href="#flow-topic-{{postId}}" class="flow-topic-navigator">
-									{{math @index "+" "1"}}. {{content}}
-									<span class="flow-topic-navigator-meta">
-										{{#if last_updated}}
-											{{timestamp last_updated "active_ago"}}
-										{{else}}
-											{{uuidTimestamp postId "started_ago"}}
-										{{/if}}
-									</span>
-								</a>
-							</li>
-						{{/eachPost}}
-						<li class="flow-topic-navigation-footer">
-							{{l10n "topic_count_sidebar" this}}
-							{{#if links.pagination}}
-								<a href="{{links.pagination.load_more.url}}" title="{{links.pagination.load_more.title}}" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="WikiFont WikiFont-article"></span> {{l10n "Load_More"}}</a>
-							{{else}}
-								<!-- @todo make disabled class do something? -->
-								<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin disabled"><span class="WikiFont WikiFont-article"></span> {{l10n "Load_More"}}</a>
-							{{/if}}
-						</li>
-					</ul>
+<ul class="flow-topic-navigation">
+	<li class="flow-topic-navigation-heading"><h5>{{l10n "Topics_n" this}}</h5></li>
+	{{#eachPost this roots}}
+		<li class="flow-topic-navigator-wrap">
+			<a href="#flow-topic-{{postId}}" class="flow-topic-navigator">
+				{{math @index "+" "1"}}. {{content}}
+				<span class="flow-topic-navigator-meta">
+					{{#if last_updated}}
+						{{timestamp last_updated "active_ago"}}
+					{{else}}
+						{{uuidTimestamp postId "started_ago"}}
+					{{/if}}
+				</span>
+			</a>
+		</li>
+	{{/eachPost}}
+	<li class="flow-topic-navigation-footer">
+		{{l10n "topic_count_sidebar" this}}
+		{{#if links.pagination.fwd}}
+			<a href="{{links.pagination.fwd.url}}" title="{{links.pagination.fwd.title}}" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="WikiFont WikiFont-article"></span> {{l10n "Load_More"}}</a>
+		{{else}}
+			<!-- @todo make disabled class do something? -->
+			<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin disabled"><span class="WikiFont WikiFont-article"></span> {{l10n "Load_More"}}</a>
+		{{/if}}
+	</li>
+</ul>

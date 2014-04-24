@@ -1,44 +1,44 @@
-					<div class="flow-topic" id="flow-topic-{{postId}}">
-						<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
-							<h2 class="flow-topic-title">{{content}}</h2>
-							<span class="flow-author">{{l10n "started_with_participants" this}}</span>
-							<div class="flow-topic-meta">
-								<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-inline" href="#flow-topic-{{postId}}-form-content">{{l10n "Reply" author}}</a>
-								&bull; {{l10n "comment_count" this}} &bull;
-								{{#if last_updated}}
-									<!--span class="WikiFont WikiFont-speech-bubbles"></span--> {{timestamp last_updated "active_ago"}}
-								{{else}}
-									<!--span class="WikiFont WikiFont-speech-bubble"></span--> {{uuidTimestamp postId "started_ago"}}
-								{{/if}}
-							</div>
-							<span class="flow-reply-count"><span class="WikiFont WikiFont-speech-bubble"></span><span class="flow-reply-count-number">{{reply_count}}</span></span>
+<div class="flow-topic" id="flow-topic-{{postId}}">
+	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
+		<h2 class="flow-topic-title">{{content}}</h2>
+		<span class="flow-author">{{l10n "started_with_participants" this}}</span>
+		<div class="flow-topic-meta">
+			<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-inline" href="#flow-topic-{{postId}}-form-content">{{l10n "Reply" author}}</a>
+			&bull; {{l10n "comment_count" this}} &bull;
+			{{#if last_updated}}
+				<!--span class="WikiFont WikiFont-speech-bubbles"></span--> {{timestamp last_updated "active_ago"}}
+			{{else}}
+				<!--span class="WikiFont WikiFont-speech-bubble"></span--> {{uuidTimestamp postId "started_ago"}}
+			{{/if}}
+		</div>
+		<span class="flow-reply-count"><span class="WikiFont WikiFont-speech-bubble"></span><span class="flow-reply-count-number">{{reply_count}}</span></span>
 
-							<div class="flow-menu">
-								<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="WikiFont WikiFont-ellipsis"></span></a></div>
-								<ul class="flow-ui-button-container">
-									{{#if links.topic-history}}
-										<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.topic-history.url}}" title="{{links.topic-history.title}}">{{links.topic-history.title}}</a></li>
-									{{/if}}
-									{{#if actions.lock}}
-										<li><a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="{{actions.lock.url}}" title="{{actions.lock.title}}"><span class="WikiFont WikiFont-lock"></span> {{l10n "Lock"}}</a></li>
-									{{/if}}
-									{{#if actions.hide}}
-										<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{actions.hide.url}}" title="{{actions.hide.title}}"><span class="WikiFont WikiFont-eye-lid"></span> {{l10n "Hide"}}</a></li>
-									{{/if}}
-									{{#if actions.delete}}
-										<li><a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="{{actions.delete.url}}" title="{{actions.delete.title}}"><span class="WikiFont WikiFont-trash-slash"></span> {{l10n "Delete"}}</a></li>
-									{{/if}}
-									{{#if actions.suppress}}
-										<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.delete.title}}"><span class="WikiFont WikiFont-block-slash"></span> {{l10n "Suppress"}}</a></li>
-									{{/if}}
-								</ul>
-							</div>
-						</div>
+		<div class="flow-menu">
+			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="WikiFont WikiFont-ellipsis"></span></a></div>
+			<ul class="flow-ui-button-container">
+				{{#if links.topic-history}}
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.topic-history.url}}" title="{{links.topic-history.title}}">{{links.topic-history.title}}</a></li>
+				{{/if}}
+				{{#if actions.lock}}
+					<li><a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="{{actions.lock.url}}" title="{{actions.lock.title}}"><span class="WikiFont WikiFont-lock"></span> {{l10n "Lock"}}</a></li>
+				{{/if}}
+				{{#if actions.hide}}
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{actions.hide.url}}" title="{{actions.hide.title}}"><span class="WikiFont WikiFont-eye-lid"></span> {{l10n "Hide"}}</a></li>
+				{{/if}}
+				{{#if actions.delete}}
+					<li><a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="{{actions.delete.url}}" title="{{actions.delete.title}}"><span class="WikiFont WikiFont-trash-slash"></span> {{l10n "Delete"}}</a></li>
+				{{/if}}
+				{{#if actions.suppress}}
+					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.delete.title}}"><span class="WikiFont WikiFont-block-slash"></span> {{l10n "Suppress"}}</a></li>
+				{{/if}}
+			</ul>
+		</div>
+	</div>
 
-						{{#eachPost @root replies}}
-							<!-- eachPost topic -->
-							{{post @root this}}
-						{{/eachPost}}
+	{{#eachPost @root replies}}
+		<!-- eachPost topic -->
+		{{post @root this}}
+	{{/eachPost}}
 
-						{{> flow_reply_form}}
-					</div>
+	{{> flow_reply_form}}
+</div>
