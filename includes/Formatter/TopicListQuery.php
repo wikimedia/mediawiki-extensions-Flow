@@ -13,6 +13,7 @@ class TopicListQuery extends AbstractQuery {
 	 * @return FormatterRow[]
 	 */
 	public function getResults( PagerPage $page ) {
+		$section = new \ProfileSection( __METHOD__ );
 		$allPostIds = $this->collectPostIds( $page->getResults() );
 		$posts = $this->collectRevisions( $allPostIds );
 

@@ -20,29 +20,14 @@
 	<ul>
 		'.LCRun2::sec(((is_array($in) && isset($in['revisions'])) ? $in['revisions'] : null), $cx, $in, true, function($cx, $in) {return '
 			<li>
-				(
-				 	'.((LCRun2::ifvar(((is_array($in['links']) && isset($in['links']['diff-cur'])) ? $in['links']['diff-cur'] : null))) ? '
-						<a href="'.htmlentities(((is_array($in['links']['diff-cur']) && isset($in['links']['diff-cur']['url'])) ? $in['links']['diff-cur']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['diff-cur']) && isset($in['links']['diff-cur']['title'])) ? $in['links']['diff-cur']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							'.htmlentities(((is_array($in['links']['diff-cur']) && isset($in['links']['diff-cur']['title'])) ? $in['links']['diff-cur']['title'] : null), ENT_QUOTES, 'UTF-8').'
-						</a>
-					' : '
-						'.LCRun2::ch('l10n', Array('cur'), 'enc', $cx).'
+				('.((LCRun2::ifvar(((is_array($in['links']) && isset($in['links']['diff-cur'])) ? $in['links']['diff-cur'] : null))) ? '<a href="'.htmlentities(((is_array($in['links']['diff-cur']) && isset($in['links']['diff-cur']['url'])) ? $in['links']['diff-cur']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['diff-cur']) && isset($in['links']['diff-cur']['title'])) ? $in['links']['diff-cur']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities(((is_array($in['links']['diff-cur']) && isset($in['links']['diff-cur']['title'])) ? $in['links']['diff-cur']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>' : ''.LCRun2::ch('l10n', Array('cur'), 'enc', $cx).'
 					').'
 					'.LCRun2::ch('l10n', Array('pipe-separator'), 'enc', $cx).'
 					'.((LCRun2::ifvar(((is_array($in['links']) && isset($in['links']['diff-prev'])) ? $in['links']['diff-prev'] : null))) ? '
-						<a href="'.htmlentities(((is_array($in['links']['diff-prev']) && isset($in['links']['diff-prev']['url'])) ? $in['links']['diff-prev']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['diff-prev']) && isset($in['links']['diff-prev']['title'])) ? $in['links']['diff-prev']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							'.htmlentities(((is_array($in['links']['diff-prev']) && isset($in['links']['diff-prev']['title'])) ? $in['links']['diff-prev']['title'] : null), ENT_QUOTES, 'UTF-8').'
-						</a>
-					' : '
-						'.LCRun2::ch('l10n', Array('last'), 'enc', $cx).'
-					').'
-					'.((LCRun2::ifvar(((is_array($in['links']) && isset($in['links']['topic'])) ? $in['links']['topic'] : null))) ? '
+						<a href="'.htmlentities(((is_array($in['links']['diff-prev']) && isset($in['links']['diff-prev']['url'])) ? $in['links']['diff-prev']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['diff-prev']) && isset($in['links']['diff-prev']['title'])) ? $in['links']['diff-prev']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities(((is_array($in['links']['diff-prev']) && isset($in['links']['diff-prev']['title'])) ? $in['links']['diff-prev']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>' : ''.LCRun2::ch('l10n', Array('last'), 'enc', $cx).'
+					').''.((LCRun2::ifvar(((is_array($in['links']) && isset($in['links']['topic'])) ? $in['links']['topic'] : null))) ? '
 						'.LCRun2::ch('l10n', Array('pipe-separator'), 'enc', $cx).'
-						<a href="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['url'])) ? $in['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['title'])) ? $in['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['title'])) ? $in['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'
-						</a>
-					' : '').'
-				)
+						<a href="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['url'])) ? $in['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['title'])) ? $in['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['title'])) ? $in['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>' : '').')
 
 				'.LCRun2::ch('historyTimestamp', Array($in), 'enc', $cx).'
 

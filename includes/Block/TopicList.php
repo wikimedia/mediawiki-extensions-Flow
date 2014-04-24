@@ -180,125 +180,22 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
-		$result = array(
-			'workflowId' => $this->workflow->getId()->getAlphadecimal(),
-			'type' => $this->getName(),
-			'roots' => array(),
-			'posts' => array(),
-			'revisions' => array(),
-			'links' => array(),
-			'actions' => $this->buildApiActions(),
-			'editToken' => $this->getEditToken(),
-		);
+		$serializer = Container::get( 'formatter.topiclist' );
 		if ( $this->workflow->isNew() ) {
-			return $result;
+			return $serializer->getEmptyResult( $this->workflow );
 		}
-
-		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
-		$page = $this->getPage( $findOptions );
 
 		$ctx = \RequestContext::getMain();
-		$found = Container::get( 'query.topiclist' )->getResults( $page );
-
-		// @todo everything past here into a TopicListFormatter instance?
-
-		$serializer = Container::get( 'formatter.revision' );
-		$revisions = $posts = $replies = array();
-		foreach( $found as $formatterRow ) {
-			$serialized = $serializer->formatApi( $formatterRow, $ctx );
-			if ( !$serialized ) {
-				continue;
-			}
-			$revisions[$serialized['revisionId']] = $serialized;
-			$posts[$serialized['postId']][] = $serialized['revisionId'];
-			$replies[$serialized['replyToId']][] = $serialized['postId'];
-		}
-
-		foreach ( $revisions as $i => $serialized ) {
-			$alpha = $serialized['postId'];
-			$revisions[$i]['replies'] = isset( $replies[$alpha] ) ? $replies[$alpha] : array();
-		}
-
-		$list = array();
+		// @todo remove the 'api' => true, its always api
+		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
+		$page = $this->getPage( $findOptions );
 		foreach ( $page->getResults() as $topicListEntry ) {
-			$list[] = $alpha = $topicListEntry->getId()->getAlphadecimal();
 			$workflowIds[] = $topicListEntry->getId();
 		}
-
 		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
-		// re-index workflows by their workflow id
-		if ( $workflows ) {
-			$workflows = array_combine(
-				array_map( function( $x ) { return $x->getId()->getAlphadecimal(); }, $workflows ),
-				$workflows
-			);
-		}
+		$found = Container::get( 'query.topiclist' )->getResults( $page );
 
-		foreach ( $list as $alpha ) {
-			// Metadata that requires everything to be serialied first
-			$metadata = $this->generateTopicMetadata( $posts, $revisions, $workflows, $alpha );
-			foreach ( $posts[$alpha] as $revId ) {
-				$revisions[$revId] += $metadata;
-			}
-		}
-
-		return array(
-			'roots' => $list,
-			'posts' => $posts,
-			'revisions' => $revisions,
-			'links' => array(
-				'search' => array(
-					'url' => '',
-					'title' => '',
-				),
-				'pagination' => array(
-					'load_more' => array(
-						'url' => '',
-						'title' => '',
-					),
-				),
-			),
-		) + $result;
-	}
-
-	protected function buildApiActions() {
-		$urlGenerator = Container::get( 'url_generator' );
-		return array(
-			'newtopic' => array(
-				'url' => $urlGenerator->buildUrl(
-					$this->workflow->getArticleTitle(),
-					'new-topic', // ???
-					array(
-						'workflow' => $this->workflow->getId()->getAlphadecimal(),
-					)
-				),
-				'title' => wfMessage( 'flow-newtopic-start-placeholder' ),
-			),
-		);
-	}
-
-	protected function generateTopicMetadata( array $posts, array $revisions, array $workflows, $alpha ) {
-		$replies = -1;
-		$authors = array();
-		$stack = new \SplStack;
-		$stack->push( $revisions[$posts[$alpha][0]] );
-		do {
-			$data = $stack->pop();
-			$replies++;
-			$authors[] = $data['author']['wiki'] . "\t" . $data['author']['name'];
-			foreach ( $data['replies'] as $postId ) {
-				$stack->push( $revisions[$posts[$postId][0]] );
-			}
-		} while( !$stack->isEmpty() );
-
-		$workflow = isset( $workflows[$alpha] ) ? $workflows[$alpha] : null;
-
-		return array(
-			'reply_count' => $replies,
-			'author_count' => count( array_unique( $authors ) ),
-			// ms timestamp
-			'last_updated' => $workflow ? $workflow->getLastModifiedObj()->getTimestamp() * 1000 : null,
-		);
+		return $serializer->formatApi( $this->workflow, $workflows, $found, $ctx );
 	}
 
 	public function getName() {

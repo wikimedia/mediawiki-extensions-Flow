@@ -503,10 +503,9 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function renderTopicAPI( Templating $templating, array $options ) {
-		$topic = $this->workflow;
-		$rootPost = $this->loadRootPost();
-		if ( !$rootPost ) {
-			return array();
+		$serializer = Container::get( 'formatter.topic' );
+		if ( $this->workflow->isNew() ) {
+			return $serializer->getEmptyResult( $this->workflow->getId() );
 		}
 
 		if ( isset( $options['showhistoryfor'] ) ) {
@@ -527,28 +526,9 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		$serializer = Container::get( 'formatter.revision' );
-		$stack = new \SplStack;
-		$stack->push( $rootPost );
-		$result = array();
-		while( !$stack->isEmpty() ) {
-			$post = $stack->pop();
-			foreach ( $post->getChildren() as $child ) {
-				$stack->push( $child );
-			}
-			$result[$child->getRevisionId()->getAlphadecimal()] = $serializer->formatApi(
-			);
-		}
+		$found = Container::get( 'query.topic' )->getResults( $this->workflow->getId() );
 
-		$result = array( $rootPost->getRevisionId()->getAlphadecimal() => $output );
-		foreach( $rootPost->getChildren() as $child ) {
-			$res = $this->renderPostAPI( $templating, $child, $options );
-			if ( $res !== null ) {
-				$result = array_merge( $result, $res );
-			}
-		}
-
-		return $result;
+		return $serializer->getResult( $found );
 	}
 
 	protected function renderPostAPI( Templating $templating, PostRevision $post, array $options ) {

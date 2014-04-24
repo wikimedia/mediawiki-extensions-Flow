@@ -640,16 +640,10 @@ $c['formatter.contributions'] = $c->share( function( $c ) {
 		$c['formatter.revision']
 	);
 } );
-$c['board-history.query'] = $c->share( function( $c ) {
+$c['query.board-history'] = $c->share( function( $c ) {
 	return new Flow\Formatter\BoardHistoryQuery(
 		$c['storage'],
 		$c['repository.tree']
-	);
-} );
-$c['board-history.formatter'] = $c->share( function( $c ) {
-	return new Flow\Formatter\BoardHistory(
-		$c['permissions'],
-		$c['formatter.revision']
 	);
 } );
 $c['formatter.revision'] = $c->share( function( $c ) {
@@ -657,6 +651,12 @@ $c['formatter.revision'] = $c->share( function( $c ) {
 		$c['permissions'],
 		$c['templating'],
 		$c['repository.username']
+	);
+} );
+$c['formatter.topiclist'] = $c->share( function( $c ) {
+	return new Flow\Formatter\TopicListFormatter(
+		$c['url_generator'],
+		$c['formatter.revision']
 	);
 } );
 $c['logger'] = $c->share( function( $c ) {
