@@ -7,6 +7,8 @@ use Article;
 use ContentHandler;
 use Revision;
 use Title;
+use User;
+use SiteStatsUpdate;
 
 // I got the feeling NinetyNinePercentController was a bit much.
 interface OccupationController {
@@ -74,7 +76,44 @@ class TalkpageManager implements OccupationController {
 		if ( $revision === null || $revision->getComment( Revision::RAW ) != $comment ) {
 			$message = wfMessage( 'flow-talk-taken-over' )->inContentLanguage()->text();
 			$content = ContentHandler::makeContent( $message, $title );
-			$page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC );
+			$page->doEditContent( $content, $comment, EDIT_SUPPRESS_RC, false, $this->getTalkpageUser() );
 		}
+	}
+
+	/**
+	 * Return the account used to add the revision made when a page is taken over
+	 * by Flow, setting it up if it doesn't already exist.
+	 * Based on code from MassMessage
+	 * https://mediawiki.org/wiki/Extension:MassMessage
+	 *
+	 * @return User
+	 */
+	protected function getTalkpageUser() {
+		$user = User::newFromName(
+			wfMessage( 'flow-talk-username' )->inContentLanguage()->text()
+		);
+		$user->load();
+
+		if ( $user->getId() && $user->mPassword == '' && $user->mNewpassword == '' ) {
+			// The account has already been set up.
+			return $user;
+		}
+
+		if ( !$user->getId() ) {
+			$user->addToDatabase();
+			$user->saveSettings();
+
+			// Increment site_stats.ss_users.
+			$ssu = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
+			$ssu->doUpdate();
+		} else {
+			// Take over an existing account.
+			$user->setPassword( null );
+			$user->setEmail( null );
+			$user->saveSettings();
+		}
+
+		$user->addGroup( 'bot' );
+		return $user;
 	}
 }

@@ -11,6 +11,7 @@
     },
     "flow-desc": "Workflow management system",
     "flow-talk-taken-over": "This talk page has been taken over by a [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow board].",
+    "flow-talk-username": "Flow talk page manager",
     "log-name-flow": "Flow activity log",
     "logentry-delete-flow-delete-post": "$1 {{GENDER:$2|deleted}} a [$4 post] on [[$3]]",
     "logentry-delete-flow-restore-post": "$1 {{GENDER:$2|restored}} a [$4 post] on [[$3]]",
