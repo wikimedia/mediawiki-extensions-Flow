@@ -56,23 +56,23 @@
 	}
 }
 
-// Make the new topic input mimic new topic text
-.flow-newtopic-form input.mw-ui-input {
-	padding-left: .75em;
-	font-size: 1.75em;
-	font-weight: bold;
-	line-height: 1.25em;
-}
-
-// Attach these two inputs together to make them seem like one congruous input
 .flow-newtopic-form {
-	.mw-ui-input,
-	textarea {
+	// Attach these two inputs together to make them seem like one congruous input
+	input.mw-ui-input,
+	textarea.mw-ui-input {
 		margin-top: 0;
 		margin-bottom: 0;
 	}
-	textarea {
+	textarea.mw-ui-input {
+		padding-left: 1.5em;
 		border-top-width: 0;
+	}
+	// Make the new topic input mimic new topic text
+	input.mw-ui-input {
+		padding-left: .75em;
+		font-size: 1.75em;
+		font-weight: bold;
+		line-height: 1.25em;
 	}
 }
 
