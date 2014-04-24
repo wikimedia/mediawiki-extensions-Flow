@@ -7,6 +7,7 @@ use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Header;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Repository\TreeRepository;
@@ -216,6 +217,8 @@ abstract class AbstractQuery {
 			return $this->getWorkflowById( $rootPostId );
 		} elseif ( $revision instanceof Header ) {
 			return $this->getWorkflowById( $revision->getWorkflowId() );
+		} elseif ( $revision instanceof PostSummary ) {
+			return $this->getWorkflowById( $revision->getCollection()->getWorkflowId() );
 		} else {
 			throw new \MWException( 'Unsupported revision type ' . get_class( $revision ) );
 		}

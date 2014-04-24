@@ -6,9 +6,12 @@ use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
+use Flow\Exception\InvalidInputException;
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Templating;
+use Flow\View\PostSummaryRevisionView;
 use Flow\RevisionActionPermissions;
 
 class TopicSummaryBlock extends AbstractBlock {
@@ -31,14 +34,19 @@ class TopicSummaryBlock extends AbstractBlock {
 	protected $nextRevision;
 
 	/**
-	 * @var string[]
+	 * @var PostRevision|null
 	 */
-	protected $supportedPostActions = array( 'edit-topic-summary' );
+	protected $topicTitle;
 
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = array( 'topic-summary-view' );
+	protected $supportedPostActions = array( 'edit-topic-summary', 'close-open-topic' );
+
+	/**
+	 * @var string[]
+	 */
+	protected $supportedGetActions = array( 'topic-summary-view', 'compare-postsummary-revisions', 'edit-topic-summary' );
 
 	/**
 	 * @param string
@@ -69,9 +77,35 @@ class TopicSummaryBlock extends AbstractBlock {
 				$this->validateTopicSummary();
 			break;
 
+			case 'close-open-topic':
+				if ( !$this->isCloseOpenTopic() ) {
+					$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-state' ) );
+					return;
+				}
+				$this->validateTopicSummary();
+			break;
+
 			default:
 				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
+	}
+
+	/**
+	 * Check if this is closing/restoring a topic
+	 */
+	protected function isCloseOpenTopic() {
+		$state = isset( $this->submitted['moderationState'] ) ? $this->submitted['moderationState'] : '';
+		if ( $state == AbstractRevision::MODERATED_CLOSED ) {
+			return true;
+		}
+		$root = $this->findTopicTitle();
+		if (
+			$root->getModerationState() == AbstractRevision::MODERATED_CLOSED &&
+			$state == 'restore' )
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -138,7 +172,10 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @throws InvalidDataException
 	 * @return PostRevision
 	 */
-	protected function findTopicTitle() {
+	public function findTopicTitle() {
+		if ( $this->topicTitle ) {
+			return $this->topicTitle;
+		}
 		$found = $this->storage->find(
 			'PostRevision',
 			array( 'rev_type_id' => $this->workflow->getId() ),
@@ -147,7 +184,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		if ( !$found ) {
 			throw new InvalidDataException( 'Every workflow must have an associated topic title', 'missing-topic-title' );
 		}
-		return reset( $found );
+		return $this->topicTitle = reset( $found );
 	}
 
 	/**
@@ -181,6 +218,10 @@ class TopicSummaryBlock extends AbstractBlock {
 				return $this->saveTopicSummary();
 			break;
 
+			case 'close-open-topic':
+				return $this->saveTopicSummary();
+			break;
+
 			default:
 				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
@@ -192,11 +233,60 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @param array
 	 * @throws InvalidActionException
 	 */
-	public function render( Templating $templating, array $options ) {
+	public function render( Templating $templating, array $options, $return = false ) {
+		$output = $templating->getOutput();
+		$output->addModuleStyles( array( 'ext.flow.discussion.styles', 'ext.flow.moderation' ) );
+		$output->addModules( array( 'ext.flow.discussion' ) );
+		$title = $templating->getContent( $this->findTopicTitle(), 'wikitext' );
+		$output->setHtmlTitle( $title );
+		$output->setPageTitle( $title );
+
+		$prefix = $templating->render(
+			'flow:topic-permalink-warning.html.php',
+			array(
+				'block' => $this,
+			),
+			$return
+		);
+
 		switch( $this->action ) {
+			case 'compare-postsummary-revisions':
+				if ( !isset( $options['newRevision'] ) ) {
+					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+				}
+				$revisionView = PostSummaryRevisionView::newFromId( $options['newRevision'], $templating, $this, $this->user );
+				if ( !$revisionView ) {
+					throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
+				}
+
+				if ( isset( $options['oldRevision'] ) ) {
+					return $prefix . $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
+				} else {
+					return $prefix . $revisionView->renderDiffViewAgainstPrevious( $return );
+				}
+			break;
+
 			case 'topic-summary-view':
-				// @Todo - This will be implemented in diff view patch, having a placeholder in
-				// here will allow us to query data from api via renderAPI()
+				$revisionView = null;
+				if ( isset( $options['revId'] ) ) {
+					$revisionView = PostSummaryRevisionView::newFromId( $options['revId'], $templating, $this, $this->user );
+				}
+				if ( !$revisionView ) {
+					throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
+				} else if ( !$this->permissions->isAllowed( $revisionView->getRevision(), 'view' ) ) {
+					$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
+					return null;
+				}
+				return $prefix . $revisionView->renderSingleView( $return );
+			break;
+
+			case 'edit-topic-summary':
+				return $templating->render( 'flow:edit-topic-summary.html.php', array(
+					'block' => $this,
+					'workflow' => $this->getWorkflow(),
+					'topicSummary' => $this->topicSummary,
+					'user' => $this->user,
+				), $return );
 			break;
 
 			default:

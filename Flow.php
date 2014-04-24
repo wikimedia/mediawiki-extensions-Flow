@@ -117,6 +117,7 @@ $wgAutoloadClasses['Flow\View\RevisionCreatable'] = "$dir/includes/View/Revision
 $wgAutoloadClasses['Flow\View\RevisionView'] = "$dir/includes/View/Revision.php";
 $wgAutoloadClasses['Flow\View\PostRevisionView'] = "$dir/includes/View/Revision.php";
 $wgAutoloadClasses['Flow\View\HeaderRevisionView'] = "$dir/includes/View/Revision.php";
+$wgAutoloadClasses['Flow\View\PostSummaryRevisionView'] = "$dir/includes/View/Revision.php";
 
 // Classes that deal with database interaction between database and the models
 $wgAutoloadClasses['Flow\Repository\TreeRepository'] = $dir . 'includes/Repository/TreeRepository.php';
@@ -130,6 +131,7 @@ $wgAutoloadClasses['Flow\Data\FeatureIndex'] = $dir . 'includes/Data/FeatureInde
 $wgAutoloadClasses['Flow\Data\UniqueFeatureIndex'] = $dir . 'includes/Data/UniqueFeatureIndex.php';
 $wgAutoloadClasses['Flow\Data\TopKIndex'] = $dir . 'includes/Data/TopKIndex.php';
 $wgAutoloadClasses['Flow\Data\TopicHistoryIndex'] = $dir . 'includes/Data/TopicHistoryIndex.php';
+$wgAutoloadClasses['Flow\Data\TopicHistoryStorage'] = $dir . 'includes/Data/TopicHistoryStorage.php';
 $wgAutoloadClasses['Flow\Data\BoardHistoryStorage'] = $dir . 'includes/Data/BoardHistoryStorage.php';
 $wgAutoloadClasses['Flow\Data\BoardHistoryIndex'] = $dir . 'includes/Data/BoardHistoryIndex.php';
 $wgAutoloadClasses['Flow\Data\ObjectStorage'] = $dir . 'includes/Data/ObjectStorage.php';
@@ -148,6 +150,7 @@ $wgAutoloadClasses['Flow\Data\Pager'] = $dir . 'includes/Data/Pager.php';
 $wgAutoloadClasses['Flow\Data\PagerPage'] = $dir . 'includes/Data/PagerPage.php';
 $wgAutoloadClasses['Flow\Data\RecentChanges'] = $dir . 'includes/Data/RecentChanges.php';
 $wgAutoloadClasses['Flow\Data\PostRevisionRecentChanges'] = $dir . 'includes/Data/PostRevisionRecentChanges.php';
+$wgAutoloadClasses['Flow\Data\PostSummaryRecentChanges'] = $dir . 'includes/Data/PostSummaryRecentChanges.php';
 $wgAutoloadClasses['Flow\Data\HeaderRecentChanges'] = $dir . 'includes/Data/HeaderRecentChanges.php';
 $wgAutoloadClasses['Flow\Data\Compactor'] = $dir . 'includes/Data/Compactor.php';
 $wgAutoloadClasses['Flow\Data\FeatureCompactor'] = $dir . 'includes/Data/FeatureCompactor.php';
@@ -210,6 +213,7 @@ $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
 $wgAutoloadClasses['ApiFlowBase'] = "$dir/includes/api/ApiFlowBase.php";
+$wgAutoloadClasses['ApiFlowCloseOpenTopic'] = "$dir/includes/api/ApiFlowCloseOpenTopic.php";
 $wgAutoloadClasses['ApiFlowEditHeader'] = "$dir/includes/api/ApiFlowEditHeader.php";
 $wgAutoloadClasses['ApiFlowEditPost'] = "$dir/includes/api/ApiFlowEditPost.php";
 $wgAutoloadClasses['ApiFlowEditTitle'] = "$dir/includes/api/ApiFlowEditTitle.php";
@@ -218,10 +222,12 @@ $wgAutoloadClasses['ApiFlowModeratePost'] = "$dir/includes/api/ApiFlowModeratePo
 $wgAutoloadClasses['ApiFlowModerateTopic'] = "$dir/includes/api/ApiFlowModerateTopic.php";
 $wgAutoloadClasses['ApiFlowNewTopic'] = "$dir/includes/api/ApiFlowNewTopic.php";
 $wgAutoloadClasses['ApiFlowReply'] = "$dir/includes/api/ApiFlowReply.php";
+$wgAutoloadClasses['ApiQueryPropFlowInfo'] = "$dir/includes/api/ApiQueryPropFlowInfo.php";
 
 $wgAPIListModules['flow'] = 'ApiQueryFlow';
 $wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
+$wgAPIPropModules['flowinfo'] = 'ApiQueryPropFlowInfo';
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
@@ -244,6 +250,7 @@ $wgHooks['InfoAction'][] = 'FlowHooks::onInfoAction';
 $wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGetLinksFromRow';
 $wgHooks['MakeGlobalVariablesScript'][] = 'FlowHooks::onMakeGlobalVariablesScript';
 $wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';
+$wgHooks['SkinMinervaDefaultModules'][] = 'FlowHooks::onSkinMinervaDefaultModules';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
@@ -256,7 +263,9 @@ $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
 // permissions config than what's assumed to test.
 $wgFlowGroupPermissions = array();
 $wgFlowGroupPermissions['user']['flow-hide'] = true;
+$wgFlowGroupPermissions['user']['flow-close'] = true;
 $wgFlowGroupPermissions['sysop']['flow-hide'] = true;
+$wgFlowGroupPermissions['sysop']['flow-close'] = true;
 $wgFlowGroupPermissions['sysop']['flow-delete'] = true;
 $wgFlowGroupPermissions['sysop']['flow-edit-post'] = true;
 $wgFlowGroupPermissions['oversight']['flow-suppress'] = true;

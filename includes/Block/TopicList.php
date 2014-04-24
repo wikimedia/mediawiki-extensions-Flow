@@ -176,7 +176,39 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
+<<<<<<< HEAD   (c7a894 Implement board-history in new frontend)
 		throw new FlowException( 'deprecated' );
+=======
+		$templating->getOutput()->addModuleStyles(
+			array(
+				'ext.flow.base.styles',
+				'ext.flow.discussion.styles',
+				'ext.flow.moderation.styles',
+			)
+		);
+		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
+		if ( $this->workflow->isNew() ) {
+			$templating->render( "flow:topiclist.html.php", array(
+				'block' => $this,
+				'topics' => array(),
+				'user' => $this->user,
+				'page' => false,
+				'permissions' => $this->permissions,
+			) );
+		} else {
+			$findOptions = $this->getFindOptions( $options );
+			$page = $this->getPage( $findOptions );
+			$topics = $this->getTopics( $page );
+
+			$templating->render( "flow:topiclist.html.php", array(
+				'block' => $this,
+				'topics' => $topics,
+				'user' => $this->user,
+				'page' => $page,
+				'permissions' => $this->permissions,
+			) );
+		}
+>>>>>>> BRANCH (06ecee Localisation updates from https://translatewiki.net.)
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {

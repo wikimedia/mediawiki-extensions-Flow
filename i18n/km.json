@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sovichet"
+		]
+	},
+	"flow-rev-message-create-topic-summary": "$1 {{GENDER:$2|បាន​បង្កើត}}​ប្រធានបទ​សង្ខេប​នៅ $3។"
+}

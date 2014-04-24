@@ -49,21 +49,13 @@ class FlowPage
   # a:contains("Actions")' ) but in page-object, there are no good solutions.
   # There's https://github.com/cheezy/page-object/wiki/Nested-Elements but it
   # makes little sense.
-  # XPath CSS class handling copied from
-  # http://stackoverflow.com/questions/8808921/selecting-a-css-class-with-xpath
   a(:post_actions_link, xpath: "//div[contains(concat(' ', normalize-space(@class), ' '), ' flow-post-container ')]//a[text()='Actions']", index: 1)
-  # Can't use css attribute with text_area, should be fixed in 2014-02 by https://github.com/watir/watir-webdriver/pull/244
-  # NOT YET: text_area(:post_edit, css: "form.flow-edit-form .flow-edit-content")
-  # so instead awful xpath:
-  text_area(:post_edit, xpath: "//form[@class='flow-edit-form']//textarea")
+  text_area(:post_edit, css: "form.flow-edit-form .flow-edit-content")
   button(:preview_button, class: "mw-ui-button flow-preview-submit")
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
   list_item(:small_view, title: "Small view")
   a(:talk_link, text: "Talk")
-  # Can't use css attribute with text_field, should be fixed in 2014-02 by https://github.com/watir/watir-webdriver/pull/244
-  # NOT YET: text_field(:title_edit, css: "form.flow-edit-title-form .flow-edit-content")
-  # so instead awful xpath:
-  text_field(:title_edit, xpath: "//form[@class='flow-edit-title-form']//input[@type='text']")
+  text_field(:title_edit, css: "form.flow-edit-title-form .flow-edit-content")
   a(:topic_actions_link, xpath: "//div[contains(concat(' ', normalize-space(@class), ' '), ' flow-topic-container ')]//a[text()='Actions']", index: actions_index)
   div(:topic_post, class: "flow-post-content", index: topic_index)
   div(:topic_title, class: "flow-topic-title", index: topic_index)

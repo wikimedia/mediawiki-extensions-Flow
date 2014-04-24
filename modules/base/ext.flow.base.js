@@ -11,6 +11,7 @@ mw.flow = {
 		 */
 		'mapPrefixes' : function( action ) {
 			return {
+				'close-open-topic': 'cot',
 				'edit-header': 'eh',
 				'edit-post': 'ep',
 				'edit-title': 'et',
@@ -163,6 +164,10 @@ mw.flow = {
 			return mw.flow.api.readBlock( pageName, workflowId, 'header', options, 'header-view' );
 		},
 
+		'readTopicSummary': function( pageName, topicId, options ) {
+			return mw.flow.api.readBlock( pageName, topicId, 'topicsummary', options, 'topic-summary-view' );
+		},
+
 		generateTopicAction: function( actionName, parameterList, promiseFilterCallback ) {
 			var params = $.makeArray( arguments ),
 				innerAction;
@@ -178,7 +183,9 @@ mw.flow = {
 		},
 
 		/**
-		 * @param {string} blockName
+		 * Generate block action
+		 *
+		 * @param {string|object} blockName
 		 * @param {string} actionName
 		 * @param {object} parameterList
 		 * @param {function} promiseFilterCallback
@@ -191,7 +198,14 @@ mw.flow = {
 					paramIndex = 1,
 					requestArguments = arguments,
 					newDeferredObject,
-					realParams = {};
+					block;
+
+				// Don't do blockName = [blockname]
+				if ( typeof blockName === 'string' ) {
+					block = [blockName];
+				} else {
+					block = blockName;
+				}
 
 				$.each( parameterList, function ( key, value ) {
 					requestParams[value] = requestArguments[paramIndex];
@@ -204,23 +218,35 @@ mw.flow = {
 					requestParams,
 					true
 				).done( function ( data ) {
-					var output;
+					var output = {}, success = true;
 
 					if ( data.flow[actionName].status === 'error' ) {
 						deferredObject.reject( 'block-errors', data.flow[actionName].result );
 						return;
 					}
 
+					$.each( block, function ( key, value ) {
+						if ( !data.flow[actionName].result[value] ) {
+							success = false;
+							return false;
+						} else {
+							if ( block.length === 1 ) {
+								output = data.flow[actionName].result[value];
+							} else {
+								output[value] = data.flow[actionName].result[value];
+							}
+						}
+					} );
+
 					if (
 						!data.flow ||
 						!data.flow[actionName] ||
 						!data.flow[actionName].result ||
-						!data.flow[actionName].result[blockName]
+						!success
 					) {
 						deferredObject.reject( 'invalid-result', 'Unable to find appropriate section in result' );
 						return;
 					}
-					output = data.flow[actionName].result[blockName];
 
 					deferredObject.resolve( output, data );
 				} )
@@ -293,6 +319,25 @@ mw.flow.api.editHeader = mw.flow.api.generateBlockAction(
 	'edit-header',
 	[
 		'content',
+		'prev_revision'
+	]
+);
+
+mw.flow.api.editTopicSummary = mw.flow.api.generateBlockAction(
+	'topicsummary',
+	'edit-topic-summary',
+	[
+		'summary',
+		'prev_revision'
+	]
+);
+
+mw.flow.api.closeReopenTopic = mw.flow.api.generateBlockAction(
+	[ 'topicsummary', 'topic' ],
+	'close-open-topic',
+	[
+		'summary',
+		'moderationState',
 		'prev_revision'
 	]
 );

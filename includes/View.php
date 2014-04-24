@@ -38,9 +38,14 @@ class View extends ContextSource {
 
 	public function show( WorkflowLoader $loader, $action ) {
 		$out = $this->getOutput();
+<<<<<<< HEAD   (c7a894 Implement board-history in new frontend)
 		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.new.styles' ) );
 		$out->addModules( array( 'ext.flow.new' ) );
 
+=======
+		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.base.styles' ) );
+		$out->addModules( array( 'ext.flow.base', 'ext.flow.editor' ) );
+>>>>>>> BRANCH (06ecee Localisation updates from https://translatewiki.net.)
 
 		// Allow other extensions to add modules
 		wfRunHooks( 'FlowAddModules', array( $out ) );

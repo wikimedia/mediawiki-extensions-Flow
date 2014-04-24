@@ -15,6 +15,7 @@ use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
+use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\View\History\History;
@@ -58,6 +59,8 @@ class TopicBlock extends AbstractBlock {
 		'edit-post', 'reply',
 		// Moderation
 		'moderate-topic',
+		// Close or open topic
+		'close-open-topic',
 		'moderate-post', 'hide-post', 'delete-post', 'suppress-post', 'restore-post',
 		// Other stuff
 		'edit-title',
@@ -91,6 +94,20 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function validate() {
+		// If the topic is closed, the only allowed action is to reopen it
+		$topicTitle = $this->loadTopicTitle();
+		if ( $topicTitle ) {
+			if (
+				$topicTitle->isClosed()
+				&& (
+					$this->action !== 'close-open-topic'
+					|| $this->submitted['moderationState'] !== 'restore'
+				)
+			) {
+				$this->addError( 'moderate', wfMessage( 'flow-error-topic-is-closed' ) );
+			}
+		}
+
 		switch( $this->action ) {
 		case 'edit-title':
 			$this->validateEditTitle();
@@ -101,6 +118,7 @@ class TopicBlock extends AbstractBlock {
 			break;
 
 		case 'moderate-topic':
+		case 'close-open-topic':
 			$this->validateModerateTopic();
 			break;
 
@@ -240,6 +258,11 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function doModerate( PostRevision $post, $moderationState = null ) {
+		if ( $this->submitted['moderationState'] === 'close' && $post->isModerated() ) {
+			$this->addError( 'moderate', wfMessage( 'flow-error-close-moderated-post' ) );
+			return;
+		}
+
 		// Moderation state supplied in request parameters rather than the action
 		if ( $moderationState === null ) {
 			$moderationState = $this->submitted['moderationState'];
@@ -277,9 +300,22 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			return;
 		}
+
 		if ( empty( $this->submitted['reason'] ) ) {
-			$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
-			return;
+			// If a summary is provided instead, parse the content and truncate it
+			if ( !empty( $this->submitted['summary'] ) ) {
+				global $wgLang;
+				$this->submitted['reason'] = $wgLang->truncate(
+					trim(
+						strip_tags( Utils::convert( 'wikitext', 'html', $this->submitted['summary'], $this->workflow->getArticleTitle() ) )
+					),
+					255
+				);
+			}
+			if ( empty( $this->submitted['reason'] ) ) {
+				$this->addError( 'moderate', wfMessage( 'flow-error-invalid-moderation-reason' ) );
+				return;
+			}
 		}
 
 		$reason = $this->submitted['reason'];
@@ -340,6 +376,7 @@ class TopicBlock extends AbstractBlock {
 		switch( $this->action ) {
 		case 'reply':
 		case 'moderate-topic':
+		case 'close-open-topic':
 		case 'hide-post':
 		case 'delete-post':
 		case 'suppress-post':
@@ -365,6 +402,24 @@ class TopicBlock extends AbstractBlock {
 				$newRevision->setChildren( array() );
 			}
 
+<<<<<<< HEAD   (c7a894 Implement board-history in new frontend)
+=======
+			// FIXME special case
+			if ( $this->action == 'edit-title' ) {
+				$renderFunction = function( Templating $templating ) use ( $newRevision ) {
+					return $templating->getContent( $newRevision, 'wikitext' );
+				};
+			} elseif ( $this->action === 'moderate-topic' || $this->action === 'close-open-topic' ) {
+				$renderFunction = function( Templating $templating ) use ( $self, $newRevision ) {
+					return $templating->renderTopic( $newRevision, $self );
+				};
+			} else {
+				$renderFunction = function( Templating $templating ) use ( $self, $newRevision, $rootPost ) {
+					return $templating->renderPost( $newRevision, $self );
+				};
+			}
+
+>>>>>>> BRANCH (06ecee Localisation updates from https://translatewiki.net.)
 			if ( is_array( $this->notification ) ) {
 				$this->notification['params']['revision'] = $this->newRevision;
 				// $this->topicTitle has already been loaded before in case
@@ -384,8 +439,114 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
+<<<<<<< HEAD   (c7a894 Implement board-history in new frontend)
 	public function render( Templating $templating, array $options ) {
 		throw new FlowException( 'deprecated' );
+=======
+	public function render( Templating $templating, array $options, $return = false ) {
+		if ( $this->action === 'history' ) {
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.history' ) );
+			$templating->getOutput()->addModules( array( 'ext.flow.history' ) );
+		} else {
+			$templating->getOutput()->addModuleStyles( array( 'ext.flow.discussion.styles', 'ext.flow.moderation.styles' ) );
+			$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
+		}
+
+		$prefix = '';
+
+		switch( $this->action ) {
+		case 'history':
+			$root = $this->loadRootPost();
+			if ( !$root ) {
+				return '';
+			}
+
+			// BC: old history links used to also have postId for topic history
+			if ( isset( $options['postId'] ) && !$root->getPostId()->equals( UUID::create( $options['postId'] ) ) ) {
+				return $prefix . $this->renderPostHistory( $templating, $options, $return );
+			}
+
+			$history = $this->loadTopicHistory();
+
+			return $prefix . $templating->render( "flow:topic-history.html.php", array(
+				'block' => $this,
+				'topic' => $this->workflow,
+				'root' => $root,
+				'history' => new History( $history ),
+				'historyRenderer' => new HistoryRenderer( $this->permissions, $templating, $this ),
+			), $return );
+
+		case 'edit-post':
+			return $prefix . $this->renderEditPost( $templating, $options, $return );
+
+		case 'edit-title':
+			$topicTitle = $this->loadTopicTitle();
+			if ( !$this->permissions->isAllowed( $topicTitle, 'edit-title' ) ) {
+				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
+			}
+			return $prefix . $templating->render( "flow:edit-title.html.php", array(
+				'block' => $this,
+				'topic' => $this->workflow,
+				'topicTitle' => $this->newRevision ?: $topicTitle, // if already submitted, use submitted revision,
+			), $return );
+
+		case 'compare-post-revisions':
+			if ( !isset( $options['newRevision'] ) ) {
+				throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+			}
+
+			$revisionView = PostRevisionView::newFromId( $options['newRevision'], $templating, $this, $this->user );
+			if ( !$revisionView ) {
+				throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
+			}
+
+			if ( isset( $options['oldRevision'] ) ) {
+				return $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
+			} else {
+				return $revisionView->renderDiffViewAgainstPrevious( $return );
+			}
+			break;
+
+		default:
+			$root = $this->loadRootPost();
+			if ( !$root ) {
+				return '';
+			}
+
+			if ( !isset( $options['topiclist-block'] ) ) {
+				$title = $templating->getContent( $root, 'wikitext' );
+				$templating->getOutput()->setHtmlTitle( $title );
+				$templating->getOutput()->setPageTitle( $title );
+
+				$prefix = $templating->render(
+					'flow:topic-permalink-warning.html.php',
+					array(
+						'block' => $this,
+					),
+					$return
+				);
+			}
+
+			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
+				return $prefix . $templating->render( 'flow:error-permissions.html.php' );
+			} elseif ( isset( $options['revId'] ) ) {
+				$revisionView = PostRevisionView::newFromId( $options['revId'], $templating, $this, $this->user );
+				if ( !$revisionView ) {
+					throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
+				} else if ( !$this->permissions->isAllowed( $revisionView->getRevision(), 'view' ) ) {
+					$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
+					return null;
+				}
+				return $revisionView->renderSingleView( $return );
+			} else {
+				return $prefix . $templating->renderTopic(
+					$root,
+					$this,
+					$return
+				);
+			}
+		}
+>>>>>>> BRANCH (06ecee Localisation updates from https://translatewiki.net.)
 	}
 
 	protected function renderPostHistory( Templating $templating, array $options, $return = false ) {
@@ -704,14 +865,14 @@ class TopicBlock extends AbstractBlock {
 
 	protected function loadTopicHistory() {
 		$history = $this->storage->find(
-			'PostRevision',
+			'TopicHistoryEntry',
 			array( 'topic_root_id' => $this->workflow->getId() ),
 			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
 		);
 		if ( $history ) {
 			// get rid of history entries user doesn't have sufficient permissions for
 			foreach ( $history as $i => $revision ) {
-				/** @var PostRevision $revision */
+				/** @var PostRevision|PostSummary $revision */
 
 				// only check against the specific revision, ignoring the most recent
 				if ( !$this->permissions->isAllowed( $revision, 'history' ) ) {

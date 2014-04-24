@@ -336,6 +336,31 @@ class FlowHooks {
 	}
 
 	/**
+	 * Interact with the mobile skin's default modules on Flow enabled pages
+	 *
+	 * @param SkinTemplate $skin
+	 * @param array $modules
+	 * @return bool
+	 */
+	public static function onSkinMinervaDefaultModules( Skin $skin, Array &$modules ) {
+		// Disable toggling on occupied talk pages in mobile
+		$title = $skin->getTitle();
+		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
+			$modules['toggling'] = array();
+		}
+		// Turn off default mobile talk overlay for these pages
+		if ( $title->canTalk() ) {
+			$talkPage = $title->getTalkPage();
+			if ( self::$occupationController->isTalkpageOccupied( $talkPage ) ) {
+				// TODO: Insert lightweight JavaScript that opens flow via ajax
+				$modules['talk'] = array();
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * When a (talk) page does not exist, one of the checks being performed is
 	 * to see if the page had once existed but was removed. In doing so, the
 	 * deletion & move log is checked.
@@ -550,7 +575,12 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onMakeGlobalVariablesScript( array &$vars, OutputPage $out ) {
-		$vars['wgFlowTermsOfUseEdit'] = Flow\TermsOfUse::getEditTerms();
+		$vars += array(
+			'wgFlowTermsOfUseEdit' => Flow\TermsOfUse::getEditTerms(),
+			'wgFlowTermsOfUseSummarize' => Flow\TermsOfUse::getSummarizeTerms(),
+			'wgFlowTermsOfUseCloseTopic' => Flow\TermsOfUse::getCloseTopicTerms(),
+			'wgFlowTermsOfUseReopenTopic' => Flow\TermsOfUse::getReopenTopicTerms()
+		);
 		return true;
 	}
 

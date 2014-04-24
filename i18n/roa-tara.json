@@ -42,7 +42,11 @@
 	"flow-topic-action-watchlist": "Pàggene condrollate",
 	"flow-topic-action-edit-title": "Cange 'u titole",
 	"flow-topic-action-history": "Cunde",
+	"flow-topic-action-close-topic": "Achiude l'argomende",
+	"flow-topic-action-reopen-topic": "Riapre l'argomende",
+	"flow-topic-action-summarize-topic": "Riepiloghe",
 	"flow-error-http": "Ha assute 'n'errore condattanne 'u server. 'U messàgge tune non g'ha state reggistrate.",
 	"flow-error-other": "Ha assute 'n'errore. 'U messàgge tune non g'ha state reggistrate.",
+	"flow-reopen-topic-submit": "Riapre l'argomende",
 	"flow-edit-title-submit": "Cange 'u titole"
 }
