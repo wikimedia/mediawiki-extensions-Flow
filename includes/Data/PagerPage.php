@@ -3,9 +3,9 @@
 namespace Flow\Data;
 
 class PagerPage {
-	function __construct( $results, $pagingLinks, $pager ) {
+	function __construct( $results, $pagingLinkOptions, $pager ) {
 		$this->results = $results;
-		$this->pagingLinks = $pagingLinks;
+		$this->pagingLinkOptions = $pagingLinkOptions;
 		$this->pager = $pager;
 	}
 
@@ -17,15 +17,7 @@ class PagerPage {
 		return $this->results;
 	}
 
-	public function getPagingLink( $direction ) {
-		if ( isset( $this->pagingLinks[$direction] ) ) {
-			return $this->pagingLinks[$direction];
-		}
-
-		return null;
-	}
-
-	public function getPagingLinks() {
-		return $this->pagingLinks;
+	public function getPagingLinksOptions() {
+		return $this->pagingLinkOptions;
 	}
 }

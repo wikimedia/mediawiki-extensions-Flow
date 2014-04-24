@@ -8,7 +8,6 @@
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
             'timestamp' => 'Flow\TemplateHelper::timestamp',
-            'math' => 'Flow\TemplateHelper::math',
             'post' => 'Flow\TemplateHelper::post',
 ),
         'blockhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -18,77 +17,10 @@
         'path' => Array(),
 
     );
-    return '
-<div class="flow-board-navigation">
-	'.((LCRun2::ifvar(((is_array($in['links']) && isset($in['links']['search'])) ? $in['links']['search'] : null))) ? '
-		<a href="'.htmlentities(((is_array($in['links']['search']) && isset($in['links']['search']['url'])) ? $in['links']['search']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['search']) && isset($in['links']['search']['title'])) ? $in['links']['search']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-board-navigator-last"><span class="WikiFont WikiFont-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a>
-	' : '
-		<!-- @todo make disabled class do something? -->
-		<a href="#" class="flow-board-navigator-last disabled"><span class="WikiFont WikiFont-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a>
-	').'
-	<div>
-		
-		<a href="#collapser/full"    data-flow-interactive-handler="collapserToggle" class="flow-board-collapser-compact flow-board-navigator-right flow-board-navigator-cap"><span class="WikiFont WikiFont-stripe-compact flow-ui-tooltip-target" title="'.LCRun2::ch('l10n', Array('Toggle_topics_and_posts'), 'enc', $cx).'"></span></a>
-<a href="#collapser/compact" data-flow-interactive-handler="collapserToggle" class="flow-board-collapser-topics flow-board-navigator-right flow-board-navigator-cap"><span class="WikiFont WikiFont-stripe-toc flow-ui-tooltip-target" title="'.LCRun2::ch('l10n', Array('Toggle_small_topics'), 'enc', $cx).'"></span></a>
-<a href="#collapser/topics"  data-flow-interactive-handler="collapserToggle" class="flow-board-collapser-full flow-board-navigator-right flow-board-navigator-cap"><span class="WikiFont WikiFont-stripe-expanded flow-ui-tooltip-target" title="'.LCRun2::ch('l10n', Array('Toggle_topics_only'), 'enc', $cx).'"></span></a>
-
-
-		
-		<a href="'.htmlentities(((is_array($in['links']) && isset($in['links']['unknown'])) ? $in['links']['unknown'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" title="'.LCRun2::ch('l10n', Array('Sorting_tooltip'), 'enc', $cx).'">'.LCRun2::ch('l10n', Array('Newest_topics'), 'enc', $cx).'</a>
-	</div>
-</div>
-
-
-<div class="flow-board">
-	<ul class="flow-topic-navigation">
-	<li class="flow-topic-navigation-heading"><h5>'.LCRun2::ch('l10n', Array('Topics_n',$in), 'enc', $cx).'</h5></li>
-	'.LCRun2::bch('eachPost', Array($in,((is_array($in) && isset($in['roots'])) ? $in['roots'] : null)), $cx, $in, function($cx, $in) {return '
-		<li class="flow-topic-navigator-wrap">
-			<a href="#flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-topic-navigator">
-				'.LCRun2::ch('math', Array($cx['sp_vars']['index'],'+','1'), 'enc', $cx).'. '.htmlentities(((is_array($in) && isset($in['content'])) ? $in['content'] : null), ENT_QUOTES, 'UTF-8').'
-				<span class="flow-topic-navigator-meta">
-					'.((LCRun2::ifvar(((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null))) ? '
-						'.LCRun2::ch('timestamp', Array(((is_array($in) && isset($in['last_updated'])) ? $in['last_updated'] : null),'active_ago'), 'enc', $cx).'
-					' : '
-						'.LCRun2::ch('uuidTimestamp', Array(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null),'started_ago'), 'enc', $cx).'
-					').'
-				</span>
-			</a>
-		</li>
-	';}).'
-	<li class="flow-topic-navigation-footer">
-		'.LCRun2::ch('l10n', Array('topic_count_sidebar',$in), 'enc', $cx).'
-		'.((LCRun2::ifvar(((is_array($in['links']['pagination']) && isset($in['links']['pagination']['fwd'])) ? $in['links']['pagination']['fwd'] : null))) ? '
-			<a href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="WikiFont WikiFont-article"></span> '.LCRun2::ch('l10n', Array('Load_More'), 'enc', $cx).'</a>
-		' : '
-			<!-- @todo make disabled class do something? -->
-			<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin disabled"><span class="WikiFont WikiFont-article"></span> '.LCRun2::ch('l10n', Array('Load_More'), 'enc', $cx).'</a>
-		').'
-	</li>
-</ul>
-
-	'.((LCRun2::ifvar(((is_array($in['actions']) && isset($in['actions']['newtopic'])) ? $in['actions']['newtopic'] : null))) ? '
-	<form action="'.htmlentities(((is_array($in['actions']['newtopic']) && isset($in['actions']['newtopic']['url'])) ? $in['actions']['newtopic']['url'] : null), ENT_QUOTES, 'UTF-8').'" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
-		<!-- @todo form errors -->
-		<input type="hidden" name="topiclist_replyTo" value="'.htmlentities(((is_array($in) && isset($in['workflowId'])) ? $in['workflowId'] : null), ENT_QUOTES, 'UTF-8').'" />
-		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="'.LCRun2::ch('l10n', Array('Start_a_new_topic'), 'enc', $cx).'"/>
-		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="'.LCRun2::ch('l10n', Array('topic_details_placeholder'), 'enc', $cx).'"></textarea>
-
-		<div class="flow-form-actions flow-form-collapsible">
-			<button data-role="submit" class="flow-ui-button flow-ui-constructive">'.LCRun2::ch('l10n', Array('Add_Topic'), 'enc', $cx).'</button>
-			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun2::ch('l10n', Array('Preview'), 'enc', $cx).'</button>
-			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun2::ch('l10n', Array('Cancel'), 'enc', $cx).'</button>
-
-			<small class="flow-terms-of-use plainlinks">'.LCRun2::ch('l10n', Array('topic_TOU'), 'enc', $cx).'</small>
-		</div>
-	</form>
-' : '').'
-
-
+    return '<div class="flow-board">
 	<div class="flow-topics">
+		
 		'.LCRun2::bch('eachPost', Array($in,((is_array($in) && isset($in['roots'])) ? $in['roots'] : null)), $cx, $in, function($cx, $in) {return '
-			<!-- eachPost topiclist -->
 			<div class="flow-topic" id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'">
 	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
 		<h2 class="flow-topic-title">'.htmlentities(((is_array($in) && isset($in['content'])) ? $in['content'] : null), ENT_QUOTES, 'UTF-8').'</h2>

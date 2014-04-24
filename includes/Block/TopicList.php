@@ -182,7 +182,7 @@ class TopicListBlock extends AbstractBlock {
 	public function renderAPI( Templating $templating, array $options ) {
 		$serializer = Container::get( 'formatter.topiclist' );
 		if ( $this->workflow->isNew() ) {
-			return $serializer->getEmptyResult( $this->workflow );
+			return $serializer->buildEmptyResult( $this->workflow );
 		}
 
 		$ctx = \RequestContext::getMain();
@@ -193,9 +193,11 @@ class TopicListBlock extends AbstractBlock {
 			$workflowIds[] = $topicListEntry->getId();
 		}
 		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
-		$found = Container::get( 'query.topiclist' )->getResults( $page );
+		$found = Container::get( 'query.topiclist' )->getResults( $page->getResults() );
 
-		return $serializer->formatApi( $this->workflow, $workflows, $found, $ctx );
+		$response = $serializer->formatApi( $this->workflow, $workflows, $found, $page, $ctx );
+
+		return $response;
 	}
 
 	public function getName() {

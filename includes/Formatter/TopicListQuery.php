@@ -12,9 +12,9 @@ class TopicListQuery extends AbstractQuery {
 	 * @param PagerPage $page Pagination options
 	 * @return FormatterRow[]
 	 */
-	public function getResults( PagerPage $page ) {
+	public function getResults( array $topicRevisions ) {
 		$section = new \ProfileSection( __METHOD__ );
-		$allPostIds = $this->collectPostIds( $page->getResults() );
+		$allPostIds = $this->collectPostIds( $topicRevisions );
 		$posts = $this->collectRevisions( $allPostIds );
 
 		$missing = array_diff(
@@ -64,7 +64,11 @@ class TopicListQuery extends AbstractQuery {
 
 		$topicIds = array();
 		foreach ( $found as $entry ) {
-			$topicIds[] = $entry->getId();
+			if ( $entry instanceof UUID ) {
+				$topicIds[] = $entry;
+			} elseif ( $entry instanceof TopicListEntry ) {
+				$topicIds[] = $entry->getId();
+			}
 		}
 
 		// Get the full list of postId's necessary

@@ -293,8 +293,7 @@ class TemplateHelper {
 		$secondsAgo = time() - $timestamp;
 
 		if ( $secondsAgo < 2419200 ) {
-			$ts = new \MWTimestamp( $timestamp );
-			$timeAgo = wfMessage( $str, $ts->getHumanTimestamp() )->text();
+			$timeAgo = self::l10n( $str, $timestamp );
 			if ( $timeAgoOnly === true ) {
 				return $timeAgo;
 			}
@@ -445,7 +444,7 @@ class TemplateHelper {
 			$class[] = 'history-deleted';
 		}
 
-		return self::html( 
+		return self::html(
 			'<span class="plainlinks">'
 			. Html::rawElement( 'span', array( 'class' => $class ), $formattedTime )
 			. '</span>'

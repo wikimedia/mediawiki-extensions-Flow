@@ -505,7 +505,7 @@ class TopicBlock extends AbstractBlock {
 	public function renderTopicAPI( Templating $templating, array $options ) {
 		$serializer = Container::get( 'formatter.topic' );
 		if ( $this->workflow->isNew() ) {
-			return $serializer->getEmptyResult( $this->workflow->getId() );
+			return $serializer->getEmptyResult( $this->workflow );
 		}
 
 		if ( isset( $options['showhistoryfor'] ) ) {
@@ -526,9 +526,10 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 
-		$found = Container::get( 'query.topic' )->getResults( $this->workflow->getId() );
+		$ctx = \RequestContext::getMain();
+		$found = Container::get( 'query.topiclist' )->getResults( array( $this->workflow->getId() ) );
 
-		return $serializer->getResult( $found );
+		return $serializer->formatApi( $this->workflow, $found, $ctx );
 	}
 
 	protected function renderPostAPI( Templating $templating, PostRevision $post, array $options ) {

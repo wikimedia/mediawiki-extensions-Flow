@@ -659,6 +659,12 @@ $c['formatter.topiclist'] = $c->share( function( $c ) {
 		$c['formatter.revision']
 	);
 } );
+$c['formatter.topic'] = $c->share( function( $c ) {
+	return new Flow\Formatter\TopicFormatter(
+		$c['url_generator'],
+		$c['formatter.revision']
+	);
+} );
 $c['logger'] = $c->share( function( $c ) {
 	return new Flow\Log\Logger(
 		$c['flow_actions'],
