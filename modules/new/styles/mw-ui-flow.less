@@ -226,7 +226,7 @@ Styleguide 4.0.
 	padding: .5em;
 	background: @colorOffWhite;
 	color: @colorText;
-	white-space: nowrap;
+	word-wrap: break-word;
 	border-radius: 3px;
 	text-shadow: 0px 1px 0 rgba(0,0,0,.25);
 	.box-shadow( ~"0 2px 0 0 @{colorGrayLight}" );
@@ -283,6 +283,7 @@ Styleguide 4.0.
 
 		.flow-ui-tooltip-triangle {
 			.flow-ui-tooltip-triangle-location( horizontal, top );
+			margin-top: 1px;
 
 			&:after {
 				top: .5em;
@@ -297,6 +298,7 @@ Styleguide 4.0.
 
 		.flow-ui-tooltip-triangle {
 			.flow-ui-tooltip-triangle-location( horizontal, bottom );
+			margin-bottom: 1px;
 
 			&:after {
 				top: -.5em;
@@ -312,6 +314,7 @@ Styleguide 4.0.
 
 		.flow-ui-tooltip-triangle {
 			.flow-ui-tooltip-triangle-location( vertical, left );
+			margin-left: 1px;
 
 			&:after {
 				margin-top: -1px;
@@ -328,6 +331,7 @@ Styleguide 4.0.
 
 		.flow-ui-tooltip-triangle {
 			.flow-ui-tooltip-triangle-location( vertical, right );
+			margin-right: 1px;
 
 			&:after {
 				margin-top: -1px;
