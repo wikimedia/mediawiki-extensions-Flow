@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_226359da",
+        "filename": "handlebars/flow_block_header.html.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-25T22:42:55Z",
+      "side": 1,
+      "message": "{{#with}} isn\u0027t particularly performant in lightncandy, its ok for places that use a bunch of variables but this is just one(well two) lookups",
+      "revId": "913e84f8ad4adcc132c93a82031fec508efd75eb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
