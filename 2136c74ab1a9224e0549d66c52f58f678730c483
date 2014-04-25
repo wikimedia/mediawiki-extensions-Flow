@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_a1376e49",
+        "filename": "includes/Collection/PostCollection.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-25T10:56:52Z",
+      "side": 1,
+      "message": "No it isn\u0027t - it was an easy way to travel from a Revision object to the Updater I needed at that point, but this entire method will probably be removed at a later point, when the rest of the search code gets in better shape ;)",
+      "parentUuid": "8e23439c_db6f0025",
+      "revId": "2136c74ab1a9224e0549d66c52f58f678730c483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_9b4ce8cc",
         "filename": "includes/Search/Connection.php",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2014-04-24T21:38:28Z",
       "side": 1,
       "message": "As I understand it, topics are one kind of workflow. When we have others will there be VOTE_TYPE_NAME, DELETION_DEBATE_TYPE_NAME ?",
+      "revId": "2136c74ab1a9224e0549d66c52f58f678730c483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_0ccad970",
+        "filename": "includes/Search/Connection.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-25T10:56:52Z",
+      "side": 1,
+      "message": "Yes, I think so",
+      "parentUuid": "8e23439c_9b4ce8cc",
       "revId": "2136c74ab1a9224e0549d66c52f58f678730c483",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_e118c6d9",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-25T10:56:52Z",
+      "side": 1,
+      "message": "I understood \"not to affect them\" as \"the tilde is not part of the search string\".\n\nAs I understand it (first paragraph on http://en.wikipedia.org/wiki/Help:Searching), a tilde prefix is used to change some search behavior (what is being searched for should be the same - no tilde)\n\n(note: this is copied from Cirrus, have yet to figure out if this makes sense for us)",
+      "parentUuid": "8e23439c_387a77b8",
+      "revId": "2136c74ab1a9224e0549d66c52f58f678730c483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_98462b7f",
         "filename": "includes/Search/SearchEngine.php",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2014-04-24T21:38:28Z",
       "side": 1,
       "message": "Relevance is nice when you\u0027re doing fuzzy searching, but when you\u0027re filtering the board e.g. for posts by someone you want the matching topics in your current sort order, either newest topic first or most recent activity first.  IMO :)",
+      "revId": "2136c74ab1a9224e0549d66c52f58f678730c483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_4cd45117",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-25T10:56:52Z",
+      "side": 1,
+      "message": "Indeed. Might some day be useful, but it\u0027s probably not what we\u0027ll want for in-page search. Have not yet implemented any sorting though :p",
+      "parentUuid": "8e23439c_98462b7f",
       "revId": "2136c74ab1a9224e0549d66c52f58f678730c483",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_4c9b3179",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-25T10:56:52Z",
+      "side": 1,
+      "message": "Great, that\u0027ll make this a bit less expensive.",
+      "parentUuid": "8e23439c_7b08e92a",
+      "revId": "2136c74ab1a9224e0549d66c52f58f678730c483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_983d0bdd",
         "filename": "includes/Search/TopicUpdater.php",
         "patchSetId": 4
@@ -98,6 +188,24 @@
       "writtenOn": "2014-04-24T21:38:28Z",
       "side": 1,
       "message": "I think the comment here is obsolete, you\u0027re getting the desired timestamp above.",
+      "revId": "2136c74ab1a9224e0549d66c52f58f678730c483",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_813c722e",
+        "filename": "includes/Search/TopicUpdater.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-25T10:56:52Z",
+      "side": 1,
+      "message": "Indeed, leftover comment that\u0027s already ben addressed",
+      "parentUuid": "8e23439c_983d0bdd",
       "revId": "2136c74ab1a9224e0549d66c52f58f678730c483",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
