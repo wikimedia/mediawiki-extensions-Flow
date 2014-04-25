@@ -160,13 +160,18 @@
 	.flow-topic {
 		padding-bottom: 0;
 
-		h2.flow-topic-title {
+		// Needs additional specificity to override `div#content h2`
+		div#bodyContent & h2.flow-topic-title {
 			margin-bottom: 0;
 		}
 
-		.flow-author,
-		.flow-topic-meta {
-			display: none;
+		.flow-topic-titlebar {
+			padding: .5em 1.5em;
+
+			.flow-author,
+			.flow-topic-meta {
+				display: none;
+			}
 		}
 
 		.flow-reply-count {
