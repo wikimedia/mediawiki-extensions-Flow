@@ -10,6 +10,7 @@
             'timestamp' => 'Flow\TemplateHelper::timestamp',
             'math' => 'Flow\TemplateHelper::math',
             'post' => 'Flow\TemplateHelper::post',
+            'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
         'blockhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
 ),
@@ -27,10 +28,7 @@
 		<a href="#" class="flow-board-navigator-last disabled"><span class="wikicon wikicon-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a>
 	').'
 	<div>
-		
-		<a href="#collapser/full"    data-flow-interactive-handler="collapserToggle" class="flow-board-collapser-compact flow-board-navigator-right flow-board-navigator-cap"><span class="wikicon wikicon-stripe-compact flow-ui-tooltip-target" title="'.LCRun2::ch('l10n', Array('Toggle_topics_and_posts'), 'enc', $cx).'"></span></a>
-<a href="#collapser/compact" data-flow-interactive-handler="collapserToggle" class="flow-board-collapser-topics flow-board-navigator-right flow-board-navigator-cap"><span class="wikicon wikicon-stripe-toc flow-ui-tooltip-target" title="'.LCRun2::ch('l10n', Array('Toggle_small_topics'), 'enc', $cx).'"></span></a>
-<a href="#collapser/topics"  data-flow-interactive-handler="collapserToggle" class="flow-board-collapser-full flow-board-navigator-right flow-board-navigator-cap"><span class="wikicon wikicon-stripe-expanded flow-ui-tooltip-target" title="'.LCRun2::ch('l10n', Array('Toggle_topics_only'), 'enc', $cx).'"></span></a>
+		'.LCRun2::ch('progressiveEnhancement', Array($in,'insertion','flow-board-collapsers','flow_board_collapsers_subcomponent'), 'enc', $cx).'
 
 		
 		<a href="'.htmlentities(((is_array($in['links']) && isset($in['links']['unknown'])) ? $in['links']['unknown'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" title="'.LCRun2::ch('l10n', Array('Sorting_tooltip'), 'enc', $cx).'">'.LCRun2::ch('l10n', Array('Newest_topics'), 'enc', $cx).'</a>
