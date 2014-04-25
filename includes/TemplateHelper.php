@@ -24,15 +24,25 @@ class TemplateHelper {
 		return "{$this->templateDir}/{$templateName}.html.handlebars";
 	}
 
+	/**
+	 * Returns a given template function if found, otherwise throws an exception.
+	 * @param string $templateName
+	 * @return \Closure
+	 * @throws Exception\FlowException
+	 * @throws \Exception
+	 */
 	public function getTemplate( $templateName ) {
 		if ( isset( $this->renderers[$templateName] ) ) {
 			return $this->renderers[$templateName];
 		}
 
+		// @todo remove this is_dev check
+		$is_dev = $_SERVER['SCRIPT_FILENAME'] === '/vagrant/mediawiki/index.php';
+
 		$template = $this->getTemplateFilename( $templateName );
 		$compiled = "$template.php";
 
-		if ( !file_exists( $compiled ) ) {
+		if ( $is_dev || !file_exists( $compiled ) ) {
 			if ( !file_exists( $template ) ) {
 				throw new FlowException( "Could not locate template: $template" );
 			}
@@ -83,12 +93,22 @@ class TemplateHelper {
 		};
 	}
 
+	/**
+	 * Returns HTML for a given template by calling the template function with the given args.
+	 * @param string $templateName
+	 * @param mixed $args
+	 * @param array $scopes
+	 * @return string
+	 */
 	static public function processTemplate( $templateName, $args, array $scopes = array() ) {
 		// Undesirable, but lightncandy helpers have to be static methods
 		$template = Container::get( 'lightncandy' )->getTemplate( $templateName );
 		return call_user_func( $template, $args, $scopes );
 	}
 
+	// Helpers
+
+	// @todo We should get rid of the switch statement in this method and use the appropriate strings in-template
 	static public function l10n( $str /*, $args... */ ) {
 		$message = null;
 		$args = func_get_args();
@@ -315,6 +335,11 @@ class TemplateHelper {
 		) );
 	}
 
+	/**
+	 * Takes in HTML string, returns LCSafeString to prevent lightncandy from escaping its contents.
+	 * @param string $string
+	 * @return LCSafeString
+	 */
 	static public function html( $string ) {
 		return array( $string, 'raw' );
 	}
@@ -352,6 +377,7 @@ class TemplateHelper {
 	 * @param array $context The 'this' value of the calling context
 	 * @param array $arguments Arguments passed into the helper
 	 * @param array $options blockhelper specific invocation options
+	 * @return
 	 */
 	static public function eachPost( $context, $arguments, $options ) {
 		list( $data, $postIds ) = $arguments;
@@ -466,5 +492,13 @@ class TemplateHelper {
 
 	static public function showCharacterDifference( $old, $new ) {
 		return self::html( \ChangesList::showCharacterDifference( $old, $new ) );
+	}
+
+	static public function progressiveEnhancement( $context, $insertionType, $sectionId, $templateName ) {
+		return self::html(
+			'<script type="text/x-handlebars-template-progressive-enhancement" data-type="' . $insertionType . '" id="' . $sectionId . '">'
+			. self::processTemplate( $templateName, $context )
+			.'</script>'
+		);
 	}
 }
