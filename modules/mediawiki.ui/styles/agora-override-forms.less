@@ -1,5 +1,10 @@
 // .flow-container ensures greater specificity than core rules
 .flow-container {
+	/*
+	 * @todo Promote this function to mediawiki.less mixin in core.
+	 * @todo #999 matches skins/vector/components/search.less in core, both
+	 * should use @colorPlaceholder: @colorGray9 in gerrit 117105.
+	 */
 	.field-placeholder-styling(@color: #999) {
 		font-style: italic;
 		font-weight: normal;
