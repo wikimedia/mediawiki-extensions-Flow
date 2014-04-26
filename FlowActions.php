@@ -353,6 +353,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history' ),
+		'actions' => array(),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-closed-topic',
 			'i18n-params' => array(

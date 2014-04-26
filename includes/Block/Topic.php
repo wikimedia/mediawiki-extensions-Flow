@@ -70,6 +70,15 @@ class TopicBlock extends AbstractBlock {
 		'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions',
 	);
 
+	// @Todo - fill in the template names
+	protected $templates = array(
+		'view' => '',
+		'history' => '',
+		'edit-post' => '',
+		'edit-title' => '',
+		'compare-post-revisions' => '',
+	);
+
 	/**
 	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
 	 */

@@ -28,6 +28,11 @@ class TopicListBlock extends AbstractBlock {
 	 */
 	protected $supportedGetActions = array( 'view' );
 
+	// @Todo - fill in the template names
+	protected $templates = array(
+		'view' => '',
+	);
+
 	/**
 	 * @var Workflow|null
 	 */

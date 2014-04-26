@@ -48,6 +48,13 @@ class TopicSummaryBlock extends AbstractBlock {
 	 */
 	protected $supportedGetActions = array( 'topic-summary-view', 'compare-postsummary-revisions', 'edit-topic-summary' );
 
+	// @Todo - fill in the template names
+	protected $templates = array(
+		'topic-summary-view' => '',
+		'compare-postsummary-revisions' => '',
+		'edit-topic-summary' => '',
+	);
+
 	/**
 	 * @param string
 	 * @param User

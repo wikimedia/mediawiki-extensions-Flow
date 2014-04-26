@@ -33,6 +33,14 @@ class HeaderBlock extends AbstractBlock {
 	 */
 	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'header-view' );
 
+	// @Todo - fill in the template names
+	protected $templates = array(
+		'view' => '',
+		'compare-header-revisions' => '',
+		'edit-header' => '',
+		'header-view' => '',
+	);
+
 	/**
 	 * @var RevisionActionPermissions Allows or denies actions to be performed
 	 */

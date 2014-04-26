@@ -16,6 +16,11 @@ class BoardHistoryBlock extends AbstractBlock {
 
 	protected $supportedGetActions = array( 'history' );
 
+	// @Todo - fill in the template names
+	protected $templates = array(
+		'history' => '',
+	);
+
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
 		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
