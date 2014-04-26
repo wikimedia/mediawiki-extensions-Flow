@@ -320,8 +320,12 @@ class TemplateHelper {
 	}
 
 	static public function block( $block ) {
+		$template = "flow_block_" . $block['type'];
+		if ( $block['block-action-template'] ) {
+			$template .= '_' . $block['block-action-template'];
+		}
 		return self::html( self::processTemplate(
-			"flow_block_" . $block['type'],
+			$template,
 			$block
 		) );
 	}

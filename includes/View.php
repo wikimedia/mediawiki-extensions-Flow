@@ -95,7 +95,9 @@ class View extends ContextSource {
 		$parameters = $loader->extractBlockParameters( $request, $blocks );
 		foreach ( $blocks as $block ) {
 			if ( $block->canRender( $action ) ) {
-				$apiResponse['blocks'][] = $block->renderAPI( $this->templating, $parameters[$block->getName()] );
+				$apiResponse['blocks'][] = array(
+					'block-action-template' => $block->getTemplate( $action )
+				) + $block->renderAPI( $this->templating, $parameters[$block->getName()] );
 			}
 		}
 

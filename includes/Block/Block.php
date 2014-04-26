@@ -83,6 +83,12 @@ abstract class AbstractBlock implements Block {
 	 */
 	protected $supportedGetActions = array();
 
+	/**
+	 * Templates for each view actions
+	 * @var array
+	 */
+	protected $templates = array();
+
 	protected $notificationController;
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController ) {
@@ -124,6 +130,23 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function canRender( $action ) {
 		return in_array( $this->getActionName( $action ), $this->supportedGetActions );
+	}
+
+	/**
+	 * Get the template name for a specific action or an array of template
+	 * for all possible view actions in this block
+	 * 
+	 * @param string|null
+	 * @return string|array
+	 */
+	public function getTemplate( $action = null ) {
+		if ( $action === null ) {
+			return $this->templates;
+		}
+		if ( !isset( $this->templates[$action] ) ) {
+			throw new InvalidInputException( 'Template is not defined for action: ' . $action, 'invalid-input' );
+		}
+		return $this->templates[$action];	
 	}
 
 	public function onSubmit( $action, User $user, array $data ) {
