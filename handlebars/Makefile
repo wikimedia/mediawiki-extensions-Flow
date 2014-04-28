@@ -5,6 +5,7 @@ TOPIC_SUBTEMPLATES= flow_topic.html.handlebars \
 		flow_reply_form.html.handlebars
 
 all: flow_block_header.html.handlebars.php \
+		flow_board_collapsers_subcomponent.html.handlebars.php \
 		flow_block_topiclist.html.handlebars.php \
 		flow_block_topic.html.handlebars.php \
 		flow_block_board-history.html.handlebars.php \
@@ -15,8 +16,10 @@ all: flow_block_header.html.handlebars.php \
 flow_block_header.html.handlebars.php: flow_block_header.html.handlebars
 	$(COMPILE) flow_block_header
 
+flow_board_collapsers_subcomponent.html.handlebars.php: flow_board_collapsers_subcomponent.html.handlebars
+	$(COMPILE) flow_board_collapsers_subcomponent
+
 flow_block_topiclist.html.handlebars.php: flow_board_navigation.html.handlebars \
-		flow_board_collapsers_subcomponent.html.handlebars \
 		flow_topic_navigation.html.handlebars \
 		flow_newtopic_form.html.handlebars \
 		$(TOPIC_SUBTEMPLATES)
