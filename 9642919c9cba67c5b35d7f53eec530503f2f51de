@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_b41fa00c",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-28T19:43:05Z",
+      "side": 1,
+      "message": "its array( $value, \u0027raw\u0027 ) now rather than LCSafeString",
+      "revId": "9642919c9cba67c5b35d7f53eec530503f2f51de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_941a641a",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-28T19:43:05Z",
+      "side": 1,
+      "message": "@return array",
+      "revId": "9642919c9cba67c5b35d7f53eec530503f2f51de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_14de5444",
+        "filename": "modules/new/styles/layout.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-28T19:43:05Z",
+      "side": 1,
+      "message": "indentation",
+      "revId": "9642919c9cba67c5b35d7f53eec530503f2f51de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
