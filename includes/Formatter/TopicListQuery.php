@@ -34,8 +34,8 @@ class TopicListQuery extends AbstractQuery {
 		$results = array();
 		foreach ( $posts as $post ) {
 			try {
-				$row = new TopicListRow;
-				$results[] = $this->buildResult( $post, null, $row );
+				$results[] = $row = new TopicRow;
+				$this->buildResult( $post, null, $row );
 				$replyToId = $row->revision->getReplyToId();
 				$replyToId = $replyToId ? $replyToId->getAlphadecimal() : null;
 				$postId = $row->revision->getPostId()->getAlphadecimal();
@@ -142,8 +142,4 @@ class TopicListQuery extends AbstractQuery {
 
 		return $posts;
 	}
-}
-
-class TopicListRow extends FormatterRow {
-	public $replies;
 }

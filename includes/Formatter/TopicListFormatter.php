@@ -23,8 +23,6 @@ class TopicListFormatter {
 			'revisions' => array(),
 			'links' => array(),
 			'actions' => $this->buildApiActions( $workflow ),
-			// @todo feels like a middleware type thing should just inject this,
-			//'editToken' => $this->getEditToken(),
 		);
 	}
 

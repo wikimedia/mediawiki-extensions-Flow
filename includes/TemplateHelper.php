@@ -11,6 +11,22 @@ class TemplateHelper {
 
 	protected $renderers;
 
+	static protected $blockMap = array(
+		'header' => array(
+			'default' => 'flow_block_header',
+		),
+		'topiclist' => array(
+			'default' => 'flow_block_topiclist',
+		),
+		'topic' => array(
+			'default' => 'flow_block_topic',
+			'history' => 'flow_block_topic_history',
+		),
+		'board-history' => array(
+			'default' => 'flow_block_board-history',
+		),
+	);
+
 	/**
 	 * @param string $templateDir
 	 * @param string|null $tempDir Temporary directory

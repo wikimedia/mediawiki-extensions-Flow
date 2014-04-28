@@ -73,7 +73,7 @@ class TopicBlock extends AbstractBlock {
 	// @Todo - fill in the template names
 	protected $templates = array(
 		'view' => '',
-		'history' => '',
+		'history' => 'history',
 		'edit-post' => '',
 		'edit-title' => '',
 		'compare-post-revisions' => '',
@@ -434,183 +434,103 @@ class TopicBlock extends AbstractBlock {
 		throw new FlowException( 'deprecated' );
 	}
 
-	protected function renderPostHistory( Templating $templating, array $options, $return = false ) {
-		if ( !isset( $options['postId'] ) ) {
-			$this->addError( 'post', wfMessage( 'flow-error-missing-postId' ) );
-			return '';
-		}
-		$post = $this->loadRequestedPost( $options['postId'] );
-		if ( !$post ) {
-			return '';
+	public function renderAPI( Templating $templating, array $options ) {
+		// theres probably some OO way to turn this stack of if/else into
+		// something nicer. Consider better ways before extending this with
+		// more conditionals
+		if ( $this->action === 'history' ) {
+			// single post history or full topic?
+			if ( isset( $options['postId'] ) ) {
+				// singular post history
+				$output = $this->renderPostHistoryAPI( $templating, $options );
+			} else {
+				// post history for full topic
+				$output = $this->renderTopicHistoryAPI( $templating, $options );
+			}
+		} else {
+			// Failed actions, like reply, end up here
+			if ( isset( $options['postId'] ) ) {
+				// view single post, possibly specific revision
+				$output = $this->renderPostAPI( $templating, $options );
+			} else {
+				// view full topic
+				$output = $this->renderTopicAPI( $templating, $options );
+			}
 		}
 
-		$topicTitle = $this->loadTopicTitle(); // pre-loaded by loadRequestedPost
-		if ( !$this->permissions->isAllowed( $topicTitle, 'view' ) ) {
-			$this->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-			return '';
-		}
-
-		$history = $this->getHistory( $options['postId'] );
-
-		return $templating->render( "flow:post-history.html.php", array(
-			'block' => $this,
-			'topic' => $this->workflow,
-			'topicTitle' => $this->loadTopicTitle(), // pre-loaded by loadRequestedPost
-			'post' => $post,
-			'history' => new History( $history ),
-			'historyRenderer' => new HistoryRenderer( $this->permissions, $templating, $this ),
-		), $return );
-	}
-
-	protected function renderEditPost( Templating $templating, array $options, $return = false ) {
-		if ( !isset( $options['postId'] ) ) {
-			throw new InvalidInputException( 'No postId provided', 'invalid-input' );
-		}
-		$post = $this->loadRequestedPost( $options['postId'] );
-		if ( !$post ) {
-			return '';
-		}
-		if ( !$this->permissions->isAllowed( $post, 'edit-post' ) ) {
+		if ( $output === null ) {
+			// @todo might as well throw these at the source?
 			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 		}
-		return $templating->render( "flow:edit-post.html.php", array(
-			'block' => $this,
-			'topic' => $this->workflow,
-			'post' => $this->newRevision ?: $post, // if already submitted, use submitted revision
-		), $return );
+
+		$output['type'] = $this->getName();
+		$output['action'] = $this->action;
+
+		return $output;
 	}
 
-	public function renderAPI( Templating $templating, array $options ) {
-		if ( isset( $options['postId'] ) ) {
-			$rootPost = $this->loadRootPost();
-			if ( !$rootPost ) {
-				return array();
-			}
-
-			$indexDescendant = $rootPost->registerDescendant( $options['postId'] );
-			$post = $rootPost->getRecursiveResult( $indexDescendant );
-			if ( $post === false ) {
-				throw new InvalidInputException( 'Requested postId is not available within post tree', 'invalid-input' );
-			}
-
-			if ( !$post ) {
-				throw new InvalidInputException( 'Requested post could not be found', 'invalid-input' );
-			}
-
-			$res = $this->renderPostAPI( $templating, $post, $options );
-			if ( $res === null ) {
-				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
-			}
-			return array( $res );
-		} else {
-			$output = $this->renderTopicAPI( $templating, $options );
-			if ( $output === null ) {
-				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
-			}
-			return $output;
-		}
-	}
-
-	public function renderTopicAPI( Templating $templating, array $options ) {
+	protected function renderTopicAPI( Templating $templating, array $options ) {
 		$serializer = Container::get( 'formatter.topic' );
 		if ( $this->workflow->isNew() ) {
-			return $serializer->getEmptyResult( $this->workflow );
+			return $serializer->buildEmptyResult( $this->workflow );
 		}
 
-		if ( isset( $options['showhistoryfor'] ) ) {
-			$output['history'] = array();
-
-			$historyBatch = $this->getHistoryBatch( (array)$options['showhistoryfor'] );
-
-			foreach( $historyBatch as $historyGroup ) {
-				/** @var PostRevision[] $historyGroup */
-				foreach( $historyGroup as $historyEntry ) {
-					$postId = $historyEntry->getPostId()->getAlphadecimal();
-					if ( ! isset( $output['history'][$postId] ) ) {
-						$output['history'][$postId] = array();
-					}
-
-					$output['history'][$postId][] = $historyEntry;
-				}
-			}
-		}
-
-		$ctx = \RequestContext::getMain();
-		$found = Container::get( 'query.topiclist' )->getResults( array( $this->workflow->getId() ) );
-
-		return $serializer->formatApi( $this->workflow, $found, $ctx );
+		return $serializer->formatApi(
+			$this->workflow,
+			Container::get( 'query.topiclist' )->getResults( array( $this->workflow->getId() ) ),
+			\RequestContext::getMain()
+		);
 	}
 
-	protected function renderPostAPI( Templating $templating, PostRevision $post, array $options ) {
-		if ( !$this->permissions->isAllowed( $post, 'view' ) ) {
-			// we have to return null, or we would have to duplicate this call when rendering children.
-			// callers must check for null and do as appropriate
+	/**
+	 * @todo Any failed action performed against a single revisions ends up here.
+	 * To generate forms with validation errors in the non-javascript renders we
+	 * need to add something to this output, but not sure what yet
+	 */
+	protected function renderPostAPI( Templating $templating, array $options ) {
+		if ( $this->workflow->isNew() ) {
+			throw new FlowException( 'No posts can exist for non-existant topic' );
+		}
+
+		// @todo load a FormatterRow for a single postId
+		throw new FlowEception( '@todo load a FormatterRow for a single postId' );
+		$serialized = Container::get( 'formatter.revision' )->formatApi(
+			$row,
+			\RequestContext::getMain()
+		);
+		if ( !$serialized ) {
 			return null;
 		}
 
-		$output = array();
-		$output['post-id'] = $post->getPostId()->getAlphadecimal();
-		$output['revision-id'] = $post->getRevisionId()->getAlphadecimal();
-		$contentFormat = $post->getContentFormat();
-
-		// This may force a round trip through parsoid for the wikitext when
-		// posts are stored as html, as such it should only be used when
-		// actually needed
-		if ( isset( $options['contentFormat'] ) ) {
-			$contentFormat = $options['contentFormat'];
-		}
-
-		if ( $post->isModerated() ) {
-			$output['post-moderated'] = 'post-moderated';
-		} else {
-			$output['content'] = array(
-				'*' => $templating->getContent( $post, $contentFormat ),
-				'format' => $contentFormat
-			);
-			$output['user'] = $templating->getCreatorText( $post );
-		}
-
-		if ( ! isset( $options['no-children'] ) ) {
-
-			foreach( $post->getChildren() as $child ) {
-				$res = $this->renderPostAPI( $templating, $child, $options );
-				if ( $res !== null ) {
-
-					$children[] = $res;
-				}
-			}
-
-			if ( count( $children ) > 1 ) {
-				$output['replies'] = $children;
-			}
-		}
-
-		$postId = $post->getPostId()->getAlphadecimal();
-		if ( isset( $options['history'][$postId] ) ) {
-			$output['revisions'] = $this->getAPIHistory( $templating, $postId, $options['history'][$postId] );
-		}
-
-		return $output;
+		return array(
+			'revisions' => array(
+				$serialized['revisionId'] = $serialized,
+			),
+		);
 	}
 
-	protected function getAPIHistory( Templating $templating, /*string*/ $postId, array $history ) {
-		$output = array();
+	protected function renderTopicHistoryAPI( Templating $templating, array $options ) {
+		if ( $this->workflow->isNew() ) {
+			throw new FlowException( 'No topic history can exist for non-existant topic' );
+		}
+		$found = Container::get( 'query.topic.history' )->getResults( $this->workflow->getId() );
+		$serializer = Container::get( 'formatter.revision' );
+		$serializer->setIncludeHistoryProperties( true );
+		$ctx = \RequestContext::getMain();
 
-		$output['_element'] = 'revision';
-		$output['post-id'] = $postId;
-
-		foreach( $history as $revision ) {
-			/** @var AbstractRevision $revision */
-			if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
-				$output[] = array(
-					'revision-id' => $revision->getRevisionId()->getAlphadecimal(),
-					'revision-author' => $templating->getUserText( $revision ),
-					'revision-change-type' => $revision->getChangeType(),
-				);
-			}
+		$result = array();
+		foreach ( $found as $row ) {
+			$serialized = $serializer->formatApi( $row, $ctx );
+			$result[$serialized['revisionId']] = $serialized;
 		}
 
-		return $output;
+		return array(
+			'revisions' => $result,
+		);
+	}
+
+	protected function renderPostHistoryAPI( Templating $templating, array $options ) {
+		throw new FlowException( 'Not implemented yet' );
 	}
 
 	protected function getHistory( $postId ) {
@@ -832,17 +752,7 @@ class TopicBlock extends AbstractBlock {
 		return $found;
 	}
 
-	// Somehow the template has to know which post the errors go with
-	public function getRepliedTo() {
-		return isset( $this->submitted['replyTo'] ) ? $this->submitted['replyTo'] : null;
-	}
-
-	public function getAlphadecimalRepliedTo() {
-		$repliedTo = $this->getRepliedTo();
-		return $repliedTo instanceof UUID ? $repliedTo->getAlphadecimal() : $repliedTo;
-	}
-
-	// The prefix used for form data
+	// The prefix used for form data$pos
 	public function getName() {
 		return 'topic';
 	}

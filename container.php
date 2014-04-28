@@ -611,7 +611,12 @@ $c['query.topiclist'] = $c->share( function( $c ) {
 		$c['repository.tree']
 	);
 } );
-
+$c['query.topic.history'] = $c->share( function( $c ) {
+	return new Flow\Formatter\TopicHistoryQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
 $c['query.recentchanges'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RecentChangesQuery(
 		$c['storage'],

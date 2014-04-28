@@ -1,0 +1,43 @@
+<div class="flow-board">
+	<div class="flow-topic-histories">
+		<ul>
+			{{#each revisions}}
+				<li>
+					(
+						{{~#if links.diff-cur~}}
+							<a href="{{links.diff-cur.url}}" title="{{links.diff-cur.title}}">
+								{{~links.diff-cur.title~}}
+							</a>
+						{{~else~}}
+							{{l10n "cur"}}
+						{{/if}}
+						{{l10n "pipe-separator"}}
+						{{#if links.diff-prev}}
+							<a href="{{links.diff-prev.url}}" title="{{links.diff-prev.title}}">
+								{{~links.diff-prev.title~}}
+							</a>
+						{{~else~}}
+							{{l10n "last"}}
+						{{~/if~}}
+						{{~#if links.topic}}
+							{{l10n "pipe-separator"}}
+							<a href="{{links.topic.url}}" title="{{links.topic.title}}">
+								{{~links.topic.title~}}
+							</a>
+						{{~/if~}}
+					)
+
+					{{historyTimestamp this}}
+
+					<span class="mw-changeslist-separator">. .</span>
+					{{historyDescription this}}
+
+					{{#if size}}
+						<span class="mw-changeslist-separator">. .</span>
+						{{showCharacterDifference size.old size.new}}
+					{{/if}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+</div>
