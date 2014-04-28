@@ -31,6 +31,9 @@ class TopicListBlock extends AbstractBlock {
 	// @Todo - fill in the template names
 	protected $templates = array(
 		'view' => '',
+		// since new-topic is only listed in post this is always
+		// to render submission errors
+		'new-topic' => '',
 	);
 
 	/**
@@ -185,6 +188,10 @@ class TopicListBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
+		if ( $this->hasErrors() ) {
+			throw new FlowException( '@todo' );
+		}
+
 		$serializer = Container::get( 'formatter.topiclist' );
 		if ( $this->workflow->isNew() ) {
 			return $serializer->buildEmptyResult( $this->workflow );

@@ -303,7 +303,7 @@ abstract class AbstractQuery {
 		} elseif ( isset( $this->rootPostIdCache[$postId->getAlphadecimal()] ) ) {
 			return $this->rootPostIdCache[$postId->getAlphadecimal()];
 		} else {
-			throw new \MWException( "Unable to find root post ID for post $postId" );
+			throw new \MWException( "Unable to find root post ID for post " . $postId->getAlphadecimal() );
 		}
 	}
 

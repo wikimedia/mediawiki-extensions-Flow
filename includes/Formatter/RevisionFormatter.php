@@ -274,7 +274,7 @@ class RevisionFormatter {
 							'topic_postId' => $postId,
 						)
 					),
-					'title' => $this->msg( 'flow-post-action-reply' ),
+					'title' => $this->msg( 'flow-reply-link' ),
 				);
 				break;
 

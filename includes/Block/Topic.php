@@ -6,6 +6,7 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
 use Flow\Exception\FailCommitException;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
@@ -74,6 +75,7 @@ class TopicBlock extends AbstractBlock {
 	protected $templates = array(
 		'view' => '',
 		'history' => 'history',
+		'reply' => '',
 		'edit-post' => '',
 		'edit-title' => '',
 		'compare-post-revisions' => '',
@@ -438,7 +440,13 @@ class TopicBlock extends AbstractBlock {
 		// theres probably some OO way to turn this stack of if/else into
 		// something nicer. Consider better ways before extending this with
 		// more conditionals
-		if ( $this->action === 'history' ) {
+		if ( $this->wasSubmitted() ) {
+			// Failed actions, like reply, end up here
+			$output = array(
+				'submitted' => $this->submitted,
+				'errors' => $this->errors,
+			) + $this->renderTopicAPI( $templating, $options );
+		} elseif ( $this->action === 'history' ) {
 			// single post history or full topic?
 			if ( isset( $options['postId'] ) ) {
 				// singular post history
@@ -447,15 +455,16 @@ class TopicBlock extends AbstractBlock {
 				// post history for full topic
 				$output = $this->renderTopicHistoryAPI( $templating, $options );
 			}
+		} elseif ( $this->action == 'view'
+				&& !isset( $options['postId'] )
+				&& !isset( $options['revId'] )
+		) {
+			// view full topic
+			$output = $this->renderTopicAPI( $templating, $options );
 		} else {
-			// Failed actions, like reply, end up here
-			if ( isset( $options['postId'] ) ) {
-				// view single post, possibly specific revision
-				$output = $this->renderPostAPI( $templating, $options );
-			} else {
-				// view full topic
-				$output = $this->renderTopicAPI( $templating, $options );
-			}
+			// view single post, possibly specific revision
+			// @todo this isn't valid for the topic title
+			$output = $this->renderPostAPI( $templating, $options );
 		}
 
 		if ( $output === null ) {
@@ -464,7 +473,6 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$output['type'] = $this->getName();
-		$output['action'] = $this->action;
 
 		return $output;
 	}
@@ -492,19 +500,19 @@ class TopicBlock extends AbstractBlock {
 			throw new FlowException( 'No posts can exist for non-existant topic' );
 		}
 
-		// @todo load a FormatterRow for a single postId
-		throw new FlowEception( '@todo load a FormatterRow for a single postId' );
-		$serialized = Container::get( 'formatter.revision' )->formatApi(
-			$row,
-			\RequestContext::getMain()
-		);
+		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $options['postId'] ) );
+		$serialized = Container::get( 'formatter.revision' )->formatApi( $row, \RequestContext::getMain() );
 		if ( !$serialized ) {
 			return null;
 		}
 
 		return array(
+			'roots' => array( $serialized['postId'] ),
+			'posts' => array(
+				$serialized['postId'] => array( $serialized['revisionId'] ),
+			),
 			'revisions' => array(
-				$serialized['revisionId'] = $serialized,
+				$serialized['revisionId'] => $serialized,
 			),
 		);
 	}

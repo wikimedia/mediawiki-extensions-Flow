@@ -67,15 +67,18 @@ class View extends ContextSource {
 		}
 		wfProfileOut( __CLASS__ . '-init' );
 
-		if ( $request->wasPosted() ) {
+		$wasPosted = $request->wasPosted();
+		if ( $wasPosted ) {
 			wfProfileIn( __CLASS__ . '-submit' );
-			global $wgFlowTokenSalt;
-			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
-				$error = '<div class="error">' . $this->msg( 'sessionfailure' ) . '</div>';
-				$out->addHTML( $error );
-			} else {
-				$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
-				if ( $blocksToCommit ) {
+			$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
+			if ( $blocksToCommit ) {
+				global $wgFlowTokenSalt;
+				if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
+					$blocks = $blocksToCommit;
+					foreach ( $blocks as $block ) {
+						$block->addError( 'edit-token', $this->msg( 'sessionfailure' ) );
+					}
+				} else {
 					$loader->commit( $workflow, $blocksToCommit );
 					$this->redirect( $workflow, 'view' );
 					wfProfileOut( __CLASS__ . '-submit' );
@@ -93,12 +96,18 @@ class View extends ContextSource {
 		);
 
 		$parameters = $loader->extractBlockParameters( $request, $blocks );
+		$editToken = $user->getEditToken( $wgFlowTokenSalt );
 		foreach ( $blocks as $block ) {
-			if ( $block->canRender( $action ) ) {
+			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
 				$apiResponse['blocks'][] = array(
-					'block-action-template' => $block->getTemplate( $action )
+					'block-action-template' => $block->getTemplate( $action ),
+					'editToken' => $editToken,
 				) + $block->renderAPI( $this->templating, $parameters[$block->getName()] );
 			}
+		}
+
+		if ( count( $apiResponse['blocks'] ) === 0 ) {
+			throw new InvalidActionException( "No blocks accepted action: $action" );
 		}
 
 		array_walk_recursive( $apiResponse, function( &$value ) {

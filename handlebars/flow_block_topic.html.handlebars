@@ -1,4 +1,12 @@
 <div class="flow-board">
+	{{#if errors}}
+		<ul>
+		{{#each errors}}
+			<li>{{message}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+
 	<div class="flow-topics">
 		{{!-- There is only one topic, but we use same api response structure --}}
 		{{#eachPost this roots}}

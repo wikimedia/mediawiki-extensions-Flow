@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use Flow\Exception\InvalidInputException;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
@@ -67,8 +68,8 @@ abstract class AbstractBlock implements Block {
 
 	/** @var User $user */
 	protected $user;
-	protected $submitted;
-	protected $errors;
+	protected $submitted = null;
+	protected $errors = array();
 	protected $action;
 
 	/**
@@ -162,6 +163,10 @@ abstract class AbstractBlock implements Block {
 		$this->validate();
 
 		return !$this->hasErrors();
+	}
+
+	public function wasSubmitted() {
+		return $this->submitted !== null;
 	}
 
 	public function onRender( $action, Templating $templating, array $options ) {

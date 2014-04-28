@@ -419,7 +419,9 @@ class TemplateHelper {
 				'first' => $i === 0,
 				'last' => $i === $last
 			);
-
+			if ( !isset( $data['revisions'][$revId] ) ) {
+				throw new FlowException( "Revision not available: $revId" );
+			}
 
 			$cx['scopes'][] = $data['revisions'][$revId];
 			// $fn is always safe return value, its the inner template content

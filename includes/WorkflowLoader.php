@@ -318,8 +318,6 @@ class WorkflowLoader {
 		}
 		return $result;
 	}
-
-
 }
 
 class WorkflowLoaderFactory {

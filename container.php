@@ -592,6 +592,12 @@ $c['controller.spamfilter'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['query.singlepost'] = $c->share( function( $c ) {
+	return new Flow\Formatter\SinglePostQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
 $c['query.checkuser'] = $c->share( function( $c ) {
 	return new Flow\Formatter\CheckUserQuery(
 		$c['storage'],
