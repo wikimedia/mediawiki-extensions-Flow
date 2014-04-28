@@ -16,7 +16,7 @@
 		]
 	},
 	"flow-desc": "工作流管理系统",
-	"flow-talk-taken-over": "此讨论页已被[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal 工作流讨论版]接管。",
+	"flow-talk-taken-over": "此讨论页已被[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow讨论版]接管。",
 	"log-name-flow": "工作流活动日志",
 	"logentry-delete-flow-delete-post": "$1{{GENDER:$2|删除}}[[$3]]的一个[$4 帖子]",
 	"logentry-delete-flow-restore-post": "$1{{GENDER:$2|还原}}[[$3]]的一个[$4 帖子]",
@@ -116,6 +116,7 @@
 	"flow-error-invalid-input": "正在加载的flow内容被提供了无效的值。",
 	"flow-error-invalid-title": "指定了无效的页面标题。",
 	"flow-error-fail-load-history": "未能加载历史内容。",
+	"flow-error-missing-revision": "无法找到需要加载flow内容的修订版本。",
 	"flow-error-fail-commit": "未能保存流内容。",
 	"flow-error-insufficient-permission": "没有足够的权限访问内容。",
 	"flow-error-fail-load-data": "未能加载所请求的数据。",
