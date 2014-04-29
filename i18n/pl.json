@@ -7,7 +7,8 @@
 			"Rzuwig",
 			"Vuh",
 			"Woytecr",
-			"Alan ffm"
+			"Alan ffm",
+			"Wiochman"
 		]
 	},
 	"flow-edit-header-link": "Edytuj nagłówek",
@@ -33,6 +34,7 @@
 	"flow-topic-action-close-topic": "Zamknij temat",
 	"flow-topic-action-summarize-topic": "Podsumuj",
 	"flow-topic-action-resummarize-topic": "Opis zmian",
+	"flow-error-close-moderated-post": "Nie można zamknąć moderowanego posta.",
 	"flow-error-prev-revision-mismatch": "Inny użytkownik kilka sekund temu edytował ten post. Na pewno chcesz nadpisać jego zmiany?",
 	"flow-error-default": "Wystąpił błąd.",
 	"flow-edit-header-submit": "Zapisz nagłówek",
