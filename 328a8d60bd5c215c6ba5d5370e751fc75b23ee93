@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_6bf91ec0",
+        "filename": "includes/Search/Connection.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 2
+      },
+      "writtenOn": "2014-04-29T17:01:56Z",
+      "side": 1,
+      "message": "This should probably extend ElasticaConnection. If there\u0027s stuff we need to make more generic and move there then let\u0027s identify it and do so.",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_cb1f120c",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2
+      },
+      "writtenOn": "2014-04-29T17:01:56Z",
+      "side": 1,
+      "message": "Ugh. This is gonna be nasty. Why are we needing to extend SearchEngine at all? That\u0027s mainly for Special:Search and other core searchy things.",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
