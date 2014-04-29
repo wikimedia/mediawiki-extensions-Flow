@@ -22,6 +22,11 @@ class TopicSummaryBlock extends AbstractBlock {
 	protected $topicSummary;
 
 	/**
+	 * @var stdClass
+	 */
+	protected $formatterRow;
+
+	/**
 	 * Allows or denies actions to be performed
 	 *
 	 * @var RevisionActionPermissions
@@ -48,11 +53,16 @@ class TopicSummaryBlock extends AbstractBlock {
 	 */
 	protected $supportedGetActions = array( 'topic-summary-view', 'compare-postsummary-revisions', 'edit-topic-summary' );
 
+	/**
+	 * @var string[]
+	 */
+	protected $requiresWikitext = array( 'edit-topic-summary' );
+
 	// @Todo - fill in the template names
 	protected $templates = array(
 		'topic-summary-view' => '',
 		'compare-postsummary-revisions' => '',
-		'edit-topic-summary' => '',
+		'edit-topic-summary' => 'edit_topic_summary',
 	);
 
 	/**
@@ -64,13 +74,9 @@ class TopicSummaryBlock extends AbstractBlock {
 		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 
 		if ( !$this->workflow->isNew() ) {
-			$found = $this->storage->find(
-				'PostSummary',
-				array( 'rev_type_id' => $this->workflow->getId() ),
-				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-			);
-			if ( $found ) {
-				$this->topicSummary = reset( $found );
+			$this->formatterRow = Container::get( 'query.postsummary' )->getResult( $this->workflow->getId() );
+			if ( $this->formatterRow ) {
+				$this->topicSummary = $this->formatterRow->revision;
 			}
 		}
 	}
@@ -238,67 +244,10 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * Render for an action
 	 * @param Templating
 	 * @param array
-	 * @throws InvalidActionException
+	 * @throws InvalidInputException
 	 */
 	public function render( Templating $templating, array $options, $return = false ) {
-		$output = $templating->getOutput();
-		$output->addModuleStyles( array( 'ext.flow.discussion.styles', 'ext.flow.moderation' ) );
-		$output->addModules( array( 'ext.flow.discussion' ) );
-		$title = $templating->getContent( $this->findTopicTitle(), 'wikitext' );
-		$output->setHtmlTitle( $title );
-		$output->setPageTitle( $title );
-
-		$prefix = $templating->render(
-			'flow:topic-permalink-warning.html.php',
-			array(
-				'block' => $this,
-			),
-			$return
-		);
-
-		switch( $this->action ) {
-			case 'compare-postsummary-revisions':
-				if ( !isset( $options['newRevision'] ) ) {
-					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
-				}
-				$revisionView = PostSummaryRevisionView::newFromId( $options['newRevision'], $templating, $this, $this->user );
-				if ( !$revisionView ) {
-					throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
-				}
-
-				if ( isset( $options['oldRevision'] ) ) {
-					return $prefix . $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
-				} else {
-					return $prefix . $revisionView->renderDiffViewAgainstPrevious( $return );
-				}
-			break;
-
-			case 'topic-summary-view':
-				$revisionView = null;
-				if ( isset( $options['revId'] ) ) {
-					$revisionView = PostSummaryRevisionView::newFromId( $options['revId'], $templating, $this, $this->user );
-				}
-				if ( !$revisionView ) {
-					throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
-				} else if ( !$this->permissions->isAllowed( $revisionView->getRevision(), 'view' ) ) {
-					$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
-					return null;
-				}
-				return $prefix . $revisionView->renderSingleView( $return );
-			break;
-
-			case 'edit-topic-summary':
-				return $templating->render( 'flow:edit-topic-summary.html.php', array(
-					'block' => $this,
-					'workflow' => $this->getWorkflow(),
-					'topicSummary' => $this->topicSummary,
-					'user' => $this->user,
-				), $return );
-			break;
-
-			default:
-				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
-		}
+		throw new InvalidInputException( 'deprecated' );
 	}
 
 	/**
@@ -309,27 +258,44 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @return array
 	 */
 	public function renderAPI( Templating $templating, array $options ) {
-		$output = array( 'type' => 'topicsummary' );
+		$output = array(
+			'type' => $this->getName(),
+			'editToken' => $this->getEditToken()
+		);
 
-		if ( $this->topicSummary !== null ) {
-			if ( isset( $options['contentFormat'] ) ) {
-				$contentFormat = $options['contentFormat'];
-			} else {
-				$contentFormat = $this->topicSummary->getContentFormat();
-			}
-
-			$output['format'] = $contentFormat;
-			$output['*'] = $templating->getContent( $this->topicSummary, $contentFormat );
-			$output['topicsummary-id'] = $this->topicSummary->getRevisionId()->getAlphadecimal();
-		} else {
-			$output['*'] = '';
-			$output['topicsummary-id'] = '';
+		if ( $this->wasSubmitted() ) {
+			$output += array(
+				'submitted' => $this->submitted,
+				'errors' => $this->errors,
+			);
 		}
 
-		return array(
-			'_element' => 'topicsummary',
-			0 => $output,
-		);
+		$formatter = Container::get( 'formatter.revision' );
+		if ( in_array( $this->action, $this->requiresWikitext ) ) {
+			$formatter->setContentFormat( 'wikitext' );
+		}
+		switch ( $this->action ) {
+			case 'topic-summary-view':
+			case 'edit-topic-summary':
+				if ( $this->formatterRow ) {
+					$output += array(
+						'revision' => $formatter->formatApi(
+							$this->formatterRow, \RequestContext::getMain()
+						)
+					);
+				} else {
+					$fakeSummary = PostSummary::create( $this->findTopicTitle(), $this->user, 'fake content', 'create-topic-summary' );
+					$fakeFormatterRow = new \Flow\Formatter\FormatterRow();
+					$fakeFormatterRow->revision = $fakeSummary;
+					$serialized = $formatter->formatApi( $fakeFormatterRow, \RequestContext::getMain() );
+					$output['revision']['actions']['edit']['url'] = $serialized['actions']['edit']['url'];
+				}
+			break;
+
+			default:
+				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
+		}
+		return $output;
 	}
 
 	public function getName() {
