@@ -37,6 +37,8 @@ class View extends ContextSource {
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
+		global $wgFlowTokenSalt;
+
 		wfProfileIn( __CLASS__ . '-init' );
 
 		$out = $this->getOutput();
@@ -72,7 +74,6 @@ class View extends ContextSource {
 			wfProfileIn( __CLASS__ . '-submit' );
 			$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 			if ( $blocksToCommit ) {
-				global $wgFlowTokenSalt;
 				if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
 					$blocks = $blocksToCommit;
 					foreach ( $blocks as $block ) {
