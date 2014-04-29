@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_1df1d765",
+        "filename": "Flow.i18n.php",
+        "patchSetId": 39
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-29T06:15:35Z",
+      "side": 1,
+      "message": "whitespace from a rebase?",
+      "revId": "620ba9aaea1941410a0e7a2b8f02833ac9449bba",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_9dfcc73c",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 39
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-29T06:15:35Z",
+      "side": 1,
+      "message": "Anomie\u0027s PS11 comment still applies:\nIs \"Boardheader\" intended, or should it be something like \"board header\"?\n\nAlso spell out \"parentheses\", Google Translate doesn\u0027t know what \"parens\" are :)",
+      "revId": "620ba9aaea1941410a0e7a2b8f02833ac9449bba",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_bdaf8326",
+        "filename": "includes/ReferenceClarifier.php",
+        "patchSetId": 39
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-29T06:15:35Z",
+      "side": 1,
+      "message": "Anomie\u0027s PS11 comment still applies :\nThe i18n people would probably like a comment near here with the full names of the possible messages that could get used here.\n\nhttps://www.mediawiki.org/wiki/Localisation#Using_messages suggests the format:\n\n  // Messages that can be used here:\n  // * flow-whatlinkshere-header\n  // * flow-whatlinkshere-post\n  // Topic and Summary are plain text and do not have links.",
+      "revId": "620ba9aaea1941410a0e7a2b8f02833ac9449bba",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_e812d7b3",
+        "filename": "includes/ReferenceClarifier.php",
+        "patchSetId": 39
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-04-29T06:15:35Z",
+      "side": 1,
+      "message": "I think you mean $toT  on these lines? PHP complains\n\nUse of undefined constant toT - assumed \u0027toT\u0027",
+      "revId": "620ba9aaea1941410a0e7a2b8f02833ac9449bba",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
