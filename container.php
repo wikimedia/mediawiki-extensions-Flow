@@ -630,6 +630,13 @@ $c['query.recentchanges'] = $c->share( function( $c ) {
 		$c['flow_actions']
 	);
 } );
+$c['query.postsummary'] = $c->share( function( $c ) {
+	return new Flow\Formatter\PostSummaryQuery(
+		$c['storage'],
+		$c['repository.tree'],
+		$c['flow_actions']
+	);
+} );
 $c['formatter.recentchanges'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RecentChanges(
 		$c['permissions'],

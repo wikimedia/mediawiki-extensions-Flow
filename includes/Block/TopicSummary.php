@@ -22,6 +22,11 @@ class TopicSummaryBlock extends AbstractBlock {
 	protected $topicSummary;
 
 	/**
+	 * @var stdClass
+	 */
+	protected $formatterRow;
+
+	/**
 	 * Allows or denies actions to be performed
 	 *
 	 * @var RevisionActionPermissions
@@ -52,7 +57,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	protected $templates = array(
 		'topic-summary-view' => '',
 		'compare-postsummary-revisions' => '',
-		'edit-topic-summary' => '',
+		'edit-topic-summary' => 'edit_topic_summary',
 	);
 
 	/**
@@ -64,13 +69,9 @@ class TopicSummaryBlock extends AbstractBlock {
 		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 
 		if ( !$this->workflow->isNew() ) {
-			$found = $this->storage->find(
-				'PostSummary',
-				array( 'rev_type_id' => $this->workflow->getId() ),
-				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-			);
-			if ( $found ) {
-				$this->topicSummary = reset( $found );
+			$this->formatterRow = Container::get( 'query.postsummary' )->getResult( $this->workflow->getId() );
+			if ( $this->formatterRow ) {
+				$this->topicSummary = $this->formatterRow->revision;
 			}
 		}
 	}
@@ -309,27 +310,28 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @return array
 	 */
 	public function renderAPI( Templating $templating, array $options ) {
-		$output = array( 'type' => 'topicsummary' );
+		$output = array( 'type' => $this->getName() );
 
-		if ( $this->topicSummary !== null ) {
-			if ( isset( $options['contentFormat'] ) ) {
-				$contentFormat = $options['contentFormat'];
-			} else {
-				$contentFormat = $this->topicSummary->getContentFormat();
-			}
+		switch ( $this->action ) {
+			case 'topic-summary-view':
+			case 'edit-topic-summary':
+				if ( $this->formatterRow ) {
+					$output += Container::get( 'formatter.revision' )->formatApi(
+						$this->formatterRow, \RequestContext::getMain()
+					);
+				} else {
+					$fakeSummary = PostSummary::create( $this->findTopicTitle(), $this->user, 'fake content', 'create-topic-summary' );
+					$fakeFormatterRow = new \Flow\Formatter\FormatterRow();
+					$fakeFormatterRow->revision = $fakeSummary;
+					$serialized = $fakeFormatterRow->formatApi( $fakeFormatterRow, \RequestContext::getMain() );
+					$output['actions']['edit']['url'] = $serialized['actions']['edit']['url'];
+				}
+			break;
 
-			$output['format'] = $contentFormat;
-			$output['*'] = $templating->getContent( $this->topicSummary, $contentFormat );
-			$output['topicsummary-id'] = $this->topicSummary->getRevisionId()->getAlphadecimal();
-		} else {
-			$output['*'] = '';
-			$output['topicsummary-id'] = '';
+			default:
+				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
-
-		return array(
-			'_element' => 'topicsummary',
-			0 => $output,
-		);
+		return $output;
 	}
 
 	public function getName() {

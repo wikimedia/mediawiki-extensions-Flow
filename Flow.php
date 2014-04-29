@@ -177,6 +177,7 @@ $wgAutoloadClasses['Flow\Formatter\RecentChanges'] = $dir . 'includes/Formatter/
 $wgAutoloadClasses['Flow\Formatter\RecentChangesQuery'] = $dir . 'includes/Formatter/RecentChangesQuery.php';
 $wgAutoloadClasses['Flow\Formatter\RecentChangesRow'] = $dir . 'includes/Formatter/RecentChangesQuery.php';
 $wgAutoloadClasses['Flow\Formatter\SinglePostQuery'] = $dir . 'includes/Formatter/SinglePostQuery.php';
+$wgAutoloadClasses['Flow\Formatter\PostSummaryQuery'] = $dir . 'includes/Formatter/PostSummaryQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicListQuery'] = $dir . 'includes/Formatter/TopicListQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicHistoryQuery'] = $dir . 'includes/Formatter/TopicHistoryQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicRow'] = $dir . 'includes/Formatter/TopicRow.php';
