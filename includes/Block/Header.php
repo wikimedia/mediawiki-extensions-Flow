@@ -19,6 +19,13 @@ class HeaderBlock extends AbstractBlock {
 	protected $header;
 
 	/**
+	 * New revision created via submission.
+	 *
+	 * @var Header|null
+	 */
+	protected $newRevision;
+
+	/**
 	 * @var boolean
 	 */
 	protected $needCreate = false;
@@ -31,13 +38,18 @@ class HeaderBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
+	protected $requiresWikitext = array( 'edit-header' );
+
+	/**
+	 * @var string[]
+	 */
 	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'header-view' );
 
 	// @Todo - fill in the template names
 	protected $templates = array(
 		'view' => '',
 		'compare-header-revisions' => '',
-		'edit-header' => '',
+		'edit-header' => 'edit',
 		'header-view' => '',
 	);
 
@@ -110,9 +122,9 @@ class HeaderBlock extends AbstractBlock {
 
 		// this isn't really part of validate, but we want the error-rendering template to see the users edited header
 		$oldHeader = $this->header;
-		$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
+		$this->newRevision = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
 
-		if ( !$this->checkSpamFilters( $oldHeader, $this->header ) ) {
+		if ( !$this->checkSpamFilters( $this->header, $this->newRevision ) ) {
 			return;
 		}
 
@@ -131,9 +143,9 @@ class HeaderBlock extends AbstractBlock {
 			return;
 		}
 
-		$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
+		$this->newRevision = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
 
-		if ( !$this->checkSpamFilters( null, $this->header ) ) {
+		if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
 			return;
 		}
 	}
@@ -145,12 +157,10 @@ class HeaderBlock extends AbstractBlock {
 	public function commit() {
 		switch( $this->action ) {
 			case 'edit-header':
-				$this->storage->put( $this->header );
-
-				$header = $this->header;
+				$this->storage->put( $this->newRevision );
 
 				return array(
-					'new-revision-id' => $this->header->getRevisionId(),
+					'new-revision-id' => $this->newRevision->getRevisionId(),
 				);
 
 			default:
@@ -159,49 +169,11 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options, $return = false ) {
-		$templating->getOutput()->addModuleStyles( array( 'ext.flow.header' ) );
-		$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
-
-		switch ( $this->action ) {
-			case 'compare-header-revisions':
-				if ( !isset( $options['newRevision'] ) ) {
-					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
-				}
-				$revisionView = HeaderRevisionView::newFromId( $options['newRevision'], $templating, $this, $this->user );
-				if ( !$revisionView ) {
-					throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
-				}
-
-				if ( isset( $options['oldRevision'] ) ) {
-					return $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
-				} else {
-					return $revisionView->renderDiffViewAgainstPrevious( $return );
-				}
-			break;
-
-			case 'edit-header':
-				return $templating->renderHeader( $this->header, $this, $this->user, 'flow:edit-header.html.php', $return );
-			break;
-
-			default:
-				if ( isset( $options['revId'] ) ) {
-					$revisionView = HeaderRevisionView::newFromId( $options['revId'], $templating, $this, $this->user );
-					if ( !$revisionView ) {
-						throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
-					} else if ( !$this->permissions->isAllowed( $revisionView->getRevision(), 'view' ) ) {
-						$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
-						return null;
-					}
-					return $revisionView->renderSingleView( $return );
-				} else {
-					return $templating->renderHeader( $this->header, $this, $this->user, 'flow:header.html.php', $return );
-				}
-			break;
-		}
+		throw new FlowException( 'deprecated' );
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
-		$output = array( 
+		$output = array(
 			'type' => $this->getName(),
 			'editToken' => $this->getEditToken(),
 		);
@@ -213,17 +185,26 @@ class HeaderBlock extends AbstractBlock {
 			$row = new FormatterRow;
 			$row->workflow = $this->workflow;
 			$row->revision = $this->header;
-			// @todo not always true
 			$row->currentRevision = $this->header;
+
+			$serializer = Container::get( 'formatter.revision' );
+			if ( false !== array_search( $this->action, $this->requiresWikitext ) ) {
+				$serializer->setContentFormat( 'wikitext' );
+			}
 
 			$output['revision'] = Container::get( 'formatter.revision' )->formatApi( $row, $ctx );
 		}
 
+		if ( $this->wasSubmitted() ) {
+			$output += array(
+				'submitted' => $this->submitted,
+				'errors' => $this->errors,
+			);
+		}
 		return $output;
 	}
 
 	public function getName() {
 		return 'header';
 	}
-
 }
