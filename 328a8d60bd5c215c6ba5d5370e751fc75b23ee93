@@ -51,6 +51,24 @@
       "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_29544ec8",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2
+      },
+      "writtenOn": "2014-04-29T19:06:58Z",
+      "side": 1,
+      "message": "I can see the motivation. Long as we\u0027re not mucking about with $wgSearchType we should be fine. Curious if it just means we should be refactoring some junk out of core\u0027s SearchEngine.",
+      "parentUuid": "8e23439c_8b235aff",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
