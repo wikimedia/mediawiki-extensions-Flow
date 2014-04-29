@@ -168,6 +168,10 @@ class TemplateHelper {
 			$str = 'flow-load-more';
 			break;
 
+		case 'Summarize':
+			$str = 'flow-summarize-topic-submit';
+			break;
+
 		case 'block':
 			$str = 'blocklink';
 			break;
@@ -251,6 +255,10 @@ class TemplateHelper {
 
 		case 'reply_TOU':
 			$str = 'flow-terms-of-use-reply';
+			break;
+
+		case 'summarize_TOU':
+			$str = 'flow-terms-of-use-summarize';
 			break;
 
 		case '_time':

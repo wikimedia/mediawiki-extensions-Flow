@@ -292,6 +292,18 @@ class RevisionFormatter {
 				);
 				break;
 
+			case 'edit-topic-summary':
+				$links['edit'] = array(
+					'url' => $this->urlGenerator->buildUrl(
+						$title,
+						'edit-topic-summary',
+						array(
+							'workflow' => $workflowId,
+						)
+					),
+					'title' => $this->msg( 'flow-summarize-topic-submit' )
+				);
+				break;
 			case 'edit-header':
 				$links['edit'] = array(
 					'url' => $this->urlGenerator->buildUrl(
@@ -580,8 +592,8 @@ class RevisionFormatter {
 							$title,
 							'compare-header-revisions',
 							array(
-								'workflow' => $workflowId->getAlphadecimal(),
-								'header_newRevision' => $revId->getAlphadecimal(),
+								'workflow' => $workflowId,
+								'header_newRevision' => $revId,
 							)
 						),
 						'title' => $this->msg( 'diff' )
@@ -614,9 +626,9 @@ class RevisionFormatter {
 							$title,
 							'compare-header-revisions',
 							array(
-								'workflow' => $workflowId->getAlphadecimal(),
-								'header_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
-								'header_oldRevision' => $revId->getAlphadecimal(),
+								'workflow' => $workflowId,
+								'header_newRevision' => $cur->getRevisionId(),
+								'header_oldRevision' => $revId,
 							)
 						),
 						'title' => $this->msg( 'cur' )
@@ -639,8 +651,8 @@ class RevisionFormatter {
 							$title,
 							'compare-post-revisions',
 							array(
-								'workflow' => $workflowId->getAlphadecimal(),
-								'topic_newRevision' => $revId->getAlphadecimal(),
+								'workflow' => $workflowId,
+								'topic_newRevision' => $revId,
 							)
 						),
 						'title' => $this->msg( 'diff' )
@@ -674,7 +686,7 @@ class RevisionFormatter {
 							'compare-post-revisions',
 							array(
 								'workflow' => $workflowId,
-								'topic_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
+								'topic_newRevision' => $cur->getRevisionId(),
 								'topic_oldRevision' => $revId,
 							)
 						),
