@@ -27,7 +27,7 @@ class CheckUserQuery extends AbstractQuery {
 				continue;
 			}
 
-			$ids = static::extractIds( $row );
+			$ids = self::extractIds( $row );
 			if ( !$ids ) {
 				continue;
 			}
@@ -76,7 +76,7 @@ class CheckUserQuery extends AbstractQuery {
 			return false;
 		}
 
-		$ids = static::extractIds( $row );
+		$ids = self::extractIds( $row );
 		if ( !$ids ) {
 			return false;
 		}

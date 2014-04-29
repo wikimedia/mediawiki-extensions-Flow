@@ -57,6 +57,10 @@ class RevisionFormatter {
 
 	protected $includeProperties = false;
 
+	protected $allowedContentFormats = array( 'html', 'wikitext' );
+
+	protected $contentFormat = 'html';
+
 	/**
 	 * @param RevisionActionPermissions $permissions
 	 * @param Templating $templating
@@ -79,7 +83,14 @@ class RevisionFormatter {
 	 * here
 	 */
 	public function setIncludeHistoryProperties( $shouldInclude ) {
-		$this->includeProperties = $shouldInclude;
+		$this->includeProperties = (bool)$shouldInclude;
+	}
+
+	public function setContentFormat( $format ) {
+		if ( false === array_search( $format, $this->allowedContentFormats ) ) {
+			throw new FlowException( "Unknown content format: $format" );
+		}
+		$this->contentFormat = $format;
 	}
 
 	/**
@@ -140,15 +151,18 @@ class RevisionFormatter {
 		}
 
 		if ( $isContentAllowed ) {
+
+			// topic titles are always forced to plain text
 			$contentFormat = ( $row->revision instanceof PostRevision && $row->revision->isTopicTitle() )
 				? 'wikitext'
-				: 'html';
+				: $this->contentFormat;
 
 			$res += array(
 				'content' => $this->templating->getContent( $row->revision, $contentFormat ),
 				'contentFormat' => $contentFormat,
 				'size' => array(
 					'old' => null,
+					// @todo this isn't really correct
 					'new' => strlen( $row->revision->getContentRaw() ),
 				),
 			);
@@ -282,13 +296,13 @@ class RevisionFormatter {
 				$links['edit'] = array(
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
-						'edit',
+						'edit-header',
 						array(
 							'workflow' => $workflowId,
 							'header_revId' => $revId,
 						)
 					),
-					'title' => $this->msg( 'flow-header-action-edit-header' )
+					'title' => $this->msg( 'flow-edit-header-link' )
 				);
 				break;
 
@@ -566,8 +580,8 @@ class RevisionFormatter {
 							$title,
 							'compare-header-revisions',
 							array(
-								'workflow' => $workflowId->getAlphadecimal(),
-								'header_newRevision' => $revId->getAlphadecimal(),
+								'workflow' => $workflowId,
+								'header_newRevision' => $revId,
 							)
 						),
 						'title' => $this->msg( 'diff' )
@@ -600,9 +614,9 @@ class RevisionFormatter {
 							$title,
 							'compare-header-revisions',
 							array(
-								'workflow' => $workflowId->getAlphadecimal(),
+								'workflow' => $workflowId,
 								'header_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
-								'header_oldRevision' => $revId->getAlphadecimal(),
+								'header_oldRevision' => $revId,
 							)
 						),
 						'title' => $this->msg( 'cur' )
@@ -625,8 +639,8 @@ class RevisionFormatter {
 							$title,
 							'compare-post-revisions',
 							array(
-								'workflow' => $workflowId->getAlphadecimal(),
-								'topic_newRevision' => $revId->getAlphadecimal(),
+								'workflow' => $workflowId,
+								'topic_newRevision' => $revId,
 							)
 						),
 						'title' => $this->msg( 'diff' )

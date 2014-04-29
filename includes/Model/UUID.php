@@ -171,6 +171,9 @@ class UUID {
 	 * @return string
 	 */
 	public function __toString() {
+		echo '<pre>', new \Exception;
+		die();
+
 		wfWarn( __METHOD__ . ': UUID __toString auto-converted to alphaDecimal; please do manually.' );
 
 		return $this->getAlphadecimal();
