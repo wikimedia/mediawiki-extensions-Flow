@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "8e23439c_90125eb3",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-30T19:01:43Z",
+      "side": 1,
+      "message": "having it in View.php should be enough, it\u0027s always the same user",
+      "parentUuid": "8e23439c_d0da1677",
+      "revId": "a977b3e866f3f7368dddfd475979fb105f03a70b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e23439c_d060d6a1",
         "filename": "includes/Block/TopicSummary.php",
         "patchSetId": 2
@@ -47,6 +65,24 @@
       "writtenOn": "2014-04-30T18:22:29Z",
       "side": 1,
       "message": "if we only want the actions, could just call $formatter-\u003ebuildActions(). Thats going to require $row-\u003eworkflow and $row-\u003ecurrentRevision to be populated as well.  I almost wonder if we should generate the one url we need directly....not really sure",
+      "revId": "a977b3e866f3f7368dddfd475979fb105f03a70b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_30794a2a",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-04-30T19:01:43Z",
+      "side": 1,
+      "message": "Probably just generate the url directly.  I feel it weird to generate a row along with a fake revision.",
+      "parentUuid": "8e23439c_d060d6a1",
       "revId": "a977b3e866f3f7368dddfd475979fb105f03a70b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
