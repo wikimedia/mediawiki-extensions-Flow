@@ -83,6 +83,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history' ),
+		'actions' => array( 'edit-topic-summary' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-create-topic-summary',
 			'i18n-params' => array(
@@ -107,6 +108,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'diff-post-summary' ),
+		'actions' => array( 'edit-topic-summary' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-topic-summary',
 			'i18n-params' => array(
