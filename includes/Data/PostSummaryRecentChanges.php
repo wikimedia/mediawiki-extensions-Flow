@@ -38,7 +38,7 @@ class PostSummaryRecentChanges extends RecentChanges {
 
 		$this->insert(
 			$object,
-			'post-summary',
+			'topicsummary',
 			'PostSummary',
 			$row,
 			$workflow,

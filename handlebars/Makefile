@@ -5,12 +5,18 @@ TOPIC_SUBTEMPLATES= flow_topic.html.handlebars \
 		flow_reply_form.html.handlebars
 
 all: flow_block_header.html.handlebars.php \
+		flow_block_header_single_view.html.handlebars.php \
+		flow_block_header_diff_view.html.handlebars.php \
 		flow_board_collapsers_subcomponent.html.handlebars.php \
 		flow_block_topiclist.html.handlebars.php \
 		flow_block_topic.html.handlebars.php \
+		flow_block_topic_single_view.html.handlebars.php \
+		flow_block_topic_diff_view.html.handlebars.php \
 		flow_block_topic_edit_post.html.handlebars.php \
 		flow_block_board-history.html.handlebars.php \
 		flow_block_topicsummary_edit.html.handlebars.php \
+		flow_block_topicsummary_single_view.html.handlebars.php \
+		flow_block_topicsummary_diff_view.html.handlebars.php \
 		flow_board.html.handlebars.php \
 		flow_post.html.handlebars.php \
 		timestamp.html.handlebars.php
@@ -18,8 +24,20 @@ all: flow_block_header.html.handlebars.php \
 flow_block_header.html.handlebars.php: flow_block_header.html.handlebars
 	$(COMPILE) flow_block_header
 
+flow_block_header_single_view.html.handlebars.php: flow_block_header_single_view.html.handlebars
+	$(COMPILE) flow_block_header_single_view
+
+flow_block_header_diff_view.html.handlebars.php: flow_block_header_diff_view.html.handlebars
+	$(COMPILE) flow_block_header_diff_view
+
 flow_block_topicsummary_edit.html.handlebars.php: flow_block_topicsummary_edit.html.handlebars
 	$(COMPILE) flow_block_topicsummary_edit
+
+flow_block_topicsummary_single_view.html.handlebars.php: flow_block_topicsummary_single_view.html.handlebars
+	$(COMPILE) flow_block_topicsummary_single_view
+
+flow_block_topicsummary_diff_view.html.handlebars.php: flow_block_topicsummary_diff_view.html.handlebars
+	$(COMPILE) flow_block_topicsummary_diff_view
 
 flow_board_collapsers_subcomponent.html.handlebars.php: flow_board_collapsers_subcomponent.html.handlebars
 	$(COMPILE) flow_board_collapsers_subcomponent
@@ -34,7 +52,15 @@ flow_block_topic.html.handlebars.php: flow_block_topic.html.handlebars \
 		$(TOPIC_SUBTEMPLATES)
 	$(COMPILE) flow_block_topic
 
-flow_block_topic_edit_post.html.handlebars.php: flow_block_topic-edit_post.html.handlebars
+flow_block_topic_single_view.html.handlebars.php: flow_block_topic_single_view.html.handlebars \
+		$(TOPIC_SUBTEMPLATES)
+	$(COMPILE) flow_block_topic_single_view
+
+flow_block_topic_diff_view.html.handlebars.php: flow_block_topic_diff_view.html.handlebars \
+		$(TOPIC_SUBTEMPLATES)
+	$(COMPILE) flow_block_topic_diff_view
+
+flow_block_topic_edit_post.html.handlebars.php: flow_block_topic_edit_post.html.handlebars
 	$(COMPILE) flow_block_topic-edit_post
 
 flow_block_board-history.html.handlebars.php: flow_block_board-history.html.handlebars

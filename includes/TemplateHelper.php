@@ -89,6 +89,8 @@ class TemplateHelper {
 						'historyTimestamp' => 'Flow\TemplateHelper::historyTimestamp',
 						'historyDescription' => 'Flow\TemplateHelper::historyDescription',
 						'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
+						'l10nParse' => 'Flow\TemplateHelper::l10nParse',
+						'diffRevision' => 'Flow\TemplateHelper::diffRevision',
 					),
 					'blockhelpers' => array(
 						'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -528,6 +530,50 @@ class TemplateHelper {
 			'<script type="text/x-handlebars-template-progressive-enhancement" data-type="' . $insertionType . '" id="' . $sectionId . '">'
 			. self::processTemplate( $templateName, $context )
 			.'</script>'
+		);
+	}
+
+	static public function l10nParse( $str /*, $args... */ ) {
+		$args = func_get_args();
+		array_shift( $args );
+		return array( wfMessage( $str, $args )->parse(), 'raw' );
+	}
+
+	static public function diffRevision( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink ) {
+		$differenceEngine = new \DifferenceEngine();
+		$multi = $differenceEngine->getMultiNotice();
+		// Display a message when the diff is empty
+		$notice = '';
+		if ( $diffContent === '' ) {
+			$notice .= '<div class="mw-diff-empty">' .
+				wfMessage( 'diff-empty' )->parse() .
+				"</div>\n";
+		}
+		$differenceEngine->showDiffStyle();
+
+		return array(
+			$differenceEngine->addHeader(
+				$diffContent,
+				self::generateDiffViewTitle( $oldTimestamp, $oldAuthor, $oldLink ),
+				self::generateDiffViewTitle( $newTimestamp, $newAuthor, $newLink ),
+				$multi,
+				$notice
+			),
+			'raw'
+		);
+	}
+
+	static public function generateDiffViewTitle( $timestamp, $user, $link ) {
+		$message = wfMessage( 'flow-compare-revisions-revision-header' )
+			->params( $timestamp )
+			->params( $user );
+
+		return \Html::rawElement( 'a',
+			array(
+				'class' => 'flow-diff-revision-link',
+				'href' => $link,
+			),
+			$message->parse()
 		);
 	}
 }
