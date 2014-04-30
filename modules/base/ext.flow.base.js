@@ -116,7 +116,7 @@ mw.flow = {
 					if (
 						!output.query ||
 						!output.query.flow ||
-						output.query.flow._element !== 'block'
+						output.query.flow.element !== 'block'
 					) {
 						deferredObject.reject( 'invalid-result', 'Unable to understand the API result' );
 						return;

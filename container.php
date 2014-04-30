@@ -604,6 +604,14 @@ $c['query.checkuser'] = $c->share( function( $c ) {
 		$c['repository.tree']
 	);
 } );
+
+$c['formatter.irclineurl'] = $c->share( function( $c ) {
+	return new Flow\Formatter\IRCLineUrlFormatter(
+		$c['permissions'],
+		$c['formatter.revision']
+	);
+} );
+
 $c['formatter.checkuser'] = $c->share( function( $c ) {
 	return new Flow\Formatter\CheckUser(
 		$c['permissions'],

@@ -1,17 +1,15 @@
-@test2.wikipedia.org @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @login
-
+@chrome @clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
 Feature: Create new topic logged in
 
-It requires the cldr extension, a "Flow QA" page, and a "Selenium user" who has
-permission to Delete (usually 'sysop'/administrator user right) and to Suppress
-(usually the 'oversight' user right).
-If the Selenium_user's Flow editor is VisualEditor, then the flow_page
-definitions have to change.
+  It requires the cldr extension, a "Flow QA" page, and a "Selenium user" who has
+  permission to Delete (usually 'sysop'/administrator user right) and to Suppress
+  (usually the 'oversight' user right).
+  If the Selenium_user's Flow editor is VisualEditor, then the flow_page
+  definitions have to change.
 
-Background:
-  Given I am logged in
+  Background:
+    Given I am logged in
 
-  @clean
   Scenario: Add new Flow topic
     Given I have created a Flow topic
       And the author link is visible
@@ -19,7 +17,6 @@ Background:
     When I hover over the author link
       Then links to talk and contrib should be visible
 
-  @clean
   Scenario: Post Actions
     Given I am on Flow page
     When I click the Post Actions link
@@ -27,7 +24,6 @@ Background:
       And I should see a Delete button
       And I should see a Suppress button
 
-  @clean
   Scenario: Topic Actions
     Given I am on Flow page
     When I click the Topic Actions link
