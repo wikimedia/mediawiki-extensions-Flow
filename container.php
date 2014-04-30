@@ -618,7 +618,18 @@ $c['formatter.checkuser'] = $c->share( function( $c ) {
 		$c['formatter.revision']
 	);
 } );
-
+$c['formatter.revisionview'] = $c->share( function( $c ) {
+	return new Flow\Formatter\RevisionViewFormatter(
+		$c['url_generator'],
+		$c['formatter.revision'],
+		$c['templating']
+	);
+} );
+$c['formatter.revision.diff.view'] = $c->share( function( $c ) {
+	return new Flow\Formatter\RevisionDiffViewFormatter(
+		$c['formatter.revisionview']
+	);
+} );
 $c['query.topiclist'] = $c->share( function( $c ) {
 	return new Flow\Formatter\TopicListQuery(
 		$c['storage'],
@@ -643,6 +654,24 @@ $c['query.postsummary'] = $c->share( function( $c ) {
 		$c['storage'],
 		$c['repository.tree'],
 		$c['flow_actions']
+	);
+} );
+$c['query.header.view'] = $c->share( function( $c ) {
+	return new Flow\Formatter\HeaderViewQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
+$c['query.post.view'] = $c->share( function( $c ) {
+	return new Flow\Formatter\PostViewQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
+$c['query.postsummary.view'] = $c->share( function( $c ) {
+	return new Flow\Formatter\PostSummaryViewQuery(
+		$c['storage'],
+		$c['repository.tree']
 	);
 } );
 $c['formatter.recentchanges'] = $c->share( function( $c ) {

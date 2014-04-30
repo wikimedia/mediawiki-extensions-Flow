@@ -68,17 +68,18 @@ class TopicBlock extends AbstractBlock {
 	);
 
 	protected $supportedGetActions = array(
-		'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions',
+		'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'post-view'
 	);
 
 	// @Todo - fill in the template names
 	protected $templates = array(
+		'post-view' => 'single_view',
 		'view' => '',
 		'history' => 'history',
 		'reply' => '',
 		'edit-post' => 'edit_post',
 		'edit-title' => 'edit_title',
-		'compare-post-revisions' => '',
+		'compare-post-revisions' => 'diff_view',
 	);
 
 	protected $requiresWikitext = array( 'edit-post', 'edit-title' );
@@ -451,6 +452,14 @@ class TopicBlock extends AbstractBlock {
 				// post history for full topic
 				$output = $this->renderTopicHistoryAPI( $templating, $options );
 			}
+		} elseif ( $this->action === 'post-view' ) {
+			$revId = '';
+			if ( isset( $options['revId'] ) ) {
+				$revId = $options['revId'];
+			}
+			$output = $this->renderSingleViewAPI( $revId );
+		} elseif ( $this->action === 'compare-post-revisions' ) {
+			$output = $this->renderDiffViewAPI( $options );
 		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {
 			// view full topic
 			$output = $this->renderTopicAPI( $templating, $options );
@@ -481,23 +490,44 @@ class TopicBlock extends AbstractBlock {
 		switch( $this->action ) {
 		case 'edit-post':
 			return false;
-
-		case 'view':
-			return !isset( $options['postId'] ) && !isset( $options['revId'] );
 		}
 
 		return true;
 	}
 
-	protected function renderTopicAPI( Templating $templating, array $options ) {
+	// @Todo - duplicated logic in other diff view block
+	protected function renderDiffViewAPI( array $options ) {
+		if ( !isset( $options['newRevision'] ) ) {
+			throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+		}
+		$oldRevision = '';
+		if ( isset( $options['oldRevision'] ) ) {
+			$oldRevision = $options['newRevision'];
+		}
+		list( $new, $old ) = Container::get( 'query.post.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
+		$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, \RequestContext::getMain() );
+		return $output;
+	}
+
+	// @Todo - duplicated logic in other single view block
+	protected function renderSingleViewAPI( $revId ) {
+		$row = Container::get( 'query.post.view' )->getSingleViewResult( $revId );
+		$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
+		return $output;
+	}
+
+	protected function renderTopicAPI( Templating $templating, array $options, $workflowId = '' ) {
 		$serializer = Container::get( 'formatter.topic' );
-		if ( $this->workflow->isNew() ) {
-			return $serializer->buildEmptyResult( $this->workflow );
+		if ( !$workflowId ) {
+			if ( $this->workflow->isNew() ) {
+				return $serializer->buildEmptyResult( $this->workflow );
+			}
+			$workflowId = $this->workflow->getId();
 		}
 
 		return $serializer->formatApi(
 			$this->workflow,
-			Container::get( 'query.topiclist' )->getResults( array( $this->workflow->getId() ) ),
+			Container::get( 'query.topiclist' )->getResults( array( $workflowId ) ),
 			\RequestContext::getMain()
 		);
 	}
@@ -507,12 +537,16 @@ class TopicBlock extends AbstractBlock {
 	 * To generate forms with validation errors in the non-javascript renders we
 	 * need to add something to this output, but not sure what yet
 	 */
-	protected function renderPostAPI( Templating $templating, array $options ) {
+	protected function renderPostAPI( Templating $templating, array $options, $postId = '' ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No posts can exist for non-existant topic' );
 		}
 
-		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $options['postId'] ) );
+		if ( !$postId ) {
+			$postId = $options['postId'];
+		}
+
+		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $postId ) );
 		$serialized = $this->getRevisionFormatter()->formatApi( $row, \RequestContext::getMain() );
 		if ( !$serialized ) {
 			return null;
