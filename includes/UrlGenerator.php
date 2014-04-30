@@ -124,7 +124,7 @@ class UrlGenerator {
 			$action = 'header-view';
 		} elseif ( $revision instanceof PostSummary ) {
 			if ( $specificRevision ) {
-				$data['postsummary_revId'] = $revision->getRevisionId()->getAlphadecimal();
+				$data['topicsummary_revId'] = $revision->getRevisionId()->getAlphadecimal();
 			}
 			$action = 'topic-summary-view';
 		} else {
