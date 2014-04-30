@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_51d5e8b8",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-30T23:01:11Z",
+      "side": 1,
+      "message": "this one still needs the getAlphadecimal() call, because getRevisionId() return a UUID object($workflowId and such were already resolved to alphadecimal)",
+      "revId": "0c01032a52a30d8e5e467e171ae43327618e98b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
