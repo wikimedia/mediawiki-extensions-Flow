@@ -61,8 +61,8 @@ class TopicSummaryBlock extends AbstractBlock {
 
 	// @Todo - fill in the template names
 	protected $templates = array(
-		'topic-summary-view' => '',
-		'compare-postsummary-revisions' => '',
+		'topic-summary-view' => 'single_view',
+		'compare-postsummary-revisions' => 'diff_view',
 		'edit-topic-summary' => 'edit',
 	);
 
@@ -274,6 +274,16 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 		switch ( $this->action ) {
 			case 'topic-summary-view':
+				// @Todo - duplicated logic in other single view block
+				if ( isset( $options['revId'] ) ) {
+					$row = Container::get( 'query.postsummary.view' )->getSingleViewResult( $options['revId'] );
+					$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
+				} else {
+					$output['revision'] = $formatter->formatApi(
+						$this->formatterRow, \RequestContext::getMain()
+					);
+				}
+				break;
 			case 'edit-topic-summary':
 				if ( $this->formatterRow ) {
 					$output['revision'] = $formatter->formatApi(
@@ -288,8 +298,19 @@ class TopicSummaryBlock extends AbstractBlock {
 						)
 					);
 				}
-			break;
-
+				break;
+			case 'compare-postsummary-revisions':
+				// @Todo - duplicated logic in other diff view block
+				if ( !isset( $options['newRevision'] ) ) {
+					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+				}
+				$oldRevision = '';
+				if ( isset( $options['oldRevision'] ) ) {
+					$oldRevision = $options['newRevision'];
+				}
+				list( $new, $old ) = Container::get( 'query.postsummary.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
+				$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, \RequestContext::getMain() );
+				break;
 			default:
 				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}

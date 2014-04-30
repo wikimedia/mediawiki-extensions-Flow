@@ -100,10 +100,11 @@ class View extends ContextSource {
 		$editToken = $user->getEditToken( $wgFlowTokenSalt );
 		foreach ( $blocks as $block ) {
 			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
-				$apiResponse['blocks'][] = array(
-					'block-action-template' => $block->getTemplate( $action ),
-					'editToken' => $editToken,
-				) + $block->renderAPI( $this->templating, $parameters[$block->getName()] );
+				$apiResponse['blocks'][] = $block->renderAPI( $this->templating, $parameters[$block->getName()] )
+								+ array(
+									'block-action-template' => $block->getTemplate( $action ),
+									'editToken' => $editToken,
+								);
 			}
 		}
 

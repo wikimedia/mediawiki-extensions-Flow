@@ -698,21 +698,62 @@ class RevisionFormatter {
 				break;
 
 			case 'diff-post-summary':
-				if ( !$revId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render diff link' );
-					break;
+				/*
+				 * To diff against previous revision, we don't really need that
+				 * revision id; if no particular diff id is specified, it will
+				 * assume a diff against previous revision. However, we do want
+				 * to make sure that a previous revision actually exists to diff
+				 * against. This could result in a network request (fetching the
+				 * current revision), but it's likely being loaded anyways.
+				 */
+				if ( $row->revision->getPrevRevisionId() !== null ) {
+					$links['diff'] = array(
+						'url' => $this->urlGenerator->buildUrl(
+							$title,
+							'compare-postsummary-revisions',
+							array(
+								'workflow' => $workflowId,
+								'topicsummary_newRevision' => $revId,
+							)
+						),
+						'title' => $this->msg( 'diff' )
+					);
+
+					/*
+					 * Different formatters have different terminology for the link
+					 * that diffs a certain revision to the previous revision.
+					 *
+					 * E.g.: Special:Contributions has "diff" ($links['diff']),
+					 * ?action=history has "prev" ($links['prev']).
+					 */
+					$links['diff-prev'] = array(
+						'url' => $links['diff']['url'],
+						'title' => $this->msg( 'last' )
+					);
 				}
-				$links['diff'] = array(
-					$this->urlGenerator->buildUrl(
-						$title,
-						'compare-postsummary-revisions',
-						array(
-							'workflow' => $workflowId,
-							'topicsummary_newRevision' => $revId,
-						)
-					),
-					$this->msg( 'diff' )
-				);
+
+				/*
+				 * To diff against the current revision, we need to know the id
+				 * of this last revision. This could be an additional network
+				 * request, though anything using formatter likely already needs
+				 * to request the most current revision (e.g. to check
+				 * permissions) so we should be able to get it from local cache.
+				 */
+				$cur = $row->currentRevision;
+				if ( !$row->revision->getRevisionId()->equals( $cur->getRevisionId() ) ) {
+					$links['diff-cur'] = array(
+						'url' => $this->urlGenerator->buildUrl(
+							$title,
+							'compare-postsummary-revisions',
+							array(
+								'workflow' => $workflowId,
+								'topicsummary_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
+								'topicsummary_oldRevision' => $revId,
+							)
+						),
+						'title' => $this->msg( 'cur' )
+					);
+				}
 				break;
 
 			case 'workflow':
