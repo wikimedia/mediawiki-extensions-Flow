@@ -77,7 +77,7 @@ class TopicBlock extends AbstractBlock {
 		'history' => 'history',
 		'reply' => '',
 		'edit-post' => 'edit_post',
-		'edit-title' => '',
+		'edit-title' => 'edit_title',
 		'compare-post-revisions' => '',
 	);
 

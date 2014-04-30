@@ -16,6 +16,9 @@
 		<div class="flow-menu">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikicon wikicon-ellipsis"></span></a></div>
 			<ul class="flow-ui-button-container">
+				{{#if actions.edit}}
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{actions.edit.url}}" title="{{actions.edit.title}}">{{actions.edit.title}}</a></li>
+				{{/if}}	
 				{{#if links.topic-history}}
 					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.topic-history.url}}" title="{{links.topic-history.title}}">{{links.topic-history.title}}</a></li>
 				{{/if}}

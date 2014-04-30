@@ -152,7 +152,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic-history', 'topic', 'post', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
+		'actions' => array( 'reply', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-new-post',
 			'i18n-params' => array(
@@ -226,7 +226,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'post-history', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
+		'actions' => array( 'reply', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-topic',
 			'i18n-params' => array(
@@ -276,7 +276,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
+		'actions' => array( 'reply', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-topic',
 			'i18n-params' => array(
@@ -328,7 +328,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
+		'actions' => array( 'reply', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-suppressed-topic',
 			'i18n-params' => array(
@@ -456,7 +456,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
+		'actions' => array( 'reply', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-restored-topic',
 			'i18n-params' => array(

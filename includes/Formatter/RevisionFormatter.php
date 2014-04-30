@@ -306,7 +306,7 @@ class RevisionFormatter {
 				);
 				break;
 
-			case 'edit-topic': // fall-through
+			case 'edit-title': // fall-through
 			case 'edit-post':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
@@ -314,7 +314,7 @@ class RevisionFormatter {
 				$links['edit'] = array(
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
-						'edit-post',
+						$type,
 						array(
 							'workflow' => $workflowId ,
 							'topic_postId' => $postId,
