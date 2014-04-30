@@ -566,9 +566,14 @@ class RevisionFormatter {
 							$title,
 							'compare-header-revisions',
 							array(
+<<<<<<< HEAD   (49e2e0 Fix missing edit token)
 								'workflow' => $workflowId,
 								'header_newRevision' => $revId,
 								'header_oldRevision' => $row->revision->getPrevRevisionId()->getAlphadecimal(),
+=======
+								'workflow' => $workflowId->getAlphadecimal(),
+								'header_newRevision' => $revId->getAlphadecimal(),
+>>>>>>> BRANCH (9e19ba Localisation updates from https://translatewiki.net.)
 							)
 						),
 						'title' => $this->msg( 'diff' )
@@ -599,11 +604,17 @@ class RevisionFormatter {
 					$links['diff-cur'] = array(
 						'url' => $this->urlGenerator->buildUrl(
 							$title,
-							'compare-post-revisions',
+							'compare-header-revisions',
 							array(
+<<<<<<< HEAD   (49e2e0 Fix missing edit token)
 								'workflow' => $workflowId,
 								'topic_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
 								'topic_oldRevision' => $revId,
+=======
+								'workflow' => $workflowId->getAlphadecimal(),
+								'header_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
+								'header_oldRevision' => $revId->getAlphadecimal(),
+>>>>>>> BRANCH (9e19ba Localisation updates from https://translatewiki.net.)
 							)
 						),
 						'title' => $this->msg( 'cur' )
@@ -626,9 +637,14 @@ class RevisionFormatter {
 							$title,
 							'compare-post-revisions',
 							array(
+<<<<<<< HEAD   (49e2e0 Fix missing edit token)
 								'workflow' => $workflowId,
 								'topic_newRevision' => $revId,
 								'topic_oldRevision' => $row->revision->getPrevRevisionId()->getAlphadecimal(),
+=======
+								'workflow' => $workflowId->getAlphadecimal(),
+								'topic_newRevision' => $revId->getAlphadecimal(),
+>>>>>>> BRANCH (9e19ba Localisation updates from https://translatewiki.net.)
 							)
 						),
 						'title' => $this->msg( 'diff' )
