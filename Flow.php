@@ -180,7 +180,7 @@ $wgAutoloadClasses['Flow\Formatter\SinglePostQuery'] = $dir . 'includes/Formatte
 $wgAutoloadClasses['Flow\Formatter\TopicListQuery'] = $dir . 'includes/Formatter/TopicListQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicHistoryQuery'] = $dir . 'includes/Formatter/TopicHistoryQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicRow'] = $dir . 'includes/Formatter/TopicRow.php';
-
+$wgAutoloadClasses['Flow\Formatter\IRCLineUrlFormatter'] = $dir . 'includes/Formatter/IRCLineUrlFormatter.php';
 
 // Convert model instances into array of user-visible data
 $wgAutoloadClasses['Flow\Formatter\RevisionFormatter'] = $dir . 'includes/Formatter/RevisionFormatter.php';
@@ -256,6 +256,8 @@ $wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGe
 $wgHooks['MakeGlobalVariablesScript'][] = 'FlowHooks::onMakeGlobalVariablesScript';
 $wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';
 $wgHooks['SkinMinervaDefaultModules'][] = 'FlowHooks::onSkinMinervaDefaultModules';
+$wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
+$wgHooks['FlowAddModules'][] = 'Flow\Parsoid\Utils::onFlowAddModules';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
