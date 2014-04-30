@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_e26ae810",
+        "filename": "includes/View/Post.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-30T16:01:48Z",
+      "side": 1,
+      "message": "$this-\u003etemplating doesn\u0027t exist?",
+      "revId": "c4c693d09191abe2bcca10e7c6469aa397b9a12f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
