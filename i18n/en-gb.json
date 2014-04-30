@@ -3,5 +3,8 @@
 		"authors": [
 			"Shirayuki"
 		]
-	}
+	},
+	"flow-summarize-topic-placeholder": "Please summarise this discussion",
+	"flow-topic-action-summarize-topic": "Summarise",
+	"flow-summarize-topic-submit": "Summarise"
 }
