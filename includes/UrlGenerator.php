@@ -117,6 +117,7 @@ class UrlGenerator {
 			if ( $specificRevision ) {
 				$data['topic_revId'] = $revision->getRevisionId()->getAlphadecimal();
 			}
+			$action = 'post-view';
 		} elseif ( $revision instanceof Header ) {
 			if ( $specificRevision ) {
 				$data['header_revId'] = $revision->getRevisionId()->getAlphadecimal();
