@@ -1,13 +1,11 @@
-@test2.wikipedia.org @en.wikipedia.beta.wmflabs.org @ee-prototype.wmflabs.org @login
-
+@clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
 Feature: Edit existing title
 
-Assumes that the test Flow page has at least two topics (with posts).
+  Assumes that the test Flow page has at least two topics (with posts).
 
   Background:
     Given I am logged in
 
-  @clean
   Scenario: Edit an existing title
     Given I am on Flow page
     When I click the Edit title action
@@ -15,7 +13,6 @@ Assumes that the test Flow page has at least two topics (with posts).
       And I should be able to save the new title
       And the saved topic title should contain Title edited
 
-  @clean
   Scenario: Edit existing post
     Given I am on Flow page
     When I click Edit post
