@@ -178,6 +178,33 @@ class HeaderBlock extends AbstractBlock {
 			'editToken' => $this->getEditToken(),
 		);
 
+		switch ( $this->action ) {
+			case 'view':
+			case 'header-view':
+			case 'edit-header':
+				$output += $this->renderRevisionAPI();
+				break;
+
+			case 'compare-header-revisions':
+
+				break;
+		}
+
+		if ( $this->wasSubmitted() ) {
+			$output += array(
+				'submitted' => $this->submitted,
+				'errors' => $this->errors,
+			);
+		}
+		return $output;
+	}
+
+	protected function renderDiffAPI() {
+
+	}
+
+	protected function renderRevisionAPI() {
+		$output = array();
 		if ( $this->header === null ) {
 			$output['missing'] = 'missing';
 		} else {
@@ -193,13 +220,6 @@ class HeaderBlock extends AbstractBlock {
 			}
 
 			$output['revision'] = Container::get( 'formatter.revision' )->formatApi( $row, $ctx );
-		}
-
-		if ( $this->wasSubmitted() ) {
-			$output += array(
-				'submitted' => $this->submitted,
-				'errors' => $this->errors,
-			);
 		}
 		return $output;
 	}
