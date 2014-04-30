@@ -35,12 +35,10 @@ interface ObjectStorage {
 	/**
 	 * Insert the specified row into the data store.
 	 *
-	 * @param array $row An array of rows, each row is a map of columns => values.
-	 * Currently, the old calling convention of a simple map of columns to values is
-	 * also supported.
+	 * @param array $row Map of columns to values
 	 * @return array|false The resulting $row including any auto-assigned ids or false on failure
 	 */
-	function insert( array $rows );
+	function insert( array $row );
 
 	/**
 	 * Perform all changes necessary to turn $old into $new in the data store.

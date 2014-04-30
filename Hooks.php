@@ -21,7 +21,7 @@ class FlowHooks {
 
 	/**
 	 * Initialized during extension initialization rather than
-	 * in container so that non-flow pages don't  load the container.
+	 * in container so that non-flow pages don't load the container.
 	 *
 	 * @return OccupationController
 	 */
@@ -40,7 +40,7 @@ class FlowHooks {
 
 	/**
 	 * Initialized during extension initialization rather than
-	 * in container so that non-flow pages don't  load the container.
+	 * in container so that non-flow pages don't load the container.
 	 *
 	 * @return AbuseFilter|null when disabled
 	 */
@@ -396,8 +396,8 @@ class FlowHooks {
 
 	/**
 	 * Adds Flow entries to watchlists
-	 * @param  array &$types Type array to modify
-	 * @return boolean       true
+	 * @param array &$types Type array to modify
+	 * @return boolean true
 	 */
 	public static function onSpecialWatchlistGetNonRevisionTypes( &$types ) {
 		$types[] = RC_FLOW;
@@ -607,6 +607,27 @@ class FlowHooks {
 		}
 
 		$rcRow['cuc_comment'] = $comment;
+
+		return true;
+	}
+
+	public static function onIRCLineURL( &$url, &$query, RecentChange $rc ) {
+		if ( $rc->getAttribute( 'rc_source' ) !== Flow\Data\RecentChanges::SRC_FLOW ) {
+			return true;
+		}
+
+		$result = null;
+		try {
+			$result = Container::get( 'formatter.irclineurl' )->format( $rc );
+		} catch ( FlowException $e ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting rc ' . $rc->getAttribute( 'rc_id' ) );
+			\MWExceptionHandler::logException( $e );
+		}
+
+		if ( $result !== null ) {
+			$url = $result;
+			$query = '';
+		}
 
 		return true;
 	}
