@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_b0f67af4",
+        "filename": "handlebars/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-30T18:22:29Z",
+      "side": 1,
+      "message": "this could probably just be flow_block_topicsummary_edit.html.handlebars",
+      "revId": "a977b3e866f3f7368dddfd475979fb105f03a70b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_d0da1677",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-30T18:22:29Z",
+      "side": 1,
+      "message": "the editToken is now being added from View.php, perhaps we should be doing the type there too so its reliably always the same?",
+      "revId": "a977b3e866f3f7368dddfd475979fb105f03a70b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_d060d6a1",
+        "filename": "includes/Block/TopicSummary.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-04-30T18:22:29Z",
+      "side": 1,
+      "message": "if we only want the actions, could just call $formatter-\u003ebuildActions(). Thats going to require $row-\u003eworkflow and $row-\u003ecurrentRevision to be populated as well.  I almost wonder if we should generate the one url we need directly....not really sure",
+      "revId": "a977b3e866f3f7368dddfd475979fb105f03a70b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
