@@ -182,6 +182,9 @@ $wgAutoloadClasses['Flow\Formatter\TopicListQuery'] = $dir . 'includes/Formatter
 $wgAutoloadClasses['Flow\Formatter\TopicHistoryQuery'] = $dir . 'includes/Formatter/TopicHistoryQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicRow'] = $dir . 'includes/Formatter/TopicRow.php';
 $wgAutoloadClasses['Flow\Formatter\IRCLineUrlFormatter'] = $dir . 'includes/Formatter/IRCLineUrlFormatter.php';
+$wgAutoloadClasses['Flow\Formatter\RevisionViewFormatter'] = $dir . 'includes/Formatter/RevisionViewFormatter.php';
+$wgAutoloadClasses['Flow\Formatter\RevisionViewQuery'] = $dir . 'includes/Formatter/RevisionViewQuery.php';
+$wgAutoloadClasses['Flow\Formatter\RevisionViewRow'] = $dir . 'includes/Formatter/RevisionViewRow.php';
 
 // Convert model instances into array of user-visible data
 $wgAutoloadClasses['Flow\Formatter\RevisionFormatter'] = $dir . 'includes/Formatter/RevisionFormatter.php';
