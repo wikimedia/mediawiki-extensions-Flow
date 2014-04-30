@@ -62,18 +62,22 @@ abstract class Utils {
 			throw new WikitextException( 'Unknown source format: ' . $from, 'process-wikitext' );
 		}
 
-		$response = \Http::post(
+		$request = \MWHttpRequest::factory(
 			$parsoidURL . '/' . $parsoidPrefix . '/' . $title->getPrefixedDBkey(),
 			array(
+				'method' => 'POST',
 				'postData' => wfArrayToCgi( array( $from => $content ) ),
 				'body' => true,
-				'timeout' => $parsoidTimeout
+				'timeout' => $parsoidTimeout,
+				'connectTimeout' => 'default',
 			)
 		);
-
-		if ( $response === false ) {
+		$status = $request->execute();
+		if ( !$status->isOK() ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Failed contacting parsoid: ' . $status->getMessage()->text() );
 			throw new WikitextException( 'Failed contacting Parsoid', 'process-wikitext' );
 		}
+		$response = $request->getContent();
 
 		// HTML is wrapped in <body> tag, undo that.
 		// unless $response is empty
@@ -199,6 +203,25 @@ abstract class Utils {
 
 		return $dom;
 	}
+
+	/**
+	 * Handler for FlowAddModules, avoids rest of Flow having to be aware if
+	 * Parsoid is in use.
+	 *
+	 * @param OutputPage $out OutputPage object
+	 * @return bool
+	 */
+	public static function onFlowAddModules( \OutputPage $out ) {
+
+		list( $parsoidURL ) = self::parsoidConfig();
+		if ( isset( $parsoidURL ) && $parsoidURL ) {
+			// XXX We only need the Parsoid CSS if some content being
+			// rendered has getContentFormat() === 'html'.
+			$out->addModules( 'ext.parsoid.styles' );
+		}
+		return true;
+	}
+
 }
 
 class NoParsoidException extends \MWException {}

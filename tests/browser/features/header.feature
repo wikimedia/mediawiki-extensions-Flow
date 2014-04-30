@@ -1,5 +1,4 @@
-@ee-prototype.wmflabs.org @login @wip
-
+@chrome @ee-prototype.wmflabs.org @firefox @internet_explorer_10 @login @wip
 Feature: Headers
 
   Background:

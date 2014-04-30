@@ -176,11 +176,15 @@ $wgAutoloadClasses['Flow\Formatter\BoardHistoryQuery'] = $dir . 'includes/Format
 $wgAutoloadClasses['Flow\Formatter\RecentChanges'] = $dir . 'includes/Formatter/RecentChanges.php';
 $wgAutoloadClasses['Flow\Formatter\RecentChangesQuery'] = $dir . 'includes/Formatter/RecentChangesQuery.php';
 $wgAutoloadClasses['Flow\Formatter\RecentChangesRow'] = $dir . 'includes/Formatter/RecentChangesQuery.php';
+<<<<<<< HEAD   (49e2e0 Fix missing edit token)
 $wgAutoloadClasses['Flow\Formatter\SinglePostQuery'] = $dir . 'includes/Formatter/SinglePostQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicListQuery'] = $dir . 'includes/Formatter/TopicListQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicHistoryQuery'] = $dir . 'includes/Formatter/TopicHistoryQuery.php';
 $wgAutoloadClasses['Flow\Formatter\TopicRow'] = $dir . 'includes/Formatter/TopicRow.php';
 
+=======
+$wgAutoloadClasses['Flow\Formatter\IRCLineUrlFormatter'] = $dir . 'includes/Formatter/IRCLineUrlFormatter.php';
+>>>>>>> BRANCH (9e19ba Localisation updates from https://translatewiki.net.)
 
 // Convert model instances into array of user-visible data
 $wgAutoloadClasses['Flow\Formatter\RevisionFormatter'] = $dir . 'includes/Formatter/RevisionFormatter.php';
@@ -256,6 +260,8 @@ $wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGe
 $wgHooks['MakeGlobalVariablesScript'][] = 'FlowHooks::onMakeGlobalVariablesScript';
 $wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';
 $wgHooks['SkinMinervaDefaultModules'][] = 'FlowHooks::onSkinMinervaDefaultModules';
+$wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
+$wgHooks['FlowAddModules'][] = 'Flow\Parsoid\Utils::onFlowAddModules';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
