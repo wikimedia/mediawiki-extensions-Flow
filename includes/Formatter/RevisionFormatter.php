@@ -292,6 +292,18 @@ class RevisionFormatter {
 				);
 				break;
 
+			case 'edit-topic-summary':
+				$links['edit'] = array(
+					'url' => $this->urlGenerator->buildUrl(
+						$title,
+						'edit-topic-summary',
+						array(
+							'workflow' => $workflowId,
+						)
+					),
+					'title' => $this->msg( 'flow-summarize-topic-submit' )
+				);
+				break;
 			case 'edit-header':
 				$links['edit'] = array(
 					'url' => $this->urlGenerator->buildUrl(
