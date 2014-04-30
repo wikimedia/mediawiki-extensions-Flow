@@ -193,10 +193,6 @@ echo Html::openElement( 'div', array(
 		</div>
 		<?php
 			endif;
-
-			echo $this->render( 'flow:timestamp.html.php', array(
-				'timestamp' => $topic->getLastModifiedObj(),
-			), true );
 		?>
 
 		<?php
@@ -234,6 +230,11 @@ echo Html::openElement( 'div', array(
 							->escaped();
 					?>
 				</a>
+				<?php
+					echo $this->render( 'flow:timestamp.html.php', array(
+						'timestamp' => $topic->getLastModifiedObj(),
+					), true );
+				?>
 			</li>
 		</ul>
 		<p class="flow-topic-posts-meta-minimal">

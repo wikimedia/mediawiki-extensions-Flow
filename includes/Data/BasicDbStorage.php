@@ -24,44 +24,25 @@ class BasicDbStorage extends DbStorage {
 		$this->primaryKey = $primaryKey;
 	}
 
-	/**
-	 * Inserts a set of rows into the database
-	 *
-	 * @param  array  $rows The rows to insert. Also accepts a single row.
-	 * @return array|false  An array of the rows that now exist
-	 * in the database. Integrity of keys is guaranteed.
-	 * False if we failed.
-	 */
-	public function insert( array $rows ) {
+	// Does not support auto-increment id yet
+	public function insert( array $row ) {
 		// Only allow the row to include key/value pairs.
 		// No raw SQL.
-		if ( is_array( reset( $rows ) ) ) {
-			$rows = $this->preprocessNestedSqlArray( $rows );
-		} else {
-			$rows = $this->preprocessSqlArray( $rows );
-		}
+		$row = $this->preprocessSqlArray( $row );
 
 		// insert returns boolean true/false
 		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->table,
-			$rows,
+			$row,
 			__METHOD__ . " ({$this->table})"
 		);
 		if ( $res ) {
-			return $rows;
+			return $row;
 		} else {
 			return false;
 		}
 	}
 
-	/**
-	 * Update a single row in the database.
-	 *
-	 * @param  array  $old The current state of the row.
-	 * @param  array  $new The desired new state of the row.
-	 * @return boolean     Whether or not the operation was successful.
-	 * @throws DataPersistenceException
-	 */
 	public function update( array $old, array $new ) {
 		$pk = ObjectManager::splitFromRow( $old, $this->primaryKey );
 		if ( $pk === null ) {
