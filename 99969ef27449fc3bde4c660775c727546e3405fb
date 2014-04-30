@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_4223dcff",
+        "filename": "includes/Data/WorkflowTopicListListener.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-30T15:58:54Z",
+      "side": 1,
+      "message": "inject this one into constructor?",
+      "revId": "99969ef27449fc3bde4c660775c727546e3405fb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_028164c8",
+        "filename": "includes/Data/WorkflowTopicListListener.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-04-30T15:58:54Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "99969ef27449fc3bde4c660775c727546e3405fb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
