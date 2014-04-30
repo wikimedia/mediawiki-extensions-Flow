@@ -8,6 +8,7 @@ all: flow_block_header.html.handlebars.php \
 		flow_board_collapsers_subcomponent.html.handlebars.php \
 		flow_block_topiclist.html.handlebars.php \
 		flow_block_topic.html.handlebars.php \
+		flow_block_topic_edit_post.html.handlebars.php \
 		flow_block_board-history.html.handlebars.php \
 		flow_board.html.handlebars.php \
 		flow_post.html.handlebars.php \
@@ -28,6 +29,9 @@ flow_block_topiclist.html.handlebars.php: flow_board_navigation.html.handlebars 
 flow_block_topic.html.handlebars.php: flow_block_topic.html.handlebars \
 		$(TOPIC_SUBTEMPLATES)
 	$(COMPILE) flow_block_topic
+
+flow_block_topic_edit_post.html.handlebars.php: flow_block_topic-edit_post.html.handlebars
+	$(COMPILE) flow_block_topic-edit_post
 
 flow_block_board-history.html.handlebars.php: flow_block_board-history.html.handlebars
 	$(COMPILE) flow_block_board-history

@@ -76,10 +76,12 @@ class TopicBlock extends AbstractBlock {
 		'view' => '',
 		'history' => 'history',
 		'reply' => '',
-		'edit-post' => '',
+		'edit-post' => 'edit_post',
 		'edit-title' => '',
 		'compare-post-revisions' => '',
 	);
+
+	protected $requiresWikitext = array( 'edit-post', 'edit-title' );
 
 	/**
 	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
@@ -440,13 +442,7 @@ class TopicBlock extends AbstractBlock {
 		// theres probably some OO way to turn this stack of if/else into
 		// something nicer. Consider better ways before extending this with
 		// more conditionals
-		if ( $this->wasSubmitted() ) {
-			// Failed actions, like reply, end up here
-			$output = array(
-				'submitted' => $this->submitted,
-				'errors' => $this->errors,
-			) + $this->renderTopicAPI( $templating, $options );
-		} elseif ( $this->action === 'history' ) {
+		if ( $this->action === 'history' ) {
 			// single post history or full topic?
 			if ( isset( $options['postId'] ) ) {
 				// singular post history
@@ -455,10 +451,7 @@ class TopicBlock extends AbstractBlock {
 				// post history for full topic
 				$output = $this->renderTopicHistoryAPI( $templating, $options );
 			}
-		} elseif ( $this->action == 'view'
-				&& !isset( $options['postId'] )
-				&& !isset( $options['revId'] )
-		) {
+		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {
 			// view full topic
 			$output = $this->renderTopicAPI( $templating, $options );
 		} else {
@@ -473,8 +466,27 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$output['type'] = $this->getName();
+		if ( $this->wasSubmitted() ) {
+			// Failed actions, like reply, end up here
+			$output += array(
+				'submitted' => $this->submitted,
+				'errors' => $this->errors,
+			);
+		}
 
 		return $output;
+	}
+
+	protected function shouldRenderTopicAPI( array $options ) {
+		switch( $this->action ) {
+		case 'edit-post':
+			return false;
+
+		case 'view':
+			return !isset( $options['postId'] ) && !isset( $options['revId'] );
+		}
+
+		return true;
 	}
 
 	protected function renderTopicAPI( Templating $templating, array $options ) {
@@ -501,7 +513,7 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $options['postId'] ) );
-		$serialized = Container::get( 'formatter.revision' )->formatApi( $row, \RequestContext::getMain() );
+		$serialized = $this->getRevisionFormatter()->formatApi( $row, \RequestContext::getMain() );
 		if ( !$serialized ) {
 			return null;
 		}
@@ -517,12 +529,20 @@ class TopicBlock extends AbstractBlock {
 		);
 	}
 
+	protected function getRevisionFormatter() {
+		$serializer = Container::get( 'formatter.revision' );
+		if ( in_array( $this->action, $this->requiresWikitext ) ) {
+			$serializer->setContentFormat( 'wikitext' );
+		}
+		return $serializer;
+	}
+
 	protected function renderTopicHistoryAPI( Templating $templating, array $options ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No topic history can exist for non-existant topic' );
 		}
 		$found = Container::get( 'query.topic.history' )->getResults( $this->workflow->getId() );
-		$serializer = Container::get( 'formatter.revision' );
+		$serializer = $this->getRevisionFormatter();
 		$serializer->setIncludeHistoryProperties( true );
 		$ctx = \RequestContext::getMain();
 

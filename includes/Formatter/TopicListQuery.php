@@ -99,7 +99,7 @@ class TopicListQuery extends AbstractQuery {
 	protected function collectRevisions( array $postIds ) {
 		$queries = array();
 		foreach ( $postIds as $postId ) {
-			$queries[] = array( 'tree_rev_descendant_id' => $postId );
+			$queries[] = array( 'rev_type_id' => $postId );
 		}
 		$found = $this->storage->findMulti( 'PostRevision', $queries, array(
 			'sort' => 'rev_id',

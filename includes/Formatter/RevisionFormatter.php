@@ -314,13 +314,15 @@ class RevisionFormatter {
 				$links['edit'] = array(
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
-						'edit',
+						'edit-post',
 						array(
 							'workflow' => $workflowId ,
 							'topic_postId' => $postId,
 							'topic_revId' => $revId,
 						)
-					),
+					// This hash is needed so a non-javascript browser scrolls down
+					// to the edit box
+					) . "#post-$postId",
 					'title' => $this->msg( 'flow-post-action-edit-post' )
 				);
 				break;
@@ -466,7 +468,7 @@ class RevisionFormatter {
 						array(
 							'workflow' => $workflowId,
 						)
-					) . '#post-' . $postId,
+					) . "#post-$postId",
 					'title' => $this->msg( 'flow-link-post' )
 				);
 				break;

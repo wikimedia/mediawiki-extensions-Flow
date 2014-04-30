@@ -27,7 +27,9 @@
 		</div>
 		<div class="flow-post-meta">
 			<span class="flow-post-meta-actions">
-				<a href="#flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content" class="flow-ui-progressive flow-ui-quiet">'.LCRun2::ch('l10n', Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'enc', $cx).'</a>
+				'.LCRun2::ifv(((is_array($in['actions']) && isset($in['actions']['reply'])) ? $in['actions']['reply'] : null), $cx, $in, function($cx, $in) {return '
+					<a href="'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['url'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-progressive flow-ui-quiet">'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['title'])) ? $in['actions']['reply']['title'] : null), ENT_QUOTES, 'UTF-8').'</a>
+				';}).'
 				'.LCRun2::ifv(((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null), $cx, $in, function($cx, $in) {return '
 					&#8226;
 					<a href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-regressive flow-ui-quiet">'.LCRun2::ch('l10n', Array('Edit'), 'enc', $cx).'</a>

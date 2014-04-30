@@ -8,7 +8,9 @@
 		</div>
 		<div class="flow-post-meta">
 			<span class="flow-post-meta-actions">
-				<a href="#flow-post-{{postId}}-form-content" class="flow-ui-progressive flow-ui-quiet">{{l10n "Reply" author}}</a>
+				{{#if actions.reply}}
+					<a href="{{actions.reply.url}}" title="{{actions.reply.title}}" class="flow-ui-progressive flow-ui-quiet">{{actions.reply.title}}</a>
+				{{/if}}
 				{{#if actions.edit}}
 					&#8226;
 					<a href="{{actions.edit.url}}" title="{{actions.edit.title}}" class="flow-ui-regressive flow-ui-quiet">{{l10n "Edit"}}</a>
