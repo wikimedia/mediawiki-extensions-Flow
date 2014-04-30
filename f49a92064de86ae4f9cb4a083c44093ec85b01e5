@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_e591d24a",
+        "filename": "includes/Templating.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-04-30T17:16:57Z",
+      "side": 1,
+      "message": "Not new in this commit, but... this function is doing some weird stuff.\n\n$content is re-used later for the returned html string (as opposed to a Content object).\n\nAnd in case of the format\u003dhtml path (the default behaviour), $content\u0027s first value is unused, so this should probably moved to within the else case (unless you\u0027re relying on some kind of side effect as a result of calling getContent).\n\nAnd below if the exception happens, $content is left in an odd state, not sure what it\u0027ll return. I\u0027d expect $content to be assigned in the catch-block.",
+      "revId": "f49a92064de86ae4f9cb4a083c44093ec85b01e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
