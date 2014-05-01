@@ -82,6 +82,10 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 				throw new \MWException( 'SQL error in maintenance script ' . __METHOD__ );
 			}
 			foreach ( $res as $row ) {
+				if ( !$row['tree_parent_id'] ) {
+					// topic title, does not contain html or links
+					continue;
+				}
 				$count++;
 				$id = $row->tree_rev_id;
 				$uuid = UUID::create( $id );
