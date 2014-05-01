@@ -38,12 +38,13 @@ class PostSummaryRecentChanges extends RecentChanges {
 
 		$this->insert(
 			$object,
-			'post-summary',
+			'topicsummary',
 			'PostSummary',
 			$row,
 			$workflow,
 			array(
 				'content' => $this->contLang->truncate( $object->getContent(), self::TRUNCATE_LENGTH ),
+				'rev_type_id' => $object->getCollectionId()->getAlphadecimal()
 			)
 		);
 	}
