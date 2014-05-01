@@ -20,6 +20,10 @@ class TwoStepUserNameQuery implements UserNameQuery {
 	 * @return \ResultWrapper|bool
 	 */
 	public function execute( $wiki, array $userIds ) {
+		if ( !$wiki ) {
+			throw new FlowException( 'No wiki provided with user ids' );
+		}
+
 		$dbr = $this->dbFactory->getWikiDB( DB_SLAVE, array(), $wiki );
 		$res = $dbr->select(
 			'ipblocks',
