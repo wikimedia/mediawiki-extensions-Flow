@@ -277,5 +277,7 @@
 	"flow-terms-of-use-summarize": "Genom att klicka på \"{{int:flow-summarize-topic-submit}}\" godkänner du användarvillkoren för denna wiki.",
 	"flow-terms-of-use-close-topic": "Genom att klicka på \"{{int:flow-close-topic-submit}}\" godkänner du användarvillkoren för denna wiki.",
 	"flow-terms-of-use-reopen-topic": "Genom att klicka på \"{{int:flow-reopen-topic-submit}}\" godkänner du användarvillkoren för denna wiki.",
-	"flow-anon-warning": "Du är inte inloggad. För att få erkännande med ditt namn istället för din IP-adress kan du [$1 logga in] eller [$2 skapa ett konto]."
+	"flow-anon-warning": "Du är inte inloggad. För att få erkännande med ditt namn istället för din IP-adress kan du [$1 logga in] eller [$2 skapa ett konto].",
+	"flow-whatlinkshere-post": "från ett [$1 inlägg]",
+	"flow-whatlinkshere-header": "från [$1 sidhuvudet]"
 }

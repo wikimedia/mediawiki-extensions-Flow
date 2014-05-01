@@ -274,5 +274,7 @@
 	"flow-terms-of-use-summarize": "Mit dem Klicken auf „{{int:flow-summarize-topic-submit}}“ stimmst du den Nutzungsbedingungen für dieses Wiki zu.",
 	"flow-terms-of-use-close-topic": "Mit dem Klicken auf „{{int:flow-close-topic-submit}}“ stimmst du den Nutzungsbedingungen für dieses Wiki zu.",
 	"flow-terms-of-use-reopen-topic": "Mit dem Klicken auf „{{int:flow-reopen-topic-submit}}“ stimmst du den Nutzungsbedingungen für dieses Wiki zu.",
-	"flow-anon-warning": "Du bist nicht angemeldet. Um eine Zuordnung mit deinem Namen anstatt deiner IP-Adresse zu erhalten, kannst du dich [$1 anmelden] oder [$2 ein Benutzerkonto erstellen]."
+	"flow-anon-warning": "Du bist nicht angemeldet. Um eine Zuordnung mit deinem Namen anstatt deiner IP-Adresse zu erhalten, kannst du dich [$1 anmelden] oder [$2 ein Benutzerkonto erstellen].",
+	"flow-whatlinkshere-post": "von einem [$1 Beitrag]",
+	"flow-whatlinkshere-header": "von der [$1 Überschrift]"
 }

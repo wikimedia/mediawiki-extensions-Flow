@@ -210,5 +210,7 @@
 	"flow-terms-of-use-new-topic": "「{{int:flow-newtopic-save}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-terms-of-use-reply": "「{{int:flow-reply-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-terms-of-use-edit": "変更内容を保存すると、このウィキの利用規約に同意したと見なされます。",
-	"flow-anon-warning": "ログインしていません。"
+	"flow-anon-warning": "ログインしていません。",
+	"flow-whatlinkshere-post": "[$1 投稿]から",
+	"flow-whatlinkshere-header": "[$1 ヘッダー]から"
 }
