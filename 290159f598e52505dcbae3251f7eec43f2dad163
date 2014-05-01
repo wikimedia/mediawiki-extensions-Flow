@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_c6881925",
+        "filename": "includes/Data/ReferenceRecorder.php",
+        "patchSetId": 44
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-05-01T03:42:24Z",
+      "side": 1,
+      "message": "this method is not implemented in ObjectManager",
+      "revId": "290159f598e52505dcbae3251f7eec43f2dad163",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
