@@ -300,5 +300,8 @@
     "flow-toggle-topics-posts": "Toggle topics and posts view",
     "flow-terms-of-use-summarize": "By clicking \"{{int:flow-summarize-topic-submit}}\", you agree to the terms of use for this wiki.",
     "flow-terms-of-use-close-topic": "By clicking \"{{int:flow-close-topic-submit}}\", you agree to the terms of use for this wiki.",
-    "flow-terms-of-use-reopen-topic": "By clicking \"{{int:flow-reopen-topic-submit}}\", you agree to the terms of use for this wiki."
+    "flow-terms-of-use-reopen-topic": "By clicking \"{{int:flow-reopen-topic-submit}}\", you agree to the terms of use for this wiki.",
+    "flow-anon-warning": "You are not logged in. To receive attribution with your name instead of your IP address, you can [$1 log in] or [$2 create an account].",
+    "flow-whatlinkshere-post" : "from a [$1 post]",
+    "flow-whatlinkshere-header" : "from the [$1 header]"
 }

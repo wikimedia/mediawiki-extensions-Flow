@@ -21,12 +21,12 @@ class IRCLineUrlFormatter extends AbstractFormatter {
 
 		$encoded = $rc->getAttribute( 'rc_params' );
 		if ( !$encoded ) {
-			wfDebugLog( 'Flow', __METHOD__ . 'Something something' );
+			wfDebugLog( 'Flow', __METHOD__ . 'Missing rc_params' );
 			return null;
 		}
 		$params = unserialize( $encoded );
 		if ( !isset( $params['flow-workflow-change'] ) ) {
-			wfDebugLog( 'Flow', __METHOD__ . 'Something something' );
+			wfDebugLog( 'Flow', __METHOD__ . 'Missing flow-workflow-change' );
 			return null;
 		}
 		$change = $params['flow-workflow-change'];
@@ -81,9 +81,9 @@ class IRCLineUrlFormatter extends AbstractFormatter {
 			$row = array( 'rev_type_id' => $change['workflow'] );
 			break;
 
-		case 'Summary':
-			$class = 'Flow\\Model\\Summary';
-			$row = array( 'rev_type_id' => $change['something'] );
+		case 'PostSummary':
+			$class = 'Flow\\Model\\PostSummary';
+			$row = array( 'rev_type_id' => $change['rev_type_id'] );
 			break;
 
 		default:
