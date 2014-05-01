@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_664ca5e4",
+        "filename": "container.php",
+        "patchSetId": 46
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-05-01T05:24:09Z",
+      "side": 1,
+      "message": "this isn\u0027t going to be enough to make the url a valid title string. The redlinker and the bad image remover already do the same type of thing i think, this should share code with it. The method to handle resolving a parsoid dom element into a title should probably end up in the Flow\\Parsoid\\Utils class, and then be used by redlinker and this? \n\nI would additionally suggest adding another class, naming is still up in the air but something like\n\n    $extractor \u003d new Flow\\Parsoid\\SpectacularNameIfIDoSaySoMyself\n    return new Flow\\ReferenceExtractor( $extractor-\u003egetExtractionCallbacks() );\n\nor whatever,",
+      "revId": "a001f4cc14b88f871877ddbd1dc355ebe61144a0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
