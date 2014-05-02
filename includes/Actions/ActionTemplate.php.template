@@ -1,0 +1,22 @@
+<?php
+
+// Set up like so:
+// foreach( $wgFlowActions as $action => $options ) {
+// 		if ( is_array( $options ) ) {
+// 			$className = implode( '', array_map( 'ucfirst', explode( '-', "$action-action" ) ) );
+// 			echo "\$wgAutoloadClasses['$className'] = '\$dir/includes/Actions/$className.php';\n";
+// 			$content = strtr( $template, array( '{{CLASSNAME}}' => $className, '{{ACTIONNAME}}' => $action ) );
+// 			file_put_contents( "/vagrant/mediawiki/extensions/Flow/includes/actions/{$className}.php", $content );
+// 		}
+// 	}
+
+namespace Flow\Actions;
+
+use IContextSource;
+use Page;
+
+class {{CLASSNAME}} extends FlowAction {
+	function __construct( Page $page, IContextSource $context ) {
+		parent::__construct( $page, $context, '{{ACTIONNAME}}' );
+	}
+}

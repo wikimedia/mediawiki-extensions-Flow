@@ -340,5 +340,6 @@
 	"flow-toggle-small-topics": "Tooltip displayed when mouse hovering over the full page topic collapser. When clicked only topic titles are displayed.",
 	"flow-toggle-topics": "Tooltip displayed when mouse hovering over the full page topic collapser.  When clicked posts are not displayed, only topic titles and metadata are visible.",
 	"flow-toggle-topics-posts": "Tooltip displayed when mouse hovering over the full page topic collapser. When clicked posts will be displayed with topic titles.",
-	"flow-preview-return-edit-post" : "Used as text for a button that hides previewed text and returns to the editing view"
+	"flow-preview-return-edit-post" : "Used as text for a button that hides previewed text and returns to the editing view",
+	"flow-embedding-unsupported" : "Error message displayed if a user tries to transclude a Flow page."
 }
