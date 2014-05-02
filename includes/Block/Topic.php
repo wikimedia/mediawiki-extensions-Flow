@@ -19,8 +19,6 @@ use Flow\NotificationController;
 use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
-use Flow\View\History\History;
-use Flow\View\History\HistoryRenderer;
 
 class TopicBlock extends AbstractBlock {
 
@@ -728,7 +726,6 @@ class TopicBlock extends AbstractBlock {
 			// get rid of history entries user doesn't have sufficient permissions for
 			foreach ( $history as $i => $revision ) {
 				/** @var PostRevision|PostSummary $revision */
-
 				// only check against the specific revision, ignoring the most recent
 				if ( !$this->permissions->isAllowed( $revision, 'history' ) ) {
 					unset( $history[$i] );
