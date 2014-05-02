@@ -122,10 +122,7 @@ class TopicListFormatter {
 			'newtopic' => array(
 				'url' => $this->urlGenerator->buildUrl(
 					$workflow->getArticleTitle(),
-					'new-topic', // ???
-					array(
-						'workflow' => $workflow->getId()->getAlphadecimal(),
-					)
+					'new-topic'
 				),
 				'title' => wfMessage( 'flow-newtopic-start-placeholder' ),
 			),
