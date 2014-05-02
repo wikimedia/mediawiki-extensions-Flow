@@ -2,7 +2,9 @@
 
 namespace Flow;
 
+use Flow\Content\BoardContent;
 use Flow\Exception\InvalidInputException;
+use Flow\Model\Workflow;
 use Article;
 use ContentHandler;
 use Revision;
@@ -12,7 +14,7 @@ use User;
 // I got the feeling NinetyNinePercentController was a bit much.
 interface OccupationController {
 	public function isTalkpageOccupied( $title );
-	public function ensureFlowRevision( Article $title );
+	public function ensureFlowRevision( Article $title, Workflow $workflow );
 }
 
 class TalkpageManager implements OccupationController {
@@ -57,9 +59,10 @@ class TalkpageManager implements OccupationController {
 	 * to make sure a page actually exists ;)
 	 *
 	 * @param \Article $article
+	 * @param Flow\Data\Workflow $workflow
 	 * @throws InvalidInputException
 	 */
-	public function ensureFlowRevision( Article $article ) {
+	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
 		$title = $article->getTitle();
 		if ( !$this->isTalkpageOccupied( $title ) ) {
 			throw new InvalidInputException( 'Requested article is not Flow enabled', 'invalid-input' );
@@ -72,9 +75,16 @@ class TalkpageManager implements OccupationController {
 		$revision = $page->getRevision();
 
 		// Add a revision only if a Flow revision has not yet been inserted.
-		if ( $revision === null || $revision->getComment( Revision::RAW ) != $comment ) {
-			$message = wfMessage( 'flow-talk-taken-over' )->inContentLanguage()->text();
-			$content = ContentHandler::makeContent( $message, $title );
+		if (
+			$revision === null ||
+			$revision->getComment( Revision::RAW ) != $comment ||
+			(
+				! $revision->getContent() instanceof BoardContent ||
+				! $revision->getContent()->getWorkflowId()
+			)
+		) {
+			$content = new BoardContent( 'flow-board', $workflow );
+			$page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC );
 
 			$user = User::newFromName(
 				wfMessage( 'flow-talk-username' )->inContentLanguage()->text()
@@ -85,8 +95,14 @@ class TalkpageManager implements OccupationController {
 				$user = User::newFromName( 'Flow talk page manager', false );
 			}
 
-			$page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
+			$status = $page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
 				false, $user );
+
+			if ( $status->isGood() && isset( $status->value['revision'] ) ) {
+				return $status->value['revision'];
+			}
 		}
+
+		return false;
 	}
 }
