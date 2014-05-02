@@ -277,5 +277,6 @@
 	"flow-special-type-post": "Label for PostRevision in the type dropdown",
 	"flow-special-type-workflow": "Label for Workflow in the type dropdown",
 	"flow-special-uuid": "Label for the UUID field on the redirector special page",
-	"flow-special-invalid-uuid": "Error message shown on the redirector special page if the specified type / UUID combination is invalid"
+	"flow-special-invalid-uuid": "Error message shown on the redirector special page if the specified type / UUID combination is invalid",
+	"flow-embedding-unsupported" : "Error message displayed if a user tries to transclude a Flow page."
 }

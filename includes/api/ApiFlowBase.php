@@ -130,10 +130,6 @@ abstract class ApiFlowBase extends ApiBase {
 		$article = new Article( $workflow->getArticleTitle(), 0 );
 
 		$isNew = $workflow->isNew();
-		// Is this making unnecesary db round trips?
-		if ( !$isNew ) {
-			$controller->ensureFlowRevision( $article );
-		}
 
 		/** @var AbstractBlock $block */
 		foreach ( $blocks as $block ) {
@@ -158,10 +154,6 @@ abstract class ApiFlowBase extends ApiBase {
 
 			foreach( $commitResults as $key => $value ) {
 				$output[$action]['result'][$key] = $this->processCommitResult( $value, $this->doRender() );
-			}
-			if ( $isNew && !$workflow->isNew() ) {
-				// Workflow was just created, ensure its underlying page is owned by flow
-				$controller->ensureFlowRevision( $article );
 			}
 		} else {
 			$output[$action] = array(
