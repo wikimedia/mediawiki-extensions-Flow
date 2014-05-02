@@ -3,13 +3,13 @@
 namespace Flow\Block;
 
 use Flow\Container;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
 use Flow\Formatter\FormatterRow;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
-use Flow\View\HeaderRevisionView;
 
 class HeaderBlock extends AbstractBlock {
 
