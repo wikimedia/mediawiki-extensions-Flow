@@ -239,54 +239,6 @@ class FlowHooks {
 	}
 
 	/**
-	 * Overrides MediaWiki::performAction
-	 * @param  OutputPage $output
-	 * @param  Article $article
-	 * @param  Title $title
-	 * @param  User $user
-	 * @param  WebRequest $request
-	 * @param  MediaWiki $wiki
-	 * @throws Flow\Exception\FlowException
-	 * @return boolean True to continue processing as normal, False to abort.
-	 */
-	public static function onPerformAction( $output, $article, $title, $user, $request, $wiki ) {
-		global $wgFlowCoreActionWhitelist;
-		$action = $wiki->getAction();
-
-		if ( self::$occupationController->isTalkpageOccupied( $title ) && !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
-			$container = Container::getContainer();
-			$view = new Flow\View(
-				$container['templating'],
-				$container['url_generator'],
-				$container['lightncandy'],
-				$output
-			);
-
-			try {
-				$workflowId = $request->getVal( 'workflow' );
-				$action = $request->getVal( 'action', 'view' );
-
-				$loader = $container['factory.loader.workflow']
-					->createWorkflowLoader( $title, UUID::create( $workflowId ) );
-
-				if ( !$loader->getWorkflow()->isNew() ) {
-					// Workflow currently exists, make sure a revision also exists
-					self::$occupationController->ensureFlowRevision( $article );
-				}
-
-				$view->show( $loader, $action );
-			} catch( Flow\Exception\FlowException $e ) {
-				$e->setOutput( $output );
-				throw $e;
-			}
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Regular talk page "Create source" and "Add topic" links are quite useless
 	 * in the context of Flow boards. Let's get rid of them.
 	 *
@@ -627,13 +579,6 @@ class FlowHooks {
 		$newProps = Flow\Container::get( 'reference.clarifier' )->getWhatLinksHereProps( $row, $title, $target );
 
 		$props = array_merge( $props, $newProps );
-
-		return true;
-	}
-
-	public static function onLinksUpdateConstructed( $linksUpdate ) {
-		Flow\Container::get( 'reference.updater.links-tables' )
-			->mutateLinksUpdate( $linksUpdate );
 
 		return true;
 	}
