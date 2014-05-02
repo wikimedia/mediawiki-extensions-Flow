@@ -2,7 +2,9 @@
 
 namespace Flow;
 
+use Flow\Content\BoardContent;
 use Flow\Exception\InvalidInputException;
+use Flow\Model\Workflow;
 use Article;
 use ContentHandler;
 use Revision;
@@ -11,7 +13,7 @@ use Title;
 // I got the feeling NinetyNinePercentController was a bit much.
 interface OccupationController {
 	public function isTalkpageOccupied( $title );
-	public function ensureFlowRevision( Article $title );
+	public function ensureFlowRevision( Article $title, Workflow $workflow );
 }
 
 class TalkpageManager implements OccupationController {
@@ -56,9 +58,10 @@ class TalkpageManager implements OccupationController {
 	 * to make sure a page actually exists ;)
 	 *
 	 * @param \Article $article
+	 * @param Flow\Data\Workflow $workflow
 	 * @throws InvalidInputException
 	 */
-	public function ensureFlowRevision( Article $article ) {
+	public function ensureFlowRevision( Article $article, Workflow $workflow ) {
 		$title = $article->getTitle();
 		if ( !$this->isTalkpageOccupied( $title ) ) {
 			throw new InvalidInputException( 'Requested article is not Flow enabled', 'invalid-input' );
@@ -72,8 +75,7 @@ class TalkpageManager implements OccupationController {
 
 		// make sure a Flow revision has not yet been inserted
 		if ( $revision === null || $revision->getComment( Revision::RAW ) != $comment ) {
-			$message = wfMessage( 'flow-talk-taken-over' )->inContentLanguage()->text();
-			$content = ContentHandler::makeContent( $message, $title );
+			$content = new BoardContent( 'flow-board', $workflow );
 			$page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC );
 		}
 	}
