@@ -89,6 +89,10 @@ $wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/Revision
 $wgAutoloadClasses['Flow\TermsOfUse'] = $dir . 'includes/TermsOfUse.php';
 $wgAutoloadClasses['Flow\ReferenceClarifier'] = $dir . 'includes/ReferenceClarifier.php';
 
+$wgAutoloadClasses['Flow\Content\Content'] = "$dir/includes/Content/Content.php";
+$wgAutoloadClasses['Flow\Content\BoardContent'] = "$dir/includes/Content/BoardContent.php";
+$wgAutoloadClasses['Flow\Content\BoardContentHandler'] = "$dir/includes/Content/BoardContentHandler.php";
+
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
 $wgAutoloadClasses['Flow\Model\Metadata'] = $dir . 'includes/Model/Metadata.php';
@@ -249,7 +253,6 @@ $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
 //$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 $wgHooks['ApiTokensGetTokenTypes'][] = 'FlowHooks::onApiTokensGetTokenTypes';
-$wgHooks['MediaWikiPerformAction'][] = 'FlowHooks::onPerformAction';
 $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
 $wgHooks['ChangesListInitRows'][] = 'FlowHooks::onChangesListInitRows';
 $wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavigation';
@@ -270,9 +273,13 @@ $wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
 $wgHooks['FlowAddModules'][] = 'Flow\Parsoid\Utils::onFlowAddModules';
 $wgHooks['WhatLinksHereProps'][] = 'FlowHooks::onWhatLinksHereProps';
 $wgHooks['LinksUpdateConstructed'][] = 'FlowHooks::onLinksUpdateConstructed';
+$wgHooks['ContentHandlerDefaultModelFor'][] = 'Flow\Content\Content::onGetDefaultModel';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
+
+// Flow Content Type
+$wgContentHandlers['flow-board'] = 'Flow\Content\BoardContentHandler';
 
 // User permissions
 // Added to $wgFlowGroupPermissions instead of $wgGroupPermissions immediately,

@@ -263,6 +263,7 @@
 	"flow-terms-of-use-close-topic": "Terms of use for closing a topic.\n{{Related|Flow-terms-of-use}}",
 	"flow-terms-of-use-reopen-topic": "Terms of use for restoring a topic.\n{{Related|Flow-terms-of-use}}",
 	"flow-anon-warning": "Warning message to be displayed when anonymous user starts writing a new topic or reply.\n* $1 is a URL to log in.\n* $2 is a URL to register an account.",
-	"flow-whatlinkshere-post" : "Displayed in parentheses on Special:WhatLinksHere for an entry that relates to a Flow post. $1 is a URL to the post",
-	"flow-whatlinkshere-header" : "Displayed in parentheses on Special:WhatLinksHere for an entry that relates to a Flow Board header. $1 is a URL to the header"
+	"flow-whatlinkshere-post": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Flow post.\n\nParameters:\n* $1 - a URL to the post\nSee also:\n* {{msg-mw|Flow-whatlinkshere-header}}",
+	"flow-whatlinkshere-header": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Flow Board header.\n\nParameters:\n* $1 - a URL to the header\nSee also:\n* {{msg-mw|Flow-whatlinkshere-post}}",
+	"flow-embedding-unsupported" : "Error message displayed if a user tries to transclude a Flow page."
 }
