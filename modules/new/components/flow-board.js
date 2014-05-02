@@ -47,7 +47,17 @@
 
 		// Restore the last state
 		this.HistoryEngine.restoreLastState();
-	}
+
+		// Sample templating using ResourceLoader.
+		console.log( 'generated template HTML is ',
+			mw.mantle.template.get( 'timestamp.html.handlebars' )
+				.render( {
+					time_iso: "1984-04-01 14:36",
+					time_readable: "back in the eighties"
+				} )
+		);
+
+}
 
 	// Register this FlowComponent
 	mw.flow.registerComponent( 'board', FlowBoardComponent );
