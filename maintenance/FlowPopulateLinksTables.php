@@ -74,7 +74,10 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 			$res = $dbr->select(
 				array( 'flow_tree_revision' ),
 				array( 'tree_rev_id' ),
-				array( 'tree_rev_id > ' . $dbr->addQuotes( $id ) ),
+				array(
+					'tree_parent_id IS NOT NULL',
+					'tree_rev_id > ' . $dbr->addQuotes( $id ),
+				),
 				__METHOD__,
 				array( 'ORDER BY' => 'tree_rev_id ASC', 'LIMIT' => $this->mBatchSize )
 			);

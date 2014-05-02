@@ -66,6 +66,9 @@ $wgAutoloadClasses['Flow\Parsoid\Controller'] = $dir . 'includes/Parsoid/Control
 $wgAutoloadClasses['Flow\Parsoid\ContentFixer'] = $dir . 'includes/Parsoid/ContentFixer.php';
 $wgAutoloadClasses['Flow\Parsoid\Redlinker'] = $dir . 'includes/Parsoid/Redlinker.php';
 $wgAutoloadClasses['Flow\Parsoid\BadImageRemover'] = $dir . 'includes/Parsoid/BadImageRemover.php';
+$wgAutoloadClasses['Flow\Anchor'] = $dir . 'includes/Anchor.php';
+$wgAutoloadClasses['Flow\BaseUrlGenerator'] = $dir . 'includes/BaseUrlGenerator.php';
+$wgAutoloadClasses['Flow\Parsoid\ReferenceExtractor'] = $dir . 'includes/Parsoid/ReferenceExtractor.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\View'] = $dir . 'includes/View.php';
 $wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
@@ -201,7 +204,6 @@ $wgAutoloadClasses['Flow\Block\TopicSummaryBlock'] = $dir . 'includes/Block/Topi
 
 // Reference extraction and tracking
 $wgAutoloadClasses['Flow\LinksTableUpdater'] = $dir . 'includes/LinksTableUpdater.php';
-$wgAutoloadClasses['Flow\ReferenceExtractor'] = $dir . 'includes/ReferenceExtractor.php';
 $wgAutoloadClasses['Flow\Model\Reference'] = "$dir/includes/Model/Reference.php";
 $wgAutoloadClasses['Flow\Model\WikiReference'] = "$dir/includes/Model/Reference.php";
 $wgAutoloadClasses['Flow\Model\URLReference'] = "$dir/includes/Model/Reference.php";
