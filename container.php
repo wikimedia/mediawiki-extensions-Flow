@@ -671,34 +671,35 @@ $c['logger'] = $c->share( function( $c ) {
 } );
 
 $c['reference.extractor'] = $c->share( function( $c ) {
-	$stripTitle = function( $title ) {
-		return preg_replace( '#^(\.{1,2}\/)+#', '', $title );
-	};
-
-	return new Flow\ReferenceExtractor(
+	return new Flow\Parsoid\ReferenceExtractor(
 		array(
 			'//*[starts-with(@typeof, "mw:Image")]' =>
-				function( $element ) use ( $stripTitle ) {
+				function( $element ) {
 					$imgNode = $element->getElementsByTagName( 'img' )->item( 0 );
-					$imageLink = urldecode( $imgNode->getAttribute( 'resource' ) );
+					$data = FormatJson::decode( $imgNode->getAttribute( 'data-parsoid' ), true );
+					$imageName = $data['sa']['resource'];
+
 					return array(
 						'refType' => 'file',
 						'targetType' => 'wiki',
-						'target' => $stripTitle( $imageLink ),
+						'target' => $imageName,
 					);
 				},
 			'//a[@rel="mw:WikiLink"][not(@typeof)]' =>
-				function( $element ) use ( $stripTitle ) {
-					$linkTarget = urldecode( $element->getAttribute( 'href' ) );
+				function( $element ) {
+					$parsoidData = FormatJson::decode( $element->getAttribute( 'data-parsoid' ), true );
+					$linkTarget = $parsoidData['sa']['href'];
+
 					return array(
 						'refType' => 'link',
 						'targetType' => 'wiki',
-						'target' => $stripTitle( $linkTarget ),
+						'target' => $linkTarget,
 					);
 				},
 			'//a[@rel="mw:ExtLink"]' =>
 				function( $element ) {
 					$href = urldecode( $element->getAttribute( 'href' ) );
+
 					return array(
 						'refType' => 'link',
 						'targetType' => 'url',
@@ -709,9 +710,11 @@ $c['reference.extractor'] = $c->share( function( $c ) {
 				function( $element ) {
 					$data = json_decode( $element->getAttribute( 'data-mw' ) );
 					$templateTarget = Title::newFromText( $data->parts[0]->template->target->wt, NS_TEMPLATE );
+
 					if ( !$templateTarget ) {
 						return null;
 					}
+
 					return array(
 						'refType' => 'template',
 						'targetType' => 'wiki',
