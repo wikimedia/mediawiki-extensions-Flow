@@ -81,8 +81,8 @@
 			document.attachEvent( 'focusin', onMwUiButtonFocus );
 			document.attachEvent( 'focusout', onMwUiButtonBlur );
 		} else {
-			document.addEventListener( 'focus', onMwUiButtonFocus, true );
-			document.addEventListener( 'blur', onMwUiButtonBlur, true );
+			document.body.addEventListener( 'focus', onMwUiButtonFocus, true );
+			document.body.addEventListener( 'blur', onMwUiButtonBlur, true );
 		}
 	} );
 
