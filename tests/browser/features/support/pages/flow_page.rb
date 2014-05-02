@@ -62,7 +62,7 @@ class FlowPage
 
   div(:header_content, id: "flow-header-content", index: 0)
   a(:edit_header_link, title: "Edit header")
-  form(:edit_header_form, class: "flow-edit-header-form")
-  text_field(:edit_header_textbox, class: "flow-edit-header-content")
-  button(:edit_header_save, class: "flow-edit-header-submit")
+  form(:edit_header_form, class: "flow-edit-form") # Reuses common edit action so no header-specific class.
+  text_field(:edit_header_textbox, class: "flow-edit-content") # Reuses common edit action so no header-specific class.
+  button(:edit_header_save, text: "Save header")
 end
