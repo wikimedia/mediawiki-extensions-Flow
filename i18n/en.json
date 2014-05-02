@@ -336,5 +336,6 @@
     "flow-spam-confirmedit": "As an anonymous user, you can't submit external links. Please sign up for an account.",
     "flow-preview-warning": "You are seeing a preview. Submit the form to finish posting this, or click \"Keep editing\" to continue writing.",
     "flow-preview-return-edit-post" : "Keep editing",
-    "flow-anonymous": "Anonymous"
+    "flow-anonymous": "Anonymous",
+    "flow-embedding-unsupported" : "Discussions cannot be embedded yet."
 }

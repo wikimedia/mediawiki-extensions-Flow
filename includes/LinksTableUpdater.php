@@ -8,6 +8,8 @@ use Flow\Model\URLReference;
 use Flow\Model\WikiReference;
 use LinkBatch;
 use LinkCache;
+use ParserOutput;
+use Title;
 use WikiPage;
 
 class LinksTableUpdater {
@@ -35,9 +37,7 @@ class LinksTableUpdater {
 		DataUpdate::runUpdates( $updates );
 	}
 
-	public function mutateLinksUpdate( $linksUpdate, $references = false ) {
-		$title = $linksUpdate->getTitle();
-
+	public function mutateParserOutput( Title $title, ParserOutput $parserOutput, $references = false ) {
 		if ( $references === false ) {
 			$references = $this->getReferencesForTitle( $title );
 		}
@@ -49,7 +49,7 @@ class LinksTableUpdater {
 		foreach( $references as $reference ) {
 			if ( $reference->getType() === 'link' ) {
 				if ( $reference instanceof URLReference ) {
-					$linksUpdate->mExternals[$reference->getURL()] = true;
+					$parserOutput->mExternalLinks[$reference->getURL()] = true;
 				} elseif ( $reference instanceof WikiReference ) {
 					$internalLinks[$reference->getTitle()->getPrefixedDBkey()] = $reference->getTitle();
 					$linkBatch->addObj( $reference->getTitle() );
@@ -57,7 +57,7 @@ class LinksTableUpdater {
 			} elseif ( $reference->getType() === 'file' ) {
 				if ( $reference instanceof WikiReference ) {
 					// Only local images supported
-					$linksUpdate->mImages[$reference->getTitle()->getDBkey()] = true;
+					$parserOutput->mImages[$reference->getTitle()->getDBkey()] = true;
 				}
 			} elseif ( $reference->getType() === 'template' ) {
 				if ( $reference instanceof WikiReference ) {
@@ -73,23 +73,23 @@ class LinksTableUpdater {
 		foreach( $internalLinks as $title ) {
 			$ns = $title->getNamespace();
 			$dbk = $title->getDBkey();
-			if ( !isset( $linksUpdate->mLinks[$ns] ) ) {
-				$linksUpdate->mLinks[$ns] = array();
+			if ( !isset( $parserOutput->mLinks[$ns] ) ) {
+				$parserOutput->mLinks[$ns] = array();
 			}
 
 			$id = $linkCache->getGoodLinkID( $title->getPrefixedDBkey() );
-			$linksUpdate->mLinks[$ns][$dbk] = $id;
+			$parserOutput->mLinks[$ns][$dbk] = $id;
 		}
 
 		foreach( $templates as $title ) {
 			$ns = $title->getNamespace();
 			$dbk = $title->getDBkey();
-			if ( !isset( $linksUpdate->mTemplates[$ns] ) ) {
-				$linksUpdate->mTemplates[$ns] = array();
+			if ( !isset( $parserOutput->mTemplates[$ns] ) ) {
+				$parserOutput->mTemplates[$ns] = array();
 			}
 
 			$id = $linkCache->getGoodLinkID( $title->getPrefixedDBkey() );
-			$linksUpdate->mTemplates[$ns][$dbk] = $id;
+			$parserOutput->mTemplates[$ns][$dbk] = $id;
 		}
 	}
 
