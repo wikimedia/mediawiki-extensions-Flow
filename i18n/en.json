@@ -311,5 +311,6 @@
     "flow-special-type-post": "Post",
     "flow-special-type-workflow": "Workflow",
     "flow-special-uuid": "UUID",
-    "flow-special-invalid-uuid": "Could not find content matching the type and the UUID."
+    "flow-special-invalid-uuid": "Could not find content matching the type and the UUID.",
+    "flow-embedding-unsupported" : "Discussions cannot be embedded yet."
 }
