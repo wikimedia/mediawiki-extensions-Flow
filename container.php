@@ -178,11 +178,29 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 			$c['repository.username'],
 			array( 'workflow_user_id' => 'workflow_user_wiki' )
 		),
-		new Flow\Data\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] )
+		new Flow\Data\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] ),
+		$c['listener.occupation'],
 		// $c['storage.user_subs.user_index']
 	);
 
 	return new ObjectManager( $mapper, $storage, $indexes, $lifecycle );
+} );
+
+$c['listener.occupation'] = $c->share( function( $c ) {
+	global $wgFlowDefaultWorkflow;
+
+	// TODO I am not entirely comfortable with this
+	$definition = $c['storage.definition']->find(
+		array(
+			'definition_name' => $wgFlowDefaultWorkflow,
+			'definition_wiki' => wfWikiId(),
+		)
+	);
+
+	return new Flow\Data\OccupationListener(
+			$c['occupation_controller'],
+			reset( $definition )
+		);
 } );
 
 $c['storage.board_history.backing'] = $c->share( function( $c ) {

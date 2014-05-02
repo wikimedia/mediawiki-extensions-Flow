@@ -48,6 +48,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-create-header',
 		),
+		'handler-class' => 'Flow\Actions\CreateHeaderAction',
 	),
 
 	'edit-header' => array(
@@ -68,6 +69,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-header',
 		),
+		'handler-class' => 'Flow\Actions\EditHeaderAction',
 	),
 
 	'create-topic-summary' => array(
@@ -93,6 +95,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-create-topic-summary',
 		),
+		'handler-class' => 'Flow\Actions\CreateTopicAction',
 	),
 
 	'edit-topic-summary' => array(
@@ -118,6 +121,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-topic-summary',
 		),
+		'handler-class' => 'Flow\Actions\EditTopicAction',
 	),
 
 	'edit-title' => array(
@@ -141,11 +145,11 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-title',
 		),
+		'handler-class' => 'Flow\Actions\EditTitleAction',
 	),
 
-	// The name 'new-post' is perhaps deceiving, this is always the topic title.
 	// Normal posts are the 'reply' type.
-	'new-post' => array(
+	'new-topic' => array(
 		'performs-writes' => true,
 		'log_type' => false,
 		'rc_insert' => true,
@@ -165,6 +169,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-new-post',
 		),
+		'handler-class' => 'Flow\Actions\NewTopicAction',
 	),
 
 	'edit-post' => array(
@@ -190,6 +195,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-post',
 		),
+		'handler-class' => 'Flow\Actions\EditPostAction',
 	),
 
 	'hide-post' => array(
@@ -217,6 +223,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-hide-post',
 		),
+		'handler-class' => 'Flow\Actions\HidePostAction',
 	),
 
 	'hide-topic' => array(
@@ -241,6 +248,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-hide-topic',
 		),
+		'handler-class' => 'Flow\Actions\HideTopicAction',
 	),
 
 	'delete-post' => array(
@@ -266,6 +274,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-delete-post',
 		),
+		'handler-class' => 'Flow\Actions\DeletePostAction',
 	),
 
 	'delete-topic' => array(
@@ -291,6 +300,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-delete-topic',
 		),
+		'handler-class' => 'Flow\Actions\DeleteTopicAction',
 	),
 
 	'suppress-post' => array(
@@ -317,6 +327,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-suppress-post',
 		),
+		'handler-class' => 'Flow\Actions\SuppressPostAction',
 	),
 
 	'suppress-topic' => array(
@@ -343,6 +354,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-suppress-topic',
 		),
+		'handler-class' => 'Flow\Actions\SuppressTopicAction',
 	),
 
 	'close-topic' => array(
@@ -368,6 +380,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-closed-topic',
 		),
+		'handler-class' => 'Flow\Actions\CloseTopicAction',
 	),
 
 	'restore-post' => array(
@@ -421,6 +434,7 @@ $wgFlowActions = array(
 				return "flow-history-un$state-post";
 			}
 		),
+		'handler-class' => 'Flow\Actions\RestorePostAction',
 	),
 
 	'restore-topic' => array(
@@ -475,6 +489,7 @@ $wgFlowActions = array(
 				return "flow-history-un$state-topic";
 			}
 		),
+		'handler-class' => 'Flow\Actions\RestoreTopicAction',
 	),
 
 	'view' => array(
@@ -494,7 +509,8 @@ $wgFlowActions = array(
 		'button-method' => 'GET',
 		'links' => array(), // @todo
 		'actions' => array(), // view is not a recorded change type, no actions will be requested
-		'history' => array() // views don't generate history
+		'history' => array(), // views don't generate history
+		'handler-class' => 'Flow\Actions\ViewAction',
 	),
 
 	'reply' => array(
@@ -525,6 +541,7 @@ $wgFlowActions = array(
 				'class' => 'flow-history-bundle',
 			),
 		),
+		'handler-class' => 'Flow\Actions\ReplyAction',
 	),
 
 	'history' => array(
@@ -592,7 +609,8 @@ $wgFlowActions = array(
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',
 		),
 		'button-method' => 'GET',
-		'history' => array() // views don't generate history
+		'history' => array(), // views don't generate history
+		'handler-class' => 'Flow\Actions\HistoryAction',
 	),
 
 	// log & all other formatters have same config as history
@@ -610,8 +628,8 @@ $wgFlowActions = array(
 	 */
 	'flow-rev-message-edit-title' => 'edit-title',
 	'flow-edit-title' => 'edit-title',
-	'flow-rev-message-new-post' => 'new-post',
-	'flow-new-post' => 'new-post',
+	'flow-rev-message-new-post' => 'new-topic',
+	'flow-new-post' => 'new-topic',
 	'flow-rev-message-edit-post' => 'edit-post',
 	'flow-edit-post' => 'edit-post',
 	'flow-rev-message-reply' => 'reply',
@@ -641,4 +659,7 @@ $wgFlowActions = array(
 	'post-history' => 'history',
 	'topic-history' => 'history',
 	'board-history' => 'history',
+
+	// The new-topic type used to be called new-post
+	'new-post' => 'new-topic',
 );
