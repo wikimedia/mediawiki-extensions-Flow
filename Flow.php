@@ -92,6 +92,11 @@ $wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/Revision
 $wgAutoloadClasses['Flow\TermsOfUse'] = $dir . 'includes/TermsOfUse.php';
 $wgAutoloadClasses['Flow\ReferenceClarifier'] = $dir . 'includes/ReferenceClarifier.php';
 
+$wgAutoloadClasses['Flow\Content\Content'] = "$dir/includes/Content/Content.php";
+$wgAutoloadClasses['Flow\Content\BoardContent'] = "$dir/includes/Content/BoardContent.php";
+$wgAutoloadClasses['Flow\Content\BoardContentHandler'] = "$dir/includes/Content/BoardContentHandler.php";
+$wgAutoloadClasses['Flow\Data\OccupationListener'] = "$dir/includes/Data/OccupationListener.php";
+
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
 $wgAutoloadClasses['Flow\Model\Metadata'] = $dir . 'includes/Model/Metadata.php';
@@ -218,6 +223,28 @@ $wgAutoloadClasses['Flow\Model\WikiReference'] = "$dir/includes/Model/Reference.
 $wgAutoloadClasses['Flow\Model\URLReference'] = "$dir/includes/Model/Reference.php";
 $wgAutoloadClasses['Flow\Data\ReferenceRecorder'] = "$dir/includes/Data/ReferenceRecorder.php";
 
+// Actions
+$wgAutoloadClasses['Flow\Actions\FlowAction'] = $dir . 'includes/Actions/Action.php';
+$wgAutoloadClasses['Flow\Actions\CreateHeaderAction'] = $dir . 'includes/Actions/CreateHeaderAction.php';
+$wgAutoloadClasses['Flow\Actions\EditHeaderAction'] = $dir . 'includes/Actions/EditHeaderAction.php';
+$wgAutoloadClasses['Flow\Actions\CreateTopicAction'] = $dir . 'includes/Actions/CreateTopicAction.php';
+$wgAutoloadClasses['Flow\Actions\EditTopicAction'] = $dir . 'includes/Actions/EditTopicAction.php';
+$wgAutoloadClasses['Flow\Actions\EditTitleAction'] = $dir . 'includes/Actions/EditTitleAction.php';
+$wgAutoloadClasses['Flow\Actions\NewTopicAction'] = $dir . 'includes/Actions/NewTopicAction.php';
+$wgAutoloadClasses['Flow\Actions\EditPostAction'] = $dir . 'includes/Actions/EditPostAction.php';
+$wgAutoloadClasses['Flow\Actions\HidePostAction'] = $dir . 'includes/Actions/HidePostAction.php';
+$wgAutoloadClasses['Flow\Actions\HideTopicAction'] = $dir . 'includes/Actions/HideTopicAction.php';
+$wgAutoloadClasses['Flow\Actions\DeletePostAction'] = $dir . 'includes/Actions/DeletePostAction.php';
+$wgAutoloadClasses['Flow\Actions\DeleteTopicAction'] = $dir . 'includes/Actions/DeleteTopicAction.php';
+$wgAutoloadClasses['Flow\Actions\SuppressPostAction'] = $dir . 'includes/Actions/SuppressPostAction.php';
+$wgAutoloadClasses['Flow\Actions\SuppressTopicAction'] = $dir . 'includes/Actions/SuppressTopicAction.php';
+$wgAutoloadClasses['Flow\Actions\CloseTopicAction'] = $dir . 'includes/Actions/CloseTopicAction.php';
+$wgAutoloadClasses['Flow\Actions\RestorePostAction'] = $dir . 'includes/Actions/RestorePostAction.php';
+$wgAutoloadClasses['Flow\Actions\RestoreTopicAction'] = $dir . 'includes/Actions/RestoreTopicAction.php';
+$wgAutoloadClasses['Flow\Actions\ViewAction'] = $dir . 'includes/Actions/ViewAction.php';
+$wgAutoloadClasses['Flow\Actions\ReplyAction'] = $dir . 'includes/Actions/ReplyAction.php';
+$wgAutoloadClasses['Flow\Actions\HistoryAction'] = $dir . 'includes/Actions/HistoryAction.php';
+
 // phpunit helper
 $wgAutoloadClasses['Flow\Tests\FlowTestCase'] = $dir . 'tests/FlowTestCase.php';
 $wgAutoloadClasses['Flow\Tests\PostRevisionTestCase'] = $dir . 'tests/PostRevisionTestCase.php';
@@ -253,7 +280,6 @@ $wgSpecialPageGroups['Flow'] = 'redirects';
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
 //$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
-$wgHooks['MediaWikiPerformAction'][] = 'FlowHooks::onPerformAction';
 $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
 $wgHooks['ChangesListInitRows'][] = 'FlowHooks::onChangesListInitRows';
 $wgHooks['SkinTemplateNavigation::Universal'][] = 'FlowHooks::onSkinTemplateNavigation';
@@ -273,10 +299,15 @@ $wgHooks['SkinMinervaDefaultModules'][] = 'FlowHooks::onSkinMinervaDefaultModule
 $wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
 $wgHooks['FlowAddModules'][] = 'Flow\Parsoid\Utils::onFlowAddModules';
 $wgHooks['WhatLinksHereProps'][] = 'FlowHooks::onWhatLinksHereProps';
-$wgHooks['LinksUpdateConstructed'][] = 'FlowHooks::onLinksUpdateConstructed';
+$wgHooks['ContentHandlerDefaultModelFor'][] = 'Flow\Content\Content::onGetDefaultModel';
+$wgHooks['ShowMissingArticle'][] = 'Flow\Content\Content::onShowMissingArticle';
+$wgHooks['ArticleAfterFetchContentObject'][] = 'Flow\Content\Content::onFetchContentObject';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
+
+// Flow Content Type
+$wgContentHandlers['flow-board'] = 'Flow\Content\BoardContentHandler';
 
 // User permissions
 // Added to $wgFlowGroupPermissions instead of $wgGroupPermissions immediately,
@@ -398,6 +429,13 @@ $wgLogActionsHandlers['delete/flow-restore-post'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['suppress/flow-restore-post'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['delete/flow-restore-topic'] = 'Flow\Log\Formatter';
 $wgLogActionsHandlers['suppress/flow-restore-topic'] = 'Flow\Log\Formatter';
+
+// Register URL actions
+foreach( $wgFlowActions as $action => $options ) {
+	if ( is_array( $options ) ) {
+		$wgActions[$action] = true;
+	}
+}
 
 // Set this to false to disable all memcache usage.  Do not just turn the cache
 // back on, it will be out of sync with the database.  There is not yet an official
