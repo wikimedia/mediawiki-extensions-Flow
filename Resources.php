@@ -6,7 +6,16 @@ $flowResourceTemplate = array(
 	'group' => 'ext.flow',
 );
 
+$flowTemplatingResourceTemplate = $flowResourceTemplate + array(
+	'localTemplateBasePath' => __DIR__ . '/handlebars',
+	'class' => 'ResourceLoaderTemplateModule',
+	'targets' => array( 'mobile', 'desktop' ),
+);
+
 $wgResourceModules += array(
+	'ext.flow.templating' => $flowTemplatingResourceTemplate + array(
+		'dependencies' => 'ext.mantle.handlebars',
+	),
 	'ext.flow.base.styles' => $flowResourceTemplate + array(
 		'targets' => array( 'desktop', 'mobile' ),
 		'styles' => array(
@@ -250,7 +259,7 @@ $wgResourceModules += array(
 			'new/flow-handlebars.js',
 		),
 		'dependencies' => array(
-			'ext.flow.vendor.handlebars',
+			'ext.mantle.handlebars',
 		),
 	),
 	'ext.flow.new.history' => $flowResourceTemplate + array(
@@ -267,7 +276,8 @@ $wgResourceModules += array(
 			'new/flow.js',
 		),
 		'dependencies' => array(
-			'ext.flow.new.handlebars',
+			'ext.flow.templating', // ResourceLoader templating
+			'ext.flow.new.handlebars', // prototype-based for progressiveEnhancement
 			'ext.flow.new.history',
 			'ext.flow.vendor.storer',
 			'ext.flow.vendor.jquery.ba-throttle-debounce',
@@ -275,9 +285,9 @@ $wgResourceModules += array(
 			'jquery.json',
 			'jquery.conditionalScroll',
 		),
-	),
-	'ext.flow.vendor.handlebars' => $flowResourceTemplate + array(
-		'scripts' => 'new/vendor/handlebars-v2.0.0-alpha.2.js',
+		'templates' => array(
+			'timestamp.html.handlebars'
+		)
 	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
 		'scripts' => 'new/vendor/Storer.js',
