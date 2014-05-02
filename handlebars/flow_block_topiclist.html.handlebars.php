@@ -55,7 +55,7 @@
 	';}).'
 	<li class="flow-topic-navigation-footer">
 		'.LCRun2::ch('l10n', Array('topic_count_sidebar',$in), 'enc', $cx).'
-		'.((LCRun2::ifvar(((is_array($in['links']['pagination']) && isset($in['links']['pagination']['fwd'])) ? $in['links']['pagination']['fwd'] : null))) ? '
+		'.((LCRun2::ifvar(((is_array($in['links']) && isset($in['links']['pagination'])) ? $in['links']['pagination'] : null))) ? '
 			<a href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="wikicon wikicon-article"></span> '.LCRun2::ch('l10n', Array('Load_More'), 'enc', $cx).'</a>
 		' : '
 			<!-- @todo make disabled class do something? -->
@@ -63,6 +63,7 @@
 		').'
 	</li>
 </ul>
+
 	'.((LCRun2::ifvar(((is_array($in['actions']) && isset($in['actions']['newtopic'])) ? $in['actions']['newtopic'] : null))) ? '
 	<form action="'.htmlentities(((is_array($in['actions']['newtopic']) && isset($in['actions']['newtopic']['url'])) ? $in['actions']['newtopic']['url'] : null), ENT_QUOTES, 'UTF-8').'" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
 		<!-- @todo form errors -->

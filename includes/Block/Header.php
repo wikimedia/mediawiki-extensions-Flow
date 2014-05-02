@@ -179,7 +179,13 @@ class HeaderBlock extends AbstractBlock {
 		);
 
 		if ( $this->header === null ) {
-			$output['missing'] = 'missing';
+			$output['revision'] = array(
+				// @todo 
+				'actions' => array(
+				),
+				'links' => array(
+				),
+			);
 		} else {
 			$ctx = \RequestContext::getMain();
 			$row = new FormatterRow;
