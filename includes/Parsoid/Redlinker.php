@@ -143,6 +143,8 @@ class Redlinker implements ContentFixer {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 
+		$this->resolve( null );
+
 		/*
 		 * Workaround because DOMDocument can't guess charset.
 		 * Content should be utf-8. Alternative "workarounds" would be to
@@ -155,8 +157,8 @@ class Redlinker implements ContentFixer {
 		$self = $this;
 		self::forEachLink( $dom, function( DOMNode $linkNode, array $parsoid ) use ( $self, $dom, $title ) {
 			$title = $self->createRelativeTitle( $parsoid['sa']['href'], $title );
-			// Don't process invalid links
-			if ( $title === null ) {
+			// Don't process invalid or existing links
+			if ( $title === null || $title->exists() ) {
 				return;
 			}
 
