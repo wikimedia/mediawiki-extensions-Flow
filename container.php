@@ -97,8 +97,7 @@ $c['templating'] = $c->share( function( $c ) {
 		$c['url_generator'],
 		$c['output'],
 		$c['content_fixer'],
-		$c['templating.namespaces'],
-		$c['templating.global_variables']
+		$c['permissions']
 	);
 } );
 
