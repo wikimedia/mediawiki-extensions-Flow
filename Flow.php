@@ -110,19 +110,6 @@ $wgAutoloadClasses['Flow\Collection\PostCollection'] = $dir . 'includes/Collecti
 $wgAutoloadClasses['Flow\Collection\HeaderCollection'] = $dir . 'includes/Collection/HeaderCollection.php';
 $wgAutoloadClasses['Flow\Collection\PostSummaryCollection'] = $dir . 'includes/Collection/PostSummaryCollection.php';
 
-// Helpers for templating
-$wgAutoloadClasses['Flow\View\PostActionMenu'] = "$dir/includes/View/PostActionMenu.php";
-$wgAutoloadClasses['Flow\View\History\History'] = "$dir/includes/View/History/History.php";
-$wgAutoloadClasses['Flow\View\History\HistoryRecord'] = "$dir/includes/View/History/HistoryRecord.php";
-$wgAutoloadClasses['Flow\View\History\HistoryBundle'] = "$dir/includes/View/History/HistoryBundle.php";
-$wgAutoloadClasses['Flow\View\History\HistoryRenderer'] = "$dir/includes/View/History/HistoryRenderer.php";
-$wgAutoloadClasses['Flow\View\Post'] = "$dir/includes/View/Post.php";
-$wgAutoloadClasses['Flow\View\RevisionCreatable'] = "$dir/includes/View/Revision.php";
-$wgAutoloadClasses['Flow\View\RevisionView'] = "$dir/includes/View/Revision.php";
-$wgAutoloadClasses['Flow\View\PostRevisionView'] = "$dir/includes/View/Revision.php";
-$wgAutoloadClasses['Flow\View\HeaderRevisionView'] = "$dir/includes/View/Revision.php";
-$wgAutoloadClasses['Flow\View\PostSummaryRevisionView'] = "$dir/includes/View/Revision.php";
-
 // Classes that deal with database interaction between database and the models
 $wgAutoloadClasses['Flow\Repository\TreeRepository'] = $dir . 'includes/Repository/TreeRepository.php';
 $wgAutoloadClasses['Flow\Repository\MultiGetList'] = $dir . 'includes/Repository/MultiGetList.php';
