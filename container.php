@@ -177,6 +177,9 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 			$c['repository.username'],
 			array( 'workflow_user_id' => 'workflow_user_wiki' )
 		),
+		new Flow\Data\OccupationListener(
+			$c['occupation_controller']
+		),
 		// $c['storage.user_subs.user_index']
 	);
 
