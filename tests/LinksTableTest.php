@@ -279,7 +279,7 @@ class LinksTableTest extends PostRevisionTestCase {
 		$this->assertReferenceListsEqual( $removed, $expectedRemoved );
 	}
 
-	public static function provideMutateLinksUpdate() {
+	public static function provideMutateParserOutput() {
 		extract( self::getSampleReferences() );
 
 		return array(
@@ -291,16 +291,16 @@ class LinksTableTest extends PostRevisionTestCase {
 					$fooImageReference,
 				),
 				array(
-					'mLinks' => array(
+					'getLinks' => array(
 						NS_MAIN => array( 'Foo' => 0, ),
 					),
-					'mTemplates' => array(
+					'getTemplates' => array(
 						NS_TEMPLATE => array( 'Foo' => 0, ),
 					),
-					'mImages' => array(
+					'getImages' => array(
 						'Foo.jpg' => true,
 					),
-					'mExternals' => array(
+					'getExternalLinks' => array(
 						'http://www.google.com' => true,
 					),
 				),
@@ -310,7 +310,7 @@ class LinksTableTest extends PostRevisionTestCase {
 					$subpageLinkReference,
 				),
 				array(
-					'mLinks' => array(
+					'getLinks' => array(
 						NS_MAIN => array( 'UTPage/Subpage' => 0, )
 					),
 				),
@@ -319,23 +319,22 @@ class LinksTableTest extends PostRevisionTestCase {
 	}
 
 	/**
-	 * @dataProvider provideMutateLinksUpdate
+	 * @dataProvider provideMutateParserOutput
 	 */
-	public function testMutateLinksUpdate( $references, $expectedItems ) {
+	public function testMutateParserOutput( $references, $expectedItems ) {
 		extract( $this->getBlandTestObjects() );
 		$references = $this->expandReferences( $workflow, $revision, $references );
 		$parserOutput = new \ParserOutput;
-		$linksUpdate = new \LinksUpdate( self::getTestTitle(), $parserOutput );
 
 		// Clear the LinksUpdate to allow clean testing
 		foreach( array_keys( $expectedItems ) as $fieldName ) {
-			$linksUpdate->$fieldName = array();
+			$parserOutput->$fieldName = array();
 		}
 
-		$this->updater->mutateLinksUpdate( $linksUpdate, $references );
+		$this->updater->mutateParserOutput( self::getTestTitle(), $parserOutput, $references );
 
-		foreach( $expectedItems as $field => $content ) {
-			$this->assertEquals( $content, $linksUpdate->$field, $field );
+		foreach( $expectedItems as $method => $content ) {
+			$this->assertEquals( $content, $parserOutput->$method(), $method );
 		}
 	}
 
