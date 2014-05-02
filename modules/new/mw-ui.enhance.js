@@ -12,7 +12,7 @@
 		function onMwUiButtonFocus( event ) {
 			var $el, $form, $siblings;
 
-			if ( event.target.className.indexOf( 'flow-ui-button' ) === -1 ) {
+			if ( !event.target.className || event.target.className.indexOf( 'flow-ui-button' ) === -1 ) {
 				// Not a button event
 				return;
 			}
@@ -39,7 +39,7 @@
 		}
 
 		function onMwUiButtonBlur( event ) {
-			if ( event.target.className.indexOf( 'flow-ui-button' ) === -1 ) {
+			if ( !event.target.className || event.target.className.indexOf( 'flow-ui-button' ) === -1 ) {
 				// Not a button event
 				return;
 			}
