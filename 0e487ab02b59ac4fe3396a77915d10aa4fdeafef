@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_3845a518",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-05-02T17:32:10Z",
+      "side": 1,
+      "message": "There should be no need to call the above. This is taken care of by ResourceLoader",
+      "revId": "0e487ab02b59ac4fe3396a77915d10aa4fdeafef",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
