@@ -114,7 +114,7 @@
 	"flow-error-invalid-input": "Ett ogiltigt värde angavs för att läsa in flödesinnehållet.",
 	"flow-error-invalid-title": "Ogiltig sidrubrik angavs.",
 	"flow-error-fail-load-history": "Innehållet i historiken kunde inte läsas in.",
-	"flow-error-missing-revision": "Det gick inte att hitta en revision för att ladda flödesinnehållet.",
+	"flow-error-missing-revision": "Det gick inte att hitta en version för att ladda flödesinnehållet.",
 	"flow-error-fail-commit": "Flödesinnehållet kunde inte sparas.",
 	"flow-error-insufficient-permission": "Otillräcklig behörighet för att komma åt innehållet.",
 	"flow-error-revision-comparison": "Diff-funktionen kan endast användas för två revideringar som hör till samma post.",
