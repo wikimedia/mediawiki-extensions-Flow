@@ -74,6 +74,8 @@
 	"flow-topic-action-history": "역사",
 	"flow-topic-action-hide-topic": "주제 숨기기",
 	"flow-topic-action-delete-topic": "주제 삭제",
+	"flow-topic-action-close-topic": "주제 닫기",
+	"flow-topic-action-summarize-topic": "요약",
 	"flow-topic-action-suppress-topic": "주제 숨겨놓기",
 	"flow-topic-action-unhide-topic": "주제 숨기기",
 	"flow-topic-action-undelete-topic": "주제 삭제 취소",
