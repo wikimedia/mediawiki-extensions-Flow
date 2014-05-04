@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_59b180f2",
+        "filename": "modules/new/vendor/Storer.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-04T01:14:01Z",
+      "side": 1,
+      "message": "A bit late, but AFAIS, this is CC-BY 3.0, which is not GPL compatible (Flow is licensed as GPL v2).\n\nCan we get upstream to re-license this?",
+      "revId": "13eef843247a943a5358c7c298960c9fbc3980a6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
