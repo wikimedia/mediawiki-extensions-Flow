@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_2d831aae",
+        "filename": "includes/Data/TwoStepUserNameQuery.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-05-05T14:21:59Z",
+      "side": 1,
+      "message": "Class not used",
+      "revId": "bc726bd5a7065da619f326151eba070fca5f2d9b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
