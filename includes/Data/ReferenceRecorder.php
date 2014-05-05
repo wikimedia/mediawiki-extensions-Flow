@@ -6,7 +6,7 @@ use Flow\LinksTableUpdater;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Flow\ReferenceExtractor;
+use Flow\Parsoid\ReferenceExtractor;
 
 class ReferenceRecorder implements LifecycleHandler {
 	protected $referenceExtractor, $storage, $linksTableUpdater;

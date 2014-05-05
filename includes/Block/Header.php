@@ -177,6 +177,7 @@ class HeaderBlock extends AbstractBlock {
 			'type' => $this->getName(),
 			'editToken' => $this->getEditToken(),
 		);
+		$result->setIndexedTagName( $output, 'header' );
 
 		if ( $this->header === null ) {
 			$output['revision'] = array(

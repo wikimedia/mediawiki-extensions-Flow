@@ -6,6 +6,7 @@ use Flow\Container;
 use Flow\Formatter\FormatterRow;
 use Flow\Model\UUID;
 use Title;
+use Flow\UrlGenerator;
 
 /**
  * @group Flow
@@ -118,9 +119,13 @@ class FormatterTest extends FlowTestCase {
 		$templating = $this->getMockBuilder( 'Flow\Templating' )
 			->disableOriginalConstructor()
 			->getMock();
-		$urlGenerator = $this->getMockBuilder( 'Flow\UrlGenerator' )
+		$workflowStorage = $this->getMockBuilder( 'Flow\Data\ObjectManager' )
 			->disableOriginalConstructor()
 			->getMock();
+		$occupier = $this->getMockBuilder( 'Flow\OccupationController' )
+			->disableOriginalConstructor()
+			->getMock();
+		$urlGenerator = new UrlGenerator( $workflowStorage, $occupier );
 		$templating->expects( $this->any() )
 			->method( 'getUrlGenerator' )
 			->will( $this->returnValue( $urlGenerator ) );
@@ -132,5 +137,14 @@ class FormatterTest extends FlowTestCase {
 		$serializer = new \Flow\Formatter\RevisionFormatter( $permissions, $templating, $usernames );
 
 		return new $class( $permissions, $serializer );
+	}
+
+	protected function dataToString( $data ) {
+		foreach ( $data as $key => $value ) {
+			if ( $value instanceof UUID ) {
+				$data[$key] = "UUID: " . $value->getAlphadecimal();
+			}
+		}
+		return parent::dataToString( $data );
 	}
 }

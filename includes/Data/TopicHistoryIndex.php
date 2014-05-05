@@ -29,10 +29,10 @@ class TopicHistoryIndex extends TopKIndex {
 	 */
 	public function onAfterInsert( $object, array $new ) {
 		if ( $object instanceof PostRevision ) {
-			$new['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
+			$new['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
 			parent::onAfterInsert( $object, $new );
 		} elseif ( $object instanceof PostSummary ) {
-			$new['topic_root_id'] = $object->getCollection()->getWorkflowId()->getBinary();
+			$new['topic_root_id'] = $object->getCollection()->getWorkflowId()->getAlphadecimal();
 			parent::onAfterInsert( $object, $new );
 		}
 	}
@@ -44,10 +44,10 @@ class TopicHistoryIndex extends TopKIndex {
 	 */
 	public function onAfterUpdate( $object, array $old, array $new ) {
 		if ( $object instanceof PostRevision ) {
-			$old['topic_root_id'] = $new['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
+			$old['topic_root_id'] = $new['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
 			parent::onAfterUpdate( $object, $old, $new );
 		} elseif ( $object instanceof PostSummary ) {
-			$old['topic_root_id'] = $new['topic_root_id'] = $object->getCollection()->getWorkflowId()->getBinary();
+			$old['topic_root_id'] = $new['topic_root_id'] = $object->getCollection()->getWorkflowId()->getAlphadecimal();
 			parent::onAfterUpdate( $object, $old, $new );
 		}
 	}
@@ -58,10 +58,10 @@ class TopicHistoryIndex extends TopKIndex {
 	 */
 	public function onAfterRemove( $object, array $old ) {
 		if ( $object instanceof PostRevision ) {
-			$old['topic_root_id'] = $object->getRootPost()->getPostId()->getBinary();
+			$old['topic_root_id'] = $object->getRootPost()->getPostId()->getAlphadecimal();
 			parent::onAfterRemove( $object, $old );
 		} elseif ( $object instanceof PostSummary ) {
-			$old['topic_root_id'] = $object->getCollection()->getWorkflowId()->getBinary();
+			$old['topic_root_id'] = $object->getCollection()->getWorkflowId()->getAlphadecimal();
 			parent::onAfterRemove( $object, $old );
 		}
 	}
