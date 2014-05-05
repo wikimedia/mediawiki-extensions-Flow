@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager;
@@ -213,19 +214,21 @@ class TopicListBlock extends AbstractBlock {
 		}
 	}
 
-	public function renderAPI( Templating $templating, array $options ) {
-		$output = array( '_element' => 'topic' );
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
+		$output = array();
 		if ( ! $this->workflow->isNew() ) {
 			$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
 			$page = $this->getPage( $findOptions );
 			$topics = $this->getTopics( $page );
 
 			foreach( $topics as $topic ) {
-				$output[] = $topic->renderAPI( $templating, $options );
+				$output[] = $topic->renderAPI( $templating, $result, $options );
 			}
 
 			$output['paging'] = $page->getPagingLinks();
 		}
+
+		$result->setIndexedTagName( $output, 'topic' );
 
 		return $output;
 	}

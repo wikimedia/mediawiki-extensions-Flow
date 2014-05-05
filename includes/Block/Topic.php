@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
@@ -588,7 +589,7 @@ class TopicBlock extends AbstractBlock {
 		), $return );
 	}
 
-	public function renderAPI( Templating $templating, array $options ) {
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
 		if ( isset( $options['postId'] ) ) {
 			$rootPost = $this->loadRootPost();
 			if ( !$rootPost ) {
@@ -605,13 +606,13 @@ class TopicBlock extends AbstractBlock {
 				throw new InvalidInputException( 'Requested post could not be found', 'invalid-input' );
 			}
 
-			$res = $this->renderPostAPI( $templating, $post, $options );
+			$res = $this->renderPostAPI( $templating, $post, $result, $options );
 			if ( $res === null ) {
 				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 			}
 			return array( $res );
 		} else {
-			$output = $this->renderTopicAPI( $templating, $options );
+			$output = $this->renderTopicAPI( $templating, $result, $options );
 			if ( $output === null ) {
 				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
 			}
@@ -619,7 +620,7 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	public function renderTopicAPI( Templating $templating, array $options ) {
+	public function renderTopicAPI( Templating $templating, ApiResult $result, array $options ) {
 		$topic = $this->workflow;
 		$rootPost = $this->loadRootPost();
 		if ( !$rootPost ) {
@@ -627,7 +628,7 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$output = array(
-			'_element' => 'post',
+			'element' => 'post',
 			'title' => $templating->getContent( $rootPost, 'wikitext' ),
 			'topic-id' => $topic->getId()->getAlphadecimal(),
 		);
@@ -655,16 +656,18 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		foreach( $rootPost->getChildren() as $child ) {
-			$res = $this->renderPostAPI( $templating, $child, $options );
+			$res = $this->renderPostAPI( $templating, $child, $result, $options );
 			if ( $res !== null ) {
 				$output[] = $res;
 			}
 		}
 
+		$result->setIndexedTagName( $output, 'post' );
+
 		return $output;
 	}
 
-	protected function renderPostAPI( Templating $templating, PostRevision $post, array $options ) {
+	protected function renderPostAPI( Templating $templating, PostRevision $post, ApiResult $result, array $options ) {
 		if ( !$this->permissions->isAllowed( $post, 'view' ) ) {
 			// we have to return null, or we would have to duplicate this call when rendering children.
 			// callers must check for null and do as appropriate
@@ -694,14 +697,16 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		if ( ! isset( $options['no-children'] ) ) {
-			$children = array( '_element' => 'post' );
+			$children = array( 'element' => 'post' );
 
 			foreach( $post->getChildren() as $child ) {
-				$res = $this->renderPostAPI( $templating, $child, $options );
+				$res = $this->renderPostAPI( $templating, $child, $result, $options );
 				if ( $res !== null ) {
 					$children[] = $res;
 				}
 			}
+
+			$result->setIndexedTagName( $children, 'post' );
 
 			if ( count( $children ) > 1 ) {
 				$output['replies'] = $children;
@@ -710,16 +715,15 @@ class TopicBlock extends AbstractBlock {
 
 		$postId = $post->getPostId()->getAlphadecimal();
 		if ( isset( $options['history'][$postId] ) ) {
-			$output['revisions'] = $this->getAPIHistory( $templating, $postId, $options['history'][$postId] );
+			$output['revisions'] = $this->getAPIHistory( $templating, $postId, $result, $options['history'][$postId] );
 		}
 
 		return $output;
 	}
 
-	protected function getAPIHistory( Templating $templating, /*string*/ $postId, array $history ) {
+	protected function getAPIHistory( Templating $templating, /*string*/ $postId, ApiResult $result, array $history ) {
 		$output = array();
 
-		$output['_element'] = 'revision';
 		$output['post-id'] = $postId;
 
 		foreach( $history as $revision ) {
@@ -732,6 +736,8 @@ class TopicBlock extends AbstractBlock {
 				);
 			}
 		}
+
+		$result->setIndexedTagName( $output, 'revision' );
 
 		return $output;
 	}

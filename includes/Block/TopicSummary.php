@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidActionException;
@@ -297,11 +298,12 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * Render the data for API request
 	 *
-	 * @param Templating
-	 * @param array
+	 * @param Templating $templating
+	 * @param ApiResult $result
+	 * @param array $options
 	 * @return array
 	 */
-	public function renderAPI( Templating $templating, array $options ) {
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
 		$output = array( 'type' => 'topicsummary' );
 
 		if ( $this->topicSummary !== null ) {
@@ -319,10 +321,11 @@ class TopicSummaryBlock extends AbstractBlock {
 			$output['topicsummary-id'] = '';
 		}
 
-		return array(
-			'_element' => 'topicsummary',
+		$out = array(
 			0 => $output,
 		);
+		$result->setIndexedTagName( $out, 'topicsummary' );
+		return $out;
 	}
 
 	public function getName() {

@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\RevisionActionPermissions;
 use Flow\Container;
 use Flow\Templating;
@@ -68,33 +69,35 @@ class BoardHistoryBlock extends AbstractBlock {
 		) );
 	}
 
-	public function renderAPI( Templating $templating, array $options ) {
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
 		if ( $this->workflow->isNew() ) {
-			return array(
-				'_element' => 'board-history',
+			$output = array(
 				0 => array(
 					'type' => 'board-history',
 					'empty' => '',
 				),
 			);
+			$result->setIndexedTagName( $output, 'board-history' );
+			return $output;
 		}
 
 		$history = $this->loadBoardHistory();
 		$formatter = Container::get( 'formatter.revision' );
 		$ctx = \RequestContext::getMain();
 
-		$result = array();
+		$formatted = array();
 		foreach ( $history as $row ) {
-			$result[] = $formatter->formatApi( $row, $ctx );
+			$formatted[] = $formatter->formatApi( $row, $ctx );
 		}
 
-		return array(
-			'_element' => 'board-history',
+		$output = array(
 			0 => array(
 				'type' => 'board-history',
-				'*' => $result,
+				'*' => $formatted,
 			),
 		);
+		$result->setIndexedTagName( $output, 'board-history' );
+		return $output;
 	}
 
 	protected function loadBoardHistory() {
