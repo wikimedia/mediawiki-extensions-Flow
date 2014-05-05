@@ -186,6 +186,25 @@ class InvalidActionException extends FlowException {
 	}
 
 	/**
+	 * Overrides MWException getHTML, adding a more human-friendly error message
+	 *
+	 * @return string
+	 */
+	public function getHTML() {
+		/*
+		 * We'll want both a proper humanized error msg & the stacktrace the
+		 * parent exception handler generated.
+		 * We'll create a stub OutputPage object here, to use its showErrorPage
+		 * to add our own humanized error message. Then we'll append the stack-
+		 * trace (parent::getHTML) and then just return the combined HTML.
+		 */
+		$rc = new RequestContext();
+		$output = $rc->getOutput();
+		$output->showErrorPage( $this->getPageTitle(), $this->getErrorCode() );
+		return $output->getHTML();
+	}
+
+	/**
 	 * Do not log exception resulting from input error
 	 */
 	function isLoggable() {
