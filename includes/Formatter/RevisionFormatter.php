@@ -405,7 +405,7 @@ class RevisionFormatter {
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
+			return Message::rawParam( $content );
 
 		// This is potentially two networked round trips, much too expensive for
 		// the rendering loop
@@ -422,7 +422,7 @@ class RevisionFormatter {
 			}
 
 			$content = $this->templating->getContent( $previousRevision, 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
+			return Message::rawParam( $content );
 
 		case 'workflow-url':
 			return $this->templating->getUrlGenerator()->generateUrl( $workflowId );
@@ -449,18 +449,7 @@ class RevisionFormatter {
 			}
 			$root = $revision->getRootPost();
 			$content = $this->templating->getContent( $root, 'wikitext' );
-
-			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
-				/*
-				 * If a user is not allowed to view the content, a message will
-				 * be displayed instead (which may contain html - links to the
-				 * user). That HTML should not be escaped.
-				 */
-				return Message::rawParam( $content );
-			}
-
-			// normal msg param, will be escaped
-			return $content;
+			return Message::rawParam( $content );
 
 		case 'post-of-summary':
 			if ( !$revision instanceof PostSummary ) {

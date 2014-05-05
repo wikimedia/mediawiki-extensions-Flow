@@ -462,6 +462,7 @@ class Templating {
 		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
 			$content = $revision->getContent( $format );
 
+			// html format
 			if ( $format === 'html' ) {
 				// Parsoid doesn't render redlinks & doesn't strip bad images
 				try {
@@ -470,6 +471,9 @@ class Templating {
 					wfDebugLog( 'Flow', __METHOD__ . ': Failed fix content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
 					\MWExceptionHandler::logException( $e );
 				}
+			// wikitext format
+			} else {
+				$content = htmlspecialchars( $content );
 			}
 
 			return $content;
