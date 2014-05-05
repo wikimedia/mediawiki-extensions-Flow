@@ -455,8 +455,6 @@ class Templating {
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'html' ) {
 		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
-			$content = $revision->getContent( $format );
-
 			// html format
 			if ( $format === 'html' ) {
 				// Parsoid doesn't render redlinks & doesn't strip bad images
@@ -465,9 +463,12 @@ class Templating {
 				} catch ( \Exception $e ) {
 					wfDebugLog( 'Flow', __METHOD__ . ': Failed fix content for rev_id = ' . $revision->getRevisionId()->getAlphadecimal() );
 					\MWExceptionHandler::logException( $e );
+
+					$content = wfMessage( 'flow-stub-post-content' )->parse();
 				}
 			// wikitext format
 			} else {
+				$content = $revision->getContent( $format );
 				$content = htmlspecialchars( $content );
 			}
 
