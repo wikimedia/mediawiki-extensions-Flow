@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_007940c2",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-05-05T20:48:16Z",
+      "side": 1,
+      "message": "https://gerrit.wikimedia.org/r/#/c/129495/ would cover this change.  Once it\u0027s merged to new-frontend, we can rebase and remove this change",
+      "revId": "de7fc2c67743c5adf5a4f16fc22551858bd3015f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
