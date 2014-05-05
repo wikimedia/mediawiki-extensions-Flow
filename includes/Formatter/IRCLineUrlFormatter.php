@@ -53,7 +53,11 @@ class IRCLineUrlFormatter extends AbstractFormatter {
 
 		foreach ( $accept as $key ) {
 			if ( isset( $links[$key] ) ) {
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 				return $links[$key]['url'];
+=======
+				return $links[$key]->getFullUrl();
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 			}
 		}
 

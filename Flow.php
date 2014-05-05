@@ -71,6 +71,9 @@ $wgAutoloadClasses['Flow\Parsoid\Controller'] = $dir . 'includes/Parsoid/Control
 $wgAutoloadClasses['Flow\Parsoid\ContentFixer'] = $dir . 'includes/Parsoid/ContentFixer.php';
 $wgAutoloadClasses['Flow\Parsoid\Redlinker'] = $dir . 'includes/Parsoid/Redlinker.php';
 $wgAutoloadClasses['Flow\Parsoid\BadImageRemover'] = $dir . 'includes/Parsoid/BadImageRemover.php';
+$wgAutoloadClasses['Flow\Anchor'] = $dir . 'includes/Anchor.php';
+$wgAutoloadClasses['Flow\BaseUrlGenerator'] = $dir . 'includes/BaseUrlGenerator.php';
+$wgAutoloadClasses['Flow\Parsoid\ReferenceExtractor'] = $dir . 'includes/Parsoid/ReferenceExtractor.php';
 $wgAutoloadClasses['Flow\UrlGenerator'] = $dir . 'includes/UrlGenerator.php';
 $wgAutoloadClasses['Flow\View'] = $dir . 'includes/View.php';
 $wgAutoloadClasses['Flow\WorkflowLoader'] = $dir . 'includes/WorkflowLoader.php';
@@ -213,7 +216,6 @@ $wgAutoloadClasses['Flow\Block\TopicSummaryBlock'] = $dir . 'includes/Block/Topi
 
 // Reference extraction and tracking
 $wgAutoloadClasses['Flow\LinksTableUpdater'] = $dir . 'includes/LinksTableUpdater.php';
-$wgAutoloadClasses['Flow\ReferenceExtractor'] = $dir . 'includes/ReferenceExtractor.php';
 $wgAutoloadClasses['Flow\Model\Reference'] = "$dir/includes/Model/Reference.php";
 $wgAutoloadClasses['Flow\Model\WikiReference'] = "$dir/includes/Model/Reference.php";
 $wgAutoloadClasses['Flow\Model\URLReference'] = "$dir/includes/Model/Reference.php";
@@ -244,11 +246,16 @@ $wgAPIModules['flow-parsoid-utils'] = 'ApiParsoidUtilsFlow';
 $wgAPIModules['flow'] = 'ApiFlow';
 $wgAPIPropModules['flowinfo'] = 'ApiQueryPropFlowInfo';
 
+// Special:Flow
+$wgAutoloadClasses['Flow\SpecialFlow'] = $dir . 'SpecialFlow.php';
+$wgExtensionMessagesFiles['FlowAlias'] = $dir . 'Flow.alias.php';
+$wgSpecialPages['Flow'] = 'Flow\SpecialFlow';
+$wgSpecialPageGroups['Flow'] = 'redirects';
+
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
 //$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
-$wgHooks['ApiTokensGetTokenTypes'][] = 'FlowHooks::onApiTokensGetTokenTypes';
 $wgHooks['MediaWikiPerformAction'][] = 'FlowHooks::onPerformAction';
 $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
 $wgHooks['ChangesListInitRows'][] = 'FlowHooks::onChangesListInitRows';
@@ -347,9 +354,6 @@ $wgFlowConfig = array(
 	'version' => '0.1.0',
 );
 
-// Salt used to generate edit tokens for authenticating Flow actions
-$wgFlowTokenSalt = 'flow';
-
 // When visiting the flow for an article but not specifying what type of workflow should be viewed,
 // use this workflow
 $wgFlowDefaultWorkflow = 'discussion';
@@ -416,7 +420,7 @@ $wgFlowUseMemcache = true;
 // of 3 days means Flow will attempt to keep in memcache all data models requested in
 // the last 3 days.
 $wgFlowCacheTime = 60 * 60 * 24 * 3;
-$wgFlowCacheVersion = '3.0';
+$wgFlowCacheVersion = '4.3';
 
 // Custom group name for AbuseFilter
 // Acceptable values:

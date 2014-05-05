@@ -117,7 +117,7 @@ class BoardHistoryIndex extends TopKIndex {
 		if ( $found ) {
 			/** @var TopicListEntry $var */
 			$topicListEntry = reset( $found );
-			return $topicListEntry->getListId()->getBinary();
+			return $topicListEntry->getListId()->getAlphadecimal();
 		} else {
 			return false;
 		}
