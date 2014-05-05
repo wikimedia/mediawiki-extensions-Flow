@@ -16,6 +16,24 @@
       "revId": "f49a92064de86ae4f9cb4a083c44093ec85b01e5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_2dc43a43",
+        "filename": "includes/Templating.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-05-05T13:15:43Z",
+      "side": 1,
+      "message": "Agreed; pushed https://gerrit.wikimedia.org/r/131458 to address this",
+      "parentUuid": "8e23439c_e591d24a",
+      "revId": "f49a92064de86ae4f9cb4a083c44093ec85b01e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
