@@ -53,9 +53,10 @@ class TopicListFormatter {
 			foreach ( $options as $k => $v ) {
 				$realOptions["topiclist_$k"] = $v;
 			}
-			$res[$key] = array(
-				'url' => $this->urlGenerator->buildUrl( $title, 'view', $realOptions ),
-				'title' => $key, // @todo i18n
+			$res[$key] = new Anchor(
+				$key, // @todo i18n
+				$title,
+				$realOptions
 			);
 		}
 
@@ -119,13 +120,7 @@ class TopicListFormatter {
 
 	protected function buildApiActions( Workflow $workflow ) {
 		return array(
-			'newtopic' => array(
-				'url' => $this->urlGenerator->buildUrl(
-					$workflow->getArticleTitle(),
-					'new-topic'
-				),
-				'title' => wfMessage( 'flow-newtopic-start-placeholder' ),
-			),
+			'newtopic' => $this->urlGenerator->newTopicAction( $workflow->getArticleTitle() ),
 		);
 	}
 

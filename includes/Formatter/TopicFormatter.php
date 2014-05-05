@@ -81,14 +81,8 @@ class TopicFormatter {
 	protected function buildApiActions( Workflow $workflow ) {
 		return array(
 			'newtopic' => array(
-				'url' => $this->urlGenerator->buildUrl(
-					$workflow->getArticleTitle(),
-					'new-topic', // ???
-					$workflow->isNew() ? array() : array(
-						'workflow' => $workflow->getId()->getAlphadecimal(),
-					)
-				),
-				'title' => wfMessage( 'flow-newtopic-start-placeholder' ),
+				'url' => $this->urlGenerator
+					->newTopicAction( $workflow->getArticleTitle(), $workflow->getId() )
 			),
 		);
 	}

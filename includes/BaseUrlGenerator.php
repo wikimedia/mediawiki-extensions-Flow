@@ -57,7 +57,7 @@ abstract class BaseUrlGenerator {
 	 * @param  array $query Associative array of query parameters
 	 * @return String URL
 	 */
-	public function buildUrl( $title, $action = 'view', array $query = array() ) {
+	protected function buildUrl( $title, $action = 'view', array $query = array() ) {
 		if ( $action !== 'view' ) {
 			$query['action'] = $action;
 		}
@@ -155,9 +155,12 @@ abstract class BaseUrlGenerator {
 	 * @return Title
 	 * @throws FlowException
 	 */
-	protected function resolveTitle( Title $title = null, UUID $workflowId ) {
-		if ( $title ) {
+	protected function resolveTitle( Title $title = null, UUID $workflowId = null ) {
+		if ( $title !== null ) {
 			return $title;
+		}
+		if ( $workflowId === null ) {
+			throw new FlowException( 'Either $title or $workflowId must be provided' );
 		}
 		$alpha = $workflowId->getAlphadecimal();
 		if ( isset( $this->workflows[$alpha] ) ) {

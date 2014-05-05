@@ -290,13 +290,11 @@ class TopicSummaryBlock extends AbstractBlock {
 						$this->formatterRow, \RequestContext::getMain()
 					);
 				} else {
-					$output['revision']['actions']['edit']['url'] = Container::get( 'url_generator' )->buildUrl(
-						$this->workflow->getArticleTitle(),
-						'edit-topic-summary',
-						array(
-							'workflow' => $this->workflow->getId(),
-						)
-					);
+					$output['revision']['actions']['edit'] = Container::get( 'url_generator' )
+						->editTopicSummaryAction(
+							$this->workflow->getArticleTitle(),
+							$this->workflow->getId()
+						);
 				}
 				break;
 			case 'compare-postsummary-revisions':

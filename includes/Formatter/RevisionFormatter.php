@@ -259,9 +259,9 @@ class RevisionFormatter {
 		$section = new \ProfileSection( __METHOD__ );
 		$title = $row->workflow->getArticleTitle();
 		$action = $row->revision->getChangeType();
-		$workflowId = $row->workflow->getId()->getAlphadecimal();
-		$revId = $row->revision->getRevisionId()->getAlphadecimal();
-		$postId = method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId()->getAlphadecimal() : null;
+		$workflowId = $row->workflow->getId();
+		$revId = $row->revision->getRevisionId();
+		$postId = method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId() : null;
 		$actionTypes = $this->permissions->getActions()->getValue( $action, 'actions' );
 		if ( $actionTypes === null ) {
 			throw new FlowException( "No actions defined for action: $action" );
@@ -276,152 +276,73 @@ class RevisionFormatter {
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
 				}
-				$links['reply'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'reply',
-						array(
-							'workflow' => $workflowId,
-							'topic_postId' => $postId,
-						)
-					),
-					'title' => $this->msg( 'flow-reply-link' ),
-				);
+				$links['reply'] = $this->urlGenerator->replyAction( $title, $workflowId, $postId );
 				break;
 
 			case 'edit-topic-summary':
-				$links['edit'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'edit-topic-summary',
-						array(
-							'workflow' => $workflowId,
-						)
-					),
-					'title' => $this->msg( 'flow-summarize-topic-submit' )
-				);
-				break;
-			case 'edit-header':
-				$links['edit'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'edit-header',
-						array(
-							'workflow' => $workflowId,
-							'header_revId' => $revId,
-						)
-					),
-					'title' => $this->msg( 'flow-edit-header-link' )
-				);
+				$links['edit'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
 				break;
 
-			case 'edit-title': // fall-through
+			case 'edit-header':
+				$links['edit'] = $this->urlGenerator->editHeaderAction( $title, $workflowId );
+				break;
+
+			case 'edit-title':
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+				$links['edit'] = $this->urlGenerator
+					->editTitleAction( $title, $workflowId, $postId, $revId );
+				break;
+
 			case 'edit-post':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
 				}
-				$links['edit'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						$type,
-						array(
-							'workflow' => $workflowId ,
-							'topic_postId' => $postId,
-							'topic_revId' => $revId,
-						)
-					// This hash is needed so a non-javascript browser scrolls down
-					// to the edit box
-					) . "#post-$postId",
-					'title' => $this->msg( 'flow-post-action-edit-post' )
-				);
+				$links['edit'] = $this->urlGenerator
+					->editPostAction( $title, $workflowId, $postId, $revId );
 				break;
 
 			case 'lock':
 				// @todo
 				break;
 
+			case 'restore-topic':
+			case 'restore-post':
+				// @todo
+				break;
+
 			case 'hide-topic':
-				$links['hide'] = array(
-						'url' => $this->urlGenerator->buildUrl(
-							$title,
-							'hide-topic',
-							array( 'workflow' => $workflowId )
-						),
-						'title' => $this->msg( 'flow-topic-action-hide-topic' )
-				);
+				$links['hide'] = $this->urlGenerator->hideTopicAction( $title, $workflowId );
 				break;
 
 			case 'hide-post':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
 				}
-				$links['hide'] = array(
-						'url' => $this->urlGenerator->buildUrl(
-							$title,
-							'hide-post',
-							array(
-								'workflow' => $workflowId,
-								'topic_postId' => $postId,
-							)
-						),
-						'title' => $this->msg( 'flow-post-action-hide-post' )
-				);
+				$links['hide'] = $this->urlGenerator->hidePostAction( $title, $workflowId, $postId );
 				break;
 
 			case 'delete-topic':
-				$links['delete'] = array(
-						'url' => $this->urlGenerator->buildUrl(
-							$title,
-							'delete-topic',
-							array( 'workflow' => $workflowId )
-						),
-						'title' => $this->msg( 'flow-topic-action-delete-topic' )
-				);
+				$links['delete'] = $this->urlGenerator->deleteTopicAction( $title, $workflowId );
 				break;
 
 			case 'delete-post':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
 				}
-				$links['delete'] = array(
-						'url' => $this->urlGenerator->buildUrl(
-							$title,
-							'delete-post',
-							array(
-								'workflow' => $workflowId,
-								'topic_postId' => $postId,
-							)
-						),
-						'title' => $this->msg( 'flow-post-action-delete-post' )
-				);
+				$links['delete'] = $this->urlGenerator->deletePostAction( $title, $workflowId, $postId );
 				break;
 
 			case 'suppress-topic':
-				$links['suppress'] = array(
-						'url' => $this->urlGenerator->buildUrl(
-							$title,
-							'suppress-topic',
-							array( 'workflow' => $workflowId )
-						),
-						'title' => $this->msg( 'flow-topic-action-suppress-topic' )
-				);
+				$links['suppress'] = $this->urlGenerator->suppressTopicAction( $title, $workflowId );
 				break;
 
 			case 'suppress-post':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
 				}
-				$links['suppress'] = array(
-						'url' => $this->urlGenerator->buildUrl(
-							$title,
-							'suppress-post',
-							array(
-								'workflow' => $workflowId,
-								'topic_postId' => $postId,
-							)
-						),
-						'title' => $this->msg( 'flow-post-action-suppress-post' )
-				);
+				$links['suppress'] = $this->urlGenerator->suppressPostAction( $title, $workflowId, $postId );
 				break;
 
 			default:
