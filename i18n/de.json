@@ -276,5 +276,12 @@
 	"flow-terms-of-use-reopen-topic": "Mit dem Klicken auf „{{int:flow-reopen-topic-submit}}“ stimmst du den Nutzungsbedingungen für dieses Wiki zu.",
 	"flow-anon-warning": "Du bist nicht angemeldet. Um eine Zuordnung mit deinem Namen anstatt deiner IP-Adresse zu erhalten, kannst du dich [$1 anmelden] oder [$2 ein Benutzerkonto erstellen].",
 	"flow-whatlinkshere-post": "von einem [$1 Beitrag]",
-	"flow-whatlinkshere-header": "von der [$1 Überschrift]"
+	"flow-whatlinkshere-header": "von der [$1 Überschrift]",
+	"flow": "Flow",
+	"flow-special-desc": "Diese Spezialseite leitet mithilfe einer UUID auf ein Flow-Workflow oder einen Flow-Beitrag weiter.",
+	"flow-special-type": "Typ",
+	"flow-special-type-post": "Beitrag",
+	"flow-special-type-workflow": "Workflow",
+	"flow-special-uuid": "UUID",
+	"flow-special-invalid-uuid": "Es konnte kein Inhalt mit dem Typ und der UUID gefunden werden."
 }

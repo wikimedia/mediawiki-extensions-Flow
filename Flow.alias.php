@@ -8,7 +8,7 @@
 
 $specialPageAliases = array();
 
-/* English (English) */
+/** English (English) */
 $specialPageAliases['en'] = array(
 	'Flow' => array( 'Flow' ),
 );

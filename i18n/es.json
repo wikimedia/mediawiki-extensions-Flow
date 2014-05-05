@@ -11,7 +11,8 @@
 			"Ihojose",
 			"Ovruni",
 			"Sethladan",
-			"Frammm"
+			"Frammm",
+			"Mcervera"
 		]
 	},
 	"flow-desc": "Sistema de gestión de flujo de trabajo",
@@ -179,5 +180,10 @@
 	"flow-topic-complete": "Vista completa",
 	"flow-terms-of-use-new-topic": "Al pulsar en «{{int:flow-newtopic-save}}» aceptas los términos de uso de este wiki.",
 	"flow-terms-of-use-reply": "Al pulsar en «{{int:flow-reply-submit}}» aceptas los términos de uso de este wiki.",
-	"flow-terms-of-use-edit": "Al guardar los cambios aceptas los términos de uso de este wiki."
+	"flow-terms-of-use-edit": "Al guardar los cambios aceptas los términos de uso de este wiki.",
+	"flow-whatlinkshere-post": "desde un [$1 post]",
+	"flow-whatlinkshere-header": "desde el [$1 header]",
+	"flow": "Flujo",
+	"flow-special-type": "Tipo",
+	"flow-special-type-workflow": "Flujo de trabajo"
 }
