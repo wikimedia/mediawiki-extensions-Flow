@@ -46,8 +46,7 @@ class View extends ContextSource {
 		}
 
 		if ( $request->wasPosted() ) {
-			global $wgFlowTokenSalt;
-			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
+			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken() ) {
 				$error = '<div class="error">' . $this->msg( 'sessionfailure' ) . '</div>';
 				$out->addHTML( $error );
 			} else {
