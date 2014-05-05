@@ -57,7 +57,7 @@ abstract class BaseUrlGenerator {
 	 * @param  array $query Associative array of query parameters
 	 * @return String URL
 	 */
-	protected function buildUrl( $title, $action = 'view', array $query = array() ) {
+	public function buildUrl( $title, $action = 'view', array $query = array() ) {
 		if ( $action !== 'view' ) {
 			$query['action'] = $action;
 		}
