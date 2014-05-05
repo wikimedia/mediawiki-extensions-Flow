@@ -82,14 +82,20 @@ abstract class AbstractQuery {
 			if ( $result instanceof PostRevision ) {
 				// If top-level, then just get the workflow.
 				// Otherwise we need to find the root post.
+				$id = $result->getPostId();
+				$alpha = $id->getAlphadecimal();
 				if ( $result->isTopicTitle() ) {
-					$workflowIds[] = $result->getPostId();
+					$workflowIds[] = $id;
 				} else {
-					$postIds[] = $result->getPostId();
+					$postIds[$alpha] = $id;
 				}
-				$this->postCache[$result->getPostId()->getAlphadecimal()] = $result;
+				$this->postCache[$alpha] = $result;
 			} elseif ( $result instanceof Header ) {
 				$workflowIds[] = $result->getWorkflowId();
+			} elseif ( $result instanceof PostSummary ) {
+				// This would be the post id for the summary
+				$id = $result->getSummaryTargetId();
+				$postIds[$id->getAlphadecimal()] = $id;
 			}
 
 			$revisions[$result->getRevisionId()->getAlphadecimal()] = $result;
