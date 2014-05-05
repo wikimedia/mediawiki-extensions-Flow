@@ -76,7 +76,10 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 			$res = $dbr->select(
 				array( 'flow_tree_revision' ),
 				array( 'tree_rev_id' ),
-				array( 'tree_rev_id > ' . $dbr->addQuotes( $id ) ),
+				array(
+					'tree_rev_id > ' . $dbr->addQuotes( $id ),
+					'tree_parent_id IS NOT NULL',
+				),
 				__METHOD__,
 				array( 'ORDER BY' => 'tree_rev_id ASC', 'LIMIT' => $this->mBatchSize )
 			);
@@ -84,10 +87,6 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 				throw new \MWException( 'SQL error in maintenance script ' . __METHOD__ );
 			}
 			foreach ( $res as $row ) {
-				if ( !$row['tree_parent_id'] ) {
-					// topic title, does not contain html or links
-					continue;
-				}
 				$count++;
 				$id = $row->tree_rev_id;
 				$uuid = UUID::create( $id );
