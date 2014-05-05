@@ -398,7 +398,7 @@ class HeaderRevisionView extends RevisionView {
 		$headerMsg = wfMessage( 'flow-compare-revisions-header-header' )
 			->params(
 				$boardLinkTitle,
-				$this->templating->getUsernames()->get( wfWikiId(), $newRevision->getUserId(), $newRevision->getUserIp() ),
+				$this->templating->getUsernames()->get( $newRevision->getUserWiki(), $newRevision->getUserId(), $newRevision->getUserIp() ),
 				$boardLink,
 				$historyLink
 			);
@@ -579,7 +579,7 @@ class PostRevisionView extends RevisionView {
 			)->rawParams(
 				$this->templating->getContent( $this->block->loadTopicTitle(), 'wikitext' )
 			)->params(
-				$this->templating->getUsernames()->get( wfWikiId(), $newRevision->getCreatorId() ),
+				$this->templating->getUsernames()->get( $newRevision->getCreatorWiki(), $newRevision->getCreatorId(), $newRevision->getCreatorIp() ),
 				$boardLink->getFullUrl(),
 				$postLink->getFullUrl(),
 				$historyLink->getFullUrl()
