@@ -2,7 +2,11 @@
 
 namespace Flow\Block;
 
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 use Flow\Exception\InvalidInputException;
+=======
+use ApiResult;
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
@@ -45,10 +49,11 @@ interface Block {
 	 * Templating is provided for convenience
 	 *
 	 * @param Templating $templating
+	 * @param ApiResult $result
 	 * @param array $options
 	 * @return array
 	 */
-	function renderAPI( Templating $templating, array $options );
+	function renderAPI( Templating $templating, ApiResult $result, array $options );
 
 	/**
 	 * @return string Unique name among all blocks on an object
@@ -103,7 +108,7 @@ abstract class AbstractBlock implements Block {
 	// until php 5.3.9, but MediaWiki requires PHP version 5.3.2 or later (and
 	// some of our test machines are on 5.3.3).
 	//abstract public function render( Templating $templating, array $options );
-	//abstract public function renderAPI( Templating $templating, array $options );
+	//abstract public function renderAPI( Templating $templating, ApiResult $result, array $options );
 	//abstract public function commit();
 
 	public function init( $action, $user ) {

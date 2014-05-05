@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidActionException;
@@ -254,12 +255,18 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * Render the data for API request
 	 *
-	 * @param Templating
-	 * @param array
+	 * @param Templating $templating
+	 * @param ApiResult $result
+	 * @param array $options
 	 * @return array
 	 */
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 	public function renderAPI( Templating $templating, array $options ) {
 		$output = array( 'type' => $this->getName() );
+=======
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
+		$output = array( 'type' => 'topicsummary' );
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 
 		if ( $this->wasSubmitted() ) {
 			$output += array(
@@ -268,6 +275,7 @@ class TopicSummaryBlock extends AbstractBlock {
 			);
 		}
 
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 		$formatter = Container::get( 'formatter.revision' );
 		if ( in_array( $this->action, $this->requiresWikitext ) ) {
 			$formatter->setContentFormat( 'wikitext' );
@@ -294,6 +302,13 @@ class TopicSummaryBlock extends AbstractBlock {
 				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
 		return $output;
+=======
+		$out = array(
+			0 => $output,
+		);
+		$result->setIndexedTagName( $out, 'topicsummary' );
+		return $out;
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 	}
 
 	public function getName() {

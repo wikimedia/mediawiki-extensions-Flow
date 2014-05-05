@@ -34,7 +34,16 @@ class ApiQueryFlow extends ApiQueryBase {
 			$templating = $this->container['templating'];
 
 			if ( $block->canRender( $params['action'] ) ) {
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 				$result['blocks'][] = $block->renderAPI( $templating, $blockParams );
+=======
+				$thisBlock = $block->renderAPI( $templating, $this->getResult(), $blockParams ) +
+					array(
+						'block-name' => $block->getName()
+					);
+
+				$blockOutput[] = $thisBlock;
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 			}
 		}
 

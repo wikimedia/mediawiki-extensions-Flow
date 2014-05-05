@@ -2,6 +2,7 @@
 
 namespace Flow\Formatter;
 
+use Flow\Anchor;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Html;
@@ -46,10 +47,11 @@ abstract class AbstractFormatter {
 	 * @see RevisionFormatter::buildLinks
 	 * @see RevisionFormatter::getDateFormats
 	 *
-	 * @param array $data Expects an array with keys 'dateFormats' and 'links'.
-	 *  The former should be an array having the key $key being tossed in here;
-	 *  the latter an array of links in the [key => [href, msg]] format, where
-	 *  'key' corresponds with a $linksKeys value
+	 * @param array $data Expects an array with keys 'dateFormats', 'isModerated'
+	 *  and 'links'. The former should be an array having the key $key being
+	 *  tossed in here; the latter an array of links in the [key => [href, msg]]
+	 *  format, where 'key' corresponds with a $linksKeys value. The central is
+	 *  a boolean.
 	 * @param string $key Date format to use - any of the keys in the array
 	 *  returned by RevisionFormatter::getDateFormats
 	 * @param string[] $linkKeys Link key(s) to use as link for the timestamp;
@@ -63,9 +65,10 @@ abstract class AbstractFormatter {
 		$formattedTime = $data['dateFormats'][$key];
 
 		// Find the first available link to attach to the timestamp
+		$anchor = null;
 		foreach ( $linkKeys as $linkKey ) {
 			if ( isset( $data['links'][$linkKey] ) ) {
-				$formattedTime = $this->apiLinkToAnchor( $data['links'][$linkKey], $formattedTime );
+				$anchor = $data['links'][$linkKey]->toHTML( $formattedTime );
 				break;
 			}
 		}
@@ -75,19 +78,27 @@ abstract class AbstractFormatter {
 			$class[] = 'history-deleted';
 		}
 
-		return Html::rawElement( 'span', array( 'class' => $class ), $formattedTime );
+		if ( $anchor instanceof Anchor ) {
+			return Html::rawElement(
+				'span',
+				array( 'class' => $class ),
+				$anchor->toHtml( $formattedTime )
+			);
+		} else {
+			return Html::element( 'span', array( 'class' => $class ), $formattedTime );
+		}
 	}
 
 	/**
 	 * Generate HTML for "(foo | bar | baz)"  based on the links provided by
 	 * RevisionFormatter.
 	 *
-	 * @param array[] $links
+	 * @param array $links Contains any combination of Anchor|Message|string
 	 * @param IContextSource $ctx
 	 * @param string[] $request List of link names to be allowed in result output
 	 * @return string Html valid for user output
 	 */
-	protected function formatLinksAsPipeList( array $links, IContextSource $ctx, array $request = null ) {
+	protected function formatAnchorsAsPipeList( array $links, IContextSource $ctx, array $request = null ) {
 		if ( $request === null ) {
 			$request = array_keys( $links );
 		} elseif ( !$request ) {
@@ -99,13 +110,13 @@ abstract class AbstractFormatter {
 		$formatted = array();
 		foreach ( $links as $key => $link ) {
 			if ( isset( $have[$key] ) ) {
-				if ( is_array( $link ) ) {
-					$formatted[] = $this->apiLinkToAnchor( $link );
+				if ( $link instanceof Anchor ) {
+					$formatted[] = $link->toHtml();
 				} elseif( $link instanceof Message ) {
 					$formatted[] = $link->escaped();
 				} else {
 					// plain text
-					$formatted[] = htmlspecialchars( $have[$key] );
+					$formatted[] = htmlspecialchars( $key );
 				}
 			}
 		}
@@ -129,7 +140,7 @@ abstract class AbstractFormatter {
 	 * @param IContextSource $ctx
 	 * @return array|Message
 	 */
-	protected function getDiffLink( array $input, IContextSource $ctx ) {
+	protected function getDiffAnchor( array $input, IContextSource $ctx ) {
 		if ( !isset( $input['diff'] ) ) {
 			// plain text with no link
 			return $ctx->msg( 'diff' );
@@ -147,7 +158,7 @@ abstract class AbstractFormatter {
 	 * @param IContextSource $ctx
 	 * @return array|Message
 	 */
-	protected function getDiffPrevLink( array $input, IContextSource $ctx ) {
+	protected function getDiffPrevAnchor( array $input, IContextSource $ctx ) {
 		if ( !isset( $input['diff-prev'] ) ) {
 			// plain text with no link
 			return $ctx->msg( 'last' );
@@ -165,7 +176,7 @@ abstract class AbstractFormatter {
 	 * @param IContextSource $ctx
 	 * @return array|Message
 	 */
-	protected function getDiffCurLink( array $input, IContextSource $ctx ) {
+	protected function getDiffCurAnchor( array $input, IContextSource $ctx ) {
 		if ( !isset( $input['diff-cur'] ) ) {
 			// plain text with no link
 			return $ctx->msg( 'cur' );
@@ -183,7 +194,7 @@ abstract class AbstractFormatter {
 	 * @param IContextSource $ctx
 	 * @return array|Message
 	 */
-	protected function getHistLink( array $input, IContextSource $ctx ) {
+	protected function getHistAnchor( array $input, IContextSource $ctx ) {
 		if ( isset( $input['post-history'] ) ) {
 			return $input['post-history'];
 		} elseif ( isset( $input['topic-history'] ) ) {
@@ -219,11 +230,16 @@ abstract class AbstractFormatter {
 
 		$params = array();
 		foreach ( $source as $param ) {
-			// source from properties attribute
-			$params[] = $data['properties'][$param];
+			if ( isset( $data['properties'][$param] ) ) {
+				$params[] = $data['properties'][$param];
+			} else {
+				wfDebugLog( 'Flow', __METHOD__ . ": Missing expected parameter $param for change type $changeType" );
+				$params[] = '';
+			}
 		}
 
 		return '<span class="plainlinks">' . $ctx->msg( $msg, $params )->parse() . '</span>';
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 	}
 
 	/**
@@ -244,5 +260,7 @@ abstract class AbstractFormatter {
 			),
 			$content === null ? $text : $content
 		);
+=======
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 	}
 }

@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\Container;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
@@ -172,11 +173,36 @@ class HeaderBlock extends AbstractBlock {
 		throw new FlowException( 'deprecated' );
 	}
 
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 	public function renderAPI( Templating $templating, array $options ) {
+=======
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
+		$output = array();
+		$output['type'] = 'header';
+
+		if ( $this->header !== null ) {
+			if ( isset( $options['contentFormat'] ) ) {
+				$contentFormat = $options['contentFormat'];
+			} else {
+				$contentFormat = $this->header->getContentFormat();
+			}
+			$output['*'] = $templating->getContent( $this->header, $contentFormat );
+			$output['format'] = $contentFormat;
+			$output['header-id'] = $this->header->getRevisionId()->getAlphadecimal();
+		} else {
+			$output['missing'] = '';
+		}
+
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 		$output = array(
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 			'type' => $this->getName(),
 			'editToken' => $this->getEditToken(),
+=======
+			0 => $output,
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 		);
+		$result->setIndexedTagName( $output, 'header' );
 
 		if ( $this->header === null ) {
 			$output['revision'] = array(

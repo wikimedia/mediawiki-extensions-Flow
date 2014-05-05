@@ -26,12 +26,15 @@ class View extends ContextSource {
 
 	function __construct(
 		Templating $templating,
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 		UrlGenerator $urlGenerator,
 		IContextSource $requestContext,
 		TemplateHelper $lightncandy
+=======
+		IContextSource $requestContext
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 	) {
 		$this->templating = $templating;
-		$this->urlGenerator = $urlGenerator;
 		$this->setContext( $requestContext );
 		$this->lightncandy = $lightncandy;
 	}
@@ -69,6 +72,7 @@ class View extends ContextSource {
 		}
 		wfProfileOut( __CLASS__ . '-init' );
 
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 		$wasPosted = $request->wasPosted();
 		if ( $wasPosted ) {
 			wfProfileIn( __CLASS__ . '-submit' );
@@ -80,9 +84,22 @@ class View extends ContextSource {
 						$block->addError( 'edit-token', $this->msg( 'sessionfailure' ) );
 					}
 				} else {
+=======
+		if ( $request->wasPosted() ) {
+			if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken() ) {
+				$error = '<div class="error">' . $this->msg( 'sessionfailure' ) . '</div>';
+				$out->addHTML( $error );
+			} else {
+				$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
+				if ( $blocksToCommit ) {
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 					$loader->commit( $workflow, $blocksToCommit );
+<<<<<<< HEAD   (b68c36 Avoid Firefox errors in mw-ui.enhance)
 					$this->redirect( $workflow, 'view' );
 					wfProfileOut( __CLASS__ . '-submit' );
+=======
+					$this->redirect( $workflow );
+>>>>>>> BRANCH (3ce681 Merge "API: Use a standard edit token")
 					return;
 				}
 			}
@@ -133,8 +150,11 @@ class View extends ContextSource {
 		wfProfileOut( __CLASS__ . '-render' );
 	}
 
-	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {
-		$url = $this->urlGenerator->generateUrl( $workflow, $action, $query );
-		$this->getOutput()->redirect( $url );
+	protected function redirect( Workflow $workflow ) {
+		$link = $this->templating->getUrlGenerator()->workflowLink(
+			$workflow->getArticleTitle(),
+			$workflow->getId()
+		);
+		$this->getOutput()->redirect( $link->getFullURL() );
 	}
 }

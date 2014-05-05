@@ -4,8 +4,11 @@ namespace Flow;
 
 use MediaWikiTestCase;
 use Flow\Container;
-use Title;
 use Flow\Exception\WikitextException;
+use Title;
+use User;
+use WikiPage;
+use WikitextContent;
 
 /**
  * @group Database
@@ -31,7 +34,7 @@ class ReferenceExtractorTestCase extends MediaWikiTestCase {
 					array(
 						'refType' => 'link',
 						'targetType' => 'wiki',
-						'target' => 'My_page',
+						'target' => 'My page',
 					),
 				)
 			),
@@ -45,6 +48,18 @@ class ReferenceExtractorTestCase extends MediaWikiTestCase {
 						'target' => 'User talk:Werdna?',
 					),
 				),
+			),
+			array(
+				'Subpage link',
+				'[[/Subpage]]',
+				array(
+					array(
+						'refType' => 'link',
+						'targetType' => 'wiki',
+						'target' => '/Subpage'
+					),
+				),
+				'Talk:UTPage',
 			),
 			array(
 				'External link',
@@ -96,10 +111,10 @@ class ReferenceExtractorTestCase extends MediaWikiTestCase {
 	/**
 	 * @dataProvider referenceExtractorProvider
 	 */
-	public function testReferenceExtractor( $description, $wikitext, $expectedOutput ) {
+	public function testReferenceExtractor( $description, $wikitext, $expectedOutput, $page = 'UTPage' ) {
 		$referenceExtractor = Container::get( 'reference.extractor' );
 
-		$html = \Flow\Parsoid\Utils::convert( 'wt', 'html', $wikitext, Title::newFromText( 'UTPage' ) );
+		$html = \Flow\Parsoid\Utils::convert( 'wt', 'html', $wikitext, Title::newFromText( $page ) );
 
 		$references = $referenceExtractor->extractReferences( $html );
 
