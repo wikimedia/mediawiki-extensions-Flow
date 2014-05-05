@@ -207,6 +207,7 @@ class HeaderBlock extends AbstractBlock {
 				'errors' => $this->errors,
 			);
 		}
+
 		return $output;
 	}
 

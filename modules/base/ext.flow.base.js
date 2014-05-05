@@ -33,40 +33,26 @@ mw.flow = {
 		 */
 		'executeAction' : function ( workflowParam, action, options, render ) {
 			var api = new mw.Api(),
-				deferredObject = $.Deferred();
+				deferredObject = $.Deferred(),
+				request = {
+					'action' : 'flow',
+					'submodule' : action
+				},
+				prefix = mw.flow.api.mapPrefixes( action );
 
-			api
-				.get(
-					{
-						'action' : 'tokens',
-						'type' : 'flow'
-					}
-				)
-				.done( function ( data ) {
-					var request = {
-						'action' : 'flow',
-						'submodule' : action,
-						'token' : data.tokens.flowtoken
-					},
-						prefix = mw.flow.api.mapPrefixes( action );
+			$.each( options, function( name, val ) {
+				request[prefix + name] = val;
+			} );
 
-					$.each( options, function( name, val ) {
-						request[prefix + name] = val;
-					} );
+			request = $.extend( request, workflowParam );
 
-					request = $.extend( request, workflowParam );
+			if ( render ) {
+				request.render = true;
+			}
 
-					if ( render ) {
-						request.render = true;
-					}
-
-					api.post( request )
-						.done( function () {
-							deferredObject.resolve.apply( this, arguments );
-						} )
-						.fail( function () {
-							deferredObject.reject.apply( this, arguments );
-						} );
+			api.postWithToken( 'edit', request )
+				.done( function () {
+					deferredObject.resolve.apply( this, arguments );
 				} )
 				.fail( function () {
 					deferredObject.reject.apply( this, arguments );

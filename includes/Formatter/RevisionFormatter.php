@@ -2,11 +2,8 @@
 
 namespace Flow\Formatter;
 
-use Flow\Collection\HeaderCollection;
-use Flow\Collection\PostCollection;
-use Flow\Container;
-use Flow\Data\ObjectManager;
 use Flow\Data\UserNameBatch;
+use Flow\Anchor;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
@@ -256,7 +253,7 @@ class RevisionFormatter {
 
 	/**
 	 * @param FormatterRow $row
-	 * @return array
+	 * @return Anchor[]
 	 */
 	public function buildActions( FormatterRow $row ) {
 		$section = new \ProfileSection( __METHOD__ );
@@ -438,34 +435,28 @@ class RevisionFormatter {
 
 	/**
 	 * @param FormatterRow $row
-	 * @return array
+	 * @return Anchor[]
 	 * @throws FlowException
 	 */
 	public function buildLinks( FormatterRow $row ) {
 		$section = new \ProfileSection( __METHOD__ );
 		$title = $row->workflow->getArticleTitle();
 		$action = $row->revision->getChangeType();
-		$workflowId = $row->workflow->getId()->getAlphadecimal();
-		$revId = $row->revision->getRevisionId()->getAlphadecimal();
-		$postId = method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId()->getAlphadecimal() : null;
+		$workflowId = $row->workflow->getId();
+		$revId = $row->revision->getRevisionId();
+		$postId = method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId() : null;
 
 		$linkTypes = $this->permissions->getActions()->getValue( $action, 'links' );
 		if ( $linkTypes === null ) {
-			throw new FlowException( "No links defined for action: $action" );
+			wfDebugLog( 'Flow', __METHOD__ . ": No links defined for action: $action" );
+			return array();
 		}
 
 		$links = array();
 		foreach ( $linkTypes as $type ) {
 			switch( $type ) {
 			case 'topic':
-				$links['topic'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'view',
-						array( 'workflow' => $workflowId )
-					),
-					'title' => $this->msg( 'flow-link-topic' )
-				);
+				$links['topic'] = $this->urlGenerator->topicLink( $title, $workflowId );
 				break;
 
 			case 'post':
@@ -473,50 +464,17 @@ class RevisionFormatter {
 					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post link' );
 					break;
 				}
-				$links['post'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'view',
-						array(
-							'workflow' => $workflowId,
-						)
-					) . "#post-$postId",
-					'title' => $this->msg( 'flow-link-post' )
-				);
+				$links['post'] = $this->urlGenerator->postLink( $title, $workflowId, $postId );
 				break;
 
 			case 'header-revision':
-				$links['header-revision'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'view',
-						array(
-							'workflow' => $workflowId,
-							'header_revId' => $revId,
-						)
-					),
-					'title' => $this->msg( 'flow-link-header-revision' )
-				);
+				$links['header-revision'] = $this->urlGenerator
+					->headerRevisionLink( $title, $workflowId, $revId );
 				break;
 
 			case 'topic-revision':
-				if ( !$postId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render revision link' );
-					break;
-				}
-
-				$links['topic-revision'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'view',
-						array(
-							'workflow' => $workflowId,
-							'topic_postId' => $postId,
-							'topic_revId' => $revId,
-						)
-					),
-					'title' => $this->msg( 'flow-link-topic-revision' )
-				);
+				$links['topic-revision'] = $this->urlGenerator
+					->topicRevisionLink( $title, $workflowId, $revId );
 				break;
 
 			case 'post-revision':
@@ -525,120 +483,35 @@ class RevisionFormatter {
 					break;
 				}
 
-				$links['post-revision'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'view',
-						array(
-							'workflow' => $workflowId,
-							'topic_postId' => $postId,
-							'topic_revId' => $revId,
-						)
-					),
-					'title' => $this->msg( 'flow-link-post-revision' )
-				);
+				$links['post-revision'] = $this->urlGenerator
+					->postRevisionLink( $title, $workflowId, $postId, $revId );
 				break;
 
 			case 'post-history':
 				if ( !$postId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render history link' );
+					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post-history link' );
 					break;
 				}
-
-				$links['post-history'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'history',
-						array(
-							'workflow' => $workflowId,
-							'topic_postId' => $postId,
-						)
-					),
-					'title' => $this->msg( 'hist' )
-				);
+				$links['post-history'] = $this->urlGenerator->postHistoryLink( $title, $workflowId, $postId );
 				break;
 
 			case 'topic-history':
-				$links['topic-history'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'history',
-						array( 'workflow' => $workflowId )
-					),
-					'title' => $this->msg( 'hist' )
-				);
+				$links['topic-history'] = $this->urlGenerator->workflowHistoryLink( $title, $workflowId );
 				break;
 
 			case 'board-history':
-				$links['board-history'] = array(
-					'url' => $this->urlGenerator->buildUrl(
-						$title,
-						'history'
-					),
-					'title' => $this->msg( 'hist' )
-				);
+				$links['board-history'] = $this->urlGenerator->boardHistoryLink( $title );
 				break;
 
 			case 'diff-header':
-				/*
-				 * To diff against previous revision, we don't really need that
-				 * revision id; if no particular diff id is specified, it will
-				 * assume a diff against previous revision. However, we do want
-				 * to make sure that a previous revision actually exists to diff
-				 * against. This could result in a network request (fetching the
-				 * current revision), but it's likely being loaded anyways.
-				 */
-				if ( $row->revision->getPrevRevisionId() !== null ) {
-					$links['diff'] = array(
-						'url' => $this->urlGenerator->buildUrl(
-							$title,
-							'compare-header-revisions',
-							array(
-								'workflow' => $workflowId,
-								'header_newRevision' => $revId,
-							)
-						),
-						'title' => $this->msg( 'diff' )
-					);
-
-					/*
-					 * Different formatters have different terminology for the link
-					 * that diffs a certain revision to the previous revision.
-					 *
-					 * E.g.: Special:Contributions has "diff" ($links['diff']),
-					 * ?action=history has "prev" ($links['prev']).
-					 */
-					$links['diff-prev'] = array(
-						'url' => $links['diff']['url'],
-						'title' => $this->msg( 'last' )
-					);
-				}
-
-				/*
-				 * To diff against the current revision, we need to know the id
-				 * of this last revision. This could be an additional network
-				 * request, though anything using formatter likely already needs
-				 * to request the most current revision (e.g. to check
-				 * permissions) so we should be able to get it from local cache.
-				 */
-				$cur = $row->currentRevision;
-				if ( !$row->revision->getRevisionId()->equals( $cur->getRevisionId() ) ) {
-					$links['diff-cur'] = array(
-						'url' => $this->urlGenerator->buildUrl(
-							$title,
-							'compare-header-revisions',
-							array(
-								'workflow' => $workflowId,
-								'header_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
-								'header_oldRevision' => $revId,
-							)
-						),
-						'title' => $this->msg( 'cur' )
-					);
-				}
-				break;
-
+				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffHeaderLink' );
+				// don't break, diff links are rendered below
 			case 'diff-post':
+				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffPostLink' );
+				// don't break, diff links are rendered below
+			case 'diff-post-summary':
+				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffSummaryLink' );
+
 				/*
 				 * To diff against previous revision, we don't really need that
 				 * revision id; if no particular diff id is specified, it will
@@ -648,17 +521,7 @@ class RevisionFormatter {
 				 * current revision), but it's likely being loaded anyways.
 				 */
 				if ( $row->revision->getPrevRevisionId() !== null ) {
-					$links['diff'] = array(
-						'url' => $this->urlGenerator->buildUrl(
-							$title,
-							'compare-post-revisions',
-							array(
-								'workflow' => $workflowId,
-								'topic_newRevision' => $revId,
-							)
-						),
-						'title' => $this->msg( 'diff' )
-					);
+					$links['diff'] = call_user_func( $diffCallback, $title, $workflowId, $revId );
 
 					/*
 					 * Different formatters have different terminology for the link
@@ -667,10 +530,8 @@ class RevisionFormatter {
 					 * E.g.: Special:Contributions has "diff" ($links['diff']),
 					 * ?action=history has "prev" ($links['prev']).
 					 */
-					$links['diff-prev'] = array(
-						'url' => $links['diff']['url'],
-						'title' => $this->msg( 'last' )
-					);
+					$links['diff-prev'] = clone $links['diff'];
+					$links['diff-prev']->message = wfMessage( 'last' );
 				}
 
 				/*
@@ -681,19 +542,9 @@ class RevisionFormatter {
 				 * permissions) so we should be able to get it from local cache.
 				 */
 				$cur = $row->currentRevision;
-				if ( !$row->revision->getRevisionId()->equals( $cur->getRevisionId() ) ) {
-					$links['diff-cur'] = array(
-						'url' => $this->urlGenerator->buildUrl(
-							$title,
-							'compare-post-revisions',
-							array(
-								'workflow' => $workflowId,
-								'topic_newRevision' => $cur->getRevisionId()->getAlphadecimal(),
-								'topic_oldRevision' => $revId,
-							)
-						),
-						'title' => $this->msg( 'cur' )
-					);
+				if ( !$revId->equals( $cur->getRevisionId() ) ) {
+					$links['diff-cur'] = call_user_func( $diffCallback, $title, $workflowId, $cur->getRevisionId(), $revId );
+					$links['diff-cur']->message = wfMessage( 'cur' );
 				}
 				break;
 
@@ -702,29 +553,12 @@ class RevisionFormatter {
 					wfDebugLog( 'Flow', __METHOD__ . ': No revId available to render diff link' );
 					break;
 				}
-				$links['diff'] = array(
-					$this->urlGenerator->buildUrl(
-						$title,
-						'compare-postsummary-revisions',
-						array(
-							'workflow' => $workflowId,
-							'topicsummary_newRevision' => $revId,
-						)
-					),
-					$this->msg( 'diff' )
-				);
+				$links['diff'] = $this->urlGenerator
+					->diffSummaryLink( $title, $workflowId, $revId );
 				break;
 
 			case 'workflow':
-				/** @var Title $linkTitle */
-				list( $linkTitle, $query ) = $this->urlGenerator->buildUrlData(
-					$title,
-					'view'
-				);
-				$links['workflow'] = array(
-					'url' => $linkTitle->getFullUrl( $query ),
-					'title' => new \RawMessage( '$1', array( $linkTitle->getPrefixedText() ) ),
-				);
+				$links['workflow'] = $this->urlGenerator->workflowLink( $title, $workflowId );
 				break;
 
 			default:
@@ -732,6 +566,7 @@ class RevisionFormatter {
 				break;
 			}
 		}
+
 
 		return $links;
 	}
@@ -809,7 +644,7 @@ class RevisionFormatter {
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
+			return Message::rawParam( $content );
 
 		// This is potentially two networked round trips, much too expensive for
 		// the rendering loop
@@ -826,22 +661,20 @@ class RevisionFormatter {
 			}
 
 			$content = $this->templating->getContent( $previousRevision, 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
+			return Message::rawParam( $content );
 
 		case 'workflow-url':
-			return $this->templating->getUrlGenerator()->generateUrl( $workflowId );
+			return $this->urlGenerator
+				->workflowLink( null, $workflowId )
+				->getFullUrl();
 
 		case 'post-url':
 			if ( !$revision instanceof PostRevision ) {
 				throw new FlowException( 'Expected PostRevision but received' . get_class( $revision ) );
 			}
-			return $this->templating->getUrlGenerator()
-				->generateUrl(
-					$workflowId,
-					'view',
-					array(),
-					'flow-post-' . $revision->getPostId()->getAlphadecimal()
-				);
+			return $this->urlGenerator
+				->postLink( null, $workflowId, $revision->getPostId() )
+				->getFullUrl();
 
 		case 'moderated-reason':
 			// don-t parse wikitext in the moderation reason
@@ -853,18 +686,7 @@ class RevisionFormatter {
 			}
 			$root = $revision->getRootPost();
 			$content = $this->templating->getContent( $root, 'wikitext' );
-
-			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
-				/*
-				 * If a user is not allowed to view the content, a message will
-				 * be displayed instead (which may contain html - links to the
-				 * user). That HTML should not be escaped.
-				 */
-				return Message::rawParam( $content );
-			}
-
-			// normal msg param, will be escaped
-			return $content;
+			return Message::rawParam( $content );
 
 		case 'post-of-summary':
 			if ( !$revision instanceof PostSummary ) {

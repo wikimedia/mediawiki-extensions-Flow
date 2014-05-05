@@ -136,7 +136,8 @@ abstract class RevisionStorage extends DbStorage {
 		}
 		$retval = array();
 		foreach ( $res as $row ) {
-			$retval[UUID::create( $row->rev_id )->getAlphadecimal()] = (array) $row;
+			$row = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
+			$retval[$row['rev_id']] = $row;
 		}
 		return $retval;
 	}
@@ -213,10 +214,9 @@ abstract class RevisionStorage extends DbStorage {
 		$duplicator = new ResultDuplicator( array( 'rev_id' ), 1 );
 		$pks = array();
 		foreach ( $queries as $idx => $query ) {
-			$query = UUID::convertUUIDs( $query );
-			$id = $query['rev_id'];
 			$duplicator->add( $query, $idx );
-			$pks[$id] = $id;
+			$id = $query['rev_id'];
+			$pks[$id] = UUID::create( $id )->getBinary();
 		}
 
 		return $this->findRevIdReal( $duplicator, $pks );
@@ -229,7 +229,7 @@ abstract class RevisionStorage extends DbStorage {
 		// GROUP BY rev_type_id
 		$duplicator = new ResultDuplicator( array( 'rev_type_id' ), 1 );
 		foreach ( $queries as $idx => $query ) {
-			$duplicator->add( UUID::convertUUIDs( $query ), $idx );
+			$duplicator->add( $query, $idx );
 		}
 
 		$dbr = $this->dbFactory->getDB( DB_MASTER );
@@ -256,6 +256,11 @@ abstract class RevisionStorage extends DbStorage {
 		return $this->findRevIdReal( $duplicator, $revisionIds );
 	}
 
+	/**
+	 * @param ResultDuplicator $duplicator
+	 * @param array $revisionIds Binary strings representing revision uuid's
+	 * @return array
+	 */
 	protected function findRevIdReal( ResultDuplicator $duplicator, array $revisionIds ) {
 		if ( $revisionIds ) {
 			//  SELECT * from flow_revision
@@ -284,7 +289,7 @@ abstract class RevisionStorage extends DbStorage {
 			}
 
 			foreach ( $res as $row ) {
-				$row = (array)$row;
+				$row = UUID::convertUUIDs( (array)$row, 'alphadecimal' );
 				$duplicator->merge( $row, array( $row ) );
 			}
 		}
@@ -451,7 +456,7 @@ abstract class RevisionStorage extends DbStorage {
 	public function remove( array $row ) {
 		$res = $this->dbFactory->getDB( DB_MASTER )->delete(
 			'flow_revision',
-			array( 'rev_id' => $row['rev_id'] ),
+			$this->preprocessSqlArray( array( 'rev_id' => $row['rev_id'] ) ),
 			__METHOD__
 		);
 		if ( !$res ) {

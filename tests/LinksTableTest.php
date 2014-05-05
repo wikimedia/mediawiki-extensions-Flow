@@ -303,7 +303,17 @@ class LinksTableTest extends PostRevisionTestCase {
 						'http://www.google.com' => true,
 					),
 				),
-			)
+			),
+			array(
+				array(
+					$subpageLinkReference,
+				),
+				array(
+					'mLinks' => array(
+						NS_MAIN => array( 'UTPage/Subpage' => 0, )
+					),
+				),
+			),
 		);
 	}
 
@@ -366,6 +376,11 @@ class LinksTableTest extends PostRevisionTestCase {
 				'targetType' => 'wiki',
 				'refType' => 'link',
 				'value' => 'Foo',
+			),
+			'subpageLinkReference' => array(
+				'targetType' => 'wiki',
+				'refType' => 'link',
+				'value' => '/Subpage',
 			),
 			'fooLinkReference2' => array(
 				'targetType' => 'wiki',

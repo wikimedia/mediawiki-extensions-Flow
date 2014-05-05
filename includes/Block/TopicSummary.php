@@ -254,8 +254,8 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * Render the data for API request
 	 *
-	 * @param Templating
-	 * @param array
+	 * @param Templating $templating
+	 * @param array $options
 	 * @return array
 	 */
 	public function renderAPI( Templating $templating, array $options ) {

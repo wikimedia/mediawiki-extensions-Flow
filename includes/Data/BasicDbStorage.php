@@ -129,7 +129,7 @@ class BasicDbStorage extends DbStorage {
 
 		$result = array();
 		foreach ( $res as $row ) {
-			$result[] = (array) $row;
+			$result[] = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
 		}
 		// wfDebugLog( 'Flow', __METHOD__ . ': ' . print_r( $result, true ) );
 		return $result;
@@ -151,9 +151,8 @@ class BasicDbStorage extends DbStorage {
 		}
 		$conds = array();
 		$dbr = $this->dbFactory->getDB( DB_SLAVE );
-		foreach ( $queries as &$query ) {
-			$query = UUID::convertUUIDs( $query );
-			$conds[] = $dbr->makeList( $query, LIST_AND );
+		foreach ( $queries as $query ) {
+			$conds[] = $dbr->makeList( $this->preprocessSqlArray( $query ), LIST_AND );
 		}
 		unset( $query );
 
@@ -170,6 +169,7 @@ class BasicDbStorage extends DbStorage {
 		// as value
 		$temp = new MultiDimArray();
 		foreach ( $res as $val ) {
+			$val = UUID::convertUUIDs( $val, 'alphadecimal' );
 			$temp[ObjectManager::splitFromRow( $val, $this->primaryKey )] = $val;
 		}
 

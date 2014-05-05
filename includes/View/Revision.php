@@ -8,6 +8,7 @@ use Flow\Block\TopicBlock;
 use Flow\Block\TopicSummaryBlock;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
 use Flow\Model\AbstractRevision;
@@ -18,7 +19,6 @@ use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\Templating;
 use Message;
-use Title;
 use User;
 
 /**
@@ -127,6 +127,7 @@ abstract class RevisionView implements RevisionCreatable {
 	 *
 	 * @param AbstractRevision $revision
 	 * @return string
+	 * @throws FlowException When the type of $revision is not recognized
 	 */
 	protected function generateDiffViewTitle( AbstractRevision $revision ) {
 		$block = $this->getBlock();
@@ -134,12 +135,25 @@ abstract class RevisionView implements RevisionCreatable {
 			->params( $revision->getRevisionId()->getTimestampObj()->getHumanTimestamp() )
 			->params( $this->templating->getUserText( $revision, $this->user ) );
 
-		$permalinkUrl = $this->templating->getUrlGenerator()
-			->generateBlockUrl(
-				$block->getWorkflow(),
-				$revision,
-				true
-			);
+		if ( $revision instanceof PostRevision ) {
+			$permalinkUrl = $this->templating->getUrlGenerator()
+				->diffPostLink(
+					$block->getWorkflow()->getArticleTitle(),
+					$block->getWorkflow()->getId(),
+					$revision->getRevisionId()
+				)
+				->getFullURL();
+		} elseif ( $revision instanceof Header ) {
+			$permalinkUrl = $this->templating->getUrlGenerator()
+				->diffHeaderLink(
+					$block->getWorkflow()->getArticleTitle(),
+					$block->getWorkflow()->getId(),
+					$revision->getRevisionId()
+				)
+				->getFullURL;
+		} else {
+			throw new FlowException( 'Unknown revision type: ' . get_class( $revision ) );
+		}
 
 		$link = \Html::rawElement( 'a',
 			array(
@@ -246,21 +260,26 @@ abstract class RevisionView implements RevisionCreatable {
 	 */
 	public function getDiffLinkAgainstPrevious() {
 		$revision = $this->getRevision();
-		$block = $this->getBlock();
 		if ( $revision->getPrevRevisionId() ) {
-			$params = array(
-				$block->getName().'_newRevision' => $revision->getRevisionId()->getAlphadecimal(),
-				$block->getName().'_oldRevision' => $revision->getPrevRevisionId()->getAlphadecimal()
-			);
-
-			return $this->templating->getUrlGenerator()->generateUrl(
-				$block->getWorkflow(),
-				$this->getDiffType(),
-				$params
-			);
-		} else {
-			return false;
+			$workflow = $this->getBlock()->getWorkflow();
+			if ( $revision instanceof PostRevision ) {
+				return $this->templating->getUrlGenerator()->diffPostLink(
+					$workflow->getArticleTitle(),
+					$workflow->getId(),
+					$revision->getRevisionId()
+				)->getFullURL();
+			} elseif ( $revision instanceof Header ) {
+				return $this->templating->getUrlGenerator()->diffHeaderLink(
+					$workflow->getArticleTitle(),
+					$workflow->getId(),
+					$revision->getRevisionId()
+				)->getFullURL();
+			} else {
+				wfDebugLog( 'Flow', __METHOD__ . ': Unknown revision type: ' . get_class( $revision ) );
+			}
 		}
+
+		return false;
 	}
 
 }
@@ -369,17 +388,13 @@ class HeaderRevisionView extends RevisionView {
 	 * @return Message
 	 */
 	public function getDiffViewHeader( $newRevision, $oldRevision ) {
-		$boardLinkTitle = $this->block->getWorkflow()->getArticleTitle();
-		$boardLink = $this->templating->getUrlGenerator()
-			->buildUrl(
-				$boardLinkTitle,
-				'view'
-			);
+		$workflow = $this->block->getWorkflow();
+		$boardLinkTitle = $workflow->getArticleTitle();
+		$boardLink = $boardLinkTitle->getFullUrl();
 		$historyLink = $this->templating->getUrlGenerator()
-			->generateUrl(
-				$this->block->getWorkflow(),
-				'history'
-			);
+			->workflowHistoryLink( $boardLinkTitle, $workflow->getId() )
+			->getFullUrl();
+
 		$headerMsg = wfMessage( 'flow-compare-revisions-header-header' )
 			->params(
 				$boardLinkTitle,
@@ -401,10 +416,13 @@ class HeaderRevisionView extends RevisionView {
 	 * {@inheritDoc}
 	 */
 	public function getSingleViewHeader() {
-		$historyLink = $this->templating->getUrlGenerator()->generateUrl(
-			$this->block->getWorkflow(),
-			'history'
-		);
+		$workflow = $this->block->getWorkflow();
+		$historyLink = $this->templating->getUrlGenerator()
+			->workflowHistoryLink(
+				$workflow->getArticleTitle(),
+				$workflow->getId()
+			)
+			->getFullURL();
 		$compareLink = $this->getDiffLinkAgainstPrevious( $this->block );
 
 		$msgKey = $compareLink ? 'flow-revision-permalink-warning-header' : 'flow-revision-permalink-warning-header-first';
@@ -539,44 +557,32 @@ class PostRevisionView extends RevisionView {
 	 * @return Message
 	 */
 	public function getDiffViewHeader( $newRevision, $oldRevision ) {
-		$postFragment = '#flow-post-' . $newRevision->getPostId()->getAlphadecimal();
-		$boardLinkTitle = clone $this->block->getWorkflow()->getArticleTitle();
-		$boardLinkTitle->setFragment( $postFragment );
-		$boardLink = $this->templating->getUrlGenerator()
-			->buildUrl(
-				$boardLinkTitle,
-				'view'
-			);
-		/** @var Title $topicLinkTitle */
-		/** @var string $topicLinkQuery */
-		list( $topicLinkTitle, $topicLinkQuery ) = $this->templating->getUrlGenerator()
-			->generateUrlData(
-				$this->block->getWorkflow(),
-				'view',
-				array(
-					$this->block->getName().'_postId' => $newRevision->getPostId()->getAlphadecimal()
-				)
-			);
+		$urlGenerator = $this->templating->getUrlGenerator();
+		$workflow = $this->block->getWorkflow();
+		$title = $workflow->getArticleTitle();
 
-		$topicLinkTitle = clone $topicLinkTitle;
-		$topicLinkTitle->setFragment( $postFragment );
+		$boardLink = $urlGenerator->boardLink( $title );
+		$postLink = $urlGenerator->postLink(
+			$title,
+			$workflow->getId(),
+			$newRevision->getPostId()
+		);
+		$historyLink = $urlGenerator->postHistoryLink(
+			$title,
+			$workflow->getId(),
+			$newRevision->getPostId()
+		);
 
-		$historyLink = $this->templating->getUrlGenerator()
-			->generateUrl(
-				$this->block->getWorkflow(),
-				'history',
-				array(
-					$this->block->getName().'_postId' => $newRevision->getPostId()->getAlphadecimal()
-				)
-			);
 		$headerMsg = wfMessage( 'flow-compare-revisions-header-post' )
 			->params(
-				$this->block->getWorkflow()->getArticleTitle(),
-				$this->templating->getContent( $this->block->loadTopicTitle(), 'wikitext' ),
+				$this->block->getWorkflow()->getArticleTitle()
+			)->rawParams(
+				$this->templating->getContent( $this->block->loadTopicTitle(), 'wikitext' )
+			)->params(
 				$this->templating->getUsernames()->get( wfWikiId(), $newRevision->getCreatorId() ),
-				$boardLink,
-				$topicLinkTitle->getFullUrl( $topicLinkQuery ),
-				$historyLink
+				$boardLink->getFullUrl(),
+				$postLink->getFullUrl(),
+				$historyLink->getFullUrl()
 			);
 		return $headerMsg;
 	}
@@ -592,13 +598,14 @@ class PostRevisionView extends RevisionView {
 	 * {@inheritDoc}
 	 */
 	public function getSingleViewHeader() {
-		$historyLink = $this->templating->getUrlGenerator()->generateUrl(
-			$this->block->getWorkflow(),
-			'history',
-			array(
-				$this->block->getName().'_postId' => $this->revision->getPostId()->getAlphadecimal(),
+		$workflow = $this->block->getWorkflow();
+		$historyLink = $this->templating->getUrlGenerator()
+			->postHistoryLink(
+				$workflow->getArticleTitle(),
+				$workflow->getId(),
+				$this->revision->getPostId()
 			)
-		);
+			->getFullURL();
 
 		$compareLink = $this->getDiffLinkAgainstPrevious();
 
@@ -606,8 +613,10 @@ class PostRevisionView extends RevisionView {
 		$message = wfMessage( $msgKey )
 			->params( $this->revision->getRevisionId()->getTimestampObj()->getHumanTimestamp() )
 			->params(
-				$this->block->getWorkflow()->getArticleTitle(),
-				$this->templating->getContent( $this->block->loadTopicTitle(), 'wikitext' ),
+				$this->block->getWorkflow()->getArticleTitle()
+			)->rawParams(
+				$this->templating->getContent( $this->block->loadTopicTitle(), 'wikitext' )
+			)->params(
 				$historyLink
 			);
 
