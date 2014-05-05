@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_ed0f62d6",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-05-05T12:40:11Z",
+      "side": 1,
+      "message": "Do we still need this at all?",
+      "revId": "47eec4c293aa48582bfe790173985650ca93d1ba",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
