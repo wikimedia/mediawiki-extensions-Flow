@@ -113,8 +113,8 @@ class View extends ContextSource {
 		}
 
 		array_walk_recursive( $apiResponse, function( &$value ) {
-			if ( $value instanceof \Message ) {
-				$value = $value->text();
+			if ( $value instanceof Anchor ) {
+				$value = $value->toArray();
 			}
 		} );
 		wfProfileOut( __CLASS__ . '-serialize' );

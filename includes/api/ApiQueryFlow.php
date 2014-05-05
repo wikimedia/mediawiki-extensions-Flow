@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Anchor;
 use Flow\Model\UUID;
 
 class ApiQueryFlow extends ApiQueryBase {
@@ -40,9 +41,9 @@ class ApiQueryFlow extends ApiQueryBase {
 
 		array_walk_recursive( $result, function( &$value ) {
 			// This is required untill php 5.4.0 after which we can
-			// implement the JsonSerializable interface for Message
-			if ( $value instanceof Message ) {
-				$value = $value->text();
+			// implement the JsonSerializable interface for Anchor
+			if ( $value instanceof Anchor ) {
+				$value = $value->toArray();
 			}
 		} );
 

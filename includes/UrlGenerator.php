@@ -364,4 +364,223 @@ class UrlGenerator extends BaseUrlGenerator {
 	public function boardLink( Title $title ) {
 		return new Anchor( $title->getPrefixedText(), $title );
 	}
+
+	public function replyAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-reply-link' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'reply',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal()
+			)
+		);
+	}
+
+	/**
+	 * Edit the specified topic summary
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function editTopicSummaryAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-summarize-topic-submit' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'edit-topic-summary',
+				'workflow' => $workflowId->getAlphadecimal()
+			)
+		);
+	}
+
+	/**
+	 * Edit the specified header
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $revId
+	 * @return Anchor
+	 */
+	public function editHeaderAction( Title $title = null, UUID $workflowId, UUID $revId ) {
+		return new Anchor(
+			wfMessage( 'flow-edit-header-link' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'edit-header',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'header_revId' => $revId->getAlphadecimal(), // necessary?
+			)
+		);
+	}
+
+	/**
+	 * Edit the specified topic title
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @param UUID $revId
+	 * @return Anchor
+	 */
+	public function editTitleAction( Title $title = null, UUID $workflowId, UUID $postId, UUID $revId ) {
+		return new Anchor(
+			wfMessage( 'flow-title-action-edit-title' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'edit-title',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_revId' => $revId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Edit the specified post within the specified workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @param UUID $revId
+	 */
+	public function editPostAction( Title $title = null, UUID $workflowId, UUID $postId, UUID $revId ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-edit-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'edit-post',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+				'topic_revId' => $revId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Hide the specified topic
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function hideTopicAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-hide-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'hide-topic',
+				'workflow' => $workflowId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Hide the specified post within the specified workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @return Anchor
+	 */
+	public function hidePostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-hide-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'hide-post',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Delete the specified topic workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function deleteTopicAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-delete-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'delete-topic',
+				'workflow' => $workflowId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Delete the specified post within the specified workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @return Anchor
+	 */
+	public function deletePostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-delete-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'delete-post',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Suppress the specified topic workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function suppressTopicAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-suppress-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'suppress-topic',
+				'workflow' => $workflowId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Suppress the specified post within the specified workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @return Anchor
+	 */
+	public function suppressPostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-suppress-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'suppress-post',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+			)
+		);
+	}
+
+	public function newTopicAction( Title $title = null, UUID $workflowId = null ) {
+		return new Anchor(
+			wfMessage( 'flow-newtopic-start-placeholder' ),
+			// resolveTitle doesn't accept null uuid
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'new-topic'
+			) + ( $workflowId === null ? array() : array(
+				'workflow' => $workflowId->getAlphadecimal(),
+			) )
+		);
+	}
 }
