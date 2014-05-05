@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_4ddad6ed",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-05-05T14:10:48Z",
+      "side": 1,
+      "message": "If it\u0027s ok to ignore username validation (2nd parameter) here, it\u0027d probably be ok to ignore the validation in the localized flow-talk-username text too. Then we wouldn\u0027t have to fallback to this \u0027Flow talk page manager\u0027 username in that case.\n\nThis is also not checking if a user with the name \u0027Flow talk page manager\u0027 exists (no -\u003egetId() !\u003d\u003d 0 check). If it\u0027s ok to ignore this here, it\u0027s probably also ok to ignore this for the localized flow-talk-username too? Then too, we don\u0027t need this fallback to \u0027Flow talk page manager\u0027.\n\nI think we can just get by with only using the localized username (and perhaps failing with an exception if that localized username already exists). I don\u0027t think we should have fallbacks in here, but the wikis should make sure not to use existing usernames for reserved usernames.",
+      "revId": "49ffca13b7c0d23356f22e0e5d2cfc6433fc68a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
