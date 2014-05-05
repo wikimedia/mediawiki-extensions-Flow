@@ -186,6 +186,17 @@ class InvalidActionException extends FlowException {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	public function getHTML() {
+		// we only want a nice error message here, no stack trace
+		$rc = new RequestContext();
+		$output = $rc->getOutput();
+		$output->showErrorPage( $this->getPageTitle(), $this->getErrorCode() );
+		return $output->getHTML();
+	}
+
+	/**
 	 * Do not log exception resulting from input error
 	 */
 	function isLoggable() {
