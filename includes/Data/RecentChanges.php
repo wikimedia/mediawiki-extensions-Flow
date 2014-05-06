@@ -108,7 +108,6 @@ abstract class RecentChanges implements LifecycleHandler {
 			'rc_cur_id' => 0,
 			'rc_comment' => '',
 			'rc_timestamp' => $timestamp,
-			'rc_cur_time' => $timestamp,
 			'rc_deleted' => 0,
 		);
 
