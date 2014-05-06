@@ -37,8 +37,6 @@ class View extends ContextSource {
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
-		global $wgFlowTokenSalt;
-
 		wfProfileIn( __CLASS__ . '-init' );
 
 		$out = $this->getOutput();
@@ -74,7 +72,11 @@ class View extends ContextSource {
 			wfProfileIn( __CLASS__ . '-submit' );
 			$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 			if ( $blocksToCommit ) {
-				if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken( $wgFlowTokenSalt ) ) {
+				if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken() ) {
+					var_dump( $request->getVal( 'wpEditToken' ) );
+					var_dump( $user->getEditToken() );
+					die();
+					// only render the failed blocks
 					$blocks = $blocksToCommit;
 					foreach ( $blocks as $block ) {
 						$block->addError( 'edit-token', $this->msg( 'sessionfailure' ) );
@@ -97,7 +99,7 @@ class View extends ContextSource {
 		);
 
 		$parameters = $loader->extractBlockParameters( $request, $blocks );
-		$editToken = $user->getEditToken( $wgFlowTokenSalt );
+		$editToken = $user->getEditToken();
 		foreach ( $blocks as $block ) {
 			if ( $wasPosted ? $block->canSubmit( $action ) : $block->canRender( $action ) ) {
 				$apiResponse['blocks'][] = $block->renderAPI( $this->templating, $parameters[$block->getName()] )

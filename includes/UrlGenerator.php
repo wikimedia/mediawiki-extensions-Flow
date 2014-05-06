@@ -469,8 +469,9 @@ class UrlGenerator extends BaseUrlGenerator {
 			wfMessage( 'flow-topic-action-hide-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
-				'action' => 'hide-topic',
+				'action' => 'moderate-topic',
 				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_HIDDEN,
 			)
 		);
 	}
@@ -488,9 +489,10 @@ class UrlGenerator extends BaseUrlGenerator {
 			wfMessage( 'flow-post-action-hide-post' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
-				'action' => 'hide-post',
+				'action' => 'moderate-post',
 				'workflow' => $workflowId->getAlphadecimal(),
 				'topic_postId' => $postId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_HIDDEN,
 			)
 		);
 	}
@@ -507,8 +509,9 @@ class UrlGenerator extends BaseUrlGenerator {
 			wfMessage( 'flow-topic-action-delete-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
-				'action' => 'delete-topic',
+				'action' => 'moderate-topic',
 				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_DELETED,
 			)
 		);
 	}
@@ -526,9 +529,10 @@ class UrlGenerator extends BaseUrlGenerator {
 			wfMessage( 'flow-post-action-delete-post' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
-				'action' => 'delete-post',
+				'action' => 'moderate-post',
 				'workflow' => $workflowId->getAlphadecimal(),
 				'topic_postId' => $postId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_DELETED,
 			)
 		);
 	}
@@ -545,8 +549,9 @@ class UrlGenerator extends BaseUrlGenerator {
 			wfMessage( 'flow-topic-action-suppress-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
-				'action' => 'suppress-topic',
+				'action' => 'moderate-topic',
 				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_SUPPRESSED,
 			)
 		);
 	}
@@ -564,9 +569,10 @@ class UrlGenerator extends BaseUrlGenerator {
 			wfMessage( 'flow-post-action-suppress-post' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
-				'action' => 'suppress-post',
+				'action' => 'moderate-post',
 				'workflow' => $workflowId->getAlphadecimal(),
 				'topic_postId' => $postId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_SUPPRESSED,
 			)
 		);
 	}
