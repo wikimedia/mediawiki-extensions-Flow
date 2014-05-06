@@ -137,11 +137,11 @@ abstract class FeatureIndex implements Index {
 	protected function getOffsetFromKey( $rows, $offsetKey ) {
 		$rowIndex = 0;
 		foreach ( $rows as $row ) {
-			$rowIndex++;
 			$comparisonValue = $this->compareRowToOffset( $row, $offsetKey );
 			if ( $comparisonValue <= 0 ) {
 				return $rowIndex;
 			}
+			$rowIndex++;
 		}
 
 		throw new DataModelException( 'Unable to find specified offset in query results', 'process-data' );
