@@ -38,7 +38,7 @@ class HeaderBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $requiresWikitext = array( 'edit-header' );
+	protected $requiresWikitext = array( 'edit-header', 'compare-header-revisions' );
 
 	/**
 	 * @var string[]
@@ -48,9 +48,9 @@ class HeaderBlock extends AbstractBlock {
 	// @Todo - fill in the template names
 	protected $templates = array(
 		'view' => '',
-		'compare-header-revisions' => '',
+		'compare-header-revisions' => 'diff_view',
 		'edit-header' => 'edit',
-		'header-view' => '',
+		'header-view' => 'single_view',
 	);
 
 	/**
@@ -178,6 +178,57 @@ class HeaderBlock extends AbstractBlock {
 			'editToken' => $this->getEditToken(),
 		);
 
+		switch ( $this->action ) {
+			case 'view':
+			case 'edit-header':
+				$output += $this->renderRevisionAPI();
+				break;
+
+			case 'header-view':
+				$revId = '';
+				if ( isset( $options['revId'] ) ) {
+					$revId = $options['revId'];
+				}
+				$output += $this->renderSingleViewAPI( $revId );
+				break;
+
+			case 'compare-header-revisions':
+				$output += $this->renderDiffviewAPI( $options );
+				break;
+		}
+
+		if ( $this->wasSubmitted() ) {
+			$output += array(                
+				'submitted' => $this->submitted,
+				'errors' => $this->errors,
+			);
+		}
+		return $output;
+	}
+
+	// @Todo - duplicated logic in other diff view block
+	protected function renderDiffviewAPI( array $options ) {
+		if ( !isset( $options['newRevision'] ) ) {
+			throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+		}
+		$oldRevision = '';
+		if ( isset( $options['oldRevision'] ) ) {
+			$oldRevision = $options['newRevision'];
+		}
+		list( $new, $old ) = Container::get( 'query.header.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
+		$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, \RequestContext::getMain() );
+		return $output;
+	}
+
+	// @Todo - duplicated logic in other single view block
+	protected function renderSingleViewAPI( $revId ) {
+		$row = Container::get( 'query.header.view' )->getSingleViewResult( $revId );
+		$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
+		return $output;
+	}
+
+	protected function renderRevisionAPI() {
+		$output = array();
 		if ( $this->header === null ) {
 			$output['revision'] = array(
 				// @todo
@@ -199,13 +250,6 @@ class HeaderBlock extends AbstractBlock {
 			}
 
 			$output['revision'] = Container::get( 'formatter.revision' )->formatApi( $row, $ctx );
-		}
-
-		if ( $this->wasSubmitted() ) {
-			$output += array(
-				'submitted' => $this->submitted,
-				'errors' => $this->errors,
-			);
 		}
 		return $output;
 	}
