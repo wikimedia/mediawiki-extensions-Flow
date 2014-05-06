@@ -280,5 +280,11 @@
 	"flow-terms-of-use-reopen-topic": "通过点击“{{int:flow-reopen-topic-submit}}”，您同意此wiki的使用条款。",
 	"flow-anon-warning": "您尚未登录。要收到带您名字而不是您IP地址的署名，您可以[$1 登录]或[$2 注册一个账户]。",
 	"flow-whatlinkshere-post": "来自[$1 此帖子]",
-	"flow-whatlinkshere-header": "来自[$1 此标头]"
+	"flow-whatlinkshere-header": "来自[$1 此标头]",
+	"flow": "Flow",
+	"flow-special-desc": "此特殊页面重定向至Flow工作流或指定UUID的Flow帖子。",
+	"flow-special-type": "类型",
+	"flow-special-type-post": "帖子",
+	"flow-special-type-workflow": "工作流",
+	"flow-special-uuid": "UUID"
 }

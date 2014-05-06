@@ -221,5 +221,10 @@
 	"flow-terms-of-use-reopen-topic": "「{{int:flow-reopen-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-anon-warning": "ログインしていません。",
 	"flow-whatlinkshere-post": "[$1 投稿]から",
-	"flow-whatlinkshere-header": "[$1 ヘッダー]から"
+	"flow-whatlinkshere-header": "[$1 ヘッダー]から",
+	"flow": "Flow",
+	"flow-special-type": "種類",
+	"flow-special-type-post": "投稿",
+	"flow-special-type-workflow": "ワークフロー",
+	"flow-special-uuid": "UUID"
 }
