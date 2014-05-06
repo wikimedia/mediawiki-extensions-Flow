@@ -198,7 +198,7 @@ class HeaderBlock extends AbstractBlock {
 		}
 
 		if ( $this->wasSubmitted() ) {
-			$output += array(                
+			$output += array(
 				'submitted' => $this->submitted,
 				'errors' => $this->errors,
 			);

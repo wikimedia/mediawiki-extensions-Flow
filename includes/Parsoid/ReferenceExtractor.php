@@ -1,6 +1,6 @@
 <?php
 
-namespace Flow;
+namespace Flow\Parsoid;
 
 use DOMXPath;
 use Flow\Model\Reference;
@@ -8,6 +8,7 @@ use Flow\Model\URLReference;
 use Flow\Model\UUID;
 use Flow\Model\WikiReference;
 use Flow\Model\Workflow;
+use Flow\Parsoid\Utils;
 use Title;
 use MWException;
 
@@ -30,6 +31,7 @@ class ReferenceExtractor {
 			if ( !$ref ) {
 				continue;
 			}
+
 			$reference = $this->instantiateReference(
 				$workflow,
 				$objectType,
@@ -79,10 +81,12 @@ class ReferenceExtractor {
 				$value
 			);
 		} elseif ( $targetType === 'wiki' ) {
-			$title = Title::newFromText( $value );
+			$title = Utils::createRelativeTitle( $value, $workflow->getArticleTitle() );
+
 			if ( $title === null ) {
 				return null;
 			}
+
 			return new WikiReference(
 				$workflow->getId(),
 				$workflow->getArticleTitle(),

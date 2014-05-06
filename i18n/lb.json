@@ -51,6 +51,7 @@
 	"flow-topic-action-hide-topic": "Thema verstoppen",
 	"flow-topic-action-delete-topic": "Thema läschen",
 	"flow-topic-action-close-topic": "Thema zoumaachen",
+	"flow-topic-action-reopen-topic": "Thema nees opmaachen",
 	"flow-topic-action-summarize-topic": "Resuméieren",
 	"flow-topic-action-resummarize-topic": "Resumé vun der Ännerung",
 	"flow-error-other": "En onerwaarte Feeler ass geschitt.",
@@ -75,6 +76,7 @@
 	"flow-summarize-topic-submit": "Resuméieren",
 	"flow-summarize-topic-submit-overwrite": "Resumé iwwerschreiwen",
 	"flow-close-topic-submit": "Thema zoumaachen",
+	"flow-reopen-topic-submit": "Thema nees opmaachen",
 	"flow-edit-title-submit": "Titel änneren",
 	"flow-edit-title-submit-overwrite": "Titel iwwerschreiwen",
 	"flow-edit-post-submit": "Ännerunge späicheren",
@@ -139,5 +141,6 @@
 	"flow-terms-of-use-new-topic": "Wann Dir op \"{{int:flow-newtopic-save}}\" klickt, da sidd Dir mat de Benotzungsbedingunge vun dëser Wiki d'accord.",
 	"flow-terms-of-use-reply": "Wann Dir op \"{{int:flow-reply-submit}}\" klickt, da sidd Dir mat de Benotzungsbedingunge vun dëser Wiki d'accord.",
 	"flow-terms-of-use-edit": "Duerch Späichere vun Ären Ännerunge sidd Dir mat de Konditioune fir d'Benotze vun dëser Wiki d'Accord.",
-	"flow-anon-warning": "Dir sidd net ageloggt. Fir a Plaz vun enger Verbindung mat Ärer IP-Adress eng Verbindung mat Ärem Numm ze kréie musst Dir Iech [$1 aloggen] oder [$2 e Benotzerkont opmaachen]."
+	"flow-anon-warning": "Dir sidd net ageloggt. Fir a Plaz vun enger Verbindung mat Ärer IP-Adress eng Verbindung mat Ärem Numm ze kréie musst Dir Iech [$1 aloggen] oder [$2 e Benotzerkont opmaachen].",
+	"flow-whatlinkshere-post": "vun engem [$1 Message]"
 }

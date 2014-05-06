@@ -254,8 +254,8 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * Render the data for API request
 	 *
-	 * @param Templating
-	 * @param array
+	 * @param Templating $templating
+	 * @param array $options
 	 * @return array
 	 */
 	public function renderAPI( Templating $templating, array $options ) {
@@ -314,6 +314,7 @@ class TopicSummaryBlock extends AbstractBlock {
 			default:
 				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
+
 		return $output;
 	}
 

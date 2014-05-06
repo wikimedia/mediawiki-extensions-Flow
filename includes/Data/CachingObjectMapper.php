@@ -74,7 +74,7 @@ class CachingObjectMapper implements ObjectMapper {
 	 * @throws \InvalidArgumentException
 	 */
 	public function get( array $primaryKey ) {
-		$primaryKey = UUID::convertUUIDs( $primaryKey );
+		$primaryKey = UUID::convertUUIDs( $primaryKey, 'alphadecimal' );
 		ksort( $primaryKey );
 		if ( array_keys( $primaryKey ) !== $this->primaryKey ) {
 			throw new \InvalidArgumentException;

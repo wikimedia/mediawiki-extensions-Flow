@@ -12,7 +12,8 @@
 			"Sherbrooke",
 			"VIGNERON",
 			"Verdy p",
-			"Orlodrim"
+			"Orlodrim",
+			"Scoopfinder"
 		]
 	},
 	"flow-desc": "Système de gestion du flux de travail",
@@ -285,5 +286,7 @@
 	"flow-terms-of-use-summarize": "En cliquant sur « {{int:flow-summarize-topic-submit}} », vous acceptez les conditions d’utilisation de ce wiki.",
 	"flow-terms-of-use-close-topic": "En cliquant sur « {{int:flow-close-topic-submit}} », vous acceptez les conditions d’utilisation de ce wiki.",
 	"flow-terms-of-use-reopen-topic": "En cliquant sur « {{int:flow-reopen-topic-submit}} », vous acceptez les conditions d’utilisation de ce wiki.",
-	"flow-anon-warning": "Vous n’êtes pas connecté. Pour recevoir une attribution avec votre nom plutôt que votre adresse IP, vous pouvez [$1 vous connecter] ou [$2 créer un compte]."
+	"flow-anon-warning": "Vous n’êtes pas connecté. Pour recevoir une attribution avec votre nom plutôt que votre adresse IP, vous pouvez [$1 vous connecter] ou [$2 créer un compte].",
+	"flow-whatlinkshere-post": "à partir d'un [$1 post]",
+	"flow-whatlinkshere-header": "à partir de la [$1 de l'en-tête]"
 }

@@ -274,5 +274,7 @@
 	"flow-terms-of-use-summarize": "Стискајќи на „{{int:flow-summarize-topic-submit}}“, се согласувате со условите на употреба на ова вики.",
 	"flow-terms-of-use-close-topic": "Стискајќи на „{{int:flow-close-topic-submit}}“, се согласувате со условите на употреба на ова вики.",
 	"flow-terms-of-use-reopen-topic": "Стискајќи на „{{int:flow-reopen-topic-submit}}“, се согласувате со условите на употреба на ова вики.",
-	"flow-anon-warning": "Не сте најавени. За да бидете наведени како уредник по име наместо по IP-адреса, [$1 најавете се] или [$2 направете сметка]."
+	"flow-anon-warning": "Не сте најавени. За да бидете наведени како уредник по име наместо по IP-адреса, [$1 најавете се] или [$2 направете сметка].",
+	"flow-whatlinkshere-post": "од [$1 објава]",
+	"flow-whatlinkshere-header": "од [$1 заглавието]"
 }

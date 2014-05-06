@@ -62,7 +62,7 @@ class HookTest extends \MediaWikiTestCase {
 				$basicPost + array(
 					'action' => 'edit-title',
 				),
-				'?title=Main_Page&workflow=rs2l7n89pmch81qy&topic_newRevision=rs2l7n89ab7rdd0f&action=compare-post-revisions',
+				'?title=Main_Page&action=compare-post-revisions&workflow=rs2l7n89pmch81qy&topic_newRevision=rs2l7n89ab7rdd0f',
 				'',
 			),
 
@@ -71,7 +71,7 @@ class HookTest extends \MediaWikiTestCase {
 				$basicPost + array(
 					'action' => 'edit-post',
 				),
-				'?title=Main_Page&workflow=rs2l7n89pmch81qy&topic_newRevision=rs2l7n89ab7rdd0f&action=compare-post-revisions',
+				'?title=Main_Page&action=compare-post-revisions&workflow=rs2l7n89pmch81qy&topic_newRevision=rs2l7n89ab7rdd0f',
 				'',
 			),
 
@@ -80,7 +80,7 @@ class HookTest extends \MediaWikiTestCase {
 				$basicHeader + array(
 					'action' => 'edit-header',
 				),
-				'?title=Main_Page&workflow=rs2l7n89pmch81qy&header_newRevision=rs2l7n89ab7rdd0f&action=compare-header-revisions',
+				'?title=Main_Page&action=compare-header-revisions&workflow=rs2l7n89pmch81qy&header_newRevision=rs2l7n89ab7rdd0f',
 				'',
 			),
 
@@ -89,7 +89,7 @@ class HookTest extends \MediaWikiTestCase {
 				$basicPost + array(
 					'action' => 'delete-post',
 				),
-				'?title=Main_Page&workflow=rs2l7n89pmch81qy&topic_postId=rs2l7n8ctv7rwf6i&action=history',
+				'?title=Main_Page&action=history&workflow=rs2l7n89pmch81qy&topic_postId=rs2l7n8ctv7rwf6i',
 				'',
 			),
 
@@ -98,7 +98,7 @@ class HookTest extends \MediaWikiTestCase {
 				$basicPost + array(
 					'action' => 'hide-topic',
 				),
-				'?title=Main_Page&workflow=rs2l7n89pmch81qy&topic_postId=rs2l7n8ctv7rwf6i&action=history',
+				'?title=Main_Page&action=history&workflow=rs2l7n89pmch81qy&topic_postId=rs2l7n8ctv7rwf6i',
 				'',
 			),
 		);

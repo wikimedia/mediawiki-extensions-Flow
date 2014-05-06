@@ -31,7 +31,11 @@ echo Html::openElement( 'div', array(
 ) );
 echo Html::openElement( 'form', array(
 	'method' => 'POST',
-	'action' => $this->generateUrl( $topic->getId(), 'edit-post' ),
+	'action' => $this->urlGenerator->editPostLink(
+		$topic->getArticleTitle(),
+		$topic->getId(),
+		$post->getPostId()
+	),
 ) );
 if ( $block->hasErrors() ) {
 	echo '<ul>';
@@ -45,11 +49,6 @@ echo Html::element( 'input', array(
 		'type' => 'hidden',
 		'name' => 'wpEditToken',
 		'value' => $editToken,
-	) ),
-	Html::element( 'input', array(
-		'type' => 'hidden',
-		'name' => $block->getName() . '_postId',
-		'value' => $post->getPostId()->getAlphadecimal(),
 	) ),
 	Html::element( 'input', array(
 		'type' => 'hidden',

@@ -52,6 +52,8 @@ class BoardHistoryBlock extends AbstractBlock {
 				'links' => array(
 				),
 			);
+			$result->setIndexedTagName( $output, 'board-history' );
+			return $output;
 		}
 
 		$history = Container::get( 'query.board-history' )->getResults( $this->workflow );

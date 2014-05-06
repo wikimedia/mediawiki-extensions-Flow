@@ -27,13 +27,13 @@ class View extends ContextSource {
 	function __construct(
 		Templating $templating,
 		UrlGenerator $urlGenerator,
-		IContextSource $requestContext,
-		TemplateHelper $lightncandy
+		TemplateHelper $lightncandy,
+		IContextSource $requestContext
 	) {
 		$this->templating = $templating;
 		$this->urlGenerator = $urlGenerator;
-		$this->setContext( $requestContext );
 		$this->lightncandy = $lightncandy;
+		$this->setContext( $requestContext );
 	}
 
 	public function show( WorkflowLoader $loader, $action ) {
@@ -134,8 +134,11 @@ class View extends ContextSource {
 		wfProfileOut( __CLASS__ . '-render' );
 	}
 
-	protected function redirect( Workflow $workflow, $action = 'view', array $query = array() ) {
-		$url = $this->urlGenerator->generateUrl( $workflow, $action, $query );
-		$this->getOutput()->redirect( $url );
+	protected function redirect( Workflow $workflow ) {
+		$link = $this->templating->getUrlGenerator()->workflowLink(
+			$workflow->getArticleTitle(),
+			$workflow->getId()
+		);
+		$this->getOutput()->redirect( $link->getFullURL() );
 	}
 }
