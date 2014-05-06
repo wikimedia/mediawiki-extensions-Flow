@@ -347,7 +347,7 @@ $wgFlowConfig = array(
 $wgFlowDefaultWorkflow = 'discussion';
 
 // Limits for paging
-$wgFlowDefaultLimit = 10;
+$wgFlowDefaultLimit = 2;
 $wgFlowMaxLimit = 100;
 
 // Echo notification subscription preference

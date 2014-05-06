@@ -36,15 +36,15 @@ class BasicDbStorage extends DbStorage {
 		// Only allow the row to include key/value pairs.
 		// No raw SQL.
 		if ( is_array( reset( $rows ) ) ) {
-			$rows = $this->preprocessNestedSqlArray( $rows );
+			$insertRows = $this->preprocessNestedSqlArray( $rows );
 		} else {
-			$rows = $this->preprocessSqlArray( $rows );
+			$insertRows = $this->preprocessSqlArray( $rows );
 		}
 
 		// insert returns boolean true/false
 		$res = $this->dbFactory->getDB( DB_MASTER )->insert(
 			$this->table,
-			$rows,
+			$insertRows,
 			__METHOD__ . " ({$this->table})"
 		);
 		if ( $res ) {
