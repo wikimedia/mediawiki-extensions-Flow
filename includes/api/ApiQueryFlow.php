@@ -34,7 +34,16 @@ class ApiQueryFlow extends ApiQueryBase {
 			$templating = $this->container['templating'];
 
 			if ( $block->canRender( $params['action'] ) ) {
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				$result['blocks'][] = $block->renderAPI( $templating, $blockParams );
+=======
+				$thisBlock = $block->renderAPI( $templating, $this->getResult(), $blockParams ) +
+					array(
+						'block-name' => $block->getName()
+					);
+
+				$blockOutput[] = $thisBlock;
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 			}
 		}
 

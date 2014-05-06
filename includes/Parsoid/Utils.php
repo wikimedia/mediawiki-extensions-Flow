@@ -222,6 +222,22 @@ abstract class Utils {
 		return true;
 	}
 
+	/**
+	 * Subpage links from Parsoid don't contain any direct context, its applied via
+	 * a <base href="..."> tag, so here we apply a similar rule resolving against
+	 * $title
+	 *
+	 * @param string $text
+	 * @param Title $title Title to resolve relative links against
+	 * @return Title|null
+	 */
+	public static function createRelativeTitle( $text, Title $title ) {
+		if ( $text && $text[0] === '/' ) {
+			return Title::newFromText( $title->getDBkey() . $text, $title->getNamespace() );
+		} else {
+			return Title::newFromText( $text );
+		}
+	}
 }
 
 class NoParsoidException extends \MWException {}

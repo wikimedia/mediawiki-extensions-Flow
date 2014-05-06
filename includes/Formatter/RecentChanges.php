@@ -34,10 +34,10 @@ class RecentChanges extends AbstractFormatter {
 		$separator = $this->changeSeparator();
 
 		$links = array();
-		$links[] = $this->getDiffLink( $data['links'], $ctx );
-		$links[] = $this->getHistLink( $data['links'], $ctx );
+		$links[] = $this->getDiffAnchor( $data['links'], $ctx );
+		$links[] = $this->getHistAnchor( $data['links'], $ctx );
 
-		return $this->formatLinksAsPipeList( $links, $ctx ) .
+		return $this->formatAnchorsAsPipeList( $links, $ctx ) .
 			' ' .
 			Linker::link( $row->workflow->getArticleTitle() ) .
 			$ctx->msg( 'semicolon-separator' )->escaped() .

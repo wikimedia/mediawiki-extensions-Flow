@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\Container;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
@@ -172,11 +173,36 @@ class HeaderBlock extends AbstractBlock {
 		throw new FlowException( 'deprecated' );
 	}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 	public function renderAPI( Templating $templating, array $options ) {
+=======
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
+		$output = array();
+		$output['type'] = 'header';
+
+		if ( $this->header !== null ) {
+			if ( isset( $options['contentFormat'] ) ) {
+				$contentFormat = $options['contentFormat'];
+			} else {
+				$contentFormat = $this->header->getContentFormat();
+			}
+			$output['*'] = $templating->getContent( $this->header, $contentFormat );
+			$output['format'] = $contentFormat;
+			$output['header-id'] = $this->header->getRevisionId()->getAlphadecimal();
+		} else {
+			$output['missing'] = '';
+		}
+
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 		$output = array(
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 			'type' => $this->getName(),
 			'editToken' => $this->getEditToken(),
+=======
+			0 => $output,
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 		);
+		$result->setIndexedTagName( $output, 'header' );
 
 		switch ( $this->action ) {
 			case 'view':

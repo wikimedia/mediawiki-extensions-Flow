@@ -277,5 +277,7 @@
 	"flow-terms-of-use-summarize": "Cliccando su \"{{int:flow-summarize-topic-submit}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-terms-of-use-close-topic": "Cliccando su \"{{int:flow-close-topic-submit}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-terms-of-use-reopen-topic": "Cliccando su \"{{int:flow-reopen-topic-submit}}\", accetti le condizioni d'uso per questo wiki.",
-	"flow-anon-warning": "Non hai effettuato l'accesso. Per ricevere l'attribuzione con il tuo nome, anziché con l'indirizzo IP, puoi [$1 accedere] o [$2 creare un'utenza]."
+	"flow-anon-warning": "Non hai effettuato l'accesso. Per ricevere l'attribuzione con il tuo nome, anziché con l'indirizzo IP, puoi [$1 accedere] o [$2 creare un'utenza].",
+	"flow-whatlinkshere-post": "da un [$1 messaggio]",
+	"flow-whatlinkshere-header": "dall'[$1 intestazione]"
 }

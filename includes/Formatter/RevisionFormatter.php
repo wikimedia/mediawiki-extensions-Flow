@@ -2,11 +2,15 @@
 
 namespace Flow\Formatter;
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 use Flow\Collection\HeaderCollection;
 use Flow\Collection\PostCollection;
 use Flow\Container;
 use Flow\Data\ObjectManager;
 use Flow\Data\UserNameBatch;
+=======
+use Flow\Anchor;
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
@@ -256,7 +260,12 @@ class RevisionFormatter {
 
 	/**
 	 * @param FormatterRow $row
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 	 * @return array
+=======
+	 * @return Anchor[]
+	 * @throws FlowException
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 	 */
 	public function buildActions( FormatterRow $row ) {
 		$section = new \ProfileSection( __METHOD__ );
@@ -451,13 +460,15 @@ class RevisionFormatter {
 
 		$linkTypes = $this->permissions->getActions()->getValue( $action, 'links' );
 		if ( $linkTypes === null ) {
-			throw new FlowException( "No links defined for action: $action" );
+			wfDebugLog( 'Flow', __METHOD__ . ": No links defined for action: $action" );
+			return array();
 		}
 
 		$links = array();
 		foreach ( $linkTypes as $type ) {
 			switch( $type ) {
 			case 'topic':
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				$links['topic'] = array(
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
@@ -466,6 +477,9 @@ class RevisionFormatter {
 					),
 					'title' => $this->msg( 'flow-link-topic' )
 				);
+=======
+				$links['topic'] = $this->urlGenerator->topicLink( $title, $workflowId );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				break;
 
 			case 'post':
@@ -473,6 +487,7 @@ class RevisionFormatter {
 					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post link' );
 					break;
 				}
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				$links['post'] = array(
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
@@ -483,9 +498,13 @@ class RevisionFormatter {
 					) . "#post-$postId",
 					'title' => $this->msg( 'flow-link-post' )
 				);
+=======
+				$links['post'] = $this->urlGenerator->postLink( $title, $workflowId, $postId );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				break;
 
 			case 'header-revision':
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				$links['header-revision'] = array(
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
@@ -497,6 +516,10 @@ class RevisionFormatter {
 					),
 					'title' => $this->msg( 'flow-link-header-revision' )
 				);
+=======
+				$links['header-revision'] = $this->urlGenerator
+					->headerRevisionLink( $title, $workflowId, $revId );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				break;
 
 			case 'topic-revision':
@@ -505,6 +528,7 @@ class RevisionFormatter {
 					break;
 				}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				$links['topic-revision'] = array(
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
@@ -517,6 +541,10 @@ class RevisionFormatter {
 					),
 					'title' => $this->msg( 'flow-link-topic-revision' )
 				);
+=======
+				$links['topic-revision'] = $this->urlGenerator
+					->topicRevisionLink( $title, $workflowId, $revId );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				break;
 
 			case 'post-revision':
@@ -525,6 +553,7 @@ class RevisionFormatter {
 					break;
 				}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				$links['post-revision'] = array(
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
@@ -537,13 +566,18 @@ class RevisionFormatter {
 					),
 					'title' => $this->msg( 'flow-link-post-revision' )
 				);
+=======
+				$links['post-revision'] = $this->urlGenerator
+					->postRevisionLink( $title, $workflowId, $postId, $revId );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				break;
 
 			case 'post-history':
 				if ( !$postId ) {
-					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render history link' );
+					wfDebugLog( 'Flow', __METHOD__ . ': No postId available to render post-history link' );
 					break;
 				}
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 
 				$links['post-history'] = array(
 					'url' => $this->urlGenerator->buildUrl(
@@ -556,9 +590,13 @@ class RevisionFormatter {
 					),
 					'title' => $this->msg( 'hist' )
 				);
+=======
+				$links['post-history'] = $this->urlGenerator->postHistoryLink( $title, $workflowId, $postId );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				break;
 
 			case 'topic-history':
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				$links['topic-history'] = array(
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
@@ -567,9 +605,13 @@ class RevisionFormatter {
 					),
 					'title' => $this->msg( 'hist' )
 				);
+=======
+				$links['topic-history'] = $this->urlGenerator->workflowHistoryLink( $title, $workflowId );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				break;
 
 			case 'board-history':
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				$links['board-history'] = array(
 					'url' => $this->urlGenerator->buildUrl(
 						$title,
@@ -577,9 +619,13 @@ class RevisionFormatter {
 					),
 					'title' => $this->msg( 'hist' )
 				);
+=======
+				$links['board-history'] = $this->urlGenerator->boardHistoryLink( $title );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				break;
 
 			case 'diff-header':
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				/*
 				 * To diff against previous revision, we don't really need that
 				 * revision id; if no particular diff id is specified, it will
@@ -638,7 +684,16 @@ class RevisionFormatter {
 				}
 				break;
 
+=======
+				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffHeaderLink' );
+				// don't break, diff links are rendered below
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 			case 'diff-post':
+				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffPostLink' );
+				// don't break, diff links are rendered below
+			case 'diff-post-summary':
+				$diffCallback = isset( $diffCallback ) ? $diffCallback : array( $this->urlGenerator, 'diffSummaryLink' );
+
 				/*
 				 * To diff against previous revision, we don't really need that
 				 * revision id; if no particular diff id is specified, it will
@@ -648,6 +703,7 @@ class RevisionFormatter {
 				 * current revision), but it's likely being loaded anyways.
 				 */
 				if ( $row->revision->getPrevRevisionId() !== null ) {
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 					$links['diff'] = array(
 						'url' => $this->urlGenerator->buildUrl(
 							$title,
@@ -659,6 +715,9 @@ class RevisionFormatter {
 						),
 						'title' => $this->msg( 'diff' )
 					);
+=======
+					$links['diff'] = call_user_func( $diffCallback, $title, $workflowId, $revId );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 
 					/*
 					 * Different formatters have different terminology for the link
@@ -667,10 +726,15 @@ class RevisionFormatter {
 					 * E.g.: Special:Contributions has "diff" ($links['diff']),
 					 * ?action=history has "prev" ($links['prev']).
 					 */
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 					$links['diff-prev'] = array(
 						'url' => $links['diff']['url'],
 						'title' => $this->msg( 'last' )
 					);
+=======
+					$links['diff-prev'] = clone $links['diff'];
+					$links['diff-prev']->message = wfMessage( 'last' );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				}
 
 				/*
@@ -681,6 +745,7 @@ class RevisionFormatter {
 				 * permissions) so we should be able to get it from local cache.
 				 */
 				$cur = $row->currentRevision;
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				if ( !$row->revision->getRevisionId()->equals( $cur->getRevisionId() ) ) {
 					$links['diff-cur'] = array(
 						'url' => $this->urlGenerator->buildUrl(
@@ -694,7 +759,13 @@ class RevisionFormatter {
 						),
 						'title' => $this->msg( 'cur' )
 					);
+=======
+				if ( !$revId->equals( $cur->getRevisionId() ) ) {
+					$links['diff-cur'] = call_user_func( $diffCallback, $title, $workflowId, $cur->getRevisionId(), $revId );
+					$links['diff-cur']->message = wfMessage( 'cur' );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				}
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				break;
 
 			case 'diff-post-summary':
@@ -754,9 +825,12 @@ class RevisionFormatter {
 						'title' => $this->msg( 'cur' )
 					);
 				}
+=======
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				break;
 
 			case 'workflow':
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				/** @var Title $linkTitle */
 				list( $linkTitle, $query ) = $this->urlGenerator->buildUrlData(
 					$title,
@@ -766,6 +840,9 @@ class RevisionFormatter {
 					'url' => $linkTitle->getFullUrl( $query ),
 					'title' => new \RawMessage( '$1', array( $linkTitle->getPrefixedText() ) ),
 				);
+=======
+				$links['workflow'] = $this->urlGenerator->workflowLink( $title, $workflowId );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 				break;
 
 			default:
@@ -773,6 +850,7 @@ class RevisionFormatter {
 				break;
 			}
 		}
+
 
 		return $links;
 	}
@@ -850,7 +928,7 @@ class RevisionFormatter {
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
+			return Message::rawParam( $content );
 
 		// This is potentially two networked round trips, much too expensive for
 		// the rendering loop
@@ -867,22 +945,20 @@ class RevisionFormatter {
 			}
 
 			$content = $this->templating->getContent( $previousRevision, 'wikitext' );
-			return Message::rawParam( htmlspecialchars( $content ) );
+			return Message::rawParam( $content );
 
 		case 'workflow-url':
-			return $this->templating->getUrlGenerator()->generateUrl( $workflowId );
+			return $this->urlGenerator
+				->workflowLink( null, $workflowId )
+				->getFullUrl();
 
 		case 'post-url':
 			if ( !$revision instanceof PostRevision ) {
 				throw new FlowException( 'Expected PostRevision but received' . get_class( $revision ) );
 			}
-			return $this->templating->getUrlGenerator()
-				->generateUrl(
-					$workflowId,
-					'view',
-					array(),
-					'flow-post-' . $revision->getPostId()->getAlphadecimal()
-				);
+			return $this->urlGenerator
+				->postLink( null, $workflowId, $revision->getPostId() )
+				->getFullUrl();
 
 		case 'moderated-reason':
 			// don-t parse wikitext in the moderation reason
@@ -894,18 +970,7 @@ class RevisionFormatter {
 			}
 			$root = $revision->getRootPost();
 			$content = $this->templating->getContent( $root, 'wikitext' );
-
-			if ( !$this->permissions->isAllowed( $root, 'view' ) ) {
-				/*
-				 * If a user is not allowed to view the content, a message will
-				 * be displayed instead (which may contain html - links to the
-				 * user). That HTML should not be escaped.
-				 */
-				return Message::rawParam( $content );
-			}
-
-			// normal msg param, will be escaped
-			return $content;
+			return Message::rawParam( $content );
 
 		case 'post-of-summary':
 			if ( !$revision instanceof PostSummary ) {

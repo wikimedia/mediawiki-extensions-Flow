@@ -239,24 +239,6 @@ class FlowHooks {
 	}
 
 	/**
-	 * Add token type "flow", to generate edit tokens for Flow via
-	 * api.php?action=tokens&type=flow
-	 *
-	 * @param array $tokenFunctions Array of callables for token types
-	 * @return bool
-	 */
-	public static function onApiTokensGetTokenTypes( &$tokenFunctions ) {
-		$flowToken = function() {
-			global $wgUser, $wgFlowTokenSalt;
-			return $wgUser->getEditToken( $wgFlowTokenSalt );
-		};
-
-		$tokenFunctions['flow'] = $flowToken;
-
-		return true;
-	}
-
-	/**
 	 * Overrides MediaWiki::performAction
 	 * @param  OutputPage $output
 	 * @param  Article $article
@@ -275,9 +257,13 @@ class FlowHooks {
 			$container = Container::getContainer();
 			$view = new Flow\View(
 				$container['templating'],
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				$container['url_generator'],
 				$output,
 				$container['lightncandy']
+=======
+				$output
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 			);
 
 			try {

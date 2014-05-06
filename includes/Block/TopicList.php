@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager;
@@ -187,11 +188,27 @@ class TopicListBlock extends AbstractBlock {
 		throw new FlowException( 'deprecated' );
 	}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 	public function renderAPI( Templating $templating, array $options ) {
 		if ( $this->hasErrors() ) {
 			throw new FlowException( '@todo' );
+=======
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
+		$output = array();
+		if ( ! $this->workflow->isNew() ) {
+			$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
+			$page = $this->getPage( $findOptions );
+			$topics = $this->getTopics( $page );
+
+			foreach( $topics as $topic ) {
+				$output[] = $topic->renderAPI( $templating, $result, $options );
+			}
+
+			$output['paging'] = $page->getPagingLinks();
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 		}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 		$serializer = Container::get( 'formatter.topiclist' );
 		if ( $this->workflow->isNew() ) {
 			return $serializer->buildEmptyResult( $this->workflow );
@@ -210,6 +227,11 @@ class TopicListBlock extends AbstractBlock {
 		$response = $serializer->formatApi( $this->workflow, $workflows, $found, $page, $ctx );
 
 		return $response;
+=======
+		$result->setIndexedTagName( $output, 'topic' );
+
+		return $output;
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 	}
 
 	public function getName() {

@@ -53,7 +53,11 @@ class IRCLineUrlFormatter extends AbstractFormatter {
 
 		foreach ( $accept as $key ) {
 			if ( isset( $links[$key] ) ) {
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 				return $links[$key]['url'];
+=======
+				return $links[$key]->getFullUrl();
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 			}
 		}
 

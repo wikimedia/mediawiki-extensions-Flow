@@ -260,12 +260,21 @@
     "flow-moderation-intro-unhide-topic": "Please {{GENDER:$3|explain}} why you're unhiding this topic.",
     "flow-topic-permalink-warning": "This topic was started on [$2 $1]",
     "flow-topic-permalink-warning-user-board": "This topic was started on [$2 {{GENDER:$1|$1}}'s board]",
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
     "flow-revision-permalink-warning-post": "This is a link to a single version of this post.\nThis version is from $1.\nYou can see the [$5 differences from the previous version], or view other versions on the [$4 post history page].",
     "flow-revision-permalink-warning-post-first": "This is a link to the first version of this post.\nYou can view later versions on the [$4 post history page].",
     "flow-revision-permalink-warning-postsummary":  "This is a link to a single version of the summary for this post. This version is from $1.\nYou can see the [$5 differences from the previous version], or view other versions on the [$4 post history page].",
     "flow-revision-permalink-warning-postsummary-first": "This is a link to the first version of this post summary.\nYou can view later versions on the [$4 post history page].",
     "flow-revision-permalink-warning-header": "This is a link to a single version of the header.\nThis version is from $1.  You can see the [$3 differences from the previous version], or view other versions on the [$2 board history page].",
     "flow-revision-permalink-warning-header-first": "This is a link to the first version of the header.\nYou can view later versions on the [$2 board history page].",
+=======
+    "flow-revision-permalink-warning-post": "This is a permanent link to a single version of this post.\nThis version is from $1.\nYou can see the [$5 differences from the previous version], or view other versions on the [$4 post history page].",
+    "flow-revision-permalink-warning-post-first": "This is a permanent link to the first version of this post.\nYou can view later versions on the [$4 post history page].",
+    "flow-revision-permalink-warning-postsummary":  "This is a permanent link to a single version of the summary for this post. This version is from $1.\nYou can see the [$5 differences from the previous version], or view other versions on the [$4 post history page].",
+    "flow-revision-permalink-warning-postsummary-first": "This is a permanent link to the first version of this post summary.\nYou can view later versions on the [$4 post history page].",
+    "flow-revision-permalink-warning-header": "This is a permanent link to a single version of the header.\nThis version is from $1. You can see the [$3 differences from the previous version], or view other versions on the [$2 board history page].",
+    "flow-revision-permalink-warning-header-first": "This is a permanent link to the first version of the header.\nYou can view later versions on the [$2 board history page].",
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
     "flow-compare-revisions-revision-header": "Version by {{GENDER:$2|$2}} from $1",
     "flow-compare-revisions-header-post": "This page shows the {{GENDER:$3|changes}} between two versions of a post by $3 in the topic \"[$5 $2]\" on [$4 $1].\nYou can see other versions of this post at its [$6 history page].",
     "flow-compare-revisions-header-postsummary": "This page shows the changes between two versions of a post summary in the post \"[$4 $2]\" on [$3 $1].\nYou can see other versions of this post at its [$5 history page].",
@@ -303,5 +312,12 @@
     "flow-terms-of-use-reopen-topic": "By clicking \"{{int:flow-reopen-topic-submit}}\", you agree to the terms of use for this wiki.",
     "flow-anon-warning": "You are not logged in. To receive attribution with your name instead of your IP address, you can [$1 log in] or [$2 create an account].",
     "flow-whatlinkshere-post" : "from a [$1 post]",
-    "flow-whatlinkshere-header" : "from the [$1 header]"
+    "flow-whatlinkshere-header" : "from the [$1 header]",
+    "flow": "Flow",
+    "flow-special-desc": "This special page redirects to a Flow workflow or a Flow post given a UUID.",
+    "flow-special-type": "Type",
+    "flow-special-type-post": "Post",
+    "flow-special-type-workflow": "Workflow",
+    "flow-special-uuid": "UUID",
+    "flow-special-invalid-uuid": "Could not find content matching the type and the UUID."
 }

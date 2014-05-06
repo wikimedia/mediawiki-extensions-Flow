@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidActionException;
@@ -254,12 +255,18 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * Render the data for API request
 	 *
-	 * @param Templating
-	 * @param array
+	 * @param Templating $templating
+	 * @param ApiResult $result
+	 * @param array $options
 	 * @return array
 	 */
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 	public function renderAPI( Templating $templating, array $options ) {
 		$output = array( 'type' => $this->getName() );
+=======
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
+		$output = array( 'type' => 'topicsummary' );
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 
 		if ( $this->wasSubmitted() ) {
 			$output += array(
@@ -268,6 +275,7 @@ class TopicSummaryBlock extends AbstractBlock {
 			);
 		}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 		$formatter = Container::get( 'formatter.revision' );
 		if ( in_array( $this->action, $this->requiresWikitext ) ) {
 			$formatter->setContentFormat( 'wikitext' );
@@ -315,6 +323,13 @@ class TopicSummaryBlock extends AbstractBlock {
 				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
 		return $output;
+=======
+		$out = array(
+			0 => $output,
+		);
+		$result->setIndexedTagName( $out, 'topicsummary' );
+		return $out;
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 	}
 
 	public function getName() {

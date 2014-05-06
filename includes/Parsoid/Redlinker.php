@@ -143,6 +143,8 @@ class Redlinker implements ContentFixer {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
 
+		$this->resolve( null );
+
 		/*
 		 * Workaround because DOMDocument can't guess charset.
 		 * Content should be utf-8. Alternative "workarounds" would be to
@@ -154,9 +156,9 @@ class Redlinker implements ContentFixer {
 		$dom = Utils::createDOM( '<?xml encoding="utf-8"?>' . $content );
 		$self = $this;
 		self::forEachLink( $dom, function( DOMNode $linkNode, array $parsoid ) use ( $self, $dom, $title ) {
-			$title = $self->createRelativeTitle( $parsoid['sa']['href'], $title );
-			// Don't process invalid links
-			if ( $title === null ) {
+			$title = Utils::createRelativeTitle( $parsoid['sa']['href'], $title );
+			// Don't process invalid or existing links
+			if ( $title === null || $title->exists() ) {
 				return;
 			}
 
@@ -184,23 +186,6 @@ class Redlinker implements ContentFixer {
 			$res = '';
 		}
 		return $res;
-	}
-
-	/**
-	 * Subpage links from Parsoid don't contain any direct context, its applied via
-	 * a <base href="..."> tag, so here we apply a similar rule resolving against
-	 * $title
-	 *
-	 * @param string $text
-	 * @param Title $title Title to resolve relative links against
-	 * @return Title|null
-	 */
-	public function createRelativeTitle( $text, Title $title ) {
-		if ( $text && $text[0] === '/' ) {
-			return Title::newFromText( $title->getDBkey() . $text, $title->getNamespace() );
-		} else {
-			return Title::newFromText( $text );
-		}
 	}
 
 	/**

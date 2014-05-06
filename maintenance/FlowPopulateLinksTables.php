@@ -37,7 +37,8 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 		$storage = Container::get( 'storage.header' );
 		$count = $this->mBatchSize;
 		$id = '';
-		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
+		$dbf = Container::get( 'db.factory' );
+		$dbr = $dbf->getDB( DB_SLAVE );
 		while ( $count === $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(
@@ -61,6 +62,7 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 					$recorder->onAfterInsert( $header, array() );
 				}
 			}
+			$dbf->waitForSlaves();
 		}
 	}
 
@@ -74,7 +76,10 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 			$res = $dbr->select(
 				array( 'flow_tree_revision' ),
 				array( 'tree_rev_id' ),
-				array( 'tree_rev_id > ' . $dbr->addQuotes( $id ) ),
+				array(
+					'tree_parent_id IS NOT NULL',
+					'tree_rev_id > ' . $dbr->addQuotes( $id ),
+				),
 				__METHOD__,
 				array( 'ORDER BY' => 'tree_rev_id ASC', 'LIMIT' => $this->mBatchSize )
 			);

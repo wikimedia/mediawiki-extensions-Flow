@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use ApiResult;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
@@ -439,6 +440,7 @@ class TopicBlock extends AbstractBlock {
 		throw new FlowException( 'deprecated' );
 	}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 	public function renderAPI( Templating $templating, array $options ) {
 		// theres probably some OO way to turn this stack of if/else into
 		// something nicer. Consider better ways before extending this with
@@ -451,12 +453,20 @@ class TopicBlock extends AbstractBlock {
 			} else {
 				// post history for full topic
 				$output = $this->renderTopicHistoryAPI( $templating, $options );
+=======
+	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
+		if ( isset( $options['postId'] ) ) {
+			$rootPost = $this->loadRootPost();
+			if ( !$rootPost ) {
+				return array();
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 			}
 		} elseif ( $this->action === 'post-view' ) {
 			$revId = '';
 			if ( isset( $options['revId'] ) ) {
 				$revId = $options['revId'];
 			}
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 			$output = $this->renderSingleViewAPI( $revId );
 		} elseif ( $this->action === 'compare-post-revisions' ) {
 			$output = $this->renderDiffViewAPI( $options );
@@ -467,13 +477,65 @@ class TopicBlock extends AbstractBlock {
 			// view single post, possibly specific revision
 			// @todo this isn't valid for the topic title
 			$output = $this->renderPostAPI( $templating, $options );
+=======
+
+			if ( !$post ) {
+				throw new InvalidInputException( 'Requested post could not be found', 'invalid-input' );
+			}
+
+			$res = $this->renderPostAPI( $templating, $post, $result, $options );
+			if ( $res === null ) {
+				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+			}
+			return array( $res );
+		} else {
+			$output = $this->renderTopicAPI( $templating, $result, $options );
+			if ( $output === null ) {
+				throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+			}
+			return $output;
+		}
+	}
+
+	public function renderTopicAPI( Templating $templating, ApiResult $result, array $options ) {
+		$topic = $this->workflow;
+		$rootPost = $this->loadRootPost();
+		if ( !$rootPost ) {
+			return array();
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 		}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 		if ( $output === null ) {
 			// @todo might as well throw these at the source?
 			throw new PermissionException( 'Not Allowed', 'insufficient-permission' );
+=======
+		$output = array(
+			'element' => 'post',
+			'title' => $templating->getContent( $rootPost, 'wikitext' ),
+			'topic-id' => $topic->getId()->getAlphadecimal(),
+		);
+
+		if ( isset( $options['showhistoryfor'] ) ) {
+			$output['history'] = array();
+
+			$historyBatch = $this->getHistoryBatch( (array)$options['showhistoryfor'] );
+
+			foreach( $historyBatch as $historyGroup ) {
+				/** @var PostRevision[] $historyGroup */
+				foreach( $historyGroup as $historyEntry ) {
+					$postId = $historyEntry->getPostId()->getAlphadecimal();
+					if ( ! isset( $output['history'][$postId] ) ) {
+						$output['history'][$postId] = array();
+					}
+
+					$output['history'][$postId][] = $historyEntry;
+				}
+			}
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 		}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 		$output['type'] = $this->getName();
 		if ( $this->wasSubmitted() ) {
 			// Failed actions, like reply, end up here
@@ -481,11 +543,25 @@ class TopicBlock extends AbstractBlock {
 				'submitted' => $this->submitted,
 				'errors' => $this->errors,
 			);
+=======
+		if ( isset( $options['render'] ) ) {
+			$output['rendered'] = $templating->renderTopic( $rootPost, $this, true );
 		}
+
+		foreach( $rootPost->getChildren() as $child ) {
+			$res = $this->renderPostAPI( $templating, $child, $result, $options );
+			if ( $res !== null ) {
+				$output[] = $res;
+			}
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
+		}
+
+		$result->setIndexedTagName( $output, 'post' );
 
 		return $output;
 	}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 	protected function shouldRenderTopicAPI( array $options ) {
 		switch( $this->action ) {
 		case 'edit-post':
@@ -549,9 +625,16 @@ class TopicBlock extends AbstractBlock {
 		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $postId ) );
 		$serialized = $this->getRevisionFormatter()->formatApi( $row, \RequestContext::getMain() );
 		if ( !$serialized ) {
+=======
+	protected function renderPostAPI( Templating $templating, PostRevision $post, ApiResult $result, array $options ) {
+		if ( !$this->permissions->isAllowed( $post, 'view' ) ) {
+			// we have to return null, or we would have to duplicate this call when rendering children.
+			// callers must check for null and do as appropriate
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 			return null;
 		}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 		return array(
 			'roots' => array( $serialized['postId'] ),
 			'posts' => array(
@@ -561,8 +644,56 @@ class TopicBlock extends AbstractBlock {
 				$serialized['revisionId'] => $serialized,
 			),
 		);
+=======
+		$output = array();
+		$output['post-id'] = $post->getPostId()->getAlphadecimal();
+		$output['revision-id'] = $post->getRevisionId()->getAlphadecimal();
+		$contentFormat = $post->getContentFormat();
+
+		// This may force a round trip through parsoid for the wikitext when
+		// posts are stored as html, as such it should only be used when
+		// actually needed
+		if ( isset( $options['contentFormat'] ) ) {
+			$contentFormat = $options['contentFormat'];
+		}
+
+		if ( $post->isModerated() ) {
+			$output['post-moderated'] = 'post-moderated';
+		} else {
+			$output['content'] = array(
+				'*' => $templating->getContent( $post, $contentFormat ),
+				'format' => $contentFormat
+			);
+			$output['user'] = $templating->getCreatorText( $post );
+		}
+
+		if ( ! isset( $options['no-children'] ) ) {
+			$children = array( 'element' => 'post' );
+
+			foreach( $post->getChildren() as $child ) {
+				$res = $this->renderPostAPI( $templating, $child, $result, $options );
+				if ( $res !== null ) {
+					$children[] = $res;
+				}
+			}
+
+			$result->setIndexedTagName( $children, 'post' );
+
+			if ( count( $children ) > 1 ) {
+				$output['replies'] = $children;
+			}
+		}
+
+		$postId = $post->getPostId()->getAlphadecimal();
+		if ( isset( $options['history'][$postId] ) ) {
+			$output['revisions'] = $this->getAPIHistory( $templating, $postId, $result, $options['history'][$postId] );
+		}
+
+		return $output;
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 	}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 	protected function getRevisionFormatter() {
 		$serializer = Container::get( 'formatter.revision' );
 		if ( in_array( $this->action, $this->requiresWikitext ) ) {
@@ -570,7 +701,12 @@ class TopicBlock extends AbstractBlock {
 		}
 		return $serializer;
 	}
+=======
+	protected function getAPIHistory( Templating $templating, /*string*/ $postId, ApiResult $result, array $history ) {
+		$output = array();
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 	protected function renderTopicHistoryAPI( Templating $templating, array $options ) {
 		if ( $this->workflow->isNew() ) {
 			throw new FlowException( 'No topic history can exist for non-existant topic' );
@@ -579,6 +715,9 @@ class TopicBlock extends AbstractBlock {
 		$serializer = $this->getRevisionFormatter();
 		$serializer->setIncludeHistoryProperties( true );
 		$ctx = \RequestContext::getMain();
+=======
+		$output['post-id'] = $postId;
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 
 		$result = array();
 		foreach ( $found as $row ) {
@@ -586,6 +725,7 @@ class TopicBlock extends AbstractBlock {
 			$result[$serialized['revisionId']] = $serialized;
 		}
 
+<<<<<<< HEAD   (76e1f2 Merge "Revision single and diff view" into frontend-rewrite)
 		return array(
 			'revisions' => $result,
 		);
@@ -593,6 +733,11 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderPostHistoryAPI( Templating $templating, array $options ) {
 		throw new FlowException( 'Not implemented yet' );
+=======
+		$result->setIndexedTagName( $output, 'revision' );
+
+		return $output;
+>>>>>>> BRANCH (73a9af Merge "Catch and specially handle InvalidArgumentException")
 	}
 
 	protected function getHistory( $postId ) {

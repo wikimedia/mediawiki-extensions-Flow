@@ -51,7 +51,7 @@ abstract class DbStorage implements ObjectStorage {
 		// Assuming that all databases have the same escaping settings.
 		$db = $this->dbFactory->getDB( DB_SLAVE );
 
-		$data = UUID::convertUUIDs( $data );
+		$data = UUID::convertUUIDs( $data, 'binary' );
 
 		foreach( $data as $key => $value ) {
 			if ( $value instanceof RawSql ) {

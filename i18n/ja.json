@@ -180,6 +180,9 @@
 	"flow-moderation-intro-suppress-post": "この投稿を秘匿する理由を{{GENDER:$3|説明}}してください。",
 	"flow-moderation-intro-delete-post": "この投稿を削除する理由を{{GENDER:$3|説明}}してください。",
 	"flow-moderation-intro-hide-post": "この投稿を非表示にする理由を{{GENDER:$3|説明}}してください。",
+	"flow-moderation-intro-unsuppress-post": "この投稿の秘匿を解除する理由を{{GENDER:$3|説明}}してください。",
+	"flow-moderation-intro-undelete-post": "この投稿を復元する理由を{{GENDER:$3|説明}}してください。",
+	"flow-moderation-intro-unhide-post": "この投稿の非表示を解除する理由を{{GENDER:$3|説明}}してください。",
 	"flow-moderation-confirm-suppress-post": "秘匿",
 	"flow-moderation-confirm-delete-post": "削除",
 	"flow-moderation-confirm-hide-post": "非表示にする",
@@ -192,6 +195,9 @@
 	"flow-moderation-intro-suppress-topic": "この話題を秘匿する理由を{{GENDER:$3|説明}}してください。",
 	"flow-moderation-intro-delete-topic": "この話題を削除する理由を{{GENDER:$3|説明}}してください。",
 	"flow-moderation-intro-hide-topic": "この話題を非表示にする理由を{{GENDER:$3|説明}}してください。",
+	"flow-moderation-intro-unsuppress-topic": "この話題の秘匿を解除する理由を{{GENDER:$3|説明}}してください。",
+	"flow-moderation-intro-undelete-topic": "この話題を復元する理由を{{GENDER:$3|説明}}してください。",
+	"flow-moderation-intro-unhide-topic": "この話題の非表示を解除する理由を{{GENDER:$3|説明}}してください。",
 	"flow-topic-permalink-warning": "この話題は [$2 $1] で開始されました",
 	"flow-topic-permalink-warning-user-board": "この話題は [$2 {{GENDER:$1|$1}} の掲示板]で開始されました",
 	"flow-revision-permalink-warning-post": "これはこの投稿の特定の版への固定リンクです。\nこの版は $1 時点のものです。\n[$5 以前の版との差分]や、[$4 投稿の履歴ページ]でその他の版を閲覧することもできます。",
@@ -210,5 +216,10 @@
 	"flow-terms-of-use-new-topic": "「{{int:flow-newtopic-save}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-terms-of-use-reply": "「{{int:flow-reply-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-terms-of-use-edit": "変更内容を保存すると、このウィキの利用規約に同意したと見なされます。",
-	"flow-anon-warning": "ログインしていません。"
+	"flow-terms-of-use-summarize": "「{{int:flow-summarize-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
+	"flow-terms-of-use-close-topic": "「{{int:flow-close-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
+	"flow-terms-of-use-reopen-topic": "「{{int:flow-reopen-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
+	"flow-anon-warning": "ログインしていません。",
+	"flow-whatlinkshere-post": "[$1 投稿]から",
+	"flow-whatlinkshere-header": "[$1 ヘッダー]から"
 }
