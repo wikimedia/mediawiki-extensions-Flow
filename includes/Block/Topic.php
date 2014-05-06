@@ -60,26 +60,29 @@ class TopicBlock extends AbstractBlock {
 		'edit-post', 'reply',
 		// Moderation
 		'moderate-topic',
+		'moderate-post',
 		// Close or open topic
 		'close-open-topic',
-		'moderate-post', 'hide-post', 'delete-post', 'suppress-post', 'restore-post',
 		// Other stuff
 		'edit-title',
 	);
 
 	protected $supportedGetActions = array(
-		'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'post-view'
+		'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'post-view',
+		'moderate-topic', 'moderate-post',
 	);
 
 	// @Todo - fill in the template names
 	protected $templates = array(
 		'post-view' => 'single_view',
 		'view' => '',
-		'history' => 'history',
 		'reply' => '',
+		'history' => 'history',
 		'edit-post' => 'edit_post',
 		'edit-title' => 'edit_title',
 		'compare-post-revisions' => 'diff_view',
+		'moderate-topic' => 'moderate_topic',
+		'moderate-post' => 'moderate_post',
 	);
 
 	protected $requiresWikitext = array( 'edit-post', 'edit-title' );
@@ -140,19 +143,8 @@ class TopicBlock extends AbstractBlock {
 			$this->validateModeratePost();
 			break;
 
-		case 'hide-post':
-			$this->validateModeratePost( AbstractRevision::MODERATED_HIDDEN );
-			break;
-
-		case 'delete-post':
-			$this->validateModeratePost( AbstractRevision::MODERATED_DELETED );
-			break;
-
-		case 'suppress-post':
-			$this->validateModeratePost( AbstractRevision::MODERATED_SUPPRESSED );
-			break;
-
 		case 'restore-post':
+			// @todo still necessary?
 			$this->validateModeratePost( 'restore' );
 			break;
 
@@ -244,16 +236,16 @@ class TopicBlock extends AbstractBlock {
 		$this->setNotification( 'flow-post-reply', array( 'reply-to' => $post ) );
 	}
 
-	protected function validateModerateTopic( $moderationState = null ) {
+	protected function validateModerateTopic() {
 		$root = $this->loadRootPost();
 		if ( !$root ) {
 			return;
 		}
 
-		$this->doModerate( $root, $moderationState );
+		$this->doModerate( $root );
 	}
 
-	protected function validateModeratePost( $moderationState = null ) {
+	protected function validateModeratePost() {
 		if ( empty( $this->submitted['postId'] ) ) {
 			$this->addError( 'post', wfMessage( 'flow-error-missing-postId' ) );
 			return;
@@ -268,19 +260,20 @@ class TopicBlock extends AbstractBlock {
 			$this->addError( 'moderate', wfMessage( 'flow-error-not-a-post' ) );
 			return;
 		}
-		$this->doModerate( $post, $moderationState );
+		$this->doModerate( $post );
 	}
 
-	protected function doModerate( PostRevision $post, $moderationState = null ) {
+	protected function doModerate( PostRevision $post ) {
 		if ( $this->submitted['moderationState'] === 'close' && $post->isModerated() ) {
 			$this->addError( 'moderate', wfMessage( 'flow-error-close-moderated-post' ) );
 			return;
 		}
 
-		// Moderation state supplied in request parameters rather than the action
-		if ( $moderationState === null ) {
-			$moderationState = $this->submitted['moderationState'];
-		}
+		// Moderation state supplied in request parameters
+		$moderationState = isset( $this->submitted['moderationState'] )
+			? $this->submitted['moderationState']
+			: null;
+
 		// $moderationState should be a string like 'restore', 'suppress', etc.  The exact strings allowed
 		// are checked below with $post->isValidModerationState(), but this is checked first otherwise
 		// a blank string would restore a post(due to AbstractRevision::MODERATED_NONE === '').
@@ -481,6 +474,10 @@ class TopicBlock extends AbstractBlock {
 				'submitted' => $this->submitted,
 				'errors' => $this->errors,
 			);
+		} else {
+			$output += array(
+				'submitted' => $options
+			);
 		}
 
 		return $output;
@@ -489,7 +486,18 @@ class TopicBlock extends AbstractBlock {
 	protected function shouldRenderTopicAPI( array $options ) {
 		switch( $this->action ) {
 		case 'edit-post':
+		case 'moderate-post':
+		case 'hide-post':
+		case 'delete-post':
+		case 'suppress-post':
+		case 'restore-post':
 			return false;
+
+		case 'moderate-topic':
+			return true;
+
+		case 'view':
+			return !isset( $options['postId'] ) && !isset( $options['revId'] );
 		}
 
 		return true;

@@ -91,6 +91,8 @@ class TemplateHelper {
 						'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
 						'l10nParse' => 'Flow\TemplateHelper::l10nParse',
 						'diffRevision' => 'Flow\TemplateHelper::diffRevision',
+						'moderationAction' => 'Flow\TemplateHelper::moderationAction',
+						'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
 					),
 					'blockhelpers' => array(
 						'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -210,6 +212,11 @@ class TemplateHelper {
 
 		case 'Suppress':
 			$str = 'flow-post-action-suppress-post';
+			break;
+
+		case 'Moderate':
+			$type = $args[0];
+			$str = "flow-post-action-$type-post";
 			break;
 
 		case 'Topics_n':
@@ -575,5 +582,13 @@ class TemplateHelper {
 			),
 			$message->parse()
 		);
+	}
+
+	static public function moderationAction( array $actions, $moderationState ) {
+		return isset( $actions[$moderationState] ) ? $actions[$moderationState]['url'] : '';
+	}
+
+	static public function moderationActionText( array $actions, $moderationState ) {
+		return isset( $actions[$moderationState] ) ? $actions[$moderationState]['title'] : '';
 	}
 }
