@@ -16,6 +16,24 @@
       "revId": "de7fc2c67743c5adf5a4f16fc22551858bd3015f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_c30fd2d6",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-05-06T17:26:59Z",
+      "side": 1,
+      "message": "will merge mentioned patch soon",
+      "parentUuid": "8e23439c_007940c2",
+      "revId": "de7fc2c67743c5adf5a4f16fc22551858bd3015f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
