@@ -9,6 +9,7 @@ class ApiFlow extends ApiBase {
 	private $moduleManager;
 
 	private static $modules = array(
+		// POST
 		'new-topic' => 'ApiFlowNewTopic',
 		'edit-header' => 'ApiFlowEditHeader',
 		'edit-post' => 'ApiFlowEditPost',
@@ -18,6 +19,9 @@ class ApiFlow extends ApiBase {
 		'moderate-topic' => 'ApiFlowModerateTopic',
 		'edit-title' => 'ApiFlowEditTitle',
 		'close-open-topic' => 'ApiFlowCloseOpenTopic',
+
+		// GET
+		'header-view' => 'ApiFlowViewHeader',
 	);
 
 	public function __construct( $main, $action ) {
