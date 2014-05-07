@@ -30,10 +30,17 @@ class ApiFlow extends ApiBase {
 		return $this->moduleManager;
 	}
 
+	/**
+	 * @return ApiFlowBase
+	 */
+	public function getSubmodule() {
+		$params = $this->extractRequestParams();
+		return $this->getModuleManager()->getModule( $params['submodule'], 'submodule' );
+	}
+
 	public function execute() {
 		$params = $this->extractRequestParams();
-		/** @var $module ApiFlowBase */
-		$module = $this->moduleManager->getModule( $params['submodule'], 'submodule' );
+		$module = $this->getSubmodule();
 
 		$wasPosted = $this->getRequest()->wasPosted();
 		if ( !$wasPosted && $module->mustBePosted() ) {
@@ -188,14 +195,14 @@ class ApiFlow extends ApiBase {
 	}
 
 	public function mustBePosted() {
-		return true;
+		return $this->getSubmodule()->mustBePosted();
 	}
 
 	public function needsToken() {
-		return true;
+		return $this->getSubmodule()->needsToken();
 	}
 
 	public function getTokenSalt() {
-		return '';
+		return $this->getSubmodule()->needsToken() ? '' : false;
 	}
 }
