@@ -278,5 +278,12 @@
 	"flow-terms-of-use-reopen-topic": "לחיצה על \"{{int:flow-reopen-topic-submit}}\" מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.",
 	"flow-anon-warning": "לא נכנסת לחשבון. כדי לקבל ייחוס עם שמך ולא עם כתובת ה־IP שלך, אפשר [$1 להיכנס] או [$2 ליצור חשבון].",
 	"flow-whatlinkshere-post": "מתוך [$1 רשומה]",
-	"flow-whatlinkshere-header": "מתוך [$1 התיאור]"
+	"flow-whatlinkshere-header": "מתוך [$1 התיאור]",
+	"flow": "זרימה",
+	"flow-special-desc": "הדך המיוחד הזה מפנה לזרימת עבודה של זרימה או לרשומה של זרימה דרך UUID.",
+	"flow-special-type": "סוג",
+	"flow-special-type-post": "רשומה",
+	"flow-special-type-workflow": "זרימת עבודה",
+	"flow-special-uuid": "UUID",
+	"flow-special-invalid-uuid": "לא נמצא תוכן שמתאים לסוג ול־UUID."
 }
