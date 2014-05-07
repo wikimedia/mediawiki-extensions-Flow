@@ -1,6 +1,6 @@
 <?php
 
-class ApiFlowEditPost extends ApiFlowBase {
+class ApiFlowEditPost extends ApiFlowBasePost {
 
 	public function __construct( $api ) {
 		parent::__construct( $api, 'edit-post', 'ep' );
