@@ -1,6 +1,6 @@
 <?php
 
-class ApiFlowReply extends ApiFlowBase {
+class ApiFlowReply extends ApiFlowBasePost {
 
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'rep' );

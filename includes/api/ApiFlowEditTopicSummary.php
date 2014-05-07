@@ -1,6 +1,6 @@
 <?php
 
-class ApiFlowEditTopicSummary extends ApiFlowBase {
+class ApiFlowEditTopicSummary extends ApiFlowBasePost {
 
 	public function __construct( $api ) {
 		parent::__construct( $api, 'edit-topic-summary', 'ets' );

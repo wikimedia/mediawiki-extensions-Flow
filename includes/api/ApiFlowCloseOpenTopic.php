@@ -2,7 +2,7 @@
 
 use Flow\Model\AbstractRevision;
 
-class ApiFlowCloseOpenTopic extends ApiFlowBase {
+class ApiFlowCloseOpenTopic extends ApiFlowBasePost {
 
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'cot' );
