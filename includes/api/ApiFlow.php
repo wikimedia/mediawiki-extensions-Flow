@@ -22,6 +22,7 @@ class ApiFlow extends ApiBase {
 
 		// GET
 		'header-view' => 'ApiFlowViewHeader',
+		'topic-summary-view' => 'ApiFlowViewTopicSummary',
 	);
 
 	public function __construct( $main, $action ) {
