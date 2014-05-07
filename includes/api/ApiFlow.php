@@ -35,9 +35,24 @@ class ApiFlow extends ApiBase {
 		/** @var $module ApiFlowBase */
 		$module = $this->moduleManager->getModule( $params['submodule'], 'submodule' );
 
+		// The checks for POST and tokens are the same as ApiMain.php
 		$wasPosted = $this->getRequest()->wasPosted();
 		if ( !$wasPosted && $module->mustBePosted() ) {
 			$this->dieUsageMsg( array( 'mustbeposted', $params['submodule'] ) );
+		}
+		$salt = $module->getTokenSalt();
+		if ( $salt !== false ) {
+			if ( !isset( $params['token'] ) ) {
+				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+			}
+
+			if ( !$this->getUser()->matchEditToken(
+				$params['token'],
+				$salt,
+				$this->getRequest() )
+			) {
+				$this->dieUsageMsg( 'sessionfailure' );
+			}
 		}
 
 		$module->extractRequestParams();
@@ -188,14 +203,14 @@ class ApiFlow extends ApiBase {
 	}
 
 	public function mustBePosted() {
-		return true;
+		return false;
 	}
 
 	public function needsToken() {
-		return true;
+		return false;
 	}
 
 	public function getTokenSalt() {
-		return '';
+		return false;
 	}
 }
