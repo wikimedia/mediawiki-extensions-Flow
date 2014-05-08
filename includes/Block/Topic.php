@@ -696,7 +696,7 @@ class TopicBlock extends AbstractBlock {
 			$output['user'] = $templating->getCreatorText( $post );
 		}
 
-		if ( ! isset( $options['no-children'] ) ) {
+		if ( ! isset( $options['no-children'] ) || !$options['no-children'] ) {
 			$children = array( 'element' => 'post' );
 
 			foreach( $post->getChildren() as $child ) {
