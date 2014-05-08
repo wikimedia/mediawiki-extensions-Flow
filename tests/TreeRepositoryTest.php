@@ -6,6 +6,9 @@ use Flow\Container;
 use Flow\Model\UUID;
 use ReflectionClass;
 
+/**
+ * @group Flow
+ */
 class TreeRepositoryTest extends FlowTestCase {
 
 	protected $ancestor;

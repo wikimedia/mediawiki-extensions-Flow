@@ -4,6 +4,9 @@ namespace Flow\Tests;
 
 use Flow\Data\CachingObjectMapper;
 
+/**
+ * @group Flow
+ */
 class CachingObjectManagerTest extends FlowTestCase {
 
 	public function testReturnsSameObject() {
