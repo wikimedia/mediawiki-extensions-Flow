@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_50525417",
+        "filename": "includes/Data/WorkflowTopicListListener.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-05-08T17:42:53Z",
+      "side": 1,
+      "message": "$topicListLastUpdatedIndex doesnt get set to $this-\u003etopicListLastUpdatedIndex",
+      "revId": "58555db644fdca80136ef0c722fa0135250d3a94",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
