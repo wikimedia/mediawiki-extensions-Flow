@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_0a614b01",
+        "filename": "includes/api/ApiFlowViewHeader.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-08T10:34:52Z",
+      "side": 1,
+      "message": "ApiBase::PARAM_TYPE \u003d\u003e array( \u0027html\u0027, \u0027wikitext\u0027 ),\nApiBase::PARAM_DFLT \u003d\u003e \u0027html\u0027 (or \u0027wikitext\u0027), whatever the default should be",
+      "revId": "ae3eddce93061ab92ce9e0149b1877d44744eb4b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_ea5def4c",
+        "filename": "includes/api/ApiFlowViewHeader.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-08T10:34:52Z",
+      "side": 1,
+      "message": "Don\u0027t need the (html|wikitext) part, API will document it automatically if added above.",
+      "revId": "ae3eddce93061ab92ce9e0149b1877d44744eb4b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
