@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_4a7063d9",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-08T10:30:49Z",
+      "side": 1,
+      "message": "This isn\u0027t necessary, you can just set the default here to be return false; and have individual submodules override it with true (or vice-versa). In execute() above, we already guard that it must be posted.\n\nAlso, can this even by dynamic like this since it\u0027s used to generate the automatic documentation? (I didn\u0027t test.)",
+      "revId": "0b2f9452d9f076817678772f1f193ac7c8b9769d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
