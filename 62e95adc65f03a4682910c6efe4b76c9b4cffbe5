@@ -16,6 +16,40 @@
       "revId": "62e95adc65f03a4682910c6efe4b76c9b4cffbe5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_308a381d",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-05-08T19:06:36Z",
+      "side": 1,
+      "message": "$contentModel is unused?",
+      "revId": "62e95adc65f03a4682910c6efe4b76c9b4cffbe5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_d078a428",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-05-08T19:06:36Z",
+      "side": 1,
+      "message": "this templating class is going away, or at least changing into just some helper methods that don\u0027t touch OutputPage, so nothing to worry about.",
+      "revId": "62e95adc65f03a4682910c6efe4b76c9b4cffbe5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
