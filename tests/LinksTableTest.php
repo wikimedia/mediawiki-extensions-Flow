@@ -14,6 +14,7 @@ use Title;
 use User;
 
 /**
+ * @group Flow
  * @group Database
  */
 class LinksTableTest extends PostRevisionTestCase {
