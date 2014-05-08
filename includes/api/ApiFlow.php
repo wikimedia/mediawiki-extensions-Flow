@@ -21,6 +21,7 @@ class ApiFlow extends ApiBase {
 		'close-open-topic' => 'ApiFlowCloseOpenTopic',
 
 		// GET
+		'view' => 'ApiFlowViewPost', // @todo: 'view' is also for topiclist
 		'header-view' => 'ApiFlowViewHeader',
 		'topic-summary-view' => 'ApiFlowViewTopicSummary',
 	);
