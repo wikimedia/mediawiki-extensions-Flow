@@ -308,11 +308,10 @@ abstract class FeatureIndex implements Index {
 			$fromCache[$key] = $results[$index];
 
 			// to expand rows, we'll need the $query info mapped to the cache
-			// key instead of the $query index; these will be merged back into
-			// the resultset and as such need binary UUIDs, as they would also
-			// be received from storage
+			// key instead of the $query index
 			if ( !isset( $keyToQuery[$key] ) ) {
 				$keyToQuery[$key] = $queries[$index];
+				$keyToQuery[$key] = UUID::convertUUIDs( $keyToQuery[$key], 'alphadecimal' );
 			}
 		}
 

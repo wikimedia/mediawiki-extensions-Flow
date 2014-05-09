@@ -176,6 +176,7 @@ class BasicDbStorage extends DbStorage {
 		// build return value by mapping the database rows to the matching array
 		// index in $queries
 		foreach ( $queries as $i => $val ) {
+			$val = UUID::convertUUIDs( $val, 'alphadecimal' );
 			$pk = ObjectManager::splitFromRow( $val, $this->primaryKey );
 			$result[$i][] = isset( $temp[$pk] ) ? $temp[$pk] : null;
 		}
