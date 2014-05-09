@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_5621294a",
+        "filename": "i18n/en.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-05-09T10:16:36Z",
+      "side": 1,
+      "message": "Thanks for updating the message. This needs punctuation.",
+      "revId": "77e3588821266f9e10028c51ed8af325644d9480",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
