@@ -298,6 +298,7 @@ $wgAutoloadClasses['Flow\Exception\DataModelException'] = $dir . 'includes/Excep
 $wgAutoloadClasses['Flow\Exception\DataPersistenceException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\WikitextException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\NoIndexException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\FailCommitException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 
 // Configuration
 
