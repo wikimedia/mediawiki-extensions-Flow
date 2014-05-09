@@ -79,11 +79,11 @@ abstract class Reference {
 	 */
 	public function getStorageRow() {
 		return array(
-			'ref_src_workflow_id' => $this->workflowId,
+			'ref_src_workflow_id' => $this->workflowId->getAlphadecimal(),
 			'ref_src_namespace' => $this->srcTitle->getNamespace(),
 			'ref_src_title' => $this->srcTitle->getDBkey(),
 			'ref_src_object_type' => $this->objectType,
-			'ref_src_object_id' => $this->objectId,
+			'ref_src_object_id' => $this->objectId->getAlphadecimal(),
 			'ref_type' => $this->type,
 		);
 	}
