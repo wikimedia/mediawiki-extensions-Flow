@@ -183,7 +183,7 @@ abstract class FeatureIndex implements Index {
 		if ( !$indexed ) {
 			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $new ), 'process-data' );
 		}
-		$compacted = $this->rowCompactor->compactRow( $new );
+		$compacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $new, 'alphadecimal' ) );
 		// give implementing index option to create rather than append
 		if ( !$this->maybeCreateIndex( $indexed, $new, $compacted ) ) {
 			// fallback to append
@@ -200,8 +200,8 @@ abstract class FeatureIndex implements Index {
 		if ( !$newIndexed ) {
 			throw new DataModelException( 'Unindexable row: ' .FormatJson::encode( $newIndexed ), 'process-data' );
 		}
-		$oldCompacted = $this->rowCompactor->compactRow( $old );
-		$newCompacted = $this->rowCompactor->compactRow( $new );
+		$oldCompacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $old, 'alphadecimal' ) );
+		$newCompacted = $this->rowCompactor->compactRow( UUID::convertUUIDs( $new, 'alphadecimal' ) );
 		if ( ObjectManager::arrayEquals( $oldIndexed, $newIndexed ) ) {
 			if ( ObjectManager::arrayEquals( $oldCompacted, $newCompacted ) ) {
 				// Nothing changed in the index
