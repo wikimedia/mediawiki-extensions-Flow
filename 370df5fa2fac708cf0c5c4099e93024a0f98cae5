@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_ca6fc5c2",
+        "filename": "includes/Parsoid/BadImageRemover.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-09T23:40:49Z",
+      "side": 1,
+      "message": "wfDebugLog :P",
+      "revId": "370df5fa2fac708cf0c5c4099e93024a0f98cae5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
