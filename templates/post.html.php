@@ -35,6 +35,11 @@ if ( $post->getDepth() <= $maxThreadingDepth - 1 && $postView->actions()->isAllo
 
 	$placeHolder = $postView->replyPlaceholder();
 	$replyForm .=
+		Html::element( 'input', array(
+			'type' => 'hidden',
+			'name' => $block->getName() . '_replyTo',
+			'value' => $post->getPostId()->getAlphadecimal(),
+		) ) .
 		Html::textarea( $block->getName() . '_content', '', array(
 			'placeholder' => $placeHolder,
 			'class' => 'flow-reply-content mw-ui-input',
