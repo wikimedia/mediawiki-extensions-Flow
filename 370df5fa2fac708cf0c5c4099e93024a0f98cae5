@@ -16,6 +16,24 @@
       "revId": "370df5fa2fac708cf0c5c4099e93024a0f98cae5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_d359c02e",
+        "filename": "includes/Parsoid/BadImageRemover.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-05-10T12:52:26Z",
+      "side": 1,
+      "message": "Content from parsoid may be url-encoded, like %2C, which is not valid for title text.  Patch set 132669 addresses this issue",
+      "parentUuid": "8e23439c_ca6fc5c2",
+      "revId": "370df5fa2fac708cf0c5c4099e93024a0f98cae5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
