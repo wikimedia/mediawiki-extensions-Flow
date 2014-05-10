@@ -49,8 +49,10 @@ class BadImageRemover implements ContentFixer {
 		$dom = Utils::createDOM( '<?xml encoding="utf-8"?>' . $content );
 		$self = $this;
 		self::forEachImage( $dom, function( DOMNode $linkNode, array $parsoid ) use ( $self, $dom, $title ) {
-			$image = Title::newFromDBkey( $parsoid['sa']['resource'], NS_FILE );
-			if ( wfIsBadImage( $image->getDBkey(), $title ) ) {
+			$image = Title::newFromDBkey( urldecode( $parsoid['sa']['resource'] ), NS_FILE );
+			if ( !$image ) {
+				wfDebugLog( 'Flow', __METHOD__ . ': Could not construct title for node: ' . $dom->saveXML( $linkNode ) );
+			} elseif ( wfIsBadImage( $image->getDBkey(), $title ) ) {
 				$linkNode->parentNode->removeChild( $linkNode );
 			}
 		} );
