@@ -185,5 +185,6 @@
 	"flow-whatlinkshere-header": "desde el [$1 header]",
 	"flow": "Flujo",
 	"flow-special-type": "Tipo",
-	"flow-special-type-workflow": "Flujo de trabajo"
+	"flow-special-type-workflow": "Flujo de trabajo",
+	"flow-special-uuid": "UUID"
 }
