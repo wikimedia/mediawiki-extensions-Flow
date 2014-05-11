@@ -6,6 +6,7 @@
 	 * @param {string} [content='']
 	 */
 	mw.flow.editors.none = function ( $node, content ) {
+		content = $( 'textarea' ).html( content ).val();
 		this.$node = $node;
 		this.$node.val( content || '' );
 
