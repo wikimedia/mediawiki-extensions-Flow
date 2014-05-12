@@ -13,7 +13,6 @@ use Flow\Templating;
 use Flow\UrlGenerator;
 use IContextSource;
 use Message;
-use Title;
 
 /**
  * This implements a serializer for converting revision objects

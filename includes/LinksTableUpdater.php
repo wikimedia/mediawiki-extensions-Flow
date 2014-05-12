@@ -4,15 +4,11 @@ namespace Flow;
 
 use DataUpdate;
 use Flow\Data\ManagerGroup;
-use Flow\Model\AbstractRevision;
-use Flow\Model\Reference;
 use Flow\Model\URLReference;
-use Flow\Model\UUID;
 use Flow\Model\WikiReference;
 use LinkBatch;
 use LinkCache;
 use LoadBalancer;
-use Title;
 use WikiPage;
 
 class LinksTableUpdater {

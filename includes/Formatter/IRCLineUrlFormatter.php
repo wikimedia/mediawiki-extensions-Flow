@@ -2,8 +2,6 @@
 
 namespace Flow\Formatter;
 
-use Flow\Model\PostRevision;
-use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use RecentChange;
 

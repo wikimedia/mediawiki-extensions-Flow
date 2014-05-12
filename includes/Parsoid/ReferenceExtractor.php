@@ -9,7 +9,6 @@ use Flow\Model\UUID;
 use Flow\Model\WikiReference;
 use Flow\Model\Workflow;
 use Flow\Parsoid\Utils;
-use Title;
 use MWException;
 
 /**
@@ -49,7 +48,7 @@ class ReferenceExtractor {
 	}
 
 	public function extractReferences( $text ) {
-		$dom = \Flow\Parsoid\Utils::createDOM( '<?xml encoding="utf-8" ?>' . $text );
+		$dom = Utils::createDOM( '<?xml encoding="utf-8" ?>' . $text );
 
 		$output = array();
 
