@@ -38,7 +38,10 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 				'value' => $editToken,
 			) ) .
 			Html::textarea( $block->getName() . '_topic-reply-content', '', array(
-				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
+				// $title sourced from Templating::getContent is safe to output,
+				// but the html class will attempt to double encode, so decode
+				// and let Html re-encode.
+				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), htmlspecialchars_decode( $title ) )->text(),
 				'class' => 'mw-ui-input flow-reply-content',
 				'rows' => '10',
 			) ) .
