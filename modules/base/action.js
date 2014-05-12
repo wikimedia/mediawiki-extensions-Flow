@@ -17,7 +17,9 @@
 		data = data || {};
 
 		return {
-			content: data.content || '',
+			// content is always pre-escaped, but we need to undo that
+			// for editing to work correctly.
+			content: $( '<textarea>' ).html( data.content || '' ).val(),
 			format: data.format || 'wikitext'
 		};
 	};
