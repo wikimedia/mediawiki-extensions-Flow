@@ -9,7 +9,11 @@ $creator = $post->getCreatorIp();
 if ( $creator === null ) {
 	$creator = $this->usernames->get( wfWikiId(), $post->getCreatorId() );
 }
-$title = wfMessage( 'flow-post-history', $titleText, $creator )->escaped();
+$title = wfMessage( 'flow-post-history' )
+	// $titleText sourced from Templating::getContent is safe for output
+	->rawParams( $titleText )
+	->params( $creator )
+	->escaped();
 $this->getOutput()->setHtmlTitle( $title );
 $this->getOutput()->setPageTitle( $title );
 
@@ -19,7 +23,8 @@ $timespans = $historyRenderer->getTimespans( $history );
 <div class="flow-history-container">
 	<p class="flow-history-pages">
 		<span class="plainlinks">
-			<?php echo wfMessage( 'flow-history-pages-post', $topicLink, \Message::rawParam( htmlspecialchars( $titleText ) ) )->parse(); ?>
+			<?php /* $titleText sourced from Templating::getContent is safe for output */ ?>
+			<?php echo wfMessage( 'flow-history-pages-post', $topicLink, \Message::rawParam( $titleText ) )->parse(); ?>
 		</span>
 	</p>
 

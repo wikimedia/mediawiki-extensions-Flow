@@ -4,8 +4,9 @@ $pageTitle = $topic->getArticleTitle();
 $pageLink = $this->urlGenerator->boardLink( $pageTitle )->getFullUrl();
 $pageTitle = $pageTitle->getText();
 
+// $title sourced from Templating::getContent is safe for output
 $title = $this->getContent( $root, 'wikitext' );
-$title = wfMessage( 'flow-topic-history', $title )->escaped();
+$title = wfMessage( 'flow-topic-history' )->rawParams( $title )->escaped();
 $this->getOutput()->setHtmlTitle( $title );
 $this->getOutput()->setPageTitle( $title );
 

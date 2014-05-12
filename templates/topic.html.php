@@ -38,7 +38,10 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 				'value' => $editToken,
 			) ) .
 			Html::textarea( $block->getName() . '_topic-reply-content', '', array(
-				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
+				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName() )
+									// $title sourced from Templating::getContent is safe to output
+									->rawParams( $title )
+									->text(),
 				'class' => 'mw-ui-input flow-reply-content',
 				'rows' => '10',
 			) ) .
@@ -79,8 +82,9 @@ echo Html::openElement( 'div', array(
 	<div class="flow-titlebar mw-ui-button">
 		<div class="flow-topic-title">
 			<?php
-				echo Html::element( 'h2',
+				echo Html::rawElement( 'h2',
 					array( 'class' => 'flow-realtitle' ),
+					// $title sourced from Templating::getContent is safe to output
 					$title
 				), $postView->createModifiedTipsyLink( $block );
 				echo $postView->createModifiedTipsyHtml( $block );
