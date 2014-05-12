@@ -5,7 +5,7 @@ $pageLink = $this->urlGenerator->boardLink( $pageTitle )->getFullUrl();
 $pageTitle = $pageTitle->getText();
 
 $title = $this->getContent( $root, 'wikitext' );
-$title = wfMessage( 'flow-topic-history', $title )->escaped();
+$title = wfMessage( 'flow-topic-history' )->rawParams( htmlspecialchars( $title ) )->escaped();
 $this->getOutput()->setHtmlTitle( $title );
 $this->getOutput()->setPageTitle( $title );
 

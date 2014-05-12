@@ -9,7 +9,10 @@ $creator = $post->getCreatorIp();
 if ( $creator === null ) {
 	$creator = $this->usernames->get( wfWikiId(), $post->getCreatorId() );
 }
-$title = wfMessage( 'flow-post-history', $titleText, $creator )->escaped();
+$title = wfMessage( 'flow-post-history' )
+	->rawParams( htmlspecialchars( $titleText ) )
+	->params( $creator )
+	->escaped();
 $this->getOutput()->setHtmlTitle( $title );
 $this->getOutput()->setPageTitle( $title );
 

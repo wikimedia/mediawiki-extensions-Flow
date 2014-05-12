@@ -38,7 +38,9 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 				'value' => $editToken,
 			) ) .
 			Html::textarea( $block->getName() . '_topic-reply-content', '', array(
-				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName(), $title )->text(),
+				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName() )
+									->rawParams( htmlspecialchars( $title ) )
+									->text(),
 				'class' => 'mw-ui-input flow-reply-content',
 				'rows' => '10',
 			) ) .
