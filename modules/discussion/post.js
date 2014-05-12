@@ -192,7 +192,9 @@
 	 */
 	mw.flow.action.post.edit.prototype.render = function ( output ) {
 		var $content = $( output.rendered );
-		$( '.flow-post', $content )
+		$( '<div>' )
+			.html( output.rendered )
+			.find( '.flow-post' )
 			.replaceAll( this.$container )
 			// replacing container node with new content will result in binds on old
 			// nodes being useless and we'll need to bind again to the new DOM
