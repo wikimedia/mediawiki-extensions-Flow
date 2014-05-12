@@ -111,6 +111,17 @@ class UrlGenerator extends BaseUrlGenerator {
 		);
 	}
 
+	public function editPostLink( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-edit-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'edit-post',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+			)
+		);
+	}
 	/**
 	 * View a specific revision of a header workflow.
 	 *
