@@ -653,7 +653,9 @@
 	 */
 	mw.flow.action.topic.edit.prototype.render = function ( output ) {
 		this.destroyEditForm();
-		$( '.flow-realtitle', this.$container ).text( output.rendered );
+		// content, like output.rendered, is pre-sanitized for direct html output
+		// regardless of format.
+		$( '.flow-realtitle', this.$container ).html( output.rendered );
 	};
 
 	/**
@@ -746,7 +748,10 @@
 				$( '<input />', {
 					'class': 'mw-ui-input flow-edit-content',
 					'type':  'text',
-					'value': data.content
+					// the returned content is pre-sanitized for html display.
+					// jQuery also attempts to escape this data so we decode
+					// it before passing in.
+					'value': $('<div>').html(data.content).text()
 				} ).byteLimit( mw.config.get( 'wgFlowMaxTopicLength' ) )
 			)
 			.append(
