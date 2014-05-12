@@ -81,9 +81,8 @@ class CheckUserQuery extends AbstractQuery {
 			return false;
 		}
 
-		list( $workflowId, $revisionId, $postId ) = $ids;
-
-		$alpha = $revisionId->getAlphadecimal();
+		// order of $ids is (workflowId, revisionId, postId)
+		$alpha = $ids[1]->getAlphadecimal();
 		if ( !isset( $this->revisionCache[$alpha] ) ) {
 			throw new FlowException( "Revision not found in revisionCache: $alpha" );
 		}
@@ -126,7 +125,6 @@ class CheckUserQuery extends AbstractQuery {
 			case 3:
 				$revisionId = UUID::create( $data[2] );
 				$workflowId = UUID::create( $data[1] );
-				$action = $data[0];
 				break;
 			default:
 				wfDebugLog( 'Flow', __METHOD__ . ': Invalid number of parameters received from cuc_comment.  Expected 2 or 3 but received ' . count( $data ) );
