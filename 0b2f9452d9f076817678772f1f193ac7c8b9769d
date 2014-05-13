@@ -16,6 +16,24 @@
       "revId": "0b2f9452d9f076817678772f1f193ac7c8b9769d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_03dc784a",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-05-13T13:51:18Z",
+      "side": 1,
+      "message": "for mustBePosted, it isn\u0027t indeed really needed. Is needed for the token methods though (AFAIK), unless we also re-implement that same logic",
+      "parentUuid": "8e23439c_4a7063d9",
+      "revId": "0b2f9452d9f076817678772f1f193ac7c8b9769d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
