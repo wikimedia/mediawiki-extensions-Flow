@@ -15,7 +15,7 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 	}
 
 	protected function getAction() {
-		return 'view';
+		return 'post-view';
 	}
 
 	public function getAllowedParams() {
@@ -50,7 +50,7 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view&vppostId=???&vpcontentFormat=wikitext&workflow=',
+			'api.php?action=flow&submodule=post-view&vppostId=???&vpcontentFormat=wikitext&workflow=',
 		);
 	}
 }
