@@ -21,7 +21,10 @@ class ApiFlow extends ApiBase {
 		'close-open-topic' => 'ApiFlowCloseOpenTopic',
 
 		// GET
-		'view' => 'ApiFlowViewPost', // @todo: 'view' is also for topiclist
+		// action 'view' exists in Topic.php & TopicList.php, for topic, post &
+		// topiclist - we'll want to know topic-/post- or topiclist-view ;)
+		'post-view' => 'ApiFlowViewPost',
+		'topic-view' => 'ApiFlowViewTopic',
 		'header-view' => 'ApiFlowViewHeader',
 		'topic-summary-view' => 'ApiFlowViewTopicSummary',
 	);
