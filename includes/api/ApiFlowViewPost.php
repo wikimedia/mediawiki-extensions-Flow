@@ -50,7 +50,7 @@ class ApiFlowViewPost extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=view&vppostId=???&vpcontentFormat=wikitext&workflow=',
+			'api.php?action=flow&submodule=post-view&vppostId=???&vpcontentFormat=wikitext&workflow=',
 		);
 	}
 }

@@ -68,7 +68,8 @@ class TopicBlock extends AbstractBlock {
 	);
 
 	protected $supportedGetActions = array(
-		'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions',
+		'view', 'view-topic', 'view-post',
+		'history', 'edit-post', 'edit-title', 'compare-post-revisions',
 	);
 
 	/**
