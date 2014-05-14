@@ -27,7 +27,7 @@ class TopicListBlock extends AbstractBlock {
 	/**
 	 * @var array
 	 */
-	protected $supportedGetActions = array( 'view' );
+	protected $supportedGetActions = array( 'view', 'topiclist-view' );
 
 	/**
 	 * @var Workflow|null
@@ -255,17 +255,17 @@ class TopicListBlock extends AbstractBlock {
 		// Compute offset/limit
 		$limit = $this->getLimit( $requestOptions );
 
-		if ( isset( $requestOptions['offset-id'] ) ) {
+		if ( isset( $requestOptions['offset-id'] ) && $requestOptions['offset-id'] ) {
 			$findOptions['pager-offset'] = UUID::create( $requestOptions['offset-id'] );
-		} elseif ( isset( $requestOptions['offset'] ) ) {
+		} elseif ( isset( $requestOptions['offset'] ) && $requestOptions['offset'] ) {
 			$findOptions['pager-offset'] = intval( $requestOptions['offset'] );
 		}
 
-		if ( isset( $requestOptions['offset-dir'] ) ) {
+		if ( isset( $requestOptions['offset-dir'] ) && $requestOptions['offset-dir'] ) {
 			$findOptions['pager-dir'] = $requestOptions['offset-dir'];
 		}
 
-		if ( isset( $requestOptions['api'] ) ) {
+		if ( isset( $requestOptions['api'] ) && $requestOptions['api'] ) {
 			$findOptions['offset-elastic'] = false;
 		}
 
