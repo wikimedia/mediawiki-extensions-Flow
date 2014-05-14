@@ -233,6 +233,7 @@ $wgAutoloadClasses['ApiFlowModeratePost'] = "$dir/includes/api/ApiFlowModeratePo
 $wgAutoloadClasses['ApiFlowModerateTopic'] = "$dir/includes/api/ApiFlowModerateTopic.php";
 $wgAutoloadClasses['ApiFlowNewTopic'] = "$dir/includes/api/ApiFlowNewTopic.php";
 $wgAutoloadClasses['ApiFlowReply'] = "$dir/includes/api/ApiFlowReply.php";
+$wgAutoloadClasses['ApiFlowViewTopicList'] = "$dir/includes/api/ApiFlowViewTopicList.php";
 $wgAutoloadClasses['ApiFlowViewPost'] = "$dir/includes/api/ApiFlowViewPost.php";
 $wgAutoloadClasses['ApiFlowViewTopic'] = "$dir/includes/api/ApiFlowViewTopic.php";
 $wgAutoloadClasses['ApiFlowViewHeader'] = "$dir/includes/api/ApiFlowViewHeader.php";

@@ -23,6 +23,7 @@ class ApiFlow extends ApiBase {
 		// GET
 		// action 'view' exists in Topic.php & TopicList.php, for topic, post &
 		// topiclist - we'll want to know topic-/post- or topiclist-view ;)
+		'topiclist-view' => 'ApiFlowViewTopicList',
 		'post-view' => 'ApiFlowViewPost',
 		'topic-view' => 'ApiFlowViewTopic',
 		'header-view' => 'ApiFlowViewHeader',
