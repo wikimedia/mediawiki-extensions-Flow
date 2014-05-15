@@ -12,3 +12,8 @@ $specialPageAliases = array();
 $specialPageAliases['en'] = array(
 	'Flow' => array( 'Flow' ),
 );
+
+/** Zazaki (Zazaki) */
+$specialPageAliases['diq'] = array(
+	'Flow' => array( 'Rodayış' ),
+);
