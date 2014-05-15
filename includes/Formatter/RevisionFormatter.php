@@ -284,7 +284,7 @@ class RevisionFormatter {
 				break;
 
 			case 'edit-header':
-				$links['edit'] = $this->urlGenerator->editHeaderAction( $title, $workflowId );
+				$links['edit'] = $this->urlGenerator->editHeaderAction( $title, $workflowId, $revId );
 				break;
 
 			case 'edit-title':
