@@ -69,6 +69,177 @@
       "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_b884f5a4",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 873
+      },
+      "writtenOn": "2014-05-15T17:20:56Z",
+      "side": 1,
+      "message": "Likely.",
+      "parentUuid": "8e23439c_29544ec8",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_f8614d02",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 873
+      },
+      "writtenOn": "2014-05-15T17:20:56Z",
+      "side": 1,
+      "message": "You can ignore it so long as you don\u0027t end up in the list of alternate search engines.  This is where you\u0027d tell mediawiki that you don\u0027t, for example, support updates.  Technically cirrus does that because it hooks its own updates deeper into mediawiki because they work better that way....",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_383fc5d5",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 873
+      },
+      "writtenOn": "2014-05-15T17:20:56Z",
+      "side": 1,
+      "message": "You don\u0027t.  It is the start of special search syntax that Cirrus had to implement to be compatible with lsearchd.",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_1844096e",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 873
+      },
+      "writtenOn": "2014-05-15T17:20:56Z",
+      "side": 1,
+      "message": "You can probably ignore it if you aren\u0027t using the suggester.",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_b832b504",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 873
+      },
+      "writtenOn": "2014-05-15T17:20:56Z",
+      "side": 1,
+      "message": "Unlikely.",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_982ff99c",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 873
+      },
+      "writtenOn": "2014-05-15T17:20:56Z",
+      "side": 1,
+      "message": "You might not want to propagate this horrible thing - just return the status even if it is good.  In that case you really shouldn\u0027t be implementing searchText at all....",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_f80f0d3a",
+        "filename": "includes/Search/SearchEngine.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 873
+      },
+      "writtenOn": "2014-05-15T17:20:56Z",
+      "side": 1,
+      "message": "I advise against asking Elasticsearch to sort.  Instead layer some kind of boost for more recent posts on top of the standard text scoring.  That way better matches will still get sorted higher, even if they are older.  Also, sorting isn\u0027t super efficient in Elsaticsearch.",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_1bd3e362",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 873
+      },
+      "writtenOn": "2014-05-15T17:20:56Z",
+      "side": 1,
+      "message": "Probably want to stuff it in the a pool counter.",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_fbc70799",
+        "filename": "includes/Search/Searcher.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 873
+      },
+      "writtenOn": "2014-05-15T17:20:56Z",
+      "side": 1,
+      "message": "And replace that with another message.",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_fb46e725",
+        "filename": "includes/Search/Updater.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 873
+      },
+      "writtenOn": "2014-05-15T17:20:56Z",
+      "side": 1,
+      "message": "We try to let the bubble up if there are in jobs so it retries.  You probably ought to do something like that too.",
+      "revId": "328a8d60bd5c215c6ba5d5370e751fc75b23ee93",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
