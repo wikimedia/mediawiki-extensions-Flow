@@ -12,7 +12,6 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Templating;
-use Flow\View\PostSummaryRevisionView;
 use Flow\RevisionActionPermissions;
 
 class TopicSummaryBlock extends AbstractBlock {

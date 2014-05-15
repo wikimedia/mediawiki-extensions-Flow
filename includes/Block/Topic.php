@@ -21,7 +21,6 @@ use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\View\History\History;
 use Flow\View\History\HistoryRenderer;
-use Flow\View\PostRevisionView;
 
 class TopicBlock extends AbstractBlock {
 

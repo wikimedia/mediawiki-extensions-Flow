@@ -9,7 +9,6 @@ use Flow\Formatter\FormatterRow;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
-use Flow\View\HeaderRevisionView;
 
 class HeaderBlock extends AbstractBlock {
 
