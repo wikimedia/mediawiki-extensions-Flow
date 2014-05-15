@@ -16,6 +16,24 @@
       "revId": "49ffca13b7c0d23356f22e0e5d2cfc6433fc68a9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e23439c_06647b44",
+        "filename": "includes/TalkpageManager.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-15T07:31:37Z",
+      "side": 1,
+      "message": "Since the first localized message named user can be modified by local admins, I think we should validate the name in case a malicious user changes it to \u0027\u003c\u003e\u003c!!||{}{}[][]\u0027 or something.\n\nThe first check for getId is similar. Admins shouldn\u0027t be able to make the software impersonate an existing user. But if a user explicitly chooses the name \"Flow talk page manager\"....sucks for them.\n\nI don\u0027t think there\u0027s anything wrong with fallbacks...and I don\u0027t think that throwing an exception is a good idea either. That would allow a user to prevent pages to get flow-ified just by changing the message name.",
+      "parentUuid": "8e23439c_4ddad6ed",
+      "revId": "49ffca13b7c0d23356f22e0e5d2cfc6433fc68a9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
