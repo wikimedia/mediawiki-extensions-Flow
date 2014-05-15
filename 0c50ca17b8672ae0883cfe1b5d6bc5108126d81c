@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e23439c_882c1991",
+        "filename": "includes/LinksTableUpdater.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 93
+      },
+      "writtenOn": "2014-05-15T09:05:18Z",
+      "side": 1,
+      "message": "If you are following MediaWiki coding conventions, the if blocks should be surrounded by braces.",
+      "revId": "0c50ca17b8672ae0883cfe1b5d6bc5108126d81c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
