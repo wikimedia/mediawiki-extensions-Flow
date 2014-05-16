@@ -769,12 +769,10 @@ $c['storage.reference.wiki'] = $c->share( function( $c ) {
 		new TopKIndex(
 			$cache,
 			$storage,
-			'flow_ref:wiki:by-workflow',
+			'flow_ref:wiki:by-source',
 			array(
 				'ref_src_namespace',
 				'ref_src_title',
-				'ref_type',
-				'ref_target_namespace', 'ref_target_title',
 			),
 			array(
 				'order' => 'ASC',
@@ -786,10 +784,8 @@ $c['storage.reference.wiki'] = $c->share( function( $c ) {
 			$storage,
 			'flow_ref:wiki:by-revision',
 			array(
-				'ref_src_namespace',
-				'ref_src_title',
+				'ref_src_object_type',
 				'ref_src_object_id',
-				'ref_type',
 			),
 			array(
 				'order' => 'ASC',
@@ -826,12 +822,10 @@ $c['storage.reference.url'] = $c->share( function( $c ) {
 		new TopKIndex(
 			$cache,
 			$storage,
-			'flow_ref:url:by-workflow',
+			'flow_ref:url:by-source',
 			array(
 				'ref_src_namespace',
 				'ref_src_title',
-				'ref_type',
-				'ref_target',
 			),
 			array(
 				'order' => 'ASC',
@@ -843,10 +837,8 @@ $c['storage.reference.url'] = $c->share( function( $c ) {
 			$storage,
 			'flow_ref:url:by-revision',
 			array(
-				'ref_src_namespace',
-				'ref_src_title',
+				'ref_src_object_type',
 				'ref_src_object_id',
-				'ref_type',
 			),
 			array(
 				'order' => 'ASC',
