@@ -117,6 +117,10 @@ class LinksTableUpdater {
 			)
 		);
 
+		// let's make sure the merge doesn't fail when nothing were found
+		if ( !$wikiReferences ) $wikiReferences = array();
+		if ( !$urlReferences ) $urlReferences = array();
+
 		return array_merge( $wikiReferences, $urlReferences );
 	}
 }

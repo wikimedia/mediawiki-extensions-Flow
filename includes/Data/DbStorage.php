@@ -33,9 +33,9 @@ abstract class DbStorage implements ObjectStorage {
 				throw new DataModelException( "Unexpected non-array in nested SQL array" );
 			}
 			$outer[$i] = $this->preprocessSqlArray( $data );
-		 }
-	     return $outer;
-	 }
+		}
+		return $outer;
+	}
 
 	/**
 	 * At the moment, does three things:

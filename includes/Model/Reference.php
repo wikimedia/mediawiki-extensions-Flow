@@ -2,6 +2,7 @@
 
 namespace Flow\Model;
 
+use Flow\Exception\InvalidInputException;
 use Title;
 
 abstract class Reference {
@@ -27,7 +28,7 @@ abstract class Reference {
 		$this->srcTitle = $srcTitle;
 
 		if ( !in_array( $type, $this->validTypes ) ) {
-			throw new Flow\Exception\InvalidInputException(
+			throw new InvalidInputException(
 				"Invalid type $type specified for reference " . get_class( $this )
 			);
 		}
@@ -79,11 +80,11 @@ abstract class Reference {
 	 */
 	public function getStorageRow() {
 		return array(
-			'ref_src_workflow_id' => $this->workflowId,
+			'ref_src_workflow_id' => $this->workflowId->getAlphadecimal(),
 			'ref_src_namespace' => $this->srcTitle->getNamespace(),
 			'ref_src_title' => $this->srcTitle->getDBkey(),
 			'ref_src_object_type' => $this->objectType,
-			'ref_src_object_id' => $this->objectId,
+			'ref_src_object_id' => $this->objectId->getAlphadecimal(),
 			'ref_type' => $this->type,
 		);
 	}
@@ -208,7 +209,7 @@ class URLReference extends Reference {
 		$this->url = $url;
 
 		if ( !is_array( wfParseUrl( $url ) ) ) {
-			throw new Flow\Exception\InvalidInputException(
+			throw new InvalidInputException(
 				"Invalid URL $url specified for reference " . get_class( $this )
 			);
 		}

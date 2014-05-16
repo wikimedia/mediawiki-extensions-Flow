@@ -88,6 +88,8 @@
 	"flow-error-delete-failure": "於此專案之刪除失敗。",
 	"flow-error-hide-failure": "隱藏此專案失敗。",
 	"flow-error-prev-revision-mismatch": "另一用戶於幾秒鐘前編輯此帖子。您確信覆寫新近變更？",
+	"flow-error-default": "發生錯誤。",
+	"flow-error-fail-load-history": "載入歷史內容失敗。",
 	"flow-edit-header-submit": "保存頁頂",
 	"flow-summarize-topic-submit": "總結",
 	"flow-close-topic-submit": "關閉主題",

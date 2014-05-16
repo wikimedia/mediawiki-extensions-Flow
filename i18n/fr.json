@@ -288,5 +288,12 @@
 	"flow-terms-of-use-reopen-topic": "En cliquant sur « {{int:flow-reopen-topic-submit}} », vous acceptez les conditions d’utilisation de ce wiki.",
 	"flow-anon-warning": "Vous n’êtes pas connecté. Pour recevoir une attribution avec votre nom plutôt que votre adresse IP, vous pouvez [$1 vous connecter] ou [$2 créer un compte].",
 	"flow-whatlinkshere-post": "à partir d'un [$1 post]",
-	"flow-whatlinkshere-header": "à partir de la [$1 de l'en-tête]"
+	"flow-whatlinkshere-header": "à partir de la [$1 de l'en-tête]",
+	"flow": "Flux",
+	"flow-special-desc": "Cette page spéciale redirige vers un flux de travail Flux ou une note Flux d’après un UUID.",
+	"flow-special-type": "Type",
+	"flow-special-type-post": "Note",
+	"flow-special-type-workflow": "Flux de travail",
+	"flow-special-uuid": "UUID",
+	"flow-special-invalid-uuid": "Impossible de trouver un contenu correspondant au type et à l’UUID."
 }

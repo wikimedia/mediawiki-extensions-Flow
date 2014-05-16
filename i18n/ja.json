@@ -3,7 +3,8 @@
 		"authors": [
 			"Fryed-peach",
 			"Kanon und wikipedia",
-			"Shirayuki"
+			"Shirayuki",
+			"Whym"
 		]
 	},
 	"flow-desc": "ワークフロー管理システム",
@@ -87,7 +88,7 @@
 	"flow-error-not-a-post": "話題の題名は投稿としては保存できません。",
 	"flow-error-missing-header-content": "ヘッダーの本文がありません。ヘッダーを保存するには本文が必要です。",
 	"flow-error-missing-prev-revision-identifier": "以前の版の ID がありません。",
-	"flow-error-prev-revision-mismatch": "編集内容を保存できませんでした。より新しい変更が既に投稿されました。",
+	"flow-error-prev-revision-mismatch": "数秒前に別の利用者がこの投稿を編集しました。その編集による変更を上書きしてもよろしいですか？",
 	"flow-error-prev-revision-does-not-exist": "過去の版が見つかりませんでした。",
 	"flow-error-default": "エラーが発生しました。",
 	"flow-error-invalid-input": "Flow の本文の読み込みについて無効な値を指定しました。",
@@ -219,7 +220,12 @@
 	"flow-terms-of-use-summarize": "「{{int:flow-summarize-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-terms-of-use-close-topic": "「{{int:flow-close-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
 	"flow-terms-of-use-reopen-topic": "「{{int:flow-reopen-topic-submit}}」をクリックすると、このウィキの利用規約に同意したと見なされます。",
-	"flow-anon-warning": "ログインしていません。",
+	"flow-anon-warning": "ログインしていません。IPアドレスでなく名前で帰属表示を受けるには[$1 ログインする]か[$2 アカウントを作成する]ことができます。",
 	"flow-whatlinkshere-post": "[$1 投稿]から",
-	"flow-whatlinkshere-header": "[$1 ヘッダー]から"
+	"flow-whatlinkshere-header": "[$1 ヘッダー]から",
+	"flow": "Flow",
+	"flow-special-type": "種類",
+	"flow-special-type-post": "投稿",
+	"flow-special-type-workflow": "ワークフロー",
+	"flow-special-uuid": "UUID"
 }
