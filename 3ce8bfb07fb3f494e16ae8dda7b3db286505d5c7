@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e20cf91_2ab1a3dc",
+        "filename": "Hooks.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-16T05:28:28Z",
+      "side": 1,
+      "message": "Is there a reason we can\u0027t just get rid of it? It\u0027ll be in revision history if people want to look at it....",
+      "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_0ac6e74e",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-16T05:28:28Z",
+      "side": 1,
+      "message": "This isn\u0027t going to be mixed for this implementation.",
+      "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_cabfcfa6",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-16T05:28:28Z",
+      "side": 1,
+      "message": "If $this-\u003eworkflow is already a UUID, does this still work?",
+      "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_eac28b38",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-16T05:28:28Z",
+      "side": 1,
+      "message": "module messages are missing",
+      "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_aabc93b2",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-16T05:28:28Z",
+      "side": 1,
+      "message": "I don\u0027t think this case is necessary since you check for that in the constructor.",
+      "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_8ad9d72e",
+        "filename": "includes/Content/Content.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-16T05:28:28Z",
+      "side": 1,
+      "message": "Any reason you didn\u0027t put these two hooks with all the other ones?",
+      "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e20cf91_6ade7b16",
+        "filename": "includes/Content/Content.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-16T05:28:28Z",
+      "side": 1,
+      "message": "This is fine for now, but I think in the future it might be weird.\n\nThe definition of whether a talk page is occupied should be whether it\u0027s content model is \u003d\u003d \u0027flow-board\u0027.",
+      "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
