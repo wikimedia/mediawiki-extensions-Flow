@@ -4,6 +4,9 @@ namespace Flow\Tests;
 
 use Flow\Model\UUID;
 
+/**
+ * @group Flow
+ */
 class UUIDTest extends FlowTestCase {
 
 	static public function uuidConversionProvider() {
