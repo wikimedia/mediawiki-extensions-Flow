@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e20cf91_52bdb5d0",
+        "filename": "includes/Data/TopicHistoryIndex.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-05-16T20:37:45Z",
+      "side": 1,
+      "message": "Patch 133067 tries to solve the same problem.  Both approaches are fine.  Since the other one was merged earlier, we don\u0027t need this anymore.",
+      "revId": "245353ff3a9430ec4f60deffc18ce97eb42b2143",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
