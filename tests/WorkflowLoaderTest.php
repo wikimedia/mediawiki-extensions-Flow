@@ -5,6 +5,9 @@ namespace Flow\Tests;
 use Flow\Container;
 use ReflectionClass;
 
+/**
+ * @group Flow
+ */
 class WorkflowLoaderTest extends FlowTestCase {
 
 	public function provideDataCreateBlocks() {

@@ -12,6 +12,7 @@ use WikitextContent;
 
 /**
  * @group Database
+ * @group Flow
  */
 class ReferenceExtractorTestCase extends MediaWikiTestCase {
 	public function setUp() {

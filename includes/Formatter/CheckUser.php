@@ -2,10 +2,8 @@
 
 namespace Flow\Formatter;
 
-use Flow\Model\UUID;
 use IContextSource;
 use Linker;
-use Title;
 
 class CheckUser extends AbstractFormatter {
 	/**

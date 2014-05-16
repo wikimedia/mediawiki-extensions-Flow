@@ -5,6 +5,9 @@ namespace Flow\Tests;
 use Flow\Data\PostRevisionStorage;
 use Flow\Data\ObjectManager;
 
+/**
+ * @group Flow
+ */
 class RevisionStorageTest extends FlowTestCase {
 
 	public static function issuesQueryCountProvider() {

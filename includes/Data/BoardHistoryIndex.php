@@ -89,11 +89,6 @@ class BoardHistoryIndex extends TopKIndex {
 			$old['topic_list_id'] = $old['rev_type_id'];
 			parent::onAfterRemove( $object, $old );
 		} elseif ( $object instanceof PostRevision || $object instanceof PostSummary ) {
-			if ( $object instanceof PostRevision ) {
-				$postRevision = $object;
-			} else {
-				$postRevision = $object->getCollection()->getPost()->getLastRevision();
-			}
 			$topicListId = $this->findTopicListId( $object );
 			if ( $topicListId ) {
 				$old['topic_list_id'] = $topicListId;

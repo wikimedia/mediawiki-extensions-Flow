@@ -5,7 +5,6 @@ namespace Flow;
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use EchoBasicFormatter;
-use Title;
 
 // could be renamed later if we have more formatters
 class NotificationFormatter extends EchoBasicFormatter {

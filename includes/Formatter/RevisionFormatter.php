@@ -15,7 +15,6 @@ use Flow\UrlGenerator;
 use GenderCache;
 use IContextSource;
 use Message;
-use Title;
 
 /**
  * This implements a serializer for converting revision objects

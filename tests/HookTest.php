@@ -6,6 +6,9 @@ use FlowHooks;
 use Flow\Model\UUID;
 use RecentChange;
 
+/**
+ * @group Flow
+ */
 class HookTest extends \MediaWikiTestCase {
 	static public function onIRCLineURLProvider() {
 		// specific uuid's dont mean anything, just repeatability
