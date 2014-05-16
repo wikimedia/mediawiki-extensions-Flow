@@ -77,7 +77,7 @@
 	"flow-topic-action-close-topic": "Stäng ämne",
 	"flow-topic-action-reopen-topic": "Återöppna ämne",
 	"flow-topic-action-summarize-topic": "Sammanfatta",
-	"flow-topic-action-resummarize-topic": "Redigera sammanfattning",
+	"flow-topic-action-resummarize-topic": "Sammanfatta redigeringen",
 	"flow-topic-action-suppress-topic": "Censurera ämne",
 	"flow-topic-action-unhide-topic": "Sluta dölja ämne",
 	"flow-topic-action-undelete-topic": "Återställ ämne",
@@ -279,5 +279,12 @@
 	"flow-terms-of-use-reopen-topic": "Genom att klicka på \"{{int:flow-reopen-topic-submit}}\" godkänner du användarvillkoren för denna wiki.",
 	"flow-anon-warning": "Du är inte inloggad. För att få erkännande med ditt namn istället för din IP-adress kan du [$1 logga in] eller [$2 skapa ett konto].",
 	"flow-whatlinkshere-post": "från ett [$1 inlägg]",
-	"flow-whatlinkshere-header": "från [$1 sidhuvudet]"
+	"flow-whatlinkshere-header": "från [$1 sidhuvudet]",
+	"flow": "Flöde",
+	"flow-special-desc": "Denna specialsida omdirigerar till ett Flödesarbetsflöde eller ett Flödesinlägg för ett angivet UUID.",
+	"flow-special-type": "Typ",
+	"flow-special-type-post": "Inlägg",
+	"flow-special-type-workflow": "Arbetsflöde",
+	"flow-special-uuid": "UUID",
+	"flow-special-invalid-uuid": "Kunde inte hitta innehåll som matchar typen och UUID:et."
 }

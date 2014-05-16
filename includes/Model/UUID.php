@@ -113,9 +113,12 @@ class UUID {
 	}
 
 	public function __wakeup() {
-		if ( $this->binaryValue ) {
-			// some B/C code
+		// some B/C code
+		// if we have outdated data, correct it and purge all other properties
+		if ( $this->binaryValue && strlen( $this->binaryValue ) !== self::BIN_LEN ) {
 			$this->binaryValue = substr( $this->binaryValue, 0, self::BIN_LEN );
+			$this->hexValue = null;
+			$this->alphadecimalValue = null;
 		}
 	}
 

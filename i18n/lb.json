@@ -142,5 +142,7 @@
 	"flow-terms-of-use-reply": "Wann Dir op \"{{int:flow-reply-submit}}\" klickt, da sidd Dir mat de Benotzungsbedingunge vun dëser Wiki d'accord.",
 	"flow-terms-of-use-edit": "Duerch Späichere vun Ären Ännerunge sidd Dir mat de Konditioune fir d'Benotze vun dëser Wiki d'Accord.",
 	"flow-anon-warning": "Dir sidd net ageloggt. Fir a Plaz vun enger Verbindung mat Ärer IP-Adress eng Verbindung mat Ärem Numm ze kréie musst Dir Iech [$1 aloggen] oder [$2 e Benotzerkont opmaachen].",
-	"flow-whatlinkshere-post": "vun engem [$1 Message]"
+	"flow-whatlinkshere-post": "vun engem [$1 Message]",
+	"flow-special-type": "Typ",
+	"flow-special-uuid": "UUID"
 }

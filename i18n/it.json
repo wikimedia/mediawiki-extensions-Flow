@@ -279,5 +279,12 @@
 	"flow-terms-of-use-reopen-topic": "Cliccando su \"{{int:flow-reopen-topic-submit}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-anon-warning": "Non hai effettuato l'accesso. Per ricevere l'attribuzione con il tuo nome, anziché con l'indirizzo IP, puoi [$1 accedere] o [$2 creare un'utenza].",
 	"flow-whatlinkshere-post": "da un [$1 messaggio]",
-	"flow-whatlinkshere-header": "dall'[$1 intestazione]"
+	"flow-whatlinkshere-header": "dall'[$1 intestazione]",
+	"flow": "Flusso",
+	"flow-special-desc": "Questa pagina speciale reindirizza a un messaggio o a un flusso di lavoro Flow dato un UUID.",
+	"flow-special-type": "Tipo",
+	"flow-special-type-post": "Messaggio",
+	"flow-special-type-workflow": "Flusso di lavoro",
+	"flow-special-uuid": "UUID",
+	"flow-special-invalid-uuid": "Impossibile trovare il contenuto corrispondente il tipo e l'UUID."
 }

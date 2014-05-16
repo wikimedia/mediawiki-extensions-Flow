@@ -45,6 +45,13 @@ class FlowUpdateUserWiki extends LoggedUpdateMaintenance {
 		$count = $this->mBatchSize;
 		$dbr = Container::get( 'db.factory' )->getDB( DB_SLAVE );
 
+		// If table flow_header_revision does not exist, that means the wiki
+		// has run the data migration before or the wiki starts from scratch,
+		// there is no point to run the script againt invalid tables
+		if ( !$dbr->tableExists( 'flow_header_revision', __METHOD__ ) ) {
+			return true;
+		}
+
 		while ( $count == $this->mBatchSize ) {
 			$count = 0;
 			$res = $dbr->select(

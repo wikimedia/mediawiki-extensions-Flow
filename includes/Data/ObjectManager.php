@@ -2,16 +2,10 @@
 
 namespace Flow\Data;
 
-use Flow\Container;
 use Flow\Model\UUID;
-use Flow\DbFactory;
-use BagOStuff;
 use FormatJson;
 use SplObjectStorage;
 use Flow\Exception\DataModelException;
-use Flow\Exception\InvalidInputException;
-use Flow\Exception\DataPersistenceException;
-use Flow\Exception\NoIndexException;
 
 /**
  * Writable indexes. Error handling is all wrong currently.

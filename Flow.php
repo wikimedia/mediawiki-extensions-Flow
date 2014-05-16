@@ -143,6 +143,9 @@ $wgAutoloadClasses['Flow\Data\DbStorage'] = $dir . 'includes/Data/DbStorage.php'
 $wgAutoloadClasses['Flow\Data\BasicDbStorage'] = $dir . 'includes/Data/BasicDbStorage.php';
 $wgAutoloadClasses['Flow\Data\ObjectMapper'] = $dir . 'includes/Data/ObjectMapper.php';
 $wgAutoloadClasses['Flow\Data\BasicObjectMapper'] = $dir . 'includes/Data/BasicObjectMapper.php';
+$wgAutoloadClasses['Flow\Data\TopicListStorage'] = $dir . 'includes/Data/TopicListStorage.php';
+$wgAutoloadClasses['Flow\Data\TopicListLastUpdatedStorage'] = $dir . 'includes/Data/TopicListLastUpdatedStorage.php';
+$wgAutoloadClasses['Flow\Data\WorkflowTopicListListener'] = $dir . 'includes/Data/WorkflowTopicListListener.php';
 $wgAutoloadClasses['Flow\Data\CachingObjectMapper'] = $dir . 'includes/Data/CachingObjectMapper.php';
 $wgAutoloadClasses['Flow\Data\BufferedCache'] = $dir . 'includes/Data/BufferedCache.php';
 $wgAutoloadClasses['Flow\Data\LocalBufferedCache'] = $dir . 'includes/Data/LocalBufferedCache.php';
@@ -314,6 +317,7 @@ $wgAutoloadClasses['Flow\Exception\DataModelException'] = $dir . 'includes/Excep
 $wgAutoloadClasses['Flow\Exception\DataPersistenceException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\WikitextException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\NoIndexException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\FailCommitException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 
 // Configuration
 
@@ -427,7 +431,7 @@ $wgFlowUseMemcache = true;
 // of 3 days means Flow will attempt to keep in memcache all data models requested in
 // the last 3 days.
 $wgFlowCacheTime = 60 * 60 * 24 * 3;
-$wgFlowCacheVersion = '4.3';
+$wgFlowCacheVersion = '4.4';
 
 // Custom group name for AbuseFilter
 // Acceptable values:
