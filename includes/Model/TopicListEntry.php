@@ -18,11 +18,16 @@ class TopicListEntry {
 	protected $topicId;
 
 	/**
+	 * @var string|null
+	 */
+	protected $topicWorkflowLastUpdated;
+
+	/**
 	 * @param Workflow $topicList
 	 * @param Workflow $topic
 	 * @return TopicListEntry
 	 */
-	static public function create( Workflow $topicList, Workflow $topic ) {
+	static public function create( Workflow $topicList, Workflow $topic, $topicWorkflowLastUpdated = null ) {
 		// die( var_dump( array(
 		// 	'topicList' => $topicList,
 		// 	'topic' => $topic,
@@ -30,6 +35,7 @@ class TopicListEntry {
 		$obj = new self;
 		$obj->topicListId = $topicList->getId();
 		$obj->topicId = $topic->getId();
+		$obj->topicWorkflowLastUpdated = $topicWorkflowLastUpdated;
 		return $obj;
 	}
 
@@ -47,6 +53,9 @@ class TopicListEntry {
 		}
 		$obj->topicListId = UUID::create( $row['topic_list_id'] );
 		$obj->topicId = UUID::create( $row['topic_id'] );
+		if ( isset( $row['topicWorkflowLastUpdated'] ) ) {
+			$obj->topicWorkflowLastUpdated = $row['workflow_last_update_timestamp'];
+		}
 		return $obj;
 	}
 
@@ -55,10 +64,14 @@ class TopicListEntry {
 	 * @return array
 	 */
 	static public function toStorageRow( TopicListEntry $obj ) {
-		return array(
+		$row = array(
 			'topic_list_id' => $obj->topicListId->getAlphadecimal(),
 			'topic_id' => $obj->topicId->getAlphadecimal(),
 		);
+		if ( $obj->topicWorkflowLastUpdated ) {
+			$row['workflow_last_update_timestamp'] = $obj->topicWorkflowLastUpdated;
+		}
+		return $row;
 	}
 
 	/**
@@ -73,6 +86,13 @@ class TopicListEntry {
 	 */
 	public function getListId() {
 		return $this->topicListId;
+	}
+
+	/**
+	 * @return timestamp|null
+	 */
+	public function getTopicWorkflowLastUpdated() {
+		return $this->topicWorkflowLastUpdated;
 	}
 }
 
