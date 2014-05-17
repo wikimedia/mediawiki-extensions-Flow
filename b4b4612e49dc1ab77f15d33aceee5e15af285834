@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e20cf91_c82c7292",
+        "filename": "modules/base/action.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-05-17T05:49:06Z",
+      "side": 1,
+      "message": "Using \u0027\u003ctextarea\u003e\u0027 is better than \u0027\u003cdiv\u003e\u0027 to prevent XSS even though the content is not added to the DOM.  We could just do the unescaping in the editor object",
+      "revId": "b4b4612e49dc1ab77f15d33aceee5e15af285834",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
