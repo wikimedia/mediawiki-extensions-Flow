@@ -2,6 +2,8 @@
 
 namespace Flow\Data;
 
+use Flow\Model\UUID;
+
 /**
  * Storage class for topic list ordered by last updated
  */
@@ -32,7 +34,7 @@ class TopicListLastUpdatedStorage extends TopicListStorage {
 
 		$result = array();
 		foreach ( $res as $row ) {
-			$result[] = (array) $row;
+			$result[] = UUID::convertUUIDs( (array) $row, 'alphadecimal' );
 		}
 
 		return $result;
