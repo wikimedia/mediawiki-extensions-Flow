@@ -57,7 +57,9 @@ class WorkflowTopicListListener implements LifecycleHandler {
 			$row = TopicListEntry::toStorageRow( $entry );
 			$this->topicListLastUpdatedIndex->onAfterUpdate(
 				$entry,
-				$row,
+				$row + array(
+					'workflow_last_update_timestamp' => $old['workflow_last_update_timestamp']
+				),
 				$row + array(
 					'workflow_last_update_timestamp' => $new['workflow_last_update_timestamp']
 				)

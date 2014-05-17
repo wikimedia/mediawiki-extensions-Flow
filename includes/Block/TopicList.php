@@ -126,7 +126,7 @@ class TopicListBlock extends AbstractBlock {
 
 		$title = $this->workflow->getArticleTitle();
 		$topicWorkflow = Workflow::create( $topicDef, $this->user, $title );
-		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
+		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow, $topicWorkflow->getLastModified() );
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 
 		$firstPost = null;
