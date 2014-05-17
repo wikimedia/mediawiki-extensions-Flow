@@ -250,6 +250,13 @@ class TopicListBlock extends AbstractBlock {
 
 		$findOptions['pager-limit'] = $limit;
 
+		if ( isset( $requestOptions['sortby'] ) && $requestOptions['sortby'] === 'updated' ) {
+			$findOptions['sort'] = 'workflow_last_update_timestamp';
+			$findOptions['pager-dir'] = 'rev';
+			$findOptions['order'] = 'desc';
+			$findOptions['limit'] = 500;
+		}
+
 		return $findOptions;
 	}
 
