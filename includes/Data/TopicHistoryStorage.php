@@ -62,6 +62,10 @@ class TopicHistoryStorage implements ObjectStorage {
 		throw new DataModelException( __CLASS__ . ' does not support remove action', 'process-data' );
 	}
 
+	public function validate( array $row ) {
+		return true;
+	}
+
 	public function getIterator() {
 		throw new DataModelException( 'Not Implemented', 'process-data' );
 	}
