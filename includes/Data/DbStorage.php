@@ -164,4 +164,11 @@ abstract class DbStorage implements ObjectStorage {
 		// Everything passes
 		return true;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function validate( array $row ) {
+		return true;
+	}
 }
