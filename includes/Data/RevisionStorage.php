@@ -155,6 +155,13 @@ abstract class RevisionStorage extends DbStorage {
 		} else {
 			$res = $this->findMultiInternal( $queries, $options );
 		}
+
+		// Merge data from external store & get rid of failures
+		$res = self::mergeExternalContent( $res );
+		foreach ( $res as $i => $result ) {
+			$res[$i] = array_filter( $result, array( $this, 'validate' ) );
+		}
+
 		// Fetches content for all revisions flagged 'external'
 		return self::mergeExternalContent( $res );
 	}
@@ -470,6 +477,17 @@ abstract class RevisionStorage extends DbStorage {
 	 */
 	public function getPrimaryKeyColumns() {
 		return array( 'rev_id' );
+	}
+
+	/**
+	 * When retrieving revisions from DB, self::mergeExternalContent will be
+	 * called to fetch the content. This could fail, resulting in the content
+	 * being a 'false' value.
+	 *
+	 * {@inheritDoc}
+	 */
+	public function validate( array $row ) {
+		return $row['rev_content'] !== false;
 	}
 
 	public function getIterator() {
