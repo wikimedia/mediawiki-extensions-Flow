@@ -144,5 +144,9 @@
 	"flow-topic-complete": "Полный вид",
 	"flow-terms-of-use-new-topic": "Нажимая «{{int:flow-newtopic-save}}», вы соглашаетесь с условиями использования этого вики-проекта.",
 	"flow-terms-of-use-reply": "Нажимая «{{int:flow-reply-submit}}», вы соглашаетесь с условиями использования этого вики-проекта.",
-	"flow-terms-of-use-edit": "Сохраняя изменения, вы соглашаетесь с условиями использования этого вики-проекта."
+	"flow-terms-of-use-edit": "Сохраняя изменения, вы соглашаетесь с условиями использования этого вики-проекта.",
+	"flow": "Поток",
+	"flow-special-type": "Тип",
+	"flow-special-uuid": "UUID",
+	"flow-special-invalid-uuid": "Не удалось найти материалы, соответствующие типу и UUID."
 }
