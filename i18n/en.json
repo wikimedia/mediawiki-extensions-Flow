@@ -178,6 +178,7 @@
     "flow-paging-rev": "More recent topics",
     "flow-paging-fwd": "Older topics",
     "flow-last-modified": "Last modified about $1",
+    "flow-workflow": "workflow",
     "flow-notification-reply": "$1 {{GENDER:$1|replied}} to your <span class=\"plainlinks\">[$5 post]</span> in \"$2\" on \"$4\".",
     "flow-notification-reply-bundle": "$1 and $5 {{PLURAL:$6|other|others}} {{GENDER:$1|replied}} to your <span class=\"plainlinks\">[$4 post]</span> in \"$2\" on \"$3\".",
     "flow-notification-edit": "$1 {{GENDER:$1|edited}} a <span class=\"plainlinks\">[$5 post]</span> in \"$2\" on [[$3|$4]].",
