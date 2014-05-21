@@ -51,7 +51,7 @@ class IRCLineUrlFormatter extends AbstractFormatter {
 
 		foreach ( $accept as $key ) {
 			if ( isset( $links[$key] ) ) {
-				return $links[$key]->getFullUrl();
+				return $links[$key]->getCanonicalURL();
 			}
 		}
 
