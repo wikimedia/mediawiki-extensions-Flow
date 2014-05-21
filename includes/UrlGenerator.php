@@ -342,7 +342,7 @@ class UrlGenerator extends BaseUrlGenerator {
 	 */
 	public function workflowLink( Title $title = null, UUID $workflowId ) {
 		return new Anchor(
-			wfMessage( 'flow-something' ),
+			wfMessage( 'flow-workflow' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array( 'workflow' => $workflowId->getAlphadecimal() )
 		);
