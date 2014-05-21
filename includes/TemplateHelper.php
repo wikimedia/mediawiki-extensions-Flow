@@ -9,7 +9,20 @@ use LightnCandy;
 
 class TemplateHelper {
 
+	/**
+	 * @var string
+	 */
+	protected $templateDir;
+
+	/**
+	 * @var callable[]
+	 */
 	protected $renderers;
+
+	/**
+	 * @var bool Always compile template files
+	 */
+	protected $forceRecompile = false;
 
 	static protected $blockMap = array(
 		'header' => array(
@@ -29,11 +42,11 @@ class TemplateHelper {
 
 	/**
 	 * @param string $templateDir
-	 * @param string|null $tempDir Temporary directory
+	 * @param boolean $forceRecompile
 	 */
-	public function __construct( $templateDir, $tempDir ) {
+	public function __construct( $templateDir, $forceRecompile = false ) {
 		$this->templateDir = $templateDir;
-		$this->tempDir = $tempDir;
+		$this->forceRecompile = $forceRecompile;
 	}
 
 	/**
@@ -59,63 +72,67 @@ class TemplateHelper {
 			return $this->renderers[$templateName];
 		}
 
-		// @todo remove this is_dev check
-		$is_dev = $_SERVER['SCRIPT_FILENAME'] === '/vagrant/mediawiki/index.php';
-
 		$filenames = $this->getTemplateFilenames( $templateName );
 
-		if ( $is_dev || !file_exists( $filenames['compiled'] ) ) {
+		if ( $this->forceRecompile ) {
 			if ( !file_exists( $filenames['template'] ) ) {
 				throw new FlowException( "Could not locate template: {$filenames['template']}" );
 			}
 
-			$code = LightnCandy::compile(
-				file_get_contents( $filenames['template'] ),
-				array(
-					'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
-						| LightnCandy::FLAG_EXTHELPER
-						| LightnCandy::FLAG_SPVARS
-						| LightnCandy::FLAG_HANDLEBARS, // FLAG_THIS + FLAG_WITH + FLAG_PARENT + FLAG_JSQUOTE + FLAG_ADVARNAME + FLAG_NAMEDARG
-					'basedir' => array( $this->templateDir ),
-					'fileext' => array( '.html.handlebars' ),
-					'helpers' => array(
-						'l10n' => 'Flow\TemplateHelper::l10n',
-						'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
-						'timestamp' => 'Flow\TemplateHelper::timestamp',
-						'html' => 'Flow\TemplateHelper::html',
-						'block' => 'Flow\TemplateHelper::block',
-						'author' => 'Flow\TemplateHelper::author',
-						'url' => 'Flow\TemplateHelper::url',
-						'formElement' => 'Flow\TemplateHelper::formElement',
-						'math' => 'Flow\TemplateHelper::math',
-						'post' => 'Flow\TemplateHelper::post',
-						'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
-						'historyTimestamp' => 'Flow\TemplateHelper::historyTimestamp',
-						'historyDescription' => 'Flow\TemplateHelper::historyDescription',
-						'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
-						'l10nParse' => 'Flow\TemplateHelper::l10nParse',
-						'diffRevision' => 'Flow\TemplateHelper::diffRevision',
-						'moderationAction' => 'Flow\TemplateHelper::moderationAction',
-						'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
-					),
-					'hbhelpers' => array(
-						'eachPost' => 'Flow\TemplateHelper::eachPost',
-						'pipelist' => 'Flow\TemplateHelper::pipelist',
-					),
-				)
-			);
+			$code = self::compile( file_get_contents( $filenames['template'] ) );
+
 			if ( !$code ) {
 				throw new \Exception( 'Not possible?' );
 			}
 			file_put_contents( $filenames['compiled'], $code );
 		}
 
-		/** @var Callable $renderer */
-		$renderer = include $filenames['compiled'];
+		/** @var callable $renderer */
+		$renderer = require $filenames['compiled'];
 		return $this->renderers[$templateName] = function( $args, array $scopes = array() ) use ( $templateName, $renderer ) {
 			$section = new \ProfileSection( __CLASS__ . " $templateName" );
 			return $renderer( $args, $scopes );
 		};
+	}
+
+	static public function compile( $code ) {
+		return LightnCandy::compile(
+			$code,
+			array(
+				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
+					| LightnCandy::FLAG_EXTHELPER
+					| LightnCandy::FLAG_WITH
+					| LightnCandy::FLAG_THIS
+					| LightnCandy::FLAG_SPVARS
+					| LightnCandy::FLAG_PARENT,
+				'basedir' => array( $this->templateDir ),
+				'fileext' => array( '.html.handlebars' ),
+				'helpers' => array(
+					'l10n' => 'Flow\TemplateHelper::l10n',
+					'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
+					'timestamp' => 'Flow\TemplateHelper::timestamp',
+					'html' => 'Flow\TemplateHelper::html',
+					'block' => 'Flow\TemplateHelper::block',
+					'author' => 'Flow\TemplateHelper::author',
+					'url' => 'Flow\TemplateHelper::url',
+					'formElement' => 'Flow\TemplateHelper::formElement',
+					'math' => 'Flow\TemplateHelper::math',
+					'post' => 'Flow\TemplateHelper::post',
+					'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
+					'historyTimestamp' => 'Flow\TemplateHelper::historyTimestamp',
+					'historyDescription' => 'Flow\TemplateHelper::historyDescription',
+					'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
+					'l10nParse' => 'Flow\TemplateHelper::l10nParse',
+					'diffRevision' => 'Flow\TemplateHelper::diffRevision',
+					'moderationAction' => 'Flow\TemplateHelper::moderationAction',
+					'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
+				),
+				'blockhelpers' => array(
+					'eachPost' => 'Flow\TemplateHelper::eachPost',
+					'pipelist' => 'Flow\TemplateHelper::pipelist',
+				),
+			)
+		);
 	}
 
 	/**
