@@ -439,3 +439,6 @@ $wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', '
 // Directory to store compiled templates. Set to false to require pre-compilation
 $wgFlowTemplateTempDir = __DIR__ . '/handlebars';
 
+// Force recompilation of templates on every run(typically for development mode)
+$wgFlowForceTemplateRecompile = false;
+

@@ -9,7 +9,25 @@ use LightnCandy;
 
 class TemplateHelper {
 
+	/**
+	 * @var string
+	 */
+	protected $templateDir;
+
+	/**
+	 * @var string
+	 */
+	protected $tempDir;
+
+	/**
+	 * @var callable[]
+	 */
 	protected $renderers;
+
+	/**
+	 * @var bool Always compile template files
+	 */
+	protected $forceRecompile = false;
 
 	static protected $blockMap = array(
 		'header' => array(
@@ -31,9 +49,10 @@ class TemplateHelper {
 	 * @param string $templateDir
 	 * @param string|null $tempDir Temporary directory
 	 */
-	public function __construct( $templateDir, $tempDir ) {
+	public function __construct( $templateDir, $tempDir, $forceRecompile = false ) {
 		$this->templateDir = $templateDir;
 		$this->tempDir = $tempDir;
+		$this->forceRecompile = $forceRecompile;
 	}
 
 	public function getTemplateFilename( $templateName ) {
@@ -52,13 +71,10 @@ class TemplateHelper {
 			return $this->renderers[$templateName];
 		}
 
-		// @todo remove this is_dev check
-		$is_dev = $_SERVER['SCRIPT_FILENAME'] === '/vagrant/mediawiki/index.php';
-
 		$template = $this->getTemplateFilename( $templateName );
 		$compiled = "$template.php";
 
-		if ( $is_dev || !file_exists( $compiled ) ) {
+		if ( $this->forceRecompile || !file_exists( $compiled ) ) {
 			if ( !file_exists( $template ) ) {
 				throw new FlowException( "Could not locate template: $template" );
 			}

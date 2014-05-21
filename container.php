@@ -72,8 +72,13 @@ $c['permissions'] = $c->share( function( $c ) {
 } );
 
 $c['lightncandy'] = $c->share( function( $c ) {
-	global $wgFlowTemplateTempDir;
-	return new Flow\TemplateHelper( __DIR__ . '/handlebars', $wgFlowTemplateTempDir );
+	global $wgFlowTemplateTempDir, $wgFlowForceTemplateRecompile;
+
+	return new Flow\TemplateHelper(
+		__DIR__ . '/handlebars',
+		$wgFlowTemplateTempDir,
+		$wgFlowForceTemplateRecompile
+	);
 } );
 $c['templating.namespaces'] = array(
 	'flow' => __DIR__ . '/templates',
