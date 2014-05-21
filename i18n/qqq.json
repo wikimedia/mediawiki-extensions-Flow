@@ -13,6 +13,7 @@
 	},
 	"flow-desc": "{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}",
 	"flow-talk-taken-over": "Content to replace existing page content by for pages that are turned into Flow boards.",
+	"flow-talk-username": "Username used for the revision added when Flow takes over a talk page.",
 	"log-name-flow": "{{doc-logpage}}\nName of the Flow log filter on the [[Special:Log]] page.",
 	"logentry-delete-flow-delete-post": "Text for a deletion log entry when a post was deleted. Parameters:\n* $1 - the user: link to the user page\n* $2 - the username. Can be used for GENDER.\n* $3 - the page where the post was moderated\n* $4 - permalink URL to the moderated post\n{{Related|Flow-logentry}}",
 	"logentry-delete-flow-restore-post": "Text for a deletion log entry when a deleted post was restored. Parameters:\n* $1 - the user: link to the user page\n* $2 - the username. Can be used for GENDER.\n* $3 - the page where the post was moderated\n* $4 - permalink URL to the moderated post\n{{Related|Flow-logentry}}",
