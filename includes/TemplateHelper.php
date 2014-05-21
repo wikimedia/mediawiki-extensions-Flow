@@ -53,7 +53,8 @@ class TemplateHelper {
 		}
 
 		// @todo remove this is_dev check
-		$is_dev = $_SERVER['SCRIPT_FILENAME'] === '/vagrant/mediawiki/index.php';
+		$is_dev = $_SERVER['SCRIPT_FILENAME'] === '/vagrant/mediawiki/index.php'
+			&& strpos( $_SERVER['SERVER_NAME'], 'ee-flow' ) === false;
 
 		$template = $this->getTemplateFilename( $templateName );
 		$compiled = "$template.php";
