@@ -25,16 +25,18 @@ class TopicHistoryQuery  extends AbstractQuery {
 		}
 
 		$this->loadMetadataBatch( $history );
-		$results = array();
+		$results = $replies = array();
 		foreach ( $history as $revision ) {
 			try {
 				$results[] = $row = new TopicRow;
 				$this->buildResult( $revision, null, $row );
-				$replyToId = $revision->getReplyToId();
-				if ( $replyToId ) {
-					// $revisionId into the key rather than value prevents
-					// duplicate insertion
-					$replies[$replyToId->getAlphadecimal()][$revision->getPostId()->getAlphadecimal()] = true;
+				if ( $revision instanceof PostRevision ) {
+					$replyToId = $revision->getReplyToId();
+					if ( $replyToId ) {
+						// $revisionId into the key rather than value prevents
+						// duplicate insertion
+						$replies[$replyToId->getAlphadecimal()][$revision->getPostId()->getAlphadecimal()] = true;
+					}
 				}
 			} catch ( FlowException $e ) {
 				\MWExceptionHandler::logException( $e );
@@ -42,8 +44,10 @@ class TopicHistoryQuery  extends AbstractQuery {
 		}
 
 		foreach ( $results as $result ) {
-			$alpha = $result->revision->getPostId()->getAlphadecimal();
-			$result->replies = isset( $replies[$alpha] ) ? array_keys( $replies[$alpha] ) : array();
+			if ( $result->revision instanceof PostRevision ) {
+				$alpha = $result->revision->getPostId()->getAlphadecimal();
+				$result->replies = isset( $replies[$alpha] ) ? array_keys( $replies[$alpha] ) : array();
+			}
 		}
 
 		return $results;
