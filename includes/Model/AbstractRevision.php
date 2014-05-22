@@ -28,7 +28,7 @@ abstract class AbstractRevision {
 		self::MODERATED_HIDDEN,
 		self::MODERATED_DELETED,
 		self::MODERATED_SUPPRESSED,
-		self::MODERATED_CLOSED,
+		self::MODERATED_CLOSED
 	);
 
 	/**
@@ -155,11 +155,15 @@ abstract class AbstractRevision {
 	 */
 	protected $lastEditUserIp;
 
-
 	/**
 	 * @var string|null The wiki of the user that most recently changed the content
 	 */
 	protected $lastEditUserWiki;
+
+	/**
+	 * @var RevisionState[]
+	 */
+	protected $revisionState = array();
 
 	/**
 	 * @param string[] $row
@@ -220,6 +224,13 @@ abstract class AbstractRevision {
 		$obj->lastEditUserIp = isset( $row['rev_edit_user_ip'] ) ? $row['rev_edit_user_ip'] : null;
 		$obj->lastEditUserWiki = isset( $row['rev_edit_user_wiki'] ) ? $row['rev_edit_user_wiki'] : null;
 
+		// Revision state
+		if ( isset( $row['frs'] ) ) {
+			foreach ( unserialize( $row['frs'] ) as $state ) {
+				$this->revisionState[$state->getState()] = RevisionState::fromStorageRow( $state );
+			}
+		}
+
 		return $obj;
 	}
 
@@ -228,6 +239,18 @@ abstract class AbstractRevision {
 	 * @return string[]
 	 */
 	static public function toStorageRow( $obj ) {
+		$state = array();
+		foreach ( $obj->revisionState as $state ) {
+			$state[$state->getState()] = serialize( array(
+				// Use getter method because PHP doesn't have package visibility
+				'frs_rev_id' => $state->getRevId()->getAlphadecimal(),
+				'frs_state' => $state->getState(),
+				'frs_user_id' => $state->getUserId(),
+				'frs_user_ip' => $state->getUserIp(),
+				'frs_user_wiki' => $state->getUserWiki(),
+				'frs_comment' => $state->getComment()
+			) );
+		}
 		return array(
 			'rev_id' => $obj->revId->getAlphadecimal(),
 			'rev_user_id' => $obj->userId,
@@ -253,6 +276,7 @@ abstract class AbstractRevision {
 			'rev_edit_user_id' => $obj->lastEditUserId,
 			'rev_edit_user_ip' => $obj->lastEditUserIp,
 			'rev_edit_user_wiki' => $obj->lastEditUserWiki,
+			'frs' => $state
 		);
 	}
 
@@ -556,10 +580,31 @@ abstract class AbstractRevision {
 	}
 
 	/**
+	 * @param string
+	 */
+	public function setChangeType( $changeType ) {
+		$this->changeType = $changeType;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getModerationState() {
 		return $this->moderationState;
+	}
+
+	/**
+	 * @return revisionState[]
+	 */
+	public function getRevisionState() {
+		return $this->revisionState;
+	}
+
+	/**
+	 * @param RevisionState[]
+	 */
+	public function setRevisionState( array $revisionState ) {
+		$this->revisionState = $revisionState;
 	}
 
 	/**
