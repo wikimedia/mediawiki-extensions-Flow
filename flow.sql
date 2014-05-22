@@ -136,6 +136,17 @@ CREATE INDEX /*i*/flow_revision_type_id ON /*_*/flow_revision (rev_type, rev_typ
 CREATE INDEX /*i*/flow_revision_user ON
 	/*_*/flow_revision (rev_user_id, rev_user_ip, rev_user_wiki);
 
+CREATE TABLE /*_*/flow_revision_state (
+	frs_rev_id binary(11) not null,
+	frs_state varchar(32) binary not null,
+	frs_user_id bigint unsigned not null default 0,
+	frs_user_ip varbinary(39) default null,
+	frs_user_wiki varchar(32) binary not null default '',
+	frs_comment varchar(255) binary
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/flow_revision_state_rev_id_state ON /*_*/flow_revision_state (frs_rev_id,frs_state);
+
 -- Closure table implementation of tree storage in sql
 -- We may be able to go simpler than this
 CREATE TABLE /*_*/flow_tree_node (
