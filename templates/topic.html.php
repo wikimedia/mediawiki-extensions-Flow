@@ -37,7 +37,7 @@ if ( $postActionMenu->isAllowed( 'reply' ) ) {
 				'name' => 'wpEditToken',
 				'value' => $editToken,
 			) ) .
-			Html::textarea( $block->getName() . '_topic-reply-content', '', array(
+			Html::textarea( $block->getName() . '_content', '', array(
 				'placeholder' => wfMessage( 'flow-reply-topic-placeholder', $user->getName() )
 									// $title sourced from Templating::getContent is safe to output
 									->rawParams( $title )
