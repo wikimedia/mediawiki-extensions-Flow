@@ -97,6 +97,7 @@ $wgAutoloadClasses['Flow\Model\AbstractSummary'] = $dir . 'includes/Model/Abstra
 $wgAutoloadClasses['Flow\Model\PostSummary'] = $dir . 'includes/Model/PostSummary.php';
 $wgAutoloadClasses['Flow\Model\TopicListEntry'] = $dir . 'includes/Model/TopicListEntry.php';
 $wgAutoloadClasses['Flow\Model\Workflow'] = $dir . 'includes/Model/Workflow.php';
+$wgAutoloadClasses['Flow\Model\RevisionState'] = $dir . 'includes/Model/RevisionState.php';
 $wgAutoloadClasses['Flow\Model\UUID'] = "$dir/includes/Model/UUID.php";
 $wgAutoloadClasses['Flow\Collection\AbstractCollection'] = $dir . 'includes/Collection/AbstractCollection.php';
 $wgAutoloadClasses['Flow\Collection\CollectionCache'] = $dir . 'includes/Collection/CollectionCache.php';

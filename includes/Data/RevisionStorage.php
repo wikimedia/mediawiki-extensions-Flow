@@ -92,6 +92,96 @@ abstract class RevisionStorage extends DbStorage {
 	abstract protected function getRevType();
 
 	/**
+	 * Insert revision state
+	 * @param array
+	 * @return boolean
+	 */
+	protected function insertRevState( array $rows ) {
+		// Revision state
+		$stateRows = array();
+		foreach ( $rows as $i => $row ) {
+			$stateRows += array_values( unserialize( $this->splitUpdate( $row, 'frs' ) ) );
+		}
+		if ( $stateRows ) {
+			$dbw = $this->dbFactory->getDB( DB_MASTER );
+			$res = $dbw->insert(
+				'flow_revision_state',
+				$this->preprocessSqlArray( $stateRows ),
+				__METHOD__
+			);
+			if ( !$res ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Update revision state
+	 * @param array
+	 * @param array
+	 * @return boolean
+	 */
+	protected function updateRevState( array $old, array $new ) {
+		$insert = $delete = array();
+		$oldFrs = unserialize( $old['frs'] );
+		$newFrs = unserialize( $new['frs'] );
+		foreach ( $oldFrs as $state => $row ) {
+			if ( !isset( $newFrs[$state] ) ) {
+				$delete[] = $row;
+			}
+		}
+		foreach ( $newFrs as $state => $row ) {
+			if ( !isset( $oldFrs[$state] ) ) {
+				$insert[] = $row;
+			}
+		}
+
+		foreach ( $delete as $row ) {
+			$res = $this->dbFactory->getDB( DB_MASTER )->delete(
+				'flow_revision_state',
+				$this->preprocessSqlArray( array( 'frs_rev_id' => $row['frs_rev_id'], 'frs_rev_state' => $row['frs_rev_state'] ) ),
+				__METHOD__
+			);
+			if ( !$res ) {
+				return false;
+			}
+		}
+
+		if ( $insert ) {
+			$res = $this->dbFactory->getDB( DB_MASTER )->insert(
+				'flow_revision_state',
+				$this->preprocessSqlArray( $insert ),
+				__METHOD__
+			);
+			if ( !$res ) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * Delete revision state
+	 * @param array
+	 * @return boolean
+	 */
+	protected function removeRevState( array $row ) {
+		foreach ( unserialize( $row['frs'] ) as $stateRow ) {
+			$res = $this->dbFactory->getDB( DB_MASTER )->delete(
+				'flow_revision_state',
+				$this->preprocessSqlArray( array( 'frs_rev_id' => $row['frs_rev_id'], 'frs_rev_state' => $row['frs_rev_state'] ) ),
+				__METHOD__
+			);
+			if ( !$res ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * @param DbFactory $dbFactory
 	 * @param array|false List of externel store servers available for insert
 	 *  or false to disable. See $wgFlowExternalStore.
@@ -149,12 +239,63 @@ abstract class RevisionStorage extends DbStorage {
 		return $query;
 	}
 
+	/**
+	 * Find the state for revisions
+	 */
+	protected function findMultiRevState( array $revIds ) {
+		$result = array();
+
+		if ( !$revIds ) {
+			return $result;
+		}
+
+		$dbr = $this->dbFactory->getDB( DB_MASTER );
+		$res = $dbr->select(
+			array( 'flow_revision_state' ),
+			'*',
+			$this->preprocessSqlArray( array( 'frs_rev_id' => $revIds ) ),
+			__METHOD__
+		);
+		if ( !$res ) {
+			// TODO: dont fail, but dont end up caching bad result either
+			throw new DataModelException( 'query failure', 'process-data' );
+		}
+
+		foreach ( $res as $row ) {
+			$row = UUID::convertUUIDs( (array)$row, 'alphadecimal' );
+			$result[$row['frs_rev_id']][$row['frs_rev_state']] = $row;
+		}
+
+		return $result;
+	}
+
 	public function findMulti( array $queries, array $options = array() ) {
 		if ( count( $queries ) < 3 ) {
 			$res = $this->fallbackFindMulti( $queries, $options );
 		} else {
 			$res = $this->findMultiInternal( $queries, $options );
 		}
+		$revIds = array();
+		foreach ( $res as $revs ) {
+			foreach ( $revs as $rev ) {
+				$revIds[] = $rev['rev_id'];
+			}
+		}
+		$revState = $this->findMultiRevState( $revIds );
+		foreach ( $res as $key => $revs ) {
+			foreach ( $revs as $revId => $data ) {
+				if ( isset( $revState[$data['rev_id']] ) ) {
+					$frs = $revState[$data['rev_id']];
+				} else {
+					$frs = array();
+				}
+				// Crap, need to serialize because FeatureIndex will throw
+				// an error if the data is of composite data type. Maybe just
+				// use a serialized field instead of a relational table
+				$res[$key][$revId]['frs'] = serialize( $frs );
+			}
+		}
+
 		// Fetches content for all revisions flagged 'external'
 		return self::mergeExternalContent( $res );
 	}
@@ -377,6 +518,10 @@ abstract class RevisionStorage extends DbStorage {
 			return false;
 		}
 
+		if ( !$this->insertRevState( $rows ) ) {
+			return false;
+		}
+
 		return $this->insertRelated( $rows );
 	}
 
@@ -444,6 +589,11 @@ abstract class RevisionStorage extends DbStorage {
 				return false;
 			}
 		}
+
+		if ( !$this->updateRevState( $old, $new ) ) {
+			return false;
+		}
+
 		return $this->updateRelated( $changeSet, $old );
 	}
 
@@ -460,6 +610,10 @@ abstract class RevisionStorage extends DbStorage {
 			__METHOD__
 		);
 		if ( !$res ) {
+			return false;
+		}
+
+		if ( !$this->removeRevState( $row ) ) {
 			return false;
 		}
 		return $this->removeRelated( $row );
