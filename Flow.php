@@ -251,7 +251,7 @@ $wgSpecialPageGroups['Flow'] = 'redirects';
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
-//$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
+$wgHooks['GetPreferences'][] = 'FlowHooks::onGetPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 $wgHooks['MediaWikiPerformAction'][] = 'FlowHooks::onPerformAction';
 $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
