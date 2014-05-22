@@ -151,13 +151,16 @@ abstract class BaseUrlGenerator {
 
 	/**
 	 * @param Title|null $title
-	 * @param UUID $workflowId
+	 * @param UUID|null $workflowId
 	 * @return Title
 	 * @throws FlowException
 	 */
-	protected function resolveTitle( Title $title = null, UUID $workflowId ) {
+	protected function resolveTitle( Title $title = null, UUID $workflowId = null ) {
 		if ( $title ) {
 			return $title;
+		}
+		if ( !$workflowId ) {
+			throw new FlowException( 'No $title or $workflowId given to resolve title' );
 		}
 		$alpha = $workflowId->getAlphadecimal();
 		if ( isset( $this->workflows[$alpha] ) ) {

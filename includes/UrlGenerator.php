@@ -37,17 +37,19 @@ class UrlGenerator extends BaseUrlGenerator {
 	 * Link to create new topic on a topiclist.
 	 *
 	 * @param Title|null $title
-	 * @param UUID $workflowId
+	 * @param UUID|null $workflowId
 	 * @return Anchor
 	 */
-	public function newTopicLink( Title $title = null, UUID $workflowId ) {
+	public function newTopicLink( Title $title = null, UUID $workflowId = null ) {
+		$query = array( 'action' => 'new-topic' );
+		if ( $workflowId ) {
+			$query['workflow'] = $workflowId->getAlphadecimal();
+		}
+
 		return new Anchor(
 			wfMessage( 'flow-topic-action-new' ),
 			$this->resolveTitle( $title, $workflowId ),
-			array(
-				'workflow' => $workflowId->getAlphadecimal(),
-				'action' => 'new-topic',
-			)
+			$query
 		);
 	}
 
