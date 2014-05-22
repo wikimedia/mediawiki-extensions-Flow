@@ -66,6 +66,7 @@ class UrlGenerator extends BaseUrlGenerator {
 			wfMessage( 'flow-post-action-reply' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
+				'workflow' => $workflowId->getAlphadecimal(),
 				'topic_replyTo' => $postId->getAlphadecimal(),
 				'action' => 'reply',
 			)
