@@ -7,7 +7,7 @@ if ( $permissions->isAllowed( null, 'new-post' ) ) {
 		'method' => 'POST',
 		'action' => $this->urlGenerator->newTopicLink(
 			$workflow->getArticleTitle(),
-			$workflow->getId()
+			$workflow->isNew() ? null : $workflow->getId()
 		)->getFullUrl(),
 		'class' => 'flow-newtopic-form',
 		'id' => 'flow-newtopic-form',
