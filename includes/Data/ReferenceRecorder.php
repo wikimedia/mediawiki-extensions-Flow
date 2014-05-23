@@ -69,12 +69,13 @@ class ReferenceRecorder implements LifecycleHandler {
 			'ref_src_object_type' => $revType,
 			'ref_src_object_id' => $objectId,
 		) );
+
 		$prevUrlReferences = $this->storage->find( 'URLReference', array(
 			'ref_src_object_type' => $revType,
 			'ref_src_object_id' => $objectId,
 		) );
 
-		return array_merge( $prevWikiReferences, $prevUrlReferences );
+		return array_merge( (array) $prevWikiReferences, (array) $prevUrlReferences );
 	}
 
 	/**
