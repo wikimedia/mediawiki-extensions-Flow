@@ -143,6 +143,9 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowUpdateRevisionTypeId.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRevisionTypeId' );
 
+		require_once __DIR__.'/maintenance/FlowUpdateRevisionState.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateRevisionState' );
+
 		require_once __DIR__.'/maintenance/FlowPopulateLinksTables.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowPopulateLinksTables' );
 
