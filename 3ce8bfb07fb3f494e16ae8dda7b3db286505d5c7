@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4e1dcb5b_f4af0ddd",
+        "filename": "includes/Content/BoardContent.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-05-23T01:56:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e20cf91_cabfcfa6",
+      "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e20cf91_eac28b38",
         "filename": "includes/Content/BoardContent.php",
         "patchSetId": 5
@@ -176,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "4e1dcb5b_d4bc111d",
+        "filename": "includes/Content/Content.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-05-23T01:56:13Z",
+      "side": 1,
+      "message": "I like having all the stuff to do with one concern in one directory / namespace.",
+      "parentUuid": "6e20cf91_8ad9d72e",
+      "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e20cf91_6ade7b16",
         "filename": "includes/Content/Content.php",
         "patchSetId": 5
@@ -187,6 +223,24 @@
       "writtenOn": "2014-05-16T05:28:28Z",
       "side": 1,
       "message": "This is fine for now, but I think in the future it might be weird.\n\nThe definition of whether a talk page is occupied should be whether it\u0027s content model is \u003d\u003d \u0027flow-board\u0027.",
+      "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e1dcb5b_b4b9952b",
+        "filename": "includes/Content/Content.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-05-23T01:56:13Z",
+      "side": 1,
+      "message": "Yeah, that\u0027s true. In the future, that will be the definition. For now, though, we need to migrate the existing system for determining which pages are occupied to this one.\n\nI might rework this when everything\u0027s a bit clearer.",
+      "parentUuid": "6e20cf91_6ade7b16",
       "revId": "3ce8bfb07fb3f494e16ae8dda7b3db286505d5c7",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
