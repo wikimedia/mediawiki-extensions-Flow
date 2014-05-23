@@ -4,15 +4,11 @@ namespace Flow;
 
 use DataUpdate;
 use Flow\Data\ManagerGroup;
-use Flow\Model\AbstractRevision;
-use Flow\Model\Reference;
 use Flow\Model\URLReference;
-use Flow\Model\UUID;
 use Flow\Model\WikiReference;
 use LinkBatch;
 use LinkCache;
 use LoadBalancer;
-use Title;
 use WikiPage;
 
 class LinksTableUpdater {
@@ -117,9 +113,9 @@ class LinksTableUpdater {
 			)
 		);
 
-		// let's make sure the merge doesn't fail when nothing were found
-		if ( !$wikiReferences ) $wikiReferences = array();
-		if ( !$urlReferences ) $urlReferences = array();
+		// let's make sure the merge doesn't fail when nothing was found
+		$wikiReferences = $wikiReferences ?: array();
+		$urlReferences = $urlReferences ?: array();
 
 		return array_merge( $wikiReferences, $urlReferences );
 	}

@@ -72,7 +72,7 @@ class TopicHistoryIndex extends TopKIndex {
 		// special condition either joining against flow_tree_node or first collecting the
 		// subtree node lists and then doing a big IN condition
 
-		// This isn't a hot path(should be pre-populated into index) but we still dont want
+		// This isn't a hot path (should be pre-populated into index) but we still don't want
 		// horrible performance
 
 		$roots = array();

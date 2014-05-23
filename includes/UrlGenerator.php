@@ -4,11 +4,6 @@ namespace Flow;
 
 use Flow\Data\PagerPage;
 use Flow\Model\UUID;
-use Flow\Model\Workflow;
-use Flow\Model\AbstractRevision;
-use Flow\Model\Header;
-use Flow\Model\PostRevision;
-use Flow\Model\PostSummary;
 use Title;
 
 class UrlGenerator extends BaseUrlGenerator {
