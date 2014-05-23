@@ -75,7 +75,6 @@ class TalkpageManager implements OccupationController {
 		if ( $revision === null || $revision->getComment( Revision::RAW ) != $comment ) {
 			$message = wfMessage( 'flow-talk-taken-over' )->inContentLanguage()->text();
 			$content = ContentHandler::makeContent( $message, $title );
-			$page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC );
 
 			$user = User::newFromName(
 				wfMessage( 'flow-talk-username' )->inContentLanguage()->text()

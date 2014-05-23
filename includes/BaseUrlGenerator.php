@@ -151,26 +151,28 @@ abstract class BaseUrlGenerator {
 
 	/**
 	 * @param Title|null $title
-	 * @param UUID $workflowId
+	 * @param UUID|null $workflowId
 	 * @return Title
 	 * @throws FlowException
 	 */
 	protected function resolveTitle( Title $title = null, UUID $workflowId = null ) {
-		if ( $title !== null ) {
+		if ( $title ) {
 			return $title;
 		}
-		if ( $workflowId === null ) {
-			throw new FlowException( 'Either $title or $workflowId must be provided' );
+
+		if ( $workflowId ) {
+			$alpha = $workflowId->getAlphadecimal();
+			if ( isset( $this->workflows[$alpha] ) ) {
+				return $this->workflows[$alpha]->getArticleTitle();
+			}
+			$workflow = $this->storage->get( $workflowId );
+			if ( !$workflow ) {
+				throw new FlowException( 'Could not locate workflow ' . $alpha );
+			}
+			$this->workflows[$alpha] = $workflow;
+			return $workflow->getArticleTitle();
 		}
-		$alpha = $workflowId->getAlphadecimal();
-		if ( isset( $this->workflows[$alpha] ) ) {
-			return $this->workflows[$alpha]->getArticleTitle();
-		}
-		$workflow = $this->storage->get( $workflowId );
-		if ( !$workflow ) {
-			throw new FlowException( 'Could not locate workflow ' . $alpha );
-		}
-		$this->workflows[$alpha] = $workflow;
-		return $workflow->getArticleTitle();
+
+		throw new FlowException( 'No title or workflow given' );
 	}
 }

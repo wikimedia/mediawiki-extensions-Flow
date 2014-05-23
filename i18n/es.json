@@ -43,7 +43,7 @@
 	"flow-delete-post-content": "Este comentario fue {{GENDER:$1|eliminado}} por $2",
 	"flow-delete-title-content": "Este tema fue {{GENDER:$1|eliminado}} por $2",
 	"flow-delete-header-content": "{{GENDER:$1|Eliminado}} por $2",
-	"flow-suppress-post-content": "Este comentario fue {{GENDER:$1|suprimido}} por $2",
+	"flow-suppress-post-content": "$2 {{GENDER:$1|suprimió}} este comentario",
 	"flow-suppress-title-content": "Este tema fue {{GENDER:$1|suprimido}} por $2",
 	"flow-suppress-header-content": "{{GENDER:$1|Suprimido}} por $2",
 	"flow-suppress-usertext": "<em>Nombre de usuario suprimido</em>",
