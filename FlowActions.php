@@ -483,10 +483,7 @@ $wgFlowActions = array(
 		'rc_insert' => false, // won't even be called, actually; only for writes
 		'permissions' => array(
 			PostRevision::MODERATED_NONE => '',
-			PostRevision::MODERATED_HIDDEN => function( AbstractRevision $post, RevisionActionPermissions $permissions ) {
-				// visible for logged in users (or anyone with hide/close permission)
-				return $permissions->getUser()->isLoggedIn() ? '' : array( 'flow-hide' );
-			},
+			PostRevision::MODERATED_HIDDEN => '', // visible for everyone (but will initially be collapsed)
 			PostRevision::MODERATED_CLOSED => '',
 			PostRevision::MODERATED_DELETED => array( 'flow-delete', 'flow-suppress' ),
 			PostRevision::MODERATED_SUPPRESSED => 'flow-suppress',

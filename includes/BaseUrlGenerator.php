@@ -151,26 +151,41 @@ abstract class BaseUrlGenerator {
 
 	/**
 	 * @param Title|null $title
-	 * @param UUID $workflowId
+	 * @param UUID|null $workflowId
 	 * @return Title
 	 * @throws FlowException
 	 */
 	protected function resolveTitle( Title $title = null, UUID $workflowId = null ) {
+<<<<<<< HEAD   (649234 Fix issues with empty TopicList blocks / formatters.)
 		if ( $title !== null ) {
+=======
+		if ( $title ) {
+>>>>>>> BRANCH (d50ded Merge "Repair non-js post editing")
 			return $title;
 		}
+<<<<<<< HEAD   (649234 Fix issues with empty TopicList blocks / formatters.)
 		if ( $workflowId === null ) {
 			throw new FlowException( 'Either $title or $workflowId must be provided' );
 		}
 		$alpha = $workflowId->getAlphadecimal();
 		if ( isset( $this->workflows[$alpha] ) ) {
 			return $this->workflows[$alpha]->getArticleTitle();
+=======
+
+		if ( $workflowId ) {
+			$alpha = $workflowId->getAlphadecimal();
+			if ( isset( $this->workflows[$alpha] ) ) {
+				return $this->workflows[$alpha]->getArticleTitle();
+			}
+			$workflow = $this->storage->get( $workflowId );
+			if ( !$workflow ) {
+				throw new FlowException( 'Could not locate workflow ' . $alpha );
+			}
+			$this->workflows[$alpha] = $workflow;
+			return $workflow->getArticleTitle();
+>>>>>>> BRANCH (d50ded Merge "Repair non-js post editing")
 		}
-		$workflow = $this->storage->get( $workflowId );
-		if ( !$workflow ) {
-			throw new FlowException( 'Could not locate workflow ' . $alpha );
-		}
-		$this->workflows[$alpha] = $workflow;
-		return $workflow->getArticleTitle();
+
+		throw new FlowException( 'No title or workflow given' );
 	}
 }
