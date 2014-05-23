@@ -35,7 +35,7 @@ echo Html::openElement( 'form', array(
 		$topic->getArticleTitle(),
 		$topic->getId(),
 		$post->getPostId()
-	),
+	)->getFullURL(),
 ) );
 if ( $block->hasErrors() ) {
 	echo '<ul>';
@@ -55,13 +55,14 @@ echo Html::element( 'input', array(
 		'name' => $block->getName() . '[prev_revision]',
 		'value' => $revisionId
 	) ),
-	Html::textarea(
-		$block->getName() . '_content',
-		$this->getContent( $post, 'wikitext' ),
+	Html::rawElement(
+		'textarea',
 		array(
+			'name' => $block->getName() . '_content',
 			'class' => 'mw-ui-input',
 			'rows' => '10'
-		)
+		),
+		$this->getContent( $post, 'wikitext' )
 	),
 	Html::openElement( 'div', array(
 		'class' => 'flow-form-controls',
