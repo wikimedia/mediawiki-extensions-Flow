@@ -35,7 +35,7 @@ class TopicListFormatter {
 		IContextSource $ctx
 	) {
 		$section = new \ProfileSection( __METHOD__ );
-		$res = $this->buildResult( $workflows, $found, $ctx ) +
+		$res = $this->buildResult( $listWorkflow, $workflows, $found, $ctx ) +
 			$this->buildEmptyResult( $listWorkflow );
 		$res['links']['pagination'] = $this->buildPaginationLinks(
 			$listWorkflow,
@@ -64,7 +64,7 @@ class TopicListFormatter {
 		return $res;
 	}
 
-	protected function buildResult( array $workflows, array $found, IContextSource $ctx ) {
+	protected function buildResult( Workflow $listWorkflow, array $workflows, array $found, IContextSource $ctx ) {
 		$revisions = $posts = $replies = array();
 		foreach( $found as $formatterRow ) {
 			$serialized = $this->serializer->formatApi( $formatterRow, $ctx );
@@ -81,10 +81,11 @@ class TopicListFormatter {
 			$revisions[$i]['replies'] = isset( $replies[$alpha] ) ? $replies[$alpha] : array();
 		}
 
+		$workflows = array();
+		$list = array();
+
 		if ( $workflows ) {
 			$orig = $workflows;
-			$workflows = array();
-			$list = array();
 			foreach ( $orig as $workflow ) {
 				$list[] = $alpha = $workflow->getId()->getAlphadecimal();
 				$workflows[$alpha] = $workflow;
@@ -100,7 +101,7 @@ class TopicListFormatter {
 		}
 
 		return array(
-			'workflowId' => $workflow->getId()->getAlphadecimal(),
+			'workflowId' => $listWorkflow->getId()->getAlphadecimal(),
 			'roots' => $list,
 			'posts' => $posts,
 			'revisions' => $revisions,
