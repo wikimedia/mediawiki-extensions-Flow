@@ -1,0 +1,8 @@
+Verified+2: jenkins-bot
+Code-Review+2: Matthias Mullie <mmullie@wikimedia.org>
+Code-Review+2: Spage <spage@wikimedia.org>
+Submitted-by: jenkins-bot
+Submitted-at: Fri, 23 May 2014 16:58:21 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/134927
+Project: mediawiki/extensions/Flow
+Branch: refs/heads/frontend-rewrite
