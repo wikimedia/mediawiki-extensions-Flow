@@ -201,9 +201,12 @@ class TopicListBlock extends AbstractBlock {
 		// @todo remove the 'api' => true, its always api
 		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
 		$page = $this->getPage( $findOptions );
+
+		$workflowIds = array();
 		foreach ( $page->getResults() as $topicListEntry ) {
 			$workflowIds[] = $topicListEntry->getId();
 		}
+
 		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
 		$found = Container::get( 'query.topiclist' )->getResults( $page->getResults() );
 
