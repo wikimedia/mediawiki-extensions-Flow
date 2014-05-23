@@ -7,6 +7,7 @@ use Article;
 use ContentHandler;
 use Revision;
 use Title;
+use User;
 
 // I got the feeling NinetyNinePercentController was a bit much.
 interface OccupationController {
@@ -64,17 +65,29 @@ class TalkpageManager implements OccupationController {
 			throw new InvalidInputException( 'Requested article is not Flow enabled', 'invalid-input' );
 		}
 
-		// comment to add to the Revision to indicate Flow taking over
+		// Comment to add to the Revision to indicate Flow taking over
 		$comment = '/* Taken over by Flow */';
 
 		$page = $article->getPage();
 		$revision = $page->getRevision();
 
-		// make sure a Flow revision has not yet been inserted
+		// Add a revision only if a Flow revision has not yet been inserted.
 		if ( $revision === null || $revision->getComment( Revision::RAW ) != $comment ) {
 			$message = wfMessage( 'flow-talk-taken-over' )->inContentLanguage()->text();
 			$content = ContentHandler::makeContent( $message, $title );
 			$page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC );
+
+			$user = User::newFromName(
+				wfMessage( 'flow-talk-username' )->inContentLanguage()->text()
+			);
+			// Use the English fallback if the localized username is invalid or if a user
+			// with the name exists.
+			if ( $user === false || $user->getId() !== 0 ) {
+				$user = User::newFromName( 'Flow talk page manager', false );
+			}
+
+			$page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
+				false, $user );
 		}
 	}
 }
