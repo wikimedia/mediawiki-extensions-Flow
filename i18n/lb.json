@@ -105,6 +105,7 @@
 	"flow-paging-rev": "Méi rezent Themen",
 	"flow-paging-fwd": "Méi al Themen",
 	"flow-last-modified": "Fir d'lescht geännert ongeféier $1",
+	"flow-workflow": "workflow",
 	"flow-notification-newtopic": "$1 {{GENDER:$1|huet}} een <span class=\"plainlinks\">[$5 neit Thema]</span> op [[$2|$3]]: $4 ugeluecht.",
 	"flow-notification-rename": "$1 {{GENDER:$1|huet}} den Titel vu(n) span class=\"plainlinks\">[$2 $3]</span> op \"$4\" op [[$5|$6]] geännert.",
 	"flow-notification-link-text-view-board": "Tableau weisen",

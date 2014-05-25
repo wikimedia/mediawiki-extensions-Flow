@@ -17,3 +17,8 @@ $specialPageAliases['en'] = array(
 $specialPageAliases['diq'] = array(
 	'Flow' => array( 'Rodayış' ),
 );
+
+/** Malayalam (മലയാളം) */
+$specialPageAliases['ml'] = array(
+	'Flow' => array( 'പ്രവാഹം' ),
+);
