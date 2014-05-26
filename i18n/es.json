@@ -18,6 +18,7 @@
 	},
 	"flow-desc": "Sistema de gestión de flujo de trabajo",
 	"flow-talk-taken-over": "Esta página de discusión ha sido tomada por un [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal tablero de flujo].",
+	"flow-talk-username": "Gestor de páginas de discusión de Flow",
 	"log-name-flow": "Registro de actividad de flujo",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|borró}} una [$4 publicación] en [[$3]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|restauró}} una [$4 publicación] en [[$3]]",
