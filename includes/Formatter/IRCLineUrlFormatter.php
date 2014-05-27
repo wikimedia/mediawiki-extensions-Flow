@@ -2,14 +2,67 @@
 
 namespace Flow\Formatter;
 
+use Flow\Container;
 use Flow\Model\Workflow;
+use RCFeedFormatter;
 use RecentChange;
 
 /**
  * Generates URL's to be inserted into the IRC
  * recent changes feed.
  */
-class IRCLineUrlFormatter extends AbstractFormatter {
+class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
+
+	/**
+	 * Allows us to set the rc_comment field
+	 */
+	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
+		/** @var RecentChangesQuery $query */
+		$query = Container::get( 'query.recentchanges' );
+		//throw new \Exception($rc->mAttribs['rc_params']);
+		$query->loadMetadataBatch( array( (object)$rc->mAttribs ) );
+		$rcRow = $query->getResult( null, $rc );
+		$ctx = \RequestContext::getMain();
+		$data = $this->serializer->formatApi( $rcRow, $ctx );
+		$rc->mAttribs['rc_comment'] = $this->formatDescription( $data );
+		/** @var RCFeedFormatter $formatter */
+		$formatter = new $feed['original_formatter']();
+		return $formatter->getLine( $feed, $rc, $actionComment );
+	}
+
+	/**
+	 * Generate a plaintext revision description suitable for IRC consumption
+	 *
+	 * @param array $data
+	 * @return string
+	 */
+	protected function formatDescription( array $data ) {
+		// Build description message, piggybacking on history i18n
+		$changeType = $data['changeType'];
+		$actions = $this->permissions->getActions();
+		$key = $actions->getValue( $changeType, 'history', 'i18n-message' );
+		$msg = wfMessage( $key . '-irc' );
+		if ( !$msg->exists() ) {
+			// Some messages are already suitable for IRC consumption, so they don't
+			// have -irc copies
+			$msg = wfMessage( $key );
+		}
+		$source = $actions->getValue( $changeType, 'history', 'i18n-params' );
+
+		$params = array();
+		foreach ( $source as $param ) {
+			if ( isset( $data['properties'][$param] ) ) {
+				$params[] = $data['properties'][$param];
+			} else {
+				wfDebugLog( 'Flow', __METHOD__ . ": Missing expected parameter $param for change type $changeType" );
+				$params[] = '';
+			}
+		}
+
+		return $msg->params( $params )->inLanguage( 'en' )->text();
+
+	}
+
 
 	/**
 	 * @param RecentChange $rc
