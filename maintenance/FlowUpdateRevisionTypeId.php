@@ -30,7 +30,7 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 
 		// If table flow_header_revision does not exist, that means the wiki
 		// has run the data migration before or the wiki starts from scratch,
-		// there is no point to run the script againt invalid tables
+		// there is no point to run the script against invalid tables
 		if ( !$dbr->tableExists( 'flow_header_revision', __METHOD__ ) ) {
 			return true;
 		}
@@ -74,6 +74,12 @@ class FlowUpdateRevisionTypeId extends LoggedUpdateMaintenance {
 	}
 
 	private function updateRevision( $dbw, $revId, $revTypeId ) {
+		if ( $revTypeId === null ) {
+			// this shouldn't actually be happening, but if it is, ignoring it
+			// will not make things worse - the revision is lost already
+			return;
+		}
+
 		$res = $dbw->update(
 			'flow_revision',
 			array( 'rev_type_id' => $revTypeId ),
