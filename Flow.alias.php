@@ -18,6 +18,11 @@ $specialPageAliases['diq'] = array(
 	'Flow' => array( 'Rodayış' ),
 );
 
+/** Hebrew (עברית) */
+$specialPageAliases['he'] = array(
+	'Flow' => array( 'זרימה' ),
+);
+
 /** Malayalam (മലയാളം) */
 $specialPageAliases['ml'] = array(
 	'Flow' => array( 'പ്രവാഹം' ),
