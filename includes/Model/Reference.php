@@ -156,8 +156,8 @@ class WikiReference extends Reference {
 		$workflow = UUID::create( $row['ref_src_workflow_id'] );
 		$objectType = $row['ref_src_object_type'];
 		$objectId = UUID::create( $row['ref_src_object_id'] );
-		$srcTitle = Title::makeTitleSafe( $row['ref_src_namespace'], $row['ref_src_title'] );
-		$targetTitle = Title::makeTitleSafe( $row['ref_target_namespace'], $row['ref_target_title'] );
+		$srcTitle = Title::makeTitle( $row['ref_src_namespace'], $row['ref_src_title'] );
+		$targetTitle = Title::makeTitle( $row['ref_target_namespace'], $row['ref_target_title'] );
 		$type = $row['ref_type'];
 
 		return new WikiReference( $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle );
@@ -238,7 +238,7 @@ class URLReference extends Reference {
 		$objectId = UUID::create( $row['ref_src_object_id'] );
 		$url = $row['ref_target'];
 		$type = $row['ref_type'];
-		$srcTitle = Title::makeTitleSafe( $row['ref_src_namespace'], $row['ref_src_title'] );
+		$srcTitle = Title::makeTitle( $row['ref_src_namespace'], $row['ref_src_title'] );
 
 		return new URLReference( $workflow, $srcTitle, $objectType, $objectId, $type, $url );
 	}
