@@ -85,13 +85,13 @@ class RecentChangesQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param ChangesList $cl
+	 * @param null $cl No longer used
 	 * @param RecentChange $rc
 	 * @param bool $isWatchlist
 	 * @return RecentChangesRow|null
 	 * @throws FlowException
 	 */
-	public function getResult( ChangesList $cl, RecentChange $rc, $isWatchlist = false ) {
+	public function getResult( $cl, RecentChange $rc, $isWatchlist = false ) {
 		$rcParams = $rc->getAttribute( 'rc_params' );
 		$params = unserialize( $rcParams );
 		if ( !$params ) {

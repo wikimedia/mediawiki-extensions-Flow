@@ -286,5 +286,22 @@
 	"flow-special-type-workflow": "Label for Workflow in the type dropdown.\n{{Identical|Workflow}}",
 	"flow-special-uuid": "Label for the UUID field on the redirector special page.\n\nUUID is unique identifier for the revisioned object containing the reference.",
 	"flow-special-invalid-uuid": "Error message shown on the redirector special page if the specified type / UUID combination is invalid",
-	"flow-spam-confirmedit": "Error message when ConfirmEdit flagged the submitted content (because an anonymous user submitted external links, possibly spam). This will prevent the content from being submitted."
+	"flow-spam-confirmedit": "Error message when ConfirmEdit flagged the submitted content (because an anonymous user submitted external links, possibly spam). This will prevent the content from being submitted.",
+	"flow-rev-message-edit-post-irc": "{{notranslate}}",
+	"flow-rev-message-reply-irc": "{{notranslate}}",
+	"flow-rev-message-new-post-irc": "{{notranslate}}",
+	"flow-rev-message-edit-title-irc": "{{notranslate}}",
+	"flow-rev-message-create-header-irc": "{{notranslate}}",
+	"flow-rev-message-edit-header-irc": "{{notranslate}}",
+	"flow-rev-message-create-topic-summary-irc": "{{notranslate}}",
+	"flow-rev-message-edit-topic-summary-irc": "{{notranslate}}",
+	"flow-rev-message-hid-post-irc": "{{notranslate}}",
+	"flow-rev-message-deleted-post-irc": "{{notranslate}}",
+	"flow-rev-message-suppressed-post-irc": "{{notranslate}}",
+	"flow-rev-message-restored-post-irc": "{{notranslate}}",
+	"flow-rev-message-hid-topic-irc": "{{notranslate}}",
+	"flow-rev-message-deleted-topic-irc": "{{notranslate}}",
+	"flow-rev-message-suppressed-topic-irc": "{{notranslate}}",
+	"flow-rev-message-closed-topic-irc": "{{notranslate}}",
+	"flow-rev-message-restored-topic-irc": "{{notranslate}}"
 }
