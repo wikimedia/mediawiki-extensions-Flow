@@ -58,6 +58,7 @@ abstract class RecentChanges implements LifecycleHandler {
 	 * @param array $changes
 	 */
 	protected function insert( AbstractRevision $revision, $block, $revisionType, array $row, Workflow $workflow, array $changes ) {
+		global $wgRCFeeds;
 		$action = $revision->getChangeType();
 		$revisionId = $revision->getRevisionId()->getAlphadecimal();
 		$timestamp = $revision->getRevisionId()->getTimestamp();
@@ -112,7 +113,14 @@ abstract class RecentChanges implements LifecycleHandler {
 		);
 
 		$rc = RecentChange::newFromRow( (object)$attribs );
-		$rc->save();  // Insert into db and send to RC feeds
+		$rc->save( /* $noudp = */ true );  // Insert into db
+		$feeds = $wgRCFeeds;
+		// Override the IRC formatter with our own formatter
+		foreach( $feeds as $name => $info ) {
+			$feeds[$name]['original_formatter'] = $info['formatter'];
+			$feeds[$name]['formatter'] = \Flow\Container::get( 'formatter.irclineurl' );
+		}
+		$rc->notifyRCFeeds( $feeds );
 	}
 
 	/**

@@ -2,14 +2,32 @@
 
 namespace Flow\Formatter;
 
+use Flow\Container;
 use Flow\Model\Workflow;
+use RCFeedFormatter;
 use RecentChange;
 
 /**
  * Generates URL's to be inserted into the IRC
  * recent changes feed.
  */
-class IRCLineUrlFormatter extends AbstractFormatter {
+class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
+
+	/**
+	 * Allows us to set the rc_comment field
+	 */
+	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
+		/** @var RecentChangesQuery $query */
+		$query = Container::get( 'query.recentchanges' );
+		$rcRow = $query->getResult( null, $rc );
+		$ctx = \RequestContext::getMain();
+		$data = $this->serializer->formatApi( $rcRow, $ctx );
+		$msg = $this->formatDescription( $data, $ctx, 'msg' );
+		$rc->mAttribs['rc_comment'] = $msg->inLanguage( 'en' )->text();
+		/** @var RCFeedFormatter $formatter */
+		$formatter = new $feed['original_formatter']();
+		return $formatter->getLine( $feed, $rc, $actionComment );
+	}
 
 	/**
 	 * @param RecentChange $rc

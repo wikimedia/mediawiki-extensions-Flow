@@ -219,9 +219,10 @@ abstract class AbstractFormatter {
 	 *
 	 * @param array $data
 	 * @param IContextSource $ctx
-	 * @return string Html valid for user output
+	 * @param string $format 'html' for user output or 'msg' for a Message object
+	 * @return string|Message
 	 */
-	protected function formatDescription( array $data, IContextSource $ctx ) {
+	protected function formatDescription( array $data, IContextSource $ctx, $format = 'html' ) {
 		// Build description message, piggybacking on history i18n
 		$changeType = $data['changeType'];
 		$actions = $this->permissions->getActions();
@@ -237,7 +238,12 @@ abstract class AbstractFormatter {
 				$params[] = '';
 			}
 		}
+		$message = $ctx->msg( $msg, $params );
+		if ( $format === 'msg' ) {
+			return $message;
+		} else { // $format === 'html'
+			return '<span class="plainlinks">' . $message->parse() . '</span>';
+		}
 
-		return '<span class="plainlinks">' . $ctx->msg( $msg, $params )->parse() . '</span>';
 	}
 }
