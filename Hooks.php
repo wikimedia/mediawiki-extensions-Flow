@@ -136,6 +136,17 @@ class FlowHooks {
 		require_once __DIR__.'/maintenance/FlowSetUserIp.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowSetUserIp' );
 
+		/*
+		 * Remove old *_user_text columns once the maintenance script that
+		 * moves the necessary data has been run.
+		 * This duplicates what is being done in FlowSetUserIp already, but that
+		 * was not always the case, so that script may have already run without
+		 * having executed this.
+		 */
+		if ( $updater->updateRowExists( 'FlowSetUserIp' ) ) {
+			$updater->dropExtensionField( 'flow_workflow', 'workflow_user_text', "$dir/db_patches/patch-remove_usernames_2.sql" );
+		}
+
 		require_once __DIR__.'/maintenance/FlowUpdateUserWiki.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateUserWiki' );
 
