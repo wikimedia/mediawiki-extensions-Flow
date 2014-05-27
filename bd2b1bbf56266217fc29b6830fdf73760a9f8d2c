@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e1dcb5b_bcdccc4c",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-05-27T06:13:07Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need to call this, saveSettings already calls clearSharedCache.",
+      "revId": "bd2b1bbf56266217fc29b6830fdf73760a9f8d2c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
