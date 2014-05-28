@@ -498,6 +498,10 @@ abstract class FeatureIndex implements Index {
 			}
 		}
 
+		// values in $attributes may not always be in the exact same order,
+		// which would lead to differences in cache key if we don't force that
+		sort( $attributes );
+
 		return wfForeignMemcKey( self::cachedDbId(), '', $this->prefix, implode( ':', $attributes ), Container::get( 'cache.version' ) );
 	}
 
