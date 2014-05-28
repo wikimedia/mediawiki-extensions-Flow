@@ -22,7 +22,7 @@ class FlowPage
   list_item(:collapsed_view, title: "Collapsed view")
   button(:change_post_save, css: "form.flow-edit-form .flow-edit-submit")
   button(:change_title_save, css: "form.flow-edit-title-form .flow-edit-submit")
-  textarea(:comment_field, name: "topic_topic-reply-content")
+  textarea(:comment_field, css: 'form.flow-topic-reply-form > textarea[name="topic_content"]')
   button(:comment_reply_save, css: "form.flow-topic-reply-form .flow-reply-submit")
   a(:contrib_link, text: "contribs")
   a(:edit_post, class: "flow-edit-post-link", index: topic_index)
