@@ -5,8 +5,8 @@ namespace Flow\Model;
 use MWTimestamp;
 use Title;
 use User;
+use Flow\Exception\CrossWikiException;
 use Flow\Exception\DataModelException;
-use Flow\Exception\FlowException;
 use Flow\Exception\InvalidInputException;
 
 class Workflow {
@@ -175,11 +175,11 @@ class Workflow {
 
 	/**
 	 * @return Title
-	 * @throws FlowException
+	 * @throws CrossWikiException
 	 */
 	public function getArticleTitle() {
 		if ( $this->wiki !== wfWikiId() ) {
-			throw new FlowException( 'Interwiki to ' . $this->wiki . ' not implemented ', 'default' );
+			throw new CrossWikiException( 'Interwiki to ' . $this->wiki . ' not implemented ', 'default' );
 		}
 		return Title::makeTitleSafe( $this->namespace, $this->titleText );
 	}
