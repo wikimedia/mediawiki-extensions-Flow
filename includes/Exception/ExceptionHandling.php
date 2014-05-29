@@ -271,3 +271,8 @@ class NoIndexException extends FlowException {
 		return array ( 'no-index' );
 	}
 }
+
+/**
+ * Category: Cross Wiki
+ */
+class CrossWikiException extends FlowException {}
