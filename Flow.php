@@ -299,6 +299,7 @@ $wgAutoloadClasses['Flow\Exception\DataPersistenceException'] = $dir . 'includes
 $wgAutoloadClasses['Flow\Exception\WikitextException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\NoIndexException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\FailCommitException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\CrossWikiException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 
 // Configuration
 

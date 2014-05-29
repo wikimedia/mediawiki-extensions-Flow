@@ -3,6 +3,7 @@
 namespace Flow;
 
 use Flow\Data\ManagerGroup;
+use Flow\Exception\CrossWikiException;
 use Flow\Model\UUID;
 use Title;
 
@@ -25,8 +26,15 @@ class ReferenceClarifier {
 		// * flow-whatlinkshere-post
 		// Topic and Summary are plain text and do not have links.
 		foreach( $references as $reference ) {
-			$url = $this->getObjectLink( $reference->getWorkflowId(), $reference->getObjectType(), $reference->getObjectId() );
-			$props[] = wfMessage( 'flow-whatlinkshere-' . $reference->getObjectType(), $url )->parse();
+			try {
+				$url = $this->getObjectLink( $reference->getWorkflowId(), $reference->getObjectType(), $reference->getObjectId() );
+				$props[] = wfMessage( 'flow-whatlinkshere-' . $reference->getObjectType(), $url )->parse();
+			} catch ( CrossWikiException $e ) {
+				// Ignore expected cross-wiki exception.
+				// Gerrit 136280 would add a wiki field to the query in
+				// loadReferencesForPage(), we can remove catching the exception
+				// in here once it's merged
+			}
 		}
 
 		return $props;
