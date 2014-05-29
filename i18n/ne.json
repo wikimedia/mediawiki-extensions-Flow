@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"सरोज कुमार ढकाल"
+			"सरोज कुमार ढकाल",
+			"Ganesh Paudel"
 		]
 	},
 	"flow-newtopic-title-placeholder": "नयाँ विषय",
@@ -9,6 +10,7 @@
 	"flow-post-action-delete-post": "हटाउने",
 	"flow-post-action-hide-post": "लुकाउनुहोस्",
 	"flow-rev-message-reply-bundle": "<strong>$1 {{PLURAL:$1|टिप्पणी|टिप्पणीहरू}}</strong> {{PLURAL:$1|थपिएको|थपिएका}} थिए ।",
+	"flow-workflow": "कार्य बहाव",
 	"flow-moderation-confirm-suppress-post": "दबाउने",
 	"flow-moderation-confirm-delete-post": "मेट्ने",
 	"flow-moderation-confirm-hide-post": "लुकाउनुहोस्"

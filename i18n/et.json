@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pikne"
+			"Pikne",
+			"Lyrixn"
 		]
 	},
 	"flow-cancel": "Loobu",
-	"flow-preview": "Eelvaade"
+	"flow-preview": "Eelvaade",
+	"flow-workflow": "töövoog"
 }
