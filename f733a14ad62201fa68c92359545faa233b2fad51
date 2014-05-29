@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e1dcb5b_ffffbd60",
+        "filename": "includes/Search/Connection.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2
+      },
+      "writtenOn": "2014-05-29T21:23:54Z",
+      "side": 1,
+      "message": "Make your own configuration variable for Flow like $wgFlowSearchServer. We can make it just be the same in wmf-config.",
+      "revId": "f733a14ad62201fa68c92359545faa233b2fad51",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
