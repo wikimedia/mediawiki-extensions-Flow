@@ -126,6 +126,7 @@ class FlowHooks {
 		$updater->modifyExtensionField( 'flow_revision', 'rev_user_ip', "$dir/db_patches/patch-revision_user_ip.sql" );
 		$updater->addExtensionField( 'flow_revision', 'rev_type_id', "$dir/db_patches/patch-rev_type_id.sql" );
 		$updater->addExtensionTable( 'flow_ext_ref', "$dir/db_patches/patch-add-linkstables.sql" );
+		$updater->addExtensionField( 'flow_wiki_ref', 'ref_src_wiki', "$dir/db_patches/patch-reference_wiki.sql" );
 
 		require_once __DIR__.'/maintenance/FlowInsertDefaultDefinitions.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowInsertDefaultDefinitions' );
