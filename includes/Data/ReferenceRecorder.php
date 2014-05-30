@@ -70,12 +70,17 @@ class ReferenceRecorder implements LifecycleHandler {
 	 * @return array           Array of References.
 	 */
 	public function getExistingReferences( $revType, UUID $objectId ) {
-		$prevWikiReferences = $this->storage->find( 'WikiReference', array(
+		global $wgFlowMigrateReferenceWiki;
+		$wikiConds = $wgFlowMigrateReferenceWiki
+			? array()
+			: array( 'ref_src_wiki' => wfWikiId() );
+
+		$prevWikiReferences = $this->storage->find( 'WikiReference', $wikiConds + array(
 			'ref_src_object_type' => $revType,
 			'ref_src_object_id' => $objectId,
 		) );
 
-		$prevUrlReferences = $this->storage->find( 'URLReference', array(
+		$prevUrlReferences = $this->storage->find( 'URLReference', $wikiConds + array(
 			'ref_src_object_type' => $revType,
 			'ref_src_object_id' => $objectId,
 		) );

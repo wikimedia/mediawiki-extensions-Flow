@@ -72,6 +72,7 @@ class ReferenceExtractor {
 	public function instantiateReference( Workflow $workflow, $objectType, UUID $objectId, $targetType, $refType, $value ) {
 		if ( $targetType === 'url' ) {
 			return new URLReference(
+				wfWikiId(),
 				$workflow->getId(),
 				$workflow->getArticleTitle(),
 				$objectType,
@@ -87,6 +88,7 @@ class ReferenceExtractor {
 			}
 
 			return new WikiReference(
+				wfWikiId(),
 				$workflow->getId(),
 				$workflow->getArticleTitle(),
 				$objectType,
