@@ -154,7 +154,7 @@ class ReferenceExtractorTestCase extends FlowTestCase {
 		$workflow->expects( $this->any() )
 			->method( 'getArticleTitle' )
 			->will( $this->returnValue( Title::newMainPage() ) );
-		$factory = new ReferenceFactory( $workflow, 'foo', UUID::create() );
+		$factory = new ReferenceFactory( wfWikiId(), $workflow, 'foo', UUID::create() );
 
 		$reflMethod = new ReflectionMethod( $referenceExtractor, 'extractReferences' );
 		$reflMethod->setAccessible( true );

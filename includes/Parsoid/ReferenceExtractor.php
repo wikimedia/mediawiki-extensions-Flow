@@ -38,7 +38,7 @@ class ReferenceExtractor {
 	public function getReferences( Workflow $workflow, $objectType, UUID $objectId, $text ) {
 		if ( isset( $this->extractors[$objectType] ) ) {
 			return $this->extractReferences(
-				new ReferenceFactory( $workflow, $objectType, $objectId ),
+				new ReferenceFactory( $workflow->getWiki(), $workflow, $objectType, $objectId ),
 				$this->extractors[$objectType],
 				$text
 			);

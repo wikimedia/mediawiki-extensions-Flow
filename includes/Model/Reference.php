@@ -33,11 +33,17 @@ abstract class Reference {
 	 */
 	protected $type;
 
+	/**
+	 * @var string
+	 */
+	protected $wikiId;
+
 	protected $validTypes = array( self::TYPE_LINK );
 
 	/**
 	 * Standard constructor. Called from subclasses only
 	 *
+	 * @param String $wiki Wiki ID of the reference source
 	 * @param UUID   $srcWorkflow Source Workflow's ID
 	 * @param Title  $srcTitle    Title of the Workflow from which this reference comes.
 	 * @param String $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
@@ -45,7 +51,8 @@ abstract class Reference {
 	 * @param string $type        The type of reference
 	 * @throws InvalidReferenceException
 	 */
-	protected function __construct( UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type ) {
+	protected function __construct( $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type ) {
+		$this->wikiId = $wiki;
 		$this->workflowId = $srcWorkflow;
 		$this->objectType = $objectType;
 		$this->objectId = $objectId;
@@ -57,6 +64,14 @@ abstract class Reference {
 				"Invalid type $type specified for reference " . get_class( $this )
 			);
 		}
+	}
+
+	/**
+	 * Returns the wiki ID of the wiki on which the reference appears
+	 * @return string Wiki ID
+	 */
+	public function getSrcWiki() {
+		return $this->wikiId;
 	}
 
 	/**
@@ -110,6 +125,7 @@ abstract class Reference {
 	 */
 	public function getStorageRow() {
 		return array(
+			'ref_src_wiki' => $this->wikiId,
 			'ref_src_workflow_id' => $this->workflowId->getAlphadecimal(),
 			'ref_src_namespace' => $this->srcTitle->getNamespace(),
 			'ref_src_title' => $this->srcTitle->getDBkey(),

@@ -9,6 +9,7 @@ class URLReference extends Reference {
 	protected $url;
 
 	/**
+	 * @param String $wiki Wiki ID of the reference source
 	 * @param UUID   $srcWorkflow ID of the source Workflow
 	 * @param Title  $srcTitle    Title of the page that the Workflow exists on
 	 * @param String $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
@@ -17,7 +18,7 @@ class URLReference extends Reference {
 	 * @param string $url         URL of the reference's target.
 	 * @throws InvalidReferenceException
 	 */
-	public function __construct( UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, $url ) {
+	public function __construct( $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, $url ) {
 		$this->url = $url;
 
 		if ( !is_array( wfParseUrl( $url ) ) ) {
@@ -26,7 +27,7 @@ class URLReference extends Reference {
 			);
 		}
 
-		parent::__construct( $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
+		parent::__construct( $wiki, $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
 	}
 
 	/**
@@ -47,14 +48,17 @@ class URLReference extends Reference {
 	 * @return URLReference
 	 */
 	public static function fromStorageRow( $row ) {
+		global $wgFlowMigrateReferenceWiki;
+
 		$workflow = UUID::create( $row['ref_src_workflow_id'] );
 		$objectType = $row['ref_src_object_type'];
 		$objectId = UUID::create( $row['ref_src_object_id'] );
 		$url = $row['ref_target'];
 		$type = $row['ref_type'];
 		$srcTitle = Title::makeTitle( $row['ref_src_namespace'], $row['ref_src_title'] );
+		$wiki = $wgFlowMigrateReferenceWiki? null : $row['ref_src_wiki'];
 
-		return new URLReference( $workflow, $srcTitle, $objectType, $objectId, $type, $url );
+		return new URLReference( $wiki, $workflow, $srcTitle, $objectType, $objectId, $type, $url );
 	}
 
 	/**
