@@ -423,7 +423,7 @@ $wgFlowUseMemcache = true;
 // of 3 days means Flow will attempt to keep in memcache all data models requested in
 // the last 3 days.
 $wgFlowCacheTime = 60 * 60 * 24 * 3;
-$wgFlowCacheVersion = '4.4';
+$wgFlowCacheVersion = '4.5';
 
 // Custom group name for AbuseFilter
 // Acceptable values:
@@ -440,3 +440,5 @@ $wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.
 
 // Actions that must pass through to MediaWiki on flow enabled pages
 $wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', 'watch' );
+
+$wgFlowMigrateReferenceWiki = false;
