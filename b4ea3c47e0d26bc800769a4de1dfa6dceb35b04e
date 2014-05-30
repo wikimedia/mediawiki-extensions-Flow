@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e1dcb5b_9b3336f3",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-05-30T19:45:43Z",
+      "side": 1,
+      "message": "I think you can remove this.",
+      "revId": "b4ea3c47e0d26bc800769a4de1dfa6dceb35b04e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e1dcb5b_fb1c6a6c",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-05-30T19:45:43Z",
+      "side": 1,
+      "message": "throws CrossWikiException, unless Title::makeTitleSafe also throws something.",
+      "revId": "b4ea3c47e0d26bc800769a4de1dfa6dceb35b04e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e1dcb5b_fb534a18",
+        "filename": "includes/Model/Workflow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-05-30T19:45:43Z",
+      "side": 1,
+      "message": "I think WorkflowLoader::__construct should be updated to throw the same exception?  (and not use FlowException, and document its exceptions?) I don\u0027t know if clients are catching FlowException from it or from createWorkflowLoader, I think not?\n\nhttps://en.wikipedia.org/wiki/High_rising_terminal  :-) ?",
+      "revId": "b4ea3c47e0d26bc800769a4de1dfa6dceb35b04e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e1dcb5b_60078920",
+        "filename": "includes/ReferenceClarifier.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-05-30T19:45:43Z",
+      "side": 1,
+      "message": "The function is loadReferencesForPage(). Note Gerrit 136280  does this, it will need to update this comment block.",
+      "revId": "b4ea3c47e0d26bc800769a4de1dfa6dceb35b04e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
