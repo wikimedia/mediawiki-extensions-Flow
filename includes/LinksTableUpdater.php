@@ -94,9 +94,14 @@ class LinksTableUpdater {
 	}
 
 	public function getReferencesForTitle( $title ) {
+		global $wgFlowMigrateReferenceWiki;
+		$wikiConds = $wgFlowMigrateReferenceWiki
+			? array()
+			: array( 'ref_src_wiki' => wfWikiId() );
+
 		$wikiReferences = $this->storage->find(
 			'WikiReference',
-			array(
+			$wikiConds + array(
 				'ref_src_namespace' => $title->getNamespace(),
 				'ref_src_title' => $title->getDBkey(),
 			)
@@ -104,7 +109,7 @@ class LinksTableUpdater {
 
 		$urlReferences = $this->storage->find(
 			'URLReference',
-			array(
+			$wikiConds + array(
 				'ref_src_namespace' => $title->getNamespace(),
 				'ref_src_title' => $title->getDBkey(),
 			)
