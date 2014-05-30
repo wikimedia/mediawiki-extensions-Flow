@@ -10,6 +10,11 @@ use Title;
 
 class ReferenceFactory {
 	/**
+	 * @var string
+	 */
+	protected $wikiId;
+
+	/**
 	 * @var UUID
 	 */
 	protected $workflowId;
@@ -30,11 +35,13 @@ class ReferenceFactory {
 	protected $objectId;
 
 	/**
+	 * @param String $wikiId Wiki identifier
 	 * @param Workflow $workflow
 	 * @param string $objectType
 	 * @param UUID $objectId
 	 */
-	public function __construct( Workflow $workflow, $objectType, UUID $objectId ) {
+	public function __construct( $wikiId, Workflow $workflow, $objectType, UUID $objectId ) {
+		$this->wikiId = $wikiId;
 		$this->workflowId = $workflow->getId();
 		$this->title = $workflow->getArticleTitle();
 		$this->objectType = $objectType;
@@ -48,6 +55,7 @@ class ReferenceFactory {
 	 */
 	public function createUrlReference( $refType, $value ) {
 		return new URLReference(
+			$this->wikiId,
 			$this->workflowId,
 			$this->title,
 			$this->objectType,
@@ -70,6 +78,7 @@ class ReferenceFactory {
 		}
 
 		return new WikiReference(
+			$this->wikiId,
 			$this->workflowId,
 			$this->title,
 			$this->objectType,

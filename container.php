@@ -1039,6 +1039,7 @@ $c['logger.moderation'] = function( $c ) {
 $c['storage.wiki_reference.class'] = 'Flow\Model\WikiReference';
 $c['storage.wiki_reference.table'] = 'flow_wiki_ref';
 $c['storage.wiki_reference.primary_key'] = array(
+	'ref_src_wiki',
 	'ref_src_namespace',
 	'ref_src_title',
 	'ref_src_object_id',
@@ -1062,8 +1063,9 @@ $c['storage.wiki_reference.indexes.source_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.wiki_reference.backend'],
-		'flow_ref:wiki:by-source',
+		'flow_ref:wiki:by-source:v3',
 		array(
+			'ref_src_wiki',
 			'ref_src_namespace',
 			'ref_src_title',
 		),
@@ -1077,8 +1079,9 @@ $c['storage.wiki_reference.indexes.revision_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.wiki_reference.backend'],
-		'flow_ref:wiki:by-revision:v2',
+		'flow_ref:wiki:by-revision:v3',
 		array(
+			'ref_src_wiki',
 			'ref_src_object_type',
 			'ref_src_object_id',
 		),
@@ -1089,10 +1092,47 @@ $c['storage.wiki_reference.indexes.revision_lookup'] = function( $c ) {
 	);
 };
 $c['storage.wiki_reference.indexes'] = function( $c ) {
-	return array(
+	$indexes = array(
 		$c['storage.wiki_reference.indexes.source_lookup'],
 		$c['storage.wiki_reference.indexes.revision_lookup'],
 	);
+
+	global $wgFlowMigrateReferenceWiki;
+
+	if ( $wgFlowMigrateReferenceWiki ) {
+		// Temporarily support querying without the source wiki until
+		// backfill is complete
+		$indexes = array_merge( $indexes, array(
+				new TopKIndex(
+					$c['memcache.buffered'],
+					$c['storage.wiki_reference.backend'],
+					'flow_ref:wiki:by-source',
+					array(
+						'ref_src_namespace',
+						'ref_src_title',
+					),
+					array(
+						'order' => 'ASC',
+						'sort' => 'ref_src_object_id',
+					)
+				),
+				new TopKIndex(
+					$c['memcache.buffered'],
+					$c['storage.wiki_reference.backend'],
+					'flow_ref:wiki:by-revision:v2',
+					array(
+						'ref_src_object_type',
+						'ref_src_object_id',
+					),
+					array(
+						'order' => 'ASC',
+						'sort' => array( 'ref_target_namespace', 'ref_target_title' ),
+					)
+				)
+			) );
+	}
+
+	return $indexes;
 };
 $c['storage.wiki_reference'] = function( $c ) {
 	return new ObjectManager(
@@ -1105,6 +1145,7 @@ $c['storage.wiki_reference'] = function( $c ) {
 $c['storage.url_reference.class'] = 'Flow\Model\URLReference';
 $c['storage.url_reference.table'] = 'flow_ext_ref';
 $c['storage.url_reference.primary_key'] = array(
+	'ref_src_wiki',
 	'ref_src_namespace',
 	'ref_src_title',
 	'ref_src_object_id',
@@ -1125,12 +1166,13 @@ $c['storage.url_reference.backend'] = function( $c ) {
 	);
 };
 
-$c['storage.url_reference.indexes.revision_lookup'] = function( $c ) {
+$c['storage.url_reference.indexes.source_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.url_reference.backend'],
-		'flow_ref:url:by-source',
+		'flow_ref:url:by-source:v3',
 		array(
+			'ref_src_wiki',
 			'ref_src_namespace',
 			'ref_src_title',
 		),
@@ -1140,12 +1182,13 @@ $c['storage.url_reference.indexes.revision_lookup'] = function( $c ) {
 		)
 	);
 };
-$c['storage.url_reference.indexes.source_lookup'] = function( $c ) {
+$c['storage.url_reference.indexes.revision_lookup'] = function( $c ) {
 	return new TopKIndex(
 		$c['memcache.local_buffered'],
 		$c['storage.url_reference.backend'],
-		'flow_ref:url:by-revision:v2',
+		'flow_ref:url:by-revision:v3',
 		array(
+			'ref_src_wiki',
 			'ref_src_object_type',
 			'ref_src_object_id',
 		),
@@ -1156,10 +1199,44 @@ $c['storage.url_reference.indexes.source_lookup'] = function( $c ) {
 	);
 };
 $c['storage.url_reference.indexes'] = function( $c ) {
-	return array(
+	$indexes = array(
 		$c['storage.url_reference.indexes.source_lookup'],
 		$c['storage.url_reference.indexes.revision_lookup'],
 	);
+
+	global $wgFlowMigrateReferenceWiki;
+	if ( $wgFlowMigrateReferenceWiki ) {
+		$indexes = array_merge( $indexes, array(
+			new TopKIndex(
+				$c['memcache.buffered'],
+				$c['storage.url_reference.backend'],
+				'flow_ref:url:by-source',
+				array(
+					'ref_src_namespace',
+					'ref_src_title',
+				),
+				array(
+					'order' => 'ASC',
+					'sort' => 'ref_src_object_id',
+				)
+			),
+			new TopKIndex(
+				$c['memcache.buffered'],
+				$c['storage.url_reference.backend'],
+				'flow_ref:url:by-revision:v2',
+				array(
+					'ref_src_object_type',
+					'ref_src_object_id',
+				),
+				array(
+					'order' => 'ASC',
+					'sort' => array( 'ref_target' ),
+				)
+			)
+		) );
+	}
+
+	return $indexes;
 };
 $c['storage.url_reference'] = function( $c ) {
 	return new ObjectManager(
