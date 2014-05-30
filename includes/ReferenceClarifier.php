@@ -62,13 +62,18 @@ class ReferenceClarifier {
 		$allReferences = array();
 
 		foreach( array( 'WikiReference', 'URLReference' ) as $refType ) {
-			$allReferences = array_merge( $allReferences, $this->storage->find(
+			$result = $this->storage->find(
 				$refType,
 				array(
+					'ref_src_wiki' => wfWikiId(), // Only support local references for now
 					'ref_src_namespace' => $from->getNamespace(),
 					'ref_src_title' => $from->getDBkey(),
 				)
-			) );
+			);
+
+			if ( is_array( $result ) ) {
+				$allReferences = array_merge( $allReferences, $result );
+			}
 		}
 
 		$cache = array();
