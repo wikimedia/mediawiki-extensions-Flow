@@ -438,7 +438,7 @@ class LinksTableTest extends PostRevisionTestCase {
 
 	protected function expandReferences( Workflow $workflow, AbstractRevision $revision, array $references ) {
 		$referenceObjs = array();
-		$factory = new ReferenceFactory( $workflow, $revision->getRevisionType(), $revision->getCollectionId() );
+		$factory = new ReferenceFactory( wfWikiId(), $workflow, $revision->getRevisionType(), $revision->getCollectionId() );
 
 		foreach( $references as $ref ) {
 			$referenceObjs[] = $factory->{$ref['factoryMethod']}( $ref['refType'], $ref['value'] );
