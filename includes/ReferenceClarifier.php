@@ -71,15 +71,17 @@ class ReferenceClarifier {
 
 		foreach( array( 'WikiReference', 'URLReference' ) as $refType ) {
 			// find() returns null for error or empty result
-			$res = $this->storage->find(
+			$result = $this->storage->find(
 				$refType,
 				array(
+					'ref_src_wiki' => wfWikiId(), // Only support local references for now
 					'ref_src_namespace' => $from->getNamespace(),
 					'ref_src_title' => $from->getDBkey(),
 				)
 			);
-			if ( $res ) {
-				$allReferences = array_merge( $allReferences, $res );
+
+			if ( is_array( $result ) ) {
+				$allReferences = array_merge( $allReferences, $result );
 			}
 		}
 

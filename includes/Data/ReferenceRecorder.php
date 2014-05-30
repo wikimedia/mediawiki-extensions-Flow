@@ -71,11 +71,13 @@ class ReferenceRecorder implements LifecycleHandler {
 	 */
 	public function getExistingReferences( $revType, UUID $objectId ) {
 		$prevWikiReferences = $this->storage->find( 'WikiReference', array(
+			'ref_src_wiki' => wfWikiId(),
 			'ref_src_object_type' => $revType,
 			'ref_src_object_id' => $objectId,
 		) );
 
 		$prevUrlReferences = $this->storage->find( 'URLReference', array(
+			'ref_src_wiki' => wfWikiId(),
 			'ref_src_object_type' => $revType,
 			'ref_src_object_id' => $objectId,
 		) );
