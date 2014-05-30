@@ -20,6 +20,7 @@ class ReferenceFactoryTest extends \MediaWikiTestCase {
 			->will( $this->returnValue( Title::newMainPage() ) );
 
 		$factory = new ReferenceFactory(
+			wfWikiId(),
 			$workflow,
 			'foo',
 			UUID::create()
