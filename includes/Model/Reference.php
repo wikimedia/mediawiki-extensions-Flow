@@ -6,7 +6,7 @@ use Flow\Exception\InvalidInputException;
 use Title;
 
 abstract class Reference {
-	protected $workflowId, $title, $objectType, $objectId, $type;
+	protected $workflowId, $title, $objectType, $objectId, $type, $wikiId;
 
 	protected $validTypes = array(
 		'link',
@@ -14,6 +14,7 @@ abstract class Reference {
 
 	/**
 	 * Standard constructor. Called from subclasses only
+	 * @param String $wiki 		  Wiki ID of the reference source
 	 * @param UUID   $srcWorkflow Source Workflow's ID
 	 * @param Title  $srcTitle    Title of the Workflow from which this reference comes.
 	 * @param String $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
@@ -21,7 +22,8 @@ abstract class Reference {
 	 * @param string $type        The type of reference
 	 * @throws InvalidInputException
 	 */
-	protected function __construct( UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type ) {
+	protected function __construct( $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type ) {
+		$this->wikiId = $wiki;
 		$this->workflowId = $srcWorkflow;
 		$this->objectType = $objectType;
 		$this->objectId = $objectId;
@@ -33,6 +35,14 @@ abstract class Reference {
 				"Invalid type $type specified for reference " . get_class( $this )
 			);
 		}
+	}
+
+	/**
+	 * Returns the wiki ID of the wiki on which the reference appears
+	 * @return string Wiki ID
+	 */
+	public function getSrcWiki() {
+		return $this->wikiId;
 	}
 
 	/**
@@ -81,6 +91,7 @@ abstract class Reference {
 	 */
 	public function getStorageRow() {
 		return array(
+			'ref_src_wiki' => $this->wikiId,
 			'ref_src_workflow_id' => $this->workflowId->getAlphadecimal(),
 			'ref_src_namespace' => $this->srcTitle->getNamespace(),
 			'ref_src_title' => $this->srcTitle->getDBkey(),
@@ -118,6 +129,7 @@ class WikiReference extends Reference {
 	protected $target;
 
 	/**
+	 * @param String $wiki 		  Wiki ID of the reference source
 	 * @param UUID   $srcWorkflow ID of the source Workflow
 	 * @param Title  $srcTitle    Title of the reference's target.
 	 * @param string $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
@@ -125,7 +137,7 @@ class WikiReference extends Reference {
 	 * @param string $type        Type of reference
 	 * @param Title  $targetTitle Title of the reference's target.
 	 */
-	public function __construct( UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, Title $targetTitle ) {
+	public function __construct( $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, Title $targetTitle ) {
 		$this->target = $targetTitle;
 
 		$this->validTypes = array_merge( $this->validTypes,
@@ -135,7 +147,7 @@ class WikiReference extends Reference {
 			)
 		);
 
-		parent::__construct( $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
+		parent::__construct( $wiki, $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
 	}
 
 	/**
@@ -161,8 +173,9 @@ class WikiReference extends Reference {
 		$srcTitle = self::makeTitle( $row['ref_src_namespace'], $row['ref_src_title'] );
 		$targetTitle = self::makeTitle( $row['ref_target_namespace'], $row['ref_target_title'] );
 		$type = $row['ref_type'];
+		$wiki = $row['ref_src_wiki'];
 
-		return new WikiReference( $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle );
+		return new WikiReference( $wiki, $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle );
 	}
 
 	/**
@@ -213,6 +226,7 @@ class URLReference extends Reference {
 	protected $url;
 
 	/**
+	 * @param String $wiki 		  Wiki ID of the reference source
 	 * @param UUID   $srcWorkflow ID of the source Workflow
 	 * @param Title  $srcTitle    Title of the page that the Workflow exists on
 	 * @param String $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
@@ -221,7 +235,7 @@ class URLReference extends Reference {
 	 * @param string $url         URL of the reference's target.
 	 * @throws InvalidInputException
 	 */
-	public function __construct( UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, $url ) {
+	public function __construct( $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, $url ) {
 		$this->url = $url;
 
 		if ( !is_array( wfParseUrl( $url ) ) ) {
@@ -230,7 +244,7 @@ class URLReference extends Reference {
 			);
 		}
 
-		parent::__construct( $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
+		parent::__construct( $wiki, $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
 	}
 
 	/**
@@ -255,8 +269,9 @@ class URLReference extends Reference {
 		$url = $row['ref_target'];
 		$type = $row['ref_type'];
 		$srcTitle = Title::makeTitle( $row['ref_src_namespace'], $row['ref_src_title'] );
+		$wiki = $row['ref_src_wiki'];
 
-		return new URLReference( $workflow, $srcTitle, $objectType, $objectId, $type, $url );
+		return new URLReference( $wiki, $workflow, $srcTitle, $objectType, $objectId, $type, $url );
 	}
 
 	/**

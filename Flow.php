@@ -509,3 +509,4 @@ $wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', '
 // to disk. Production should always have this set to false.
 $wgFlowServerCompileTemplates = false;
 
+$wgFlowMigrateReferenceWiki = false;

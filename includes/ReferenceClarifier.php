@@ -71,15 +71,23 @@ class ReferenceClarifier {
 
 		foreach( array( 'WikiReference', 'URLReference' ) as $refType ) {
 			// find() returns null for error or empty result
-			$res = $this->storage->find(
-				$refType,
-				array(
-					'ref_src_namespace' => $from->getNamespace(),
-					'ref_src_title' => $from->getDBkey(),
-				)
+			$conds = array(
+				'ref_src_namespace' => $from->getNamespace(),
+				'ref_src_title' => $from->getDBkey(),
 			);
-			if ( $res ) {
-				$allReferences = array_merge( $allReferences, $res );
+
+			global $wgFlowMigrateReferenceWiki;
+			if ( ! $wgFlowMigrateReferenceWiki ) {
+				$conds['ref_src_wiki'] = wfWikiId();
+			}
+
+			$result = $this->storage->find(
+				$refType,
+				$conds
+			);
+
+			if ( is_array( $result ) ) {
+				$allReferences = array_merge( $allReferences, $result );
 			}
 		}
 

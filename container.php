@@ -837,6 +837,7 @@ $c['storage.reference.wiki'] = $c->share( function( $c ) {
 		$c['db.factory'], 'flow_wiki_ref',
 		// pk
 		array(
+			'ref_src_wiki',
 			'ref_src_namespace',
 			'ref_src_title',
 			'ref_src_object_id',
@@ -849,8 +850,9 @@ $c['storage.reference.wiki'] = $c->share( function( $c ) {
 		new TopKIndex(
 			$cache,
 			$storage,
-			'flow_ref:wiki:by-source',
+			'flow_ref:wiki:by-source:v3',
 			array(
+				'ref_src_wiki',
 				'ref_src_namespace',
 				'ref_src_title',
 			),
@@ -862,8 +864,9 @@ $c['storage.reference.wiki'] = $c->share( function( $c ) {
 		new TopKIndex(
 			$cache,
 			$storage,
-			'flow_ref:wiki:by-revision:v2',
+			'flow_ref:wiki:by-revision:v3',
 			array(
+				'ref_src_wiki',
 				'ref_src_object_type',
 				'ref_src_object_id',
 			),
@@ -873,6 +876,39 @@ $c['storage.reference.wiki'] = $c->share( function( $c ) {
 			)
 		),
 	);
+
+	global $wgFlowMigrateReferenceWiki;
+
+	if ( $wgFlowMigrateReferenceWiki ) {
+		$indexes = array_merge( $indexes, array(
+			new TopKIndex(
+				$cache,
+				$storage,
+				'flow_ref:wiki:by-source',
+				array(
+					'ref_src_namespace',
+					'ref_src_title',
+				),
+				array(
+					'order' => 'ASC',
+					'sort' => 'ref_src_object_id',
+				)
+			),
+			new TopKIndex(
+				$cache,
+				$storage,
+				'flow_ref:wiki:by-revision:v2',
+				array(
+					'ref_src_object_type',
+					'ref_src_object_id',
+				),
+				array(
+					'order' => 'ASC',
+					'sort' => array( 'ref_target_namespace', 'ref_target_title' ),
+				)
+			),
+		) );
+	}
 
 	$handlers = array();
 
@@ -890,6 +926,7 @@ $c['storage.reference.url'] = $c->share( function( $c ) {
 		$c['db.factory'], 'flow_ext_ref',
 		// pk
 		array(
+			'ref_src_wiki',
 			'ref_src_namespace',
 			'ref_src_title',
 			'ref_src_object_id',
@@ -902,8 +939,9 @@ $c['storage.reference.url'] = $c->share( function( $c ) {
 		new TopKIndex(
 			$cache,
 			$storage,
-			'flow_ref:url:by-source',
+			'flow_ref:url:by-source:v3',
 			array(
+				'ref_src_wiki',
 				'ref_src_namespace',
 				'ref_src_title',
 			),
@@ -915,8 +953,9 @@ $c['storage.reference.url'] = $c->share( function( $c ) {
 		new TopKIndex(
 			$cache,
 			$storage,
-			'flow_ref:url:by-revision:v2',
+			'flow_ref:url:by-revision:v3',
 			array(
+				'ref_src_wiki',
 				'ref_src_object_type',
 				'ref_src_object_id',
 			),
@@ -926,6 +965,39 @@ $c['storage.reference.url'] = $c->share( function( $c ) {
 			)
 		),
 	);
+
+	global $wgFlowMigrateReferenceWiki;
+
+	if ( $wgFlowMigrateReferenceWiki ) {
+		$indexes = array_merge( $indexes, array(
+			new TopKIndex(
+				$cache,
+				$storage,
+				'flow_ref:url:by-source',
+				array(
+					'ref_src_namespace',
+					'ref_src_title',
+				),
+				array(
+					'order' => 'ASC',
+					'sort' => 'ref_src_object_id',
+				)
+			),
+			new TopKIndex(
+				$cache,
+				$storage,
+				'flow_ref:url:by-revision:v2',
+				array(
+					'ref_src_object_type',
+					'ref_src_object_id',
+				),
+				array(
+					'order' => 'ASC',
+					'sort' => array( 'ref_target' ),
+				)
+			),
+		) );
+	}
 
 	$handlers = array(); // TODO make a handler to insert into *links tables
 
