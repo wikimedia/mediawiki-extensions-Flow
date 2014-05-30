@@ -16,6 +16,24 @@
       "revId": "bd2b1bbf56266217fc29b6830fdf73760a9f8d2c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e1dcb5b_b61cc719",
+        "filename": "includes/Block/TopicList.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-05-30T22:02:29Z",
+      "side": 1,
+      "message": "Yeah, this is not needed.  This setting doesn\u0027t affect any frontend cache",
+      "parentUuid": "4e1dcb5b_bcdccc4c",
+      "revId": "bd2b1bbf56266217fc29b6830fdf73760a9f8d2c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
