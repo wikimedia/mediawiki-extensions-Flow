@@ -261,6 +261,13 @@ class Workflow {
 	public function getType() { return $this->type; }
 
 	/**
+	 * Get the wiki ID, e.g. eswiki
+	 *
+	 * @return string
+	 */
+	public function getWiki() { return $this->wiki; }
+
+	/**
 	 * @return bool
 	 */
 	public function isDeleted() {

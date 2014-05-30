@@ -13,6 +13,7 @@ class WikiReference extends Reference {
 	protected $target;
 
 	/**
+	 * @param String $wiki Wiki ID of the reference source
 	 * @param UUID   $srcWorkflow ID of the source Workflow
 	 * @param Title  $srcTitle    Title of the reference's target.
 	 * @param string $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
@@ -20,7 +21,7 @@ class WikiReference extends Reference {
 	 * @param string $type        Type of reference
 	 * @param Title  $targetTitle Title of the reference's target.
 	 */
-	public function __construct( UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, Title $targetTitle ) {
+	public function __construct( $wiki, UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, Title $targetTitle ) {
 		$this->target = $targetTitle;
 
 		$this->validTypes = array_merge( $this->validTypes,
@@ -31,7 +32,7 @@ class WikiReference extends Reference {
 			)
 		);
 
-		parent::__construct( $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
+		parent::__construct( $wiki, $srcWorkflow, $srcTitle, $objectType, $objectId, $type );
 	}
 
 	/**
@@ -53,14 +54,17 @@ class WikiReference extends Reference {
 	 * @return WikiReference
 	 */
 	public static function fromStorageRow( $row ) {
+		global $wgFlowMigrateReferenceWiki;
+
 		$workflow = UUID::create( $row['ref_src_workflow_id'] );
 		$objectType = $row['ref_src_object_type'];
 		$objectId = UUID::create( $row['ref_src_object_id'] );
 		$srcTitle = self::makeTitle( $row['ref_src_namespace'], $row['ref_src_title'] );
 		$targetTitle = self::makeTitle( $row['ref_target_namespace'], $row['ref_target_title'] );
 		$type = $row['ref_type'];
+		$wiki = $wgFlowMigrateReferenceWiki ? null : $row['ref_src_wiki'];
 
-		return new WikiReference( $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle );
+		return new WikiReference( $wiki, $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle );
 	}
 
 	/**
