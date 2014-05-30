@@ -175,7 +175,7 @@ abstract class ApiFlowBase extends ApiBase {
 					$nativeErrors = array();
 
 					foreach( $errors as $key ) {
-						$nativeErrors[$key]['message'] = $block->getErrorMessage( $key )->plain();
+						$nativeErrors[$key]['message'] = $block->getErrorMessage( $key )->parse();
 						$nativeErrors[$key]['extra'] = $block->getErrorExtra( $key );
 					}
 
