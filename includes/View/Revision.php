@@ -136,24 +136,22 @@ abstract class RevisionView implements RevisionCreatable {
 			->params( $this->templating->getUserText( $revision, $this->user ) );
 
 		if ( $revision instanceof PostRevision ) {
-			$permalinkUrl = $this->templating->getUrlGenerator()
-				->diffPostLink(
+			$linkMethod = 'diffPostLink';
+		} elseif ( $revision instanceof Header ) {
+			$linkMethod = 'diffHeaderLink';
+		} elseif ( $revision instanceof PostSummary ) {
+			$linkMethod = 'diffSummaryLink';
+		} else {
+			throw new FlowException( 'Unknown revision type: ' . get_class( $revision ) );
+		}
+
+		$permalinkUrl = $this->templating->getUrlGenerator()
+				->$linkMethod(
 					$block->getWorkflow()->getArticleTitle(),
 					$block->getWorkflow()->getId(),
 					$revision->getRevisionId()
 				)
 				->getFullURL();
-		} elseif ( $revision instanceof Header ) {
-			$permalinkUrl = $this->templating->getUrlGenerator()
-				->diffHeaderLink(
-					$block->getWorkflow()->getArticleTitle(),
-					$block->getWorkflow()->getId(),
-					$revision->getRevisionId()
-				)
-				->getFullURL;
-		} else {
-			throw new FlowException( 'Unknown revision type: ' . get_class( $revision ) );
-		}
 
 		$link = \Html::rawElement( 'a',
 			array(
@@ -738,11 +736,8 @@ class PostSummaryRevisionView extends RevisionView {
 	 */
 	public function getDiffViewHeader( $newRevision, $oldRevision ) {
 		$boardLinkTitle = clone $this->block->getWorkflow()->getArticleTitle();
-		$boardLink = $this->templating->getUrlGenerator()
-			->buildUrl(
-				$boardLinkTitle,
-				'view'
-			);
+		$boardLink = $boardLinkTitle->getFullUrl();
+
 		/** @var Title $topicLinkTitle */
 		/** @var string $topicLinkQuery */
 		list( $topicLinkTitle, $topicLinkQuery ) = $this->templating->getUrlGenerator()
