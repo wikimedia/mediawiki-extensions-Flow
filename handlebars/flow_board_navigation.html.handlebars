@@ -5,7 +5,7 @@
 		{{progressiveEnhancement context=this insertionType="insertion" sectionId="flow-board-collapsers" templateName="flow_board_collapsers_subcomponent"}}
 
 		{{!-- Click for sorting options, not sure what this url should be --}}
-		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="{{l10n "Sorting_tooltip"}}" data-flow-interactive-handler="boardFilterMenuToggle">{{l10n "Newest_topics"}} <span class="wikicon wikicon-caret"></span></a>
+		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="{{l10n "flow-sorting-tooltip"}}" data-flow-interactive-handler="boardFilterMenuToggle">{{l10n "flow-newest-topics"}} <span class="wikicon wikicon-caret"></span></a>
 	</div>
 	<div class="flow-board-filter-menu">
 		<div class="flow-menu flow-menu-inverted">
@@ -13,7 +13,7 @@
 			{{#if links.board-sort}}
 				<ul class="flow-ui-button-container">
 					<li><a href="{{links.board-sort.updated}}"><span class="wikicon wikicon-clock"></span> {{l10n "Recently_active"}}</a></li>
-					<li><a href="{{links.board-sort.newest}}"><span class="wikicon wikicon-star-circle"></span> {{l10n "Newest_topics"}}</a></li>
+					<li><a href="{{links.board-sort.newest}}"><span class="wikicon wikicon-star-circle"></span> {{l10n "flow-newest-topics"}}</a></li>
 				</ul>
 			{{/if}}
 		</div>

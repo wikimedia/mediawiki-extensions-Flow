@@ -3,15 +3,15 @@
 		<!-- @todo form errors -->
 		<input type="hidden" name="topiclist_replyTo" value="{{ workflowId }}" />
 		<input type="hidden" name="wpEditToken" value="{{ @root.editToken }}" />
-		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="{{l10n "Start_a_new_topic"}}"/>
-		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="{{l10n "topic_details_placeholder"}}"></textarea>
+		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="{{l10n "flow-newtopic-start-placeholder"}}"/>
+		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="{{l10n "flow-newtopic-content-placeholder"}}"></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
-			<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "Add_Topic"}}</button>
-			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "Preview"}}</button>
-			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "Cancel"}}</button>
+			<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "flow-newtopic-save"}}</button>
+		<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
+			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</button>
 
-			<small class="flow-terms-of-use plainlinks">{{l10n "topic_TOU"}}</small>
+			<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-new-topic"}}</small>
 		</div>
 	</form>
 {{/if}}
