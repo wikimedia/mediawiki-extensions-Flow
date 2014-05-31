@@ -33,10 +33,10 @@
 	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible">'.((LCRun2::ifvar(((is_array($in) && isset($in['submitted'])) ? $in['submitted'] : null))) ? '
 			'.htmlentities(((is_array($in['submitted']) && isset($in['submitted']['content'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in) && isset($in['content'])) ? $in['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>
 	<div class="flow-form-actions flow-form-collapsible">
-		<button data-role="submit" class="flow-ui-button flow-ui-constructive">'.LCRun2::ch('l10n', Array('Edit',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'enc', $cx).'</button>
-		<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun2::ch('l10n', Array('Preview'), 'enc', $cx).'</button>
-		<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun2::ch('l10n', Array('Cancel'), 'enc', $cx).'</button>
-		<small class="flow-terms-of-use plainlinks">'.LCRun2::ch('l10n', Array('edit_TOU'), 'enc', $cx).'</small>
+		<button data-role="submit" class="flow-ui-button flow-ui-constructive">'.LCRun2::ch('l10n', Array('flow-post-action-edit-post',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'enc', $cx).'</button>
+		<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun2::ch('l10n', Array('flow-preview'), 'enc', $cx).'</button>
+		<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun2::ch('l10n', Array('flow-cancel'), 'enc', $cx).'</button>
+		<small class="flow-terms-of-use plainlinks">'.LCRun2::ch('l10n', Array('flow-terms-of-use-edit'), 'enc', $cx).'</small>
 	</div>
 </form>
 

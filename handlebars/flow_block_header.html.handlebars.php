@@ -19,7 +19,7 @@
 	'.((LCRun2::ifvar(((is_array($in) && isset($in['revision'])) ? $in['revision'] : null))) ? '
 		'.LCRun2::ch('html', Array(((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null)), 'enc', $cx).'
 	' : '
-		<p>'.LCRun2::ch('l10n', Array('No_header'), 'enc', $cx).'</p>
+		<p>'.LCRun2::ch('l10n', Array('flow-header-empty'), 'enc', $cx).'</p>
 	').'
 
 	<div class="flow-board-header-nav">

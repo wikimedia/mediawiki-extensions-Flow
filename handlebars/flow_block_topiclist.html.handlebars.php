@@ -31,7 +31,7 @@
 		'.LCRun2::ch('progressiveEnhancement', Array($in,'insertion','flow-board-collapsers','flow_board_collapsers_subcomponent'), 'enc', $cx).'
 
 		
-		<a href="'.htmlentities(((is_array($in['links']) && isset($in['links']['unknown'])) ? $in['links']['unknown'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" title="'.LCRun2::ch('l10n', Array('Sorting_tooltip'), 'enc', $cx).'">'.LCRun2::ch('l10n', Array('Newest_topics'), 'enc', $cx).'</a>
+		<a href="'.htmlentities(((is_array($in['links']) && isset($in['links']['unknown'])) ? $in['links']['unknown'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" title="'.LCRun2::ch('l10n', Array('flow-sorting-tooltip'), 'enc', $cx).'">'.LCRun2::ch('l10n', Array('flow-newest-topics'), 'enc', $cx).'</a>
 	</div>
 </div>
 
@@ -56,12 +56,12 @@
 	<li class="flow-topic-navigation-footer">
 		'.LCRun2::ch('l10n', Array('topic_count_sidebar',$in), 'enc', $cx).'
 		'.((LCRun2::ifvar(((is_array($in) && isset($in['('])) ? $in['('] : null))) ? '
-			<a href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="wikicon wikicon-article"></span> '.LCRun2::ch('l10n', Array('Load_More'), 'enc', $cx).'</a>
+			<a href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="wikicon wikicon-article"></span> '.LCRun2::ch('l10n', Array('flow-load-more'), 'enc', $cx).'</a>
 		'.htmlentities(((is_array($in) && isset($in['elseif'])) ? $in['elseif'] : null), ENT_QUOTES, 'UTF-8').'
-			<a href="'.htmlentities(((is_array($in['links']['pagination']['rev']) && isset($in['links']['pagination']['rev']['url'])) ? $in['links']['pagination']['rev']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['pagination']['rev']) && isset($in['links']['pagination']['rev']['title'])) ? $in['links']['pagination']['rev']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="wikicon wikicon-article"></span> '.LCRun2::ch('l10n', Array('Load_More'), 'enc', $cx).'</a>
+			<a href="'.htmlentities(((is_array($in['links']['pagination']['rev']) && isset($in['links']['pagination']['rev']['url'])) ? $in['links']['pagination']['rev']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['pagination']['rev']) && isset($in['links']['pagination']['rev']['title'])) ? $in['links']['pagination']['rev']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="wikicon wikicon-article"></span> '.LCRun2::ch('l10n', Array('flow-load-more'), 'enc', $cx).'</a>
 		' : '
 			<!-- @todo make disabled class do something? -->
-			<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin disabled"><span class="wikicon wikicon-article"></span> '.LCRun2::ch('l10n', Array('Load_More'), 'enc', $cx).'</a>
+			<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin disabled"><span class="wikicon wikicon-article"></span> '.LCRun2::ch('l10n', Array('flow-load-more'), 'enc', $cx).'</a>
 		').'
 	</li>
 </ul>
@@ -71,15 +71,15 @@
 		<!-- @todo form errors -->
 		<input type="hidden" name="topiclist_replyTo" value="'.htmlentities(((is_array($in) && isset($in['workflowId'])) ? $in['workflowId'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="'.LCRun2::ch('l10n', Array('Start_a_new_topic'), 'enc', $cx).'"/>
-		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="'.LCRun2::ch('l10n', Array('topic_details_placeholder'), 'enc', $cx).'"></textarea>
+		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="'.LCRun2::ch('l10n', Array('flow-newtopic-start-placeholder'), 'enc', $cx).'"/>
+		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="'.LCRun2::ch('l10n', Array('flow-newtopic-content-placeholder'), 'enc', $cx).'"></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
-			<button data-role="submit" class="flow-ui-button flow-ui-constructive">'.LCRun2::ch('l10n', Array('Add_Topic'), 'enc', $cx).'</button>
-			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun2::ch('l10n', Array('Preview'), 'enc', $cx).'</button>
-			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun2::ch('l10n', Array('Cancel'), 'enc', $cx).'</button>
+			<button data-role="submit" class="flow-ui-button flow-ui-constructive">'.LCRun2::ch('l10n', Array('flow-newtopic-save'), 'enc', $cx).'</button>
+		<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun2::ch('l10n', Array('flow-preview'), 'enc', $cx).'</button>
+			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun2::ch('l10n', Array('flow-cancel'), 'enc', $cx).'</button>
 
-			<small class="flow-terms-of-use plainlinks">'.LCRun2::ch('l10n', Array('topic_TOU'), 'enc', $cx).'</small>
+			<small class="flow-terms-of-use plainlinks">'.LCRun2::ch('l10n', Array('flow-terms-of-use-new-topic'), 'enc', $cx).'</small>
 		</div>
 	</form>
 ' : '').'
@@ -113,16 +113,16 @@
 					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['links']['topic-history']) && isset($in['links']['topic-history']['url'])) ? $in['links']['topic-history']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['topic-history']) && isset($in['links']['topic-history']['title'])) ? $in['links']['topic-history']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities(((is_array($in['links']['topic-history']) && isset($in['links']['topic-history']['title'])) ? $in['links']['topic-history']['title'] : null), ENT_QUOTES, 'UTF-8').'</a></li>
 				' : '').'
 				'.((LCRun2::ifvar(((is_array($in['actions']) && isset($in['actions']['lock'])) ? $in['actions']['lock'] : null))) ? '
-					<li><a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['url'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['title'])) ? $in['actions']['lock']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-lock"></span> '.LCRun2::ch('l10n', Array('Lock'), 'enc', $cx).'</a></li>
+					<li><a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['url'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['title'])) ? $in['actions']['lock']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-lock"></span> '.LCRun2::ch('l10n', Array('TODO-lock'), 'enc', $cx).'</a></li>
 				' : '').'
 				'.((LCRun2::ifvar(((is_array($in['actions']) && isset($in['actions']['hide'])) ? $in['actions']['hide'] : null))) ? '
-					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['url'])) ? $in['actions']['hide']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['title'])) ? $in['actions']['hide']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-eye-lid"></span> '.LCRun2::ch('l10n', Array('Hide'), 'enc', $cx).'</a></li>
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['url'])) ? $in['actions']['hide']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['title'])) ? $in['actions']['hide']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-eye-lid"></span> '.LCRun2::ch('l10n', Array('flow-post-action-hide-post'), 'enc', $cx).'</a></li>
 				' : '').'
 				'.((LCRun2::ifvar(((is_array($in['actions']) && isset($in['actions']['delete'])) ? $in['actions']['delete'] : null))) ? '
-					<li><a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['url'])) ? $in['actions']['delete']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-trash-slash"></span> '.LCRun2::ch('l10n', Array('Delete'), 'enc', $cx).'</a></li>
+					<li><a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['url'])) ? $in['actions']['delete']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-trash-slash"></span> '.LCRun2::ch('l10n', Array('flow-post-action-delete-post'), 'enc', $cx).'</a></li>
 				' : '').'
 				'.((LCRun2::ifvar(((is_array($in['actions']) && isset($in['actions']['suppress'])) ? $in['actions']['suppress'] : null))) ? '
-					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['url'])) ? $in['actions']['suppress']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-block-slash"></span> '.LCRun2::ch('l10n', Array('Suppress'), 'enc', $cx).'</a></li>
+					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['url'])) ? $in['actions']['suppress']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-block-slash"></span> '.LCRun2::ch('l10n', Array('flow-post-action-suppress-post'), 'enc', $cx).'</a></li>
 				' : '').'
 			</ul>
 		</div>
@@ -141,10 +141,10 @@
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" class="flow-ui-button flow-ui-constructive">'.LCRun2::ch('l10n', Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'enc', $cx).'</button>
-			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun2::ch('l10n', Array('Preview'), 'enc', $cx).'</button>
-			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun2::ch('l10n', Array('Cancel'), 'enc', $cx).'</button>
+			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun2::ch('l10n', Array('flow-preview'), 'enc', $cx).'</button>
+			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun2::ch('l10n', Array('flow-cancel'), 'enc', $cx).'</button>
 
-			<small class="flow-terms-of-use plainlinks">'.LCRun2::ch('l10n', Array('reply_TOU'), 'enc', $cx).'</small>
+			<small class="flow-terms-of-use plainlinks">'.LCRun2::ch('l10n', Array('flow-terms-of-use-reply'), 'enc', $cx).'</small>
 		</div>
 	</form>
 ' : '').'
