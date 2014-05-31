@@ -134,11 +134,12 @@ class TemplateHelper {
 	// Helpers
 
 	/**
-	 * Returns a string from the current language for the given key.
-	 * @param string $str,... String key
-	 * @return string
-	 * @todo We should get rid of the switch statement in this method and use the appropriate strings in-template
+	 * Localize message.
+	 * If given a simple MW message key this will convert it using the usual wfMessage() function,
+	 * storing it in a cache. It may also perform special processing of other messages such as
+	 * timestamps and topic counts.
 	 */
+	// @todo: Maybe the straight message lookup should be a separate msg helper function, for clarity?
 	static public function l10n( $str /*, $args... */ ) {
 		$message = null;
 		$args = func_get_args();
@@ -224,7 +225,7 @@ class TemplateHelper {
 			$str = 'flow-post-action-suppress-post';
 			break;
 
-		case 'Moderate':
+		case 'Moderate': // @todo: Unused?
 			$type = $args[0];
 			$str = "flow-post-action-$type-post";
 			break;

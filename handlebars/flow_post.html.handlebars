@@ -1,7 +1,7 @@
 {{#with revision}}
 	<div class="flow-post{{#if isModerated}} flow-post-moderated{{/if}}">
 		{{#with author}}
-			<span class="flow-author"><a href="{{links.contribs.url}}" title="{{links.contribs.title}}" class="mw-userlink flow-ui-tooltip-target">{{name}}</a> <span class="mw-usertoollinks">(<a href="{{links.talk.url}}" class="new flow-ui-tooltip-target" title="{{links.talk.title}}">{{l10n "Talk"}}</a>{{#if links.block}} | <a class="flow-ui-tooltip-target" href="{{links.block.url}}" title="{{links.block.title}}">{{l10n "block"}}</a>{{/if}})</span></span>
+			<span class="flow-author"><a href="{{links.contribs.url}}" title="{{links.contribs.title}}" class="mw-userlink flow-ui-tooltip-target">{{name}}</a> <span class="mw-usertoollinks">(<a href="{{links.talk.url}}" class="new flow-ui-tooltip-target" title="{{links.talk.title}}">{{l10n "talkpagelinktext"}}</a>{{#if links.block}} | <a class="flow-ui-tooltip-target" href="{{links.block.url}}" title="{{links.block.title}}">{{l10n "blocklink"}}</a>{{/if}})</span></span>
 		{{/with}}
 		<div class="flow-post-content">
 			{{html content}}
@@ -13,7 +13,7 @@
 				{{/if}}
 				{{#if actions.edit}}
 					&#8226;
-					<a href="{{actions.edit.url}}" title="{{actions.edit.title}}" class="flow-ui-regressive flow-ui-quiet">{{l10n "Edit"}}</a>
+					<a href="{{actions.edit.url}}" title="{{actions.edit.title}}" class="flow-ui-regressive flow-ui-quiet">{{l10n "flow-post-action-edit-post"}}</a>
 				{{/if}}
 			</span>
 			{{#if previousRevisionId}}
@@ -27,16 +27,16 @@
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikicon wikicon-ellipsis"></span></a></div>
 			<ul class="flow-ui-button-container">
 				{{#if actions.lock}}
-					<li><a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="{{actions.lock.url}}" title="{{actions.lock.title}}"><span class="wikicon wikicon-eye-lock"></span> {{l10n "Lock"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="{{actions.lock.url}}" title="{{actions.lock.title}}"><span class="wikicon wikicon-eye-lock"></span> {{l10n "TODO-Lock"}}</a></li>
 				{{/if}}
 				{{#if actions.hide}}
-					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{actions.hide.url}}" title="{{actions.hide.title}}"><span class="wikicon wikicon-eye-lid"></span> {{l10n "Hide"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{actions.hide.url}}" title="{{actions.hide.title}}"><span class="wikicon wikicon-eye-lid"></span> {{l10n "flow-post-action-hide-post"}}</a></li>
 				{{/if}}
 				{{#if actions.delete}}
-					<li><a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="{{actions.delete.url}}" title="{{actions.delete.title}}"><span class="wikicon wikicon-trash"></span> {{l10n "Delete"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="{{actions.delete.url}}" title="{{actions.delete.title}}"><span class="wikicon wikicon-trash"></span> {{l10n "flow-post-action-delete-post"}}</a></li>
 				{{/if}}
 				{{#if actions.suppress}}
-					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.suppress.title}}"><span class="wikicon wikicon-block"></span> {{l10n "Suppress"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.suppress.title}}"><span class="wikicon wikicon-block"></span> {{l10n "flow-post-action-suppress-post"}}</a></li>
 				{{/if}}
 			</ul>
 		</div>

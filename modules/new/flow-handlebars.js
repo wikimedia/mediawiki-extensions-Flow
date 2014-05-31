@@ -616,7 +616,7 @@
 	 * * template=String (Handlebars template)
 	 * * data-object=Object (data to be used to render the template; usually the keyword "this")
 	 * * data-json=String ()
-	 * @example {{progressiveEnhancement type="content"
+	 * @example {{progressiveEnhancement type="content"}}
 	 * @param {Object} options
 	 * @return {String}
 	 * @todo Implement support for full functionality, perhaps revisit the implementation.
