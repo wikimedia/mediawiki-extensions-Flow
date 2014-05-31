@@ -225,7 +225,7 @@ class UrlGenerator extends BaseUrlGenerator {
 	 */
 	public function postHistoryLink( Title $title = null, UUID $workflowId, UUID $postId ) {
 		return new Anchor(
-			wfMessage( 'hist' ),
+			wfMessage( 'flow-post-action-post-history' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'action' => 'history',
@@ -244,7 +244,7 @@ class UrlGenerator extends BaseUrlGenerator {
 	 */
 	public function workflowHistoryLink( Title $title = null, UUID $workflowId ) {
 		return new Anchor(
-			wfMessage( 'hist' ),
+			wfMessage( 'flow-topic-action-history' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'workflow' => $workflowId->getAlphadecimal(),
@@ -436,7 +436,7 @@ class UrlGenerator extends BaseUrlGenerator {
 	 */
 	public function editTitleAction( Title $title = null, UUID $workflowId, UUID $postId, UUID $revId ) {
 		return new Anchor(
-			wfMessage( 'flow-title-action-edit-title' ),
+			wfMessage( 'flow-topic-action-edit-title' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'action' => 'edit-title',
