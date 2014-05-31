@@ -267,6 +267,7 @@
 	"flow-revision-permalink-warning-header-first": "이것은 헤더의 첫 판에 대한 고유링크입니다. 이후 버전은 [$2 역사 문서]에서 볼 수 있습니다.",
 	"flow-compare-revisions-revision-header": "$1에 {{GENDER:$2|$2}} 사용자가 작성한 판",
 	"flow-compare-revisions-header-post": "이 문서는 $3 사용자가 [$4 $1] 게시판의 \"[$5 $2]\" 주제에 올린 두 판 사이의 {{GENDER:$3|차이}}를 보여줍니다.\n\n[$6 역사 문서]에서 이 게시물의 다른 판을 볼수 있습니다.",
+	"flow-compare-revisions-header-postsummary": "이 문서는 게시글 [$3 $1] 의 \"[$4 $2]\" 주제의 게시글 요약의 두 판 간의 차이입니다. [$5 역사] 에서 이 글의 다른 버전을 확인할 수 있습니다.",
 	"flow-compare-revisions-header-header": "이 문서는 [$3 $1] 헤더의 {{GENDER:$2|차이}}를 보여주고 있습니다. [$4 역사 문서]에서 다른 판을 볼 수 있습니다.",
 	"flow-topic-collapsed-one-line": "작게 보기",
 	"flow-topic-collapsed-full": "접힌 보기",
