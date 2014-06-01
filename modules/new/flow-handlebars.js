@@ -246,6 +246,8 @@
 	// Register l10n
 	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );
 
+	// TODO: l10nParse function?
+
 	/**
 	 * Generates markup for an "nnn sssss ago" and date/time string.
 	 * @example {{timestamp start_time "started_ago"}}
