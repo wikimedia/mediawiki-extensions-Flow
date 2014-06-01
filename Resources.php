@@ -57,6 +57,29 @@ $wgResourceModules += array(
 		),
 		'templates' => array(
 			'timestamp.html.handlebars',
+			// other dependencies of flow_block_topiclist from Makefile
+			'flow_block_topiclist.html.handlebars',
+			'flow_board_navigation.html.handlebars',
+			'flow_topic_navigation.html.handlebars',
+			'flow_newtopic_form.html.handlebars',
+			// TOPIC_SUBTEMPLATES from Makefile
+			'flow_topic.html.handlebars',
+			'flow_reply_form.html.handlebars',
+		),
+		'messages' => array(
+			'flow-cancel',
+			'flow-load-more',
+			'flow-newtopic-content-placeholder',
+			'flow-newtopic-save',
+			'flow-newtopic-start-placeholder',
+			'flow-post-action-delete-post',
+			'flow-post-action-hide-post',
+			'flow-post-action-suppress-post',
+			'flow-preview',
+			'flow-sorting-tooltip',
+			'flow-newest-topics',
+			'flow-terms-of-use-new-topic',
+			'flow-terms-of-use-reply',
 		)
 	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
