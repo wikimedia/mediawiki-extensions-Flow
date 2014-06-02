@@ -14,7 +14,42 @@ $flowTemplatingResourceTemplate = $flowResourceTemplate + array(
 
 $wgResourceModules += array(
 	'ext.flow.templating' => $flowTemplatingResourceTemplate + array(
+		'class' => 'ResourceLoaderTemplateModule',
 		'dependencies' => 'ext.mantle.handlebars',
+		'localTemplateBasePath' => $dir . 'handlebars',
+		'templates' => array(
+			"flow_block_board-history.html.handlebars",
+			"flow_block_header.html.handlebars",
+			"flow_block_header_diff_view.html.handlebars",
+			"flow_block_header_edit.html.handlebars",
+			"flow_block_header_single_view.html.handlebars",
+			"flow_block_topic.html.handlebars",
+			"flow_block_topic_diff_view.html.handlebars",
+			"flow_block_topic_edit_post.html.handlebars",
+			"flow_block_topic_edit_title.html.handlebars",
+			"flow_block_topic_history.html.handlebars",
+			"flow_block_topic_moderate_post.html.handlebars",
+			"flow_block_topic_moderate_topic.html.handlebars",
+			"flow_block_topic_single_view.html.handlebars",
+			"flow_block_topiclist.html.handlebars",
+			"flow_block_topicsummary_diff_view.html.handlebars",
+			"flow_block_topicsummary_edit.html.handlebars",
+			"flow_block_topicsummary_single_view.html.handlebars",
+			"flow_board.html.handlebars",
+			"flow_board_collapsers_subcomponent.html.handlebars",
+			"flow_board_navigation.html.handlebars",
+			"flow_edit_post.html.handlebars",
+			"flow_errors.html.handlebars",
+			"flow_moderate_post.html.handlebars",
+			"flow_moderate_topic.html.handlebars",
+			"flow_newtopic_form.html.handlebars",
+			"flow_post.html.handlebars",
+			"flow_reply_form.html.handlebars",
+			"flow_topic.html.handlebars",
+			"flow_topic_navigation.html.handlebars",
+			"form_element.html.handlebars",
+			"timestamp.html.handlebars",
+		),
 	),
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
 		'styles' => array(
@@ -40,6 +75,7 @@ $wgResourceModules += array(
 	'ext.flow.new' => $flowResourceTemplate + array(
 		'scripts' => array(
 			'new/mw-ui.enhance.js',
+			'new/flow-api.js',
 			'new/flow-components.js',
 			// flow-component must come before actual components
 			'new/components/flow-board.js',
@@ -54,9 +90,6 @@ $wgResourceModules += array(
 			'mediawiki.jqueryMsg',
 			'jquery.json',
 			'jquery.conditionalScroll',
-		),
-		'templates' => array(
-			'timestamp.html.handlebars'
 		)
 	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
