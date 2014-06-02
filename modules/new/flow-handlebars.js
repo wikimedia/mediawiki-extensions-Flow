@@ -31,20 +31,19 @@
 	 * @returns {Function}
 	 */
 	FlowHandlebars.prototype.getTemplate = function ( templateName ) {
-		if ( _tplcache[templateName] ) {
+		if ( _tplcache[ templateName ] ) {
 			// Return cached compiled template
-			return _tplcache[templateName];
+			return _tplcache[ templateName ];
 		}
 
-		// Find other templates in the page and compile them
-		$( 'script[type="text/x-handlebars-template"]' ).each( function () {
-			var $this = $( this ),
-				id = $this.attr( 'id' ).replace( '-partial', '');
-
-			FlowHandlebars.prototype.registerTemplate( id, $this.html() );
-
-			//$this.remove();
-		} );
+		_tplcache[ templateName ] = mw.mantle.template.get( templateName + '.html.handlebars' );
+		if ( _tplcache[ templateName ] ) {
+			// Try to get this template via Mantle
+			_tplcache[ templateName ] = _tplcache[ templateName ].render;
+			// Overwrite Handlebars' partials with our template cache instead. Much easier.
+			Handlebars.partials = _tplcache;
+			// also doable with Handlebars.registerPartial( name, html );
+		}
 
 		return _tplcache[ templateName ] || function () { mw.flow.debug( '[Handlebars] Missing template', arguments ); };
 	};
@@ -86,6 +85,19 @@
 	};
 
 	/**
+	 * A method to call helper functions from outside templates. This removes Handlebars.SafeString wrappers.
+	 * @param {String} helperName
+	 * @param {...*} [args]
+	 */
+	FlowHandlebars.prototype.callHelper = function ( helperName, args ) {
+		var result = this[ helperName ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
+		if ( result && result.string ) {
+			return result.string;
+		}
+		return result;
+	};
+
+	/**
 	 * Finds scripts of x-handlebars-template-progressive-enhancement type, compiles its innerHTML as a Handlebars
 	 * template, and then replaces the whole script tag with it. This is used to "progressively enhance" a page with
 	 * elements that are only necessary with JavaScript. On a non-JS page, these elements are never rendered at all.
@@ -93,7 +105,7 @@
 	 * @todo Lacks args, lacks functionality, full support. (see also FlowHandlebars.prototype.progressiveEnhancement)
 	 */
 	FlowHandlebars.prototype.processProgressiveEnhancement = function ( target ) {
-		$( target ).find( 'script[type="text/x-handlebars-template-progressive-enhancement"]' ).each( function () {
+		$( target ).find( 'script' ).filter( '[type="text/x-handlebars-template-progressive-enhancement"]' ).each( function () {
 			$( this )
 				.replaceWith(
 					$( Handlebars.compile( this.innerHTML )() )
@@ -106,6 +118,7 @@
 	 * @param {String} templateName
 	 * @param {String} html
 	 * @returns {Function}
+	 * @todo delete
 	 */
 	FlowHandlebars.prototype.registerTemplate = function ( templateName, html ) {
 		// Compile this template once.
@@ -119,7 +132,7 @@
 	};
 
 	// @todo remove and replace with mw.message || $.noop
-	mw.message = mw.message || function ( str ) {
+	function flowMessages( str ) {
 		var strings = ( {
 				"No_header": "This talk page has no header.",
 				"Reply": "Reply",
@@ -197,6 +210,10 @@
 			} ),
 			result = strings[ str ];
 
+		if ( !result ) {
+			result = mw.message( str );
+		}
+
 		if ( Object.prototype.toString.call( result ) === '[object Function]' ) {
 			// Callable; return the result of callback(arguments)
 			result = result.apply( strings, Array.prototype.slice.call( arguments, 1 ) );
@@ -204,10 +221,11 @@
 
 		// Return the result string
 		return { text: function () { return result; } };
-	};
+	}
 
 	/**
-	 * Calls mw.message to get localized message strings.
+	 * Calls flowMessages to get localized message strings.
+	 * @todo use mw.message
 	 * @example {{l10n "reply_count" 12}}
 	 * @param {String} str
 	 * @param {...*} [args]
@@ -215,7 +233,7 @@
 	 * @returns {String}
 	 */
 	FlowHandlebars.prototype.l10n = function ( str, args, options ) {
-		var res = mw.message.apply( mw, arguments ).text();
+		var res = flowMessages.apply( mw, arguments ).text();
 
 		if ( !res ) {
 			mw.flow.debug( "[l10n] Empty String", arguments );
@@ -231,7 +249,7 @@
 	/**
 	 * Generates markup for an "nnn sssss ago" and date/time string.
 	 * @example {{timestamp start_time "started_ago"}}
-	 * @param {int} timestamp
+	 * @param {int} timestamp milliseconds
 	 * @param {String} str
 	 * @param {bool} [timeAgoOnly]
 	 * @returns {String|undefined}
@@ -606,7 +624,7 @@
 	FlowHandlebars.prototype.progressiveEnhancement = function ( options ) {
 		var hash = options.hash;
 
-		return FlowHandlebars.prototype.html( '<scr' + 'ipt type="text/x-handlebars-template-progressive-enhancement" data-type="' + hash.type + '" id="' + hash.id + '">' + hash.template + '</scr' + 'ipt>' );
+		return FlowHandlebars.prototype.html( '<scr' + 'ipt type="text/x-handlebars-template-progressive-enhancement" data-target="' + hash.target +'" data-target="' + hash.target +'" data-type="' + hash.type + '" id="' + hash.id + '">' + hash.template + '</scr' + 'ipt>' );
 	};
 
 	// Register progressiveEnhancement

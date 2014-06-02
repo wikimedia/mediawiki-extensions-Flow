@@ -69,6 +69,7 @@
 	 * Inherited base class. Stores the instance in the class's instance registry.
 	 * @param {jQuery} [$container]
 	 * @returns {FlowComponent|bool}
+	 * @extends EventEmitter
 	 * @constructor
 	 */
 	function FlowComponent( $container ) {
@@ -89,6 +90,9 @@
 			// Check if this board was already instantiated, and return that instead
 			return this.getInstanceByElement( $container );
 		}
+
+		// Give this board its own API instance
+		this.API = new mw.flow.FlowAPI( FlowComponent.prototype.StorageEngine, this.id );
 
 		// Keep this in the registry to find it by other means
 		this.constructor._instanceRegistryById[ this.id ] = this.constructor._instanceRegistry.push( this ) - 1;
@@ -121,6 +125,12 @@
 	 * @type {FlowHistoryStateManager}
 	 */
 	mw.flow.HistoryEngine = FlowComponent.prototype.HistoryEngine = new mw.flow.FlowHistoryStateManager( FlowComponent.prototype.StorageEngine );
+
+	/**
+	 * Contains the Flow history state manager.
+	 * @type {FlowHistoryStateManager}
+	 */
+	mw.flow.API = new mw.flow.FlowAPI( FlowComponent.prototype.StorageEngine );
 
 	/**
 	 * Takes any length of arguments, and passes it off to console.log.

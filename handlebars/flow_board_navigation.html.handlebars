@@ -1,15 +1,19 @@
 
 <div class="flow-board-navigation">
-	{{#if links.search}}
-		<a href="{{links.search.url}}" title="{{links.search.title}}" class="flow-board-navigator-last"><span class="wikicon wikicon-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a>
-	{{else}}
-		<!-- @todo make disabled class do something? -->
-		<a href="#" class="flow-board-navigator-last disabled"><span class="wikicon wikicon-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a>
-	{{/if}}
-	<div>
-		{{progressiveEnhancement this "insertion" "flow-board-collapsers" "flow_board_collapsers_subcomponent"}}
+	{{!-- <a href="{{links.search.url}}" title="{{links.search.title}}" class="flow-board-navigator-last"><span class="wikicon wikicon-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a> --}}
+	<div class="flow-board-navigation-inner">
+		{{progressiveEnhancement context=this insertionType="insertion" sectionId="flow-board-collapsers" templateName="flow_board_collapsers_subcomponent"}}
 
 		{{!-- Click for sorting options, not sure what this url should be --}}
-		<a href="{{links.unknown}}" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" title="{{l10n "Sorting_tooltip"}}">{{l10n "Newest_topics"}}</a>
+		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="{{l10n "Sorting_tooltip"}}" data-flow-interactive-handler="boardFilterMenuToggle">{{l10n "Newest_topics"}} <span class="wikicon wikicon-caret"></span></a>
+	</div>
+	<div class="flow-board-filter-menu">
+		<div class="flow-menu flow-menu-inverted">
+			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
+			<ul class="flow-ui-button-container">
+				<li><a href="{{links.board-sort.updated}}"><span class="wikicon wikicon-clock"></span> {{l10n "Recently_active"}}</a></li>
+				<li><a href="{{links.board-sort.newest}}"><span class="wikicon wikicon-star-circle"></span> {{l10n "Newest_topics"}}</a></li>
+			</ul>
+		</div>
 	</div>
 </div>

@@ -1,8 +1,12 @@
 {{#if time_ago}}
-	<time datetime="{{time_iso}}" class="flow-timestamp">
-		<span class="flow-timestamp-now">{{time_readable}}</span>
-		<span id="{{guid}}" class="flow-timestamp-ago">{{time_ago}}</span>
-	</time>
+	{{#if guid}}
+		<time datetime="{{time_iso}}" class="flow-timestamp">
+			<span class="flow-timestamp-now">{{time_readable}}</span>
+			<span id="{{guid}}" class="flow-timestamp-ago">{{time_ago}}</span>
+		</time>
+	{{else}}
+		<time datetime="{{time_iso}}" class="flow-timestamp flow-load-interactive" data-flow-load-handler="timestamp" data-time-str="{{time_str}}" data-time-ago-only="{{time_ago_only}}">{{time_readable}}</time>
+	{{/if}}
 {{else}}
 	<time datetime="{{time_iso}}" class="flow-timestamp">{{time_readable}}</time>
 {{/if}}
