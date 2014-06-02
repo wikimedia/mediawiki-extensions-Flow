@@ -45,14 +45,13 @@ class SpamRegexTest extends PostRevisionTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		// create a dummy filter
+		$this->setMwGlobals( 'wgSpamRegex', array( '/http:\/\/spam/' ) );
+
 		// create spam filter
 		$this->spamFilter = new SpamRegex;
 		if ( !$this->spamFilter->enabled() ) {
 			$this->markTestSkipped( 'SpamRegex not enabled' );
 		}
-
-		// create a dummy filter
-		global $wgSpamRegex;
-		$wgSpamRegex = array( '/http:\/\/spam/' );
 	}
 }
