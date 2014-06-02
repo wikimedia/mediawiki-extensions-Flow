@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e1dcb5b_ed294237",
+        "filename": "includes/api/ApiFlow.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-02T23:14:14Z",
+      "side": 1,
+      "message": "This is fine.  I personally prefer relaying via getTokenSalt() as patch set 2, it seems less prone to error due to code change.  We can get rid of the post check in here as well.",
+      "revId": "eb34fc93957728cfe63491280dc4558067882d36",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
