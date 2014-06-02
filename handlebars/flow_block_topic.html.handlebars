@@ -9,8 +9,10 @@
 
 	<div class="flow-topics">
 		{{!-- There is only one topic, but we use same api response structure --}}
-		{{#eachPost this roots}}
-			{{> flow_topic}}
-		{{/eachPost}}
+		{{#each roots}}
+			{{#eachPost @root this}}
+				{{> flow_topic}}
+			{{/eachPost}}
+		{{/each}}
 	</div>
 </div>
