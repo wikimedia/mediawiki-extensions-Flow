@@ -129,7 +129,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'diff-post', 'topic-revision' ),
-		'actions' => array( 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
+		'actions' => array( 'reply', 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-title',
 			'i18n-params' => array(
