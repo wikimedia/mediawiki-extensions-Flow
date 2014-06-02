@@ -79,7 +79,7 @@ flow_block_topic_diff_view.html.handlebars.php: \
 
 flow_block_topic_edit_post.html.handlebars.php: \
 		flow_block_topic_edit_post.html.handlebars
-	$(COMPILE) flow_block_topic-edit_post
+	$(COMPILE) flow_block_topic_edit_post
 
 flow_block_topic_moderate_topic.html.handlebars.php: \
 		flow_block_topic_moderate_topic.html.handlebars \
