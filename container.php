@@ -610,11 +610,16 @@ $c['controller.spamblacklist'] = $c->share( function( $c ) {
 	return new Flow\SpamFilter\SpamBlacklist;
 } );
 
+$c['controller.confirmedit'] = $c->share( function( $c ) {
+	return new Flow\SpamFilter\ConfirmEdit;
+} );
+
 $c['controller.spamfilter'] = $c->share( function( $c ) {
 	return new Flow\SpamFilter\Controller(
 		$c['controller.spamregex'],
 		$c['controller.spamblacklist'],
-		$c['controller.abusefilter']
+		$c['controller.abusefilter'],
+		$c['controller.confirmedit']
 	);
 } );
 
