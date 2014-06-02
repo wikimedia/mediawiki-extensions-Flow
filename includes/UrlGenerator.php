@@ -359,10 +359,21 @@ class UrlGenerator extends BaseUrlGenerator {
 	 * Makes the assumption the title is flow-enabled.
 	 *
 	 * @param Title $title
+	 * @param string $sortBy
 	 * @return Anchor
 	 */
-	public function boardLink( Title $title ) {
-		return new Anchor( $title->getPrefixedText(), $title );
+	public function boardLink( Title $title, $sortBy = null ) {
+		$options = array();
+
+		if ( $sortBy ) {
+			$options['topiclist_sortby'] = $sortBy;
+		}
+
+		return new Anchor(
+			$title->getPrefixedText(),
+			$title,
+			$options
+		);
 	}
 
 	public function replyAction( Title $title = null, UUID $workflowId, UUID $postId ) {

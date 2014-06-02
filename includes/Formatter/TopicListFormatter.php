@@ -24,6 +24,7 @@ class TopicListFormatter {
 			'revisions' => array(),
 			'links' => array(),
 			'actions' => $this->buildApiActions( $workflow ),
+			'sortby' => 'newest',
 		);
 	}
 
@@ -41,6 +42,9 @@ class TopicListFormatter {
 			$listWorkflow,
 			$page->getPagingLinksOptions()
 		);
+		$title = $listWorkflow->getArticleTitle();
+		$res['links']['board-sort']['updated'] = $this->urlGenerator->boardLink( $title, 'updated' )->getLocalURL();
+		$res['links']['board-sort']['newest']  = $this->urlGenerator->boardLink( $title, 'newest' )->getLocalURL();
 
 		return $res;
 	}
