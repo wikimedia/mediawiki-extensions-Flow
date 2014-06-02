@@ -19,7 +19,7 @@ is_vagrant() {
 
 make() {
     if is_vagrant; then
-        vagrant ssh -- cd /vagrant/mediawiki/extensions/Flow '&&' make $* || exit 1
+        vagrant ssh -- sudo su www-data -c "cd /vagrant/mediawiki/extensions/Flow '&&' make $*" || exit 1
     else
         /usr/bin/env make $* || exit 1
     fi
