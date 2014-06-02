@@ -138,7 +138,7 @@
 					left:   '',
 					top:    ''
 				},
-				target;
+				target = $el.data( 'tooltip-pointing' );
 
 
 			// Determine type of tooltip
@@ -153,8 +153,13 @@
 						$el.data( 'title', $el[0].title );
 						$el[0].title = '';
 					}
+
+					if ( !$el.data( 'title' ) ) {
+						return;
+					}
+
 					$tooltip.find( '.flow-ui-tooltip-content' ).text( $el.data( 'title' ) );
-					context = context || 'progressive';
+					context = context || '';
 					break;
 			}
 
@@ -172,28 +177,32 @@
 
 			// Figure out where to place the tooltip
 			$tooltip.removeClass( 'flow-ui-tooltip-down flow-ui-tooltip-up flow-ui-tooltip-left flow-ui-tooltip-right' );
-			if ( elOffset.left + elWidth / 2 < windowWidth / 2 ) {
-				// Element is on left half of screen
-				if ( elOffset.top + elHeight / 2 < windowScroll + windowHeight / 2 ) {
-					// Element is on top half of screen
-					target = 'up';
+			if ( !target ) {
+				if ( elOffset.left + elWidth / 2 < windowWidth / 2 ) {
+					// Element is on left half of screen
+					if ( elOffset.top + elHeight / 2 < windowScroll + windowHeight / 2 ) {
+						// Element is on top half of screen
+						target = 'up';
+					} else {
+						// Element is on bottom half of screen
+						target = 'down';
+					}
 				} else {
-					// Element is on bottom half of screen
-					target = 'down';
-				}
-			} else {
-				// Element is on right half of screen
-				if ( elOffset.top + elHeight / 2 < windowScroll + windowHeight / 2 ) {
-					// Element is on top half of screen
-					target = 'up';
-				} else {
-					// Element is on bottom half of screen
-					target = 'down';
+					// Element is on right half of screen
+					if ( elOffset.top + elHeight / 2 < windowScroll + windowHeight / 2 ) {
+						// Element is on top half of screen
+						target = 'up';
+					} else {
+						// Element is on bottom half of screen
+						target = 'down';
+					}
 				}
 			}
 
 			// Position it
 			$tooltip.show();
+			$tooltip.addClass( 'flow-ui-tooltip-' + target );
+
 			switch ( target ) {
 				case 'down':
 					cssPosition.left = elOffset.left + elWidth / 2 - $tooltip.outerWidth() / 2;
@@ -209,7 +218,6 @@
 					break;
 			}
 
-			$tooltip.addClass( 'flow-ui-tooltip-' + target );
 			$tooltip.css( cssPosition );
 		}
 
@@ -220,7 +228,9 @@
 		function onMwUiTooltipBlur( event ) {
 			var $el = $( this );
 			$tooltip.hide();
-			$el[0].title = $el.data( 'title' );
+			if ( $el.data( 'title' ) ) {
+				$el[0].title = $el.data( 'title' );
+			}
 		}
 
 		// Attach the mouseenter and mouseleave handlers on document

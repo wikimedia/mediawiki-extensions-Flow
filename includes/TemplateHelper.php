@@ -36,8 +36,15 @@ class TemplateHelper {
 		$this->tempDir = $tempDir;
 	}
 
-	public function getTemplateFilename( $templateName ) {
-		return "{$this->templateDir}/{$templateName}.html.handlebars";
+	/**
+	 * @param $templateName
+	 * @return array
+	 */
+	public function getTemplateFilenames( $templateName ) {
+		return array(
+			'template' => "{$this->templateDir}/{$templateName}.html.handlebars",
+			'compiled' => "{$this->templateDir}/compiled/{$templateName}.html.handlebars.php",
+		);
 	}
 
 	/**
@@ -55,23 +62,20 @@ class TemplateHelper {
 		// @todo remove this is_dev check
 		$is_dev = $_SERVER['SCRIPT_FILENAME'] === '/vagrant/mediawiki/index.php';
 
-		$template = $this->getTemplateFilename( $templateName );
-		$compiled = "$template.php";
+		$filenames = $this->getTemplateFilenames( $templateName );
 
-		if ( $is_dev || !file_exists( $compiled ) ) {
-			if ( !file_exists( $template ) ) {
-				throw new FlowException( "Could not locate template: $template" );
+		if ( $is_dev || !file_exists( $filenames['compiled'] ) ) {
+			if ( !file_exists( $filenames['template'] ) ) {
+				throw new FlowException( "Could not locate template: {$filenames['template']}" );
 			}
 
 			$code = LightnCandy::compile(
-				file_get_contents( $template ),
+				file_get_contents( $filenames['template'] ),
 				array(
 					'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
 						| LightnCandy::FLAG_EXTHELPER
-						| LightnCandy::FLAG_WITH
-						| LightnCandy::FLAG_THIS
 						| LightnCandy::FLAG_SPVARS
-						| LightnCandy::FLAG_PARENT,
+						| LightnCandy::FLAG_HANDLEBARS, // FLAG_THIS + FLAG_WITH + FLAG_PARENT + FLAG_JSQUOTE + FLAG_ADVARNAME + FLAG_NAMEDARG
 					'basedir' => array( $this->templateDir ),
 					'fileext' => array( '.html.handlebars' ),
 					'helpers' => array(
@@ -94,7 +98,7 @@ class TemplateHelper {
 						'moderationAction' => 'Flow\TemplateHelper::moderationAction',
 						'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
 					),
-					'blockhelpers' => array(
+					'hbhelpers' => array(
 						'eachPost' => 'Flow\TemplateHelper::eachPost',
 						'pipelist' => 'Flow\TemplateHelper::pipelist',
 					),
@@ -103,10 +107,11 @@ class TemplateHelper {
 			if ( !$code ) {
 				throw new \Exception( 'Not possible?' );
 			}
-			file_put_contents( $compiled, $code );
+			file_put_contents( $filenames['compiled'], $code );
 		}
 
-		$renderer = include $compiled;
+		/** @var Callable $renderer */
+		$renderer = include $filenames['compiled'];
 		return $this->renderers[$templateName] = function( $args, array $scopes = array() ) use ( $templateName, $renderer ) {
 			$section = new \ProfileSection( __CLASS__ . " $templateName" );
 			return $renderer( $args, $scopes );
@@ -128,7 +133,12 @@ class TemplateHelper {
 
 	// Helpers
 
-	// @todo We should get rid of the switch statement in this method and use the appropriate strings in-template
+	/**
+	 * Returns a string from the current language for the given key.
+	 * @param string $str,... String key
+	 * @return string
+	 * @todo We should get rid of the switch statement in this method and use the appropriate strings in-template
+	 */
 	static public function l10n( $str /*, $args... */ ) {
 		$message = null;
 		$args = func_get_args();
@@ -317,6 +327,13 @@ class TemplateHelper {
 		}
 	}
 
+	/**
+	 * Generates a timestamp using the UUID, then calls the timestamp helper with it.
+	 * @param string $uuid
+	 * @param string $str
+	 * @param bool $timeAgoOnly
+	 * @return null|string
+	 */
 	static public function uuidTimestamp( $uuid, $str, $timeAgoOnly = false ) {
 		$obj = UUID::create( $uuid );
 		if ( !$obj ) {
@@ -329,6 +346,7 @@ class TemplateHelper {
 	}
 
 	/**
+	 * This server-side version of timestamp does not render time-ago.
 	 * @param integer $timestamp milliseconds since the unix epoch
 	 * @param string $str i18n key name for ago message
 	 * @param boolean $timeAgoOnly Only render the 'X minutes ago' portion
@@ -337,24 +355,12 @@ class TemplateHelper {
 	static public function timestamp( $timestamp, $str, $timeAgoOnly = false ) {
 		global $wgLang, $wgUser;
 
-		if ( !$timestamp || !$str ) {
+		if ( !$timestamp || !$str || $timeAgoOnly === true ) {
 			return;
 		}
 
 		// source timestamps are in ms
 		$timestamp /= 1000;
-		$secondsAgo = time() - $timestamp;
-
-		if ( $secondsAgo < 2419200 ) {
-			$timeAgo = self::l10n( $str, $timestamp );
-			if ( $timeAgoOnly === true ) {
-				return $timeAgo;
-			}
-		} elseif ( $timeAgoOnly === true ) {
-			return;
-		} else {
-			$timeAgo = null;
-		}
 
 		return self::html( self::processTemplate(
 			'timestamp',
@@ -362,8 +368,10 @@ class TemplateHelper {
 				'time_iso' => $timestamp,
 				// do not like
 				'time_readable' => $wgLang->userTimeAndDate( $timestamp, $wgUser ),
-				'time_ago' => $timeAgo,
-				'guid' => null,
+				'time_ago' => true, //generated client-side
+				'time_str' => $str,
+				'time_ago_only' => $timeAgoOnly ? 1 : 0,
+				'guid' => null, //generated client-side
 			)
 		) );
 	}
@@ -411,48 +419,60 @@ class TemplateHelper {
 
 	/**
 	 * @param array $context The 'this' value of the calling context
-	 * @param array $arguments Arguments passed into the helper
+	 * @param array $postIds List of ids (roots)
 	 * @param array $options blockhelper specific invocation options
-	 * @return string HTML
+	 *
+	 * @throws Exception\FlowException
+	 * @internal param array $arguments Arguments passed into the helper
+	 * @return null|string HTML
 	 */
-	static public function eachPost( $context, $arguments, $options ) {
-		list( $data, $postIds ) = $arguments;
-		if ( $data === null ) {
-			var_dump( $arguments ); throw new \Exception;
-		}
-		if ( count( $postIds ) === 0 ) {
-			return call_user_func( $options['inverse'], $options['cx'], array() );
-		}
+	static public function eachPost( $context, $postIds, $options ) {
+		/** @var callable $inverse */
+		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;
+		/** @var callable $fn */
 		$fn = $options['fn'];
-		$ret = array();
+
+		if ( $postIds && !is_array( $postIds ) ) {
+			$postIds = array( $postIds );
+		} elseif ( count( $postIds ) === 0 ) {
+			// Failure callback, if any
+			return $inverse ? $inverse( $options['cx'], array() ) : null;
+		} else {
+			return null;
+		}
+
+		$html = array();
 		$i = 0;
 		$last = count( $postIds ) - 1;
 		foreach ( $postIds as $id ) {
-			$revId = $data['posts'][$id][0];
+			$revId = $context['posts'][$id][0];
 
-			// iteration variables
-			$options['cx']['sp_vars'] = array(
-				'index' => $i,
-				'first' => $i === 0,
-				'last' => $i === $last
-			);
-			if ( !isset( $data['revisions'][$revId] ) ) {
+			if ( !isset( $context['revisions'][$revId] ) ) {
 				throw new FlowException( "Revision not available: $revId" );
 			}
 
-			$cx['scopes'][] = $data['revisions'][$revId];
 			// $fn is always safe return value, its the inner template content
-			$ret[] = call_user_func( $fn, $options['cx'], $data['revisions'][$revId] );
-			array_pop( $cx['scopes'] );
-			$i++;
+			$html[] = $fn( $context['revisions'][$revId] );
 		}
 
-		return implode( '', $ret );
+		// Return the resulting HTML
+		return implode( '', $html );
 	}
 
+	/**
+	 * @todo
+	 */
 	static public function formElement() {
 	}
 
+	/**
+	 * @param $lvalue
+	 * @param $op
+	 * @param $rvalue
+	 *
+	 * @return float|int
+	 * @throws Exception\FlowException
+	 */
 	static public function math( $lvalue, $op, $rvalue ) {
 		switch( $op ) {
 		case '+':
@@ -475,7 +495,13 @@ class TemplateHelper {
 		}
 	}
 
-	// Required to prevent recursion loop
+	/**
+	 * Required to prevent recursion loop
+	 * @param $rootBlock
+	 * @param $revision
+	 *
+	 * @return array
+	 */
 	static public function post( $rootBlock, $revision ) {
 		return self::html( self::processTemplate( 'flow_post', array(
 			'revision' => $revision,
@@ -519,6 +545,11 @@ class TemplateHelper {
 		);
 	}
 
+	/**
+	 * @param array $revision
+	 *
+	 * @return array
+	 */
 	static public function historyDescription( array $revision ) {
 		$changeType = $revision['changeType'];
 		$i18nKey = $revision['properties']['_key'];
@@ -532,20 +563,46 @@ class TemplateHelper {
 		return self::html( \ChangesList::showCharacterDifference( $old, $new ) );
 	}
 
-	static public function progressiveEnhancement( $context, $insertionType, $sectionId, $templateName ) {
+	/**
+	 * @param array $input
+	 *
+	 * @return array
+	 */
+	static public function progressiveEnhancement( array $input ) {
+		$context = $input['context'];
+		$insertionType = $input['insertionType'];
+		$sectionId = $input['sectionId'];
+		$templateName = $input['templateName'];
+
 		return self::html(
-			'<script type="text/x-handlebars-template-progressive-enhancement" data-type="' . $insertionType . '" id="' . $sectionId . '">'
+			'<script name="handlebars-template-progressive-enhancement" type="text/x-handlebars-template-progressive-enhancement" data-type="' . $insertionType . '" id="' . $sectionId . '">'
 			. self::processTemplate( $templateName, $context )
 			.'</script>'
 		);
 	}
 
+	/**
+	 * @param $str
+	 *
+	 * @return array
+	 */
 	static public function l10nParse( $str /*, $args... */ ) {
 		$args = func_get_args();
 		array_shift( $args );
 		return array( wfMessage( $str, $args )->parse(), 'raw' );
 	}
 
+	/**
+	 * @param $diffContent
+	 * @param $oldTimestamp
+	 * @param $newTimestamp
+	 * @param $oldAuthor
+	 * @param $newAuthor
+	 * @param $oldLink
+	 * @param $newLink
+	 *
+	 * @return array
+	 */
 	static public function diffRevision( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink ) {
 		$differenceEngine = new \DifferenceEngine();
 		$multi = $differenceEngine->getMultiNotice();
@@ -570,6 +627,13 @@ class TemplateHelper {
 		);
 	}
 
+	/**
+	 * @param $timestamp
+	 * @param $user
+	 * @param $link
+	 *
+	 * @return string
+	 */
 	static public function generateDiffViewTitle( $timestamp, $user, $link ) {
 		$message = wfMessage( 'flow-compare-revisions-revision-header' )
 			->params( $timestamp )
@@ -584,10 +648,22 @@ class TemplateHelper {
 		);
 	}
 
+	/**
+	 * @param array $actions
+	 * @param       $moderationState
+	 *
+	 * @return string
+	 */
 	static public function moderationAction( array $actions, $moderationState ) {
 		return isset( $actions[$moderationState] ) ? $actions[$moderationState]['url'] : '';
 	}
 
+	/**
+	 * @param array $actions
+	 * @param       $moderationState
+	 *
+	 * @return string
+	 */
 	static public function moderationActionText( array $actions, $moderationState ) {
 		return isset( $actions[$moderationState] ) ? $actions[$moderationState]['title'] : '';
 	}

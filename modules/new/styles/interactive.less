@@ -9,8 +9,8 @@
 
 .flow-menu {
 	position: absolute;
-	bottom: 0;
 	right: 0;
+	bottom: 0;
 
 	ul {
 		margin: 0;
@@ -27,6 +27,14 @@
 	.flow-menu-js-drop {
 		display: none;
 	}
+
+	a:focus {
+		outline: none;
+	}
+}
+div.flow-menu-inverted {
+	right: auto;
+	left: 0;
 }
 
 // Use child selector to block IE6; it doesn't support :hover
@@ -35,6 +43,15 @@
 	bottom: auto;
 	display: block;
 	border: none;
+
+	&.flow-menu-inverted {
+		right: auto;
+		left: 0;
+
+		.flow-menu-js-drop {
+			text-align: left;
+		}
+	}
 
 	&:hover,
 	&.focus {
@@ -58,6 +75,8 @@
 
 	ul {
 		display: none;
+		margin: 0;
+		padding: 0;
 		font-size: 1em;
 		box-shadow: 0 1px 2px @colorGrayLight;
 		background: #fff;
@@ -135,6 +154,14 @@
 		.flow-timestamp-ago {
 			display: none;
 		}
+	}
+}
+
+//
+.client-js div > .flow-board-filter-menu {
+	position: relative;
+	.flow-menu-js-drop {
+		display: none;
 	}
 }
 
@@ -244,7 +271,7 @@
 // Wikicons (glyphs)
 .wikicon {
 	display: inline-block;
-	height: .8em;
+	height: .7em;
 	font-family: 'Wikicon-Regular';
 	-webkit-font-smoothing: antialiased;
 	font-size: 1.8em;
