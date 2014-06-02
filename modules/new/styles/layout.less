@@ -52,9 +52,14 @@
 	left: -200px;
 	font-size: 1.15em;
 
-	div {
+	.flow-board-navigation-inner {
 		overflow: hidden;
 		border-bottom: 1px solid @colorGrayLight;
+	}
+
+	.flow-board-navigator-filter {
+		display: inline-block;
+		position: relative;
 	}
 
 	a {
@@ -192,9 +197,9 @@ div#bodyContent ul.flow-topic-navigation-fixed {
 // Topic title itself
 // Needs additional specificity to override `div#content h2`
 div#bodyContent h2.flow-topic-title {
-		padding: 0;
-		margin: 0 0 .33em;
-		border-bottom: none;
+	padding: 0;
+	margin: 0 0 .33em;
+	border-bottom: none;
 	font-family: sans-serif;
 	font-size: 1.75em;
 	font-weight: bold;

@@ -60,6 +60,7 @@ $wgAutoloadClasses['FlowHooks'] = $dir . 'Hooks.php';
 $wgAutoloadClasses['Pimple'] = $dir . 'vendor/Pimple.php';
 $wgAutoloadClasses['LightnCandy'] = $dir . 'vendor/lightncandy.php';
 $wgAutoloadClasses['LCRun2'] = $dir . 'vendor/lightncandy.php';
+$wgAutoloadClasses['LCRun3'] = $dir . 'vendor/lightncandy.php';
 
 // Various helper classes
 $wgAutoloadClasses['Flow\Container'] = $dir . 'includes/Container.php';

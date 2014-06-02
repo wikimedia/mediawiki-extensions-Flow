@@ -19,23 +19,23 @@ class CompileLightncandy extends Maintenance {
 		$templateName = $this->getArg( 0 );
 		$lightncandy = Container::get( 'lightncandy' );
 
-		$filename = $lightncandy->getTemplateFilename( $templateName );
-		if ( !file_exists( $filename ) ) {
-			$this->error( "Could not find template at: $filename" );
+		$filenames = $lightncandy->getTemplateFilenames( $templateName );
+
+		if ( !file_exists( $filenames['template'] ) ) {
+			$this->error( "Could not find template at: {$filenames['template']}" );
 		}
-		$compiled = "$filename.php";
-		if ( file_exists( $compiled ) ) {
-			if ( !unlink( $compiled ) ) {
-				$this->error( "Failed to unlink previously compiled code: $compiled" );
+		if ( file_exists( $filenames['compiled'] ) ) {
+			if ( !unlink( $filenames['compiled'] ) ) {
+				$this->error( "Failed to unlink previously compiled code: {$filenames['compiled']}" );
 			}
 		}
 
 		$lightncandy->getTemplate( $templateName );
-		if ( !file_exists( $compiled ) ) {
+		if ( !file_exists( $filenames['compiled'] ) ) {
 			$this->error( "Template compilation completed, but no compiled code found on disk" );
 		}
 
-		echo "\nSuccessfully compiled $templateName to $compiled\n\n";
+		echo "\nSuccessfully compiled $templateName to {$filenames['compiled']}\n\n";
 	}
 }
 
