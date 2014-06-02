@@ -17,6 +17,7 @@ all: flow_block_header.html.handlebars.php \
 		flow_block_topic_single_view.html.handlebars.php \
 		flow_block_topic_diff_view.html.handlebars.php \
 		flow_block_topic_edit_post.html.handlebars.php \
+		flow_block_topic_edit_title.html.handlebars.php \
 		flow_block_topic_moderate_topic.html.handlebars.php \
 		flow_block_topic_moderate_post.html.handlebars.php \
 		flow_block_board-history.html.handlebars.php \
@@ -78,15 +79,14 @@ flow_block_topic_diff_view.html.handlebars.php: \
 	$(COMPILE) flow_block_topic_diff_view
 
 flow_block_topic_edit_post.html.handlebars.php: \
-		flow_block_topic_edit_post.html.handlebars
-	$(COMPILE) flow_block_topic-edit_post
+		flow_block_topic_edit_post.html.handlebars \
+		flow_edit_post.html.handlebars
+	$(COMPILE) flow_block_topic_edit_post
 
-flow_block_topic_moderate_topic.html.handlebars.php: \
-		flow_block_topic_moderate_topic.html.handlebars \
-		flow_errors.html.handlebars \
-		flow_moderate_topic.html.handlebars \
-		$(TOPIC_SUBTEMPLATES)
-	$(COMPILE) flow_block_topic_moderate_post
+flow_block_topic_edit_title.html.handlebars.php: \
+		flow_block_topic_edit_title.html.handlebars \
+		flow_edit_post.html.handlebars
+	$(COMPILE) flow_block_topic_edit_title
 
 flow_block_topic_moderate_post.html.handlebars.php: \
 		flow_block_topic_moderate_post.html.handlebars \
@@ -94,6 +94,13 @@ flow_block_topic_moderate_post.html.handlebars.php: \
 		flow_moderate_post.html.handlebars \
 		flow_post.html.handlebars
 	$(COMPILE) flow_block_topic_moderate_post
+
+flow_block_topic_moderate_topic.html.handlebars.php: \
+		flow_block_topic_moderate_topic.html.handlebars \
+		flow_errors.html.handlebars \
+		flow_moderate_topic.html.handlebars \
+		$(TOPIC_SUBTEMPLATES)
+	$(COMPILE) flow_block_topic_moderate_topic
 
 flow_block_board-history.html.handlebars.php: \
 		flow_block_board-history.html.handlebars
