@@ -3,7 +3,7 @@
 		<h2 class="flow-topic-title">{{content}}</h2>
 		<span class="flow-author">{{l10n "started_with_participants" this}}</span>
 		<div class="flow-topic-meta">
-			<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-inline" href="#flow-topic-{{postId}}-form-content">{{l10n "Reply" author}}</a>
+			<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-inline" href="#flow-post-{{postId}}-form-content">{{l10n "Reply" author}}</a>
 			&bull; {{l10n "comment_count" this}} &bull;
 			{{#if last_updated}}
 				<!--span class="wikicon wikicon-speech-bubbles"></span--> {{timestamp last_updated "active_ago"}}
@@ -18,7 +18,7 @@
 			<ul class="flow-ui-button-container">
 				{{#if actions.edit}}
 					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{actions.edit.url}}" title="{{actions.edit.title}}"><span class="wikicon wikicon-pencil"></span> {{l10n "Edit"}}</a></li>
-				{{/if}}	
+				{{/if}}
 				{{#if links.topic-history}}
 					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.topic-history.url}}" title="{{links.topic-history.title}}"> <span class="wikicon wikicon-article"></span> {{l10n "History"}}</a></li>
 				{{/if}}
