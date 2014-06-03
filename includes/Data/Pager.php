@@ -152,11 +152,15 @@ class Pager {
 	 */
 	protected function makePagingLink( $direction, $object, $pageLimit ) {
 		$offset = $this->storage->serializeOffset( $object, $this->sort );
-		return array(
+		$return = array(
 			'direction' => $direction,
 			'offset' => $offset,
 			'limit' => $pageLimit,
 		);
+		if ( isset( $this->options['sortby'] ) ) {
+			$return['sortby'] = $this->options['sortby'];
+		}
+		return $return;
 	}
 
 	/**
