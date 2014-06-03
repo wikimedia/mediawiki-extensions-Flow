@@ -67,6 +67,10 @@ class FlowHooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
+		// Depends on Mantle extension
+		if ( !class_exists( 'MantleHooks' ) ) {
+			throw new FlowException( "Mantle MediaWiki extension is required for flow to work" );
+		}
 		// needed to determine if a page is occupied by flow
 		self::getOccupationController();
 
