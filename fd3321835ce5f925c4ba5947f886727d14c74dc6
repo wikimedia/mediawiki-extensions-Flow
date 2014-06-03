@@ -16,6 +16,24 @@
       "revId": "fd3321835ce5f925c4ba5947f886727d14c74dc6",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e1a5767_684e8774",
+        "filename": "modules/editor/editors/ext.flow.editors.none.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-03T20:53:01Z",
+      "side": 1,
+      "message": "Yeah, it should be \u003ctextarea\u003e.  I am going to abandon this patch since it\u0027s a duplicate of https://gerrit.wikimedia.org/r/#/c/133031/",
+      "parentUuid": "2e1a5767_5cb711d4",
+      "revId": "fd3321835ce5f925c4ba5947f886727d14c74dc6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
