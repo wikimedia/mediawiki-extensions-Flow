@@ -1,0 +1,17 @@
+<div class="flow-board">
+	{{#if errors}}
+		<ul>
+		{{#each errors}}
+			<li>{{message}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+
+	{{!-- There is only one post, but the output format matches multi-post output --}}
+
+	{{#each roots}}
+		{{#eachPost @root this}}
+			{{> flow_reply_form }}
+		{{/eachPost}}
+	{{/each}}
+</div>
