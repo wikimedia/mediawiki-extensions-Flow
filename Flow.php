@@ -30,11 +30,6 @@ require_once( "$IP/extensions/Flow/Flow.php" );
 EOT;
 	exit( 1 );
 }
-// Depends on Mantle extension
-if ( !class_exists( 'MantleHooks' ) ) {
-	echo "Class doesn't exist, please install the Mantle MediaWiki extension.\n";
-	die( -1 );
-}
 
 // Extension credits that will show up on Special:Version
 $wgExtensionCredits['other'][] = array(
