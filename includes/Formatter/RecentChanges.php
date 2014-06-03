@@ -23,6 +23,7 @@ class RecentChanges extends AbstractFormatter {
 			return false;
 		}
 
+		$this->serializer->setIncludeHistoryProperties( true );
 		$data = $this->serializer->formatApi( $row, $ctx );
 		// @todo where should this go?
 		$data['size'] = array(
