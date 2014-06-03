@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e1dcb5b_796e18c6",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-03T21:00:18Z",
+      "side": 1,
+      "message": "the output of -\u003etext() isn\u0027t html safe",
+      "revId": "102cbc0cf6c24ceb27071f3d8cea4b63b0384a71",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e1dcb5b_3960a0cb",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-03T21:00:18Z",
+      "side": 1,
+      "message": "again, -\u003etext() isn\u0027t html safe.",
+      "revId": "102cbc0cf6c24ceb27071f3d8cea4b63b0384a71",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e1dcb5b_9981f451",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-03T21:00:18Z",
+      "side": 1,
+      "message": "$cx previously refered to the template execution context, which the new lightncandy helper method doesn\u0027t expose.  That means cx[\u0027sp_vars\u0027] and cx[\u0027scopes\u0027] are both not visible/changable from this helper.",
+      "revId": "102cbc0cf6c24ceb27071f3d8cea4b63b0384a71",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
