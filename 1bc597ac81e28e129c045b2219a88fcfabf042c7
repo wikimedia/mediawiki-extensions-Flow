@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e1a5767_9c648447",
+        "filename": "handlebars/flow_block_topic_reply.html.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-03T22:21:33Z",
+      "side": 1,
+      "message": "it should be possible to use just\n\n    {{\u003e flow_reply_form}}\n\ninside the {{#eachPost}}...{{/eachPost}}",
+      "revId": "1bc597ac81e28e129c045b2219a88fcfabf042c7",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
