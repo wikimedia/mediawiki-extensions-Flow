@@ -21,11 +21,11 @@
     );
     return '
 <div class="flow-board-navigation">
-
+	
 	<div class="flow-board-navigation-inner">
 		'.LCRun3::ch($cx, 'progressiveEnhancement', Array('context'=>$in,'insertionType'=>'insertion','sectionId'=>'flow-board-collapsers','templateName'=>'flow_board_collapsers_subcomponent'), 'encq', true).'
 
-
+		
 		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="'.LCRun3::ch($cx, 'l10n', Array('Sorting_tooltip'), 'encq').'" data-flow-interactive-handler="boardFilterMenuToggle">'.LCRun3::ch($cx, 'l10n', Array('Newest_topics'), 'encq').' <span class="wikicon wikicon-caret"></span></a>
 	</div>
 	<div class="flow-board-filter-menu">
@@ -41,7 +41,7 @@
 
 <div class="flow-board">
 	<ul class="flow-topic-navigation" style="display:none;">
-
+	
 </ul>
 
 	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['newtopic'])) ? $in['actions']['newtopic'] : null))) ? '
