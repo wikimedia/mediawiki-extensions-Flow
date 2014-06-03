@@ -31,10 +31,12 @@
 	<div class="flow-board-filter-menu">
 		<div class="flow-menu flow-menu-inverted">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
-			<ul class="flow-ui-button-container">
-				<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-clock"></span> '.LCRun3::ch($cx, 'l10n', Array('Recently_active'), 'encq').'</a></li>
-				<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['newest'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-star-circle"></span> '.LCRun3::ch($cx, 'l10n', Array('Newest_topics'), 'encq').'</a></li>
-			</ul>
+			'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['board-sort'])) ? $in['links']['board-sort'] : null))) ? '
+				<ul class="flow-ui-button-container">
+					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-clock"></span> '.LCRun3::ch($cx, 'l10n', Array('Recently_active'), 'encq').'</a></li>
+					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['newest'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-star-circle"></span> '.LCRun3::ch($cx, 'l10n', Array('Newest_topics'), 'encq').'</a></li>
+				</ul>
+			' : '').'
 		</div>
 	</div>
 </div>
@@ -136,7 +138,7 @@
 		';}).'
 	</div>
 
-	'.((LCRun3::ifvar($cx, ((is_array($in['links']['pagination']) && isset($in['links']['pagination']['fwd'])) ? $in['links']['pagination']['fwd'] : null))) ? '
+	'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['pagination'])) ? $in['links']['pagination'] : null))) ? '
 		<a href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-button flow-ui-progressive /*flow-ui-quiet flow-ui-thin*/"><span class="wikicon wikicon-article"></span> '.LCRun3::ch($cx, 'l10n', Array('Load_More'), 'encq').'</a>
 	' : '').'
 </div>
