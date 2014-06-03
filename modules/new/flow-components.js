@@ -138,7 +138,11 @@
 	 * @param {...*} args
 	 */
 	mw.flow.debug = FlowComponent.prototype.debug = function ( args ) {
-		if ( window.console && ( window.flow_debug || ( window.localStorage && localStorage.getItem( 'flow_debug' ) ) || ( window.mw && mw.user && mw.user.name().match( /(^Admin$)|\(WMF\)/ ) ) ) ) {
+		if ( window.console && (
+				window.flow_debug ||
+				( window.localStorage && localStorage.getItem( 'flow_debug' ) ) ||
+				( mw.user && !mw.user.isAnon() && mw.user.getName().match( /(^Admin$)|\(WMF\)/ ) )
+			) ) {
 			args = Array.prototype.slice.apply( arguments );
 			args.unshift( '[FLOW] ' );
 			console.log.apply( console, args );
