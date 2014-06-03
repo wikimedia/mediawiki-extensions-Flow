@@ -16,6 +16,24 @@
       "revId": "01175773d3ad864f6e14588980f65baaadb303fb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e1a5767_ffddaa74",
+        "filename": "includes/Formatter/TopicListFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-03T23:11:42Z",
+      "side": 1,
+      "message": "Changing the return type seems to break other part of the code.  I took this from UrlGenerator::paginateTopicsLink().  It has a slightly different url parameters than the parameters fed to storage query.  We definitely need to consolidate them and make it simpler, the way it works now is a little bit confusing ( pager-dir, offset-dir, offset-elastic, pager-offset, pager-offset-id, ).  I think the refactor should be in a separate patch",
+      "parentUuid": "2e1a5767_bf43b242",
+      "revId": "01175773d3ad864f6e14588980f65baaadb303fb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
