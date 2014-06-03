@@ -65,7 +65,7 @@ class TopicBlock extends AbstractBlock {
 	);
 
 	protected $supportedGetActions = array(
-		'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'post-view',
+		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'post-view',
 		'moderate-topic', 'moderate-post',
 	);
 
@@ -73,7 +73,7 @@ class TopicBlock extends AbstractBlock {
 	protected $templates = array(
 		'post-view' => 'single_view',
 		'view' => '',
-		'reply' => '',
+		'reply' => 'reply',
 		'history' => 'history',
 		'edit-post' => 'edit_post',
 		'edit-title' => 'edit_title',
@@ -488,6 +488,7 @@ class TopicBlock extends AbstractBlock {
 		case 'delete-post':
 		case 'suppress-post':
 		case 'restore-post':
+		case 'reply':
 			return false;
 
 		case 'moderate-topic':
