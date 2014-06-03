@@ -451,7 +451,7 @@ class TemplateHelper {
 				throw new FlowException( "Revision not available: $revId" );
 			}
 
-			// $fn is always safe return value, its the inner template content
+			// $fn is always safe return value, it's the inner template content.
 			$html[] = $fn( $context['revisions'][$revId] );
 		}
 
