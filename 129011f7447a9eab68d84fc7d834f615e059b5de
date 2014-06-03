@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e1a5767_bc79852c",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-03T20:59:01Z",
+      "side": 1,
+      "message": "Space before \u0027(\u0027, parenthetical asides are not function calls :-)\n\nnit: Comments are easier to read if they end with a period as well as starting with a capital letter.",
+      "revId": "129011f7447a9eab68d84fc7d834f615e059b5de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e1a5767_5c903146",
+        "filename": "Flow.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-03T20:59:01Z",
+      "side": 1,
+      "message": "(In my proposal the variable name included \"Server\" because I was thinking ahead to compiling JS templates, but we can do that when we need it.)",
+      "revId": "129011f7447a9eab68d84fc7d834f615e059b5de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e1a5767_48f74bf3",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-03T20:59:01Z",
+      "side": 1,
+      "message": "Do we want this logic?  When $wgFlowForceTemplateRecompile is false, if someone forgets to compile a rarely-used template, a production server will attempt it. The file_put_contents() below will probably fail (?), but should it succeed we will silently be incurring that unexpected operation on NNN production servers, and running un-tested generated PHP in production.\n\nMaybe if forceRecompile is false and the compiled file doesn\u0027t exist, output a wfDebugLog( \u0027Flow\u0027 , \"Compiled version of template $templateName not found, attempting to compile\" ).  And/or we could have another variable $wgFlowNeverCompileTemplates, or the existing variable could be a tri-state true, false, \u0027never\u0027.",
+      "revId": "129011f7447a9eab68d84fc7d834f615e059b5de",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
