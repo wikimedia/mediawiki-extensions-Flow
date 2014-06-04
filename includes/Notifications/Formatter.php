@@ -51,7 +51,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 			}
 			$message->params( $anchor->getFullUrl() );
 		} elseif ( $param === 'topic-permalink' ) {
-			$anchor = $this->getUrlGenerator()->workflowLink( $extra['topic-workflow'] );
+			$anchor = $this->getUrlGenerator()->workflowLink( $event->getTitle(), $extra['topic-workflow'] );
 			$message->params( $anchor->getFullUrl() );
 		} elseif ( $param == 'flow-title' ) {
 			$title = $event->getTitle();

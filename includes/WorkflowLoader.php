@@ -14,8 +14,8 @@ use Flow\Model\Workflow;
 use Flow\Data\BufferedCache;
 use Flow\Data\ManagerGroup;
 use Flow\Data\RootPostLoader;
+use Flow\Exception\CrossWikiException;
 use Flow\Exception\InvalidInputException;
-use Flow\Exception\FlowException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidActionException;
 use WebRequest;
@@ -66,8 +66,8 @@ class WorkflowLoader {
 			throw new InvalidInputException( 'Invalid article requested', 'invalid-title' );
 		}
 
-		if ( $pageTitle && $pageTitle->mInterwiki ) {
-			throw new FlowException( 'Interwiki not implemented yet', 'default' );
+		if ( $pageTitle && $pageTitle->isExternal() ) {
+			throw new CrossWikiException( 'Interwiki to ' . $pageTitle->getInterwiki() . ' not implemented ', 'default' );
 		}
 
 		$this->dbFactory = $dbFactory;

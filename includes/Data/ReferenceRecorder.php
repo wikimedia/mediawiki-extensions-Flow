@@ -29,6 +29,11 @@ class ReferenceRecorder implements LifecycleHandler {
 			return;
 		}
 
+		// Topic title is plain text, there is no reference to extract
+		if ( $revision->getRevisionType() === 'post' && $revision->isTopicTitle() ) {
+			return;
+		}
+
 		$prevReferences = $this->getExistingReferences( $revision->getRevisionType(), $revision->getCollectionId() );
 		$references = $this->getReferencesFromRevisionContent( $workflow, $revision );
 
