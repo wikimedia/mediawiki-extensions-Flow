@@ -295,6 +295,10 @@ class TemplateHelper {
 			$str = 'flow-terms-of-use-summarize';
 			break;
 
+		case 'Permalink':
+			$str = 'flow-post-action-view';
+			break;
+
 		case '_time':
 			break;
 

@@ -69,6 +69,9 @@
 		<div class="flow-menu">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikicon wikicon-ellipsis"></span></a></div>
 			<ul class="flow-ui-button-container">
+				'.LCRun3::ifv($cx, ((is_array($in['links']) && isset($in['links']['post'])) ? $in['links']['post'] : null), $in, function($cx, $in) {return '
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['links']['post']) && isset($in['links']['post']['url'])) ? $in['links']['post']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['post']) && isset($in['links']['post']['title'])) ? $in['links']['post']['title'] : null), ENT_QUOTES, 'UTF-8').'"> <span class="wikicon wikicon-link"></span> '.LCRun3::ch($cx, 'l10n', Array('Permalink'), 'encq').'</a></li>
+				';}).'
 				'.LCRun3::ifv($cx, ((is_array($in['actions']) && isset($in['actions']['lock'])) ? $in['actions']['lock'] : null), $in, function($cx, $in) {return '
 					<li><a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['url'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['title'])) ? $in['actions']['lock']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-eye-lock"></span> '.LCRun3::ch($cx, 'l10n', Array('Lock'), 'encq').'</a></li>
 				';}).'

@@ -26,6 +26,9 @@
 		<div class="flow-menu">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikicon wikicon-ellipsis"></span></a></div>
 			<ul class="flow-ui-button-container">
+				{{#if links.post}}
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.post.url}}" title="{{links.post.title}}"> <span class="wikicon wikicon-link"></span> {{l10n "Permalink"}}</a></li>
+				{{/if}}
 				{{#if actions.lock}}
 					<li><a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="{{actions.lock.url}}" title="{{actions.lock.title}}"><span class="wikicon wikicon-eye-lock"></span> {{l10n "Lock"}}</a></li>
 				{{/if}}
