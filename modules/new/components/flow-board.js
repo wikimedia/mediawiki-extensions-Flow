@@ -355,6 +355,60 @@
 		////////////////////
 
 		/**
+		 * On click of the edit header link
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.showEditHeaderForm = function ( event ) {
+			event.preventDefault();
+			var api = new mw.flow.FlowAPI(),
+				flowId = $( this ).closest( '.flow-component' ).data( 'flow-id' ),
+				$header = $( this ).closest( '.flow-board-header' ),
+				render = function( header, result ) {
+					header.find( '.edit' ).html(
+						$( mw.flow.TemplateEngine.processTemplate(
+							'flow_block_header_edit', result.flow['header-view'].result.header )
+						).find( '.edit' ).html()
+					);
+					header.find( '.view' ).hide();
+					header.find( '.edit' ).show();
+					header.find( 'form' ).data( 'flow-cancel-callback', function() {
+						header.find( '.view' ).show();
+						header.find( '.edit' ).hide();
+					} );
+				};
+
+			if ( flowId ) {
+				api.apiCall( {
+					action: 'flow',
+					submodule: 'header-view',
+					workflow: flowId,
+					vhcontentFormat: 'wikitext'
+				} ).done( function( result ) {
+					render( $header, result );
+				} ).fail( function () {
+					alert( '@Todo: replace with error handling');
+				} );
+			} else {
+				render( $header, { 'revision': {} } );
+			}
+		};
+
+		FlowBoardComponent.UI.events.apiHandlers.submitHeader = function ( status, data, jqxhr ) {
+			var $header = $( this ).closest( '.flow-board-header' );
+			if ( status === 'done' ) {
+				$header.find( '.view' ).html(
+					$( mw.flow.TemplateEngine.processTemplate(
+						'flow_block_header', data.flow['edit-header'].result.header )
+					).find( '.view' ).html()
+				);
+				$header.find( '.edit' ).hide();
+				$header.find( '.view' ).show();
+			} else {
+				alert( '@Todo: replace with error handling');
+			}
+		};
+
+		/**
 		 * On click of a, button, or input, we check to see if this is a link that has a special handler,
 		 * defined through a data-flow-interactive-handler="name" attribute.
 		 * @param {Event} event
