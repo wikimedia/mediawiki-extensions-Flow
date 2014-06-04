@@ -1,3 +1,8 @@
+<!-- use flow-click-interactive + data-flow-interactive-handler to callback on click/keypress -->
+<div class="flow-click-interactive" data-flow-interactive-handler="music">Play Music!</div>
+<!-- buttons, inputs, and anchors don't need the flow-click-interactive class -->
+<button data-flow-interactive-handler="music">Play Music!</button>
+
 <div class="flow-component" data-flow-component="board" data-flow-id="{{workflow}}">
 	{{#each blocks}}
 		{{block this}}
