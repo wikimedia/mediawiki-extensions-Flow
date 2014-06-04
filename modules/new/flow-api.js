@@ -114,7 +114,7 @@ window.mw = window.mw || {}; // mw-less testing
 	 */
 	function flowApiTransformMap( queryMap ) {
 		var key,
-			map = apiTransformMap[ queryMap.submodule ];
+			map = apiTransformMap[queryMap.submodule];
 		if ( !map ) {
 			return queryMap;
 		}
