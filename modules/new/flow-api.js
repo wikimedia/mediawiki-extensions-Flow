@@ -108,11 +108,11 @@ window.mw = window.mw || {}; // mw-less testing
 	 * @returns {Object}
 	 */
 	function flowApiTransformMap( queryMap ) {
-		var map = apiTransformMap[ queryMap.submodule ];
+		var map = apiTransformMap[ queryMap.submodule ], key;
 		if ( !map ) {
 			return queryMap;
 		}
-		for ( var key in queryMap ) {
+		for ( key in queryMap ) {
 			if ( queryMap.hasOwnProperty( key ) ) {
 				if ( key.indexOf( map[0] ) === 0 ) {
 					queryMap[ key.replace( map[0], map[1] ) ] = queryMap[ key ];
