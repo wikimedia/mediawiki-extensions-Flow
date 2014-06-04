@@ -16,6 +16,10 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
  */
 class CompileLightncandy extends Maintenance {
 	public function execute() {
+		global $wgFlowServerCompileTemplates;
+
+		$wgFlowServerCompileTemplates = true;
+
 		$templateName = $this->getArg( 0 );
 		$lightncandy = Container::get( 'lightncandy' );
 
