@@ -22,6 +22,9 @@
 				{{#if links.topic-history}}
 					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.topic-history.url}}" title="{{links.topic-history.title}}"> <span class="wikicon wikicon-article"></span> {{l10n "History"}}</a></li>
 				{{/if}}
+				{{#if links.topic}}
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.topic.url}}" title="{{links.topic.title}}"> <span class="wikicon wikicon-link"></span> {{l10n "Permalink"}}</a></li>
+				{{/if}}
 				{{#if actions.lock}}
 					<li><a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="{{actions.lock.url}}" title="{{actions.lock.title}}"><span class="wikicon wikicon-lock"></span> {{l10n "Lock"}}</a></li>
 				{{/if}}
