@@ -271,6 +271,57 @@
 		////////////////////
 
 		/**
+		 * On click of the edit header link
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.showEditHeaderForm = function ( event ) {
+			event.preventDefault();
+			var api = new mw.flow.FlowAPI(),
+				self = this,
+				flowId = $( this ).closest( '.flow-component' ).data( 'flow-id' ),
+				$deferred;
+
+			if ( flowId ) {
+				$deferred = api.apiCall( 'edit-header', {}, mw.config.get( 'wgPageName' ), flowId );
+				$deferred.done ( function( result ) {
+						$( self ).closest( '.flow-board-header' ).html(
+							mw.flow.TemplateEngine.processTemplate( 'flow_block_header_edit', result.query.flow.blocks[0] )
+						);
+					}
+				);
+			} else {
+				$( self ).closest( '.flow-board-header' ).html(
+						mw.flow.TemplateEngine.processTemplate( 'flow_block_header_edit', { 'revision': {} } )
+				);
+			}
+		};
+
+		FlowBoardComponent.UI.events.interactiveHandlers.submitHeader = function ( event ) {
+			event.preventDefault();
+			var api = new mw.Api(),
+				flowId = $( this ).closest( '.flow-component' ).data( 'flow-id' ),
+				$deferred,
+				params = {
+					action: 'flow',
+					ehcontent: $( this ).closest( 'form' ).find( 'textarea' ).val(),
+					format: 'json',
+					page: mw.config.get( 'wgPageName' ),
+					submodule: 'edit-header',
+					token: mw.user.tokens.get( 'editToken' )
+				};
+
+			if ( flowId ) {
+				params.workflowId = flowId;
+				params.ehprev_revision = $( this ).closest( 'form' ).find( 'input[name=header_prev_revision]' ).val();
+			}
+			api.post( params ).done( function ( result ) {
+				alert( '@Tod: saved and render stuff in here' );
+			} ).fail( function () {
+				alert( '@Todo: replace with error handling');
+			} );
+		};
+
+		/**
 		 * On click of a, button, or input, we check to see if this is a link that has a special handler,
 		 * defined through a data-flow-interactive-handler="name" attribute.
 		 * @param {Event} event
