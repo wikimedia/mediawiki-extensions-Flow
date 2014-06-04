@@ -266,6 +266,16 @@
 			event.preventDefault();
 		};
 
+
+		/**
+		 * plays music on click
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.music = function ( event ) {
+			event.preventDefault();
+			window.playMusic();
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI events
 		////////////////////
