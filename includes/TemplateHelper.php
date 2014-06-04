@@ -185,6 +185,10 @@ class TemplateHelper {
 			$str = 'flow-newtopic-content-placeholder';
 			break;
 
+		case 'Recently_active':
+			$str = 'flow-recent-topics';
+			break;
+
 		case 'Newest_topics':
 			$str = 'flow-newest-topics';
 			break;
@@ -289,6 +293,10 @@ class TemplateHelper {
 
 		case 'reply_TOU':
 			$str = 'flow-terms-of-use-reply';
+			break;
+
+		case 'edit_TOU':
+			$str = 'flow-terms-of-use-edit';
 			break;
 
 		case 'summarize_TOU':

@@ -270,6 +270,8 @@
 	"right-flow-delete": "{{doc-right|flow-delete}}",
 	"right-flow-edit-post": "{{doc-right|flow-edit-post}}",
 	"right-flow-suppress": "{{doc-right|flow-suppress}}",
+	"flow-newest-topics": "Filter label text for \"Newest topics\"",
+	"flow-recent-topics": "Filter label text for \"Recent active topics\"",
 	"flow-terms-of-use-new-topic": "Terms of use for adding a new topic.\n\nThis should be consistent with {{msg-mw|Flow-newtopic-save}}.\n{{Related|Flow-terms-of-use}}",
 	"flow-terms-of-use-reply": "Terms of use for posting a reply.\n\nThis should be consistent with {{msg-mw|Flow-reply-submit}}.\n{{Related|Flow-terms-of-use}}",
 	"flow-terms-of-use-edit": "Terms of use for editing a header/topic/post.\n{{Related|Flow-terms-of-use}}",
