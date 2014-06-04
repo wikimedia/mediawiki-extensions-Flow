@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Minisarm"
+		]
+	},
+	"flow-notification-rename-email-subject": "$1 {{GENDER:$1|a redenumit}} subiectul dv."
+}

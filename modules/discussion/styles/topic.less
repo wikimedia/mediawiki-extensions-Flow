@@ -1,0 +1,388 @@
+<<<<<<< HEAD   (b4fd17 Merge "fix TypeError: mw.user.name(...) is null exception" i)
+=======
+@import 'settings/colors.less';
+@import 'mixins/collapse.less';
+@import 'mixins/moderation.less';
+@import 'mediawiki.mixins.less';
+@import '../../base/styles/settings/paths.less';
+@import '../../base/styles/mixins/wordbreak.less';
+
+.flow-topic-container {
+	padding-bottom: 20px;
+
+	&>*:last-child {
+		// This combines with the padding-bottom: 20px on .flow-topic-container
+		// for a total 30px gap. We want the gap to be only 20px when topic is
+		// collapsed, which is why we're adding the remaining 10px to last child.
+		padding-bottom: 10px;
+	}
+
+	.flow-titlebar {
+		h2 {
+			&.flow-realtitle {
+				display: inline;
+				.wordbreak-all();
+			}
+		}
+	}
+
+	// Full topic view, show all summary
+	.flow-topic-summary {
+		line-height: 18px;
+		>p {
+			font-size: 14px;
+			font-weight: normal;
+			font-style: italic;
+			color: #231F20;
+		}
+	}
+
+	&.flow-topic-moderated {
+		// Make space for moderation icon
+		.flow-element-container .flow-titlebar .flow-topic-title {
+			padding-left: 22px !important;
+
+			background-position: left;
+			background-size: 14px auto;
+			background-repeat: no-repeat;
+		}
+
+		&:not(.flow-topic-closed) {
+			// position moderated title even with the timestamp
+			.flow-titlebar {
+				padding-bottom: 10px;
+			}
+			.flow-topic-title {
+				margin-bottom: 0;
+			}
+			// shrink the moderated title
+			.flow-moderated-title {
+				font-size: 10pt;
+			}
+		}
+
+		&.flow-topic-closed {
+			.flow-collapse-one-line;
+			.flow-topic-children-container {
+				display: none;
+			}
+			.flow-content-modified-tipsy-link {
+				display: none;
+			}
+			// Collapsed view, don't show summary for any state except close
+			.flow-topic-summary {
+				display: none;
+			}
+			&.flow-topic-moderated-close {
+				.flow-topic-summary {
+					display: block;
+					>p {
+						width: 100%;
+						white-space:nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+				}
+			}
+		}
+
+		.flow-moderated-title {
+			// hide user links until hovered
+			.mw-usertoollinks {
+				opacity: 0;
+				transition: opacity 0.2s;
+			}
+			&:hover {
+				.mw-usertoollinks {
+					opacity: 1;
+				}
+			}
+		}
+
+		&.flow-topic-moderated-hide .flow-topic-title {
+			.flow-moderated-element-icon( "hidden" );
+		}
+
+		&.flow-topic-moderated-delete .flow-topic-title {
+			.flow-moderated-element-icon( "deleted" );
+		}
+
+		&.flow-topic-moderated-suppress .flow-topic-title {
+			.flow-moderated-element-icon( "suppressed" );
+		}
+
+		&.flow-topic-moderated-close .flow-topic-title {
+			.flow-moderated-element-icon( "closed" );
+		}
+	}
+
+
+	.flow-titlebar {
+		position: relative;
+
+		// override mw-ui-button style
+		text-align: left;
+		display: block;
+		padding: 14px 22px;
+		font-weight: normal;
+		background: @topic-titlebar-background-color;
+		font-size: 16px;
+
+		line-height: 28px;
+		color: @topic-titlebar-text-color !important; // override mw-ui-button
+
+		// override mw-ui-button:hover style
+		&:hover,
+		&.mw-ui-hover {
+			background: @topic-titlebar-background-color;
+		}
+
+		// title is a mw-ui-button, which has a border
+		// unless hovered, we don't want this border to be displayed
+		&:not(:hover) {
+			border: 1px solid transparent;
+		}
+
+		.flow-topic-title {
+			margin-bottom: 15px;
+
+			// leave some room for .flow-topic-actions-link on the right
+			margin-right: 44px;
+
+			h2 {
+				font-weight: bold;
+				font-size: 24px;
+				line-height: 30px;
+				color: @topic-title-color;
+
+				// override default h2 style
+				border: none;
+				padding: 0;
+				margin: 0;
+
+				&.flow-moderated-title {
+					// !important to override typography refresh & our own
+					// typography refresh override
+					font-size: 1em !important;
+					margin: 0 !important;
+					color: #999;
+				}
+			}
+
+			.flow-content-modified-tipsy-flyout {
+				display: none;
+			}
+
+			.flow-terms-of-use {
+				line-height: normal;
+			}
+		}
+
+		.flow-tipsy-link {
+			position: absolute;
+			right: 12px;
+			top: 5px;
+
+			width: 20px;
+			height: 20px;
+			text-indent: -9999px;
+			padding: 10px;
+
+			background-position: center;
+			background-size: 20px auto;
+			background-repeat: no-repeat;
+			.background-image-svg( ~"@{icon-path}ellipsis_gray.svg", ~"@{icon-path}ellipsis_gray.png" );
+
+			&:hover {
+				.background-image-svg( ~"@{icon-path}ellipsis_lightgray.svg", ~"@{icon-path}ellipsis_lightgray.png" );
+			}
+
+			&:active {
+				.background-image-svg( ~"@{icon-path}ellipsis_darkgray.svg", ~"@{icon-path}ellipsis_darkgray.png" );
+			}
+		}
+
+		.flow-tipsy-flyout {
+			position: absolute;
+			top: 49px; // 14px + (15px top padding + 20px icon height)
+			right: 0;
+		}
+
+		ul.flow-topic-posts-meta {
+			list-style: none;
+			margin: 0;
+
+			li {
+				line-height: 16px;
+				padding: 0 0 9px 0;
+
+				&:last-child {
+					padding: 0;
+				}
+
+				a {
+					color: inherit;
+					text-decoration: underline;
+				}
+			}
+
+			.flow-topic-comments {
+				position: relative;
+			}
+		}
+
+		.flow-datestamp {
+			margin: 0;
+			color: #898989 !important;
+
+			position: absolute;
+			right: 10px;
+			bottom: -10px;
+
+			a {
+				color: inherit;
+			}
+		}
+
+		.flow-icon {
+			// additional push to the right because of container's padding & border
+			margin-right: -23px; // container's right padding + right border
+		}
+
+		.flow-edit-topic-link {
+			background-position: center;
+			background-size: 20px auto;
+			background-repeat: no-repeat;
+			.background-image-svg( ~"@{icon-path}edit_hover_ltr.svg", ~"@{icon-path}edit_hover_ltr.png" );
+		}
+
+		.flow-icon-watchlist {
+			background-position: center;
+			background-size: 20px auto;
+			background-repeat: no-repeat;
+			.background-image-svg( ~"@{icon-path}watchlist_hover.svg", ~"@{icon-path}watchlist_hover.png" );
+
+			&.flow-icon-watchlist-active {
+				.background-image-svg( ~"@{icon-path}watchlist_active.svg", ~"@{icon-path}watchlist_active.png" );
+			}
+		}
+	}
+
+	.flow-edit-title-form {
+		.flow-edit-content {
+			width: 100%;
+		}
+
+		.flow-edit-title-controls {
+			margin-top: 5px;
+			text-align: right;
+		}
+	}
+
+	.flow-edit-form {
+		.flow-edit-content {
+			width: 100%;
+		}
+
+		.flow-form-controls {
+			margin-top: 5px;
+			text-align: right;
+		}
+	}
+}
+
+.flow-new-topic-container {
+	.flow-newtopic-form {
+		padding-bottom: 0px;
+	}
+
+	.flow-newtopic-title {
+		font-weight: bold;
+
+		padding-left: 45px;
+
+		background-position: left 10px center;
+		background-size: 25px auto;
+		background-repeat: no-repeat;
+		.background-image-svg( ~"@{icon-path}createtopic_normal_ltr.svg", ~"@{icon-path}createtopic_normal_ltr.png" );
+	}
+
+	.flow-form-controls {
+		margin-top: 5px;
+		text-align: right;
+	}
+
+	.flow-newtopic-step2 {
+		display: none;
+	}
+
+	&.flow-new-form-active {
+		.flow-newtopic-step2 {
+			display: block;
+		}
+	}
+}
+
+.flow-topic-reply-container {
+	padding-left: 22px;
+	margin-top: 20px;
+
+	.flow-topic-reply-form {
+		margin-top: 22px;
+	}
+
+	.flow-form-controls {
+		margin-top: 5px;
+		text-align: right;
+		display: none;
+	}
+
+	// hide controls when form is inactive
+	// class is added via JS, so controls are always visible for non-JS
+	&.flow-reply-form-active {
+		.flow-form-controls {
+			display: block;
+		}
+	}
+
+	// Make the "comment on topic" textarea look like the "start a new topic"
+	// input field.
+	&:not(.flow-reply-form-active) {
+		.flow-reply-content {
+			height: 34px;
+		}
+
+		// don't show username unless reply form is active
+		.flow-creator {
+			display: none;
+		}
+	}
+}
+
+.flow-topic-permalink-warning,
+.flow-revision-permalink-warning,
+.flow-compare-revisions-header {
+	color: #898989;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 0.5em;
+	margin-bottom: 1em;
+
+	a {
+		color: #777 !important;
+		font-weight: bold;
+	}
+}
+
+// Don't show summary when users choose small view
+.flow-container {
+	&.topic-collapsed-one-line {
+		.flow-topic-closed {
+			&.flow-topic-moderated-close {
+				.flow-topic-summary {
+					display: none;
+				}
+			}
+		}
+	}
+}
+>>>>>>> BRANCH (def07b Flow: notification exceptions: urlGenerator->workflowLink())
