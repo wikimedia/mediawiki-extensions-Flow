@@ -344,6 +344,21 @@ class RevisionFormatter {
 				$links['suppress'] = $this->urlGenerator->suppressPostAction( $title, $workflowId, $postId );
 				break;
 
+			case 'close-topic':
+				if ( !$row->revision->isTopicTitle() ) {
+					continue;
+				}
+				$links['close'] = $this->urlGenerator->closeTopicAction( $title, $workflowId );
+				break;
+
+			case 'summarize-topic':
+				if ( !$row->revision->isTopicTitle() ) {
+					continue;
+				}
+				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
+				break;
+
+
 			default:
 				wfDebugLog( 'Flow', __METHOD__ . ': unkown action link type: ' . $type );
 				break;
