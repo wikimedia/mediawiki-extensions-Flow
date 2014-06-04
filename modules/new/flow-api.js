@@ -45,8 +45,12 @@ window.mw = window.mw || {}; // mw-less testing
 		 */
 		function flowApiCall( params, method ) {
 			params = params || {};
-			params.title = params.title || this.pageName || mw.config.get( 'wgPageName' );
-			params.workflow = params.workflow || this.workflowId;
+			// Server is using page instead of title
+			params.page = params.page || this.pageName || mw.config.get( 'wgPageName' );
+			// Don't pass invalid workflowid to server
+			if ( !params.workflow && this.workflowId && this.workflowId.substring( 0, 15 ) !== 'flow-generated-') {
+				params.workflow = this.workflowId;
+			}
 			method = method ? method.toUpperCase() : 'GET';
 
 			var $deferred = $.Deferred(),
@@ -56,14 +60,15 @@ window.mw = window.mw || {}; // mw-less testing
 				mw.flow.debug( '[FlowAPI] apiCall error: missing action string', arguments );
 				return $deferred.rejectWith({ error: 'Invalid action' });
 			}
-			if ( !params.title ) {
+			if ( !params.page ) {
 				mw.flow.debug( '[FlowAPI] apiCall error: missing title string', [ mw.config.get( 'wgPageName' ) ], arguments );
 				return $deferred.rejectWith({ error: 'Invalid title' });
 			}
-			if ( !params.workflow ) {
-				mw.flow.debug( '[FlowAPI] apiCall error: missing workflow ID', arguments );
-				return $deferred.rejectWith({ error: 'Invalid workflow' });
-			}
+			// A workflow is not required for brand new board, but check to make sure
+			//if ( !params.workflow ) {
+			//	mw.flow.debug( '[FlowAPI] apiCall error: missing workflow ID', arguments );
+			//	return $deferred.rejectWith({ error: 'Invalid workflow' });
+			//}
 
 			if ( method === 'POST' ) {
 				return mwApi.postWithToken( 'edit', params );
@@ -114,7 +119,7 @@ window.mw = window.mw || {}; // mw-less testing
 	 */
 	function flowApiTransformMap( queryMap ) {
 		var key,
-			map = apiTransformMap[ queryMap.submodule ];
+			map = apiTransformMap[queryMap.submodule];
 		if ( !map ) {
 			return queryMap;
 		}

@@ -355,6 +355,57 @@
 		////////////////////
 
 		/**
+		 * On click of the edit header link
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.showEditHeaderForm = function ( event ) {
+			event.preventDefault();
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$header = $( this ).closest( '.flow-board-header' );
+
+			// Need to access the server for new board for edit-header link
+			// Can not use flowApiRequestFromAnchor because edit-header is post submodule
+			flowBoard.API.apiCall( {
+				action: 'flow',
+				submodule: 'header-view',
+				vhcontentFormat: 'wikitext'
+			} ).done( function( result ) {
+				$header.find( '.flow-board-header-edit-view' ).html(
+					$( flowBoard.TemplateEngine.processTemplate(
+						'flow_block_header_edit', result.flow['header-view'].result.header )
+					).find( '.flow-board-header-edit-view' ).html()
+				);
+				$header.find( '.flow-board-header-detail-view' ).hide();
+				$header.find( '.flow-board-header-edit-view' ).show();
+				$header.find( 'form' ).data( 'flow-cancel-callback', function() {
+					$header.find( '.flow-board-header-detail-view' ).show();
+					$header.find( '.flow-board-header-edit-view' ).hide();
+				} );
+			} ).fail( function () {
+				alert( '@Todo: replace with error handling');
+			} );
+		};
+
+		FlowBoardComponent.UI.events.apiHandlers.submitHeader = function ( status, data, jqxhr ) {
+			var $header = $( this ).closest( '.flow-board-header' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+			if ( status === 'done' ) {
+				$header.find( '.flow-board-header-detail-view' ).html(
+					$( flowBoard.TemplateEngine.processTemplate(
+						'flow_block_header', data.flow['edit-header'].result.header )
+					).find( '.flow-board-header-detail-view' ).html()
+				);
+				$header.find( '.flow-board-header-edit-view' ).hide();
+				$header.find( '.flow-board-header-detail-view' ).show();
+				if ( data.flow['edit-header'].workflow ) {
+					flowBoard.API.setWorkflowId( data.flow['edit-header'].workflow );
+				}
+			} else {
+				alert( '@Todo: replace with error handling');
+			}
+		};
+
+		/**
 		 * On click of a, button, or input, we check to see if this is a link that has a special handler,
 		 * defined through a data-flow-interactive-handler="name" attribute.
 		 * @param {Event} event
