@@ -8,7 +8,9 @@
 
 	<div class="flow-board-header-nav">
 		{{#if revision.actions.edit}}
-			<a href="{{revision.actions.edit.url}}" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-board-header-icon flow-ui-tooltip-target" href="/" title="{{revision.actions.edit.title}}"><span class="wikiglyph wikiglyph-pencil"></span></a>
+			<a href="{{revision.actions.edit.url}}" data-flow-interactive-handler="showEditHeaderForm" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-board-header-icon flow-ui-tooltip-target" href="/" title="{{revision.actions.edit.title}}">
+				<span class="wikiglyph wikiglyph-pencil"></span>
+			</a>
 		{{/if}}
 	</div>
 </div>

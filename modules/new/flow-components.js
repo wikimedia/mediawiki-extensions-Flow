@@ -84,8 +84,8 @@
 		this.id = $container.data( 'flow-id' );
 		if ( !this.id ) {
 			// Generate an ID for this component
-			this.id = 'flow-generated-' + FlowComponent._totalInstanceCount;
-			$container.data( 'flow-id', this.id );
+			//this.id = 'flow-generated-' + FlowComponent._totalInstanceCount;
+			//$container.data( 'flow-id', this.id );
 		} else if ( this.getInstanceByElement( $container ) ) {
 			// Check if this board was already instantiated, and return that instead
 			return this.getInstanceByElement( $container );
