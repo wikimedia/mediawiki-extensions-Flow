@@ -84,6 +84,8 @@ abstract class AbstractBlock implements Block {
 	 */
 	protected $supportedGetActions = array();
 
+	protected $requiresWikitext = array();
+
 	/**
 	 * Templates for each view actions
 	 * @var array
@@ -293,5 +295,12 @@ abstract class AbstractBlock implements Block {
 
 	public function getEditToken() {
 		return $this->user->getEditToken();
+	}
+
+	public function unsetRequiresWikitext( $action ) {
+		$key = array_search( $action, $this->requiresWikitext );
+		if ( $key !== false ) {
+			unset( $this->requiresWikitext[$key] );
+		}
 	}
 }

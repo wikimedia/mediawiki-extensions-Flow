@@ -35,8 +35,9 @@
 	mw.flow.registerComponent( 'board', FlowBoardComponent );
 
 	/**
-	 * Sets up the board and base properties on this class
-	 * @return {Boolean}
+	 * Sets up the board and base properties on this class.
+	 * Returns either FALSE for failure, or jQuery object of old nodes that were replaced.
+	 * @return {Boolean|jQuery}
 	 */
 	FlowBoardComponent.prototype.reinitializeBoard = function ( $container ) {
 		// Instantiate this FlowBoardComponent
@@ -44,7 +45,8 @@
 		var $header = $container.filter( '.flow-board-header' ),
 			$boardNavigation = $container.filter( '.flow-board-navigation' ),
 			$topicNavigation = $container.filter( '.flow-topic-navigation' ),
-			$board = $container.filter( '.flow-board' );
+			$board = $container.filter( '.flow-board' ),
+			$retObj = $();
 		// ...then check at the second level...
 		$header = $header.length ? $header : $container.find( '.flow-board-header' );
 		$boardNavigation = $boardNavigation.length ? $boardNavigation : $container.find( '.flow-board-navigation' );
@@ -54,30 +56,34 @@
 		// ...and remove any old ones that are in use.
 		if ( $header.length ) {
 			if ( this.$header ) {
-				this.$header.replaceWith( $header );
+				$retObj = $retObj.add( this.$header.replaceWith( $header ) );
 				this.$header.remove();
 			}
+
 			this.$header = $header;
 		}
 		if ( $boardNavigation.length ) {
 			if ( this.$boardNavigation ) {
-				this.$boardNavigation.replaceWith( $boardNavigation );
+				$retObj = $retObj.add( this.$boardNavigation.replaceWith( $boardNavigation ) );
 				this.$boardNavigation.remove();
 			}
+
 			this.$boardNavigation = $boardNavigation;
 		}
 		if ( $board.length ) {
 			if ( this.$board ) {
-				this.$board.replaceWith( $board );
+				$retObj = $retObj.add( this.$board.replaceWith( $board ) );
 				this.$board.remove();
 			}
+
 			this.$board = $board;
 		}
 		if ( $topicNavigation.length ) {
 			if ( this.$topicNavigation ) {
-				this.$topicNavigation.replaceWith( $topicNavigation );
+				$retObj = $retObj.add( this.$topicNavigation.replaceWith( $topicNavigation ) );
 				this.$topicNavigation.remove();
 			}
+
 			this.$topicNavigation = $topicNavigation;
 		}
 
@@ -102,7 +108,7 @@
 		// Restore the last state
 		this.HistoryEngine.restoreLastState();
 
-		return true;
+		return $retObj;
 	};
 
 	/**
@@ -131,13 +137,24 @@
 		// FlowBoardComponent.UI pre-api callback handlers, to do things before the API call
 		////////////////////
 
+		/**
+		 * Before activating header, sends an overrideObject to the API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.activateEditHeader = function ( event ) {
+			return {
+				submodule: "header-view", // href submodule is edit-header
+				vhcontentFormat: "wikitext" // href does not have this param
+			};
+		};
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
 
 		/**
-		 * When a topic wrapper is generated or found on initial load...
+		 * On complete board reprocessing through topiclist-view (eg. change topic sort order), re-render any given blocks.
 		 * @param {String} status (done|fail)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
@@ -200,6 +217,108 @@
 			} else {
 				// @todo fail
 			}
+		};
+
+		/**
+		 * Renders the editable board header with the given API response.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateEditHeader = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$header = flowBoard.$header,
+				$oldBoardNodes,
+				$rendered;
+
+			if ( status === 'done' ) {
+				// @todo implement this instead a separate template?
+				//if ( data.flow[ 'header-view' ].result.header ) {
+				//	data.flow[ 'header-view' ].result.header.editMode = true;
+				//}
+
+				// Change "header" to "header_edit" so that it loads up flow_block_header_edit
+				data.flow[ 'header-view' ].result.header.type = 'header_edit';
+
+				$rendered = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_loop',
+						{ blocks: data.flow[ 'header-view' ].result }
+					)
+				).children();
+
+				// Set the cancel callback on this form so that it returns the old content back if needed
+				$rendered.find( 'form' ).data( 'flow-cancel-callback', function () {
+					flowBoard.reinitializeBoard( $oldBoardNodes );
+				} );
+
+				// Reinitialize the whole board with these nodes, and hold onto the replaced header
+				$oldBoardNodes = flowBoard.reinitializeBoard( $rendered );
+
+				/*
+				$header.find( '.flow-board-header-edit-view' ).replaceWith(
+					$( flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_header_edit',
+						result.flow['header-view'].result.header
+					) ).find( '.flow-board-header-edit-view' )
+				);
+				$header.find( '.flow-board-header-detail-view' ).hide();
+				$header.find( '.flow-board-header-edit-view' ).show();
+				$header.find( 'form' ).data( 'flow-cancel-callback', function() {
+					$header.find( '.flow-board-header-detail-view' ).show();
+					$header.find( '.flow-board-header-edit-view' ).hide();
+				} );
+				*/
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * After submit of the board header edit form, process the new header data.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.submitHeader = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$rendered;
+
+			if ( status === 'done' ) {
+				// @todo this doesn't handle edit conflicts (result.status = 'error', result.header.prev_revision = {...})
+				$rendered = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_loop',
+						{ blocks: data.flow[ 'edit-header' ].result }
+					)
+				).children();
+
+				// Reinitialize the whole board with these nodes
+				flowBoard.reinitializeBoard( $rendered );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+
+			/*
+			var $header = $( this ).closest( '.flow-board-header' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+			if ( status === 'done' ) {
+				$header.find( '.flow-board-header-detail-view' ).html(
+					$( flowBoard.TemplateEngine.processTemplate(
+						'flow_block_header', data.flow['edit-header'].result.header )
+					).find( '.flow-board-header-detail-view' ).html()
+				);
+				$header.find( '.flow-board-header-edit-view' ).hide();
+				$header.find( '.flow-board-header-detail-view' ).show();
+				if ( data.flow['edit-header'].workflow ) {
+					flowBoard.API.setWorkflowId( data.flow['edit-header'].workflow );
+				}
+			} else {
+				alert( '@Todo: replace with error handling');
+			}
+			*/
 		};
 
 
@@ -407,7 +526,8 @@
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				dataParams = $this.data(),
 				handlerName = dataParams.flowApiHandler,
-				$target;
+				$target,
+				preHandlerReturn;
 
 			event.preventDefault();
 
@@ -438,7 +558,12 @@
 
 			// Use the pre-callback to find out if we should process this
 			if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ] ) {
-				if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ].apply( _this, arguments ) === false ) {
+				// apiPreHandlers can either return FALSE to prevent processing,
+				// nothing at all to proceed,
+				// or OBJECT to add param overrides to the API
+				preHandlerReturn = FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ].apply( _this, arguments );
+
+				if ( preHandlerReturn === false ) {
 					// Callback returned false
 					flowBoard.debug( 'apiPreHandler returned false', handlerName, arguments );
 					return;
@@ -447,9 +572,9 @@
 
 			// Make the request
 			if ( $this.is( 'a' ) ) {
-				$deferred = flowBoard.API.requestFromAnchor( this );
+				$deferred = flowBoard.API.requestFromAnchor( this, preHandlerReturn );
 			} else if ( $this.is( 'input, button' ) ) {
-				$deferred = flowBoard.API.requestFromForm( this );
+				$deferred = flowBoard.API.requestFromForm( this, preHandlerReturn );
 			} else {
 				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor form' );
 				$deferred = $.Deferred();

@@ -45,8 +45,12 @@ window.mw = window.mw || {}; // mw-less testing
 		 */
 		function flowApiCall( params, method ) {
 			params = params || {};
-			params.title = params.title || this.pageName || mw.config.get( 'wgPageName' );
-			params.workflow = params.workflow || this.workflowId;
+			// Server is using page instead of title
+			params.page = params.page || this.pageName || mw.config.get( 'wgPageName' );
+			// Don't pass invalid workflowid to server
+			if ( !params.workflow && this.workflowId && this.workflowId.substring( 0, 15 ) !== 'flow-generated-') {
+				params.workflow = this.workflowId;
+			}
 			method = method ? method.toUpperCase() : 'GET';
 
 			var $deferred = $.Deferred(),
@@ -56,14 +60,15 @@ window.mw = window.mw || {}; // mw-less testing
 				mw.flow.debug( '[FlowAPI] apiCall error: missing action string', arguments );
 				return $deferred.rejectWith({ error: 'Invalid action' });
 			}
-			if ( !params.title ) {
-				mw.flow.debug( '[FlowAPI] apiCall error: missing title string', [ mw.config.get( 'wgPageName' ) ], arguments );
+			if ( !params.page ) {
+				mw.flow.debug( '[FlowAPI] apiCall error: missing page string', [ mw.config.get( 'wgPageName' ) ], arguments );
 				return $deferred.rejectWith({ error: 'Invalid title' });
 			}
-			if ( !params.workflow ) {
-				mw.flow.debug( '[FlowAPI] apiCall error: missing workflow ID', arguments );
-				return $deferred.rejectWith({ error: 'Invalid workflow' });
-			}
+			// A workflow is not required for brand new board, but check to make sure
+			//if ( !params.workflow ) {
+			//	mw.flow.debug( '[FlowAPI] apiCall error: missing workflow ID', arguments );
+			//	return $deferred.rejectWith({ error: 'Invalid workflow' });
+			//}
 
 			if ( method === 'POST' ) {
 				return mwApi.postWithToken( 'edit', params );
@@ -114,7 +119,7 @@ window.mw = window.mw || {}; // mw-less testing
 	 */
 	function flowApiTransformMap( queryMap ) {
 		var key,
-			map = apiTransformMap[ queryMap.submodule ];
+			map = apiTransformMap[queryMap.submodule];
 		if ( !map ) {
 			return queryMap;
 		}
@@ -163,6 +168,10 @@ window.mw = window.mw || {}; // mw-less testing
 					// Submodule is the action
 					split[ 0 ] = 'submodule';
 				}
+				if ( split[ 0 ] === 'title' ) {
+					// Server is using page
+					split[ 0 ] = 'page';
+				}
 
 				queryMap[ split[ 0 ] ] = split.slice( 1 ).join( '=' ); // if extra = are present
 			}
@@ -183,11 +192,11 @@ window.mw = window.mw || {}; // mw-less testing
 	 * Using a given form, parses its action, serializes the data, and sends it as GET or POST depending on form method.
 	 * With button, its name=value is serialized in. If button is an Event, it will attempt to find the clicked button.
 	 * Additional params can be set with data-flow-api-params on both the clicked button or the form.
-	 * @param {Element} form
 	 * @param {Event|Element} [button]
+	 * @param {Object} [overrideObject]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromForm( button ) {
+	function flowApiRequestFromForm( button, overrideObject ) {
 		var i,
 			$deferred = $.Deferred(),
 			$form = $( button ).closest( 'form' ),
@@ -212,6 +221,10 @@ window.mw = window.mw || {}; // mw-less testing
 			return $deferred.rejectWith( { error: 'Invalid form action' } );
 		}
 
+		// If given an overrideObject, extend our queryMap with it
+		if ( overrideObject && Object.prototype.toString.call( overrideObject ) === '[object Object]' ) {
+			$.extend( queryMap, overrideObject );
+		}
 
 		if ( !( queryMap.action ) ) {
 			return $deferred.rejectWith( { error: 'Unknown action for form' } );
@@ -226,9 +239,10 @@ window.mw = window.mw || {}; // mw-less testing
 	 * Using a given anchor, parses its URL and sends it as a GET (default) or POST depending on data-flow-api-method.
 	 * Additional params can be set with data-flow-api-params.
 	 * @param {Element} anchor
+	 * @param {Object} [overrideObject]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromAnchor( anchor ) {
+	function flowApiRequestFromAnchor( anchor, overrideObject ) {
 		var $anchor = $( anchor ),
 			$deferred = $.Deferred(),
 			queryMap = { submodule: $anchor.data( 'flow-api-action' ) }, // usually null
@@ -244,6 +258,11 @@ window.mw = window.mw || {}; // mw-less testing
 		if ( !( queryMap = this.getQueryMap( anchor.href, queryMap ) ) ) {
 			mw.flow.debug( '[FlowAPI] requestFromAnchor error: invalid href', arguments );
 			return $deferred.rejectWith( { error: 'Invalid href' } );
+		}
+
+		// If given an overrideObject, extend our queryMap with it
+		if ( overrideObject && Object.prototype.toString.call( overrideObject ) === '[object Object]' ) {
+			$.extend( queryMap, overrideObject );
 		}
 
 		// If this anchor already has a request in flight, abort it
