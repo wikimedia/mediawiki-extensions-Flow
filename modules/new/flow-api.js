@@ -58,7 +58,7 @@ window.mw = window.mw || {}; // mw-less testing
 				return $deferred.rejectWith({ error: 'Missing workflowId' });
 			}
 
-			mwApi.get( {
+			return mwApi.get( {
 				'action'       : 'query',
 				'list'         : 'flow',
 				'flowpage'     : pageName || '',
