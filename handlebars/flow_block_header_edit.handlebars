@@ -1,34 +1,44 @@
 <div class="flow-board-header">
+	<div class="view"></div>
+	<div class="edit">
+		{{#if errors}}
+			<ul>
+				{{#each errors}}
+					<li>{{message}}</li>
+				{{/each}}
+			</ul>
+		{{/if}}
 
-	{{#if errors}}
-		<ul>
-			{{#each errors}}
-				<li>{{message}}</li>
-			{{/each}}
-		</ul>
-	{{/if}}
-
-	<form method="POST" action="{{revision.actions.edit.url}}">
-		<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
-		<input type="hidden" name="header_prev_revision" value="{{revision.revisionId}}" />
-		<textarea name="header_content">
-			{{~#if submitted.content~}}
-				{{~submitted.content~}}
-			{{~else~}}
-				{{~revision.content~}}
-			{{~/if~}}
-		</textarea>
-		<div class="flow-form-actions flow-form-collapsible">
-			<button data-role="submit" class="flow-ui-button flow-ui-constructive">
-				{{~l10n "flow-edit-header-submit"~}}
-			</button>
-			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">
-				{{~l10n "flow-preview"~}}
-			</button>
-			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-click-interactive">
-				{{~l10n "flow-cancel"~}}
-			</button>
-			<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-edit"}}</small>
-		</div>
-	</form>
+		<form method="POST" action="{{revision.actions.edit.url}}" data-flow-initial-state="hidden" flow-api-action="edit-header">
+			<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
+			{{#if revision.revisionId}}
+				<input type="hidden" name="header_prev_revision" value="{{revision.revisionId}}" />
+			{{/if}}
+			<textarea name="header_content">
+				{{~#if submitted.content~}}
+					{{~submitted.content~}}
+				{{~else~}}
+					{{~revision.content~}}
+				{{~/if~}}
+			</textarea>
+			<div class="flow-form-actions flow-form-collapsible">
+				<button data-role="submit"
+					class="flow-ui-button flow-ui-constructive"
+					data-flow-interactive-handler="apiRequest"
+					data-flow-api-handler="submitHeader">
+						{{~l10n "flow-edit-header-submit"~}}
+				</button>
+				<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">
+					{{~l10n "flow-preview"~}}
+				</button>
+				<button data-flow-interactive-handler="cancelForm"
+					data-role="cancel"
+					class="flow-ui-button flow-ui-destructive
+					flow-ui-quiet flow-click-interactive">
+						{{~l10n "flow-cancel"~}}
+				</button>
+				<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-edit"}}</small>
+			</div>
+		</form>
+	</div>
 </div>
