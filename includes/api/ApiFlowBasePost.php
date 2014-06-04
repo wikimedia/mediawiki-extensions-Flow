@@ -41,10 +41,15 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			$output[$action] = array(
 				'result' => array(),
 				'status' => 'ok',
+				'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			);
 
 			$parameters = $loader->extractBlockParameters( $request, $blocksToCommit );
 			foreach( $blocksToCommit as $block ) {
+				// Always return parsed text to client after successful submission?
+				// @Todo - hacky, maybe have contentformat in the request to overwrite
+				// requiredWikitext
+				$block->unsetRequiresWikitext( $action );
 				$output[$action]['result'][$block->getName()] = $block->renderAPI( \Flow\Container::get( 'templating' ), $parameters[$block->getName()] );
 			}
 
