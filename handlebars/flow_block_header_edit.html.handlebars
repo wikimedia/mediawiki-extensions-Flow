@@ -12,8 +12,12 @@
 		<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 		<input type="hidden" name="header_prev_revision" value="{{revision.revisionId}}" />
 		<textarea name="header_content">
-			{{~#if submitted && submitted.content~}}
-				{{~submitted.content~}}
+			{{~#if submitted ~}}
+				{{~#if submitted.content ~}}
+					{{~submitted.content~}}
+				{{~else~}}
+					{{~revision.content~}}
+				{{~/if~}}
 			{{~else~}}
 				{{~revision.content~}}
 			{{~/if~}}

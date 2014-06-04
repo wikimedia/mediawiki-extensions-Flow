@@ -271,6 +271,24 @@
 		////////////////////
 
 		/**
+		 * On click of the edit header link
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.showEditHeaderForm = function ( event ) {
+			event.preventDefault();
+			var api = new mw.flow.FlowAPI(),
+				self = this,
+				$deferred = api.apiCall( 'edit-header', {}, 'Test', $( this ).closest( '.flow-component' ).data( 'flow-id' ) );
+
+			$deferred.done ( function( result ) {
+					$( self ).closest( '.flow-board-header' ).html(
+						mw.flow.TemplateEngine.processTemplate( 'flow_block_header_edit', result.query.flow.blocks[0] )
+					);
+				}
+			);
+		};
+
+		/**
 		 * On click of a, button, or input, we check to see if this is a link that has a special handler,
 		 * defined through a data-flow-interactive-handler="name" attribute.
 		 * @param {Event} event
