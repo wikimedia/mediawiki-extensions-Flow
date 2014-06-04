@@ -33,7 +33,7 @@
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
 			'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['board-sort'])) ? $in['links']['board-sort'] : null))) ? '
 				<ul class="flow-ui-button-container">
-					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-clock"></span> '.LCRun3::ch($cx, 'l10n', Array('Recently_active'), 'encq').'</a></li>
+					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-clock"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-recent-topics'), 'encq').'</a></li>
 					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['newest'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-star-circle"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-newest-topics'), 'encq').'</a></li>
 				</ul>
 			' : '').'
