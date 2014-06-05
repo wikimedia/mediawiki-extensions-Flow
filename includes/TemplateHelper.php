@@ -6,6 +6,8 @@ use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use HTML;
 use LightnCandy;
+use RequestContext;
+use Title;
 
 class TemplateHelper {
 
@@ -124,11 +126,15 @@ class TemplateHelper {
 					'diffRevision' => 'Flow\TemplateHelper::diffRevision',
 					'moderationAction' => 'Flow\TemplateHelper::moderationAction',
 					'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
+					'user' => 'Flow\TemplateHelper::user',
+					'addReturnTo' => 'Flow\TemplateHelper::addReturnTo',
+					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
 					'pipelist' => 'Flow\TemplateHelper::pipelist',
 					'ifEquals' => 'Flow\TemplateHelper::ifEquals',
+					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 				),
 			)
 		);
@@ -639,5 +645,72 @@ class TemplateHelper {
 	 */
 	static public function moderationActionText( array $actions, $moderationState ) {
 		return isset( $actions[$moderationState] ) ? $actions[$moderationState]['title'] : '';
+	}
+
+	/**
+	 * Return information about given user
+	 * @param string $feature key of property to retrieve e.g. name, id
+	 *
+	 * @return string value of property
+	 */
+	static public function user( $feature = 'name' ) {
+		$user = RequestContext::getMain()->getUser();
+		$userInfo = array(
+			'id' => $user->getId(),
+			'name' => $user->getName(),
+		);
+
+		return $userInfo[$feature];
+	}
+
+	/**
+	 * Runs a callback when user is anonymous
+	 * @param array $options which must contain fn and inverse key mapping to functions.
+	 *
+	 * @return mixed result of callback
+	 */
+	static public function ifAnonymous( $options ) {
+		if ( RequestContext::getMain()->getUser()->isAnon() ) {
+			$fn = $options['fn'];
+		} else {
+			$fn = $options['inverse'];
+		}
+		return $fn();
+	}
+
+	/**
+	 * Adds returnto parameter pointing to current page to existing URL
+	 * @param string $url to modify
+	 *
+	 * @return string modified url
+	 */
+	static public function addReturnTo( $url ) {
+		$ctx = RequestContext::getMain();
+		$returnTo = $ctx->getTitle();
+		$returnToQuery = $ctx->getRequest()->getValues();
+
+		unset( $returnToQuery['title'] );
+
+		$args = array(
+			'returnto' => $returnTo->getPrefixedUrl(),
+		);
+		if ( $returnToQuery ) {
+			$args['returntoquery'] = wfArrayToCGI( $returnToQuery );
+		}
+		return wfAppendQuery( $url, wfArrayToCgi( $args ) );
+	}
+
+	/**
+	 * Adds returnto parameter pointing to given Title to an existing URL
+	 * @param Title $title
+	 *
+	 * @return string modified url
+	 */
+	static public function linkWithReturnTo( $title ) {
+		$title = Title::newFromText( $title );
+		// FIXME: This should use local url to avoid redirects on mobile. See bug 66746.
+		$url = $title->getFullUrl();
+
+		return self::addReturnTo( $url );
 	}
 }
