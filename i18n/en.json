@@ -300,7 +300,7 @@
     "flow-terms-of-use-new-topic": "By clicking \"{{int:flow-newtopic-save}}\", you agree to the terms of use for this wiki.",
     "flow-terms-of-use-reply": "By clicking \"{{int:flow-reply-submit}}\", you agree to the terms of use for this wiki.",
     "flow-terms-of-use-edit": "By saving your changes, you agree to the terms of use for this wiki.",
-    "flow-anon-warning": "You are not logged in. To receive attribution with your name instead of your IP address, you can [$1 log in] or [$2 create an account].",
+    "flow-anon-warning": "You are not logged in. To receive attribution with your name instead of your IP address, you can <a href='$1'>log in</a> or <a href='$2'>create an account</a>.",
 
     "flow-topic-participants-second-try": "$1 started this topic{{PLURAL:$2|0=|1=, with 1 other participant|, with $2 other participants}}",
     "flow-topic-count-sidebar": "Showing $1 of $2 topics attached to this page",
@@ -321,7 +321,6 @@
     "flow-terms-of-use-summarize": "By clicking \"{{int:flow-summarize-topic-submit}}\", you agree to the terms of use for this wiki.",
     "flow-terms-of-use-close-topic": "By clicking \"{{int:flow-close-topic-submit}}\", you agree to the terms of use for this wiki.",
     "flow-terms-of-use-reopen-topic": "By clicking \"{{int:flow-reopen-topic-submit}}\", you agree to the terms of use for this wiki.",
-    "flow-anon-warning": "You are not logged in. To receive attribution with your name instead of your IP address, you can [$1 log in] or [$2 create an account].",
     "flow-whatlinkshere-post" : "from a [$1 post]",
     "flow-whatlinkshere-header" : "from the [$1 header]",
     "flow": "Flow",
