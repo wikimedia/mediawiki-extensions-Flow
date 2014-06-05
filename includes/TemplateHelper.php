@@ -79,7 +79,7 @@ class TemplateHelper {
 				throw new FlowException( "Could not locate template: {$filenames['template']}" );
 			}
 
-			$code = self::compile( file_get_contents( $filenames['template'] ) );
+			$code = self::compile( file_get_contents( $filenames['template'] ), $this->templateDir );
 
 			if ( !$code ) {
 				throw new \Exception( 'Not possible?' );
@@ -95,7 +95,7 @@ class TemplateHelper {
 		};
 	}
 
-	static public function compile( $code ) {
+	static public function compile( $code, $templateDir ) {
 		return LightnCandy::compile(
 			$code,
 			array(
@@ -103,7 +103,7 @@ class TemplateHelper {
 					| LightnCandy::FLAG_EXTHELPER
 					| LightnCandy::FLAG_SPVARS
 					| LightnCandy::FLAG_HANDLEBARS, // FLAG_THIS + FLAG_WITH + FLAG_PARENT + FLAG_JSQUOTE + FLAG_ADVARNAME + FLAG_NAMEDARGS
-				'basedir' => array( $this->templateDir ),
+				'basedir' => array( $templateDir ),
 				'fileext' => array( '.html.handlebars' ),
 				'helpers' => array(
 					'l10n' => 'Flow\TemplateHelper::l10n',
