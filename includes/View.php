@@ -73,9 +73,6 @@ class View extends ContextSource {
 			$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 			if ( $blocksToCommit ) {
 				if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken() ) {
-					var_dump( $request->getVal( 'wpEditToken' ) );
-					var_dump( $user->getEditToken() );
-					die();
 					// only render the failed blocks
 					$blocks = $blocksToCommit;
 					foreach ( $blocks as $block ) {
