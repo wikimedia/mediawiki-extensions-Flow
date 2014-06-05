@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e1a5767_2451c9dd",
+        "filename": "modules/discussion/post.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-05T21:32:41Z",
+      "side": 1,
+      "message": "Is there value in giving this a class? Probably not worth it since frontend-rewrite is coming.",
+      "revId": "0b0cacd3217822a56ebf7e48eea2356f5b7d3963",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
