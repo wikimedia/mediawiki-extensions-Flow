@@ -473,7 +473,8 @@ class TopicBlock extends AbstractBlock {
 			);
 		} else {
 			$output += array(
-				'submitted' => $options
+				'submitted' => $options,
+				'errors' => array(),
 			);
 		}
 

@@ -3,7 +3,7 @@
 	    <input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 		<input type="hidden" name="topic_replyTo" value="{{postId}}" />
 		<textarea id="flow-post-{{postId}}-form-content" name="topic_content" data-flow-expandable="true" class="mw-ui-input" type="text" placeholder="{{l10n "Reply_to_author_name" author}}">
-			{{~#if @root.submitted && @root.submitted.postId == postId~}}
+			{{~#if @root.submitted.postId == postId~}}
 				{{~@root.submitted.content~}}
 			{{~/if~}}
 		</textarea>
