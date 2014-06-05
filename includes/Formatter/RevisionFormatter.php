@@ -270,6 +270,9 @@ class RevisionFormatter {
 
 		$links = array();
 		foreach ( $actionTypes as $type ) {
+			if ( !$this->permissions->isAllowed( $row->revision, $type ) ) {
+				continue;
+			}
 			switch( $type ) {
 			case 'reply':
 				if ( !$postId ) {
