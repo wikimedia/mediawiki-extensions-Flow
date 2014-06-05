@@ -18,6 +18,7 @@ $wgResourceModules += array(
 		'dependencies' => 'ext.mantle.handlebars',
 		'localTemplateBasePath' => $dir . 'handlebars',
 		'templates' => array(
+			'flow_anon_warning.handlebars',
 			"flow_block_board-history.handlebars",
 			"flow_block_header.handlebars",
 			"flow_block_header_diff_view.handlebars",

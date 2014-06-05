@@ -68,6 +68,7 @@ compiled/flow_block_topiclist.handlebars.php: \
 		flow_board_navigation.handlebars \
 		flow_topic_navigation.handlebars \
 		flow_newtopic_form.handlebars \
+		flow_anon_warning.handlebars \
 		$(TOPIC_SUBTEMPLATES)
 	$(COMPILE) flow_block_topiclist
 
@@ -92,17 +93,20 @@ compiled/flow_block_topic_diff_view.handlebars.php: \
 
 compiled/flow_block_topic_reply.handlebars.php: \
 		flow_block_topic_reply.handlebars \
-		flow_reply_form.handlebars
+		flow_reply_form.handlebars \
+		flow_anon_warning.handlebars
 	$(COMPILE) flow_block_topic_reply
 
 compiled/flow_block_topic_edit_post.handlebars.php: \
 		flow_block_topic_edit_post.handlebars \
-		flow_edit_post.handlebars
+		flow_edit_post.handlebars \
+		flow_anon_warning.handlebars
 	$(COMPILE) flow_block_topic_edit_post
 
 compiled/flow_block_topic_edit_title.handlebars.php: \
 		flow_block_topic_edit_title.handlebars \
-		flow_edit_post.handlebars
+		flow_edit_post.handlebars \
+		flow_anon_warning.handlebars
 	$(COMPILE) flow_block_topic_edit_title
 
 compiled/flow_block_topic_moderate_post.handlebars.php: \
