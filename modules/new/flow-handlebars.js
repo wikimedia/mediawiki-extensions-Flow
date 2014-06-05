@@ -666,4 +666,76 @@
 
 	// Register progressiveEnhancement
 	Handlebars.registerHelper( 'null', FlowHandlebars.prototype.nullHelper );
+
+	/**
+	 * Return information about given user
+	 * @param string $feature key of property to retrieve e.g. name, id
+	 *
+	 * @return string value of property
+	 */
+	FlowHandlebars.prototype.user = function( feature ) {
+		return {
+			'id' : mw.user.getId(),
+			'name' : mw.user.getName()
+		}[feature];
+	};
+
+	Handlebars.registerHelper( 'user', FlowHandlebars.prototype.user );
+
+	/**
+	 * Runs a callback when user is anonymous
+	 * @param array $options which must contain fn and inverse key mapping to functions.
+	 *
+	 * @return mixed result of callback
+	 */
+	FlowHandlebars.prototype.ifAnonymous = function( options ) {
+		if ( mw.user.isAnon() ) {
+			return options.fn( this );
+		} else {
+			return options.inverse( this );
+		}
+	};
+
+	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
+
+	/**
+	 * Adds returnto parameter pointing to current page to existing URL
+	 * @param string $url to modify
+	 *
+	 * @return string modified url
+	 */
+	FlowHandlebars.prototype.addReturnTo = function( url ) {
+		var returnToPage = mw.config.get( 'wgPageName' ),
+			returnToQuery = window.location.search;
+
+		if ( url.indexOf( '?' ) === -1 ) {
+			url += '?';
+		} else {
+			url += '&';
+		}
+
+		url += 'returnto=' + encodeURIComponent( returnToPage );
+		url += 'returntoquery=' + encodeURIComponent( returnToQuery );
+
+		return url;
+	};
+
+	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
+
+	/**
+	 * Adds returnto parameter pointing to given Title to an existing URL
+	 * @param Title $title
+	 *
+	 * @return string modified url
+	 */
+	FlowHandlebars.prototype.linkWithReturnTo = function( title ) {
+		var url = mw.config.get( 'wgArticlePath' ).replace(
+			'$1',
+			encodeURIComponent( title.replace( ' ', '_' ) )
+		);
+
+		return this.addReturnTo( url );
+	};
+
+	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
 }( jQuery ) );

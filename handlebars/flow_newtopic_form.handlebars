@@ -1,6 +1,9 @@
 {{#if actions.newtopic}}
 	<form action="{{actions.newtopic.url}}" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
 		<!-- @todo form errors -->
+		{{#ifAnonymous}}
+			{{> flow_anon_warning }}
+		{{/ifAnonymous}}
 		<input type="hidden" name="topiclist_replyTo" value="{{ workflowId }}" />
 		<input type="hidden" name="wpEditToken" value="{{ @root.editToken }}" />
 		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="{{l10n "flow-newtopic-start-placeholder"}}"/>
