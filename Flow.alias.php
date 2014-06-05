@@ -23,6 +23,11 @@ $specialPageAliases['he'] = array(
 	'Flow' => array( 'זרימה' ),
 );
 
+/** Korean (한국어) */
+$specialPageAliases['ko'] = array(
+	'Flow' => array( '플로우' ),
+);
+
 /** Malayalam (മലയാളം) */
 $specialPageAliases['ml'] = array(
 	'Flow' => array( 'പ്രവാഹം' ),

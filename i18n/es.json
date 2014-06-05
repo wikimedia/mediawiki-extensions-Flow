@@ -187,6 +187,8 @@
 	"flow-notification-reply-bundle": "$1 y $5 {{PLURAL:$6|otro|otros}} {{GENDER:$1|respondieron}} a tu <span class=\"plainlinks\">[$4 publicación]</span> en «$2» el «$3».",
 	"flow-notification-edit": "$1 {{GENDER:$1|editó}} una <span class=\"plainlinks\">[$5 publicación]</span> en «$2» el [[$3|$4]].",
 	"flow-notification-edit-bundle": "$1 y {{PLURAL:$6|$5 más|otros $5}} {{GENDER:$1|editaron}} una <span class=\"plainlinks\">[$4 publicación]</span> en \"$2\" el \"$3\".",
+	"flow-notification-newtopic": "$1 creó un <span class=\"plainlinks\">[$5 tema nuevo]</span> en [[$2|$3]]: $4.",
+	"flow-notification-rename": "$1 cambió el título de <span class=\"plainlinks\">[$2 $3]</span> a «$4» en [[$5|$6]].",
 	"flow-notification-link-text-view-post": "Ver la entrada",
 	"flow-notification-link-text-view-topic": "Ver el tema",
 	"echo-category-title-flow-discussion": "Flow",
