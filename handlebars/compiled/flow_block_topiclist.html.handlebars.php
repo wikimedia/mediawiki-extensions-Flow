@@ -11,9 +11,12 @@
             'timestamp' => 'Flow\TemplateHelper::timestamp',
             'post' => 'Flow\TemplateHelper::post',
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
+            'l10nParse' => 'Flow\TemplateHelper::l10nParse',
+            'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
+            'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 ),
         'scopes' => Array($in),
         'sp_vars' => Array(),
@@ -50,6 +53,12 @@
 	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['newtopic'])) ? $in['actions']['newtopic'] : null))) ? '
 	<form action="'.htmlentities(((is_array($in['actions']['newtopic']) && isset($in['actions']['newtopic']['url'])) ? $in['actions']['newtopic']['url'] : null), ENT_QUOTES, 'UTF-8').'" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
 		<!-- @todo form errors -->
+		'.LCRun3::hbch($cx, 'ifAnonymous', Array(), $in, function($cx, $in) {return '
+			<span class="flow-ui-tooltip flow-ui-destructive flow-ui-tooltip-down flow-form-collapsible">
+	'.LCRun3::ch($cx, 'l10nParse', Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:Userlogin'), 'encq'),LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:Userlogin/signup'), 'encq')), 'encq').'
+	<span class="flow-ui-tooltip-triangle"></span>
+</span>
+		';}).'
 		<input type="hidden" name="topiclist_replyTo" value="'.htmlentities(((is_array($in) && isset($in['workflowId'])) ? $in['workflowId'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-start-placeholder'), 'encq').'"/>
@@ -130,6 +139,12 @@
 	<form class="flow-reply-form" data-flow-initial-state="collapsed" method="POST" action="'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['url'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'">
 	    <input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="topic_replyTo" value="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" />
+		'.LCRun3::hbch($cx, 'ifAnonymous', Array(), $in, function($cx, $in) {return '
+			<span class="flow-ui-tooltip flow-ui-destructive flow-ui-tooltip-down flow-form-collapsible">
+	'.LCRun3::ch($cx, 'l10nParse', Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:Userlogin'), 'encq'),LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:Userlogin/signup'), 'encq')), 'encq').'
+	<span class="flow-ui-tooltip-triangle"></span>
+</span>
+		';}).'
 		<textarea id="flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content" name="topic_content" data-flow-expandable="true" class="mw-ui-input" type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array('Reply_to_author_name',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'encq').'">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'</textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
