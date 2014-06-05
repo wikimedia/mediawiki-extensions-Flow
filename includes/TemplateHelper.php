@@ -162,82 +162,9 @@ class TemplateHelper {
 		array_shift( $args );
 
 		switch( $str ) {
-		case 'Start_a_new_topic':
-			$str = 'flow-newtopic-start-placeholder';
-			break;
-
-		case 'Sorting_tooltip':
-			$str = 'flow-sorting-tooltip';
-			break;
-
-		case 'Toggle_small_topics':
-			$str = 'flow-toggle-small-topics';
-			break;
-
-		case 'Toggle_topics_only':
-			$str = 'flow-toggle-topics';
-			break;
-
-		case 'Toggle_topics_and_posts':
-			$str = 'flow-toggle-topics-posts';
-			break;
-
-		case 'topic_details_placeholder':
-			$str = 'flow-newtopic-content-placeholder';
-			break;
-
-		case 'Newest_topics':
-			$str = 'flow-newest-topics';
-			break;
-
-		case 'Add_Topic':
-			$str = 'flow-add-topic';
-			break;
-
-		case 'Load_More':
-			$str = 'flow-load-more';
-			break;
-
-		case 'Summarize':
-			$str = 'flow-summarize-topic-submit';
-			break;
-
-		case 'block':
-			$str = 'blocklink';
-			break;
-
-		case 'Talk':
-			$str = 'talkpagelinktext';
-			break;
-
-		case 'Edit':
-		case 'edit':
-			$str = 'flow-post-action-edit-post';
-			break;
-
 		case 'Reply':
 			$author = $args[0];
 			$message = wfMessage( 'flow-reply-submit', $author['gender'] );
-			break;
-
-		case 'Cancel':
-			$str = 'flow-cancel';
-			break;
-
-		case 'Preview':
-			$str = 'flow-preview';
-			break;
-
-		case 'Hide':
-			$str = 'flow-post-action-hide-post';
-			break;
-
-		case 'Delete':
-			$str = 'flow-post-action-delete-post';
-			break;
-
-		case 'Suppress':
-			$str = 'flow-post-action-suppress-post';
 			break;
 
 		case 'Moderate': // @todo: Unused?
@@ -284,23 +211,7 @@ class TemplateHelper {
 			);
 			break;
 
-		case 'topic_TOU':
-			$str = 'flow-terms-of-use-new-topic';
-			break;
-
-		case 'reply_TOU':
-			$str = 'flow-terms-of-use-reply';
-			break;
-
-		case 'summarize_TOU':
-			$str = 'flow-terms-of-use-summarize';
-			break;
-
-		case 'Permalink':
-			$str = 'flow-post-action-view';
-			break;
-
-		case '_time':
+		case '_time': // ???
 			break;
 
 		case 'timeago':
