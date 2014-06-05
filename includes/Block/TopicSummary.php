@@ -265,6 +265,11 @@ class TopicSummaryBlock extends AbstractBlock {
 				'submitted' => $this->submitted,
 				'errors' => $this->errors,
 			);
+		} else {
+			$output += array(
+				'submitted' => array(),
+				'errors' => array(),
+			);
 		}
 
 		$formatter = Container::get( 'formatter.revision' );

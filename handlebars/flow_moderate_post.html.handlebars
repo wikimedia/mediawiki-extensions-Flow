@@ -1,7 +1,7 @@
 <form method="POST" action="{{moderationAction actions @root.submitted.moderationState}}">
 	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 	<textarea name="topic_reason">
-		{{~#if @root.submitted && @root.submitted.reason~}}
+		{{~#if @root.submitted.reason~}}
 			{{~@root.submitted.reason~}}
 		{{~/if~}}
 	</textarea>

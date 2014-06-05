@@ -12,7 +12,7 @@
 			<input type="hidden" name="{{type}}_prev_revision" value="{{revision.previousRevisionId}}" />
 		{{/if}}
 		<textarea name="{{type}}_summary" data-flow-expandable="true" class="mw-ui-input" type="text">
-			{{~#if submitted && submitted.content~}}
+			{{~#if submitted.content~}}
 				{{~submitted.content~}}
 			{{~else~}}
 				{{~#if revision.revisionId~}}

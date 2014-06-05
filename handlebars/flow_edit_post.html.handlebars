@@ -3,8 +3,8 @@
 	{{!-- @todo should this be a part of the url? --}}
 	<input type="hidden" name="topic_prev_revision" value="{{revisionId}}" />
 	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible">
-		{{~#if submitted && submitted.content`}}
-			{{~submitted.content~}}
+		{{~#if @root.submitted.content~}}
+			{{~@root.submitted.content~}}
 		{{~else~}}
 			{{~content~}}
 		{{~/if~}}

@@ -1,6 +1,6 @@
 <div class="flow-board-header">
 
-	{{#if revision && revision.content}}
+	{{#if revision.content}}
 		{{html revision.content}}
 	{{else}}
 		<p>{{l10n "flow-header-empty"}}</p>

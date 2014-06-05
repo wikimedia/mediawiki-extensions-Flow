@@ -25,6 +25,7 @@ class TopicListFormatter {
 			'links' => array(),
 			'actions' => $this->buildApiActions( $workflow ),
 			'sortby' => 'newest',
+			'submitted' => array(),
 		);
 	}
 
