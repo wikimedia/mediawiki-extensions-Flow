@@ -2,6 +2,9 @@
 	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 	{{!-- @todo should this be a part of the url? --}}
 	<input type="hidden" name="topic_prev_revision" value="{{revisionId}}" />
+	{{#ifAnonymous}}
+			{{> flow_anon_warning }}
+	{{/ifAnonymous}}
 	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible">
 		{{~#if submitted && submitted.content`}}
 			{{~submitted.content~}}

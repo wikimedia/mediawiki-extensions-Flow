@@ -7,9 +7,11 @@
             'debug' => $debugopt,
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
+            'addReturnTo' => 'Flow\TemplateHelper::addReturnTo',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
+            'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 ),
         'scopes' => Array($in),
         'sp_vars' => Array(),
@@ -32,6 +34,12 @@
 	<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 	
 	<input type="hidden" name="topic_prev_revision" value="'.htmlentities(((is_array($in) && isset($in['revisionId'])) ? $in['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
+	'.LCRun3::hbch($cx, 'ifAnonymous', Array(), $in, function($cx, $in) {return '
+			<span class="flow-ui-tooltip flow-ui-destructive flow-ui-tooltip-down">
+	'.LCRun3::ch($cx, 'addReturnTo', Array(((is_array($in) && isset($in['(addReturnTo'])) ? $in['(addReturnTo'] : null),((is_array($in['"http:']['localhost:8081']['wiki']) && isset($in['"http:']['localhost:8081']['wiki']['Special:Userlogin")'])) ? $in['"http:']['localhost:8081']['wiki']['Special:Userlogin")'] : null)), 'encq').'
+	<span class="flow-ui-tooltip-triangle"></span>
+</span>
+	';}).'
 	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible">'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['submitted'])) ? $in['submitted'] : null))) ? '
 			'.htmlentities(((is_array($in['submitted']) && isset($in['submitted']['content'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in) && isset($in['content'])) ? $in['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>
 	<div class="flow-form-actions flow-form-collapsible">

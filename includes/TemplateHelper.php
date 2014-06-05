@@ -6,6 +6,7 @@ use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use HTML;
 use LightnCandy;
+use RequestContext;
 
 class TemplateHelper {
 
@@ -124,10 +125,13 @@ class TemplateHelper {
 					'diffRevision' => 'Flow\TemplateHelper::diffRevision',
 					'moderationAction' => 'Flow\TemplateHelper::moderationAction',
 					'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
+					'user' => 'Flow\TemplateHelper::user',
+					'addReturnTo' => 'Flow\TemplateHelper::addReturnTo',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
 					'pipelist' => 'Flow\TemplateHelper::pipelist',
+					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 				),
 			)
 		);
@@ -685,5 +689,34 @@ class TemplateHelper {
 	 */
 	static public function moderationActionText( array $actions, $moderationState ) {
 		return isset( $actions[$moderationState] ) ? $actions[$moderationState]['title'] : '';
+	}
+
+	static public function user( $feature = 'name' ) {
+		$user = RequestContext::getMain()->getUser();
+		$userInfo = array(
+			'id' => $user->getId(),
+			'name' => $user->getName(),
+		);
+
+		return $userInfo[$feature];
+	}
+
+	static public function ifAnonymous( $options ) {
+		if ( RequestContext::getMain()->getUser()->isAnon() ) {
+			return $options['fn']();
+		}
+	}
+
+	static public function addReturnTo( $url ) {
+		$ctx = RequestContext::getMain();
+		$returnTo = $ctx->getTitle();
+		$returnToQuery = $ctx->getRequest()->getValues();
+
+		unset( $returnToQuery['title'] );
+
+		return wfAppendQuery( $url, wfArrayToCgi( array(
+			'returnto' => $returnTo->getPrefixedUrl(),
+			'returntoquery' => wfArrayToCGI( $returnToQuery ),
+		) ) );
 	}
 }
