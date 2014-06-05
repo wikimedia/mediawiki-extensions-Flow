@@ -641,4 +641,52 @@
 
 	// Register progressiveEnhancement
 	Handlebars.registerHelper( 'progressiveEnhancement', FlowHandlebars.prototype.progressiveEnhancement );
+
+	FlowHandlebars.prototype.user = function( feature ) {
+		return {
+			'id' : mw.user.getId(),
+			'name' : mw.user.getName()
+		}[feature];
+	};
+
+	Handlebars.registerHelper( 'user', FlowHandlebars.prototype.user );
+
+	FlowHandlebars.prototype.ifAnonymous = function( options ) {
+		if ( mw.user.isAnon() ) {
+			return options.fn( this );
+		} else {
+			return options.inverse( this );
+		}
+	};
+
+	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
+
+	FlowHandlebars.prototype.addReturnTo = function( url ) {
+		var returnToPage = mw.config.get( 'wgPageName' ),
+			returnToQuery = window.location.search;
+
+		if ( url.indexOf( '?' ) === -1 ) {
+			url += '?';
+		} else {
+			url += '&';
+		}
+
+		url += 'returnto=' + encodeURIComponent( returnToPage );
+		url += 'returntoquery=' + encodeURIComponent( returnToQuery );
+
+		return url;
+	};
+
+	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
+
+	FlowHandlebars.prototype.linkWithReturnTo = function( title ) {
+		var url = mw.config.get( 'wgArticlePath' ).replace(
+			'$1',
+			encodeURIComponent( title.replace( ' ', '_' ) )
+		);
+
+		return this.addReturnTo( url );
+	};
+
+	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
 }( jQuery ) );
