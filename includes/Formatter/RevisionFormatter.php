@@ -281,10 +281,6 @@ class RevisionFormatter {
 				$links['reply'] = $this->urlGenerator->replyAction( $title, $workflowId, $postId );
 				break;
 
-			case 'edit-topic-summary':
-				$links['edit'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
-				break;
-
 			case 'edit-header':
 				$links['edit'] = $this->urlGenerator->editHeaderAction( $title, $workflowId, $revId );
 				break;
@@ -346,6 +342,22 @@ class RevisionFormatter {
 				}
 				$links['suppress'] = $this->urlGenerator->suppressPostAction( $title, $workflowId, $postId );
 				break;
+
+			case 'close-topic':
+				if ( !$row->revision->isTopicTitle() ) {
+					continue;
+				}
+				$links['close'] = $this->urlGenerator->closeTopicAction( $title, $workflowId );
+				break;
+
+			// Need to use 'edit-topic-summary' to match FlowActions
+			case 'edit-topic-summary':
+				if ( !$row->revision->isTopicTitle() ) {
+					continue;
+				}
+				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
+				break;
+
 
 			default:
 				wfDebugLog( 'Flow', __METHOD__ . ': unkown action link type: ' . $type );

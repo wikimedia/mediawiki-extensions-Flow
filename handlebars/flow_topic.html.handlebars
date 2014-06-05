@@ -37,6 +37,12 @@
 				{{#if actions.suppress}}
 					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.delete.title}}"><span class="wikicon wikicon-block"></span> {{l10n "flow-post-action-suppress-post"}}</a></li>
 				{{/if}}
+				{{#if actions.close}}
+					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.close.url}}" title="{{actions.close.title}}"><span class="wikicon wikicon-clock"></span> {{l10n "flow-topic-action-close-topic"}}</a></li>
+				{{/if}}
+				{{#if actions.summarize}}
+					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.summarize.url}}" title="{{actions.summarize.title}}"><span class="wikicon wikicon-flag"></span> {{l10n "flow-topic-action-summarize-topic"}}</a></li>
+				{{/if}}
 			</ul>
 		</div>
 	</div>

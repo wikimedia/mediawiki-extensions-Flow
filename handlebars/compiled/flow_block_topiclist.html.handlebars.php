@@ -109,6 +109,12 @@
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['suppress'])) ? $in['actions']['suppress'] : null))) ? '
 					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['url'])) ? $in['actions']['suppress']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-block"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-post-action-suppress-post'), 'encq').'</a></li>
 				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['close'])) ? $in['actions']['close'] : null))) ? '
+					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['title'])) ? $in['actions']['close']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-clock"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-close-topic'), 'encq').'</a></li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['summarize'])) ? $in['actions']['summarize'] : null))) ? '
+					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['actions']['summarize']) && isset($in['actions']['summarize']['url'])) ? $in['actions']['summarize']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['summarize']) && isset($in['actions']['summarize']['title'])) ? $in['actions']['summarize']['title'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-flag"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-summarize-topic'), 'encq').'</a></li>
+				' : '').'
 			</ul>
 		</div>
 	</div>

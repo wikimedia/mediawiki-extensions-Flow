@@ -417,6 +417,25 @@ class UrlGenerator extends BaseUrlGenerator {
 	}
 
 	/**
+	 * Close the specified topic
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function closeTopicAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-close-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'close-open-topic',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topicsummary_moderationState' => 'close',
+			)
+		);
+	}
+
+	/**
 	 * Edit the specified header
 	 *
 	 * @param Title|null $title
