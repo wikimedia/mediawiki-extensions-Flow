@@ -1,6 +1,13 @@
 @import 'settings/colors.less';
 @import 'mixins/helpers.less';
 
+// Avoid flash of unstyled content
+.client-js {
+	.flow-anon-warning {
+		display: none;
+	}
+}
+
 // Placeholder text styling helper
 .field-placeholder-styling() {
 	font-style: italic;
@@ -53,6 +60,14 @@
 		box-shadow: inset .45em 0 0 #5088f7;
 		-moz-box-shadow: inset .45em 0 0 #5088f7;
 		-webkit-box-shadow: inset .45em 0 0 #5088f7;
+	}
+
+	.flow-anon-warning {
+		margin-bottom: 0.75em;
+		a {
+			color: #fff !important;
+			font-weight: bold;
+		}
 	}
 }
 
