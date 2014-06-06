@@ -25,7 +25,8 @@ window.mw = window.mw || {}; // mw-less testing
 	 * @returns {FlowAPI}
 	 * @constructor
 	 */
-	function FlowAPI( workflowId, pageName ) {
+	function FlowAPI( storageEngine, workflowId, pageName ) {
+		this.StorageEngine = storageEngine;
 		this.workflowId = workflowId;
 		this.pageName = pageName;
 
@@ -58,7 +59,7 @@ window.mw = window.mw || {}; // mw-less testing
 				return $deferred.rejectWith({ error: 'Missing workflowId' });
 			}
 
-			mwApi.get( {
+			return mwApi.get( {
 				'action'       : 'query',
 				'list'         : 'flow',
 				'flowpage'     : pageName || '',
@@ -71,6 +72,8 @@ window.mw = window.mw || {}; // mw-less testing
 		this.apiCall = flowApiCall;
 	}
 
+	/** @type {Storer} */
+	FlowAPI.prototype.StorageEngine = null;
 	/** @type {String} */
 	FlowAPI.prototype.pageName = null;
 	/** @type {String} */
@@ -171,7 +174,7 @@ window.mw = window.mw || {}; // mw-less testing
 			}
 		}
 		*/
-		return this.apiCall( queryMap );
+		return this.apiCall( 'view', queryMap );
 	}
 
 	FlowAPI.prototype.requestFromAnchor = flowApiRequestFromAnchor;

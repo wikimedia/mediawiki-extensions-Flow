@@ -119,8 +119,7 @@
 				},
 
 				"started_with_participants": function ( context, options ) {
-					var author = FlowHandlebars.prototype.authorBlock( context, options );
-					return author.name + " started this topic" +
+					return context.author.name + " started this topic" +
 						( context.author_count > 1 ? (
 						", with " + ( context.author_count - 1 ) + " other participant" +
 							( context.author_count > 2 ? 's' : '' )
@@ -130,7 +129,7 @@
 					return "Showing " + context.topics.length + " of " + context.topic_count + " topics attached to this page";
 				},
 				"Reply_to_author_name": function ( context, options ) {
-					return "Reply to " + FlowHandlebars.prototype.authorBlock( context, options ).name;
+					return "Reply to " + context.name;
 				},
 				"comment_count": function ( context, options ) {
 						return context.reply_count + " comment" + ( !context.reply_count || context.reply_count > 1 ? 's' : '' );
@@ -392,6 +391,7 @@
 	 * @param {Object} revision
 	 * @param {Object} options
 	 * @returns {String}
+	 * @todo support multiple postIds in an array
 	 */
 	FlowHandlebars.prototype.postBlock = function ( context, revision, options ) {
 		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
@@ -420,7 +420,7 @@
 		return options.fn ? options.fn( revision ) : revision;
 	};
 
-	// Register author
+	// Register eachPost
 	Handlebars.registerHelper( 'eachPost', FlowHandlebars.prototype.eachPost );
 
 	/**
