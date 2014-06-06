@@ -4,17 +4,20 @@ namespace Flow\Formatter;
 
 use Flow\Data\PagerPage;
 use Flow\Model\PostRevision;
+use Flow\Model\PostSummary;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 
 class TopicListQuery extends AbstractQuery {
 	/**
-	 * @param PagerPage $page Pagination options
+	 * @param TopicListEntry[] $topicRevisions
 	 * @return FormatterRow[]
 	 */
 	public function getResults( array $topicRevisions ) {
 		$section = new \ProfileSection( __METHOD__ );
-		$allPostIds = $this->collectPostIds( $topicRevisions );
+		$topicIds = $this->getTopicIds( $topicRevisions );
+		$allPostIds = $this->collectPostIds( $topicIds );
+		$topicSummary = $this->collectSummary( $topicIds );
 		$posts = $this->collectRevisions( $allPostIds );
 
 		$missing = array_diff(
@@ -40,6 +43,10 @@ class TopicListQuery extends AbstractQuery {
 				$replyToId = $replyToId ? $replyToId->getAlphadecimal() : null;
 				$postId = $row->revision->getPostId()->getAlphadecimal();
 				$replies[$replyToId] = $postId;
+				// Attach the summary
+				if ( $post->isTopicTitle() && isset( $topicSummary[$postId] ) ) {
+					$row->summary = $topicSummary[$postId];
+				}
 			} catch ( FlowException $e ) {
 				\MWExceptionHandler::logException( $e );
 			}
@@ -54,23 +61,29 @@ class TopicListQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param TopicListEntry[] $found
-	 * @return UUID[] Indexed by alphadecimal representation
+	 * @param TopicListEntry[] $topicListEntries
+	 * @return UUID[]
 	 */
-	protected function collectPostIds( array $found ) {
-		if ( !$found ) {
-			return array();
-		}
-
+	protected function getTopicIds( array $topicListEntires ) {
 		$topicIds = array();
-		foreach ( $found as $entry ) {
+		foreach ( $topicListEntires as $entry ) {
 			if ( $entry instanceof UUID ) {
 				$topicIds[] = $entry;
 			} elseif ( $entry instanceof TopicListEntry ) {
 				$topicIds[] = $entry->getId();
 			}
 		}
+		return $topicIds;
+	}
 
+	/**
+	 * @param UUID[] $topicIds
+	 * @return UUID[] Indexed by alphadecimal representation
+	 */
+	protected function collectPostIds( array $topicIds ) {
+		if ( !$topicIds ) {
+			return array();
+		}
 		// Get the full list of postId's necessary
 		$nodeList = $this->treeRepository->fetchSubtreeNodeList( $topicIds );
 
@@ -90,6 +103,31 @@ class TopicListQuery extends AbstractQuery {
 			array_map( function( $x ) { return $x->getAlphadecimal(); }, $postIds ),
 			$postIds
 		);
+	}
+
+	/**
+	 * @param UUID[]
+	 * @return PostSummary[]
+	 */
+	protected function collectSummary( $topicIds ) {
+		if ( !$topicIds ) {
+			return array();
+		}
+		$conds = array();
+		foreach ( $topicIds as $topicId ) {
+			$conds[] = array( 'rev_type_id' => $topicId );
+		}
+		$found = $this->storage->findMulti( 'PostSummary', $conds, array(
+			'sort' => 'rev_id',
+			'order' => 'DESC',
+			'limit' => 1,
+		) );
+		$result = array();
+		foreach ( $found as $row ) {
+			$summary = reset( $row );
+			$result[$summary->getSummaryTargetId()->getAlphadecimal()] = $summary;
+		}
+		return $result;
 	}
 
 	/**

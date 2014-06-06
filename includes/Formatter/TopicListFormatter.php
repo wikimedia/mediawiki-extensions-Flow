@@ -6,14 +6,16 @@ use Flow\Anchor;
 use Flow\Data\PagerPage;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\Templating;
 use Flow\UrlGenerator;
 use IContextSource;
 
 class TopicListFormatter {
 
-	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer ) {
+	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer, Templating $templating ) {
 		$this->urlGenerator = $urlGenerator;
 		$this->serializer = $serializer;
+		$this->templating = $templating;
 	}
 
 	public function buildEmptyResult( Workflow $workflow ) {
@@ -89,6 +91,9 @@ class TopicListFormatter {
 			$revisions[$serialized['revisionId']] = $serialized;
 			$posts[$serialized['postId']][] = $serialized['revisionId'];
 			$replies[$serialized['replyToId']][] = $serialized['postId'];
+			if ( $formatterRow->summary ) {
+				$revisions[$serialized['revisionId']]['summary'] = $this->templating->getContent( $formatterRow->summary );
+			}
 		}
 
 		foreach ( $revisions as $i => $serialized ) {
