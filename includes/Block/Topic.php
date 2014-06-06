@@ -593,8 +593,11 @@ class TopicBlock extends AbstractBlock {
 			$result[$serialized['revisionId']] = $serialized;
 		}
 
+		$title = $this->workflow->getArticleTitle();
 		return array(
 			'revisions' => $result,
+			'board_title' => $title->getText(),
+			'board_link' => Container::get( 'url_generator' )->boardLink( $title )->getFullUrl()
 		);
 	}
 
