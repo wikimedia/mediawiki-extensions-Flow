@@ -9,6 +9,7 @@
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
             'timestamp' => 'Flow\TemplateHelper::timestamp',
+            'html' => 'Flow\TemplateHelper::html',
             'post' => 'Flow\TemplateHelper::post',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
 ),
@@ -36,7 +37,7 @@
 		').'
 	</div>
 	<div class="flow-topics">
-		
+
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 			'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
 				<div class="flow-topic flow-load-interactive" id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-load-handler="topicElement">
@@ -86,6 +87,11 @@
 				' : '').'
 			</ul>
 		</div>
+		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
+			<div class="flow-topic-summary">
+				'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['summary'])) ? $in['summary'] : null)), 'encq').'
+			</div>
+		' : '').'
 	</div>
 
 	'.LCRun3::sec($cx, ((is_array($in) && isset($in['replies'])) ? $in['replies'] : null), $in, true, function($cx, $in) {return '

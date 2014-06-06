@@ -256,11 +256,13 @@ class RevisionFormatter {
 	 */
 	public function buildActions( FormatterRow $row ) {
 		$section = new \ProfileSection( __METHOD__ );
-		$title = $row->workflow->getArticleTitle();
-		$action = $row->revision->getChangeType();
-		$workflowId = $row->workflow->getId();
-		$revId = $row->revision->getRevisionId();
-		$postId = method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId() : null;
+		$workflow = $row->workflow;
+		$revision = $row->revision;
+		$title = $workflow->getArticleTitle();
+		$action = $revision->getChangeType();
+		$workflowId = $workflow->getId();
+		$revId = $revision->getRevisionId();
+		$postId = method_exists( $revision, 'getPostId' ) ? $revision->getPostId() : null;
 		$actionTypes = $this->permissions->getActions()->getValue( $action, 'actions' );
 		if ( $actionTypes === null ) {
 			throw new FlowException( "No actions defined for action: $action" );
@@ -270,7 +272,7 @@ class RevisionFormatter {
 
 		$links = array();
 		foreach ( $actionTypes as $type ) {
-			if ( !$this->permissions->isAllowed( $row->revision, $type ) ) {
+			if ( !$this->permissions->isAllowed( $revision, $type ) ) {
 				continue;
 			}
 			switch( $type ) {
@@ -344,7 +346,8 @@ class RevisionFormatter {
 				break;
 
 			case 'close-topic':
-				if ( !$row->revision->isTopicTitle() ) {
+				// close topic link is only available to topic workflow
+				if( $workflow->getType() !== 'topic' ) {
 					continue;
 				}
 				$links['close'] = $this->urlGenerator->closeTopicAction( $title, $workflowId );
@@ -352,7 +355,8 @@ class RevisionFormatter {
 
 			// Need to use 'edit-topic-summary' to match FlowActions
 			case 'edit-topic-summary':
-				if ( !$row->revision->isTopicTitle() ) {
+				// summarize link is only available to topic workflow
+				if( $workflow->getType() !== 'topic' ) {
 					continue;
 				}
 				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
@@ -375,11 +379,13 @@ class RevisionFormatter {
 	 */
 	public function buildLinks( FormatterRow $row ) {
 		$section = new \ProfileSection( __METHOD__ );
-		$title = $row->workflow->getArticleTitle();
-		$action = $row->revision->getChangeType();
-		$workflowId = $row->workflow->getId();
-		$revId = $row->revision->getRevisionId();
-		$postId = method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId() : null;
+		$workflow = $row->workflow;
+		$revision = $row->revision;
+		$title = $workflow->getArticleTitle();
+		$action = $revision->getChangeType();
+		$workflowId = $workflow->getId();
+		$revId = $revision->getRevisionId();
+		$postId = method_exists( $revision, 'getPostId' ) ? $revision->getPostId() : null;
 
 		$linkTypes = $this->permissions->getActions()->getValue( $action, 'links' );
 		if ( $linkTypes === null ) {
@@ -460,7 +466,7 @@ class RevisionFormatter {
 				 * against. This could result in a network request (fetching the
 				 * current revision), but it's likely being loaded anyways.
 				 */
-				if ( $row->revision->getPrevRevisionId() !== null ) {
+				if ( $revision->getPrevRevisionId() !== null ) {
 					$links['diff'] = call_user_func( $diffCallback, $title, $workflowId, $revId );
 
 					/*
@@ -497,7 +503,7 @@ class RevisionFormatter {
 				 * against. This could result in a network request (fetching the
 				 * current revision), but it's likely being loaded anyways.
 				 */
-				if ( $row->revision->getPrevRevisionId() !== null ) {
+				if ( $revision->getPrevRevisionId() !== null ) {
 					$links['diff'] = $this->urlGenerator
 						->diffSummaryLink( $title, $workflowId, $revId );
 
@@ -520,7 +526,7 @@ class RevisionFormatter {
 				 * permissions) so we should be able to get it from local cache.
 				 */
 				$cur = $row->currentRevision;
-				if ( !$row->revision->getRevisionId()->equals( $cur->getRevisionId() ) ) {
+				if ( !$revision->getRevisionId()->equals( $cur->getRevisionId() ) ) {
 					$links['diff-cur'] = $this->urlGenerator
 						->diffSummaryLink( $title, $workflowId, $revId, $cur->getRevisionId() );
 				}

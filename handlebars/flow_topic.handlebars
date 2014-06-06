@@ -45,6 +45,11 @@
 				{{/if}}
 			</ul>
 		</div>
+		{{#if summary}}
+			<div class="flow-topic-summary">
+				{{html summary}}
+			</div>
+		{{/if}}
 	</div>
 
 	{{#each replies}}

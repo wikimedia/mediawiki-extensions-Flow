@@ -9,6 +9,7 @@
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
             'timestamp' => 'Flow\TemplateHelper::timestamp',
+            'html' => 'Flow\TemplateHelper::html',
             'post' => 'Flow\TemplateHelper::post',
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 ),
@@ -22,7 +23,7 @@
     );
     return '
 <div class="flow-board-navigation">
-	
+
 	<div class="flow-board-navigation-inner">
 		'.LCRun3::ch($cx, 'progressiveEnhancement', Array('context'=>$in,'insertionType'=>'insertion','sectionId'=>'flow-board-collapsers','templateName'=>'flow_board_collapsers_subcomponent'), 'encq', true).'
 
@@ -51,7 +52,7 @@
 
 <div class="flow-board">
 	<ul class="flow-topic-navigation" style="display:none;">
-	
+
 </ul>
 
 	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['newtopic'])) ? $in['actions']['newtopic'] : null))) ? '
@@ -124,6 +125,11 @@
 				' : '').'
 			</ul>
 		</div>
+		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
+			<div class="flow-topic-summary">
+				'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['summary'])) ? $in['summary'] : null)), 'encq').'
+			</div>
+		' : '').'
 	</div>
 
 	'.LCRun3::sec($cx, ((is_array($in) && isset($in['replies'])) ? $in['replies'] : null), $in, true, function($cx, $in) {return '
