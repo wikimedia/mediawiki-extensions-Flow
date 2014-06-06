@@ -344,7 +344,7 @@ class RevisionFormatter {
 				break;
 
 			case 'close-topic':
-				if ( !$row->revision->isTopicTitle() ) {
+				if ( !$row->revision instanceof PostRevision || !$row->revision->isTopicTitle() ) {
 					continue;
 				}
 				$links['close'] = $this->urlGenerator->closeTopicAction( $title, $workflowId );
@@ -352,7 +352,7 @@ class RevisionFormatter {
 
 			// Need to use 'edit-topic-summary' to match FlowActions
 			case 'edit-topic-summary':
-				if ( !$row->revision->isTopicTitle() ) {
+				if ( !$row->revision instanceof PostRevision || !$row->revision->isTopicTitle() ) {
 					continue;
 				}
 				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
