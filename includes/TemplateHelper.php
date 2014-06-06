@@ -110,6 +110,7 @@ class TemplateHelper {
 					'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
 					'timestamp' => 'Flow\TemplateHelper::timestamp',
 					'html' => 'Flow\TemplateHelper::html',
+					'ifEquals' => 'Flow\TemplateHelper::ifEquals',
 					'block' => 'Flow\TemplateHelper::block',
 					'author' => 'Flow\TemplateHelper::author',
 					'url' => 'Flow\TemplateHelper::url',
@@ -319,6 +320,14 @@ class TemplateHelper {
 		return array( $string, 'raw' );
 	}
 
+	/**
+	 * Unstrict comparison if.
+	 * @example {{#ifEquals one two}}...{{/ifEquals}}
+	 * @param mixed $left
+	 * @param mixed $right
+	 * @param array $options
+	 * @return null
+	 */
 	static public function ifEquals( $left, $right, $options ) {
 		/** @var callable $inverse */
 		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;

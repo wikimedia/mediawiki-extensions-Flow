@@ -26,15 +26,22 @@
 		'.LCRun3::ch($cx, 'progressiveEnhancement', Array('context'=>$in,'insertionType'=>'insertion','sectionId'=>'flow-board-collapsers','templateName'=>'flow_board_collapsers_subcomponent'), 'encq', true).'
 
 		
-		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="'.LCRun3::ch($cx, 'l10n', Array('flow-sorting-tooltip'), 'encq').'" data-flow-interactive-handler="boardFilterMenuToggle">'.LCRun3::ch($cx, 'l10n', Array('flow-newest-topics'), 'encq').' <span class="wikicon wikicon-caret"></span></a>
+		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="'.LCRun3::ch($cx, 'l10n', Array('flow-sorting-tooltip'), 'encq').'" data-flow-interactive-handler="boardFilterMenuToggle">
+wow//'.htmlentities(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null), ENT_QUOTES, 'UTF-8').'//'.LCRun3::sec($cx, ((is_array($in) && isset($in['ifEquals'])) ? $in['ifEquals'] : null), $in, false, function($cx, $in) {return '
+				'.LCRun3::ch($cx, 'l10n', Array('flow-newest-topics'), 'encq').'
+			';}, function($cx, $in) {return '
+				'.LCRun3::ch($cx, 'l10n', Array('flow-recent-topics'), 'encq').'
+			';}).'
+			<span class="wikicon wikicon-caret"></span>'.htmlentities(((is_array($in) && isset($in['~'])) ? $in['~'] : null), ENT_QUOTES, 'UTF-8').'
+		</a>
 	</div>
 	<div class="flow-board-filter-menu">
 		<div class="flow-menu flow-menu-inverted">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
 			'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['board-sort'])) ? $in['links']['board-sort'] : null))) ? '
 				<ul class="flow-ui-button-container">
-					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-clock"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-recent-topics'), 'encq').'</a></li>
-					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['newest'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikicon wikicon-star-circle"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-newest-topics'), 'encq').'</a></li>
+					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-interactive-handler="apiRequest" data-flow-api-handler="board"><span class="wikicon wikicon-clock"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-recent-topics'), 'encq').'</a></li>
+					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['newest'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-interactive-handler="apiRequest" data-flow-api-handler="board"><span class="wikicon wikicon-star-circle"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-newest-topics'), 'encq').'</a></li>
 				</ul>
 			' : '').'
 		</div>
