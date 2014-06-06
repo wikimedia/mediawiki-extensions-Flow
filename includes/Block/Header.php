@@ -239,6 +239,8 @@ class HeaderBlock extends AbstractBlock {
 			$output['revision'] = array(
 				// @todo
 				'actions' => array(
+					'edit' => Container::get( 'url_generator' )
+						->createHeaderAction( $this->workflow->getArticleTitle() ),
 				),
 				'links' => array(
 				),

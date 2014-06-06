@@ -436,6 +436,20 @@ class UrlGenerator extends BaseUrlGenerator {
 	}
 
 	/**
+	 * Create a header for the specified page
+	 *
+	 * @param Title $title
+	 * @return Anchor
+	 */
+	public function createHeaderAction( Title $title ) {
+		return new Anchor(
+			wfMessage( 'flow-edit-header-link' ),
+			$title,
+			array( 'action' => 'edit-header' )
+		);
+	}
+
+	/**
 	 * Edit the specified header
 	 *
 	 * @param Title|null $title
