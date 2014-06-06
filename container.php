@@ -749,7 +749,8 @@ $c['formatter.revision'] = $c->share( function( $c ) {
 $c['formatter.topiclist'] = $c->share( function( $c ) {
 	return new Flow\Formatter\TopicListFormatter(
 		$c['url_generator'],
-		$c['formatter.revision']
+		$c['formatter.revision'],
+		$c['templating']
 	);
 } );
 $c['formatter.topic'] = $c->share( function( $c ) {
