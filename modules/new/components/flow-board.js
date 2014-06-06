@@ -48,8 +48,6 @@
 
 		// Restore the last state
 		this.HistoryEngine.restoreLastState();
-
-		console.log( mw.flow.API.requestFromAnchor( $('.flow-board-filter-menu li a:first')[0] ) );
 	}
 
 	// Register this FlowComponent
@@ -65,13 +63,33 @@
 			/** Callbacks for data-flow-interactive-handler */
 			interactiveHandlers: {},
 			/** Callbacks for data-flow-load-handler */
-			loadHandlers: {}
+			loadHandlers: {},
+			/** Callbacks for data-flow-api-handler */
+			apiHandlers: {}
 		}
 	};
 
 	( function () {
 		// Store out of global and FlowBoardComponent scope
 		var _isGlobalBound = false;
+
+
+		////////////////////////////////////////////////////////////
+		// FlowBoardComponent.UI api handlers
+		////////////////////
+
+		/**
+		 * When a topic wrapper is generated or found on initial load...
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.board = function ( data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
+			$(
+				mw.flow.TemplateEngine.processTemplateGetFragment( 'flow_board', data.query.flow )
+			).insertBefore( flowBoard.$container );
+		};
 
 
 		////////////////////////////////////////////////////////////
@@ -103,7 +121,7 @@
 					'timestamp',
 					parseInt( $time.attr( 'datetime' ), 10) * 1000,
 					$time.data( 'time-str' ),
-					$time.data( 'time-ago-only' ) === "1" ? true : false
+					$time.data( 'time-ago-only' ) === "1"
 				)
 			);
 		};
@@ -264,6 +282,26 @@
 				.find( '.flow-ui-button-container' ).find( 'a:first' ).focus();
 
 			event.preventDefault();
+		};
+
+		/**
+		 *
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.apiRequest = function ( event ) {
+			event.preventDefault();
+
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$deferred = flowBoard.API.requestFromAnchor( this ),
+				handlerName = $( this ).data( 'flow-api-handler' ),
+				_this = this;
+
+			// If this has a special api handler, bind it to the callback.
+			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
+				$deferred.done( function () {
+					FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, arguments );
+				} );
+			}
 		};
 
 		////////////////////////////////////////////////////////////
