@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e3593d1_a1f148ca",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-06T23:36:02Z",
+      "side": 1,
+      "message": "the way this is currently used, edit-topic-summary can be generated for PostRevision and PostSummary",
+      "revId": "ba12231216ecdaa41b78df22d164362c4bfc7a04",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
