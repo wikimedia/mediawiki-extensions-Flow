@@ -10,6 +10,7 @@
             'historyTimestamp' => 'Flow\TemplateHelper::historyTimestamp',
             'historyDescription' => 'Flow\TemplateHelper::historyDescription',
             'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
+            'l10nParse' => 'Flow\TemplateHelper::l10nParse',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(),
@@ -18,6 +19,9 @@
 
     );
     return '<div class="flow-board">
+	<div class="flow-board-link">
+		'.LCRun3::ch($cx, 'l10nParse', Array('flow-history-pages-topic',((is_array($in['board']) && isset($in['board']['link'])) ? $in['board']['link'] : null),((is_array($in['board']) && isset($in['board']['title_text'])) ? $in['board']['title_text'] : null)), 'encq').'
+	</div>
 	<div class="flow-topic-histories">
 		<ul>
 			'.LCRun3::sec($cx, ((is_array($in) && isset($in['revisions'])) ? $in['revisions'] : null), $in, true, function($cx, $in) {return '

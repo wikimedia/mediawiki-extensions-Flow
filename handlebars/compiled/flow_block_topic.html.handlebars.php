@@ -10,6 +10,7 @@
             'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
             'timestamp' => 'Flow\TemplateHelper::timestamp',
             'post' => 'Flow\TemplateHelper::post',
+            'l10nParse' => 'Flow\TemplateHelper::l10nParse',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -26,7 +27,13 @@
 		';}).'
 		</ul>
 	' : '').'
-
+	<div class="flow-board-link">
+		'.((LCRun3::ifvar($cx, ((is_array($in['board']) && isset($in['board']['is_user_namespace'])) ? $in['board']['is_user_namespace'] : null))) ? '
+			'.LCRun3::ch($cx, 'l10nParse', Array('flow-topic-permalink-warning-user-board',((is_array($in['board']) && isset($in['board']['title_text'])) ? $in['board']['title_text'] : null),((is_array($in['board']) && isset($in['board']['link'])) ? $in['board']['link'] : null)), 'encq').'
+		' : '
+			'.LCRun3::ch($cx, 'l10nParse', Array('flow-topic-permalink-warning',((is_array($in['board']) && isset($in['board']['title_prefixed_text'])) ? $in['board']['title_prefixed_text'] : null),((is_array($in['board']) && isset($in['board']['link'])) ? $in['board']['link'] : null)), 'encq').'
+		').'
+	</div>
 	<div class="flow-topics">
 		
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
