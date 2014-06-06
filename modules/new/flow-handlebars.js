@@ -36,12 +36,12 @@
 			return _tplcache[ templateName ];
 		}
 
-		_tplcache[ templateName ] = mw.mantle.template.get( templateName + '.html.handlebars' );
+		_tplcache[ templateName ] = mw.mantle.template.get( templateName + '.handlebars' );
 		if ( _tplcache[ templateName ] ) {
 			// Try to get this template via Mantle
 			_tplcache[ templateName ] = _tplcache[ templateName ].render;
 			// Overwrite Handlebars' partials with our template cache instead. Much easier.
-			Handlebars.partials = _tplcache;
+			//Handlebars.partials = _tplcache;
 			// also doable with Handlebars.registerPartial( name, html );
 		}
 
@@ -125,7 +125,7 @@
 		_tplcache[ templateName ] = Handlebars.compile( html );
 
 		// Overwrite Handlebars' partials with our template cache instead. Much easier.
-		Handlebars.partials = _tplcache;
+		//Handlebars.partials = _tplcache;
 		//Handlebars.registerPartial( name, html );
 
 		return _tplcache[ templateName ];
@@ -140,8 +140,7 @@
 				},
 
 				"started_with_participants": function ( context, options ) {
-					var author = FlowHandlebars.prototype.authorBlock( context, options );
-					return author.name + " started this topic" +
+					return context.author.name + " started this topic" +
 						( context.author_count > 1 ? (
 						", with " + ( context.author_count - 1 ) + " other participant" +
 							( context.author_count > 2 ? 's' : '' )
@@ -151,7 +150,7 @@
 					return "Showing " + context.topics.length + " of " + context.topic_count + " topics attached to this page";
 				},
 				"Reply_to_author_name": function ( context, options ) {
-					return "Reply to " + FlowHandlebars.prototype.authorBlock( context, options ).name;
+					return "Reply to " + context.name;
 				},
 				"comment_count": function ( context, options ) {
 						return context.reply_count + " comment" + ( !context.reply_count || context.reply_count > 1 ? 's' : '' );
@@ -228,6 +227,18 @@
 	// TODO: l10nParse function?
 
 	/**
+	 * @todo completely
+	 * @returns {string}
+	 */
+	FlowHandlebars.prototype.uuidTimestamp = function ( ) {
+		// I have no idea
+		// @todo
+	};
+
+	// Register timestamp
+	Handlebars.registerHelper( 'uuidTimestamp', FlowHandlebars.prototype.uuidTimestamp );
+
+	/**
 	 * Generates markup for an "nnn sssss ago" and date/time string.
 	 * @example {{timestamp start_time "started_ago"}}
 	 * @param {int} timestamp milliseconds
@@ -277,7 +288,7 @@
 		);
 	};
 
-	// Register l10n
+	// Register timestamp
 	Handlebars.registerHelper( 'timestamp', FlowHandlebars.prototype.timestamp );
 
 	/**
@@ -361,37 +372,60 @@
 	Handlebars.registerHelper( 'html', FlowHandlebars.prototype.html );
 
 	/**
-	 * Returns the workflow context using the given context/argument (a string uuid).
-	 * @example {{#each topics}}{{#workflow this}}{{content}}{{/workflow}}{{/each}}
-	 * @param {String} context
-	 * @param {Object} options
-	 * @returns {String}
-	 */
-	FlowHandlebars.prototype.workflowBlock = function ( context, options ) {
-		var workflow = options.data.root.workflows[ context ] || { content: null };
-		if ( workflow.id === undefined ) {
-			workflow.id = context;
-		}
-		return options.fn ? options.fn( workflow ) : workflow;
-	};
-
-	// Register html
-	Handlebars.registerHelper( 'workflow', FlowHandlebars.prototype.workflowBlock );
-
-	/**
-	 * Returns the author context using the current context's author_id key.
-	 * @example {{#author this}}{{name}}{{/author}}
+	 *
+	 * @example {{block this}}
 	 * @param {Object} context
 	 * @param {Object} options
 	 * @returns {String}
 	 */
-	FlowHandlebars.prototype.authorBlock = function ( context, options ) {
-		var author = options.data.root.authors[ context.author_id ] || { name: 'error', gender: null, wiki: null };
-		return options.fn ? options.fn( author ) : author;
+	FlowHandlebars.prototype.workflowBlock = function ( context, options ) {
+		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
+			"flow_block_" + context['type'] + ( context['block-action-template'] || '' ),
+			context
+		) );
 	};
 
 	// Register html
-	Handlebars.registerHelper( 'author', FlowHandlebars.prototype.authorBlock );
+	Handlebars.registerHelper( 'block', FlowHandlebars.prototype.workflowBlock );
+
+	/**
+	 *
+	 * @example {{post ../../../../rootBlock this}}
+	 * @param {Object} context
+	 * @param {Object} revision
+	 * @param {Object} options
+	 * @returns {String}
+	 */
+	FlowHandlebars.prototype.postBlock = function ( context, revision, options ) {
+		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
+			"flow_post",
+			{
+				revision: revision,
+				rootBlock: context
+			}
+		) );
+	};
+
+	// Register html
+	Handlebars.registerHelper( 'post', FlowHandlebars.prototype.postBlock );
+
+	/**
+	 *
+	 * @example {{#each topics}}{{#eachPost this}}{{content}}{{/eachPost}}{{/each}}
+	 * @param {String} context
+	 * @param {Array|String} postIds
+	 * @param {Object} options
+	 * @returns {String}
+	 * @todo support multiple postIds in an array
+	 */
+	FlowHandlebars.prototype.eachPost = function ( context, postIds, options ) {
+		var revId = context.posts[postIds][0],
+			revision = context.revisions[revId] || { content: null };
+		return options.fn ? options.fn( revision ) : revision;
+	};
+
+	// Register html
+	Handlebars.registerHelper( 'eachPost', FlowHandlebars.prototype.eachPost );
 
 	/**
 	 * Gets a URL for a given variable.
