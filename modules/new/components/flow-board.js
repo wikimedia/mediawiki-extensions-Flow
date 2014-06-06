@@ -21,35 +21,37 @@
 			return parentReturn;
 		}
 
-		// Instantiate this FlowBoardComponent
-		// First, find our elements.
-		this.$header = $container.find( '.flow-board-header' );
-		this.$boardNavigation = $container.find( '.flow-board-navigation' );
-		this.$topicNavigation = $container.find( '.flow-topic-navigation' );
-		this.$board = $container.find( '.flow-board' );
+		this.reinit = function () {
+			// Instantiate this FlowBoardComponent
+			// First, find our elements.
+			this.$header = $container.find( '.flow-board-header' );
+			this.$boardNavigation = $container.find( '.flow-board-navigation' );
+			this.$topicNavigation = $container.find( '.flow-topic-navigation' );
+			this.$board = $container.find( '.flow-board' );
 
-		// Second, verify that this board in fact exists
-		if ( !this.$board.length ) {
-			// You need a board, dammit!
-			this.debug( 'Could not find .flow-board', arguments );
-			return false;
-		}
+			// Second, verify that this board in fact exists
+			if ( !this.$board.length ) {
+				// You need a board, dammit!
+				this.debug( 'Could not find .flow-board', arguments );
+				return false;
+			}
 
-		// Progressively enhance the board and its forms
-		// @todo Needs a ~"liveUpdateComponents" method, since the functionality in makeContentInteractive needs to also run when we receive new content or update old content.
-		// @todo move form stuff
-		FlowBoardComponent.UI.makeContentInteractive( this );
+			// Progressively enhance the board and its forms
+			// @todo Needs a ~"liveUpdateComponents" method, since the functionality in makeContentInteractive needs to also run when we receive new content or update old content.
+			// @todo move form stuff
+			FlowBoardComponent.UI.makeContentInteractive( this );
 
-		// Bind any necessary event handlers to this board
-		FlowBoardComponent.UI.bindBoardHandlers( this );
+			// Bind any necessary event handlers to this board
+			FlowBoardComponent.UI.bindBoardHandlers( this );
 
-		// Bind the global event handlers (only happens once per page load, on window/body)
-		FlowBoardComponent.UI.bindGlobalHandlers();
+			// Bind the global event handlers (only happens once per page load, on window/body)
+			FlowBoardComponent.UI.bindGlobalHandlers();
 
-		// Restore the last state
-		this.HistoryEngine.restoreLastState();
+			// Restore the last state
+			this.HistoryEngine.restoreLastState();
+		};
 
-		console.log( mw.flow.API.requestFromAnchor( $('.flow-board-filter-menu li a:first')[0] ) );
+		this.reinit();
 	}
 
 	// Register this FlowComponent
@@ -65,13 +67,38 @@
 			/** Callbacks for data-flow-interactive-handler */
 			interactiveHandlers: {},
 			/** Callbacks for data-flow-load-handler */
-			loadHandlers: {}
+			loadHandlers: {},
+			/** Callbacks for data-flow-api-handler */
+			apiHandlers: {}
 		}
 	};
 
 	( function () {
 		// Store out of global and FlowBoardComponent scope
 		var _isGlobalBound = false;
+
+
+		////////////////////////////////////////////////////////////
+		// FlowBoardComponent.UI api callback handlers
+		////////////////////
+
+		/**
+		 * When a topic wrapper is generated or found on initial load...
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.board = function ( data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
+			console.log(flowBoard.TemplateEngine.processTemplateGetFragment( 'flow_board', data.query.flow ));
+
+			flowBoard.$container.empty();
+			$(
+				flowBoard.TemplateEngine.processTemplateGetFragment( 'flow_board', data.query.flow )
+			).prependTo( flowBoard.$container );
+
+			flowBoard.reinit();
+		};
 
 
 		////////////////////////////////////////////////////////////
@@ -103,7 +130,7 @@
 					'timestamp',
 					parseInt( $time.attr( 'datetime' ), 10) * 1000,
 					$time.data( 'time-str' ),
-					$time.data( 'time-ago-only' ) === "1" ? true : false
+					$time.data( 'time-ago-only' ) === "1"
 				)
 			);
 		};
@@ -264,6 +291,26 @@
 				.find( '.flow-ui-button-container' ).find( 'a:first' ).focus();
 
 			event.preventDefault();
+		};
+
+		/**
+		 *
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.apiRequest = function ( event ) {
+			event.preventDefault();
+
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$deferred = flowBoard.API.requestFromAnchor( this ),
+				handlerName = $( this ).data( 'flow-api-handler' ),
+				_this = this;
+
+			// If this has a special api handler, bind it to the callback.
+			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
+				$deferred.done( function () {
+					FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, arguments );
+				} );
+			}
 		};
 
 		////////////////////////////////////////////////////////////
