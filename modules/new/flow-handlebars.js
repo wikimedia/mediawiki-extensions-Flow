@@ -134,29 +134,10 @@
 	// @todo remove and replace with mw.message || $.noop
 	function flowMessages( str ) {
 		var strings = ( {
-				"No_header": "This talk page has no header.",
-				"Reply": "Reply",
-				"Edit": "Edit",
-				"Newest_topics": "Newest topics",
-				"Toggle_small_topics": "Toggle small topics view",
-				"Toggle_topics_only": "Toggle topics only view",
-				"Toggle_topics_and_posts": "Toggle topics and posts view",
-				"Topics": "Topics",
+				"Reply": "Reply", // TODO: pass in and parse $author['gender']
 				"Topics_n": function ( count, options ) {
 					return "Topics (" + count + ")";
 				},
-				"Load_More": "Load More",
-				"Start_a_new_topic": "Start a new topic",
-				"topic_details_placeholder": "Add some details, if you'd like.",
-				"Cancel": "Cancel",
-				"Preview": "Preview",
-				"Add_Topic": "Add Topic",
-				"Talk": "Talk",
-				"block": "block",
-				"Lock": "Lock",
-				"Hide": "Hide",
-				"Delete": "Delete",
-				"Suppress": "Suppress",
 
 				"started_with_participants": function ( context, options ) {
 					var author = FlowHandlebars.prototype.authorBlock( context, options );
@@ -176,8 +157,6 @@
 						return context.reply_count + " comment" + ( !context.reply_count || context.reply_count > 1 ? 's' : '' );
 				},
 
-				"topic_TOU": FlowHandlebars.prototype.html( 'By clicking add topic, you agree to our <a rel="nofollow" class="external text" href="//wikimediafoundation.org/wiki/Terms_of_use">Terms of Use</a> and agree to irrevocably release your text under the <a rel="nofollow" class="external text" href="//creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0 License</a> and <a rel="nofollow" class="external text" href="//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License">GFDL</a>.' ),
-				"reply_TOU": FlowHandlebars.prototype.html( 'By clicking reply, you agree to our <a rel="nofollow" class="external text" href="//wikimediafoundation.org/wiki/Terms_of_use">Terms of Use</a> and agree to irrevocably release your text under the <a rel="nofollow" class="external text" href="//creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0 License</a> and <a rel="nofollow" class="external text" href="//en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License">GFDL</a>.' ),
 
 				"_time": function ( seconds_ago ) {
 					var str = ' second',
