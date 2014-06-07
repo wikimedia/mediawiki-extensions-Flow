@@ -16,6 +16,24 @@
       "revId": "ba12231216ecdaa41b78df22d164362c4bfc7a04",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e3593d1_a1ea689a",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-07T00:04:37Z",
+      "side": 1,
+      "message": "I am switching this to check against topic type workflow.  The summarize/close link should be provided as long as it\u0027s a topic workflow",
+      "parentUuid": "0e3593d1_a1f148ca",
+      "revId": "ba12231216ecdaa41b78df22d164362c4bfc7a04",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
