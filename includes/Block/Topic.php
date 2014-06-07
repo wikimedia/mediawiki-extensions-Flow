@@ -66,7 +66,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected $supportedGetActions = array(
 		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'post-view',
-		'moderate-topic', 'moderate-post',
+		'moderate-topic', 'moderate-post', 'close-open-topic',
 	);
 
 	// @Todo - fill in the template names
@@ -80,6 +80,7 @@ class TopicBlock extends AbstractBlock {
 		'compare-post-revisions' => 'diff_view',
 		'moderate-topic' => 'moderate_topic',
 		'moderate-post' => 'moderate_post',
+		'close-open-topic' => 'moderate_topic',
 	);
 
 	protected $requiresWikitext = array( 'edit-post', 'edit-title' );
@@ -493,6 +494,7 @@ class TopicBlock extends AbstractBlock {
 			return false;
 
 		case 'moderate-topic':
+		case 'close-open-topic':
 			return true;
 
 		case 'view':
