@@ -379,7 +379,7 @@ require $dir . 'FlowActions.php';
 
 // Register activity log formatter hooks
 foreach( $wgFlowActions as $action => $options ) {
-	if ( isset( $options['log_type'] ) ) {
+	if ( is_array( $options) && isset( $options['log_type'] ) ) {
 		$log = $options['log_type'];
 
 		// Some actions are more complex closures - to be added manually.
