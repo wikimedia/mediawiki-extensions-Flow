@@ -6,7 +6,13 @@
 		{{/each}}
 		</ul>
 	{{/if}}
-
+	<div class="flow-board-link">
+		{{#if board.is_user_namespace}}
+			{{l10nParse "flow-topic-permalink-warning-user-board" board.title_text board.link }}
+		{{else}}
+			{{l10nParse "flow-topic-permalink-warning" board.title_prefixed_text board.link }}
+		{{/if}}
+	</div>
 	<div class="flow-topics">
 		{{!-- There is only one topic, but we use same api response structure --}}
 		{{#each roots}}

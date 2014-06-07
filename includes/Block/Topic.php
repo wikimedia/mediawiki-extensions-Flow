@@ -536,7 +536,7 @@ class TopicBlock extends AbstractBlock {
 			$this->workflow,
 			Container::get( 'query.topiclist' )->getResults( array( $workflowId ) ),
 			\RequestContext::getMain()
-		);
+		) + array( 'board' => $this->renderBoardTitle() );
 	}
 
 	/**
@@ -567,6 +567,7 @@ class TopicBlock extends AbstractBlock {
 			'revisions' => array(
 				$serialized['revisionId'] => $serialized,
 			),
+			'board' => $this->renderBoardTitle(),
 		);
 	}
 
@@ -576,6 +577,16 @@ class TopicBlock extends AbstractBlock {
 			$serializer->setContentFormat( 'wikitext' );
 		}
 		return $serializer;
+	}
+
+	protected function renderBoardTitle() {
+		$title = $this->workflow->getArticleTitle();
+		return array(
+			'title_text' => $title->getText(),
+			'title_prefixed_text' => $title->getPrefixedText(),
+			'link' =>  Container::get( 'url_generator' )->boardLink( $title )->getFullUrl(),
+			'is_user_namespace' => $title->getNamespace() === NS_USER_TALK
+		);
 	}
 
 	protected function renderTopicHistoryAPI( Templating $templating, array $options ) {
@@ -593,8 +604,10 @@ class TopicBlock extends AbstractBlock {
 			$result[$serialized['revisionId']] = $serialized;
 		}
 
+		$title = $this->workflow->getArticleTitle();
 		return array(
 			'revisions' => $result,
+			'board' => $this->renderBoardTitle()
 		);
 	}
 
