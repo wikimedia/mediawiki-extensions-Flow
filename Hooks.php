@@ -641,4 +641,18 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * Add topiclist sortby to preferences.
+	 * @param $user User object
+	 * @param &$preferences array Preferences object
+	 * @return bool
+	 */
+	public static function onGetPreferences( $user, &$preferences ) {
+		$preferences['flow-topiclist-sortby'] = array(
+			'type' => 'api',
+		);
+
+		return true;
+	}
 }

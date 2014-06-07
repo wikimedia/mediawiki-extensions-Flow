@@ -253,11 +253,36 @@ class TopicListBlock extends AbstractBlock {
 
 		$findOptions['pager-limit'] = $limit;
 
-		if ( isset( $requestOptions['sortby'] ) && $requestOptions['sortby'] === 'updated' ) {
-			$findOptions['sort'] = 'workflow_last_update_timestamp';
-			$findOptions['pager-dir'] = 'rev';
-			$findOptions['order'] = 'desc';
-			$findOptions['limit'] = 500;
+		// Only support sortby = updated now, fall back to creation time by default otherwise.
+		// To clear the sortby user preference, pass sortby with an empty value
+		$sortByOption = '';
+		$user = $this->user;
+		if ( isset( $requestOptions['sortby'] ) ) {
+			if ( $requestOptions['sortby'] === 'updated' ) {
+				$sortByOption = 'updated';
+			}
+			if (
+				isset( $requestOptions['savesortby'] )
+				&& $requestOptions['savesortby'] === 'true'
+				&& !$user->isAnon()
+				&& $user->getOption( 'flow-topiclist-sortby' ) != $sortByOption
+			) {
+				$user->setOption( 'flow-topiclist-sortby', $sortByOption );
+				$user->saveSettings();
+			}
+		} else {
+			if ( !$user->isAnon() && $user->getOption( 'flow-topiclist-sortby' ) === 'updated' ) {
+				 $sortByOption = 'updated';
+			}
+		}
+
+		if ( $sortByOption === 'updated' ) {
+			$findOptions = array(
+				'sort' => 'workflow_last_update_timestamp',
+				'pager-dir' => 'rev',
+				'order' => 'desc',
+				'limit' => 500
+			) + $findOptions;
 		}
 
 		return $findOptions;
