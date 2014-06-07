@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e3593d1_6cd91783",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-07T01:27:04Z",
+      "side": 1,
+      "message": "I think it would be faster to store intermediate variables $workflow \u003d $row-\u003eworkflow and $revision \u003d $row-\u003erevision and access them.",
+      "revId": "6693fafaee99a491ff6a2b94570e915bc379959f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e3593d1_61536044",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-07T01:27:04Z",
+      "side": 1,
+      "message": "Shouldn\u0027t the decisions as to what kinds of actions are available be driven by FlowActions.php?  Putting this decision here, twice, isn\u0027t going to work well when we have lots of workflow types.  Added to \"Internals\" checklist in \"New front-end, new bugs\" Trello card.",
+      "revId": "6693fafaee99a491ff6a2b94570e915bc379959f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
