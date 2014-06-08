@@ -85,7 +85,7 @@
 	"flow-topic-action-close-topic": "Used as a link in a dropdown menu to close a topic.\n{{Related|Flow-action}}",
 	"flow-topic-action-reopen-topic": "Used as a link in a dropdown menu to reopen a topic.\n{{Related|Flow-action}}",
 	"flow-topic-action-summarize-topic": "Used as a link in a dropdown menu to summarize a topic.\n{{Related|Flow-action}}",
-	"flow-topic-action-resummarize-topic": "Used as a link in a dropdown menu to resummarize a topic.\n{{Related|Flow-action}}",
+	"flow-topic-action-resummarize-topic": "Used as a link in a dropdown menu to resummarize a topic.\n{{Related|Flow-action}}\n{{Identical|Edit summary}}",
 	"flow-topic-action-suppress-topic": "Used as a link in a dropdown menu to suppress a topic.\n{{Related|Flow-action}}\n\nFor meaning of \"suppress\" see [[Thread:Support/About MediaWiki:Flow-post-action-suppress-post/qqq]] and [[Thread:Support/About MediaWiki:Flow-suppress-post-content/sv]].",
 	"flow-topic-action-unhide-topic": "Used as a link in a dropdown menu to unhide a topic.\n{{Related|Flow-action}}",
 	"flow-topic-action-undelete-topic": "Used as a link in a dropdown menu to undelete a topic.\n{{Related|Flow-action}}",
