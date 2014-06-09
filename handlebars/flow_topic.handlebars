@@ -1,5 +1,9 @@
-<div class="flow-topic flow-load-interactive" id="flow-topic-{{postId}}" data-flow-id="{{postId}}" data-flow-load-handler="topicElement">
+<div class="flow-topic flow-load-interactive {{#if isModerated}}flow-topic-collapsed-invert{{/if}}" id="flow-topic-{{postId}}" data-flow-id="{{postId}}" data-flow-load-handler="topicElement">
 	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
+		{{#if isModerated}}
+			<h2 class="flow-moderated-topic-title">{{l10n "post_moderation_state" moderateState replyToId moderator.name}}</h2>
+			<div>@Todo - Add css to toggle between "xxx is hidden by xxx" and real title</div>
+		{{/if}}
 		<h2 class="flow-topic-title">{{content}}</h2>
 		<span class="flow-author">{{l10n "started_with_participants" this}}</span>
 		<div class="flow-topic-meta">
@@ -35,7 +39,7 @@
 					<li><a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="{{actions.delete.url}}" title="{{actions.delete.title}}"><span class="wikicon wikicon-trash"></span> {{l10n "flow-post-action-delete-post"}}</a></li>
 				{{/if}}
 				{{#if actions.suppress}}
-					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.delete.title}}"><span class="wikicon wikicon-block"></span> {{l10n "flow-post-action-suppress-post"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.suppress.title}}"><span class="wikicon wikicon-block"></span> {{l10n "flow-post-action-suppress-post"}}</a></li>
 				{{/if}}
 				{{#if actions.close}}
 					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.close.url}}" title="{{actions.close.title}}"><span class="wikicon wikicon-clock"></span> {{l10n "flow-topic-action-close-topic"}}</a></li>
