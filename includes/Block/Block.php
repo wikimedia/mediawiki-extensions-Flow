@@ -107,7 +107,7 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * Returns true of the block can submit the requested action, or false
+	 * Returns true if the block can submit the requested action, or false
 	 * otherwise.
 	 *
 	 * @param string $action
@@ -118,7 +118,7 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * Returns true of the block can render the requested action, or false
+	 * Returns true if the block can render the requested action, or false
 	 * otherwise.
 	 *
 	 * @param string $action
@@ -254,9 +254,8 @@ abstract class AbstractBlock implements Block {
 		if ( $status->isOK() ) {
 			return true;
 		}
-		foreach ( $status->getErrorsArray() as $message ) {
-			$this->addError( 'spamfilter', wfMessage( array_shift( $message ), $message ) );
-		}
+
+		$this->addError( 'spamfilter', $status->getMessage() );
 		return false;
 	}
 }
