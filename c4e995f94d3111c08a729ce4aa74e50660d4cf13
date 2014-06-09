@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e3593d1_6d6a2eb3",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-09T02:00:08Z",
+      "side": 1,
+      "message": "FWIW postIds was a string on each time through before it died, but this is must fix, the JS will crash.",
+      "revId": "c4e995f94d3111c08a729ce4aa74e50660d4cf13",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e3593d1_0d3a82c0",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-09T02:00:08Z",
+      "side": 1,
+      "message": "On my local wiki sorting by Recent active topics, on about the fifth trip through here, context is undefined so this fails.",
+      "revId": "c4e995f94d3111c08a729ce4aa74e50660d4cf13",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
