@@ -25,8 +25,10 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$dbf = Flow\Container::get( 'db.factory' );
 		$dbw = $dbf->getDB( DB_MASTER );
+		$hasRun = false;
 
-		$runUpdate = function( $callback ) use ( $dbf, $dbw ) {
+		$runUpdate = function( $callback ) use ( $dbf, $dbw, &$hasRun ) {
+			$hasRun = true;
 			$continue = "\0";
 			do {
 				$continue = call_user_func( $callback, $dbw, $continue );
@@ -47,6 +49,10 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 			$dbw->fieldExists( 'flow_revision', 'rev_edit_user_text' )
 		) {
 			$runUpdate( array( $this, 'updateRevision' ) );
+		}
+
+		if ( $hasRun ) {
+			$dbw->sourceFile( __DIR__ . '/../db_patches/patch-remove_usernames_2.sql' );
 		}
 
 		return true;
