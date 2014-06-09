@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
 
 Copyrights for code authored by Yahoo! Inc. is licensed under the following terms:
 MIT License
@@ -8,7 +8,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Origin: https://github.com/zordius/lightncandy 
+Origin: https://github.com/zordius/lightncandy
 */
 
 /**
@@ -714,15 +714,32 @@ $libstr
 	 * @expect Array('Array($in)', Array('this')) when input Array(null), Array('flags'=>Array('spvar'=>true))
 	 * @expect Array('Array($in,$in)', Array('this', 'this')) when input Array(null, null), Array('flags'=>Array('spvar'=>true))
 	 */
-	protected static function getVariableNames($vn, $context) {
+	protected static function getVariableNames($vn, &$context) {
 		$vars = Array();
 		$exps = Array();
 		foreach ($vn as $i => $v) {
-			$V = self::getVariableName($v, $context);
+			if (preg_match('/^\(.+\)$/', $v[0])) {
+				$V = self::parseSubExpression( $v[0], $context );
+			} elseif ( preg_match( '/^\(/', $v[0] ) ) {
+				throw new MWException( "Unmatched paren in {$v[0]}" );
+			} else {
+				$V = self::getVariableName($v, $context);
+			}
 			$vars[] = (is_string($i) ? "'$i'=>" : '') . $V[0];
 			$exps[] = $V[1];
 		}
 		return Array('Array(' . implode(',', $vars) . ')', $exps);
+	}
+
+	protected static function parseSubExpression( $v, &$context ) {
+		$code = preg_replace_callback(self::TOKEN_SEARCH, function ($matches) use (&$context) {
+			$tmpl = LightnCandy::compileToken($matches, $context);
+			return "{$matches[LightnCandy::POS_LSPACE]}'$tmpl'{$matches[LightnCandy::POS_RSPACE]}";
+		}, '{{' . substr( substr( $v, 1 ), 0, -1 ) . '}}' );
+
+		$trimmed = substr( substr( $code, 2 ), 0, -2 );
+
+		return Array( $trimmed, $trimmed );
 	}
 
 	/**
@@ -927,6 +944,12 @@ $libstr
 					}
 					continue;
 				}
+				// continue to next match when begin with '(' without ending ')'
+				if (preg_match('/^\([^)]+$/', $t)) {
+					$prev = $t;
+					$expect = ')';
+					continue;
+				}
 				// continue to next match when begin with '"' without ending '"'
 				if (preg_match('/^"[^"]+$/', $t)) {
 					$prev = $t;
@@ -957,6 +980,13 @@ $libstr
 		$ret = Array();
 		$i = 0;
 		foreach ($vars as $idx => $var) {
+			// Skip advanced processing for subexpressions
+			if ( preg_match( '/^\(.+\)$/', $var ) ) {
+				$ret[$i] = array( $var );
+				$i++;
+				continue;
+			}
+
 			if ($context['flags']['namev']) {
 				if (preg_match('/^((\\[([^\\]]+)\\])|([^=^[]+))=(.+)$/', $var, $m)) {
 					if (!$context['flags']['advar'] && $m[3]) {
