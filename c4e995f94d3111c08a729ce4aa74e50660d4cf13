@@ -2,6 +2,74 @@
   "comments": [
     {
       "key": {
+        "uuid": "0e3593d1_ad86d668",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-09T05:03:37Z",
+      "side": 1,
+      "message": "It\u0027s not related to this patch, but this is confusing. At this point _tplcache[someName] contains an object with a render function, then you replace _tplcache[someName] with that render function.\n\nI think you should store mw.mantle.template.get() response in a local \"template\" variable, so _tplcache only contains render functions.\n\nI wonder if Mantle\u0027s template.add should just return the render() function. I guess it dependes if template compilation might provide other functions than render()",
+      "revId": "c4e995f94d3111c08a729ce4aa74e50660d4cf13",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e3593d1_8d8b1272",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-09T05:03:37Z",
+      "side": 1,
+      "message": "Delete the comment, I think it belongs above mw.mantle.template.get() above and doesn\u0027t add anything.",
+      "revId": "c4e995f94d3111c08a729ce4aa74e50660d4cf13",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e3593d1_6d80ee4b",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-09T05:03:37Z",
+      "side": 1,
+      "message": "What happened to the partials, has this all moved into Mantle?  I think you can remove all the commented lines.",
+      "revId": "c4e995f94d3111c08a729ce4aa74e50660d4cf13",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e3593d1_ad3376bf",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-09T05:03:37Z",
+      "side": 1,
+      "message": "Is this still used in Flow code? It\u0027s a cool approach, but if we\u0027re going to keep it the comment should update to reflect that we\u0027re mostly using /ResourceLoaderTemplateModule.",
+      "revId": "c4e995f94d3111c08a729ce4aa74e50660d4cf13",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e3593d1_6d6a2eb3",
         "filename": "modules/new/flow-handlebars.js",
         "patchSetId": 4
