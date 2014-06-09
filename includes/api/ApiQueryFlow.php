@@ -14,13 +14,15 @@ class ApiQueryFlow extends ApiQueryBase {
 		$this->container = Flow\Container::getContainer();
 		// Get the parameters
 		$params = $this->extractRequestParams();
-		$passedParams = FormatJson::decode( $params['params'], true );
-
 		$pageTitle = Title::newFromText( $params['page'] );
 		$id = $params['workflow'] ? UUID::create( $params['workflow'] ) : null;
 
 		$this->loader = $this->container['factory.loader.workflow']
 			->createWorkflowLoader( $pageTitle, $id );
+
+		$passedParams = $this->loader
+			->extractParameters( FormatJson::decode( $params['params'], true ) );
+
 		$result = array(
 			'workflow' => $this->loader->getWorkflow()->getId()->getAlphadecimal()
 		);

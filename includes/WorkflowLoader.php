@@ -308,9 +308,23 @@ class WorkflowLoader {
 		if ( isset( $result['topiclist'] ) && !$result['topiclist'] ) {
 			$result['topiclist'] = $request->getArray( 'topic_list', array() );
 		}
+
+		foreach ( $this->extractParameters( $request->getValues() ) as $block => $params ) {
+			if ( isset( $result[$block] ) ) {
+				$result[$block] += $params;
+			} else {
+				$result[$block] = $params;
+			}
+		}
+
+		return $result;
+	}
+
+	public function extractParameters( array $input ) {
 		// between urls only allowing [-_.] as unencoded special chars and
 		// php mangling all of those into '_', we have to split on '_'
-		foreach ( $request->getValues() as $name => $value ) {
+		$result = array();
+		foreach ( $input as $name => $value ) {
 			if ( false !== strpos( $name, '_' ) ) {
 				list( $block, $var ) = explode( '_', $name, 2 );
 				$result[$block][$var] = $value;
