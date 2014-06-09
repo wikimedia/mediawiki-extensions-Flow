@@ -55,8 +55,8 @@ class TemplateHelper {
 	 */
 	public function getTemplateFilenames( $templateName ) {
 		return array(
-			'template' => "{$this->templateDir}/{$templateName}.html.handlebars",
-			'compiled' => "{$this->templateDir}/compiled/{$templateName}.html.handlebars.php",
+			'template' => "{$this->templateDir}/{$templateName}.handlebars",
+			'compiled' => "{$this->templateDir}/compiled/{$templateName}.handlebars.php",
 		);
 	}
 
@@ -104,7 +104,7 @@ class TemplateHelper {
 					| LightnCandy::FLAG_SPVARS
 					| LightnCandy::FLAG_HANDLEBARS, // FLAG_THIS + FLAG_WITH + FLAG_PARENT + FLAG_JSQUOTE + FLAG_ADVARNAME + FLAG_NAMEDARGS
 				'basedir' => array( $templateDir ),
-				'fileext' => array( '.html.handlebars' ),
+				'fileext' => array( '.handlebars' ),
 				'helpers' => array(
 					'l10n' => 'Flow\TemplateHelper::l10n',
 					'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
