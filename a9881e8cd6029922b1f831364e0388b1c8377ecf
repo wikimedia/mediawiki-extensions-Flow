@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e3593d1_60b110dc",
+        "filename": "includes/Data/RevisionStorage.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-09T18:58:06Z",
+      "side": 1,
+      "message": "is a row valid if no rev_content key is set?  I can\u0027t think of a situation where that would be valid.\n\nI\u0027m thinking this should be\n\n    return isset( $row[\u0027rev_content\u0027] ) \u0026\u0026 $row[\u0027rev_content\u0027] !\u003d\u003d false;",
+      "revId": "a9881e8cd6029922b1f831364e0388b1c8377ecf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
