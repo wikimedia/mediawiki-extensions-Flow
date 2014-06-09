@@ -173,6 +173,18 @@ class TemplateHelper {
 			$str = "flow-post-action-$type-post";
 			break;
 
+		case 'post_moderation_state':
+			$type = $args[0];
+			$replyToId = $args[1];
+			$moderator = $args[2];
+			if ( !$replyToId ) {
+				$str = "flow-$type-title-content";
+			} else {
+				$str = "flow-$type-post-content";
+			}
+			$message = wfMessage( $str, $moderator );
+			break;
+
 		case 'Topics_n':
 			$topiclist = $args[0];
 			$message = wfMessage( 'flow-topic-count', count( $topiclist['roots'] ) );

@@ -2,13 +2,29 @@
 
 namespace Flow\Formatter;
 
+use Flow\Container;
+use Flow\Data\ManagerGroup;
 use Flow\Data\PagerPage;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
+use Flow\Repository\TreeRepository;
+use Flow\RevisionActionPermissions;
 
 class TopicListQuery extends AbstractQuery {
+
+	protected $permissions;
+
+	/**
+	 * @param ManagerGroup $storage
+	 * @param TreeRepository $treeRepository
+	 */
+	public function __construct( ManagerGroup $storage, TreeRepository $treeRepository, RevisionActionPermissions $permissions ) {
+		parent::__construct( $storage, $treeRepository );
+		$this->permissions = $permissions;
+	}
+
 	/**
 	 * @param TopicListEntry[] $topicRevisions
 	 * @return FormatterRow[]
@@ -37,6 +53,9 @@ class TopicListQuery extends AbstractQuery {
 		$results = array();
 		foreach ( $posts as $post ) {
 			try {
+				if ( !$this->permissions->isAllowed( $post, 'view' )  ) {
+					continue;
+				}
 				$results[] = $row = new TopicRow;
 				$this->buildResult( $post, null, $row );
 				$replyToId = $row->revision->getReplyToId();
