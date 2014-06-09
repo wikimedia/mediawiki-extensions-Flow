@@ -69,10 +69,6 @@ class ObjectLocator {
 			return array();
 		}
 
-		foreach ( $queries as $key => $value ) {
-			$queries[$key] = UUID::convertUUIDs( $value, 'alphadecimal' );
-		}
-
 		$keys = array_keys( reset( $queries ) );
 		if ( isset( $options['sort'] ) && !is_array( $options['sort'] ) ) {
 			$options['sort'] = ObjectManager::makeArray( $options['sort'] );
@@ -173,11 +169,8 @@ class ObjectLocator {
 		$queries = array();
 		$retval = null;
 		foreach ( $objectIds as $id ) {
-			//check internal cache
-			$query = UUID::convertUUIDs(
-				array_combine( $primaryKey, ObjectManager::makeArray( $id ) ),
-				'alphadecimal'
-			);
+			// check internal cache
+			$query = array_combine( $primaryKey, ObjectManager::makeArray( $id ) );
 			$obj = $this->mapper->get( $query );
 			if ( $obj === null ) {
 				$queries[] = $query;
