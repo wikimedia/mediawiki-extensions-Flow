@@ -112,6 +112,7 @@ class RevisionFormatter {
 		}
 
 		$this->urlGenerator->withWorkflow( $row->workflow );
+		$moderatedRevision = $this->templating->getModeratedRevision( $row->revision );
 		$res = array(
 			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
 			'revisionId' => $row->revision->getRevisionId()->getAlphadecimal(),
@@ -119,7 +120,7 @@ class RevisionFormatter {
 			'changeType' => $row->revision->getChangeType(),
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),
-			'isModerated' => $this->templating->getModeratedRevision( $row->revision )->isModerated(),
+			'isModerated' => $moderatedRevision->isModerated(),
 			// These are read urls
 			'links' => $this->buildLinks( $row ),
 			// These are write urls
@@ -144,6 +145,7 @@ class RevisionFormatter {
 				$row->revision->getModeratedByUserId(),
 				$row->revision->getModeratedByUserIp()
 			);
+			$res['moderateState'] = $moderatedRevision->getModerationState();
 		}
 
 		if ( $isContentAllowed ) {

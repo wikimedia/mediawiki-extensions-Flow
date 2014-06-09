@@ -129,7 +129,7 @@
 	}
 }
 // &.flow-topic-navigation:
-// needs extra specificity to override 
+// needs extra specificity to override
 // .flow-board ul.flow-topic-navigation
 div#bodyContent ul.flow-topic-navigation-fixed {
 	position: fixed;
@@ -196,16 +196,18 @@ div#bodyContent ul.flow-topic-navigation-fixed {
 
 // Topic title itself
 // Needs additional specificity to override `div#content h2`
-div#bodyContent h2.flow-topic-title {
-	padding: 0;
-	margin: 0 0 .33em;
-	border-bottom: none;
-	font-family: sans-serif;
-	font-size: 1.75em;
-	font-weight: bold;
-	word-break: break-word;
-	word-wrap: break-word;
-	overflow: visible;
+div#bodyContent {
+	h2.flow-topic-title, h2.flow-moderated-topic-title {
+		padding: 0;
+		margin: 0 0 .33em;
+		border-bottom: none;
+		font-family: sans-serif;
+		font-size: 1.75em;
+		font-weight: bold;
+		word-break: break-word;
+		word-wrap: break-word;
+		overflow: visible;
+	}
 }
 
 // Topic metadata
