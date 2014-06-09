@@ -296,5 +296,5 @@
     "flow-special-type-workflow": "Workflow",
     "flow-special-uuid": "UUID",
     "flow-special-invalid-uuid": "Could not find content matching the type and the UUID.",
-    "flow-spam-confirmedit": "As an anonymous user, you can't submit external links. Please sign up for an account."
+    "flow-spam-confirmedit": "Please confirm you are a human by solving the below captcha: $1"
 }
