@@ -29,7 +29,7 @@
 	</ul>
 ';}).'
 
-	
+
 	'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 		'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
 			<form method="POST" action="'.LCRun3::ch($cx, 'moderationAction', Array(((is_array($in) && isset($in['actions'])) ? $in['actions'] : null),((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null)), 'encq').'">
@@ -45,6 +45,10 @@
 	<div class="flow-post'.LCRun3::ifv($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null), $in, function($cx, $in) {return ' flow-post-moderated';}).'">
 		'.LCRun3::wi($cx, ((is_array($in) && isset($in['author'])) ? $in['author'] : null), $in, function($cx, $in) {return '
 			<span class="flow-author"><a href="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['url'])) ? $in['links']['contribs']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['title'])) ? $in['links']['contribs']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="mw-userlink flow-ui-tooltip-target">'.htmlentities(((is_array($in) && isset($in['name'])) ? $in['name'] : null), ENT_QUOTES, 'UTF-8').'</a> <span class="mw-usertoollinks">(<a href="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['url'])) ? $in['links']['talk']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="new flow-ui-tooltip-target" title="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['title'])) ? $in['links']['talk']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array('talkpagelinktext'), 'encq').'</a>'.LCRun3::ifv($cx, ((is_array($in['links']) && isset($in['links']['block'])) ? $in['links']['block'] : null), $in, function($cx, $in) {return ' | <a class="flow-ui-tooltip-target" href="'.htmlentities(((is_array($in['links']['block']) && isset($in['links']['block']['url'])) ? $in['links']['block']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['block']) && isset($in['links']['block']['title'])) ? $in['links']['block']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array('blocklink'), 'encq').'</a>';}).')</span></span>
+		';}).'
+		'.LCRun3::ifv($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null), $in, function($cx, $in) {return '
+			<div class="flow-moderated-post-content">'.LCRun3::ch($cx, 'l10n', Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)), 'encq').'</div>
+			<div>@Todo - Add css to toggle between "xxx is hidden by xxx" and real post</div>
 		';}).'
 		<div class="flow-post-content">
 			'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'

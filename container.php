@@ -671,7 +671,8 @@ $c['formatter.revision.diff.view'] = $c->share( function( $c ) {
 $c['query.topiclist'] = $c->share( function( $c ) {
 	return new Flow\Formatter\TopicListQuery(
 		$c['storage'],
-		$c['repository.tree']
+		$c['repository.tree'],
+		$c['permissions']
 	);
 } );
 $c['query.topic.history'] = $c->share( function( $c ) {

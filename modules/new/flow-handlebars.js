@@ -36,7 +36,7 @@
 			return _tplcache[ templateName ];
 		}
 
-		_tplcache[ templateName ] = mw.mantle.template.get( templateName + '.html.handlebars' );
+		_tplcache[ templateName ] = mw.mantle.template.get( templateName + '.handlebars' );
 		if ( _tplcache[ templateName ] ) {
 			// Try to get this template via Mantle
 			_tplcache[ templateName ] = _tplcache[ templateName ].render;
