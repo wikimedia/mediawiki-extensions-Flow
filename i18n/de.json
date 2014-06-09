@@ -285,5 +285,6 @@
 	"flow-special-type-post": "Beitrag",
 	"flow-special-type-workflow": "Workflow",
 	"flow-special-uuid": "UUID",
-	"flow-special-invalid-uuid": "Es konnte kein Inhalt mit dem Typ und der UUID gefunden werden."
+	"flow-special-invalid-uuid": "Es konnte kein Inhalt mit dem Typ und der UUID gefunden werden.",
+	"flow-spam-confirmedit": "Als anonymer Benutzer kannst du keine Weblinks übermitteln. Bitte registriere dich für ein Benutzerkonto."
 }
