@@ -16,6 +16,24 @@
       "revId": "fba63db66fd862a26fe7021e47913ed365f7eca8",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e3593d1_c0fb1c10",
+        "filename": "handlebars/flow_reply_form.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-09T18:30:23Z",
+      "side": 1,
+      "message": "Complex if statement (can\u0027t use comparison operators in handlebars.js), and root.submitted.content isn\u0027t quite the same server-side. We\u0027ll need to maybe use a helper function for this.",
+      "parentUuid": "0e3593d1_1e1cea17",
+      "revId": "fba63db66fd862a26fe7021e47913ed365f7eca8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
