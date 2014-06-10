@@ -64,6 +64,7 @@ compiled/flow_board_collapsers_subcomponent.handlebars.php: \
 	$(COMPILE) flow_board_collapsers_subcomponent
 
 compiled/flow_block_topiclist.handlebars.php: \
+		flow_block_topiclist.handlebars \
 		flow_board_navigation.handlebars \
 		flow_topic_navigation.handlebars \
 		flow_newtopic_form.handlebars \
