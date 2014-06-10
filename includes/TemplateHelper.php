@@ -319,6 +319,26 @@ class TemplateHelper {
 		return array( $string, 'raw' );
 	}
 
+	static public function ifEquals( $left, $right, $options ) {
+		/** @var callable $inverse */
+		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;
+		/** @var callable $fn */
+		$fn = $options['fn'];
+
+		if ( $left == $right ) {
+			return $fn();
+		} elseif ( $inverse ) {
+			return $inverse();
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param array $block
+	 *
+	 * @return array
+	 */
 	static public function block( $block ) {
 		$template = "flow_block_" . $block['type'];
 		if ( $block['block-action-template'] ) {
