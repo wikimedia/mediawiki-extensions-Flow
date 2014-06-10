@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0e3593d1_d4499ed4",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-10T00:19:38Z",
+      "side": 1,
+      "message": "Indeed, that would save the time in hash lookup",
+      "parentUuid": "0e3593d1_6cd91783",
+      "revId": "6693fafaee99a491ff6a2b94570e915bc379959f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e3593d1_61536044",
         "filename": "includes/Formatter/RevisionFormatter.php",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-07T01:27:04Z",
       "side": 1,
       "message": "Shouldn\u0027t the decisions as to what kinds of actions are available be driven by FlowActions.php?  Putting this decision here, twice, isn\u0027t going to work well when we have lots of workflow types.  Added to \"Internals\" checklist in \"New front-end, new bugs\" Trello card.",
+      "revId": "6693fafaee99a491ff6a2b94570e915bc379959f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e3593d1_7439d23d",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-10T00:19:38Z",
+      "side": 1,
+      "message": "You are right that the check in here looks redundant, FlowActions.php should define what actions are available to each change type.  Only topic workflow should have these actions.  It\u0027s more like a safe checking than decision checking.",
+      "parentUuid": "0e3593d1_61536044",
       "revId": "6693fafaee99a491ff6a2b94570e915bc379959f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
