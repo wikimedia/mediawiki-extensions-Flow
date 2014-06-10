@@ -7,15 +7,21 @@ window.mw = window.mw || {}; // mw-less testing
 ( function ( mw, $ ) {
 	mw.flow = mw.flow || {}; // create mw.flow globally
 
-	// @todo this stuff
-	var _apiCache = {},
-		_apiQueue = [],
-	// Stores information about most API requests, and helps in completing the request data
-		actionInfo = {
-			'new-topic': {
-				write: true
+	// Transforms URL request parameters into API params
+	// @todo fix it server-side so we don't need this client-side
+	var apiTransformMap = {
+		// Replaces topic_ with mp for moderate-post actions
+		'moderate-post': function ( queryMap ) {
+			for ( var key in queryMap ) {
+				if ( queryMap.hasOwnProperty(key) ) {
+					if ( key.indexOf( 'topic_' ) === 0 ) {
+						queryMap[ key.replace( 'topic_', 'mp' ) ] = queryMap[ key ];
+						delete queryMap[ key ];
+					}
+				}
 			}
-		};
+		}
+	};
 
 	/**
 	 * Handles Flow API calls. Each FlowComponent has its own instance of FlowAPI as component.API,
@@ -32,41 +38,34 @@ window.mw = window.mw || {}; // mw-less testing
 
 		/**
 		 * Makes the actual API call and returns
-		 * @param {String} action
 		 * @param {Object|String} [params] May be a JSON object string
 		 * @param {String} [pageName]
-		 * @param {String} [workflowId]
 		 * @returns {$.Deferred}
 		 */
-		function flowApiCall( action, params, pageName, workflowId ) {
+		function flowApiCall( params, pageName ) {
 			params = params || {};
-			pageName = pageName || this.pageName || mw.config.get( 'wgPageName' );
-			workflowId = workflowId || this.workflowId;
+			params.title = params.title || this.pageName || mw.config.get( 'wgPageName' );
+			params.workflow = params.workflow || this.workflowId;
 
 			var $deferred = $.Deferred(),
 				mwApi = new mw.Api();
 
-			if ( !action ) {
-				mw.flow.debug( '[FlowAPI] apiCall error: missing action', arguments );
-				return $deferred.rejectWith({ error: 'Missing action' });
+			if ( !params.action || params.action !== 'flow' ) {
+				mw.flow.debug( '[FlowAPI] apiCall error: missing action string, or action string !== "flow"', arguments );
+				return $deferred.rejectWith({ error: 'Invalid action' });
 			}
-			if ( !pageName ) {
-				mw.flow.debug( '[FlowAPI] apiCall error: missing pageName', [mw.config.get( 'wgPageName' )], arguments );
-				return $deferred.rejectWith({ error: 'Missing pageName' });
+			if ( !params.title ) {
+				mw.flow.debug( '[FlowAPI] apiCall error: missing title string', [ mw.config.get( 'wgPageName' ) ], arguments );
+				return $deferred.rejectWith({ error: 'Invalid title' });
 			}
-			if ( !workflowId ) {
-				mw.flow.debug( '[FlowAPI] apiCall error: missing workflowId', arguments );
-				return $deferred.rejectWith({ error: 'Missing workflowId' });
+			if ( !params.workflow ) {
+				mw.flow.debug( '[FlowAPI] apiCall error: missing workflow ID', arguments );
+				return $deferred.rejectWith({ error: 'Invalid workflow' });
 			}
 
-			return mwApi.get( {
-				'action'       : 'query',
-				'list'         : 'flow',
-				'flowpage'     : pageName || '',
-				'flowworkflow' : workflowId || '',
-				'flowaction'   : action || 'view',
-				'flowparams'   : typeof params === 'string' ? params : $.toJSON( params )
-			} );
+			return mwApi.get(
+				params
+			);
 		}
 
 		this.apiCall = flowApiCall;
@@ -109,6 +108,7 @@ window.mw = window.mw || {}; // mw-less testing
 			queryMap = {},
 			queries, i = 0, split;
 
+		// Parse the URL query params
 		query = url.split('#')[0].split('?').slice(1).join('?');
 		if ( query ) {
 			for ( queries = query.split(/&(?:amp;)?/gi); i < queries.length; i++ ) {
@@ -117,6 +117,17 @@ window.mw = window.mw || {}; // mw-less testing
 			}
 		}
 
+		// Submodule is the action
+		queryMap.submodule = queryMap.action;
+		// and the API action is always flow
+		queryMap.action    = 'flow';
+
+		// Use the API map to transform this data if necessary, eg.
+		if ( apiTransformMap[ queryMap.action ] ) {
+			return apiTransformMap[ queryMap.action ]( queryMap );
+		}
+
+		// No transform, just return the query map as-is
 		return queryMap;
 	}
 
@@ -174,7 +185,7 @@ window.mw = window.mw || {}; // mw-less testing
 			}
 		}
 		*/
-		return this.apiCall( 'view', queryMap );
+		return this.apiCall( queryMap );
 	}
 
 	FlowAPI.prototype.requestFromAnchor = flowApiRequestFromAnchor;
