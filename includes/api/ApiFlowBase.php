@@ -35,7 +35,8 @@ abstract class ApiFlowBase extends ApiBase {
 	}
 
 	/**
-	 * Allows the main ApiFlow instance to set default paramters
+	 * Allows the main ApiFlow instance to set default parameters
+	 *
 	 * @param Title|bool $page
 	 * @param UUID|null $workflow
 	 */
@@ -118,6 +119,7 @@ abstract class ApiFlowBase extends ApiBase {
 		);
 	}
 
+<<<<<<< HEAD   (01dab4 Missing handlebars/Makefile dependency)
 	public function execute() {
 		$loader = $this->getLoader();
 		$blocks = $loader->createBlocks();
@@ -208,9 +210,15 @@ abstract class ApiFlowBase extends ApiBase {
 		return true;
 	}
 
+=======
+>>>>>>> BRANCH (28a0b8 Merge "(bug 61939) Topic-titles not displaying in some topic)
 	public function getHelpUrls() {
 		return array(
 			'https://www.mediawiki.org/wiki/Extension:Flow/API#' . $this->getAction(),
 		);
+	}
+
+	public function getTokenSalt() {
+		return '';
 	}
 }

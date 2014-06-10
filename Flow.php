@@ -228,6 +228,8 @@ $wgAutoloadClasses['ApiQueryFlow'] = "$dir/includes/api/ApiQueryFlow.php";
 $wgAutoloadClasses['ApiParsoidUtilsFlow'] = "$dir/includes/api/ApiParsoidUtilsFlow.php";
 $wgAutoloadClasses['ApiFlow'] = "$dir/includes/api/ApiFlow.php";
 $wgAutoloadClasses['ApiFlowBase'] = "$dir/includes/api/ApiFlowBase.php";
+$wgAutoloadClasses['ApiFlowBasePost'] = "$dir/includes/api/ApiFlowBasePost.php";
+$wgAutoloadClasses['ApiFlowBaseGet'] = "$dir/includes/api/ApiFlowBaseGet.php";
 $wgAutoloadClasses['ApiFlowCloseOpenTopic'] = "$dir/includes/api/ApiFlowCloseOpenTopic.php";
 $wgAutoloadClasses['ApiFlowEditHeader'] = "$dir/includes/api/ApiFlowEditHeader.php";
 $wgAutoloadClasses['ApiFlowEditPost'] = "$dir/includes/api/ApiFlowEditPost.php";
@@ -237,6 +239,8 @@ $wgAutoloadClasses['ApiFlowModeratePost'] = "$dir/includes/api/ApiFlowModeratePo
 $wgAutoloadClasses['ApiFlowModerateTopic'] = "$dir/includes/api/ApiFlowModerateTopic.php";
 $wgAutoloadClasses['ApiFlowNewTopic'] = "$dir/includes/api/ApiFlowNewTopic.php";
 $wgAutoloadClasses['ApiFlowReply'] = "$dir/includes/api/ApiFlowReply.php";
+$wgAutoloadClasses['ApiFlowViewHeader'] = "$dir/includes/api/ApiFlowViewHeader.php";
+$wgAutoloadClasses['ApiFlowViewTopicSummary'] = "$dir/includes/api/ApiFlowViewTopicSummary.php";
 $wgAutoloadClasses['ApiQueryPropFlowInfo'] = "$dir/includes/api/ApiQueryPropFlowInfo.php";
 
 $wgAPIListModules['flow'] = 'ApiQueryFlow';

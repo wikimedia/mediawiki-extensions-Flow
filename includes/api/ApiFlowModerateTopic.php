@@ -1,6 +1,6 @@
 <?php
 
-class ApiFlowModerateTopic extends ApiFlowBase {
+class ApiFlowModerateTopic extends ApiFlowBasePost {
 
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'mt' );

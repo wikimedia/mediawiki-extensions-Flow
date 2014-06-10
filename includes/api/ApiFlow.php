@@ -9,6 +9,7 @@ class ApiFlow extends ApiBase {
 	private $moduleManager;
 
 	private static $modules = array(
+		// POST
 		'new-topic' => 'ApiFlowNewTopic',
 		'edit-header' => 'ApiFlowEditHeader',
 		'edit-post' => 'ApiFlowEditPost',
@@ -18,6 +19,10 @@ class ApiFlow extends ApiBase {
 		'moderate-topic' => 'ApiFlowModerateTopic',
 		'edit-title' => 'ApiFlowEditTitle',
 		'close-open-topic' => 'ApiFlowCloseOpenTopic',
+
+		// GET
+		'header-view' => 'ApiFlowViewHeader',
+		'topic-summary-view' => 'ApiFlowViewTopicSummary',
 	);
 
 	public function __construct( $main, $action ) {
@@ -35,9 +40,24 @@ class ApiFlow extends ApiBase {
 		/** @var $module ApiFlowBase */
 		$module = $this->moduleManager->getModule( $params['submodule'], 'submodule' );
 
+		// The checks for POST and tokens are the same as ApiMain.php
 		$wasPosted = $this->getRequest()->wasPosted();
 		if ( !$wasPosted && $module->mustBePosted() ) {
 			$this->dieUsageMsg( array( 'mustbeposted', $params['submodule'] ) );
+		}
+		$salt = $module->getTokenSalt();
+		if ( $salt !== false ) {
+			if ( !isset( $params['token'] ) ) {
+				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+			}
+
+			if ( !$this->getUser()->matchEditToken(
+				$params['token'],
+				$salt,
+				$this->getRequest() )
+			) {
+				$this->dieUsageMsg( 'sessionfailure' );
+			}
 		}
 
 		$module->extractRequestParams();
@@ -55,7 +75,11 @@ class ApiFlow extends ApiBase {
 	 */
 	protected function getId( $params ) {
 		if ( isset( $params['workflow'] ) ) {
-			return UUID::create( $params['workflow'] );
+			try {
+				return UUID::create( $params['workflow'] );
+			} catch ( \Flow\Exception\InvalidInputException $e ) {
+				$this->dieUsage( 'An invalid value was passed as the workflow id', 'invalid-workflow' );
+			}
 		}
 
 		return null;
@@ -188,14 +212,14 @@ class ApiFlow extends ApiBase {
 	}
 
 	public function mustBePosted() {
-		return true;
+		return false;
 	}
 
 	public function needsToken() {
-		return true;
+		return false;
 	}
 
 	public function getTokenSalt() {
-		return '';
+		return false;
 	}
 }
