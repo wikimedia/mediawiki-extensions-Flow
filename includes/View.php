@@ -91,7 +91,7 @@ class View extends ContextSource {
 		wfProfileIn( __CLASS__ . '-serialize' );
 		// @todo This and API should use same code
 		$apiResponse = array(
-			'workflow' => $workflow->getId()->getAlphadecimal(),
+			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			'blocks' => array(),
 		);
 
