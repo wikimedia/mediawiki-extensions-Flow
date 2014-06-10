@@ -40,9 +40,6 @@
 		if ( _tplcache[ templateName ] ) {
 			// Try to get this template via Mantle
 			_tplcache[ templateName ] = _tplcache[ templateName ].render;
-			// Overwrite Handlebars' partials with our template cache instead. Much easier.
-			Handlebars.partials = _tplcache;
-			// also doable with Handlebars.registerPartial( name, html );
 		}
 
 		return _tplcache[ templateName ] || function () { mw.flow.debug( '[Handlebars] Missing template', arguments ); };
@@ -111,24 +108,6 @@
 					$( Handlebars.compile( this.innerHTML )() )
 				);
 		} );
-	};
-
-	/**
-	 * Registers a given template by compiling it into the template cache.
-	 * @param {String} templateName
-	 * @param {String} html
-	 * @returns {Function}
-	 * @todo delete
-	 */
-	FlowHandlebars.prototype.registerTemplate = function ( templateName, html ) {
-		// Compile this template once.
-		_tplcache[ templateName ] = Handlebars.compile( html );
-
-		// Overwrite Handlebars' partials with our template cache instead. Much easier.
-		Handlebars.partials = _tplcache;
-		//Handlebars.registerPartial( name, html );
-
-		return _tplcache[ templateName ];
 	};
 
 	// @todo remove and replace with mw.message || $.noop
@@ -228,6 +207,18 @@
 	// TODO: l10nParse function?
 
 	/**
+	 * @todo completely
+	 * @returns {String}
+	 */
+	FlowHandlebars.prototype.uuidTimestamp = function ( ) {
+		// I have no idea
+		// @todo
+	};
+
+	// Register timestamp
+	Handlebars.registerHelper( 'uuidTimestamp', FlowHandlebars.prototype.uuidTimestamp );
+
+	/**
 	 * Generates markup for an "nnn sssss ago" and date/time string.
 	 * @example {{timestamp start_time "started_ago"}}
 	 * @param {int} timestamp milliseconds
@@ -277,7 +268,7 @@
 		);
 	};
 
-	// Register l10n
+	// Register timestamp
 	Handlebars.registerHelper( 'timestamp', FlowHandlebars.prototype.timestamp );
 
 	/**
@@ -361,37 +352,77 @@
 	Handlebars.registerHelper( 'html', FlowHandlebars.prototype.html );
 
 	/**
-	 * Returns the workflow context using the given context/argument (a string uuid).
-	 * @example {{#each topics}}{{#workflow this}}{{content}}{{/workflow}}{{/each}}
-	 * @param {String} context
+	 *
+	 * @example {{#ifEquals one two}}
+	 * @param {*} left
+	 * @param {*} right
 	 * @param {Object} options
 	 * @returns {String}
 	 */
-	FlowHandlebars.prototype.workflowBlock = function ( context, options ) {
-		var workflow = options.data.root.workflows[ context ] || { content: null };
-		if ( workflow.id === undefined ) {
-			workflow.id = context;
+	FlowHandlebars.prototype.ifEquals = function ( left, right, options ) {
+		/* jshint -W116 */
+		if ( left == right ) {
+			return options.fn( this );
 		}
-		return options.fn ? options.fn( workflow ) : workflow;
+		return options.inverse ? options.inverse( this ) : false;
 	};
 
-	// Register html
-	Handlebars.registerHelper( 'workflow', FlowHandlebars.prototype.workflowBlock );
+	// Register ifEquals
+	Handlebars.registerHelper( 'ifEquals', FlowHandlebars.prototype.ifEquals );
 
 	/**
-	 * Returns the author context using the current context's author_id key.
-	 * @example {{#author this}}{{name}}{{/author}}
+	 *
+	 * @example {{block this}}
 	 * @param {Object} context
 	 * @param {Object} options
 	 * @returns {String}
 	 */
-	FlowHandlebars.prototype.authorBlock = function ( context, options ) {
-		var author = options.data.root.authors[ context.author_id ] || { name: 'error', gender: null, wiki: null };
-		return options.fn ? options.fn( author ) : author;
+	FlowHandlebars.prototype.workflowBlock = function ( context, options ) {
+		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
+			"flow_block_" + context.type + ( context['block-action-template'] || '' ),
+			context
+		) );
 	};
 
-	// Register html
-	Handlebars.registerHelper( 'author', FlowHandlebars.prototype.authorBlock );
+	// Register block
+	Handlebars.registerHelper( 'block', FlowHandlebars.prototype.workflowBlock );
+
+	/**
+	 * @example {{post ../../../../rootBlock this}}
+	 * @param {Object} context
+	 * @param {Object} revision
+	 * @param {Object} options
+	 * @returns {String}
+	 */
+	FlowHandlebars.prototype.postBlock = function ( context, revision, options ) {
+		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
+			"flow_post",
+			{
+				revision: revision,
+				rootBlock: context
+			}
+		) );
+	};
+
+	// Register author
+	Handlebars.registerHelper( 'post', FlowHandlebars.prototype.postBlock );
+
+	/**
+	 * @example {{#each topics}}{{#eachPost this}}{{content}}{{/eachPost}}{{/each}}
+	 * @param {String} context
+	 * @param {Array|String} postIds
+	 * @param {Object} options
+	 * @returns {String}
+	 * @todo support multiple postIds in an array
+	 */
+	FlowHandlebars.prototype.eachPost = function ( context, postIds, options ) {
+		var revId = context.posts[postIds][0],
+			revision = context.revisions[revId] || { content: null };
+		return options.fn ? options.fn( revision ) : revision;
+	};
+
+	// Register author
+	Handlebars.registerHelper( 'eachPost', FlowHandlebars.prototype.eachPost );
 
 	/**
 	 * Gets a URL for a given variable.
@@ -405,7 +436,7 @@
 		return Array.prototype.pop.apply( arguments );
 	};
 
-	// Register html
+	// Register url
 	Handlebars.registerHelper( 'url', FlowHandlebars.prototype.url );
 
 	/**
@@ -538,7 +569,7 @@
 		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate( 'form_element', data ) );
 	};
 
-	// Register html
+	// Register formElement
 	Handlebars.registerHelper( 'formElement', FlowHandlebars.prototype.formElement );
 
 	/**
@@ -553,7 +584,7 @@
 		} );
 	};
 
-	// Register html
+	// Register generateUID
 	Handlebars.registerHelper( 'generateUID', FlowHandlebars.prototype.generateUID );
 
 	/**
