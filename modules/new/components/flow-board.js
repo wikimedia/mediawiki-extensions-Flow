@@ -293,10 +293,21 @@
 		FlowBoardComponent.UI.events.interactiveHandlers.apiRequest = function ( event ) {
 			event.preventDefault();
 
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$deferred = flowBoard.API.requestFromAnchor( this ),
-				handlerName = $( this ).data( 'flow-api-handler' ),
-				_this = this;
+			var $deferred,
+				_this = this,
+				$this = $( this ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				handlerName = $this.data( 'flow-api-handler' );
+
+			if ( $this.is( 'a' ) ) {
+				$deferred = flowBoard.API.requestFromAnchor( this );
+			} else if ( $this.is( 'input, button' ) ) {
+				$deferred = flowBoard.API.requestFromForm( this );
+			} else {
+				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor or form' );
+				$deferred = $.Deferred();
+				$deferred.rejectWith( { error: 'Not an anchor or form' } );
+			}
 
 			// If this has a special api handler, bind it to the callback.
 			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
