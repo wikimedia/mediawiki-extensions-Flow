@@ -15,10 +15,9 @@
 			    <input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 				<input type="hidden" name="topic_replyTo" value="{{postId}}" />
 				<textarea id="flow-post-{{postId}}-form-content" name="topic_content" class="mw-ui-input" type="text" placeholder="{{l10n "Reply_to_author_name" author}}">
-					{{!-- @todo this whole thing --}}
-					{{!--#if @root.submitted.postId == postId}}
-						{{@root.submitted.content}}
-					{{/if--}}
+					{{~#ifEquals @root.submitted.postId postId}}
+						{{~@root.submitted.content~}}
+					{{/ifEquals~}}
 				</textarea>
 				<div class="flow-form-actions flow-form-collapsible">
 					<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "Reply" author}}</button>
