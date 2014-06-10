@@ -75,7 +75,11 @@ class ApiFlow extends ApiBase {
 	 */
 	protected function getId( $params ) {
 		if ( isset( $params['workflow'] ) ) {
-			return UUID::create( $params['workflow'] );
+			try {
+				return UUID::create( $params['workflow'] );
+			} catch ( \Flow\Exception\InvalidInputException $e ) {
+				$this->dieUsage( 'An invalid value was passed as the workflow id', 'invalid-workflow' );
+			}
 		}
 
 		return null;
