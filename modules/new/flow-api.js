@@ -141,9 +141,32 @@ window.mw = window.mw || {}; // mw-less testing
 	 * @param {Event|Element} [button]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromForm( form, button ) {
-		var method = method || 'get',
-			formData = form ? $( form ).serializeArray() : [];
+	function flowApiRequestFromForm( button ) {
+		var queryMap,
+			$deferred = $.Deferred(),
+			$form = $( button ).closest( 'form' ),
+			method = $form.attr( 'method' ) || 'GET',
+			formData = $form.serializeArray(),
+			url = $form.attr( 'action' );
+
+
+		if ( $form.length === 0 ) {
+			return $deferred.rejectWith( { error: 'No form located' } );
+		}
+
+		if ( !( queryMap = flowApiGetQueryMap( url ) ) ) {
+			return $deferred.rejectWith( { error: 'Invalid form action' } );
+		}
+
+		// join the query map into formData
+		$.extend( formData, queryMap );
+
+		if ( !( queryMap.action ) ) {
+			return $deferred.rejectWith( { error: 'Unknown action for form' } );
+		}
+
+		// @todo this issues a GET, but we want `method`
+		return this.apiCall( queryMap.action, queryMap );
 	}
 
 	FlowAPI.prototype.requestFromForm = flowApiRequestFromForm;
