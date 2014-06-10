@@ -22,7 +22,7 @@ class TopicListFormatter {
 			'roots' => array(),
 			'posts' => array(),
 			'revisions' => array(),
-			'links' => array(),
+			'links' => array( 'pagination' => array() ),
 			'actions' => $this->buildApiActions( $workflow ),
 			'sortby' => 'newest',
 			'submitted' => array(),
