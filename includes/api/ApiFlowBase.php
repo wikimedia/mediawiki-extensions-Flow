@@ -220,4 +220,12 @@ abstract class ApiFlowBase extends ApiBase {
 			'https://www.mediawiki.org/wiki/Extension:Flow/API#' . $this->getAction(),
 		);
 	}
+
+	public function needsToken() {
+		return true;
+	}
+
+	public function getTokenSalt() {
+		return '';
+	}
 }
