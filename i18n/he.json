@@ -287,5 +287,6 @@
 	"flow-special-type-post": "רשומה",
 	"flow-special-type-workflow": "זרימת עבודה",
 	"flow-special-uuid": "UUID",
-	"flow-special-invalid-uuid": "לא נמצא תוכן שמתאים לסוג ול־UUID."
+	"flow-special-invalid-uuid": "לא נמצא תוכן שמתאים לסוג ול־UUID.",
+	"flow-spam-confirmedit": "לא נכנסת לחשבון ואין לך אפשרות לשלוח קישורים חיצוניים. נא להירשם לחשבון."
 }

@@ -288,5 +288,6 @@
 	"flow-special-type-post": "Messaggio",
 	"flow-special-type-workflow": "Flusso di lavoro",
 	"flow-special-uuid": "UUID",
-	"flow-special-invalid-uuid": "Impossibile trovare il contenuto corrispondente il tipo e l'UUID."
+	"flow-special-invalid-uuid": "Impossibile trovare il contenuto corrispondente il tipo e l'UUID.",
+	"flow-spam-confirmedit": "Come utente anonimo, non puoi inviare collegamenti esterni. Registrati per avere un'utenza."
 }

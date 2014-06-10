@@ -285,5 +285,6 @@
 	"flow-special-type-post": "Објава",
 	"flow-special-type-workflow": "Работен тек",
 	"flow-special-uuid": "UUID",
-	"flow-special-invalid-uuid": "Не можев да пронајдам содржини што одговараат на дадениот тип и UUID."
+	"flow-special-invalid-uuid": "Не можев да пронајдам содржини што одговараат на дадениот тип и UUID.",
+	"flow-spam-confirmedit": "Како анонимен корисник, не можете да поднесувате надворешни врски. Најпрво регистрирајте се."
 }
