@@ -15,6 +15,7 @@ use Flow\NotificationController;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Exception\FailCommitException;
+use Flow\Exception\FlowException;
 
 class TopicListBlock extends AbstractBlock {
 
