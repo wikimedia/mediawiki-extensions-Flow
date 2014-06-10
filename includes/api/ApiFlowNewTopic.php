@@ -1,6 +1,6 @@
 <?php
 
-class ApiFlowNewTopic extends ApiFlowBase {
+class ApiFlowNewTopic extends ApiFlowBasePost {
 
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'nt' );

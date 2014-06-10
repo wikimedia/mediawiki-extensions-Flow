@@ -58,4 +58,16 @@ interface ObjectStorage {
 	 * @return boolean true when the row is successfully removed
 	 */
 	function remove( array $row );
+
+	/**
+	 * Returns a boolean true/false to indicate if the result of a particular
+	 * query is valid & can be cached.
+	 * In some cases, the retrieved data should not be cached. E.g. revisions
+	 * with external content: revision data may be loaded, but the content could
+	 * not be fetched from external storage. That shouldn't persist in cache.
+	 *
+	 * @param array $row
+	 * @return bool
+	 */
+	function validate( array $row );
 }

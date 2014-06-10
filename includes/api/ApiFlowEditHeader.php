@@ -1,6 +1,6 @@
 <?php
 
-class ApiFlowEditHeader extends ApiFlowBase {
+class ApiFlowEditHeader extends ApiFlowBasePost {
 
 	public function __construct( $api, $modName ) {
 		parent::__construct( $api, $modName, 'eh' );
