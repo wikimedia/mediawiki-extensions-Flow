@@ -317,8 +317,18 @@ class RevisionFormatter {
 				break;
 
 			case 'restore-topic':
+				if ( $revision->isModerated() ) {
+					$links['restore'] = $this->urlGenerator->restoreTopicAction( $title, $workflowId );
+				}
+				break;
+
 			case 'restore-post':
-				// @todo
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+				if ( $revision->isModerated() ) {
+					$links['restore'] = $this->urlGenerator->restorePostAction( $title, $workflowId, $postId );
+				}
 				break;
 
 			case 'hide-topic':
