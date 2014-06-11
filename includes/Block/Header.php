@@ -158,7 +158,8 @@ class HeaderBlock extends AbstractBlock {
 		switch( $this->action ) {
 			case 'edit-header':
 				$this->storage->put( $this->newRevision );
-
+				// Reload $this->header for renderAPI() after save
+				$this->header = $this->newRevision;
 				return array(
 					'new-revision-id' => $this->newRevision->getRevisionId(),
 				);
