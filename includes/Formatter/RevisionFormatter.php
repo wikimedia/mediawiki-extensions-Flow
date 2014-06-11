@@ -337,14 +337,6 @@ class RevisionFormatter {
 				// @todo
 				break;
 
-			case 'restore-post':
-				// @todo
-				break;
-
-			case 'hide-topic':
-				$links['hide'] = $this->urlGenerator->hideTopicAction( $title, $workflowId );
-				break;
-
 			case 'hide-post':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
@@ -383,21 +375,44 @@ class RevisionFormatter {
 				break;
 
 			case 'restore-topic':
+				$moderateAction = null;
 				switch ( $revision->getModerationState() ) {
-					case 'close':
-						$moderateAction = 'reopen';
-						$flowAction = 'close-open-topic';
+				case AbstractRevision::MODERATED_CLOSED:
+					$moderateAction = 'reopen';
+					$flowAction = 'close-open-topic';
 					break;
-					case 'delete':
-					case 'hide':
-					case 'suppress':
-						$moderateAction = 'un' . $revision->getModerationState();
-						$flowAction = 'moderate-topic';
+				case AbstractRevision::MODERATED_HIDDEN:
+				case AbstractRevision::MODERATED_DELETED:
+				case AbstractRevision::MODERATED_SUPPRESSED:
+					$moderateAction = 'un' . $revision->getModerationState();
+					$flowAction = 'moderate-topic';
 					break;
 				}
 				if ( $moderateAction ) {
 					$links[$moderateAction] = $this->urlGenerator->restoreTopicAction( $title, $workflowId, $moderateAction, $flowAction );
 				}
+				break;
+
+			case 'restore-post':
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+				$moderateAction = null;
+				switch( $revision->getModerationState() ) {
+				case AbstractRevision::MODERATED_HIDDEN:
+				case AbstractRevision::MODERATED_DELETED:
+				case AbstractRevision::MODERATED_SUPPRESSED:
+					$moderateAction = 'un' . $revision->getModerationState();
+					$flowAction = 'moderate-post';
+					break;
+				}
+				if ( $moderateAction ) {
+					$links[$moderateAction] = $this->urlGenerator->restorePostAction( $title, $workflowId, $postId, $moderateAction, $flowAction );
+				}
+				break;
+
+			case 'hide-topic':
+				$links['hide'] = $this->urlGenerator->hideTopicAction( $title, $workflowId );
 				break;
 
 			// Need to use 'edit-topic-summary' to match FlowActions
