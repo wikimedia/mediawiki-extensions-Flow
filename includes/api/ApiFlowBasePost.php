@@ -27,7 +27,8 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		}
 		$result = $this->getResult();
 
-		$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $this->getModifiedRequest() );
+		$request = $this->getModifiedRequest();
+		$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 		if ( count( $blocksToCommit ) ) {
 			$commitResults = $loader->commit( $workflow, $blocksToCommit );
 			$savedBlocks = array();
@@ -42,7 +43,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 				'status' => 'ok',
 			);
 
-			$parameters = $loader->extractBlockParameters( $this->getRequest(), $blocksToCommit );
+			$parameters = $loader->extractBlockParameters( $request, $blocksToCommit );
 			foreach( $blocksToCommit as $block ) {
 				$output[$action]['result'][$block->getName()] = $block->renderAPI( \Flow\Container::get( 'templating' ), $parameters[$block->getName()] );
 			}
