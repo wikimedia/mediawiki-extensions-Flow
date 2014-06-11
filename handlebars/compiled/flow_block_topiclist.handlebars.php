@@ -59,6 +59,18 @@
 
 	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['newtopic'])) ? $in['actions']['newtopic'] : null))) ? '
 	<form action="'.htmlentities(((is_array($in['actions']['newtopic']) && isset($in['actions']['newtopic']['url'])) ? $in['actions']['newtopic']['url'] : null), ENT_QUOTES, 'UTF-8').'" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
+		<div class="flow-content-preview">
+	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['title'])) ? $in['title'] : null))) ? '
+		<div class="flow-preview-sub-container flow-topic-title">
+			'.htmlentities(((is_array($in) && isset($in['title'])) ? $in['title'] : null), ENT_QUOTES, 'UTF-8').'
+		</div>
+	' : '').'
+	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['content'])) ? $in['content'] : null))) ? '
+		<div class="flow-preview-sub-container">
+			'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
+		</div>
+	' : '').'
+</div>
 		<!-- @todo form errors -->
 		'.LCRun3::hbch($cx, 'ifAnonymous', Array(), $in, function($cx, $in) {return '
 			<div class="flow-anon-warning flow-ui-tooltip flow-ui-progressive flow-ui-tooltip-down flow-form-collapsible plainlinks">
@@ -69,12 +81,12 @@
 		';}).'
 		<input type="hidden" name="topiclist_replyTo" value="'.htmlentities(((is_array($in) && isset($in['workflowId'])) ? $in['workflowId'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
-		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-start-placeholder'), 'encq').'"/>
-		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-content-placeholder'), 'encq').'"></textarea>
+		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-start-placeholder'), 'encq').'" data-role="title"/>
+		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-content-placeholder'), 'encq').'" data-role="content"></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" class="flow-ui-button flow-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-save'), 'encq').'</button>
-		<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
+		<button data-flow-api-handler="preview" name="preview" data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
 			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
 
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-new-topic'), 'encq').'</small>
@@ -223,6 +235,18 @@
 
 	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reply'])) ? $in['actions']['reply'] : null))) ? '
 	<form class="flow-reply-form" data-flow-initial-state="collapsed" method="POST" action="'.htmlentities(((is_array($in['actions']['reply']) && isset($in['actions']['reply']['url'])) ? $in['actions']['reply']['url'] : null), ENT_QUOTES, 'UTF-8').'">
+		<div class="flow-content-preview">
+	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['title'])) ? $in['title'] : null))) ? '
+		<div class="flow-preview-sub-container flow-topic-title">
+			'.htmlentities(((is_array($in) && isset($in['title'])) ? $in['title'] : null), ENT_QUOTES, 'UTF-8').'
+		</div>
+	' : '').'
+	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['content'])) ? $in['content'] : null))) ? '
+		<div class="flow-preview-sub-container">
+			'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
+		</div>
+	' : '').'
+</div>
 	    <input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="topic_replyTo" value="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" />
 		'.LCRun3::hbch($cx, 'ifAnonymous', Array(), $in, function($cx, $in) {return '
@@ -232,12 +256,18 @@
 </div>
 
 		';}).'
-		<textarea id="flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content" name="topic_content" data-flow-expandable="true" class="mw-ui-input" type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array('Reply_to_author_name',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'encq').'">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)), $in, function($cx, $in) {return '
+		<textarea id="flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
+				name="topic_content"
+				data-flow-expandable="true"
+				class="mw-ui-input"
+				type="text"
+				placeholder="'.LCRun3::ch($cx, 'l10n', Array('Reply_to_author_name',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'encq').'"
+				data-role="content">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)), $in, function($cx, $in) {return '
 				'.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" class="flow-ui-button flow-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'encq').'</button>
-			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
+			<button data-flow-api-handler="preview" name="preview" data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
 			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
 
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-reply'), 'encq').'</small>
