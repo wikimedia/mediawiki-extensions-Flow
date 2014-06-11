@@ -196,7 +196,8 @@ div#bodyContent ul.flow-topic-navigation-fixed {
 
 // Topic title itself
 // Needs additional specificity to override `div#content h2`
-div#bodyContent h2.flow-topic-title {
+div#bodyContent h2.flow-topic-title,
+.flow-topic-title /* in general for non-h2 (e.g. preview) */ {
 	padding: 0;
 	margin: 0 0 .33em;
 	border-bottom: none;

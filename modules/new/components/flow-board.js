@@ -93,6 +93,32 @@
 			).insertBefore( flowBoard.$container );
 		};
 
+		/**
+		 * @param  {Event} event
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.preview = function( data ) {
+			var $button = $( this ),
+				$form = $button.closest( 'form' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
+				templateEngine = flowBoard.TemplateEngine,
+				templateParams,
+				$titleField = $form.find( 'input' ).filter( '[data-role=title]' ),
+				$previewContainer;
+
+			templateParams = {
+				'content' : data['flow-parsoid-utils'].content
+			};
+
+			if ( $titleField.length ) {
+				templateParams.title = $titleField.val();
+			}
+
+			$previewContainer = $( templateEngine.processTemplateGetFragment( 'flow_preview', templateParams ) );
+
+			$form.find( '.flow-content-preview' )
+				.replaceWith( $previewContainer );
+		};
+
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
@@ -304,9 +330,9 @@
 			} else if ( $this.is( 'input, button' ) ) {
 				$deferred = flowBoard.API.requestFromForm( this );
 			} else {
-				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor form' );
+				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor or form' );
 				$deferred = $.Deferred();
-				$deferred.rejectWith({ error: 'Not an anchor or form' });
+				$deferred.rejectWith( { error: 'Not an anchor or form' } );
 			}
 
 			// If this has a special api handler, bind it to the callback.
@@ -332,11 +358,14 @@
 				return;
 			}
 
-			var handlerName = $( this ).data( 'flow-interactive-handler' );
+			var interactiveHandler = $( this ).data( 'flow-interactive-handler' ),
+				apiHandler = $( this ).data( 'flow-api-handler' );
 
 			// If this has a special click handler, run it.
-			if ( FlowBoardComponent.UI.events.interactiveHandlers[ handlerName ] ) {
-				FlowBoardComponent.UI.events.interactiveHandlers[ handlerName ].apply( this, arguments );
+			if ( FlowBoardComponent.UI.events.interactiveHandlers[ interactiveHandler ] ) {
+				FlowBoardComponent.UI.events.interactiveHandlers[ interactiveHandler ].apply( this, arguments );
+			} else if ( FlowBoardComponent.UI.events.apiHandlers[ apiHandler ] ) {
+				FlowBoardComponent.UI.events.interactiveHandlers.apiRequest.apply( this, arguments );
 			}
 		};
 

@@ -44,6 +44,7 @@ $wgResourceModules += array(
 			"flow_moderate_topic.handlebars",
 			"flow_newtopic_form.handlebars",
 			"flow_post.handlebars",
+			"flow_preview.handlebars",
 			"flow_reply_form.handlebars",
 			// Include dependent templates from handlebars/Makefile.
 			"flow_topic.handlebars",
@@ -114,6 +115,7 @@ $wgResourceModules += array(
 			'mediawiki.jqueryMsg',
 			'jquery.json',
 			'jquery.conditionalScroll',
+			'jquery.spinner',
 		)
 	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
