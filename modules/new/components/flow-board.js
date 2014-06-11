@@ -457,6 +457,79 @@
 			}
 		};
 
+		function genModerateHandler( action, template, replacementSelector, paramGenerator ) {
+			paramGenerator = paramGenerator || function( revision ) { return revision; };
+
+			return function ( status, data, jqxhr ) {
+				if ( status !== 'done' ) {
+					console.log( 'network level request failure, retry?' );
+					return;
+				}
+
+				if ( data.error ) {
+					// internal error, likely bad request
+					// @todo display error
+					console.log( 'top level api request failure, bad request?' );
+					return;
+				}
+
+				if ( !data.flow[action] ) {
+					console.log( 'bad request, nothing received for: ' + action );
+					console.log( data.flow );
+					return;
+				}
+
+				var errors, revision, html,
+					result = data.flow[action].result.topic;
+
+				if ( data.flow[action].status !== 'ok' ) {
+					errors = result;
+				} else if ( result.errors.length ) {
+					errors = result.errors;
+				}
+
+				if ( errors ) {
+					// validation errors
+					html = mw.flow.TemplateEngine.processTemplate( 'flow_errors', { errors: errors } );
+
+					// @todo should the validation errors be cleared elsewhere, perhaps
+					// before sending the api request?
+					$( this ).closest( 'form' ).find( '.flow-errors' ).remove();
+					$( this ).closest( 'form' ).prepend( $( html ) );
+				} else {
+					revision = result.revisions[result.posts[result.roots[0]]];
+					html = mw.flow.TemplateEngine.processTemplate( template, paramGenerator( revision ) );
+
+					$( this ).closest( 'form' )
+						.data( 'flow-dialog-owner' )
+						.closest( replacementSelector )
+						.replaceWith( $( html )
+							.find( replacementSelector )
+							.andSelf()
+							.filter( replacementSelector )
+						);
+
+					// @todo cancel dialog
+					$( this ).closest( 'form' ).parent().remove();
+				}
+			};
+		}
+
+		FlowBoardComponent.UI.events.apiHandlers.moderateTopic = genModerateHandler(
+			'moderate-topic',
+			'flow_topic',
+			'.flow-topic-titlebar'
+		);
+
+		FlowBoardComponent.UI.events.apiHandlers.moderatePost = genModerateHandler(
+			'moderate-post',
+			'flow_post',
+			'.flow-post-main',
+			function ( revision ) {
+				return { 'revision': revision };
+			}
+		);
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
 		////////////////////
@@ -744,7 +817,7 @@
 			} else if ( $this.is( 'input, button' ) ) {
 				$deferred = flowBoard.API.requestFromForm( this, preHandlerReturn );
 			} else {
-				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor form' );
+				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor or form' );
 				$deferred = $.Deferred();
 				$deferred.rejectWith( { error: 'Not an anchor or form' } );
 			}
@@ -847,6 +920,47 @@
 				// @todo: address fail
 			}
 		};
+
+		/**
+		 *
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.moderationDialog = function ( event ) {
+			var html, $container,
+				$this = $( this ),
+				role = $this.data( 'role' ),
+				template = $this.data( 'template' ),
+				params = {
+					editToken: mw.user.tokens.get( 'editToken' ), // might be unnecessary
+					submitted: {
+						moderationState: role
+					},
+					actions: {}
+				};
+
+			event.preventDefault();
+
+			params.actions[role] = { url: $this.attr( 'href' ), title: $this.attr( 'title' ) };
+			html = mw.flow.TemplateEngine.processTemplate( template, params );
+
+			$container = $( '<div>' )
+				.html( html )
+				.find( 'form' )
+					.data( 'flow-cancel-callback', function () {
+						$container.parent().remove();
+					} )
+					.data( 'flow-dialog-owner', $this )
+					.end()
+				.dialog({ 'title': $this.attr( 'title' ), 'modal': true });
+
+			// the $.fn.dialog function attaches the dialog to .body, but we
+			// need to move it inside the main container so user interactions
+			// go to the correct handlers.
+			$container.parent()
+				.detach()
+				.appendTo( FlowBoardComponent.prototype.getInstanceByElement( $this ).$container );
+		};
+
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI events
@@ -1181,7 +1295,7 @@
 					$this, $topic, offsetTop, outerHeight, percent;
 
 				// Only proceed with this wacky stuff if the navigation bar is currently in use
-				if ( !$topicNavigation.is( ':visible' ) ) {
+				if ( !$topicNavigation || !$topicNavigation.is( ':visible' ) ) {
 					return;
 				}
 
