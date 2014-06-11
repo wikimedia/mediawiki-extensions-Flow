@@ -98,9 +98,25 @@
 							<li>
 								<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 								   href="{{actions.hide.url}}"
-								   title="{{actions.hide.title}}">
+								   title="{{actions.hide.title}}"
+								   data-flow-interactive-handler="moderationDialog"
+								   data-template="flow_moderate_post"
+								   data-role="hide">
 									<span class="wikiglyph wikiglyph-eye-lid"></span>
 									{{l10n "flow-post-action-hide-post"}}
+								</a>
+							</li>
+						{{/if}}
+						{{#if actions.unhide}}
+							<li>
+								<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+								   href="{{actions.unhide.url}}"
+								   title="{{actions.unhide.title}}"
+								   data-flow-interactive-handler="moderationDialog"
+								   data-template="flow_moderate_post"
+								   data-role="restore">
+									<span class="wikiglyph wikiglyph-eye-lid"></span>
+									{{l10n "flow-post-action-unhide-post"}}
 								</a>
 							</li>
 						{{/if}}
@@ -108,9 +124,25 @@
 							<li>
 								<a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin"
 								   href="{{actions.delete.url}}"
-								   title="{{actions.delete.title}}">
+								   title="{{actions.delete.title}}"
+								   data-flow-interactive-handler="moderationDialog"
+								   data-template="flow_moderate_post"
+								   data-role="hide">
 									<span class="wikiglyph wikiglyph-trash"></span>
 									{{l10n "flow-post-action-delete-post"}}
+								</a>
+							</li>
+						{{/if}}
+						{{#if actions.undelete}}
+							<li>
+								<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+								   href="{{actions.undelete.url}}"
+								   title="{{actions.undelete.title}}"
+								   data-flow-interactive-handler="moderationDialog"
+								   data-template="flow_moderate_post"
+								   data-role="restore">
+									<span class="wikiglyph wikiglyph-eye-lid"></span>
+									{{l10n "flow-post-action-undelete-post"}}
 								</a>
 							</li>
 						{{/if}}
@@ -118,9 +150,25 @@
 							<li>
 								<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 								   href="{{actions.suppress.url}}"
-								   title="{{actions.suppress.title}}">
+								   title="{{actions.suppress.title}}"
+								   data-flow-interactive-handler="moderationDialog"
+								   data-template="flow_moderate_post"
+								   data-role="suppress">
 									<span class="wikiglyph wikiglyph-block"></span>
 									{{l10n "flow-post-action-suppress-post"}}
+								</a>
+							</li>
+						{{/if}}
+						{{#if actions.unsuppress}}
+							<li>
+								<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+								   href="{{actions.unsuppress.url}}"
+								   title="{{actions.unsuppress.title}}"
+								   data-flow-interactive-handler="moderationDialog"
+								   data-template="flow_moderate_post"
+								   data-role="restore">
+									<span class="wikiglyph wikiglyph-eye-lid"></span>
+									{{l10n "flow-post-action-unsuppress-post"}}
 								</a>
 							</li>
 						{{/if}}
