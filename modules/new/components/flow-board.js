@@ -93,6 +93,61 @@
 			).insertBefore( flowBoard.$container );
 		};
 
+		FlowBoardComponent.UI.events.apiHandlers.moderatePost = function ( data, jqxhr ) {
+			// if success:
+			//   delete form + dialog
+			// else:
+			//   add error messages
+			if ( data.error ) {
+				// internal error, likely bad request
+				// @todo display error
+				console.log( 'apiHandlers.moderatePost - top level api request failure, bad request?' );
+				return;
+			}
+
+			var postId, revId, revision, html, result;
+			switch ( data.flow["moderate-post"].status ) {
+			case 'error':
+				// @todo
+				console.log( 'api submodule rejected request' );
+				console.log( data.flow["moderate-post"] );
+				break;
+
+			case 'ok':
+				// 'ok' means the request wasn't a complete and total failure and we received
+				// a response.  That response could still be validation errors or some such.
+				result = data.flow["moderate-post"].result.topic;
+				postId = result.roots[0];
+				revId = result.posts[postId];
+				revision = result.revisions[revId];
+				html = mw.flow.TemplateEngine.processTemplate( 'flow_post', {
+					revision: revision
+				} );
+
+				$( this ).closest( 'form' )
+					.data( 'flow-dialog-owner' )
+					.closest( '.flow-post' )
+					.replaceWith( html );
+
+				// @todo cancel dialog
+				$( this ).closest( 'form' ).parent().remove();
+
+				console.log( 'Rendered response to moderatePost ' );
+				break;
+
+			default:
+				// @todo
+				console.log( 'Unknown result.status: ' + data.flow["moderate-post"].status );
+				console.log( data );
+			}
+
+			if ( result.status === 'error' ) {
+				// submodule rejected request
+				// @todo
+			} else {
+
+			}
+		};
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
@@ -292,11 +347,22 @@
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.apiRequest = function ( event ) {
 			event.preventDefault();
+			var $deferred,
+				_this = this,
+				$this = $( this ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				handlerName = $this.data( 'flow-api-handler' );
 
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$deferred = flowBoard.API.requestFromAnchor( this ),
-				handlerName = $( this ).data( 'flow-api-handler' ),
-				_this = this;
+			if ( $this.is( 'a' ) ) {
+				$deferred = flowBoard.API.requestFromAnchor( this );
+			} else if ( $this.is( 'input, button' ) ) {
+				$deferred = flowBoard.API.requestFromForm( this );
+			} else {
+				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor or form' );
+
+				$deferred = $.Deferred();
+				$deferred.rejectWith( { error: 'Not an anchor or form' } );
+			}
 
 			// If this has a special api handler, bind it to the callback.
 			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
@@ -304,6 +370,39 @@
 					FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, arguments );
 				} );
 			}
+		};
+
+		/**
+		 *
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.moderatePostDialog = function ( event ) {
+			var html, $container,
+				$this = $( this ),
+				role = $this.data( 'role' ),
+				params = {
+					editToken: mw.user.tokens.get( 'editToken' ), // might be unnecessary
+					submitted: {
+						moderationState: role
+					},
+					actions: {}
+				};
+
+			event.preventDefault();
+
+			params.actions[role] = { url: $this.attr( 'href' ), title: $this.attr( 'title' ) };
+			html = mw.flow.TemplateEngine.processTemplate( 'flow_moderate_post', params );
+
+			$( '<div>' )
+				.html( html )
+				.find( 'form' )
+					.data( 'flow-cancel-callback', function () {
+						$container.remove();
+					} )
+					.data( 'flow-dialog-owner', $this )
+					.end()
+				// @todo append to a dialog box
+				.appendTo( $( '.flow-board' )[0] );
 		};
 
 		////////////////////////////////////////////////////////////
