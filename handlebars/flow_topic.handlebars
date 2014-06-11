@@ -1,12 +1,14 @@
 <div class="flow-topic flow-load-interactive {{#if isModerated}}flow-topic-moderated flow-topic-collapsed-invert{{/if}}" id="flow-topic-{{postId}}" data-flow-id="{{postId}}" data-flow-load-handler="topicElement">
 	{{>flow_topic_titlebar}}
 
-	{{#each replies}}
-		{{#eachPost @root this}}
-			<!-- eachPost topic -->
-			{{post @root this}}
-		{{/eachPost}}
-	{{/each}}
+	{{#if @root.posts}}
+		{{#each replies}}
+			{{#eachPost @root this}}
+				<!-- eachPost topic -->
+				{{post @root this}}
+			{{/eachPost}}
+		{{/each}}
+	{{/if}}
 
 	{{> flow_reply_form}}
 </div>
