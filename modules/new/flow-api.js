@@ -207,6 +207,7 @@ window.mw = window.mw || {}; // mw-less testing
 			method = $form.attr( 'method' ) || 'GET',
 			formData = $form.serializeArray(),
 			url = $form.attr( 'action' ),
+			$button = $( button ),
 			queryMap = { submodule: $form.data( 'flow-api-action' ) }; // usually null
 
 
@@ -228,6 +229,8 @@ window.mw = window.mw || {}; // mw-less testing
 		// If given an overrideObject, extend our queryMap with it
 		if ( overrideObject && Object.prototype.toString.call( overrideObject ) === '[object Object]' ) {
 			$.extend( queryMap, overrideObject );
+		} else if ( overrideObject && typeof overrideObject === 'function' ) {
+			queryMap = overrideObject.apply( this, queryMap );
 		}
 
 		if ( !( queryMap.action ) ) {
@@ -267,6 +270,8 @@ window.mw = window.mw || {}; // mw-less testing
 		// If given an overrideObject, extend our queryMap with it
 		if ( overrideObject && Object.prototype.toString.call( overrideObject ) === '[object Object]' ) {
 			$.extend( queryMap, overrideObject );
+		} else if ( overrideObject && typeof overrideObject === 'function' ) {
+			queryMap = overrideObject.apply( this, queryMap );
 		}
 
 		// If this anchor already has a request in flight, abort it
