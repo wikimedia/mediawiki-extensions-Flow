@@ -186,11 +186,11 @@ class HeaderBlock extends AbstractBlock {
 				break;
 
 			case 'header-view':
-				$revId = '';
-				if ( isset( $options['revId'] ) ) {
-					$revId = $options['revId'];
+				if ( isset( $options['revId'] ) && $options['revId'] ) {
+					$output += $this->renderSingleViewAPI( $options['revId'] );
+				} else {
+					$output += $this->renderRevisionAPI();
 				}
-				$output += $this->renderSingleViewAPI( $revId );
 				break;
 
 			case 'compare-header-revisions':

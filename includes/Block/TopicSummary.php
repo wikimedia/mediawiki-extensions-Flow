@@ -283,7 +283,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		switch ( $this->action ) {
 			case 'topic-summary-view':
 				// @Todo - duplicated logic in other single view block
-				if ( isset( $options['revId'] ) ) {
+				if ( isset( $options['revId'] ) && $options['revId'] ) {
 					$row = Container::get( 'query.postsummary.view' )->getSingleViewResult( $options['revId'] );
 					$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
 				} else {
