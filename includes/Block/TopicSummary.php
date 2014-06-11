@@ -211,12 +211,16 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 
 		$this->storage->put( $this->nextRevision );
-		$newRevision = $this->nextRevision;
+		// Reload the $this->formatterRow for renderAPI() after save
+		$this->formatterRow = new \Flow\Formatter\FormatterRow();
+		$this->formatterRow->revision = $this->nextRevision;
+		$this->formatterRow->previousRevision = $this->topicSummary;
+		$this->formatterRow->currentRevision = $this->nextRevision;
+		$this->formatterRow->workflow = $this->workflow;
+		$this->topicSummary = $this->nextRevision;
+
 		return array(
 			'new-revision-id' => $this->nextRevision->getRevisionId(),
-			'render-function' => function( Templating $templating ) use ( $newRevision ) {
-				return $templating->getContent( $newRevision, 'html' );
-			}
 		);
 	}
 

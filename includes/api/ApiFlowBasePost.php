@@ -42,8 +42,9 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 				'status' => 'ok',
 			);
 
-			foreach( $commitResults as $key => $value ) {
-				$output[$action]['result'][$key] = $this->processCommitResult( $value, $this->doRender() );
+			$parameters = $loader->extractBlockParameters( $this->getRequest(), $blocksToCommit );
+			foreach( $blocksToCommit as $block ) {
+				$output[$action]['result'][$block->getName()] = $block->renderAPI( \Flow\Container::get( 'templating' ), $parameters[$block->getName()] );
 			}
 			if ( $isNew && !$workflow->isNew() ) {
 				// Workflow was just created, ensure its underlying page is owned by flow
@@ -71,26 +72,6 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		}
 
 		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );
-	}
-
-	protected function processCommitResult( $result, $render = true ) {
-		$container = $this->getContainer();
-		$templating = $container['templating'];
-		$output = array();
-		foreach( $result as $key => $value ) {
-			if ( $value instanceof UUID ) {
-				$output[$key] = $value->getAlphadecimal();
-			} elseif ( $key === 'render-function' ) {
-				if ( $render ) {
-					$function = $value;
-					$output['rendered'] = $function( $templating );
-				}
-			} else {
-				$output[$key] = $value;
-			}
-		}
-
-		return $output;
 	}
 
 	public function mustBePosted() {
