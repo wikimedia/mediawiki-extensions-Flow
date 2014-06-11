@@ -530,6 +530,45 @@ class UrlGenerator extends BaseUrlGenerator {
 	}
 
 	/**
+	 * Restore the specified topic to unmoderated status.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function restoreTopicAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-restore-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'moderate-topic',
+				'topic_moderationState' => 'restore',
+				'workflow' => $workflowId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Restore the specified post to unmoderated status.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function restorePostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-restore-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'moderate-post',
+				'topic_moderationState' => 'restore',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
 	 * Hide the specified topic
 	 *
 	 * @param Title|null $title
