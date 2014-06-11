@@ -640,4 +640,17 @@
 
 	// Register progressiveEnhancement
 	Handlebars.registerHelper( 'progressiveEnhancement', FlowHandlebars.prototype.progressiveEnhancement );
+
+
+	FlowHandlebars.prototype.moderationAction = function( actions, moderationState ) {
+		return actions[moderationState] ? actions[moderationState].url : '';
+	};
+
+	Handlebars.registerHelper( 'moderationAction', FlowHandlebars.prototype.moderationAction );
+
+	FlowHandlebars.prototype.moderationActionText = function( actions, moderationState ) {
+		return actions[moderationState] ? actions[moderationState].title : '';
+	};
+
+	Handlebars.registerHelper( 'moderationActionText', FlowHandlebars.prototype.moderationActionText );
 }( jQuery ) );

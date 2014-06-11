@@ -93,6 +93,13 @@
 			).insertBefore( flowBoard.$container );
 		};
 
+		FlowBoardComponent.UI.events.apiHandlers.moderatePost = function ( data, jqxhr ) {
+			// if success:
+			//   delete form + dialog
+			// else:
+			//   add error messages
+			console.log( data );
+		};
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
@@ -304,6 +311,38 @@
 					FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, arguments );
 				} );
 			}
+		};
+
+		/**
+		 *
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.moderatePostDialog = function ( event ) {
+			var html, $container,
+				$this = $( this ),
+				role = $this.data( 'role' ),
+				params = {
+					editToken: mw.user.tokens.get( 'editToken' ), // might be unnecessary
+					submitted: {
+						moderationState: role
+					},
+					actions: {}
+				};
+
+			event.preventDefault();
+
+			params.actions[role] = { url: $this.attr( 'href' ), title: $this.attr( 'title' ) };
+			html = mw.flow.TemplateEngine.processTemplate( 'flow_moderate_post', params );
+
+			$( '<div>' )
+				.html( html )
+				.find( 'form' )
+					.data( 'flow-cancel-callback', function () {
+						$container.remove();
+					} )
+					.end()
+				// @todo append to a dialog box
+				.appendTo( $( '.flow-board' )[0] );
 		};
 
 		////////////////////////////////////////////////////////////

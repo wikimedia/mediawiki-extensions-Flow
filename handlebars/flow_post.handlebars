@@ -30,16 +30,16 @@
 					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.post.url}}" title="{{links.post.title}}"> <span class="wikicon wikicon-link"></span> {{l10n "flow-post-action-view"}}</a></li>
 				{{/if}}
 				{{#if actions.lock}}
-					<li><a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="{{actions.lock.url}}" title="{{actions.lock.title}}"><span class="wikicon wikicon-eye-lock"></span> {{l10n "TODO-Lock"}}</a></li>
+					<li><a data-flow-interactive-handler="moderatePostDialog" data-role="lock" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin" href="{{actions.lock.url}}" title="{{actions.lock.title}}"><span class="wikicon wikicon-eye-lock"></span> {{l10n "TODO-Lock"}}</a></li>
 				{{/if}}
 				{{#if actions.hide}}
-					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{actions.hide.url}}" title="{{actions.hide.title}}"><span class="wikicon wikicon-eye-lid"></span> {{l10n "flow-post-action-hide-post"}}</a></li>
+					<li><a data-flow-interactive-handler="moderatePostDialog" data-role="hide" class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{actions.hide.url}}" title="{{actions.hide.title}}"><span class="wikicon wikicon-eye-lid"></span> {{l10n "flow-post-action-hide-post"}}</a></li>
 				{{/if}}
 				{{#if actions.delete}}
-					<li><a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="{{actions.delete.url}}" title="{{actions.delete.title}}"><span class="wikicon wikicon-trash"></span> {{l10n "flow-post-action-delete-post"}}</a></li>
+					<li><a data-flow-interactive-handler="moderatePostDialog" data-role="delete" class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="{{actions.delete.url}}" title="{{actions.delete.title}}"><span class="wikicon wikicon-trash"></span> {{l10n "flow-post-action-delete-post"}}</a></li>
 				{{/if}}
 				{{#if actions.suppress}}
-					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.suppress.title}}"><span class="wikicon wikicon-block"></span> {{l10n "flow-post-action-suppress-post"}}</a></li>
+					<li><a data-flow-interactive-handler="moderatePostDialog" data-role="suppress" class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.suppress.title}}"><span class="wikicon wikicon-block"></span> {{l10n "flow-post-action-suppress-post"}}</a></li>
 				{{/if}}
 			</ul>
 		</div>
