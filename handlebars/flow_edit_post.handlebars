@@ -1,8 +1,9 @@
 <form method="POST" action="{{actions.edit.url}}">
+	<div class="flow-content-preview" style="display: none;"></div>
 	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 	{{!-- @todo should this be a part of the url? --}}
 	<input type="hidden" name="topic_prev_revision" value="{{revisionId}}" />
-	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible">
+	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible" data-role="content">
 		{{~#if @root.submitted.content~}}
 			{{~@root.submitted.content~}}
 		{{~else~}}
@@ -11,7 +12,7 @@
 	</textarea>
 	<div class="flow-form-actions flow-form-collapsible">
 		<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "flow-post-action-edit-post" author}}</button>
-		<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
+		<button data-flow-api-handler="preview" name="preview" data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
 		<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</button>
 		<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-edit"}}</small>
 	</div>

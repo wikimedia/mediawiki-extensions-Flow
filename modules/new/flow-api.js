@@ -189,6 +189,34 @@ window.mw = window.mw || {}; // mw-less testing
 	FlowAPI.prototype.getQueryMap = flowApiGetQueryMap;
 
 	/**
+	 * Given a query generated from a form, adapts
+	 * it to work correctly with the API
+	 * @param  {Object} queryMap Query map to adapt
+	 * @return {Object} Adapted query map
+	 */
+	function flowApiAdaptForm( queryMap ) {
+		var content;
+		if ( typeof queryMap.preview !== 'undefined' ) {
+			// XXX: Find the content parameter
+			$.each( queryMap, function( k, v ) {
+				if ( k.substr( -8 ) === '_content' ) {
+					content = v;
+				}
+			} );
+
+			queryMap = {
+				'action': 'flow-parsoid-utils',
+				'from': 'wikitext',
+				'to': 'html',
+				'content': content,
+				'title': mw.config.get( 'wgPageName' )
+			};
+		}
+
+		return queryMap;
+	}
+
+	/**
 	 * Using a given form, parses its action, serializes the data, and sends it as GET or POST depending on form method.
 	 * With button, its name=value is serialized in. If button is an Event, it will attempt to find the clicked button.
 	 * Additional params can be set with data-flow-api-params on both the clicked button or the form.
@@ -229,6 +257,8 @@ window.mw = window.mw || {}; // mw-less testing
 		if ( !( queryMap.action ) ) {
 			return $deferred.rejectWith( { error: 'Unknown action for form' } );
 		}
+
+		queryMap = flowApiAdaptForm( queryMap );
 
 		return this.apiCall( queryMap, method );
 	}

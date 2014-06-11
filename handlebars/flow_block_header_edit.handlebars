@@ -9,11 +9,12 @@
 		{{/if}}
 
 		<form method="POST" action="{{revision.actions.edit.url}}" flow-api-action="edit-header">
+			<div class="flow-content-preview" style="display: none;"></div>
 			<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 			{{#if revision.revisionId}}
 				<input type="hidden" name="header_prev_revision" value="{{revision.revisionId}}" />
 			{{/if}}
-			<textarea name="header_content" class="mw-ui-input" placeholder="{{l10n "flow-edit-header-placeholder"}}">
+			<textarea name="header_content" class="mw-ui-input" placeholder="{{l10n "flow-edit-header-placeholder"}}" data-role="content">
 				{{~#if submitted.content~}}
 					{{~submitted.content~}}
 				{{~else~}}
@@ -27,7 +28,7 @@
 					data-flow-api-handler="submitHeader">
 						{{~l10n "flow-edit-header-submit"~}}
 				</button>
-				<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">
+				<button data-flow-api-handler="preview" name="preview" data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet" >
 					{{~l10n "flow-preview"~}}
 				</button>
 				<button data-flow-interactive-handler="cancelForm"
