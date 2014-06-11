@@ -120,6 +120,7 @@ window.mw = window.mw || {}; // mw-less testing
 	/**
 	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
 	 * @param {String} url
+	 * @param {Object} queryMap
 	 * @returns {Object}
 	 */
 	function flowApiGetQueryMap( url, queryMap ) {
