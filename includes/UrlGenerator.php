@@ -409,7 +409,7 @@ class UrlGenerator extends BaseUrlGenerator {
 	}
 
 	/**
-	 * Restore the specified topic
+	 * Restore the specified topic to unmoderated status.
 	 *
 	 * @param Title|null $title
 	 * @param UUID $workflowId
@@ -425,6 +425,28 @@ class UrlGenerator extends BaseUrlGenerator {
 				'action' => $flowAction,
 				'workflow' => $workflowId->getAlphadecimal(),
 				'flow_moderationState' => 'restore',
+			)
+		);
+	}
+
+	/**
+	 * Restore the specified post to unmoderated status.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param string $moderationAction
+	 * @param string $flowAction
+	 * @return Anchor
+	 */
+	public function restorePostAction( Title $title = null, UUID $workflowId, UUID $postId, $moderationAction, $flowAction = 'moderate-post' ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-' . $moderationAction . '-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => $flowAction,
+				'topic_moderationState' => 'restore',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
 			)
 		);
 	}
