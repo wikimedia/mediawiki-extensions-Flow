@@ -287,6 +287,106 @@
 		};
 
 		/**
+		 * @param  {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.preview = function( event ) {
+			var $button = $( event.target ),
+				$form = $button.closest( 'form' ),
+				$previewContainer = $form.find( '.flow-content-preview' ),
+				$previewFields = $form.find( '[data-preview-field]'),
+				templateName = $button.data( 'preview-template' ),
+				api = new mw.Api(),
+				requests = [],
+				templateParams = {
+					'revision' : {}
+				};
+
+			$previewContainer
+				.empty()
+				.append(
+					$.createSpinner( {
+						'size' : 'large',
+						'type' : 'block'
+					} )
+				);
+
+			$previewFields.each( function() {
+				var $field = $( this ),
+					templateField = $field.data( 'preview-field' ),
+					promise;
+
+				if ( templateField === 'content' ) {
+					promise = api.post( {
+						action: 'flow-parsoid-utils',
+						from: 'wikitext',
+						to: 'html',
+						content: $field.val(),
+						title: mw.config.get( 'wgPageName' )
+					} )
+						.then( function( response ) {
+							// XXX: Would be neat to have a better way of doing this
+							templateParams.revision[templateField] = response['flow-parsoid-utils'].content;
+						} );
+
+					requests.push( promise );
+				} else {
+					templateParams.revision[templateField] = $field.val();
+				}
+			} );
+
+
+			$previewContainer
+				.show()
+				.conditionalScrollIntoView();
+
+			$.when.apply( $, requests )
+				.done( function() {
+					// Mock up some template parameters
+					// XXX: This is kind of awful and hacky
+					var username = mw.user.getName(),
+						getLink = function( pageName ) {
+							return {
+								'title' : pageName,
+								'url' : mw.util.getUrl( pageName )
+							};
+						},
+						flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form );
+
+					templateParams.author = {
+						'name' : username,
+						'links' : {
+							// XXX: These work in other languages, but aren't *super* localised
+							'talk' : getLink( 'User talk:' + username ),
+							'contribs' : getLink( 'Special:Contributions/' + username )
+						}
+					};
+
+					if ( $form.is( '.flow-newtopic-form' ) ) {
+						templateParams.content = templateParams.revision.topic;
+						if ( $( templateParams.revision.content ).text() ) {
+							templateParams.replies = ['new'];
+							templateParams.posts = {
+								'new' : {
+									'author' : templateParams.author,
+									'revision' : { 'content' : templateParams.revision.content }
+								}
+							}
+						}
+					}
+
+					$previewContainer
+						.empty()
+						.append(
+							flowBoard.TemplateEngine.processTemplateGetFragment( templateName, templateParams )
+						);
+				} )
+				.fail( function() {
+
+				} );
+			event.preventDefault();
+		};
+
+		/**
 		 *
 		 * @param {Event} event
 		 */

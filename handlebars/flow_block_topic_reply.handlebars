@@ -12,16 +12,17 @@
 	{{#each roots}}
 		{{#eachPost @root this}}
 			<form class="flow-reply-form" method="POST" action="{{actions.reply.url}}">
+				<div class="flow-content-preview" style="display: none;"></div>
 			    <input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 				<input type="hidden" name="topic_replyTo" value="{{postId}}" />
-				<textarea id="flow-post-{{postId}}-form-content" name="topic_content" class="mw-ui-input" type="text" placeholder="{{l10n "Reply_to_author_name" author}}">
+				<textarea id="flow-post-{{postId}}-form-content" name="topic_content" class="mw-ui-input" type="text" placeholder="{{l10n "Reply_to_author_name" author}}" data-preview-field="content">
 					{{~#ifEquals @root.submitted.postId postId}}
 						{{~@root.submitted.content~}}
 					{{/ifEquals~}}
 				</textarea>
 				<div class="flow-form-actions flow-form-collapsible">
 					<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "Reply" author}}</button>
-					<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
+					<button data-flow-interactive-handler="preview" data-preview-template="flow_post" data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
 					<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</button>
 					<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-reply"}}</small>
 				</div>

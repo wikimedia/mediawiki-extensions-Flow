@@ -114,6 +114,7 @@ $wgResourceModules += array(
 			'mediawiki.jqueryMsg',
 			'jquery.json',
 			'jquery.conditionalScroll',
+			'jquery.spinner',
 		)
 	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
