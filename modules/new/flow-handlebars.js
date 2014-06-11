@@ -154,7 +154,6 @@
 					return mw.message( str ).params( [ name ] );
 				},
 
-
 				"_time": function ( seconds_ago ) {
 					var str = ' second',
 						new_time = seconds_ago;
@@ -175,6 +174,7 @@
 
 					return Math.floor( new_time ) + str + ( new_time < 1 || new_time >= 2 ? 's' : '' );
 				},
+
 				"time_ago": function ( seconds_ago ) { return this._time( seconds_ago ) + " ago"; },
 				"active_ago": function ( seconds_ago ) { return "Active " + this.time_ago( seconds_ago ); },
 				"started_ago": function ( seconds_ago ) { return "Started " + this.time_ago( seconds_ago ); },
@@ -610,6 +610,30 @@
 	};
 
 	/**
+	 * Return url for putting post into the specified moderation state.  If the user
+	 * cannot put the post into the specified state a blank string is returned.
+	 *
+	 * @param {Object}
+	 * @param {string}
+	 * @return {string}
+	 */
+	FlowHandlebars.prototype.moderationAction = function( actions, moderationState ) {
+		return actions[moderationState] ? actions[moderationState].url : '';
+	};
+
+	/**
+	 * Return localized action string for the provided moderation state. If the user
+	 * cannot put the post into the specified state a blank string is returned.
+	 *
+	 * @param {Object}
+	 * @param {string}
+	 * @return {string}
+	 */
+	FlowHandlebars.prototype.moderationActionText = function( actions, moderationState ) {
+		return actions[moderationState] ? actions[moderationState].title : '';
+	};
+
+	/**
 	 * Outputs debugging information
 	 *
 	 * For development use only
@@ -638,5 +662,8 @@
 	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
 	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
+	Handlebars.registerHelper( 'moderationActionText', FlowHandlebars.prototype.moderationActionText );
+	Handlebars.registerHelper( 'moderationAction', FlowHandlebars.prototype.moderationAction );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
+
 }( jQuery ) );
