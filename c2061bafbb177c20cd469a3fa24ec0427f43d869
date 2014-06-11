@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_90644d47",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-06-11T03:25:49Z",
+      "side": 1,
+      "message": "What sort of function would you have in mind?",
+      "parentUuid": "ee391fd1_70c32962",
+      "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_708b2973",
         "filename": "includes/TemplateHelper.php",
         "patchSetId": 2
@@ -64,6 +82,41 @@
       "writtenOn": "2014-06-11T01:37:39Z",
       "side": 1,
       "message": "On my wiki this adds \"//localhost\", which makes some code somewhere think the URL is external. I think you could use getLocalURL().  These functions capitalize it \"URL\", I guess PHP doesn\u0027t care.\n\ngetLocalURL() takes a query array, so I think you should first call a revised getReturnTo() function that returns an array containing \u0027returnto\u0027 and possibly \u0027returntoquery\u0027, and then pass that in to getLocalURL().",
+      "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_708209cf",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-06-11T03:25:49Z",
+      "side": 1,
+      "message": "The URL *is* external. You can\u0027t put query parameters in wikitext links. I\u0027ve added the \u0027plainlinks\u0027 class to stop the little icon from appearing.",
+      "parentUuid": "ee391fd1_708b2973",
+      "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_f06dd92e",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-06-11T03:25:49Z",
+      "side": 1,
+      "message": "I\u0027ve done it this way to make it more modular.",
       "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -98,6 +151,24 @@
       "writtenOn": "2014-06-11T01:37:39Z",
       "side": 1,
       "message": "It\u0027s mw.user.isAnon().",
+      "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_7069e91c",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-06-11T03:25:49Z",
+      "side": 1,
+      "message": "Good catch, thanks.",
+      "parentUuid": "ee391fd1_fd77f2cd",
       "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
