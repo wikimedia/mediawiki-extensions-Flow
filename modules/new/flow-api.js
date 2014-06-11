@@ -7,20 +7,26 @@ window.mw = window.mw || {}; // mw-less testing
 ( function ( mw, $ ) {
 	mw.flow = mw.flow || {}; // create mw.flow globally
 
-	// Transforms URL request parameters into API params
-	// @todo fix it server-side so we don't need this client-side
-	var apiTransformMap = {
-		// Replaces topic_ with mp for moderate-post actions
-		'moderate-post': function ( queryMap ) {
+	function genQueryTransform( initial, after ) {
+		return function( queryMap ) {
 			for ( var key in queryMap ) {
 				if ( queryMap.hasOwnProperty(key) ) {
-					if ( key.indexOf( 'topic_' ) === 0 ) {
-						queryMap[ key.replace( 'topic_', 'mp' ) ] = queryMap[ key ];
+					if ( key.indexOf( initial ) === 0 ) {
+						queryMap[ key.replace( initial, after ) ] = queryMap[ key ];
 						delete queryMap[ key ];
 					}
 				}
 			}
-		}
+
+			return queryMap;
+		};
+	}
+
+	// Transforms URL request parameters into API params
+	// @todo fix it server-side so we don't need this client-side
+	var apiTransformMap = {
+		// Replaces topic_ with mp for moderate-post actions
+		'moderate-post': genQueryTransform( 'topic_', 'mp' )
 	};
 
 	/**
@@ -42,10 +48,11 @@ window.mw = window.mw || {}; // mw-less testing
 		 * @param {String} [pageName]
 		 * @returns {$.Deferred}
 		 */
-		function flowApiCall( params, pageName ) {
+		function flowApiCall( params, method ) {
 			params = params || {};
 			params.title = params.title || this.pageName || mw.config.get( 'wgPageName' );
 			params.workflow = params.workflow || this.workflowId;
+			method = method ? method.toUpperCase() : 'GET';
 
 			var $deferred = $.Deferred(),
 				mwApi = new mw.Api();
@@ -63,9 +70,13 @@ window.mw = window.mw || {}; // mw-less testing
 				return $deferred.rejectWith({ error: 'Invalid workflow' });
 			}
 
-			return mwApi.get(
-				params
-			);
+			if ( method === 'POST' ) {
+				return mwApi.postWithToken( 'edit', params );
+			} else if ( method !== 'GET' ) {
+				return $deferred.rejectWith({ error: "Unknown submission method: " + method });
+			} else {
+				return mwApi.get( params );
+			}
 		}
 
 		this.apiCall = flowApiCall;
@@ -103,10 +114,11 @@ window.mw = window.mw || {}; // mw-less testing
 	 * @param {String} url
 	 * @returns {Object}
 	 */
-	function flowApiGetQueryMap( url ) {
+	function flowApiGetQueryMap( url, queryMap ) {
 		var query,
-			queryMap = {},
 			queries, i = 0, split;
+
+		queryMap = queryMap || {};
 
 		// Parse the URL query params
 		query = url.split('#')[0].split('?').slice(1).join('?');
@@ -123,8 +135,8 @@ window.mw = window.mw || {}; // mw-less testing
 		queryMap.action    = 'flow';
 
 		// Use the API map to transform this data if necessary, eg.
-		if ( apiTransformMap[ queryMap.action ] ) {
-			return apiTransformMap[ queryMap.action ]( queryMap );
+		if ( apiTransformMap[queryMap.submodule] ) {
+			return apiTransformMap[queryMap.submodule]( queryMap );
 		}
 
 		// No transform, just return the query map as-is
@@ -141,9 +153,38 @@ window.mw = window.mw || {}; // mw-less testing
 	 * @param {Event|Element} [button]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromForm( form, button ) {
-		var method = method || 'get',
-			formData = form ? $( form ).serializeArray() : [];
+	function flowApiRequestFromForm( button ) {
+		var i,
+			queryMap = {},
+			$deferred = $.Deferred(),
+			$form = $( button ).closest( 'form' ),
+			method = $form.attr( 'method' ) || 'GET',
+			formData = $form.serializeArray(),
+			url = $form.attr( 'action' );
+
+
+		if ( $form.length === 0 ) {
+			return $deferred.rejectWith( { error: 'No form located' } );
+		}
+
+		for ( i = 0; i < formData.length; i++ ) {
+			// skip wpEditToken, its handle independantly
+			if ( formData[i].name !== 'wpEditToken' ) {
+				queryMap[formData[i].name] = formData[i].value;
+			}
+		}
+
+		if ( !( queryMap = flowApiGetQueryMap( url, queryMap ) ) ) {
+			return $deferred.rejectWith( { error: 'Invalid form action' } );
+		}
+
+
+		if ( !( queryMap.action ) ) {
+			return $deferred.rejectWith( { error: 'Unknown action for form' } );
+		}
+
+		// @todo this issues a GET, but we want `method`
+		return this.apiCall( queryMap, method );
 	}
 
 	FlowAPI.prototype.requestFromForm = flowApiRequestFromForm;
@@ -185,7 +226,7 @@ window.mw = window.mw || {}; // mw-less testing
 			}
 		}
 		*/
-		return this.apiCall( queryMap );
+		return this.apiCall( queryMap, 'GET' );
 	}
 
 	FlowAPI.prototype.requestFromAnchor = flowApiRequestFromAnchor;
