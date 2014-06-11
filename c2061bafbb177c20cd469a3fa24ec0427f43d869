@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_30fc81d5",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-11T01:37:39Z",
+      "side": 1,
+      "message": "The values don\u0027t change during the request, so it could be computed in advance or remembered once  I think the C.S. term is https://en.wikipedia.org/wiki/Memoization. Seems like a premature optimization, so I would add it as a comment.",
+      "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_f0ddd974",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-11T01:37:39Z",
+      "side": 1,
+      "message": "Likewise, this doesn\u0027t change, another // Note: could memoize answer,\n\nor whatever.",
+      "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_70c32962",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-11T01:37:39Z",
+      "side": 1,
+      "message": "This all works, but it\u0027s very fiddly. I wonder if there are functions in core (SkinTemplate ? Title?) we can use.",
+      "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_708b2973",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-11T01:37:39Z",
+      "side": 1,
+      "message": "On my wiki this adds \"//localhost\", which makes some code somewhere think the URL is external. I think you could use getLocalURL().  These functions capitalize it \"URL\", I guess PHP doesn\u0027t care.\n\ngetLocalURL() takes a query array, so I think you should first call a revised getReturnTo() function that returns an array containing \u0027returnto\u0027 and possibly \u0027returntoquery\u0027, and then pass that in to getLocalURL().",
+      "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_70756992",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-11T01:37:39Z",
+      "side": 1,
+      "message": "The state of the user is a constant during the session, so I think you can just set a variable to mw.user.isAnon(). But it\u0027s a cheap function, so another premature optimization to comment.",
+      "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_fd77f2cd",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-11T01:37:39Z",
+      "side": 1,
+      "message": "It\u0027s mw.user.isAnon().",
+      "revId": "c2061bafbb177c20cd469a3fa24ec0427f43d869",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
