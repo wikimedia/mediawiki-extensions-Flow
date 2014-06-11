@@ -666,4 +666,26 @@
 
 	// Register progressiveEnhancement
 	Handlebars.registerHelper( 'null', FlowHandlebars.prototype.nullHelper );
+
+	/**
+	 *
+	 * @return {string}
+	 */
+	FlowHandlebars.prototype.moderationAction = function( actions, moderationState ) {
+		return actions[moderationState] ? actions[moderationState].url : '';
+	};
+
+	// Register moderationAction
+	Handlebars.registerHelper( 'moderationAction', FlowHandlebars.prototype.moderationAction );
+
+	/**
+	 *
+	 * @return {string}
+	 */
+	FlowHandlebars.prototype.moderationActionText = function( actions, moderationState ) {
+		return actions[moderationState] ? actions[moderationState].title : '';
+	};
+
+	// Register moderationActionText
+	Handlebars.registerHelper( 'moderationActionText', FlowHandlebars.prototype.moderationActionText );
 }( jQuery ) );

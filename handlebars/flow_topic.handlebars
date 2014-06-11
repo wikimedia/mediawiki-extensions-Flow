@@ -64,7 +64,10 @@
 					<li>
 						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 						   href="{{actions.hide.url}}"
-						   title="{{actions.hide.title}}">
+						   title="{{actions.hide.title}}"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="hide">
 							<span class="wikiglyph wikiglyph-eye-lid"></span>
 							{{l10n "flow-topic-action-hide-topic"}}
 						</a>
@@ -74,7 +77,10 @@
 					<li>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 						   href="{{actions.delete.url}}"
-						   title="{{actions.delete.title}}">
+						   title="{{actions.delete.title}}"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="delete">
 							<span class="wikiglyph wikiglyph-trash"></span>
 							{{l10n "flow-topic-action-delete-topic"}}
 						</a>
@@ -84,9 +90,25 @@
 					<li>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 						   href="{{actions.suppress.url}}"
-						   title="{{actions.suppress.title}}">
+						   title="{{actions.suppress.title}}"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="suppress">
 							<span class="wikiglyph wikiglyph-block"></span>
 							{{l10n "flow-topic-action-suppress-topic"}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.restore}}
+					<li>
+						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+						   href="{{actions.restore.url}}"
+						   title="{{actions.restore.title}}"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="restore">
+							<span class="wikiglyph wikiglyph-unknown"></span>
+							{{l10n "flow-post-action-restore-post"}}
 						</a>
 					</li>
 				{{/if}}
@@ -123,12 +145,14 @@
 		{{/if}}
 	</div>
 
-	{{#each replies}}
-		{{#eachPost @root this}}
-			<!-- eachPost topic -->
-			{{post @root this}}
-		{{/eachPost}}
-	{{/each}}
+	{{#if @root.posts}}
+		{{#each replies}}
+			{{#eachPost @root this}}
+				<!-- eachPost topic -->
+				{{post @root this}}
+			{{/eachPost}}
+		{{/each}}
+	{{/if}}
 
 	{{> flow_reply_form}}
 </div>

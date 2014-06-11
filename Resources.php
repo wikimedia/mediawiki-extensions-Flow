@@ -68,6 +68,7 @@ $wgResourceModules += array(
 			'flow-post-action-post-history',
 			'flow-post-action-view',
 			'flow-post-action-suppress-post',
+			'flow-post-action-restore-post',
 			'flow-preview',
 			'flow-recent-topics',
 			'flow-reply-submit',
@@ -82,6 +83,10 @@ $wgResourceModules += array(
 			'flow-topic-action-resummarize-topic',
 			'flow-topic-action-summarize-topic',
 			'flow-topic-action-view',
+			'flow-topic-action-hide-topic',
+			'flow-topic-action-delete-topic',
+			'flow-topic-action-suppress-topic',
+			'flow-topic-action-restore-topic',
 		),
 	),
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
@@ -123,6 +128,7 @@ $wgResourceModules += array(
 			'mediawiki.jqueryMsg',
 			'jquery.json',
 			'jquery.conditionalScroll',
+			'jquery.ui.dialog',
 		)
 	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
