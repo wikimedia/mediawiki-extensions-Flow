@@ -25,12 +25,14 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
 				ApiBase::PARAM_DFLT => $wgFlowContentFormat,
 			),
+			'revId' => null,
 		);
 	}
 
 	public function getParamDescription() {
 		return array(
 			'contentFormat' => 'Format to return the content in',
+			'revId' => 'load a specific revision if provided, otherwise, load the most recent',
 		);
 	}
 
@@ -40,7 +42,7 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=header-view&vhcontentFormat=wikitext&workflow=',
+			'api.php?action=flow&submodule=header-view&vhcontentFormat=wikitext&workflow=&revId=',
 		);
 	}
 }
