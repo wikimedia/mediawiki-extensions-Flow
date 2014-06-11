@@ -718,6 +718,105 @@
 			}
 		};
 
+		/**
+		 * Generate a moderation handler callback
+		 *
+		 * @param {string} Action to expect in api response
+		 * @param {Function} Method to call on api success
+		 */
+		function genModerateHandler( action, successCallback ) {
+			/**
+			 * After submit of a moderation form, process the response.
+			 *
+			 * @param {Object} info (status:done|fail, $target: jQuery)
+			 * @param {Object} data
+			 * @param {jqXHR} jqxhr
+			 */
+			return function ( info, data, jqxhr ) {
+				if ( info.status !== 'done' ) {
+					FlowBoardComponent.UI.showError( 'network level request failure, retry?' );
+					return;
+				}
+
+				if ( data.error ) {
+					// internal error, likely bad request
+					// @todo display error
+					FlowBoardComponent.UI.showError( 'top level api request failure, bad request?' );
+					return;
+				}
+
+				if ( !data.flow[action] ) {
+					FlowBoardComponent.UI.showError( 'bad request, nothing received for: ' + action );
+					mw.log.warn( data.flow );
+					return;
+				}
+
+				var errors, revision, html,
+					result = data.flow[action].result.topic,
+					$form = $( this ).closest( 'form' );
+
+				if ( data.flow[action].status !== 'ok' ) {
+					errors = result;
+				} else if ( result.errors.length ) {
+					errors = result.errors;
+				}
+
+				if ( errors ) {
+					// validation errors
+					html = mw.flow.TemplateEngine.processTemplate( 'flow_errors', {
+						errors: errors
+					} );
+
+					// @todo should the validation errors be cleared elsewhere, perhaps
+					// before sending the api request?
+					$form.find( '.flow-errors' ).remove();
+					$form.prepend( $( html ) );
+				} else {
+
+					successCallback(
+						$form.data( 'flow-dialog-owner' ),
+						result.revisions[result.posts[result.roots[0]]]
+					);
+
+					// @todo cancel dialog
+					$form.parent().remove();
+				}
+			};
+		}
+
+		FlowBoardComponent.UI.events.apiHandlers.moderateTopic = genModerateHandler(
+			'moderate-topic',
+			function ( $target, revision ) {
+				var html = mw.flow.TemplateEngine.processTemplate( 'flow_topic', revision ),
+					$replacement = $( html ),
+					$titlebar = $replacement.find( '.flow-topic-titlebar' );
+
+				$target
+					.closest( '.flow-topic' )
+					.attr( 'class', $replacement.attr( 'class' ) );
+
+				$target
+					.closest( '.flow-topic-titlebar' )
+					.replaceWith( $titlebar );
+
+				FlowBoardComponent.UI.makeContentInteractive( $titlebar );
+			}
+		);
+
+		FlowBoardComponent.UI.events.apiHandlers.moderatePost = genModerateHandler(
+			'moderate-post',
+			function ( $target, revision ) {
+				var html = mw.flow.TemplateEngine.processTemplate( 'flow_post', { revision: revision } ),
+					$replacement = $( html );
+
+				$target
+					.closest( '.flow-post-main' )
+					.replaceWith( $replacement.find( '.flow-post-main' ) );
+
+				FlowBoardComponent.UI.makeContentInteractive( $replacement );
+			}
+		);
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
 		////////////////////
@@ -1087,6 +1186,81 @@
 			$form.conditionalScrollIntoView();
 		};
 
+		/**
+		 * @param {String} status (done|fail)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.submitReply = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				postId = data.flow.reply.result.topic.roots[0],
+				$form = $( this ).closest( 'form' ),
+				post;
+
+			if ( status === 'done' ) {
+				post = flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_post',
+					{ revision: data.flow.reply.result.topic.revisions[postId] }
+				);
+
+				$form.before( post );
+
+				// Clear contents to not trigger the "are you sure you want to
+				// discard your text" warning
+				$form.find( 'textarea, :text' ).val( '' );
+				// Trigger a click on cancel to have it destroy the form the way it should
+				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
+			} else {
+				// @todo: address fail
+			}
+		};
+
+		/**
+		 *
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.moderationDialog = function ( event ) {
+			var html, $container, $form,
+				$this = $( this ),
+				board = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				role = $this.data( 'role' ),
+				template = $this.data( 'template' ),
+				params = {
+					editToken: mw.user.tokens.get( 'editToken' ), // might be unnecessary
+					submitted: {
+						moderationState: role
+					},
+					actions: {}
+				};
+
+			event.preventDefault();
+
+			params.actions[role] = { url: $this.attr( 'href' ), title: $this.attr( 'title' ) };
+			html = mw.flow.TemplateEngine.processTemplate( template, params );
+
+			$container = $( '<div>' ).html( html );
+			$form = $container.find( 'form' ).data( 'flow-dialog-owner', $this );
+			flowBoardComponentAddCancelCallback( $form, function () {
+				$container.parent().remove();
+			} );
+
+			// @todo Migrate to a simpler non-jquery.ui dialog box
+			// this one doesn't work on mobile, among other problems.
+			mw.loader.using( 'jquery.ui.dialog' , function() {
+				$container.dialog( {
+					'title': $this.attr( 'title' ),
+					'modal': true
+				} )
+				// the $.fn.dialog function attaches the dialog to .body, but we
+				// need to move it inside the main container so user interactions
+				// go to the correct handlers.
+				.parent()
+					.detach()
+					.appendTo( board.$container );
+			} );
+		};
+
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI events
 		////////////////////
@@ -1424,7 +1598,7 @@
 					$this, $topic, offsetTop, outerHeight, percent;
 
 				// Only proceed with this wacky stuff if the navigation bar is currently in use
-				if ( !$topicNavigation.is( ':visible' ) ) {
+				if ( !$topicNavigation || !$topicNavigation.is( ':visible' ) ) {
 					return;
 				}
 
