@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Anchor;
 use Flow\Model\UUID;
 use Flow\Block\AbstractBlock;
 
