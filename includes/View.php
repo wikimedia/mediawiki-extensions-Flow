@@ -118,11 +118,11 @@ class View extends ContextSource {
 		} );
 		wfProfileOut( __CLASS__ . '-serialize' );
 
-		/**
 		header( 'Content-Type: application/json; content=utf-8' );
 		$data = json_encode( $apiResponse );
 		//return;
 		die( $data );
+		/**
 		**/
 
 		// Render with lightncandy. The exact template to render
