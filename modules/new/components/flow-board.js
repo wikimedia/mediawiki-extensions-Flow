@@ -149,6 +149,41 @@
 			};
 		};
 
+		/**
+		 * Before handling preview, hides the old preview
+		 * and overrides the API request
+		 * @param  {Event} event The event being handled
+		 * @return {Function} Callback to modify the API request
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.preview = function( event ) {
+			var $this = $( this ),
+				$form = $this.closest( 'form' ),
+				content;
+
+			if ( ! $this.is( 'button[name=preview]' ) ) {
+				$this = $( event.target );
+			}
+
+			$this.closest( 'form' )
+				.find( '.flow-content-preview' )
+				.hide();
+
+			content = $form
+				.find( 'input, textarea' )
+				.filter( '[data-role=content]')
+				.val();
+
+			return function( queryMap ) {
+				return {
+					'action': 'flow-parsoid-utils',
+					'from': 'wikitext',
+					'to': 'html',
+					'title': mw.config.get( 'wgPageName' ),
+					'content' : content
+				};
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
@@ -307,6 +342,41 @@
 				// @todo
 				alert( "Error" );
 			}
+		};
+		/**
+		 * @param  {Event} event
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.preview = function( status, data, jqxhr ) {
+			var $button = $( this ),
+				$form = $button.closest( 'form' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
+				templateEngine = flowBoard.TemplateEngine,
+				templateParams,
+				$titleField = $form.find( 'input' ).filter( '[data-role=title]' ),
+				$previewContainer;
+
+			if ( data === 'fail' || ! data['flow-parsoid-utils'] ) {
+				// @todo
+				alert( "fail" );
+				return;
+			}
+
+			templateParams = {
+				'content' : data['flow-parsoid-utils'].content
+			};
+
+			if ( $titleField.length ) {
+				templateParams.title = $titleField.val();
+			}
+
+			$previewContainer = $(
+				templateEngine.processTemplateGetFragment( 'flow_preview', templateParams )
+			).children();
+
+			$form.find( '.flow-content-preview' )
+				.replaceWith( $previewContainer );
+
+			$previewContainer.show();
 		};
 
 
@@ -583,9 +653,10 @@
 
 			// Use the pre-callback to find out if we should process this
 			if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ] ) {
-				// apiPreHandlers can either return FALSE to prevent processing,
+				// apiPreHandlers can return FALSE to prevent processing,
 				// nothing at all to proceed,
 				// or OBJECT to add param overrides to the API
+				// or FUNCTION to modify API params
 				preHandlerReturn = FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ].apply( _this, arguments );
 
 				if ( preHandlerReturn === false ) {
