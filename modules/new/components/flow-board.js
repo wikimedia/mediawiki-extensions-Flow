@@ -93,6 +93,32 @@
 			).insertBefore( flowBoard.$container );
 		};
 
+		/**
+		 * @param  {Event} event
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.preview = function( data ) {
+			var $button = $( this ),
+				$form = $button.closest( 'form' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
+				templateEngine = flowBoard.TemplateEngine,
+				templateParams,
+				$titleField = $form.find( 'input' ).filter( '[data-role=title]' ),
+				$previewContainer;
+
+			templateParams = {
+				'content' : data['flow-parsoid-utils'].content
+			};
+
+			if ( $titleField.length ) {
+				templateParams.title = $titleField.val();
+			}
+
+			$previewContainer = $( templateEngine.processTemplateGetFragment( 'flow_preview', templateParams ) );
+
+			$form.find( '.flow-content-preview' )
+				.replaceWith( $previewContainer );
+		};
+
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
