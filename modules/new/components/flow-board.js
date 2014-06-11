@@ -293,10 +293,21 @@
 		FlowBoardComponent.UI.events.interactiveHandlers.apiRequest = function ( event ) {
 			event.preventDefault();
 
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$deferred = flowBoard.API.requestFromAnchor( this ),
-				handlerName = $( this ).data( 'flow-api-handler' ),
-				_this = this;
+			var $deferred,
+				_this = this,
+				$this = $( this ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				handlerName = $this.data( 'flow-api-handler' );
+
+			if ( $this.is( 'a ' ) ) {
+				$deferred = flowBoard.API.requestFromAnchor( this );
+			} else if ( $this.is( 'input, button' ) ) {
+				$deferred = flowBoard.API.requestFromForm( this );
+			} else {
+				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor form' );
+				$deferred = $.Deferred();
+				$deferred.rejectWith({ error: 'Not an anchor or form' });
+			}
 
 			// If this has a special api handler, bind it to the callback.
 			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
@@ -321,11 +332,14 @@
 				return;
 			}
 
-			var handlerName = $( this ).data( 'flow-interactive-handler' );
+			var interactiveHandler = $( this ).data( 'flow-interactive-handler' ),
+				apiHandler = $( this ).data( 'flow-api-handler' );
 
 			// If this has a special click handler, run it.
-			if ( FlowBoardComponent.UI.events.interactiveHandlers[ handlerName ] ) {
-				FlowBoardComponent.UI.events.interactiveHandlers[ handlerName ].apply( this, arguments );
+			if ( FlowBoardComponent.UI.events.interactiveHandlers[ interactiveHandler ] ) {
+				FlowBoardComponent.UI.events.interactiveHandlers[ interactiveHandler ].apply( this, arguments );
+			} else if ( FlowBoardComponent.UI.events.apiHandlers[ apiHandler ] ) {
+				FlowBoardComponent.UI.events.interactiveHandlers.apiRequest.apply( this, arguments );
 			}
 		};
 
