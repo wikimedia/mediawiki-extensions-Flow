@@ -241,6 +241,7 @@ $wgAutoloadClasses['ApiFlowNewTopic'] = "$dir/includes/api/ApiFlowNewTopic.php";
 $wgAutoloadClasses['ApiFlowReply'] = "$dir/includes/api/ApiFlowReply.php";
 $wgAutoloadClasses['ApiFlowViewHeader'] = "$dir/includes/api/ApiFlowViewHeader.php";
 $wgAutoloadClasses['ApiFlowViewTopicSummary'] = "$dir/includes/api/ApiFlowViewTopicSummary.php";
+$wgAutoloadClasses['ApiFlowViewTopicList'] = "$dir/includes/api/ApiFlowViewTopicList.php";
 $wgAutoloadClasses['ApiQueryPropFlowInfo'] = "$dir/includes/api/ApiQueryPropFlowInfo.php";
 
 $wgAPIListModules['flow'] = 'ApiQueryFlow';
