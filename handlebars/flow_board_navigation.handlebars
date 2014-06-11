@@ -1,6 +1,6 @@
 
 <div class="flow-board-navigation">
-	{{!-- <a href="{{links.search.url}}" title="{{links.search.title}}" class="flow-board-navigator-last"><span class="wikicon wikicon-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a> --}}
+	{{!-- <a href="{{links.search.url}}" title="{{links.search.title}}" class="flow-board-navigator-last"><span class="wikiglyph wikiglyph-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a> --}}
 	<div class="flow-board-navigation-inner">
 		{{progressiveEnhancement context=this insertionType="insertion" sectionId="flow-board-collapsers" templateName="flow_board_collapsers_subcomponent"}}
 
@@ -11,7 +11,7 @@
 			{{else}}
 				{{l10n "flow-recent-topics"}}
 			{{/ifEquals}}
-			<span class="wikicon wikicon-caret"></span>{{~~}}
+			<span class="wikiglyph wikiglyph-caret"></span>{{~~}}
 		</a>
 	</div>
 	<div class="flow-board-filter-menu">
@@ -19,8 +19,8 @@
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
 			{{#if links.board-sort}}
 				<ul class="flow-ui-button-container">
-					<li><a href="{{links.board-sort.updated}}" data-flow-interactive-handler="apiRequest" data-flow-api-handler="board"><span class="wikicon wikicon-clock"></span> {{l10n "flow-recent-topics"}}</a></li>
-					<li><a href="{{links.board-sort.newest}}" data-flow-interactive-handler="apiRequest" data-flow-api-handler="board"><span class="wikicon wikicon-star-circle"></span> {{l10n "flow-newest-topics"}}</a></li>
+					<li><a href="{{links.board-sort.updated}}" data-flow-interactive-handler="apiRequest" data-flow-api-handler="board"><span class="wikiglyph wikiglyph-clock"></span> {{l10n "flow-recent-topics"}}</a></li>
+					<li><a href="{{links.board-sort.newest}}" data-flow-interactive-handler="apiRequest" data-flow-api-handler="board"><span class="wikiglyph wikiglyph-star-circle"></span> {{l10n "flow-newest-topics"}}</a></li>
 				</ul>
 			{{/if}}
 		</div>

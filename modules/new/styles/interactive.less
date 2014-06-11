@@ -2,9 +2,12 @@
 @import 'mixins/helpers.less';
 
 @font-face {
-  font-family: 'Wikicon-Regular';
-  src: url('../fonts/wikifont.eot');
-  src: url('../fonts/wikifont.eot?#iefix') format('embedded-opentype'), url('../fonts/wikifont.woff') format('woff'), url('../fonts/wikifont.ttf')  format('truetype'), url('../fonts/wikifont.svg#b618f6c47120d6564c09540516f52967') format('svg');
+	font-family: 'WikiFont-Glyphs';
+	src: url('../fonts/WikiFont-Glyphs.eot'); /* IE9 Compat Modes */
+	src: url('../fonts/WikiFont-Glyphs.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('../fonts/WikiFont-Glyphs.woff') format('woff'), /* Modern Browsers */
+	url('../fonts/WikiFont-Glyphs.ttf')  format('truetype'), /* Safari, Android, iOS */
+	url('../fonts/WikiFont-Glyphs.svg#8088f7bbbdba5c9832b27edb3dfcdf09') format('svg'); /* Legacy iOS */
 }
 
 .flow-menu {
@@ -268,237 +271,303 @@ div.flow-menu-inverted {
 	}
 }
 
-// Wikicons (glyphs)
-.wikicon {
+
+.wikiglyph {
 	display: inline-block;
-	height: .7em;
-	font-family: 'Wikicon-Regular';
+	font-family: 'WikiFont-Glyphs';
 	-webkit-font-smoothing: antialiased;
-	font-size: 1.8em;
 	font-style: normal;
 	font-weight: normal;
-	line-height: 21px;
 	overflow: visible;
 	vertical-align: text-bottom;
+	height: .7em;
+	font-size: 1.6em;
+	line-height: .8em;
 }
-.wikicon:before {
-	//margin-left: -.25em;
-}
+
 
 /* UI ELEMENTS e000-023
 */
-.wikicon-magnifying-glass:before {
-  content: "\e000";
+
+.wikiglyph-magnifying-glass:before {
+	content: "\e000";
 }
-.wikicon-arrow-left:before {
-  content: "\e001";
+.wikiglyph-arrow-left:before {
+	content: "\e001";
 }
-.wikicon-tick:before {
-  content: "\e002";
+.wikiglyph-tick:before {
+	content: "\e002";
 }
-.wikicon-x:before {
-  content: "\e003";
+.wikiglyph-x:before {
+	content: "\e003";
 }
-.wikicon-x-circle:before {
-  content: "\e004";
+.wikiglyph-x-circle:before {
+	content: "\e004";
 }
-.wikicon-unstar:before {
-  content: "\e005";
+.wikiglyph-unstar:before {
+	content: "\e005";
 }
-.wikicon-star:before {
-  content: "\e006";
+.wikiglyph-star:before {
+	content: "\e006";
 }
-.wikicon-sun:before {
-  content: "\e007";
+.wikiglyph-star-list:before {
+	content: "\e007";
 }
-.wikicon-star-circle:before {
-  content: "\e008";
+.wikiglyph-sun:before {
+	content: "\e008";
 }
-.wikicon-funnel:before {
-  content: "\e009";
+.wikiglyph-funnel:before {
+	content: "\e009";
 }
-.wikicon-eye:before {
-  content: "\e010";
+.wikiglyph-eye:before {
+	content: "\e010";
 }
-.wikicon-eye-lid:before {
-  content: "\e011";
+.wikiglyph-eye-lid:before {
+	content: "\e011";
 }
-.wikicon-bookmark:before {
-  content: "\e012";
+.wikiglyph-bookmark:before {
+	content: "\e012";
 }
-.wikicon-printer:before {
-  content: "\e013";
+.wikiglyph-printer:before {
+	content: "\e013";
 }
-.wikicon-puzzle:before {
-  content: "\e014";
+.wikiglyph-puzzle:before {
+	content: "\e014";
 }
-.wikicon-clock:before {
-  content: "\e015";
+.wikiglyph-clock:before {
+	content: "\e015";
 }
-.wikicon-dice:before {
-  content: "\e016";
+.wikiglyph-dice:before {
+	content: "\e016";
 }
-.wikicon-move:before {
-  content: "\e017";
+.wikiglyph-move:before {
+	content: "\e017";
 }
-.wikicon-gear:before {
-  content: "\e018";
+.wikiglyph-gear:before {
+	content: "\e018";
 }
-.wikicon-ellipsis:before {
-  content: "\e019";
+.wikiglyph-ellipsis:before {
+	content: "\e019";
 }
-.wikicon-envelope:before {
-  content: "\e020";
+.wikiglyph-envelope:before {
+	content: "\e020";
 }
-.wikicon-pin:before {
-  content: "\e021";
+.wikiglyph-pin:before {
+	content: "\e021";
 }
-.wikicon-caret:before {
-  content: "\e022";
+.wikiglyph-share:before {
+	content: "\e022";
 }
-.wikicon-download:before {
-  content: "\e023";
+.wikiglyph-download:before {
+	content: "\e023";
+}
+.wikiglyph-bell:before {
+	content: "\e025";
+}
+.wikiglyph-bell-ring:before {
+	content: "\e026";
+}
+.wikiglyph-caret-left:before {
+	content: "\e027";
+}
+.wikiglyph-caret-down:before {
+	content: "\e028";
+}
+
+
+/* EXPERIMENTS e300-301
+*/
+.wikiglyph-star-circle:before {
+	content: "\e300";
+}
+.wikiglyph-rocket:before {
+	content: "\e301";
 }
 
 
 /* STRIPES e040-043
 */
-.wikicon-stripe-compact:before {
-  content: "\e040";
+.wikiglyph-stripe-compact:before {
+	content: "\e040";
 }
-.wikicon-stripe-toc:before {
-  content: "\e041";
+.wikiglyph-stripe-toc:before {
+	content: "\e041";
 }
-.wikicon-stripe-expanded:before {
-  content: "\e042";
+.wikiglyph-stripe-expanded:before {
+	content: "\e042";
 }
 
 
-/* WIKIPEDIA LOGO e400
+/* WIKIPEDIA LOGO e400-401
 */
 
-.wikicon-w:before {
-  content: "\e400";
+.wikiglyph-w:before {
+	content: "\e400";
 }
 
 
 /* UI MODERATION ELEMENTS e500-508
 */
-.wikicon-article:before {
-  content: "\e100";
+
+.wikiglyph-article:before {
+	content: "\e100";
 }
-.wikicon-article-check:before {
-  content: "\e101";
+.wikiglyph-article-check:before {
+	content: "\e101";
 }
-.wikicon-article-search:before {
-  content: "\e102";
+.wikiglyph-article-search:before {
+	content: "\e102";
 }
 
-.wikicon-trash:before {
-  content: "\e500";
+.wikiglyph-trash:before {
+	content: "\e500";
 }
-.wikicon-trash-slash:before {
-  content: "\e501";
+.wikiglyph-trash-slash:before {
+	content: "\e501";
 }
-.wikicon-block:before {
-  content: "\e502";
+.wikiglyph-block:before {
+	content: "\e502";
 }
-.wikicon-block-slash:before {
-  content: "\e503";
+.wikiglyph-block-slash:before {
+	content: "\e503";
 }
-.wikicon-flag:before {
-  content: "\e504";
+.wikiglyph-flag:before {
+	content: "\e504";
 }
-.wikicon-flag-slash:before {
-  content: "\e505";
+.wikiglyph-flag-slash:before {
+	content: "\e505";
 }
-.wikicon-play:before {
-  content: "\e506";
+.wikiglyph-play:before {
+	content: "\e506";
 }
-.wikicon-stop:before {
-  content: "\e507";
+.wikiglyph-stop:before {
+	content: "\e507";
 }
-.wikicon-lock:before {
-  content: "\e508";
+.wikiglyph-lock:before {
+	content: "\e508";
 }
+
 
 /* USER e600-602
 */
-.wikicon-user-bust:before {
-  content: "\e600";
+.wikiglyph-user-bust:before {
+	content: "\e600";
 }
-.wikicon-user-smile:before {
-  content: "\e601";
+.wikiglyph-user-smile:before {
+	content: "\e601";
 }
-.wikicon-user-sleep:before {
-  content: "\e602";
+.wikiglyph-user-sleep:before {
+	content: "\e602";
 }
+
 
 /* TRANSLATION e700
 */
-.wikicon-translate:before {
-  content: "\e700";
+.wikiglyph-translate:before {
+	content: "\e700";
 }
+
 
 /* CONTRIBUTION e800-845
 */
-.wikicon-pencil:before {
-  content: "\e800";
+.wikiglyph-pencil:before {
+	content: "\e800";
 }
-.wikicon-pencil-revert:before {
-  content: "\e801";
+.wikiglyph-pencil-revert-full:before {
+	content: "\e801";
 }
-.wikicon-pencil-lock:before {
-  content: "\e802";
+.wikiglyph-pencil-revert-pt1:before {
+	content: "\e802";
+}
+.wikiglyph-pencil-revert-pt2:before {
+	content: "\e803";
+}
+.wikiglyph-pencil-lock-full:before {
+	content: "\e804";
+}
+.wikiglyph-pencil-lock-pt1:before {
+	content: "\e805";
+}
+.wikiglyph-pencil-lock-pt2:before {
+	content: "\e806";
+}
+.wikiglyph-speech-bubble:before {
+	content: "\e810";
+}
+.wikiglyph-speech-bubbles:before {
+	content: "\e811";
+}
+.wikiglyph-speech-bubble-add:before {
+	content: "\e812";
+}
+.wikiglyph-speech-bubble-smile:before {
+	content: "\e813";
+}
+.wikiglyph-link:before {
+	content: "\e820";
+}
+.wikiglyph-quotes:before {
+	content: "\e830";
+}
+.wikiglyph-quotes-add:before {
+	content: "\e831";
+}
+.wikiglyph-image:before {
+	content: "\e840";
+}
+.wikiglyph-image-lock-full:before {
+	content: "\e841";
+}
+.wikiglyph-image-lock-pt1:before {
+	content: "\e842";
+}
+.wikiglyph-image-lock-pt2:before {
+	content: "\e843";
+}
+.wikiglyph-image-add-full:before {
+	content: "\e844";
+}
+.wikiglyph-image-add-pt1:before {
+	content: "\e845";
+}
+.wikiglyph-image-add-pt2:before {
+	content: "\e846";
+}
+.wikiglyph-image-main-placeholder:before {
+	content: "\e847";
+}
+.wikiglyph-folder:before {
+	content: "\e848";
+}
+.wikiglyph-folder-main-placeholder:before {
+	content: "\e849";
 }
 
-.wikicon-speech-bubble:before {
-  content: "\e810";
+.wikiglyph-cc:before {
+	content: "\e870";
 }
-.wikicon-speech-bubbles:before {
-  content: "\e811";
+.wikiglyph-book:before {
+	content: "\e871";
 }
-.wikicon-speech-bubble-add:before {
-  content: "\e812";
+.wikiglyph-journal:before {
+	content: "\e872";
 }
-.wikicon-speech-bubble-smile:before {
-  content: "\e813";
+.wikiglyph-web:before {
+	content: "\e873";
 }
-
-.wikicon-link:before {
-  content: "\e820";
-}
-
-.wikicon-quotes:before {
-  content: "\e830";
-}
-.wikicon-quotes-add:before {
-  content: "\e831";
+.wikiglyph-news:before {
+	content: "\e874";
 }
 
-.wikicon-image:before {
-  content: "\e840";
-}
-.wikicon-image-lock:before {
-  content: "\e841";
-}
-.wikicon-image-add:before {
-  content: "\e842";
-}
-.wikicon-image-main-placeholder:before {
-  content: "\e843";
-}
-.wikicon-folder:before {
-  content: "\e844";
-}
-.wikicon-folder-main-placeholder:before {
-  content: "\e845";
-}
 
-/* WIKI-X e900
+
+/* WIKI-X e900+
 */
-.wikicon-wikitrail:before {
-  content: "\e900";
+.wikiglyph-wikitrail:before {
+	content: "\e900";
+}
+.wikiglyph-wikicommons:before {
+	content: "\e901";
 }
 
 @media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
