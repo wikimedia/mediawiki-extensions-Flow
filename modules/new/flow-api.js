@@ -20,6 +20,19 @@ window.mw = window.mw || {}; // mw-less testing
 					}
 				}
 			}
+			return queryMap;
+		},
+		// Replaces topic_ with vtl
+		'topiclist-view': function ( queryMap ) {
+			for ( var key in queryMap ) {
+				if ( queryMap.hasOwnProperty(key) ) {
+					if ( key.indexOf( 'topiclist_' ) === 0 ) {
+						queryMap[ key.replace( 'topiclist_', 'vtl' ) ] = queryMap[ key ];
+						delete queryMap[ key ];
+					}
+				}
+			}
+			return queryMap;
 		}
 	};
 
@@ -123,8 +136,8 @@ window.mw = window.mw || {}; // mw-less testing
 		queryMap.action    = 'flow';
 
 		// Use the API map to transform this data if necessary, eg.
-		if ( apiTransformMap[ queryMap.action ] ) {
-			return apiTransformMap[ queryMap.action ]( queryMap );
+		if ( apiTransformMap[ queryMap.submodule ] ) {
+			return apiTransformMap[ queryMap.submodule ]( queryMap );
 		}
 
 		// No transform, just return the query map as-is
@@ -164,7 +177,7 @@ window.mw = window.mw || {}; // mw-less testing
 			return $deferred.rejectWith( { error: 'Not an anchor' } );
 		}
 
-		if ( !( queryMap = flowApiGetQueryMap( anchor.href ) ) ) {
+		if ( !( queryMap = this.getQueryMap( anchor.href ) ) ) {
 			mw.flow.debug( '[FlowAPI] requestFromAnchor error: invalid href', arguments );
 			return $deferred.rejectWith( { error: 'Invalid href' } );
 		}
