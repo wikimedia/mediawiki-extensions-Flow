@@ -194,6 +194,7 @@
 	"flow-notification-link-text-view-topic": "Ver el tema",
 	"flow-notification-reply-email-subject": "$1 respondió a tu publicación",
 	"flow-notification-reply-email-batch-body": "$1 respondió a tu publicación en «$2» en «$3»",
+	"flow-notification-mention-email-subject": "$1 te mencionó en «$2»",
 	"echo-category-title-flow-discussion": "Flow",
 	"echo-pref-tooltip-flow-discussion": "Notificarme cuando se produzcan acciones relacionadas conmigo en Flow.",
 	"flow-link-topic": "tema",
