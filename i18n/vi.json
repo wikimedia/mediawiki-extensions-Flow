@@ -286,5 +286,6 @@
 	"flow-special-type-post": "Bài đăng",
 	"flow-special-type-workflow": "Luồng làm việc",
 	"flow-special-uuid": "UUID",
-	"flow-special-invalid-uuid": "Không tìm thấy nội dung ứng với kiểu và UUID."
+	"flow-special-invalid-uuid": "Không tìm thấy nội dung ứng với kiểu và UUID.",
+	"flow-spam-confirmedit": "Những người vô danh không có phép gửi liên kết ngoài.\nXin hãy mở tài khoản."
 }
