@@ -16,6 +16,24 @@
       "revId": "a115f9cd8da52220651c9dacfb71d73e6920217b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_a1fa5371",
+        "filename": "includes/api/ApiFlowViewHeader.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-12T21:03:19Z",
+      "side": 1,
+      "message": "its alphadecimal actually.  could be an argument for adding a new param type, but since the validation is hardcoded within the ~200 line ApiBase::getParametersFromSettings its probably not worth the effort",
+      "parentUuid": "ee391fd1_3ee8c2dc",
+      "revId": "a115f9cd8da52220651c9dacfb71d73e6920217b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
