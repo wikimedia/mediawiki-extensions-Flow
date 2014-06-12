@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_e1861b6a",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-06-12T20:11:49Z",
+      "side": 0,
+      "message": "Needs update for queryMap",
+      "revId": "00faa448024655a755479f9706e76bbd8869f4e9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
