@@ -118,7 +118,7 @@ window.mw = window.mw || {}; // mw-less testing
 		}
 
 		// Submodule is the action
-		queryMap.submodule = queryMap.action;
+		queryMap.submodule = queryMap.action || 'view';
 		// and the API action is always flow
 		queryMap.action    = 'flow';
 
