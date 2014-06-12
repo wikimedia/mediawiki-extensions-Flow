@@ -71,7 +71,7 @@
 		</div>
 
 		<div class="flow-menu">
-			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
+			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-post-actions" title="'.htmlentities(((is_array($in) && isset($in['flow-post-actions'])) ? $in['flow-post-actions'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 			<ul class="flow-ui-button-container">
 				'.LCRun3::ifv($cx, ((is_array($in['links']) && isset($in['links']['post'])) ? $in['links']['post'] : null), $in, function($cx, $in) {return '
 					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="'.htmlentities(((is_array($in['links']['post']) && isset($in['links']['post']['url'])) ? $in['links']['post']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['post']) && isset($in['links']['post']['title'])) ? $in['links']['post']['title'] : null), ENT_QUOTES, 'UTF-8').'"> <span class="wikiglyph wikiglyph-link"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-post-action-view'), 'encq').'</a></li>

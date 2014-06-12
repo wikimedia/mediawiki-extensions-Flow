@@ -119,7 +119,7 @@
 		<span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">'.htmlentities(((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
 
 		<div class="flow-menu">
-			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
+			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-topic-actions" title="'.htmlentities(((is_array($in) && isset($in['flow-topic-actions'])) ? $in['flow-topic-actions'] : null), ENT_QUOTES, 'UTF-8').'"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 			<ul class="flow-ui-button-container">
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
 					<li>
