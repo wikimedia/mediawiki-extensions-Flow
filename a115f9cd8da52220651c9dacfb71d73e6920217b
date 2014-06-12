@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_3ee8c2dc",
+        "filename": "includes/api/ApiFlowViewHeader.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2014-06-12T19:08:37Z",
+      "side": 1,
+      "message": "Is this an integer? You can set \u0027revId\u0027 \u003d\u003e array( ApiBase::PARAM_TYPE \u003d\u003e \u0027integer\u0027 ), if so.",
+      "revId": "a115f9cd8da52220651c9dacfb71d73e6920217b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
