@@ -3,6 +3,12 @@
 use Flow\Anchor;
 use Flow\Model\UUID;
 
+/**
+ * This API is deprecated and should not be used. Instead use
+ * ApiFlowView(Header|Post|Topic|TopicList|TopicSummary)
+ *
+ * @deprecated
+ */
 class ApiQueryFlow extends ApiQueryBase {
 	protected $loader, $workflow, $definition, $container;
 
@@ -48,6 +54,7 @@ class ApiQueryFlow extends ApiQueryBase {
 		} );
 
 		$this->getResult()->addValue( 'query', $this->getModuleName(), $result );
+		$this->setWarning( 'This API is deprecated and should not be used. Instead use ApiFlowView(Header|Post|Topic|TopicList|TopicSummary).' );
 	}
 
 	public function getAllowedParams() {

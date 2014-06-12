@@ -65,8 +65,13 @@ class TopicBlock extends AbstractBlock {
 	);
 
 	protected $supportedGetActions = array(
+<<<<<<< HEAD   (87673e Fix caret CSS class)
 		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'post-view',
 		'moderate-topic', 'moderate-post', 'close-open-topic',
+=======
+		'view', 'topic-view', 'post-view',
+		'history', 'edit-post', 'edit-title', 'compare-post-revisions',
+>>>>>>> BRANCH (33e5cc Localisation updates from https://translatewiki.net.)
 	);
 
 	// @Todo - fill in the template names
@@ -561,6 +566,7 @@ class TopicBlock extends AbstractBlock {
 			return null;
 		}
 
+<<<<<<< HEAD   (87673e Fix caret CSS class)
 		return array(
 			'roots' => array( $serialized['postId'] ),
 			'posts' => array(
@@ -571,6 +577,53 @@ class TopicBlock extends AbstractBlock {
 			),
 			'board' => $this->renderBoardTitle(),
 		);
+=======
+		$output = array();
+		$output['post-id'] = $post->getPostId()->getAlphadecimal();
+		$output['revision-id'] = $post->getRevisionId()->getAlphadecimal();
+		$contentFormat = $post->getContentFormat();
+
+		// This may force a round trip through parsoid for the wikitext when
+		// posts are stored as html, as such it should only be used when
+		// actually needed
+		if ( isset( $options['contentFormat'] ) ) {
+			$contentFormat = $options['contentFormat'];
+		}
+
+		if ( $post->isModerated() ) {
+			$output['post-moderated'] = 'post-moderated';
+		} else {
+			$output['content'] = array(
+				'*' => $templating->getContent( $post, $contentFormat ),
+				'format' => $contentFormat
+			);
+			$output['user'] = $templating->getCreatorText( $post );
+		}
+
+		if ( !isset( $options['no-children'] ) || !$options['no-children'] ) {
+			$children = array( 'element' => 'post' );
+
+			foreach( $post->getChildren() as $child ) {
+				$res = $this->renderPostAPI( $templating, $child, $result, $options );
+				if ( $res !== null ) {
+					$children[] = $res;
+				}
+			}
+
+			$result->setIndexedTagName( $children, 'post' );
+
+			if ( count( $children ) > 1 ) {
+				$output['replies'] = $children;
+			}
+		}
+
+		$postId = $post->getPostId()->getAlphadecimal();
+		if ( isset( $options['history'][$postId] ) ) {
+			$output['revisions'] = $this->getAPIHistory( $templating, $postId, $result, $options['history'][$postId] );
+		}
+
+		return $output;
+>>>>>>> BRANCH (33e5cc Localisation updates from https://translatewiki.net.)
 	}
 
 	protected function getRevisionFormatter() {

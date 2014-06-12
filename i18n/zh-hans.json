@@ -296,5 +296,6 @@
 	"flow-special-type-post": "帖子",
 	"flow-special-type-workflow": "工作流",
 	"flow-special-uuid": "UUID",
-	"flow-special-invalid-uuid": "无法找到与指定类型和UUID匹配的内容。"
+	"flow-special-invalid-uuid": "无法找到与指定类型和UUID匹配的内容。",
+	"flow-spam-confirmedit": "作为匿名用户，您不能加入外部链接。请注册一个账户。"
 }

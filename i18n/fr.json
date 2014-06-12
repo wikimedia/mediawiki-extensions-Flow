@@ -297,5 +297,6 @@
 	"flow-special-type-post": "Note",
 	"flow-special-type-workflow": "Flux de travail",
 	"flow-special-uuid": "UUID",
-	"flow-special-invalid-uuid": "Impossible de trouver un contenu correspondant au type et à l’UUID."
+	"flow-special-invalid-uuid": "Impossible de trouver un contenu correspondant au type et à l’UUID.",
+	"flow-spam-confirmedit": "En tant qu’utilisateur anonyme, vous ne pouvez pas soumettre de liens externes. Veuillez vous inscrire pour avoir un compte."
 }

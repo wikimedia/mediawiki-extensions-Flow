@@ -27,6 +27,7 @@ class TopicListBlock extends AbstractBlock {
 	/**
 	 * @var array
 	 */
+<<<<<<< HEAD   (87673e Fix caret CSS class)
 	protected $supportedGetActions = array( 'view' );
 
 	// @Todo - fill in the template names
@@ -36,6 +37,9 @@ class TopicListBlock extends AbstractBlock {
 		// to render submission errors
 		'new-topic' => '',
 	);
+=======
+	protected $supportedGetActions = array( 'view', 'topiclist-view' );
+>>>>>>> BRANCH (33e5cc Localisation updates from https://translatewiki.net.)
 
 	/**
 	 * @var Workflow|null
@@ -237,17 +241,17 @@ class TopicListBlock extends AbstractBlock {
 		// Compute offset/limit
 		$limit = $this->getLimit( $requestOptions );
 
-		if ( isset( $requestOptions['offset-id'] ) ) {
+		if ( isset( $requestOptions['offset-id'] ) && $requestOptions['offset-id'] ) {
 			$findOptions['pager-offset'] = UUID::create( $requestOptions['offset-id'] );
-		} elseif ( isset( $requestOptions['offset'] ) ) {
+		} elseif ( isset( $requestOptions['offset'] ) && $requestOptions['offset'] ) {
 			$findOptions['pager-offset'] = intval( $requestOptions['offset'] );
 		}
 
-		if ( isset( $requestOptions['offset-dir'] ) ) {
+		if ( isset( $requestOptions['offset-dir'] ) && $requestOptions['offset-dir'] ) {
 			$findOptions['pager-dir'] = $requestOptions['offset-dir'];
 		}
 
-		if ( isset( $requestOptions['api'] ) ) {
+		if ( isset( $requestOptions['api'] ) && $requestOptions['api'] ) {
 			$findOptions['offset-elastic'] = false;
 		}
 

@@ -189,8 +189,11 @@
 	"flow-notification-edit-bundle": "$1 y {{PLURAL:$6|$5 más|otros $5}} {{GENDER:$1|editaron}} una <span class=\"plainlinks\">[$4 publicación]</span> en \"$2\" el \"$3\".",
 	"flow-notification-newtopic": "$1 creó un <span class=\"plainlinks\">[$5 tema nuevo]</span> en [[$2|$3]]: $4.",
 	"flow-notification-rename": "$1 cambió el título de <span class=\"plainlinks\">[$2 $3]</span> a «$4» en [[$5|$6]].",
+	"flow-notification-mention": "$1 te mencionó en su <span class=\"plainlinks\">[$2 publicación]</span> en «$3» en «$4».",
 	"flow-notification-link-text-view-post": "Ver la entrada",
 	"flow-notification-link-text-view-topic": "Ver el tema",
+	"flow-notification-reply-email-subject": "$1 respondió a tu publicación",
+	"flow-notification-reply-email-batch-body": "$1 respondió a tu publicación en «$2» en «$3»",
 	"echo-category-title-flow-discussion": "Flow",
 	"echo-pref-tooltip-flow-discussion": "Notificarme cuando se produzcan acciones relacionadas conmigo en Flow.",
 	"flow-link-topic": "tema",
@@ -234,5 +237,6 @@
 	"flow": "Flujo",
 	"flow-special-type": "Tipo",
 	"flow-special-type-workflow": "Flujo de trabajo",
-	"flow-special-uuid": "UUID"
+	"flow-special-uuid": "UUID",
+	"flow-spam-confirmedit": "Como usuario anónimo, no puedes enviar enlaces externos. Crea una cuenta."
 }

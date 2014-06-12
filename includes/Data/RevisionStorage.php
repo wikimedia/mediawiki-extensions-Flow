@@ -164,8 +164,7 @@ abstract class RevisionStorage extends DbStorage {
 			}
 		}
 
-		// Fetches content for all revisions flagged 'external'
-		return self::mergeExternalContent( $res );
+		return $res;
 	}
 
 	protected function fallbackFindMulti( array $queries, array $options ) {
