@@ -8,9 +8,20 @@ window.mw = window.mw || {}; // mw-less testing
 	mw.flow = mw.flow || {}; // create mw.flow globally
 
 	var apiTransformMap = {
-		// Replaces topic_ with mp for moderate-post actions
+		// Map of API submodule name, block name, and prefix name
 		'moderate-post': [ 'topic_', 'mp' ],
-		'topiclist-view': [ 'topiclist_', 'vtl' ]
+		'new-topic': [ 'topiclist_', 'nt' ],
+		'edit-header': [ 'header_' , 'eh' ],
+		'edit-post': [ 'topic_', 'ep' ],
+		'reply': [ 'topic_', 'rep' ],
+		'moderate-topic': [ 'topic_', 'mt' ],
+		'edit-title': [ 'topic_', 'et' ],
+		// 'close-open-topic': [ 'topic_', 'cot' ], // @todo this is both topic and topicsummary
+		'topiclist-view': [ 'topiclist_', 'vtl' ],
+		'post-view': [ 'topic', 'vp' ],
+		'topic-view': [ 'topic', 'vt' ],
+		'header-view': [ 'header_', 'vh' ],
+		'topic-summary-view': [ 'topicsummary_', 'vts' ]
 	};
 
 	/**
