@@ -1,6 +1,7 @@
 <?php
 
 use Flow\Block\AbstractBlock;
+use Flow\Anchor;
 
 abstract class ApiFlowBaseGet extends ApiFlowBase {
 	public function execute() {
@@ -44,6 +45,13 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		} else {
 			$blocks = array_keys($output[$action]['result']);
 			$this->getResult()->setIndexedTagName( $blocks, 'block' );
+
+			// Required until php5.4 which has the JsonSerializable interface
+			array_walk_recursive( $output, function( &$value ) {
+				if ( $value instanceof Anchor ) {
+					$value = $value->toArray();
+				}
+			} );
 		}
 
 		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );

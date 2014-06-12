@@ -47,6 +47,13 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			foreach( $blocksToCommit as $block ) {
 				$output[$action]['result'][$block->getName()] = $block->renderAPI( \Flow\Container::get( 'templating' ), $parameters[$block->getName()] );
 			}
+
+			// required until php5.4 which has the JsonSerializable interface
+			array_walk_recursive( $output, function( &$value ) {
+				if ( $value instanceof Anchor ) {
+					$value = $value->toArray();
+				}
+			} );
 			if ( $isNew && !$workflow->isNew() ) {
 				// Workflow was just created, ensure its underlying page is owned by flow
 				$controller->ensureFlowRevision( $article );
