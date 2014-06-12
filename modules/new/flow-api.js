@@ -7,21 +7,33 @@ window.mw = window.mw || {}; // mw-less testing
 ( function ( mw, $ ) {
 	mw.flow = mw.flow || {}; // create mw.flow globally
 
-	// Transforms URL request parameters into API params
-	// @todo fix it server-side so we don't need this client-side
 	var apiTransformMap = {
 		// Replaces topic_ with mp for moderate-post actions
-		'moderate-post': function ( queryMap ) {
-			for ( var key in queryMap ) {
-				if ( queryMap.hasOwnProperty(key) ) {
-					if ( key.indexOf( 'topic_' ) === 0 ) {
-						queryMap[ key.replace( 'topic_', 'mp' ) ] = queryMap[ key ];
-						delete queryMap[ key ];
-					}
+		'moderate-post': ['topic_', 'mp']
+	};
+
+	/**
+	 * Transforms URL request parameters into API params
+	 * @todo fix it server-side so we don't need this client-side
+	 * @param {Object} queryMap
+	 * @returns {Object}
+	 */
+	function transformMap( queryMap ) {
+		var map = apiTransformMap[queryMap.submodule];
+		if ( !map ) {
+			return queryMap;
+		}
+		for ( var key in queryMap ) {
+			if ( queryMap.hasOwnProperty(key) ) {
+				if ( key.indexOf( map[0] ) === 0 ) {
+					queryMap[ key.replace( map[0], map[1] ) ] = queryMap[ key ];
+					delete queryMap[ key ];
 				}
 			}
 		}
-	};
+
+		return queryMap;
+	}
 
 	/**
 	 * Handles Flow API calls. Each FlowComponent has its own instance of FlowAPI as component.API,
@@ -123,12 +135,7 @@ window.mw = window.mw || {}; // mw-less testing
 		queryMap.action    = 'flow';
 
 		// Use the API map to transform this data if necessary, eg.
-		if ( apiTransformMap[ queryMap.action ] ) {
-			return apiTransformMap[ queryMap.action ]( queryMap );
-		}
-
-		// No transform, just return the query map as-is
-		return queryMap;
+		return transformMap( queryMap );
 	}
 
 	FlowAPI.prototype.getQueryMap = flowApiGetQueryMap;
