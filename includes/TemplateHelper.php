@@ -110,7 +110,6 @@ class TemplateHelper {
 					'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
 					'timestamp' => 'Flow\TemplateHelper::timestamp',
 					'html' => 'Flow\TemplateHelper::html',
-					'ifEquals' => 'Flow\TemplateHelper::ifEquals',
 					'block' => 'Flow\TemplateHelper::block',
 					'author' => 'Flow\TemplateHelper::author',
 					'url' => 'Flow\TemplateHelper::url',
@@ -129,6 +128,7 @@ class TemplateHelper {
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
 					'pipelist' => 'Flow\TemplateHelper::pipelist',
+					'ifEquals' => 'Flow\TemplateHelper::ifEquals',
 				),
 			)
 		);
