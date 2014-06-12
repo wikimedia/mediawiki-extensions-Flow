@@ -7,20 +7,10 @@ window.mw = window.mw || {}; // mw-less testing
 ( function ( mw, $ ) {
 	mw.flow = mw.flow || {}; // create mw.flow globally
 
-	// Transforms URL request parameters into API params
-	// @todo fix it server-side so we don't need this client-side
 	var apiTransformMap = {
 		// Replaces topic_ with mp for moderate-post actions
-		'moderate-post': function ( queryMap ) {
-			for ( var key in queryMap ) {
-				if ( queryMap.hasOwnProperty(key) ) {
-					if ( key.indexOf( 'topic_' ) === 0 ) {
-						queryMap[ key.replace( 'topic_', 'mp' ) ] = queryMap[ key ];
-						delete queryMap[ key ];
-					}
-				}
-			}
-		}
+		'moderate-post': [ 'topic_', 'mp' ],
+		'topiclist-view': [ 'topiclist_', 'vtl' ]
 	};
 
 	/**
@@ -99,6 +89,29 @@ window.mw = window.mw || {}; // mw-less testing
 	FlowAPI.prototype.setWorkflowId = flowApiSetWorkflowId;
 
 	/**
+	 * Transforms URL request parameters into API params
+	 * @todo fix it server-side so we don't need this client-side
+	 * @param {Object} queryMap
+	 * @returns {Object}
+	 */
+	function flowApiTransformMap( queryMap ) {
+		var map = apiTransformMap[ queryMap.submodule ];
+		if ( !map ) {
+			return queryMap;
+		}
+		for ( var key in queryMap ) {
+			if ( queryMap.hasOwnProperty( key ) ) {
+				if ( key.indexOf( map[0] ) === 0 ) {
+					queryMap[ key.replace( map[0], map[1] ) ] = queryMap[ key ];
+					delete queryMap[ key ];
+				}
+			}
+		}
+
+		return queryMap;
+	}
+
+	/**
 	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
 	 * @param {String} url
 	 * @returns {Object}
@@ -123,12 +136,7 @@ window.mw = window.mw || {}; // mw-less testing
 		queryMap.action    = 'flow';
 
 		// Use the API map to transform this data if necessary, eg.
-		if ( apiTransformMap[ queryMap.action ] ) {
-			return apiTransformMap[ queryMap.action ]( queryMap );
-		}
-
-		// No transform, just return the query map as-is
-		return queryMap;
+		return flowApiTransformMap( queryMap );
 	}
 
 	FlowAPI.prototype.getQueryMap = flowApiGetQueryMap;
@@ -164,7 +172,7 @@ window.mw = window.mw || {}; // mw-less testing
 			return $deferred.rejectWith( { error: 'Not an anchor' } );
 		}
 
-		if ( !( queryMap = flowApiGetQueryMap( anchor.href ) ) ) {
+		if ( !( queryMap = this.getQueryMap( anchor.href ) ) ) {
 			mw.flow.debug( '[FlowAPI] requestFromAnchor error: invalid href', arguments );
 			return $deferred.rejectWith( { error: 'Invalid href' } );
 		}
