@@ -276,34 +276,21 @@ class TopicSummaryBlock extends AbstractBlock {
 			);
 		}
 
-		$formatter = Container::get( 'formatter.revision' );
-		if ( in_array( $this->action, $this->requiresWikitext ) ) {
-			$formatter->setContentFormat( 'wikitext' );
-		}
 		switch ( $this->action ) {
 			case 'topic-summary-view':
 				// @Todo - duplicated logic in other single view block
-				if ( isset( $options['revId'] ) ) {
+				if ( isset( $options['revId'] ) && $options['revId'] ) {
 					$row = Container::get( 'query.postsummary.view' )->getSingleViewResult( $options['revId'] );
 					$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
 				} else {
-					$output['revision'] = $formatter->formatApi(
-						$this->formatterRow, \RequestContext::getMain()
-					);
+					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
+						$this->requiresWikitext[] = 'topic-summary-view';
+					}
+					$output += $this->renderNewestTopicSummary();
 				}
 				break;
 			case 'edit-topic-summary':
-				if ( $this->formatterRow ) {
-					$output['revision'] = $formatter->formatApi(
-						$this->formatterRow, \RequestContext::getMain()
-					);
-				} else {
-					$output['revision']['actions']['edit'] = Container::get( 'url_generator' )
-						->editTopicSummaryAction(
-							$this->workflow->getArticleTitle(),
-							$this->workflow->getId()
-						);
-				}
+				$output += $this->renderNewestTopicSummary();
 				break;
 			case 'compare-postsummary-revisions':
 				// @Todo - duplicated logic in other diff view block
@@ -321,6 +308,27 @@ class TopicSummaryBlock extends AbstractBlock {
 				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
 
+		return $output;
+	}
+
+	protected function renderNewestTopicSummary() {
+		$output = array();
+		$formatter = Container::get( 'formatter.revision' );
+
+		if ( in_array( $this->action, $this->requiresWikitext ) ) {
+			$formatter->setContentFormat( 'wikitext' );
+		}
+		if ( $this->formatterRow ) {
+			$output['revision'] = $formatter->formatApi(
+				$this->formatterRow, \RequestContext::getMain()
+			);
+		} else {
+			$output['revision']['actions']['edit'] = Container::get( 'url_generator' )
+				->editTopicSummaryAction(
+					$this->workflow->getArticleTitle(),
+					$this->workflow->getId()
+				);
+		}
 		return $output;
 	}
 
