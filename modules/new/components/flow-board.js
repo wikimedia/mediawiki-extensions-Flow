@@ -21,6 +21,9 @@
 			return parentReturn;
 		}
 
+		// Default API submodule for FlowBoard URLs is to fetch a topiclist
+		this.API.setDefaultSubmodule( 'topiclist-view' );
+
 		// Instantiate this FlowBoardComponent
 		// First, find our elements.
 		this.$header = $container.find( '.flow-board-header' );
