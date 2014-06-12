@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_3e40c2a7",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-12T19:28:49Z",
+      "side": 1,
+      "message": "I\u0027m ok with this, but please name the function flowApiTransformMap per naming conventions in this file. In addition, move it below the declaration of FlowAPI, which is the main definition in this file.",
+      "revId": "a5b452532937b187ba5143c6d561062c0a92cc9c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_7e152a9c",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-12T19:28:49Z",
+      "side": 1,
+      "message": "Please implement my change from https://gerrit.wikimedia.org/r/#/c/139179/1/modules/new/flow-api.js\nso then I can abandon that revision.",
+      "revId": "a5b452532937b187ba5143c6d561062c0a92cc9c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
