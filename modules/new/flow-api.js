@@ -77,6 +77,8 @@ window.mw = window.mw || {}; // mw-less testing
 	FlowAPI.prototype.pageName = null;
 	/** @type {String} */
 	FlowAPI.prototype.workflowId = null;
+	/** @type {String} */
+	FlowAPI.prototype.defaultSubmodule = null;
 
 	/**
 	 * Sets the fixed pageName for this API instance.
@@ -99,6 +101,16 @@ window.mw = window.mw || {}; // mw-less testing
 	FlowAPI.prototype.setWorkflowId = flowApiSetWorkflowId;
 
 	/**
+	 * Sets the fixed defaultSubmodule for this API instance.
+	 * @param {String} defaultSubmodule
+	 */
+	function flowApiSetDefaultSubmodule( defaultSubmodule ) {
+		this.defaultSubmodule = defaultSubmodule;
+	}
+
+	FlowAPI.prototype.setDefaultSubmodule = flowApiSetDefaultSubmodule;
+
+	/**
 	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
 	 * @param {String} url
 	 * @returns {Object}
@@ -118,7 +130,7 @@ window.mw = window.mw || {}; // mw-less testing
 		}
 
 		// Submodule is the action
-		queryMap.submodule = queryMap.action;
+		queryMap.submodule = queryMap.action || this.defaultSubmodule;
 		// and the API action is always flow
 		queryMap.action    = 'flow';
 
