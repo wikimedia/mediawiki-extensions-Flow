@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_fc4922d4",
+        "filename": "handlebars/flow_block_header_edit.handlebars",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-12T21:56:48Z",
+      "side": 1,
+      "message": "one of the goals in patch  I2a2325d8c05978c5bf0edf602ec28573fea919e7\n\nis so this can use \n\n    data-flow-interactive-handler\u003d\"apiRequest\" data-flow-api-handler\u003d\"submitHeader\"\n\nwhich would merge the form action with the form data and ship it out as an API request, leaving the submitHeader handler to just process the result.",
+      "revId": "19d5c28284a8e194ccd4b864cb7113c0136c4b19",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_fc5a4221",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-12T21:56:48Z",
+      "side": 1,
+      "message": "iirc coding conventions require unset keys to be first, then set keys on per line, ex:\n\n    var key\n        map \u003d apiTransformMap[queryMap.submodule];\n\nAdditionally i think coding standards dont require the extra spaces inside [ ]",
+      "revId": "19d5c28284a8e194ccd4b864cb7113c0136c4b19",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
