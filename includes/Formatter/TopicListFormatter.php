@@ -26,7 +26,6 @@ class TopicListFormatter {
 			'revisions' => array(),
 			'links' => array( 'pagination' => array() ),
 			'actions' => $this->buildApiActions( $workflow ),
-			'sortby' => 'newest',
 			'submitted' => array(),
 		);
 	}

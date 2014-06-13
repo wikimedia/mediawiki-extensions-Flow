@@ -19,6 +19,13 @@ use Flow\Exception\FlowException;
 
 class TopicListBlock extends AbstractBlock {
 
+	private static $defaultOptions = array(
+		'offset-dir' => 'fwd',
+		'sortby' => 'newest',
+		'offset-id' => '',
+		'limit' => 10,
+	);
+
 	/**
 	 * @var array
 	 */
@@ -194,6 +201,7 @@ class TopicListBlock extends AbstractBlock {
 			'submitted' => $this->wasSubmitted() ? $this->submitted : $options,
 			'errors' => $this->errors,
 		);
+		$response['submitted'] += self::$defaultOptions;
 
 		if ( $this->workflow->isNew() ) {
 			return $response + $serializer->buildEmptyResult( $this->workflow );
