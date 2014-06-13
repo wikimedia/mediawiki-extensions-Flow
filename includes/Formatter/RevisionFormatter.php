@@ -347,7 +347,7 @@ class RevisionFormatter {
 
 			case 'close-topic':
 				// close topic link is only available to topic workflow
-				if( $workflow->getType() !== 'topic' ) {
+				if( !in_array( $workflow->getType(), array( 'topic', 'topicsummary' ) ) ) {
 					continue;
 				}
 				$links['close'] = $this->urlGenerator->closeTopicAction( $title, $workflowId );
@@ -356,7 +356,7 @@ class RevisionFormatter {
 			// Need to use 'edit-topic-summary' to match FlowActions
 			case 'edit-topic-summary':
 				// summarize link is only available to topic workflow
-				if( $workflow->getType() !== 'topic' ) {
+				if( !in_array( $workflow->getType(), array( 'topic', 'topicsummary' ) ) ) {
 					continue;
 				}
 				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
