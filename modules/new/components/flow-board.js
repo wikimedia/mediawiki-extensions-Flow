@@ -668,6 +668,7 @@
 				.on(
 					'click.FlowBoardComponent keypress.FlowBoardComponent',
 					'a, input, button, .flow-click-interactive',
+					'a[data-flow-interactive-handler], input[data-flow-interactive-handler], button[data-flow-interactive-handler], .flow-click-interactive[data-flow-interactive-handler]',
 					FlowBoardComponent.UI.events.onClickInteractive
 				)
 				.on( // @todo REMOVE. This is just to stop from following empty links in demo.
