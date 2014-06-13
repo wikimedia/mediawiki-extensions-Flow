@@ -5,15 +5,8 @@
 	{{> flow_newtopic_form}}
 
 	<div class="flow-topics">
-		{{#each roots}}
-			<!-- eachPost topiclist -->
-			{{#eachPost @root this}}
-				{{> flow_topic}}
-			{{/eachPost}}
-		{{/each}}
+		{{> flow_topiclist_loop}}
 	</div>
 
-	{{#if links.pagination.fwd}}
-		<a href="{{links.pagination.fwd.url}}" title="{{links.pagination.fwd.title}}" class="flow-ui-button flow-ui-progressive /*flow-ui-quiet flow-ui-thin*/"><span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-load-more"}}</a>
-	{{/if}}
+	{{> flow_load_more}}
 </div>

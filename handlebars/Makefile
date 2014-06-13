@@ -6,7 +6,9 @@
 COMPILE=php ../maintenance/compileLightncandy.php
 
 TOPIC_SUBTEMPLATES= flow_topic.handlebars \
-		flow_reply_form.handlebars
+		flow_reply_form.handlebars \
+		flow_topiclist_loop.handlebars \
+		flow_load_more.handlebars
 
 all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_header_edit.handlebars.php \
