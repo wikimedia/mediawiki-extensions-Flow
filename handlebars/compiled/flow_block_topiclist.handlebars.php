@@ -172,7 +172,7 @@
 	</div>
 
 	'.((LCRun3::ifvar($cx, ((is_array($in['links']['pagination']) && isset($in['links']['pagination']['fwd'])) ? $in['links']['pagination']['fwd'] : null))) ? '
-	<a href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-button flow-ui-progressive /*flow-ui-quiet flow-ui-thin*/"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-load-more'), 'encq').'</a>
+	<a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-button flow-ui-progressive /*flow-ui-quiet flow-ui-thin*/"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-load-more'), 'encq').'</a>
 ' : '').'
 </div>
 ';

@@ -119,6 +119,21 @@
 		// FlowBoardComponent.UI pre-api callback handlers, to do things before the API call
 		////////////////////
 
+		/**
+		 * Before a "Load More" button, verify that it isn't already in use and then disable it
+		 * @param {Object} params
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.loadMore = function ( params, event ) {
+			var $this = $( this );
+
+			if ( $this.is( ':disabled' ) ) {
+				return false;
+			}
+
+			$this.prop( 'disabled', true );
+		};
+
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
@@ -144,6 +159,47 @@
 
 				// Reinitialize the whole board with these nodes
 				flowBoard.reinitializeBoard( $rendered );
+			} else {
+				// @todo fail
+			}
+		};
+
+		/**
+		 *
+		 * @param {String} status (done|fail)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.loadMore = function ( status, data, jqxhr ) {
+			var $this = $( this ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				$tmp;
+
+			if ( status === 'done' ) {
+				// Success
+				// Render topiclist template
+				$this.before(
+					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_topiclist_loop',
+						data.flow[ 'topiclist-view' ].result.topiclist
+					) ).children()
+				);
+				// Run loadHandlers
+				FlowBoardComponent.UI.makeContentInteractive( $tmp );
+
+				// Render load more template
+				$this.replaceWith(
+					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_load_more',
+						data.flow[ 'topiclist-view' ].result.topiclist
+					) ).children()
+				);
+
+				// Run loadHandlers
+				FlowBoardComponent.UI.makeContentInteractive( $tmp );
+
+				// Remove the old load button (necessary if the above load_more template returns nothing)
+				$this.remove();
 			} else {
 				// @todo fail
 			}
@@ -366,6 +422,15 @@
 				// Assign a target node if none
 				$target = $( this );
 			}
+
+			// Make sure an API call is not already in progress for this target
+			if ( $target.closest( '.flow-api-inprogress' ).length ) {
+				this.debug( 'API call already in progress: ' + 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule, arguments );
+				return;
+			}
+
+			// Mark the target node as "in progress" to disallow any further API calls until it finishes
+			$target.addClass( 'flow-api-inprogress' );
 
 			// Use the pre-callback to find out if we should process this
 			if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ] ) {
