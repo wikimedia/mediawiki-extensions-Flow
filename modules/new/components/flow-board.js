@@ -67,6 +67,8 @@
 			interactiveHandlers: {},
 			/** Callbacks for data-flow-load-handler */
 			loadHandlers: {},
+			/** Validity pre-callback for data-flow-api-handler */
+			apiPreHandlers: {},
 			/** Callbacks for data-flow-api-handler */
 			apiHandlers: {}
 		}
@@ -78,23 +80,33 @@
 
 
 		////////////////////////////////////////////////////////////
+		// FlowBoardComponent.UI pre-api callback handlers, to do things before the API call
+		////////////////////
+
+
+		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
 
 		/**
 		 * When a topic wrapper is generated or found on initial load...
+		 * @param {String} status done|fail
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.board = function ( data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.board = function ( status, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
-			$(
-				flowBoard.TemplateEngine.processTemplateGetFragment(
-					'flow_board',
-					{ blocks: data.flow[ 'topiclist-view' ].result }
-				)
-			).insertBefore( flowBoard.$container );
+			if ( status === 'done' ) {
+				$(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_board',
+						{ blocks: data.flow[ 'topiclist-view' ].result }
+					)
+				).insertBefore( flowBoard.$container );
+			} else {
+				// @todo fail
+			}
 		};
 
 
@@ -303,21 +315,38 @@
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				handlerName = $this.data( 'flow-api-handler' );
 
-			if ( $this.is( 'a ' ) ) {
+			// Use the pre-callback to find out if we should process this
+			if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ] ) {
+				if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ].apply( _this, arguments ) === false ) {
+					// Callback returned false
+					return;
+				}
+			}
+
+			// Make the request
+			if ( $this.is( 'a' ) ) {
 				$deferred = flowBoard.API.requestFromAnchor( this );
 			} else if ( $this.is( 'input, button' ) ) {
 				$deferred = flowBoard.API.requestFromForm( this );
 			} else {
 				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor form' );
 				$deferred = $.Deferred();
-				$deferred.rejectWith({ error: 'Not an anchor or form' });
+				$deferred.rejectWith( { error: 'Not an anchor or form' } );
 			}
 
 			// If this has a special api handler, bind it to the callback.
 			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
-				$deferred.done( function () {
-					FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, arguments );
-				} );
+				$deferred
+					.done( function () {
+						var args = Array.prototype.slice.call(arguments, 0);
+						args.unshift( 'done' );
+						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
+					} )
+					.fail( function () {
+						var args = Array.prototype.slice.call(arguments, 0);
+						args.unshift( 'fail' );
+						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
+					} );
 			}
 		};
 
