@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_f2fb8bb8",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-13T02:16:41Z",
+      "side": 1,
+      "message": "Describe this function.",
+      "revId": "2f27682e7837a02dea9f72f1437afcb06596ca2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_920b1fd9",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-13T02:16:41Z",
+      "side": 1,
+      "message": "Bad selector. Use a more performant one, like tag selector, and then .filter it.",
+      "revId": "2f27682e7837a02dea9f72f1437afcb06596ca2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_72279b60",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-13T02:16:41Z",
+      "side": 1,
+      "message": "Never do this. You should be using this FlowBoardComponent instance\u0027s API:\n\n    // Get the FlowBoardComponent instance in which the target element is contained\n    var flowBoard \u003d FlowBoardComponent.prototype.getInstanceByElement( $( this )\n );\n    // Use this flowBoard\u0027s API instance\n    flowBoard.API.requestFromForm(...);",
+      "revId": "2f27682e7837a02dea9f72f1437afcb06596ca2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_b20623d0",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-13T02:16:41Z",
+      "side": 1,
+      "message": "No template work should be done here. Spinner is not important yet, we can omit it until next iteration.",
+      "revId": "2f27682e7837a02dea9f72f1437afcb06596ca2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_32191328",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-13T02:16:41Z",
+      "side": 1,
+      "message": "Why can\u0027t we use requestFromForm?",
+      "revId": "2f27682e7837a02dea9f72f1437afcb06596ca2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_52f5b7c6",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-13T02:16:41Z",
+      "side": 1,
+      "message": "spaces",
+      "revId": "2f27682e7837a02dea9f72f1437afcb06596ca2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_7210bb04",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-13T02:16:41Z",
+      "side": 1,
+      "message": "spaces",
+      "revId": "2f27682e7837a02dea9f72f1437afcb06596ca2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_32f233e0",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-13T02:16:41Z",
+      "side": 1,
+      "message": "spaces",
+      "revId": "2f27682e7837a02dea9f72f1437afcb06596ca2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_12ff2fa9",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-13T02:16:41Z",
+      "side": 1,
+      "message": "At least put // @todo something. Helps us keep track of what still needs to be looked at in the codebase.",
+      "revId": "2f27682e7837a02dea9f72f1437afcb06596ca2b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
