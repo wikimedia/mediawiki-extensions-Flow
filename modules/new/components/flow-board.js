@@ -67,6 +67,8 @@
 			interactiveHandlers: {},
 			/** Callbacks for data-flow-load-handler */
 			loadHandlers: {},
+			/** Validity pre-callback for data-flow-api-handler */
+			apiPreHandlers: {},
 			/** Callbacks for data-flow-api-handler */
 			apiHandlers: {}
 		}
@@ -78,22 +80,30 @@
 
 
 		////////////////////////////////////////////////////////////
+		// FlowBoardComponent.UI pre-api callback handlers, to do things before the API call
+		////////////////////
+
+
+		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
 
 		/**
 		 * When a topic wrapper is generated or found on initial load...
+		 * @param {String} status done|fail
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.board = function ( data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.board = function ( status, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
-			console.log(flowBoard.TemplateEngine.processTemplateGetFragment( 'flow_board', data.query.flow ));
-
-			$(
-				flowBoard.TemplateEngine.processTemplateGetFragment( 'flow_board', data.query.flow )
-			).insertBefore( flowBoard.$container );
+			if ( status === 'done' ) {
+				$(
+					flowBoard.TemplateEngine.processTemplateGetFragment( 'flow_board', data.query.flow )
+				).insertBefore( flowBoard.$container );
+			} else {
+				// @todo fail
+			}
 		};
 
 
@@ -297,15 +307,31 @@
 			event.preventDefault();
 
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$deferred = flowBoard.API.requestFromAnchor( this ),
 				handlerName = $( this ).data( 'flow-api-handler' ),
 				_this = this;
 
+			// Use the pre-callback to find out if we should process this
+			if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ] ) {
+				if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ].apply( _this, arguments ) === false ) {
+					// Callback returned false
+					return;
+				}
+			}
+
 			// If this has a special api handler, bind it to the callback.
 			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
-				$deferred.done( function () {
-					FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, arguments );
-				} );
+				// returns $.Deferred
+				flowBoard.API.requestFromAnchor( this )
+					.done( function () {
+						var args = Array.prototype.slice.call(arguments, 0);
+						args.unshift( 'done' );
+						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
+					} )
+					.fail( function () {
+						var args = Array.prototype.slice.call(arguments, 0);
+						args.unshift( 'fail' );
+						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
+					} );
 			}
 		};
 
