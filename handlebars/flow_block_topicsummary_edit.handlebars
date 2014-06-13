@@ -24,7 +24,7 @@
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "flow-topic-action-summarize-topic"}}</button>
 			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
-			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</button>
+			<a href="{{revision.links.topic.url}}" title="{{revision.links.topic.title}}" data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</a>
 			<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-summarize"}}</small>
 		</div>
 	</form>
