@@ -20,12 +20,14 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_topic_history.handlebars.php \
 		compiled/flow_block_topic_single_view.handlebars.php \
 		compiled/flow_block_topic_diff_view.handlebars.php \
+		compiled/flow_block_topic_close.handlebars.php \
 		compiled/flow_block_topic_reply.handlebars.php \
 		compiled/flow_block_topic_edit_post.handlebars.php \
 		compiled/flow_block_topic_edit_title.handlebars.php \
 		compiled/flow_block_topic_moderate_topic.handlebars.php \
 		compiled/flow_block_topic_moderate_post.handlebars.php \
 		compiled/flow_block_board-history.handlebars.php \
+		compiled/flow_block_topicsummary_close.handlebars.php \
 		compiled/flow_block_topicsummary_edit.handlebars.php \
 		compiled/flow_block_topicsummary_single_view.handlebars.php \
 		compiled/flow_block_topicsummary_diff_view.handlebars.php \
@@ -48,6 +50,10 @@ compiled/flow_block_header_single_view.handlebars.php: \
 compiled/flow_block_header_diff_view.handlebars.php: \
 		flow_block_header_diff_view.handlebars
 	$(COMPILE) flow_block_header_diff_view
+
+compiled/flow_block_topicsummary_close.handlebars.php: \
+		flow_block_topicsummary_close.handlebars
+	$(COMPILE) flow_block_topicsummary_close
 
 compiled/flow_block_topicsummary_edit.handlebars.php: \
 		flow_block_topicsummary_edit.handlebars
@@ -91,6 +97,10 @@ compiled/flow_block_topic_diff_view.handlebars.php: \
 		flow_block_topic_diff_view.handlebars \
 		$(TOPIC_SUBTEMPLATES)
 	$(COMPILE) flow_block_topic_diff_view
+
+compiled/flow_block_topic_close.handlebars.php: \
+		flow_block_topic_close.handlebars
+	$(COMPILE) flow_block_topic_close
 
 compiled/flow_block_topic_reply.handlebars.php: \
 		flow_block_topic_reply.handlebars \

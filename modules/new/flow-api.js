@@ -129,6 +129,10 @@ window.mw = window.mw || {}; // mw-less testing
 					queryMap[ key.replace( map[0], map[1] ) ] = queryMap[ key ];
 					delete queryMap[ key ];
 				}
+				if ( key.indexOf( 'flow_' ) === 0 ) {
+					queryMap[ key.replace( 'flow_', map[1] ) ] = queryMap[ key ];
+					delete queryMap[ key ];
+				}
 			}
 		}
 
