@@ -323,7 +323,7 @@ class TopicSummaryBlock extends AbstractBlock {
 				$this->formatterRow, \RequestContext::getMain()
 			);
 		} else {
-			$output['revision']['actions']['edit'] = Container::get( 'url_generator' )
+			$output['revision']['actions']['summarize'] = Container::get( 'url_generator' )
 				->editTopicSummaryAction(
 					$this->workflow->getArticleTitle(),
 					$this->workflow->getId()
