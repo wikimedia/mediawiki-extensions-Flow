@@ -430,6 +430,9 @@
 			}
 
 			var handlerName = $( this ).data( 'flow-interactive-handler' );
+			if ( !handlerName ) {
+				return;
+			}
 
 			// If this has a special click handler, run it.
 			if ( FlowBoardComponent.UI.events.interactiveHandlers[ handlerName ] ) {
