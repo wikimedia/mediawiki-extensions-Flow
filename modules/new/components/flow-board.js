@@ -161,6 +161,47 @@
 			}
 		};
 
+		/**
+		 *
+		 * @param {String} status (done|fail)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.loadMore = function ( status, data, jqxhr ) {
+			var $this = $( this ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				$tmp;
+
+			if ( status === 'done' ) {
+				// Success
+				// Render topiclist template
+				$this.before(
+					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_topiclist_loop',
+						data.flow[ 'topiclist-view' ].result.topiclist
+					) ).children()
+				);
+				// Run loadHandlers
+				FlowBoardComponent.UI.makeContentInteractive( $tmp );
+
+				// Render load more template
+				$this.replaceWith(
+					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_load_more',
+						data.flow[ 'topiclist-view' ].result.topiclist
+					) ).children()
+				);
+
+				// Run loadHandlers
+				FlowBoardComponent.UI.makeContentInteractive( $tmp );
+
+				// Remove the old load button (necessary if the above load_more template returns nothing)
+				$this.remove();
+			} else {
+				// @todo fail
+			}
+		};
+
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
@@ -356,7 +397,7 @@
 
 		/**
 		 * Triggers an API request based on URL and form data, and triggers the callbacks based on flow-api-handler.
-		 * @example <a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" href="...">...</a>
+		 * @example <a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" data-flow-api-target="$container" href="...">...</a>
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.apiRequest = function ( event ) {
@@ -372,17 +413,34 @@
 
 			// Find the target node
 			if ( dataParams.flowApiTarget ) {
-				$target = flowBoard.find( dataParams.flowApiTarget );
+				if ( dataParams.flowApiTarget.charAt( 0 ) === '$' ) {
+					// Passing something like $container as an argument
+					$target = flowBoard[ dataParams.flowApiTarget ];
+				} else {
+					// Passing a selector as an argument
+					$target = flowBoard.$container.find( dataParams.flowApiTarget );
+				}
 			}
 			if ( !$target || !$target.length ) {
 				// Assign a target node if none
-				$target = $( this );
+				$target = $this;
 			}
+
+			// Make sure an API call is not already in progress for this target
+			if ( $target.closest( '.flow-api-inprogress' ).length ) {
+				flowBoard.debug( 'apiRequest already in progress', arguments );
+				return;
+			}
+
+			// Mark the target node as "in progress" to disallow any further API calls until it finishes
+			$target.addClass( 'flow-api-inprogress' );
+			$this.addClass( 'flow-api-inprogress' );
 
 			// Use the pre-callback to find out if we should process this
 			if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ] ) {
 				if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ].apply( _this, arguments ) === false ) {
 					// Callback returned false
+					flowBoard.debug( 'apiPreHandler returned false', handlerName, arguments );
 					return;
 				}
 			}
@@ -397,6 +455,13 @@
 				$deferred = $.Deferred();
 				$deferred.rejectWith( { error: 'Not an anchor or form' } );
 			}
+
+			// Remove the load indicator
+			$deferred.always( function () {
+				// @todo support for multiple indicators on same target
+				$target.removeClass( 'flow-api-inprogress' );
+				$this.removeClass( 'flow-api-inprogress' );
+			} );
 
 			// If this has a special api handler, bind it to the callback.
 			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
