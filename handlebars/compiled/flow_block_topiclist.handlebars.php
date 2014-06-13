@@ -33,8 +33,7 @@
 			';}, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array('flow-recent-topics'), 'encq').'
 			';}).'
-			<span class="wikiglyph wikiglyph-caret-down"></span>'.htmlentities(((is_array($in) && isset($in['~'])) ? $in['~'] : null), ENT_QUOTES, 'UTF-8').'
-		</a>
+			<span class="wikiglyph wikiglyph-caret-down"></span>'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'</a>
 	</div>
 	<div class="flow-board-filter-menu">
 		<div class="flow-menu flow-menu-inverted">

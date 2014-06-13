@@ -640,4 +640,15 @@
 
 	// Register progressiveEnhancement
 	Handlebars.registerHelper( 'progressiveEnhancement', FlowHandlebars.prototype.progressiveEnhancement );
+
+	/**
+	 * Does nothing, outputs nothing. Used to clear whitespace with {{~null~}}.
+	 * @returns {string} ""
+	 */
+	FlowHandlebars.prototype.nullHelper = function () {
+		return "";
+	};
+
+	// Register progressiveEnhancement
+	Handlebars.registerHelper( 'null', FlowHandlebars.prototype.nullHelper );
 }( jQuery ) );
