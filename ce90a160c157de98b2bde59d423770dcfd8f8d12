@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_72e9db7a",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-06-13T06:04:52Z",
+      "side": 1,
+      "message": "Probably shouldn\u0027t just comment this out :P",
+      "revId": "ce90a160c157de98b2bde59d423770dcfd8f8d12",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
