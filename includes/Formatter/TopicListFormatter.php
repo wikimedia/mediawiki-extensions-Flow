@@ -111,7 +111,12 @@ class TopicListFormatter {
 				$workflows[$alpha] = $workflow;
 			}
 
-			foreach ( $list as $alpha ) {
+			foreach ( $list as $key => $alpha ) {
+				// Remove workflow without a post
+				if ( !isset( $posts[$alpha] ) ) {
+					unset( $list[$key] );
+					continue;
+				}
 				// Metadata that requires everything to be serialied first
 				$metadata = $this->generateTopicMetadata( $posts, $revisions, $workflows, $alpha );
 				foreach ( $posts[$alpha] as $revId ) {
