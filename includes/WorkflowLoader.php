@@ -305,17 +305,28 @@ class WorkflowLoader {
 			$result[$name] = $request->getArray( $name, array() );
 		}
 		// BC for topic_list renamed to topiclist
-		if ( isset( $result['topiclist'] ) && !$result['topiclist'] ) {
+		if ( isset( $result['topiclist'] ) && !$result['topiclist'] ) { 
 			$result['topiclist'] = $request->getArray( 'topic_list', array() );
 		}
 		// between urls only allowing [-_.] as unencoded special chars and
 		// php mangling all of those into '_', we have to split on '_'
+		$globalData = array();
 		foreach ( $request->getValues() as $name => $value ) {
 			if ( false !== strpos( $name, '_' ) ) {
 				list( $block, $var ) = explode( '_', $name, 2 );
-				$result[$block][$var] = $value;
+				// global data for all namespace
+				if ( $block === 'flow' ) {
+					$globalData[$var] = $value;
+				} else {
+					$result[$block][$var] = $value;
+				}
 			}
 		}
+
+		foreach ( $blocks as $block ) {
+			$result[$block->getName()] += $globalData;
+		}
+
 		return $result;
 	}
 }
