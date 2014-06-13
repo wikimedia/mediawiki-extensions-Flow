@@ -430,7 +430,7 @@ class UrlGenerator extends BaseUrlGenerator {
 			array(
 				'action' => 'close-open-topic',
 				'workflow' => $workflowId->getAlphadecimal(),
-				'topic_moderationState' => 'close',
+				'flow_moderationState' => 'close',
 			)
 		);
 	}
