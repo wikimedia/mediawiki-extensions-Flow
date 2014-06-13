@@ -43,16 +43,17 @@ window.mw = window.mw || {}; // mw-less testing
 		 * @param {String} [pageName]
 		 * @returns {$.Deferred}
 		 */
-		function flowApiCall( params, pageName ) {
+		function flowApiCall( params, method ) {
 			params = params || {};
 			params.title = params.title || this.pageName || mw.config.get( 'wgPageName' );
 			params.workflow = params.workflow || this.workflowId;
+			method = method ? method.toUpperCase() : 'GET';
 
 			var $deferred = $.Deferred(),
 				mwApi = new mw.Api();
 
-			if ( !params.action || params.action !== 'flow' ) {
-				mw.flow.debug( '[FlowAPI] apiCall error: missing action string, or action string !== "flow"', arguments );
+			if ( !params.action ) {
+				mw.flow.debug( '[FlowAPI] apiCall error: missing action string', arguments );
 				return $deferred.rejectWith({ error: 'Invalid action' });
 			}
 			if ( !params.title ) {
@@ -64,9 +65,13 @@ window.mw = window.mw || {}; // mw-less testing
 				return $deferred.rejectWith({ error: 'Invalid workflow' });
 			}
 
-			return mwApi.get(
-				params
-			);
+			if ( method === 'POST' ) {
+				return mwApi.postWithToken( 'edit', params );
+			} else if ( method !== 'GET' ) {
+				return $deferred.rejectWith({ error: "Unknown submission method: " + method });
+			} else {
+				return mwApi.get( params );
+			}
 		}
 
 		this.apiCall = flowApiCall;
@@ -108,11 +113,12 @@ window.mw = window.mw || {}; // mw-less testing
 	 * @returns {Object}
 	 */
 	function flowApiTransformMap( queryMap ) {
-		var map = apiTransformMap[ queryMap.submodule ];
+		var key,
+			map = apiTransformMap[ queryMap.submodule ];
 		if ( !map ) {
 			return queryMap;
 		}
-		for ( var key in queryMap ) {
+		for ( key in queryMap ) {
 			if ( queryMap.hasOwnProperty( key ) ) {
 				if ( key.indexOf( map[0] ) === 0 ) {
 					queryMap[ key.replace( map[0], map[1] ) ] = queryMap[ key ];
@@ -138,26 +144,34 @@ window.mw = window.mw || {}; // mw-less testing
 	/**
 	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
 	 * @param {String} url
+	 * @param {Object} [queryMap]
 	 * @returns {Object}
 	 */
-	function flowApiGetQueryMap( url ) {
+	function flowApiGetQueryMap( url, queryMap ) {
 		var query,
-			queryMap = {},
 			queries, i = 0, split;
 
+		queryMap = queryMap || {};
+
 		// Parse the URL query params
-		query = url.split('#')[0].split('?').slice(1).join('?');
+		query = url.split( '#' )[ 0 ].split( '?' ).slice( 1 ).join( '?' );
 		if ( query ) {
-			for ( queries = query.split(/&(?:amp;)?/gi); i < queries.length; i++ ) {
-				split = queries[i].split('=');
-				queryMap[split[0]] = split.slice(1).join('='); // if extra = are present
+			for ( queries = query.split( /&(?:amp;)?/gi ); i < queries.length; i++ ) {
+				split = queries[ i ].split( '=' );
+
+				if ( split[ 0 ] === 'action' ) {
+					// Submodule is the action
+					split[ 0 ] = 'submodule';
+				}
+
+				queryMap[ split[ 0 ] ] = split.slice( 1 ).join( '=' ); // if extra = are present
 			}
 		}
 
-		// Submodule is the action
-		queryMap.submodule = queryMap.action || this.defaultSubmodule;
-		// and the API action is always flow
-		queryMap.action    = 'flow';
+		// Use the default submodule if no action in URL
+		queryMap.submodule = queryMap.submodule || this.defaultSubmodule;
+		// Default action is flow
+		queryMap.action = queryMap.action || 'flow';
 
 		// Use the API map to transform this data if necessary, eg.
 		return flowApiTransformMap( queryMap );
@@ -173,9 +187,37 @@ window.mw = window.mw || {}; // mw-less testing
 	 * @param {Event|Element} [button]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromForm( form, button ) {
-		var method = method || 'get',
-			formData = form ? $( form ).serializeArray() : [];
+	function flowApiRequestFromForm( button ) {
+		var i,
+			$deferred = $.Deferred(),
+			$form = $( button ).closest( 'form' ),
+			method = $form.attr( 'method' ) || 'GET',
+			formData = $form.serializeArray(),
+			url = $form.attr( 'action' ),
+			queryMap = { submodule: $form.data( 'flow-api-action' ) }; // usually null
+
+
+		if ( $form.length === 0 ) {
+			return $deferred.rejectWith( { error: 'No form located' } );
+		}
+
+		for ( i = 0; i < formData.length; i++ ) {
+			// skip wpEditToken, its handle independantly
+			if ( formData[i].name !== 'wpEditToken' ) {
+				queryMap[formData[i].name] = formData[i].value;
+			}
+		}
+
+		if ( !( queryMap = this.getQueryMap( url, queryMap ) ) ) {
+			return $deferred.rejectWith( { error: 'Invalid form action' } );
+		}
+
+
+		if ( !( queryMap.action ) ) {
+			return $deferred.rejectWith( { error: 'Unknown action for form' } );
+		}
+
+		return this.apiCall( queryMap, method );
 	}
 
 	FlowAPI.prototype.requestFromForm = flowApiRequestFromForm;
@@ -189,35 +231,19 @@ window.mw = window.mw || {}; // mw-less testing
 	function flowApiRequestFromAnchor( anchor ) {
 		var $anchor = $( anchor ),
 			$deferred = $.Deferred(),
-			queryMap;
+			queryMap = { submodule: $anchor.data( 'flow-api-action' ) }; // usually null
 
 		if ( !$anchor.is( 'a' ) ) {
 			mw.flow.debug( '[FlowAPI] requestFromAnchor error: not an anchor', arguments );
 			return $deferred.rejectWith( { error: 'Not an anchor' } );
 		}
 
-		if ( !( queryMap = this.getQueryMap( anchor.href ) ) ) {
+		if ( !( queryMap = this.getQueryMap( anchor.href, queryMap ) ) ) {
 			mw.flow.debug( '[FlowAPI] requestFromAnchor error: invalid href', arguments );
 			return $deferred.rejectWith( { error: 'Invalid href' } );
 		}
 
-		//?action=query
-		//&format=json
-		//&list=flow
-		//&flowpage=Talk:Flow
-		//&flowworkflow=rj3tafdbsz4kqu4a
-		//&flowaction=view
-		//&flowparams=
-		/*{
-			"topiclist": {
-				"offset-dir": "fwd",
-				"offset-id": "rkqk4sf0rt7q3856",
-				"limit": 10,
-				"render": true
-			}
-		}
-		*/
-		return this.apiCall( queryMap );
+		return this.apiCall( queryMap, 'GET' );
 	}
 
 	FlowAPI.prototype.requestFromAnchor = flowApiRequestFromAnchor;

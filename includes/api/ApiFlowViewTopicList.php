@@ -26,6 +26,10 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 				ApiBase::PARAM_TYPE => array( 'fwd', 'rev' ),
 				ApiBase::PARAM_DFLT => 'fwd',
 			),
+			'sortby' => array(
+				ApiBase::PARAM_TYPE => array( 'newest', 'updated' ),
+				ApiBase::PARAM_DFLT => 'newest',
+			),
 			'offset-id' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => false,
