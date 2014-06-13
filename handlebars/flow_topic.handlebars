@@ -17,25 +17,25 @@
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 			<ul class="flow-ui-button-container">
 				{{#if actions.edit}}
-					<li><a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="{{actions.edit.url}}" title="{{actions.edit.title}}"><span class="wikiglyph wikiglyph-pencil"></span> {{l10n "flow-post-action-edit-post"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin" href="{{actions.edit.url}}" title="{{actions.edit.title}}"><span class="wikiglyph wikiglyph-pencil"></span> {{l10n "flow-topic-action-edit-title"}}</a></li>
 				{{/if}}
 				{{#if links.topic-history}}
-					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.topic-history.url}}" title="{{links.topic-history.title}}"> <span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-post-action-post-history"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.topic-history.url}}" title="{{links.topic-history.title}}"> <span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-topic-action-history"}}</a></li>
 				{{/if}}
 				{{#if links.topic}}
-					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.topic.url}}" title="{{links.topic.title}}"> <span class="wikiglyph wikiglyph-link"></span> {{l10n "flow-post-action-view"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{links.topic.url}}" title="{{links.topic.title}}"> <span class="wikiglyph wikiglyph-link"></span> {{l10n "flow-topic-action-view"}}</a></li>
 				{{/if}}
 				{{#if actions.lock}}
 					<li><a class="flow-ui-button flow-ui-regressive flow-ui-progressive flow-ui-quiet flow-ui-thin" href="{{actions.lock.url}}" title="{{actions.lock.title}}"><span class="wikiglyph wikiglyph-lock"></span> {{l10n "TODO-lock"}}</a></li>
 				{{/if}}
 				{{#if actions.hide}}
-					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{actions.hide.url}}" title="{{actions.hide.title}}"><span class="wikiglyph wikiglyph-eye-lid"></span> {{l10n "flow-post-action-hide-post"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-quiet flow-ui-thin" href="{{actions.hide.url}}" title="{{actions.hide.title}}"><span class="wikiglyph wikiglyph-eye-lid"></span> {{l10n "flow-topic-action-hide-topic"}}</a></li>
 				{{/if}}
 				{{#if actions.delete}}
-					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.delete.url}}" title="{{actions.delete.title}}"><span class="wikiglyph wikiglyph-trash"></span> {{l10n "flow-post-action-delete-post"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.delete.url}}" title="{{actions.delete.title}}"><span class="wikiglyph wikiglyph-trash"></span> {{l10n "flow-topic-action-delete-topic"}}</a></li>
 				{{/if}}
 				{{#if actions.suppress}}
-					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.suppress.title}}"><span class="wikiglyph wikiglyph-block"></span> {{l10n "flow-post-action-suppress-post"}}</a></li>
+					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.suppress.url}}" title="{{actions.suppress.title}}"><span class="wikiglyph wikiglyph-block"></span> {{l10n "flow-topic-action-suppress-topic"}}</a></li>
 				{{/if}}
 				{{#if actions.close}}
 					<li><a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin" href="{{actions.close.url}}" title="{{actions.close.title}}"><span class="wikiglyph wikiglyph-clock"></span> {{l10n "flow-topic-action-close-topic"}}</a></li>
