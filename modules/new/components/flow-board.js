@@ -83,6 +83,20 @@
 		// FlowBoardComponent.UI pre-api callback handlers, to do things before the API call
 		////////////////////
 
+		/**
+		 * Before a "Load More" button, verify that it isn't already in use and then disable it
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.loadMore = function ( event ) {
+			var $this = $( this );
+
+			if ( $this.is( ':disabled' ) ) {
+				return false;
+			}
+
+			$this.prop( 'disabled', true );
+		};
+
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
@@ -104,6 +118,24 @@
 			} else {
 				// @todo fail
 			}
+		};
+
+		/**
+		 *
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.loadMore = function ( data, jqxhr ) {
+			var $this = $( this ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this );
+
+			$(
+				flowBoard.TemplateEngine.processTemplateGetFragment( 'flow_topiclist_loop', data.query.flow )
+			).insertBefore( $this );
+
+			$(
+				flowBoard.TemplateEngine.processTemplateGetFragment( 'flow_load_more', data.query.flow )
+			).replace( $this );
 		};
 
 

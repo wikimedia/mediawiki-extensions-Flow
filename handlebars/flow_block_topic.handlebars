@@ -15,10 +15,6 @@
 	</div>
 	<div class="flow-topics">
 		{{!-- There is only one topic, but we use same api response structure --}}
-		{{#each roots}}
-			{{#eachPost @root this}}
-				{{> flow_topic}}
-			{{/eachPost}}
-		{{/each}}
+		{{> flow_topiclist_loop}}
 	</div>
 </div>

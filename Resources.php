@@ -48,6 +48,8 @@ $wgResourceModules += array(
 			// Include dependent templates from handlebars/Makefile.
 			"flow_topic.handlebars",
 			"flow_topic_navigation.handlebars",
+			"flow_topiclist_loop.handlebars",
+			"flow_load_more.handlebars",
 			"form_element.handlebars",
 			"timestamp.handlebars",
 		),
