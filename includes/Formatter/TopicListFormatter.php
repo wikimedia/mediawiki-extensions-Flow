@@ -91,9 +91,6 @@ class TopicListFormatter {
 			$revisions[$serialized['revisionId']] = $serialized;
 			$posts[$serialized['postId']][] = $serialized['revisionId'];
 			$replies[$serialized['replyToId']][] = $serialized['postId'];
-			if ( $formatterRow->summary ) {
-				$revisions[$serialized['revisionId']]['summary'] = $this->templating->getContent( $formatterRow->summary );
-			}
 		}
 
 		foreach ( $revisions as $i => $serialized ) {

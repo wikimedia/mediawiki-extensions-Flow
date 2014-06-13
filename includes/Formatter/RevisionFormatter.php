@@ -171,6 +171,13 @@ class RevisionFormatter {
 			}
 		}
 
+		if ( $row instanceof TopicRow &&
+			$row->summary &&
+			$this->permissions->isAllowed( $row->summary, 'view' )
+		) {
+			$res['summary'] = $this->templating->getContent( $row->summary );
+		}
+
 		if ( $row->revision instanceof PostRevision ) {
 			$replyTo = $row->revision->getReplyToId();
 			$res['replyToId'] = $replyTo ? $replyTo->getAlphadecimal() : null;
