@@ -71,6 +71,7 @@ $wgResourceModules += array(
 			'flow-terms-of-use-new-topic',
 			'flow-terms-of-use-reply',
 			'flow-topic-action-close-topic',
+			'flow-topic-action-resummarize-topic',
 			'flow-topic-action-summarize-topic',
 			'flow-topic-action-view',
 		),
