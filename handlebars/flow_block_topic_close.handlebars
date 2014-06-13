@@ -1,0 +1,30 @@
+<div class="flow-board-header">
+	{{#if errors}}
+		<ul>
+			{{#each errors}}
+				<li>{{message}}</li>
+			{{/each}}
+		</ul>
+	{{/if}}
+	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST" action="{{revision.actions.close.url}}">
+		<input type="hidden" name="wpEditToken" value="{{editToken}}" />
+		{{#if revision.previousRevisionId}}
+			<input type="hidden" name="{{type}}_prev_revision" value="{{revision.revisionId}}" />
+		{{/if}}
+		<textarea name="topic_summary" data-flow-expandable="true" class="mw-ui-input" type="text">
+			{{~#if submitted.content~}}
+				{{~submitted.content~}}
+			{{~else~}}
+				{{~#if revision.revisionId~}}
+					{{~revision.content~}}
+				{{~/if~}}
+			{{~/if~}}
+		</textarea>
+		<div class="flow-form-actions flow-form-collapsible">
+			<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "flow-topic-action-close-topic"}}</button>
+			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
+			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</button>
+			<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-summarize"}}</small>
+		</div>
+	</form>
+</div>

@@ -63,6 +63,7 @@ class TopicSummaryBlock extends AbstractBlock {
 		'topic-summary-view' => 'single_view',
 		'compare-postsummary-revisions' => 'diff_view',
 		'edit-topic-summary' => 'edit',
+		'close-open-topic' => 'close',
 	);
 
 	/**
@@ -304,8 +305,6 @@ class TopicSummaryBlock extends AbstractBlock {
 				list( $new, $old ) = Container::get( 'query.postsummary.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
 				$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, \RequestContext::getMain() );
 				break;
-			default:
-				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
 		}
 
 		return $output;

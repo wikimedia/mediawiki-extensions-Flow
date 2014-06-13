@@ -1,0 +1,14 @@
+<!--
+	post action could also be renderred in no-js mode, we need to a template
+	so the rendering will proceed without error, we also need this to show
+	the error of unsuccessful form submission
+-->
+<div class="flow-close-topic-error">
+	{{#if errors}}
+		<ul>
+			{{#each errors}}
+				<li>{{message}}</li>
+			{{/each}}
+		</ul>
+	{{/if}}
+</div>

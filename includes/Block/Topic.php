@@ -81,10 +81,10 @@ class TopicBlock extends AbstractBlock {
 		'compare-post-revisions' => 'diff_view',
 		'moderate-topic' => 'moderate_topic',
 		'moderate-post' => 'moderate_post',
-		'close-open-topic' => 'moderate_topic',
+		'close-open-topic' => 'close',
 	);
 
-	protected $requiresWikitext = array( 'edit-post', 'edit-title' );
+	protected $requiresWikitext = array( 'edit-post', 'edit-title', 'close-open-topic' );
 
 	/**
 	 * @var RevisionActionPermissions $permissions Allows or denies actions to be performed
@@ -450,6 +450,20 @@ class TopicBlock extends AbstractBlock {
 				$revId = $options['revId'];
 			}
 			$output = $this->renderSingleViewAPI( $revId );
+		} elseif ( $this->action === 'close-open-topic' ) {
+			$row = Container::get( 'query.postsummary' )->getResult( $this->workflow->getId() );
+			if ( $row ) {
+				$output['revision'] = Container::get( 'formatter.revision' )->formatApi(
+					$row,
+					\RequestContext::getMain()
+				);
+			} else {
+				$output['revision']['actions']['close'] = Container::get( 'url_generator' )
+					->closeTopicAction(
+						$this->workflow->getArticleTitle(),
+						$this->workflow->getId()
+					);
+			}
 		} elseif ( $this->action === 'compare-post-revisions' ) {
 			$output = $this->renderDiffViewAPI( $options );
 		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {
