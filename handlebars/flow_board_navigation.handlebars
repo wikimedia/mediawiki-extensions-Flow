@@ -6,10 +6,10 @@
 
 		{{!-- Click for sorting options, not sure what this url should be --}}
 		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="{{l10n "flow-sorting-tooltip"}}" data-flow-interactive-handler="boardFilterMenuToggle">
-			{{~#ifEquals submitted.sortby "newest"}}
-				{{l10n "flow-newest-topics"}}
-			{{else}}
+			{{~#ifEquals submitted.sortby "updated"}}
 				{{l10n "flow-recent-topics"}}
+			{{else}}
+				{{l10n "flow-newest-topics"}}
 			{{/ifEquals}}
 			<span class="wikiglyph wikiglyph-caret-down"></span>{{~null~}}
 		</a>

@@ -342,7 +342,7 @@ class TemplateHelper {
 	 */
 	static public function ifEquals( $left, $right, $options ) {
 		/** @var callable $inverse */
-		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;
+		$inverse = isset( $options['inv'] ) ? $options['inv'] : null;
 		/** @var callable $fn */
 		$fn = $options['fn'];
 
@@ -400,7 +400,7 @@ class TemplateHelper {
 	 */
 	static public function eachPost( $context, $postIds, $options ) {
 		/** @var callable $inverse */
-		$inverse = isset( $options['inverse'] ) ? $options['inverse'] : null;
+		$inverse = isset( $options['inv'] ) ? $options['inv'] : null;
 		/** @var callable $fn */
 		$fn = $options['fn'];
 

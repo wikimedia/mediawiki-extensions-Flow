@@ -28,10 +28,10 @@
 		'.LCRun3::ch($cx, 'progressiveEnhancement', Array('context'=>$in,'insertionType'=>'insertion','sectionId'=>'flow-board-collapsers','templateName'=>'flow_board_collapsers_subcomponent'), 'encq', true).'
 
 		
-		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="'.LCRun3::ch($cx, 'l10n', Array('flow-sorting-tooltip'), 'encq').'" data-flow-interactive-handler="boardFilterMenuToggle">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($in['submitted']) && isset($in['submitted']['sortby'])) ? $in['submitted']['sortby'] : null),'newest'), $in, function($cx, $in) {return '
-				'.LCRun3::ch($cx, 'l10n', Array('flow-newest-topics'), 'encq').'
-			';}, function($cx, $in) {return '
+		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="'.LCRun3::ch($cx, 'l10n', Array('flow-sorting-tooltip'), 'encq').'" data-flow-interactive-handler="boardFilterMenuToggle">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($in['submitted']) && isset($in['submitted']['sortby'])) ? $in['submitted']['sortby'] : null),'updated'), $in, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array('flow-recent-topics'), 'encq').'
+			';}, function($cx, $in) {return '
+				'.LCRun3::ch($cx, 'l10n', Array('flow-newest-topics'), 'encq').'
 			';}).'
 			<span class="wikiglyph wikiglyph-caret-down"></span>'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'</a>
 	</div>
