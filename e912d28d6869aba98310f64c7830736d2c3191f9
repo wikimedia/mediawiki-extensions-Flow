@@ -101,6 +101,24 @@
       "revId": "e912d28d6869aba98310f64c7830736d2c3191f9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_e754e2cb",
+        "filename": "modules/new/flow-components.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-14T01:35:05Z",
+      "side": 1,
+      "message": "Okay, so assuming we leave this in, when you receive a real workflow ID from the server API response upon creating a board successfully, you never call:\n\n    this.API.setWorkflowId( newId );\n\nThis would be needed to set that ID for a given component on subsequent API requests.",
+      "parentUuid": "ee391fd1_e73d028c",
+      "revId": "e912d28d6869aba98310f64c7830736d2c3191f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
