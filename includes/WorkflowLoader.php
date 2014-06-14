@@ -180,7 +180,7 @@ class WorkflowLoader {
 			case 'discussion':
 				$blocks = array(
 					new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
-					new TopicListBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+					new TopicListBlock( $this->workflow, $this->storage, $this->notificationController ),
 					new BoardHistoryBlock( $this->workflow, $this->storage, $this->notificationController ),
 				);
 				break;

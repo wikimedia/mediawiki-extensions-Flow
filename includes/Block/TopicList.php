@@ -72,11 +72,9 @@ class TopicListBlock extends AbstractBlock {
 	public function __construct(
 		Workflow $workflow,
 		ManagerGroup $storage,
-		NotificationController $notificationController,
-		RootPostLoader $rootLoader
+		NotificationController $notificationController
 	) {
 		parent::__construct( $workflow, $storage, $notificationController );
-		$this->rootLoader = $rootLoader;
 	}
 
 	public function init( $action, $user ) {
