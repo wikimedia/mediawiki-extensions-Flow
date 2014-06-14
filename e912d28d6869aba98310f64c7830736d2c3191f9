@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_e73d028c",
+        "filename": "modules/new/flow-components.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-14T01:25:47Z",
+      "side": 1,
+      "message": "Why are you removing this?",
+      "revId": "e912d28d6869aba98310f64c7830736d2c3191f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
