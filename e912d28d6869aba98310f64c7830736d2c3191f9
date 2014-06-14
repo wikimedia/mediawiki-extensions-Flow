@@ -2,6 +2,91 @@
   "comments": [
     {
       "key": {
+        "uuid": "ee391fd1_275b0aff",
+        "filename": "handlebars/flow_block_header.handlebars",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-14T01:31:43Z",
+      "side": 1,
+      "message": "These class names are far too generic. Use something like flow-board-header-edit-view or something.",
+      "revId": "e912d28d6869aba98310f64c7830736d2c3191f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_474e0e3e",
+        "filename": "handlebars/flow_block_header_edit.handlebars",
+        "patchSetId": 15
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-14T01:31:43Z",
+      "side": 1,
+      "message": "These class names are far too generic. Use something like flow-board-header-edit-view or something.",
+      "revId": "e912d28d6869aba98310f64c7830736d2c3191f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_a747fa21",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-14T01:31:43Z",
+      "side": 1,
+      "message": "Get the flowboard:\n\n    var flowBoard \u003d FlowBoardComponent.prototype.getInstanceByElement( $this );\n\nUse it:\n\n    flowBoard.API.(...);",
+      "revId": "e912d28d6869aba98310f64c7830736d2c3191f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_8744f61d",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-14T01:31:43Z",
+      "side": 1,
+      "message": "Use\n    flowBoard.TemplateEngine.(...);",
+      "revId": "e912d28d6869aba98310f64c7830736d2c3191f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_675112dd",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 15
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-14T01:31:43Z",
+      "side": 1,
+      "message": "Use\n    flowBoard.TemplateEngine.(...);",
+      "revId": "e912d28d6869aba98310f64c7830736d2c3191f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_e73d028c",
         "filename": "modules/new/flow-components.js",
         "patchSetId": 15
