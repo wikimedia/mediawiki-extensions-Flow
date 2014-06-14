@@ -463,8 +463,7 @@ class UrlGenerator extends BaseUrlGenerator {
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'action' => 'edit-header',
-				'workflow' => $workflowId->getAlphadecimal(),
-				'header_revId' => $revId->getAlphadecimal(), // necessary?
+				'workflow' => $workflowId->getAlphadecimal()
 			)
 		);
 	}
