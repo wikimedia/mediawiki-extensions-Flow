@@ -56,7 +56,7 @@ class RevisionViewFormatter {
 	public function buildLinks( RevisionViewRow $row ) {
 		if ( $row->revision->getPrevRevisionId() !== null ) {
 			$links['diff'] = array(
-				'url' => $this->urlGenerator->buildUrl(
+				'url' => $this->urlGenerator->generateUrl(
 					$row->workflow->getArticleTitle(),
 					$row->diffAction,
 					array(
@@ -73,8 +73,8 @@ class RevisionViewFormatter {
 			);
 		}
 		$links['hist'] = array(
-			'url' => $this->urlGenerator->buildUrl(
-				$row->workflow->getArticleTitle(),
+			'url' => $this->urlGenerator->generateUrl(
+				$row->workflow,
 				'history',
 				array(
 					'workflow' => $row->workflow->getId()->getAlphadecimal()
@@ -83,16 +83,16 @@ class RevisionViewFormatter {
 			'title' => wfMessage( 'hist' )
 		);
 		$links['board'] = array(
-			'url' => $this->urlGenerator->buildUrl(
-				$row->workflow->getArticleTitle(),
+			'url' => $this->urlGenerator->generateUrl(
+				$row->workflow,
 				'view'
 			),
 			'title' => $row->workflow->getArticleTitle()
 		);
 		if ( $row->revision instanceof PostRevision || $row->revision instanceof PostSummary ) {
 			$links['root'] = array(
-				'url' => $this->urlGenerator->buildUrl(
-					$row->workflow->getArticleTitle(),
+				'url' => $this->urlGenerator->generateUrl(
+					$row->workflow,
 					'view',
 					array(
 						'workflow' => $row->workflow->getId()->getAlphadecimal()
@@ -102,10 +102,13 @@ class RevisionViewFormatter {
 			);
 		}
 		$links['single-view'] = array(
-				'url' => $this->urlGenerator->generateBlockUrl(
+				'url' => $this->urlGenerator->generateUrl(
 					$row->workflow,
-					$row->revision,
-					true
+					'view',
+					array(
+						'topic[postId]' => $row->revision->getCollectionId()->getAlphadecimal(),
+						'topic[revId]' => $row->revision->getRevisionId()->getAlphadecimal()
+					)
 				),
 				'title' => $row->workflow->getArticleTitle()
 			);
