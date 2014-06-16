@@ -232,11 +232,6 @@
 				$rendered;
 
 			if ( status === 'done' ) {
-				// @todo implement this instead a separate template?
-				//if ( data.flow[ 'header-view' ].result.header ) {
-				//	data.flow[ 'header-view' ].result.header.editMode = true;
-				//}
-
 				// Change "header" to "header_edit" so that it loads up flow_block_header_edit
 				data.flow[ 'header-view' ].result.header.type = 'header_edit';
 
@@ -254,21 +249,6 @@
 
 				// Reinitialize the whole board with these nodes, and hold onto the replaced header
 				$oldBoardNodes = flowBoard.reinitializeBoard( $rendered );
-
-				/*
-				$header.find( '.flow-board-header-edit-view' ).replaceWith(
-					$( flowBoard.TemplateEngine.processTemplateGetFragment(
-						'flow_block_header_edit',
-						result.flow['header-view'].result.header
-					) ).find( '.flow-board-header-edit-view' )
-				);
-				$header.find( '.flow-board-header-detail-view' ).hide();
-				$header.find( '.flow-board-header-edit-view' ).show();
-				$header.find( 'form' ).data( 'flow-cancel-callback', function() {
-					$header.find( '.flow-board-header-detail-view' ).show();
-					$header.find( '.flow-board-header-edit-view' ).hide();
-				} );
-				*/
 			} else {
 				// @todo fail
 				alert('fail');
@@ -300,25 +280,6 @@
 				// @todo fail
 				alert('fail');
 			}
-
-			/*
-			var $header = $( this ).closest( '.flow-board-header' ),
-				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
-			if ( status === 'done' ) {
-				$header.find( '.flow-board-header-detail-view' ).html(
-					$( flowBoard.TemplateEngine.processTemplate(
-						'flow_block_header', data.flow['edit-header'].result.header )
-					).find( '.flow-board-header-detail-view' ).html()
-				);
-				$header.find( '.flow-board-header-edit-view' ).hide();
-				$header.find( '.flow-board-header-detail-view' ).show();
-				if ( data.flow['edit-header'].workflow ) {
-					flowBoard.API.setWorkflowId( data.flow['edit-header'].workflow );
-				}
-			} else {
-				alert( '@Todo: replace with error handling');
-			}
-			*/
 		};
 
 
