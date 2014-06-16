@@ -6,6 +6,7 @@ use Flow\Exception\InvalidActionException;
 use Flow\Model\Workflow;
 use Html;
 use IContextSource;
+use Message;
 use ContextSource;
 
 class View extends ContextSource {
@@ -114,6 +115,8 @@ class View extends ContextSource {
 		array_walk_recursive( $apiResponse, function( &$value ) {
 			if ( $value instanceof Anchor ) {
 				$value = $value->toArray();
+			} elseif ( $value instanceof Message ) {
+				$value = $value->text();
 			}
 		} );
 		wfProfileOut( __CLASS__ . '-serialize' );
