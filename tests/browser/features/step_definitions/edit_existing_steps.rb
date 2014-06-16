@@ -30,6 +30,9 @@ end
 Then(/^the saved post should contain (.+)$/) do |edited_post|
   on(FlowPage) do |page|
     page.small_spinner_element.when_not_present
+      page.wait_until(20) do
+      page.flow_topics.include? (edited_post + @random_string)
+    end
     page.topic_post.should match(edited_post + @random_string)
   end
 end
