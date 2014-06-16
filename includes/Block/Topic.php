@@ -499,6 +499,10 @@ class TopicBlock extends AbstractBlock {
 		case 'close-open-topic':
 			return true;
 
+		case 'topic-view':
+			return true;
+		case 'post-view':
+			return false;
 		case 'view':
 			return !isset( $options['postId'] ) && !isset( $options['revId'] );
 		}
