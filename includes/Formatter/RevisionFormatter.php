@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Anchor;
+use Flow\Collection\PostCollection;
 use Flow\Data\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -103,6 +104,8 @@ class RevisionFormatter {
 			return false;
 		}
 
+		global $wgFlowMaxThreadingDepth;
+
 		$section = new \ProfileSection( __METHOD__ );
 		$isContentAllowed = $this->permissions->isAllowed( $row->revision, 'view' );
 		$isHistoryAllowed = $isContentAllowed ?: $this->permissions->isAllowed( $row->revision, 'history' );
@@ -120,6 +123,7 @@ class RevisionFormatter {
 			'changeType' => $row->revision->getChangeType(),
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),
+			'isMaxThreadingDepth' => $row->revision->getDepth() >= $wgFlowMaxThreadingDepth,
 			'isModerated' => $moderatedRevision->isModerated(),
 			// These are read urls
 			'links' => $this->buildLinks( $row ),
@@ -289,7 +293,20 @@ class RevisionFormatter {
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
 				}
-				$links['reply'] = $this->urlGenerator->replyAction( $title, $workflowId, $postId );
+
+				/*
+				 * If the post being replied is at or exceeds the max threading
+				 * depth, the reply link should point to parent.
+				 */
+				global $wgFlowMaxThreadingDepth;
+				$replyToId = $postId;
+				$replyToRevision = $revision;
+				while ( $replyToRevision->getDepth() >= $wgFlowMaxThreadingDepth ) {
+					$replyToId = $replyToRevision->getReplyToId();
+					$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
+				}
+
+				$links['reply'] = $this->urlGenerator->replyAction( $title, $workflowId, $replyToId );
 				break;
 
 			case 'edit-header':

@@ -432,7 +432,7 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	public function renderAPI( Templating $templating, array $options ) {
-		// theres probably some OO way to turn this stack of if/else into
+		// there's probably some OO way to turn this stack of if/else into
 		// something nicer. Consider better ways before extending this with
 		// more conditionals
 		if ( $this->action === 'history' ) {
@@ -549,11 +549,11 @@ class TopicBlock extends AbstractBlock {
 	 */
 	protected function renderPostAPI( Templating $templating, array $options, $postId = '' ) {
 		if ( $this->workflow->isNew() ) {
-			throw new FlowException( 'No posts can exist for non-existant topic' );
+			throw new FlowException( 'No posts can exist for non-existent topic' );
 		}
 
 		if ( !$postId ) {
-			$postId = $options['postId'];
+			$postId = $options['postId'] ?: $this->newRevision->getPostId();
 		}
 
 		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $postId ) );
