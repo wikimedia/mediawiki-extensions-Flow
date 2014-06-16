@@ -282,6 +282,59 @@
 			}
 		};
 
+		FlowBoardComponent.UI.events.apiHandlers.newTopic = function ( status, data, jqxhr ) {
+			if ( status !== 'done' ) {
+				console.log( 'something failed' );
+				return;
+			}
+
+			if ( data.error ) {
+				console.log( 'apiHandlers.newTopic - top level api request failure, bad request?' );
+				return;
+			}
+
+			if ( !data.flow["new-topic"] ) {
+				console.log( 'apiHandlers.newTopic - did not receive "new-topic" response' );
+				return;
+			}
+
+			var result, postId, revId, revision, html,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
+			switch( data.flow["new-topic"].status ) {
+			case 'error':
+				console.log( 'apiHandlers.newTopic - api submodule rejected request' );
+				break;
+
+			case 'ok':
+				result = data.flow["new-topic"].result.topiclist;
+
+				if ( result.errors.length ) {
+					// failed
+					console.log( '@todo render validation errors' );
+				} else {
+					// render new topic and inject to top of view
+					postId = result.roots[0];
+					revId = result.posts[postId];
+					revision = result.revisions[revId];
+					// @todo only renders topic, not nested posts
+					html = mw.flow.TemplateEngine.processTemplate( 'flow_topic', revision );
+
+					// @todo un-hardcode
+					flowBoard.reinitializeBoard(
+						$( '.flow-topics' ).prepend( $( html ) )
+					);
+					console.log( 'rendered and injected new topic' );
+
+					$( this ).closest( 'form' )[0].reset();
+				}
+				break;
+
+			default:
+				console.log( 'apiHanlers.newTopic - expected either error or ok, received: ' + data.flow["new-topic"].status );
+				break;
+			}
+		};
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
