@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_7b7885ed",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-16T18:08:51Z",
+      "side": 1,
+      "message": "Elaborating on these todo notes:\n\n* should reinitializeBoard be called?\n\nHaven\u0027t properly checked it out yet, but it looks like it probably should, as it wires up some JS to the nodes.\n\n* what argument should be passed?\n* it looks like I should pass full board (all topics) DOM\n* I only have the requested post (edit form) rendered in isolation\n* so that would need to be replaced in-place, in that full DOM\n\nBasically, I have to yank out the rendered post from the DOM and replace it with the edit form. Then pass that to reinitializeBoard?\n\n* reinitializeBoard\u0027s return value is used (at least for edit header, it is) as replacement (the original) when cancelling the edit\n* when starting multiple edits (or perhaps also other actions) and cancelling the first one will restore DOM in that original state (thus discarding other potential changes in progress)\n\nDoes the above somewhat make sense?\n\nIt looks like I should probably implement the replacements for cancel myself, instead of using reinitializeBoard there, and only just call reinitializeBoard to have JS wired up to whatever new I\u0027m adding?\nIs anything special happening in reinitializeBoard that would make this a bad idea?",
+      "revId": "e2bd3297253c41d9ea8e4a99da0783fedc81864c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
