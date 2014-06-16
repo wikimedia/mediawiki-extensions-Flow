@@ -547,7 +547,8 @@ class TemplateHelper {
 		$templateName = $input['templateName'];
 
 		return self::html(
-			'<script name="handlebars-template-progressive-enhancement" type="text/x-handlebars-template-progressive-enhancement" data-type="' . $insertionType . '" id="' . $sectionId . '">'
+			'<script name="handlebars-template-progressive-enhancement"
+				type="text/x-handlebars-template-progressive-enhancement" data-type="' . $insertionType . '" id="' . $sectionId . '">'
 			. self::processTemplate( $templateName, $context )
 			.'</script>'
 		);

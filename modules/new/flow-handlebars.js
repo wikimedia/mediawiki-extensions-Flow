@@ -70,7 +70,7 @@
 
 		div.innerHTML = FlowHandlebars.prototype.processTemplate( templateName, args );
 
-		//FlowHandlebars.prototype.processProgressiveEnhancement( div );
+		FlowHandlebars.prototype.processProgressiveEnhancement( div );
 
 		while ( div.childNodes.length ) {
 			$fragment[0].appendChild( div.childNodes[0] );
@@ -206,12 +206,19 @@
 	// TODO: l10nParse function?
 
 	/**
-	 * @todo completely
+	 * Parses the timestamp out of a base-36 UUID, and calls timestamp with it.
+	 * @example {{uuidTimestamp id "started_ago"}}
+	 * @param {String} uuid id
+	 * @param {String} str
+	 * @param {bool} [timeAgoOnly]
 	 * @returns {String}
 	 */
-	FlowHandlebars.prototype.uuidTimestamp = function ( ) {
-		// I have no idea
-		// @todo
+	FlowHandlebars.prototype.uuidTimestamp = function ( uuid, str, timeAgoOnly ) {
+		var timestamp = parseInt( uuid, 36 ).toString( 2 ); // base-36 to base-10 to base-2
+		timestamp = Array( 88 + 1 - timestamp.length ).join( '0' ) + timestamp; // left pad 0 to 88 chars
+		timestamp = parseInt( timestamp.substr( 0, 46 ), 2 ); // first 46 chars base-2 to base-10
+
+		return FlowHandlebars.prototype.timestamp( timestamp, str, timeAgoOnly );
 	};
 
 	// Register timestamp
@@ -635,7 +642,15 @@
 	FlowHandlebars.prototype.progressiveEnhancement = function ( options ) {
 		var hash = options.hash;
 
-		return FlowHandlebars.prototype.html( '<scr' + 'ipt type="text/x-handlebars-template-progressive-enhancement" data-target="' + hash.target +'" data-target="' + hash.target +'" data-type="' + hash.type + '" id="' + hash.id + '">' + hash.template + '</scr' + 'ipt>' );
+		return FlowHandlebars.prototype.html(
+			'<scr' + 'ipt'
+			+ ' type="text/x-handlebars-template-progressive-enhancement"'
+			+ ' data-target="' + hash.target +'"'
+			+ ' data-type="' + hash.insertionType + '"'
+			+ ' id="' + hash.sectionId + '">'
+			+ '{{> ' + hash.templateName + ' }}'
+			+ '</scr' + 'ipt>'
+		);
 	};
 
 	// Register progressiveEnhancement
