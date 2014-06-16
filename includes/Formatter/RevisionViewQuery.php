@@ -166,7 +166,7 @@ class PostViewQuery extends RevisionViewQuery {
 	 * {@inheritDoc}
 	 */
 	protected function getBlockName() {
-		return 'header';
+		return 'topic';
 	}
 
 	/**

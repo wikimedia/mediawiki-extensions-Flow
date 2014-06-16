@@ -104,7 +104,7 @@ class RevisionViewFormatter {
 		$links['single-view'] = array(
 				'url' => $this->urlGenerator->generateUrl(
 					$row->workflow,
-					'view',
+					'single-view',
 					array(
 						'topic[postId]' => $row->revision->getCollectionId()->getAlphadecimal(),
 						'topic[revId]' => $row->revision->getRevisionId()->getAlphadecimal()

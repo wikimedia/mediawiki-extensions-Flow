@@ -65,14 +65,14 @@ class TopicBlock extends AbstractBlock {
 	);
 
 	protected $supportedGetActions = array(
-		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions',
+		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'single-view',
 		'topic-view', 'post-view',
 		'moderate-topic', 'moderate-post', 'close-open-topic',
 	);
 
 	// @Todo - fill in the template names
 	protected $templates = array(
-		'post-view' => 'single_view',
+		'single-view' => 'single_view',
 		'view' => '',
 		'reply' => 'reply',
 		'history' => 'history',
@@ -444,10 +444,11 @@ class TopicBlock extends AbstractBlock {
 				// post history for full topic
 				$output = $this->renderTopicHistoryAPI( $templating, $options );
 			}
-		} elseif ( $this->action === 'post-view' ) {
-			$revId = '';
+		} elseif ( $this->action === 'single-view' ) {
 			if ( isset( $options['revId'] ) ) {
 				$revId = $options['revId'];
+			} else {
+				throw new InvalidInputException( 'A revision must be provided', 'invalid-input' );
 			}
 			$output = $this->renderSingleViewAPI( $revId );
 		} elseif ( $this->action === 'compare-post-revisions' ) {
