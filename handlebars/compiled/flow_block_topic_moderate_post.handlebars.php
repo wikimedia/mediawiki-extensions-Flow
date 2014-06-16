@@ -21,13 +21,13 @@
 
     );
     return '<div class="flow-board">
+	<ul class="flow-errors">
 	'.LCRun3::ifv($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, function($cx, $in) {return '
-	<ul>
-	'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-		<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
+		'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
+			<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
+		';}).'
 	';}).'
-	</ul>
-';}).'
+</ul>
 
 	
 	'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
@@ -44,7 +44,7 @@
 </form>
 
 			'.LCRun3::wi($cx, ((is_array($in) && isset($in['revision'])) ? $in['revision'] : null), $in, function($cx, $in) {return '
-	<div class="flow-post'.LCRun3::ifv($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null), $in, function($cx, $in) {return ' flow-post-moderated';}).'">
+	<div class="flow-post'.LCRun3::ifv($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null), $in, function($cx, $in) {return ' flow-post-moderated';}).'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'">
 		<div class="flow-post-main">
 			'.LCRun3::wi($cx, ((is_array($in) && isset($in['author'])) ? $in['author'] : null), $in, function($cx, $in) {return '
 				<span class="flow-author"><a href="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['url'])) ? $in['links']['contribs']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['title'])) ? $in['links']['contribs']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="mw-userlink flow-ui-tooltip-target">'.htmlentities(((is_array($in) && isset($in['name'])) ? $in['name'] : null), ENT_QUOTES, 'UTF-8').'</a> <span class="mw-usertoollinks">(<a href="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['url'])) ? $in['links']['talk']['url'] : null), ENT_QUOTES, 'UTF-8').'" class="new flow-ui-tooltip-target" title="'.htmlentities(((is_array($in['links']['talk']) && isset($in['links']['talk']['title'])) ? $in['links']['talk']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array('talkpagelinktext'), 'encq').'</a>'.LCRun3::ifv($cx, ((is_array($in['links']) && isset($in['links']['block'])) ? $in['links']['block'] : null), $in, function($cx, $in) {return ' | <a class="flow-ui-tooltip-target" href="'.htmlentities(((is_array($in['links']['block']) && isset($in['links']['block']['url'])) ? $in['links']['block']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['links']['block']) && isset($in['links']['block']['title'])) ? $in['links']['block']['title'] : null), ENT_QUOTES, 'UTF-8').'">'.LCRun3::ch($cx, 'l10n', Array('blocklink'), 'encq').'</a>';}).')</span></span>
@@ -63,7 +63,14 @@
 					';}).'
 					'.LCRun3::ifv($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null), $in, function($cx, $in) {return '
 						&#8226;
-						<a href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'" class="flow-ui-regressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-post-action-edit-post'), 'encq').'</a>
+						<a href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+							title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+							class="flow-ui-regressive flow-ui-quiet"
+							data-flow-api-handler="activateEditPost"
+							data-flow-api-target=".flow-post[data-flow-id=\''.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'\']"
+							data-flow-interactive-handler="apiRequest">
+								'.LCRun3::ch($cx, 'l10n', Array('flow-post-action-edit-post'), 'encq').'
+						</a>
 					';}).'
 				</span>
 				'.LCRun3::ifv($cx, ((is_array($in) && isset($in['previousRevisionId'])) ? $in['previousRevisionId'] : null), $in, function($cx, $in) {return '
