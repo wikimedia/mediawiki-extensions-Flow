@@ -49,9 +49,12 @@
 						{{#if actions.edit}}
 							&#8226;
 							<a href="{{actions.edit.url}}"
-							   title="{{actions.edit.title}}"
-							   class="flow-ui-regressive flow-ui-quiet">
-								{{~l10n "flow-post-action-edit-post"~}}
+								title="{{actions.edit.title}}"
+								class="flow-ui-regressive flow-ui-quiet"
+								data-flow-api-handler="activateEditPost"
+								data-flow-api-target=".flow-post[data-flow-id='{{postId}}']"
+								data-flow-interactive-handler="apiRequest">
+									{{l10n "flow-post-action-edit-post"}}
 							</a>
 						{{/if}}
 					</span>
