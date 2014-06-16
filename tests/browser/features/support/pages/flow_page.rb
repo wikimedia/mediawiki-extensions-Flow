@@ -28,6 +28,7 @@ class FlowPage
   a(:edit_post, class: "flow-edit-post-link", index: topic_index)
   a(:edit_title_icon, css: "div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-edit-title > a.mw-ui-button.flow-edit-topic-link")
   div(:flow_body, class: "flow-container")
+  div(:flow_topics, class: "flow-topics")
   list_item(:full_view, title: "Full view")
   div(:highlighted_comment, class: "flow-post-highlighted")
 

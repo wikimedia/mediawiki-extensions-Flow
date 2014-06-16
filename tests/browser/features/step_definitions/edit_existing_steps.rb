@@ -37,6 +37,9 @@ end
 Then(/^the saved topic title should contain (.+)$/) do |edited_title|
   on(FlowPage) do |page|
     page.small_spinner_element.when_not_present
+      page.wait_until(20) do
+      page.flow_topics.include? (edited_title + @random_string)
+    end
     page.topic_title.should match(edited_title + @random_string)
   end
 end
