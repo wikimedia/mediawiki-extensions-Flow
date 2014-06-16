@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_a58c8d00",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-16T11:28:23Z",
+      "side": 1,
+      "message": "Ignore giant comment, removed in subsequent commit.",
+      "revId": "a06d040560cb290c9106a5134595064c8b8f4f35",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_c58791db",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-16T11:28:23Z",
+      "side": 1,
+      "message": "Ignore giant comment, removed in subsequent commit.",
+      "revId": "a06d040560cb290c9106a5134595064c8b8f4f35",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_e58295cc",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 22
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-16T11:28:23Z",
+      "side": 1,
+      "message": "Ignore giant comment, removed in subsequent commit.",
+      "revId": "a06d040560cb290c9106a5134595064c8b8f4f35",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
