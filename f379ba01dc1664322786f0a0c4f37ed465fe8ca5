@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_65a90521",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-16T13:03:11Z",
+      "side": 1,
+      "message": "Efficiency:\n    $targetPost \u003d $post.filter( \u0027:not(.flow-post-max-depth)\u0027),\n\nThough, I\u0027d like to point out that we are trying as much as possible to avoid naming selectors and doing markup in JS. This stuff should be set on data-flow-* attributes. It\u0027s a correction we can make later, just please put a @todo here about that.\n\nYou\u0027ll notice apart from reinitializeBoard (and a couple of in-development methods), none of flow-board.js does any handling of elements by direct class name, except when they are interactivity class names (eg. flow-form-collapsible).",
+      "revId": "f379ba01dc1664322786f0a0c4f37ed465fe8ca5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_45a60152",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-16T13:03:11Z",
+      "side": 1,
+      "message": "No HTML in here. In addition, append is subjective and assumes that\u0027s where it will always go. Having the markup tell you where it goes, with some kind of data-flow-* target selector (or something), will make this cleaner here.",
+      "revId": "f379ba01dc1664322786f0a0c4f37ed465fe8ca5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_603a13c2",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-16T13:03:11Z",
+      "side": 1,
+      "message": "Again, similar issue with regards to picking out elements here.",
+      "revId": "f379ba01dc1664322786f0a0c4f37ed465fe8ca5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_40470f51",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-16T13:03:11Z",
+      "side": 1,
+      "message": "Same concern here, as well as the other .parent() and .before() calls below.",
+      "revId": "f379ba01dc1664322786f0a0c4f37ed465fe8ca5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
