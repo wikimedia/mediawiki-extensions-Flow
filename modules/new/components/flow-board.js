@@ -414,6 +414,69 @@
 			}
 		};
 
+		/**
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.showPostReplyForm = function ( event ) {
+			event.preventDefault();
+
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$post = $( this ).closest( '.flow-post' ),
+				$targetPost = $( this ).closest( '.flow-post:not(.flow-post-max-depth)' ),
+				form;
+
+			form = flowBoard.TemplateEngine.processTemplateGetFragment(
+				'flow_reply_form',
+				// arguments can be empty: we just want an empty reply form
+				{
+					actions: {
+						reply: {
+							url: $( this ).attr( 'href' )
+						}
+					},
+					postId: $targetPost.data( 'flow-id' ),
+					author: {
+						name: $post.find( '.flow-author:first .mw-userlink' ).text()
+					}
+				}
+			);
+
+			// add reply form below the post being replied to (WRT max depth)
+			$targetPost.append( $( '<div class="flow-post">' ).append( form ) );
+			// @todo: do we need .flow-post element here? just using it for the indent, actually
+		};
+
+		/**
+		 * @param {String} status (done|fail)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.submitReply = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				postId = data.flow.reply.result.topic.roots[0],
+				$formContainer = $( this ).closest( '.flow-reply-form' ),
+				post;
+
+			if ( status === 'done' ) {
+				post = flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_post',
+					{ revision: data.flow.reply.result.topic.revisions[postId] }
+				);
+
+				if ( $formContainer.parent().hasClass( 'flow-post' ) ) {
+					// post reply forms are inlined between the existing posts:
+					// delete the form & replace it with the rendered submission
+					$formContainer.parent().replaceWith( post );
+				} else {
+					// topic reply textarea should not be replaced; instead the
+					// rendered submission should be added right before the form
+					$formContainer.before( post );
+				}
+			} else {
+				// @todo: address fail
+			}
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI events
 		////////////////////
