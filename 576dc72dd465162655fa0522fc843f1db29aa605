@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_45f84146",
+        "filename": "handlebars/flow_block_header_edit.handlebars",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-16T11:45:17Z",
+      "side": 1,
+      "message": "We don\u0027t do inline styles anymore. The hiding and showing of this should be handled via a parent class name OR template re-rendering.\n\nIn addition, because this was added to so many files, it\u0027s probably better to be a subtemplate. That way, any changes can be made to one location instead of several.\n\nThis applies to all the files this line was added to.",
+      "revId": "576dc72dd465162655fa0522fc843f1db29aa605",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
