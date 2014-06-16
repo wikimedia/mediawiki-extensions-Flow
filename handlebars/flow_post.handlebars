@@ -1,5 +1,5 @@
 {{#with revision}}
-	<div class="flow-post{{#if isModerated}} flow-post-moderated{{/if}}">
+	<div class="flow-post{{#if isModerated}} flow-post-moderated{{/if}}" data-flow-id="{{postId}}">
 		<div class="flow-post-main">
 			{{#with author}}
 				<span class="flow-author"><a href="{{links.contribs.url}}" title="{{links.contribs.title}}" class="mw-userlink flow-ui-tooltip-target">{{name}}</a> <span class="mw-usertoollinks">(<a href="{{links.talk.url}}" class="new flow-ui-tooltip-target" title="{{links.talk.title}}">{{l10n "talkpagelinktext"}}</a>{{#if links.block}} | <a class="flow-ui-tooltip-target" href="{{links.block.url}}" title="{{links.block.title}}">{{l10n "blocklink"}}</a>{{/if}})</span></span>
@@ -18,7 +18,14 @@
 					{{/if}}
 					{{#if actions.edit}}
 						&#8226;
-						<a href="{{actions.edit.url}}" title="{{actions.edit.title}}" class="flow-ui-regressive flow-ui-quiet">{{l10n "flow-post-action-edit-post"}}</a>
+						<a href="{{actions.edit.url}}"
+							title="{{actions.edit.title}}"
+							class="flow-ui-regressive flow-ui-quiet"
+							data-flow-api-handler="activateEditPost"
+							data-flow-api-target=".flow-post[data-flow-id='{{postId}}']"
+							data-flow-interactive-handler="apiRequest">
+								{{l10n "flow-post-action-edit-post"}}
+						</a>
 					{{/if}}
 				</span>
 				{{#if previousRevisionId}}
