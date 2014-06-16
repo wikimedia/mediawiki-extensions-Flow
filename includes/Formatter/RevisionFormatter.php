@@ -103,6 +103,8 @@ class RevisionFormatter {
 			return false;
 		}
 
+		global $wgFlowMaxThreadingDepth;
+
 		$section = new \ProfileSection( __METHOD__ );
 		$isContentAllowed = $this->permissions->isAllowed( $row->revision, 'view' );
 		$isHistoryAllowed = $isContentAllowed ?: $this->permissions->isAllowed( $row->revision, 'history' );
@@ -120,6 +122,7 @@ class RevisionFormatter {
 			'changeType' => $row->revision->getChangeType(),
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),
+			'isMaxThreadingDepth' => $row->revision->getDepth() >= $wgFlowMaxThreadingDepth,
 			'isModerated' => $moderatedRevision->isModerated(),
 			// These are read urls
 			'links' => $this->buildLinks( $row ),

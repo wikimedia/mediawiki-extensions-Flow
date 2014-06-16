@@ -1,5 +1,5 @@
 {{#with revision}}
-	<div class="flow-post{{#if isModerated}} flow-post-moderated{{/if}}">
+	<div class="flow-post{{#if isModerated}} flow-post-moderated{{/if}}{{#if isMaxThreadingDepth}} flow-post-max-depth{{/if}}" data-flow-id="{{postId}}">
 		{{#with author}}
 			<span class="flow-author"><a href="{{links.contribs.url}}" title="{{links.contribs.title}}" class="mw-userlink flow-ui-tooltip-target">{{name}}</a> <span class="mw-usertoollinks">(<a href="{{links.talk.url}}" class="new flow-ui-tooltip-target" title="{{links.talk.title}}">{{l10n "talkpagelinktext"}}</a>{{#if links.block}} | <a class="flow-ui-tooltip-target" href="{{links.block.url}}" title="{{links.block.title}}">{{l10n "blocklink"}}</a>{{/if}})</span></span>
 		{{/with}}
@@ -13,7 +13,7 @@
 		<div class="flow-post-meta">
 			<span class="flow-post-meta-actions">
 				{{#if actions.reply}}
-					<a href="{{actions.reply.url}}" title="{{actions.reply.title}}" class="flow-ui-progressive flow-ui-quiet">{{actions.reply.title}}</a>
+					<a href="{{actions.reply.url}}" title="{{actions.reply.title}}" class="flow-ui-progressive flow-ui-quiet" data-flow-interactive-handler="showPostReplyForm">{{actions.reply.title}}</a>
 				{{/if}}
 				{{#if actions.edit}}
 					&#8226;
