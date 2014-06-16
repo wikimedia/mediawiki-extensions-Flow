@@ -309,6 +309,62 @@
 			}
 		};
 
+		/**
+		 * After submitting a new topic, process the response.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.newTopic = function ( status, data, jqxhr ) {
+			var result, html,
+				$container = $( this ).closest( 'form' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
+			if ( status !== 'done' ) {
+				FlowBoardComponent.UI.showError( $container, 'something failed' );
+				return;
+			}
+
+			if ( data.error ) {
+				FlowBoardComponent.UI.showError( $container, 'apiHandlers.newTopic - top level api request failure, bad request?' );
+				return;
+			}
+
+			if ( !data.flow["new-topic"] ) {
+				FlowBoardComponent.UI.showError( $container, 'apiHandlers.newTopic - did not receive "new-topic" response' );
+				return;
+			}
+
+			switch( data.flow["new-topic"].status ) {
+				case 'error':
+					FlowBoardComponent.UI.showError( $container, 'apiHandlers.newTopic - api submodule rejected request' );
+					break;
+
+				case 'ok':
+					result = data.flow["new-topic"].result.topiclist;
+
+					if ( result.errors.length ) {
+						// failed
+						FlowBoardComponent.UI.showError( $container, '@todo render validation errors' );
+					} else {
+						// render only the new topic
+						result.roots = [result.roots[0]];
+						html = mw.flow.TemplateEngine.processTemplate( 'flow_topiclist_loop', result );
+
+						// @todo un-hardcode
+						flowBoard.reinitializeBoard(
+							flowBoard.$container.find( '.flow-topics' ).prepend( $( html ) )
+						);
+
+						$( this ).closest( 'form' )[0].reset();
+					}
+					break;
+
+				default:
+					FlowBoardComponent.UI.showError( 'apiHandlers.newTopic - expected either error or ok, received: ' + data.flow["new-topic"].status );
+					break;
+			}
+		};
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
@@ -812,6 +868,15 @@
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI methods
 		////////////////////
+
+		/**
+		 * @param {FlowBoardComponent|jQuery} $container or entire FlowBoard
+		 * @param string msg The error that occurred. Currently hardcoded.
+		 * @todo This should render an error in the given $container
+		 */
+		FlowBoardComponent.UI.showError = function ( $container, msg ) {
+			mw.log.warn( msg );
+		};
 
 		/**
 		 *
