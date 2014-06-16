@@ -24,15 +24,65 @@
 		// Default API submodule for FlowBoard URLs is to fetch a topiclist
 		this.API.setDefaultSubmodule( 'topiclist-view' );
 
+		// Set up the board
+		if ( this.reinitializeBoard( $container ) === false ) {
+			// Failed to init for some reason
+			return false;
+		}
+	}
+
+	// Register this FlowComponent
+	mw.flow.registerComponent( 'board', FlowBoardComponent );
+
+	/**
+	 * Sets up the board and base properties on this class
+	 * @return {Boolean}
+	 */
+	FlowBoardComponent.prototype.reinitializeBoard = function ( $container ) {
 		// Instantiate this FlowBoardComponent
-		// First, find our elements.
-		this.$header = $container.find( '.flow-board-header' );
-		this.$boardNavigation = $container.find( '.flow-board-navigation' );
-		this.$topicNavigation = $container.find( '.flow-topic-navigation' );
-		this.$board = $container.find( '.flow-board' );
+		// First, find our elements at the top level...
+		var $header = $container.filter( '.flow-board-header' ),
+			$boardNavigation = $container.filter( '.flow-board-navigation' ),
+			$topicNavigation = $container.filter( '.flow-topic-navigation' ),
+			$board = $container.filter( '.flow-board' );
+		// ...then check at the second level...
+		$header = $header.length ? $header : $container.find( '.flow-board-header' );
+		$boardNavigation = $boardNavigation.length ? $boardNavigation : $container.find( '.flow-board-navigation' );
+		$topicNavigation = $topicNavigation.length ? $topicNavigation : $container.find( '.flow-topic-navigation' );
+		$board = $board.length ? $board : $container.find( '.flow-board' );
+
+		// ...and remove any old ones that are in use.
+		if ( $header.length ) {
+			if ( this.$header ) {
+				this.$header.replaceWith( $header );
+				this.$header.remove();
+			}
+			this.$header = $header;
+		}
+		if ( $boardNavigation.length ) {
+			if ( this.$boardNavigation ) {
+				this.$boardNavigation.replaceWith( $boardNavigation );
+				this.$boardNavigation.remove();
+			}
+			this.$boardNavigation = $boardNavigation;
+		}
+		if ( $board.length ) {
+			if ( this.$board ) {
+				this.$board.replaceWith( $board );
+				this.$board.remove();
+			}
+			this.$board = $board;
+		}
+		if ( $topicNavigation.length ) {
+			if ( this.$topicNavigation ) {
+				this.$topicNavigation.replaceWith( $topicNavigation );
+				this.$topicNavigation.remove();
+			}
+			this.$topicNavigation = $topicNavigation;
+		}
 
 		// Second, verify that this board in fact exists
-		if ( !this.$board.length ) {
+		if ( !this.$board || !this.$board.length ) {
 			// You need a board, dammit!
 			this.debug( 'Could not find .flow-board', arguments );
 			return false;
@@ -51,11 +101,9 @@
 
 		// Restore the last state
 		this.HistoryEngine.restoreLastState();
-	}
 
-	// Register this FlowComponent
-	mw.flow.registerComponent( 'board', FlowBoardComponent );
-
+		return true;
+	};
 
 	/**
 	 * UI stuff
@@ -90,20 +138,24 @@
 
 		/**
 		 * When a topic wrapper is generated or found on initial load...
-		 * @param {String} status done|fail
+		 * @param {String} status (done|fail)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.board = function ( status, data, jqxhr ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$rendered;
 
 			if ( status === 'done' ) {
-				$(
+				$rendered = $(
 					flowBoard.TemplateEngine.processTemplateGetFragment(
-						'flow_board',
+						'flow_block_loop',
 						{ blocks: data.flow[ 'topiclist-view' ].result }
 					)
-				).insertBefore( flowBoard.$container );
+				).children();
+
+				// Reinitialize the whole board with these nodes
+				flowBoard.reinitializeBoard( $rendered );
 			} else {
 				// @todo fail
 			}
@@ -303,17 +355,29 @@
 		};
 
 		/**
-		 *
+		 * Triggers an API request based on URL and form data, and triggers the callbacks based on flow-api-handler.
+		 * @example <a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" href="...">...</a>
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.apiRequest = function ( event ) {
-			event.preventDefault();
-
 			var $deferred,
 				_this = this,
 				$this = $( this ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
-				handlerName = $this.data( 'flow-api-handler' );
+				dataParams = $this.data(),
+				handlerName = dataParams.flowApiHandler,
+				$target;
+
+			event.preventDefault();
+
+			// Find the target node
+			if ( dataParams.flowApiTarget ) {
+				$target = flowBoard.find( dataParams.flowApiTarget );
+			}
+			if ( !$target || !$target.length ) {
+				// Assign a target node if none
+				$target = $( this );
+			}
 
 			// Use the pre-callback to find out if we should process this
 			if ( FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ] ) {
@@ -343,7 +407,7 @@
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} )
 					.fail( function () {
-						var args = Array.prototype.slice.call(arguments, 0);
+						var args = Array.prototype.slice.call(arguments, 0 );
 						args.unshift( 'fail' );
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} );
@@ -543,7 +607,7 @@
 			}
 
 			// Find all load-handlers and trigger them
-			$container.find( '.flow-load-interactive' ).each( function () {
+			$container.find( '.flow-load-interactive' ).add( $container.filter( '.flow-load-interactive' ) ).each( function () {
 				var $this = $( this ),
 					handlerName = $this.data( 'flow-load-handler' );
 
@@ -555,7 +619,7 @@
 
 			// Find all the forms
 			// @todo move this into a flow-load-handler
-			$container.find( 'form' ).each( function () {
+			$container.find( 'form' ).add( $container.filter( 'form' ) ).each( function () {
 				var $this = $( this ),
 					initialState = $this.data( 'flow-initial-state' );
 
@@ -600,26 +664,28 @@
 
 			// Container handlers
 			$container
+				.off( '.FlowBoardComponent' )
 				.on(
-					'click keypress',
+					'click.FlowBoardComponent keypress.FlowBoardComponent',
 					'a, input, button, .flow-click-interactive',
 					FlowBoardComponent.UI.events.onClickInteractive
 				)
 				.on( // @todo REMOVE. This is just to stop from following empty links in demo.
-					'click',
+					'click.FlowBoardComponent',
 					"a[href='#']",
 					function () { event.preventDefault(); }
 				)
 				.on(
-					'click focusin focusout',
+					'click.FlowBoardComponent focusin.FlowBoardComponent focusout.FlowBoardComponent',
 					'.flow-menu',
 					FlowBoardComponent.UI.events.onToggleHoverMenu
 				);
 
 			// Board handlers
 			$board
+				.off( '.FlowBoardComponent' )
 				.on(
-					'focus',
+					'focus.FlowBoardComponent',
 					'input.mw-ui-input, textarea',
 					FlowBoardComponent.UI.events.onFocusField
 				);
@@ -737,11 +803,14 @@
 
 		/**
 		 * Called on window.scroll. Checks to see if a FlowBoard needs to have more content loaded.
-		 * @todo Implement and use XHR.
+		 * @todo Find a better way than directly targetting the button by class
 		 */
 		FlowBoardComponent.UI.infiniteScrollCheck = function () {
 			var windowPosition = $( window ).scrollTop() + $( window ).height();
+
 			$.each( FlowBoardComponent.prototype.getInstances(), function () {
+				var flowBoard = this;
+
 
 			} );
 		};

@@ -231,19 +231,46 @@ window.mw = window.mw || {}; // mw-less testing
 	function flowApiRequestFromAnchor( anchor ) {
 		var $anchor = $( anchor ),
 			$deferred = $.Deferred(),
-			queryMap = { submodule: $anchor.data( 'flow-api-action' ) }; // usually null
+			queryMap = { submodule: $anchor.data( 'flow-api-action' ) }, // usually null
+			prevApiCall, newApiCall;
 
+		// This method only works on anchors with HREF
 		if ( !$anchor.is( 'a' ) ) {
 			mw.flow.debug( '[FlowAPI] requestFromAnchor error: not an anchor', arguments );
 			return $deferred.rejectWith( { error: 'Not an anchor' } );
 		}
 
+		// Build the query map from this anchor's HREF
 		if ( !( queryMap = this.getQueryMap( anchor.href, queryMap ) ) ) {
 			mw.flow.debug( '[FlowAPI] requestFromAnchor error: invalid href', arguments );
 			return $deferred.rejectWith( { error: 'Invalid href' } );
 		}
 
-		return this.apiCall( queryMap, 'GET' );
+		// If this anchor already has a request in flight, abort it
+		prevApiCall = $anchor.data( 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule );
+		if ( prevApiCall ) {
+			if ( prevApiCall.abort ) {
+				prevApiCall.abort();
+			}
+			mw.flow.debug( '[FlowAPI] apiCall abort request in flight: ' + 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule, arguments );
+		}
+
+		// Make the request
+		newApiCall = this.apiCall( queryMap, 'GET' );
+
+		// Store this request on the node if it needs to be aborted
+		$anchor.data(
+			'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule,
+			newApiCall
+		);
+
+		// Remove the request on success
+		newApiCall.always( function () {
+			$anchor.removeData( 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule );
+		} );
+
+		// Return jqXHR
+		return newApiCall;
 	}
 
 	FlowAPI.prototype.requestFromAnchor = flowApiRequestFromAnchor;
