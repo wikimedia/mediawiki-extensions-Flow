@@ -107,5 +107,4 @@ class Anchor {
 
 		return $title;
 	}
-
 }
