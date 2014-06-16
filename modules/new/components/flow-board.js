@@ -179,6 +179,19 @@
 		};
 
 		/**
+		 * Before activating post, sends an overrideObject to the API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.activateEditPost = function ( event ) {
+			return {
+				submodule: "post-view",
+				vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
+				vpcontentFormat: "wikitext"
+			};
+		};
+
+		/**
 		 * Before handling preview, hides the old preview
 		 * and overrides the API request
 		 * @param  {Event} event The event being handled
@@ -385,6 +398,42 @@
 				alert( "Error" );
 			}
 		};
+
+		FlowBoardComponent.UI.events.apiHandlers.submitEditPost = function( status, data, jqxhr ) {
+
+			if ( !data || !data.flow || !data.flow['edit-post'] ) {
+				// @todo
+				alert( "Error" );
+				return;
+			}
+
+			var $rendered, html, revision, errors,
+				result = data.flow['edit-post'].result.topic;
+
+			if ( data.flow['edit-post'].status !== 'ok' ) {
+				// rejected by api submodule
+				errors = result;
+			} else if  ( result.errors.length ) {
+				// rejected by topic block
+				errors = result.errors;
+			}
+
+			if ( errors ) {
+				// validation problem
+				html = mw.flow.TemplateEngine.processTemplate( 'flow_errors', { errors: errors } );
+
+				// @todo this probably isn't supposed to be hardcoded
+				$( this ).closest( 'form' ).find( '.flow-errors' ).remove();
+				$( this ).closest( 'form' ).prepend( $( html ) );
+			} else {
+				// success
+				revision = result.revisions[result.posts[result.roots[0]]];
+				html = mw.flow.TemplateEngine.processTemplate( 'flow_post', { revision: revision } );
+
+				$( this ).closest( 'form' ).replaceWith( $( html ).find( '.flow-post-main' ) );
+			}
+		};
+
 		/**
 		 * Triggers a preview of the given content.
 		 * @param {Object} info (status:done|fail, $target: jQuery)
@@ -634,6 +683,49 @@
 				return { 'revision': revision };
 			}
 		);
+
+		/**
+		 * Renders the editable post with the given API response.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateEditPost = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$post = $( this ).closest( '.flow-post-main' ),
+				$rendered;
+
+			if ( status === 'done' ) {
+				// Change "topic" to "topic_edit_post" so that it loads up flow_block_topic_edit_post
+				data.flow['post-view'].result.topic.type = 'topic_edit_post';
+
+				$rendered = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_loop',
+						{ blocks: data.flow['post-view'].result }
+					)
+				).children();
+
+				// @todo: I'm rendering flow_block_topic_edit_post.handlebars to
+				// also render errors. It also wraps a div.flow-board around
+				// what I want, so I'll discard that parent. This should be
+				// cleaned up some day. Figure this out once we figured out how
+				// we'll handle errors (for one, those rendered errors won't be
+				// removed when the form is destroyed)
+				$rendered = $rendered.children();
+
+				// Set the cancel callback on this form so that it returns to the post
+				$rendered.find( 'form' ).andSelf().filter( 'form' )
+					.data( 'flow-cancel-callback', function () {
+						$rendered.replaceWith( $post );
+					} );
+
+				$post.replaceWith( $rendered );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
