@@ -149,6 +149,19 @@
 			};
 		};
 
+		/**
+		 * Before activating post, sends an overrideObject to the API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.activateEditPost = function ( event ) {
+			return {
+				submodule: "post-view",
+				vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
+				vpcontentFormat: "wikitext"
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
@@ -282,6 +295,38 @@
 			}
 		};
 
+		/**
+		 * Renders the editable post with the given API response.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateEditPost = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$post = $( this ).closest( '.flow-post' ),
+				$board = flowBoard.$board,
+				$oldBoardNodes,
+				$rendered;
+
+			if ( status === 'done' ) {
+				// Change "topic" to "topic_edit_post" so that it loads up flow_block_topic_edit_post
+				data.flow['post-view'].result.topic.type = 'topic_edit_post';
+
+				$rendered = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_loop',
+						{ blocks: data.flow['post-view'].result }
+					)
+				).children();
+
+				// @todo: similar to activateEditHeader, I assume we should reinitializeBoard?
+				// @todo: however, I only have 1 post node, not full $board (how do I only replace that one and keep rest of the nodes intact)
+				// @todo: also, what'll happen when editing multiple posts at once and cancelling the first; wouldn't that restore full board in original state (discarding other changes)?
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
