@@ -150,6 +150,19 @@
 		};
 
 		/**
+		 * Before activating post, sends an overrideObject to the API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.activateEditPost = function ( event ) {
+			return {
+				submodule: "post-view",
+				vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
+				vpcontentFormat: "wikitext"
+			};
+		};
+
+		/**
 		 * Before handling preview, hides the old preview
 		 * and overrides the API request
 		 * @param  {Event} event The event being handled
@@ -450,6 +463,48 @@
 				return { 'revision': revision };
 			}
 		);
+
+		/**
+		 * Renders the editable post with the given API response.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateEditPost = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$post = $( this ).closest( '.flow-post-main' ),
+				$rendered;
+
+			if ( status === 'done' ) {
+				// Change "topic" to "topic_edit_post" so that it loads up flow_block_topic_edit_post
+				data.flow['post-view'].result.topic.type = 'topic_edit_post';
+
+				$rendered = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_loop',
+						{ blocks: data.flow['post-view'].result }
+					)
+				).children();
+
+				// @todo: I'm rendering flow_block_topic_edit_post.handlebars to
+				// also render errors. It also wraps a div.flow-board around
+				// what I want, so I'll discard that parent. This should be
+				// cleaned up some day. Figure this out once we figured out how
+				// we'll handle errors (for one, those rendered errors won't be
+				// removed when the form is destroyed)
+				$rendered = $rendered.children();
+
+				// Set the cancel callback on this form so that it returns to the post
+				$rendered.find( 'form' ).data( 'flow-cancel-callback', function () {
+					$rendered.replaceWith( $post );
+				} );
+
+				$post.replaceWith( $rendered );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers

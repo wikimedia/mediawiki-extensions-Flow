@@ -1,4 +1,4 @@
-<form method="POST" action="{{actions.edit.url}}">
+<form class="flow-edit-post-form" method="POST" action="{{actions.edit.url}}">
 	{{> flow_preview }}
 	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 	{{!-- @todo should this be a part of the url? --}}
