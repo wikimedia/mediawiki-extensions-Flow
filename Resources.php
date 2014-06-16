@@ -86,6 +86,7 @@ $wgResourceModules += array(
 			'flow-topic-action-resummarize-topic',
 			'flow-topic-action-summarize-topic',
 			'flow-topic-action-view',
+			'talkpagelinktext',
 		),
 	),
 	'ext.flow.new.styles' => $flowResourceTemplate + array(

@@ -692,6 +692,79 @@
 			}
 		};
 
+		/**
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.activateReplyPost = function ( event ) {
+			event.preventDefault();
+
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$post = $( this ).closest( '.flow-post' ),
+				$targetPost = $( this ).closest( '.flow-post:not([data-flow-post-max-depth])' ),
+				$form;
+
+			// Check if reply form has already been opened
+			if ( $post.data( 'flow-replying' ) ) {
+				return;
+			}
+			$post.data( 'flow-replying', true );
+
+			$form = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+				'flow_reply_form',
+				// arguments can be empty: we just want an empty reply form
+				{
+					actions: {
+						reply: {
+							url: $( this ).attr( 'href' )
+						}
+					},
+					postId: $targetPost.data( 'flow-id' ),
+					author: {
+						name: $post.find( '.flow-author:first .mw-userlink' ).text()
+					}
+				}
+			) ).children();
+
+			// Set the cancel callback on this form so that it gets rid of the form
+			$form.data( 'flow-cancel-callback', function () {
+				$post.removeData( 'flow-replying' );
+				$form.remove();
+			} );
+
+			// Add reply form below the post being replied to (WRT max depth)
+			$targetPost.append( $form );
+			$form.conditionalScrollIntoView();
+		};
+
+		/**
+		 * @param {String} status (done|fail)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.submitReply = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				postId = data.flow.reply.result.topic.roots[0],
+				$form = $( this ).closest( 'form' ),
+				post;
+
+			if ( status === 'done' ) {
+				post = flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_post',
+					{ revision: data.flow.reply.result.topic.revisions[postId] }
+				);
+
+				$form.before( post );
+
+				// Clear contents to not trigger the "are you sure you want to
+				// discard your text" warning
+				$form.find( 'textarea, :text' ).val( '' );
+				// Trigger a click on cancel to have it destroy the form the way it should
+				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).click();
+			} else {
+				// @todo: address fail
+			}
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI events
 		////////////////////
