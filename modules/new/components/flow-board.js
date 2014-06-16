@@ -149,6 +149,19 @@
 			};
 		};
 
+		/**
+		 * Before activating post, sends an overrideObject to the API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.activateEditPost = function ( event ) {
+			return {
+				submodule: "post-view",
+				vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
+				vpcontentFormat: "wikitext"
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
@@ -239,6 +252,52 @@
 					flowBoard.TemplateEngine.processTemplateGetFragment(
 						'flow_block_loop',
 						{ blocks: data.flow[ 'header-view' ].result }
+					)
+				).children();
+
+				// Set the cancel callback on this form so that it returns the old content back if needed
+				$rendered.find( 'form' ).data( 'flow-cancel-callback', function () {
+					flowBoard.reinitializeBoard( $oldBoardNodes );
+				} );
+
+				// Reinitialize the whole board with these nodes, and hold onto the replaced header
+				$oldBoardNodes = flowBoard.reinitializeBoard( $rendered );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * Renders the editable post with the given API response.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateEditPost = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$post = $( this ).closest( '.flow-post' ),
+				$rendered;
+
+console.log(data);
+
+			if ( status === 'done' ) {
+				// Change "topic" to "topic_edit_post" so that it loads up flow_block_topic_edit_post
+				data.flow['post-view'].result.topic.type = 'topic_edit_post'; // @todo: IIRC, this should cause flow_block_topic_edit_post.handlebars to be rendered
+
+// @todo: but this is blowing up with "Error: The partial flow_edit_post could not be found"
+console.log(flowBoard.TemplateEngine.processTemplate(
+	'flow_block_loop',
+	{ blocks: data.flow['post-view'].result }
+));
+
+return;
+
+// @todo: stolen from activateEditHeader, need to adjust for edit-post purpose
+				$rendered = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_loop',
+						{ blocks: data.flow['post-view'].result }
 					)
 				).children();
 
