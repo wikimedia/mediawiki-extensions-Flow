@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Anchor;
+use Flow\Collection\PostCollection;
 use Flow\Data\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
@@ -57,20 +58,26 @@ class RevisionFormatter {
 
 	protected $contentFormat = 'html';
 
+	protected $maxThreadingDepth;
+
 	/**
 	 * @param RevisionActionPermissions $permissions
 	 * @param Templating $templating
+	 * @param UserNameBatch $usernames
+	 * @param int $maxThreadingDepth
 	 */
 	public function __construct(
 		RevisionActionPermissions $permissions,
 		Templating $templating,
-		UserNameBatch $usernames
+		UserNameBatch $usernames,
+		$maxThreadingDepth
 	) {
 		$this->permissions = $permissions;
 		$this->templating = $templating;
 		$this->urlGenerator = $this->templating->getUrlGenerator();
 		$this->usernames = $usernames;
 		$this->genderCache = GenderCache::singleton();
+		$this->maxThreadingDepth = $maxThreadingDepth;
 	}
 
 	/**
@@ -184,6 +191,7 @@ class RevisionFormatter {
 			$replyTo = $row->revision->getReplyToId();
 			$res['replyToId'] = $replyTo ? $replyTo->getAlphadecimal() : null;
 			$res['postId'] = $row->revision->getPostId()->getAlphadecimal();
+			$res['isMaxThreadingDepth'] = $row->revision->getDepth() >= $this->maxThreadingDepth;
 		}
 
 		return $res;
@@ -290,7 +298,19 @@ class RevisionFormatter {
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );
 				}
-				$links['reply'] = $this->urlGenerator->replyAction( $title, $workflowId, $postId );
+
+				/*
+				 * If the post being replied is at or exceeds the max threading
+				 * depth, the reply link should point to parent.
+				 */
+				$replyToId = $postId;
+				$replyToRevision = $revision;
+				while ( $replyToRevision->getDepth() >= $this->maxThreadingDepth ) {
+					$replyToId = $replyToRevision->getReplyToId();
+					$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
+				}
+
+				$links['reply'] = $this->urlGenerator->replyAction( $title, $workflowId, $replyToId );
 				break;
 
 			case 'edit-header':

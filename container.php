@@ -741,10 +741,13 @@ $c['query.board-history'] = $c->share( function( $c ) {
 	);
 } );
 $c['formatter.revision'] = $c->share( function( $c ) {
+	global $wgFlowMaxThreadingDepth;
+
 	return new Flow\Formatter\RevisionFormatter(
 		$c['permissions'],
 		$c['templating'],
-		$c['repository.username']
+		$c['repository.username'],
+		$wgFlowMaxThreadingDepth
 	);
 } );
 $c['formatter.topiclist'] = $c->share( function( $c ) {
