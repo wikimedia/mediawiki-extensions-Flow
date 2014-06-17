@@ -80,6 +80,8 @@ $wgResourceModules += array(
 			'flow-terms-of-use-edit',
 			'flow-terms-of-use-new-topic',
 			'flow-terms-of-use-reply',
+			'flow-terms-of-use-summarize',
+			'flow-summarize-topic-submit',
 			'flow-toggle-topics',
 			'flow-topic-action-close-topic',
 			'flow-topic-action-edit-title',
