@@ -22,20 +22,21 @@
 			</textarea>
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
-					class="flow-ui-button flow-ui-constructive"
-					data-flow-interactive-handler="apiRequest"
-					data-flow-api-handler="submitHeader">
-						{{~l10n "flow-edit-header-submit"~}}
+				        class="flow-ui-button flow-ui-constructive"
+				        data-flow-interactive-handler="apiRequest"
+				        data-flow-api-handler="submitHeader">
+					{{~l10n "flow-edit-header-submit"~}}
 				</button>
 				<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">
 					{{~l10n "flow-preview"~}}
 				</button>
-				<button data-flow-interactive-handler="cancelForm"
-					data-role="cancel"
-					class="flow-ui-button flow-ui-destructive
-					flow-ui-quiet flow-click-interactive">
-						{{~l10n "flow-cancel"~}}
-				</button>
+				<a class="flow-ui-button flow-ui-destructive"
+				   href="{{revision.links.board.url}}"
+				   data-flow-interactive-handler="cancelForm"
+				   data-role="cancel"
+				   flow-ui-quiet flow-click-interactive">
+					{{~l10n "flow-cancel"~}}
+				</a>
 				<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-edit"}}</small>
 			</div>
 		</form>

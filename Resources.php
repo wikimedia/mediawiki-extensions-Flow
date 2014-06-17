@@ -92,6 +92,7 @@ $wgResourceModules += array(
 			'new/styles/layout.less',
 			'new/styles/interactive.less',
 			'new/styles/forms.less',
+			'new/styles/nojs.less',
 		),
 	),
 	'ext.flow.new.handlebars' => $flowResourceTemplate + array(
