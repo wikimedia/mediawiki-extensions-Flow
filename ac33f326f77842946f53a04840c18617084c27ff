@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_a74007a9",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-17T17:58:38Z",
+      "side": 1,
+      "message": "For readability I wonder if we should put all the registerHelpers at the bottom of the file. It\u0027s really hard to scan this and see what all the helpers provided by this file are.",
+      "revId": "ac33f326f77842946f53a04840c18617084c27ff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
