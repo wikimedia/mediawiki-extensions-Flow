@@ -3,5 +3,6 @@
 *.kate-swp
 .*.swp
 scripts/hhvm-wrapper.phar
+scripts/remotes
 node_modules/
 \#*#

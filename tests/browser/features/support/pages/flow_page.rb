@@ -28,6 +28,7 @@ class FlowPage
   a(:edit_post, class: "flow-edit-post-link", index: topic_index)
   a(:edit_title_icon, css: "div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-edit-title > a.mw-ui-button.flow-edit-topic-link")
   div(:flow_body, class: "flow-container")
+  div(:flow_topics, class: "flow-topics")
   list_item(:full_view, title: "Full view")
   div(:highlighted_comment, class: "flow-post-highlighted")
 
@@ -62,7 +63,7 @@ class FlowPage
 
   div(:header_content, id: "flow-header-content", index: 0)
   a(:edit_header_link, title: "Edit header")
-  form(:edit_header_form, class: "flow-edit-header-form")
-  text_field(:edit_header_textbox, class: "flow-edit-header-content")
-  button(:edit_header_save, class: "flow-edit-header-submit")
+  form(:edit_header_form, class: "flow-edit-form") # Reuses common edit action so no header-specific class.
+  text_field(:edit_header_textbox, class: "flow-edit-content") # Reuses common edit action so no header-specific class.
+  button(:edit_header_save, text: "Save header")
 end

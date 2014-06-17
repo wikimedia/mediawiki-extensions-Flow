@@ -235,5 +235,6 @@
 	"flow-special-type": "種類",
 	"flow-special-type-post": "投稿",
 	"flow-special-type-workflow": "ワークフロー",
-	"flow-special-uuid": "UUID"
+	"flow-special-uuid": "UUID",
+	"flow-spam-confirmedit": "匿名利用者は外部リンクを投稿できません。アカウントを作成してください。"
 }
