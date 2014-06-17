@@ -83,7 +83,7 @@
 			<h2 class="flow-moderated-topic-title">'.LCRun3::ch($cx, 'l10n', Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)), 'encq').'</h2>
 			<div>@Todo - Add css to toggle between "xxx is hidden by xxx" and real title</div>
 		' : '').'
-		<h2 class="flow-topic-title">'.htmlentities(((is_array($in) && isset($in['content'])) ? $in['content'] : null), ENT_QUOTES, 'UTF-8').'</h2>
+		<h2 class="flow-topic-title" data-title="'.htmlentities(((is_array($in) && isset($in['content'])) ? $in['content'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities(((is_array($in) && isset($in['content'])) ? $in['content'] : null), ENT_QUOTES, 'UTF-8').'</h2>
 		<span class="flow-author">'.LCRun3::ch($cx, 'l10n', Array('started_with_participants',$in), 'encq').'</span>
 		<div class="flow-topic-meta">
 			<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-inline" href="#flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content">'.LCRun3::ch($cx, 'l10n', Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'encq').'</a>
@@ -103,7 +103,9 @@
 					<li>
 						<a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-						   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'">
+						   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+						   data-flow-interactive-handler="editTopicTitle"
+						   >
 							<span class="wikiglyph wikiglyph-pencil"></span>
 							'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-edit-title'), 'encq').'
 						</a>

@@ -39,6 +39,7 @@ $wgResourceModules += array(
 			"flow_board_collapsers_subcomponent.handlebars",
 			"flow_board_navigation.handlebars",
 			"flow_edit_post.handlebars",
+			"flow_edit_topic_title.handlebars",
 			"flow_errors.handlebars",
 			"flow_moderate_post.handlebars",
 			"flow_moderate_topic.handlebars",
@@ -57,6 +58,7 @@ $wgResourceModules += array(
 		'messages' => array(
 			'flow-cancel',
 			'flow-edit-header-submit',
+			'flow-edit-title-submit',
 			'flow-load-more',
 			'flow-newest-topics',
 			'flow-newtopic-content-placeholder',

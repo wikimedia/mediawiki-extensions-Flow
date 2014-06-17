@@ -1,0 +1,18 @@
+<form method="POST" action="{{actions.edit.url}}">
+	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
+	{{!-- @todo should this be a part of the url? --}}
+	<input type="hidden" name="topic_prev_revision" value="{{revisionId}}" />
+	<input name="topic_content" class="mw-ui-input" value="
+			{{~#if @root.submitted.content~}}
+				{{~@root.submitted.content~}}
+			{{~else~}}
+				{{~content~}}
+			{{~/if~}}
+		" />
+	<div class="flow-form-actions flow-form-collapsible">
+		<button data-role="submit" data-flow-api-handler="submitTopicTitle" class="flow-ui-button flow-ui-constructive">{{l10n "flow-edit-title-submit"}}</button>
+		<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
+		<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</button>
+		<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-edit"}}</small>
+	</div>
+</form>

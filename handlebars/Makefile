@@ -104,7 +104,7 @@ compiled/flow_block_topic_edit_post.handlebars.php: \
 
 compiled/flow_block_topic_edit_title.handlebars.php: \
 		flow_block_topic_edit_title.handlebars \
-		flow_edit_post.handlebars
+		flow_edit_topic_title.handlebars
 	$(COMPILE) flow_block_topic_edit_title
 
 compiled/flow_block_topic_moderate_post.handlebars.php: \

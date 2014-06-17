@@ -4,7 +4,7 @@
 			<h2 class="flow-moderated-topic-title">{{l10n "post_moderation_state" moderateState replyToId moderator.name}}</h2>
 			<div>@Todo - Add css to toggle between "xxx is hidden by xxx" and real title</div>
 		{{/if}}
-		<h2 class="flow-topic-title">{{content}}</h2>
+		<h2 class="flow-topic-title" data-title="{{content}}">{{content}}</h2>
 		<span class="flow-author">{{l10n "started_with_participants" this}}</span>
 		<div class="flow-topic-meta">
 			<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-inline" href="#flow-post-{{postId}}-form-content">{{l10n "Reply" author}}</a>
@@ -24,7 +24,9 @@
 					<li>
 						<a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin"
 						   href="{{actions.edit.url}}"
-						   title="{{actions.edit.title}}">
+						   title="{{actions.edit.title}}"
+						   data-flow-interactive-handler="editTopicTitle"
+						   >
 							<span class="wikiglyph wikiglyph-pencil"></span>
 							{{l10n "flow-topic-action-edit-title"}}
 						</a>

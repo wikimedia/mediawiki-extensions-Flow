@@ -282,6 +282,31 @@
 			}
 		};
 
+		FlowBoardComponent.UI.events.apiHandlers.submitTopicTitle = function( status, data, jqxhr ) {
+			var result,
+				newTitle,
+				$this = $( this ),
+				$topic = $this.closest( '.flow-topic' ),
+				$newTopic,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this );
+
+			if ( data && data.flow && data.flow['edit-title'] && data.flow['edit-title'].status === 'ok' ) {
+				$newTopic = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_topiclist_loop',
+						data.flow['edit-title'].result.topic
+					)
+				).children();
+
+				$topic
+					.replaceWith( $newTopic )
+					.conditionalScrollIntoView();
+			} else {
+				// @todo
+				alert( "Error" );
+			}
+		};
+
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
@@ -475,6 +500,43 @@
 			event.preventDefault();
 		};
 
+		FlowBoardComponent.UI.events.interactiveHandlers.editTopicTitle = function( event ) {
+			var $link = $( this ),
+				$topic = $link.closest( '.flow-topic' ),
+				$title = $topic
+					.children( '.flow-topic-titlebar' )
+					.find( '.flow-topic-title' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $link ),
+				$form,
+				cancelCallback = function() {
+					$form.remove();
+					$title.show();
+				},
+				linkParams = flowBoard.API.getQueryMap( $link.attr( 'href' ) );
+
+			$title.hide();
+
+			$form = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+				'flow_edit_topic_title',
+				{
+					'actions' : {
+						'edit' : {
+							'url' : $link.attr( 'href' )
+						}
+					},
+					'content' : $title.data( 'title' ),
+					'revisionId' : linkParams.etrevId
+				}
+			) ).children();
+
+			$form
+				.data( 'flow-cancel-callback', cancelCallback )
+				.data( 'flow-initial-state', 'hidden' )
+				.insertAfter( $title );
+
+			event.preventDefault();
+		};
+
 		/**
 		 * Triggers an API request based on URL and form data, and triggers the callbacks based on flow-api-handler.
 		 * @example <a data-flow-interactive-handler="apiRequest" data-flow-api-handler="loadMore" data-flow-api-target="$container" href="...">...</a>
@@ -580,11 +642,14 @@
 				return;
 			}
 
-			var handlerName = $( this ).data( 'flow-interactive-handler' );
+			var interactiveHandler = $( this ).data( 'flow-interactive-handler' ),
+				apiHandler = $( this ).data( 'flow-api-handler' );
 
 			// If this has a special click handler, run it.
-			if ( FlowBoardComponent.UI.events.interactiveHandlers[ handlerName ] ) {
-				FlowBoardComponent.UI.events.interactiveHandlers[ handlerName ].apply( this, arguments );
+			if ( FlowBoardComponent.UI.events.interactiveHandlers[ interactiveHandler ] ) {
+				FlowBoardComponent.UI.events.interactiveHandlers[ interactiveHandler ].apply( this, arguments );
+			} else if ( FlowBoardComponent.UI.events.apiHandlers[ apiHandler ] ) {
+				FlowBoardComponent.UI.events.interactiveHandlers.apiRequest.apply( this, arguments );
 			}
 		};
 
