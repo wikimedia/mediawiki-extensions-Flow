@@ -176,6 +176,13 @@
 			};
 		};
 
+		FlowBoardComponent.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event ) {
+			return {
+				submodule: "topic-summary-view", // href submodule is edit-header
+				vtscontentFormat: "wikitext" // href does not have this param
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
@@ -371,6 +378,48 @@
 			$previewContainer.show();
 		};
 
+		/**
+		 * Open summarize topic form
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateSummarizeTopic = function ( status, data, jqxhr ) {
+			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
+			var html,
+				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' ),
+				old = $node.html(),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
+			if ( status === 'done' ) {
+				html = flowBoard.TemplateEngine.processTemplate(
+					'flow_block_topicsummary_edit',
+					data.flow[ 'topic-summary-view' ].result.topicsummary
+				);
+				$node.html(
+					$( html ).appendTo( '<div>' ).html()
+				);
+				$node.find( 'form' ).data( 'flow-cancel-callback', function() {
+					$node.html( old );
+				} );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * Submit summarize topic content
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.summarizeTopic = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' );
+
+			if ( status === 'done' ) {
+				// There is no template to render
+				$node.html( data.flow[ 'edit-topic-summary' ].result.topicsummary.revision.content );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers
@@ -467,7 +516,6 @@
 					return false;
 				}
 			} );
-
 			// If all the text fields are empty, OR if the user confirms to close this with text already entered, do it.
 			if ( !notEmptyCount || confirm( flowBoard.TemplateEngine.l10n( 'You have entered text in this form. Are you sure you want to discard it?' ) ) ) {
 				// Reset the form content
@@ -475,7 +523,6 @@
 
 				// Trigger for flow-actions-disabler
 				$form.find( 'textarea, :text' ).trigger( 'keyup' );
-
 				// Hide the form
 				FlowBoardComponent.UI.Forms.hideForm( $form );
 			}

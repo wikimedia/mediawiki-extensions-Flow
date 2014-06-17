@@ -105,6 +105,8 @@
 				{{#if actions.summarize}}
 					<li>
 						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+						   data-flow-interactive-handler="apiRequest"
+						    data-flow-api-handler="activateSummarizeTopic"
 						   href="{{actions.summarize.url}}"
 						   title="{{actions.summarize.title}}">
 							<span class="wikiglyph wikiglyph-flag"></span>
@@ -118,11 +120,11 @@
 				{{/if}}
 			</ul>
 		</div>
-		{{#if summary}}
-			<div class="flow-topic-summary">
+		<div class="flow-topic-summary">
+			{{#if summary}}
 				{{html summary}}
-			</div>
-		{{/if}}
+			{{/if}}
+		</div>
 	</div>
 
 	{{#each replies}}
