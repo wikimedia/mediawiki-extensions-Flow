@@ -149,6 +149,13 @@
 			};
 		};
 
+		FlowBoardComponent.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event ) {
+			return {
+				submodule: "topic-summary-view", // href submodule is edit-header
+				vtscontentFormat: "wikitext" // href does not have this param
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
@@ -282,6 +289,56 @@
 			}
 		};
 
+		/**
+		 * Open summarize topic form
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateSummarizeTopic = function ( status, data, jqxhr ) {
+			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
+
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$oldBoardNodes,
+				$rendered;
+
+			if ( status === 'done' ) {
+				// Change "topicsummary" to "topicsummary_edit" so that it loads up flow_block_topicsummary_edit
+				data.flow[ 'topic-summary-view' ].result.topicsummary.type = 'topicsummary_edit';
+
+				$rendered = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_loop',
+						{ blocks: data.flow[ 'topic-summary-view' ].result }
+					)
+				).children();
+
+				// @todo figure out how to re-render the board with new topic summary via reinitializeBoard()
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * Submit summarize topic content
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.summarizeTopic = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$rendered;
+
+			if ( status === 'done' ) {
+				$rendered = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_loop',
+						{ blocks: data.flow[ 'edit-topic-summary' ].result }
+					)
+				).children();
+
+				// @todo figure out how to re-render the board with new topic summary via reinitializeBoard()
+				//flowBoard.reinitializeBoard( $rendered );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
 
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI on-element-load handlers

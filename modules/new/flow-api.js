@@ -21,7 +21,8 @@ window.mw = window.mw || {}; // mw-less testing
 		'post-view': [ 'topic', 'vp' ],
 		'topic-view': [ 'topic', 'vt' ],
 		'header-view': [ 'header_', 'vh' ],
-		'topic-summary-view': [ 'topicsummary_', 'vts' ]
+		'topic-summary-view': [ 'topicsummary_', 'vts' ],
+		'edit-topic-summary': [ 'topicsummary_', 'ets' ]
 	};
 
 	/**
