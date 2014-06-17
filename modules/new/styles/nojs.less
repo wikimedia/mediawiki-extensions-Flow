@@ -1,0 +1,12 @@
+
+.client-nojs {
+	// forms rendered to a single page as part of nojs will not
+	// have the .flow-topic as part of their heirarchy, so this only
+	// hides the inline cancel buttons.
+	.flow-topic {
+		.flow-reply-form .flow-ui-destructive,
+		.flow-newtopic-form .flow-ui-destructive {
+			display: none;
+		}
+	}
+}

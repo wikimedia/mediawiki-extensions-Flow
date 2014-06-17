@@ -454,6 +454,10 @@ class RevisionFormatter {
 				$links['topic-history'] = $this->urlGenerator->workflowHistoryLink( $title, $workflowId );
 				break;
 
+			case 'board':
+				$links['board'] = $this->urlGenerator->boardLink( $title );
+				break;
+
 			case 'board-history':
 				$links['board-history'] = $this->urlGenerator->boardHistoryLink( $title );
 				break;
