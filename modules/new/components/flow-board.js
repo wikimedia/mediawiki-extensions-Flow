@@ -205,6 +205,21 @@
 			};
 		};
 
+		/**
+		 * Before activating summarize topic, sends an overrideObject to the
+		 * API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event ) {
+			return {
+				// href submodule is edit-topic-summary
+				submodule: 'topic-summary-view',
+				// href does not have this param
+				vtscontentFormat: 'wikitext'
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
@@ -454,6 +469,57 @@
 				default:
 					FlowBoardComponent.UI.showError( flowBoard.$container, 'apiHandlers.newTopic - expected either error or ok, received: ' + data.flow["new-topic"].status );
 					break;
+			}
+		};
+
+		/**
+		 * Activate the editable summarize topic form with given api request
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateSummarizeTopic = function ( status, data, jqxhr ) {
+			var html,
+				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' ),
+				old = $node.html(),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
+
+			// @todo This is using the old fashion way to re-render new content in the board
+			// need to use the proper way that flow is using, eg: reinitializeBoard() etc
+			if ( status === 'done' ) {
+				html = flowBoard.TemplateEngine.processTemplate(
+					'flow_block_topicsummary_edit',
+					data.flow[ 'topic-summary-view' ].result.topicsummary
+				);
+				$node.html(
+					$( html ).html()
+				);
+				$node.find( 'form' ).data( 'flow-cancel-callback', function() {
+					$node.html( old );
+				} );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * After submit of the summarize topic edit form, process the new topic summary data.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.summarizeTopic = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' );
+
+			if ( status === 'done' ) {
+				// There is no template to render
+				$node.html( data.flow[ 'edit-topic-summary' ].result.topicsummary.revision.content );
+			} else {
+				// @todo fail
+				alert('fail');
 			}
 		};
 
