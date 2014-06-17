@@ -12,7 +12,7 @@ When(/^I click the edit header link$/) do
   end
 end
 
-Then(/^I should see the edit header form$/) do
+Then(/^I see the edit header form$/) do
   on(FlowPage).edit_header_form_element.when_visible.should be_visible
 end
 

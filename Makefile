@@ -29,6 +29,13 @@ installhooks:
 	ln -sf ${PWD}/scripts/pre-commit .git/hooks/pre-commit
 	ln -sf ${PWD}/scripts/pre-review .git/hooks/pre-review
 
+remotes:
+	@scripts/remotecheck.sh
+
+gerrit: remotes
+	@scripts/remotes/gerrit.py --project 'mediawiki/extensions/Flow' --gtscore -1 --ignorepattern 'WIP'
+
+
 ###
 # Lints
 ###
