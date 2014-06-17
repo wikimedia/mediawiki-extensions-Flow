@@ -50,6 +50,8 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 			array_walk_recursive( $output, function( &$value ) {
 				if ( $value instanceof Anchor ) {
 					$value = $value->toArray();
+				} elseif ( $value instanceof Message ) {
+					$value = $value->text();
 				}
 			} );
 		}
