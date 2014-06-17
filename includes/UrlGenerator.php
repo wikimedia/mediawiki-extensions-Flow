@@ -436,20 +436,22 @@ class UrlGenerator extends BaseUrlGenerator {
 	}
 
 	/**
-	 * Reopen the specified topic
+	 * Restore the specified topic
 	 *
 	 * @param Title|null $title
 	 * @param UUID $workflowId
+	 * @param string $moderationAction
+	 * @param string $flowAction
 	 * @return Anchor
 	 */
-	public function reopenTopicAction( Title $title = null, UUID $workflowId ) {
+	public function restoreTopicAction( Title $title = null, UUID $workflowId, $moderationAction, $flowAction = 'moderate-topic' ) {
 		return new Anchor(
-			wfMessage( 'flow-topic-action-close-topic' ),
+			wfMessage( 'flow-topic-action-' . $moderationAction . '-topic' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
-				'action' => 'close-open-topic',
+				'action' => $flowAction,
 				'workflow' => $workflowId->getAlphadecimal(),
-				'flow_moderationState' => 'restore',
+				'topic_moderationState' => 'restore',
 			)
 		);
 	}

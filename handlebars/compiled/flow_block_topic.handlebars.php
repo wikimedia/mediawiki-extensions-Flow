@@ -145,6 +145,16 @@
 						</a>
 					</li>
 				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reopen'])) ? $in['actions']['reopen'] : null))) ? '
+					<li>
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['title'])) ? $in['actions']['reopen']['title'] : null), ENT_QUOTES, 'UTF-8').'">
+							<span class="wikiglyph wikiglyph-clock"></span>
+							'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-reopen-topic'), 'encq').'
+						</a>
+					</li>
+				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['summarize'])) ? $in['actions']['summarize'] : null))) ? '
 					<li>
 						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
