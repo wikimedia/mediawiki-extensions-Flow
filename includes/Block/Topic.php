@@ -529,6 +529,9 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderTopicAPI( Templating $templating, array $options, $workflowId = '' ) {
 		$serializer = Container::get( 'formatter.topic' );
+		if ( isset( $options['contentFormat'] ) ) {
+			$serializer->setContentFormat( $options['contentFormat'] );
+		}
 		if ( !$workflowId ) {
 			if ( $this->workflow->isNew() ) {
 				return $serializer->buildEmptyResult( $this->workflow );
@@ -558,7 +561,11 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$row = Container::get( 'query.singlepost' )->getResult( UUID::create( $postId ) );
-		$serialized = $this->getRevisionFormatter()->formatApi( $row, \RequestContext::getMain() );
+		$serializer = $this->getRevisionFormatter();
+		if ( isset( $options['contentFormat'] ) ) {
+			$serializer->setContentFormat( $options['contentFormat'] );
+		}
+		$serialized = $serializer->formatApi( $row, \RequestContext::getMain() );
 		if ( !$serialized ) {
 			return null;
 		}
@@ -580,6 +587,7 @@ class TopicBlock extends AbstractBlock {
 		if ( in_array( $this->action, $this->requiresWikitext ) ) {
 			$serializer->setContentFormat( 'wikitext' );
 		}
+
 		return $serializer;
 	}
 
@@ -599,6 +607,9 @@ class TopicBlock extends AbstractBlock {
 		}
 		$found = Container::get( 'query.topic.history' )->getResults( $this->workflow->getId() );
 		$serializer = $this->getRevisionFormatter();
+		if ( isset( $options['contentFormat'] ) ) {
+			$serializer->setContentFormat( $options['contentFormat'] );
+		}
 		$serializer->setIncludeHistoryProperties( true );
 		$ctx = \RequestContext::getMain();
 
