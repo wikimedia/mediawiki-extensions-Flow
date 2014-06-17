@@ -200,9 +200,6 @@
 		return res;
 	};
 
-	// Register l10n
-	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );
-
 	// TODO: l10nParse function?
 
 	/**
@@ -220,9 +217,6 @@
 
 		return FlowHandlebars.prototype.timestamp( timestamp, str, timeAgoOnly );
 	};
-
-	// Register timestamp
-	Handlebars.registerHelper( 'uuidTimestamp', FlowHandlebars.prototype.uuidTimestamp );
 
 	/**
 	 * Generates markup for an "nnn sssss ago" and date/time string.
@@ -273,9 +267,6 @@
 			)
 		);
 	};
-
-	// Register timestamp
-	Handlebars.registerHelper( 'timestamp', FlowHandlebars.prototype.timestamp );
 
 	/**
 	 * Updates one <time> node at a time every 100ms, until finishing, and then sleeps 5s.
@@ -354,9 +345,6 @@
 		return new Handlebars.SafeString( string );
 	};
 
-	// Register html
-	Handlebars.registerHelper( 'html', FlowHandlebars.prototype.html );
-
 	/**
 	 *
 	 * @example {{#ifEquals one two}}
@@ -373,9 +361,6 @@
 		return options.inverse ? options.inverse( this ) : false;
 	};
 
-	// Register ifEquals
-	Handlebars.registerHelper( 'ifEquals', FlowHandlebars.prototype.ifEquals );
-
 	/**
 	 *
 	 * @example {{block this}}
@@ -389,9 +374,6 @@
 			context
 		) );
 	};
-
-	// Register block
-	Handlebars.registerHelper( 'block', FlowHandlebars.prototype.workflowBlock );
 
 	/**
 	 * @example {{post ../../../../rootBlock this}}
@@ -410,9 +392,6 @@
 		) );
 	};
 
-	// Register author
-	Handlebars.registerHelper( 'post', FlowHandlebars.prototype.postBlock );
-
 	/**
 	 * @example {{#each topics}}{{#eachPost this}}{{content}}{{/eachPost}}{{/each}}
 	 * @param {String} context
@@ -427,9 +406,6 @@
 		return options.fn ? options.fn( revision ) : revision;
 	};
 
-	// Register eachPost
-	Handlebars.registerHelper( 'eachPost', FlowHandlebars.prototype.eachPost );
-
 	/**
 	 * Gets a URL for a given variable.
 	 * @example {{url "board.search"}}
@@ -441,9 +417,6 @@
 	FlowHandlebars.prototype.url = function ( str, options ) {
 		return Array.prototype.pop.apply( arguments );
 	};
-
-	// Register url
-	Handlebars.registerHelper( 'url', FlowHandlebars.prototype.url );
 
 	/**
 	 * Creates a form element based on the given input.
@@ -575,9 +548,6 @@
 		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate( 'form_element', data ) );
 	};
 
-	// Register formElement
-	Handlebars.registerHelper( 'formElement', FlowHandlebars.prototype.formElement );
-
 	/**
 	 *
 	 * @example {{generateUID}}
@@ -589,9 +559,6 @@
 			return v.toString( 16 );
 		} );
 	};
-
-	// Register generateUID
-	Handlebars.registerHelper( 'generateUID', FlowHandlebars.prototype.generateUID );
 
 	/**
 	 * Simple math.
@@ -614,9 +581,6 @@
 			"%": lvalue % rvalue
 		}[operator];
 	};
-
-	// Register math
-	Handlebars.registerHelper( 'math', FlowHandlebars.prototype.math );
 
 	/**
 	 * The progressiveEnhancement helper essentially does one of replace things:
@@ -653,9 +617,6 @@
 		);
 	};
 
-	// Register progressiveEnhancement
-	Handlebars.registerHelper( 'progressiveEnhancement', FlowHandlebars.prototype.progressiveEnhancement );
-
 	/**
 	 * Does nothing, outputs nothing. Used to clear whitespace with {{~null~}}.
 	 * @returns {string} ""
@@ -663,9 +624,6 @@
 	FlowHandlebars.prototype.nullHelper = function () {
 		return "";
 	};
-
-	// Register progressiveEnhancement
-	Handlebars.registerHelper( 'null', FlowHandlebars.prototype.nullHelper );
 
 	/**
 	 * Return information about given user
@@ -680,8 +638,6 @@
 		}[feature];
 	};
 
-	Handlebars.registerHelper( 'user', FlowHandlebars.prototype.user );
-
 	/**
 	 * Runs a callback when user is anonymous
 	 * @param array $options which must contain fn and inverse key mapping to functions.
@@ -695,8 +651,6 @@
 			return options.inverse( this );
 		}
 	};
-
-	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
 
 	/**
 	 * Adds returnto parameter pointing to current page to existing URL
@@ -720,8 +674,6 @@
 		return url;
 	};
 
-	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
-
 	/**
 	 * Adds returnto parameter pointing to given Title to an existing URL
 	 * @param Title $title
@@ -737,5 +689,23 @@
 		return this.addReturnTo( url );
 	};
 
+	// Register helpers
+	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );
+	Handlebars.registerHelper( 'uuidTimestamp', FlowHandlebars.prototype.uuidTimestamp );
+	Handlebars.registerHelper( 'timestamp', FlowHandlebars.prototype.timestamp );
+	Handlebars.registerHelper( 'html', FlowHandlebars.prototype.html );
+	Handlebars.registerHelper( 'ifEquals', FlowHandlebars.prototype.ifEquals );
+	Handlebars.registerHelper( 'block', FlowHandlebars.prototype.workflowBlock );
+	Handlebars.registerHelper( 'post', FlowHandlebars.prototype.postBlock );
+	Handlebars.registerHelper( 'eachPost', FlowHandlebars.prototype.eachPost );
+	Handlebars.registerHelper( 'url', FlowHandlebars.prototype.url );
+	Handlebars.registerHelper( 'formElement', FlowHandlebars.prototype.formElement );
+	Handlebars.registerHelper( 'generateUID', FlowHandlebars.prototype.generateUID );
+	Handlebars.registerHelper( 'math', FlowHandlebars.prototype.math );
+	Handlebars.registerHelper( 'progressiveEnhancement', FlowHandlebars.prototype.progressiveEnhancement );
+	Handlebars.registerHelper( 'null', FlowHandlebars.prototype.nullHelper );
+	Handlebars.registerHelper( 'user', FlowHandlebars.prototype.user );
+	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
+	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
 }( jQuery ) );
