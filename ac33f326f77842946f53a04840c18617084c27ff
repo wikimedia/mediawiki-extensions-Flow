@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "ee391fd1_fd058014",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-17T19:09:05Z",
+      "side": 1,
+      "message": "Please don\u0027t add methods without documenting them. This applies to all the methods added here.",
+      "revId": "ac33f326f77842946f53a04840c18617084c27ff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_1d284480",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-17T19:09:05Z",
+      "side": 1,
+      "message": "Missing jsdoc. Please add to all methods. In addition, inline comments on your functions help describe why things are being done instead of leaving it up to the person reading to determine what the code does.",
+      "revId": "ac33f326f77842946f53a04840c18617084c27ff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_a74007a9",
         "filename": "modules/new/flow-handlebars.js",
         "patchSetId": 5
@@ -13,6 +47,41 @@
       "writtenOn": "2014-06-17T17:58:38Z",
       "side": 1,
       "message": "For readability I wonder if we should put all the registerHelpers at the bottom of the file. It\u0027s really hard to scan this and see what all the helpers provided by this file are.",
+      "revId": "ac33f326f77842946f53a04840c18617084c27ff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_3d2308a8",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-17T19:09:05Z",
+      "side": 1,
+      "message": "Good point, but definitely to-do in a separate patch. Simultaneously, it makes it hard to know which ones are helpers and which aren\u0027t. Might have to move them all to FlowHandlebars.prototype.helpers.*.",
+      "parentUuid": "ee391fd1_a74007a9",
+      "revId": "ac33f326f77842946f53a04840c18617084c27ff",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_bd3db8ba",
+        "filename": "modules/new/styles/forms.less",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-17T19:09:05Z",
+      "side": 1,
+      "message": "Don\u0027t use important for this. Seems that links color in tooltip should be fixed in tooltip CSS instead.",
       "revId": "ac33f326f77842946f53a04840c18617084c27ff",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
