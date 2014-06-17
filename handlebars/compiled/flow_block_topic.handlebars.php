@@ -150,6 +150,8 @@
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['summarize'])) ? $in['actions']['summarize'] : null))) ? '
 					<li>
 						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+						   data-flow-interactive-handler="apiRequest"
+						    data-flow-api-handler="activateSummarizeTopic"
 						   href="'.htmlentities(((is_array($in['actions']['summarize']) && isset($in['actions']['summarize']['url'])) ? $in['actions']['summarize']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['summarize']) && isset($in['actions']['summarize']['title'])) ? $in['actions']['summarize']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-flag"></span>
@@ -163,11 +165,11 @@
 				' : '').'
 			</ul>
 		</div>
-		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
-			<div class="flow-topic-summary">
+		<div class="flow-topic-summary">
+			'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
 				'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['summary'])) ? $in['summary'] : null)), 'encq').'
-			</div>
-		' : '').'
+			' : '').'
+		</div>
 	</div>
 
 	'.LCRun3::sec($cx, ((is_array($in) && isset($in['replies'])) ? $in['replies'] : null), $in, true, function($cx, $in) {return '
