@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_1a4f2a70",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-17T17:25:29Z",
+      "side": 1,
+      "message": "also going to need a \n\n    FlowBoardComponent.UI.makeContentInteractive( $newTopic )",
+      "revId": "098c494f504a7c328d0100bf4ded8596ac8ef42e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_fa534618",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-17T17:25:29Z",
+      "side": 1,
+      "message": ":( (but mine doesn\u0027t have better error handling either really...we need something but not sure what)",
+      "revId": "098c494f504a7c328d0100bf4ded8596ac8ef42e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
