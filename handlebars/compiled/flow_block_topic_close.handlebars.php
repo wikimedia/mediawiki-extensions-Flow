@@ -22,7 +22,8 @@
 			';}).'
 		</ul>
 	' : '').'
-	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST" action="'.htmlentities(((is_array($in['revision']['actions']['close']) && isset($in['revision']['actions']['close']['url'])) ? $in['revision']['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'">
+	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
+	      action="'.((LCRun3::ifvar($cx, ((is_array($in['revision']) && isset($in['revision']['isModerated'])) ? $in['revision']['isModerated'] : null))) ? ''.htmlentities(((is_array($in['revision']['actions']['reopen']) && isset($in['revision']['actions']['reopen']['url'])) ? $in['revision']['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['revision']['actions']['close']) && isset($in['revision']['actions']['close']['url'])) ? $in['revision']['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'').'">
 		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($in) && isset($in['editToken'])) ? $in['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		'.((LCRun3::ifvar($cx, ((is_array($in['revision']) && isset($in['revision']['previousRevisionId'])) ? $in['revision']['previousRevisionId'] : null))) ? '
 			<input type="hidden" name="flow_prev_revision" value="'.htmlentities(((is_array($in['revision']) && isset($in['revision']['revisionId'])) ? $in['revision']['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
@@ -39,7 +40,13 @@
 				class="flow-ui-button flow-ui-destructive flow-ui-quiet">
 					'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'
 			</a>
-			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-close-topic'), 'encq').'</small>
+			<small class="flow-terms-of-use plainlinks">
+				'.((LCRun3::ifvar($cx, ((is_array($in['revision']) && isset($in['revision']['isModerated'])) ? $in['revision']['isModerated'] : null))) ? '
+					'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-reopen-topic'), 'encq').'
+				' : '
+					'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-close-topic'), 'encq').'
+				').'
+			</small>
 		</div>
 	</form>
 </div>

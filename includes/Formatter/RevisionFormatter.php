@@ -362,6 +362,14 @@ class RevisionFormatter {
 				$links['close'] = $this->urlGenerator->closeTopicAction( $title, $workflowId );
 				break;
 
+			case 'reopen-topic':
+				// close topic link is only available to topic workflow
+				if( !in_array( $workflow->getType(), array( 'topic', 'topicsummary' ) ) ) {
+					continue;
+				}
+				$links['reopen'] = $this->urlGenerator->reopenTopicAction( $title, $workflowId );
+				break;
+
 			// Need to use 'edit-topic-summary' to match FlowActions
 			case 'edit-topic-summary':
 				// summarize link is only available to topic workflow
