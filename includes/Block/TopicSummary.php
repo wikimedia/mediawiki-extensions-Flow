@@ -323,11 +323,23 @@ class TopicSummaryBlock extends AbstractBlock {
 				$this->formatterRow, \RequestContext::getMain()
 			);
 		} else {
-			$output['revision']['actions']['summarize'] = Container::get( 'url_generator' )
-				->editTopicSummaryAction(
-					$this->workflow->getArticleTitle(),
-					$this->workflow->getId()
-				);
+			$urlGenerator = Container::get( 'url_generator' );
+			$title = $this->workflow->getArticleTitle();
+			$workflowId = $this->workflow->getId();
+			$output['revision'] = array(
+				'actions' => array(
+					'summarize' => $urlGenerator->editTopicSummaryAction(
+						$title,
+						$workflowId
+					)
+				),
+				'links' => array(
+					'topic' => $urlGenerator->topicLink(
+						$title,
+						$workflowId
+					)
+				)
+			);
 		}
 		return $output;
 	}
