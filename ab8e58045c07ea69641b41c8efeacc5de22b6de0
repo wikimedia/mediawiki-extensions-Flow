@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_b3d2892a",
+        "filename": "Resources.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-17T22:05:22Z",
+      "side": 1,
+      "message": "This ain\u0027t gonna work on mobile.",
+      "revId": "ab8e58045c07ea69641b41c8efeacc5de22b6de0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_33a699bf",
+        "filename": "i18n/en.json",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-17T22:05:22Z",
+      "side": 1,
+      "message": "Indenting is wrong here..",
+      "revId": "ab8e58045c07ea69641b41c8efeacc5de22b6de0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
