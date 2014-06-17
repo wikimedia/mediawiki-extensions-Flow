@@ -1,7 +1,7 @@
 <?php
 
-use Flow\Block\AbstractBlock;
 use Flow\Anchor;
+use Flow\Block\AbstractBlock;
 
 abstract class ApiFlowBaseGet extends ApiFlowBase {
 	public function execute() {

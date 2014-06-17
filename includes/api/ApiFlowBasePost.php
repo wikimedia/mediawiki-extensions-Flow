@@ -1,6 +1,6 @@
 <?php
 
-use Flow\Model\UUID;
+use Flow\Anchor;
 use Flow\Block\AbstractBlock;
 
 abstract class ApiFlowBasePost extends ApiFlowBase {
