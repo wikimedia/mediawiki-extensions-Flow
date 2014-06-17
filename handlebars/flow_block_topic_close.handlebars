@@ -6,7 +6,7 @@
 			{{/each}}
 		</ul>
 	{{/if}}
-	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST" action="{{revision.actions.close.url}}">
+	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST" action="{{#if revision.isModerated}}{{revision.actions.reopen.url}}{{else}}{{revision.actions.close.url}}{{/if}}">
 		<input type="hidden" name="wpEditToken" value="{{editToken}}" />
 		{{#if revision.previousRevisionId}}
 			<input type="hidden" name="flow_prev_revision" value="{{revision.revisionId}}" />
@@ -31,7 +31,13 @@
 				class="flow-ui-button flow-ui-destructive flow-ui-quiet">
 					{{l10n "flow-cancel"}}
 			</a>
-			<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-close-topic"}}</small>
+			<small class="flow-terms-of-use plainlinks">
+				{{#if revision.isModerated}}
+					{{l10n "flow-terms-of-use-reopen-topic"}}
+				{{else}}
+					{{l10n "flow-terms-of-use-close-topic"}}
+				{{/if}}
+			</small>
 		</div>
 	</form>
 </div>
