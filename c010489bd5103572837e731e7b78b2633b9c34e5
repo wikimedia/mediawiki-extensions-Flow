@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_3892f600",
+        "filename": "handlebars/flow_post.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-17T21:06:29Z",
+      "side": 1,
+      "message": "these lines are getting quite long, rather than adding to the line lets spread it out:\n\n    \u003ca href\u003d\"...\"\n       title\u003d\"...\"\n       ...\u003e\n        {{~...~}}\n    \u003c/a\u003e\n\nIn some places the additional whitespace could cause an output change, but the usage of {{~ ~}} will eat the whitespace and give same result",
+      "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_18be1261",
+        "filename": "handlebars/flow_reply_form.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-17T21:06:29Z",
+      "side": 1,
+      "message": "same as other file about spreading out these long lines rather than adding to them",
+      "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_58a37a3f",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-17T21:06:29Z",
+      "side": 1,
+      "message": "it seems plausible that at times $this-\u003enewRevision wont exist?",
+      "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_3868b6f1",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-17T21:06:29Z",
+      "side": 1,
+      "message": "rather than adding globals would prefer to take this in the constructor",
+      "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_b87b86bc",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-17T21:06:29Z",
+      "side": 1,
+      "message": "This is going to add a bunch of network round trips, is there any other way to do this in bulk?  For most things we may be able to calculate this in AbstractQuery::buildResult,  i think it can follow $post-\u003egetReplyToId() through its array of loaded revisions.",
+      "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
