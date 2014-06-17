@@ -14,20 +14,26 @@
 				{{~revision.actions.close.url~}}
 			{{~/if~}}">
 		<input type="hidden" name="wpEditToken" value="{{editToken}}" />
-		{{#if revision.previousRevisionId}}
-			<input type="hidden" name="flow_prev_revision" value="{{revision.revisionId}}" />
+		{{#if revision.summaryRevId}}
+			<input type="hidden" name="flow_prev_revision" value="{{revision.summaryRevId}}" />
 		{{/if}}
 		<textarea name="flow_summary" data-flow-expandable="true" class="mw-ui-input" type="text">
 			{{~#if submitted.content~}}
 				{{~submitted.content~}}
 			{{~else~}}
-				{{~#if revision.revisionId~}}
-					{{~revision.content~}}
+				{{~#if revision.summary~}}
+					{{~revision.summary~}}
 				{{~/if~}}
 			{{~/if~}}
 		</textarea>
 		<div class="flow-form-actions flow-form-collapsible">
-			<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "flow-topic-action-close-topic"}}</button>
+			<button data-role="submit" class="flow-ui-button flow-ui-constructive">
+				{{#if revision.isModerated}}
+					{{l10n "flow-topic-action-reopen-topic"}}
+				{{else}}
+					{{l10n "flow-topic-action-close-topic"}}
+				{{/if}}
+			</button>
 			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
 			<a
 				href="{{revision.links.topic.url}}"
