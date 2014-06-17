@@ -115,6 +115,16 @@
 						</a>
 					</li>
 				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unhide'])) ? $in['actions']['unhide'] : null))) ? '
+					<li>
+						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['url'])) ? $in['actions']['unhide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['title'])) ? $in['actions']['unhide']['title'] : null), ENT_QUOTES, 'UTF-8').'">
+							<span class="wikiglyph wikiglyph-eye-lid"></span>
+							'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-unhide-topic'), 'encq').'
+						</a>
+					</li>
+				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['delete'])) ? $in['actions']['delete'] : null))) ? '
 					<li>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
@@ -122,6 +132,16 @@
 						   title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-trash"></span>
 							'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-delete-topic'), 'encq').'
+						</a>
+					</li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['undelete'])) ? $in['actions']['undelete'] : null))) ? '
+					<li>
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['url'])) ? $in['actions']['undelete']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['title'])) ? $in['actions']['undelete']['title'] : null), ENT_QUOTES, 'UTF-8').'">
+							<span class="wikiglyph wikiglyph-trash"></span>
+							'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-undelete-topic'), 'encq').'
 						</a>
 					</li>
 				' : '').'
@@ -135,6 +155,16 @@
 						</a>
 					</li>
 				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unsuppress'])) ? $in['actions']['unsuppress'] : null))) ? '
+					<li>
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['url'])) ? $in['actions']['unsuppress']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['title'])) ? $in['actions']['unsuppress']['title'] : null), ENT_QUOTES, 'UTF-8').'">
+							<span class="wikiglyph wikiglyph-block"></span>
+							'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-unsuppress-topic'), 'encq').'
+						</a>
+					</li>
+				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['close'])) ? $in['actions']['close'] : null))) ? '
 					<li>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
@@ -142,6 +172,16 @@
 						   title="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['title'])) ? $in['actions']['close']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-clock"></span>
 							'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-close-topic'), 'encq').'
+						</a>
+					</li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reopen'])) ? $in['actions']['reopen'] : null))) ? '
+					<li>
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['title'])) ? $in['actions']['reopen']['title'] : null), ENT_QUOTES, 'UTF-8').'">
+							<span class="wikiglyph wikiglyph-clock"></span>
+							'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-reopen-topic'), 'encq').'
 						</a>
 					</li>
 				' : '').'
