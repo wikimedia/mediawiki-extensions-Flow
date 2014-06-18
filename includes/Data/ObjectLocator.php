@@ -88,8 +88,13 @@ class ObjectLocator {
 
 		$output = array();
 		foreach( $res as $index => $queryOutput ) {
-			$output[$index] = array_map( array( $this, 'load' ), $queryOutput );
+			foreach ( $queryOutput as $k => $v ) {
+				if ( $v ) {
+					$output[$index][$k] = $this->load( $v );
+				}
+			}
 		}
+
 		return $output;
 	}
 
