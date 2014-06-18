@@ -221,7 +221,7 @@ class Templating {
 	 *
 	 * @param AbstractRevision $revision Revision to display content for
 	 * @param string[optional] $format Format to output content in (html|wikitext)
-	 * @return string HTML
+	 * @return string HTML or plaintext depending on requested $format
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'html' ) {
 		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
@@ -239,7 +239,6 @@ class Templating {
 			// wikitext format
 			} else {
 				$content = $revision->getContent( $format );
-				$content = htmlspecialchars( $content );
 			}
 
 			return $content;
@@ -261,12 +260,16 @@ class Templating {
 			// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
 			//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
 			$message = wfMessage( "flow-$state-$type-content", $username )->rawParams( $this->getUserLinks( $revision ) );
-			if ( $message->exists() ) {
+			if ( !$message->exists() ) {
+				wfDebugLog( 'Flow', __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
+
+				$message = wfMessage( 'flow-error-other' );
+			}
+
+			if ( $format === 'html' ) {
 				return $message->escaped();
 			} else {
-				//wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-
-				return wfMessage( 'flow-error-other' )->escaped();
+				return $message->text();
 			}
 		}
 	}
