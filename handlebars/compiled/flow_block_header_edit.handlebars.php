@@ -7,7 +7,7 @@
             'debug' => $debugopt,
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
-            'html' => 'Flow\TemplateHelper::html',
+            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(),
@@ -35,15 +35,16 @@
 	' : '').'
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['content'])) ? $in['content'] : null))) ? '
 		<div class="flow-preview-sub-container">
-			'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
+			'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
 		</div>
 	' : '').'
 </div>
+
 			<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 			'.((LCRun3::ifvar($cx, ((is_array($in['revision']) && isset($in['revision']['revisionId'])) ? $in['revision']['revisionId'] : null))) ? '
 				<input type="hidden" name="header_prev_revision" value="'.htmlentities(((is_array($in['revision']) && isset($in['revision']['revisionId'])) ? $in['revision']['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
 			' : '').'
-			<textarea name="header_content" class="mw-ui-input" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-edit-header-placeholder'), 'encq').'" data-role="content">'.((LCRun3::ifvar($cx, ((is_array($in['submitted']) && isset($in['submitted']['content'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities(((is_array($in['submitted']) && isset($in['submitted']['content'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>
+			<textarea name="header_content" class="mw-ui-input" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-edit-header-placeholder'), 'encq').'" data-role="content">'.((LCRun3::ifvar($cx, ((is_array($in['submitted']) && isset($in['submitted']['content'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities(((is_array($in['submitted']) && isset($in['submitted']['content'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in['revision']) && isset($in['revision']['contentFormat'])) ? $in['revision']['contentFormat'] : null),((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null)), 'encq').'').'</textarea>
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
 					class="flow-ui-button flow-ui-constructive"

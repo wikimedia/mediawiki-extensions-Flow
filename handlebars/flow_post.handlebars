@@ -11,7 +11,7 @@
 			<div>@Todo - Add css to toggle between "xxx is hidden by xxx" and real post</div>
 		{{/if}}
 		<div class="flow-post-content">
-			{{html content}}
+			{{escapeContent contentFormat content}}
 		</div>
 		<div class="flow-post-meta">
 			<span class="flow-post-meta-actions">

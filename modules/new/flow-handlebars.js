@@ -708,6 +708,29 @@
 	};
 
 	/**
+	 * Accepts the contentType and content properties returned from the api
+	 * for individual revisions and ensures that content is included in the
+	 * final html page in an XSS safe maner.
+	 *
+	 * It is expected that all content with contentType of html has been
+	 * processed by parsoid and is safe for direct output into the document.
+	 *
+	 * Usage:
+	 *   {{escapeContent revision.contentType revision.content}}
+	 *
+	 * @param {string}
+	 * @param {string}
+	 * @return {string}
+	 */
+	FlowHandlebars.prototype.escapeContent = function ( contentType, content ) {
+		if ( contentType === 'html' ) {
+			return FlowHandlebars.prototype.html( content );
+		} else {
+			return content;
+		}
+	};
+
+	/**
 	 * Outputs debugging information
 	 *
 	 * For development use only
@@ -736,5 +759,6 @@
 	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
 	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
+	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 }( jQuery ) );

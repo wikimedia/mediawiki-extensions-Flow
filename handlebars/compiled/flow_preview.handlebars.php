@@ -6,7 +6,7 @@
             'spvar' => true,
             'debug' => $debugopt,
         ),
-        'helpers' => Array(            'html' => 'Flow\TemplateHelper::html',
+        'helpers' => Array(            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(),
@@ -22,9 +22,10 @@
 	' : '').'
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['content'])) ? $in['content'] : null))) ? '
 		<div class="flow-preview-sub-container">
-			'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
+			'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
 		</div>
 	' : '').'
-</div>';
+</div>
+';
 }
 ?>
