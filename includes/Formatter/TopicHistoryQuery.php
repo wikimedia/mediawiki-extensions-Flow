@@ -54,7 +54,3 @@ class TopicHistoryQuery  extends AbstractQuery {
 	}
 
 }
-
-class TopicRow extends FormatterRow {
-	public $replies;
-}
