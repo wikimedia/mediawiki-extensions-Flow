@@ -220,6 +220,23 @@
 			};
 		};
 
+		/**
+		 * Before activating close/reopen edit form, sends an overrideObject
+		 * to the API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.activateCloseOpenTopic = function ( event ) {
+			return {
+				// href submodule is close-open-topic
+				submodule: 'post-view',
+				// href does not have this param
+				vpcontentFormat: 'wikitext',
+				// request just the data for this topic
+				vppostId: $( this ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' )
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
@@ -354,6 +371,82 @@
 		};
 
 		/**
+		 * Renders the editable close/open text area with the given API response.
+		 * @param {Object} info
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateCloseOpenTopic = function ( info, data, jqxhr ) {
+			var html,
+				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' ),
+				old = $node.html(), topic, $target,
+				result, revision, topicId, revisionId,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
+
+			// @todo This is using the old fashion way to re-render new content in
+			// the board need to use the proper way that flow is using, eg:
+			// reinitializeBoard() etc
+			if ( info.status === 'done' ) {
+				$target = info.$target;
+				// FIXME: API should take care of this for me.
+				result = data.flow[ 'post-view' ].result.topic;
+				topicId = result.roots[0];
+				revisionId = result.posts[topicId];
+				revision = result.revisions[revisionId];
+
+				// Enable the editable summary
+				revision.isTopicSummaryEditable = true;
+				$target.replaceWith(
+					$(
+						flowBoard.TemplateEngine.processTemplateGetFragment(
+							'flow_topic_titlebar', revision
+						)
+					).children()
+				);
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * After submit of the close/open topic form, process the new summary data
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.closeOpenTopic = function ( info, data, jqxhr ) {
+			var postId, revId, revision, result, html,
+				$target = info.$target, $topicTitleBar,
+				topicId, revisionId,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
+			if ( info.status === 'done' ) {
+				// FIXME: Why doesn't the API return this?
+				result = data.flow['close-open-topic'].result.topic;
+				topicId = result.roots[0];
+				revisionId = result.posts[topicId];
+				revision = result.revisions[revisionId];
+
+				// FIXME: Api should be returning moderation state. Why not?
+				revision.isModerated = revision.moderateState === 'close';
+
+				// Update view of the title bar
+				$topicTitleBar = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_topic_titlebar',
+						revision
+					)
+				).children();
+				$target.replaceWith( $topicTitleBar );
+			} else {
+				// @todo fail
+				alert('failz');
+			}
+		};
+
+		/*
 		 *
 		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data

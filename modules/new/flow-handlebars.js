@@ -130,7 +130,15 @@
 				"Topics_n": function ( count, options ) {
 					return "Topics (" + count + ")";
 				},
-
+				"post_moderation_state": function( type, replyToId, moderator ) {
+					var str;
+					if ( !replyToId ) {
+						str = 'flow-' + type + '-title-content';
+					} else {
+						str = 'flow-' + type + '-post-content';
+					}
+					return mw.msg( str, moderator );
+				},
 				"started_with_participants": function ( context, options ) {
 					return context.author.name + " started this topic" +
 						( context.author_count > 1 ? (
