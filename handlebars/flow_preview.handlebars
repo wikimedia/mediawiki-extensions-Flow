@@ -6,7 +6,7 @@
 	{{/if}}
 	{{#if content}}
 		<div class="flow-preview-sub-container">
-			{{html content}}
+			{{escapeContent contentFormat content}}
 		</div>
 	{{/if}}
 </div>

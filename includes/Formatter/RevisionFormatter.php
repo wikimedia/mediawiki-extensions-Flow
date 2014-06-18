@@ -184,6 +184,7 @@ class RevisionFormatter {
 		) {
 			// Maybe always have both parsed and unparsed versions available
 			$res['summary'] = $this->templating->getContent( $row->summary, $this->contentFormat );
+			$res['summaryFormat'] = $this->contentFormat;
 			$res['summaryRevId'] = $row->summary->getRevisionId()->getAlphadecimal();
 		}
 
