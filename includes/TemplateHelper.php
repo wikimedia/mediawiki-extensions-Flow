@@ -672,9 +672,12 @@ class TemplateHelper {
 	static public function ifAnonymous( $options ) {
 		if ( RequestContext::getMain()->getUser()->isAnon() ) {
 			$fn = $options['fn'];
-		} else {
+		} elseif ( isset( $options['inverse'] ) ) {
 			$fn = $options['inverse'];
+		} else {
+			return '';
 		}
+
 		return $fn();
 	}
 
