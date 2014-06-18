@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_8f8ab16c",
+        "filename": "handlebars/flow_post.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-18T16:28:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee391fd1_3892f600",
+      "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_18be1261",
         "filename": "handlebars/flow_reply_form.handlebars",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-17T21:06:29Z",
       "side": 1,
       "message": "same as other file about spreading out these long lines rather than adding to them",
+      "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_6f81cd4e",
+        "filename": "handlebars/flow_reply_form.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-18T16:28:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee391fd1_18be1261",
       "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_8f8f5126",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-18T16:28:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee391fd1_58a37a3f",
+      "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_3868b6f1",
         "filename": "includes/Formatter/RevisionFormatter.php",
         "patchSetId": 3
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_cf8f9977",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-18T16:28:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee391fd1_3868b6f1",
+      "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_b87b86bc",
         "filename": "includes/Model/PostRevision.php",
         "patchSetId": 3
@@ -81,6 +153,24 @@
       "writtenOn": "2014-06-17T21:06:29Z",
       "side": 1,
       "message": "This is going to add a bunch of network round trips, is there any other way to do this in bulk?  For most things we may be able to calculate this in AbstractQuery::buildResult,  i think it can follow $post-\u003egetReplyToId() through its array of loaded revisions.",
+      "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_0fc48193",
+        "filename": "includes/Model/PostRevision.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-18T16:28:07Z",
+      "side": 1,
+      "message": "Agreed.\n\nWe used to have this handled in RootPostLoader, which would set all depths. I have yet to figure out how all posts are being loaded now, and how to efficiently set depth.\n\nI don\u0027t want to do that as part of this patch though. I\u0027ve filed https://bugzilla.wikimedia.org/show_bug.cgi?id\u003d66785",
+      "parentUuid": "ee391fd1_b87b86bc",
       "revId": "c010489bd5103572837e731e7b78b2633b9c34e5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
