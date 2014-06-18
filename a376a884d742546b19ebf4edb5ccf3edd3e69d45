@@ -34,6 +34,24 @@
       "revId": "a376a884d742546b19ebf4edb5ccf3edd3e69d45",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_bdc48f12",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-18T17:35:51Z",
+      "side": 1,
+      "message": "Wait what...\nThis was supposed to replace the line above :)\n\nWe can just check for it in onClickInteractive and quit the function if the attribute is not present, but adding it here already would save some calls to that function (since those where it\u0027s missing won\u0027t be match the selector)",
+      "parentUuid": "ee391fd1_58dedadf",
+      "revId": "a376a884d742546b19ebf4edb5ccf3edd3e69d45",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
