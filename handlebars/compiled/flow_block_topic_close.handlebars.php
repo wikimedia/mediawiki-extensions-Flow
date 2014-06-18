@@ -14,7 +14,8 @@
         'sp_vars' => Array(),
 
     );
-    return '<div class="flow-board-header">
+    return ''.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isTopicSummaryEditable'])) ? $in['isTopicSummaryEditable'] : null))) ? '
+<div class="flow-board-header">
 	'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null))) ? '
 		<ul>
 			'.LCRun3::sec($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null), $in, true, function($cx, $in) {return '
@@ -61,6 +62,7 @@
 		</div>
 	</form>
 </div>
+' : '').'
 
 
 ';

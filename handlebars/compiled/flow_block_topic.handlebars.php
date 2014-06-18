@@ -237,6 +237,7 @@
 	' : '').'
 </div>
 
+<<<<<<< HEAD
 
 	'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['posts'])) ? $cx['scopes'][0]['posts'] : null))) ? '
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['replies'])) ? $in['replies'] : null), $in, true, function($cx, $in) {return '
@@ -244,6 +245,12 @@
 				<!-- eachPost topic -->
 				'.LCRun3::ch($cx, 'post', Array($cx['scopes'][0],$in), 'encq').'
 			';}).'
+=======
+	'.LCRun3::sec($cx, ((is_array($in) && isset($in['replies'])) ? $in['replies'] : null), $in, true, function($cx, $in) {return '
+		'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
+			<!-- eachPost topic -->
+			'.LCRun3::ch($cx, 'post', Array($cx['scopes'][0],$in), 'encq').'
+>>>>>>> Wire up close & open actions in JavaScript
 		';}).'
 	' : '').'
 

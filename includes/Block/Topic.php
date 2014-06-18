@@ -456,6 +456,7 @@ class TopicBlock extends AbstractBlock {
 			$topicId = $result['roots'][0];
 			$revisionId = $result['posts'][$topicId][0];
 			$output = $result['revisions'][$revisionId];
+			$output['isTopicSummaryEditable'] = true;
 		} elseif ( $this->action === 'compare-post-revisions' ) {
 			$output = $this->renderDiffViewAPI( $options );
 		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {
