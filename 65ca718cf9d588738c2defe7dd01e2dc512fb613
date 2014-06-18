@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_1eaf11e0",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-18T20:18:51Z",
+      "side": 1,
+      "message": "console.log is not cross-browser safe.  Use mw.log.warn or mw.log.",
+      "revId": "65ca718cf9d588738c2defe7dd01e2dc512fb613",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
