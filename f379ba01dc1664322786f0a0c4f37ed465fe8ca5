@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_809a97bb",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-18T16:28:21Z",
+      "side": 1,
+      "message": "$post.filter won\u0027t work. $post will only contain 1 (the closest) node, which may not be the at not:max-depth.",
+      "parentUuid": "ee391fd1_65a90521",
+      "revId": "f379ba01dc1664322786f0a0c4f37ed465fe8ca5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_45a60152",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-16T13:03:11Z",
       "side": 1,
       "message": "No HTML in here. In addition, append is subjective and assumes that\u0027s where it will always go. Having the markup tell you where it goes, with some kind of data-flow-* target selector (or something), will make this cleaner here.",
+      "revId": "f379ba01dc1664322786f0a0c4f37ed465fe8ca5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_322a0e90",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-18T16:28:21Z",
+      "side": 1,
+      "message": "I\u0027ve gotten rid of the html.\n\nHowever, I\u0027m not sure how I would find $targetPost and $post using data- attributes.\n\n$post should be doable: I could add something like this in the template and use that in here:\n\n    data-flow-target\u003d\".flow-post[flow-id\u003d{{postId}}]\"\n\n$targetPost, however, would be a bit harder, as it\u0027ll be hard to know in the template which parent would be acceptable to reply to (if max depth is reached). I could probably expose that data to the template somehow, but that would get messy. Any other ideas here?",
+      "parentUuid": "ee391fd1_45a60152",
       "revId": "f379ba01dc1664322786f0a0c4f37ed465fe8ca5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_d2806290",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-18T16:28:21Z",
+      "side": 1,
+      "message": "I\u0027ll just find closest( \u0027form\u0027 ), as I noticed \u0027form\u0027 being found in other parts of the code as well. At least it\u0027s more generic now, not based on that specific class. OK?",
+      "parentUuid": "ee391fd1_603a13c2",
+      "revId": "f379ba01dc1664322786f0a0c4f37ed465fe8ca5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_40470f51",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2014-06-16T13:03:11Z",
       "side": 1,
       "message": "Same concern here, as well as the other .parent() and .before() calls below.",
+      "revId": "f379ba01dc1664322786f0a0c4f37ed465fe8ca5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_327c4eb4",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-18T16:28:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee391fd1_40470f51",
       "revId": "f379ba01dc1664322786f0a0c4f37ed465fe8ca5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
