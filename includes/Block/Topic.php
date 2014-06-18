@@ -452,8 +452,10 @@ class TopicBlock extends AbstractBlock {
 			}
 			$output = $this->renderSingleViewAPI( $revId );
 		} elseif ( $this->action === 'close-open-topic' ) {
-			// Treat topic as a post, only the post + summary are needed
-			$output = $this->renderPostAPI( $templating, $options, $this->workflow->getId() );
+			$result = $this->renderTopicAPI( $templating, $options );
+			$topicId = $result['roots'][0];
+			$revisionId = $result['posts'][$topicId][0];
+			$output = $result['revisions'][$revisionId];
 		} elseif ( $this->action === 'compare-post-revisions' ) {
 			$output = $this->renderDiffViewAPI( $options );
 		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {
@@ -537,7 +539,12 @@ class TopicBlock extends AbstractBlock {
 		$serializer = Container::get( 'formatter.topic' );
 		if ( isset( $options['contentFormat'] ) ) {
 			$serializer->setContentFormat( $options['contentFormat'] );
+		} else {
+			if ( false !== array_search( $this->action, $this->requiresWikitext ) ) {
+				$serializer->setContentFormat( 'wikitext' );
+			}
 		}
+
 		if ( !$workflowId ) {
 			if ( $this->workflow->isNew() ) {
 				return $serializer->buildEmptyResult( $this->workflow );
