@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_febd6d17",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-18T20:14:44Z",
+      "side": 1,
+      "message": "I\u0027d do this check in onClickInteractive this is just messy.\n\nOr alternatively just do use \u0027[data-flow-interactive-handler]\u0027 as the selector.",
+      "revId": "0fb0354f6f6e8001f14d7cc8c223b2b2801615cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
