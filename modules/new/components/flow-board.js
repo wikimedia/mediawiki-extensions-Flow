@@ -176,6 +176,23 @@
 			};
 		};
 
+		/**
+		 * Before activating close/reopen edit form, sends an overrideObject
+		 * to the API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.activateCloseOpenTopic = function ( event ) {
+			return {
+				// href submodule is close-open-topic
+				submodule: 'post-view',
+				// href does not have this param
+				vpcontentFormat: 'wikitext',
+				// request just the data for this topic
+				vppostId: $( this ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' )
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
@@ -303,6 +320,74 @@
 
 				// Reinitialize the whole board with these nodes
 				flowBoard.reinitializeBoard( $rendered );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * Renders the editable close/open text area with the given API response.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateCloseOpenTopic = function ( status, data, jqxhr ) {
+			var html,
+				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' ),
+				old = $node.html(),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
+
+			// @todo This is using the old fashion way to re-render new content in
+			// the board need to use the proper way that flow is using, eg:
+			// reinitializeBoard() etc
+			if ( status === 'done' ) {
+				html = flowBoard.TemplateEngine.processTemplate(
+					'flow_block_topic_close',
+					data.flow[ 'post-view' ].result.topic
+				);
+				$node.html(
+					$( html ).appendTo( '<div>' ).html()
+				);
+				$node.find( 'form' ).data( 'flow-cancel-callback', function() {
+					$node.html( old );
+				} );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * After submit of the close/open topic form, process the new summary data
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.closeOpenTopic = function ( status, data, jqxhr ) {
+			var postId, revId, revision, result, html,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
+			if ( status === 'done' ) {
+				result = data.flow['close-open-topic'].result.topic;
+				postId = result.roots[0];
+				revId = result.posts[postId];
+				revision = result.revisions[revId];
+				// We dont' really need to render any replies in here, but if we do keep the replies,
+				// get this error:TypeError: context.posts is undefined:
+				// var revId = context.posts[postIds][0] in flow-handlebars.js
+				// The problem is that 'posts' belong to the top level result, revision doesn't
+				// have any 'posts' key
+				revision.replies = {};
+				html = flowBoard.TemplateEngine.processTemplate(
+					'flow_topic',
+					revision
+				);
+				$( this ).closest( '.flow-topic-titlebar' ).replaceWith(
+					$( html ).find( '.flow-topic-titlebar' )
+				);
+				// @todo - implment l10n for 'post_moderation_state' in handlebars
 			} else {
 				// @todo fail
 				alert('fail');
