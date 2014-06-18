@@ -282,6 +282,7 @@ $wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
 $wgHooks['FlowAddModules'][] = 'Flow\Parsoid\Utils::onFlowAddModules';
 $wgHooks['WhatLinksHereProps'][] = 'FlowHooks::onWhatLinksHereProps';
 $wgHooks['LinksUpdateConstructed'][] = 'FlowHooks::onLinksUpdateConstructed';
+$wgHooks['ResourceLoaderTestModules'][] = 'FlowHooks::onResourceLoaderTestModules';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';

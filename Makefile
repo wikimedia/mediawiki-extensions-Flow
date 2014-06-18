@@ -61,7 +61,7 @@ phpunit:
 	cd ${MW_INSTALL_PATH}/tests/phpunit && php phpunit.php --configuration ${MW_INSTALL_PATH}/extensions/Flow/tests/flow.suite.xml --group=Flow
 
 qunit:
-	@echo TODO: qunit tests
+	@scripts/qunit.sh
 
 vagrant-browsertests:
 	@vagrant ssh -- -X cd /srv/browsertests '&&' MEDIAWIKI_URL=http://localhost/wiki/ MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
