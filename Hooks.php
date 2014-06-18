@@ -176,11 +176,14 @@ class FlowHooks {
 			// We currently only handle the OldChangesList
 			return;
 		}
+
+		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
 			Container::get( 'query.recentchanges' )->loadMetadataBatch( $rows );
-		} catch ( FlowException $e ) {
+		} catch ( Exception $e ) {
 			\MWExceptionHandler::logException( $e );
 		}
+		restore_error_handler();
 	}
 
 	public static function onOldChangesListRecentChangesLine( \ChangesList &$changesList, &$s, \RecentChange $rc, &$classes = array() ) {
@@ -194,6 +197,7 @@ class FlowHooks {
 			return true;
 		}
 
+		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		try {
 			$query = Container::get( 'query.recentchanges' );
 			$isWatchlist = $query->isWatchlist( $classes );
@@ -206,8 +210,11 @@ class FlowHooks {
 		} catch ( FlowException $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
 			\MWExceptionHandler::logException( $e );
+			restore_error_handler();
 			return false;
 		}
+		restore_error_handler();
+
 		if ( $line === false ) {
 			return false;
 		}
@@ -223,6 +230,7 @@ class FlowHooks {
 			return true;
 		}
 
+		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		$replacement = null;
 		try {
 			$query = Container::get( 'query.checkuser' );
@@ -236,6 +244,7 @@ class FlowHooks {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . $row->cuc_id . ' ' . $e );
 			\MWExceptionHandler::logException( $e );
 		}
+		restore_error_handler();
 
 		if ( $replacement === null ) {
 			// some sort of failure, but this is a RC_FLOW so blank out hist/diff links
@@ -451,7 +460,14 @@ class FlowHooks {
 			return true;
 		}
 
-		$line = Container::get( 'formatter.contributions' )->format( $row, $pager );
+		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		try {
+			$line = Container::get( 'formatter.contributions' )->format( $row, $pager );
+		} catch ( Exception $e ) {
+			MWExceptionHandler::logException( $e );
+			$line = false;
+		}
+		restore_error_handler();
 
 		if ( $line === false ) {
 			return false;
@@ -497,7 +513,15 @@ class FlowHooks {
 			}
 		}
 
-		$results = Container::get( 'query.contributions' )->getResults( $pager, $offset, $limit, $descending );
+		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
+		try {
+			$results = Container::get( 'query.contributions' )->getResults( $pager, $offset, $limit, $descending );
+		} catch ( Exception $e ) {
+			wfDebugLog( 'Flow', __METHOD__ . ': Failed contributions query' );
+			\MWExceptionHandler::logException( $e );
+			$results = false;
+		}
+		restore_error_handler();
 
 		if ( $results === false ) {
 			return false;
@@ -616,13 +640,15 @@ class FlowHooks {
 			return true;
 		}
 
+		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		$result = null;
 		try {
 			$result = Container::get( 'formatter.irclineurl' )->format( $rc );
-		} catch ( FlowException $e ) {
+		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Failed formatting rc ' . $rc->getAttribute( 'rc_id' ) );
 			\MWExceptionHandler::logException( $e );
 		}
+		restore_error_handler();
 
 		if ( $result !== null ) {
 			$url = $result;
