@@ -87,6 +87,8 @@ $wgAutoloadClasses['Flow\FlowActions'] = $dir . 'includes/FlowActions.php';
 $wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/RevisionActionPermissions.php';
 $wgAutoloadClasses['Flow\TermsOfUse'] = $dir . 'includes/TermsOfUse.php';
 $wgAutoloadClasses['Flow\ReferenceClarifier'] = $dir . 'includes/ReferenceClarifier.php';
+$wgAutoloadClasses['Flow\RecoverableErrorHandler'] = $dir . 'includes/RecoverableErrorHandler.php';
+$wgAutoloadClasses['Flow\CatchableFatalErrorException'] = $dir . 'includes/CatchableFatalErrorException.php';
 
 // Classes that model our data
 $wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
