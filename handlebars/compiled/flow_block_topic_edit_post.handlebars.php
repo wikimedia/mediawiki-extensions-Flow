@@ -36,10 +36,11 @@
 	
 	<input type="hidden" name="topic_prev_revision" value="'.htmlentities(((is_array($in) && isset($in['revisionId'])) ? $in['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
 	'.LCRun3::hbch($cx, 'ifAnonymous', Array(), $in, function($cx, $in) {return '
-			<span class="flow-anon-warning flow-ui-tooltip flow-ui-progressive flow-ui-tooltip-down flow-form-collapsible plainlinks">
-	'.LCRun3::ch($cx, 'l10nParse', Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:Userlogin'), 'encq'),LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:Userlogin/signup'), 'encq')), 'encq').'
+		<div class="flow-anon-warning flow-ui-tooltip flow-ui-progressive flow-ui-tooltip-down flow-form-collapsible plainlinks">
+	'.LCRun3::ch($cx, 'l10nParse', Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin'), 'encq'),LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin/signup'), 'encq')), 'encq').'
 	<span class="flow-ui-tooltip-triangle"></span>
-</span>
+</div>
+
 	';}).'
 	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in) && isset($in['content'])) ? $in['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>
 	<div class="flow-form-actions flow-form-collapsible">
