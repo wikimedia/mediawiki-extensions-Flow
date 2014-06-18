@@ -149,6 +149,14 @@
 			};
 		};
 
+		FlowBoardComponent.UI.events.apiPreHandlers.activateCloseOpenTopic = function ( event ) {
+			return {
+				submodule: "post-view",
+				pvcontentFormat: "wikitext",
+				pvpostId: '@todo provide a topicid or topic workflowid'
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
@@ -276,6 +284,60 @@
 
 				// Reinitialize the whole board with these nodes
 				flowBoard.reinitializeBoard( $rendered );
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * Renders the editable close/open text area with the given API response.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateCloseOpenTopic = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$oldBoardNodes,
+				$rendered;
+
+			if ( status === 'done' ) {
+				// Change "post-view" to "topic_close" so that it loads up flow_block_topic_close
+				data.flow[ 'post-view' ].result.topic.type = 'topic_close';
+
+				$rendered = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_loop',
+						{ blocks: data.flow[ 'post-view' ].result }
+					)
+				).children();
+
+				// @todo figure out re-render with reinitializeBoard()
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * After submit of the close/open topic form, process the new summary data
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.closeOpenTopic = function ( status, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$rendered;
+
+			if ( status === 'done' ) {
+				$rendered = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_block_loop',
+						{ blocks: data.flow[ 'close-open-topic' ].result }
+					)
+				).children();
+
+				// @todo figure out how to reinitializeBoard( $rendered );
 			} else {
 				// @todo fail
 				alert('fail');
