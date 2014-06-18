@@ -197,10 +197,10 @@ window.mw = window.mw || {}; // mw-less testing
 	 * With button, its name=value is serialized in. If button is an Event, it will attempt to find the clicked button.
 	 * Additional params can be set with data-flow-api-params on both the clicked button or the form.
 	 * @param {Event|Element} [button]
-	 * @param {Object} [overrideObject]
+	 * @param {Object|Function} [override]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromForm( button, overrideObject ) {
+	function flowApiRequestFromForm( button, override ) {
 		var i,
 			$deferred = $.Deferred(),
 			$form = $( button ).closest( 'form' ),
@@ -225,9 +225,17 @@ window.mw = window.mw || {}; // mw-less testing
 			return $deferred.rejectWith( { error: 'Invalid form action' } );
 		}
 
-		// If given an overrideObject, extend our queryMap with it
-		if ( overrideObject && Object.prototype.toString.call( overrideObject ) === '[object Object]' ) {
-			$.extend( queryMap, overrideObject );
+		if ( override ) {
+			switch ( typeof override ) {
+				// If given an override object, extend our queryMap with it
+				case 'object':
+					$.extend( queryMap, overrideObject );
+					break;
+				// If given an override function, call it and make it return the new queryMap
+				case 'function':
+					queryMap = override( queryMap );
+					break;
+			}
 		}
 
 		if ( !( queryMap.action ) ) {
@@ -243,10 +251,10 @@ window.mw = window.mw || {}; // mw-less testing
 	 * Using a given anchor, parses its URL and sends it as a GET (default) or POST depending on data-flow-api-method.
 	 * Additional params can be set with data-flow-api-params.
 	 * @param {Element} anchor
-	 * @param {Object} [overrideObject]
+	 * @param {Object|Function} [override]
 	 * @return {$.Deferred}
 	 */
-	function flowApiRequestFromAnchor( anchor, overrideObject ) {
+	function flowApiRequestFromAnchor( anchor, override ) {
 		var $anchor = $( anchor ),
 			$deferred = $.Deferred(),
 			queryMap = { submodule: $anchor.data( 'flow-api-action' ) }, // usually null
@@ -264,9 +272,17 @@ window.mw = window.mw || {}; // mw-less testing
 			return $deferred.rejectWith( { error: 'Invalid href' } );
 		}
 
-		// If given an overrideObject, extend our queryMap with it
-		if ( overrideObject && Object.prototype.toString.call( overrideObject ) === '[object Object]' ) {
-			$.extend( queryMap, overrideObject );
+		if ( override ) {
+			switch ( typeof override ) {
+				// If given an override object, extend our queryMap with it
+				case 'object':
+					$.extend( queryMap, overrideObject );
+					break;
+				// If given an override function, call it and make it return the new queryMap
+				case 'function':
+					queryMap = override( queryMap );
+					break;
+			}
 		}
 
 		// If this anchor already has a request in flight, abort it
