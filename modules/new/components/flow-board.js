@@ -3,6 +3,8 @@
  */
 
 ( function ( $, mw ) {
+	mw.flow = mw.flow || {}; // create mw.flow globally
+
 	/**
 	 * Constructor class for instantiating a new Flow board. Returns a FlowBoardComponent object.
 	 * Accepts one or more container elements in $container. If multiple, returns an array of FlowBoardComponents.
@@ -837,6 +839,9 @@
 				FlowBoardComponent.UI.Forms.compressTextarea( $( this ) );
 			} );
 
+			// Hide any previews
+			$form.find( '.flow-content-preview' ).hide();
+
 			if ( initialState === 'collapsed' ) {
 				// Hide its actions
 				// @todo Use TemplateEngine to find and hide actions?
@@ -1119,4 +1124,7 @@
 				.addClass( 'flow-board-collapsed-' + newState );
 		};
 	}() );
+
+	// Export
+	mw.flow.FlowBoardComponent = FlowBoardComponent;
 }( jQuery, mediaWiki ) );
