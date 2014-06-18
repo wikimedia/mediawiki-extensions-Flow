@@ -129,6 +129,7 @@ class TemplateHelper {
 					'user' => 'Flow\TemplateHelper::user',
 					'addReturnTo' => 'Flow\TemplateHelper::addReturnTo',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
+					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -703,5 +704,21 @@ class TemplateHelper {
 		$url = $title->getFullUrl();
 
 		return self::addReturnTo( $url );
+	}
+
+	/**
+	 * Accepts the contentType and content properties returned from the api
+	 * for individual revisions and ensures that content is included in the
+	 * final html page in an xss safe maner.
+	 *
+	 * It is expected that allcontent with contentType of html has been
+	 * processed by parsoid and is safe for direct output into the document.
+	 *
+	 * @param string $contentType
+	 * @param string $content
+	 * @return string
+	 */
+	static public function escapeContent( $contentType, $content ) {
+		return $contentType === 'html' ? self::html( $content ) : $content;
 	}
 }
