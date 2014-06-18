@@ -128,6 +128,10 @@
 				{{#if actions.close}}
 					<li>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   data-flow-interactive-handler="apiRequest"
+						   data-flow-api-handler="activateCloseOpenTopic"
+						   data-flow-api-target="< .flow-topic-titlebar"
+						   data-flow-id="{{postId}}"
 						   href="{{actions.close.url}}"
 						   title="{{actions.close.title}}">
 							<span class="wikiglyph wikiglyph-clock"></span>
@@ -138,6 +142,10 @@
 				{{#if actions.reopen}}
 					<li>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   data-flow-interactive-handler="apiRequest"
+						   data-flow-api-handler="activateCloseOpenTopic"
+						   data-flow-id="{{postId}}"
+						   data-flow-api-target="< .flow-topic-titlebar"
 						   href="{{actions.reopen.url}}"
 						   title="{{actions.reopen.title}}">
 							<span class="wikiglyph wikiglyph-clock"></span>
