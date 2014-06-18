@@ -3,7 +3,8 @@
 		"authors": [
 			"Cwlin0416",
 			"EagerLin",
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"Mywood"
 		]
 	},
 	"flow-desc": "工作流作業系統",
@@ -58,7 +59,7 @@
 	"flow-thank-link": "{{GENDER:$1|感謝}}",
 	"flow-close-link": "{{GENDER:$1|關閉}}",
 	"flow-post-edited": "帖子於$2被$1{{GENDER:$1|編輯}}",
-	"flow-post-action-view": "永久連結",
+	"flow-post-action-view": "固定連結",
 	"flow-post-action-post-history": "歷史記錄",
 	"flow-post-action-suppress-post": "封鎖",
 	"flow-post-action-delete-post": "刪除",
@@ -67,7 +68,7 @@
 	"flow-post-action-unsuppress-post": "取消封鎖",
 	"flow-post-action-undelete-post": "取消刪除",
 	"flow-post-action-unhide-post": "取消隱藏",
-	"flow-topic-action-view": "永久連結",
+	"flow-topic-action-view": "固定連結",
 	"flow-topic-action-watchlist": "監視列表",
 	"flow-topic-action-edit-title": "編輯標題",
 	"flow-topic-action-history": "歷史記錄",
