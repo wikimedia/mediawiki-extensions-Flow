@@ -129,6 +129,7 @@ class TemplateHelper {
 					'user' => 'Flow\TemplateHelper::user',
 					'addReturnTo' => 'Flow\TemplateHelper::addReturnTo',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
+					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -703,5 +704,9 @@ class TemplateHelper {
 		$url = $title->getFullUrl();
 
 		return self::addReturnTo( $url );
+	}
+
+	static public function escapeContent( $contentType, $content ) {
+		return $contentType === 'html' ? self::html( $content ) : $content;
 	}
 }
