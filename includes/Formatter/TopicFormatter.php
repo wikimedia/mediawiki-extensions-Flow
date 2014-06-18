@@ -8,6 +8,8 @@ use IContextSource;
 
 class TopicFormatter {
 
+	protected $contentFormat;
+
 	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer ) {
 		$this->urlGenerator = $urlGenerator;
 		$this->serializer = $serializer;
@@ -27,9 +29,16 @@ class TopicFormatter {
 		);
 	}
 
+	public function setContentFormat( $contentFormat ) {
+		$this->contentFormat = $contentFormat;
+	}
+
 	public function formatApi( Workflow $listWorkflow, array $found, IContextSource $ctx ) {
 		$section = new \ProfileSection( __METHOD__ );
 		$revisions = $posts = $replies = array();
+		if ( $this->contentFormat ) {
+			$this->serializer->setContentFormat( $this->contentFormat );
+		}
 		foreach( $found as $formatterRow ) {
 			$serialized = $this->serializer->formatApi( $formatterRow, $ctx );
 			if ( !$serialized ) {

@@ -1,4 +1,4 @@
-<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
+<div class="{{#if isModerated}} flow-topic-moderated{{/if}} flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
 	<h2 class="flow-topic-title" data-title="{{content}}">{{content}}</h2>
 	{{#if isModerated}}
 		<div class="flow-moderated-topic-title">{{l10n "post_moderation_state" moderateState replyToId moderator.name}}</div>
@@ -123,6 +123,9 @@
 			{{#if actions.close}}
 				<li>
 					<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+					   data-flow-interactive-handler="apiRequest"
+					   data-flow-api-handler="activateCloseOpenTopic"
+					   data-flow-api-target="< .flow-topic-titlebar"
 					   href="{{actions.close.url}}"
 					   title="{{actions.close.title}}">
 						<span class="wikiglyph wikiglyph-clock"></span>
@@ -133,8 +136,11 @@
 			{{#if actions.reopen}}
 				<li>
 					<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-					   href="{{actions.reopen.url}}"
-					   title="{{actions.reopen.title}}">
+						data-flow-interactive-handler="apiRequest"
+						data-flow-api-handler="activateCloseOpenTopic"
+						data-flow-api-target="< .flow-topic-titlebar"
+						href="{{actions.reopen.url}}"
+						title="{{actions.reopen.title}}">
 						<span class="wikiglyph wikiglyph-clock"></span>
 						{{l10n "flow-topic-action-reopen-topic"}}
 					</a>
@@ -143,10 +149,10 @@
 			{{#if actions.summarize}}
 				<li>
 					<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
-					   data-flow-interactive-handler="apiRequest"
-					    data-flow-api-handler="activateSummarizeTopic"
-					   href="{{actions.summarize.url}}"
-					   title="{{actions.summarize.title}}">
+						data-flow-interactive-handler="apiRequest"
+						data-flow-api-handler="activateSummarizeTopic"
+						href="{{actions.summarize.url}}"
+						title="{{actions.summarize.title}}">
 						<span class="wikiglyph wikiglyph-flag"></span>
 						{{#if summary}}
 							{{l10n "flow-topic-action-resummarize-topic"}}
@@ -163,4 +169,9 @@
 			{{escapeContent summaryFormat summary}}
 		{{/if}}
 	</div>
+	{{#if isTopicSummaryEditable}}
+	<div class="flow-topic-edit-summary">
+	{{>flow_topic_titlebar_close}}
+	</div>
+	{{/if}}
 </div>
