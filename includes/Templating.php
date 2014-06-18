@@ -20,6 +20,11 @@ use Linker;
 use Message;
 use Flow\Exception\InvalidDataException;
 
+/**
+ * This class is slowly being deprecated. It used to house a minimalist
+ * php templating system, it is now just a few of the helpers that were
+ * reused in the new api responses and other parts of Flow.
+ */
 class Templating {
 	/**
 	 * @var UserNameBatch
@@ -210,18 +215,21 @@ class Templating {
 	}
 
 	/**
-	 * Formats a revision's content for displaying. Usually, the revisions's
-	 * content can just be displayed. In the event of moderation, however, that
-	 * info should not be exposed.
+	 * Usually the revisions's content can just be displayed. In the event
+	 * of moderation, however, that info should not be exposed.
 	 *
 	 * If a specific i18n message is available for a certain moderation level,
 	 * that message will be returned (well, unless the user actually has the
 	 * required permissions to view the full content). Otherwise, in normal
 	 * cases, the full content will be returned.
 	 *
+	 * The content-type of the return value varys on the $format parameter.
+	 * Further processing in the final output stage must escape all formats
+	 * other than the default 'html'.
+	 *
 	 * @param AbstractRevision $revision Revision to display content for
 	 * @param string[optional] $format Format to output content in (html|wikitext)
-	 * @return string HTML
+	 * @return string HTML if requested, otherwise plain text
 	 */
 	public function getContent( AbstractRevision $revision, $format = 'html' ) {
 		if ( $this->permissions->isAllowed( $revision, 'view' ) ) {
@@ -236,10 +244,9 @@ class Templating {
 
 					$content = wfMessage( 'flow-stub-post-content' )->parse();
 				}
-			// wikitext format
+			// all other formats
 			} else {
 				$content = $revision->getContent( $format );
-				$content = htmlspecialchars( $content );
 			}
 
 			return $content;
@@ -261,12 +268,16 @@ class Templating {
 			// Messages: flow-hide-post-content, flow-delete-post-content, flow-suppress-post-content
 			//           flow-hide-title-content, flow-delete-title-content, flow-suppress-title-content
 			$message = wfMessage( "flow-$state-$type-content", $username )->rawParams( $this->getUserLinks( $revision ) );
-			if ( $message->exists() ) {
+			if ( !$message->exists() ) {
+				wfDebugLog( 'Flow', __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
+
+				$message = wfMessage( 'flow-error-other' );
+			}
+
+			if ( $format === 'html' ) {
 				return $message->escaped();
 			} else {
-				//wfWarn( __METHOD__ . ': Failed to locate message for moderated content: ' . $message->getKey() );
-
-				return wfMessage( 'flow-error-other' )->escaped();
+				return $message->text();
 			}
 		}
 	}

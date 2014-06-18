@@ -159,7 +159,7 @@ class RevisionFormatter {
 
 			// topic titles are always forced to plain text
 			$contentFormat = ( $row->revision instanceof PostRevision && $row->revision->isTopicTitle() )
-				? 'wikitext'
+				? 'raw'
 				: $this->contentFormat;
 
 			$res += array(
