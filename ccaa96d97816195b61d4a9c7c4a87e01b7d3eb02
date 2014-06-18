@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_1525af03",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-18T23:13:10Z",
+      "side": 1,
+      "message": "it does have to be, the other code gets away with this by using\n\n    if ( !$container.jquery ) {\n        $container \u003d $container.$container;\n    }\n\ndue to the FlowBoardComponent having a foo.$container property",
+      "parentUuid": "ee391fd1_32ce8987",
+      "revId": "ccaa96d97816195b61d4a9c7c4a87e01b7d3eb02",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_529b4dc1",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 8
@@ -81,6 +99,24 @@
       "writtenOn": "2014-06-18T21:08:13Z",
       "side": 1,
       "message": "What do you mean render the errors?",
+      "parentUuid": "ee391fd1_9281b551",
+      "revId": "ccaa96d97816195b61d4a9c7c4a87e01b7d3eb02",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_b58143ca",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-18T23:13:10Z",
+      "side": 1,
+      "message": "It depends where they came from,  validation errors from the api will have the following:\n\n    {\n        \u0027errors\u0027: {\n            \u0027foo\u0027: \u0027bar baz bang\u0027,\n        },\n        ...\n    }\n\nso rendering them is a fairly trivial handlebars block:\n\n    {{#if errors}}\n        \u003cul\u003e\n        {{#each errors}}\n            \u003cli\u003e{{message}}\u003c/li\u003e\n        {{/each}}\n        \u003c/ul\u003e\n    {{/if}}\n\nWe don\u0027t have a particular standardized place to inject the error messages too though.  This existing approach isn\u0027t particularly refined, but for the non-javascript version we mostly render these at the top of the forms(rather than inline with the respective form element, partially because theres often only 1 or maybe 2 user modifiable form elements)\n\nadditionally some html classes probably have to be added to give it the distinctive red glow of failure :)",
       "parentUuid": "ee391fd1_9281b551",
       "revId": "ccaa96d97816195b61d4a9c7c4a87e01b7d3eb02",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
