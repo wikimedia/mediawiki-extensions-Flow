@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "ee391fd1_72bc11d6",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-18T21:08:13Z",
+      "side": 1,
+      "message": "First parameter must be $container.",
+      "revId": "ccaa96d97816195b61d4a9c7c4a87e01b7d3eb02",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_32ce8987",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-18T21:08:13Z",
+      "side": 1,
+      "message": "It has to be jQuery, right?  A FlowBoardComponent does not have a #find method, AFAICT.",
+      "revId": "ccaa96d97816195b61d4a9c7c4a87e01b7d3eb02",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_529b4dc1",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 8
@@ -30,6 +64,24 @@
       "writtenOn": "2014-06-18T21:03:33Z",
       "side": 1,
       "message": "Ideally this should also render the errors. I don\u0027t know this code well enough to work out how to do that though...",
+      "revId": "ccaa96d97816195b61d4a9c7c4a87e01b7d3eb02",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_728ad11d",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-18T21:08:13Z",
+      "side": 1,
+      "message": "What do you mean render the errors?",
+      "parentUuid": "ee391fd1_9281b551",
       "revId": "ccaa96d97816195b61d4a9c7c4a87e01b7d3eb02",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
