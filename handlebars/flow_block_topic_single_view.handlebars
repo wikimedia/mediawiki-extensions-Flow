@@ -5,14 +5,8 @@
 		{{l10nParse "flow-revision-permalink-warning-post-first" revision.human_timestamp revision.rev_view_links.board.title revision.root.content revision.rev_view_links.hist.url revision.rev_view_links.diff.url}}
 	{{/if}}
 </div>
-{{#if revision.isTopicTitle}}
-	<div class="flow-topics">
-		{{revision.content}}
-	</div>
-{{else}}
-	<div>
-		{{html revision.content}}
-	</div>
-{{/if}}
+<div{{#if revision.isTopicTitle}} class="flow-topics"{{/if}}>
+	{{escapeContent revision.contentFormat revision.content}}
+</div>
 
 

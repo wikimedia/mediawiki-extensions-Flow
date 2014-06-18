@@ -407,7 +407,8 @@
 			}
 
 			templateParams = {
-				'content' : data['flow-parsoid-utils'].content
+				content : data['flow-parsoid-utils'].content,
+				contentFormat: data['flow-parsoid-utils'].format
 			};
 
 			if ( $titleField.length ) {

@@ -5,4 +5,4 @@
 		{{l10nParse "flow-revision-permalink-warning-header-first" revision.human_timestamp revision.rev_view_links.hist.url revision.rev_view_links.diff.url}}
 	{{/if}}
 </div>
-{{html revision.content}}
+{{escapeContent revision.contentFormat revision.content}}
