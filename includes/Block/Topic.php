@@ -452,8 +452,14 @@ class TopicBlock extends AbstractBlock {
 			}
 			$output = $this->renderSingleViewAPI( $revId );
 		} elseif ( $this->action === 'close-open-topic' ) {
-			// Treat topic as a post, only the post + summary are needed
-			$output = $this->renderPostAPI( $templating, $options, $this->workflow->getId() );
+			// API request, render topic data to refresh the topic container
+			// after close/reopen topic
+			if ( defined( 'MW_API' ) ) {
+				$output = $this->renderTopicAPI( $templating, $options );
+			// Normal page request. Treat topic as a post, only the post + summary are needed
+			} else {
+				$output = $this->renderPostAPI( $templating, $options, $this->workflow->getId() );
+			}
 		} elseif ( $this->action === 'compare-post-revisions' ) {
 			$output = $this->renderDiffViewAPI( $options );
 		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {

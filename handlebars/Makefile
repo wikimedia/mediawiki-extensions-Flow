@@ -6,6 +6,8 @@
 COMPILE=php ../maintenance/compileLightncandy.php
 
 TOPIC_SUBTEMPLATES= flow_topic.handlebars \
+		flow_topic_titlebar.handlebars \
+		flow_topic_titlebar_close.handlebars \
 		flow_reply_form.handlebars \
 		flow_topiclist_loop.handlebars \
 		flow_load_more.handlebars \
@@ -22,7 +24,6 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_topic_history.handlebars.php \
 		compiled/flow_block_topic_single_view.handlebars.php \
 		compiled/flow_block_topic_diff_view.handlebars.php \
-		compiled/flow_block_topic_close.handlebars.php \
 		compiled/flow_block_topic_reply.handlebars.php \
 		compiled/flow_block_topic_edit_post.handlebars.php \
 		compiled/flow_block_topic_edit_title.handlebars.php \
@@ -106,10 +107,6 @@ compiled/flow_block_topic_diff_view.handlebars.php: \
 		flow_block_topic_diff_view.handlebars \
 		$(TOPIC_SUBTEMPLATES)
 	$(COMPILE) flow_block_topic_diff_view
-
-compiled/flow_block_topic_close.handlebars.php: \
-		flow_block_topic_close.handlebars
-	$(COMPILE) flow_block_topic_close
 
 compiled/flow_block_topic_reply.handlebars.php: \
 		flow_block_topic_reply.handlebars \

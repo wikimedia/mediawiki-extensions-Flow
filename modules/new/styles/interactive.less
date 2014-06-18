@@ -190,10 +190,12 @@ div.flow-menu-inverted {
 	.flow-topic {
 		padding-bottom: 0;
 
-		// Needs additional specificity to override `div#content h2`
-		div#bodyContent & h2.flow-topic-title,
-		div#bodyContent & h2.flow-moderated-topic-title {
-			margin-bottom: 0;
+		div#bodyContent {
+			// Needs additional specificity to override `div#content h2`
+			h2.flow-topic-title,
+			.flow-moderated-topic-title {
+				margin-bottom: 0;
+			}
 		}
 
 		.flow-topic-titlebar {

@@ -184,6 +184,31 @@ div#bodyContent ul.flow-topic-navigation-fixed {
 	&.flow-active {
 
 	}
+
+	// When moderated and collapsed make opaque and hide elements
+	.flow-topic-moderated {
+		opacity: 0.5;
+
+		.flow-topic-summary,
+		.flow-topic-meta,
+		.flow-author {
+			display: none;
+		}
+	}
+
+	// Undo this when not collapsed.
+	&.flow-topic-collapsed-invert {
+		.flow-topic-moderated {
+			opacity: 1;
+
+			.flow-moderated-topic-title,
+			.flow-topic-summary,
+			.flow-topic-meta,
+			.flow-author {
+				display: block;
+			}
+		}
+	}
 }
 
 // Topic title bar
@@ -197,16 +222,22 @@ div#bodyContent ul.flow-topic-navigation-fixed {
 // Topic title itself
 // Needs additional specificity to override `div#content h2`
 div#bodyContent {
-	h2.flow-topic-title, h2.flow-moderated-topic-title, .flow-topic-title {
+	h2.flow-topic-title,
+	.flow-moderated-topic-title,
+	.flow-topic-title {
 		padding: 0;
 		margin: 0 0 .33em;
 		border-bottom: none;
 		font-family: sans-serif;
-		font-size: 1.75em;
 		font-weight: bold;
 		word-break: break-word;
 		word-wrap: break-word;
 		overflow: visible;
+	}
+
+	h2.flow-topic-title,
+	.flow-topic-title {
+		font-size: 1.75em;
 	}
 }
 

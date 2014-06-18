@@ -50,6 +50,8 @@ $wgResourceModules += array(
 			"flow_reply_form.handlebars",
 			// Include dependent templates from handlebars/Makefile.
 			"flow_block_loop.handlebars",
+			"flow_topic_titlebar.handlebars",
+			"flow_topic_titlebar_close.handlebars",
 			"flow_topic.handlebars",
 			"flow_topic_navigation.handlebars",
 			"flow_topiclist_loop.handlebars",
@@ -82,12 +84,18 @@ $wgResourceModules += array(
 			'flow-terms-of-use-reply',
 			'flow-terms-of-use-summarize',
 			'flow-summarize-topic-submit',
+			'flow-terms-of-use-reopen-topic',
+			'flow-terms-of-use-close-topic',
+			'flow-reopen-topic-submit',
+			'flow-close-topic-submit',
 			'flow-toggle-topics',
+			'flow-topic-action-hide-topic',
 			'flow-topic-action-close-topic',
 			'flow-topic-action-edit-title',
 			'flow-topic-action-history',
 			'flow-topic-action-resummarize-topic',
 			'flow-topic-action-summarize-topic',
+			'flow-topic-action-reopen-topic',
 			'flow-topic-action-view',
 			'talkpagelinktext',
 			'flow-cancel-warning',
@@ -107,6 +115,9 @@ $wgResourceModules += array(
 		),
 		'dependencies' => array(
 			'ext.mantle.handlebars',
+		),
+		'messages' => array(
+			'flow-close-title-content',
 		),
 	),
 	'ext.flow.new.history' => $flowResourceTemplate + array(
