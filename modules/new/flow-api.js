@@ -16,7 +16,8 @@ window.mw = window.mw || {}; // mw-less testing
 		'reply': [ 'topic_', 'rep' ],
 		'moderate-topic': [ 'topic_', 'mt' ],
 		'edit-title': [ 'topic_', 'et' ],
-		// 'close-open-topic': [ 'topic_', 'cot' ], // @todo this is both topic and topicsummary
+		// @todo this is both topic and topicsummary
+		'close-open-topic': [ 'topic_', 'cot' ],
 		'topiclist-view': [ 'topiclist_', 'vtl' ],
 		'post-view': [ 'topic', 'vp' ],
 		'topic-view': [ 'topic', 'vt' ],
