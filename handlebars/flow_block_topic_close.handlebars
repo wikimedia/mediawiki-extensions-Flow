@@ -1,49 +1,57 @@
-<div class="flow-board-header">
-	{{#if errors}}
-		<ul>
-			{{#each errors}}
-				<li>{{message}}</li>
-			{{/each}}
-		</ul>
-	{{/if}}
-	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
-	      action="
-			{{~#if revision.isModerated~}}
-				{{~revision.actions.reopen.url~}}
-			{{~else~}}
-				{{~revision.actions.close.url~}}
-			{{~/if~}}">
-		<input type="hidden" name="wpEditToken" value="{{editToken}}" />
-		{{#if revision.previousRevisionId}}
-			<input type="hidden" name="flow_prev_revision" value="{{revision.revisionId}}" />
+{{#each revisions}}
+	<div class="flow-board-header">
+		{{#if @root.errors}}
+			<ul>
+				{{#each @root.errors}}
+					<li>{{@root.message}}</li>
+				{{/each}}
+			</ul>
 		{{/if}}
-		<textarea name="flow_summary" data-flow-expandable="true" class="mw-ui-input" type="text">
-			{{~#if submitted.content~}}
-				{{~submitted.content~}}
-			{{~else~}}
-				{{~#if revision.revisionId~}}
-					{{~revision.content~}}
+		<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
+		      action="
+				{{~#if isModerated~}}
+					{{~actions.reopen.url~}}
+				{{~else~}}
+					{{~actions.close.url~}}
+				{{~/if~}}">
+			<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
+			{{#if summaryRevId}}
+				<input type="hidden" name="flow_prev_revision" value="{{summaryRevId}}" />
+			{{/if}}
+			<textarea name="flow_summary" data-flow-expandable="true" class="mw-ui-input" type="text">
+				{{~#if @root.submitted.content~}}
+					{{~@root.submitted.content~}}
+				{{~else~}}
+					{{~#if summary~}}
+						{{~summary~}}
+					{{~/if~}}
 				{{~/if~}}
-			{{~/if~}}
-		</textarea>
-		<div class="flow-form-actions flow-form-collapsible">
-			<button data-role="submit" class="flow-ui-button flow-ui-constructive">{{l10n "flow-topic-action-close-topic"}}</button>
-			<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
-			<a
-				href="{{revision.links.topic.url}}"
-				title="{{revision.links.topic.title}}"
-				data-flow-interactive-handler="cancelForm"
-				data-role="cancel"
-				class="flow-ui-button flow-ui-destructive flow-ui-quiet">
-					{{l10n "flow-cancel"}}
-			</a>
-			<small class="flow-terms-of-use plainlinks">
-				{{#if revision.isModerated}}
-					{{l10n "flow-terms-of-use-reopen-topic"}}
-				{{else}}
-					{{l10n "flow-terms-of-use-close-topic"}}
-				{{/if}}
-			</small>
-		</div>
-	</form>
-</div>
+			</textarea>
+			<div class="flow-form-actions flow-form-collapsible">
+				<button data-role="submit" class="flow-ui-button flow-ui-constructive">
+					{{#if isModerated}}
+						{{l10n "flow-topic-action-reopen-topic"}}
+					{{else}}
+						{{l10n "flow-topic-action-close-topic"}}
+					{{/if}}
+				</button>
+				<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
+				<a
+					href="{{links.topic.url}}"
+					title="{{links.topic.title}}"
+					data-flow-interactive-handler="cancelForm"
+					data-role="cancel"
+					class="flow-ui-button flow-ui-destructive flow-ui-quiet">
+						{{l10n "flow-cancel"}}
+				</a>
+				<small class="flow-terms-of-use plainlinks">
+					{{#if isModerated}}
+						{{l10n "flow-terms-of-use-reopen-topic"}}
+					{{else}}
+						{{l10n "flow-terms-of-use-close-topic"}}
+					{{/if}}
+				</small>
+			</div>
+		</form>
+	</div>
+{{/each}}

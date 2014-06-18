@@ -175,7 +175,9 @@ class RevisionFormatter {
 			$row->summary &&
 			$this->permissions->isAllowed( $row->summary, 'view' )
 		) {
-			$res['summary'] = $this->templating->getContent( $row->summary );
+			// Maybe always have both parsed and unparsed versions available
+			$res['summary'] = $this->templating->getContent( $row->summary, $this->contentFormat );
+			$res['summaryRevId'] = $row->summary->getRevisionId()->getAlphadecimal();
 		}
 
 		if ( $row->revision instanceof PostRevision ) {
@@ -278,7 +280,6 @@ class RevisionFormatter {
 		}
 
 		// actions primarily vary by revision type...
-
 		$links = array();
 		foreach ( $actionTypes as $type ) {
 			if ( !$this->permissions->isAllowed( $revision, $type ) ) {
@@ -316,7 +317,6 @@ class RevisionFormatter {
 				// @todo
 				break;
 
-			case 'restore-topic':
 			case 'restore-post':
 				// @todo
 				break;
@@ -362,12 +362,22 @@ class RevisionFormatter {
 				$links['close'] = $this->urlGenerator->closeTopicAction( $title, $workflowId );
 				break;
 
-			case 'reopen-topic':
-				// close topic link is only available to topic workflow
-				if( !in_array( $workflow->getType(), array( 'topic', 'topicsummary' ) ) ) {
-					continue;
+			case 'restore-topic':
+				switch ( $revision->getModerationState() ) {
+					case 'close':
+						$moderateAction = 'reopen';
+						$flowAction = 'close-open-topic';
+					break;
+					case 'delete':
+					case 'hide':
+					case 'suppress':
+						$moderateAction = 'un' . $revision->getModerationState();
+						$flowAction = 'moderate-topic';
+					break;
 				}
-				$links['reopen'] = $this->urlGenerator->reopenTopicAction( $title, $workflowId );
+				if ( $moderateAction ) {
+					$links[$moderateAction] = $this->urlGenerator->restoreTopicAction( $title, $workflowId, $moderateAction, $flowAction );
+				}
 				break;
 
 			// Need to use 'edit-topic-summary' to match FlowActions

@@ -72,6 +72,16 @@
 						</a>
 					</li>
 				{{/if}}
+				{{#if actions.unhide}}
+					<li>
+						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						   href="{{actions.unhide.url}}"
+						   title="{{actions.unhide.title}}">
+							<span class="wikiglyph wikiglyph-eye-lid"></span>
+							{{l10n "flow-topic-action-unhide-topic"}}
+						</a>
+					</li>
+				{{/if}}
 				{{#if actions.delete}}
 					<li>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
@@ -79,6 +89,16 @@
 						   title="{{actions.delete.title}}">
 							<span class="wikiglyph wikiglyph-trash"></span>
 							{{l10n "flow-topic-action-delete-topic"}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.undelete}}
+					<li>
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="{{actions.undelete.url}}"
+						   title="{{actions.undelete.title}}">
+							<span class="wikiglyph wikiglyph-trash"></span>
+							{{l10n "flow-topic-action-undelete-topic"}}
 						</a>
 					</li>
 				{{/if}}
@@ -92,6 +112,16 @@
 						</a>
 					</li>
 				{{/if}}
+				{{#if actions.unsuppress}}
+					<li>
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="{{actions.unsuppress.url}}"
+						   title="{{actions.unsuppress.title}}">
+							<span class="wikiglyph wikiglyph-block"></span>
+							{{l10n "flow-topic-action-unsuppress-topic"}}
+						</a>
+					</li>
+				{{/if}}
 				{{#if actions.close}}
 					<li>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
@@ -99,6 +129,16 @@
 						   title="{{actions.close.title}}">
 							<span class="wikiglyph wikiglyph-clock"></span>
 							{{l10n "flow-topic-action-close-topic"}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.reopen}}
+					<li>
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="{{actions.reopen.url}}"
+						   title="{{actions.reopen.title}}">
+							<span class="wikiglyph wikiglyph-clock"></span>
+							{{l10n "flow-topic-action-reopen-topic"}}
 						</a>
 					</li>
 				{{/if}}

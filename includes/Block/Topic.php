@@ -452,31 +452,8 @@ class TopicBlock extends AbstractBlock {
 			}
 			$output = $this->renderSingleViewAPI( $revId );
 		} elseif ( $this->action === 'close-open-topic' ) {
-			$row = Container::get( 'query.postsummary' )->getResult( $this->workflow->getId() );
-			if ( $row ) {
-				$serializer = Container::get( 'formatter.revision' );
-				if ( in_array( $this->action, $this->requiresWikitext ) ) {
-					$serializer->setContentFormat( 'wikitext' );
-				}
-				$output['revision'] = $serializer->formatApi(
-					$row,
-					\RequestContext::getMain()
-				);
-			} else {
-				$urlGenerator = Container::get( 'url_generator' );
-				$title = $this->workflow->getArticleTitle();
-				$workflowId = $this->workflow->getId();
-				$output['revision']['actions']['close'] = $urlGenerator
-					->closeTopicAction(
-						$title,
-						$workflowId
-					);
-				$output['revision']['links']['topic'] = $urlGenerator
-					->topicLink(
-						$title,
-						$workflowId
-					);
-			}
+			// Treat topic as a post, only the post + summary are needed
+			$output = $this->renderPostAPI( $templating, $options, $this->workflow->getId() );
 		} elseif ( $this->action === 'compare-post-revisions' ) {
 			$output = $this->renderDiffViewAPI( $options );
 		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {
@@ -522,7 +499,6 @@ class TopicBlock extends AbstractBlock {
 			return false;
 
 		case 'moderate-topic':
-		case 'close-open-topic':
 			return true;
 
 		case 'topic-view':
@@ -614,7 +590,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected function getRevisionFormatter() {
 		$serializer = Container::get( 'formatter.revision' );
-		if ( in_array( $this->action, $this->requiresWikitext ) ) {
+		if ( false !== array_search( $this->action, $this->requiresWikitext ) ) {
 			$serializer->setContentFormat( 'wikitext' );
 		}
 
