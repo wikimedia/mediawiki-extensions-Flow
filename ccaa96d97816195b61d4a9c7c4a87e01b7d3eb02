@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ee391fd1_35faf340",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-18T23:24:45Z",
+      "side": 1,
+      "message": "mw.log.warn",
+      "revId": "ccaa96d97816195b61d4a9c7c4a87e01b7d3eb02",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_72bc11d6",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 8
