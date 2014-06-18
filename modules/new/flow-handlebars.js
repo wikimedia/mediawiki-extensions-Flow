@@ -707,6 +707,14 @@
 		return FlowHandlebars.prototype.addReturnTo( url );
 	};
 
+	FlowHandlebars.prototype.escapeContent = function ( contentType, content ) {
+		if ( contentType === 'html' ) {
+			return FlowHandlebars.prototype.html( content );
+		} else {
+			return content;
+		}
+	};
+
 	/**
 	 * Outputs debugging information
 	 *
@@ -736,5 +744,6 @@
 	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
 	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
+	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 }( jQuery ) );
