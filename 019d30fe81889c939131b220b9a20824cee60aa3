@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_58adb1e6",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-18T18:04:34Z",
+      "side": 1,
+      "message": "after looking at code review for other stuff, what might work here is:\n\n    result.roots \u003d [result.roots[0]]\n    html \u003d mw.flow.TemplateEngine.processTemplate( \u0027flow_topiclist_loop\u0027, result );",
+      "revId": "019d30fe81889c939131b220b9a20824cee60aa3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
