@@ -1,3 +1,4 @@
+{{#ifCond actions.close.url 'or' actions.reopen.url}}
 <div class="flow-board-header">
 	{{#if @root.errors}}
 		<ul>
@@ -58,3 +59,4 @@
 		</div>
 	</form>
 </div>
+{{/ifCond}}
