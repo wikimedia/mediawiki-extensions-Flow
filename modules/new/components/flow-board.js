@@ -83,9 +83,9 @@
 				$retObj = $retObj.add( this.$topicNavigation.replaceWith( $topicNavigation ) );
 				this.$topicNavigation.remove();
 			}
-
-			this.$topicNavigation = $topicNavigation;
 		}
+
+		this.$topicNavigation = $topicNavigation;
 
 		// Second, verify that this board in fact exists
 		if ( !this.$board || !this.$board.length ) {
