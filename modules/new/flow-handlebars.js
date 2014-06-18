@@ -130,7 +130,6 @@
 				"Topics_n": function ( count, options ) {
 					return "Topics (" + count + ")";
 				},
-
 				"started_with_participants": function ( context, options ) {
 					return context.author.name + " started this topic" +
 						( context.author_count > 1 ? (
