@@ -71,6 +71,10 @@
 		'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['summaryFormat'])) ? $in['summaryFormat'] : null),((is_array($in) && isset($in['summary'])) ? $in['summary'] : null)), 'encq').'
 	' : '').'
 </div>
+<div class="flow-topic-edit-summary">
+	
+</div>
+
 
 	'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 		<div class="flow-menu">
@@ -199,6 +203,10 @@
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['close'])) ? $in['actions']['close'] : null))) ? '
 					<li>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   data-flow-interactive-handler="apiRequest"
+						   data-flow-api-handler="activateCloseOpenTopic"
+						   data-flow-api-target="< .flow-topic-titlebar"
+						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
 						   href="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['title'])) ? $in['actions']['close']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-clock"></span>
@@ -209,6 +217,10 @@
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reopen'])) ? $in['actions']['reopen'] : null))) ? '
 					<li>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   data-flow-interactive-handler="apiRequest"
+						   data-flow-api-handler="activateCloseOpenTopic"
+						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
+						   data-flow-api-target="< .flow-topic-titlebar"
 						   href="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['title'])) ? $in['actions']['reopen']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-clock"></span>

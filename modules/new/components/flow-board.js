@@ -255,6 +255,23 @@
 			};
 		};
 
+		/**
+		 * Before activating close/reopen edit form, sends an overrideObject
+		 * to the API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.activateCloseOpenTopic = function ( event ) {
+			return {
+				// href submodule is close-open-topic
+				submodule: 'view-post',
+				// href does not have this param
+				vpcontentFormat: 'wikitext',
+				// request just the data for this topic
+				vppostId: $( this ).data( 'flow-id' )
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
@@ -389,6 +406,115 @@
 		};
 
 		/**
+		 * Renders the editable close/open text area with the given API response.
+		 * Allows a user to close or reopen an entire topic.
+		 * @param {Object} info
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.activateCloseOpenTopic = function ( info, data ) {
+			var $target, $form, $parent,
+				result, revision, postId, revisionId,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
+
+			if ( info.status === 'done' ) {
+				$target = info.$target.find( '.flow-topic-edit-summary' );
+				$parent = $target.parent();
+
+				// FIXME: API should take care of this for me.
+				result = data.flow[ 'view-post' ].result.topic;
+				postId = result.roots[0];
+				revisionId = result.posts[postId];
+				revision = result.revisions[revisionId];
+
+				// Enable the editable summary
+				$target.empty()
+				$form = $target.append( $(
+						flowBoard.TemplateEngine.processTemplateGetFragment(
+							'flow_topic_titlebar_close', revision
+						)
+					).children()
+				).find( 'form' );
+
+				// Ensure that on a cancel the form gets destroyed.
+				flowBoardComponentAddCancelCallback( $form, function () {
+					$form.remove();
+				} );
+
+				FlowBoardComponent.UI.makeContentInteractive( $target );
+
+				$form.find( 'textarea' ).focus();
+			} else {
+				// @todo fail
+				alert('fail');
+			}
+		};
+
+		/**
+		 * After submit of the close/open topic form, process the new summary data and re-render
+		 * the title bar.
+		 * @param {String} status
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.closeOpenTopic = function ( info, data ) {
+			var revision, result,
+				$target = info.$target, $topicTitleBar,
+				topicId, revisionId,
+				self = this,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
+			if ( info.status === 'done' ) {
+				// We couldn't make close-open-topic to return topic data after a successful
+				// post submission because close-open-topic is used for no-js support as well.
+				// If we make it return topic data, that means it has to return wikitext format
+				// for edit form in no-js mode.  This is a performance problem for wikitext
+				// conversion since topic data returns all children data as well.  So we need to
+				// make close-open-topic return a single post for topic then fire
+				// another request to topic data in html format
+				//
+				// @todo the html could json encode the parameters including topics, the js
+				// could then import that and continuously update it with new revisions from
+				// api calls.  Rendering a topic would then just be pointing the template at
+				// the right part of that data instead of requesting it.
+				flowBoard.API.apiCall( {
+					action: 'flow',
+					submodule: 'view-topic',
+					workflow: $( self ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' )
+				} ).done( function( result ) {
+					// FIXME: Why doesn't the API return this?
+					result = result.flow['view-topic'].result.topic;
+					topicId = result.roots[0];
+					revisionId = result.posts[topicId];
+					revision = result.revisions[revisionId];
+
+					// FIXME: Api should be returning moderation state. Why not?
+					revision.isModerated = revision.moderateState === 'close';
+
+					// FIXME: Hackily remove the moderated class (avoids re-rendering entire post)
+					$target.parents( '.flow-topic' ).removeClass( 'flow-topic-moderated' );
+
+					// Update view of the title bar
+					$topicTitleBar = $(
+						flowBoard.TemplateEngine.processTemplateGetFragment(
+							'flow_topic_titlebar',
+							revision
+						)
+					).children();
+					$target.replaceWith( $topicTitleBar );
+					FlowBoardComponent.UI.makeContentInteractive( $topicTitleBar );
+				} ).fail( function() {
+					// @todo fail
+					alert('failz');
+				} );
+			} else {
+				// @todo fail
+				alert('failz');
+			}
+		};
+
+		/*
 		 *
 		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
