@@ -31,12 +31,17 @@
 			' : '').'
 			<textarea name="flow_summary" data-flow-expandable="true" class="mw-ui-input" type="text">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? ''.htmlentities(((is_array($in) && isset($in['summary'])) ? $in['summary'] : null), ENT_QUOTES, 'UTF-8').'' : '').'').'</textarea>
 			<div class="flow-form-actions flow-form-collapsible">
-				<button data-role="submit" class="flow-ui-button flow-ui-constructive">
-					'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
-						'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-reopen-topic'), 'encq').'
-					' : '
-						'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-close-topic'), 'encq').'
-					').'
+				<button
+					data-role="submit"
+					class="flow-ui-button flow-ui-constructive"
+					data-flow-interactive-handler="apiRequest"
+					data-flow-api-target="< .flow-topic-titlebar"
+					data-flow-api-handler="closeOpenTopic">
+						'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
+							'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-reopen-topic'), 'encq').'
+						' : '
+							'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-close-topic'), 'encq').'
+						').'
 				</button>
 				<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
 				<a
