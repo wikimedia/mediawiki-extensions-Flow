@@ -21,12 +21,18 @@ class FlowPage
   a(:cancel_button, text: "Cancel")
   list_item(:collapsed_view, title: "Collapsed view")
   button(:change_post_save, css: "form.flow-edit-form .flow-edit-submit")
-  button(:change_title_save, css: "form.flow-edit-title-form .flow-edit-submit")
-  textarea(:comment_field, css: 'form.flow-topic-reply-form > textarea[name="topic_content"]')
-  button(:comment_reply_save, css: "form.flow-topic-reply-form .flow-reply-submit")
+  # frontend-rewrite: no more unique class for each button like .flow-reply-submit
+  button(:change_title_save, css: "form.flow-edit-title-form .flow-ui-constructive")
+  # frontend-rewrite: all reply forms have same class
+  textarea(:comment_field, css: 'form.flow-reply-form > textarea[name="topic_content"]')
+  # frontend-rewrite: no more unique class for each button like .flow-reply-submit
+  # There are lots of Reply buttons matching this, hope the first one is the one we want.
+  button(:comment_reply_save, css: "form.flow-reply-form .flow-ui-constructive")
   a(:contrib_link, text: "contribs")
-  a(:edit_post, class: "flow-edit-post-link", index: topic_index)
-  a(:edit_title_icon, css: "div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-edit-title > a.mw-ui-button.flow-edit-topic-link")
+  # frontend-rewrite: no more unique class like .flow-edit-post-link'
+  a(:edit_post, css: ".flow-post-meta-actions a.flow-ui-regressive", index: topic_index)
+  # frontend-rewrite: Action menu items no longer have unique classes like .flow-action-edit-title
+  a(:edit_title, text: "Edit title" )
   # A better selector for the Flow container would be data-flow-component="board"
   div(:flow_body, class: "flow-component")
   div(:flow_topics, class: "flow-topics")
@@ -46,20 +52,20 @@ class FlowPage
   button(:new_topic_save, text: "Add topic")
   text_field(:new_topic_title, name: "topiclist_topic")
   # frontend-rewrite: Action menu items no longer have unique classes like .flow-action-permalink
-  # This no good, 'css cannot be combined with other selectors ({:text=>"Permalink"}) (ArgumentError)'
-  # a(:permalink, css: ".flow-topic-titlebar .flow-menu li > a", text: "Permalink")
+  # 'css cannot be combined with other selectors ({:text=>"Permalink"}) (ArgumentError)', so can't use
+  #     a(:permalink, css: ".flow-topic-titlebar .flow-menu li > a", text: "Permalink")
   a(:permalink, text: "Permalink")
 
   a(:post_actions_link, class: "flow-post-actions")
-  text_area(:post_edit, css: "form.flow-edit-form .flow-edit-content")
+  text_area(:post_edit, css: 'form textarea[name="topic_content"]')
   button(:preview_button, class: "mw-ui-button flow-preview-submit")
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
   list_item(:small_view, title: "Small view")
   a(:talk_link, text: "Talk")
-  text_field(:title_edit, css: "form.flow-edit-title-form .flow-edit-content")
+  text_field(:title_edit, css: 'form.flow-edit-title-form input[name="topic_content"]')
   a(:topic_actions_link, class: "flow-topic-actions")
   div(:topic_post, class: "flow-post-content", index: topic_index)
-  div(:topic_title, class: "flow-topic-title", index: topic_index)
+  h2(:topic_title, class: "flow-topic-title", index: topic_index)
 
   div(:header_content, id: "flow-header-content", index: 0)
   a(:edit_header_link, title: "Edit header")

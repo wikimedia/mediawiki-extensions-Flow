@@ -7,7 +7,7 @@ end
 When(/^I click the Edit title action$/) do
   on(FlowPage) do |page|
     page.topic_actions_link_element.when_present.click
-    page.edit_title_icon_element.when_present.click
+    page.edit_title_element.when_present.click
   end
 end
 
