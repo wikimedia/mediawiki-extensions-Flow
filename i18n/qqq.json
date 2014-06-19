@@ -296,6 +296,7 @@
 	"flow-terms-of-use-close-topic": "Terms of use for closing a topic.\n\nRefers to {{msg-mw|Flow-close-topic-submit}}.\n{{Related|Flow-terms-of-use}}",
 	"flow-terms-of-use-reopen-topic": "Terms of use for restoring a topic.\n\nRefers to {{msg-mw|Flow-reopen-topic-submit}}.\n{{Related|Flow-terms-of-use}}",
 	"flow-anon-warning": "Warning message to be displayed when anonymous user starts writing a new topic or reply.\n* $1 is a URL to log in.\n* $2 is a URL to register an account.",
+	"flow-cancel-warning": "Warning message to be displayed when user tries to discard the text they have entered in a form field",
 	"flow-whatlinkshere-post": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Flow post.\n\nParameters:\n* $1 - a URL to the post\nSee also:\n* {{msg-mw|Flow-whatlinkshere-header}}",
 	"flow-whatlinkshere-header": "Displayed in parentheses on [[Special:WhatLinksHere]] for an entry that relates to a Flow Board header.\n\nParameters:\n* $1 - a URL to the header\nSee also:\n* {{msg-mw|Flow-whatlinkshere-post}}",
 	"flow": "{{doc-special|Flow}}\n{{Identical|Flow}}",
