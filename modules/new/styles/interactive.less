@@ -213,6 +213,10 @@ div.flow-menu-inverted {
 	.flow-post,
 	.flow-reply-form {
 		display: none;
+
+		&.flow-preview {
+			display: block;
+		}
 	}
 	.flow-topic-collapsed-invert {
 		.flow-post,
@@ -278,6 +282,15 @@ div.flow-menu-inverted {
 	cursor: wait !important;
 }
 
+// A preview version of a given block
+.client-js {
+	.flow-preview {
+		cursor: help;
+	}
+	.flow-preview-target-hidden {
+		display: none !important;
+	}
+}
 
 // Icon set
 .wikiglyph {

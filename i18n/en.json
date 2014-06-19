@@ -330,5 +330,6 @@
     "flow-special-type-workflow": "Workflow",
     "flow-special-uuid": "UUID",
     "flow-special-invalid-uuid": "Could not find content matching the type and the UUID.",
-    "flow-spam-confirmedit": "As an anonymous user, you can't submit external links. Please sign up for an account."
+    "flow-spam-confirmedit": "As an anonymous user, you can't submit external links. Please sign up for an account.",
+	"flow-preview-warning": "You are seeing a preview. Submit the form to finish posting this, or click edit to continue writing."
 }
