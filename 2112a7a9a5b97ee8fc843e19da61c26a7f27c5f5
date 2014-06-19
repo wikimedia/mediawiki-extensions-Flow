@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_400c8af0",
+        "filename": "handlebars/flow_block_header.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-19T21:52:58Z",
+      "side": 1,
+      "message": "isn\u0027t revision.content expected to always be rendered HTML here (regardless of whether the source is wikitext or Parsoid HTML)?\n\nDoes revision.contentFormat reflect the edit-mode format (i.e. wikitext or HTML5), or the format provided for consumption here?",
+      "revId": "2112a7a9a5b97ee8fc843e19da61c26a7f27c5f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
