@@ -59,6 +59,7 @@ $wgResourceModules += array(
 		),
 		'messages' => array(
 			'flow-cancel',
+			'flow-edit-header-placeholder',
 			'flow-edit-header-submit',
 			'flow-edit-title-submit',
 			'flow-load-more',
