@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_3d541101",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-19T23:41:46Z",
+      "side": 1,
+      "message": "I want reviewers to understand why the element selector changed -- my question for Shahyar is maybe we should revive identifying classes like .flow-edit-submit on form buttons rather than saying \"click the green one\".\n\nI will remove these comments in a follow-on patch at the end of the patch series.",
+      "parentUuid": "ee391fd1_17e5ae06",
+      "revId": "c85c6e82d494068552d7a80808b54057011eb2e1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_f7eb4ad9",
         "filename": "tests/browser/features/support/pages/flow_page.rb",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-19T17:20:38Z",
       "side": 1,
       "message": "If you want a specific one you can use index: to say the first one.",
+      "revId": "c85c6e82d494068552d7a80808b54057011eb2e1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_3daad1d1",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-19T23:41:46Z",
+      "side": 1,
+      "message": "When Web driver acts on an element it always target the first one. I think it would be useful to note \"There\u0027s only one of these on a Flow board... there are lots of these on a Flow board\", but maybe not.",
+      "parentUuid": "ee391fd1_f7eb4ad9",
       "revId": "c85c6e82d494068552d7a80808b54057011eb2e1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
