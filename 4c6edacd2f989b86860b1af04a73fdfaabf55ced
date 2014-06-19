@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_48d39a30",
+        "filename": "handlebars/flow_topic.handlebars",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-19T01:07:42Z",
+      "side": 1,
+      "message": "I assume this was intentional? If no summary there will be an empty diff.",
+      "revId": "4c6edacd2f989b86860b1af04a73fdfaabf55ced",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_08cd9288",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-19T01:07:42Z",
+      "side": 1,
+      "message": "Not sure what is going on here. Also looks risky and not very templatey way of doing things.",
+      "revId": "4c6edacd2f989b86860b1af04a73fdfaabf55ced",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_e8c7ee65",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-19T01:07:42Z",
+      "side": 1,
+      "message": "Not sure about this.",
+      "revId": "4c6edacd2f989b86860b1af04a73fdfaabf55ced",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

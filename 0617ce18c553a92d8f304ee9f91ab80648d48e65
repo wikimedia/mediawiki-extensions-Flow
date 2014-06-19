@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_28ce1687",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-19T01:07:42Z",
+      "side": 0,
+      "message": "Unrelated whitespace changes",
+      "revId": "0617ce18c553a92d8f304ee9f91ab80648d48e65",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
