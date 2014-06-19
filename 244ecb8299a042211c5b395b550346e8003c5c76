@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_ab52f767",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-19T23:31:25Z",
+      "side": 1,
+      "message": "Not a fan of this varience,  how bad would it be to always output the topic api data?",
+      "revId": "244ecb8299a042211c5b395b550346e8003c5c76",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
