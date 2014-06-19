@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_bcf12800",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-19T13:52:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee391fd1_0bc34c8d",
+      "revId": "7e59c151a2292f2b2ea4da71094fd41b0918695d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_abd8c07f",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-19T05:02:26Z",
       "side": 1,
       "message": "I think if you just add to the above line it will work:\n\n    $targetPost.append( $form ).conditionalScrollIntoView();",
+      "revId": "7e59c151a2292f2b2ea4da71094fd41b0918695d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_bc4da877",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-19T13:52:47Z",
+      "side": 1,
+      "message": "For some reason that wasn\u0027t working in FF for me. Seems to be working fine in Chrome, though.",
+      "parentUuid": "ee391fd1_abd8c07f",
       "revId": "7e59c151a2292f2b2ea4da71094fd41b0918695d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
