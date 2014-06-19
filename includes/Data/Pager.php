@@ -140,7 +140,6 @@ class Pager {
 		} else {
 			throw new InvalidInputException( "Unrecognised direction $direction", 'invalid-input' );
 		}
-
 		return new PagerPage( $results, $pagingLinks, $this );
 	}
 

@@ -285,9 +285,9 @@ class TopicListBlock extends AbstractBlock {
 		if ( $sortByOption === 'updated' ) {
 			$findOptions = array(
 				'sort' => 'workflow_last_update_timestamp',
-				'pager-dir' => 'rev',
 				'order' => 'desc',
-				'limit' => 500
+				// keep sortby keep so it can be used later for building links
+				'sortby' => 'updated',
 			) + $findOptions;
 		}
 
