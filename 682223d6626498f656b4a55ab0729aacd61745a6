@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_7d0299bf",
+        "filename": "handlebars/flow_errors.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-19T20:15:32Z",
+      "side": 1,
+      "message": "We need class\u003d\"errorbox\" somewhere to give us the pink styling.",
+      "revId": "682223d6626498f656b4a55ab0729aacd61745a6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
