@@ -129,6 +129,7 @@ class TemplateHelper {
 					'user' => 'Flow\TemplateHelper::user',
 					'addReturnTo' => 'Flow\TemplateHelper::addReturnTo',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
+					'previewButton' => 'Flow\TemplateHelper::previewButton',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -703,5 +704,15 @@ class TemplateHelper {
 		$url = $title->getFullUrl();
 
 		return self::addReturnTo( $url );
+	}
+
+	/**
+	 * @param string $templateName
+	 * @return string button
+	 */
+	static public function previewButton( $templateName ) {
+		return self::html(
+			self::processTemplate( 'flow_preview_button', array( 'templateName' => $templateName ) )
+		);
 	}
 }
