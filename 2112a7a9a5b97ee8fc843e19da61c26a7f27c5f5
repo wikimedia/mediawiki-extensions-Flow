@@ -34,6 +34,24 @@
       "revId": "2112a7a9a5b97ee8fc843e19da61c26a7f27c5f5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_c04d1ae2",
+        "filename": "handlebars/flow_block_header.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-19T22:17:49Z",
+      "side": 1,
+      "message": "Okay, the fail-safe idea makes sense.\n\nAnd like you said, it shouldn\u0027t be necessary to do an actual parse to convert to HTML here (that would require a parser call, which can not be done synchronously on the client-side anyway).",
+      "parentUuid": "ee391fd1_a0a4569f",
+      "revId": "2112a7a9a5b97ee8fc843e19da61c26a7f27c5f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
