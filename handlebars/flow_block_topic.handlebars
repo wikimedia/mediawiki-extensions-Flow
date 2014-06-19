@@ -1,11 +1,5 @@
 <div class="flow-board">
-	{{#if errors}}
-		<ul>
-		{{#each errors}}
-			<li>{{message}}</li>
-		{{/each}}
-		</ul>
-	{{/if}}
+	{{> flow_errors}}
 	<div class="flow-board-link">
 		{{#if board.is_user_namespace}}
 			{{l10nParse "flow-topic-permalink-warning-user-board" board.title_text board.link }}

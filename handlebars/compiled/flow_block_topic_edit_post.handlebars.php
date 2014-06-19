@@ -21,12 +21,13 @@
     );
     return '<div class="flow-board">
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
-		<ul>
+	<ul class="flow-errors">
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
 			<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
 		';}).'
-		</ul>
-	' : '').'
+	</ul>
+' : '').'
+
 
 	
 
