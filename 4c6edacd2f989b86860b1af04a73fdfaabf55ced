@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_1d3dcd29",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-19T20:46:54Z",
+      "side": 1,
+      "message": "Isn\u0027t this exactly the same as $node.html( html );\n?",
+      "parentUuid": "ee391fd1_08cd9288",
+      "revId": "4c6edacd2f989b86860b1af04a73fdfaabf55ced",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_e8c7ee65",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 4
