@@ -75,6 +75,7 @@ $wgResourceModules += array(
 			'flow-preview',
 			'flow-recent-topics',
 			'flow-reply-submit',
+			'flow-reply-topic-title-placeholder',
 			'flow-sorting-tooltip',
 			'flow-terms-of-use-edit',
 			'flow-terms-of-use-new-topic',
