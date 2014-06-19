@@ -200,7 +200,15 @@
 		return res;
 	};
 
-	// TODO: l10nParse function?
+	/**
+	 * HTML-safe version of l10n.
+	 * @returns {String|Handlebars.SafeString}
+	 */
+	FlowHandlebars.prototype.l10nParse = function ( ) {
+		return FlowHandlebars.prototype.html(
+			FlowHandlebars.prototype.l10n.apply( this, arguments )
+		);
+	}
 
 	/**
 	 * Parses the timestamp out of a base-36 UUID, and calls timestamp with it.
@@ -691,6 +699,7 @@
 
 	// Register helpers
 	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );
+	Handlebars.registerHelper( 'l10nParse', FlowHandlebars.prototype.l10nParse );
 	Handlebars.registerHelper( 'uuidTimestamp', FlowHandlebars.prototype.uuidTimestamp );
 	Handlebars.registerHelper( 'timestamp', FlowHandlebars.prototype.timestamp );
 	Handlebars.registerHelper( 'html', FlowHandlebars.prototype.html );
