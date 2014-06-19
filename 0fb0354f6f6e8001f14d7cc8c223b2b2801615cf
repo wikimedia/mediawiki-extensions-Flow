@@ -16,6 +16,24 @@
       "revId": "0fb0354f6f6e8001f14d7cc8c223b2b2801615cf",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_3cf1b8da",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-19T13:58:00Z",
+      "side": 1,
+      "message": "Let\u0027s not just solely \u0027[data-flow-interactive-handler]\u0027, which is a non-efficient selector.\n\nI could live with not adding this here and just adding a check in onClickInteractive:\n\n    if ( !$( this ).data( \u0027data-flow-interactive-handler\u0027 ) ) {\n        return;\n    }\n\nThis would cause onClickInteractive to be fired more than it\u0027s actually needed (it\u0027s bound for every link, input, button). If a link, input or button is clicked where the interaction isn\u0027t needed, it\u0027ll probably just move to another page anyway.\n\nIt\u0027s just a minor improvement, to prevent some calls to onClickInteractive where they aren\u0027t really needed.",
+      "parentUuid": "ee391fd1_febd6d17",
+      "revId": "0fb0354f6f6e8001f14d7cc8c223b2b2801615cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
