@@ -1,11 +1,12 @@
 {{#if actions.reply}}
 	<form class="flow-reply-form" data-flow-initial-state="collapsed" method="POST" action="{{actions.reply.url}}">
-		{{> flow_preview }}
-		<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
+	    <input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 		<input type="hidden" name="topic_replyTo" value="{{postId}}" />
+
 		{{#ifAnonymous}}
 			{{> flow_anon_warning }}
 		{{/ifAnonymous}}
+
 		<textarea id="flow-post-{{postId}}-form-content"
 				name="topic_content"
 				data-flow-expandable="true"
@@ -25,7 +26,7 @@
 				data-flow-api-handler="submitReply">
 					{{~l10n "Reply" author~}}
 			</button>
-			<button data-flow-api-handler="preview" name="preview" data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
+			{{previewButton "flow_post"}}
 			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</button>
 
 			<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-reply"}}</small>
