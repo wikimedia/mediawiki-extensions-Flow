@@ -1,12 +1,6 @@
 <div class="flow-board-header">
 	<div class="flow-board-header-edit-view">
-		{{#if errors}}
-			<ul>
-				{{#each errors}}
-					<li>{{message}}</li>
-				{{/each}}
-			</ul>
-		{{/if}}
+		{{> flow_errors}}
 
 		<form method="POST" action="{{revision.actions.edit.url}}" flow-api-action="edit-header">
 			{{> flow_preview }}
