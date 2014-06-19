@@ -34,6 +34,24 @@
       "revId": "61d32f4ace356653a7fead7b2632499c19311aed",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_0bd103d0",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-19T23:33:47Z",
+      "side": 1,
+      "message": "hmm, at a bare minimum \u0027Summarize\u0027 from the topic menu turns into \u0027Resummarize\u0027, but i suppose thats not a big deal.  will run with this for now.",
+      "parentUuid": "ee391fd1_ebc6bf4d",
+      "revId": "61d32f4ace356653a7fead7b2632499c19311aed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
