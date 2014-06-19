@@ -60,7 +60,7 @@
 	"flow-newtopic-start-placeholder": "Used as placeholder for the \"Topic\" textarea.",
 	"flow-summarize-topic-placeholder": "Used as placeholder for summarizing topic textarea.",
 	"flow-reply-topic-placeholder": "Used as placeholder for the \"reply to this topic\" textarea. Parameters:\n* $1 - username of the logged in user, can be used for GENDER\n* $2 - topic title",
-	"flow-reply-placeholder": "Used as placeholder for the Content textarea. Parameters:\n* $1 - username",
+	"flow-reply-topic-title-placeholder": "Used as placeholder for the content textarea when replying. Parameters:\n* $1 - Topic title",
 	"flow-reply-submit": "Used as label for the Submit button. Parameters:\n* $1 - username, can be used for GENDER\nAlso used in:\n* {{msg-mw|Flow-terms-of-use-reply}}\n* {{msg-mw|Wikimedia-flow-terms-of-use-reply}}\n{{Identical|Reply}}",
 	"flow-reply-link": "Text for the link that appears near the post and offers the user to reply to it. Clicking the link will display the reply editor. Parameters:\n* $1 - username, can be used for GENDER\n{{Identical|Reply}}",
 	"flow-thank-link": "Link text of the button that will (when clicked) thank the editor of the comment Parameters:\n* $1 - username, can be used for GENDER",

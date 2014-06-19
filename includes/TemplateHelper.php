@@ -214,14 +214,6 @@ class TemplateHelper {
 			);
 			break;
 
-		case 'Reply_to_author_name':
-			$author = $args[0];
-			$message = wfMessage(
-				'flow-topic-reply-to-author-name',
-				$author['name']
-			);
-			break;
-
 		case 'comment_count':
 			$topicPost = $args[0];
 			$message = wfMessage(
@@ -269,11 +261,7 @@ class TemplateHelper {
 		if ( $message ) {
 			return $message->text();
 		} else {
-			static $cache;
-			if ( !isset( $cache[$str] ) ) {
-				$cache[$str] = wfMessage( $str )->text();
-			}
-			return $cache[$str];
+			return wfMessage( $str )->params( $args )->text();
 		}
 	}
 
