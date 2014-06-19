@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_17e5ae06",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-19T17:20:38Z",
+      "side": 1,
+      "message": "These frontend-rewrite comments are not going to be useful in the future. I don\u0027t feel they add anything to the file so I\u0027d suggest removing them.",
+      "revId": "c85c6e82d494068552d7a80808b54057011eb2e1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_f7eb4ad9",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-19T17:20:38Z",
+      "side": 1,
+      "message": "If you want a specific one you can use index: to say the first one.",
+      "revId": "c85c6e82d494068552d7a80808b54057011eb2e1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
