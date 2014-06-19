@@ -40,10 +40,20 @@ class FlowPage
   button(:topic_hide_button,     css: "div.tipsy-inner input.flow-hide-topic-link")
   button(:topic_suppress_button, css: "div.tipsy-inner input.flow-suppress-topic-link")
 
+  # New topic creation
+  form(:new_topic_form, css: ".flow-newtopic-form")
   text_area(:new_topic_body, class: "flow-newtopic-content")
-  button(:new_topic_save, class: "flow-newtopic-submit")
+  button(:new_topic_cancel, css: ".flow-newtopic-form .flow-ui-destructive")
+  button(:new_topic_preview, css: ".flow-newtopic-form .flow-ui-progressive")
+  button(:new_topic_save, css: ".flow-newtopic-form .flow-ui-constructive")
   text_field(:new_topic_title, name: "topiclist_topic")
   a(:permalink, css: "div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-permalink > a.mw-ui-button.flow-action-permalink-link")
+
+  # Replying
+  form(:new_reply_form, css: ".flow-reply-form")
+  button(:new_reply_cancel, css: ".flow-reply-form .flow-ui-destructive")
+  button(:new_reply_preview, css: ".flow-reply-form .flow-ui-progressive")
+  button(:new_reply_save, css: ".flow-reply-form .flow-ui-constructive")
 
   # Find Actions link within a particular class.
   # With jQuery the selector is simply $( '.flow-post-container

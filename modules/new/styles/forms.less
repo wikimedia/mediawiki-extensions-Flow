@@ -1,6 +1,16 @@
 @import 'settings/colors.less';
 @import 'mixins/helpers.less';
 
+.client-nojs {
+	.flow-reply-form,
+	.flow-newtopic-form {
+		// Hide cancel button in no-JavaScript mode.
+		.flow-ui-destructive {
+			display: none;
+		}
+	}
+}
+
 // Avoid flash of unstyled content
 .client-js {
 	.flow-anon-warning {
