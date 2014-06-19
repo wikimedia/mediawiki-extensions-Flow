@@ -153,15 +153,56 @@ window.mw = window.mw || {}; // mw-less testing
 
 	/**
 	 * With a url (a://b.c/d?e=f&g#h) will return an object of key-value pairs ({e:'f', g:''}).
-	 * @param {String} url
+	 * @param {String|Element} url
 	 * @param {Object} [queryMap]
+	 * @param {Function|Object} [override]
 	 * @returns {Object}
 	 */
-	function flowApiGetQueryMap( url, queryMap ) {
+	function flowApiGetQueryMap( url, queryMap, override ) {
 		var query,
-			queries, i = 0, split;
+			queries, i = 0, split,
+			$node, $form, formData;
 
 		queryMap = queryMap || {};
+
+		// If URL is an Element...
+		if ( typeof url !== 'string' ) {
+			$node = $( url );
+
+			// Get the data-flow-api-action override from the node itself
+			queryMap.submodule = $node.data( 'flow-api-action' );
+
+			if ( $node.is( 'form, input, button, textarea, select, option' ) ) {
+				// We are processing a form
+				$form = $node.closest( 'form' );
+				formData = $form.serializeArray();
+
+				// Get the data-flow-api-action override from the form
+				queryMap.submodule = queryMap.submodule || $form.data( 'flow-api-action' );
+
+				// Build the queryMap manually from a serialized form
+				for ( i = 0; i < formData.length; i++ ) {
+					// skip wpEditToken, its handle independantly
+					if ( formData[ i ].name !== 'wpEditToken' ) {
+						queryMap[ formData[ i ].name ] = formData[ i ].value;
+					}
+				}
+
+				// Add the given button to the queryMap as well
+				if ( $node.is( 'button, input' ) && $node.prop( 'name' ) ) {
+					queryMap[ $node.prop( 'name' ) ] = $node.val();
+				}
+
+				// Now process the form action as the URL
+				url = $form.attr( 'action' );
+			} else if ( $node.is( 'a' ) ) {
+				// It's an anchor, process the href as the URL
+				url = url.href;
+			} else {
+				// Somebody set up us the bomb
+				url = '';
+			}
+		}
 
 		// Parse the URL query params
 		query = url.split( '#' )[ 0 ].split( '?' ).slice( 1 ).join( '?' );
@@ -188,7 +229,23 @@ window.mw = window.mw || {}; // mw-less testing
 		queryMap.action = queryMap.action || 'flow';
 
 		// Use the API map to transform this data if necessary, eg.
-		return flowApiTransformMap( queryMap );
+		queryMap = flowApiTransformMap( queryMap );
+
+		// Use override, if any
+		if ( override ) {
+			switch ( typeof override ) {
+				// If given an override object, extend our queryMap with it
+				case 'object':
+					$.extend( queryMap, override );
+					break;
+				// If given an override function, call it and make it return the new queryMap
+				case 'function':
+					queryMap = override( queryMap );
+					break;
+			}
+		}
+
+		return queryMap;
 	}
 
 	FlowAPI.prototype.getQueryMap = flowApiGetQueryMap;
@@ -204,46 +261,21 @@ window.mw = window.mw || {}; // mw-less testing
 	function flowApiRequestFromForm( button, override ) {
 		var i,
 			$deferred = $.Deferred(),
-			$form = $( button ).closest( 'form' ),
-			method = $form.attr( 'method' ) || 'GET',
-			formData = $form.serializeArray(),
-			url = $form.attr( 'action' ),
-			queryMap = { submodule: $form.data( 'flow-api-action' ) }; // usually null
+			$button = $( button ),
+			method = $button.closest( 'form' ).attr( 'method' ) || 'GET',
+			queryMap;
 
-
-		if ( $form.length === 0 ) {
-			return $deferred.rejectWith( { error: 'No form located' } );
-		}
-
-		for ( i = 0; i < formData.length; i++ ) {
-			// skip wpEditToken, its handle independantly
-			if ( formData[i].name !== 'wpEditToken' ) {
-				queryMap[formData[i].name] = formData[i].value;
-			}
-		}
-
-		if ( !( queryMap = this.getQueryMap( url, queryMap ) ) ) {
+		// Parse the form action to get the rest of the queryMap
+		if ( !( queryMap = this.getQueryMap( button, null, override ) ) ) {
 			return $deferred.rejectWith( { error: 'Invalid form action' } );
-		}
-
-		if ( override ) {
-			switch ( typeof override ) {
-				// If given an override object, extend our queryMap with it
-				case 'object':
-					$.extend( queryMap, override );
-					break;
-				// If given an override function, call it and make it return the new queryMap
-				case 'function':
-					queryMap = override( queryMap );
-					break;
-			}
 		}
 
 		if ( !( queryMap.action ) ) {
 			return $deferred.rejectWith( { error: 'Unknown action for form' } );
 		}
 
-		return this.apiCall( queryMap, method );
+		// Cancel any old form request, and also trigger a new one
+		return this.abortOldRequestFromNode( $button, queryMap, method );
 	}
 
 	FlowAPI.prototype.requestFromForm = flowApiRequestFromForm;
@@ -258,62 +290,97 @@ window.mw = window.mw || {}; // mw-less testing
 	function flowApiRequestFromAnchor( anchor, override ) {
 		var $anchor = $( anchor ),
 			$deferred = $.Deferred(),
-			queryMap = { submodule: $anchor.data( 'flow-api-action' ) }, // usually null
-			prevApiCall, newApiCall;
-
-		// This method only works on anchors with HREF
-		if ( !$anchor.is( 'a' ) ) {
-			mw.flow.debug( '[FlowAPI] requestFromAnchor error: not an anchor', arguments );
-			return $deferred.rejectWith( { error: 'Not an anchor' } );
-		}
+			queryMap;
 
 		// Build the query map from this anchor's HREF
-		if ( !( queryMap = this.getQueryMap( anchor.href, queryMap ) ) ) {
+		if ( !( queryMap = this.getQueryMap( anchor.href, null, override ) ) ) {
 			mw.flow.debug( '[FlowAPI] requestFromAnchor error: invalid href', arguments );
 			return $deferred.rejectWith( { error: 'Invalid href' } );
 		}
 
-		if ( override ) {
-			switch ( typeof override ) {
-				// If given an override object, extend our queryMap with it
-				case 'object':
-					$.extend( queryMap, override );
-					break;
-				// If given an override function, call it and make it return the new queryMap
-				case 'function':
-					queryMap = override( queryMap );
-					break;
+		// Abort any old requests, and have it issue a new one via GET
+		return this.abortOldRequestFromNode( $anchor, queryMap, 'GET' );
+	}
+
+	FlowAPI.prototype.requestFromAnchor = flowApiRequestFromAnchor;
+
+	/**
+	 * Automatically calls requestFromAnchor or requestFromForm depending on the type of node given.
+	 * @param {Element} node
+	 * @param {Object|Function} [override]
+	 * @return {$.Deferred|bool}
+	 */
+	function flowApiRequestFromNode( node, override ) {
+		var $node = $( node );
+
+		if ( $node.is( 'a' ) ) {
+			return this.requestFromAnchor.apply( this, arguments );
+		} else if ( $node.is( 'form, input, button, textarea, select, option' ) ) {
+			return this.requestFromForm.apply( this, arguments );
+		} else {
+			return false;
+		}
+	}
+
+	FlowAPI.prototype.requestFromNode = flowApiRequestFromNode;
+
+	/**
+	 * Handles aborting an old in-flight API request.
+	 * If startNewMethod is given, this method also STARTS a new API call and stores it for later abortion if needed.
+	 * @param {jQuery|Element} $node
+	 * @param {Object} [queryMap]
+	 * @param {String} [startNewMethod] If given: starts, stores, and returns a new API call
+	 * @param {Object|Function} [override]
+	 * @return {undefined|$.Deferred}
+	 */
+	function flowApiAbortOldRequestFromNode( $node, queryMap, startNewMethod, override ) {
+		$node = $( $node );
+
+		if ( !queryMap ) {
+			// Get the queryMap automatically if one wasn't given
+			if ( !( queryMap = this.getQueryMap( $node, null, override ) ) ) {
+				mw.flow.debug( '[FlowAPI] abortOldRequestFromNode failed to find a queryMap', arguments );
+				return;
 			}
 		}
 
 		// If this anchor already has a request in flight, abort it
-		prevApiCall = $anchor.data( 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule );
+		var str = 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule,
+			prevApiCall = $node.data( str ),
+			newApiCall;
+
+		// If a previous API call was found, let's abort it
 		if ( prevApiCall ) {
+			$node.removeData( str );
+
 			if ( prevApiCall.abort ) {
 				prevApiCall.abort();
 			}
-			mw.flow.debug( '[FlowAPI] apiCall abort request in flight: ' + 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule, arguments );
+
+			mw.flow.debug( '[FlowAPI] apiCall abort request in flight: ' + str, arguments );
 		}
 
-		// Make the request
-		newApiCall = this.apiCall( queryMap, 'GET' );
+		// If a method was given, we want to also issue a new API request now
+		if ( startNewMethod ) {
+			// Make a new request with this info
+			newApiCall = this.apiCall( queryMap, startNewMethod );
 
-		// Store this request on the node if it needs to be aborted
-		$anchor.data(
-			'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule,
-			newApiCall
-		);
+			// Store this request on the node if it needs to be aborted
+			$node.data(
+				'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule,
+				newApiCall
+			);
 
-		// Remove the request on success
-		newApiCall.always( function () {
-			$anchor.removeData( 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule );
-		} );
+			// Remove the request on success
+			newApiCall.always( function () {
+				$node.removeData( 'flow-api-query-temp-' + queryMap.action + '-' + queryMap.submodule );
+			} );
 
-		// Return jqXHR
-		return newApiCall;
+			return newApiCall;
+		}
 	}
 
-	FlowAPI.prototype.requestFromAnchor = flowApiRequestFromAnchor;
+	FlowAPI.prototype.abortOldRequestFromNode = flowApiAbortOldRequestFromNode;
 
 	// Export
 	mw.flow.FlowAPI = FlowAPI;
