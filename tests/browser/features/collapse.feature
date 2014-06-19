@@ -3,7 +3,7 @@ Feature: Collapse views
 
   Scenario: Small view
     Given I am on Flow page
-    When I click Small view
+    When I switch to Small view
       And the page renders in 1 seconds
     Then I should see in Flow topics Title of Flow Topic
       And I should not see in Flow topics Body of Flow Topic
@@ -12,7 +12,7 @@ Feature: Collapse views
 
   Scenario: Collapse view
     Given I am on Flow page
-    When I click Collapse view
+    When I switch to Collapse view
       And the page renders in 1 seconds
     Then I should see in Flow topics Title of Flow Topic
       And I should not see in Flow topics Body of Flow Topic
@@ -21,11 +21,9 @@ Feature: Collapse views
 
   Scenario: Full view
     Given I am on Flow page
-    When I click Full view
+    When I switch to Full view
       And the page renders in 1 seconds
     Then I should see in Flow topics Title of Flow Topic
       And I should see in Flow topics Body of Flow Topic
       And I should see in Flow topics started this topic
       And I should see in Flow topics comment
-
-
