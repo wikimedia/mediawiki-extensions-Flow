@@ -111,8 +111,21 @@
 	};
 
 	// @todo remove and replace with mw.message || $.noop
+	/**
+	 * Checks for a helper function based on a key.
+	 *
+	 * If not found, uses the mw.message API.
+	 *
+	 * In either case, optional variable arguments are passed (either as Message parameters or to
+	 * the custom function)
+	 *
+	 * @param {string} str Key for message
+	 * @param Object... [parameters] Parameters to pass as Message parameters or custom function
+	 *   parameters
+	 */
 	function flowMessages( str ) {
-		var strings = ( {
+		var parameters = Array.prototype.slice.call( arguments, 1 ),
+			strings = ( {
 				"Reply": "Reply", // TODO: pass in and parse $author['gender']
 				"Topics_n": function ( count, options ) {
 					return "Topics (" + count + ")";
@@ -127,9 +140,6 @@
 				},
 				"topic_count_sidebar": function ( context, options ) {
 					return "Showing " + context.topics.length + " of " + context.topic_count + " topics attached to this page";
-				},
-				"Reply_to_author_name": function ( context, options ) {
-					return "Reply to " + context.name;
 				},
 				"comment_count": function ( context, options ) {
 						return context.reply_count + " comment" + ( !context.reply_count || context.reply_count > 1 ? 's' : '' );
@@ -168,12 +178,12 @@
 			result = strings[ str ];
 
 		if ( !result ) {
-			result = mw.message( str );
+			return mw.message( str ).params( parameters );
 		}
 
 		if ( Object.prototype.toString.call( result ) === '[object Function]' ) {
 			// Callable; return the result of callback(arguments)
-			result = result.apply( strings, Array.prototype.slice.call( arguments, 1 ) );
+			result = result.apply( strings, parameters );
 		}
 
 		// Return the result string
@@ -697,6 +707,15 @@
 		return FlowHandlebars.prototype.addReturnTo( url );
 	};
 
+	/**
+	 * Outputs debugging information
+	 *
+	 * For development use only
+	 */
+	FlowHandlebars.prototype.debug = function () {
+		mw.flow.debug( '[Handlebars] debug', arguments );
+	};
+
 	// Register helpers
 	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );
 	Handlebars.registerHelper( 'l10nParse', FlowHandlebars.prototype.l10nParse );
@@ -717,4 +736,5 @@
 	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
 	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
+	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 }( jQuery ) );
