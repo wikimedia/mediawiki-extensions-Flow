@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_0b57c306",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-19T23:04:13Z",
+      "side": 1,
+      "message": "in order for the menu to also be updated, i think we have to render and replace the flow-topic-title element here rather than just updating the inner summary element.\n\nI realize we don\u0027t have the appropriate data in this response,  we may need to issue an api request for the topic data so it can be rendered.",
+      "revId": "61d32f4ace356653a7fead7b2632499c19311aed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
