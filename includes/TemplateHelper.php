@@ -130,12 +130,14 @@ class TemplateHelper {
 					'addReturnTo' => 'Flow\TemplateHelper::addReturnTo',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
+					'previewButton' => 'Flow\TemplateHelper::previewButton',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
 					'pipelist' => 'Flow\TemplateHelper::pipelist',
 					'ifEquals' => 'Flow\TemplateHelper::ifEquals',
 					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
+					'tooltip' => 'Flow\TemplateHelper::tooltip',
 				),
 			)
 		);
@@ -720,5 +722,34 @@ class TemplateHelper {
 	 */
 	static public function escapeContent( $contentType, $content ) {
 		return $contentType === 'html' ? self::html( $content ) : $content;
+	}
+
+	/**
+	 * @param string $templateName
+	 * @return string button
+	 */
+	static public function previewButton( $templateName ) {
+		return self::html(
+			self::processTemplate( 'flow_preview_button', array( 'templateName' => $templateName ) )
+		);
+	}
+
+	/**
+	 * @param array $options
+	 * @return string tooltip
+	 */
+	static public function tooltip( $options ) {
+		$fn = $options['fn'];
+		$params = $options['hash'];
+
+		return (
+			self::processTemplate( 'flow_tooltip', array(
+				'positionClass' => $params['positionClass'] ? 'flow-ui-tooltip-' . $params['positionClass'] : null,
+				'contextClass' => $params['contextClass'] ? 'flow-ui-' . $params['contextClass'] : null,
+				'extraClass' => $params['extraClass'] ?: '',
+				'blockClass' => $params['isBlock'] ? 'flow-ui-tooltip-block' : null,
+				'content' => $fn(),
+			) )
+		);
 	}
 }
