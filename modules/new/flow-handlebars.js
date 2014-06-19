@@ -686,7 +686,7 @@
 			encodeURIComponent( title.replace( ' ', '_' ) )
 		);
 
-		return this.addReturnTo( url );
+		return FlowHandlebars.prototype.addReturnTo( url );
 	};
 
 	// Register helpers
