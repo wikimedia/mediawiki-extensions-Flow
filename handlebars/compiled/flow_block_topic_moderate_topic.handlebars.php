@@ -22,10 +22,10 @@
     );
     return '<div class="flow-board">
 	'.LCRun3::ifv($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, function($cx, $in) {return '
-	<ul>
-	'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-		<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
-	';}).'
+	<ul class="flow-errors">
+		'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
+			<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
+		';}).'
 	</ul>
 ';}).'
 

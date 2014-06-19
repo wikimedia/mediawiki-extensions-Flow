@@ -25,12 +25,13 @@
     );
     return '<div class="flow-board">
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
-		<ul>
+	<ul class="flow-errors">
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
 			<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
 		';}).'
-		</ul>
-	' : '').'
+	</ul>
+' : '').'
+
 	<div class="flow-board-link">
 		'.((LCRun3::ifvar($cx, ((is_array($in['board']) && isset($in['board']['is_user_namespace'])) ? $in['board']['is_user_namespace'] : null))) ? '
 			'.LCRun3::ch($cx, 'l10nParse', Array('flow-topic-permalink-warning-user-board',((is_array($in['board']) && isset($in['board']['title_text'])) ? $in['board']['title_text'] : null),((is_array($in['board']) && isset($in['board']['link'])) ? $in['board']['link'] : null)), 'encq').'

@@ -4,11 +4,5 @@
 	the error of unsuccessful form submission
 -->
 <div class="flow-close-topic-error">
-	{{#if errors}}
-		<ul>
-			{{#each errors}}
-				<li>{{message}}</li>
-			{{/each}}
-		</ul>
-	{{/if}}
+	{{> flow_errors}}
 </div>

@@ -1,11 +1,5 @@
 <div class="flow-board-header">
-	{{#if errors}}
-		<ul>
-			{{#each errors}}
-				<li>{{message}}</li>
-			{{/each}}
-		</ul>
-	{{/if}}
+	{{> flow_errors}}
 
 	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST" action="{{revision.actions.summarize.url}}">
 		{{> flow_preview }}
