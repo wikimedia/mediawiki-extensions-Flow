@@ -16,6 +16,24 @@
       "revId": "2112a7a9a5b97ee8fc843e19da61c26a7f27c5f5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_a0a4569f",
+        "filename": "handlebars/flow_block_header.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-19T22:05:11Z",
+      "side": 1,
+      "message": "yes, revision.content is expected to always be html here.  \n\nthe content and contentFormat keys are set in RevisionFormatter.php:167. \n\nThe contentFormat key reflects the format provided for consumption.  It is typically `html` for posts and `raw` for topic titles.  Actions that edit content (the $requiresWikitext property inside Block instances) will force return of wikitext rather than html and will mark it as such in the contentFormat key.\n\nIt would likely be safe to continue using {{html revision.content}} here, but since we have a variable that explicitly states what the content is the safest way seems to be to look at that variable and escape to match.\n\nSince we are expecting html we could potentially notice wikitext was provided and run it through something to get html, but that should be unnecessary.  Receiving anything other than html for this template would be a bug in the code providing the api result.",
+      "parentUuid": "ee391fd1_400c8af0",
+      "revId": "2112a7a9a5b97ee8fc843e19da61c26a7f27c5f5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
