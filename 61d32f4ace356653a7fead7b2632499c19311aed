@@ -16,6 +16,24 @@
       "revId": "61d32f4ace356653a7fead7b2632499c19311aed",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_ebc6bf4d",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-19T23:09:56Z",
+      "side": 1,
+      "message": "Summarize shouldn\u0027t affect anything in the title \u0026 menu, it just updates the summary",
+      "parentUuid": "ee391fd1_0b57c306",
+      "revId": "61d32f4ace356653a7fead7b2632499c19311aed",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
