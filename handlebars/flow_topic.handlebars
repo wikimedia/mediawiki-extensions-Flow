@@ -8,5 +8,7 @@
 		{{/eachPost}}
 	{{/each}}
 
-	{{> flow_reply_form}}
+	{{#unless isPreview}}
+		{{> flow_reply_form}}
+	{{/unless}}
 </div>

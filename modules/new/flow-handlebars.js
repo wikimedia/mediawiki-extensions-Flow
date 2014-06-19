@@ -597,8 +597,8 @@
 	 * Usage:
 	 *   {{escapeContent revision.contentType revision.content}}
 	 *
-	 * @param {string}
-	 * @param {string}
+	 * @param {string} contentType
+	 * @param {string} content
 	 * @return {string}
 	 */
 	FlowHandlebars.prototype.escapeContent = function ( contentType, content ) {
@@ -607,6 +607,41 @@
 		} else {
 			return content;
 		}
+	};
+
+	/**
+	 * Renders a preview button with data-flow-preview-template attr.
+	 * @example {{previewButton "flow_post"}}
+	 * @param {String} templateName
+	 * @param {Object} options
+	 * @returns {String}
+	 */
+	FlowHandlebars.prototype.previewButton = function ( templateName, options ) {
+		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
+			"flow_preview_button",
+			{ templateName: templateName }
+		) );
+	};
+
+	/**
+	 * Renders a tooltip node.
+	 * @example {{#tooltip positionClass="up" contextClass="progressive" extraClass="flow-my-tooltip"}}what{{/tooltip}}
+	 * @param {Object} options
+	 * @returns {String}
+	 */
+	FlowHandlebars.prototype.tooltip = function ( options ) {
+		var params = options.hash;
+
+		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
+			"flow_tooltip",
+			{
+				positionClass: params.positionClass ? 'flow-ui-tooltip-' + params.positionClass : null,
+				contextClass: params.contextClass ? 'flow-ui-' + params.contextClass : null,
+				extraClass: params.extraClass,
+				blockClass: params.isBlock ? 'flow-ui-tooltip-block' : null,
+				content: options.fn( this )
+			}
+		) );
 	};
 
 	/**
@@ -638,5 +673,7 @@
 	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
 	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
+	Handlebars.registerHelper( 'previewButton', FlowHandlebars.prototype.previewButton );
+	Handlebars.registerHelper( 'tooltip', FlowHandlebars.prototype.tooltip );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 }( jQuery ) );
