@@ -49,9 +49,9 @@
 		</div>
 
 		{{#each replies}}
-			{{#eachPost ../../../rootBlock this}}
+			{{#eachPost @root.rootBlock this}}
 				<!-- eachPost nested replies -->
-				{{post ../../../../rootBlock this}}
+				{{post @root.rootBlock this}}
 			{{/eachPost}}
 		{{/each}}
 	</div>
