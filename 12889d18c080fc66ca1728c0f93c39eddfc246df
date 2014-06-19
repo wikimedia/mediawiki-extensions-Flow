@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_17d80f21",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-19T15:59:45Z",
+      "side": 1,
+      "message": "From experience using css: is less error prone :)",
+      "revId": "12889d18c080fc66ca1728c0f93c39eddfc246df",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
