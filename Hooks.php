@@ -430,8 +430,9 @@ class FlowHooks {
 	}
 
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
-		global $wgFlowEditorList, $wgFlowDefaultLimit, $wgFlowMaxLimit;
+		global $wgFlowEditorList, $wgFlowDefaultLimit, $wgFlowMaxLimit, $wgUser;
 
+		$vars['wgFlowUserPrintableName'] = $wgUser->getName();
 		$vars['wgFlowEditorList'] = $wgFlowEditorList;
 		$vars['wgFlowMaxTopicLength'] = Flow\Model\PostRevision::MAX_TOPIC_LENGTH;
 		$vars['wgFlowPageSize'] = array(

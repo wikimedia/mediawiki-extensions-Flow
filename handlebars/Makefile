@@ -6,11 +6,12 @@
 COMPILE=php ../maintenance/compileLightncandy.php
 
 TOPIC_SUBTEMPLATES= flow_topic.handlebars \
+		flow_topic_titlebar_content.handlebars \
 		flow_reply_form.handlebars \
 		flow_topiclist_loop.handlebars \
 		flow_load_more.handlebars \
 		flow_errors.handlebars \
-		flow_preview.handlebars
+		flow_preview_button.handlebars
 
 all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_header_edit.handlebars.php \
@@ -34,7 +35,7 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_topicsummary_single_view.handlebars.php \
 		compiled/flow_block_topicsummary_diff_view.handlebars.php \
 		compiled/flow_board.handlebars.php \
-		compiled/flow_preview.handlebars.php \
+		compiled/flow_preview_button.handlebars.php \
 		compiled/flow_post.handlebars.php \
 		compiled/timestamp.handlebars.php
 
@@ -44,8 +45,7 @@ compiled/flow_block_header.handlebars.php: \
 
 compiled/flow_block_header_edit.handlebars.php: \
 		flow_block_header_edit.handlebars \
-		flow_errors.handlebars \
-		flow_preview.handlebars
+		flow_errors.handlebars
 	$(COMPILE) flow_block_header_edit
 
 compiled/flow_block_header_single_view.handlebars.php: \
@@ -64,7 +64,7 @@ compiled/flow_block_topicsummary_close.handlebars.php: \
 compiled/flow_block_topicsummary_edit.handlebars.php: \
 		flow_block_topicsummary_edit.handlebars \
 		flow_errors.handlebars \
-		flow_preview.handlebars
+		flow_preview_button.handlebars
 	$(COMPILE) flow_block_topicsummary_edit
 
 compiled/flow_block_topicsummary_single_view.handlebars.php: \
@@ -85,6 +85,7 @@ compiled/flow_block_topiclist.handlebars.php: \
 		flow_topic_navigation.handlebars \
 		flow_newtopic_form.handlebars \
 		flow_anon_warning.handlebars \
+		flow_tooltip.handlebars \
 		$(TOPIC_SUBTEMPLATES)
 	$(COMPILE) flow_block_topiclist
 
@@ -116,7 +117,7 @@ compiled/flow_block_topic_reply.handlebars.php: \
 		flow_errors.handlebars \
 		flow_reply_form.handlebars \
 		flow_anon_warning.handlebars \
-		flow_preview.handlebars
+		flow_tooltip.handlebars
 	$(COMPILE) flow_block_topic_reply
 
 compiled/flow_block_topic_edit_post.handlebars.php: \
@@ -124,7 +125,7 @@ compiled/flow_block_topic_edit_post.handlebars.php: \
 		flow_errors.handlebars \
 		flow_edit_post.handlebars \
 		flow_anon_warning.handlebars \
-		flow_preview.handlebars
+		flow_tooltip.handlebars
 	$(COMPILE) flow_block_topic_edit_post
 
 compiled/flow_block_topic_edit_title.handlebars.php: \
@@ -133,7 +134,7 @@ compiled/flow_block_topic_edit_title.handlebars.php: \
 		flow_edit_topic_title.handlebars \
 		flow_edit_post.handlebars \
 		flow_anon_warning.handlebars \
-		flow_preview.handlebars
+		flow_tooltip.handlebars
 	$(COMPILE) flow_block_topic_edit_title
 
 compiled/flow_block_topic_moderate_post.handlebars.php: \
@@ -159,9 +160,9 @@ compiled/flow_board.handlebars.php: \
 		flow_block_loop.handlebars
 	$(COMPILE) flow_board
 
-compiled/flow_preview.handlebars.php: \
-		flow_preview.handlebars
-	$(COMPILE) flow_preview
+compiled/flow_preview_button.handlebars.php: \
+		flow_preview_button.handlebars
+	$(COMPILE) flow_preview_button
 
 compiled/flow_post.handlebars.php: \
 		flow_post.handlebars
