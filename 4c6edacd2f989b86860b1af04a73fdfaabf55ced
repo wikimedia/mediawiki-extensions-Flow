@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_2009862f",
+        "filename": "handlebars/flow_topic.handlebars",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-19T21:16:54Z",
+      "side": 1,
+      "message": "This is acting like a summary container, alternatively we could detect and append \u0027.flow-topic-summary\u0027?",
+      "parentUuid": "ee391fd1_48d39a30",
+      "revId": "4c6edacd2f989b86860b1af04a73fdfaabf55ced",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_08cd9288",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 4
