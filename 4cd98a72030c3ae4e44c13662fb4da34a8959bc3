@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_ebe6c83e",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-19T04:45:48Z",
+      "side": 1,
+      "message": "in the moderation patch i\u0027ve adjusted the post from\n\n    \u003cdiv class\u003d\"flow-post\"\u003e\n        ...\n        \u003cdiv class\u003d\"flow-post\"\u003e...\u003c/div\u003e\n    \u003c/div\u003e\n\nto\n\n    \u003cdiv class\u003d\"flow-post\"\u003e\n        \u003cdiv class\u003d\"flow-post-main\"\u003e\n            ...\n        \u003c/div\u003e\n        \u003cdiv class\u003d\"flow-replies\"\u003e\n            \u003cdiv class\u003d\"flow-post\"\u003e...\u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/div\u003e\n\nbasically this allows for rendering a single post via the flow_post template and swapping out only the flow-post-main element.  You can poke at https://gerrit.wikimedia.org/r/#/c/139016/14/modules/new/components/flow-board.js for my attempt at a similar thing",
+      "revId": "4cd98a72030c3ae4e44c13662fb4da34a8959bc3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
