@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_0bc34c8d",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-19T05:02:26Z",
+      "side": 1,
+      "message": "Fatal error: Call to undefined method Flow\\Model\\Header::getDepth()\n\ncould move this down below inside the if ( $row-\u003erevision instanceof PostRevision ) conditional",
+      "revId": "7e59c151a2292f2b2ea4da71094fd41b0918695d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_abd8c07f",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-19T05:02:26Z",
+      "side": 1,
+      "message": "I think if you just add to the above line it will work:\n\n    $targetPost.append( $form ).conditionalScrollIntoView();",
+      "revId": "7e59c151a2292f2b2ea4da71094fd41b0918695d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
