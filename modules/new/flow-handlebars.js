@@ -708,6 +708,20 @@
 	};
 
 	/**
+	 * Renders a preview button with data-flow-preview-template attr.
+	 * @example {{previewButton "flow_post"}}
+	 * @param {String} templateName
+	 * @param {Object} options
+	 * @returns {String}
+	 */
+	FlowHandlebars.prototype.previewButton = function ( templateName, options ) {
+		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
+			"flow_preview_button",
+			{ templateName: templateName }
+		) );
+	};
+
+	/**
 	 * Outputs debugging information
 	 *
 	 * For development use only
@@ -736,5 +750,6 @@
 	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
 	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
+	Handlebars.registerHelper( 'previewButton', FlowHandlebars.prototype.previewButton );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 }( jQuery ) );
