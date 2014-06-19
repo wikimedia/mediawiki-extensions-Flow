@@ -1,4 +1,8 @@
-<div class="flow-anon-warning flow-ui-tooltip flow-ui-progressive flow-ui-tooltip-down flow-form-collapsible plainlinks">
-	{{l10nParse "flow-anon-warning" (linkWithReturnTo "Special:UserLogin") (linkWithReturnTo "Special:UserLogin/signup") }}
-	<span class="flow-ui-tooltip-triangle"></span>
-</div>
+{{#tooltip
+	positionClass="down"
+	contextClass="progressive"
+	extraClass="flow-anon-warning flow-form-collapsible"
+	isBlock=true
+}}
+	{{~l10nParse "flow-anon-warning" (linkWithReturnTo "Special:UserLogin") (linkWithReturnTo "Special:UserLogin/signup")~}}
+{{/tooltip}}
