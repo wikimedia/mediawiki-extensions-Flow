@@ -179,30 +179,44 @@
 		};
 
 		/**
-		 * Before handling preview, hides the old preview
-		 * and overrides the API request
-		 * @param  {Event} event The event being handled
+		 * Adapts the post form for submission to parsoid's API to get a preview, and changes the button to "Edit".
+		 * However, if already previewing, the handles the button's transition from "edit" back to preview.
+		 * @param event
 		 * @return {Function} Callback to modify the API request
 		 */
-		FlowBoardComponent.UI.events.apiPreHandlers.preview = function( event ) {
+		FlowBoardComponent.UI.events.apiPreHandlers.preview = function ( event ) {
 			var $this = $( this ),
-				$form = $this.closest( 'form' ),
-				content;
+				callback;
 
-			content = $form
-				.find( 'input, textarea' )
-				.filter( '[data-role=content]')
-				.val();
+			callback = function ( queryMap ) {
+				var content;
 
-			return function( queryMap ) {
-				return {
-					'action': 'flow-parsoid-utils',
-					'from': 'wikitext',
-					'to': 'html',
-					'title': mw.config.get( 'wgPageName' ),
-					'content' : content
+				// XXX: Find the content parameter
+				$.each( queryMap, function( key, value ) {
+					if ( key.substr( -7 ) === 'content' ) {
+						content = value;
+						return false;
+					}
+				} );
+
+				queryMap = {
+					'action':  'flow-parsoid-utils',
+					'from':    'wikitext',
+					'to':      'html',
+					'content': content,
+					'title':   mw.config.get( 'wgPageName' )
 				};
+
+				return queryMap;
 			};
+
+			// Reset the preview state if already in it
+			if ( flowBoardComponentResetPreview( $this ) ) {
+				// Special way of cancelling a request, other than returning false outright
+				callback._abort = true;
+			}
+
+			return callback;
 		};
 
 		/**
@@ -314,7 +328,7 @@
 				).children();
 
 				// Set the cancel callback on this form so that it returns the old content back if needed
-				$rendered.find( 'form' ).data( 'flow-cancel-callback', function () {
+				flowBoardComponentAddCancelCallback( $rendered.find( 'form' ), function () {
 					flowBoard.reinitializeBoard( $oldBoardNodes );
 				} );
 
@@ -395,10 +409,11 @@
 			var $button = $( this ),
 				$form = $button.closest( 'form' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
-				templateEngine = flowBoard.TemplateEngine,
-				templateParams,
 				$titleField = $form.find( 'input' ).filter( '[data-role=title]' ),
-				$previewContainer;
+				previewTemplate = $button.data( 'flow-preview-template' ),
+				$previewContainer,
+				templateParams,
+				$target = info.$target;
 
 			if ( info.status === 'fail' || ! data['flow-parsoid-utils'] ) {
 				// @todo
@@ -407,21 +422,53 @@
 			}
 
 			templateParams = {
-				'content' : data['flow-parsoid-utils'].content
+				author: {
+					name: mw.user.getName() || flowBoard.TemplateEngine.l10n('flow-anonymous')
+				},
+				content: data['flow-parsoid-utils'].content,
+				isPreview: true
 			};
+			// @todo don't do this. it's a catch-all for the templates which expect a revision key, and those that don't.
+			templateParams.revision = templateParams;
 
 			if ( $titleField.length ) {
 				templateParams.title = $titleField.val();
 			}
 
-			$previewContainer = $(
-				templateEngine.processTemplateGetFragment( 'flow_preview', templateParams )
-			).children();
+			// Render this template with the preview data
+			$previewContainer = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+				previewTemplate,
+				templateParams
+			) ).children();
 
-			$form.find( '.flow-content-preview' )
-				.replaceWith( $previewContainer );
+			// @todo Perhaps this should be done in each template, and not here?
+			$previewContainer.addClass( 'flow-preview' );
 
-			$previewContainer.show();
+			// Render the preview warning
+			$previewContainer = $previewContainer.add(
+				$( flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_preview_warning'
+				) ).children()
+			);
+
+			// Hide the original textarea
+			$target
+				.addClass( 'flow-preview-target-hidden' )
+			// Insert the new preview
+				.before( $previewContainer );
+
+			// On cancel, make the preview get removed and reset the form back to its original state
+			flowBoardComponentAddCancelCallback( $form, function () {
+				flowBoardComponentResetPreview( $button, $target );
+			} );
+
+			// Assign the reset-preview information for later use
+			$button
+				.data( 'flow-return-to-edit', {
+					text: $button.text(),
+					$nodes: $previewContainer
+				} )
+				.text( flowBoard.TemplateEngine.l10n('flow-post-action-edit-post') );
 		};
 
 		/**
@@ -667,36 +714,14 @@
 
 				// Hide the form
 				FlowBoardComponent.UI.Forms.hideForm( $form );
+
+				// Trigger the cancel callback
+				if ( $form.data( 'flow-cancel-callback' ) ) {
+					$.each($form.data( 'flow-cancel-callback' ), function ( idx, fn ) {
+						fn();
+					});
+				}
 			}
-
-			if ( $form.data( 'flow-cancel-callback' ) ) {
-				$form.data( 'flow-cancel-callback' )();
-			}
-		};
-
-		/**
-		 * @todo Implement with XHR. This is temporary for now.
-		 * @param {Event} event
-		 */
-		FlowBoardComponent.UI.events.interactiveHandlers.editContent = function ( event ) {
-			if ( event.target !== this && $( event.target ).is( 'a, :input' )) {
-				// Only run this for the main element, not clickable children
-				return;
-			}
-
-			var $this = $( this ),
-				html = $this.html();
-
-			$this.hide();
-			$this.before( '<form><textarea class="mw-ui-input"></textarea><div class="flow-form-actions"><button data-role="submit" class="mw-ui-button mw-ui-constructive">Save Changes</button><button data-flow-interactive-handler="cancelForm" data-role="cancel" class="mw-ui-button mw-ui-destructive mw-ui-sleeper">Discard</button></div></form>' );
-			$this
-				.prev( 'form' )
-				.data( 'flow-cancel-callback', function () { $this.show(); $this.prev( 'form' ).remove(); } )
-				.find( 'textarea' )
-				.val( html )
-				.focus();
-
-			event.preventDefault();
 		};
 
 		/**
@@ -740,7 +765,8 @@
 		};
 
 		/**
-		 *
+		 * Secondary handler so that the board filter menu link opens up the board filter dropdown menu,
+		 * which is in fact hidden slightly away from it.
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.boardFilterMenuToggle = function ( event ) {
@@ -753,6 +779,10 @@
 			event.preventDefault();
 		};
 
+		/**
+		 * Shows the edit topic title form.
+		 * @param {Event} event
+		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.editTopicTitle = function( event ) {
 			var $link = $( this ),
 				$topic = $link.closest( '.flow-topic' ),
@@ -782,8 +812,8 @@
 				}
 			) ).children();
 
+			flowBoardComponentAddCancelCallback( $form, cancelCallback );
 			$form
-				.data( 'flow-cancel-callback', cancelCallback )
 				.data( 'flow-initial-state', 'hidden' )
 				.insertAfter( $title );
 
@@ -803,7 +833,11 @@
 				dataParams = $this.data(),
 				handlerName = dataParams.flowApiHandler,
 				$target,
-				preHandlerReturn;
+				preHandlerReturn,
+				info = {
+					$target: null,
+					status: null
+				};
 
 			event.preventDefault();
 
@@ -816,6 +850,7 @@
 				// Assign a target node if none
 				$target = $this;
 			}
+			info.$target = $target;
 
 			// Make sure an API call is not already in progress for this target
 			if ( $target.closest( '.flow-api-inprogress' ).length ) {
@@ -835,20 +870,25 @@
 				// or FUNCTION to modify API params
 				preHandlerReturn = FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ].apply( _this, arguments );
 
-				if ( preHandlerReturn === false ) {
+				if ( preHandlerReturn === false || preHandlerReturn._abort === true ) {
 					// Callback returned false
 					flowBoard.debug( 'apiPreHandler returned false', handlerName, arguments );
+
+					// Abort any old request in flight; this is normally done automatically by requestFromNode
+					flowBoard.API.abortOldRequestFromNode( this, null, null, preHandlerReturn );
+
+					// @todo support for multiple indicators on same target
+					$target.removeClass( 'flow-api-inprogress' );
+					$this.removeClass( 'flow-api-inprogress' );
+
 					return;
 				}
 			}
 
 			// Make the request
-			if ( $this.is( 'a' ) ) {
-				$deferred = flowBoard.API.requestFromAnchor( this, preHandlerReturn );
-			} else if ( $this.is( 'input, button' ) ) {
-				$deferred = flowBoard.API.requestFromForm( this, preHandlerReturn );
-			} else {
-				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor form' );
+			$deferred = flowBoard.API.requestFromNode( this, preHandlerReturn );
+			if ( !$deferred ) {
+				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor or form element' );
 				$deferred = $.Deferred();
 				$deferred.rejectWith( { error: 'Not an anchor or form' } );
 			}
@@ -865,12 +905,14 @@
 				$deferred
 					.done( function () {
 						var args = Array.prototype.slice.call(arguments, 0);
-						args.unshift( { $target: $target, status: 'done' } );
+						info.status = 'done';
+						args.unshift( info );
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} )
 					.fail( function () {
 						var args = Array.prototype.slice.call(arguments, 0 );
-						args.unshift( { $target: $target, status: 'fail' } );
+						info.status = 'fail';
+						args.unshift( info );
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} );
 			}
@@ -913,7 +955,7 @@
 			// We have to make sure the data attribute is added to the form; the
 			// addBack is failsafe for when form is actually the root node in $form
 			// already (there may or may not be parent containers)
-			$form.find( 'form' ).addBack( 'form' ).data( 'flow-cancel-callback', function () {
+			flowBoardComponentAddCancelCallback( $form.find( 'form' ).addBack( 'form' ), function () {
 				$post.removeData( 'flow-replying' );
 				$form.remove();
 			} );
@@ -1072,6 +1114,7 @@
 				// Hide its actions
 				// @todo Use TemplateEngine to find and hide actions?
 				$form.find( '.flow-form-collapsible' ).hide();
+				$form.data( 'flow-form-collapse-state', 'collapsed' );
 			} else if ( initialState === 'hidden' ) {
 				// Hide the form itself
 				$form.hide();
@@ -1087,7 +1130,10 @@
 
 			if ( initialState === 'collapsed' ) {
 				// Show its actions
-				$form.find( '.flow-form-collapsible' ).show();
+				if ( $form.data( 'flow-form-collapse-state' ) === 'collapsed' ) {
+					$form.removeData( 'flow-form-collapse-state' );
+					$form.find( '.flow-form-collapsible' ).show();
+				}
 			} else if ( initialState === 'hidden' ) {
 				// Show the form itself
 				$form.show();
@@ -1363,5 +1409,51 @@
 				.removeClass( 'flow-board-collapsed-full flow-board-collapsed-topics flow-board-collapsed-compact' )
 				.addClass( 'flow-board-collapsed-' + newState );
 		};
+
+
+		/**
+		 * Adds a flow-cancel-callback to a given form, to be triggered on click of the "cancel" button.
+		 * @param {jQuery} $form
+		 * @param {Function} callback
+		 */
+		function flowBoardComponentAddCancelCallback( $form, callback ) {
+			var fns = $form.data( 'flow-cancel-callback' ) || [];
+			fns.push( callback );
+			$form.data( 'flow-cancel-callback', fns );
+		}
+
+		/**
+		 * Removes the preview and unhides the form fields.
+		 * @param {jQuery} $cancelButton
+		 * @param {jQuery} [$target]
+		 * @return {bool} true if success
+		 */
+		function flowBoardComponentResetPreview( $cancelButton, $target ) {
+			var $button = $cancelButton.closest( 'form' ).find( '[name=preview]' ),
+				oldData = $button.data( 'flow-return-to-edit' );
+
+			if ( oldData ) {
+				// We're in preview mode. Revert it back.
+				$button.text( oldData.text );
+
+				// Find the target
+				if ( !$target || !$target.length ) {
+					$target = jQueryFindWithParent( $button, $button.data( 'flowApiTarget' ) );
+					$target = !$target || !$target.length ? $button : $target;
+				}
+
+				// Show the target again
+				$target.removeClass( 'flow-preview-target-hidden' );
+
+				// Remove the preview
+				oldData.$nodes.remove();
+
+				// Remove this reset info
+				$button.removeData( 'flow-return-to-edit' );
+
+				return true;
+			}
+			return false;
+		}
 	}() );
 }( jQuery, mediaWiki ) );
