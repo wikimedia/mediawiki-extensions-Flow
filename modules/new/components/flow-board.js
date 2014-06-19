@@ -211,15 +211,15 @@
 
 		/**
 		 * On complete board reprocessing through topiclist-view (eg. change topic sort order), re-render any given blocks.
-		 * @param {String} status (done|fail)
+		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.board = function ( status, data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.board = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$rendered;
 
-			if ( status === 'done' ) {
+			if ( info.status === 'done' ) {
 				$rendered = $(
 					flowBoard.TemplateEngine.processTemplateGetFragment(
 						'flow_block_loop',
@@ -236,16 +236,16 @@
 
 		/**
 		 *
-		 * @param {String} status (done|fail)
+		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.loadMore = function ( status, data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.loadMore = function ( info, data, jqxhr ) {
 			var $this = $( this ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				$tmp;
 
-			if ( status === 'done' ) {
+			if ( info.status === 'done' ) {
 				// Success
 				// Render topiclist template
 				$this.before(
@@ -277,17 +277,17 @@
 
 		/**
 		 * Renders the editable board header with the given API response.
-		 * @param {String} status
+		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.activateEditHeader = function ( status, data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.activateEditHeader = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$header = flowBoard.$header,
 				$oldBoardNodes,
 				$rendered;
 
-			if ( status === 'done' ) {
+			if ( info.status === 'done' ) {
 				// Change "header" to "header_edit" so that it loads up flow_block_header_edit
 				data.flow[ 'header-view' ].result.header.type = 'header_edit';
 
@@ -313,15 +313,15 @@
 
 		/**
 		 * After submit of the board header edit form, process the new header data.
-		 * @param {String} status
+		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.submitHeader = function ( status, data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.submitHeader = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$rendered;
 
-			if ( status === 'done' ) {
+			if ( info.status === 'done' ) {
 				// @todo this doesn't handle edit conflicts (result.status = 'error', result.header.prev_revision = {...})
 				$rendered = $(
 					flowBoard.TemplateEngine.processTemplateGetFragment(
@@ -338,7 +338,13 @@
 			}
 		};
 
-		FlowBoardComponent.UI.events.apiHandlers.submitTopicTitle = function( status, data, jqxhr ) {
+		/**
+		 *
+		 * @param {Object} info (status:done|fail, $target: jQuery)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.submitTopicTitle = function( info, data, jqxhr ) {
 			var result,
 				newTitle,
 				$this = $( this ),
@@ -365,9 +371,12 @@
 			}
 		};
 		/**
-		 * @param  {Event} event
+		 * Triggers a preview of the given content.
+		 * @param {Object} info (status:done|fail, $target: jQuery)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.preview = function( status, data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.preview = function( info, data, jqxhr ) {
 			var $button = $( this ),
 				$form = $button.closest( 'form' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
@@ -376,7 +385,7 @@
 				$titleField = $form.find( 'input' ).filter( '[data-role=title]' ),
 				$previewContainer;
 
-			if ( data === 'fail' || ! data['flow-parsoid-utils'] ) {
+			if ( info.status === 'fail' || ! data['flow-parsoid-utils'] ) {
 				// @todo
 				alert( "fail" );
 				return;
@@ -402,16 +411,16 @@
 
 		/**
 		 * After submitting a new topic, process the response.
-		 * @param {String} status
+		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.newTopic = function ( status, data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.newTopic = function ( info, data, jqxhr ) {
 			var result, html,
 				$container = $( this ).closest( 'form' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
-			if ( status !== 'done' ) {
+			if ( info.status !== 'done' ) {
 				FlowBoardComponent.UI.showError( $container, 'something failed' );
 				return;
 			}
@@ -454,6 +463,35 @@
 				default:
 					FlowBoardComponent.UI.showError( flowBoard.$container, 'apiHandlers.newTopic - expected either error or ok, received: ' + data.flow["new-topic"].status );
 					break;
+			}
+		};
+
+		/**
+		 * @param {Object} info (status:done|fail, $target: jQuery)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				postId = data.flow.reply.result.topic.roots[0],
+				$form = $( this ).closest( 'form' ),
+				post;
+
+			if ( info.status === 'done' ) {
+				post = flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_post',
+					{ revision: data.flow.reply.result.topic.revisions[postId] }
+				);
+
+				$form.before( post );
+
+				// Clear contents to not trigger the "are you sure you want to
+				// discard your text" warning
+				$form.find( 'textarea, :text' ).val( '' );
+				// Trigger a click on cancel to have it destroy the form the way it should
+				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).click();
+			} else {
+				// @todo: address fail
 			}
 		};
 
@@ -761,12 +799,12 @@
 				$deferred
 					.done( function () {
 						var args = Array.prototype.slice.call(arguments, 0);
-						args.unshift( 'done' );
+						args.unshift( { $target: $target, status: 'done' } );
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} )
 					.fail( function () {
 						var args = Array.prototype.slice.call(arguments, 0 );
-						args.unshift( 'fail' );
+						args.unshift( { $target: $target, status: 'fail' } );
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} );
 			}
@@ -817,35 +855,6 @@
 			// Add reply form below the post being replied to (WRT max depth)
 			$targetPost.append( $form );
 			$form.conditionalScrollIntoView();
-		};
-
-		/**
-		 * @param {String} status (done|fail)
-		 * @param {Object} data
-		 * @param {jqXHR} jqxhr
-		 */
-		FlowBoardComponent.UI.events.apiHandlers.submitReply = function ( status, data, jqxhr ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				postId = data.flow.reply.result.topic.roots[0],
-				$form = $( this ).closest( 'form' ),
-				post;
-
-			if ( status === 'done' ) {
-				post = flowBoard.TemplateEngine.processTemplateGetFragment(
-					'flow_post',
-					{ revision: data.flow.reply.result.topic.revisions[postId] }
-				);
-
-				$form.before( post );
-
-				// Clear contents to not trigger the "are you sure you want to
-				// discard your text" warning
-				$form.find( 'textarea, :text' ).val( '' );
-				// Trigger a click on cancel to have it destroy the form the way it should
-				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).click();
-			} else {
-				// @todo: address fail
-			}
 		};
 
 		////////////////////////////////////////////////////////////
