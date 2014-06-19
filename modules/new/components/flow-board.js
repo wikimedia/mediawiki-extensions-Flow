@@ -592,7 +592,7 @@
 			} );
 
 			// If all the text fields are empty, OR if the user confirms to close this with text already entered, do it.
-			if ( !notEmptyCount || confirm( flowBoard.TemplateEngine.l10n( 'You have entered text in this form. Are you sure you want to discard it?' ) ) ) {
+			if ( !notEmptyCount || confirm( flowBoard.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
 				// Reset the form content
 				$form[0].reset();
 

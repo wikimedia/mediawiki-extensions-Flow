@@ -88,6 +88,7 @@ $wgResourceModules += array(
 			'flow-topic-action-summarize-topic',
 			'flow-topic-action-view',
 			'talkpagelinktext',
+			'flow-cancel-warning',
 		),
 	),
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
