@@ -87,13 +87,12 @@ end
 Then(/^the top post should have a heading which contains "(.+)"$/) do |text|
   # Ensure the page has re-rendered
   step 'the page renders in 2 seconds'
-  step 'the preview and cancel buttons have disappeared'
-  on(FlowPage).flow_first_topic_heading.should match(text + @random_string + @automated_test_marker)
+  on(FlowPage).flow_first_topic_heading.should match(text)
 end
 
 Then(/^the top post should have content which contains "(.+)"$/) do |text|
   step 'the preview and cancel buttons have disappeared'
-  on(FlowPage).flow_first_topic_body.should match(text + @random_string + @automated_test_marker)
+  on(FlowPage).flow_first_topic_body.should match(text)
 end
 
 Then(/^I should see a Delete button$/) do

@@ -7,7 +7,7 @@ end
 When(/^I click the Edit title action$/) do
   on(FlowPage) do |page|
     page.topic_actions_link_element.when_present.click
-    page.edit_title_icon_element.when_present.click
+    page.edit_title_button_element.when_present.click
   end
 end
 
@@ -34,15 +34,5 @@ Then(/^the saved post should contain (.+)$/) do |edited_post|
       page.flow_topics.include? (edited_post + @random_string)
     end
     page.topic_post.should match(edited_post + @random_string)
-  end
-end
-
-Then(/^the saved topic title should contain (.+)$/) do |edited_title|
-  on(FlowPage) do |page|
-    page.small_spinner_element.when_not_present
-      page.wait_until(20) do
-      page.flow_topics.include? (edited_title + @random_string)
-    end
-    page.topic_title.should match(edited_title + @random_string)
   end
 end
