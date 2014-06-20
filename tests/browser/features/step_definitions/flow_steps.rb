@@ -133,6 +133,10 @@ Then(/^I should see a Hide topic button$/) do
   on(FlowPage).topic_hide_button_element.when_present.should be_visible
 end
 
+When(/^I click the Hide topic button$/) do
+  on(FlowPage).topic_hide_button_element.when_present.click
+end
+
 Then(/^I should see a Suppress button$/) do
   on(FlowPage).suppress_button_element.should be_visible
 end

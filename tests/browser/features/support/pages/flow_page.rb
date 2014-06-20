@@ -46,6 +46,25 @@ class FlowPage
   span(:first_non_moderated_topic_starter, xpath: '(//*[contains(@class, "flow-topic ") and not(contains(@class, "flow-topic-moderated"))]//*[contains(@class, "flow-topic-titlebar")]//*[contains(@class, "flow-author")])[1]')
   div(:first_non_moderated_topic_post_content, xpath: '(//*[contains(@class, "flow-topic ") and not(contains(@class, "flow-topic-moderated"))]//*[contains(@class, "flow-post-content")])[1]')
 
+  # Works around CSS descendant selector problem (https://github.com/cheezy/page-object/issues/222)
+  div(:first_moderated_topic, css: '.flow-topic.flow-topic-moderated', index: 0)
+
+  div(:first_moderated_topic_titlebar) do |page|
+    page.first_moderated_topic_element.div_element(class: 'flow-topic-titlebar')
+  end
+
+  h2(:first_moderated_topic_title) do |page|
+    page.first_moderated_topic_titlebar_element.h2_element(class: 'flow-topic-title')
+  end
+
+  span(:first_moderated_topic_starter) do |page|
+    page.first_moderated_topic_titlebar_element.span_element(class: 'flow-author')
+  end
+
+  div(:first_moderated_topic_post_content) do |page|
+    page.first_moderated_topic_element.div_element(class: 'flow-post', index: 0).div_element(class: 'flow-post-main').div_element(class: 'flow-post-content')
+  end
+
   # Topic actions menu (all belonging to the first post)
   a(:topic_actions_link, css: ".flow-topic .flow-topic-titlebar .flow-menu-js-drop a", index: 0)
   ul(:topic_actions_menu, css: ".flow-topic .flow-topic-titlebar .flow-menu ul", index: 0)
@@ -106,10 +125,6 @@ class FlowPage
   a(:actions_link_permalink_3rd_comment) do |page|
     page.third_post_actions_menu_element.link_element(text: "Permalink")
   end
-
-  # Hiding a topic with no-JS; may also be applicable for other moderation
-  textarea(:topic_reason, name: "topic_reason")
-  button(:topic_submit, css: '.flow-form-actions button[data-role="submit"]')
 
   # New topic creation
   form(:new_topic_form, css: ".flow-newtopic-form")
