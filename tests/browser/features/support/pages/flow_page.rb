@@ -26,15 +26,20 @@ class FlowPage
 
   # Posts
   ## First topic
+  div(:flow_first_topic, css: ".flow-topic", index: 0)
   h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
   div(:flow_first_topic_body, css: ".flow-post-content", index: 0)
   div(:flow_first_topic_moderation_msg, css: '.flow-moderated-topic-title', index: 0)
+  div(:flow_first_topic_summary) do |page|
+    page.flow_first_topic_element.div_element(css: ".flow-topic-summary")
+  end
 
   ### Hover over username behaviour
   a(:talk_link, css: "..flow-author:hover mw-usertoollinks a", index: 0)
   a(:block_user, css: ".flow-author:hover .mw-usertoollinks a", index: 1)
 
   ### First Topic actions menu
+  div(:topic_titlebar, css: ".flow-topic .flow-topic-titlebar")
   a(:topic_actions_link, css: ".flow-topic .flow-topic-titlebar .flow-menu-js-drop a", index: 0)
   ul(:topic_actions_menu, css: ".flow-topic .flow-topic-titlebar .flow-menu ul", index: 0)
   a(:topic_hide_button) do |page|
@@ -49,6 +54,18 @@ class FlowPage
   a(:edit_title_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Edit title")
   end
+  a(:topic_close_button) do |page|
+    page.topic_actions_menu_element.link_element(title: "Close topic")
+  end
+  a(:topic_reopen_button) do |page|
+    page.topic_actions_menu_element.link_element(title: "Reopen topic")
+  end
+
+  ## Close topic workflow
+  form(:topic_close_form, css: ".flow-edit-form")
+  textarea(:topic_close_form_reason, css: ".flow-edit-form textarea")
+  button(:topic_close_form_close_button, css: ".flow-edit-form .flow-ui-constructive")
+  button(:topic_close_form_cancel_button, css: ".flow-edit-form .flow-ui-destructive")
 
   ### Editing title of first topic
   text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
