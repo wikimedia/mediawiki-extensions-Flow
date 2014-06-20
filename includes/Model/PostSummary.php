@@ -12,6 +12,7 @@ class PostSummary extends AbstractSummary {
 	 * @param User $user
 	 * @param string $content
 	 * @param string $changeType
+	 * @return PostSummary
 	 */
 	static public function create( PostRevision $post, User $user, $content, $changeType ) {
 		$obj = new self;

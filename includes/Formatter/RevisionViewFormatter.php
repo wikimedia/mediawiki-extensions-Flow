@@ -9,11 +9,10 @@ use Flow\UrlGenerator;
 use IContextSource;
 
 class RevisionViewFormatter {
-
 	/**
-	 * @param UrlGenerator
-	 * @param RevisionFormatter
-	 * @param Templating
+	 * @param UrlGenerator $urlGenerator
+	 * @param RevisionFormatter $serializer
+	 * @param Templating $templating
 	 */
 	public function __construct( UrlGenerator $urlGenerator, RevisionFormatter $serializer, Templating $templating ) {
 		$this->urlGenerator = $urlGenerator;
@@ -48,7 +47,7 @@ class RevisionViewFormatter {
 
 	/**
 	 * Generate the links for single and diff vie actions
-	 * @param FormatterRow
+	 * @param RevisionViewRow $row
 	 * @return array
 	 */
 	public function buildLinks( RevisionViewRow $row ) {

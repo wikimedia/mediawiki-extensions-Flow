@@ -67,7 +67,6 @@ class CheckUserQuery extends AbstractQuery {
 	/**
 	 * @param CheckUser $checkUser
 	 * @param \StdClass $row
-	 * @param bool $isWatchlist
 	 * @return CheckUserRow|null
 	 * @throws FlowException
 	 */

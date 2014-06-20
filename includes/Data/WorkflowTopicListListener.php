@@ -17,7 +17,8 @@ class WorkflowTopicListListener implements LifecycleHandler {
 	protected $topicListLastUpdatedIndex;
 
 	/**
-	 * @param ObjectManager
+	 * @param ObjectManager $topicListStorage
+	 * @param TopKIndex $topicListLastUpdatedIndex
 	 */
 	public function __construct( ObjectManager $topicListStorage, TopKIndex $topicListLastUpdatedIndex ) {
 		$this->topicListStorage = $topicListStorage;

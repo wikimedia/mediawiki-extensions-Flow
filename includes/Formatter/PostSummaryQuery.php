@@ -6,7 +6,7 @@ use Flow\Model\UUID;
 
 class PostSummaryQuery extends AbstractQuery {
 	/**
-	 * @param UUID[] $postIds
+	 * @param UUID $postId
 	 * @return FormatterRow
 	 */
 	public function getResult( UUID $postId ) {

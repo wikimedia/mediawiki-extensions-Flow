@@ -55,6 +55,8 @@ abstract class RevisionViewQuery extends AbstractQuery {
 	 * @param UUID
 	 * @param UUID
 	 * @return RevisionViewRow
+	 * @throws InvalidInputException
+	 * @throws PermissionException
 	 */
 	public function getDiffViewResult( $curId, $prevId = null ) {
 		$cur = $this->createRevision( $curId );

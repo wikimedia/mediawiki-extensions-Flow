@@ -7,8 +7,9 @@ use Flow\Model\UUID;
 
 class SinglePostQuery extends AbstractQuery {
 	/**
-	 * @param UUID[] $postIds
+	 * @param UUID $postId
 	 * @return FormatterRow[]
+	 * @throws FlowException
 	 */
 	public function getResult( UUID $postId ) {
 		$section = new \ProfileSection( __METHOD__ );

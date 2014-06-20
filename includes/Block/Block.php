@@ -147,6 +147,7 @@ abstract class AbstractBlock implements Block {
 	 *
 	 * @param string|null
 	 * @return string|array
+	 * @throws InvalidInputException
 	 */
 	public function getTemplate( $action = null ) {
 		if ( $action === null ) {

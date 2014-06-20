@@ -245,8 +245,8 @@ class RevisionCollectionPermissionsTest extends PostRevisionTestCase {
 
 	/**
 	 * @param string $action
-	 * @param AbstractRevision[optional] $parent
-	 * @param array[optional] $overrides
+	 * @param AbstractRevision|null $parent
+	 * @param array $overrides
 	 * @return PostRevision
 	 */
 	public function generateRevision( $action, AbstractRevision $parent = null, array $overrides = array() ) {
