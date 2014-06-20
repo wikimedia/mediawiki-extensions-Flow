@@ -3,12 +3,8 @@
 namespace Flow;
 
 use MediaWikiTestCase;
-use Flow\Container;
 use Flow\Exception\WikitextException;
 use Title;
-use User;
-use WikiPage;
-use WikitextContent;
 
 /**
  * @group Database

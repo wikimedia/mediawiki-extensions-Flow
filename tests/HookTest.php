@@ -3,7 +3,6 @@
 namespace Flow\Tests;
 
 use FlowHooks;
-use Flow\Model\UUID;
 use RecentChange;
 
 /**

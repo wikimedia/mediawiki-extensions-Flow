@@ -2,8 +2,6 @@
 
 namespace Flow\Formatter;
 
-use Flow\Container;
-use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Templating;

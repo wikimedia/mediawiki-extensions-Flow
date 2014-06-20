@@ -2,7 +2,6 @@
 
 namespace Flow\Tests;
 
-use Flow\Container;
 use Flow\Model\UUID;
 use ReflectionClass;
 

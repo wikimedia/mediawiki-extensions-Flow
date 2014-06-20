@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Container;
+use Flow\Exception\FlowException;
 use Flow\Model\Workflow;
 use RCFeedFormatter;
 use RecentChange;

@@ -4,7 +4,6 @@ namespace Flow\Tests;
 
 use Closure;
 use ReflectionClass;
-use Flow\Container;
 use Flow\Data\UserNameBatch;
 use Flow\Data\UserNameListener;
 

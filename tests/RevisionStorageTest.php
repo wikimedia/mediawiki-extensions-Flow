@@ -3,7 +3,6 @@
 namespace Flow\Tests;
 
 use Flow\Data\PostRevisionStorage;
-use Flow\Data\ObjectManager;
 
 /**
  * @group Flow
