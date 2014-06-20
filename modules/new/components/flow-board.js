@@ -753,39 +753,54 @@
 			event.preventDefault();
 		};
 
+		/**
+		 * Shows the form for editing a topic title, it's not already showing
+		 *
+		 * @param {Event} event
+		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.editTopicTitle = function( event ) {
 			var $link = $( this ),
 				$topic = $link.closest( '.flow-topic' ),
-				$title = $topic
-					.children( '.flow-topic-titlebar' )
-					.find( '.flow-topic-title' ),
-				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $link ),
-				$form,
+				$topicTitleBar = $topic
+					.children( '.flow-topic-titlebar' ),
+				$title, flowBoard, $form, cancelCallback, linkParams;
+
+			$form = $topicTitleBar.find( 'form' );
+
+			if ( $form.length === 0 ) {
+				$title = $topicTitleBar.find( '.flow-topic-title' );
+
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $link );
+
 				cancelCallback = function() {
 					$form.remove();
 					$title.show();
-				},
+				};
+
 				linkParams = flowBoard.API.getQueryMap( $link.attr( 'href' ) );
 
-			$title.hide();
+				$title.hide();
 
-			$form = $( flowBoard.TemplateEngine.processTemplateGetFragment(
-				'flow_edit_topic_title',
-				{
-					'actions' : {
-						'edit' : {
-							'url' : $link.attr( 'href' )
-						}
-					},
-					'content' : $title.data( 'title' ),
-					'revisionId' : linkParams.etrevId
-				}
-			) ).children();
+				$form = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_edit_topic_title',
+					{
+						'actions' : {
+							'edit' : {
+								'url' : $link.attr( 'href' )
+							}
+						},
+						'content' : $title.data( 'title' ),
+						'revisionId' : linkParams.etrevId
+					}
+				) ).children();
 
-			$form
-				.data( 'flow-cancel-callback', cancelCallback )
-				.data( 'flow-initial-state', 'hidden' )
-				.insertAfter( $title );
+				$form
+					.data( 'flow-cancel-callback', cancelCallback )
+					.data( 'flow-initial-state', 'hidden' )
+					.insertAfter( $title );
+			}
+
+			$form.find( '.mw-ui-input' ).focus();
 
 			event.preventDefault();
 		};
