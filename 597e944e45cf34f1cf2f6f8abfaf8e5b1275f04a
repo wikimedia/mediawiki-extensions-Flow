@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_0b434368",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-20T00:28:45Z",
+      "side": 1,
+      "message": "It\u0027s not really choosing.  Maybe \"Describe this Flow board\"",
+      "revId": "597e944e45cf34f1cf2f6f8abfaf8e5b1275f04a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_4b394bee",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-20T00:28:45Z",
+      "side": 1,
+      "message": "\"for the header of a Flow board.\"",
+      "revId": "597e944e45cf34f1cf2f6f8abfaf8e5b1275f04a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
