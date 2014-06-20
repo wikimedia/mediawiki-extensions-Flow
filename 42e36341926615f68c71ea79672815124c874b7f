@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_16f5a77f",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-20T20:29:32Z",
+      "side": 1,
+      "message": "the author mustd change,otherwise we wouldn\u0027t know who created a specific revision.\n\nFor PostRevision we track a tuple of origUserId/origUserIp/origUserWiki so that we can display who originally created it.  I think the goal here is just to expose that original user for posts so it can be put in the template",
+      "revId": "42e36341926615f68c71ea79672815124c874b7f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
