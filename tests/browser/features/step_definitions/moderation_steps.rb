@@ -5,8 +5,20 @@ Given(/^I create a Flow topic with title "(.*?)"$/) do |arg1|
   step 'the top post should have a heading which contains "' + arg1 + '"'
 end
 
+# TODO (mattflaschen, 2014-06-25): Have the below actions (e.g. 'I
+# click Delete topic') wait for the dialog box to be non-visible
+# afterwards (to confirm API call finished), rather than use
+# timeouts?
 When(/^I see a dialog box$/) do
   on(FlowPage).dialog_element.when_present.should be_visible
+end
+
+When(/^I give reason for hiding as being "(.*?)"$/) do |arg1|
+   on(FlowPage).dialog_input_element.when_present.send_keys( arg1 )
+end
+
+When(/^I click Hide topic$/) do
+  on(FlowPage).dialog_submit_element.when_present.click
 end
 
 When(/^I give reason for deletion as being "(.*?)"$/) do |arg1|
