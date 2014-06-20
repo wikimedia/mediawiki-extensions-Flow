@@ -153,7 +153,6 @@ class TemplateHelper {
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
-					'pipelist' => 'Flow\TemplateHelper::pipelist',
 					'ifEquals' => 'Flow\TemplateHelper::ifEquals',
 					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 				),
@@ -384,24 +383,6 @@ class TemplateHelper {
 			$template,
 			$block
 		) );
-	}
-
-	static public function pipelist( $context, $arguments, $options ) {
-		global $wgLang;
-
-		if ( count( $arguments ) !== 1 ) {
-			throw new FlowException( 'Expected exactly 1 argument' );
-		}
-		$fn = $options['fn'];
-		$ret = array();
-		foreach ( $arguments[0] as $item ) {
-			$cx['scopes'][] = $item;
-			$ret[] = call_user_func( $fn, $options['cx'], $item );
-			array_pop( $cx['scopes'] );
-		}
-
-		// Block helpers must always return safe content
-		return wfMessage( 'parentheses' )->rawParams( $wgLang->pipelist( $ret ) )->escaped();
 	}
 
 	/**
