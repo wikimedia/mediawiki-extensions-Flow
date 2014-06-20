@@ -1,7 +1,7 @@
 {{#with revision}}
 	<div class="flow-post{{#if isModerated}} flow-post-moderated{{/if}}" data-flow-id="{{postId}}"{{#if isMaxThreadingDepth}} data-flow-post-max-depth="1"{{/if}}>
 		<div class="flow-post-main">
-			{{#with author}}
+			{{#with creator}}
 				{{#unless isPreview}}
 					<span class="flow-author">
 						<a href="{{links.contribs.url}}"
