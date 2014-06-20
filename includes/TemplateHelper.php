@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use Closure;
 use HTML;
 use LightnCandy;
 use RequestContext;
@@ -86,7 +87,7 @@ class TemplateHelper {
 	/**
 	 * Returns a given template function if found, otherwise throws an exception.
 	 * @param string $templateName
-	 * @return \Closure
+	 * @return Closure
 	 * @throws Exception\FlowException
 	 * @throws \Exception
 	 */
@@ -352,7 +353,8 @@ class TemplateHelper {
 	 * @param mixed $left
 	 * @param mixed $right
 	 * @param array $options
-	 * @return null
+	 * @return string|null
+	 * @throws FlowException Fails when callbacks are not Closure instances
 	 */
 	static public function ifEquals( $left, $right, $options ) {
 		/** @var callable $inverse */
@@ -361,8 +363,14 @@ class TemplateHelper {
 		$fn = $options['fn'];
 
 		if ( $left == $right ) {
+			if ( !$fn instanceof Closure ) {
+				throw new FlowException( 'Invalid callback, expected Closure' );
+			}
 			return $fn();
 		} elseif ( $inverse ) {
+			if ( !$inverse instanceof Closure ) {
+				throw new FlowException( 'Invalid inverse callback, expected Closure' );
+			}
 			return $inverse();
 		}
 
@@ -371,7 +379,6 @@ class TemplateHelper {
 
 	/**
 	 * @param array $block
-	 *
 	 * @return array
 	 */
 	static public function block( $block ) {
@@ -393,6 +400,7 @@ class TemplateHelper {
 	 * @throws Exception\FlowException
 	 * @internal param array $arguments Arguments passed into the helper
 	 * @return null|string HTML
+	 * @throws FlowException When callbacks are not Closure instances
 	 */
 	static public function eachPost( $context, $postIds, $options ) {
 		/** @var callable $inverse */
@@ -404,11 +412,20 @@ class TemplateHelper {
 			$postIds = array( $postIds );
 		} elseif ( count( $postIds ) === 0 ) {
 			// Failure callback, if any
-			return $inverse ? $inverse( $options['cx'], array() ) : null;
+			if ( !$inverse ) {
+				return null;
+			}
+			if ( !$inverse instanceof Closure ) {
+				throw new FlowException( 'Invalid inverse callback, expected Closure' );
+			}
+			return $inverse( $options['cx'], array() );
 		} else {
 			return null;
 		}
 
+		if ( !$fn instanceof Closure ) {
+			throw new FlowException( 'Invalid callback, expected Closure' );
+		}
 		$html = array();
 		foreach ( $postIds as $id ) {
 			$revId = $context['posts'][$id][0];
@@ -646,14 +663,20 @@ class TemplateHelper {
 	/**
 	 * Runs a callback when user is anonymous
 	 * @param array $options which must contain fn and inverse key mapping to functions.
-	 *
 	 * @return mixed result of callback
+	 * @throws FlowException Fails when callbacks are not Closure instances
 	 */
 	static public function ifAnonymous( $options ) {
 		if ( RequestContext::getMain()->getUser()->isAnon() ) {
 			$fn = $options['fn'];
+			if ( !$fn instanceof Closure ) {
+				throw new FlowException( 'Expected callback to be Closuire instance' );
+			}
 		} elseif ( isset( $options['inverse'] ) ) {
 			$fn = $options['inverse'];
+			if ( !$fn instanceof Closure ) {
+				throw new FlowException( 'Expected inverse callback to be Closuire instance' );
+			}
 		} else {
 			return '';
 		}
