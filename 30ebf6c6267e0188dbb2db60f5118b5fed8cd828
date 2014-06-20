@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_34e783e1",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-20T23:50:07Z",
+      "side": 1,
+      "message": "This doesn\u0027t make any sense. Your target in the markup attribute should just specify .flow-topic-edit-summary as the target.",
+      "revId": "30ebf6c6267e0188dbb2db60f5118b5fed8cd828",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_f4efbbac",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 16
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-20T23:50:07Z",
+      "side": 1,
+      "message": "You can do\n    $newTarget \u003d $( processTemplateGetFragment... ).children();\n    $target.replaceWith( $newTarget );\n    $form \u003d $newTarget.find( \u0027form\u0027 );",
+      "revId": "30ebf6c6267e0188dbb2db60f5118b5fed8cd828",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
