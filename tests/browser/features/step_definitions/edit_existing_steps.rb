@@ -7,20 +7,26 @@ end
 When(/^I click the Edit title action$/) do
   on(FlowPage) do |page|
     page.topic_actions_link_element.when_present.click
-    page.edit_title_icon_element.when_present.click
+    page.edit_title_button_element.when_present.click
   end
 end
 
 Then(/^I should be able to edit the post field with (.+)$/) do |edited_post|
+  # Take focus away from menu
+  on(FlowPage).post_edit_element.when_present.click
   on(FlowPage).post_edit_element.when_present.send_keys(edited_post + @random_string)
 end
 
 Then(/^I should be able to edit the title field with (.+)$/) do |edited_title|
+  # Take focus away from menu
+  on(FlowPage).title_edit_element.when_present.click
   on(FlowPage).title_edit_element.when_present.send_keys(edited_title + @random_string)
 end
 
 Then(/^I should be able to save the new post/) do
   on(FlowPage).change_post_save_element.when_present.click
+  # Ensure the save successfully goes through
+  step 'the page renders in 3 seconds'
 end
 
 Then(/^I should be able to save the new title$/) do
@@ -28,21 +34,5 @@ Then(/^I should be able to save the new title$/) do
 end
 
 Then(/^the saved post should contain (.+)$/) do |edited_post|
-  on(FlowPage) do |page|
-    page.small_spinner_element.when_not_present
-      page.wait_until(20) do
-      page.flow_topics.include? (edited_post + @random_string)
-    end
-    page.topic_post.should match(edited_post + @random_string)
-  end
-end
-
-Then(/^the saved topic title should contain (.+)$/) do |edited_title|
-  on(FlowPage) do |page|
-    page.small_spinner_element.when_not_present
-      page.wait_until(20) do
-      page.flow_topics.include? (edited_title + @random_string)
-    end
-    page.topic_title.should match(edited_title + @random_string)
-  end
+  on(FlowPage).topic_post.should match(edited_post + @random_string)
 end
