@@ -397,9 +397,7 @@ class TopicBlock extends AbstractBlock {
 
 			$this->storage->put( $this->newRevision );
 			$this->storage->put( $this->workflow );
-			$self = $this;
 			$newRevision = $this->newRevision;
-			$rootPost = $this->loadRootPost();
 
 			// If no context was loaded render the post in isolation
 			// @todo make more explicit
@@ -633,7 +631,6 @@ class TopicBlock extends AbstractBlock {
 			$result[$serialized['revisionId']] = $serialized;
 		}
 
-		$title = $this->workflow->getArticleTitle();
 		return array(
 			'revisions' => $result,
 			'board' => $this->renderBoardTitle()

@@ -62,7 +62,7 @@ class BoardHistoryBlock extends AbstractBlock {
 		$formatter->setIncludeHistoryProperties( true );
 		$ctx = \RequestContext::getMain();
 
-		$posts = $revisions = array();
+		$revisions = array();
 		foreach ( $history as $row ) {
 			$serialized = $formatter->formatApi( $row, $ctx );
 			$revisions[$serialized['revisionId']] = $serialized;
