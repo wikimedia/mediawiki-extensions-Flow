@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_e0a6d94f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-20T18:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee391fd1_2b7287e2",
+      "revId": "66b5bc8b222d61abec4e5de92be87e3597b7b7e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_0b7583c8",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-19T23:42:41Z",
       "side": 1,
       "message": "appropriately",
+      "revId": "66b5bc8b222d61abec4e5de92be87e3597b7b7e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_c0a19537",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-20T18:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee391fd1_0b7583c8",
       "revId": "66b5bc8b222d61abec4e5de92be87e3597b7b7e5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_60b30997",
+        "filename": "handlebars/flow_block_header_edit.handlebars",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-20T18:46:33Z",
+      "side": 1,
+      "message": "I think your right, it never makes sense to have full html inside a textarea",
+      "parentUuid": "ee391fd1_eb859fb2",
+      "revId": "66b5bc8b222d61abec4e5de92be87e3597b7b7e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_6b688ff2",
         "filename": "includes/TemplateHelper.php",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2014-06-19T23:42:41Z",
       "side": 1,
       "message": "all content",
+      "revId": "66b5bc8b222d61abec4e5de92be87e3597b7b7e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_806b8ded",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-20T18:46:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee391fd1_6b688ff2",
       "revId": "66b5bc8b222d61abec4e5de92be87e3597b7b7e5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
