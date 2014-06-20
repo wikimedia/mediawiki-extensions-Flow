@@ -885,6 +885,8 @@
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$post = $( this ).closest( '.flow-post' ),
 				$targetPost = $( this ).closest( '.flow-post:not([data-flow-post-max-depth])' ),
+				author = $post.find( '.flow-author:first .mw-userlink' ).text(),
+				content = author,
 				$form;
 
 			// Check if reply form has already been opened
@@ -892,6 +894,11 @@
 				return;
 			}
 			$post.data( 'flow-replying', true );
+
+			// if we have a real username, turn it into "[[User]]" (otherwise, just "127.0.0.1")
+			if ( !mw.util.isIPv4Address( author , true ) && !mw.util.isIPv6Address( author , true ) ) {
+				content = '[[' + mw.Title.newFromText( author, 2 ).getPrefixedText() + '|' + author + ']]';
+			}
 
 			$form = $( flowBoard.TemplateEngine.processTemplateGetFragment(
 				'flow_reply_form',
@@ -904,8 +911,9 @@
 					},
 					postId: $targetPost.data( 'flow-id' ),
 					author: {
-						name: $post.find( '.flow-author:first .mw-userlink' ).text()
-					}
+						name: author
+					},
+					content: content
 				}
 			) ).children();
 
