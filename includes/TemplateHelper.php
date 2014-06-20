@@ -560,15 +560,14 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param $diffContent
-	 * @param $oldTimestamp
-	 * @param $newTimestamp
-	 * @param $oldAuthor
-	 * @param $newAuthor
-	 * @param $oldLink
-	 * @param $newLink
-	 *
-	 * @return array
+	 * @param $diffContent Plain text output of DifferenceEngine::getDiffBody
+	 * @param $oldTimestamp Time when the `old` content was created
+	 * @param $newTimestamp Time when the `new` content was created
+	 * @param $oldAuthor Creator of the `old` content
+	 * @param $newAuthor Creator of the `new` content
+	 * @param $oldLink Url pointing to `old` content
+	 * @param $newLink Url pointing to `new` content
+	 * @return array HTML wrapped in array to prevent lightncandy from escaping
 	 */
 	static public function diffRevision( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink ) {
 		$differenceEngine = new \DifferenceEngine();
