@@ -512,11 +512,11 @@
 
 		/**
 		 * Activate the editable summarize topic form with given api request
-		 * @param {String} status
+		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.activateSummarizeTopic = function ( status, data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.activateSummarizeTopic = function ( info, data, jqxhr ) {
 			var html,
 				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' ),
 				old = $node.html(),
@@ -525,7 +525,7 @@
 
 			// @todo This is using the old fashion way to re-render new content in the board
 			// need to use the proper way that flow is using, eg: reinitializeBoard() etc
-			if ( status === 'done' ) {
+			if ( info.status === 'done' ) {
 				html = flowBoard.TemplateEngine.processTemplate(
 					'flow_block_topicsummary_edit',
 					data.flow[ 'topic-summary-view' ].result.topicsummary
@@ -544,15 +544,15 @@
 
 		/**
 		 * After submit of the summarize topic edit form, process the new topic summary data.
-		 * @param {String} status
+		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.summarizeTopic = function ( status, data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.summarizeTopic = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' );
 
-			if ( status === 'done' ) {
+			if ( info.status === 'done' ) {
 				// There is no template to render
 				$node.html( data.flow[ 'edit-topic-summary' ].result.topicsummary.revision.content );
 			} else {
