@@ -52,10 +52,31 @@ class TemplateHelper {
 	}
 
 	/**
+	 * Constructs the location of the the source handlebars template
+	 * and the compiled php code that goes with it.
+	 *
 	 * @param $templateName
 	 * @return array
+	 * @throws FlowException Disallows upwards directory traversal via $templateName
 	 */
 	public function getTemplateFilenames( $templateName ) {
+		// Prevent upwards directory traversal using same methods as Title::secureAndSplit,
+		// which is implemented in MediaWikiTitleCodec::splitTitleString.
+		if (
+			strpos( $templateName, '.' ) !== false &&
+			(
+				$templateName === '.' || $templateName === '..' ||
+				strpos( $templateName, './' ) === 0 ||
+				strpos( $templateName, '../' ) === 0 ||
+				strpos( $templateName, '/./' ) !== false ||
+				strpos( $templateName, '/../' ) !== false ||
+				substr( $templateName, -2 ) === '/.' ||
+				substr( $templateName, -3 ) === '/..'
+			)
+		) {
+			throw new FlowException( "Malformed \$templateName: $templateName" );
+		}
+
 		return array(
 			'template' => "{$this->templateDir}/{$templateName}.handlebars",
 			'compiled' => "{$this->templateDir}/compiled/{$templateName}.handlebars.php",
