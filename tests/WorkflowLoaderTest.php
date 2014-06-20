@@ -44,6 +44,8 @@ class WorkflowLoaderTest extends FlowTestCase {
 	/**
 	 * Create a WorkflowLoader mock object since we don't want any query
 	 * against the database
+	 *
+	 * @return \Flow\WorkflowLoader
 	 */
 	protected function mockWorkflowLoader( $type ) {
 		$definition = $this->getMockBuilder( '\Flow\Model\Definition' )

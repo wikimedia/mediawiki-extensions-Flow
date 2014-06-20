@@ -2,6 +2,7 @@
 
 namespace Flow\Tests;
 
+use Flow\Data\RecentChanges;
 use FlowHooks;
 use RecentChange;
 
@@ -114,7 +115,7 @@ class HookTest extends \MediaWikiTestCase {
 		$rc->mAttribs = array(
 			'rc_namespace' => 0,
 			'rc_title' => 'Main Page',
-			'rc_source' => \Flow\Data\RecentChanges::SRC_FLOW,
+			'rc_source' => RecentChanges::SRC_FLOW,
 			'rc_params' => serialize( array(
 				'flow-workflow-change' => $change
 			) ),
