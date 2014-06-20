@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_c0051518",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-20T19:06:14Z",
+      "side": 1,
+      "message": "Clarify which textarea this applies to.  It\u0027s specifically about replies to regular posts, not top-level posts.",
+      "revId": "c7306a007a3561a3aea8c5132752c0b571745173",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_202aa18f",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-20T19:06:14Z",
+      "side": 1,
+      "message": "I think this is the kind of mix between data, JS, and selectors the architecture is trying to avoid, but I realize it was already there (below), so not a blocker.",
+      "revId": "c7306a007a3561a3aea8c5132752c0b571745173",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_c02e35a0",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 900,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-20T19:06:14Z",
+      "side": 1,
+      "message": "This presentation logic would be better in a message (or probably two messages, since it varies based on whether it\u0027s an anonymous user).\n\nDoesn\u0027t necessarily have to be done on this patch.",
+      "revId": "c7306a007a3561a3aea8c5132752c0b571745173",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
