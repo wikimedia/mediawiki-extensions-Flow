@@ -19,6 +19,7 @@ class TopicListQuery extends AbstractQuery {
 	/**
 	 * @param ManagerGroup $storage
 	 * @param TreeRepository $treeRepository
+	 * @param RevisionActionPermissions $permissions
 	 */
 	public function __construct( ManagerGroup $storage, TreeRepository $treeRepository, RevisionActionPermissions $permissions ) {
 		parent::__construct( $storage, $treeRepository );
@@ -83,9 +84,9 @@ class TopicListQuery extends AbstractQuery {
 	 * @param TopicListEntry[] $topicListEntries
 	 * @return UUID[]
 	 */
-	protected function getTopicIds( array $topicListEntires ) {
+	protected function getTopicIds( array $topicListEntries ) {
 		$topicIds = array();
-		foreach ( $topicListEntires as $entry ) {
+		foreach ( $topicListEntries as $entry ) {
 			if ( $entry instanceof UUID ) {
 				$topicIds[] = $entry;
 			} elseif ( $entry instanceof TopicListEntry ) {
@@ -175,8 +176,8 @@ class TopicListQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param PostRevision[] $posts
 	 * @param UUID[] $missing
+	 * @return PostRevision
 	 */
 	protected function createFakePosts( array $missing ) {
 		$parents = $this->treeRepository->fetchParentMap( $missing );

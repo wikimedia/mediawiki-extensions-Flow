@@ -266,6 +266,7 @@ abstract class RevisionStorage extends DbStorage {
 	 * @param ResultDuplicator $duplicator
 	 * @param array $revisionIds Binary strings representing revision uuid's
 	 * @return array
+	 * @throws DataModelException
 	 */
 	protected function findRevIdReal( ResultDuplicator $duplicator, array $revisionIds ) {
 		if ( $revisionIds ) {

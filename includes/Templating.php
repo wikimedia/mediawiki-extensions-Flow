@@ -42,6 +42,7 @@ class Templating {
 	 * @param UrlGenerator $urlGenerator
 	 * @param OutputPage $output
 	 * @param ContentFixer $contentFixer
+	 * @param RevisionActionPermissions $permissions
 	 */
 	public function __construct(
 		UserNameBatch $usernames,

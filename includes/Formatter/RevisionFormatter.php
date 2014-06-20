@@ -216,6 +216,7 @@ class RevisionFormatter {
 
 	/**
 	 * @param array $user Contains `name`, `wiki`, and `gender` keys
+	 * @return array
 	 */
 	public function serializeUserLinks( $user ) {
 		$links = array(
@@ -289,6 +290,7 @@ class RevisionFormatter {
 	/**
 	 * @param FormatterRow $row
 	 * @return array
+	 * @throws FlowException
 	 */
 	public function buildActions( FormatterRow $row ) {
 		$section = new \ProfileSection( __METHOD__ );

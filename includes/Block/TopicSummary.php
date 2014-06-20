@@ -247,8 +247,9 @@ class TopicSummaryBlock extends AbstractBlock {
 
 	/**
 	 * Render for an action
-	 * @param Templating
-	 * @param array
+	 * @param Templating $templating
+	 * @param array $options
+	 * @param bool $return
 	 * @throws InvalidInputException
 	 */
 	public function render( Templating $templating, array $options, $return = false ) {
@@ -261,6 +262,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @param Templating $templating
 	 * @param array $options
 	 * @return array
+	 * @throws InvalidInputException
 	 */
 	public function renderAPI( Templating $templating, array $options ) {
 		$output = array( 'type' => $this->getName() );

@@ -341,11 +341,11 @@ class FlowHooks {
 	/**
 	 * Interact with the mobile skin's default modules on Flow enabled pages
 	 *
-	 * @param SkinTemplate $skin
+	 * @param Skin $skin
 	 * @param array $modules
 	 * @return bool
 	 */
-	public static function onSkinMinervaDefaultModules( Skin $skin, Array &$modules ) {
+	public static function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 		// Disable toggling on occupied talk pages in mobile
 		$title = $skin->getTitle();
 		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {

@@ -92,6 +92,7 @@ class FlowException extends MWException {
 	/**
 	 * Helper function for msg function in the convenience of a default callback
 	 * @param string $key
+	 * @return string
 	 */
 	public function parsePageTitle( $key ) {
 		global $wgSitename;

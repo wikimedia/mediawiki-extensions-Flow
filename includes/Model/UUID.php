@@ -291,7 +291,8 @@ class UUID {
 	}
 
 	/**
-	 * @param array
+	 * @param array $array
+	 * @param string $format
 	 * @return array
 	 */
 	public static function convertUUIDs( $array, $format = 'binary' ) {

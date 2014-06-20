@@ -18,8 +18,6 @@ class LinksTableUpdater {
 	/**
 	 * Constructor
 	 * @param ManagerGroup $storage A ManagerGroup
-	 * @param array $tableConfig Array showing how to turn various references into links table entries.
-	 * @param LoadBalancer $wikiLoadBalancer The Database's LoadBalancer.
 	 */
 	public function __construct( ManagerGroup $storage ) {
 		$this->storage = $storage;

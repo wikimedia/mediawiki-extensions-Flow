@@ -19,6 +19,7 @@ class TwoStepUserNameQuery implements UserNameQuery {
 	 * @param string $wiki
 	 * @param array $userIds
 	 * @return \ResultWrapper|bool
+	 * @throws FlowException
 	 */
 	public function execute( $wiki, array $userIds ) {
 		if ( !$wiki ) {
