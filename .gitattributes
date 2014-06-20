@@ -1,0 +1,2 @@
+; Treat compiled templates as binary.  (If they differ, always recompile.)
+handlebars/compiled/* -diff
