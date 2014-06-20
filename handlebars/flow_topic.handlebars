@@ -1,4 +1,4 @@
-<div class="flow-topic flow-load-interactive {{#if isModerated}}flow-topic-moderated flow-topic-collapsed-invert{{/if}}" id="flow-topic-{{postId}}" data-flow-id="{{postId}}" data-flow-load-handler="topicElement">
+<div class="flow-topic {{#unless isPreview}}flow-load-interactive{{/unless}} {{#if isModerated}}flow-topic-moderated flow-topic-collapsed-invert{{/if}}" id="flow-topic-{{postId}}" data-flow-id="{{postId}}" data-flow-load-handler="topicElement">
 	{{>flow_topic_titlebar}}
 
 	{{#each replies}}
