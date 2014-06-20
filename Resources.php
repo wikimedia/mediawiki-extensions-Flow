@@ -91,6 +91,15 @@ $wgResourceModules += array(
 			'flow-topic-action-view',
 			'talkpagelinktext',
 			'flow-cancel-warning',
+			// Moderation state
+			'flow-close-title-content',
+			'flow-close-post-content',
+			'flow-hide-title-content',
+			'flow-hide-post-content',
+			'flow-delete-title-content',
+			'flow-delete-post-content',
+			'flow-suppress-title-content',
+			'flow-suppress-post-content',
 		),
 	),
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
