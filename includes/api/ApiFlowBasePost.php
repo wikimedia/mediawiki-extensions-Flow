@@ -2,6 +2,7 @@
 
 use Flow\Anchor;
 use Flow\Block\AbstractBlock;
+use Flow\Container;
 
 abstract class ApiFlowBasePost extends ApiFlowBase {
 	public function execute() {
@@ -50,7 +51,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 				// @Todo - hacky, maybe have contentformat in the request to overwrite
 				// requiredWikitext
 				$block->unsetRequiresWikitext( $action );
-				$output[$action]['result'][$block->getName()] = $block->renderAPI( \Flow\Container::get( 'templating' ), $parameters[$block->getName()] );
+				$output[$action]['result'][$block->getName()] = $block->renderAPI( Container::get( 'templating' ), $parameters[$block->getName()] );
 			}
 
 			// required until php5.4 which has the JsonSerializable interface
