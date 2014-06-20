@@ -144,6 +144,15 @@
 				"comment_count": function ( context, options ) {
 						return context.reply_count + " comment" + ( !context.reply_count || context.reply_count > 1 ? 's' : '' );
 				},
+				"post_moderation_state": function( type, replyToId, name ) {
+					var str;
+					if ( !replyToId ) {
+						str = 'flow-' + type + '-title-content';
+					} else {
+						str = 'flow-' + type + '-post-content';
+					}
+					return mw.message( str ).params( [ name ] );
+				},
 
 
 				"_time": function ( seconds_ago ) {
