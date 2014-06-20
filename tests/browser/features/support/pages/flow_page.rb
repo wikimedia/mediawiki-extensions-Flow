@@ -35,8 +35,15 @@ class FlowPage
 
   # Posts
   ## Top post
+  div(:flow_first_topic, css: ".flow-topic", index: 0)
   h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
   div(:flow_first_topic_body, css: ".flow-post-content", index: 0)
+  div(:flow_first_topic_summary) do |page|
+    page.flow_first_topic_element.div_element(css: ".flow-topic-summary")
+  end
+  div(:flow_first_topic_moderated_message) do |page|
+    page.flow_first_topic_element.div_element(css: ".flow-moderated-topic-title")
+  end
 
   ### Hover over username behaviour
   a(:talk_link, css: ".mw-usertoollinks a", index: 0)
@@ -48,6 +55,7 @@ class FlowPage
   a(:collapsed_view, href: "#collapser/topics")
 
   # Topic actions menu
+  div(:topic_titlebar, css: ".flow-topic .flow-topic-titlebar")
   a(:topic_actions_link, css: ".flow-topic .flow-topic-titlebar .flow-menu-js-drop a", index: 0)
   ## Menu
   ul(:topic_actions_menu, css: ".flow-topic .flow-topic-titlebar .flow-menu ul", index: 0)
@@ -60,6 +68,18 @@ class FlowPage
   a(:topic_suppress_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Suppress topic")
   end
+  a(:topic_close_button) do |page|
+    page.topic_actions_menu_element.link_element(title: "Close topic")
+  end
+  a(:topic_reopen_button) do |page|
+    page.topic_actions_menu_element.link_element(title: "Reopen topic")
+  end
+
+  ## Close topic workflow
+  form(:topic_close_form, css: ".flow-edit-form")
+  textarea(:topic_close_form_reason, css: ".flow-edit-form textarea")
+  button(:topic_close_form_close_button, css: ".flow-edit-form .flow-ui-constructive")
+  button(:topic_close_form_cancel_button, css: ".flow-edit-form .flow-ui-destructive")
 
   # Post actions menu
   a(:post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 0)
