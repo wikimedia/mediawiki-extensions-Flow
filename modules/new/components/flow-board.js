@@ -376,24 +376,31 @@
 		FlowBoardComponent.UI.events.apiHandlers.submitTopicTitle = function( info, data, jqxhr ) {
 			var result,
 				newTitle,
+				topicData,
+				rootId,
+				revisionId,
 				$this = $( this ),
 				$topic = $this.closest( '.flow-topic' ),
-				$newTopic,
+				$oldTopicTitleBar, $newTopicTitleBar,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this );
 
 			if ( data && data.flow && data.flow['edit-title'] && data.flow['edit-title'].status === 'ok' ) {
-				$newTopic = $(
-					flowBoard.TemplateEngine.processTemplateGetFragment(
-						'flow_topiclist_loop',
-						data.flow['edit-title'].result.topic
-					)
-				).children();
+				$oldTopicTitleBar = $topic.find( '.flow-topic-titlebar' );
+				topicData = data.flow['edit-title'].result.topic;
+				rootId = topicData.roots[0];
+				revisionId = topicData.posts[rootId][0];
+				$newTopicTitleBar = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_topic_titlebar',
+					topicData.revisions[revisionId]
+				) ).children();
 
-				$topic
-					.replaceWith( $newTopic )
-					.conditionalScrollIntoView();
+				$oldTopicTitleBar
+					.replaceWith( $newTopicTitleBar );
 
-				FlowBoardComponent.UI.makeContentInteractive( $newTopic );
+				FlowBoardComponent.UI.makeContentInteractive( $newTopicTitleBar );
+
+				$newTopicTitleBar.conditionalScrollIntoView();
+
 			} else {
 				// @todo
 				alert( "Error" );
@@ -782,42 +789,54 @@
 		};
 
 		/**
-		 * Shows the edit topic title form.
+		 * Shows the form for editing a topic title, it's not already showing
+		 *
 		 * @param {Event} event
 		 */
 		FlowBoardComponent.UI.events.interactiveHandlers.editTopicTitle = function( event ) {
 			var $link = $( this ),
 				$topic = $link.closest( '.flow-topic' ),
-				$title = $topic
-					.children( '.flow-topic-titlebar' )
-					.find( '.flow-topic-title' ),
-				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $link ),
-				$form,
+				$topicTitleBar = $topic
+					.children( '.flow-topic-titlebar' ),
+				$title, flowBoard, $form, cancelCallback, linkParams;
+
+			$form = $topicTitleBar.find( 'form' );
+
+			if ( $form.length === 0 ) {
+				$title = $topicTitleBar.find( '.flow-topic-title' );
+
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $link );
+
 				cancelCallback = function() {
 					$form.remove();
 					$title.show();
-				},
+				};
+
 				linkParams = flowBoard.API.getQueryMap( $link.attr( 'href' ) );
 
-			$title.hide();
+				$title.hide();
 
-			$form = $( flowBoard.TemplateEngine.processTemplateGetFragment(
-				'flow_edit_topic_title',
-				{
-					'actions' : {
-						'edit' : {
-							'url' : $link.attr( 'href' )
-						}
-					},
-					'content' : $title.data( 'title' ),
-					'revisionId' : linkParams.etrevId
-				}
-			) ).children();
+				$form = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_edit_topic_title',
+					{
+						'actions' : {
+							'edit' : {
+								'url' : $link.attr( 'href' )
+							}
+						},
+						'content' : $title.data( 'title' ),
+						'revisionId' : linkParams.etrevId
+					}
+				) ).children();
 
-			flowBoardComponentAddCancelCallback( $form, cancelCallback );
-			$form
-				.data( 'flow-initial-state', 'hidden' )
-				.insertAfter( $title );
+
+				flowBoardComponentAddCancelCallback( $form, cancelCallback );
+				$form
+					.data( 'flow-initial-state', 'hidden' )
+					.insertAfter( $title );
+			}
+
+			$form.find( '.mw-ui-input' ).focus();
 
 			event.preventDefault();
 		};
