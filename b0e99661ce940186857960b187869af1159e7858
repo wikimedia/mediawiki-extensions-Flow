@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_19ecb8f1",
+        "filename": "Resources.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-20T21:35:48Z",
+      "side": 1,
+      "message": "Why",
+      "revId": "b0e99661ce940186857960b187869af1159e7858",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_b9f00cc5",
+        "filename": "handlebars/flow_topic.handlebars",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-20T21:35:48Z",
+      "side": 1,
+      "message": "Did you remove flow-topic-moderated on purpose?",
+      "revId": "b0e99661ce940186857960b187869af1159e7858",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_f9cd748a",
+        "filename": "handlebars/flow_topic_titlebar.handlebars",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-20T21:35:48Z",
+      "side": 1,
+      "message": "Now only the titlebar is moderated? Moderation affects the whole topic.",
+      "revId": "b0e99661ce940186857960b187869af1159e7858",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_39e53c07",
+        "filename": "handlebars/flow_topic_titlebar.handlebars",
+        "patchSetId": 14
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-20T21:35:48Z",
+      "side": 1,
+      "message": "Indenting",
+      "revId": "b0e99661ce940186857960b187869af1159e7858",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_f9945448",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-20T21:35:48Z",
+      "side": 1,
+      "message": "See usage of FlowBoardComponent.UI.makeContentInteractive. It runs flow-load-handlers when rendering new content.",
+      "revId": "b0e99661ce940186857960b187869af1159e7858",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_199a7875",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-20T21:35:48Z",
+      "side": 1,
+      "message": "+FlowBoardComponent.UI.makeContentInteractive again.",
+      "revId": "b0e99661ce940186857960b187869af1159e7858",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_998d4839",
+        "filename": "modules/new/styles/interactive.less",
+        "patchSetId": 14
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-20T21:35:48Z",
+      "side": 1,
+      "message": "You are now the fourth person to do this. Resulting CSS:\n\n    .flow-topic div#bodyContent h2.flow-topic-title {}\n\nOriginal LESS:\n\n    div#bodyContent .flow-topic h2.flow-topic-title {}\n\nNote the placement of \u0026.",
+      "revId": "b0e99661ce940186857960b187869af1159e7858",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_5987e014",
+        "filename": "modules/new/styles/layout.less",
+        "patchSetId": 14
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-20T21:35:48Z",
+      "side": 1,
+      "message": "flow-topic-collapsed-invert doesn\u0027t always mean \"expanded\" or \"collapsed\". Flaschen is working on a replacement for this class to make it more explicit.\n\nflow-topic-collapsed-invert\u0027s reaction depends on the board\u0027s collapser toggle state.",
+      "revId": "b0e99661ce940186857960b187869af1159e7858",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
