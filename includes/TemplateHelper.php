@@ -115,7 +115,6 @@ class TemplateHelper {
 					'block' => 'Flow\TemplateHelper::block',
 					'author' => 'Flow\TemplateHelper::author',
 					'url' => 'Flow\TemplateHelper::url',
-					'formElement' => 'Flow\TemplateHelper::formElement',
 					'math' => 'Flow\TemplateHelper::math',
 					'post' => 'Flow\TemplateHelper::post',
 					'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
@@ -423,12 +422,6 @@ class TemplateHelper {
 
 		// Return the resulting HTML
 		return implode( '', $html );
-	}
-
-	/**
-	 * @todo
-	 */
-	static public function formElement() {
 	}
 
 	/**
