@@ -286,7 +286,12 @@ abstract class AbstractRevision {
 	 * @return AbstractRevision
 	 */
 	public function newNextRevision( User $user, $content, $changeType ) {
-		$obj = $this->newNullRevision( $user );
+		// The author should not change when creating next revision
+		$row = array(
+			'user_id' => $this->userId,
+			'user_name' => $this->userIp
+		);
+		$obj = $this->newNullRevision( User::newFromRow( (object)$row ) );
 		$obj->setNextContent( $user, $content );
 		$obj->changeType = $changeType;
 		return $obj;
