@@ -816,7 +816,7 @@ $c['reference.extractor'] = $c->share( function( $c ) {
 						'refType' => 'template',
 						'targetType' => 'wiki',
 						'target' => $templateTarget->getPrefixedText(),
-					);;
+					);
 				},
 		)
 	);
