@@ -9,11 +9,11 @@
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
             'timestamp' => 'Flow\TemplateHelper::timestamp',
-            'html' => 'Flow\TemplateHelper::html',
             'post' => 'Flow\TemplateHelper::post',
             'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
+            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -73,10 +73,11 @@
 	' : '').'
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['content'])) ? $in['content'] : null))) ? '
 		<div class="flow-preview-sub-container">
-			'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
+			'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
 		</div>
 	' : '').'
 </div>
+
 		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
 			<ul>
 				'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
@@ -277,7 +278,7 @@
 		</div>
 		<div class="flow-topic-summary">
 			'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
-				'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['summary'])) ? $in['summary'] : null)), 'encq').'
+				'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['summaryFormat'])) ? $in['summaryFormat'] : null),((is_array($in) && isset($in['summary'])) ? $in['summary'] : null)), 'encq').'
 			' : '').'
 		</div>
 	</div>
@@ -299,10 +300,11 @@
 	' : '').'
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['content'])) ? $in['content'] : null))) ? '
 		<div class="flow-preview-sub-container">
-			'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
+			'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
 		</div>
 	' : '').'
 </div>
+
 		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="topic_replyTo" value="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" />
 		'.LCRun3::hbch($cx, 'ifAnonymous', Array(), $in, function($cx, $in) {return '
@@ -333,7 +335,6 @@
 		</div>
 	</form>
 ' : '').'
-
 
 </div>
 

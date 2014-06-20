@@ -8,8 +8,8 @@
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
-            'html' => 'Flow\TemplateHelper::html',
             'post' => 'Flow\TemplateHelper::post',
+            'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -31,7 +31,7 @@
 			<div>@Todo - Add css to toggle between "xxx is hidden by xxx" and real post</div>
 		' : '').'
 		<div class="flow-post-content">
-			'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
+			'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
 		</div>
 		<div class="flow-post-meta">
 			<span class="flow-post-meta-actions">
