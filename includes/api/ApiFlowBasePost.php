@@ -30,7 +30,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		$request = $this->getModifiedRequest();
 		$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 		if ( count( $blocksToCommit ) ) {
-			$commitResults = $loader->commit( $workflow, $blocksToCommit );
+			$loader->commit( $workflow, $blocksToCommit );
 			$savedBlocks = array();
 			$result->setIndexedTagName( $savedBlocks, 'block' );
 

@@ -409,8 +409,6 @@ class TemplateHelper {
 		}
 
 		$html = array();
-		$i = 0;
-		$last = count( $postIds ) - 1;
 		foreach ( $postIds as $id ) {
 			$revId = $context['posts'][$id][0];
 
@@ -518,7 +516,6 @@ class TemplateHelper {
 	 * @return array
 	 */
 	static public function historyDescription( array $revision ) {
-		$changeType = $revision['changeType'];
 		$i18nKey = $revision['properties']['_key'];
 		unset( $revision['properties']['_key'] );
 

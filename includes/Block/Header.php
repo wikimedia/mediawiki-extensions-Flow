@@ -121,7 +121,6 @@ class HeaderBlock extends AbstractBlock {
 		}
 
 		// this isn't really part of validate, but we want the error-rendering template to see the users edited header
-		$oldHeader = $this->header;
 		$this->newRevision = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
 
 		if ( !$this->checkSpamFilters( $this->header, $this->newRevision ) ) {
