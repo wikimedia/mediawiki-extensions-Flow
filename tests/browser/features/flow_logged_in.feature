@@ -13,9 +13,9 @@ Feature: Create new topic logged in
   Scenario: Add new Flow topic
     Given I have created a Flow topic
       And the author link is visible
-      And the talk and contrib links are not visible
+      And the talk and block links are not visible
     When I hover over the author link
-      Then links to talk and contrib should be visible
+      Then links to talk and block should be visible
 
   Scenario: Post Actions
     Given I am on Flow page
