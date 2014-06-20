@@ -1,6 +1,6 @@
 {{#with revision}}
 	<div class="flow-post{{#if isModerated}} flow-post-moderated{{/if}}" data-flow-id="{{postId}}"{{#if isMaxThreadingDepth}} data-flow-post-max-depth="1"{{/if}}>
-		{{#with author}}
+		{{#with creator}}
 			<span class="flow-author">
 				<a href="{{links.contribs.url}}" title="{{links.contribs.title}}" class="mw-userlink flow-ui-tooltip-target">{{name}}</a>
 				<span class="mw-usertoollinks">(<a href="{{links.talk.url}}" class="new flow-ui-tooltip-target" title="{{links.talk.title}}">{{l10n "talkpagelinktext"}}</a>{{#if links.block}} | <a class="flow-ui-tooltip-target" href="{{links.block.url}}" title="{{links.block.title}}">{{l10n "blocklink"}}</a>{{/if}})</span>
