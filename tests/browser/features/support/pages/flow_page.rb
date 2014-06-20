@@ -31,15 +31,22 @@ class FlowPage
   div(:highlighted_post, css: ".flow-post-highlighted")
 
   ## First topic
+  div(:flow_first_topic, css: ".flow-topic", index: 0)
   h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
   div(:flow_first_topic_body, css: ".flow-post-content", index: 0)
-  div(:flow_first_topic_moderation_msg, css: '.flow-moderated-topic-title', index: 0)
+  div(:flow_first_topic_moderation_msg) do |page|
+    page.flow_first_topic_element.div_element(css: '.flow-moderated-topic-title', index: 0)
+  end
+  div(:flow_first_topic_summary) do |page|
+    page.flow_first_topic_element.div_element(css: ".flow-topic-summary")
+  end
 
   ### Hover over username behaviour
   a(:talk_link, css: "..flow-author:hover mw-usertoollinks a", index: 0)
   a(:block_user, css: ".flow-author:hover .mw-usertoollinks a", index: 1)
 
   ### First Topic actions menu
+
   # For topic collapsing testing
   # Watir WebDriver apparently doesn't support CSS :not (https://developer.mozilla.org/en-US/docs/Web/CSS/:not), so using XPath
   h2(:first_non_moderated_topic_title, xpath: '(//*[contains(@class, "flow-topic ") and not(contains(@class, "flow-topic-moderated"))]//h2[contains(@class, "flow-topic-title")])[1]')
@@ -83,6 +90,18 @@ class FlowPage
   a(:edit_title_button) do |page|
     page.topic_actions_menu_element.link_element(text: "Edit title")
   end
+  a(:topic_close_button) do |page|
+    page.topic_actions_menu_element.link_element(title: "Close topic")
+  end
+  a(:topic_reopen_button) do |page|
+    page.topic_actions_menu_element.link_element(title: "Reopen topic")
+  end
+
+  ## Close topic workflow
+  form(:topic_close_form, css: ".flow-edit-form")
+  textarea(:topic_close_form_reason, css: ".flow-edit-form textarea")
+  button(:topic_close_form_close_button, css: ".flow-edit-form .flow-ui-constructive")
+  button(:topic_close_form_cancel_button, css: ".flow-edit-form .flow-ui-destructive")
 
   ### Editing title of first topic
   text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
