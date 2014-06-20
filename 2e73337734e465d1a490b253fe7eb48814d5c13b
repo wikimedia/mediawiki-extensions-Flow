@@ -16,6 +16,92 @@
       "revId": "2e73337734e465d1a490b253fe7eb48814d5c13b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_e0c25987",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-20T17:06:17Z",
+      "side": 1,
+      "message": "Just use mw.user.getName() does exactly the same.",
+      "parentUuid": "ee391fd1_b15caa4f",
+      "revId": "2e73337734e465d1a490b253fe7eb48814d5c13b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_80370dab",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-20T17:06:17Z",
+      "side": 1,
+      "message": "XXX ? Is this triple x rated code?",
+      "revId": "2e73337734e465d1a490b253fe7eb48814d5c13b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_e05139de",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-20T17:06:17Z",
+      "side": 1,
+      "message": "I feel like $node.is( \u0027form\u0027 ) || $node.parents( \u0027form\u0027 ).length would be more readable here.",
+      "revId": "2e73337734e465d1a490b253fe7eb48814d5c13b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_a05b31fc",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 8
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-20T17:06:17Z",
+      "side": 1,
+      "message": "Can you split the helpers into a separate commit. This commit is huge and this would help speed up review and also give us a better git diff history.",
+      "revId": "2e73337734e465d1a490b253fe7eb48814d5c13b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_605549c5",
+        "filename": "modules/new/styles/mw-ui-flow.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-20T17:06:17Z",
+      "side": 1,
+      "message": "Side note: MobileFrontend has its own mixin for this. Let\u0027s move that to Mantle and share mixins. Can you add a FIXME so I don\u0027t forget?",
+      "revId": "2e73337734e465d1a490b253fe7eb48814d5c13b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
