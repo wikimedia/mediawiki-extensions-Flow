@@ -19,7 +19,7 @@ class CheckUserQuery extends AbstractQuery {
 	/**
 	 * @param \stdClass[] List of checkuser database rows
 	 */
-	public function loadMetadataBatch( $rows ) {
+	public function loadMetadataBatch( \stdClass $rows ) {
 		$needed = array();
 
 		foreach ( $rows as $row ) {
@@ -67,7 +67,6 @@ class CheckUserQuery extends AbstractQuery {
 	/**
 	 * @param CheckUser $checkUser
 	 * @param \StdClass $row
-	 * @param bool $isWatchlist
 	 * @return CheckUserRow|null
 	 * @throws FlowException
 	 */

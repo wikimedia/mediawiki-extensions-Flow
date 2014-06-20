@@ -33,7 +33,7 @@ class RecentChangesQuery extends AbstractQuery {
 	 * @param \stdClass[] List of recentchange database rows
 	 * @param bool $isWatchlist
 	 */
-	public function loadMetadataBatch( $rows, $isWatchlist = false ) {
+	public function loadMetadataBatch( \stdClass $rows, $isWatchlist = false ) {
 		$needed = array();
 		foreach ( $rows as $row ) {
 			if ( !isset( $row->rc_source ) || $row->rc_source !== RecentChanges::SRC_FLOW ) {

@@ -19,6 +19,7 @@ abstract class Reference {
 	 * @param String $objectType  Output of getRevisionType for the AbstractRevision that this reference comes from.
 	 * @param UUID   $objectId    Unique identifier for the revisioned object containing the reference.
 	 * @param string $type        The type of reference
+	 * @throws InvalidInputException
 	 */
 	protected function __construct( UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type ) {
 		$this->workflowId = $srcWorkflow;
@@ -204,6 +205,7 @@ class URLReference extends Reference {
 	 * @param UUID   $objectId    Unique identifier for the revisioned object containing the reference.
 	 * @param string $type        Type of reference
 	 * @param string $url         URL of the reference's target.
+	 * @throws InvalidInputException
 	 */
 	public function __construct( UUID $srcWorkflow, Title $srcTitle, $objectType, UUID $objectId, $type, $url ) {
 		$this->url = $url;

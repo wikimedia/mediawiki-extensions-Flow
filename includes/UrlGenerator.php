@@ -491,6 +491,7 @@ class UrlGenerator extends BaseUrlGenerator {
 	 * @param UUID $workflowId
 	 * @param UUID $postId
 	 * @param UUID $revId
+	 * @return Anchor
 	 */
 	public function editPostAction( Title $title = null, UUID $workflowId, UUID $postId, UUID $revId ) {
 		return new Anchor(

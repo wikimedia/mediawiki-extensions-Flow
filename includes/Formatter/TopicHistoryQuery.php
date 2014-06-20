@@ -9,8 +9,9 @@ use Flow\Model\UUID;
 
 class TopicHistoryQuery  extends AbstractQuery {
 	/**
-	 * @param UUID[] $postIds
+	 * @param UUID $postId
 	 * @return FormatterRow[]
+	 * @throws InvalidDataException
 	 */
 	public function getResults( UUID $postId ) {
 		$section = new \ProfileSection( __METHOD__ );

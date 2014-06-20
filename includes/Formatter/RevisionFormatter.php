@@ -216,6 +216,7 @@ class RevisionFormatter {
 
 	/**
 	 * @param array $user Contains `name`, `wiki`, and `gender` keys
+	 * @return array
 	 */
 	public function serializeUserLinks( $user ) {
 		$links = array(
