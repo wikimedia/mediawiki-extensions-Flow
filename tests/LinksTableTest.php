@@ -3,10 +3,17 @@
 namespace Flow\Tests;
 
 use Flow\Container;
+use Flow\Data\ManagerGroup;
+use Flow\Data\ReferenceRecorder;
 use Flow\Exception\WikitextException;
+use Flow\LinksTableUpdater;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\Parsoid\ReferenceExtractor;
+use Flow\Parsoid\Utils;
+use LinksUpdate;
+use ParserOutput;
 use Title;
 use User;
 
@@ -15,6 +22,25 @@ use User;
  * @group Database
  */
 class LinksTableTest extends PostRevisionTestCase {
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
+
+	/**
+	 * @var ReferenceExtractor
+	 */
+	protected $extractor;
+
+	/**
+	 * @var ReferenceRecorder
+	 */
+	protected $recorder;
+
+	/**
+	 * @var LinksTableUpdater
+	 */
+	protected $updater;
 
 	public function setUp() {
 		parent::setUp();
@@ -25,7 +51,7 @@ class LinksTableTest extends PostRevisionTestCase {
 
 		// Check for Parsoid
 		try {
-			\Flow\Parsoid\Utils::convert( 'html', 'wikitext', 'Foo', self::getTestTitle() );
+			Utils::convert( 'html', 'wikitext', 'Foo', self::getTestTitle() );
 		} catch ( WikitextException $excep ) {
 			$this->markTestSkipped( 'Parsoid not enabled' );
 		}
@@ -141,7 +167,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 * @dataProvider provideGetReferencesFromRevisionContent
 	 */
 	public function testGetReferencesFromRevisionContent( $content, $expectedReferences ) {
-		$content = \Flow\Parsoid\Utils::convert( 'wikitext', 'html', $content, self::getTestTitle() );
+		$content = Utils::convert( 'wikitext', 'html', $content, self::getTestTitle() );
 		$revision = $this->generateTopic( array( 'rev_content' => $content ) );
 		$workflow = self::getTestWorkflow( self::getTestTitle() );
 
@@ -321,8 +347,8 @@ class LinksTableTest extends PostRevisionTestCase {
 	public function testMutateLinksUpdate( $references, $expectedItems ) {
 		extract( $this->getBlandTestObjects() );
 		$references = $this->expandReferences( $workflow, $revision, $references );
-		$parserOutput = new \ParserOutput;
-		$linksUpdate = new \LinksUpdate( self::getTestTitle(), $parserOutput );
+		$parserOutput = new ParserOutput;
+		$linksUpdate = new LinksUpdate( self::getTestTitle(), $parserOutput );
 
 		// Clear the LinksUpdate to allow clean testing
 		foreach( array_keys( $expectedItems ) as $fieldName ) {

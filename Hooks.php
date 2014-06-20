@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Exception\FlowException;
+use Flow\Formatter\CheckUserQuery;
 use Flow\Model\UUID;
 use Flow\NotificationController;
 use Flow\OccupationController;
@@ -229,6 +230,7 @@ class FlowHooks {
 
 		$replacement = null;
 		try {
+			/** @var CheckUserQuery $query */
 			$query = Container::get( 'query.checkuser' );
 			// @todo: create hook to allow batch-loading this data, instead of doing piecemeal like this
 			$query->loadMetadataBatch( array( $row ) );
@@ -604,7 +606,7 @@ class FlowHooks {
 		$change = $params['flow-workflow-change'];
 
 		// don't forget to increase the version number when data format changes
-		$comment = \Flow\Formatter\CheckUserQuery::VERSION_PREFIX;
+		$comment = CheckUserQuery::VERSION_PREFIX;
 		$comment .= ',' . $change['action'];
 		$comment .= ',' . $change['workflow'];
 		$comment .= ',' . $change['revision'];

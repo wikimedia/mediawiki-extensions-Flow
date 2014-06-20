@@ -52,13 +52,30 @@ class RevisionFormatter {
 	 */
 	protected $urlGenerator;
 
+	/**
+	 * @var bool
+	 */
 	protected $includeProperties = false;
 
+	/**
+	 * @var string[]
+	 */
 	protected $allowedContentFormats = array( 'html', 'wikitext' );
 
+	/**
+	 * @var string
+	 */
 	protected $contentFormat = 'html';
 
+	/**
+	 * @var int
+	 */
 	protected $maxThreadingDepth;
+
+	/**
+	 * @var Message[]
+	 */
+	protected $messages = array();
 
 	/**
 	 * @param RevisionActionPermissions $permissions
@@ -741,7 +758,7 @@ class RevisionFormatter {
 			return wfMessage( $key, $params );
 		}
 		if ( !isset( $this->messages[$key] ) ) {
-			$this->messages[$key] = new \Message( $key );
+			$this->messages[$key] = new Message( $key );
 		}
 		return $this->messages[$key];
 	}
