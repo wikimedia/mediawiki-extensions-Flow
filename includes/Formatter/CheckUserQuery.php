@@ -17,7 +17,7 @@ class CheckUserQuery extends AbstractQuery {
 	const VERSION_PREFIX = 'v1';
 
 	/**
-	 * @param stdClass[] List of checkuser database rows
+	 * @param \stdClass[] List of checkuser database rows
 	 */
 	public function loadMetadataBatch( $rows ) {
 		$needed = array();

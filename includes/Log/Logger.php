@@ -2,13 +2,14 @@
 
 namespace Flow\Log;
 
+use Closure;
+use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\PostRevision;
-use Flow\UrlGenerator;
-use ManualLogEntry;
-use User;
-use Closure;
 use Flow\Model\UUID;
+use ManualLogEntry;
+use Title;
+use User;
 
 class Logger {
 
@@ -63,7 +64,7 @@ class Logger {
 		$logType = $this->getLogType( $post, $action );
 
 		// reasonably likely this is already loaded in-process and just returns that object
-		$workflow = \Flow\Container::get( 'storage.workflow' )->get( $workflowId );
+		$workflow = Container::get( 'storage.workflow' )->get( $workflowId );
 		if ( $workflow ) {
 			$title = $workflow->getArticleTitle();
 		} else {

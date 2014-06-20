@@ -2,7 +2,6 @@
 
 namespace Flow\Formatter;
 
-use Flow\Exception\InvalidDataException;
 use Flow\Model\UUID;
 
 class PostSummaryQuery extends AbstractQuery {

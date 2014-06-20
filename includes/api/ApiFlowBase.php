@@ -4,7 +4,6 @@ use Flow\WorkflowLoader;
 use Flow\Model\UUID;
 use Flow\Container;
 use Flow\TalkpageManager;
-use Flow\Block\AbstractBlock;
 use Flow\Model\AbstractRevision;
 
 abstract class ApiFlowBase extends ApiBase {

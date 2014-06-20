@@ -5,11 +5,8 @@ namespace Flow\Tests;
 use Flow\Container;
 use Flow\Exception\WikitextException;
 use Flow\Model\AbstractRevision;
-use Flow\Model\Reference;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
-use Article;
-use MediaWikiTestCase;
 use Title;
 use User;
 

@@ -6,7 +6,6 @@ use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager;
 use Flow\Data\PagerPage;
-use Flow\Data\RootPostLoader;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;

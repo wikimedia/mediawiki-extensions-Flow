@@ -6,9 +6,7 @@ use DatabaseBase;
 use ExternalStore;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
-use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use Flow\Repository\TreeRepository;
 use MWException;
 
 abstract class RevisionStorage extends DbStorage {

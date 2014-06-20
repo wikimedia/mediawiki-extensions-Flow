@@ -2,23 +2,14 @@
 
 namespace Flow;
 
-use Flow\Block\Block;
-use Flow\Block\TopicBlock;
-use Flow\Block\HeaderBlock;
-use Flow\Data\PagerPage;
 use Flow\Data\UserNameBatch;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
-use Flow\Model\Header;
 use Flow\Parsoid\Controller as ContentFixer;
-use Flow\View\PostActionMenu;
 use OutputPage;
-use User;
 // These don't really belong here
-use Html;
 use Linker;
 use Message;
-use Flow\Exception\InvalidDataException;
 
 /**
  * This class is slowly being deprecated. It used to house a minimalist

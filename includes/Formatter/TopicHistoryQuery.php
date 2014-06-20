@@ -2,10 +2,9 @@
 
 namespace Flow\Formatter;
 
-use Flow\Data\PagerPage;
 use Flow\Exception\FlowException;
+use Flow\Exception\InvalidDataException;
 use Flow\Model\PostRevision;
-use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 
 class TopicHistoryQuery  extends AbstractQuery {

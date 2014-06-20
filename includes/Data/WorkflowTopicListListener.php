@@ -2,7 +2,6 @@
 
 namespace Flow\Data;
 
-use Flow\Container;
 use Flow\Model\TopicListEntry;
 
 class WorkflowTopicListListener implements LifecycleHandler {

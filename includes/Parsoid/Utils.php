@@ -3,6 +3,7 @@
 namespace Flow\Parsoid;
 
 use Title;
+use OutputPage;
 use Flow\Exception\WikitextException;
 use Flow\Exception\InvalidDataException;
 
@@ -211,7 +212,7 @@ abstract class Utils {
 	 * @param OutputPage $out OutputPage object
 	 * @return bool
 	 */
-	public static function onFlowAddModules( \OutputPage $out ) {
+	public static function onFlowAddModules( OutputPage $out ) {
 
 		list( $parsoidURL ) = self::parsoidConfig();
 		if ( isset( $parsoidURL ) && $parsoidURL ) {

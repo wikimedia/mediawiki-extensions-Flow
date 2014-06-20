@@ -149,7 +149,7 @@ class WikiReference extends Reference {
 
 	/**
 	 * Instantiates a WikiReference object from a storage row.
-	 * @param  StdClass $row
+	 * @param  \StdClass $row
 	 * @return WikiReference
 	 */
 	public static function fromStorageRow( $row ) {
@@ -229,7 +229,7 @@ class URLReference extends Reference {
 
 	/**
 	 * Instantiates a URLReference object from a storage row.
-	 * @param  StdClass $row
+	 * @param  \StdClass $row
 	 * @return URLReference
 	 */
 	public static function fromStorageRow( $row ) {

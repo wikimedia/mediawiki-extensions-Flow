@@ -9,7 +9,6 @@ namespace Flow;
 use FormSpecialPage;
 use HTMLForm;
 use Status;
-use Flow\Container;
 use Flow\Model\UUID;
 use Flow\Exception\FlowException;
 
