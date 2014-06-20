@@ -16,6 +16,24 @@
       "revId": "42e36341926615f68c71ea79672815124c874b7f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_d6a6ff4f",
+        "filename": "includes/Model/AbstractRevision.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-20T20:34:34Z",
+      "side": 1,
+      "message": "yeah, my mind was not working in a moment by the confusion of user \u0026 last edit user. Guess we have to get the first revision",
+      "parentUuid": "ee391fd1_16f5a77f",
+      "revId": "42e36341926615f68c71ea79672815124c874b7f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
