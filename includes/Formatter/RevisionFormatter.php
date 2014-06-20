@@ -210,6 +210,11 @@ class RevisionFormatter {
 			$res['replyToId'] = $replyTo ? $replyTo->getAlphadecimal() : null;
 			$res['postId'] = $row->revision->getPostId()->getAlphadecimal();
 			$res['isMaxThreadingDepth'] = $row->revision->getDepth() >= $this->maxThreadingDepth;
+			$res['creator'] = $this->serializeUser(
+				$row->revision->getCreatorWiki(),
+				$row->revision->getCreatorId(),
+				$row->revision->getCreatorIp()
+			);
 		}
 
 		return $res;

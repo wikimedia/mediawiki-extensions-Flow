@@ -29,7 +29,7 @@
 	</ul>
 ' : '').'
 
-	
+
 	'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 		'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
 			<form method="POST" action="'.LCRun3::ch($cx, 'moderationAction', Array(((is_array($in) && isset($in['actions'])) ? $in['actions'] : null),((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null)), 'encq').'">
@@ -44,7 +44,7 @@
 			'.LCRun3::wi($cx, ((is_array($in) && isset($in['revision'])) ? $in['revision'] : null), $in, function($cx, $in) {return '
 	<div class="flow-post'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? ' flow-post-moderated' : '').'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isMaxThreadingDepth'])) ? $in['isMaxThreadingDepth'] : null))) ? ' data-flow-post-max-depth="1"' : '').'>
 		<div class="flow-post-main">
-			'.LCRun3::wi($cx, ((is_array($in) && isset($in['author'])) ? $in['author'] : null), $in, function($cx, $in) {return '
+			'.LCRun3::wi($cx, ((is_array($in) && isset($in['creator'])) ? $in['creator'] : null), $in, function($cx, $in) {return '
 				'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 					<span class="flow-author">
 						<a href="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['url'])) ? $in['links']['contribs']['url'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -75,7 +75,7 @@
 			<div class="flow-post-content">
 				'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
 			</div>
-			
+
 			'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 				<div class="flow-post-meta">
 					<span class="flow-post-meta-actions">
@@ -158,7 +158,7 @@
 			' : '').'
 		</div>
 
-		
+
 		'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 			<div class="flow-replies">
 				'.LCRun3::sec($cx, ((is_array($in) && isset($in['replies'])) ? $in['replies'] : null), $in, true, function($cx, $in) {return '
