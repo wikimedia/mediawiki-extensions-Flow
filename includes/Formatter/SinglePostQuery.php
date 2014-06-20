@@ -2,10 +2,7 @@
 
 namespace Flow\Formatter;
 
-use Flow\Data\PagerPage;
 use Flow\Exception\FlowException;
-use Flow\Model\PostRevision;
-use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 
 class SinglePostQuery extends AbstractQuery {

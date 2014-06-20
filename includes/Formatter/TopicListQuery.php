@@ -2,9 +2,8 @@
 
 namespace Flow\Formatter;
 
-use Flow\Container;
 use Flow\Data\ManagerGroup;
-use Flow\Data\PagerPage;
+use Flow\Exception\FlowException;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\TopicListEntry;

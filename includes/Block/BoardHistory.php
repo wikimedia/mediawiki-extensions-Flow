@@ -2,6 +2,7 @@
 
 namespace Flow\Block;
 
+use Flow\Exception\FlowException;
 use Flow\RevisionActionPermissions;
 use Flow\Container;
 use Flow\Templating;

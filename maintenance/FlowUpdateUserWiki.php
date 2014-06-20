@@ -2,7 +2,6 @@
 
 use Flow\Container;
 use Flow\Model\UUID;
-use Flow\Model\Header;
 use Flow\Model\PostRevision;
 
 $IP = getenv( 'MW_INSTALL_PATH' );

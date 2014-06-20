@@ -2,8 +2,6 @@
 
 namespace Flow\Formatter;
 
-use Flow\Data\PagerPage;
-use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\UrlGenerator;
 use IContextSource;

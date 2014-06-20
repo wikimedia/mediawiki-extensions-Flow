@@ -3,13 +3,10 @@
 namespace Flow\Formatter;
 
 use Flow\Container;
-use Flow\Data\ManagerGroup;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\PermissionException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
-use Flow\Repository\TreeRepository;
-use User;
 
 abstract class RevisionViewQuery extends AbstractQuery {
 
@@ -35,7 +32,7 @@ abstract class RevisionViewQuery extends AbstractQuery {
 	 * Get the data for rendering single revision view
 	 * @param string
 	 * @return RevisionViewRow
-	 * @throws InvalidInput
+	 * @throws InvalidInputException
 	 */
 	public function getSingleViewResult( $revId ) {
 		if ( !$revId ) {

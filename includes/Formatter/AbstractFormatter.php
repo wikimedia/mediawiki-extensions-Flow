@@ -4,7 +4,6 @@ namespace Flow\Formatter;
 
 use Flow\Anchor;
 use Flow\RevisionActionPermissions;
-use Flow\Templating;
 use Html;
 use IContextSource;
 use Message;

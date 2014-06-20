@@ -1,7 +1,6 @@
 <?php
 
 use Flow\Container;
-use Flow\Model\UUID;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'

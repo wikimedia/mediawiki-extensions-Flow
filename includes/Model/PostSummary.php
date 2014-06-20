@@ -3,7 +3,6 @@
 namespace Flow\Model;
 
 use Flow\Collection\PostSummaryCollection;
-use Flow\Model\PostRevision;
 use User;
 
 class PostSummary extends AbstractSummary {

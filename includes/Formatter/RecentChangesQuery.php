@@ -8,7 +8,6 @@ use Flow\Exception\FlowException;
 use Flow\FlowActions;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
-use ChangesList;
 use RecentChange;
 
 class RecentChangesQuery extends AbstractQuery {
@@ -31,7 +30,7 @@ class RecentChangesQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param stdClass[] List of recentchange database rows
+	 * @param \stdClass[] List of recentchange database rows
 	 * @param bool $isWatchlist
 	 */
 	public function loadMetadataBatch( $rows, $isWatchlist = false ) {
