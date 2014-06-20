@@ -120,6 +120,24 @@
       "revId": "2e73337734e465d1a490b253fe7eb48814d5c13b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_74a3cbfd",
+        "filename": "modules/new/styles/mw-ui-flow.less",
+        "patchSetId": 8
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-20T23:00:56Z",
+      "side": 1,
+      "message": "You mean box-sizing.  That\u0027s in core, and I don\u0027t *think* anyone is trying to remove it from there.",
+      "parentUuid": "ee391fd1_605549c5",
+      "revId": "2e73337734e465d1a490b253fe7eb48814d5c13b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
