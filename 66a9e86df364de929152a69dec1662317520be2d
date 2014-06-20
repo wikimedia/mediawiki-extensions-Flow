@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_c3bd1fff",
+        "filename": "modules/new/mw-ui.enhance.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-20T19:34:31Z",
+      "side": 1,
+      "message": "You can see here onMwUiTooltipBlur (the event I\u0027m now binding click to) does hide the tooltip",
+      "revId": "66a9e86df364de929152a69dec1662317520be2d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
