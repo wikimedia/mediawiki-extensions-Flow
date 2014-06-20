@@ -15,6 +15,12 @@ class FlowPage
     actions_index = 0
   end
 
+  # board header
+  a(:edit_header_link, title: "Edit header")
+  div(:header_content, css: ".flow-board-header-detail-view p", index: 0)
+  form(:edit_header_form, css: ".flow-board-header-edit-view form")
+  textarea(:edit_header_textbox, css: ".flow-board-header-edit-view textarea")
+
   a(:actions_link_permalink_3rd_comment, text: "Actions", index: 4)
   span(:author_link, class: "flow-creator")
   a(:block_user, title: /Special:Block/)
@@ -73,9 +79,5 @@ class FlowPage
   div(:topic_post, class: "flow-post-content", index: topic_index)
   div(:topic_title, class: "flow-topic-title", index: topic_index)
 
-  div(:header_content, id: "flow-header-content", index: 0)
-  a(:edit_header_link, title: "Edit header")
-  form(:edit_header_form, class: "flow-edit-form") # Reuses common edit action so no header-specific class.
-  text_field(:edit_header_textbox, class: "flow-edit-content") # Reuses common edit action so no header-specific class.
   button(:edit_header_save, text: "Save header")
 end
