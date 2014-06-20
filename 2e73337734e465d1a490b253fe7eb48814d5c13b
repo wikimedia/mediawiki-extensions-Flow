@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_003f9d21",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-20T18:12:45Z",
+      "side": 1,
+      "message": "mw.user.getName() does not include the user IP.  \n\nHowever, it\u0027s true this will poison the cache.\n\nThis is even more problematic, since it\u0027s not even page-specific; it\u0027s from the startup module, which should never be page or user-specific.\n\nSee https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderGetConfigVars ; note the part about \"static (not request-specific)\".",
+      "parentUuid": "ee391fd1_e0c25987",
+      "revId": "2e73337734e465d1a490b253fe7eb48814d5c13b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_80370dab",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 8
