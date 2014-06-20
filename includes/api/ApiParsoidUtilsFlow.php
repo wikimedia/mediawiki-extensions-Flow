@@ -1,5 +1,7 @@
 <?php
 
+use Flow\Container;
+use Flow\Parsoid\Controller;
 use Flow\Parsoid\Utils;
 use Flow\Exception\WikitextException;
 
@@ -17,7 +19,8 @@ class ApiParsoidUtilsFlow extends ApiBase {
 		}
 
 		if ( $params['to'] === 'html' ) {
-			$contentFixer = \Flow\Container::get( 'content_fixer' );
+			/** @var Controller $contentFixer */
+			$contentFixer = Container::get( 'content_fixer' );
 			$content = $contentFixer->apply( $content, $page->getTitle() );
 		}
 
