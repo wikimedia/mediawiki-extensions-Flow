@@ -8,32 +8,6 @@ use Flow\Model\UUID;
 use Title;
 
 class UrlGenerator extends BaseUrlGenerator {
-
-	/**
-	 * Reverse pagination on a topic list.
-	 *
-	 * @var Title|null $title Page the workflow is on, resolved from workflowId when null
-	 * @var UUID $workflowId The topic list being paginated
-	 * @var PagerPage $page Pagination information
-	 * @var string $direction 'fwd' or 'rev'
-	 * @return Anchor|null
-	 */
-	public function paginateTopicsLink( Title $title = null, UUID $workflowId, PagerPage $page, $direction ) {
-		$linkData = $page->getPagingLink( $direction );
-		if ( !$linkData ) {
-			return null;
-		}
-		return new Anchor(
-			wfMessage( "flow-paging-$direction" ),
-			$this->resolveTitle( $title, $workflowId ),
-			array(
-				'topiclist_offset-id' => $linkData['offset'],
-				'topiclist_offset-dir' => $direction,
-				'topiclist_limit' => $linkData['limit'],
-			)
-		);
-	}
-
 	/**
 	 * Link to create new topic on a topiclist.
 	 *
