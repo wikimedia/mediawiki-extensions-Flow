@@ -11,12 +11,16 @@ use Flow\Model\Workflow;
 use Flow\Model\UUID;
 use User;
 
-
 /**
  * @group Flow
  * @group Database
  */
 class PostRevisionTestCase extends FlowTestCase {
+	/**
+	 * @var PostRevision
+	 */
+	protected $revision;
+
 	/**
 	 * @var PostRevision[]
 	 */

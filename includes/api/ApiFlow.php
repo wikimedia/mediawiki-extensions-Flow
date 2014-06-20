@@ -1,7 +1,8 @@
 <?php
 
-use \Flow\Container;
+use Flow\Container;
 use Flow\Model\UUID;
+use Flow\Templating;
 
 class ApiFlow extends ApiBase {
 
@@ -116,7 +117,8 @@ class ApiFlow extends ApiBase {
 	 * @todo figure out if this is still needed
 	 */
 	protected function doRerender( $blocks ) {
-		$templating = $this->container['templating'];
+		/** @var Templating $templating */
+		$templating = Container::get( 'templating' );
 
 		$output = array();
 
