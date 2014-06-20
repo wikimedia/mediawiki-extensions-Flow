@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_b605bb18",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-20T20:38:33Z",
+      "side": 1,
+      "message": "return mw.msg( str, name ); would be sufficient here but this does the same",
+      "revId": "1c9f68a7d0b6810f0f4db92da14e9614bc0df625",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
