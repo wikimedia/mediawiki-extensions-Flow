@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use Closure;
 use HTML;
 use LightnCandy;
 use RequestContext;
@@ -65,7 +66,7 @@ class TemplateHelper {
 	/**
 	 * Returns a given template function if found, otherwise throws an exception.
 	 * @param string $templateName
-	 * @return \Closure
+	 * @return Closure
 	 * @throws Exception\FlowException
 	 * @throws \Exception
 	 */
@@ -132,7 +133,6 @@ class TemplateHelper {
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
-					'pipelist' => 'Flow\TemplateHelper::pipelist',
 					'ifEquals' => 'Flow\TemplateHelper::ifEquals',
 					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 				),
@@ -332,7 +332,8 @@ class TemplateHelper {
 	 * @param mixed $left
 	 * @param mixed $right
 	 * @param array $options
-	 * @return null
+	 * @return string|null
+	 * @throws FlowException Fails when callbacks are not Closure instances
 	 */
 	static public function ifEquals( $left, $right, $options ) {
 		/** @var callable $inverse */
@@ -341,8 +342,14 @@ class TemplateHelper {
 		$fn = $options['fn'];
 
 		if ( $left == $right ) {
+			if ( !$fn instanceof Closure ) {
+				throw new FlowException( 'Invalid callback, expected Closure' );
+			}
 			return $fn();
 		} elseif ( $inverse ) {
+			if ( !$inverse instanceof Closure ) {
+				throw new FlowException( 'Invalid inverse callback, expected Closure' );
+			}
 			return $inverse();
 		}
 
@@ -351,7 +358,6 @@ class TemplateHelper {
 
 	/**
 	 * @param array $block
-	 *
 	 * @return array
 	 */
 	static public function block( $block ) {
@@ -365,24 +371,6 @@ class TemplateHelper {
 		) );
 	}
 
-	static public function pipelist( $context, $arguments, $options ) {
-		global $wgLang;
-
-		if ( count( $arguments ) !== 1 ) {
-			throw new FlowException( 'Expected exactly 1 argument' );
-		}
-		$fn = $options['fn'];
-		$ret = array();
-		foreach ( $arguments[0] as $item ) {
-			$cx['scopes'][] = $item;
-			$ret[] = call_user_func( $fn, $options['cx'], $item );
-			array_pop( $cx['scopes'] );
-		}
-
-		// Block helpers must always return safe content
-		return wfMessage( 'parentheses' )->rawParams( $wgLang->pipelist( $ret ) )->escaped();
-	}
-
 	/**
 	 * @param array $context The 'this' value of the calling context
 	 * @param array $postIds List of ids (roots)
@@ -391,6 +379,7 @@ class TemplateHelper {
 	 * @throws Exception\FlowException
 	 * @internal param array $arguments Arguments passed into the helper
 	 * @return null|string HTML
+	 * @throws FlowException When callbacks are not Closure instances
 	 */
 	static public function eachPost( $context, $postIds, $options ) {
 		/** @var callable $inverse */
@@ -402,11 +391,20 @@ class TemplateHelper {
 			$postIds = array( $postIds );
 		} elseif ( count( $postIds ) === 0 ) {
 			// Failure callback, if any
-			return $inverse ? $inverse( $options['cx'], array() ) : null;
+			if ( !$inverse ) {
+				return null;
+			}
+			if ( !$inverse instanceof Closure ) {
+				throw new FlowException( 'Invalid inverse callback, expected Closure' );
+			}
+			return $inverse( $options['cx'], array() );
 		} else {
 			return null;
 		}
 
+		if ( !$fn instanceof Closure ) {
+			throw new FlowException( 'Invalid callback, expected Closure' );
+		}
 		$html = array();
 		$i = 0;
 		$last = count( $postIds ) - 1;
@@ -660,8 +658,14 @@ class TemplateHelper {
 	static public function ifAnonymous( $options ) {
 		if ( RequestContext::getMain()->getUser()->isAnon() ) {
 			$fn = $options['fn'];
+			if ( !$fn instanceof Closure ) {
+				throw new FlowException( 'Expected callback to be Closuire instance' );
+			}
 		} elseif ( isset( $options['inverse'] ) ) {
 			$fn = $options['inverse'];
+			if ( !$fn instanceof Closure ) {
+				throw new FlowException( 'Expected inverse callback to be Closuire instance' );
+			}
 		} else {
 			return '';
 		}
