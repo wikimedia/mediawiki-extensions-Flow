@@ -1049,13 +1049,23 @@
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$post = $( this ).closest( '.flow-post' ),
 				$targetPost = $( this ).closest( '.flow-post:not([data-flow-post-max-depth])' ),
-				$form;
+				postId = $targetPost.data( 'flow-id' ),
+				topicTitle = $post.closest( '.flow-topic' ).find( '.flow-topic-title' ).text(),
+				author = $post.find( '.flow-author:first .mw-userlink' ).text().trim(),
+				initialContent, $form;
 
 			// Check if reply form has already been opened
 			if ( $post.data( 'flow-replying' ) ) {
 				return;
 			}
 			$post.data( 'flow-replying', true );
+
+			// if we have a real username, turn it into "[[User]]" (otherwise, just "127.0.0.1")
+			initialContent = author;
+			if ( !mw.util.isIPv4Address( author , true ) && !mw.util.isIPv6Address( author , true ) ) {
+				initialContent = '[[' + mw.Title.newFromText( author, 2 ).getPrefixedText() + '|' + author + ']]';
+			}
+			initialContent += ': ';
 
 			$form = $( flowBoard.TemplateEngine.processTemplateGetFragment(
 				'flow_reply_form',
@@ -1066,9 +1076,14 @@
 							url: $( this ).attr( 'href' )
 						}
 					},
-					postId: $targetPost.data( 'flow-id' ),
+					postId: postId,
 					author: {
-						name: $post.find( '.flow-author:first .mw-userlink' ).text()
+						name: author
+					},
+					content: topicTitle, // text for flow-reply-topic-title-placeholder placeholder
+					submitted: { // prefill content
+						postId: postId,
+						content: initialContent
 					}
 				}
 			) ).children();
