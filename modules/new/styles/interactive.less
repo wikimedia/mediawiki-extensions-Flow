@@ -176,7 +176,27 @@ div.flow-menu-inverted {
 		display: none;
 	}
 }
-// In compact mode, posts are hidden, and the topic titlebar is minimized
+
+
+// Overrides to the default expand/collapse state.  Only set when
+// necessary and removed when the page-level state changes
+// div is used to add specificity.
+
+div.flow-topic-expanded {
+	.flow-post,
+	.flow-reply-form {
+		display: block;
+	}
+}
+
+div.flow-topic-collapsed {
+	.flow-post,
+	.flow-reply-form {
+		display: none;
+	}
+}
+
+// In compact mode, posts are hidden by default, and the topic titlebar is minimized
 .flow-board-collapsed-compact {
 	.flow-board-navigation {
 		a.flow-board-collapser-compact {
@@ -215,14 +235,8 @@ div.flow-menu-inverted {
 	.flow-reply-form {
 		display: none;
 	}
-	.flow-topic-collapsed-invert {
-		.flow-post,
-		.flow-reply-form {
-			display: block;
-		}
-	}
 }
-// In topics mode, posts are hidden; only the topic titlebar is visible
+// In topics mode, posts are hidden by default; only the topic titlebar is visible
 .flow-board-collapsed-topics {
 	.flow-board-navigation {
 		a.flow-board-collapser-topics {
@@ -237,23 +251,10 @@ div.flow-menu-inverted {
 	.flow-reply-form {
 		display: none;
 	}
-	.flow-topic-collapsed-invert {
-		.flow-post,
-		.flow-reply-form {
-			display: block;
-		}
-	}
 }
 
 .flow-topic-moderated {
 	opacity: 0.4;
-}
-
-.flow-topic-collapsed-invert {
-	.flow-post,
-	.flow-reply-form {
-		display: none;
-	}
 }
 
 // Show that the topic titlebar is clickable
