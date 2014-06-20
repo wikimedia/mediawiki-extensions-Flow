@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_b15caa4f",
+        "filename": "Hooks.php",
+        "patchSetId": 8
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-20T13:36:43Z",
+      "side": 1,
+      "message": "Need to think about this.\n\nThere may be cache issues here, when page for anons is server by Varnish (as it\u0027s part of the page output, IIRC)\n\nI believe I was once told these would still be parsed regardless, though.",
+      "revId": "2e73337734e465d1a490b253fe7eb48814d5c13b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
