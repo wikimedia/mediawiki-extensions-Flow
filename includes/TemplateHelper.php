@@ -652,8 +652,8 @@ class TemplateHelper {
 	/**
 	 * Runs a callback when user is anonymous
 	 * @param array $options which must contain fn and inverse key mapping to functions.
-	 *
 	 * @return mixed result of callback
+	 * @throws FlowException Fails when callbacks are not Closure instances
 	 */
 	static public function ifAnonymous( $options ) {
 		if ( RequestContext::getMain()->getUser()->isAnon() ) {
