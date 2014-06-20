@@ -555,8 +555,8 @@ class TemplateHelper {
 	 */
 	static public function progressiveEnhancement( array $input ) {
 		$context = $input['context'];
-		$insertionType = $input['insertionType'];
-		$sectionId = $input['sectionId'];
+		$insertionType = htmlspecialchars( $input['insertionType'] );
+		$sectionId = htmlspecialchars( $input['sectionId'] );
 		$templateName = $input['templateName'];
 
 		return self::html(
