@@ -177,9 +177,6 @@ class TopicListBlock extends AbstractBlock {
 			'user' => $this->user,
 		) );
 
-		$notificationController = $this->notificationController;
-		$topicWorkflow = $this->topicWorkflow;
-		$topicPost = $this->topicPost;
 		$output = array(
 			'created-topic-id' => $this->topicWorkflow->getId(),
 			'created-post-id' => $this->firstPost ? $this->firstPost->getRevisionId() : null,

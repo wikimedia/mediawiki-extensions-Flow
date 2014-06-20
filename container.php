@@ -204,7 +204,6 @@ $c['storage.board_history.index'] = $c->share( function( $c ) {
 } );
 
 $c['storage.board_history'] = $c->share( function( $c ) {
-	$cache = $c['memcache.buffered'];
 	$mapper = new BasicObjectMapper(
 		function( $rev ) use( $c ) {
 			if ( $rev instanceof PostRevision ) {
@@ -480,7 +479,6 @@ $c['storage.topic_history.backing'] = $c->share( function( $c ) {
 } );
 
 $c['storage.topic_history'] = $c->share( function( $c ) {
-	$cache = $c['memcache.buffered'];
 	$mapper = new BasicObjectMapper(
 		function( $rev ) use( $c ) {
 			if ( $rev instanceof PostRevision ) {
@@ -533,7 +531,6 @@ $c['storage.user_subs.user_index'] = $c->share( function( $c ) {
 } );
 // User subscriptions are triggered by updates on workflow objects.
 $c['storage.user_subs'] = $c->share( function( $c ) {
-	$cache = $c['memcache.buffered'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\UserSubscription' );
 	$storage = $c['storage.user_subs.backing'];
 	$indexes = array(
