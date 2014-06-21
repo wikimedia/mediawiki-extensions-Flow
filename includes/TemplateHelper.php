@@ -223,7 +223,7 @@ class TemplateHelper {
 			$topicPost = $args[0];
 			$message = wfMessage(
 				'flow-topic-participants-second-try',
-				$topicPost['author']['name'],
+				$topicPost['creator']['name'],
 				$topicPost['author_count'] - 1
 			);
 			break;
