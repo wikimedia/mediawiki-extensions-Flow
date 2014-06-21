@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_9402afbc",
+        "filename": "Resources.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "It looks like you removed flow_preview.handlebars from here, but didn\u0027t actually remove the file from git.",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_b4e6d33d",
+        "filename": "handlebars/flow_block_topicsummary_edit.handlebars",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "Per Jon, should be topic_summary in filename for consistency.",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_54b0c7f0",
+        "filename": "handlebars/flow_tooltip.handlebars",
+        "patchSetId": 14
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "\u0027content\u0027 is used a lot for post/topic/etc. user content, but I think it\u0027s okay as long as flow_tooltip is only called from the tooltip helper.",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_74906b4e",
+        "filename": "i18n/qqq.json",
+        "patchSetId": 14
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "It looks like you forgot to change this.\n\nYou should explain where/how the message is used, and any parameters (no parameters in this case).",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_b475b32e",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "You can just use:\n\nmw.message( \u0027flow-anonymous\u0027 ).text()\n\nIt\u0027s not in a template yet, so no need to use the TemplateEngine.",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_948cef33",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "Especially don\u0027t do it twice.",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_748f4b27",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "See above re mw.message",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_b4a4939f",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 1444,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "Parentheses would be helpful here.",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_54ad677f",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "Should have actual explanation of parameter, particularly those that take multiple types.",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_74dd0b17",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "Why does this need to be done separately?  Are some of the buttons not part of the form?",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_7433cb5f",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "I know this is mostly pre-existing, but it\u0027s scary.\n\nFiled as https://trello.com/c/8rNhmbaw/282-cleanup-flowapigetquerymap",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_94306f54",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "Actual URLs do not use \u0026amp; as a separator (that probably indicates a bug elsewhere if it\u0027s needed).",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_d44dd7e1",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "It doesn\u0027t seem like the same method needs to both abort and restart the API call.  \n\nAgain, please document.",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_741aabd1",
+        "filename": "modules/new/flow-api.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-21T00:02:41Z",
+      "side": 1,
+      "message": "on completion, since you\u0027re doing it on failure too.",
+      "revId": "456280b1a6e283769517dc653c0d89939f464c69",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
