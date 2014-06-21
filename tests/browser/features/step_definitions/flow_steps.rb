@@ -11,17 +11,17 @@ Given(/^I have created a Flow topic$/) do
   step "I create a Title of Flow Topic in Flow new topic"
   step "I create a Body of Flow Topic into Flow body"
   step "I click New topic save"
-  step "the Flow page should contain Title of Flow Topic"
+  step 'the top post should have a heading which contains "Title of Flow Topic"'
 end
 
 Given(/^the author link is visible$/) do
     on(FlowPage).author_link_element.when_present.should be_visible
 end
 
-Given(/^the talk and contrib links are not visible$/) do
+Given(/^the talk and block links are not visible$/) do
   on(FlowPage) do |page|
     page.talk_link_element.should_not be_visible
-    page.contrib_link_element.should_not be_visible
+    page.block_user_element.should_not be_visible
   end
 end
 
@@ -68,21 +68,32 @@ Then(/^I do not see a block user link$/) do
    on(FlowPage).block_user_element.should_not exist
 end
 
-Then(/^links to talk and contrib should be visible$/) do
+Then(/^links to talk and block should be visible$/) do
   on(FlowPage) do |page|
     page.talk_link_element.should be_visible
-    page.contrib_link_element.should be_visible
+    page.block_user_element.should be_visible
   end
 end
 
-Then(/^the Flow page should contain (.+)$/) do |flow_topic|
+Then(/^the preview and cancel buttons have disappeared$/) do
   on(FlowPage) do |page|
     page.wait_until(20) do
       page.preview_button_element.visible? != true
       page.cancel_button_element.visible? != true
     end
-    page.flow_body.should match(flow_topic + @random_string + @automated_test_marker)
   end
+end
+
+Then(/^the top post should have a heading which contains "(.+)"$/) do |text|
+  # Ensure the page has re-rendered
+  step 'the page renders in 2 seconds'
+  step 'the preview and cancel buttons have disappeared'
+  on(FlowPage).flow_first_topic_heading.should match(text + @random_string + @automated_test_marker)
+end
+
+Then(/^the top post should have content which contains "(.+)"$/) do |text|
+  step 'the preview and cancel buttons have disappeared'
+  on(FlowPage).flow_first_topic_body.should match(text + @random_string + @automated_test_marker)
 end
 
 Then(/^I should see a Delete button$/) do
