@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_afbd5aff",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-21T02:01:38Z",
+      "side": 1,
+      "message": "This seems fragile, wish we could search for text or link and CSS :(\n\nAnd it doesn\u0027t work in Firefox, on my big Flow_QA page Scenario: \"Anon does not see block or actions\" fails with\n\n    Then I do not see a block user link        # features/step_definitions/flow_steps.rb:67\n      expected #\u003cWatir::HTMLElement:0x25c03dfde28de52c located\u003dtrue selector\u003d{:css\u003d\u003e\".mw-usertoollinks a\", :index\u003d\u003e1}\u003e not to exist\n\nI think it\u0027s selecting the next \"Talk\" link on the page, in a different .mw-usertoollinks altogether.\n\nYou want to target the second link in the first .mw-usertoollinks, but CSS doesn\u0027t have :first. Instead rely on the hover state which only one author name should have:\n   a(:block_user, css: \".flow-author:hover .mw-usertoollinks a\", index: 1)\n\nI\u0027ll submit a new patch set.",
+      "revId": "e4a04e484f1ad70eb5d3398581557bc631631793",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_cf51bede",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-21T02:01:38Z",
+      "side": 1,
+      "message": "I bow down before your ruby/Cheezy/Watir/page object skills :)\n\nI\u0027m not familiar with the syntax, but this works.",
+      "revId": "e4a04e484f1ad70eb5d3398581557bc631631793",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
