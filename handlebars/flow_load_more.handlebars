@@ -1,8 +1,8 @@
 {{#if links.pagination.fwd}}
 	<a data-flow-interactive-handler="apiRequest"
 	   data-flow-api-handler="loadMore"
-	   data-flow-api-target="< .flow-component"
+	   data-flow-load-handler="loadMore"
 	   href="{{links.pagination.fwd.url}}"
 	   title="{{links.pagination.fwd.title}}"
-	   class="flow-ui-button flow-ui-progressive /*flow-ui-quiet flow-ui-thin*/"><span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-load-more"}}</a>
+	   class="flow-ui-button flow-ui-progressive flow-load-interactive /*flow-ui-quiet flow-ui-thin*/"><span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-load-more"}}</a>
 {{/if}}
