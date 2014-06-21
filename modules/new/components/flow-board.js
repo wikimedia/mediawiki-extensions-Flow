@@ -644,6 +644,27 @@
 			);
 		};
 
+		/**
+		 * Stores the load more button for use with infinite scroll.
+		 * @param {jQuery} $button
+		 */
+		FlowBoardComponent.UI.events.loadHandlers.loadMore = function ( $button ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $button );
+
+			if ( !flowBoard.$loadMoreNodes ) {
+				// Create a new $loadMoreNodes list
+				flowBoard.$loadMoreNodes = $();
+			} else {
+				// Remove any loadMore nodes that are no longer in the body
+				flowBoard.$loadMoreNodes = flowBoard.$loadMoreNodes.filter( function () {
+					return $( this ).closest( 'body' ).length;
+				} );
+			}
+
+			// Store this new loadMore node
+			flowBoard.$loadMoreNodes = flowBoard.$loadMoreNodes.add( $button );
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI event interactive handlers
 		////////////////////
@@ -1377,16 +1398,26 @@
 
 		/**
 		 * Called on window.scroll. Checks to see if a FlowBoard needs to have more content loaded.
-		 * @todo Find a better way than directly targetting the button by class
 		 */
 		FlowBoardComponent.UI.infiniteScrollCheck = function () {
-			var windowPosition = $( window ).scrollTop() + $( window ).height();
+			var windowHeight = $( window ).height(),
+				scrollPosition = $( window ).scrollTop();
 
-			$.each( FlowBoardComponent.prototype.getInstances(), function () {
-				var flowBoard = this;
+			if ( scrollPosition > 25 ) {
+				$.each( FlowBoardComponent.prototype.getInstances(), function () {
+					var flowBoard = this,
+						$loadMoreNodes = flowBoard.$loadMoreNodes || $();
 
-
-			} );
+					// Check each loadMore button
+					$loadMoreNodes.each( function () {
+						// Only count this button as infinite-scrollable if it appears below the fold
+						// and that we have scrolled at least 50% of the way to it
+						if ( this.offsetTop > windowHeight && scrollPosition / ( this.offsetTop - windowHeight ) > 0.5 ) {
+							$( this ).click();
+						}
+					} );
+				} );
+			}
 		};
 
 		/**
