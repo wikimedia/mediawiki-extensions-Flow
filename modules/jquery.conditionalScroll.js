@@ -13,16 +13,16 @@
 		// animations (eg. it might be doing a slideDown), even though THIS actual animation occurs on body.
 		this.queue( function () {
 			var $this = $( this ),
-				viewportX = $( window ).scrollTop(),
+				viewportY = $( window ).scrollTop(),
 				viewportHeight = $( window ).height(),
 				elOffset = $this.offset(),
 				elHeight = $this.outerHeight(),
 				scrollTo = -1;
 
-			if ( elOffset.top < viewportX ) {
+			if ( elOffset.top < viewportY ) {
 				// Element starts above viewport; put el top at top
 				scrollTo = elOffset.top;
-			} else if ( elOffset.top + elHeight > viewportX + viewportHeight ) {
+			} else if ( elOffset.top + elHeight > viewportY + viewportHeight ) {
 				// Element ends below viewport
 				if ( elHeight > viewportHeight ) {
 					// Too tall to fit into viewport; put el top at top
@@ -35,7 +35,7 @@
 
 			if ( scrollTo > -1 ) {
 				// Scroll the viewport to display this element
-				$( 'body' ).animate( { scrollTop: scrollTo }, speed, function () {
+				$( 'html, body' ).animate( { scrollTop: scrollTo }, speed, function () {
 					// Fire off the next fx queue on the main element when we finish scrolling the window
 					$this.dequeue();
 				} );
