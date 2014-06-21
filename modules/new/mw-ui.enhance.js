@@ -235,7 +235,7 @@
 
 		// Attach the mouseenter and mouseleave handlers on document
 		$( document )
-			.on( 'mouseenter.mw-ui-enhance focus.mw-ui-enhance click.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipFocus )
-			.on( 'mouseleave.mw-ui-enhance blur.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipBlur );
+			.on( 'mouseenter.mw-ui-enhance focus.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipFocus )
+			.on( 'mouseleave.mw-ui-enhance blur.mw-ui-enhance click.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipBlur );
 	} );
 }( jQuery ) );

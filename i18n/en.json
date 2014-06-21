@@ -131,6 +131,7 @@
     "flow-error-process-data": "An error has occurred while processing the data in your request.",
     "flow-error-process-wikitext": "An error has occurred while processing HTML/wikitext conversion.",
     "flow-error-no-index": "Failed to find an index to perform data search.",
+    "flow-edit-header-placeholder": "Describe this Flow board",
     "flow-edit-header-submit": "Save header",
     "flow-edit-header-submit-overwrite": "Overwrite header",
     "flow-summarize-topic-submit": "Summarize",
