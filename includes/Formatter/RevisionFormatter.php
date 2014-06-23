@@ -649,7 +649,7 @@ class RevisionFormatter {
 			$lang = $ctx->getLanguage();
 			$content = $this->templating->getContent( $revision, 'html' );
 			$content = strip_tags( $content );
-			return Message::rawParam( htmlspecialchars( $lang->truncate( trim( $content ), 140 ) ) );
+			return Message::rawParam( $lang->truncate( trim( $content ), 140 ) );
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
