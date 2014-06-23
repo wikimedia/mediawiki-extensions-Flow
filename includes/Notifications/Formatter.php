@@ -92,7 +92,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 			case 'flow-post':
 				$postId = $event->getExtraParam( 'post-id' );
 				if ( !$postId instanceof UUID ) {
-					throw new FlowException( 'Expected UUID but received ' . get_class( $post ) );
+					throw new FlowException( 'Expected UUID but received ' . get_class( $postId ) );
 				}
 				$workflowId = $event->getExtraParam( 'topic-workflow' );
 				if ( $postId && $workflowId && $title ) {

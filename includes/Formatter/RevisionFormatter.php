@@ -420,7 +420,7 @@ class RevisionFormatter {
 						$flowAction = 'moderate-topic';
 					break;
 				}
-				if ( $moderateAction ) {
+				if ( isset( $moderateAction ) && $moderateAction ) {
 					$links[$moderateAction] = $this->urlGenerator->restoreTopicAction( $title, $workflowId, $moderateAction, $flowAction );
 				}
 				break;
