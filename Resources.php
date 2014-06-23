@@ -153,10 +153,14 @@ $wgResourceModules += array(
 		)
 	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
-		'scripts' => 'new/vendor/Storer.js',
+		'scripts' => array(
+			'new/vendor/Storer.js',
+		),
 	),
 	'ext.flow.vendor.jquery.ba-throttle-debounce' => $flowResourceTemplate + array(
-		'scripts' => 'new/vendor/jquery.ba-throttle-debounce.js',
+		'scripts' => array(
+			'new/vendor/jquery.ba-throttle-debounce.js',
+		),
 	),
 );
 
