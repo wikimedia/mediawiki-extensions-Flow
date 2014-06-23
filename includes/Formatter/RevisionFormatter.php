@@ -653,7 +653,9 @@ class RevisionFormatter {
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
-			return Message::rawParam( $content );
+			// This must be escaped and marked raw to prevent special chars in
+			// content, like $1, from changing the i18n result
+			return Message::rawParam( htmlspecialchars( $content ) );
 
 		// This is potentially two networked round trips, much too expensive for
 		// the rendering loop
@@ -670,7 +672,7 @@ class RevisionFormatter {
 			}
 
 			$content = $this->templating->getContent( $previousRevision, 'wikitext' );
-			return Message::rawParam( $content );
+			return Message::rawParam( htmlspecialchars( $content ) );
 
 		case 'workflow-url':
 			return $this->urlGenerator
@@ -695,7 +697,8 @@ class RevisionFormatter {
 			}
 			$root = $revision->getRootPost();
 			$content = $this->templating->getContent( $root, 'wikitext' );
-			return Message::rawParam( $content );
+
+			return Message::rawParam( htmlspecialchars( $content ) );
 
 		case 'post-of-summary':
 			if ( !$revision instanceof PostSummary ) {
@@ -703,14 +706,12 @@ class RevisionFormatter {
 			}
 			$post = $revision->getCollection()->getPost()->getLastRevision();
 			if ( $post->isTopicTitle() ) {
-				$content = $this->templating->getContent( $post, 'wikitext' );
-				if ( $this->permissions->isAllowed( $post, 'view' ) ) {
-					$content = htmlspecialchars( $content );
-				}
+				$content = htmlspecialchars( $this->templating->getContent( $post, 'wikitext' ) );
 			} else {
 				$content = $this->templating->getContent( $post, 'html' );
 			}
 			return Message::rawParam( $content );
+
 		case 'bundle-count':
 			return Message::numParam( count( $revision ) );
 
