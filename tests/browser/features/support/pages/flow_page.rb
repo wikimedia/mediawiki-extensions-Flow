@@ -37,6 +37,7 @@ class FlowPage
   ## Top post
   h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
   div(:flow_first_topic_body, css: ".flow-post-content", index: 0)
+  div(:flow_first_topic_moderation_msg, css: '.flow-moderated-topic-title', index: 0)
 
   ### Hover over username behaviour
   a(:talk_link, css: "..flow-author:hover mw-usertoollinks a", index: 0)
@@ -51,15 +52,19 @@ class FlowPage
   a(:topic_actions_link, css: ".flow-topic .flow-topic-titlebar .flow-menu-js-drop a", index: 0)
   ## Menu
   ul(:topic_actions_menu, css: ".flow-topic .flow-topic-titlebar .flow-menu ul", index: 0)
-  a(:topic_delete_button) do |page|
+  a(:topic_hide_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Hide topic")
   end
-  a(:topic_hide_button) do |page|
+  a(:topic_delete_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Delete topic")
   end
   a(:topic_suppress_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Suppress topic")
   end
+  ### Topic deletion workflow
+  div(:dialog, css: ".ui-dialog")
+  textarea(:dialog_input, css: ".ui-dialog textarea")
+  button(:dialog_submit, css: ".ui-dialog .flow-ui-constructive")
 
   # Post actions menu
   a(:post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 0)

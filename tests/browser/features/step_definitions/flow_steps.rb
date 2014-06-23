@@ -86,7 +86,7 @@ end
 
 Then(/^the top post should have a heading which contains "(.+)"$/) do |text|
   # Ensure the page has re-rendered
-  step 'the page renders in 2 seconds'
+  step 'the page renders in 5 seconds'
   step 'the preview and cancel buttons have disappeared'
   on(FlowPage).flow_first_topic_heading.should match(text + @random_string + @automated_test_marker)
 end
@@ -102,6 +102,10 @@ end
 
 Then(/^I should see a Delete topic button$/) do
   on(FlowPage).topic_delete_button_element.when_present.should be_visible
+end
+
+When(/^I click the Delete topic button$/) do
+  on(FlowPage).topic_delete_button_element.when_present.click
 end
 
 Then(/^I should see a Hide button$/) do
