@@ -19,10 +19,16 @@ class ApiFlowViewTopic extends ApiFlowBaseGet {
 	}
 
 	public function getAllowedParams() {
+		global $wgFlowContentFormat;
+
 		return array(
 			'no-children' => array(
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false,
+			),
+			'contentFormat' => array(
+				ApiBase::PARAM_TYPE => array( 'html', 'wikitext' ),
+				ApiBase::PARAM_DFLT => $wgFlowContentFormat,
 			),
 		);
 	}
@@ -30,6 +36,7 @@ class ApiFlowViewTopic extends ApiFlowBaseGet {
 	public function getParamDescription() {
 		return array(
 			'no-children' => 'If set, this won\'t render replies to the requested topic',
+			'contentFormat' => 'Format to return the content in',
 		);
 	}
 
