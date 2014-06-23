@@ -34,6 +34,10 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => false,
 			),
+			'offset' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => false,
+			),
 			'limit' => array(
 				// @todo once we have a better idea of the performance of this
 				// adjust these to sane defaults
@@ -55,6 +59,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 		return array(
 			'offset-dir' => 'Direction to get topics for',
 			'offset-id' => 'Offset value (in UUID format) to start fetching topics at',
+			'offset' => 'Offset value to start fetching topics at',
 			'limit' => 'Amount of topics to fetch',
 			'render' => 'Renders (in HTML) the topics, if set',
 		);
