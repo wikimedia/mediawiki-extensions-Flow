@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_e7813d50",
+        "filename": "handlebars/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-23T22:08:48Z",
+      "side": 1,
+      "message": "This is producing an error during make:\nmake: *** No rule to make target `compiled/flow_block_topic_close.handlebars.php\u0027, needed by `all\u0027.  Stop.",
+      "revId": "cde2584f93f2f27c8ebce450bcfd88c6bca8e28c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
