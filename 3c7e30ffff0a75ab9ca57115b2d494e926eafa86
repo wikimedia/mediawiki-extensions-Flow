@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_0ef21e03",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T18:17:21Z",
+      "side": 1,
+      "message": "Documentation plase.",
+      "revId": "3c7e30ffff0a75ab9ca57115b2d494e926eafa86",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_eef8fae3",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T18:17:21Z",
+      "side": 1,
+      "message": "Please don\u0027t console.log \nmw.log.warn if necessary",
+      "revId": "3c7e30ffff0a75ab9ca57115b2d494e926eafa86",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_cefbf6dc",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T18:17:21Z",
+      "side": 1,
+      "message": "Please don\u0027t console.log \nmw.log.warn if necessary",
+      "revId": "3c7e30ffff0a75ab9ca57115b2d494e926eafa86",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_8eddee75",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T18:17:21Z",
+      "side": 1,
+      "message": "Indent the errors object this on a new line",
+      "revId": "3c7e30ffff0a75ab9ca57115b2d494e926eafa86",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_aee2f22b",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T18:17:21Z",
+      "side": 1,
+      "message": "Clean this up. You use the form twice and also below so cache it for readability.",
+      "revId": "3c7e30ffff0a75ab9ca57115b2d494e926eafa86",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_6eec0a21",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T18:17:21Z",
+      "side": 1,
+      "message": "Use trigger( \u0027click\u0027 )\nAlso is there a way not to use a data selector? Is there a class/ other selector you could use. This will be slower in IE8 for example which has no native support for that.",
+      "revId": "3c7e30ffff0a75ab9ca57115b2d494e926eafa86",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_4ee7063c",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T18:17:21Z",
+      "side": 1,
+      "message": "Whitespace all wrong here, split arguments on to lines.",
+      "revId": "3c7e30ffff0a75ab9ca57115b2d494e926eafa86",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_2ed60255",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T18:17:21Z",
+      "side": 1,
+      "message": "Please put FlowBoardComponent.prototype.getInstanceByElement( $this \n).$container into a variable for readability.",
+      "revId": "3c7e30ffff0a75ab9ca57115b2d494e926eafa86",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}

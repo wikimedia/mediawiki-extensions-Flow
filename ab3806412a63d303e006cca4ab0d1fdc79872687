@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_eecfdab3",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T18:17:21Z",
+      "side": 0,
+      "message": "Whitespace is very inconsistent in this file - not clear if everything should be on a new line or separated by a newline.",
+      "revId": "ab3806412a63d303e006cca4ab0d1fdc79872687",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
