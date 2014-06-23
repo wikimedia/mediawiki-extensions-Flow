@@ -1188,6 +1188,7 @@
 				$targetPost = $( this ).closest( '.flow-post:not([data-flow-post-max-depth])' ),
 				postId = $targetPost.data( 'flow-id' ),
 				topicTitle = $post.closest( '.flow-topic' ).find( '.flow-topic-title' ).text(),
+				replyToContent = $post.find( '.flow-post-content' ).text() || topicTitle,
 				author = $post.find( '.flow-author:first .mw-userlink' ).text().trim(),
 				initialContent, $form;
 
@@ -1218,7 +1219,8 @@
 						name: author
 					},
 					// text for flow-reply-topic-title-placeholder placeholder
-					content: topicTitle,
+					content: replyToContent,
+					contentFormat: 'text',
 					submitted: {
 						postId: postId,
 						// prefill content

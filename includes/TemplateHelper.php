@@ -192,6 +192,22 @@ class TemplateHelper {
 		array_shift( $args );
 
 		switch( $str ) {
+		case 'reply_placeholder':
+			$contentFormat = $args[0];
+			$content = $args[1];
+			$message = wfMessage( 'flow-reply-topic-title-placeholder' );
+			// rawParams must be used to prevent user content of {{FULLPAGENAME}} and
+			// similar from being parsed
+			if ( $contentFormat === 'html' ) {
+				// strip existing tags and decode to prevent double encoding
+				$message->params( html_entity_decode( strip_tags( $content ) ) );
+			} else {
+				$message->params( $content );
+			}
+			// use plain() to prevent user submitted {{FULLPAGENAME}} and similar from
+			// being parsed
+			return $message->plain();
+
 		case 'Reply':
 			$author = $args[0];
 			$message = wfMessage( 'flow-reply-submit', $author['gender'] );

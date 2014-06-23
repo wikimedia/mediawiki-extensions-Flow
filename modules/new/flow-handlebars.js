@@ -126,6 +126,16 @@
 	function flowMessages( str ) {
 		var parameters = Array.prototype.slice.call( arguments, 1 ),
 			strings = ( {
+				"reply_placeholder": function( contentFormat, content ) {
+					var params;
+					if ( contentFormat === 'html' ) {
+						// strip html tags and decode entities to get plain text
+						params = [ $( content ).text() ];
+					} else {
+						params = [ content ];
+					}
+					return mw.message( 'flow-reply-topic-title-placeholder', params ).plain();
+				},
 				"Reply": "Reply", // TODO: pass in and parse $author['gender']
 				"Topics_n": function ( count, options ) {
 					return "Topics (" + count + ")";
