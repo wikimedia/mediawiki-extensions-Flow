@@ -10,9 +10,9 @@
 				<input type="hidden" name="topic_replyTo" value="{{postId}}" />
 
 				<textarea id="flow-post-{{postId}}-form-content" name="topic_content" class="mw-ui-input" type="text" placeholder="{{l10n "flow-reply-topic-title-placeholder" content}}" data-role="content">
-					{{~#ifEquals @root.submitted.postId postId}}
+					{{~#ifEquals @root.submitted.postId postId~}}
 						{{~@root.submitted.content~}}
-					{{/ifEquals~}}
+					{{~/ifEquals~}}
 				</textarea>
 
 				<div class="flow-form-actions flow-form-collapsible">
