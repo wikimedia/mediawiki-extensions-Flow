@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_d1995b72",
+        "filename": "includes/api/ApiQueryFlow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-06-23T19:58:23Z",
+      "side": 1,
+      "message": "These aren\u0027t submodules, they\u0027re PHP files. Should this be \u0027Instead use action\u003dflow with submodule\u003dtopiclist-view, or post-view, topic-view, header-view, topic-summary-view, etc.\u0027 ?",
+      "revId": "c1c4435d09d7483b4f5437d7498c2c1472f4c0c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
