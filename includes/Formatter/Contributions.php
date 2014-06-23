@@ -36,6 +36,7 @@ class Contributions extends AbstractFormatter {
 	 * @return string
 	 */
 	protected function formatHtml( FormatterRow $row, IContextSource $ctx ) {
+		$this->serializer->setIncludeHistoryProperties( true );
 		$data = $this->serializer->formatApi( $row, $ctx );
 
 		$charDiff = ChangesList::showCharacterDifference(
