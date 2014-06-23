@@ -566,44 +566,6 @@ class RevisionFormatter {
 				}
 				break;
 
-			case 'diff-post-summary':
-				/*
-				 * To diff against previous revision, we don't really need that
-				 * revision id; if no particular diff id is specified, it will
-				 * assume a diff against previous revision. However, we do want
-				 * to make sure that a previous revision actually exists to diff
-				 * against. This could result in a network request (fetching the
-				 * current revision), but it's likely being loaded anyways.
-				 */
-				if ( $revision->getPrevRevisionId() !== null ) {
-					$links['diff'] = $this->urlGenerator
-						->diffSummaryLink( $title, $workflowId, $revId );
-
-					/*
-					 * Different formatters have different terminology for the link
-					 * that diffs a certain revision to the previous revision.
-					 *
-					 * E.g.: Special:Contributions has "diff" ($links['diff']),
-					 * ?action=history has "prev" ($links['prev']).
-					 */
-					$links['diff-prev'] = clone $links['diff'];
-					$links['diff-prev']->title = $this->msg( 'last' );
-				}
-
-				/*
-				 * To diff against the current revision, we need to know the id
-				 * of this last revision. This could be an additional network
-				 * request, though anything using formatter likely already needs
-				 * to request the most current revision (e.g. to check
-				 * permissions) so we should be able to get it from local cache.
-				 */
-				$cur = $row->currentRevision;
-				if ( !$revision->getRevisionId()->equals( $cur->getRevisionId() ) ) {
-					$links['diff-cur'] = $this->urlGenerator
-						->diffSummaryLink( $title, $workflowId, $revId, $cur->getRevisionId() );
-				}
-				break;
-
 			case 'workflow':
 				$links['workflow'] = $this->urlGenerator->workflowLink( $title, $workflowId );
 				break;
