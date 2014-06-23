@@ -2,7 +2,6 @@
 
 namespace Flow;
 
-use Flow\Data\PagerPage;
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Title;

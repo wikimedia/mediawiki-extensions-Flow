@@ -8,7 +8,6 @@ use Flow\Model\URLReference;
 use Flow\Model\WikiReference;
 use LinkBatch;
 use LinkCache;
-use LoadBalancer;
 use WikiPage;
 
 class LinksTableUpdater {
