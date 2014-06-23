@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_ce8ad61b",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-06-23T18:40:23Z",
+      "side": 1,
+      "message": "Might as well move this to the final array on line 705, next to localBasePath which is also the same for each. Unlike the modules registered in the main extension setup file, there is no actual repetition in code here, so contrary to that, separating the \"template\" here only makes the code needlessly more complex.",
+      "revId": "5ef6d2ffb709ae46bab5f8244994ff0031fec850",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_cebc16d8",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-06-23T18:40:23Z",
+      "side": 1,
+      "message": "This variable is only used once, considering its value is a constant, might as well drop it. I guess this is a left over of different code you tried first.",
+      "revId": "5ef6d2ffb709ae46bab5f8244994ff0031fec850",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_8e7cce1c",
+        "filename": "Hooks.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 703,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-06-23T18:40:23Z",
+      "side": 1,
+      "message": "Don\u0027t use empty(). Anything other than empty().",
+      "revId": "5ef6d2ffb709ae46bab5f8244994ff0031fec850",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
