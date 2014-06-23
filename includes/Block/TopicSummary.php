@@ -250,6 +250,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @param Templating $templating
 	 * @param array $options
 	 * @param bool $return
+	 * @return string
 	 * @throws InvalidInputException
 	 */
 	public function render( Templating $templating, array $options, $return = false ) {
