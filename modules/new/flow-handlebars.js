@@ -126,6 +126,16 @@
 	function flowMessages( str ) {
 		var parameters = Array.prototype.slice.call( arguments, 1 ),
 			strings = ( {
+				"reply_placeholder": function( contentFormat, content ) {
+					var params;
+					if ( contentFormat === 'html' ) {
+						// strip html tags and decode entities to get plain text
+						params = [ $( content ).text() ];
+					} else {
+						params = [ content ];
+					}
+					return mw.message( 'flow-reply-topic-title-placeholder', params ).plain();
+				},
 				"Reply": "Reply", // TODO: pass in and parse $author['gender']
 				"Topics_n": function ( count, options ) {
 					return "Topics (" + count + ")";
@@ -646,6 +656,17 @@
 	};
 
 	/**
+	 * Strips all tags from html content.  Returned string is still valid
+	 * html.
+	 *
+	 * @param {string}
+	 * @return {string}
+	 */
+	FlowHandlebars.prototype.stripTags = function( html ) {
+		return $( '<div>' ).text( $( html ).text() ).html();
+	};
+
+	/**
 	 * Outputs debugging information
 	 *
 	 * For development use only
@@ -676,5 +697,6 @@
 	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
 	Handlebars.registerHelper( 'previewButton', FlowHandlebars.prototype.previewButton );
 	Handlebars.registerHelper( 'tooltip', FlowHandlebars.prototype.tooltip );
+	Handlebars.registerHelper( 'stripTags', FlowHandlebars.prototype.stripTags );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 }( jQuery ) );

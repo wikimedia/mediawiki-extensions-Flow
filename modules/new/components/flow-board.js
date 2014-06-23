@@ -1069,7 +1069,13 @@
 					postId: $targetPost.data( 'flow-id' ),
 					author: {
 						name: $post.find( '.flow-author:first .mw-userlink' ).text()
-					}
+					},
+					content: $( this )
+						.closest( '.flow-post-main' )
+						.find( '.flow-post-content' )
+						.text()
+						.trim(),
+					contentFormat: 'text'
 				}
 			) ).children();
 
