@@ -74,8 +74,8 @@ class ApiQueryFlow extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Shim to query to the internal Flow API.  This API is not suggested ' .
-			'for external use and will soon be superseded by an integrated mediawiki api.';
+		return 'Shim to query to the internal Flow API.  This API is obsolete and ' .
+			'has been superseded by submodules of action=flow.';
 	}
 
 
@@ -90,7 +90,7 @@ class ApiQueryFlow extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&list=flow&flowpage=Main_Page',
+			'api.php?action=query&list=flow&flowpage=Talk:Flow_QA',
 		);
 	}
 
