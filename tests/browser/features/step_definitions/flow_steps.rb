@@ -103,6 +103,10 @@ Then(/^I should see a Delete topic button$/) do
   on(FlowPage).topic_delete_button_element.when_present.should be_visible
 end
 
+When(/^I click the Delete topic button$/) do
+  on(FlowPage).topic_delete_button_element.when_present.click
+end
+
 Then(/^I should see a Hide button$/) do
   on(FlowPage).hide_button_element.when_present.should be_visible
 end
