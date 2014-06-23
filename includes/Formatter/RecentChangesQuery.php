@@ -30,7 +30,7 @@ class RecentChangesQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param \stdClass[] List of recentchange database rows
+	 * @param \stdClass[] $rows List of recentchange database rows
 	 * @param bool $isWatchlist
 	 */
 	public function loadMetadataBatch( $rows, $isWatchlist = false ) {
