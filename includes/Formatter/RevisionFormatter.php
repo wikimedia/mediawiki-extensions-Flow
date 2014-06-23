@@ -653,7 +653,7 @@ class RevisionFormatter {
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
-			return Message::rawParam( $content );
+			return $content;
 
 		// This is potentially two networked round trips, much too expensive for
 		// the rendering loop
@@ -670,7 +670,7 @@ class RevisionFormatter {
 			}
 
 			$content = $this->templating->getContent( $previousRevision, 'wikitext' );
-			return Message::rawParam( $content );
+			return $content;
 
 		case 'workflow-url':
 			return $this->urlGenerator
@@ -695,7 +695,8 @@ class RevisionFormatter {
 			}
 			$root = $revision->getRootPost();
 			$content = $this->templating->getContent( $root, 'wikitext' );
-			return Message::rawParam( $content );
+
+			return $content;
 
 		case 'post-of-summary':
 			if ( !$revision instanceof PostSummary ) {
@@ -703,14 +704,10 @@ class RevisionFormatter {
 			}
 			$post = $revision->getCollection()->getPost()->getLastRevision();
 			if ( $post->isTopicTitle() ) {
-				$content = $this->templating->getContent( $post, 'wikitext' );
-				if ( $this->permissions->isAllowed( $post, 'view' ) ) {
-					$content = htmlspecialchars( $content );
-				}
+				return $this->templating->getContent( $post, 'wikitext' );
 			} else {
-				$content = $this->templating->getContent( $post, 'html' );
+				return Message::rawParam( $this->templating->getContent( $post, 'html' ) );
 			}
-			return Message::rawParam( $content );
 		case 'bundle-count':
 			return Message::numParam( count( $revision ) );
 
