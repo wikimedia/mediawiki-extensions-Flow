@@ -152,6 +152,7 @@ class TemplateHelper {
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 					'previewButton' => 'Flow\TemplateHelper::previewButton',
+					'stripTags' => 'Flow\TemplateHelper::stripTags',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -161,6 +162,10 @@ class TemplateHelper {
 				),
 			)
 		);
+	}
+
+	static public function stripTags( $content ) {
+		return strip_tags( $content );
 	}
 
 	/**

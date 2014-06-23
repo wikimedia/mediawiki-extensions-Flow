@@ -646,6 +646,17 @@
 	};
 
 	/**
+	 * Strips all tags from html content.  Returned string is still valid
+	 * html.
+	 *
+	 * @param {string}
+	 * @return {string}
+	 */
+	FlowHandlebars.prototype.stripTags = function( html ) {
+		return $( '<div>' ).text( $( html ).text() ).html();
+	};
+
+	/**
 	 * Outputs debugging information
 	 *
 	 * For development use only
@@ -676,5 +687,6 @@
 	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
 	Handlebars.registerHelper( 'previewButton', FlowHandlebars.prototype.previewButton );
 	Handlebars.registerHelper( 'tooltip', FlowHandlebars.prototype.tooltip );
+	Handlebars.registerHelper( 'stripTags', FlowHandlebars.prototype.stripTags );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 }( jQuery ) );

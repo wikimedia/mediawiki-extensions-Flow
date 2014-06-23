@@ -15,6 +15,7 @@
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
             'escapeContent' => 'Flow\TemplateHelper::escapeContent',
             'previewButton' => 'Flow\TemplateHelper::previewButton',
+            'stripTags' => 'Flow\TemplateHelper::stripTags',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -297,7 +298,7 @@
 				data-flow-expandable="true"
 				class="mw-ui-input"
 				type="text"
-				placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-reply-topic-title-placeholder',((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'"
+				placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'stripTags', Array(((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq')), 'encq').'"
 				data-role="content">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
