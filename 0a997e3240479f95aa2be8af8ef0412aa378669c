@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_fa62f935",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1034,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T17:23:02Z",
+      "side": 1,
+      "message": ".hide() is better.",
+      "revId": "0a997e3240479f95aa2be8af8ef0412aa378669c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_da597591",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T17:23:02Z",
+      "side": 1,
+      "message": ".show() is better.\n\nAlso don\u0027t do this all on one line.",
+      "revId": "0a997e3240479f95aa2be8af8ef0412aa378669c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
