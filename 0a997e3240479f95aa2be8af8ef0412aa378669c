@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ee391fd1_07c8c123",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1034,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-06-23T23:04:53Z",
+      "side": 1,
+      "message": "I wanted to mirror the below code. The code to restore default show-on-hover behaviour is dependent on the implementation. If jQuery decided to use some other behaviour for .hide() (say, use the visibility property instead), .hide() would break).",
+      "parentUuid": "ee391fd1_fa62f935",
+      "revId": "0a997e3240479f95aa2be8af8ef0412aa378669c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee391fd1_da597591",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-06-23T17:23:02Z",
       "side": 1,
       "message": ".show() is better.\n\nAlso don\u0027t do this all on one line.",
+      "revId": "0a997e3240479f95aa2be8af8ef0412aa378669c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee391fd1_8754b157",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2014-06-23T23:04:53Z",
+      "side": 1,
+      "message": "Because the menu would no longer be hovered (and would therefore be hidden in CSS), that would make the menu reappear unconditionally. The point is to restore the previous behaviour.",
+      "parentUuid": "ee391fd1_da597591",
       "revId": "0a997e3240479f95aa2be8af8ef0412aa378669c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
