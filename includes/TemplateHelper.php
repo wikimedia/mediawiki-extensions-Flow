@@ -152,6 +152,7 @@ class TemplateHelper {
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 					'previewButton' => 'Flow\TemplateHelper::previewButton',
+					'plaintextSnippet' => 'Flow\TemplateHelper::plaintextSnippet',
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
@@ -809,5 +810,23 @@ class TemplateHelper {
 				'content' => $fn(),
 			) )
 		);
+	}
+
+	/**
+	 * Returns the provided content as a plaintext string. Commonly for
+	 * injecting into an i18n message.
+	 *
+	 * @param string $contentFormat html|wikitext|plaintext
+	 * @param string $content
+	 * @return string plaintext
+	 */
+	static public function plaintextSnippet( $contentFormat, $content ) {
+		global $wgLang;
+
+		if ( $contentFormat === 'html' ) {
+			$content = html_entity_decode( strip_tags( $content ) );
+		}
+
+		return $wgLang->truncate( trim( $content ), 200 );
 	}
 }
