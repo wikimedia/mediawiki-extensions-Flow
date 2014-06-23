@@ -40,16 +40,6 @@ class TopicListFormatter {
 		$res = $this->buildResult( $listWorkflow, $workflows, $found, $ctx ) +
 			$this->buildEmptyResult( $listWorkflow );
 		$pagingOption = $page->getPagingLinksOptions();
-		foreach ( $pagingOption as $k => $v ) {
-			$pagingOption[$k] = array (
-				'offset-id' => $v['offset'],
-				'offset-dir' => $v['direction'],
-				'limit' => $v['limit']
-			);
-			if ( isset( $v['sortby'] ) ) {
-				$pagingOption[$k]['sortby'] = $v['sortby'];
-			}
-		}
 		$res['links']['pagination'] = $this->buildPaginationLinks(
 			$listWorkflow,
 			$pagingOption
