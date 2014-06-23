@@ -47,7 +47,7 @@
 
 	<div class="flow-form-actions flow-form-collapsible">
 		<button class="flow-ui-button flow-ui-constructive"
-		        data-flow-api-handler="submitEditPost">'.LCRun3::ch($cx, 'l10n', Array('flow-post-action-edit-post'), 'encq').'</button>
+		        data-flow-api-handler="submitEditPost">'.LCRun3::ch($cx, 'l10n', Array('flow-post-action-edit-post-submit'), 'encq').'</button>
 		'.LCRun3::ch($cx, 'previewButton', Array('flow_post'), 'encq').'
 		<button class="flow-ui-button flow-ui-destructive flow-ui-quiet"
 		        data-flow-interactive-handler="cancelForm"
