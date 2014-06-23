@@ -1498,7 +1498,8 @@
 		 */
 		FlowBoardComponent.UI.events.onToggleHoverMenu = function ( event ) {
 			var $this = $( event.target ),
-				$menu = $this.closest( '.flow-menu' );
+				$menu = $this.closest( '.flow-menu' ),
+				$dropDown = $this.closest( '.flow-ui-button-container' );
 
 			if ( event.type === 'click' ) {
 				// If the caret was clicked, toggle focus
@@ -1508,6 +1509,14 @@
 					// This trick lets us wait for a blur event locally instead on body, to later hide the menu
 					if ( $menu.hasClass( 'focus' ) ) {
 						$menu.find( '.flow-menu-js-drop' ).find( 'a' ).focus();
+					}
+				} else if ( $dropDown.length ) {
+					if ( $( event.target ).is( 'a' ) ) {
+						// Somebody clicked one of the menu items
+						// Force the drop down menu to go away for a small
+						// time so that it disappears
+						$dropDown.css( 'display', 'none' );
+						setTimeout( function() { $dropDown.css( 'display', '' ); }, 200 );
 					}
 				}
 			} else if ( event.type === 'focusin' ) {
