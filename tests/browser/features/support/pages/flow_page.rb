@@ -60,6 +60,11 @@ class FlowPage
   a(:topic_suppress_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Suppress topic")
   end
+  ### Topic deletion workflow
+  div(:dialog, css: ".ui-dialog")
+  textarea(:dialog_input, css: ".ui-dialog textarea")
+  button(:dialog_cancel, css: ".ui-dialog .flow-ui-destructive")
+  button(:dialog_submit, css: ".ui-dialog .flow-ui-constructive")
 
   # Post actions menu
   a(:post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 0)
