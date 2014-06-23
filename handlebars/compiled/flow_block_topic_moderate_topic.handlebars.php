@@ -29,7 +29,7 @@
 	</ul>
 ' : '').'
 
-
+	
 	'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 		'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
 			<form method="POST" action="'.LCRun3::ch($cx, 'moderationAction', Array(((is_array($in) && isset($in['actions'])) ? $in['actions'] : null),((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['moderationState'])) ? $cx['scopes'][0]['submitted']['moderationState'] : null)), 'encq').'">
@@ -75,7 +75,7 @@
 			<div class="flow-post-content">
 				'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
 			</div>
-
+			
 			'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 				<div class="flow-post-meta">
 					<span class="flow-post-meta-actions">
@@ -88,8 +88,13 @@
 						'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
 							&#8226;
 							<a href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-							   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-							   class="flow-ui-regressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-post-action-edit-post'), 'encq').'</a>
+								title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+								class="flow-ui-regressive flow-ui-quiet"
+								data-flow-api-handler="activateEditPost"
+								data-flow-api-target=".flow-post[data-flow-id=\''.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'\']"
+								data-flow-interactive-handler="apiRequest">
+									'.LCRun3::ch($cx, 'l10n', Array('flow-post-action-edit-post'), 'encq').'
+							</a>
 						' : '').'
 					</span>
 					'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['previousRevisionId'])) ? $in['previousRevisionId'] : null))) ? '
@@ -158,7 +163,7 @@
 			' : '').'
 		</div>
 
-
+		
 		'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 			<div class="flow-replies">
 				'.LCRun3::sec($cx, ((is_array($in) && isset($in['replies'])) ? $in['replies'] : null), $in, true, function($cx, $in) {return '
