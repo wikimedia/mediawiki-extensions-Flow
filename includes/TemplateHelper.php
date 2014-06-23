@@ -445,9 +445,9 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param $lvalue
-	 * @param $op
-	 * @param $rvalue
+	 * @param int $lvalue
+	 * @param string $op
+	 * @param int $rvalue
 	 *
 	 * @return float|int
 	 * @throws Exception\FlowException
@@ -476,8 +476,8 @@ class TemplateHelper {
 
 	/**
 	 * Required to prevent recursion loop
-	 * @param $rootBlock
-	 * @param $revision
+	 * @param array $rootBlock
+	 * @param array $revision
 	 *
 	 * @return array
 	 */
@@ -488,6 +488,11 @@ class TemplateHelper {
 		) ) );
 	}
 
+	/**
+	 * @param array $revision
+	 * @param string $key
+	 * @return array
+	 */
 	static public function historyTimestamp( array $revision, $key = 'timeAndDate' ) {
 		$raw = false;
 		$formattedTime = $revision['dateFormats']['timeAndDate'];
@@ -537,6 +542,11 @@ class TemplateHelper {
 		return self::html( wfMessage( $i18nKey, $revision['properties'] )->parse() );
 	}
 
+	/**
+	 * @param string $old
+	 * @param string $new
+	 * @return array
+	 */
 	static public function showCharacterDifference( $old, $new ) {
 		return self::html( \ChangesList::showCharacterDifference( $old, $new ) );
 	}
@@ -561,7 +571,7 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param $str
+	 * @param string $str
 	 *
 	 * @return array
 	 */
@@ -572,13 +582,13 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param $diffContent Plain text output of DifferenceEngine::getDiffBody
-	 * @param $oldTimestamp Time when the `old` content was created
-	 * @param $newTimestamp Time when the `new` content was created
-	 * @param $oldAuthor Creator of the `old` content
-	 * @param $newAuthor Creator of the `new` content
-	 * @param $oldLink Url pointing to `old` content
-	 * @param $newLink Url pointing to `new` content
+	 * @param string $diffContent Plain text output of DifferenceEngine::getDiffBody
+	 * @param string $oldTimestamp Time when the `old` content was created
+	 * @param string $newTimestamp Time when the `new` content was created
+	 * @param string $oldAuthor Creator of the `old` content
+	 * @param string $newAuthor Creator of the `new` content
+	 * @param string $oldLink Url pointing to `old` content
+	 * @param string $newLink Url pointing to `new` content
 	 * @return array HTML wrapped in array to prevent lightncandy from escaping
 	 */
 	static public function diffRevision( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink ) {
@@ -606,9 +616,9 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param $timestamp
-	 * @param $user
-	 * @param $link
+	 * @param string $timestamp
+	 * @param string $user
+	 * @param string $link
 	 *
 	 * @return string
 	 */
@@ -628,7 +638,7 @@ class TemplateHelper {
 
 	/**
 	 * @param array $actions
-	 * @param       $moderationState
+	 * @param string $moderationState
 	 *
 	 * @return string
 	 */
@@ -638,7 +648,7 @@ class TemplateHelper {
 
 	/**
 	 * @param array $actions
-	 * @param       $moderationState
+	 * @param string $moderationState
 	 *
 	 * @return string
 	 */
@@ -710,7 +720,7 @@ class TemplateHelper {
 
 	/**
 	 * Adds returnto parameter pointing to given Title to an existing URL
-	 * @param Title $title
+	 * @param string $title
 	 *
 	 * @return string modified url
 	 */
