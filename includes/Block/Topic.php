@@ -452,7 +452,10 @@ class TopicBlock extends AbstractBlock {
 			$output = $this->renderSingleViewAPI( $revId );
 		} elseif ( $this->action === 'close-open-topic' ) {
 			// Treat topic as a post, only the post + summary are needed
-			$output = $this->renderPostAPI( $templating, $options, $this->workflow->getId() );
+			$result = $this->renderPostAPI( $templating, $options, $this->workflow->getId() );
+			$topicId = $result['roots'][0];
+			$revisionId = $result['posts'][$topicId][0];
+			$output = $result['revisions'][$revisionId];
 		} elseif ( $this->action === 'compare-post-revisions' ) {
 			$output = $this->renderDiffViewAPI( $options );
 		} elseif ( $this->shouldRenderTopicAPI( $options ) ) {
