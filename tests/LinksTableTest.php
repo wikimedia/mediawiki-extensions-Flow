@@ -211,7 +211,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 * @dataProvider provideGetExistingReferences
 	 */
 	public function testGetExistingReferences( array $references ) {
-		extract( $this->getBlandTestObjects() );
+		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
 
 		$references = $this->expandReferences( $workflow, $revision, $references );
 
@@ -224,44 +224,44 @@ class LinksTableTest extends PostRevisionTestCase {
 	}
 
 	public static function provideReferenceDiff() {
-		extract( self::getSampleReferences() );
+		$references = self::getSampleReferences();
 
 		return array(
 			// Just adding a few
 			array(
 				array(),
 				array(
-					$fooLinkReference,
-					$barLinkReference
+					$references['fooLink'],
+					$references['barLink']
 				),
 				array(
-					$fooLinkReference,
-					$barLinkReference,
+					$references['fooLink'],
+					$references['barLink'],
 				),
 				array(),
 			),
 			// Removing one
 			array(
 				array(
-					$fooLinkReference,
-					$barLinkReference
+					$references['fooLink'],
+					$references['barLink']
 				),
 				array(
-					$fooLinkReference,
+					$references['fooLink'],
 				),
 				array(
 				),
 				array(
-					$barLinkReference,
+					$references['barLink'],
 				),
 			),
 			// Equality robustness
 			array(
 				array(
-					$fooLinkReference,
+					$references['fooLink'],
 				),
 				array(
-					$fooLinkReference2,
+					$references['fooLink2'],
 				),
 				array(
 				),
@@ -271,16 +271,16 @@ class LinksTableTest extends PostRevisionTestCase {
 			// Inequality robustness
 			array(
 				array(
-					$fooLinkReference,
+					$references['fooLink'],
 				),
 				array(
-					$barLinkReference,
+					$references['barLink'],
 				),
 				array(
-					$barLinkReference,
+					$references['barLink'],
 				),
 				array(
-					$fooLinkReference,
+					$references['fooLink'],
 				),
 			),
 		);
@@ -290,7 +290,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 * @dataProvider provideReferenceDiff
 	 */
 	public function testReferenceDiff( $old, $new, $expectedAdded, $expectedRemoved ) {
-		extract( $this->getBlandTestObjects() );
+		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
 
 		foreach( array( 'old', 'new', 'expectedAdded', 'expectedRemoved' ) as $varName ) {
 			$$varName = $this->expandReferences( $workflow, $revision, $$varName );
@@ -303,15 +303,15 @@ class LinksTableTest extends PostRevisionTestCase {
 	}
 
 	public static function provideMutateLinksUpdate() {
-		extract( self::getSampleReferences() );
+		$references = self::getSampleReferences();
 
 		return array(
 			array(
 				array( // references
-					$fooLinkReference,
-					$fooTemplateReference,
-					$googleLinkReference,
-					$fooImageReference,
+					$references['fooLink'],
+					$references['fooTemplate'],
+					$references['googleLink'],
+					$references['fooImage'],
 				),
 				array(
 					'mLinks' => array(
@@ -330,7 +330,7 @@ class LinksTableTest extends PostRevisionTestCase {
 			),
 			array(
 				array(
-					$subpageLinkReference,
+					$references['subpageLink'],
 				),
 				array(
 					'mLinks' => array(
@@ -345,7 +345,7 @@ class LinksTableTest extends PostRevisionTestCase {
 	 * @dataProvider provideMutateLinksUpdate
 	 */
 	public function testMutateLinksUpdate( $references, $expectedItems ) {
-		extract( $this->getBlandTestObjects() );
+		list( $workflow, $revision, $title ) = $this->getBlandTestObjects();
 		$references = $this->expandReferences( $workflow, $revision, $references );
 		$parserOutput = new ParserOutput;
 		$linksUpdate = new LinksUpdate( self::getTestTitle(), $parserOutput );
@@ -364,9 +364,9 @@ class LinksTableTest extends PostRevisionTestCase {
 
 	protected function getBlandTestObjects() {
 		return array(
-			'workflow' => self::getTestWorkflow( self::getTestTitle() ),
-			'revision' => $this->generateObject(),
-			'title' => self::getTestTitle(),
+			/* workflow = */ self::getTestWorkflow( self::getTestTitle() ),
+			/* revision = */ $this->generateObject(),
+			/* title = */ self::getTestTitle(),
 		);
 	}
 
@@ -374,7 +374,6 @@ class LinksTableTest extends PostRevisionTestCase {
 		$referenceObjs = array();
 
 		foreach( $references as $ref ) {
-			extract( $ref );
 			$srcObjId = $revision->getCollectionId();
 			if ( isset( $foreign ) ) {
 				// From some random place
@@ -385,9 +384,9 @@ class LinksTableTest extends PostRevisionTestCase {
 				$workflow,
 				$revision->getRevisionType(),
 				$srcObjId,
-				$targetType,
-				$refType,
-				$value
+				$ref['targetType'],
+				$ref['refType'],
+				$ref['$value']
 			);
 		}
 
@@ -396,42 +395,42 @@ class LinksTableTest extends PostRevisionTestCase {
 
 	protected static function getSampleReferences() {
 		return array(
-			'fooLinkReference' => array(
+			'fooLink' => array(
 				'targetType' => 'wiki',
 				'refType' => 'link',
 				'value' => 'Foo',
 			),
-			'subpageLinkReference' => array(
+			'subpageLink' => array(
 				'targetType' => 'wiki',
 				'refType' => 'link',
 				'value' => '/Subpage',
 			),
-			'fooLinkReference2' => array(
+			'fooLink2' => array(
 				'targetType' => 'wiki',
 				'refType' => 'link',
 				'value' => 'foo',
 			),
-			'barLinkReference' => array(
+			'barLink' => array(
 				'targetType' => 'wiki',
 				'refType' => 'link',
 				'value' => 'Bar',
 			),
-			'fooTemplateReference' => array(
+			'fooTemplate' => array(
 				'targetType' => 'wiki',
 				'refType' => 'template',
 				'value' => 'Template:Foo',
 			),
-			'googleLinkReference' => array(
+			'googleLink' => array(
 				'targetType' => 'url',
 				'refType' => 'link',
 				'value' => 'http://www.google.com'
 			),
-			'fooImageReference' => array(
+			'fooImage' => array(
 				'targetType' => 'wiki',
 				'refType' => 'file',
 				'value' => 'File:Foo.jpg',
 			),
-			'foreignFooReference' => array(
+			'foreignFoo' => array(
 				'targetType' => 'wiki',
 				'refType' => 'link',
 				'value' => 'Foo',
