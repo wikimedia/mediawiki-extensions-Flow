@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_31fd4705",
+        "filename": "i18n/en.json",
+        "patchSetId": 15
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-06-23T19:35:21Z",
+      "side": 1,
+      "message": "\"edit\" should be an {{int:key}} reference in quotes.",
+      "revId": "766b320c849fe1c4068f4371a0248481926e3b45",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
