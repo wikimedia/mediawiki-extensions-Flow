@@ -173,6 +173,10 @@ class WikiReference extends Reference {
 		return $object->getStorageRow();
 	}
 
+	/**
+	 * @return string
+	 * @throws InvalidInputException
+	 */
 	public function getWikiTableName() {
 		switch( $this->getType() ) {
 			case 'link':
@@ -184,7 +188,8 @@ class WikiReference extends Reference {
 			case 'template':
 				return 'templatelinks';
 				break;
-		}
+			default:
+				throw new InvalidInputException( 'Invalid type ' . $this->getType() . ' specified for reference ' . get_class( $this ) );		}
 	}
 
 	public function getTitle() {
@@ -254,12 +259,17 @@ class URLReference extends Reference {
 		return $object->getStorageRow();
 	}
 
+	/**
+	 * @return string
+	 * @throws InvalidInputException
+	 */
 	public function getWikiTableName() {
 		switch( $this->getType() ) {
 			case 'link':
 				return 'externallinks';
 				break;
-		}
+			default:
+				throw new InvalidInputException( 'Invalid type ' . $this->getType() . ' specified for reference ' . get_class( $this ) );		}
 	}
 
 	public function getUrl() {

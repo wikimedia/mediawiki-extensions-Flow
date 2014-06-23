@@ -311,13 +311,13 @@ class TemplateHelper {
 	 * @param integer $timestamp milliseconds since the unix epoch
 	 * @param string $str i18n key name for ago message
 	 * @param boolean $timeAgoOnly Only render the 'X minutes ago' portion
-	 * @return string
+	 * @return string|false
 	 */
 	static public function timestamp( $timestamp, $str, $timeAgoOnly = false ) {
 		global $wgLang, $wgUser;
 
 		if ( !$timestamp || !$str || $timeAgoOnly === true ) {
-			return;
+			return false;
 		}
 
 		// source timestamps are in ms
