@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_aeb43234",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 14
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-23T18:00:34Z",
+      "side": 1,
+      "message": "Needs documentation.",
+      "revId": "891c043bf1209bb509575f491f0a4d66fd95895f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
