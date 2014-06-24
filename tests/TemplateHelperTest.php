@@ -25,4 +25,11 @@ class TemplateHelperTest extends \MediaWikiTestCase {
 		$helper = new TemplateHelper( '/does/not/exist' );
 		$helper->getTemplateFilenames( $templateName );
 	}
+
+	public function testIfCond( $templateName ) {
+		$code = Flow\TemplateHelper::compile( "{{#ifCond foo 'or' bar}}Works{{/ifCond}}", '' );
+		$renderer = \Lightncandy::prepare( $code );
+		$this->assertEquals( $renderer( array( 'foo' => true, 'bar' => false ) ), 'Works' );
+		$this->assertEquals( $renderer( array( 'foo' => false, 'bar' => false ) ), '' );
+	}
 }

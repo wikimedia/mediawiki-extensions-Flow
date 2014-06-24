@@ -760,6 +760,69 @@ class TemplateHelper {
 	}
 
 	/**
+	 * Only perform action when conditions match
+	 * @param string value
+	 * @param string operator e.g. 'or'
+	 * @param string value2 to compare with
+	 * @return mixed result of callback
+	 * @throws FlowException Fails when callbacks are not Closure instances
+	 * @param array @options
+	 */
+	static public function ifCond( /*, $args... */ $options ) {
+		$args = func_get_args();
+		$options = array_pop( $args );
+		$len = count( $args );
+		$cond = null;
+
+		$fn = $options['fn'];
+		if ( !$fn instanceof Closure ) {
+			throw new FlowException( 'Expected callback to be Closure instance' );
+		}
+		$inverse = $options['inv'];
+		if ( !$inverse instanceof Closure ) {
+			throw new FlowException( 'Expected inverse callback to be Closure instance' );
+		}
+
+		for ($i = 0; $i < $len; $i++) {
+			switch ( $args[ $i ] ) {
+				case 'or':
+				case '||':
+					if ( $cond ) {
+						// Previous condition succeeded
+						break 2;
+					}
+					// Reset the failed condition for this set
+					$cond = null;
+				/* falls through */
+
+				case 'and':
+				case '&&':
+					// Check if the next item exists
+					$i++;
+					if ( $cond !== false && $args[ $i ] ) {
+						$cond = $args[ $i ];
+					} else {
+						$cond = false;
+					}
+					break;
+
+				// Not an operator
+				default:
+					throw new FlowException( 'Unexpected ifCond argument' );
+			}
+		}
+
+		if ( $cond ) {
+			// success
+			return $fn();
+		} else {
+			// fail
+			return $inverse();
+		}
+		return '';
+	}
+
+	/**
 	 * @param array $options
 	 * @return string tooltip
 	 */

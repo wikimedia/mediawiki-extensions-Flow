@@ -670,6 +670,60 @@
 	};
 
 	/**
+	 * Renders block if condition is true, or renders else.
+	 * @example {{#ifCond a '||' b && c}}
+	 * @param {...*} [args]
+	 * @returns {String}
+	 */
+	FlowHandlebars.prototype.ifCond = function ( options ) {
+		var args = Array.prototype.slice.call( arguments, 0, arguments.length ),
+			i = 1, // skip the first arg, because it isn't an operator
+			cond = args[ 0 ]; // last successful condition
+
+		// options is last
+		options = arguments[ arguments.length - 1 ];
+
+		cond_loop:
+			for (; i < args.length; i++) {
+				switch ( args[ i ] ) {
+					case 'or':
+					case '||':
+						if ( cond ) {
+							// Previous condition succeeded
+							break cond_loop;
+						}
+						// Reset the failed condition for this set
+						cond = null;
+					/* falls through */
+
+					case 'and':
+					case '&&':
+						// Check if the next item exists
+						i++;
+						if ( cond !== false && args[ i ] ) {
+							cond = args[ i ];
+						} else {
+							cond = false;
+						}
+						break;
+
+					// Not an operator
+					default:
+						mw.flow.debug( '[ifCond] Invalid arguments', [ i, args[ i ] ], args );
+						break;
+				}
+			}
+
+		if ( cond ) {
+			// success
+			options.fn( this );
+		} else if ( options.inverse ) {
+			// fail
+			options.inverse( this );
+		}
+	};
+
+	/**
 	 * Outputs debugging information
 	 *
 	 * For development use only
@@ -702,6 +756,7 @@
 	Handlebars.registerHelper( 'tooltip', FlowHandlebars.prototype.tooltip );
 	Handlebars.registerHelper( 'moderationActionText', FlowHandlebars.prototype.moderationActionText );
 	Handlebars.registerHelper( 'moderationAction', FlowHandlebars.prototype.moderationAction );
+	Handlebars.registerHelper( 'ifCond', FlowHandlebars.prototype.ifCond );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 
 }( jQuery ) );
