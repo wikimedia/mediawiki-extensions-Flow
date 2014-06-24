@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_d8f0c190",
+        "filename": "modules/new/styles/layout.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-24T18:38:07Z",
+      "side": 1,
+      "message": "This technique is evil in my eyes.\nI know it translates to .flow-topic {.flow-post}  \u003e .flow-edit-post-form\nbut I really hate hate hate it. It takes too much energy to think about.\n\nIs there anyway we can do this in a more readable way?",
+      "revId": "eae3961b8efabc4dc3a93554cfa179c928db8e46",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
