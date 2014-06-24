@@ -201,7 +201,7 @@ class TemplateHelper {
 			// similar from being parsed
 			if ( $contentFormat === 'html' ) {
 				// strip existing tags and decode to prevent double encoding
-				$message->params( html_entity_decode( strip_tags( $content ) ) );
+				$message->params( Utils::htmlToPlaintext( $content ) );
 			} else {
 				$message->params( $content );
 			}
