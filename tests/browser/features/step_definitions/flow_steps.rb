@@ -122,3 +122,7 @@ end
 Then(/^I should see a Suppress topic button$/) do
   on(FlowPage).topic_suppress_button_element.when_present.should be_visible
 end
+
+When(/^I click the Suppress topic button$/) do
+  on(FlowPage).topic_suppress_button_element.when_present.click
+end
