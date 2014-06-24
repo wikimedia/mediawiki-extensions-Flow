@@ -6,12 +6,21 @@ Given(/^I am on a new board$/) do
   visit NewFlowPage
 end
 
+# @todo: Rewrite to use more generic step below
 Given(/^I have created a Flow topic$/) do
   step "I am on Flow page"
   step "I create a Title of Flow Topic in Flow new topic"
   step "I create a Body of Flow Topic into Flow body"
   step "I click New topic save"
   step 'the top post should have a heading which contains "Title of Flow Topic"'
+end
+
+Given(/^I have created a Flow topic with title "(.+)"$/) do |title|
+  step "I am on Flow page"
+  step "I create a " + title + " in Flow new topic"
+  step "I create a " + title + " body text into Flow body"
+  step "I click New topic save"
+  step 'the top post should have a heading which contains "' + title + '"'
 end
 
 Given(/^the author link is visible$/) do
