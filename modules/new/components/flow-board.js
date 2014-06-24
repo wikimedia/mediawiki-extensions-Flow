@@ -247,6 +247,19 @@
 			};
 		};
 
+		/**
+		 * Before submitting a title edit, squelch warnings
+		 * @param {Event} event
+		 * @return {Object} Overrides
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.submitTopicTitle = function( event ) {
+			return function( queryMap ) {
+				queryMap.etrevId = undefined;
+
+				return queryMap;
+			};
+		};
+
 		////////////////////////////////////////////////////////////
 		// FlowBoardComponent.UI api callback handlers
 		////////////////////
