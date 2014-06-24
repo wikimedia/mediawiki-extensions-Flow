@@ -43,10 +43,9 @@ class WorkflowTopicListListener implements LifecycleHandler {
 	public function onAfterInsert( $object, array $new ) {
 		$entry = $this->getTopicListEntry( $new['workflow_id'] );
 		if ( $entry ) {
-			$row = TopicListEntry::toStorageRow( $entry )
-				+ array(
+			$row = array(
 					'workflow_last_update_timestamp' => $new['workflow_last_update_timestamp']
-				);
+				) + TopicListEntry::toStorageRow( $entry );
 			$this->topicListLastUpdatedIndex->onAfterInsert( $entry, $row );
 		}
 	}
@@ -57,12 +56,12 @@ class WorkflowTopicListListener implements LifecycleHandler {
 			$row = TopicListEntry::toStorageRow( $entry );
 			$this->topicListLastUpdatedIndex->onAfterUpdate(
 				$entry,
-				$row + array(
+				array(
 					'workflow_last_update_timestamp' => $old['workflow_last_update_timestamp']
-				),
-				$row + array(
+				) + $row,
+				array(
 					'workflow_last_update_timestamp' => $new['workflow_last_update_timestamp']
-				)
+				) + $row
 			);
 		}
 	}
