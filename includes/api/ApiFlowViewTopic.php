@@ -15,7 +15,7 @@ class ApiFlowViewTopic extends ApiFlowBaseGet {
 	}
 
 	protected function getAction() {
-		return 'topic-view';
+		return 'view-topic';
 	}
 
 	public function getAllowedParams() {
@@ -39,7 +39,7 @@ class ApiFlowViewTopic extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=topic-view&workflow=',
+			'api.php?action=flow&submodule=view-topic&workflow=',
 		);
 	}
 }

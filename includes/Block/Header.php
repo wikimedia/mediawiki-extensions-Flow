@@ -43,14 +43,14 @@ class HeaderBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'header-view' );
+	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'view-header' );
 
 	// @Todo - fill in the template names
 	protected $templates = array(
 		'view' => '',
 		'compare-header-revisions' => 'diff_view',
 		'edit-header' => 'edit',
-		'header-view' => 'single_view',
+		'view-header' => 'single_view',
 	);
 
 	/**
@@ -184,12 +184,12 @@ class HeaderBlock extends AbstractBlock {
 				$output += $this->renderRevisionAPI();
 				break;
 
-			case 'header-view':
+			case 'view-header':
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
 					$output += $this->renderSingleViewAPI( $options['revId'] );
 				} else {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
-						$this->requiresWikitext[] = 'header-view';
+						$this->requiresWikitext[] = 'view-header';
 					}
 					$output += $this->renderRevisionAPI();
 				}

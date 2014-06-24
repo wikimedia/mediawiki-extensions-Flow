@@ -67,7 +67,7 @@ class TopicBlock extends AbstractBlock {
 
 	protected $supportedGetActions = array(
 		'reply', 'view', 'history', 'edit-post', 'edit-title', 'compare-post-revisions', 'single-view',
-		'topic-view', 'post-view',
+		'view-topic', 'view-post',
 		'moderate-topic', 'moderate-post', 'close-open-topic',
 	);
 
@@ -503,9 +503,9 @@ class TopicBlock extends AbstractBlock {
 		case 'moderate-topic':
 			return true;
 
-		case 'topic-view':
+		case 'view-topic':
 			return true;
-		case 'post-view':
+		case 'view-post':
 			return false;
 		case 'view':
 			return !isset( $options['postId'] ) && !isset( $options['revId'] );

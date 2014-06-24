@@ -14,7 +14,7 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 	}
 
 	protected function getAction() {
-		return 'topic-summary-view';
+		return 'view-topic-summary';
 	}
 
 	public function getAllowedParams() {
@@ -42,7 +42,7 @@ class ApiFlowViewTopicSummary extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=topic-summary-view&vtscontentFormat=wikitext&workflow=&revId=',
+			'api.php?action=flow&submodule=view-topic-summary&vtscontentFormat=wikitext&workflow=&revId=',
 		);
 	}
 }
