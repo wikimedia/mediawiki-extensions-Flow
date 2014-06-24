@@ -49,6 +49,12 @@ if file_changed_in_commit '\.php$'; then
 	fi
 fi
 
+if file_changed_in_commit '^i18n/'; then
+    if [ "$IGNORE_I18N" != "1" ]; then
+		COMMANDS="check-i18n $COMMANDS"
+	fi
+fi
+
 if [ "$COMMANDS" != "" ]; then
 	make $COMMANDS || exit 1
 fi
