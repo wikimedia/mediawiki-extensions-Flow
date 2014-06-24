@@ -29,6 +29,13 @@
 			// Failed to init for some reason
 			return false;
 		}
+
+		// Handle URL parameters
+		if ( window.location.hash && /^\#flow-post-[a-z0-9]+$/.test( window.location.hash ) ) {
+			$container.find( window.location.hash )
+				.addClass( 'flow-post-highlighted' )
+				.conditionalScrollIntoView();
+		}
 	}
 
 	// Register this FlowComponent
