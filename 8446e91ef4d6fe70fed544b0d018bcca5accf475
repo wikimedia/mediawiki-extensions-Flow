@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_d5776cce",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-24T18:01:56Z",
+      "side": 1,
+      "message": "Personally i\u0027d use an else here and include the semi colon in both formattings.\n\n}\nelse {\ninitialContent \u003d author + \": \";",
+      "revId": "8446e91ef4d6fe70fed544b0d018bcca5accf475",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_b5a50846",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 1084,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-24T18:01:56Z",
+      "side": 1,
+      "message": "Inline comments should go above.",
+      "revId": "8446e91ef4d6fe70fed544b0d018bcca5accf475",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
