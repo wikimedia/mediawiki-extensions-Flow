@@ -802,20 +802,20 @@
 			var $form = $( this ).closest( 'form' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
 				$fields = $form.find( 'textarea, :text' ),
-				notEmptyCount = 0;
+				changedFieldCount = 0;
 
 			event.preventDefault();
 
 			// Check for non-empty fields of text
 			$fields.each( function () {
-				if ( $( this ).val() ) {
-					notEmptyCount++;
+				if ( $( this ).val() !== this.defaultValue ) {
+					changedFieldCount++;
 					return false;
 				}
 			} );
 
 			// If all the text fields are empty, OR if the user confirms to close this with text already entered, do it.
-			if ( !notEmptyCount || confirm( flowBoard.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
+			if ( !changedFieldCount || confirm( flowBoard.TemplateEngine.l10n( 'flow-cancel-warning' ) ) ) {
 				// Reset the form content
 				$form[0].reset();
 
