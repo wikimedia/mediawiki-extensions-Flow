@@ -52,6 +52,91 @@
       "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_e9c29938",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-24T22:34:37Z",
+      "side": 1,
+      "message": "The ID should be passed on the clicked element, in my opinion. Please don\u0027t do these hacky selector searches.\n\n    $( this ).data( \u0027flow-id\u0027 )",
+      "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_c9d6b5f6",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-24T22:34:37Z",
+      "side": 1,
+      "message": "Should be a better way to do this. If you trigger a focus event onto something else (eg. insert before $target, focus onto the field, THEN $target.remove()), then flow-menu will automatically hide.",
+      "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_e9f05990",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-24T22:34:37Z",
+      "side": 1,
+      "message": "This is unfortunate, but ok.",
+      "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_6905897c",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-24T22:34:37Z",
+      "side": 1,
+      "message": "Again, hacky selector. This ID should be available on the form or the button.",
+      "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_69346947",
+        "filename": "modules/new/styles/interactive.less",
+        "patchSetId": 24
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-24T22:34:37Z",
+      "side": 1,
+      "message": "Have you verified that this doesn\u0027t screw anything up in older browsers? We don\u0027t need the specificity here anymore?",
+      "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
