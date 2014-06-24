@@ -4,7 +4,9 @@
 {{/if}}
 <span class="flow-author">{{l10n "started_with_participants" this}}</span>
 <div class="flow-topic-meta">
-	<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-inline" href="#flow-post-{{postId}}-form-content">{{l10n "Reply" author}}</a>
+	<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-inline"
+		 data-flow-interactive-handler="activateForm"
+		 href="#flow-post-{{postId}}-form-content">{{l10n "Reply" author}}</a>
 	&bull; {{l10n "comment_count" this}} &bull;
 	{{#if last_updated}}
 		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> {{timestamp last_updated "active_ago"}}
