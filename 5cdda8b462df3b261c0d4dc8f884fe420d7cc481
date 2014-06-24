@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_a4f158ca",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-24T23:24:01Z",
+      "side": 1,
+      "message": "You want $options[\u0027inv\u0027] here.  Additionally the inverse key only exists if you have an {{else}} statement, this could be unset.",
+      "revId": "5cdda8b462df3b261c0d4dc8f884fe420d7cc481",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_e4188025",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-24T23:24:01Z",
+      "side": 1,
+      "message": "if ( !$inverse instanceof Closure )",
+      "revId": "5cdda8b462df3b261c0d4dc8f884fe420d7cc481",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
