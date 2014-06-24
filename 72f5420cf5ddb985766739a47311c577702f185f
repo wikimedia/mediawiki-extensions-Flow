@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ae43a74e_a9a5b19c",
+        "filename": "tests/browser/features/step_definitions/collapse_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-24T23:52:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae43a74e_495405ca",
+      "revId": "72f5420cf5ddb985766739a47311c577702f185f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae43a74e_c967d5b3",
         "filename": "tests/browser/features/step_definitions/collapse_steps.rb",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ae43a74e_0471440b",
+        "filename": "tests/browser/features/step_definitions/collapse_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-24T23:52:06Z",
+      "side": 1,
+      "message": "This has been pulled out for now anyway, since I forgot that the moderation itself isn\u0027t in this patch.  The moderation is in https://gerrit.wikimedia.org/r/#/c/141070/ , and the moderation tests will go in there too, and I\u0027ll rebase that patch on top of this.\n\nIt shouldn\u0027t be a big deal to change it as you requested, it just makes the feature file longer.",
+      "parentUuid": "ae43a74e_c967d5b3",
+      "revId": "72f5420cf5ddb985766739a47311c577702f185f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae43a74e_8901cdbb",
         "filename": "tests/browser/features/step_definitions/collapse_steps.rb",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2014-06-24T21:39:58Z",
       "side": 1,
       "message": "whenever you have more than one \"on(FlowPage)\" is where you want to use the \"on{FlowPage} do |page|\" construct",
+      "revId": "72f5420cf5ddb985766739a47311c577702f185f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_09c6fd4e",
+        "filename": "tests/browser/features/step_definitions/collapse_steps.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-24T23:52:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae43a74e_8901cdbb",
       "revId": "72f5420cf5ddb985766739a47311c577702f185f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
