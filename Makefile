@@ -35,11 +35,16 @@ remotes:
 gerrit: remotes
 	@scripts/remotes/gerrit.py --project 'mediawiki/extensions/Flow' --gtscore -1 --ignorepattern 'WIP'
 
+message: remotes
+	@python scripts/remotes/message.py
+
+messagecheck: remotes
+	@python scripts/remotes/message.py check
 
 ###
 # Lints
 ###
-lint: jshint phplint checkless
+lint: jshint phplint checkless messagecheck
 
 phplint:
 	@find ./ -type f -iname '*.php' | xargs -P 12 -L 1 php -l
