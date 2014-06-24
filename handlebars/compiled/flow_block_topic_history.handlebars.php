@@ -19,7 +19,7 @@
 
     );
     return '<div class="flow-board">
-	<div class="flow-board-link">
+	<div class="flow-board-link plainlinks">
 		'.LCRun3::ch($cx, 'l10nParse', Array('flow-history-pages-topic',((is_array($in['board']) && isset($in['board']['link'])) ? $in['board']['link'] : null),((is_array($in['board']) && isset($in['board']['title_text'])) ? $in['board']['title_text'] : null)), 'encq').'
 	</div>
 	<div class="flow-topic-histories">
