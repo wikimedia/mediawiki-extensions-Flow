@@ -71,6 +71,7 @@
     "flow-post-action-delete-post": "Delete",
     "flow-post-action-hide-post": "Hide",
     "flow-post-action-edit-post": "Edit",
+    "flow-post-action-edit-post-submit": "Save changes",
     "flow-post-action-unsuppress-post": "Unsuppress",
     "flow-post-action-undelete-post": "Undelete",
     "flow-post-action-unhide-post": "Unhide",
@@ -332,6 +333,7 @@
     "flow-special-uuid": "UUID",
     "flow-special-invalid-uuid": "Could not find content matching the type and the UUID.",
     "flow-spam-confirmedit": "As an anonymous user, you can't submit external links. Please sign up for an account.",
-    "flow-preview-warning": "You are seeing a preview. Submit the form to finish posting this, or click edit to continue writing.",
+    "flow-preview-warning": "You are seeing a preview. Submit the form to finish posting this, or click \"Keep editing\" to continue writing.",
+    "flow-preview-return-edit-post" : "Keep editing",
     "flow-anonymous": "Anonymous"
 }
