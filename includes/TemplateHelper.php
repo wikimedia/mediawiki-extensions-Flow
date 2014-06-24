@@ -155,6 +155,7 @@ class TemplateHelper {
 				),
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
+					'ifCond' => 'Flow\TemplateHelper::ifCond',
 					'ifEquals' => 'Flow\TemplateHelper::ifEquals',
 					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 					'tooltip' => 'Flow\TemplateHelper::tooltip',
@@ -757,6 +758,34 @@ class TemplateHelper {
 		return self::html(
 			self::processTemplate( 'flow_preview_button', array( 'templateName' => $templateName ) )
 		);
+	}
+
+	/**
+	 * Only perform action when conditions match
+	 * @param string value
+	 * @param string operator e.g. 'or'
+	 * @param string value2 to compare with
+	 * @return mixed result of callback
+	 * @throws FlowException Fails when callbacks are not Closure instances
+	 * @param array @options
+	 */
+	static public function ifCond( $value, $operator, $value2, $options ) {
+		$fn = $options['fn'];
+		$inverse = isset( $options['inv'] ) ? $options['inv'] : null;
+		if ( !$fn instanceof Closure ) {
+			throw new FlowException( 'Expected callback to be Closure instance' );
+		}
+
+		// Perform operator
+		if ( $operator === "or" ) {
+			if ( $value || $value2 ) {
+				return $fn();
+			} else if ( $inverse ){
+				return $inverse();
+			}
+		} else {
+			return '';
+		}
 	}
 
 	/**
