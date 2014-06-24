@@ -808,7 +808,7 @@
 
 			// Check for non-empty fields of text
 			$fields.each( function () {
-				if ( $( this ).val() ) {
+				if ( $( this ).val() !== this.defaultValue ) {
 					notEmptyCount++;
 					return false;
 				}
