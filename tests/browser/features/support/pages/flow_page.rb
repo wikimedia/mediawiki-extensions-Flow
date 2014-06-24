@@ -64,6 +64,7 @@ class FlowPage
   ### Topic deletion workflow
   div(:dialog, css: ".ui-dialog")
   textarea(:dialog_input, css: ".ui-dialog textarea")
+  button(:dialog_cancel, css: ".ui-dialog .flow-ui-destructive")
   button(:dialog_submit, css: ".ui-dialog .flow-ui-constructive")
 
   # Post actions menu

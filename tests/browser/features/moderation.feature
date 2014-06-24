@@ -24,3 +24,21 @@ Feature: Headers
         And I give reason for suppression as being "Quelling the peasants"
         And I click Suppress topic
     Then the top post should be marked as suppressed
+
+  Scenario: Cancelling a dialog without text
+      And I create a Flow topic with title "Testing cancel deletion of topic"
+    When I click the Topic Actions link
+        And I click the Delete topic button
+        And I see a dialog box
+        And I cancel the dialog
+    Then I do not see the dialog box
+
+  Scenario: Cancelling a dialog with text
+      And I create a Flow topic with title "Testing cancel deletion of topic"
+    When I click the Topic Actions link
+        And I click the Delete topic button
+        And I see a dialog box
+        And I give reason for suppression as being "About to change my mind"
+        And I cancel the dialog
+        And I confirm
+    Then I do not see the dialog box
