@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_8f431543",
+        "filename": "Hooks.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-06-24T11:15:52Z",
+      "side": 1,
+      "message": "This is horrible. Module scripts can be declared as a string, that\u0027s a documented interface. Requiring these to be arrays is just asking for trouble, silent errors and headaches. I\u0027d say there\u0027s a good chance it took a while to figure out why some of the Flow tests weren\u0027t working before you converted those to arrays as well in Flow.php. Either way, that will happen in the future, I guarantee it. If you really want to go with a subset of the ResourceLoader interface, throw an error if it\u0027s not an array.",
+      "revId": "273b70b56130fe6db36c2a03665f1c7d4b407ff2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
