@@ -435,9 +435,9 @@
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.submitEditPost = function( status, data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.submitEditPost = function( info, data, jqxhr ) {
 
-			if ( !data || !data.flow || !data.flow['edit-post'] ) {
+			if ( info.status !== 'done' || !data || !data.flow || !data.flow['edit-post'] ) {
 				// @todo
 				alert( "Error" );
 				return;
@@ -1238,17 +1238,17 @@
 		};
 
 		/**
-		 * @param {String} status (done|fail)
+		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.submitReply = function ( status, data, jqxhr ) {
+		FlowBoardComponent.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				postId = data.flow.reply.result.topic.roots[0],
 				$form = $( this ).closest( 'form' ),
 				post;
 
-			if ( status === 'done' ) {
+			if ( info.status === 'done' ) {
 				post = flowBoard.TemplateEngine.processTemplateGetFragment(
 					'flow_post',
 					{ revision: data.flow.reply.result.topic.revisions[postId] }
