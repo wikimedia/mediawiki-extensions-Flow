@@ -705,7 +705,8 @@ class TemplateHelper {
 	static public function addReturnTo( $url ) {
 		$ctx = RequestContext::getMain();
 		$returnTo = $ctx->getTitle();
-		$returnToQuery = $ctx->getRequest()->getValues();
+		// We can't get only the query parameters from
+		$returnToQuery = $ctx->getRequest()->getQueryValues();
 
 		unset( $returnToQuery['title'] );
 
@@ -713,7 +714,7 @@ class TemplateHelper {
 			'returnto' => $returnTo->getPrefixedUrl(),
 		);
 		if ( $returnToQuery ) {
-			$args['returntoquery'] = wfArrayToCGI( $returnToQuery );
+			$args['returntoquery'] = wfArrayToCgi( $returnToQuery );
 		}
 		return wfAppendQuery( $url, wfArrayToCgi( $args ) );
 	}
