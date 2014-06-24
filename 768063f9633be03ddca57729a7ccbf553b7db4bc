@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ae43a74e_55381c9b",
+        "filename": "handlebars/flow_post.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-24T17:16:57Z",
+      "side": 1,
+      "message": "Indent needs cleaning up. I\u0027ll fix.",
+      "revId": "768063f9633be03ddca57729a7ccbf553b7db4bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae43a74e_f5c71099",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 1
@@ -13,6 +30,23 @@
       "writtenOn": "2014-06-24T17:13:30Z",
       "side": 1,
       "message": "I think the class should be added by the server side here. There\u0027s no reason we should restrict it to our JavaScript users.\nI\u0027ve added a @todo note before merging this.",
+      "revId": "768063f9633be03ddca57729a7ccbf553b7db4bc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_d543ec13",
+        "filename": "modules/new/styles/layout.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-24T17:16:57Z",
+      "side": 1,
+      "message": "Please put inline comments above. I\u0027ll cleanup.",
       "revId": "768063f9633be03ddca57729a7ccbf553b7db4bc",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
