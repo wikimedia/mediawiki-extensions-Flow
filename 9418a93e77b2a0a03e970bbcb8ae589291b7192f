@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ae43a74e_495e457d",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-24T22:46:16Z",
+      "side": 1,
+      "message": "Makes sense, though requires a bit of hacky code to do so. Prototypes will be inherited, so that\u0027s why we do it this way.",
+      "parentUuid": "ae43a74e_55dedc15",
+      "revId": "9418a93e77b2a0a03e970bbcb8ae589291b7192f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae43a74e_75d9e02b",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ae43a74e_49e405a4",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-24T22:46:16Z",
+      "side": 1,
+      "message": "You\u0027re right. It\u0027s an expensive call. This method is called when the node is inserted onto the page (or at page load, for the first time).\n\nThis cleanup can be done in an apiPreHandler (which are called on click), telling it to just remove the clicked node from $loadMoreNodes instead.",
+      "parentUuid": "ae43a74e_75d9e02b",
+      "revId": "9418a93e77b2a0a03e970bbcb8ae589291b7192f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae43a74e_35cd9835",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 4
@@ -47,6 +83,24 @@
       "writtenOn": "2014-06-24T17:56:32Z",
       "side": 1,
       "message": "*Never* simulate user events (outside testing maybe, though even then only in integration tests, never in a unit test). I don\u0027t think there\u0027s any justification for this, there\u0027s a dozen less bad ways (that are still suboptimal) that\u0027d be better than this.\n\nThis is a sign of event handlers doing too much and code not being separated properly.\n\nTypically code that has event handlers do too much tends to invoke click handlers directly (e.g. flow.something.handleClick()), but this seems even worse in that it actually triggers the entire event chain, which means you may cause other event handlers be triggered as well. The DOM is now becoming an API, and you\u0027re paying for that in performance as well (you\u0027re going into the native DOM only to invoke a function that you could be accessing directly).\n\nExposing the click handler somewhere and calling that would be a small improvement. But really whatever that click handlers is doing that you want to trigger here should be its own method that doesn\u0027t relate to an event.\n\ne.g.\n\n // Event trigger (current code)\n foo.on(\u0027click\u0027,function (e) {\n   dialog.show().css(\u0027left\u0027, e.clientX);\n });\n bar.stuff \u003d function () {\n   foo.trigger(\u0027click\u0027);\n };\n\n // Expose event handle (no Event, jQuery or DOM callstack) \n bar.handleFoo \u003d function (e) {\n   dialog.show().css(\u0027left\u0027, e.clientX);\n };\n foo.on(\u0027click\u0027, bar.handleFoo);\n bar \u003d function () {\n   bar.handleFoo({ clientX: 123 });\n };\n\n // Data handle (no Event faking, simpler signature)\n bar.showDialog \u003d function (data) {\n   dialog.show().css(\u0027left\u0027, data.left);\n };\n foo.on(\u0027click\u0027, function (e) {\n   showDialog({ left: e.clientX });\n });\n bar \u003d function () {\n   bar.showDialog({ left: 123 });\n };\n\nGood example https://www.youtube.com/watch?v\u003dnZihjH6_Qns#t\u003d30m20s",
+      "revId": "9418a93e77b2a0a03e970bbcb8ae589291b7192f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_29a0a13d",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-24T22:46:16Z",
+      "side": 1,
+      "message": "This gets us a whole event object as well, though perhaps something like this is better:\n    $( this ).trigger( \u0027click.FlowBoardComponent\u0027 );",
+      "parentUuid": "ae43a74e_35cd9835",
       "revId": "9418a93e77b2a0a03e970bbcb8ae589291b7192f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
