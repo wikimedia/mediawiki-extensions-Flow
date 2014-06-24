@@ -30,7 +30,16 @@ When(/^I click the Post Actions link$/) do
 end
 
 When(/^I click New topic save$/) do
-  on(FlowPage).new_topic_save_element.when_present.click
+  on(FlowPage) do |page|
+    page.new_topic_save_element.when_present.click
+
+    # Wait for the save to finish, at which point the button will hide
+    page.new_topic_save_element.when_not_visible
+
+    # Blur the "Start a new topic", to work around
+    # https://trello.com/c/tXa05k4A
+    page.new_topic_title_element.send_keys :tab
+  end
 end
 
 # Same thing as action_menu_permalink_steps' "I click Actions menu for the Topic"

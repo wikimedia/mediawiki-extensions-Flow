@@ -26,6 +26,10 @@ class FlowPage
   a(:cancel_button, text: "Cancel")
   button(:change_post_save, css: "form.flow-edit-form .flow-edit-submit")
   button(:change_title_save, css: "form.flow-edit-title-form .flow-edit-submit")
+
+  # XXX (mattflaschen, 2014-06-24): This is broken; there is no
+  # flow-topic-reply-form anywhere in Flow outside this file.
+  # Also, this should be named to distinguish between top-level posts and regular replies.
   textarea(:comment_field, css: 'form.flow-topic-reply-form > textarea[name="topic_content"]')
   button(:comment_reply_save, css: "form.flow-topic-reply-form .flow-reply-submit")
   a(:edit_post, class: "flow-edit-post-link", index: topic_index)
@@ -43,19 +47,25 @@ class FlowPage
   a(:block_user, css: ".flow-author:hover .mw-usertoollinks a", index: 1)
 
   # Collapse button
-  a(:full_view, href: "#collapser/full")
-  a(:small_view, href: "#collapser/compact")
-  a(:collapsed_view, href: "#collapser/topics")
+  a(:topics_and_posts_view, href: "#collapser/full")
+  a(:small_topics_view, href: "#collapser/compact")
+  a(:topics_only_view, href: "#collapser/topics")
 
-  # Topic actions menu
+  # For topic collapsing testing
+  # Watir WebDriver apparently doesn't support CSS :not (https://developer.mozilla.org/en-US/docs/Web/CSS/:not), so using XPath
+  h2(:first_non_moderated_topic_title, xpath: '(//*[contains(@class, "flow-topic ") and not(contains(@class, "flow-topic-moderated"))]//h2[contains(@class, "flow-topic-title")])[1]')
+  span(:first_non_moderated_topic_starter, xpath: '(//*[contains(@class, "flow-topic ") and not(contains(@class, "flow-topic-moderated"))]//*[contains(@class, "flow-topic-titlebar")]//*[contains(@class, "flow-author")])[1]')
+  div(:first_non_moderated_topic_post_content, xpath: '(//*[contains(@class, "flow-topic ") and not(contains(@class, "flow-topic-moderated"))]//*[contains(@class, "flow-post-content")])[1]')
+
+  # Topic actions menu (all belonging to the first post)
   a(:topic_actions_link, css: ".flow-topic .flow-topic-titlebar .flow-menu-js-drop a", index: 0)
   ## Menu
   ul(:topic_actions_menu, css: ".flow-topic .flow-topic-titlebar .flow-menu ul", index: 0)
   a(:topic_delete_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Hide topic")
+    page.topic_actions_menu_element.link_element(title: "Delete topic")
   end
   a(:topic_hide_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Delete topic")
+    page.topic_actions_menu_element.link_element(title: "Hide topic")
   end
   a(:topic_suppress_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Suppress topic")
@@ -75,6 +85,10 @@ class FlowPage
     page.post_actions_menu_element.link_element(title: "Suppress")
   end
 
+  # Hiding a topic with no-JS; may also be applicable for other moderation
+  textarea(:topic_reason, name: "topic_reason")
+  button(:topic_submit, css: '.flow-form-actions button[data-role="submit"]')
+
   # New topic creation
   form(:new_topic_form, css: ".flow-newtopic-form")
   text_field(:new_topic_title, name: "topiclist_topic")
@@ -85,10 +99,14 @@ class FlowPage
   a(:permalink, css: "div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-permalink > a.mw-ui-button.flow-action-permalink-link")
 
   # Replying
+  # TODO (mattflaschen, 2014-06-24): Should distinguish between
+  # top-level replies to the topic, and replies to regular posts
   form(:new_reply_form, css: ".flow-reply-form")
   button(:new_reply_cancel, css: ".flow-reply-form .flow-ui-destructive")
   button(:new_reply_preview, css: ".flow-reply-form .flow-ui-progressive")
   button(:new_reply_save, css: ".flow-reply-form .flow-ui-constructive")
+  text_field(:new_reply_text_unexpanded, css: '.flow-reply-form input[name="topic_content"]')
+  textarea(:new_reply_text_expanded, css: '.flow-reply-form textarea[name="topic_content"]')
 
   text_area(:post_edit, css: "form.flow-edit-form .flow-edit-content")
   button(:preview_button, class: "mw-ui-button flow-preview-submit")
