@@ -42,7 +42,12 @@
 </form>
 
 			'.LCRun3::wi($cx, ((is_array($in) && isset($in['revision'])) ? $in['revision'] : null), $in, function($cx, $in) {return '
-	<div class="flow-post'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? ' flow-post-moderated' : '').'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isMaxThreadingDepth'])) ? $in['isMaxThreadingDepth'] : null))) ? ' data-flow-post-max-depth="1"' : '').'>
+	<div id="flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
+			 class="flow-post'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? ' flow-post-moderated' : '').'"
+			 data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
+			 '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isMaxThreadingDepth'])) ? $in['isMaxThreadingDepth'] : null))) ? '
+			 data-flow-post-max-depth="1"
+			 ' : '').'>
 		<div class="flow-post-main">
 			'.LCRun3::wi($cx, ((is_array($in) && isset($in['creator'])) ? $in['creator'] : null), $in, function($cx, $in) {return '
 				'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '

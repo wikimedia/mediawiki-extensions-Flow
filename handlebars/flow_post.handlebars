@@ -1,5 +1,10 @@
 {{#with revision}}
-	<div class="flow-post{{#if isModerated}} flow-post-moderated{{/if}}" data-flow-id="{{postId}}"{{#if isMaxThreadingDepth}} data-flow-post-max-depth="1"{{/if}}>
+	<div id="flow-post-{{postId}}"
+			 class="flow-post{{#if isModerated}} flow-post-moderated{{/if}}"
+			 data-flow-id="{{postId}}"
+			 {{#if isMaxThreadingDepth}}
+			 data-flow-post-max-depth="1"
+			 {{/if}}>
 		<div class="flow-post-main">
 			{{#with creator}}
 				{{#unless isPreview}}

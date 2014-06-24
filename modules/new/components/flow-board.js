@@ -29,6 +29,14 @@
 			// Failed to init for some reason
 			return false;
 		}
+
+		// Handle URL parameters
+		if ( window.location.hash && /^\#flow-post-[a-z0-9]+$/.test( window.location.hash ) ) {
+			$container.find( window.location.hash )
+				// @todo: Add class in PHP so it works for non-JavaScript users.
+				.addClass( 'flow-post-highlighted' )
+				.conditionalScrollIntoView();
+		}
 	}
 
 	// Register this FlowComponent
