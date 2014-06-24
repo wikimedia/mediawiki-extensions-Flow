@@ -43,19 +43,19 @@ class FlowPage
   a(:block_user, css: ".flow-author:hover .mw-usertoollinks a", index: 1)
 
   # Collapse button
-  a(:full_view, href: "#collapser/full")
-  a(:small_view, href: "#collapser/compact")
-  a(:collapsed_view, href: "#collapser/topics")
+  a(:topics_and_posts_view, href: "#collapser/full")
+  a(:small_topics_view, href: "#collapser/compact")
+  a(:topics_only_view, href: "#collapser/topics")
 
-  # Topic actions menu
+  # Topic actions menu (all belonging to the first post)
   a(:topic_actions_link, css: ".flow-topic .flow-topic-titlebar .flow-menu-js-drop a", index: 0)
   ## Menu
   ul(:topic_actions_menu, css: ".flow-topic .flow-topic-titlebar .flow-menu ul", index: 0)
   a(:topic_delete_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Hide topic")
+    page.topic_actions_menu_element.link_element(title: "Delete topic")
   end
   a(:topic_hide_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Delete topic")
+    page.topic_actions_menu_element.link_element(title: "Hide topic")
   end
   a(:topic_suppress_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Suppress topic")
@@ -74,6 +74,10 @@ class FlowPage
   a(:suppress_button) do |page|
     page.post_actions_menu_element.link_element(title: "Suppress")
   end
+
+  # Hiding a topic with no-JS; may also be applicable for other moderation
+  textarea(:topic_reason, name: "topic_reason")
+  button(:topic_submit, css: '.flow-form-actions button[data-role=submit]')
 
   # New topic creation
   form(:new_topic_form, css: ".flow-newtopic-form")
