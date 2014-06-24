@@ -112,6 +112,17 @@ class View extends ContextSource {
 			throw new InvalidActionException( "No blocks accepted action: $action" );
 		}
 
+		// XXX: There must be a more general way to do this
+		if ( $apiResponse['blocks'][0]['type'] === 'topic' ) {
+			// Topic block
+			$block = $apiResponse['blocks'][0];
+			$postId = reset( $block['roots'] );
+			$revId = reset( $block['posts'][$postId] );
+			$revision = $block['revisions'][$revId];
+			$title = $revision['content'];
+			$out->setPagetitle( $title );
+		}
+
 		array_walk_recursive( $apiResponse, function( &$value ) {
 			if ( $value instanceof Anchor ) {
 				$value = $value->toArray();
