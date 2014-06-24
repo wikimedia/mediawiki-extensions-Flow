@@ -760,6 +760,37 @@ class TemplateHelper {
 	}
 
 	/**
+	 * Only perform action when conditions match
+	 * @param string value
+	 * @param string operator e.g. 'or'
+	 * @param string value2 to compare with
+	 * @return mixed result of callback
+	 * @throws FlowException Fails when callbacks are not Closure instances
+	 * @param array @options
+	 */
+	static public function ifCond( $value, $operator, $value2, $options ) {
+		$fn = $options['fn'];
+		if ( !$fn instanceof Closure ) {
+			throw new FlowException( 'Expected callback to be Closure instance' );
+		}
+		$inverse = $options['inv'];
+		if ( !$inverse instanceof Closure ) {
+			throw new FlowException( 'Expected inverse callback to be Closure instance' );
+		}
+
+		// Perform operator
+		if ( $operator === 'or' ) {
+			if ( $value || $value2 ) {
+				return $fn();
+			} else {
+				return $inverse();
+			}
+		} else {
+			return '';
+		}
+	}
+
+	/**
 	 * @param array $options
 	 * @return string tooltip
 	 */
