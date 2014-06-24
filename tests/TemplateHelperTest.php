@@ -2,6 +2,11 @@
 
 namespace Flow;
 
+use Lightncandy;
+
+/**
+ * @group Flow
+ */
 class TemplateHelperTest extends \MediaWikiTestCase {
 
 	public function provideTraversalAttackFilenames() {
@@ -24,5 +29,13 @@ class TemplateHelperTest extends \MediaWikiTestCase {
 	public function testGetTemplateFilenamesTraversalAttack( $templateName ) {
 		$helper = new TemplateHelper( '/does/not/exist' );
 		$helper->getTemplateFilenames( $templateName );
+	}
+
+	public function testIfCond() {
+		$code = TemplateHelper::compile( "{{#ifCond foo \"or\" bar}}Works{{/ifCond}}", '' );
+		$renderer = Lightncandy::prepare( $code );
+
+		$this->assertEquals( 'Works', $renderer( array( 'foo' => true, 'bar' => false ) ) );
+		$this->assertEquals( '', $renderer( array( 'foo' => false, 'bar' => false ) ) );
 	}
 }
