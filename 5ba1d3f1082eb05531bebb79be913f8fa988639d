@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_7501e0b8",
+        "filename": "handlebars/flow_post.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-24T17:18:04Z",
+      "side": 1,
+      "message": "Almost all these menu items are the same, any reason this needs whitespace deletionand the ones below do not(should they all be changed)?",
+      "revId": "5ba1d3f1082eb05531bebb79be913f8fa988639d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
