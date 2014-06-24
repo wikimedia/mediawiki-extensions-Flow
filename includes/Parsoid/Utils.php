@@ -2,8 +2,9 @@
 
 namespace Flow\Parsoid;
 
-use Title;
+use Language;
 use OutputPage;
+use Title;
 use Flow\Exception\WikitextException;
 use Flow\Exception\InvalidDataException;
 
@@ -34,6 +35,26 @@ abstract class Utils {
 			$res = self::parser( $from, $to, $content, $title );
 		}
 		return $res;
+	}
+
+	/**
+	 * Basic conversion of html to plaintext for use in recent changes, history,
+	 * and other places where a roundtrip is undesired.
+	 *
+	 * @param string $html
+	 * @param int|null $truncateLength Maximum length (including ellipses) or null for whole string.
+	 * @param Language $lang Language to use for truncation.  Defaults to $wgLang
+	 * @return string plaintext
+	 */
+	public static function htmlToPlaintext( $html, $truncateLength = null, Language $lang = null ) {
+		$plain = trim( html_entity_decode( strip_tags( $html ) ) );
+
+		if ( $truncateLength === null ) {
+			return $plain;
+		} else {
+			$lang = $lang ?: $GLOBALS['wgLang'];
+			return $lang->truncate( $plain, $truncateLength );
+		}
 	}
 
 	/**
