@@ -713,7 +713,8 @@ class FlowHooks {
 			if ( substr( $key, 0, 9 ) === 'ext.flow.' && isset( $module['scripts'] ) ) {
 				$testFiles = array();
 
-				foreach ( $module['scripts'] as $script ) {
+				$scripts = (array) $module['scripts'];
+				foreach ( $scripts as $script ) {
 					$testFile = 'tests/qunit/' . dirname( $script ) . '/test_' . basename( $script );
 					// if a test file exists for a given JS file, add it
 					if ( file_exists( __DIR__ . '/' . $testFile ) ) {
