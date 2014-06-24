@@ -33,7 +33,7 @@ class TopicListBlock extends AbstractBlock {
 	/**
 	 * @var array
 	 */
-	protected $supportedGetActions = array( 'view', 'topiclist-view' );
+	protected $supportedGetActions = array( 'view', 'view-topiclist' );
 
 	// @Todo - fill in the template names
 	protected $templates = array(

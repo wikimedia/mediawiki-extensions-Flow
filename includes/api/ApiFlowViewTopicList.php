@@ -15,7 +15,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	}
 
 	protected function getAction() {
-		return 'topiclist-view';
+		return 'view-topiclist';
 	}
 
 	public function getAllowedParams() {
@@ -66,7 +66,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=topiclist-view&workflow=',
+			'api.php?action=flow&submodule=view-topiclist&workflow=',
 		);
 	}
 }
