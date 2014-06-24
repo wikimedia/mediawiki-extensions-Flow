@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "ae43a74e_69efc983",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 24
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-24T22:46:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae43a74e_e9c29938",
+      "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae43a74e_c9d6b5f6",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 24
@@ -134,6 +152,24 @@
       "writtenOn": "2014-06-24T22:34:37Z",
       "side": 1,
       "message": "Have you verified that this doesn\u0027t screw anything up in older browsers? We don\u0027t need the specificity here anymore?",
+      "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_6996a9f5",
+        "filename": "modules/new/styles/interactive.less",
+        "patchSetId": 24
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-24T22:46:01Z",
+      "side": 1,
+      "message": "It renders well in browsers I looked at.\nIf it\u0027s not rendering well in a browser there should be a more specific comment here.\n\nIt\u0027s not an h2 anymore so the above comment no longer applies to this rule.",
+      "parentUuid": "ae43a74e_69346947",
       "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
