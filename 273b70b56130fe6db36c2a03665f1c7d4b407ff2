@@ -16,6 +16,24 @@
       "revId": "273b70b56130fe6db36c2a03665f1c7d4b407ff2",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_a31272ff",
+        "filename": "Hooks.php",
+        "patchSetId": 4
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-24T19:42:15Z",
+      "side": 1,
+      "message": "I\u0027m not sure what you mean re \"it took a while to figure out why some of the Flow tests weren\u0027t working\".  There were no QUnit tests before this change; now at least we have infrastructure.\n\nAnyway, you\u0027re right about $module[\u0027scripts\u0027], so I\u0027ve fixed this in https://gerrit.wikimedia.org/r/141764",
+      "parentUuid": "ae43a74e_8f431543",
+      "revId": "273b70b56130fe6db36c2a03665f1c7d4b407ff2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
