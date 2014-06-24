@@ -35,11 +35,16 @@ remotes:
 gerrit: remotes
 	@scripts/remotes/gerrit.py --project 'mediawiki/extensions/Flow' --gtscore -1 --ignorepattern 'WIP'
 
+message: remotes
+	@python scripts/remotes/message.py
+
+messagecheck: remotes
+	@python scripts/remotes/message.py check
 
 ###
 # Lints
 ###
-lint: jshint phplint checkless
+lint: jshint phplint checkless messagecheck
 
 phplint:
 	@find ./ -type f -iname '*.php' | xargs -P 12 -L 1 php -l
@@ -65,9 +70,6 @@ qunit:
 
 vagrant-browsertests:
 	@vagrant ssh -- -X cd /srv/browsertests '&&' MEDIAWIKI_URL=http://localhost/wiki/ MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
-
-check-i18n:
-	@php scripts/check-i18n.php
 
 ###
 # Static analysis
