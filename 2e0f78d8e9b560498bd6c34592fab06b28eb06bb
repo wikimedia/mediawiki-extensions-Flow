@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee391fd1_a2956344",
+        "filename": "handlebars/flow_topic_titlebar_close.handlebars",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-06-24T00:12:38Z",
+      "side": 1,
+      "message": "I am not sure about having this variable in here.  This template is used by no-js mode as well, which requires the api output to have this variable set as well as well.  It sees a little bit odd",
+      "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
