@@ -265,15 +265,28 @@ div#bodyContent {
 // Comments
 .flow-post {
 	position: relative;
-	margin: 1em 0 0 1.5em;
+	/* left margin provided by highlighting zone */
+	margin: 0;
+	margin-top: 1em;
 	padding: 0;
 	color: @colorText;
 	word-wrap: break-word;
 
+	& > .flow-post-main {
+		/* leave room for highlighting */
+		padding-left: 0.75em;
+	    border-left: 0.75em solid transparent;
+	}
+
+	&.flow-post-highlighted > .flow-post-main {
+	        border-left-color: @colorHighlight;
+	}
+
 	// Nested comments (replies & reply forms)
 	.flow-post, .flow-reply-form, .flow-edit-post-form {
-		margin-left: 0;
-		padding-left: 2em;
+		margin-left: 1.5em;
+		/* another 1.5em provided by highlighting zone */
+		padding-left: 0.5em;
 		border-left: 1px dotted @colorGrayLighter;
 	}
 
