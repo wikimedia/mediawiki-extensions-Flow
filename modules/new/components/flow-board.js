@@ -775,6 +775,10 @@
 					// Is this a hidden form or invisible field? Make it visible.
 					FlowBoardComponent.UI.Forms.showForm( $form );
 
+					if ( ! $form.is( ':visible' ) ) {
+						FlowBoardComponent.UI.expandTopicIfNecessary( $form.closest( '.flow-topic' ) );
+					}
+
 					// Is this a form field? Scroll to the form instead of jumping.
 					$form.conditionalScrollIntoView().queue( function ( next ) {
 						var $el = $( hash[0] );
@@ -1531,6 +1535,27 @@
 				.removeClass( 'flow-board-collapsed-full flow-board-collapsed-topics flow-board-collapsed-compact' )
 				.addClass( 'flow-board-collapsed-' + newState );
 		};
+
+		/**
+		 * If a topic is collapsed, expand it.
+		 * @param  {Element|jQuery} topic The (single) topic element to show
+		 */
+		FlowBoardComponent.UI.expandTopicIfNecessary = function( topic ) {
+			var $component,
+				isFullView,
+				isInverted,
+				$topic = $( topic );
+
+			$component = $topic.closest( '.flow-component' );
+			isFullView = $component.hasClass( 'flow-board-collapsed-full' );
+			isInverted = $topic.hasClass( 'flow-topic-collapsed-invert' );
+
+			// Either full view and inverted (invisible)
+			// or compacted view and not inverted (invisible)
+			if ( isFullView === isInverted ) {
+				$topic.toggleClass( 'flow-topic-collapsed-invert' );
+			}
+		}
 
 
 		/**
