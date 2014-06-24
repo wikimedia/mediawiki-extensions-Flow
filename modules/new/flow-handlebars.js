@@ -670,6 +670,21 @@
 	};
 
 	/**
+	 * Renders block if condition is true
+	 *
+	 * @param {string} value
+	 * @param {string} operator supported values: 'or'
+	 * @param {string} value
+	 */
+	FlowHandlebars.prototype.ifCond = function ( value, operator, value2, options ) {
+		if ( operator === 'or' ) {
+			return value || value2 ? options.fn( this ) : options.inverse( this );
+		} else {
+			return '';
+		}
+	};
+
+	/**
 	 * Outputs debugging information
 	 *
 	 * For development use only
@@ -702,6 +717,7 @@
 	Handlebars.registerHelper( 'tooltip', FlowHandlebars.prototype.tooltip );
 	Handlebars.registerHelper( 'moderationActionText', FlowHandlebars.prototype.moderationActionText );
 	Handlebars.registerHelper( 'moderationAction', FlowHandlebars.prototype.moderationAction );
+	Handlebars.registerHelper( 'ifCond', FlowHandlebars.prototype.ifCond );
 	Handlebars.registerHelper( 'debug', FlowHandlebars.prototype.debug );
 
 }( jQuery ) );
