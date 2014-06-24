@@ -34,6 +34,24 @@
       "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_e97cd91d",
+        "filename": "handlebars/flow_topic_titlebar_close.handlebars",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-24T22:17:32Z",
+      "side": 1,
+      "message": "We could implement such a helper.\n\n    {{#ifConditional one \"||\" two}}\n\nOr maybe we could even assign a var named \"||\", which could allow us to use it as\n\n    {{#ifConditional one || two}}",
+      "parentUuid": "ae43a74e_72b8d674",
+      "revId": "2e0f78d8e9b560498bd6c34592fab06b28eb06bb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
