@@ -1,6 +1,6 @@
 <div class="flow-board">
 	{{> flow_errors}}
-	<div class="flow-board-link">
+	<div class="flow-board-link plainlinks">
 		{{#if board.is_user_namespace}}
 			{{l10nParse "flow-topic-permalink-warning-user-board" board.title_text board.link }}
 		{{else}}
