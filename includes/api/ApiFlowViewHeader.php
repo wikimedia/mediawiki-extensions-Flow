@@ -14,7 +14,7 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 	}
 
 	protected function getAction() {
-		return 'header-view';
+		return 'view-header';
 	}
 
 	public function getAllowedParams() {
@@ -42,7 +42,7 @@ class ApiFlowViewHeader extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=header-view&vhcontentFormat=wikitext&workflow=&revId=',
+			'api.php?action=flow&submodule=view-header&vhcontentFormat=wikitext&workflow=&revId=',
 		);
 	}
 }

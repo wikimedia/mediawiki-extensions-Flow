@@ -51,7 +51,7 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = array( 'topic-summary-view', 'compare-postsummary-revisions', 'edit-topic-summary' );
+	protected $supportedGetActions = array( 'view-topic-summary', 'compare-postsummary-revisions', 'edit-topic-summary' );
 
 	/**
 	 * @var string[]
@@ -60,7 +60,7 @@ class TopicSummaryBlock extends AbstractBlock {
 
 	// @Todo - fill in the template names
 	protected $templates = array(
-		'topic-summary-view' => 'single_view',
+		'view-topic-summary' => 'single_view',
 		'compare-postsummary-revisions' => 'diff_view',
 		'edit-topic-summary' => 'edit',
 		'close-open-topic' => 'close',
@@ -281,14 +281,14 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 
 		switch ( $this->action ) {
-			case 'topic-summary-view':
+			case 'view-topic-summary':
 				// @Todo - duplicated logic in other single view block
 				if ( isset( $options['revId'] ) && $options['revId'] ) {
 					$row = Container::get( 'query.postsummary.view' )->getSingleViewResult( $options['revId'] );
 					$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
 				} else {
 					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
-						$this->requiresWikitext[] = 'topic-summary-view';
+						$this->requiresWikitext[] = 'view-topic-summary';
 					}
 					$output += $this->renderNewestTopicSummary();
 				}

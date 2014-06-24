@@ -22,7 +22,7 @@
 		}
 
 		// Default API submodule for FlowBoard URLs is to fetch a topiclist
-		this.API.setDefaultSubmodule( 'topiclist-view' );
+		this.API.setDefaultSubmodule( 'view-topiclist' );
 
 		// Set up the board
 		if ( this.reinitializeBoard( $container ) === false ) {
@@ -181,7 +181,7 @@
 		 */
 		FlowBoardComponent.UI.events.apiPreHandlers.activateEditHeader = function ( event ) {
 			return {
-				submodule: "header-view", // href submodule is edit-header
+				submodule: "view-header", // href submodule is edit-header
 				vhcontentFormat: "wikitext" // href does not have this param
 			};
 		};
@@ -193,7 +193,7 @@
 		 */
 		FlowBoardComponent.UI.events.apiPreHandlers.activateEditPost = function ( event ) {
 			return {
-				submodule: "post-view",
+				submodule: "view-post",
 				vppostId: $( this ).closest( '.flow-post' ).data( 'flow-id' ),
 				vpcontentFormat: "wikitext"
 			};
@@ -249,7 +249,7 @@
 		FlowBoardComponent.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event ) {
 			return {
 				// href submodule is edit-topic-summary
-				submodule: 'topic-summary-view',
+				submodule: 'view-topic-summary',
 				// href does not have this param
 				vtscontentFormat: 'wikitext'
 			};
@@ -260,7 +260,7 @@
 		////////////////////
 
 		/**
-		 * On complete board reprocessing through topiclist-view (eg. change topic sort order), re-render any given blocks.
+		 * On complete board reprocessing through view-topiclist (eg. change topic sort order), re-render any given blocks.
 		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
@@ -273,7 +273,7 @@
 				$rendered = $(
 					flowBoard.TemplateEngine.processTemplateGetFragment(
 						'flow_block_loop',
-						{ blocks: data.flow[ 'topiclist-view' ].result }
+						{ blocks: data.flow[ 'view-topiclist' ].result }
 					)
 				).children();
 
@@ -301,7 +301,7 @@
 				$this.before(
 					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
 						'flow_topiclist_loop',
-						data.flow[ 'topiclist-view' ].result.topiclist
+						data.flow[ 'view-topiclist' ].result.topiclist
 					) ).children()
 				);
 				// Run loadHandlers
@@ -311,7 +311,7 @@
 				$this.replaceWith(
 					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
 						'flow_load_more',
-						data.flow[ 'topiclist-view' ].result.topiclist
+						data.flow[ 'view-topiclist' ].result.topiclist
 					) ).children()
 				);
 
@@ -339,12 +339,12 @@
 
 			if ( info.status === 'done' ) {
 				// Change "header" to "header_edit" so that it loads up flow_block_header_edit
-				data.flow[ 'header-view' ].result.header.type = 'header_edit';
+				data.flow[ 'view-header' ].result.header.type = 'header_edit';
 
 				$rendered = $(
 					flowBoard.TemplateEngine.processTemplateGetFragment(
 						'flow_block_loop',
-						{ blocks: data.flow[ 'header-view' ].result }
+						{ blocks: data.flow[ 'view-header' ].result }
 					)
 				).children();
 
@@ -653,7 +653,7 @@
 			if ( info.status === 'done' ) {
 				html = flowBoard.TemplateEngine.processTemplate(
 					'flow_block_topicsummary_edit',
-					data.flow[ 'topic-summary-view' ].result.topicsummary
+					data.flow[ 'view-topic-summary' ].result.topicsummary
 				);
 				$node.html(
 					$( html ).html()
@@ -699,12 +699,12 @@
 
 			if ( info.status === 'done' ) {
 				// Change "topic" to "topic_edit_post" so that it loads up flow_block_topic_edit_post
-				data.flow['post-view'].result.topic.type = 'topic_edit_post';
+				data.flow['view-post'].result.topic.type = 'topic_edit_post';
 
 				$rendered = $(
 					flowBoard.TemplateEngine.processTemplateGetFragment(
 						'flow_block_loop',
-						{ blocks: data.flow['post-view'].result }
+						{ blocks: data.flow['view-post'].result }
 					)
 				).children();
 
