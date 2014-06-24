@@ -19,8 +19,13 @@ class FlowPage
   div(:flow_topics, class: "flow-topics")
   div(:highlighted_comment, class: "flow-post-highlighted")
 
+  # Collapse button
+  a(:full_view, href: "#collapser/full")
+  a(:small_view, href: "#collapser/compact")
+  a(:collapsed_view, href: "#collapser/topics")
+
   # Posts
-  ## Top post
+  ## First topic
   h2(:flow_first_topic_heading, css: ".flow-topic h2", index: 0)
   div(:flow_first_topic_body, css: ".flow-post-content", index: 0)
 
@@ -28,14 +33,8 @@ class FlowPage
   a(:talk_link, css: "..flow-author:hover mw-usertoollinks a", index: 0)
   a(:block_user, css: ".flow-author:hover .mw-usertoollinks a", index: 1)
 
-  # Collapse button
-  a(:full_view, href: "#collapser/full")
-  a(:small_view, href: "#collapser/compact")
-  a(:collapsed_view, href: "#collapser/topics")
-
-  # Topic actions menu
+  ### First Topic actions menu
   a(:topic_actions_link, css: ".flow-topic .flow-topic-titlebar .flow-menu-js-drop a", index: 0)
-  ## Menu
   ul(:topic_actions_menu, css: ".flow-topic .flow-topic-titlebar .flow-menu ul", index: 0)
   a(:topic_delete_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Hide topic")
@@ -49,19 +48,18 @@ class FlowPage
   a(:edit_title_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Edit title")
   end
-  ## Editing title
+  ### Editing title of first topic
   text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
   button(:change_title_save, css: ".flow-topic-titlebar form .flow-ui-constructive")
 
-  ## Post meta actions
+  ### Post meta actions
   span(:post_meta_actions, css:".flow-post .flow-post-meta-actions", index: 0)
   a(:edit_post) do |page|
     page.post_meta_actions_element.link_element(title: "Edit")
   end
 
-  # Post actions menu
+  ### First post of first topic actions menu
   a(:post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 0)
-  ## Menu
   ul(:post_actions_menu, css: ".flow-topic .flow-post .flow-menu ul", index: 0)
   a(:hide_button) do |page|
     page.post_actions_menu_element.link_element(title: "Hide")
