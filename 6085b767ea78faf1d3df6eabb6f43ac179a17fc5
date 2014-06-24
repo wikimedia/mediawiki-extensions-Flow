@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_d5c2cc38",
+        "filename": "Resources.php",
+        "patchSetId": 29
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-24T17:40:03Z",
+      "side": 1,
+      "message": "This patch inconsistently seems to cause the Flow JS not to load. The dependency on jquery.ui.dialog seems to be the culprit - without it, it consistently loads.\n\nCould just be my local setup acting up, or some issue with resourceloader (tested on core master \u0026 latest deployment branch)\n\nJust to be sure, can anyone else take this one for a spin \u0026 make sure that on every reload, the Flow JS kicks in?",
+      "revId": "6085b767ea78faf1d3df6eabb6f43ac179a17fc5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
