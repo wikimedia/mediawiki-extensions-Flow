@@ -10,6 +10,7 @@ use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
+use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
@@ -661,10 +662,8 @@ class RevisionFormatter {
 			 * Parsoid roundtrip is needed then (and if it *is*, it'll already
 			 * be needed to render Flow discussions, so this is manageable)
 			 */
-			$lang = $ctx->getLanguage();
 			$content = $this->templating->getContent( $revision, 'html' );
-			$content = strip_tags( $content );
-			return Message::rawParam( $lang->truncate( trim( $content ), 140 ) );
+			return Utils::htmlToPlaintext( $content, 140, $ctx->getLanguage() );
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );

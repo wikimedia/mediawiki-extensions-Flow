@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use Flow\Parsoid\Utils;
 use Closure;
 use HTML;
 use LightnCandy;
@@ -821,12 +822,11 @@ class TemplateHelper {
 	 * @return string plaintext
 	 */
 	static public function plaintextSnippet( $contentFormat, $content ) {
-		global $wgLang;
-
 		if ( $contentFormat === 'html' ) {
-			$content = html_entity_decode( strip_tags( $content ) );
+			return Utils::htmlToPlaintext( $content, 200 );
+		} else {
+			global $wgLang;
+			return $wgLang->truncate( trim( $content ), 200 );
 		}
-
-		return $wgLang->truncate( trim( $content ), 200 );
 	}
 }
