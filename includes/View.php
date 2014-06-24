@@ -112,6 +112,8 @@ class View extends ContextSource {
 			throw new InvalidActionException( "No blocks accepted action: $action" );
 		}
 
+		$out->setPageTitle( $this->getPageTitle( $workflow, $apiResponse ) );
+
 		array_walk_recursive( $apiResponse, function( &$value ) {
 			if ( $value instanceof Anchor ) {
 				$value = $value->toArray();
@@ -134,6 +136,20 @@ class View extends ContextSource {
 		$template = $this->lightncandy->getTemplate( 'flow_board' );
 		$out->addHTML( $template( $apiResponse ) );
 		wfProfileOut( __CLASS__ . '-render' );
+	}
+
+	protected function getPageTitle( Workflow $workflow, array $apiResponse ) {
+		switch( $workflow->getType() ) {
+			case 'topic':
+				$block = $apiResponse['blocks'][0];
+				$postId = reset( $block['roots'] );
+				$revId = reset( $block['posts'][$postId] );
+				$revision = $block['revisions'][$revId];
+				$title = $revision['content'];
+				return $title;
+			case 'discussion':
+				return $workflow->getArticleTitle()->getPrefixedText();
+		}
 	}
 
 	protected function redirect( Workflow $workflow ) {
