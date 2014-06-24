@@ -5,16 +5,6 @@ class FlowPage
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
   page_url URL.url("Talk:Flow_QA")
 
-  # This hack makes Chrome edit the second topic on the page to avoid edit
-  # conflicts from simultaneous test runs (bug 59011).
-  if ENV['BROWSER'] == "chrome"
-    topic_index = 1
-    actions_index = 2
-  else
-    topic_index = 0
-    actions_index = 0
-  end
-
   # board header
   a(:edit_header_link, title: "Edit header")
   div(:header_content, css: ".flow-board-header-detail-view p", index: 0)
@@ -24,12 +14,8 @@ class FlowPage
   a(:actions_link_permalink_3rd_comment, text: "Actions", index: 4)
   a(:author_link, css: ".flow-author a")
   a(:cancel_button, text: "Cancel")
-  button(:change_post_save, css: "form.flow-edit-form .flow-edit-submit")
-  button(:change_title_save, css: "form.flow-edit-title-form .flow-edit-submit")
   textarea(:comment_field, css: 'form.flow-topic-reply-form > textarea[name="topic_content"]')
   button(:comment_reply_save, css: "form.flow-topic-reply-form .flow-reply-submit")
-  a(:edit_post, class: "flow-edit-post-link", index: topic_index)
-  a(:edit_title_icon, css: "div.tipsy-inner > div.flow-tipsy-flyout > ul > li.flow-action-edit-title > a.mw-ui-button.flow-edit-topic-link")
   div(:flow_topics, class: "flow-topics")
   div(:highlighted_comment, class: "flow-post-highlighted")
 
@@ -59,6 +45,18 @@ class FlowPage
   end
   a(:topic_suppress_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Suppress topic")
+  end
+  a(:edit_title_button) do |page|
+    page.topic_actions_menu_element.link_element(title: "Edit title")
+  end
+  ## Editing title
+  text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
+  button(:change_title_save, css: ".flow-topic-titlebar form .flow-ui-constructive")
+
+  ## Post meta actions
+  span(:post_meta_actions, css:".flow-post .flow-post-meta-actions", index: 0)
+  a(:edit_post) do |page|
+    page.post_meta_actions_element.link_element(title: "Edit")
   end
 
   # Post actions menu
@@ -90,12 +88,12 @@ class FlowPage
   button(:new_reply_preview, css: ".flow-reply-form .flow-ui-progressive")
   button(:new_reply_save, css: ".flow-reply-form .flow-ui-constructive")
 
-  text_area(:post_edit, css: "form.flow-edit-form .flow-edit-content")
+  # Editing post workflow
+  text_area(:post_edit, css: ".flow-edit-post-form textarea")
+  button(:change_post_save, css: ".flow-edit-post-form .flow-ui-constructive")
+
   button(:preview_button, class: "mw-ui-button flow-preview-submit")
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")
-  text_field(:title_edit, css: "form.flow-edit-title-form .flow-edit-content")
-  div(:topic_post, class: "flow-post-content", index: topic_index)
-  div(:topic_title, class: "flow-topic-title", index: topic_index)
 
   button(:edit_header_save, text: "Save header")
 end
