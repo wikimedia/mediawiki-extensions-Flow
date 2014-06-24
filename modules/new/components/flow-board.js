@@ -592,6 +592,11 @@
 						);
 
 						$( this ).closest( 'form' )[0].reset();
+
+						// remove focus - title input field may still have focus
+						// (submitted via enter key), which it needs to lose:
+						// the form will only re-activate if re-focused
+						document.activeElement.blur();
 					}
 					break;
 
