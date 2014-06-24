@@ -37,16 +37,16 @@ class FlowPage
   a(:topic_actions_link, css: ".flow-topic .flow-topic-titlebar .flow-menu-js-drop a", index: 0)
   ul(:topic_actions_menu, css: ".flow-topic .flow-topic-titlebar .flow-menu ul", index: 0)
   a(:topic_delete_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Hide topic")
+    page.topic_actions_menu_element.link_element(text: "Hide topic")
   end
   a(:topic_hide_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Delete topic")
+    page.topic_actions_menu_element.link_element(text: "Delete topic")
   end
   a(:topic_suppress_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Suppress topic")
+    page.topic_actions_menu_element.link_element(text: "Suppress topic")
   end
   a(:edit_title_button) do |page|
-    page.topic_actions_menu_element.link_element(title: "Edit title")
+    page.topic_actions_menu_element.link_element(text: "Edit title")
   end
   ### Editing title of first topic
   text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
