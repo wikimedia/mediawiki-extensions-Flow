@@ -90,10 +90,13 @@ $wgResourceModules += array(
 			'flow-summarize-topic-submit',
 			'flow-toggle-topics',
 			'flow-topic-action-close-topic',
+			'flow-topic-action-delete-topic',
 			'flow-topic-action-edit-title',
+			'flow-topic-action-hide-topic',
 			'flow-topic-action-history',
 			'flow-topic-action-resummarize-topic',
 			'flow-topic-action-summarize-topic',
+			'flow-topic-action-suppress-topic',
 			'flow-topic-action-view',
 			'talkpagelinktext',
 			'flow-cancel-warning',
@@ -109,6 +112,8 @@ $wgResourceModules += array(
 			// Previews
 			'flow-preview-warning',
 			'flow-anonymous',
+			// Core messages needed
+			'blocklink',
 		),
 	),
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
