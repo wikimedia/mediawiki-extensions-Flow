@@ -464,7 +464,7 @@ $c['storage.topic_history.index'] = $c->share( function( $c ) {
 			'create' => function( array $row ) {
 				// if the post has no parent and the revision has no parent
 				// then this is a brand new topic title
-				return $row['tree_parent_id'] === null
+				return ( !isset( $row['tree_parent_id'] ) || $row['tree_parent_id'] === null ) // summary has no tree parent
 					&& $row['rev_parent_id'] === null;
 			},
 	) );
