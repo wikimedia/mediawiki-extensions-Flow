@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_d8c44197",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-24T18:19:17Z",
+      "side": 1,
+      "message": "qqq",
+      "revId": "4b2e246c2c5292a89ffac014a1b10a8d7bfe3361",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_783315c1",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-24T18:19:17Z",
+      "side": 1,
+      "message": "qqq",
+      "revId": "4b2e246c2c5292a89ffac014a1b10a8d7bfe3361",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
