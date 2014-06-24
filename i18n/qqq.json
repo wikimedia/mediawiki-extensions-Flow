@@ -73,6 +73,7 @@
 	"flow-post-action-delete-post": "Used as a link in a dropdown menu to delete a post.\n{{Related|Flow-action}}\n{{Identical|Delete}}",
 	"flow-post-action-hide-post": "Used as a link in a dropdown menu to hide a post.\n{{Related|Flow-action}}\n{{Identical|Hide}}",
 	"flow-post-action-edit-post": "Used as text for the link which is used to edit the post.\n{{Related|Flow-action}}\n{{Identical|Edit}}",
+	"flow-post-action-edit-post-submit" : "Used as text for a button to submit an 'edit post' form.\n{{Related|flow-post-action-edit-post}}",
 	"flow-post-action-unsuppress-post": "Used as a link in a dropdown menu to unsuppress a post.\n{{Related|Flow-action}}\n{{Identical|Unsuppress}}",
 	"flow-post-action-undelete-post": "Used as a link in a dropdown menu to undelete a post.\n{{Related|Flow-action}}\n{{Identical|Undelete}}",
 	"flow-post-action-unhide-post": "Used as a link in a dropdown menu to unhide a post.\n{{Related|Flow-action}}\n{{Identical|Unhide}}",
@@ -309,5 +310,6 @@
 	"flow-special-invalid-uuid": "Error message shown on the redirector special page if the specified type / UUID combination is invalid",
 	"flow-spam-confirmedit": "Error message when ConfirmEdit flagged the submitted content (because an anonymous user submitted external links, possibly spam). This will prevent the content from being submitted.",
 	"flow-preview-warning": "You are seeing a preview. Submit the form to finish posting this, or click edit to continue writing.",
+	"flow-preview-return-edit-post" : "Used as text for a button that hides previewed text and returns to the editing view",
 	"flow-anonymous": "Anonymous"
 }

@@ -74,6 +74,7 @@ $wgResourceModules += array(
 			'flow-newtopic-start-placeholder',
 			'flow-post-action-delete-post',
 			'flow-post-action-edit-post',
+			'flow-post-action-edit-post-submit',
 			'flow-post-action-hide-post',
 			'flow-post-action-post-history',
 			'flow-post-action-view',
@@ -109,6 +110,7 @@ $wgResourceModules += array(
 			// Previews
 			'flow-preview-warning',
 			'flow-anonymous',
+			"flow-preview-return-edit-post",
 		),
 	),
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
