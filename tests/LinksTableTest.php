@@ -386,7 +386,7 @@ class LinksTableTest extends PostRevisionTestCase {
 				$srcObjId,
 				$ref['targetType'],
 				$ref['refType'],
-				$ref['$value']
+				$ref['value']
 			);
 		}
 
