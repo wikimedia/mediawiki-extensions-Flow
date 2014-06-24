@@ -612,12 +612,12 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				postId = data.flow.reply.result.topic.roots[0],
-				$form = $( this ).closest( 'form' ),
-				post;
+			var postId, post,
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$form = $( this ).closest( 'form' );
 
-			if ( info.status === 'done' ) {
+			if ( info.status === 'done' && data && data.flow && data.flow.reply ) {
+				postId = data.flow.reply.result.topic.roots[0];
 				post = flowBoard.TemplateEngine.processTemplateGetFragment(
 					'flow_post',
 					{ revision: data.flow.reply.result.topic.revisions[postId] }
@@ -632,6 +632,7 @@
 				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).click();
 			} else {
 				// @todo: address fail
+				alert( 'fail' );
 			}
 		};
 
