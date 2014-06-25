@@ -667,7 +667,7 @@
 					text: $button.text(),
 					$nodes: $previewContainer
 				} )
-				.text( flowBoard.TemplateEngine.l10n('flow-post-action-edit-post') );
+				.text( flowBoard.TemplateEngine.l10n('flow-preview-return-edit-post') );
 		};
 
 		/**
