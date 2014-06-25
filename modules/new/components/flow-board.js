@@ -952,8 +952,8 @@
 					$replacement = $( html );
 
 				$target
-					.closest( '.flow-post-main' )
-					.replaceWith( $replacement.find( '.flow-post-main' ) );
+					.closest( '.flow-post' )
+					.replaceWith( $replacement );
 
 				FlowBoardComponent.UI.makeContentInteractive( $replacement );
 			}
