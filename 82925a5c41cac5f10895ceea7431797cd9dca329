@@ -16,6 +16,24 @@
       "revId": "82925a5c41cac5f10895ceea7431797cd9dca329",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_3821089b",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-25T00:56:02Z",
+      "side": 0,
+      "message": "I get that.. I\u0027m just wondering under what circumstances it would be undefined....",
+      "parentUuid": "ae43a74e_092a7dd7",
+      "revId": "82925a5c41cac5f10895ceea7431797cd9dca329",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
