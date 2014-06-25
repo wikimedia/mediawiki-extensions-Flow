@@ -10,12 +10,14 @@ Feature: Create new topic logged in
   Background:
     Given I am logged in
 
-  Scenario: Add new Flow topic
+  Scenario: Add new Flow topic and show author and block links
     Given I have created a Flow topic
       And the author link is visible
-      And the talk and block links are not visible
+      And the talk to author link is not visible
+      And the block author link is not visible
     When I hover over the author link
-      Then links to talk and block should be visible
+    Then the talk to author link is visible
+      And the block author link is visible
 
   Scenario: Post Actions
     Given I am on Flow page

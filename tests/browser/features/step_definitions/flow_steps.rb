@@ -29,8 +29,8 @@ end
 
 Given(/^the talk and block links are not visible$/) do
   on(FlowPage) do |page|
-    page.talk_link_element.should_not be_visible
-    page.block_user_element.should_not be_visible
+    page.usertools_talk_link_element.should_not be_visible
+    page.usertools_block_user_link_element.should_not be_visible
   end
 end
 
@@ -73,15 +73,31 @@ Then(/^I do not see an actions link$/) do
    on(FlowPage).actions_link_element.should_not exist
 end
 
-Then(/^I do not see a block user link$/) do
-   on(FlowPage).block_user_element.should_not exist
+Then(/^the block author link does not exist$/) do
+   on(FlowPage).usertools_block_user_link_element.should_not exist
 end
 
 Then(/^links to talk and block should be visible$/) do
   on(FlowPage) do |page|
-    page.talk_link_element.should be_visible
-    page.block_user_element.should be_visible
+    page.usertools_talk_link_element.when_present.should be_visible
+    page.usertools_block_user_link_element.when_present.should be_visible
   end
+end
+
+Given(/^the talk to author link is not visible$/) do
+  on(FlowPage).usertools_talk_link_element.should_not be_visible
+end
+
+Given(/^the block author link is not visible$/) do
+  on(FlowPage).usertools_block_user_link_element.should_not be_visible
+end
+
+Then(/^the talk to author link is visible$/) do
+  on(FlowPage).usertools_talk_link_element.when_present.should be_visible
+end
+
+Then(/^the block author link is visible$/) do
+  on(FlowPage).usertools_block_user_link_element.when_present.should be_visible
 end
 
 Then(/^the preview and cancel buttons have disappeared$/) do
