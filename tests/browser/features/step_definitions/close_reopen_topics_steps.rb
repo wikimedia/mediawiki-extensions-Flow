@@ -14,10 +14,6 @@ Given(/^I click the Reopen topic button$/) do
   on(FlowPage).topic_reopen_button_element.when_present.click
 end
 
-Given(/^I see a form to close the topic$/) do
-  on(FlowPage).topic_close_form_element.when_present.should be_visible
-end
-
 When(/^I type "(.*?)" as the reason$/) do |reason|
   on(FlowPage).topic_close_form_reason_element.when_present.clear()
   on(FlowPage).topic_close_form_reason_element.send_keys(reason)

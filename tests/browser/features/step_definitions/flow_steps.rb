@@ -27,13 +27,6 @@ Given(/^the author link is visible$/) do
     on(FlowPage).author_link_element.when_present.should be_visible
 end
 
-Given(/^the talk and block links are not visible$/) do
-  on(FlowPage) do |page|
-    page.usertools_talk_link_element.should_not be_visible
-    page.usertools_block_user_link_element.should_not be_visible
-  end
-end
-
 When(/^I click the Post Actions link$/) do
   on(FlowPage).post_actions_link_element.when_present.click
 end
@@ -51,7 +44,6 @@ When(/^I click New topic save$/) do
   end
 end
 
-# Same thing as action_menu_permalink_steps' "I click Actions menu for the Topic"
 When(/^I click the Topic Actions link$/) do
   on(FlowPage).topic_actions_link_element.when_present.click
 end
@@ -78,19 +70,8 @@ When(/^I see a flow creator element$/) do
   on(FlowPage).author_link_element.should be_visible
 end
 
-Then(/^I do not see an actions link$/) do
-   on(FlowPage).actions_link_element.should_not exist
-end
-
 Then(/^the block author link does not exist$/) do
    on(FlowPage).usertools_block_user_link_element.should_not exist
-end
-
-Then(/^links to talk and block should be visible$/) do
-  on(FlowPage) do |page|
-    page.usertools_talk_link_element.when_present.should be_visible
-    page.usertools_block_user_link_element.when_present.should be_visible
-  end
 end
 
 Given(/^the talk to author link is not visible$/) do
