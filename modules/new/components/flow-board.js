@@ -753,7 +753,9 @@
 
 				// Clear contents to not trigger the "are you sure you want to
 				// discard your text" warning
-				$form.find( 'textarea, :text' ).val( '' );
+				$form.find( 'textarea, :text' ).each( function() {
+					$( this ).val( this.defaultValue );
+				} );
 				// Trigger a click on cancel to have it destroy the form the way it should
 				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
 			} else {
