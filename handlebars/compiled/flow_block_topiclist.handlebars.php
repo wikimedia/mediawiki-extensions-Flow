@@ -28,11 +28,11 @@
     );
     return '
 <div class="flow-board-navigation">
-
+	
 	<div class="flow-board-navigation-inner">
 		'.LCRun3::ch($cx, 'progressiveEnhancement', Array('context'=>$in,'insertionType'=>'insertion','sectionId'=>'flow-board-collapsers','templateName'=>'flow_board_collapsers_subcomponent'), 'encq', true).'
 
-
+		
 		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="'.LCRun3::ch($cx, 'l10n', Array('flow-sorting-tooltip'), 'encq').'" data-flow-interactive-handler="boardFilterMenuToggle">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'), $in, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array('flow-recent-topics'), 'encq').'
 			';}, function($cx, $in) {return '
@@ -45,11 +45,11 @@
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
 			'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['board-sort'])) ? $in['links']['board-sort'] : null))) ? '
 				<ul class="flow-ui-button-container">
-					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"
+					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'), $in, function($cx, $in) {return 'class="flow-board-navigator-link-highlight"';}).'
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
 					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-clock"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-recent-topics'), 'encq').'</a></li>
-					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['newest'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"
+					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['newest'])) ? $in['links']['board-sort']['newest'] : null), ENT_QUOTES, 'UTF-8').'"'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),''), $in, function($cx, $in) {return 'class="flow-board-navigator-link-highlight"';}).'
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
 					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-star-circle"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-newest-topics'), 'encq').'</a></li>
@@ -62,7 +62,7 @@
 
 <div class="flow-board">
 	<ul class="flow-topic-navigation" style="display:none;">
-
+	
 </ul>
 
 	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['newtopic'])) ? $in['actions']['newtopic'] : null))) ? '
@@ -100,7 +100,7 @@
 
 	<div class="flow-topics">
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
-
+	
 	'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
 		<div class="flow-topic '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? 'flow-load-interactive' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated flow-topic-collapsed' : '').'" id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-load-handler="topicElement">
 	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
@@ -128,7 +128,7 @@
 	' : '').'
 </div>
 <div class="flow-topic-edit-summary">
-
+	
 </div>
 
 
