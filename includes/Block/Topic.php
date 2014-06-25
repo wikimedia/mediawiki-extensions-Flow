@@ -473,6 +473,9 @@ class TopicBlock extends AbstractBlock {
 		}
 
 		$output['type'] = $this->getName();
+		$topic = $this->loadTopicTitle();
+		$output['topicTitle'] = $templating->getContent( $topic, 'raw' );
+
 		if ( $this->wasSubmitted() ) {
 			// Failed actions, like reply, end up here
 			$output += array(
