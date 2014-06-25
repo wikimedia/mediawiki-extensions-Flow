@@ -73,7 +73,7 @@ class View extends ContextSource {
 			wfProfileIn( __CLASS__ . '-submit' );
 			$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 			if ( $blocksToCommit ) {
-				if ( $request->getVal( 'wpEditToken' ) != $user->getEditToken() ) {
+				if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 					// only render the failed blocks
 					$blocks = $blocksToCommit;
 					foreach ( $blocks as $block ) {
