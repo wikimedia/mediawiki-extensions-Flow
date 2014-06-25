@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_31e9237c",
+        "filename": "includes/Block/Topic.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-25T15:10:11Z",
+      "side": 1,
+      "message": "ContentFormat is html|wikitext, not raw.\n\nAnything not-html will be considered wikitext and won\u0027t be processed as html (so this would be ok), but we want to be consistent.",
+      "revId": "41d312488ec50de778efbb2f3792a9e0d78ab38f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
