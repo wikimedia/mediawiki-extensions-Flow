@@ -537,9 +537,6 @@ class TopicBlock extends AbstractBlock {
 
 	protected function renderTopicAPI( Templating $templating, array $options, $workflowId = '' ) {
 		$serializer = Container::get( 'formatter.topic' );
-		if ( isset( $options['contentFormat'] ) ) {
-			$serializer->setContentFormat( $options['contentFormat'] );
-		}
 		if ( !$workflowId ) {
 			if ( $this->workflow->isNew() ) {
 				return $serializer->buildEmptyResult( $this->workflow );
