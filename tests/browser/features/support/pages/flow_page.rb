@@ -42,8 +42,13 @@ class FlowPage
   end
 
   ### Hover over username behaviour
-  a(:talk_link, css: "..flow-author:hover mw-usertoollinks a", index: 0)
-  a(:block_user, css: ".flow-author:hover .mw-usertoollinks a", index: 1)
+  span(:usertools, css: '.mw-usertoollinks')
+  a(:usertools_talk_link) do |page|
+    page.usertools_element.link_element(text: 'Talk')
+  end
+  a(:usertools_block_user_link) do |page|
+    page.usertools_element.link_element(text: 'block')
+  end
 
   ### First Topic actions menu
 
