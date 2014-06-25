@@ -34,6 +34,24 @@
       "revId": "eae3961b8efabc4dc3a93554cfa179c928db8e46",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_31d36363",
+        "filename": "modules/new/styles/layout.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-25T14:01:51Z",
+      "side": 1,
+      "message": "We don\u0027t use these child selectors because of IE6-7. Looking at the latest version of this file, I see a few have crept in. :(\n\nBesides that, these selectors have changed. I will update with a new version.",
+      "parentUuid": "ae43a74e_d8f0c190",
+      "revId": "eae3961b8efabc4dc3a93554cfa179c928db8e46",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
