@@ -51,7 +51,6 @@ When(/^I click New topic save$/) do
   end
 end
 
-# Same thing as action_menu_permalink_steps' "I click Actions menu for the Topic"
 When(/^I click the Topic Actions link$/) do
   on(FlowPage).topic_actions_link_element.when_present.click
 end
@@ -76,10 +75,6 @@ end
 
 When(/^I see a flow creator element$/) do
   on(FlowPage).author_link_element.should be_visible
-end
-
-Then(/^I do not see an actions link$/) do
-   on(FlowPage).actions_link_element.should_not exist
 end
 
 Then(/^I do not see a block user link$/) do
