@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_11997f80",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-25T14:17:03Z",
+      "side": 1,
+      "message": "Unrelated to this patch, but perhaps info.status should be \u0027fail\u0027 if the API comes back with an error? It technically succeeded to XHR, but it didn\u0027t to the API. Would avoid strange if statements, like this one here.",
+      "revId": "21e7c80779f1d07405d29ae040a3f5d2b55d3002",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
