@@ -7,6 +7,7 @@ Feature: Headers
     Given I am logged in
         And I am on Flow page
 
+  @wip
   Scenario: Deleting a topic
       And I create a Flow topic with title "Deletemeifyoudare"
     When I click the Topic Actions link

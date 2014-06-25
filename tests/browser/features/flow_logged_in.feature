@@ -10,6 +10,7 @@ Feature: Create new topic logged in
   Background:
     Given I am logged in
 
+  @wip
   Scenario: Add new Flow topic
     Given I have created a Flow topic
       And the author link is visible
