@@ -629,7 +629,7 @@
 				// discard your text" warning
 				$form.find( 'textarea, :text' ).val( '' );
 				// Trigger a click on cancel to have it destroy the form the way it should
-				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).click();
+				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
 			} else {
 				// @todo: address fail
 			}
@@ -1239,35 +1239,6 @@
 			// Add reply form below the post being replied to (WRT max depth)
 			$targetPost.append( $form );
 			$form.conditionalScrollIntoView();
-		};
-
-		/**
-		 * @param {Object} info (status:done|fail, $target: jQuery)
-		 * @param {Object} data
-		 * @param {jqXHR} jqxhr
-		 */
-		FlowBoardComponent.UI.events.apiHandlers.submitReply = function ( info, data, jqxhr ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				postId = data.flow.reply.result.topic.roots[0],
-				$form = $( this ).closest( 'form' ),
-				post;
-
-			if ( info.status === 'done' ) {
-				post = flowBoard.TemplateEngine.processTemplateGetFragment(
-					'flow_post',
-					{ revision: data.flow.reply.result.topic.revisions[postId] }
-				);
-
-				$form.before( post );
-
-				// Clear contents to not trigger the "are you sure you want to
-				// discard your text" warning
-				$form.find( 'textarea, :text' ).val( '' );
-				// Trigger a click on cancel to have it destroy the form the way it should
-				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
-			} else {
-				// @todo: address fail
-			}
 		};
 
 		/**
