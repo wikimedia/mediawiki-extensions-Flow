@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_b8905899",
+        "filename": "tests/browser/features/support/pages/flow_page.rb",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-25T01:46:13Z",
+      "side": 1,
+      "message": "Still a duplicate (hide, delete, hide).",
+      "revId": "2c72dafcdcd2ea38375f2949650167cde195fafb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
