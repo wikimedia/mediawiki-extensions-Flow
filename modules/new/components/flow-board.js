@@ -1184,8 +1184,7 @@
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
 			flowBoard.$boardNavigation.find( '.flow-board-filter-menu' )
-				.find( '.flow-board-filter-menu-activator' ).click().end()
-				.find( '.flow-ui-button-container' ).find( 'a:first' ).focus();
+				.find( '.flow-board-filter-menu-activator' ).click().end();
 
 			event.preventDefault();
 		};
