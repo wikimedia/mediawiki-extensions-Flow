@@ -6,7 +6,8 @@
             'spvar' => true,
             'debug' => $debugopt,
         ),
-        'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
+        'helpers' => Array(            'TermsOfUse' => 'Flow\TemplateHelper::TermsOfUse',
+            'l10n' => 'Flow\TemplateHelper::l10n',
             'previewButton' => 'Flow\TemplateHelper::previewButton',
 ),
         'blockhelpers' => Array(),
@@ -42,7 +43,7 @@
 					data-role="cancel"
 					class="flow-ui-button flow-ui-destructive
 					flow-ui-quiet flow-click-interactive">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
-				<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-edit'), 'encq').'</small>
+				<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'TermsOfUse', Array('edit'), 'encq').'</small>
 			</div>
 		</form>
 	</div>

@@ -200,6 +200,11 @@
 		return { text: function () { return result; } };
 	}
 
+	FlowHandlebars.prototype.termsOfUse = function ( str, args, options ) {
+		var terms = mw.config.get( 'flow_terms' );
+		return mw.message( terms[str] ).parse();
+	};
+
 	/**
 	 * Calls flowMessages to get localized message strings.
 	 * @todo use mw.message
@@ -714,6 +719,7 @@
 	};
 
 	// Register helpers
+	Handlebars.registerHelper( 'termsOfUse', FlowHandlebars.prototype.termsOfUse );
 	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );
 	Handlebars.registerHelper( 'l10nParse', FlowHandlebars.prototype.l10nParse );
 	Handlebars.registerHelper( 'uuidTimestamp', FlowHandlebars.prototype.uuidTimestamp );
