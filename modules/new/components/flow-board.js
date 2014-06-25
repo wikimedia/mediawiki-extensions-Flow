@@ -1401,7 +1401,7 @@
 			} );
 
 			// Add reply form below the post being replied to (WRT max depth)
-			$targetPost.append( $form );
+			$targetPost.children( '.flow-replies' ).append( $form );
 			$form.conditionalScrollIntoView();
 		};
 
