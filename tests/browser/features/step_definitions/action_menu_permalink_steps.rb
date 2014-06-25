@@ -21,11 +21,7 @@ When(/^I add (\d+) comments to the Topic$/) do |number|
   number.to_i.times do
     on(FlowPage) do |page|
       @saved_random=Random.new.rand.to_s
-      page.new_reply_save_element.when_not_present
-      page.new_reply_input_element.when_present.click
-      page.new_reply_input_element.send_keys("Selenium comment " + @saved_random)
-      page.new_reply_save_element.when_present.click
-      page.new_reply_save_element.when_not_present
+      step 'I reply with text "' + 'Selenium comment ' + @saved_random + '"'
     end
   end
 end
