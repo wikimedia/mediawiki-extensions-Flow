@@ -142,11 +142,7 @@ class View extends ContextSource {
 		switch( $workflow->getType() ) {
 			case 'topic':
 				$block = $apiResponse['blocks'][0];
-				$postId = reset( $block['roots'] );
-				$revId = reset( $block['posts'][$postId] );
-				$revision = $block['revisions'][$revId];
-				$title = $revision['content'];
-				return $title;
+				return $block['topicTitle'];
 			case 'discussion':
 				return $workflow->getArticleTitle()->getPrefixedText();
 		}
