@@ -49,11 +49,8 @@ class FlowPage
   a(:topic_delete_button) do |page|
     page.topic_actions_menu_element.link_element(text: "Delete topic")
   end
-  a(:topic_delete_button) do |page|
-    page.topic_actions_menu_element.link_element(text: "Hide topic")
-  end
   a(:topic_hide_button) do |page|
-    page.topic_actions_menu_element.link_element(text: "Delete topic")
+    page.topic_actions_menu_element.link_element(text: "Hide topic")
   end
   a(:topic_suppress_button) do |page|
     page.topic_actions_menu_element.link_element(text: "Suppress topic")
