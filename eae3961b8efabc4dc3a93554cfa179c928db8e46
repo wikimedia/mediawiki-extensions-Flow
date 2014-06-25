@@ -16,6 +16,24 @@
       "revId": "eae3961b8efabc4dc3a93554cfa179c928db8e46",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_714e8b74",
+        "filename": "modules/new/styles/layout.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-06-25T13:38:15Z",
+      "side": 1,
+      "message": "I think just removing .flow-edit-post-form from there would serve the same purpose:\n\n    .flow-post, .flow-reply-form {\n\nThe .flow-edit-post-form was added there because it wouldn\u0027t originally indent, since it was not part of .flow-post. This has since changed, because we can\u0027t replace all of .flow-post (it may have child posts). Right now, the real post content (that is being replaced by the edit form) is inside .flow-post-main \u0026 .flow-post is now also a parent of .flow-edit-post-form \u003d the original reason .flow-edit-post-form is in here, is no longer needed.\n\nNot sure if there are other indents (apart from edit form) that were incorrect so I won\u0027t change the patch yet. A quick look at regular post view, reply \u0026 edit seems to look alright to me with the above change.",
+      "parentUuid": "ae43a74e_d8f0c190",
+      "revId": "eae3961b8efabc4dc3a93554cfa179c928db8e46",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
