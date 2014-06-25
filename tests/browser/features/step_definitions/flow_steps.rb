@@ -2,6 +2,12 @@ Given(/^I am on Flow page$/) do
   visit FlowPage
 end
 
+Then(/^I am on my user page$/) do
+  # Get the title of the page without '_' characters
+  text = 'User:' + ENV["MEDIAWIKI_USER"].sub(/_/, ' ')
+  on(UserPage).first_heading_element.text.should == text
+end
+
 Given(/^I am on a new board$/) do
   visit NewFlowPage
 end
@@ -76,6 +82,10 @@ end
 
 When(/^I see a flow creator element$/) do
   on(FlowPage).author_link_element.should be_visible
+end
+
+When(/^I click the flow creator element$/) do
+  on(FlowPage).author_link_element.click
 end
 
 Then(/^I do not see an actions link$/) do
