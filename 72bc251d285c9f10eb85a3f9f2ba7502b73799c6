@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_ac493a6c",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 7
+      },
+      "lineNbr": 1900,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-25T15:39:36Z",
+      "side": 1,
+      "message": "This is fine for now. Perhaps in sprint D I\u0027ll revisit this and use data attributes.",
+      "revId": "72bc251d285c9f10eb85a3f9f2ba7502b73799c6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
