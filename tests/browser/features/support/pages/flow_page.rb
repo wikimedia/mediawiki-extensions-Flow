@@ -90,6 +90,12 @@ class FlowPage
   end
 
   ### Replies to top post
+  # @todo: This is broken. It should be clearly possible to distinguish between the top reply and
+  # the top post. There is an element .flow-replies which appears to be empty.
+  div(:first_reply, css: '.flow-post', index: 1)
+  div(:first_reply_body) do |page|
+    page.first_reply_element.div_element(css: '.flow-post-content')
+  end
   a(:third_post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 3)
   ul(:third_post_actions_menu, css: ".flow-topic .flow-post .flow-menu ul", index: 3)
   a(:actions_link_permalink_3rd_comment) do |page|

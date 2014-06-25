@@ -13,7 +13,6 @@ Feature: Actions menu Permalink
     Then I see only one topic on the page
       And the top post should have a heading which contains "Permalinktest"
 
-  @wip
   Scenario: Actions menu Permalink
     Given I have created a Flow topic with title "PermalinkReplyTest"
       And I add 3 comments to the Topic
