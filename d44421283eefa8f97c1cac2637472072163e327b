@@ -16,6 +16,24 @@
       "revId": "d44421283eefa8f97c1cac2637472072163e327b",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_448062f9",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-25T23:58:46Z",
+      "side": 1,
+      "message": "That\u0027s $user-\u003eisBlockedFrom  .  Also, you can safely use the slave (second param of isBlockedFrom true) for performance, since this doesn\u0027t determine if they can actually make the edit/post.",
+      "parentUuid": "ae43a74e_e49f5661",
+      "revId": "d44421283eefa8f97c1cac2637472072163e327b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
