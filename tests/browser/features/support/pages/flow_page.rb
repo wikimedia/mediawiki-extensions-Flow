@@ -11,7 +11,7 @@ class FlowPage
   form(:edit_header_form, css: ".flow-board-header-edit-view form")
   textarea(:edit_header_textbox, css: ".flow-board-header-edit-view textarea")
 
-  a(:author_link, css: ".flow-author a")
+  a(:author_link, css: ".flow-author a", index:0)
   a(:cancel_button, text: "Cancel")
 
   # XXX (mattflaschen, 2014-06-24): This is broken; there is no
