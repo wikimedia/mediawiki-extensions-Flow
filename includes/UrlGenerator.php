@@ -343,13 +343,17 @@ class UrlGenerator extends BaseUrlGenerator {
 	 *
 	 * @param Title $title
 	 * @param string $sortBy
+	 * @param string $saveSortBy
 	 * @return Anchor
 	 */
-	public function boardLink( Title $title, $sortBy = null ) {
+	public function boardLink( Title $title, $sortBy = null, $saveSortBy = false ) {
 		$options = array();
 
-		if ( $sortBy ) {
+		if ( $sortBy !== null ) {
 			$options['topiclist_sortby'] = $sortBy;
+			if ( $saveSortBy ) {
+				$options['topiclist_savesortby'] = '';
+			}
 		}
 
 		return new Anchor(
