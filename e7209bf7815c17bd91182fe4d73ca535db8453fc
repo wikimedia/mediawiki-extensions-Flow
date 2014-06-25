@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_64424615",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-25T23:21:39Z",
+      "side": 1,
+      "message": "should be\n\n    \u0027title\u0027 \u003d\u003e wfMessage( \u0027block\u0027 )\n\nrather than \u0027link\u0027 \u003d\u003e \u0027\u0027\n\nthis is used for the title attribute of the anchor, actually it could be `block` or `blocklink` not sure which is appropriate here.",
+      "revId": "e7209bf7815c17bd91182fe4d73ca535db8453fc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_24443e1c",
+        "filename": "tests/browser/features/post_links.feature",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-25T23:21:39Z",
+      "side": 1,
+      "message": "red bar of DOOM!!!",
+      "revId": "e7209bf7815c17bd91182fe4d73ca535db8453fc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
