@@ -85,6 +85,11 @@ class FlowHooks {
 		if ( $wgFlowAbuseFilterGroup ) {
 			self::getAbuseFilter();
 		}
+
+		global $wgResourceModules;
+		foreach ( \Flow\TermsOfUse::getTerm() as $term ) {
+			$wgResourceModules['ext.flow.templating']['messages'][] = $term;
+		}
 	}
 
 	/**
@@ -607,12 +612,11 @@ class FlowHooks {
 	 * @return bool
 	 */
 	public static function onMakeGlobalVariablesScript( array &$vars, OutputPage $out ) {
-		$vars += array(
-			'wgFlowTermsOfUseEdit' => Flow\TermsOfUse::getEditTerms(),
-			'wgFlowTermsOfUseSummarize' => Flow\TermsOfUse::getSummarizeTerms(),
-			'wgFlowTermsOfUseCloseTopic' => Flow\TermsOfUse::getCloseTopicTerms(),
-			'wgFlowTermsOfUseReopenTopic' => Flow\TermsOfUse::getReopenTopicTerms()
-		);
+		if ( self::$occupationController->isTalkpageOccupied( $out->getTitle() ) ) {
+			$vars += array(
+				'flow_terms' => \Flow\TermsOfUse::getTerm()
+			);
+		}
 		return true;
 	}
 

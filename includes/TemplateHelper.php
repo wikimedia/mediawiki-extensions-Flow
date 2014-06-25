@@ -130,6 +130,7 @@ class TemplateHelper {
 				'basedir' => array( $templateDir ),
 				'fileext' => array( '.handlebars' ),
 				'helpers' => array(
+					'TermsOfUse' => 'Flow\TemplateHelper::TermsOfUse',
 					'l10n' => 'Flow\TemplateHelper::l10n',
 					'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
 					'timestamp' => 'Flow\TemplateHelper::timestamp',
@@ -179,6 +180,9 @@ class TemplateHelper {
 
 	// Helpers
 
+	static public function TermsOfUse( $term ) {
+		return self::l10nParse( TermsOfUse::getTerm( $term ) );	
+	}
 	/**
 	 * Localize message.
 	 * If given a simple MW message key this will convert it using the usual wfMessage() function,
