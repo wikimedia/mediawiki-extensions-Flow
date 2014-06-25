@@ -149,7 +149,7 @@ class RevisionFormatter {
 			// These are read urls
 			'links' => $this->buildLinks( $row ),
 			// These are write urls
-			'actions' => $this->buildActions( $row ),
+			'actions' => $this->buildActions( $row, $ctx ),
 			'size' => array(
 				'old' => strlen( $row->previousRevision ? $row->previousRevision->getContentRaw() : '' ),
 				'new' => strlen( $row->revision->getContentRaw() ),
@@ -303,11 +303,18 @@ class RevisionFormatter {
 	 * @return array
 	 * @throws FlowException
 	 */
-	public function buildActions( FormatterRow $row ) {
+	public function buildActions( FormatterRow $row, IContextSource $ctx ) {
 		$section = new \ProfileSection( __METHOD__ );
+		$user = $ctx->getUser();
 		$workflow = $row->workflow;
-		$revision = $row->revision;
 		$title = $workflow->getArticleTitle();
+
+		if ( $user->isBlocked() || !$title->quickUserCan( 'edit', $user ) ) {
+			// User is blocked, on submit no actions would be accepted anyways
+			return array();
+		}
+
+		$revision = $row->revision;
 		$action = $revision->getChangeType();
 		$workflowId = $workflow->getId();
 		$revId = $revision->getRevisionId();
