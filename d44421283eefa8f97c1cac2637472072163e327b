@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_e49f5661",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 519
+      },
+      "writtenOn": "2014-06-25T23:57:22Z",
+      "side": 1,
+      "message": "It doesn\u0027t look like quickUserCan includes block (I was a little surprised about that).\n\nThere are a couple potential issues with this:\n\n1. If this is in Varnish-cached content, it may cause the wrong HTML to be shown to anons (if an anon is blocked, but then the block expires, and they\u0027re still seeing no reply link 29 days later).\n\n2. It should use isBlockedFrom( $title ) so the user talk logic works normally.",
+      "revId": "d44421283eefa8f97c1cac2637472072163e327b",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
