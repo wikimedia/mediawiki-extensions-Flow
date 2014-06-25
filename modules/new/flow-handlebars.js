@@ -224,9 +224,9 @@
 	 * HTML-safe version of l10n.
 	 * @returns {String|Handlebars.SafeString}
 	 */
-	FlowHandlebars.prototype.l10nParse = function ( ) {
+	FlowHandlebars.prototype.l10nParse = function ( str, args, options ) {
 		return FlowHandlebars.prototype.html(
-			FlowHandlebars.prototype.l10n.apply( this, arguments )
+			mw.message( str ).params( args ).parse()
 		);
 	};
 
