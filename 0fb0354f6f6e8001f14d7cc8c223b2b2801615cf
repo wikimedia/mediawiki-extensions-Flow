@@ -34,6 +34,24 @@
       "revId": "0fb0354f6f6e8001f14d7cc8c223b2b2801615cf",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_2ebd42d2",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-06-25T12:37:55Z",
+      "side": 1,
+      "message": "Checking in onClickInteractive seems like the best way to go about this. Remember, while this ends up firing every time someone clicks, the bubbling handler is only on a .flow-component container, not the whole body. So, it doesn\u0027t have -too- far up to traverse. And because it\u0027s just on click, it doesn\u0027t affect the page\u0027s performance much.",
+      "parentUuid": "ee391fd1_3cf1b8da",
+      "revId": "0fb0354f6f6e8001f14d7cc8c223b2b2801615cf",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
