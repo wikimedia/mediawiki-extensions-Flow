@@ -18,13 +18,6 @@ use Flow\Exception\FlowException;
 
 class TopicListBlock extends AbstractBlock {
 
-	private static $defaultOptions = array(
-		'offset-dir' => 'fwd',
-		'sortby' => 'newest',
-		'offset-id' => '',
-		'limit' => 10,
-	);
-
 	/**
 	 * @var array
 	 */
@@ -195,7 +188,6 @@ class TopicListBlock extends AbstractBlock {
 			'submitted' => $this->wasSubmitted() ? $this->submitted : $options,
 			'errors' => $this->errors,
 		);
-		$response['submitted'] += self::$defaultOptions;
 
 		if ( $this->workflow->isNew() ) {
 			return $response + $serializer->buildEmptyResult( $this->workflow );
@@ -205,6 +197,11 @@ class TopicListBlock extends AbstractBlock {
 		// @todo remove the 'api' => true, its always api
 		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
 		$page = $this->getPage( $findOptions );
+
+		// sortby option
+		if ( isset( $findOptions['sortby'] ) ) {
+			$response['sortby'] = $findOptions['sortby'];
+		}
 
 		$workflowIds = array();
 		foreach ( $page->getResults() as $topicListEntry ) {
@@ -265,7 +262,6 @@ class TopicListBlock extends AbstractBlock {
 			}
 			if (
 				isset( $requestOptions['savesortby'] )
-				&& $requestOptions['savesortby'] === 'true'
 				&& !$user->isAnon()
 				&& $user->getOption( 'flow-topiclist-sortby' ) != $sortByOption
 			) {

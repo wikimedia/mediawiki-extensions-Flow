@@ -30,6 +30,10 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 				ApiBase::PARAM_TYPE => array( 'newest', 'updated' ),
 				ApiBase::PARAM_DFLT => 'newest',
 			),
+			'savesortby' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
+			),
 			'offset-id' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => false,
@@ -58,6 +62,8 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	public function getParamDescription() {
 		return array(
 			'offset-dir' => 'Direction to get topics for',
+			'sortby' => 'Sorting option of the topics',
+			'savesortby' => 'Save sortby option, if set',
 			'offset-id' => 'Offset value (in UUID format) to start fetching topics at',
 			'offset' => 'Offset value to start fetching topics at',
 			'limit' => 'Amount of topics to fetch',
