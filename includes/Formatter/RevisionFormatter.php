@@ -305,9 +305,23 @@ class RevisionFormatter {
 	 */
 	public function buildActions( FormatterRow $row ) {
 		$section = new \ProfileSection( __METHOD__ );
+		$user = $this->permissions->getUser();
 		$workflow = $row->workflow;
-		$revision = $row->revision;
 		$title = $workflow->getArticleTitle();
+
+		// If a user is blocked from performing actions on this page return
+		// an empty array of actions.
+		//
+		// We only check actual users and not anon's because the anonymous
+		// version can be cached and served to many different ip addresses
+		// which will not all be blocked.
+		if ( !$user->isAnon() &&
+			( $user->isBlockedFrom( $title, true ) || !$title->quickUserCan( 'edit', $user ) )
+		) {
+			return array();
+		}
+
+		$revision = $row->revision;
 		$action = $revision->getChangeType();
 		$workflowId = $workflow->getId();
 		$revId = $revision->getRevisionId();
