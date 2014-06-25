@@ -224,15 +224,19 @@ class RevisionFormatter {
 	 * @param array $user Contains `name`, `wiki`, and `gender` keys
 	 * @return array
 	 */
-	public function serializeUserLinks( $user ) {
+	public function serializeUserLinks( $userData ) {
+		$name = $userData['name'];
+		$userTitle = \Title::newFromText( $name, NS_USER );
+		$talkPageTitle = $userTitle->getTalkPage();
+		$blockTitle = \SpecialPage::getTitleFor( 'Block', $name );
 		$links = array(
 			"contribs" => array(
-				'url' => '',
-				'title' => '',
+				'url' => $userTitle->getLocalUrl(),
+				'title' => $userTitle->getText(),
 			),
 			"talk" => array(
-				'url' => '',
-				'title' => '',
+				'url' => $talkPageTitle->getLocalUrl(),
+				'title' => $talkPageTitle->getPrefixedText(),
 			),
 		);
 		// is this right permissions? typically this would
@@ -242,7 +246,7 @@ class RevisionFormatter {
 			// only is the user has blocking rights
 			$links += array(
 				"block" => array(
-					'url' => '',
+					'url' => $blockTitle->getLocalUrl(),
 					'link' => '',
 				),
 			);
