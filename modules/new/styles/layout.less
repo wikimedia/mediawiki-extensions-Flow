@@ -276,22 +276,36 @@ div#bodyContent {
 	color: @colorText;
 	word-wrap: break-word;
 
-	& > .flow-post-main {
-		/* leave room for highlighting */
-		padding-left: 0.75em;
-	    border-left: 0.75em solid transparent;
-	}
-
-	&.flow-post-highlighted > .flow-post-main {
-	        border-left-color: @colorHighlight;
-	}
-
 	// Nested comments (replies & reply forms)
-	.flow-post, .flow-reply-form, .flow-edit-post-form {
+	.flow-post {
 		margin-left: 1.5em;
-		/* another 1.5em provided by highlighting zone */
 		padding-left: 0.5em;
 		border-left: 1px dotted @colorGrayLighter;
+
+		// Remove tangent preview nesting (no IE6 support, but acceptable degradation)
+		&.flow-preview {
+			margin-left: 0;
+			padding-left: 0;
+			border-left-width: 0;
+
+			.flow-post-main {
+				padding-left: 0;
+				border-left-width: 0;
+			}
+		}
+	}
+
+	// Wraps flow-post-content
+	.flow-post-main,
+	.flow-reply-form {
+		// leave room for highlighting
+		padding-left: 0.75em;
+		border-left: 0.75em solid transparent;
+	}
+
+	// Highlights a post (no IE6 support, but acceptable degradation)
+	&.flow-post-highlighted > .flow-post-main {
+		border-left-color: @colorHighlight;
 	}
 
 	// Content of comments
