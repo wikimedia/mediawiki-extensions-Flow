@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_40d4c5be",
+        "filename": "modules/new/flow-handlebars.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-26T20:50:53Z",
+      "side": 1,
+      "message": "I really don\u0027t agree with using a helper for such a specific use case.\n\nIf we really don\u0027t think we can find a more generic way of doing this or a way to use i10n at very least I demand documentation and a @todo note to remove use/discourage use of this helper.",
+      "revId": "b4a1711d588071b85015a566b331c9a914817bab",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
