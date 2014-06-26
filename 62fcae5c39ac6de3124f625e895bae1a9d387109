@@ -16,6 +16,24 @@
       "revId": "62fcae5c39ac6de3124f625e895bae1a9d387109",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_fb5dad1b",
+        "filename": "modules/new/styles/interactive.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-26T15:53:29Z",
+      "side": 1,
+      "message": "The whole UI is broken so far. We should hide it until it isn\u0027t. Hence the @todo",
+      "parentUuid": "ae43a74e_c4645248",
+      "revId": "62fcae5c39ac6de3124f625e895bae1a9d387109",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
