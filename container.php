@@ -599,13 +599,28 @@ $c['loader.root_post'] = $c->share( function( $c ) {
 	);
 } );
 
-$c['factory.loader.workflow'] = $c->share( function( $c ) {
-	return new Flow\WorkflowLoaderFactory(
-		$c['db.factory'],
-		$c['memcache.buffered'],
+$c['submission_handler'] = $c->share( function( $c ) {
+	return new Flow\SubmissionHandler(
 		$c['storage'],
-		$c['loader.root_post'],
-		$c['controller.notification']
+		$c['db.factory'],
+		$c['memcache.buffered']
+	);
+} );
+$c['factory.block'] = $c->share( function( $c ) {
+	return new Flow\BlockFactory(
+		$c['storage'],
+		$c['controller.notification'],
+		$c['loader.root_post']
+	);
+} );
+$c['factory.loader.workflow'] = $c->share( function( $c ) {
+	global $wgFlowDefaultWorkflow;
+
+	return new Flow\WorkflowLoaderFactory(
+		$c['storage'],
+		$c['factory.block'],
+		$c['submission_handler'],
+		$wgFlowDefaultWorkflow
 	);
 } );
 
