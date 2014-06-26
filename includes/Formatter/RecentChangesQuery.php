@@ -9,6 +9,7 @@ use Flow\FlowActions;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use RecentChange;
+use User;
 
 class RecentChangesQuery extends AbstractQuery {
 
@@ -24,9 +25,17 @@ class RecentChangesQuery extends AbstractQuery {
 	 */
 	protected $actions;
 
-	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo, FlowActions $actions ) {
+	/**
+	 * User of the current session
+	 *
+	 * @var User
+	 */
+	protected $user;
+
+	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo, FlowActions $actions, User $user ) {
 		parent::__construct( $storage, $treeRepo );
 		$this->actions = $actions;
+		$this->user = $user;
 	}
 
 	/**
@@ -57,7 +66,7 @@ class RecentChangesQuery extends AbstractQuery {
 			if ( !isset( $changeData['revision_type'] ) ) {
 				continue;
 			}
-			if ( $isWatchlist && $this->isRecordHidden( $changeData ) ) {
+			if ( $isWatchlist && !$this->user->getOption( 'extendwatchlist' ) && $this->isRecordHidden( $changeData ) ) {
 				continue;
 			}
 			$revisionType = $changeData['revision_type'];
@@ -112,7 +121,7 @@ class RecentChangesQuery extends AbstractQuery {
 		}
 
 		// Only show most recent items for watchlist
-		if ( $isWatchlist && $this->isRecordHidden( $changeData ) ) {
+		if ( $isWatchlist && !$this->user->getOption( 'extendwatchlist' ) && $this->isRecordHidden( $changeData ) ) {
 			return false;
 		}
 
