@@ -18,10 +18,10 @@ use Flow\Exception\CrossWikiException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidActionException;
+use Title;
 use WebRequest;
 
 class WorkflowLoader {
-	protected $dbFactory, $bufferedCache;
 	/**
 	 * @var Workflow
 	 */
@@ -33,67 +33,36 @@ class WorkflowLoader {
 	protected $definition;
 
 	/**
-	 * @var ManagerGroup
+	 * @var BlockFactory
 	 */
-	protected $storage;
+	protected $blockFactory;
 
 	/**
-	 * @var RootPostLoader
+	 * @var SubmissionHandler
 	 */
-	protected $rootPostLoader;
+	protected $submissionHandler;
 
 	/**
-	 * @var NotificationController
+	 * @param Definition $definiton
+	 * @param Workflow $workflow
+	 * @param BlockFactory $blockFactory
+	 * @param SubmissionHandler $submissionHandler
 	 */
-	protected $notificationController;
-
-	/**
-	 * @var string
-	 */
-	protected $definitionRequest;
-
 	public function __construct(
-			$pageTitle,
-			/*UUID or NULL*/ $workflowId,
-			$definitionRequest,
-			DbFactory $dbFactory,
-			BufferedCache $bufferedCache,
-			ManagerGroup $storage,
-			RootPostLoader $rootPostLoader,
-			NotificationController $notificationController
+			Definition $definition,
+			Workflow $workflow,
+			BlockFactory $blockFactory,
+			SubmissionHandler $submissionHandler
 	) {
-		if ( $pageTitle === null ) {
-			throw new InvalidInputException( 'Invalid article requested', 'invalid-title' );
-		}
-
-		if ( $pageTitle && $pageTitle->isExternal() ) {
-			throw new CrossWikiException( 'Interwiki to ' . $pageTitle->getInterwiki() . ' not implemented ', 'default' );
-		}
-
-		$this->dbFactory = $dbFactory;
-		$this->bufferedCache = $bufferedCache;
-		$this->storage = $storage;
-		$this->rootPostLoader = $rootPostLoader;
-		$this->notificationController = $notificationController;
-
-		$this->definitionRequest = $definitionRequest;
-
-		$workflow = null;
-
-		if ( $workflowId !== null ) {
-			list( $workflow, $definition ) = $this->loadWorkflowById( $pageTitle, $workflowId );
-		} else {
-			list( $workflow, $definition ) = $this->loadWorkflow( $pageTitle );
-		}
-
-		if ( ! $workflow || ! $definition ) {
-			throw new InvalidDataException( 'Unable to load workflow and definition', 'fail-load-data' );
-		}
-
-		$this->workflow = $workflow;
+		$this->blockFactory = $blockFactory;
+		$this->submissionHandler = $submissionHandler;
 		$this->definition = $definition;
+		$this->workflow = $workflow;
 	}
 
+	/**
+	 * @return Definition
+	 */
 	public function getDefinition() {
 		return $this->definition;
 	}
@@ -105,69 +74,35 @@ class WorkflowLoader {
 		return $this->workflow;
 	}
 
-	protected function loadWorkflow( \Title $title ) {
-		global $wgUser;
-		$storage = $this->storage->getStorage( 'Workflow');
-
-		$definition = $this->loadDefinition();
-		if ( !$definition->getOption( 'unique' ) ) {
-			throw new InvalidDataException( 'Workflow is non-unique, can only fetch object by title + id', 'fail-load-data' );
-		}
-
-		$found = $storage->find( array(
-			'workflow_definition_id' => $definition->getId(),
-			'workflow_wiki' => $title->isLocal() ? wfWikiId() : $title->getTransWikiID(),
-			'workflow_namespace' => $title->getNamespace(),
-			'workflow_title_text' => $title->getDBkey(),
-		) );
-		if ( $found ) {
-			$workflow = reset( $found );
-		} else {
-			$workflow = Workflow::create( $definition, $wgUser, $title );
-		}
-
-		return array( $workflow, $definition );
+	/**
+	 * @return AbstractBlock[]
+	 */
+	public function createBlocks() {
+		return $this->blockFactory->createBlocks( $this->definition, $this->workflow );
 	}
 
-	protected function loadWorkflowById( /* Title or false */ $title, $workflowId ) {
-		$workflow = $this->storage->getStorage( 'Workflow' )->get( $workflowId );
-		if ( !$workflow ) {
-			throw new InvalidInputException( 'Invalid workflow requested by id', 'invalid-input' );
-		}
-		if ( $title !== false && !$workflow->matchesTitle( $title ) ) {
-			throw new InvalidInputException( 'Flow workflow is for different page', 'invalid-input' );
-		}
-		$definition = $this->storage->getStorage( 'Definition' )->get( $workflow->getDefinitionId() );
-		if ( !$definition ) {
-			throw new InvalidInputException( 'Flow workflow references unknown definition id: ' . $workflow->getDefinitionId()->getAlphadecimal(), 'invalid-input' );
-		}
-
-		return array( $workflow, $definition );
+	public function handleSubmit( $action, array $blocks, $user, WebRequest $request ) {
+		return $this->submissionHandler->handleSubmit( $this->workflow, $action, $blocks, $user, $request );
 	}
 
-	protected function loadDefinition() {
-		global $wgFlowDefaultWorkflow;
+	public function commit( Workflow $workflow, array $blocks ) {
+		return $this->submissionHandler->commit( $workflow, $blocks );
+	}
 
-		$repo = $this->storage->getStorage( 'Definition' );
-		$id = $this->definitionRequest;
-		if ( $id instanceof UUID ) {
-			$definition = $repo->get( $id );
-			if ( $definition === null ) {
-				throw new InvalidInputException( "Unknown flow id '$id' requested", 'invalid-input' );
-			}
-		} else {
-			$workflowName = $id ? $id : $wgFlowDefaultWorkflow;
-			$found = $repo->find( array(
-				'definition_name' => strtolower( $workflowName ),
-				'definition_wiki' => wfWikiId(),
-			) );
-			if ( $found ) {
-				$definition = reset( $found );
-			} else {
-				throw new InvalidInputException( "Unknown flow type '$workflowName' requested", 'invalid-input' );
-			}
-		}
-		return $definition;
+	public function extractBlockParameters( WebRequest $request, array $blocks ) {
+		return $this->submissionHandler->extractBlockParameters( $request, $blocks );
+	}
+}
+
+class BlockFactory {
+	public function __construct(
+		ManagerGroup $storage,
+		NotificationController $notificationController,
+		RootPostLoader $rootPostLoader
+	) {
+		$this->storage = $storage;
+		$this->notificationController = $notificationController;
+		$this->rootPostLoader = $rootPostLoader;
 	}
 
 	/**
@@ -175,20 +110,20 @@ class WorkflowLoader {
 	 * @throws InvalidInputException When the definition type is unrecognized
 	 * @throws InvalidDataException When multiple blocks share the same name
 	 */
-	public function createBlocks() {
-		switch( $this->definition->getType() ) {
+	public function createBlocks( Definition $definition, Workflow $workflow ) {
+		switch( $definition->getType() ) {
 			case 'discussion':
 				$blocks = array(
-					new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
-					new TopicListBlock( $this->workflow, $this->storage, $this->notificationController ),
-					new BoardHistoryBlock( $this->workflow, $this->storage, $this->notificationController ),
+					new HeaderBlock( $workflow, $this->storage, $this->notificationController ),
+					new TopicListBlock( $workflow, $this->storage, $this->notificationController ),
+					new BoardHistoryBlock( $workflow, $this->storage, $this->notificationController ),
 				);
 				break;
 
 			case 'topic':
 				$blocks = array(
-					new TopicBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
-					new TopicSummaryBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+					new TopicBlock( $workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+					new TopicSummaryBlock( $workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
 				);
 				break;
 
@@ -209,6 +144,15 @@ class WorkflowLoader {
 
 		return $return;
 	}
+}
+
+class SubmissionHandler {
+
+	public function __construct( ManagerGroup $storage, DbFactory $dbFactory, BufferedCache $bufferedCache ) {
+		$this->storage = $storage;
+		$this->dbFactory = $dbFactory;
+		$this->bufferedCache = $bufferedCache;
+	}
 
 	/**
 	 * @param string $action
@@ -219,7 +163,7 @@ class WorkflowLoader {
 	 * @throws InvalidActionException
 	 * @throws InvalidDataException
 	 */
-	public function handleSubmit( $action, array $blocks, $user, WebRequest $request ) {
+	public function handleSubmit( Workflow $workflow, $action, array $blocks, $user, WebRequest $request ) {
 		$success = true;
 		$interestedBlocks = array();
 
@@ -232,6 +176,7 @@ class WorkflowLoader {
 				$success &= $result;
 			}
 		}
+
 		if ( !$interestedBlocks ) {
 			if ( !$blocks ) {
 				throw new InvalidDataException( 'No Blocks?!?', 'fail-load-data' );
@@ -246,7 +191,7 @@ class WorkflowLoader {
 
 		// Check permissions before allowing any writes
 		if ( $user->isBlocked() ||
-			!$this->workflow->getArticleTitle()->userCan( 'edit', $user )
+			!$workflow->getArticleTitle()->userCan( 'edit', $user )
 		) {
 			reset( $interestedBlocks )->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			$success = false;
@@ -268,6 +213,7 @@ class WorkflowLoader {
 		try {
 			$dbw->begin();
 			$cache->begin();
+			// @todo doesn't feel right to have this here
 			$this->storage->getStorage( 'Workflow' )->put( $workflow );
 			$results = array();
 			foreach ( $blocks as $block ) {
@@ -291,7 +237,11 @@ class WorkflowLoader {
 	}
 
 	/**
-	 * Helper function extracts something
+	 * Helper function extracts parameters from a WebRequest.
+	 *
+	 * @todo this implementation should be deprecated in favor of making
+	 * all forms submit the equivilent api parameter names rather than
+	 * the current prefixes.
 	 *
 	 * @param WebRequest $request
 	 * @param AbstractBlock[] $blocks
@@ -332,26 +282,153 @@ class WorkflowLoader {
 }
 
 class WorkflowLoaderFactory {
-	protected $storage, $rootPostLoader, $notificationController;
+	/**
+	 * @var ManagerGroup
+	 */
+	protected $storage;
 
-	function __construct( DbFactory $dbFactory, BufferedCache $bufferedCache, ManagerGroup $storage, RootPostLoader $rootPostLoader, NotificationController $notificationController ) {
-		$this->dbFactory = $dbFactory;
-		$this->bufferedCache = $bufferedCache;
+	/**
+	 * @var BlockFactory
+	 */
+	protected $blockFactory;
+
+	/**
+	 * @var SubmissionHandler
+	 */
+	protected $submissionHandler;
+
+	/**
+	 * @var string
+	 */
+	protected $defaultWorkflowName;
+
+	/**
+	 * @param ManagerGroup $storage
+	 * @param BlockFactory $blockFactory
+	 * @param SubmissionHandler $submissionHandler
+	 * @param string $defaultWorkflowName
+	 */
+	function __construct(
+		ManagerGroup $storage,
+		BlockFactory $blockFactory,
+		SubmissionHandler $submissionHandler,
+		$defaultWorkflowName
+	) {
 		$this->storage = $storage;
-		$this->rootPostLoader = $rootPostLoader;
-		$this->notificationController = $notificationController;
+		$this->blockFactory = $blockFactory;
+		$this->submissionHandler = $submissionHandler;
+		$this->defaultWorkflowName = $defaultWorkflowName;
 	}
 
+	/**
+	 * @param string $pageTitle
+	 * @param UUID|null $workflowId
+	 * @param string|false $definitionRequest
+	 * @return WorkflowLoader
+	 */
 	public function createWorkflowLoader( $pageTitle, $workflowId = null, $definitionRequest = false ) {
+		if ( $pageTitle === null ) {
+			throw new InvalidInputException( 'Invalid article requested', 'invalid-title' );
+		}
+
+		if ( $pageTitle && $pageTitle->isExternal() ) {
+			throw new CrossWikiException( 'Interwiki to ' . $pageTitle->getInterwiki() . ' not implemented ', 'default' );
+		}
+
+		// @todo constructors should just do simple setup, this goes out and hits the database
+		if ( $workflowId !== null ) {
+			list( $workflow, $definition ) = $this->loadWorkflowById( $pageTitle, $workflowId );
+		} else {
+			list( $workflow, $definition ) = $this->loadWorkflow( $pageTitle, $definitionRequest );
+		}
+
 		return new WorkflowLoader(
-			$pageTitle,
-			$workflowId,
-			$definitionRequest,
-			$this->dbFactory,
-			$this->bufferedCache,
-			$this->storage,
-			$this->rootPostLoader,
-			$this->notificationController
+			$definition,
+			$workflow,
+			$this->blockFactory,
+			$this->submissionHandler
 		);
 	}
+
+	/**
+	 * @param Title $title
+	 * @param string $definitionRequest
+	 * @return array [Workflow, Definition]
+	 * @throws InvalidDataException
+	 */
+	protected function loadWorkflow( \Title $title, $definitionRequest ) {
+		global $wgUser;
+		$storage = $this->storage->getStorage( 'Workflow');
+
+		$definition = $this->loadDefinition( $definitionRequest );
+		if ( !$definition->getOption( 'unique' ) ) {
+			throw new InvalidDataException( 'Workflow is non-unique, can only fetch object by title + id', 'fail-load-data' );
+		}
+
+		$found = $storage->find( array(
+			'workflow_definition_id' => $definition->getId(),
+			'workflow_wiki' => $title->isLocal() ? wfWikiId() : $title->getTransWikiID(),
+			'workflow_namespace' => $title->getNamespace(),
+			'workflow_title_text' => $title->getDBkey(),
+		) );
+		if ( $found ) {
+			$workflow = reset( $found );
+		} else {
+			$workflow = Workflow::create( $definition, $wgUser, $title );
+		}
+
+		return array( $workflow, $definition );
+	}
+
+	/**
+	 * @param Titkle|false $title
+	 * @param string $workflowId
+	 * @return array [Workflow, Definition]
+	 * @throws InvalidInputException
+	 */
+	protected function loadWorkflowById( /* Title or false */ $title, $workflowId ) {
+		$workflow = $this->storage->getStorage( 'Workflow' )->get( $workflowId );
+		if ( !$workflow ) {
+			throw new InvalidInputException( 'Invalid workflow requested by id', 'invalid-input' );
+		}
+		if ( $title !== false && !$workflow->matchesTitle( $title ) ) {
+			throw new InvalidInputException( 'Flow workflow is for different page', 'invalid-input' );
+		}
+		$definition = $this->storage->getStorage( 'Definition' )->get( $workflow->getDefinitionId() );
+		if ( !$definition ) {
+			throw new InvalidInputException( 'Flow workflow references unknown definition id: ' . $workflow->getDefinitionId()->getAlphadecimal(), 'invalid-input' );
+		}
+
+		return array( $workflow, $definition );
+	}
+
+	/**
+	 * @parma string $id
+	 * @return Definition
+	 */
+	protected function loadDefinition( $id ) {
+		global $wgFlowDefaultWorkflow;
+
+		$repo = $this->storage->getStorage( 'Definition' );
+		if ( $id instanceof UUID ) {
+			$definition = $repo->get( $id );
+			if ( $definition === null ) {
+				throw new InvalidInputException( "Unknown flow id '$id' requested", 'invalid-input' );
+			}
+		} else {
+			$workflowName = $id ? $id : $this->defaultWorkflowName;
+			$found = $repo->find( array(
+				'definition_name' => strtolower( $workflowName ),
+				'definition_wiki' => wfWikiId(),
+			) );
+			if ( $found ) {
+				$definition = reset( $found );
+			} else {
+				throw new InvalidInputException( "Unknown flow type '$workflowName' requested", 'invalid-input' );
+			}
+		}
+		return $definition;
+	}
+
 }
+
