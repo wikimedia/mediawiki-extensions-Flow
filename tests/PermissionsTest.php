@@ -18,7 +18,7 @@ class PermissionsTest extends PostRevisionTestCase {
 	/**
 	 * @var array
 	 */
-	protected $tablesUsed = array( 'user', 'user_groups', 'ipblocks' );
+	protected $tablesUsed = array( 'user', 'user_groups' );
 
 	/**
 	 * @var FlowActions
@@ -42,17 +42,11 @@ class PermissionsTest extends PostRevisionTestCase {
 	 * @var User
 	 */
 	protected
-		$blockedUser,
 		$anonUser,
 		$unconfirmedUser,
 		$confirmedUser,
 		$sysopUser,
 		$oversightUser;
-
-	/**
-	 * @var Block
-	 */
-	protected $block;
 
 	protected function setUp() {
 		parent::setUp();
@@ -69,16 +63,10 @@ class PermissionsTest extends PostRevisionTestCase {
 
 		// load actions object
 		$this->actions = Container::get( 'flow_actions' );
-
-		// block a user
-		$blockedUser = $this->blockedUser();
-		$this->block = new Block( $blockedUser->getName(), $blockedUser->getID() );
-		$this->block->insert();
 	}
 
 	protected function tearDown() {
 		parent::tearDown();
-		$this->block->delete();
 	}
 
 	/**
@@ -102,25 +90,6 @@ class PermissionsTest extends PostRevisionTestCase {
 	 */
 	public function permissionsProvider() {
 		return array(
-			// blocked users can only read
-			array( $this->blockedUser(), null, 'create-header', false ),
-//			array( $this->blockedUser(), $this->header(), 'edit-header', false ),
-			array( $this->blockedUser(), $this->post(), 'edit-title', false ),
-			array( $this->blockedUser(), null, 'new-post', false ),
-			array( $this->blockedUser(), $this->post(), 'edit-post', false ),
-			array( $this->blockedUser(), $this->post(), 'hide-post', false ),
-			array( $this->blockedUser(), $this->topic(), 'hide-topic', false ),
-			array( $this->blockedUser(), $this->post(), 'delete-post', false ),
-			array( $this->blockedUser(), $this->topic(), 'delete-topic', false ),
-			array( $this->blockedUser(), $this->topic(), 'close-topic', false ),
-			array( $this->blockedUser(), $this->post(), 'suppress-post', false ),
-			array( $this->blockedUser(), $this->topic(), 'suppress-topic', false ),
-			array( $this->blockedUser(), $this->post(), 'restore-post', false ),
-			array( $this->blockedUser(), $this->topic(), 'restore-topic', false ),
-			array( $this->blockedUser(), $this->post(), 'history', true ),
-			array( $this->blockedUser(), $this->post(), 'view', true ),
-			array( $this->blockedUser(), $this->post(), 'reply', false ),
-
 			// anon users can submit content, but not moderate
 			array( $this->anonUser(), null, 'create-header', true ),
 //			array( $this->anonUser(), $this->header(), 'edit-header', true ),
@@ -252,17 +221,6 @@ class PermissionsTest extends PostRevisionTestCase {
 	public function testPermissions( User $user, PostRevision $revision = null, $action, $expected ) {
 		$permissions = new RevisionActionPermissions( $this->actions, $user );
 		$this->assertEquals( $expected, $permissions->isAllowed( $revision, $action ) );
-	}
-
-	protected function blockedUser() {
-		if ( !$this->blockedUser ) {
-			$this->blockedUser = User::newFromName( 'UTFlowBlockee' );
-			$this->blockedUser->addToDatabase();
-			// note: the block will be added in setUp & deleted in tearDown;
-			// otherwise this is just any regular user
-		}
-
-		return $this->blockedUser;
 	}
 
 	protected function anonUser() {
