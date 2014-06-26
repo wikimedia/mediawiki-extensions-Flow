@@ -2,14 +2,14 @@
 
 namespace Flow\Block;
 
-use ApiResult;
 use Flow\Container;
+use Flow\Exception\FlowException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidInputException;
+use Flow\Formatter\FormatterRow;
 use Flow\Model\Header;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
-use Flow\View\HeaderRevisionView;
 
 class HeaderBlock extends AbstractBlock {
 
@@ -17,6 +17,13 @@ class HeaderBlock extends AbstractBlock {
 	 * @var Header|null
 	 */
 	protected $header;
+
+	/**
+	 * New revision created via submission.
+	 *
+	 * @var Header|null
+	 */
+	protected $newRevision;
 
 	/**
 	 * @var boolean
@@ -31,7 +38,20 @@ class HeaderBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'header-view' );
+	protected $requiresWikitext = array( 'edit-header', 'compare-header-revisions' );
+
+	/**
+	 * @var string[]
+	 */
+	protected $supportedGetActions = array( 'view', 'compare-header-revisions', 'edit-header', 'view-header' );
+
+	// @Todo - fill in the template names
+	protected $templates = array(
+		'view' => '',
+		'compare-header-revisions' => 'diff_view',
+		'edit-header' => 'edit',
+		'view-header' => 'single_view',
+	);
 
 	/**
 	 * @var RevisionActionPermissions Allows or denies actions to be performed
@@ -101,10 +121,9 @@ class HeaderBlock extends AbstractBlock {
 		}
 
 		// this isn't really part of validate, but we want the error-rendering template to see the users edited header
-		$oldHeader = $this->header;
-		$this->header = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
+		$this->newRevision = $this->header->newNextRevision( $this->user, $this->submitted['content'], 'edit-header' );
 
-		if ( !$this->checkSpamFilters( $oldHeader, $this->header ) ) {
+		if ( !$this->checkSpamFilters( $this->header, $this->newRevision ) ) {
 			return;
 		}
 
@@ -123,9 +142,9 @@ class HeaderBlock extends AbstractBlock {
 			return;
 		}
 
-		$this->header = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
+		$this->newRevision = Header::create( $this->workflow, $this->user, $this->submitted['content'], 'create-header' );
 
-		if ( !$this->checkSpamFilters( null, $this->header ) ) {
+		if ( !$this->checkSpamFilters( null, $this->newRevision ) ) {
 			return;
 		}
 	}
@@ -137,15 +156,11 @@ class HeaderBlock extends AbstractBlock {
 	public function commit() {
 		switch( $this->action ) {
 			case 'edit-header':
-				$this->storage->put( $this->header );
-
-				$header = $this->header;
-
+				$this->storage->put( $this->newRevision );
+				// Reload $this->header for renderAPI() after save
+				$this->header = $this->newRevision;
 				return array(
-					'new-revision-id' => $this->header->getRevisionId(),
-					'render-function' => function( Templating $templating ) use ( $header ) {
-						return $templating->getContent( $header, 'html' );
-					},
+					'new-revision-id' => $this->newRevision->getRevisionId(),
 				);
 
 			default:
@@ -154,74 +169,103 @@ class HeaderBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options, $return = false ) {
-		$templating->getOutput()->addModuleStyles( array( 'ext.flow.header' ) );
-		$templating->getOutput()->addModules( array( 'ext.flow.header' ) );
-
-		switch ( $this->action ) {
-			case 'compare-header-revisions':
-				if ( !isset( $options['newRevision'] ) ) {
-					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
-				}
-				$revisionView = HeaderRevisionView::newFromId( $options['newRevision'], $templating, $this, $this->user );
-				if ( !$revisionView ) {
-					throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
-				}
-
-				if ( isset( $options['oldRevision'] ) ) {
-					return $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
-				} else {
-					return $revisionView->renderDiffViewAgainstPrevious( $return );
-				}
-			break;
-
-			case 'edit-header':
-				return $templating->renderHeader( $this->header, $this, $this->user, 'flow:edit-header.html.php', $return );
-			break;
-
-			default:
-				if ( isset( $options['revId'] ) ) {
-					$revisionView = HeaderRevisionView::newFromId( $options['revId'], $templating, $this, $this->user );
-					if ( !$revisionView ) {
-						throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
-					} else if ( !$this->permissions->isAllowed( $revisionView->getRevision(), 'view' ) ) {
-						$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
-						return null;
-					}
-					return $revisionView->renderSingleView( $return );
-				} else {
-					return $templating->renderHeader( $this->header, $this, $this->user, 'flow:header.html.php', $return );
-				}
-			break;
-		}
+		throw new FlowException( 'deprecated' );
 	}
 
-	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
-		$output = array();
-		$output['type'] = 'header';
+	public function renderAPI( Templating $templating, array $options ) {
+		$output = array(
+			'type' => $this->getName(),
+			'editToken' => $this->getEditToken(),
+		);
 
-		if ( $this->header !== null ) {
-			if ( isset( $options['contentFormat'] ) ) {
-				$contentFormat = $options['contentFormat'];
-			} else {
-				$contentFormat = $this->header->getContentFormat();
-			}
-			$output['*'] = $templating->getContent( $this->header, $contentFormat );
-			$output['format'] = $contentFormat;
-			$output['header-id'] = $this->header->getRevisionId()->getAlphadecimal();
-		} else {
-			$output['missing'] = '';
+		switch ( $this->action ) {
+			case 'view':
+			case 'edit-header':
+				$output += $this->renderRevisionAPI();
+				break;
+
+			case 'view-header':
+				if ( isset( $options['revId'] ) && $options['revId'] ) {
+					$output += $this->renderSingleViewAPI( $options['revId'] );
+				} else {
+					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
+						$this->requiresWikitext[] = 'view-header';
+					}
+					$output += $this->renderRevisionAPI();
+				}
+				break;
+
+			case 'compare-header-revisions':
+				$output += $this->renderDiffviewAPI( $options );
+				break;
 		}
 
-		$output = array(
-			0 => $output,
-		);
-		$result->setIndexedTagName( $output, 'header' );
+		if ( $this->wasSubmitted() ) {
+			$output += array(
+				'submitted' => $this->submitted,
+				'errors' => $this->errors,
+			);
+		} else {
+			$output += array(
+				'submitted' => array(),
+				'errors' => array()
+			);
+		}
 
+		return $output;
+	}
+
+	// @Todo - duplicated logic in other diff view block
+	protected function renderDiffviewAPI( array $options ) {
+		if ( !isset( $options['newRevision'] ) ) {
+			throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+		}
+		$oldRevision = '';
+		if ( isset( $options['oldRevision'] ) ) {
+			$oldRevision = $options['newRevision'];
+		}
+		list( $new, $old ) = Container::get( 'query.header.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
+		$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, \RequestContext::getMain() );
+		return $output;
+	}
+
+	// @Todo - duplicated logic in other single view block
+	protected function renderSingleViewAPI( $revId ) {
+		$row = Container::get( 'query.header.view' )->getSingleViewResult( $revId );
+		$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
+		return $output;
+	}
+
+	protected function renderRevisionAPI() {
+		$output = array();
+		if ( $this->header === null ) {
+			$output['revision'] = array(
+				// @todo
+				'actions' => array(
+					'edit' => Container::get( 'url_generator' )
+						->createHeaderAction( $this->workflow->getArticleTitle() ),
+				),
+				'links' => array(
+				),
+			);
+		} else {
+			$ctx = \RequestContext::getMain();
+			$row = new FormatterRow;
+			$row->workflow = $this->workflow;
+			$row->revision = $this->header;
+			$row->currentRevision = $this->header;
+
+			$serializer = Container::get( 'formatter.revision' );
+			if ( false !== array_search( $this->action, $this->requiresWikitext ) ) {
+				$serializer->setContentFormat( 'wikitext' );
+			}
+
+			$output['revision'] = Container::get( 'formatter.revision' )->formatApi( $row, $ctx );
+		}
 		return $output;
 	}
 
 	public function getName() {
 		return 'header';
 	}
-
 }

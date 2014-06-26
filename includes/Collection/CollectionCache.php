@@ -48,7 +48,7 @@ class CollectionCache {
 	/**
 	 * Cache key for last revision
 	 *
-	 * @param AbstractRevision
+	 * @param AbstractRevision $revision
 	 * @return string
 	 */
 	protected function getLastRevCacheKey( AbstractRevision $revision ) {

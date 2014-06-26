@@ -1,7 +1,8 @@
 <?php
 
-use Flow\Model\UUID;
+use Flow\Anchor;
 use Flow\Block\AbstractBlock;
+use Flow\Container;
 
 abstract class ApiFlowBasePost extends ApiFlowBase {
 	public function execute() {
@@ -27,9 +28,10 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		}
 		$result = $this->getResult();
 
-		$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $this->getModifiedRequest() );
+		$request = $this->getModifiedRequest();
+		$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 		if ( count( $blocksToCommit ) ) {
-			$commitResults = $loader->commit( $workflow, $blocksToCommit );
+			$loader->commit( $workflow, $blocksToCommit );
 			$savedBlocks = array();
 			$result->setIndexedTagName( $savedBlocks, 'block' );
 
@@ -40,11 +42,26 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 			$output[$action] = array(
 				'result' => array(),
 				'status' => 'ok',
+				'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
 			);
 
-			foreach( $commitResults as $key => $value ) {
-				$output[$action]['result'][$key] = $this->processCommitResult( $value, $this->doRender() );
+			$parameters = $loader->extractBlockParameters( $request, $blocksToCommit );
+			foreach( $blocksToCommit as $block ) {
+				// Always return parsed text to client after successful submission?
+				// @Todo - hacky, maybe have contentformat in the request to overwrite
+				// requiredWikitext
+				$block->unsetRequiresWikitext( $action );
+				$output[$action]['result'][$block->getName()] = $block->renderAPI( Container::get( 'templating' ), $parameters[$block->getName()] );
 			}
+
+			// required until php5.4 which has the JsonSerializable interface
+			array_walk_recursive( $output, function( &$value ) {
+				if ( $value instanceof Anchor ) {
+					$value = $value->toArray();
+				} elseif ( $value instanceof Message ) {
+					$value = $value->text();
+				}
+			} );
 			if ( $isNew && !$workflow->isNew() ) {
 				// Workflow was just created, ensure its underlying page is owned by flow
 				$controller->ensureFlowRevision( $article );
@@ -71,26 +88,6 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		}
 
 		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );
-	}
-
-	protected function processCommitResult( $result, $render = true ) {
-		$container = $this->getContainer();
-		$templating = $container['templating'];
-		$output = array();
-		foreach( $result as $key => $value ) {
-			if ( $value instanceof UUID ) {
-				$output[$key] = $value->getAlphadecimal();
-			} elseif ( $key === 'render-function' ) {
-				if ( $render ) {
-					$function = $value;
-					$output['rendered'] = $function( $templating );
-				}
-			} else {
-				$output[$key] = $value;
-			}
-		}
-
-		return $output;
 	}
 
 	public function mustBePosted() {

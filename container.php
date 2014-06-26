@@ -71,6 +71,14 @@ $c['permissions'] = $c->share( function( $c ) {
 	return new Flow\RevisionActionPermissions( $c['flow_actions'], $c['user'] );
 } );
 
+$c['lightncandy'] = $c->share( function( $c ) {
+	global $wgFlowServerCompileTemplates;
+
+	return new Flow\TemplateHelper(
+		__DIR__ . '/handlebars',
+		$wgFlowServerCompileTemplates
+	);
+} );
 $c['templating.namespaces'] = array(
 	'flow' => __DIR__ . '/templates',
 );
@@ -93,8 +101,7 @@ $c['templating'] = $c->share( function( $c ) {
 		$c['url_generator'],
 		$c['output'],
 		$c['content_fixer'],
-		$c['templating.namespaces'],
-		$c['templating.global_variables']
+		$c['permissions']
 	);
 } );
 
@@ -197,7 +204,6 @@ $c['storage.board_history.index'] = $c->share( function( $c ) {
 } );
 
 $c['storage.board_history'] = $c->share( function( $c ) {
-	$cache = $c['memcache.buffered'];
 	$mapper = new BasicObjectMapper(
 		function( $rev ) use( $c ) {
 			if ( $rev instanceof PostRevision ) {
@@ -458,7 +464,7 @@ $c['storage.topic_history.index'] = $c->share( function( $c ) {
 			'create' => function( array $row ) {
 				// if the post has no parent and the revision has no parent
 				// then this is a brand new topic title
-				return $row['tree_parent_id'] === null
+				return ( !isset( $row['tree_parent_id'] ) || $row['tree_parent_id'] === null ) // summary has no tree parent
 					&& $row['rev_parent_id'] === null;
 			},
 	) );
@@ -473,7 +479,6 @@ $c['storage.topic_history.backing'] = $c->share( function( $c ) {
 } );
 
 $c['storage.topic_history'] = $c->share( function( $c ) {
-	$cache = $c['memcache.buffered'];
 	$mapper = new BasicObjectMapper(
 		function( $rev ) use( $c ) {
 			if ( $rev instanceof PostRevision ) {
@@ -526,7 +531,6 @@ $c['storage.user_subs.user_index'] = $c->share( function( $c ) {
 } );
 // User subscriptions are triggered by updates on workflow objects.
 $c['storage.user_subs'] = $c->share( function( $c ) {
-	$cache = $c['memcache.buffered'];
 	$mapper = BasicObjectMapper::model( 'Flow\\Model\\UserSubscription' );
 	$storage = $c['storage.user_subs.backing'];
 	$indexes = array(
@@ -623,6 +627,12 @@ $c['controller.spamfilter'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['query.singlepost'] = $c->share( function( $c ) {
+	return new Flow\Formatter\SinglePostQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
 $c['query.checkuser'] = $c->share( function( $c ) {
 	return new Flow\Formatter\CheckUserQuery(
 		$c['storage'],
@@ -633,28 +643,78 @@ $c['query.checkuser'] = $c->share( function( $c ) {
 $c['formatter.irclineurl'] = $c->share( function( $c ) {
 	return new Flow\Formatter\IRCLineUrlFormatter(
 		$c['permissions'],
-		$c['templating']
+		$c['formatter.revision']
 	);
 } );
 
 $c['formatter.checkuser'] = $c->share( function( $c ) {
 	return new Flow\Formatter\CheckUser(
 		$c['permissions'],
+		$c['formatter.revision']
+	);
+} );
+$c['formatter.revisionview'] = $c->share( function( $c ) {
+	return new Flow\Formatter\RevisionViewFormatter(
+		$c['url_generator'],
+		$c['formatter.revision'],
 		$c['templating']
 	);
 } );
-
+$c['formatter.revision.diff.view'] = $c->share( function( $c ) {
+	return new Flow\Formatter\RevisionDiffViewFormatter(
+		$c['formatter.revisionview']
+	);
+} );
+$c['query.topiclist'] = $c->share( function( $c ) {
+	return new Flow\Formatter\TopicListQuery(
+		$c['storage'],
+		$c['repository.tree'],
+		$c['permissions']
+	);
+} );
+$c['query.topic.history'] = $c->share( function( $c ) {
+	return new Flow\Formatter\TopicHistoryQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
 $c['query.recentchanges'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RecentChangesQuery(
+		$c['storage'],
+		$c['repository.tree'],
+		$c['flow_actions'],
+		$c['user']
+	);
+} );
+$c['query.postsummary'] = $c->share( function( $c ) {
+	return new Flow\Formatter\PostSummaryQuery(
 		$c['storage'],
 		$c['repository.tree'],
 		$c['flow_actions']
 	);
 } );
+$c['query.header.view'] = $c->share( function( $c ) {
+	return new Flow\Formatter\HeaderViewQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
+$c['query.post.view'] = $c->share( function( $c ) {
+	return new Flow\Formatter\PostViewQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
+$c['query.postsummary.view'] = $c->share( function( $c ) {
+	return new Flow\Formatter\PostSummaryViewQuery(
+		$c['storage'],
+		$c['repository.tree']
+	);
+} );
 $c['formatter.recentchanges'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RecentChanges(
 		$c['permissions'],
-		$c['templating']
+		$c['formatter.revision']
 	);
 } );
 
@@ -669,25 +729,36 @@ $c['query.contributions'] = $c->share( function( $c ) {
 $c['formatter.contributions'] = $c->share( function( $c ) {
 	return new Flow\Formatter\Contributions(
 		$c['permissions'],
-		$c['templating']
+		$c['formatter.revision']
 	);
 } );
-$c['board-history.query'] = $c->share( function( $c ) {
+$c['query.board-history'] = $c->share( function( $c ) {
 	return new Flow\Formatter\BoardHistoryQuery(
 		$c['storage'],
 		$c['repository.tree']
 	);
 } );
-$c['board-history.formatter'] = $c->share( function( $c ) {
-	return new Flow\Formatter\BoardHistory(
+$c['formatter.revision'] = $c->share( function( $c ) {
+	global $wgFlowMaxThreadingDepth;
+
+	return new Flow\Formatter\RevisionFormatter(
 		$c['permissions'],
+		$c['templating'],
+		$c['repository.username'],
+		$wgFlowMaxThreadingDepth
+	);
+} );
+$c['formatter.topiclist'] = $c->share( function( $c ) {
+	return new Flow\Formatter\TopicListFormatter(
+		$c['url_generator'],
+		$c['formatter.revision'],
 		$c['templating']
 	);
 } );
-$c['formatter.revision'] = $c->share( function( $c ) {
-	return new Flow\Formatter\RevisionFormatter(
-		$c['permissions'],
-		$c['templating']
+$c['formatter.topic'] = $c->share( function( $c ) {
+	return new Flow\Formatter\TopicFormatter(
+		$c['url_generator'],
+		$c['formatter.revision']
 	);
 } );
 $c['logger'] = $c->share( function( $c ) {
@@ -746,7 +817,7 @@ $c['reference.extractor'] = $c->share( function( $c ) {
 						'refType' => 'template',
 						'targetType' => 'wiki',
 						'target' => $templateTarget->getPrefixedText(),
-					);;
+					);
 				},
 		)
 	);

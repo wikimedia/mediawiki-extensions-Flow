@@ -56,11 +56,16 @@ $wgAutoloadClasses['FlowInsertDefaultDefinitions'] = $dir . 'maintenance/FlowIns
 // note: SRP would say a 'FlowHooks' class should not exist
 $wgAutoloadClasses['FlowHooks'] = $dir . 'Hooks.php';
 
-// Various helper classes
+// Various vendor classes
 $wgAutoloadClasses['Pimple'] = $dir . 'vendor/Pimple.php';
+$wgAutoloadClasses['LightnCandy'] = $dir . 'vendor/lightncandy.php';
+$wgAutoloadClasses['LCRun3'] = $dir . 'vendor/lightncandy.php';
+
+// Various helper classes
 $wgAutoloadClasses['Flow\Container'] = $dir . 'includes/Container.php';
 $wgAutoloadClasses['Flow\DbFactory'] = $dir . 'includes/DbFactory.php';
 $wgAutoloadClasses['Flow\Templating'] = $dir . 'includes/Templating.php';
+$wgAutoloadClasses['Flow\TemplateHelper'] = $dir . 'includes/TemplateHelper.php';
 $wgAutoloadClasses['Flow\Parsoid\Utils'] = $dir . 'includes/Parsoid/Utils.php';
 $wgAutoloadClasses['Flow\Parsoid\Controller'] = $dir . 'includes/Parsoid/Controller.php';
 $wgAutoloadClasses['Flow\Parsoid\ContentFixer'] = $dir . 'includes/Parsoid/ContentFixer.php';
@@ -107,19 +112,6 @@ $wgAutoloadClasses['Flow\Collection\LocalCacheAbstractCollection'] = $dir . 'inc
 $wgAutoloadClasses['Flow\Collection\PostCollection'] = $dir . 'includes/Collection/PostCollection.php';
 $wgAutoloadClasses['Flow\Collection\HeaderCollection'] = $dir . 'includes/Collection/HeaderCollection.php';
 $wgAutoloadClasses['Flow\Collection\PostSummaryCollection'] = $dir . 'includes/Collection/PostSummaryCollection.php';
-
-// Helpers for templating
-$wgAutoloadClasses['Flow\View\PostActionMenu'] = "$dir/includes/View/PostActionMenu.php";
-$wgAutoloadClasses['Flow\View\History\History'] = "$dir/includes/View/History/History.php";
-$wgAutoloadClasses['Flow\View\History\HistoryRecord'] = "$dir/includes/View/History/HistoryRecord.php";
-$wgAutoloadClasses['Flow\View\History\HistoryBundle'] = "$dir/includes/View/History/HistoryBundle.php";
-$wgAutoloadClasses['Flow\View\History\HistoryRenderer'] = "$dir/includes/View/History/HistoryRenderer.php";
-$wgAutoloadClasses['Flow\View\Post'] = "$dir/includes/View/Post.php";
-$wgAutoloadClasses['Flow\View\RevisionCreatable'] = "$dir/includes/View/Revision.php";
-$wgAutoloadClasses['Flow\View\RevisionView'] = "$dir/includes/View/Revision.php";
-$wgAutoloadClasses['Flow\View\PostRevisionView'] = "$dir/includes/View/Revision.php";
-$wgAutoloadClasses['Flow\View\HeaderRevisionView'] = "$dir/includes/View/Revision.php";
-$wgAutoloadClasses['Flow\View\PostSummaryRevisionView'] = "$dir/includes/View/Revision.php";
 
 // Classes that deal with database interaction between database and the models
 $wgAutoloadClasses['Flow\Repository\TreeRepository'] = $dir . 'includes/Repository/TreeRepository.php';
@@ -181,10 +173,24 @@ $wgAutoloadClasses['Flow\Formatter\BoardHistoryQuery'] = $dir . 'includes/Format
 $wgAutoloadClasses['Flow\Formatter\RecentChanges'] = $dir . 'includes/Formatter/RecentChanges.php';
 $wgAutoloadClasses['Flow\Formatter\RecentChangesQuery'] = $dir . 'includes/Formatter/RecentChangesQuery.php';
 $wgAutoloadClasses['Flow\Formatter\RecentChangesRow'] = $dir . 'includes/Formatter/RecentChangesQuery.php';
+$wgAutoloadClasses['Flow\Formatter\SinglePostQuery'] = $dir . 'includes/Formatter/SinglePostQuery.php';
+$wgAutoloadClasses['Flow\Formatter\PostSummaryQuery'] = $dir . 'includes/Formatter/PostSummaryQuery.php';
+$wgAutoloadClasses['Flow\Formatter\TopicListQuery'] = $dir . 'includes/Formatter/TopicListQuery.php';
+$wgAutoloadClasses['Flow\Formatter\TopicHistoryQuery'] = $dir . 'includes/Formatter/TopicHistoryQuery.php';
+$wgAutoloadClasses['Flow\Formatter\TopicRow'] = $dir . 'includes/Formatter/TopicRow.php';
 $wgAutoloadClasses['Flow\Formatter\IRCLineUrlFormatter'] = $dir . 'includes/Formatter/IRCLineUrlFormatter.php';
+$wgAutoloadClasses['Flow\Formatter\RevisionViewFormatter'] = $dir . 'includes/Formatter/RevisionViewFormatter.php';
+$wgAutoloadClasses['Flow\Formatter\RevisionDiffViewFormatter'] = $dir . 'includes/Formatter/RevisionViewFormatter.php';
+$wgAutoloadClasses['Flow\Formatter\RevisionViewQuery'] = $dir . 'includes/Formatter/RevisionViewQuery.php';
+$wgAutoloadClasses['Flow\Formatter\HeaderViewQuery'] = $dir . 'includes/Formatter/RevisionViewQuery.php';
+$wgAutoloadClasses['Flow\Formatter\PostViewQuery'] = $dir . 'includes/Formatter/RevisionViewQuery.php';
+$wgAutoloadClasses['Flow\Formatter\PostSummaryViewQuery'] = $dir . 'includes/Formatter/RevisionViewQuery.php';
+$wgAutoloadClasses['Flow\Formatter\RevisionViewRow'] = $dir . 'includes/Formatter/RevisionViewRow.php';
 
 // Convert model instances into array of user-visible data
 $wgAutoloadClasses['Flow\Formatter\RevisionFormatter'] = $dir . 'includes/Formatter/RevisionFormatter.php';
+$wgAutoloadClasses['Flow\Formatter\TopicListFormatter'] = $dir . 'includes/Formatter/TopicListFormatter.php';
+$wgAutoloadClasses['Flow\Formatter\TopicFormatter'] = $dir . 'includes/Formatter/TopicFormatter.php';
 
 // On demand username loading from home wiki
 $wgAutoloadClasses['Flow\Data\UserNameListener'] = $dir . 'includes/Data/UserNameListener.php';
@@ -255,7 +261,7 @@ $wgSpecialPageGroups['Flow'] = 'redirects';
 
 // Housekeeping hooks
 $wgHooks['LoadExtensionSchemaUpdates'][] = 'FlowHooks::getSchemaUpdates';
-//$wgHooks['GetPreferences'][] = 'FlowHooks::getPreferences';
+$wgHooks['GetPreferences'][] = 'FlowHooks::onGetPreferences';
 $wgHooks['UnitTestsList'][] = 'FlowHooks::getUnitTests';
 $wgHooks['MediaWikiPerformAction'][] = 'FlowHooks::onPerformAction';
 $wgHooks['OldChangesListRecentChangesLine'][] = 'FlowHooks::onOldChangesListRecentChangesLine';
@@ -278,6 +284,7 @@ $wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
 $wgHooks['FlowAddModules'][] = 'Flow\Parsoid\Utils::onFlowAddModules';
 $wgHooks['WhatLinksHereProps'][] = 'FlowHooks::onWhatLinksHereProps';
 $wgHooks['LinksUpdateConstructed'][] = 'FlowHooks::onLinksUpdateConstructed';
+$wgHooks['ResourceLoaderTestModules'][] = 'FlowHooks::onResourceLoaderTestModules';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
@@ -440,3 +447,9 @@ $wgFlowAbuseFilterEmergencyDisableAge = 86400; // One day.
 
 // Actions that must pass through to MediaWiki on flow enabled pages
 $wgFlowCoreActionWhitelist = array( 'info', 'protect', 'unprotect', 'unwatch', 'watch' );
+
+// When set to true Flow will compile templates into their intermediate forms
+// on every run.  When set to false Flow will use the versions already written
+// to disk. Production should always have this set to false.
+$wgFlowServerCompileTemplates = false;
+

@@ -180,7 +180,7 @@ class WorkflowLoader {
 			case 'discussion':
 				$blocks = array(
 					new HeaderBlock( $this->workflow, $this->storage, $this->notificationController ),
-					new TopicListBlock( $this->workflow, $this->storage, $this->notificationController, $this->rootPostLoader ),
+					new TopicListBlock( $this->workflow, $this->storage, $this->notificationController ),
 					new BoardHistoryBlock( $this->workflow, $this->storage, $this->notificationController ),
 				);
 				break;
@@ -310,16 +310,25 @@ class WorkflowLoader {
 		}
 		// between urls only allowing [-_.] as unencoded special chars and
 		// php mangling all of those into '_', we have to split on '_'
+		$globalData = array();
 		foreach ( $request->getValues() as $name => $value ) {
 			if ( false !== strpos( $name, '_' ) ) {
 				list( $block, $var ) = explode( '_', $name, 2 );
-				$result[$block][$var] = $value;
+				// flow_xxx is global data for all blocks
+				if ( $block === 'flow' ) {
+					$globalData[$var] = $value;
+				} else {
+					$result[$block][$var] = $value;
+				}
 			}
 		}
+
+		foreach ( $blocks as $block ) {
+			$result[$block->getName()] += $globalData;
+		}
+
 		return $result;
 	}
-
-
 }
 
 class WorkflowLoaderFactory {

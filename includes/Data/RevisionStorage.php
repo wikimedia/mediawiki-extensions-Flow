@@ -6,9 +6,7 @@ use DatabaseBase;
 use ExternalStore;
 use Flow\DbFactory;
 use Flow\Exception\DataModelException;
-use Flow\Model\PostRevision;
 use Flow\Model\UUID;
-use Flow\Repository\TreeRepository;
 use MWException;
 
 abstract class RevisionStorage extends DbStorage {
@@ -222,6 +220,7 @@ abstract class RevisionStorage extends DbStorage {
 		$duplicator = new ResultDuplicator( array( 'rev_id' ), 1 );
 		$pks = array();
 		foreach ( $queries as $idx => $query ) {
+			$query = UUID::convertUUIDs( (array) $query, 'alphadecimal' );
 			$duplicator->add( $query, $idx );
 			$id = $query['rev_id'];
 			$pks[$id] = UUID::create( $id )->getBinary();
@@ -237,6 +236,7 @@ abstract class RevisionStorage extends DbStorage {
 		// GROUP BY rev_type_id
 		$duplicator = new ResultDuplicator( array( 'rev_type_id' ), 1 );
 		foreach ( $queries as $idx => $query ) {
+			$query = UUID::convertUUIDs( (array) $query, 'alphadecimal' );
 			$duplicator->add( $query, $idx );
 		}
 
@@ -268,6 +268,7 @@ abstract class RevisionStorage extends DbStorage {
 	 * @param ResultDuplicator $duplicator
 	 * @param array $revisionIds Binary strings representing revision uuid's
 	 * @return array
+	 * @throws DataModelException
 	 */
 	protected function findRevIdReal( ResultDuplicator $duplicator, array $revisionIds ) {
 		if ( $revisionIds ) {

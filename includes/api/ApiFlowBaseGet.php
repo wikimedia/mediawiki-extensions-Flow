@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Anchor;
 use Flow\Block\AbstractBlock;
 
 abstract class ApiFlowBaseGet extends ApiFlowBase {
@@ -27,7 +28,7 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 					$blockParams = $passedParams[$block->getName()];
 				}
 
-				$output[$action]['result'][$block->getName()] = $block->renderAPI( $templating, $this->getResult(), $blockParams );
+				$output[$action]['result'][$block->getName()] = $block->renderAPI( $templating, $blockParams );
 			}
 		}
 
@@ -44,6 +45,15 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		} else {
 			$blocks = array_keys($output[$action]['result']);
 			$this->getResult()->setIndexedTagName( $blocks, 'block' );
+
+			// Required until php5.4 which has the JsonSerializable interface
+			array_walk_recursive( $output, function( &$value ) {
+				if ( $value instanceof Anchor ) {
+					$value = $value->toArray();
+				} elseif ( $value instanceof Message ) {
+					$value = $value->text();
+				}
+			} );
 		}
 
 		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );

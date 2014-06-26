@@ -15,6 +15,7 @@ abstract class AbstractSummary extends AbstractRevision {
 	protected $summaryTargetId;
 
 	static public function fromStorageRow( array $row, $obj = null ) {
+		/** @var $obj AbstractSummary */
 		$obj = parent::fromStorageRow( $row, $obj );
 		$obj->summaryTargetId = UUID::create( $row['rev_type_id'] );
 		return $obj;

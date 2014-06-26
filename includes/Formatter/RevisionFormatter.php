@@ -3,14 +3,18 @@
 namespace Flow\Formatter;
 
 use Flow\Anchor;
+use Flow\Collection\PostCollection;
+use Flow\Data\UserNameBatch;
 use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\UUID;
+use Flow\Parsoid\Utils;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\UrlGenerator;
+use GenderCache;
 use IContextSource;
 use Message;
 
@@ -50,13 +54,64 @@ class RevisionFormatter {
 	protected $urlGenerator;
 
 	/**
+	 * @var bool
+	 */
+	protected $includeProperties = false;
+
+	/**
+	 * @var string[]
+	 */
+	protected $allowedContentFormats = array( 'html', 'wikitext' );
+
+	/**
+	 * @var string
+	 */
+	protected $contentFormat = 'html';
+
+	/**
+	 * @var int
+	 */
+	protected $maxThreadingDepth;
+
+	/**
+	 * @var Message[]
+	 */
+	protected $messages = array();
+
+	/**
 	 * @param RevisionActionPermissions $permissions
 	 * @param Templating $templating
+	 * @param UserNameBatch $usernames
+	 * @param int $maxThreadingDepth
 	 */
-	public function __construct( RevisionActionPermissions $permissions, Templating $templating ) {
+	public function __construct(
+		RevisionActionPermissions $permissions,
+		Templating $templating,
+		UserNameBatch $usernames,
+		$maxThreadingDepth
+	) {
 		$this->permissions = $permissions;
 		$this->templating = $templating;
 		$this->urlGenerator = $this->templating->getUrlGenerator();
+		$this->usernames = $usernames;
+		$this->genderCache = GenderCache::singleton();
+		$this->maxThreadingDepth = $maxThreadingDepth;
+	}
+
+	/**
+	 * The self::buildProperties method is fairly expensive and only used for rendering
+	 * history entries.  As such it is optimistically disabled unless requested
+	 * here
+	 */
+	public function setIncludeHistoryProperties( $shouldInclude ) {
+		$this->includeProperties = (bool)$shouldInclude;
+	}
+
+	public function setContentFormat( $format ) {
+		if ( false === array_search( $format, $this->allowedContentFormats ) ) {
+			throw new FlowException( "Unknown content format: $format" );
+		}
+		$this->contentFormat = $format;
 	}
 
 	/**
@@ -73,23 +128,149 @@ class RevisionFormatter {
 			return false;
 		}
 
-		$this->urlGenerator->withWorkflow( $row->workflow );
+		$section = new \ProfileSection( __METHOD__ );
+		$isContentAllowed = $this->permissions->isAllowed( $row->revision, 'view' );
+		$isHistoryAllowed = $isContentAllowed ?: $this->permissions->isAllowed( $row->revision, 'history' );
 
+		if ( !$isHistoryAllowed ) {
+			return array();
+		}
+
+		$this->urlGenerator->withWorkflow( $row->workflow );
+		$moderatedRevision = $this->templating->getModeratedRevision( $row->revision );
 		$res = array(
-			'workflowId' => $row->workflow->getId(),
+			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
 			'revisionId' => $row->revision->getRevisionId()->getAlphadecimal(),
 			'timestamp' => $row->revision->getRevisionId()->getTimestampObj()->getTimestamp( TS_MW ),
 			'changeType' => $row->revision->getChangeType(),
-			'content' => $this->templating->getContent( $row->revision ),
 			'dateFormats' => $this->getDateFormats( $row->revision, $ctx ),
 			'properties' => $this->buildProperties( $row->workflow->getId(), $row->revision, $ctx ),
-			'isModerated' => $this->templating->getModeratedRevision( $row->revision )->isModerated(),
-			'links' => $this->buildActionLinks( $row ),
+			'isModerated' => $moderatedRevision->isModerated(),
+			// These are read urls
+			'links' => $this->buildLinks( $row ),
+			// These are write urls
+			'actions' => $this->buildActions( $row ),
 			'size' => array(
 				'old' => strlen( $row->previousRevision ? $row->previousRevision->getContentRaw() : '' ),
 				'new' => strlen( $row->revision->getContentRaw() ),
 			),
+			'author' => $this->serializeUser(
+				$row->revision->getUserWiki(),
+				$row->revision->getUserId(),
+				$row->revision->getUserIp()
+			),
 		);
+
+		$prevRevId = $row->revision->getPrevRevisionId();
+		$res['previousRevisionId'] = $prevRevId ? $prevRevId->getAlphadecimal() : null;
+
+		if ( $res['isModerated'] ) {
+			$res['moderator'] = $this->serializeUser(
+				$moderatedRevision->getModeratedByUserWiki(),
+				$moderatedRevision->getModeratedByUserId(),
+				$moderatedRevision->getModeratedByUserIp()
+			);
+			$res['moderateState'] = $moderatedRevision->getModerationState();
+		}
+
+		if ( $isContentAllowed ) {
+
+			// topic titles are always forced to plain text
+			$contentFormat = ( $row->revision instanceof PostRevision && $row->revision->isTopicTitle() )
+				? 'raw'
+				: $this->contentFormat;
+
+			$res += array(
+				'content' => $this->templating->getContent( $row->revision, $contentFormat ),
+				'contentFormat' => $contentFormat,
+				'size' => array(
+					'old' => null,
+					// @todo this isn't really correct
+					'new' => strlen( $row->revision->getContentRaw() ),
+				),
+			);
+			if ( $row->previousRevision
+				&& $this->permissions->isAllowed( $row->previousRevision, 'view' )
+			) {
+				$res['size']['old'] = strlen( $row->previousRevision->getContentRaw() );
+			}
+		}
+
+		if ( $row instanceof TopicRow &&
+			$row->summary &&
+			$this->permissions->isAllowed( $row->summary, 'view' )
+		) {
+			// Maybe always have both parsed and unparsed versions available
+			$res['summary'] = $this->templating->getContent( $row->summary, $this->contentFormat );
+			$res['summaryFormat'] = $this->contentFormat;
+			$res['summaryRevId'] = $row->summary->getRevisionId()->getAlphadecimal();
+		}
+
+		if ( $row->revision instanceof PostRevision ) {
+			$replyTo = $row->revision->getReplyToId();
+			$res['replyToId'] = $replyTo ? $replyTo->getAlphadecimal() : null;
+			$res['postId'] = $row->revision->getPostId()->getAlphadecimal();
+			$res['isMaxThreadingDepth'] = $row->revision->getDepth() >= $this->maxThreadingDepth;
+			$res['creator'] = $this->serializeUser(
+				$row->revision->getCreatorWiki(),
+				$row->revision->getCreatorId(),
+				$row->revision->getCreatorIp()
+			);
+		}
+
+		return $res;
+	}
+
+	/**
+	 * @param array $user Contains `name`, `wiki`, and `gender` keys
+	 * @return array
+	 */
+	public function serializeUserLinks( $userData ) {
+		$name = $userData['name'];
+		$userTitle = \Title::newFromText( $name, NS_USER );
+		$talkPageTitle = $userTitle->getTalkPage();
+		$blockTitle = \SpecialPage::getTitleFor( 'Block', $name );
+		$links = array(
+			"contribs" => array(
+				'url' => $userTitle->getLocalUrl(),
+				'title' => $userTitle->getText(),
+			),
+			"talk" => array(
+				'url' => $talkPageTitle->getLocalUrl(),
+				'title' => $talkPageTitle->getPrefixedText(),
+			),
+		);
+		// is this right permissions? typically this would
+		// be sourced from Linker::userToolLinks, but that
+		// only undertands html strings.
+		if ( $this->permissions->getUser()->isAllowed( 'block' ) ) {
+			// only is the user has blocking rights
+			$links += array(
+				"block" => array(
+					'url' => $blockTitle->getLocalUrl(),
+					'link' => '',
+				),
+			);
+		}
+
+		return $links;
+	}
+
+	public function serializeUser( $userWiki, $userId, $userIp ) {
+		$section = new \ProfileSection( __METHOD__ );
+		$res = array(
+			'name' => $this->usernames->get( $userWiki, $userId, $userIp ),
+			'wiki' => $userWiki,
+			'gender' => 'unknown',
+			'links' => array(),
+		);
+		// Only works for the local wiki
+		if ( wfWikiId() === $userWiki ) {
+			$res['gender'] = $this->genderCache->getGenderOf( $res['name'], __METHOD__ );
+		}
+		if ( $res['name'] ) {
+			$res['links'] = $this->serializeUserLinks( $res );
+		}
 
 		return $res;
 	}
@@ -100,6 +281,12 @@ class RevisionFormatter {
 	 * @return array Contains [timeAndDate, date, time]
 	 */
 	public function getDateFormats( AbstractRevision $revision, IContextSource $ctx ) {
+		// also restricted to history
+		if ( $this->includeProperties === false ) {
+			return array();
+		}
+
+		$section = new \ProfileSection( __METHOD__ );
 		$timestamp = $revision->getRevisionId()->getTimestampObj()->getTimestamp( TS_MW );
 		$user = $ctx->getUser();
 		$lang = $ctx->getLanguage();
@@ -113,15 +300,184 @@ class RevisionFormatter {
 
 	/**
 	 * @param FormatterRow $row
+	 * @return array
+	 * @throws FlowException
+	 */
+	public function buildActions( FormatterRow $row ) {
+		$section = new \ProfileSection( __METHOD__ );
+		$workflow = $row->workflow;
+		$revision = $row->revision;
+		$title = $workflow->getArticleTitle();
+		$action = $revision->getChangeType();
+		$workflowId = $workflow->getId();
+		$revId = $revision->getRevisionId();
+		$postId = method_exists( $revision, 'getPostId' ) ? $revision->getPostId() : null;
+		$actionTypes = $this->permissions->getActions()->getValue( $action, 'actions' );
+		if ( $actionTypes === null ) {
+			throw new FlowException( "No actions defined for action: $action" );
+		}
+
+		// actions primarily vary by revision type...
+		$links = array();
+		foreach ( $actionTypes as $type ) {
+			if ( !$this->permissions->isAllowed( $revision, $type ) ) {
+				continue;
+			}
+			switch( $type ) {
+			case 'reply':
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+
+				/*
+				 * If the post being replied is at or exceeds the max threading
+				 * depth, the reply link should point to parent.
+				 */
+				$replyToId = $postId;
+				$replyToRevision = $revision;
+				while ( $replyToRevision->getDepth() >= $this->maxThreadingDepth ) {
+					$replyToId = $replyToRevision->getReplyToId();
+					$replyToRevision = PostCollection::newFromId( $replyToId )->getLastRevision();
+				}
+
+				$links['reply'] = $this->urlGenerator->replyAction( $title, $workflowId, $replyToId );
+				break;
+
+			case 'edit-header':
+				$links['edit'] = $this->urlGenerator->editHeaderAction( $title, $workflowId, $revId );
+				break;
+
+			case 'edit-title':
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+				$links['edit'] = $this->urlGenerator
+					->editTitleAction( $title, $workflowId, $postId, $revId );
+				break;
+
+			case 'edit-post':
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+				$links['edit'] = $this->urlGenerator
+					->editPostAction( $title, $workflowId, $postId, $revId );
+				break;
+
+			case 'lock':
+				// @todo
+				break;
+
+			case 'hide-post':
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+				$links['hide'] = $this->urlGenerator->hidePostAction( $title, $workflowId, $postId );
+				break;
+
+			case 'delete-topic':
+				$links['delete'] = $this->urlGenerator->deleteTopicAction( $title, $workflowId );
+				break;
+
+			case 'delete-post':
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+				$links['delete'] = $this->urlGenerator->deletePostAction( $title, $workflowId, $postId );
+				break;
+
+			case 'suppress-topic':
+				$links['suppress'] = $this->urlGenerator->suppressTopicAction( $title, $workflowId );
+				break;
+
+			case 'suppress-post':
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+				$links['suppress'] = $this->urlGenerator->suppressPostAction( $title, $workflowId, $postId );
+				break;
+
+			case 'close-topic':
+				// close topic link is only available to topic workflow
+				if( !in_array( $workflow->getType(), array( 'topic', 'topicsummary' ) ) ) {
+					continue;
+				}
+				$links['close'] = $this->urlGenerator->closeTopicAction( $title, $workflowId );
+				break;
+
+			case 'restore-topic':
+				$moderateAction = null;
+				switch ( $revision->getModerationState() ) {
+				case AbstractRevision::MODERATED_CLOSED:
+					$moderateAction = 'reopen';
+					$flowAction = 'close-open-topic';
+					break;
+				case AbstractRevision::MODERATED_HIDDEN:
+				case AbstractRevision::MODERATED_DELETED:
+				case AbstractRevision::MODERATED_SUPPRESSED:
+					$moderateAction = 'un' . $revision->getModerationState();
+					$flowAction = 'moderate-topic';
+					break;
+				}
+				if ( isset( $moderateAction ) && $moderateAction ) {
+					$links[$moderateAction] = $this->urlGenerator->restoreTopicAction( $title, $workflowId, $moderateAction, $flowAction );
+				}
+				break;
+
+			case 'restore-post':
+				if ( !$postId ) {
+					throw new FlowException( "$type called without \$postId" );
+				}
+				$moderateAction = null;
+				switch( $revision->getModerationState() ) {
+				case AbstractRevision::MODERATED_HIDDEN:
+				case AbstractRevision::MODERATED_DELETED:
+				case AbstractRevision::MODERATED_SUPPRESSED:
+					$moderateAction = 'un' . $revision->getModerationState();
+					$flowAction = 'moderate-post';
+					break;
+				}
+				if ( $moderateAction ) {
+					$links[$moderateAction] = $this->urlGenerator->restorePostAction( $title, $workflowId, $postId, $moderateAction, $flowAction );
+				}
+				break;
+
+			case 'hide-topic':
+				$links['hide'] = $this->urlGenerator->hideTopicAction( $title, $workflowId );
+				break;
+
+			// Need to use 'edit-topic-summary' to match FlowActions
+			case 'edit-topic-summary':
+				// summarize link is only available to topic workflow
+				if( !in_array( $workflow->getType(), array( 'topic', 'topicsummary' ) ) ) {
+					continue;
+				}
+				$links['summarize'] = $this->urlGenerator->editTopicSummaryAction( $title, $workflowId );
+				break;
+
+
+			default:
+				wfDebugLog( 'Flow', __METHOD__ . ': unkown action link type: ' . $type );
+				break;
+			}
+		}
+
+		return $links;
+	}
+
+	/**
+	 * @param FormatterRow $row
 	 * @return Anchor[]
 	 * @throws FlowException
 	 */
-	public function buildActionLinks( FormatterRow $row ) {
-		$title = $row->workflow->getArticleTitle();
-		$action = $row->revision->getChangeType();
-		$workflowId = $row->workflow->getId();
-		$revId = $row->revision->getRevisionId();
-		$postId = method_exists( $row->revision, 'getPostId' ) ? $row->revision->getPostId() : null;
+	public function buildLinks( FormatterRow $row ) {
+		$section = new \ProfileSection( __METHOD__ );
+		$workflow = $row->workflow;
+		$revision = $row->revision;
+		$title = $workflow->getArticleTitle();
+		$action = $revision->getChangeType();
+		$workflowId = $workflow->getId();
+		$revId = $revision->getRevisionId();
+		$postId = method_exists( $revision, 'getPostId' ) ? $revision->getPostId() : null;
 
 		$linkTypes = $this->permissions->getActions()->getValue( $action, 'links' );
 		if ( $linkTypes === null ) {
@@ -202,7 +558,7 @@ class RevisionFormatter {
 				 * against. This could result in a network request (fetching the
 				 * current revision), but it's likely being loaded anyways.
 				 */
-				if ( $row->revision->getPrevRevisionId() !== null ) {
+				if ( $revision->getPrevRevisionId() !== null ) {
 					$links['diff'] = call_user_func( $diffCallback, $title, $workflowId, $revId );
 
 					/*
@@ -247,16 +603,30 @@ class RevisionFormatter {
 	/**
 	 * Build api properties defined in FlowActions for this change type
 	 *
+	 * This is a fairly expensive function(compared to the other methods in this class).
+	 * As such its only output when specifically requested
+	 *
 	 * @param UUID $workflowId
 	 * @param AbstractRevision $revision
 	 * @param IContextSource $ctx
 	 * @return array
 	 */
 	public function buildProperties( UUID $workflowId, AbstractRevision $revision, IContextSource $ctx ) {
-		$changeType = $revision->getChangeType();
-		$params = $this->permissions->getActions()->getValue( $changeType, 'history', 'i18n-params' );
+		if ( $this->includeProperties === false ) {
+			return array();
+		}
 
-		$res = array();
+		$section = new \ProfileSection( __METHOD__ );
+		$changeType = $revision->getChangeType();
+		$actions = $this->permissions->getActions();
+		$params = $actions->getValue( $changeType, 'history', 'i18n-params' );
+		if ( !$params ) {
+			// should we have a sigil for i18n with no parameters?
+			wfDebugLog( 'Flow', __METHOD__ . ": No i18n params for changeTyp4 $changeType on " . $revision->getRevisionId()->getAlphadecimal() );
+			return array();
+		}
+
+		$res = array( '_key' => $actions->getValue( $changeType, 'history', 'i18n-message' ) );
 		foreach ( $params as $param ) {
 			$res[$param] = $this->processParam( $param, $revision, $workflowId, $ctx );
 		}
@@ -296,14 +666,14 @@ class RevisionFormatter {
 			 * Parsoid roundtrip is needed then (and if it *is*, it'll already
 			 * be needed to render Flow discussions, so this is manageable)
 			 */
-			$lang = $ctx->getLanguage();
 			$content = $this->templating->getContent( $revision, 'html' );
-			$content = strip_tags( $content );
-			return Message::rawParam( htmlspecialchars( $lang->truncate( trim( $content ), 140 ) ) );
+			return Utils::htmlToPlaintext( $content, 140, $ctx->getLanguage() );
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
-			return Message::rawParam( $content );
+			// This must be escaped and marked raw to prevent special chars in
+			// content, like $1, from changing the i18n result
+			return Message::rawParam( htmlspecialchars( $content ) );
 
 		// This is potentially two networked round trips, much too expensive for
 		// the rendering loop
@@ -320,7 +690,7 @@ class RevisionFormatter {
 			}
 
 			$content = $this->templating->getContent( $previousRevision, 'wikitext' );
-			return Message::rawParam( $content );
+			return Message::rawParam( htmlspecialchars( $content ) );
 
 		case 'workflow-url':
 			return $this->urlGenerator
@@ -345,7 +715,8 @@ class RevisionFormatter {
 			}
 			$root = $revision->getRootPost();
 			$content = $this->templating->getContent( $root, 'wikitext' );
-			return Message::rawParam( $content );
+
+			return Message::rawParam( htmlspecialchars( $content ) );
 
 		case 'post-of-summary':
 			if ( !$revision instanceof PostSummary ) {
@@ -353,14 +724,12 @@ class RevisionFormatter {
 			}
 			$post = $revision->getCollection()->getPost()->getLastRevision();
 			if ( $post->isTopicTitle() ) {
-				$content = $this->templating->getContent( $post, 'wikitext' );
-				if ( $this->permissions->isAllowed( $post, 'view' ) ) {
-					$content = htmlspecialchars( $content );
-				}
+				$content = htmlspecialchars( $this->templating->getContent( $post, 'wikitext' ) );
 			} else {
 				$content = $this->templating->getContent( $post, 'html' );
 			}
 			return Message::rawParam( $content );
+
 		case 'bundle-count':
 			return Message::numParam( count( $revision ) );
 
@@ -368,5 +737,17 @@ class RevisionFormatter {
 			wfWarn( __METHOD__ . ': Unknown formatter parameter: ' . $param );
 			return '';
 		}
+	}
+
+	protected function msg( $key /*...*/ ) {
+		$params = func_get_args();
+		if ( count( $params ) !== 1 ) {
+			array_shift( $params );
+			return wfMessage( $key, $params );
+		}
+		if ( !isset( $this->messages[$key] ) ) {
+			$this->messages[$key] = new Message( $key );
+		}
+		return $this->messages[$key];
 	}
 }

@@ -4,7 +4,6 @@ namespace Flow\Tests;
 
 use Flow\Parsoid\Redlinker;
 use Flow\Model\UUID;
-use Flow\Model\PostRevision;
 use Title;
 use FormatJson;
 

@@ -4,6 +4,7 @@ namespace Flow\Tests;
 
 use Flow\Container;
 use Flow\Formatter\FormatterRow;
+use Flow\Formatter\RevisionFormatter;
 use Flow\Model\UUID;
 use Title;
 use Flow\UrlGenerator;
@@ -130,7 +131,14 @@ class FormatterTest extends FlowTestCase {
 			->method( 'getUrlGenerator' )
 			->will( $this->returnValue( $urlGenerator ) );
 
-		return new $class( $permissions, $templating );
+		$usernames = $this->getMockBuilder( 'Flow\Data\UserNameBatch' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		global $wgFlowMaxThreadingDepth;
+		$serializer = new RevisionFormatter( $permissions, $templating, $usernames, $wgFlowMaxThreadingDepth );
+
+		return new $class( $permissions, $serializer );
 	}
 
 	protected function dataToString( $data ) {

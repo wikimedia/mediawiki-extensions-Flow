@@ -7,6 +7,7 @@ use Flow\Exception\FlowException;
 use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
+use Flow\Parsoid\Utils;
 use EchoEvent;
 use Language;
 use User;
@@ -43,8 +44,8 @@ class NotificationController {
 
 		$wgEchoNotificationIcons['flow-discussion'] = array(
 			'path' => array(
-				'ltr' => 'Flow/modules/base/images/Talk-ltr.png',
-				'rtl' => 'Flow/modules/base/images/Talk-rtl.png'
+				'ltr' => 'Flow/modules/new/notification/icon/Talk-ltr.png',
+				'rtl' => 'Flow/modules/new/notification/icon/Talk-rtl.png'
 			)
 		);
 
@@ -109,7 +110,7 @@ class NotificationController {
 				$replyToPostId = $replyTo->getPostId();
 				$extraData += array(
 					'reply-to' => $replyToPostId,
-					'content' => $this->language->truncate( trim( strip_tags( $revision->getContent() ) ), 200 ),
+					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
 					'topic-title' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
 				);
 				$newPost = array(
@@ -130,7 +131,7 @@ class NotificationController {
 			break;
 			case 'flow-post-edited':
 				$extraData += array(
-					'content' => $this->language->truncate( trim( strip_tags( $revision->getContent() ) ), 200 ),
+					'content' => Utils::htmlToPlaintext( $revision->getContent(), 200, $this->language ),
 					'topic-title' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
 				);
 			break;
@@ -195,8 +196,10 @@ class NotificationController {
 				'board-workflow' => $boardWorkflow->getId(),
 				'topic-workflow' => $topicWorkflow->getId(),
 				'post-id' => $firstPost ? $firstPost->getRevisionId() : null,
-				'topic-title' => $this->language->truncate( trim( strip_tags( $topicPost->getContent() ) ), 200 ),
-				'content' => $firstPost ? $this->language->truncate( trim( strip_tags( $firstPost->getContent() ) ), 200 ) : null,
+				'topic-title' => Utils::htmlToPlaintext( $topicPost->getContent(), 200, $this->language ),
+				'content' => $firstPost
+					? Utils::htmlToPlaintext( $firstPost->getContent(), 200, $this->language )
+					: null,
 			)
 		) );
 
@@ -260,7 +263,9 @@ class NotificationController {
 				'type' => 'flow-mention',
 				'title' => $title,
 				'extra' => array(
-					'content' => $newRevision ? $this->language->truncate( trim( strip_tags( $newRevision->getContent() ) ), 200 ) : null,
+					'content' => $newRevision
+						? Utils::htmlToPlaintext( $newRevision->getContent(), 200, $this->language )
+						: null,
 					'topic-title' => $this->language->truncate( trim( $topicRevision->getContent( 'wikitext' ) ), 200 ),
 					'post-id' => $newRevision ? $newRevision->getPostId() : null,
 					'mentioned-users' => $mentionedUsers,

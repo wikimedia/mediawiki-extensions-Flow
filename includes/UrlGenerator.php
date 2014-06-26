@@ -2,37 +2,11 @@
 
 namespace Flow;
 
-use Flow\Data\PagerPage;
+use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
 use Title;
 
 class UrlGenerator extends BaseUrlGenerator {
-
-	/**
-	 * Reverse pagination on a topic list.
-	 *
-	 * @var Title|null $title Page the workflow is on, resolved from workflowId when null
-	 * @var UUID $workflowId The topic list being paginated
-	 * @var PagerPage $page Pagination information
-	 * @var string $direction 'fwd' or 'rev'
-	 * @return Anchor|null
-	 */
-	public function paginateTopicsLink( Title $title = null, UUID $workflowId, PagerPage $page, $direction ) {
-		$linkData = $page->getPagingLink( $direction );
-		if ( !$linkData ) {
-			return null;
-		}
-		return new Anchor(
-			wfMessage( "flow-paging-$direction" ),
-			$this->resolveTitle( $title, $workflowId ),
-			array(
-				'topiclist_offset-id' => $linkData['offset'],
-				'topiclist_offset-dir' => $direction,
-				'topiclist_limit' => $linkData['limit'],
-			)
-		);
-	}
-
 	/**
 	 * Link to create new topic on a topiclist.
 	 *
@@ -224,7 +198,7 @@ class UrlGenerator extends BaseUrlGenerator {
 	 */
 	public function postHistoryLink( Title $title = null, UUID $workflowId, UUID $postId ) {
 		return new Anchor(
-			wfMessage( 'hist' ),
+			wfMessage( 'flow-post-action-post-history' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'action' => 'history',
@@ -243,7 +217,7 @@ class UrlGenerator extends BaseUrlGenerator {
 	 */
 	public function workflowHistoryLink( Title $title = null, UUID $workflowId ) {
 		return new Anchor(
-			wfMessage( 'hist' ),
+			wfMessage( 'flow-topic-action-history' ),
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'workflow' => $workflowId->getAlphadecimal(),
@@ -368,9 +342,325 @@ class UrlGenerator extends BaseUrlGenerator {
 	 * Makes the assumption the title is flow-enabled.
 	 *
 	 * @param Title $title
+	 * @param string $sortBy
+	 * @param string $saveSortBy
 	 * @return Anchor
 	 */
-	public function boardLink( Title $title ) {
-		return new Anchor( $title->getPrefixedText(), $title );
+	public function boardLink( Title $title, $sortBy = null, $saveSortBy = false ) {
+		$options = array();
+
+		if ( $sortBy !== null ) {
+			$options['topiclist_sortby'] = $sortBy;
+			if ( $saveSortBy ) {
+				$options['topiclist_savesortby'] = '';
+			}
+		}
+
+		return new Anchor(
+			$title->getPrefixedText(),
+			$title,
+			$options
+		);
+	}
+
+	public function replyAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-reply-link' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'reply',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal()
+			)
+		);
+	}
+
+	/**
+	 * Edit the specified topic summary
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function editTopicSummaryAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-summarize-topic-submit' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'edit-topic-summary',
+				'workflow' => $workflowId->getAlphadecimal()
+			)
+		);
+	}
+
+	/**
+	 * Close the specified topic
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function closeTopicAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-close-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'close-open-topic',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'flow_moderationState' => 'close',
+			)
+		);
+	}
+
+	/**
+	 * Restore the specified topic to unmoderated status.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param string $moderationAction
+	 * @param string $flowAction
+	 * @return Anchor
+	 */
+	public function restoreTopicAction( Title $title = null, UUID $workflowId, $moderationAction, $flowAction = 'moderate-topic' ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-' . $moderationAction . '-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => $flowAction,
+				'workflow' => $workflowId->getAlphadecimal(),
+				'flow_moderationState' => 'restore',
+			)
+		);
+	}
+
+	/**
+	 * Restore the specified post to unmoderated status.
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param string $moderationAction
+	 * @param string $flowAction
+	 * @return Anchor
+	 */
+	public function restorePostAction( Title $title = null, UUID $workflowId, UUID $postId, $moderationAction, $flowAction = 'moderate-post' ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-' . $moderationAction . '-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => $flowAction,
+				'topic_moderationState' => 'restore',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Create a header for the specified page
+	 *
+	 * @param Title $title
+	 * @return Anchor
+	 */
+	public function createHeaderAction( Title $title ) {
+		return new Anchor(
+			wfMessage( 'flow-edit-header-link' ),
+			$title,
+			array( 'action' => 'edit-header' )
+		);
+	}
+
+	/**
+	 * Edit the specified header
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $revId
+	 * @return Anchor
+	 */
+	public function editHeaderAction( Title $title = null, UUID $workflowId, UUID $revId ) {
+		return new Anchor(
+			wfMessage( 'flow-edit-header-link' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'edit-header',
+				'workflow' => $workflowId->getAlphadecimal()
+			)
+		);
+	}
+
+	/**
+	 * Edit the specified topic title
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @param UUID $revId
+	 * @return Anchor
+	 */
+	public function editTitleAction( Title $title = null, UUID $workflowId, UUID $postId, UUID $revId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-edit-title' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'edit-title',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_revId' => $revId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Edit the specified post within the specified workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @param UUID $revId
+	 * @return Anchor
+	 */
+	public function editPostAction( Title $title = null, UUID $workflowId, UUID $postId, UUID $revId ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-edit-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'edit-post',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+				'topic_revId' => $revId->getAlphadecimal(),
+			)
+		);
+	}
+
+	/**
+	 * Hide the specified topic
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function hideTopicAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-hide-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'moderate-topic',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_HIDDEN,
+			)
+		);
+	}
+
+	/**
+	 * Hide the specified post within the specified workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @return Anchor
+	 */
+	public function hidePostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-hide-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'moderate-post',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_HIDDEN,
+			)
+		);
+	}
+
+	/**
+	 * Delete the specified topic workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function deleteTopicAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-delete-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'moderate-topic',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_DELETED,
+			)
+		);
+	}
+
+	/**
+	 * Delete the specified post within the specified workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @return Anchor
+	 */
+	public function deletePostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-delete-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'moderate-post',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_DELETED,
+			)
+		);
+	}
+
+	/**
+	 * Suppress the specified topic workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function suppressTopicAction( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'flow-topic-action-suppress-topic' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'moderate-topic',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_SUPPRESSED,
+			)
+		);
+	}
+
+	/**
+	 * Suppress the specified post within the specified workflow
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @param UUID $postId
+	 * @return Anchor
+	 */
+	public function suppressPostAction( Title $title = null, UUID $workflowId, UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'flow-post-action-suppress-post' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'moderate-post',
+				'workflow' => $workflowId->getAlphadecimal(),
+				'topic_postId' => $postId->getAlphadecimal(),
+				'topic_moderationState' => AbstractRevision::MODERATED_SUPPRESSED,
+			)
+		);
+	}
+
+	public function newTopicAction( Title $title = null, UUID $workflowId = null ) {
+		return new Anchor(
+			wfMessage( 'flow-newtopic-start-placeholder' ),
+			// resolveTitle doesn't accept null uuid
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'action' => 'new-topic'
+			) + ( $workflowId === null ? array() : array(
+				'workflow' => $workflowId->getAlphadecimal(),
+			) )
+		);
 	}
 }
