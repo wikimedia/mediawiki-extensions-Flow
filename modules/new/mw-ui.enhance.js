@@ -125,7 +125,6 @@
 				is_mini = true,
 				tooltype = $el.data( 'tooltip-type' ),
 				context = $el.data( 'tooltip-context' ),
-				contentTarget = $el.data( 'tooltip-content-target' ), // @todo
 				elOffset = $el.offset(),
 				elWidth = $el.outerWidth(),
 				elHeight = $el.outerHeight(),

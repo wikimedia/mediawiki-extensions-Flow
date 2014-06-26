@@ -179,7 +179,7 @@
 		 * @param {Event} event
 		 * @return {Object}
 		 */
-		FlowBoardComponent.UI.events.apiPreHandlers.activateEditHeader = function ( event ) {
+		FlowBoardComponent.UI.events.apiPreHandlers.activateEditHeader = function () {
 			return {
 				submodule: "view-header", // href submodule is edit-header
 				vhcontentFormat: "wikitext" // href does not have this param
@@ -350,7 +350,6 @@
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.activateEditHeader = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$header = flowBoard.$header,
 				$oldBoardNodes,
 				$rendered;
 
@@ -459,7 +458,7 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.closeOpenTopic = function ( info, data ) {
-			var revision, result,
+			var revision,
 				$target = info.$target, $topicTitleBar,
 				topicId, revisionId,
 				self = this,
@@ -521,8 +520,7 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.submitTopicTitle = function( info, data, jqxhr ) {
-			var result,
-				newTitle,
+			var
 				topicData,
 				rootId,
 				revisionId,
@@ -562,14 +560,13 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.submitEditPost = function( info, data, jqxhr ) {
-
 			if ( info.status !== 'done' || !data || !data.flow || !data.flow['edit-post'] ) {
 				// @todo
 				alert( "Error" );
 				return;
 			}
 
-			var $rendered, html, revision, errors,
+			var html, revision, errors,
 				result = data.flow['edit-post'].result.topic;
 
 			if ( data.flow['edit-post'].status !== 'ok' ) {
@@ -803,7 +800,7 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.summarizeTopic = function ( info, data, jqxhr ) {
-			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+			var
 				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' );
 
 			if ( info.status === 'done' ) {
@@ -893,7 +890,7 @@
 					return;
 				}
 
-				var errors, revision, html,
+				var errors, html,
 					result = data.flow[action].result.topic,
 					$form = $( this ).closest( 'form' );
 
@@ -1135,8 +1132,7 @@
 		FlowBoardComponent.UI.events.interactiveHandlers.topicCollapserToggle = function ( event ) {
 			var $target = $( event.target ),
 				$topic, topicId, states,
-				$component = $( this ).closest( '.flow-component' ),
-				overrideClass;
+				$component = $( this ).closest( '.flow-component' );
 
 			// Make sure we didn't click on any interactive elements
 			if ( $target.not( '.flow-menu-js-drop' ) && !$target.closest( 'a, button, input, textarea, select, ul, ol' ).length ) {
@@ -1679,8 +1675,7 @@
 			// Find all the forms
 			// @todo move this into a flow-load-handler
 			$container.find( 'form' ).add( $container.filter( 'form' ) ).each( function () {
-				var $this = $( this ),
-					initialState = $this.data( 'flow-initial-state' );
+				var $this = $( this );
 
 				// Trigger for flow-actions-disabler
 				$this.find( 'input, textarea' ).trigger( 'keyup' );

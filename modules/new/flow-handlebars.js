@@ -65,8 +65,7 @@
 	 */
 	FlowHandlebars.prototype.processTemplateGetFragment = function ( templateName, args ) {
 		var $fragment = $( document.createDocumentFragment() ),
-			div = document.createElement( 'div' ),
-			scrs, i, len;
+			div = document.createElement( 'div' );
 
 		div.innerHTML = FlowHandlebars.prototype.processTemplate( templateName, args );
 
