@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_fbc12d84",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1187,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-26T16:07:30Z",
+      "side": 1,
+      "message": "I prefer trigger( \u0027click\u0027 ) instead of click( but i realise this was here before.\nJust a note for the future.",
+      "revId": "8f17e9f59b7f90ea08aea8b4500765de5f42c6b8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
