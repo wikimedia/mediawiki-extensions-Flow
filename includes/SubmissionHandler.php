@@ -32,13 +32,11 @@ class SubmissionHandler {
 		$success = true;
 		$interestedBlocks = array();
 
-		$params = $this->extractBlockParameters( $request, $blocks );
 		foreach ( $blocks as $block ) {
-			$data = $params[$block->getName()];
-			$result = $block->onSubmit( $action, $user, $data );
-			if ( $result !== null ) {
+			// This is just a check whether the block understands the action,
+			// Doesn't consider permissions
+			if ( $block->canSubmit( $action ) ) {
 				$interestedBlocks[] = $block;
-				$success &= $result;
 			}
 		}
 
@@ -54,12 +52,15 @@ class SubmissionHandler {
 			throw new InvalidActionException( "No block accepted the '$action' action: " .  implode( ',', array_unique( $type ) ), 'invalid-action' );
 		}
 
-		// Check permissions before allowing any writes
-		if ( $user->isBlocked() ||
-			!$workflow->getArticleTitle()->userCan( 'edit', $user )
-		) {
-			reset( $interestedBlocks )->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
-			$success = false;
+
+		$params = $this->extractBlockParameters( $request, $blocks );
+		foreach ( $interestedBlocks as $block ) {
+			$data = $params[$block->getName()];
+			$result = $block->onSubmit( $action, $user, $data );
+			if ( $result !== null ) {
+				$interestedBlocks[] = $block;
+				$success &= $result;
+			}
 		}
 
 		return $success ? $interestedBlocks : array();
