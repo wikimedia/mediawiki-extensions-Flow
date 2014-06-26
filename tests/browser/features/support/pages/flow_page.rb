@@ -26,6 +26,12 @@ class FlowPage
   a(:small_topics_view, href: "#collapser/compact")
   a(:topics_only_view, href: "#collapser/topics")
 
+  # Dialogs
+  div(:dialog, css: ".ui-dialog")
+  textarea(:dialog_input, css: ".ui-dialog textarea")
+  button(:dialog_cancel, css: ".ui-dialog .flow-ui-destructive")
+  button(:dialog_submit, css: ".ui-dialog .flow-ui-constructive")
+
   # Posts
   ## Highlighted post
   div(:highlighted_post, css: ".flow-post-highlighted")
@@ -118,12 +124,6 @@ class FlowPage
     page.post_meta_actions_element.link_element(title: "Edit")
   end
 
-  ### Topic deletion workflow
-  div(:dialog, css: ".ui-dialog")
-  textarea(:dialog_input, css: ".ui-dialog textarea")
-  button(:dialog_cancel, css: ".ui-dialog .flow-ui-destructive")
-  button(:dialog_submit, css: ".ui-dialog .flow-ui-constructive")
-
   ### First post of first topic actions menu
   a(:post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 0)
   ul(:post_actions_menu, css: ".flow-topic .flow-post .flow-menu ul", index: 0)
@@ -138,16 +138,28 @@ class FlowPage
   end
 
   ### Replies to top post
+  #### 1st reply
   # @todo: This is broken. It should be clearly possible to distinguish between the top reply and
   # the top post. There is an element .flow-replies which appears to be empty.
   div(:first_reply, css: '.flow-post', index: 1)
   div(:first_reply_body) do |page|
     page.first_reply_element.div_element(css: '.flow-post-content')
   end
+
+  #### 3rd reply
+  # @todo: Should be index: 2, but sadly no way to distinguish replies from original post
+  div(:third_reply, css: '.flow-post', index: 3)
+  div(:third_reply_moderation_msg) do |page|
+    page.third_reply_element.div_element(css: '.flow-moderated-post-content', index: 0)
+  end
+
   a(:third_post_actions_link, css: ".flow-topic .flow-post .flow-menu-js-drop a", index: 3)
   ul(:third_post_actions_menu, css: ".flow-topic .flow-post .flow-menu ul", index: 3)
   a(:actions_link_permalink_3rd_comment) do |page|
     page.third_post_actions_menu_element.link_element(text: "Permalink")
+  end
+  a(:actions_link_hide_3rd_comment) do |page|
+    page.third_post_actions_menu_element.link_element(text: "Hide")
   end
 
   # New topic creation

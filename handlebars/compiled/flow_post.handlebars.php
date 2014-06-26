@@ -51,7 +51,6 @@
 
 			'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
 				<div class="flow-moderated-post-content">'.LCRun3::ch($cx, 'l10n', Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)), 'encq').'</div>
-				<div>@Todo - Add css to toggle between "xxx is hidden by xxx" and real post</div>
 			' : '').'
 
 			<div class="flow-post-content">
