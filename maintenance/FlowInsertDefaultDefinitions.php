@@ -15,6 +15,8 @@ require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 class FlowInsertDefaultDefinitions extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
+		return;
+
 		$container = Container::getContainer();
 		/** @var \DatabaseBase $dbw */
 		$dbw = $container['db.factory']->getDB( DB_MASTER );

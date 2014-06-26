@@ -25,6 +25,8 @@ class FlowPopulateLinksTables extends LoggedUpdateMaintenance {
 	}
 
 	public function doDBUpdates() {
+		return;
+
 		$this->output( "Populating links tables...\n" );
 		$recorder = Container::get( 'reference.recorder' );
 		$this->processHeaders( $recorder );
