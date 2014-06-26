@@ -45,7 +45,7 @@ class TermsOfUse {
 	 * @param string The key for the term of use
 	 * @return string
 	 */
-	public function getTerm( $name = '' ) {
+	public static function getTerm( $name = '' ) {
 		if ( $name && !isset( self::$terms[$name] ) ) {
 			throw new InvalidInputException( 'Term ' . $name . ' does not exist', 'invalid-input' );
 		}
