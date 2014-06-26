@@ -430,6 +430,9 @@ $wgFlowUseMemcache = true;
 // of 3 days means Flow will attempt to keep in memcache all data models requested in
 // the last 3 days.
 $wgFlowCacheTime = 60 * 60 * 24 * 3;
+// A version string appended to cache keys. Bump this if cache format or logic changes.
+// Flow can be a cross-wiki database accessed by wikis running different versions of the
+// Flow code; WMF sometimes overrides this globally in wmf-config/CommonSettings.php
 $wgFlowCacheVersion = '4.5';
 
 // Custom group name for AbuseFilter
