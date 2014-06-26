@@ -104,6 +104,8 @@ class RevisionActionPermissions {
 		return $allowed;
 	}
 
+	// TODO (mattflaschen, 2014-06-25): Can more of this be removed
+	// given the checks in WorkflowLoader and https://gerrit.wikimedia.org/r/#/c/142148/ ?
 	/**
 	 * Check if a user is allowed to perform a certain action, only against 1
 	 * specific revision (whereas the default isAllowed() will check if the
@@ -116,7 +118,7 @@ class RevisionActionPermissions {
 	protected function isRevisionAllowed( AbstractRevision $revision = null, $action ) {
 		// Users must have the core 'edit' permission to perform any write action in flow
 		$performsWrites = $this->actions->getValue( $action, 'performs-writes' );
-		if ( $performsWrites && ( !$this->user->isAllowed( 'edit' ) || $this->user->isBlocked() ) ) {
+		if ( $performsWrites && !$this->user->isAllowed( 'edit' ) ) {
 			return false;
 		}
 
