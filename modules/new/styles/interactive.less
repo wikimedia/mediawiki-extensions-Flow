@@ -11,6 +11,14 @@
 	url('../fonts/WikiFont-Glyphs.svg#8088f7bbbdba5c9832b27edb3dfcdf09') format('svg'); /* Legacy iOS */
 }
 
+// @todo: Temporary measure to simplify UI on browsers not running JavaScript
+.client-nojs {
+	.flow-board-navigation,
+	.flow-menu {
+		display: none;
+	}
+}
+
 .flow-menu {
 	position: absolute;
 	right: 0;
