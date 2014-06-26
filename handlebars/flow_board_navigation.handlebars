@@ -20,10 +20,12 @@
 			{{#if links.board-sort}}
 				<ul class="flow-ui-button-container">
 					<li><a href="{{links.board-sort.updated}}"
+					       {{~#ifEquals sortby "updated"}}class="flow-board-navigator-link-highlight"{{/ifEquals}}
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
 					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-clock"></span> {{l10n "flow-recent-topics"}}</a></li>
 					<li><a href="{{links.board-sort.newest}}"
+					       {{~#ifEquals sortby ""}}class="flow-board-navigator-link-highlight"{{/ifEquals}}
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
 					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-star-circle"></span> {{l10n "flow-newest-topics"}}</a></li>
