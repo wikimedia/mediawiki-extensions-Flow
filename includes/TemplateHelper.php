@@ -579,7 +579,7 @@ class TemplateHelper {
 	static public function l10nParse( $str /*, $args... */ ) {
 		$args = func_get_args();
 		array_shift( $args );
-		return array( wfMessage( $str, $args )->parse(), 'raw' );
+		return self::html( wfMessage( $str, $args )->parse() );
 	}
 
 	/**
@@ -604,16 +604,13 @@ class TemplateHelper {
 		}
 		$differenceEngine->showDiffStyle();
 
-		return array(
-			$differenceEngine->addHeader(
-				$diffContent,
-				self::generateDiffViewTitle( $oldTimestamp, $oldAuthor, $oldLink ),
-				self::generateDiffViewTitle( $newTimestamp, $newAuthor, $newLink ),
-				$multi,
-				$notice
-			),
-			'raw'
-		);
+		return self::html( $differenceEngine->addHeader(
+			$diffContent,
+			self::generateDiffViewTitle( $oldTimestamp, $oldAuthor, $oldLink ),
+			self::generateDiffViewTitle( $newTimestamp, $newAuthor, $newLink ),
+			$multi,
+			$notice
+		) );
 	}
 
 	/**
