@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Container;
+use Flow\Exception\FlowException;
 use Flow\Model\Workflow;
 use RCFeedFormatter;
 use RecentChange;
@@ -93,7 +94,7 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 		$row->currentRevision = $row->revision;
 		$row->workflow = $this->mockWorkflow( $rc, $change );
 		wfRestoreWarnings();
-		$links = $this->serializer->buildActionLinks( $row );
+		$links = $this->serializer->buildLinks( $row );
 
 		// Listed in order of preference
 		$accept = array(

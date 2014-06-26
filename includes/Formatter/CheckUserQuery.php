@@ -17,7 +17,7 @@ class CheckUserQuery extends AbstractQuery {
 	const VERSION_PREFIX = 'v1';
 
 	/**
-	 * @param stdClass[] List of checkuser database rows
+	 * @param \stdClass[] $rows List of checkuser database rows
 	 */
 	public function loadMetadataBatch( $rows ) {
 		$needed = array();
@@ -27,7 +27,7 @@ class CheckUserQuery extends AbstractQuery {
 				continue;
 			}
 
-			$ids = static::extractIds( $row );
+			$ids = self::extractIds( $row );
 			if ( !$ids ) {
 				continue;
 			}
@@ -67,7 +67,6 @@ class CheckUserQuery extends AbstractQuery {
 	/**
 	 * @param CheckUser $checkUser
 	 * @param \StdClass $row
-	 * @param bool $isWatchlist
 	 * @return CheckUserRow|null
 	 * @throws FlowException
 	 */
@@ -76,7 +75,7 @@ class CheckUserQuery extends AbstractQuery {
 			return false;
 		}
 
-		$ids = static::extractIds( $row );
+		$ids = self::extractIds( $row );
 		if ( !$ids ) {
 			return false;
 		}

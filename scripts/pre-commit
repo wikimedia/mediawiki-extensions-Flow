@@ -51,7 +51,7 @@ fi
 
 if file_changed_in_commit '^i18n/'; then
     if [ "$IGNORE_I18N" != "1" ]; then
-		COMMANDS="check-i18n $COMMANDS"
+		COMMANDS="messagecheck $COMMANDS"
 	fi
 fi
 

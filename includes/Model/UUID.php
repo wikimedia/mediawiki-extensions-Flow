@@ -256,7 +256,8 @@ class UUID {
 			try {
 				$this->timestamp = new MWTimestamp( intval( $msTimestamp / 1000 ) );
 			} catch ( \TimestampException $e ) {
-				wfDebugLog( 'Flow', __METHOD__ . ": bogus time value: UUID=$hex; VALUE=$msTimestamp" );
+				$alnum = $this->getAlphadecimal();
+				wfDebugLog( 'Flow', __METHOD__ . ": bogus time value: UUID=$alnum; VALUE=$msTimestamp" );
 				throw $e;
 			}
 		}
@@ -291,7 +292,8 @@ class UUID {
 	}
 
 	/**
-	 * @param array
+	 * @param array $array
+	 * @param string $format
 	 * @return array
 	 */
 	public static function convertUUIDs( $array, $format = 'binary' ) {

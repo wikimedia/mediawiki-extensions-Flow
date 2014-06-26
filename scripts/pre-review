@@ -18,7 +18,7 @@ if file_changed_in_head '\.php$'; then
 fi
 
 if file_changed_in_head '\.i18n\.php$'; then
-	COMMANDS="check-i18n $COMMANDS"
+	COMMANDS="messagecheck $COMMANDS"
 fi
 
 if [ "$COMMANDS" != "" ]; then

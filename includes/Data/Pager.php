@@ -23,9 +23,14 @@ class Pager {
 	public function __construct( ObjectManager $storage, array $query, array $options ) {
 		// not sure i like this
 		$this->storage = $storage;
+		$indexOption = array( 'limit' => $options['pager-limit'] );
+		if ( isset( $options['sort'] ) && isset( $options['order'] ) ) {
+			$indexOption['sort'] = array( $options['sort'] );
+			$indexOption['order'] = $options['order'];
+		}
 		$this->sort = $storage->getIndexFor(
 			array_keys( $query ),
-			array( 'limit' => $options['pager-limit'] )
+			$indexOption
 		)->getSort();
 		$this->query = $query;
 		$this->options = $options;
@@ -140,7 +145,6 @@ class Pager {
 		} else {
 			throw new InvalidInputException( "Unrecognised direction $direction", 'invalid-input' );
 		}
-
 		return new PagerPage( $results, $pagingLinks, $this );
 	}
 
@@ -152,11 +156,26 @@ class Pager {
 	 */
 	protected function makePagingLink( $direction, $object, $pageLimit ) {
 		$offset = $this->storage->serializeOffset( $object, $this->sort );
-		return array(
-			'direction' => $direction,
-			'offset' => $offset,
+		$return = array(
+			'offset-dir' => $direction,
 			'limit' => $pageLimit,
 		);
+		$useId = false;
+		foreach ( $this->sort as $val ) {
+			if ( substr( $val, -3 ) === '_id' ) {
+				$useId = true;
+			}
+			break;
+		}
+		if ( $useId ) {
+			$return['offset-id'] = $offset;
+		} else {
+			$return['offset'] = $offset;
+		}
+		if ( isset( $this->options['sortby'] ) ) {
+			$return['sortby'] = $this->options['sortby'];
+		}
+		return $return;
 	}
 
 	/**

@@ -38,7 +38,7 @@ class AbuseFilterTest extends PostRevisionTestCase {
 			array(
 				// revision with spam
 				// https://www.mediawiki.org/w/index.php?title=Talk:Sandbox&workflow=050bbdd07b64a1c028b2782bcb087b42#flow-post-050bbdd07b70a1c028b2782bcb087b42
-				$this->generateObject( array( 'rev_content' => '<div style="background: yellow; position: fixed; top: 0px; left: 0px; width: 3000px; height: 3000px; z-index: 1111;">test</div>', 'rev_flags' => 'html' ) ),
+				$this->generateObject( array( 'rev_content' => '<div style="background: yellow; position: fixed; top: 0; left: 0; width: 3000px; height: 3000px; z-index: 1111;">test</div>', 'rev_flags' => 'html' ) ),
 				null,
 				false
 			),

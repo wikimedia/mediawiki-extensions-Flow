@@ -89,7 +89,7 @@ class TopicListEntry {
 	}
 
 	/**
-	 * @return timestamp|null
+	 * @return string|null
 	 */
 	public function getTopicWorkflowLastUpdated() {
 		return $this->topicWorkflowLastUpdated;

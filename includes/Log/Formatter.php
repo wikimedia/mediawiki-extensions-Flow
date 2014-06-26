@@ -3,6 +3,7 @@
 namespace Flow\Log;
 
 use Flow\Model\UUID;
+use Flow\Parsoid\Utils;
 use Message;
 
 class Formatter extends \LogFormatter {
@@ -80,6 +81,6 @@ class Formatter extends \LogFormatter {
 	 */
 	public function getActionText() {
 		$text = $this->getActionMessage();
-		return $this->plaintext ? strip_tags( $text ) : $text;
+		return $this->plaintext ? Utils::htmlToPlaintext( $text ) : $text;
 	}
 }

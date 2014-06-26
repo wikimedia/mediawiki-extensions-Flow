@@ -4,7 +4,6 @@ namespace Flow\Formatter;
 
 use Flow\Anchor;
 use Flow\RevisionActionPermissions;
-use Flow\Templating;
 use Html;
 use IContextSource;
 use Message;
@@ -38,13 +37,13 @@ abstract class AbstractFormatter {
 	 */
 	protected $serializer;
 
-	public function __construct( RevisionActionPermissions $permissions, Templating $templating ) {
+	public function __construct( RevisionActionPermissions $permissions, RevisionFormatter $serializer ) {
 		$this->permissions = $permissions;
-		$this->serializer = new RevisionFormatter( $permissions, $templating );
+		$this->serializer = $serializer;
 	}
 
 	/**
-	 * @see RevisionFormatter::buildActionLinks
+	 * @see RevisionFormatter::buildLinks
 	 * @see RevisionFormatter::getDateFormats
 	 *
 	 * @param array $data Expects an array with keys 'dateFormats', 'isModerated'

@@ -2,6 +2,7 @@
 
 use Flow\Container;
 use Flow\Exception\FlowException;
+use Flow\Formatter\CheckUserQuery;
 use Flow\Model\UUID;
 use Flow\NotificationController;
 use Flow\OccupationController;
@@ -67,6 +68,10 @@ class FlowHooks {
 	 * from $wgExtensionFunctions
 	 */
 	public static function initFlowExtension() {
+		// Depends on Mantle extension
+		if ( !class_exists( 'MantleHooks' ) ) {
+			throw new FlowException( 'Flow requires the Mantle MediaWiki extension.' );
+		}
 		// needed to determine if a page is occupied by flow
 		self::getOccupationController();
 
@@ -233,6 +238,7 @@ class FlowHooks {
 		set_error_handler( new Flow\RecoverableErrorHandler, -1 );
 		$replacement = null;
 		try {
+			/** @var CheckUserQuery $query */
 			$query = Container::get( 'query.checkuser' );
 			// @todo: create hook to allow batch-loading this data, instead of doing piecemeal like this
 			$query->loadMetadataBatch( array( $row ) );
@@ -277,6 +283,8 @@ class FlowHooks {
 			$container = Container::getContainer();
 			$view = new Flow\View(
 				$container['templating'],
+				$container['url_generator'],
+				$container['lightncandy'],
 				$output
 			);
 
@@ -342,11 +350,11 @@ class FlowHooks {
 	/**
 	 * Interact with the mobile skin's default modules on Flow enabled pages
 	 *
-	 * @param SkinTemplate $skin
+	 * @param Skin $skin
 	 * @param array $modules
 	 * @return bool
 	 */
-	public static function onSkinMinervaDefaultModules( Skin $skin, Array &$modules ) {
+	public static function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 		// Disable toggling on occupied talk pages in mobile
 		$title = $skin->getTitle();
 		if ( self::$occupationController->isTalkpageOccupied( $title ) ) {
@@ -622,7 +630,7 @@ class FlowHooks {
 		$change = $params['flow-workflow-change'];
 
 		// don't forget to increase the version number when data format changes
-		$comment = \Flow\Formatter\CheckUserQuery::VERSION_PREFIX;
+		$comment = CheckUserQuery::VERSION_PREFIX;
 		$comment .= ',' . $change['action'];
 		$comment .= ',' . $change['workflow'];
 		$comment .= ',' . $change['revision'];
@@ -669,6 +677,62 @@ class FlowHooks {
 	public static function onLinksUpdateConstructed( $linksUpdate ) {
 		Flow\Container::get( 'reference.updater.links-tables' )
 			->mutateLinksUpdate( $linksUpdate );
+
+		return true;
+	}
+
+	/**
+	 * Add topiclist sortby to preferences.
+	 * @param $user User object
+	 * @param &$preferences array Preferences object
+	 * @return bool
+	 */
+	public static function onGetPreferences( $user, &$preferences ) {
+		$preferences['flow-topiclist-sortby'] = array(
+			'type' => 'api',
+		);
+
+		return true;
+	}
+
+	/**
+	 * ResourceLoaderTestModules hook handler
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
+	 *
+	 * @param array $testModules
+	 * @param ResourceLoader $resourceLoader
+	 * @return bool
+	 */
+	public static function onResourceLoaderTestModules( array &$testModules,
+		ResourceLoader &$resourceLoader
+	) {
+		global $wgResourceModules;
+
+		// find test files for every RL module
+		foreach ( $wgResourceModules as $key => $module ) {
+			if ( substr( $key, 0, 9 ) === 'ext.flow.' && isset( $module['scripts'] ) ) {
+				$testFiles = array();
+
+				$scripts = (array) $module['scripts'];
+				foreach ( $scripts as $script ) {
+					$testFile = 'tests/qunit/' . dirname( $script ) . '/test_' . basename( $script );
+					// if a test file exists for a given JS file, add it
+					if ( file_exists( __DIR__ . '/' . $testFile ) ) {
+						$testFiles[] = $testFile;
+					}
+				}
+				// if test files exist for given module, create a corresponding test module
+				if ( count( $testFiles ) > 0 ) {
+					$module = array(
+						'remoteExtPath' => 'Flow',
+						'dependencies' => array( $key ),
+						'localBasePath' => __DIR__,
+						'scripts' => $testFiles,
+					);
+					$testModules['qunit']["$key.tests"] = $module;
+				}
+			}
+		}
 
 		return true;
 	}

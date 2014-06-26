@@ -16,6 +16,7 @@ class FlowInsertDefaultDefinitions extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$container = Container::getContainer();
+		/** @var \DatabaseBase $dbw */
 		$dbw = $container['db.factory']->getDB( DB_MASTER );
 
 		$res = $dbw->select(

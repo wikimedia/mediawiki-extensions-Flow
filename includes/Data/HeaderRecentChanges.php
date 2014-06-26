@@ -4,6 +4,7 @@ namespace Flow\Data;
 
 use Flow\FlowActions;
 use Flow\Model\Header;
+use Flow\Parsoid\Utils;
 use Language;
 
 class HeaderRecentChanges extends RecentChanges {
@@ -43,7 +44,11 @@ class HeaderRecentChanges extends RecentChanges {
 			$row,
 			$workflow,
 			array(
-				'content' => $this->contLang->truncate( trim( strip_tags( $object->getContent() ) ) , self::TRUNCATE_LENGTH ),
+				'content' => Utils::htmlToPlaintext(
+					$object->getContent(),
+					self::TRUNCATE_LENGTH,
+					$this->contLang
+				),
 			)
 		);
 	}

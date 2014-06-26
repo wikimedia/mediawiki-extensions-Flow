@@ -15,7 +15,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	}
 
 	protected function getAction() {
-		return 'topiclist-view';
+		return 'view-topiclist';
 	}
 
 	public function getAllowedParams() {
@@ -26,7 +26,19 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 				ApiBase::PARAM_TYPE => array( 'fwd', 'rev' ),
 				ApiBase::PARAM_DFLT => 'fwd',
 			),
+			'sortby' => array(
+				ApiBase::PARAM_TYPE => array( 'newest', 'updated' ),
+				ApiBase::PARAM_DFLT => 'newest',
+			),
+			'savesortby' => array(
+				ApiBase::PARAM_TYPE => 'boolean',
+				ApiBase::PARAM_DFLT => false,
+			),
 			'offset-id' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => false,
+			),
+			'offset' => array(
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_REQUIRED => false,
 			),
@@ -50,7 +62,10 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 	public function getParamDescription() {
 		return array(
 			'offset-dir' => 'Direction to get topics for',
+			'sortby' => 'Sorting option of the topics',
+			'savesortby' => 'Save sortby option, if set',
 			'offset-id' => 'Offset value (in UUID format) to start fetching topics at',
+			'offset' => 'Offset value to start fetching topics at',
 			'limit' => 'Amount of topics to fetch',
 			'render' => 'Renders (in HTML) the topics, if set',
 		);
@@ -62,7 +77,7 @@ class ApiFlowViewTopicList extends ApiFlowBaseGet {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=flow&submodule=topiclist-view&workflow=',
+			'api.php?action=flow&submodule=view-topiclist&workflow=',
 		);
 	}
 }
