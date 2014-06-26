@@ -223,15 +223,14 @@ class WorkflowLoader {
 		$success = true;
 		$interestedBlocks = array();
 
-		$params = $this->extractBlockParameters( $request, $blocks );
 		foreach ( $blocks as $block ) {
-			$data = $params[$block->getName()];
-			$result = $block->onSubmit( $action, $user, $data );
-			if ( $result !== null ) {
+			// This is just a check whether the block understands the action.
+			// Doesn't consider user permissions.
+			if ( $block->canSubmit( $action ) ) {
 				$interestedBlocks[] = $block;
-				$success &= $result;
 			}
 		}
+
 		if ( !$interestedBlocks ) {
 			if ( !$blocks ) {
 				throw new InvalidDataException( 'No Blocks?!?', 'fail-load-data' );
@@ -245,11 +244,19 @@ class WorkflowLoader {
 		}
 
 		// Check permissions before allowing any writes
-		if ( $user->isBlocked() ||
-			!$this->workflow->getArticleTitle()->userCan( 'edit', $user )
+		if ( !$this->workflow->getArticleTitle()->userCan( 'edit', $user )
 		) {
 			reset( $interestedBlocks )->addError( 'permissions', wfMessage( 'flow-error-not-allowed' ) );
 			$success = false;
+		}
+
+		$params = $this->extractBlockParameters( $request, $blocks );
+		foreach ( $interestedBlocks as $block ) {
+			$data = $params[$block->getName()];
+			$result = $block->onSubmit( $action, $user, $data );
+			if ( $result !== null ) {
+				$success &= $result;
+			}
 		}
 
 		return $success ? $interestedBlocks : array();
