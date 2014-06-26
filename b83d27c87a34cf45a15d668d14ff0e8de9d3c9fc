@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_968b1872",
+        "filename": "includes/Formatter/RecentChangesQuery.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-26T17:21:12Z",
+      "side": 1,
+      "message": "these are the only two call sites that use isRecordHidden, can we move the option check into that method?",
+      "revId": "b83d27c87a34cf45a15d668d14ff0e8de9d3c9fc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
