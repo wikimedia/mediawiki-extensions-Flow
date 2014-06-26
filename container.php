@@ -682,7 +682,8 @@ $c['query.recentchanges'] = $c->share( function( $c ) {
 	return new Flow\Formatter\RecentChangesQuery(
 		$c['storage'],
 		$c['repository.tree'],
-		$c['flow_actions']
+		$c['flow_actions'],
+		$c['user']
 	);
 } );
 $c['query.postsummary'] = $c->share( function( $c ) {

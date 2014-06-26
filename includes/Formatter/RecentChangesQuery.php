@@ -9,6 +9,7 @@ use Flow\FlowActions;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use RecentChange;
+use User;
 
 class RecentChangesQuery extends AbstractQuery {
 
@@ -24,9 +25,17 @@ class RecentChangesQuery extends AbstractQuery {
 	 */
 	protected $actions;
 
-	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo, FlowActions $actions ) {
+	/**
+	 * User of the current session
+	 *
+	 * @var User
+	 */
+	protected $user;
+
+	public function __construct( ManagerGroup $storage, TreeRepository $treeRepo, FlowActions $actions, User $user ) {
 		parent::__construct( $storage, $treeRepo );
 		$this->actions = $actions;
+		$this->user = $user;
 	}
 
 	/**
@@ -133,6 +142,9 @@ class RecentChangesQuery extends AbstractQuery {
 	 * Determines if a flow record should be displayed in Special:Watchlist
 	 */
 	protected function isRecordHidden( array $changeData ) {
+		if ( $this->user->getOption( 'extendwatchlist' ) ) {
+			return false;
+		}
 		// Check for legacy action names and convert it
 		$alias = $this->actions->getValue( $changeData['action'] );
 		if ( is_string( $alias ) ) {
