@@ -5,16 +5,17 @@ Feature: Edit existing title
 
   Background:
     Given I am logged in
+        And I am on Flow page
+        And I have created a Flow topic
+        And the page renders in 2 seconds
 
   Scenario: Edit an existing title
-    Given I am on Flow page
     When I click the Edit title action
     Then I should be able to edit the title field with Title edited
       And I should be able to save the new title
-      And the saved topic title should contain Title edited
+      And the top post should have a heading which contains "Title edited"
 
   Scenario: Edit existing post
-    Given I am on Flow page
     When I click Edit post
     Then I should be able to edit the post field with Post edited
       And I should be able to save the new post

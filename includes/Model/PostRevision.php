@@ -2,6 +2,7 @@
 
 namespace Flow\Model;
 
+use Flow\Container;
 use User;
 use Flow\Exception\DataModelException;
 use Flow\Collection\PostCollection;
@@ -296,8 +297,11 @@ class PostRevision extends AbstractRevision {
 	 */
 	public function getDepth() {
 		if ( $this->depth === null ) {
-			throw new DataModelException( 'Depth not loaded for post: ' . $this->postId->getAlphadecimal(), 'process-data' );
+			$rootLoader = Container::get( 'loader.root_post' );
+			$rootPath = $rootLoader->treeRepo->findRootPath( $this->getCollectionId() );
+			$this->setDepth( count( $rootPath ) - 1 );
 		}
+
 		return $this->depth;
 	}
 

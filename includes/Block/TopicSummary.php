@@ -2,17 +2,16 @@
 
 namespace Flow\Block;
 
-use ApiResult;
 use Flow\Container;
 use Flow\Exception\FailCommitException;
 use Flow\Exception\InvalidActionException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
+use Flow\Formatter\FormatterRow;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Templating;
-use Flow\View\PostSummaryRevisionView;
 use Flow\RevisionActionPermissions;
 
 class TopicSummaryBlock extends AbstractBlock {
@@ -21,6 +20,11 @@ class TopicSummaryBlock extends AbstractBlock {
 	 * @var PostSummary|null
 	 */
 	protected $topicSummary;
+
+	/**
+	 * @var FormatterRow
+	 */
+	protected $formatterRow;
 
 	/**
 	 * Allows or denies actions to be performed
@@ -47,7 +51,20 @@ class TopicSummaryBlock extends AbstractBlock {
 	/**
 	 * @var string[]
 	 */
-	protected $supportedGetActions = array( 'topic-summary-view', 'compare-postsummary-revisions', 'edit-topic-summary' );
+	protected $supportedGetActions = array( 'view-topic-summary', 'compare-postsummary-revisions', 'edit-topic-summary' );
+
+	/**
+	 * @var string[]
+	 */
+	protected $requiresWikitext = array( 'edit-topic-summary' );
+
+	// @Todo - fill in the template names
+	protected $templates = array(
+		'view-topic-summary' => 'single_view',
+		'compare-postsummary-revisions' => 'diff_view',
+		'edit-topic-summary' => 'edit',
+		'close-open-topic' => 'close',
+	);
 
 	/**
 	 * @param string
@@ -58,13 +75,9 @@ class TopicSummaryBlock extends AbstractBlock {
 		$this->permissions = new RevisionActionPermissions( Container::get( 'flow_actions' ), $user );
 
 		if ( !$this->workflow->isNew() ) {
-			$found = $this->storage->find(
-				'PostSummary',
-				array( 'rev_type_id' => $this->workflow->getId() ),
-				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
-			);
-			if ( $found ) {
-				$this->topicSummary = reset( $found );
+			$this->formatterRow = Container::get( 'query.postsummary' )->getResult( $this->workflow->getId() );
+			if ( $this->formatterRow ) {
+				$this->topicSummary = $this->formatterRow->revision;
 			}
 		}
 	}
@@ -199,12 +212,16 @@ class TopicSummaryBlock extends AbstractBlock {
 		}
 
 		$this->storage->put( $this->nextRevision );
-		$newRevision = $this->nextRevision;
+		// Reload the $this->formatterRow for renderAPI() after save
+		$this->formatterRow = new FormatterRow();
+		$this->formatterRow->revision = $this->nextRevision;
+		$this->formatterRow->previousRevision = $this->topicSummary;
+		$this->formatterRow->currentRevision = $this->nextRevision;
+		$this->formatterRow->workflow = $this->workflow;
+		$this->topicSummary = $this->nextRevision;
+
 		return array(
 			'new-revision-id' => $this->nextRevision->getRevisionId(),
-			'render-function' => function( Templating $templating ) use ( $newRevision ) {
-				return $templating->getContent( $newRevision, 'html' );
-			}
 		);
 	}
 
@@ -230,102 +247,103 @@ class TopicSummaryBlock extends AbstractBlock {
 
 	/**
 	 * Render for an action
-	 * @param Templating
-	 * @param array
-	 * @throws InvalidActionException
+	 * @param Templating $templating
+	 * @param array $options
+	 * @param bool $return
+	 * @return string
+	 * @throws InvalidInputException
 	 */
 	public function render( Templating $templating, array $options, $return = false ) {
-		$output = $templating->getOutput();
-		$output->addModuleStyles( array( 'ext.flow.discussion.styles', 'ext.flow.moderation' ) );
-		$output->addModules( array( 'ext.flow.discussion' ) );
-		$title = $templating->getContent( $this->findTopicTitle(), 'wikitext' );
-		$output->setHtmlTitle( $title );
-		$output->setPageTitle( $title );
-
-		$prefix = $templating->render(
-			'flow:topic-permalink-warning.html.php',
-			array(
-				'block' => $this,
-			),
-			$return
-		);
-
-		switch( $this->action ) {
-			case 'compare-postsummary-revisions':
-				if ( !isset( $options['newRevision'] ) ) {
-					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
-				}
-				$revisionView = PostSummaryRevisionView::newFromId( $options['newRevision'], $templating, $this, $this->user );
-				if ( !$revisionView ) {
-					throw new InvalidInputException( 'An invalid revision was provided for comparison', 'revision-comparison' );
-				}
-
-				if ( isset( $options['oldRevision'] ) ) {
-					return $prefix . $revisionView->renderDiffViewAgainst( $options['oldRevision'], $return );
-				} else {
-					return $prefix . $revisionView->renderDiffViewAgainstPrevious( $return );
-				}
-			break;
-
-			case 'topic-summary-view':
-				$revisionView = null;
-				if ( isset( $options['revId'] ) ) {
-					$revisionView = PostSummaryRevisionView::newFromId( $options['revId'], $templating, $this, $this->user );
-				}
-				if ( !$revisionView ) {
-					throw new InvalidInputException( 'The requested revision could not be found', 'missing-revision' );
-				} else if ( !$this->permissions->isAllowed( $revisionView->getRevision(), 'view' ) ) {
-					$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
-					return null;
-				}
-				return $prefix . $revisionView->renderSingleView( $return );
-			break;
-
-			case 'edit-topic-summary':
-				return $templating->render( 'flow:edit-topic-summary.html.php', array(
-					'block' => $this,
-					'workflow' => $this->getWorkflow(),
-					'topicSummary' => $this->topicSummary,
-					'user' => $this->user,
-				), $return );
-			break;
-
-			default:
-				throw new InvalidActionException( "Unexpected action: {$this->action}", 'invalid-action' );
-		}
+		throw new InvalidInputException( 'deprecated' );
 	}
 
 	/**
 	 * Render the data for API request
 	 *
 	 * @param Templating $templating
-	 * @param ApiResult $result
 	 * @param array $options
 	 * @return array
+	 * @throws InvalidInputException
 	 */
-	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
-		$output = array( 'type' => 'topicsummary' );
+	public function renderAPI( Templating $templating, array $options ) {
+		$output = array( 'type' => $this->getName() );
 
-		if ( $this->topicSummary !== null ) {
-			if ( isset( $options['contentFormat'] ) ) {
-				$contentFormat = $options['contentFormat'];
-			} else {
-				$contentFormat = $this->topicSummary->getContentFormat();
-			}
-
-			$output['format'] = $contentFormat;
-			$output['*'] = $templating->getContent( $this->topicSummary, $contentFormat );
-			$output['topicsummary-id'] = $this->topicSummary->getRevisionId()->getAlphadecimal();
+		if ( $this->wasSubmitted() ) {
+			$output += array(
+				'submitted' => $this->submitted,
+				'errors' => $this->errors,
+			);
 		} else {
-			$output['*'] = '';
-			$output['topicsummary-id'] = '';
+			$output += array(
+				'submitted' => array(),
+				'errors' => array(),
+			);
 		}
 
-		$out = array(
-			0 => $output,
-		);
-		$result->setIndexedTagName( $out, 'topicsummary' );
-		return $out;
+		switch ( $this->action ) {
+			case 'view-topic-summary':
+				// @Todo - duplicated logic in other single view block
+				if ( isset( $options['revId'] ) && $options['revId'] ) {
+					$row = Container::get( 'query.postsummary.view' )->getSingleViewResult( $options['revId'] );
+					$output['revision'] = Container::get( 'formatter.revisionview' )->formatApi( $row, \RequestContext::getMain() );
+				} else {
+					if ( isset( $options['contentFormat'] ) && $options['contentFormat'] === 'wikitext' ) {
+						$this->requiresWikitext[] = 'view-topic-summary';
+					}
+					$output += $this->renderNewestTopicSummary();
+				}
+				break;
+			case 'edit-topic-summary':
+				$output += $this->renderNewestTopicSummary();
+				break;
+			case 'compare-postsummary-revisions':
+				// @Todo - duplicated logic in other diff view block
+				if ( !isset( $options['newRevision'] ) ) {
+					throw new InvalidInputException( 'A revision must be provided for comparison', 'revision-comparison' );
+				}
+				$oldRevision = '';
+				if ( isset( $options['oldRevision'] ) ) {
+					$oldRevision = $options['newRevision'];
+				}
+				list( $new, $old ) = Container::get( 'query.postsummary.view' )->getDiffViewResult( $options['newRevision'], $oldRevision );
+				$output['revision'] = Container::get( 'formatter.revision.diff.view' )->formatApi( $new, $old, \RequestContext::getMain() );
+				break;
+		}
+
+		return $output;
+	}
+
+	protected function renderNewestTopicSummary() {
+		$output = array();
+		$formatter = Container::get( 'formatter.revision' );
+
+		if ( in_array( $this->action, $this->requiresWikitext ) ) {
+			$formatter->setContentFormat( 'wikitext' );
+		}
+		if ( $this->formatterRow ) {
+			$output['revision'] = $formatter->formatApi(
+				$this->formatterRow, \RequestContext::getMain()
+			);
+		} else {
+			$urlGenerator = Container::get( 'url_generator' );
+			$title = $this->workflow->getArticleTitle();
+			$workflowId = $this->workflow->getId();
+			$output['revision'] = array(
+				'actions' => array(
+					'summarize' => $urlGenerator->editTopicSummaryAction(
+						$title,
+						$workflowId
+					)
+				),
+				'links' => array(
+					'topic' => $urlGenerator->topicLink(
+						$title,
+						$workflowId
+					)
+				)
+			);
+		}
+		return $output;
 	}
 
 	public function getName() {

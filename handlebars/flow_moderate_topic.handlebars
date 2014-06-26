@@ -1,0 +1,21 @@
+<form method="POST" action="{{moderationAction actions @root.submitted.moderationState}}">
+	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
+	<textarea name="topic_reason">
+		{{~#if @root.submitted.reason~}}
+			{{~@root.submitted.reason~}}
+		{{~/if~}}
+	</textarea>
+	<div class="flow-form-actions flow-form-collapsible">
+		<button class="flow-ui-button flow-ui-constructive"
+				data-flow-interactive-handler="apiRequest"
+				data-flow-api-handler="moderateTopic">
+			{{~moderationActionText actions @root.submitted.moderationState~}}
+		</button>
+		<a class="flow-ui-button flow-ui-destructive flow-ui-quiet"
+		   href="{{links.topic.url}}"
+		   title="{{l10n "flow-cancel"}}"
+		   data-flow-interactive-handler="cancelForm">
+			{{~l10n "flow-cancel"~}}
+		</a>
+	</div>
+</form>

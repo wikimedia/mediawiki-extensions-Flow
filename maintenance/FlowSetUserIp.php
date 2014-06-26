@@ -1,7 +1,6 @@
 <?php
 
 use Flow\Container;
-use Flow\Model\UUID;
 
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
@@ -23,7 +22,7 @@ class FlowSetUserIp extends LoggedUpdateMaintenance {
 	private $completeCount = 0;
 
 	protected function doDBUpdates() {
-		$dbf = Flow\Container::get( 'db.factory' );
+		$dbf = Container::get( 'db.factory' );
 		$dbw = $dbf->getDB( DB_MASTER );
 		$hasRun = false;
 

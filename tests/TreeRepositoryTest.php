@@ -2,8 +2,8 @@
 
 namespace Flow\Tests;
 
-use Flow\Container;
 use Flow\Model\UUID;
+use Flow\Repository\TreeRepository;
 use ReflectionClass;
 
 /**
@@ -22,7 +22,7 @@ class TreeRepositoryTest extends FlowTestCase {
 
 	public function testSuccessfulInsert() {
 		$cache = new \HashBagOStuff();
-		$treeRepository = new \Flow\Repository\TreeRepository( $this->mockDbFactory( true ), $cache );
+		$treeRepository = new TreeRepository( $this->mockDbFactory( true ), $cache );
 		$this->assertTrue( $treeRepository->insert( $this->descendant, $this->ancestor ) );
 
 		$reflection = new ReflectionClass( '\Flow\Repository\TreeRepository' );
@@ -42,7 +42,7 @@ class TreeRepositoryTest extends FlowTestCase {
 		// otherwise the exception would skip the cache result test
 		$cache = new \HashBagOStuff();
 		try {
-			$treeRepository = new \Flow\Repository\TreeRepository( $this->mockDbFactory( false ), $cache );
+			$treeRepository = new TreeRepository( $this->mockDbFactory( false ), $cache );
 			$this->assertNull( $treeRepository->insert( $this->descendant, $this->ancestor ) );
 		} catch ( \Exception $e ) {
 			$reflection = new ReflectionClass( '\Flow\Repository\TreeRepository' );

@@ -1,0 +1,615 @@
+@import 'mediawiki.mixins';
+@import 'settings/colors.less';
+@import 'mixins/helpers.less';
+
+@font-face {
+	font-family: 'WikiFont-Glyphs';
+	src: url('../fonts/WikiFont-Glyphs.eot'); /* IE9 Compat Modes */
+	src: url('../fonts/WikiFont-Glyphs.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('../fonts/WikiFont-Glyphs.woff') format('woff'), /* Modern Browsers */
+	url('../fonts/WikiFont-Glyphs.ttf')  format('truetype'), /* Safari, Android, iOS */
+	url('../fonts/WikiFont-Glyphs.svg#8088f7bbbdba5c9832b27edb3dfcdf09') format('svg'); /* Legacy iOS */
+}
+
+// @todo: Temporary measure to simplify UI on browsers not running JavaScript
+.client-nojs {
+	.flow-board-navigation,
+	.flow-menu {
+		display: none;
+	}
+}
+
+.flow-menu {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		font-size: 0.75em;
+	}
+	li {
+		display: inline;
+		margin: 0;
+		list-style: none;
+
+	}
+
+	.flow-menu-js-drop {
+		display: none;
+	}
+
+	a:focus {
+		outline: none;
+	}
+}
+div.flow-menu-inverted {
+	right: auto;
+	left: 0;
+}
+
+// Use child selector to block IE6; it doesn't support :hover
+.client-js div > .flow-menu {
+	top: 0;
+	bottom: auto;
+	display: block;
+	border: none;
+
+	&.flow-menu-inverted {
+		right: auto;
+		left: 0;
+
+		.flow-menu-js-drop {
+			text-align: left;
+		}
+	}
+
+	&:hover,
+	&.focus {
+		z-index: 2;
+
+		ul {
+			display: block;
+		}
+
+		.flow-menu-js-drop a {
+			outline: none;
+			border-color: transparent;
+			background: transparent;
+			background: rgba(0,0,0,0.05);
+
+			.caret {
+				border-top-color: #000;
+			}
+		}
+	}
+
+	ul {
+		display: none;
+		margin: 0;
+		padding: 0;
+		font-size: 1em;
+		box-shadow: 0 1px 2px @colorGrayLight;
+		background: #fff;
+		border-radius: 2px;
+	}
+
+	li {
+		display: block;
+		cursor: default;
+	}
+
+	.flow-menu-js-drop {
+		display: block;
+		text-align: right;
+		text-indent: 0;
+		cursor: pointer;
+
+		a {
+			display: inline-block;
+			padding: 0 .5em;
+			border: 1px solid @colorGrayLight;
+			border-radius: 3px;
+			border-width: 0;
+			color: @colorTextLight;
+		}
+	}
+}
+.client-js div.flow-post > .flow-menu {
+	.flow-menu-js-drop {
+		a {
+			border-color: @colorGrayLightest;
+			border-width: 0;
+		}
+	}
+}
+
+.flow-timestamp {
+	.box-sizing( border-box );
+	display: inline-block;
+	text-align: left;
+}
+
+.flow-timestamp-ago,
+.flow-timestamp-now {
+	.box-sizing( border-box );
+	display: block;
+	position: relative;
+	line-height: 1em;
+}
+.flow-timestamp-ago {
+	margin-top: -1em;
+	line-height: 1em;
+}
+
+.client-nojs .flow-timestamp {
+	.flow-timestamp-now {
+		display: none;
+	}
+	.flow-timestamp-ago {
+		display: block;
+	}
+}
+.client-js .flow-timestamp {
+	.flow-timestamp-now {
+		display: none;
+	}
+	.flow-timestamp-ago {
+		display: block;
+	}
+
+	&:hover {
+		.flow-timestamp-now {
+			display: block;
+		}
+		.flow-timestamp-ago {
+			display: none;
+		}
+	}
+}
+
+//
+.client-js div > .flow-board-filter-menu {
+	position: relative;
+	.flow-menu-js-drop {
+		display: none;
+	}
+}
+
+// Collapser states
+// Hide the other two collapser buttons initially; these are toggled by a single click
+.flow-board-navigation {
+	a.flow-board-collapser-compact,
+	a.flow-board-collapser-topics {
+		display: none;
+	}
+}
+
+
+// Overrides to the default expand/collapse state.  Only set when
+// necessary and removed when the page-level state changes
+// div is used to add specificity.
+
+div.flow-topic-expanded {
+	.flow-post,
+	.flow-reply-form {
+		display: block;
+	}
+}
+
+div.flow-topic-collapsed {
+	.flow-post,
+	.flow-reply-form {
+		display: none;
+	}
+}
+
+// In compact mode, posts are hidden by default, and the topic titlebar is minimized
+.flow-board-collapsed-compact {
+	.flow-board-navigation {
+		a.flow-board-collapser-compact {
+			display: inline-block;
+		}
+		a.flow-board-collapser-full {
+			display: none;
+		}
+	}
+
+	.flow-topic {
+		padding-bottom: 0;
+
+		// Needs additional specificity to override `div#content h2`
+		div#bodyContent & h2.flow-topic-title,
+		.flow-moderated-topic-title {
+			margin-bottom: 0;
+		}
+
+		.flow-topic-titlebar {
+			padding: .5em 1.5em;
+
+			.flow-author,
+			.flow-topic-meta {
+				display: none;
+			}
+		}
+
+		.flow-reply-count {
+			display: block;
+		}
+	}
+
+	.flow-post,
+	.flow-reply-form {
+		display: none;
+
+		&.flow-preview {
+			display: block;
+		}
+	}
+}
+// In topics mode, posts are hidden by default; only the topic titlebar is visible
+.flow-board-collapsed-topics {
+	.flow-board-navigation {
+		a.flow-board-collapser-topics {
+			display: inline-block;
+		}
+		a.flow-board-collapser-full {
+			display: none;
+		}
+	}
+
+	.flow-post,
+	.flow-reply-form {
+		display: none;
+	}
+}
+
+// Visually mark moderated comments and posts
+// @todo: Needs design input
+.flow-post-moderated,
+.flow-topic-moderated {
+	opacity: .4;
+}
+
+// Show that the topic titlebar is clickable
+.flow-topic-titlebar {
+	outline: none;
+
+	// ...but only in JS mode
+	.client-js & {
+		cursor: pointer;
+	}
+
+	// Render a shadow
+	&:hover,
+	&:focus {
+		.box-shadow( ~"inset 0 -1px 0px 1px @{colorGrayLighter}, 0 1px 1px @{colorGrayLightest}" );
+	}
+
+	// Fade out the posts to show they will disappear
+	&:hover + .flow-post {
+		opacity: .85;
+	}
+}
+
+// API interaction indicator
+.client-js .flow-api-inprogress {
+	opacity: 0.5;
+	cursor: wait !important;
+}
+
+// A preview version of a given block
+.client-js {
+	.flow-preview {
+		cursor: help;
+	}
+	.flow-preview-target-hidden {
+		display: none !important;
+	}
+}
+
+// Icon set
+.wikiglyph {
+	display: inline-block;
+	font-family: 'WikiFont-Glyphs';
+	-webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-weight: normal;
+	overflow: visible;
+	vertical-align: text-bottom;
+	height: .7em;
+	font-size: 1.6em;
+	line-height: .7em;
+}
+
+
+/* UI ELEMENTS e000-023
+*/
+
+.wikiglyph-magnifying-glass:before {
+	content: "\e000";
+}
+.wikiglyph-arrow-left:before {
+	content: "\e001";
+}
+.wikiglyph-tick:before {
+	content: "\e002";
+}
+.wikiglyph-x:before {
+	content: "\e003";
+}
+.wikiglyph-x-circle:before {
+	content: "\e004";
+}
+.wikiglyph-unstar:before {
+	content: "\e005";
+}
+.wikiglyph-star:before {
+	content: "\e006";
+}
+.wikiglyph-star-list:before {
+	content: "\e007";
+}
+.wikiglyph-sun:before {
+	content: "\e008";
+}
+.wikiglyph-funnel:before {
+	content: "\e009";
+}
+.wikiglyph-eye:before {
+	content: "\e010";
+}
+.wikiglyph-eye-lid:before {
+	content: "\e011";
+}
+.wikiglyph-bookmark:before {
+	content: "\e012";
+}
+.wikiglyph-printer:before {
+	content: "\e013";
+}
+.wikiglyph-puzzle:before {
+	content: "\e014";
+}
+.wikiglyph-clock:before {
+	content: "\e015";
+}
+.wikiglyph-dice:before {
+	content: "\e016";
+}
+.wikiglyph-move:before {
+	content: "\e017";
+}
+.wikiglyph-gear:before {
+	content: "\e018";
+}
+.wikiglyph-ellipsis:before {
+	content: "\e019";
+}
+.wikiglyph-envelope:before {
+	content: "\e020";
+}
+.wikiglyph-pin:before {
+	content: "\e021";
+}
+.wikiglyph-share:before {
+	content: "\e022";
+}
+.wikiglyph-download:before {
+	content: "\e023";
+}
+.wikiglyph-bell:before {
+	content: "\e025";
+}
+.wikiglyph-bell-ring:before {
+	content: "\e026";
+}
+.wikiglyph-caret-left:before {
+	content: "\e027";
+}
+.wikiglyph-caret-down:before {
+	content: "\e028";
+}
+
+
+/* EXPERIMENTS e300-301
+*/
+.wikiglyph-star-circle:before {
+	content: "\e300";
+}
+.wikiglyph-rocket:before {
+	content: "\e301";
+}
+
+
+/* STRIPES e040-043
+*/
+.wikiglyph-stripe-compact:before {
+	content: "\e040";
+}
+.wikiglyph-stripe-toc:before {
+	content: "\e041";
+}
+.wikiglyph-stripe-expanded:before {
+	content: "\e042";
+}
+
+
+/* WIKIPEDIA LOGO e400-401
+*/
+
+.wikiglyph-w:before {
+	content: "\e400";
+}
+
+
+/* UI MODERATION ELEMENTS e500-508
+*/
+
+.wikiglyph-article:before {
+	content: "\e100";
+}
+.wikiglyph-article-check:before {
+	content: "\e101";
+}
+.wikiglyph-article-search:before {
+	content: "\e102";
+}
+
+.wikiglyph-trash:before {
+	content: "\e500";
+}
+.wikiglyph-trash-slash:before {
+	content: "\e501";
+}
+.wikiglyph-block:before {
+	content: "\e502";
+}
+.wikiglyph-block-slash:before {
+	content: "\e503";
+}
+.wikiglyph-flag:before {
+	content: "\e504";
+}
+.wikiglyph-flag-slash:before {
+	content: "\e505";
+}
+.wikiglyph-play:before {
+	content: "\e506";
+}
+.wikiglyph-stop:before {
+	content: "\e507";
+}
+.wikiglyph-lock:before {
+	content: "\e508";
+}
+
+
+/* USER e600-602
+*/
+.wikiglyph-user-bust:before {
+	content: "\e600";
+}
+.wikiglyph-user-smile:before {
+	content: "\e601";
+}
+.wikiglyph-user-sleep:before {
+	content: "\e602";
+}
+
+
+/* TRANSLATION e700
+*/
+.wikiglyph-translate:before {
+	content: "\e700";
+}
+
+
+/* CONTRIBUTION e800-845
+*/
+.wikiglyph-pencil:before {
+	content: "\e800";
+}
+.wikiglyph-pencil-revert-full:before {
+	content: "\e801";
+}
+.wikiglyph-pencil-revert-pt1:before {
+	content: "\e802";
+}
+.wikiglyph-pencil-revert-pt2:before {
+	content: "\e803";
+}
+.wikiglyph-pencil-lock-full:before {
+	content: "\e804";
+}
+.wikiglyph-pencil-lock-pt1:before {
+	content: "\e805";
+}
+.wikiglyph-pencil-lock-pt2:before {
+	content: "\e806";
+}
+.wikiglyph-speech-bubble:before {
+	content: "\e810";
+}
+.wikiglyph-speech-bubbles:before {
+	content: "\e811";
+}
+.wikiglyph-speech-bubble-add:before {
+	content: "\e812";
+}
+.wikiglyph-speech-bubble-smile:before {
+	content: "\e813";
+}
+.wikiglyph-link:before {
+	content: "\e820";
+}
+.wikiglyph-quotes:before {
+	content: "\e830";
+}
+.wikiglyph-quotes-add:before {
+	content: "\e831";
+}
+.wikiglyph-image:before {
+	content: "\e840";
+}
+.wikiglyph-image-lock-full:before {
+	content: "\e841";
+}
+.wikiglyph-image-lock-pt1:before {
+	content: "\e842";
+}
+.wikiglyph-image-lock-pt2:before {
+	content: "\e843";
+}
+.wikiglyph-image-add-full:before {
+	content: "\e844";
+}
+.wikiglyph-image-add-pt1:before {
+	content: "\e845";
+}
+.wikiglyph-image-add-pt2:before {
+	content: "\e846";
+}
+.wikiglyph-image-main-placeholder:before {
+	content: "\e847";
+}
+.wikiglyph-folder:before {
+	content: "\e848";
+}
+.wikiglyph-folder-main-placeholder:before {
+	content: "\e849";
+}
+
+.wikiglyph-cc:before {
+	content: "\e870";
+}
+.wikiglyph-book:before {
+	content: "\e871";
+}
+.wikiglyph-journal:before {
+	content: "\e872";
+}
+.wikiglyph-web:before {
+	content: "\e873";
+}
+.wikiglyph-news:before {
+	content: "\e874";
+}
+
+
+
+/* WIKI-X e900+
+*/
+.wikiglyph-wikitrail:before {
+	content: "\e900";
+}
+.wikiglyph-wikicommons:before {
+	content: "\e901";
+}
+
+@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+	ul.flow-menu {
+		position: static;
+	}
+}

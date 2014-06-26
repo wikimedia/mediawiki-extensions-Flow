@@ -35,11 +35,16 @@ remotes:
 gerrit: remotes
 	@scripts/remotes/gerrit.py --project 'mediawiki/extensions/Flow' --gtscore -1 --ignorepattern 'WIP'
 
+message: remotes
+	@python scripts/remotes/message.py
+
+messagecheck: remotes
+	@python scripts/remotes/message.py check
 
 ###
 # Lints
 ###
-lint: jshint phplint checkless
+lint: jshint phplint checkless messagecheck
 
 phplint:
 	@find ./ -type f -iname '*.php' | xargs -P 12 -L 1 php -l
@@ -61,13 +66,10 @@ phpunit:
 	cd ${MW_INSTALL_PATH}/tests/phpunit && php phpunit.php --configuration ${MW_INSTALL_PATH}/extensions/Flow/tests/flow.suite.xml --group=Flow
 
 qunit:
-	@echo TODO: qunit tests
+	@scripts/qunit.sh
 
 vagrant-browsertests:
-	@vagrant ssh -- -X cd /srv/browsertests '&&' MEDIAWIKI_URL=http://localhost/wiki/ MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
-
-check-i18n:
-	@php scripts/check-i18n.php
+	@vagrant ssh -- -X cd /srv/browsertests/tests/browser '&&' MEDIAWIKI_URL=http://localhost/wiki/ MEDIAWIKI_USER=Admin MEDIAWIKI_PASSWORD=vagrant bundle exec cucumber /vagrant/mediawiki/extensions/Flow/tests/browser/features/ -f pretty
 
 ###
 # Static analysis
@@ -84,6 +86,12 @@ analyze-phpstorm:
 	@scripts/analyze-phpstorm.sh
 
 analyze: analyze-hhvm analyze-phpstorm
+
+###
+# Compile lightncandy templates
+###
+compile-lightncandy:
+	make -C handlebars all
 
 ###
 # Update this repository

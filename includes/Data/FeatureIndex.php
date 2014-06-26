@@ -302,6 +302,7 @@ abstract class FeatureIndex implements Index {
 		$order = array_intersect_key( $queries, $results );
 		$results = array_replace( $order, $results );
 
+		$keyToQuery = array();
 		foreach ( $keysFromCache as $index => $key ) {
 			// all redundant data has been stripped, now expand all cache values
 			// (we're only doing this now to avoid expanding redundant data)

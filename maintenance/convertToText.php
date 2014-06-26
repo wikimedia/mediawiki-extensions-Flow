@@ -1,10 +1,17 @@
 <?php
 
+use Flow\Parsoid\Utils;
+
 require_once ( getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
 	: dirname( __FILE__ ) . '/../../../maintenance/Maintenance.php' );
 
 class ConvertToText extends Maintenance {
+	/**
+	 * @var Title
+	 */
+	protected $pageTitle;
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Converts a specific Flow page to text";
@@ -14,126 +21,106 @@ class ConvertToText extends Maintenance {
 
 	public function execute() {
 		$pageName = $this->getArg( 0 );
-		$pageTitle = Title::newFromText( $pageName );
+		$this->pageTitle = Title::newFromText( $pageName );
 
-		if ( ! $pageTitle ) {
+		if ( ! $this->pageTitle ) {
 			$this->error( 'Invalid page title', true );
 		}
 
 		$continue = true;
-		$pagerParams = array();
+		$pagerParams = array( 'vtllimit' => 1 );
 		$topics = array();
 		$headerContent = '';
 
+		$headerData = $this->flowApi( $this->pageTitle, 'header-view', array( 'vhcontentFormat' => 'wikitext' ), 'header' );
+
+		$headerRevision = $headerData['header']['revision'];
+		if ( isset( $headerRevision['content'] ) ) {
+			$headerContent = $headerRevision['content'];
+		}
+
 		while( $continue ) {
 			$continue = false;
-			$request = new FauxRequest( array(
-				'action' => 'query',
-				'list' => 'flow',
-				'flowpage' => $pageTitle->getPrefixedText(),
-				'flowparams' => FormatJson::encode( array(
-					'topiclist' => $pagerParams + array(
-						'limit' => 1,
-						'contentFormat' => 'wikitext',
-					),
-					'header' => array(
-						'contentFormat' => 'wikitext',
-					),
-				) ),
-			) );
+			$flowData = $this->flowApi( $this->pageTitle, 'topiclist-view', $pagerParams, 'topiclist' );
 
-			$api = new ApiMain( $request );
-			$api->execute();
+			$topicListBlock = $flowData['topiclist'];
 
-			$apiResponse = $api->getResult()->getData();
+			foreach( $topicListBlock['roots'] as $rootPostId ) {
+				$revisionId = reset( $topicListBlock['posts'][$rootPostId] );
+				$revision = $topicListBlock['revisions'][$revisionId];
 
-			if ( ! isset( $apiResponse['query']['flow'] ) ) {
-				throw new MWException( "API response has no Flow data" );
-			}
-
-			$flowData = $apiResponse['query']['flow'];
-
-			if( $flowData["element"] !== "block" ) {
-				throw new MWException( "No block data in API response" );
-			}
-
-			$topicListBlock = false;
-			$headerBlock = false;
-
-			foreach( $flowData as $key => $block ) {
-				if ( is_numeric( $key ) && $block['block-name'] === 'header' ) {
-					$headerBlock = $block;
-				} elseif ( is_numeric( $key ) && $block['block-name'] === 'topiclist' ) {
-					$topicListBlock = $block;
-				}
-			}
-
-			if( $headerBlock === false ) {
-				throw new MWException( "No header block in API response" );
-			}
-
-			$header = $headerBlock[0];
-			if ( ! isset( $header['missing'] ) ) {
-				$headerContent = trim( $header['*'] ) . "\n\n";
-			} else {
-				$headerContent = '';
-			}
-
-			if( $topicListBlock === false ) {
-				throw new MWException( "No topic list block in API response" );
-			}
-			foreach( $topicListBlock as $key => $topic ) {
-				if ( ! is_numeric( $key ) ) {
-					continue;
-				}
-
-				if ( ! isset( $topic["topic-id"] ) ) {
-					throw new MWException( "Could not find topic ID in topic block" );
-				}
-
-				$topicOutput = '==' . $topic['title'] . '==' . "\n";
-				$topicOutput .= $this->processPostCollection( $topic );
+				$topicOutput = '==' . $revision['content'] . '==' . "\n";
+				$topicOutput .= $this->processPostCollection( $topicListBlock, $revision['replies'] );
 
 				$topics[] = $topicOutput;
 			}
 
-			if ( isset( $topicListBlock['paging']['fwd'] ) ) {
-				$continue = true;
-				$pagerParams = $topicListBlock['paging']['fwd'];
+			$paginationLinks = $topicListBlock['links']['pagination'];
+			if ( isset( $paginationLinks['fwd'] ) ) {
+				list( $junk, $query ) = explode( '?', $paginationLinks['fwd']['url'] );
+				$queryParams = wfCGIToArray( $query );
 
-				// Silly inconsistency
-				$pagerParams['offset-id'] = $pagerParams['offset'];
-				unset( $pagerParams['offset'] );
-			} else {
-				$pagerParams = array();
+				$pagerParams = array(
+					'vtloffset-id' => $queryParams['topiclist_offset-id'],
+					'vtloffset-dir' => 'fwd',
+					'vtloffset-limit' => '1',
+				);
+				$continue = true;
 			}
 		}
 
 		print $headerContent . implode( "\n", array_reverse( $topics ) );
 	}
 
-	public function processPostCollection( $collection, $indentLevel = 0 ) {
-		if ( $collection["element"] !== "post" ) {
-			throw new MWException( "Attempt to process post collection on non-list-of-posts" );
+	public function flowApi( Title $title, $submodule, array $request, $requiredBlock = false ) {
+		$request = new FauxRequest( $request + array(
+			'action' => 'flow',
+			'submodule' => $submodule,
+			'page' => $title->getPrefixedText(),
+		) );
+
+		$api = new ApiMain( $request );
+		$api->execute();
+
+		$apiResponse = $api->getResult()->getData();
+
+		if ( ! isset( $apiResponse['flow'] ) ) {
+			throw new MWException( "API response has no Flow data" );
 		}
 
+		$flowData = $apiResponse['flow'][$submodule]['result'];
+
+		if( $requiredBlock !== false && ! isset( $flowData[$requiredBlock] ) ) {
+			throw new MWException( "No $requiredBlock block in API response" );
+		}
+
+		return $flowData;
+	}
+
+	public function processPostCollection( array $context, array $collection, $indentLevel = 0 ) {
 		$indent = str_repeat( ':', $indentLevel );
 		$output = '';
 
-		foreach( $collection as $key => $post ) {
-			if ( ! is_numeric( $key ) ) {
-				continue;
-			}
+		foreach( $collection as $postId ) {
+			$revisionId = reset( $context['posts'][$postId] );
+			$revision = $context['revisions'][$revisionId];
 
 			// Skip moderated posts
-			if ( isset( $post['moderated'] ) ) {
+			if ( $revision['isModerated'] ) {
 				continue;
 			}
 
-			$user = User::newFromName( $post['user'], false );
-			$postId = Flow\Model\UUID::create( $post['post-id'] );
+			$user = User::newFromName( $revision['author']['name'], false );
+			$postId = Flow\Model\UUID::create( $postId );
 
-			$thisPost = $indent . trim( $post['content']['*'] ) . ' ' .
+			$content = $revision['content'];
+			$contentFormat = $revision['contentFormat'];
+
+			if ( $contentFormat !== 'wikitext' ) {
+				$content = Utils::convert( $contentFormat, 'wikitext', $content, $this->pageTitle );
+			}
+
+			$thisPost = $indent . trim( $content ) . ' ' .
 				$this->getSignature( $user, $postId->getTimestamp() ) . "\n";
 
 			if ( $indentLevel > 0 ) {
@@ -141,8 +128,8 @@ class ConvertToText extends Maintenance {
 			}
 			$output .= str_replace( "\n", "\n$indent", trim( $thisPost ) ) . "\n";
 
-			if ( isset( $post['replies'] ) ) {
-				$output .= $this->processPostCollection( $post['replies'], $indentLevel + 1 );
+			if ( isset( $revision['replies'] ) ) {
+				$output .= $this->processPostCollection( $context, $revision['replies'], $indentLevel + 1 );
 			}
 
 			if ( $indentLevel == 0 ) {

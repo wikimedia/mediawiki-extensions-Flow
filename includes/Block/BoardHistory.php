@@ -2,7 +2,7 @@
 
 namespace Flow\Block;
 
-use ApiResult;
+use Flow\Exception\FlowException;
 use Flow\RevisionActionPermissions;
 use Flow\Container;
 use Flow\Templating;
@@ -16,6 +16,11 @@ class BoardHistoryBlock extends AbstractBlock {
 	protected $permissions;
 
 	protected $supportedGetActions = array( 'history' );
+
+	// @Todo - fill in the template names
+	protected $templates = array(
+		'history' => '',
+	);
 
 	public function init( $action, $user ) {
 		parent::init( $action, $user );
@@ -37,75 +42,39 @@ class BoardHistoryBlock extends AbstractBlock {
 	}
 
 	public function render( Templating $templating, array $options ) {
-		$output = $templating->getOutput();
-		$output->addModuleStyles( array( 'ext.flow.history' ) );
-		$output->addModules( array( 'ext.flow.history' ) );
-
-		$title = wfMessage( 'flow-board-history', $this->workflow->getArticleTitle() )->escaped();
-		$output->setHtmlTitle( $title );
-		$output->setPageTitle( $title );
-
-		if ( $this->workflow->isNew() ) {
-			$output->addWikiMsg( 'flow-board-history-empty' );
-			return;
-		}
-
-		// @todo To turn this into a reasonable json api we need the query
-		// results to be more directly serializable.
-		$lines = array();
-		$history = $this->loadBoardHistory();
-		$formatter = Container::get( 'board-history.formatter' );
-		$ctx = \RequestContext::getMain();
-		foreach ( $history as $row ) {
-			$res = $formatter->format( $row, $ctx );
-			if ( $res !== false ) {
-				$lines[] = $res;
-			}
-		}
-
-		$templating->render( "flow:board-history.html.php", array(
-			'lines' => $lines,
-			'historyExists' => count( $lines ) > 0
-		) );
+		throw new FlowException( 'deprecated' );
 	}
 
-	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
+	public function renderAPI( Templating $templating, array $options ) {
 		if ( $this->workflow->isNew() ) {
-			$output = array(
-				0 => array(
-					'type' => 'board-history',
-					'empty' => '',
+			return array(
+				'type' => $this->getName(),
+				'revisions' => array(),
+				'links' => array(
 				),
 			);
-			$result->setIndexedTagName( $output, 'board-history' );
-			return $output;
 		}
 
-		$history = $this->loadBoardHistory();
+		$history = Container::get( 'query.board-history' )->getResults( $this->workflow );
 		$formatter = Container::get( 'formatter.revision' );
+		$formatter->setIncludeHistoryProperties( true );
 		$ctx = \RequestContext::getMain();
 
-		$formatted = array();
+		$revisions = array();
 		foreach ( $history as $row ) {
-			$formatted[] = $formatter->formatApi( $row, $ctx );
+			$serialized = $formatter->formatApi( $row, $ctx );
+			$revisions[$serialized['revisionId']] = $serialized;
 		}
 
-		$output = array(
-			0 => array(
-				'type' => 'board-history',
-				'*' => $formatted,
+		return array(
+			'type' => $this->getName(),
+			'revisions' => $revisions,
+			'links' => array(
 			),
 		);
-		$result->setIndexedTagName( $output, 'board-history' );
-		return $output;
-	}
-
-	protected function loadBoardHistory() {
-		return Container::get( 'board-history.query' )->getResults( $this->workflow );
 	}
 
 	public function getName() {
 		return 'board-history';
 	}
-
 }

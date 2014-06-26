@@ -88,6 +88,13 @@ class Anchor {
 		);
 	}
 
+	public function toArray() {
+		return array(
+			'url' => $this->getFullUrl(),
+			'title' => $this->message->text()
+		);
+	}
+
 	/**
 	 * @return Title
 	 */
@@ -100,4 +107,5 @@ class Anchor {
 
 		return $title;
 	}
+
 }

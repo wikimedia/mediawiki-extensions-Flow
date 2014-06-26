@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Exception\FlowException;
 use Flow\Model\UUID;
+use Flow\Parsoid\Utils;
 use EchoBasicFormatter;
 
 // could be renamed later if we have more formatters
@@ -19,18 +20,9 @@ class NotificationFormatter extends EchoBasicFormatter {
 				$message->params( '' );
 			}
 		} elseif ( $param === 'commentText' ) {
-			/**
-			 * @var \Language $wgLang
-			 */
-			global $wgLang; // Message::language is protected :(
-
 			if ( isset( $extra['content'] ) && $extra['content'] ) {
-				$content = $extra['content'];
-				$content = strip_tags( $content );
-				$content = trim( $content );
-				$content = $wgLang->truncate( $content, 200 );
-
-				$message->params( $content );
+				// @todo assumes content is html, make explicit
+				$message->params( Utils::htmlToPlaintext( $extra['content'], 200 ) );
 			} else {
 				$message->params( '' );
 			}
@@ -92,7 +84,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 			case 'flow-post':
 				$postId = $event->getExtraParam( 'post-id' );
 				if ( !$postId instanceof UUID ) {
-					throw new FlowException( 'Expected UUID but received ' . get_class( $post ) );
+					throw new FlowException( 'Expected UUID but received ' . get_class( $postId ) );
 				}
 				$workflowId = $event->getExtraParam( 'topic-workflow' );
 				if ( $postId && $workflowId && $title ) {
