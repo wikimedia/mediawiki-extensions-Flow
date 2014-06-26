@@ -19,6 +19,12 @@ class FlowInsertDefaultDefinitions extends LoggedUpdateMaintenance {
 		/** @var \DatabaseBase $dbw */
 		$dbw = $container['db.factory']->getDB( DB_MASTER );
 
+		// debug
+		$res = $dbw->query( 'show tables', __METHOD__ );
+		if ( $res ) {
+			var_dump( $res );
+		}
+
 		$res = $dbw->select(
 			/* table */'flow_definition',
 			/* select */'definition_id',
