@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_a0393140",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-26T20:44:39Z",
+      "side": 1,
+      "message": "Copying from Matt\u0027s comment:\n\nIt doesn\u0027t look like quickUserCan includes block (I was a little surprised about that).\nThere are a couple potential issues with this:\n1. If this is in Varnish-cached content, it may cause the wrong HTML to be shown to anons (if an anon is blocked, but then the block expires, and they\u0027re still seeing no reply link 29 days later).\n2. It should use isBlockedFrom( $title ) so the user talk logic works normally.\nReply ...Reply \u0027Done\u0027\nMattflaschen\t\tJun 25 4:58 PM\nThat\u0027s $user-\u003eisBlockedFrom  .  Also, you can safely use the slave (second param of isBlockedFrom true) for performance, since this doesn\u0027t determine if they can actually make the edit/post.",
+      "revId": "a4c5083b084cedcab75d78a7f8f9a3ced9f6232d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
