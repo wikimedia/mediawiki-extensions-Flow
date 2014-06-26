@@ -1,0 +1,34 @@
+
+<div class="flow-board-navigation">
+	{{!-- <a href="{{links.search.url}}" title="{{links.search.title}}" class="flow-board-navigator-last"><span class="wikiglyph wikiglyph-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a> --}}
+	<div class="flow-board-navigation-inner">
+		{{progressiveEnhancement context=this insertionType="insertion" sectionId="flow-board-collapsers" templateName="flow_board_collapsers_subcomponent"}}
+
+		{{!-- Click for sorting options, not sure what this url should be --}}
+		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="{{l10n "flow-sorting-tooltip"}}" data-flow-interactive-handler="boardFilterMenuToggle">
+			{{~#ifEquals sortby "updated"}}
+				{{l10n "flow-recent-topics"}}
+			{{else}}
+				{{l10n "flow-newest-topics"}}
+			{{/ifEquals}}
+			<span class="wikiglyph wikiglyph-caret-down"></span>{{~null~}}
+		</a>
+	</div>
+	<div class="flow-board-filter-menu">
+		<div class="flow-menu flow-menu-inverted">
+			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
+			{{#if links.board-sort}}
+				<ul class="flow-ui-button-container">
+					<li><a href="{{links.board-sort.updated}}"
+					       data-flow-interactive-handler="apiRequest"
+					       data-flow-api-target="< .flow-component"
+					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-clock"></span> {{l10n "flow-recent-topics"}}</a></li>
+					<li><a href="{{links.board-sort.newest}}"
+					       data-flow-interactive-handler="apiRequest"
+					       data-flow-api-target="< .flow-component"
+					       data-flow-api-handler="board"><span class="wikiglyph wikiglyph-star-circle"></span> {{l10n "flow-newest-topics"}}</a></li>
+				</ul>
+			{{/if}}
+		</div>
+	</div>
+</div>

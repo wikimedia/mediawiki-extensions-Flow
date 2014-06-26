@@ -1,0 +1,440 @@
+@import 'mediawiki.mixins';
+@import 'settings/colors.less';
+@import 'mixins/helpers.less';
+
+// Keep a fixed spacing between each individual flow section
+.flow-newtopic-form,
+.flow-topics-bar {
+	padding-top: 1.5em;
+}
+
+// Top board header
+.flow-board-header,
+// The whole board content wrapper
+.flow-board {
+	.box-sizing( border-box );
+	padding-right: 200px;
+	width: 100%;
+	max-width: 915px;
+	// Set a fixed font-size from which everything else can use a relative amount
+	font-size: 1em;
+	line-height: 1.4em;
+}
+
+.flow-board-header {
+	word-break: break-word;
+}
+
+// Top board header
+.flow-board-header-nav {
+	position: relative;
+	text-align: right;
+}
+// Top board header edit icon
+.flow-board-header-icon {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	opacity: .33;
+
+	&:hover,
+	&:focus {
+		opacity: 1;
+	}
+}
+
+// Top board navigation bar
+.flow-board-navigation {
+	clear: both;
+	max-width: 715px;
+	margin-left: 200px;
+	padding-top: .5em;
+	position: relative;
+	left: -200px;
+	font-size: 1.15em;
+
+	.flow-board-navigation-inner {
+		overflow: hidden;
+		border-bottom: 1px solid @colorGrayLight;
+	}
+
+	.flow-board-navigator-filter {
+		display: inline-block;
+		position: relative;
+	}
+
+	a {
+		display: inline-block;
+
+		&:link, &:visited {
+			padding: 0.25em .75em;
+			color: @colorTextLight;
+		}
+		&:hover, &:focus {
+			color: #000;
+			text-decoration: none;
+		}
+
+		&.flow-board-navigator-right {
+			float: right;
+		}
+		// Adds a spacer
+		&.flow-board-navigator-cap {
+			border-right: 1px solid @colorGrayLight;
+		}
+		// The active menu item
+		&.flow-board-navigator-active {
+			font-weight: bold;
+		}
+		&.flow-board-navigator-first {
+			padding-left: 0;
+		}
+		&.flow-board-navigator-last {
+			position: absolute;
+			bottom: 0;
+			right: -2.5em;
+			width: 1.1em;
+			border-bottom: 1px solid @colorGrayLight;
+		}
+	}
+}
+
+
+// Right-aligned topic navigation container
+// requires additional specificity to override
+// .mw-content-ltr ul
+.flow-board ul.flow-topic-navigation {
+	float: right;
+	.box-sizing( border-box );
+	margin: 0 -200px 0 0;
+	width: 185px;
+	border-radius: 3px;
+	font-size: .875em;
+	line-height: 1.1em;
+
+	h5 {
+		color: @colorText;
+	}
+
+	li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		position: relative;
+
+		&.flow-topic-navigator-wrap {
+			margin: 0.25em 0;
+			border: 1px solid @colorGrayLight;
+			word-wrap: break-word;
+		}
+	}
+}
+// &.flow-topic-navigation:
+// needs extra specificity to override
+// .flow-board ul.flow-topic-navigation
+div#bodyContent ul.flow-topic-navigation-fixed {
+	position: fixed;
+	top: 0;
+	margin-right: 0;
+}
+
+// Individual topic container navigator link in bar
+.flow-topic-navigator {
+	display: block;
+	.box-sizing( border-box );
+	position: relative;
+	z-index: 2;
+	padding: 0.5em 1em;
+	background: @colorGrayLightest;
+	font-style: italic;
+	.transition( background-color .5s linear );
+	border-left: .5em solid transparent;
+	word-wrap: break-word;
+
+	&:link,
+	&:visited{
+		color: @colorTextLight;
+	}
+}
+// &.flow-topic-navigator:
+.flow-topic-navigator-read {
+	background: @colorGrayLight;
+}
+.flow-topic-navigator-active {
+	border-left-color: darkred; // @todo standardize this color
+}
+
+// Metadata for topic
+.flow-topic-navigator-meta {
+	display: block;
+	font-style: normal;
+	font-size: 0.85em;
+}
+
+.flow-topic-navigation-footer {
+	color: @colorTextLight;
+	font-style: italic;
+	text-align: center;
+}
+
+
+// Individual topic containers
+.flow-topic {
+	padding: 1.5em 0;
+
+	&.flow-active {
+
+	}
+}
+
+// Topic title bar
+.flow-topic-titlebar {
+	position: relative;
+	padding: 1em 1.5em;
+	background: @colorGrayLightest;
+	border-radius: 3px;
+}
+
+// Topic title itself
+// Needs additional specificity to override `div#content h2`
+div#bodyContent {
+	// FIXME: are h2's needed?
+	h2.flow-topic-title,
+	h2.flow-moderated-topic-title,
+	.flow-moderated-topic-title,
+	.flow-topic-title {
+		padding: 0;
+		margin: 0 0 .33em;
+		border-bottom: none;
+		font-family: sans-serif;
+		font-weight: bold;
+		word-break: break-word;
+		word-wrap: break-word;
+		overflow: visible;
+	}
+
+	.flow-moderated-topic-title {
+		font-size: 1em;
+	}
+
+	h2.flow-topic-title,
+	.flow-topic-title {
+		font-size: 1.75em;
+	}
+}
+
+// Topic metadata
+.flow-topic-meta {
+	padding: 0.33em 0 0 0;
+	color: @colorTextLight;
+}
+
+.flow-topic-summary {
+	font-style: italic;
+}
+
+// Actions menu
+.flow-menu {
+	clear: both;
+}
+
+// Reply count (only visible in compact mode)
+.flow-reply-count {
+	display: none;
+	position: absolute;
+	top: 50%;
+	right: 1.5em;
+	margin-top: -.55em;
+	color: @colorGrayLighter;
+	font-size: 2em;
+	opacity: .5;
+
+	.flow-reply-count-number {
+		.box-sizing( border-box );
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		padding-left: .25em;
+		width: 100%;
+		color: @colorTextLight;
+		font-size: .5em;
+		line-height: 2.25em;
+		font-weight: bold;
+		text-align: center;
+	}
+}
+
+
+// Comments
+.flow-post {
+	position: relative;
+	/* left margin provided by highlighting zone */
+	margin: 0;
+	margin-top: 1em;
+	padding: 0;
+	color: @colorText;
+	word-wrap: break-word;
+
+	// Nested comments (replies & reply forms)
+	.flow-replies {
+		margin-left: 1.5em;
+		padding-left: 0.5em;
+		border-left: 1px dotted @colorGrayLighter;
+
+		// Remove tangent preview nesting (no IE6 support, but acceptable degradation)
+		&.flow-preview {
+			margin-left: 0;
+			padding-left: 0;
+			border-left-width: 0;
+
+			.flow-post-main {
+				padding-left: 0;
+				border-left-width: 0;
+			}
+		}
+	}
+
+	// Wraps flow-post-content
+	.flow-post-main,
+	.flow-reply-form,
+	.flow-edit-post-form {
+		// leave room for highlighting
+		padding-left: 0.75em;
+	}
+
+	// Highlights a post (no IE6 support, but acceptable degradation)
+	&.flow-post-highlighted > .flow-post-main {
+		border-left-color: @colorHighlight;
+	}
+
+	// Content of comments
+	.flow-post-content {
+		// protect from content breaking out of its box
+		word-break: break-word;
+		overflow: auto;
+		max-height: 2000px;
+	}
+
+	// Author link in post
+	.flow-author {
+		display: inline-block;
+		color: @colorText;
+		word-wrap: break-word;
+
+		.mw-userlink {
+			font-weight: bold;
+		}
+
+		.mw-usertoollinks {
+			opacity: 0;
+			.transition( opacity .25s linear );
+		}
+		&:hover .mw-usertoollinks {
+			opacity: 1;
+		}
+	}
+
+	// Content
+	.flow-post-content * {
+		overflow-x: auto;
+	}
+}
+
+// Comment metadata
+.flow-post-meta {
+	// @todo needs overflow: hidden but crops button border at bottom
+	color: @colorGrayDark;
+	font-size: .875em;
+	text-align: right;
+}
+
+.flow-post-meta-actions {
+	float: left;
+}
+
+
+// MEDIA QUERIES
+@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+	.flow-board-navigation {
+		position: static;
+		margin: 0;
+		padding: 0;
+		white-space: nowrap;
+		min-width: 14em;
+
+		a:link, a:visited {
+			padding: 0.2em 0.3em;
+		}
+
+		a.flow-board-navigator-last {
+			float: right;
+			position: static;
+		}
+	}
+
+	ul.flow-topic-navigation {
+		display: none;
+	}
+
+	.flow-board-header,
+	.flow-board {
+		padding-right: 0;
+		max-width: 100%;
+		font-size: .875em;
+		line-height: 1.2em;
+	}
+
+	.flow-topic-titlebar {
+		padding: .5em .75em;
+	}
+
+	.flow-topic-meta {
+		font-size: .875em;
+	}
+
+	.flow-post {
+		margin: .5em 0 0 .75em;
+		padding: 0 .5em 0 0;
+
+		.flow-author {
+			font-size: .875em;
+			line-height: 1.2em;
+		}
+
+		.flow-post {
+			padding: 0 .5em;
+			border-left-width: 1px;
+		}
+	}
+
+	.flow-post-meta {
+		font-size: .875em;
+	}
+
+	/* not important stuff -- only here for mediawiki on mobile in test version */
+	#mw-page-base, #mw-head-base { display: none; }
+	div#content { margin-left: 0;}
+}
+
+@media (min-width: 700px) and (max-width: 980px) and (min-device-width: 700px) {
+	.flow-board-navigation {
+		margin-left: 170px;
+		left: -170px;
+		font-size: 1em;
+	}
+
+	// requires additional specificity to override
+	// .mw-content-ltr ul
+	.flow-board ul.flow-topic-navigation {
+		margin: 0 -170px 0 0;
+		width: 160px;
+	}
+
+	.flow-board-header,
+	.flow-board {
+		padding-right: 170px;
+		font-size: .875em;
+		line-height: 1.2em;
+	}
+}

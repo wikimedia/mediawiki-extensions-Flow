@@ -2,7 +2,7 @@
 
 namespace Flow\Block;
 
-use ApiResult;
+use Flow\Exception\InvalidInputException;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\NotificationController;
@@ -45,11 +45,10 @@ interface Block {
 	 * Templating is provided for convenience
 	 *
 	 * @param Templating $templating
-	 * @param ApiResult $result
 	 * @param array $options
 	 * @return array
 	 */
-	function renderAPI( Templating $templating, ApiResult $result, array $options );
+	function renderAPI( Templating $templating, array $options );
 
 	/**
 	 * @return string Unique name among all blocks on an object
@@ -69,8 +68,8 @@ abstract class AbstractBlock implements Block {
 
 	/** @var User $user */
 	protected $user;
-	protected $submitted;
-	protected $errors;
+	protected $submitted = null;
+	protected $errors = array();
 	protected $action;
 
 	/**
@@ -85,6 +84,14 @@ abstract class AbstractBlock implements Block {
 	 */
 	protected $supportedGetActions = array();
 
+	protected $requiresWikitext = array();
+
+	/**
+	 * Templates for each view actions
+	 * @var array
+	 */
+	protected $templates = array();
+
 	protected $notificationController;
 
 	public function __construct( Workflow $workflow, ManagerGroup $storage, NotificationController $notificationController ) {
@@ -98,7 +105,7 @@ abstract class AbstractBlock implements Block {
 	// until php 5.3.9, but MediaWiki requires PHP version 5.3.2 or later (and
 	// some of our test machines are on 5.3.3).
 	//abstract public function render( Templating $templating, array $options );
-	//abstract public function renderAPI( Templating $templating, ApiResult $result, array $options );
+	//abstract public function renderAPI( Templating $templating, array $options );
 	//abstract public function commit();
 
 	public function init( $action, $user ) {
@@ -134,6 +141,24 @@ abstract class AbstractBlock implements Block {
 			$this->canSubmit( $action );
 	}
 
+	/**
+	 * Get the template name for a specific action or an array of template
+	 * for all possible view actions in this block
+	 *
+	 * @param string|null
+	 * @return string|array
+	 * @throws InvalidInputException
+	 */
+	public function getTemplate( $action = null ) {
+		if ( $action === null ) {
+			return $this->templates;
+		}
+		if ( !isset( $this->templates[$action] ) ) {
+			throw new InvalidInputException( 'Template is not defined for action: ' . $action, 'invalid-input' );
+		}
+		return $this->templates[$action];
+	}
+
 	public function onSubmit( $action, User $user, array $data ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$section = new \ProfileSection( __METHOD__ );
@@ -147,6 +172,10 @@ abstract class AbstractBlock implements Block {
 		$this->validate();
 
 		return !$this->hasErrors();
+	}
+
+	public function wasSubmitted() {
+		return $this->submitted !== null;
 	}
 
 	public function onRender( $action, Templating $templating, array $options ) {
@@ -263,5 +292,16 @@ abstract class AbstractBlock implements Block {
 
 		$this->addError( 'spamfilter', $status->getMessage() );
 		return false;
+	}
+
+	public function getEditToken() {
+		return $this->user->getEditToken();
+	}
+
+	public function unsetRequiresWikitext( $action ) {
+		$key = array_search( $action, $this->requiresWikitext );
+		if ( $key !== false ) {
+			unset( $this->requiresWikitext[$key] );
+		}
 	}
 }

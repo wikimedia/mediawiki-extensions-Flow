@@ -2,7 +2,6 @@
 
 namespace Flow\Data;
 
-use Flow\Model\UUID;
 use Flow\Exception\DataModelException;
 
 class TopicHistoryStorage implements ObjectStorage {

@@ -3,6 +3,7 @@
 namespace Flow\Tests;
 
 use Flow\Container;
+use Flow\Data\ObjectManager;
 use Flow\Data\RecentChanges as RecentChangesHandler;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
@@ -15,6 +16,11 @@ use User;
  * @group Database
  */
 class PostRevisionTestCase extends FlowTestCase {
+	/**
+	 * @var PostRevision
+	 */
+	protected $revision;
+
 	/**
 	 * @var PostRevision[]
 	 */

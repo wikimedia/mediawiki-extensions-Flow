@@ -1,0 +1,35 @@
+<div class="flow-board-header">
+	<div class="flow-board-header-edit-view">
+		{{> flow_errors}}
+
+		<form method="POST" action="{{revision.actions.edit.url}}" flow-api-action="edit-header">
+			<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
+			{{#if revision.revisionId}}
+				<input type="hidden" name="header_prev_revision" value="{{revision.revisionId}}" />
+			{{/if}}
+			<textarea name="header_content" class="mw-ui-input" placeholder="{{l10n "flow-edit-header-placeholder"}}" data-role="content">
+				{{~#if submitted.content~}}
+					{{~submitted.content~}}
+				{{~else~}}
+					{{~revision.content~}}
+				{{~/if~}}
+			</textarea>
+			<div class="flow-form-actions flow-form-collapsible">
+				<button data-role="submit"
+					class="flow-ui-button flow-ui-constructive"
+					data-flow-interactive-handler="apiRequest"
+					data-flow-api-handler="submitHeader">
+						{{~l10n "flow-edit-header-submit"~}}
+				</button>
+				{{previewButton "flow_block_header"}}
+				<button data-flow-interactive-handler="cancelForm"
+					data-role="cancel"
+					class="flow-ui-button flow-ui-destructive
+					flow-ui-quiet flow-click-interactive">
+						{{~l10n "flow-cancel"~}}
+				</button>
+				<small class="flow-terms-of-use plainlinks">{{l10n "flow-terms-of-use-edit"}}</small>
+			</div>
+		</form>
+	</div>
+</div>

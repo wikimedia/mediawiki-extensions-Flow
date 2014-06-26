@@ -2,6 +2,7 @@
 
 namespace Flow\Data;
 
+use Flow\Container;
 use Flow\FlowActions;
 use Flow\Model\AbstractRevision;
 use Flow\Model\Workflow;
@@ -118,7 +119,7 @@ abstract class RecentChanges implements LifecycleHandler {
 		// Override the IRC formatter with our own formatter
 		foreach ( array_keys( $feeds ) as $name ) {
 			$feeds[$name]['original_formatter'] = $feeds[$name]['formatter'];
-			$feeds[$name]['formatter'] = \Flow\Container::get( 'formatter.irclineurl' );
+			$feeds[$name]['formatter'] = Container::get( 'formatter.irclineurl' );
 		}
 		$rc->notifyRCFeeds( $feeds );
 	}

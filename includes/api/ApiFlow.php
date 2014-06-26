@@ -1,7 +1,8 @@
 <?php
 
-use \Flow\Container;
+use Flow\Container;
 use Flow\Model\UUID;
+use Flow\Templating;
 
 class ApiFlow extends ApiBase {
 
@@ -23,11 +24,11 @@ class ApiFlow extends ApiBase {
 		// GET
 		// action 'view' exists in Topic.php & TopicList.php, for topic, post &
 		// topiclist - we'll want to know topic-/post- or topiclist-view ;)
-		'topiclist-view' => 'ApiFlowViewTopicList',
-		'post-view' => 'ApiFlowViewPost',
-		'topic-view' => 'ApiFlowViewTopic',
-		'header-view' => 'ApiFlowViewHeader',
-		'topic-summary-view' => 'ApiFlowViewTopicSummary',
+		'view-topiclist' => 'ApiFlowViewTopicList',
+		'view-post' => 'ApiFlowViewPost',
+		'view-topic' => 'ApiFlowViewTopic',
+		'view-header' => 'ApiFlowViewHeader',
+		'view-topic-summary' => 'ApiFlowViewTopicSummary',
 	);
 
 	public function __construct( $main, $action ) {
@@ -116,7 +117,8 @@ class ApiFlow extends ApiBase {
 	 * @todo figure out if this is still needed
 	 */
 	protected function doRerender( $blocks ) {
-		$templating = $this->container['templating'];
+		/** @var Templating $templating */
+		$templating = Container::get( 'templating' );
 
 		$output = array();
 

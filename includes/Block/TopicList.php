@@ -2,12 +2,10 @@
 
 namespace Flow\Block;
 
-use ApiResult;
 use Flow\Container;
 use Flow\Data\ManagerGroup;
 use Flow\Data\Pager;
 use Flow\Data\PagerPage;
-use Flow\Data\RootPostLoader;
 use Flow\Model\PostRevision;
 use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
@@ -16,6 +14,7 @@ use Flow\NotificationController;
 use Flow\RevisionActionPermissions;
 use Flow\Templating;
 use Flow\Exception\FailCommitException;
+use Flow\Exception\FlowException;
 
 class TopicListBlock extends AbstractBlock {
 
@@ -27,7 +26,15 @@ class TopicListBlock extends AbstractBlock {
 	/**
 	 * @var array
 	 */
-	protected $supportedGetActions = array( 'view', 'topiclist-view' );
+	protected $supportedGetActions = array( 'view', 'view-topiclist' );
+
+	// @Todo - fill in the template names
+	protected $templates = array(
+		'view' => '',
+		// since new-topic is only listed in post this is always
+		// to render submission errors
+		'new-topic' => '',
+	);
 
 	/**
 	 * @var Workflow|null
@@ -57,11 +64,9 @@ class TopicListBlock extends AbstractBlock {
 	public function __construct(
 		Workflow $workflow,
 		ManagerGroup $storage,
-		NotificationController $notificationController,
-		RootPostLoader $rootLoader
+		NotificationController $notificationController
 	) {
 		parent::__construct( $workflow, $storage, $notificationController );
-		$this->rootLoader = $rootLoader;
 	}
 
 	public function init( $action, $user ) {
@@ -165,72 +170,48 @@ class TopicListBlock extends AbstractBlock {
 			'user' => $this->user,
 		) );
 
-		$notificationController = $this->notificationController;
-		$topicWorkflow = $this->topicWorkflow;
-		$topicPost = $this->topicPost;
 		$output = array(
 			'created-topic-id' => $this->topicWorkflow->getId(),
 			'created-post-id' => $this->firstPost ? $this->firstPost->getRevisionId() : null,
-			'render-function' => function( Templating $templating )
-					use ( $topicWorkflow, $topicPost, $storage, $notificationController )
-			{
-				$block = new TopicBlock( $topicWorkflow, $storage, $notificationController, $topicPost );
-				return $templating->renderTopic( $topicPost, $block, true );
-			},
 		);
 
 		return $output;
 	}
 
 	public function render( Templating $templating, array $options ) {
-		$templating->getOutput()->addModuleStyles(
-			array(
-				'ext.flow.base.styles',
-				'ext.flow.discussion.styles',
-				'ext.flow.moderation.styles',
-			)
-		);
-		$templating->getOutput()->addModules( array( 'ext.flow.discussion' ) );
-		if ( $this->workflow->isNew() ) {
-			$templating->render( "flow:topiclist.html.php", array(
-				'block' => $this,
-				'topics' => array(),
-				'user' => $this->user,
-				'page' => false,
-				'permissions' => $this->permissions,
-			) );
-		} else {
-			$findOptions = $this->getFindOptions( $options );
-			$page = $this->getPage( $findOptions );
-			$topics = $this->getTopics( $page );
-
-			$templating->render( "flow:topiclist.html.php", array(
-				'block' => $this,
-				'topics' => $topics,
-				'user' => $this->user,
-				'page' => $page,
-				'permissions' => $this->permissions,
-			) );
-		}
+		throw new FlowException( 'deprecated' );
 	}
 
-	public function renderAPI( Templating $templating, ApiResult $result, array $options ) {
-		$output = array();
-		if ( ! $this->workflow->isNew() ) {
-			$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
-			$page = $this->getPage( $findOptions );
-			$topics = $this->getTopics( $page );
+	public function renderAPI( Templating $templating, array $options ) {
+		$serializer = Container::get( 'formatter.topiclist' );
+		$response = array(
+			'submitted' => $this->wasSubmitted() ? $this->submitted : $options,
+			'errors' => $this->errors,
+		);
 
-			foreach( $topics as $topic ) {
-				$output[] = $topic->renderAPI( $templating, $result, $options );
-			}
-
-			$output['paging'] = $page->getPagingLinks();
+		if ( $this->workflow->isNew() ) {
+			return $response + $serializer->buildEmptyResult( $this->workflow );
 		}
 
-		$result->setIndexedTagName( $output, 'topic' );
+		$ctx = \RequestContext::getMain();
+		// @todo remove the 'api' => true, its always api
+		$findOptions = $this->getFindOptions( $options + array( 'api' => true ) );
+		$page = $this->getPage( $findOptions );
 
-		return $output;
+		// sortby option
+		if ( isset( $findOptions['sortby'] ) ) {
+			$response['sortby'] = $findOptions['sortby'];
+		}
+
+		$workflowIds = array();
+		foreach ( $page->getResults() as $topicListEntry ) {
+			$workflowIds[] = $topicListEntry->getId();
+		}
+
+		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
+		$found = Container::get( 'query.topiclist' )->getResults( $page->getResults() );
+
+		return $response + $serializer->formatApi( $this->workflow, $workflows, $found, $page, $ctx );
 	}
 
 	public function getName() {
@@ -271,6 +252,37 @@ class TopicListBlock extends AbstractBlock {
 
 		$findOptions['pager-limit'] = $limit;
 
+		// Only support sortby = updated now, fall back to creation time by default otherwise.
+		// To clear the sortby user preference, pass sortby with an empty value
+		$sortByOption = '';
+		$user = $this->user;
+		if ( isset( $requestOptions['sortby'] ) ) {
+			if ( $requestOptions['sortby'] === 'updated' ) {
+				$sortByOption = 'updated';
+			}
+			if (
+				isset( $requestOptions['savesortby'] )
+				&& !$user->isAnon()
+				&& $user->getOption( 'flow-topiclist-sortby' ) != $sortByOption
+			) {
+				$user->setOption( 'flow-topiclist-sortby', $sortByOption );
+				$user->saveSettings();
+			}
+		} else {
+			if ( !$user->isAnon() && $user->getOption( 'flow-topiclist-sortby' ) === 'updated' ) {
+				 $sortByOption = 'updated';
+			}
+		}
+
+		if ( $sortByOption === 'updated' ) {
+			$findOptions = array(
+				'sort' => 'workflow_last_update_timestamp',
+				'order' => 'desc',
+				// keep sortby keep so it can be used later for building links
+				'sortby' => 'updated',
+			) + $findOptions;
+		}
+
 		return $findOptions;
 	}
 
@@ -295,46 +307,5 @@ class TopicListBlock extends AbstractBlock {
 
 		return $pager->getPage();
 	}
-
-	/**
-	 * @param PagerPage $page
-	 * @return TopicBlock[]
-	 */
-	protected function getTopics( PagerPage $page ) {
-		/** @var TopicListEntry[] $found */
-		$found = $page->getResults();
-
-		if ( ! count( $found ) ) {
-			return array();
-		}
-
-		/** @var UUID[] $topicIds */
-		$topicIds = array();
-		foreach( $found as $entry ) {
-			$topicIds[] = $entry->getId();
-		}
-		$roots = $this->rootLoader->getMulti( $topicIds );
-		foreach ( $topicIds as $idx => $topicId ) {
-			if ( !$this->permissions->isAllowed( $roots[$topicId->getAlphadecimal()], 'view' ) ) {
-				unset( $roots[$topicId->getAlphadecimal()] );
-				unset( $topicIds[$idx] );
-			}
-		}
-		foreach ( $roots as $idx => $topicTitle ) {
-			if ( !$this->permissions->isAllowed( $topicTitle, 'view' ) ) {
-				unset( $roots[$idx] );
-			}
-		}
-		$topics = array();
-		foreach ( $this->storage->getMulti( 'Workflow', $topicIds ) as $workflow ) {
-			/** @var Workflow $workflow */
-			$hexId = $workflow->getId()->getAlphadecimal();
-			$topics[$hexId] = $block = new TopicBlock( $workflow, $this->storage, $this->notificationController, $roots[$hexId] );
-			$block->init( $this->action, $this->user );
-		}
-
-		return $topics;
-	}
-
 }
 

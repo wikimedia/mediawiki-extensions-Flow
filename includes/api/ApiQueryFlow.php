@@ -1,5 +1,6 @@
 <?php
 
+use Flow\Anchor;
 use Flow\Model\UUID;
 
 /**
@@ -26,10 +27,10 @@ class ApiQueryFlow extends ApiQueryBase {
 
 		$this->loader = $this->container['factory.loader.workflow']
 			->createWorkflowLoader( $pageTitle, $id );
-
-		$blocks = $this->loader->createBlocks();
-		$blockOutput = array();
-		foreach( $blocks as $block ) {
+		$result = array(
+			'workflow' => $this->loader->getWorkflow()->getId()->getAlphadecimal()
+		);
+		foreach( $this->loader->createBlocks() as $block ) {
 			$block->init( $params['action'], $this->getUser() );
 
 			$blockParams = array();
@@ -40,20 +41,17 @@ class ApiQueryFlow extends ApiQueryBase {
 			$templating = $this->container['templating'];
 
 			if ( $block->canRender( $params['action'] ) ) {
-				$thisBlock = $block->renderAPI( $templating, $this->getResult(), $blockParams ) +
-					array(
-						'block-name' => $block->getName()
-					);
-
-				$blockOutput[] = $thisBlock;
+				$result['blocks'][] = $block->renderAPI( $templating, $blockParams );
 			}
 		}
 
-		$result = array(
-			'element' => 'block',
-			'workflow-id' => $this->loader->getWorkflow()->getId()->getAlphadecimal(),
-		) + $blockOutput;
-		$this->getResult()->setIndexedTagName( $result, 'block' );
+		array_walk_recursive( $result, function( &$value ) {
+			// This is required untill php 5.4.0 after which we can
+			// implement the JsonSerializable interface for Anchor
+			if ( $value instanceof Anchor ) {
+				$value = $value->toArray();
+			}
+		} );
 
 		$this->getResult()->addValue( 'query', $this->getModuleName(), $result );
 		$this->setWarning( 'This API is deprecated and should not be used. Instead use ApiFlowView(Header|Post|Topic|TopicList|TopicSummary).' );
@@ -76,8 +74,8 @@ class ApiQueryFlow extends ApiQueryBase {
 	}
 
 	public function getDescription() {
-		return 'Shim to query to the internal Flow API.  This API is not suggested ' .
-			'for external use and will soon be superseded by an integrated mediawiki api.';
+		return 'Shim to query to the internal Flow API.  This API is obsolete and ' .
+			'has been superseded by submodules of action=flow.';
 	}
 
 
@@ -92,7 +90,21 @@ class ApiQueryFlow extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&list=flow&flowpage=Main_Page',
+			'api.php?action=query&list=flow&flowpage=Talk:Flow_QA',
 		);
+	}
+
+	static public function array_merge_array( array $arrays ) {
+		switch( count( $arrays ) ) {
+		case 0:
+			return array();
+
+		case 1:
+			return reset( $arrays );
+
+		default:
+			return call_user_func_array( 'array_merge', $arrays );
+		}
+
 	}
 }

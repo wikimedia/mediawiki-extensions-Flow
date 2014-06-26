@@ -3,12 +3,9 @@
 namespace Flow;
 
 use MediaWikiTestCase;
-use Flow\Container;
 use Flow\Exception\WikitextException;
+use Flow\Parsoid\Utils;
 use Title;
-use User;
-use WikiPage;
-use WikitextContent;
 
 /**
  * @group Database
@@ -20,7 +17,7 @@ class ReferenceExtractorTestCase extends MediaWikiTestCase {
 
 		// Check for Parsoid
 		try {
-			\Flow\Parsoid\Utils::convert( 'html', 'wikitext', 'Foo', Title::newFromText( 'UTPage' ) );
+			Utils::convert( 'html', 'wikitext', 'Foo', Title::newFromText( 'UTPage' ) );
 		} catch ( WikitextException $excep ) {
 			$this->markTestSkipped( 'Parsoid not enabled' );
 		}
@@ -115,7 +112,7 @@ class ReferenceExtractorTestCase extends MediaWikiTestCase {
 	public function testReferenceExtractor( $description, $wikitext, $expectedOutput, $page = 'UTPage' ) {
 		$referenceExtractor = Container::get( 'reference.extractor' );
 
-		$html = \Flow\Parsoid\Utils::convert( 'wt', 'html', $wikitext, Title::newFromText( $page ) );
+		$html = Utils::convert( 'wt', 'html', $wikitext, Title::newFromText( $page ) );
 
 		$references = $referenceExtractor->extractReferences( $html );
 
