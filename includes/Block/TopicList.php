@@ -201,6 +201,9 @@ class TopicListBlock extends AbstractBlock {
 		// sortby option
 		if ( isset( $findOptions['sortby'] ) ) {
 			$response['sortby'] = $findOptions['sortby'];
+		// default is newest
+		} else {
+			$response['sortby'] = '';
 		}
 
 		$workflowIds = array();
@@ -278,7 +281,7 @@ class TopicListBlock extends AbstractBlock {
 			$findOptions = array(
 				'sort' => 'workflow_last_update_timestamp',
 				'order' => 'desc',
-				// keep sortby keep so it can be used later for building links
+				// keep sortby so it can be used later for building links
 				'sortby' => 'updated',
 			) + $findOptions;
 		}
