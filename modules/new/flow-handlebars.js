@@ -435,30 +435,6 @@
 	};
 
 	/**
-	 * Gets a URL for a given variable.
-	 * @example {{url "board.search"}}
-	 * @param {String} str
-	 * @param {Object} options
-	 * @returns {String}
-	 * @todo Implement
-	 */
-	FlowHandlebars.prototype.url = function ( str, options ) {
-		return Array.prototype.pop.apply( arguments );
-	};
-
-	/**
-	 *
-	 * @example {{generateUID}}
-	 * @returns {String}
-	 */
-	FlowHandlebars.prototype.generateUID = function () {
-		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace( /[xy]/g , function ( c ) {
-			var r = Math.random() * 16 | 0, v = ( c === 'x' ? r : ( r & 0x3 | 0x8 ) );
-			return v.toString( 16 );
-		} );
-	};
-
-	/**
 	 * Simple math.
 	 * @example {{math @index "+" 1}}
 	 * @param {Number} lvalue
@@ -521,19 +497,6 @@
 	 */
 	FlowHandlebars.prototype.nullHelper = function () {
 		return "";
-	};
-
-	/**
-	 * Return information about given user
-	 * @param string $feature key of property to retrieve e.g. name, id
-	 *
-	 * @return string value of property
-	 */
-	FlowHandlebars.prototype.user = function( feature ) {
-		return {
-			'id' : mw.user.getId(),
-			'name' : mw.user.getName()
-		}[feature];
 	};
 
 	/**
@@ -723,12 +686,9 @@
 	Handlebars.registerHelper( 'block', FlowHandlebars.prototype.workflowBlock );
 	Handlebars.registerHelper( 'post', FlowHandlebars.prototype.postBlock );
 	Handlebars.registerHelper( 'eachPost', FlowHandlebars.prototype.eachPost );
-	Handlebars.registerHelper( 'url', FlowHandlebars.prototype.url );
-	Handlebars.registerHelper( 'generateUID', FlowHandlebars.prototype.generateUID );
 	Handlebars.registerHelper( 'math', FlowHandlebars.prototype.math );
 	Handlebars.registerHelper( 'progressiveEnhancement', FlowHandlebars.prototype.progressiveEnhancement );
 	Handlebars.registerHelper( 'null', FlowHandlebars.prototype.nullHelper );
-	Handlebars.registerHelper( 'user', FlowHandlebars.prototype.user );
 	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
 	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
