@@ -506,40 +506,16 @@
 	};
 
 	/**
-	 * Adds returnto parameter pointing to current page to existing URL
-	 * @param string $url to modify
-	 *
-	 * @return string modified url
-	 */
-	FlowHandlebars.prototype.addReturnTo = function( url ) {
-		var returnToPage = mw.config.get( 'wgPageName' ),
-			returnToQuery = window.location.search;
-
-		if ( url.indexOf( '?' ) === -1 ) {
-			url += '?';
-		} else {
-			url += '&';
-		}
-
-		url += 'returnto=' + encodeURIComponent( returnToPage );
-		url += 'returntoquery=' + encodeURIComponent( returnToQuery );
-
-		return url;
-	};
-
-	/**
 	 * Adds returnto parameter pointing to given Title to an existing URL
-	 * @param Title $title
+	 * @param string $title
 	 *
 	 * @return string modified url
 	 */
 	FlowHandlebars.prototype.linkWithReturnTo = function( title ) {
-		var url = mw.config.get( 'wgArticlePath' ).replace(
-			'$1',
-			encodeURIComponent( title.replace( ' ', '_' ) )
-		);
-
-		return FlowHandlebars.prototype.addReturnTo( url );
+		return mw.util.getUrl( title, {
+			returntoquery: encodeURIComponent( window.location.search ),
+			returnto: mw.config.get( 'wgPageName' )
+		} );
 	};
 
 	/**
@@ -681,7 +657,6 @@
 	Handlebars.registerHelper( 'math', FlowHandlebars.prototype.math );
 	Handlebars.registerHelper( 'progressiveEnhancement', FlowHandlebars.prototype.progressiveEnhancement );
 	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
-	Handlebars.registerHelper( 'addReturnTo', FlowHandlebars.prototype.addReturnTo );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
 	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
 	Handlebars.registerHelper( 'previewButton', FlowHandlebars.prototype.previewButton );
