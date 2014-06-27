@@ -248,7 +248,7 @@ class RevisionFormatter {
 			$links += array(
 				"block" => array(
 					'url' => $blockTitle->getLocalUrl(),
-					'link' => '',
+					'title' => wfMessage( 'blocklink' ),
 				),
 			);
 		}
