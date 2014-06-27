@@ -4,8 +4,8 @@
 			"Ahmed-Najib-Biabani-Ibrahimkhel"
 		]
 	},
-	"flow-hide-title-content": "{{GENDER:$1|پټ شو}} د $2 لخوا",
-	"flow-delete-title-content": "{{GENDER:$1|ړنگ شو}} د $2 لخوا",
+	"flow-hide-title-content": "{{GENDER:$1|پټ شو}} د $1 لخوا",
+	"flow-delete-title-content": "{{GENDER:$1|ړنگ شو}} د $1 لخوا",
 	"flow-delete-header-content": "{{GENDER:$1|ړنگ شو}} د $2 لخوا",
 	"flow-post-edited": "ليکنه د $1 لخوا په $2 {{GENDER:$1|سمه شوه}}",
 	"flow-notification-edit-email-subject": "$1 ستاسې ليکنه {{GENDER:$1|سمه کړه}}",
