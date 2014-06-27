@@ -138,7 +138,6 @@ class TemplateHelper {
 					'html' => 'Flow\TemplateHelper::html',
 					'block' => 'Flow\TemplateHelper::block',
 					'author' => 'Flow\TemplateHelper::author',
-					'url' => 'Flow\TemplateHelper::url',
 					'math' => 'Flow\TemplateHelper::math',
 					'post' => 'Flow\TemplateHelper::post',
 					'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
