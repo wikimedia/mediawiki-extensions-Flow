@@ -16,6 +16,21 @@ class FlowHooks {
 	protected static $occupationController;
 
 	/**
+	 * Terms of use message along with possible overwrites, null value means
+	 * not to overwrite
+	 *
+	 * @var string[]
+	 */
+	protected static $termsOfUseMessage = array (
+		'flow-terms-of-use-new-topic' => null,
+		'flow-terms-of-use-reply' => null,
+		'flow-terms-of-use-edit' => null,
+		'flow-terms-of-use-summarize' => null,
+		'flow-terms-of-use-close-topic' => null,
+		'flow-terms-of-use-reopen-topic' => null
+	);
+
+	/**
 	 * @var AbuseFilter Initialized during extension initialization
 	 */
 	protected static $abuseFilter;
@@ -80,15 +95,19 @@ class FlowHooks {
 			NotificationController::setup();
 		}
 
+		global $wgFlowAbuseFilterGroup, $wgResourceModules;
 		// necessary to provide flow options in abuse filter on-wiki pages
-		global $wgFlowAbuseFilterGroup;
 		if ( $wgFlowAbuseFilterGroup ) {
 			self::getAbuseFilter();
 		}
 
-		global $wgResourceModules;
-		foreach ( \Flow\TermsOfUse::getTerm() as $term ) {
-			$wgResourceModules['ext.flow.templating']['messages'][] = $term;
+		// Set up the final message for terms of use if the overwrite is available
+		foreach ( self::$termsOfUseMessage as $key => $overwrite ) {
+			$message = wfMessage( "wikimedia-$key" );
+			if ( $message->exists() ) {
+				self::$termsOfUseMessage[$key] = "wikimedia-$key";
+				$wgResourceModules['ext.flow.templating']['messages'][] = "wikimedia-$key";
+			}
 		}
 	}
 
@@ -605,17 +624,14 @@ class FlowHooks {
 	}
 
 	/**
-	 * Make the terms of use for editing messages available in JavaScript
+	 * Overwrite terms of use message if the overwrite exits
 	 *
-	 * @param array &$vars
-	 * @param OutputPage $out
+	 * @param string &$key
 	 * @return bool
 	 */
-	public static function onMakeGlobalVariablesScript( array &$vars, OutputPage $out ) {
-		if ( self::$occupationController->isTalkpageOccupied( $out->getTitle() ) ) {
-			$vars += array(
-				'flow_terms' => \Flow\TermsOfUse::getTerm()
-			);
+	public static function onMessageCacheGet( &$key ) {
+		if ( isset( self::$termsOfUseMessage[$key] ) ) {
+			$key = self::$termsOfUseMessage[$key];
 		}
 		return true;
 	}
