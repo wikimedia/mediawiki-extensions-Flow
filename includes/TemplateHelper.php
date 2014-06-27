@@ -150,7 +150,6 @@ class TemplateHelper {
 					'moderationAction' => 'Flow\TemplateHelper::moderationAction',
 					'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
 					'user' => 'Flow\TemplateHelper::user',
-					'addReturnTo' => 'Flow\TemplateHelper::addReturnTo',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
 					'previewButton' => 'Flow\TemplateHelper::previewButton',
