@@ -22,7 +22,7 @@
     );
     return '<div class="flow-board">
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
-	<ul class="flow-errors">
+	<ul class="flow-errors error">
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
 			<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
 		';}).'
@@ -30,7 +30,7 @@
 ' : '').'
 
 
-
+	
 
 	'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 		'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
@@ -52,7 +52,7 @@
 		<button class="flow-ui-button flow-ui-destructive flow-ui-quiet"
 		        data-flow-interactive-handler="cancelForm"
 				data-role="cancel">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
-		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-edit'), 'encq').'</small>
+		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array('flow-terms-of-use-edit'), 'encq').'</small>
 	</div>
 </form>
 
