@@ -90,7 +90,6 @@ $wgAutoloadClasses['Flow\SpamFilter\AbuseFilter'] = $dir . 'includes/SpamFilter/
 $wgAutoloadClasses['Flow\SpamFilter\ConfirmEdit'] = $dir . 'includes/SpamFilter/ConfirmEdit.php';
 $wgAutoloadClasses['Flow\FlowActions'] = $dir . 'includes/FlowActions.php';
 $wgAutoloadClasses['Flow\RevisionActionPermissions'] = $dir . 'includes/RevisionActionPermissions.php';
-$wgAutoloadClasses['Flow\TermsOfUse'] = $dir . 'includes/TermsOfUse.php';
 $wgAutoloadClasses['Flow\ReferenceClarifier'] = $dir . 'includes/ReferenceClarifier.php';
 $wgAutoloadClasses['Flow\RecoverableErrorHandler'] = $dir . 'includes/RecoverableErrorHandler.php';
 $wgAutoloadClasses['Flow\CatchableFatalErrorException'] = $dir . 'includes/CatchableFatalErrorException.php';
@@ -303,7 +302,6 @@ $wgHooks['AbuseFilter-computeVariable'][] = 'FlowHooks::onAbuseFilterComputeVari
 $wgHooks['AbortEmailNotification'][] = 'FlowHooks::onAbortEmailNotification';
 $wgHooks['InfoAction'][] = 'FlowHooks::onInfoAction';
 $wgHooks['SpecialCheckUserGetLinksFromRow'][] = 'FlowHooks::onSpecialCheckUserGetLinksFromRow';
-$wgHooks['MakeGlobalVariablesScript'][] = 'FlowHooks::onMakeGlobalVariablesScript';
 $wgHooks['CheckUserInsertForRecentChange'][] = 'FlowHooks::onCheckUserInsertForRecentChange';
 $wgHooks['SkinMinervaDefaultModules'][] = 'FlowHooks::onSkinMinervaDefaultModules';
 $wgHooks['IRCLineURL'][] = 'FlowHooks::onIRCLineURL';
@@ -313,6 +311,7 @@ $wgHooks['ResourceLoaderTestModules'][] = 'FlowHooks::onResourceLoaderTestModule
 $wgHooks['ContentHandlerDefaultModelFor'][] = 'Flow\Content\Content::onGetDefaultModel';
 $wgHooks['ShowMissingArticle'][] = 'Flow\Content\Content::onShowMissingArticle';
 $wgHooks['ArticleAfterFetchContentObject'][] = 'Flow\Content\Content::onFetchContentObject';
+$wgHooks['MessageCache::get'][] = 'FlowHooks::onMessageCacheGet';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';

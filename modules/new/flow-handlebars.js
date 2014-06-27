@@ -200,19 +200,6 @@
 	}
 
 	/**
-	 * Renders all the different kind of terms of use message
-	 * @todo find a generic way to present terms of use and remove this helper function
-	 * @param {String} str
-	 * @param {...*} [args]
-	 * @param {Object} [options]
-	 * @returns {String}
-	 */
-	FlowHandlebars.prototype.termsOfUse = function ( str, args, options ) {
-		var terms = mw.config.get( 'flow_terms' );
-		return mw.message( terms[str] ).parse();
-	};
-
-	/**
 	 * Calls flowMessages to get localized message strings.
 	 * @todo use mw.message
 	 * @example {{l10n "reply_count" 12}}
@@ -665,7 +652,6 @@
 	};
 
 	// Register helpers
-	Handlebars.registerHelper( 'termsOfUse', FlowHandlebars.prototype.termsOfUse );
 	Handlebars.registerHelper( 'l10n', FlowHandlebars.prototype.l10n );
 	Handlebars.registerHelper( 'l10nParse', FlowHandlebars.prototype.l10nParse );
 	Handlebars.registerHelper( 'uuidTimestamp', FlowHandlebars.prototype.uuidTimestamp );
