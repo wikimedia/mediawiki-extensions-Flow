@@ -42,12 +42,7 @@ class Anchor {
 		$this->title = $title;
 		$this->query = $query;
 		$this->fragment = $fragment;
-		if ( $message instanceof Message ) {
-			$this->message = $message;
-		} else {
-			// wrap non-messages into a message class
-			$this->message = new RawMessage( '$1', array( $message ) );
-		}
+		$this->setMessage( $message );
 	}
 
 	/**
@@ -108,4 +103,15 @@ class Anchor {
 		return $title;
 	}
 
+	/**
+	 * @param Message|string $message Text content of the anchor
+	 */
+	public function setMessage( $message ) {
+		if ( $message instanceof Message ) {
+			$this->message = $message;
+		} else {
+			// wrap non-messages into a message class
+			$this->message = new RawMessage( '$1', array( $message ) );
+		}
+	}
 }

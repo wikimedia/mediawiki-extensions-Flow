@@ -137,7 +137,7 @@ abstract class AbstractFormatter {
 	 *
 	 * @param array[][] Associative array containing (url, message) tuples
 	 * @param IContextSource $ctx
-	 * @return array|Message
+	 * @return Anchor|Message
 	 */
 	protected function getDiffAnchor( array $input, IContextSource $ctx ) {
 		if ( !isset( $input['diff'] ) ) {
@@ -155,7 +155,7 @@ abstract class AbstractFormatter {
 	 *
 	 * @param array[][] Associative array containing (url, message) tuples
 	 * @param IContextSource $ctx
-	 * @return array|Message
+	 * @return Anchor|Message
 	 */
 	protected function getDiffPrevAnchor( array $input, IContextSource $ctx ) {
 		if ( !isset( $input['diff-prev'] ) ) {
@@ -173,7 +173,7 @@ abstract class AbstractFormatter {
 	 *
 	 * @param array[][] Associative array containing (url, message) tuples
 	 * @param IContextSource $ctx
-	 * @return array|Message
+	 * @return Anchor|Message
 	 */
 	protected function getDiffCurAnchor( array $input, IContextSource $ctx ) {
 		if ( !isset( $input['diff-cur'] ) ) {
@@ -191,15 +191,20 @@ abstract class AbstractFormatter {
 	 *
 	 * @param array[][] Associative array containing (url, message) tuples
 	 * @param IContextSource $ctx
-	 * @return array|Message
+	 * @return Anchor|Message
 	 */
 	protected function getHistAnchor( array $input, IContextSource $ctx ) {
 		if ( isset( $input['post-history'] ) ) {
-			return $input['post-history'];
+			$anchor = $input['post-history'];
 		} elseif ( isset( $input['topic-history'] ) ) {
-			return $input['topic-history'];
+			$anchor = $input['topic-history'];
 		} elseif ( isset( $input['board-history'] ) ) {
-			return $input['board-history'];
+			$anchor = $input['board-history'];
+		}
+
+		if ( $anchor ) {
+			$anchor->setMessage( wfMessage( 'hist' ) );
+			return $anchor;
 		} else {
 			// plain text with no link
 			return $ctx->msg( 'hist' );
