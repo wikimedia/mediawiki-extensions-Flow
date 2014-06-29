@@ -4,7 +4,8 @@
 			"Helder.wiki",
 			"Imperadeiro98",
 			"SandroHc",
-			"Vitorvicentevalente"
+			"Vitorvicentevalente",
+			"Waldir"
 		]
 	},
 	"flow-desc": "Sistema de gerência do fluxo de trabalho",
@@ -302,6 +303,7 @@
 	"flow-special-type-workflow": "Fluxo de trabalho",
 	"flow-special-uuid": "Identificador Global Único",
 	"flow-special-invalid-uuid": "Não foi possível encontrar o conteúdo correspondente com o tipo e o UUID.",
+	"flow-spam-confirmedit": "Como um utilizador anónimo, você não pode enviar links externos. Por favor, registe-se para criar uma conta.",
 	"flow-preview-warning": "Esta é uma pré-visualização. Grave o formulário para publicar ou clique em \"Continuar a editar\" para continuar a escrever.",
 	"flow-preview-return-edit-post": "Continuar a editar",
 	"flow-anonymous": "Anónimo"

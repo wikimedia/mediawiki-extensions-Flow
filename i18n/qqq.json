@@ -8,7 +8,8 @@
 			"Raymond",
 			"Shirayuki",
 			"Siebrand",
-			"Withoutaname"
+			"Withoutaname",
+			"Robby"
 		]
 	},
 	"flow-desc": "{{desc|name=Flow|url=http://www.mediawiki.org/wiki/Extension:Flow}}",
@@ -338,5 +339,5 @@
 	"flow-spam-confirmedit": "Error message when ConfirmEdit flagged the submitted content (because an anonymous user submitted external links, possibly spam). This will prevent the content from being submitted.",
 	"flow-preview-warning": "\"Keep editing\" is {{msg-mw|Flow-preview-return-edit-post}}.",
 	"flow-preview-return-edit-post": "Used as text for a button that hides previewed text and returns to the editing view",
-	"flow-anonymous": "Anonymous"
+	"flow-anonymous": "{{Identical|Anonymous}}"
 }

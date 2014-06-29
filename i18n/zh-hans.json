@@ -290,7 +290,7 @@
 	"flow-terms-of-use-edit": "保存您的更改，即表示您认同本wiki的使用条款。",
 	"flow-anon-warning": "您尚未登录。要收到带您名字而不是您IP地址的署名，您可以[$1 登录]或[$2 注册一个账户]。",
 	"flow-cancel-warning": "您在此表单中输入了文字。您确定要放弃它？",
-	"flow-topic-participants-second-try": "$1{{PLURAL:$2|0=|与$2位其他参与者}}开启此话题",
+	"flow-topic-participants-second-try": "{{PLURAL:$2|0=$1|与$2位其他参与者}}开启此话题",
 	"flow-topic-count-sidebar": "显示附加于此页面的$2个主题中的$1",
 	"flow-topic-count": "主题（$1）",
 	"flow-topic-comment-count": "$1条{{PLURAL:$1|评论}}",

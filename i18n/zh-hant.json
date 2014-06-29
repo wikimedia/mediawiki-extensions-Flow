@@ -150,5 +150,6 @@
 	"flow-moderation-intro-delete-topic": "請{{GENDER:$3|說明}}為何您要刪除此主題。",
 	"flow-terms-of-use-new-topic": "通過點擊「{{int:flow-newtopic-save}}」，您同意此wiki之使用條款。",
 	"flow-terms-of-use-reply": "通過點擊「{{int:flow-reply-submit}}」，您同意此wiki之使用條款。",
-	"flow-terms-of-use-edit": "通過保存您的更改，您同意此wiki之使用條款。"
+	"flow-terms-of-use-edit": "通過保存您的更改，您同意此wiki之使用條款。",
+	"flow-preview-warning": "您在檢視預覽。遞送表單即可發表，或點按「繼續編輯」以繼續。"
 }

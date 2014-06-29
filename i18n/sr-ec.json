@@ -6,6 +6,9 @@
 		]
 	},
 	"flow-edit-header-link": "Уреди заглавље",
+	"flow-hide-post-content": "Овај коментар је {{GENDER:$1|сакрио|сакрила}} $1",
+	"flow-hide-title-content": "Ову тему је {{GENDER:$1|сакрио|сакрила}} $1",
+	"flow-delete-post-content": "Овај коментар је {{GENDER:$1|обрисао|обрисала}} $1",
 	"flow-post-actions": "Радње",
 	"flow-topic-actions": "Радње",
 	"flow-cancel": "Откажи",
@@ -17,6 +20,7 @@
 	"flow-post-action-delete-post": "Обриши",
 	"flow-post-action-hide-post": "Сакриј",
 	"flow-post-action-edit-post": "Уреди",
+	"flow-post-action-edit-post-submit": "Сачувај измене",
 	"flow-topic-action-edit-title": "Уреди наслов",
 	"flow-topic-action-history": "Историја",
 	"flow-edit-post-submit": "Сачувај",

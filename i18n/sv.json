@@ -282,7 +282,7 @@
 	"flow-terms-of-use-edit": "Genom att spara dina ändringar godkänner du användarvillkoren för denna wiki.",
 	"flow-anon-warning": "Du är inte inloggad. För att få erkännande med ditt namn istället för din IP-adress kan du [$1 logga in] eller [$2 skapa ett konto].",
 	"flow-cancel-warning": "Du har skrivit in text i denna formulär. Är du säker på att du vill överge den?",
-	"flow-topic-participants-second-try": "$1 startade detta ämne{{PLURAL:$2|0=|1=, med 1 annan deltagare|, med $2 andra deltagare}}",
+	"flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 startade detta ämne|1=$1 startade detta ämne och det fanns en annan deltagare|$1 startade detta ämne och det fanns $2 andra deltagare}}",
 	"flow-topic-count-sidebar": "Visar $1 av $2 ämnen kopplade till denna sida",
 	"flow-topic-count": "Ämnen ($1)",
 	"flow-topic-comment-count": "$1 {{PLURAL:$1|kommentar|kommentarer}}",
