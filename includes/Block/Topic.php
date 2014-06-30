@@ -387,9 +387,6 @@ class TopicBlock extends AbstractBlock {
 		case 'reply':
 		case 'moderate-topic':
 		case 'close-open-topic':
-		case 'hide-post':
-		case 'delete-post':
-		case 'suppress-post':
 		case 'restore-post':
 		case 'moderate-post':
 		case 'edit-title':
@@ -499,9 +496,6 @@ class TopicBlock extends AbstractBlock {
 		switch( $this->action ) {
 		case 'edit-post':
 		case 'moderate-post':
-		case 'hide-post':
-		case 'delete-post':
-		case 'suppress-post':
 		case 'restore-post':
 		case 'reply':
 			return false;
