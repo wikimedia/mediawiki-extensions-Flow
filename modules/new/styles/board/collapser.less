@@ -1,6 +1,7 @@
 @import 'mediawiki.mixins';
 @import 'flow.colors';
 @import 'flow.helpers';
+@import 'flow.variables';
 
 // Collapser states
 // Hide the other two collapser buttons initially; these are toggled by a single click
@@ -50,7 +51,7 @@ div.flow-topic-collapsed {
 		}
 
 		.flow-topic-titlebar {
-			padding: .5em 1.5em;
+			padding: .5em @topicIndent;
 
 			.flow-author,
 			.flow-topic-meta {

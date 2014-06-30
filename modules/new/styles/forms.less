@@ -1,6 +1,7 @@
 @import 'mediawiki.mixins';
 @import 'flow.colors';
 @import 'flow.helpers';
+@import 'flow.variables';
 
 .client-nojs {
 	.flow-reply-form,
@@ -93,7 +94,7 @@
 		margin-bottom: 0;
 	}
 	textarea.mw-ui-input {
-		padding-left: 1.5em;
+		padding-left: @topicIndent;
 		border-top-width: 0;
 	}
 	// Make the new topic input mimic new topic text

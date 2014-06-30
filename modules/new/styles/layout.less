@@ -1,6 +1,7 @@
 @import 'mediawiki.mixins';
 @import 'flow.colors';
 @import 'flow.helpers';
+@import 'flow.variables';
 
 // Keep a fixed spacing between each individual flow section
 .flow-newtopic-form,
@@ -190,7 +191,7 @@ div#bodyContent ul.flow-topic-navigation-fixed {
 // Topic title bar
 .flow-topic-titlebar {
 	position: relative;
-	padding: 1em 1.5em;
+	padding: 1em @topicIndent;
 	background: @colorGrayLightest;
 	border-radius: 3px;
 }
@@ -230,6 +231,8 @@ div#bodyContent {
 }
 
 .flow-topic-summary {
+	border-top: 1px dotted @colorGrayLightest;
+	margin-top: 12px;
 	font-style: italic;
 }
 
@@ -278,7 +281,7 @@ div#bodyContent {
 
 	// Nested comments (replies & reply forms)
 	.flow-replies {
-		margin-left: 1.5em;
+		margin-left: @topicIndent;
 		padding-left: 0.5em;
 		border-left: 1px dotted @colorGrayLighter;
 
@@ -299,14 +302,17 @@ div#bodyContent {
 	.flow-post-main,
 	.flow-reply-form,
 	.flow-edit-post-form {
-		// leave room for highlighting
-		padding-left: 0.75em;
+		padding-left: @topicIndent;
 	}
 
 	// Highlights a post (no IE6 support, but acceptable degradation)
-	&.flow-post-highlighted > .flow-post-main {
-		border-left-color: @colorHighlight;
-	}
+	&.flow-post-highlighted {
+		 > .flow-post-main {
+			 @highlightedIndent: @topicIndent - 0.75em;
+			 padding-left: @highlightedIndent;
+			 border-left: solid @highlightedIndent @colorHighlight;
+		}
+	} 
 
 	// Content of comments
 	.flow-post-content {

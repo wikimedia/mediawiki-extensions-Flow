@@ -3,8 +3,19 @@
 @import 'flow.helpers';
 
 // Visually mark moderated comments and posts
-// @todo: Needs design input
-.flow-post-moderated,
 .flow-topic-moderated {
-	opacity: .4;
+	color: @colorTextLight;
+
+	.flow-topic-titlebar {
+		background-color: white;
+		border: solid 1px @colorGrayLight;
+	}
+
+	&.flow-topic-collapsed .flow-author {
+		display: none;
+	}
+}
+
+.flow-post-moderated {
+	color: @colorTextLight;
 }
