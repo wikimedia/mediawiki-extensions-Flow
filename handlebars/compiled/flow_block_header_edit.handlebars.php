@@ -6,7 +6,7 @@
             'spvar' => true,
             'debug' => $debugopt,
         ),
-        'helpers' => Array(            'TermsOfUse' => 'Flow\TemplateHelper::TermsOfUse',
+        'helpers' => Array(            'termsOfUse' => 'Flow\TemplateHelper::termsOfUse',
             'l10n' => 'Flow\TemplateHelper::l10n',
             'previewButton' => 'Flow\TemplateHelper::previewButton',
 ),
@@ -19,7 +19,7 @@
     return '<div class="flow-board-header">
 	<div class="flow-board-header-edit-view">
 		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
-	<ul class="flow-errors">
+	<ul class="flow-errors error">
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
 			<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
 		';}).'
@@ -43,7 +43,7 @@
 					data-role="cancel"
 					class="flow-ui-button flow-ui-destructive
 					flow-ui-quiet flow-click-interactive">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
-				<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'TermsOfUse', Array('edit'), 'encq').'</small>
+				<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'termsOfUse', Array('edit'), 'encq').'</small>
 			</div>
 		</form>
 	</div>

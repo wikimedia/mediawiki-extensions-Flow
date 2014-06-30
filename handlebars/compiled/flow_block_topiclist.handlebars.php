@@ -6,7 +6,8 @@
             'spvar' => true,
             'debug' => $debugopt,
         ),
-        'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
+        'helpers' => Array(            'termsOfUse' => 'Flow\TemplateHelper::termsOfUse',
+            'l10n' => 'Flow\TemplateHelper::l10n',
             'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
             'timestamp' => 'Flow\TemplateHelper::timestamp',
             'post' => 'Flow\TemplateHelper::post',
@@ -93,7 +94,7 @@
 				class="flow-ui-button flow-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-save'), 'encq').'</button>
 			'.LCRun3::ch($cx, 'previewButton', Array('flow_post'), 'encq').'
 			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
-			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-new-topic'), 'encq').'</small>
+			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'termsOfUse', Array('new-topic'), 'encq').'</small>
 		</div>
 	</form>
 ' : '').'
@@ -343,7 +344,7 @@
 			'.LCRun3::ch($cx, 'previewButton', Array('flow_post'), 'encq').'
 			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
 
-			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-reply'), 'encq').'</small>
+			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'termsOfUse', Array('reply'), 'encq').'</small>
 		</div>
 	</form>
 ' : '').'
