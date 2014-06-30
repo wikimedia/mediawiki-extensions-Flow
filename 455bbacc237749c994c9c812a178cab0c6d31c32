@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_2c60819f",
+        "filename": "includes/Templating.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-06-30T22:45:44Z",
+      "side": 1,
+      "message": "Not sure about this usage of a static variable. Everything else looks okay though.",
+      "revId": "455bbacc237749c994c9c812a178cab0c6d31c32",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
