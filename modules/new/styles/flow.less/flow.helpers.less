@@ -1,9 +1,11 @@
 // Cross-browser Helpers
 
+// @todo: Revisit this. See https://gerrit.wikimedia.org/r/72212
 .box-shadow( @value ) {
 	-webkit-box-shadow: @value; // Android 2.3+, iOS 4.0.2-4.2, Safari 3-4
 	box-shadow:         @value; // Chrome 6+, Firefox 4+, IE 9+, iOS 5+, Opera 10.50+
 }
+// @todo: Consolidate with mobile and move this mixin to core. Both MobileFrontend and Flow are using it.
 .transition ( @value ) {
 	-webkit-backface-visibility: hidden; // fixes Chrome 1px movement bug
 	-webkit-transition:          @value;
@@ -12,10 +14,3 @@
 	-o-transition:               @value;
 	transition:                  @value;
 }
-
-// Misc to be removed
-#bodyContent {
-	// typography refresh
-	font-size: .875em;
-}
-
