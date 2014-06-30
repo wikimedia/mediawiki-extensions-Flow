@@ -90,6 +90,11 @@ class Workflow {
 	 */
 	protected $title;
 
+	/**
+	 * @var Title
+	 */
+	protected $ownerTitle;
+
 	const STATE_LOCKED = 'locked';
 
 	/**
@@ -123,6 +128,7 @@ class Workflow {
 		$obj->definitionId = UUID::create( $row['workflow_definition_id'] );
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
 
+
 		return $obj;
 	}
 
@@ -146,6 +152,7 @@ class Workflow {
 			'workflow_last_update_timestamp' => $obj->lastModified,
 			// not used, but set it to empty string so it doesn't fail in strict mode
 			'workflow_name' => '',
+
 		);
 	}
 
@@ -167,8 +174,6 @@ class Workflow {
 		}
 
 		$obj = new self;
-		// Probably unnecessary to create id up front?
-		// simpler in prototype to give everything an id up front?
 		$obj->id = UUID::create();
 		$obj->isNew = true; // has not been persisted
 		$obj->wiki = $definition->getWiki();
@@ -185,6 +190,8 @@ class Workflow {
 	}
 
 	/**
+	 * Return the title this workflow responds at
+	 *
 	 * @return Title
 	 * @throws CrossWikiException
 	 */
@@ -192,31 +199,54 @@ class Workflow {
 		if ( $this->title ) {
 			return $this->title;
 		}
-		if ( $this->wiki !== wfWikiId() ) {
-			throw new CrossWikiException( 'Interwiki to ' . $this->wiki . ' not implemented ', 'default' );
-		}
-		$cache = self::getTitleCache();
-		$key = implode( '|', array( $this->wiki, $this->namespace, $this->titleText ) );
-		if ( $cache->has( $key ) ) {
-			$this->title = $cache->get( $key );
+		// evil hax
+		if ( $this->type === 'topic' ) {
+			$namespace = NS_TOPIC;
+			$titleText = $this->id->getAlphadecimal();
 		} else {
-			$this->title = Title::makeTitleSafe( $this->namespace, $this->titleText );
-			if ( $this->title ) {
-				$cache->set( $key, $this->title );
-			}
+			$namespace = $this->namespace;
+			$titleText = $this->titleText;
 		}
+		return $this->title = self::getTitleCache( $this->wiki, $namespace, $titleText );
+	}
 
-		return $this->title;
+	/**
+	 * Return the title this workflow was created at
+	 *
+	 * @return Title
+	 * @throws CrossWikiException
+	 */
+	public function getOwnerTitle() {
+		if ( $this->ownerTitle ) {
+			return $this->ownerTitle;
+		}
+		return $this->ownerTitle = self::getTitleCache( $this->wiki, $this->namespace, $this->titleText );
 	}
 
 	/**
 	 * Can't use the title cache in Title class, it only operates on default namespace
 	 */
-	public static function getTitleCache() {
+	protected static function getTitleCache( $wiki, $namespace, $titleText ) {
+		if ( $wiki !== wfWikiId() ) {
+			throw new CrossWikiException( 'Interwiki to ' . $wiki . ' not implemented ', 'default' );
+		}
 		if ( self::$titleCache === null ) {
 			self::$titleCache = new \MapCacheLRU( 50 );
 		}
-		return self::$titleCache;
+
+		$key = implode( '|', array( $wiki, $namespace, $titleText ) );
+		if ( self::$titleCache->has( $key ) ) {
+			$title = self::$titleCache->get( $key );
+		} else {
+			$title = Title::makeTitleSafe( $namespace, $titleText );
+			if ( $title ) {
+				self::$titleCache->set( $key, $title );
+			} else {
+				die('wtf');
+			}
+		}
+
+		return $title;
 	}
 
 	/**
@@ -302,18 +332,7 @@ class Workflow {
 	 * @throws InvalidInputException
 	 */
 	public function matchesTitle( Title $title ) {
-		// Needs to be a non-strict comparison
-		if ( $title->getNamespace() != $this->namespace ) {
-			throw new InvalidInputException( 'namespace', 'invalid-input' );
-		}
-		if ( $title->getDBkey() !== $this->titleText ) {
-			throw new InvalidInputException( 'title', 'invalid-input' );
-		}
-		if ( $title->isLocal() ) {
-			return $this->wiki === wfWikiId();
-		} else {
-			return $this->wiki === $title->getTransWikiID();
-		}
+		return $this->getArticleTitle()->equals( $title );
 	}
 
 	/**
