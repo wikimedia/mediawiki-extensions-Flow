@@ -247,6 +247,12 @@ $wgAutoloadClasses['Flow\Actions\RestoreTopicAction'] = $dir . 'includes/Actions
 $wgAutoloadClasses['Flow\Actions\ViewAction'] = $dir . 'includes/Actions/ViewAction.php';
 $wgAutoloadClasses['Flow\Actions\ReplyAction'] = $dir . 'includes/Actions/ReplyAction.php';
 $wgAutoloadClasses['Flow\Actions\HistoryAction'] = $dir . 'includes/Actions/HistoryAction.php';
+$wgAutoloadClasses['Flow\Actions\ComparePostSummaryRevisionsAction'] = $dir . 'includes/Actions/ComparePostSummaryRevisionsAction.php';
+$wgAutoloadClasses['Flow\Actions\CompareHeaderRevisionsAction'] = $dir . 'includes/Actions/CompareHeaderRevisionsAction.php';
+$wgAutoloadClasses['Flow\Actions\ViewHeaderAction'] = $dir . 'includes/Actions/ViewHeaderAction.php';
+$wgAutoloadClasses['Flow\Actions\ComparePostRevisionsAction'] = $dir . 'includes/Actions/ComparePostRevisionsAction.php';
+$wgAutoloadClasses['Flow\Actions\PostSingleViewAction'] = $dir . 'includes/Actions/PostSingleViewAction.php';
+$wgAutoloadClasses['Flow\Actions\ViewTopicSummaryAction'] = $dir . 'includes/Actions/ViewTopicSummaryAction.php';
 
 // phpunit helper
 $wgAutoloadClasses['Flow\Tests\FlowTestCase'] = $dir . 'tests/FlowTestCase.php';
