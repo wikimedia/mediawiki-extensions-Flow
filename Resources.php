@@ -136,6 +136,13 @@ $wgResourceModules += array(
 			'flow-anonymous',
 			// Core messages needed
 			'blocklink',
+			// Terms of use
+			'flow-terms-of-use-new-topic',
+			'flow-terms-of-use-reply',
+			'flow-terms-of-use-edit',
+			'flow-terms-of-use-summarize',
+			'flow-terms-of-use-close-topic',
+			'flow-terms-of-use-reopen-topic',
 		),
 	),
 	'ext.flow.new.styles' => $flowResourceTemplate + array(

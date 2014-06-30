@@ -85,11 +85,6 @@ class FlowHooks {
 		if ( $wgFlowAbuseFilterGroup ) {
 			self::getAbuseFilter();
 		}
-
-		global $wgResourceModules;
-		foreach ( \Flow\TermsOfUse::getTerm() as $term ) {
-			$wgResourceModules['ext.flow.templating']['messages'][] = $term;
-		}
 	}
 
 	/**
@@ -557,17 +552,39 @@ class FlowHooks {
 	}
 
 	/**
-	 * Make the terms of use for editing messages available in JavaScript
+	 * Overwrite terms of use message if the overwrite exits
 	 *
-	 * @param array &$vars
-	 * @param OutputPage $out
+	 * @param string &$key
 	 * @return bool
 	 */
-	public static function onMakeGlobalVariablesScript( array &$vars, OutputPage $out ) {
-		if ( self::$occupationController->isTalkpageOccupied( $out->getTitle() ) ) {
-			$vars += array(
-				'flow_terms' => \Flow\TermsOfUse::getTerm()
-			);
+	public static function onMessageCacheGet( &$key ) {
+		global $wgResourceModules;
+
+		static $terms = array (
+			'flow-terms-of-use-new-topic' => null,
+			'flow-terms-of-use-reply' => null,
+			'flow-terms-of-use-edit' => null,
+			'flow-terms-of-use-summarize' => null,
+			'flow-terms-of-use-close-topic' => null,
+			'flow-terms-of-use-reopen-topic' => null
+		);
+
+		if ( !array_key_exists( $key, $terms ) ) {
+			return true;
+		}
+
+		if ( $terms[$key] === null ) {
+			$message = wfMessage( "wikimedia-$key" );
+			if ( $message->exists() ) {
+				$terms[$key] = "wikimedia-$key";
+				$wgResourceModules['ext.flow.templating']['messages'][] = "wikimedia-$key";
+			} else {
+				$terms[$key] = false;
+			}
+		}
+
+		if ( $terms[$key] ) {
+			$key = $terms[$key];
 		}
 		return true;
 	}
