@@ -63,7 +63,9 @@ class BoardHistoryBlock extends AbstractBlock {
 		$revisions = array();
 		foreach ( $history as $row ) {
 			$serialized = $formatter->formatApi( $row, $ctx );
-			$revisions[$serialized['revisionId']] = $serialized;
+			if ( $serialized ) {
+				$revisions[$serialized['revisionId']] = $serialized;
+			}
 		}
 
 		return array(
