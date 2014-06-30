@@ -33,7 +33,7 @@ class BoardContentHandler extends \ContentHandler {
 		$info = array();
 
 		if ( $content->getWorkflowId() ) {
-			$info['board-workflow'] = $content->getWorkflowId()->getAlphaDecimal();
+			$info['flow-workflow'] = $content->getWorkflowId()->getAlphaDecimal();
 		}
 
 		return FormatJson::encode( $info );
@@ -58,8 +58,8 @@ class BoardContentHandler extends \ContentHandler {
 			// Make a plain content object and then when we get a chance
 			// we can insert a proper object.
 			return $this->makeEmptyContent();
-		} elseif ( isset( $info['board-workflow'] ) ) {
-			$uuid = UUID::create( $info['board-workflow'] );
+		} elseif ( isset( $info['flow-workflow'] ) ) {
+			$uuid = UUID::create( $info['flow-workflow'] );
 		}
 
 		return new BoardContent( 'flow-board', $uuid );
