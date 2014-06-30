@@ -42,6 +42,10 @@ $wgExtensionCredits['other'][] = array(
 
 // Constants
 define( 'RC_FLOW', 142 ); // soon to be obsolete, random number chosen
+define( 'NS_TOPIC', 2600 );
+
+$wgExtraNamespaces[NS_TOPIC] = "Topic";
+$wgNamespacesWithSubpages[NS_TOPIC] = false;
 
 // Autoload
 $dir = __DIR__ . '/';
