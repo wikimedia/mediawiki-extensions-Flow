@@ -32,8 +32,8 @@ class BoardContent extends \AbstractContent {
 		}
 
 		if (
-			$this->workflow instanceof UUID ||
-			( $this->workflow instanceof Workflow && ! $this->workflow->isNew() )
+			$workflow instanceof UUID ||
+			( $workflow instanceof Workflow && !$workflow->isNew() )
 		) {
 			$this->workflow = $workflow;
 		}

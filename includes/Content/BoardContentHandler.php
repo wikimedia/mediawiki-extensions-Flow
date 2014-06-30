@@ -51,6 +51,7 @@ class BoardContentHandler extends \ContentHandler {
 	 */
 	public function unserializeContent( $blob, $format = null ) {
 		$info = FormatJson::decode( $blob, true );
+		$uuid = null;
 
 		if ( ! $info ) {
 			// For transition from wikitext-type pages
