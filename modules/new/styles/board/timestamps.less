@@ -1,0 +1,43 @@
+@import 'mediawiki.mixins';
+@import '../settings/colors';
+@import '../mixins/helpers';
+
+.flow-timestamp {
+	.box-sizing( border-box );
+	display: inline-block;
+	text-align: left;
+
+	.flow-timestamp-now {
+		display: none;
+	}
+	.flow-timestamp-ago {
+		display: block;
+	}
+}
+
+.flow-timestamp-ago,
+.flow-timestamp-now {
+	.box-sizing( border-box );
+	display: block;
+	position: relative;
+	line-height: 1em;
+}
+
+.flow-timestamp-ago {
+	margin-top: -1em;
+	line-height: 1em;
+}
+
+.client-js {
+	.flow-timestamp {
+
+		&:hover {
+			.flow-timestamp-now {
+				display: block;
+			}
+			.flow-timestamp-ago {
+				display: none;
+			}
+		}
+	}
+}
