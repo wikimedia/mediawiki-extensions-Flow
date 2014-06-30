@@ -1,0 +1,90 @@
+@import 'mediawiki.mixins';
+@import '../settings/colors';
+@import '../mixins/helpers';
+
+// Collapser states
+// Hide the other two collapser buttons initially; these are toggled by a single click
+.flow-board-navigation {
+	a.flow-board-collapser-compact,
+	a.flow-board-collapser-topics {
+		display: none;
+	}
+}
+
+// Overrides to the default expand/collapse state.  Only set when
+// necessary and removed when the page-level state changes
+// div is used to add specificity.
+
+div.flow-topic-expanded {
+	.flow-post,
+	.flow-reply-form {
+		display: block;
+	}
+}
+
+div.flow-topic-collapsed {
+	.flow-post,
+	.flow-reply-form {
+		display: none;
+	}
+}
+
+// In compact mode, posts are hidden by default, and the topic titlebar is minimized
+.flow-board-collapsed-compact {
+	.flow-board-navigation {
+		a.flow-board-collapser-compact {
+			display: inline-block;
+		}
+		a.flow-board-collapser-full {
+			display: none;
+		}
+	}
+
+	.flow-topic {
+		padding-bottom: 0;
+
+		// Needs additional specificity to override `div#content h2`
+		div#bodyContent & h2.flow-topic-title,
+		.flow-moderated-topic-title {
+			margin-bottom: 0;
+		}
+
+		.flow-topic-titlebar {
+			padding: .5em 1.5em;
+
+			.flow-author,
+			.flow-topic-meta {
+				display: none;
+			}
+		}
+
+		.flow-reply-count {
+			display: block;
+		}
+	}
+
+	.flow-post,
+	.flow-reply-form {
+		display: none;
+
+		&.flow-preview {
+			display: block;
+		}
+	}
+}
+// In topics mode, posts are hidden by default; only the topic titlebar is visible
+.flow-board-collapsed-topics {
+	.flow-board-navigation {
+		a.flow-board-collapser-topics {
+			display: inline-block;
+		}
+		a.flow-board-collapser-full {
+			display: none;
+		}
+	}
+
+	.flow-post,
+	.flow-reply-form {
+		display: none;
+	}
+}
