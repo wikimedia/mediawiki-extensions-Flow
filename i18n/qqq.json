@@ -340,5 +340,5 @@
 	"flow-preview-warning": "\"Keep editing\" is {{msg-mw|Flow-preview-return-edit-post}}.",
 	"flow-preview-return-edit-post": "Used as text for a button that hides previewed text and returns to the editing view",
 	"flow-anonymous": "{{Identical|Anonymous}}",
-	"flow-embedding-unsupported" : "Error message displayed if a user tries to transclude a Flow page."
+	"flow-embedding-unsupported": "Error message displayed if a user tries to transclude a Flow page."
 }

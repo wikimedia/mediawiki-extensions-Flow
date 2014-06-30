@@ -295,6 +295,7 @@
 	"flow-recent-topics": "Senaste aktiva ämnen",
 	"flow-sorting-tooltip": "Du läser just nu det nyaste ämnet först. Klicka för fler sorteringsalternativ.",
 	"flow-toggle-small-topics": "Byt till liten ämnesvy",
+	"flow-toggle-topics": "Byt till enbart ämnesvy",
 	"flow-toggle-topics-posts": "Byt till ämnes- och inläggsvy",
 	"flow-terms-of-use-summarize": "Genom att klicka på \"{{int:flow-summarize-topic-submit}}\" godkänner du användarvillkoren för denna wiki.",
 	"flow-terms-of-use-close-topic": "Genom att klicka på \"{{int:flow-close-topic-submit}}\" godkänner du användarvillkoren för denna wiki.",

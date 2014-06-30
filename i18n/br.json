@@ -24,14 +24,15 @@
 	"flow-reply-link": "{{GENDER:$1|Respont}}",
 	"flow-thank-link": "{{GENDER:$1|Trugarez}}",
 	"flow-post-edited": "Kemennadenn {{GENDER:$1|aozet}} gant $1 $2",
-	"flow-post-action-view": "Permalink",
+	"flow-post-action-view": "Peurliamm",
 	"flow-post-action-post-history": "Istor ar gemennadenn",
 	"flow-post-action-suppress-post": "Lemel",
 	"flow-post-action-delete-post": "Dilemel",
 	"flow-post-action-hide-post": "Kuzhat",
 	"flow-post-action-edit-post": "Aozañ ar gemennadenn",
+	"flow-post-action-edit-post-submit": "Enrollañ ar c'hemmoù",
 	"flow-post-action-restore-post": "Assevel ar gemennadenn",
-	"flow-topic-action-view": "Permalink",
+	"flow-topic-action-view": "Peurliamm",
 	"flow-topic-action-watchlist": "Roll evezhiañ",
 	"flow-topic-action-edit-title": "Kemmañ an titl",
 	"flow-topic-action-history": "Istor",
@@ -80,5 +81,7 @@
 	"flow-moderation-confirm-hide-topic": "Kuzhat",
 	"flow-moderation-confirm-unhide-topic": "Diguzhat",
 	"flow-topic-collapsed-one-line": "Gwel bihan",
-	"flow-topic-complete": "Gwel klok"
+	"flow-topic-complete": "Gwel klok",
+	"flow-load-more": "Kargañ muioc'h",
+	"flow-anonymous": "Dizanv"
 }
