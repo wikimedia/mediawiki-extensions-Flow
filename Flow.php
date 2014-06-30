@@ -227,19 +227,12 @@ $wgAutoloadClasses['Flow\Data\ReferenceRecorder'] = "$dir/includes/Data/Referenc
 
 // Actions
 $wgAutoloadClasses['Flow\Actions\FlowAction'] = $dir . 'includes/Actions/Action.php';
-$wgAutoloadClasses['Flow\Actions\CreateHeaderAction'] = $dir . 'includes/Actions/CreateHeaderAction.php';
 $wgAutoloadClasses['Flow\Actions\EditHeaderAction'] = $dir . 'includes/Actions/EditHeaderAction.php';
 $wgAutoloadClasses['Flow\Actions\CreateTopicAction'] = $dir . 'includes/Actions/CreateTopicAction.php';
 $wgAutoloadClasses['Flow\Actions\EditTopicAction'] = $dir . 'includes/Actions/EditTopicAction.php';
 $wgAutoloadClasses['Flow\Actions\EditTitleAction'] = $dir . 'includes/Actions/EditTitleAction.php';
 $wgAutoloadClasses['Flow\Actions\NewTopicAction'] = $dir . 'includes/Actions/NewTopicAction.php';
 $wgAutoloadClasses['Flow\Actions\EditPostAction'] = $dir . 'includes/Actions/EditPostAction.php';
-$wgAutoloadClasses['Flow\Actions\HidePostAction'] = $dir . 'includes/Actions/HidePostAction.php';
-$wgAutoloadClasses['Flow\Actions\HideTopicAction'] = $dir . 'includes/Actions/HideTopicAction.php';
-$wgAutoloadClasses['Flow\Actions\DeletePostAction'] = $dir . 'includes/Actions/DeletePostAction.php';
-$wgAutoloadClasses['Flow\Actions\DeleteTopicAction'] = $dir . 'includes/Actions/DeleteTopicAction.php';
-$wgAutoloadClasses['Flow\Actions\SuppressPostAction'] = $dir . 'includes/Actions/SuppressPostAction.php';
-$wgAutoloadClasses['Flow\Actions\SuppressTopicAction'] = $dir . 'includes/Actions/SuppressTopicAction.php';
 $wgAutoloadClasses['Flow\Actions\CloseTopicAction'] = $dir . 'includes/Actions/CloseTopicAction.php';
 $wgAutoloadClasses['Flow\Actions\RestorePostAction'] = $dir . 'includes/Actions/RestorePostAction.php';
 $wgAutoloadClasses['Flow\Actions\RestoreTopicAction'] = $dir . 'includes/Actions/RestoreTopicAction.php';
@@ -252,6 +245,9 @@ $wgAutoloadClasses['Flow\Actions\ViewHeaderAction'] = $dir . 'includes/Actions/V
 $wgAutoloadClasses['Flow\Actions\ComparePostRevisionsAction'] = $dir . 'includes/Actions/ComparePostRevisionsAction.php';
 $wgAutoloadClasses['Flow\Actions\PostSingleViewAction'] = $dir . 'includes/Actions/PostSingleViewAction.php';
 $wgAutoloadClasses['Flow\Actions\ViewTopicSummaryAction'] = $dir . 'includes/Actions/ViewTopicSummaryAction.php';
+$wgAutoloadClasses['Flow\Actions\EditTopicSummaryAction'] = $dir . 'includes/Actions/EditTopicSummaryAction.php';
+$wgAutoloadClasses['Flow\Actions\ModerateTopicAction'] = $dir . 'includes/Actions/ModerateTopicAction.php';
+$wgAutoloadClasses['Flow\Actions\ModeratePostAction'] = $dir . 'includes/Actions/ModeratePostAction.php';
 
 // phpunit helper
 $wgAutoloadClasses['Flow\Tests\FlowTestCase'] = $dir . 'tests/FlowTestCase.php';
