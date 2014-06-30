@@ -9,6 +9,9 @@ ANALYZE_EXTRA=../../includes/GlobalFunctions.php ../../includes/Defines.php ../.
 	../../includes/db/DatabaseUtility.php \
 	../Echo/formatters/BasicFormatter.php ../Echo/formatters/NotificationFormatter.php
 
+# mediawiki-vagarnt default to hhvm rather than php5, which is mostly
+# fine but really slow for commands like phplint
+PHP=/usr/bin/php5
 
 ###
 # Labs maintenance
@@ -47,7 +50,7 @@ messagecheck: remotes
 lint: jshint phplint checkless messagecheck
 
 phplint:
-	@find ./ -type f -iname '*.php' | xargs -P 12 -L 1 php -l
+	@find ./ -type f -iname '*.php' -print0 | xargs -0 -P 12 -L 1 php -l
 
 nodecheck:
 	@which npm > /dev/null && npm install \

@@ -178,17 +178,7 @@ class WikiReference extends Reference {
 	 * of generating a bunch of duplicate title classes.
 	 */
 	public static function makeTitle( $namespace, $title ) {
-		$cache = Workflow::getTitleCache();
-		$wiki = wfWikiId();
-		$key = implode( '|', array( $wiki, $namespace, $title ) );
-		if ( $cache->has( $key ) ) {
-			return $cache->get( $key );
-		}
-
-		$title = Title::makeTitle( $namespace, $title );
-		$cache->set( $key, $title );
-
-		return $title;
+		return Workflow::getFromTitleCache( wfWikiId(), $namespace, $title );
 	}
 
 	/**

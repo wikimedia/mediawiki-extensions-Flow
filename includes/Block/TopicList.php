@@ -129,8 +129,7 @@ class TopicListBlock extends AbstractBlock {
 			throw new FailCommitException( 'Invalid definition owns this TopicList, needs a valid topic_definition_id option assigned', 'fail-commit' );
 		}
 
-		$title = $this->workflow->getArticleTitle();
-		$topicWorkflow = Workflow::create( $topicDef, $this->user, $title );
+		$topicWorkflow = Workflow::create( $topicDef, $this->user, $this->workflow->getArticleTitle() );
 		$topicListEntry = TopicListEntry::create( $this->workflow, $topicWorkflow );
 		$topicPost = PostRevision::create( $topicWorkflow, $this->submitted['topic'] );
 
