@@ -634,7 +634,10 @@ class TopicBlock extends AbstractBlock {
 		$result = array();
 		foreach ( $found as $row ) {
 			$serialized = $serializer->formatApi( $row, $ctx );
-			$result[$serialized['revisionId']] = $serialized;
+			// if the user is not allowed to see this row it will return empty
+			if ( $serialized ) {
+				$result[$serialized['revisionId']] = $serialized;
+			}
 		}
 
 		return array(
