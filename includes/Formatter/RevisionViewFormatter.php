@@ -54,7 +54,7 @@ class RevisionViewFormatter {
 		if ( $row->revision->getPrevRevisionId() !== null ) {
 			$links['diff'] = array(
 				'url' => $this->urlGenerator->generateUrl(
-					$row->workflow->getArticleTitle(),
+					$row->workflow,
 					$row->diffAction,
 					array(
 						'workflow' => $row->workflow->getId()->getAlphadecimal(),

@@ -279,6 +279,7 @@ class TopicSummaryBlock extends AbstractBlock {
 				'errors' => array(),
 			);
 		}
+		$output['topicTitle'] = $templating->getContent( $this->findTopicTitle(), 'wikitext' );
 
 		switch ( $this->action ) {
 			case 'view-topic-summary':
