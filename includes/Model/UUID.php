@@ -96,6 +96,9 @@ class UUID {
 			throw new InvalidInputException( 'Expected ' . self::MIN_ALNUM_LEN . ' to ' . self::ALNUM_LEN . ' char alphanumeric string, got: ' . $value, 'invalid-input' );
 		}
 
+		if ( $format !== static::INPUT_BIN ) {
+			$value = strtolower( $value );
+		}
 		self::$instances[$format][$value] = $this;
 		$this->{$format} = $value;
 	}
