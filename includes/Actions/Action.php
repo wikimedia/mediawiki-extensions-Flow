@@ -6,10 +6,13 @@ use Action;
 use Article;
 use ErrorPageError;
 use Flow\Container;
+use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use Flow\View;
 use IContextSource;
 use Page;
+use Title;
+use WebRequest;
 use WikiPage;
 
 class FlowAction extends Action {
@@ -43,13 +46,18 @@ class FlowAction extends Action {
 			$output = $this->context->getOutput();
 		}
 
+
 		// Check if this is actually a Flow page.
 		if ( ! $this->page instanceof WikiPage && ! $this->page instanceof Article ) {
 			throw new ErrorPageError( 'nosuchaction', 'flow-action-unsupported' );
-		} elseif ( ! $occupationController->isTalkpageOccupied( $this->page->getTitle() ) ) {
+		}
+
+		$title = $this->page->getTitle();
+		if ( ! $occupationController->isTalkpageOccupied( $title ) ) {
 			throw new ErrorPageError( 'nosuchaction', 'flow-action-unsupported' );
 		}
 
+		// @todo much of this seems to duplicate BoardContent::getParserOutput
 		$view = new View(
 			$container['templating'],
 			$container['url_generator'],
@@ -57,14 +65,19 @@ class FlowAction extends Action {
 			$output
 		);
 
+		$request = $this->context->getRequest();
+
+		$workflowId = $this->detectWorkflowId( $title, $request );
+		$action = $request->getVal( 'action', 'view' );
+
 		try {
-			$request = $this->context->getRequest();
-
-			$workflowId = $request->getVal( 'workflow' );
-			$action = $request->getVal( 'action', 'view' );
-
 			$loader = $container['factory.loader.workflow']
-				->createWorkflowLoader( $this->page->getTitle(), UUID::create( $workflowId ) );
+				->createWorkflowLoader( $title, UUID::create( $workflowId ) );
+
+			if ( $title->getNamespace() === NS_TOPIC && $loader->getWorkflow()->getType() !== 'topic' ) {
+				// @todo better error handling
+				throw new FlowException( 'Invalid title: uuid is not a topic' );
+			}
 
 			if ( !$loader->getWorkflow()->isNew() ) {
 				// Workflow currently exists, make sure a revision also exists
@@ -72,9 +85,23 @@ class FlowAction extends Action {
 			}
 
 			$view->show( $loader, $action );
-		} catch( \Flow\Exception\FlowException $e ) {
+		} catch( FlowException $e ) {
 			$e->setOutput( $output );
 			throw $e;
 		}
+	}
+
+	protected function detectWorkflowId( Title $title, WebRequest $request ) {
+		if ( $title->getNamespace() === NS_TOPIC ) {
+			$uuid = UUID::create( $title->getText() );
+			if ( !$uuid ) {
+				// @todo better error handling
+				throw new FlowException( 'Invalid title: not a uuid' );
+			}
+		} else {
+			$uuid = UUID::create( $request->getVal( 'workflow' ) );
+		}
+
+		return $uuid;
 	}
 }
