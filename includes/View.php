@@ -163,13 +163,12 @@ class View extends ContextSource {
 	 *       e.g. "Hide post in <TITLE>", "Reopen <TITLE>", etc.
 	 */
 	protected function getPageTitle( Workflow $workflow, array $apiResponse ) {
-		switch( $workflow->getType() ) {
-			case 'topic':
-				$block = $apiResponse['blocks'][0];
-				return htmlspecialchars( $block['topicTitle'] );
-			case 'discussion':
-				return $workflow->getArticleTitle()->getPrefixedText();
+		$pageTitle = $workflow->getArticleTitle()->getPrefixedText();
+		if ( $workflow->getType() === 'topic' ) {
+			$pageTitle .= ' - ' . htmlspecialchars( $apiResponse['blocks'][0]['topicTitle'] );
 		}
+
+		return $pageTitle;
 	}
 
 	protected function redirect( Workflow $workflow ) {
