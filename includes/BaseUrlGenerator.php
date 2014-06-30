@@ -3,11 +3,13 @@
 namespace Flow;
 
 use Flow\Data\ObjectManager;
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\FlowException;
+use Closure;
 use Title;
 
 /**
@@ -31,12 +33,10 @@ abstract class BaseUrlGenerator {
 	protected $workflows = array();
 
 	/**
-	 * @param ObjectManager $workflowStorage
 	 * @param OccupationController $occupationController
 	 */
-	public function __construct( ObjectManager $workflowStorage, OccupationController $occupationController ) {
+	public function __construct( OccupationController $occupationController ) {
 		$this->occupationController = $occupationController;
-		$this->storage = $workflowStorage;
 	}
 
 	/**
@@ -45,7 +45,6 @@ abstract class BaseUrlGenerator {
 	public function withWorkflow( Workflow $workflow ) {
 		$this->workflows[$workflow->getId()->getAlphadecimal()] = $workflow;
 	}
-
 
 	/**
 	 * Builds a URL for a given title and action, with a query string.
@@ -131,17 +130,11 @@ abstract class BaseUrlGenerator {
 	 */
 	protected function resolveWorkflow( $workflow ) {
 		if ( $workflow instanceof UUID ) {
-			// Only way to know what title the workflow points at
-			$workflowId = $workflow;
-			if ( isset( $this->workflows[$workflowId->getAlphadecimal()] ) ) {
-				$workflow = $this->workflows[$workflowId->getAlphadecimal()];
-			} else {
-				$workflow = $this->storage->get( $workflowId );
-				if ( !$workflow ) {
-					throw new InvalidInputException( 'Invalid workflow: ' . $workflowId, 'invalid-workflow' );
-				}
-				$this->workflows[$workflowId->getAlphadecimal()] = $workflow;
+			$alpha = $workflow->getAlphadecimal();
+			if ( !isset( $this->workflows[$alpha] ) ) {
+				throw new InvalidInputException( 'Unloaded workflow: ' . $alpha , 'invalid-workflow' );
 			}
+			$workflow = $this->workflows[$alpha];
 		} elseif ( !$workflow instanceof Workflow ) {
 			// otherwise calling a method on $workflow will fatal error
 			throw new InvalidDataException( '$workflow is not UUID or Workflow instance' );
@@ -156,23 +149,18 @@ abstract class BaseUrlGenerator {
 	 * @throws FlowException
 	 */
 	protected function resolveTitle( Title $title = null, UUID $workflowId = null ) {
-		if ( $title ) {
+		if ( $title !== null ) {
 			return $title;
 		}
-
-		if ( $workflowId ) {
-			$alpha = $workflowId->getAlphadecimal();
-			if ( isset( $this->workflows[$alpha] ) ) {
-				return $this->workflows[$alpha]->getArticleTitle();
-			}
-			$workflow = $this->storage->get( $workflowId );
-			if ( !$workflow ) {
-				throw new FlowException( 'Could not locate workflow ' . $alpha );
-			}
-			$this->workflows[$alpha] = $workflow;
-			return $workflow->getArticleTitle();
+		if ( $workflowId === null ) {
+			throw new FlowException( 'No title or workflow given' );
 		}
 
-		throw new FlowException( 'No title or workflow given' );
+		$alpha = $workflowId->getAlphadecimal();
+		if ( !isset( $this->workflows[$alpha] ) ) {
+			throw new InvalidInputException( 'Unloaded workflow:' . $alpha, 'invalid-workflow' );
+		}
+
+		return $this->workflows[$alpha]->getArticleTitle();
 	}
 }
