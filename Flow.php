@@ -348,6 +348,11 @@ $wgAutoloadClasses['Flow\Exception\NoIndexException'] = $dir . 'includes/Excepti
 $wgAutoloadClasses['Flow\Exception\FailCommitException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\CrossWikiException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 
+// Register Flow import paths
+$wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths, array(
+	$dir . "modules/new/styles/flow.less/",
+) );
+
 // Configuration
 
 // URL for more information about the Flow notification system
