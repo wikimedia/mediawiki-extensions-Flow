@@ -39,12 +39,16 @@ $c['repository.tree'] = $c->share( function( $c ) {
 	);
 } );
 
-// Templating
-// (this implementation is mostly useless actually)
 $c['url_generator'] = $c->share( function( $c ) {
 	return new Flow\UrlGenerator(
-		$c['storage.workflow'],
 		$c['occupation_controller']
+	);
+} );
+// listener is attached to storage.workflow, it
+// notifies the url generator about all loaded workflows.
+$c['listener.url_generator'] = $c->share( function( $c ) {
+	return new Flow\Data\UrlGenerationListener(
+		$c['url_generator']
 	);
 } );
 
@@ -184,6 +188,7 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 		),
 		new Flow\Data\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] ),
 		$c['listener.occupation'],
+		$c['listener.url_generator']
 		// $c['storage.user_subs.user_index']
 	);
 
