@@ -5,8 +5,8 @@ namespace Flow\Actions;
 use IContextSource;
 use Page;
 
-class CloseTopicAction extends FlowAction {
+class PostSingleViewAction extends FlowAction {
 	function __construct( Page $page, IContextSource $context ) {
-		parent::__construct( $page, $context, 'close-open-topic' );
+		parent::__construct( $page, $context, 'single-view' );
 	}
 }

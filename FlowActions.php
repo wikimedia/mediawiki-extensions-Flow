@@ -95,7 +95,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-create-topic-summary',
 		),
-		'handler-class' => 'Flow\Actions\CreateTopicAction',
+		'handler-class' => 'Flow\Actions\EditTopicSummaryAction',
 	),
 
 	'edit-topic-summary' => array(
@@ -121,7 +121,7 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-edit-topic-summary',
 		),
-		'handler-class' => 'Flow\Actions\EditTopicAction',
+		'handler-class' => 'Flow\Actions\EditTopicSummaryAction',
 	),
 
 	'edit-title' => array(
@@ -608,6 +608,31 @@ $wgFlowActions = array(
 		'button-method' => 'GET',
 		'history' => array(), // views don't generate history
 		'handler-class' => 'Flow\Actions\HistoryAction',
+	),
+
+	// Actions not tied to a particular revision change_type
+	// or just move these to a different file
+	'close-open-topic' => array(
+		'handler-class' => 'Flow\Actions\CloseTopicAction',
+	),
+	'compare-header-revisions' => array(
+		'handler-class' => 'Flow\Actions\CompareHeaderRevisionsAction',
+	),
+	'view-header' => array(
+		'handler-class' => 'Flow\Actions\ViewHeaderAction',
+	),
+	'compare-post-revisions' => array(
+		'handler-class' => 'Flow\Actions\ComparePostRevisionsAction',
+	),
+	// @todo - This is a very bad action name, consolidate with view-post action
+	'single-view' => array(
+		'handler-class' => 'Flow\Actions\PostSingleViewAction',
+	),
+	'view-topic-summary' => array(
+		'handler-class' => 'Flow\Actions\ViewTopicSummaryAction',
+	),
+	'compare-postsummary-revisions' => array(
+		'handler-class' => 'Flow\Actions\ComparePostSummaryRevisionsAction',
 	),
 
 	// log & all other formatters have same config as history
