@@ -289,7 +289,7 @@
 		}
 
 		// Generate a GUID for this element to find it later
-		guid = FlowHandlebars.prototype.generateUID();
+		guid = (Math.random() + 1 ).toString( 36 ).substring( 2 );
 
 		// Store this in the timestamps auto-updater array
 		_timestamp.list.push( { guid: guid, timestamp: timestamp, str: str, failcount: 0 } );
