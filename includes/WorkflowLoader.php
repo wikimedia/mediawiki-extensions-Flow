@@ -18,6 +18,7 @@ use Flow\Exception\CrossWikiException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidActionException;
+use Title;
 use WebRequest;
 
 class WorkflowLoader {
@@ -105,14 +106,11 @@ class WorkflowLoader {
 		return $this->workflow;
 	}
 
-	protected function loadWorkflow( \Title $title ) {
+	protected function loadWorkflow( Title $title ) {
 		global $wgUser;
 		$storage = $this->storage->getStorage( 'Workflow');
 
-		$definition = $this->loadDefinition();
-		if ( !$definition->getOption( 'unique' ) ) {
-			throw new InvalidDataException( 'Workflow is non-unique, can only fetch object by title + id', 'fail-load-data' );
-		}
+		$definition = $this->loadDefinition( $title );
 
 		$found = $storage->find( array(
 			'workflow_definition_id' => $definition->getId(),
@@ -120,8 +118,12 @@ class WorkflowLoader {
 			'workflow_namespace' => $title->getNamespace(),
 			'workflow_title_text' => $title->getDBkey(),
 		) );
+
 		if ( $found ) {
 			$workflow = reset( $found );
+		} elseif ( $title->getNamespace() === NS_TOPIC ) {
+			var_dump( $definition );die();
+			throw new InvalidInputException( 'Requested topic does not exist' );
 		} else {
 			$workflow = Workflow::create( $definition, $wgUser, $title );
 		}
@@ -145,7 +147,7 @@ class WorkflowLoader {
 		return array( $workflow, $definition );
 	}
 
-	protected function loadDefinition() {
+	protected function loadDefinition( Title $title ) {
 		global $wgFlowDefaultWorkflow;
 
 		$repo = $this->storage->getStorage( 'Definition' );
@@ -155,19 +157,26 @@ class WorkflowLoader {
 			if ( $definition === null ) {
 				throw new InvalidInputException( "Unknown flow id '$id' requested", 'invalid-input' );
 			}
-		} else {
-			$workflowName = $id ? $id : $wgFlowDefaultWorkflow;
-			$found = $repo->find( array(
-				'definition_name' => strtolower( $workflowName ),
-				'definition_wiki' => wfWikiId(),
-			) );
-			if ( $found ) {
-				$definition = reset( $found );
-			} else {
-				throw new InvalidInputException( "Unknown flow type '$workflowName' requested", 'invalid-input' );
-			}
+			return $definition;
 		}
-		return $definition;
+
+		if ( $id ) {
+			$workflowName = $id;
+		} elseif ( $title->getNamespace() === NS_TOPIC ) {
+			$workflowName = 'topic';
+		} else {
+			$workflowName = $wgFlowDefaultWorkflow;
+		}
+
+		$found = $repo->find( array(
+			'definition_name' => strtolower( $workflowName ),
+			'definition_wiki' => wfWikiId(),
+		) );
+		if ( !$found ) {
+			throw new InvalidInputException( "Unknown flow type '$workflowName' requested", 'invalid-input' );
+		}
+
+		return reset( $found );
 	}
 
 	/**

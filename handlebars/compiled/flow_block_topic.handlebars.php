@@ -38,15 +38,8 @@
 ' : '').'
 </div>
 
-	<div class="flow-board-link plainlinks">
-		'.((LCRun3::ifvar($cx, ((is_array($in['board']) && isset($in['board']['is_user_namespace'])) ? $in['board']['is_user_namespace'] : null))) ? '
-			'.LCRun3::ch($cx, 'l10nParse', Array('flow-topic-permalink-warning-user-board',((is_array($in['board']) && isset($in['board']['title_text'])) ? $in['board']['title_text'] : null),((is_array($in['board']) && isset($in['board']['link'])) ? $in['board']['link'] : null)), 'encq').'
-		' : '
-			'.LCRun3::ch($cx, 'l10nParse', Array('flow-topic-permalink-warning',((is_array($in['board']) && isset($in['board']['title_prefixed_text'])) ? $in['board']['title_prefixed_text'] : null),((is_array($in['board']) && isset($in['board']['link'])) ? $in['board']['link'] : null)), 'encq').'
-		').'
-	</div>
-	<div class="flow-topics">
-		
+
+	
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 	
 	'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
