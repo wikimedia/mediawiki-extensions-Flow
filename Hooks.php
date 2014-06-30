@@ -31,8 +31,12 @@ class FlowHooks {
 			global $wgFlowOccupyNamespaces,
 				$wgFlowOccupyPages;
 
+			// NS_TOPIC is always occupied
+			$namespaces = $wgFlowOccupyNamespaces;
+			$namespaces[] = NS_TOPIC;
+
 			self::$occupationController = new TalkpageManager(
-				$wgFlowOccupyNamespaces,
+				array_unique( $namespaces ),
 				$wgFlowOccupyPages
 			);
 		}
@@ -160,6 +164,9 @@ class FlowHooks {
 
 		require_once __DIR__.'/maintenance/FlowPopulateLinksTables.php';
 		$updater->addPostDatabaseUpdateMaintenance( 'FlowPopulateLinksTables' );
+
+		require_once __DIR__.'/.maintenance/FlowUpdateWorkflowForContentHandler.php';
+		$updater->addPostDatabaseUpdateMaintenance( 'FlowUpdateWorkflowForContentHandler.php' );
 
 		return true;
 	}
@@ -293,6 +300,15 @@ class FlowHooks {
 				if ( !in_array( $action, $wgFlowCoreActionWhitelist ) ) {
 					unset( $links['actions'][$action] );
 				}
+			}
+
+			if ( isset( $links['namespaces']['topic_talk'] ) ) {
+				// hide discussion page in Topic namespace(which is already discussion)
+				unset( $links['namespaces']['topic_talk'] );
+				// hide protection (topic protection is done via moderation)
+				unset( $links['actions']['protect'] );
+				// topic pages are also not movable
+				unset( $links['actions']['move'] );
 			}
 		}
 

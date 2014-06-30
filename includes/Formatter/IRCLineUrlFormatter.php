@@ -126,6 +126,9 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 			$row = array(
 				'rev_type_id' => $change['post'],
 				'tree_rev_id' => $change['revision'],
+				// unknown values
+				'tree_orig_user_id' => null,
+				'tree_parent_id' => null,
 			);
 			break;
 
@@ -147,6 +150,13 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 			'rev_id' => $change['revision'],
 			'rev_change_type' => $change['action'],
 			'rev_parent_id' => $change['prev_revision'],
+			// unknown values
+			'rev_mod_timestamp' => null,
+			'rev_mod_user_id' => null,
+			'rev_mod_state' => null,
+			'rev_content' => null,
+			'rev_flags' => null,
+			'rev_user_id' => null,
 		) );
 	}
 
@@ -156,6 +166,12 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 			'workflow_title_text' => $rc->getAttribute( 'rc_title' ),
 			'workflow_namespace' => $rc->getAttribute( 'rc_namespace' ),
 			'workflow_wiki' => wfWikiId(),
+			// unknown values
+			'workflow_page_id' => null,
+			'workflow_last_update_timestamp' => null,
+			'workflow_definition_id' => null,
+			'workflow_lock_state' => null,
+			'workflow_user_id' => null,
 		) );
 	}
 }
