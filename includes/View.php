@@ -6,6 +6,7 @@ use Flow\Exception\InvalidActionException;
 use Flow\Model\Workflow;
 use Html;
 use IContextSource;
+use Linker;
 use Message;
 use ContextSource;
 
@@ -122,7 +123,13 @@ class View extends ContextSource {
 			throw new InvalidActionException( "No blocks accepted action: $action" );
 		}
 
-		$out->setPageTitle( $this->getPageTitle( $workflow, $apiResponse ) );
+		if ( $workflow->getType() === 'topic' ) {
+			$out->setPageTitle( '' );
+			$out->setHtmlTitle( htmlspecialchars( $apiResponse['blocks'][0]['topicTitle'] ) );
+			$out->setSubtitle( '&lt; ' . Linker::link( $workflow->getOwnerTitle() ) );
+		} else {
+			$out->setPageTitle( $this->getPageTitle( $workflow, $apiResponse ) );
+		}
 
 		array_walk_recursive( $apiResponse, function( &$value ) {
 			if ( $value instanceof Anchor ) {
@@ -163,13 +170,7 @@ class View extends ContextSource {
 	 *       e.g. "Hide post in <TITLE>", "Reopen <TITLE>", etc.
 	 */
 	protected function getPageTitle( Workflow $workflow, array $apiResponse ) {
-		switch( $workflow->getType() ) {
-			case 'topic':
-				$block = $apiResponse['blocks'][0];
-				return htmlspecialchars( $block['topicTitle'] );
-			case 'discussion':
-				return $workflow->getArticleTitle()->getPrefixedText();
-		}
+		return $workflow->getArticleTitle()->getPrefixedText();
 	}
 
 	protected function redirect( Workflow $workflow ) {
