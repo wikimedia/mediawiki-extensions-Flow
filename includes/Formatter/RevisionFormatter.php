@@ -79,6 +79,11 @@ class RevisionFormatter {
 	protected $messages = array();
 
 	/**
+	 * @var array
+	 */
+	protected $userLinks = array();
+
+	/**
 	 * @param RevisionActionPermissions $permissions
 	 * @param Templating $templating
 	 * @param UserNameBatch $usernames
@@ -227,6 +232,9 @@ class RevisionFormatter {
 	 */
 	public function serializeUserLinks( $userData ) {
 		$name = $userData['name'];
+		if ( isset( $this->userLinks[$name] ) ) {
+			return $this->userLinks[$name];
+		}
 		$userTitle = \Title::newFromText( $name, NS_USER );
 		$talkPageTitle = $userTitle->getTalkPage();
 		$blockTitle = \SpecialPage::getTitleFor( 'Block', $name );
@@ -253,7 +261,7 @@ class RevisionFormatter {
 			);
 		}
 
-		return $links;
+		return $this->userLinks[$name] = $links;
 	}
 
 	public function serializeUser( $userWiki, $userId, $userIp ) {
