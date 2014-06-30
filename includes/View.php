@@ -6,6 +6,7 @@ use Flow\Exception\InvalidActionException;
 use Flow\Model\Workflow;
 use Html;
 use IContextSource;
+use Linker;
 use Message;
 use ContextSource;
 
@@ -122,8 +123,6 @@ class View extends ContextSource {
 			throw new InvalidActionException( "No blocks accepted action: $action" );
 		}
 
-		$out->setPageTitle( $this->getPageTitle( $workflow, $apiResponse ) );
-
 		array_walk_recursive( $apiResponse, function( &$value ) {
 			if ( $value instanceof Anchor ) {
 				$value = $value->toArray();
@@ -132,6 +131,8 @@ class View extends ContextSource {
 			}
 		} );
 		wfProfileOut( __CLASS__ . '-serialize' );
+
+		$this->setPageTitle( $workflow, $apiResponse );
 
 		// Update newtalk and watchlist notification status on view action of any workflow
 		// since the normal page view that resets notification status is not accessiable
@@ -156,19 +157,19 @@ class View extends ContextSource {
 	}
 
 	/**
-	 * Get the title for the page, either the Flow board or the topic.
+	 * Set the title for the page, either the Flow board or the topic.
 	 *
-	 * @return string A suitable title XXX with HTML entities escaped.
 	 * @todo Provide more informative page title for actions other than view,
 	 *       e.g. "Hide post in <TITLE>", "Reopen <TITLE>", etc.
 	 */
-	protected function getPageTitle( Workflow $workflow, array $apiResponse ) {
-		switch( $workflow->getType() ) {
-			case 'topic':
-				$block = $apiResponse['blocks'][0];
-				return htmlspecialchars( $block['topicTitle'] );
-			case 'discussion':
-				return $workflow->getArticleTitle()->getPrefixedText();
+	protected function setPageTitle( Workflow $workflow, array $apiResponse ) {
+		$out = $this->getOutput();
+		if ( $workflow->getType() === 'topic' ) {
+			$out->setPageTitle( '' );
+			$out->setHtmlTitle( htmlspecialchars( $apiResponse['blocks'][0]['topicTitle'] ) );
+			$out->setSubtitle( '&lt; ' . Linker::link( $workflow->getOwnerTitle() ) );
+		} else {
+			$out->setPageTitle( $workflow->getArticleTitle()->getFullText() );
 		}
 	}
 
