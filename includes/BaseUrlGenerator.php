@@ -3,11 +3,13 @@
 namespace Flow;
 
 use Flow\Data\ObjectManager;
+use Flow\Model\PostRevision;
 use Flow\Model\UUID;
 use Flow\Model\Workflow;
 use Flow\Exception\InvalidDataException;
 use Flow\Exception\InvalidInputException;
 use Flow\Exception\FlowException;
+use Closure;
 use Title;
 
 /**
@@ -26,17 +28,29 @@ abstract class BaseUrlGenerator {
 	protected $storage;
 
 	/**
+	 * @var Closure Returns an ObjectManager instance capable of retrieving
+	 *   Workflow models. Takes no parameters.
+	 */
+	protected $storageLazyLoad;
+
+	/**
 	 * @var Workflow[] Cached array of already loaded workflows
 	 */
 	protected $workflows = array();
 
 	/**
-	 * @param ObjectManager $workflowStorage
+	 * @var PostRevision[] Cached array of already loaded title revisions
+	 */
+	protected $topicTitles;
+
+	/**
+	 * @param Closure $storageLazyLoad Closure that when called returns an ObjectManager
+	 *   instance capable of retreiving Workflow models. Takes no parameters.
 	 * @param OccupationController $occupationController
 	 */
-	public function __construct( ObjectManager $workflowStorage, OccupationController $occupationController ) {
+	public function __construct( Closure $storageLazyLoad, OccupationController $occupationController ) {
 		$this->occupationController = $occupationController;
-		$this->storage = $workflowStorage;
+		$this->storageLazyLoad = $storageLazyLoad;
 	}
 
 	/**
@@ -46,6 +60,9 @@ abstract class BaseUrlGenerator {
 		$this->workflows[$workflow->getId()->getAlphadecimal()] = $workflow;
 	}
 
+	public function withTopicTitle( PostRevision $revision ) {
+		$this->topicTitles[$revision->getPostId()->getAlphadecimal()] = $revision;
+	}
 
 	/**
 	 * Builds a URL for a given title and action, with a query string.
@@ -136,7 +153,7 @@ abstract class BaseUrlGenerator {
 			if ( isset( $this->workflows[$workflowId->getAlphadecimal()] ) ) {
 				$workflow = $this->workflows[$workflowId->getAlphadecimal()];
 			} else {
-				$workflow = $this->storage->get( $workflowId );
+				$workflow = $this->getStorage()->get( $workflowId );
 				if ( !$workflow ) {
 					throw new InvalidInputException( 'Invalid workflow: ' . $workflowId, 'invalid-workflow' );
 				}
@@ -165,7 +182,7 @@ abstract class BaseUrlGenerator {
 			if ( isset( $this->workflows[$alpha] ) ) {
 				return $this->workflows[$alpha]->getArticleTitle();
 			}
-			$workflow = $this->storage->get( $workflowId );
+			$workflow = $this->getStorage()->get( $workflowId );
 			if ( !$workflow ) {
 				throw new FlowException( 'Could not locate workflow ' . $alpha );
 			}
@@ -174,5 +191,17 @@ abstract class BaseUrlGenerator {
 		}
 
 		throw new FlowException( 'No title or workflow given' );
+	}
+
+	/**
+	 * Storage is lazy-loaded to break a constructor cycle, essentially we
+	 * need the Workflow storage, but Workflow storage has a listener that
+	 * needs the url generator
+	 */
+	protected function getStorage() {
+		if ( !$this->storage ) {
+			$this->storage = call_user_func( $this->storageLazyLoad );
+		}
+		return $this->storage;
 	}
 }

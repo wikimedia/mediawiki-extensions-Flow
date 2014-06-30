@@ -166,10 +166,19 @@ class Workflow {
 			throw new DataModelException( 'Title and Definition are from separate wikis', 'process-data' );
 		}
 
+		return self::createReal( $definition, $user, $title );
+	}
+
+	static public function createNamespaced( Definition $definition, User $user, $ns ) {
+		$id = UUID::create();
+		$title = Title::newFromText( $id->getAlphadecimal(), $ns );
+
+		return self::createReal( $definition, $user, $title, $id );
+	}
+
+	static protected function createReal( Definition $definition, User $user, Title $title, UUID $id ) {
 		$obj = new self;
-		// Probably unnecessary to create id up front?
-		// simpler in prototype to give everything an id up front?
-		$obj->id = UUID::create();
+		$obj->id = $id;
 		$obj->isNew = true; // has not been persisted
 		$obj->wiki = $definition->getWiki();
 		$obj->type = $definition->getType();
@@ -306,7 +315,8 @@ class Workflow {
 		if ( $title->getNamespace() != $this->namespace ) {
 			throw new InvalidInputException( 'namespace', 'invalid-input' );
 		}
-		if ( $title->getDBkey() !== $this->titleText ) {
+		$dbKey = $title->getDBkey();
+		if ( $dbKey !== $this->titleText ) {
 			throw new InvalidInputException( 'title', 'invalid-input' );
 		}
 		if ( $title->isLocal() ) {
