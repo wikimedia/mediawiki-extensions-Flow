@@ -16,6 +16,24 @@
       "revId": "455bbacc237749c994c9c812a178cab0c6d31c32",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_cc6e9593",
+        "filename": "includes/Templating.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-06-30T22:55:46Z",
+      "side": 1,
+      "message": "this particular bit of code is going away so didn\u0027t want to spend much time engineering it properly.  It currently exists to support the various pages(contribs,recent changes,history,check user, etc) that render a revision as a single line",
+      "parentUuid": "ae43a74e_2c60819f",
+      "revId": "455bbacc237749c994c9c812a178cab0c6d31c32",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
