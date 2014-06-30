@@ -1,0 +1,22 @@
+@import 'mediawiki.mixins';
+@import 'settings/colors';
+@import 'mixins/helpers';
+
+// @todo: Find better home for this css
+
+.client-js {
+	// API interaction indicator
+	.flow-api-inprogress {
+		opacity: 0.5;
+		cursor: wait !important;
+	}
+
+		// A preview version of a given block
+	.flow-preview {
+		cursor: help;
+	}
+
+	.flow-preview-target-hidden {
+		display: none !important;
+	}
+}

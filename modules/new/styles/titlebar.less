@@ -1,0 +1,24 @@
+@import 'mediawiki.mixins';
+@import 'settings/colors';
+@import 'mixins/helpers';
+
+// Show that the topic titlebar is clickable
+.flow-topic-titlebar {
+	outline: none;
+
+	// ...but only in JS mode
+	.client-js & {
+		cursor: pointer;
+	}
+
+	// Render a shadow
+	&:hover,
+	&:focus {
+		.box-shadow( ~"inset 0 -1px 0px 1px @{colorGrayLighter}, 0 1px 1px @{colorGrayLightest}" );
+	}
+
+	// Fade out the posts to show they will disappear
+	&:hover + .flow-post {
+		opacity: .85;
+	}
+}
