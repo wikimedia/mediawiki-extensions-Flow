@@ -35,12 +35,11 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 		// if nothing could render, we'll consider that an error (at least some
 		// block should've been able to render a GET request)
 		if ( !$output[$action]['result'] ) {
-			$output[$action] = array(
-				'status' => 'error',
-				'result' => array(
-					'message' => 'No block was able to render the request',
-					'extra' => array(),
-				)
+			$this->getResult()->dieUsage(
+				wfMessage( 'flow-error-no-render' )->parse(),
+				'no-render',
+				200,
+				array()
 			);
 		} else {
 			$blocks = array_keys($output[$action]['result']);
