@@ -42,6 +42,10 @@ $wgExtensionCredits['other'][] = array(
 
 // Constants
 define( 'RC_FLOW', 142 ); // soon to be obsolete, random number chosen
+define( 'NS_TOPIC', 2600 );
+
+$wgExtraNamespaces[NS_TOPIC] = "Topic";
+$wgNamespacesWithSubpages[NS_TOPIC] = false;
 
 // Autoload
 $dir = __DIR__ . '/';
@@ -159,6 +163,7 @@ $wgAutoloadClasses['Flow\Data\FeatureCompactor'] = $dir . 'includes/Data/Feature
 $wgAutoloadClasses['Flow\Data\ShallowCompactor'] = $dir . 'includes/Data/ShallowCompactor.php';
 $wgAutoloadClasses['Flow\Data\Merger'] = $dir . 'includes/Data/Merger.php';
 $wgAutoloadClasses['Flow\Data\RawSql'] = $dir . 'includes/Data/RawSql.php';
+$wgAutoloadClasses['Flow\Data\UrlGenerationListener'] = $dir . 'includes/Data/UrlGenerationListener.php';
 $wgAutoloadClasses['Flow\Log\Logger'] = $dir . 'includes/Log/Logger.php';
 $wgAutoloadClasses['Flow\Log\Formatter'] = $dir . 'includes/Log/Formatter.php';
 $wgAutoloadClasses['Flow\Log\PostModerationLogger'] = $dir . 'includes/Log/PostModerationLogger.php';

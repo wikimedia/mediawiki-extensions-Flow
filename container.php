@@ -43,8 +43,15 @@ $c['repository.tree'] = $c->share( function( $c ) {
 // (this implementation is mostly useless actually)
 $c['url_generator'] = $c->share( function( $c ) {
 	return new Flow\UrlGenerator(
-		$c['storage.workflow'],
+		function() use ( $c ) {
+			return $c['storage.workflow'];
+		},
 		$c['occupation_controller']
+	);
+} );
+$c['listener.url_generator'] = $c->share( function( $c ) {
+	return new Flow\Data\UrlGenerationListener(
+		$c['url_generator']
 	);
 } );
 
@@ -184,6 +191,7 @@ $c['storage.workflow'] = $c->share( function( $c ) {
 		),
 		new Flow\Data\WorkflowTopicListListener( $c['storage.topic_list'], $c['topic_list.last_updated.index'] ),
 		$c['listener.occupation'],
+		$c['listener.url_generator']
 		// $c['storage.user_subs.user_index']
 	);
 
@@ -437,6 +445,7 @@ $c['storage.post.lifecycle-handlers'] = $c->share( function( $c ) {
 		// using TreeRepository for extra information and stuffing it into topic_root while indexing
 		$c['storage.topic_history.index'],
 		$c['reference.recorder'],
+		$c['listener.url_generator']
 	);
 } );
 $c['storage.post.mapper'] = $c->share( function( $c ) {
