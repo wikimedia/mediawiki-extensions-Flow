@@ -118,6 +118,38 @@ abstract class ApiFlowBase extends ApiBase {
 		);
 	}
 
+	/**
+	 * Kill the request if errors were encountered.
+	 * Only the first error will be output:
+	 * * dieUsage only outputs one error - we could add more as $extraData, but
+	 *   that would mean we'd have to check for flow-specific errors differently
+	 * * most of our code just quits on the first error that's encountered, so
+	 *   outputting all encountered errors might still not cover everything
+	 *   that's wrong with the request
+	 *
+	 * @param array $blocks
+	 */
+	protected function processError( $blocks ) {
+		foreach( $blocks as $block ) {
+			if ( $block->hasErrors() ) {
+				$errors = $block->getErrors();
+
+				foreach( $errors as $key ) {
+					$this->getResult()->dieUsage(
+						$block->getErrorMessage( $key )->parse(),
+						$key,
+						200,
+						// additional info for this message (e.g. to be used to
+						// enable recovery from error, like returning the most
+						// recent revision ID to re-submit content in the case
+						// of edit conflict)
+						array( $key => $block->getErrorExtra( $key ) )
+					);
+				}
+			}
+		}
+	}
+
 	public function getHelpUrls() {
 		return array(
 			'https://www.mediawiki.org/wiki/Extension:Flow/API#' . $this->getAction(),
