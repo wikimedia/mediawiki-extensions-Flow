@@ -12,6 +12,11 @@ use Flow\Exception\InvalidInputException;
 class Workflow {
 
 	/**
+	 * @var MapCacheLRU
+	 */
+	private static $titleCache;
+
+	/**
 	 * @var UUID
 	 */
 	protected $id;
@@ -80,6 +85,11 @@ class Workflow {
 	 */
 	protected $lastModified;
 
+	/**
+	 * @var Title
+	 */
+	protected $title;
+
 	const STATE_LOCKED = 'locked';
 
 	/**
@@ -112,6 +122,7 @@ class Workflow {
 		$obj->lockState = $row['workflow_lock_state'];
 		$obj->definitionId = UUID::create( $row['workflow_definition_id'] );
 		$obj->lastModified = $row['workflow_last_update_timestamp'];
+
 		return $obj;
 	}
 
@@ -178,10 +189,34 @@ class Workflow {
 	 * @throws CrossWikiException
 	 */
 	public function getArticleTitle() {
+		if ( $this->title ) {
+			return $this->title;
+		}
 		if ( $this->wiki !== wfWikiId() ) {
 			throw new CrossWikiException( 'Interwiki to ' . $this->wiki . ' not implemented ', 'default' );
 		}
-		return Title::makeTitleSafe( $this->namespace, $this->titleText );
+		$cache = self::getTitleCache();
+		$key = implode( '|', array( $this->wiki, $this->namespace, $this->titleText ) );
+		if ( $cache->has( $key ) ) {
+			$this->title = $cache->get( $key );
+		} else {
+			$this->title = Title::makeTitleSafe( $this->namespace, $this->titleText );
+			if ( $this->title ) {
+				$cache->set( $key, $this->title );
+			}
+		}
+
+		return $this->title;
+	}
+
+	/**
+	 * Can't use the title cache in Title class, it only operates on default namespace
+	 */
+	public static function getTitleCache() {
+		if ( self::$titleCache === null ) {
+			self::$titleCache = new \MapCacheLRU( 50 );
+		}
+		return self::$titleCache;
 	}
 
 	/**

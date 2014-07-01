@@ -143,9 +143,13 @@ class Templating {
 		// if this specific revision is moderated, its usertext can always be
 		// displayed, since it will be the moderator user
 		if ( $revision->isModerated() || $this->permissions->isAllowed( $revision, 'view' ) ) {
+			static $cache;
 			$userid = $revision->getUserId();
+			if ( isset( $cache[$userid] ) ) {
+				return $cache[$userid];
+			}
 			$username = $this->usernames->get( wfWikiId(), $revision->getUserId(), $revision->getUserIp() );
-			return Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
+			return $cache[$userid] = Linker::userLink( $userid, $username ) . Linker::userToolLinks( $userid, $username );
 		} else {
 			$revision = $this->getModeratedRevision( $revision );
 			$state = $revision->getModerationState();

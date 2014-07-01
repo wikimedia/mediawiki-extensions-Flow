@@ -158,8 +158,8 @@ class WikiReference extends Reference {
 		$workflow = UUID::create( $row['ref_src_workflow_id'] );
 		$objectType = $row['ref_src_object_type'];
 		$objectId = UUID::create( $row['ref_src_object_id'] );
-		$srcTitle = Title::makeTitle( $row['ref_src_namespace'], $row['ref_src_title'] );
-		$targetTitle = Title::makeTitle( $row['ref_target_namespace'], $row['ref_target_title'] );
+		$srcTitle = self::makeTitle( $row['ref_src_namespace'], $row['ref_src_title'] );
+		$targetTitle = self::makeTitle( $row['ref_target_namespace'], $row['ref_target_title'] );
 		$type = $row['ref_type'];
 
 		return new WikiReference( $workflow, $srcTitle, $objectType, $objectId, $type, $targetTitle );
@@ -171,6 +171,24 @@ class WikiReference extends Reference {
 	 */
 	public static function toStorageRow( WikiReference $object ) {
 		return $object->getStorageRow();
+	}
+
+	/**
+	 * Many loaded references typically point to the same Title, cache those instead
+	 * of generating a bunch of duplicate title classes.
+	 */
+	public static function makeTitle( $namespace, $title ) {
+		$cache = Workflow::getTitleCache();
+		$wiki = wfWikiId();
+		$key = implode( '|', array( $wiki, $namespace, $title ) );
+		if ( $cache->has( $key ) ) {
+			return $cache->get( $key );
+		}
+
+		$title = Title::makeTitle( $namespace, $title );
+		$cache->set( $key, $title );
+
+		return $title;
 	}
 
 	/**
