@@ -2,6 +2,7 @@
 	<form class="flow-post flow-reply-form" data-flow-initial-state="collapsed" method="POST" action="{{actions.reply.url}}">
 	    <input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 		<input type="hidden" name="topic_replyTo" value="{{postId}}" />
+		{{> flow_errors }}
 
 		{{#ifAnonymous}}
 			{{> flow_anon_warning }}
