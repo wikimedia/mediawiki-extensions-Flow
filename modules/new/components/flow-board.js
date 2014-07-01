@@ -284,21 +284,29 @@
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.board = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$errorTarget = flowBoard.$container.find( '.flow-board-navigation' ),
 				$rendered;
 
-			if ( info.status === 'done' ) {
-				$rendered = $(
-					flowBoard.TemplateEngine.processTemplateGetFragment(
-						'flow_block_loop',
-						{ blocks: data.flow[ 'view-topiclist' ].result }
-					)
-				).children();
-
-				// Reinitialize the whole board with these nodes
-				flowBoard.reinitializeBoard( $rendered );
-			} else {
-				// @todo fail
+			// Generic error handling only works on forms; the interactive
+			// element here is the header div that should be replaced, so let's
+			// take care of displaying the error ourselves.
+			// @todo: error handling should probably be made more generic
+			// @todo: errorify me
+			FlowBoardComponent.UI.removeError( $errorTarget );
+			if ( info.status !== 'done' ) {
+				FlowBoardComponent.UI.showError( $errorTarget, jqxhr.error.info );
+				return;
 			}
+
+			$rendered = $(
+				flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_block_loop',
+					{ blocks: data.flow[ 'view-topiclist' ].result }
+				)
+			).children();
+
+			// Reinitialize the whole board with these nodes
+			flowBoard.reinitializeBoard( $rendered );
 		};
 
 		/**
@@ -310,36 +318,42 @@
 		FlowBoardComponent.UI.events.apiHandlers.loadMore = function ( info, data, jqxhr ) {
 			var $this = $( this ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				$errorTarget = flowBoard.$container.find( '.flow-topics' ),
 				$tmp;
 
-			if ( info.status === 'done' ) {
-				// Success
-				// Render topiclist template
-				$this.before(
-					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
-						'flow_topiclist_loop',
-						data.flow[ 'view-topiclist' ].result.topiclist
-					) ).children()
-				);
-				// Run loadHandlers
-				FlowBoardComponent.UI.makeContentInteractive( $tmp );
-
-				// Render load more template
-				$this.replaceWith(
-					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
-						'flow_load_more',
-						data.flow[ 'view-topiclist' ].result.topiclist
-					) ).children()
-				);
-
-				// Run loadHandlers
-				FlowBoardComponent.UI.makeContentInteractive( $tmp );
-
-				// Remove the old load button (necessary if the above load_more template returns nothing)
-				$this.remove();
-			} else {
-				// @todo fail
+			// Generic error handling only works on forms; the interactive
+			// element here is the header div that should be replaced, so let's
+			// take care of displaying the error ourselves.
+			// @todo: error handling should probably be made more generic
+			FlowBoardComponent.UI.removeError( $errorTarget );
+			if ( info.status !== 'done' ) {
+				FlowBoardComponent.UI.showError( $errorTarget, jqxhr.error.info );
+				return;
 			}
+
+			// Render topiclist template
+			$this.before(
+				$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_topiclist_loop',
+					data.flow[ 'view-topiclist' ].result.topiclist
+				) ).children()
+			);
+			// Run loadHandlers
+			FlowBoardComponent.UI.makeContentInteractive( $tmp );
+
+			// Render load more template
+			$this.replaceWith(
+				$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_load_more',
+					data.flow[ 'view-topiclist' ].result.topiclist
+				) ).children()
+			);
+
+			// Run loadHandlers
+			FlowBoardComponent.UI.makeContentInteractive( $tmp );
+
+			// Remove the old load button (necessary if the above load_more template returns nothing)
+			$this.remove();
 		};
 
 		/**
