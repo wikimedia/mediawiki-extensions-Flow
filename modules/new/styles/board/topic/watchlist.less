@@ -1,0 +1,57 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+@import 'flow.helpers';
+@import 'flow.variables';
+
+.flow-topic-watchlist {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	a {
+		display: inline-block;
+		*display: inline;
+		zoom: 1;
+		padding: .25em .5em;
+
+		&.flow-ui-active {
+			// Active mode shows the full star
+			.wikiglyph-unstar {
+				display: none;
+			}
+			.wikiglyph-star {
+				display: inline-block;
+				*display: inline;
+				zoom: 1;
+			}
+
+			// Invert on hover when already subscribed
+			&:hover {
+				.wikiglyph-unstar {
+					display: inline-block;
+					*display: inline;
+					zoom: 1;
+				}
+				.wikiglyph-star {
+					display: none;
+				}
+			}
+		}
+
+		// Inactive mode shows the star outline
+		.wikiglyph-star {
+			display: none;
+		}
+		// Invert on hover
+		&:hover {
+			.wikiglyph-unstar {
+				display: none;
+			}
+			.wikiglyph-star {
+				display: inline-block;
+				*display: inline;
+				zoom: 1;
+			}
+		}
+	}
+}
