@@ -92,6 +92,7 @@ class FlowAction extends Action {
 
 	protected function detectWorkflowId( Title $title, WebRequest $request ) {
 		if ( $title->getNamespace() === NS_TOPIC ) {
+echo $title->getText();
 			$uuid = UUID::create( $title->getText() );
 			if ( !$uuid ) {
 				// @todo better error handling
