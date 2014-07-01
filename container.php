@@ -52,6 +52,13 @@ $c['listener.url_generator'] = $c->share( function( $c ) {
 	);
 } );
 
+$c['watched_items'] = $c->share( function( $c ) {
+	return new Flow\WatchedItems(
+		$c['user'],
+		$c['db.factory']
+	);
+} );
+
 $c['link_batch'] = $c->share( function() {
 	return new LinkBatch;
 } );
@@ -692,7 +699,8 @@ $c['query.topiclist'] = $c->share( function( $c ) {
 	return new Flow\Formatter\TopicListQuery(
 		$c['storage'],
 		$c['repository.tree'],
-		$c['permissions']
+		$c['permissions'],
+		$c['watched_items']
 	);
 } );
 $c['query.topic.history'] = $c->share( function( $c ) {

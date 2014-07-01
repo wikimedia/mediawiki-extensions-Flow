@@ -161,6 +161,7 @@ class TopicListBlock extends AbstractBlock {
 			$storage->put( $this->firstPost );
 		}
 
+		$this->notificationController->subscribeToTopic( $this->user, $this->topicWorkflow );
 		$this->notificationController->notifyNewTopic( array(
 			'board-workflow' => $this->workflow,
 			'topic-workflow' => $this->topicWorkflow,
