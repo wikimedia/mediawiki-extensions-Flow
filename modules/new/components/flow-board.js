@@ -519,8 +519,7 @@
 			}
 		};
 
-		/*
-		 *
+		/**
 		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
@@ -535,27 +534,26 @@
 				$oldTopicTitleBar, $newTopicTitleBar,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this );
 
-			if ( data && data.flow && data.flow['edit-title'] && data.flow['edit-title'].status === 'ok' ) {
-				$oldTopicTitleBar = $topic.find( '.flow-topic-titlebar' );
-				topicData = data.flow['edit-title'].result.topic;
-				rootId = topicData.roots[0];
-				revisionId = topicData.posts[rootId][0];
-				$newTopicTitleBar = $( flowBoard.TemplateEngine.processTemplateGetFragment(
-					'flow_topic_titlebar',
-					topicData.revisions[revisionId]
-				) ).children();
-
-				$oldTopicTitleBar
-					.replaceWith( $newTopicTitleBar );
-
-				FlowBoardComponent.UI.makeContentInteractive( $newTopicTitleBar );
-
-				$newTopicTitleBar.conditionalScrollIntoView();
-
-			} else {
-				// @todo
-				alert( "Error" );
+			if ( info.status !== 'done' ) {
+				// @todo: we should tackle edit conflicts here; jqhxr.error should hold the required revision id
+				return;
 			}
+
+			$oldTopicTitleBar = $topic.find( '.flow-topic-titlebar' );
+			topicData = data.flow['edit-title'].result.topic;
+			rootId = topicData.roots[0];
+			revisionId = topicData.posts[rootId][0];
+			$newTopicTitleBar = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+				'flow_topic_titlebar',
+				topicData.revisions[revisionId]
+			) ).children();
+
+			$oldTopicTitleBar
+				.replaceWith( $newTopicTitleBar );
+
+			FlowBoardComponent.UI.makeContentInteractive( $newTopicTitleBar );
+
+			$newTopicTitleBar.conditionalScrollIntoView();
 		};
 
 		/**
