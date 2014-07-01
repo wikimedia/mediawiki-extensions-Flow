@@ -14,6 +14,10 @@ Given(/^I click the Reopen topic button$/) do
   on(FlowPage).topic_reopen_button_element.when_present.click
 end
 
+When(/^I click the Summarize link$/) do
+  on(FlowPage).topic_summarize_button_element.when_present.click
+end
+
 When(/^I type "(.*?)" as the reason$/) do |reason|
   on(FlowPage).topic_close_form_reason_element.when_present.clear()
   # Focus textarea so that any menus that have been clicked lose their focus. In Chrome these might disrupt the test as

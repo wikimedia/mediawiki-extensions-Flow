@@ -47,7 +47,7 @@ When(/^I click New topic save$/) do
 end
 
 When(/^I click the Topic Actions link$/) do
-  on(FlowPage).topic_actions_link_element.when_present.click
+  on(FlowPage).topic_actions_link_element.click
 end
 
 When(/^I create a (.+) in Flow new topic$/) do |flow_title|

@@ -107,6 +107,9 @@ class FlowPage
   a(:topic_reopen_button) do |page|
     page.topic_actions_menu_element.link_element(title: "Reopen topic")
   end
+  a(:topic_summarize_button) do |page|
+    page.topic_actions_menu_element.link_element(title: "Summarize")
+  end
 
   ## Close topic workflow
   form(:topic_close_form, css: ".flow-edit-form")
