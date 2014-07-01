@@ -22,10 +22,19 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		$request = $this->getModifiedRequest();
 		$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
 
-		// If none of the blocks could process this submission, fail
+		// See if any of the blocks generated an error (in which case the
+		// request will terminate with an the error message)
+		$this->processError( $blocks );
+
+		// If nothing was committed, we'll consider that an error (at least some
+		// block should've been able to process the POST request)
 		if ( !count( $blocksToCommit ) ) {
-			$this->processError( $blocks );
-			return;
+			$this->getResult()->dieUsage(
+				wfMessage( 'flow-error-no-commit' )->parse(),
+				'no-commit',
+				200,
+				array()
+			);
 		}
 
 		$loader->commit( $workflow, $blocksToCommit );
@@ -61,38 +70,6 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		} );
 
 		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );
-	}
-
-	/**
-	 * Kill the request if errors were encountered.
-	 * Only the first error will be output:
-	 * * dieUsage only outputs one error - we could add more as $extraData, but
-	 *   that would mean we'd have to check for flow-specific errors differently
-	 * * most of our code just quits on the first error that's encountered, so
-	 *   outputting all encountered errors might still not cover everything
-	 *   that's wrong with the request
-	 *
-	 * @param array $blocks
-	 */
-	protected function processError( $blocks ) {
-		foreach( $blocks as $block ) {
-			if ( $block->hasErrors() ) {
-				$errors = $block->getErrors();
-
-				foreach( $errors as $key ) {
-					$this->getResult()->dieUsage(
-						$block->getErrorMessage( $key )->parse(),
-						$key,
-						200,
-						// additional info for this message (e.g. to be used to
-						// enable recovery from error, like returning the most
-						// recent revision ID to re-submit content in the case
-						// of edit conflict)
-						array( $key => $block->getErrorExtra( $key ) )
-					);
-				}
-			}
-		}
 	}
 
 	public function mustBePosted() {
