@@ -28,7 +28,7 @@
     );
     return '
 <div class="flow-board-navigation">
-	
+
 	<div class="flow-board-navigation-inner">
 		'.LCRun3::hbch($cx, 'progressiveEnhancement', Array('insertionType'=>'insertion','sectionId'=>'flow-board-collapsers'), $in, function($cx, $in) {return '
 			<a href="#collapser/full"    data-flow-interactive-handler="collapserToggle" class="flow-board-collapser-compact flow-board-navigator-right flow-board-navigator-cap"><span class="wikiglyph wikiglyph-stripe-compact flow-ui-tooltip-target" title="'.LCRun3::ch($cx, 'l10n', Array('flow-toggle-topics-posts'), 'encq').'"></span></a>
@@ -37,7 +37,7 @@
 
 		';}).'
 
-		
+
 		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="'.LCRun3::ch($cx, 'l10n', Array('flow-sorting-tooltip'), 'encq').'" data-flow-interactive-handler="boardFilterMenuToggle">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'), $in, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array('flow-recent-topics'), 'encq').'
 			';}, function($cx, $in) {return '
@@ -68,7 +68,7 @@
 
 <div class="flow-board">
 	<ul class="flow-topic-navigation" style="display:none;">
-	
+
 </ul>
 
 	'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['newtopic'])) ? $in['actions']['newtopic'] : null))) ? '
@@ -118,7 +118,7 @@
 
 	<div class="flow-topics">
 		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
-	
+
 	'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
 		<div class="flow-topic '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? 'flow-load-interactive' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated flow-topic-collapsed' : '').'" id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-load-handler="topicElement">
 	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
@@ -140,18 +140,34 @@
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">'.htmlentities(((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
 
-'.LCRun3::wi($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null), $in, function($cx, $in) {return '
-	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['content'])) ? $in['content'] : null))) ? '
-	<div class="flow-topic-summary">
-		'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
-	</div>
-' : '
-	
-	<script type="text/plain" class="flow-topic-summary"></script>
-').'
-';}).'
+<div class="flow-topic-summary">
+	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
+		'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['summaryFormat'])) ? $in['summaryFormat'] : null),((is_array($in) && isset($in['summary'])) ? $in['summary'] : null)), 'encq').'
+	' : '').'
+</div>
+<div class="flow-topic-edit-summary">
+
+</div>
+
 
 	'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
+		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['watchable'])) ? $in['watchable'] : null))) ? '
+			<div class="flow-topic-watchlist">
+					'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isAlwaysWatched'])) ? $in['isAlwaysWatched'] : null))) ? '
+						<div
+							class="flow-ui-quiet flow-ui-thin flow-topic-watchlist-unwatchable">
+							<span class="wikiglyph wikiglyph-star'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isWatched'])) ? $in['isWatched'] : null))) ? ' flow-topic-watched' : '').'"></span>
+						</div>
+					' : '
+						<a
+							href="'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isWatched'])) ? $in['isWatched'] : null))) ? ''.htmlentities(((is_array($in['links']['unwatch-topic']) && isset($in['links']['unwatch-topic']['url'])) ? $in['links']['unwatch-topic']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['links']['watch-topic']) && isset($in['links']['watch-topic']['url'])) ? $in['links']['watch-topic']['url'] : null), ENT_QUOTES, 'UTF-8').'').'"
+							class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin flow-topic-watchlist-link"
+							data-flow-interactive-handler="watchTopic">
+							<span class="wikiglyph wikiglyph-star '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isWatched'])) ? $in['isWatched'] : null))) ? 'flow-topic-watched' : 'flow-topic-unwatched').'"></span>
+						</a>
+					').'
+			</div>
+		' : '').'
 		<div class="flow-menu">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 			<ul class="flow-ui-button-container">
