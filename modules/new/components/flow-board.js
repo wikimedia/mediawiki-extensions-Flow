@@ -350,31 +350,36 @@
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.activateEditHeader = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$errorTarget = $( this ).closest( '.flow-board-header' ),
 				$oldBoardNodes,
 				$rendered;
 
-			if ( info.status === 'done' ) {
-				// Change "header" to "header_edit" so that it loads up flow_block_header_edit
-				data.flow[ 'view-header' ].result.header.type = 'header_edit';
-
-				$rendered = $(
-					flowBoard.TemplateEngine.processTemplateGetFragment(
-						'flow_block_loop',
-						{ blocks: data.flow[ 'view-header' ].result }
-					)
-				).children();
-
-				// Set the cancel callback on this form so that it returns the old content back if needed
-				flowBoardComponentAddCancelCallback( $rendered.find( 'form' ), function () {
-					flowBoard.reinitializeBoard( $oldBoardNodes );
-				} );
-
-				// Reinitialize the whole board with these nodes, and hold onto the replaced header
-				$oldBoardNodes = flowBoard.reinitializeBoard( $rendered );
-			} else {
-				// @todo fail
-				alert('fail');
+			// Generic error handling only works on forms; the interactive
+			// element here is the header div that should be replaced, so let's
+			// take care of displaying the error ourselves.
+			// @todo: error handling should probably be made more generic
+			FlowBoardComponent.UI.removeError( $errorTarget );
+			if ( info.status !== 'done' ) {
+				return;
 			}
+
+			// Change "header" to "header_edit" so that it loads up flow_block_header_edit
+			data.flow[ 'view-header' ].result.header.type = 'header_edit';
+
+			$rendered = $(
+				flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_block_loop',
+					{ blocks: data.flow[ 'view-header' ].result }
+				)
+			).children();
+
+			// Set the cancel callback on this form so that it returns the old content back if needed
+			flowBoardComponentAddCancelCallback( $rendered.find( 'form' ), function () {
+				flowBoard.reinitializeBoard( $oldBoardNodes );
+			} );
+
+			// Reinitialize the whole board with these nodes, and hold onto the replaced header
+			$oldBoardNodes = flowBoard.reinitializeBoard( $rendered );
 		};
 
 		/**
@@ -387,21 +392,21 @@
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$rendered;
 
-			if ( info.status === 'done' ) {
-				// @todo this doesn't handle edit conflicts (result.status = 'error', result.header.prev_revision = {...})
-				$rendered = $(
-					flowBoard.TemplateEngine.processTemplateGetFragment(
-						'flow_block_loop',
-						{ blocks: data.flow[ 'edit-header' ].result }
-					)
-				).children();
-
-				// Reinitialize the whole board with these nodes
-				flowBoard.reinitializeBoard( $rendered );
-			} else {
-				// @todo fail
-				alert('fail');
+			if ( info.status !== 'done' ) {
+				// @todo: we should tackle edit conflicts here; jqhxr.error should hold the required revision id
+				return;
 			}
+
+			// @todo this doesn't handle edit conflicts (result.status = 'error', result.header.prev_revision = {...})
+			$rendered = $(
+				flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_block_loop',
+					{ blocks: data.flow[ 'edit-header' ].result }
+				)
+			).children();
+
+			// Reinitialize the whole board with these nodes
+			flowBoard.reinitializeBoard( $rendered );
 		};
 
 		/**
