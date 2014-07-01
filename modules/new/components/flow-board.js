@@ -711,26 +711,26 @@
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$form = $( this ).closest( 'form' );
 
-			if ( info.status === 'done' && data && data.flow && data.flow.reply ) {
-				postId = data.flow.reply.result.topic.roots[0];
-				post = flowBoard.TemplateEngine.processTemplateGetFragment(
-					'flow_post',
-					{ revision: data.flow.reply.result.topic.revisions[postId] }
-				);
-
-				$form.before( post );
-
-				// Clear contents to not trigger the "are you sure you want to
-				// discard your text" warning
-				$form.find( 'textarea, :text' ).each( function() {
-					$( this ).val( this.defaultValue );
-				} );
-				// Trigger a click on cancel to have it destroy the form the way it should
-				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
-			} else {
-				// @todo: address fail
-				alert( 'fail' );
+			if ( info.status !== 'done' ) {
+				// Error will be displayed by default, nothing else to wrap up
+				return;
 			}
+
+			postId = data.flow.reply.result.topic.roots[0];
+			post = flowBoard.TemplateEngine.processTemplateGetFragment(
+				'flow_post',
+				{ revision: data.flow.reply.result.topic.revisions[postId] }
+			);
+
+			$form.before( post );
+
+			// Clear contents to not trigger the "are you sure you want to
+			// discard your text" warning
+			$form.find( 'textarea, :text' ).each( function() {
+				$( this ).val( this.defaultValue );
+			} );
+			// Trigger a click on cancel to have it destroy the form the way it should
+			$form.find( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
 		};
 
 		/**
