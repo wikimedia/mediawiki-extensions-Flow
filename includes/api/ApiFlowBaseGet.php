@@ -32,7 +32,11 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 			}
 		}
 
-		// if nothing could render, we'll consider that an error (at least some
+		// See if any of the blocks generated an error (in which case the
+		// request will terminate with an the error message)
+		$this->processError( $blocks );
+
+		// If nothing could render, we'll consider that an error (at least some
 		// block should've been able to render a GET request)
 		if ( !$output[$action]['result'] ) {
 			$this->getResult()->dieUsage(
@@ -41,19 +45,19 @@ abstract class ApiFlowBaseGet extends ApiFlowBase {
 				200,
 				array()
 			);
-		} else {
-			$blocks = array_keys($output[$action]['result']);
-			$this->getResult()->setIndexedTagName( $blocks, 'block' );
-
-			// Required until php5.4 which has the JsonSerializable interface
-			array_walk_recursive( $output, function( &$value ) {
-				if ( $value instanceof Anchor ) {
-					$value = $value->toArray();
-				} elseif ( $value instanceof Message ) {
-					$value = $value->text();
-				}
-			} );
 		}
+
+		$blocks = array_keys($output[$action]['result']);
+		$this->getResult()->setIndexedTagName( $blocks, 'block' );
+
+		// Required until php5.4 which has the JsonSerializable interface
+		array_walk_recursive( $output, function( &$value ) {
+			if ( $value instanceof Anchor ) {
+				$value = $value->toArray();
+			} elseif ( $value instanceof Message ) {
+				$value = $value->text();
+			}
+		} );
 
 		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );
 	}
