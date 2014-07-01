@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_1c928657",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-07-01T14:12:10Z",
+      "side": 1,
+      "message": "For whoever reviews this: I assumed here that the respons will always include the proper error message (which should now actually be the case), ignoring failed requests. https://gerrit.wikimedia.org/r/#/c/143316/ should add that in.",
+      "revId": "e399002f997992b4e878b5ae5d253ab34d6e6121",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
