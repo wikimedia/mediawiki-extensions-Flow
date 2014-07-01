@@ -418,7 +418,7 @@
 			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
 
 			if ( info.status === 'done' ) {
-				$target = info.$target.find( '.flow-topic-edit-summary' );
+				$target = info.$target.find( '.flow-topic-summary' );
 
 				// FIXME: API should take care of this for me.
 				result = data.flow[ 'view-post' ].result.topic;
