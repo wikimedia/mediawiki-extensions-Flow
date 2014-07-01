@@ -309,5 +309,6 @@
 	"flow-spam-confirmedit": "Als anonymer Benutzer kannst du keine Weblinks übermitteln. Bitte registriere dich für ein Benutzerkonto.",
 	"flow-preview-warning": "Du siehst eine Vorschau. Sende das Formular ab, um diesen Beitrag abzuschließen oder klicke auf „Weiter bearbeiten“, um mit dem Schreiben fortzufahren.",
 	"flow-preview-return-edit-post": "Weiter bearbeiten",
-	"flow-anonymous": "Anonym"
+	"flow-anonymous": "Anonym",
+	"flow-embedding-unsupported": "Diskussionen können noch nicht eingebettet werden."
 }
