@@ -334,7 +334,7 @@
     "flow-special-uuid": "UUID",
     "flow-special-invalid-uuid": "Could not find content matching the type and the UUID.",
     "flow-spam-confirmedit": "As an anonymous user, you can't submit external links. Please sign up for an account.",
-    "flow-preview-warning": "You are seeing a preview. Submit the form to finish posting this, or click \"Keep editing\" to continue writing.",
+    "flow-preview-warning": "You are seeing a preview. Submit the form to finish posting this, or click \"{{int:flow-preview-return-edit-post}}\" to continue writing.",
     "flow-preview-return-edit-post" : "Keep editing",
     "flow-anonymous": "Anonymous",
     "flow-embedding-unsupported" : "Discussions cannot be embedded yet."
