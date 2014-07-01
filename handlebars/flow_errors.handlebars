@@ -1,7 +1,9 @@
 {{#if errors}}
-	<ul class="flow-errors error">
-		{{#each errors}}
-			<li>{{message}}</li>
-		{{/each}}
-	</ul>
+	<div class="flow-errors error">
+		<ul>
+			{{#each errors}}
+				<li>{{message}}</li>
+			{{/each}}
+		</ul>
+	</div>
 {{/if}}
