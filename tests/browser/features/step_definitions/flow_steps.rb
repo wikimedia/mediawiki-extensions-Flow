@@ -43,10 +43,6 @@ When(/^I click New topic save$/) do
 
     # Wait for the save to finish, at which point the button will hide
     page.new_topic_save_element.when_not_visible
-
-    # Blur the "Start a new topic", to work around
-    # https://trello.com/c/tXa05k4A
-    page.new_topic_title_element.send_keys :tab
   end
 end
 
