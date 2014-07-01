@@ -31,6 +31,7 @@ Styleguide 2.
 	&[class] {
 		color: @mainColor;
 
+		// Quiet mode is gray at first
 		&.flow-ui-quiet {
 			color: @colorTextLight;
 			text-decoration: none;
@@ -40,6 +41,13 @@ Styleguide 2.
 			}
 			a&:focus, a&:active {
 				color: darken( @mainColor, @colorDarkenPercentage );
+			}
+		}
+
+		// Active node is always colored
+		&.flow-ui-active {
+			&, &:link, &:visited {
+				color: @mainColor;
 			}
 		}
 	}
