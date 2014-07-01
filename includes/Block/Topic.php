@@ -752,6 +752,15 @@ class TopicBlock extends AbstractBlock {
 	}
 
 	protected function setNotification( $notificationType, array $extraVars = array() ) {
+		// All current notifications in this block should invoke auto-subscribe
+		// to topic, move it to appropriate places in the future when new type
+		// of notifications are added
+		// @todo - if a user has previously unsubscribed from the topic, we should
+		// probably not auto-subscribe again as this would become very annoying
+		$this->notificationController->subscribeToTopic(
+			$this->user,
+			$this->workflow
+		);
 		$this->notification = array(
 				'type' => $notificationType,
 				'params' => $extraVars + array(

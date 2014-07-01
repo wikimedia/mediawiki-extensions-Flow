@@ -10,7 +10,10 @@ use Flow\Model\Workflow;
 use Flow\Parsoid\Utils;
 use EchoEvent;
 use Language;
+use Sanitizer;
+use Title;
 use User;
+use WatchedItem;
 
 class NotificationController {
 	/**
@@ -501,4 +504,27 @@ class NotificationController {
 
 		return $users;
 	}
+
+	/**
+	 * @todo - This is not a good place to put auto-subscription, but I am not sure
+	 * yet where the best place to put this
+	 */
+	public function subscribeToTopic( User $user, Workflow $workflow ) {
+		// Only topic is subscribable
+		if ( $user->isAnon() || $workflow->getType() !== 'topic' ) {
+			return;
+		}
+		$title = Title::newFromText( $workflow->getId()->getAlphadecimal(), NS_TOPIC );
+		// There is really nothing to do if UUID is reported as invalid title text,
+		// maybe just log it
+		if ( !$title ) {
+			return;
+		}
+		$watchedItem = WatchedItem::fromUserTitle(
+			$user,
+			$title
+		);
+		$watchedItem->addWatch();
+	}
+
 }
