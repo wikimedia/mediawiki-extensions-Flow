@@ -11,12 +11,7 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 		/** @var \Flow\Model\Workflow $workflow */
 		$workflow = $loader->getWorkflow();
 		$action = $this->getAction();
-		$controller = $this->getOccupationController();
 		$user = $this->getUser();
-
-		$article = new Article( $workflow->getArticleTitle(), 0 );
-
-		$isNew = $workflow->isNew();
 
 		/** @var AbstractBlock $block */
 		foreach ( $blocks as $block ) {
