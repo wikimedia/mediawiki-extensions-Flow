@@ -96,7 +96,7 @@
     "flow-error-external": "An error occurred.<br />The error message received was: $1",
     "flow-error-edit-restricted": "You are not allowed to edit this post.",
     "flow-error-topic-is-closed": "This topic is closed for any further activities.",
-    "flow-error-close-moderated-post": "You can not close a moderated post.",
+    "flow-error-close-moderated-post": "You cannot close a moderated post.",
     "flow-error-external-multi": "Errors were encountered.<br />$1",
     "flow-error-missing-content": "Post has no content. Content is required to save a post.",
     "flow-error-missing-summary": "Summary has no content. Content is required to save a summary.",
