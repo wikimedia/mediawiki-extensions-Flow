@@ -844,20 +844,7 @@
 			 */
 			return function ( info, data, jqxhr ) {
 				if ( info.status !== 'done' ) {
-					FlowBoardComponent.UI.showError( 'network level request failure, retry?' );
-					return;
-				}
-
-				if ( data.error ) {
-					// internal error, likely bad request
-					// @todo display error
-					FlowBoardComponent.UI.showError( 'top level api request failure, bad request?' );
-					return;
-				}
-
-				if ( !data.flow[action] ) {
-					FlowBoardComponent.UI.showError( 'bad request, nothing received for: ' + action );
-					mw.log.warn( data.flow );
+					// Error will be displayed by default, nothing else to wrap up
 					return;
 				}
 
@@ -865,32 +852,13 @@
 					result = data.flow[action].result.topic,
 					$form = $( this ).closest( 'form' );
 
-				if ( data.flow[action].status !== 'ok' ) {
-					errors = result;
-				} else if ( result.errors.length ) {
-					errors = result.errors;
-				}
+				successCallback(
+					$form.data( 'flow-dialog-owner' ),
+					result.revisions[result.posts[result.roots[0]]]
+				);
 
-				if ( errors ) {
-					// validation errors
-					html = mw.flow.TemplateEngine.processTemplate( 'flow_errors', {
-						errors: errors
-					} );
-
-					// @todo should the validation errors be cleared elsewhere, perhaps
-					// before sending the api request?
-					$form.find( '.flow-errors' ).remove();
-					$form.prepend( $( html ) );
-				} else {
-
-					successCallback(
-						$form.data( 'flow-dialog-owner' ),
-						result.revisions[result.posts[result.roots[0]]]
-					);
-
-					// @todo cancel dialog
-					$form.parent().remove();
-				}
+				// @todo cancel dialog
+				$form.parent().remove();
 			};
 		}
 
