@@ -6,6 +6,7 @@ use Flow\Exception\FlowException;
 use Flow\Model\UUID;
 use Flow\Parsoid\Utils;
 use EchoBasicFormatter;
+use Title;
 
 // could be renamed later if we have more formatters
 class NotificationFormatter extends EchoBasicFormatter {
@@ -62,7 +63,8 @@ class NotificationFormatter extends EchoBasicFormatter {
 	protected function getPostLinkAnchor( $event, $user ) {
 		$urlGenerator = $this->getUrlGenerator();
 		$workflowId = $event->getExtraParam( 'topic-workflow' );
-		$title  = $event->getTitle();
+		// Get topic title
+		$title  = Title::newFromText( $workflowId->getAlphadecimal(), NS_TOPIC );
 		$anchor = false;
 		if ( $workflowId && $title ) {
 			// Take user to the post if there is only one target post,
@@ -116,6 +118,8 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 			case 'flow-topic':
 				$workflowId = $event->getExtraParam( 'topic-workflow' );
+				// Get topic title
+				$title  = Title::newFromText( $workflowId->getAlphadecimal(), NS_TOPIC );
 				if ( $title && $workflowId ) {
 					$anchor = $urlGenerator->topicLink( $title, $workflowId );
 				}
