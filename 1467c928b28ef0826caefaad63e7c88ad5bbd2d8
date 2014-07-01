@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_c9f44286",
+        "filename": "includes/api/ApiFlowBasePost.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-07-01T13:10:54Z",
+      "side": 1,
+      "message": "FYI, to whoever reviews this: a later patch (https://gerrit.wikimedia.org/r/#/c/143288/) will move this method to ApiFlowBase, so it can be shared for both POST \u0026 GET requests)",
+      "revId": "1467c928b28ef0826caefaad63e7c88ad5bbd2d8",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
