@@ -201,14 +201,32 @@ class RevisionFormatter {
 			}
 		}
 
-		if ( $row instanceof TopicRow &&
-			$row->summary &&
-			$this->permissions->isAllowed( $row->summary, 'view' )
-		) {
-			// Maybe always have both parsed and unparsed versions available
-			$res['summary'] = $this->templating->getContent( $row->summary, $this->contentFormat );
-			$res['summaryFormat'] = $this->contentFormat;
-			$res['summaryRevId'] = $row->summary->getRevisionId()->getAlphadecimal();
+		if ( $row instanceof TopicRow ) {
+			if (
+				$row->summary &&
+				$this->permissions->isAllowed( $row->summary, 'view' )
+			) {
+				$res['summary'] = $this->templating->getContent( $row->summary, $this->contentFormat );
+				$res['summaryFormat'] = $this->contentFormat;
+				$res['summaryRevId'] = $row->summary->getRevisionId()->getAlphadecimal();
+			}
+
+			// default topic is not watched and user can watch a page
+			$res['isWatched'] = false;
+			$res['unwatchable'] = true;
+
+			if ( $row->isWatched ) {
+				$res['isWatched'] = true;
+			}
+			$title = $row->workflow->getArticleTitle();
+			if (
+				$title->isTalkPage() &&
+				$title->getTalkPage()->equals( \Title::makeTitle( NS_USER_TALK, $ctx->getUser()->getName() ) )
+			) {
+				// user's own talk page is always watched and not unwatchable
+				$res['isWatched'] = true;
+				$res['unwatchable'] = false;
+			}
 		}
 
 		if ( $row->revision instanceof PostRevision ) {
@@ -510,6 +528,14 @@ class RevisionFormatter {
 		$links = array();
 		foreach ( $linkTypes as $type ) {
 			switch( $type ) {
+			case 'watch-topic':
+				$links['watch-topic'] = $this->urlGenerator->watchTopicLink( $title, $workflowId );
+				break;
+
+			case 'unwatch-topic':
+				$links['unwatch-topic'] = $this->urlGenerator->unwatchTopicLink( $title, $workflowId );
+				break;
+
 			case 'topic':
 				$links['topic'] = $this->urlGenerator->topicLink( $title, $workflowId );
 				break;
@@ -610,6 +636,9 @@ class RevisionFormatter {
 
 			case 'workflow':
 				$links['workflow'] = $this->urlGenerator->workflowLink( $title, $workflowId );
+				break;
+			case 'watch-topic':
+				$links['watch-topic'] = $this->urlGenerator->watchTopicLink( $title, $workflowId );
 				break;
 
 			default:
