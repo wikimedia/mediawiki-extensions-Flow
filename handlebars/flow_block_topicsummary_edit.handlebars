@@ -2,6 +2,7 @@
 	{{> flow_errors}}
 
 	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST" action="{{revision.actions.summarize.url}}">
+		{{> flow_errors }}
 		<input type="hidden" name="wpEditToken" value="{{editToken}}" />
 
 		{{#if revision.revisionId}}

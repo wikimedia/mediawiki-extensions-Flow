@@ -745,23 +745,27 @@
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
 
+			// Generic error handling only works on forms; the interactive
+			// element here is the summary div that should be replaced, so let's
+			// take care of displaying the error ourselves.
+			// @todo: error handling should probably be made more generic
+			FlowBoardComponent.UI.removeError( $node );
+			if ( info.status !== 'done' ) {
+				return;
+			}
+
 			// @todo This is using the old fashion way to re-render new content in the board
 			// need to use the proper way that flow is using, eg: reinitializeBoard() etc
-			if ( info.status === 'done' ) {
-				html = flowBoard.TemplateEngine.processTemplate(
-					'flow_block_topicsummary_edit',
-					data.flow[ 'view-topic-summary' ].result.topicsummary
-				);
-				$node.html(
-					$( html ).html()
-				);
-				$node.find( 'form' ).data( 'flow-cancel-callback', function() {
-					$node.html( old );
-				} );
-			} else {
-				// @todo fail
-				alert('fail');
-			}
+			html = flowBoard.TemplateEngine.processTemplate(
+				'flow_block_topicsummary_edit',
+				data.flow[ 'view-topic-summary' ].result.topicsummary
+			);
+			$node.html(
+				$( html ).html()
+			);
+			$node.find( 'form' ).data( 'flow-cancel-callback', function() {
+				$node.html( old );
+			} );
 		};
 
 		/**
@@ -771,16 +775,15 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.summarizeTopic = function ( info, data, jqxhr ) {
-			var
-				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' );
+			var $node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' );
 
-			if ( info.status === 'done' ) {
-				// There is no template to render
-				$node.html( data.flow[ 'edit-topic-summary' ].result.topicsummary.revision.content );
-			} else {
-				// @todo fail
-				alert('fail');
+			if ( info.status !== 'done' ) {
+				// Error will be displayed by default, nothing else to wrap up
+				return;
 			}
+
+			// There is no template to render
+			$node.html( data.flow[ 'edit-topic-summary' ].result.topicsummary.revision.content );
 		};
 
 		/**
