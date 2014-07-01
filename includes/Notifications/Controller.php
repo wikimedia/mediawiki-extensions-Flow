@@ -10,7 +10,9 @@ use Flow\Model\Workflow;
 use Flow\Parsoid\Utils;
 use EchoEvent;
 use Language;
+use Title;
 use User;
+use WatchedItem;
 
 class NotificationController {
 	/**
@@ -559,7 +561,8 @@ class NotificationController {
 	 * yet where the best place to put this
 	 */
 	public function subscribeToWorkflow( User $user, Workflow $workflow ) {
-		if ( $user->isAnon() ) {
+		// Only topic is subscribable for now
+		if ( $user->isAnon() || $workflow->getType() !== 'topic' ) {
 			return;
 		}
 		$title = $workflow->getArticleTitle();
