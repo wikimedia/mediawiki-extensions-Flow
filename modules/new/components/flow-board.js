@@ -1104,6 +1104,9 @@
 				// Hide the form
 				FlowBoardComponent.UI.Forms.hideForm( $form );
 
+				// Get rid of existing error messages
+				FlowBoardComponent.UI.removeError( $form );
+
 				// Trigger the cancel callback
 				if ( $form.data( 'flow-cancel-callback' ) ) {
 					$.each($form.data( 'flow-cancel-callback' ), function ( idx, fn ) {
@@ -1322,15 +1325,30 @@
 			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
 				$deferred
 					.done( function () {
-						var args = Array.prototype.slice.call(arguments, 0);
+						// Remove existing errors from previous attempts
+						FlowBoardComponent.UI.removeError( $this.closest( 'form' ) );
+
+						var args = Array.prototype.slice.call( arguments, 0);
 						info.status = 'done';
 						args.unshift( info );
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} )
-					.fail( function () {
-						var args = Array.prototype.slice.call(arguments, 0 );
+					.fail( function ( code, result ) {
+						var args = Array.prototype.slice.call( arguments, 0 );
 						info.status = 'fail';
+						info.$container = $this.closest( 'form' );
 						args.unshift( info );
+
+						/*
+						 * Generic error handling: displays error message in the
+						 * current form. If this is inappropriate for a
+						 * specific action, the error can be removed again in
+						 * the subsequent call to that specific api handler, by
+						 * calling FlowBoardComponent.UI.removeError() with
+						 * info.$container as argument.
+						 */
+						FlowBoardComponent.UI.showError( $this.closest( 'form' ), result.error.info );
+
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} );
 			}
@@ -1639,15 +1657,36 @@
 		/**
 		 * @param {FlowBoardComponent|jQuery} $container or entire FlowBoard
 		 * @param string msg The error that occurred. Currently hardcoded.
-		 * @todo This should render an error in the given $container
 		 */
 		FlowBoardComponent.UI.showError = function ( $container, msg ) {
+			var html = mw.flow.TemplateEngine.processTemplate( 'flow_errors', { errors: [ { message: msg } ] } ),
+				$error = $( html.trim() );
+
 			if ( !$container.jquery ) {
 				$container = $container.$container;
 			}
 
 			$container.find( '.flow-content-preview' ).hide();
+
+			// Get rid of existing error message in this container
+			FlowBoardComponent.UI.removeError( $container );
+
+			// Save error (to be removed later) & display error message
+			$container.data( 'flow-error', $error );
+			$container.append( $error );
+
 			mw.log.warn( msg );
+		};
+
+		/**
+		 * @param {FlowBoardComponent|jQuery} $container or entire FlowBoard
+		 */
+		FlowBoardComponent.UI.removeError = function ( $container ) {
+			var $existingError = $container.data( 'flow-error' );
+			if ( $existingError ) {
+				$existingError.remove();
+				$container.removeData( 'flow-error' );
+			}
 		};
 
 		/**
