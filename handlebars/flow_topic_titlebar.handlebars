@@ -2,6 +2,24 @@
 	{{> flow_topic_titlebar_content}}
 
 	{{#unless isPreview}}
+		{{#if watchable}}
+			<div class="flow-topic-watchlist">
+					{{#if isAlwaysWatched}}
+						<div
+							class="flow-ui-quiet flow-ui-thin flow-topic-watchlist-unwatchable">
+							<span class="wikiglyph wikiglyph-star{{#if isWatched}} flow-topic-watchlist-subscribed{{/if}}"></span>
+						</div>
+					{{else}}
+						<a
+							data-flow-topic-subscribed="{{#if isWatched}}1{{else}}0{{/if}}"
+							href="{{#if isWatched}}{{links.unwatch-topic.url}}{{else}}{{links.watch-topic.url}}{{/if}}"
+							class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin"
+							data-flow-interactive-handler="watchTopic">
+							<span class="wikiglyph wikiglyph-star {{#if isWatched}}flow-topic-watchlist-subscribed{{else}}flow-topic-watchlist-unsubscribed{{/if}}"></span>
+						</a>
+					{{/if}}
+			</div>
+		{{/if}}
 		<div class="flow-menu">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 			<ul class="flow-ui-button-container">
