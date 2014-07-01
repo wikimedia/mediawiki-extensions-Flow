@@ -221,6 +221,25 @@
 		};
 
 		/**
+		 * Adjusts query params to use global watch action, and appends the watch token.
+		 * @param {Event} event
+		 * @returns {Function}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.watchTopic = function ( event ) {
+			return function ( queryMap ) {
+				var params = {
+					action: 'watch',
+					titles: queryMap.page,
+					token: mw.user.tokens.get( 'watchToken' )
+				};
+				if ( queryMap.submodule === 'unwatch' ) {
+					params.unwatch = 1;
+				}
+				return params;
+			};
+		};
+
+		/**
 		 * First, resets the previous preview (if any).
 		 * Then, using the form fields, finds the content element to be sent to Parsoid by looking
 		 * for one ending in "content", or, failing that, with data-role=content.
@@ -633,7 +652,8 @@
 			revision = result.revisions[result.posts[result.roots[0]]];
 			html = mw.flow.TemplateEngine.processTemplate( 'flow_post', { revision: revision } );
 
-			$form.replaceWith( $( html ).find( '.flow-post-main' ) );
+			// @todo this function should not be looking for an element within a template
+			$( this ).closest( 'form' ).replaceWith( $( html ).find( '.flow-post-main' ) );
 		};
 
 		/**
@@ -776,6 +796,68 @@
 			} );
 			// Trigger a click on cancel to have it destroy the form the way it should
 			$form.find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
+		};
+
+		/**
+		 * @param {Object} info (status:done|fail, $target: jQuery)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.watchTopic = function ( info, data, jqxhr ) {
+			var $target = info.$target,
+				$tooltipTarget = $target.parent(),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $tooltipTarget ),
+				isWatched = false,
+				url = $( this ).prop( 'href' ),
+				watchUrl, unwatchUrl;
+
+			if ( info.status === 'done' && data && data.watch && data.watch[0] ) {
+				if ( data.watch[0].watched !== undefined ) {
+					// Successful watch: show tooltip
+					mw.tooltip.show(
+						$tooltipTarget,
+						$( flowBoard.TemplateEngine.processTemplateGetFragment( 'flow_tooltip_topic_subscription', { unsubscribe: false } ) ).children(),
+						{
+							tooltipPointing: 'left'
+						}
+					);
+
+					// Hide after 5s
+					setTimeout( function () {
+						mw.tooltip.hide( $tooltipTarget );
+					}, 5000 );
+
+					unwatchUrl = url.replace( 'watch', 'unwatch' );
+					watchUrl = url;
+					isWatched = true;
+				} else {
+					// Successful unwatch: remove old tooltip if still visible
+					mw.tooltip.hide( $tooltipTarget );
+
+					watchUrl = url.replace( 'unwatch', 'watch' );
+					unwatchUrl = url;
+				}
+
+				// Render new icon
+				$target.replaceWith(
+					$(
+						flowBoard.TemplateEngine.processTemplateGetFragment(
+							'flow_topic_titlebar_watch',
+							{
+								isWatched: isWatched,
+								links: {
+									'unwatch-topic': { url: unwatchUrl },
+									'watch-topic': { url: watchUrl }
+								}
+							}
+						)
+					).children()
+				);
+			} else {
+				// Failed
+				// @todo error message
+				alert( 'Error' );
+			}
 		};
 
 		/**
