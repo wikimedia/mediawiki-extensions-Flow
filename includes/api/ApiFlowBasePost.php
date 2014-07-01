@@ -21,60 +21,78 @@ abstract class ApiFlowBasePost extends ApiFlowBase {
 
 		$request = $this->getModifiedRequest();
 		$blocksToCommit = $loader->handleSubmit( $action, $blocks, $user, $request );
-		if ( count( $blocksToCommit ) ) {
-			$loader->commit( $workflow, $blocksToCommit );
-			$savedBlocks = array();
-			$result->setIndexedTagName( $savedBlocks, 'block' );
 
-			foreach( $blocksToCommit as $block ) {
-				$savedBlocks[] = $block->getName();
+		// If none of the blocks could process this submission, fail
+		if ( !count( $blocksToCommit ) ) {
+			$this->processError( $blocks );
+			return;
+		}
+
+		$loader->commit( $workflow, $blocksToCommit );
+		$savedBlocks = array();
+		$result->setIndexedTagName( $savedBlocks, 'block' );
+
+		foreach( $blocksToCommit as $block ) {
+			$savedBlocks[] = $block->getName();
+		}
+
+		$output[$action] = array(
+			'result' => array(),
+			'status' => 'ok',
+			'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
+		);
+
+		$parameters = $loader->extractBlockParameters( $request, $blocksToCommit );
+		foreach( $blocksToCommit as $block ) {
+			// Always return parsed text to client after successful submission?
+			// @Todo - hacky, maybe have contentformat in the request to overwrite
+			// requiredWikitext
+			$block->unsetRequiresWikitext( $action );
+			$output[$action]['result'][$block->getName()] = $block->renderAPI( Container::get( 'templating' ), $parameters[$block->getName()] );
+		}
+
+		// required until php5.4 which has the JsonSerializable interface
+		array_walk_recursive( $output, function( &$value ) {
+			if ( $value instanceof Anchor ) {
+				$value = $value->toArray();
+			} elseif ( $value instanceof Message ) {
+				$value = $value->text();
 			}
+		} );
 
-			$output[$action] = array(
-				'result' => array(),
-				'status' => 'ok',
-				'workflow' => $workflow->isNew() ? '' : $workflow->getId()->getAlphadecimal(),
-			);
+		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );
+	}
 
-			$parameters = $loader->extractBlockParameters( $request, $blocksToCommit );
-			foreach( $blocksToCommit as $block ) {
-				// Always return parsed text to client after successful submission?
-				// @Todo - hacky, maybe have contentformat in the request to overwrite
-				// requiredWikitext
-				$block->unsetRequiresWikitext( $action );
-				$output[$action]['result'][$block->getName()] = $block->renderAPI( Container::get( 'templating' ), $parameters[$block->getName()] );
-			}
+	/**
+	 * Kill the request if errors were encountered.
+	 * Only the first error will be output:
+	 * * dieUsage only outputs one error - we could add more as $extraData, but
+	 *   that would mean we'd have to check for flow-specific errors differently
+	 * * most of our code just quits on the first error that's encountered, so
+	 *   outputting all encountered errors might still not cover everything
+	 *   that's wrong with the request
+	 *
+	 * @param array $blocks
+	 */
+	protected function processError( $blocks ) {
+		foreach( $blocks as $block ) {
+			if ( $block->hasErrors() ) {
+				$errors = $block->getErrors();
 
-			// required until php5.4 which has the JsonSerializable interface
-			array_walk_recursive( $output, function( &$value ) {
-				if ( $value instanceof Anchor ) {
-					$value = $value->toArray();
-				} elseif ( $value instanceof Message ) {
-					$value = $value->text();
-				}
-			} );
-		} else {
-			$output[$action] = array(
-				'status' => 'error',
-				'result' => array(),
-			);
-
-			foreach( $blocks as $block ) {
-				if ( $block->hasErrors() ) {
-					$errors = $block->getErrors();
-					$nativeErrors = array();
-
-					foreach( $errors as $key ) {
-						$nativeErrors[$key]['message'] = $block->getErrorMessage( $key )->parse();
-						$nativeErrors[$key]['extra'] = $block->getErrorExtra( $key );
-					}
-
-					$output[$action]['result'][$block->getName()] = $nativeErrors;
+				foreach( $errors as $key ) {
+					$this->getResult()->dieUsage(
+						$block->getErrorMessage( $key )->parse(),
+						$key,
+						200,
+						// additional info for this message (e.g. to be used to
+						// enable recovery from error, like returning the most
+						// recent revision ID to re-submit content in the case
+						// of edit conflict)
+						array( $key => $block->getErrorExtra( $key ) )
+					);
 				}
 			}
 		}
-
-		$this->getResult()->addValue( null, $this->apiFlow->getModuleName(), $output );
 	}
 
 	public function mustBePosted() {
