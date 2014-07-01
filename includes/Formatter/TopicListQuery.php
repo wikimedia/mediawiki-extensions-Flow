@@ -10,20 +10,23 @@ use Flow\Model\TopicListEntry;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use Flow\RevisionActionPermissions;
+use Flow\WatchedItems;
 use User;
 
 class TopicListQuery extends AbstractQuery {
 
 	protected $permissions;
+	protected $watchedItems;
 
 	/**
 	 * @param ManagerGroup $storage
 	 * @param TreeRepository $treeRepository
 	 * @param RevisionActionPermissions $permissions
 	 */
-	public function __construct( ManagerGroup $storage, TreeRepository $treeRepository, RevisionActionPermissions $permissions ) {
+	public function __construct( ManagerGroup $storage, TreeRepository $treeRepository, RevisionActionPermissions $permissions, WatchedItems $watchedItems ) {
 		parent::__construct( $storage, $treeRepository );
 		$this->permissions = $permissions;
+		$this->watchedItems = $watchedItems;
 	}
 
 	/**
@@ -36,6 +39,7 @@ class TopicListQuery extends AbstractQuery {
 		$allPostIds = $this->collectPostIds( $topicIds );
 		$topicSummary = $this->collectSummary( $topicIds );
 		$posts = $this->collectRevisions( $allPostIds );
+		$watchStatus = $this->collectWatchStatus( $topicIds );
 
 		$missing = array_diff(
 			array_keys( $allPostIds ),
@@ -63,9 +67,15 @@ class TopicListQuery extends AbstractQuery {
 				$replyToId = $replyToId ? $replyToId->getAlphadecimal() : null;
 				$postId = $row->revision->getPostId()->getAlphadecimal();
 				$replies[$replyToId] = $postId;
-				// Attach the summary
-				if ( $post->isTopicTitle() && isset( $topicSummary[$postId] ) ) {
-					$row->summary = $topicSummary[$postId];
+				if ( $post->isTopicTitle() ) {
+					// Attach the summary
+					if ( isset( $topicSummary[$postId] ) ) {
+						$row->summary = $topicSummary[$postId];
+					}
+					// Attach the watch status
+					if ( isset( $watchStatus[$postId] ) && $watchStatus[$postId] ) {
+						$row->isWatched = true;
+					}
 				}
 			} catch ( FlowException $e ) {
 				\MWExceptionHandler::logException( $e );
@@ -123,6 +133,18 @@ class TopicListQuery extends AbstractQuery {
 			array_map( function( $x ) { return $x->getAlphadecimal(); }, $postIds ),
 			$postIds
 		);
+	}
+
+	/**
+	 * @param UUID[] $topicIds
+	 * @return array
+	 */
+	protected function collectWatchStatus( $topicIds ) {
+		$ids = array();
+		foreach ( $topicIds as $topicId ) {
+			$ids[] = $topicId->getAlphadecimal();
+		}
+		return $this->watchedItems->getWatchStatus( $ids );
 	}
 
 	/**

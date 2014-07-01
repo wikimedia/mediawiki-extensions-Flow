@@ -236,6 +236,31 @@ div#bodyContent {
 	font-style: italic;
 }
 
+.flow-topic-watchlist {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	.flow-topic-watchlist-subscribed {
+		color: #00A600;
+	}
+	.flow-topic-watchlist-unsubscribed {
+		color: #424242;
+	}
+
+	.flow-topic-watchlist-unwatchable {
+		padding: 7px;
+	}
+
+	a {
+		.wikiglyph {
+			&:hover {
+				color: #00A600;
+			}
+		}
+	}
+}
+
 // Actions menu
 .flow-menu {
 	clear: both;

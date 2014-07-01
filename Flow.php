@@ -56,6 +56,11 @@ $wgAutoloadClasses['FlowInsertDefaultDefinitions'] = $dir . 'maintenance/FlowIns
 // note: SRP would say a 'FlowHooks' class should not exist
 $wgAutoloadClasses['FlowHooks'] = $dir . 'Hooks.php';
 
+// @todo - 520 is just a random number so the code can be tested, use whatever
+// in the topic namespace implementation patch
+$wgExtraNamespaces[520] = 'Topic';
+define( 'NS_TOPIC', 520 );
+
 // Various vendor classes
 $wgAutoloadClasses['Pimple'] = $dir . 'vendor/Pimple.php';
 $wgAutoloadClasses['LightnCandy'] = $dir . 'vendor/lightncandy.php';
@@ -225,6 +230,9 @@ $wgAutoloadClasses['Flow\Model\WikiReference'] = "$dir/includes/Model/Reference.
 $wgAutoloadClasses['Flow\Model\URLReference'] = "$dir/includes/Model/Reference.php";
 $wgAutoloadClasses['Flow\Data\ReferenceRecorder'] = "$dir/includes/Data/ReferenceRecorder.php";
 
+// Watchlist
+$wgAutoloadClasses['Flow\WatchedItems'] = "$dir/includes/WatchedItems.php";
+
 // Actions
 $wgAutoloadClasses['Flow\Actions\FlowAction'] = $dir . 'includes/Actions/Action.php';
 $wgAutoloadClasses['Flow\Actions\EditHeaderAction'] = $dir . 'includes/Actions/EditHeaderAction.php';
@@ -314,6 +322,8 @@ $wgHooks['ContentHandlerDefaultModelFor'][] = 'Flow\Content\Content::onGetDefaul
 $wgHooks['ShowMissingArticle'][] = 'Flow\Content\Content::onShowMissingArticle';
 $wgHooks['ArticleAfterFetchContentObject'][] = 'Flow\Content\Content::onFetchContentObject';
 $wgHooks['MessageCache::get'][] = 'FlowHooks::onMessageCacheGet';
+$wgHooks['WatchArticle'][] = 'FlowHooks::onWatchArticle';
+$wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';
