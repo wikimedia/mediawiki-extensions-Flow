@@ -1,0 +1,29 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+@import 'flow.helpers';
+@import 'flow.variables';
+
+.flow-topic-watchlist {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	.flow-topic-watched {
+		color: @colorTopicWatched;
+	}
+	.flow-topic-unwatched {
+		color: @colorTopicUnwatched;
+	}
+
+	.flow-topic-watchlist-unwatchable {
+		padding: 7px;
+	}
+
+	a {
+		.wikiglyph {
+			&:hover {
+				color: @colorTopicWatched;
+			}
+		}
+	 }
+}
