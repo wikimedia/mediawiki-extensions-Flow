@@ -37,6 +37,14 @@ When(/^I click the Post Actions link$/) do
   on(FlowPage).post_actions_link_element.when_present.click
 end
 
+Then(/^the add topic button is disabled$/) do
+  on(FlowPage).new_topic_save_element.disabled?
+end
+
+When(/^the add topic button is enabled$/) do
+  on(FlowPage).new_topic_save_element.disabled? != true
+end
+
 When(/^I click New topic save$/) do
   on(FlowPage) do |page|
     page.new_topic_save_element.when_present.click

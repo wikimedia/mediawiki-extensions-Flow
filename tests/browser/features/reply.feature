@@ -5,6 +5,12 @@ Feature: Replying
     Given I am logged in
       And I am on Flow page
 
+  @wip
+  Scenario: Reply button starts off disabled
+    Given I have created a Flow topic with title "Reply disabled button test"
+      And I click the reply input box
+      And the reply button is disabled
+
   Scenario: I can reply
     Given I have created a Flow topic with title "Reply test"
       And I reply with comment "Boom boom shake shake the room"
