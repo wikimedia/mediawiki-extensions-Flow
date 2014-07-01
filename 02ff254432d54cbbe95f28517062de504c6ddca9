@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_47571606",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1354,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-07-01T21:15:24Z",
+      "side": 1,
+      "message": "The code currently violates this assumption in the fake error up on line 1313:\n\n $deferred.rejectWith( { error: \u0027Not an anchor or form\u0027 } );",
+      "revId": "02ff254432d54cbbe95f28517062de504c6ddca9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
