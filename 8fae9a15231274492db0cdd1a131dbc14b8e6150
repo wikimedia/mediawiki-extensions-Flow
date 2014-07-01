@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_e75e0a17",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1682,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-07-01T21:18:06Z",
+      "side": 1,
+      "message": "Do FlowBoardComponent objects have a data() method?",
+      "revId": "8fae9a15231274492db0cdd1a131dbc14b8e6150",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
