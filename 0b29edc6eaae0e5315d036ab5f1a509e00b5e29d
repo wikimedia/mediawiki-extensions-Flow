@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_925c2450",
+        "filename": "i18n/en.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-07-01T09:19:55Z",
+      "side": 1,
+      "message": "\"Keep editing\" should be \"{{int:flow-preview-return-edit-post}}\" so that (missing) translations and fallback are taken into account.",
+      "revId": "0b29edc6eaae0e5315d036ab5f1a509e00b5e29d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
