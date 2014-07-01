@@ -95,6 +95,8 @@
 	"flow-topic-action-undelete-topic": "Used as a link in a dropdown menu to undelete a topic.\n{{Related|Flow-action}}",
 	"flow-topic-action-unsuppress-topic": "Used as a link in a dropdown menu to unsuppress a topic.\n{{Related|Flow-action}}",
 	"flow-topic-action-restore-topic": "Used as a link in a dropdown menu to clear the moderation state of a topic.\n{{Related|Flow-action}}\n{{Identical|Restore}}",
+	"flow-topic-notification-subscribe-title": "This topic has been added to your watchlist!",
+	"flow-topic-notification-subscribe-description": "You will receive notifications on all activities on this topic.",
 	"flow-error-http": "Used as error message on HTTP error.",
 	"flow-error-other": "Used as generic error message.",
 	"flow-error-external": "Uses as error message. Parameters:\n* $1 - error message\nSee also:\n* {{msg-mw|Flow-error-external-multi}}",
