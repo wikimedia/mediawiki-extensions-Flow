@@ -135,9 +135,6 @@
 		'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['summaryFormat'])) ? $in['summaryFormat'] : null),((is_array($in) && isset($in['summary'])) ? $in['summary'] : null)), 'encq').'
 	' : '').'
 </div>
-<div class="flow-topic-edit-summary">
-	
-</div>
 
 
 	'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
