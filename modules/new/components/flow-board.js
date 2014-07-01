@@ -412,14 +412,13 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.activateCloseOpenTopic = function ( info, data ) {
-			var $target, $form, $parent,
+			var $target, $form,
 				result, revision, postId, revisionId,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
 
 			if ( info.status === 'done' ) {
 				$target = info.$target.find( '.flow-topic-edit-summary' );
-				$parent = $target.parent();
 
 				// FIXME: API should take care of this for me.
 				result = data.flow[ 'view-post' ].result.topic;
