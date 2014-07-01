@@ -1,13 +1,6 @@
 {{#if actions.newtopic}}
 	<form action="{{actions.newtopic.url}}" method="POST" class="flow-newtopic-form" data-flow-initial-state="collapsed">
-		{{#if errors}}
-			<ul>
-				{{#each errors}}
-					<li>{{message}}</li>
-				{{/each}}
-			</ul>
-		{{/if}}
-		<!-- @todo form errors -->
+		{{> flow_errors}}
 
 		{{#ifAnonymous}}
 			{{> flow_anon_warning }}

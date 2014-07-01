@@ -674,58 +674,30 @@
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.newTopic = function ( info, data, jqxhr ) {
 			var result, html,
-				$container = $( this ).closest( 'form' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
 			if ( info.status !== 'done' ) {
-				FlowBoardComponent.UI.showError( $container, 'something failed' );
+				// Error will be displayed by default, nothing else to wrap up
 				return;
 			}
 
-			if ( data.error ) {
-				FlowBoardComponent.UI.showError( $container, 'apiHandlers.newTopic - top level api request failure, bad request?' );
-				return;
-			}
+			result = data.flow['new-topic'].result.topiclist;
 
-			if ( !data.flow["new-topic"] ) {
-				FlowBoardComponent.UI.showError( $container, 'apiHandlers.newTopic - did not receive "new-topic" response' );
-				return;
-			}
+			// render only the new topic
+			result.roots = [result.roots[0]];
+			html = mw.flow.TemplateEngine.processTemplate( 'flow_topiclist_loop', result );
 
-			switch( data.flow["new-topic"].status ) {
-				case 'error':
-					FlowBoardComponent.UI.showError( $container, 'apiHandlers.newTopic - api submodule rejected request' );
-					break;
+			// @todo un-hardcode
+			flowBoard.reinitializeBoard(
+				flowBoard.$container.find( '.flow-topics' ).prepend( $( html ) )
+			);
 
-				case 'ok':
-					result = data.flow["new-topic"].result.topiclist;
+			$( this ).closest( 'form' )[0].reset();
 
-					if ( result.errors.length ) {
-						// failed
-						FlowBoardComponent.UI.showError( $container, '@todo render validation errors' );
-					} else {
-						// render only the new topic
-						result.roots = [result.roots[0]];
-						html = mw.flow.TemplateEngine.processTemplate( 'flow_topiclist_loop', result );
-
-						// @todo un-hardcode
-						flowBoard.reinitializeBoard(
-							flowBoard.$container.find( '.flow-topics' ).prepend( $( html ) )
-						);
-
-						$( this ).closest( 'form' )[0].reset();
-
-						// remove focus - title input field may still have focus
-						// (submitted via enter key), which it needs to lose:
-						// the form will only re-activate if re-focused
-						document.activeElement.blur();
-					}
-					break;
-
-				default:
-					FlowBoardComponent.UI.showError( flowBoard.$container, 'apiHandlers.newTopic - expected either error or ok, received: ' + data.flow["new-topic"].status );
-					break;
-			}
+			// remove focus - title input field may still have focus
+			// (submitted via enter key), which it needs to lose:
+			// the form will only re-activate if re-focused
+			document.activeElement.blur();
 		};
 
 		/**
