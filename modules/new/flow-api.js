@@ -284,7 +284,8 @@ window.mw = window.mw || {}; // mw-less testing
 	function flowApiRequestFromAnchor( anchor, override ) {
 		var $anchor = $( anchor ),
 			$deferred = $.Deferred(),
-			queryMap;
+			queryMap,
+			method = $anchor.data( 'flow-api-method' ) || 'GET';
 
 		// Build the query map from this anchor's HREF
 		if ( !( queryMap = this.getQueryMap( anchor.href, null, override ) ) ) {
@@ -292,8 +293,8 @@ window.mw = window.mw || {}; // mw-less testing
 			return $deferred.rejectWith( { error: 'Invalid href' } );
 		}
 
-		// Abort any old requests, and have it issue a new one via GET
-		return this.abortOldRequestFromNode( $anchor, queryMap, 'GET' );
+		// Abort any old requests, and have it issue a new one via GET or POST
+		return this.abortOldRequestFromNode( $anchor, queryMap, method );
 	}
 
 	FlowAPI.prototype.requestFromAnchor = flowApiRequestFromAnchor;
