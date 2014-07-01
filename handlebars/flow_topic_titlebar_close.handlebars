@@ -1,6 +1,4 @@
 <div class="flow-topic-summary">
-	{{> flow_errors}}
-
 	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
 		  action="
 			{{~#if isModerated~}}
@@ -8,6 +6,7 @@
 			{{~else~}}
 				{{~actions.close.url~}}
 			{{~/if~}}">
+		{{> flow_errors}}
 		<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 		{{#if summaryRevId}}
 			<input type="hidden" name="flow_prev_revision" value="{{summaryRevId}}" />

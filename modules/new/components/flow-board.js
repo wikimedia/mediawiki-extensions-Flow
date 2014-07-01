@@ -524,13 +524,9 @@
 					).children();
 					$target.replaceWith( $topicTitleBar );
 					FlowBoardComponent.UI.makeContentInteractive( $topicTitleBar );
-				} ).fail( function() {
-					// @todo fail
-					alert('failz');
 				} );
 			} else {
-				// @todo fail
-				alert('failz');
+				return;
 			}
 		};
 
