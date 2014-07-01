@@ -280,6 +280,7 @@
 	"flow-terms-of-use-reply": "Cliccando su \"{{int:flow-reply-submit}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-terms-of-use-edit": "Salvando le modifiche, accetti le condizioni d'uso per questo wiki.",
 	"flow-anon-warning": "Non hai effettuato l'accesso. Per ricevere l'attribuzione con il tuo nome, anziché con l'indirizzo IP, puoi [$1 accedere] o [$2 creare un'utenza].",
+	"flow-cancel-warning": "Hai inserito del testo in questo modulo. Sei sicuro di volerlo ignorare?",
 	"flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 ha iniziato questa discussione|1=$1 ha iniziato questa discussione e c'è un altro partecipante|$1 ha iniziato questa discussione e ci sono altri $2 partecipanti}}",
 	"flow-topic-count-sidebar": "Mostrate $1 di $2 discussioni collegate a questa pagina",
 	"flow-topic-count": "Discussioni ($1)",
@@ -291,6 +292,7 @@
 	"flow-add-topic": "Aggiungi discussione",
 	"flow-newest-topics": "Discussioni più recenti",
 	"flow-recent-topics": "Ultime discussioni attive",
+	"flow-sorting-tooltip": "Stai attualmente leggendo le discussioni più recenti. Fai clic per ulteriori opzioni di ordinamento.",
 	"flow-terms-of-use-summarize": "Cliccando su \"{{int:flow-summarize-topic-submit}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-terms-of-use-close-topic": "Cliccando su \"{{int:flow-close-topic-submit}}\", accetti le condizioni d'uso per questo wiki.",
 	"flow-terms-of-use-reopen-topic": "Cliccando su \"{{int:flow-reopen-topic-submit}}\", accetti le condizioni d'uso per questo wiki.",
@@ -304,5 +306,8 @@
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Impossibile trovare il contenuto corrispondente il tipo e l'UUID.",
 	"flow-spam-confirmedit": "Come utente anonimo, non puoi inviare collegamenti esterni. Registrati per avere un'utenza.",
-	"flow-anonymous": "Anonimo"
+	"flow-preview-warning": "Stai vedendo un'anteprima. Salva il modulo per completare l'invio, o clicca su {{int:Flow-preview-return-edit-post}} per continuare a scrivere.",
+	"flow-preview-return-edit-post": "Continua a modificare",
+	"flow-anonymous": "Anonimo",
+	"flow-embedding-unsupported": "Le discussioni non possono essere incorporate, ancora."
 }

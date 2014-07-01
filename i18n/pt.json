@@ -5,10 +5,12 @@
 			"Imperadeiro98",
 			"SandroHc",
 			"Vitorvicentevalente",
-			"Waldir"
+			"Waldir",
+			"Fúlvio"
 		]
 	},
 	"flow-desc": "Sistema de gerência do fluxo de trabalho",
+	"flow-talk-username": "Gerenciador de páginas de discussão do Flow",
 	"log-name-flow": "Registo de actividade do Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|eliminou}} uma [$4 mensagem] em [[$3]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|restaurou}} uma [$4 mensagem] em [[$3]]",
@@ -83,6 +85,7 @@
 	"flow-topic-action-unhide-topic": "Exibir tópico",
 	"flow-topic-action-undelete-topic": "Restaurar tópico",
 	"flow-topic-action-unsuppress-topic": "Tópico não suprimido",
+	"flow-topic-action-restore-topic": "Restaurar tópico",
 	"flow-error-http": "Ocorreu um erro ao contactar o servidor.",
 	"flow-error-other": "Ocorreu um erro inesperado.",
 	"flow-error-external": "Ocorreu um erro.<br />A mensagem de erro recebida é a seguinte: $1",
@@ -125,6 +128,7 @@
 	"flow-error-process-data": "Ocorreu um erro ao processar os dados que foram pedidos por si.",
 	"flow-error-process-wikitext": "Ocorreu um erro durante o processamento de conversão HTML/wikitexto.",
 	"flow-error-no-index": "Falha ao localizar um índice para executar a pesquisa de dados.",
+	"flow-edit-header-placeholder": "Descrever este quadro do Flow",
 	"flow-edit-header-submit": "Gravar cabeçalho",
 	"flow-edit-header-submit-overwrite": "Reescrever cabeçalho",
 	"flow-summarize-topic-submit": "Resumir",
@@ -162,6 +166,7 @@
 	"flow-history-last4": "Últimas 4 horas",
 	"flow-history-day": "Hoje",
 	"flow-history-week": "Última semana",
+	"flow-history-pages-topic": "Aparece no [$1 \"$2\" quadro]",
 	"flow-history-pages-post": "Aparece em [$1 $2]",
 	"flow-topic-participants": "{{PLURAL:$1|$3 iniciou este|{{GENDER:$3|$3}}, {{GENDER:$4|$4}}, {{GENDER:$5|$5}} e $2 {{PLURAL:$2|outro tópico|outros tópicos}}|0=Sem participações ainda|2={{GENDER:$3|$3}} e {{GENDER:$4|$4}}|3={{GENDER:$3|$3}}, {{GENDER:$4|$4}} e {{GENDER:$5|$5}}}}",
 	"flow-topic-comments": "{{PLURAL:$1|$1 comentário|$1 comentários|0=Seja {{GENDER:$2|o primeiro|a primeira}} a comentar!}}",
@@ -172,6 +177,7 @@
 	"flow-paging-rev": "Tópicos mais recentes",
 	"flow-paging-fwd": "Tópicos mais antigos",
 	"flow-last-modified": "Modificado pela última vez em $1",
+	"flow-workflow": "fluxo de trabalho",
 	"flow-notification-reply": "$1 {{GENDER:$1|respondeu}} à sua <span class=\"plainlinks\">[$5 mensagem]</span> em \"$2\" de \"$4\".",
 	"flow-notification-reply-bundle": "$1 e $5 {{PLURAL:$6|outro|outros}} {{GENDER:$1|responderam}} à sua <span class=\"plainlinks\">[$4 mensagem]</span> em \"$2\" de \"$3\".",
 	"flow-notification-edit": "$1 {{GENDER:$1|editou}} uma <span class=\"plainlinks\">[$5 mensagem]</span> em \"$2\" de [[$3|$4]].",
@@ -306,5 +312,6 @@
 	"flow-spam-confirmedit": "Como um utilizador anónimo, você não pode enviar links externos. Por favor, registe-se para criar uma conta.",
 	"flow-preview-warning": "Esta é uma pré-visualização. Grave o formulário para publicar ou clique em \"Continuar a editar\" para continuar a escrever.",
 	"flow-preview-return-edit-post": "Continuar a editar",
-	"flow-anonymous": "Anónimo"
+	"flow-anonymous": "Anónimo",
+	"flow-embedding-unsupported": "As discussões ainda não podem ser incorporadas."
 }

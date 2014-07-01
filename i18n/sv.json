@@ -312,5 +312,6 @@
 	"flow-spam-confirmedit": "Som en anonym användare, kan inte du skicka externa länkar. Vänligen registrera dig för ett konto.",
 	"flow-preview-warning": "Du ser en förhandsvisning. Skicka in formuläret för publicera detta, eller klicka på \"Fortsätt redigering\" att fortsätta skriva.",
 	"flow-preview-return-edit-post": "Fortsätt redigera",
-	"flow-anonymous": "Anonym"
+	"flow-anonymous": "Anonym",
+	"flow-embedding-unsupported": "Diskussioner kan ännu inte bäddas in."
 }

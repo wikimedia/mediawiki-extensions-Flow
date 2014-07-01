@@ -321,5 +321,6 @@
 	"flow-spam-confirmedit": "作为匿名用户，您不能加入外部链接。请注册一个账户。",
 	"flow-preview-warning": "您在查看一个预览。提交表单以完成发布，或点击“保持编辑”以继续编辑。",
 	"flow-preview-return-edit-post": "保持编辑",
-	"flow-anonymous": "匿名"
+	"flow-anonymous": "匿名",
+	"flow-embedding-unsupported": "讨论尚不能嵌入。"
 }

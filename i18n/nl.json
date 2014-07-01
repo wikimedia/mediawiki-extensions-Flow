@@ -72,7 +72,7 @@
 	"flow-post-action-unsuppress-post": "Niet langer onderdrukken",
 	"flow-post-action-undelete-post": "Terugplaatsen",
 	"flow-post-action-unhide-post": "Zichtbaar maken",
-	"flow-post-action-restore-post": "Bericht terugplaatsen",
+	"flow-post-action-restore-post": "Terugplaatsen",
 	"flow-topic-action-view": "Permanente koppeling",
 	"flow-topic-action-watchlist": "Volglijst",
 	"flow-topic-action-edit-title": "Titel wijzigen",
@@ -256,5 +256,7 @@
 	"flow-topic-complete": "Volledige weergave",
 	"flow-terms-of-use-new-topic": "Door op \"{{int:flow-newtopic-save}}\" te klikken gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
 	"flow-terms-of-use-reply": "Door te klikken op \"{{int:flow-reply-submit}}\", gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
-	"flow-terms-of-use-edit": "Door deze wijzigingen op te slaan, gaat u akkoord met de gebruiksvoorwaarden van deze wiki."
+	"flow-terms-of-use-edit": "Door deze wijzigingen op te slaan, gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
+	"flow-started-ago": "$1 begonnen",
+	"flow-newest-topics": "Nieuwste onderwerpen"
 }

@@ -132,7 +132,7 @@
 	"flow-edit-header-submit-overwrite": "דריסת התיאור",
 	"flow-summarize-topic-submit": "לסכם",
 	"flow-summarize-topic-submit-overwrite": "דריסת תקציר",
-	"flow-close-topic-submit": "סגירת נושא",
+	"flow-close-topic-submit": "לסגור את הנושא",
 	"flow-close-topic-submit-overwrite": "דריסת תקציר סגירת נושא",
 	"flow-reopen-topic-submit": "לפתוח מחדש את הנושא",
 	"flow-reopen-topic-submit-overwrite": "דריסת תקציר פתיחה מחדש של הנושא",
@@ -311,5 +311,6 @@
 	"flow-spam-confirmedit": "לא נכנסת לחשבון ואין לך אפשרות לשלוח קישורים חיצוניים. נא להירשם לחשבון.",
 	"flow-preview-warning": "זוהי תצוגה מקדימה. יש לשלוח את הטופס כדי לסיים לפרסם את זה או ללחוץ על \"להמשיך לערוך\" כדי להמשיך לכתוב.",
 	"flow-preview-return-edit-post": "להמשיך לערוך",
-	"flow-anonymous": "אלמוני"
+	"flow-anonymous": "אלמוני",
+	"flow-embedding-unsupported": "בינתיים אין אפשרות להטמיע דיונים."
 }

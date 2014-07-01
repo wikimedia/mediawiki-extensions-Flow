@@ -258,5 +258,7 @@
 	"flow-special-type": "Tipo",
 	"flow-special-type-workflow": "Flujo de trabajo",
 	"flow-special-uuid": "UUID",
-	"flow-spam-confirmedit": "Como usuario anónimo, no puedes enviar enlaces externos. Por favor, regístrese para una cuenta."
+	"flow-spam-confirmedit": "Como usuario anónimo, no puedes enviar enlaces externos. Por favor, regístrese para una cuenta.",
+	"flow-anonymous": "Anónimo",
+	"flow-embedding-unsupported": "Las discusiones todavía no pueden ser incrustadas."
 }
