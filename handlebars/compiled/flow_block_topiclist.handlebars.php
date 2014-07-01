@@ -29,6 +29,9 @@
     );
     return '
 <div class="flow-board-navigation">
+	<div class="flow-error-container">
+		
+	</div>
 	
 	<div class="flow-board-navigation-inner">
 		'.LCRun3::hbch($cx, 'progressiveEnhancement', Array('insertionType'=>'insertion','sectionId'=>'flow-board-collapsers'), $in, function($cx, $in) {return '
@@ -391,13 +394,20 @@
 	</div>
 
 	'.((LCRun3::ifvar($cx, ((is_array($in['links']['pagination']) && isset($in['links']['pagination']['fwd'])) ? $in['links']['pagination']['fwd'] : null))) ? '
-	<a data-flow-interactive-handler="apiRequest"
-	   data-flow-api-handler="loadMore"
-	   data-flow-load-handler="loadMore"
-	   href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-	   title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-	   class="flow-ui-button flow-ui-progressive flow-load-interactive /*flow-ui-quiet flow-ui-thin*/"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-load-more'), 'encq').'</a>
+	<div class="flow-load-more">
+		<div class="flow-error-container">
+			
+		</div>
+
+		<a data-flow-interactive-handler="apiRequest"
+		   data-flow-api-handler="loadMore"
+		   data-flow-load-handler="loadMore"
+		   href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+		   title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+		   class="flow-ui-button flow-ui-progressive flow-load-interactive /*flow-ui-quiet flow-ui-thin*/"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-load-more'), 'encq').'</a>
+	</div>
 ' : '').'
+
 </div>
 ';
 }
