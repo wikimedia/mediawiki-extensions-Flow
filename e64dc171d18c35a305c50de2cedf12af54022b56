@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_d262ac05",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-07-01T09:17:33Z",
+      "side": 1,
+      "message": "$1 should have explicit GENDER support.",
+      "revId": "e64dc171d18c35a305c50de2cedf12af54022b56",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
