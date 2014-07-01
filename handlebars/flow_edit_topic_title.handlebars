@@ -1,4 +1,5 @@
 <form method="POST" action="{{actions.edit.url}}">
+	{{> flow_errors }}
 	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 	{{!-- @todo should this be a part of the url? --}}
 	<input type="hidden" name="topic_prev_revision" value="{{revisionId}}" />
