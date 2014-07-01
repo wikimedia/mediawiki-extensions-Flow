@@ -16,6 +16,7 @@ TOPIC_SUBTEMPLATES= flow_topic.handlebars \
 		flow_topic_titlebar_content.handlebars \
 		flow_topic_titlebar_close.handlebars \
 		flow_topic_titlebar_summary.handlebars \
+		flow_topic_titlebar_watch.handlebars \
 		flow_reply_form.handlebars \
 		flow_topiclist_loop.handlebars \
 		flow_load_more.handlebars \

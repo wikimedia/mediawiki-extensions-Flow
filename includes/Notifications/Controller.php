@@ -12,6 +12,7 @@ use EchoEvent;
 use Language;
 use Title;
 use User;
+use WatchedItem;
 
 class NotificationController {
 	/**
@@ -448,7 +449,8 @@ class NotificationController {
 				// * This could be a problemtic query if the watchlist volume is huge
 				// * Turn on job queue to process echo notifications
 				// * Encapsulate this into somewhere
-				$res = wfGetDB( DB_SLAVE )->select(
+				$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
+				$res = $dbr->select(
 					array( 'watchlist' ),
 					array( 'wl_user' ),
 					array(
@@ -560,7 +562,8 @@ class NotificationController {
 	 * yet where the best place to put this
 	 */
 	public function subscribeToWorkflow( User $user, Workflow $workflow ) {
-		if ( $user->isAnon() ) {
+		// Only topic is subscribable for now
+		if ( $user->isAnon() || $workflow->getType() !== 'topic' ) {
 			return;
 		}
 		$title = $workflow->getArticleTitle();
