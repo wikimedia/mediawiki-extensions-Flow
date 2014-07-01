@@ -415,38 +415,42 @@
 			var $target, $form,
 				result, revision, postId, revisionId,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
 			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
 
-			if ( info.status === 'done' ) {
-				$target = info.$target.find( '.flow-topic-edit-summary' );
-
-				// FIXME: API should take care of this for me.
-				result = data.flow[ 'view-post' ].result.topic;
-				postId = result.roots[0];
-				revisionId = result.posts[postId];
-				revision = result.revisions[revisionId];
-
-				// Enable the editable summary
-				$target.empty();
-				$form = $target.append( $(
-						flowBoard.TemplateEngine.processTemplateGetFragment(
-							'flow_topic_titlebar_close', revision
-						)
-					).children()
-				).find( 'form' );
-
-				// Ensure that on a cancel the form gets destroyed.
-				flowBoardComponentAddCancelCallback( $form, function () {
-					$form.remove();
-				} );
-
-				FlowBoardComponent.UI.makeContentInteractive( $target );
-
-				$form.find( 'textarea' ).focus();
-			} else {
-				// @todo fail
-				alert('fail');
+			// Generic error handling only works on forms; the interactive
+			// element here is the summary div that should be replaced, so let's
+			// take care of displaying the error ourselves.
+			// @todo: error handling should probably be made more generic
+			$target = info.$target.find( '.flow-topic-edit-summary' );
+			FlowBoardComponent.UI.removeError( $target );
+			if ( info.status !== 'done' ) {
+				return;
 			}
+
+			// FIXME: API should take care of this for me.
+			result = data.flow[ 'view-post' ].result.topic;
+			postId = result.roots[0];
+			revisionId = result.posts[postId];
+			revision = result.revisions[revisionId];
+
+			// Enable the editable summary
+			$target.empty();
+			$form = $target.append( $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_topic_titlebar_close', revision
+					)
+				).children()
+			).find( 'form' );
+
+			// Ensure that on a cancel the form gets destroyed.
+			flowBoardComponentAddCancelCallback( $form, function () {
+				$form.remove();
+			} );
+
+			FlowBoardComponent.UI.makeContentInteractive( $target );
+
+			$form.find( 'textarea' ).focus();
 		};
 
 		/**
@@ -456,60 +460,59 @@
 		 * @param {Object} data
 		 * @param {jqXHR} jqxhr
 		 */
-		FlowBoardComponent.UI.events.apiHandlers.closeOpenTopic = function ( info, data ) {
+		FlowBoardComponent.UI.events.apiHandlers.closeOpenTopic = function ( info, data, jqhxr ) {
 			var revision,
 				$target = info.$target, $topicTitleBar,
 				topicId, revisionId,
 				self = this,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
-			if ( info.status === 'done' ) {
-				// We couldn't make close-open-topic to return topic data after a successful
-				// post submission because close-open-topic is used for no-js support as well.
-				// If we make it return topic data, that means it has to return wikitext format
-				// for edit form in no-js mode.  This is a performance problem for wikitext
-				// conversion since topic data returns all children data as well.  So we need to
-				// make close-open-topic return a single post for topic then fire
-				// another request to topic data in html format
-				//
-				// @todo the html could json encode the parameters including topics, the js
-				// could then import that and continuously update it with new revisions from
-				// api calls.  Rendering a topic would then just be pointing the template at
-				// the right part of that data instead of requesting it.
-				flowBoard.API.apiCall( {
-					action: 'flow',
-					submodule: 'view-topic',
-					workflow: $( self ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' )
-				} ).done( function( result ) {
-					// FIXME: Why doesn't the API return this?
-					result = result.flow['view-topic'].result.topic;
-					topicId = result.roots[0];
-					revisionId = result.posts[topicId];
-					revision = result.revisions[revisionId];
-
-					// FIXME: Api should be returning moderation state. Why not?
-					revision.isModerated = revision.moderateState === 'close';
-
-					// FIXME: Hackily remove the moderated class (avoids re-rendering entire post)
-					$target.parents( '.flow-topic' ).removeClass( 'flow-topic-moderated' );
-
-					// Update view of the title bar
-					$topicTitleBar = $(
-						flowBoard.TemplateEngine.processTemplateGetFragment(
-							'flow_topic_titlebar',
-							revision
-						)
-					).children();
-					$target.replaceWith( $topicTitleBar );
-					FlowBoardComponent.UI.makeContentInteractive( $topicTitleBar );
-				} ).fail( function() {
-					// @todo fail
-					alert('failz');
-				} );
-			} else {
-				// @todo fail
-				alert('failz');
+			if ( info.status !== 'done' ) {
+				// @todo: we should tackle edit conflicts here; jqhxr.error should hold the required revision id
+				return;
 			}
+
+			// We couldn't make close-open-topic to return topic data after a successful
+			// post submission because close-open-topic is used for no-js support as well.
+			// If we make it return topic data, that means it has to return wikitext format
+			// for edit form in no-js mode.  This is a performance problem for wikitext
+			// conversion since topic data returns all children data as well.  So we need to
+			// make close-open-topic return a single post for topic then fire
+			// another request to topic data in html format
+			//
+			// @todo the html could json encode the parameters including topics, the js
+			// could then import that and continuously update it with new revisions from
+			// api calls.  Rendering a topic would then just be pointing the template at
+			// the right part of that data instead of requesting it.
+			flowBoard.API.apiCall( {
+				action: 'flow',
+				submodule: 'view-topic',
+				workflow: $( self ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' )
+			} ).done( function( result ) {
+				// FIXME: Why doesn't the API return this?
+				result = result.flow['view-topic'].result.topic;
+				topicId = result.roots[0];
+				revisionId = result.posts[topicId];
+				revision = result.revisions[revisionId];
+
+				// FIXME: Api should be returning moderation state. Why not?
+				revision.isModerated = revision.moderateState === 'close';
+
+				// FIXME: Hackily remove the moderated class (avoids re-rendering entire post)
+				$target.parents( '.flow-topic' ).removeClass( 'flow-topic-moderated' );
+
+				// Update view of the title bar
+				$topicTitleBar = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_topic_titlebar',
+						revision
+					)
+				).children();
+				$target.replaceWith( $topicTitleBar );
+				FlowBoardComponent.UI.makeContentInteractive( $topicTitleBar );
+			} ).fail( function( code, jqxhr ) {
+				FlowBoardComponent.UI.showError( $target, jqxhr.error.info );
+			} );
 		};
 
 		/*
