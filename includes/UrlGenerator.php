@@ -337,6 +337,44 @@ class UrlGenerator extends BaseUrlGenerator {
 	}
 
 	/**
+	 * Watch topic link
+	 * @todo - replace title with a flow topic namespace topic
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function watchTopicLink( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'watch' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'workflow' => $workflowId->getAlphadecimal(),
+				'action' => 'watch'
+			)
+		);
+	}
+
+	/**
+	 * Unwatch topic link
+	 * @todo - replace title with a flow topic namespace topic
+	 *
+	 * @param Title|null $title
+	 * @param UUID $workflowId
+	 * @return Anchor
+	 */
+	public function unwatchTopicLink( Title $title = null, UUID $workflowId ) {
+		return new Anchor(
+			wfMessage( 'unwatch' ),
+			$this->resolveTitle( $title, $workflowId ),
+			array(
+				'workflow' => $workflowId->getAlphadecimal(),
+				'action' => 'unwatch'
+			)
+		);
+	}
+
+	/**
 	 * View the flow board at the specified title
 	 *
 	 * Makes the assumption the title is flow-enabled.

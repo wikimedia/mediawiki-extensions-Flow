@@ -225,6 +225,9 @@ $wgAutoloadClasses['Flow\Model\WikiReference'] = "$dir/includes/Model/Reference.
 $wgAutoloadClasses['Flow\Model\URLReference'] = "$dir/includes/Model/Reference.php";
 $wgAutoloadClasses['Flow\Data\ReferenceRecorder'] = "$dir/includes/Data/ReferenceRecorder.php";
 
+// Watchlist
+$wgAutoloadClasses['Flow\WatchedItems'] = "$dir/includes/WatchedItems.php";
+
 // Actions
 $wgAutoloadClasses['Flow\Actions\FlowAction'] = $dir . 'includes/Actions/Action.php';
 $wgAutoloadClasses['Flow\Actions\CreateHeaderAction'] = $dir . 'includes/Actions/CreateHeaderAction.php';

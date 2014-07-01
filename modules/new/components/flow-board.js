@@ -187,6 +187,22 @@
 		};
 
 		/**
+		 * Before (un)watch a topic, sends an overrideObject to the API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.watchTopic = function( event ) {
+			var params = {
+				action: 'watch'
+			};
+			// unwatch if the topic has been watched
+			if ( $( this ).data( 'flow-topic-subscribed' ) == 'true' ) {
+				params.unwatch = true;
+			}
+			return params;
+		};
+
+		/**
 		 * Before activating post, sends an overrideObject to the API to modify the request params.
 		 * @param {Event} event
 		 * @return {Object}
@@ -754,6 +770,27 @@
 				} );
 				// Trigger a click on cancel to have it destroy the form the way it should
 				$form.find( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
+			} else {
+				// @todo: address fail
+				alert( 'fail' );
+			}
+		};
+
+		/**
+		 * @param {Object} info (status:done|fail, $target: jQuery)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.apiHandlers.watchTopic = function ( info, data, jqxhr ) {
+			// @todo - parse the result properly
+			if ( info.status === 'done' ) {
+				if ( $( this ).data( 'flow-topic-subscribed' ) == 'true' ) {
+					$( this ).data( 'flow-topic-subscribed', 'false' );
+					$( this ).find( '.wikiglyph' ).removeClass( 'flow-topic-watchlist-subscribed' );
+				} else {
+					$( this ).data( 'flow-topic-subscribed', 'true' );
+					$( this ).find( '.wikiglyph' ).addClass( 'flow-topic-watchlist-subscribed' );
+				}
 			} else {
 				// @todo: address fail
 				alert( 'fail' );
