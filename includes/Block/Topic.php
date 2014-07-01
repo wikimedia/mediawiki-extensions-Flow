@@ -650,72 +650,6 @@ class TopicBlock extends AbstractBlock {
 		throw new FlowException( 'Not implemented yet' );
 	}
 
-	protected function getHistory( $postId ) {
-		$history = $this->storage->find(
-			'PostRevision',
-			array( 'rev_type_id' => UUID::create( $postId ) ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
-		);
-		if ( $history ) {
-			// get rid of history entries user doesn't have sufficient permissions for
-			foreach ( $history as $i => $revision ) {
-				/** @var PostRevision $revision */
-
-				// only check against the specific revision, ignoring the most recent
-				if ( !$this->permissions->isAllowed( $revision, 'history' ) ) {
-					unset( $history[$i] );
-				}
-			}
-
-			return $history;
-		} else {
-			throw new InvalidDataException( 'Unable to load post history for post ' . $postId, 'fail-load-history' );
-		}
-	}
-
-	/**
-	 * @param UUID[] $postIds
-	 * @return PostRevision[]
-	 */
-	protected function getHistoryBatch( $postIds ) {
-		$searchItems = array();
-
-		// Make list of candidate conditions
-		foreach( $postIds as $postId ) {
-			$uuid = UUID::create( $postId );
-			$searchItems[$uuid->getAlphadecimal()] = array(
-				'rev_type_id' => $uuid,
-			);
-		}
-
-		// Filter conditions so that only relevant ones are requested
-		$searchConditions = array();
-		$traversalQueue = array( $this->root );
-
-		while( count( $traversalQueue ) > 0 ) {
-			$cur = array_shift( $traversalQueue );
-
-			foreach( $cur->getChildren() as $child ) {
-				array_push( $traversalQueue, $child );
-			}
-
-			$postId = $cur->getPostId()->getAlphadecimal();
-			if ( isset( $searchItems[$postId] ) ) {
-				$searchConditions[] = $searchItems[$postId];
-			}
-		}
-
-		if ( count( $searchConditions ) === 0 ) {
-			return array();
-		}
-
-		return $this->storage->findMulti(
-			'PostRevision',
-			$searchConditions,
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
-		);
-	}
-
 	/**
 	 * @return PostRevision|null
 	 */
@@ -764,28 +698,6 @@ class TopicBlock extends AbstractBlock {
 			}
 		}
 		return $this->topicTitle;
-	}
-
-	protected function loadTopicHistory() {
-		$history = $this->storage->find(
-			'TopicHistoryEntry',
-			array( 'topic_root_id' => $this->workflow->getId() ),
-			array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 100 )
-		);
-		if ( $history ) {
-			// get rid of history entries user doesn't have sufficient permissions for
-			foreach ( $history as $i => $revision ) {
-				/** @var PostRevision|PostSummary $revision */
-				// only check against the specific revision, ignoring the most recent
-				if ( !$this->permissions->isAllowed( $revision, 'history' ) ) {
-					unset( $history[$i] );
-				}
-			}
-
-			return $history;
-		} else {
-			throw new InvalidDataException( 'Unable to load topic history for topic ' . $this->workflow->getId()->getAlphadecimal(), 'fail-load-history' );
-		}
 	}
 
 	/**
@@ -838,34 +750,6 @@ class TopicBlock extends AbstractBlock {
 
 		$this->addError( 'moderation', wfMessage( 'flow-error-not-allowed' ) );
 		return null;
-	}
-
-	protected function loadHistorical( PostRevision $post ) {
-		if ( $post->isFirstRevision() ) {
-			return array();
-		}
-
-		$found = $this->storage->find(
-			'PostRevision',
-			array( 'rev_type_id' => $post->getPostId() )
-		);
-		if ( !$found ) {
-			throw new InvalidInputException( 'Should have found revisions', 'missing-revision' );
-		}
-		$revId = $post->getRevisionId();
-		$rootPost = $post->getRootPost();
-		foreach ( $found as $idx => $revision ) {
-			/** @var PostRevision $revision */
-			if ( $revId->equals( $revision->getRevisionId() ) ) {
-				// Because storage returns a new object for every query
-				// We need to find $post in the array and replace it
-				$found[$idx] = $post;
-			} else {
-				// Root post needs to propogate from $post to found revisions
-				$revision->setRootPost( $rootPost );
-			}
-		}
-		return $found;
 	}
 
 	// The prefix used for form data$pos
