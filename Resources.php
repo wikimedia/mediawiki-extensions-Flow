@@ -206,6 +206,7 @@ $wgResourceModules += array(
 			'new/styles/board/topic/meta.less',
 			'new/styles/board/topic/post.less',
 			'new/styles/board/topic/summary.less',
+			'new/styles/board/topic/watchlist.less',
 		),
 	) + $mobile,
 	// @todo: Remove when cache clears
@@ -229,6 +230,7 @@ $wgResourceModules += array(
 			'new/styles/board/topic/meta.less',
 			'new/styles/board/topic/post.less',
 			'new/styles/board/topic/summary.less',
+			'new/styles/board/topic/watchlist.less',
 			'new/styles/forms.less',
 		),
 	),
