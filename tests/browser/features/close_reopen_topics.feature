@@ -9,6 +9,15 @@ Feature: Close and open topics
         And I have created a Flow topic
     When I click the Topic Actions link
         And I click the Close topic button
+        And I click the Topic Actions link
+        And I click the Summarize link
+        And I do not see the close/reopen form
+
+  Scenario: Closing a topic and then changing your mind
+    Given I am on Flow page
+        And I have created a Flow topic
+    When I click the Topic Actions link
+        And I click the Close topic button
         And I cancel the close/reopen topic form
         And the page renders in 1 seconds
     Then the top post is an open discussion
