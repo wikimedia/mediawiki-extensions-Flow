@@ -84,8 +84,12 @@
 
 		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="topiclist_replyTo" value="'.htmlentities(((is_array($in) && isset($in['workflowId'])) ? $in['workflowId'] : null), ENT_QUOTES, 'UTF-8').'" />
-		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-start-placeholder'), 'encq').'" data-role="title"/>
-		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-content-placeholder'), 'encq').'" data-role="content"></textarea>
+		<input name="topiclist_topic" class="mw-ui-input mw-ui-input-required"
+			type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-start-placeholder'), 'encq').'" data-role="title"/>
+		<textarea name="topiclist_content"
+			class="mw-ui-input flow-form-collapsible mw-ui-input-required"
+			placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-content-placeholder'), 'encq').'"
+			data-role="content"></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" data-flow-api-handler="newTopic"
@@ -330,7 +334,7 @@
 		<textarea id="flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
 				name="topic_content"
 				data-flow-expandable="true"
-				class="mw-ui-input"
+				class="mw-ui-input mw-ui-input-required"
 				type="text"
 				placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'plaintextSnippet', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq')), 'encq').'"
 				data-role="content">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
