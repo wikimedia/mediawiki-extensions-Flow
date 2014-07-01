@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ae43a74e_7519a57d",
+        "filename": "handlebars/flow_errors.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-07-01T17:52:49Z",
+      "side": 1,
+      "message": "The ul is still there, just below this div.",
+      "parentUuid": "ae43a74e_1a35e642",
+      "revId": "d5042bbfff14b33bc314394f910f09001dec6def",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae43a74e_baf49a84",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ae43a74e_f5059514",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1329,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-07-01T17:52:49Z",
+      "side": 1,
+      "message": "I\u0027ll probably want them around for stuff like ConfirmEdit, where the error will contain stuff that will need to be filled out.\n\nBut yes, I could move it out of here: leaving that for the preHandlers to collect and get rid of the errors before actual submission.",
+      "parentUuid": "ae43a74e_baf49a84",
+      "revId": "d5042bbfff14b33bc314394f910f09001dec6def",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae43a74e_fafa2272",
         "filename": "modules/new/styles/layout.less",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2014-07-01T17:15:14Z",
       "side": 1,
       "message": "Comments should be above lines.\n\nAlso bad code smell. I\u0027m not sure why errorbox is inline-block in core. I think this is broken.\n\nOn login form however mediawiki ui takes care of this so I\u0027d consider adding the mw-ui-vform class to all our forms and use the error class instead which has the same effect.\n\n.mw-ui-vform \u003e div",
+      "revId": "d5042bbfff14b33bc314394f910f09001dec6def",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_d585f15b",
+        "filename": "modules/new/styles/layout.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-07-01T17:52:49Z",
+      "side": 1,
+      "message": "I didn\u0027t know about .mw-ui-vform \u0026 .error\n\nHowever, .errorbox is also MW default, and .mw-ui-vform sets a font size, which we probably don\u0027t want. So I\u0027d stick with .errorbox unless there\u0027s compelling reason not to :)",
+      "parentUuid": "ae43a74e_fafa2272",
       "revId": "d5042bbfff14b33bc314394f910f09001dec6def",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
