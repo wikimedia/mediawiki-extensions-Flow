@@ -25,6 +25,6 @@
 	"supernew": true,  // suppress warnings about "weird" object constructions
 	"trailing": true,  // disallow trailing whitespace
 	"undef" :   true,   // prohibits the use of undefined variables
-	"unused":   "vars",  // complain about unused variables but not arguments
-	"white":    true  // enforce Crockford rules
+	"unused":   "vars" // complain about unused variables but not arguments
+//	"white":    true  // enforce Crockford rules
 }

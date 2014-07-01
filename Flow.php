@@ -225,6 +225,9 @@ $wgAutoloadClasses['Flow\Model\WikiReference'] = "$dir/includes/Model/Reference.
 $wgAutoloadClasses['Flow\Model\URLReference'] = "$dir/includes/Model/Reference.php";
 $wgAutoloadClasses['Flow\Data\ReferenceRecorder'] = "$dir/includes/Data/ReferenceRecorder.php";
 
+// Watchlist
+$wgAutoloadClasses['Flow\WatchedItems'] = "$dir/includes/WatchedItems.php";
+
 // Actions
 $wgAutoloadClasses['Flow\Actions\FlowAction'] = $dir . 'includes/Actions/Action.php';
 $wgAutoloadClasses['Flow\Actions\CreateHeaderAction'] = $dir . 'includes/Actions/CreateHeaderAction.php';
@@ -318,6 +321,8 @@ $wgHooks['ContentHandlerDefaultModelFor'][] = 'Flow\Content\Content::onGetDefaul
 $wgHooks['ShowMissingArticle'][] = 'Flow\Content\Content::onShowMissingArticle';
 $wgHooks['ArticleAfterFetchContentObject'][] = 'Flow\Content\Content::onFetchContentObject';
 $wgHooks['MessageCache::get'][] = 'FlowHooks::onMessageCacheGet';
+$wgHooks['WatchArticle'][] = 'FlowHooks::onWatchArticle';
+$wgHooks['UnwatchArticle'][] = 'FlowHooks::onWatchArticle';
 
 // Extension initialization
 $wgExtensionFunctions[] = 'FlowHooks::initFlowExtension';

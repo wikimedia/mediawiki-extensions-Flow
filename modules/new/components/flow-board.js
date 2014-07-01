@@ -761,6 +761,49 @@
 		};
 
 		/**
+		 * @param {Object} info (status:done|fail, $target: jQuery)
+		 * @param {Object} data
+		 * @param {jqXHR} jqxhr
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.watchTopic = function ( event ) {
+			event.preventDefault();
+
+			var api = new mw.Api(), $star = $( this ), params = {
+				action: 'watch',
+				// @todo - do not hardcode
+				titles: 'Topic:' + $star.closest( '.flow-topic' ).data( 'flow-id' ),
+				token: mw.user.tokens.get( 'watchToken' )
+			};
+
+			// unwatch if the topic has been watched
+			if ( String( $star.data( 'flow-topic-subscribed' ) ) === '1' ) {
+				params.unwatch = 1;
+			}
+
+			api.post( params ).done( function ( result ) {
+				if ( result.watch[0].error ) {
+					alert( "(Un)Watching a non-flow topic" );
+					return;
+				}
+				if ( String( $star.data( 'flow-topic-subscribed' ) ) === '1' ) {
+					$star.data( 'flow-topic-subscribed', '0' );
+					$star.find( '.wikiglyph' ).addClass( 'flow-topic-watchlist-unsubscribed' );
+					$star.find( '.wikiglyph' ).removeClass( 'flow-topic-watchlist-subscribed' );
+					// @todo replace with tooltip
+					alert( 'This topic is unsubscribed!' );
+				} else {
+					$star.data( 'flow-topic-subscribed', '1' );
+					$star.find( '.wikiglyph' ).addClass( 'flow-topic-watchlist-subscribed' );
+					$star.find( '.wikiglyph' ).removeClass( 'flow-topic-watchlist-unsubscribed' );
+					// @todo replace with tooltip
+					alert( 'This topic is subscribed' );
+				}
+			} ).fail( function( errorCode, details ) {
+				alert( 'Error code: ' + errorCode );
+			} );
+		};
+
+		/**
 		 * Activate the editable summarize topic form with given api request
 		 * @param {Object} info (status:done|fail, $target: jQuery)
 		 * @param {Object} data
