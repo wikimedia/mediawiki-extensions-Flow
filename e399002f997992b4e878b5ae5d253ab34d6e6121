@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ae43a74e_5aa6cea8",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 1329,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-07-01T17:06:27Z",
+      "side": 1,
+      "message": "Yeah I know, I\u0027ve made manual calls to showError/removeError for those API thingies that have no form, with @todo\u0027s stating the same thing. E.g. https://gerrit.wikimedia.org/r/#/c/143289/1/modules/new/components/flow-board.js (L360)\n\nI\u0027d clean that up in a later patch, adding some attributes to point to the proper container.",
+      "parentUuid": "ae43a74e_3a29ca36",
+      "revId": "e399002f997992b4e878b5ae5d253ab34d6e6121",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae43a74e_da275e5e",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 1
