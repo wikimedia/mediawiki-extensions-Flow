@@ -3,12 +3,20 @@
 namespace Flow\Tests;
 
 use Flow\Container;
+use Flow\Model\UUID;
 use \Title;
 
 /**
  * @group Flow
  */
 class UrlGeneratorTest extends FlowTestCase {
+
+	protected $urlGenerator;
+
+	protected function setUp() {
+		parent::setUp();
+		$this->urlGenerator = Container::get( 'url_generator' );
+	}
 
 	public function provideDataBoardLink() {
 		return array (
@@ -39,8 +47,7 @@ class UrlGeneratorTest extends FlowTestCase {
 	 * @dataProvider provideDataBoardLink
 	 */
 	public function testBoardLink( Title $title, $sortBy = null, $saveSortBy = false ) {
-		$urlGenerator = Container::get( 'url_generator' );
-		$anchor = $urlGenerator->BoardLink( $title, $sortBy, $saveSortBy );
+		$anchor = $this->urlGenerator->boardLink( $title, $sortBy, $saveSortBy );
 		$this->assertInstanceOf( '\Flow\Anchor', $anchor );
 
 		$link = $anchor->getFullURL();
@@ -56,4 +63,52 @@ class UrlGeneratorTest extends FlowTestCase {
 		}
 	}
 
+	public function provideDataWatchTopicLink() {
+		return array (
+			array(
+				Title::makeTitle( NS_MAIN, 'Test' ),
+				UUID::create()
+			),
+			array(
+				Title::makeTitle( NS_MAIN, 'Test' ),
+				UUID::create()
+			),
+			array(
+				Title::makeTitle( NS_MAIN, 'Test' ),
+				UUID::create()
+			),
+			array(
+				Title::makeTitle( NS_MAIN, 'Test' ),
+				UUID::create()
+			)
+		);
+	}
+
+	/**
+	 * @dataProvider provideDataWatchTopicLink
+	 */
+	public function testWatchTopicLink( Title $title, $workflowId ) {
+		$anchor = $this->urlGenerator->watchTopicLink( $title, $workflowId );
+		$this->assertInstanceOf( '\Flow\Anchor', $anchor );
+
+		$link = $anchor->getFullURL();
+		$option = parse_url( $link );
+		$this->assertArrayHasKey( 'query', $option );
+		parse_str( $option['query'], $query );
+		$this->assertEquals( 'watch', $query['action'] );
+	}
+
+	/**
+	 * @dataProvider provideDataWatchTopicLink
+	 */
+	public function testUnwatchTopicLink( Title $title, $workflowId ) {
+		$anchor = $this->urlGenerator->unwatchTopicLink( $title, $workflowId );
+		$this->assertInstanceOf( '\Flow\Anchor', $anchor );
+
+		$link = $anchor->getFullURL();
+		$option = parse_url( $link );
+		$this->assertArrayHasKey( 'query', $option );
+		parse_str( $option['query'], $query );
+		$this->assertEquals( 'unwatch', $query['action'] );
+	}
 }
