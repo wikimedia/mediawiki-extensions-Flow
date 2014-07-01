@@ -709,4 +709,20 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * Don't (un)watch a non-existing flow topic
+	 */
+	public static function onWatchArticle( &$user, &$page, &$status ) {
+		// @todo - always return true now till title support Flow talk namespace
+		return true;
+
+		$title = $page->getTitle();
+		// @todo check namespace Topic
+		if ( $title->getNamespace() == NS_TOPIC && !$title->exists() ) {
+			return false;
+		}
+		return true;
+	}
+
 }

@@ -6,7 +6,8 @@
             'spvar' => true,
             'debug' => $debugopt,
         ),
-        'helpers' => Array(),
+        'helpers' => Array(            'html' => 'Flow\TemplateHelper::html',
+),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(),
         'scopes' => Array($in),
@@ -24,7 +25,7 @@
 	<div class="flow-errors errorbox">
 		<ul>
 			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-				<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
+				<li>'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['message'])) ? $in['message'] : null)), 'encq').'</li>
 			';}).'
 		</ul>
 	</div>

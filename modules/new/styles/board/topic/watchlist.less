@@ -1,0 +1,30 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+@import 'flow.helpers';
+@import 'flow.variables';
+
+.flow-topic-watchlist {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	.flow-topic-watchlist-subscribed {
+		// @todo put them in flow.colors
+		color: #00A600;
+	}
+	.flow-topic-watchlist-unsubscribed {
+		color: #424242;
+	}
+	
+	.flow-topic-watchlist-unwatchable {
+		padding: 7px;
+	}
+	
+	a {
+		.wikiglyph {
+			&:hover {
+				color: #00A600;
+			}
+		}
+	 }
+}			
