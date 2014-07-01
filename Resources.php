@@ -148,6 +148,7 @@ $wgResourceModules += array(
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
 		'styles' => array(
 			'new/styles/mw-ui-flow.less',
+			'new/styles/mediawiki.ui.flow/forms.less',
 			'new/styles/layout.less',
 			'new/styles/icons.less',
 			'new/styles/js.less',

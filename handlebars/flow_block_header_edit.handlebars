@@ -2,7 +2,9 @@
 	<div class="flow-board-header-edit-view">
 		{{> flow_errors}}
 
-		<form method="POST" action="{{revision.actions.edit.url}}" flow-api-action="edit-header">
+		<form method="POST"
+			class="mw-ui-vform"
+			action="{{revision.actions.edit.url}}" flow-api-action="edit-header">
 			<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 			{{#if revision.revisionId}}
 				<input type="hidden" name="header_prev_revision" value="{{revision.revisionId}}" />

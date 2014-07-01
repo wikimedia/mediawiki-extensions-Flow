@@ -5,7 +5,7 @@
 
 	{{#each roots}}
 		{{#eachPost @root this}}
-			<form class="flow-reply-form" method="POST" action="{{actions.reply.url}}">
+			<form class="flow-reply-form mw-ui-vform" method="POST" action="{{actions.reply.url}}">
 				<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 				<input type="hidden" name="topic_replyTo" value="{{postId}}" />
 
