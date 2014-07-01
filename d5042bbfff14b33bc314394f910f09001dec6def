@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_1a35e642",
+        "filename": "handlebars/flow_errors.handlebars",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-01T17:15:14Z",
+      "side": 1,
+      "message": "Why the switch from ul to div?",
+      "revId": "d5042bbfff14b33bc314394f910f09001dec6def",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_baf49a84",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1329,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-01T17:15:14Z",
+      "side": 1,
+      "message": "Shouldn\u0027t errors be removed prior to posting?",
+      "revId": "d5042bbfff14b33bc314394f910f09001dec6def",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_fafa2272",
+        "filename": "modules/new/styles/layout.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-01T17:15:14Z",
+      "side": 1,
+      "message": "Comments should be above lines.\n\nAlso bad code smell. I\u0027m not sure why errorbox is inline-block in core. I think this is broken.\n\nOn login form however mediawiki ui takes care of this so I\u0027d consider adding the mw-ui-vform class to all our forms and use the error class instead which has the same effect.\n\n.mw-ui-vform \u003e div",
+      "revId": "d5042bbfff14b33bc314394f910f09001dec6def",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
