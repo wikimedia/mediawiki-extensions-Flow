@@ -64,6 +64,7 @@ $wgResourceModules += array(
 			"flow_topic.handlebars",
 			"flow_topic_titlebar.handlebars",
 			"flow_topic_titlebar_close.handlebars",
+			"flow_topic_titlebar_watch.handlebars",
 			"flow_topic_navigation.handlebars",
 			"flow_topic_titlebar_content.handlebars",
 			"flow_topic_titlebar_summary.handlebars",
@@ -155,6 +156,9 @@ $wgResourceModules += array(
 			'flow-terms-of-use-close-topic',
 			'flow-terms-of-use-reopen-topic',
 			'flow-no-more-fwd',
+			// Tooltip
+			'flow-topic-notification-subscribe-title',
+			'flow-topic-notification-subscribe-description',
 		),
 	),
 	// @todo: replace with mediawiki ui buttons
@@ -209,6 +213,7 @@ $wgResourceModules += array(
 			'new/styles/board/topic/meta.less',
 			'new/styles/board/topic/post.less',
 			'new/styles/board/topic/summary.less',
+			'new/styles/board/topic/watchlist.less',
 		),
 	) + $mobile,
 	// @todo: Remove when cache clears
@@ -232,6 +237,7 @@ $wgResourceModules += array(
 			'new/styles/board/topic/meta.less',
 			'new/styles/board/topic/post.less',
 			'new/styles/board/topic/summary.less',
+			'new/styles/board/topic/watchlist.less',
 		),
 	),
 	'ext.flow.new.handlebars' => $flowResourceTemplate + array(
