@@ -306,7 +306,7 @@
     "flow-terms-of-use-edit": "By saving your changes, you agree to the terms of use for this wiki.",
     "flow-anon-warning": "You are not logged in. To receive attribution with your name instead of your IP address, you can [$1 log in] or [$2 create an account].",
     "flow-cancel-warning": "You have entered text in this form. Are you sure you want to discard it?",
-    "flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 started this topic|1=$1 started this topic and there was one other participant|$1 started this topic and there were $2 other participants}}",
+    "flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 {{GENDER:$1|started}} this topic|1=$1 {{GENDER:$1|started}} this topic and there was one other participant|$1 {{GENDER:$1|started}} this topic and there were $2 other participants}}",
     "flow-topic-count-sidebar": "Showing $1 of $2 topics attached to this page",
     "flow-topic-count": "Topics ($1)",
     "flow-topic-comment-count": "$1 {{PLURAL:$1|comment|comments}}",
