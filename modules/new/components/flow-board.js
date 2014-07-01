@@ -533,6 +533,15 @@
 				topicData = data.flow['edit-title'].result.topic;
 				rootId = topicData.roots[0];
 				revisionId = topicData.posts[rootId][0];
+
+				// topic is auto-watched
+				// @todo - it may fail being auto-added to watchlist in server
+				FlowBoardComponent.UI.postWatchTopic(
+					$( this ).closest( '.flow-topic' ).find(
+						'.flow-topic-watchlist-link'
+					)
+				);
+
 				$newTopicTitleBar = $( flowBoard.TemplateEngine.processTemplateGetFragment(
 					'flow_topic_titlebar',
 					topicData.revisions[revisionId]
@@ -544,7 +553,6 @@
 				FlowBoardComponent.UI.makeContentInteractive( $newTopicTitleBar );
 
 				$newTopicTitleBar.conditionalScrollIntoView();
-
 			} else {
 				// @todo
 				alert( "Error" );
@@ -588,6 +596,13 @@
 				revision = result.revisions[result.posts[result.roots[0]]];
 				html = mw.flow.TemplateEngine.processTemplate( 'flow_post', { revision: revision } );
 
+				// topic is auto-watched
+				// @todo - it may fail being auto-added to watchlist in server
+				FlowBoardComponent.UI.postWatchTopic(
+					$( this ).closest( '.flow-topic' ).find(
+						'.flow-topic-watchlist-link'
+					)
+				);
 				$( this ).closest( 'form' ).replaceWith( $( html ).find( '.flow-post-main' ) );
 			}
 		};
@@ -721,6 +736,14 @@
 				{ revision: data.flow.reply.result.topic.revisions[postId] }
 			);
 
+			// topic is auto-watched upon reply
+			// @todo - it may fail being auto-added to watchlist in server
+			FlowBoardComponent.UI.postWatchTopic(
+				$( this ).closest( '.flow-topic' ).find(
+					'.flow-topic-watchlist-link'
+				)
+			);
+
 			$form.before( post );
 
 			// Clear contents to not trigger the "are you sure you want to
@@ -730,6 +753,67 @@
 			} );
 			// Trigger a click on cancel to have it destroy the form the way it should
 			$form.find( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
+		};
+
+		/**
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.watchTopic = function ( event ) {
+			event.preventDefault();
+
+			var api = new mw.Api(), $star = $( this ), params = {
+				action: 'watch',
+				// @todo - do not hardcode
+				titles: 'Topic:' + $star.closest( '.flow-topic' ).data( 'flow-id' ),
+				token: mw.user.tokens.get( 'watchToken' )
+			}, watched = $star.find( '.wikiglyph' ).hasClass( 'flow-topic-watched' );
+
+			// unwatch if the topic has been watched
+			if ( watched ) {
+				params.unwatch = 1;
+			}
+
+			api.post( params ).done( function ( result ) {
+				if ( result.watch[0].error ) {
+					// @todo - replace with proper error handling
+					alert( "(Un)Watching a non-flow topic" );
+					return;
+				}
+				if ( watched ) {
+					FlowBoardComponent.UI.postUnwatchTopic( $star );
+				} else {
+					FlowBoardComponent.UI.postWatchTopic( $star );
+				}
+			} ).fail( function( errorCode, details ) {
+				// @todo - repalce with proper error handling
+				alert( 'Error code: ' + errorCode );
+			} );
+		};
+
+		/**
+		 * Helper function that should be called after watching a topic
+		 * @param {Object} $star
+		 */
+		FlowBoardComponent.UI.postWatchTopic = function( $star ) {
+			$star.find( '.wikiglyph' ).addClass( 'flow-topic-watched' );
+			$star.find( '.wikiglyph' ).removeClass( 'flow-topic-unwatched' );
+			// @todo - this is a smell of badness
+			$star.attr( 'href', $star.attr( 'href' ).replace( 'action=unwatch', 'action=watch' ) );
+			// @todo replace with tooltip
+			alert( 'This topic is subscribed' );
+		};
+
+		/**
+		 * Helper function that should be called after unwatching a topic
+		 * @param {Object} $star
+		 */
+		FlowBoardComponent.UI.postUnwatchTopic = function( $star ) {
+			$star.find( '.wikiglyph' ).addClass( 'flow-topic-unwatched' );
+			$star.find( '.wikiglyph' ).removeClass( 'flow-topic-watched' );
+			// @todo - this is a smell of badness
+			$star.attr( 'href', $star.attr( 'href' ).replace( 'action=watch', 'action=unwatch' ) );
+			// @todo replace with tooltip
+			alert( 'This topic is unsubscribed!' );
 		};
 
 		/**
