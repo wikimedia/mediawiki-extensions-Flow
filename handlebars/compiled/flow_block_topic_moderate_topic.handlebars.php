@@ -8,6 +8,7 @@
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
+            'html' => 'Flow\TemplateHelper::html',
             'post' => 'Flow\TemplateHelper::post',
             'moderationAction' => 'Flow\TemplateHelper::moderationAction',
             'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
@@ -26,7 +27,7 @@
 	<div class="flow-errors errorbox">
 		<ul>
 			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-				<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
+				<li>'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['message'])) ? $in['message'] : null)), 'encq').'</li>
 			';}).'
 		</ul>
 	</div>
@@ -102,7 +103,7 @@
 							<a href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 							   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 							   data-flow-api-handler="activateEditPost"
-							   data-flow-api-target=".flow-post[data-flow-id=\''.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'\']"
+							   data-flow-api-target="< .flow-post-main"
 							   data-flow-interactive-handler="apiRequest"
 							   class="flow-ui-regressive flow-ui-quiet">
 								'.LCRun3::ch($cx, 'l10n', Array('flow-post-action-edit-post'), 'encq').'

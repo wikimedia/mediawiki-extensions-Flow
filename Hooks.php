@@ -725,4 +725,28 @@ class FlowHooks {
 
 		return true;
 	}
+
+	/**
+	 * Don't (un)watch a non-existing flow topic
+	 */
+	public static function onWatchArticle( &$user, &$page, &$status ) {
+		$title = $page->getTitle();
+		if ( $title->getNamespace() == NS_TOPIC ) {
+			// @todo - use !$title->exists()?
+			$found = Container::get( 'storage' )->find(
+				'PostRevision',
+				array( 'rev_type_id' => strtolower( $title->getDBkey() ) ),
+				array( 'sort' => 'rev_id', 'order' => 'DESC', 'limit' => 1 )
+			);
+			if ( !$found ) {
+				return false;
+			}
+			$post = reset( $found );
+			if ( !$post->isTopicTitle() ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }
