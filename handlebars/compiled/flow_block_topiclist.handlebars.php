@@ -141,6 +141,24 @@
 
 
 	'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
+		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['watchable'])) ? $in['watchable'] : null))) ? '
+			<div class="flow-topic-watchlist">
+					'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isAlwaysWatched'])) ? $in['isAlwaysWatched'] : null))) ? '
+						<div
+							class="flow-ui-quiet flow-ui-thin flow-topic-watchlist-unwatchable">
+							<span class="wikiglyph wikiglyph-star'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isWatched'])) ? $in['isWatched'] : null))) ? ' flow-topic-watchlist-subscribed' : '').'"></span>
+						</div>
+					' : '
+						<a
+							data-flow-topic-subscribed="'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isWatched'])) ? $in['isWatched'] : null))) ? '1' : '0').'"
+							href="'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isWatched'])) ? $in['isWatched'] : null))) ? ''.htmlentities(((is_array($in['links']['unwatch-topic']) && isset($in['links']['unwatch-topic']['url'])) ? $in['links']['unwatch-topic']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['links']['watch-topic']) && isset($in['links']['watch-topic']['url'])) ? $in['links']['watch-topic']['url'] : null), ENT_QUOTES, 'UTF-8').'').'"
+							class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin"
+							data-flow-interactive-handler="watchTopic">
+							<span class="wikiglyph wikiglyph-star '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isWatched'])) ? $in['isWatched'] : null))) ? 'flow-topic-watchlist-subscribed' : 'flow-topic-watchlist-unsubscribed').'"></span>
+						</a>
+					').'
+			</div>
+		' : '').'
 		<div class="flow-menu">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
 			<ul class="flow-ui-button-container">
