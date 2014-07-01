@@ -592,9 +592,8 @@
 				previewTemplate = $target.data( 'flow-preview-template' );
 				
 
-			if ( info.status === 'fail' || ! data['flow-parsoid-utils'] ) {
-				// @todo
-				alert( "fail" );
+			if ( info.status !== 'done' ) {
+				// Error will be displayed by default, nothing else to wrap up
 				return;
 			}
 
