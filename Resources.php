@@ -191,6 +191,9 @@ $wgResourceModules += array(
 			'mediawiki.jqueryMsg',
 			'jquery.json',
 			'jquery.conditionalScroll',
+		),
+		'messages' => array(
+			'flow-error-http',
 		)
 	),
 	'ext.flow.vendor.storer' => $flowResourceTemplate + array(
