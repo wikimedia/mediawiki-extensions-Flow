@@ -275,6 +275,7 @@
 
 		<textarea id="flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
 				name="topic_content"
+				required
 				data-flow-expandable="true"
 				class="mw-ui-input"
 				type="text"
