@@ -15,8 +15,12 @@
 
 		<input type="hidden" name="wpEditToken" value="{{ @root.editToken }}" />
 		<input type="hidden" name="topiclist_replyTo" value="{{ workflowId }}" />
-		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="{{l10n "flow-newtopic-start-placeholder"}}" data-role="title"/>
-		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="{{l10n "flow-newtopic-content-placeholder"}}" data-role="content"></textarea>
+		<input name="topiclist_topic" class="mw-ui-input mw-ui-input-required"
+			type="text" placeholder="{{l10n "flow-newtopic-start-placeholder"}}" data-role="title"/>
+		<textarea name="topiclist_content"
+			class="mw-ui-input flow-form-collapsible"
+			placeholder="{{l10n "flow-newtopic-content-placeholder"}}"
+			data-role="content"></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" data-flow-api-handler="newTopic"
