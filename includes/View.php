@@ -50,7 +50,7 @@ class View extends ContextSource {
 		$workflow = $loader->getWorkflow();
 
 		$title = $workflow->getArticleTitle();
-		$out->setPageTitle( $title->getPrefixedText() );
+		$out->setPageTitle( $title->getPrefixedText() ); // FIXME redundant? second setPageTitle() below.
 		// Temporary hack to make relative links work when the page is requested as /w/index.php?title=
 		// @todo this wont work when we eventually display posts from multiple source pages,
 		// @todo Patch core to either deprecate /w/index.php?title= and issue redirects, or
@@ -138,11 +138,18 @@ class View extends ContextSource {
 		wfProfileOut( __CLASS__ . '-render' );
 	}
 
+	/**
+	 * Get the title for the page, either the Flow board or the topic.
+	 *
+	 * @return string A suitable title XXX with HTML entities escaped.
+	 * @todo Provide more informative page title for actions other than view,
+	 *       e.g. "Hide post in <TITLE>", "Reopen <TITLE>", etc.
+	 */
 	protected function getPageTitle( Workflow $workflow, array $apiResponse ) {
 		switch( $workflow->getType() ) {
 			case 'topic':
 				$block = $apiResponse['blocks'][0];
-				return $block['topicTitle'];
+				return htmlspecialchars( $block['topicTitle'] );
 			case 'discussion':
 				return $workflow->getArticleTitle()->getPrefixedText();
 		}
