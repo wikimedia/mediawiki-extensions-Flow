@@ -2,7 +2,9 @@
  * Enhances mediawiki-ui style elements with JavaScript.
  */
 
-( function ( $ ) {
+( function ( mw, $ ) {
+	mw.flow = mw.flow || {}; // create mw.flow globally
+
 	/*
 	* Reduce eye-wandering due to adjacent colorful buttons
 	* This will make unhovered and unfocused sibling buttons become faded and blurred
@@ -86,26 +88,32 @@
 		}
 	} );
 
+	/**
+	 * Disables action and submit buttons when a form has required fields
+	 * @param {jQuery} $form jQuery object corresponding to a form element.
+	 */
+	function enableFormWithRequiredFields( $form ) {
+		var
+			$fields = $form.find( 'input, textarea' ).filter( '[required]' ),
+			ready = true;
 
+		$fields.each( function () {
+			if ( this.value === '' ) {
+				ready = false;
+			}
+		} );
+
+		// @todo scrap data-role? use submit types? or a single role=action?
+		$form.find( '.flow-ui-button' ).filter( '[data-role=action], [data-role=submit]' )
+			.attr( 'disabled', !ready );
+	}
 	/*
 	 * Disable / enable preview and submit buttons without/with text in field.
 	 * Usage: field needs required attribute
 	 */
 	$( document ).ready( function () {
 		$( document ).on( 'keyup.flow-actions-disabler', '.mw-ui-input', function () {
-			var $form = $( this ).closest( 'form' ),
-				$fields = $form.find( 'input, textarea' ).filter( '[required]' ),
-				ready = true;
-
-			$fields.each( function () {
-				if ( this.value === '' ) {
-					ready = false;
-				}
-			} );
-
-			// @todo scrap data-role? use submit types? or a single role=action?
-			$form.find( '.flow-ui-button' ).filter( '[data-role=action], [data-role=submit]' )
-				.attr( 'disabled', !ready );
+			enableFormWithRequiredFields( $( this ).closest( 'form' ) );
 		} );
 	} );
 
@@ -237,4 +245,9 @@
 			.on( 'mouseenter.mw-ui-enhance focus.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipFocus )
 			.on( 'mouseleave.mw-ui-enhance blur.mw-ui-enhance click.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipBlur );
 	} );
-}( jQuery ) );
+
+	mw.flow.enhance = {
+		enableFormWithRequiredFields: enableFormWithRequiredFields
+	};
+
+}( mw, jQuery ) );
