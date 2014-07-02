@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_b0b6f1d5",
+        "filename": "includes/View.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-02T19:42:32Z",
+      "side": 1,
+      "message": "Please just remove it. Clearly is redundant.\nThere should only be one call to setPageTitle.",
+      "revId": "9d2dbbf1157705faf8fe095eb1ae4df871fae92c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
