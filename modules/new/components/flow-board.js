@@ -1712,8 +1712,7 @@
 
 			// Save error (to be removed later) & display error message
 			$container.data( 'flow-error', $error );
-			$container.append( $error );
-
+			$container.find( '.flow-error-container' ).replaceWith( $error );
 			mw.log.warn( msg );
 		};
 
