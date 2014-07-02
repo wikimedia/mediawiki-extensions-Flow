@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_53810ffc",
+        "filename": "tests/browser/features/collapse.feature",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-07-02T20:08:06Z",
+      "side": 1,
+      "message": "This fails. If a topic is hidden (moderated) then you initially don\u0027t see who started it until you click it, in *every* view (Topics/Topics only/Small topics view). The same . Is this test affected by previous clicks on topics?",
+      "revId": "c7b13e9d226f592e32038682eb4ca930a52f21d5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
