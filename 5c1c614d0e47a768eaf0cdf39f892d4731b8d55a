@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_41d81ef4",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1632,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-02T17:21:32Z",
+      "side": 1,
+      "message": "does this need an else to reset disabled status if the user blanks the field?",
+      "revId": "5c1c614d0e47a768eaf0cdf39f892d4731b8d55a",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
