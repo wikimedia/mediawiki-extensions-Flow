@@ -1,0 +1,208 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+@import 'flow.helpers';
+
+// Wrapper element for stylized form elements
+.mw-ui-field {
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+	min-height: 0;
+
+	.mw-ui-input {
+		margin: 0;
+	}
+}
+
+.mw-ui-input:focus {
+	border-color: @colorGrayDark;
+}
+
+
+.mw-ui-field-icon {
+	display: none;
+}
+
+.mw-ui-uls-icon:before {
+	//.glyphicon-globe
+	content: "\e135";
+	opacity: 0.66;
+}
+
+
+/*
+== MediaWiki UI Text Field Validation ==
+
+=== Guidelines ===
+
+
+=== Notes ===
+Does not support IE7 nor IE8.
+ */
+/*.flow-ui-validated */.mw-ui-field:not(.ie8WillIgnoreThis) {
+	.mw-ui-field-icon {
+		.box-sizing( border-box );
+		white-space: nowrap;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 2em;
+		height: 100%;
+		text-align: center;
+		pointer-events: none;
+	}
+
+	.mw-ui-field-icon:before {
+		.box-sizing( border-box );
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		margin-top: -.6em;
+		width: 2em;
+		color: @colorGrayLight;
+		font-size: 1em;
+		line-height: 1em;
+		text-align: center;
+		pointer-events: none;
+		//.glyphicon
+		font-family: 'Glyphicons Halflings';
+		-webkit-font-smoothing: antialiased;
+	}
+
+	.mw-ui-validation-icon {
+		border-radius: 0 2px 2px 0;
+		border: 1px solid @colorGrayDark;
+		border-width: 1px 1px 1px 0;
+	}
+	.mw-ui-validation-icon:before {
+		color: #fff;
+	}
+
+	.mw-ui-input {
+		// Hide the ULS icon because these elements have HTML5 controls
+		&[type='date'], &[type='number'], &[type='search'], &[type='time'] {
+			~ .mw-ui-uls-icon {
+				visibility: hidden;
+			}
+		}
+
+		&:valid {
+			&[required], &[min], &[max], &[pattern],
+			&[type='color'], &[type='date'], &[type='email'], &[type='number'],
+			&[type='url'], &[type='range'], &[type='time'] {
+				border-right-width: 2em;
+
+				~ .mw-ui-validation-icon {
+					display: block;
+				}
+			}
+			~ .mw-ui-validation-icon {
+				background: #00B08A;
+				background: rgba(0, 176, 138, .85);
+			}
+			~ .mw-ui-validation-icon:before {
+				//.glyphicon-ok
+				content: "\e013";
+			}
+
+			// Support up to two icons side by side
+			+ .mw-ui-validation-icon + .mw-ui-uls-icon {
+				right: 2em;
+			}
+			&[type='date'] {
+				+ .mw-ui-validation-icon + .mw-ui-uls-icon {
+					right: 4em;
+				}
+			}
+			&[type='number'], &[type='time'] {
+				+ .mw-ui-validation-icon + .mw-ui-uls-icon {
+					right: 3em;
+				}
+			}
+		}
+
+		&:invalid {
+			&[required], &[min], &[max], &[pattern],
+			&[type='color'], &[type='date'], &[type='email'], &[type='number'],
+			&[type='url'], &[type='range'], &[type='time'] {
+				border-right-width: 2em;
+
+				~ .mw-ui-validation-icon {
+					display: block;
+				}
+			}
+			~ .mw-ui-validation-icon {
+				background: #D31300;
+				background: rgba(211, 19, 0, .85);
+			}
+			~ .mw-ui-validation-icon:before {
+				//.glyphicon-remove
+				content: "\e014";
+			}
+
+			// Support up to two icons side by side
+			+ .mw-ui-validation-icon + .mw-ui-uls-icon {
+				right: 2em;
+			}
+		}
+
+		&:focus {
+			~ .mw-ui-uls-icon {
+				display: block;
+			}
+		}
+	}
+}
+
+
+/*
+== MediaWiki UI Radio and Checkbox ==
+
+=== Guidelines ===
+
+
+=== Notes ===
+Does not support IE7 nor IE8.
+ */
+.mw-ui-fieldtag-input:not(.ie8WillIgnoreThis) {
+	cursor: pointer;
+
+	.mw-ui-radio:before,
+	.mw-ui-checkbox:before {
+		display: inline-block;
+		vertical-align: text-bottom;
+		font-family: 'Glyphicons Halflings';
+		-webkit-font-smoothing: antialiased;
+		color: @colorTextLight;
+		font-size: inherit;
+		line-height: inherit;
+	}
+
+	input[type='radio'],
+	input[type='checkbox'] {
+		display: none;
+	}
+
+	input[type='radio'] {
+		+ .mw-ui-radio:before {
+			//.glyphicon-dashboard
+			content: "\e141";
+		}
+		&:checked + .mw-ui-radio:before {
+			//.glyphicon-record
+			text-shadow: none;
+			content: "\e165";
+		}
+	}
+	input[type='checkbox'] {
+		+ .mw-ui-checkbox:before {
+			//.glyphicon-unchecked
+			content: "\e157";
+		}
+		&:checked + .mw-ui-checkbox:before {
+			//.glyphicon-check
+			content: "\e067";
+		}
+	}
+}
