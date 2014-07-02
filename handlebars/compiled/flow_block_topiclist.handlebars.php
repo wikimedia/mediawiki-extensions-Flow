@@ -39,7 +39,8 @@
 			';}, function($cx, $in) {return '
 				'.LCRun3::ch($cx, 'l10n', Array('flow-newest-topics'), 'encq').'
 			';}).'
-			<span class="wikiglyph wikiglyph-caret-down"></span>'.htmlentities(((is_array($in) && isset($in['null'])) ? $in['null'] : null), ENT_QUOTES, 'UTF-8').'</a>
+			<span class="wikiglyph wikiglyph-caret-down"></span>
+		</a>
 	</div>
 	<div class="flow-board-filter-menu">
 		<div class="flow-menu flow-menu-inverted">
@@ -84,7 +85,9 @@
 
 		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="topiclist_replyTo" value="'.htmlentities(((is_array($in) && isset($in['workflowId'])) ? $in['workflowId'] : null), ENT_QUOTES, 'UTF-8').'" />
-		<input name="topiclist_topic" class="mw-ui-input" type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-start-placeholder'), 'encq').'" data-role="title"/>
+		<input name="topiclist_topic" class="mw-ui-input"
+			required
+			type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-start-placeholder'), 'encq').'" data-role="title"/>
 		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-content-placeholder'), 'encq').'" data-role="content"></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
@@ -329,6 +332,7 @@
 
 		<textarea id="flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
 				name="topic_content"
+				required
 				data-flow-expandable="true"
 				class="mw-ui-input"
 				type="text"
