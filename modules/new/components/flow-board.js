@@ -1310,7 +1310,7 @@
 			if ( !$deferred ) {
 				mw.flow.debug( '[FlowAPI] [interactiveHandlers] apiRequest element is not anchor or form element' );
 				$deferred = $.Deferred();
-				$deferred.rejectWith( { error: 'Not an anchor or form' } );
+				$deferred.rejectWith( { error: { info: 'Not an anchor or form' } } );
 			}
 
 			// Remove the load indicator
@@ -1333,7 +1333,7 @@
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} )
 					.fail( function ( code, result ) {
-						var args = Array.prototype.slice.call( arguments, 0 );
+						var args = Array.prototype.slice.call( arguments, 0 ), errorMsg;
 						info.status = 'fail';
 						info.$container = $this.closest( 'form' );
 						args.unshift( info );
@@ -1345,8 +1345,13 @@
 						 * the subsequent call to that specific api handler, by
 						 * calling FlowBoardComponent.UI.removeError() with
 						 * info.$container as argument.
+						 *
+						 * Errors returned by MW/Flow should always be in the
+						 * same format. If the request failed without a specific
+						 * error message, just fall back to some default error.
 						 */
-						FlowBoardComponent.UI.showError( $this.closest( 'form' ), result.error.info );
+						errorMsg = result.error ? result.error.info : mw.msg( 'flow-error-http' );
+						FlowBoardComponent.UI.showError( $this.closest( 'form' ), errorMsg );
 
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} );
