@@ -1643,12 +1643,6 @@
 			}
 
 			$container.find( '.flow-content-preview' ).hide();
-
-			// Get rid of existing error message in this container
-			FlowBoardComponent.UI.removeError( $container );
-
-			// Save error (to be removed later) & display error message
-			$container.data( 'flow-error', $error );
 			$container.find( '.flow-error-container' ).replaceWith( $error );
 			mw.log.warn( msg );
 		};
@@ -1657,11 +1651,7 @@
 		 * @param {FlowBoardComponent|jQuery} $container or entire FlowBoard
 		 */
 		FlowBoardComponent.UI.removeError = function ( $container ) {
-			var $existingError = $container.data( 'flow-error' );
-			if ( $existingError ) {
-				$existingError.remove();
-				$container.removeData( 'flow-error' );
-			}
+			$container.find( '.flow-error-container' ).empty();
 		};
 
 		/**
