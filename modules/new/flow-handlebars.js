@@ -491,14 +491,6 @@
 	};
 
 	/**
-	 * Does nothing, outputs nothing. Used to clear whitespace with {{~null~}}.
-	 * @returns {string} ""
-	 */
-	FlowHandlebars.prototype.nullHelper = function () {
-		return "";
-	};
-
-	/**
 	 * Runs a callback when user is anonymous
 	 * @param array $options which must contain fn and inverse key mapping to functions.
 	 *
@@ -663,7 +655,6 @@
 	Handlebars.registerHelper( 'eachPost', FlowHandlebars.prototype.eachPost );
 	Handlebars.registerHelper( 'math', FlowHandlebars.prototype.math );
 	Handlebars.registerHelper( 'progressiveEnhancement', FlowHandlebars.prototype.progressiveEnhancement );
-	Handlebars.registerHelper( 'null', FlowHandlebars.prototype.nullHelper );
 	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
 	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
