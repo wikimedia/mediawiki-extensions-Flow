@@ -103,12 +103,12 @@ Feature: Topic collapsing
     # Now, put a user-set close override
     When I click the first moderated topic
     Then I should see the title of the first moderated topic
-      And I should see who started the first moderated topic
+      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
 
     # Complete mode cycle
     When I switch from Topics and posts view to Topics only view
       And I switch from Topics only view to Topics and posts view
     Then I should see the title of the first moderated topic
-      And I should see who started the first moderated topic
+      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
