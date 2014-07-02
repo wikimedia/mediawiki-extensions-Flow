@@ -74,12 +74,12 @@ Feature: Topic collapsing
   Scenario: For a moderated post, a mode cycle with no user override keeps it hidden
     Given I am on Flow page
     Then I should see the title of the first moderated topic
-      And I should see who started the first moderated topic
+      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
 
     When I switch from Topics and posts view to Topics only view
     Then I should see the title of the first moderated topic
-      And I should see who started the first moderated topic
+      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
 
     When I switch from Topics only view to Small topics view
@@ -89,7 +89,7 @@ Feature: Topic collapsing
 
     When I switch from Small topics view to Topics and posts view
     Then I should see the title of the first moderated topic
-      And I should see who started the first moderated topic
+      And I should not see who started the first moderated topic
       And I should not see the comments of the first moderated topic
 
   Scenario: For a moderated post, switching modes does not forget a user-set close override
