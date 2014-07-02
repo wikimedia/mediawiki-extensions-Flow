@@ -1039,10 +1039,12 @@
 				href = $( this ).prop( 'href' ),
 				hash = href.match( /#.+$/ ),
 				$target = hash ? $( hash ) : false;
+
 			// If this element is leading to another element on the page, find it.
 			if ( $target && $target.length ) {
 				$el = $( hash[0] );
 				$form = $el.closest( 'form' );
+
 				if ( $el.length && $form.length ) {
 					// Is this a hidden form or invisible field? Make it visible.
 					FlowBoardComponent.UI.Forms.showForm( $form );
@@ -1602,41 +1604,6 @@
 		};
 
 		/**
-		 * Scans for required input fields and setups handlers so form is disabled until
-		 * they have values.
-		 * @param {jQuery} $form
-		 */
-		FlowBoardComponent.UI.Forms.setupRequiredFields = function ( $form ) {
-			var $inputs = $form.find( '.mw-ui-input-required' ),
-				$save = $form.find( '.flow-ui-constructive' );
-
-			function isCompletedForm() {
-				var enable = true;
-				// check if the fields are empty
-				$inputs.each( function() {
-					if ( !$( this ).val() ) {
-						enable = false;
-					}
-				} );
-				return enable;
-			}
-
-			if ( !$form.data( 'flow-form-required-fields-active' ) ) {
-				if ( $inputs.length ) {
-					if ( !isCompletedForm() ) {
-						$save.prop( 'disabled', true );
-					}
-					$inputs.on( 'keypress', function() {
-						if ( isCompletedForm() ) {
-							$save.prop( 'disabled', false );
-						}
-					} );
-				}
-				$form.data( 'flow-form-required-fields-active', true );
-			}
-		};
-
-		/**
 		 * Expand and make visible a flow form and/or its actions, depending on data-flow-initial-state.
 		 * @param {jQuery} $form
 		 */
@@ -1653,8 +1620,6 @@
 				// Show the form itself
 				$form.show();
 			}
-
-			FlowBoardComponent.UI.Forms.setupRequiredFields( $form );
 
 			// Expand all inputs to textareas if needed
 			$form.find( 'input' ).each( function () {
