@@ -19,7 +19,8 @@
 	the error of unsuccessful form submission
 -->
 <div class="flow-close-topic-error">
-	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
+	<div class="flow-error-container">
+'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
 	<div class="flow-errors errorbox">
 		<ul>
 			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
@@ -28,6 +29,7 @@
 		</ul>
 	</div>
 ' : '').'
+</div>
 
 </div>
 ';

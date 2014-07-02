@@ -7,6 +7,7 @@
             'debug' => $debugopt,
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
+            'l10nParse' => 'Flow\TemplateHelper::l10nParse',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(),
@@ -15,13 +16,17 @@
 
     );
     return '
+<div class="flow-error-container">
 '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
-	<ul class="flow-errors">
-		'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-			<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
-		';}).'
-	</ul>
+	<div class="flow-errors errorbox">
+		<ul>
+			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
+				<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
+			';}).'
+		</ul>
+	</div>
 ' : '').'
+</div>
 
 
 <form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
@@ -55,9 +60,9 @@
 		</a>
 		<small class="flow-terms-of-use plainlinks">
 			'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
-				'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-reopen-topic'), 'encq').'
+				'.LCRun3::ch($cx, 'l10nParse', Array('flow-terms-of-use-reopen-topic'), 'encq').'
 			' : '
-				'.LCRun3::ch($cx, 'l10n', Array('flow-terms-of-use-close-topic'), 'encq').'
+				'.LCRun3::ch($cx, 'l10nParse', Array('flow-terms-of-use-close-topic'), 'encq').'
 			').'
 		</small>
 	</div>
