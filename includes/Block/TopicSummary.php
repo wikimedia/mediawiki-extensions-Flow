@@ -268,6 +268,9 @@ class TopicSummaryBlock extends AbstractBlock {
 	public function renderAPI( Templating $templating, array $options ) {
 		$output = array( 'type' => $this->getName() );
 
+		$topic = $this->findTopicTitle();
+		$output['topicTitle'] = $templating->getContent( $topic, 'wikitext' );
+
 		if ( $this->wasSubmitted() ) {
 			$output += array(
 				'submitted' => $this->submitted,
