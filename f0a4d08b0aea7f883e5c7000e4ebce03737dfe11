@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_811166b3",
+        "filename": "handlebars/flow_newtopic_form.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-02T16:52:52Z",
+      "side": 1,
+      "message": "this textarea isn\u0027t required.  We originally required it and users made vocal that they really want to be able to post just a title as a question without further content.",
+      "revId": "f0a4d08b0aea7f883e5c7000e4ebce03737dfe11",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
