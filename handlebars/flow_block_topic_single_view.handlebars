@@ -1,12 +1,24 @@
-<div class="flow-revision-permalink-warning plainlinks">
-	{{#if revision.previousRevisionId}}
-		{{l10nParse "flow-revision-permalink-warning-post" revision.human_timestamp revision.rev_view_links.board.title revision.root.content revision.rev_view_links.hist.url revision.rev_view_links.diff.url}}
-	{{else}}
-		{{l10nParse "flow-revision-permalink-warning-post-first" revision.human_timestamp revision.rev_view_links.board.title revision.root.content revision.rev_view_links.hist.url revision.rev_view_links.diff.url}}
-	{{/if}}
-</div>
-<div{{#if revision.isTopicTitle}} class="flow-topics"{{/if}}>
-	{{escapeContent revision.contentFormat revision.content}}
+<div class="flow-board">
+	<div class="flow-revision-permalink-warning plainlinks">
+		{{#if revision.previousRevisionId}}
+			{{l10nParse "flow-revision-permalink-warning-post"
+				revision.human_timestamp
+				revision.rev_view_links.board.title
+				revision.root.content revision.rev_view_links.hist.url
+				revision.rev_view_links.diff.url}}
+		{{else}}
+			{{l10nParse
+				"flow-revision-permalink-warning-post-first"
+				revision.human_timestamp
+				revision.rev_view_links.board.title
+				revision.root.content
+				revision.rev_view_links.hist.url
+				revision.rev_view_links.diff.url}}
+		{{/if}}
+	</div>
+	<div class="flow-revision-content">
+		{{escapeContent revision.contentFormat revision.content}}
+	</div>
 </div>
 
 

@@ -128,6 +128,7 @@ class UrlGenerator extends BaseUrlGenerator {
 			array(
 				'workflow' => $workflowId->getAlphadecimal(),
 				'topic_revId' => $revId->getAlphadecimal(),
+				'action' => 'single-view'
 			)
 		);
 	}
@@ -149,9 +150,8 @@ class UrlGenerator extends BaseUrlGenerator {
 				'workflow' => $workflowId->getAlphadecimal(),
 				'topic_postId' => $postId->getAlphadecimal(),
 				'topic_revId' => $revId->getAlphadecimal(),
-			),
-			// necessary?
-			'#flow-post-' . $postId->getAlphadecimal()
+				'action' => 'single-view'
+			)
 		);
 	}
 
