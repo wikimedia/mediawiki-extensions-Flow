@@ -48,7 +48,6 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-create-header',
 		),
-		'handler-class' => 'Flow\Actions\CreateHeaderAction',
 	),
 
 	'edit-header' => array(
@@ -95,7 +94,6 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-create-topic-summary',
 		),
-		'handler-class' => 'Flow\Actions\EditTopicSummaryAction',
 	),
 
 	'edit-topic-summary' => array(
@@ -223,7 +221,6 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-hide-post',
 		),
-		'handler-class' => 'Flow\Actions\HidePostAction',
 	),
 
 	'hide-topic' => array(
@@ -248,7 +245,6 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-hide-topic',
 		),
-		'handler-class' => 'Flow\Actions\HideTopicAction',
 	),
 
 	'delete-post' => array(
@@ -274,7 +270,6 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-delete-post',
 		),
-		'handler-class' => 'Flow\Actions\DeletePostAction',
 	),
 
 	'delete-topic' => array(
@@ -300,7 +295,6 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-delete-topic',
 		),
-		'handler-class' => 'Flow\Actions\DeleteTopicAction',
 	),
 
 	'suppress-post' => array(
@@ -327,7 +321,6 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-suppress-post',
 		),
-		'handler-class' => 'Flow\Actions\SuppressPostAction',
 	),
 
 	'suppress-topic' => array(
@@ -354,7 +347,6 @@ $wgFlowActions = array(
 			),
 			'class' => 'flow-history-suppress-topic',
 		),
-		'handler-class' => 'Flow\Actions\SuppressTopicAction',
 	),
 
 	'close-topic' => array(
@@ -633,6 +625,12 @@ $wgFlowActions = array(
 	),
 	'compare-postsummary-revisions' => array(
 		'handler-class' => 'Flow\Actions\ComparePostSummaryRevisionsAction',
+	),
+	'moderate-topic' => array(
+		'handler-class' => 'Flow\Actions\ModerateTopicAction',
+	),
+	'moderate-post' => array(
+		'handler-class' => 'Flow\Actions\ModeratePostAction',
 	),
 
 	// log & all other formatters have same config as history

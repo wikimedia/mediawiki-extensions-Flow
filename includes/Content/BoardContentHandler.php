@@ -94,7 +94,7 @@ class BoardContentHandler extends \ContentHandler {
 
 		foreach( $actions->getActions() as $action ) {
 			$actionData = $actions->getValue( $action );
-			if ( is_array( $actionData ) ) {
+			if ( is_array( $actionData ) && isset( $actionData['handler-class'] ) ) {
 				$output[$action] = $actionData['handler-class'];
 			}
 		}
