@@ -186,6 +186,7 @@
 	"flow-rev-message-closed-topic-irc": "{{notranslate}}",
 	"flow-rev-message-restored-topic": "Used as revision comment when a topic has been restored (un-hidden).\n\nParameters:\n* $1 - user link and tool links for the user.\n* $2 - username of the user who restored the topic. Can be used for GENDER\n* $3 - (Optional) username of the user who had posted the topic. Can be used for GENDER\n* $4 - permalink to the topic\n* $5 - Reason, from the moderating user, for moderating this topic\n* $6 - Name of the topic the post belongs to\n{{Related|Flow-rev-message}}",
 	"flow-rev-message-restored-topic-irc": "{{notranslate}}",
+	"flow-rc-topic-of-board": "Part of an entry in RecentChanges, the text for the link to the topic.\n\nParameters:\n* $1 - topic title text.\n* $2 - board name text.",
 	"flow-board-history": "Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the \"Board history\" page.\n\nParameters:\n* $1 - the title to which the flow board belongs\n{{Identical|History}}",
 	"flow-board-history-empty": "Displayed when no board history is available.",
 	"flow-topic-history": "Used as <code><nowiki><h1></nowiki></code> heading and HTML title in the \"Topic history\" page.\n\nParameters:\n* $1 - the topic title",
