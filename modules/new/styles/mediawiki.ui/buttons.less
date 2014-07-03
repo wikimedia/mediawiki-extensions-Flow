@@ -18,27 +18,27 @@ Styleguide 2.
 	}
 
 	// Hover state
-	&:hover {
+	a&:hover {
 		color: lighten( @mainColor, @colorLightenPercentage );
 	}
 	// Focus and active states
-	&:focus, &:active {
+	a&:focus, a&:active {
 		color: darken( @mainColor, @colorDarkenPercentage );
 		outline: none; // outline fix
 	}
 
 	// Omit IE6 from all other rules
-	a&[class] {
+	&[class] {
 		color: @mainColor;
 
 		&.flow-ui-quiet {
 			color: @colorTextLight;
 			text-decoration: none;
 
-			&:hover {
+			a&:hover {
 				color: @mainColor;
 			}
-			&:focus, &:active {
+			a&:focus, a&:active {
 				color: darken( @mainColor, @colorDarkenPercentage );
 			}
 		}

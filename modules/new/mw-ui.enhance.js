@@ -119,125 +119,291 @@
 
 
 	/*
-	 *
+	 * mw-ui-tooltip
+	 * Renders tooltips on over, and also via mw.tooltip.
 	 */
 	$( document ).ready( function () {
-		var $tooltip = $( '<span class="flow-ui-tooltip flow-ui-tooltip-left"><span class="flow-ui-tooltip-content"></span><span class="flow-ui-tooltip-triangle"></span></span>' ).appendTo( 'body' );
+		var _$tooltip = $(
+				'<span class="flow-ui-tooltip flow-ui-tooltip-left">' +
+					'<span class="flow-ui-tooltip-content"></span>' +
+					'<span class="flow-ui-tooltip-triangle"></span>' +
+					'<span class="flow-ui-tooltip-close"></span>' +
+				'</span>'
+			),
+			$activeTooltips = $(),
+			_mwUiTooltipExpireTimer;
 
 		/**
+		 * Renders a tooltip at target.
+		 * Options (either given as param, or fetched from target as data-tooltip-x params):
+		 *  tooltipSize=String (small,large,block)
+		 *  tooltipContext=String (constructive,destructive,progressive,regressive)
+		 *  tooltipPointing=String (up,down,left,right)
+		 *  tooltipClosable=Boolean
+		 *  tooltipContentCallback=Function
 		 *
-		 * @param {Event} event
+		 * @param {Element} target
+		 * @param {Element|String} [content]
+		 * @param {Object} [options]
 		 */
-		function onMwUiTooltipFocus( event ) {
-			var $el = $( this ),
-				is_mini = true,
-				tooltype = $el.data( 'tooltip-type' ),
-				context = $el.data( 'tooltip-context' ),
-				elOffset = $el.offset(),
-				elWidth = $el.outerWidth(),
-				elHeight = $el.outerHeight(),
+		function mwUiTooltipShow( target, content, options ) {
+			var $target = $( target ),
+				// Find previous tooltip for this el
+				$tooltip = $target.data( '$tooltip' ),
+
+				// Get window size and scroll details
 				windowWidth = $( window ).width(),
-				windowHeight = $( window ).width(),
-				windowScroll = $( window ).scrollTop(),
-				cssPosition = {
-					position: 'absolute',
-					zIndex: 1000,
-					left:   '',
-					top:    ''
-				},
-				target = $el.data( 'tooltip-pointing' );
+				windowHeight = $( window ).height(),
+				scrollX = Math.max( window.pageXOffset, document.documentElement.scrollLeft, document.body.scrollLeft ),
+				scrollY = Math.max( window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop ),
 
+				// Store target and tooltip details
+				tooltipWidth, tooltipHeight,
+				targetPosition,
+				locationOrder, tooltipLocation = {},
+				insertFn = 'append',
 
-			// Determine type of tooltip
-			switch ( tooltype ) {
-				// @todo
-				case 'sticky':
-					break;
+				// Options, no longer by objet reference
+				optionsUnreferenced = {},
 
-				// On hover/focus, remove on blur
-				default:
-					if ( $el[0].title ) {
-						$el.data( 'title', $el[0].title );
-						$el[0].title = '';
+				i = 0;
+
+			options = options || {};
+			// Do this so that we don't alter the data object by reference
+			optionsUnreferenced.tooltipSize = options.tooltipSize || $target.data( 'tooltipSize' );
+			optionsUnreferenced.tooltipContext = options.tooltipContext || $target.data( 'tooltipContext' );
+			optionsUnreferenced.tooltipPointing = options.tooltipPointing || $target.data( 'tooltipPointing' );
+			optionsUnreferenced.tooltipContentCallback = options.tooltipContentCallback || $target.data( 'tooltipContentCallback' );
+			// @todo closable
+			optionsUnreferenced.tooltipClosable = options.tooltipClosable || $target.data( 'tooltipClosable' );
+
+			if ( !content ) {
+				if ( optionsUnreferenced.tooltipContentCallback ) {
+					// Use content callback to get the content for this element
+					content = optionsUnreferenced.tooltipContentCallback( target, optionsUnreferenced );
+
+					if ( !content ) {
+						return;
 					}
-
-					if ( !$el.data( 'title' ) ) {
+				} else {
+					// Check to see if we're simply using target.title as the content
+					if ( !target.title ) {
 						return;
 					}
 
-					$tooltip.find( '.flow-ui-tooltip-content' ).text( $el.data( 'title' ) );
-					context = context || '';
-					break;
-			}
+					content = target.title;
+					$target.data( 'tooltipTitle', content ); // store title
+					target.title = ''; // and hide it so it doesn't appear
+					insertFn = 'text';
 
-			// Does this tooltip have a stylized context?
-			$tooltip.removeClass( 'flow-ui-progressive flow-ui-regressive flow-ui-constructive flow-ui-destructive' );
-			if ( context ) {
-				$tooltip.addClass( 'flow-ui-' + context );
-			}
-			// Is this a mini tooltip?
-			if ( is_mini ) {
-				$tooltip.addClass( 'flow-ui-tooltip-mini' );
-			} else {
-				$tooltip.removeClass( 'flow-ui-tooltip-mini' );
-			}
-
-			// Figure out where to place the tooltip
-			$tooltip.removeClass( 'flow-ui-tooltip-down flow-ui-tooltip-up flow-ui-tooltip-left flow-ui-tooltip-right' );
-			if ( !target ) {
-				if ( elOffset.left + elWidth / 2 < windowWidth / 2 ) {
-					// Element is on left half of screen
-					if ( elOffset.top + elHeight / 2 < windowScroll + windowHeight / 2 ) {
-						// Element is on top half of screen
-						target = 'up';
-					} else {
-						// Element is on bottom half of screen
-						target = 'down';
-					}
-				} else {
-					// Element is on right half of screen
-					if ( elOffset.top + elHeight / 2 < windowScroll + windowHeight / 2 ) {
-						// Element is on top half of screen
-						target = 'up';
-					} else {
-						// Element is on bottom half of screen
-						target = 'down';
+					if ( !optionsUnreferenced.tooltipSize ) {
+						// Default size for title tooltip is small
+						optionsUnreferenced.tooltipSize = 'small';
 					}
 				}
 			}
 
-			// Position it
-			$tooltip.show();
-			$tooltip.addClass( 'flow-ui-tooltip-' + target );
-
-			switch ( target ) {
-				case 'down':
-					cssPosition.left = elOffset.left + elWidth / 2 - $tooltip.outerWidth() / 2;
-					cssPosition.top = elOffset.top - $tooltip.outerHeight();
-					break;
-				case 'up':
-					cssPosition.left = elOffset.left + elWidth / 2 - $tooltip.outerWidth() / 2;
-					cssPosition.top = elOffset.top + elHeight;
-					break;
-				case 'left':
-					break;
-				case 'right':
-					break;
+			// No previous tooltip
+			if ( !$tooltip ) {
+				// See if content itself is a tooltip
+				try {
+					$tooltip = $( content );
+				} catch ( e ) {}
+				if ( !$tooltip || !$tooltip.is( '.flow-ui-tooltip' ) && !$tooltip.find( '.flow-ui-tooltip' ).length ) {
+					// Content is not and does not contain a tooltip, so instead, put content inside a new tooltip wrapper
+					$tooltip = _$tooltip.clone();
+				}
 			}
 
-			$tooltip.css( cssPosition );
+			// Try to inherit tooltipContext from the target's classes
+			if ( !optionsUnreferenced.tooltipContext ) {
+				if ( $target.hasClass( 'flow-ui-progressive' ) ) {
+					optionsUnreferenced.tooltipContext = 'progressive';
+				} else if ( $target.hasClass( 'flow-ui-regressive' ) ) {
+					optionsUnreferenced.tooltipContext = 'regressive';
+				} else if ( $target.hasClass( 'flow-ui-constructive' ) ) {
+					optionsUnreferenced.tooltipContext = 'constructive';
+				} else if ( $target.hasClass( 'flow-ui-destructive' ) ) {
+					optionsUnreferenced.tooltipContext = 'destructive';
+				}
+			}
+
+			$tooltip
+				// Add the content to it
+				.find( '.flow-ui-tooltip-content' )
+					.empty()
+					[ insertFn ]( content )
+					.end()
+				// Move this off-page before rendering it, so that we can calculate its real dimensions
+				// @todo use .parent() loop to check for z-index and + that to this if needed
+				.css( { position: 'absolute', zIndex: 1000, top: 0, left: '-999em' } )
+				// Render
+				// @todo inject at #bodyContent to inherit (font-)styling
+				.appendTo( 'body' );
+
+			// Tooltip style context
+			if ( optionsUnreferenced.tooltipContext ) {
+				$tooltip.removeClass( 'flow-ui-progressive flow-ui-regressive flow-ui-constructive flow-ui-destructive' );
+				$tooltip.addClass( 'flow-ui-' + optionsUnreferenced.tooltipContext );
+			}
+
+			// Tooltip size (small, large)
+			if ( optionsUnreferenced.tooltipSize ) {
+				$tooltip.removeClass( 'flow-ui-tooltip-sm flow-ui-tooltip-lg' );
+				$tooltip.addClass( 'flow-ui-tooltip-' + optionsUnreferenced.tooltipSize );
+			}
+
+			// Remove the old pointing direction
+			$tooltip.removeClass( 'flow-ui-tooltip-up flow-ui-tooltip-down flow-ui-tooltip-left flow-ui-tooltip-right' );
+
+			// tooltip width and height with the new content
+			tooltipWidth = $tooltip.outerWidth( true );
+			tooltipHeight = $tooltip.outerHeight( true );
+
+			// target positioning info
+			targetPosition = $target.offset();
+			targetPosition.width = $target.outerWidth( true );
+			targetPosition.height = $target.outerHeight( true );
+			targetPosition.leftEnd = targetPosition.left + targetPosition.width;
+			targetPosition.topEnd = targetPosition.top + targetPosition.height;
+			targetPosition.leftMiddle = targetPosition.left + targetPosition.width / 2;
+			targetPosition.topMiddle = targetPosition.top + targetPosition.height / 2;
+
+			// Use the preferred pointing direction first
+			switch ( optionsUnreferenced.tooltipPointing ) {
+				case 'left': locationOrder = [ 'left', 'right', 'left' ]; break;
+				case 'right': locationOrder = [ 'right', 'left', 'right' ]; break;
+				case 'down': locationOrder = [ 'down', 'up', 'down' ]; break;
+				default: locationOrder = [ 'up', 'down', 'up' ];
+			}
+
+			do {
+				// Position of the POINTER, not the tooltip itself
+				switch ( locationOrder[ i ] ) {
+					case 'left':
+						tooltipLocation.left = targetPosition.leftEnd;
+						tooltipLocation.top = targetPosition.topMiddle - tooltipHeight / 2;
+						break;
+					case 'right':
+						tooltipLocation.left = targetPosition.left - tooltipWidth;
+						tooltipLocation.top = targetPosition.topMiddle - tooltipHeight / 2;
+						break;
+					case 'down':
+						tooltipLocation.left = targetPosition.leftMiddle - tooltipWidth / 2;
+						tooltipLocation.top = targetPosition.top - tooltipHeight;
+						break;
+					case 'up':
+						tooltipLocation.left = targetPosition.leftMiddle - tooltipWidth / 2;
+						tooltipLocation.top = targetPosition.topEnd;
+						break;
+				}
+
+				// Verify tooltip will be mostly visible in viewport
+				if (
+					tooltipLocation.left > scrollX - 5
+					&& tooltipLocation.top > scrollY - 5
+					&& tooltipLocation.left + tooltipWidth < windowWidth + scrollX + 5
+					&& tooltipLocation.top + tooltipHeight < windowHeight + scrollY + 5
+				) {
+					break;
+				}
+				if ( i + 1 === locationOrder.length ) {
+					break;
+				}
+			} while ( ++i <= locationOrder.length );
+
+			// Add the pointing direction class from the loop
+			$tooltip.addClass( 'flow-ui-tooltip-' + locationOrder[ i ] );
+
+			// Apply the new location CSS
+			$tooltip.css( tooltipLocation );
+
+			// Store this tooltip onto target
+			$target.data( '$tooltip', $tooltip );
+			// Store this target onto tooltip
+			$tooltip.data( '$target', $target );
+			// Add this tooltip to our set of active tooltips
+			$activeTooltips = $activeTooltips.add( $tooltip );
+
+			// Start the expiry timer
+			_mwUiTooltipExpire();
 		}
 
 		/**
-		 *
+		 * Hides the tooltip associated with target instantly.
+		 * @param {Element|jQuery} target
+		 */
+		function mwUiTooltipHide( target ) {
+			var $target = $( target ),
+				$tooltip = $target.data( '$tooltip' ),
+				tooltipTitle = $target.data( 'tooltipTitle' );
+
+			// Remove tooltip from DOM
+			if ( $tooltip ) {
+				$target.removeData( '$tooltip' );
+				$activeTooltips = $activeTooltips.not( $tooltip );
+				$tooltip.remove();
+			}
+
+			// Restore old title; was used for tooltip
+			if ( tooltipTitle ) {
+				$target[0].title = tooltipTitle;
+				$target.removeData( 'tooltipTitle' );
+			}
+		}
+
+		/**
+		 * Runs on a timer to expire tooltips. This is useful in scenarios where a tooltip's target
+		 * node has disappeared (removed from page), and didn't trigger a mouseout event. We detect
+		 * the target disappearing, and as such remove the tooltip node.
+		 */
+		function _mwUiTooltipExpire() {
+			clearTimeout( _mwUiTooltipExpireTimer );
+
+			$activeTooltips.each( function () {
+				var $this = $( this ),
+					$target = $this.data( '$target' );
+
+				// Remove the tooltip if this tooltip has been removed,
+				// or if target is not visible (hidden or removed from DOM)
+				if ( !this.parentNode || !$target.is( ':visible' ) ) {
+					// Remove the tooltip from the DOM
+					$this.remove();
+					// Unset tooltip from target
+					$target.removeData( '$tooltip' );
+					// Remove the tooltip from our active tooltips list
+					$activeTooltips = $activeTooltips.not( $this );
+				}
+			} );
+
+			if ( $activeTooltips.length ) {
+				// Check again in 500ms if we still have active tooltips
+				_mwUiTooltipExpireTimer = setTimeout( _mwUiTooltipExpire, 500 );
+			}
+		}
+
+		/**
+		 * MW UI Tooltip access through JS API.
+		 */
+		mw.tooltip = {
+			show: mwUiTooltipShow,
+			hide: mwUiTooltipHide
+		};
+
+		/**
+		 * Event handler for mouse entering on a .mw-ui-tooltip-target
+		 * @param {Event} event
+		 */
+		function onMwUiTooltipFocus( event ) {
+			mw.tooltip.show( this );
+		}
+
+		/**
+		 * Event handler for mouse leaving a .mw-ui-tooltip-target
 		 * @param {Event} event
 		 */
 		function onMwUiTooltipBlur( event ) {
-			var $el = $( this );
-			$tooltip.hide();
-			if ( $el.data( 'title' ) ) {
-				$el[0].title = $el.data( 'title' );
-			}
+			mw.tooltip.hide( this );
 		}
 
 		// Attach the mouseenter and mouseleave handlers on document
