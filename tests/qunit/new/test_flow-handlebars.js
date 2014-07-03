@@ -1,6 +1,8 @@
 ( function ( $ ) {
 QUnit.module( 'ext.flow: Handlebars helpers', {
 	setup: function() {
+		this.handlebarsProto = mw.flow.FlowHandlebars.prototype;
+
 		this.opts = {
 			fn: function() {
 				return 'ok';
@@ -10,6 +12,11 @@ QUnit.module( 'ext.flow: Handlebars helpers', {
 			}
 		};
 	}
+} );
+
+QUnit.test( 'Handlebars.prototype.ifEquals', 2, function( assert ) {
+	assert.strictEqual( this.handlebarsProto.ifEquals( 'foo', 'bar', this.opts ), 'nope', 'not equal' );
+	assert.strictEqual( this.handlebarsProto.ifEquals( 'foo', 'foo', this.opts ), 'ok', 'equal' );
 } );
 
 QUnit.test( 'Handlebars.prototype.ifCond', 4, function() {
