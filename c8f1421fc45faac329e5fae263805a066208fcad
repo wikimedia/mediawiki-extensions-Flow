@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae43a74e_e89fe553",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-07-03T22:08:38Z",
+      "side": 1,
+      "message": "This fails when called from a CirrusSearch maintenance job.\n\nI tried from eval.php and RequestContext::getMain()-\u003egetTitle() is NULL, so this seems like the right test.",
+      "revId": "c8f1421fc45faac329e5fae263805a066208fcad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
