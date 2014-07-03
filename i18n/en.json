@@ -183,6 +183,7 @@
     "flow-rev-message-closed-topic-irc": "$2 {{GENDER:$2|closed}} the topic $6 ($5)",
     "flow-rev-message-restored-topic": "$1 {{GENDER:$2|restored}} the [$4 topic] \"$6\" (<em>$5</em>)",
     "flow-rev-message-restored-topic-irc": "$2 {{GENDER:$2|restored}} the topic \"$6\" ($5)",
+    "flow-rc-topic-of-board": "$1 on $2",
     "flow-board-history": "\"$1\" history",
     "flow-board-history-empty" : "This board currently has no history.",
     "flow-topic-history": "\"$1\" topic history",
