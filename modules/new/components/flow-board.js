@@ -603,7 +603,7 @@
 				$form = $button.closest( 'form' ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $form ),
 				$titleField = $form.find( 'input' ).filter( '[data-role=title]' ),
-				previewTemplate = $button.data( 'flow-preview-template' ),
+				previewTemplate = info.$target.data( 'flow-preview-template' ),
 				$previewContainer,
 				templateParams,
 				$target = info.$target;

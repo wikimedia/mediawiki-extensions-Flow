@@ -8,7 +8,6 @@
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
-            'previewButton' => 'Flow\TemplateHelper::previewButton',
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(),
@@ -37,7 +36,9 @@
 			<input type="hidden" name="'.htmlentities(((is_array($in) && isset($in['type'])) ? $in['type'] : null), ENT_QUOTES, 'UTF-8').'_prev_revision" value="'.htmlentities(((is_array($in['revision']) && isset($in['revision']['revisionId'])) ? $in['revision']['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
 		' : '').'
 
-		<textarea name="'.htmlentities(((is_array($in) && isset($in['type'])) ? $in['type'] : null), ENT_QUOTES, 'UTF-8').'_summary" data-flow-expandable="true" class="mw-ui-input" type="text" data-role="content">'.((LCRun3::ifvar($cx, ((is_array($in['submitted']) && isset($in['submitted']['summary'])) ? $in['submitted']['summary'] : null))) ? ''.htmlentities(((is_array($in['submitted']) && isset($in['submitted']['summary'])) ? $in['submitted']['summary'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((is_array($in['revision']) && isset($in['revision']['revisionId'])) ? $in['revision']['revisionId'] : null))) ? ''.htmlentities(((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'').'</textarea>
+		<textarea name="'.htmlentities(((is_array($in) && isset($in['type'])) ? $in['type'] : null), ENT_QUOTES, 'UTF-8').'_summary" data-flow-expandable="true" class="mw-ui-input"
+			data-flow-preview-template="flow_topic_titlebar_content"
+			type="text" data-role="content">'.((LCRun3::ifvar($cx, ((is_array($in['submitted']) && isset($in['submitted']['summary'])) ? $in['submitted']['summary'] : null))) ? ''.htmlentities(((is_array($in['submitted']) && isset($in['submitted']['summary'])) ? $in['submitted']['summary'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((is_array($in['revision']) && isset($in['revision']['revisionId'])) ? $in['revision']['revisionId'] : null))) ? ''.htmlentities(((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'').'</textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button
@@ -47,7 +48,11 @@
 				data-flow-api-handler="summarizeTopic">
 					'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-summarize-topic'), 'encq').'
 			</button>
-			'.LCRun3::ch($cx, 'previewButton', Array('flow_topic_titlebar_content'), 'encq').'
+			<button data-flow-api-handler="preview"
+        data-flow-api-target="< form textarea"
+        name="preview"
+        data-role="action"
+        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
 			<a href="'.htmlentities(((is_array($in['revision']['links']['topic']) && isset($in['revision']['links']['topic']['url'])) ? $in['revision']['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['revision']['links']['topic']) && isset($in['revision']['links']['topic']['title'])) ? $in['revision']['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</a>
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array('flow-terms-of-use-summarize'), 'encq').'</small>
 		</div>

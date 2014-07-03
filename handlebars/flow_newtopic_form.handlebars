@@ -11,13 +11,15 @@
 		<input name="topiclist_topic" class="mw-ui-input"
 			required
 			type="text" placeholder="{{l10n "flow-newtopic-start-placeholder"}}" data-role="title"/>
-		<textarea name="topiclist_content" class="mw-ui-input flow-form-collapsible" placeholder="{{l10n "flow-newtopic-content-placeholder"}}" data-role="content"></textarea>
+		<textarea name="topiclist_content"
+			data-flow-preview-template="flow_post"
+			class="mw-ui-input flow-form-collapsible" placeholder="{{l10n "flow-newtopic-content-placeholder"}}" data-role="content"></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" data-flow-api-handler="newTopic"
 				data-flow-interactive-handler="apiRequest"
 				class="flow-ui-button flow-ui-constructive">{{l10n "flow-newtopic-save"}}</button>
-			{{previewButton "flow_post"}}
+			{{> flow_preview_button }}
 			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</button>
 			<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-new-topic"}}</small>
 		</div>

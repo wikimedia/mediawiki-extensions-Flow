@@ -8,7 +8,9 @@
 			<input type="hidden" name="{{type}}_prev_revision" value="{{revision.revisionId}}" />
 		{{/if}}
 
-		<textarea name="{{type}}_summary" data-flow-expandable="true" class="mw-ui-input" type="text" data-role="content">
+		<textarea name="{{type}}_summary" data-flow-expandable="true" class="mw-ui-input"
+			data-flow-preview-template="flow_topic_titlebar_content"
+			type="text" data-role="content">
 			{{~#if submitted.summary~}}
 				{{~submitted.summary~}}
 			{{~else~}}
@@ -26,7 +28,7 @@
 				data-flow-api-handler="summarizeTopic">
 					{{l10n "flow-topic-action-summarize-topic"}}
 			</button>
-			{{previewButton "flow_topic_titlebar_content"}}
+			{{> flow_preview_button }}
 			<a href="{{revision.links.topic.url}}" title="{{revision.links.topic.title}}" data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</a>
 			<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-summarize"}}</small>
 		</div>
