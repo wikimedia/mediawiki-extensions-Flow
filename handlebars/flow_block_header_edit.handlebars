@@ -7,7 +7,9 @@
 			{{#if revision.revisionId}}
 				<input type="hidden" name="header_prev_revision" value="{{revision.revisionId}}" />
 			{{/if}}
-			<textarea name="header_content" class="mw-ui-input" placeholder="{{l10n "flow-edit-header-placeholder"}}" data-role="content">
+			<textarea name="header_content" class="mw-ui-input"
+				data-flow-preview-template="flow_block_header"
+				placeholder="{{l10n "flow-edit-header-placeholder"}}" data-role="content">
 				{{~#if submitted.content~}}
 					{{~submitted.content~}}
 				{{~else~}}
@@ -21,7 +23,7 @@
 					data-flow-api-handler="submitHeader">
 						{{~l10n "flow-edit-header-submit"~}}
 				</button>
-				{{previewButton "flow_block_header"}}
+				{{> flow_preview_button}}
 				<button data-flow-interactive-handler="cancelForm"
 					data-role="cancel"
 					class="flow-ui-button flow-ui-destructive

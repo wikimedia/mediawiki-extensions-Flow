@@ -8,7 +8,6 @@
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
-            'previewButton' => 'Flow\TemplateHelper::previewButton',
             'plaintextSnippet' => 'Flow\TemplateHelper::plaintextSnippet',
 ),
         'blockhelpers' => Array(),
@@ -42,6 +41,7 @@
 				<input type="hidden" name="topic_replyTo" value="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" />
 
 				<textarea id="flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
+				          data-flow-preview-template="flow_post"
 				          name="topic_content"
 				          class="mw-ui-input"
 				          type="text"
@@ -50,7 +50,11 @@
 
 				<div class="flow-form-actions flow-form-collapsible">
 					<button data-role="submit" class="flow-ui-button flow-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'encq').'</button>
-					'.LCRun3::ch($cx, 'previewButton', Array('flow_post'), 'encq').'
+					<button data-flow-api-handler="preview"
+        data-flow-api-target="< form textarea"
+        name="preview"
+        data-role="action"
+        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
 					<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
 					<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array('flow-terms-of-use-reply'), 'encq').'</small>
 				</div>

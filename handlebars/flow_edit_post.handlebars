@@ -6,7 +6,9 @@
 		{{> flow_anon_warning }}
 	{{/ifAnonymous}}
 
-	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible" data-role="content">
+	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible"
+		data-flow-preview-template="flow_post"
+		data-role="content">
 		{{~#if @root.submitted.content~}}
 			{{~@root.submitted.content~}}
 		{{~else~}}
@@ -19,7 +21,7 @@
 		        data-flow-api-handler="submitEditPost">
 			{{~l10n "flow-post-action-edit-post-submit"~}}
 		</button>
-		{{previewButton "flow_post"}}
+		{{> flow_preview_button}}
 		<button class="flow-ui-button flow-ui-destructive flow-ui-quiet"
 		        data-flow-interactive-handler="cancelForm"
 				data-role="cancel">
