@@ -703,6 +703,9 @@ class TemplateHelper {
 	static public function addReturnTo( $url ) {
 		$ctx = RequestContext::getMain();
 		$returnTo = $ctx->getTitle();
+		if ( !$returnTo ) {
+			return $url;
+		}
 		// We can't get only the query parameters from
 		$returnToQuery = $ctx->getRequest()->getQueryValues();
 
@@ -725,6 +728,9 @@ class TemplateHelper {
 	 */
 	static public function linkWithReturnTo( $title ) {
 		$title = Title::newFromText( $title );
+		if ( !$title ) {
+			return '';
+		}
 		// FIXME: This should use local url to avoid redirects on mobile. See bug 66746.
 		$url = $title->getFullUrl();
 
