@@ -28,6 +28,11 @@ $specialPageAliases['ko'] = array(
 	'Flow' => array( '플로우' ),
 );
 
+/** Macedonian (македонски) */
+$specialPageAliases['mk'] = array(
+	'Flow' => array( 'Тек' ),
+);
+
 /** Malayalam (മലയാളം) */
 $specialPageAliases['ml'] = array(
 	'Flow' => array( 'പ്രവാഹം' ),

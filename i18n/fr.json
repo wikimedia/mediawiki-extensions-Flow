@@ -137,6 +137,7 @@
 	"flow-error-process-data": "Une erreur s’est produite lors du traitement des données dans votre demande.",
 	"flow-error-process-wikitext": "Une erreur s’est produite lors du traitement de la conversion HTML/wikitexte.",
 	"flow-error-no-index": "Impossible de trouver un index pour effectuer la recherche de données.",
+	"flow-error-no-render": "L’action spécifiée n’a pas été reconnue.",
 	"flow-edit-header-placeholder": "Décrire ce tableau de flux",
 	"flow-edit-header-submit": "Enregistrer l’entête",
 	"flow-edit-header-submit-overwrite": "Écraser l’entête",
@@ -291,7 +292,7 @@
 	"flow-terms-of-use-edit": "En enregistrant vos modifications, vous acceptez les conditions d’utilisation de ce wiki.",
 	"flow-anon-warning": "Vous n’êtes pas connecté. Pour recevoir une attribution avec votre nom plutôt que votre adresse IP, vous pouvez [$1 vous connecter] ou [$2 créer un compte].",
 	"flow-cancel-warning": "Vous avez entré un texte dans ce formulaire. Êtes-vous sûr de vouloir l’abandonner ?",
-	"flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 a démarré ce sujet|1=$1 a démarré ce sujet et il y avait un autre participant|$1 a démarré ce sujet et il y avait $2 autres participants}}",
+	"flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 a {{GENDER:$1|démarré}} ce sujet|1=$1 a {{GENDER:$1|démarré}} ce sujet et il y avait un autre participant|$1 a {{GENDER:$1|démarré}} ce sujet et il y avait $2 autres participants}}",
 	"flow-topic-count-sidebar": "Affichage de $1 sur $2 sujets attachés à cette page",
 	"flow-topic-count": "Sujets ($1)",
 	"flow-topic-comment-count": "$1 {{PLURAL:$1|commentaire|commentaires}}",
@@ -319,7 +320,8 @@
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Impossible de trouver un contenu correspondant au type et à l’UUID.",
 	"flow-spam-confirmedit": "En tant qu’utilisateur anonyme, vous ne pouvez pas soumettre de liens externes. Veuillez vous inscrire pour avoir un compte.",
-	"flow-preview-warning": "Vous êtes en train de regarder un aperçu. Soumettez le formulaire pour terminer de le publier, ou cliquez sur « Continuer la modification » pour continuer à écrire.",
+	"flow-preview-warning": "Vous êtes en train de regarder un aperçu. Soumettez le formulaire pour terminer de le publier, ou cliquez sur « {{int:flow-preview-return-edit-post}} » pour continuer à écrire.",
 	"flow-preview-return-edit-post": "Continuer la modification",
-	"flow-anonymous": "Anonyme"
+	"flow-anonymous": "Anonyme",
+	"flow-embedding-unsupported": "Les discussions ne peuvent pas encore être incorporées."
 }
