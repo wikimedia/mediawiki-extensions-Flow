@@ -30,4 +30,18 @@
 			'Buttons are disabled when required textarea but required input does not.' );
 	} );
 
+	QUnit.test( 'mw-ui-tooltip', 3, function( assert ) {
+		assert.ok( mw.tooltip, 'mw.tooltip exists' );
+
+		// Create a tooltip using body
+		$( 'body' ).attr( 'title', 'test' );
+		assert.ok( mw.tooltip.show( $( 'body' ) ), 'mw.ui.tooltip.show returned something' );
+		assert.strictEqual( $('.flow-ui-tooltip-content' ).filter(':contains("test"):visible').length, 1,
+			'Tooltip with text "test" is visible' );
+		mw.tooltip.hide( $( 'body' ) );
+		assert.strictEqual( $('.flow-ui-tooltip-content' ).filter(':contains("test")').length, 0,
+			'Tooltip with text "test" is removed' );
+		$( 'body' ).attr( 'title', '' );
+	} );
+
 } ( jQuery ) );
