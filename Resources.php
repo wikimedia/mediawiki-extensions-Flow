@@ -52,6 +52,7 @@ $wgResourceModules += array(
 			"form_element.handlebars",
 			"flow_load_more.handlebars",
 			"flow_tooltip.handlebars",
+			"flow_tooltip_topic_subscription.handlebars",
 			"flow_topic.handlebars",
 			"flow_topic_titlebar.handlebars",
 			"flow_topic_titlebar_close.handlebars",
