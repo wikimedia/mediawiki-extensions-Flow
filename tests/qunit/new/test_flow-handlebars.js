@@ -1,6 +1,12 @@
 ( function ( $ ) {
 QUnit.module( 'ext.flow: Handlebars helpers', {
 	setup: function() {
+		var stub = this.sandbox.stub( mw.mantle.template, 'get' );
+		stub.withArgs( 'foo.handlebars' ).returns ( {
+			render: function( data ) {
+				return data && data.val ? '<div>Magic.</div>' : 'Stubbed.';
+			}
+		} );
 		this.handlebarsProto = mw.flow.FlowHandlebars.prototype;
 
 		this.opts = {
@@ -12,6 +18,21 @@ QUnit.module( 'ext.flow: Handlebars helpers', {
 			}
 		};
 	}
+} );
+
+QUnit.test( 'Handlebars.prototype.processTemplate', 1, function( assert ) {
+	assert.strictEqual( this.handlebarsProto.processTemplate( 'foo', { val: 'Hello' } ),
+		'<div>Magic.</div>', 'Getting a template works.' );
+} );
+
+QUnit.test( 'Handlebars.prototype.processTemplateGetFragment', 1, function( assert ) {
+	assert.strictEqual( this.handlebarsProto.processTemplateGetFragment( 'foo', { val: 'Hello' } ).childNodes.length,
+		1, 'Return a fragment with the div child node' );
+} );
+
+QUnit.test( 'Handlebars.prototype.getTemplate', 2, function( assert ) {
+	assert.strictEqual( this.handlebarsProto.getTemplate( 'foo' )(), 'Stubbed.', 'Getting a template works.' );
+	assert.strictEqual( this.handlebarsProto.getTemplate( 'foo' )(), 'Stubbed.', 'Getting a template from cache works.' );
 } );
 
 QUnit.test( 'Handlebars.prototype.ifEquals', 2, function( assert ) {
