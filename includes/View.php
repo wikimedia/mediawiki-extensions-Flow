@@ -123,6 +123,13 @@ class View extends ContextSource {
 		} );
 		wfProfileOut( __CLASS__ . '-serialize' );
 
+		// Update newtalk and watchlist notification status on view action of any workflow
+		// since the normal page view that resets notification status is not accessiable
+		// anymore due to Flow occupation
+		if ( $action === 'view' ) {
+			$user->clearNotification( $title );
+		}
+
 		/**
 		header( 'Content-Type: application/json; content=utf-8' );
 		$data = json_encode( $apiResponse );
