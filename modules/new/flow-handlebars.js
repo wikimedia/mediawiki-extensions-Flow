@@ -541,20 +541,6 @@
 	};
 
 	/**
-	 * Renders a preview button with data-flow-preview-template attr.
-	 * @example {{previewButton "flow_post"}}
-	 * @param {String} templateName
-	 * @param {Object} options
-	 * @returns {String}
-	 */
-	FlowHandlebars.prototype.previewButton = function ( templateName, options ) {
-		return FlowHandlebars.prototype.html( FlowHandlebars.prototype.processTemplate(
-			"flow_preview_button",
-			{ templateName: templateName }
-		) );
-	};
-
-	/**
 	 * Renders a tooltip node.
 	 * @example {{#tooltip positionClass="up" contextClass="progressive" extraClass="flow-my-tooltip"}}what{{/tooltip}}
 	 * @param {Object} options
@@ -658,7 +644,6 @@
 	Handlebars.registerHelper( 'ifAnonymous', FlowHandlebars.prototype.ifAnonymous );
 	Handlebars.registerHelper( 'linkWithReturnTo', FlowHandlebars.prototype.linkWithReturnTo );
 	Handlebars.registerHelper( 'escapeContent', FlowHandlebars.prototype.escapeContent );
-	Handlebars.registerHelper( 'previewButton', FlowHandlebars.prototype.previewButton );
 	Handlebars.registerHelper( 'tooltip', FlowHandlebars.prototype.tooltip );
 	Handlebars.registerHelper( 'moderationActionText', FlowHandlebars.prototype.moderationActionText );
 	Handlebars.registerHelper( 'moderationAction', FlowHandlebars.prototype.moderationAction );

@@ -150,7 +150,6 @@ class TemplateHelper {
 					'user' => 'Flow\TemplateHelper::user',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
-					'previewButton' => 'Flow\TemplateHelper::previewButton',
 					'plaintextSnippet' => 'Flow\TemplateHelper::plaintextSnippet',
 				),
 				'hbhelpers' => array(
@@ -745,16 +744,6 @@ class TemplateHelper {
 	 */
 	static public function escapeContent( $contentType, $content ) {
 		return $contentType === 'html' ? self::html( $content ) : $content;
-	}
-
-	/**
-	 * @param string $templateName
-	 * @return string button
-	 */
-	static public function previewButton( $templateName ) {
-		return self::html(
-			self::processTemplate( 'flow_preview_button', array( 'templateName' => $templateName ) )
-		);
 	}
 
 	/**
