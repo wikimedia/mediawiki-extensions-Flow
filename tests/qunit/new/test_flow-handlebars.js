@@ -8,6 +8,9 @@ QUnit.module( 'ext.flow: Handlebars helpers', {
 			}
 		} );
 		this.handlebarsProto = mw.flow.FlowHandlebars.prototype;
+		this.handlebarsProto._qunit_helper_test = function( a, b ) {
+			return a + b;
+		};
 
 		this.opts = {
 			fn: function() {
@@ -33,6 +36,12 @@ QUnit.test( 'Handlebars.prototype.processTemplateGetFragment', 1, function( asse
 QUnit.test( 'Handlebars.prototype.getTemplate', 2, function( assert ) {
 	assert.strictEqual( this.handlebarsProto.getTemplate( 'foo' )(), 'Stubbed.', 'Getting a template works.' );
 	assert.strictEqual( this.handlebarsProto.getTemplate( 'foo' )(), 'Stubbed.', 'Getting a template from cache works.' );
+} );
+
+// Helpers
+QUnit.test( 'Handlebars.prototype.callHelper', 1, function( assert ) {
+	assert.strictEqual( this.handlebarsProto.callHelper( '_qunit_helper_test', 1, 2 ),
+		3, 'Check the helper was called.' );
 } );
 
 QUnit.test( 'Handlebars.prototype.ifEquals', 2, function( assert ) {

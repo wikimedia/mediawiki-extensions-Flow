@@ -84,6 +84,7 @@
 	 * A method to call helper functions from outside templates. This removes Handlebars.SafeString wrappers.
 	 * @param {String} helperName
 	 * @param {...*} [args]
+	 * @return mixed
 	 */
 	FlowHandlebars.prototype.callHelper = function ( helperName, args ) {
 		var result = this[ helperName ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
