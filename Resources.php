@@ -145,19 +145,79 @@ $wgResourceModules += array(
 			'flow-terms-of-use-reopen-topic',
 		),
 	),
+	// @todo: replace with mediawiki ui buttons
+	'ext.flow.mediawiki.ui.buttons' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/mediawiki.ui/buttons.less',
+		),
+	),
+	// @todo: upstream to mediawiki ui
+	'ext.flow.mediawiki.ui.form' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/mediawiki.ui/forms.less',
+		),
+	),
+	// @todo: upstream to mediawiki ui
+	'ext.flow.mediawiki.ui.tooltips' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/mediawiki.ui/tooltips.less',
+		),
+	),
+	'ext.flow.icons.styles' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/icons.less',
+		),
+	),
+	'ext.flow.styles' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/common.less',
+			'new/styles/errors.less',
+			// @todo: consolidate with mediawiki.ui forms
+			'new/styles/forms.less',
+		),
+	),
+	'ext.flow.board.styles' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/board/collapser.less',
+			'new/styles/board/header.less',
+			'new/styles/board/menu.less',
+			'new/styles/board/navigation.less',
+			'new/styles/board/moderated.less',
+			'new/styles/board/timestamps.less',
+			'new/styles/board/replycount.less',
+		),
+	),
+	'ext.flow.board.topic.styles' => $flowResourceTemplate + array(
+		'styles' => array(
+			'new/styles/board/topic/navigation.less',
+			'new/styles/board/topic/navigator.less',
+			'new/styles/board/topic/titlebar.less',
+			'new/styles/board/topic/meta.less',
+			'new/styles/board/topic/post.less',
+			'new/styles/board/topic/summary.less',
+		),
+	),
+	// @todo: Remove when cache clears
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
 		'styles' => array(
 			'new/styles/mediawiki.ui/buttons.less',
 			'new/styles/mediawiki.ui/forms.less',
 			'new/styles/mediawiki.ui/tooltips.less',
-			'new/styles/layout.less',
 			'new/styles/icons.less',
-			'new/styles/js.less',
+			'new/styles/common.less',
 			'new/styles/board/collapser.less',
+			'new/styles/board/header.less',
 			'new/styles/board/menu.less',
-			'new/styles/board/topic-titlebar.less',
+			'new/styles/board/navigation.less',
 			'new/styles/board/moderated.less',
 			'new/styles/board/timestamps.less',
+			'new/styles/board/replycount.less',
+			'new/styles/board/topic/navigation.less',
+			'new/styles/board/topic/navigator.less',
+			'new/styles/board/topic/titlebar.less',
+			'new/styles/board/topic/meta.less',
+			'new/styles/board/topic/post.less',
+			'new/styles/board/topic/summary.less',
 			'new/styles/forms.less',
 		),
 	),

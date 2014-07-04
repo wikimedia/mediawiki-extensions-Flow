@@ -1,0 +1,101 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+@import 'flow.helpers';
+@import 'flow.variables';
+
+// @todo: Find better home for this css
+.client-js {
+	// API interaction indicator
+	.flow-api-inprogress {
+		opacity: 0.5;
+		cursor: wait !important;
+	}
+
+		// A preview version of a given block
+	.flow-preview {
+		cursor: help;
+	}
+
+	.flow-preview-target-hidden {
+		display: none !important;
+	}
+}
+
+// Keep a fixed spacing between each individual flow section
+.flow-newtopic-form,
+.flow-topics-bar {
+	padding-top: 1.5em;
+}
+
+// Top board header
+.flow-board-header,
+// The whole board content wrapper
+.flow-board {
+	.box-sizing( border-box );
+	padding-right: 200px;
+	width: 100%;
+	max-width: 915px;
+	// Set a fixed font-size from which everything else can use a relative amount
+	font-size: 1em;
+	line-height: 1.4em;
+}
+
+// Individual topic containers
+.flow-topic {
+	padding: 1.5em 0;
+}
+
+// Topic title itself
+// Needs additional specificity to override `div#content h2`
+div#bodyContent {
+	// FIXME: are h2's needed?
+	h2.flow-topic-title,
+	h2.flow-moderated-topic-title,
+	.flow-moderated-topic-title,
+	.flow-topic-title {
+		padding: 0;
+		margin: 0 0 .33em;
+		border-bottom: none;
+		font-family: sans-serif;
+		font-weight: bold;
+		word-break: break-word;
+		word-wrap: break-word;
+		overflow: visible;
+	}
+
+	.flow-moderated-topic-title {
+		font-size: 1em;
+	}
+
+	h2.flow-topic-title,
+	.flow-topic-title {
+		font-size: 1.75em;
+	}
+}
+
+// Revision view
+.flow-revision-content {
+	background: none repeat scroll 0 0 #EDEDED;
+	color: #777777 !important;
+	margin-top: 20px;
+	padding: 10px;
+}
+
+// MEDIA QUERIES
+@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+	.flow-board-header,
+	.flow-board {
+		padding-right: 170px;
+		max-width: 100%;
+		font-size: .875em;
+		line-height: 1.2em;
+	}
+
+	.flow-topic-meta {
+		font-size: .875em;
+	}
+
+	/* not important stuff -- only here for mediawiki on mobile in test version */
+	#mw-page-base, #mw-head-base { display: none; }
+	div#content { margin-left: 0;}
+}

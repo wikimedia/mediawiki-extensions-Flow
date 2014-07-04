@@ -1,9 +1,14 @@
 @import 'mediawiki.mixins';
 @import 'flow.colors';
 @import 'flow.helpers';
+@import 'flow.variables';
 
 // Show that the topic titlebar is clickable
 .flow-topic-titlebar {
+	position: relative;
+	padding: 1em @topicIndent;
+	background: @colorGrayLightest;
+	border-radius: 3px;
 	outline: none;
 
 	// ...but only in JS mode
@@ -20,5 +25,12 @@
 	// Fade out the posts to show they will disappear
 	&:hover + .flow-post {
 		opacity: .85;
+	}
+}
+
+// MEDIA QUERIES
+@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+	.flow-topic-titlebar {
+		padding: .5em .75em;
 	}
 }

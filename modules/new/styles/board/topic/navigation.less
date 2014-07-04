@@ -1,0 +1,52 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+@import 'flow.helpers';
+@import 'flow.variables';
+
+// Right-aligned topic navigation container
+// requires additional specificity to override
+// .mw-content-ltr ul
+.flow-board {
+	ul.flow-topic-navigation {
+		float: right;
+		.box-sizing( border-box );
+		margin: 0 -200px 0 0;
+		width: 185px;
+		border-radius: 3px;
+		font-size: .875em;
+		line-height: 1.1em;
+
+		h5 {
+			color: @colorText;
+		}
+
+		li {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			position: relative;
+
+			&.flow-topic-navigator-wrap {
+				margin: 0.25em 0;
+				border: 1px solid @colorGrayLight;
+				word-wrap: break-word;
+			}
+		}
+	}
+
+	// &.flow-topic-navigation:
+	ul.flow-topic-navigation-fixed {
+		position: fixed;
+		top: 0;
+		margin-right: 0;
+	}
+}
+
+// MEDIA QUERIES
+@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+	ul.flow-topic-navigation {
+		display: none;
+		margin: 0 -170px 0 0;
+		width: 160px;
+	}
+}
