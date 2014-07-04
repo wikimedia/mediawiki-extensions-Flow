@@ -126,6 +126,7 @@
 	"flow-error-process-data": "Đã xuất hiện lỗi khi xử lý dữ liệu trong yêu cầu của bạn.",
 	"flow-error-process-wikitext": "Đã xuất hiện lỗi khi xử lý chuyển đổi HTML/mã wiki.",
 	"flow-error-no-index": "Không tìm thấy chỉ mục để tìm kiếm dữ liệu.",
+	"flow-error-no-render": "Không hiểu tác vụ được định rõ.",
 	"flow-edit-header-placeholder": "Miêu tả bảng Flow này",
 	"flow-edit-header-submit": "Lưu đầu đề",
 	"flow-edit-header-submit-overwrite": "Ghi đè đầu đề",
@@ -308,7 +309,8 @@
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Không tìm thấy nội dung ứng với kiểu và UUID.",
 	"flow-spam-confirmedit": "Những người vô danh không có phép gửi liên kết ngoài.\nXin hãy mở tài khoản.",
-	"flow-preview-warning": "Bạn đang xem một bản xem trước. Lưu biểu mẫu để hoàn thành việc đăng bài, hoặc bấm “Sửa tiếp” để tiếp tục viết.",
+	"flow-preview-warning": "Bạn đang xem một bản xem trước. Lưu biểu mẫu để hoàn thành việc đăng bài, hoặc bấm “{{int:flow-preview-return-edit-post}}” để tiếp tục viết.",
 	"flow-preview-return-edit-post": "Sửa tiếp",
-	"flow-anonymous": "Vô danh"
+	"flow-anonymous": "Vô danh",
+	"flow-embedding-unsupported": "Chưa có thể nhúng thảo luận vào trang khác."
 }
