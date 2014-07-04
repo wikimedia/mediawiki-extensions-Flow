@@ -26,7 +26,6 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_topic_single_view.handlebars.php \
 		compiled/flow_block_topic_diff_view.handlebars.php \
 		compiled/flow_block_topic_close.handlebars.php \
-		compiled/flow_block_topic_reply.handlebars.php \
 		compiled/flow_block_topic_edit_post.handlebars.php \
 		compiled/flow_block_topic_edit_title.handlebars.php \
 		compiled/flow_block_topic_moderate_topic.handlebars.php \
@@ -118,14 +117,6 @@ compiled/flow_block_topic_close.handlebars.php: \
 compiled/flow_topic_titlebar_close.handlebars.php: \
 		flow_block_topic_titlebar_close.handlebars
 	$(COMPILE) flow_block_topic_close
-
-compiled/flow_block_topic_reply.handlebars.php: \
-		flow_block_topic_reply.handlebars \
-		flow_errors.handlebars \
-		flow_reply_form.handlebars \
-		flow_anon_warning.handlebars \
-		flow_tooltip.handlebars
-	$(COMPILE) flow_block_topic_reply
 
 compiled/flow_block_topic_edit_post.handlebars.php: \
 		flow_block_topic_edit_post.handlebars \
