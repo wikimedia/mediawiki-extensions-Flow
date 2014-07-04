@@ -1,5 +1,9 @@
 <?php
 
+$mobile = array(
+	'targets' => array( 'desktop', 'mobile' ),
+);
+
 $flowResourceTemplate = array(
 	'localBasePath' => $dir . 'modules',
 	'remoteExtPath' => 'Flow/modules',
@@ -156,7 +160,7 @@ $wgResourceModules += array(
 		'styles' => array(
 			'new/styles/mediawiki.ui/forms.less',
 		),
-	),
+	) + $mobile,
 	// @todo: upstream to mediawiki ui
 	'ext.flow.mediawiki.ui.tooltips' => $flowResourceTemplate + array(
 		'styles' => array(
@@ -167,13 +171,13 @@ $wgResourceModules += array(
 		'styles' => array(
 			'new/styles/icons.less',
 		),
-	),
+	) + $mobile,
 	'ext.flow.styles' => $flowResourceTemplate + array(
 		'styles' => array(
 			'new/styles/common.less',
 			'new/styles/errors.less',
 		),
-	),
+	) + $mobile,
 	'ext.flow.board.styles' => $flowResourceTemplate + array(
 		'styles' => array(
 			'new/styles/board/collapser.less',
@@ -187,7 +191,7 @@ $wgResourceModules += array(
 			'new/styles/board/form-actions.less',
 			'new/styles/board/terms-of-use.less',
 		),
-	),
+	) + $mobile,
 	'ext.flow.board.topic.styles' => $flowResourceTemplate + array(
 		'styles' => array(
 			'new/styles/board/topic/navigation.less',
@@ -197,7 +201,7 @@ $wgResourceModules += array(
 			'new/styles/board/topic/post.less',
 			'new/styles/board/topic/summary.less',
 		),
-	),
+	) + $mobile,
 	// @todo: Remove when cache clears
 	'ext.flow.new.styles' => $flowResourceTemplate + array(
 		'styles' => array(
