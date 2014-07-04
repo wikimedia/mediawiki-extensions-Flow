@@ -1,4 +1,6 @@
-<form method="POST" action="{{moderationAction actions @root.submitted.moderationState}}">
+<form method="POST"
+	class="mw-ui-form"
+	action="{{moderationAction actions @root.submitted.moderationState}}">
 	<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 	<textarea name="topic_reason">
 		{{~#if @root.submitted.reason~}}
