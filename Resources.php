@@ -182,8 +182,6 @@ $wgResourceModules += array(
 		'styles' => array(
 			'new/styles/common.less',
 			'new/styles/errors.less',
-			// @todo: consolidate with mediawiki.ui forms
-			'new/styles/forms.less',
 		),
 	) + $mobile,
 	'ext.flow.board.styles' => $flowResourceTemplate + array(
@@ -196,6 +194,9 @@ $wgResourceModules += array(
 			'new/styles/board/timestamps.less',
 			'new/styles/board/replycount.less',
 			'new/styles/js.less',
+			'new/styles/board/content-preview.less',
+			'new/styles/board/form-actions.less',
+			'new/styles/board/terms-of-use.less',
 		),
 	) + $mobile,
 	'ext.flow.board.topic.styles' => $flowResourceTemplate + array(
@@ -229,7 +230,6 @@ $wgResourceModules += array(
 			'new/styles/board/topic/meta.less',
 			'new/styles/board/topic/post.less',
 			'new/styles/board/topic/summary.less',
-			'new/styles/forms.less',
 		),
 	),
 	'ext.flow.new.handlebars' => $flowResourceTemplate + array(
