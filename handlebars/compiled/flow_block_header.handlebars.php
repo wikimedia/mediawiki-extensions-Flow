@@ -33,7 +33,7 @@
 						data-flow-api-handler="activateEditHeader"
 						data-flow-api-target="< .flow-board-header"
 						data-flow-interactive-handler="apiRequest"
-						class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-board-header-icon flow-ui-tooltip-target"
+						class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-board-header-icon flow-ui-tooltip-target"
 						title="'.htmlentities(((is_array($in['revision']['actions']['edit']) && isset($in['revision']['actions']['edit']['title'])) ? $in['revision']['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-pencil"></span>
 					</a>

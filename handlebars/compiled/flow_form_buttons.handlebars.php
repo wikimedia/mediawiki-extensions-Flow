@@ -21,7 +21,11 @@
         data-flow-api-target="< form textarea"
         name="preview"
         data-role="action"
+<<<<<<< HEAD
         class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
+=======
+        class="mw-ui-button mw-ui-progressive mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
+>>>>>>> c9b1a43... Replace flow-ui- classes with mw-ui- classes
 <button data-flow-interactive-handler="cancelForm" data-role="cancel"
 	class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 ';
