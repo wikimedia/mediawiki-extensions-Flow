@@ -1,0 +1,121 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+@import 'flow.helpers';
+@import 'flow.variables';
+
+// Comments
+.flow-post {
+	position: relative;
+	/* left margin provided by highlighting zone */
+	margin: 0;
+	margin-top: 1em;
+	padding: 0;
+	color: @colorText;
+	word-wrap: break-word;
+
+	// Nested comments (replies & reply forms)
+	.flow-replies {
+		margin-left: @topicIndent;
+		padding-left: 0.5em;
+		border-left: 1px dotted @colorGrayLighter;
+
+		// Remove tangent preview nesting (no IE6 support, but acceptable degradation)
+		&.flow-preview {
+			margin-left: 0;
+			padding-left: 0;
+			border-left-width: 0;
+
+			.flow-post-main {
+				padding-left: 0;
+				border-left-width: 0;
+			}
+		}
+	}
+
+	// Wraps flow-post-content
+	.flow-post-main,
+	.flow-reply-form,
+	.flow-edit-post-form {
+		padding-left: @topicIndent;
+	}
+
+	// Highlights a post (no IE6 support, but acceptable degradation)
+	&.flow-post-highlighted {
+		 > .flow-post-main {
+			 @highlightedIndent: @topicIndent - 0.75em;
+			 padding-left: @highlightedIndent;
+			 border-left: solid @highlightedIndent @colorHighlight;
+		}
+	} 
+
+	// Content of comments
+	.flow-post-content {
+		// protect from content breaking out of its box
+		word-break: break-word;
+		overflow: auto;
+		max-height: 2000px;
+	}
+
+	// Author link in post
+	.flow-author {
+		display: inline-block;
+		color: @colorText;
+		word-wrap: break-word;
+
+		.mw-userlink {
+			font-weight: bold;
+		}
+
+		.mw-usertoollinks {
+			opacity: 0;
+			.transition( opacity .25s linear );
+		}
+		&:hover .mw-usertoollinks {
+			opacity: 1;
+		}
+	}
+
+	// Content
+	.flow-post-content * {
+		overflow-x: auto;
+	}
+}
+
+// Comment metadata
+.flow-post-meta {
+	// @todo needs overflow: hidden but crops button border at bottom
+	color: @colorGrayDark;
+	font-size: .875em;
+	text-align: right;
+}
+
+.flow-post-meta-actions {
+	float: left;
+}
+
+// MEDIA QUERIES
+@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+	.flow-post {
+		margin: .5em 0 0 .75em;
+		padding: 0 .5em 0 0;
+
+		.flow-author {
+			font-size: .875em;
+			line-height: 1.2em;
+		}
+
+		.flow-post {
+			padding: 0 .5em;
+			border-left-width: 1px;
+		}
+	}
+
+	.flow-post-meta {
+		font-size: .875em;
+	}
+
+	/* not important stuff -- only here for mediawiki on mobile in test version */
+	#mw-page-base, #mw-head-base { display: none; }
+	div#content { margin-left: 0;}
+}
+

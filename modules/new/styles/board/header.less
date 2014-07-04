@@ -1,0 +1,27 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+@import 'flow.helpers';
+@import 'flow.variables';
+
+.flow-board-header {
+	word-break: break-word;
+}
+
+// Top board header
+.flow-board-header-nav {
+	position: relative;
+	text-align: right;
+}
+
+// Top board header edit icon
+.flow-board-header-icon {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	opacity: .33;
+
+	&:hover,
+	&:focus {
+		opacity: 1;
+	}
+}

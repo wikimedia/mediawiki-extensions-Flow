@@ -1,0 +1,84 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+@import 'flow.helpers';
+@import 'flow.variables';
+
+// Top board navigation bar
+.flow-board-navigation {
+	clear: both;
+	max-width: 715px;
+	margin-left: 200px;
+	padding-top: .5em;
+	position: relative;
+	left: -200px;
+	font-size: 1.15em;
+
+	.flow-board-navigation-inner {
+		overflow: hidden;
+		border-bottom: 1px solid @colorGrayLight;
+	}
+
+	.flow-board-navigator-filter {
+		display: inline-block;
+		position: relative;
+	}
+
+	a {
+		display: inline-block;
+
+		&:link, &:visited {
+			padding: 0.25em .75em;
+			color: @colorTextLight;
+		}
+		&:hover, &:focus, &.flow-board-navigator-link-highlight {
+			color: #000;
+			text-decoration: none;
+		}
+
+		&.flow-board-navigator-right {
+			float: right;
+		}
+		// Adds a spacer
+		&.flow-board-navigator-cap {
+			border-right: 1px solid @colorGrayLight;
+		}
+		// The active menu item
+		&.flow-board-navigator-active {
+			font-weight: bold;
+		}
+		&.flow-board-navigator-first {
+			padding-left: 0;
+		}
+		&.flow-board-navigator-last {
+			position: absolute;
+			bottom: 0;
+			right: -2.5em;
+			width: 1.1em;
+			border-bottom: 1px solid @colorGrayLight;
+		}
+	}
+}
+
+// MEDIA QUERIES
+@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+	.flow-board-navigation {
+		margin-left: 170px;
+		left: -170px;
+		font-size: 1em;
+		position: static;
+		margin: 0;
+		padding: 0;
+		white-space: nowrap;
+		min-width: 14em;
+
+		a:link, a:visited {
+			padding: 0.2em 0.3em;
+		}
+
+		a.flow-board-navigator-last {
+			float: right;
+			position: static;
+		}
+	}
+}
+

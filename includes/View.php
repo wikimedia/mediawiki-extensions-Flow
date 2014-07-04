@@ -41,7 +41,18 @@ class View extends ContextSource {
 		wfProfileIn( __CLASS__ . '-init' );
 
 		$out = $this->getOutput();
-		$out->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.flow.new.styles' ) );
+		$styles = array(
+			'mediawiki.ui',
+			'mediawiki.ui.button',
+			'ext.flow.styles',
+			'ext.flow.mediawiki.ui.tooltips',
+			'ext.flow.mediawiki.ui.form',
+			'ext.flow.mediawiki.ui.buttons',
+			'ext.flow.icons.styles',
+			'ext.flow.board.styles',
+			'ext.flow.board.topic.styles'
+		);
+		$out->addModuleStyles( $styles );
 		$out->addModules( array( 'ext.flow.new' ) );
 
 		// Allow other extensions to add modules
