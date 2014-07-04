@@ -3,12 +3,12 @@
 
 	QUnit.test( 'Forms with required fields have certain buttons disabled by default', 6, function( assert ) {
 		var $forms = [
-			$( '<form><input class="mw-ui-input" required><button data-role="action" class="flow-ui-button">go</button></form>' ),
-			$( '<form><input class="mw-ui-input" required><button data-role="submit" class="flow-ui-button">go</button></form>' ),
-			$( '<form><textarea class="mw-ui-input"></textarea><input class="mw-ui-input"><button data-role="submit" class="flow-ui-button">go</button></form>' ),
-			$( '<form><textarea class="mw-ui-input" required></textarea><button data-role="submit" class="flow-ui-button">go</button></form>' ),
-			$( '<form><textarea class="mw-ui-input" required>foo</textarea><button data-role="submit" class="flow-ui-button">go</button></form>' ),
-			$( '<form><textarea class="mw-ui-input" required>foo</textarea><input class="mw-ui-input" required><button data-role="submit" class="flow-ui-button">go</button></form>' )
+			$( '<form><input class="mw-ui-input" required><button data-role="action" class="mw-ui-button">go</button></form>' ),
+			$( '<form><input class="mw-ui-input" required><button data-role="submit" class="mw-ui-button">go</button></form>' ),
+			$( '<form><textarea class="mw-ui-input"></textarea><input class="mw-ui-input"><button data-role="submit" class="mw-ui-button">go</button></form>' ),
+			$( '<form><textarea class="mw-ui-input" required></textarea><button data-role="submit" class="mw-ui-button">go</button></form>' ),
+			$( '<form><textarea class="mw-ui-input" required>foo</textarea><button data-role="submit" class="mw-ui-button">go</button></form>' ),
+			$( '<form><textarea class="mw-ui-input" required>foo</textarea><input class="mw-ui-input" required><button data-role="submit" class="mw-ui-button">go</button></form>' )
 		];
 
 		$.each( $forms, function() {

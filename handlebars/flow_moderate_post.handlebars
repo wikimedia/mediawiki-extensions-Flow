@@ -9,10 +9,11 @@
 	<div class="flow-form-actions flow-form-collapsible">
 		<button data-flow-interactive-handler="apiRequest"
 		        data-flow-api-handler="moderatePost"
-		        class="flow-ui-button flow-ui-constructive">
+		        class="mw-ui-button mw-ui-constructive">
 			{{~moderationActionText actions @root.submitted.moderationState~}}
 		</button>
-		<a data-flow-interactive-handler="cancelForm" class="flow-ui-button flow-ui-destructive flow-ui-quiet" href="{{links.topic.url}}" title="{{l10n "flow-cancel"}}">
+		<a data-flow-interactive-handler="cancelForm"
+			class="mw-ui-button mw-ui-destructive mw-ui-quiet" href="{{links.topic.url}}" title="{{l10n "flow-cancel"}}">
 			{{~l10n "flow-cancel"~}}
 		</a>
 	</div>
