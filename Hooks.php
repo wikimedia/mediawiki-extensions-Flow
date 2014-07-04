@@ -318,6 +318,7 @@ class FlowHooks {
 			if ( self::$occupationController->isTalkpageOccupied( $talkPage ) ) {
 				// TODO: Insert lightweight JavaScript that opens flow via ajax
 				$modules['talk'] = array();
+				$skin->sectionFormatting = false;
 			}
 		}
 
