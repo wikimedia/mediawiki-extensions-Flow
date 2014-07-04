@@ -100,12 +100,13 @@
 
 		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		<input type="hidden" name="topiclist_replyTo" value="'.htmlentities(((is_array($in) && isset($in['workflowId'])) ? $in['workflowId'] : null), ENT_QUOTES, 'UTF-8').'" />
-		<input name="topiclist_topic" class="mw-ui-input"
+		<input name="topiclist_topic" class="mw-ui-input mw-ui-input-large"
 			required
 			type="text" placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-start-placeholder'),Array()), 'encq').'" data-role="title"/>
 		<textarea name="topiclist_content"
 			data-flow-preview-template="flow_post"
-			class="mw-ui-input flow-form-collapsible" placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-content-placeholder'),Array()), 'encq').'" data-role="content"></textarea>
+			class="mw-ui-input flow-form-collapsible mw-ui-input-large"
+			placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-newtopic-content-placeholder'),Array()), 'encq').'" data-role="content"></textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" data-flow-api-handler="newTopic"
