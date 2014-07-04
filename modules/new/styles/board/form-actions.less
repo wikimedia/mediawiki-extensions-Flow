@@ -1,0 +1,15 @@
+@import 'mediawiki.mixins';
+@import 'flow.colors';
+@import 'flow.helpers';
+@import 'flow.variables';
+
+// Form button actions should be right-affixed
+.flow-form-actions {
+	position: relative;
+	margin-top: .25em;
+
+	button.flow-ui-button, a.flow-ui-button {
+		float: right;
+		margin-left: .25em;
+	}
+}
