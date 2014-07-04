@@ -2,7 +2,9 @@
 <div class="flow-board-navigation">
 	{{!-- <a href="{{links.search.url}}" title="{{links.search.title}}" class="flow-board-navigator-last"><span class="wikiglyph wikiglyph-magnifying-glass flow-ui-tooltip-target" title="Search"></span></a> --}}
 	<div class="flow-board-navigation-inner">
-		{{progressiveEnhancement context=this insertionType="insertion" sectionId="flow-board-collapsers" templateName="flow_board_collapsers_subcomponent"}}
+		{{#progressiveEnhancement insertionType="insertion" sectionId="flow-board-collapsers"}}
+			{{> flow_board_collapsers_subcomponent}}
+		{{/progressiveEnhancement}}
 
 		{{!-- Click for sorting options, not sure what this url should be --}}
 		<a href="javascript:void(0);" class="flow-board-navigator-active flow-board-navigator-first flow-ui-tooltip-target" data-tooltip-pointing="down" title="{{l10n "flow-sorting-tooltip"}}" data-flow-interactive-handler="boardFilterMenuToggle">

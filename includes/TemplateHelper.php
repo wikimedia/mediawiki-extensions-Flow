@@ -139,7 +139,6 @@ class TemplateHelper {
 					'author' => 'Flow\TemplateHelper::author',
 					'math' => 'Flow\TemplateHelper::math',
 					'post' => 'Flow\TemplateHelper::post',
-					'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 					'historyTimestamp' => 'Flow\TemplateHelper::historyTimestamp',
 					'historyDescription' => 'Flow\TemplateHelper::historyDescription',
 					'showCharacterDifference' => 'Flow\TemplateHelper::showCharacterDifference',
@@ -158,6 +157,7 @@ class TemplateHelper {
 					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 					'ifCond' => 'Flow\TemplateHelper::ifCond',
 					'tooltip' => 'Flow\TemplateHelper::tooltip',
+					'progressiveEnhancement' => 'Flow\TemplateHelper::progressiveEnhancement',
 				),
 			)
 		);
@@ -552,20 +552,23 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param array $input
-	 *
+	 * Creates a special script tag to be processed client-side. This contains extra template HTML, which allows
+	 * the front-end to "progressively enhance" the page with more content which isn't needed in a non-JS state.
+	 * @param array $options
 	 * @return array
 	 */
-	static public function progressiveEnhancement( array $input ) {
-		$context = $input['context'];
+	static public function progressiveEnhancement( array $options ) {
+		$fn = $options['fn'];
+		$input = $options['hash'];
 		$insertionType = htmlspecialchars( $input['insertionType'] );
 		$sectionId = htmlspecialchars( $input['sectionId'] );
-		$templateName = $input['templateName'];
 
 		return self::html(
 			'<script name="handlebars-template-progressive-enhancement"
-				type="text/x-handlebars-template-progressive-enhancement" data-type="' . $insertionType . '" id="' . $sectionId . '">'
-			. self::processTemplate( $templateName, $context )
+				type="text/x-handlebars-template-progressive-enhancement"
+				data-type="' . $insertionType . '"
+				id="' . $sectionId . '">'
+			. $fn()
 			.'</script>'
 		);
 	}

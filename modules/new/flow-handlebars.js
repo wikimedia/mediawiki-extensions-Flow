@@ -468,10 +468,9 @@
 	 * Option keys:
 	 * * type=String (replace, content, insert)
 	 * * target=String (jQuery selector; needed for replace and content)
-	 * * template=String (Handlebars template)
 	 * * data-object=Object (data to be used to render the template; usually the keyword "this")
 	 * * data-json=String ()
-	 * @example {{progressiveEnhancement type="content"}}
+	 * @example {{#progressiveEnhancement type="content"}}{{> ok}}{{/progressiveEnhancement}}
 	 * @param {Object} options
 	 * @return {String}
 	 * @todo Implement support for full functionality, perhaps revisit the implementation.
@@ -485,7 +484,7 @@
 			' data-target="' + hash.target +'"' +
 			' data-type="' + hash.insertionType + '"' +
 			' id="' + hash.sectionId + '">' +
-			'{{> ' + hash.templateName + ' }}' +
+			options.fn( this ) +
 			'</scr' + 'ipt>'
 		);
 	};
