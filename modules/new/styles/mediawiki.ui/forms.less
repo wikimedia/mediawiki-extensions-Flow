@@ -1,6 +1,91 @@
 @import 'mediawiki.mixins';
 @import 'flow.colors';
 @import 'flow.helpers';
+@import 'flow.variables';
+
+// Forms [Draft]
+//
+// Styleguide 3.
+
+.client-nojs {
+	.mw-ui-form {
+		// Hide destructive actions in no-JavaScript mode.
+		.flow-ui-destructive {
+			display: none;
+		}
+	}
+}
+
+// Placeholder text styling helper
+.field-placeholder-styling() {
+	font-style: italic;
+	font-weight: normal;
+}
+
+// Standard Form [Draft]
+//
+// Style a form using MediaWiki UI.
+// See button section on guidance of how and when to use mw-ui-constructive.
+// Currently in draft status and subject to change.
+//
+// Markup:
+// <form class="mw-ui-form">
+//   <label class="mw-ui-field">Address line 1</div>
+//   <input value="input" class="mw-ui-input">
+//   <input value="input" class="mw-ui-input">
+//   <label class="mw-ui-field">Address line 1</div>
+//   <textarea></<textarea>
+// </form>
+//
+// Styleguide 3.1.
+.mw-ui-form {
+	// Make all text fields 100% wide by default
+	.mw-ui-fieldtype-text,
+	.mw-ui-fieldtag-textarea {
+		.box-sizing(border-box);
+		width: 100%;
+	}
+
+	.mw-ui-input,
+	textarea {
+		.box-sizing(border-box);
+		width: 100%;
+		padding: .3em .3em .3em .6em;
+		display: block;
+		color: inherit;
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		// Transition for box-shadow @winter
+		.transition(~"border linear .2s, box-shadow linear .2s");
+
+		// Placeholder text styling must be set individually for each browser @winter
+		&::-webkit-input-placeholder { // webkit
+			.field-placeholder-styling;
+		}
+		&::-moz-placeholder { // FF 4-18
+			.field-placeholder-styling;
+		}
+		&:-moz-placeholder { // FF >= 19
+			.field-placeholder-styling;
+		}
+		&:-ms-input-placeholder { // IE >= 10
+			.field-placeholder-styling;
+		}
+	}
+
+	textarea {
+		min-height: 8em;
+	}
+
+	// Add blue box-shadow on focus @winter
+	.mw-ui-input:focus,
+	textarea:focus {
+		box-shadow: inset .45em 0 0 #5088f7;
+		-moz-box-shadow: inset .45em 0 0 #5088f7;
+		-webkit-box-shadow: inset .45em 0 0 #5088f7;
+	}
+}
 
 // Wrapper element for stylized form elements
 .mw-ui-field {
@@ -204,5 +289,26 @@ Does not support IE7 nor IE8.
 			//.glyphicon-check
 			content: "\e067";
 		}
+	}
+}
+
+// @todo: document
+.mw-ui-form-primary {
+	// Attach these two inputs together to make them seem like one congruous input
+	input.mw-ui-input,
+	textarea.mw-ui-input {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	textarea.mw-ui-input {
+		padding-left: @topicIndent;
+		border-top-width: 0;
+	}
+	// Make the new topic input mimic new topic text
+	input.mw-ui-input {
+		padding-left: .75em;
+		font-size: 1.75em;
+		font-weight: bold;
+		line-height: 1.25em;
 	}
 }
