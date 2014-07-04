@@ -44,7 +44,7 @@
 		<div class="flow-form-actions flow-form-collapsible">
 			<button
 				data-role="submit"
-				class="flow-ui-button flow-ui-constructive"
+				class="flow-ui-button mw-ui-button flow-ui-constructive mw-ui-constructive"
 				data-flow-interactive-handler="apiRequest"
 				data-flow-api-target="< .flow-topic-titlebar"
 				data-flow-api-handler="closeOpenTopic">
@@ -58,13 +58,13 @@
         data-flow-api-target="< form textarea"
         name="preview"
         data-role="action"
-        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
+        class="flow-ui-button mw-ui-button mw-ui-progressive flow-ui-progressive flow-ui-quiet mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
 			<a
 				href="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['url'])) ? $in['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				title="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['title'])) ? $in['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 				data-flow-interactive-handler="cancelForm"
 				data-role="cancel"
-				class="flow-ui-button flow-ui-destructive flow-ui-quiet">
+				class="flow-ui-button mw-ui-button flow-ui-destructive mw-ui-destructive flow-ui-quiet mw-ui-quiet">
 					'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'
 			</a>
 			<small class="flow-terms-of-use plainlinks">
