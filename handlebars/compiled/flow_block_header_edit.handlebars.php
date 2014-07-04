@@ -44,14 +44,14 @@
 				placeholder="'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edit-header-placeholder'),Array()), 'encq').'" data-role="content">'.((LCRun3::ifvar($cx, ((is_array($in['submitted']) && isset($in['submitted']['content'])) ? $in['submitted']['content'] : null))) ? ''.htmlentities(((is_array($in['submitted']) && isset($in['submitted']['content'])) ? $in['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null), ENT_QUOTES, 'UTF-8').'').'</textarea>
 			<div class="flow-form-actions flow-form-collapsible">
 				<button data-role="submit"
-					class="flow-ui-button flow-ui-constructive"
+					class="mw-ui-button mw-ui-constructive"
 					data-flow-interactive-handler="apiRequest"
 					data-flow-api-handler="submitHeader">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-edit-header-submit'),Array()), 'encq').'</button>
 				<button data-flow-api-handler="preview"
         data-flow-api-target="< form textarea"
         name="preview"
         data-role="action"
-        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
+        class="mw-ui-button mw-ui-progressive mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>
 <button data-flow-interactive-handler="cancelForm" data-role="cancel"
 	class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-cancel'),Array()), 'encq').'</button>
 
