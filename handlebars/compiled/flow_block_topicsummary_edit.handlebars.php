@@ -47,7 +47,7 @@
 		<div class="flow-form-actions flow-form-collapsible">
 			<button
 				data-role="submit"
-				class="flow-ui-button flow-ui-constructive"
+				class="flow-ui-button mw-ui-button mw-ui-constructive flow-ui-constructive"
 				data-flow-interactive-handler="apiRequest"
 				data-flow-api-handler="summarizeTopic"
 				data-flow-api-target="< .flow-topic-summary">
@@ -57,8 +57,9 @@
         data-flow-api-target="< form textarea"
         name="preview"
         data-role="action"
-        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
-			<a href="'.htmlentities(((is_array($in['revision']['links']['topic']) && isset($in['revision']['links']['topic']['url'])) ? $in['revision']['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['revision']['links']['topic']) && isset($in['revision']['links']['topic']['title'])) ? $in['revision']['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</a>
+        class="flow-ui-button mw-ui-button mw-ui-progressive flow-ui-progressive flow-ui-quiet mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
+			<a href="'.htmlentities(((is_array($in['revision']['links']['topic']) && isset($in['revision']['links']['topic']['url'])) ? $in['revision']['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'" title="'.htmlentities(((is_array($in['revision']['links']['topic']) && isset($in['revision']['links']['topic']['title'])) ? $in['revision']['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-interactive-handler="cancelForm" data-role="cancel"
+			   class="flow-ui-button mw-ui-button flow-ui-destructive mw-ui-destructive flow-ui-quiet mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</a>
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array('flow-terms-of-use-summarize'), 'encq').'</small>
 		</div>
 	</form>
