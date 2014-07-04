@@ -41,4 +41,20 @@ QUnit.test( 'Handlebars.prototype.ifAnonymous', 2, function() {
 	strictEqual( this.handlebarsProto.ifAnonymous( this.opts ), 'nope', 'User should be logged in on second call.' );
 } );
 
+QUnit.test( 'Handlebars.prototype.progressiveEnhancement', 1, function() {
+	var opts = $.extend( { hash: { insertionType: 'insert', target: 'abc', sectionId: 'def' } }, this.opts );
+
+	strictEqual(
+		this.handlebarsProto.progressiveEnhancement( opts ).string,
+		'<scr' + 'ipt' +
+			' type="text/x-handlebars-template-progressive-enhancement"' +
+			' data-target="' + opts.hash.target +'"' +
+			' data-type="' + opts.hash.insertionType + '"' +
+			' id="' + opts.hash.sectionId + '">' +
+			'ok' +
+			'</scr' + 'ipt>',
+		'Should output exact replica of script tag.'
+	);
+} );
+
 } ( jQuery ) );
