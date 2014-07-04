@@ -43,10 +43,10 @@
 		<button data-role="submit"
 		        data-flow-api-handler="submitTopicTitle"
 		        data-flow-api-target="< .flow-topic"
-		        class="flow-ui-button flow-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array('flow-edit-title-submit'), 'encq').'</button>
+		        class="mw-ui-button mw-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array('flow-edit-title-submit'), 'encq').'</button>
 		<button data-role="cancel"
 		        data-flow-interactive-handler="cancelForm"
-		        class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
+		        class="mw-ui-button mw-ui-destructive mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
 		<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array('flow-terms-of-use-edit'), 'encq').'</small>
 	</div>
 </form>

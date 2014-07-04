@@ -54,7 +54,7 @@
 		<div class="flow-menu flow-menu-inverted">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);" class="flow-board-filter-menu-activator"></a></div>
 			'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['board-sort'])) ? $in['links']['board-sort'] : null))) ? '
-				<ul class="flow-ui-button-container">
+				<ul class="mw-ui-button mw-ui-button-container">
 					<li><a href="'.htmlentities(((is_array($in['links']['board-sort']) && isset($in['links']['board-sort']['updated'])) ? $in['links']['board-sort']['updated'] : null), ENT_QUOTES, 'UTF-8').'"'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($in) && isset($in['sortby'])) ? $in['sortby'] : null),'updated'), $in, function($cx, $in) {return 'class="flow-board-navigator-link-highlight"';}).'
 					       data-flow-interactive-handler="apiRequest"
 					       data-flow-api-target="< .flow-component"
@@ -107,13 +107,14 @@
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit" data-flow-api-handler="newTopic"
 				data-flow-interactive-handler="apiRequest"
-				class="flow-ui-button flow-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-save'), 'encq').'</button>
+				class="mw-ui-button mw-ui-constructive">'.LCRun3::ch($cx, 'l10n', Array('flow-newtopic-save'), 'encq').'</button>
 			<button data-flow-api-handler="preview"
         data-flow-api-target="< form textarea"
         name="preview"
         data-role="action"
-        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
-			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
+        class="mw-ui-button mw-ui-progressive mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
+			<button data-flow-interactive-handler="cancelForm" data-role="cancel"
+				      class="mw-ui-button mw-ui-quiet mw-ui-destructive">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array('flow-terms-of-use-new-topic'), 'encq').'</small>
 		</div>
 	</form>
@@ -132,7 +133,7 @@
 ' : '').'
 <span class="flow-author">'.LCRun3::ch($cx, 'l10n', Array('started_with_participants',$in), 'encq').'</span>
 <div class="flow-topic-meta">
-	<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-inline"
+	<a class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-ui-inline"
 		 data-flow-interactive-handler="activateForm"
 		 href="#flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content">'.LCRun3::ch($cx, 'l10n', Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'encq').'</a>
 	&bull; '.LCRun3::ch($cx, 'l10n', Array('comment_count',$in), 'encq').' &bull;
@@ -155,10 +156,10 @@
 	'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 		<div class="flow-menu">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
-			<ul class="flow-ui-button-container">
+			<ul class="mw-ui-button-container">
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button flow-ui-regressive mw-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="editTopicTitle"
@@ -170,7 +171,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['topic-history'])) ? $in['links']['topic-history'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['links']['topic-history']) && isset($in['links']['topic-history']['url'])) ? $in['links']['topic-history']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['links']['topic-history']) && isset($in['links']['topic-history']['title'])) ? $in['links']['topic-history']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-article"></span>
@@ -180,7 +181,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['links']) && isset($in['links']['topic'])) ? $in['links']['topic'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['url'])) ? $in['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['title'])) ? $in['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-link"></span>
@@ -190,7 +191,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['lock'])) ? $in['actions']['lock'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-regressive flow-ui-progressive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button flow-ui-regressive mw-ui-progressive  mw-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['url'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['title'])) ? $in['actions']['lock']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-lock"></span>
@@ -200,7 +201,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['hide'])) ? $in['actions']['hide'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['url'])) ? $in['actions']['hide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['title'])) ? $in['actions']['hide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="moderationDialog"
@@ -213,7 +214,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unhide'])) ? $in['actions']['unhide'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['url'])) ? $in['actions']['unhide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['title'])) ? $in['actions']['unhide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="moderationDialog"
@@ -226,7 +227,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['delete'])) ? $in['actions']['delete'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['url'])) ? $in['actions']['delete']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="moderationDialog"
@@ -239,7 +240,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['undelete'])) ? $in['actions']['undelete'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['url'])) ? $in['actions']['undelete']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['title'])) ? $in['actions']['undelete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="moderationDialog"
@@ -252,7 +253,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['suppress'])) ? $in['actions']['suppress'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['url'])) ? $in['actions']['suppress']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['title'])) ? $in['actions']['suppress']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="moderationDialog"
@@ -265,7 +266,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unsuppress'])) ? $in['actions']['unsuppress'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['url'])) ? $in['actions']['unsuppress']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['title'])) ? $in['actions']['unsuppress']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="moderationDialog"
@@ -278,7 +279,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['close'])) ? $in['actions']['close'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateCloseOpenTopic"
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary"
@@ -292,7 +293,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reopen'])) ? $in['actions']['reopen'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateCloseOpenTopic"
 						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -306,7 +307,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['summarize'])) ? $in['actions']['summarize'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateSummarizeTopic"
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary"
@@ -371,15 +372,16 @@
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit"
-				class="flow-ui-button flow-ui-constructive"
+				class="mw-ui-button mw-ui-constructive"
 				data-flow-interactive-handler="apiRequest"
 				data-flow-api-handler="submitReply">'.LCRun3::ch($cx, 'l10n', Array('Reply',((is_array($in) && isset($in['author'])) ? $in['author'] : null)), 'encq').'</button>
 			<button data-flow-api-handler="preview"
         data-flow-api-target="< form textarea"
         name="preview"
         data-role="action"
-        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
-			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
+        class="mw-ui-button mw-ui-progressive mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
+			<button data-flow-interactive-handler="cancelForm" data-role="cancel"
+			        class="mw-ui-button mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-cancel'), 'encq').'</button>
 
 			<small class="flow-terms-of-use plainlinks">'.LCRun3::ch($cx, 'l10nParse', Array('flow-terms-of-use-reply'), 'encq').'</small>
 		</div>
@@ -404,7 +406,7 @@
 		   data-flow-load-handler="loadMore"
 		   href="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['url'])) ? $in['links']['pagination']['fwd']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 		   title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-		   class="flow-ui-button flow-ui-progressive flow-load-interactive /*flow-ui-quiet flow-ui-thin*/"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-load-more'), 'encq').'</a>
+		   class="mw-ui-button mw-ui-progressive flow-load-interactive"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array('flow-load-more'), 'encq').'</a>
 	</div>
 ' : '').'
 
