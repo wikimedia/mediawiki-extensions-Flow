@@ -18,6 +18,6 @@
         data-flow-api-target="< form textarea"
         name="preview"
         data-role="action"
-        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>';
+        class="flow-ui-button mw-ui-button mw-ui-progressive flow-ui-progressive flow-ui-quiet mw-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>';
 }
 ?>

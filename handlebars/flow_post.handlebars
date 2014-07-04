@@ -47,7 +47,7 @@
 						{{#if actions.reply}}
 							<a href="{{actions.reply.url}}"
 							   title="{{actions.reply.title}}"
-							   class="flow-ui-progressive flow-ui-quiet"
+							   class="mw-ui-progressive flow-ui-progressive flow-ui-quiet mw-ui-quiet"
 							   data-flow-interactive-handler="activateReplyPost">
 								{{~actions.reply.title~}}
 							</a>
@@ -59,7 +59,7 @@
 							   data-flow-api-handler="activateEditPost"
 							   data-flow-api-target=".flow-post[data-flow-id='{{postId}}']"
 							   data-flow-interactive-handler="apiRequest"
-							   class="flow-ui-regressive flow-ui-quiet">
+							   class="flow-ui-regressive flow-ui-quiet mw-ui-quiet">
 								{{l10n "flow-post-action-edit-post"}}
 							</a>
 						{{/if}}
@@ -74,10 +74,10 @@
 
 				<div class="flow-menu">
 					<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
-					<ul class="flow-ui-button-container">
+					<ul class="flow-ui-button mw-ui-button-container">
 						{{#if links.post}}
 							<li>
-								<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+								<a class="flow-ui-button mw-ui-button flow-ui-quiet mw-ui-quiet flow-ui-thin"
 								   href="{{links.post.url}}"
 								   title="{{links.post.title}}">
 									<span class="wikiglyph wikiglyph-link"></span>
@@ -87,7 +87,7 @@
 						{{/if}}
 						{{#if actions.lock}}
 							<li>
-								<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+								<a class="flow-ui-button mw-ui-button mw-ui-progressive flow-ui-progressive flow-ui-quiet mw-ui-quiet flow-ui-thin"
 								   href="{{actions.lock.url}}"
 								   title="{{actions.lock.title}}">
 									<span class="wikiglyph wikiglyph-eye-lock"></span>
@@ -97,7 +97,7 @@
 						{{/if}}
 						{{#if actions.hide}}
 							<li>
-								<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+								<a class="flow-ui-button mw-ui-button flow-ui-quiet mw-ui-quiet flow-ui-thin"
 								   href="{{actions.hide.url}}"
 								   title="{{actions.hide.title}}"
 								   data-flow-interactive-handler="moderationDialog"
@@ -110,7 +110,7 @@
 						{{/if}}
 						{{#if actions.unhide}}
 							<li>
-								<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+								<a class="flow-ui-button mw-ui-button mw-ui-progressive flow-ui-progressive flow-ui-quiet mw-ui-quiet flow-ui-thin"
 								   href="{{actions.unhide.url}}"
 								   title="{{actions.unhide.title}}"
 								   data-flow-interactive-handler="moderationDialog"
@@ -123,7 +123,7 @@
 						{{/if}}
 						{{#if actions.delete}}
 							<li>
-								<a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin"
+								<a class="flow-ui-button mw-ui-button flow-ui-regressive flow-ui-quiet mw-ui-quiet flow-ui-thin"
 								   href="{{actions.delete.url}}"
 								   title="{{actions.delete.title}}"
 								   data-flow-interactive-handler="moderationDialog"
@@ -136,7 +136,7 @@
 						{{/if}}
 						{{#if actions.undelete}}
 							<li>
-								<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+								<a class="flow-ui-button mw-ui-button mw-ui-progressive flow-ui-progressive flow-ui-quiet mw-ui-quiet flow-ui-thin"
 								   href="{{actions.undelete.url}}"
 								   title="{{actions.undelete.title}}"
 								   data-flow-interactive-handler="moderationDialog"
@@ -149,7 +149,7 @@
 						{{/if}}
 						{{#if actions.suppress}}
 							<li>
-								<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+								<a class="flow-ui-button mw-ui-button flow-ui-destructive flow-ui-quiet mw-ui-quiet flow-ui-thin"
 								   href="{{actions.suppress.url}}"
 								   title="{{actions.suppress.title}}"
 								   data-flow-interactive-handler="moderationDialog"
@@ -162,7 +162,7 @@
 						{{/if}}
 						{{#if actions.unsuppress}}
 							<li>
-								<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+								<a class="flow-ui-button mw-ui-button mw-ui-progressive flow-ui-progressive flow-ui-quiet mw-ui-quiet flow-ui-thin"
 								   href="{{actions.unsuppress.url}}"
 								   title="{{actions.unsuppress.title}}"
 								   data-flow-interactive-handler="moderationDialog"

@@ -24,13 +24,14 @@
 
 		<div class="flow-form-actions flow-form-collapsible">
 			<button data-role="submit"
-				class="flow-ui-button flow-ui-constructive"
+				class="flow-ui-button mw-ui-button mw-ui-constructive flow-ui-constructive"
 				data-flow-interactive-handler="apiRequest"
 				data-flow-api-handler="submitReply">
 					{{~l10n "Reply" author~}}
 			</button>
 			{{> flow_preview_button }}
-			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</button>
+			<button data-flow-interactive-handler="cancelForm" data-role="cancel"
+			        class="flow-ui-button mw-ui-button flow-ui-destructive flow-ui-quiet mw-ui-quiet">{{l10n "flow-cancel"}}</button>
 
 			<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-reply"}}</small>
 		</div>
