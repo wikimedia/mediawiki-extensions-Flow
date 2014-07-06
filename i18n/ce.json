@@ -24,7 +24,11 @@
 	"flow-rev-message-suppressed-post": "$1 {{GENDER:$2||дӀаяьккхина}} [$4 къамел] $6(<em>$5</em>) чохь.",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2||дӀаяьккхина}} [$4 тема] $6(<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|дӀаяьккхина}} тема [$4 topic] $6 (<em>$5</em>).",
+	"flow-notification-link-text-view-post": "Хьажа хааме",
 	"flow-notification-reply-email-batch-body": "$1 хан хааан {{GENDER:$1||жоп делла}} темехь «$2» «$3» чохь",
 	"flow-notification-mention-email-subject": "$1 хьо {{GENDER:$1||хьахийна}} «$2» чохь",
+	"flow-link-post": "хаам",
+	"flow-moderation-title-delete-post": "ДӀабаккха хаам",
+	"flow-moderation-title-hide-post": "Къайлабаккха хаам?",
 	"flow-moderation-confirm-undelete-post": "ДӀаяккха"
 }
