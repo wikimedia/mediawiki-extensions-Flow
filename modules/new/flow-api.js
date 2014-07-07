@@ -140,6 +140,7 @@ window.mw = window.mw || {}; // mw-less testing
 		return queryMap;
 	}
 
+	FlowAPI.prototype.flowTransformMap = flowApiTransformMap;
 
 	/**
 	 * Sets the fixed defaultSubmodule for this API instance.

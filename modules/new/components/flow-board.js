@@ -200,21 +200,36 @@
 		};
 
 		/**
-		 * Before submitting an edited post, sends an overrideObject to the API to modify the request params.
+		 * When presented with an error conflict, the conflicting content can
+		 * subsequently be re-submitted (to overwrite the conflicting content)
+		 * This will prepare the data-to-be-submitted so that the override is
+		 * submitted against the most current revision ID.
 		 * @param {Event} event
 		 * @return {Object}
 		 */
-		FlowBoardComponent.UI.events.apiPreHandlers.submitEditPost = function ( event ) {
+		FlowBoardComponent.UI.events.apiPreHandlers.prepareEditConflict = function ( event ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				$form = $( this ).closest( 'form' ),
 				queryMap = flowBoard.API.getQueryMap( $form ),
-				prevRevisionId = $form.data( 'flow-prev-revision' );
+				prevRevisionId = $form.data( 'flow-prev-revision' ),
+				preTransform = {
+					submodule: queryMap.submodule,
+					flow_prev_revision: prevRevisionId
+				};
 
-			if ( prevRevisionId ) {
-				queryMap.epprev_revision = prevRevisionId;
-			}
+			// Get rid of the temp-saved new revision ID
+			$form.removeData( 'flow-prev-revision' );
 
-			return queryMap;
+			/*
+			 * preTransform contains the prev_revision in "generic" form. Each
+			 * Flow API has its own unique prefix, though, so we'll transform
+			 * prev_revision parameter into something like epprev_revision (for
+			 * edit post) and merge it with the original query map.
+			 */
+			return $.extend(
+				queryMap,
+				flowBoard.API.flowTransformMap( preTransform )
+			);
 		};
 
 		/**
@@ -425,11 +440,10 @@
 				$rendered;
 
 			if ( info.status !== 'done' ) {
-				// @todo: we should tackle edit conflicts here; jqhxr.error should hold the required revision id
+				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 				return;
 			}
 
-			// @todo this doesn't handle edit conflicts (result.status = 'error', result.header.prev_revision = {...})
 			$rendered = $(
 				flowBoard.TemplateEngine.processTemplateGetFragment(
 					'flow_block_loop',
@@ -505,7 +519,7 @@
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
 			if ( info.status !== 'done' ) {
-				// @todo: we should tackle edit conflicts here; jqhxr.error should hold the required revision id
+				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 				return;
 			}
 
@@ -567,7 +581,7 @@
 				$oldTopicTitleBar, $newTopicTitleBar,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this );
 			if ( info.status !== 'done' ) {
-				// @todo: we should tackle edit conflicts here; jqhxr.error should hold the required revision id
+				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 				return;
 			}
 
@@ -600,11 +614,7 @@
 				html, revision, result;
 
 			if ( info.status !== 'done' ) {
-				// In the event of edit conflicts, store the previous revision
-				// id so we can re-submit an edit against the current id later
-				if ( jqxhr.error.prev_revision ) {
-					$form.data( 'flow-prev-revision', jqxhr.error.prev_revision.revision_id );
-				}
+				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 				return;
 			}
 
@@ -1272,6 +1282,9 @@
 
 					return;
 				}
+			} else if ( $this.closest( 'form' ).data( 'flow-prev-revision' ) ) {
+				// Let a generic pre-handler take care of edit conflicts
+				preHandlerReturn = FlowBoardComponent.UI.events.apiPreHandlers.prepareEditConflict.apply( _this, arguments );
 			}
 
 			// Make the request
@@ -1302,10 +1315,21 @@
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} )
 					.fail( function ( code, result ) {
-						var args = Array.prototype.slice.call( arguments, 0 ), errorMsg;
+						var args = Array.prototype.slice.call( arguments, 0 ),
+							$form = $this.closest( 'form' ),
+							errorMsg;
 						info.status = 'fail';
 						info.$container = $this.closest( 'form' );
 						args.unshift( info );
+
+						/*
+						 * In the event of edit conflicts, store the previous
+						 * revision id so we can re-submit an edit against the
+						 * current id later.
+						 */
+						if ( result.error.prev_revision ) {
+							$form.data( 'flow-prev-revision', result.error.prev_revision.revision_id );
+						}
 
 						/*
 						 * Generic error handling: displays error message in the
@@ -1320,7 +1344,7 @@
 						 * error message, just fall back to some default error.
 						 */
 						errorMsg = result.error ? result.error.info : mw.msg( 'flow-error-http' );
-						FlowBoardComponent.UI.showError( $this.closest( 'form' ), errorMsg );
+						FlowBoardComponent.UI.showError( $form, errorMsg );
 
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} );
