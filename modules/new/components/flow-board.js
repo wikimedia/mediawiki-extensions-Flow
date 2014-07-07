@@ -200,6 +200,24 @@
 		};
 
 		/**
+		 * Before submitting an edited post, sends an overrideObject to the API to modify the request params.
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.submitEditPost = function ( event ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$form = $( this ).closest( 'form' ),
+				queryMap = flowBoard.API.getQueryMap( $form ),
+				prevRevisionId = $form.data( 'flow-prev-revision' );
+
+			if ( prevRevisionId ) {
+				queryMap.epprev_revision = prevRevisionId;
+			}
+
+			return queryMap;
+		};
+
+		/**
 		 * Before handling preview, hides the old preview
 		 * and overrides the API request
 		 * @param  {Event} event The event being handled
@@ -564,10 +582,15 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.submitEditPost = function( info, data, jqxhr ) {
-			var html, revision, result;
+			var $form = $( this ).closest( 'form' ),
+				html, revision, result;
 
 			if ( info.status !== 'done' ) {
-				// @todo: we should tackle edit conflicts here; jqhxr.error should hold the required revision id
+				// In the event of edit conflicts, store the previous revision
+				// id so we can re-submit an edit against the current id later
+				if ( jqxhr.error.prev_revision ) {
+					$form.data( 'flow-prev-revision', jqxhr.error.prev_revision.revision_id );
+				}
 				return;
 			}
 
@@ -575,7 +598,7 @@
 			revision = result.revisions[result.posts[result.roots[0]]];
 			html = mw.flow.TemplateEngine.processTemplate( 'flow_post', { revision: revision } );
 
-			$( this ).closest( 'form' ).replaceWith( $( html ).find( '.flow-post-main' ) );
+			$form.replaceWith( $( html ).find( '.flow-post-main' ) );
 		};
 
 		/**
