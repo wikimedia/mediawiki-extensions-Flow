@@ -104,6 +104,24 @@
       "revId": "9418a93e77b2a0a03e970bbcb8ae589291b7192f",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae43a74e_692f6d9d",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2014-07-07T19:09:27Z",
+      "side": 1,
+      "message": "Sure, but clearly the actual logic doesn\u0027t need an Event to have occurred for this is just faking an event. This code fails to communicate why you\u0027re invoking click(). This is also an easy one to be forgotten when refactoring code. There is or should be a method that this can invoke directly.\n\nI\u0027m not sure what you need from the Event object, but whatever it is, that data should probably be passed directly. And the Event object created from this click() can\u0027t possibly contain anything valuable since it\u0027s all fake.",
+      "parentUuid": "ae43a74e_29a0a13d",
+      "revId": "9418a93e77b2a0a03e970bbcb8ae589291b7192f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
