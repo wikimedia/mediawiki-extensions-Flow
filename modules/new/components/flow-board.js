@@ -200,6 +200,27 @@
 		};
 
 		/**
+		 * Before submitting an edited post potentially replace the epprev_revision
+		 * variable. This is typically set after an edit-conflict has been
+		 * detected to allow an override.
+		 *
+		 * @param {Event} event
+		 * @return {Object}
+		 */
+		FlowBoardComponent.UI.events.apiPreHandlers.submitEditPost = function ( event ) {
+			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
+				$form = $( this ).closest( 'form' ),
+				queryMap = flowBoard.API.getQueryMap( $form ),
+				prevRevisionId = $form.data( 'flow-prev-revision' );
+
+			if ( prevRevisionId ) {
+				queryMap.epprev_revision = prevRevisionId;
+			}
+
+			return queryMap;
+		};
+
+		/**
 		 * First, resets the previous preview (if any).
 		 * Then, using the form fields, finds the content element to be sent to Parsoid by looking
 		 * for one ending in "content", or, failing that, with data-role=content.
@@ -600,10 +621,15 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.submitEditPost = function( info, data, jqxhr ) {
-			var html, revision, result;
+			var $form = $( this ).closest( 'form' ),
+				html, revision, result;
 
 			if ( info.status !== 'done' ) {
-				// @todo: we should tackle edit conflicts here; jqhxr.error should hold the required revision id
+				// In the event of edit conflicts, store the previous revision
+				// id so we can re-submit an edit against the current id later
+				if ( jqxhr.error.prev_revision ) {
+					$form.data( 'flow-prev-revision', jqxhr.error.prev_revision.revision_id );
+				}
 				return;
 			}
 
@@ -611,7 +637,7 @@
 			revision = result.revisions[result.posts[result.roots[0]]];
 			html = mw.flow.TemplateEngine.processTemplate( 'flow_post', { revision: revision } );
 
-			$( this ).closest( 'form' ).replaceWith( $( html ).find( '.flow-post-main' ) );
+			$form.replaceWith( $( html ).find( '.flow-post-main' ) );
 		};
 
 		/**
