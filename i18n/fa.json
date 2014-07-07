@@ -5,7 +5,8 @@
 			"Armin1392",
 			"Ebraminio",
 			"Omidh",
-			"Reza1615"
+			"Reza1615",
+			"درفش کاویانی"
 		]
 	},
 	"flow-desc": "سامانهٔ مدیریت گردش کار",
@@ -48,8 +49,8 @@
 	"flow-newtopic-title-placeholder": "موضوع جدید",
 	"flow-newtopic-content-placeholder": "اگر دوست دارید بعضی از جزئیات را وارد کنید",
 	"flow-newtopic-header": "اضافه کردن یک موضوع جدید",
-	"flow-newtopic-save": "اضافه‌کردن موضوع",
-	"flow-newtopic-start-placeholder": "شروع یک موضوع جدید",
+	"flow-newtopic-save": "افزودن موضوع",
+	"flow-newtopic-start-placeholder": "آغاز موضوع تازه",
 	"flow-reply-topic-placeholder": "{{GENDER:$1|نظر}} در \"$2\"",
 	"flow-reply-submit": "{{GENDER:$1|پاسخ}}",
 	"flow-reply-link": "{{GENDER:$1|پاسخ}}",
