@@ -480,10 +480,13 @@ $c['storage.topic_history.index'] = $c->share( function( $c ) {
 			'order' => 'DESC',
 			'shallow' => $pk,
 			'create' => function( array $row ) {
+				// only create new indexes for post revisions
+				if ( $row['rev_type'] !== 'post' ) {
+					return false;
+				}
 				// if the post has no parent and the revision has no parent
 				// then this is a brand new topic title
-				return ( !isset( $row['tree_parent_id'] ) || $row['tree_parent_id'] === null ) // summary has no tree parent
-					&& $row['rev_parent_id'] === null;
+				return $row['tree_parent_id'] === null && $row['rev_parent_id'] === null;
 			},
 	) );
 } );
