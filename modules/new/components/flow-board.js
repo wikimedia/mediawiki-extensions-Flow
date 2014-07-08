@@ -738,33 +738,29 @@
 				$old = $target,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
-			// Generic error handling only works on forms; the interactive
-			// element here is the summary div that should be replaced, so let's
-			// take care of displaying the error ourselves.
-			// @todo: error handling should probably be made more generic
-			FlowBoardComponent.UI.removeError( $old );
-			if ( info.status !== 'done' ) {
-				return;
+			if ( info.status === 'done' ) {
+				// Create the new topic_summary_edit template
+				$target = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+					'flow_block_topicsummary_edit',
+					data.flow[ 'view-topic-summary' ].result.topicsummary
+				) ).children();
+
+				// On cancel, put the old topicsummary back
+				flowBoardComponentAddCancelCallback( $target.find( 'form' ), function() {
+					$target.before( $old ).remove();
+				} );
+
+				// Replace the old one
+				$old.before( $target ).detach();
+
+				FlowBoardComponent.UI.makeContentInteractive( $target );
+
+				// Focus on first form field
+				$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
+			} else {
+				// @todo fail
+				alert('fail');
 			}
-
-			// Create the new topic_summary_edit template
-			$target = $( flowBoard.TemplateEngine.processTemplateGetFragment(
-				'flow_block_topicsummary_edit',
-				data.flow[ 'view-topic-summary' ].result.topicsummary
-			) ).children();
-
-			// On cancel, put the old topicsummary back
-			flowBoardComponentAddCancelCallback( $target.find( 'form' ), function() {
-				$target.before( $old ).remove();
-			} );
-
-			// Replace the old one
-			$old.before( $target ).detach();
-
-			FlowBoardComponent.UI.makeContentInteractive( $target );
-
-			// Focus on first form field
-			$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
 		};
 
 		/**
@@ -779,21 +775,21 @@
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
 				$target = info.$target;
 
-			if ( info.status !== 'done' ) {
-				// Error will be displayed by default, nothing else to wrap up
-				return;
+			if ( info.status === 'done' ) {
+				$target.replaceWith( $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						// @todo this should be fixed so that it re-renders the entire flow_topic_titlebar
+						'flow_topic_titlebar_content_summary',
+						data.flow[ 'edit-topic-summary' ].result.topicsummary.revision
+					)
+				).children() );
+
+				// Delete the form
+				$form.remove();
+			} else {
+				// @todo fail
+				alert('fail');
 			}
-
-			$target.replaceWith( $(
-				flowBoard.TemplateEngine.processTemplateGetFragment(
-					// @todo this should be fixed so that it re-renders the entire flow_topic_titlebar
-					'flow_topic_titlebar_content_summary',
-					data.flow[ 'edit-topic-summary' ].result.topicsummary.revision
-				)
-			).children() );
-
-			// Delete the form
-			$form.remove();
 		};
 
 		/**
