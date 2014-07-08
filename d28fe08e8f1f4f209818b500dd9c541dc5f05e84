@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_e2950e44",
+        "filename": "tests/browser/features/close_reopen_topics.feature",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-08T16:56:24Z",
+      "side": 1,
+      "message": "The test first activates the close form, then activates the summarize form. Both forms match the selector  `form.flow-edit-form` which this line looks for",
+      "revId": "d28fe08e8f1f4f209818b500dd9c541dc5f05e84",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
