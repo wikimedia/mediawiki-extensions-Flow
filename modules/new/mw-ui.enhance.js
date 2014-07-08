@@ -3,8 +3,6 @@
  */
 
 ( function ( mw, $ ) {
-	mw.flow = mw.flow || {}; // create mw.flow globally
-
 	/*
 	* Reduce eye-wandering due to adjacent colorful buttons
 	* This will make unhovered and unfocused sibling buttons become faded and blurred
@@ -245,9 +243,5 @@
 			.on( 'mouseenter.mw-ui-enhance focus.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipFocus )
 			.on( 'mouseleave.mw-ui-enhance blur.mw-ui-enhance click.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipBlur );
 	} );
-
-	mw.flow.enhance = {
-		enableFormWithRequiredFields: enableFormWithRequiredFields
-	};
 
 }( mw, jQuery ) );
