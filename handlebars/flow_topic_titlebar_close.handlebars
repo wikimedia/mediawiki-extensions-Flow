@@ -12,12 +12,20 @@
 	{{#if summaryRevId}}
 		<input type="hidden" name="flow_prev_revision" value="{{summaryRevId}}" />
 	{{/if}}
-	<textarea name="flow_summary" class="mw-ui-input" type="text">
+	<textarea name="flow_summary"
+	          class="mw-ui-input"
+			  type="text"
+			  data-flow-preview-node="summary"
+			  data-flow-preview-template="flow_topic_titlebar_summary">
 		{{~#if @root.submitted.content~}}
 			{{~@root.submitted.content~}}
 		{{~else~}}
 			{{~#if summary~}}
-				{{~summary~}}
+				{{!-- This should always be wikitext, even if its not we should
+					  still escape rather than sending to conditional escape because
+					  tags make no sense inside a <textrea>
+				--}}
+				{{~summary.content~}}
 			{{~/if~}}
 		{{~/if~}}
 	</textarea>
@@ -34,7 +42,7 @@
 					{{l10n "flow-topic-action-close-topic"}}
 				{{/if}}
 		</button>
-		<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">{{l10n "flow-preview"}}</button>
+		{{> flow_preview_button}}
 		<a
 			href="{{links.topic.url}}"
 			title="{{links.topic.title}}"

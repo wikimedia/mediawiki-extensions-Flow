@@ -7,6 +7,7 @@
             'debug' => $debugopt,
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
+            'html' => 'Flow\TemplateHelper::html',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
 ),
         'blockhelpers' => Array(),
@@ -21,7 +22,7 @@
 	<div class="flow-errors errorbox">
 		<ul>
 			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-				<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
+				<li>'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['message'])) ? $in['message'] : null)), 'encq').'</li>
 			';}).'
 		</ul>
 	</div>
@@ -35,7 +36,11 @@
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summaryRevId'])) ? $in['summaryRevId'] : null))) ? '
 		<input type="hidden" name="flow_prev_revision" value="'.htmlentities(((is_array($in) && isset($in['summaryRevId'])) ? $in['summaryRevId'] : null), ENT_QUOTES, 'UTF-8').'" />
 	' : '').'
-	<textarea name="flow_summary" class="mw-ui-input" type="text">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? ''.htmlentities(((is_array($in) && isset($in['summary'])) ? $in['summary'] : null), ENT_QUOTES, 'UTF-8').'' : '').'').'</textarea>
+	<textarea name="flow_summary" 
+	          class="mw-ui-input"
+			  type="text"
+			  data-flow-preview-node="summary"
+			  data-flow-preview-template="flow_topic_titlebar_summary">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? ''.htmlentities(((is_array($in) && isset($in['summary'])) ? $in['summary'] : null), ENT_QUOTES, 'UTF-8').'' : '').'').'</textarea>
 	<div class="flow-form-actions flow-form-collapsible">
 		<button
 			data-role="submit"
@@ -49,7 +54,11 @@
 					'.LCRun3::ch($cx, 'l10n', Array('flow-topic-action-close-topic'), 'encq').'
 				').'
 		</button>
-		<button data-role="action" class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
+		<button data-flow-api-handler="preview"
+        data-flow-api-target="< form textarea"
+        name="preview"
+        data-role="action"
+        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>
 		<a
 			href="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['url'])) ? $in['links']['topic']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 			title="'.htmlentities(((is_array($in['links']['topic']) && isset($in['links']['topic']['title'])) ? $in['links']['topic']['title'] : null), ENT_QUOTES, 'UTF-8').'"

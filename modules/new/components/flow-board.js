@@ -215,7 +215,8 @@
 
 				// XXX: Find the content parameter
 				$.each( queryMap, function( key, value ) {
-					if ( key.substr( -7 ) === 'content' ) {
+					var piece = key.substr( -7 );
+					if ( piece === 'content' || piece === 'summary' ) {
 						content = value;
 						return false;
 					}
@@ -433,10 +434,11 @@
 			var $target, $form,
 				result, revision, postId, revisionId,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
 			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
 
 			if ( info.status === 'done' ) {
-				$target = info.$target.find( '.flow-topic-edit-summary' );
+				$target = info.$target.find( '.flow-topic-summary' );
 
 				// FIXME: API should take care of this for me.
 				result = data.flow[ 'view-post' ].result.topic;
@@ -602,7 +604,8 @@
 				$previewContainer,
 				templateParams,
 				$target = info.$target,
-				previewTemplate = $target.data( 'flow-preview-template' );
+				previewTemplate = $target.data( 'flow-preview-template' ),
+				contentNode = $target.data( 'flow-preview-node' ) || 'content';
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
@@ -613,12 +616,14 @@
 				author: {
 					name: mw.user.getName() || flowBoard.TemplateEngine.l10n('flow-anonymous')
 				},
-				content: data['flow-parsoid-utils'].content,
-				contentFormat: data['flow-parsoid-utils'].format,
 				isPreview: true
 			};
+			templateParams[contentNode] = {
+				content: data['flow-parsoid-utils'].content,
+				format: data['flow-parsoid-utils'].format
+			};
+
 			// @todo don't do these. it's a catch-all for the templates which expect a revision key, and those that don't.
-			templateParams.revision = templateParams;
 			templateParams.revision = templateParams;
 
 			if ( $titleField.length ) {
@@ -787,7 +792,7 @@
 			$target.replaceWith( $(
 				flowBoard.TemplateEngine.processTemplateGetFragment(
 					// @todo this should be fixed so that it re-renders the entire flow_topic_titlebar
-					'flow_topic_titlebar_content_summary',
+					'flow_topic_titlebar_summary',
 					data.flow[ 'edit-topic-summary' ].result.topicsummary.revision
 				)
 			).children() );
@@ -1391,8 +1396,10 @@
 						name: author
 					},
 					// text for flow-reply-topic-title-placeholder placeholder
-					content: replyToContent,
-					contentFormat: 'plaintext',
+					content: {
+						content: replyToContent,
+						format: 'plaintext'
+					},
 					submitted: {
 						postId: postId,
 						// prefill content
