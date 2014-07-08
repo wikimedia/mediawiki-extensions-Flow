@@ -440,6 +440,33 @@ class NotificationController {
 			$users += self::getCreatorsFromPostIDs( array( $extra['topic-workflow'] ) );
 			break;
 		case 'flow-post-reply':
+			$topicId = $extra['topic-workflow'];
+			if ( $topicId instanceof UUID ) {
+				$topicId = $topicId->getAlphadecimal();
+			}
+			$title = Title::newFromText( $topicId, NS_TOPIC );
+			if ( $title ) {
+				// @todo
+				// * This could be a problemtic query if there are a lot of users watching the title
+				// * Turn on job queue to process echo notifications
+				// * Encapsulate this into somewhere
+				$res = wfGetDB( DB_SLAVE )->select(
+					array( 'watchlist' ),
+					array( 'wl_user' ),
+					array(
+						'wl_namespace' => NS_TOPIC,
+						'wl_title' => $title->getDBkey()
+					),
+					__METHOD__
+				);
+				if ( $res ) {
+					foreach ( $res as $row ) {
+						$users[$row->wl_user] = User::newFromId( $row->wl_user );
+					}
+				}
+				$users += self::getCreatorsFromPostIDs( array( $topicId => $extra['topic-workflow'] ) );
+			}
+			break;
 		case 'flow-post-edited':
 		case 'flow-post-moderated':
 			if ( isset( $extra['reply-to'] ) ) {
