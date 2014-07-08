@@ -230,10 +230,13 @@ div#bodyContent {
 	color: @colorTextLight;
 }
 
+// Topic summary text and form wrapper
 .flow-topic-summary {
 	border-top: 1px dotted @colorGrayLightest;
-	margin-top: 12px;
-	font-style: italic;
+	margin-top: .33em;
+	p {
+		font-style: italic;
+	}
 }
 
 // Actions menu
@@ -319,7 +322,7 @@ div#bodyContent {
 			 padding-left: @highlightedIndent;
 			 border-left: solid @highlightedIndent @colorHighlight;
 		}
-	} 
+	}
 
 	// Content of comments
 	.flow-post-content {
