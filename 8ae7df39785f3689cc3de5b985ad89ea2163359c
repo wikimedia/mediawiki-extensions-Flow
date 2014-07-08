@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_e80ccf47",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-08T20:24:33Z",
+      "side": 1,
+      "message": "Please elaborate why this still works. I\u0027m a little confused.. the fixtures should be created after the introduction of mw-ui-enhance so how do they get events binded to them?",
+      "revId": "8ae7df39785f3689cc3de5b985ad89ea2163359c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_6821ffab",
+        "filename": "tests/qunit/new/test_mw-ui.enhance.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-08T20:24:33Z",
+      "side": 1,
+      "message": "append to qunit-fixture\n\"because QUnit will automatically reset the markup after each test.\"\n\nsee http://qunitjs.com/intro/",
+      "revId": "8ae7df39785f3689cc3de5b985ad89ea2163359c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_4816435c",
+        "filename": "tests/qunit/new/test_mw-ui.enhance.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-08T20:24:33Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be necessary... If you append to qunit-fixture",
+      "revId": "8ae7df39785f3689cc3de5b985ad89ea2163359c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
