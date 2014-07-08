@@ -27,21 +27,12 @@ class NotificationFormatter extends EchoBasicFormatter {
 				$message->params( '' );
 			}
 		} elseif ( $param === 'post-permalink' ) {
-			$postId = $extra['post-id'];
-			if ( !$postId instanceof UUID ) {
-				throw new FlowException( 'Expected UUID but received ' . get_class( $postId ) );
-			}
-			// Take user to the post if there is only one target post,
-			// otherwise, take user to the topic view
-			$urlGenerator = $this->getUrlGenerator();
-			$title = $event->getTitle();
-			$workflowId = $extra['topic-workflow'];
-			if ( $this->bundleData['raw-data-count'] <= 1 ) {
-				$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
+			$anchor = $this->getPostLinkAnchor( $event, $user );
+			if ( $anchor ) {
+				$message->params( $anchor->getFullUrl() );
 			} else {
-				$anchor = $urlGenerator->workflowLink( $title, $workflowId );
+				$message->params( '' );
 			}
-			$message->params( $anchor->getFullUrl() );
 		} elseif ( $param === 'topic-permalink' ) {
 			$anchor = $this->getUrlGenerator()->workflowLink( $event->getTitle(), $extra['topic-workflow'] );
 			$message->params( $anchor->getFullUrl() );
@@ -60,6 +51,38 @@ class NotificationFormatter extends EchoBasicFormatter {
 		} else {
 			parent::processParam( $event, $param, $message, $user );
 		}
+	}
+
+	/**
+	 * Helper method for generating a link to post notification
+	 * @param \EchoEvent
+	 * @param \User
+	 * @return Anchor|boolean
+	 */
+	protected function getPostLinkAnchor( $event, $user ) {
+		$urlGenerator = $this->getUrlGenerator();
+		$workflowId = $event->getExtraParam( 'topic-workflow' );
+		$title  = $event->getTitle();
+		$anchor = false;
+		if ( $workflowId && $title ) {
+			// Take user to the post if there is only one target post,
+			// otherwise, take user to the first unread post of topic
+			if ( $this->bundleData['raw-data-count'] <= 1 ) {
+				$postId = $event->getExtraParam( 'post-id' );
+				if ( !$postId instanceof UUID ) {
+					throw new FlowException( 'Expected UUID but received ' . get_class( $postId ) );
+				}
+				$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
+			} else {
+				$postId = $this->getFirstUnreadPostId( $event, $user );
+				if ( $postId ) {
+					$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
+				} else {
+					$anchor = $urlGenerator->workflowLink( $title, $workflowId );
+				}
+			}
+		}
+		return $anchor;
 	}
 
 	/**
@@ -82,20 +105,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 		// Set up link parameters based on the destination (or pass to parent)
 		switch ( $destination ) {
 			case 'flow-post':
-				$postId = $event->getExtraParam( 'post-id' );
-				if ( !$postId instanceof UUID ) {
-					throw new FlowException( 'Expected UUID but received ' . get_class( $postId ) );
-				}
-				$workflowId = $event->getExtraParam( 'topic-workflow' );
-				if ( $postId && $workflowId && $title ) {
-					// Take user to the post if there is only one target post,
-					// otherwise, take user to the topic view
-					if ( $this->bundleData['raw-data-count'] <= 1 ) {
-						$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
-					} else {
-						$anchor = $urlGenerator->workflowLink( $title, $workflowId );
-					}
-				}
+				$anchor = $this->getPostLinkAnchor( $event, $user );
 				break;
 
 			case 'flow-board':
@@ -133,5 +143,36 @@ class NotificationFormatter extends EchoBasicFormatter {
 		}
 
 		return $this->urlGenerator;
+	}
+
+	/**
+	 * Get the very first unread post from a topic in an event
+	 * @param \EchoEvent
+	 * @param \User
+	 * @return UUID|boolean
+	 */
+	protected function getFirstUnreadPostId( $event, $user ) {
+		$data = $this->getBundleLastRawData( $event, $user );
+		if ( $data ) {
+			$extra = $data->event_extra;
+			if ( isset( $extra['post-id'] ) ) {
+				return $extra['post-id'];
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * We don't show the text snippet for Flow bundled notification
+	 * @param \EchoEvent
+	 * @param \User
+	 */
+	protected function formatCommentText( $event, $user ) {
+		if ( $this->bundleData['raw-data-count'] > 1 ) {
+			return '';
+		} else {
+			return parent::formatCommentText( $event, $user );
+		}
 	}
 }
