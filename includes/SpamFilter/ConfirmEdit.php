@@ -25,8 +25,24 @@ class ConfirmEdit implements SpamFilter {
 		$captcha = ConfirmEditHooks::getInstance();
 		$editPage = new EditPage( Article::newFromTitle( $title, RequestContext::getMain() ) );
 
-		if ( $captcha->shouldCheck( $editPage, $newContent, false, false ) ) {
-			return Status::newFatal( 'flow-spam-confirmedit' ); // @todo: create msg
+		// first check if the submitted content is offensive (as flagged by
+		// ConfirmEdit), next check for a (valid) captcha to have been entered
+		if ( $captcha->shouldCheck( $editPage, $newContent, false, false ) && !$captcha->passCaptcha() ) {
+			// getting here means we submitted bad content without good captcha
+			// result (or any captcha result at all) - let's get the captcha
+			// HTML to display as error message!
+			$html = $captcha->getForm();
+
+			// some captcha implementations need CSS and/or JS, which is added
+			// via their getForm() methods (which we just called) -
+			// let's extract those and respond them along with the form HTML
+			global $wgOut;
+			$html = $wgOut->buildCssLinks() .
+				$wgOut->getScriptsForBottomQueue( false ) .
+				$html;
+
+			$msg = wfMessage( 'flow-spam-confirmedit-form' )->rawParams( $html );
+			return Status::newFatal( $msg );
 		}
 
 		return Status::newGood();
