@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_94768c38",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-07-08T11:23:46Z",
+      "side": 1,
+      "message": "I like the function name :).",
+      "revId": "5b9b2a1ffc65ee5c9967a8b454a9fa10fbf4b90e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
