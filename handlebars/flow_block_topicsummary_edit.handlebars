@@ -9,14 +9,17 @@
 			<input type="hidden" name="{{type}}_prev_revision" value="{{revision.revisionId}}" />
 		{{/if}}
 
-		<textarea name="{{type}}_summary" data-flow-expandable="true" class="mw-ui-input"
-			data-flow-preview-template="flow_topic_titlebar_content_summary"
-			type="text" data-role="content">
+		<textarea class="mw-ui-input"
+		          name="{{type}}_summary"
+		          data-flow-preview-node="summary"
+		          data-flow-preview-template="flow_topic_titlebar_summary"
+		          type="text"
+				  data-role="content">
 			{{~#if submitted.summary~}}
 				{{~submitted.summary~}}
 			{{~else~}}
 				{{~#if revision.revisionId~}}
-					{{~revision.content~}}
+					{{~revision.content.content~}}
 				{{~/if~}}
 			{{~/if~}}
 		</textarea>
