@@ -1654,15 +1654,14 @@
 		 * @param string msg The error that occurred. Currently hardcoded.
 		 */
 		FlowBoardComponent.UI.showError = function ( $container, msg ) {
-			var html = mw.flow.TemplateEngine.processTemplate( 'flow_errors', { errors: [ { message: msg } ] } ),
-				$error = $( html.trim() );
+			var html = mw.flow.TemplateEngine.processTemplate( 'flow_errors', { errors: [ { message: msg } ] } );
 
 			if ( !$container.jquery ) {
 				$container = $container.$container;
 			}
 
 			$container.find( '.flow-content-preview' ).hide();
-			$container.find( '.flow-error-container' ).replaceWith( $error );
+			$container.find( '.flow-error-container' ).replaceWith( html );
 			mw.log.warn( msg );
 		};
 
