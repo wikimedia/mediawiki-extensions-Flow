@@ -1,6 +1,4 @@
 <div class="flow-board">
-	{{> flow_errors}}
-
 	{{!-- There is only one post, but the output format matches multi-post output --}}
 
 	{{#each roots}}
@@ -8,6 +6,7 @@
 			<form class="flow-reply-form" method="POST" action="{{actions.reply.url}}">
 				<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 				<input type="hidden" name="topic_replyTo" value="{{postId}}" />
+				{{> flow_errors}}
 
 				<textarea id="flow-post-{{postId}}-form-content"
 				          data-flow-preview-template="flow_post"

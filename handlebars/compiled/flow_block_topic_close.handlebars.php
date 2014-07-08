@@ -17,11 +17,13 @@
 
     );
     return '<div class="flow-topic-summary">
-	<div class="flow-error-container">
-'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
+	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
+		  action="'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? ''.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'').'">
+		<div class="flow-error-container">
+'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null))) ? '
 	<div class="flow-errors errorbox">
 		<ul>
-			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
+			'.LCRun3::sec($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null), $in, true, function($cx, $in) {return '
 				<li>'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['message'])) ? $in['message'] : null)), 'encq').'</li>
 			';}).'
 		</ul>
@@ -29,18 +31,16 @@
 ' : '').'
 </div>
 
-
-	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
-		  action="'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? ''.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'').'">
 		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summaryRevId'])) ? $in['summaryRevId'] : null))) ? '
 			<input type="hidden" name="flow_prev_revision" value="'.htmlentities(((is_array($in) && isset($in['summaryRevId'])) ? $in['summaryRevId'] : null), ENT_QUOTES, 'UTF-8').'" />
 		' : '').'
 		<textarea name="flow_summary"
-				  class="mw-ui-input"
-				  type="text"
-				  data-flow-preview-node="summary"
-				  data-flow-preview-template="flow_topic_titlebar_summary">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? ''.htmlentities(((is_array($in['summary']) && isset($in['summary']['content'])) ? $in['summary']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'').'</textarea>
+		          class="mw-ui-input"
+		          type="text"
+		          required
+		          data-flow-preview-node="summary"
+		          data-flow-preview-template="flow_topic_titlebar_summary">'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null))) ? ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'' : ''.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? ''.htmlentities(((is_array($in['summary']) && isset($in['summary']['content'])) ? $in['summary']['content'] : null), ENT_QUOTES, 'UTF-8').'' : '').'').'</textarea>
 		<div class="flow-form-actions flow-form-collapsible">
 			<button
 				data-role="submit"
