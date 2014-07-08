@@ -44,6 +44,12 @@ QUnit.test( 'Handlebars.prototype.getTemplate', 2, function( assert ) {
 	assert.strictEqual( this.handlebarsProto.getTemplate( 'foo' )(), 'Stubbed.', 'Getting a template from cache works.' );
 } );
 
+// Helpers
+QUnit.test( 'Handlebars.prototype.callHelper', 1, function( assert ) {
+	assert.strictEqual( this.handlebarsProto.callHelper( '_qunit_helper_test', 1, 2 ),
+		3, 'Check the helper was called.' );
+} );
+
 QUnit.test( 'Handlebars.prototype.ifEquals', 2, function( assert ) {
 	assert.strictEqual( this.handlebarsProto.ifEquals( 'foo', 'bar', this.opts ), 'nope', 'not equal' );
 	assert.strictEqual( this.handlebarsProto.ifEquals( 'foo', 'foo', this.opts ), 'ok', 'equal' );
