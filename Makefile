@@ -54,7 +54,7 @@ nodecheck:
 		|| (echo "You need to install Node.JS! See http://nodejs.org/" && false)
 
 jshint: nodecheck
-	@node_modules/.bin/jshint modules/* --config .jshintrc
+	@node_modules/.bin/jshint modules/* tests/qunit/* --config .jshintrc
 
 checkless:
 	@php ../../maintenance/checkLess.php
