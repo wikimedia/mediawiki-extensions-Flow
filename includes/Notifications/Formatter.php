@@ -134,4 +134,12 @@ class NotificationFormatter extends EchoBasicFormatter {
 
 		return $this->urlGenerator;
 	}
+
+	/**
+	 * We want to retrieve the oldest data for bundling
+	 * {@inheritDoc}
+	 */
+	protected function getRawBundleDataOrdering() {
+		return 'ASC';
+	}
 }
