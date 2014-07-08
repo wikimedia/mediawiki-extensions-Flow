@@ -197,7 +197,7 @@ window.mw = window.mw || {}; // mw-less testing
 				url = $form.attr( 'action' );
 			} else if ( $node.is( 'a' ) ) {
 				// It's an anchor, process the href as the URL
-				url = $node.prop( 'href' );
+				url = url.href;
 			} else {
 				// Somebody set up us the bomb
 				url = '';

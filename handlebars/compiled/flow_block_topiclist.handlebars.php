@@ -135,16 +135,15 @@
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">'.htmlentities(((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
 
-'.LCRun3::wi($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null), $in, function($cx, $in) {return '
-	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['content'])) ? $in['content'] : null))) ? '
-	<div class="flow-topic-summary">
-		'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
-	</div>
-' : '
+<div class="flow-topic-summary">
+	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
+		'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['summaryFormat'])) ? $in['summaryFormat'] : null),((is_array($in) && isset($in['summary'])) ? $in['summary'] : null)), 'encq').'
+	' : '').'
+</div>
+<div class="flow-topic-edit-summary">
 	
-	<script type="text/plain" class="flow-topic-summary"></script>
-').'
-';}).'
+</div>
+
 
 	'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 		<div class="flow-menu">
@@ -303,7 +302,6 @@
 						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateSummarizeTopic"
-						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary"
 						   href="'.htmlentities(((is_array($in['actions']['summarize']) && isset($in['actions']['summarize']['url'])) ? $in['actions']['summarize']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['summarize']) && isset($in['actions']['summarize']['title'])) ? $in['actions']['summarize']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-flag"></span>
