@@ -39,7 +39,12 @@ class NotificationFormatter extends EchoBasicFormatter {
 			if ( $this->bundleData['raw-data-count'] <= 1 ) {
 				$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
 			} else {
-				$anchor = $urlGenerator->workflowLink( $title, $workflowId );
+				$postId = $this->getFirstUnreadPostId( $event, $user );
+				if ( $postId ) {
+					$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
+				} else {
+					$anchor = $urlGenerator->workflowLink( $title, $workflowId );
+				}
 			}
 			$message->params( $anchor->getFullUrl() );
 		} elseif ( $param === 'topic-permalink' ) {
@@ -93,7 +98,12 @@ class NotificationFormatter extends EchoBasicFormatter {
 					if ( $this->bundleData['raw-data-count'] <= 1 ) {
 						$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
 					} else {
-						$anchor = $urlGenerator->workflowLink( $title, $workflowId );
+						$postId = $this->getFirstUnreadPostId( $event, $user );
+						if ( $postId ) {
+							$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
+						} else {
+							$anchor = $urlGenerator->workflowLink( $title, $workflowId );
+						}
 					}
 				}
 				break;
@@ -133,5 +143,31 @@ class NotificationFormatter extends EchoBasicFormatter {
 		}
 
 		return $this->urlGenerator;
+	}
+
+	protected function getFirstUnreadPostId( $event, $user ) {
+		// @Todo - This is duplicated logic in Echo, abstract this into a method
+		// in Echo BasicFormatter then use it from here
+		if ( $event->getBundleHash() ) {
+			// First try cache data from preivous query
+			if ( isset( $this->bundleData['last-raw-data'] ) ) {
+				$stat = $this->bundleData['last-raw-data'];
+			// Then try to query the storage
+			} else {
+				global $wgEchoBackend;
+				$stat = $wgEchoBackend->getRawBundleData( $user, $event->getBundleHash(), $this->distributionType, 'ASC', 1 );
+				if ( $stat ) {
+					$stat = $stat->current();
+				}
+			}
+
+			if ( $stat ) {
+				$extra = $stat->event_extra ? unserialize( $stat->event_extra ) : array();
+				if ( isset( $extra['post-id'] ) ) {
+					return $extra['post-id'];
+				}
+			}
+		}
+		return false;
 	}
 }
