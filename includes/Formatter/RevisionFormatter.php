@@ -206,9 +206,9 @@ class RevisionFormatter {
 			$this->permissions->isAllowed( $row->summary, 'view' )
 		) {
 			// Maybe always have both parsed and unparsed versions available
-			$res['summary'] = $this->templating->getContent( $row->summary, $this->contentFormat );
-			$res['summaryFormat'] = $this->contentFormat;
-			$res['summaryRevId'] = $row->summary->getRevisionId()->getAlphadecimal();
+			$res['summary']['content'] = $this->templating->getContent( $row->summary, $this->contentFormat );
+			$res['summary']['contentFormat'] = $this->contentFormat;
+			$res['summary']['revId'] = $row->summary->getRevisionId()->getAlphadecimal();
 		}
 
 		if ( $row->revision instanceof PostRevision ) {
