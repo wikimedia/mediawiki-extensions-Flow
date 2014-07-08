@@ -15,21 +15,7 @@
         'sp_vars' => Array(),
 
     );
-    return '
-<div class="flow-error-container">
-'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
-	<div class="flow-errors errorbox">
-		<ul>
-			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-				<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
-			';}).'
-		</ul>
-	</div>
-' : '').'
-</div>
-
-
-<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
+    return '<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST"
 	  action="'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? ''.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'' : ''.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'').'">
 	<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summaryRevId'])) ? $in['summaryRevId'] : null))) ? '

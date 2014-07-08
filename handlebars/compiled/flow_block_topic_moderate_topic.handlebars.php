@@ -21,18 +21,6 @@
 
     );
     return '<div class="flow-board">
-	<div class="flow-error-container">
-'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null))) ? '
-	<div class="flow-errors errorbox">
-		<ul>
-			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-				<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
-			';}).'
-		</ul>
-	</div>
-' : '').'
-</div>
-
 	
 	'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
 		'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
@@ -102,7 +90,7 @@
 							<a href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 							   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 							   data-flow-api-handler="activateEditPost"
-							   data-flow-api-target=".flow-post[data-flow-id=\''.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'\']"
+							   data-flow-api-target="< .flow-post-main"
 							   data-flow-interactive-handler="apiRequest"
 							   class="flow-ui-regressive flow-ui-quiet">
 								'.LCRun3::ch($cx, 'l10n', Array('flow-post-action-edit-post'), 'encq').'

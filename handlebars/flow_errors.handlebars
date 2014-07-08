@@ -1,8 +1,8 @@
 <div class="flow-error-container">
-{{#if errors}}
+{{#if @root.errors}}
 	<div class="flow-errors errorbox">
 		<ul>
-			{{#each errors}}
+			{{#each @root.errors}}
 				<li>{{~html message~}}</li>
 			{{/each}}
 		</ul>
