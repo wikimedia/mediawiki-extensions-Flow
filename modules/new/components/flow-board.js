@@ -200,8 +200,9 @@
 		};
 
 		/**
-		 * Before handling preview, hides the old preview
-		 * and overrides the API request
+		 * First, resets the previous preview (if any).
+		 * Then, using the form fields, finds the content element to be sent to Parsoid by looking
+		 * for one ending in "content", or, failing that, with data-role=content.
 		 * @param  {Event} event The event being handled
 		 * @return {Function} Callback to modify the API request
 		 */
@@ -210,7 +211,7 @@
 				callback;
 
 			callback = function ( queryMap ) {
-				var content;
+				var content = null;
 
 				// XXX: Find the content parameter
 				$.each( queryMap, function( key, value ) {
@@ -219,6 +220,11 @@
 						return false;
 					}
 				} );
+
+				// If we fail to find a content param, look for a field that is the "content" role and use that
+				if ( content === null ) {
+					content = $this.closest( 'form' ).find( 'input, textarea' ).filter( '[data-role="content"]' ).val();
+				}
 
 				queryMap = {
 					'action':  'flow-parsoid-utils',
@@ -244,9 +250,16 @@
 		 * Before activating summarize topic, sends an overrideObject to the
 		 * API to modify the request params.
 		 * @param {Event} event
+		 * @param {Object} info
 		 * @return {Object}
 		 */
-		FlowBoardComponent.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event ) {
+		FlowBoardComponent.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event, info ) {
+			if ( info.$target.find( 'form' ).length ) {
+				// Form already open; cancel the old form
+				info.$target.find( 'form' ).find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
+				return false;
+			}
+
 			return {
 				// href submodule is edit-topic-summary
 				submodule: 'view-topic-summary',
@@ -607,7 +620,6 @@
 				templateParams,
 				$target = info.$target,
 				previewTemplate = $target.data( 'flow-preview-template' );
-				
 
 			if ( info.status === 'fail' || ! data['flow-parsoid-utils'] ) {
 				// @todo
@@ -730,7 +742,7 @@
 				$( this ).val( this.defaultValue );
 			} );
 			// Trigger a click on cancel to have it destroy the form the way it should
-			$form.find( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
+			$form.find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
 		};
 
 		/**
@@ -740,25 +752,29 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.activateSummarizeTopic = function ( info, data, jqxhr ) {
-			var html,
-				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' ),
-				old = $node.html(),
+			var $target = info.$target,
+				$old = $target,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
-			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
 
-			// @todo This is using the old fashion way to re-render new content in the board
-			// need to use the proper way that flow is using, eg: reinitializeBoard() etc
 			if ( info.status === 'done' ) {
-				html = flowBoard.TemplateEngine.processTemplate(
+				// Create the new topic_summary_edit template
+				$target = $( flowBoard.TemplateEngine.processTemplateGetFragment(
 					'flow_block_topicsummary_edit',
 					data.flow[ 'view-topic-summary' ].result.topicsummary
-				);
-				$node.html(
-					$( html ).html()
-				);
-				$node.find( 'form' ).data( 'flow-cancel-callback', function() {
-					$node.html( old );
+				) ).children();
+
+				// On cancel, put the old topicsummary back
+				flowBoardComponentAddCancelCallback( $target.find( 'form' ), function() {
+					$target.before( $old ).remove();
 				} );
+
+				// Replace the old one
+				$old.before( $target ).detach();
+
+				FlowBoardComponent.UI.makeContentInteractive( $target );
+
+				// Focus on first form field
+				$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
 			} else {
 				// @todo fail
 				alert('fail');
@@ -772,12 +788,22 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.summarizeTopic = function ( info, data, jqxhr ) {
-			var
-				$node = $( this ).closest( '.flow-topic-titlebar' ).find( '.flow-topic-summary' );
+			var $this = $( this ),
+				$form = $this.closest( 'form' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
+				$target = info.$target;
 
 			if ( info.status === 'done' ) {
-				// There is no template to render
-				$node.html( data.flow[ 'edit-topic-summary' ].result.topicsummary.revision.content );
+				$target.replaceWith( $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						// @todo this should be fixed so that it re-renders the entire flow_topic_titlebar
+						'flow_topic_titlebar_content_summary',
+						data.flow[ 'edit-topic-summary' ].result.topicsummary.revision
+					)
+				).children() );
+
+				// Delete the form
+				$form.remove();
 			} else {
 				// @todo fail
 				alert('fail');
@@ -1230,7 +1256,8 @@
 				info = {
 					$target: null,
 					status: null
-				};
+				},
+				args = Array.prototype.slice.call( arguments, 0 );
 
 			event.preventDefault();
 
@@ -1244,6 +1271,7 @@
 				$target = $this;
 			}
 			info.$target = $target;
+			args.splice( 1, 0, info ); // insert info into args for prehandler
 
 			// Make sure an API call is not already in progress for this target
 			if ( $target.closest( '.flow-api-inprogress' ).length ) {
@@ -1261,11 +1289,11 @@
 				// nothing at all to proceed,
 				// or OBJECT to add param overrides to the API
 				// or FUNCTION to modify API params
-				preHandlerReturn = FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ].apply( _this, arguments );
+				preHandlerReturn = FlowBoardComponent.UI.events.apiPreHandlers[ handlerName ].apply( _this, args );
 
 				if ( preHandlerReturn === false || preHandlerReturn._abort === true ) {
 					// Callback returned false
-					flowBoard.debug( 'apiPreHandler returned false', handlerName, arguments );
+					flowBoard.debug( 'apiPreHandler returned false', handlerName, args );
 
 					// Abort any old request in flight; this is normally done automatically by requestFromNode
 					flowBoard.API.abortOldRequestFromNode( this, null, null, preHandlerReturn );
@@ -1300,7 +1328,7 @@
 			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
 				$deferred
 					.done( function () {
-						var args = Array.prototype.slice.call( arguments, 0);
+						var args = Array.prototype.slice.call( arguments, 0 );
 						info.status = 'done';
 						args.unshift( info );
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
