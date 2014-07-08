@@ -1,1 +1,1 @@
-handlebars/compiled/* -diff
+handlebars/compiled/* -diff -whitespace
