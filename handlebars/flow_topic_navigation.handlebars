@@ -5,7 +5,7 @@
 		{{#eachPost @root this}}
 			<li class="flow-topic-navigator-wrap">
 				<a href="#flow-topic-{{postId}}" class="flow-topic-navigator">
-					{{math @index "+" "1"}}. {{content}}
+					{{math @index "+" "1"}}. {{escapeContent content.format content.content}}
 					<span class="flow-topic-navigator-meta">
 						{{#if last_updated}}
 							{{timestamp last_updated "active_ago"}}

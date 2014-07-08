@@ -7,6 +7,7 @@
             'debug' => $debugopt,
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
+            'html' => 'Flow\TemplateHelper::html',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
             'plaintextSnippet' => 'Flow\TemplateHelper::plaintextSnippet',
 ),
@@ -24,7 +25,7 @@
 	<div class="flow-errors errorbox">
 		<ul>
 			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-				<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
+				<li>'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['message'])) ? $in['message'] : null)), 'encq').'</li>
 			';}).'
 		</ul>
 	</div>
@@ -45,7 +46,7 @@
 				          name="topic_content"
 				          class="mw-ui-input"
 				          type="text"
-				          placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'plaintextSnippet', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq')), 'encq').'"
+				          placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'plaintextSnippet', Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)), 'encq')), 'encq').'"
 				          data-role="content">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
 
 				<div class="flow-form-actions flow-form-collapsible">
