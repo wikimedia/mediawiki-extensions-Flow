@@ -27,12 +27,8 @@
 	padding-top: 1.5em;
 }
 
-// Top board header
-.flow-board-header,
-// The whole board content wrapper
-.flow-board {
+.flow-component {
 	.box-sizing( border-box );
-	padding-right: 200px;
 	width: 100%;
 	max-width: 915px;
 	// Set a fixed font-size from which everything else can use a relative amount
@@ -53,21 +49,8 @@
 	padding: 10px;
 }
 
-// MEDIA QUERIES
-@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
-	.flow-board-header,
-	.flow-board {
-		padding-right: 170px;
-		max-width: 100%;
-		font-size: .875em;
-		line-height: 1.2em;
+@media all and (min-width: @wgFlowDeviceWidthTablet) {
+	.flow-component {
+		padding-right: 200px;
 	}
-
-	.flow-topic-meta {
-		font-size: .875em;
-	}
-
-	/* not important stuff -- only here for mediawiki on mobile in test version */
-	#mw-page-base, #mw-head-base { display: none; }
-	div#content { margin-left: 0;}
 }
