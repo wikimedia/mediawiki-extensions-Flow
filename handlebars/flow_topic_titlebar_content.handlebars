@@ -16,6 +16,11 @@
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">{{reply_count}}</span></span>
 
-{{#with summary}}
-	{{> flow_topic_titlebar_content_summary}}
-{{/with}}
+<div class="flow-topic-summary">
+	{{#if summary}}
+		{{escapeContent summaryFormat summary}}
+	{{/if}}
+</div>
+<div class="flow-topic-edit-summary">
+	{{!-- placeholder where js will insert summary --}}
+</div>
