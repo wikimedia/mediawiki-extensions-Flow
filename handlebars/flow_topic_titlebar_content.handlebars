@@ -1,4 +1,4 @@
-<h2 class="flow-topic-title" data-title="{{content}}">{{content}}</h2>
+<h2 class="flow-topic-title" data-title="{{plaintextSnippet content.format content.content}}">{{escapeContent content.format content.content}}</h2>
 {{#if isModerated}}
 	<div class="flow-moderated-topic-title">{{l10n "post_moderation_state" moderateState replyToId moderator.name}}</div>
 {{/if}}
@@ -16,11 +16,4 @@
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">{{reply_count}}</span></span>
 
-<div class="flow-topic-summary">
-	{{#if summary}}
-		{{escapeContent summaryFormat summary}}
-	{{/if}}
-</div>
-<div class="flow-topic-edit-summary">
-	{{!-- placeholder where js will insert summary --}}
-</div>
+{{> flow_topic_titlebar_summary}}

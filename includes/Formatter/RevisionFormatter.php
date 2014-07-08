@@ -186,8 +186,11 @@ class RevisionFormatter {
 				: $this->contentFormat;
 
 			$res += array(
-				'content' => $this->templating->getContent( $row->revision, $contentFormat ),
-				'contentFormat' => $contentFormat,
+				// @todo better name?
+				'content' => array(
+					'content' => $this->templating->getContent( $row->revision, $contentFormat ),
+					'format' => $contentFormat
+				),
 				'size' => array(
 					'old' => null,
 					// @todo this isn't really correct
@@ -206,8 +209,10 @@ class RevisionFormatter {
 			$this->permissions->isAllowed( $row->summary, 'view' )
 		) {
 			// Maybe always have both parsed and unparsed versions available
-			$res['summary'] = $this->templating->getContent( $row->summary, $this->contentFormat );
-			$res['summaryFormat'] = $this->contentFormat;
+			$res['summary'] = array(
+				'content' => $this->templating->getContent( $row->summary, $this->contentFormat ),
+				'format' => $this->contentFormat,
+			);
 			$res['summaryRevId'] = $row->summary->getRevisionId()->getAlphadecimal();
 		}
 

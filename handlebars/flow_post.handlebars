@@ -38,7 +38,7 @@
 			{{/if}}
 
 			<div class="flow-post-content">
-				{{escapeContent contentFormat content}}
+				{{escapeContent content.format content.content}}
 			</div>
 			{{!-- This stuff is not needed in preview mode --}}
 			{{#unless isPreview}}

@@ -14,7 +14,7 @@
 				          name="topic_content"
 				          class="mw-ui-input"
 				          type="text"
-				          placeholder="{{l10n "flow-reply-topic-title-placeholder" (plaintextSnippet contentFormat content)}}"
+				          placeholder="{{l10n "flow-reply-topic-title-placeholder" (plaintextSnippet content.format content.content)}}"
 				          data-role="content">
 					{{~#ifEquals @root.submitted.postId postId~}}
 						{{~@root.submitted.content~}}

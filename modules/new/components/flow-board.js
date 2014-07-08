@@ -214,7 +214,8 @@
 
 				// XXX: Find the content parameter
 				$.each( queryMap, function( key, value ) {
-					if ( key.substr( -7 ) === 'content' ) {
+					var piece = key.substr( -7 );
+					if ( piece === 'content' || piece === 'summary' ) {
 						content = value;
 						return false;
 					}
@@ -606,8 +607,8 @@
 				$previewContainer,
 				templateParams,
 				$target = info.$target,
-				previewTemplate = $target.data( 'flow-preview-template' );
-				
+				previewTemplate = $target.data( 'flow-preview-template' ),
+				contentNode = $target.data( 'flow-preview-node' ) || 'content';
 
 			if ( info.status === 'fail' || ! data['flow-parsoid-utils'] ) {
 				// @todo
@@ -619,12 +620,14 @@
 				author: {
 					name: mw.user.getName() || flowBoard.TemplateEngine.l10n('flow-anonymous')
 				},
-				content: data['flow-parsoid-utils'].content,
-				contentFormat: data['flow-parsoid-utils'].format,
 				isPreview: true
 			};
+			templateParams[contentNode] = {
+				content: data['flow-parsoid-utils'].content,
+				format: data['flow-parsoid-utils'].format
+			};
+
 			// @todo don't do these. it's a catch-all for the templates which expect a revision key, and those that don't.
-			templateParams.revision = templateParams;
 			templateParams.revision = templateParams;
 
 			if ( $titleField.length ) {
@@ -777,7 +780,7 @@
 
 			if ( info.status === 'done' ) {
 				// There is no template to render
-				$node.html( data.flow[ 'edit-topic-summary' ].result.topicsummary.revision.content );
+				$node.html( data.flow[ 'edit-topic-summary' ].result.topicsummary.revision.content.content );
 			} else {
 				// @todo fail
 				alert('fail');
@@ -1373,8 +1376,10 @@
 						name: author
 					},
 					// text for flow-reply-topic-title-placeholder placeholder
-					content: replyToContent,
-					contentFormat: 'plaintext',
+					content: {
+						content: replyToContent,
+						format: 'plaintext'
+					},
 					submitted: {
 						postId: postId,
 						// prefill content
