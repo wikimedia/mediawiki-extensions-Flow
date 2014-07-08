@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_54902446",
+        "filename": "i18n/en.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-07-08T11:26:13Z",
+      "side": 1,
+      "message": "Is it possible to use \"saved\" instead of committed here? That\u0027s a word that I think is more easily understood by end users.",
+      "revId": "267e9451b03c962c9fc8634b5ce623fcd467f9d6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
