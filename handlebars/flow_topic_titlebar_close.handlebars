@@ -12,10 +12,11 @@
 			<input type="hidden" name="flow_prev_revision" value="{{summaryRevId}}" />
 		{{/if}}
 		<textarea name="flow_summary"
-				  class="mw-ui-input"
-				  type="text"
-				  data-flow-preview-node="summary"
-				  data-flow-preview-template="flow_topic_titlebar_summary">
+		          class="mw-ui-input"
+		          type="text"
+		          required
+		          data-flow-preview-node="summary"
+		          data-flow-preview-template="flow_topic_titlebar_summary">
 			{{~#if @root.submitted.content~}}
 				{{~@root.submitted.content~}}
 			{{~else~}}
