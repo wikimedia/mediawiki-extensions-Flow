@@ -215,7 +215,8 @@
 
 				// XXX: Find the content parameter
 				$.each( queryMap, function( key, value ) {
-					if ( key.substr( -7 ) === 'content' ) {
+					var piece = key.substr( -7 );
+					if ( piece === 'content' || piece === 'summary' ) {
 						content = value;
 						return false;
 					}
@@ -430,41 +431,44 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.activateCloseOpenTopic = function ( info, data ) {
-			var $target, $form,
-				result, revision, postId, revisionId,
+			var result, revision, postId, revisionId,
+				$target = info.$target,
+				$old = $target,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
+
 			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
 
-			if ( info.status === 'done' ) {
-				$target = info.$target.find( '.flow-topic-edit-summary' );
-
-				// FIXME: API should take care of this for me.
-				result = data.flow[ 'view-post' ].result.topic;
-				postId = result.roots[0];
-				revisionId = result.posts[postId];
-				revision = result.revisions[revisionId];
-
-				// Enable the editable summary
-				$target.empty();
-				$form = $target.append( $(
-						flowBoard.TemplateEngine.processTemplateGetFragment(
-							'flow_topic_titlebar_close', revision
-						)
-					).children()
-				).find( 'form' );
-
-				// Ensure that on a cancel the form gets destroyed.
-				flowBoardComponentAddCancelCallback( $form, function () {
-					$form.remove();
-				} );
-
-				FlowBoardComponent.UI.makeContentInteractive( $target );
-
-				$form.find( 'textarea' ).focus();
-			} else {
-				// @todo fail
-				alert('fail');
+			// Generic form error handling only works on forms; the interactive
+			// element here is the summary div that should be replaced,
+			// so lets take ore of displaying the error ourselves.
+			FlowBoardComponent.UI.removeError( $old );
+			if ( info.status !== 'done' ) {
+				return;
 			}
+
+			// FIXME: API should take care of this for me.
+			result = data.flow[ 'view-post' ].result.topic;
+			postId = result.roots[0];
+			revisionId = result.posts[postId];
+			revision = result.revisions[revisionId];
+
+			// Enable the editable summary
+			$target = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+				'flow_topic_titlebar_close', revision
+			) ).children();
+
+			// Ensure that on a cancel the form gets destroyed.
+			flowBoardComponentAddCancelCallback( $target.find( 'form' ), function () {
+				$target.before( $old ).remove();
+			} );
+
+			// Replace the old one
+			$old.before( $target ).detach();
+
+			FlowBoardComponent.UI.makeContentInteractive( $target );
+
+			// Focus on first form field
+			$target.find( 'input, textarea' ).filter( ':visible:first' ).focus();
 		};
 
 		/**
@@ -602,7 +606,8 @@
 				$previewContainer,
 				templateParams,
 				$target = info.$target,
-				previewTemplate = $target.data( 'flow-preview-template' );
+				previewTemplate = $target.data( 'flow-preview-template' ),
+				contentNode = $target.data( 'flow-preview-node' ) || 'content';
 
 			if ( info.status !== 'done' ) {
 				// Error will be displayed by default, nothing else to wrap up
@@ -613,12 +618,14 @@
 				author: {
 					name: mw.user.getName() || flowBoard.TemplateEngine.l10n('flow-anonymous')
 				},
-				content: data['flow-parsoid-utils'].content,
-				contentFormat: data['flow-parsoid-utils'].format,
 				isPreview: true
 			};
+			templateParams[contentNode] = {
+				content: data['flow-parsoid-utils'].content,
+				format: data['flow-parsoid-utils'].format
+			};
+
 			// @todo don't do these. it's a catch-all for the templates which expect a revision key, and those that don't.
-			templateParams.revision = templateParams;
 			templateParams.revision = templateParams;
 
 			if ( $titleField.length ) {
@@ -787,8 +794,11 @@
 			$target.replaceWith( $(
 				flowBoard.TemplateEngine.processTemplateGetFragment(
 					// @todo this should be fixed so that it re-renders the entire flow_topic_titlebar
-					'flow_topic_titlebar_content_summary',
-					data.flow[ 'edit-topic-summary' ].result.topicsummary.revision
+					'flow_topic_titlebar_summary',
+					// @todo the response here doesnt match the standard serialization, typically we
+					// get the topic title with summary embedded, but this revision is the actual
+					// summary.  As such we have to rename content key to summary
+					{ summary: data.flow[ 'edit-topic-summary' ].result.topicsummary.revision.content }
 				)
 			).children() );
 
@@ -1391,8 +1401,10 @@
 						name: author
 					},
 					// text for flow-reply-topic-title-placeholder placeholder
-					content: replyToContent,
-					contentFormat: 'plaintext',
+					content: {
+						content: replyToContent,
+						format: 'plaintext'
+					},
 					submitted: {
 						postId: postId,
 						// prefill content

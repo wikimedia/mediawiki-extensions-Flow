@@ -24,7 +24,7 @@
 		').'
 	</div>
 	<div class="flow-revision-content">
-		'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in['revision']) && isset($in['revision']['contentFormat'])) ? $in['revision']['contentFormat'] : null),((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null)), 'encq').'
+		'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in['revision']['content']) && isset($in['revision']['content']['format'])) ? $in['revision']['content']['format'] : null),((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null)), 'encq').'
 	</div>
 </div>
 

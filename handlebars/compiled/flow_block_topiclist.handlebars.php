@@ -9,6 +9,7 @@
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
             'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
             'timestamp' => 'Flow\TemplateHelper::timestamp',
+            'html' => 'Flow\TemplateHelper::html',
             'post' => 'Flow\TemplateHelper::post',
             'l10nParse' => 'Flow\TemplateHelper::l10nParse',
             'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
@@ -78,7 +79,7 @@
 	<div class="flow-errors errorbox">
 		<ul>
 			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-				<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
+				<li>'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['message'])) ? $in['message'] : null)), 'encq').'</li>
 			';}).'
 		</ul>
 	</div>
@@ -122,7 +123,7 @@
 	'.LCRun3::hbch($cx, 'eachPost', Array($cx['scopes'][0],$in), $in, function($cx, $in) {return '
 		<div class="flow-topic '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? 'flow-load-interactive' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated flow-topic-collapsed' : '').'" id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-load-handler="topicElement">
 	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
-	<h2 class="flow-topic-title" data-title="'.htmlentities(((is_array($in) && isset($in['content'])) ? $in['content'] : null), ENT_QUOTES, 'UTF-8').'">'.htmlentities(((is_array($in) && isset($in['content'])) ? $in['content'] : null), ENT_QUOTES, 'UTF-8').'</h2>
+	<h2 class="flow-topic-title" data-title="'.LCRun3::ch($cx, 'plaintextSnippet', Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)), 'encq').'">'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)), 'encq').'</h2>
 '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
 	<div class="flow-moderated-topic-title">'.LCRun3::ch($cx, 'l10n', Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)), 'encq').'</div>
 ' : '').'
@@ -140,16 +141,13 @@
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">'.htmlentities(((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
 
-'.LCRun3::wi($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null), $in, function($cx, $in) {return '
-	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['content'])) ? $in['content'] : null))) ? '
-	<div class="flow-topic-summary">
-		'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq').'
-	</div>
-' : '
-	
-	<script type="text/plain" class="flow-topic-summary"></script>
-').'
-';}).'
+<div class="flow-topic-summary">
+	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
+		'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in['summary']) && isset($in['summary']['format'])) ? $in['summary']['format'] : null),((is_array($in['summary']) && isset($in['summary']['content'])) ? $in['summary']['content'] : null)), 'encq').'
+	' : '').'
+</div>
+
+
 
 	'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 		<div class="flow-menu">
@@ -280,7 +278,7 @@
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateCloseOpenTopic"
-						   data-flow-api-target="< .flow-topic-titlebar"
+						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary"
 						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
 						   href="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['title'])) ? $in['actions']['close']['title'] : null), ENT_QUOTES, 'UTF-8').'">
@@ -295,7 +293,7 @@
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateCloseOpenTopic"
 						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
-						   data-flow-api-target="< .flow-topic-titlebar"
+						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary"
 						   href="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['title'])) ? $in['actions']['reopen']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-clock"></span>
@@ -345,7 +343,7 @@
 	<div class="flow-errors errorbox">
 		<ul>
 			'.LCRun3::sec($cx, ((is_array($in) && isset($in['errors'])) ? $in['errors'] : null), $in, true, function($cx, $in) {return '
-				<li>'.htmlentities(((is_array($in) && isset($in['message'])) ? $in['message'] : null), ENT_QUOTES, 'UTF-8').'</li>
+				<li>'.LCRun3::ch($cx, 'html', Array(((is_array($in) && isset($in['message'])) ? $in['message'] : null)), 'encq').'</li>
 			';}).'
 		</ul>
 	</div>
@@ -365,7 +363,7 @@
 				data-flow-expandable="true"
 				class="mw-ui-input"
 				type="text"
-				placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'plaintextSnippet', Array(((is_array($in) && isset($in['contentFormat'])) ? $in['contentFormat'] : null),((is_array($in) && isset($in['content'])) ? $in['content'] : null)), 'encq')), 'encq').'"
+				placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'plaintextSnippet', Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)), 'encq')), 'encq').'"
 				data-role="content">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">

@@ -18,7 +18,7 @@
     return '<div class="flow-board-header">
 	<div class="flow-board-header-detail-view">
 		'.((LCRun3::ifvar($cx, ((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null))) ? '
-			'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in['revision']) && isset($in['revision']['contentFormat'])) ? $in['revision']['contentFormat'] : null),((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null)), 'encq').'
+			'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in['revision']['content']) && isset($in['revision']['content']['format'])) ? $in['revision']['content']['format'] : null),((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null)), 'encq').'
 		' : '
 			<p>'.LCRun3::ch($cx, 'l10n', Array('flow-header-empty'), 'encq').'</p>
 		').'
