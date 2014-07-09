@@ -1,4 +1,4 @@
-@chrome @clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @internet_explorer_10 @login @test2.wikipedia.org
+@chrome @clean @ee-prototype.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox @login @test2.wikipedia.org
 Feature: Create new topic logged in
 
   It requires the cldr extension, a "Flow QA" page, and a "Selenium user" who has
@@ -15,6 +15,7 @@ Feature: Create new topic logged in
     Given the author link is visible
       And the talk to author link is not visible
       And the block author link is not visible
+    # hover doesn't work in IE, bug 67723
     When I hover over the author link
     Then the talk to author link is visible
       And the block author link is visible
