@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_aba59e9c",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-09T03:53:47Z",
+      "side": 1,
+      "message": "It looks like it can be jqxhr.error.info or jqxhr.exception can be set.\n\nI\u0027m getting a \n\n    Cannot read property \u0027info\u0027 of undefined\n\nIf i kill the program with invalid output that can\u0027t be decoded as json. In this case jqxhr.exception is set with a SyntaxError object",
+      "revId": "e77bb529bac3e6f5787dbf0ce9c3f51115bf615d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_abea3e9a",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 10
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-09T03:53:47Z",
+      "side": 1,
+      "message": "showError needs a .flow-error-container pre-populated, but going up to .flow-topics means all sorts of error-containers can be mis-selected\n\nI think it would be prefered to wrap the load more anchor in a div that contains an empty flow-error-container, so we can do $this.closest( \u0027.flow-load-more\u0027 ) and allow UI.showError to populate the empty flow-error-container.",
+      "revId": "e77bb529bac3e6f5787dbf0ce9c3f51115bf615d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
