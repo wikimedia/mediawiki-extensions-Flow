@@ -668,7 +668,8 @@ class RevisionFormatter {
 	 * @param AbstractRevision|array $revision The revision to format or an array of revisions
 	 * @param UUID $workflowId The UUID of the workflow $revision belongs tow
 	 * @param IContextSource $ctx
-	 * @return mixed A valid parameter for a core Message instance
+	 * @return mixed A valid parameter for a core Message instance. These parameters will be used
+	 *  with Message::parse
 	 * @throws FlowException
 	 */
 	protected function processParam( $param, /* AbstractRevision|array */ $revision, UUID $workflowId, IContextSource $ctx ) {
@@ -694,7 +695,12 @@ class RevisionFormatter {
 			 * be needed to render Flow discussions, so this is manageable)
 			 */
 			$content = $this->templating->getContent( $revision, 'html' );
-			return Utils::htmlToPlaintext( $content, 140, $ctx->getLanguage() );
+			// strip html tags and decode to plaintext
+			$content = Utils::htmlToPlaintext( $content, 140, $ctx->getLanguage() );
+			// The message keys this will be used with include links so will use Message::parse
+			// we don't want anything in this plaintext to be mistakenly taken as wikitext so
+			// encode for html output and mark raw to prevent Message from evaluating as wikitext
+			return Message::rawParam( htmlspecialchars( $content ) );
 
 		case 'wikitext':
 			$content = $this->templating->getContent( $revision, 'wikitext' );
