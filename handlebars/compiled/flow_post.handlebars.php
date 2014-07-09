@@ -144,7 +144,7 @@
 								   title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 								   data-flow-interactive-handler="moderationDialog"
 								   data-template="flow_moderate_post"
-								   data-role="hide">
+								   data-role="delete">
 									<span class="wikiglyph wikiglyph-trash"></span>
 									'.LCRun3::ch($cx, 'l10n', Array('flow-post-action-delete-post'), 'encq').'
 								</a>
