@@ -13,6 +13,10 @@ TOPIC_SUBTEMPLATES= flow_topic.handlebars \
 		flow_reply_form.handlebars \
 		flow_topiclist_loop.handlebars \
 		flow_load_more.handlebars \
+		flow_post_actions.handlebars \
+		flow_post_author.handlebars \
+		flow_post_meta_actions.handlebars \
+		flow_post_replies.handlebars \
 		flow_errors.handlebars \
 		flow_preview_button.handlebars
 
