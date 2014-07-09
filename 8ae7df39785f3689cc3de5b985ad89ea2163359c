@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_3cc8d3a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-09T16:16:44Z",
+      "side": 1,
+      "message": "The event binding occurs on body. It uses event bubbling to handle mw-ui-input element events.",
+      "parentUuid": "8e28a382_e80ccf47",
+      "revId": "8ae7df39785f3689cc3de5b985ad89ea2163359c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_6821ffab",
         "filename": "tests/qunit/new/test_mw-ui.enhance.js",
         "patchSetId": 1
