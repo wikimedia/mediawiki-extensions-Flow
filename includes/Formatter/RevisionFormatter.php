@@ -182,7 +182,7 @@ class RevisionFormatter {
 
 			// topic titles are always forced to plain text
 			$contentFormat = ( $row->revision instanceof PostRevision && $row->revision->isTopicTitle() )
-				? 'raw'
+				? 'plaintext'
 				: $this->contentFormat;
 
 			$res += array(
