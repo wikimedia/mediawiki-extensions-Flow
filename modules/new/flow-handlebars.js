@@ -423,13 +423,13 @@
 	/**
 	 * @example {{#each topics}}{{#eachPost this}}{{content}}{{/eachPost}}{{/each}}
 	 * @param {String} context
-	 * @param {Array|String} postIds
+	 * @param {String} postId
 	 * @param {Object} options
 	 * @returns {String}
 	 * @todo support multiple postIds in an array
 	 */
-	FlowHandlebars.prototype.eachPost = function ( context, postIds, options ) {
-		var revId = context.posts[postIds][0],
+	FlowHandlebars.prototype.eachPost = function ( context, postId, options ) {
+		var revId = context.posts[postId][0],
 			revision = context.revisions[revId] || { content: null };
 		return options.fn ? options.fn( revision ) : revision;
 	};
