@@ -92,7 +92,7 @@
 
 		'.LCRun3::hbch($cx, 'ifAnonymous', Array(), $in, function($cx, $in) {return '
 			'.LCRun3::hbch($cx, 'tooltip', Array('positionClass'=>'down','contextClass'=>'progressive','extraClass'=>'flow-anon-warning flow-form-collapsible','isBlock'=>((is_array($in) && isset($in['true'])) ? $in['true'] : null)), $in, function($cx, $in) {return '
-	'.LCRun3::ch($cx, 'l10nParse', Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin'), 'encq'),LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin/signup'), 'encq')), 'encq').'';}).'
+	'.LCRun3::ch($cx, 'l10nParse', Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin'), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin/signup'), 'raw')), 'encq').'';}).'
 		';}).'
 
 		<input type="hidden" name="wpEditToken" value="'.htmlentities(((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['editToken'])) ? $cx['scopes'][0]['editToken'] : null), ENT_QUOTES, 'UTF-8').'" />
@@ -356,7 +356,7 @@
 
 		'.LCRun3::hbch($cx, 'ifAnonymous', Array(), $in, function($cx, $in) {return '
 			'.LCRun3::hbch($cx, 'tooltip', Array('positionClass'=>'down','contextClass'=>'progressive','extraClass'=>'flow-anon-warning flow-form-collapsible','isBlock'=>((is_array($in) && isset($in['true'])) ? $in['true'] : null)), $in, function($cx, $in) {return '
-	'.LCRun3::ch($cx, 'l10nParse', Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin'), 'encq'),LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin/signup'), 'encq')), 'encq').'';}).'
+	'.LCRun3::ch($cx, 'l10nParse', Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin'), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin/signup'), 'raw')), 'encq').'';}).'
 		';}).'
 
 		<textarea id="flow-post-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'-form-content"
@@ -366,7 +366,7 @@
 				data-flow-expandable="true"
 				class="mw-ui-input"
 				type="text"
-				placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'plaintextSnippet', Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)), 'encq')), 'encq').'"
+				placeholder="'.LCRun3::ch($cx, 'l10n', Array('flow-reply-topic-title-placeholder',LCRun3::ch($cx, 'plaintextSnippet', Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)), 'raw')), 'encq').'"
 				data-role="content">'.LCRun3::hbch($cx, 'ifEquals', Array(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['postId'])) ? $cx['scopes'][0]['submitted']['postId'] : null),((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)), $in, function($cx, $in) {return ''.htmlentities(((is_array($cx['scopes'][0]['submitted']) && isset($cx['scopes'][0]['submitted']['content'])) ? $cx['scopes'][0]['submitted']['content'] : null), ENT_QUOTES, 'UTF-8').'';}).'</textarea>
 
 		<div class="flow-form-actions flow-form-collapsible">
