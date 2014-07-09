@@ -1382,7 +1382,7 @@
 				postId = $targetPost.data( 'flow-id' ),
 				topicTitle = $post.closest( '.flow-topic' ).find( '.flow-topic-title' ).text(),
 				replyToContent = $post.find( '.flow-post-content' ).text() || topicTitle,
-				author = $post.find( '.flow-author:first .mw-userlink' ).text().trim(),
+				author = $.trim( $post.find( '.flow-author:first .mw-userlink' ).text() ),
 				initialContent, $form;
 
 			// Check if reply form has already been opened
