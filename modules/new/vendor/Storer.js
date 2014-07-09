@@ -57,7 +57,7 @@
  *                 {String}  [default_path='']           default path for cookies
  *                 {Boolean} [no_cookie_fallback=false]  If true, do not use cookies as fallback for localStorage
  * @return {Object} {cookieStorage, localStorage, memoryStorage, sessionStorage}
- * @version 0.1.1
+ * @version 0.1.3
  */
 function initStorer(callback, params) {
     "use strict";
@@ -233,11 +233,23 @@ function initStorer(callback, params) {
     function _createDOMStorage(name, StoreRef) {
         var store = document.createElement('div');
         store.STORE_TYPE    = 'DOM' + name;
-        store.key           = StoreRef.key;
-        store.getItem       = StoreRef.getItem;
-        store.setItem       = StoreRef.setItem;
-        store.removeItem    = StoreRef.removeItem;
-        store.clear         = StoreRef.clear;
+        store.key = function (key) {
+            try {
+                return StoreRef.key(key);
+            } catch (e) { return null; } // IE8 throws an exception on nonexistent keys
+        };
+        store.getItem = function (key) {
+            return StoreRef.getItem(key);
+        };
+        store.setItem = function (key, value, end) {
+            return StoreRef.setItem(key, value, end);
+        };
+        store.removeItem = function (key) {
+            return StoreRef.removeItem(key);
+        };
+        store.clear = function () {
+            return StoreRef.clear();
+        };
         Object.defineProperty(store, "length", { get: function () { return StoreRef.length; } });
         return store;
     }
@@ -437,7 +449,7 @@ function initStorer(callback, params) {
 
                 while (i--) {
                     // Don't use static _removeItemFn reference, because cookieStorage.clear is not handled by _assignPrefix
-					_cookieStorage.removeItem(cookies[i].key);
+                    _cookieStorage.removeItem(cookies[i].key);
                 }
             },
 
