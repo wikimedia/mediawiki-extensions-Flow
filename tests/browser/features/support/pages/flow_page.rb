@@ -1,6 +1,9 @@
-class FlowPage
+class WikiPage
   include PageObject
+  a(:logout, css: "#pt-logout a")
+end
 
+class FlowPage < WikiPage
   include URL
   # MEDIAWIKI_URL must have this in $wgFlowOccupyPages array or $wgFlowOccupyNamespaces.
   page_url URL.url("Talk:Flow_QA")
