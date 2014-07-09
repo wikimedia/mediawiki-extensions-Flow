@@ -50,20 +50,21 @@ QUnit.test( 'Handlebars.prototype.callHelper', 1, function( assert ) {
 		3, 'Check the helper was called.' );
 } );
 
-QUnit.test( 'Handlebars.prototype.eachPost', 2, function( assert ) {
+QUnit.test( 'Handlebars.prototype.eachPost', 3, function( assert ) {
 	var ctx = {
 		posts: {
-			postIds: {
-				1: [300]
-			}
+			1: [ 300 ],
+			// Purposely points to a missing revision to deal with edge case
+			2: [ 500 ]
 		},
 		revisions: {
 			300: { content: 'a' }
 		}
 	};
 
-	assert.strictEqual( this.handlebarsProto.eachPost( ctx, 1, {} ), { content: 'a' }, 'Matches given id.' );
-	assert.strictEqual( this.handlebarsProto.eachPost( ctx, 2, {} ), { content: 'null' }, 'Missing revision id.' );
+	assert.deepEqual( this.handlebarsProto.eachPost( ctx, 1, {} ), { content: 'a' }, 'Matches given id.' );
+	assert.deepEqual( this.handlebarsProto.eachPost( ctx, 1, this.opts ), 'ok', 'Runs fn when given.' );
+	assert.deepEqual( this.handlebarsProto.eachPost( ctx, 2, {} ), { content: null }, 'Missing revision id.' );
 } );
 
 QUnit.test( 'Handlebars.prototype.ifEquals', 2, function( assert ) {
