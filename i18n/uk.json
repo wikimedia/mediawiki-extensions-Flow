@@ -309,7 +309,6 @@
 	"flow-special-type-workflow": "Робочий процес",
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Не вдалося знайти вміст, що відповідає типу та UUID.",
-	"flow-spam-confirmedit": "Як анонімний користувач, ви не можете вставляти зовнішніх посилань. Будь ласка, створіть обліковий запис.",
 	"flow-preview-warning": "Ви бачите попередній перегляд. Відправте форму, щоб закінчити розміщення цього, або натисніть кнопку «{{int:flow-preview-return-edit-post}}», щоб продовжити писати.",
 	"flow-preview-return-edit-post": "Продовжити редагування",
 	"flow-anonymous": "Анонім",

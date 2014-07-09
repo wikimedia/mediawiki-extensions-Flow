@@ -308,7 +308,6 @@
 	"flow-special-type-workflow": "Luồng làm việc",
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Không tìm thấy nội dung ứng với kiểu và UUID.",
-	"flow-spam-confirmedit": "Những người vô danh không có phép gửi liên kết ngoài.\nXin hãy mở tài khoản.",
 	"flow-preview-warning": "Bạn đang xem một bản xem trước. Lưu biểu mẫu để hoàn thành việc đăng bài, hoặc bấm “{{int:flow-preview-return-edit-post}}” để tiếp tục viết.",
 	"flow-preview-return-edit-post": "Sửa tiếp",
 	"flow-anonymous": "Vô danh",

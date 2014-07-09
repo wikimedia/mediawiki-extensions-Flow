@@ -11,7 +11,8 @@
 			"Siebrand",
 			"Sjoerddebruin",
 			"Southparkfan",
-			"TBloemink"
+			"TBloemink",
+			"Arg"
 		]
 	},
 	"flow-desc": "Workflowmanagementsysteem",
@@ -126,6 +127,7 @@
 	"flow-error-process-data": "Er is een fout opgetreden tijdens het verwerken van de gegevens in uw aanvraag.",
 	"flow-error-process-wikitext": "Er is een fout opgetreden tijdens het verwerken van HTML/wikitext conversie.",
 	"flow-error-no-index": "Geen index voor het uitvoeren van het zoeken van gegevens.",
+	"flow-error-no-commit": "De opgegeven actie kon niet worden opgeslagen.",
 	"flow-edit-header-submit": "Koptekst opslaan",
 	"flow-edit-header-submit-overwrite": "Overschrijven van koptekst",
 	"flow-close-topic-submit": "Onderwerp sluiten",
@@ -258,5 +260,6 @@
 	"flow-terms-of-use-reply": "Door te klikken op \"{{int:flow-reply-submit}}\", gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
 	"flow-terms-of-use-edit": "Door deze wijzigingen op te slaan, gaat u akkoord met de gebruiksvoorwaarden van deze wiki.",
 	"flow-started-ago": "$1 begonnen",
-	"flow-newest-topics": "Nieuwste onderwerpen"
+	"flow-newest-topics": "Nieuwste onderwerpen",
+	"flow-spam-confirmedit-form": "Bevestig alstublieft dat u een mens bent door onderstaande captcha op te lossen: $1"
 }

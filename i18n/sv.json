@@ -310,7 +310,6 @@
 	"flow-special-type-workflow": "Arbetsflöde",
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "Kunde inte hitta innehåll som matchar typen och UUID:et.",
-	"flow-spam-confirmedit": "Som en anonym användare, kan inte du skicka externa länkar. Vänligen registrera dig för ett konto.",
 	"flow-preview-warning": "Du ser en förhandsvisning. Skicka in formuläret för publicera detta, eller klicka på \"{{int:flow-preview-return-edit-post}}\" för att fortsätta skriva.",
 	"flow-preview-return-edit-post": "Fortsätt redigera",
 	"flow-anonymous": "Anonym",

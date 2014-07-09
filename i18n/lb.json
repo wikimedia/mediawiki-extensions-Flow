@@ -75,6 +75,7 @@
 	"flow-error-default": "Et ass e Feeler geschitt.",
 	"flow-error-invalid-title": "En net valabelen Säitentitel gouf uginn.",
 	"flow-error-insufficient-permission": "Net genuch Rechter fir op den Inhalt zouzegräifen.",
+	"flow-error-no-commit": "Déi spezifiséiert Aktioun konnt net gespäichert ginn",
 	"flow-edit-header-submit": "Iwwerschrëft späicheren",
 	"flow-edit-header-submit-overwrite": "Iwwerschrëft iwwerschreiwen",
 	"flow-summarize-topic-submit": "Resuméieren",

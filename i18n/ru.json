@@ -8,7 +8,8 @@
 			"Okras",
 			"Tucvbif",
 			"Meshkov.a",
-			"Agilight"
+			"Agilight",
+			"HarpyWar"
 		]
 	},
 	"flow-desc": "Система управления потоками работ",
@@ -80,6 +81,7 @@
 	"flow-error-default": "Произошла ошибка.",
 	"flow-error-insufficient-permission": "Недостаточно прав для доступа к содержимому.",
 	"flow-error-fail-load-data": "Не удалось загрузить запрошенные данные.",
+	"flow-error-no-commit": "Настройка не может быть сохранена.",
 	"flow-edit-header-submit": "Сохранить заголовок",
 	"flow-edit-header-submit-overwrite": "Перезаписать заголовок",
 	"flow-summarize-topic-submit": "Суммировать",
@@ -102,6 +104,7 @@
 	"flow-comment-restored": "Восстановленный комментарий",
 	"flow-comment-deleted": "Удалённый комментарий",
 	"flow-comment-hidden": "Скрытый комментарий",
+	"flow-comment-moderated": "Отредактированные комментарии",
 	"flow-paging-rev": "Более новые темы",
 	"flow-paging-fwd": "Более старые темы",
 	"flow-notification-link-text-view-post": "Посмотреть сообщение",
@@ -150,5 +153,6 @@
 	"flow": "Поток",
 	"flow-special-type": "Тип",
 	"flow-special-uuid": "UUID",
-	"flow-special-invalid-uuid": "Не удалось найти материалы, соответствующие типу и UUID."
+	"flow-special-invalid-uuid": "Не удалось найти материалы, соответствующие типу и UUID.",
+	"flow-spam-confirmedit-form": "Введите текст с картинки ниже, если вы не робот: $1"
 }

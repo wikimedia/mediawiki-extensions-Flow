@@ -319,7 +319,6 @@
 	"flow-special-type-workflow": "工作流",
 	"flow-special-uuid": "UUID",
 	"flow-special-invalid-uuid": "无法找到与指定类型和UUID匹配的内容。",
-	"flow-spam-confirmedit": "作为匿名用户，您不能加入外部链接。请注册一个账户。",
 	"flow-preview-warning": "您在查看一个预览。提交表单以完成发布，或点击“{{int:flow-preview-return-edit-post}}”以继续编辑。",
 	"flow-preview-return-edit-post": "保持编辑",
 	"flow-anonymous": "匿名",
