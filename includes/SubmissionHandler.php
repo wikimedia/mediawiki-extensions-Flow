@@ -77,11 +77,7 @@ class SubmissionHandler {
 		$params = $this->extractBlockParameters( $request, $blocks );
 		foreach ( $interestedBlocks as $block ) {
 			$data = $params[$block->getName()];
-			$result = $block->onSubmit( $action, $user, $data );
-			if ( $result !== null ) {
-				$interestedBlocks[] = $block;
-				$success &= $result;
-			}
+			$success &= $block->onSubmit( $action, $user, $data );
 		}
 
 		return $success ? $interestedBlocks : array();
