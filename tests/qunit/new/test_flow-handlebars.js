@@ -53,17 +53,15 @@ QUnit.test( 'Handlebars.prototype.callHelper', 1, function( assert ) {
 QUnit.test( 'Handlebars.prototype.eachPost', 2, function( assert ) {
 	var ctx = {
 		posts: {
-			postIds: {
-				1: [300]
-			}
+			1: [300]
 		},
 		revisions: {
 			300: { content: 'a' }
 		}
 	};
 
-	assert.strictEqual( this.handlebarsProto.eachPost( ctx, 1, {} ), { content: 'a' }, 'Matches given id.' );
-	assert.strictEqual( this.handlebarsProto.eachPost( ctx, 2, {} ), { content: 'null' }, 'Missing revision id.' );
+	assert.deepEqual( this.handlebarsProto.eachPost( ctx, 1, {} ), { content: 'a' }, 'Matches given id.' );
+	assert.deepEqual( this.handlebarsProto.eachPost( ctx, 2, {} ), { content: null }, 'Missing revision id.' );
 } );
 
 QUnit.test( 'Handlebars.prototype.ifEquals', 2, function( assert ) {

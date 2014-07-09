@@ -429,8 +429,13 @@
 	 * @todo support multiple postIds in an array
 	 */
 	FlowHandlebars.prototype.eachPost = function ( context, postId, options ) {
-		var revId = context.posts[postId][0],
-			revision = context.revisions[revId] || { content: null };
+		var revId = ( context.posts && context.posts[postId] && context.posts[postId][0] ),
+			revision = ( context.revisions && context.revisions[revId] ) || { content: null };
+
+		if ( revision.content === null ) {
+			mw.flow.debug( '[eachPost] Failed to find revision object', arguments );
+		}
+
 		return options.fn ? options.fn( revision ) : revision;
 	};
 
