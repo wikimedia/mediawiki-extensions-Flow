@@ -1,0 +1,24 @@
+{{#unless isPreview}}
+	<span class="flow-author">
+		{{#if links}}
+			<a href="{{links.contribs.url}}"
+			   title="{{links.contribs.title}}"
+			   class="mw-userlink flow-ui-tooltip-target">
+				{{#if name}}
+					{{~name~}}
+				{{else}}
+					{{~l10n "flow-anonymous"}}
+				{{/if}}
+			</a>
+			<span class="mw-usertoollinks">(<a href="{{links.talk.url}}" class="new flow-ui-tooltip-target" title="{{links.talk.title}}">{{l10n "talkpagelinktext"}}</a>{{#if links.block}} | <a class="flow-ui-tooltip-target" href="{{links.block.url}}" title="{{links.block.title}}">{{l10n "blocklink"}}</a>{{/if}})</span>
+		{{/if}}
+	</span>
+{{else}}
+	<span class="flow-author"><a href="#" class="mw-userlink">
+		{{#if name}}
+			{{~name~}}
+		{{else}}
+			{{~l10n "flow-anonymous"}}
+		{{/if}}
+	</a></span>
+{{/unless}}
