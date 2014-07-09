@@ -735,7 +735,7 @@ $libstr
 		$code = preg_replace_callback(self::TOKEN_SEARCH, function ($matches) use (&$context) {
 			$tmpl = LightnCandy::compileToken($matches, $context);
 			return "{$matches[LightnCandy::POS_LSPACE]}'$tmpl'{$matches[LightnCandy::POS_RSPACE]}";
-		}, '{{' . substr( substr( $v, 1 ), 0, -1 ) . '}}' );
+		}, '{{{' . substr( substr( $v, 1 ), 0, -1 ) . '}}}' );
 
 		$trimmed = substr( substr( $code, 2 ), 0, -2 );
 

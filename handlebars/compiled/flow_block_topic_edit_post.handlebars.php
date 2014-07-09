@@ -42,7 +42,7 @@
 	<input type="hidden" name="topic_prev_revision" value="'.htmlentities(((is_array($in) && isset($in['revisionId'])) ? $in['revisionId'] : null), ENT_QUOTES, 'UTF-8').'" />
 	'.LCRun3::hbch($cx, 'ifAnonymous', Array(), $in, function($cx, $in) {return '
 		'.LCRun3::hbch($cx, 'tooltip', Array('positionClass'=>'down','contextClass'=>'progressive','extraClass'=>'flow-anon-warning flow-form-collapsible','isBlock'=>((is_array($in) && isset($in['true'])) ? $in['true'] : null)), $in, function($cx, $in) {return '
-	'.LCRun3::ch($cx, 'l10nParse', Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin'), 'encq'),LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin/signup'), 'encq')), 'encq').'';}).'
+	'.LCRun3::ch($cx, 'l10nParse', Array('flow-anon-warning',LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin'), 'raw'),LCRun3::ch($cx, 'linkWithReturnTo', Array('Special:UserLogin/signup'), 'raw')), 'encq').'';}).'
 	';}).'
 
 	<textarea name="topic_content" class="mw-ui-input flow-form-collapsible"
