@@ -5,6 +5,12 @@
 
 COMPILE=php5 ../maintenance/compileLightncandy.php
 
+POST_SUBTEMPLATES=flow_post.handlebars \
+		flow_post_actions.handlebars \
+		flow_post_author.handlebars \
+		flow_post_meta_actions.handlebars \
+		flow_post_replies.handlebars
+
 TOPIC_SUBTEMPLATES= flow_topic.handlebars \
 		flow_topic_titlebar.handlebars \
 		flow_topic_titlebar_content.handlebars \
@@ -149,14 +155,14 @@ compiled/flow_block_topic_moderate_post.handlebars.php: \
 		flow_block_topic_moderate_post.handlebars \
 		flow_errors.handlebars \
 		flow_moderate_post.handlebars \
-		flow_post.handlebars
+		$(POST_SUBTEMPLATES)
 	$(COMPILE) flow_block_topic_moderate_post
 
 compiled/flow_block_topic_moderate_topic.handlebars.php: \
 		flow_block_topic_moderate_topic.handlebars \
 		flow_errors.handlebars \
 		flow_moderate_topic.handlebars \
-		$(TOPIC_SUBTEMPLATES)
+		$(POST_SUBTEMPLATES)
 	$(COMPILE) flow_block_topic_moderate_topic
 
 compiled/flow_block_board-history.handlebars.php: \
@@ -173,7 +179,7 @@ compiled/flow_preview_button.handlebars.php: \
 	$(COMPILE) flow_preview_button
 
 compiled/flow_post.handlebars.php: \
-		flow_post.handlebars
+		$(POST_SUBTEMPLATES)
 	$(COMPILE) flow_post
 
 compiled/flow_tooltip.handlebars.php: \
