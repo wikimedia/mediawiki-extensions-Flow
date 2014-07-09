@@ -109,6 +109,12 @@ Then(/^the preview and cancel buttons have disappeared$/) do
   end
 end
 
+Then(/^the top post should not have a heading which contains "(.+)"$/) do |text|
+  # Ensure the page has re-rendered, give 5 seconds to give enough time for new posts to be saved
+  step 'the page renders in 5 seconds'
+  on(FlowPage).flow_first_topic_heading.should_not match(text)
+end
+
 Then(/^the top post should have a heading which contains "(.+)"$/) do |text|
   # Ensure the page has re-rendered, give 5 seconds to give enough time for new posts to be saved
   step 'the page has re-rendered'
