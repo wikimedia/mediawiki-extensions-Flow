@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_a316d758",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 92
+      },
+      "writtenOn": "2014-07-10T07:11:19Z",
+      "side": 1,
+      "message": "Will the same concept be applied to this feature?",
+      "revId": "7db9d1a20e929cc4e79f6a2e0ed0cac8f52a9262",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
