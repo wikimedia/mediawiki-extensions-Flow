@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_15eb9a78",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-10T20:39:19Z",
+      "side": 1,
+      "message": "I\u0027ve added a new method getOwnerTitle for this,\n\ngetArticleTitle returns Topic:Rx24ijlk4rjsdf instance\ngetOwnerTitle returns User_talk:Ebernhardson instance",
+      "revId": "a71fbff563bd890bc10f9e6f106a44238ca6b932",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_d5e4f2a5",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-10T20:39:19Z",
+      "side": 1,
+      "message": "when using getArticleTitle this is then subscribeToWorkflow",
+      "revId": "a71fbff563bd890bc10f9e6f106a44238ca6b932",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_f5efee80",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 11
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-10T20:39:19Z",
+      "side": 1,
+      "message": "use $workflow-\u003egetArticleTitle() here",
+      "revId": "a71fbff563bd890bc10f9e6f106a44238ca6b932",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
