@@ -5,31 +5,33 @@
 			 {{#if isMaxThreadingDepth}}
 			 data-flow-post-max-depth="1"
 			 {{/if}}>
-	{{#if isModerated}}
-		<div class="flow-post-main flow-moderated-post-content">
-			<span class="wikiglyph wikiglyph-flag"></span>
-			{{l10n "post_moderation_state" moderateState replyToId moderator.name}}
-		</div>
-	{{~else~}}
-		<div class="flow-post-main">
-			{{#with creator}}
-				{{> flow_post_author}}
-			{{/with}}
+		<div class="flow-post-main
+		  {{#if isModerated}}flow-collapsible-element flow-moderated-post-content flow-component flow-element-collapsed{{/if}}">
+			{{#if isModerated}}
+			<a href="#" class="flow-click-interactive"
+				data-flow-interactive-handler="collapserToggle">
+				<span class="wikiglyph wikiglyph-flag"></span>
+				{{l10n "post_moderation_state" moderateState replyToId moderator.name}}
+			</a>
+			{{/if}}
+			<div class="flow-component-hideable">
+				{{#with creator}}
+					{{> flow_post_author}}
+				{{/with}}
+				<div class="flow-post-content">
+					{{escapeContent content.format content.content}}
+				</div>
+				{{!-- This stuff is not needed in preview mode --}}
+				{{#unless isPreview}}
+					{{> flow_post_meta_actions}}
+					{{> flow_post_actions}}
+				{{/unless}}
 
-			<div class="flow-post-content">
-				{{escapeContent content.format content.content}}
-			</div>
-			{{!-- This stuff is not needed in preview mode --}}
+			{{!-- This stuff is also not needed in preview mode --}}
 			{{#unless isPreview}}
-				{{> flow_post_meta_actions}}
-				{{> flow_post_actions}}
+				{{> flow_post_replies}}
 			{{/unless}}
+			</div>
 		</div>
-
-		{{!-- This stuff is also not needed in preview mode --}}
-		{{#unless isPreview}}
-			{{> flow_post_replies}}
-		{{/unless}}
-	{{/if}}
 	</div>
 {{/with}}

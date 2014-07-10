@@ -981,7 +981,7 @@
 				STORAGE_TO_CLASS = {
 					// Conserve space in browser storage
 					'+': 'flow-topic-expanded',
-					'-': 'flow-topic-collapsed'
+					'-': 'flow-element-collapsed'
 				};
 
 			stateForTopic =	states[ topicId ];
@@ -991,9 +991,9 @@
 				classForTopic = STORAGE_TO_CLASS[stateForTopic];
 
 				if ( classForTopic === 'flow-topic-expanded' ) {
-					// Remove flow-topic-collapsed first (can be set on server for moderated), so it
+					// Remove flow-element-collapsed first (can be set on server for moderated), so it
 					// doesn't clash.
-					$topic.removeClass( 'flow-topic-collapsed' );
+					$topic.removeClass( 'flow-element-collapsed' );
 				}
 
 				$topic.addClass( classForTopic );
@@ -1153,15 +1153,15 @@
 					// Board default is collapsed; topic can be overridden to
 					// expanded, or not.
 
-					// We also remove flow-topic-collapsed.  That is set on the
+					// We also remove flow-element-collapsed.  That is set on the
 					// server for moderated posts, but an explicit user action
 					// overrides that.
-					$topic.removeClass( 'flow-topic-collapsed' ).toggleClass( 'flow-topic-expanded' );
+					$topic.removeClass( 'flow-element-collapsed' ).toggleClass( 'flow-topic-expanded' );
 
 				} else {
 					// .flow-board-collapsed-full; Board default is expanded;
 					// topic can be overridden to collapsed, or not.
-					$topic.toggleClass( 'flow-topic-collapsed' );
+					$topic.toggleClass( 'flow-element-collapsed' );
 				}
 
 				topicId = $topic.data('flow-id');
@@ -1171,7 +1171,7 @@
 				// Opposite of STORAGE_TO_CLASS
 				if ( $topic.hasClass( 'flow-topic-expanded' ) ) {
 					states[ topicId ] = '+';
-				} else if ( $topic.hasClass( 'flow-topic-collapsed' ) ) {
+				} else if ( $topic.hasClass( 'flow-element-collapsed' ) ) {
 					states[ topicId ] = '-';
 				} else {
 					delete states[ topicId ];
@@ -1181,6 +1181,21 @@
 				event.preventDefault();
 				this.blur();
 			}
+		};
+
+		/**
+		 * Sets the visibility class based on the user toggle action.
+		 * @param {Event} event
+		 */
+		FlowBoardComponent.UI.events.interactiveHandlers.collapserToggle = function ( event ) {
+			var $target = $( event.target ),
+				$el,
+				$component = $( this ).closest( '.flow-component' );
+
+			$el = $( this ).closest( '.flow-collapsible-element' );
+			$el.toggleClass( 'flow-element-collapsed' );
+			event.preventDefault();
+			this.blur();
 		};
 
 		/**
@@ -1936,10 +1951,10 @@
 			} else {
 				// Save
 				mw.flow.StorageEngine.localStorage.setItem( 'collapserState', newState );
-				flowBoard.$board.find( '.flow-topic-expanded, .flow-topic-collapsed' )
+				flowBoard.$board.find( '.flow-topic-expanded, .flow-element-collapsed' )
 					// If moderated topics are currently collapsed, leave them that way
-					.not( '.flow-topic-moderated.flow-topic-collapsed' )
-					.removeClass( 'flow-topic-expanded flow-topic-collapsed' );
+					.not( '.flow-topic-moderated.flow-element-collapsed' )
+					.removeClass( 'flow-topic-expanded flow-element-collapsed' );
 
 				// Remove individual topic states
 				mw.flow.StorageEngine.sessionStorage.removeItem( 'topicCollapserStates' );
@@ -1962,12 +1977,12 @@
 
 			$component = $topic.closest( '.flow-component' );
 			isFullView = $component.hasClass( 'flow-board-collapsed-full' );
-			isInverted = $topic.hasClass( 'flow-topic-collapsed-invert' );
+			isInverted = $topic.hasClass( 'flow-element-collapsed-invert' );
 
 			// Either full view and inverted (invisible)
 			// or compacted view and not inverted (invisible)
 			if ( isFullView === isInverted ) {
-				$topic.toggleClass( 'flow-topic-collapsed-invert' );
+				$topic.toggleClass( 'flow-element-collapsed-invert' );
 			}
 		};
 
