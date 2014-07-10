@@ -11,11 +11,23 @@
 		border: solid 1px @colorGrayLight;
 	}
 
-	&.flow-topic-collapsed .flow-author {
+	&.flow-element-collapsed .flow-author {
 		display: none;
 	}
 }
 
+.flow-moderated-post-content {
+	.flow-click-interactive {
+		margin-bottom: 8px;
+		display: block;
+	}
+}
+
+// @todo: Describe in generic class, consolidate with terms-of-use class
+.flow-click-interactive:visited,
+.flow-click-interactive,
+.flow-topic-moderated,
+.flow-moderated-post-content,
 .flow-post-moderated {
 	color: @colorTextLight;
 }
