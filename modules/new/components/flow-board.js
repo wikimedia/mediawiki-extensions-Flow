@@ -386,9 +386,9 @@
 		 * @param {jqXHR} jqxhr
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.loadMore = function ( info, data, jqxhr ) {
-			var $this = $( this ),
-				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
-				$errorTarget = $this.closest( '.flow-load-more' ),
+			var $target = $( this ).closest( '.flow-load-more' ),
+				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $target ),
+				$errorTarget = $target.find( '.flow-error-container' ),
 				$tmp;
 
 			// Generic error handling only works on forms; the interactive
@@ -406,7 +406,7 @@
 			}
 
 			// Render topiclist template
-			$this.before(
+			$target.before(
 				$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
 					'flow_topiclist_loop',
 					data.flow[ 'view-topiclist' ].result.topiclist
@@ -417,14 +417,14 @@
 
 			// Render load more template
 			if ( data.flow[ 'view-topiclist'].result.topiclist.links.pagination.fwd ) {
-				$this.replaceWith(
+				$target.replaceWith(
 					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
 						'flow_load_more',
 						data.flow[ 'view-topiclist' ].result.topiclist
 					) ).children()
 				);
 			} else {
-				$this.replaceWith(
+				$target.replaceWith(
 					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
 						'flow_no_more',
 						{}
@@ -436,7 +436,7 @@
 			FlowBoardComponent.UI.makeContentInteractive( $tmp );
 
 			// Remove the old load button (necessary if the above load_more template returns nothing)
-			$this.remove();
+			$target.remove();
 		};
 
 		/**
@@ -2020,27 +2020,29 @@
 		};
 
 		/**
+		 * Checks whether the user is near the end of the viewport
+		 */
+		function isEndNear( $end ) {
+			var threshold = $( window ).height(),
+				scrollBottom = $( window ).scrollTop() + $( window ).height();
+			return scrollBottom + threshold > $end.offset().top;
+		}
+
+		/**
 		 * Called on window.scroll. Checks to see if a FlowBoard needs to have more content loaded.
 		 */
 		FlowBoardComponent.UI.infiniteScrollCheck = function () {
-			var windowHeight = $( window ).height(),
-				scrollPosition = $( window ).scrollTop();
+			$.each( FlowBoardComponent.prototype.getInstances(), function () {
+				var flowBoard = this,
+					$loadMoreNodes = flowBoard.$loadMoreNodes || $();
 
-			if ( scrollPosition > 25 ) {
-				$.each( FlowBoardComponent.prototype.getInstances(), function () {
-					var flowBoard = this,
-						$loadMoreNodes = flowBoard.$loadMoreNodes || $();
-
-					// Check each loadMore button
-					$loadMoreNodes.each( function () {
-						// Only count this button as infinite-scrollable if it appears below the fold
-						// and that we have scrolled at least 50% of the way to it
-						if ( this.offsetTop > windowHeight && scrollPosition / ( this.offsetTop - windowHeight ) > 0.5 ) {
-							$( this ).click();
-						}
-					} );
+				// Check each loadMore button
+				$loadMoreNodes.each( function () {
+					if ( isEndNear( $( this ) ) ) {
+						$( this ).trigger( 'click' );
+					}
 				} );
-			}
+			} );
 		};
 
 		/**
