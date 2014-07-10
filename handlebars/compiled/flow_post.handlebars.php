@@ -25,7 +25,11 @@
 			 '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isMaxThreadingDepth'])) ? $in['isMaxThreadingDepth'] : null))) ? '
 			 data-flow-post-max-depth="1"
 			 ' : '').'>
-		<div class="flow-post-main">
+	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
+		<div class="flow-post-main flow-moderated-post-content">
+			<span class="wikiglyph wikiglyph-flag"></span>
+			'.LCRun3::ch($cx, 'l10n', Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)), 'encq').'
+		</div>' : '<div class="flow-post-main">
 			'.LCRun3::wi($cx, ((is_array($in) && isset($in['creator'])) ? $in['creator'] : null), $in, function($cx, $in) {return '
 				'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
 	<span class="flow-author">
@@ -51,10 +55,6 @@
 ').'
 
 			';}).'
-
-			'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
-				<div class="flow-moderated-post-content">'.LCRun3::ch($cx, 'l10n', Array('post_moderation_state',((is_array($in) && isset($in['moderateState'])) ? $in['moderateState'] : null),((is_array($in) && isset($in['replyToId'])) ? $in['replyToId'] : null),((is_array($in['moderator']) && isset($in['moderator']['name'])) ? $in['moderator']['name'] : null)), 'encq').'</div>
-			' : '').'
 
 			<div class="flow-post-content">
 				'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)), 'encq').'
@@ -208,6 +208,7 @@
 </div>
 
 		' : '').'
+	').'
 	</div>
 ';}).'
 ';
