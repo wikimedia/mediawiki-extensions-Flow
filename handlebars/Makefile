@@ -3,7 +3,7 @@
 # this Makefile with the metadata it calculates.
 #
 
-COMPILE=php ../maintenance/compileLightncandy.php
+COMPILE=php5 ../maintenance/compileLightncandy.php
 
 TOPIC_SUBTEMPLATES= flow_topic.handlebars \
 		flow_topic_titlebar.handlebars \

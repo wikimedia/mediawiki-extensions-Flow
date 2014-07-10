@@ -133,8 +133,8 @@ class TemplateHelper {
 				'helpers' => array(
 					'l10n' => 'Flow\TemplateHelper::l10n',
 					'uuidTimestamp' => 'Flow\TemplateHelper::uuidTimestamp',
-					'timestamp' => 'Flow\TemplateHelper::timestamp',
-					'html' => 'Flow\TemplateHelper::html',
+					'timestamp' => 'Flow\TemplateHelper::timestampHelper',
+					'html' => 'Flow\TemplateHelper::htmlHelper',
 					'block' => 'Flow\TemplateHelper::block',
 					'author' => 'Flow\TemplateHelper::author',
 					'math' => 'Flow\TemplateHelper::math',
@@ -185,11 +185,10 @@ class TemplateHelper {
 	 * timestamps and topic counts.
 	 */
 	// @todo: Maybe the straight message lookup should be a separate msg helper function, for clarity?
-	static public function l10n( $str /*, $args... */ ) {
+	static public function l10n( array $args, array $named ) {
 		$message = null;
-		$args = func_get_args();
 		// pull $str out of $args
-		array_shift( $args );
+		$str = array_shift( $args );
 
 		switch( $str ) {
 		case 'Reply':
@@ -290,12 +289,18 @@ class TemplateHelper {
 
 	/**
 	 * Generates a timestamp using the UUID, then calls the timestamp helper with it.
-	 * @param string $uuid
-	 * @param string $str
-	 * @param bool $timeAgoOnly
+	 * @param array $args Expects string $uuid, string $str, bool $timeAgoOnly = false
+	 * @param array $named No named arguments expected
 	 * @return null|string
 	 */
-	static public function uuidTimestamp( $uuid, $str, $timeAgoOnly = false ) {
+	static public function uuidTimestamp( array $args, array $named ) {
+		if ( count( $args ) < 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'two', 'three' );
+		}
+		$uuid = $args[0];
+		$str = $args[1];
+		$timeAgoOnly = isset( $args[2] ) ? $args[2] : false;
+
 		$obj = UUID::create( $uuid );
 		if ( !$obj ) {
 			return null;
@@ -307,13 +312,25 @@ class TemplateHelper {
 	}
 
 	/**
+	 * @param array $args Expects string $timestamp, string $str, bool $timeAgoOnly = false
+	 * @param array $named No named arguments expected
+	 * @return string
+	 */
+	static public function timestampHelper( array $args, array $named ) {
+		if ( count( $args ) !== 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'two' );
+		}
+		return self::timestamp( $args[0], $args[1], isset( $args[2] ) ? $args[2] : false );
+	}
+
+	/**
 	 * This server-side version of timestamp does not render time-ago.
 	 * @param integer $timestamp milliseconds since the unix epoch
 	 * @param string $str i18n key name for ago message
 	 * @param boolean $timeAgoOnly Only render the 'X minutes ago' portion
 	 * @return string|false
 	 */
-	static public function timestamp( $timestamp, $str, $timeAgoOnly = false ) {
+	static protected function timestamp( $timestamp, $str, $timeAgoOnly = false ) {
 		global $wgLang, $wgUser;
 
 		if ( !$timestamp || !$str || $timeAgoOnly === true ) {
@@ -345,8 +362,16 @@ class TemplateHelper {
 	 * @param string $string
 	 * @return array (html, 'raw')
 	 */
-	static public function html( $string ) {
+	static protected function html( $string ) {
 		return array( $string, 'raw' );
+	}
+
+	/**
+	 * @param array $args Expects string $html, to be output unescaped.
+	 * @return array (html, 'raw')
+	 */
+	static public function htmlHelper( array $args, array $named ) {
+		return self::html( isset( $args[0] ) ? $args[0] : 'undefined' );
 	}
 
 	/**
@@ -380,10 +405,15 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param array $block
+	 * @param array $args Expects one array $block
+	 * @param array $named No named arguments expected
 	 * @return array
 	 */
-	static public function block( $block ) {
+	static public function block( array $args, array $named ) {
+		if ( !isset( $args[0] ) ) {
+			throw new WrongNumberArgumentsException( $args, 'one' );
+		}
+		$block = $args[0];
 		$template = "flow_block_" . $block['type'];
 		if ( $block['block-action-template'] ) {
 			$template .= '_' . $block['block-action-template'];
@@ -445,14 +475,17 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param int $lvalue
-	 * @param string $op
-	 * @param int $rvalue
-	 *
+	 * @param array $args Expects string $lvalue, string $op, string $rvalue
+	 * @param array $named No named arguments expected
 	 * @return float|int
 	 * @throws Exception\FlowException
 	 */
-	static public function math( $lvalue, $op, $rvalue ) {
+	static public function math( array $args, array $named ) {
+		if ( count( $args ) !== 3 ) {
+			throw new WrongNumberArgumentsException( $args, 'three' );
+		}
+		list( $lvalue, $op, $rvalue ) = $args;
+
 		switch( $op ) {
 		case '+':
 			return $lvalue + $rvalue;
@@ -475,13 +508,17 @@ class TemplateHelper {
 	}
 
 	/**
-	 * Required to prevent recursion loop
-	 * @param array $rootBlock
-	 * @param array $revision
+	 * Required to prevent recursion loop rendering nested posts
 	 *
+	 * @param array $args Expects array $rootBlock, array $revision
+	 * @param array $named No named arguments expected
 	 * @return array
 	 */
-	static public function post( $rootBlock, $revision ) {
+	static public function post( array $args, array $named ) {
+		if ( count( $args ) !== 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'two' );
+		}
+		list( $rootBlock, $revision ) = $args;
 		return self::html( self::processTemplate( 'flow_post', array(
 			'revision' => $revision,
 			'rootBlock' => $rootBlock,
@@ -489,11 +526,16 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param array $revision
-	 * @param string $key
+	 * @param array $args Expects array $revision, string $key = 'timeAndDate'
+	 * @param array $named No named arguments expected
 	 * @return array
 	 */
-	static public function historyTimestamp( array $revision, $key = 'timeAndDate' ) {
+	static public function historyTimestamp( array $args, array $named ) {
+		if ( !$args ) {
+			throw new WrongNumberArgumentsException( $args, 'one', 'two' );
+		}
+		$revision = $args[0];
+		$key = isset( $args[1] ) ? $args[1] : 'timeAndDate';
 		$raw = false;
 		$formattedTime = $revision['dateFormats']['timeAndDate'];
 		$linkKeys = array( 'header-revision', 'topic-revision', 'post-revision' );
@@ -530,11 +572,15 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param array $revision
-	 *
+	 * @param array $args Expects array $revision
+	 * @param array $named No named arguments expected
 	 * @return array
 	 */
-	static public function historyDescription( array $revision ) {
+	static public function historyDescription( array $args, array $named ) {
+		if ( count( $args ) !== 1 ) {
+			throw new WrongNumberArgumentsException( $args, 'one' );
+		}
+		$revision = $args[0];
 		$i18nKey = $revision['properties']['_key'];
 		unset( $revision['properties']['_key'] );
 
@@ -543,17 +589,22 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param string $old
-	 * @param string $new
+	 * @param array $args Expects string $old, string $new
+	 * @param array $named No named arguments expected
 	 * @return array
 	 */
-	static public function showCharacterDifference( $old, $new ) {
+	static public function showCharacterDifference( array $args, array $named ) {
+		if ( count( $args ) !== 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'two' );
+		}
+		list( $old, $new ) = $args;
 		return self::html( \ChangesList::showCharacterDifference( $old, $new ) );
 	}
 
 	/**
 	 * Creates a special script tag to be processed client-side. This contains extra template HTML, which allows
 	 * the front-end to "progressively enhance" the page with more content which isn't needed in a non-JS state.
+	 *
 	 * @param array $options
 	 * @return array
 	 */
@@ -578,23 +629,29 @@ class TemplateHelper {
 	 *
 	 * @return array
 	 */
-	static public function l10nParse( $str /*, $args... */ ) {
-		$args = func_get_args();
-		array_shift( $args );
+	static public function l10nParse( array $args, array $named ) {
+		$str = array_shift( $args );
 		return self::html( wfMessage( $str, $args )->parse() );
 	}
 
 	/**
-	 * @param string $diffContent Plain text output of DifferenceEngine::getDiffBody
-	 * @param string $oldTimestamp Time when the `old` content was created
-	 * @param string $newTimestamp Time when the `new` content was created
-	 * @param string $oldAuthor Creator of the `old` content
-	 * @param string $newAuthor Creator of the `new` content
-	 * @param string $oldLink Url pointing to `old` content
-	 * @param string $newLink Url pointing to `new` content
+	 * @param array $args Expects seven arguments as follows:
+	 *	   array $named No named arguments expected
+	 *	   string $diffContent Plain text output of DifferenceEngine::getDiffBody
+	 *	   string $oldTimestamp Time when the `old` content was created
+	 *	   string $newTimestamp Time when the `new` content was created
+	 *	   string $oldAuthor Creator of the `old` content
+	 *	   string $newAuthor Creator of the `new` content
+	 *	   string $oldLink Url pointing to `old` content
+	 *	   string $newLink Url pointing to `new` content
+	 * @param array $named No named arguments expected
 	 * @return array HTML wrapped in array to prevent lightncandy from escaping
 	 */
-	static public function diffRevision( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink ) {
+	static public function diffRevision( array $args, array $named ) {
+		if ( count( $args ) !== 7 ) {
+			throw new WrongNumberArgumentsException( $args, 'seven' );
+		}
+		list ( $diffContent, $oldTimestamp, $newTimestamp, $oldAuthor, $newAuthor, $oldLink, $newLink ) = $args;
 		$differenceEngine = new \DifferenceEngine();
 		$multi = $differenceEngine->getMultiNotice();
 		// Display a message when the diff is empty
@@ -616,13 +673,15 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param string $timestamp
-	 * @param string $user
-	 * @param string $link
-	 *
+	 * @param array $args Expects string $timestamp, string $user, string $link
+	 * @param array $named No named arguments expected
 	 * @return string
 	 */
-	static public function generateDiffViewTitle( $timestamp, $user, $link ) {
+	static public function generateDiffViewTitle( array $args, array $named ) {
+		if ( count( $args ) !== 3 ) {
+			throw new WrongNumberArgumentsException( $args, 'three' );
+		}
+		list( $timestamp, $user, $link ) = $args;
 		$message = wfMessage( 'flow-compare-revisions-revision-header' )
 			->params( $timestamp )
 			->params( $user );
@@ -637,32 +696,40 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param array $actions
-	 * @param string $moderationState
-	 *
+	 * @param array $args Expects array $actions, string $moderationState
+	 * @param array $named No named arguments expected
 	 * @return string
 	 */
-	static public function moderationAction( array $actions, $moderationState ) {
+	static public function moderationAction( array $args, array $named ) {
+		if ( count( $args ) !== 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'two' );
+		}
+		list( $actions, $moderationState ) = $args;
 		return isset( $actions[$moderationState] ) ? $actions[$moderationState]['url'] : '';
 	}
 
 	/**
-	 * @param array $actions
-	 * @param string $moderationState
-	 *
+	 * @param array $args Expects array $actions, string $moderationState
+	 * @param array $named No named arguments expected
 	 * @return string
 	 */
-	static public function moderationActionText( array $actions, $moderationState ) {
+	static public function moderationActionText( array $args, array $named ) {
+		if ( count( $args ) !== 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'two' );
+		}
+		list( $actions, $moderationState ) = $args;
 		return isset( $actions[$moderationState] ) ? $actions[$moderationState]['title'] : '';
 	}
 
 	/**
 	 * Return information about given user
-	 * @param string $feature key of property to retrieve e.g. name, id
 	 *
+	 * @param array $args Expects string $feature e.g. name, id
+	 * @param array $named No named arguments expected
 	 * @return string value of property
 	 */
-	static public function user( $feature = 'name' ) {
+	static public function user( array $args, array $named ) {
+		$feature = isset( $args[0] ) ? $args[0] : 'name';
 		$user = RequestContext::getMain()->getUser();
 		$userInfo = array(
 			'id' => $user->getId(),
@@ -702,7 +769,7 @@ class TemplateHelper {
 	 *
 	 * @return string modified url
 	 */
-	static public function addReturnTo( $url ) {
+	static protected function addReturnTo( $url ) {
 		$ctx = RequestContext::getMain();
 		$returnTo = $ctx->getTitle();
 		if ( !$returnTo ) {
@@ -724,12 +791,15 @@ class TemplateHelper {
 
 	/**
 	 * Adds returnto parameter pointing to given Title to an existing URL
-	 * @param string $title
-	 *
+	 * @param array $args Expects string $title
+	 * @param array $named No named arguments expected
 	 * @return string modified url
 	 */
-	static public function linkWithReturnTo( $title ) {
-		$title = Title::newFromText( $title );
+	static public function linkWithReturnTo( array $args, array $named ) {
+		if ( count( $args ) !== 1 ) {
+			throw new WrongNumberArgumentsException( $args, 'one' );
+		}
+		$title = Title::newFromText( $args[0] );
 		if ( !$title ) {
 			return '';
 		}
@@ -747,11 +817,15 @@ class TemplateHelper {
 	 * It is expected that all content with contentType of html has been
 	 * processed by parsoid and is safe for direct output into the document.
 	 *
-	 * @param string $contentType
-	 * @param string $content
+	 * @param array $args Expects string $contentType, string $content
+	 * @param array $named No named arguments expected
 	 * @return string
 	 */
-	static public function escapeContent( $contentType, $content ) {
+	static public function escapeContent( array $args, array $named ) {
+		if ( count( $args ) !== 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'two' );
+		}
+		list( $contentType, $content ) = $args;
 		return $contentType === 'html' ? self::html( $content ) : $content;
 	}
 
@@ -810,16 +884,31 @@ class TemplateHelper {
 	 * Returns the provided content as a plaintext string. Commonly for
 	 * injecting into an i18n message.
 	 *
-	 * @param string $contentFormat html|wikitext|plaintext
-	 * @param string $content
+	 * @param array $args Expects string $contentFormat, string $content
+	 * @param array $named No named arguments expected
 	 * @return string plaintext
 	 */
-	static public function plaintextSnippet( $contentFormat, $content ) {
+	static public function plaintextSnippet( array $args, array $named ) {
+		if ( count( $args ) !== 2 ) {
+			throw new WrongNumberArgumentsException( $args, 'two' );
+		}
+		list( $contentFormat, $content ) = $args;
 		if ( $contentFormat === 'html' ) {
 			return Utils::htmlToPlaintext( $content, 200 );
 		} else {
 			global $wgLang;
 			return $wgLang->truncate( trim( $content ), 200 );
+		}
+	}
+}
+
+class WrongNumberArgumentsException {
+	public function __construct( array $args, $minExpected, $maxExpected = null ) {
+		$count = count( $args );
+		if ( $maxExpected === null ) {
+			parent::__construct( "Expected $minExpected arguments but received $count" );
+		} else {
+			parent::__construct( "Expected between $minExpected and $maxExpected arguments but received $count" );
 		}
 	}
 }
