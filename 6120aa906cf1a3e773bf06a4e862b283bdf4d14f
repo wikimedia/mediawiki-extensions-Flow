@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_5cc834aa",
+        "filename": "includes/TemplateHelper.php",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-10T12:40:52Z",
+      "side": 1,
+      "message": "Unrelated, but it looks like author doesn\u0027t exist and is not used. We can remove this line.",
+      "revId": "6120aa906cf1a3e773bf06a4e862b283bdf4d14f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
