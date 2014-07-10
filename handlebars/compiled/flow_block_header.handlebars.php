@@ -4,6 +4,9 @@
             'jstrue' => false,
             'jsobj' => false,
             'spvar' => true,
+            'prop' => false,
+            'method' => false,
+            'mustlok' => false,
             'debug' => $debugopt,
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
@@ -18,9 +21,9 @@
     return '<div class="flow-board-header">
 	<div class="flow-board-header-detail-view">
 		'.((LCRun3::ifvar($cx, ((is_array($in['revision']) && isset($in['revision']['content'])) ? $in['revision']['content'] : null))) ? '
-			'.LCRun3::ch($cx, 'escapeContent', Array(((is_array($in['revision']['content']) && isset($in['revision']['content']['format'])) ? $in['revision']['content']['format'] : null),((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null)), 'encq').'
+			'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['revision']['content']) && isset($in['revision']['content']['format'])) ? $in['revision']['content']['format'] : null),((is_array($in['revision']['content']) && isset($in['revision']['content']['content'])) ? $in['revision']['content']['content'] : null)),Array()), 'encq').'
 		' : '
-			<p>'.LCRun3::ch($cx, 'l10n', Array('flow-header-empty'), 'encq').'</p>
+			<p>'.LCRun3::ch($cx, 'l10n', Array(Array('flow-header-empty'),Array()), 'encq').'</p>
 		').'
 
 		'.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? '
