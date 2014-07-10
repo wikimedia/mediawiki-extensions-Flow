@@ -28,6 +28,25 @@
 	}
 }
 
+.flow-moderated-topic-title,
+// Override default Vector styles
+div#content h2.flow-topic-title {
+	padding: 0;
+	margin: 0 0 .33em;
+	border-bottom: none;
+	font-family: sans-serif;
+	font-weight: bold;
+	word-break: break-word;
+	word-wrap: break-word;
+	overflow: visible;
+}
+
+// Override default Vector heading styles
+div#content h2.flow-topic-title {
+	font-size: 1.75em;
+}
+
+
 // MEDIA QUERIES
 @media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
 	.flow-topic-titlebar {
