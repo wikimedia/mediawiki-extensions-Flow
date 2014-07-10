@@ -2016,28 +2016,29 @@
 			} );
 		};
 
+		function isEndNear( $end ) {
+			var threshold = 1000,
+				scrollBottom = $( window ).scrollTop() + $( window ).height();
+			return scrollBottom + threshold > $end.offset().top;
+		}
+
 		/**
 		 * Called on window.scroll. Checks to see if a FlowBoard needs to have more content loaded.
 		 */
 		FlowBoardComponent.UI.infiniteScrollCheck = function () {
-			var windowHeight = $( window ).height(),
-				scrollPosition = $( window ).scrollTop();
+			$.each( FlowBoardComponent.prototype.getInstances(), function () {
+				var flowBoard = this,
+					$loadMoreNodes = flowBoard.$loadMoreNodes || $();
 
-			if ( scrollPosition > 25 ) {
-				$.each( FlowBoardComponent.prototype.getInstances(), function () {
-					var flowBoard = this,
-						$loadMoreNodes = flowBoard.$loadMoreNodes || $();
-
-					// Check each loadMore button
-					$loadMoreNodes.each( function () {
-						// Only count this button as infinite-scrollable if it appears below the fold
-						// and that we have scrolled at least 50% of the way to it
-						if ( this.offsetTop > windowHeight && scrollPosition / ( this.offsetTop - windowHeight ) > 0.5 ) {
-							$( this ).click();
-						}
-					} );
+				// Check each loadMore button
+				$loadMoreNodes.each( function () {
+					// Only count this button as infinite-scrollable if it appears below the fold
+					// and that we have scrolled at least 50% of the way to it
+					if ( isEndNear( $( this ) ) ) {
+						$( this ).click();
+					}
 				} );
-			}
+			} );
 		};
 
 		/**
