@@ -4,7 +4,6 @@
 
 // Visually mark moderated comments and posts
 .flow-topic-moderated {
-	color: @colorTextLight;
 
 	.flow-topic-titlebar {
 		background-color: white;
@@ -16,6 +15,9 @@
 	}
 }
 
+// @todo: Describe in generic class, consolidate with terms-of-use class
+.flow-topic-moderated,
+.flow-moderated-post-content,
 .flow-post-moderated {
 	color: @colorTextLight;
 }
