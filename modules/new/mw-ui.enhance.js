@@ -86,33 +86,51 @@
 		}
 	} );
 
-	/**
-	 * Disables action and submit buttons when a form has required fields
-	 * @param {jQuery} $form jQuery object corresponding to a form element.
-	 */
-	function enableFormWithRequiredFields( $form ) {
-		var
-			$fields = $form.find( 'input, textarea' ).filter( '[required]' ),
-			ready = true;
-
-		$fields.each( function () {
-			if ( this.value === '' ) {
-				ready = false;
-			}
-		} );
-
-		// @todo scrap data-role? use submit types? or a single role=action?
-		$form.find( '.flow-ui-button' ).filter( '[data-role=action], [data-role=submit]' )
-			.attr( 'disabled', !ready );
-	}
 	/*
 	 * Disable / enable preview and submit buttons without/with text in field.
 	 * Usage: field needs required attribute
 	 */
 	$( document ).ready( function () {
+		/**
+		 * Disables action and submit buttons when a form has required fields
+		 * @param {jQuery} $form jQuery object corresponding to a form element.
+		 */
+		function mwUiEnableFormWithRequiredFields( $form ) {
+			var $fields = $form.find( 'input, textarea, select' ).filter( '[required]' ),
+				ready = true;
+
+			$fields.each( function () {
+				var type = this.tagName === 'SELECT' ? 'select' : this.type;
+				switch ( type ) {
+					case 'radio':
+					case 'checkbox':
+						if ( !this.checked ) {
+							ready = false;
+						}
+						break;
+					case 'select':
+						if ( this.options[ this.selectedIndex ].value === '' ) {
+							ready = false;
+						}
+						break;
+					default:
+						if ( this.value === '' ) {
+							ready = false;
+						}
+				}
+			} );
+
+			// @todo scrap data-role? use submit types? or a single role=action?
+			$form.find( '.flow-ui-button' ).filter( '[type=submit], [data-role=action], [data-role=submit]' )
+				.attr( 'disabled', !ready );
+		}
+
 		$( document ).on( 'keyup.flow-actions-disabler', '.mw-ui-input', function () {
-			enableFormWithRequiredFields( $( this ).closest( 'form' ) );
+			mwUiEnableFormWithRequiredFields( $( this ).closest( 'form' ) );
 		} );
+
+		// Run on ready to initialize every form
+		$( 'form' ).find( '.mw-ui-input:first' ).trigger( 'keyup.flow-actions-disabler' );
 	} );
 
 
@@ -244,4 +262,4 @@
 			.on( 'mouseleave.mw-ui-enhance blur.mw-ui-enhance click.mw-ui-enhance', '.flow-ui-tooltip-target', onMwUiTooltipBlur );
 	} );
 
-}( mw, jQuery ) );
+}( mediaWiki, jQuery ) );
