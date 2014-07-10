@@ -434,7 +434,7 @@
 	</div>
 
 	'.((LCRun3::ifvar($cx, ((is_array($in['links']['pagination']) && isset($in['links']['pagination']['fwd'])) ? $in['links']['pagination']['fwd'] : null))) ? '
-	<div class="flow-load-more">
+	<div class="flow-load-more flow-ui-fallback-element">
 		<div class="flow-error-container">
 			'.'
 		</div>
