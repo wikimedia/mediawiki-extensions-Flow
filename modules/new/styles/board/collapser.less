@@ -64,6 +64,23 @@ div.flow-topic-collapsed {
 		}
 	}
 
+	// Truncate text
+	.flow-topic-title {
+		white-space: nowrap;
+		overflow: hidden;
+		-webkit-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+	}
+
+	.flow-topic-expanded {
+		.flow-topic-title {
+			overflow: visible;
+			white-space: normal;
+		}
+	}
+
+	.flow-moderated-topic-title,
+	.flow-topic-summary,
 	.flow-post,
 	.flow-reply-form {
 		display: none;
