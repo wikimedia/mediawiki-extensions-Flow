@@ -1,9 +1,26 @@
+
 @import 'mediawiki.mixins';
 @import 'flow.colors';
 @import 'flow.helpers';
 
 // @todo: Find better home for this css
 .client-js {
+
+	/*
+	Fallback elements
+
+	Fallback elements are invisible when JavaScript is enabled. They only exist when JavaScript does not run.
+
+	Markup:
+	<div class="flow-ui-fallback-element"></div>
+
+	Styleguide X.
+	*/
+	.flow-ui-fallback-element {
+		visibility: hidden;
+		height: 0;
+	}
+
 	// API interaction indicator
 	.flow-api-inprogress {
 		opacity: 0.5;
