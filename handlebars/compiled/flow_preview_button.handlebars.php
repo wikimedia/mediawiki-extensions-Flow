@@ -4,6 +4,9 @@
             'jstrue' => false,
             'jsobj' => false,
             'spvar' => true,
+            'prop' => false,
+            'method' => false,
+            'mustlok' => false,
             'debug' => $debugopt,
         ),
         'helpers' => Array(            'l10n' => 'Flow\TemplateHelper::l10n',
@@ -18,6 +21,6 @@
         data-flow-api-target="< form textarea"
         name="preview"
         data-role="action"
-        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array('flow-preview'), 'encq').'</button>';
+        class="flow-ui-button flow-ui-progressive flow-ui-quiet">'.LCRun3::ch($cx, 'l10n', Array(Array('flow-preview'),Array()), 'encq').'</button>';
 }
 ?>
