@@ -67,10 +67,13 @@ class Logger {
 		$workflow = Container::get( 'storage.workflow' )->get( $workflowId );
 		if ( $workflow ) {
 			$title = $workflow->getArticleTitle();
-		} else {
+		}
+		$error = false;
+		if ( !$title ) {
 			// We dont want to fail logging due to this, so repoint it at Main_Page which
 			// will probably be noticed, also log it below once we know the logId
 			$title = Title::newMainPage();
+			$error = true;
 		}
 
 		// insert logging entry
@@ -81,9 +84,9 @@ class Logger {
 		$logEntry->setComment( $reason );
 		$logId = $logEntry->insert();
 
-		if ( $title === null ) {
+		if ( $error ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Could not map workflowId to workflow object for ' . $workflowId->getAlphadecimal() . " log entry $logId defaulted to Main_Page");
-		}
+		i
 
 		return $logId;
 	}
