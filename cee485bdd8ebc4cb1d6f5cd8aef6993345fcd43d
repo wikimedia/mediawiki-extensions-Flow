@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_5255ad51",
+        "filename": "Flow.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 401
+      },
+      "writtenOn": "2014-07-11T20:22:50Z",
+      "side": 1,
+      "message": "I think you mean \"FlowNamespaces\" here? :-)\n\n(mw.org should have a a codeGen.js gadget so its pages have the right code in it for your actual extension name.)",
+      "revId": "cee485bdd8ebc4cb1d6f5cd8aef6993345fcd43d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
