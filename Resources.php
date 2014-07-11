@@ -68,7 +68,7 @@ $wgResourceModules += array(
 			"flow_topic_titlebar_content.handlebars",
 			"flow_topic_titlebar_summary.handlebars",
 			"flow_topiclist_loop.handlebars",
-			"flow_preview_button.handlebars",
+			"flow_form_buttons.handlebars",
 			"flow_preview_warning.handlebars",
 			"timestamp.handlebars",
 		),

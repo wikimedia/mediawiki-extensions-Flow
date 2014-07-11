@@ -20,7 +20,7 @@ TOPIC_SUBTEMPLATES= flow_topic.handlebars \
 		flow_topiclist_loop.handlebars \
 		flow_load_more.handlebars \
 		flow_errors.handlebars \
-		flow_preview_button.handlebars
+		flow_form_buttons.handlebars
 
 all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_header_edit.handlebars.php \
@@ -44,7 +44,7 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_topicsummary_single_view.handlebars.php \
 		compiled/flow_block_topicsummary_diff_view.handlebars.php \
 		compiled/flow_board.handlebars.php \
-		compiled/flow_preview_button.handlebars.php \
+		compiled/flow_form_buttons.handlebars.php \
 		compiled/flow_post.handlebars.php \
 		compiled/flow_tooltip.handlebars.php \
 		compiled/timestamp.handlebars.php
@@ -74,7 +74,7 @@ compiled/flow_block_topicsummary_close.handlebars.php: \
 compiled/flow_block_topicsummary_edit.handlebars.php: \
 		flow_block_topicsummary_edit.handlebars \
 		flow_errors.handlebars \
-		flow_preview_button.handlebars
+		flow_form_buttons.handlebars
 	$(COMPILE) flow_block_topicsummary_edit
 
 compiled/flow_block_topicsummary_single_view.handlebars.php: \
@@ -174,9 +174,9 @@ compiled/flow_board.handlebars.php: \
 		flow_block_loop.handlebars
 	$(COMPILE) flow_board
 
-compiled/flow_preview_button.handlebars.php: \
-		flow_preview_button.handlebars
-	$(COMPILE) flow_preview_button
+compiled/flow_form_buttons.handlebars.php: \
+		flow_form_buttons.handlebars
+	$(COMPILE) flow_form_buttons
 
 compiled/flow_post.handlebars.php: \
 		$(POST_SUBTEMPLATES)
