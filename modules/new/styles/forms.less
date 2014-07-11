@@ -3,16 +3,6 @@
 @import 'flow.helpers';
 @import 'flow.variables';
 
-.client-nojs {
-	.flow-reply-form,
-	.flow-newtopic-form {
-		// Hide cancel button in no-JavaScript mode.
-		.flow-ui-destructive {
-			display: none;
-		}
-	}
-}
-
 // Avoid flash of unstyled content
 .client-js {
 	.flow-anon-warning {
@@ -20,60 +10,7 @@
 	}
 }
 
-// Placeholder text styling helper
-.field-placeholder-styling() {
-	font-style: italic;
-	font-weight: normal;
-}
-
 .flow-board {
-	// Make all text fields 100% wide by default
-	.mw-ui-fieldtype-text,
-	.mw-ui-fieldtag-textarea {
-		.box-sizing(border-box);
-		width: 100%;
-	}
-
-	.mw-ui-input,
-	textarea {
-		.box-sizing(border-box);
-		width: 100%;
-		padding: .3em .3em .3em .6em;
-		display: block;
-		color: inherit;
-		font-family: inherit;
-		font-size: inherit;
-		line-height: inherit;
-		// Transition for box-shadow @winter
-		.transition(~"border linear .2s, box-shadow linear .2s");
-
-		// Placeholder text styling must be set individually for each browser @winter
-		&::-webkit-input-placeholder { // webkit
-			.field-placeholder-styling;
-		}
-		&::-moz-placeholder { // FF 4-18
-			.field-placeholder-styling;
-		}
-		&:-moz-placeholder { // FF >= 19
-			.field-placeholder-styling;
-		}
-		&:-ms-input-placeholder { // IE >= 10
-			.field-placeholder-styling;
-		}
-	}
-
-	textarea {
-		min-height: 8em;
-	}
-
-	// Add blue box-shadow on focus @winter
-	.mw-ui-input:focus,
-	textarea:focus {
-		box-shadow: inset .45em 0 0 #5088f7;
-		-moz-box-shadow: inset .45em 0 0 #5088f7;
-		-webkit-box-shadow: inset .45em 0 0 #5088f7;
-	}
-
 	.flow-anon-warning {
 		margin-bottom: 0.75em;
 		a {
@@ -83,26 +20,6 @@
 			color: #fff !important;
 			font-weight: bold;
 		}
-	}
-}
-
-.flow-newtopic-form {
-	// Attach these two inputs together to make them seem like one congruous input
-	input.mw-ui-input,
-	textarea.mw-ui-input {
-		margin-top: 0;
-		margin-bottom: 0;
-	}
-	textarea.mw-ui-input {
-		padding-left: @topicIndent;
-		border-top-width: 0;
-	}
-	// Make the new topic input mimic new topic text
-	input.mw-ui-input {
-		padding-left: .75em;
-		font-size: 1.75em;
-		font-weight: bold;
-		line-height: 1.25em;
 	}
 }
 
