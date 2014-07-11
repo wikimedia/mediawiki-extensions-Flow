@@ -60,7 +60,7 @@ jshint: nodecheck
 	@node_modules/.bin/jshint modules/* tests/qunit/* --config .jshintrc
 
 checkless:
-	@php ../../maintenance/checkLess.php
+	@${PHP} ../../maintenance/checkLess.php
 
 ###
 # Testing

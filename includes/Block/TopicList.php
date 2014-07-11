@@ -213,6 +213,9 @@ class TopicListBlock extends AbstractBlock {
 
 		$workflows = $this->storage->getMulti( 'Workflow', $workflowIds );
 		$found = Container::get( 'query.topiclist' )->getResults( $page->getResults() );
+		wfDebugLog( 'Flow', 'Rendering topiclist for ids: ' . implode( ', ', array_map( function( $id ) {
+			return $id->getAlphadecimal();
+		}, $workflowIds ) ) );
 
 		return $response + $serializer->formatApi( $this->workflow, $workflows, $found, $page, $ctx );
 	}
