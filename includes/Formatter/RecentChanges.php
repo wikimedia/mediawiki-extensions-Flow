@@ -3,6 +3,7 @@
 namespace Flow\Formatter;
 
 use Flow\Model\PostRevision;
+use Flow\Parsoid\Utils;
 use ChangesList;
 use IContextSource;
 use Linker;
@@ -85,7 +86,12 @@ class RecentChanges extends AbstractFormatter {
 
 		$description = $data['properties']['user-links']['raw'];
 		if ( $data['changeType'] === 'edit-post' ) {
-			$description .= ' (<em>' . strip_tags( $data['content'] ) . '</em>)';
+			if ( $data['content']['format'] === 'html' ) {
+				$content = Utils::htmlToPlaintext( $data['content']['content'] );
+			} else {
+				$content = $data['content']['content'];
+			}
+			$description .= " (<em>$content</em>)";
 		}
 
 		return $this->formatAnchorsAsPipeList( $links, $ctx ) .
