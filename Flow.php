@@ -350,6 +350,7 @@ $wgAutoloadClasses['Flow\Exception\WikitextException'] = $dir . 'includes/Except
 $wgAutoloadClasses['Flow\Exception\NoIndexException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\FailCommitException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 $wgAutoloadClasses['Flow\Exception\CrossWikiException'] = $dir . 'includes/Exception/ExceptionHandling.php';
+$wgAutoloadClasses['Flow\Exception\WrongNumberArgumentsException'] = $dir . 'includes/Exception/ExceptionHandling.php';
 
 // Register Flow import paths
 $wgResourceLoaderLESSImportPaths = array_merge( $wgResourceLoaderLESSImportPaths, array(
