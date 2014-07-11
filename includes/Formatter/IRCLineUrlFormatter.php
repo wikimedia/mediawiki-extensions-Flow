@@ -13,6 +13,9 @@ use RecentChange;
  * recent changes feed.
  */
 class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
+	protected function getHistoryType() {
+		return 'irc';
+	}
 
 	/**
 	 * Allows us to set the rc_comment field
@@ -40,32 +43,9 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 	 * @return string
 	 */
 	protected function formatDescription( array $data, \IContextSource $ctx ) {
-		// Build description message, piggybacking on history i18n
-		$changeType = $data['changeType'];
-		$actions = $this->permissions->getActions();
-		$key = $actions->getValue( $changeType, 'history', 'i18n-message' );
-		$msg = wfMessage( $key . '-irc' );
-		if ( !$msg->exists() ) {
-			// Some messages are already suitable for IRC consumption, so they don't
-			// have -irc copies
-			$msg = wfMessage( $key );
-		}
-		$source = $actions->getValue( $changeType, 'history', 'i18n-params' );
-
-		$params = array();
-		foreach ( $source as $param ) {
-			if ( isset( $data['properties'][$param] ) ) {
-				$params[] = $data['properties'][$param];
-			} else {
-				wfDebugLog( 'Flow', __METHOD__ . ": Missing expected parameter $param for change type $changeType" );
-				$params[] = '';
-			}
-		}
-
-		return $msg->params( $params )->inLanguage( 'en' )->text();
-
+		$msg = $this->getDescription( $data, $ctx );
+		return $msg->inLanguage( 'en' )->text();
 	}
-
 
 	/**
 	 * @param RecentChange $rc
