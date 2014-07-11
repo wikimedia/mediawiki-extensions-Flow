@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_fc3592f4",
+        "filename": "includes/Notifications/Controller.php",
+        "patchSetId": 16
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-11T18:31:46Z",
+      "side": 1,
+      "message": "this also worries me, but since we know flow-post-reply only fires against NS_TOPIC we should be ok at least for now, nothing will have a huge number of watchers(yet).",
+      "revId": "0cc9873da0343c71e8cf0b3c71d1434951990f0e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
