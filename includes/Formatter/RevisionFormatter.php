@@ -141,7 +141,6 @@ class RevisionFormatter {
 			return array();
 		}
 
-		$this->urlGenerator->withWorkflow( $row->workflow );
 		$moderatedRevision = $this->templating->getModeratedRevision( $row->revision );
 		$res = array(
 			'workflowId' => $row->workflow->getId()->getAlphadecimal(),
