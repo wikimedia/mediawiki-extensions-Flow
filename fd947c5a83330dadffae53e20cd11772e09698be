@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_1c4e1e3d",
+        "filename": "modules/new/styles/mediawiki.ui/forms.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-11T17:32:02Z",
+      "side": 1,
+      "message": "Can we drop support for textarea here? If so we can make this global alongside mw-ui-form",
+      "revId": "fd947c5a83330dadffae53e20cd11772e09698be",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_dc5f76e7",
+        "filename": "modules/new/styles/mediawiki.ui/forms.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-11T17:32:02Z",
+      "side": 1,
+      "message": "Also here textarea.mw-ui-input",
+      "revId": "fd947c5a83330dadffae53e20cd11772e09698be",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_bc54aaca",
+        "filename": "modules/new/styles/mediawiki.ui/forms.less",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-11T17:32:02Z",
+      "side": 1,
+      "message": "Also here textarea.mw-ui-input",
+      "revId": "fd947c5a83330dadffae53e20cd11772e09698be",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
