@@ -665,8 +665,8 @@ class TemplateHelper {
 
 		return self::html( $differenceEngine->addHeader(
 			$diffContent,
-			self::generateDiffViewTitle( $oldTimestamp, $oldAuthor, $oldLink ),
-			self::generateDiffViewTitle( $newTimestamp, $newAuthor, $newLink ),
+			self::generateDiffViewTitle( array( $oldTimestamp, $oldAuthor, $oldLink ), array() ),
+			self::generateDiffViewTitle( array( $newTimestamp, $newAuthor, $newLink ), array() ),
 			$multi,
 			$notice
 		) );
