@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_fc4eb29a",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-11T18:54:58Z",
+      "side": 1,
+      "message": "The message doesn\u0027t have wikitext, escaped() should be sufficient",
+      "revId": "5608d5f0898a0a08fd8760911c3625b89f4f42fa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_6f6e8295",
+        "filename": "includes/Formatter/Contributions.php",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-11T18:54:58Z",
+      "side": 1,
+      "message": "Maybe use Utils::htmlToPlaintext()?",
+      "revId": "5608d5f0898a0a08fd8760911c3625b89f4f42fa",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
