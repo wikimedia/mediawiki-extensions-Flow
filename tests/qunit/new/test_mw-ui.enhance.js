@@ -30,7 +30,7 @@
 			'Buttons are disabled when required textarea but required input does not.' );
 	} );
 
-	QUnit.test( 'mw-ui-tooltip', 3, function( assert ) {
+	QUnit.test( 'mw-ui-tooltip', 4, function( assert ) {
 		assert.ok( mw.tooltip, 'mw.tooltip exists' );
 
 		// Create a tooltip using body
