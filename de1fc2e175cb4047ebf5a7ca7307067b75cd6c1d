@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_2fee3ab2",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 28
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-11T19:14:01Z",
+      "side": 1,
+      "message": "please indent this like normal javascript:\n\n    var api \u003d ...,\n        $star \u003d ...,\n        params \u003d {\n            ...\n        },\n        ...",
+      "revId": "de1fc2e175cb4047ebf5a7ca7307067b75cd6c1d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
