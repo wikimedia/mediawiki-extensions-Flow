@@ -67,7 +67,9 @@ class WorkflowLoaderFactory {
 			throw new CrossWikiException( 'Interwiki to ' . $pageTitle->getInterwiki() . ' not implemented ', 'default' );
 		}
 
-		// @todo constructors should just do simple setup, this goes out and hits the database
+		if ( $pageTitle->getNamespace() === NS_TOPIC ) {
+			$workflowId = UUID::create( strtolower( $pageTitle->getRootText() ) );
+		}
 		if ( $workflowId !== null ) {
 			list( $workflow, $definition ) = $this->loadWorkflowById( $pageTitle, $workflowId );
 		} else {
@@ -88,11 +90,11 @@ class WorkflowLoaderFactory {
 	 * @return array [Workflow, Definition]
 	 * @throws InvalidDataException
 	 */
-	protected function loadWorkflow( \Title $title, $definitionRequest ) {
+	protected function loadWorkflow( Title $title, $definitionRequest ) {
 		global $wgUser;
 		$storage = $this->storage->getStorage( 'Workflow');
 
-		$definition = $this->loadDefinition( $definitionRequest );
+		$definition = $this->loadDefinition( $title, $definitionRequest );
 		if ( !$definition->getOption( 'unique' ) ) {
 			throw new InvalidDataException( 'Workflow is non-unique, can only fetch object by title + id', 'fail-load-data' );
 		}
@@ -135,11 +137,12 @@ class WorkflowLoaderFactory {
 	}
 
 	/**
+	 * @param Title $title
 	 * @param string $id
 	 * @return Definition
 	 * @throws InvalidInputException
 	 */
-	protected function loadDefinition( $id ) {
+	protected function loadDefinition( Title $title, $id ) {
 		global $wgFlowDefaultWorkflow;
 
 		$repo = $this->storage->getStorage( 'Definition' );
@@ -149,7 +152,13 @@ class WorkflowLoaderFactory {
 				throw new InvalidInputException( "Unknown flow id '$id' requested", 'invalid-input' );
 			}
 		} else {
-			$workflowName = $id ? $id : $this->defaultWorkflowName;
+			if ( $id ) {
+				$workflowName = $id;
+			} elseif ( $title->getNamespace() === NS_TOPIC ) {
+				$workflowName = 'topic';
+			} else {
+				$workflowName = $this->defaultWorkflowName;
+			}
 			$found = $repo->find( array(
 				'definition_name' => strtolower( $workflowName ),
 				'definition_wiki' => wfWikiId(),
@@ -160,7 +169,7 @@ class WorkflowLoaderFactory {
 				throw new InvalidInputException( "Unknown flow type '$workflowName' requested", 'invalid-input' );
 			}
 		}
+
 		return $definition;
 	}
-
 }
