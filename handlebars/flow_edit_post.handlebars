@@ -21,12 +21,7 @@
 		        data-flow-api-handler="submitEditPost">
 			{{~l10n "flow-post-action-edit-post-submit"~}}
 		</button>
-		{{> flow_preview_button}}
-		<button class="flow-ui-button flow-ui-destructive flow-ui-quiet"
-		        data-flow-interactive-handler="cancelForm"
-				data-role="cancel">
-			{{~l10n "flow-cancel"~}}
-		</button>
+		{{> flow_form_buttons }}
 		<small class="flow-terms-of-use plainlinks">
 			{{~l10nParse "flow-terms-of-use-edit"~}}
 		</small>
