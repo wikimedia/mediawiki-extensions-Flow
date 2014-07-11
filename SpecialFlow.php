@@ -103,11 +103,16 @@ class SpecialFlow extends FormSpecialPage {
 		try {
 			$postId = UUID::create( $this->uuid );
 			$rootId = Container::get( 'repository.tree' )->findRoot( $postId );
-			return Container::get( 'url_generator' )->postLink(
-				null,
-				$rootId,
-				$postId
-			)->getFullUrl();
+			$workflow = Container::get( 'storage.workflow' )->get( $rootId );
+			if ( $workflow ) {
+				return Container::get( 'url_generator' )->postLink(
+					null,
+					$rootId,
+					$postId
+				)->getFullUrl();
+			} else {
+				return null;
+			}
 		} catch ( FlowException $e ) {
 			return null; // The UUID is invalid or has no root post.
 		}
@@ -119,10 +124,16 @@ class SpecialFlow extends FormSpecialPage {
 	 */
 	protected function getWorkflowUrl() {
 		try {
-			return Container::get( 'url_generator' )->workflowLink(
-				null,
-				UUID::create( $this->uuid )
-			)->getFullUrl();
+			$rootId = UUID::create( $this->uuid );
+			$workflow = Container::get( 'storage.workflow' )->get( $rootId );
+			if ( $workflow ) {
+				return Container::get( 'url_generator' )->workflowLink(
+					null,
+					$rootId
+				)->getFullUrl();
+			} else {
+				return null;
+			}
 		} catch ( FlowException $e ) {
 			return null; // The UUID is invalid or has no root post.
 		}
