@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_af1c6a6b",
+        "filename": "handlebars/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-11T18:34:52Z",
+      "side": 1,
+      "message": "this works in some cases, but not all.  will push another patch to fix",
+      "revId": "024cc793299d73e5afaa12254832a5f1459d7208",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
