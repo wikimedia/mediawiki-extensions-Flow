@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_8f8c0e01",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 29
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-11T19:22:55Z",
+      "side": 1,
+      "message": "danny wanted the star tooltip only when clicking the star, not when auto-subbed",
+      "revId": "22bc7bb7d4f202e642cdf0d614961fbd77be56fc",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
