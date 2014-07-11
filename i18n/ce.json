@@ -4,6 +4,9 @@
 			"Умар"
 		]
 	},
+	"flow-hide-post-content": "ХӀара къамел хьулдина {{GENDER:$1|декъашхочо}} $1",
+	"flow-hide-title-content": "ХӀара къамел хьулдина {{GENDER:$1|декъашхочо}} $1",
+	"flow-delete-post-content": "ХӀара къамел дӀадаьккхина {{GENDER:$1|декъашхочо}} $1",
 	"flow-post-actions": "дийраш",
 	"flow-topic-actions": "Дийраш",
 	"flow-cancel": "Цаоьшу",
@@ -31,6 +34,7 @@
 	"flow-topic-action-hide-topic": "Хьулле тема",
 	"flow-topic-action-delete-topic": "ДӀаяккха тема",
 	"flow-topic-action-close-topic": "ДӀачӀагӀа тема",
+	"flow-error-no-commit": "Нисдинарг Ӏалашдан йиш яц.",
 	"flow-edit-header-submit-overwrite": "Юха дӀаязбе корта",
 	"flow-edit-title-submit-overwrite": "Юха дӀаязъе цӀе",
 	"flow-edit-post-submit-overwrite": "Юха дӀаязде хийцамаш",
@@ -43,6 +47,7 @@
 	"flow-rev-message-suppressed-post": "$1 {{GENDER:$2||дӀаяьккхина}} [$4 къамел] $6(<em>$5</em>) чохь.",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2||дӀаяьккхина}} [$4 тема] $6(<em>$5</em>).",
 	"flow-rev-message-suppressed-topic": "$1 {{GENDER:$2|дӀаяьккхина}} тема [$4 topic] $6 (<em>$5</em>).",
+	"flow-rc-topic-of-board": "$1 оцу $2",
 	"flow-board-history": "\"$1\" истори",
 	"flow-notification-link-text-view-post": "Хьажа хааме",
 	"flow-notification-reply-email-batch-body": "$1 хан хааан {{GENDER:$1||жоп делла}} темехь «$2» «$3» чохь",
@@ -59,5 +64,6 @@
 	"flow-moderation-confirm-hide-topic": "Къайлаяккха",
 	"flow-moderation-confirm-undelete-topic": "МеттахӀоттае",
 	"flow-moderation-confirm-unhide-topic": "Гайта",
-	"flow-topic-comment-count": "$1 {{PLURAL:$1|къамел|къамелаш}}"
+	"flow-topic-comment-count": "$1 {{PLURAL:$1|къамел|къамелаш}}",
+	"flow-spam-confirmedit-form": "Хьой адам делахь сурт тӀера йоза язде: $1"
 }

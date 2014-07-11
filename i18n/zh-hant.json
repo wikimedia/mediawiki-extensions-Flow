@@ -103,6 +103,7 @@
 	"flow-edit-post-submit": "遞交更改",
 	"flow-edit-post-submit-overwrite": "覆寫更改",
 	"flow-rev-message-edit-post": "$1{{GENDER:$2|編輯}}於「$4」之[$3 評論]",
+	"flow-rc-topic-of-board": "於$2之$1",
 	"flow-board-history": "「$1」歷史",
 	"flow-history-last4": "最後 4 小時",
 	"flow-history-day": "今天",
