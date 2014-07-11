@@ -187,6 +187,7 @@ $wgResourceModules += array(
 			'new/styles/board/moderated.less',
 			'new/styles/board/timestamps.less',
 			'new/styles/board/replycount.less',
+			'new/styles/js.less',
 		),
 	),
 	'ext.flow.board.topic.styles' => $flowResourceTemplate + array(
