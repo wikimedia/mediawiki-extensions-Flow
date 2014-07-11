@@ -20,8 +20,7 @@
 			<button data-role="submit" data-flow-api-handler="newTopic"
 				data-flow-interactive-handler="apiRequest"
 				class="flow-ui-button flow-ui-constructive">{{l10n "flow-newtopic-save"}}</button>
-			{{> flow_preview_button }}
-			<button data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</button>
+			{{> flow_form_buttons }}
 			<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-new-topic"}}</small>
 		</div>
 	</form>
