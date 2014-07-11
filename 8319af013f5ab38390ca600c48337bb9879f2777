@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_2cc40b11",
+        "filename": "flow.sql",
+        "patchSetId": 28
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-07-11T12:44:12Z",
+      "side": 0,
+      "message": "There should be a DB patch to drop this column (or at least make it accept null)",
+      "revId": "8319af013f5ab38390ca600c48337bb9879f2777",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
