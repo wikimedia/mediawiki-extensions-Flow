@@ -3,6 +3,7 @@
 namespace Flow;
 
 use Flow\Data\UserNameBatch;
+use Flow\Exception\FlowException;
 use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Parsoid\Controller as ContentFixer;
@@ -282,7 +283,12 @@ class Templating {
 		if ( $revision->isModerated() ) {
 			return $revision;
 		} else {
-			return Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
+			try {
+				return Container::get( 'collection.cache' )->getLastRevisionFor( $revision );
+			} catch ( FlowException $e ) {
+				wfDebugLog( 'Flow', "Failed loading last revision for revid " . $revision->getRevisionId()->getAlphadecimal() . " with collection id " . $revision->getCollectionId()->getAlphadecimal() );
+				throw $e;
+			}
 		}
 	}
 }
