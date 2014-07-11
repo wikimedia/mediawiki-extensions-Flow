@@ -305,11 +305,6 @@ abstract class AbstractRevision {
 			return null;
 		}
 
-		// double check if user has permissions for moderation action
-		if ( !$this->isAllowed( $user, $changeType ) ) {
-			return null;
-		}
-
 		$obj = $this->newNullRevision( $user );
 		$obj->changeType = $changeType;
 
@@ -347,27 +342,6 @@ abstract class AbstractRevision {
 	 */
 	public function getRevisionId() {
 		return $this->revId;
-	}
-
-	/**
-	 * Is the user allowed to perform a certain action on this revision?
-	 *
-	 * Uses permissions defined in FlowActions.
-	 *
-	 * @param User|null $user The user requesting access.  When null assumes a user with no permissions.
-	 * @param string $action Action to check if allowed.
-	 * @return boolean True when the user is allowed to see the current revision
-	 */
-	protected function isAllowed( User $user = null, $action ) {
-		// if no user specified, assume anonymous user
-		if ( !$user instanceof User ) {
-			$user = new User;
-		}
-
-		$actions = Container::get( 'flow_actions' );
-		$permissions = new RevisionActionPermissions( $actions, $user );
-
-		return $permissions->isAllowed( $this, $action );
 	}
 
 	/**
