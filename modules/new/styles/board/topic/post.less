@@ -4,10 +4,14 @@
 @import 'flow.variables';
 
 // Comments
+form.flow-post {
+	margin-left: @topicIndent - (@textareaPadding * 2);
+}
+
 .flow-post {
 	position: relative;
 	/* left margin provided by highlighting zone */
-	margin: 0;
+	margin: 1em 0 0 @topicIndent;
 	margin-top: 1em;
 	padding: 0;
 	color: @colorText;
@@ -32,11 +36,8 @@
 		}
 	}
 
-	// Wraps flow-post-content
-	.flow-post-main,
-	.flow-reply-form,
-	.flow-edit-post-form {
-		padding-left: @topicIndent;
+	.flow-post-main {
+		margin-left: 0.1em;
 	}
 
 	// Highlights a post (no IE6 support, but acceptable degradation)
