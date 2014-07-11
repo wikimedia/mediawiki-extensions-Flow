@@ -10,12 +10,6 @@ use Title;
 
 abstract class Content {
 	static function onGetDefaultModel( Title $title, &$model ) {
-		if ( $title->getNamespace() === NS_TOPIC ) {
-			$model = 'flow-board';
-
-			return false;
-		}
-
 		$occupationController = \FlowHooks::getOccupationController();
 
 		if ( $occupationController->isTalkpageOccupied( $title ) ) {

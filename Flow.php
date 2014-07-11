@@ -46,6 +46,7 @@ define( 'NS_TOPIC', 2600 );
 
 $wgExtraNamespaces[NS_TOPIC] = "Topic";
 $wgNamespacesWithSubpages[NS_TOPIC] = false;
+$wgNamespaceContentModels[NS_TOPIC] = 'flow-board';
 
 // Autoload
 $dir = __DIR__ . '/';
