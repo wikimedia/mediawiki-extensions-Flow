@@ -1233,7 +1233,9 @@
 								'url' : $link.attr( 'href' )
 							}
 						},
-						'content' : $title.data( 'title' ),
+						'content': {
+							'content' : $title.data( 'title' )
+						},
 						'revisionId' : linkParams.etrevId
 					}
 				) ).children();
