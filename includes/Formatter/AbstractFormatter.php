@@ -3,9 +3,12 @@
 namespace Flow\Formatter;
 
 use Flow\Anchor;
+use Flow\Container;
+use Flow\Model\PostRevision;
 use Flow\RevisionActionPermissions;
 use Html;
 use IContextSource;
+use Linker;
 use Message;
 
 /**
@@ -41,6 +44,8 @@ abstract class AbstractFormatter {
 		$this->permissions = $permissions;
 		$this->serializer = $serializer;
 	}
+
+	abstract protected function getHistoryType();
 
 	/**
 	 * @see RevisionFormatter::buildLinks
@@ -219,19 +224,24 @@ abstract class AbstractFormatter {
 	}
 
 	/**
-	 * Generate an HTML revision description.
-	 *
 	 * @param array $data
 	 * @param IContextSource $ctx
-	 * @return string Html valid for user output
+	 * @return Message
 	 */
-	protected function formatDescription( array $data, IContextSource $ctx ) {
+	protected function getDescription( array $data, IContextSource $ctx ) {
 		// Build description message, piggybacking on history i18n
 		$changeType = $data['changeType'];
 		$actions = $this->permissions->getActions();
-		$msg = $actions->getValue( $changeType, 'history', 'i18n-message' );
-		$source = $actions->getValue( $changeType, 'history', 'i18n-params' );
 
+		$key = $actions->getValue( $changeType, 'history', 'i18n-message' );
+		// find specialized message for this particular formatter type
+		$msg = $ctx->msg( $key . '-' . $this->getHistoryType() );
+		if ( !$msg->exists() ) {
+			// fallback to default msg
+			$msg = $ctx->msg( $key );
+		}
+
+		$source = $actions->getValue( $changeType, 'history', 'i18n-params' );
 		$params = array();
 		foreach ( $source as $param ) {
 			if ( isset( $data['properties'][$param] ) ) {
@@ -242,6 +252,45 @@ abstract class AbstractFormatter {
 			}
 		}
 
-		return '<span class="plainlinks">' . $ctx->msg( $msg, $params )->parse() . '</span>';
+		return $msg->params( $params );
+	}
+
+	/**
+	 * Generate an HTML revision description.
+	 *
+	 * @param array $data
+	 * @param IContextSource $ctx
+	 * @return string Html valid for user output
+	 */
+	protected function formatDescription( array $data, IContextSource $ctx ) {
+		$msg = $this->getDescription( $data, $ctx );
+		return '<span class="plainlinks">' . $msg->parse() . '</span>';
+	}
+
+	/**
+	 * Returns HTML links to the page title and (if the action is topic-related)
+	 * the topic.
+	 *
+	 * @param array $data
+	 * @param FormatterRow $row
+	 * @param IContextSource $ctx
+	 * @return string HTML linking to topic & board
+	 */
+	protected function getTitleLink( array $data, FormatterRow $row, IContextSource $ctx ) {
+		if ( isset( $data['links']['topic'] ) && $row->revision instanceof PostRevision ) {
+			/** @var \Flow\Anchor $topic */
+			$topic = $data['links']['topic'];
+
+			// generated link has generic link text, should be actual topic title
+			$root = $row->revision->getRootPost();
+			$topic->setMessage( Container::get( 'templating' )->getContent( $root, 'wikitext' ) );
+
+			return $ctx->msg( 'flow-rc-topic-of-board' )->rawParams(
+				$topic->toHtml(),
+				Linker::link( $row->workflow->getOwnerTitle() )
+			)->parse();
+		} else {
+			return Linker::link( $row->workflow->getOwnerTitle() );
+		}
 	}
 }
