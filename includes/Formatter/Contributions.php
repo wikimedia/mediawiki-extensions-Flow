@@ -4,10 +4,14 @@ namespace Flow\Formatter;
 
 use Flow\Exception\FlowException;
 use Flow\Model\PostRevision;
+use Flow\Parsoid\Utils;
 use ChangesList;
 use IContextSource;
 
 class Contributions extends AbstractFormatter {
+	protected function getHistoryType() {
+		return 'contributions';
+	}
 
 	/**
 	 * @param FormatterRow $row With properties workflow, revision, previous_revision
@@ -50,6 +54,8 @@ class Contributions extends AbstractFormatter {
 		$links[] = $this->getDiffAnchor( $data['links'], $ctx );
 		$links[] = $this->getHistAnchor( $data['links'], $ctx );
 
+		$description = $this->formatDescription( $data, $ctx );
+
 		// Put it all together
 		return
 			$this->formatTimestamp( $data ) . ' ' .
@@ -57,6 +63,7 @@ class Contributions extends AbstractFormatter {
 			$separator .
 			$charDiff .
 			$separator .
-			$this->formatDescription( $data, $ctx );
+			$this->getTitleLink( $data, $row, $ctx ) .
+			( Utils::htmlToPlaintext( $description ) ? $separator . $description : '' );
 	}
 }
