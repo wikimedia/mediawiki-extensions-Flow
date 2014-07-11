@@ -79,21 +79,6 @@ $c['lightncandy'] = $c->share( function( $c ) {
 		$wgFlowServerCompileTemplates
 	);
 } );
-$c['templating.namespaces'] = array(
-	'flow' => __DIR__ . '/templates',
-);
-
-$c['templating.global_variables'] = $c->share( function( $c ) {
-	global $wgFlowMaxThreadingDepth;
-
-	$user = $c['user'];
-	return array(
-		'user' => $user,
-		'editToken' => $user->getEditToken(),
-		'maxThreadingDepth' => $wgFlowMaxThreadingDepth,
-		'permissions' => $c['permissions'],
-	);
-} );
 
 $c['templating'] = $c->share( function( $c ) {
 	return new Flow\Templating(
