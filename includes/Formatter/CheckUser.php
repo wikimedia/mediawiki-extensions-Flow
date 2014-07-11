@@ -6,6 +6,17 @@ use IContextSource;
 use Linker;
 
 class CheckUser extends AbstractFormatter {
+	protected function getHistoryType() {
+		return 'checkuser';
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function changeSeparator() {
+		return ' . . ';
+	}
+
 	/**
 	 * Create an array of links to be used when formatting the row in checkuser
 	 *
@@ -20,16 +31,15 @@ class CheckUser extends AbstractFormatter {
 		// @todo: we probably want to get the action description (generated revision comment)
 		// into checkuser sooner or later as well.
 
-		$title = $row->workflow->getArticleTitle();
-		$links = $this->serializer->buildLinks( $row );
-		if ( $links === null ) {
+		$data = $this->serializer->formatApi( $row, $ctx );
+		if ( $data['links'] === null ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': No links were generated for revision ' . $row->revision->getAlphadecimal() );
 			return null;
 		}
 
 		return array(
-			'links' => $this->formatAnchorsAsPipeList( $links, $ctx ),
-			'title' => '. . ' . Linker::link( $title ),
+			'links' => $this->formatAnchorsAsPipeList( $data['links'], $ctx ),
+			'title' => $this->changeSeparator() . $this->getTitleLink( $data, $row, $ctx ),
 		);
 	}
 }
