@@ -700,12 +700,14 @@ $c['query.topic.history'] = $c->share( function( $c ) {
 	);
 } );
 $c['query.recentchanges'] = $c->share( function( $c ) {
-	return new Flow\Formatter\RecentChangesQuery(
+	$query = new Flow\Formatter\RecentChangesQuery(
 		$c['storage'],
 		$c['repository.tree'],
-		$c['flow_actions'],
-		$c['user']
+		$c['flow_actions']
 	);
+	$query->setExtendWatchlist( $c['user']->getOption( 'extendwatchlist' ) );
+
+	return $query;
 } );
 $c['query.postsummary'] = $c->share( function( $c ) {
 	return new Flow\Formatter\PostSummaryQuery(
