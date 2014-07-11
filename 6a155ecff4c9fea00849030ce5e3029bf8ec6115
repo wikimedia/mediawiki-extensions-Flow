@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_28fcf0b0",
+        "filename": "includes/Formatter/RecentChanges.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-11T22:32:57Z",
+      "side": 1,
+      "message": "Does this need escaping?",
+      "revId": "6a155ecff4c9fea00849030ce5e3029bf8ec6115",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
