@@ -25,6 +25,7 @@ class IRCLineUrlFormatter extends AbstractFormatter implements RCFeedFormatter {
 		$rcRow = $query->getResult( null, $rc );
 		$ctx = \RequestContext::getMain();
 		$data = $this->serializer->formatApi( $rcRow, $ctx );
+		$this->serializer->setIncludeHistoryProperties( true );
 		$rc->mAttribs['rc_comment'] = $this->formatDescription( $data, $ctx );
 		/** @var RCFeedFormatter $formatter */
 		$formatter = new $feed['original_formatter']();
