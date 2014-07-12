@@ -45,6 +45,7 @@ all: compiled/flow_block_header.handlebars.php \
 		compiled/flow_block_topicsummary_diff_view.handlebars.php \
 		compiled/flow_board.handlebars.php \
 		compiled/flow_preview_button.handlebars.php \
+		compiled/flow_post_not_found.handlebars.php \
 		compiled/flow_post.handlebars.php \
 		compiled/flow_tooltip.handlebars.php \
 		compiled/timestamp.handlebars.php
@@ -177,6 +178,10 @@ compiled/flow_board.handlebars.php: \
 compiled/flow_preview_button.handlebars.php: \
 		flow_preview_button.handlebars
 	$(COMPILE) flow_preview_button
+
+compiled/flow_post_not_found.handlebars.php: \
+		flow_post_not_found.handlebars
+	$(COMPILE) flow_post_not_found
 
 compiled/flow_post.handlebars.php: \
 		$(POST_SUBTEMPLATES)
