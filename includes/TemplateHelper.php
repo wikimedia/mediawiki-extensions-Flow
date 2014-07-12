@@ -435,39 +435,33 @@ class TemplateHelper {
 	 * @throws FlowException When callbacks are not Closure instances
 	 */
 	static public function eachPost( $context, $postIds, $options ) {
-		/** @var callable $inverse */
-		$inverse = isset( $options['inv'] ) ? $options['inv'] : null;
 		/** @var callable $fn */
 		$fn = $options['fn'];
-
-		if ( $postIds && !is_array( $postIds ) ) {
-			$postIds = array( $postIds );
-		} elseif ( count( $postIds ) === 0 ) {
-			// Failure callback, if any
-			if ( !$inverse ) {
-				return null;
-			}
-			if ( !$inverse instanceof Closure ) {
-				throw new FlowException( 'Invalid inverse callback, expected Closure' );
-			}
-			return $inverse( $options['cx'], array() );
-		} else {
-			return null;
-		}
-
 		if ( !$fn instanceof Closure ) {
 			throw new FlowException( 'Invalid callback, expected Closure' );
 		}
+
+		if ( !is_array( $postIds ) ) {
+			$postIds = array( $postIds );
+		}
+
 		$html = array();
 		foreach ( $postIds as $id ) {
 			$revId = $context['posts'][$id][0];
 
-			if ( !isset( $context['revisions'][$revId] ) ) {
-				throw new FlowException( "Revision not available: $revId" );
-			}
+			if ( isset( $context['revisions'][$revId] ) ) {
+				// $fn is always safe return value, it's the inner template content.
+				$html[] = $fn( $context['revisions'][$revId] );
+			} else {
+				wfDebugLog( 'Flow', 'Failed to find revision in eachPost helper: ' .  json_encode( array(
+					'postId' => $id,
+					'revId' => $revId,
+				) ) );
 
-			// $fn is always safe return value, it's the inner template content.
-			$html[] = $fn( $context['revisions'][$revId] );
+				$html[] = self::processTemplate( 'flow_post_not_found', array(
+					'postId' => $id
+				) );
+			}
 		}
 
 		// Return the resulting HTML
