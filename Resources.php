@@ -49,6 +49,7 @@ $wgResourceModules += array(
 			"flow_moderate_post.handlebars",
 			"flow_moderate_topic.handlebars",
 			"flow_newtopic_form.handlebars",
+			"flow_post_not_found.handlebars",
 			"flow_post.handlebars",
 			"flow_post_author.handlebars",
 			"flow_post_actions.handlebars",
