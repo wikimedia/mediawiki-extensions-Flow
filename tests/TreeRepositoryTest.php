@@ -2,6 +2,7 @@
 
 namespace Flow\Tests;
 
+use Flow\Data\BufferedCache;
 use Flow\Model\UUID;
 use Flow\Repository\TreeRepository;
 use ReflectionClass;
@@ -16,12 +17,13 @@ class TreeRepositoryTest extends FlowTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		$this->ancestor = UUID::create( md5( time() ) );
-		$this->descendant = UUID::create( md5( time() + 1000 ) );
+		$this->ancestor = UUID::create( false );
+		$this->descendant = UUID::create( false );
 	}
 
 	public function testSuccessfulInsert() {
-		$cache = new \HashBagOStuff();
+		global $wgFlowCacheTime;
+		$cache = new BufferedCache( new \HashBagOStuff(),  $wgFlowCacheTime );
 		$treeRepository = new TreeRepository( $this->mockDbFactory( true ), $cache );
 		$this->assertTrue( $treeRepository->insert( $this->descendant, $this->ancestor ) );
 
@@ -38,9 +40,10 @@ class TreeRepositoryTest extends FlowTestCase {
 	 * @expectedException \Flow\Exception\DataModelException
 	 */
 	public function testFailingInsert() {
+		global $wgFlowCacheTime;
 		// Catch the exception and test the cache result then re-throw the exception,
 		// otherwise the exception would skip the cache result test
-		$cache = new \HashBagOStuff();
+		$cache = new BufferedCache( new \HashBagOStuff(), $wgFlowCacheTime );
 		try {
 			$treeRepository = new TreeRepository( $this->mockDbFactory( false ), $cache );
 			$this->assertNull( $treeRepository->insert( $this->descendant, $this->ancestor ) );
