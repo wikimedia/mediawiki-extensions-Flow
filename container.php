@@ -34,8 +34,7 @@ $c['repository.tree'] = $c->share( function( $c ) {
 	global $wgFlowCacheTime;
 	return new Flow\Repository\TreeRepository(
 		$c['db.factory'],
-		$c['memcache'],
-		$wgFlowCacheTime
+		$c['memcache.buffered']
 	);
 } );
 
