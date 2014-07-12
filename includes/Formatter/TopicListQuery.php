@@ -4,6 +4,7 @@ namespace Flow\Formatter;
 
 use Flow\Data\ManagerGroup;
 use Flow\Exception\FlowException;
+use Flow\Model\AbstractRevision;
 use Flow\Model\PostRevision;
 use Flow\Model\PostSummary;
 use Flow\Model\TopicListEntry;
@@ -27,12 +28,12 @@ class TopicListQuery extends AbstractQuery {
 	}
 
 	/**
-	 * @param TopicListEntry[] $topicRevisions
+	 * @param UUID[]|TopicListEntry[] $topicRevisionIds
 	 * @return FormatterRow[]
 	 */
-	public function getResults( array $topicRevisions ) {
+	public function getResults( array $topicRevisionIds ) {
 		$section = new \ProfileSection( __METHOD__ );
-		$topicIds = $this->getTopicIds( $topicRevisions );
+		$topicIds = $this->getTopicIds( $topicRevisionIds );
 		$allPostIds = $this->collectPostIds( $topicIds );
 		$topicSummary = $this->collectSummary( $topicIds );
 		$posts = $this->collectRevisions( $allPostIds );
@@ -174,6 +175,14 @@ class TopicListQuery extends AbstractQuery {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Override parent, we only load the most recent version, so just
+	 * return self.
+	 */
+	protected function getCurrentRevision( AbstractRevision $revision ) {
+		return $revision;
 	}
 
 	/**
