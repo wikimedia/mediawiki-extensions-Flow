@@ -78,7 +78,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 				if ( $postId ) {
 					$anchor = $urlGenerator->postLink( $title, $workflowId, $postId );
 				} else {
-					$anchor = $urlGenerator->workflowLink( $title, $workflowId );
+					$anchor = $urlGenerator->topicLink( $title, $workflowId );
 				}
 			}
 		}
@@ -117,7 +117,7 @@ class NotificationFormatter extends EchoBasicFormatter {
 			case 'flow-topic':
 				$workflowId = $event->getExtraParam( 'topic-workflow' );
 				if ( $title && $workflowId ) {
-					$anchor = $urlGenerator->workflowLink( $title, $workflowId );
+					$anchor = $urlGenerator->topicLink( $title, $workflowId );
 				}
 				break;
 
