@@ -23,9 +23,8 @@
     return '<div class="flow-board">
 	'.'
 
-	'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
-		'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],$in),Array()), $in, function($cx, $in) {return '
-			<form method="POST" action="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'">
+	'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],((is_array($in) && isset($in['roots'])) ? $in['roots'] : null)),Array()), $in, function($cx, $in) {return '
+		<form method="POST" action="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'">
 	<div class="flow-error-container">
 '.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['errors'])) ? $cx['scopes'][0]['errors'] : null))) ? '
 	<div class="flow-errors errorbox">
@@ -54,7 +53,6 @@
 	</div>
 </form>
 
-		';}).'
 	';}).'
 </div>
 ';
