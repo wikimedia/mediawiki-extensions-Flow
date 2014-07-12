@@ -1,8 +1,6 @@
 <div class="flow-replies">
-	{{#each replies}}
-		{{#eachPost @root.rootBlock this}}
-			<!-- eachPost nested replies -->
-			{{post @root.rootBlock this}}
-		{{/eachPost}}
-	{{/each}}
+	{{#eachPost @root.rootBlock replies}}
+		<!-- eachPost nested replies -->
+		{{post @root.rootBlock this}}
+	{{/eachPost}}
 </div>

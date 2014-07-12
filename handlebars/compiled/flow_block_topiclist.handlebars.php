@@ -127,10 +127,9 @@
 
 
 	<div class="flow-topics">
-		'.LCRun3::sec($cx, ((is_array($in) && isset($in['roots'])) ? $in['roots'] : null), $in, true, function($cx, $in) {return '
+		'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],((is_array($in) && isset($in['roots'])) ? $in['roots'] : null)),Array()), $in, function($cx, $in) {return '
 	'.'
-	'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],$in),Array()), $in, function($cx, $in) {return '
-		<div class="flow-topic '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? 'flow-load-interactive' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated flow-topic-collapsed' : '').'" id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-load-handler="topicElement">
+	<div class="flow-topic '.((!LCRun3::ifvar($cx, ((is_array($in) && isset($in['isPreview'])) ? $in['isPreview'] : null))) ? 'flow-load-interactive' : '').' '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? 'flow-topic-moderated flow-topic-collapsed' : '').'" id="flow-topic-'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'" data-flow-load-handler="topicElement">
 	<div class="flow-topic-titlebar flow-click-interactive" data-flow-interactive-handler="topicCollapserToggle" tabindex="0">
 	<h2 class="flow-topic-title" data-title="'.LCRun3::ch($cx, 'plaintextSnippet', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'">'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['content']) && isset($in['content']['format'])) ? $in['content']['format'] : null),((is_array($in['content']) && isset($in['content']['content'])) ? $in['content']['content'] : null)),Array()), 'encq').'</h2>
 '.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['isModerated'])) ? $in['isModerated'] : null))) ? '
@@ -349,11 +348,9 @@
 
 
 	'.((LCRun3::ifvar($cx, ((is_array($cx['scopes'][0]) && isset($cx['scopes'][0]['posts'])) ? $cx['scopes'][0]['posts'] : null))) ? '
-		'.LCRun3::sec($cx, ((is_array($in) && isset($in['replies'])) ? $in['replies'] : null), $in, true, function($cx, $in) {return '
-			'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],$in),Array()), $in, function($cx, $in) {return '
-				<!-- eachPost topic -->
-				'.LCRun3::ch($cx, 'post', Array(Array($cx['scopes'][0],$in),Array()), 'encq').'
-			';}).'
+		'.LCRun3::hbch($cx, 'eachPost', Array(Array($cx['scopes'][0],((is_array($in) && isset($in['replies'])) ? $in['replies'] : null)),Array()), $in, function($cx, $in) {return '
+			<!-- eachPost topic -->
+			'.LCRun3::ch($cx, 'post', Array(Array($cx['scopes'][0],$in),Array()), 'encq').'
 		';}).'
 	' : '').'
 
@@ -411,8 +408,8 @@
 	' : '').'
 </div>
 
-	';}).'
 ';}).'
+
 	</div>
 
 	'.((LCRun3::ifvar($cx, ((is_array($in['links']['pagination']) && isset($in['links']['pagination']['fwd'])) ? $in['links']['pagination']['fwd'] : null))) ? '

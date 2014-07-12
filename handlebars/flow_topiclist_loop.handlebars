@@ -1,6 +1,4 @@
-{{#each roots}}
+{{#eachPost @root roots}}
 	{{!-- eachPost topiclist --}}
-	{{#eachPost @root this}}
-		{{> flow_topic}}
-	{{/eachPost}}
-{{/each}}
+	{{> flow_topic}}
+{{/eachPost}}
