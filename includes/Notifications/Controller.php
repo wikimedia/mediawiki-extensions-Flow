@@ -10,6 +10,7 @@ use Flow\Model\Workflow;
 use Flow\Parsoid\Utils;
 use EchoEvent;
 use Language;
+use Title;
 use User;
 
 class NotificationController {
