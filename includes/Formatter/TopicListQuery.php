@@ -57,7 +57,7 @@ class TopicListQuery extends AbstractQuery {
 				if ( !$this->permissions->isAllowed( $post, 'view' )  ) {
 					continue;
 				}
-				$results[] = $row = new TopicRow;
+				$row = new TopicRow;
 				$this->buildResult( $post, null, $row );
 				$replyToId = $row->revision->getReplyToId();
 				$replyToId = $replyToId ? $replyToId->getAlphadecimal() : null;
@@ -67,6 +67,7 @@ class TopicListQuery extends AbstractQuery {
 				if ( $post->isTopicTitle() && isset( $topicSummary[$postId] ) ) {
 					$row->summary = $topicSummary[$postId];
 				}
+				$results[] = $row;
 			} catch ( FlowException $e ) {
 				\MWExceptionHandler::logException( $e );
 			}
