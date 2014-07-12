@@ -87,6 +87,7 @@ class BufferedCache {
 	 * @param string $key
 	 * @param \Closure $callback
 	 * @param int $attempts
+	 * @return bool
 	 */
 	public function merge( $key, \Closure $callback, $attempts = 10 ) {
 		/**
@@ -115,15 +116,17 @@ class BufferedCache {
 			if ( !$success ) {
 				$cache->delete( $key );
 			}
+			return $success;
 		};
 
 		if ( $this->buffer === null ) {
-			$merge( $key, $callback, $this->exptime, $attempts );
+			return $merge( $key, $callback, $this->exptime, $attempts );
 		} else {
 			$this->buffer[] = array(
 				'command' => $merge,
 				'arguments' => array( $key, $callback, $this->exptime, $attempts ),
 			);
+			return true;
 		}
 	}
 
