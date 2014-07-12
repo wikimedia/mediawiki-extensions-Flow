@@ -115,6 +115,7 @@
 	"flow-notification-rename": "$1 {{GENDER:$1|huet}} den Titel vu(n) span class=\"plainlinks\">[$2 $3]</span> op \"$4\" op [[$5|$6]] geännert.",
 	"flow-notification-link-text-view-board": "Tableau weisen",
 	"flow-notification-link-text-view-topic": "Thema weisen",
+	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|huet}} op een Thema geäntwert",
 	"flow-notification-reply-email-batch-body": "$1 {{GENDER:$1|huet}} op Är Matdeelung iwwer \"$2\" op \"$3\" geäntwert",
 	"flow-notification-mention-email-subject": "$1 huet Iech op \"$2\" {{GENDER:$1|ernimmt}}",
 	"flow-notification-edit-email-subject": "$1 {{GENDER:$1|huet}} eng Matdeelung geännert",
