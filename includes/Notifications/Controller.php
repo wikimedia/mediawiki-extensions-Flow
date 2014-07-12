@@ -10,6 +10,7 @@ use Flow\Model\Workflow;
 use Flow\Parsoid\Utils;
 use EchoEvent;
 use Language;
+use Title;
 use User;
 
 class NotificationController {
@@ -341,7 +342,7 @@ class NotificationController {
 	protected function getMentionedUsersFromWikitext( $wikitext ) {
 		global $wgParser;
 
-		$title = \Title::newMainPage(); // Bogus title used for parser
+		$title = Title::newMainPage(); // Bogus title used for parser
 
 		$options = new \ParserOptions;
 		$options->setTidy( true );
