@@ -3,7 +3,8 @@
 		"authors": [
 			"Baonguyen21022003",
 			"Minh Nguyen",
-			"Withoutaname"
+			"Withoutaname",
+			"Trần Nguyễn Minh Huy"
 		]
 	},
 	"flow-desc": "Hệ thống quản lý luồng làm việc",
@@ -89,7 +90,7 @@
 	"flow-error-external": "Đã xuất hiện lỗi.<br />Lỗi nhận được là: $1",
 	"flow-error-edit-restricted": "Bạn không có quyền sửa đổi bài đăng này.",
 	"flow-error-topic-is-closed": "Chủ đề này đã được kết thúc và không cho phép tác động tiếp.",
-	"flow-error-close-moderated-post": "Bạn không có thể kết thúc một bài đăng đang được hòa giải.",
+	"flow-error-close-moderated-post": "Bạn không thể đóng một bài đăng được điều phối.",
 	"flow-error-external-multi": "Đã xuất hiện lỗi.<br />$1",
 	"flow-error-missing-content": "Bài đăng không có nội dung. Bài đăng phải có nội dung để lưu.",
 	"flow-error-missing-summary": "Tóm lược không có nội dung. Tóm lược phải có nội dung để lưu.",

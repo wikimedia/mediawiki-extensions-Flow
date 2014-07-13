@@ -97,6 +97,7 @@
 	"flow-rev-message-restored-post": "$1 {{GENDER:$2|huet}} eng [$4 Bemierkung] iwwer ''$6'' (<em>$5</em>) restauréiert.",
 	"flow-rev-message-deleted-topic": "$1 {{GENDER:$2|huet}} d'[Thema $4] \"$6\" (<em>$5</em>) geläscht.",
 	"flow-rev-message-restored-topic": "$1 {{GENDER:$2|huet}} d'[Thema $4] \"$6\" (<em>$5</em>) restauréiert.",
+	"flow-rc-topic-of-board": "$1 op $2",
 	"flow-board-history": "Versioune vun \"$1\"",
 	"flow-topic-history": "Versioune vum Thema \"$1\"",
 	"flow-history-last4": "Lescht 4 Stonnen",

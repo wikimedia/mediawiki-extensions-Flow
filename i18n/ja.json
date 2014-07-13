@@ -147,8 +147,8 @@
 	"flow-paging-fwd": "古い話題",
 	"flow-last-modified": "最終更新 $1",
 	"flow-workflow": "ワークフロー",
-	"flow-notification-reply": "$1 が「$4」の「$2」でのあなたの<span class=\"plainlinks\">[$5 投稿]</span>に{{GENDER:$1|返信しました}}。",
-	"flow-notification-reply-bundle": "$1 と他 $5 {{PLURAL:$6|人}}が「$3」の「$2」でのあなたの<span class=\"plainlinks\">[$4 投稿]</span>に{{GENDER:$1|返信しました}}。",
+	"flow-notification-reply": "$1 が「$4」の <span class=\"plainlinks\">[$5 $2]</span> に{{GENDER:$1|返信しました}}。",
+	"flow-notification-reply-bundle": "$1 と他 $5 {{PLURAL:$6|人}}が「$3」の <span class=\"plainlinks\">[$4 $2]</span> に{{GENDER:$1|返信しました}}。",
 	"flow-notification-edit": "$1 が [[$3|$4]] の「$2」での<span class=\"plainlinks\">[$5 投稿]</span>を{{GENDER:$1|編集しました}}。",
 	"flow-notification-edit-bundle": "$1 と他 $5 {{PLURAL:$6|人}}が「$3」の「$2」での<span class=\"plainlinks\">[$4 投稿]</span>を{{GENDER:$1|編集しました}}。",
 	"flow-notification-newtopic": "$1 が [[$2|$3]] で<span class=\"plainlinks\">[$5 新しい話題]</span>を{{GENDER:$1|作成しました}}: $4",
@@ -157,9 +157,9 @@
 	"flow-notification-link-text-view-post": "投稿を閲覧",
 	"flow-notification-link-text-view-board": "掲示板を閲覧",
 	"flow-notification-link-text-view-topic": "話題を閲覧",
-	"flow-notification-reply-email-subject": "$1 があなたの投稿に{{GENDER:$1|返信しました}}",
-	"flow-notification-reply-email-batch-body": "$1 が「$3」の「$2」でのあなたの投稿に{{GENDER:$1|返信しました}}",
-	"flow-notification-reply-email-batch-bundle-body": "$1 と他 $4 {{PLURAL:$5|人}}が「$3」の「$2」でのあなたの投稿に{{PLURAL:$1|返信しました}}",
+	"flow-notification-reply-email-subject": "$1 が話題に{{GENDER:$1|返信しました}}",
+	"flow-notification-reply-email-batch-body": "$1 が「$3」の「$2」に{{GENDER:$1|返信しました}}",
+	"flow-notification-reply-email-batch-bundle-body": "$1 と他 $4 {{PLURAL:$5|人}}が「$3」の「$2」に{{PLURAL:$1|返信しました}}",
 	"flow-notification-mention-email-subject": "$1 が「$2」であなたに{{GENDER:$1|言及しました}}",
 	"flow-notification-mention-email-batch-body": "$1 が「$3」の「$2」での{{GENDER:$1|自身の}}投稿であなたに{{GENDER:$1|言及しました}}",
 	"flow-notification-edit-email-subject": "$1 が投稿を{{GENDER:$1|編集しました}}",
@@ -236,6 +236,5 @@
 	"flow-special-type": "種類",
 	"flow-special-type-post": "投稿",
 	"flow-special-type-workflow": "ワークフロー",
-	"flow-special-uuid": "UUID",
-	"flow-spam-confirmedit": "匿名利用者は外部リンクを投稿できません。アカウントを作成してください。"
+	"flow-special-uuid": "UUID"
 }
