@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_ac2a22d5",
+        "filename": "Hooks.php",
+        "patchSetId": 40
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-14T22:55:20Z",
+      "side": 1,
+      "message": "yeah, I think this is fine now",
+      "parentUuid": "8e28a382_0c013608",
+      "revId": "69eb9419e6da8c6b42fed5a586011baa0a135681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_f17125de",
         "filename": "includes/Formatter/RevisionFormatter.php",
         "patchSetId": 40
@@ -30,6 +48,24 @@
       "writtenOn": "2014-07-14T22:32:44Z",
       "side": 1,
       "message": "shouldn\u0027t this be:\n\n    $title-\u003egetTalkPage()-\u003eequals( $ctx-\u003egetUser()-\u003egetTalkPage() )",
+      "revId": "69eb9419e6da8c6b42fed5a586011baa0a135681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_6c52fa6b",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 40
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-14T22:55:20Z",
+      "side": 1,
+      "message": ":(, getting lost in this user/title/talk circle",
+      "parentUuid": "8e28a382_f17125de",
       "revId": "69eb9419e6da8c6b42fed5a586011baa0a135681",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
@@ -64,6 +100,24 @@
       "writtenOn": "2014-07-14T22:32:44Z",
       "side": 1,
       "message": "this only works when flow is part of the main wiki database. it will return the flow database handle.\n\nYou want a plain \n    wfGetDB( DB_SLAVE);\n\nActually, we probably also want to specify the group since the `watchlist` database server should be the only one with watchlists fully in memory:\n\n    wfGetDB( DB_SLAVE, \u0027watchlist\u0027 );",
+      "revId": "69eb9419e6da8c6b42fed5a586011baa0a135681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_4c4f3ec1",
+        "filename": "includes/WatchedTopicItems.php",
+        "patchSetId": 40
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-14T22:55:20Z",
+      "side": 1,
+      "message": "Oops, yeah, this should definitely be in a separate database",
+      "parentUuid": "8e28a382_d14d099d",
       "revId": "69eb9419e6da8c6b42fed5a586011baa0a135681",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
