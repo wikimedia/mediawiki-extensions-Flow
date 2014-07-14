@@ -34,7 +34,11 @@ abstract class Content {
 		return false;
 	}
 
-	static function onFetchContentObject( Article &$article, \Content &$contentObject ) {
+	static function onFetchContentObject( Article &$article, \Content &$contentObject = null ) {
+		if ( $contentObject === null ) {
+			return true;
+		}
+
 		$occupationController = \FlowHooks::getOccupationController();
 		$title = $article->getTitle();
 
