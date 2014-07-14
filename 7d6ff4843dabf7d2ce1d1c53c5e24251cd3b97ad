@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_e65166de",
+        "filename": "includes/View.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-14T23:25:39Z",
+      "side": 1,
+      "message": "this variable is only used inside the if condition, it should also be there.",
+      "revId": "7d6ff4843dabf7d2ce1d1c53c5e24251cd3b97ad",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
