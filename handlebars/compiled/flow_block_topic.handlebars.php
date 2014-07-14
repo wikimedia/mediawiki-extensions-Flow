@@ -55,9 +55,11 @@
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">'.htmlentities(((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
 
-<div class="flow-topic-summary">
+<div class="flow-topic-summary-container">
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
-		'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['summary']) && isset($in['summary']['format'])) ? $in['summary']['format'] : null),((is_array($in['summary']) && isset($in['summary']['content'])) ? $in['summary']['content'] : null)),Array()), 'encq').'
+		<div class="flow-topic-summary">
+			'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['summary']) && isset($in['summary']['format'])) ? $in['summary']['format'] : null),((is_array($in['summary']) && isset($in['summary']['content'])) ? $in['summary']['content'] : null)),Array()), 'encq').'
+		</div>
 	' : '').'
 </div>
 
@@ -192,7 +194,7 @@
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateCloseOpenTopic"
-						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary"
+						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
 						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
 						   href="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['title'])) ? $in['actions']['close']['title'] : null), ENT_QUOTES, 'UTF-8').'">
@@ -207,7 +209,7 @@
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateCloseOpenTopic"
 						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
-						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary"
+						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
 						   href="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['title'])) ? $in['actions']['reopen']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-clock"></span>
@@ -220,7 +222,7 @@
 						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateSummarizeTopic"
-						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary"
+						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
 						   href="'.htmlentities(((is_array($in['actions']['summarize']) && isset($in['actions']['summarize']['url'])) ? $in['actions']['summarize']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['summarize']) && isset($in['actions']['summarize']['title'])) ? $in['actions']['summarize']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-flag"></span>

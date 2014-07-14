@@ -1,40 +1,42 @@
-<div class="flow-topic-summary">
-	<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST" action="{{revision.actions.summarize.url}}">
-		{{> flow_errors }}
-		<input type="hidden" name="wpEditToken" value="{{editToken}}" />
-
-		{{#if revision.revisionId}}
-			<input type="hidden" name="{{type}}_prev_revision" value="{{revision.revisionId}}" />
-		{{/if}}
-
-		<textarea class="mw-ui-input"
-		          required
-		          name="{{type}}_summary"
-		          data-flow-preview-node="summary"
-		          data-flow-preview-template="flow_topic_titlebar_summary"
-		          type="text"
-				  data-role="content">
-			{{~#if submitted.summary~}}
-				{{~submitted.summary~}}
-			{{~else~}}
-				{{~#if revision.revisionId~}}
-					{{~revision.content.content~}}
+<div class="flow-topic-summary-container">
+	<div class="flow-topic-summary">
+		<form class="flow-edit-form" data-flow-initial-state="collapsed" method="POST" action="{{revision.actions.summarize.url}}">
+			{{> flow_errors }}
+			<input type="hidden" name="wpEditToken" value="{{editToken}}" />
+	
+			{{#if revision.revisionId}}
+				<input type="hidden" name="{{type}}_prev_revision" value="{{revision.revisionId}}" />
+			{{/if}}
+	
+			<textarea class="mw-ui-input"
+				  required
+				  name="{{type}}_summary"
+				  data-flow-preview-node="summary"
+				  data-flow-preview-template="flow_topic_titlebar_summary"
+				  type="text"
+					  data-role="content">
+				{{~#if submitted.summary~}}
+					{{~submitted.summary~}}
+				{{~else~}}
+					{{~#if revision.revisionId~}}
+						{{~revision.content.content~}}
+					{{~/if~}}
 				{{~/if~}}
-			{{~/if~}}
-		</textarea>
-
-		<div class="flow-form-actions flow-form-collapsible">
-			<button
-				data-role="submit"
-				class="flow-ui-button flow-ui-constructive"
-				data-flow-interactive-handler="apiRequest"
-				data-flow-api-handler="summarizeTopic"
-				data-flow-api-target="< .flow-topic-summary">
-					{{l10n "flow-topic-action-summarize-topic"}}
-			</button>
-			{{> flow_preview_button}}
-			<a href="{{revision.links.topic.url}}" title="{{revision.links.topic.title}}" data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</a>
-			<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-summarize"}}</small>
-		</div>
-	</form>
+			</textarea>
+	
+			<div class="flow-form-actions flow-form-collapsible">
+				<button
+					data-role="submit"
+					class="flow-ui-button flow-ui-constructive"
+					data-flow-interactive-handler="apiRequest"
+					data-flow-api-handler="summarizeTopic"
+					data-flow-api-target="< .flow-topic-summary-container">
+						{{l10n "flow-topic-action-summarize-topic"}}
+				</button>
+				{{> flow_preview_button}}
+				<a href="{{revision.links.topic.url}}" title="{{revision.links.topic.title}}" data-flow-interactive-handler="cancelForm" data-role="cancel" class="flow-ui-button flow-ui-destructive flow-ui-quiet">{{l10n "flow-cancel"}}</a>
+				<small class="flow-terms-of-use plainlinks">{{l10nParse "flow-terms-of-use-summarize"}}</small>
+			</div>
+		</form>
+	</div>
 </div>

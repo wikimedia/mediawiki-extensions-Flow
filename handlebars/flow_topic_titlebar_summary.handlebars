@@ -1,5 +1,7 @@
-<div class="flow-topic-summary">
+<div class="flow-topic-summary-container">
 	{{#if summary}}
-		{{escapeContent summary.format summary.content}}
+		<div class="flow-topic-summary">
+			{{escapeContent summary.format summary.content}}
+		</div>
 	{{/if}}
 </div>
