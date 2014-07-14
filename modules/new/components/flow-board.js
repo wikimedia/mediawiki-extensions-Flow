@@ -276,6 +276,13 @@
 		 * @return {Object}
 		 */
 		FlowBoardComponent.UI.events.apiPreHandlers.activateSummarizeTopic = function ( event, info ) {
+			// Topic without a summary does not have class 'flow-topic-summary'
+			if ( !info.$target.hasClass( 'flow-topic-summary' ) ) {
+				info.$target = $( '<div>' ).addClass( 'flow-topic-summary' );
+				info.$target.insertAfter(
+					$( this ).closest( '.flow-topic-titlebar' ).find( '.flow-reply-count' )
+				);
+			}
 			if ( info.$target.find( 'form' ).length ) {
 				// Form already open; cancel the old form
 				info.$target.find( 'form' ).find( 'button, input, a' ).filter( '[data-flow-interactive-handler="cancelForm"]' ).trigger( 'click' );
@@ -296,7 +303,14 @@
 		 * @param {Event} event
 		 * @return {Object}
 		 */
-		FlowBoardComponent.UI.events.apiPreHandlers.activateCloseOpenTopic = function ( event ) {
+		FlowBoardComponent.UI.events.apiPreHandlers.activateCloseOpenTopic = function ( event, info ) {
+			// Topic without a summary does not have class 'flow-topic-summary'
+			if ( !info.$target.hasClass( 'flow-topic-summary' ) ) {
+				info.$target = $( '<div>' ).addClass( 'flow-topic-summary' );
+				info.$target.insertAfter(
+					$( this ).closest( '.flow-topic-titlebar' ).find( '.flow-reply-count' )
+				);
+			}
 			return {
 				// href submodule is close-open-topic
 				submodule: 'view-post',
