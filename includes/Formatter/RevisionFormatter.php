@@ -340,7 +340,8 @@ class RevisionFormatter {
 		$postId = method_exists( $revision, 'getPostId' ) ? $revision->getPostId() : null;
 		$actionTypes = $this->permissions->getActions()->getValue( $action, 'actions' );
 		if ( $actionTypes === null ) {
-			throw new FlowException( "No actions defined for action: $action" );
+			wfDebugLog( 'Flow', __METHOD__ . ": No actions defined for action: $action" );
+			return array();
 		}
 
 		// actions primarily vary by revision type...
