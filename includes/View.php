@@ -163,11 +163,12 @@ class View extends ContextSource {
 	 *       e.g. "Hide post in <TITLE>", "Reopen <TITLE>", etc.
 	 */
 	protected function setPageTitle( Workflow $workflow, array $apiResponse ) {
+		$title = $workflow->getOwnerTitle();
 		$out = $this->getOutput();
 		if ( $workflow->getType() === 'topic' ) {
-			$out->setPageTitle( '' );
+			$out->setPageTitle( $this->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
 			$out->setHtmlTitle( htmlspecialchars( $apiResponse['blocks'][0]['topicTitle'] ) );
-			$out->setSubtitle( '&lt; ' . Linker::link( $workflow->getOwnerTitle() ) );
+			$out->setSubtitle( '&lt; ' . Linker::link( $title ) );
 		} else {
 			$out->setPageTitle( $workflow->getArticleTitle()->getFullText() );
 		}
