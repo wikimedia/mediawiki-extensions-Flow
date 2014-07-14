@@ -131,7 +131,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic', 'topic-history', 'diff-post', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'lock-topic', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-title',
 			'i18n-params' => array(
@@ -156,7 +156,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic-history', 'topic', 'post', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-new-post',
 			'i18n-params' => array(
@@ -182,7 +182,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'GET',
 		'links' => array( 'post-history', 'topic', 'post', 'diff-post', 'post-revision' ),
-		'actions' => array( 'reply', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
+		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-edit-post',
 			'i18n-params' => array(
@@ -208,7 +208,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'post-history', 'post-revision' ),
-		'actions' => array( 'reply', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
+		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-post',
 			'i18n-params' => array(
@@ -232,7 +232,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'post-history', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-title', 'restore-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'restore-topic', 'hide-topic', 'delete-topic', 'suppress-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-hid-topic',
 			'i18n-params' => array(
@@ -257,7 +257,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'post-history', 'post-revision' ),
-		'actions' => array( 'reply', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
+		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-post',
 			'i18n-params' => array(
@@ -282,7 +282,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-deleted-topic',
 			'i18n-params' => array(
@@ -308,7 +308,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'topic-history', 'post-revision' ),
-		'actions' => array( 'reply', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
+		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-suppressed-post',
 			'i18n-params' => array(
@@ -334,7 +334,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-suppressed-topic',
 			'i18n-params' => array(
@@ -409,7 +409,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'post', 'post-history', 'post-revision' ),
-		'actions' => array( 'reply', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
+		'actions' => array( 'reply', 'thank', 'edit-post', 'restore-post', 'hide-post', 'delete-post', 'suppress-post' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-restored-post',
 			'i18n-params' => array(
@@ -464,7 +464,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'POST',
 		'links' => array( 'topic', 'topic-history', 'topic-revision' ),
-		'actions' => array( 'reply', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-title', 'hide-topic', 'delete-topic', 'suppress-topic', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-restored-topic',
 			'i18n-params' => array(
@@ -511,7 +511,7 @@ $wgFlowActions = array(
 		),
 		'button-method' => 'GET',
 		'links' => array( 'topic-history', 'topic', 'post', 'post-revision' ),
-		'actions' => array( 'reply', 'edit-post', 'hide-post', 'delete-post', 'suppress-post', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
+		'actions' => array( 'reply', 'thank', 'edit-post', 'hide-post', 'delete-post', 'suppress-post', 'edit-topic-summary', 'close-topic', 'restore-topic' ),
 		'history' => array(
 			'i18n-message' => 'flow-rev-message-reply',
 			'i18n-params' => array(
@@ -600,6 +600,20 @@ $wgFlowActions = array(
 		'button-method' => 'GET',
 		'history' => array(), // views don't generate history
 		'handler-class' => 'Flow\Actions\HistoryAction',
+	),
+
+	// Pseudo-action to determine when to show thank links,
+	// currently no limitation. if you can see revision you
+	// can thank.
+	'thank' => array(
+		'performs-writes' => false,
+		'permissions' => array(
+			PostRevision::MODERATED_NONE => '',
+			PostRevision::MODERATED_HIDDEN => '',
+			PostRevision::MODERATED_CLOSED => '',
+			PostRevision::MODERATED_DELETED => '',
+			PostRevision::MODERATED_SUPPRESSED => '',
+		),
 	),
 
 	// Actions not tied to a particular revision change_type

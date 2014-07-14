@@ -21,11 +21,13 @@
 		{{l10n "topic_count_sidebar" this}}
 		{{#if links.pagination.fwd}}
 			<a href="{{links.pagination.fwd.url}}" title="{{links.pagination.fwd.title}}" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-load-more"}}</a>
-		{{elseif links.pagination.rev}}
-			<a href="{{links.pagination.rev.url}}" title="{{links.pagination.rev.title}}" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-load-more"}}</a>
 		{{else}}
-			<!-- @todo make disabled class do something? -->
-			<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin disabled"><span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-load-more"}}</a>
+			{{if links.pagination.rev}}
+				<a href="{{links.pagination.rev.url}}" title="{{links.pagination.rev.title}}" class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"><span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-load-more"}}</a>
+			{{else}}
+				<!-- @todo make disabled class do something? -->
+				<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin disabled"><span class="wikiglyph wikiglyph-article"></span> {{l10n "flow-load-more"}}</a>
+			{{/if}}
 		{{/if}}
 	</li>
 	--}}
