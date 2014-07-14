@@ -69,7 +69,7 @@
 			<ul class="flow-ui-button-container">
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['edit'])) ? $in['actions']['edit'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin"
+						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['url'])) ? $in['actions']['edit']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['edit']) && isset($in['actions']['edit']['title'])) ? $in['actions']['edit']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 						   data-flow-interactive-handler="editTopicTitle"
@@ -101,7 +101,7 @@
 				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['lock'])) ? $in['actions']['lock'] : null))) ? '
 					<li>
-						<a class="flow-ui-button flow-ui-regressive flow-ui-progressive flow-ui-quiet flow-ui-thin"
+						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['url'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['title'])) ? $in['actions']['lock']['title'] : null), ENT_QUOTES, 'UTF-8').'">
 							<span class="wikiglyph wikiglyph-lock"></span>

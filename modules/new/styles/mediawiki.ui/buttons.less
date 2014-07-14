@@ -69,9 +69,6 @@ Styleguide 2.1.
 .flow-ui-progressive {
 	.flow-ui-anchor( @colorProgressive );
 }
-.flow-ui-regressive {
-	.flow-ui-anchor( @colorRegressive );
-}
 .flow-ui-constructive {
 	.flow-ui-anchor( @colorConstructive );
 }
@@ -85,7 +82,7 @@ Buttons
 <h3>Guidelines:</h3>
 
 - .flow-ui-button can **only** be used on **A and BUTTON tags**. There is conditional support for input[type=button], but this doesn't work in older browsers.
-- .flow-ui-progressive, .flow-ui-regressive, .flow-ui-constructive, and .flow-ui-destructive can be applied alone on A, but can be applied in tandem with .flow-ui-button. *The class order is important:* **base type** (mw-ui-button) must come **first**, **mode** (mw-ui-quiet, mw-ui-sleeper) **second**, **visual type** (mw-ui-thin) **third**, and **context** (mw-ui-progressive) comes **last**.
+- .flow-ui-progressive, .flow-ui-constructive, and .flow-ui-destructive can be applied alone on A, but can be applied in tandem with .flow-ui-button. *The class order is important:* **base type** (mw-ui-button) must come **first**, **mode** (mw-ui-quiet, mw-ui-sleeper) **second**, **visual type** (mw-ui-thin) **third**, and **context** (mw-ui-progressive) comes **last**.
 - A .flow-ui-quiet button may **never** be the first or only button in a form.
 - Semantically, the **first button in a form should always be the affirmative action** (eg. Submit). This is for accessibility purposes. Where it appears visually is not as important.
 
@@ -98,7 +95,6 @@ Buttons
 Markup:
 <button class="mw-ui-button {$modifiers}">Default</button>
 <button class="mw-ui-button mw-ui-progressive {$modifiers}">Progressive</button>
-<button class="mw-ui-button mw-ui-regressive {$modifiers}">Regressive</button>
 <button class="mw-ui-button mw-ui-constructive {$modifiers}">Constructive</button>
 <button class="mw-ui-button mw-ui-destructive {$modifiers}">Destructive</button>
 
@@ -340,11 +336,6 @@ Styleguide 2.2.
 		// Progressive context
 		&.flow-ui-progressive {
 			.flow-ui-button-context( @colorProgressive );
-		}
-
-		// Regressive context
-		&.flow-ui-regressive {
-			.flow-ui-button-context( @colorRegressive );
 		}
 
 		// Constructive context
