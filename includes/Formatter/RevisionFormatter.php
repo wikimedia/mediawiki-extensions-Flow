@@ -351,6 +351,22 @@ class RevisionFormatter {
 				continue;
 			}
 			switch( $type ) {
+			case 'thank':
+				if (
+					// thanks extension must be available
+					!class_exists( 'ThanksHooks' ) ||
+					// anon's can't thank
+					$user->isAnon() ||
+					// can't thank an anon user
+					$revision->getCreatorIp() ||
+					// can't thank self
+					$user->getId() === $revision->getCreatorId()
+				) {
+					continue;
+				}
+				$links['thank'] = $this->urlGenerator->thankAction( $postId );
+				break;
+
 			case 'reply':
 				if ( !$postId ) {
 					throw new FlowException( "$type called without \$postId" );

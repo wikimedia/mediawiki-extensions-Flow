@@ -133,7 +133,7 @@ class PostRevision extends AbstractRevision {
 		$obj->postId = $uuid;
 
 		list( $userId, $userIp, $userWiki ) = self::userFields( $user );
-		$obj->origUserId = $obj->userId = $userId;
+		$obj->origUserId = $obj->userId = (int)$userId;
 		$obj->origUserIp = $obj->userIp = $userIp;
 		$obj->origUserWiki = $obj->userWiki = $userWiki;
 
@@ -159,7 +159,7 @@ class PostRevision extends AbstractRevision {
 
 		$obj->replyToId = UUID::create( $row['tree_parent_id'] );
 		$obj->postId = UUID::create( $row['rev_type_id'] );
-		$obj->origUserId = $row['tree_orig_user_id'];
+		$obj->origUserId = (int)$row['tree_orig_user_id'];
 		if ( isset( $row['tree_orig_user_ip'] ) ) {
 			$obj->origUserIp = $row['tree_orig_user_ip'];
 		// BC for tree_orig_user_text field
