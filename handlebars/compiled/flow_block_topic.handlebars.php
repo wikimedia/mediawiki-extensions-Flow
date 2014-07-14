@@ -55,7 +55,7 @@
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">'.htmlentities(((is_array($in) && isset($in['reply_count'])) ? $in['reply_count'] : null), ENT_QUOTES, 'UTF-8').'</span></span>
 
-<div class="flow-topic-summary">
+<div class="flow-topic-summary'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? ' flow-topic-summary-is-not-empty' : '').'">
 	'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
 		'.LCRun3::ch($cx, 'escapeContent', Array(Array(((is_array($in['summary']) && isset($in['summary']['format'])) ? $in['summary']['format'] : null),((is_array($in['summary']) && isset($in['summary']['content'])) ? $in['summary']['content'] : null)),Array()), 'encq').'
 	' : '').'

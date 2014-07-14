@@ -1,4 +1,4 @@
-<div class="flow-topic-summary">
+<div class="flow-topic-summary{{#if summary}} flow-topic-summary-is-not-empty{{/if}}">
 	{{#if summary}}
 		{{escapeContent summary.format summary.content}}
 	{{/if}}

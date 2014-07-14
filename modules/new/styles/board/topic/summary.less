@@ -4,8 +4,10 @@
 @import 'flow.variables';
 
 .flow-topic-summary {
-	border-top: 1px dotted @colorGrayLightest;
-	margin-top: .33em;
+	&.flow-topic-summary-is-not-empty {
+		border-top: 1px dotted @colorGrayLight;
+		margin-top: .33em;
+	}
 	p {
 		font-style: italic;
 	}
