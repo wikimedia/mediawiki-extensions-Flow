@@ -766,7 +766,12 @@ $c['query.board-history'] = $c->share( function( $c ) {
 		$c['repository.tree']
 	);
 } );
-$c['formatter.revision'] = $c->share( function( $c ) {
+// The RevisionFormatter holds internal state like
+// contentType of output and if it should include history
+// properties.  To prevent different code using the formatter
+// from causing problems return a new RevisionFormatter every
+// time it is requested.
+$c['formatter.revision'] = function( $c ) {
 	global $wgFlowMaxThreadingDepth;
 
 	return new Flow\Formatter\RevisionFormatter(
@@ -775,7 +780,7 @@ $c['formatter.revision'] = $c->share( function( $c ) {
 		$c['repository.username'],
 		$wgFlowMaxThreadingDepth
 	);
-} );
+};
 $c['formatter.topiclist'] = $c->share( function( $c ) {
 	return new Flow\Formatter\TopicListFormatter(
 		$c['url_generator'],
