@@ -109,7 +109,7 @@
 			   data-flow-api-handler="activateEditPost"
 			   data-flow-api-target="< .flow-post-main"
 			   data-flow-interactive-handler="apiRequest"
-			   class="flow-ui-regressive flow-ui-quiet">
+			   class="flow-ui-quiet">
 				'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-edit-post'),Array()), 'encq').'
 			</a>
 		' : '').'
@@ -173,7 +173,7 @@
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['delete'])) ? $in['actions']['delete'] : null))) ? '
 			<li>
-				<a class="flow-ui-button flow-ui-regressive flow-ui-quiet flow-ui-thin"
+				<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 				   href="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['url'])) ? $in['actions']['delete']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				   title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 				   data-flow-interactive-handler="moderationDialog"
