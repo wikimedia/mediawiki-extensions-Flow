@@ -18,7 +18,7 @@
 		]
 	},
 	"flow-desc": "Système de gestion du flux de travail",
-	"flow-talk-taken-over": "Cette page de discussion a été remplacée par un [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal ''Flow board''].",
+	"flow-talk-taken-over": "Cette page de discussion utilise [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"flow-talk-username": "Gestionnaire de la page de discussion du flux",
 	"log-name-flow": "Journal de flux d’activité",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|a supprimé}} une [$4 note] sur [[$3]]",

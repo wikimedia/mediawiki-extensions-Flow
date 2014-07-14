@@ -4,7 +4,8 @@
 			"Elseweyr",
 			"Nike",
 			"Pxos",
-			"Stryn"
+			"Stryn",
+			"MrTapsa"
 		]
 	},
 	"flow-talk-taken-over": "Tällä keskustelusivulla on otettu käyttöön [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
@@ -76,6 +77,7 @@
 	"flow-paging-fwd": "Vanhemmat aiheet",
 	"flow-notification-link-text-view-post": "Näytä viesti",
 	"flow-notification-link-text-view-topic": "Näytä aihe",
+	"flow-notification-reply-email-subject": "$1 {{GENDER:$1|vastasi}} aiheeseen",
 	"echo-pref-tooltip-flow-discussion": "Ilmoita minulle, kun minuun liittyvää toimintaa tapahtuu Flowissa.",
 	"flow-link-post": "viesti",
 	"flow-link-topic": "aihe",

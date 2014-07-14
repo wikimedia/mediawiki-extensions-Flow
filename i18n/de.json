@@ -6,7 +6,7 @@
 		]
 	},
 	"flow-desc": "Ermöglicht ein Verwaltungssystem zu Benutzerdiskussionen",
-	"flow-talk-taken-over": "Diese Diskussionsseite wurde von einem [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow-Board] übernommen.",
+	"flow-talk-taken-over": "Diese Diskussionsseite verwendet [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"flow-talk-username": "Flow-Diskussionsseitenverwalter",
 	"log-name-flow": "Flow-Aktivitätslogbuch",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|löschte}} einen [$4 Beitrag] auf [[$3]]",
