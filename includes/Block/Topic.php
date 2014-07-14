@@ -426,10 +426,6 @@ class TopicBlock extends AbstractBlock {
 		}
 	}
 
-	public function render( Templating $templating, array $options ) {
-		throw new FlowException( 'deprecated' );
-	}
-
 	public function renderAPI( Templating $templating, array $options ) {
 		// there's probably some OO way to turn this stack of if/else into
 		// something nicer. Consider better ways before extending this with

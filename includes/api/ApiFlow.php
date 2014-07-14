@@ -113,24 +113,6 @@ class ApiFlow extends ApiBase {
 		return $page;
 	}
 
-	/**
-	 * @todo figure out if this is still needed
-	 */
-	protected function doRerender( $blocks ) {
-		/** @var Templating $templating */
-		$templating = Container::get( 'templating' );
-
-		$output = array();
-
-		$output['count'] = count( $blocks );
-
-		foreach( $blocks as $block ) {
-			$output[$block->getName()] = $block->render( $templating, array() );
-		}
-
-		return $output;
-	}
-
 	public function getAllowedParams() {
 		return array(
 			'submodule' => array(

@@ -246,18 +246,6 @@ class TopicSummaryBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Render for an action
-	 * @param Templating $templating
-	 * @param array $options
-	 * @param bool $return
-	 * @return string
-	 * @throws InvalidInputException
-	 */
-	public function render( Templating $templating, array $options, $return = false ) {
-		throw new InvalidInputException( 'deprecated' );
-	}
-
-	/**
 	 * Render the data for API request
 	 *
 	 * @param Templating $templating

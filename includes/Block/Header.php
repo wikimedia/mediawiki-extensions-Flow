@@ -168,10 +168,6 @@ class HeaderBlock extends AbstractBlock {
 		}
 	}
 
-	public function render( Templating $templating, array $options, $return = false ) {
-		throw new FlowException( 'deprecated' );
-	}
-
 	public function renderAPI( Templating $templating, array $options ) {
 		$output = array(
 			'type' => $this->getName(),
