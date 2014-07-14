@@ -676,7 +676,7 @@ abstract class AbstractRevision {
 			$userId = 0;
 			$userIp = $user->getName();
 		} else {
-			$userId = $user->getId();
+			$userId = (int)$user->getId();
 			$userIp = null;
 		}
 		return array( $userId, $userIp, wfWikiId() );
