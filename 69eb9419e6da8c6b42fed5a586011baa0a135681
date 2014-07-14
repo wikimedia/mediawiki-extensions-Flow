@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_0c013608",
+        "filename": "Hooks.php",
+        "patchSetId": 40
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-14T22:32:44Z",
+      "side": 1,
+      "message": "we should be able to, but not sure if that will work during the request where we create this, would have to test.  for now this is probably fine?",
+      "revId": "69eb9419e6da8c6b42fed5a586011baa0a135681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_f17125de",
+        "filename": "includes/Formatter/RevisionFormatter.php",
+        "patchSetId": 40
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-14T22:32:44Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be:\n\n    $title-\u003egetTalkPage()-\u003eequals( $ctx-\u003egetUser()-\u003egetTalkPage() )",
+      "revId": "69eb9419e6da8c6b42fed5a586011baa0a135681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_51823998",
+        "filename": "includes/UrlGenerator.php",
+        "patchSetId": 40
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-14T22:32:44Z",
+      "side": 1,
+      "message": "this can be\n\n    array( \u0027action\u0027 \u003d\u003e \u0027watch\u0027 )\n\nto be consistent with the other formatting in this file",
+      "revId": "69eb9419e6da8c6b42fed5a586011baa0a135681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_d14d099d",
+        "filename": "includes/WatchedTopicItems.php",
+        "patchSetId": 40
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-14T22:32:44Z",
+      "side": 1,
+      "message": "this only works when flow is part of the main wiki database. it will return the flow database handle.\n\nYou want a plain \n    wfGetDB( DB_SLAVE);\n\nActually, we probably also want to specify the group since the `watchlist` database server should be the only one with watchlists fully in memory:\n\n    wfGetDB( DB_SLAVE, \u0027watchlist\u0027 );",
+      "revId": "69eb9419e6da8c6b42fed5a586011baa0a135681",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
