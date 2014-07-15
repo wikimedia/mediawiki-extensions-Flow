@@ -111,112 +111,6 @@
 						</a>
 					</li>
 				' : '').'
-				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['hide'])) ? $in['actions']['hide'] : null))) ? '
-					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
-						   href="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['url'])) ? $in['actions']['hide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-						   title="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['title'])) ? $in['actions']['hide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="hide">
-							<span class="wikiglyph wikiglyph-flag"></span>
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-hide-topic'),Array()), 'encq').'
-						</a>
-					</li>
-				' : '').'
-				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unhide'])) ? $in['actions']['unhide'] : null))) ? '
-					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
-						   href="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['url'])) ? $in['actions']['unhide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-						   title="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['title'])) ? $in['actions']['unhide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="restore">
-							<span class="wikiglyph wikiglyph-flag"></span>
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unhide-topic'),Array()), 'encq').'
-						</a>
-					</li>
-				' : '').'
-				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['delete'])) ? $in['actions']['delete'] : null))) ? '
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   href="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['url'])) ? $in['actions']['delete']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-						   title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="delete">
-							<span class="wikiglyph wikiglyph-trash"></span>
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-delete-topic'),Array()), 'encq').'
-						</a>
-					</li>
-				' : '').'
-				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['undelete'])) ? $in['actions']['undelete'] : null))) ? '
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   href="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['url'])) ? $in['actions']['undelete']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-						   title="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['title'])) ? $in['actions']['undelete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="restore">
-							<span class="wikiglyph wikiglyph-trash"></span>
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-undelete-topic'),Array()), 'encq').'
-						</a>
-					</li>
-				' : '').'
-				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['suppress'])) ? $in['actions']['suppress'] : null))) ? '
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   href="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['url'])) ? $in['actions']['suppress']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-						   title="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['title'])) ? $in['actions']['suppress']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="suppress">
-							<span class="wikiglyph wikiglyph-block"></span>
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-suppress-topic'),Array()), 'encq').'
-						</a>
-					</li>
-				' : '').'
-				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unsuppress'])) ? $in['actions']['unsuppress'] : null))) ? '
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   href="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['url'])) ? $in['actions']['unsuppress']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-						   title="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['title'])) ? $in['actions']['unsuppress']['title'] : null), ENT_QUOTES, 'UTF-8').'"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="restore">
-							<span class="wikiglyph wikiglyph-block"></span>
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unsuppress-topic'),Array()), 'encq').'
-						</a>
-					</li>
-				' : '').'
-				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['close'])) ? $in['actions']['close'] : null))) ? '
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   data-flow-interactive-handler="apiRequest"
-						   data-flow-api-handler="activateCloseOpenTopic"
-						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
-						   href="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-						   title="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['title'])) ? $in['actions']['close']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							<span class="wikiglyph wikiglyph-stop"></span>
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-close-topic'),Array()), 'encq').'
-						</a>
-					</li>
-				' : '').'
-				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reopen'])) ? $in['actions']['reopen'] : null))) ? '
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   data-flow-interactive-handler="apiRequest"
-						   data-flow-api-handler="activateCloseOpenTopic"
-						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
-						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-						   href="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-						   title="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['title'])) ? $in['actions']['reopen']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							<span class="wikiglyph wikiglyph-stop"></span>
-							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-reopen-topic'),Array()), 'encq').'
-						</a>
-					</li>
-				' : '').'
 				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['summarize'])) ? $in['actions']['summarize'] : null))) ? '
 					<li>
 						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
@@ -231,6 +125,112 @@
 							' : '
 								'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-summarize-topic'),Array()), 'encq').'
 							').'
+						</a>
+					</li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['hide'])) ? $in['actions']['hide'] : null))) ? '
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['url'])) ? $in['actions']['hide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['title'])) ? $in['actions']['hide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="hide">
+							<span class="wikiglyph wikiglyph-flag"></span>
+							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-hide-topic'),Array()), 'encq').'
+						</a>
+					</li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unhide'])) ? $in['actions']['unhide'] : null))) ? '
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['url'])) ? $in['actions']['unhide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['title'])) ? $in['actions']['unhide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="restore">
+							<span class="wikiglyph wikiglyph-flag"></span>
+							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unhide-topic'),Array()), 'encq').'
+						</a>
+					</li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['delete'])) ? $in['actions']['delete'] : null))) ? '
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['url'])) ? $in['actions']['delete']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="delete">
+							<span class="wikiglyph wikiglyph-trash"></span>
+							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-delete-topic'),Array()), 'encq').'
+						</a>
+					</li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['undelete'])) ? $in['actions']['undelete'] : null))) ? '
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['url'])) ? $in['actions']['undelete']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['title'])) ? $in['actions']['undelete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="restore">
+							<span class="wikiglyph wikiglyph-trash"></span>
+							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-undelete-topic'),Array()), 'encq').'
+						</a>
+					</li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['suppress'])) ? $in['actions']['suppress'] : null))) ? '
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['url'])) ? $in['actions']['suppress']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['title'])) ? $in['actions']['suppress']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="suppress">
+							<span class="wikiglyph wikiglyph-block"></span>
+							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-suppress-topic'),Array()), 'encq').'
+						</a>
+					</li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unsuppress'])) ? $in['actions']['unsuppress'] : null))) ? '
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['url'])) ? $in['actions']['unsuppress']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['title'])) ? $in['actions']['unsuppress']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="restore">
+							<span class="wikiglyph wikiglyph-block"></span>
+							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unsuppress-topic'),Array()), 'encq').'
+						</a>
+					</li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['close'])) ? $in['actions']['close'] : null))) ? '
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   data-flow-interactive-handler="apiRequest"
+						   data-flow-api-handler="activateCloseOpenTopic"
+						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
+						   href="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['title'])) ? $in['actions']['close']['title'] : null), ENT_QUOTES, 'UTF-8').'">
+							<span class="wikiglyph wikiglyph-stop"></span>
+							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-close-topic'),Array()), 'encq').'
+						</a>
+					</li>
+				' : '').'
+				'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['reopen'])) ? $in['actions']['reopen'] : null))) ? '
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   data-flow-interactive-handler="apiRequest"
+						   data-flow-api-handler="activateCloseOpenTopic"
+						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
+						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+						   href="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'"
+						   title="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['title'])) ? $in['actions']['reopen']['title'] : null), ENT_QUOTES, 'UTF-8').'">
+							<span class="wikiglyph wikiglyph-stop"></span>
+							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-reopen-topic'),Array()), 'encq').'
 						</a>
 					</li>
 				' : '').'
