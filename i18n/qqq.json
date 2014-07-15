@@ -322,6 +322,7 @@
 	"flow-started-ago": "Message displayed in the topic title bar to indicate how long ago the topic was created. Parameters:\n* $1 - Humanized time ago from CLDR. ex: 17 hours ago",
 	"flow-edited-ago": "Message displayed below a post that has been edited indicating how long ago it was edited. Parameters:\n* $1 - Humanized time ago from CLDR. ex: 4 days ago",
 	"flow-load-more": "Message displayed inside a button that fetches more topics and appends them to the bottom of the page",
+	"flow-no-more-fwd" : "Displayed instead of 'flow-load-more' when there are no more topics to show in the forward direction",
 	"flow-add-topic": "Button text for submitting a new topic to the page",
 	"flow-newest-topics": "Filter label text for \"Newest topics\"",
 	"flow-recent-topics": "Filter label text for \"Recent active topics\"",
