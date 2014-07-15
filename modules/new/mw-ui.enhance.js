@@ -6,13 +6,13 @@
 	/*
 	* Reduce eye-wandering due to adjacent colorful buttons
 	* This will make unhovered and unfocused sibling buttons become faded and blurred
-		* Usage: Buttons must be in a form, or in a parent with flow-ui-button-container, or they must be siblings
+		* Usage: Buttons must be in a form, or in a parent with mw-ui-button-container, or they must be siblings
 	*/
 	$( document ).ready( function () {
 		function onMwUiButtonFocus( event ) {
 			var $el, $form, $siblings;
 
-			if ( event.target.className.indexOf( 'flow-ui-button' ) === -1 ) {
+			if ( event.target.className.indexOf( 'mw-ui-button' ) === -1 ) {
 				// Not a button event
 				return;
 			}
@@ -21,25 +21,25 @@
 
 			if ( event.type !== 'keyup' || $el.is( ':focus' ) ) {
 				// Reset style
-				$el.removeClass( 'flow-ui-button-althover' );
+				$el.removeClass( 'mw-ui-button-althover' );
 
-				$form = $el.closest( 'form, .flow-ui-button-container' );
+				$form = $el.closest( 'form, .mw-ui-button-container' );
 				if ( $form.length ) {
 					// If this button is in a form, apply this to all the form's buttons.
-					$siblings = $form.find( '.flow-ui-button' );
+					$siblings = $form.find( '.mw-ui-button' );
 				} else {
 					// Otherwise, try to find neighboring buttons
-					$siblings = $el.siblings( '.flow-ui-button' );
+					$siblings = $el.siblings( '.mw-ui-button' );
 				}
 
 				// Add fade/blur to unfocused sibling buttons
 				$siblings.not( $el ).filter( ':not(:focus)' )
-					.addClass( 'flow-ui-button-althover' );
+					.addClass( 'mw-ui-button-althover' );
 			}
 		}
 
 		function onMwUiButtonBlur( event ) {
-			if ( event.target.className.indexOf( 'flow-ui-button' ) === -1 ) {
+			if ( event.target.className.indexOf( 'mw-ui-button' ) === -1 ) {
 				// Not a button event
 				return;
 			}
@@ -47,13 +47,13 @@
 			var $el       = $( event.target ),
 				$form, $siblings, $focused;
 
-			$form = $el.closest( 'form, .flow-ui-button-container' );
+			$form = $el.closest( 'form, .mw-ui-button-container' );
 			if ( $form.length ) {
 				// If this button is in a form, apply this to all the form's buttons.
-				$siblings = $form.find( '.flow-ui-button' );
+				$siblings = $form.find( '.mw-ui-button' );
 			} else {
 				// Otherwise, try to find neighboring buttons
-				$siblings = $el.siblings( '.flow-ui-button' );
+				$siblings = $el.siblings( '.mw-ui-button' );
 			}
 
 			// Add fade/blur to unfocused sibling buttons
@@ -67,14 +67,14 @@
 				$focused.trigger( 'mouseenter.mw-ui-enhance' );
 			} else {
 				// No other siblings are focused; removing button fading
-				$siblings.removeClass( 'flow-ui-button-althover' );
+				$siblings.removeClass( 'mw-ui-button-althover' );
 			}
 		}
 
 		// Attach the mouseenter and mouseleave handlers on document
 		$( document )
-			.on( 'mouseenter.mw-ui-enhance', '.flow-ui-button', onMwUiButtonFocus )
-			.on( 'mouseleave.mw-ui-enhance', '.flow-ui-button', onMwUiButtonBlur );
+			.on( 'mouseenter.mw-ui-enhance', '.mw-ui-button', onMwUiButtonFocus )
+			.on( 'mouseleave.mw-ui-enhance', '.mw-ui-button', onMwUiButtonBlur );
 
 		// Attach these independently, because jQuery doesn't support useCapture mode (focus propagation)
 		if ( document.attachEvent ) {
@@ -102,7 +102,7 @@
 		} );
 
 		// @todo scrap data-role? use submit types? or a single role=action?
-		$form.find( '.flow-ui-button' ).filter( '[data-role=action], [data-role=submit]' )
+		$form.find( '.mw-ui-button' ).filter( '[data-role=action], [data-role=submit]' )
 			.attr( 'disabled', !ready );
 	}
 	/*

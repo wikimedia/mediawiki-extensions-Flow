@@ -115,7 +115,6 @@ Markup:
 
 .flow-ui-quiet - Quiet: A button that doesn't look like a button.
 .flow-ui-sleeper - Sleeper: A button which always looks like a button, but uncolored until interaction.
-.flow-ui-thin - Thin: A smaller button (less padding) which also inherits font weight.
 .flow-ui-inline - Inline: An even smaller button (zero padding) which also inherits font weight.
 .flow-ui-button-althover - JS enhancement class used to dim elements beside the main one
 
@@ -157,10 +156,6 @@ Styleguide 2.2.
 		&:hover {
 			// Shadow under outer, 3D raising inner, edge shading inner
 			.box-shadow( ~"0 1px 0 0 rgba(0, 0, 0, .15), inset 0 -4px 0 0 @{borderColor}, inset 0 -1px 1px 0 rgba(0, 0, 0, .05)" );
-		}
-		&.flow-ui-thin:hover {
-			// Shadow under outer, 3D raising inner, edge shading inner
-			.box-shadow( ~"0 1px 0 0 rgba(0, 0, 0, .15), inset 0 -3px 0 0 @{borderColor}, inset 0 -1px 1px 0 rgba(0, 0, 0, .05)" );
 		}
 
 		&:focus {
@@ -266,10 +261,6 @@ Styleguide 2.2.
 			// Fake border around, shadow under outer, 3D raising inner, edge shading inner
 			.box-shadow( ~"inset 0 0 0 1px @{colorGrayLighter}, 0 1px 0 0 rgba(0, 0, 0, .15), inset 0 -3px 0 0 @{colorGrayLighter}, inset 0 -1px 1px 0 rgba(0, 0, 0, .05)" );
 		}
-		&.flow-ui-thin:hover {
-			// Fake border around, shadow under outer, 3D raising inner, edge shading inner
-			.box-shadow( ~"inset 0 0 0 1px @{colorGrayLighter}, 0 1px 0 0 rgba(0, 0, 0, .15), inset 0 -2px 0 0 @{colorGrayLighter}, inset 0 -1px 1px 0 rgba(0, 0, 0, .05)" );
-		}
 	}
 }
 
@@ -279,6 +270,18 @@ Styleguide 2.2.
 	padding: .25em .5em;
 	vertical-align: inherit;
 }
+
+// FIXME: Remove flow-ui-button rule when cache has cleared
+.flow-ui-button.flow-ui-inline,
+// When upstreaming, let's find a cleaner way to do this
+.mw-ui-button.flow-ui-inline,
+// Thin mode (no padding)
+.flow-ui-inline {
+	padding: 0;
+	font-weight: inherit;
+	vertical-align: inherit;
+}
+
 .flow-ui-button {
 	// Allow these only on A and BUTTON, and not in IE6
 	a&[class],
@@ -323,20 +326,6 @@ Styleguide 2.2.
 		/*
 		 * Button modes (continued in .flow-ui-button-context())
 		 */
-
-		// Thin mode (reduced visual weight)
-		&.flow-ui-thin {
-			padding: .25em .5em;
-			font-weight: inherit;
-			vertical-align: inherit;
-		}
-
-		// Thin mode (no padding)
-		&.flow-ui-inline {
-			padding: 0;
-			font-weight: inherit;
-			vertical-align: inherit;
-		}
 
 		/*
 		 * Default button styles
