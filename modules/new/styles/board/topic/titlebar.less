@@ -28,6 +28,13 @@
 	}
 }
 
+// flow-topic-titlebar has some padding & .flow-menu's absolute positioning in
+// top: 0; would make it appear at the exact top of the container, but we want
+// it inside titlebar's top padding (aligned with topic title)
+.client-js .flow-topic-titlebar .flow-menu {
+	top: 1em;
+}
+
 .flow-moderated-topic-title,
 // Override default Vector styles
 div#content h2.flow-topic-title {
