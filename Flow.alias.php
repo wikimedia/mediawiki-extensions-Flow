@@ -13,6 +13,16 @@ $specialPageAliases['en'] = array(
 	'Flow' => array( 'Flow' ),
 );
 
+/** Arabic (العربية) */
+$specialPageAliases['ar'] = array(
+	'Flow' => array( 'سريان' ),
+);
+
+/** Egyptian Spoken Arabic (مصرى) */
+$specialPageAliases['arz'] = array(
+	'Flow' => array( 'سريان' ),
+);
+
 /** Zazaki (Zazaki) */
 $specialPageAliases['diq'] = array(
 	'Flow' => array( 'Rodayış' ),

@@ -8,7 +8,7 @@
 		]
 	},
 	"flow-desc": "מערכת לניהול זרימת עבודה",
-	"flow-talk-taken-over": "דף השיחה הוחלף על־ידי [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal לוח זרימה].",
+	"flow-talk-taken-over": "דף השיחה משתמש ב[https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal זרימה].",
 	"flow-talk-username": "מנהל דפי השיחה של זרימה",
 	"log-name-flow": "יומן פעילות זרימה",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|מחק|מחקה}} [$4 רשומה] בדף [[$3]]",
@@ -284,6 +284,7 @@
 	"flow-terms-of-use-edit": "שמירת השינויים מהווה את הסכמתך לתנאי השימוש של הוויקי הזה.",
 	"flow-anon-warning": "לא נכנסת לחשבון. כדי לקבל ייחוס עם שמך ולא עם כתובת ה־IP שלך, אפשר [$1 להיכנס] או [$2 ליצור חשבון].",
 	"flow-cancel-warning": "הזנת טקסט בטופס הזה. האם למחוק אותו?",
+	"flow-topic-first-heading": "נושא בדף $1",
 	"flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 {{GENDER:$1|התחיל|התחילה}} את הנושא הזה|1=$1 {{GENDER:$1|התחיל|התחילה}} את הנושא הזה, ועוד מישהו השתתף בו|$1 {{GENDER:$1|התחיל|התחילה}} את הנושא הזה ועוד $2 אנשים השתתפו בו}}",
 	"flow-topic-count-sidebar": "הצגה של $1 מתוך $2 נושאים בדף הזה",
 	"flow-topic-count": "נושאים ($1)",

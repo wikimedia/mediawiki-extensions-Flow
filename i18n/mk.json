@@ -6,7 +6,7 @@
 		]
 	},
 	"flow-desc": "Систем за раководење со работниот тек",
-	"flow-talk-taken-over": "Оваа страница за разговор е преземена [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Таблата за тек].",
+	"flow-talk-taken-over": "Оваа страница за разговор користи [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Тек].",
 	"flow-talk-username": "Раководител на страница за разговор со Тек",
 	"log-name-flow": "Дневник на активности во текот",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|избриша}} [$4 објава] на [[$3]]",
@@ -282,6 +282,7 @@
 	"flow-terms-of-use-edit": "Зачувувајќи ги промените, се согласувате со условите на употреба на ова вики.",
 	"flow-anon-warning": "Не сте најавени. За да бидете наведени како уредник по име наместо по IP-адреса, [$1 најавете се] или [$2 направете сметка].",
 	"flow-cancel-warning": "Внесовте текст во образецов. Дали сте сигурни дека сакате да го отфрлите?",
+	"flow-topic-first-heading": "Тема на $1",
 	"flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 {{GENDER:$1|ја започна}} темва|1=$1 {{GENDER:$1|ја започна}} и имаше еден учесник|$1 ја {{GENDER:$1|ја започна}} и имаше уште $2 учесници}}",
 	"flow-topic-count-sidebar": "Прикажувам $1 од $2 теми приложени кон страницава",
 	"flow-topic-count": "Теми ($1)",

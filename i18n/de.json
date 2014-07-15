@@ -282,6 +282,7 @@
 	"flow-terms-of-use-edit": "Mit dem Speichern deiner Änderungen stimmst du unseren Nutzungsbedingungen für dieses Wiki zu.",
 	"flow-anon-warning": "Du bist nicht angemeldet. Um eine Zuordnung mit deinem Namen anstatt deiner IP-Adresse zu erhalten, kannst du dich [$1 anmelden] oder [$2 ein Benutzerkonto erstellen].",
 	"flow-cancel-warning": "Du hast Text in dieses Formular eingegeben. Bist du sicher, dass du ihn verwerfen möchtest?",
+	"flow-topic-first-heading": "Thema auf $1",
 	"flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 {{GENDER:$1|startete}} dieses Thema|1=$1 {{GENDER:$1|startete}} dieses Thema und es gab einen anderen Teilnehmer|$1 {{GENDER:$1|startete}} dieses Thema und es gab $2 andere Teilnehmer}}",
 	"flow-topic-count-sidebar": "$1 von $2 an diese Seite angehängte Themen werden angezeigt",
 	"flow-topic-count": "Themen ($1)",

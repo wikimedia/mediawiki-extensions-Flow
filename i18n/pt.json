@@ -10,6 +10,7 @@
 		]
 	},
 	"flow-desc": "Sistema de gerência do fluxo de trabalho",
+	"flow-talk-taken-over": "Esta página de discussão usa o [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
 	"flow-talk-username": "Gerenciador de páginas de discussão do Flow",
 	"log-name-flow": "Registo de actividade do Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|eliminou}} uma [$4 mensagem] em [[$3]]",
@@ -285,6 +286,7 @@
 	"flow-terms-of-use-edit": "Ao gravar as suas alterações, concorda com os termos de uso desta wiki.",
 	"flow-anon-warning": "Não está autenticado(a). Para receber atribuição com o seu nome em vez do seu endereço IP, pode [ $1 entrar na sua conta] ou [$2 criar uma].",
 	"flow-cancel-warning": "Introduziu texto neste formulário. Tem a certeza de que pretende descartá-lo?",
+	"flow-topic-first-heading": "Tópico em $1",
 	"flow-topic-participants-second-try": "{{PLURAL:$2|0=$1 iniciou este tópico|1=$1 iniciou este tópico e existe {{GENDER:$1|um outro|uma outra}} participante|$1 iniciou este tópico e existem $2 {{GENDER:$1|outros|outras}} participantes}}",
 	"flow-topic-count-sidebar": "A mostrar $1 dos $2 tópicos anexados a esta página",
 	"flow-topic-count": "Tópicos ($1)",
