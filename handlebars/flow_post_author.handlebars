@@ -3,7 +3,7 @@
 		{{#if links}}
 			<a href="{{links.contribs.url}}"
 			   title="{{links.contribs.title}}"
-			   class="{{#unless links.contribs.exists}}new {{/if}}mw-userlink flow-ui-tooltip-target">
+			   class="{{#if links.contribs.exists}}new {{/if}}mw-userlink flow-ui-tooltip-target">
 				{{#if name}}
 					{{~name~}}
 				{{else}}
