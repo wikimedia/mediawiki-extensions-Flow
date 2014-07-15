@@ -214,7 +214,7 @@ class FlowHooks {
 				return false;
 			}
 			$line = Container::get( 'formatter.recentchanges' )->format( $row, $changesList );
-		} catch ( FlowException $e ) {
+		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting rc ' . $rc->getAttribute( 'rc_id' ) . ' ' . $e );
 			\MWExceptionHandler::logException( $e );
 			restore_error_handler();
@@ -248,7 +248,7 @@ class FlowHooks {
 			if ( $row !== false ) {
 				$replacement = Container::get( 'formatter.checkuser' )->format( $row, $checkUser->getContext() );
 			}
-		} catch ( FlowException $e ) {
+		} catch ( Exception $e ) {
 			wfDebugLog( 'Flow', __METHOD__ . ': Exception formatting cu ' . $row->cuc_id . ' ' . $e );
 			\MWExceptionHandler::logException( $e );
 		}
