@@ -70,6 +70,15 @@ form.flow-post {
 		.mw-usertoollinks {
 			opacity: 0;
 			.transition( opacity .25s linear );
+			&:not(:empty):before {
+				content: ' ( ';
+			}
+			span ~ span:before {
+				content: ' | ';
+			}
+			&:not(:empty):after {
+				content: ' ) ';
+			}
 		}
 		&:hover .mw-usertoollinks {
 			opacity: 1;
