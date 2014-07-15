@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_03c1f932",
+        "filename": "modules/new/styles/board/topic/post.less",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-15T23:26:44Z",
+      "side": 1,
+      "message": "red bar of doom!",
+      "revId": "c80a487d1ce8139b8dca861fe297b59c8c97b7cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_e3bb8db8",
+        "filename": "modules/new/styles/flow.less/flow.variables.less",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-15T23:26:44Z",
+      "side": 1,
+      "message": "spurious stuff at end of line",
+      "revId": "c80a487d1ce8139b8dca861fe297b59c8c97b7cb",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
