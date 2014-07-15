@@ -220,8 +220,6 @@
 			if ( !optionsUnreferenced.tooltipContext ) {
 				if ( $target.hasClass( 'flow-ui-progressive' ) ) {
 					optionsUnreferenced.tooltipContext = 'progressive';
-				} else if ( $target.hasClass( 'flow-ui-regressive' ) ) {
-					optionsUnreferenced.tooltipContext = 'regressive';
 				} else if ( $target.hasClass( 'flow-ui-constructive' ) ) {
 					optionsUnreferenced.tooltipContext = 'constructive';
 				} else if ( $target.hasClass( 'flow-ui-destructive' ) ) {
@@ -244,7 +242,7 @@
 
 			// Tooltip style context
 			if ( optionsUnreferenced.tooltipContext ) {
-				$tooltip.removeClass( 'flow-ui-progressive flow-ui-regressive flow-ui-constructive flow-ui-destructive' );
+				$tooltip.removeClass( 'flow-ui-progressive flow-ui-constructive flow-ui-destructive' );
 				$tooltip.addClass( 'flow-ui-' + optionsUnreferenced.tooltipContext );
 			}
 
