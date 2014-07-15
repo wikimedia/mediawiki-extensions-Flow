@@ -11,7 +11,7 @@
 		{{#if links}}
 			{{#if links.contribs}}
 				<a href="{{links.contribs.url}}"
-				   title="{{links.contribs.title}}"
+				   {{#unless name}}title="{{links.contribs.title}}"{{/unless}}
 				   class="{{#unless links.contribs.exists}}new {{/unless}}mw-userlink flow-ui-tooltip-target">
 			{{/if}}
 				{{#if name}}
