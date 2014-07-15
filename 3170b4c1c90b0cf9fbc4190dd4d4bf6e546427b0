@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_709f6507",
+        "filename": "handlebars/flow_post_meta_actions.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-15T22:13:44Z",
+      "side": 1,
+      "message": "f-f-f-flow!\n\nalso the flow-* stuff is gone afaik",
+      "revId": "3170b4c1c90b0cf9fbc4190dd4d4bf6e546427b0",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
