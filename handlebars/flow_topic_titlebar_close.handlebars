@@ -43,15 +43,7 @@
 							{{l10n "flow-topic-action-close-topic"}}
 						{{/if}}
 				</button>
-				{{> flow_preview_button}}
-				<a
-					href="{{links.topic.url}}"
-					title="{{links.topic.title}}"
-					data-flow-interactive-handler="cancelForm"
-					data-role="cancel"
-					class="flow-ui-button flow-ui-destructive flow-ui-quiet">
-						{{l10n "flow-cancel"}}
-				</a>
+				{{> flow_form_buttons }}
 				<small class="flow-terms-of-use plainlinks">
 					{{#if isModerated}}
 						{{l10nParse "flow-terms-of-use-reopen-topic"}}
