@@ -21,6 +21,6 @@ class RecoverableErrorHandler {
 			return false;
 		}
 
-		throw new CatchableFatalErrorException( $errno, $errstr, $errfile, $errline );
+		throw new CatchableFatalErrorException( $errstr, 0, $errno, $errfile, $errline );
 	}
 }
