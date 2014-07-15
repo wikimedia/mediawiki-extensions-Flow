@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_4d9bb2c1",
+        "filename": "i18n/en.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-15T20:22:38Z",
+      "side": 1,
+      "message": "need to add this to Resources.php so the message is delivered via RL to frontend",
+      "revId": "9bd2e345ebc90466ca7f710e02f533d7c99b2926",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
