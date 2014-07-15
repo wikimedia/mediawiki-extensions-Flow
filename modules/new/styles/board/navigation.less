@@ -5,13 +5,24 @@
 
 // Top board navigation bar
 .flow-board-navigation {
+	margin: 0 170px 0 0;
+	left: -170px;
+	font-size: 1em;
+	position: static;
+	padding: 0;
+	white-space: nowrap;
+	min-width: 14em;
 	clear: both;
 	max-width: 715px;
-	margin-left: 200px;
-	padding-top: .5em;
-	position: relative;
-	left: -200px;
-	font-size: 1.15em;
+
+	a:link, a:visited {
+		padding: 0.2em 0.3em;
+	}
+
+	a.flow-board-navigator-last {
+		float: right;
+		position: static;
+	}
 
 	.flow-board-navigation-inner {
 		overflow: hidden;
@@ -56,25 +67,12 @@
 }
 
 // MEDIA QUERIES
-@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+@media all and (min-width: @wgFlowDeviceWidthTablet) {
 	.flow-board-navigation {
-		margin-left: 170px;
-		left: -170px;
-		font-size: 1em;
-		position: static;
-		margin: 0;
-		padding: 0;
-		white-space: nowrap;
-		min-width: 14em;
-
-		a:link, a:visited {
-			padding: 0.2em 0.3em;
-		}
-
-		a.flow-board-navigator-last {
-			float: right;
-			position: static;
-		}
+		margin-left: 200px;
+		left: -200px;
+		font-size: 1.15em;
+		position: relative;
+		padding-top: .5em;
 	}
 }
-
