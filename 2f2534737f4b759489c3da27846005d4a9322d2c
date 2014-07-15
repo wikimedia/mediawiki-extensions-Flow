@@ -16,6 +16,24 @@
       "revId": "2f2534737f4b759489c3da27846005d4a9322d2c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_1048215f",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-15T21:30:10Z",
+      "side": 1,
+      "message": "Typo,  missing a getPost() in the middle",
+      "parentUuid": "8e28a382_c0652a43",
+      "revId": "2f2534737f4b759489c3da27846005d4a9322d2c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
