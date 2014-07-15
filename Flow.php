@@ -56,8 +56,6 @@ $wgMessagesDirs['Flow'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['Flow'] = $dir . 'Flow.i18n.php';
 $wgExtensionMessagesFiles['FlowNamespaces'] = $dir . '/Flow.namespaces.php';
 
-$wgAutoloadClasses['FlowInsertDefaultDefinitions'] = $dir . 'maintenance/FlowInsertDefaultDefinitions.php';
-
 // Classes fulfilling the mediawiki extension architecture
 // note: SRP would say a 'FlowHooks' class should not exist
 $wgAutoloadClasses['FlowHooks'] = $dir . 'Hooks.php';
@@ -108,7 +106,6 @@ $wgAutoloadClasses['Flow\Content\BoardContentHandler'] = "$dir/includes/Content/
 $wgAutoloadClasses['Flow\Data\OccupationListener'] = "$dir/includes/Data/OccupationListener.php";
 
 // Classes that model our data
-$wgAutoloadClasses['Flow\Model\Definition'] = $dir . 'includes/Model/Definition.php';
 $wgAutoloadClasses['Flow\Model\Metadata'] = $dir . 'includes/Model/Metadata.php';
 $wgAutoloadClasses['Flow\Model\AbstractRevision'] = $dir . 'includes/Model/AbstractRevision.php';
 $wgAutoloadClasses['Flow\Model\PostRevision'] = $dir . 'includes/Model/PostRevision.php';
