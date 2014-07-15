@@ -47,112 +47,6 @@
 						</a>
 					</li>
 				{{/if}}
-				{{#if actions.hide}}
-					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
-						   href="{{actions.hide.url}}"
-						   title="{{actions.hide.title}}"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="hide">
-							<span class="wikiglyph wikiglyph-flag"></span>
-							{{l10n "flow-topic-action-hide-topic"}}
-						</a>
-					</li>
-				{{/if}}
-				{{#if actions.unhide}}
-					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
-						   href="{{actions.unhide.url}}"
-						   title="{{actions.unhide.title}}"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="restore">
-							<span class="wikiglyph wikiglyph-flag"></span>
-							{{l10n "flow-topic-action-unhide-topic"}}
-						</a>
-					</li>
-				{{/if}}
-				{{#if actions.delete}}
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   href="{{actions.delete.url}}"
-						   title="{{actions.delete.title}}"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="delete">
-							<span class="wikiglyph wikiglyph-trash"></span>
-							{{l10n "flow-topic-action-delete-topic"}}
-						</a>
-					</li>
-				{{/if}}
-				{{#if actions.undelete}}
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   href="{{actions.undelete.url}}"
-						   title="{{actions.undelete.title}}"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="restore">
-							<span class="wikiglyph wikiglyph-trash"></span>
-							{{l10n "flow-topic-action-undelete-topic"}}
-						</a>
-					</li>
-				{{/if}}
-				{{#if actions.suppress}}
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   href="{{actions.suppress.url}}"
-						   title="{{actions.suppress.title}}"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="suppress">
-							<span class="wikiglyph wikiglyph-block"></span>
-							{{l10n "flow-topic-action-suppress-topic"}}
-						</a>
-					</li>
-				{{/if}}
-				{{#if actions.unsuppress}}
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   href="{{actions.unsuppress.url}}"
-						   title="{{actions.unsuppress.title}}"
-						   data-flow-interactive-handler="moderationDialog"
-						   data-template="flow_moderate_topic"
-						   data-role="restore">
-							<span class="wikiglyph wikiglyph-block"></span>
-							{{l10n "flow-topic-action-unsuppress-topic"}}
-						</a>
-					</li>
-				{{/if}}
-				{{#if actions.close}}
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   data-flow-interactive-handler="apiRequest"
-						   data-flow-api-handler="activateCloseOpenTopic"
-						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-						   data-flow-id="{{postId}}"
-						   href="{{actions.close.url}}"
-						   title="{{actions.close.title}}">
-							<span class="wikiglyph wikiglyph-stop"></span>
-							{{l10n "flow-topic-action-close-topic"}}
-						</a>
-					</li>
-				{{/if}}
-				{{#if actions.reopen}}
-					<li>
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
-						   data-flow-interactive-handler="apiRequest"
-						   data-flow-api-handler="activateCloseOpenTopic"
-						   data-flow-id="{{postId}}"
-						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
-						   href="{{actions.reopen.url}}"
-						   title="{{actions.reopen.title}}">
-							<span class="wikiglyph wikiglyph-stop"></span>
-							{{l10n "flow-topic-action-reopen-topic"}}
-						</a>
-					</li>
-				{{/if}}
 				{{#if actions.summarize}}
 					<li>
 						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
@@ -167,6 +61,112 @@
 							{{else}}
 								{{l10n "flow-topic-action-summarize-topic"}}
 							{{/if}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.hide}}
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						   href="{{actions.hide.url}}"
+						   title="{{actions.hide.title}}"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="hide">
+							<span class="wikiglyph wikiglyph-flag"></span>
+							{{l10n "flow-topic-action-hide-topic"}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.unhide}}
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						   href="{{actions.unhide.url}}"
+						   title="{{actions.unhide.title}}"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="restore">
+							<span class="wikiglyph wikiglyph-flag"></span>
+							{{l10n "flow-topic-action-unhide-topic"}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.delete}}
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="{{actions.delete.url}}"
+						   title="{{actions.delete.title}}"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="delete">
+							<span class="wikiglyph wikiglyph-trash"></span>
+							{{l10n "flow-topic-action-delete-topic"}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.undelete}}
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="{{actions.undelete.url}}"
+						   title="{{actions.undelete.title}}"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="restore">
+							<span class="wikiglyph wikiglyph-trash"></span>
+							{{l10n "flow-topic-action-undelete-topic"}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.suppress}}
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="{{actions.suppress.url}}"
+						   title="{{actions.suppress.title}}"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="suppress">
+							<span class="wikiglyph wikiglyph-block"></span>
+							{{l10n "flow-topic-action-suppress-topic"}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.unsuppress}}
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   href="{{actions.unsuppress.url}}"
+						   title="{{actions.unsuppress.title}}"
+						   data-flow-interactive-handler="moderationDialog"
+						   data-template="flow_moderate_topic"
+						   data-role="restore">
+							<span class="wikiglyph wikiglyph-block"></span>
+							{{l10n "flow-topic-action-unsuppress-topic"}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.close}}
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   data-flow-interactive-handler="apiRequest"
+						   data-flow-api-handler="activateCloseOpenTopic"
+						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+						   data-flow-id="{{postId}}"
+						   href="{{actions.close.url}}"
+						   title="{{actions.close.title}}">
+							<span class="wikiglyph wikiglyph-stop"></span>
+							{{l10n "flow-topic-action-close-topic"}}
+						</a>
+					</li>
+				{{/if}}
+				{{#if actions.reopen}}
+					<li class="flow-menu-moderation-action">
+						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						   data-flow-interactive-handler="apiRequest"
+						   data-flow-api-handler="activateCloseOpenTopic"
+						   data-flow-id="{{postId}}"
+						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
+						   href="{{actions.reopen.url}}"
+						   title="{{actions.reopen.title}}">
+							<span class="wikiglyph wikiglyph-stop"></span>
+							{{l10n "flow-topic-action-reopen-topic"}}
 						</a>
 					</li>
 				{{/if}}
