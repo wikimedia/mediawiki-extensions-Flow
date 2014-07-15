@@ -15,3 +15,13 @@ Feature: Thank author of a Flow post
       And I am on Flow page
       And I have created a Flow topic
     Then I should not see the Thank button for that post
+
+  @clean @login @wip
+  Scenario: Thank the user
+  # Assuming a post by another non-anon user exists
+    Given I am logged in
+      And I am on Flow page
+      And the most recent topic is written by another user
+      And I see a Thank button
+    When I click on the Thank button
+    Then I should see the Thank button be replaced with Thanked button

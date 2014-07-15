@@ -1,3 +1,7 @@
+Given(/^the most recent topic is written by another user$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
 Then(/^I do not see a Thank button$/) do
   on(FlowPage).thank_button_element.should_not exist
 end
