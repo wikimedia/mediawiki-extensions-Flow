@@ -178,10 +178,6 @@ class TopicListBlock extends AbstractBlock {
 		return $output;
 	}
 
-	public function render( Templating $templating, array $options ) {
-		throw new FlowException( 'deprecated' );
-	}
-
 	public function renderAPI( Templating $templating, array $options ) {
 		$serializer = Container::get( 'formatter.topiclist' );
 		$response = array(

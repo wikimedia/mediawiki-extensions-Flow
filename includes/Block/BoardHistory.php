@@ -41,10 +41,6 @@ class BoardHistoryBlock extends AbstractBlock {
 		throw new DataModelException( __CLASS__ . ' should not invoke commit()', 'process-data' );
 	}
 
-	public function render( Templating $templating, array $options ) {
-		throw new FlowException( 'deprecated' );
-	}
-
 	public function renderAPI( Templating $templating, array $options ) {
 		if ( $this->workflow->isNew() ) {
 			return array(

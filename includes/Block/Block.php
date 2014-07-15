@@ -31,16 +31,6 @@ interface Block {
 	function commit();
 
 	/**
-	 * Load whatever is necessary for rendering an use $templating to
-	 * render it.
-	 *
-	 * @param Templating $templating
-	 * @param array $options
-	 * @return string
-	 */
-	function render( Templating $templating, array $options );
-
-	/**
 	 * Render the API output of this Block.
 	 * Templating is provided for convenience
 	 *
@@ -104,7 +94,6 @@ abstract class AbstractBlock implements Block {
 	// These methods exist in the Block interface and as such cannot be abstract
 	// until php 5.3.9, but MediaWiki requires PHP version 5.3.2 or later (and
 	// some of our test machines are on 5.3.3).
-	//abstract public function render( Templating $templating, array $options );
 	//abstract public function renderAPI( Templating $templating, array $options );
 	//abstract public function commit();
 
@@ -176,17 +165,6 @@ abstract class AbstractBlock implements Block {
 
 	public function wasSubmitted() {
 		return $this->submitted !== null;
-	}
-
-	public function onRender( $action, Templating $templating, array $options ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = new \ProfileSection( __METHOD__ );
-		if ( !$this->canRender( $action ) ) {
-			return false;
-		}
-
-		$this->render( $templating, $options );
-		return true;
 	}
 
 	/**
