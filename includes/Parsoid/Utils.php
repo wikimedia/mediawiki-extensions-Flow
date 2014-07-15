@@ -239,7 +239,7 @@ abstract class Utils {
 		if ( isset( $parsoidURL ) && $parsoidURL ) {
 			// XXX We only need the Parsoid CSS if some content being
 			// rendered has getContentFormat() === 'html'.
-			$out->addModules( 'ext.parsoid.styles' );
+			$out->addModules( 'mediawiki.skinning.content.parsoid' );
 		}
 		return true;
 	}
