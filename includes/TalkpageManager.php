@@ -93,14 +93,7 @@ class TalkpageManager implements OccupationController {
 			$content = new BoardContent( 'flow-board', $workflow );
 			$page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC );
 
-			$user = User::newFromName(
-				wfMessage( 'flow-talk-username' )->inContentLanguage()->text()
-			);
-			// Use the English fallback if the localized username is invalid or if a user
-			// with the name exists.
-			if ( $user === false || $user->getId() !== 0 ) {
-				$user = User::newFromName( 'Flow talk page manager', false );
-			}
+			$user = $this->getTalkpageManager();
 
 			$status = $page->doEditContent( $content, $comment, EDIT_FORCE_BOT | EDIT_SUPPRESS_RC,
 				false, $user );
@@ -113,5 +106,25 @@ class TalkpageManager implements OccupationController {
 
 		$doing = false;
 		return false;
+	}
+
+	/**
+	 * Gives a user object used to manage talk pages
+	 * @return User User to manage talkpages
+	 */
+	public function getTalkpageManager() {
+		$user = User::newFromName(
+			wfMessage( 'flow-talk-username' )->inContentLanguage()->text()
+		);
+		// Use the English fallback if the localized username is invalid or if a user
+		// with the name exists.
+		if ( $user === false || $user->getId() !== 0 ) {
+			$user = User::newFromName( 'Flow talk page manager', false );
+		}
+
+		// prevent newtalk notification for takeover edit
+		$user->mRights[] = 'nominornewtalk';
+
+		return $user;
 	}
 }
