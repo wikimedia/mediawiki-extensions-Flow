@@ -389,6 +389,14 @@
 		return options.inverse ? options.inverse( this ) : false;
 	};
 
+	FlowHandlebars.prototype.ifNotEquals = function ( left, right, options ) {
+		/* jshint -W116 */
+		if ( left != right ) {
+			return options.fn( this );
+		}
+		return options.inverse ? options.inverse( this ) : false;
+	};
+
 	/**
 	 *
 	 * @example {{block this}}
@@ -641,6 +649,7 @@
 	Handlebars.registerHelper( 'timestamp', FlowHandlebars.prototype.timestamp );
 	Handlebars.registerHelper( 'html', FlowHandlebars.prototype.html );
 	Handlebars.registerHelper( 'ifEquals', FlowHandlebars.prototype.ifEquals );
+	Handlebars.registerHelper( 'ifNotEquals', FlowHandlebars.prototype.ifNotEquals );
 	Handlebars.registerHelper( 'block', FlowHandlebars.prototype.workflowBlock );
 	Handlebars.registerHelper( 'post', FlowHandlebars.prototype.postBlock );
 	Handlebars.registerHelper( 'eachPost', FlowHandlebars.prototype.eachPost );
