@@ -2006,7 +2006,7 @@
 				}
 
 				// Show the target again
-				$target.removeClass( 'flow-preview-target-hidden' );
+				$target.removeClass( 'flow-preview-target-hidden' ).focus();
 
 				// Remove the preview
 				oldData.$nodes.remove();
