@@ -6,7 +6,7 @@
 // Show that the topic titlebar is clickable
 .flow-topic-titlebar {
 	position: relative;
-	padding: 1em @topicIndent;
+	padding: .5em .75em;
 	background: @colorGrayLightest;
 	border-radius: 3px;
 	outline: none;
@@ -46,14 +46,6 @@ div#content h2.flow-topic-title {
 	font-size: 1.75em;
 }
 
-
-// MEDIA QUERIES
-@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
-	.flow-topic-titlebar {
-		padding: .5em .75em;
-	}
-}
-
 // Notification about subscribing to a topic
 .flow-notification-tooltip-topicsub {
 	width: 15em;
@@ -65,4 +57,11 @@ div#content h2.flow-topic-title {
 .flow-notification-tooltip-title {
 	font-size: 1em;
 	font-weight: bold;
+}
+
+// MEDIA QUERIES
+@media all and (min-width: @wgFlowDeviceWidthTablet) {
+	.flow-topic-titlebar {
+		padding: 1em @topicIndent;
+	}
 }
