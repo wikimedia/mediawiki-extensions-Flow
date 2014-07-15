@@ -1,15 +1,18 @@
 {{#unless isPreview}}
 	<span class="flow-author">
 		{{#if links}}
-			<a href="{{links.contribs.url}}"
-			   title="{{links.contribs.title}}"
-			   class="{{#unless links.contribs.exists}}new {{/unless}}mw-userlink flow-ui-tooltip-target">
-				{{#if name}}
+			{{#if name}}
+				<a href="{{links.contribs.url}}"
+				   class="{{#unless links.contribs.exists}}new {{/unless}}mw-userlink flow-ui-tooltip-target">
 					{{~name~}}
-				{{else}}
-					{{~l10n "flow-anonymous"}}
-				{{/if}}
-			</a>
+				</a>
+			{{else}}
+				<a href="{{links.contribs.url}}"
+				   title="{{links.contribs.title}}"
+				   class="{{#unless links.contribs.exists}}new {{/unless}}mw-userlink flow-ui-tooltip-target">
+					{{~l10n "flow-anonymous"~}}
+				</a>
+			{{/if}}
 			<span class="mw-usertoollinks">(<a href="{{links.talk.url}}" class="{{#unless links.talk.exists}}new {{/unless}} flow-ui-tooltip-target" title="{{links.talk.title}}">{{l10n "talkpagelinktext"}}</a>{{#if links.block}} | <a class="{{#unless links.block.exists}}new {{/unless}} flow-ui-tooltip-target" href="{{links.block.url}}" title="{{links.block.title}}">{{l10n "blocklink"}}</a>{{/if}})</span>
 		{{/if}}
 	</span>
