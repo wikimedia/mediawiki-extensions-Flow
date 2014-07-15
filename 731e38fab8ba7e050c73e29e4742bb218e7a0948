@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_add8d67f",
+        "filename": "handlebars/flow_load_more.handlebars",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-15T20:27:59Z",
+      "side": 1,
+      "message": "This shows on a new Flow board. This should only show if there are posts on the board and there is a more button.",
+      "revId": "731e38fab8ba7e050c73e29e4742bb218e7a0948",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_4de2922f",
+        "filename": "modules/new/styles/common.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-15T20:27:59Z",
+      "side": 1,
+      "message": "Please use a generic class name.",
+      "revId": "731e38fab8ba7e050c73e29e4742bb218e7a0948",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_2ddd0674",
+        "filename": "modules/new/styles/common.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2014-07-15T20:27:59Z",
+      "side": 1,
+      "message": "and a generic colour from mediawiki.ui colors.less",
+      "revId": "731e38fab8ba7e050c73e29e4742bb218e7a0948",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
