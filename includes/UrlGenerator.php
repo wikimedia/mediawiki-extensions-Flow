@@ -4,6 +4,7 @@ namespace Flow;
 
 use Flow\Model\AbstractRevision;
 use Flow\Model\UUID;
+use SpecialPage;
 use Title;
 
 class UrlGenerator extends BaseUrlGenerator {
@@ -620,6 +621,13 @@ class UrlGenerator extends BaseUrlGenerator {
 			array(
 				'action' => 'new-topic'
 			)
+		);
+	}
+
+	public function thankAction( UUID $postId ) {
+		return new Anchor(
+			wfMessage( 'thanks-thank' ),
+			SpecialPage::getTitleFor( 'Thanks', 'Flow/' . $postId->getAlphadecimal() )
 		);
 	}
 }

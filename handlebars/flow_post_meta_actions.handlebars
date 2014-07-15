@@ -19,6 +19,18 @@
 				{{l10n "flow-post-action-edit-post"}}
 			</a>
 		{{/if}}
+		{{#if actions.thank}}
+			&#8226;
+			{{!--
+				progressive enhancement happens in the Thank extension
+				based on the mw-thanks-flow-thank-link class
+			--}}
+			<a class="flow-ui-regressive flow-ui-quiet mw-thanks-flow-thank-link"
+			   href="{{actions.thank.url}}"
+			   title="{{actions.thank.title}}">
+				{{~actions.thank.title~}}
+			</a>
+		{{/if}}
 	</span>
 	{{#if previousRevisionId}}
 		<!--span class="wikiglyph wikiglyph-clock"></span-->
