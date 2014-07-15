@@ -154,6 +154,7 @@ $wgResourceModules += array(
 			'flow-terms-of-use-summarize',
 			'flow-terms-of-use-close-topic',
 			'flow-terms-of-use-reopen-topic',
+			'flow-no-more-fwd',
 		),
 	),
 	// @todo: replace with mediawiki ui buttons

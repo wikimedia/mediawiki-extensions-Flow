@@ -415,7 +415,11 @@
 		   title="'.htmlentities(((is_array($in['links']['pagination']['fwd']) && isset($in['links']['pagination']['fwd']['title'])) ? $in['links']['pagination']['fwd']['title'] : null), ENT_QUOTES, 'UTF-8').'"
 		   class="flow-ui-button flow-ui-progressive flow-load-interactive /*flow-ui-quiet flow-ui-thin*/"><span class="wikiglyph wikiglyph-article"></span> '.LCRun3::ch($cx, 'l10n', Array(Array('flow-load-more'),Array()), 'encq').'</a>
 	</div>
-' : '').'
+' : '
+	<div class="flow-no-more">
+		'.LCRun3::ch($cx, 'l10n', Array(Array('flow-no-more-fwd'),Array()), 'encq').'
+	</div>
+').'
 
 </div>
 ';
