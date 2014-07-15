@@ -385,12 +385,21 @@
 			FlowBoardComponent.UI.makeContentInteractive( $tmp );
 
 			// Render load more template
-			$this.replaceWith(
-				$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
-					'flow_load_more',
-					data.flow[ 'view-topiclist' ].result.topiclist
-				) ).children()
-			);
+			if ( data.flow[ 'view-topiclist'].result.topiclist.links.pagination.fwd ) {
+				$this.replaceWith(
+					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_load_more',
+						data.flow[ 'view-topiclist' ].result.topiclist
+					) ).children()
+				);
+			} else {
+				$this.replaceWith(
+					$tmp = $( flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_no_more',
+						data.flow[ 'view-topiclist' ].result.topiclist
+					) ).children()
+				);
+			}
 
 			// Run loadHandlers
 			FlowBoardComponent.UI.makeContentInteractive( $tmp );
