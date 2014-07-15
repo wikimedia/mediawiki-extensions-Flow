@@ -32,12 +32,11 @@
 // The whole board content wrapper
 .flow-board {
 	.box-sizing( border-box );
-	padding-right: 200px;
+	max-width: 100%;
+	font-size: .875em;
+	line-height: 1.2em;
 	width: 100%;
 	max-width: 915px;
-	// Set a fixed font-size from which everything else can use a relative amount
-	font-size: 1em;
-	line-height: 1.4em;
 }
 
 // Individual topic containers
@@ -59,21 +58,22 @@
 	color: #777777;
 }
 
-// MEDIA QUERIES
-@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
-	.flow-board-header,
-	.flow-board {
-		padding-right: 170px;
-		max-width: 100%;
-		font-size: .875em;
-		line-height: 1.2em;
-	}
+.flow-topic-meta {
+	font-size: .875em;
+}
 
+@media all and (min-width: @wgFlowDeviceWidthTablet) {
 	.flow-topic-meta {
-		font-size: .875em;
+		font-size: 1em;
 	}
 
-	/* not important stuff -- only here for mediawiki on mobile in test version */
-	#mw-page-base, #mw-head-base { display: none; }
-	div#content { margin-left: 0;}
+	// Top board header
+	.flow-board-header,
+	// The whole board content wrapper
+	.flow-board {
+		padding-right: 200px;
+		// Set a fixed font-size from which everything else can use a relative amount
+		font-size: 1em;
+		line-height: 1.4em;
+	}
 }

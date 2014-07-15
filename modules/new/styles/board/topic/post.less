@@ -10,10 +10,8 @@ form.flow-post {
 
 .flow-post {
 	position: relative;
-	/* left margin provided by highlighting zone */
-	margin: 1em 0 0 @topicIndent;
-	margin-top: 1em;
-	padding: 0;
+	margin: .5em 0 0 .75em;
+	padding: 0 .5em 0 0;
 	color: @colorText;
 	word-wrap: break-word;
 
@@ -59,6 +57,8 @@ form.flow-post {
 
 	// Author link in post
 	.flow-author {
+		font-size: .875em;
+		line-height: 1.2em;
 		display: inline-block;
 		color: @colorText;
 		word-wrap: break-word;
@@ -74,6 +74,11 @@ form.flow-post {
 		&:hover .mw-usertoollinks {
 			opacity: 1;
 		}
+	}
+
+	.flow-post {
+		padding: 0 .5em;
+		border-left-width: 1px;
 	}
 
 	// Content
@@ -96,28 +101,15 @@ form.flow-post {
 }
 
 // MEDIA QUERIES
-@media (max-width: 700px) and (min-device-width: 700px), (max-device-width: 700px) {
+@media all and (min-width: @wgFlowDeviceWidthTablet) {
 	.flow-post {
-		margin: .5em 0 0 .75em;
-		padding: 0 .5em 0 0;
+		/* left margin provided by highlighting zone */
+		margin: 1em 0 0 @topicIndent;
+		padding: 0;
 
-		.flow-author {
-			font-size: .875em;
-			line-height: 1.2em;
-		}
-
-		.flow-post {
-			padding: 0 .5em;
-			border-left-width: 1px;
+		.flow-author { 
+			line-height: inherit;
+			font-size: inherit;
 		}
 	}
-
-	.flow-post-meta {
-		font-size: .875em;
-	}
-
-	/* not important stuff -- only here for mediawiki on mobile in test version */
-	#mw-page-base, #mw-head-base { display: none; }
-	div#content { margin-left: 0;}
 }
-
