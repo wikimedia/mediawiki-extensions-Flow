@@ -2,7 +2,7 @@
 	<span class="flow-author">
 		{{#if links}}
 			<a href="{{links.contribs.url}}"
-			   title="{{links.contribs.title}}"
+			   {{#ifNotEquals links.contribs.title name}}title="{{links.contribs.title}}"{{/ifNotEquals}}
 			   class="{{#if links.contribs.exists}}new {{/if}}mw-userlink flow-ui-tooltip-target">
 				{{#if name}}
 					{{~name~}}

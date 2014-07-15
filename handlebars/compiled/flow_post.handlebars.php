@@ -16,6 +16,7 @@
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
+            'ifNotEquals' => 'Flow\TemplateHelper::ifNotEquals',
 ),
         'scopes' => Array($in),
         'sp_vars' => Array(),
@@ -34,7 +35,7 @@
 	<span class="flow-author">
 		'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['links'])) ? $in['links'] : null))) ? '
 			<a href="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['url'])) ? $in['links']['contribs']['url'] : null), ENT_QUOTES, 'UTF-8').'"
-			   title="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['title'])) ? $in['links']['contribs']['title'] : null), ENT_QUOTES, 'UTF-8').'"
+			   '.LCRun3::hbch($cx, 'ifNotEquals', Array(Array(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['title'])) ? $in['links']['contribs']['title'] : null),((is_array($in) && isset($in['name'])) ? $in['name'] : null)),Array()), $in, function($cx, $in) {return 'title="'.htmlentities(((is_array($in['links']['contribs']) && isset($in['links']['contribs']['title'])) ? $in['links']['contribs']['title'] : null), ENT_QUOTES, 'UTF-8').'"';}).'
 			   class="'.((LCRun3::ifvar($cx, ((is_array($in['links']['contribs']) && isset($in['links']['contribs']['exists'])) ? $in['links']['contribs']['exists'] : null))) ? 'new ' : '').'mw-userlink flow-ui-tooltip-target">
 				'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['name'])) ? $in['name'] : null))) ? '
 					'.htmlentities(((is_array($in) && isset($in['name'])) ? $in['name'] : null), ENT_QUOTES, 'UTF-8').'' : '

@@ -154,6 +154,7 @@ class TemplateHelper {
 				'hbhelpers' => array(
 					'eachPost' => 'Flow\TemplateHelper::eachPost',
 					'ifEquals' => 'Flow\TemplateHelper::ifEquals',
+					'ifNotEquals' => 'Flow\TemplateHelper::ifNotEquals',
 					'ifAnonymous' => 'Flow\TemplateHelper::ifAnonymous',
 					'ifCond' => 'Flow\TemplateHelper::ifCond',
 					'tooltip' => 'Flow\TemplateHelper::tooltip',
@@ -390,6 +391,27 @@ class TemplateHelper {
 		$fn = $options['fn'];
 
 		if ( $left == $right ) {
+			if ( !$fn instanceof Closure ) {
+				throw new FlowException( 'Invalid callback, expected Closure' );
+			}
+			return $fn();
+		} elseif ( $inverse ) {
+			if ( !$inverse instanceof Closure ) {
+				throw new FlowException( 'Invalid inverse callback, expected Closure' );
+			}
+			return $inverse();
+		}
+
+		return null;
+	}
+
+	static public function ifNotEquals( $left, $right, $options ) {
+		/** @var callable $inverse */
+		$inverse = isset( $options['inv'] ) ? $options['inv'] : null;
+		/** @var callable $fn */
+		$fn = $options['fn'];
+
+		if ( $left != $right ) {
 			if ( !$fn instanceof Closure ) {
 				throw new FlowException( 'Invalid callback, expected Closure' );
 			}
