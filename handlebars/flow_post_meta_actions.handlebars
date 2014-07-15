@@ -33,8 +33,15 @@
 		{{/if}}
 	</span>
 	{{#if previousRevisionId}}
-		<!--span class="wikiglyph wikiglyph-clock"></span-->
-		{{uuidTimestamp revisionId "edited_ago"}}
+		{{#if links.diff-prev}}
+			<a href="{{links.diff-prev.url}}"
+			    class="fflow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-inline"
+			    title="{{links.diff-prev.title}}">
+		{{/if}}
+			{{uuidTimestamp revisionId "edited_ago"}}
+		{{#if links.diff-prev}}
+			</a>
+		{{/if}}
 		&#8226;
 	{{/if}}
 	{{uuidTimestamp postId "time_ago"}}
