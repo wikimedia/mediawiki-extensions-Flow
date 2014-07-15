@@ -271,6 +271,16 @@ Styleguide 2.2.
 	padding: .25em .5em;
 	vertical-align: inherit;
 }
+
+// FIXME: Remove flow-ui-button rule when cache has cleared
+.flow-ui-button .flow-ui-button,
+// Thin mode (no padding)
+.flow-ui-inline {
+	padding: 0;
+	font-weight: inherit;
+	vertical-align: inherit;
+}
+
 .flow-ui-button {
 	// Allow these only on A and BUTTON, and not in IE6
 	a&[class],
@@ -319,13 +329,6 @@ Styleguide 2.2.
 		// Thin mode (reduced visual weight)
 		&.flow-ui-thin {
 			padding: .25em .5em;
-			font-weight: inherit;
-			vertical-align: inherit;
-		}
-
-		// Thin mode (no padding)
-		&.flow-ui-inline {
-			padding: 0;
 			font-weight: inherit;
 			vertical-align: inherit;
 		}
