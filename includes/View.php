@@ -167,7 +167,7 @@ class View extends ContextSource {
 		if ( $workflow->getType() === 'topic' ) {
 			$title = $workflow->getOwnerTitle();
 			$out->setPageTitle( $this->msg( 'flow-topic-first-heading', $title->getPrefixedText() ) );
-			$out->setHtmlTitle( htmlspecialchars( $apiResponse['blocks'][0]['topicTitle'] ) );
+			$out->setHtmlTitle( $apiResponse['blocks'][0]['topicTitle'] );
 			$out->setSubtitle( '&lt; ' . Linker::link( $title ) );
 		} else {
 			$out->setPageTitle( $workflow->getArticleTitle()->getFullText() );
