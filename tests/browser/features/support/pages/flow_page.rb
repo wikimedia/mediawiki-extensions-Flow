@@ -29,8 +29,8 @@ class FlowPage
   # Dialogs
   div(:dialog, css: ".ui-dialog")
   textarea(:dialog_input, css: ".ui-dialog textarea")
-  button(:dialog_cancel, css: ".ui-dialog .flow-ui-destructive")
-  button(:dialog_submit, css: ".ui-dialog .flow-ui-constructive")
+  button(:dialog_cancel, css: ".ui-dialog .mw-ui-destructive")
+  button(:dialog_submit, css: ".ui-dialog .mw-ui-constructive")
 
   # Posts
   ## Highlighted post
@@ -111,12 +111,12 @@ class FlowPage
   ## Close topic workflow
   form(:topic_close_form, css: ".flow-edit-form")
   textarea(:topic_close_form_reason, css: ".flow-edit-form textarea")
-  button(:topic_close_form_close_button, css: ".flow-edit-form .flow-ui-constructive")
-  button(:topic_close_form_cancel_button, css: ".flow-edit-form .flow-ui-destructive")
+  button(:topic_close_form_close_button, css: ".flow-edit-form .mw-ui-constructive")
+  button(:topic_close_form_cancel_button, css: ".flow-edit-form .mw-ui-destructive")
 
   ### Editing title of first topic
   text_field(:title_edit, css: ".flow-topic-titlebar form .mw-ui-input", index: 0)
-  button(:change_title_save, css: ".flow-topic-titlebar form .flow-ui-constructive")
+  button(:change_title_save, css: ".flow-topic-titlebar form .mw-ui-constructive")
 
   ### Post meta actions
   span(:post_meta_actions, css:".flow-post .flow-post-meta-actions", index: 0)
@@ -166,9 +166,9 @@ class FlowPage
   form(:new_topic_form, css: ".flow-newtopic-form")
   text_field(:new_topic_title, name: "topiclist_topic")
   textarea(:new_topic_body, name: "topiclist_content")
-  button(:new_topic_cancel, css: ".flow-newtopic-form .flow-ui-destructive")
-  button(:new_topic_preview, css: ".flow-newtopic-form .flow-ui-progressive")
-  button(:new_topic_save, css: ".flow-newtopic-form .flow-ui-constructive")
+  button(:new_topic_cancel, css: ".flow-newtopic-form .mw-ui-destructive")
+  button(:new_topic_preview, css: ".flow-newtopic-form .mw-ui-progressive")
+  button(:new_topic_save, css: ".flow-newtopic-form .mw-ui-constructive")
 
   # Replying
   # TODO (mattflaschen, 2014-06-24): Should distinguish between
@@ -176,13 +176,13 @@ class FlowPage
   form(:new_reply_form, css: ".flow-reply-form")
   # Is an input when not focused, textarea when focused
   text_field(:new_reply_input, css: ".flow-reply-form .mw-ui-input")
-  button(:new_reply_cancel, css: ".flow-reply-form .flow-ui-destructive")
-  button(:new_reply_preview, css: ".flow-reply-form .flow-ui-progressive")
-  button(:new_reply_save, css: ".flow-reply-form .flow-ui-constructive")
+  button(:new_reply_cancel, css: ".flow-reply-form .mw-ui-destructive")
+  button(:new_reply_preview, css: ".flow-reply-form .mw-ui-progressive")
+  button(:new_reply_save, css: ".flow-reply-form .mw-ui-constructive")
 
   # Editing post workflow
   text_area(:post_edit, css: ".flow-edit-post-form textarea")
-  button(:change_post_save, css: ".flow-edit-post-form .flow-ui-constructive")
+  button(:change_post_save, css: ".flow-edit-post-form .mw-ui-constructive")
 
   button(:preview_button, class: "mw-ui-button flow-preview-submit")
   div(:small_spinner, class: "mw-spinner mw-spinner-small mw-spinner-inline")

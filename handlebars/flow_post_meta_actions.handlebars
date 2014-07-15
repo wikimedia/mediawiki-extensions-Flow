@@ -3,7 +3,7 @@
 		{{#if actions.reply}}
 			<a href="{{actions.reply.url}}"
 			   title="{{actions.reply.title}}"
-			   class="flow-ui-progressive flow-ui-quiet"
+			   class="mw-ui-button mw-ui-progressive mw-ui-quiet"
 			   data-flow-interactive-handler="activateReplyPost">
 				{{~actions.reply.title~}}
 			</a>
@@ -15,7 +15,7 @@
 			   data-flow-api-handler="activateEditPost"
 			   data-flow-api-target="< .flow-post-main"
 			   data-flow-interactive-handler="apiRequest"
-			   class="flow-ui-quiet">
+			   class="mw-ui-button mw-ui-quiet">
 				{{l10n "flow-post-action-edit-post"}}
 			</a>
 		{{/if}}
