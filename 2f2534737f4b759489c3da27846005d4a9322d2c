@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_c0652a43",
+        "filename": "includes/Formatter/AbstractFormatter.php",
+        "patchSetId": 9
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-15T18:49:27Z",
+      "side": 1,
+      "message": "One more minor issue, topic summary entries only show a link to the board, it should link to the topic title as well.  To get the root: $row-\u003erevision-\u003egetCollection()-\u003egetLastRevision()",
+      "revId": "2f2534737f4b759489c3da27846005d4a9322d2c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
