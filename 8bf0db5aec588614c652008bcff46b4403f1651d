@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_acb9ff79",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-07-15T10:48:45Z",
+      "side": 1,
+      "message": "We probably can \u0026 should in some places (I just filed https://bugzilla.wikimedia.org/show_bug.cgi?id\u003d68021 - we still have some cleanup to do)\n\nThis case however: I don\u0027t know. Well, we could do it, but I don\u0027t really see why we\u0027d use a data attribute for this?",
+      "parentUuid": "8e28a382_5587fbdc",
+      "revId": "8bf0db5aec588614c652008bcff46b4403f1651d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_55cdbb33",
         "filename": "modules/new/components/flow-board.js",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-07-08T22:34:50Z",
       "side": 1,
       "message": "Seems hacky...",
+      "revId": "8bf0db5aec588614c652008bcff46b4403f1651d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_2cad0f2f",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 214
+      },
+      "writtenOn": "2014-07-15T10:48:45Z",
+      "side": 1,
+      "message": "4 lines of comments for so little code already indicates something fishy is happening here :) It is indeed hacky, but because how the API currently works (with those damn prefixes), we pretty much have to do this if we want to make error handling more generic.\n\nUnless I\u0027m missing a blatantly obvious simpler solution? :)",
+      "parentUuid": "8e28a382_55cdbb33",
       "revId": "8bf0db5aec588614c652008bcff46b4403f1651d",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
