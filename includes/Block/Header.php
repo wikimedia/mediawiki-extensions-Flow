@@ -256,7 +256,7 @@ class HeaderBlock extends AbstractBlock {
 				$serializer->setContentFormat( 'wikitext' );
 			}
 
-			$output['revision'] = Container::get( 'formatter.revision' )->formatApi( $row, $ctx );
+			$output['revision'] = $serializer->formatApi( $row, $ctx );
 		}
 		return $output;
 	}
