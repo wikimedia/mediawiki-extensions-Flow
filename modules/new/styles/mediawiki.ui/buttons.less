@@ -32,16 +32,20 @@ Styleguide 2.
 		color: @mainColor;
 
 		&.flow-ui-quiet {
-			color: @colorTextLight;
-			text-decoration: none;
-
-			a&:hover {
-				color: @mainColor;
-			}
-			a&:focus, a&:active {
-				color: darken( @mainColor, @colorDarkenPercentage );
-			}
+			.flow-ui-anchor-quiet( @mainColor );
 		}
+	}
+}
+
+.flow-ui-anchor-quiet( @mainColor ) {
+	color: @colorTextLight;
+	text-decoration: none;
+
+	a&:hover {
+		color: @mainColor;
+	}
+	a&:focus, a&:active {
+		color: darken( @mainColor, @colorDarkenPercentage );
 	}
 }
 
@@ -74,6 +78,9 @@ Styleguide 2.1.
 }
 .flow-ui-destructive {
 	.flow-ui-anchor( @colorDestructive );
+}
+.flow-ui-quiet {
+	.flow-ui-anchor-quiet( @colorTextLight );
 }
 
 /*
