@@ -318,6 +318,7 @@
     "flow-started-ago": "Started $1",
     "flow-edited-ago": "Edited $1",
     "flow-load-more": "Load More",
+    "flow-no-more-fwd" : "There are no older topics",
     "flow-add-topic": "Add Topic ",
     "flow-newest-topics": "Newest topics",
     "flow-recent-topics": "Recently active topics",
