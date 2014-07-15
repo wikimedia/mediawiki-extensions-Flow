@@ -7,10 +7,10 @@
 		{{/if}}
 		<div class="flow-menu">
 			<div class="flow-menu-js-drop"><a href="javascript:void(0);"><span class="wikiglyph wikiglyph-ellipsis"></span></a></div>
-			<ul class="flow-ui-button-container">
+			<ul class="mw-ui-button-container">
 				{{#if actions.edit}}
 					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="{{actions.edit.url}}"
 						   title="{{actions.edit.title}}"
 						   data-flow-interactive-handler="editTopicTitle"
@@ -22,7 +22,7 @@
 				{{/if}}
 				{{#if links.topic-history}}
 					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="{{links.topic-history.url}}"
 						   title="{{links.topic-history.title}}">
 							<span class="wikiglyph wikiglyph-clock"></span>
@@ -32,7 +32,7 @@
 				{{/if}}
 				{{#if links.topic}}
 					<li>
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="{{links.topic.url}}"
 						   title="{{links.topic.title}}">
 							<span class="wikiglyph wikiglyph-link"></span>
@@ -42,7 +42,7 @@
 				{{/if}}
 				{{#if actions.lock}}
 					<li>
-						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-progressive  mw-ui-quiet flow-ui-thin"
 						   href="{{actions.lock.url}}"
 						   title="{{actions.lock.title}}">
 							<span class="wikiglyph wikiglyph-lock"></span>
@@ -52,7 +52,7 @@
 				{{/if}}
 				{{#if actions.summarize}}
 					<li>
-						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-progressive mw-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateSummarizeTopic"
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
@@ -69,7 +69,7 @@
 				{{/if}}
 				{{#if actions.hide}}
 					<li class="flow-menu-moderation-action">
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="{{actions.hide.url}}"
 						   title="{{actions.hide.title}}"
 						   data-flow-interactive-handler="moderationDialog"
@@ -82,7 +82,7 @@
 				{{/if}}
 				{{#if actions.unhide}}
 					<li class="flow-menu-moderation-action">
-						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-quiet flow-ui-thin"
 						   href="{{actions.unhide.url}}"
 						   title="{{actions.unhide.title}}"
 						   data-flow-interactive-handler="moderationDialog"
@@ -95,7 +95,7 @@
 				{{/if}}
 				{{#if actions.delete}}
 					<li class="flow-menu-moderation-action">
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-destructive mw-ui-quiet flow-ui-thin"
 						   href="{{actions.delete.url}}"
 						   title="{{actions.delete.title}}"
 						   data-flow-interactive-handler="moderationDialog"
@@ -108,7 +108,7 @@
 				{{/if}}
 				{{#if actions.undelete}}
 					<li class="flow-menu-moderation-action">
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-destructive mw-ui-quiet flow-ui-thin"
 						   href="{{actions.undelete.url}}"
 						   title="{{actions.undelete.title}}"
 						   data-flow-interactive-handler="moderationDialog"
@@ -121,7 +121,7 @@
 				{{/if}}
 				{{#if actions.suppress}}
 					<li class="flow-menu-moderation-action">
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-destructive mw-ui-quiet flow-ui-thin"
 						   href="{{actions.suppress.url}}"
 						   title="{{actions.suppress.title}}"
 						   data-flow-interactive-handler="moderationDialog"
@@ -134,7 +134,7 @@
 				{{/if}}
 				{{#if actions.unsuppress}}
 					<li class="flow-menu-moderation-action">
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-destructive mw-ui-quiet flow-ui-thin"
 						   href="{{actions.unsuppress.url}}"
 						   title="{{actions.unsuppress.title}}"
 						   data-flow-interactive-handler="moderationDialog"
@@ -147,7 +147,7 @@
 				{{/if}}
 				{{#if actions.close}}
 					<li class="flow-menu-moderation-action">
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-destructive mw-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateCloseOpenTopic"
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
@@ -161,7 +161,7 @@
 				{{/if}}
 				{{#if actions.reopen}}
 					<li class="flow-menu-moderation-action">
-						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
+						<a class="mw-ui-button mw-ui-destructive mw-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateCloseOpenTopic"
 						   data-flow-id="{{postId}}"
