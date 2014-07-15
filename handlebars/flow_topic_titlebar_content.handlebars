@@ -8,11 +8,7 @@
 		 data-flow-interactive-handler="activateForm"
 		 href="#flow-post-{{postId}}-form-content">{{l10n "Reply" author}}</a>
 	&bull; {{l10n "comment_count" this}} &bull;
-	{{#if last_updated}}
-		<!--span class="wikiglyph wikiglyph-speech-bubbles"></span--> {{timestamp last_updated "active_ago"}}
-	{{else}}
-		<!--span class="wikiglyph wikiglyph-speech-bubble"></span--> {{uuidTimestamp postId "started_ago"}}
-	{{/if}}
+	<!--span class="wikiglyph wikiglyph-speech-bubble"></span--> {{uuidTimestamp postId "started_ago"}}
 </div>
 <span class="flow-reply-count"><span class="wikiglyph wikiglyph-speech-bubble"></span><span class="flow-reply-count-number">{{reply_count}}</span></span>
 
