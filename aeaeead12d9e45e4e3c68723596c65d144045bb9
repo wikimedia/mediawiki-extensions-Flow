@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_80f842e3",
+        "filename": "modules/new/styles/board/terms-of-use.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-15T18:00:36Z",
+      "side": 1,
+      "message": "y u do dis",
+      "revId": "aeaeead12d9e45e4e3c68723596c65d144045bb9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
