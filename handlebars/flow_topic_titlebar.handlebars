@@ -22,7 +22,7 @@
 						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 						   href="{{links.topic-history.url}}"
 						   title="{{links.topic-history.title}}">
-							<span class="wikiglyph wikiglyph-article"></span>
+							<span class="wikiglyph wikiglyph-clock"></span>
 							{{l10n "flow-topic-action-history"}}
 						</a>
 					</li>
@@ -55,7 +55,7 @@
 						   data-flow-interactive-handler="moderationDialog"
 						   data-template="flow_moderate_topic"
 						   data-role="hide">
-							<span class="wikiglyph wikiglyph-eye-lid"></span>
+							<span class="wikiglyph wikiglyph-flag"></span>
 							{{l10n "flow-topic-action-hide-topic"}}
 						</a>
 					</li>
@@ -68,7 +68,7 @@
 						   data-flow-interactive-handler="moderationDialog"
 						   data-template="flow_moderate_topic"
 						   data-role="restore">
-							<span class="wikiglyph wikiglyph-eye-lid"></span>
+							<span class="wikiglyph wikiglyph-flag"></span>
 							{{l10n "flow-topic-action-unhide-topic"}}
 						</a>
 					</li>
@@ -134,7 +134,7 @@
 						   data-flow-id="{{postId}}"
 						   href="{{actions.close.url}}"
 						   title="{{actions.close.title}}">
-							<span class="wikiglyph wikiglyph-clock"></span>
+							<span class="wikiglyph wikiglyph-stop"></span>
 							{{l10n "flow-topic-action-close-topic"}}
 						</a>
 					</li>
@@ -148,7 +148,7 @@
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
 						   href="{{actions.reopen.url}}"
 						   title="{{actions.reopen.title}}">
-							<span class="wikiglyph wikiglyph-clock"></span>
+							<span class="wikiglyph wikiglyph-stop"></span>
 							{{l10n "flow-topic-action-reopen-topic"}}
 						</a>
 					</li>
@@ -161,7 +161,7 @@
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
 						   href="{{actions.summarize.url}}"
 						   title="{{actions.summarize.title}}">
-							<span class="wikiglyph wikiglyph-flag"></span>
+							<span class="wikiglyph wikiglyph-stripe-toc"></span>
 							{{#if summary}}
 								{{l10n "flow-topic-action-resummarize-topic"}}
 							{{else}}

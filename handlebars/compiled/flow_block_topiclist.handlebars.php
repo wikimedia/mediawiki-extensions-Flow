@@ -181,7 +181,7 @@
 						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 						   href="'.htmlentities(((is_array($in['links']['topic-history']) && isset($in['links']['topic-history']['url'])) ? $in['links']['topic-history']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['links']['topic-history']) && isset($in['links']['topic-history']['title'])) ? $in['links']['topic-history']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							<span class="wikiglyph wikiglyph-article"></span>
+							<span class="wikiglyph wikiglyph-clock"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-history'),Array()), 'encq').'
 						</a>
 					</li>
@@ -214,7 +214,7 @@
 						   data-flow-interactive-handler="moderationDialog"
 						   data-template="flow_moderate_topic"
 						   data-role="hide">
-							<span class="wikiglyph wikiglyph-eye-lid"></span>
+							<span class="wikiglyph wikiglyph-flag"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-hide-topic'),Array()), 'encq').'
 						</a>
 					</li>
@@ -227,7 +227,7 @@
 						   data-flow-interactive-handler="moderationDialog"
 						   data-template="flow_moderate_topic"
 						   data-role="restore">
-							<span class="wikiglyph wikiglyph-eye-lid"></span>
+							<span class="wikiglyph wikiglyph-flag"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-unhide-topic'),Array()), 'encq').'
 						</a>
 					</li>
@@ -293,7 +293,7 @@
 						   data-flow-id="'.htmlentities(((is_array($in) && isset($in['postId'])) ? $in['postId'] : null), ENT_QUOTES, 'UTF-8').'"
 						   href="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['url'])) ? $in['actions']['close']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['close']) && isset($in['actions']['close']['title'])) ? $in['actions']['close']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							<span class="wikiglyph wikiglyph-clock"></span>
+							<span class="wikiglyph wikiglyph-stop"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-close-topic'),Array()), 'encq').'
 						</a>
 					</li>
@@ -307,7 +307,7 @@
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
 						   href="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['url'])) ? $in['actions']['reopen']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['reopen']) && isset($in['actions']['reopen']['title'])) ? $in['actions']['reopen']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							<span class="wikiglyph wikiglyph-clock"></span>
+							<span class="wikiglyph wikiglyph-stop"></span>
 							'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-reopen-topic'),Array()), 'encq').'
 						</a>
 					</li>
@@ -320,7 +320,7 @@
 						   data-flow-api-target="< .flow-topic-titlebar .flow-topic-summary-container"
 						   href="'.htmlentities(((is_array($in['actions']['summarize']) && isset($in['actions']['summarize']['url'])) ? $in['actions']['summarize']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 						   title="'.htmlentities(((is_array($in['actions']['summarize']) && isset($in['actions']['summarize']['title'])) ? $in['actions']['summarize']['title'] : null), ENT_QUOTES, 'UTF-8').'">
-							<span class="wikiglyph wikiglyph-flag"></span>
+							<span class="wikiglyph wikiglyph-stripe-toc"></span>
 							'.((LCRun3::ifvar($cx, ((is_array($in) && isset($in['summary'])) ? $in['summary'] : null))) ? '
 								'.LCRun3::ch($cx, 'l10n', Array(Array('flow-topic-action-resummarize-topic'),Array()), 'encq').'
 							' : '

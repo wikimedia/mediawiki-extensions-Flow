@@ -130,7 +130,7 @@
 				   data-flow-interactive-handler="moderationDialog"
 				   data-template="flow_moderate_post"
 				   data-role="hide">
-					<span class="wikiglyph wikiglyph-eye-lid"></span>
+					<span class="wikiglyph wikiglyph-flag"></span>
 					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-hide-post'),Array()), 'encq').'
 				</a>
 			</li>
@@ -143,7 +143,7 @@
 				   data-flow-interactive-handler="moderationDialog"
 				   data-template="flow_moderate_post"
 				   data-role="restore">
-					<span class="wikiglyph wikiglyph-eye-lid"></span>
+					<span class="wikiglyph wikiglyph-flag"></span>
 					'.LCRun3::ch($cx, 'l10n', Array(Array('flow-post-action-unhide-post'),Array()), 'encq').'
 				</a>
 			</li>
