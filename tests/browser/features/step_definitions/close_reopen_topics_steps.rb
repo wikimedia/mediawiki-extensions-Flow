@@ -1,9 +1,13 @@
+Given(/^the page has re-rendered$/) do
+  sleep 10
+end
+
 Given(/^the top post has been closed$/) do
   step 'I click the Topic Actions link'
   step 'I click the Close topic button'
   step 'I type "This is a bikeshed" as the reason'
   step 'I submit the close/reopen topic form'
-  step 'the page renders in 2 seconds'
+  step 'the page has re-rendered'
 end
 
 Given(/^I click the Close topic button$/) do

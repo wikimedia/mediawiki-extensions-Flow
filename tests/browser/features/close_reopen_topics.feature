@@ -10,7 +10,7 @@ Feature: Close and open topics
     When I click the Topic Actions link
         And I click the Close topic button
         And I cancel the close/reopen topic form
-        And the page renders in 1 seconds
+        And the page has re-rendered
     Then the top post is an open discussion
         And I do not see the close/reopen form
 
@@ -21,7 +21,7 @@ Feature: Close and open topics
         And I click the Close topic button
         And I type "This is a bikeshed" as the reason
         And I submit the close/reopen topic form
-        And the page renders in 2 seconds
+        And the page has re-rendered
     Then the top post is a closed discussion
         And I expand the top post
         And the topic summary of the first topic is "This is a bikeshed"
@@ -34,7 +34,7 @@ Feature: Close and open topics
         And I click the Reopen topic button
     When I type "Fun discussion" as the reason
         And I submit the close/reopen topic form
-        And the page renders in 2 seconds
+        And the page has re-rendered
     Then the top post is an open discussion
         And I expand the top post
         And the topic summary of the first topic is "Fun discussion"

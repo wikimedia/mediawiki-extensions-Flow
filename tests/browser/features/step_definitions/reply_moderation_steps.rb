@@ -7,7 +7,7 @@ When(/^I click the Hide button in the dialog$/) do
 end
 
 Then(/^the 3rd comment should be marked as hidden$/) do
-  step 'the page renders in 5 seconds'
+  step 'the page has re-rendered'
   on(FlowPage).third_reply_element.class_name.should match /flow-post-moderated/
   on(FlowPage).third_reply_moderation_msg.should match( 'This comment was hidden' )
 end
