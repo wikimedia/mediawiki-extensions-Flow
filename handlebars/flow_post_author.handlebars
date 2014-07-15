@@ -3,14 +3,14 @@
 		{{#if links}}
 			<a href="{{links.contribs.url}}"
 			   title="{{links.contribs.title}}"
-			   class="mw-userlink flow-ui-tooltip-target">
+			   class="{{#unless links.contribs.exists}}new {{/if}}mw-userlink flow-ui-tooltip-target">
 				{{#if name}}
 					{{~name~}}
 				{{else}}
 					{{~l10n "flow-anonymous"}}
 				{{/if}}
 			</a>
-			<span class="mw-usertoollinks">(<a href="{{links.talk.url}}" class="new flow-ui-tooltip-target" title="{{links.talk.title}}">{{l10n "talkpagelinktext"}}</a>{{#if links.block}} | <a class="flow-ui-tooltip-target" href="{{links.block.url}}" title="{{links.block.title}}">{{l10n "blocklink"}}</a>{{/if}})</span>
+			<span class="mw-usertoollinks">(<a href="{{links.talk.url}}" class="{{#unless links.talk.exists}}new {{/if}} flow-ui-tooltip-target" title="{{links.talk.title}}">{{l10n "talkpagelinktext"}}</a>{{#if links.block}} | <a class="{{#unless links.block.exists}}new {{/if}} flow-ui-tooltip-target" href="{{links.block.url}}" title="{{links.block.title}}">{{l10n "blocklink"}}</a>{{/if}})</span>
 		{{/if}}
 	</span>
 {{else}}

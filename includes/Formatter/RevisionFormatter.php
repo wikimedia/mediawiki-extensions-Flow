@@ -246,10 +246,12 @@ class RevisionFormatter {
 			"contribs" => array(
 				'url' => $userTitle->getLocalUrl(),
 				'title' => $userTitle->getText(),
+				'exists' => $userTitle->exists(),
 			),
 			"talk" => array(
 				'url' => $talkPageTitle->getLocalUrl(),
 				'title' => $talkPageTitle->getPrefixedText(),
+				'exists' => $talkPageTitle->exists(),
 			),
 		);
 		// is this right permissions? typically this would
@@ -261,6 +263,7 @@ class RevisionFormatter {
 				"block" => array(
 					'url' => $blockTitle->getLocalUrl(),
 					'title' => wfMessage( 'blocklink' ),
+					'exists' => $blockTitle->exists(), // this should always exist
 				),
 			);
 		}
