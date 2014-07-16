@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_daf98f4c",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2014-07-16T20:30:45Z",
+      "side": 1,
+      "message": "\"flow_no_more\" doesn\u0027t need any template data, {} should be fine?",
+      "revId": "41b5d50d429bf8ed7a12b5df13db615aa8e2f408",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
