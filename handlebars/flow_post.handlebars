@@ -6,6 +6,8 @@
 			 data-flow-post-max-depth="1"
 			 {{/if}}>
 		<div class="flow-post-main">
+			{{> flow_errors}}
+
 			{{#with creator}}
 				{{> flow_post_author}}
 			{{/with}}
