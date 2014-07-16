@@ -31,8 +31,16 @@ Styleguide 2.
 	&[class] {
 		color: @mainColor;
 
+		// Quiet mode is gray at first
 		&.flow-ui-quiet {
 			.flow-ui-anchor-quiet( @mainColor );
+		}
+
+		// Active node is always colored
+		&.flow-ui-active {
+			&, &:link, &:visited {
+				color: @mainColor;
+			}
 		}
 	}
 }

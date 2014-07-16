@@ -203,16 +203,41 @@ class RevisionFormatter {
 			}
 		}
 
-		if ( $row instanceof TopicRow &&
-			$row->summary &&
-			$this->permissions->isAllowed( $row->summary, 'view' )
-		) {
-			// Maybe always have both parsed and unparsed versions available
-			$res['summary'] = array(
-				'content' => $this->templating->getContent( $row->summary, $this->contentFormat ),
-				'format' => $this->contentFormat,
-			);
-			$res['summaryRevId'] = $row->summary->getRevisionId()->getAlphadecimal();
+		if ( $row instanceof TopicRow ) {
+			if (
+				$row->summary &&
+				$this->permissions->isAllowed( $row->summary, 'view' )
+			) {
+				$res['summary']['content'] = $this->templating->getContent( $row->summary, $this->contentFormat );
+				$res['summary']['contentFormat'] = $this->contentFormat;
+				$res['summary']['revId'] = $row->summary->getRevisionId()->getAlphadecimal();
+			}
+
+			// Only non-anon users can watch/unwatch a flow topic
+			// isWatched - the topic is watched by current user
+			// isAlwaysWatched - the topic is always watched by the current user, can't unwatch
+			// watchable - the user could watch the topic, eg, anon-user can't watch a topic
+			if ( !$ctx->getUser()->isAnon() ) {
+				// default topic is not watched and topic is not always watched
+				$res['isWatched'] = false;
+				$res['isAlwaysWatched'] = false;
+
+				if ( $row->isWatched ) {
+					$res['isWatched'] = true;
+				}
+				$title = $row->workflow->getOwnerTitle();
+				if (
+					$title->isTalkPage() &&
+					$title->equals( $ctx->getUser()->getTalkPage() )
+				) {
+					// user's own talk page is always watched
+					$res['isWatched'] = true;
+					$res['isAlwaysWatched'] = true;
+				}
+				$res['watchable'] = true;
+			} else {
+				$res['watchable'] = false;
+			}
 		}
 
 		if ( $row->revision instanceof PostRevision ) {
@@ -534,6 +559,14 @@ class RevisionFormatter {
 		$links = array();
 		foreach ( $linkTypes as $type ) {
 			switch( $type ) {
+			case 'watch-topic':
+				$links['watch-topic'] = $this->urlGenerator->watchTopicLink( $title, $workflowId );
+				break;
+
+			case 'unwatch-topic':
+				$links['unwatch-topic'] = $this->urlGenerator->unwatchTopicLink( $title, $workflowId );
+				break;
+
 			case 'topic':
 				$links['topic'] = $this->urlGenerator->topicLink( $title, $workflowId );
 				break;
