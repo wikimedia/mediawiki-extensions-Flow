@@ -432,7 +432,7 @@ class UrlGenerator extends BaseUrlGenerator {
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'action' => $flowAction,
-				'flow_moderationState' => 'restore',
+				'flow_moderationState' => $moderationAction,
 			)
 		);
 	}
@@ -452,7 +452,7 @@ class UrlGenerator extends BaseUrlGenerator {
 			$this->resolveTitle( $title, $workflowId ),
 			array(
 				'action' => $flowAction,
-				'topic_moderationState' => 'restore',
+				'topic_moderationState' => $moderationAction,
 				'topic_postId' => $postId->getAlphadecimal(),
 			)
 		);
