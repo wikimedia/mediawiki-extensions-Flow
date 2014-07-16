@@ -11,7 +11,7 @@
 	},
 	"flow-desc": "Sistema de gerência do fluxo de trabalho",
 	"flow-talk-taken-over": "Esta página de discussão usa o [https://www.mediawiki.org/wiki/Special:MyLanguage/Flow_Portal Flow].",
-	"flow-talk-username": "Gerenciador de páginas de discussão do Flow",
+	"flow-talk-username": "Gestor de páginas de discussão do Flow",
 	"log-name-flow": "Registo de actividade do Flow",
 	"logentry-delete-flow-delete-post": "$1 {{GENDER:$2|eliminou}} uma [$4 mensagem] em [[$3]]",
 	"logentry-delete-flow-restore-post": "$1 {{GENDER:$2|restaurou}} uma [$4 mensagem] em [[$3]]",

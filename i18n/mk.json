@@ -291,6 +291,7 @@
 	"flow-started-ago": "Започната $1",
 	"flow-edited-ago": "Изменета $1",
 	"flow-load-more": "Вчитај уште",
+	"flow-no-more-fwd": "Нема постари теми",
 	"flow-add-topic": "Додај тема",
 	"flow-newest-topics": "Најнови теми",
 	"flow-recent-topics": "Скорешни активни теми",

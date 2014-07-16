@@ -291,6 +291,7 @@
 	"flow-started-ago": "Gestartet $1",
 	"flow-edited-ago": "Bearbeitet $1",
 	"flow-load-more": "Mehr laden",
+	"flow-no-more-fwd": "Es gibt keine älteren Themen",
 	"flow-add-topic": "Thema hinzufügen",
 	"flow-newest-topics": "Neueste Themen",
 	"flow-recent-topics": "Zuletzt aktive Themen",
