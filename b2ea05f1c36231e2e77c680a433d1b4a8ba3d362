@@ -384,6 +384,24 @@
     },
     {
       "key": {
+        "uuid": "8e28a382_3d176d58",
+        "filename": "modules/new/components/flow-board.js",
+        "patchSetId": 50
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-16T21:33:29Z",
+      "side": 1,
+      "message": "IMO this should be tooltip functionality (eg. fadeOutAfter). But this works for now.",
+      "parentUuid": "8e28a382_7a65fb40",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e28a382_bae12399",
         "filename": "modules/new/styles/board/topic/watchlist.less",
         "patchSetId": 50
@@ -395,6 +413,24 @@
       "writtenOn": "2014-07-16T20:31:16Z",
       "side": 1,
       "message": "????",
+      "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_08090d2f",
+        "filename": "modules/new/styles/board/topic/watchlist.less",
+        "patchSetId": 50
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-16T21:33:29Z",
+      "side": 1,
+      "message": "IE6 inline-block hack. Should probably make .inline-block; in Core at some point.",
+      "parentUuid": "8e28a382_bae12399",
       "revId": "b2ea05f1c36231e2e77c680a433d1b4a8ba3d362",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false

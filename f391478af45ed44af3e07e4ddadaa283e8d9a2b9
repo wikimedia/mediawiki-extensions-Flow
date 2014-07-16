@@ -16,6 +16,24 @@
       "revId": "f391478af45ed44af3e07e4ddadaa283e8d9a2b9",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_e80fe131",
+        "filename": "modules/new/styles/mediawiki.ui/tooltips.less",
+        "patchSetId": 50
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1374
+      },
+      "writtenOn": "2014-07-16T21:33:29Z",
+      "side": 0,
+      "message": "No idea. Jon added this and I\u0027m not sure why. I approved it, so I\u0027m equally at fault. I remember seeing it and questioned it, but forgot to follow up.",
+      "parentUuid": "8e28a382_1ae83776",
+      "revId": "f391478af45ed44af3e07e4ddadaa283e8d9a2b9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
