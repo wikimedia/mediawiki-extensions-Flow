@@ -145,7 +145,7 @@ class TemplateHelper {
 					'l10nParse' => 'Flow\TemplateHelper::l10nParse',
 					'diffRevision' => 'Flow\TemplateHelper::diffRevision',
 					'moderationAction' => 'Flow\TemplateHelper::moderationAction',
-					'moderationActionText' => 'Flow\TemplateHelper::moderationActionText',
+					'moderationMessage' => 'Flow\TemplateHelper::moderationMessage',
 					'user' => 'Flow\TemplateHelper::user',
 					'linkWithReturnTo' => 'Flow\TemplateHelper::linkWithReturnTo',
 					'escapeContent' => 'Flow\TemplateHelper::escapeContent',
@@ -709,16 +709,17 @@ class TemplateHelper {
 	}
 
 	/**
-	 * @param array $args Expects array $actions, string $moderationState
+	 * @param array $args Expects string $prefix, string $moderationState, string $type
 	 * @param array $named No named arguments expected
 	 * @return string
 	 */
-	static public function moderationActionText( array $args, array $named ) {
-		if ( count( $args ) !== 2 ) {
-			throw new WrongNumberArgumentsException( $args, 'two' );
+	static public function moderationMessage( array $args, array $named ) {
+		if ( count( $args ) !== 3 ) {
+			throw new WrongNumberArgumentsException( $args, 'three' );
 		}
-		list( $actions, $moderationState ) = $args;
-		return isset( $actions[$moderationState] ) ? $actions[$moderationState]['title'] : '';
+		list( $prefix, $moderationState, $type ) = $args;
+
+		return wfMessage( $prefix . $moderationState . $type )->text();
 	}
 
 	/**
