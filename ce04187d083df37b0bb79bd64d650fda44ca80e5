@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_5d8119c7",
+        "filename": "handlebars/flow_post_author.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-16T21:26:52Z",
+      "side": 1,
+      "message": "de-indent",
+      "revId": "ce04187d083df37b0bb79bd64d650fda44ca80e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e28a382_bd859da1",
+        "filename": "handlebars/flow_post_author.handlebars",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 776
+      },
+      "writtenOn": "2014-07-16T21:26:52Z",
+      "side": 1,
+      "message": "instead of using these conditionals which seem hard to extend, could we do something like:\n\n  .mw-usertoollinks a + a:before { content: \" | \"; }\n\nin the css?\n\nI would like to do the same with the wrapping ( ), but i could only figure out how to do it in css3 and we probably need to support css2 here.",
+      "revId": "ce04187d083df37b0bb79bd64d650fda44ca80e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
