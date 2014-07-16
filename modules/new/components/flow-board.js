@@ -350,21 +350,10 @@
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.board = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$errorTarget = flowBoard.$container.find( '.flow-board-navigation' ),
 				$rendered;
 
-			// Generic error handling only works on forms; the interactive
-			// element here is the header div that should be replaced, so let's
-			// take care of displaying the error ourselves.
-			// @todo: error handling should probably be made more generic
-			// @todo: errorify me
-			FlowBoardComponent.UI.removeError( $errorTarget );
 			if ( info.status !== 'done' ) {
-				if ( jqxhr.error ) {
-					FlowBoardComponent.UI.showError( $errorTarget, jqxhr.error.info );
-				} else {
-					FlowBoardComponent.UI.showError( $errorTarget, mw.msg( 'flow-error-http' ) );
-				}
+				// Error will be displayed by default, nothing else to wrap up
 				return;
 			}
 
@@ -388,20 +377,10 @@
 		FlowBoardComponent.UI.events.apiHandlers.loadMore = function ( info, data, jqxhr ) {
 			var $this = $( this ),
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $this ),
-				$errorTarget = $this.closest( '.flow-load-more' ),
 				$tmp;
 
-			// Generic error handling only works on forms; the interactive
-			// element here is the header div that should be replaced, so let's
-			// take care of displaying the error ourselves.
-			// @todo: error handling should probably be made more generic
-			FlowBoardComponent.UI.removeError( $errorTarget );
 			if ( info.status !== 'done' ) {
-				if ( jqxhr.error ) {
-					FlowBoardComponent.UI.showError( $errorTarget, jqxhr.error.info );
-				} else {
-					FlowBoardComponent.UI.showError( $errorTarget, mw.msg( 'flow-error-http' ) );
-				}
+				// Error will be displayed by default, nothing else to wrap up
 				return;
 			}
 
@@ -447,16 +426,11 @@
 		 */
 		FlowBoardComponent.UI.events.apiHandlers.activateEditHeader = function ( info, data, jqxhr ) {
 			var flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
-				$target = info.$target,
 				$oldBoardNodes,
 				$rendered;
 
-			// Generic error handling only works on forms; the interactive
-			// element here is the header div that should be replaced, so let's
-			// take care of displaying the error ourselves.
-			// @todo: error handling should probably be made more generic
-			FlowBoardComponent.UI.removeError( $target );
 			if ( info.status !== 'done' ) {
+				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 				return;
 			}
 
@@ -520,11 +494,8 @@
 
 			$( this ).closest( '.flow-menu' ).removeClass( 'focus' );
 
-			// Generic form error handling only works on forms; the interactive
-			// element here is the summary div that should be replaced,
-			// so lets take ore of displaying the error ourselves.
-			FlowBoardComponent.UI.removeError( $old );
 			if ( info.status !== 'done' ) {
+				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 				return;
 			}
 
@@ -568,51 +539,61 @@
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) ),
 				flowId = $( self ).closest( '.flow-topic-titlebar' ).parent().data( 'flow-id' );
 
-			if ( info.status === 'done' ) {
-				// We couldn't make close-open-topic to return topic data after a successful
-				// post submission because close-open-topic is used for no-js support as well.
-				// If we make it return topic data, that means it has to return wikitext format
-				// for edit form in no-js mode.  This is a performance problem for wikitext
-				// conversion since topic data returns all children data as well.  So we need to
-				// make close-open-topic return a single post for topic then fire
-				// another request to topic data in html format
-				//
-				// @todo the html could json encode the parameters including topics, the js
-				// could then import that and continuously update it with new revisions from
-				// api calls.  Rendering a topic would then just be pointing the template at
-				// the right part of that data instead of requesting it.
-				flowBoard.API.apiCall( {
-					action: 'flow',
-					submodule: 'view-topic',
-					workflow: flowId,
-					// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
-					page: mw.Title.newFromText( flowId, 2600 ).getPrefixedDb()
-				} ).done( function( result ) {
-					// FIXME: Why doesn't the API return this?
-					result = result.flow['view-topic'].result.topic;
-					topicId = result.roots[0];
-					revisionId = result.posts[topicId];
-					revision = result.revisions[revisionId];
-
-					// FIXME: Api should be returning moderation state. Why not?
-					revision.isModerated = revision.moderateState === 'close';
-
-					// FIXME: Hackily remove the moderated class (avoids re-rendering entire post)
-					$target.parents( '.flow-topic' ).removeClass( 'flow-topic-moderated' );
-
-					// Update view of the title bar
-					$topicTitleBar = $(
-						flowBoard.TemplateEngine.processTemplateGetFragment(
-							'flow_topic_titlebar',
-							revision
-						)
-					).children();
-					$target.replaceWith( $topicTitleBar );
-					FlowBoardComponent.UI.makeContentInteractive( $topicTitleBar );
-				} );
-			} else {
+			if ( info.status !== 'done' ) {
+				// Error will be displayed by default & edit conflict handled, nothing else to wrap up
 				return;
 			}
+
+			// We couldn't make close-open-topic to return topic data after a successful
+			// post submission because close-open-topic is used for no-js support as well.
+			// If we make it return topic data, that means it has to return wikitext format
+			// for edit form in no-js mode.  This is a performance problem for wikitext
+			// conversion since topic data returns all children data as well.  So we need to
+			// make close-open-topic return a single post for topic then fire
+			// another request to topic data in html format
+			//
+			// @todo the html could json encode the parameters including topics, the js
+			// could then import that and continuously update it with new revisions from
+			// api calls.  Rendering a topic would then just be pointing the template at
+			// the right part of that data instead of requesting it.
+			flowBoard.API.apiCall( {
+				action: 'flow',
+				submodule: 'view-topic',
+				workflow: flowId,
+				// Flow topic title, in Topic:<topicId> format (2600 is topic namespace id)
+				page: mw.Title.newFromText( flowId, 2600 ).getPrefixedDb()
+			} ).done( function( result ) {
+				// FIXME: Why doesn't the API return this?
+				result = result.flow['view-topic'].result.topic;
+				topicId = result.roots[0];
+				revisionId = result.posts[topicId];
+				revision = result.revisions[revisionId];
+
+				// FIXME: Api should be returning moderation state. Why not?
+				revision.isModerated = revision.moderateState === 'close';
+
+				// FIXME: Hackily remove the moderated class (avoids re-rendering entire post)
+				$target.parents( '.flow-topic' ).removeClass( 'flow-topic-moderated' );
+
+				// Update view of the title bar
+				$topicTitleBar = $(
+					flowBoard.TemplateEngine.processTemplateGetFragment(
+						'flow_topic_titlebar',
+						revision
+					)
+				).children();
+				$target.replaceWith( $topicTitleBar );
+				FlowBoardComponent.UI.makeContentInteractive( $topicTitleBar );
+			} ).fail( function( code, result ) {
+				/*
+				 * At this point, the open/close actually worked, but failed
+				 * fetching the new data to be displayed.
+				 */
+				FlowBoardComponent.UI.removeError( $target );
+				var errorMsg = result.error ? result.error.info : mw.msg( 'flow-error-http' );
+				errorMsg = mw.msg( 'flow-error-fetch-after-open-close', errorMsg );
+				FlowBoardComponent.UI.showError( $target, errorMsg );
+			} );
 		};
 
 		/**
@@ -889,12 +870,8 @@
 				$old = $target,
 				flowBoard = FlowBoardComponent.prototype.getInstanceByElement( $( this ) );
 
-			// Generic error handling only works on forms; the interactive
-			// element here is the summary div that should be replaced, so let's
-			// take care of displaying the error ourselves.
-			// @todo: error handling should probably be made more generic
-			FlowBoardComponent.UI.removeError( $old );
 			if ( info.status !== 'done' ) {
+				// Error will be displayed by default, nothing else to wrap up
 				return;
 			}
 
@@ -961,12 +938,8 @@
 				$post = info.$target,
 				$rendered;
 
-			// Generic error handling only works on forms; the interactive
-			// element here is the post div that should be replaced, so let's
-			// take care of displaying the error ourselves.
-			// @todo: error handling should probably be made more generic
-			FlowBoardComponent.UI.removeError( $post );
 			if ( info.status !== 'done' ) {
+				// Error will be displayed by default, nothing else to wrap up
 				return;
 			}
 
@@ -1438,7 +1411,7 @@
 			} );
 
 			// Remove existing errors from previous attempts
-			FlowBoardComponent.UI.removeError( $this.closest( 'form' ) );
+			FlowBoardComponent.UI.removeError( $this );
 
 			// If this has a special api handler, bind it to the callback.
 			if ( FlowBoardComponent.UI.events.apiHandlers[ handlerName ] ) {
@@ -1454,7 +1427,6 @@
 							$form = $this.closest( 'form' ),
 							errorMsg;
 						info.status = 'fail';
-						info.$container = $this.closest( 'form' );
 						args.unshift( info );
 
 						/*
@@ -1468,18 +1440,14 @@
 
 						/*
 						 * Generic error handling: displays error message in the
-						 * current form. If this is inappropriate for a
-						 * specific action, the error can be removed again in
-						 * the subsequent call to that specific api handler, by
-						 * calling FlowBoardComponent.UI.removeError() with
-						 * info.$container as argument.
+						 * nearest error container.
 						 *
 						 * Errors returned by MW/Flow should always be in the
 						 * same format. If the request failed without a specific
 						 * error message, just fall back to some default error.
 						 */
 						errorMsg = result.error ? result.error.info : mw.msg( 'flow-error-http' );
-						FlowBoardComponent.UI.showError( $form, errorMsg );
+						FlowBoardComponent.UI.showError( info.$target, errorMsg );
 
 						FlowBoardComponent.UI.events.apiHandlers[ handlerName ].apply( _this, args );
 					} );
@@ -1789,26 +1757,49 @@
 		////////////////////
 
 		/**
-		 * @param {FlowBoardComponent|jQuery} $container or entire FlowBoard
+		 * @param {FlowBoardComponent|jQuery} $node or entire FlowBoard
 		 * @param string msg The error that occurred. Currently hardcoded.
 		 */
-		FlowBoardComponent.UI.showError = function ( $container, msg ) {
+		FlowBoardComponent.UI.showError = function ( $node, msg ) {
 			var html = mw.flow.TemplateEngine.processTemplate( 'flow_errors', { errors: [ { message: msg } ] } );
 
-			if ( !$container.jquery ) {
-				$container = $container.$container;
+			if ( !$node.jquery ) {
+				$node = $node.$container;
 			}
 
-			$container.find( '.flow-content-preview' ).hide();
-			$container.find( '.flow-error-container' ).replaceWith( html );
+			FlowBoardComponent.UI.findUpward( $node, '.flow-content-preview' ).hide();
+			FlowBoardComponent.UI.findUpward( $node, '.flow-error-container:first' ).replaceWith( html );
+
 			mw.log.warn( msg );
 		};
 
 		/**
-		 * @param {FlowBoardComponent|jQuery} $container or entire FlowBoard
+		 * @param {FlowBoardComponent|jQuery} $node or entire FlowBoard
 		 */
-		FlowBoardComponent.UI.removeError = function ( $container ) {
-			$container.find( '.flow-error-container' ).empty();
+		FlowBoardComponent.UI.removeError = function ( $node ) {
+			FlowBoardComponent.UI.findUpward( $node, '.flow-error-container:first' ).empty();
+		};
+
+		/**
+		 * Given node & a selector, this will return the result closest to $node
+		 * by first looking inside $node, then travelling up the DOM tree to
+		 * locate the first result in a common ancestor.
+		 *
+		 * @param jQuery $node
+		 * @param string selector
+		 * @returns jQuery
+		 */
+		FlowBoardComponent.UI.findUpward = function ( $node, selector ) {
+			// first check if result can already be found inside $node
+			var $result = $node.find( selector );
+
+			// then keep looking up the tree until a result is found
+			while ( $result.length === 0 && $node.length !== 0 ) {
+				$node = $node.parent();
+				$result = $node.children( selector );
+			}
+
+			return $result;
 		};
 
 		/**

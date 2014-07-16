@@ -7,7 +7,7 @@
 				{{~else~}}
 					{{~actions.close.url~}}
 				{{~/if~}}">
-			{{> flow_errors}}
+			{{> flow_errors }}
 			<input type="hidden" name="wpEditToken" value="{{@root.editToken}}" />
 			{{#if summary.revId}}
 				<input type="hidden" name="flow_prev_revision" value="{{summary.revId}}" />
