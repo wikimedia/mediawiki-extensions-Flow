@@ -21,7 +21,7 @@
 					</li>
 				{{/if}}
 				{{#if links.topic-history}}
-					<li>
+					<li {{#if actions.edit}}{{#doOnce 'splitlinks' postId}}class="flow-menu-split"{{/doOnce}}{{/if}}>
 						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 						   href="{{links.topic-history.url}}"
 						   title="{{links.topic-history.title}}">
@@ -31,7 +31,7 @@
 					</li>
 				{{/if}}
 				{{#if links.topic}}
-					<li>
+					<li {{#if actions.edit}}{{#doOnce 'splitlinks' postId}}class="flow-menu-split"{{/doOnce}}{{/if}}>
 						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 						   href="{{links.topic.url}}"
 						   title="{{links.topic.title}}">
@@ -41,7 +41,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.lock}}
-					<li>
+					<li {{#doOnce 'splitactions' postId}}class="flow-menu-split"{{/doOnce}}>
 						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
 						   href="{{actions.lock.url}}"
 						   title="{{actions.lock.title}}">
@@ -51,7 +51,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.summarize}}
-					<li>
+					<li {{#doOnce 'splitactions' postId}}class="flow-menu-split"{{/doOnce}}>
 						<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateSummarizeTopic"
@@ -68,7 +68,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.hide}}
-					<li class="flow-menu-moderation-action">
+					<li {{#doOnce 'splitactions' postId}}class="flow-menu-split"{{/doOnce}}>
 						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 						   href="{{actions.hide.url}}"
 						   title="{{actions.hide.title}}"
@@ -81,7 +81,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.unhide}}
-					<li class="flow-menu-moderation-action">
+					<li {{#doOnce 'splitactions' postId}}class="flow-menu-split"{{/doOnce}}>
 						<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 						   href="{{actions.unhide.url}}"
 						   title="{{actions.unhide.title}}"
@@ -94,7 +94,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.delete}}
-					<li class="flow-menu-moderation-action">
+					<li {{#doOnce 'splitactions' postId}}class="flow-menu-split"{{/doOnce}}>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 						   href="{{actions.delete.url}}"
 						   title="{{actions.delete.title}}"
@@ -107,7 +107,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.undelete}}
-					<li class="flow-menu-moderation-action">
+					<li {{#doOnce 'splitactions' postId}}class="flow-menu-split"{{/doOnce}}>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 						   href="{{actions.undelete.url}}"
 						   title="{{actions.undelete.title}}"
@@ -120,7 +120,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.suppress}}
-					<li class="flow-menu-moderation-action">
+					<li {{#doOnce 'splitactions' postId}}class="flow-menu-split"{{/doOnce}}>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 						   href="{{actions.suppress.url}}"
 						   title="{{actions.suppress.title}}"
@@ -133,7 +133,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.unsuppress}}
-					<li class="flow-menu-moderation-action">
+					<li {{#doOnce 'splitactions' postId}}class="flow-menu-split"{{/doOnce}}>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 						   href="{{actions.unsuppress.url}}"
 						   title="{{actions.unsuppress.title}}"
@@ -146,7 +146,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.close}}
-					<li class="flow-menu-moderation-action">
+					<li {{#doOnce 'splitactions' postId}}class="flow-menu-split"{{/doOnce}}>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateCloseOpenTopic"
@@ -160,7 +160,7 @@
 					</li>
 				{{/if}}
 				{{#if actions.reopen}}
-					<li class="flow-menu-moderation-action">
+					<li {{#doOnce 'splitactions' postId}}class="flow-menu-split"{{/doOnce}}>
 						<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 						   data-flow-interactive-handler="apiRequest"
 						   data-flow-api-handler="activateCloseOpenTopic"

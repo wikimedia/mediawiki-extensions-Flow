@@ -16,6 +16,7 @@
 ),
         'blockhelpers' => Array(),
         'hbhelpers' => Array(            'eachPost' => 'Flow\TemplateHelper::eachPost',
+            'doOnce' => 'Flow\TemplateHelper::doOnce',
 ),
         'scopes' => Array($in),
         'sp_vars' => Array(),
@@ -122,7 +123,7 @@
 			</li>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['lock'])) ? $in['actions']['lock'] : null))) ? '
-			<li>
+			<li '.LCRun3::hbch($cx, 'doOnce', Array(Array('actionsplit',((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return 'class="flow-menu-split"';}).'>
 				<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
 				   href="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['url'])) ? $in['actions']['lock']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				   title="'.htmlentities(((is_array($in['actions']['lock']) && isset($in['actions']['lock']['title'])) ? $in['actions']['lock']['title'] : null), ENT_QUOTES, 'UTF-8').'">
@@ -132,7 +133,7 @@
 			</li>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['hide'])) ? $in['actions']['hide'] : null))) ? '
-			<li class="flow-menu-moderation-action">
+			<li '.LCRun3::hbch($cx, 'doOnce', Array(Array('actionsplit',((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return 'class="flow-menu-split"';}).'>
 				<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 				   href="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['url'])) ? $in['actions']['hide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				   title="'.htmlentities(((is_array($in['actions']['hide']) && isset($in['actions']['hide']['title'])) ? $in['actions']['hide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -145,7 +146,7 @@
 			</li>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unhide'])) ? $in['actions']['unhide'] : null))) ? '
-			<li class="flow-menu-moderation-action">
+			<li '.LCRun3::hbch($cx, 'doOnce', Array(Array('actionsplit',((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return 'class="flow-menu-split"';}).'>
 				<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
 				   href="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['url'])) ? $in['actions']['unhide']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				   title="'.htmlentities(((is_array($in['actions']['unhide']) && isset($in['actions']['unhide']['title'])) ? $in['actions']['unhide']['title'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -158,7 +159,7 @@
 			</li>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['delete'])) ? $in['actions']['delete'] : null))) ? '
-			<li class="flow-menu-moderation-action">
+			<li '.LCRun3::hbch($cx, 'doOnce', Array(Array('actionsplit',((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return 'class="flow-menu-split"';}).'>
 				<a class="flow-ui-button flow-ui-quiet flow-ui-thin"
 				   href="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['url'])) ? $in['actions']['delete']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				   title="'.htmlentities(((is_array($in['actions']['delete']) && isset($in['actions']['delete']['title'])) ? $in['actions']['delete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -171,7 +172,7 @@
 			</li>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['undelete'])) ? $in['actions']['undelete'] : null))) ? '
-			<li class="flow-menu-moderation-action">
+			<li '.LCRun3::hbch($cx, 'doOnce', Array(Array('actionsplit',((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return 'class="flow-menu-split"';}).'>
 				<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
 				   href="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['url'])) ? $in['actions']['undelete']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				   title="'.htmlentities(((is_array($in['actions']['undelete']) && isset($in['actions']['undelete']['title'])) ? $in['actions']['undelete']['title'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -184,7 +185,7 @@
 			</li>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['suppress'])) ? $in['actions']['suppress'] : null))) ? '
-			<li class="flow-menu-moderation-action">
+			<li '.LCRun3::hbch($cx, 'doOnce', Array(Array('actionsplit',((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return 'class="flow-menu-split"';}).'>
 				<a class="flow-ui-button flow-ui-destructive flow-ui-quiet flow-ui-thin"
 				   href="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['url'])) ? $in['actions']['suppress']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				   title="'.htmlentities(((is_array($in['actions']['suppress']) && isset($in['actions']['suppress']['title'])) ? $in['actions']['suppress']['title'] : null), ENT_QUOTES, 'UTF-8').'"
@@ -197,7 +198,7 @@
 			</li>
 		' : '').'
 		'.((LCRun3::ifvar($cx, ((is_array($in['actions']) && isset($in['actions']['unsuppress'])) ? $in['actions']['unsuppress'] : null))) ? '
-			<li class="flow-menu-moderation-action">
+			<li '.LCRun3::hbch($cx, 'doOnce', Array(Array('actionsplit',((is_array($in) && isset($in['postId'])) ? $in['postId'] : null)),Array()), $in, function($cx, $in) {return 'class="flow-menu-split"';}).'>
 				<a class="flow-ui-button flow-ui-progressive flow-ui-quiet flow-ui-thin"
 				   href="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['url'])) ? $in['actions']['unsuppress']['url'] : null), ENT_QUOTES, 'UTF-8').'"
 				   title="'.htmlentities(((is_array($in['actions']['unsuppress']) && isset($in['actions']['unsuppress']['title'])) ? $in['actions']['unsuppress']['title'] : null), ENT_QUOTES, 'UTF-8').'"
