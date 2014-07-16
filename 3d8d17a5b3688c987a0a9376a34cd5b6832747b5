@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e28a382_d7cde88a",
+        "filename": "i18n/en.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 121
+      },
+      "writtenOn": "2014-07-16T18:46:08Z",
+      "side": 1,
+      "message": "This looks very wrong. Reverted with Ib35824f7a1a9f79bb3e2c6bd845f8265a0b5b65f",
+      "revId": "3d8d17a5b3688c987a0a9376a34cd5b6832747b5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
